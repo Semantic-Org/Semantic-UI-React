@@ -1,2 +1,2 @@
 # stardust
-Semantic UI components for Tap Flux.
+Tap Flux components for Semantic UI.
