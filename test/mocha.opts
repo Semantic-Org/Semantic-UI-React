@@ -1,0 +1,4 @@
+--recursive
+--require ./test/default-require.js
+--ui bdd
+--colors
