@@ -1,5 +1,5 @@
 var React = require('react');
-var Title = require('./TitleComponent/Title');
+var Title = require('./Title/Title');
 var App = React.createClass({
   render: function() {
     return (
