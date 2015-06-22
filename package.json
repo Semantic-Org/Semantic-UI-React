@@ -1,0 +1,38 @@
+{
+  "name": "CHANGE_THIS",
+  "version": "0.1.0",
+  "description": "CHANGE_THIS",
+  "scripts": {
+    "prestart": "npm i",
+    "start": "gulp"
+  },
+  "dependencies": {
+    "eslint-plugin-react": "^2.5.0",
+    "flux": "^2.0.0",
+    "gulp-webpack": "^1.4.0",
+    "gulp-webserver": "^0.9.1",
+    "jsx-loader": "^0.13.2",
+    "keymirror": "~0.1.0",
+    "lodash": "^3.9.3",
+    "object-assign": "^1.0.0",
+    "react": "^0.12.0",
+    "tap-flux": "^0.9.0"
+  },
+  "devDependencies": {
+    "chai": "^3.0.0",
+    "eslint": "^0.23.0",
+    "eslint-plugin-react": "^2.5.2",
+    "gulp": "^3.8.11",
+    "gulp-load-plugins": "^1.0.0-rc.1",
+    "istanbul": "^0.3.15",
+    "jest-cli": "^0.4.3",
+    "live-server": "^0.7.1",
+    "mocha": "^2.2.5",
+    "run-sequence": "^1.1.0",
+    "sinon": "^1.15.3",
+    "sinon-chai": "^2.8.0"
+  },
+  "jest": {
+    "rootDir": "./js"
+  }
+}

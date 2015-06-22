@@ -1,0 +1,20 @@
+{
+  "env": {
+    "node": true,
+    "mocha": true
+  },
+  "rules": {
+    "no-console": 0,                // http://eslint.org/docs/rules/no-console
+    "new-cap": 0,                   // http://eslint.org/docs/rules/new-cap
+    "no-shadow": 0                  // http://eslint.org/docs/rules/no-shadow
+
+  },
+  "globals": {
+    "sinon": false,
+    "chai": false,
+    "sinonChai": false,
+    "expect": false,
+    "should": false,
+    "_": false
+  }
+}

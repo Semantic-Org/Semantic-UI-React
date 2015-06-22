@@ -1,0 +1,5 @@
+.idea
+.DS_STORE
+node_modules
+bower_components
+bundle.js
