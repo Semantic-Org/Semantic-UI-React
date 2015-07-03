@@ -31296,32 +31296,11 @@
 	      React.createElement("div", null, 
 	        React.createElement("div", {className: "ui borderless main menu"}, 
 	          React.createElement("div", {className: "ui text container"}, 
-	            React.createElement("div", {href: "#", className: "header item"}, 
+	            React.createElement("a", {href: "#", className: "header item"}, 
 	              "Stardust"
 	            ), 
 	            React.createElement("a", {href: "#contact-card-example", className: "item"}, 
 	              "Contact Card"
-	            ), 
-	            React.createElement("a", {href: "#", className: "ui right floated dropdown item", 
-	               tabIndex: "0"}, 
-
-	              "Dropdown ", React.createElement("i", {className: "dropdown icon"}), 
-
-	              React.createElement("div", {className: "menu", tabIndex: "-1"}, 
-	                React.createElement("div", {className: "item"}, "Link Item"), 
-	                React.createElement("div", {className: "item"}, "Link Item"), 
-	                React.createElement("div", {className: "divider"}), 
-	                React.createElement("div", {className: "header"}, "Header Item"), 
-	                React.createElement("div", {className: "item"}, 
-	                  React.createElement("i", {className: "dropdown icon"}), 
-	                  "Sub Menu", 
-	                  React.createElement("div", {className: "menu"}, 
-	                    React.createElement("div", {className: "item"}, "Link Item"), 
-	                    React.createElement("div", {className: "item"}, "Link Item")
-	                  )
-	                ), 
-	                React.createElement("div", {className: "item"}, "Link Item")
-	              )
 	            )
 	          )
 	        )

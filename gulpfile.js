@@ -109,7 +109,8 @@ gulp.task('serve', function() {
           var isNodeModule = filePath.match(/node_modules/);
           var shouldReload = !isNodeModule;
 
-          console.log(shouldReload, filePath);
+          // Debug livereload rules:
+          // g.util.log(shouldReload, filePath);
 
           return shouldReload;
         }
