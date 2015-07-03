@@ -4,24 +4,24 @@ var g = require('gulp-load-plugins')();
 
 var paths = {
   root: __dirname + '/',
-  components: __dirname + '/components/',
-  node_modules: __dirname + '/node_modules/',
-  entryFile: __dirname + '/App.js'
+  docs: __dirname + '/docs/',
+  src: __dirname + '/src/',
+  test: __dirname + '/test/',
+  entryFile: __dirname + '/docs/App.js'
 };
-
 
 //
 // Build
 //
 
-gulp.task('build', function(cb) {
+gulp.task('build-docs', function(cb) {
   var webpack = require('webpack');
 
   // http://webpack.github.io/docs/configuration.html
   var webpackOpts = {
     entry: paths.entryFile,
     output: {
-      path: paths.root,
+      path: paths.docs,
       filename: 'bundle.js'
     },
     module: {
@@ -32,8 +32,8 @@ gulp.task('build', function(cb) {
         }
       ]
     },
-    resolveLoader: {
-      root: paths.node_modules
+    resolve: {
+      root: __dirname
     }
   };
 
@@ -72,7 +72,6 @@ gulp.task('build', function(cb) {
   });
 });
 
-
 //
 // Serve
 //
@@ -82,12 +81,21 @@ gulp.task('serve', function() {
     .pipe(g.webserver({
       host: 'localhost',
       port: 8080,
-      livereload: true,
+      livereload: {
+        enable: true,
+        filter: function(filePath) {
+          var isNodeModule = filePath.match(/node_modules/);
+          var shouldReload = !isNodeModule;
+
+          console.log(shouldReload, filePath);
+
+          return shouldReload;
+        }
+      },
       fallback: 'index.html',
       open: false
     }));
 });
-
 
 //
 // Watch
@@ -95,12 +103,12 @@ gulp.task('serve', function() {
 
 gulp.task('watch', function() {
   return gulp.watch([
-    paths.root + '**/*.js',           // all js
-    '!' + paths.node_modules,         // except node_modules
-    '!' + paths.root + 'bundle.js'    // except bundle.js (circular builds)
-  ], ['build']);
+    paths.src + '**/*.js',            // all js
+    paths.test + '**/*.js',           // all js
+    paths.docs + '**/*.js',           // all js
+    '!' + paths.docs + 'bundle.js'    // except bundle.js (circular builds)
+  ], ['build-docs']);
 });
-
 
 //
 // Default
@@ -108,7 +116,7 @@ gulp.task('watch', function() {
 
 gulp.task('default', function(cb) {
   runSequence(
-    'build',
+    'build-docs',
     'watch',
     'serve',
     cb

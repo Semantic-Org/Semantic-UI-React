@@ -1,5 +1,5 @@
 var React = require("react");
-var ContactCard = require('../components/ContactCard/ContactCard');
+var ContactCard = require('../../src/components/ContactCard/ContactCard');
 
 var ExampleSection = React.createClass({
   render: function() {

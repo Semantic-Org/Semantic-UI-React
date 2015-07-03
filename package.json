@@ -1,14 +1,16 @@
 {
-  "name": "CHANGE_THIS",
+  "name": "Stardust",
   "version": "0.1.0",
-  "description": "CHANGE_THIS",
+  "description": "Semantic UI components for React and Flux.",
   "scripts": {
+    "postinstall": "cp node_modules/semantic-ui-css/ docs/semantic",
     "prestart": "npm i",
     "start": "gulp"
   },
   "dependencies": {
     "eslint-plugin-react": "^2.5.0",
     "flux": "^2.0.0",
+    "gulp-webserver": "^0.9.1",
     "jquery": "^2.1.4",
     "jsx-loader": "^0.13.2",
     "keymirror": "~0.1.0",

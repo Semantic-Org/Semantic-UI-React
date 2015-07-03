@@ -1,12 +1,14 @@
 var React = require('react');
-var ContactCardExample = require('./examples/ContactCardExamples');
+var ContactCardExample = require('./components/ContactCardExample');
+var MainMenu = require('./components/MainMenu');
 
 var App = React.createClass({
   render: function() {
     return (
       <div className="ui text container">
-        <h1>Stardust</h1>
-        <ContactCardExample />
+        <MainMenu/>
+        <div className="ui divider"></div>
+        <ContactCardExample/>
       </div>
     )
   }
