@@ -1,10 +1,12 @@
 var React = require('react');
-var Title = require('./Title/Title');
+var ContactCardExample = require('./examples/ContactCardExamples');
+
 var App = React.createClass({
   render: function() {
     return (
-      <div>
-        <Title title="Stardust."/>
+      <div className="ui text container">
+        <h1>Stardust</h1>
+        <ContactCardExample />
       </div>
     )
   }
@@ -13,4 +15,4 @@ var App = React.createClass({
 React.render(
   <App />,
   document.getElementById('app')
-)
+);
