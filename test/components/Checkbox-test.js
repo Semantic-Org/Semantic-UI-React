@@ -1,5 +1,5 @@
 import React from 'react';
-import Checkbox from '../Checkbox/Checkbox';
+import Checkbox from 'components/Checkbox/Checkbox';
 
 describe('Checkbox', () => {
   it('is checked by default', () => {

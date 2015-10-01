@@ -1,6 +1,6 @@
 import React from 'react';
-import Field from '../Field/Field';
-import Textarea from '../Textarea/Textarea';
+import Field from 'components/Field/Field';
+import Textarea from 'components/Textarea/Textarea';
 
 describe('Field', () => {
   it('has a label', () => {

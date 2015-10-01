@@ -4,9 +4,13 @@ var PROJECT_ROOT = path.resolve(__dirname);
 
 module.exports = {
   root: PROJECT_ROOT + '/',
-  src: PROJECT_ROOT + '/src',
+  docsRoot: PROJECT_ROOT + '/docs',
+  docsApp: PROJECT_ROOT + '/docs/app',
+  docsBuild: PROJECT_ROOT + '/docs/build',
   gulp: PROJECT_ROOT + '/gulp',
+  components: PROJECT_ROOT + '/components',
   test: PROJECT_ROOT + '/test',
+  testMocks: PROJECT_ROOT + '/test/mocks',
   bower_components: PROJECT_ROOT + '/bower_components',
   node_modules: PROJECT_ROOT + '/node_modules',
 };

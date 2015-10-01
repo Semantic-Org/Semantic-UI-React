@@ -1,5 +1,5 @@
 import React from 'react';
-import Input from '../Input/Input';
+import Input from 'components/Input/Input';
 
 describe('Input', () => {
   it('has the input type of text by default', () => {

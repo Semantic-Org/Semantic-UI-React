@@ -1,6 +1,6 @@
 import React from 'react';
 import faker from 'faker';
-import Grid from '../Grid/Grid';
+import Grid from 'components/Grid/Grid';
 
 describe('Grid', () => {
   it('is an sd-grid', () => {

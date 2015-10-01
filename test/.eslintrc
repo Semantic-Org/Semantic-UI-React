@@ -1,0 +1,16 @@
+{
+  "env": {
+    "node": true,
+    "mocha": true
+  },
+  "globals": {
+    "sinon": false,
+    "chai": false,
+    "sinonChai": false,
+    "expect": false,
+    "should": false
+  },
+  "rules": {
+    "max-nested-callbacks": [2, 4]
+  }
+}
