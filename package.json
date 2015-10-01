@@ -4,6 +4,9 @@
   "private": true,
   "description": "Semantic UI components for React.",
   "main": "index.js",
+  "files": [
+    "./components"
+  ],
   "scripts": {
     "test": "karma start karma.conf.js",
     "lint": "eslint src test gulp",
