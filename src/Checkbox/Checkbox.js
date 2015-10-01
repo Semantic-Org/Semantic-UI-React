@@ -3,7 +3,6 @@ import radium from 'radium';
 import classNames from 'classnames';
 import $ from 'jquery';
 
-@radium
 /**
  * A versatile checkbox with many styles.
  *
@@ -19,6 +18,7 @@ import $ from 'jquery';
  * // Toggle switch style checkbox
  * <Checkbox type='toggle' />
  */
+@radium
 class Checkbox extends Component {
   static propTypes = {
     defaultChecked: PropTypes.bool,
