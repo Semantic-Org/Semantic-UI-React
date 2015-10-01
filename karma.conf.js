@@ -61,7 +61,6 @@ module.exports = function(config) {
         ],
         alias: {
           // When these key names are require()'d, the value will be supplied instead
-          lodash: paths.bower_components + '/lodash/lodash.min.js',
           jquery: paths.testMocks + '/SemanticjQuery-mock.js',
         },
       },

@@ -11,6 +11,5 @@ module.exports = {
   components: PROJECT_ROOT + '/components',
   test: PROJECT_ROOT + '/test',
   testMocks: PROJECT_ROOT + '/test/mocks',
-  bower_components: PROJECT_ROOT + '/bower_components',
   node_modules: PROJECT_ROOT + '/node_modules',
 };
