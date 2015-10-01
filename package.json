@@ -1,0 +1,26 @@
+{
+  "name": "stardust",
+  "version": "1.0.0",
+  "description": "Semantic UI components for React.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TechnologyAdvice/stardust.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TechnologyAdvice/stardust/issues"
+  },
+  "homepage": "https://github.com/TechnologyAdvice/stardust#readme",
+  "devDependencies": {
+    "classnames": "^2.1.5",
+    "lodash": "^3.10.1",
+    "radium": "^0.14.1",
+    "react": "^0.13.3",
+    "react-hot-loader": "^1.3.0"
+  }
+}
