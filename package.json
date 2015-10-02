@@ -35,6 +35,7 @@
     "chai": "^3.3.0",
     "del": "^2.0.2",
     "eslint": "^1.5.1",
+    "eslint-config-ta-webapp": "^1.1.0",
     "eslint-friendly-formatter": "^1.2.2",
     "eslint-loader": "^1.0.0",
     "eslint-plugin-mocha": "^1.0.0",

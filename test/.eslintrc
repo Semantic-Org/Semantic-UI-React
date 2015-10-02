@@ -1,16 +1,3 @@
 {
-  "env": {
-    "node": true,
-    "mocha": true
-  },
-  "globals": {
-    "sinon": false,
-    "chai": false,
-    "sinonChai": false,
-    "expect": false,
-    "should": false
-  },
-  "rules": {
-    "max-nested-callbacks": [2, 4]
-  }
+  "extends": "ta-webapp/lib/tests"
 }
