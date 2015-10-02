@@ -1,63 +1,65 @@
 import React from 'react';
 import faker from 'faker';
-import Modal from 'app/stardust/Modal/Modal';
-import ModalHeading from 'app/stardust/Modal/ModalHeading';
-import ModalContent from 'app/stardust/Modal/ModalContent';
-import ModalFooter from 'app/stardust/Modal/ModalFooter';
+import Modal from 'components/Modal/Modal';
+import ModalHeader from 'components/Modal/ModalHeader';
+import ModalContent from 'components/Modal/ModalContent';
+import ModalFooter from 'components/Modal/ModalFooter';
 
 describe('Modal', () => {
-  describe('ModalContainer', () => {
-    it('should have a default props', () => {
-      let modal = render(<Modal />).first();
-      modal.props.actionRequired.should.be.false;
-      modal.props.ref.should.equal('modal');
-    });
-    it('should initialize semantic modal on render', () => {
-      render(<Modal />).first().elm.modal.called.should.equal(true);
-    });
-    it('should render children', () => {
-      var renderedModal = render(
-        <Modal>
-          <span className='sd-test-span'>Hello</span>
-        </Modal>
-      ).findClass('sd-modal');
-      renderedModal.props.children.should.be.ok;
-      let childComponentClass;
-      React.Children.forEach(renderedModal.props.children, (child, i) => {
-        if (i === 0) {
-          childComponentClass = child.props.className;
-        }
-      });
-      childComponentClass.should.equal('sd-test-span');
-    });
-    it('inherits classes', () => {
-      // generate crap classes like "system firewall protocol"
-      let classes = _.times(_.random(3), faker.hacker.noun).join(' ');
-
-      let renderedGridClasses = render(<Modal className={classes} />)
-        .findClass('sd-modal')
-        .getDOMNode()
-        .getAttribute('class');
-      renderedGridClasses.should.contain(classes);
-    });
-    it('should show modal', () => {
-      var renderedModal = render(<Modal />).first();
-      renderedModal.showModal();
-      renderedModal.elm.modal.called.should.equal(true);
-    });
-    it('should hide modal', () => {
-      var renderedModal = render(<Modal />).first();
-      renderedModal.hideModal();
-      renderedModal.elm.modal.called.should.equal(true);
-    });
+  it('should default actionRequired to be `false`', () => {
+    let modal = render(<Modal />).first();
+    modal.props.actionRequired.should.be.false;
+    modal.props.ref.should.equal('modal');
   });
-  describe('ModalHeading', () => {
+  it('should default ref to be "modal"', () => {
+    let modal = render(<Modal />).first();
+    modal.props.ref.should.equal('modal');
+  });
+  it('should initialize semantic modal on render', () => {
+    render(<Modal />).first().elm.modal.called.should.equal(true);
+  });
+  it('should render children', () => {
+    var renderedModal = render(
+      <Modal>
+        <span className='sd-test-span'>Hello</span>
+      </Modal>
+    ).findClass('sd-modal');
+    renderedModal.props.children.should.be.ok;
+    let childComponentClass;
+    React.Children.forEach(renderedModal.props.children, (child, i) => {
+      if (i === 0) {
+        childComponentClass = child.props.className;
+      }
+    });
+    childComponentClass.should.equal('sd-test-span');
+  });
+  it('inherits classes', () => {
+    // generate crap classes like "system firewall protocol"
+    let classes = _.times(_.random(3), faker.hacker.noun).join(' ');
+
+    let renderedGridClasses = render(<Modal className={classes} />)
+      .findClass('sd-modal')
+      .getDOMNode()
+      .getAttribute('class');
+    renderedGridClasses.should.contain(classes);
+  });
+  it('should show modal', () => {
+    var renderedModal = render(<Modal />).first();
+    renderedModal.showModal();
+    renderedModal.elm.modal.called.should.equal(true);
+  });
+  it('should hide modal', () => {
+    var renderedModal = render(<Modal />).first();
+    renderedModal.hideModal();
+    renderedModal.elm.modal.called.should.equal(true);
+  });
+  describe('ModalHeader', () => {
     it('should render children', () => {
       var renderedModal = render(
         <Modal>
-          <ModalHeading>
+          <ModalHeader>
             <h1 className='sd-test-h-tag'>Hello</h1>
-          </ModalHeading>
+          </ModalHeader>
         </Modal>
       ).findClass('sd-modal-heading');
       renderedModal.props.children.should.be.ok;
@@ -73,7 +75,7 @@ describe('Modal', () => {
       // generate crap classes like "system firewall protocol"
       let classes = _.times(_.random(3), faker.hacker.noun).join(' ');
 
-      let renderedGridClasses = render(<ModalHeading className={classes} />)
+      let renderedGridClasses = render(<ModalHeader className={classes} />)
         .findClass('sd-modal-heading')
         .getDOMNode()
         .getAttribute('class');

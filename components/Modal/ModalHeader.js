@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import classNames from 'classnames';
 
-class ModalHeading extends Component {
+class ModalHeader extends Component {
   static propTypes = {
     children: PropTypes.any,
     className: PropTypes.string,
@@ -17,4 +17,4 @@ class ModalHeading extends Component {
   }
 }
 
-export default ModalHeading;
+export default ModalHeader;

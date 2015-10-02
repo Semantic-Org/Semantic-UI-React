@@ -1,10 +1,10 @@
 import React, {Component, PropTypes} from 'react';
 import Promise from 'bluebird';
 // Components
-import Modal from 'app/stardust/Modal/Modal';
-import ModalContent from 'app/stardust/Modal/ModalContent';
-import ModalFooter from 'app/stardust/Modal/ModalFooter';
-import ModalHeading from 'app/stardust/Modal/ModalHeading';
+import Modal from 'components/Modal/Modal';
+import ModalContent from 'components/Modal/ModalContent';
+import ModalFooter from 'components/Modal/ModalFooter';
+import ModalHeader from 'components/Modal/ModalHeader';
 
 class ConfirmationModal extends Component {
   static propTypes = {
@@ -21,7 +21,7 @@ class ConfirmationModal extends Component {
   };
 
   state = {
-    message: 'Remove this item from the list?',
+    message: 'Are you sure?',
   }
 
   componentDidMount() {
@@ -54,9 +54,9 @@ class ConfirmationModal extends Component {
   render() {
     return (
       <Modal actionRequired ref='modal'>
-        <ModalHeading>
+        <ModalHeader>
           {this.props.header}
-        </ModalHeading>
+        </ModalHeader>
         <ModalContent>
           {this.state.message}
         </ModalContent>
