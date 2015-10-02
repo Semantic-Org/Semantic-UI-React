@@ -8,7 +8,7 @@ class ModalHeader extends Component {
   };
 
   render() {
-    let classes = classNames('sd-modal-heading', this.props.className, 'header');
+    let classes = classNames('sd-modal-header', this.props.className, 'header');
     return (
       <div className={classes}>
         {this.props.children}
