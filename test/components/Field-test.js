@@ -1,8 +1,8 @@
 import React from 'react';
-import Field from 'components/Field/Field';
-import numberToWord from 'utils/numberToWord';
+import Field from 'src/components/Field/Field';
+import numberToWord from 'src/utils/numberToWord';
 
-describe.only('Field', () => {
+describe('Field', () => {
   it('has a label', () => {
     render(<Field label='First Name' />)
       .findTag('label')

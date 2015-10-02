@@ -33,12 +33,12 @@ module.exports = {
       {
         test: /\.js$/,
         loaders: ['babel', 'eslint'],
-        include: [paths.components, paths.test, paths.utils],
+        include: [paths.src, paths.test, paths.utils],
       },
       {
         test: /\.json$/,
         loaders: ['json'],
-        include: [paths.components, paths.test, paths.utils],
+        include: [paths.src, paths.test, paths.utils],
       },
     ],
     postLoaders: [

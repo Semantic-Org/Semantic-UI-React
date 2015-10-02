@@ -1,5 +1,5 @@
 import React from 'react';
-import Textarea from 'components/Textarea/Textarea';
+import Textarea from 'src/components/Textarea/Textarea';
 
 describe('Textarea', () => {
   it('has a default value', () => {

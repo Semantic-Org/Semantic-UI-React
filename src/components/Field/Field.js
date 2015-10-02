@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import classNames from 'classnames';
-import numberToWord from 'utils/numberToWord';
+import numberToWord from 'src/utils/numberToWord';
 
 class Field extends Component {
   static propTypes = {

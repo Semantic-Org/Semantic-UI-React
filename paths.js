@@ -8,7 +8,7 @@ module.exports = {
   docsApp: PROJECT_ROOT + '/docs/app',
   docsBuild: PROJECT_ROOT + '/docs/build',
   gulp: PROJECT_ROOT + '/gulp',
-  components: PROJECT_ROOT + '/components',
+  src: PROJECT_ROOT + '/src',
   test: PROJECT_ROOT + '/test',
   utils: PROJECT_ROOT + '/utils',
   testMocks: PROJECT_ROOT + '/test/mocks',

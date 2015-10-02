@@ -1,6 +1,6 @@
 import React from 'react';
-import Menu from 'components/Menu/Menu';
-import MenuItem from 'components/Menu/MenuItem';
+import Menu from 'src/components/Menu/Menu';
+import MenuItem from 'src/components/Menu/MenuItem';
 
 describe('Menu', () => {
   it('should render children', () => {
