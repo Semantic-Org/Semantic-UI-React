@@ -43,7 +43,7 @@ describe('Modal', () => {
     });
     it('inherits classes', () => {
       let classes = _.times(_.random(3), faker.hacker.noun).join(' ');
-      let renderedGridClasses = render(<ModalHeader className={classes} />).findClass('sd-modal-heading');
+      let renderedGridClasses = render(<ModalHeader className={classes} />).findClass('sd-modal-header');
       renderedGridClasses.props.className.should.contain(classes);
     });
   });
