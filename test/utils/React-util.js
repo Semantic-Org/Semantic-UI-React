@@ -155,7 +155,7 @@ global.shallowRender = function(reactElement) {
 
 /**
  * Render a ReactElement and get back the root DOM node with helper methods to make assertions on.
- * @param {ReactElement} reactElement The element to render.
+ * @param {ReactElement|XML} reactElement The element to render.
  * @returns {RenderedTree} RenderedTree test utils.
  */
 global.render = function(reactElement) {

@@ -1,5 +1,6 @@
 import classNames from 'classnames';
 import React, {Component, PropTypes} from 'react';
+import numberToWord from 'utils/numberToWord';
 
 class Column extends Component {
   static propTypes = {
@@ -10,30 +11,13 @@ class Column extends Component {
   };
 
   render() {
-    let columnWidth = {
-      1: 'one wide',
-      2: 'two wide',
-      3: 'three wide',
-      4: 'four wide',
-      5: 'five wide',
-      6: 'six wide',
-      7: 'seven wide',
-      8: 'eight wide',
-      9: 'nine wide',
-      10: 'ten wide',
-      11: 'eleven wide',
-      12: 'twelve wide',
-      13: 'thirteen wide',
-      14: 'fourteen wide',
-      15: 'fifteen wide',
-      16: 'sixteen wide',
-    };
-    let classes = classNames('sd-column', columnWidth[this.props.width], 'column');
+    let classes = classNames(
+      'sd-column',
+      this.props.width && numberToWord(this.props.width) + ' wide',
+      'column'
+    );
     return (
-      <div
-        className={classes}
-        style={this.props.style}
-      >
+      <div className={classes} style={this.props.style}>
         {this.props.children}
       </div>
     );
