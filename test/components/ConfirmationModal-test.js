@@ -2,11 +2,14 @@ import React from 'react';
 import ConfirmationModal from 'components/ConfirmationModal/ConfirmationModal';
 
 describe('ConfirmationModal', () => {
-  it('should have a default props', () => {
-    let confirmationModal = render(<ConfirmationModal />).first();
-    confirmationModal.props.abortLabel.should.equal('Cancel');
-    confirmationModal.props.confirmLabel.should.equal('Yes');
-    confirmationModal.props.ref.should.equal('modal');
+  it('default prop abortLabel should be "Cancel"', () => {
+    render(<ConfirmationModal />).first().props.abortLabel.should.equal('Cancel');
+  });
+  it('default prop confirmLabel should be "Yes"', () => {
+    render(<ConfirmationModal />).first().props.confirmLabel.should.equal('Yes');
+  });
+  it('default prop ref should be "modal"', () => {
+    render(<ConfirmationModal />).first().props.ref.should.equal('modal');
   });
   it('should return true on confirm', () => {
     let confirmationModal = render(<ConfirmationModal />);
