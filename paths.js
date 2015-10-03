@@ -10,7 +10,7 @@ module.exports = {
   gulp: PROJECT_ROOT + '/gulp',
   src: PROJECT_ROOT + '/src',
   test: PROJECT_ROOT + '/test',
-  utils: PROJECT_ROOT + '/utils',
+  utils: PROJECT_ROOT + '/src/utils',
   testMocks: PROJECT_ROOT + '/test/mocks',
   node_modules: PROJECT_ROOT + '/node_modules',
 };
