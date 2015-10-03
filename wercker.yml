@@ -55,5 +55,6 @@ deploy:
         code: |-
           git init
           git add .
+          git add --force docs/build
           git commit -m "deploy commit from $WERCKER_STARTED_BY"
           git push -f $GIT_REMOTE master:gh-pages
