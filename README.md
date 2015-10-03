@@ -18,7 +18,14 @@
 npm i stardust -S
 ```
 
-## Commands
+## Develop
+
+### Commands
+
+```
+npm run                   # list npm commands 
+gulp help                 # list npm commands
+```
 
 ### Deploying
 

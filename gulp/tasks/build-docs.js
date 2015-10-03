@@ -25,8 +25,8 @@ gulp.task('generate-doc-json', function(cb) {
   var gulpReactDocgen = require('../plugins/gulp-react-docgen');
 
   return gulp.src([
-    paths.src + '/stardust/**/*.js',
-    paths.src + '/modules/**/*.js',
+    paths.src + '/components/**/*.js',
+    '!' + paths.src + '/**/Style.js'
   ])
     .pipe(g.plumber())
     .pipe(gulpReactDocgen())

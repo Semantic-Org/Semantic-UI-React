@@ -1,5 +1,5 @@
 {
-  "stardust/src/Button/Button.js": {
+  "src/components/Button/Button.js": {
     "props": {
       "children": {
         "type": {
@@ -55,7 +55,7 @@
       "tags": []
     }
   },
-  "stardust/src/Checkbox/Checkbox.js": {
+  "src/components/Checkbox/Checkbox.js": {
     "props": {
       "defaultChecked": {
         "type": {
@@ -136,11 +136,101 @@
       ]
     }
   },
-  "stardust/src/Field/Field.js": {
+  "src/components/ConfirmationModal/ConfirmationModal.js": {
+    "props": {
+      "abortLabel": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "defaultValue": {
+          "value": "'Cancel'",
+          "computed": false
+        },
+        "docBlock": {
+          "description": "",
+          "tags": []
+        }
+      },
+      "confirmLabel": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "defaultValue": {
+          "value": "'Yes'",
+          "computed": false
+        },
+        "docBlock": {
+          "description": "",
+          "tags": []
+        }
+      },
+      "header": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "docBlock": {
+          "description": "",
+          "tags": []
+        }
+      },
+      "ref": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "defaultValue": {
+          "value": "'modal'",
+          "computed": false
+        },
+        "docBlock": {
+          "description": "",
+          "tags": []
+        }
+      }
+    },
+    "docBlock": {
+      "description": "",
+      "tags": []
+    }
+  },
+  "src/components/Field/Field.js": {
     "props": {
       "children": {
         "type": {
           "name": "node"
+        },
+        "required": false,
+        "docBlock": {
+          "description": "",
+          "tags": []
+        }
+      },
+      "disabled": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "docBlock": {
+          "description": "",
+          "tags": []
+        }
+      },
+      "error": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "docBlock": {
+          "description": "",
+          "tags": []
+        }
+      },
+      "inline": {
+        "type": {
+          "name": "bool"
         },
         "required": false,
         "docBlock": {
@@ -157,6 +247,46 @@
           "description": "",
           "tags": []
         }
+      },
+      "large": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "docBlock": {
+          "description": "",
+          "tags": []
+        }
+      },
+      "required": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "docBlock": {
+          "description": "",
+          "tags": []
+        }
+      },
+      "small": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "docBlock": {
+          "description": "",
+          "tags": []
+        }
+      },
+      "width": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "docBlock": {
+          "description": "",
+          "tags": []
+        }
       }
     },
     "docBlock": {
@@ -164,7 +294,7 @@
       "tags": []
     }
   },
-  "stardust/src/Form/Form.js": {
+  "src/components/Form/Form.js": {
     "props": {
       "children": {
         "type": {
@@ -193,7 +323,7 @@
       "tags": []
     }
   },
-  "stardust/src/Grid/Column.js": {
+  "src/components/Grid/Column.js": {
     "props": {
       "children": {
         "type": {
@@ -243,7 +373,7 @@
       "tags": []
     }
   },
-  "stardust/src/Grid/Grid.js": {
+  "src/components/Grid/Grid.js": {
     "props": {
       "children": {
         "type": {
@@ -301,7 +431,7 @@
       "tags": []
     }
   },
-  "stardust/src/Grid/Row.js": {
+  "src/components/Grid/Row.js": {
     "props": {
       "children": {
         "type": {
@@ -349,7 +479,7 @@
       "tags": []
     }
   },
-  "stardust/src/Input/Input.js": {
+  "src/components/Input/Input.js": {
     "props": {
       "dataContent": {
         "type": {
@@ -455,7 +585,7 @@
       "tags": []
     }
   },
-  "stardust/src/Menu/Menu.js": {
+  "src/components/Menu/Menu.js": {
     "props": {
       "activeItem": {
         "type": {
@@ -483,7 +613,7 @@
       "tags": []
     }
   },
-  "stardust/src/Menu/MenuItem.js": {
+  "src/components/Menu/MenuItem.js": {
     "props": {
       "activeItem": {
         "type": {
@@ -559,53 +689,7 @@
       "tags": []
     }
   },
-  "app/components/PageLayout/PageLayout.js": {
-    "props": {
-      "children": {
-        "type": {
-          "name": "any"
-        },
-        "required": false,
-        "docBlock": {
-          "description": "",
-          "tags": []
-        }
-      },
-      "fitted": {
-        "type": {
-          "name": "bool"
-        },
-        "required": false,
-        "docBlock": {
-          "description": "",
-          "tags": []
-        }
-      },
-      "heading": {
-        "type": {
-          "name": "union",
-          "value": [
-            {
-              "name": "string"
-            },
-            {
-              "name": "element"
-            }
-          ]
-        },
-        "required": false,
-        "docBlock": {
-          "description": "",
-          "tags": []
-        }
-      }
-    },
-    "docBlock": {
-      "description": "",
-      "tags": []
-    }
-  },
-  "stardust/src/Segment/Segment.js": {
+  "src/components/Segment/Segment.js": {
     "props": {
       "children": {
         "type": {
@@ -633,7 +717,157 @@
       "tags": []
     }
   },
-  "stardust/src/Select/Select.js": {
+  "src/components/Modal/Modal.js": {
+    "props": {
+      "actionRequired": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        },
+        "docBlock": {
+          "description": "",
+          "tags": []
+        }
+      },
+      "children": {
+        "type": {
+          "name": "any"
+        },
+        "required": false,
+        "docBlock": {
+          "description": "",
+          "tags": []
+        }
+      },
+      "className": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "docBlock": {
+          "description": "",
+          "tags": []
+        }
+      },
+      "ref": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "defaultValue": {
+          "value": "'modal'",
+          "computed": false
+        },
+        "docBlock": {
+          "description": "",
+          "tags": []
+        }
+      },
+      "small": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "docBlock": {
+          "description": "",
+          "tags": []
+        }
+      }
+    },
+    "docBlock": {
+      "description": "",
+      "tags": []
+    }
+  },
+  "src/components/Modal/ModalContent.js": {
+    "props": {
+      "children": {
+        "type": {
+          "name": "any"
+        },
+        "required": false,
+        "docBlock": {
+          "description": "",
+          "tags": []
+        }
+      },
+      "className": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "docBlock": {
+          "description": "",
+          "tags": []
+        }
+      }
+    },
+    "docBlock": {
+      "description": "",
+      "tags": []
+    }
+  },
+  "src/components/Modal/ModalFooter.js": {
+    "props": {
+      "children": {
+        "type": {
+          "name": "any"
+        },
+        "required": false,
+        "docBlock": {
+          "description": "",
+          "tags": []
+        }
+      },
+      "className": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "docBlock": {
+          "description": "",
+          "tags": []
+        }
+      }
+    },
+    "docBlock": {
+      "description": "",
+      "tags": []
+    }
+  },
+  "src/components/Modal/ModalHeader.js": {
+    "props": {
+      "children": {
+        "type": {
+          "name": "any"
+        },
+        "required": false,
+        "docBlock": {
+          "description": "",
+          "tags": []
+        }
+      },
+      "className": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "docBlock": {
+          "description": "",
+          "tags": []
+        }
+      }
+    },
+    "docBlock": {
+      "description": "",
+      "tags": []
+    }
+  },
+  "src/components/Select/Select.js": {
     "props": {
       "label": {
         "type": {
@@ -671,7 +905,7 @@
       "tags": []
     }
   },
-  "stardust/src/Table/Table.js": {
+  "src/components/Table/Table.js": {
     "props": {
       "children": {
         "type": {
@@ -700,7 +934,7 @@
       "tags": []
     }
   },
-  "stardust/src/Table/TableCell.js": {
+  "src/components/Table/TableCell.js": {
     "props": {
       "children": {
         "type": {
@@ -718,7 +952,7 @@
       "tags": []
     }
   },
-  "stardust/src/Table/TableColumn.js": {
+  "src/components/Table/TableColumn.js": {
     "props": {
       "cellRenderer": {
         "type": {
@@ -756,7 +990,7 @@
       "tags": []
     }
   },
-  "stardust/src/Table/TableHeader.js": {
+  "src/components/Table/TableHeader.js": {
     "props": {
       "children": {
         "type": {
@@ -774,7 +1008,7 @@
       "tags": []
     }
   },
-  "stardust/src/Table/TableRow.js": {
+  "src/components/Table/TableRow.js": {
     "props": {
       "children": {
         "type": {
@@ -792,7 +1026,7 @@
       "tags": []
     }
   },
-  "stardust/src/Textarea/Textarea.js": {
+  "src/components/Textarea/Textarea.js": {
     "props": {
       "dataContent": {
         "type": {

@@ -29,8 +29,10 @@ class ComponentList extends Component {
           <h3>Props:</h3>
           <ComponentProps props={val.props} />
 
+          {/*
           <div className='ui divider' />
           <pre>{JSON.stringify(val, null, 2)}</pre>
+          */}
         </div>
       );
     });
