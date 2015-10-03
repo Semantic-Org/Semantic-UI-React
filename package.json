@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/TechnologyAdvice/stardust#readme",
   "dependencies": {
+    "bluebird": "^2.10.2",
     "classnames": "^2.1.5",
     "jquery": "^2.1.4",
     "lodash": "^3.10.1",
