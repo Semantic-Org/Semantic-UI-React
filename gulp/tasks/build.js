@@ -5,20 +5,19 @@ var del = require('del');
 
 var paths = require('../../paths');
 
-gulp.task('build-docs', 'generate docs', function(cb) {
+gulp.task('build', 'build doc sites', function(cb) {
   runSequence(
-    'clean-docs',
-    [
-      'build-doc-html',
-      'generate-doc-json',
-    ],
-    'webpack-docs',
+    'clean',
+    'build-doc-html',
+    'generate-doc-json',
+    'webpack',
     cb
   );
 });
 
-gulp.task('clean-docs', function(cb) {
-  del(paths.docsBuild, cb);
+gulp.task('clean', function(cb) {
+  del.sync(paths.docsBuild);
+  cb();
 });
 
 gulp.task('generate-doc-json', function(cb) {
@@ -33,7 +32,7 @@ gulp.task('generate-doc-json', function(cb) {
     .pipe(gulp.dest(paths.docsApp));
 });
 
-gulp.task('webpack-docs', function(cb) {
+gulp.task('webpack', function(cb) {
   var webpack = require('webpack');
   var config = require('../../webpack.docs');
   var statsConfig = require('../../webpack-stats');

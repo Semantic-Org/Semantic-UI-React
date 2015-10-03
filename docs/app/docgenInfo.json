@@ -136,39 +136,12 @@
       ]
     }
   },
-  "src/components/ConfirmationModal/ConfirmationModal.js": {
+  "src/components/Form/Form.js": {
     "props": {
-      "abortLabel": {
+      "children": {
         "type": {
-          "name": "string"
-        },
-        "required": false,
-        "defaultValue": {
-          "value": "'Cancel'",
-          "computed": false
-        },
-        "docBlock": {
-          "description": "",
-          "tags": []
-        }
-      },
-      "confirmLabel": {
-        "type": {
-          "name": "string"
-        },
-        "required": false,
-        "defaultValue": {
-          "value": "'Yes'",
-          "computed": false
-        },
-        "docBlock": {
-          "description": "",
-          "tags": []
-        }
-      },
-      "header": {
-        "type": {
-          "name": "string"
+          "name": "custom",
+          "raw": "function(props, propName, componentName) {\n  let formButtons = [];\n\n  // Recursively search through all children of Form component and confirm\n  // at least one button exists, and at least one button is type submit.\n  function loopThruChildren(obj) {\n    Children.forEach(obj, (child) => {\n      // Check immediate children is type of button\n      if (_.has(child, 'type') && child.type === Button) {\n        formButtons.push(child.props.type);\n      }\n      // loop through child's children to find buttons\n      if (_.has(child, 'props.children') && _.isObject(child.props.children)) {\n        loopThruChildren(child.props.children);\n      }\n    });\n  }\n  loopThruChildren(props.children);\n\n  if (formButtons.length === 0 || !_.include(formButtons, 'submit')) {\n    return new Error('`Form` must have `Button` child with type of \"submit\".');\n  }\n}"
         },
         "required": false,
         "docBlock": {
@@ -176,15 +149,11 @@
           "tags": []
         }
       },
-      "ref": {
+      "onSubmit": {
         "type": {
-          "name": "string"
+          "name": "func"
         },
         "required": false,
-        "defaultValue": {
-          "value": "'modal'",
-          "computed": false
-        },
         "docBlock": {
           "description": "",
           "tags": []
@@ -294,12 +263,39 @@
       "tags": []
     }
   },
-  "src/components/Form/Form.js": {
+  "src/components/ConfirmationModal/ConfirmationModal.js": {
     "props": {
-      "children": {
+      "abortLabel": {
         "type": {
-          "name": "custom",
-          "raw": "function(props, propName, componentName) {\n  let formButtons = [];\n\n  // Recursively search through all children of Form component and confirm\n  // at least one button exists, and at least one button is type submit.\n  function loopThruChildren(obj) {\n    Children.forEach(obj, (child) => {\n      // Check immediate children is type of button\n      if (_.has(child, 'type') && child.type === Button) {\n        formButtons.push(child.props.type);\n      }\n      // loop through child's children to find buttons\n      if (_.has(child, 'props.children') && _.isObject(child.props.children)) {\n        loopThruChildren(child.props.children);\n      }\n    });\n  }\n  loopThruChildren(props.children);\n\n  if (formButtons.length === 0 || !_.include(formButtons, 'submit')) {\n    return new Error('`Form` must have `Button` child with type of \"submit\".');\n  }\n}"
+          "name": "string"
+        },
+        "required": false,
+        "defaultValue": {
+          "value": "'Cancel'",
+          "computed": false
+        },
+        "docBlock": {
+          "description": "",
+          "tags": []
+        }
+      },
+      "confirmLabel": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "defaultValue": {
+          "value": "'Yes'",
+          "computed": false
+        },
+        "docBlock": {
+          "description": "",
+          "tags": []
+        }
+      },
+      "header": {
+        "type": {
+          "name": "string"
         },
         "required": false,
         "docBlock": {
@@ -307,11 +303,15 @@
           "tags": []
         }
       },
-      "onSubmit": {
+      "ref": {
         "type": {
-          "name": "func"
+          "name": "string"
         },
         "required": false,
+        "defaultValue": {
+          "value": "'modal'",
+          "computed": false
+        },
         "docBlock": {
           "description": "",
           "tags": []
@@ -585,138 +585,6 @@
       "tags": []
     }
   },
-  "src/components/Menu/Menu.js": {
-    "props": {
-      "activeItem": {
-        "type": {
-          "name": "string"
-        },
-        "required": false,
-        "docBlock": {
-          "description": "",
-          "tags": []
-        }
-      },
-      "children": {
-        "type": {
-          "name": "node"
-        },
-        "required": false,
-        "docBlock": {
-          "description": "",
-          "tags": []
-        }
-      }
-    },
-    "docBlock": {
-      "description": "",
-      "tags": []
-    }
-  },
-  "src/components/Menu/MenuItem.js": {
-    "props": {
-      "activeItem": {
-        "type": {
-          "name": "string"
-        },
-        "required": false,
-        "docBlock": {
-          "description": "",
-          "tags": []
-        }
-      },
-      "callbackParent": {
-        "type": {
-          "name": "func"
-        },
-        "required": false,
-        "docBlock": {
-          "description": "",
-          "tags": []
-        }
-      },
-      "children": {
-        "type": {
-          "name": "node"
-        },
-        "required": false,
-        "docBlock": {
-          "description": "",
-          "tags": []
-        }
-      },
-      "label": {
-        "type": {
-          "name": "union",
-          "value": [
-            {
-              "name": "number"
-            },
-            {
-              "name": "string"
-            }
-          ]
-        },
-        "required": false,
-        "docBlock": {
-          "description": "",
-          "tags": []
-        }
-      },
-      "name": {
-        "type": {
-          "name": "string"
-        },
-        "required": true,
-        "docBlock": {
-          "description": "",
-          "tags": []
-        }
-      },
-      "onClickMenuItem": {
-        "type": {
-          "name": "func"
-        },
-        "required": false,
-        "docBlock": {
-          "description": "",
-          "tags": []
-        }
-      }
-    },
-    "docBlock": {
-      "description": "",
-      "tags": []
-    }
-  },
-  "src/components/Segment/Segment.js": {
-    "props": {
-      "children": {
-        "type": {
-          "name": "node"
-        },
-        "required": false,
-        "docBlock": {
-          "description": "",
-          "tags": []
-        }
-      },
-      "heading": {
-        "type": {
-          "name": "any"
-        },
-        "required": false,
-        "docBlock": {
-          "description": "",
-          "tags": []
-        }
-      }
-    },
-    "docBlock": {
-      "description": "",
-      "tags": []
-    }
-  },
   "src/components/Modal/Modal.js": {
     "props": {
       "actionRequired": {
@@ -854,6 +722,138 @@
       "className": {
         "type": {
           "name": "string"
+        },
+        "required": false,
+        "docBlock": {
+          "description": "",
+          "tags": []
+        }
+      }
+    },
+    "docBlock": {
+      "description": "",
+      "tags": []
+    }
+  },
+  "src/components/Menu/Menu.js": {
+    "props": {
+      "activeItem": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "docBlock": {
+          "description": "",
+          "tags": []
+        }
+      },
+      "children": {
+        "type": {
+          "name": "node"
+        },
+        "required": false,
+        "docBlock": {
+          "description": "",
+          "tags": []
+        }
+      }
+    },
+    "docBlock": {
+      "description": "",
+      "tags": []
+    }
+  },
+  "src/components/Menu/MenuItem.js": {
+    "props": {
+      "activeItem": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "docBlock": {
+          "description": "",
+          "tags": []
+        }
+      },
+      "callbackParent": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "docBlock": {
+          "description": "",
+          "tags": []
+        }
+      },
+      "children": {
+        "type": {
+          "name": "node"
+        },
+        "required": false,
+        "docBlock": {
+          "description": "",
+          "tags": []
+        }
+      },
+      "label": {
+        "type": {
+          "name": "union",
+          "value": [
+            {
+              "name": "number"
+            },
+            {
+              "name": "string"
+            }
+          ]
+        },
+        "required": false,
+        "docBlock": {
+          "description": "",
+          "tags": []
+        }
+      },
+      "name": {
+        "type": {
+          "name": "string"
+        },
+        "required": true,
+        "docBlock": {
+          "description": "",
+          "tags": []
+        }
+      },
+      "onClickMenuItem": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "docBlock": {
+          "description": "",
+          "tags": []
+        }
+      }
+    },
+    "docBlock": {
+      "description": "",
+      "tags": []
+    }
+  },
+  "src/components/Segment/Segment.js": {
+    "props": {
+      "children": {
+        "type": {
+          "name": "node"
+        },
+        "required": false,
+        "docBlock": {
+          "description": "",
+          "tags": []
+        }
+      },
+      "heading": {
+        "type": {
+          "name": "any"
         },
         "required": false,
         "docBlock": {
