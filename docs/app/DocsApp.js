@@ -1,19 +1,22 @@
 import React, {Component, render} from 'react';
 import ComponentList from './Component/ComponentList';
+import Container from 'src/components/Container/Container';
+import Grid from 'src/components/Grid/Grid';
+import Column from 'src/components/Grid/Column';
 
 class DocsApp extends Component {
   render() {
     return (
-      <div className='ui page container'>
-        <div className='ui equal width grid'>
-          <div className='column'>
-            <h1 className='ui header'>
+      <Container>
+        <Grid>
+          <Column>
+            <h1>
               Stardust Components
             </h1>
             <ComponentList />
-          </div>
-        </div>
-      </div>
+          </Column>
+        </Grid>
+      </Container>
     );
   }
 }
