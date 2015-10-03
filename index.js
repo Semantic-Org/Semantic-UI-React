@@ -16,6 +16,10 @@ import ModalHeader from './components/Modal/ModalHeader';
 import Segment from './components/Segment/Segment';
 import Select from './components/Select/Select';
 import Table from './components/Table/Table';
+import TableColumn from './components/Table/TableColumn';
+import TableCell from './components/Table/TableCell';
+import TableHeader from './components/Table/TableHeader';
+import TableRow from './components/Table/TableRow';
 import Textarea from './components/Textarea/Textarea';
 
 export default {
@@ -37,5 +41,9 @@ export default {
   Segment,
   Select,
   Table,
+  TableColumn,
+  TableCell,
+  TableHeader,
+  TableRow,
   Textarea,
 };
