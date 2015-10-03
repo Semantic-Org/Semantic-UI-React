@@ -17,7 +17,8 @@ jQuery.ajax = sandbox.stub().returnsThis();
 //
 let jQueryPlugins = {
   popup: sandbox.stub().returnsThis(),
-  checkbox: sandbox.stub().returnsThis()
+  checkbox: sandbox.stub().returnsThis(),
+  modal: sandbox.stub().returnsThis(),
 };
 
 // Extend jQuery with plugins
