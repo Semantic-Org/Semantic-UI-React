@@ -3,7 +3,6 @@ var gulp = g.help(require('gulp'), require('../gulphelp'));
 var webpack = require('webpack');
 var WebpackDevServer = require('webpack-dev-server');
 var exec = require('child_process').exec;
-var runSequence = require('run-sequence');
 
 var devEnv = require('../../dev-env');
 var paths = require('../../paths');

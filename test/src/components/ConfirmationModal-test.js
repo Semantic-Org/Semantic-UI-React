@@ -1,5 +1,5 @@
 import React from 'react';
-import ConfirmationModal from 'components/ConfirmationModal/ConfirmationModal';
+import ConfirmationModal from '../../../src/components/ConfirmationModal/ConfirmationModal';
 
 describe('ConfirmationModal', () => {
   it('default prop abortLabel should be "Cancel"', () => {
