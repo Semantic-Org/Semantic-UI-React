@@ -59,3 +59,7 @@ deploy:
           git add --force docs/build
           git commit -m "deploy commit from $WERCKER_STARTED_BY"
           git push -f $GIT_REMOTE master:gh-pages
+
+  after-steps:
+    - slack-notifier:
+        url: https://hooks.slack.com/services/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
