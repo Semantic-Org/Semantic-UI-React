@@ -3,27 +3,16 @@ var gulp = g.help(require('gulp'), require('../gulphelp'));
 var webpack = require('webpack');
 var WebpackDevServer = require('webpack-dev-server');
 var exec = require('child_process').exec;
-var runSequence = require('run-sequence');
 
 var devEnv = require('../../dev-env');
 var paths = require('../../paths');
 var statsConfig = require('../../webpack-stats');
-var webpackConfig;
-var contentBase;
+var webpackConfig = require('../../webpack.docs');
 
 gulp.task('serve', 'serve, build (in memory only), and watch the app', function(cb) {
-  webpackConfig = require('../../webpack.development');
-  contentBase = paths.build;
-  runSequence(
-    'webpack-dev-server',
-    cb
-  );
-});
-
-gulp.task('webpack-dev-server', function(cb) {
   // http://webpack.github.io/docs/webpack-dev-server.html#api
   var devMiddlewareConfig = {
-    contentBase: contentBase,
+    contentBase: paths.docsBuild,
     historyApiFallback: true,
     hot: true,
     quiet: false,                    // log nothing

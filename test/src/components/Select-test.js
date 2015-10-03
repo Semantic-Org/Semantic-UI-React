@@ -1,5 +1,5 @@
 import React from 'react';
-import Select from 'components/Select/Select';
+import Select from 'src/components/Select/Select';
 
 describe('Select', () => {
   it('has a default value', () => {

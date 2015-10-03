@@ -1,9 +1,9 @@
 import React from 'react';
 import faker from 'faker';
-import Modal from 'components/Modal/Modal';
-import ModalHeader from 'components/Modal/ModalHeader';
-import ModalContent from 'components/Modal/ModalContent';
-import ModalFooter from 'components/Modal/ModalFooter';
+import Modal from '../../../src/components/Modal/Modal';
+import ModalHeader from '../../../src/components/Modal/ModalHeader';
+import ModalContent from '../../../src/components/Modal/ModalContent';
+import ModalFooter from '../../../src/components/Modal/ModalFooter';
 
 describe('Modal', () => {
   it('should default actionRequired to be `false`', () => {

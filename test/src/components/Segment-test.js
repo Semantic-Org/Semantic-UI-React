@@ -1,5 +1,5 @@
 import React from 'react';
-import Segment from 'components/Segment/Segment';
+import Segment from 'src/components/Segment/Segment';
 
 describe('Segment', () => {
   it('is an sd-segment', () => {

@@ -19,6 +19,6 @@ utilsContext.keys().forEach(utilsContext);
 var testsContext = require.context('./', true, /-test\.js$/);
 testsContext.keys().forEach(testsContext);
 
-// components
-var componentsContext = require.context('./components', true, /\.js$/);
-componentsContext.keys().forEach(componentsContext);
+// src
+var srcContext = require.context('../src', true, /\.js$/);
+srcContext.keys().forEach(srcContext);

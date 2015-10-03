@@ -1,10 +1,10 @@
 import React, {Component, PropTypes} from 'react';
 import Promise from 'bluebird';
 // Components
-import Modal from 'components/Modal/Modal';
-import ModalContent from 'components/Modal/ModalContent';
-import ModalFooter from 'components/Modal/ModalFooter';
-import ModalHeader from 'components/Modal/ModalHeader';
+import Modal from '../Modal/Modal';
+import ModalContent from '../Modal/ModalContent';
+import ModalFooter from '../Modal/ModalFooter';
+import ModalHeader from '../Modal/ModalHeader';
 
 class ConfirmationModal extends Component {
   static propTypes = {
@@ -22,7 +22,7 @@ class ConfirmationModal extends Component {
 
   state = {
     message: 'Are you sure?',
-  }
+  };
 
   componentDidMount() {
     this.deferred = Promise.defer();
