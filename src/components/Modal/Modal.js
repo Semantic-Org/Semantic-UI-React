@@ -4,7 +4,6 @@ import classNames from 'classnames';
 
 class Modal extends Component {
   static propTypes = {
-    actionRequired: PropTypes.bool,
     children: PropTypes.any,
     className: PropTypes.string,
     ref: PropTypes.string,
@@ -12,36 +11,27 @@ class Modal extends Component {
   };
 
   static defaultProps = {
-    actionRequired: false,
     ref: 'modal',
   };
 
-  componentDidMount() {
-    this.initializeModal();
-  }
-
-  initializeModal = () => {
-    this.elm = $(React.findDOMNode(this.refs[this.props.ref]));
-    this.elm.modal();
-  }
+  state = {isShown: false}
 
   showModal = () => {
-    this.elm = $(React.findDOMNode(this.refs[this.props.ref]));
-    if (this.props.actionRequired) {
-      // Semantic UI settings, do not allow modal to close without action on button click
-      this.elm.modal('setting', 'closable', false).modal('show');
-    } else {
-      this.elm.modal('show');
-    }
+    this.setState({isShown: true});
   }
 
   hideModal = () => {
-    this.elm = $(React.findDOMNode(this.refs[this.props.ref]));
-    this.elm.modal('hide');
+    this.setState({isShown: false});
   };
 
   render() {
-    let classes = classNames('sd-modal', this.props.className, 'ui', {small: this.props.small}, 'modal');
+    let classes;
+    if(this.state.isShown) {
+      classes = classNames('sd-modal', this.props.className, 'ui', {small: this.props.small}, 'modal', 'transition', 'visible', 'active');
+    } else {
+      classes = classNames('sd-modal', this.props.className, 'ui', {small: this.props.small}, 'modal');
+    }
+
     return (
       <div className={classes} ref={this.props.ref}>
         {this.props.children}
