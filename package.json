@@ -1,7 +1,6 @@
 {
   "name": "@technologyadvice/stardust",
   "version": "0.1.2",
-  "private": true,
   "description": "Semantic UI components for React.",
   "main": "index.js",
   "files": [
@@ -10,7 +9,8 @@
   "scripts": {
     "test": "karma start karma.conf.js",
     "lint": "eslint src test gulp",
-    "test-watch": "webpack-dev-server --config webpack.tests.js"
+    "test-watch": "webpack-dev-server --config webpack.tests.js",
+    "deploy": "git push && git push --tags && npm publish"
   },
   "repository": {
     "type": "git",
