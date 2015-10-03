@@ -53,7 +53,7 @@ deploy:
     - script:
         name: Deploy to github pages
         code: |-
-          $(npm bin)/gulp build
+          node_modules/.bin/gulp build
           git init
           git add .
           git add --force docs/build
