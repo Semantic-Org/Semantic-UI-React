@@ -1,4 +1,4 @@
-```
+![Wercker Status](https://img.shields.io/wercker/ci/TechnologyAdvice/stardust.svg?style=flat-square) [![Code Climate](https://img.shields.io/codeclimate/github/TechnologyAdvice/stardust.svg?style=flat-square)](https://codeclimate.com/github/TechnologyAdvice/stardust)```
                                         .
                                  *   .     .   . 
                                       . (*.) .    * .
