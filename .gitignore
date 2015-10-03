@@ -1,5 +1,8 @@
 .DS_Store
 .idea/
+_builds/
+_projects/
+_steps/
 npm-debug.log
 node_modules/
 bower_components/
