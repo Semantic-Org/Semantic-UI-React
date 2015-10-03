@@ -38,6 +38,8 @@
     "eslint-config-ta-webapp": "^1.2.0",
     "eslint-friendly-formatter": "^1.2.2",
     "eslint-loader": "^1.0.0",
+    "eslint-plugin-mocha": "^1.0.0",
+    "eslint-plugin-react": "^3.5.1",
     "faker": "^3.0.1",
     "gulp": "^3.9.0",
     "imports-loader": "^0.6.4",
