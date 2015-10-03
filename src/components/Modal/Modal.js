@@ -1,5 +1,4 @@
 import React, {Component, PropTypes} from 'react';
-import $ from 'jquery';
 import classNames from 'classnames';
 
 class Modal extends Component {
@@ -26,8 +25,17 @@ class Modal extends Component {
 
   render() {
     let classes;
-    if(this.state.isShown) {
-      classes = classNames('sd-modal', this.props.className, 'ui', {small: this.props.small}, 'modal', 'transition', 'visible', 'active');
+    if (this.state.isShown) {
+      classes = classNames(
+        'sd-modal',
+        this.props.className,
+        'ui',
+        {small: this.props.small},
+        'modal',
+        'transition',
+        'visible',
+        'active',
+        );
     } else {
       classes = classNames('sd-modal', this.props.className, 'ui', {small: this.props.small}, 'modal');
     }

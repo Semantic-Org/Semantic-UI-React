@@ -53,7 +53,7 @@ class ConfirmationModal extends Component {
 
   render() {
     return (
-      <ModalHeader ref='modal' small>
+      <Modal ref='modal' small>
         <ModalHeader>
           {this.props.header}
         </ModalHeader>

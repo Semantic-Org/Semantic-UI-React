@@ -6,17 +6,12 @@ import ModalContent from '../../../src/components/Modal/ModalContent';
 import ModalFooter from '../../../src/components/Modal/ModalFooter';
 
 describe('Modal', () => {
-  it('should default actionRequired to be `false`', () => {
-    let modal = render(<Modal />).first();
-    modal.props.actionRequired.should.be.false;
-    modal.props.ref.should.equal('modal');
-  });
   it('should default ref to be "modal"', () => {
     let modal = render(<Modal />).first();
     modal.props.ref.should.equal('modal');
   });
-  it('should initialize semantic modal on render', () => {
-    render(<Modal />).first().elm.modal.called.should.equal(true);
+  it('should initially have a state where `isShown` is false', () => {
+    render(<Modal />).first().state.isShown.should.equal(false);
   });
   it('should render children', () => {
     render(<Modal>Hello</Modal>).findText('Hello');
@@ -30,12 +25,12 @@ describe('Modal', () => {
   it('should show modal', () => {
     var renderedModal = render(<Modal />).first();
     renderedModal.showModal();
-    renderedModal.elm.modal.called.should.equal(true);
+    renderedModal.state.isShown.should.equal(true);
   });
   it('should hide modal', () => {
     var renderedModal = render(<Modal />).first();
     renderedModal.hideModal();
-    renderedModal.elm.modal.called.should.equal(true);
+    renderedModal.state.isShown.should.equal(false);
   });
   describe('ModalHeader', () => {
     it('should render children', () => {
