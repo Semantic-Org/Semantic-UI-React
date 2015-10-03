@@ -1,8 +1,8 @@
 import React, {Component, render} from 'react';
 import ComponentList from './Component/ComponentList';
-import Container from '../../src/components/Container/Container';
-import Grid from '../../src/components/Grid/Grid';
-import Column from '../../src/components/Grid/Column';
+import Container from 'src/components/Container/Container';
+import Grid from 'src/components/Grid/Grid';
+import Column from 'src/components/Grid/Column';
 
 class DocsApp extends Component {
   render() {
