@@ -6,6 +6,7 @@ gulp.task('default', function(cb) {
   runSequence(
     'build',
     'serve',
+    'watch',
     cb
   );
 });
