@@ -56,15 +56,6 @@ deploy:
           npm i gulp -g
           gulp build
     - script:
-        # flattens docs/build to the root of the repo
-        name: restructure repo
-        code: |
-          mkdir safespot
-          mv docs/build/* safespot
-          ls | grep -v safespot | xargs rm -rf
-          mv safespot/* .
-          rm -rf safespot
-    - script:
         name: Deploy to github pages
         code: |
           git init
