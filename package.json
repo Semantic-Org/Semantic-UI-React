@@ -8,7 +8,7 @@
   ],
   "scripts": {
     "test": "karma start karma.conf.js",
-    "lint": "eslint src test gulp",
+    "lint": "eslint src gulp test ./*.js",
     "test-watch": "webpack-dev-server --config webpack.tests.js",
     "deploy": "git push && git push --tags && npm publish"
   },
@@ -53,6 +53,7 @@
     "faker": "^3.0.1",
     "gulp": "^3.9.0",
     "gulp-help": "^1.6.1",
+    "gulp-html-replace": "^1.5.4",
     "gulp-load-plugins": "^0.10.0",
     "gulp-plumber": "^1.0.1",
     "gulp-util": "^3.0.6",
