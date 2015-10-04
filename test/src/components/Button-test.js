@@ -26,4 +26,9 @@ describe('Button', () => {
     React.addons.TestUtils.Simulate.click(node);
     customHandleClick.called.should.be.true;
   });
+  it('should take in a color attribute', () => {
+    let coloredButton = render(<Button color={'teal'}>Submit</Button>).findTag('button');
+    coloredButton.props.className.should.contain('teal');
+    coloredButton.getDOMNode().getAttribute('class').should.contain('teal');
+  });
 });

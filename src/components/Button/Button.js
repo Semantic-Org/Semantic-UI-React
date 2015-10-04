@@ -23,7 +23,7 @@ class Button extends Component {
   render() {
     let classes = classNames('sd-button', 'ui', 'button', this.props.color, this.props);
     return (
-      <button className={classes}>
+      <button className={classes} {...this.props}>
         {this.props.children}
       </button>
     );
