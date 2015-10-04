@@ -46,7 +46,9 @@ class ComponentList extends Component {
           <h3>Props:</h3>
           <ComponentProps props={val.props} />
 
-          <Button onClick={this.toggleShowDocgenJSON}>JSON</Button>
+          <Button onClick={this.toggleShowDocgenJSON} large teal>
+            JSON
+          </Button>
 
           {this.state.showDocgenJSON && docgenJSON}
         </div>
