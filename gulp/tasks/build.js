@@ -2,7 +2,7 @@ var g = require('gulp-load-plugins')();
 var gulp = g.help(require('gulp'), require('../gulphelp'));
 var runSequence = require('run-sequence');
 var del = require('del');
-
+var ENV = require('../../ENV');
 var paths = require('../../paths');
 
 gulp.task('build', 'build doc sites', function(cb) {
@@ -52,6 +52,13 @@ gulp.task('webpack', function(cb) {
 });
 
 gulp.task('build-doc-html', function(cb) {
+  var replaceOpts = {
+    keepUnassigned: true    // keep build blocks without a defined replacement
+  };
+  var replaceTasks = {};
+  replaceTasks[ENV.isProduction() ? 'development' : 'production'] = '';
+
   return gulp.src(paths.docsApp + '/**/*.html')
+    .pipe(g.htmlReplace(replaceTasks, replaceOpts))
     .pipe(gulp.dest(paths.docsBuild));
 });
