@@ -5,16 +5,16 @@
  */
 const ENV = {
   setTest: function() {
-    process.env['NODE_ENV'] = 'test';
+    process.env.NODE_ENV = 'test';
   },
   setStaging: function() {
-    process.env['NODE_ENV'] = 'staging';
+    process.env.NODE_ENV = 'staging';
   },
   setProduction: function() {
-    process.env['NODE_ENV'] = 'production';
+    process.env.NODE_ENV = 'production';
   },
   setDevelopment: function() {
-    process.env['NODE_ENV'] = 'development';
+    process.env.NODE_ENV = 'development';
   },
 
   isProduction: function() {
