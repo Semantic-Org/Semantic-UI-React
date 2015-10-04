@@ -7,7 +7,6 @@ import classNames from 'classnames';
  * @example
  * <Icon apple outline  />
  */
-
 class Icon extends Component {
   static propTypes = {
     children: PropTypes.node,
@@ -17,10 +16,10 @@ class Icon extends Component {
   render() {
     let classes = classNames(
       'sd-container',
-      this.props.className,
-      this.props,
-      'icon'
+      'icon',
+      this.props.className
     );
+
     return (
       <i className={classes}>
         {this.props.children}

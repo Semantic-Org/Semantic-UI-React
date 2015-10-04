@@ -7,28 +7,44 @@ import Icon from 'src/components/Icon/Icon';
 
 class DocsApp extends Component {
   render() {
+    let colors = [
+      'red',
+      'green',
+      'purple',
+      'blue',
+      'black',
+      'brown',
+      'teal',
+      'pink',
+      'olive',
+      'yellow',
+      'orange',
+      'gray',
+      'violet'
+    ];
+    let dust;
+    dust = colors.map((color, index) => {
+      return (
+        <i className='icons' key={index}>
+          <Icon className={'mini loading star empty icon ' + color} />
+          <Icon className={'star empty icon ' + color} />
+        </i>
+      );
+    });
     return (
       <Container>
         <Grid>
           <Column>
             <h1 style={{textAlign: 'center'}}>
-              <i className='icons'>
-                <Icon className='mini violet loading star empty icon' />
-                <Icon className='star empty violet icon' />
-              </i>
-              <i className='big icons'>
-                <Icon className='mini violet loading star empty icon' />
-                <Icon className='star empty violet icon' />
-              </i>
+              {dust}
+              {dust}
+            </h1>
+            <h1 style={{textAlign: 'center', fontSize: '120px'}}>
               STARDUST
-              <i className='big icons'>
-                <Icon className='mini violet loading star empty icon' />
-                <Icon className='star empty violet icon' />
-              </i>
-              <i className='icons'>
-                <Icon className='mini violet loading star empty icon' />
-                <Icon className='star empty violet icon' />
-              </i>
+            </h1>
+            <h1 style={{textAlign: 'center'}}>
+              {dust}
+              {dust}
             </h1>
             <ComponentList />
           </Column>
