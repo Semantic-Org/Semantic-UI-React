@@ -24,7 +24,7 @@ class Checkbox extends Component {
     defaultChecked: PropTypes.bool,
     label: PropTypes.string,
     name: PropTypes.string,
-    onChange: PropTypes.func,
+    onChange: PropTypes.func.isRequired,
     style: PropTypes.array,
     type: PropTypes.string,
   };
