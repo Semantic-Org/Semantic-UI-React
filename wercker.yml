@@ -44,21 +44,34 @@ deploy:
   steps:
     - script:
         name: Configure git
-        code: |-
+        code: |
           git config --global user.email "devteam@technologyadvice.com"
           git config --global user.name "TechnologyAdvice"
 
           # remove current .git folder
           rm -rf .git
     - script:
+        name: gulp build
+        code: |
+          npm i gulp -g
+          gulp build
+    - script:
+        # flattens docs/build to the root of the repo
+        name: restructure repo
+        code: |
+          mkdir safespot
+          mv docs/build/* safespot
+          ls | grep -v safespot | xargs rm -rf
+          mv safespot/* .
+          rm -rf safespot
+    - script:
         name: Deploy to github pages
-        code: |-
-          node_modules/.bin/gulp build
+        code: |
           git init
           git add .
-          git add --force docs/build
-          git commit -m "deploy commit from $WERCKER_STARTED_BY"
-          git push -f $GIT_REMOTE master:gh-pages
+          git commit -m "wercker deploy"
+          git remote add origin https://$GITHUB_TOKEN@github.com/TechnologyAdvice/stardust.git
+          git push -f origin master:gh-pages
 
   after-steps:
     - slack-notifier:
