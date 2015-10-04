@@ -1,3 +1,4 @@
+[![Wercker Status](https://img.shields.io/wercker/ci/TechnologyAdvice/stardust.svg?style=flat-square)](https://app.wercker.com/TechnologyAdvice/stardust) [![Code Climate](https://img.shields.io/codeclimate/github/TechnologyAdvice/stardust.svg?style=flat-square)](https://codeclimate.com/github/TechnologyAdvice/stardust)
 ```
                                         .
                                  *   .     .   . 
@@ -17,6 +18,9 @@
 ```
 npm i stardust -S
 ```
+
+## Learn
+Checkout the **[Docs](https://technologyadvice.github.io/stardust/)**.
 
 ## Develop
 
