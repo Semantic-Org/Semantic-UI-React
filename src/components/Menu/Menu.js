@@ -1,9 +1,18 @@
 import React, {Component, PropTypes} from 'react';
+import classNames from 'classnames';
 
 class Menu extends Component {
   static propTypes = {
     activeItem: PropTypes.string,
     children: PropTypes.node,
+    className: PropTypes.string,
+    fluid: PropTypes.bool,
+    inverted: PropTypes.bool,
+    pointing: PropTypes.bool,
+    secondary: PropTypes.bool,
+    small: PropTypes.bool,
+    text: PropTypes.bool,
+    vertical: PropTypes.bool,
   };
 
   state = {activeItem: this.props.activeItem};
@@ -13,6 +22,19 @@ class Menu extends Component {
   };
 
   render() {
+    let classes = classNames(
+      'sd-menu',
+      this.props.className,
+      'ui',
+      {inverted: this.props.inverted},
+      {secondary: this.props.secondary},
+      {small: this.props.small},
+      {pointing: this.props.pointing},
+      {fluid: this.props.fluid},
+      {text: this.props.text},
+      {vertical: this.props.vertical},
+      'menu'
+    );
     let hasActiveItem = !!this.state.activeItem || !!this.props.activeItem;
     let children = React.Children.map(this.props.children, (child, i) => {
       let activeItemName = !hasActiveItem && i === 0
@@ -24,7 +46,7 @@ class Menu extends Component {
       });
     });
     return (
-      <div className='sd-menu ui secondary vertical pointing fluid menu'>
+      <div className={classes}>
         {children}
       </div>
     );

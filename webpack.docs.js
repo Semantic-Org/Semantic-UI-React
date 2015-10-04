@@ -9,7 +9,6 @@ var pkg = require('./package.json');
 module.exports = {
   entry: {
     app: [
-      // WebpackDevServer host and port
       'webpack/hot/only-dev-server',
       paths.docsApp + '/DocsApp.js'
     ],

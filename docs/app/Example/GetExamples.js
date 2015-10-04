@@ -1,4 +1,4 @@
-const req = require.context('docs/app/examples/', true, /\.js$/);
+const req = require.context('docs/app/Examples/', true, /\.js$/);
 
 /**
  * Parse example files for a give `component`.
@@ -12,7 +12,7 @@ export default component => {
     // remove first dot slash from paths which look like "./Checkbox/BasicExample.js"
     let subpath = path.replace('./', '');
     return {
-      code: require(`!raw!docs/app/examples/${subpath}`),
+      code: require(`!raw!docs/app/Examples/${subpath}`),
       component: req(path),
     };
   });
