@@ -31,4 +31,14 @@ describe('Button', () => {
     coloredButton.props.className.should.contain('teal');
     coloredButton.getDOMNode().getAttribute('class').should.contain('teal');
   });
+  it('should take in boolean attributes', () => {
+    let disabledButton = render(<Button disabled>Submit</Button>).findTag('button');
+    disabledButton.props.className.should.contain('disabled');
+    disabledButton.getDOMNode().getAttribute('class').should.contain('disabled');
+  });
+  it('should ignore unknown attributes', () => {
+    let unknownAttrButton = render(<Button fakeValue>Submit</Button>).findTag('button');
+    unknownAttrButton.props.className.should.not.contain('fakeValue');
+    unknownAttrButton.getDOMNode().getAttribute('class').should.not.contain('fakeValue');
+  });
 });
