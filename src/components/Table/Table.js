@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import React, {Children, Component, PropTypes} from 'react';
+import classNames from 'classnames';
 import TableColumn from './TableColumn';
 import TableHeader from './TableHeader';
 import TableRow from './TableRow';
@@ -7,6 +8,7 @@ import TableCell from './TableCell';
 
 class Table extends Component {
   static propTypes = {
+    basic: PropTypes.bool,
     children: function(props, propName, componentName) {
       let isValid = true;
       Children.forEach(props.children, (child) => {
@@ -19,6 +21,7 @@ class Table extends Component {
       }
     },
     data: PropTypes.array.isRequired,
+    striped: PropTypes.bool,
   };
 
   static getSafeCellContents(content) {
@@ -59,8 +62,19 @@ class Table extends Component {
   }
 
   render() {
+    let classes = classNames(
+      'sd-table',
+      'ui',
+      {'very basic': this.props.basic},
+      'selectable',
+      'fixed',
+      'compact',
+      'small',
+      {striped: this.props.striped},
+      'table',
+    );
     return (
-      <table className='sd-table ui very basic selectable fixed compact small table'>
+      <table className={classes}>
         <thead>
           <tr>
             {this._getHeaders()}
