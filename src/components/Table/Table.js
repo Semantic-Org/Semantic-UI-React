@@ -1,5 +1,7 @@
 import _ from 'lodash';
 import React, {Children, Component, PropTypes} from 'react';
+import SIZES from '../../utils/SIZES';
+import classNames from 'classnames';
 import TableColumn from './TableColumn';
 import TableHeader from './TableHeader';
 import TableRow from './TableRow';
@@ -7,6 +9,7 @@ import TableCell from './TableCell';
 
 class Table extends Component {
   static propTypes = {
+    basic: PropTypes.bool,
     children: function(props, propName, componentName) {
       let isValid = true;
       Children.forEach(props.children, (child) => {
@@ -18,7 +21,13 @@ class Table extends Component {
         return new Error('`Table` must only have `TableColumn` children.');
       }
     },
+    compact: PropTypes.bool,
     data: PropTypes.array.isRequired,
+    fixed: PropTypes.bool,
+    selectable: PropTypes.bool,
+    size: PropTypes.oneOf(_.values(SIZES)),
+    striped: PropTypes.bool,
+    very: PropTypes.bool,
   };
 
   static getSafeCellContents(content) {
@@ -59,8 +68,20 @@ class Table extends Component {
   }
 
   render() {
+    let classes = classNames(
+      'sd-table',
+      'ui',
+      {very: this.props.very},
+      {basic: this.props.basic},
+      {selectable: this.props.selectable},
+      {fixed: this.props.fixed},
+      {compact: this.props.compact},
+      {striped: this.props.striped},
+      this.props.size,
+      'table',
+    );
     return (
-      <table className='sd-table ui very basic selectable fixed compact small table'>
+      <table className={classes}>
         <thead>
           <tr>
             {this._getHeaders()}
