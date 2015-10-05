@@ -6,7 +6,6 @@ class Modal extends Component {
     children: PropTypes.any,
     className: PropTypes.string,
     ref: PropTypes.string,
-    small: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -24,24 +23,16 @@ class Modal extends Component {
   };
 
   render() {
-    let classes;
-    if (this.state.isShown) {
-      classes = classNames(
-        'sd-modal',
-        this.props.className,
-        'ui',
-        {small: this.props.small},
-        'modal',
-        'transition',
-        'visible',
-        'active',
-        );
-    } else {
-      classes = classNames('sd-modal', this.props.className, 'ui', {small: this.props.small}, 'modal');
-    }
+    let classes = classNames(
+      'sd-modal',
+      'ui',
+      this.props.className,
+      'modal',
+      {'transition visible active': this.state.isShown},
+    );
 
     return (
-      <div className={classes} ref={this.props.ref}>
+      <div {...props} className={classes}>
         {this.props.children}
       </div>
     );

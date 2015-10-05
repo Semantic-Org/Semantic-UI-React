@@ -22,12 +22,12 @@ describe('Modal', () => {
     let renderedGridClasses = render(<Modal className={classes} />).findClass('sd-modal');
     renderedGridClasses.props.className.should.contain(classes);
   });
-  it('should show modal', () => {
+  it('sets isShown true', () => {
     var renderedModal = render(<Modal />).first();
     renderedModal.showModal();
     renderedModal.state.isShown.should.equal(true);
   });
-  it('should hide modal', () => {
+  it('sets isShown false', () => {
     var renderedModal = render(<Modal />).first();
     renderedModal.hideModal();
     renderedModal.state.isShown.should.equal(false);
