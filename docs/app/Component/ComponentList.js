@@ -46,7 +46,7 @@ class ComponentList extends Component {
           <h3>Props:</h3>
           <ComponentProps props={val.props} />
 
-          <Button onClick={this.toggleShowDocgenJSON} large teal>
+          <Button onClick={this.toggleShowDocgenJSON} fluid size={'large'} color={'teal'}>
             JSON
           </Button>
 
