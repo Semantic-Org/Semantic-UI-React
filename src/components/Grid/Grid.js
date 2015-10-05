@@ -5,6 +5,7 @@ class Grid extends Component {
   static propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
+    divided: PropTypes.bool,
     padded: PropTypes.bool,
     stretched: PropTypes.bool,
     style: PropTypes.object,
@@ -17,6 +18,7 @@ class Grid extends Component {
       'ui',
       {padded: this.props.padded},
       {'equal width': this.props.stretched},
+      {divided: this.props.divided},
       'grid',
     );
     return (
