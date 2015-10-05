@@ -1,6 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import $ from 'jquery';
 import classNames from 'classnames';
+import SIZES from '../../utils/SIZES';
 
 class Modal extends Component {
   static propTypes = {
@@ -8,7 +9,7 @@ class Modal extends Component {
     children: PropTypes.any,
     className: PropTypes.string,
     ref: PropTypes.string,
-    small: PropTypes.bool,
+    size: PropTypes.oneOf(_.values(SIZES)),
   };
 
   static defaultProps = {
@@ -41,7 +42,7 @@ class Modal extends Component {
   };
 
   render() {
-    let classes = classNames('sd-modal', this.props.className, 'ui', {small: this.props.small}, 'modal');
+    let classes = classNames('sd-modal', this.props.className, 'ui', this.props.size, 'modal');
     return (
       <div className={classes} ref={this.props.ref}>
         {this.props.children}

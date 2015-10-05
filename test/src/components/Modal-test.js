@@ -27,6 +27,11 @@ describe('Modal', () => {
     let renderedGridClasses = render(<Modal className={classes} />).findClass('sd-modal');
     renderedGridClasses.props.className.should.contain(classes);
   });
+  it('takes size prop', () => {
+    let renderedModal = render(<Modal size='small' />);
+    renderedModal.first().props.size.should.equal('small');
+    renderedModal.findClass('sd-modal').getDOMNode().getAttribute('class').should.contain('small');
+  });
   it('should show modal', () => {
     var renderedModal = render(<Modal />).first();
     renderedModal.showModal();

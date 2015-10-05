@@ -8,6 +8,11 @@ describe('Button', () => {
     renderedButton.props.type.should.equal('button');
     renderedButton.getDOMNode().getAttribute('type').should.equal('button');
   });
+  it('takes size prop', () => {
+    let renderedButton = render(<Button size='medium' />).findTag('button');
+    renderedButton.props.size.should.equal('medium');
+    renderedButton.getDOMNode().getAttribute('class').should.contain('medium');
+  });
   it('renders "Click Here" by default', () => {
     render(<Button />).findText('Click Here');
   });
