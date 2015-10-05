@@ -32,7 +32,7 @@ class Modal extends Component {
     );
 
     return (
-      <div {...props} className={classes}>
+      <div {...this.props} className={classes}>
         {this.props.children}
       </div>
     );
