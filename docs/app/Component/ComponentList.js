@@ -25,7 +25,6 @@ export default class ComponentList extends Component {
   render() {
     let components = _.map(docgenInfo, (definition, name) => {
       var filename = name.substr(name.lastIndexOf('/') + 1).replace(/\.js$/, '');
-      var examples = _.map(_.filter(definition.docBlock.tags, {title: 'example'}), 'description');
 
       var docgenJSON = (
         <Highlight className='language-json'>
