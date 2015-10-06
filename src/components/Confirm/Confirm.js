@@ -1,12 +1,9 @@
 import React, {Component, PropTypes} from 'react';
 import Promise from 'bluebird';
-// Components
-import Modal from '../Modal/Modal';
-import ModalContent from '../Modal/ModalContent';
-import ModalFooter from '../Modal/ModalFooter';
-import ModalHeader from '../Modal/ModalHeader';
 
-class ConfirmationModal extends Component {
+import {Modal, ModalContent, ModalFooter, ModalHeader} from 'stardust';
+
+class Confirm extends Component {
   static propTypes = {
     abortLabel: PropTypes.string,
     confirmLabel: PropTypes.string,
@@ -53,7 +50,7 @@ class ConfirmationModal extends Component {
 
   render() {
     return (
-      <Modal actionRequired ref='modal'>
+      <Modal ref='modal' className='small'>
         <ModalHeader>
           {this.props.header}
         </ModalHeader>
@@ -69,4 +66,4 @@ class ConfirmationModal extends Component {
   }
 }
 
-export default ConfirmationModal;
+export default Confirm;
