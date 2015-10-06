@@ -11,7 +11,7 @@ import Highlight from 'react-highlight/index';
 /**
  * A list of Components' documentation.
  */
-class ComponentList extends Component {
+export default class ComponentList extends Component {
   state = {
     showDocgenJSON: false
   };
@@ -25,6 +25,7 @@ class ComponentList extends Component {
   render() {
     let components = _.map(docgenInfo, (definition, name) => {
       var filename = name.substr(name.lastIndexOf('/') + 1).replace(/\.js$/, '');
+      var examples = _.map(_.filter(definition.docBlock.tags, {title: 'example'}), 'description');
 
       var docgenJSON = (
         <Highlight className='language-json'>
@@ -64,5 +65,3 @@ class ComponentList extends Component {
     );
   }
 }
-
-export default ComponentList;

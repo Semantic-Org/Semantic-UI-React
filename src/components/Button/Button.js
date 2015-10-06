@@ -3,6 +3,11 @@ import classNames from 'classnames';
 
 /**
  * A basic button.
+<<<<<<< HEAD
+=======
+ * @example
+ * <Button />
+>>>>>>> WIP, finally figure out example component functionality
  */
 class Button extends Component {
   static propTypes = {

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Checkbox} from 'stardust';
+import Checkbox from 'stardust';
 
 export default class extends Component {
   render() {

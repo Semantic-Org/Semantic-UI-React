@@ -26,6 +26,9 @@ module.exports = {
     filename: '[name].js'
   },
   module: {
+    noParse: [
+      /babel-core\/browser/
+    ],
     loaders: [
       {
         test: /\.js$/,

@@ -3,7 +3,7 @@ import React, {Component, PropTypes} from 'react';
 import getExamples from '../Example/GetExamples';
 import Example from '../Example/Example';
 
-export default class extends Component {
+export default class ComponentExamples extends Component {
   static propTypes = {
     componentName: PropTypes.array
   };
