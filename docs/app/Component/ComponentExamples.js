@@ -1,29 +1,21 @@
 import _ from 'lodash';
 import React, {Component, PropTypes} from 'react';
+import getExamples from '../Example/GetExamples';
+import Example from '../Example/Example';
 
-/**
- * Lists a Component's @example tags in colored code blocks.
- */
-class ComponentExamples extends Component {
+export default class extends Component {
   static propTypes = {
-    /**
-     * Array of strings of example content.
-     */
-    examples: PropTypes.array
+    componentName: PropTypes.array
   };
 
   render() {
-    let examples = _.map(this.props.examples, (example, i) => {
-      let lines = _.map(example.split('\n'), (line, j) => <div key={j}>{line}</div>);
-      return <pre key={i} className='ui green segment'>{lines}</pre>;
-    });
+    let examples = getExamples(this.props.componentName);
+    let contents = _.map(examples, (example, i) => <Example key={i} {...example} />);
 
     return (
       <div>
-        {examples}
+        {contents}
       </div>
     );
   }
 }
-
-export default ComponentExamples;

@@ -1,11 +1,13 @@
 import _ from 'lodash';
 import React, {Component} from 'react';
-import Button from 'src/components/Button/Button';
+import {Button, Segment} from 'index';
 
 import docgenInfo from './../docgenInfo';
 import ComponentDescription from './ComponentDescription';
 import ComponentExamples from './ComponentExamples';
 import ComponentProps from './ComponentProps';
+import Highlight from 'react-highlight/index';
+
 /**
  * A list of Components' documentation.
  */
@@ -21,32 +23,34 @@ class ComponentList extends Component {
   };
 
   render() {
-    let components = _.map(docgenInfo, (val, key) => {
-      var filename = key.substr(key.lastIndexOf('/') + 1).replace(/\.js$/, '');
-      var examples = _.map(_.filter(val.docBlock.tags, {title: 'example'}), 'description');
+    let components = _.map(docgenInfo, (definition, name) => {
+      var filename = name.substr(name.lastIndexOf('/') + 1).replace(/\.js$/, '');
 
       var docgenJSON = (
-        <div>
-          <div className='ui divider' />
-          <pre>{JSON.stringify(val, null, 2)}</pre>
-        </div>
+        <Highlight className='language-json'>
+          {JSON.stringify(definition, null, 2)}
+        </Highlight>
       );
 
       return (
-        <div key={key} className='ui segment'>
+        <div key={name} className='ui segment'>
           <h2 className='ui header'>
             {filename}
-            <small className='sub header' style={{float: 'right'}}>{key}</small>
+            <small className='sub header' style={{float: 'right'}}>{name}</small>
           </h2>
 
           <h3>Description:</h3>
-          <ComponentDescription description={val.docBlock.description} />
-          <h3>Examples:</h3>
-          <ComponentExamples examples={examples} />
+          <ComponentDescription description={definition.docBlock.description} />
           <h3>Props:</h3>
-          <ComponentProps props={val.props} />
+          <ComponentProps props={definition.props} />
+          <h3>Examples:</h3>
+          <ComponentExamples componentName={filename} />
 
-          <Button onClick={this.toggleShowDocgenJSON}>JSON</Button>
+          <Segment className='basic vertical'>
+            <Button className='right floated basic mini' onClick={this.toggleShowDocgenJSON}>
+              Docgen
+            </Button>
+          </Segment>
 
           {this.state.showDocgenJSON && docgenJSON}
         </div>

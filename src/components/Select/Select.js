@@ -8,6 +8,10 @@ class Select extends Component {
     value: PropTypes.string,
   };
 
+  static defaultProps = {
+    options: [],
+  };
+
   render() {
     let options = this.props.options.map((opt, i) => {
       return <option key={i} value={opt.value}>{opt.text}</option>;

@@ -1,20 +1,29 @@
 import React, {Component, PropTypes} from 'react';
+import classNames from 'classnames';
 
+/**
+ * A basic button.
+ */
 class Button extends Component {
   static propTypes = {
     children: PropTypes.string,
-    onClick: PropTypes.func,
-    type: React.PropTypes.oneOf(['button', 'submit']),
+    className: PropTypes.string,
   };
 
   static defaultProps = {
-    type: 'button',
     children: 'Click Here',
+    type: 'button'
   };
 
   render() {
+    let classes = classNames(
+      'sd-button',
+      'ui',
+      this.props.className,
+      'button'
+    );
     return (
-      <button className='sd-button ui blue button' {...this.props}>
+      <button {...this.props} className={classes}>
         {this.props.children}
       </button>
     );

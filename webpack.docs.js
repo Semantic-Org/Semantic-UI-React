@@ -1,5 +1,6 @@
 var paths = require('./paths');
 var webpack = require('webpack');
+var pkg = require('./package.json');
 
 /**
  * This config builds and serves the doc site with webpack dev server.
@@ -13,8 +14,12 @@ module.exports = {
       paths.docsApp + '/DocsApp.js'
     ],
     vendor: [
+      'faker',
+      'jquery',
       'lodash',
-      'react',
+      'moment',
+      'radium',
+      'react-highlight',
     ]
   },
   output: {
@@ -39,7 +44,10 @@ module.exports = {
     formatter: require('eslint-friendly-formatter'),
   },
   externals: {
+    faker: 'faker',
+    jquery: 'jQuery',
     lodash: '_',
+    moment: 'moment',
   },
   devTool: 'source-map',
   resolve: {
@@ -48,6 +56,9 @@ module.exports = {
       'node_modules',
       '.',
     ],
+    alias: {
+      stardust: pkg.main
+    },
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin()

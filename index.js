@@ -1,6 +1,7 @@
 import Button from './src/components/Button/Button';
 import Checkbox from './src/components/Checkbox/Checkbox';
 import Column from './src/components/Grid/Column';
+import Container from './src/components/Container/Container';
 import ConfirmationModal from './src/components/ConfirmationModal/ConfirmationModal';
 import Field from './src/components/Field/Field';
 import Form from './src/components/Form/Form';
@@ -26,6 +27,7 @@ export default {
   Button,
   Checkbox,
   Column,
+  Container,
   ConfirmationModal,
   Field,
   Form,
