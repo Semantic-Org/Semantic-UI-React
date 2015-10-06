@@ -1,9 +1,6 @@
 import React from 'react';
 import faker from 'faker';
-import Modal from 'src/components/Modal/Modal';
-import ModalHeader from 'src/components/Modal/ModalHeader';
-import ModalContent from 'src/components/Modal/ModalContent';
-import ModalFooter from 'src/components/Modal/ModalFooter';
+import {Modal, ModalHeader, ModalContent, ModalFooter} from 'stardust';
 
 describe('Modal', () => {
   it('should default ref to be "modal"', () => {
