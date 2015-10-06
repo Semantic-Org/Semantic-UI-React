@@ -1,6 +1,7 @@
 var paths = require('./paths');
 var statConfig = require('./webpack-stats');
 var friendlyFormatter = require('eslint-friendly-formatter');
+var pkg = require('./package.json');
 
 /**
  * This config is for running tests on the command line and will fail on errors.
@@ -62,6 +63,7 @@ module.exports = function(config) {
         alias: {
           // When these key names are require()'d, the value will be supplied instead
           jquery: paths.testMocks + '/SemanticjQuery-mock.js',
+          stardust: pkg.main
         },
       },
       plugins: [
