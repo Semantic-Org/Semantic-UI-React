@@ -15,7 +15,7 @@ class DocsApp extends Component {
           <DocsMenu />
         </div>
         <div style={style.main}>
-          <Grid padded>
+          <Grid className='padded'>
             <Column>
               <ComponentList />
             </Column>

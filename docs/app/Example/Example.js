@@ -1,5 +1,5 @@
 import React, {Component, createElement, PropTypes} from 'react';
-import {Segment, Button} from 'index.js';
+import {Grid, Column, Segment, Button} from 'stardust';
 import Highlight from 'react-highlight/index';
 
 /**
@@ -31,16 +31,18 @@ export default class extends Component {
     );
 
     return (
-      <Segment className='vertical segment'>
-        <Segment className='basic vertical'>
-          {createElement(this.props.component)}
-        </Segment>
-        <Segment className='basic vertical'>
-          <Button className='basic mini labeled icon' onClick={this.toggleShowCode}>
-            Code
-            <i className='code icon' />
-          </Button>
-        </Segment>
+      <Segment className='vertical'>
+        <Grid className='one column'>
+          <Column>
+            <Segment className='right aligned basic vertical'>
+              <Button className='basic mini labeled icon' onClick={this.toggleShowCode}>
+                Code
+                <i className='code icon' />
+              </Button>
+            </Segment>
+            {createElement(this.props.component)}
+          </Column>
+        </Grid>
         {this.state.showCode && code}
       </Segment>
     );

@@ -1,61 +1,36 @@
 import _ from 'lodash';
 import React, {Component} from 'react';
-import {Button, Segment} from 'index';
-
-import docgenInfo from './../docgenInfo';
+import ComponentDoc from '../utils/ComponentDoc';
 import ComponentDescription from './ComponentDescription';
 import ComponentExamples from './ComponentExamples';
 import ComponentProps from './ComponentProps';
-import Highlight from 'react-highlight/index';
+import stardust, {Segment} from 'stardust';
 
 /**
  * A list of Components' documentation.
  */
-class ComponentList extends Component {
-  state = {
-    showDocgenJSON: false
-  };
-
-  toggleShowDocgenJSON = () => {
-    this.setState({
-      showDocgenJSON: !this.state.showDocgenJSON
-    });
-  };
-
+export default class ComponentList extends Component {
   render() {
-    let components = _.map(docgenInfo, (definition, name) => {
-      var filename = name.substr(name.lastIndexOf('/') + 1).replace(/\.js$/, '');
-
-      var docgenJSON = (
-        <Highlight className='language-json'>
-          {JSON.stringify(definition, null, 2)}
-        </Highlight>
-      );
-
-      return (
-        <div key={name} className='ui segment' id={filename}>
-          <h2 className='ui header'>
-            {filename}
-            <small className='sub header' style={{float: 'right'}}>{name}</small>
-          </h2>
-
-          <h3>Description:</h3>
-          <ComponentDescription description={definition.docBlock.description} />
-          <h3>Props:</h3>
-          <ComponentProps props={definition.props} />
-          <h3>Examples:</h3>
-          <ComponentExamples componentName={filename} />
-
-          <Segment className='basic vertical'>
-            <Button className='right floated basic mini' onClick={this.toggleShowDocgenJSON}>
-              Docgen
-            </Button>
+    let components = _(stardust)
+      .keys()
+      .sort()
+      .map(name => {
+        let doc = new ComponentDoc(name);
+        return (
+          <Segment key={doc.name} id={doc.name} className='vertical'>
+            <ComponentDescription
+              path={doc.path}
+              name={doc.name}
+              parent={doc.parent}
+              type={doc.type}
+              description={doc.docBlock.description}
+            />
+            <ComponentProps props={doc.props} />
+            <ComponentExamples name={doc.name} />
           </Segment>
-
-          {this.state.showDocgenJSON && docgenJSON}
-        </div>
-      );
-    });
+        );
+      })
+      .value();
 
     return (
       <div>
@@ -64,5 +39,3 @@ class ComponentList extends Component {
     );
   }
 }
-
-export default ComponentList;

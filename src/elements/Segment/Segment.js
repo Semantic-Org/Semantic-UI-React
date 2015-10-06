@@ -1,10 +1,7 @@
-import radium from 'radium';
 import React, {Component, PropTypes} from 'react';
-import style from './Style';
 import classNames from 'classnames';
 
-@radium
-class Segment extends Component {
+export default class Segment extends Component {
   static propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
@@ -21,12 +18,10 @@ class Segment extends Component {
     );
 
     return (
-      <div className={classes} style={[style.segmentBase]}>
+      <div {...this.props} className={classes}>
         {this.props.heading && heading}
         {this.props.children}
       </div>
     );
   }
 }
-
-export default Segment;
