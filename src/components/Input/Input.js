@@ -12,6 +12,8 @@ class Input extends Component {
     name: PropTypes.string,
     onChange: PropTypes.func,
     ref: PropTypes.string,
+    small: PropTypes.string,
+    transparent: PropTypes.bool,
     type: PropTypes.string,
     value: PropTypes.string,
   };
@@ -36,8 +38,14 @@ class Input extends Component {
 
   render() {
     let icon = <i className={this.props.iconClass} />;
-    let hasIcon = !!this.props.iconClass;
-    let classes = classNames('sd-input', 'ui', 'left', {icon: hasIcon}, 'input');
+    let classes = classNames(
+      'sd-input',
+      'ui',
+      {small: this.props.small},
+      {transparent: this.props.transparent},
+      {icon: !!this.props.iconClass},
+      'input'
+    );
     return (
       <Field label={this.props.label}>
         <div className={classes}>

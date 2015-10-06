@@ -33,7 +33,7 @@ class ComponentList extends Component {
       );
 
       return (
-        <div key={name} className='ui segment'>
+        <div key={name} className='ui segment' id={filename}>
           <h2 className='ui header'>
             {filename}
             <small className='sub header' style={{float: 'right'}}>{name}</small>

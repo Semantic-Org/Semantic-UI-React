@@ -1,17 +1,27 @@
 import React, {Component, render} from 'react';
-import {Column, Container, Grid} from 'index';
+import {Grid, Column} from 'index';
+
 import ComponentList from './Component/ComponentList';
+import style from './Style';
+import DocsMenu from './DocsMenu/DocsMenu';
 
 class DocsApp extends Component {
+  state = {menuSearch: ''};
+
   render() {
     return (
-      <Container>
-        <Grid className='one column'>
-          <Column>
-            <ComponentList />
-          </Column>
-        </Grid>
-      </Container>
+      <div style={style.container}>
+        <div style={style.menu}>
+          <DocsMenu />
+        </div>
+        <div style={style.main}>
+          <Grid padded>
+            <Column>
+              <ComponentList />
+            </Column>
+          </Grid>
+        </div>
+      </div>
     );
   }
 }
