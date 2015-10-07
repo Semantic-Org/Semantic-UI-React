@@ -1,39 +1,17 @@
 import React, {Component, PropTypes} from 'react';
-import Field from '../Field/Field';
-import $ from 'jquery';
 import classNames from 'classnames';
 
-class Input extends Component {
+export default class Input extends Component {
   static propTypes = {
+    className: PropTypes.string,
     dataContent: PropTypes.string,
     defaultValue: PropTypes.string,
     iconClass: PropTypes.string,
-    label: PropTypes.string,
-    name: PropTypes.string,
-    onChange: PropTypes.func,
     ref: PropTypes.string,
-    small: PropTypes.string,
-    transparent: PropTypes.bool,
-    type: PropTypes.string,
-    value: PropTypes.string,
   };
 
   static defaultProps = {
-    ref: 'popper',
     type: 'text',
-  };
-
-  componentWillMount() {
-    this.elm = $(React.findDOMNode(this.refs[this.props.ref]));
-    if (this.props.dataContent) {
-      this.elm.popup({
-        on: 'focus',
-      });
-    }
-  }
-
-  handleChange = (e) => {
-    this.props.onChange(e);
   };
 
   render() {
@@ -41,24 +19,16 @@ class Input extends Component {
     let classes = classNames(
       'sd-input',
       'ui',
-      {small: this.props.small},
-      {transparent: this.props.transparent},
-      {icon: !!this.props.iconClass},
+      this.props.className,
       'input'
     );
+    let inputProps = _.clone(this.props);
+    delete inputProps.className;
     return (
-      <Field label={this.props.label}>
-        <div className={classes}>
-          <input
-            {...this.props}
-            onChange={this.handleChange}
-            data-content={this.props.dataContent}
-          />
-          {this.props.iconClass && icon}
-        </div>
-      </Field>
+      <div className={classes}>
+        <input {...inputProps} />
+        {this.props.iconClass && icon}
+      </div>
     );
   }
 }
-
-export default Input;
