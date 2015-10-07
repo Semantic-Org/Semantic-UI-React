@@ -20,6 +20,7 @@ export default class Input extends Component {
       'sd-input',
       'ui',
       this.props.className,
+      {icon: !!this.props.iconClass},
       'input'
     );
     let inputProps = _.clone(this.props);

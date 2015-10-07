@@ -21,4 +21,8 @@ describe('Input', () => {
   it('is an icon input if iconClass given', () => {
     render(<Input iconClass='linkedin' />).findTag('i').should.be.ok;
   });
+
+  it('has an icon class if iconClass given', () => {
+    render(<Input iconClass='foo' />).findClass('ui icon input');
+  });
 });
