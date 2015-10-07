@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React, {Component, PropTypes} from 'react';
 import radium from 'radium';
 import classNames from 'classnames';
@@ -58,9 +59,11 @@ export default class Checkbox extends Component {
       {fitted: !this.props.label},
       'checkbox'
     );
+    let checkboxProps = _.clone(this.props);
+    delete checkboxProps.className;
     return (
       <div className={classes} ref='container'>
-        <input {...this.props} ref='checkbox' />
+        <input {...checkboxProps} ref='checkbox' />
         <label>{this.props.label}</label>
       </div>
     );
