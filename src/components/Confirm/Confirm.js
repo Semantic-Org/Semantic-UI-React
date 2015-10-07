@@ -1,7 +1,10 @@
 import React, {Component, PropTypes} from 'react';
 import Promise from 'bluebird';
 
-import {Modal, ModalContent, ModalFooter, ModalHeader} from 'stardust';
+import Modal from 'src/components/Modal/Modal';
+import ModalContent from 'src/components/Modal/ModalContent';
+import ModalFooter from 'src/components/Modal/ModalFooter';
+import ModalHeader from 'src/components/Modal/ModalHeader';
 
 class Confirm extends Component {
   static propTypes = {
