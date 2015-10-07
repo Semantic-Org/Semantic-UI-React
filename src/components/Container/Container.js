@@ -12,7 +12,7 @@ import classNames from 'classnames';
  * </Container>
  */
 
-class Container extends Component {
+export default class Container extends Component {
   static propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
@@ -21,16 +21,14 @@ class Container extends Component {
   render() {
     let classes = classNames(
       'sd-container',
-      this.props.className,
       'ui',
-      'container'
+      this.props.className,
+      'container',
     );
     return (
-      <div className={classes}>
+      <div {...this.props} className={classes}>
         {this.props.children}
       </div>
     );
   }
 }
-
-export default Container;
