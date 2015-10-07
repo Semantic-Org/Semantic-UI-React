@@ -19,14 +19,20 @@ import $ from 'jquery';
  * <Checkbox type='toggle' />
  */
 @radium
-class Checkbox extends Component {
+export default class Checkbox extends Component {
   static propTypes = {
+    className: PropTypes.string,
     defaultChecked: PropTypes.bool,
     label: PropTypes.string,
     name: PropTypes.string,
     onChange: PropTypes.func,
     style: PropTypes.array,
     type: PropTypes.string,
+  };
+
+  static defaultProps = {
+    name: 'checkbox',
+    type: 'checkbox',
   };
 
   componentDidMount() {
@@ -45,16 +51,18 @@ class Checkbox extends Component {
   }
 
   render() {
-    let name = this.props.name || 'checkbox';
-    let hasLabel = !!this.props.label;
-    let classes = classNames('sd-checkbox', 'ui', {fitted: !hasLabel}, this.props.type, 'checkbox');
+    let classes = classNames(
+      'sd-checkbox',
+      'ui',
+      this.props.className,
+      {fitted: !this.props.label},
+      'checkbox'
+    );
     return (
-      <div className={classes} style={this.props.style} ref='container'>
-        <input defaultChecked={this.props.defaultChecked} type='checkbox' name={name} ref='checkbox' />
+      <div className={classes} ref='container'>
+        <input {...this.props} ref='checkbox' />
         <label>{this.props.label}</label>
       </div>
     );
   }
 }
-
-export default Checkbox;
