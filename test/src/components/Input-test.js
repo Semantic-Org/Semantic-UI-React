@@ -22,8 +22,7 @@ describe('Input', () => {
     render(<Input iconClass='linkedin' />).findTag('i').should.be.ok;
   });
 
-  it('shows a popup on focus if data-content is given', () => {
-    let renderedInput = render(<Input dataContent='Sample Popup'/>).first();
-    renderedInput.elm.popup.called.should.equal(true);
+  it('has an icon class if iconClass given', () => {
+    render(<Input iconClass='foo' />).findClass('ui icon input');
   });
 });
