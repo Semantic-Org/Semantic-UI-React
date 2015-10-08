@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import React, {Component} from 'react';
-import {Button, Segment} from 'index';
+import {Button, Segment} from '../../../index';
 
 import docgenInfo from './../docgenInfo';
 import ComponentDescription from './ComponentDescription';

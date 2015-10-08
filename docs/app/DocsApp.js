@@ -1,9 +1,9 @@
 import React, {Component, render} from 'react';
 import {Grid, Column} from 'index';
 
-import ComponentList from './Component/ComponentList';
+import ComponentList from 'Component/ComponentList';
 import style from './Style';
-import DocsMenu from './DocsMenu/DocsMenu';
+import DocsMenu from 'DocsMenu/DocsMenu';
 
 class DocsApp extends Component {
   state = {menuSearch: ''};
