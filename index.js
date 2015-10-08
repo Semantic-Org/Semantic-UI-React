@@ -1,51 +1,65 @@
-import Button from 'src/elements/Button/Button';
-import Checkbox from 'src/modules/Checkbox/Checkbox';
-import Column from 'src/collections/Grid/Column';
-import Container from 'src/elements/Container/Container';
+// Addons
 import Confirm from 'src/addons/Confirm/Confirm';
+import Textarea from 'src/addons/Textarea/Textarea';
+
+// Collections
+import Column from 'src/collections/Grid/Column';
 import Field from 'src/collections/Form/Field';
 import Form from 'src/collections/Form/Form';
 import Grid from 'src/collections/Grid/Grid';
 import Row from 'src/collections/Grid/Row';
-import Input from 'src/elements/Input/Input';
 import Menu from 'src/collections/Menu/Menu';
 import MenuItem from 'src/collections/Menu/MenuItem';
-import Modal from 'src/modules/Modal/Modal';
-import ModalContent from 'src/modules/Modal/ModalContent';
-import ModalFooter from 'src/modules/Modal/ModalFooter';
-import ModalHeader from 'src/modules/Modal/ModalHeader';
-import Segment from 'src/elements/Segment/Segment';
-import Dropdown from 'src/modules/Dropdown/Dropdown';
 import Table from 'src/collections/Table/Table';
 import TableColumn from 'src/collections/Table/TableColumn';
 import TableCell from 'src/collections/Table/TableCell';
 import TableHeader from 'src/collections/Table/TableHeader';
 import TableRow from 'src/collections/Table/TableRow';
-import Textarea from 'src/addons/Textarea/Textarea';
+
+// Elements
+import Button from 'src/elements/Button/Button';
+import Container from 'src/elements/Container/Container';
+import Input from 'src/elements/Input/Input';
+import Segment from 'src/elements/Segment/Segment';
+
+// Modules
+import Checkbox from 'src/modules/Checkbox/Checkbox';
+import Modal from 'src/modules/Modal/Modal';
+import ModalContent from 'src/modules/Modal/ModalContent';
+import ModalFooter from 'src/modules/Modal/ModalFooter';
+import ModalHeader from 'src/modules/Modal/ModalHeader';
+import Dropdown from 'src/modules/Dropdown/Dropdown';
 
 export default {
-  Button,
-  Checkbox,
-  Column,
-  Container,
+  // Addons
   Confirm,
+  Textarea,
+
+  // Collections
+  Column,
   Field,
   Form,
   Grid,
-  Input,
+  Row,
   Menu,
   MenuItem,
-  Modal,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
-  Row,
-  Segment,
-  Dropdown,
   Table,
   TableColumn,
   TableCell,
   TableHeader,
   TableRow,
-  Textarea,
+
+  // Elements
+  Button,
+  Container,
+  Input,
+  Segment,
+
+  // Modules
+  Checkbox,
+  Modal,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  Dropdown,
 };
