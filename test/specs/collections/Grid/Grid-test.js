@@ -1,6 +1,6 @@
 import React from 'react';
 import faker from 'faker';
-import Grid from 'src/collections/Grid/Grid';
+import {Grid} from 'stardust';
 
 describe('Grid', () => {
   it('is an sd-grid', () => {

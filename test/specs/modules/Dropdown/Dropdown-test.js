@@ -1,5 +1,5 @@
 import React from 'react';
-import Dropdown from 'src/modules/Dropdown/Dropdown';
+import {Dropdown} from 'stardust';
 
 describe('Dropdown', () => {
   it('has a default value', () => {

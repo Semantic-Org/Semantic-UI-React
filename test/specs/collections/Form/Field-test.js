@@ -1,5 +1,5 @@
 import React from 'react';
-import Field from 'src/collections/Form/Field';
+import {Field} from 'stardust';
 import numberToWord from 'src/utils/numberToWord';
 
 describe('Field', () => {

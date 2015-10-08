@@ -1,5 +1,5 @@
 import React from 'react';
-import Checkbox from 'src/modules/Checkbox/Checkbox';
+import {Checkbox} from 'stardust';
 
 describe('Checkbox', () => {
   it('can be checked by default', () => {

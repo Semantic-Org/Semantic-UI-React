@@ -1,5 +1,5 @@
 import React from 'react';
-import Input from 'src/elements/Input/Input';
+import {Input} from 'stardust';
 
 describe('Input', () => {
   it('has the input type of text by default', () => {

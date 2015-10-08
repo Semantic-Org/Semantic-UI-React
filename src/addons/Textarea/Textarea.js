@@ -1,5 +1,5 @@
 import React, {Component, PropTypes} from 'react';
-import Field from '../../collections/Form/Field';
+import Field from 'src/collections/Form/Field';
 
 class Textarea extends Component {
   static propTypes = {

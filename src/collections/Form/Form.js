@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import React, {Children, Component, PropTypes} from 'react';
-import Button from '../../elements/Button/Button';
+import Button from 'src/elements/Button/Button';
 
 class Form extends Component {
   static propTypes = {

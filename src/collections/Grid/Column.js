@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import React, {Component, PropTypes} from 'react';
-import numberToWord from '../../utils/numberToWord';
+import numberToWord from 'src/utils/numberToWord';
 
 export default class Column extends Component {
   static propTypes = {

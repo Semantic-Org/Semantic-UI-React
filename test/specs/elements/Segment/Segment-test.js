@@ -1,5 +1,5 @@
 import React from 'react';
-import Segment from 'src/elements/Segment/Segment';
+import {Segment} from 'stardust';
 
 describe('Segment', () => {
   it('is an sd-segment', () => {

@@ -1,5 +1,5 @@
-import numberToWord from 'src/utils/numberToWord.js';
 import _ from 'lodash';
+import numberToWord from 'src/utils/numberToWord';
 
 let words = [
   'one',

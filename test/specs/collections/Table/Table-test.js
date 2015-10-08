@@ -1,8 +1,8 @@
 import _ from 'lodash';
 import faker from 'faker';
 import React from 'react';
-import Table from 'src/collections/Table/Table.js';
-import TableColumn from 'src/collections/Table/TableColumn';
+import {Table} from 'stardust';
+import {TableColumn} from 'stardust';
 
 describe('Table', () => {
   let randomDataKey;

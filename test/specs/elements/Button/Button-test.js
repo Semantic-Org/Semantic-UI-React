@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from 'src/elements/Button/Button';
+import {Button} from 'stardust';
 import sandbox from 'test/utils/Sandbox-util';
 
 describe('Button', () => {

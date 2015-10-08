@@ -1,5 +1,5 @@
 import React from 'react';
-import Textarea from '../../../src/addons/Textarea/Textarea';
+import {Textarea} from 'stardust';
 
 describe('Textarea', () => {
   it('has a default value', () => {

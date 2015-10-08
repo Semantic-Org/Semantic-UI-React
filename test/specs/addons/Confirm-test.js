@@ -1,5 +1,5 @@
 import React from 'react';
-import Confirm from '../../../src/addons/Confirm/Confirm';
+import {Confirm} from 'stardust';
 
 describe('Confirm', () => {
   it('default prop abortLabel should be "Cancel"', () => {

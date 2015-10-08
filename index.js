@@ -3,7 +3,7 @@ import Checkbox from 'src/modules/Checkbox/Checkbox';
 import Column from 'src/collections/Grid/Column';
 import Container from 'src/elements/Container/Container';
 import Confirm from 'src/addons/Confirm/Confirm';
-import Field from './src/collections/Form/Field';
+import Field from 'src/collections/Form/Field';
 import Form from 'src/collections/Form/Form';
 import Grid from 'src/collections/Grid/Grid';
 import Row from 'src/collections/Grid/Row';
