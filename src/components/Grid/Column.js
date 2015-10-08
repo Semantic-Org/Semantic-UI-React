@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import React, {Component, PropTypes} from 'react';
 import numberToWord from 'src/utils/numberToWord';
 
-class Column extends Component {
+export default class Column extends Component {
   static propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
@@ -13,15 +13,14 @@ class Column extends Component {
   render() {
     let classes = classNames(
       'sd-column',
+      this.props.className,
       this.props.width && numberToWord(this.props.width) + ' wide',
       'column'
     );
     return (
-      <div className={classes} style={this.props.style}>
+      <div {...this.props} className={classes}>
         {this.props.children}
       </div>
     );
   }
 }
-
-export default Column;
