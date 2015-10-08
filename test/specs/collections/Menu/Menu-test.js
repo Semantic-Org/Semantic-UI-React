@@ -1,6 +1,5 @@
 import React from 'react';
-import {Menu} from 'stardust';
-import {MenuItem} from 'stardust';
+import {Menu, MenuItem} from 'stardust';
 
 describe('Menu', () => {
   it('should render children', () => {

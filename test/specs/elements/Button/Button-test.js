@@ -1,6 +1,6 @@
 import React from 'react';
-import {Button} from 'stardust';
 import sandbox from 'test/utils/Sandbox-util';
+import {Button} from 'stardust';
 
 describe('Button', () => {
   it('has type button by default', () => {
