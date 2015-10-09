@@ -10,7 +10,8 @@
     "test": "karma start karma.conf.js",
     "lint": "eslint src gulp test ./*.js",
     "test-watch": "webpack-dev-server --config webpack.tests.js",
-    "deploy": "git push && git push --tags && npm publish"
+    "deploy": "git push && git push --tags && npm publish",
+    "start": "gulp"
   },
   "pre-commit": {
     "silent": false,

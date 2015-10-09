@@ -24,11 +24,15 @@ Checkout the **[Docs](https://technologyadvice.github.io/stardust/)**.
 
 ## Develop
 
+1. `git clone git@github.com:TechnologyAdvice/stardust.git`
+1. `npm install`
+1. `gulp`
+
 ### Commands
 
 ```
 npm run                   # list npm commands 
-gulp help                 # list npm commands
+gulp help                 # list gulp commands
 ```
 
 ### Deploying
