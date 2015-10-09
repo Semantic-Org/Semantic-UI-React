@@ -4,7 +4,7 @@ import classNames from 'classnames';
 /**
  * A basic button.
  */
-class Button extends Component {
+export default class Button extends Component {
   static propTypes = {
     children: PropTypes.string,
     className: PropTypes.string,
@@ -29,5 +29,3 @@ class Button extends Component {
     );
   }
 }
-
-export default Button;

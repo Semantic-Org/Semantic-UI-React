@@ -1,28 +1,27 @@
 import _ from 'lodash';
 import React, {Component} from 'react';
-import {Menu, MenuItem, Input} from 'stardust';
+import stardust, {Menu, MenuItem, Input} from 'stardust';
 
-import DocUtil from '../utils/DocUtil';
+export default class DocsMenu extends Component {
+  state = {menuQuery: ''};
 
-class DocsMenu extends Component {
-  state = {menuSearch: ''};
-
-  handleSearchChange = e => this.setState({menuSearch: e.target.value});
+  handleSearchChange = e => this.setState({menuQuery: e.target.value});
 
   render() {
-    let menuItems = _(DocUtil.componentNames)
-      .filter(item => new RegExp(this.state.menuSearch, 'i').test(item))
+    let menuItems = _(stardust)
+      .keys()
+      .sort()
+      .filter(item => new RegExp(this.state.menuQuery, 'i').test(item))
       .map(item => <MenuItem key={item} name={item} href={`#${item}`} />)
       .value();
 
     return (
-      <Menu small vertical inverted>
+      <Menu className='small inverted secondary vertical pointing fluid'>
         <MenuItem>
           <Input
-            small
+            className='small transparent inverted'
             placeholder='Search'
-            transparent
-            iconClass='right search link icon'
+            iconClass='search link icon'
             onChange={this.handleSearchChange}
           />
         </MenuItem>
@@ -31,5 +30,3 @@ class DocsMenu extends Component {
     );
   }
 }
-
-export default DocsMenu;

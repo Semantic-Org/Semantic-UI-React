@@ -1,19 +1,24 @@
 const style = {};
+let sidebarWidth = 200;
 
 style.container = {
   display: 'flex',
 };
 
 style.menu = {
-  minWidth: 200,
-  maxWidth: 250,
-  flex: '1',
+  position: 'fixed',
+  top: 0,
+  bottom: 0,
+  left: 0,
+  width: sidebarWidth,
+  background: '#333',
+  overflowY: 'scroll',
 };
 
 style.main = {
-  minWidth: 400,
-  maxWidth: 900,
-  flex: '4 0 auto',
+  flex: '1 0 auto',
+  marginLeft: sidebarWidth,
+  minWidth: 700,
 };
 
 export default style;
