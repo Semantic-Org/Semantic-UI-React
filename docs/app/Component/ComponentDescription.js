@@ -59,9 +59,7 @@ export default class ComponentDescription extends Component {
             </a>
           </code>
         </div>
-        <p className='sub header'>
-          {this.isSemanticComponent && semanticDocsLink}
-        </p>
+        {this.isSemanticComponent && semanticDocsLink}
       </Segment>
     );
   }
