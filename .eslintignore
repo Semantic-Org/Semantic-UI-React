@@ -1,2 +1,7 @@
+_builds/*
+_projects/*
+_steps/*
+bower_components/*
 node_modules/*
 docs/build/*
+testBundle.js
