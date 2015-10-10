@@ -8,7 +8,7 @@
   ],
   "scripts": {
     "test": "karma start karma.conf.js",
-    "lint": "eslint src gulp test ./*.js",
+    "lint": "eslint .",
     "test-watch": "webpack-dev-server --config webpack.tests.js",
     "deploy": "git push && git push --tags && npm publish",
     "start": "gulp"
