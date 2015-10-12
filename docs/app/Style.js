@@ -2,7 +2,6 @@ const style = {};
 let sidebarWidth = 200;
 
 style.container = {
-  display: 'flex',
 };
 
 style.menu = {
@@ -16,9 +15,9 @@ style.menu = {
 };
 
 style.main = {
-  flex: '1 0 auto',
   marginLeft: sidebarWidth,
-  minWidth: 700,
+  minWidth: sidebarWidth + 300,
+  maxWidth: sidebarWidth + 900,
 };
 
 export default style;

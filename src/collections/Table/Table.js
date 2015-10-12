@@ -6,7 +6,7 @@ import TableHeader from './TableHeader';
 import TableRow from './TableRow';
 import TableCell from './TableCell';
 
-class Table extends Component {
+export default class Table extends Component {
   static propTypes = {
     basic: PropTypes.bool,
     children: function(props, propName, componentName) {
@@ -20,8 +20,8 @@ class Table extends Component {
         return new Error('`Table` must only have `TableColumn` children.');
       }
     },
+    className: PropTypes.string,
     data: PropTypes.array.isRequired,
-    striped: PropTypes.bool,
   };
 
   static getSafeCellContents(content) {
@@ -65,16 +65,11 @@ class Table extends Component {
     let classes = classNames(
       'sd-table',
       'ui',
-      {'very basic': this.props.basic},
-      'selectable',
-      'fixed',
-      'compact',
-      'small',
-      {striped: this.props.striped},
+      this.props.className,
       'table',
     );
     return (
-      <table className={classes}>
+      <table {...this.props} className={classes}>
         <thead>
           <tr>
             {this._getHeaders()}
@@ -87,5 +82,3 @@ class Table extends Component {
     );
   }
 }
-
-export default Table;

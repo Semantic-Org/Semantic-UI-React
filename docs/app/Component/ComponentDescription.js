@@ -1,8 +1,9 @@
 import React, {Component, PropTypes} from 'react';
 import SEMANTIC_TYPES from 'docs/app/utils/SemanticTypes';
 import STARDUST_TYPES from 'docs/app/utils/StardustTypes';
+import {Segment} from 'stardust';
 
-class ComponentDescription extends Component {
+export default class ComponentDescription extends Component {
   static propTypes = {
     /**
      * String describing the Stardust component.
@@ -48,7 +49,7 @@ class ComponentDescription extends Component {
       </a>
     );
     return (
-      <div>
+      <Segment className='basic vertical'>
         <div className='ui large header'>
           {_.capitalize(this.props.name)}
           <code className='sub header' style={{float: 'right'}}>
@@ -59,9 +60,7 @@ class ComponentDescription extends Component {
           </code>
         </div>
         {this.isSemanticComponent && semanticDocsLink}
-      </div>
+      </Segment>
     );
   }
 }
-
-export default ComponentDescription;

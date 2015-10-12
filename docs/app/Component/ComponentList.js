@@ -17,7 +17,7 @@ export default class ComponentList extends Component {
       .map(name => {
         let doc = new ComponentDoc(name);
         return (
-          <Segment key={doc.name} id={doc.name} className='vertical'>
+          <Segment key={doc.name} id={doc.name}>
             <ComponentDescription
               path={doc.path}
               name={doc.name}
