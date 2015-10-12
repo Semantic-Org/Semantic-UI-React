@@ -7,7 +7,7 @@ export default class extends Component {
       <Button className='animated'>
         <div className='visible content'>Next</div>
         <div className='hidden content'>
-          <i className='right arrow icon'></i>
+          <i className='right arrow icon' />
         </div>
       </Button>
     );

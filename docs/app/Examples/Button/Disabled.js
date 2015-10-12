@@ -4,7 +4,7 @@ import {Button} from 'stardust';
 export default class extends Component {
   render() {
     return (
-      <Button className='disabled' />
+      <Button className='disabled'>Disabled</Button>
     );
   }
 }

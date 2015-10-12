@@ -1,16 +1,17 @@
 import React, {Component} from 'react';
-import {Button} from 'stardust';
+import {Button, Segment} from 'stardust';
 
 export default class extends Component {
   render() {
     return (
       <div>
         <Button className='top attached'>Top</Button>
-        <div className='ui attached segment'>
+        <Segment className='attached'>
           <p>Content goes here</p>
-        </div>
+        </Segment>
         <Button className='bottom attached'>Bottom</Button>
       </div>
+      // TODO: Extend button component to work with an attached div - see issue #46
     );
   }
 }

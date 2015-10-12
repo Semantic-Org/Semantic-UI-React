@@ -5,7 +5,7 @@ export default class extends Component {
   render() {
     return (
       <Button className='circular icon'>
-        <i className='heart icon'></i>
+        <i className='heart icon' />
       </Button>
     );
   }

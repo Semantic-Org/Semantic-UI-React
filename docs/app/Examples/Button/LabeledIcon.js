@@ -6,11 +6,11 @@ export default class extends Component {
     return (
       <div>
         <Button className='labeled icon'>
-          <i className='pause icon'></i>
+          <i className='pause icon' />
           Pause
         </Button>
         <Button className='right labeled icon'>
-          <i className='right arrow icon'></i>
+          <i className='right arrow icon' />
           Next
         </Button>
       </div>

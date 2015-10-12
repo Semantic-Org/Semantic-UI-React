@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
-import {Button} from 'stardust';
+import {Button, Segment} from 'stardust';
 
 export default class extends Component {
   render() {
     return (
       <div>
-        <div className='ui inverted segment'>
+        <Segment className='inverted'>
           <Button className='inverted'>Standard</Button>
           <Button className='inverted red'>Red</Button>
           <Button className='inverted orange'>Orange</Button>
@@ -20,8 +20,8 @@ export default class extends Component {
           <Button className='inverted brown'>Brown</Button>
           <Button className='inverted grey'>Grey</Button>
           <Button className='inverted black'>Black</Button>
-        </div>
-        <div className='ui inverted segment'>
+        </Segment>
+        <Segment className='inverted'>
           <Button className='inverted basic'>Standard</Button>
           <Button className='inverted red basic'>Red</Button>
           <Button className='inverted orange basic'>Orange</Button>
@@ -36,7 +36,7 @@ export default class extends Component {
           <Button className='inverted brown basic'>Brown</Button>
           <Button className='inverted grey basic'>Grey</Button>
           <Button className='inverted black basic'>Black</Button>
-        </div>
+        </Segment>
       </div>
     );
   }

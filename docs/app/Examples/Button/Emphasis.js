@@ -5,8 +5,8 @@ export default class extends Component {
   render() {
     return (
       <div>
-        <Button className='primary' />
-        <Button className='secondary' />
+        <Button className='primary'>Primary</Button>
+        <Button className='secondary'>Secondary</Button>
       </div>
     );
   }
