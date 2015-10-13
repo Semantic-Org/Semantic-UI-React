@@ -2,7 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import classNames from 'classnames';
 
 /**
- * A basic button.
+ * A basic button. yup!
  */
 export default class Button extends Component {
   static propTypes = {

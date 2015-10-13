@@ -1,14 +1,18 @@
 import React, {Component, render} from 'react';
-import {Grid, Column} from 'index';
+import stardust, {Grid, Column} from 'stardust';
 
-import ComponentList from './Component/ComponentList';
+import ComponentDoc from 'docs/app/Components/ComponentDoc/ComponentDoc';
+import DocsMenu from 'Components/Sidebar/Sidebar';
 import style from './Style';
-import DocsMenu from './DocsMenu/DocsMenu';
 
 class DocsApp extends Component {
   state = {menuSearch: ''};
 
   render() {
+    let components = Object.keys(stardust)
+      .sort()
+      .map(name => <ComponentDoc key={name} name={name} />);
+
     return (
       <div style={style.container}>
         <div style={style.menu}>
@@ -17,7 +21,7 @@ class DocsApp extends Component {
         <div style={style.main}>
           <Grid className='padded'>
             <Column>
-              <ComponentList />
+              {components}
             </Column>
           </Grid>
         </div>

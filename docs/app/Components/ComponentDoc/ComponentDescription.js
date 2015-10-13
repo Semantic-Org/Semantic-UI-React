@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react';
-import SEMANTIC_TYPES from 'docs/app/utils/SemanticTypes';
-import STARDUST_TYPES from 'docs/app/utils/StardustTypes';
+import SEMANTIC_TYPES from '../../utils/SemanticTypes';
+import STARDUST_TYPES from '../../utils/StardustTypes';
 import {Segment} from 'stardust';
 
 export default class ComponentDescription extends Component {
@@ -59,7 +59,8 @@ export default class ComponentDescription extends Component {
             </a>
           </code>
         </div>
-        {this.isSemanticComponent && semanticDocsLink}
+        <p>{this.props.description}</p>
+        <p>{this.isSemanticComponent && semanticDocsLink}</p>
       </Segment>
     );
   }
