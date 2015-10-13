@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react';
-import SEMANTIC_TYPES from '../../utils/SemanticTypes';
-import STARDUST_TYPES from '../../utils/StardustTypes';
+import SEMANTIC_TYPES from 'docs/app/utils/SemanticTypes';
+import STARDUST_TYPES from 'docs/app/utils/StardustTypes';
 import {Segment} from 'stardust';
 
 export default class ComponentDescription extends Component {

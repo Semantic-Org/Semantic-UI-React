@@ -2,7 +2,7 @@ import _ from 'lodash';
 import docgenInfo from '../docgenInfo.json';
 
 /**
- * ComponentDoc's responsibility is to extract and format a documentation object describing a single component.
+ * This util extracts and formats a doc object from docgenInfo.json for a single `component`.
  * @param {string} component Stardust component name.
  * @returns {{}} Documentation object.
  */
