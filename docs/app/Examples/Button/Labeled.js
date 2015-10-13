@@ -8,7 +8,7 @@ export default class extends Component {
         <Button>
           <i className='heart icon' /> Like
         </Button>
-        // TODO: See issue #46 - button needs to render as a div
+        {/* TODO: See issue #46 - button needs to render as a div */}
         <a className='ui basic label'>
           3,000
         </a>
