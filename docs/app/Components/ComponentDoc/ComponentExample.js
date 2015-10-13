@@ -40,7 +40,7 @@ export default class ComponentExample extends Component {
         <Column>
           <Grid>
             <Column width={12}>
-              <div className='ui header'>
+              <div className='ui header' style={{marginBottom: 0}}>
                 {this.props.title}
               </div>
               <p>{this.props.description}</p>
