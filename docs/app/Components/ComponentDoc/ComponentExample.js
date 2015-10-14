@@ -1,12 +1,7 @@
 import React, {Component, createElement, PropTypes} from 'react';
 import {Grid, Column, Button} from 'stardust';
 import Highlight from 'react-highlight';
-
-const req = require.context(
-  'docs/app/Examples/',
-  true,
-  /(addons|elements|collections|views|modules)\/.*\.js$/
-);
+import exampleContext from 'docs/app/utils/ExampleContext';
 
 /**
  * Renders a `component` and the raw `code` that produced it.
@@ -22,7 +17,7 @@ export default class ComponentExample extends Component {
 
   state = {showCode: false};
   fileContents = require(`!raw!docs/app/Examples/${this.props.examplePath}`);
-  component = req(`./${this.props.examplePath}.js`);
+  component = exampleContext(`./${this.props.examplePath}.js`);
 
   toggleShowCode = () => {
     this.setState({showCode: !this.state.showCode});
@@ -40,9 +35,9 @@ export default class ComponentExample extends Component {
         <Column>
           <Grid>
             <Column width={12}>
-              <div className='ui header' style={{marginBottom: 0}}>
+              <h3 className='ui header' style={{marginBottom: 0}}>
                 {this.props.title}
-              </div>
+              </h3>
               <p>{this.props.description}</p>
             </Column>
             <Column width={4} className='right aligned'>
@@ -58,7 +53,6 @@ export default class ComponentExample extends Component {
           {createElement(this.component)}
           {this.state.showCode && code}
         </Column>
-
       </Grid>
     );
   }

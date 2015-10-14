@@ -1,27 +1,27 @@
 import React, {Component, PropTypes} from 'react';
 import {Segment} from 'stardust';
+import exampleContext from 'docs/app/utils/ExampleContext';
 
-// build a context of all docs/app/Examples/**/*Examples.js files
-let req = require.context('docs/app/Examples/', true, /\/[\w]+Examples\.js$/);
 export default class ComponentExamples extends Component {
   static propTypes = {
     name: PropTypes.string
   };
 
   render() {
-    let examples = req.keys()
+    let examples = exampleContext.keys()
       .filter(path => path.includes(`/${this.props.name}Examples.js`))
       .map(path => {
-        let Examples = req(path);
-        return <Examples />;
+        let Example = exampleContext(path);
+        return <Example />;
       });
 
     let content = (
       <Segment className='basic vertical'>
-        <h3>Examples:</h3>
+        <h2 className='ui header'>Examples</h2>
         {examples}
       </Segment>
     );
+
     return (
       <div className='stardust-examples'>
         {!!examples.length && content}

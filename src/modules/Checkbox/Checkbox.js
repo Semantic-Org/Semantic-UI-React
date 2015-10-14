@@ -3,13 +3,6 @@ import React, {Component, PropTypes} from 'react';
 import classNames from 'classnames';
 import $ from 'jquery';
 
-/**
- * <div class="ui info message">
- *   If there is no <code class='ui label'>props.label</code> the
- *   <a href='http://semantic-ui.com/modules/checkbox.html#fitted' target='_blank'>fitted</a>
- *   class is automatically applied to remove the extra whitespace.
- * </div>
- */
 export default class Checkbox extends Component {
   static propTypes = {
     beforeChecked: PropTypes.func,
