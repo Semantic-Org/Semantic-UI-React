@@ -20,7 +20,10 @@ npm i stardust -S
 ```
 
 ## Learn
-Checkout the **[Docs](https://technologyadvice.github.io/stardust/)**.
+Checkout the [Documentation](https://technologyadvice.github.io/stardust/).
+
+Review our [Component Guidelines]
+(https://github.com/TechnologyAdvice/stardust/blob/master/docs/app/Component Guidelines.md).
 
 ## Develop
 
