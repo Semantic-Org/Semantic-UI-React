@@ -1,8 +1,9 @@
 import React, {Component, PropTypes} from 'react';
-import Field from 'src/collections/Form/Field';
+import classNames from 'classnames';
 
-class Select extends Component {
+export default class Dropdown extends Component {
   static propTypes = {
+    className: PropTypes.string,
     label: PropTypes.string,
     options: PropTypes.array,
     value: PropTypes.string,
@@ -17,14 +18,16 @@ class Select extends Component {
       return <option key={i} value={opt.value}>{opt.text}</option>;
     });
     let value = _.isEmpty(this.props.value) ? '' : this.props.value;
+    let classes = classNames(
+      'sd-dropdown',
+      'ui',
+      this.props.className,
+      'dropdown'
+    );
     return (
-      <Field label={this.props.label}>
-        <select className='sd-select ui fluid dropdown' value={value}>
-          {options}
-        </select>
-      </Field>
+      <select {...this.props} className={classes} value={value}>
+        {options}
+      </select>
     );
   }
 }
-
-export default Select;
