@@ -16,6 +16,10 @@ describe('Conformance', () => {
         expect(SDComponent.prototype).to.eql(React.Component.prototype);
       });
 
+      it('has identical constructor (class) and component names', () => {
+        SDComponent.prototype.constructor.name.should.equal(name);
+      });
+
       it(`has the "${sdClass}" element as its first child`, () => {
         let firstChild = _.first(render(<SDComponent />).children());
         expect(firstChild.props.className).to.contain(sdClass);
