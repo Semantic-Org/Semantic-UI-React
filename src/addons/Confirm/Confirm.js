@@ -6,7 +6,7 @@ import ModalContent from 'src/modules/Modal/ModalContent';
 import ModalFooter from 'src/modules/Modal/ModalFooter';
 import ModalHeader from 'src/modules/Modal/ModalHeader';
 
-class Confirm extends Component {
+export default class Confirm extends Component {
   static propTypes = {
     abortLabel: PropTypes.string,
     confirmLabel: PropTypes.string,
@@ -53,7 +53,7 @@ class Confirm extends Component {
 
   render() {
     return (
-      <Modal ref='modal' className='small'>
+      <Modal {...this.props} className='small' ref='modal'>
         <ModalHeader>
           {this.props.header}
         </ModalHeader>
@@ -68,5 +68,3 @@ class Confirm extends Component {
     );
   }
 }
-
-export default Confirm;

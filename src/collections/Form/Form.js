@@ -3,7 +3,7 @@ import React, {Children, Component, PropTypes} from 'react';
 import Button from 'src/elements/Button/Button';
 import classNames from 'classnames';
 
-class Form extends Component {
+export default class Form extends Component {
   static propTypes = {
     children: function(props, propName, componentName) {
       let formButtons = [];
@@ -75,5 +75,3 @@ class Form extends Component {
     );
   }
 }
-
-export default Form;

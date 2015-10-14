@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import classNames from 'classnames';
 
-class Menu extends Component {
+export default class Menu extends Component {
   static propTypes = {
     activeItem: PropTypes.string,
     children: PropTypes.node,
@@ -24,15 +24,8 @@ class Menu extends Component {
   render() {
     let classes = classNames(
       'sd-menu',
-      this.props.className,
       'ui',
-      {inverted: this.props.inverted},
-      {secondary: this.props.secondary},
-      {small: this.props.small},
-      {pointing: this.props.pointing},
-      {fluid: this.props.fluid},
-      {text: this.props.text},
-      {vertical: this.props.vertical},
+      this.props.className,
       'menu'
     );
     let hasActiveItem = !!this.state.activeItem || !!this.props.activeItem;
@@ -46,11 +39,9 @@ class Menu extends Component {
       });
     });
     return (
-      <div className={classes}>
+      <div {...this.props} className={classes}>
         {children}
       </div>
     );
   }
 }
-
-export default Menu;
