@@ -13,7 +13,7 @@ describe('Conformance', () => {
 
     describe(name, () => {
       it('extends React.Component', () => {
-        expect(new SDComponent()).to.be.an.instanceOf(React.Component);
+        expect(SDComponent.prototype).to.eql(React.Component.prototype);
       });
 
       it(`has the "${sdClass}" element as its first child`, () => {

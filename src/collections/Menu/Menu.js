@@ -6,13 +6,6 @@ export default class Menu extends Component {
     activeItem: PropTypes.string,
     children: PropTypes.node,
     className: PropTypes.string,
-    fluid: PropTypes.bool,
-    inverted: PropTypes.bool,
-    pointing: PropTypes.bool,
-    secondary: PropTypes.bool,
-    small: PropTypes.bool,
-    text: PropTypes.bool,
-    vertical: PropTypes.bool,
   };
 
   state = {activeItem: this.props.activeItem};
