@@ -41,6 +41,6 @@ gulp help                 # list gulp commands
 ### Deploying
 
 ```
-npm version <version>
-npm run deploy
+npm version <version>     # bump the new version
+npm run deploy            # pushes tags and publishes package
 ```
