@@ -77,9 +77,15 @@ describe('Conformance', () => {
 
       describe('props', () => {
         it('spreads props', () => {
-          // create random props object
           let props = {};
-          _.times(5, () => props[faker.hacker.noun()] = faker.hacker.noun());
+          _.times(2, () => {
+            // single word props
+            props[faker.hacker.noun()] = faker.hacker.noun();
+            // camelCased props
+            props[_.camelCase(faker.hacker.phrase())] = faker.hacker.phrase();
+            // kebab-cased props
+            props[_.kebabCase(faker.hacker.phrase())] = faker.hacker.phrase();
+          });
 
           // create element with random props
           let componentWithProps = <SDComponent {...props} />;
