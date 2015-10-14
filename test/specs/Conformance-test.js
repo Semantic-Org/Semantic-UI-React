@@ -16,7 +16,7 @@ describe('Conformance', () => {
         expect(SDComponent.prototype).to.eql(React.Component.prototype);
       });
 
-      it('has identical constructor (class) and component names', () => {
+      it(`constructor name is "${name}" (matches component name)`, () => {
         SDComponent.prototype.constructor.name.should.equal(name);
       });
 
