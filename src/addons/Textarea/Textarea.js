@@ -1,40 +1,22 @@
 import React, {Component, PropTypes} from 'react';
 import Field from 'src/collections/Form/Field';
+import classNames from 'classnames';
 
-class Textarea extends Component {
+export default class Textarea extends Component {
   static propTypes = {
-    dataContent: PropTypes.string,
+    className: PropTypes.string,
     label: PropTypes.string,
-    name: PropTypes.string,
-    onChange: PropTypes.func,
-    ref: PropTypes.string,
-    rows: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number
-    ]),
-    value: PropTypes.string,
-  };
-
-  static defaultProps = {
-    rows: '3',
-    ref: 'textarea',
-  };
-
-  handleChange = (e) => {
-    this.props.onChange(e);
   };
 
   render() {
+    let classes = classNames(
+      'sd-textarea',
+      this.props.className
+    );
     return (
       <Field label={this.props.label}>
-        <textarea
-          {...this.props}
-          onChange={this.handleChange}
-          data-content={this.props.dataContent}
-        />
+        <textarea {...this.props} className={classes}/>
       </Field>
     );
   }
 }
-
-export default Textarea;

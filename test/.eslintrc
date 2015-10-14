@@ -1,3 +1,6 @@
 {
-  "extends": "ta-webapp/lib/tests"
+  "extends": "ta-webapp/lib/tests",
+  "rules": {
+    "max-nested-callbacks": [2, 6]
+  }
 }

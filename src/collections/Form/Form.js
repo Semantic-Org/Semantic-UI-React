@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import React, {Children, Component, PropTypes} from 'react';
 import Button from 'src/elements/Button/Button';
+import classNames from 'classnames';
 
 class Form extends Component {
   static propTypes = {
@@ -21,13 +22,14 @@ class Form extends Component {
           }
         });
       }
+
       loopThruChildren(props.children);
 
       if (formButtons.length === 0 || !_.include(formButtons, 'submit')) {
         return new Error('`Form` must have `Button` child with type of "submit".');
       }
     },
-    onSubmit: PropTypes.func,
+    className: PropTypes.string,
   };
 
   serializeJson = () => {
@@ -60,8 +62,14 @@ class Form extends Component {
   };
 
   render() {
+    let classes = classNames(
+      'sd-form',
+      'form',
+      'ui',
+      this.props.className,
+    );
     return (
-      <form className='sd-form ui form' onSubmit={this.props.onSubmit} ref='form'>
+      <form {...this.props} className={classes} ref='form'>
         {this.props.children}
       </form>
     );
