@@ -8,7 +8,7 @@ import faker from 'faker';
  */
 describe('Conformance', () => {
   _.each(stardust, (SDComponent, name) => {
-    let classes = faker.hacker.noun();
+    let classes = faker.hacker.phrase();
     let sdClass = `sd-${_.kebabCase(name)}`;
 
     describe(name, () => {
@@ -20,7 +20,7 @@ describe('Conformance', () => {
         SDComponent.prototype.constructor.name.should.equal(name);
       });
 
-      it(`has the "${sdClass}" element as its first child`, () => {
+      it(`has the "${sdClass}" element as its first child (no wrapper elements)`, () => {
         let firstChild = _.first(render(<SDComponent />).children());
         expect(firstChild.props.className).to.contain(sdClass);
       });
