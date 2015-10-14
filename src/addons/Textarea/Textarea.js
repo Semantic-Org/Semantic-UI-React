@@ -1,5 +1,4 @@
 import React, {Component, PropTypes} from 'react';
-import Field from 'src/collections/Form/Field';
 import classNames from 'classnames';
 
 export default class Textarea extends Component {
@@ -14,9 +13,7 @@ export default class Textarea extends Component {
       this.props.className
     );
     return (
-      <Field label={this.props.label}>
-        <textarea {...this.props} className={classes}/>
-      </Field>
+      <textarea {...this.props} className={classes} />
     );
   }
 }
