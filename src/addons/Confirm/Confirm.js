@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import Promise from 'bluebird';
+import classNames from 'classnames';
 
 import Modal from 'src/modules/Modal/Modal';
 import ModalContent from 'src/modules/Modal/ModalContent';
@@ -9,6 +10,7 @@ import ModalHeader from 'src/modules/Modal/ModalHeader';
 export default class Confirm extends Component {
   static propTypes = {
     abortLabel: PropTypes.string,
+    className: PropTypes.string,
     confirmLabel: PropTypes.string,
     header: PropTypes.string,
     ref: PropTypes.string,
@@ -52,8 +54,12 @@ export default class Confirm extends Component {
   };
 
   render() {
+    let classes = classNames(
+      'sd-confirm',
+      this.props.className,
+    );
     return (
-      <Modal {...this.props} className='small' ref='modal'>
+      <Modal {...this.props} className={classes} ref='modal'>
         <ModalHeader>
           {this.props.header}
         </ModalHeader>
