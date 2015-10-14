@@ -12,11 +12,13 @@ describe('Conformance', () => {
     let sdClass = `sd-${_.kebabCase(name)}`;
 
     describe(name, () => {
-      describe('elements', () => {
-        it(`its first child is the "${sdClass}" element (no parent elements)`, () => {
-          let firstChild = _.first(render(<SDComponent />).children());
-          expect(firstChild.props.className).to.contain(sdClass);
-        });
+      it('extends React.Component', () => {
+        expect(new SDComponent()).to.be.an.instanceOf(React.Component);
+      });
+
+      it(`has the "${sdClass}" element as its first child`, () => {
+        let firstChild = _.first(render(<SDComponent />).children());
+        expect(firstChild.props.className).to.contain(sdClass);
       });
 
       describe('classes', () => {
