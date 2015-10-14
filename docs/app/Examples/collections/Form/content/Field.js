@@ -5,8 +5,8 @@ export default class extends Component {
   render() {
     return (
       <Form>
-        <Field label='First name'>
-          <Input placeholder='First name' />
+        <Field label='User Input'>
+          <Input placeholder='User Input' />
         </Field>
       </Form>
     );

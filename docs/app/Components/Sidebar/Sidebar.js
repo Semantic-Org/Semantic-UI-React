@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import React, {Component} from 'react';
 import stardust, {Menu, MenuItem, Input} from 'stardust';
 
@@ -8,12 +7,10 @@ export default class DocsMenu extends Component {
   handleSearchChange = e => this.setState({menuQuery: e.target.value});
 
   render() {
-    let menuItems = _(stardust)
-      .keys()
+    let menuItems = Object.keys(stardust)
       .sort()
       .filter(item => new RegExp(this.state.menuQuery, 'i').test(item))
-      .map(item => <MenuItem key={item} name={item} href={`#${item}`} />)
-      .value();
+      .map(item => <MenuItem key={item} name={item} href={`#${item}`} />);
 
     return (
       <Menu className='small inverted secondary vertical pointing fluid'>

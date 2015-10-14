@@ -1,23 +1,23 @@
-import _ from 'lodash';
 import React, {Component, PropTypes} from 'react';
-import getExamples from '../Example/GetExamples';
-import Example from '../Example/Example';
 import {Segment} from 'stardust';
+import exampleContext from 'docs/app/utils/ExampleContext';
 
-export default class extends Component {
+export default class ComponentExamples extends Component {
   static propTypes = {
     name: PropTypes.string
   };
 
   render() {
-    let exampleDocs = getExamples(this.props.name);
-    let examples = _.map(exampleDocs, (doc, i) => {
-      return <Example key={i} code={doc.code} component={doc.component} />;
-    });
+    let examples = exampleContext.keys()
+      .filter(path => path.includes(`/${this.props.name}Examples.js`))
+      .map(path => {
+        let Example = exampleContext(path);
+        return <Example />;
+      });
 
     let content = (
       <Segment className='basic vertical'>
-        <h3>Examples:</h3>
+        <h2 className='ui header'>Examples</h2>
         {examples}
       </Segment>
     );

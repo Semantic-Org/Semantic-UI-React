@@ -50,7 +50,7 @@ export default class ComponentDescription extends Component {
     );
     return (
       <Segment className='basic vertical'>
-        <div className='ui large header'>
+        <h1 className='ui header'>
           {_.capitalize(this.props.name)}
           <code className='sub header' style={{float: 'right'}}>
             <a href={`https://github.com/TechnologyAdvice/stardust/blob/master/${this.props.path}`} target='_blank'>
@@ -58,8 +58,9 @@ export default class ComponentDescription extends Component {
               {this.props.path}
             </a>
           </code>
-        </div>
-        {this.isSemanticComponent && semanticDocsLink}
+        </h1>
+        <p>{this.props.description}</p>
+        <p>{this.isSemanticComponent && semanticDocsLink}</p>
       </Segment>
     );
   }

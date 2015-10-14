@@ -58,7 +58,7 @@ export default class ComponentProps extends Component {
 
     return (
       <Segment className='vertical'>
-        <div className='ui header'>Props</div>
+        <h2 className='ui header'>Props</h2>
         <Table data={content} className='very basic'>
           <TableColumn dataKey='name' cellRenderer={this.nameRenderer} />
           <TableColumn dataKey='type' />
