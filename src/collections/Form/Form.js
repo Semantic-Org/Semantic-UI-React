@@ -64,9 +64,9 @@ class Form extends Component {
   render() {
     let classes = classNames(
       'sd-form',
-      'form',
       'ui',
       this.props.className,
+      'form',
     );
     return (
       <form {...this.props} className={classes} ref='form'>
