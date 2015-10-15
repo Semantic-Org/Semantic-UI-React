@@ -42,28 +42,37 @@ build:
 
 deploy:
   steps:
+    - add-to-known_hosts:
+        hostname: github.com
+    - add-ssh-key:
+        keyname: GITHUB_KEY
     - script:
-        name: Configure git
+        name: config git
         code: |
           git config --global user.email "devteam@technologyadvice.com"
           git config --global user.name "TechnologyAdvice"
-
-          # remove current .git folder
-          rm -rf .git
     - script:
-        name: gulp build
+        name: checkout branch
         code: |
-          npm i gulp -g
-          gulp build
+          git checkout $WERCKER_GIT_BRANCH
+    # Symlinked binaries in $(npm bin) are broken as they are copied from the
+    # build process.  Remove and reinstall node_modules.
+    - script:
+        name: remove node_modules
+        code: |
+          rm -rf node_modules
+    - npm-install
+    - script:
+        name: build
+        code: |
+          $(npm bin)/gulp build
     - script:
         name: Deploy to github pages
         code: |
-          git init
           git add .
           git add -f docs/build
-          git commit -m "wercker deploy"
-          git remote add origin https://$GITHUB_TOKEN@github.com/TechnologyAdvice/stardust.git
-          git push -f origin master:gh-pages
+          git commit -n -m "wercker deploy commit by $WERCKER_STARTED_BY"
+          git push -f $GIT_REMOTE $WERCKER_GIT_BRANCH:gh-pages
 
   after-steps:
     - slack-notifier:

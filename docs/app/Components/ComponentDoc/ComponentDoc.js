@@ -4,7 +4,7 @@ import {Segment} from 'stardust';
 import ComponentDescription from './ComponentDescription';
 import ComponentExamples from './ComponentExamples';
 import ComponentProps from './ComponentProps';
-import getComponentDocInfo from 'docs/app/utils/GetComponentDocInfo.js';
+import getComponentDocInfo from 'docs/app/utils/getComponentDocInfo';
 
 export default class ComponentDoc extends Component {
   static propTypes = {
