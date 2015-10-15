@@ -1,17 +1,21 @@
 import React, {Component, PropTypes} from 'react';
+import classNames from 'classnames';
 
-class TableHeader extends Component {
+export default class TableHeader extends Component {
   static propTypes = {
-    children: PropTypes.node
+    children: PropTypes.node,
+    className: PropTypes.string,
   };
 
   render() {
+    let classes = classNames(
+      'sd-table-header',
+      this.props.className
+    );
     return (
-      <th className='sd-table-header'>
+      <th {...this.props} className={classes}>
         {this.props.children}
       </th>
     );
   }
 }
-
-export default TableHeader;

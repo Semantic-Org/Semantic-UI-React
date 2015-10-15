@@ -1,17 +1,21 @@
 import React, {Component, PropTypes} from 'react';
+import classNames from 'classnames';
 
-class TableCell extends Component {
+export default class TableCell extends Component {
   static propTypes = {
-    children: PropTypes.node
+    children: PropTypes.node,
+    className: PropTypes.string,
   };
 
   render() {
+    let classes = classNames(
+      'sd-table-cell',
+      this.props.className,
+    );
     return (
-      <td className='sd-table-cell'>
+      <td {...this.props} className={classes}>
         {this.props.children}
       </td>
     );
   }
 }
-
-export default TableCell;
