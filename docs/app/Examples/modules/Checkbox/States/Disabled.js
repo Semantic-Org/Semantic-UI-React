@@ -1,15 +1,15 @@
 import React, {Component} from 'react';
-import {Form, Field, Checkbox} from 'stardust';
+import {Form, Checkbox, Field} from 'stardust';
 
 export default class extends Component {
   render() {
     return (
       <Form>
         <Field>
-          <Checkbox className='radio' label='Choose this' name='radioGroup' />
+          <Checkbox className='disabled' label='Disabled' />
         </Field>
         <Field>
-          <Checkbox className='radio' label='Or that' name='radioGroup' />
+          <Checkbox className='toggle' disabled={true} label='Disabled' />
         </Field>
       </Form>
     );
