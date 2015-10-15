@@ -1,16 +1,17 @@
 import React, {Component} from 'react';
 import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample';
+import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection';
 
 export default class extends Component {
   render() {
     return (
-      <div>
+      <ExampleSection title='Variations'>
         <ComponentExample
           title='Fitted'
           description='A fitted checkbox does not leave padding for a label'
           examplePath='modules/Checkbox/Variations/Fitted'
         />
-      </div>
+      </ExampleSection>
     );
   }
 }

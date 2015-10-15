@@ -1,17 +1,17 @@
 import React, {Component} from 'react';
-import {Form, Checkbox} from 'stardust';
+import {Form, Checkbox, Field} from 'stardust';
 
 export default class extends Component {
   render() {
     return (
-      <div>
-        <Form>
+      <Form>
+        <Field>
           <Checkbox className='disabled' label='Disabled' />
-        </Form>
-        <Form>
+        </Field>
+        <Field>
           <Checkbox className='toggle' disabled={true} label='Disabled' />
-        </Form>
-      </div>
+        </Field>
+      </Form>
     );
   }
 }
