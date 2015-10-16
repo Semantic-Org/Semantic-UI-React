@@ -24,13 +24,15 @@ export default class ComponentExample extends Component {
 
   render() {
     let code = (
-      <Highlight className='language-javascript'>
-        {this.fileContents}
-      </Highlight>
+      <Column>
+        <Highlight className='language-javascript'>
+          {this.fileContents}
+        </Highlight>
+      </Column>
     );
 
     return (
-      <Grid className='one column'>
+      <Grid className='one column' style={{marginBottom: '4em', marginTop: '4em'}}>
         <Column>
           <Grid>
             <Column width={12}>
@@ -50,8 +52,8 @@ export default class ComponentExample extends Component {
 
         <Column>
           {createElement(this.component)}
-          {this.state.showCode && code}
         </Column>
+        {this.state.showCode && code}
       </Grid>
     );
   }
