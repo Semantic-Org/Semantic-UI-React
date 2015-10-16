@@ -1,29 +1,51 @@
-[![Wercker Status](https://img.shields.io/wercker/ci/TechnologyAdvice/stardust.svg?style=flat-square)](https://app.wercker.com/TechnologyAdvice/stardust) [![Code Climate](https://img.shields.io/codeclimate/github/TechnologyAdvice/stardust.svg?style=flat-square)](https://codeclimate.com/github/TechnologyAdvice/stardust) [![Gemnasium](https://img.shields.io/gemnasium/TechnologyAdvice/stardust.svg?style=flat-square)](https://gemnasium.com/TechnologyAdvice/stardust)
-```
-                                        .
-                                 *   .     .   . 
-                                      . (*.) .    * .
-                                  .  ( .(.. ) )  
-                                 . .( (..*  ).*) . 
-                                    ( *  . ). .)  .
-                                   .  ( (. *.) . 
-                                       .  .    *           stardust
-                                    .*       .
-                         
-```
->[React](https://facebook.github.io/react/) component library based on [Semantic UI](http://semantic-ui.com/).
+# Stardust [![Wercker Status](https://img.shields.io/wercker/ci/TechnologyAdvice/stardust.svg?style=flat-square)](https://app.wercker.com/TechnologyAdvice/stardust) [![Code Climate](https://img.shields.io/codeclimate/github/TechnologyAdvice/stardust.svg?style=flat-square)](https://codeclimate.com/github/TechnologyAdvice/stardust) [![Gemnasium](https://img.shields.io/gemnasium/TechnologyAdvice/stardust.svg?style=flat-square)](https://gemnasium.com/TechnologyAdvice/stardust)
 
-## Install
+[React](https://facebook.github.io/react/) component library based on [Semantic UI](http://semantic-ui.com/).
 
 ```
 npm i stardust -S
 ```
 
 ## Learn
-Checkout the [Documentation](https://technologyadvice.github.io/stardust/).
+Check out the [Documentation](https://technologyadvice.github.io/stardust/).
 
 Review our [Component Guidelines]
 (https://github.com/TechnologyAdvice/stardust/blob/master/docs/app/Component Guidelines.md).
+
+## Getting Started
+Hey, we're in development.  Minor versions may introduce **breaking changes until v1**.
+
+### Babel
+Stardust is built with ES6 and ES7.  Use Babel with the [stage 0](http://babeljs.io/docs/usage/experimental/#enable-by-stage) option to enable these features.  We suggest using a [.babelrc](http://babeljs.io/docs/usage/babelrc/) file, which is also picked up by the webpack [babel-loader](https://github.com/babel/babel-loader).
+
+### Usage
+
+**ES6**
+```jsx
+import React, {Component} from 'react';
+import {Button} from 'stardust';
+
+export default class TryStardust extends Component {
+  render() {
+    return <Button>Hello</Button>;
+  }
+}
+```
+
+**ES5**
+```js
+var React = require('react');
+var stardust = require('stardust');
+var Button = stardust.Button;
+
+var TryStardust = React.createClass({
+  render: function() {
+    return <Button>Make it happen!</Button>;
+  }
+});
+
+module.exports = TryStardust;
+```
 
 ## Develop
 
