@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Button, Segment} from 'stardust';
 
-export default class extends Component {
+export default class VerticallyAttachedExample extends Component {
   render() {
     return (
       <div>
