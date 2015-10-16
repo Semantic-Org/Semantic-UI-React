@@ -4,7 +4,9 @@ import {Input} from 'stardust';
 export default class extends Component {
   render() {
     return (
-      <Input placeholder='Search...' />
+      <Input className='left icon loading' placeholder='Search...'>
+        <i className='search icon' />
+      </Input>
     );
   }
 }

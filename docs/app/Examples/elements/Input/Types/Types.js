@@ -8,7 +8,7 @@ export default class TypesExample extends Component {
       <ExampleSection title='Types'>
         <ComponentExample
           title='Input'
-          description='A standard Input'
+          description='A standard input field'
           examplePath='elements/Input/Types/Input'
         />
       </ExampleSection>

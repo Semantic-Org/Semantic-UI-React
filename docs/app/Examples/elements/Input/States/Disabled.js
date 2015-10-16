@@ -4,7 +4,7 @@ import {Input} from 'stardust';
 export default class extends Component {
   render() {
     return (
-      <Input placeholder='Search...' />
+      <Input className='disabled' placeholder='Search...' />
     );
   }
 }
