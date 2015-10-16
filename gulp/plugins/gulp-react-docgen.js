@@ -29,22 +29,29 @@ module.exports = function(filename) {
       return;
     }
 
-    var relativePath = file.path.replace(process.cwd() + '/', '');
-    var parsed = docgen.parse(file.contents);
+    try {
+      var relativePath = file.path.replace(process.cwd() + '/', '');
+      var parsed = docgen.parse(file.contents);
 
-    // replace the component`description` string with a parsed doc block object
-    parsed.docBlock = parseDocBlock(parsed.description);
-    delete parsed.description;
+      // replace the component`description` string with a parsed doc block object
+      parsed.docBlock = parseDocBlock(parsed.description);
+      delete parsed.description;
 
-    // replace prop `description` strings with a parsed doc block object
-    _.each(parsed.props, function(propDef, propName) {
-      parsed.props[propName].docBlock = parseDocBlock(propDef.description);
-      delete parsed.props[propName].description;
-    });
+      // replace prop `description` strings with a parsed doc block object
+      _.each(parsed.props, function(propDef, propName) {
+        parsed.props[propName].docBlock = parseDocBlock(propDef.description);
+        delete parsed.props[propName].description;
+      });
 
-    result[relativePath] = parsed;
+      result[relativePath] = parsed;
 
-    cb();
+      cb();
+    } catch (err) {
+      this.emit(
+        'error',
+        new gutil.PluginError(pluginName, err)
+      );
+    }
   }
 
   function endStream(cb) {
