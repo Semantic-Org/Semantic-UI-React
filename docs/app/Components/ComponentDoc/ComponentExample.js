@@ -25,9 +25,11 @@ export default class ComponentExample extends Component {
 
   render() {
     let code = (
-      <Highlight className='language-javascript'>
-        {this.fileContents}
-      </Highlight>
+      <Column>
+        <Highlight className='language-javascript'>
+          {this.fileContents}
+        </Highlight>
+      </Column>
     );
 
     return (
@@ -51,8 +53,8 @@ export default class ComponentExample extends Component {
 
         <Column>
           {createElement(this.component)}
-          {this.state.showCode && code}
         </Column>
+        {this.state.showCode && code}
       </Grid>
     );
   }
