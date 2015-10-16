@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Checkbox, Segment} from 'stardust';
 
-export default class extends Component {
+export default class CheckboxFittedExample extends Component {
   render() {
     return (
       <div>

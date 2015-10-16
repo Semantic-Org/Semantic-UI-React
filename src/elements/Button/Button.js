@@ -3,7 +3,7 @@ import classNames from 'classnames';
 
 export default class Button extends Component {
   static propTypes = {
-    children: PropTypes.string,
+    children: PropTypes.node,
     className: PropTypes.string,
   };
 

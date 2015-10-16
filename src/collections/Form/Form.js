@@ -1,34 +1,10 @@
 import _ from 'lodash';
-import React, {Children, Component, PropTypes} from 'react';
-import Button from 'src/elements/Button/Button';
+import React, {Component, PropTypes} from 'react';
 import classNames from 'classnames';
 
 export default class Form extends Component {
   static propTypes = {
-    children: function(props, propName, componentName) {
-      let formButtons = [];
-
-      // Recursively search through all children of Form component and confirm
-      // at least one button exists, and at least one button is type submit.
-      function loopThruChildren(obj) {
-        Children.forEach(obj, (child) => {
-          // Check immediate children is type of button
-          if (_.has(child, 'type') && child.type === Button) {
-            formButtons.push(child.props.type);
-          }
-          // loop through child's children to find buttons
-          if (_.has(child, 'props.children') && _.isObject(child.props.children)) {
-            loopThruChildren(child.props.children);
-          }
-        });
-      }
-
-      loopThruChildren(props.children);
-
-      if (formButtons.length === 0 || !_.include(formButtons, 'submit')) {
-        return new Error('`Form` must have `Button` child with type of "submit".');
-      }
-    },
+    children: PropTypes.node,
     className: PropTypes.string,
   };
 

@@ -9,9 +9,8 @@ import exampleContext from 'docs/app/utils/ExampleContext';
  */
 export default class ComponentExample extends Component {
   static propTypes = {
-    children: PropTypes.node,
     description: PropTypes.string,
-    examplePath: PropTypes.string,
+    examplePath: PropTypes.string.isRequired,
     title: PropTypes.string,
   };
 
