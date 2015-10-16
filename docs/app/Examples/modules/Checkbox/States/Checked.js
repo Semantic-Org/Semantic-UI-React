@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Checkbox} from 'stardust';
 
-export default class CheckedExample extends Component {
+export default class CheckboxCheckedExample extends Component {
   state = {isChecked: true};
 
   handleChange = (e) => {

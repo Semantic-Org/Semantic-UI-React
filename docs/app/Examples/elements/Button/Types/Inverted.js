@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Button, Segment} from 'stardust';
 
-export default class InvertedExample extends Component {
+export default class ButtonInvertedExample extends Component {
   render() {
     return (
       <div>

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Button} from 'stardust';
 
-export default class ToggleExample extends Component {
+export default class ButtonToggleExample extends Component {
   render() {
     return (
       <Button className='toggle'>Toggle</Button>

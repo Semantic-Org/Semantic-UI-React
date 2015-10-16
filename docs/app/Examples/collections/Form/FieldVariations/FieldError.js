@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Field, Form, Input} from 'stardust';
 
-export default class FieldErrorExample extends Component {
+export default class FormFieldErrorExample extends Component {
   render() {
     return (
       <Form>

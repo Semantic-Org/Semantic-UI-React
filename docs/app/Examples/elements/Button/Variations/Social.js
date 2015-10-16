@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Button} from 'stardust';
 
-export default class SocialExample extends Component {
+export default class ButtonSocialExample extends Component {
   render() {
     return (
       <div>

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Button} from 'stardust';
 
-export default class LabeledExample extends Component {
+export default class ButtonLabeledExample extends Component {
   render() {
     return (
       <Button className='labeled'>

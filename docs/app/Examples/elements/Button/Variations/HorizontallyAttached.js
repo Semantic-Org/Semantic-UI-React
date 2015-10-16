@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Button} from 'stardust';
 
-export default class HorizontallyAttachedExample extends Component {
+export default class ButtonHorizontallyAttachedExample extends Component {
   render() {
     return (
       <div>

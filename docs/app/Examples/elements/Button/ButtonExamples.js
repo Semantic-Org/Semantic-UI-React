@@ -3,7 +3,7 @@ import Types from './Types/Types';
 import States from './States/States';
 import Variations from './Variations/Variations';
 
-export default class extends Component {
+export default class ButtonExamples extends Component {
   render() {
     return (
       <div>

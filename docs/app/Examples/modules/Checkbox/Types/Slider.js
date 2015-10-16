@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Checkbox} from 'stardust';
 
-export default class SliderExample extends Component {
+export default class CheckboxSliderExample extends Component {
   render() {
     return (
       <Checkbox className='slider' />

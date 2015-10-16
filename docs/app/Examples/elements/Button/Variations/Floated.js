@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Button} from 'stardust';
 
-export default class FloatedExample extends Component {
+export default class ButtonFloatedExample extends Component {
   render() {
     return (
       <div>
