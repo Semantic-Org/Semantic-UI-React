@@ -33,7 +33,7 @@ export default class ComponentExample extends Component {
     );
 
     return (
-      <Grid className='one column'>
+      <Grid className='one column' style={{marginBottom: '4em', marginTop: '4em'}}>
         <Column>
           <Grid>
             <Column width={12}>
