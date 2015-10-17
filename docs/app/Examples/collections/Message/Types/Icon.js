@@ -1,12 +1,18 @@
 import React, {Component} from 'react';
 import {Message} from 'stardust';
 
-export default class MessageDismissableExample extends Component {
+export default class MessageIconExample extends Component {
   render() {
     return (
-      <Message dismissable>
-        You can dismiss this message by clicking the "x".
-      </Message>
+      <div>
+        <Message icon='inbox' heading='Have you heard about our mailing list?'>
+          Get the best news in your e-mail every day.
+        </Message>
+
+        <Message icon='notched circle loading' heading='Just one second'>
+          We're fetching that content for you.
+        </Message>
+      </div>
     );
   }
 }
