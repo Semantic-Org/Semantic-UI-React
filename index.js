@@ -10,6 +10,7 @@ import Grid from 'src/collections/Grid/Grid';
 import Row from 'src/collections/Grid/Row';
 import Menu from 'src/collections/Menu/Menu';
 import MenuItem from 'src/collections/Menu/MenuItem';
+import Message from 'src/collections/Message/Message';
 import Table from 'src/collections/Table/Table';
 import TableColumn from 'src/collections/Table/TableColumn';
 import TableCell from 'src/collections/Table/TableCell';
@@ -43,6 +44,7 @@ export default {
   Row,
   Menu,
   MenuItem,
+  Message,
   Table,
   TableColumn,
   TableCell,
