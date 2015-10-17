@@ -1,12 +1,21 @@
 # Stardust Component Guidelines
 
-Every component in Stardust must conform to these guidelines.  They ensure consistency and optimal development experience for Stardust users.
+Every component in Stardust must conform to these guidelines.
+They ensure consistency and optimal development experience for Stardust users.
 
-This document will be minimally maintained.  See [`\test`](https://github.com/TechnologyAdvice/stardust/tree/master/test) for the current conformance tests.
+1. [Classes](Classes)
+  - [Extend React.Component](Extend React.Component)
+  - [Identical class and component names](Identical class and component names)
+  - [No wrapping elements](No wrapping elements) 
+1. [Events](Events)
+1. [Props](Props)
+  - [className](className)
 
-## Extends React.Component
+## Classes
 
-**Valid**
+### Extend React.Component
+
+**Always**
 
 ```jsx
 import React, {Component} from 'react';
@@ -14,7 +23,7 @@ import React, {Component} from 'react';
 export default class MyComponent extends Component {...}
 ```
 
-**Invalid**
+**Never**
 
 ```jsx
 import React, {Component} from 'react';
@@ -23,17 +32,17 @@ export default class MyComponent {...}
 ```
 >This is a new class, does not extend React.Component.
 
-## Constructor name matches component name
+### Identical class and component names
 
-Give `MyComponent.js` is a component attached to `stardust.MyComponent`:
+Given `MyComponent.js` is a component attached to `stardust.MyComponent`:
 
-**Valid**
+**Always**
 
 ```jsx
 export default class MyComponent extends Component {...}
 ```
 
-**Invalid**
+**Never**
 
 ```jsx
 export default class extends Component {...}
@@ -43,30 +52,32 @@ export default class extends Component {...}
 ```jsx
 export default class YourComponent extends Component {...}
 ```
->This class has the wrong name, it should be .
+>This class has the wrong name, it should be `MyComponent`.
 
-## Has the `sd-<component>` element as its first child (no wrapper elements)
+### No wrapping elements
 
-**Valid**
+The element with the `sd-*` className is the first child (no wrapper elements).
+
+**Always**
 
 ```jsx
 export default class Input extends Component {
   render() {
     return (
-      <Input />
+      <input className='sd-input' />
     );
   }
 }
 ```
 
-**Invalid**
+**Never**
 
 ```jsx
 export default class Input extends Component {
   render() {
     return (
       <Field
-        <Input />
+        <input className='sd-input' />
       </Field>
     );
   }
@@ -74,16 +85,68 @@ export default class Input extends Component {
 ```
 >Never wrap the component with other components, whether DOM or Composite.
 
-## Has props.className after `sd-<component>`
+## Events
 
-**Valid**
+Stardust manages Semantic UI's jQuery via React events and lifecycle methods.
+
+Example, the Message component can be dismissed on click of the close icon. Per
+the Semantic UI docs, this is done by calling Semantic UI's `transition()`
+jQuery plugin on the message via a jQuery click event handler. Instead, 
+Stardust uses React's `onClick` listener to trigger the `transition()`.
+
+## Props
+
+### Spread props
+
+Stardust components [spread](https://facebook.github.io/react/docs/jsx-spread.html) 
+props onto the internal Semantic UI element of concern. This allows access to the 
+underlying element.
+
+**Always**
+
+```jsx
+<Input onFocus={this.handleFocus} />
+// => <input type='text' className='sd-input ui input' onFocus={this.handleFocus} /> 
+```
+
+```jsx
+<Input data-my-plugin='do-magic' />
+// => <input type='text' className='sd-input ui input' data-my-plugin='do-magic' /> 
+```
+
+**Never**
+
+```jsx
+<Input onFocus={this.handleFocus} />
+// => <input type='text' className='sd-input ui input' /> 
+```
+>`onFocus` prop was lost.
+
+```jsx
+<Input data-my-plugin='do-magic' />
+// => <input type='text' className='sd-input ui input' /> 
+```
+>`data-my-plugin` prop was lost.
+
+### className
+
+Stardust components construct the `className` prop in this order.
+
+1. `sd-<component>`
+1. `ui` (Semantic UI class, if required)
+1. `this.props.className`
+1. `<component>` (Semantic UI class)
+
+#### Inherits `props.className` after `sd-<component>`
+
+**Always**
 
 ```jsx
 <Field className='inherit-this' />
 // => <div className='sd-field inherit-this field>...
 ```
 
-**Invalid**
+**Never**
 
 ```jsx
 <Field className='inherit-this' />
@@ -103,16 +166,16 @@ export default class Input extends Component {
 ```
 >className was not inherited before sd-field
 
-## Has `sd-<component>` as the first class
+#### Has `sd-<component>` as the first class
 
-**Valid**
+**Always**
 
 ```jsx
 <Divider />
 // => <div className='sd-divider ui divider' /> 
 ```
 
-**Invalid**
+**Never**
 
 ```jsx
 <Divider />
@@ -126,17 +189,18 @@ export default class Input extends Component {
 ```
 >`sd-divider` className does not come first.
 
-## Has `ui` class immediately after `sd-<component>`
+#### Has `ui` immediately after `sd-<component>`
+
 Only for components that utilize the `ui` class (i.e `ui grid` but not `column`).
 
-**Valid**
+**Always**
 
 ```jsx
 <Grid />
 // => <div className='sd-grid ui grid' /> 
 ```
 
-**Invalid**
+**Never**
 
 ```jsx
 <Grid />
@@ -144,18 +208,18 @@ Only for components that utilize the `ui` class (i.e `ui grid` but not `column`)
 ```
 >`grid` is immediately after `sd-grid`.
 
-## Has props.className immediately after `ui`
+#### Has `props.className` immediately after `ui`
 
 Only for components that utilize the `ui` class (i.e `ui form` but not `field`).
 
-**Valid**
+**Always**
 
 ```jsx
 <Form />
 // => <div className='sd-form ui form' /> 
 ```
 
-**Invalid**
+**Never**
 
 ```jsx
 <Form className='loading' />
@@ -168,32 +232,3 @@ Only for components that utilize the `ui` class (i.e `ui form` but not `field`).
 // => <div className='sd-form ui form loading' /> 
 ```
 >Inherited `loading` className comes after `form`.
-
-## Spreads props
-Allows access to the underlying element of concern.
-
-**Valid**
-
-```jsx
-<Input onFocus={this.handleFocus} />
-// => <input type='text' className='sd-input ui input' onFocus={this.handleFocus} /> 
-```
-
-```jsx
-<Input data-my-plugin='do-magic' />
-// => <input type='text' className='sd-input ui input' data-my-plugin='do-magic' /> 
-```
-
-**Invalid**
-
-```jsx
-<Input onFocus={this.handleFocus} />
-// => <input type='text' className='sd-input ui input' /> 
-```
->`onFocus` prop was lost.
-
-```jsx
-<Input data-my-plugin='do-magic' />
-// => <input type='text' className='sd-input ui input' /> 
-```
->`data-my-plugin` prop was lost.
