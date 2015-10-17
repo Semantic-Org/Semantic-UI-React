@@ -3,13 +3,13 @@
 Every component in Stardust must conform to these guidelines.
 They ensure consistency and optimal development experience for Stardust users.
 
-1. [Classes](Classes)
-  - [Extend React.Component](Extend React.Component)
-  - [Identical class and component names](Identical class and component names)
-  - [No wrapping elements](No wrapping elements) 
-1. [Events](Events)
-1. [Props](Props)
-  - [className](className)
+1. [Classes](#Classes)
+  - [Extend React.Component](#Extend React.Component)
+  - [Identical class and component names](#Identical class and component names)
+  - [No wrapping elements](#No wrapping elements) 
+1. [Events](#Events)
+1. [Props](#Props)
+  - [className](#className)
 
 ## Classes
 
