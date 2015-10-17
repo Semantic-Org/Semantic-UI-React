@@ -53,7 +53,7 @@ describe('Message', () => {
     });
   });
   describe('not dismissable', () => {
-    it('has no close icon if not dismissable', () => {
+    it('has no close icon', () => {
       render(<Message />).scryClass('sd-message-close-icon')
         .should.have.a.lengthOf(0);
     });
