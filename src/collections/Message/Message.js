@@ -7,7 +7,7 @@ export default class Message extends Component {
     children: PropTypes.node,
     className: PropTypes.string,
     dismissable: PropTypes.bool,
-    heading: PropTypes.string,
+    header: PropTypes.string,
     icon: PropTypes.string,
   };
 
@@ -35,16 +35,16 @@ export default class Message extends Component {
     );
 
     let closeIcon = <i className='sd-message-close-icon close icon' onClick={this.handleDismiss} />;
-    let heading = <div className='sd-message-heading header'>{this.props.heading}</div>;
-    let icon = <i className={iconClasses} onClick={this.handleDismiss} />;
+    let header = <div className='sd-message-header header'>{this.props.header}</div>;
+    let icon = <i className={iconClasses} />;
 
-    // wrap children in <p> if there is a heading
-    let children = this.props.heading ? <p>{this.props.children}</p> : this.props.children;
+    // wrap children in <p> if there is a header
+    let children = this.props.header ? <p>{this.props.children}</p> : this.props.children;
 
-    // wrap heading and children in content if there is an icon
-    let content = !this.props.icon ? [this.props.heading && heading, children] : (
+    // wrap header and children in content if there is an icon
+    let content = (
       <div className='sd-message-content content'>
-        {this.props.heading && heading}
+        {this.props.header && header}
         {children}
       </div>
     );
@@ -57,7 +57,9 @@ export default class Message extends Component {
       <div {...messageProps} className={classes} ref='message'>
         {this.props.dismissable && closeIcon}
         {this.props.icon && icon}
-        {content}
+        {this.props.icon && content}
+        {!this.props.icon && this.props.header && header}
+        {!this.props.icon && this.props.children && children}
       </div>
     );
   }

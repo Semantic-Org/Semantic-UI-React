@@ -4,18 +4,18 @@ const Simulate = React.addons.TestUtils.Simulate;
 import {Message} from 'stardust';
 
 describe('Message', () => {
-  describe('with heading', () => {
-    it('has a heading', () => {
-      let heading = faker.hacker.phrase();
-      let message = render(<Message heading={heading} />);
+  describe('with header', () => {
+    it('has a header', () => {
+      let header = faker.hacker.phrase();
+      let message = render(<Message header={header} />);
 
-      message.findClass('sd-message-heading');
-      message.findText(heading);
+      message.findClass('sd-message-header');
+      message.findText(header);
     });
   });
-  describe('without heading', () => {
-    it('has no heading', () => {
-      render(<Message />).scryClass('sd-message-heading')
+  describe('without header', () => {
+    it('has no header', () => {
+      render(<Message />).scryClass('sd-message-header')
         .should.have.a.lengthOf(0);
     });
   });
