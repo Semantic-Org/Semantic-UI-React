@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import {Input} from 'stardust';
 
-export default class extends Component {
+export default class Labeled extends Component {
   render() {
     return (
-      <Input className='left labeled' placeholder='mysite.com'>
+      <Input className='labeled' placeholder='mysite.com'>
         <div className='ui label'>
           http://
         </div>

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Input} from 'stardust';
 
-export default class extends Component {
+export default class Size extends Component {
   render() {
     return (
       <div>

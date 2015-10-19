@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Button, Input} from 'stardust';
 
-export default class extends Component {
+export default class ActionExtra extends Component {
   render() {
     return (
       <Input className='left action' placeholder='$23.43'>
