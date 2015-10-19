@@ -31,7 +31,10 @@ gulp.task('generate-doc-json', function(cb) {
     paths.srcViews + '/**/*.js',
     '!' + paths.src + '/**/Style.js'
   ])
-    .pipe(g.plumber())
+    .pipe(g.plumber(function(err) {
+      g.util.log(err);
+      this.emit('end');
+    }))
     .pipe(gulpReactDocgen())
     .pipe(gulp.dest(paths.docsApp));
 });
