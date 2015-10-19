@@ -4,7 +4,7 @@
   "description": "Semantic UI components for React.",
   "main": "index.js",
   "files": [
-    "src/components"
+    "src"
   ],
   "scripts": {
     "test": "karma start karma.conf.js",
