@@ -3,6 +3,8 @@
 Every component in Stardust must conform to these guidelines.
 They ensure consistency and optimal development experience for Stardust users.
 
+1. Semantic UI
+  - [Modules](#Modules)
 1. [Classes](#Classes)
   - [Extend React.Component](#Extend React.Component)
   - [Identical class and component names](#Identical class and component names)
@@ -10,6 +12,44 @@ They ensure consistency and optimal development experience for Stardust users.
 1. [Events](#Events)
 1. [Props](#Props)
   - [className](#className)
+
+## Semantic UI
+
+### Modules
+
+Semantic UI [Modules](http://semantic-ui.com/introduction/glossary.html) are components that include a jQuery plugin.
+These are things that have state, like a [Dropdown](http://semantic-ui.com/modules/dropdown.html).
+
+**Element**
+Stardust components exposes the jQuery element on the component as `element`:
+
+```jsx
+let checkbox = <Checkbox />;
+checkbox.element; // the jQuery element
+```
+
+**Plugin**
+The jQuery plugin can be called using `element`:
+
+```jsx
+let checkbox = <Checkbox />;
+checkbox.element.checkbox(); // the Semantic UI Checkbox plugin
+```
+You can also trigger behaviors with the plugin:
+
+```jsx
+let checkbox = <Checkbox />;
+checkbox.element.checkbox('toggle'); // toggles the checkbox
+```
+
+**Settings**
+Module jQuery plugins can be configured via the `settings` prop:
+
+```jsx
+let settings = {allowAdditions: true};
+let dropdown = <Dropdown settings={settings}/>;
+```
+>Settings are applied on componentDidMount.
 
 ## Classes
 
