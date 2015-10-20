@@ -137,6 +137,11 @@ Stardust components construct the `className` prop in this order.
 1. `this.props.className`
 1. `<component>` (Semantic UI class)
 
+Where it makes sense, some optional classes are automatically applied.
+For instance, the [`fitted`](http://semantic-ui.com/modules/checkbox.html#fitted)
+class on checkboxes with no labels (as prescribed by the checkbox docs).
+All magic is noted in the documentation examples.
+
 #### Inherits `props.className` after `sd-<component>`
 
 **Always**
