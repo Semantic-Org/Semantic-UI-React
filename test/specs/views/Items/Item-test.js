@@ -1,13 +1,10 @@
 import React from 'react';
 import {Item} from 'stardust';
+import faker from 'faker';
 
 describe('Item', () => {
   it('has children', () => {
-    let renderedItem = render(
-      <Item description='discription'>
-        <p>Item description text</p>
-      </Item>
-    ).first();
-    renderedItem.props.children.type.should.equal('p');
+    let child = faker.hacker.phrase();
+    render(<Item description='foo'>{child}</Item>).findText(child);
   });
 });
