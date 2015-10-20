@@ -6,7 +6,7 @@ export default class Item extends Component {
   static propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
-    description: customPropTypes.mutuallyExclusive.bind(null, ['children']),
+    description: customPropTypes.mutuallyExclusive(['children']),
     extra: PropTypes.node,
     heading: PropTypes.node.isRequired,
     image: PropTypes.node,
