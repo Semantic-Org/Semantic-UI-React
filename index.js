@@ -22,6 +22,8 @@ import Button from 'src/elements/Button/Button';
 import Container from 'src/elements/Container/Container';
 import Image from 'src/elements/Image/Image';
 import Input from 'src/elements/Input/Input';
+import List from 'src/elements/List/List';
+import ListItem from 'src/elements/List/ListItem';
 import Segment from 'src/elements/Segment/Segment';
 
 // Modules
@@ -61,6 +63,8 @@ export default {
   Container,
   Image,
   Input,
+  List,
+  ListItem,
   Segment,
 
   // Modules
