@@ -3,7 +3,7 @@ import {Item} from 'stardust';
 import faker from 'faker';
 
 describe('Item', () => {
-  it('Item renders children', () => {
+  it('renders children', () => {
     let child = faker.hacker.phrase();
     render(<Item>{child}</Item>).findText(child);
   });
