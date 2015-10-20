@@ -5,6 +5,6 @@ import faker from 'faker';
 describe('Item', () => {
   it('has children', () => {
     let child = faker.hacker.phrase();
-    render(<Item description='foo'>{child}</Item>).findText(child);
+    render(<Item>{child}</Item>).findText(child);
   });
 });
