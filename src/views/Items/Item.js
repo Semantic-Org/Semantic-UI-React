@@ -34,8 +34,18 @@ export default class Item extends Component {
       this.props.className,
       'item',
     );
+    let props = _.clone(this.props);
+    // Delete all static PropTypes props in cloned porps object before spreading of props onto rendered component
+    delete props.children;
+    delete props.className;
+    delete props.description;
+    delete props.extra;
+    delete props.heading;
+    delete props.image;
+    delete props.meta;
+
     return (
-      <div {...this.props} className={classes}>
+      <div {...props} className={classes}>
         {this.props.image}
         {hasContent && content}
       </div>
