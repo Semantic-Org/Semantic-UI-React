@@ -31,6 +31,10 @@ import ModalFooter from 'src/modules/Modal/ModalFooter';
 import ModalHeader from 'src/modules/Modal/ModalHeader';
 import Dropdown from 'src/modules/Dropdown/Dropdown';
 
+// Views
+import Item from 'src/views/Items/Item';
+import Items from 'src/views/Items/Items';
+
 export default {
   // Addons
   Confirm,
@@ -64,4 +68,8 @@ export default {
   ModalFooter,
   ModalHeader,
   Dropdown,
+
+  // Views
+  Item,
+  Items,
 };
