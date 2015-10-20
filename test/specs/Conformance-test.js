@@ -92,6 +92,7 @@ describe('Conformance', () => {
 
           hasSpreadProps.should.equal(true);
         });
+
         describe('className', () => {
           it(`has props.className after "${sdClass}"`, () => {
             const renderedClasses = render(<SDComponent className={classes} />)
@@ -121,21 +122,20 @@ describe('Conformance', () => {
             it(`has "${sdClass}" as the first class`, () => {
               render(<SDComponent />)
                 .findClass(sdClass)
-                .props.className.indexOf(sdClass).should.equal(0);
+                .getAttribute('class')
+                .indexOf(sdClass).should.equal(0);
             });
-
-            // test ui class guidelines, if present
-            const uiComponent = render(<SDComponent className={classes} />);
-            const hasUIClass = uiComponent.scryClass('ui').length;
-            if (hasUIClass) {
-              it(`has "ui" class immediately after "${sdClass}"`, () => {
-                uiComponent.findClass(`${sdClass} ui`);
-              });
-              it('has props.className immediately after "ui" ', () => {
-                uiComponent.findClass(`ui ${classes}`);
-              });
-            }
           }
+
+          // TODO: this is only true for "module" type components
+          // Update this test once we get component meta data
+          it('does not spread the settings prop', () => {
+            const props = {settings: {}};
+            render(<SDComponent {...props} />)
+              .children()
+              .some(element => _.has(element.props, 'settings'))
+              .should.equal(false);
+          });
         });
       });
     });
