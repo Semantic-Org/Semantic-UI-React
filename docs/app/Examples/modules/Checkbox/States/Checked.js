@@ -12,7 +12,7 @@ export default class CheckboxCheckedExample extends Component {
 
   render() {
     return (
-      <Checkbox label='This checkbox comes prechecked' checked={this.state.isChecked} onChange={this.handleChange} />
+      <Checkbox defaultChecked={true} label='This checkbox comes prechecked' />
     );
   }
 }
