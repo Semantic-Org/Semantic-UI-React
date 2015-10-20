@@ -1,5 +1,6 @@
 // Addons
 import Confirm from 'src/addons/Confirm/Confirm';
+import Image from 'src/addons/Image/Image';
 import Textarea from 'src/addons/Textarea/Textarea';
 
 // Collections
@@ -38,6 +39,7 @@ import Items from 'src/views/Items/Items';
 export default {
   // Addons
   Confirm,
+  Image,
   Textarea,
 
   // Collections
