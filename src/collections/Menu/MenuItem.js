@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import classNames from 'classnames';
+import META from 'src/utils/Meta';
 
 export default class MenuItem extends Component {
   static propTypes = {
@@ -20,6 +21,13 @@ export default class MenuItem extends Component {
       this.props.onClick(this.props.name);
     }
     this.props.callbackParent(this.props.name);
+  };
+
+  static _meta = {
+    library: META.library.semanticUI,
+    name: 'MenuItem',
+    type: META.type.collection,
+    parent: 'Menu'
   };
 
   render() {

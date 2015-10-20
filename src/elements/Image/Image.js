@@ -1,12 +1,19 @@
 import _ from 'lodash';
 import React, {Component, PropTypes} from 'react';
 import classNames from 'classnames';
+import META from 'src/utils/Meta';
 
 export default class Image extends Component {
   static propTypes = {
     alt: PropTypes.string,
     className: PropTypes.string,
     src: PropTypes.string,
+  };
+
+  static _meta = {
+    library: META.library.semanticUI,
+    name: 'Image',
+    type: META.type.element,
   };
 
   render() {

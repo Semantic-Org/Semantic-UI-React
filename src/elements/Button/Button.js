@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import classNames from 'classnames';
+import META from 'src/utils/Meta';
 
 export default class Button extends Component {
   static propTypes = {
@@ -10,6 +11,12 @@ export default class Button extends Component {
   static defaultProps = {
     children: 'Click Here',
     type: 'button'
+  };
+
+  static _meta = {
+    library: META.library.semanticUI,
+    name: 'Button',
+    type: META.type.element,
   };
 
   render() {

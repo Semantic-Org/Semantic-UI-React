@@ -2,6 +2,7 @@ import _ from 'lodash';
 import $ from 'jquery';
 import classNames from 'classnames';
 import React, {Component, PropTypes, findDOMNode} from 'react';
+import META from 'src/utils/Meta';
 
 export default class Dropdown extends Component {
   static propTypes = {
@@ -24,6 +25,12 @@ export default class Dropdown extends Component {
   componentWillUnmount() {
     this.element.off();
   }
+
+  static _meta = {
+    library: META.library.semanticUI,
+    name: 'Dropdown',
+    type: META.type.module,
+  };
 
   render() {
     const options = _.map(this.props.options, (opt, i) => {

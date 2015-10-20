@@ -5,8 +5,9 @@ import stardust from 'stardust';
 const componentPaths = require.context(
   'src/',
   true,
-  /[addons|elements|collections|modules][^Style|index]\.js$/i
+  /(addons|collections|elements|modules|views).*\.js$/
 );
+
 const componentNames = _.map(componentPaths.keys(), key => {
   return path.basename(key).replace('.js', '');
 });
@@ -14,7 +15,7 @@ const componentNames = _.map(componentPaths.keys(), key => {
 describe('index.js', () => {
   it('has a property for every component', () => {
     _.each(componentNames, component => {
-      expect(component in stardust);
+      expect(stardust).to.have.any.keys(component);
       expect(stardust[component]).to.be.a('function');
     });
   });

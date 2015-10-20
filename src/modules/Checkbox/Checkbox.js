@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import META from 'src/utils/Meta';
 import React, {Component, PropTypes} from 'react';
 import classNames from 'classnames';
 import $ from 'jquery';
@@ -49,6 +50,12 @@ export default class Checkbox extends Component {
   componentWillUnmount() {
     this.container.off();
   }
+
+  static _meta = {
+    library: META.library.semanticUI,
+    name: 'Checkbox',
+    type: META.type.module,
+  };
 
   render() {
     let type = this.props.type;

@@ -1,11 +1,18 @@
 import React, {Component, PropTypes} from 'react';
 import classNames from 'classnames';
+import META from 'src/utils/Meta';
 
 export default class Segment extends Component {
   static propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
     heading: PropTypes.any,
+  };
+
+  static _meta = {
+    library: META.library.semanticUI,
+    name: 'Segment',
+    type: META.type.element,
   };
 
   render() {

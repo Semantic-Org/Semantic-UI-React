@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import classNames from 'classnames';
+import META from 'src/utils/Meta';
 
 class Modal extends Component {
   static propTypes = {
@@ -16,10 +17,16 @@ class Modal extends Component {
 
   showModal = () => {
     this.setState({isShown: true});
-  }
+  };
 
   hideModal = () => {
     this.setState({isShown: false});
+  };
+
+  static _meta = {
+    library: META.library.semanticUI,
+    name: 'Modal',
+    type: META.type.module,
   };
 
   render() {

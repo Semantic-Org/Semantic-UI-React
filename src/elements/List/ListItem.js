@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import React, {Component, PropTypes} from 'react';
 import classNames from 'classnames';
+import META from 'src/utils/Meta';
 
 export default class ListItem extends Component {
   static propTypes = {
@@ -10,6 +11,13 @@ export default class ListItem extends Component {
     header: PropTypes.string,
     icon: PropTypes.node,
     image: PropTypes.node,
+  };
+
+  static _meta = {
+    library: META.library.semanticUI,
+    name: 'ListItem',
+    type: META.type.element,
+    parent: 'List',
   };
 
   render() {
