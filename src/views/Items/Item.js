@@ -1,17 +1,14 @@
 import React, {Component, PropTypes} from 'react';
 import classNames from 'classnames';
+import customPropTypes from '../../utils/customPropTypes';
 
 export default class Item extends Component {
   static propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
-    description: (props, propName, componentName) => {
-      if (props.children && props.description) {
-        return new Error('`Item` should only have one of type `description` or `children`, not both.');
-      }
-    },
+    description: customPropTypes.mutuallyExclusive.bind(null, ['children']),
     extra: PropTypes.node,
-    heading: PropTypes.node,
+    heading: PropTypes.node.isRequired,
     image: PropTypes.node,
     meta: PropTypes.node,
   };
