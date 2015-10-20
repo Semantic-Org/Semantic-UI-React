@@ -10,7 +10,7 @@ describe('Checkbox', () => {
   it('should have a semantic ui plugin to handle the check action', () => {
     render(<Checkbox name='firstName' label='Include First' />)
       .first()
-      .container.checkbox.called.should.equal(true);
+      .element.checkbox.called.should.equal(true);
   });
   it('should have a fitted class if no label is given', () => {
     render(<Checkbox name='firstName' />).findClass('fitted');
