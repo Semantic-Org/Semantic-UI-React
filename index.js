@@ -20,6 +20,7 @@ import TableRow from 'src/collections/Table/TableRow';
 // Elements
 import Button from 'src/elements/Button/Button';
 import Container from 'src/elements/Container/Container';
+import Image from 'src/elements/Image/Image';
 import Input from 'src/elements/Input/Input';
 import Segment from 'src/elements/Segment/Segment';
 
@@ -58,6 +59,7 @@ export default {
   // Elements
   Button,
   Container,
+  Image,
   Input,
   Segment,
 
