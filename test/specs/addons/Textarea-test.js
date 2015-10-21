@@ -3,8 +3,10 @@ import {Textarea} from 'stardust';
 
 describe('Textarea', () => {
   it('has a default value', () => {
-    var renderedTextarea = render(<Textarea defaultValue='Hello World' />);
-    expect(renderedTextarea.first().props.value).to.equal('Hello World');
+    render(<Textarea defaultValue='Hello World' />)
+      .findTag('textarea')
+      .getDOMNode()
+      .value.should.equal('Hello World');
   });
   it('has a name assigned', () => {
     var renderedTextarea = render(<Textarea name='sample-post' />);

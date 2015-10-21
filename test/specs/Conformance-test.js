@@ -11,6 +11,7 @@ let getSDClassName = componentName => `sd-${_.kebabCase(componentName)}`;
  * This test ensures all Stardust components conform to our guidelines.
  */
 describe('Conformance', () => {
+  console.info('Conformance-test renders all components with no props, warnings may occur.');
   _.each(stardust, (SDComponent, name) => {
     let classes = faker.fake('{{hacker.noun}} {{hacker.noun}} {{hacker.noun}}');
     let sdClass = getSDClassName(name);
