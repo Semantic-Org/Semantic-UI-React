@@ -1,6 +1,5 @@
 // Addons
 import Confirm from 'src/addons/Confirm/Confirm';
-import Image from 'src/addons/Image/Image';
 import Textarea from 'src/addons/Textarea/Textarea';
 
 // Collections
@@ -21,6 +20,7 @@ import TableRow from 'src/collections/Table/TableRow';
 // Elements
 import Button from 'src/elements/Button/Button';
 import Container from 'src/elements/Container/Container';
+import Image from 'src/elements/Image/Image';
 import Input from 'src/elements/Input/Input';
 import Segment from 'src/elements/Segment/Segment';
 
@@ -39,7 +39,6 @@ import Items from 'src/views/Items/Items';
 export default {
   // Addons
   Confirm,
-  Image,
   Textarea,
 
   // Collections
@@ -60,6 +59,7 @@ export default {
   // Elements
   Button,
   Container,
+  Image,
   Input,
   Segment,
 
