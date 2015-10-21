@@ -17,6 +17,9 @@ export default class VariationsExamples extends Component {
           examplePath='elements/Input/Variations/Labeled'
         />
         <ComponentExample
+          examplePath='elements/Input/Variations/InputRightLabeled'
+        />
+        <ComponentExample
           title='Action'
           description='An input can be formatted to alert the user to an action they may perform'
           examplePath='elements/Input/Variations/Action'

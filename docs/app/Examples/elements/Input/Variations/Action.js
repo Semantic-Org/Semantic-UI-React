@@ -1,11 +1,16 @@
 import React, {Component} from 'react';
-import {Button, Input} from 'stardust';
+import {Button, Dropdown, Input} from 'stardust';
 
-export default class Action extends Component {
+export default class InputAction extends Component {
   render() {
+    let options = [
+      {value: 'articles', text: 'Articles'},
+      {value: 'products', text: 'Products'},
+    ];
     return (
-      <Input className='action' placeholder='Search...'>
-        <Button className='ui button'>Search</Button>
+      <Input className='left icon action' icon='search' placeholder='Search...'>
+        <Dropdown className='compact selection' options={options} />
+        <Button type='submit'>Search</Button>
       </Input>
     );
   }
