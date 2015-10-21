@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import numberToWord from 'src/utils/numberToWord';
 
-let words = [
+const words = [
   'one',
   'two',
   'three',

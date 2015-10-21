@@ -5,17 +5,19 @@ import faker from 'faker';
 
 const TestUtils = React.addons.TestUtils;
 
-let getSDClassName = componentName => `sd-${_.kebabCase(componentName)}`;
+const getSDClassName = componentName => `sd-${_.kebabCase(componentName)}`;
 
 /**
  * This test ensures all Stardust components conform to our guidelines.
  */
 describe('Conformance', () => {
+  /* eslint-disable no-console */
   console.info('Conformance-test renders all components with no props, warnings may occur.');
+  /* eslint-enable no-console */
   _.each(stardust, (SDComponent, name) => {
-    let classes = faker.fake('{{hacker.noun}} {{hacker.noun}} {{hacker.noun}}');
-    let sdClass = getSDClassName(name);
-    let firstChild = _.first(render(<SDComponent />).children());
+    const classes = faker.fake('{{hacker.noun}} {{hacker.noun}} {{hacker.noun}}');
+    const sdClass = getSDClassName(name);
+    const firstChild = _.first(render(<SDComponent />).children());
 
     describe(name, () => {
       it('extends React.Component', () => {
@@ -32,11 +34,11 @@ describe('Conformance', () => {
 
       describe('classes', () => {
         it(`has props.className after "${sdClass}"`, () => {
-          let renderedClasses = render(<SDComponent className={classes} />)
+          const renderedClasses = render(<SDComponent className={classes} />)
             .findClass(sdClass)
             .props.className;
-          let sdClassIndex = renderedClasses.indexOf(sdClass);
-          let classesIndex = renderedClasses.indexOf(classes);
+          const sdClassIndex = renderedClasses.indexOf(sdClass);
+          const classesIndex = renderedClasses.indexOf(classes);
           expect(sdClassIndex).to.be.below(classesIndex);
         });
 
@@ -63,8 +65,8 @@ describe('Conformance', () => {
           });
 
           // test ui class guidelines, if present
-          let uiComponent = render(<SDComponent className={classes} />);
-          let hasUIClass = uiComponent.scryClass('ui').length;
+          const uiComponent = render(<SDComponent className={classes} />);
+          const hasUIClass = uiComponent.scryClass('ui').length;
           if (hasUIClass) {
             it(`has "ui" class immediately after "${sdClass}"`, () => {
               uiComponent.findClass(`${sdClass} ui`);
@@ -78,7 +80,7 @@ describe('Conformance', () => {
 
       describe('props', () => {
         it('spreads props', () => {
-          let props = {};
+          const props = {};
           _.times(2, () => {
             // single word props
             props[faker.hacker.noun()] = faker.hacker.noun();
@@ -89,9 +91,9 @@ describe('Conformance', () => {
           });
 
           // create element with random props
-          let componentWithProps = <SDComponent {...props} />;
+          const componentWithProps = <SDComponent {...props} />;
 
-          let hasSpreadProps = render(componentWithProps)
+          const hasSpreadProps = render(componentWithProps)
             .children()
             .some(element => _.every([element.props], props));
 

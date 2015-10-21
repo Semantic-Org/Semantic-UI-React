@@ -6,7 +6,7 @@ import sinon from 'sinon';
  *
  * A sandbox to house spy(), stub(), mock(), etc. that is automatically reset after each test.
  */
-let sandbox = sinon.sandbox.create();
+const sandbox = sinon.sandbox.create();
 
 afterEach(() => {
   sandbox.restore();

@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React, {Component, PropTypes} from 'react';
 import classNames from 'classnames';
 import customPropTypes from '../../utils/customPropTypes';
@@ -16,15 +17,15 @@ export default class Item extends Component {
 
   static defaultProps = {
     contentClass: 'middle aligned',
-  }
+  };
 
   render() {
-    let heading = <div className='header'>{this.props.heading}</div>;
-    let meta = <div className='meta'>{this.props.meta}</div>;
-    let description = <div className='description'>{this.props.children || this.props.description}</div>;
-    let extra = <div className='extra'>{this.props.extra}</div>;
-    let contentClass = classNames('sd-item-content', this.props.contentClass, 'content');
-    let content = (
+    const heading = <div className='header'>{this.props.heading}</div>;
+    const meta = <div className='meta'>{this.props.meta}</div>;
+    const description = <div className='description'>{this.props.children || this.props.description}</div>;
+    const extra = <div className='extra'>{this.props.extra}</div>;
+    const contentClass = classNames('sd-item-content', this.props.contentClass, 'content');
+    const content = (
       <div className={contentClass}>
         {this.props.heading && heading}
         {this.props.meta && meta}
@@ -32,15 +33,15 @@ export default class Item extends Component {
         {this.props.extra && extra}
       </div>
     );
-    let hasContent = !!this.props.heading || !!this.props.meta || !!this.props.extra || !!this.props.children
+    const hasContent = !!this.props.heading || !!this.props.meta || !!this.props.extra || !!this.props.children
     || !!this.props.description;
 
-    let classes = classNames(
+    const classes = classNames(
       'sd-item',
       this.props.className,
       'item',
     );
-    let props = _.clone(this.props);
+    const props = _.clone(this.props);
     // Delete all static PropTypes props in cloned porps object before spreading of props onto rendered component
     delete props.children;
     delete props.className;

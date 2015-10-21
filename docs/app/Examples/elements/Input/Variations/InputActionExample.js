@@ -3,7 +3,7 @@ import {Button, Dropdown, Input} from 'stardust';
 
 export default class InputActionExample extends Component {
   render() {
-    let options = [
+    const options = [
       {value: 'articles', text: 'Articles'},
       {value: 'products', text: 'Products'},
     ];

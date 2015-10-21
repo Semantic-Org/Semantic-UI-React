@@ -8,7 +8,7 @@ export default class ModalHeader extends Component {
   };
 
   render() {
-    let classes = classNames(
+    const classes = classNames(
       'sd-modal-header',
       this.props.className,
       'header'

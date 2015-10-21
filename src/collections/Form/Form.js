@@ -9,12 +9,12 @@ export default class Form extends Component {
   };
 
   serializeJson = () => {
-    let form = React.findDOMNode(this.refs.form);
-    let json = {};
+    const form = React.findDOMNode(this.refs.form);
+    const json = {};
 
     _.each(['input', 'textarea', 'select'], (tag) => {
       _.each(form.getElementsByTagName(tag), (node, index, arr) => {
-        let name = node.getAttribute('name');
+        const name = node.getAttribute('name');
 
         switch (node.getAttribute('type')) {
           case 'checkbox':
@@ -23,7 +23,7 @@ export default class Form extends Component {
 
           case 'radio':
             json[name] = {
-              value: _.find(arr, {name: name, checked: true}).value
+              value: _.find(arr, {name, checked: true}).value
             };
             break;
 
@@ -38,11 +38,11 @@ export default class Form extends Component {
   };
 
   render() {
-    let classes = classNames(
+    const classes = classNames(
       'sd-form',
       'ui',
       this.props.className,
-      'form',
+      'form'
     );
     return (
       <form {...this.props} className={classes} ref='form'>

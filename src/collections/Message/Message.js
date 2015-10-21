@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React, {Component, findDOMNode, PropTypes} from 'react';
 import classNames from 'classnames';
 import $ from 'jquery';
@@ -20,29 +21,29 @@ export default class Message extends Component {
   };
 
   render() {
-    let classes = classNames(
+    const classes = classNames(
       'sd-message',
       'ui',
       this.props.className,
       {icon: this.props.icon},
-      'message',
+      'message'
     );
 
-    let iconClasses = classNames(
+    const iconClasses = classNames(
       'sd-message-icon',
       this.props.icon,
       'icon'
     );
 
-    let closeIcon = <i className='sd-message-close-icon close icon' onClick={this.handleDismiss} />;
-    let header = <div className='sd-message-header header'>{this.props.header}</div>;
-    let icon = <i className={iconClasses} />;
+    const closeIcon = <i className='sd-message-close-icon close icon' onClick={this.handleDismiss} />;
+    const header = <div className='sd-message-header header'>{this.props.header}</div>;
+    const icon = <i className={iconClasses} />;
 
     // wrap children in <p> if there is a header
-    let children = this.props.header ? <p>{this.props.children}</p> : this.props.children;
+    const children = this.props.header ? <p>{this.props.children}</p> : this.props.children;
 
     // wrap header and children in content if there is an icon
-    let content = (
+    const content = (
       <div className='sd-message-content content'>
         {this.props.header && header}
         {children}
@@ -50,7 +51,7 @@ export default class Message extends Component {
     );
 
     // prevent spreading icon classes as props on message element
-    let messageProps = _.clone(this.props);
+    const messageProps = _.clone(this.props);
     delete messageProps.icon;
 
     return (

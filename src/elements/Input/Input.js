@@ -1,6 +1,6 @@
 import _ from 'lodash';
-import React, {Component, PropTypes, Children} from 'react';
 import classNames from 'classnames';
+import React, {Component, PropTypes, Children} from 'react';
 
 export default class Input extends Component {
   static propTypes = {
@@ -18,30 +18,30 @@ export default class Input extends Component {
 
   render() {
     // TODO: replace with <Icon /> once it is merged
-    let iconClasses = classNames(
+    const iconClasses = classNames(
       this.props.icon,
-      'icon',
+      'icon'
     );
     // Semantic supports actions and labels on either side of an input.
     // The element must be on the same side as the indicated class.
     // We first determine the left/right classes for each type of child,
     //   then we extract the children and place them on the correct side
     //   of the input.
-    let isLeftAction = _.includes(this.props.className, 'left action');
-    let isRightAction = !isLeftAction && _.includes(this.props.className, 'action');
-    let isRightLabeled = _.includes(this.props.className, 'right labeled');
-    let isLeftLabeled = !isRightLabeled && _.includes(this.props.className, 'labeled');
+    const isLeftAction = _.includes(this.props.className, 'left action');
+    const isRightAction = !isLeftAction && _.includes(this.props.className, 'action');
+    const isRightLabeled = _.includes(this.props.className, 'right labeled');
+    const isLeftLabeled = !isRightLabeled && _.includes(this.props.className, 'labeled');
 
-    let labelChildren = [];
-    let actionChildren = [];
+    const labelChildren = [];
+    const actionChildren = [];
 
     Children.forEach(this.props.children, child => {
       // TODO: use child._meta here, once merged, to determine component type
-      let isButton = child.type.name === 'Button';
-      let isDropdown = child.type.name === 'Dropdown';
+      const isButton = child.type.name === 'Button';
+      const isDropdown = child.type.name === 'Dropdown';
       // TODO: use child.type.name === 'Label' once Label component is merged.
-      let isLabel = _.isString(child.props.className) && !!child.props.className.match(/ui.*label$/);
-      let childIsAction = !isLabel && isButton || isDropdown;
+      const isLabel = _.isString(child.props.className) && !!child.props.className.match(/ui.*label$/);
+      const childIsAction = !isLabel && isButton || isDropdown;
 
       if (childIsAction) {
         actionChildren.push(child);
@@ -50,14 +50,14 @@ export default class Input extends Component {
       }
     });
 
-    let icon = <i className={iconClasses} />;
-    let classes = classNames(
+    const icon = <i className={iconClasses} />;
+    const classes = classNames(
       'sd-input',
       'ui',
       this.props.className,
       'input'
     );
-    let inputProps = _.clone(this.props);
+    const inputProps = _.clone(this.props);
     delete inputProps.className;
     delete inputProps.children;
     return (

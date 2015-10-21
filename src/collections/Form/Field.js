@@ -11,7 +11,7 @@ export default class Field extends Component {
   };
 
   render() {
-    let classes = classNames(
+    const classes = classNames(
       'sd-field',
       this.props.width && numberToWord(this.props.width) + ' wide',
       this.props.className,

@@ -1,23 +1,26 @@
-var paths = require('./paths');
-var webpack = require('webpack');
-var pkg = require('./package.json');
+import friendlyFormatter from 'eslint-friendly-formatter';
+import paths from './paths';
+import webpack from 'webpack';
 
 /**
  * This config builds and serves the doc site with webpack dev server.
  * @type {{}}
  */
-module.exports = {
+export default {
   entry: {
     app: [
       'webpack/hot/only-dev-server',
       paths.docsApp + '/DocsApp.js'
     ],
     vendor: [
+      'bluebird',
+      'classnames',
       'faker',
       'jquery',
       'lodash',
-      'moment',
       'radium',
+      'react',
+      'react-router',
       'react-highlight',
     ]
   },
@@ -40,13 +43,13 @@ module.exports = {
     ]
   },
   eslint: {
-    formatter: require('eslint-friendly-formatter'),
+    formatter: friendlyFormatter,
   },
   externals: {
+    bluebird: 'Promise',
     faker: 'faker',
     jquery: 'jQuery',
     lodash: '_',
-    moment: 'moment',
   },
   devTool: 'source-map',
   resolve: {
@@ -56,10 +59,11 @@ module.exports = {
       '.',
     ],
     alias: {
-      stardust: pkg.main
+      stardust: `${paths.src}/index.js`,
     },
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js')
   ]
 };

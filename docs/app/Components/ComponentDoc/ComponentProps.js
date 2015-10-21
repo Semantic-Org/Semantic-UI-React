@@ -15,13 +15,13 @@ export default class ComponentProps extends Component {
   };
 
   nameRenderer(item) {
-    let required = item.required && <span className='ui mini red circular label'>required</span>;
+    const required = item.required && <span className='ui mini red circular label'>required</span>;
     return <div>{item.name} {required}</div>;
   }
 
   defaultValueRenderer(item) {
-    let defaultValue = _.get(item, 'defaultValue.value');
-    let defaultIsComputed = <span className='ui mini gray circular label'>computed</span>;
+    const defaultValue = _.get(item, 'defaultValue.value');
+    const defaultIsComputed = <span className='ui mini gray circular label'>computed</span>;
 
     return (
       <div>
@@ -31,20 +31,20 @@ export default class ComponentProps extends Component {
   }
 
   render() {
-    var propsDefinition = this.props.props;
-    var content = _.map(propsDefinition, (propConfig, propName) => {
-      let name = propName;
-      let description = _.get(propConfig, 'docBlock.description');
+    const propsDefinition = this.props.props;
+    const content = _.map(propsDefinition, (propConfig, propName) => {
+      const name = propName;
+      const description = _.get(propConfig, 'docBlock.description');
 
+      const value = _.get(propConfig, 'type.value');
       let type = _.get(propConfig, 'type.name');
-      let value = _.get(propConfig, 'type.value');
       if (type === 'union') {
         type = _.map(value, (val) => val.name).join('|');
       }
       type = type && `{${type}}`;
 
-      let required = propConfig.required;
-      let defaultValue = propConfig.defaultValue;
+      const required = propConfig.required;
+      const defaultValue = propConfig.defaultValue;
 
       return {
         name,

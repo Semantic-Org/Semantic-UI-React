@@ -23,7 +23,7 @@ export default class ComponentExample extends Component {
   };
 
   render() {
-    let code = (
+    const code = (
       <Column>
         <Highlight className='language-javascript'>
           {this.fileContents}

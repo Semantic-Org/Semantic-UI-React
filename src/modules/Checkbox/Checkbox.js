@@ -60,7 +60,7 @@ export default class Checkbox extends Component {
       }
     }
 
-    let classes = classNames(
+    const classes = classNames(
       'sd-checkbox',
       'ui',
       this.props.className,
@@ -70,7 +70,7 @@ export default class Checkbox extends Component {
       'checkbox'
     );
 
-    let checkboxProps = _.clone(this.props);
+    const checkboxProps = _.clone(this.props);
     delete checkboxProps.className;
     return (
       <div className={classes} ref='container'>

@@ -3,8 +3,8 @@ import {Checkbox} from 'stardust';
 
 describe('Checkbox', () => {
   it('can be checked by default', () => {
-    let renderedCheckbox = render(<Checkbox defaultChecked={true} name='firstName' />).first();
-    let isChecked = renderedCheckbox.refs.checkbox.state.initialChecked;
+    const renderedCheckbox = render(<Checkbox defaultChecked name='firstName' />).first();
+    const isChecked = renderedCheckbox.refs.checkbox.state.initialChecked;
     renderedCheckbox.props.defaultChecked.should.equal(true);
     isChecked.should.equal(true);
   });

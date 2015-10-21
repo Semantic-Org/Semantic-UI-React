@@ -9,7 +9,7 @@ class DocsApp extends Component {
   state = {menuSearch: ''};
 
   render() {
-    let components = Object.keys(stardust)
+    const components = Object.keys(stardust)
       .sort()
       .map(name => <ComponentDoc key={name} name={name} />);
 

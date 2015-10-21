@@ -1,9 +1,9 @@
-var path = require('path');
+import path from 'path';
+const PROJECT_ROOT = path.resolve(__dirname);
 
-var PROJECT_ROOT = path.resolve(__dirname);
-
-module.exports = {
+const PATHS = {
   root: PROJECT_ROOT + '/',
+  dist: PROJECT_ROOT + '/dist',
   docsRoot: PROJECT_ROOT + '/docs',
   docsApp: PROJECT_ROOT + '/docs/app',
   docsBuild: PROJECT_ROOT + '/docs/build',
@@ -19,3 +19,5 @@ module.exports = {
   testMocks: PROJECT_ROOT + '/test/mocks',
   node_modules: PROJECT_ROOT + '/node_modules',
 };
+
+export default PATHS;

@@ -8,7 +8,7 @@ export default class Row extends Component {
   };
 
   render() {
-    let classes = classNames(
+    const classes = classNames(
       'sd-row',
       this.props.className,
       'row'

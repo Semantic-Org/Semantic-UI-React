@@ -11,19 +11,19 @@ export default class Menu extends Component {
   state = {activeItem: this.props.activeItem};
 
   handleClickItem = (activeItem) => {
-    this.setState({activeItem: activeItem});
+    this.setState({activeItem});
   };
 
   render() {
-    let classes = classNames(
+    const classes = classNames(
       'sd-menu',
       'ui',
       this.props.className,
       'menu'
     );
-    let hasActiveItem = !!this.state.activeItem || !!this.props.activeItem;
-    let children = React.Children.map(this.props.children, (child, i) => {
-      let activeItemName = !hasActiveItem && i === 0
+    const hasActiveItem = !!this.state.activeItem || !!this.props.activeItem;
+    const children = React.Children.map(this.props.children, (child, i) => {
+      const activeItemName = !hasActiveItem && i === 0
         ? child.props.name
         : this.state.activeItem || this.props.activeItem;
       return React.cloneElement(child, {

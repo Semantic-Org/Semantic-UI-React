@@ -1,17 +1,21 @@
-var g = require('gulp-load-plugins')();
-var gulp = g.help(require('gulp'), require('../gulphelp'));
-var webpack = require('webpack');
-var WebpackDevServer = require('webpack-dev-server');
-var exec = require('child_process').exec;
+import childProcess from 'child_process';
+import defaultGulp from 'gulp';
+import helpConfig from '../gulphelp';
+import loadPlugins from 'gulp-load-plugins';
+import webpack from 'webpack';
+import WebpackDevServer from 'webpack-dev-server';
 
-var devEnv = require('../../dev-env');
-var paths = require('../../paths');
-var statsConfig = require('../../webpack-stats');
-var webpackConfig = require('../../webpack.docs');
+const g = loadPlugins();
+const gulp = g.help(defaultGulp, helpConfig);
 
-gulp.task('serve', 'serve, build (in memory only), and watch the app', function(cb) {
+import paths from '../../paths';
+import statsConfig from '../../webpack-stats';
+import devEnv from '../../dev-env';
+import webpackConfig from '../../webpack.dev.babel';
+
+gulp.task('serve-docs', 'serve, build (in memory only), and watch the app', cb => {
   // http://webpack.github.io/docs/webpack-dev-server.html#api
-  var devMiddlewareConfig = {
+  const devMiddlewareConfig = {
     contentBase: paths.docsBuild,
     historyApiFallback: true,
     hot: true,
@@ -23,14 +27,14 @@ gulp.task('serve', 'serve, build (in memory only), and watch the app', function(
   };
 
   // http://webpack.github.io/docs/configuration.html
-  var compiler = webpack(webpackConfig);
+  const compiler = webpack(webpackConfig);
 
   function onComplete(err, stdout, stderr) {
     cb(err);
   }
 
   new WebpackDevServer(compiler, devMiddlewareConfig)
-    .listen(devEnv.port, devEnv.host, function(err) {
+    .listen(devEnv.port, devEnv.host, (err) => {
       if (err) {
         throw new g.util.PluginError('webpack-dev-server', err);
       }
@@ -40,6 +44,6 @@ gulp.task('serve', 'serve, build (in memory only), and watch the app', function(
         devEnv.serverUrl
       );
 
-      exec('open ' + devEnv.serverUrl, onComplete);
+      childProcess.exec('open ' + devEnv.serverUrl, onComplete);
     });
 });

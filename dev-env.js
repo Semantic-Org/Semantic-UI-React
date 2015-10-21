@@ -1,10 +1,10 @@
-var host = 'localhost';
-var port = '8080';
-var protocol = 'http';
+const host = 'localhost';
+const port = '8080';
+const protocol = 'http';
 
 module.exports = {
-  host: host,
-  port: port,
-  protocol: protocol,
+  host,
+  port,
+  protocol,
   serverUrl: protocol + '://' + host + ':' + port
 };

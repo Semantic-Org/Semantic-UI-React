@@ -9,7 +9,7 @@ export default class CheckboxDisabledExample extends Component {
           <Checkbox className='disabled' label='Disabled' />
         </Field>
         <Field>
-          <Checkbox className='toggle' disabled={true} label='Disabled' />
+          <Checkbox className='toggle' disabled label='Disabled' />
         </Field>
       </Form>
     );

@@ -7,7 +7,7 @@ export default class Sidebar extends Component {
   handleSearchChange = e => this.setState({query: e.target.value});
 
   render() {
-    let menuItems = Object.keys(stardust)
+    const menuItems = Object.keys(stardust)
       .sort()
       .filter(name => new RegExp(this.state.query, 'i').test(name))
       .map(name => <MenuItem key={name} name={name} href={`#${name}`} />);

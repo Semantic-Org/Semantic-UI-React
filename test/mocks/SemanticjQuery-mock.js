@@ -4,7 +4,7 @@ import sandbox from 'test/utils/Sandbox-util';
 //
 // jQuery Mock
 //
-let jQueryObject = {
+const jQueryObject = {
   on: sandbox.stub().returnsThis(),
 };
 
@@ -17,7 +17,7 @@ jQuery.ajax = sandbox.stub().returnsThis();
 //
 // jQuery Plugin Mocks
 //
-let jQueryPlugins = {
+const jQueryPlugins = {
   checkbox: sandbox.stub().returnsThis(),
   dropdown: sandbox.stub().returnsThis(),
   modal: sandbox.stub().returnsThis(),

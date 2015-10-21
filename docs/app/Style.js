@@ -1,5 +1,5 @@
 const style = {};
-let sidebarWidth = 200;
+const sidebarWidth = 200;
 
 style.container = {
 };

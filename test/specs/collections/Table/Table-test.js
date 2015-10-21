@@ -5,7 +5,7 @@ import {Table, TableColumn} from 'stardust';
 
 describe('Table', () => {
   let randomDataKey;
-  let tableData = _.times(_.random(1, 20), () => {
+  const tableData = _.times(_.random(1, 20), () => {
     return {
       imageUrl: faker.internet.avatar(),
       firstName: faker.name.firstName(),
@@ -57,8 +57,8 @@ describe('Table', () => {
       )
         .scryClass('sd-table-cell')
         .forEach((tableCell, i) => {
-          let originalItem = tableData[i][randomDataKey];
-          let originalValue = Table.getSafeCellContents(originalItem);
+          const originalItem = tableData[i][randomDataKey];
+          const originalValue = Table.getSafeCellContents(originalItem);
           tableCell.props.children.should.equal(originalValue);
         });
     });
@@ -100,8 +100,8 @@ describe('Table', () => {
         .forEach((tableCell, i) => {
           // remove this table's column from the current data object
           // then expect this cell's value to not be found in the object
-          let itemWithoutRandomKey = _.omit(tableData[i], randomDataKey);
-          let cellText = tableCell.props.children;
+          const itemWithoutRandomKey = _.omit(tableData[i], randomDataKey);
+          const cellText = tableCell.props.children;
 
           _.each(itemWithoutRandomKey, (val, key) => {
             Table.getSafeCellContents(val).should.not.equal(cellText);

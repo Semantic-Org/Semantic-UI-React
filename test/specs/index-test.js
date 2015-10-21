@@ -1,13 +1,13 @@
 import _ from 'lodash';
 import path from 'path';
-import stardust from 'index';
+import stardust from 'stardust';
 
-let componentPaths = require.context(
+const componentPaths = require.context(
   'src/',
   true,
-  /[addons|elements|collections|modules][^Style\.js$]\.js$/i
+  /[addons|elements|collections|modules][^Style|index]\.js$/i
 );
-let componentNames = _.map(componentPaths.keys(), key => {
+const componentNames = _.map(componentPaths.keys(), key => {
   return path.basename(key).replace('.js', '');
 });
 

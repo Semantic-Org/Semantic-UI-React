@@ -1,5 +1,5 @@
 export default function numberToWord(number) {
-  let map = {
+  const map = {
     1: 'one',
     2: 'two',
     3: 'three',

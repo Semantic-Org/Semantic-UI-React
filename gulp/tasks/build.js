@@ -1,71 +1,42 @@
-var g = require('gulp-load-plugins')();
-var gulp = g.help(require('gulp'), require('../gulphelp'));
-var runSequence = require('run-sequence');
-var del = require('del');
-var ENV = require('../../ENV');
-var paths = require('../../paths');
+import del from 'del';
+import defaultGulp from 'gulp';
+import helpConfig from '../gulphelp';
+import loadPlugins from 'gulp-load-plugins';
+import runSequence from 'run-sequence';
+import webpack from 'webpack';
 
-gulp.task('build', 'build doc sites', function(cb) {
+const g = loadPlugins();
+const gulp = g.help(defaultGulp, helpConfig);
+
+import ENV from '../../ENV';
+import paths from '../../paths';
+import statsConfig from '../../webpack-stats';
+import config from '../../webpack.prod.babel';
+
+gulp.task('build', 'build stardust', cb => {
   runSequence(
-    'clean',
-    'build-doc-html',
-    'generate-doc-json',
-    'webpack',
+    'clean-build',
+    'webpack-build',
     cb
   );
 });
 
-gulp.task('clean', function(cb) {
-  del.sync(paths.docsBuild);
+gulp.task('clean-build', cb => {
+  del.sync(paths.dist);
   cb();
 });
 
-gulp.task('generate-doc-json', function(cb) {
-  var gulpReactDocgen = require('../plugins/gulp-react-docgen');
-
-  return gulp.src([
-    paths.srcAddons + '/**/*.js',
-    paths.srcElements + '/**/*.js',
-    paths.srcCollections + '/**/*.js',
-    paths.srcModules + '/**/*.js',
-    paths.srcViews + '/**/*.js',
-    '!' + paths.src + '/**/Style.js'
-  ])
-    .pipe(g.plumber(function(err) {
-      g.util.log(err);
-      this.emit('end');
-    }))
-    .pipe(gulpReactDocgen())
-    .pipe(gulp.dest(paths.docsApp));
-});
-
-gulp.task('webpack', function(cb) {
-  var webpack = require('webpack');
-  var config = require('../../webpack.docs');
-  var statsConfig = require('../../webpack-stats');
-
-  webpack(config, function(err, stats) {
+gulp.task('webpack-build', cb => {
+  webpack(config, (err, stats) => {
     if (err) {
       throw new g.util.PluginError('webpack', err);
     }
 
     g.util.log(
-      g.util.colors.cyan('Docs bundle:'),
+      g.util.colors.cyan('Build bundle:'),
       stats.toString(statsConfig)
     );
 
     cb(err);
   });
-});
-
-gulp.task('build-doc-html', function(cb) {
-  var replaceOpts = {
-    keepUnassigned: true    // keep build blocks without a defined replacement
-  };
-  var replaceTasks = {};
-  replaceTasks[ENV.isProduction() ? 'development' : 'production'] = '';
-
-  return gulp.src(paths.docsApp + '/**/*.html')
-    .pipe(g.htmlReplace(replaceTasks, replaceOpts))
-    .pipe(gulp.dest(paths.docsBuild));
 });

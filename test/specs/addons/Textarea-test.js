@@ -9,11 +9,11 @@ describe('Textarea', () => {
       .value.should.equal('Hello World');
   });
   it('has a name assigned', () => {
-    var renderedTextarea = render(<Textarea name='sample-post' />);
+    const renderedTextarea = render(<Textarea name='sample-post' />);
     expect(renderedTextarea.first().props.name).to.equal('sample-post');
   });
   it('has assigned amount of rows', () => {
-    var renderedTextarea = render(<Textarea rows='6' />);
+    const renderedTextarea = render(<Textarea rows='6' />);
     expect(renderedTextarea.findTag('textarea').props.rows).to.equal('6');
   });
 });

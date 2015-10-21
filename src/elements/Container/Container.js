@@ -11,7 +11,7 @@ export default class Container extends Component {
   };
 
   render() {
-    let classes = classNames(
+    const classes = classNames(
       'sd-container',
       'ui',
       this.props.className,

@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-let customPropTypes = {
+const customPropTypes = {
   mutuallyExclusive: exclusives => {
     return (props, propName, componentName) => {
       _.forEach(exclusives, exclusiveProp => {

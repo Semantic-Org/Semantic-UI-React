@@ -8,7 +8,7 @@ export default class ModalFooter extends Component {
   };
 
   render() {
-    let classes = classNames(
+    const classes = classNames(
       'sd-modal-footer',
       this.props.className,
       'actions'

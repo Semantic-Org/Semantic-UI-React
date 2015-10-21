@@ -23,9 +23,9 @@ export default class MenuItem extends Component {
   };
 
   render() {
-    let menuLabel = <div className='sd-menu-label ui blue label'>{this.props.label}</div>;
-    let isActive = this.props.activeItem === this.props.name;
-    let classes = classNames(
+    const menuLabel = <div className='sd-menu-label ui blue label'>{this.props.label}</div>;
+    const isActive = this.props.activeItem === this.props.name;
+    const classes = classNames(
       'sd-menu-item',
       this.props.className,
       'blue',

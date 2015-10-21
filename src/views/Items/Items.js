@@ -8,7 +8,7 @@ export default class Items extends Component {
   };
 
   render() {
-    let classes = classNames(
+    const classes = classNames(
       'sd-items',
       'ui',
       this.props.className,

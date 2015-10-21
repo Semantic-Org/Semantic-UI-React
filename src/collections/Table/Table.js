@@ -9,7 +9,7 @@ import TableCell from './TableCell';
 export default class Table extends Component {
   static propTypes = {
     basic: PropTypes.bool,
-    children: function(props, propName, componentName) {
+    children: (props, propName, componentName) => {
       let isValid = true;
       Children.forEach(props.children, (child) => {
         if (child.type !== TableColumn) {
@@ -31,7 +31,7 @@ export default class Table extends Component {
 
   _getHeaders() {
     return Children.map(this.props.children, (column) => {
-      let content = column.props.headerRenderer
+      const content = column.props.headerRenderer
         ? column.props.headerRenderer(this.props.data[0])
         : _.startCase(column.props.dataKey);
 
@@ -45,7 +45,7 @@ export default class Table extends Component {
       if (column.props.cellRenderer) {
         content = column.props.cellRenderer(dataItem);
       } else {
-        let itemContents = dataItem[column.props.dataKey];
+        const itemContents = dataItem[column.props.dataKey];
         content = Table.getSafeCellContents(itemContents);
       }
 
@@ -55,18 +55,18 @@ export default class Table extends Component {
 
   _getRows() {
     return _.map(this.props.data, (dataItem, rowIndex) => {
-      let cells = this._getCells(dataItem, rowIndex);
+      const cells = this._getCells(dataItem, rowIndex);
 
       return <TableRow key={rowIndex}>{cells}</TableRow>;
     });
   }
 
   render() {
-    let classes = classNames(
+    const classes = classNames(
       'sd-table',
       'ui',
       this.props.className,
-      'table',
+      'table'
     );
     return (
       <table {...this.props} className={classes}>

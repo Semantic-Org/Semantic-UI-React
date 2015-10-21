@@ -12,9 +12,9 @@ describe('Confirm', () => {
     render(<Confirm />).first().props.ref.should.equal('modal');
   });
   it('should return true on confirm', () => {
-    let confirm = render(<Confirm />);
-    let confirmationButton = confirm.findClass('sd-confirm-button');
-    var confirmButtonNode = confirmationButton.getDOMNode();
+    const confirm = render(<Confirm />);
+    const confirmationButton = confirm.findClass('sd-confirm-button');
+    const confirmButtonNode = confirmationButton.getDOMNode();
     confirm.first().show('Delete item?')
       .then((isConfirmed) => {
         isConfirmed.should.be.true;
@@ -22,9 +22,9 @@ describe('Confirm', () => {
     React.addons.TestUtils.Simulate.click(confirmButtonNode );
   });
   it('should return false on abort', () => {
-    let confirm = render(<Confirm />);
-    let abortButton = confirm.findClass('sd-abort-button');
-    var abortButtonNode = abortButton.getDOMNode();
+    const confirm = render(<Confirm />);
+    const abortButton = confirm.findClass('sd-abort-button');
+    const abortButtonNode = abortButton.getDOMNode();
     confirm.first().show('Delete item?')
       .then((isConfirmed) => {
         isConfirmed.should.be.false;

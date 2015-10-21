@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import classNames from 'classnames';
 import React, {Component, PropTypes} from 'react';
 import numberToWord from 'src/utils/numberToWord';
@@ -11,7 +12,7 @@ export default class Column extends Component {
   };
 
   render() {
-    let classes = classNames(
+    const classes = classNames(
       'sd-column',
       this.props.className,
       this.props.width && numberToWord(this.props.width) + ' wide',

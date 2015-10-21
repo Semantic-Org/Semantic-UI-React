@@ -1,4 +1,4 @@
-var _ = require('lodash');
+import _ from 'lodash';
 
 // clear the console before rebundling.
 /* eslint-disable no-console */
@@ -8,17 +8,17 @@ if (_.isFunction(console.clear)) {
 /* eslint-enable no-console */
 
 // setup
-var setupContext = require.context('./', true, /setup\.js$/);
+const setupContext = require.context('./', true, /setup\.js$/);
 setupContext.keys().forEach(setupContext);
 
 // utils
-var utilsContext = require.context('./utils', true, /-util\.js/);
+const utilsContext = require.context('./utils', true, /-util\.js/);
 utilsContext.keys().forEach(utilsContext);
 
 // tests
-var testsContext = require.context('./', true, /-test\.js$/);
+const testsContext = require.context('./', true, /-test\.js$/);
 testsContext.keys().forEach(testsContext);
 
 // src
-var srcContext = require.context('../src', true, /\.js$/);
+const srcContext = require.context('../src', true, /\.js$/);
 srcContext.keys().forEach(srcContext);

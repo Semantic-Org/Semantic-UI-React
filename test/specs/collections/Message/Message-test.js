@@ -6,8 +6,8 @@ import {Message} from 'stardust';
 describe('Message', () => {
   describe('with header', () => {
     it('has a header', () => {
-      let header = faker.hacker.phrase();
-      let message = render(<Message header={header} />);
+      const header = faker.hacker.phrase();
+      const message = render(<Message header={header} />);
 
       message.findClass('sd-message-header');
       message.findText(header);
@@ -43,9 +43,9 @@ describe('Message', () => {
     });
 
     it('calls transition "fade" when dismissed', () => {
-      let tree = render(<Message dismissable />);
-      let message = tree.first();
-      let closeIcon = tree.findClass('sd-message-close-icon');
+      const tree = render(<Message dismissable />);
+      const message = tree.first();
+      const closeIcon = tree.findClass('sd-message-close-icon');
 
       message.messageElm.transition.called.should.equal(false);
       Simulate.click(closeIcon);
