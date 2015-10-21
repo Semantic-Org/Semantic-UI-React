@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React, {Component, PropTypes} from 'react';
 import classNames from 'classnames';
 
@@ -12,15 +13,29 @@ export default class ListItem extends Component {
   };
 
   render() {
-    let classes = classNames('sd-list-item', this.props.className, 'item');
-    let header = <div className='header'>{this.props.header}</div>;
+    const children = _.clone(this.props.children);
+    const classes = classNames('sd-list-item', this.props.className, 'item');
+    const description = _.clone(this.props.description);
+    const hasHeader = !!this.props.header;
+    const header = <div className='header'>{this.props.header}</div>;
+    const icon = _.clone(this.props.icon);
+    const image = _.clone(this.props.image);
+
+    const props = _.clone(this.props);
+    delete props.children;
+    delete props.className;
+    delete props.description;
+    delete props.header;
+    delete props.icon;
+    delete props.image;
+
     return (
-      <div {...this.props} className={classes}>
-        {this.props.image || this.props.icon}
+      <div {...props} className={classes}>
+        {image || icon}
         <div className='content'>
-          {this.props.header && header}
+          {hasHeader && header}
           <div className='description'>
-            {this.props.children || this.props.description}
+            {children || description}
           </div>
         </div>
       </div>
