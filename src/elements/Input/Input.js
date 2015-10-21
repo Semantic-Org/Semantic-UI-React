@@ -41,7 +41,6 @@ export default class Input extends Component {
       let isDropdown = child.type.name === 'Dropdown';
       // TODO: use child.type.name === 'Label' once Label component is merged.
       let isLabel = _.isString(child.props.className) && !!child.props.className.match(/ui.*label$/);
-      console.log(child);
       let childIsAction = !isLabel && isButton || isDropdown;
 
       if (childIsAction) {

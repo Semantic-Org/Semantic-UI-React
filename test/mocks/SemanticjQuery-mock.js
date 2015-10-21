@@ -18,9 +18,10 @@ jQuery.ajax = sandbox.stub().returnsThis();
 // jQuery Plugin Mocks
 //
 let jQueryPlugins = {
-  popup: sandbox.stub().returnsThis(),
   checkbox: sandbox.stub().returnsThis(),
+  dropdown: sandbox.stub().returnsThis(),
   modal: sandbox.stub().returnsThis(),
+  popup: sandbox.stub().returnsThis(),
   transition: sandbox.stub().returnsThis(),
 };
 

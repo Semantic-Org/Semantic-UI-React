@@ -1,10 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import classNames from 'classnames';
 
-/**
- * @example
- * <MenuItem label='Home Page' name='home' />
- */
 export default class MenuItem extends Component {
   static propTypes = {
     activeItem: PropTypes.string,
@@ -15,7 +11,7 @@ export default class MenuItem extends Component {
       PropTypes.number,
       PropTypes.string,
     ]),
-    name: PropTypes.string.isRequired,
+    name: PropTypes.string,
     onClick: PropTypes.func,
   };
 
