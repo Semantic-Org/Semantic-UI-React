@@ -75,8 +75,9 @@ deploy:
           rm -rf node_modules
     - npm-install
     - script:
-        name: install global packages
+        name: install dev and global packages
         code: |
+          npm i --only=dev
           npm i -g babel
     - script:
         name: build stardust
