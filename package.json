@@ -76,16 +76,14 @@
     "react-docgen": "^2.2.0",
     "react-dom": "^0.14.0",
     "react-highlight": "^0.5.1",
+    "react-hot-loader": "^1.3.0",
     "require-dir": "^0.3.0",
     "run-sequence": "^1.1.4",
     "sinon": "git://github.com/cjohansen/Sinon.JS#b672042043517b9f84e14ed0fb8265126168778a",
     "sinon-chai": "^2.8.0",
     "through2": "^2.0.0",
-    "webpack": "^1.12.2"
-  },
-  "devDependencies": {
-    "react-hot-loader": "^1.3.0",
     "watch": "^0.16.0",
+    "webpack": "^1.12.2",
     "webpack-dev-server": "^1.12.0"
   }
 }
