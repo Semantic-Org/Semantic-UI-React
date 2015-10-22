@@ -13,7 +13,7 @@ import statsConfig from '../../webpack-stats';
 import devEnv from '../../dev-env';
 import webpackConfig from '../../webpack.dev.babel';
 
-gulp.task('serve-docs', 'serve, build (in memory only), and watch the app', cb => {
+gulp.task('serve', 'serve, build (in memory only), and watch the app', cb => {
   // http://webpack.github.io/docs/webpack-dev-server.html#api
   const devMiddlewareConfig = {
     contentBase: paths.docsBuild,

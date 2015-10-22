@@ -10,7 +10,7 @@ gulp.task('default', cb => {
   runSequence(
     'build',
     'docs',
-    // 'serve',
+    'serve',
     'watch',
     cb
   );
