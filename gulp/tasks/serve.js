@@ -10,10 +10,14 @@ const gulp = g.help(defaultGulp, helpConfig);
 
 import paths from '../../paths';
 import statsConfig from '../../webpack-stats';
-import devEnv from '../../dev-env';
 import webpackConfig from '../../webpack.dev.babel';
 
 gulp.task('serve', 'serve, build (in memory only), and watch the app', cb => {
+  const host = 'localhost';
+  const port = '8080';
+  const protocol = 'http';
+  const serverUrl = `${protocol}://${host}:${port}`;
+
   // http://webpack.github.io/docs/webpack-dev-server.html#api
   const devMiddlewareConfig = {
     contentBase: paths.docsBuild,
@@ -34,16 +38,16 @@ gulp.task('serve', 'serve, build (in memory only), and watch the app', cb => {
   }
 
   new WebpackDevServer(compiler, devMiddlewareConfig)
-    .listen(devEnv.port, devEnv.host, (err) => {
+    .listen(port, host, err => {
       if (err) {
         throw new g.util.PluginError('webpack-dev-server', err);
       }
 
       g.util.log(
         g.util.colors.green('[webpack-dev-server]'),
-        devEnv.serverUrl
+        serverUrl
       );
 
-      childProcess.exec('open ' + devEnv.serverUrl, onComplete);
+      childProcess.exec('open ' + serverUrl, onComplete);
     });
 });

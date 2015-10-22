@@ -16,7 +16,7 @@ describe('Field', () => {
   });
 
   it('can specify a width', () => {
-    _.each(_.range(1, 17), (n) => {
+    _.each(_.range(1, 17), n => {
       const classes = numberToWord(n) + ' wide';
       render(<Field width={n} />).findClass(classes);
     });

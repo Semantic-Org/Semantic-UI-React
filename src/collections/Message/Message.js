@@ -16,7 +16,7 @@ export default class Message extends Component {
     this.messageElm = $(findDOMNode(this.refs.message));
   }
 
-  handleDismiss = (e) => {
+  handleDismiss = e => {
     this.messageElm.transition('fade');
   };
 

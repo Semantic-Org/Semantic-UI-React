@@ -15,7 +15,7 @@ export default class MenuItem extends Component {
     onClick: PropTypes.func,
   };
 
-  handleClick = (e) => {
+  handleClick = e => {
     if (this.props.onClick) {
       this.props.onClick(this.props.name);
     }
