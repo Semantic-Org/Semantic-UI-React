@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React, {Component, PropTypes} from 'react';
 import SEMANTIC_TYPES from 'docs/app/utils/SemanticTypes';
 import STARDUST_TYPES from 'docs/app/utils/StardustTypes';
@@ -42,7 +43,7 @@ export default class ComponentDescription extends Component {
   }
 
   render() {
-    let semanticDocsLink = (
+    const semanticDocsLink = (
       <a href={this.semanticDocUrl} target='_blank'>
         <i className='book icon' />
         Semantic UI Docs

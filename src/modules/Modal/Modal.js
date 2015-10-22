@@ -23,7 +23,7 @@ class Modal extends Component {
   };
 
   render() {
-    let classes = classNames(
+    const classes = classNames(
       'sd-modal',
       'ui',
       this.props.className,

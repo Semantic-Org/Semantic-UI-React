@@ -8,7 +8,7 @@ export default class TableHeader extends Component {
   };
 
   render() {
-    let classes = classNames(
+    const classes = classNames(
       'sd-table-header',
       this.props.className
     );

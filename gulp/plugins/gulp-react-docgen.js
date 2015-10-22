@@ -1,16 +1,16 @@
-var _ = require('lodash');
-var gutil = require('gulp-util');
-var docgen = require('react-docgen');
-var doctrine = require('doctrine');
-var through = require('through2');
-var path = require('path');
+const _ = require('lodash');
+const gutil = require('gulp-util');
+const docgen = require('react-docgen');
+const doctrine = require('doctrine');
+const through = require('through2');
+const path = require('path');
 
 module.exports = function(filename) {
-  var defaultFilename = 'docgenInfo.json';
-  var result = {};
-  var pluginName = 'gulp-react-docgen';
-  var finalFile;
-  var latestFile;
+  const defaultFilename = 'docgenInfo.json';
+  const result = {};
+  const pluginName = 'gulp-react-docgen';
+  let finalFile;
+  let latestFile;
 
   function parseDocBlock(docBlock) {
     return doctrine.parse(docBlock || '', {unwrap: true});
@@ -30,8 +30,8 @@ module.exports = function(filename) {
     }
 
     try {
-      var relativePath = file.path.replace(process.cwd() + '/', '');
-      var parsed = docgen.parse(file.contents);
+      const relativePath = file.path.replace(process.cwd() + '/', '');
+      const parsed = docgen.parse(file.contents);
 
       // replace the component`description` string with a parsed doc block object
       parsed.docBlock = parseDocBlock(parsed.description);

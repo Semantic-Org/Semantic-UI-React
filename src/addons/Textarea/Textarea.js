@@ -8,7 +8,7 @@ export default class Textarea extends Component {
   };
 
   render() {
-    let classes = classNames(
+    const classes = classNames(
       'sd-textarea',
       this.props.className
     );

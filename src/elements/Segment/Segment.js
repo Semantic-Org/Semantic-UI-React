@@ -9,8 +9,8 @@ export default class Segment extends Component {
   };
 
   render() {
-    let heading = <h4 className='sd-segment-heading ui header'>{this.props.heading}</h4>;
-    let classes = classNames(
+    const heading = <h4 className='sd-segment-heading ui header'>{this.props.heading}</h4>;
+    const classes = classNames(
       'sd-segment',
       'ui',
       this.props.className,

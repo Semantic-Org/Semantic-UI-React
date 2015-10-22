@@ -3,4 +3,6 @@
  * This file just loads all the gulp tasks.
  */
 
-require('require-dir')('./gulp/tasks');
+import requireDir from 'require-dir';
+
+export default requireDir('./gulp/tasks');

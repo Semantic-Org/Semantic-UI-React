@@ -1,14 +1,14 @@
-var paths = require('./paths');
-var statConfig = require('./webpack-stats');
-var friendlyFormatter = require('eslint-friendly-formatter');
-var pkg = require('./package.json');
+import paths from './paths';
+import statConfig from './webpack-stats';
+import friendlyFormatter from 'eslint-friendly-formatter';
+import exitPlugin from './webpack-exit-plugin';
 
 /**
  * This config is for running tests on the command line and will fail on errors.
  * @param {{}} config Karma config object.
  * @type {{}}
  */
-module.exports = function(config) {
+export default config => {
   config.set({
     browsers: [
       'PhantomJS'
@@ -63,11 +63,11 @@ module.exports = function(config) {
         alias: {
           // When these key names are require()'d, the value will be supplied instead
           jquery: paths.testMocks + '/SemanticjQuery-mock.js',
-          stardust: pkg.main
+          stardust: `${paths.src}/index.js`,
         },
       },
       plugins: [
-        require('./webpack-exit-plugin')
+        exitPlugin
       ],
     },
     webpackServer: {

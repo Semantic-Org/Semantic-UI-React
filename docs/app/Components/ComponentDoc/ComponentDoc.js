@@ -12,7 +12,7 @@ export default class ComponentDoc extends Component {
   };
 
   render() {
-    let doc = getComponentDocInfo(this.props.name);
+    const doc = getComponentDocInfo(this.props.name);
 
     return (
       <Segment id={doc.name}>

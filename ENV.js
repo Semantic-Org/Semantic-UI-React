@@ -4,31 +4,31 @@
  * @type {object}
  */
 const ENV = {
-  setTest: function() {
+  setTest() {
     process.env.NODE_ENV = 'test';
   },
-  setStaging: function() {
+  setStaging() {
     process.env.NODE_ENV = 'staging';
   },
-  setProduction: function() {
+  setProduction() {
     process.env.NODE_ENV = 'production';
   },
-  setDevelopment: function() {
+  setDevelopment() {
     process.env.NODE_ENV = 'development';
   },
 
-  isProduction: function() {
+  isProduction() {
     return process.env.NODE_ENV === 'production';
   },
-  isTest: function() {
+  isTest() {
     return process.env.NODE_ENV === 'test';
   },
-  isStaging: function() {
+  isStaging() {
     return process.env.NODE_ENV === 'staging';
   },
-  isDevelopment: function() {
+  isDevelopment() {
     return process.env.NODE_ENV === 'development' || !ENV.isProduction() && !ENV.isTest() && !ENV.isStaging();
   },
 };
 
-module.exports = ENV;
+export default ENV;

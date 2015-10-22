@@ -1,6 +1,7 @@
-import React, {Component, PropTypes, findDOMNode} from 'react';
-import classNames from 'classnames';
+import _ from 'lodash';
 import $ from 'jquery';
+import classNames from 'classnames';
+import React, {Component, PropTypes, findDOMNode} from 'react';
 
 export default class Dropdown extends Component {
   static propTypes = {
@@ -25,17 +26,17 @@ export default class Dropdown extends Component {
   }
 
   render() {
-    let options = _.map(this.props.options, (opt, i) => {
+    const options = _.map(this.props.options, (opt, i) => {
       return <option key={i} value={opt.value}>{opt.text}</option>;
     });
-    let classes = classNames(
+    const classes = classNames(
       'sd-dropdown',
       'ui',
       this.props.className,
       'dropdown'
     );
 
-    let props = _.clone(this.props);
+    const props = _.clone(this.props);
     delete props.options;
 
     return (

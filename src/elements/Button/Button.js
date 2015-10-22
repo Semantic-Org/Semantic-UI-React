@@ -13,7 +13,7 @@ export default class Button extends Component {
   };
 
   render() {
-    let classes = classNames(
+    const classes = classNames(
       'sd-button',
       'ui',
       this.props.className,

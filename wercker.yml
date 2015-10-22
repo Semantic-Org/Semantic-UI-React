@@ -24,6 +24,10 @@ build:
   steps:
     # A step that executes `npm install` command
     - npm-install
+    - script:
+        name: install global packages
+        code: |
+          npm i -g babel
     # A step that executes `npm test` command
     - npm-test
 
@@ -63,6 +67,10 @@ deploy:
           rm -rf node_modules
     - npm-install
     - script:
+        name: install global packages
+        code: |
+          npm i -g babel
+    - script:
         name: build
         code: |
           $(npm bin)/gulp build
@@ -70,7 +78,7 @@ deploy:
         name: Deploy to github pages
         code: |
           git add .
-          git add -f docs/build
+          git add -f docs/build dist
           git commit -n -m "wercker deploy commit by $WERCKER_STARTED_BY"
           git push -f $GIT_REMOTE $WERCKER_GIT_BRANCH:gh-pages
 

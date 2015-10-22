@@ -1,10 +1,15 @@
-var g = require('gulp-load-plugins')();
-var gulp = g.help(require('gulp'), require('../gulphelp'));
-var runSequence = require('run-sequence');
+import defaultGulp from 'gulp';
+import helpConfig from '../gulphelp';
+import loadPlugins from 'gulp-load-plugins';
+import runSequence from 'run-sequence';
 
-gulp.task('default', function(cb) {
+const g = loadPlugins();
+const gulp = g.help(defaultGulp, helpConfig);
+
+gulp.task('default', cb => {
   runSequence(
     'build',
+    'docs',
     'serve',
     'watch',
     cb

@@ -1,6 +1,6 @@
-var paths = require('./paths');
-var statConfig = require('./webpack-stats');
-var friendlyFormatter = require('eslint-friendly-formatter');
+import paths from './paths';
+import statConfig from './webpack-stats';
+import friendlyFormatter from 'eslint-friendly-formatter';
 
 /**
  * This config is for writing tests.  Results are shown in browser with livereload.
@@ -58,6 +58,7 @@ module.exports = {
     alias: {
       // When these key names are require()'d, the value will be supplied instead
       jquery: paths.testMocks + '/SemanticjQuery-mock.js',
+      stardust: `${paths.src}/index.js`,
     },
   },
   plugins: [],

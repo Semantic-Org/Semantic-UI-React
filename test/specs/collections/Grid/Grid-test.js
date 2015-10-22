@@ -1,20 +1,21 @@
+import _ from 'lodash';
 import React from 'react';
 import faker from 'faker';
 import {Grid} from 'stardust';
 
 describe('Grid', () => {
   it('is an sd-grid', () => {
-    let gridClassName = render(<Grid />).findClass('sd-grid').props.className;
+    const gridClassName = render(<Grid />).findClass('sd-grid').props.className;
     gridClassName.should.contain('sd-grid');
-    let nodeClass = render(<Grid />).findClass('sd-grid').getDOMNode().getAttribute('class');
+    const nodeClass = render(<Grid />).findClass('sd-grid').getDOMNode().getAttribute('class');
     nodeClass.should.contain('sd-grid');
   });
 
   it('inherits classes', () => {
     // generate crap classes like "system firewall protocol"
-    let classes = _.times(_.random(3), faker.hacker.noun).join(' ');
+    const classes = _.times(_.random(3), faker.hacker.noun).join(' ');
 
-    let renderedGridClasses = render(<Grid className={classes} />)
+    const renderedGridClasses = render(<Grid className={classes} />)
       .findClass('sd-grid')
       .getDOMNode()
       .getAttribute('class');
@@ -22,7 +23,7 @@ describe('Grid', () => {
   });
 
   it('inherits style', () => {
-    let style = {display: 'block'};
+    const style = {display: 'block'};
     render(<Grid style={style} />).findClass('sd-grid').props.style.should.deep.equal(style);
   });
 

@@ -8,7 +8,7 @@ export default class TableCell extends Component {
   };
 
   render() {
-    let classes = classNames(
+    const classes = classNames(
       'sd-table-cell',
       this.props.className,
     );

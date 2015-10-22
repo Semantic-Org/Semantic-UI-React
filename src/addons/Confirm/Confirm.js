@@ -46,7 +46,7 @@ export default class Confirm extends Component {
     // Need to reset promise with every time show() is called to clear out the promise resolve
     // from the previous button that called show method:
     this.deferred = Promise.defer();
-    this.setState({message: message});
+    this.setState({message});
 
     this.refs.modal.showModal();
     // Send back promise to be resolved
@@ -54,9 +54,9 @@ export default class Confirm extends Component {
   };
 
   render() {
-    let classes = classNames(
+    const classes = classNames(
       'sd-confirm',
-      this.props.className,
+      this.props.className
     );
     return (
       <Modal {...this.props} className={classes} ref='modal'>

@@ -10,7 +10,7 @@ export default class TableColumn extends Component {
   };
 
   render() {
-    let classes = classNames(
+    const classes = classNames(
       'sd-table-column',
       this.props.className
     );

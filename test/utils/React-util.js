@@ -126,7 +126,7 @@ class RenderedTree {
    * @return {!ReactDOMComponent} The one match.
    */
   findText(text) {
-    var all = this.scryText(text);
+    const all = this.scryText(text);
     if (all.length !== 1) {
       throw new Error(`Did not find exactly one match (found: ${all.length}) for text: "${text}"`);
     }
@@ -143,8 +143,8 @@ class RenderedTree {
  * @param {ReactElement} reactElement The element to render.
  * @returns {*} Tree rendered one level deep.
  */
-global.shallowRender = function(reactElement) {
-  var shallowRenderer = TestUtils.createRenderer();
+global.shallowRender = (reactElement) => {
+  const shallowRenderer = TestUtils.createRenderer();
   shallowRenderer.render(reactElement);
   return shallowRenderer.getRenderOutput();
 };
@@ -158,6 +158,6 @@ global.shallowRender = function(reactElement) {
  * @param {ReactElement|XML} reactElement The element to render.
  * @returns {RenderedTree} RenderedTree test utils.
  */
-global.render = function(reactElement) {
+global.render = (reactElement) => {
   return new RenderedTree(reactElement);
 };

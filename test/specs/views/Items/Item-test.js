@@ -4,7 +4,7 @@ import faker from 'faker';
 
 describe('Item', () => {
   it('renders children', () => {
-    let child = faker.hacker.phrase();
+    const child = faker.hacker.phrase();
     render(<Item>{child}</Item>).findText(child);
   });
 });

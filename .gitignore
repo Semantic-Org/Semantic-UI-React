@@ -1,5 +1,8 @@
-.DS_Store
-.idea/
+# HEADS UP!
+#
+#   'npm run clean' runs rm -rf on all lines in this file.
+#
+
 _builds/
 _projects/
 _steps/
@@ -7,5 +10,6 @@ npm-debug.log
 node_modules/
 bower_components/
 testBundle.js
+dist/
 docs/build
 docgenInfo.json

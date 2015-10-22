@@ -8,7 +8,7 @@ export default class ModalContent extends Component {
   };
 
   render() {
-    let classes = classNames(
+    const classes = classNames(
       'sd-modal-content',
       this.props.className,
       'content'

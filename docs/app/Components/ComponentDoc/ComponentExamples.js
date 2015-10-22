@@ -8,14 +8,14 @@ export default class ComponentExamples extends Component {
   };
 
   render() {
-    let examples = exampleContext.keys()
+    const examples = exampleContext.keys()
       .filter(path => path.includes(`/${this.props.name}Examples.js`))
       .map((path, i) => {
-        let Example = exampleContext(path);
+        const Example = exampleContext(path);
         return <Example key={i} />;
       });
 
-    let content = (
+    const content = (
       <Segment className='basic vertical'>
         <h2 className='ui header'>Examples</h2>
         {examples}
