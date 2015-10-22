@@ -77,15 +77,15 @@ deploy:
     - script:
         name: install global packages
         code: |
-          npm i -g babel
+          npm i -g babel gulp karma webpack
     - script:
         name: build stardust
         code: |
-          $(npm bin)/gulp build
+          gulp build
     - script:
         name: generate docs
         code: |
-          $(npm bin)/gulp docs
+          gulp docs
     - script:
         name: Deploy to github pages
         code: |
