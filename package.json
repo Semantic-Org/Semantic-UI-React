@@ -4,7 +4,8 @@
   "description": "Semantic UI components for React.",
   "main": "dist/stardust.js",
   "files": [
-    "src"
+    "src",
+    "dist"
   ],
   "scripts": {
     "clean": "while read line; do rm -rf $line; done < .gitignore",
