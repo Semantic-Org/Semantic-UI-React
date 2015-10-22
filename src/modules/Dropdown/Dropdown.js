@@ -2,7 +2,6 @@ import _ from 'lodash';
 import $ from 'jquery';
 import classNames from 'classnames';
 import React, {Component, PropTypes} from 'react';
-import {findDOMNode} from 'react-dom';
 import META from 'src/utils/Meta';
 
 export default class Dropdown extends Component {
@@ -15,7 +14,7 @@ export default class Dropdown extends Component {
   };
 
   componentDidMount() {
-    this.element = $(findDOMNode(this.refs.select));
+    this.element = $(this.refs.select);
     this.element.dropdown();
   }
 

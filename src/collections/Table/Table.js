@@ -2,9 +2,6 @@ import _ from 'lodash';
 import React, {Children, Component, PropTypes} from 'react';
 import classNames from 'classnames';
 import TableColumn from './TableColumn';
-import TableHeader from './TableHeader';
-import TableRow from './TableRow';
-import TableCell from './TableCell';
 import META from 'src/utils/Meta';
 
 export default class Table extends Component {
@@ -36,7 +33,7 @@ export default class Table extends Component {
         ? column.props.headerRenderer(this.props.data[0])
         : _.startCase(column.props.dataKey);
 
-      return <TableHeader key={column.props.dataKey}>{content}</TableHeader>;
+      return <th className='sd-table-header' key={column.props.dataKey}>{content}</th>;
     });
   }
 
@@ -50,7 +47,7 @@ export default class Table extends Component {
         content = Table.getSafeCellContents(itemContents);
       }
 
-      return <TableCell key={rowIndex + column.props.dataKey}>{content}</TableCell>;
+      return <td key={rowIndex + column.props.dataKey} className={'sd-table-cell'}>{content}</td>;
     });
   }
 
@@ -58,7 +55,7 @@ export default class Table extends Component {
     return _.map(this.props.data, (dataItem, rowIndex) => {
       const cells = this._getCells(dataItem, rowIndex);
 
-      return <TableRow key={rowIndex}>{cells}</TableRow>;
+      return <tr className='sd-table-row' key={rowIndex}>{cells}</tr>;
     });
   }
 

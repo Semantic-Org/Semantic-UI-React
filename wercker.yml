@@ -46,6 +46,10 @@ build:
 
 deploy:
   steps:
+    - script:
+        name: env vars
+        code: |
+          NODE_ENV=production
     - add-to-known_hosts:
         hostname: github.com
     - add-ssh-key:

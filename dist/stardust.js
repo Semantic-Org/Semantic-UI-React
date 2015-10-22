@@ -44,79 +44,79 @@ return webpackJsonpstardust([1],{
 
 	var _srcCollectionsFormForm2 = _interopRequireDefault(_srcCollectionsFormForm);
 
-	var _srcCollectionsGridGrid = __webpack_require__(1233);
+	var _srcCollectionsGridGrid = __webpack_require__(1232);
 
 	var _srcCollectionsGridGrid2 = _interopRequireDefault(_srcCollectionsGridGrid);
 
-	var _srcCollectionsGridRow = __webpack_require__(1234);
+	var _srcCollectionsGridRow = __webpack_require__(1233);
 
 	var _srcCollectionsGridRow2 = _interopRequireDefault(_srcCollectionsGridRow);
 
-	var _srcCollectionsMenuMenu = __webpack_require__(1235);
+	var _srcCollectionsMenuMenu = __webpack_require__(1234);
 
 	var _srcCollectionsMenuMenu2 = _interopRequireDefault(_srcCollectionsMenuMenu);
 
-	var _srcCollectionsMenuMenuItem = __webpack_require__(1236);
+	var _srcCollectionsMenuMenuItem = __webpack_require__(1235);
 
 	var _srcCollectionsMenuMenuItem2 = _interopRequireDefault(_srcCollectionsMenuMenuItem);
 
-	var _srcCollectionsMessageMessage = __webpack_require__(1237);
+	var _srcCollectionsMessageMessage = __webpack_require__(1236);
 
 	var _srcCollectionsMessageMessage2 = _interopRequireDefault(_srcCollectionsMessageMessage);
 
-	var _srcCollectionsTableTable = __webpack_require__(1238);
+	var _srcCollectionsTableTable = __webpack_require__(1237);
 
 	var _srcCollectionsTableTable2 = _interopRequireDefault(_srcCollectionsTableTable);
 
-	var _srcCollectionsTableTableColumn = __webpack_require__(1239);
+	var _srcCollectionsTableTableColumn = __webpack_require__(1238);
 
 	var _srcCollectionsTableTableColumn2 = _interopRequireDefault(_srcCollectionsTableTableColumn);
 
-	var _srcCollectionsTableTableCell = __webpack_require__(1242);
+	var _srcCollectionsTableTableCell = __webpack_require__(1241);
 
 	var _srcCollectionsTableTableCell2 = _interopRequireDefault(_srcCollectionsTableTableCell);
 
-	var _srcCollectionsTableTableHeader = __webpack_require__(1240);
+	var _srcCollectionsTableTableHeader = __webpack_require__(1239);
 
 	var _srcCollectionsTableTableHeader2 = _interopRequireDefault(_srcCollectionsTableTableHeader);
 
-	var _srcCollectionsTableTableRow = __webpack_require__(1241);
+	var _srcCollectionsTableTableRow = __webpack_require__(1240);
 
 	var _srcCollectionsTableTableRow2 = _interopRequireDefault(_srcCollectionsTableTableRow);
 
 	// Elements
 
-	var _srcElementsButtonButton = __webpack_require__(1243);
+	var _srcElementsButtonButton = __webpack_require__(1242);
 
 	var _srcElementsButtonButton2 = _interopRequireDefault(_srcElementsButtonButton);
 
-	var _srcElementsContainerContainer = __webpack_require__(1244);
+	var _srcElementsContainerContainer = __webpack_require__(1243);
 
 	var _srcElementsContainerContainer2 = _interopRequireDefault(_srcElementsContainerContainer);
 
-	var _srcElementsImageImage = __webpack_require__(1245);
+	var _srcElementsImageImage = __webpack_require__(1244);
 
 	var _srcElementsImageImage2 = _interopRequireDefault(_srcElementsImageImage);
 
-	var _srcElementsInputInput = __webpack_require__(1246);
+	var _srcElementsInputInput = __webpack_require__(1245);
 
 	var _srcElementsInputInput2 = _interopRequireDefault(_srcElementsInputInput);
 
-	var _srcElementsListList = __webpack_require__(1247);
+	var _srcElementsListList = __webpack_require__(1246);
 
 	var _srcElementsListList2 = _interopRequireDefault(_srcElementsListList);
 
-	var _srcElementsListListItem = __webpack_require__(1248);
+	var _srcElementsListListItem = __webpack_require__(1247);
 
 	var _srcElementsListListItem2 = _interopRequireDefault(_srcElementsListListItem);
 
-	var _srcElementsSegmentSegment = __webpack_require__(1249);
+	var _srcElementsSegmentSegment = __webpack_require__(1248);
 
 	var _srcElementsSegmentSegment2 = _interopRequireDefault(_srcElementsSegmentSegment);
 
 	// Modules
 
-	var _srcModulesCheckboxCheckbox = __webpack_require__(1250);
+	var _srcModulesCheckboxCheckbox = __webpack_require__(1249);
 
 	var _srcModulesCheckboxCheckbox2 = _interopRequireDefault(_srcModulesCheckboxCheckbox);
 
@@ -136,17 +136,17 @@ return webpackJsonpstardust([1],{
 
 	var _srcModulesModalModalHeader2 = _interopRequireDefault(_srcModulesModalModalHeader);
 
-	var _srcModulesDropdownDropdown = __webpack_require__(1251);
+	var _srcModulesDropdownDropdown = __webpack_require__(1250);
 
 	var _srcModulesDropdownDropdown2 = _interopRequireDefault(_srcModulesDropdownDropdown);
 
 	// Views
 
-	var _srcViewsItemsItem = __webpack_require__(1252);
+	var _srcViewsItemsItem = __webpack_require__(1251);
 
 	var _srcViewsItemsItem2 = _interopRequireDefault(_srcViewsItemsItem);
 
-	var _srcViewsItemsItems = __webpack_require__(1254);
+	var _srcViewsItemsItems = __webpack_require__(1253);
 
 	var _srcViewsItemsItems2 = _interopRequireDefault(_srcViewsItemsItems);
 
@@ -265,6 +265,7 @@ return webpackJsonpstardust([1],{
 	    this.handleAbort = function () {
 	      // Promise is resolved, confirmation is false
 	      _this.deferred.resolve(false);
+	      // TODO: as of React 0.14, refs returns the DOM node, not the component, his may not work anymore
 	      _this.refs.modal.hideModal();
 	    };
 
@@ -1040,8 +1041,6 @@ return webpackJsonpstardust([1],{
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactDom = __webpack_require__(1232);
-
 	var _classnames = __webpack_require__(4);
 
 	var _classnames2 = _interopRequireDefault(_classnames);
@@ -1061,7 +1060,7 @@ return webpackJsonpstardust([1],{
 	    _get(Object.getPrototypeOf(Form.prototype), 'constructor', this).apply(this, arguments);
 
 	    this.serializeJson = function () {
-	      var form = (0, _reactDom.findDOMNode)(_this.refs.form);
+	      var form = _this.refs.form;
 	      var json = {};
 
 	      _lodash2['default'].each(['input', 'textarea', 'select'], function (tag) {
@@ -1126,16 +1125,6 @@ return webpackJsonpstardust([1],{
 /***/ },
 
 /***/ 1232:
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	module.exports = __webpack_require__(927);
-
-
-/***/ },
-
-/***/ 1233:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1212,7 +1201,7 @@ return webpackJsonpstardust([1],{
 
 /***/ },
 
-/***/ 1234:
+/***/ 1233:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1290,7 +1279,7 @@ return webpackJsonpstardust([1],{
 
 /***/ },
 
-/***/ 1235:
+/***/ 1234:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1386,7 +1375,7 @@ return webpackJsonpstardust([1],{
 
 /***/ },
 
-/***/ 1236:
+/***/ 1235:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1486,7 +1475,7 @@ return webpackJsonpstardust([1],{
 
 /***/ },
 
-/***/ 1237:
+/***/ 1236:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1514,8 +1503,6 @@ return webpackJsonpstardust([1],{
 	var _react = __webpack_require__(925);
 
 	var _react2 = _interopRequireDefault(_react);
-
-	var _reactDom = __webpack_require__(1232);
 
 	var _classnames = __webpack_require__(4);
 
@@ -1547,7 +1534,7 @@ return webpackJsonpstardust([1],{
 	  _createClass(Message, [{
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
-	      this.messageElm = (0, _jquery2['default'])((0, _reactDom.findDOMNode)(this.refs.message));
+	      this.messageElm = (0, _jquery2['default'])(this.refs.message);
 	    }
 	  }, {
 	    key: 'render',
@@ -1614,14 +1601,14 @@ return webpackJsonpstardust([1],{
 	  }]);
 
 	  return Message;
-	})(Component);
+	})(_react.Component);
 
 	exports['default'] = Message;
 	module.exports = exports['default'];
 
 /***/ },
 
-/***/ 1238:
+/***/ 1237:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1654,19 +1641,19 @@ return webpackJsonpstardust([1],{
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
-	var _TableColumn = __webpack_require__(1239);
+	var _TableColumn = __webpack_require__(1238);
 
 	var _TableColumn2 = _interopRequireDefault(_TableColumn);
 
-	var _TableHeader = __webpack_require__(1240);
+	var _TableHeader = __webpack_require__(1239);
 
 	var _TableHeader2 = _interopRequireDefault(_TableHeader);
 
-	var _TableRow = __webpack_require__(1241);
+	var _TableRow = __webpack_require__(1240);
 
 	var _TableRow2 = _interopRequireDefault(_TableRow);
 
-	var _TableCell = __webpack_require__(1242);
+	var _TableCell = __webpack_require__(1241);
 
 	var _TableCell2 = _interopRequireDefault(_TableCell);
 
@@ -1798,7 +1785,7 @@ return webpackJsonpstardust([1],{
 
 /***/ },
 
-/***/ 1239:
+/***/ 1238:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1874,7 +1861,7 @@ return webpackJsonpstardust([1],{
 
 /***/ },
 
-/***/ 1240:
+/***/ 1239:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1952,7 +1939,7 @@ return webpackJsonpstardust([1],{
 
 /***/ },
 
-/***/ 1241:
+/***/ 1240:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2030,7 +2017,7 @@ return webpackJsonpstardust([1],{
 
 /***/ },
 
-/***/ 1242:
+/***/ 1241:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2108,7 +2095,7 @@ return webpackJsonpstardust([1],{
 
 /***/ },
 
-/***/ 1243:
+/***/ 1242:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2192,7 +2179,7 @@ return webpackJsonpstardust([1],{
 
 /***/ },
 
-/***/ 1244:
+/***/ 1243:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2273,7 +2260,7 @@ return webpackJsonpstardust([1],{
 
 /***/ },
 
-/***/ 1245:
+/***/ 1244:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2359,7 +2346,7 @@ return webpackJsonpstardust([1],{
 
 /***/ },
 
-/***/ 1246:
+/***/ 1245:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2487,7 +2474,7 @@ return webpackJsonpstardust([1],{
 
 /***/ },
 
-/***/ 1247:
+/***/ 1246:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2559,7 +2546,7 @@ return webpackJsonpstardust([1],{
 
 /***/ },
 
-/***/ 1248:
+/***/ 1247:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2674,7 +2661,7 @@ return webpackJsonpstardust([1],{
 
 /***/ },
 
-/***/ 1249:
+/***/ 1248:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2759,7 +2746,7 @@ return webpackJsonpstardust([1],{
 
 /***/ },
 
-/***/ 1250:
+/***/ 1249:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2792,8 +2779,6 @@ return webpackJsonpstardust([1],{
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactDom = __webpack_require__(1232);
-
 	var _classnames = __webpack_require__(4);
 
 	var _classnames2 = _interopRequireDefault(_classnames);
@@ -2814,8 +2799,8 @@ return webpackJsonpstardust([1],{
 	  _createClass(Checkbox, [{
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
-	      this.container = (0, _jquery2['default'])((0, _reactDom.findDOMNode)(this.refs.container));
-	      this.input = (0, _jquery2['default'])((0, _reactDom.findDOMNode)(this.refs.input));
+	      this.container = (0, _jquery2['default'])(this.refs.container);
+	      this.input = (0, _jquery2['default'])(this.refs.input);
 
 	      this.container.checkbox({
 	        onChange: this.props.onChange,
@@ -2905,7 +2890,7 @@ return webpackJsonpstardust([1],{
 
 /***/ },
 
-/***/ 1251:
+/***/ 1250:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2942,8 +2927,6 @@ return webpackJsonpstardust([1],{
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactDom = __webpack_require__(1232);
-
 	var _srcUtilsMeta = __webpack_require__(1222);
 
 	var _srcUtilsMeta2 = _interopRequireDefault(_srcUtilsMeta);
@@ -2960,7 +2943,7 @@ return webpackJsonpstardust([1],{
 	  _createClass(Dropdown, [{
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
-	      this.element = (0, _jquery2['default'])((0, _reactDom.findDOMNode)(this.refs.select));
+	      this.element = (0, _jquery2['default'])(this.refs.select);
 	      this.element.dropdown();
 	    }
 	  }, {
@@ -3022,7 +3005,7 @@ return webpackJsonpstardust([1],{
 
 /***/ },
 
-/***/ 1252:
+/***/ 1251:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3055,7 +3038,7 @@ return webpackJsonpstardust([1],{
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
-	var _utilsCustomPropTypes = __webpack_require__(1253);
+	var _utilsCustomPropTypes = __webpack_require__(1252);
 
 	var _utilsCustomPropTypes2 = _interopRequireDefault(_utilsCustomPropTypes);
 
@@ -3161,7 +3144,7 @@ return webpackJsonpstardust([1],{
 
 /***/ },
 
-/***/ 1253:
+/***/ 1252:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3193,7 +3176,7 @@ return webpackJsonpstardust([1],{
 
 /***/ },
 
-/***/ 1254:
+/***/ 1253:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';

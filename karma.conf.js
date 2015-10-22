@@ -2,6 +2,7 @@ import paths from './paths';
 import statConfig from './webpack-stats';
 import friendlyFormatter from 'eslint-friendly-formatter';
 import exitPlugin from './webpack-exit-plugin';
+import ENV from './ENV';
 
 /**
  * This config is for running tests on the command line and will fail on errors.
@@ -10,11 +11,9 @@ import exitPlugin from './webpack-exit-plugin';
  */
 export default config => {
   config.set({
-    browsers: [
-      'PhantomJS'
-    ],
-    singleRun: true,
-    reporters: ['dots'],
+    browsers: ['PhantomJS'],
+    singleRun: !ENV.isDevelopment(),
+    reporters: ['mocha'],
     files: [
       './node_modules/phantomjs-polyfill/bind-polyfill.js',
       './test/tests.bundle.js'
@@ -66,9 +65,9 @@ export default config => {
           stardust: `${paths.src}/index.js`,
         },
       },
-      plugins: [
-        exitPlugin
-      ],
+      plugins: ENV.isProduction()
+        ? [exitPlugin]
+        : [],
     },
     webpackServer: {
       progress: false,
