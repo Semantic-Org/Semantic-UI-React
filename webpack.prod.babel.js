@@ -15,7 +15,6 @@ export default {
       'faker',
       'jquery',
       'lodash',
-      'radium',
       'react',
       'react-router',
       'react-highlight',
