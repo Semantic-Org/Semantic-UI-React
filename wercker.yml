@@ -81,11 +81,11 @@ deploy:
     - script:
         name: build stardust
         code: |
-          gulp build
+          $(npm bin)/gulp build
     - script:
         name: generate docs
         code: |
-          gulp docs
+          $(npm bin)/gulp docs
     - script:
         name: Deploy to github pages
         code: |
