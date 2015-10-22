@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import classNames from 'classnames';
+import META from 'src/utils/Meta';
 
 export default class Menu extends Component {
   static propTypes = {
@@ -12,6 +13,12 @@ export default class Menu extends Component {
 
   handleClickItem = (activeItem) => {
     this.setState({activeItem});
+  };
+
+  static _meta = {
+    library: META.library.semanticUI,
+    name: 'Menu',
+    type: META.type.collection,
   };
 
   render() {

@@ -5,6 +5,7 @@ import TableColumn from './TableColumn';
 import TableHeader from './TableHeader';
 import TableRow from './TableRow';
 import TableCell from './TableCell';
+import META from 'src/utils/Meta';
 
 export default class Table extends Component {
   static propTypes = {
@@ -60,6 +61,12 @@ export default class Table extends Component {
       return <TableRow key={rowIndex}>{cells}</TableRow>;
     });
   }
+
+  static _meta = {
+    library: META.library.semanticUI,
+    name: 'Table',
+    type: META.type.collection,
+  };
 
   render() {
     const classes = classNames(

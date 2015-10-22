@@ -1,10 +1,17 @@
 import classNames from 'classnames';
 import React, {Component, PropTypes} from 'react';
+import META from 'src/utils/Meta';
 
 export default class Grid extends Component {
   static propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
+  };
+
+  static _meta = {
+    library: META.library.semanticUI,
+    name: 'Grid',
+    type: META.type.collection,
   };
 
   render() {

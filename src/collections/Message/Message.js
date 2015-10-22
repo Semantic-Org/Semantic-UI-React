@@ -2,6 +2,7 @@ import _ from 'lodash';
 import React, {Component, findDOMNode, PropTypes} from 'react';
 import classNames from 'classnames';
 import $ from 'jquery';
+import META from 'src/utils/Meta';
 
 export default class Message extends Component {
   static propTypes = {
@@ -18,6 +19,12 @@ export default class Message extends Component {
 
   handleDismiss = e => {
     this.messageElm.transition('fade');
+  };
+
+  static _meta = {
+    library: META.library.semanticUI,
+    name: 'Message',
+    type: META.type.collection,
   };
 
   render() {

@@ -2,6 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import Promise from 'bluebird';
 import classNames from 'classnames';
 
+import META from 'src/utils/Meta.js';
 import Modal from 'src/modules/Modal/Modal';
 import ModalContent from 'src/modules/Modal/ModalContent';
 import ModalFooter from 'src/modules/Modal/ModalFooter';
@@ -51,6 +52,12 @@ export default class Confirm extends Component {
     this.refs.modal.showModal();
     // Send back promise to be resolved
     return this.deferred.promise;
+  };
+
+  static _meta = {
+    library: META.library.stardust,
+    name: 'Confirm',
+    type: META.type.addon,
   };
 
   render() {

@@ -2,6 +2,7 @@ import _ from 'lodash';
 import React, {Component, PropTypes} from 'react';
 import classNames from 'classnames';
 import customPropTypes from '../../utils/customPropTypes';
+import META from 'src/utils/Meta';
 
 export default class Item extends Component {
   static propTypes = {
@@ -17,6 +18,12 @@ export default class Item extends Component {
 
   static defaultProps = {
     contentClass: 'middle aligned',
+  };
+
+  static _meta = {
+    library: META.library.semanticUI,
+    name: 'Item',
+    type: META.type.view,
   };
 
   render() {

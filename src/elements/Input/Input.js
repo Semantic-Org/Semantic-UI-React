@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import classNames from 'classnames';
 import React, {Component, PropTypes, Children} from 'react';
+import META from 'src/utils/Meta';
 
 export default class Input extends Component {
   static propTypes = {
@@ -14,6 +15,12 @@ export default class Input extends Component {
 
   static defaultProps = {
     type: 'text',
+  };
+
+  static _meta = {
+    library: META.library.semanticUI,
+    name: 'Input',
+    type: META.type.element,
   };
 
   render() {
