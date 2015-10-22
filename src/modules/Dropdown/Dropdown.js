@@ -1,31 +1,45 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component, PropTypes, findDOMNode} from 'react';
 import classNames from 'classnames';
+import $ from 'jquery';
 
 export default class Dropdown extends Component {
   static propTypes = {
     className: PropTypes.string,
-    label: PropTypes.string,
-    options: PropTypes.array,
-    value: PropTypes.string,
+    options: PropTypes.arrayOf(PropTypes.shape({
+      value: PropTypes.string,
+      text: PropTypes.string,
+    })),
   };
 
-  static defaultProps = {
-    options: [],
-  };
+  componentDidMount() {
+    this.element = $(findDOMNode(this.refs.select));
+    this.element.dropdown();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    this.element.dropdown('refresh');
+  }
+
+  componentWillUnmount() {
+    this.element.off();
+  }
 
   render() {
-    let options = this.props.options.map((opt, i) => {
+    let options = _.map(this.props.options, (opt, i) => {
       return <option key={i} value={opt.value}>{opt.text}</option>;
     });
-    let value = _.isEmpty(this.props.value) ? '' : this.props.value;
     let classes = classNames(
       'sd-dropdown',
       'ui',
       this.props.className,
       'dropdown'
     );
+
+    let props = _.clone(this.props);
+    delete props.options;
+
     return (
-      <select {...this.props} className={classes} value={value}>
+      <select {...props} className={classes} ref='select'>
         {options}
       </select>
     );

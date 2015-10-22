@@ -14,7 +14,7 @@ export default class Sidebar extends Component {
 
     return (
       <Menu className='small inverted secondary vertical pointing fluid'>
-        <MenuItem name=''>
+        <MenuItem>
           <Input
             className='small transparent inverted'
             placeholder='Search'

@@ -9,12 +9,12 @@ export default class MessageVariationsExamples extends Component {
         <ComponentExample
           title='Info'
           description='A message may be formatted to display information.'
-          examplePath='collections/Message/Variations/Info'
+          examplePath='collections/Message/Variations/MessageInfoExample'
         />
         <ComponentExample
           title='Warning'
           description='A message may be formatted to display warning message.'
-          examplePath='collections/Message/Variations/Warning'
+          examplePath='collections/Message/Variations/MessageWarningExample'
         />
       </ExampleSection>
     );

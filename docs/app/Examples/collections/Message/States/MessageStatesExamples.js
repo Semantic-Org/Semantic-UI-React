@@ -9,7 +9,7 @@ export default class MessageStatesExamples extends Component {
         <ComponentExample
           title='Visible'
           description='A message can be set to visible to force itself to be shown.'
-          examplePath='collections/Message/States/Visible'
+          examplePath='collections/Message/States/MessageVisibleExample'
         />
       </ExampleSection>
     );
