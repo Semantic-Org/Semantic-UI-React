@@ -71,9 +71,13 @@ deploy:
         code: |
           npm i -g babel
     - script:
-        name: build
+        name: build stardust
         code: |
           $(npm bin)/gulp build
+    - script:
+        name: generate docs
+        code: |
+          $(npm bin)/gulp docs
     - script:
         name: Deploy to github pages
         code: |
