@@ -13,7 +13,7 @@ export default config => {
   config.set({
     browsers: ['PhantomJS'],
     singleRun: !ENV.isDevelopment(),
-    reporters: ['mocha'],
+    reporters: [ENV.isDevelopment() ? 'mocha' : 'dots'],
     files: [
       './node_modules/phantomjs-polyfill/bind-polyfill.js',
       './test/tests.bundle.js'
