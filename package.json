@@ -27,6 +27,10 @@
     "url": "https://github.com/TechnologyAdvice/stardust/issues"
   },
   "homepage": "https://github.com/TechnologyAdvice/stardust#readme",
+  "engines": {
+    "node": "0.12.7",
+    "npm": "3.3.5"
+  },
   "dependencies": {
     "bluebird": "^2.10.2",
     "classnames": "^2.1.5",
