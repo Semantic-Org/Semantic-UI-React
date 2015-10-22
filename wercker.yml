@@ -31,7 +31,7 @@ build:
     - script:
         name: install global packages
         code: |
-          npm i -g babel
+          npm i -g babel gulp karma webpack
     # A step that executes `npm test` command
     - npm-test
 
