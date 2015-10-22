@@ -19,7 +19,6 @@ export default {
       'jquery',
       'lodash',
       'react',
-      'react-router',
       'react-highlight',
     ]
   },
