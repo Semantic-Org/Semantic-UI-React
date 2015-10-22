@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import React, {Component, PropTypes} from 'react';
+import {findDOMNode} from 'react-dom';
 import classNames from 'classnames';
 import META from 'src/utils/Meta';
 
@@ -10,7 +11,7 @@ export default class Form extends Component {
   };
 
   serializeJson = () => {
-    const form = React.findDOMNode(this.refs.form);
+    const form = findDOMNode(this.refs.form);
     const json = {};
 
     _.each(['input', 'textarea', 'select'], (tag) => {

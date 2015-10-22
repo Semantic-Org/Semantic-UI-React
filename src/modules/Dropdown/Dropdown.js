@@ -1,7 +1,8 @@
 import _ from 'lodash';
 import $ from 'jquery';
 import classNames from 'classnames';
-import React, {Component, PropTypes, findDOMNode} from 'react';
+import React, {Component, PropTypes} from 'react';
+import {findDOMNode} from 'react-dom';
 import META from 'src/utils/Meta';
 
 export default class Dropdown extends Component {

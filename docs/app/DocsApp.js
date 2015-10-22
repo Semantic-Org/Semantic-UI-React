@@ -1,4 +1,5 @@
-import React, {Component, render} from 'react';
+import React, {Component} from 'react';
+import {render} from 'react-dom';
 import stardust, {Grid, Column} from 'stardust';
 
 import ComponentDoc from 'docs/app/Components/ComponentDoc/ComponentDoc';
@@ -30,4 +31,4 @@ class DocsApp extends Component {
   }
 }
 
-render(<DocsApp />, document.body);
+render(<DocsApp />, document.getElementById('root'));

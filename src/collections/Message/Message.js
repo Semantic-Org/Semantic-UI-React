@@ -1,5 +1,6 @@
 import _ from 'lodash';
-import React, {Component, findDOMNode, PropTypes} from 'react';
+import React, {Component, PropTypes} from 'react';
+import {findDOMNode} from 'react-dom';
 import classNames from 'classnames';
 import $ from 'jquery';
 import META from 'src/utils/Meta';
