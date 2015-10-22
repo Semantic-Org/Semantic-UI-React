@@ -10,7 +10,7 @@ export default class Form extends Component {
   };
 
   serializeJson = () => {
-    const form = React.findDOMNode(this.refs.form);
+    const form = this.refs.form;
     const json = {};
 
     _.each(['input', 'textarea', 'select'], (tag) => {

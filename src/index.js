@@ -13,9 +13,6 @@ import MenuItem from 'src/collections/Menu/MenuItem';
 import Message from 'src/collections/Message/Message';
 import Table from 'src/collections/Table/Table';
 import TableColumn from 'src/collections/Table/TableColumn';
-import TableCell from 'src/collections/Table/TableCell';
-import TableHeader from 'src/collections/Table/TableHeader';
-import TableRow from 'src/collections/Table/TableRow';
 
 // Elements
 import Button from 'src/elements/Button/Button';
@@ -54,9 +51,6 @@ export default {
   Message,
   Table,
   TableColumn,
-  TableCell,
-  TableHeader,
-  TableRow,
 
   // Elements
   Button,

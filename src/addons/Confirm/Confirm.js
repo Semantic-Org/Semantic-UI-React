@@ -34,6 +34,7 @@ export default class Confirm extends Component {
   handleAbort = () => {
     // Promise is resolved, confirmation is false
     this.deferred.resolve(false);
+    // TODO: as of React 0.14, refs returns the DOM node, not the component, his may not work anymore
     this.refs.modal.hideModal();
   };
 

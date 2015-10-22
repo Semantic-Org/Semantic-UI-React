@@ -10,8 +10,8 @@ import paths from '../../paths';
 gulp.task('watch', 'watch and build docs', cb => {
   gulp.watch([paths.src + '/**/*.js'], [
     'build',                // rebuild the library
-    'generate-doc-json',    // rebuild doc info
+    'generate-docs-json',    // rebuild doc info
   ]);
-  gulp.watch([paths.docsRoot + '/**/*.html'], ['build-doc-html']);
+  gulp.watch([paths.docsRoot + '/**/*.html'], ['build-docs-html']);
   cb();
 });

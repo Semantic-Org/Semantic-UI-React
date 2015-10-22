@@ -1,7 +1,6 @@
 import _ from 'lodash';
-import React from 'react/addons';
-const TestUtils = React.addons.TestUtils;
-
+import {Children} from 'react';
+import TestUtils from 'react-addons-test-utils';
 //
 // RenderTree
 //
@@ -110,7 +109,7 @@ class RenderedTree {
       }
 
       let isMatch = false;
-      React.Children.forEach(element.props.children, (child) => {
+      Children.forEach(element.props.children, (child) => {
         if (child === text) {
           isMatch = true;
         }

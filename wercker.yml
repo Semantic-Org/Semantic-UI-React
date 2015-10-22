@@ -22,6 +22,10 @@ build:
   # Read more about steps on our dev center:
   # http://devcenter.wercker.com/docs/steps/index.html
   steps:
+    - script:
+        name: env vars
+        code: |
+          export NODE_ENV=test
     # A step that executes `npm install` command
     - npm-install
     - script:
@@ -46,6 +50,10 @@ build:
 
 deploy:
   steps:
+    - script:
+        name: env vars
+        code: |
+          export NODE_ENV=production
     - add-to-known_hosts:
         hostname: github.com
     - add-ssh-key:
@@ -73,11 +81,11 @@ deploy:
     - script:
         name: build stardust
         code: |
-          $(npm bin)/gulp build
+          gulp build
     - script:
         name: generate docs
         code: |
-          $(npm bin)/gulp docs
+          gulp docs
     - script:
         name: Deploy to github pages
         code: |

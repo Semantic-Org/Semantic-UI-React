@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import React, {Component, findDOMNode, PropTypes} from 'react';
+import React, {Component, PropTypes} from 'react';
 import classNames from 'classnames';
 import $ from 'jquery';
 import META from 'src/utils/Meta';
@@ -14,7 +14,7 @@ export default class Message extends Component {
   };
 
   componentDidMount() {
-    this.messageElm = $(findDOMNode(this.refs.message));
+    this.messageElm = $(this.refs.message);
   }
 
   handleDismiss = e => {

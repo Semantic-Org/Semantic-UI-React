@@ -1,6 +1,6 @@
 import faker from 'faker';
 import React from 'react';
-const Simulate = React.addons.TestUtils.Simulate;
+import {Simulate} from 'react-addons-test-utils';
 import {Message} from 'stardust';
 
 describe('Message', () => {

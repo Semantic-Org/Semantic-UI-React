@@ -1,4 +1,5 @@
 import React from 'react';
+import {Simulate} from 'react-addons-test-utils';
 import {Confirm} from 'stardust';
 
 describe('Confirm', () => {
@@ -19,7 +20,7 @@ describe('Confirm', () => {
       .then((isConfirmed) => {
         isConfirmed.should.be.true;
       });
-    React.addons.TestUtils.Simulate.click(confirmButtonNode );
+    Simulate.click(confirmButtonNode );
   });
   it('should return false on abort', () => {
     const confirm = render(<Confirm />);
@@ -29,6 +30,6 @@ describe('Confirm', () => {
       .then((isConfirmed) => {
         isConfirmed.should.be.false;
       });
-    React.addons.TestUtils.Simulate.click(abortButtonNode );
+    Simulate.click(abortButtonNode );
   });
 });

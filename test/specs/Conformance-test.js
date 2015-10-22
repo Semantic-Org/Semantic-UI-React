@@ -1,10 +1,9 @@
 import _ from 'lodash';
 import faker from 'faker';
-import React from 'react/addons';
+import React, {Component} from 'react';
+import {isDOMComponent} from 'react-addons-test-utils';
 import stardust from 'stardust';
 import META from 'src/utils/Meta';
-
-const TestUtils = React.addons.TestUtils;
 
 const getSDClassName = componentName => `sd-${_.kebabCase(componentName)}`;
 
@@ -21,8 +20,8 @@ describe('Conformance', () => {
     const firstChild = _.first(render(<SDComponent />).children());
 
     describe(name, () => {
-      it('extends React.Component', () => {
-        expect(SDComponent.prototype).to.eql(React.Component.prototype);
+      it('extends Component', () => {
+        expect(SDComponent.prototype).to.eql(Component.prototype);
       });
 
       it(`constructor name is "${name}" (matches component name)`, () => {
@@ -118,7 +117,7 @@ describe('Conformance', () => {
           //   It is not practical to assume the position of the "sd-*" for composite components.
           //   There may be intermediate classes such as "ui" and other composite component classes.
 
-          if (TestUtils.isDOMComponent(firstChild)) {
+          if (isDOMComponent(firstChild)) {
             it(`has "${sdClass}" as the first class`, () => {
               render(<SDComponent />)
                 .findClass(sdClass)

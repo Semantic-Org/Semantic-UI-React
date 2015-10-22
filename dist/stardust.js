@@ -265,6 +265,7 @@ return webpackJsonpstardust([1],{
 	    this.handleAbort = function () {
 	      // Promise is resolved, confirmation is false
 	      _this.deferred.resolve(false);
+	      // TODO: as of React 0.14, refs returns the DOM node, not the component, his may not work anymore
 	      _this.refs.modal.hideModal();
 	    };
 
@@ -1059,7 +1060,7 @@ return webpackJsonpstardust([1],{
 	    _get(Object.getPrototypeOf(Form.prototype), 'constructor', this).apply(this, arguments);
 
 	    this.serializeJson = function () {
-	      var form = _react2['default'].findDOMNode(_this.refs.form);
+	      var form = _this.refs.form;
 	      var json = {};
 
 	      _lodash2['default'].each(['input', 'textarea', 'select'], function (tag) {
@@ -1533,7 +1534,7 @@ return webpackJsonpstardust([1],{
 	  _createClass(Message, [{
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
-	      this.messageElm = (0, _jquery2['default'])((0, _react.findDOMNode)(this.refs.message));
+	      this.messageElm = (0, _jquery2['default'])(this.refs.message);
 	    }
 	  }, {
 	    key: 'render',
@@ -2798,8 +2799,8 @@ return webpackJsonpstardust([1],{
 	  _createClass(Checkbox, [{
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
-	      this.container = (0, _jquery2['default'])(_react2['default'].findDOMNode(this.refs.container));
-	      this.input = (0, _jquery2['default'])(_react2['default'].findDOMNode(this.refs.input));
+	      this.container = (0, _jquery2['default'])(this.refs.container);
+	      this.input = (0, _jquery2['default'])(this.refs.input);
 
 	      this.container.checkbox({
 	        onChange: this.props.onChange,
@@ -2942,7 +2943,7 @@ return webpackJsonpstardust([1],{
 	  _createClass(Dropdown, [{
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
-	      this.element = (0, _jquery2['default'])((0, _react.findDOMNode)(this.refs.select));
+	      this.element = (0, _jquery2['default'])(this.refs.select);
 	      this.element.dropdown();
 	    }
 	  }, {

@@ -13,7 +13,7 @@ class Modal extends Component {
     ref: 'modal',
   };
 
-  state = {isShown: false}
+  state = {isShown: false};
 
   showModal = () => {
     this.setState({isShown: true});

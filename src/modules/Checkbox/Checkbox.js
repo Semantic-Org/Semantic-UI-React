@@ -29,8 +29,8 @@ export default class Checkbox extends Component {
   };
 
   componentDidMount() {
-    this.container = $(React.findDOMNode(this.refs.container));
-    this.input = $(React.findDOMNode(this.refs.input));
+    this.container = $(this.refs.container);
+    this.input = $(this.refs.input);
 
     this.container.checkbox({
       onChange: this.props.onChange,

@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import React from 'react';
+import {Simulate} from 'react-addons-test-utils';
 import {Menu, MenuItem} from 'stardust';
 
 describe('Menu', () => {
@@ -59,7 +60,7 @@ describe('MenuItem', () => {
     const firstItem = renderedMenuItems.findText('item1');
     const secondItem = renderedMenuItems.findText('item2');
     const secondNode = secondItem.getDOMNode();
-    React.addons.TestUtils.Simulate.click(secondNode);
+    Simulate.click(secondNode);
     firstItem.props.className.should.not.contain('active');
     secondItem.props.className.should.contain('active');
   });
