@@ -22,6 +22,10 @@ build:
   # Read more about steps on our dev center:
   # http://devcenter.wercker.com/docs/steps/index.html
   steps:
+    - script:
+        name: env vars
+        code: |
+          export NODE_ENV=production
     # A step that executes `npm install` command
     - npm-install
     - script:
@@ -49,7 +53,7 @@ deploy:
     - script:
         name: env vars
         code: |
-          NODE_ENV=production
+          export NODE_ENV=production
     - add-to-known_hosts:
         hostname: github.com
     - add-ssh-key:

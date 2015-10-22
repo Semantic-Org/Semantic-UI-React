@@ -3,7 +3,7 @@ import {Simulate} from 'react-addons-test-utils';
 import sandbox from 'test/utils/Sandbox-util';
 import {Button} from 'stardust';
 
-describe.only('Button', () => {
+describe('Button', () => {
   it('has type button by default', () => {
     render(<Button />)
       .findTag('button')
