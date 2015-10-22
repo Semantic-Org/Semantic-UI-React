@@ -1,15 +1,15 @@
 import React, {Component} from 'react';
-import Types from './Types/Types';
-import States from './States/States';
-import Variations from './Variations/Variations';
+import InputTypesExamples from './Types/InputTypesExamples';
+import InputStatesExamples from './States/InputStatesExamples';
+import InputVariationsExamples from './Variations/InputVariationsExamples';
 
 export default class InputExamples extends Component {
   render() {
     return (
       <div>
-        <Types />
-        <States />
-        <Variations />
+        <InputTypesExamples />
+        <InputStatesExamples />
+        <InputVariationsExamples />
       </div>
     );
   }

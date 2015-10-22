@@ -1,15 +1,15 @@
 import React, {Component} from 'react';
-import Types from './Types/Types';
-import States from './States/States';
-import Variations from './Variations/Variations';
+import ButtonTypesExamples from './Types/ButtonTypesExamples';
+import ButtonStatesExamples from './States/ButtonStatesExamples';
+import ButtonsVariationsExamples from './Variations/ButtonsVariationsExamples';
 
 export default class ButtonExamples extends Component {
   render() {
     return (
       <div>
-        <Types />
-        <States />
-        <Variations />
+        <ButtonTypesExamples />
+        <ButtonStatesExamples />
+        <ButtonsVariationsExamples />
       </div>
     );
   }

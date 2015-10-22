@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Button, Dropdown, Input} from 'stardust';
 
-export default class InputAction extends Component {
+export default class InputActionExample extends Component {
   render() {
     let options = [
       {value: 'articles', text: 'Articles'},

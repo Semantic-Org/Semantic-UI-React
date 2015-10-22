@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Segment, Input} from 'stardust';
 
-export default class Inverted extends Component {
+export default class InputInvertedExample extends Component {
   render() {
     return (
       <Segment className='inverted'>

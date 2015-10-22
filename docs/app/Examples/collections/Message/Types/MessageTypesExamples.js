@@ -9,12 +9,12 @@ export default class MessageTypesExamples extends Component {
         <ComponentExample
           title='Dismissable Block'
           description='A message that the can choose to hide.'
-          examplePath='collections/Message/Types/DismissableBlock'
+          examplePath='collections/Message/Types/MessageDismissableBlockExample'
         />
         <ComponentExample
           title='Icon Message'
           description='A message can contain an icon.'
-          examplePath='collections/Message/Types/Icon'
+          examplePath='collections/Message/Types/MessageIconExample'
         />
       </ExampleSection>
     );
