@@ -8,7 +8,6 @@ import webpack from 'webpack';
 const g = loadPlugins();
 const gulp = g.help(defaultGulp, helpConfig);
 
-import ENV from '../../ENV';
 import paths from '../../paths';
 import statsConfig from '../../webpack-stats';
 import config from '../../webpack.prod.babel';
