@@ -25,7 +25,7 @@ build:
     - script:
         name: env vars
         code: |
-          export NODE_ENV=production
+          export NODE_ENV=test
     # A step that executes `npm install` command
     - npm-install
     - script:
@@ -53,7 +53,7 @@ deploy:
     - script:
         name: env vars
         code: |
-          export NODE_ENV=production
+          export NODE_ENV=test
     - add-to-known_hosts:
         hostname: github.com
     - add-ssh-key:
