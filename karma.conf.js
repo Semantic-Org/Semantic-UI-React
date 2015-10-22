@@ -65,7 +65,7 @@ export default config => {
           stardust: `${paths.src}/index.js`,
         },
       },
-      plugins: ENV.isProduction()
+      plugins: !ENV.isDevelopment()
         ? [exitPlugin]
         : [],
     },

@@ -63,6 +63,7 @@
     "imports-loader": "^0.6.4",
     "json-loader": "^0.5.3",
     "karma": "^0.13.13",
+    "karma-cli": "^0.1.1",
     "karma-mocha": "^0.2.0",
     "karma-mocha-reporter": "^1.1.1",
     "karma-phantomjs-launcher": "^0.2.1",
