@@ -5,4 +5,3 @@ bower_components/*
 node_modules/*
 docs/build/*
 testBundle.js
-dist/*

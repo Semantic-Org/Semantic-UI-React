@@ -10,6 +10,5 @@ npm-debug.log
 node_modules/
 bower_components/
 testBundle.js
-dist/
 docs/build
 docgenInfo.json

@@ -3,7 +3,6 @@ const PROJECT_ROOT = path.resolve(__dirname);
 
 const PATHS = {
   root: PROJECT_ROOT + '/',
-  dist: PROJECT_ROOT + '/dist',
   docsRoot: PROJECT_ROOT + '/docs',
   docsApp: PROJECT_ROOT + '/docs/app',
   docsBuild: PROJECT_ROOT + '/docs/build',
