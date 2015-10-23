@@ -127,15 +127,20 @@ describe('Conformance', () => {
             });
           }
 
-          // TODO: this is only true for "module" type components
-          // Update this test once we get component meta data
-          it('does not spread the settings prop', () => {
-            const props = {settings: {}};
-            render(<SDComponent {...props} />)
-              .children()
-              .some(element => _.has(element.props, 'settings'))
-              .should.equal(false);
-          });
+          if (META.isModule(SDComponent) && !META.isChild(SDComponent)) {
+            describe('settings', () => {
+              it('is defined in propTypes', () => {
+                SDComponent.propTypes.settings.should.be.a('function');
+              });
+              it('is not spread', () => {
+                const props = {settings: {}};
+                render(<SDComponent {...props} />)
+                  .children()
+                  .some(element => _.has(element.props, 'settings'))
+                  .should.equal(false);
+              });
+            });
+          }
         });
       });
     });

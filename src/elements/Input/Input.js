@@ -43,7 +43,6 @@ export default class Input extends Component {
     const actionChildren = [];
 
     Children.forEach(this.props.children, child => {
-      // TODO: use child._meta here, once merged, to determine component type
       const isButton = child.type.name === 'Button';
       const isDropdown = child.type.name === 'Dropdown';
       // TODO: use child.type.name === 'Label' once Label component is merged.

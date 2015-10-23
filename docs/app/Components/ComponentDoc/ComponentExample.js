@@ -42,12 +42,12 @@ export default class ComponentExample extends Component {
       </Column>
     );
 
-    let linkIconStyle = {
+    const linkIconStyle = {
       display: this.state.showLink ? 'inline-block' : 'none',
       marginLeft: '0.25em',
     };
 
-    let children = <Column>{this.props.children}</Column>;
+    const children = <Column>{this.props.children}</Column>;
 
     return (
       <Grid className='one column' style={{marginBottom: '4em'}} id={this.anchor}>

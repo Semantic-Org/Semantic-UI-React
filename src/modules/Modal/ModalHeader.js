@@ -6,6 +6,7 @@ export default class ModalHeader extends Component {
   static propTypes = {
     children: PropTypes.any,
     className: PropTypes.string,
+    settings: PropTypes.object,
   };
 
   static _meta = {

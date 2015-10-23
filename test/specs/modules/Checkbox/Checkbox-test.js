@@ -4,8 +4,8 @@ import {Checkbox} from 'stardust';
 describe('Checkbox', () => {
   it('can be checked by default', () => {
     render(<Checkbox defaultChecked name='firstName' />)
-      .first()
-      .refs.checkbox.checked.should.equal(true);
+      .findTag('input')
+      .checked.should.equal(true);
   });
   it('should have a semantic ui plugin to handle the check action', () => {
     render(<Checkbox name='firstName' label='Include First' />)

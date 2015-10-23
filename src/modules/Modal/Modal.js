@@ -1,12 +1,14 @@
 import React, {Component, PropTypes} from 'react';
 import classNames from 'classnames';
 import META from 'src/utils/Meta';
+import getUnhandledProps from 'src/utils/getUnhandledProps';
 
-class Modal extends Component {
+export default class Modal extends Component {
   static propTypes = {
     children: PropTypes.any,
     className: PropTypes.string,
     ref: PropTypes.string,
+    settings: PropTypes.object,
   };
 
   static defaultProps = {
@@ -38,12 +40,12 @@ class Modal extends Component {
       {'transition visible active': this.state.isShown},
     );
 
+    const props = getUnhandledProps(this);
+
     return (
-      <div {...this.props} className={classes}>
+      <div {...props} className={classes}>
         {this.props.children}
       </div>
     );
   }
 }
-
-export default Modal;
