@@ -2,7 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import classNames from 'classnames';
 import META from 'src/utils/Meta';
 
-class Modal extends Component {
+export default class Modal extends Component {
   static propTypes = {
     children: PropTypes.any,
     className: PropTypes.string,
@@ -46,5 +46,3 @@ class Modal extends Component {
     );
   }
 }
-
-export default Modal;

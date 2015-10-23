@@ -1,15 +1,16 @@
 import React from 'react';
 import {Dropdown} from 'stardust';
 
-describe('Dropdown', () => {
+describe.only('Dropdown', () => {
   it('has a default value', () => {
     const options = [
       {value: '', text: 'Please select a role'},
       {value: 'admin', text: 'Admin'},
       {value: 'editor', text: 'Editor'}
     ];
-    const renderedDropdown = render(<Dropdown label='Roles' value='admin' options={options} />).findTag('select');
-    renderedDropdown.props.value.should.equal('admin');
+    render(<Dropdown label='Roles' defaultValue='admin' options={options} />)
+      .findTag('select')
+      .value.should.equal('admin');
   });
   it('has assigned amount of options', () => {
     const options = [
@@ -20,8 +21,11 @@ describe('Dropdown', () => {
       {value: 'purple', text: 'purple'},
       {value: 'blue', text: 'blue'}
     ];
-    const renderedDropdown = render(<Dropdown options={options} />);
-    renderedDropdown.findTag('select').props.children.length.should.equal(6);
-    renderedDropdown.scryTag('option')[2].props.value.should.equal('green');
+    render(<Dropdown options={options} />)
+      .scryTag('option')
+      .map((opt, i) => {
+        opt.text.should.equal(options[i].text);
+        opt.value.should.equal(options[i].value);
+      });
   });
 });
