@@ -9,7 +9,7 @@ class TestClass {
   }
 }
 
-describe.only('getUnhandledProps', () => {
+describe('getUnhandledProps', () => {
   it('removes props defined in defaultProps', () => {
     TestClass.defaultProps = {imHandled: 'thanks'};
     new TestClass()
