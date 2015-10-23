@@ -80,10 +80,6 @@ deploy:
           npm i --only=dev
           npm i -g babel
     - script:
-        name: build stardust
-        code: |
-          $(npm bin)/gulp build
-    - script:
         name: generate docs
         code: |
           $(npm bin)/gulp docs
@@ -91,7 +87,7 @@ deploy:
         name: Deploy to github pages
         code: |
           git add .
-          git add -f docs/build dist
+          git add -f docs/build
           git commit -n -m "wercker deploy commit by $WERCKER_STARTED_BY"
           git push -f $GIT_REMOTE $WERCKER_GIT_BRANCH:gh-pages
 

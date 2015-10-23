@@ -2,10 +2,9 @@
   "name": "stardust",
   "version": "0.6.3",
   "description": "Semantic UI components for React.",
-  "main": "dist/stardust.js",
+  "main": "src/index.js",
   "files": [
-    "src",
-    "dist"
+    "src"
   ],
   "scripts": {
     "clean": "while read line; do rm -rf $line; done < .gitignore",

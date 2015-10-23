@@ -8,7 +8,6 @@ const gulp = g.help(defaultGulp, helpConfig);
 
 gulp.task('default', cb => {
   runSequence(
-    'build',
     'docs',
     'serve',
     'watch',
