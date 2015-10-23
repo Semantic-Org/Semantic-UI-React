@@ -1,6 +1,3 @@
 {
   "extends": "ta-webapp",
-  "env": {
-    "node": true
-  }
 }

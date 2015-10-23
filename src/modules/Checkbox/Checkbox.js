@@ -14,9 +14,11 @@ export default class Checkbox extends Component {
     type: PropTypes.string,
   };
 
+  state = {checked: false};
+
   componentDidMount() {
     this.element = $(this.refs.element);
-    this.element.checkbox(this.props.settings);
+    // this.element.checkbox(this.props.settings);
   }
 
   componentWillUnmount() {
@@ -29,16 +31,18 @@ export default class Checkbox extends Component {
     type: META.type.module,
   };
 
+  plugin() {
+    this.element.checkbox(...arguments);
+  }
+
   render() {
     let type = this.props.type;
-
     if (!type) {
       type = 'checkbox';
       if (_.includes(this.props.className, 'radio')) {
         type = 'radio';
       }
     }
-
     const classes = classNames(
       'sd-checkbox',
       'ui',
@@ -48,9 +52,7 @@ export default class Checkbox extends Component {
       {fitted: !this.props.label},
       'checkbox'
     );
-
     const props = getUnhandledProps(this);
-
     return (
       <div className={classes} ref='element'>
         <input {...props} type={type} />

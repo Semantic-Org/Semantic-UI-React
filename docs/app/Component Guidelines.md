@@ -21,7 +21,7 @@ Semantic UI [Modules](http://semantic-ui.com/introduction/glossary.html) are com
 These are things that have state, like a [Dropdown](http://semantic-ui.com/modules/dropdown.html).
 
 **Element**
-Stardust components exposes the jQuery element on the component as `element`:
+Stardust components expose the jQuery element on the component as `element`:
 
 ```jsx
 let checkbox = <Checkbox />;
@@ -29,7 +29,7 @@ checkbox.element; // the jQuery element
 ```
 
 **Plugin**
-The jQuery plugin can be called using `element`:
+The Semantic UI jQuery plugin can be accessed using `element`:
 
 ```jsx
 let checkbox = <Checkbox />;

@@ -39,7 +39,9 @@ gulp.task('generate-docs-json', cb => {
     paths.srcViews + '/**/*.js',
     '!' + paths.src + '/**/Style.js'
   ])
-    .pipe(g.plumber(err => {
+    // do not remove the function keyword
+    // we need 'this' scope here
+    .pipe(g.plumber(function(err) {
       g.util.log(err);
       this.emit('end');
     }))
