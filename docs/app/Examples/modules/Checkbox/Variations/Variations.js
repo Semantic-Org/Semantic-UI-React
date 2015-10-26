@@ -15,7 +15,7 @@ export default class CheckboxVariationsExamples extends Component {
           <Message>
             The&nbsp;
             <a href='http://semantic-ui.com/modules/checkbox.html#fitted' target='_blank'>
-              fitted
+              <code>fitted</code>
             </a>
             &nbsp;class is automatically applied if there is no <code>label</code> prop.
           </Message>

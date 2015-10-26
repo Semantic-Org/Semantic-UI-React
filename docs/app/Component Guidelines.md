@@ -17,39 +17,38 @@ They ensure consistency and optimal development experience for Stardust users.
 
 ### Modules
 
-Semantic UI [Modules](http://semantic-ui.com/introduction/glossary.html) are components that include a jQuery plugin.
+Semantic UI [Modules](http://semantic-ui.com/introduction/glossary.html) are components that define appearance and behavior.
 These are things that have state, like a [Dropdown](http://semantic-ui.com/modules/dropdown.html).
+They usually require a Semantic UI jQuery plugin.
 
-**Element**
-Stardust components expose the jQuery element on the component as `element`:
-
-```jsx
-let checkbox = <Checkbox />;
-checkbox.element; // the jQuery element
-```
-
-**Plugin**
-The Semantic UI jQuery plugin can be accessed using `element`:
-
-```jsx
-let checkbox = <Checkbox />;
-checkbox.element.checkbox(); // the Semantic UI Checkbox plugin
-```
-You can also trigger behaviors with the plugin:
-
-```jsx
-let checkbox = <Checkbox />;
-checkbox.element.checkbox('toggle'); // toggles the checkbox
-```
+All the appropriate lifecycle work is handled.  You can just use the module.
 
 **Settings**
-Module jQuery plugins can be configured via the `settings` prop:
+Semantic UI's jQuery plugin settings are exposed as props:
 
 ```jsx
-let settings = {allowAdditions: true};
-let dropdown = <Dropdown settings={settings}/>;
+<Checkbox onChange={this.handleChange} />; // the Semantic UI change callback
 ```
 >Settings are applied on componentDidMount.
+
+**Plugin**
+Stardust exposes the Semantic UI jQuery plugin as `plugin`. Use it to trigger behaviors:
+
+```jsx
+<Checkbox ref='checkbox' />;
+// ...
+this.refs.checkbox.plugin('toggle'); // toggles the checkbox
+this.refs.checkbox.plugin('is checked'); // get the state
+```
+
+**Element**
+Stardust components expose the jQuery element as `element`:
+
+```jsx
+<Checkbox ref='checkbox' ref='checkbox' />;
+// then
+this.refs.checkbox.element; // the jQuery element
+```
 
 ## Classes
 

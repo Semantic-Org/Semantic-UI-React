@@ -7,18 +7,41 @@ import $ from 'jquery';
 
 export default class Checkbox extends Component {
   static propTypes = {
+    beforeChecked: PropTypes.func,
+    beforeDeterminate: PropTypes.func,
+    beforeIndeterminate: PropTypes.func,
+    beforeUnchecked: PropTypes.func,
     className: PropTypes.string,
     label: PropTypes.string,
-    name: PropTypes.string,
-    settings: PropTypes.object,
+    onChange: PropTypes.func,
+    onChecked: PropTypes.func,
+    onDeterminate: PropTypes.func,
+    onDisable: PropTypes.func,
+    onEnable: PropTypes.func,
+    onIndeterminate: PropTypes.func,
+    onUnchecked: PropTypes.func,
     type: PropTypes.string,
   };
 
-  state = {checked: false};
+  static defaultProps = {
+    type: 'checkbox'
+  };
 
   componentDidMount() {
     this.element = $(this.refs.element);
-    // this.element.checkbox(this.props.settings);
+    this.element.checkbox({
+      onChange: this.props.onChange,
+      onChecked: this.props.onChecked,
+      onIndeterminate: this.props.onIndeterminate,
+      onDeterminate: this.props.onDeterminate,
+      onUnchecked: this.props.onUnchecked,
+      beforeChecked: this.props.beforeChecked,
+      beforeIndeterminate: this.props.beforeIndeterminate,
+      beforeDeterminate: this.props.beforeDeterminate,
+      beforeUnchecked: this.props.beforeUnchecked,
+      onEnable: this.props.onEnable,
+      onDisable: this.props.onDisable,
+    });
   }
 
   componentWillUnmount() {
@@ -32,16 +55,13 @@ export default class Checkbox extends Component {
   };
 
   plugin() {
-    this.element.checkbox(...arguments);
+    return this.element.checkbox(...arguments);
   }
 
   render() {
     let type = this.props.type;
-    if (!type) {
-      type = 'checkbox';
-      if (_.includes(this.props.className, 'radio')) {
-        type = 'radio';
-      }
+    if (_.includes(this.props.className, 'radio')) {
+      type = 'radio';
     }
     const classes = classNames(
       'sd-checkbox',
