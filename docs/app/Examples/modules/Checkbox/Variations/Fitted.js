@@ -6,13 +6,13 @@ export default class CheckboxFittedExample extends Component {
     return (
       <div>
         <Segment className='compact'>
-          <Checkbox className='fitted' />
+          <Checkbox />
         </Segment>
         <Segment className='compact'>
-          <Checkbox className='fitted slider' />
+          <Checkbox className='slider' />
         </Segment>
         <Segment className='compact'>
-          <Checkbox className='fitted toggle' />
+          <Checkbox className='toggle' />
         </Segment>
       </div>
     );

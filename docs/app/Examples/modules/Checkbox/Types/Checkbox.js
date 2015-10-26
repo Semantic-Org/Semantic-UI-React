@@ -4,7 +4,7 @@ import {Checkbox} from 'stardust';
 export default class CheckboxCheckboxExample extends Component {
   render() {
     return (
-      <Checkbox label='Make my profile visible'/>
+      <Checkbox label='Make my profile visible' />
     );
   }
 }

@@ -7,6 +7,7 @@ class Modal extends Component {
     children: PropTypes.any,
     className: PropTypes.string,
     ref: PropTypes.string,
+    settings: PropTypes.object,
   };
 
   static defaultProps = {

@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import META from 'src/utils/Meta';
+import getUnhandledProps from 'src/utils/getUnhandledProps';
 import React, {Component, PropTypes} from 'react';
 import classNames from 'classnames';
 import $ from 'jquery';
@@ -10,14 +11,8 @@ export default class Checkbox extends Component {
     beforeDeterminate: PropTypes.func,
     beforeIndeterminate: PropTypes.func,
     beforeUnchecked: PropTypes.func,
-    className: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.array,
-      PropTypes.object,
-    ]),
-    defaultChecked: PropTypes.bool,
+    className: PropTypes.string,
     label: PropTypes.string,
-    name: PropTypes.string,
     onChange: PropTypes.func,
     onChecked: PropTypes.func,
     onDeterminate: PropTypes.func,
@@ -28,11 +23,13 @@ export default class Checkbox extends Component {
     type: PropTypes.string,
   };
 
-  componentDidMount() {
-    this.container = $(this.refs.container);
-    this.input = $(this.refs.input);
+  static defaultProps = {
+    type: 'checkbox'
+  };
 
-    this.container.checkbox({
+  componentDidMount() {
+    this.element = $(this.refs.element);
+    this.element.checkbox({
       onChange: this.props.onChange,
       onChecked: this.props.onChecked,
       onIndeterminate: this.props.onIndeterminate,
@@ -48,7 +45,7 @@ export default class Checkbox extends Component {
   }
 
   componentWillUnmount() {
-    this.container.off();
+    this.element.off();
   }
 
   static _meta = {
@@ -57,16 +54,15 @@ export default class Checkbox extends Component {
     type: META.type.module,
   };
 
+  plugin() {
+    return this.element.checkbox(...arguments);
+  }
+
   render() {
     let type = this.props.type;
-
-    if (!type) {
-      type = 'checkbox';
-      if (_.includes(this.props.className, 'radio')) {
-        type = 'radio';
-      }
+    if (_.includes(this.props.className, 'radio')) {
+      type = 'radio';
     }
-
     const classes = classNames(
       'sd-checkbox',
       'ui',
@@ -76,12 +72,10 @@ export default class Checkbox extends Component {
       {fitted: !this.props.label},
       'checkbox'
     );
-
-    const checkboxProps = _.clone(this.props);
-    delete checkboxProps.className;
+    const props = getUnhandledProps(this);
     return (
-      <div className={classes} ref='container'>
-        <input {...checkboxProps} type={type} ref='checkbox' />
+      <div className={classes} ref='element'>
+        <input {...props} type={type} />
         <label>{this.props.label}</label>
       </div>
     );
