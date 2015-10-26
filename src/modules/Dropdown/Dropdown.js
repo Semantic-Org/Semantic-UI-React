@@ -3,7 +3,6 @@ import $ from 'jquery';
 import classNames from 'classnames';
 import React, {Component, PropTypes} from 'react';
 import META from 'src/utils/Meta';
-import getUnhandledProps from 'src/utils/getUnhandledProps';
 
 export default class Dropdown extends Component {
   static propTypes = {
@@ -12,12 +11,11 @@ export default class Dropdown extends Component {
       value: PropTypes.string,
       text: PropTypes.string,
     })),
-    settings: PropTypes.object,
   };
 
   componentDidMount() {
     this.element = $(this.refs.select);
-    this.element.dropdown(this.props.settings);
+    this.element.dropdown();
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -45,7 +43,8 @@ export default class Dropdown extends Component {
       'dropdown'
     );
 
-    const props = getUnhandledProps(this);
+    const props = _.clone(this.props);
+    delete props.options;
 
     return (
       <select {...props} className={classes} ref='select'>

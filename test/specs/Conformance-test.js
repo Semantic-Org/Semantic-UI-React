@@ -92,7 +92,6 @@ describe('Conformance', () => {
 
           hasSpreadProps.should.equal(true);
         });
-
         describe('className', () => {
           it(`has props.className after "${sdClass}"`, () => {
             const renderedClasses = render(<SDComponent className={classes} />)
