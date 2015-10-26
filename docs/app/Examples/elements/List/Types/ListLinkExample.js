@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+<<<<<<< HEAD
 import {List, ListItem} from 'stardust';
 
 export default class ListLinkExample extends Component {
@@ -13,6 +14,18 @@ export default class ListLinkExample extends Component {
         <ListItem description={link2} />
         <ListItem description={link3} />
         <ListItem description={link4} />
+=======
+import {List} from 'stardust';
+
+export default class ListBulletedExample extends Component {
+  render() {
+    return (
+      <List className='link'>
+        <div className='active item'>Home</div>
+        <a className='item'>About</a>
+        <a className='item'>Services</a>
+        <a className='item'>Careers</a>
+>>>>>>> add list types examples
       </List>
     );
   }
