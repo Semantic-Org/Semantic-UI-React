@@ -8,7 +8,6 @@ export default class Input extends Component {
   static propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
-    defaultValue: PropTypes.string,
     icon: PropTypes.string,
     ref: PropTypes.string,
   };

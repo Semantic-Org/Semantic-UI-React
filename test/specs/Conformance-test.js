@@ -81,8 +81,9 @@ describe('Conformance', () => {
           const props = {};
           // JSX does not render custom html attributes so we prefix them with data-*.
           // https://facebook.github.io/react/docs/jsx-gotchas.html#custom-html-attributes
-          props[`data-${faker.hacker.noun()}`] = faker.hacker.noun();
+          props[`data-${_.kebabCase(faker.hacker.noun())}`] = faker.hacker.noun();
 
+          console.log(props);
           // create element with random props
           render(<SDComponent {...props} />)
             .children()

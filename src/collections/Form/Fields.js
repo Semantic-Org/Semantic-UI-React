@@ -5,7 +5,7 @@ import getUnhandledProps from 'src/utils/getUnhandledProps';
 import numberToWord from 'src/utils/numberToWord';
 import META from 'src/utils/Meta.js';
 
-export default class Field extends Component {
+export default class Fields extends Component {
   static propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
@@ -21,13 +21,14 @@ export default class Field extends Component {
 
   render() {
     let fieldCount = 0;
-    Children.forEach(child => {
-      _.get(child, '_meta.name') === 'Field' && fieldCount++;
+    Children.forEach(this.props.children, child => {
+      _.get(child, 'type._meta.name') === 'Field' && fieldCount++;
     });
     fieldCount = numberToWord(fieldCount);
+
     const classes = classNames(
-      'sd-field',
-      {fieldCount: this.props.evenlyDivided},
+      'sd-fields',
+      this.props.evenlyDivided && fieldCount,
       this.props.className,
       'fields'
     );

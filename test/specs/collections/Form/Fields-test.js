@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import faker from 'faker';
 import React from 'react';
 
@@ -15,7 +14,7 @@ describe('Fields', () => {
       .findClass('two fields');
   });
   it('renders children', () => {
-    const child = faker.hackerPhrase();
+    const child = faker.hacker.phrase();
     render(<Fields>{child}</Fields>)
       .findText(child);
   });
