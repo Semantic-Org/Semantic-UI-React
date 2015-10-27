@@ -15,7 +15,8 @@ describe('Message', () => {
   });
   describe('without header', () => {
     it('has no header', () => {
-      render(<Message />).scryClass('sd-message-header')
+      render(<Message />)
+        .scryClass('sd-message-header')
         .should.have.a.lengthOf(0);
     });
   });
@@ -29,11 +30,13 @@ describe('Message', () => {
   });
   describe('without icon', () => {
     it('has no icon', () => {
-      render(<Message />).scryClass('sd-message-icon')
+      render(<Message />)
+        .scryClass('sd-message-icon')
         .should.have.a.lengthOf(0);
     });
     it('has no "content" wrapper', () => {
-      render(<Message />).scryClass('sd-message-content')
+      render(<Message />)
+        .scryClass('sd-message-content')
         .should.have.a.lengthOf(0);
     });
   });
@@ -54,7 +57,8 @@ describe('Message', () => {
   });
   describe('not dismissable', () => {
     it('has no close icon', () => {
-      render(<Message />).scryClass('sd-message-close-icon')
+      render(<Message />)
+        .scryClass('sd-message-close-icon')
         .should.have.a.lengthOf(0);
     });
   });
