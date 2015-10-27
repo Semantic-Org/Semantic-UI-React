@@ -11,7 +11,7 @@ describe('Button', () => {
       .should.equal('button');
   });
   it('renders "Click Here" by default', () => {
-    render(<Button />).findText('Click Here');
+    render(<Button />).assertText('Click Here');
   });
   it('has type of submit', () => {
     render(<Button type='submit' />)
@@ -20,7 +20,7 @@ describe('Button', () => {
       .should.equal('submit');
   });
   it('renders its children', () => {
-    render(<Button>Save Now</Button>).findText('Save Now');
+    render(<Button>Save Now</Button>).assertText('Save Now');
   });
   it('should run passed in handleClick function', () => {
     const handleClick = sandbox.spy();

@@ -1,6 +1,17 @@
 import _ from 'lodash';
-import {Children} from 'react';
-import TestUtils from 'react-addons-test-utils';
+import {findDOMNode} from 'react-dom';
+import {
+  createRenderer,
+  findAllInRenderedTree,
+  findRenderedComponentWithType,
+  findRenderedDOMComponentWithClass,
+  findRenderedDOMComponentWithTag,
+  isDOMComponent,
+  renderIntoDocument,
+  scryRenderedDOMComponentsWithClass,
+  scryRenderedDOMComponentsWithTag,
+  scryRenderedComponentsWithType,
+} from 'react-addons-test-utils';
 //
 // RenderTree
 //
@@ -12,8 +23,8 @@ import TestUtils from 'react-addons-test-utils';
  */
 class RenderedTree {
   constructor(reactElement) {
-    this._root = TestUtils.renderIntoDocument(reactElement);
-    this.all = TestUtils.findAllInRenderedTree(this._root, _.isObject);
+    this._root = renderIntoDocument(reactElement);
+    this.all = findAllInRenderedTree(this._root, _.isObject);
   }
 
   /**
@@ -30,7 +41,7 @@ class RenderedTree {
    * @returns {ReactComponent} first React component anywhere in the tree with matching className.
    */
   findClass(className) {
-    return TestUtils.findRenderedDOMComponentWithClass(this._root, className);
+    return findRenderedDOMComponentWithClass(this._root, className);
   }
 
   /**
@@ -39,7 +50,7 @@ class RenderedTree {
    * @returns {ReactComponent} first React component anywhere in the tree with matching html tag.
    */
   findTag(elementType) {
-    return TestUtils.findRenderedDOMComponentWithTag(this._root, elementType);
+    return findRenderedDOMComponentWithTag(this._root, elementType);
   }
 
   /**
@@ -48,7 +59,7 @@ class RenderedTree {
    * @returns {ReactComponent} first React component anywhere in the tree with matching React Element Type.
    */
   findType(componentClass) {
-    return TestUtils.findRenderedComponentWithType(this._root, componentClass);
+    return findRenderedComponentWithType(this._root, componentClass);
   }
 
   /**
@@ -73,7 +84,7 @@ class RenderedTree {
    * @returns {ReactComponent[]} array of React components in the tree with matching className.
    */
   scryClass(className) {
-    return TestUtils.scryRenderedDOMComponentsWithClass(this._root, className);
+    return scryRenderedDOMComponentsWithClass(this._root, className);
   }
 
   /**
@@ -82,7 +93,7 @@ class RenderedTree {
    * @returns {ReactComponent[]} array of React components in the tree with matching html tag.
    */
   scryTag(elementType) {
-    return TestUtils.scryRenderedDOMComponentsWithTag(this._root, elementType);
+    return scryRenderedDOMComponentsWithTag(this._root, elementType);
   }
 
   /**
@@ -91,45 +102,23 @@ class RenderedTree {
    * @returns {ReactComponent[]} all React components in the tree with matching React Element Type.
    */
   scryType(componentClass) {
-    return TestUtils.scryRenderedComponentsWithType(this._root, componentClass);
+    return scryRenderedComponentsWithType(this._root, componentClass);
   }
 
   /**
-   * Finds all instances of components in the rendered tree that are DOM components with `text` as a child.
-   * @param {string} text Components with `text` as their children will be returned.
-   * @returns {[]} an array of all the matches.
-   */
-  scryText(text) {
-    if (!_.isString(text)) {
-      throw new Error('scryText() requires a string argument, received: ' + text);
-    }
-    return TestUtils.findAllInRenderedTree(this._root, (element) => {
-      if (!TestUtils.isDOMComponent(element)) {
-        return false;
-      }
-
-      let isMatch = false;
-      Children.forEach(element.props.children, (child) => {
-        if (child === text) {
-          isMatch = true;
-        }
-      });
-      return isMatch;
-    });
-  }
-
-  /**
-   * Like scryText but expects there to be one result, and returns that one result,
-   * or throws exception if there is any other number of matches besides one.
+   * Expects there to be one result or throws exception if there is any other number of matches besides one.
    * @param {string} text The element containing this text will be returned.
-   * @return {!ReactDOMComponent} The one match.
+   * @return {boolean} Indicating the text was found.
    */
-  findText(text) {
-    const all = this.scryText(text);
+  assertText(text) {
+    const re = new RegExp(text, 'g');
+    const first = this.first();
+    const textContent = isDOMComponent(first) ? first.textContent : findDOMNode(first).textContent;
+    const all = _.words(textContent, re);
     if (all.length !== 1) {
       throw new Error(`Did not find exactly one match (found: ${all.length}) for text: "${text}"`);
     }
-    return all[0];
+    return true;
   }
 }
 
@@ -143,7 +132,7 @@ class RenderedTree {
  * @returns {*} Tree rendered one level deep.
  */
 global.shallowRender = (reactElement) => {
-  const shallowRenderer = TestUtils.createRenderer();
+  const shallowRenderer = createRenderer();
   shallowRenderer.render(reactElement);
   return shallowRenderer.getRenderOutput();
 };

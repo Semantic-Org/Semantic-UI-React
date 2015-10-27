@@ -10,7 +10,7 @@ describe('Message', () => {
       const message = render(<Message header={header} />);
 
       message.findClass('sd-message-header');
-      message.findText(header);
+      message.assertText(header);
     });
   });
   describe('without header', () => {

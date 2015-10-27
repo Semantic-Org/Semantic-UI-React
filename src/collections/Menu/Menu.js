@@ -1,6 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import classNames from 'classnames';
 import META from 'src/utils/Meta';
+import getUnhandledProps from 'src/utils/getUnhandledProps';
 
 export default class Menu extends Component {
   static propTypes = {
@@ -38,8 +39,9 @@ export default class Menu extends Component {
         callbackParent: this.handleClickItem,
       });
     });
+    const props = getUnhandledProps(this);
     return (
-      <div {...this.props} className={classes}>
+      <div {...props} className={classes}>
         {children}
       </div>
     );

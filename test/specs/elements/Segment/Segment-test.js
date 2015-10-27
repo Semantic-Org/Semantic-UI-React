@@ -17,10 +17,10 @@ describe('Segment', () => {
   it('has a heading', () => {
     const segment = render(<Segment heading='This is a segment' />);
     segment.findClass('sd-segment-heading');
-    segment.findText('This is a segment');
+    segment.assertText('This is a segment');
   });
   it('renders its children', () => {
     render(<Segment>Some text</Segment>)
-      .findText('Some text');
+      .assertText('Some text');
   });
 });

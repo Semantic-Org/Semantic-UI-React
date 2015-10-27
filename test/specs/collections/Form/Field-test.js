@@ -12,7 +12,7 @@ describe('Field', () => {
 
   it('renders children', () => {
     render(<Field label='First Name'>yo child</Field>)
-      .findText('yo child');
+      .assertText('yo child');
   });
 
   it('can specify a width', () => {

@@ -53,12 +53,12 @@ describe('MenuItem', () => {
   it('should have active class after click', () => {
     const renderedMenuItems = render(
       <Menu>
-        <MenuItem name='item1' />
-        <MenuItem name='item2' />
+        <MenuItem name='item1' className='firstItem' />
+        <MenuItem name='item2' className='secondItem'/>
       </Menu>
     );
-    const firstItem = renderedMenuItems.findText('item1');
-    const secondItem = renderedMenuItems.findText('item2');
+    const firstItem = renderedMenuItems.findClass('firstItem');
+    const secondItem = renderedMenuItems.findClass('secondItem');
     const secondNode = secondItem.getDOMNode();
     Simulate.click(secondNode);
     firstItem.props.className.should.not.contain('active');
