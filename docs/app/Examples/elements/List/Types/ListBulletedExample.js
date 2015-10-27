@@ -5,9 +5,9 @@ export default class ListBulletedExample extends Component {
   render() {
     return (
       <List className='bulleted'>
-        <ListItem>Apples</ListItem>
-        <ListItem>Pears</ListItem>
-        <ListItem>Oranges</ListItem>
+        <ListItem description='Apples' />
+        <ListItem description='Pears' />
+        <ListItem description='Oranges' />
       </List>
     );
   }

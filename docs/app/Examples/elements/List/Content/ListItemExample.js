@@ -5,9 +5,9 @@ export default class ListItemExample extends Component {
   render() {
     return (
       <List>
-        <ListItem>1</ListItem>
-        <ListItem>2</ListItem>
-        <ListItem>3</ListItem>
+        <ListItem description='1' />
+        <ListItem description='2' />
+        <ListItem description='3' />
       </List>
     );
   }

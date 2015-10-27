@@ -5,16 +5,16 @@ export default class ListBulletedExample extends Component {
   render() {
     return (
       <List className='ordered'>
-        <ListItem>Apples</ListItem>
+        <ListItem description='Apples' />
           <div>
             <List>
-              <ListItem>Fuji</ListItem>
-              <ListItem>Granny Smith</ListItem>
-              <ListItem>Honeycrisp</ListItem>
+              <ListItem description='Fuji' />
+              <ListItem description='Granny Smith' />
+              <ListItem description='Honeycrisp' />
             </List>
           </div>
-        <ListItem>Pears</ListItem>
-        <ListItem>Oranges</ListItem>
+        <ListItem description='Pears' />
+        <ListItem description='Oranges' />
       </List>
     );
   }
