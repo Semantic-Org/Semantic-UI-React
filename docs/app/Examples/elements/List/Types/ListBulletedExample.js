@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
-import {List, Item} from 'stardust';
+import {List, ListItem} from 'stardust';
 
 export default class ListBulletedExample extends Component {
   render() {
     return (
       <List className='bulleted'>
-        <Item>Apples</Item>
-        <Item>Pears</Item>
-        <Item>Oranges</Item>
+        <ListItem>Apples</ListItem>
+        <ListItem>Pears</ListItem>
+        <ListItem>Oranges</ListItem>
       </List>
     );
   }

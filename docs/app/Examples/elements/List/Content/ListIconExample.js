@@ -1,30 +1,26 @@
 import React, {Component} from 'react';
-import {List} from 'stardust';
+import {List, ListItem} from 'stardust';
 
 export default class ListIconExample extends Component {
   render() {
+    const helpIcon = <i className='help icon' />;
+    const triangleIcon = <i className='right triangle icon' />;
+
     return (
       <List>
-        <a className='item'>
-          <i className='help icon' />
-          <div className='content'>
-            <div className='header'>Floated Icon</div>
-            <div className='description'>This text will always have a left margin so it sits alongside the icon</div>
-          </div>
-        </a>
-        <a className='item'>
-          <i className='right triangle icon' />
-          <div className='content'>
-            <div className='header'>Icon Alignment</div>
-            <div className='description'>Floated icons are by default top aligned</div>
-          </div>
-        </a>
-        <div className='item'>
-          <i className='help icon' />
-          <div className='content'>
+        <ListItem
+          image={helpIcon}
+          header='Floated Icon'
+          description='This text will always have a left margin so it sits alongside the icon'
+        />
+        <ListItem
+          image={triangleIcon}
+          header='Icon Alignment'
+          description='Floated icons are by default top aligned'
+        />
+        <ListItem image={helpIcon}>
           Inline Text
-          </div>
-        </div>
+        </ListItem>
       </List>
     );
   }

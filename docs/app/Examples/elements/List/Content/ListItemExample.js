@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
-import {List, Item} from 'stardust';
+import {List, ListItem} from 'stardust';
 
 export default class ListItemExample extends Component {
   render() {
     return (
       <List>
-        <Item>1</Item>
-        <Item>2</Item>
-        <Item>3</Item>
+        <ListItem>1</ListItem>
+        <ListItem>2</ListItem>
+        <ListItem>3</ListItem>
       </List>
     );
   }

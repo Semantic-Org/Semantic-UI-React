@@ -1,24 +1,14 @@
 import React, {Component} from 'react';
-import {List, Item} from 'stardust';
+import {List, ListItem} from 'stardust';
 
 export default class ListDescriptionExample extends Component {
   render() {
+    const mapIcon = <i className='map marker icon' />;
+
     return (
       <List>
-        <Item>
-          <i className='map marker icon' />
-          <div className='content'>
-            <a className='header'>Chicago, IL></a>
-            <div className='description'> This city is located in the state of Illinois</div>
-          </div>
-        </Item>
-        <Item>
-          <i className='map marker icon' />
-          <div className='content'>
-            <a className='header'>Nashville, TN></a>
-            <div className='description'> This city is located in the state of Tennessee</div>
-          </div>
-        </Item>
+        <ListItem image={mapIcon} header='Chicago' description='This city is located in the state of Illinois' />
+        <ListItem image={mapIcon} header='Nashville' description='This city is located in the state of Tennessee' />
       </List>
     );
   }
