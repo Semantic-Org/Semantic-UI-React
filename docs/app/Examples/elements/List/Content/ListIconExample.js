@@ -9,17 +9,17 @@ export default class ListIconExample extends Component {
     return (
       <List>
         <ListItem
-          image={helpIcon}
+          icon={helpIcon}
           header='Floated Icon'
           description='This text will always have a left margin so it sits alongside the icon'
         />
         <ListItem
-          image={triangleIcon}
+          icon={triangleIcon}
           header='Icon Alignment'
           description='Floated icons are by default top aligned'
         />
-        <ListItem image={helpIcon}>
-          Inline Text
+        <ListItem icon={helpIcon}>
+          This item uses <code>child</code> text, check the code.
         </ListItem>
       </List>
     );

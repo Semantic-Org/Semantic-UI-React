@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample';
 import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection';
+import {Message} from 'stardust';
 
 export default class ListVariationsExamples extends Component {
   render() {
@@ -25,7 +26,11 @@ export default class ListVariationsExamples extends Component {
           title='Animated'
           description='A list can animate to set the current item apart from the list'
           examplePath='elements/List/Variations/ListAnimatedExample'
-        />
+        >
+          <Message className='info'>
+            Be sure content can fit on one line, otherwise text content will reflow when hovered.
+          </Message>
+        </ComponentExample>
         <ComponentExample
           title='Relaxed'
           description='A list can relax its padding to provide more negative space'
