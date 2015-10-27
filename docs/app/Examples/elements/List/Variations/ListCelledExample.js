@@ -1,28 +1,17 @@
 import React, {Component} from 'react';
-import {List, Item} from 'stardust';
+import {List, ListItem} from 'stardust';
 
-export default class ListDividedExample extends Component {
+export default class ListCelledExample extends Component {
   render() {
+    const avatar1 = <img className='ui avatar image' src='http://lorempixel.com/100/100/people/1' />;
+    const avatar2 = <img className='ui avatar image' src='http://lorempixel.com/100/100/people/2' />;
+    const avatar3 = <img className='ui avatar image' src='http://lorempixel.com/100/100/people/3' />;
+
     return (
       <List className='celled'>
-        <Item>
-          <img className='ui avatar image' src='http://lorempixel.com/100/100/people/1' />
-          <div className='content'>
-            <div className='header'>Helen</div>
-          </div>
-        </Item>
-        <Item>
-          <img className='ui avatar image' src='http://lorempixel.com/100/100/people/2' />
-          <div className='content'>
-            <div className='header'>Christian</div>
-          </div>
-        </Item>
-        <Item>
-          <img className='ui avatar image' src='http://lorempixel.com/100/100/people/3' />
-          <div className='content'>
-            <div className='header'>Daniel</div>
-          </div>
-        </Item>
+        <ListItem image={avatar1} header='Helen' />
+        <ListItem image={avatar2} header='Christian' />
+        <ListItem image={avatar3} header='Daniel' />
       </List>
     );
   }
