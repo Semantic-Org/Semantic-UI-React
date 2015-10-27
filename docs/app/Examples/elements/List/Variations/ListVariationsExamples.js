@@ -41,6 +41,17 @@ export default class ListVariationsExamples extends Component {
           description='A list can divide its items into cells'
           examplePath='elements/List/Variations/ListCelledExample'
         />
+        <ComponentExample
+          title='Size'
+          description='A list can vary in size'
+          examplePath='elements/List/Variations/ListSizeMiniExample'
+        />
+        <ComponentExample examplePath='elements/List/Variations/ListSizeTinyExample' />
+        <ComponentExample examplePath='elements/List/Variations/ListSizeSmallExample' />
+        <ComponentExample examplePath='elements/List/Variations/ListSizeLargeExample' />
+        <ComponentExample examplePath='elements/List/Variations/ListSizeBigExample' />
+        <ComponentExample examplePath='elements/List/Variations/ListSizeHugeExample' />
+        <ComponentExample examplePath='elements/List/Variations/ListSizeMassiveExample' />
       </ExampleSection>
     );
   }
