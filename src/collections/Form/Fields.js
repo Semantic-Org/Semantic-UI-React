@@ -9,6 +9,9 @@ export default class Fields extends Component {
   static propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
+    /**
+     * Dynamically adds className='<count> fields'.
+     */
     evenlyDivided: PropTypes.bool,
   };
 
