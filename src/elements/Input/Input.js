@@ -2,12 +2,12 @@ import _ from 'lodash';
 import classNames from 'classnames';
 import React, {Component, PropTypes, Children} from 'react';
 import META from 'src/utils/Meta';
+import getUnhandledProps from 'src/utils/getUnhandledProps';
 
 export default class Input extends Component {
   static propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
-    dataContent: PropTypes.string,
     defaultValue: PropTypes.string,
     icon: PropTypes.string,
     ref: PropTypes.string,
@@ -63,14 +63,13 @@ export default class Input extends Component {
       this.props.className,
       'input'
     );
-    const inputProps = _.clone(this.props);
-    delete inputProps.className;
-    delete inputProps.children;
+    const props = getUnhandledProps(this);
+
     return (
       <div className={classes}>
         {isLeftLabeled && labelChildren}
         {isLeftAction && actionChildren}
-        <input {...inputProps} />
+        <input {...props} />
         {this.props.icon && icon}
         {isRightLabeled && labelChildren}
         {isRightAction && actionChildren}

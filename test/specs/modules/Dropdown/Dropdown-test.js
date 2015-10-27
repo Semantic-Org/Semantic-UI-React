@@ -1,7 +1,7 @@
 import React from 'react';
 import {Dropdown} from 'stardust';
 
-describe.only('Dropdown', () => {
+describe('Dropdown', () => {
   it('has a default value', () => {
     const options = [
       {value: '', text: 'Please select a role'},
