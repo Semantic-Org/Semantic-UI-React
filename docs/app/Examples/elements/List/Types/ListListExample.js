@@ -5,9 +5,9 @@ export default class ListListExample extends Component {
   render() {
     return (
       <List>
-        <ListItem description='Apples' />
-        <ListItem description='Pears' />
-        <ListItem description='Oranges' />
+        <ListItem>Apples</ListItem>
+        <ListItem>Pears</ListItem>
+        <ListItem>Oranges</ListItem>
       </List>
     );
   }
