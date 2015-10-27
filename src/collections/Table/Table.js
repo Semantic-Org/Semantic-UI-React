@@ -19,7 +19,7 @@ export default class Table extends Component {
       }
     },
     className: PropTypes.string,
-    data: PropTypes.array.isRequired,
+    data: PropTypes.array,
   };
 
   static getSafeCellContents(content) {

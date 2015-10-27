@@ -12,7 +12,7 @@ const getSDClassName = componentName => `sd-${_.kebabCase(componentName)}`;
  */
 describe('Conformance', () => {
   /* eslint-disable no-console */
-  console.info('Conformance-test renders all components with no props, warnings may occur.');
+  console.info('Conformance-test renders each component with no props, required prop warnings may occur.');
   /* eslint-enable no-console */
   _.each(stardust, (SDComponent, name) => {
     const classes = faker.fake('{{hacker.noun}} {{hacker.noun}} {{hacker.noun}}');
