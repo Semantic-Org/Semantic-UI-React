@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {List, ListItem} from 'stardust';
 
-export default class ListBulletedExample extends Component {
+export default class ListOrderedExample extends Component {
   render() {
     return (
       <List className='ordered'>
