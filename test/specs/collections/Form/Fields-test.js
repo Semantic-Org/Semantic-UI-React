@@ -16,6 +16,6 @@ describe('Fields', () => {
   it('renders children', () => {
     const child = faker.hacker.phrase();
     render(<Fields>{child}</Fields>)
-      .findText(child);
+      .assertText(child);
   });
 });
