@@ -83,7 +83,6 @@ describe('Conformance', () => {
           // https://facebook.github.io/react/docs/jsx-gotchas.html#custom-html-attributes
           props[`data-${_.kebabCase(faker.hacker.noun())}`] = faker.hacker.noun();
 
-          console.log(props);
           // create element with random props
           render(<SDComponent {...props} />)
             .children()

@@ -11,7 +11,6 @@ describe('Confirm', () => {
   });
   it('default prop ref should be "modal"', () => {
     Confirm.defaultProps.ref.should.equal('modal');
-    var foo = true;
   });
   it('should return true on confirm', () => {
     const confirm = render(<Confirm />);
@@ -19,7 +18,7 @@ describe('Confirm', () => {
     confirm
       .first()
       .show()
-      .then(isConfirmed => isConfirmed.should.equal(true);
+      .then(isConfirmed => isConfirmed.should.equal(true));
     Simulate.click(button);
   });
   it('should return false on abort', () => {

@@ -6,8 +6,11 @@ export default class FormGroupEvenlyDividedExample extends Component {
     return (
       <Form>
         <Fields evenlyDivided>
-          <Field label='First name' className='inline'>
+          <Field label='First name'>
             <Input placeholder='First name' />
+          </Field>
+          <Field label='Last name'>
+            <Input placeholder='Last name' />
           </Field>
         </Fields>
       </Form>
