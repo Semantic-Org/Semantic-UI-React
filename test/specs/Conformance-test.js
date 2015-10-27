@@ -29,11 +29,16 @@ describe('Conformance', () => {
       });
 
       it(`has the "${sdClass}" element as its first child (no wrapper elements)`, () => {
-        expect(firstChild.props.className).to.contain(sdClass);
+        if (isDOMComponent(firstChild)) {
+          expect(firstChild.getAttribute('class')).to.contain(sdClass);
+        } else {
+          expect(firstChild.props.className).to.contain(sdClass);
+        }
       });
 
       describe('_meta', () => {
-        const _meta = _.get(SDComponent, '_meta');
+        const _meta = SDComponent._meta;
+
         it('is a static object prop', () => {
           expect(_meta).to.be.an('object');
         });
@@ -74,29 +79,32 @@ describe('Conformance', () => {
       describe('props', () => {
         it('spreads props', () => {
           const props = {};
-          _.times(2, () => {
-            // single word props
-            props[faker.hacker.noun()] = faker.hacker.noun();
-            // camelCased props
-            props[_.camelCase(faker.hacker.phrase())] = faker.hacker.phrase();
-            // kebab-cased props
-            props[_.kebabCase(faker.hacker.phrase())] = faker.hacker.phrase();
-          });
+          // JSX does not render custom html attributes so we prefix them with data-*.
+          // https://facebook.github.io/react/docs/jsx-gotchas.html#custom-html-attributes
+          props[`data-${_.kebabCase(faker.hacker.noun())}`] = faker.hacker.noun();
 
           // create element with random props
-          const componentWithProps = <SDComponent {...props} />;
-
-          const hasSpreadProps = render(componentWithProps)
+          render(<SDComponent {...props} />)
             .children()
-            .some(element => _.every([element.props], props));
-
-          hasSpreadProps.should.equal(true);
+            .some(child => {
+              return _.every(props, (val, key) => {
+                return isDOMComponent(child)
+                  ? child.getAttribute(key) === val
+                  : child.props[key] === val;
+              });
+            })
+            .should.equal(true);
         });
         describe('className', () => {
           it(`has props.className after "${sdClass}"`, () => {
-            const renderedClasses = render(<SDComponent className={classes} />)
-              .findClass(sdClass)
-              .props.className;
+            let renderedClasses;
+            const rendered = render(<SDComponent className={classes} />)
+              .findClass(sdClass);
+            if (isDOMComponent(rendered)) {
+              renderedClasses = rendered.getAttribute('class');
+            } else {
+              renderedClasses = rendered.props.className;
+            }
             const sdClassIndex = renderedClasses.indexOf(sdClass);
             const classesIndex = renderedClasses.indexOf(classes);
             expect(sdClassIndex).to.be.below(classesIndex);

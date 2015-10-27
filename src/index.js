@@ -5,6 +5,7 @@ import Textarea from 'src/addons/Textarea/Textarea';
 // Collections
 import Column from 'src/collections/Grid/Column';
 import Field from 'src/collections/Form/Field';
+import Fields from 'src/collections/Form/Fields';
 import Form from 'src/collections/Form/Form';
 import Grid from 'src/collections/Grid/Grid';
 import Row from 'src/collections/Grid/Row';
@@ -43,6 +44,7 @@ export default {
   // Collections
   Column,
   Field,
+  Fields,
   Form,
   Grid,
   Row,

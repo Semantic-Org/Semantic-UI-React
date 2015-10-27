@@ -10,24 +10,25 @@ class TestClass {
 }
 
 describe('getUnhandledProps', () => {
-  it('removes props defined in defaultProps', () => {
-    TestClass.defaultProps = {imHandled: 'thanks'};
-    new TestClass()
-      .unhandledProps
-      .should.not.have.any.keys(_.keys(TestClass.defaultProps));
-  });
   it('removes props defined in propTypes', () => {
-    TestClass.propTypes = {imHandled: 'thanks'};
+    TestClass.propTypes = {removeMe: 'thanks'};
     new TestClass()
       .unhandledProps
-      .should.not.have.any.keys(_.keys(TestClass.defaultProps));
+      .should.not.have.any.keys(_.keys(TestClass.propTypes));
   });
-  it('leave props not in defaultProps || propTypes in tact', () => {
-    TestClass.defaultProps = {imHandled: 'thanks'};
-    TestClass.propTypes = {alsoHandled: 'got it'};
-    const props = {thisShould: 'still be here'};
-    new TestClass(props)
-      .unhandledProps
-      .should.eql(props);
+  it('leaves props if not defined in propTypes', () => {
+    const userProps = {leaveThis: 'because it is unhandled'};
+    TestClass.propTypes = {removeMe: 'because we are handling it'};
+    const unhandled = new TestClass(userProps).unhandledProps;
+
+    unhandled.should.not.have.any.keys(_.keys(TestClass.propTypes));
+    unhandled.should.have.all.keys(_.keys(userProps));
+  });
+  it('leaves propType props if also defined in defaultProps', () => {
+    TestClass.propTypes = {leaveMe: 'because it is also in defaultProps'};
+    TestClass.defaultProps = {leaveMe: 'here i am'};
+    const unhandled = new TestClass().unhandledProps;
+
+    unhandled.should.have.all.keys(_.keys(TestClass.defaultProps));
   });
 });

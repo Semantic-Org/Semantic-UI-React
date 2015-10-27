@@ -11,7 +11,7 @@ describe('Input', () => {
   it('has a default value', () => {
     render(<Input defaultValue='John' />)
       .findTag('input')
-      .props.defaultValue.should.equal('John');
+      .value.should.equal('John');
   });
 
   it('has a type of phone', () => {

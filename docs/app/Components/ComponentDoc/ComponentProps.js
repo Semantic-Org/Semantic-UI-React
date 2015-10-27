@@ -15,8 +15,8 @@ export default class ComponentProps extends Component {
   };
 
   nameRenderer(item) {
-    const required = item.required && <span className='ui mini red circular label'>required</span>;
-    return <div>{item.name} {required}</div>;
+    const required = item.required && <span className='ui empty mini red circular label' />;
+    return <code>{item.name} {required}</code>;
   }
 
   defaultValueRenderer(item) {
@@ -57,7 +57,7 @@ export default class ComponentProps extends Component {
     });
 
     return (
-      <Segment className='vertical'>
+      <Segment className='basic vertical'>
         <h2 className='ui header'>Props</h2>
         <Table data={content} className='very basic'>
           <TableColumn dataKey='name' cellRenderer={this.nameRenderer} />

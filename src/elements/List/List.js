@@ -4,6 +4,7 @@ import META from 'src/utils/Meta';
 
 export default class List extends Component {
   static propTypes = {
+    children: PropTypes.node,
     className: PropTypes.string,
   };
 
@@ -16,7 +17,9 @@ export default class List extends Component {
   render() {
     const classes = classNames('sd-list', 'ui', this.props.className, 'list');
     return (
-      <div {...this.props} className={classes}></div>
+      <div {...this.props} className={classes}>
+        {this.props.children}
+      </div>
     );
   }
 }

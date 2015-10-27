@@ -7,29 +7,27 @@ describe('Confirm', () => {
     render(<Confirm />).first().props.abortLabel.should.equal('Cancel');
   });
   it('default prop confirmLabel should be "Yes"', () => {
-    render(<Confirm />).first().props.confirmLabel.should.equal('Yes');
+    Confirm.defaultProps.confirmLabel.should.equal('Yes');
   });
   it('default prop ref should be "modal"', () => {
-    render(<Confirm />).first().props.ref.should.equal('modal');
+    Confirm.defaultProps.ref.should.equal('modal');
   });
   it('should return true on confirm', () => {
     const confirm = render(<Confirm />);
-    const confirmationButton = confirm.findClass('sd-confirm-button');
-    const confirmButtonNode = confirmationButton.getDOMNode();
-    confirm.first().show('Delete item?')
-      .then((isConfirmed) => {
-        isConfirmed.should.be.true;
-      });
-    Simulate.click(confirmButtonNode );
+    const button = confirm.findClass('sd-confirm-button');
+    confirm
+      .first()
+      .show()
+      .then(isConfirmed => isConfirmed.should.equal(true));
+    Simulate.click(button);
   });
   it('should return false on abort', () => {
     const confirm = render(<Confirm />);
-    const abortButton = confirm.findClass('sd-abort-button');
-    const abortButtonNode = abortButton.getDOMNode();
-    confirm.first().show('Delete item?')
-      .then((isConfirmed) => {
-        isConfirmed.should.be.false;
-      });
-    Simulate.click(abortButtonNode );
+    const button = confirm.findClass('sd-abort-button');
+    confirm
+      .first()
+      .show()
+      .then(isConfirmed => isConfirmed.should.equal(false));
+    Simulate.click(button);
   });
 });
