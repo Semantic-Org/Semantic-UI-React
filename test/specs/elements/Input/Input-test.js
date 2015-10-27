@@ -5,34 +5,32 @@ describe('Input', () => {
   it('has the input type of text by default', () => {
     render(<Input />)
       .findTag('input')
-      .props.type.should.equal('text');
+      .getAttribute('type')
+      .should.equal('text');
   });
 
-  it('has a default value', () => {
+  it('allows a defaultValue', () => {
     render(<Input defaultValue='John' />)
       .findTag('input')
       .value.should.equal('John');
   });
 
-  it('has a type of phone', () => {
+  it('spreads type on the input element', () => {
     render(<Input type='phone' />)
       .findTag('input')
-      .props.type.should.equal('phone');
+      .getAttribute('type')
+      .should.equal('phone');
   });
 
-  it('has a name of emailAddress', () => {
+  it('spreads name on the input element', () => {
     render(<Input name='emailAddress' />)
       .findTag('input')
-      .props.name.should.equal('emailAddress');
+      .getAttribute('name')
+      .should.equal('emailAddress');
   });
 
-  it('is an icon input if icon given', () => {
+  it('adds an icon element given an icon class and prop', () => {
     render(<Input className='icon' icon='linkedin' />)
       .findTag('i');
-  });
-
-  it('has an icon class if icon given', () => {
-    render(<Input className='icon' icon='foo' />)
-      .findClass('ui icon input');
   });
 });
