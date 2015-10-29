@@ -11,18 +11,18 @@ describe('Button', () => {
       .should.equal('button');
   });
   it('renders "Click Here" by default', () => {
-    render(<Button />).findText('Click Here');
+    render(<Button />).assertText('Click Here');
   });
-  it('has type of submit', () => {
+  it('inherits type', () => {
     render(<Button type='submit' />)
       .findTag('button')
       .getAttribute('type')
       .should.equal('submit');
   });
   it('renders its children', () => {
-    render(<Button>Save Now</Button>).findText('Save Now');
+    render(<Button>Save Now</Button>).assertText('Save Now');
   });
-  it('should run passed in handleClick function', () => {
+  it('spreads callbacks on the button element', () => {
     const handleClick = sandbox.spy();
     const button = render(<Button type='submit' onClick={handleClick} />).findTag('button');
     Simulate.click(button);

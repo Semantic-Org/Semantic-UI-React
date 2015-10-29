@@ -6,7 +6,7 @@
 _builds/
 _projects/
 _steps/
-npm-debug.log
+npm-debug.log*
 node_modules/
 bower_components/
 testBundle.js

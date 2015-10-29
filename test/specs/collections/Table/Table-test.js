@@ -11,9 +11,6 @@ describe('Table', () => {
       firstName: faker.name.firstName(),
       lastName: faker.name.lastName(),
       email: faker.internet.email(),
-      posts: _.random(100),
-      status: faker.hacker.verb(),
-      role: faker.hacker.noun(),
       permissions: {
         read: !!_.random(),
         write: !!_.random(),
@@ -34,7 +31,7 @@ describe('Table', () => {
         </Table>
       )
         .findClass('sd-table-header')
-        .props.children.should.equal('First Name');
+        .textContent.should.equal('First Name');
     });
 
     it('renders contents with headerRenderer', () => {
@@ -44,7 +41,7 @@ describe('Table', () => {
         </Table>
       )
         .findClass('sd-table-header')
-        .props.children.should.equal('YO!');
+        .textContent.should.equal('YO!');
     });
   });
 
@@ -59,7 +56,7 @@ describe('Table', () => {
         .forEach((tableCell, i) => {
           const originalItem = tableData[i][randomDataKey];
           const originalValue = Table.getSafeCellContents(originalItem);
-          tableCell.props.children.should.equal(originalValue);
+          tableCell.textContent.should.equal(originalValue);
         });
     });
 
@@ -71,7 +68,7 @@ describe('Table', () => {
       )
         .scryClass('sd-table-cell')
         .forEach((tableCell) => {
-          tableCell.props.children.should.equal('REDACTED');
+          tableCell.textContent.should.equal('REDACTED');
         });
     });
 
@@ -84,7 +81,7 @@ describe('Table', () => {
       )
         .scryClass('sd-table-cell')
         .forEach((tableCell) => {
-          tableCell.props.children.should.be.a('string');
+          tableCell.textContent.should.be.a('string');
         });
     });
   });
@@ -101,9 +98,9 @@ describe('Table', () => {
           // remove this table's column from the current data object
           // then expect this cell's value to not be found in the object
           const itemWithoutRandomKey = _.omit(tableData[i], randomDataKey);
-          const cellText = tableCell.props.children;
+          const cellText = tableCell.textContent;
 
-          _.each(itemWithoutRandomKey, (val, key) => {
+          _.each(itemWithoutRandomKey, val => {
             Table.getSafeCellContents(val).should.not.equal(cellText);
           });
         });
