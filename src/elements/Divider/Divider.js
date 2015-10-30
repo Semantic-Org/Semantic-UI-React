@@ -16,7 +16,7 @@ export default class Divider extends Component {
 
   render() {
     const classes = classNames(
-      'sd-button',
+      'sd-divider',
       'ui',
       this.props.className,
       'divider'
