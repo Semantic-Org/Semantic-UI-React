@@ -1,20 +1,26 @@
 import React, {Component} from 'react';
-import {Button, Divider} from 'stardust';
+import {Segment, Divider} from 'stardust';
 
 export default class DividerVerticalExample extends Component {
   render() {
     return (
-      <div className='ui three column grid'>
+      <div className='ui three column relaxed grid'>
         <div className='column'>
-          <Button className='primary'>Button Left</Button>
+          <Segment className='basic'>
+            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio.
+          </Segment>
         </div>
-        <Divider className='vertical' />
+        <Divider className='vertical'>Or</Divider>
         <div className='column'>
-          <Button className='primary'>Button Middle</Button>
+          <Segment className='basic'>
+            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio.
+          </Segment>
         </div>
-        <Divider className='vertical' />
+        <Divider className='vertical'>And</Divider>
         <div className='column'>
-          <Button className='primary'>Button Right</Button>
+          <Segment className='basic'>
+            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio.
+          </Segment>
         </div>
       </div>
     );

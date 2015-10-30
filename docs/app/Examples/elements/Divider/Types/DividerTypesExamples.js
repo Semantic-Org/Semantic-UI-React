@@ -13,7 +13,7 @@ export default class DividerTypesExamples extends Component {
         />
         <ComponentExample
           title='Vertical Divider'
-          description='A divider can segement content vertically'
+          description='A divider can segment content vertically'
           examplePath='elements/Divider/Types/DividerVerticalExample'
         />
         <ComponentExample
