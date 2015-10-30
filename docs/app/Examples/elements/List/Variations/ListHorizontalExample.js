@@ -1,6 +1,6 @@
 import faker from 'faker';
 import React, {Component} from 'react';
-import {List, ListItem} from 'stardust';
+import {List, ListItem, Image} from 'stardust';
 
 export default class ListHorizontalExample extends Component {
   render() {

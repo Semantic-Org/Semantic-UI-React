@@ -7,8 +7,8 @@ export default class ListDescriptionExample extends Component {
 
     return (
       <List>
-        <ListItem image={mapIcon} header='Chicago' description='This city is located in the state of Illinois' />
-        <ListItem image={mapIcon} header='Nashville' description='This city is located in the state of Tennessee' />
+        <ListItem icon={mapIcon} header='Chicago' description='This city is located in the state of Illinois' />
+        <ListItem icon={mapIcon} header='Nashville' description='This city is located in the state of Tennessee' />
       </List>
     );
   }
