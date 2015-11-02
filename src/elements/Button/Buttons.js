@@ -2,7 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import classNames from 'classnames';
 import META from 'src/utils/Meta';
 
-export default class List extends Component {
+export default class Buttons extends Component {
   static propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
@@ -10,21 +10,21 @@ export default class List extends Component {
 
   static _meta = {
     library: META.library.semanticUI,
-    name: 'List',
+    name: 'Buttons',
     type: META.type.element,
   };
 
   render() {
     const classes = classNames(
-      'sd-list',
+      'sd-buttons',
       'ui',
       this.props.className,
-      'list'
+      'buttons'
     );
     return (
-      <div {...this.props} className={classes}>
+      <buttons {...this.props} className={classes}>
         {this.props.children}
-      </div>
+      </buttons>
     );
   }
 }
