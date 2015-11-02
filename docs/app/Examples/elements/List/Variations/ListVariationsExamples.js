@@ -37,6 +37,10 @@ export default class ListVariationsExamples extends Component {
           examplePath='elements/List/Variations/ListRelaxedExample'
         />
         <ComponentExample
+          title='Very Relaxed'
+          examplePath='elements/List/Variations/ListVeryRelaxedExample'
+        />
+        <ComponentExample
           title='Divided'
           description='A list can show divisions between content'
           examplePath='elements/List/Variations/ListDividedExample'
