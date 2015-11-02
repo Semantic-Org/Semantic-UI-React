@@ -1,6 +1,7 @@
 import faker from 'faker';
 import React, {Component} from 'react';
 import {List, ListItem, Image} from 'stardust';
+import faker from 'faker';
 
 export default class ListCelledExample extends Component {
   render() {

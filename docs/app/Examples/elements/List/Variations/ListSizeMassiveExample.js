@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
 import {List, ListItem, Image} from 'stardust';
+import faker from 'faker';
 
 export default class ListSizeMassiveExample extends Component {
   render() {
-    const helenAvatar = <Image className='avatar' src='http://lorempixel.com/100/100/people/1' />;
-    const christianAvatar = <Image className='avatar' src='http://lorempixel.com/100/100/people/2' />;
-    const danielAvatar = <Image className='avatar' src='http://lorempixel.com/100/100/people/3' />;
+    const helenAvatar = <Image className='avatar' src={faker.internet.avatar()} />;
+    const christianAvatar = <Image className='avatar' src={faker.internet.avatar()} />;
+    const danielAvatar = <Image className='avatar' src={faker.internet.avatar()} />;
     return (
       <List className='massive horizontal divided'>
         <ListItem image={helenAvatar} header='Helen' />
