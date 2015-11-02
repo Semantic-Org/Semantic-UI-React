@@ -5,9 +5,9 @@ export default class ButtonButtonsExample extends Component {
   render() {
     return (
       <Buttons>
-        <Button class='primary'>One</Button>
-        <Button class='primary'>Two</Button>
-        <Button class='primary'>Three</Button>
+        <Button>One</Button>
+        <Button>Two</Button>
+        <Button>Three</Button>
       </Buttons>
     );
   }

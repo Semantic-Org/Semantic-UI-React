@@ -5,9 +5,15 @@ export default class ButtonIconButtonsExample extends Component {
   render() {
     return (
       <Buttons>
-        <Button class='primary'>One</Button>
-        <Button class='primary'>Two</Button>
-        <Button class='primary'>Three</Button>
+        <Button className='icon'>
+          <i className='save icon' />
+        </Button>
+        <Button className='icon'>
+          <i className='delete icon' />
+        </Button>
+        <Button className='icon'>
+          <i className='edit icon' />
+        </Button>
       </Buttons>
     );
   }

@@ -19,7 +19,7 @@ import {
 /**
  * Render a ReactElement and use helpful test utility methods against it.
  * @param {ReactElement} reactElement The element to render.
- * @returns {RenderedTree}
+ * @returns {RenderedTree} The return
  */
 class RenderedTree {
   constructor(reactElement) {
