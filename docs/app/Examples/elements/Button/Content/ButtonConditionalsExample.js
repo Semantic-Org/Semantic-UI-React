@@ -5,9 +5,9 @@ export default class ButtonButtonsExample extends Component {
   render() {
     return (
       <Buttons>
-        <Button>One</Button>
-        <Button>Two</Button>
-        <Button>Three</Button>
+        <Button>Cancel</Button>
+        <div className='or' />
+        <Button className='positive'>Save</Button>
       </Buttons>
     );
   }
