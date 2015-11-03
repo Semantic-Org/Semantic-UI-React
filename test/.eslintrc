@@ -2,11 +2,5 @@
   "extends": "ta-webapp/tests",
   "globals": {
     "render": false
-  },
-  "rules": {
-    "valid-jsdoc": [2, {
-      "requireReturn": false,
-      "requireReturnDescription": false,
-    }]
   }
 }
