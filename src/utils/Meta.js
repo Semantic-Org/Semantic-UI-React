@@ -7,7 +7,7 @@ import _ from 'lodash';
 const META = {
   library: {
     semanticUI: 'Semantic UI',
-    stardust: 'Stardust'
+    stardust: 'Stardust',
   },
 
   type: {
