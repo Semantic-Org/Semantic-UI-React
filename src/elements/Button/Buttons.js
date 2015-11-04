@@ -22,9 +22,9 @@ export default class Buttons extends Component {
       'buttons'
     );
     return (
-      <buttons {...this.props} className={classes}>
+      <div {...this.props} className={classes}>
         {this.props.children}
-      </buttons>
+      </div>
     );
   }
 }
