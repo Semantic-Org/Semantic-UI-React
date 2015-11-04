@@ -30,6 +30,11 @@ export default class HeaderTypesExamples extends Component {
           description='A header can be formatted to emphasize an icon'
           examplePath='elements/Header/Types/HeaderIconHeadersExamples'
         />
+        <ComponentExample
+          title='Sub Headers'
+          description='Headers may be formatted to label smaller or de-emphasized content'
+          examplePath='elements/Header/Types/HeaderSubHeadersExample'
+        />
       </ExampleSection>
     );
   }
