@@ -31,7 +31,7 @@ build:
     - script:
         name: install global packages
         code: |
-          npm i -g babel
+          npm i -g babel@5.8.29
     # A step that executes `npm test` command
     - npm-test
 
@@ -78,7 +78,7 @@ deploy:
         name: install dev and global packages
         code: |
           npm i --only=dev
-          npm i -g babel
+          npm i -g babel@5.8.29
     - script:
         name: generate docs
         code: |
