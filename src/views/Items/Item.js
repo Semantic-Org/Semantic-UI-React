@@ -34,12 +34,13 @@ export default class Item extends Component {
     const imageClasses = classNames(
       'sd-item-image',
       'ui',
-      this.props.image.props.className,
+      _.get(this.props, 'image.props.className'),
       'image',
     );
+    const imageProps = _.omit(_.get(this.props, 'image.props', {}), 'className');
     const image = (
       <div className={imageClasses}>
-        <img {..._.omit(this.props.image.props, 'className')} />
+        <img {...imageProps} />
       </div>
     );
     const meta = <div className='meta'>{this.props.meta}</div>;
