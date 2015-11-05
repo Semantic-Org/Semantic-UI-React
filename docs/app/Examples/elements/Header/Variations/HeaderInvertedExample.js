@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Header, Segment} from 'stardust';
 
-export default class HeaderPageHeadersExample extends Component {
+export default class HeaderInvertedExample extends Component {
   render() {
     return (
       <Segment className='inverted'>
