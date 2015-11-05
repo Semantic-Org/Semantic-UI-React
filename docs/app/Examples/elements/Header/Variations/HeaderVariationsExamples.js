@@ -44,7 +44,6 @@ export default class HeaderTypesExamples extends Component {
         >
           <Message className='warning'>
             Inverted headers use modified light versions of your site's color scheme
-            that are adapted to have more contrast on dark background
           </Message>
         </ComponentExample>
       </ExampleSection>
