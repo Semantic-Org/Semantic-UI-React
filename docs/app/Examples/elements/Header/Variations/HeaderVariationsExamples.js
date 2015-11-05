@@ -43,7 +43,7 @@ export default class HeaderTypesExamples extends Component {
           examplePath='elements/Header/Variations/HeaderInvertedExample'
         >
           <Message className='warning'>
-            Inverted headers use modified light versions of your site's color scheme
+            Inverted headers use modified light versions of the site color scheme
           </Message>
         </ComponentExample>
       </ExampleSection>
