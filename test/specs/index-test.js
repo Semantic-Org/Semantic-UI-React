@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import path from 'path';
 import stardust from 'stardust';
+import META from 'src/utils/Meta';
 
 const componentCtx = require.context(
   'src/',
@@ -14,10 +15,9 @@ const componentNames = _.map(componentCtx.keys(), key => {
 
 describe('stardust (index.js)', () => {
   _.each(componentNames, name => {
-    const isPrivate = _.startsWith(name, '_');
+    const isPrivate = META.isPrivate(name);
     const isStardustProp = _.has(stardust, name);   // => stardust.H1
     const isSubComponent = _.some(stardust, name);  // => stardust.Header.H1
-    // console.log(`${name} isStardustProp=${isStardustProp} isSubComponent=${isSubComponent}`);
 
     if (isPrivate) {
       it(`does not expose private component "${name}"`, () => {
