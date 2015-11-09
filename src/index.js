@@ -17,6 +17,7 @@ import TableColumn from 'src/collections/Table/TableColumn';
 
 // Elements
 import Button from 'src/elements/Button/Button';
+import Buttons from 'src/elements/Button/Buttons';
 import Container from 'src/elements/Container/Container';
 import Image from 'src/elements/Image/Image';
 import Input from 'src/elements/Input/Input';
@@ -56,6 +57,7 @@ export default {
 
   // Elements
   Button,
+  Buttons,
   Container,
   Image,
   Input,
