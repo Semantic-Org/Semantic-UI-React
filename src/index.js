@@ -19,6 +19,7 @@ import TableColumn from 'src/collections/Table/TableColumn';
 import Button from 'src/elements/Button/Button';
 import Buttons from 'src/elements/Button/Buttons';
 import Container from 'src/elements/Container/Container';
+import Divider from 'src/elements/Divider/Divider';
 import Image from 'src/elements/Image/Image';
 import Input from 'src/elements/Input/Input';
 import List from 'src/elements/List/List';
@@ -59,6 +60,7 @@ export default {
   Button,
   Buttons,
   Container,
+  Divider,
   Image,
   Input,
   List,
