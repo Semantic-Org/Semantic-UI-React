@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Buttons, Button} from 'stardust';
 
-export default class ButtonButtonsExample extends Component {
+export default class ButtonConditionalsExample extends Component {
   render() {
     return (
       <Buttons>
