@@ -1,7 +1,6 @@
 import faker from 'faker';
 import React, {Component} from 'react';
 import {List, ListItem, Image} from 'stardust';
-import faker from 'faker';
 
 export default class ListRelaxedExample extends Component {
   render() {

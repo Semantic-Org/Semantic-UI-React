@@ -17,4 +17,4 @@ export default class ListOrderedExample extends Component {
       </List>
     );
   }
-};
+}

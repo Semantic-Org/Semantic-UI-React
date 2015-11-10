@@ -23,8 +23,6 @@ export default class Image extends Component {
       'image'
     );
 
-    return (
-      <img {...this.props} className={classes} />
-    );
+    return <img {...this.props} className={classes} />;
   }
 }
