@@ -11,7 +11,7 @@ export default class Item extends Component {
     contentClass: PropTypes.string,
     description: customPropTypes.mutuallyExclusive(['children']),
     extra: PropTypes.node,
-    heading: PropTypes.node,
+    header: PropTypes.node,
     image: PropTypes.node,
     meta: PropTypes.node,
   };
@@ -27,20 +27,34 @@ export default class Item extends Component {
   };
 
   render() {
-    const heading = <div className='header'>{this.props.heading}</div>;
-    const meta = <div className='meta'>{this.props.meta}</div>;
     const description = <div className='description'>{this.props.children || this.props.description}</div>;
     const extra = <div className='extra'>{this.props.extra}</div>;
+    const header = <div className='header'>{this.props.header}</div>;
+
+    const imageClasses = classNames(
+      'sd-item-image',
+      'ui',
+      _.get(this.props, 'image.props.className'),
+      'image',
+    );
+    const imageProps = _.omit(_.get(this.props, 'image.props', {}), 'className');
+    const image = (
+      <div className={imageClasses}>
+        <img {...imageProps} />
+      </div>
+    );
+    const meta = <div className='meta'>{this.props.meta}</div>;
+
     const contentClass = classNames('sd-item-content', this.props.contentClass, 'content');
     const content = (
       <div className={contentClass}>
-        {this.props.heading && heading}
+        {this.props.header && header}
         {this.props.meta && meta}
-        {this.props.children && description || this.props.description && description}
+        {(this.props.children || this.props.description) && description}
         {this.props.extra && extra}
       </div>
     );
-    const hasContent = !!this.props.heading || !!this.props.meta || !!this.props.extra || !!this.props.children
+    const hasContent = !!this.props.header || !!this.props.meta || !!this.props.extra || !!this.props.children
     || !!this.props.description;
 
     const classes = classNames(
@@ -54,13 +68,13 @@ export default class Item extends Component {
     delete props.className;
     delete props.description;
     delete props.extra;
-    delete props.heading;
+    delete props.header;
     delete props.image;
     delete props.meta;
 
     return (
       <div {...props} className={classes}>
-        {this.props.image}
+        {this.props.image && image}
         {hasContent && content}
       </div>
     );
