@@ -7,10 +7,10 @@ describe('Table', () => {
   let randomDataKey;
   const tableData = _.times(_.random(1, 20), () => {
     return {
-      imageUrl: faker.internet.avatar(),
+      imageUrl: faker.image.avatar(),
       firstName: faker.name.firstName(),
       lastName: faker.name.lastName(),
-      email: faker.internet.email(),
+      email: faker.image.email(),
       permissions: {
         read: !!_.random(),
         write: !!_.random(),

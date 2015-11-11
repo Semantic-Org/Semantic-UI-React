@@ -4,9 +4,9 @@ import faker from 'faker';
 
 export default class ListSizeTinyExample extends Component {
   render() {
-    const helenAvatar = <Image className='avatar' src={faker.internet.avatar()} />;
-    const christianAvatar = <Image className='avatar' src={faker.internet.avatar()} />;
-    const danielAvatar = <Image className='avatar' src={faker.internet.avatar()} />;
+    const helenAvatar = <Image className='avatar' src={faker.image.avatar()} />;
+    const christianAvatar = <Image className='avatar' src={faker.image.avatar()} />;
+    const danielAvatar = <Image className='avatar' src={faker.image.avatar()} />;
     return (
       <List className='tiny horizontal divided'>
         <ListItem image={helenAvatar} header='Helen' />

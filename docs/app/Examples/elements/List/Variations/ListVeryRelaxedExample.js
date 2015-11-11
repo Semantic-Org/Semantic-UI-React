@@ -4,9 +4,9 @@ import faker from 'faker';
 
 export default class ListVeryRelaxedExample extends Component {
   render() {
-    const avatar1 = <Image className='avatar' src={faker.internet.avatar()} />;
-    const avatar2 = <Image className='avatar' src={faker.internet.avatar()} />;
-    const avatar3 = <Image className='avatar' src={faker.internet.avatar()} />;
+    const avatar1 = <Image className='avatar' src={faker.image.avatar()} />;
+    const avatar2 = <Image className='avatar' src={faker.image.avatar()} />;
+    const avatar3 = <Image className='avatar' src={faker.image.avatar()} />;
 
     return (
       <List className='very relaxed'>

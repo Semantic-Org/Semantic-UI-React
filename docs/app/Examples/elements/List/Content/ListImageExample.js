@@ -4,9 +4,9 @@ import {List, ListItem, Image} from 'stardust';
 
 export default class ListImageExample extends Component {
   render() {
-    const helenAvatar = <Image className='avatar' src={faker.image.internet.avatar()} />;
-    const christianAvatar = <Image className='avatar' src={faker.image.internet.avatar()} />;
-    const danielAvatar = <Image className='avatar' src={faker.image.internet.avatar()} />;
+    const helenAvatar = <Image className='avatar' src={faker.image.avatar()} />;
+    const christianAvatar = <Image className='avatar' src={faker.image.avatar()} />;
+    const danielAvatar = <Image className='avatar' src={faker.image.avatar()} />;
     return (
       <List>
         <ListItem image={helenAvatar} header='Helen' />
