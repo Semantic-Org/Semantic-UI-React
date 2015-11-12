@@ -10,7 +10,7 @@ describe('Table', () => {
       imageUrl: faker.image.avatar(),
       firstName: faker.name.firstName(),
       lastName: faker.name.lastName(),
-      email: faker.image.email(),
+      email: faker.internet.email(),
       permissions: {
         read: !!_.random(),
         write: !!_.random(),
