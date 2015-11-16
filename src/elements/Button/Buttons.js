@@ -12,6 +12,7 @@ export default class Buttons extends Component {
     library: META.library.semanticUI,
     name: 'Buttons',
     type: META.type.element,
+    parent: 'Button'
   };
 
   render() {

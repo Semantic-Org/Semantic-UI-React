@@ -36,7 +36,6 @@ export default class MenuItem extends Component {
     const classes = classNames(
       'sd-menu-item',
       this.props.className,
-      'blue',
       'item',
       {active: isActive}
     );
