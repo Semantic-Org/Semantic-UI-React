@@ -3,7 +3,7 @@ import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
 import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection';
 import {Message} from 'stardust';
 
-export default class HeaderTypesExamples extends Component {
+export default class HeaderVariationsExamples extends Component {
   render() {
     return (
       <ExampleSection title='Variations'>
