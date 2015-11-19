@@ -28,12 +28,15 @@ export default class _Header extends Component {
     );
 
     const props = getUnhandledProps(this);
+    const children = this.props.image || this.props.icon
+      ? <div className='content'>{this.props.children}</div>
+      : this.props.children;
 
     return React.createElement(
       this.props._headerElement,
       _.assign({}, props, {className: classes}),
       this.props.image || this.props.icon,
-      this.props.children,
+      children,
     );
   }
 }

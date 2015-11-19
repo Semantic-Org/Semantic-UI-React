@@ -6,9 +6,7 @@ export default class HeaderIconExample extends Component {
     const plug = <i className='plug icon' />;
     return (
       <Header.H2 icon={plug}>
-        <div className='content'>
-          Is Your Electricity Truly Electrifying?
-        </div>
+        Is Your Electricity Truly Electrifying?
       </Header.H2>
     );
   }

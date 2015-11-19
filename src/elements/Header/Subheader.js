@@ -1,6 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import classNames from 'classnames';
 import META from 'src/utils/Meta';
+import getUnhandledProps from 'src/utils/getUnhandledProps';
 
 export default class Subheader extends Component {
   static propTypes = {
@@ -9,7 +10,7 @@ export default class Subheader extends Component {
   };
   static _meta = {
     library: META.library.semanticUI,
-    name: 'Sub',
+    name: 'Subheader',
     type: META.type.element,
   };
   render() {
@@ -19,8 +20,11 @@ export default class Subheader extends Component {
       this.props.className,
       'header',
     );
+
+    const props = getUnhandledProps(this);
+
     return (
-      <div className={classes}>
+      <div {...props} className={classes}>
         {this.props.children}
       </div>
     );

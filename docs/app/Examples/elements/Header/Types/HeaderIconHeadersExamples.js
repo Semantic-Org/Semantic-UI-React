@@ -7,9 +7,9 @@ export default class HeaderIconHeadersExamples extends Component {
     return (
       <Header.H2 className='icon' icon={settings} >
         Account Settings
-        <div className='sub header'>
+        <Header.Subheader>
           Manage your account settings and set e-mail preferences.
-        </div>
+        </Header.Subheader>
       </Header.H2>
     );
   }
