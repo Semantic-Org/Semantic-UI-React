@@ -6,9 +6,9 @@ export default class HeaderSubheaderExample extends Component {
     return (
       <Header.H2>
         Account Settings
-        <div className='sub header'>
+        <Header.Sub>
           Manage your account settings and set email preferences
-        </div>
+        </Header.Sub>
       </Header.H2>
     );
   }
