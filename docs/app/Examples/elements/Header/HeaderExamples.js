@@ -10,9 +10,10 @@ export default class HeaderExamples extends Component {
     return (
       <div>
         <Message className='warning'>
-          Semantic UI uses conventional h1, h2, etc... for headers. For cleanliness in Stardust,
-          we've created a Header component that uses sub-components for specifying header clasess.
-          For example, a h2 tag will written as Header.H2. See the examples below for further clarfication.
+          Semantic UI uses both <code>&lt;div&gt;</code> and <code>&lt;h*&gt;</code> tags
+          for headers. In Stardust, the <code>&lt;Header&gt;</code> component renders a
+          <code>&lt;div&gt;</code>. While subcomponents, <code>&lt;Header.H*&gt;</code>,
+          render an <code>&lt;h*&gt;</code>. See the examples below for further clarfication.
         </Message>
         <HeaderTypesExamples />
         <HeaderContentExamples />
