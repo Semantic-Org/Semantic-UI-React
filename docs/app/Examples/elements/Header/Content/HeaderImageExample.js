@@ -7,9 +7,7 @@ export default class HeaderImageExample extends Component {
     const photo = <Image className='circular' src={faker.image.city()} />;
     return (
       <Header.H2 image={photo}>
-        <div className='content'>
-          Welcome to Our City!
-        </div>
+        Welcome to Our City!
       </Header.H2>
     );
   }

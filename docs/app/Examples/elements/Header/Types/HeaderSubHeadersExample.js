@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Header} from 'stardust';
 
-export default class HeaderSubHeadersExample extends Component {
+export default class HeaderSubHeadersExamples extends Component {
   render() {
     return (
       <div>

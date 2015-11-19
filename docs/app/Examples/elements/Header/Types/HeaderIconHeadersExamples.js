@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Header} from 'stardust';
 
-export default class HeaderIconHeadersExample extends Component {
+export default class HeaderIconHeadersExamples extends Component {
   render() {
     const settings = <i className='settings icon' />;
     return (
