@@ -20,6 +20,7 @@ import Button from 'src/elements/Button/Button';
 import Buttons from 'src/elements/Button/Buttons';
 import Container from 'src/elements/Container/Container';
 import Divider from 'src/elements/Divider/Divider';
+import Header from 'src/elements/Header/Header';
 import Image from 'src/elements/Image/Image';
 import Input from 'src/elements/Input/Input';
 import List from 'src/elements/List/List';
@@ -61,6 +62,7 @@ export default {
   Buttons,
   Container,
   Divider,
+  Header,
   Image,
   Input,
   List,

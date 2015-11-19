@@ -1,26 +1,42 @@
 import _ from 'lodash';
 import path from 'path';
 import stardust from 'stardust';
+import META from 'src/utils/Meta';
 
-const componentPaths = require.context(
+const componentCtx = require.context(
   'src/',
   true,
   /(addons|collections|elements|modules|views).*\.js$/
 );
 
-const componentNames = _.map(componentPaths.keys(), key => {
+const componentNames = _.map(componentCtx.keys(), key => {
   return path.basename(key).replace('.js', '');
 });
 
-describe('index.js', () => {
-  it('has a property for every component', () => {
-    _.each(componentNames, component => {
-      expect(stardust).to.have.any.keys(component);
-      expect(stardust[component]).to.be.a('function');
-    });
-  });
+describe('stardust (index.js)', () => {
+  _.each(componentNames, name => {
+    const isPrivate = META.isPrivate(name);
+    const isStardustProp = _.has(stardust, name);   // => stardust.H1
+    const isSubComponent = _.some(stardust, name);  // => stardust.Header.H1
 
-  it('only has properties which correspond to components', () => {
-    _.each(stardust, component => expect(component in componentNames));
+    if (isPrivate) {
+      it(`does not expose private component "${name}"`, () => {
+        expect(!isStardustProp).to.equal(true,
+          `"${name}" is private (starts with  "_"), it cannot be a key on the stardust object`
+        );
+
+        expect(!isSubComponent).to.equal(true,
+          `"${name}" is private (starts with "_"), it cannot be a static prop of another component (sub-component)`
+        );
+      });
+    }
+
+    if (!isPrivate) {
+      it(`exposes public component "${name}"`, () => {
+        expect(!isPrivate && !isStardustProp && !isSubComponent).to.equal(false,
+          `"${name}" must be: a key on stardust || key on another component (sub-component) || private (start with "_")`
+        );
+      });
+    }
   });
 });
