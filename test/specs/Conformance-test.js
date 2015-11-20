@@ -29,6 +29,13 @@ describe('Conformance', () => {
       });
 
       it(`has the "${sdClass}" element as its first child (no wrapper elements)`, () => {
+        // private components may be used as root elements and will not have the sd-* class
+        // skip any assertions if the first child is a private component
+        // TODO: this excludes private components from conformance, need to find a sane way to get conformance coverage
+        if (META.isPrivate(firstChild)) {
+          return;
+        }
+
         if (isDOMComponent(firstChild)) {
           expect(firstChild.getAttribute('class')).to.contain(sdClass);
         } else {
