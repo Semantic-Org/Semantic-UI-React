@@ -34,7 +34,7 @@ export default class Menu extends Component {
       const activeItemName = !hasActiveItem && i === 0
         ? child.props.name
         : this.state.activeItem || this.props.activeItem;
-      return React.cloneElement(child, {
+      return child && React.cloneElement(child, {
         activeItem: activeItemName,
         callbackParent: this.handleClickItem,
       });
