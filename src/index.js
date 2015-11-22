@@ -26,6 +26,7 @@ import Input from 'src/elements/Input/Input';
 import List from 'src/elements/List/List';
 import ListItem from 'src/elements/List/ListItem';
 import Segment from 'src/elements/Segment/Segment';
+import Segments from 'src/elements/Segment/Segments';
 
 // Modules
 import Checkbox from 'src/modules/Checkbox/Checkbox';
@@ -68,6 +69,7 @@ export default {
   List,
   ListItem,
   Segment,
+  Segments,
 
   // Modules
   Checkbox,
