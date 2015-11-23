@@ -1,10 +1,11 @@
 import React, {Component, PropTypes} from 'react';
 import classNames from 'classnames';
 import META from 'src/utils/Meta';
+import {childrenOfTypesOnly} from '../../utils/customPropTypes';
 
 export default class Segments extends Component {
   static propTypes = {
-    children: PropTypes.node,
+    children: childrenOfTypesOnly(['Segment', 'Segments']),
     className: PropTypes.string,
   };
 

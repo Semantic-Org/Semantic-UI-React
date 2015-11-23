@@ -31,8 +31,4 @@ describe('Segments', () => {
       component.querySelectorAll('.sd-segment').length
     ).to.equal(3);
   });
-
-  it('only allows children of type Segment', () => {
-
-  });
 });

@@ -1,23 +1,13 @@
 import _ from 'lodash';
 import React, {Children, Component, PropTypes} from 'react';
 import classNames from 'classnames';
-import TableColumn from './TableColumn';
+import {childrenOfTypesOnly} from '../../utils/customPropTypes';
 import META from 'src/utils/Meta';
 
 export default class Table extends Component {
   static propTypes = {
     basic: PropTypes.bool,
-    children: (props, propName, componentName) => {
-      let isValid = true;
-      Children.forEach(props.children, (child) => {
-        if (child.type !== TableColumn) {
-          isValid = false;
-        }
-      });
-      if (!isValid) {
-        return new Error('`Table` must only have `TableColumn` children.');
-      }
-    },
+    children: childrenOfTypesOnly(['TableColumn']),
     className: PropTypes.string,
     data: PropTypes.array,
   };
