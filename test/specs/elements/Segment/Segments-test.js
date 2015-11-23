@@ -33,13 +33,6 @@ describe('Segments', () => {
   });
 
   it('only allows children of type Segment', () => {
-    expect(global.shallowRender(
-      <Segments>Some text</Segments>
-    )).to.throw;
 
-    // FIXME: Figure out why this is giving false positives
-    expect(global.shallowRender(
-      <Segments>Some text</Segments>
-    )).to.not.throw;
   });
 });
