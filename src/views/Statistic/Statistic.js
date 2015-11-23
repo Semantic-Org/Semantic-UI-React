@@ -14,7 +14,6 @@ export default class Statistic extends Component {
     library: META.library.semanticUI,
     name: 'Statistics',
     type: META.type.view,
-    parent: 'Statistic'
   };
 
   render() {
