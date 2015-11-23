@@ -17,10 +17,10 @@ export default class Statistics extends Component {
 
   render() {
     const classes = classNames(
-      'sd-buttons',
+      'sd-statistic',
       'ui',
       this.props.className,
-      'buttons'
+      'statistic'
     );
     return (
       <div {...this.props} className={classes}>
