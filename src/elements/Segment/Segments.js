@@ -1,12 +1,24 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Children, Component, PropTypes} from 'react';
+import _ from 'lodash';
+import invariant from 'fbjs/lib/invariant';
 import classNames from 'classnames';
 import META from 'src/utils/Meta';
+import Segment from './Segment';
 
 export default class Segments extends Component {
   static propTypes = {
-    children: PropTypes.node.isRequired,
+    children: PropTypes.node,
     className: PropTypes.string,
   };
+
+  componentDidMount() {
+    const {children} = this.props;
+
+    invariant(
+      !_.any( Children.map(children, child => child.type !== Segment) ),
+      'May only contain children of type Segment.',
+    );
+  }
 
   static _meta = {
     library: META.library.semanticUI,

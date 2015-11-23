@@ -22,12 +22,24 @@ describe('Segments', () => {
     const [component] = render(
       <Segments>
         <Segment>Top</Segment>
+        <Segment>Middle</Segment>
         <Segment>Bottom</Segment>
       </Segments>
     ).scryClass('sd-segments');
 
     expect(
       component.querySelectorAll('.sd-segment').length
-    ).to.equal(2);
+    ).to.equal(3);
+  });
+
+  it('only allows children of type Segment', () => {
+    expect(global.shallowRender(
+      <Segments>Some text</Segments>
+    )).to.throw;
+
+    // FIXME: Figure out why this is giving false positives
+    expect(global.shallowRender(
+      <Segments>Some text</Segments>
+    )).to.not.throw;
   });
 });
