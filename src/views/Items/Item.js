@@ -10,7 +10,7 @@ export default class Item extends Component {
     className: PropTypes.string,
     contentClass: PropTypes.string,
     description: customPropTypes.mutuallyExclusive(['children']),
-    extra: PropTypes.node.isRequired,
+    extra: PropTypes.node,
     header: PropTypes.node,
     image: PropTypes.node,
     meta: PropTypes.node,
