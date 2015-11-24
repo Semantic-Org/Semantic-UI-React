@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import SegmentTypesExamples from './Types/SegmentTypesExamples';
 import SegmentGroupsExamples from './Groups/SegmentGroupsExamples';
-// import SegmentStatesExamples from './Types/SegmentStatesExamples';
+import SegmentStatesExamples from './States/SegmentStatesExamples';
 // import SegmentVariationsExamples from './Variations/SegmentVariationsExamples';
 
 export default class SegmentExamples extends Component {
@@ -10,7 +10,7 @@ export default class SegmentExamples extends Component {
       <div>
         <SegmentTypesExamples />
         <SegmentGroupsExamples />
-
+        <SegmentStatesExamples />
       </div>
     );
   }
