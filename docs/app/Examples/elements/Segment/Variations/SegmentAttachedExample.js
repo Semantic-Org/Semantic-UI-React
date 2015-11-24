@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
-import {Segment, Segments} from 'stardust';
+import {Segment} from 'stardust';
 
 export default class SegmentAttachedExample extends Component {
   render() {
     return (
-      <Segments>
+      <div>
         <Segment className='top attached'>
           This segment is on top
         </Segment>
@@ -14,7 +14,7 @@ export default class SegmentAttachedExample extends Component {
         <Segment className='bottom attached'>
           This segment is on bottom
         </Segment>
-      </Segments>
+      </div>
     );
   }
 }

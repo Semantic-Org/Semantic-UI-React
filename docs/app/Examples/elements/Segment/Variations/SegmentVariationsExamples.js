@@ -47,6 +47,21 @@ export default class SegmentVariationsExamples extends Component {
           description='A segment group may take up only as much space as is necessary.'
           examplePath='elements/Segment/Variations/SegmentCompactGroupExample'
         />
+        <ComponentExample
+          title='Colored'
+          description='A segment can be colored.'
+          examplePath='elements/Segment/Variations/SegmentColoredExample'
+        />
+        <ComponentExample
+          title='Colored'
+          description='These colors can be inverted.'
+          examplePath='elements/Segment/Variations/SegmentColoredInvertedExample'
+        />
+        <ComponentExample
+          title='Emphasis'
+          description='A segment can be formatted to appear more or less noticeable.'
+          examplePath='elements/Segment/Variations/SegmentEmphasisExample'
+        />
       </ExampleSection>
     );
   }
