@@ -11,6 +11,11 @@ export default class SegmentGroupsExamples extends Component {
           description='A group of segments can be formatted to appear together.'
           examplePath='elements/Segment/Groups/SegmentSegmentsExample'
         />
+        <ComponentExample
+          title='Nested Segments'
+          description='A group of segments can be nested in another group of segments.'
+          examplePath='elements/Segment/Groups/SegmentNestedSegmentsExample'
+        />
       </ExampleSection>
     );
   }
