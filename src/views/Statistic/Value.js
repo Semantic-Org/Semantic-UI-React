@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import getUnhandledProps from 'src/utils/getUnhandledProps';
 import META from 'src/utils/Meta';
 
-export default class Statistic extends Component {
+export default class Value extends Component {
   static propTypes = {
     children: PropTypes.node.isRequired,
     className: PropTypes.string,
@@ -11,7 +11,7 @@ export default class Statistic extends Component {
 
   static _meta = {
     library: META.library.semanticUI,
-    name: 'StatisticValue',
+    name: 'Value',
     type: META.type.view,
     parent: 'Statistic',
   };

@@ -17,7 +17,7 @@ export default class StatisticTypesExamples extends Component {
         <ComponentExample
           title='Statistic Group'
           description='A group of statistics'
-          examplePath='views/Statistic/Types/StatisticStatisticsExample'
+          examplePath='views/Statistic/Types/StatisticGroupExample'
         />
       </ExampleSection>
     );

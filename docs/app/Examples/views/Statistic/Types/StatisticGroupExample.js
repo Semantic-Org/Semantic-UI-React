@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Statistic} from 'stardust';
 const {Statistics, Label, Value} = Statistic;
 
-export default class StatisticStatisticsExample extends Component {
+export default class StatisticGroupExample extends Component {
   render() {
     return (
       <Statistics>
