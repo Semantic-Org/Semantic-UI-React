@@ -27,6 +27,26 @@ export default class SegmentVariationsExamples extends Component {
           description='A segment can be attached in complex ways.'
           examplePath='elements/Segment/Variations/SegmentAttachedComplexExample'
         />
+        <ComponentExample
+          title='Padding'
+          description='A segment can increase its padding.'
+          examplePath='elements/Segment/Variations/SegmentPaddedExample'
+        />
+        <ComponentExample
+          title='Very Padded'
+          description='A segment can further increase its padding.'
+          examplePath='elements/Segment/Variations/SegmentVeryPaddedExample'
+        />
+        <ComponentExample
+          title='Compact'
+          description='A segment may take up only as much space as is necessary.'
+          examplePath='elements/Segment/Variations/SegmentCompactExample'
+        />
+        <ComponentExample
+          title='Compact Group'
+          description='A segment group may take up only as much space as is necessary.'
+          examplePath='elements/Segment/Variations/SegmentCompactGroupExample'
+        />
       </ExampleSection>
     );
   }
