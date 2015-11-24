@@ -9,7 +9,7 @@ describe('Statistic', () => {
     render(<Statistic value={value} />).assertText(value);
   });
   it('renders data', () => {
-    const data = _.random(0, 10000000);
+    const data = _.random(0, 10000000).toLocaleString();
     render(<Statistic data={data} />).assertText(data);
   });
 });
