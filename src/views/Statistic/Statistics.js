@@ -17,7 +17,7 @@ export default class Statistics extends Component {
 
   render() {
     const classes = classNames(
-      'sd-statistic',
+      'sd-statistics',
       'ui',
       this.props.className,
       'statistic'

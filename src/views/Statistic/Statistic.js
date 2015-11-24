@@ -6,18 +6,19 @@ import META from 'src/utils/Meta';
 export default class Statistic extends Component {
   static propTypes = {
     className: PropTypes.string,
-    label: PropTypes.node,
-    value: PropTypes.node,
+    label: PropTypes.node.isRequired,
+    value: PropTypes.node.isRequired,
   };
 
   static _meta = {
     library: META.library.semanticUI,
-    name: 'Statistics',
+    name: 'Statistic',
     type: META.type.view,
   };
 
   render() {
     const classes = classNames(
+      'sd-statistic',
       'ui',
       this.props.className,
       'statistic',
