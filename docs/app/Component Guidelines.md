@@ -24,6 +24,7 @@ They usually require a Semantic UI jQuery plugin.
 All the appropriate lifecycle work is handled.  You can just use the module.
 
 **Settings**
+
 Semantic UI's jQuery plugin settings are exposed as props:
 
 ```jsx
@@ -32,6 +33,7 @@ Semantic UI's jQuery plugin settings are exposed as props:
 >Settings are applied on componentDidMount.
 
 **Plugin**
+
 Stardust exposes the Semantic UI jQuery plugin as `plugin`. Use it to trigger behaviors:
 
 ```jsx
@@ -42,6 +44,7 @@ this.refs.checkbox.plugin('is checked'); // get the state
 ```
 
 **Element**
+
 Stardust components expose the jQuery element as `element`:
 
 ```jsx
