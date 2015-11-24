@@ -38,6 +38,7 @@ import Dropdown from 'src/modules/Dropdown/Dropdown';
 // Views
 import Item from 'src/views/Items/Item';
 import Items from 'src/views/Items/Items';
+import Statistic from 'src/views/Statistic/Statistic';
 
 export default {
   // Addons
@@ -80,4 +81,5 @@ export default {
   // Views
   Item,
   Items,
+  Statistic,
 };
