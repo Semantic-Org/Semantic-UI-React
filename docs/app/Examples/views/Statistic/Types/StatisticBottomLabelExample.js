@@ -1,13 +1,12 @@
 import React, {Component} from 'react';
 import {Statistic} from 'stardust';
-const {Label, Value} = Statistic;
 
 export default class StatisticBottomLabelExample extends Component {
   render() {
     return (
       <Statistic>
-        <Value>5,550</Value>
-        <Label>Downloads</Label>
+        <Statistic.Label>5,550</Statistic.Label>
+        <Statistic.Value>Downloads</Statistic.Value>
       </Statistic>
     );
   }
