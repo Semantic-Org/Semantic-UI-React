@@ -2,10 +2,22 @@ import React, {Component, PropTypes} from 'react';
 import classNames from 'classnames';
 import META from 'src/utils/Meta';
 
+/**
+ * A segment is used to create a grouping of related content.
+ */
 export default class Segment extends Component {
   static propTypes = {
+    /**
+     * Segment tag body content.
+     */
     children: PropTypes.node,
+    /**
+     * Class name for custom styling.
+     */
     className: PropTypes.string,
+    /**
+     * Optional segment heading.
+     */
     heading: PropTypes.any,
   };
 

@@ -3,9 +3,18 @@ import classNames from 'classnames';
 import META from 'src/utils/Meta';
 import {childrenOfTypesOnly} from '../../utils/customPropTypes';
 
+/**
+ * A group of segments can be formatted to appear together.
+ */
 export default class Segments extends Component {
   static propTypes = {
+    /**
+     * Must be of type Segment or Segments.
+     */
     children: childrenOfTypesOnly(['Segment', 'Segments']),
+    /**
+     * Class name for custom styling.
+     */
     className: PropTypes.string,
   };
 

@@ -16,6 +16,26 @@ export default class SegmentGroupsExamples extends Component {
           description='A group of segments can be nested in another group of segments.'
           examplePath='elements/Segment/Groups/SegmentNestedSegmentsExample'
         />
+        <ComponentExample
+          title='Horizontal Segments'
+          description='A segment group can appear horizontally.'
+          examplePath='elements/Segment/Groups/SegmentHorizontalSegmentsExample'
+        />
+        <ComponentExample
+          title='Raised Segments'
+          description='A segment group can be raised.'
+          examplePath='elements/Segment/Groups/SegmentRaisedSegmentsExample'
+        />
+        <ComponentExample
+          title='Stacked Segments'
+          description='A segment group can be stacked.'
+          examplePath='elements/Segment/Groups/SegmentStackedSegmentsExample'
+        />
+        <ComponentExample
+          title='Piled Segments'
+          description='A segment group can be piled.'
+          examplePath='elements/Segment/Groups/SegmentPiledSegmentsExample'
+        />
       </ExampleSection>
     );
   }
