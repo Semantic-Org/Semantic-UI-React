@@ -9,20 +9,9 @@ import {childrenOfTypesOnly} from '../../utils/customPropTypes';
 export default class Segments extends Component {
   static propTypes = {
     /**
-     * TODO: DRY up doc with array literal passed in below
-     * Must be of type Segment, Segments, ... .
+     * Must be of type Segment, Segments, H1, H2, H3, H4, H5, H6, Subheading or Message.
      */
-    children: childrenOfTypesOnly([
-      'Segment',
-      'Segments',
-      'H1',
-      'H2',
-      'H3',
-      'H4',
-      'H5',
-      'H6',
-      'Message',
-    ]),
+    children: childrenOfTypesOnly(['Segment', 'Segments', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'Subheader', 'Message']),
     /**
      * Class name for custom styling.
      */

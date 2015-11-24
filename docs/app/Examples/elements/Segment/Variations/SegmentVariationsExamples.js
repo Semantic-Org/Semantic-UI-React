@@ -62,6 +62,36 @@ export default class SegmentVariationsExamples extends Component {
           description='A segment can be formatted to appear more or less noticeable.'
           examplePath='elements/Segment/Variations/SegmentEmphasisExample'
         />
+        <ComponentExample
+          title='Circular'
+          description='A segment can be circular.'
+          examplePath='elements/Segment/Variations/SegmentCircularExample'
+        >
+          <Message className='info'>
+            A circular segment will most likely have to have its content manually sized to be equal width and height,
+            otherwise it will flow to the size of your content.
+          </Message>
+        </ComponentExample>
+        <ComponentExample
+          title='Clearing'
+          description='A segment can clear floated content.'
+          examplePath='elements/Segment/Variations/SegmentClearingExample'
+        />
+        <ComponentExample
+          title='Floated'
+          description='A segment can appear to the left or right of other content.'
+          examplePath='elements/Segment/Variations/SegmentFloatedExample'
+        />
+        <ComponentExample
+          title='Text Alignment'
+          description='A segment can have its text aligned to a side.'
+          examplePath='elements/Segment/Variations/SegmentTextAlignmentExample'
+        />
+        <ComponentExample
+          title='Basic'
+          description='A basic segment has no special formatting.'
+          examplePath='elements/Segment/Variations/SegmentBasicExample'
+        />
       </ExampleSection>
     );
   }
