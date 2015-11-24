@@ -9,7 +9,15 @@ export default class StatisticTypesExamples extends Component {
         <ComponentExample
           title='Statistic'
           description='A statistic can display a value with a label above or below it.'
-          examplePath='views/Statistic/Types/StatisticStatisticExample'
+          examplePath='views/Statistic/Types/StatisticBottomLabelExample'
+        />
+        <ComponentExample
+          examplePath='views/Statistic/Types/StatisticTopLabelExample'
+        />
+        <ComponentExample
+          title='Statistic Group'
+          description='A group of statistics'
+          examplePath='views/Statistic/Types/StatisticStatisticsExample'
         />
       </ExampleSection>
     );

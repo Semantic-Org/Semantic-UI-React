@@ -1,29 +1,32 @@
 import React, {Component, PropTypes} from 'react';
 import classNames from 'classnames';
+import getUnhandledProps from 'src/utils/getUnhandledProps';
 import META from 'src/utils/Meta';
 
-export default class Statistics extends Component {
+export default class Statistic extends Component {
   static propTypes = {
-    children: PropTypes.node,
+    children: PropTypes.node.isRequired,
     className: PropTypes.string,
   };
 
   static _meta = {
     library: META.library.semanticUI,
-    name: 'Statistics',
+    name: 'StatisticLabel',
     type: META.type.view,
-    parent: 'Statistic'
+    parent: 'Statistic',
   };
 
   render() {
     const classes = classNames(
-      'sd-statistics',
-      'ui',
+      'sd-statistic-label',
       this.props.className,
-      'statistics'
+      'label',
     );
+
+    const props = getUnhandledProps(this);
+
     return (
-      <div {...this.props} className={classes}>
+      <div {...props} className={classes}>
         {this.props.children}
       </div>
     );
