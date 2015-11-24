@@ -22,6 +22,11 @@ export default class SegmentVariationsExamples extends Component {
             the <a href='#Header-Variations-HeaderAttachedExample'>attached header</a> or <i>attached messages</i>.
           </Message>
         </ComponentExample>
+        <ComponentExample
+          title='Attached Complex'
+          description='A segment can be attached in complex ways.'
+          examplePath='elements/Segment/Variations/SegmentAttachedComplexExample'
+        />
       </ExampleSection>
     );
   }
