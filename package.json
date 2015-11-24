@@ -8,7 +8,7 @@
   ],
   "scripts": {
     "clean": "while read line; do rm -rf $line; done < .gitignore",
-    "deploy": "git push && git push --tags && npm publish",
+    "deploy": "git push && git push --tags && npm login && npm publish",
     "lint": "eslint . --format ./node_modules/eslint-friendly-formatter",
     "lint-watch": "watch 'npm run lint' docs gulp src test",
     "start": "gulp",
