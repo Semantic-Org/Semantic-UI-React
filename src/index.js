@@ -29,6 +29,7 @@ import Segment from 'src/elements/Segment/Segment';
 
 // Modules
 import Checkbox from 'src/modules/Checkbox/Checkbox';
+import Progress from 'src/modules/Progress/Progress';
 import Modal from 'src/modules/Modal/Modal';
 import ModalContent from 'src/modules/Modal/ModalContent';
 import ModalFooter from 'src/modules/Modal/ModalFooter';
@@ -72,11 +73,12 @@ export default {
 
   // Modules
   Checkbox,
+  Dropdown,
   Modal,
   ModalContent,
   ModalFooter,
   ModalHeader,
-  Dropdown,
+  Progress,
 
   // Views
   Item,
