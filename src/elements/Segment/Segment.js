@@ -1,11 +1,21 @@
 import React, {Component, PropTypes} from 'react';
 import classNames from 'classnames';
 import META from 'src/utils/Meta';
+import Segments from './Segments';
 
+/**
+ * A segment is used to create a grouping of related content.
+ */
 export default class Segment extends Component {
   static propTypes = {
+    /**
+     * Segment tag body content.
+     */
     children: PropTypes.node,
     className: PropTypes.string,
+    /**
+     * Optional segment heading.
+     */
     heading: PropTypes.any,
   };
 
@@ -14,6 +24,8 @@ export default class Segment extends Component {
     name: 'Segment',
     type: META.type.element,
   };
+
+  static Segments = Segments;
 
   render() {
     const heading = <h4 className='sd-segment-heading ui header'>{this.props.heading}</h4>;
