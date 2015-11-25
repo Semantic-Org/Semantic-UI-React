@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Segment, Segments} from 'stardust';
 
-export default class SegmentCompactGroupsExample extends Component {
+export default class SegmentCompactGroupExample extends Component {
   render() {
     return (
       <Segments className='compact'>

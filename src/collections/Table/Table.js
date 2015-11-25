@@ -1,13 +1,13 @@
 import _ from 'lodash';
 import React, {Children, Component, PropTypes} from 'react';
 import classNames from 'classnames';
-import {childrenOfTypesOnly} from '../../utils/customPropTypes';
+import {ofComponentTypes} from 'src/utils/customPropTypes';
 import META from 'src/utils/Meta';
 
 export default class Table extends Component {
   static propTypes = {
     basic: PropTypes.bool,
-    children: childrenOfTypesOnly(['TableColumn']),
+    children: ofComponentTypes(['TableColumn']),
     className: PropTypes.string,
     data: PropTypes.array,
   };

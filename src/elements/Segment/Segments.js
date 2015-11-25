@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import classNames from 'classnames';
 import META from 'src/utils/Meta';
-import {childrenOfTypesOnly} from '../../utils/customPropTypes';
+import {ofComponentTypes} from 'src/utils/customPropTypes';
 
 /**
  * A group of segments can be formatted to appear together.
@@ -11,7 +11,7 @@ export default class Segments extends Component {
     /**
      * Must be of type Segment, Segments, H1, H2, H3, H4, H5, H6, Subheading or Message.
      */
-    children: childrenOfTypesOnly(['Segment', 'Segments', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'Subheader', 'Message']),
+    children: ofComponentTypes(['Segment', 'Segments', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'Subheader', 'Message']),
     /**
      * Class name for custom styling.
      */

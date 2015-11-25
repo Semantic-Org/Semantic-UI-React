@@ -8,7 +8,7 @@ const customPropTypes = {
    * @param {Array<string>} allowedTypes Collection of allowed Stardust component types
    * @returns {Array} containing children of the specified type
    */
-  childrenOfTypesOnly: (allowedTypes) => {
+  ofComponentTypes: (allowedTypes) => {
     return (props, propName, componentName) => {
       const {children} = props;
       const disallowed = Children.map(children, child => {

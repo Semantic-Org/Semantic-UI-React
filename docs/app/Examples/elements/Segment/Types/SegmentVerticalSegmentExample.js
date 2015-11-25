@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Segment} from 'stardust';
 
-export default class SegmentVerticalExample extends Component {
+export default class SegmentVerticalSegmentExample extends Component {
   render() {
     return (
       <Segment>
