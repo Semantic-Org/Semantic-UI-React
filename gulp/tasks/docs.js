@@ -33,6 +33,7 @@ gulp.task('generate-docs-json', cb => {
 
   return gulp.src([
     paths.srcAddons + '/**/*.js',
+    paths.srcBehaviors + '/**/*.js',
     paths.srcElements + '/**/*.js',
     paths.srcCollections + '/**/*.js',
     paths.srcModules + '/**/*.js',

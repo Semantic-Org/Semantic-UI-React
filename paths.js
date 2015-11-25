@@ -9,6 +9,7 @@ const PATHS = {
   gulp: PROJECT_ROOT + '/gulp',
   src: PROJECT_ROOT + '/src',
   srcAddons: PROJECT_ROOT + '/src/addons',
+  srcBehaviors: PROJECT_ROOT + '/src/behaviors',
   srcElements: PROJECT_ROOT + '/src/elements',
   srcCollections: PROJECT_ROOT + '/src/collections',
   srcModules: PROJECT_ROOT + '/src/modules',
