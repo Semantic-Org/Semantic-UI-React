@@ -19,16 +19,14 @@ describe('Segments', () => {
   });
 
   it('renders expected number of children', () => {
-    const [component] = render(
+    render(
       <Segments>
         <Segment>Top</Segment>
         <Segment>Middle</Segment>
         <Segment>Bottom</Segment>
       </Segments>
-    ).scryClass('sd-segments');
-
-    expect(
-      component.querySelectorAll('.sd-segment').length
-    ).to.equal(3);
+    )
+      .scryClass('sd-segment')
+      .should.have.a.lengthOf(3);
   });
 });
