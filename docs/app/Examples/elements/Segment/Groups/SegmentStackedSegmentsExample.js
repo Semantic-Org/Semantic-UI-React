@@ -1,14 +1,14 @@
 import React, {Component} from 'react';
-import {Segment, Segments} from 'stardust';
+import {Segment} from 'stardust';
 
 export default class SegmentStackedSegmentsExample extends Component {
   render() {
     return (
-      <Segments className='stacked'>
+      <Segment.Segments className='stacked'>
         <Segment>Top</Segment>
         <Segment>Middle</Segment>
         <Segment>Bottom</Segment>
-      </Segments>
+      </Segment.Segments>
     );
   }
 }

@@ -1,7 +1,8 @@
-import _ from 'lodash';
 import classNames from 'classnames';
-import React, {Children, Component, PropTypes} from 'react';
+import React, {Component, PropTypes} from 'react';
+
 import getUnhandledProps from 'src/utils/getUnhandledProps';
+import {ofComponentTypes} from 'src/utils/customPropTypes';
 import META from 'src/utils/Meta';
 
 import Statistics from './Statistics';
@@ -10,17 +11,7 @@ import Value from './Value';
 
 export default class Statistic extends Component {
   static propTypes = {
-    children: (props, propName, componentName) => {
-      let isValid = true;
-      Children.forEach(props.children, (child) => {
-        if (!_.includes([Statistics, Label, Value], child.type)) {
-          isValid = false;
-        }
-      });
-      if (!isValid) {
-        return new Error('`Statistic` must only have `Label` or `Value` children.');
-      }
-    },
+    children: ofComponentTypes(['Statistics', 'Label', 'Value']),
     className: PropTypes.string,
   };
 

@@ -1,14 +1,14 @@
 import React, {Component} from 'react';
-import {Segment, Segments} from 'stardust';
+import {Segment} from 'stardust';
 
 export default class SegmentRaisedSegmentsExample extends Component {
   render() {
     return (
-      <Segments className='raised'>
+      <Segment.Segments className='raised'>
         <Segment>Left</Segment>
         <Segment>Middle</Segment>
         <Segment>Right</Segment>
-      </Segments>
+      </Segment.Segments>
     );
   }
 }

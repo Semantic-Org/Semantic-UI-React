@@ -1,13 +1,13 @@
 import React from 'react';
-import {Segment, Segments} from 'stardust';
+import {Segment} from 'stardust';
 
 describe('Segments', () => {
   it('should render children', () => {
     const [segmentOne, segmentTwo] = render(
-      <Segments>
+      <Segment.Segments>
         <Segment>Top</Segment>
         <Segment>Bottom</Segment>
-      </Segments>
+      </Segment.Segments>
     ).scryClass('sd-segment');
 
     segmentOne
@@ -20,11 +20,11 @@ describe('Segments', () => {
 
   it('renders expected number of children', () => {
     render(
-      <Segments>
+      <Segment.Segments>
         <Segment>Top</Segment>
         <Segment>Middle</Segment>
         <Segment>Bottom</Segment>
-      </Segments>
+      </Segment.Segments>
     )
       .scryClass('sd-segment')
       .should.have.a.lengthOf(3);
