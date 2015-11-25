@@ -16,7 +16,8 @@ const customPropTypes = {
       });
       if (disallowed && disallowed.length !== 0) {
         return new Error(
-          `\`${componentName}\` should only have children of type \`${allowedTypes}\`.`);
+          `\`${componentName}\` should only have children of type \`${allowedTypes}\`.`
+        );
       }
     };
   },
