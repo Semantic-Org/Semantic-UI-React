@@ -11,9 +11,6 @@ export default class Segment extends Component {
      * Segment tag body content.
      */
     children: PropTypes.node,
-    /**
-     * Class name for custom styling.
-     */
     className: PropTypes.string,
     /**
      * Optional segment heading.

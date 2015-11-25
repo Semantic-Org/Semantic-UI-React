@@ -9,12 +9,9 @@ import {ofComponentTypes} from 'src/utils/customPropTypes';
 export default class Segments extends Component {
   static propTypes = {
     /**
-     * Must be of type Segment, Segments, H1, H2, H3, H4, H5, H6, Subheading or Message.
+     * Must be of type Segment, Segments, H1, H2, H3, H4, H5, H6, Subheader or Message.
      */
     children: ofComponentTypes(['Segment', 'Segments', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'Subheader', 'Message']),
-    /**
-     * Class name for custom styling.
-     */
     className: PropTypes.string,
   };
 
