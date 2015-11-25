@@ -1,7 +1,33 @@
 # Change Log
 
-## [v0.7.1](https://github.com/technologyadvice/stardust/tree/v0.7.1) (2015-10-28)
-[Full Changelog](https://github.com/technologyadvice/stardust/compare/v0.7.0...v0.7.1)
+## [v0.8.0](https://github.com/TechnologyAdvice/stardust/tree/v0.8.0) (2015-11-24)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.7.1...v0.8.0)
+
+**Implemented enhancements:**
+
+- Add \<Buttons /\> [\#97](https://github.com/TechnologyAdvice/stardust/issues/97)
+- A \<Divider /\> element. [\#49](https://github.com/TechnologyAdvice/stardust/issues/49)
+- Add offset to Columns [\#26](https://github.com/TechnologyAdvice/stardust/issues/26)
+
+**Closed issues:**
+
+- Add \<Header /\> component [\#107](https://github.com/TechnologyAdvice/stardust/issues/107)
+- Duplicate random data causing intermittent Table test fail [\#95](https://github.com/TechnologyAdvice/stardust/issues/95)
+- Cleanup redundancy in tests [\#60](https://github.com/TechnologyAdvice/stardust/issues/60)
+
+**Merged pull requests:**
+
+- Add Statistic and Statistics components [\#117](https://github.com/TechnologyAdvice/stardust/pull/117) ([levithomason](https://github.com/levithomason))
+- Organize doc menu into groups [\#110](https://github.com/TechnologyAdvice/stardust/pull/110) ([levithomason](https://github.com/levithomason))
+- Feature/header component [\#109](https://github.com/TechnologyAdvice/stardust/pull/109) ([kyleturco](https://github.com/kyleturco))
+- Update build and deploy [\#108](https://github.com/TechnologyAdvice/stardust/pull/108) ([levithomason](https://github.com/levithomason))
+- Feature/buttons component [\#106](https://github.com/TechnologyAdvice/stardust/pull/106) ([kyleturco](https://github.com/kyleturco))
+- Feature/divider component [\#103](https://github.com/TechnologyAdvice/stardust/pull/103) ([kyleturco](https://github.com/kyleturco))
+- Feature/list examples [\#100](https://github.com/TechnologyAdvice/stardust/pull/100) ([kyleturco](https://github.com/kyleturco))
+- Fix test warnings [\#90](https://github.com/TechnologyAdvice/stardust/pull/90) ([levithomason](https://github.com/levithomason))
+
+## [v0.7.1](https://github.com/TechnologyAdvice/stardust/tree/v0.7.1) (2015-10-28)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.7.0...v0.7.1)
 
 **Implemented enhancements:**
 
@@ -21,8 +47,8 @@
 - Fields component and Form examples [\#94](https://github.com/TechnologyAdvice/stardust/pull/94) ([levithomason](https://github.com/levithomason))
 - Checkbox plugin [\#80](https://github.com/TechnologyAdvice/stardust/pull/80) ([levithomason](https://github.com/levithomason))
 
-## [v0.7.0](https://github.com/technologyadvice/stardust/tree/v0.7.0) (2015-10-23)
-[Full Changelog](https://github.com/technologyadvice/stardust/compare/v0.6.3...v0.7.0)
+## [v0.7.0](https://github.com/TechnologyAdvice/stardust/tree/v0.7.0) (2015-10-23)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.6.3...v0.7.0)
 
 **Implemented enhancements:**
 
@@ -46,26 +72,26 @@
 - Remove dist [\#89](https://github.com/TechnologyAdvice/stardust/pull/89) ([levithomason](https://github.com/levithomason))
 - add getUnhandledProps util [\#85](https://github.com/TechnologyAdvice/stardust/pull/85) ([levithomason](https://github.com/levithomason))
 
-## [v0.6.3](https://github.com/technologyadvice/stardust/tree/v0.6.3) (2015-10-22)
-[Full Changelog](https://github.com/technologyadvice/stardust/compare/v0.6.2...v0.6.3)
+## [v0.6.3](https://github.com/TechnologyAdvice/stardust/tree/v0.6.3) (2015-10-22)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.6.2...v0.6.3)
 
 **Merged pull requests:**
 
 - update to react 14 [\#83](https://github.com/TechnologyAdvice/stardust/pull/83) ([levithomason](https://github.com/levithomason))
 
-## [v0.6.2](https://github.com/technologyadvice/stardust/tree/v0.6.2) (2015-10-22)
-[Full Changelog](https://github.com/technologyadvice/stardust/compare/v0.6.1...v0.6.2)
+## [v0.6.2](https://github.com/TechnologyAdvice/stardust/tree/v0.6.2) (2015-10-22)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.6.1...v0.6.2)
 
-## [v0.6.1](https://github.com/technologyadvice/stardust/tree/v0.6.1) (2015-10-22)
-[Full Changelog](https://github.com/technologyadvice/stardust/compare/v0.6.0...v0.6.1)
+## [v0.6.1](https://github.com/TechnologyAdvice/stardust/tree/v0.6.1) (2015-10-22)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.6.0...v0.6.1)
 
 **Merged pull requests:**
 
 - Add dist to package [\#82](https://github.com/TechnologyAdvice/stardust/pull/82) ([levithomason](https://github.com/levithomason))
 - Build library and docs on deploy [\#81](https://github.com/TechnologyAdvice/stardust/pull/81) ([levithomason](https://github.com/levithomason))
 
-## [v0.6.0](https://github.com/technologyadvice/stardust/tree/v0.6.0) (2015-10-22)
-[Full Changelog](https://github.com/technologyadvice/stardust/compare/v0.5.1...v0.6.0)
+## [v0.6.0](https://github.com/TechnologyAdvice/stardust/tree/v0.6.0) (2015-10-22)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.5.1...v0.6.0)
 
 **Closed issues:**
 
@@ -82,8 +108,8 @@
 - Feature/add sd item [\#65](https://github.com/TechnologyAdvice/stardust/pull/65) ([athurman](https://github.com/athurman))
 - Message component [\#62](https://github.com/TechnologyAdvice/stardust/pull/62) ([levithomason](https://github.com/levithomason))
 
-## [v0.5.1](https://github.com/technologyadvice/stardust/tree/v0.5.1) (2015-10-19)
-[Full Changelog](https://github.com/technologyadvice/stardust/compare/v0.5.0...v0.5.1)
+## [v0.5.1](https://github.com/TechnologyAdvice/stardust/tree/v0.5.1) (2015-10-19)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.5.0...v0.5.1)
 
 **Implemented enhancements:**
 
@@ -109,8 +135,8 @@
 - add getting started section to readme [\#58](https://github.com/TechnologyAdvice/stardust/pull/58) ([levithomason](https://github.com/levithomason))
 - Fix floated examples [\#57](https://github.com/TechnologyAdvice/stardust/pull/57) ([levithomason](https://github.com/levithomason))
 
-## [v0.5.0](https://github.com/technologyadvice/stardust/tree/v0.5.0) (2015-10-16)
-[Full Changelog](https://github.com/technologyadvice/stardust/compare/v0.4.0...v0.5.0)
+## [v0.5.0](https://github.com/TechnologyAdvice/stardust/tree/v0.5.0) (2015-10-16)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.4.0...v0.5.0)
 
 **Closed issues:**
 
@@ -126,8 +152,8 @@
 - Feature/button examples [\#45](https://github.com/TechnologyAdvice/stardust/pull/45) ([kyleturco](https://github.com/kyleturco))
 - Table update [\#44](https://github.com/TechnologyAdvice/stardust/pull/44) ([levithomason](https://github.com/levithomason))
 
-## [v0.4.0](https://github.com/technologyadvice/stardust/tree/v0.4.0) (2015-10-12)
-[Full Changelog](https://github.com/technologyadvice/stardust/compare/v0.3.0...v0.4.0)
+## [v0.4.0](https://github.com/TechnologyAdvice/stardust/tree/v0.4.0) (2015-10-12)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.3.0...v0.4.0)
 
 **Closed issues:**
 
@@ -146,8 +172,8 @@
 - Menu [\#18](https://github.com/TechnologyAdvice/stardust/pull/18) ([levithomason](https://github.com/levithomason))
 - update modal logic [\#11](https://github.com/TechnologyAdvice/stardust/pull/11) ([athurman](https://github.com/athurman))
 
-## [v0.3.0](https://github.com/technologyadvice/stardust/tree/v0.3.0) (2015-10-05)
-[Full Changelog](https://github.com/technologyadvice/stardust/compare/v0.2.1...v0.3.0)
+## [v0.3.0](https://github.com/TechnologyAdvice/stardust/tree/v0.3.0) (2015-10-05)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.2.1...v0.3.0)
 
 **Merged pull requests:**
 
@@ -156,11 +182,11 @@
 - add container and update docs [\#15](https://github.com/TechnologyAdvice/stardust/pull/15) ([eanplatter](https://github.com/eanplatter))
 - Docs link [\#14](https://github.com/TechnologyAdvice/stardust/pull/14) ([levithomason](https://github.com/levithomason))
 
-## [v0.2.1](https://github.com/technologyadvice/stardust/tree/v0.2.1) (2015-10-03)
-[Full Changelog](https://github.com/technologyadvice/stardust/compare/v0.2.0...v0.2.1)
+## [v0.2.1](https://github.com/TechnologyAdvice/stardust/tree/v0.2.1) (2015-10-03)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.2.0...v0.2.1)
 
-## [v0.2.0](https://github.com/technologyadvice/stardust/tree/v0.2.0) (2015-10-03)
-[Full Changelog](https://github.com/technologyadvice/stardust/compare/v0.1.7...v0.2.0)
+## [v0.2.0](https://github.com/TechnologyAdvice/stardust/tree/v0.2.0) (2015-10-03)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.1.7...v0.2.0)
 
 **Closed issues:**
 
@@ -170,25 +196,25 @@
 
 - Field options [\#5](https://github.com/TechnologyAdvice/stardust/pull/5) ([levithomason](https://github.com/levithomason))
 
-## [v0.1.7](https://github.com/technologyadvice/stardust/tree/v0.1.7) (2015-10-03)
-[Full Changelog](https://github.com/technologyadvice/stardust/compare/v0.1.6...v0.1.7)
+## [v0.1.7](https://github.com/TechnologyAdvice/stardust/tree/v0.1.7) (2015-10-03)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.1.6...v0.1.7)
 
-## [v0.1.6](https://github.com/technologyadvice/stardust/tree/v0.1.6) (2015-10-03)
-[Full Changelog](https://github.com/technologyadvice/stardust/compare/v0.1.5...v0.1.6)
+## [v0.1.6](https://github.com/TechnologyAdvice/stardust/tree/v0.1.6) (2015-10-03)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.1.5...v0.1.6)
 
-## [v0.1.5](https://github.com/technologyadvice/stardust/tree/v0.1.5) (2015-10-03)
-[Full Changelog](https://github.com/technologyadvice/stardust/compare/v0.1.4...v0.1.5)
+## [v0.1.5](https://github.com/TechnologyAdvice/stardust/tree/v0.1.5) (2015-10-03)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.1.4...v0.1.5)
 
-## [v0.1.4](https://github.com/technologyadvice/stardust/tree/v0.1.4) (2015-10-03)
-[Full Changelog](https://github.com/technologyadvice/stardust/compare/v0.1.3...v0.1.4)
+## [v0.1.4](https://github.com/TechnologyAdvice/stardust/tree/v0.1.4) (2015-10-03)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.1.3...v0.1.4)
 
-## [v0.1.3](https://github.com/technologyadvice/stardust/tree/v0.1.3) (2015-10-03)
-[Full Changelog](https://github.com/technologyadvice/stardust/compare/v0.1.2...v0.1.3)
+## [v0.1.3](https://github.com/TechnologyAdvice/stardust/tree/v0.1.3) (2015-10-03)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.1.2...v0.1.3)
 
-## [v0.1.2](https://github.com/technologyadvice/stardust/tree/v0.1.2) (2015-10-03)
-[Full Changelog](https://github.com/technologyadvice/stardust/compare/v0.1.1...v0.1.2)
+## [v0.1.2](https://github.com/TechnologyAdvice/stardust/tree/v0.1.2) (2015-10-03)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.1.1...v0.1.2)
 
-## [v0.1.1](https://github.com/technologyadvice/stardust/tree/v0.1.1) (2015-10-03)
+## [v0.1.1](https://github.com/TechnologyAdvice/stardust/tree/v0.1.1) (2015-10-03)
 **Merged pull requests:**
 
 - add wercker.yml [\#8](https://github.com/TechnologyAdvice/stardust/pull/8) ([levithomason](https://github.com/levithomason))
