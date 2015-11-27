@@ -59,7 +59,7 @@ export default class Sidebar extends Component {
         key={formValidationName}
         name={formValidationName}
         href={`#${slugify(formValidationName)}`}
-      />,
+      />
     );
 
     return (
