@@ -6,5 +6,5 @@ import slug from 'slug';
  * @return {string} A url-safe lowercase string
  */
 export default function slugify(str) {
-  return slug(str, {lower: true});
+  return slug(str);
 }
