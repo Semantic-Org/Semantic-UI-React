@@ -1,9 +1,9 @@
 import _ from 'lodash';
-import slug from 'slug';
 import {pluralize} from 'inflection';
 import React, {Component} from 'react';
 import stardust, {Menu, MenuItem, Input} from 'stardust';
 import META from 'src/utils/Meta';
+import slugify from 'src/utils/slugify';
 
 export default class Sidebar extends Component {
   state = {query: ''};
@@ -25,7 +25,7 @@ export default class Sidebar extends Component {
       .sortBy((component, name) => name)
       .map(component => {
         const name = component._meta.name;
-        return <MenuItem key={name} name={name} href={`#${slug(name)}`} />;
+        return <MenuItem key={name} name={name} href={`#${slugify(name)}`} />;
       })
       .value();
 
@@ -55,7 +55,11 @@ export default class Sidebar extends Component {
     const formValidationName = 'Form Validation';
     const behaviors = this._renderSubmenu(
       'Behaviors',
-      <MenuItem key={formValidationName} name={formValidationName} href={`#${slug(formValidationName)}`} />,
+      <MenuItem
+        key={formValidationName}
+        name={formValidationName}
+        href={`#${slugify(formValidationName)}`}
+      />,
     );
 
     return (

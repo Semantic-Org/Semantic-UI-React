@@ -5,6 +5,7 @@ import ComponentDescription from './ComponentDescription';
 import ComponentExamples from './ComponentExamples';
 import ComponentProps from './ComponentProps';
 import getComponentDocInfo from 'docs/app/utils/getComponentDocInfo';
+import slugify from 'src/utils/slugify';
 
 export default class ComponentDoc extends Component {
   static propTypes = {
@@ -15,7 +16,7 @@ export default class ComponentDoc extends Component {
     const doc = getComponentDocInfo(this.props.name);
 
     return (
-      <Segment id={doc.name}>
+      <Segment id={slugify(doc.name)}>
         <ComponentDescription
           path={doc.path}
           name={doc.name}
