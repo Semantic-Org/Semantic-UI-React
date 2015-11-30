@@ -1,3 +1,4 @@
+import slugify from 'src/utils/slugify';
 import React, {Component, PropTypes} from 'react';
 import {Segment} from 'stardust';
 
@@ -5,7 +6,6 @@ import ComponentDescription from './ComponentDescription';
 import ComponentExamples from './ComponentExamples';
 import ComponentProps from './ComponentProps';
 import getComponentDocInfo from 'docs/app/utils/getComponentDocInfo';
-import slugify from 'src/utils/slugify';
 
 export default class ComponentDoc extends Component {
   static propTypes = {

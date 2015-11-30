@@ -33,6 +33,8 @@ export default class Sidebar extends Component {
   };
 
   /**
+   * Render Sidebar menu header and submenu items.
+   *
    * @param  {string} menuHeader Submenu heading text
    * @param  {ReactElement} menuItems A list of MenuItem's to display
    * @return {ReactElement} the submenu
