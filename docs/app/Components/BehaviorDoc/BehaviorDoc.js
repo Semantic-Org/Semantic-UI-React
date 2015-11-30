@@ -1,5 +1,32 @@
 import React, {Component, PropTypes} from 'react';
-import {Buttons, Button, Header, Message, Segment} from 'stardust';
+
+import {
+  Button,
+  Buttons,
+  Checkbox,
+  Divider,
+  Dropdown,
+  Field,
+  Form,
+  Header,
+  Input,
+  Message,
+  Segment,
+} from 'stardust';
+
+const DROPDOWN_GENDER_OPTIONS = [
+  {value: 'female', text: 'Female'},
+  {value: 'male', text: 'Male'},
+];
+
+const DROPDOWN_SKILLS_OPTIONS = [
+  {value: 'css', text: 'CSS'},
+  {value: 'html', text: 'HTML'},
+  {value: 'graphic_design', text: 'Graphic Design'},
+  {value: 'plumbing', text: 'Plumbing'},
+  {value: 'mechanical_engineering', text: 'Mechanical Engineering'},
+  {value: 'kitchen_repair', text: 'Kitchen Repair'},
+];
 
 // TODO: Add BehaviorExample component
 // TODO: Confirm validaiton rules Message is correct WRT use of data attributes
@@ -57,6 +84,36 @@ export default class BehaviorDoc extends Component {
             <pre>
               ...
             </pre>
+          </Segment>
+          <Segment>
+            <p>Tell us a little something about yourself.</p>
+            <Form>
+              <fieldset>
+                <legend>
+                  <Header.H3>About Me</Header.H3>
+                </legend>
+                <Field label='Name'>
+                  <Input placeholder='First Name' />
+                </Field>
+                <Field label='Gender'>
+                  <Dropdown className='compact selection' options={DROPDOWN_GENDER_OPTIONS} />
+                </Field>
+                <Field label='Username'>
+                  <Input placeholder='First Name' />
+                </Field>
+                <Field label='Password'>
+                  <Input placeholder='First Name' />
+                </Field>
+                <Field label='Skills'>
+                  <Dropdown className='compact selection' options={DROPDOWN_SKILLS_OPTIONS} />
+                </Field>
+                <Field>
+                  <Checkbox label='I agree to the Terms and Conditions' />
+                </Field>
+              </fieldset>
+              <Divider />
+              <Button type='submit'>Submit</Button>
+            </Form>
           </Segment>
         </Segment>
       </Segment>
