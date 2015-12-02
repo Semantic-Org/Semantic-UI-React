@@ -1,15 +1,18 @@
-import paths from './paths';
-import statConfig from './webpack-stats';
-import friendlyFormatter from 'eslint-friendly-formatter';
-import exitPlugin from './webpack-exit-plugin';
-import ENV from './ENV';
+/* eslint-disable no-var */
+require('babel-core/register');
+
+var paths = require('./paths');
+var statConfig = require('./webpack-stats');
+var friendlyFormatter = require('eslint-friendly-formatter');
+var exitPlugin = require('./webpack-exit-plugin');
+var ENV = require('./ENV');
 
 /**
  * This config is for running tests on the command line and will fail on errors.
  * @param {{}} config Karma config object.
  * @type {{}}
  */
-export default config => {
+module.exports = function(config) {
   config.set({
     browsers: ['PhantomJS'],
     singleRun: !ENV.isDevelopment(),
@@ -62,7 +65,7 @@ export default config => {
         alias: {
           // When these key names are require()'d, the value will be supplied instead
           jquery: paths.testMocks + '/SemanticjQuery-mock.js',
-          stardust: `${paths.src}/index.js`,
+          stardust: paths.src + '/index.js',
         },
       },
       plugins: !ENV.isDevelopment()
