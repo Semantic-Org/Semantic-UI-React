@@ -93,7 +93,7 @@ export default class BehaviorDoc extends Component {
                 <legend>
                   <Header.H3>About Me</Header.H3>
                 </legend>
-                <Fields className='two'>
+                <Fields evenlyDivided>
                   <Field label='Name'>
                     <Input placeholder='First Name' />
                   </Field>
@@ -101,7 +101,7 @@ export default class BehaviorDoc extends Component {
                     <Dropdown className='compact selection' options={DROPDOWN_GENDER_OPTIONS} />
                   </Field>
                 </Fields>
-                <Fields className='two'>
+                <Fields evenlyDivided>
                   <Field label='Username'>
                     <Input placeholder='Username' />
                   </Field>
