@@ -7,6 +7,7 @@ import {
   Divider,
   Dropdown,
   Field,
+  Fields,
   Form,
   Header,
   Input,
@@ -92,18 +93,27 @@ export default class BehaviorDoc extends Component {
                 <legend>
                   <Header.H3>About Me</Header.H3>
                 </legend>
-                <Field label='Name'>
-                  <Input placeholder='First Name' />
-                </Field>
-                <Field label='Gender'>
-                  <Dropdown className='compact selection' options={DROPDOWN_GENDER_OPTIONS} />
-                </Field>
-                <Field label='Username'>
-                  <Input placeholder='First Name' />
-                </Field>
-                <Field label='Password'>
-                  <Input placeholder='First Name' />
-                </Field>
+                <Fields className='two'>
+                  <Field label='Name'>
+                    <Input placeholder='First Name' />
+                  </Field>
+                  <Field label='Gender'>
+                    <Dropdown className='compact selection' options={DROPDOWN_GENDER_OPTIONS} />
+                  </Field>
+                </Fields>
+                <Fields className='two'>
+                  <Field label='Username'>
+                    <Input placeholder='Username' />
+                  </Field>
+                  <Field label='Password'>
+                    <Input
+                      placeholder='i*6}G[q9<[3TUbt%'
+                      type='password'
+                      errorText='Your password must be at least 6 characters'
+                      required
+                    />
+                  </Field>
+                </Fields>
                 <Field label='Skills'>
                   <Dropdown className='compact selection' options={DROPDOWN_SKILLS_OPTIONS} />
                 </Field>

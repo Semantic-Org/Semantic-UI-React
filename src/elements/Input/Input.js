@@ -6,8 +6,10 @@ import getUnhandledProps from 'src/utils/getUnhandledProps';
 
 export default class Input extends Component {
   static propTypes = {
+    attachToForm: PropTypes.fn,
     children: PropTypes.node,
     className: PropTypes.string,
+    detachFromForm: PropTypes.fn,
     icon: PropTypes.string,
     ref: PropTypes.string,
   };
@@ -21,6 +23,14 @@ export default class Input extends Component {
     name: 'Input',
     type: META.type.element,
   };
+
+  // componentWillMount() {
+  //   this.props.attachToForm(this);
+  // }
+
+  // componentWillUnmount() {
+  //   this.props.detachFromForm(this);
+  // }
 
   render() {
     // TODO: replace with <Icon /> once it is merged
