@@ -38,7 +38,7 @@ fi
 # s3 sync
 #
 SOURCE_DIRECTORY=./dist
-S3_BUCKET=ta-cyclone-assets
+S3_BUCKET=ta-stardust-assets
 
 echo "...syncing with s3"
 aws s3 sync ${SOURCE_DIRECTORY} s3://${S3_BUCKET}/${NPM_PACKAGE_VERSION}/ --delete --acl public-read
