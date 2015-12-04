@@ -1,0 +1,20 @@
+machine:
+  node:
+    version: 4.2.1
+  ruby:
+    version: 2.2.3
+
+dependencies:
+  pre:
+    - gem install github_changelog_generator
+    - pip install awscli
+
+test:
+  post:
+    - nvm install 5 && npm test
+
+deployment:
+  production:
+    branch: master
+    commands:
+      - bash scripts/circle_deploy.sh
