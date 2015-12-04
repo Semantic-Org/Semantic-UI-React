@@ -11,7 +11,7 @@ export default class ComponentExamples extends Component {
     const examples = exampleContext.keys()
       .filter(path => path.includes(`/${this.props.name}Examples.js`))
       .map((path, i) => {
-        const Example = exampleContext(path);
+        const Example = exampleContext(path).default;
         return <Example key={i} />;
       });
 
