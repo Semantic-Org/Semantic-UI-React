@@ -1,4 +1,3 @@
-import childProcess from 'child_process';
 import defaultGulp from 'gulp';
 import helpConfig from '../gulphelp';
 import loadPlugins from 'gulp-load-plugins';
@@ -13,7 +12,7 @@ import statsConfig from '../../webpack-stats';
 import webpackConfig from '../../webpack.dev.babel';
 
 gulp.task('serve', 'serve, build (in memory only), and watch the app', cb => {
-  const host = 'localhost';
+  const host = '0.0.0.0';
   const port = '8080';
   const protocol = 'http';
   const serverUrl = `${protocol}://${host}:${port}`;
@@ -33,10 +32,6 @@ gulp.task('serve', 'serve, build (in memory only), and watch the app', cb => {
   // http://webpack.github.io/docs/configuration.html
   const compiler = webpack(webpackConfig);
 
-  function onComplete(err, stdout, stderr) {
-    cb(err);
-  }
-
   new WebpackDevServer(compiler, devMiddlewareConfig)
     .listen(port, host, err => {
       if (err) {
@@ -47,7 +42,5 @@ gulp.task('serve', 'serve, build (in memory only), and watch the app', cb => {
         g.util.colors.green('[webpack-dev-server]'),
         serverUrl
       );
-
-      childProcess.exec('open ' + serverUrl, onComplete);
     });
 });

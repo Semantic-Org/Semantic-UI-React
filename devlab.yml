@@ -1,0 +1,25 @@
+# DOCKER-VERSION 1.9.1
+# DEVLAB-VERSION 1.5.3
+
+#
+# Stardust DevLab YAML
+#
+# http://fluidbyte.net/docker/devlab/nodejs/2015/10/15/containerize-your-local-dev-in-minutes-with-devlab/
+# https://github.com/TechnologyAdvice/stardust/
+#
+
+from: node:argon
+env:
+  - NODE_ENV=development
+expose:
+  - 8080:8080
+volumes:
+  - ${HOME}/.ssh:/root/.ssh
+tasks:
+  env: env
+  clean: rm -rf node_modules && npm cache clean
+  install: npm install
+  start: npm start
+  test: npm run test
+  lint: npm run lint
+  build: npm run build
