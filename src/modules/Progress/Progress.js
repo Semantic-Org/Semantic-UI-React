@@ -2,13 +2,14 @@ import React, {Component, PropTypes} from 'react';
 import classNames from 'classnames';
 import $ from 'jquery';
 import META from 'src/utils/Meta';
+import _ from 'lodash';
 
 export default class Progress extends Component {
   static propTypes = {
     autoSuccess: PropTypes.bool,
     children: PropTypes.node,
     className: PropTypes.string,
-    label: PropTypes.string,
+    label: PropTypes.oneOf(['ratio', 'percent']),
     limitValues: PropTypes.bool,
     onActive: PropTypes.func,
     onChange: PropTypes.func,
@@ -27,8 +28,6 @@ export default class Progress extends Component {
     this.element = $(this.refs.element);
     this.element.progress({
       autoSuccess: this.props.autoSuccess,
-      children: this.props.children,
-      className: this.props.className,
       label: this.props.label,
       limitValues: this.props.limitValues,
       onActive: this.props.onActive,
@@ -55,24 +54,28 @@ export default class Progress extends Component {
     return this.element.progress(...arguments);
   }
 
-  renderAttachedBar() {
+  renderAttachedBar = () => {
     return (
       <div className='bar' />
     );
-  }
+  };
 
-  renderStandardBar() {
+  renderStandardBar = () => {
+    const label = (
+      <div className='label'>
+        {this.props.children}
+      </div>
+    );
+
     return (
       <div>
         <div className='bar'>
           <div className='progress'/>
         </div>
-        <div className='label'>
-          {this.props.children}
-        </div>
+        {this.props.children && label}
       </div>
     );
-  }
+  };
 
   render() {
     const classes = classNames(
@@ -82,15 +85,11 @@ export default class Progress extends Component {
       'progress',
     );
 
-    let content = ::this.renderStandardBar();
-
-    if (this.props.className && this.props.className.indexOf('attached') !== -1) {
-      content = ::this.renderAttachedBar();
-    }
-
+    const isAttached = _.contains(this.props.className, 'attached');
+    console.log(isAttached, classes);
     return (
       <div {...this.props} className={classes}>
-        {content}
+        {isAttached ? this.renderAttachedBar() : this.renderStandardBar()}
       </div>
     );
   }

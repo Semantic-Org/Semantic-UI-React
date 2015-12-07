@@ -1,7 +1,7 @@
 import React from 'react';
 import {Progress} from 'stardust';
 
-describe('Progress', () => {
+describe.only('Progress', () => {
   it('should be able to receive children', () => {
     render(
       <Progress>
@@ -14,10 +14,15 @@ describe('Progress', () => {
     render(<Progress />).findClass('bar');
   });
 
-  // it('should create a div with the class of progress', () => {
-  //   const bugger = render(<Progress />);
-  //   console.log(bugger);
-  //   debugger;
-  //   render(<Progress />).scryClass('progress');
-  // });
+  it('should create two progress divs if un-attached', () => {
+    render(<Progress />)
+      .scryClass('progress')
+      .should.have.a.lengthOf(2);
+  });
+
+  it('should not create extra progress div if attached', () => {
+    render(<Progress className='attached' />)
+      .scryClass('progress')
+      .should.have.a.lengthOf(1);
+  });
 });
