@@ -86,7 +86,6 @@ export default class Progress extends Component {
     );
 
     const isAttached = _.contains(this.props.className, 'attached');
-    console.log(isAttached, classes);
     return (
       <div {...this.props} className={classes}>
         {isAttached ? this.renderAttachedBar() : this.renderStandardBar()}
