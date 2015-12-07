@@ -5,14 +5,19 @@ describe('Progress', () => {
   it('should be able to receive children', () => {
     render(
       <Progress>
-        <div className='new-child' />
+        Child
       </Progress>
-    ).scryClass('new-child');
+    ).assertText('Child');
   });
+
   it('should create a div with the class of bar', () => {
-    render(<Progress />).scryClass('bar');
+    render(<Progress />).findClass('bar');
   });
-  it('should create a div with the class of progress', () => {
-    render(<Progress />).scryClass('progress');
-  });
+
+  // it('should create a div with the class of progress', () => {
+  //   const bugger = render(<Progress />);
+  //   console.log(bugger);
+  //   debugger;
+  //   render(<Progress />).scryClass('progress');
+  // });
 });

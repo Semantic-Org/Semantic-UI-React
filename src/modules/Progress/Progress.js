@@ -26,12 +26,22 @@ export default class Progress extends Component {
   componentDidMount() {
     this.element = $(this.refs.element);
     this.element.progress({
+      autoSuccess: this.props.autoSuccess,
+      children: this.props.children,
+      className: this.props.className,
+      label: this.props.label,
+      limitValues: this.props.limitValues,
       onActive: this.props.onActive,
       onChange: this.props.onChange,
       onError: this.props.onError,
       onSuccess: this.props.onSuccess,
       onWarning: this.props.onWarning,
       percent: this.props.percent,
+      precision: this.props.precision,
+      random: this.props.random,
+      showActivity: this.props.showActivity,
+      total: this.props.total,
+      value: this.props.value,
     });
   }
 
@@ -45,6 +55,25 @@ export default class Progress extends Component {
     return this.element.progress(...arguments);
   }
 
+  renderAttachedBar() {
+    return (
+      <div className='bar' />
+    );
+  }
+
+  renderStandardBar() {
+    return (
+      <div>
+        <div className='bar'>
+          <div className='progress'/>
+        </div>
+        <div className='label'>
+          {this.props.children}
+        </div>
+      </div>
+    );
+  }
+
   render() {
     const classes = classNames(
       'sd-progress',
@@ -53,12 +82,15 @@ export default class Progress extends Component {
       'progress',
     );
 
+    let content = ::this.renderStandardBar();
+
+    if (this.props.className && this.props.className.indexOf('attached') !== -1) {
+      content = ::this.renderAttachedBar();
+    }
+
     return (
       <div {...this.props} className={classes}>
-        <div className='bar'>
-          <div className='progress'/>
-        </div>
-        {this.props.children}
+        {content}
       </div>
     );
   }
