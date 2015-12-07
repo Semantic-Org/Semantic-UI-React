@@ -15,9 +15,6 @@ describe('Progress', () => {
   });
 
   // it('should create a div with the class of progress', () => {
-  //   const bugger = render(<Progress />);
-  //   console.log(bugger);
-  //   debugger;
-  //   render(<Progress />).scryClass('progress');
+  //   render(<Progress />).firstClass('progress');
   // });
 });
