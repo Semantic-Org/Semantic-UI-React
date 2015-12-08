@@ -22,6 +22,7 @@ const jQueryPlugins = {
   dropdown: sandbox.stub().returnsThis(),
   modal: sandbox.stub().returnsThis(),
   popup: sandbox.stub().returnsThis(),
+  progress: sandbox.stub().returnsThis(),
   transition: sandbox.stub().returnsThis(),
 };
 

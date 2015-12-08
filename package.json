@@ -1,6 +1,6 @@
 {
   "name": "stardust",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "description": "Semantic UI components for React.",
   "main": "src/index.js",
   "files": [
@@ -56,6 +56,7 @@
     "imports-loader": "^0.6.4",
     "inflection": "^1.8.0",
     "jquery": "^2.1.4",
+    "json": "^9.0.3",
     "json-loader": "^0.5.3",
     "karma": "^0.13.13",
     "karma-cli": "^0.1.1",
@@ -84,7 +85,7 @@
     "slug": "^0.9.1",
     "through2": "^2.0.0",
     "watch": "^0.16.0",
-    "webpack": "^1.12.2",
-    "webpack-dev-server": "^1.12.0"
+    "webpack": "1.12.1",
+    "webpack-dev-server": "1.10.1"
   }
 }

@@ -1,17 +1,34 @@
 # Change Log
 
+## [Unreleased](https://github.com/TechnologyAdvice/stardust/tree/HEAD)
+
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.8.0...HEAD)
+
+**Implemented enhancements:**
+
+- \<Segments /\> component [\#114](https://github.com/TechnologyAdvice/stardust/issues/114)
+- Add Progress Component [\#121](https://github.com/TechnologyAdvice/stardust/pull/121) ([eanplatter](https://github.com/eanplatter))
+
+**Closed issues:**
+
+- Segment examples [\#112](https://github.com/TechnologyAdvice/stardust/issues/112)
+
+**Merged pull requests:**
+
+- Setup CircleCI [\#124](https://github.com/TechnologyAdvice/stardust/pull/124) ([levithomason](https://github.com/levithomason))
+- Segment Examples [\#113](https://github.com/TechnologyAdvice/stardust/pull/113) ([jhabdas](https://github.com/jhabdas))
+
 ## [v0.8.0](https://github.com/TechnologyAdvice/stardust/tree/v0.8.0) (2015-11-24)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.7.1...v0.8.0)
 
 **Implemented enhancements:**
 
+- Add \<Header /\> component [\#107](https://github.com/TechnologyAdvice/stardust/issues/107)
 - Add \<Buttons /\> [\#97](https://github.com/TechnologyAdvice/stardust/issues/97)
 - A \<Divider /\> element. [\#49](https://github.com/TechnologyAdvice/stardust/issues/49)
-- Add offset to Columns [\#26](https://github.com/TechnologyAdvice/stardust/issues/26)
 
 **Closed issues:**
 
-- Add \<Header /\> component [\#107](https://github.com/TechnologyAdvice/stardust/issues/107)
 - Duplicate random data causing intermittent Table test fail [\#95](https://github.com/TechnologyAdvice/stardust/issues/95)
 - Cleanup redundancy in tests [\#60](https://github.com/TechnologyAdvice/stardust/issues/60)
 
