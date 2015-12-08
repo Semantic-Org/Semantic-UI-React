@@ -29,12 +29,83 @@ const DROPDOWN_SKILLS_OPTIONS = [
   {value: 'kitchen_repair', text: 'Kitchen Repair'},
 ];
 
+const FIELDS = {
+  name: {
+    identifier: 'name',
+    rules: [
+      {
+        type: 'empty',
+        prompt: 'Please enter your name',
+      }
+    ]
+  },
+  skills: {
+    identifier: 'skills',
+    rules: [
+      {
+        type: 'minCount[2]',
+        prompt: 'Please select at least two skills',
+      }
+    ]
+  },
+  gender: {
+    identifier: 'gender',
+    rules: [
+      {
+        type: 'empty',
+        prompt: 'Please select a gender'
+      }
+    ]
+  },
+  username: {
+    identifier: 'username',
+    rules: [
+      {
+        type: 'empty',
+        prompt: 'Please enter a username'
+      }
+    ]
+  },
+  password: {
+    identifier: 'password',
+    rules: [
+      {
+        type: 'empty',
+        prompt: 'Please enter a password'
+      },
+      {
+        type: 'minLength[6]',
+        prompt: 'Your password must be at least {ruleValue} characters'
+      }
+    ]
+  },
+  terms: {
+    identifier: 'terms',
+    rules: [
+      {
+        type: 'checked',
+        prompt: 'You must agree to the terms and conditions'
+      }
+    ]
+  }
+};
+
 // TODO: Add BehaviorExample component
 // TODO: Confirm validaiton rules Message is correct WRT use of data attributes
 export default class BehaviorDoc extends Component {
   static propTypes = {
     name: PropTypes.string,
   };
+
+  validateForm() {
+    let $control;
+    const pairs = object => (for (key of Object.keys(object)) [key, object[key]]); // generator expression
+
+    for (const [key, value] of pairs(FIELDS)) {
+      $control = this.refs[value.identifier];
+      return {[key]: $control}; // without Map using generator functions and regenerator runtime (allows async/await)
+    }
+  }
 
   render() {
     return (
@@ -95,34 +166,63 @@ export default class BehaviorDoc extends Component {
                 </legend>
                 <Fields evenlyDivided>
                   <Field label='Name'>
-                    <Input placeholder='First Name' />
+                    <Input
+                      ref='name'
+                      name='name'
+                      placeholder='First Name'
+                    />
                   </Field>
                   <Field label='Gender'>
-                    <Dropdown className='compact selection' options={DROPDOWN_GENDER_OPTIONS} />
+                    <Dropdown
+                      ref='gender'
+                      name='gender'
+                      className='compact selection'
+                      options={DROPDOWN_GENDER_OPTIONS}
+                    />
                   </Field>
                 </Fields>
                 <Fields evenlyDivided>
                   <Field label='Username'>
-                    <Input placeholder='Username' />
+                    <Input
+                      ref='username'
+                      name='username'
+                      placeholder='Username'
+                    />
                   </Field>
                   <Field label='Password'>
                     <Input
+                      ref='password'
+                      name='password'
+                      pattern='(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$'
                       placeholder='i*6}G[q9<[3TUbt%'
                       type='password'
-                      errorText='Your password must be at least 6 characters'
+                      errorText={FIELDS.password.rules[1].prompt}
                       required
                     />
+                    <div className='ui pointing label'>
+                      Must contain uppercase and lowercase characters, at least one number or special character, and be
+                      a minimum of 8 characters in length.
+                    </div>
                   </Field>
                 </Fields>
                 <Field label='Skills'>
-                  <Dropdown className='compact selection' options={DROPDOWN_SKILLS_OPTIONS} />
+                  <Dropdown
+                    ref='skills'
+                    name='skills'
+                    className='compact selection'
+                    options={DROPDOWN_SKILLS_OPTIONS}
+                  />
                 </Field>
                 <Field>
-                  <Checkbox label='I agree to the Terms and Conditions' />
+                  <Checkbox
+                    ref='terms'
+                    name='terms'
+                    label='I agree to the Terms and Conditions'
+                  />
                 </Field>
               </fieldset>
               <Divider />
-              <Button type='submit'>Submit</Button>
+              <Button type='submit' onClick={this.validateForm.bind(this)}>Submit</Button>
             </Form>
           </Segment>
         </Segment>
