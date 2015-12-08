@@ -10,7 +10,6 @@ export default {
   devtool: 'source-map',
   entry: {
     app: [
-      'babel-polyfill',
       'webpack/hot/only-dev-server',
       paths.docsApp + '/DocsApp.js'
     ],

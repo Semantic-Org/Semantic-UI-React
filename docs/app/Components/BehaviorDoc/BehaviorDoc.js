@@ -29,66 +29,27 @@ const DROPDOWN_SKILLS_OPTIONS = [
   {value: 'kitchen_repair', text: 'Kitchen Repair'},
 ];
 
-const FIELDS = {
-  name: {
-    identifier: 'name',
-    rules: [
-      {
-        type: 'empty',
-        prompt: 'Please enter your name',
-      }
-    ]
-  },
-  skills: {
-    identifier: 'skills',
-    rules: [
-      {
-        type: 'minCount[2]',
-        prompt: 'Please select at least two skills',
-      }
-    ]
-  },
-  gender: {
-    identifier: 'gender',
-    rules: [
-      {
-        type: 'empty',
-        prompt: 'Please select a gender'
-      }
-    ]
-  },
-  username: {
-    identifier: 'username',
-    rules: [
-      {
-        type: 'empty',
-        prompt: 'Please enter a username'
-      }
-    ]
-  },
-  password: {
-    identifier: 'password',
-    rules: [
-      {
-        type: 'empty',
-        prompt: 'Please enter a password'
-      },
-      {
-        type: 'minLength[6]',
-        prompt: 'Your password must be at least {ruleValue} characters'
-      }
-    ]
-  },
-  terms: {
-    identifier: 'terms',
-    rules: [
-      {
-        type: 'checked',
-        prompt: 'You must agree to the terms and conditions'
-      }
-    ]
-  }
-};
+const FIELDS = new Map([
+  ['name', {rules: [
+    {type: 'empty', prompt: 'Please enter your name'},
+  ]}],
+  ['skills', {rules: [
+    {type: 'minCount[2]', prompt: 'Please select at least two skills'},
+  ]}],
+  ['gender', {rules: [
+    {type: 'empty', prompt: 'Please select a gender'},
+  ]}],
+  ['username', {rules: [
+      {type: 'empty', prompt: 'Please enter a username'},
+  ]}],
+  ['password', {rules: [
+    {type: 'empty', prompt: 'Please enter a password'},
+    {type: 'minLength[6]', prompt: 'Your password must be at least {ruleValue} characters'},
+  ]}],
+  ['terms', {rules: [
+    {type: 'checked', prompt: 'You must agree to the terms and conditions'},
+  ]}]
+]);
 
 // TODO: Add BehaviorExample component
 // TODO: Confirm validaiton rules Message is correct WRT use of data attributes
@@ -98,12 +59,8 @@ export default class BehaviorDoc extends Component {
   };
 
   validateForm() {
-    let $control;
-    const pairs = object => (for (key of Object.keys(object)) [key, object[key]]); // generator expression
-
-    for (const [key, value] of pairs(FIELDS)) {
-      $control = this.refs[value.identifier];
-      return {[key]: $control}; // without Map using generator functions and regenerator runtime (allows async/await)
+    for (const [key, value] of FIELDS) {
+      return [this.refs[key], value];
     }
   }
 
@@ -196,7 +153,6 @@ export default class BehaviorDoc extends Component {
                       pattern='(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$'
                       placeholder='i*6}G[q9<[3TUbt%'
                       type='password'
-                      errorText={FIELDS.password.rules[1].prompt}
                       required
                     />
                     <div className='ui pointing label'>
