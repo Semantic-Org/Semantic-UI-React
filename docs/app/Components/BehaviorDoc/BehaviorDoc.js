@@ -30,38 +30,52 @@ const DROPDOWN_SKILLS_OPTIONS = [
   {value: 'kitchen_repair', text: 'Kitchen Repair'},
 ];
 
-const FIELDS = new Map([
-  ['name', {rules: [
+const VALIDATION_RULES = new Map([
+  ['name', [
     {type: 'empty', prompt: 'Please enter your name'},
-  ]}],
-  ['skills', {rules: [
+  ]],
+  ['skills', [
     {type: 'minCount[2]', prompt: 'Please select at least two skills'},
-  ]}],
-  ['gender', {rules: [
+  ]],
+  ['gender', [
     {type: 'empty', prompt: 'Please select a gender'},
-  ]}],
-  ['username', {rules: [
-      {type: 'empty', prompt: 'Please enter a username'},
-  ]}],
-  ['password', {rules: [
+  ]],
+  ['username', [
+    {type: 'empty', prompt: 'Please enter a username'},
+  ]],
+  ['password', [
     {type: 'empty', prompt: 'Please enter a password'},
     {type: 'minLength[6]', prompt: 'Your password must be at least {ruleValue} characters'},
-  ]}],
-  ['terms', {rules: [
+  ]],
+  ['terms', [
     {type: 'checked', prompt: 'You must agree to the terms and conditions'},
-  ]}]
+  ]]
 ]);
 
-// TODO: Add BehaviorExample component
+// TODO: Add BehaviorExample component on second pass
 // TODO: Confirm validaiton rules Message is correct WRT use of data attributes
 export default class BehaviorDoc extends Component {
   static propTypes = {
     name: PropTypes.string,
   };
 
+  handleFormSubmitEvent(e) {
+    e.preventDefault();
+    this.validateForm.call(this);
+  }
+
   validateForm() {
-    for (const [key, value] of FIELDS) {
-      return [this.refs[key], value, formSettings];
+    let $control;
+    const applyValidationRule = (rule) => {
+      const validate = formSettings.rules.get(rule.type);
+      const isValid = validate($control);
+      $control.setState({isValid});
+      return $control;
+    };
+
+    for (const [key, rules] of VALIDATION_RULES) {
+      $control = this.refs[key];
+      rules.forEach(applyValidationRule);
     }
   }
 
@@ -117,7 +131,7 @@ export default class BehaviorDoc extends Component {
           </Segment>
           <Segment>
             <p>Tell us a little something about yourself.</p>
-            <Form>
+            <Form onSubmit={this.handleFormSubmitEvent.bind(this)}>
               <fieldset>
                 <legend>
                   <Header.H3>About Me</Header.H3>
