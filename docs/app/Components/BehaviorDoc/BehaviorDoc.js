@@ -1,4 +1,5 @@
 import React, {Component, PropTypes} from 'react';
+import {settings as formSettings} from 'src/lib/form';
 
 import {
   Button,
@@ -60,7 +61,7 @@ export default class BehaviorDoc extends Component {
 
   validateForm() {
     for (const [key, value] of FIELDS) {
-      return [this.refs[key], value];
+      return [this.refs[key], value, formSettings];
     }
   }
 
@@ -150,7 +151,6 @@ export default class BehaviorDoc extends Component {
                     <Input
                       ref='password'
                       name='password'
-                      pattern='(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$'
                       placeholder='i*6}G[q9<[3TUbt%'
                       type='password'
                       required
