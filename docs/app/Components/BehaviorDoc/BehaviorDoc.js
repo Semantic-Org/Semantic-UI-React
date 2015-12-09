@@ -66,6 +66,7 @@ export default class BehaviorDoc extends Component {
 
   validateForm() {
     let $control;
+
     const applyValidationRule = (rule) => {
       const validate = formSettings.rules.get(rule.type);
       const isValid = validate($control);

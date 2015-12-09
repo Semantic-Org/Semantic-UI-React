@@ -18,19 +18,19 @@ export default class Input extends Component {
     type: 'text',
   };
 
+  constructor(props, context) {
+    super(props, context);
+
+    this.state = {
+      isValid: true,
+    };
+  }
+
   static _meta = {
     library: META.library.semanticUI,
     name: 'Input',
     type: META.type.element,
   };
-
-  // componentWillMount() {
-  //   this.props.attachToForm(this);
-  // }
-
-  // componentWillUnmount() {
-  //   this.props.detachFromForm(this);
-  // }
 
   render() {
     // TODO: replace with <Icon /> once it is merged
@@ -70,7 +70,8 @@ export default class Input extends Component {
       'sd-input',
       'ui',
       this.props.className,
-      'input'
+      'input',
+      {error: !this.state.isValid}
     );
     const props = getUnhandledProps(this);
 
