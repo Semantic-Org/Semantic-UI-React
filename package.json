@@ -87,5 +87,8 @@
     "watch": "^0.16.0",
     "webpack": "1.12.1",
     "webpack-dev-server": "1.10.1"
+  },
+  "devDependencies": {
+    "es6-collections": "^0.5.5"
   }
 }

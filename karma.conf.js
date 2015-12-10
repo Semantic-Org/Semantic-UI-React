@@ -18,6 +18,7 @@ module.exports = function(config) {
     singleRun: !ENV.isDevelopment(),
     reporters: [ENV.isDevelopment() ? 'mocha' : 'dots'],
     files: [
+      './node_modules/es6-collections/es6-collections.js',
       './node_modules/phantomjs-polyfill/bind-polyfill.js',
       './test/tests.bundle.js'
     ],
