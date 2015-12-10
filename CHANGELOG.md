@@ -2,7 +2,18 @@
 
 ## [Unreleased](https://github.com/TechnologyAdvice/stardust/tree/HEAD)
 
-[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.8.0...HEAD)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.8.1...HEAD)
+
+**Fixed bugs:**
+
+- Only a subset of tests running [\#126](https://github.com/TechnologyAdvice/stardust/issues/126)
+
+**Merged pull requests:**
+
+- Remove Progress module unit test exclusivity. Fixes \#126. [\#127](https://github.com/TechnologyAdvice/stardust/pull/127) ([jhabdas](https://github.com/jhabdas))
+
+## [v0.8.1](https://github.com/TechnologyAdvice/stardust/tree/v0.8.1) (2015-12-07)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.8.0...v0.8.1)
 
 **Implemented enhancements:**
 
