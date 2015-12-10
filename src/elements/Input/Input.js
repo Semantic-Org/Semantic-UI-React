@@ -5,12 +5,14 @@ import META from 'src/utils/Meta';
 import getUnhandledProps from 'src/utils/getUnhandledProps';
 
 export default class Input extends Component {
+  // TODO: Use or remove attach/detach methods with form behavior work
   static propTypes = {
-    attachToForm: PropTypes.fn,
+    attachToForm: PropTypes.func,
     children: PropTypes.node,
     className: PropTypes.string,
-    detachFromForm: PropTypes.fn,
+    detachFromForm: PropTypes.func,
     icon: PropTypes.string,
+    initiallyDisabled: PropTypes.bool,
     ref: PropTypes.string,
   };
 
@@ -23,6 +25,7 @@ export default class Input extends Component {
 
     this.state = {
       isValid: true,
+      isDisabled: props.initiallyDisabled,
     };
   }
 
