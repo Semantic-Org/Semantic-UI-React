@@ -24,8 +24,9 @@ export default class Input extends Component {
     super(props, context);
 
     this.state = {
+      isDisabled: props.initiallyDisabled || false,
+      isRequired: false,
       isValid: true,
-      isDisabled: props.initiallyDisabled,
     };
   }
 
@@ -36,6 +37,8 @@ export default class Input extends Component {
   };
 
   render() {
+    const {isValid, isRequired, isDisabled} = this.state;
+
     // TODO: replace with <Icon /> once it is merged
     const iconClasses = classNames(
       this.props.icon,
@@ -74,7 +77,7 @@ export default class Input extends Component {
       'ui',
       this.props.className,
       'input',
-      {error: !this.state.isValid}
+      {error: !isValid}
     );
     const props = getUnhandledProps(this);
 
@@ -82,7 +85,7 @@ export default class Input extends Component {
       <div className={classes}>
         {isLeftLabeled && labelChildren}
         {isLeftAction && actionChildren}
-        <input {...props} />
+        <input {...props} required={isRequired} disabled={isDisabled} />
         {this.props.icon && icon}
         {isRightLabeled && labelChildren}
         {isRightAction && actionChildren}

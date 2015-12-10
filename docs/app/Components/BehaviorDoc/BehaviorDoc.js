@@ -62,15 +62,17 @@ export default class BehaviorDoc extends Component {
   handleFormSubmitEvent(e) {
     e.preventDefault();
     this.validateForm.call(this);
+    e.currentTarget.submit();
   }
 
   validateForm() {
     let $control;
 
     const applyValidationRule = (rule) => {
-      const validate = formSettings.rules.get(rule.type);
-      const isValid = validate($control);
-      $control.setState({isValid});
+      const validationRule = formSettings.rules.get(rule.type);
+      const isValid = validationRule ? validationRule($control) : false;
+      const isRequired = (!isValid && rule.type === 'empty') ? true : false;
+      $control.setState({isValid, isRequired});
       return $control;
     };
 
