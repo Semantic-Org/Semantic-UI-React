@@ -1,7 +1,7 @@
 import React from 'react';
 import {Progress} from 'stardust';
 
-describe.only('Progress', () => {
+describe('Progress', () => {
   it('should be able to receive children', () => {
     render(
       <Progress>
