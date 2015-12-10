@@ -74,10 +74,10 @@ export default class BehaviorDoc extends Component {
       return $control;
     };
 
-    for (const [key, rules] of VALIDATION_RULES) {
+    VALIDATION_RULES.forEach((ruleSet, key) => {
       $control = this.refs[key];
-      rules.forEach(applyValidationRule);
-    }
+      ruleSet.forEach(applyValidationRule);
+    });
   }
 
   render() {
