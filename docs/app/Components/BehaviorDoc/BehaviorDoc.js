@@ -14,6 +14,7 @@ import {
   Input,
   Message,
   Segment,
+  TextField,
 } from 'stardust';
 
 const DROPDOWN_GENDER_OPTIONS = [
@@ -140,13 +141,11 @@ export default class BehaviorDoc extends Component {
                   <Header.H3>About Me</Header.H3>
                 </legend>
                 <Fields evenlyDivided>
-                  <Field label='Name'>
-                    <Input
-                      ref='name'
-                      name='name'
-                      placeholder='First Name'
-                    />
-                  </Field>
+                  <TextField
+                    labelText='Name'
+                    name='name'
+                    placeholderText='First Name'
+                  />
                   <Field label='Gender'>
                     <Dropdown
                       ref='gender'
