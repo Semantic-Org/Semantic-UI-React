@@ -67,7 +67,7 @@ export default class TextField extends Component {
     } = this.props;
 
     const fieldClasses = classNames(
-      'sd-textfield',
+      'sd-text-field',
       'error' // TODO: Tie in with form validation
     );
 
