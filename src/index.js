@@ -1,6 +1,7 @@
 // Addons
 import Confirm from 'src/addons/Confirm/Confirm';
 import Textarea from 'src/addons/Textarea/Textarea';
+import TextField from 'src/addons/TextField/TextField';
 
 // Collections
 import Column from 'src/collections/Grid/Column';
@@ -46,6 +47,7 @@ export default {
   // Addons
   Confirm,
   Textarea,
+  TextField,
 
   // Collections
   Column,

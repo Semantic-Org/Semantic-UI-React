@@ -25,7 +25,8 @@ export default class Fields extends Component {
   render() {
     let fieldCount = 0;
     Children.forEach(this.props.children, child => {
-      _.get(child, 'type._meta.name') === 'Field' && fieldCount++;
+      const name = _.get(child, 'type._meta.name');
+      if (name === 'Field' || name === 'TextField') fieldCount++;
     });
     fieldCount = numberToWord(fieldCount);
 

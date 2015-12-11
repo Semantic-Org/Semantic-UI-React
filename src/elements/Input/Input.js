@@ -11,24 +11,16 @@ export default class Input extends Component {
     children: PropTypes.node,
     className: PropTypes.string,
     detachFromForm: PropTypes.func,
+    disabled: PropTypes.bool,
     icon: PropTypes.string,
     initiallyDisabled: PropTypes.bool,
     ref: PropTypes.string,
+    required: PropTypes.bool,
   };
 
   static defaultProps = {
     type: 'text',
   };
-
-  constructor(props, context) {
-    super(props, context);
-
-    this.state = {
-      isDisabled: props.initiallyDisabled || false,
-      isRequired: false,
-      isValid: true,
-    };
-  }
 
   static _meta = {
     library: META.library.semanticUI,
@@ -37,8 +29,6 @@ export default class Input extends Component {
   };
 
   render() {
-    const {isValid, isRequired, isDisabled} = this.state;
-
     // TODO: replace with <Icon /> once it is merged
     const iconClasses = classNames(
       this.props.icon,
@@ -76,8 +66,7 @@ export default class Input extends Component {
       'sd-input',
       'ui',
       this.props.className,
-      'input',
-      {error: !isValid}
+      'input'
     );
     const props = getUnhandledProps(this);
 
@@ -85,7 +74,7 @@ export default class Input extends Component {
       <div className={classes}>
         {isLeftLabeled && labelChildren}
         {isLeftAction && actionChildren}
-        <input {...props} required={isRequired} disabled={isDisabled} />
+        <input {...props} />
         {this.props.icon && icon}
         {isRightLabeled && labelChildren}
         {isRightAction && actionChildren}
