@@ -32,7 +32,7 @@ export default class FormSpecifyingValidationRulesExample extends Component {
 
   render() {
     return (
-      <Form settings={this.formSettings}>
+      <Form settings={this.formSettings} className='segment'>
         <p>Tell Us About Yourself</p>
         <Fields evenlyDivided>
           <Field>
@@ -52,10 +52,10 @@ export default class FormSpecifyingValidationRulesExample extends Component {
           </Field>
         </Fields>
         <Field label='Skills'>
-          <Dropdown className='selection multiple' options={this.skillsOptions} multiple='' />
+          <Dropdown className='selection multiple' options={this.skillsOptions} />
         </Field>
         <Field className='inline'>
-          <Checkbox name='terms' tabIndex='0' className='hidden' label='I agree to the terms and conditions' />
+          <Checkbox name='terms' className='hidden' label='I agree to the terms and conditions' />
         </Field>
         <Button className='blue submit'>Submit</Button>
         <Message className='error' />

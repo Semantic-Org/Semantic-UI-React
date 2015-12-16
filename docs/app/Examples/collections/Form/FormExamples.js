@@ -5,6 +5,7 @@ import FormFieldVariationsExamples from './FieldVariations/FormFieldVariationsEx
 import FormGroupVariationsExamples from './GroupVariations/FormGroupVariationsExamples';
 import FormFormVariationsExamples from './FormVariations/FormFormVariationsExamples';
 import FormStatesExamples from './States/FormStatesExamples';
+import FormValidationExamples from './Validation/FormValidationExamples';
 
 export default class FormExamples extends Component {
   render() {
@@ -16,6 +17,7 @@ export default class FormExamples extends Component {
         <FormFormVariationsExamples />
         <FormFieldVariationsExamples />
         <FormGroupVariationsExamples />
+        <FormValidationExamples />
       </div>
     );
   }

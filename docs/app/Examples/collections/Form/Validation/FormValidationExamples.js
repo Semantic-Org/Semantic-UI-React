@@ -1,15 +1,15 @@
 import React, {Component} from 'react';
-import ExampleSection from '../../../../Components/ComponentDoc/ExampleSection';
-import ComponentExample from '../../../../Components/ComponentDoc/ComponentExample';
+import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection';
+import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample';
 
-export default class FormUsageExamples extends Component {
+export default class FormValidationExamples extends Component {
   render() {
     return (
       <ExampleSection title='Usage'>
         <ComponentExample
           title='Specifying Validation Rules'
-          description='Form validation requires passing in a validation object with the rules required to validate your form.'
-          examplePath='behaviors/Form Validation/Usage/FormSpecifyingValidationRulesExample'
+          description='Pass in a validation object with the rules required to validate your form.'
+          examplePath='collections/Form/Validation/FormSpecifyingValidationRulesExample'
         />
       </ExampleSection>
     );
