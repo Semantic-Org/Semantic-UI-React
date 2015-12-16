@@ -43,7 +43,7 @@ export default class FormValidatingOnBlurAndOtherEventsExample extends Component
   render() {
     return (
       <Form settings={this.formSettings} className='segment'>
-        <p>Tell Us About Yourself</p>
+        <p>Let's go ahead and get you signed up.</p>
         <Fields evenlyDivided>
           <Field>
             <label>Name</label>
@@ -62,7 +62,7 @@ export default class FormValidatingOnBlurAndOtherEventsExample extends Component
             <Input type='password' name='password' />
           </Field>
         </Fields>
-        <Field>
+        <Field className='inline'>
           <Checkbox name='terms' className='hidden' label='I agree to the terms and conditions' />
         </Field>
         <Button className='blue submit'>Submit</Button>
