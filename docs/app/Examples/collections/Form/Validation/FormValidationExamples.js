@@ -6,7 +6,7 @@ import {Message} from 'stardust';
 export default class FormValidationExamples extends Component {
   render() {
     return (
-      <ExampleSection title='Usage'>
+      <ExampleSection title='Validation'>
         <ComponentExample
           title='Specifying Validation Rules'
           description='Pass in a validation object with the rules required to validate your form.'

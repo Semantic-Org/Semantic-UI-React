@@ -40,7 +40,7 @@ export default class FormSpecifyingValidationRulesExample extends Component {
             <Input placeholder='First Name' name='name' type='text' />
           </Field>
           <Field label='Gender'>
-            <Dropdown className='selection' options={this.genderOptions} />
+            <Dropdown className='selection' name='gender' options={this.genderOptions} />
           </Field>
         </Fields>
         <Fields evenlyDivided>
@@ -52,7 +52,7 @@ export default class FormSpecifyingValidationRulesExample extends Component {
           </Field>
         </Fields>
         <Field label='Skills'>
-          <Dropdown className='selection multiple' options={this.skillsOptions} />
+          <Dropdown className='selection multiple' name='skills' options={this.skillsOptions} />
         </Field>
         <Field className='inline'>
           <Checkbox name='terms' className='hidden' label='I agree to the terms and conditions' />
