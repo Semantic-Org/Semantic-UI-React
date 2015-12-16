@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Button, Checkbox, Field, Form, Input} from 'stardust';
 
-export default class FormFieldExample extends Component {
+export default class FormFormExample extends Component {
   render() {
     return (
       <Form>

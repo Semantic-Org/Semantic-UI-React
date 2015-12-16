@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import $ from 'jquery';
 import React, {Component, PropTypes} from 'react';
 import classNames from 'classnames';
 import META from 'src/utils/Meta';
@@ -7,7 +8,21 @@ export default class Form extends Component {
   static propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
+    settings: PropTypes.object,
   };
+
+  componentDidMount() {
+    this.element = $(this.refs.element);
+    this.element.form(this.props.settings);
+  }
+
+  componentWillUnmount() {
+    this.element.off();
+  }
+
+  plugin() {
+    return this.element.form(...arguments);
+  }
 
   serializeJson = () => {
     const form = this.refs.form;
@@ -52,7 +67,7 @@ export default class Form extends Component {
       'form'
     );
     return (
-      <form {...this.props} className={classes} ref='form'>
+      <form {...this.props} className={classes} ref='element'>
         {this.props.children}
       </form>
     );
