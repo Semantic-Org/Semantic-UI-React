@@ -10,6 +10,7 @@
 
 **Merged pull requests:**
 
+- Add form plugin [\#130](https://github.com/TechnologyAdvice/stardust/pull/130) ([levithomason](https://github.com/levithomason))
 - Remove Progress module unit test exclusivity. Fixes \#126. [\#127](https://github.com/TechnologyAdvice/stardust/pull/127) ([jhabdas](https://github.com/jhabdas))
 
 ## [v0.8.1](https://github.com/TechnologyAdvice/stardust/tree/v0.8.1) (2015-12-07)
