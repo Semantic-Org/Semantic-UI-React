@@ -5,16 +5,30 @@ import META from 'src/utils/Meta';
 import getUnhandledProps from 'src/utils/getUnhandledProps';
 
 export default class Input extends Component {
+  // TODO: Use or remove attach/detach methods with form behavior work
   static propTypes = {
+    attachToForm: PropTypes.func,
     children: PropTypes.node,
     className: PropTypes.string,
+    detachFromForm: PropTypes.func,
     icon: PropTypes.string,
+    initiallyDisabled: PropTypes.bool,
     ref: PropTypes.string,
   };
 
   static defaultProps = {
     type: 'text',
   };
+
+  constructor(props, context) {
+    super(props, context);
+
+    this.state = {
+      isDisabled: props.initiallyDisabled || false,
+      isRequired: false,
+      isValid: true,
+    };
+  }
 
   static _meta = {
     library: META.library.semanticUI,
@@ -23,6 +37,8 @@ export default class Input extends Component {
   };
 
   render() {
+    const {isValid, isRequired, isDisabled} = this.state;
+
     // TODO: replace with <Icon /> once it is merged
     const iconClasses = classNames(
       this.props.icon,
@@ -60,7 +76,8 @@ export default class Input extends Component {
       'sd-input',
       'ui',
       this.props.className,
-      'input'
+      'input',
+      {error: !isValid}
     );
     const props = getUnhandledProps(this);
 
@@ -68,7 +85,7 @@ export default class Input extends Component {
       <div className={classes}>
         {isLeftLabeled && labelChildren}
         {isLeftAction && actionChildren}
-        <input {...props} />
+        <input {...props} required={isRequired} disabled={isDisabled} />
         {this.props.icon && icon}
         {isRightLabeled && labelChildren}
         {isRightAction && actionChildren}

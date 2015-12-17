@@ -1,3 +1,4 @@
+import slugify from 'src/utils/slugify';
 import React, {Component, PropTypes} from 'react';
 import {Segment} from 'stardust';
 
@@ -15,7 +16,7 @@ export default class ComponentDoc extends Component {
     const doc = getComponentDocInfo(this.props.name);
 
     return (
-      <Segment id={doc.name}>
+      <Segment id={slugify(doc.name)}>
         <ComponentDescription
           path={doc.path}
           name={doc.name}

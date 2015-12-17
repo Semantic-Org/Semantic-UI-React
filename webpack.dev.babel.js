@@ -7,6 +7,7 @@ import webpack from 'webpack';
  * @type {{}}
  */
 export default {
+  devtool: 'source-map',
   entry: {
     app: [
       'webpack/hot/only-dev-server',
@@ -49,7 +50,6 @@ export default {
     jquery: 'jQuery',
     lodash: '_',
   },
-  devTool: 'source-map',
   resolve: {
     root: paths.root,
     modulesDirectories: [

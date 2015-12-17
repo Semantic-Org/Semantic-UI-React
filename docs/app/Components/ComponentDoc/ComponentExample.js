@@ -2,6 +2,7 @@ import React, {Component, createElement, PropTypes} from 'react';
 import {Grid, Column, Button} from 'stardust';
 import Highlight from 'react-highlight';
 import exampleContext from 'docs/app/utils/ExampleContext';
+import slugify from 'src/utils/slugify';
 
 /**
  * Renders a `component` and the raw `code` that produced it.
@@ -50,7 +51,7 @@ export default class ComponentExample extends Component {
     const children = <Column>{this.props.children}</Column>;
 
     return (
-      <Grid className='one column' style={{marginBottom: '4em'}} id={this.anchor}>
+      <Grid className='one column' style={{marginBottom: '4em'}} id={slugify(this.anchor)}>
         <Column>
           <Grid>
             <Column width={12}>

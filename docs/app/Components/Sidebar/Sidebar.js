@@ -1,7 +1,9 @@
 import _ from 'lodash';
+import {pluralize} from 'inflection';
 import React, {Component} from 'react';
 import stardust, {Menu, MenuItem, Input} from 'stardust';
 import META from 'src/utils/Meta';
+import slugify from 'src/utils/slugify';
 
 export default class Sidebar extends Component {
   state = {query: ''};
@@ -23,25 +25,44 @@ export default class Sidebar extends Component {
       .sortBy((component, name) => name)
       .map(component => {
         const name = component._meta.name;
-        return <MenuItem key={name} name={name} href={`#${name}`} />;
+        return <MenuItem key={name} name={name} href={`#${slugify(name)}`} />;
       })
       .value();
 
-    const subMenu = (
+    return items && this._renderSubmenu(type, items);
+  };
+
+  /**
+   * Render pluralized menu header, and submenu menu items.
+   *
+   * @param  {string} menuHeader Submenu heading text
+   * @param  {ReactElement} menuItems A list of MenuItem's to display
+   * @return {ReactElement} the submenu
+   */
+  _renderSubmenu(menuHeader, menuItems) {
+    return (
       <div className='item'>
-        <div className='header'>{_.capitalize(type)}s</div>
-        <div className='menu'>{items}</div>
+        <div className='header'>{_.capitalize(pluralize(menuHeader))}</div>
+        <div className='menu'>{menuItems}</div>
       </div>
     );
-
-    return items && subMenu;
-  };
+  }
 
   render() {
     const elements = this.getComponentsByType(META.type.element);
     const collections = this.getComponentsByType(META.type.collection);
     const views = this.getComponentsByType(META.type.view);
     const modules = this.getComponentsByType(META.type.module);
+
+    const formValidationName = 'Form Validation';
+    const behaviors = this._renderSubmenu(
+      'Behaviors',
+      <MenuItem
+        key={formValidationName}
+        name={formValidationName}
+        href={`#${slugify(formValidationName)}`}
+      />
+    );
 
     return (
       <Menu className='inverted secondary vertical fluid' style={{margin: 0}}>
@@ -58,6 +79,7 @@ export default class Sidebar extends Component {
         {collections}
         {views}
         {modules}
+        {behaviors}
       </Menu>
     );
   }
