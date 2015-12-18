@@ -49,7 +49,7 @@ export default {
     jquery: 'jQuery',
     lodash: '_',
   },
-  devTool: 'source-map',
+  devtool: 'source-map',
   resolve: {
     root: paths.root,
     modulesDirectories: [
