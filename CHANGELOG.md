@@ -4,9 +4,23 @@
 
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.8.1...HEAD)
 
+**Implemented enhancements:**
+
+- Fix Source Maps [\#119](https://github.com/TechnologyAdvice/stardust/issues/119)
+- Support progress bars [\#118](https://github.com/TechnologyAdvice/stardust/issues/118)
+- Generate changelog on deploy [\#101](https://github.com/TechnologyAdvice/stardust/issues/101)
+
 **Fixed bugs:**
 
 - Only a subset of tests running [\#126](https://github.com/TechnologyAdvice/stardust/issues/126)
+- Placeholder Text Turns Black on Control Focus [\#123](https://github.com/TechnologyAdvice/stardust/issues/123)
+
+**Closed issues:**
+
+- Relax jsdoc validation [\#105](https://github.com/TechnologyAdvice/stardust/issues/105)
+- Add Webpack config to README [\#87](https://github.com/TechnologyAdvice/stardust/issues/87)
+- Need Generic Select Component [\#78](https://github.com/TechnologyAdvice/stardust/issues/78)
+- Solidify Form validation and submission pattern [\#66](https://github.com/TechnologyAdvice/stardust/issues/66)
 
 **Merged pull requests:**
 
