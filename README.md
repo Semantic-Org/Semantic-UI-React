@@ -2,17 +2,14 @@
 [![Gemnasium](https://img.shields.io/gemnasium/TechnologyAdvice/stardust.svg?style=flat-square)](https://gemnasium.com/TechnologyAdvice/stardust)
 [![Circle CI](https://circleci.com/gh/TechnologyAdvice/stardust/tree/master.svg?style=svg)](https://circleci.com/gh/TechnologyAdvice/stardust/tree/master)
 
-[React](https://facebook.github.io/react/) component library based on [Semantic UI](http://semantic-ui.com/).
+[React] component library based on [Semantic UI].
 
-```
-npm i stardust -S
-```
+    npm i stardust -S
 
 ## Learn
-Check out the [Documentation](https://technologyadvice.github.io/stardust/).
+Check out the [Doc Site] for usage documentation.
 
-Review our [Component Guidelines]
-(https://github.com/TechnologyAdvice/stardust/blob/master/docs/app/Component Guidelines.md).
+Review our [Component Guidelines].
 
 ## Getting Started
 Hey, we're in development.  Minor versions may introduce **breaking changes until v1**.
@@ -49,22 +46,31 @@ var TryStardust = React.createClass({
 module.exports = TryStardust;
 ```
 
-## Develop
+## Installation
+Start by cloning this repo and installing dependencies:
 
-1. `git clone git@github.com:TechnologyAdvice/stardust.git`
-1. `npm install`
-1. `gulp`
+    git clone git@github.com:TechnologyAdvice/stardust.git stardust && cd $_
+    npm install               # or simply npm i
+
+## Usage
+Once dependencies are installed, start the application with:
+
+    npm start
+
+This will start a [Webpack Dev Server] which will watch your JS files for changes and automatically transpile, lint and provide source maps for development.
 
 ### Commands
 
-```
-npm run                   # list npm commands 
-gulp help                 # list gulp commands
-```
+    npm run                   # list npm commands 
+    gulp help                 # list gulp commands
 
 ### Deploying
 
-```
-npm version <version>     # bump the new version
-npm run deploy            # pushes tags and publishes package
-```
+    npm version <version>     # bump the new version
+    npm run deploy            # pushes tags and publishes package
+
+[Component Guidelines]: https://github.com/TechnologyAdvice/stardust/blob/master/docs/app/ComponentGuidelines.md
+[Doc Site]: https://technologyadvice.github.io/stardust/
+[React]: https://facebook.github.io/react/
+[Semantic UI]: http://semantic-ui.com/
+[Webpack Dev Server]: https://github.com/webpack/webpack-dev-server/
