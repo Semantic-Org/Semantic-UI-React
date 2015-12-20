@@ -58,7 +58,7 @@ module.exports = TryStardust;
 ### Commands
 
 ```
-npm run                   # list npm commands
+npm run                   # list npm commands 
 gulp help                 # list gulp commands
 ```
 
