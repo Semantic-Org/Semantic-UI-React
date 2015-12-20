@@ -9,11 +9,12 @@ npm i stardust -S
 ## Learn
 Check out the [Documentation](https://technologyadvice.github.io/stardust/).
 
-Review our [Component Guidelines]
-(https://github.com/TechnologyAdvice/stardust/blob/master/docs/app/Component Guidelines.md).
+Before submitting PRs please review our [Component Guidelines]
+(https://github.com/TechnologyAdvice/stardust/blob/master/docs/app/Component Guidelines.md) and [Roadmap](https://github.com/TechnologyAdvice/stardust/blob/master/docs/app/ROADMAP.md).
+
 
 ## Getting Started
-Hey, we're in development.  Minor versions may introduce **breaking changes until v1**.
+Hey, we're in development. Minor versions may introduce **breaking changes until the [v1.0** release](https://github.com/TechnologyAdvice/stardust/blob/master/docs/app/ROADMAP.md#v1.0).
 
 ### Babel
 Stardust is built with ES6 and ES7.  Use Babel with the [stage 0](http://babeljs.io/docs/usage/experimental/#enable-by-stage) option to enable these features.  We suggest using a [.babelrc](http://babeljs.io/docs/usage/babelrc/) file, which is also picked up by the webpack [babel-loader](https://github.com/babel/babel-loader).
@@ -56,7 +57,7 @@ module.exports = TryStardust;
 ### Commands
 
 ```
-npm run                   # list npm commands 
+npm run                   # list npm commands
 gulp help                 # list gulp commands
 ```
 
