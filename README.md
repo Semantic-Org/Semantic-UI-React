@@ -1,4 +1,6 @@
-# Stardust  [![Code Climate](https://img.shields.io/codeclimate/github/TechnologyAdvice/stardust.svg?style=flat-square)](https://codeclimate.com/github/TechnologyAdvice/stardust) [![Gemnasium](https://img.shields.io/gemnasium/TechnologyAdvice/stardust.svg?style=flat-square)](https://gemnasium.com/TechnologyAdvice/stardust)
+# Stardust  [![Code Climate](https://img.shields.io/codeclimate/github/TechnologyAdvice/stardust.svg?style=flat-square)](https://codeclimate.com/github/TechnologyAdvice/stardust)
+[![Gemnasium](https://img.shields.io/gemnasium/TechnologyAdvice/stardust.svg?style=flat-square)](https://gemnasium.com/TechnologyAdvice/stardust)
+[![Circle CI](https://circleci.com/gh/TechnologyAdvice/stardust/tree/master.svg?style=svg)](https://circleci.com/gh/TechnologyAdvice/stardust/tree/master)
 
 [React](https://facebook.github.io/react/) component library based on [Semantic UI](http://semantic-ui.com/).
 
@@ -56,7 +58,7 @@ module.exports = TryStardust;
 ### Commands
 
 ```
-npm run                   # list npm commands 
+npm run                   # list npm commands
 gulp help                 # list gulp commands
 ```
 
