@@ -3,12 +3,8 @@
 #   'npm run clean' runs rm -rf on all lines in this file.
 #
 
-_builds/
-_projects/
-_steps/
 npm-debug.log*
 node_modules/
 bower_components/
-testBundle.js
 docs/build
-docgenInfo.json
+docs/app/docgenInfo.json
