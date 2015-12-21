@@ -1,8 +1,7 @@
 # Change Log
 
-## [Unreleased](https://github.com/TechnologyAdvice/stardust/tree/HEAD)
-
-[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.8.1...HEAD)
+## [v0.9.0](https://github.com/TechnologyAdvice/stardust/tree/v0.9.0) (2015-12-21)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.8.1...v0.9.0)
 
 **Implemented enhancements:**
 
@@ -24,6 +23,7 @@
 
 **Merged pull requests:**
 
+- Upgrade to babel6 [\#132](https://github.com/TechnologyAdvice/stardust/pull/132) ([levithomason](https://github.com/levithomason))
 - Add form plugin [\#130](https://github.com/TechnologyAdvice/stardust/pull/130) ([levithomason](https://github.com/levithomason))
 - Remove Progress module unit test exclusivity. Fixes \#126. [\#127](https://github.com/TechnologyAdvice/stardust/pull/127) ([jhabdas](https://github.com/jhabdas))
 
