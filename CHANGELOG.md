@@ -11,6 +11,7 @@
 **Merged pull requests:**
 
 - Update and fix doc site deploy [\#137](https://github.com/TechnologyAdvice/stardust/pull/137) ([levithomason](https://github.com/levithomason))
+- Add Roadmap [\#133](https://github.com/TechnologyAdvice/stardust/pull/133) ([jhabdas](https://github.com/jhabdas))
 
 ## [v0.9.0](https://github.com/TechnologyAdvice/stardust/tree/v0.9.0) (2015-12-21)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.8.1...v0.9.0)
