@@ -88,5 +88,4 @@ const stardust = {
   Statistic,
 };
 
-module.exports = stardust;
 export default stardust;
