@@ -17,7 +17,7 @@ export default class ComponentExample extends Component {
 
   state = {showCode: false};
   fileContents = require(`!raw!docs/app/Examples/${this.props.examplePath}`);
-  component = exampleContext(`./${this.props.examplePath}.js`).default;
+  component = exampleContext(`./${this.props.examplePath}.js`);
   // 'elements/Button/Types/Button' => #Button-Types-Button
   anchor = this.props.examplePath.split('/').slice(1).join('-');
 
