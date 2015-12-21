@@ -11,7 +11,13 @@ export default class Segments extends Component {
     /**
      * Must be of type Segment, Segments, H1, H2, H3, H4, H5, H6, Subheader or Message.
      */
-    children: ofComponentTypes(['Segment', 'Segments', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'Subheader', 'Message']),
+    children: ofComponentTypes([
+      'Segment',
+      'Segments',
+      'H1', 'H2', 'H3', 'H4', 'H5', 'H6',
+      'Subheader',
+      'Message'
+    ]),
     className: PropTypes.string,
   };
 
