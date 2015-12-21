@@ -5,7 +5,7 @@ Stardust is a set of themeable React components and usage documentation wrapping
 v1.0
 
 - [ ] Provide licensing information
-- [ ] Functional [docs website](https://technologyadvice.github.io/stardust) hosted on GitHub Pages (#129)
+- [x] Functional [docs website](https://technologyadvice.github.io/stardust) hosted on GitHub Pages (#129)
 - [ ] Identify and target a specific version of Semantic UI for the release
 - [ ] Implement available Semantic UI `Elements`, `Collections`, `Views` and `Modules`
 - [ ] Complete usage documentation for all implemented components
