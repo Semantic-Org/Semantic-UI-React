@@ -69,7 +69,7 @@ git add -f docs/build
 
 if [[ -n $(git status --porcelain) ]]; then
   echo "...starting push, gh-pages is dirty after build"
-  git commit -n -m "deploy gh-pages by $CIRCLE_USERNAME [ci skip]"
+  git commit -n -m "deploy gh-pages by $CIRCLE_USERNAME"
   git push origin gh-pages
 else
   echo "...skipping push, gh-pages is clean after build"
