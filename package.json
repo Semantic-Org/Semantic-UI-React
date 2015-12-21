@@ -12,7 +12,8 @@
     "lint": "eslint . --format ./node_modules/eslint-friendly-formatter",
     "lint-watch": "watch 'npm run lint' docs gulp src test",
     "start": "gulp",
-    "test": "karma start karma.conf.js",
+    "karma": "babel-node $(npm bin)/karma start",
+    "test": "npm run karma  -- karma.conf.babel.js",
     "test-watch": "webpack-dev-server --config webpack.tests.babel.js"
   },
   "pre-commit": "lint",
