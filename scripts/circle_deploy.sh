@@ -10,26 +10,18 @@ git config --global user.name "tadeploy"
 git config --global user.email "devteam@technologyadvice.com"
 
 #
-# build
-#
-gulp docs
-
-#
 # generate changelog
 #
 echo "...generating changelog"
-github_changelog_generator $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
+curl -X POST github-changelog-api.herokuapp.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME \
+ | json contents > CHANGELOG.md
 
-#
-# push to master and gh-pages
-#
-git add .
+git add CHANGELOG.md
 
 if [[ -n $(git status --porcelain) ]]; then
-  echo "...starting push, repo is dirty after build"
-  git commit -n -m "deploy commit by $CIRCLE_USERNAME [ci skip]"
-  git push origin master
-  git push -f origin master:gh-pages
+  echo "...starting push, CHANGELOG.md is dirty after build"
+  git commit -n -m "deploy CHANGELOG.md by $CIRCLE_USERNAME [ci skip]"
+  git push origin $CIRCLE_BRANCH
 else
   echo "...skipping push, repo is clean after build"
 fi
@@ -63,4 +55,22 @@ else
  echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
  echo "...publishing"
  npm publish
+fi
+
+#
+# gh-pages
+#
+echo "...deploying gh-pages"
+git push -f $CIRCLE_BRANCH:gh-pages
+git checkout gh-pages
+gulp docs
+git add .
+git add -f docs/build
+
+if [[ -n $(git status --porcelain) ]]; then
+  echo "...starting push, gh-pages is dirty after build"
+  git commit -n -m "deploy gh-pages by $CIRCLE_USERNAME"
+  git push origin gh-pages
+else
+  echo "...skipping push, gh-pages is clean after build"
 fi
