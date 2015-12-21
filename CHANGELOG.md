@@ -1,5 +1,17 @@
 # Change Log
 
+## [Unreleased](https://github.com/TechnologyAdvice/stardust/tree/HEAD)
+
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.9.0...HEAD)
+
+**Closed issues:**
+
+- GitHub Pages page is down [\#129](https://github.com/TechnologyAdvice/stardust/issues/129)
+
+**Merged pull requests:**
+
+- Update and fix doc site deploy [\#137](https://github.com/TechnologyAdvice/stardust/pull/137) ([levithomason](https://github.com/levithomason))
+
 ## [v0.9.0](https://github.com/TechnologyAdvice/stardust/tree/v0.9.0) (2015-12-21)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.8.1...v0.9.0)
 
