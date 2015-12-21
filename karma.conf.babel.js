@@ -1,18 +1,15 @@
-/* eslint-disable no-var */
-require('babel-core/register');
-
-var paths = require('./paths');
-var statConfig = require('./webpack-stats');
-var friendlyFormatter = require('eslint-friendly-formatter');
-var exitPlugin = require('./webpack-exit-plugin');
-var ENV = require('./ENV');
+import paths from './paths';
+import statConfig from './webpack-stats';
+import friendlyFormatter from 'eslint-friendly-formatter';
+import exitPlugin from './webpack-exit-plugin';
+import ENV from './ENV';
 
 /**
  * This config is for running tests on the command line and will fail on errors.
  * @param {{}} config Karma config object.
  * @type {{}}
  */
-module.exports = function(config) {
+export default (config) => {
   config.set({
     browsers: ['PhantomJS'],
     singleRun: !ENV.isDevelopment(),

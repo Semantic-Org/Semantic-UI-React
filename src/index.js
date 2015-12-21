@@ -42,7 +42,7 @@ import Item from 'src/views/Items/Item';
 import Items from 'src/views/Items/Items';
 import Statistic from 'src/views/Statistic/Statistic';
 
-export default {
+const stardust = {
   // Addons
   Confirm,
   Textarea,
@@ -87,3 +87,5 @@ export default {
   Items,
   Statistic,
 };
+
+export default stardust;

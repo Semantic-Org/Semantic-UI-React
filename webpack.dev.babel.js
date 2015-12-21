@@ -9,7 +9,8 @@ import webpack from 'webpack';
 export default {
   entry: {
     app: [
-      'webpack/hot/only-dev-server',
+      'webpack-dev-server/client?http://localhost:8080',
+      'webpack/hot/dev-server',
       paths.docsApp + '/DocsApp.js'
     ],
     vendor: [

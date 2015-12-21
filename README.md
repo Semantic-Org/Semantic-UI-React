@@ -9,10 +9,11 @@
 ## Learn
 Check out the [Doc Site] for usage documentation.
 
-Review our [Component Guidelines].
+Before submitting PRs please review our [Component Guidelines]
+(https://github.com/TechnologyAdvice/stardust/blob/master/docs/app/Component Guidelines.md) and [Roadmap].
 
 ## Getting Started
-Hey, we're in development.  Minor versions may introduce **breaking changes until v1**.
+Hey, we're in development. Minor versions may introduce **breaking changes until the [v1.0** release](https://github.com/TechnologyAdvice/stardust/blob/master/docs/app/ROADMAP.md#v1.0).
 
 ### Babel
 Stardust is built with ES6 and ES7.  Use Babel with the [stage 0](http://babeljs.io/docs/usage/experimental/#enable-by-stage) option to enable these features.  We suggest using a [.babelrc](http://babeljs.io/docs/usage/babelrc/) file, which is also picked up by the webpack [babel-loader](https://github.com/babel/babel-loader).
@@ -72,5 +73,6 @@ This will start a [Webpack Dev Server] which will watch your JS files for change
 [Component Guidelines]: https://github.com/TechnologyAdvice/stardust/blob/master/docs/app/ComponentGuidelines.md
 [Doc Site]: https://technologyadvice.github.io/stardust/
 [React]: https://facebook.github.io/react/
+[Roadmap]: https://github.com/TechnologyAdvice/stardust/blob/master/docs/app/ROADMAP.md
 [Semantic UI]: http://semantic-ui.com/
 [Webpack Dev Server]: https://github.com/webpack/webpack-dev-server/
