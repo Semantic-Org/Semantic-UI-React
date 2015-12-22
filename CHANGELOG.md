@@ -1,8 +1,7 @@
 # Change Log
 
-## [Unreleased](https://github.com/TechnologyAdvice/stardust/tree/HEAD)
-
-[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.9.0...HEAD)
+## [v0.9.1](https://github.com/TechnologyAdvice/stardust/tree/v0.9.1) (2015-12-22)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.9.0...v0.9.1)
 
 **Closed issues:**
 
