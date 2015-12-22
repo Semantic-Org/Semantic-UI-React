@@ -25,7 +25,7 @@ export default class Form extends Component {
   }
 
   serializeJson = () => {
-    const form = this.refs.form;
+    const form = this.refs.element;
     const json = {};
 
     _.each(['input', 'textarea', 'select'], (tag) => {
