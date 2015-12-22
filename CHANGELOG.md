@@ -10,6 +10,7 @@
 
 **Merged pull requests:**
 
+- change ref to element [\#138](https://github.com/TechnologyAdvice/stardust/pull/138) ([eanplatter](https://github.com/eanplatter))
 - Update and fix doc site deploy [\#137](https://github.com/TechnologyAdvice/stardust/pull/137) ([levithomason](https://github.com/levithomason))
 - Add Roadmap [\#133](https://github.com/TechnologyAdvice/stardust/pull/133) ([jhabdas](https://github.com/jhabdas))
 
