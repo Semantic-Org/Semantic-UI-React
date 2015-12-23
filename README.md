@@ -3,7 +3,7 @@
 A [React] component library based on the delightful and easy-to-use [Semantic UI].
 
 ## Getting Started
-Hey, we're in development. Minor versions may introduce **breaking changes until the [v1.0** release](https://github.com/TechnologyAdvice/stardust/blob/master/docs/app/ROADMAP.md#v1.0). Please review 
+Hey, we're in development. Minor versions may introduce **breaking changes until the [v1.0** release](https://github.com/TechnologyAdvice/stardust/blob/master/docs/app/ROADMAP.md#v1.0). Please review [Contributing](#contributing) before submitting a PR.
 
 ### Installation
 
@@ -14,6 +14,8 @@ Install and save Stardust as a project dependency:
 Stardust is built with ES6 and ES7 ([Stage 1](http://babeljs.io/docs/usage/experimental/#enable-by-stage)). You may use a [.babelrc](http://babeljs.io/docs/usage/babelrc/) file. If you're using Webpack it's also possible to specify `query` in the loader configuration with Babel `presets`.
 
 ### Usage
+
+For more complete examples, check out the [Doc Site].
 
 **ES6**
 ```jsx
@@ -68,8 +70,6 @@ For a listing of development commands use the following:
     npm run deploy            # pushes tags and publishes package
 
 ## Contributing
-Check out the [Doc Site] for usage documentation.
-
 Before submitting PRs please review our [Component Guidelines]
 (https://github.com/TechnologyAdvice/stardust/blob/master/docs/app/Component Guidelines.md) and [Roadmap].
 
