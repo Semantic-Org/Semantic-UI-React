@@ -1,23 +1,19 @@
-# Stardust  [![Code Climate](https://img.shields.io/codeclimate/github/TechnologyAdvice/stardust.svg?style=flat-square)](https://codeclimate.com/github/TechnologyAdvice/stardust) [![Gemnasium](https://img.shields.io/gemnasium/TechnologyAdvice/stardust.svg?style=flat-square)](https://gemnasium.com/TechnologyAdvice/stardust)
+# Stardust  [![Code Climate](https://img.shields.io/codeclimate/github/TechnologyAdvice/stardust.svg?style=flat-square)](https://codeclimate.com/github/TechnologyAdvice/stardust) [![Gemnasium](https://img.shields.io/gemnasium/TechnologyAdvice/stardust.svg?style=flat-square)](https://gemnasium.com/TechnologyAdvice/stardust) [![Circle CI](https://img.shields.io/circleci/project/BrightFlair/PHP.Gt.svg)](https://circleci.com/gh/TechnologyAdvice/stardust/tree/master)
 
-[React](https://facebook.github.io/react/) component library based on [Semantic UI](http://semantic-ui.com/).
+[![CircleCI](https://img.shields.io/circleci/project/BrightFlair/PHP.Gt.svg)]()
 
-```
-npm i stardust -S
-```
-
-## Learn
-Check out the [Documentation](https://technologyadvice.github.io/stardust/).
-
-Before submitting PRs please review our [Component Guidelines]
-(https://github.com/TechnologyAdvice/stardust/blob/master/docs/app/Component Guidelines.md) and [Roadmap](https://github.com/TechnologyAdvice/stardust/blob/master/docs/app/ROADMAP.md).
-
+A [React] component library based on the delightful and easy-to-use [Semantic UI].
 
 ## Getting Started
-Hey, we're in development. Minor versions may introduce **breaking changes until the [v1.0** release](https://github.com/TechnologyAdvice/stardust/blob/master/docs/app/ROADMAP.md#v1.0).
+Hey, we're in development. Minor versions may introduce **breaking changes until the [v1.0** release](https://github.com/TechnologyAdvice/stardust/blob/master/docs/app/ROADMAP.md#v1.0). Please review 
 
-### Babel
-Stardust is built with ES6 and ES7.  Use Babel with the [stage 0](http://babeljs.io/docs/usage/experimental/#enable-by-stage) option to enable these features.  We suggest using a [.babelrc](http://babeljs.io/docs/usage/babelrc/) file, which is also picked up by the webpack [babel-loader](https://github.com/babel/babel-loader).
+### Installation
+
+Install and save Stardust as a project dependency:
+
+    npm i stardust -S
+
+Stardust is built with ES6 and ES7 ([Stage 1](http://babeljs.io/docs/usage/experimental/#enable-by-stage)). You may use a [.babelrc](http://babeljs.io/docs/usage/babelrc/) file. If you're using Webpack it's also possible to specify `query` in the loader configuration with Babel `presets`.
 
 ### Usage
 
@@ -48,22 +44,40 @@ var TryStardust = React.createClass({
 module.exports = TryStardust;
 ```
 
-## Develop
+## Development
+Start by cloning this repo and installing dependencies:
 
-1. `git clone git@github.com:TechnologyAdvice/stardust.git`
-1. `npm install`
-1. `gulp`
+    git clone git@github.com:TechnologyAdvice/stardust.git
+    cd stardust
+    npm install               # or simply npm i
+
+Once dependencies are installed, start the application with:
+
+    npm start
+
+This will start a [Webpack Dev Server] which will watch your JS files for changes and automatically transpile, lint and provide source maps for development.
 
 ### Commands
 
-```
-npm run                   # list npm commands
-gulp help                 # list gulp commands
-```
+For a listing of development commands use the following:
+
+    npm run                   # list npm commands 
+    gulp help                 # list gulp commands
 
 ### Deploying
 
-```
-npm version <version>     # bump the new version
-npm run deploy            # pushes tags and publishes package
-```
+    npm version <version>     # bump the new version
+    npm run deploy            # pushes tags and publishes package
+
+## Contributing
+Check out the [Doc Site] for usage documentation.
+
+Before submitting PRs please review our [Component Guidelines]
+(https://github.com/TechnologyAdvice/stardust/blob/master/docs/app/Component Guidelines.md) and [Roadmap].
+
+[Component Guidelines]: https://github.com/TechnologyAdvice/stardust/blob/master/docs/app/ComponentGuidelines.md
+[Doc Site]: https://technologyadvice.github.io/stardust/
+[React]: https://facebook.github.io/react/
+[Roadmap]: https://github.com/TechnologyAdvice/stardust/blob/master/docs/app/ROADMAP.md
+[Semantic UI]: http://semantic-ui.com/
+[Webpack Dev Server]: https://github.com/webpack/webpack-dev-server/
