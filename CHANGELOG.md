@@ -1,5 +1,13 @@
 # Change Log
 
+## [Unreleased](https://github.com/TechnologyAdvice/stardust/tree/HEAD)
+
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.9.1...HEAD)
+
+**Merged pull requests:**
+
+- Improve README Documentation [\#134](https://github.com/TechnologyAdvice/stardust/pull/134) ([jhabdas](https://github.com/jhabdas))
+
 ## [v0.9.1](https://github.com/TechnologyAdvice/stardust/tree/v0.9.1) (2015-12-22)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.9.0...v0.9.1)
 
