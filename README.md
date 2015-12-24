@@ -70,12 +70,11 @@ For a listing of development commands use the following:
     npm run deploy            # pushes tags and publishes package
 
 ## Contributing
-Before submitting PRs please review our [Component Guidelines]
-(https://github.com/TechnologyAdvice/stardust/blob/master/docs/app/Component Guidelines.md) and [Roadmap].
+Before submitting PRs please review our [Component Guidelines] and [Roadmap].
 
 [Component Guidelines]: https://github.com/TechnologyAdvice/stardust/blob/master/docs/app/ComponentGuidelines.md
 [Doc Site]: https://technologyadvice.github.io/stardust/
 [React]: https://facebook.github.io/react/
-[Roadmap]: https://github.com/TechnologyAdvice/stardust/blob/master/docs/app/ROADMAP.md
+[Roadmap]: https://github.com/TechnologyAdvice/stardust/blob/master/ROADMAP.md
 [Semantic UI]: http://semantic-ui.com/
 [Webpack Dev Server]: https://github.com/webpack/webpack-dev-server/
