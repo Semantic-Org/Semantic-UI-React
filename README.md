@@ -3,7 +3,7 @@
 A [React] component library based on the delightful and easy-to-use [Semantic UI].
 
 ## Getting Started
-Hey, we're in development. Minor versions may introduce **breaking changes until the [v1.0** release](https://github.com/TechnologyAdvice/stardust/blob/master/docs/app/ROADMAP.md#v1.0). Please review [Contributing](#contributing) before submitting a PR.
+Hey, we're in development. Minor versions may introduce **breaking changes until the [v1.0] release**. Please review [Contributing](#contributing) before submitting a PR.
 
 ### Installation
 
@@ -11,7 +11,7 @@ Install and save Stardust as a project dependency:
 
     npm i stardust -S
 
-Stardust is built with ES6 and ES7 ([Stage 1](http://babeljs.io/docs/usage/experimental/#enable-by-stage)). You may use a [.babelrc](http://babeljs.io/docs/usage/babelrc/) file. If you're using Webpack it's also possible to specify `query` in the loader configuration with Babel `presets`.
+Stardust is built with ES6 and ES7 and needs to be compiled. We use [Babel] with a [.babelrc] file. If you're using Webpack it's also possible to specify `query` in the loader configuration with Babel `presets`.
 
 ### Usage
 
@@ -72,9 +72,12 @@ For a listing of development commands use the following:
 ## Contributing
 Before submitting PRs please review our [Component Guidelines] and [Roadmap].
 
+[.babelrc]: http://babeljs.io/docs/usage/babelrc/
+[Babel]: http://babeljs.io/
 [Component Guidelines]: https://github.com/TechnologyAdvice/stardust/blob/master/docs/app/ComponentGuidelines.md
 [Doc Site]: https://technologyadvice.github.io/stardust/
 [React]: https://facebook.github.io/react/
 [Roadmap]: https://github.com/TechnologyAdvice/stardust/blob/master/ROADMAP.md
 [Semantic UI]: http://semantic-ui.com/
+[v1.0]: https://github.com/TechnologyAdvice/stardust/blob/master/ROADMAP.md#v1.0
 [Webpack Dev Server]: https://github.com/webpack/webpack-dev-server/
