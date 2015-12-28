@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import React, {Component, PropTypes} from 'react';
-import META from 'src/utils/Meta';
+import META from '../../utils/Meta';
 
 export default class Row extends Component {
   static propTypes = {

@@ -2,11 +2,11 @@ import React, {Component, PropTypes} from 'react';
 import Promise from 'bluebird';
 import classNames from 'classnames';
 
-import META from 'src/utils/Meta.js';
-import Modal from 'src/modules/Modal/Modal';
-import ModalContent from 'src/modules/Modal/ModalContent';
-import ModalFooter from 'src/modules/Modal/ModalFooter';
-import ModalHeader from 'src/modules/Modal/ModalHeader';
+import META from '../../utils/Meta.js';
+import Modal from '../../modules/Modal/Modal';
+import ModalContent from '../../modules/Modal/ModalContent';
+import ModalFooter from '../../modules/Modal/ModalFooter';
+import ModalHeader from '../../modules/Modal/ModalHeader';
 
 export default class Confirm extends Component {
   static propTypes = {

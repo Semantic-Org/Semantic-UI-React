@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import classNames from 'classnames';
-import getUnhandledProps from 'src/utils/getUnhandledProps';
-import META from 'src/utils/Meta';
+import getUnhandledProps from '../../utils/getUnhandledProps';
+import META from '../../utils/Meta';
 
 export default class Label extends Component {
   static propTypes = {

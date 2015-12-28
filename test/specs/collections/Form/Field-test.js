@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import React from 'react';
 import {Field} from 'stardust';
-import numberToWord from 'src/utils/numberToWord';
+import numberToWord from '../../../../src/utils/numberToWord';
 
 describe('Field', () => {
   it('has a label', () => {

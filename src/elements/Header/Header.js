@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import META from 'src/utils/Meta';
+import META from '../../utils/Meta';
 import _Header from './_Header';
 import H1 from './H1';
 import H2 from './H2';

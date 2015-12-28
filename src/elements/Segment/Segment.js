@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import classNames from 'classnames';
-import META from 'src/utils/Meta';
+import META from '../../utils/Meta';
 import Segments from './Segments';
 
 /**

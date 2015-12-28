@@ -1,46 +1,46 @@
 // Addons
-import Confirm from 'src/addons/Confirm/Confirm';
-import Textarea from 'src/addons/Textarea/Textarea';
+import Confirm from './addons/Confirm/Confirm';
+import Textarea from './addons/Textarea/Textarea';
 
 // Collections
-import Column from 'src/collections/Grid/Column';
-import Field from 'src/collections/Form/Field';
-import Fields from 'src/collections/Form/Fields';
-import Form from 'src/collections/Form/Form';
-import Grid from 'src/collections/Grid/Grid';
-import Row from 'src/collections/Grid/Row';
-import Menu from 'src/collections/Menu/Menu';
-import MenuItem from 'src/collections/Menu/MenuItem';
-import Message from 'src/collections/Message/Message';
-import Table from 'src/collections/Table/Table';
-import TableColumn from 'src/collections/Table/TableColumn';
+import Column from './collections/Grid/Column';
+import Field from './collections/Form/Field';
+import Fields from './collections/Form/Fields';
+import Form from './collections/Form/Form';
+import Grid from './collections/Grid/Grid';
+import Row from './collections/Grid/Row';
+import Menu from './collections/Menu/Menu';
+import MenuItem from './collections/Menu/MenuItem';
+import Message from './collections/Message/Message';
+import Table from './collections/Table/Table';
+import TableColumn from './collections/Table/TableColumn';
 
 // Elements
-import Button from 'src/elements/Button/Button';
-import Buttons from 'src/elements/Button/Buttons';
-import Container from 'src/elements/Container/Container';
-import Divider from 'src/elements/Divider/Divider';
-import Header from 'src/elements/Header/Header';
-import Image from 'src/elements/Image/Image';
-import Input from 'src/elements/Input/Input';
-import List from 'src/elements/List/List';
-import ListItem from 'src/elements/List/ListItem';
-import Segment from 'src/elements/Segment/Segment';
-import Segments from 'src/elements/Segment/Segments';
+import Button from './elements/Button/Button';
+import Buttons from './elements/Button/Buttons';
+import Container from './elements/Container/Container';
+import Divider from './elements/Divider/Divider';
+import Header from './elements/Header/Header';
+import Image from './elements/Image/Image';
+import Input from './elements/Input/Input';
+import List from './elements/List/List';
+import ListItem from './elements/List/ListItem';
+import Segment from './elements/Segment/Segment';
+import Segments from './elements/Segment/Segments';
 
 // Modules
-import Checkbox from 'src/modules/Checkbox/Checkbox';
-import Progress from 'src/modules/Progress/Progress';
-import Modal from 'src/modules/Modal/Modal';
-import ModalContent from 'src/modules/Modal/ModalContent';
-import ModalFooter from 'src/modules/Modal/ModalFooter';
-import ModalHeader from 'src/modules/Modal/ModalHeader';
-import Dropdown from 'src/modules/Dropdown/Dropdown';
+import Checkbox from './modules/Checkbox/Checkbox';
+import Progress from './modules/Progress/Progress';
+import Modal from './modules/Modal/Modal';
+import ModalContent from './modules/Modal/ModalContent';
+import ModalFooter from './modules/Modal/ModalFooter';
+import ModalHeader from './modules/Modal/ModalHeader';
+import Dropdown from './modules/Dropdown/Dropdown';
 
 // Views
-import Item from 'src/views/Items/Item';
-import Items from 'src/views/Items/Items';
-import Statistic from 'src/views/Statistic/Statistic';
+import Item from './views/Items/Item';
+import Items from './views/Items/Items';
+import Statistic from './views/Statistic/Statistic';
 
 const stardust = {
   // Addons

@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import classNames from 'classnames';
 import $ from 'jquery';
-import META from 'src/utils/Meta';
+import META from '../../utils/Meta';
 import _ from 'lodash';
 
 export default class Progress extends Component {

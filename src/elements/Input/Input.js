@@ -1,8 +1,8 @@
 import _ from 'lodash';
 import classNames from 'classnames';
 import React, {Component, PropTypes, Children} from 'react';
-import META from 'src/utils/Meta';
-import getUnhandledProps from 'src/utils/getUnhandledProps';
+import META from '../../utils/Meta';
+import getUnhandledProps from '../../utils/getUnhandledProps';
 
 export default class Input extends Component {
   static propTypes = {

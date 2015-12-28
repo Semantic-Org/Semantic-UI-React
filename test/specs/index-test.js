@@ -1,10 +1,10 @@
 import _ from 'lodash';
 import path from 'path';
 import stardust from 'stardust';
-import META from 'src/utils/Meta';
+import META from '../../src/utils/Meta';
 
 const componentCtx = require.context(
-  'src/',
+  '../../src/',
   true,
   /(addons|collections|elements|modules|views).*\.js$/
 );

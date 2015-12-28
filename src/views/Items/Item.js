@@ -1,8 +1,8 @@
 import _ from 'lodash';
 import React, {Component, PropTypes} from 'react';
 import classNames from 'classnames';
-import {mutuallyExclusive} from 'src/utils/customPropTypes';
-import META from 'src/utils/Meta';
+import {mutuallyExclusive} from '../../utils/customPropTypes';
+import META from '../../utils/Meta';
 
 export default class Item extends Component {
   static propTypes = {

@@ -1,9 +1,9 @@
 import classNames from 'classnames';
 import React, {Component, PropTypes} from 'react';
 
-import getUnhandledProps from 'src/utils/getUnhandledProps';
-import {ofComponentTypes} from 'src/utils/customPropTypes';
-import META from 'src/utils/Meta';
+import getUnhandledProps from '../../utils/getUnhandledProps';
+import {ofComponentTypes} from '../../utils/customPropTypes';
+import META from '../../utils/Meta';
 
 import Statistics from './Statistics';
 import Label from './Label';
