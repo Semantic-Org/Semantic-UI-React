@@ -6,6 +6,7 @@
 
 **Merged pull requests:**
 
+- Update compatible engines [\#139](https://github.com/TechnologyAdvice/stardust/pull/139) ([jhabdas](https://github.com/jhabdas))
 - Improve README Documentation [\#134](https://github.com/TechnologyAdvice/stardust/pull/134) ([jhabdas](https://github.com/jhabdas))
 
 ## [v0.9.1](https://github.com/TechnologyAdvice/stardust/tree/v0.9.1) (2015-12-22)
