@@ -28,8 +28,8 @@
   },
   "homepage": "https://github.com/TechnologyAdvice/stardust#readme",
   "engines": {
-    "node": "0.12.7",
-    "npm": "3.3.5"
+    "node": "0.12 - 5",
+    "npm": "2 - 4"
   },
   "dependencies": {
     "bluebird": "^2.10.2",
