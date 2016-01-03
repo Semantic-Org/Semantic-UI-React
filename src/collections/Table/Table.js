@@ -1,8 +1,8 @@
 import _ from 'lodash';
 import React, {Children, Component, PropTypes} from 'react';
 import classNames from 'classnames';
-import {ofComponentTypes} from 'src/utils/customPropTypes';
-import META from 'src/utils/Meta';
+import {ofComponentTypes} from '../../utils/customPropTypes';
+import META from '../../utils/Meta';
 
 export default class Table extends Component {
   static propTypes = {

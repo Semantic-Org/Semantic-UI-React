@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import classNames from 'classnames';
-import META from 'src/utils/Meta';
-import {ofComponentTypes} from 'src/utils/customPropTypes';
+import META from '../../utils/Meta';
+import {ofComponentTypes} from '../../utils/customPropTypes';
 
 /**
  * A group of segments can be formatted to appear together.

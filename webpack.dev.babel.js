@@ -52,10 +52,8 @@ export default {
   },
   devtool: 'source-map',
   resolve: {
-    root: paths.root,
     modulesDirectories: [
       'node_modules',
-      '.',
     ],
     alias: {
       stardust: `${paths.src}/index.js`,

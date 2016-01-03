@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import sandbox from 'test/utils/Sandbox-util';
+import sandbox from '../utils/Sandbox-util';
 
 //
 // jQuery Mock

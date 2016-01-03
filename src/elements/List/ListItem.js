@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import React, {Component, PropTypes} from 'react';
 import classNames from 'classnames';
-import META from 'src/utils/Meta';
+import META from '../../utils/Meta';
 
 export default class ListItem extends Component {
   static propTypes = {

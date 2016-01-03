@@ -1,9 +1,9 @@
 import _ from 'lodash';
 import React, {Children, Component, PropTypes} from 'react';
 import classNames from 'classnames';
-import getUnhandledProps from 'src/utils/getUnhandledProps';
-import numberToWord from 'src/utils/numberToWord';
-import META from 'src/utils/Meta.js';
+import getUnhandledProps from '../../utils/getUnhandledProps';
+import numberToWord from '../../utils/numberToWord';
+import META from '../../utils/Meta.js';
 
 export default class Fields extends Component {
   static propTypes = {

@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import classNames from 'classnames';
-import META from 'src/utils/Meta';
-import getUnhandledProps from 'src/utils/getUnhandledProps';
+import META from '../../utils/Meta';
+import getUnhandledProps from '../../utils/getUnhandledProps';
 
 export default class Menu extends Component {
   static propTypes = {

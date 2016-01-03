@@ -1,6 +1,6 @@
 import React from 'react';
 import {Simulate} from 'react-addons-test-utils';
-import sandbox from 'test/utils/Sandbox-util';
+import sandbox from '../../../utils/Sandbox-util';
 import {Button} from 'stardust';
 
 describe('Button', () => {

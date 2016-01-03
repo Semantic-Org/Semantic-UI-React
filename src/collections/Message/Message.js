@@ -2,7 +2,7 @@ import _ from 'lodash';
 import React, {Component, PropTypes} from 'react';
 import classNames from 'classnames';
 import $ from 'jquery';
-import META from 'src/utils/Meta';
+import META from '../../utils/Meta';
 
 export default class Message extends Component {
   static propTypes = {

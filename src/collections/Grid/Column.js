@@ -1,8 +1,8 @@
 import _ from 'lodash';
 import classNames from 'classnames';
 import React, {Component, PropTypes} from 'react';
-import numberToWord from 'src/utils/numberToWord';
-import META from 'src/utils/Meta.js';
+import numberToWord from '../../utils/numberToWord';
+import META from '../../utils/Meta.js';
 
 export default class Column extends Component {
   static propTypes = {

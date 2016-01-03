@@ -3,7 +3,7 @@ import faker from 'faker';
 import React, {Component} from 'react';
 import {isDOMComponent} from 'react-addons-test-utils';
 import stardust from 'stardust';
-import META from 'src/utils/Meta';
+import META from '../../src/utils/Meta';
 
 const getSDClassName = componentName => `sd-${_.kebabCase(componentName)}`;
 
