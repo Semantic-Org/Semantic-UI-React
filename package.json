@@ -1,6 +1,6 @@
 {
   "name": "stardust",
-  "version": "0.9.1",
+  "version": "0.9.2",
   "description": "Semantic UI components for React.",
   "main": "src/index.js",
   "files": [
