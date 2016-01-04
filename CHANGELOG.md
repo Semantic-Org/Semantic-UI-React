@@ -6,6 +6,7 @@
 
 **Merged pull requests:**
 
+- fix\(imports\): remove resolve.root config in webpack to prevent distri… [\#140](https://github.com/TechnologyAdvice/stardust/pull/140) ([davezuko](https://github.com/davezuko))
 - Update compatible engines [\#139](https://github.com/TechnologyAdvice/stardust/pull/139) ([jhabdas](https://github.com/jhabdas))
 - Improve README Documentation [\#134](https://github.com/TechnologyAdvice/stardust/pull/134) ([jhabdas](https://github.com/jhabdas))
 
