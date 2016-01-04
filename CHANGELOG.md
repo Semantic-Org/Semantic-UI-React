@@ -1,12 +1,11 @@
 # Change Log
 
-## [Unreleased](https://github.com/TechnologyAdvice/stardust/tree/HEAD)
-
-[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.9.1...HEAD)
+## [v0.9.2](https://github.com/TechnologyAdvice/stardust/tree/v0.9.2) (2016-01-04)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.9.1...v0.9.2)
 
 **Merged pull requests:**
 
-- fix\(imports\): remove resolve.root config in webpack to prevent distri… [\#140](https://github.com/TechnologyAdvice/stardust/pull/140) ([davezuko](https://github.com/davezuko))
+- fix\(imports\): remove resolve.root config in webpack [\#140](https://github.com/TechnologyAdvice/stardust/pull/140) ([davezuko](https://github.com/davezuko))
 - Update compatible engines [\#139](https://github.com/TechnologyAdvice/stardust/pull/139) ([jhabdas](https://github.com/jhabdas))
 - Improve README Documentation [\#134](https://github.com/TechnologyAdvice/stardust/pull/134) ([jhabdas](https://github.com/jhabdas))
 
