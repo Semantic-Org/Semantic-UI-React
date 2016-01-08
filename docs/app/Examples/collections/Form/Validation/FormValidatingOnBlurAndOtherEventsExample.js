@@ -46,12 +46,12 @@ export default class FormValidatingOnBlurAndOtherEventsExample extends Component
         <p>Let's go ahead and get you signed up.</p>
         <Fields evenlyDivided>
           <Field>
-            <label>Name</label>
+            <label>First Name</label>
             <Input placeholder='First Name' name='first-name' type='text' />
           </Field>
           <Field>
-            <label>Name</label>
-            <Input placeholder='First Name' name='last-name' type='text' />
+            <label>Last Name</label>
+            <Input placeholder='Last Name' name='last-name' type='text' />
           </Field>
         </Fields>
         <Fields evenlyDivided>
