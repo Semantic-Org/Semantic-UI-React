@@ -6,6 +6,7 @@
 
 **Closed issues:**
 
+- \[Form Validation\] Regular Expression Validator not working [\#143](https://github.com/TechnologyAdvice/stardust/issues/143)
 - Change webpack devtool to source-map [\#136](https://github.com/TechnologyAdvice/stardust/issues/136)
 
 ## [v0.9.2](https://github.com/TechnologyAdvice/stardust/tree/v0.9.2) (2016-01-04)
