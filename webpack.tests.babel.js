@@ -50,8 +50,12 @@ module.exports = {
     ],
   },
   resolve: {
+    root: [
+      paths.docsRoot
+    ],
     modulesDirectories: [
       'node_modules',
+      '.'
     ],
     alias: {
       // When these key names are require()'d, the value will be supplied instead
