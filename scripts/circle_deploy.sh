@@ -8,6 +8,7 @@ NPM_PACKAGE_VERSION=$(json -f package.json version)
 #
 git config --global user.name "tadeploy"
 git config --global user.email "devteam@technologyadvice.com"
+git config --global push.default simple
 
 #
 # generate changelog
@@ -61,7 +62,7 @@ fi
 # gh-pages
 #
 echo "...deploying gh-pages"
-git push -f $CIRCLE_BRANCH:gh-pages
+git push -f origin $CIRCLE_BRANCH:gh-pages
 git checkout gh-pages
 gulp docs
 git add .
