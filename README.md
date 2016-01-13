@@ -67,7 +67,8 @@ For a listing of development commands use the following:
 ### Deploying
 
     npm version <version>     # bump the new version
-    npm run deploy            # pushes tags and publishes package
+    git push                  # push bump commit
+    git push --tags           # push version tag
 
 ## Contributing
 Before submitting PRs please review our [Component Guidelines] and [Roadmap].
