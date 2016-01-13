@@ -33,6 +33,10 @@ export default class Dropdown extends Component {
     type: META.type.module,
   };
 
+  plugin() {
+    return this.element.dropdown(...arguments);
+  }
+
   render() {
     const options = _.map(this.props.options, (opt, i) => {
       return <option key={i} value={opt.value}>{opt.text}</option>;
