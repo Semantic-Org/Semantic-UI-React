@@ -1,5 +1,13 @@
 # Change Log
 
+## [Unreleased](https://github.com/TechnologyAdvice/stardust/tree/HEAD)
+
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.9.4...HEAD)
+
+**Merged pull requests:**
+
+- chore\(Dropdown\): add props for semantic settings [\#147](https://github.com/TechnologyAdvice/stardust/pull/147) ([davezuko](https://github.com/davezuko))
+
 ## [v0.9.4](https://github.com/TechnologyAdvice/stardust/tree/v0.9.4) (2016-01-13)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.9.2...v0.9.4)
 
