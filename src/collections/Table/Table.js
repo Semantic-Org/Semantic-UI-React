@@ -10,6 +10,11 @@ export default class Table extends Component {
     children: ofComponentTypes(['TableColumn']),
     className: PropTypes.string,
     data: PropTypes.array,
+    onSortChange: PropTypes.func,
+    sort: PropTypes.shape({
+      key: PropTypes.string,
+      direction: PropTypes.string, // descending|ascending, defaults to descending
+    }),
   };
 
   static getSafeCellContents(content) {
@@ -17,13 +22,31 @@ export default class Table extends Component {
     return _.isObject(content) ? JSON.stringify(content) : content;
   }
 
+  _handleSortHeaderChange(key, direction) {
+    const {onSortChange} = this.props;
+    if (onSortChange) {
+      onSortChange(key, direction);
+    }
+  }
+
   _getHeaders() {
     return Children.map(this.props.children, (column) => {
+      const key = column.props.dataKey;
       const content = column.props.headerRenderer
         ? column.props.headerRenderer(this.props.data[0])
         : _.startCase(column.props.dataKey);
+      const sorted = _.get(this, 'props.sort.key') === key;
+      const direction = _.get(this, 'props.sort.direction', 'descending');
+      const onClick = () => this._handleSortHeaderChange(
+        key, direction === 'ascending' ? 'descending' : 'ascending'
+      );
+      const classes = classNames('sd-table-header', {
+        sorted,
+        ascending: sorted && direction === 'ascending',
+        descending: sorted && direction === 'descending',
+      });
 
-      return <th className='sd-table-header' key={column.props.dataKey}>{content}</th>;
+      return <th className={classes} key={key} onClick={onClick}>{content}</th>;
     });
   }
 
