@@ -1,5 +1,13 @@
 # Change Log
 
+## [Unreleased](https://github.com/TechnologyAdvice/stardust/tree/HEAD)
+
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.9.5...HEAD)
+
+**Merged pull requests:**
+
+- feat\(Table\): accept sort/onSortChange properties to display sorted state [\#148](https://github.com/TechnologyAdvice/stardust/pull/148) ([davezuko](https://github.com/davezuko))
+
 ## [v0.9.5](https://github.com/TechnologyAdvice/stardust/tree/v0.9.5) (2016-01-21)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.9.4...v0.9.5)
 
