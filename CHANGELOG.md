@@ -1,5 +1,12 @@
 # Change Log
 
+## [v0.9.7](https://github.com/TechnologyAdvice/stardust/tree/v0.9.7) (2016-01-24)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.9.6...v0.9.7)
+
+**Merged pull requests:**
+
+- Optimizes display performance of the Input render method [\#151](https://github.com/TechnologyAdvice/stardust/pull/151) ([jhabdas](https://github.com/jhabdas))
+
 ## [v0.9.6](https://github.com/TechnologyAdvice/stardust/tree/v0.9.6) (2016-01-22)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.9.5...v0.9.6)
 
