@@ -10,17 +10,35 @@ export default class Input extends Component {
     className: PropTypes.string,
     icon: PropTypes.string,
     ref: PropTypes.string,
+    value: PropTypes.string,
   };
 
   static defaultProps = {
     type: 'text',
   };
 
+  constructor(props) {
+    super(props);
+    this.componentWillReceiveProps = this.componentWillReceiveProps.bind(this);
+    this.onChange = this.onChange.bind(this);
+    this.state = {value: props.value};
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.value !== this.state.value) {
+      this.setState({value: nextProps.value});
+    }
+  }
+
   static _meta = {
     library: META.library.semanticUI,
     name: 'Input',
     type: META.type.element,
   };
+
+  onChange(e) {
+    this.setState({value: e.target.value});
+  }
 
   render() {
     // TODO: replace with <Icon /> once it is merged
@@ -62,13 +80,16 @@ export default class Input extends Component {
       this.props.className,
       'input'
     );
-    const props = getUnhandledProps(this);
+    const newProps = {
+      ...getUnhandledProps(this),
+      value: this.state.value,
+    };
 
     return (
       <div className={classes}>
         {isLeftLabeled && labelChildren}
         {isLeftAction && actionChildren}
-        <input {...props} />
+        <input {...newProps} />
         {this.props.icon && icon}
         {isRightLabeled && labelChildren}
         {isRightAction && actionChildren}
