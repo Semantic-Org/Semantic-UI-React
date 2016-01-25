@@ -1,5 +1,13 @@
 # Change Log
 
+## [Unreleased](https://github.com/TechnologyAdvice/stardust/tree/HEAD)
+
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.9.7...HEAD)
+
+**Merged pull requests:**
+
+- Revert "Optimizes display performance of the Input render method" [\#152](https://github.com/TechnologyAdvice/stardust/pull/152) ([jhabdas](https://github.com/jhabdas))
+
 ## [v0.9.7](https://github.com/TechnologyAdvice/stardust/tree/v0.9.7) (2016-01-24)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.9.6...v0.9.7)
 
