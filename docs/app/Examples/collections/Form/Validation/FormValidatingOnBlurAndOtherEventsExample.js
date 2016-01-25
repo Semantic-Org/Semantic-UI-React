@@ -38,7 +38,7 @@ export default class FormValidatingOnBlurAndOtherEventsExample extends Component
         ],
       },
     }
-  };
+  }
 
   render() {
     return (

@@ -11,7 +11,7 @@ export default class FormSpecifyingValidationRulesExample extends Component {
       skills: ['minCount[2]', 'empty'],
       terms: 'checked'
     }
-  };
+  }
 
   genderOptions = [
     {value: '', text: 'Gender'},
