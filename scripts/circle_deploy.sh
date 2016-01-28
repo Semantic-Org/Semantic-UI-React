@@ -13,13 +13,13 @@ git config --global push.default simple
 # generate changelog
 #
 echo "...generating changelog"
-ta-script circle_ci/create_changelog.sh
+ta-script circle_ci/create_changelog
 
 #
 # s3 sync
 #
 echo "...syncing with s3"
-ta-script aws/s3_sync.sh -d ./dist -b "ta-stardust-assets/$NPM_PACKAGE_VERSION"
+ta-script aws/s3_sync -d ./dist -b "ta-stardust-assets/$NPM_PACKAGE_VERSION"
 
 
 #
