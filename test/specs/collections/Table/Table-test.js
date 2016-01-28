@@ -106,4 +106,22 @@ describe('Table', () => {
         });
     });
   });
+
+  describe('sortable', () => {
+    describe('with onSortChange prop', () => {
+      it('has class "sortable"', () => {
+        render(<Table data={tableData} onSortChange={_.noop} />)
+          .findClass('sortable');
+      });
+    });
+
+    describe('without onSortChange prop', () => {
+      it('does not have class "sortable"', () => {
+        render(<Table data={tableData} />)
+          .findClass('sd-table')
+          .props.className
+          .should.not.include('sortable');
+      });
+    });
+  });
 });
