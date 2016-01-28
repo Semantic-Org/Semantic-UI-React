@@ -10,6 +10,7 @@ export default class Table extends Component {
     children: ofComponentTypes(['TableColumn']),
     className: PropTypes.string,
     data: PropTypes.array,
+    onSelectRow: PropTypes.func,
     onSortChange: PropTypes.func,
     sort: PropTypes.shape({
       key: PropTypes.string,
@@ -65,10 +66,11 @@ export default class Table extends Component {
   }
 
   _getRows() {
-    return _.map(this.props.data, (dataItem, rowIndex) => {
+    const {data, onSelectRow} = this.props;
+    return _.map(data, (dataItem, rowIndex) => {
       const cells = this._getCells(dataItem, rowIndex);
 
-      return <tr className='sd-table-row' key={rowIndex}>{cells}</tr>;
+      return <tr className='sd-table-row' key={rowIndex} onSelectRow={onSelectRow}>{cells}</tr>;
     });
   }
 
