@@ -76,11 +76,17 @@ export default class Table extends Component {
   }
 
   _getRows() {
-    const {data, onSelectRow} = this.props;
-    return _.map(data, (dataItem, rowIndex) => {
+    return _.map(this.props.data, (dataItem, rowIndex) => {
       const cells = this._getCells(dataItem, rowIndex);
-
-      return <tr className='sd-table-row' key={rowIndex} onSelectRow={onSelectRow}>{cells}</tr>;
+      return (
+        <tr
+          className='sd-table-row'
+          key={rowIndex}
+          onClick={this._handleSelectRow.bind(this, dataItem, rowIndex)}
+        >
+          {cells}
+        </tr>
+      );
     });
   }
 

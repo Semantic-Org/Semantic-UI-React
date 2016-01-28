@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import faker from 'faker';
 import React from 'react';
+import {Simulate} from 'react-addons-test-utils';
 import {Table, TableColumn} from 'stardust';
 import sandbox from 'test/utils/Sandbox-util';
 
@@ -152,6 +153,23 @@ describe('Table', () => {
       spy.called.should.equal(false);
       table._handleSelectRow();
       spy.called.should.equal(false);
+    });
+  });
+
+  describe('select row', () => {
+    it('is called with the rowItem and index onClick', () => {
+      const spy = sandbox.spy();
+      const rowItem = {name: 'bob'};
+      const row = render(
+        <Table className='selectable' onSelectRow={spy} data={[rowItem]}>
+          <TableColumn dataKey='name' />
+        </Table>
+      )
+        .scryClass('sd-table-row')[0];
+
+      spy.called.should.equal(false);
+      Simulate.click(row);
+      spy.calledWith(rowItem, 0).should.equal(true);
     });
   });
 
