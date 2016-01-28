@@ -7,6 +7,11 @@ machine:
   node:
     version: 4.2.1
 
+dependencies:
+  pre:
+    - echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
+    - npm install -g npm@3
+
 test:
   post:
     - nvm install 5 && npm test
