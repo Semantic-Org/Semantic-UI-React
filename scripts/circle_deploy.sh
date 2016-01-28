@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-NPM_PACKAGE_NAME=$(json -f package.json name)
 NPM_PACKAGE_VERSION=$(json -f package.json version)
 
 #

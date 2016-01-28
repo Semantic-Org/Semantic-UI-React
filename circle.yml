@@ -7,10 +7,6 @@ machine:
   node:
     version: 4.2.1
 
-dependencies:
-  pre:
-    - pip install awscli
-
 test:
   post:
     - nvm install 5 && npm test
