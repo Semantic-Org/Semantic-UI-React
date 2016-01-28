@@ -82,6 +82,7 @@ export default class Table extends Component {
     const classes = classNames(
       'sd-table',
       'ui',
+      {sortable: !!this.props.onSortChange},
       this.props.className,
       'table'
     );
