@@ -50,9 +50,7 @@ module.exports = {
     ],
   },
   resolve: {
-    root: [
-      paths.docsRoot
-    ],
+    root: paths.root,
     modulesDirectories: [
       'node_modules',
       '.'
