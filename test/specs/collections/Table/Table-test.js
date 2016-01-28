@@ -2,6 +2,7 @@ import _ from 'lodash';
 import faker from 'faker';
 import React from 'react';
 import {Table, TableColumn} from 'stardust';
+import sandbox from 'test/utils/Sandbox-util';
 
 describe('Table', () => {
   let randomDataKey;
@@ -127,6 +128,30 @@ describe('Table', () => {
         .first()
         ._isSelectable()
         .should.equal(false);
+    });
+  });
+
+  describe('_handleSelectRow', () => {
+    let table;
+    let spy;
+
+    beforeEach(() => {
+      spy = sandbox.spy();
+      table = render(<Table className='selectable' onSelectRow={spy} data={tableData} />).first();
+    });
+
+    it('calls onSelectRow prop if _isSelectable', () => {
+      table._isSelectable = () => true;
+      spy.called.should.equal(false);
+      table._handleSelectRow();
+      spy.called.should.equal(true);
+    });
+
+    it('does not call onSelectRow prop if !_isSelectable', () => {
+      table._isSelectable = () => false;
+      spy.called.should.equal(false);
+      table._handleSelectRow();
+      spy.called.should.equal(false);
     });
   });
 

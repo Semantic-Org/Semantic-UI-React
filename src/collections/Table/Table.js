@@ -28,6 +28,11 @@ export default class Table extends Component {
     return _.includes(className, 'selectable') && !!onSelectRow;
   };
 
+  _handleSelectRow(rowItem, rowIndex) {
+    if (!this._isSelectable()) return;
+    this.props.onSelectRow(rowItem, rowIndex);
+  }
+
   _handleSortHeaderChange(key, direction) {
     const {onSortChange} = this.props;
     if (onSortChange) {
