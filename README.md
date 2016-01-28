@@ -66,11 +66,11 @@ For a listing of development commands use the following:
 
 ### Releasing
 
-On a clean master:
+On the latest clean `master`:
 
-    npm run release-major
-    npm run release-minor
-    npm run release-patch
+    npm run release:major
+    npm run release:minor
+    npm run release:patch
 
 ## Contributing
 
