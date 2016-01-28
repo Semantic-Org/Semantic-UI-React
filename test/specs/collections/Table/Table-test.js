@@ -107,6 +107,29 @@ describe('Table', () => {
     });
   });
 
+  describe('_isSelectable', () => {
+    it('returns true when "selectable" class and "onSelectRow" prop are present', () => {
+      render(<Table className='selectable' onSelectRow={_.noop} data={tableData} />)
+        .first()
+        ._isSelectable()
+        .should.equal(true);
+    });
+
+    it('returns false when "selectable" class is omitted', () => {
+      render(<Table onSelectRow={_.noop} data={tableData} />)
+        .first()
+        ._isSelectable()
+        .should.equal(false);
+    });
+
+    it('returns false when "onSelectRow" prop is omitted', () => {
+      render(<Table className='selectable' data={tableData} />)
+        .first()
+        ._isSelectable()
+        .should.equal(false);
+    });
+  });
+
   describe('sortable', () => {
     describe('with onSortChange prop', () => {
       it('has class "sortable"', () => {

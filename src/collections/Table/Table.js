@@ -23,6 +23,11 @@ export default class Table extends Component {
     return _.isObject(content) ? JSON.stringify(content) : content;
   }
 
+  _isSelectable = () => {
+    const {className, onSelectRow} = this.props;
+    return _.includes(className, 'selectable') && !!onSelectRow;
+  };
+
   _handleSortHeaderChange(key, direction) {
     const {onSortChange} = this.props;
     if (onSortChange) {
