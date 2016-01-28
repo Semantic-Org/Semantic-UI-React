@@ -64,13 +64,16 @@ For a listing of development commands use the following:
     npm run                   # list npm commands 
     gulp help                 # list gulp commands
 
-### Deploying
+### Releasing
 
-    npm version <version>     # bump the new version
-    git push                  # push bump commit
-    git push --tags           # push version tag
+On the latest clean `master`:
+
+    npm run release:major
+    npm run release:minor
+    npm run release:patch
 
 ## Contributing
+
 Before submitting PRs please review our [Component Guidelines] and [Roadmap].
 
 [.babelrc]: http://babeljs.io/docs/usage/babelrc/

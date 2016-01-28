@@ -9,11 +9,14 @@
   "scripts": {
     "clean": "while read line; do rm -rf $line; done < .gitignore",
     "lint": "eslint . --format ./node_modules/eslint-friendly-formatter",
-    "lint-watch": "watch 'npm run lint' docs gulp src test",
+    "lint:watch": "watch 'npm run lint' docs gulp src test",
+    "release:major": "ta-script npm/release.sh -- major",
+    "release:minor": "ta-script npm/release.sh -- minor",
+    "release:patch": "ta-script npm/release.sh -- patch",
     "start": "gulp",
     "karma": "babel-node $(npm bin)/karma start",
     "test": "npm run karma  -- karma.conf.babel.js",
-    "test-watch": "webpack-dev-server --config webpack.tests.babel.js"
+    "test:watch": "webpack-dev-server --config webpack.tests.babel.js"
   },
   "pre-commit": "lint",
   "repository": {
@@ -39,6 +42,7 @@
     "react-dom": "^0.14.0"
   },
   "devDependencies": {
+    "@technologyadvice/ta-scripts": "^1.3.0",
     "babel-cli": "^6.3.17",
     "babel-core": "^6.3.2",
     "babel-eslint": "^4.1.6",

@@ -9,7 +9,8 @@ machine:
 
 dependencies:
   pre:
-    - pip install awscli
+    - echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
+    - npm install -g npm@3
 
 test:
   post:
