@@ -4,6 +4,10 @@
 
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.9.9...HEAD)
 
+**Implemented enhancements:**
+
+- Selectable table rows [\#155](https://github.com/TechnologyAdvice/stardust/pull/155) ([levithomason](https://github.com/levithomason))
+
 **Merged pull requests:**
 
 - Remove unused s3 sync in build [\#156](https://github.com/TechnologyAdvice/stardust/pull/156) ([levithomason](https://github.com/levithomason))
