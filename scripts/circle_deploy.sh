@@ -16,13 +16,6 @@ echo "...generating changelog"
 ta-script circle_ci/create_changelog
 
 #
-# s3 sync
-#
-echo "...syncing with s3"
-ta-script aws/s3_sync -d ./dist -b "ta-stardust-assets/$NPM_PACKAGE_VERSION"
-
-
-#
 # gh-pages
 #
 echo "...deploying gh-pages"
