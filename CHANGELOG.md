@@ -10,6 +10,7 @@
 
 **Merged pull requests:**
 
+- Add selectable table example [\#157](https://github.com/TechnologyAdvice/stardust/pull/157) ([levithomason](https://github.com/levithomason))
 - Remove unused s3 sync in build [\#156](https://github.com/TechnologyAdvice/stardust/pull/156) ([levithomason](https://github.com/levithomason))
 - Automatic sortable table class [\#154](https://github.com/TechnologyAdvice/stardust/pull/154) ([levithomason](https://github.com/levithomason))
 - Use ta-scripts [\#153](https://github.com/TechnologyAdvice/stardust/pull/153) ([levithomason](https://github.com/levithomason))
