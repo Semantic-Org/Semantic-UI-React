@@ -190,15 +190,35 @@ describe('Table', () => {
     });
   });
 
-  describe('sortable', () => {
-    describe('with onSortChange prop', () => {
-      it('has class "sortable"', () => {
-        render(<Table onSortChange={_.noop} />)
-          .findClass('sortable');
-      });
+  describe('sort', () => {
+    it('unselects all rows', () => {
+      const tree = render(
+        <Table className='selectable' data={tableData} onSortChange={_.noop}>
+          <TableColumn dataKey={randomDataKey} />
+        </Table>
+      );
+
+      const table = tree.first();
+      const headers = tree.scryClass('sd-table-header');
+      const rows = tree.scryClass('sd-table-row');
+
+      // select a row
+      Simulate.click(rows[0]);
+      table._isRowSelected(0).should.equal(true);
+
+      // sort, assert row unselected
+      Simulate.click(headers[0]);
+      table._isRowSelected(0).should.equal(false);
+    });
+  });
+
+  describe('"sortable" class', () => {
+    it('is auto applied when "onSortChange" prop is present', () => {
+      render(<Table onSortChange={_.noop} />)
+        .findClass('sortable');
     });
 
-    describe('without onSortChange prop', () => {
+    it('is not auto applied when "onSortChange" prop is not present', () => {
       it('does not have class "sortable"', () => {
         render(<Table />)
           .findClass('sd-table')
