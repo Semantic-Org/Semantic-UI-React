@@ -23,7 +23,7 @@ export default class Table extends Component {
       key: null,
       direction: 'descending',
     },
-  }
+  };
 
   constructor(props, context) {
     super(props, context);
