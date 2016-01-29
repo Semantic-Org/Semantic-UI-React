@@ -43,7 +43,7 @@ export default class Table extends Component {
     return _.includes(this.props.className, 'selectable');
   };
 
-  _deselectRow(index) {
+  _unselectRow(index) {
     if (!this._isSelectable()) return;
     this.setState({
       selectedRows: _.without(this.state.selectedRows, index)
@@ -55,9 +55,13 @@ export default class Table extends Component {
     this.setState({selectedRows: [index]});
   }
 
+  _unselectAllRows() {
+    this.setState({selectedRows: []});
+  }
+
   _toggleSelectRow(index) {
     if (this._isRowSelected(index)) {
-      this._deselectRow(index);
+      this._unselectRow(index);
     } else {
       this._selectRow(index);
     }
@@ -71,6 +75,7 @@ export default class Table extends Component {
   _handleSortHeaderChange(key, direction) {
     const {onSortChange} = this.props;
     if (onSortChange) {
+      this._unselectAllRows();
       onSortChange(key, direction);
     }
   }
