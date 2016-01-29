@@ -35,14 +35,38 @@ export default class Table extends Component {
     return _.isObject(content) ? JSON.stringify(content) : content;
   }
 
+  _isRowSelected(index) {
+    return _.includes(this.state.selectedRows, index);
+  }
+
   _isSelectable = () => {
     const {className, onSelectRow} = this.props;
     return _.includes(className, 'selectable') && !!onSelectRow;
   };
 
-  _handleSelectRow(rowItem, rowIndex) {
+  _deselectRow(index) {
     if (!this._isSelectable()) return;
-    this.props.onSelectRow(rowItem, rowIndex);
+    this.setState({
+      selectedRows: _.without(this.state.selectedRows, index)
+    });
+  }
+
+  _selectRow(index) {
+    if (!this._isSelectable()) return;
+    this.setState({selectedRows: [index]});
+  }
+
+  _toggleSelectRow(index) {
+    if (this._isRowSelected(index)) {
+      this._deselectRow(index);
+    } else {
+      this._selectRow(index);
+    }
+  }
+
+  _handleSelectRow(rowItem, rowIndex) {
+    this._toggleSelectRow(rowIndex);
+    if (this.props.onSelectRow) this.props.onSelectRow(rowItem, rowIndex);
   }
 
   _handleSortHeaderChange(key, direction) {
@@ -90,9 +114,13 @@ export default class Table extends Component {
   _getRows() {
     return _.map(this.props.data, (dataItem, rowIndex) => {
       const cells = this._getCells(dataItem, rowIndex);
+      const classes = classNames('sd-table-row', {
+        active: this._isRowSelected(rowIndex),
+      });
+
       return (
         <tr
-          className='sd-table-row'
+          className={classes}
           key={rowIndex}
           onClick={this._handleSelectRow.bind(this, dataItem, rowIndex)}
         >

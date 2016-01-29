@@ -176,27 +176,40 @@ describe('Table', () => {
     });
   });
 
-  describe('_handleSelectRow', () => {
-    let table;
-    let spy;
+  describe('row select', () => {
+    let rows;
 
     beforeEach(() => {
-      spy = sandbox.spy();
-      table = render(<Table className='selectable' onSelectRow={spy} />).first();
+      rows = render(
+        <Table className='selectable' data={[{row: 1}, {row: 2}]}>
+          <TableColumn dataKey='row' />
+        </Table>
+      )
+        .scryClass('sd-table-row');
     });
 
-    it('calls onSelectRow prop if _isSelectable', () => {
-      table._isSelectable = () => true;
-      spy.called.should.equal(false);
-      table._handleSelectRow();
-      spy.called.should.equal(true);
+    it('applies class "active" only to the clicked row', () => {
+      rows[0].getAttribute('class').should.not.include('active');
+      rows[1].getAttribute('class').should.not.include('active');
+
+      Simulate.click(rows[0]);
+
+      rows[0].getAttribute('class').should.include('active');
+      rows[1].getAttribute('class').should.not.include('active');
     });
 
-    it('does not call onSelectRow prop if !_isSelectable', () => {
-      table._isSelectable = () => false;
-      spy.called.should.equal(false);
-      table._handleSelectRow();
-      spy.called.should.equal(false);
+    it('toggles class "active" on repeat clicks', () => {
+      const row = rows[0];
+      // ensure not active
+      row.getAttribute('class').should.not.include('active');
+
+      // make active
+      Simulate.click(row);
+      row.getAttribute('class').should.include('active');
+
+      // toggle, not active
+      Simulate.click(row);
+      row.getAttribute('class').should.not.include('active');
     });
   });
 
