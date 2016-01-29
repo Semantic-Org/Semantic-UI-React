@@ -40,8 +40,7 @@ export default class Table extends Component {
   }
 
   _isSelectable = () => {
-    const {className, onSelectRow} = this.props;
-    return _.includes(className, 'selectable') && !!onSelectRow;
+    return _.includes(this.props.className, 'selectable');
   };
 
   _deselectRow(index) {

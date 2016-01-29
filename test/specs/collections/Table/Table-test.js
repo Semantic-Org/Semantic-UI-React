@@ -154,22 +154,15 @@ describe('Table', () => {
   });
 
   describe('_isSelectable', () => {
-    it('returns true when "selectable" class and "onSelectRow" prop are present', () => {
-      render(<Table className='selectable' onSelectRow={_.noop} />)
+    it('returns true when "selectable" class is present', () => {
+      render(<Table className='selectable' />)
         .first()
         ._isSelectable()
         .should.equal(true);
     });
 
-    it('returns false when "selectable" class is omitted', () => {
-      render(<Table onSelectRow={_.noop} />)
-        .first()
-        ._isSelectable()
-        .should.equal(false);
-    });
-
-    it('returns false when "onSelectRow" prop is omitted', () => {
-      render(<Table className='selectable' />)
+    it('returns false when "selectable" class is not present', () => {
+      render(<Table />)
         .first()
         ._isSelectable()
         .should.equal(false);
