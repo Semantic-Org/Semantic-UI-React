@@ -207,4 +207,20 @@ describe('Table', () => {
       });
     });
   });
+
+  describe('"selectable" class', () => {
+    it('is auto applied when "onSelectRow" prop is present', () => {
+      render(<Table onSelectRow={_.noop} />)
+        .findClass('selectable');
+    });
+
+    it('is not auto applied when "onSelectRow" prop is not present', () => {
+      it('does not have class "selectable"', () => {
+        render(<Table />)
+          .findClass('sd-table')
+          .props.className
+          .should.not.include('selectable');
+      });
+    });
+  });
 });
