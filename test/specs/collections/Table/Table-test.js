@@ -1,7 +1,9 @@
 import _ from 'lodash';
 import faker from 'faker';
 import React from 'react';
+import {Simulate} from 'react-addons-test-utils';
 import {Table, TableColumn} from 'stardust';
+import sandbox from 'test/utils/Sandbox-util';
 
 describe('Table', () => {
   let randomDataKey;
@@ -21,6 +23,51 @@ describe('Table', () => {
 
   beforeEach(() => {
     randomDataKey = _.sample(_.keys(_.first(tableData)));
+  });
+
+  describe('defaultProps', () => {
+    it('should have empty selectedRows', () => {
+      render(<Table />)
+        .first()
+        .props.sort
+        .should.deep.equal({key: null, direction: 'descending'});
+    });
+  });
+
+  describe('initial state', () => {
+    it('selectedRows should default to an empty array', () => {
+      render(<Table />)
+        .first()
+        .state.selectedRows
+        .should.deep.equal([]);
+    });
+
+    it('selectedRows should match defined selectedRows prop', () => {
+      const selectedRows = _.times(_.random(1, 20));
+      render(<Table selectedRows={selectedRows} />)
+        .first()
+        .state.selectedRows
+        .should.equal(selectedRows);
+    });
+  });
+
+  describe('props', () => {
+    describe('onSelectRow', () => {
+      it('is called with the rowItem and index onClick', () => {
+        const spy = sandbox.spy();
+        const rowItem = {name: 'bob'};
+        const row = render(
+          <Table className='selectable' onSelectRow={spy} data={[rowItem]}>
+            <TableColumn dataKey='name' />
+          </Table>
+        )
+          .scryClass('sd-table-row')[0];
+
+        spy.called.should.equal(false);
+        Simulate.click(row);
+        spy.calledWith(rowItem, 0).should.equal(true);
+      });
+    });
   });
 
   describe('header', () => {
@@ -107,21 +154,97 @@ describe('Table', () => {
     });
   });
 
-  describe('sortable', () => {
-    describe('with onSortChange prop', () => {
-      it('has class "sortable"', () => {
-        render(<Table data={tableData} onSortChange={_.noop} />)
-          .findClass('sortable');
-      });
+  describe('row select', () => {
+    let rows;
+
+    beforeEach(() => {
+      rows = render(
+        <Table className='selectable' data={[{row: 1}, {row: 2}]}>
+          <TableColumn dataKey='row' />
+        </Table>
+      )
+        .scryClass('sd-table-row');
     });
 
-    describe('without onSortChange prop', () => {
+    it('applies class "active" only to the clicked row', () => {
+      rows[0].getAttribute('class').should.not.include('active');
+      rows[1].getAttribute('class').should.not.include('active');
+
+      Simulate.click(rows[0]);
+
+      rows[0].getAttribute('class').should.include('active');
+      rows[1].getAttribute('class').should.not.include('active');
+    });
+
+    it('toggles class "active" on repeat clicks', () => {
+      const row = rows[0];
+      // ensure not active
+      row.getAttribute('class').should.not.include('active');
+
+      // make active
+      Simulate.click(row);
+      row.getAttribute('class').should.include('active');
+
+      // toggle, not active
+      Simulate.click(row);
+      row.getAttribute('class').should.not.include('active');
+    });
+  });
+
+  describe('sort', () => {
+    it('unselects all rows', () => {
+      const tree = render(
+        <Table className='selectable' data={tableData} onSortChange={_.noop}>
+          <TableColumn dataKey={randomDataKey} />
+        </Table>
+      );
+
+      const table = tree.first();
+      const headers = tree.scryClass('sd-table-header');
+      const rows = tree.scryClass('sd-table-row');
+
+      // select a row
+      Simulate.click(rows[0]);
+      table._isRowSelected(0).should.equal(true);
+
+      // sort, assert row unselected
+      Simulate.click(headers[0]);
+      table._isRowSelected(0).should.equal(false);
+    });
+  });
+
+  describe('"sortable" class', () => {
+    it('is auto applied when "onSortChange" prop is present', () => {
+      render(<Table onSortChange={_.noop} />)
+        .findClass('sortable');
+    });
+
+    it('is not auto applied by default', () => {
       it('does not have class "sortable"', () => {
-        render(<Table data={tableData} />)
+        render(<Table />)
           .findClass('sd-table')
           .props.className
           .should.not.include('sortable');
       });
+    });
+  });
+
+  describe('"selectable" class', () => {
+    it('is auto applied when "onSelectRow" prop is present', () => {
+      render(<Table onSelectRow={_.noop} />)
+        .findClass('selectable');
+    });
+
+    it('is auto applied when "selectedRows" prop is present', () => {
+      render(<Table selectedRows={[]} />)
+        .findClass('selectable');
+    });
+
+    it('is not auto applied by default', () => {
+      render(<Table />)
+        .findClass('sd-table')
+        .props.className
+        .should.not.include('selectable');
     });
   });
 });

@@ -4,6 +4,7 @@
  */
 import chai from 'chai';
 import sinonChai from 'sinon-chai';
+import dirtyChai from 'dirty-chai';
 
 //
 // Mocha
@@ -18,3 +19,4 @@ mocha.setup({
 global.expect = chai.expect;
 chai.should();
 chai.use(sinonChai);
+chai.use(dirtyChai);

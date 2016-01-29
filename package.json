@@ -53,6 +53,7 @@
     "babel-preset-stage-1": "^6.1.18",
     "chai": "^3.3.0",
     "del": "^2.0.2",
+    "dirty-chai": "^1.2.2",
     "doctrine": "^0.7.0",
     "eslint": "^1.5.1",
     "eslint-config-ta-webapp": "^2.1.0",
