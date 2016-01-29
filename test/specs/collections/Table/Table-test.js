@@ -50,6 +50,25 @@ describe('Table', () => {
     });
   });
 
+  describe('props', () => {
+    describe('onSelectRow', () => {
+      it('is called with the rowItem and index onClick', () => {
+        const spy = sandbox.spy();
+        const rowItem = {name: 'bob'};
+        const row = render(
+          <Table className='selectable' onSelectRow={spy} data={[rowItem]}>
+            <TableColumn dataKey='name' />
+          </Table>
+        )
+          .scryClass('sd-table-row')[0];
+
+        spy.called.should.equal(false);
+        Simulate.click(row);
+        spy.calledWith(rowItem, 0).should.equal(true);
+      });
+    });
+  });
+
   describe('header', () => {
     it('uses Start Cased column dataKey as the default content', () => {
       render(
@@ -178,23 +197,6 @@ describe('Table', () => {
       spy.called.should.equal(false);
       table._handleSelectRow();
       spy.called.should.equal(false);
-    });
-  });
-
-  describe('select row', () => {
-    it('is called with the rowItem and index onClick', () => {
-      const spy = sandbox.spy();
-      const rowItem = {name: 'bob'};
-      const row = render(
-        <Table className='selectable' onSelectRow={spy} data={[rowItem]}>
-          <TableColumn dataKey='name' />
-        </Table>
-      )
-        .scryClass('sd-table-row')[0];
-
-      spy.called.should.equal(false);
-      Simulate.click(row);
-      spy.calledWith(rowItem, 0).should.equal(true);
     });
   });
 
