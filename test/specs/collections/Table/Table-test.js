@@ -153,22 +153,6 @@ describe('Table', () => {
     });
   });
 
-  describe('_isSelectable', () => {
-    it('returns true when "selectable" class is present', () => {
-      render(<Table className='selectable' />)
-        .first()
-        ._isSelectable()
-        .should.equal(true);
-    });
-
-    it('returns false when "selectable" class is not present', () => {
-      render(<Table />)
-        .first()
-        ._isSelectable()
-        .should.equal(false);
-    });
-  });
-
   describe('row select', () => {
     let rows;
 
