@@ -111,21 +111,21 @@ describe('Table', () => {
 
   describe('_isSelectable', () => {
     it('returns true when "selectable" class and "onSelectRow" prop are present', () => {
-      render(<Table className='selectable' onSelectRow={_.noop} data={tableData} />)
+      render(<Table className='selectable' onSelectRow={_.noop} />)
         .first()
         ._isSelectable()
         .should.equal(true);
     });
 
     it('returns false when "selectable" class is omitted', () => {
-      render(<Table onSelectRow={_.noop} data={tableData} />)
+      render(<Table onSelectRow={_.noop} />)
         .first()
         ._isSelectable()
         .should.equal(false);
     });
 
     it('returns false when "onSelectRow" prop is omitted', () => {
-      render(<Table className='selectable' data={tableData} />)
+      render(<Table className='selectable' />)
         .first()
         ._isSelectable()
         .should.equal(false);
@@ -138,7 +138,7 @@ describe('Table', () => {
 
     beforeEach(() => {
       spy = sandbox.spy();
-      table = render(<Table className='selectable' onSelectRow={spy} data={tableData} />).first();
+      table = render(<Table className='selectable' onSelectRow={spy} />).first();
     });
 
     it('calls onSelectRow prop if _isSelectable', () => {
@@ -176,14 +176,14 @@ describe('Table', () => {
   describe('sortable', () => {
     describe('with onSortChange prop', () => {
       it('has class "sortable"', () => {
-        render(<Table data={tableData} onSortChange={_.noop} />)
+        render(<Table onSortChange={_.noop} />)
           .findClass('sortable');
       });
     });
 
     describe('without onSortChange prop', () => {
       it('does not have class "sortable"', () => {
-        render(<Table data={tableData} />)
+        render(<Table />)
           .findClass('sd-table')
           .props.className
           .should.not.include('sortable');
