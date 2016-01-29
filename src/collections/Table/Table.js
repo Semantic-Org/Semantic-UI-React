@@ -121,16 +121,9 @@ export default class Table extends Component {
       const classes = classNames('sd-table-row', {
         active: this._isRowSelected(rowIndex),
       });
+      const onClick = () => this._handleSelectRow(dataItem, rowIndex);
 
-      return (
-        <tr
-          className={classes}
-          key={rowIndex}
-          onClick={this._handleSelectRow.bind(this, dataItem, rowIndex)}
-        >
-          {cells}
-        </tr>
-      );
+      return <tr className={classes} key={rowIndex} onClick={onClick}>{cells}</tr>;
     });
   }
 
