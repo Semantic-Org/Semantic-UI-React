@@ -12,11 +12,23 @@ export default class Table extends Component {
     data: PropTypes.array,
     onSelectRow: PropTypes.func,
     onSortChange: PropTypes.func,
+    selectedRows: PropTypes.arrayOf(PropTypes.number),
     sort: PropTypes.shape({
       key: PropTypes.string,
       direction: PropTypes.string, // descending|ascending, defaults to descending
     }),
   };
+
+  static defaultProps = {
+    selectedRows: []
+  }
+
+  constructor(props, context) {
+    super(props, context);
+    this.state = {
+      selectedRows: this.props.selectedRows,
+    };
+  }
 
   static getSafeCellContents(content) {
     // React cannot render objects, stringify them instead

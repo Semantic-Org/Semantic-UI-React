@@ -25,6 +25,31 @@ describe('Table', () => {
     randomDataKey = _.sample(_.keys(_.first(tableData)));
   });
 
+  describe('defaultProps', () => {
+    it('should have empty selectedRows', () => {
+      render(<Table />)
+        .first()
+        .props.selectedRows
+        .should.be.empty();
+    });
+  });
+
+  describe('initial state', () => {
+    it('selectedRows should match default selectedRows prop', () => {
+      const {props, state} = render(<Table />).first();
+      state.selectedRows
+        .should.be.equal(props.selectedRows);
+    });
+
+    it('selectedRows should match defined selectedRows prop', () => {
+      const selectedRows = _.times(_.random(1, 20));
+      render(<Table selectedRows={selectedRows} />)
+        .first()
+        .state.selectedRows
+        .should.equal(selectedRows);
+    });
+  });
+
   describe('header', () => {
     it('uses Start Cased column dataKey as the default content', () => {
       render(
