@@ -60,6 +60,7 @@ export default class Table extends Component {
   }
 
   _unselectAllRows() {
+    if (!this._isSelectable()) return;
     this.setState({selectedRows: []});
   }
 
@@ -137,11 +138,12 @@ export default class Table extends Component {
   };
 
   render() {
+    const {onSelectRow, onSortChange, selectedRows} = this.props;
     const classes = classNames(
       'sd-table',
       'ui',
-      {selectable: !!this.props.onSelectRow},
-      {sortable: !!this.props.onSortChange},
+      {selectable: !!onSelectRow || !!selectedRows},
+      {sortable: !!onSortChange},
       this.props.className,
       'table'
     );

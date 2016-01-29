@@ -234,6 +234,11 @@ describe('Table', () => {
         .findClass('selectable');
     });
 
+    it('is auto applied when "selectedRows" prop is present', () => {
+      render(<Table selectRows={[]} />)
+        .findClass('selectable');
+    });
+
     it('is not auto applied when "onSelectRow" prop is not present', () => {
       it('does not have class "selectable"', () => {
         render(<Table />)
