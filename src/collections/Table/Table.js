@@ -9,9 +9,9 @@ export default class Table extends Component {
     children: ofComponentTypes(['TableColumn']),
     className: PropTypes.string,
     data: PropTypes.array,
+    defaultSelectedRows: PropTypes.arrayOf(PropTypes.number),
     onSelectRow: PropTypes.func,
     onSortChange: PropTypes.func,
-    selectedRows: PropTypes.arrayOf(PropTypes.number),
     sort: PropTypes.shape({
       key: PropTypes.string,
       direction: PropTypes.oneOf(['descending', 'ascending']),
@@ -28,7 +28,7 @@ export default class Table extends Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
-      selectedRows: this.props.selectedRows || [],
+      selectedRows: this.props.defaultSelectedRows || [],
     };
   }
 
@@ -136,11 +136,11 @@ export default class Table extends Component {
   };
 
   render() {
-    const {onSelectRow, onSortChange, selectedRows} = this.props;
+    const {onSelectRow, onSortChange, defaultSelectedRows} = this.props;
     const classes = classNames(
       'sd-table',
       'ui',
-      {selectable: !!onSelectRow || !!selectedRows},
+      {selectable: !!onSelectRow || !!defaultSelectedRows},
       {sortable: !!onSortChange},
       this.props.className,
       'table'
