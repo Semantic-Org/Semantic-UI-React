@@ -26,7 +26,7 @@ describe('Table', () => {
   });
 
   describe('defaultProps', () => {
-    it('should have empty selectedRows', () => {
+    it('should have empty defaultSelectedRows', () => {
       render(<Table />)
         .first()
         .props.sort
@@ -42,12 +42,12 @@ describe('Table', () => {
         .should.deep.equal([]);
     });
 
-    it('selectedRows should match defined selectedRows prop', () => {
-      const selectedRows = _.times(_.random(1, 20));
-      render(<Table selectedRows={selectedRows} />)
+    it('selectedRows should match defined defaultSelectedRows prop', () => {
+      const defaultSelectedRows = _.times(_.random(1, 20));
+      render(<Table defaultSelectedRows={defaultSelectedRows} />)
         .first()
         .state.selectedRows
-        .should.equal(selectedRows);
+        .should.equal(defaultSelectedRows);
     });
   });
 
@@ -235,8 +235,8 @@ describe('Table', () => {
         .findClass('selectable');
     });
 
-    it('is auto applied when "selectedRows" prop is present', () => {
-      render(<Table selectedRows={[]} />)
+    it('is auto applied when "defaultSelectedRows" prop is present', () => {
+      render(<Table defaultSelectedRows={[]} />)
         .findClass('selectable');
     });
 
