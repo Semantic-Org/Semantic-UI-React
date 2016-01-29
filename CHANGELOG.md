@@ -1,5 +1,15 @@
 # Change Log
 
+## [Unreleased](https://github.com/TechnologyAdvice/stardust/tree/HEAD)
+
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.9.9...HEAD)
+
+**Merged pull requests:**
+
+- Remove unused s3 sync in build [\#156](https://github.com/TechnologyAdvice/stardust/pull/156) ([levithomason](https://github.com/levithomason))
+- Automatic sortable table class [\#154](https://github.com/TechnologyAdvice/stardust/pull/154) ([levithomason](https://github.com/levithomason))
+- Use ta-scripts [\#153](https://github.com/TechnologyAdvice/stardust/pull/153) ([levithomason](https://github.com/levithomason))
+
 ## [v0.9.9](https://github.com/TechnologyAdvice/stardust/tree/v0.9.9) (2016-01-25)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.9.8...v0.9.9)
 
