@@ -29,16 +29,17 @@ describe('Table', () => {
     it('should have empty selectedRows', () => {
       render(<Table />)
         .first()
-        .props.selectedRows
-        .should.be.empty();
+        .props.sort
+        .should.deep.equal({key: null, direction: 'descending'});
     });
   });
 
   describe('initial state', () => {
-    it('selectedRows should match default selectedRows prop', () => {
-      const {props, state} = render(<Table />).first();
-      state.selectedRows
-        .should.be.equal(props.selectedRows);
+    it('selectedRows should default to an empty array', () => {
+      render(<Table />)
+        .first()
+        .state.selectedRows
+        .should.deep.equal([]);
     });
 
     it('selectedRows should match defined selectedRows prop', () => {
@@ -218,7 +219,7 @@ describe('Table', () => {
         .findClass('sortable');
     });
 
-    it('is not auto applied when "onSortChange" prop is not present', () => {
+    it('is not auto applied by default', () => {
       it('does not have class "sortable"', () => {
         render(<Table />)
           .findClass('sd-table')
@@ -235,17 +236,15 @@ describe('Table', () => {
     });
 
     it('is auto applied when "selectedRows" prop is present', () => {
-      render(<Table selectRows={[]} />)
+      render(<Table selectedRows={[]} />)
         .findClass('selectable');
     });
 
-    it('is not auto applied when "onSelectRow" prop is not present', () => {
-      it('does not have class "selectable"', () => {
-        render(<Table />)
-          .findClass('sd-table')
-          .props.className
-          .should.not.include('selectable');
-      });
+    it('is not auto applied by default', () => {
+      render(<Table />)
+        .findClass('sd-table')
+        .props.className
+        .should.not.include('selectable');
     });
   });
 });

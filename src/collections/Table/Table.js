@@ -6,7 +6,6 @@ import META from '../../utils/Meta';
 
 export default class Table extends Component {
   static propTypes = {
-    basic: PropTypes.bool,
     children: ofComponentTypes(['TableColumn']),
     className: PropTypes.string,
     data: PropTypes.array,
@@ -20,7 +19,6 @@ export default class Table extends Component {
   };
 
   static defaultProps = {
-    selectedRows: [],
     sort: {
       key: null,
       direction: 'descending',
@@ -30,7 +28,7 @@ export default class Table extends Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
-      selectedRows: this.props.selectedRows,
+      selectedRows: this.props.selectedRows || [],
     };
   }
 
