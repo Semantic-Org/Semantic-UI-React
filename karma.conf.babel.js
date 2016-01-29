@@ -55,10 +55,6 @@ export default (config) => {
       },
       resolve: {
         root: paths.root,
-        modulesDirectories: [
-          'node_modules',
-          '.'
-        ],
         alias: {
           // When these key names are require()'d, the value will be supplied instead
           jquery: paths.testMocks + '/SemanticjQuery-mock.js',
