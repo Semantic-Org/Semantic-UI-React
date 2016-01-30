@@ -124,7 +124,7 @@ export default class Dropdown extends Component {
 
   render() {
     const options = _.map(this.props.options, (opt, i) => {
-      return <option key={opt.value} value={opt.value}>{opt.text}</option>;
+      return <option key={`${opt.value}-${i}`} value={opt.value}>{opt.text}</option>;
     });
     const classes = classNames(
       'sd-dropdown',
