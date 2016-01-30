@@ -1,5 +1,13 @@
 # Change Log
 
+## [Unreleased](https://github.com/TechnologyAdvice/stardust/tree/HEAD)
+
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.10.1...HEAD)
+
+**Fixed bugs:**
+
+- Change Dropdown to allow non-unique values. [\#159](https://github.com/TechnologyAdvice/stardust/pull/159) ([eanplatter](https://github.com/eanplatter))
+
 ## [v0.10.1](https://github.com/TechnologyAdvice/stardust/tree/v0.10.1) (2016-01-29)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.10.0...v0.10.1)
 
