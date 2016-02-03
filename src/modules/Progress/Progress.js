@@ -2,13 +2,13 @@ import React, {Component, PropTypes} from 'react';
 import classNames from 'classnames';
 import $ from 'jquery';
 import META from '../../utils/Meta';
-import _ from 'lodash';
 
 export default class Progress extends Component {
   static propTypes = {
     autoSuccess: PropTypes.bool,
     children: PropTypes.node,
     className: PropTypes.string,
+    error: PropTypes.bool,
     label: PropTypes.oneOf(['ratio', 'percent']),
     limitValues: PropTypes.bool,
     onActive: PropTypes.func,
@@ -25,23 +25,11 @@ export default class Progress extends Component {
   };
 
   componentDidMount() {
-    this.element = $(this.refs.element);
-    this.element.progress({
-      autoSuccess: this.props.autoSuccess,
-      label: this.props.label,
-      limitValues: this.props.limitValues,
-      onActive: this.props.onActive,
-      onChange: this.props.onChange,
-      onError: this.props.onError,
-      onSuccess: this.props.onSuccess,
-      onWarning: this.props.onWarning,
-      percent: this.props.percent,
-      precision: this.props.precision,
-      random: this.props.random,
-      showActivity: this.props.showActivity,
-      total: this.props.total,
-      value: this.props.value,
-    });
+    this.update();
+  }
+
+  componentDidUpdate() {
+    this.update();
   }
 
   static _meta = {
@@ -54,41 +42,47 @@ export default class Progress extends Component {
     return this.element.progress(...arguments);
   }
 
-  renderAttachedBar = () => {
-    return (
-      <div className='bar' />
-    );
-  };
-
-  renderStandardBar = () => {
-    const label = (
-      <div className='label'>
-        {this.props.children}
-      </div>
-    );
-
-    return (
-      <div>
-        <div className='bar' style={{width: `${this.props.percent}%`}}>
-          <div className='progress'/>
-        </div>
-        {this.props.children && label}
-      </div>
-    );
-  };
+  update() {
+    this.element = $(this.refs.element);
+    this.element.progress({
+      autoSuccess: this.props.autoSuccess,
+      label: this.props.label,
+      limitValues: this.props.limitValues,
+      onActive: this.props.onActive,
+      onChange: this.props.onChange,
+      onError: this.props.onError,
+      error: this.props.error,
+      onSuccess: this.props.onSuccess,
+      onWarning: this.props.onWarning,
+      percent: this.props.percent,
+      precision: this.props.precision,
+      random: this.props.random,
+      showActivity: this.props.showActivity,
+      total: this.props.total,
+      value: this.props.value,
+    });
+  }
 
   render() {
     const classes = classNames(
       'sd-progress',
       'ui',
       this.props.className,
-      'progress',
+      'progress'
     );
 
-    const isAttached = _.contains(this.props.className, 'attached');
+    const labelText = (
+      <div className='label'>
+        {this.props.children}
+      </div>
+    );
+
     return (
-      <div {...this.props} className={classes}>
-        {isAttached ? this.renderAttachedBar() : this.renderStandardBar()}
+      <div {...this.props} className={classes} ref='element'>
+        <div className='bar error'>
+          <div className='progress error'/>
+        </div>
+        {this.props.children && labelText}
       </div>
     );
   }
