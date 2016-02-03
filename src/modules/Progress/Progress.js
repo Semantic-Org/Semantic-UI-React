@@ -69,7 +69,7 @@ export default class Progress extends Component {
 
     return (
       <div>
-        <div className='bar'>
+        <div className='bar' style={{width: `${this.props.percent}%`}}>
           <div className='progress'/>
         </div>
         {this.props.children && label}
