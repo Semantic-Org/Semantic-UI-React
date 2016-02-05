@@ -1,8 +1,8 @@
 import React from 'react';
 import {Progress} from 'stardust';
 
-const ProgressStandardExample = () => (
+const ProgressIndicatingExample = () => (
   <Progress percent={22} showActivity />
 );
 
-export default ProgressStandardExample;
+export default ProgressIndicatingExample;

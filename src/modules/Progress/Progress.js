@@ -35,7 +35,7 @@ export default class Progress extends Component {
 
   static defaultProps = {
     showActivity: false
-  }
+  };
 
   componentDidMount() {
     this.refresh();
