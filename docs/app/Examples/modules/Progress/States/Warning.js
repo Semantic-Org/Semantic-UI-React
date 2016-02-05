@@ -2,7 +2,7 @@ import React from 'react';
 import {Progress} from 'stardust';
 
 const ProgressWarningExample = () => (
-  <Progress percent={77} className='warning'>
+  <Progress percent={100} className='warning'>
     I am warning you
   </Progress>
 );
