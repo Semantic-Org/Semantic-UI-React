@@ -30,7 +30,7 @@ export default class Progress extends Component {
     /**
      * Display progress inside the bar.
      */
-    progress: PropTypes.bool,
+    showProgress: PropTypes.bool,
   };
 
   componentDidMount() {
@@ -73,7 +73,7 @@ export default class Progress extends Component {
     return (
       <div {...getComponentProps(this.props, pluginPropTypes)} className={classes} ref='element'>
         <div className='bar'>
-          {this.props.progress && <div className='progress' />}
+          {this.props.showProgress && <div className='progress' />}
         </div>
         {this.props.children && labelText}
       </div>
