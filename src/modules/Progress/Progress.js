@@ -2,6 +2,24 @@ import React, {Component, PropTypes} from 'react';
 import classNames from 'classnames';
 import $ from 'jquery';
 import META from '../../utils/Meta';
+import _ from 'lodash';
+
+const pluginProps = [
+  'autoSuccess',
+  'label',
+  'limitValues',
+  'onActive',
+  'onChange',
+  'onError',
+  'onSuccess',
+  'onWarning',
+  'percent',
+  'precision',
+  'random',
+  'showActivity',
+  'total',
+  'value',
+];
 
 export default class Progress extends Component {
   static propTypes = {
@@ -24,11 +42,23 @@ export default class Progress extends Component {
   };
 
   componentDidMount() {
-    this.update();
+    this.refresh();
   }
 
-  componentDidUpdate() {
-    this.update();
+  shouldComponentUpdate(nextProps) {
+    // only re-render if non-plugin settings changed
+    if (_.omit(this.props, pluginProps) !== _.omit(nextProps, pluginProps)) {
+      return true;
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    if (!_.isEqual(_.pick(this.props, pluginProps), _.pick(prevProps, pluginProps))) {
+      console.log('component did update, plugin props DID change');
+      this.refresh();
+    } else {
+      console.log('component did update, plugin props DID NOT change');
+    }
   }
 
   static _meta = {
@@ -41,7 +71,8 @@ export default class Progress extends Component {
     return this.element.progress(...arguments);
   }
 
-  update() {
+  refresh() {
+    console.log('updating progress');
     this.element = $(this.refs.element);
     this.element.progress({
       autoSuccess: this.props.autoSuccess,
@@ -77,8 +108,8 @@ export default class Progress extends Component {
 
     return (
       <div {...this.props} className={classes} ref='element'>
-        <div className='bar error'>
-          <div className='progress error'/>
+        <div className='bar'>
+          <div className='progress'/>
         </div>
         {this.props.children && labelText}
       </div>

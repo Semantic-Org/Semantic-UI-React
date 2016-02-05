@@ -11,6 +11,11 @@ export default class ProgressTypesExamples extends Component {
           description='A standard progress bar.'
           examplePath='modules/Progress/Types/Standard'
         />
+        <ComponentExample
+          title='Progress'
+          description='A standard progress bar.'
+          examplePath='modules/Progress/Types/Indicating'
+        />
       </ExampleSection>
     );
   }
