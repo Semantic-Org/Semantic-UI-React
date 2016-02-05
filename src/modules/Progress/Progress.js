@@ -1,8 +1,10 @@
-import React, {Component, PropTypes} from 'react';
-import classNames from 'classnames';
-import $ from 'jquery';
-import META from '../../utils/Meta';
 import _ from 'lodash';
+import $ from 'jquery';
+import classNames from 'classnames';
+import React, {Component, PropTypes} from 'react';
+
+import META from '../../utils/Meta';
+import {getPluginProps, getComponentProps} from '../../utils/propUtils';
 
 const pluginPropTypes = {
   autoSuccess: PropTypes.bool,
@@ -19,13 +21,6 @@ const pluginPropTypes = {
   showActivity: PropTypes.bool,
   total: PropTypes.bool,
   value: PropTypes.bool,
-};
-
-const getPluginProps = (props, pluginPropsTypes) => {
-  return _.pick(props, _.keys(pluginPropTypes));
-};
-const getComponentProps = (props, pluginPropsTypes) => {
-  return _.omit(props, _.keys(pluginPropTypes));
 };
 
 export default class Progress extends Component {
@@ -60,7 +55,6 @@ export default class Progress extends Component {
   }
 
   refresh() {
-    console.log('updating progress');
     this.element = $(this.refs.element);
     this.element.progress(getPluginProps(this.props, pluginPropTypes));
   }

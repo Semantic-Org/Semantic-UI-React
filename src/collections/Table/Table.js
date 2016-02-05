@@ -1,12 +1,12 @@
 import _ from 'lodash';
 import React, {Children, Component, PropTypes} from 'react';
 import classNames from 'classnames';
-import {ofComponentTypes} from '../../utils/customPropTypes';
+import customPropTypes from '../../utils/propUtils';
 import META from '../../utils/Meta';
 
 export default class Table extends Component {
   static propTypes = {
-    children: ofComponentTypes(['TableColumn']),
+    children: customPropTypes.ofComponentTypes(['TableColumn']),
     className: PropTypes.string,
     data: PropTypes.array,
     defaultSelectedRows: PropTypes.arrayOf(PropTypes.number),
