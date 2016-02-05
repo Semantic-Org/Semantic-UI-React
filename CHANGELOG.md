@@ -1,5 +1,12 @@
 # Change Log
 
+## [v0.11.0](https://github.com/TechnologyAdvice/stardust/tree/v0.11.0) (2016-02-05)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.10.2...v0.11.0)
+
+**Implemented enhancements:**
+
+- Support progress module [\#161](https://github.com/TechnologyAdvice/stardust/pull/161) ([eanplatter](https://github.com/eanplatter))
+
 ## [v0.10.2](https://github.com/TechnologyAdvice/stardust/tree/v0.10.2) (2016-02-01)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.10.1...v0.10.2)
 
