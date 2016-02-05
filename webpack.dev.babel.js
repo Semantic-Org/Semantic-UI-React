@@ -28,6 +28,7 @@ export default {
     filename: '[name].js'
   },
   module: {
+    noParse: [/autoit.js/],
     loaders: [
       {
         test: /\.js$/,

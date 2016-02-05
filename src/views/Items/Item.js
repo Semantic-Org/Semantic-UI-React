@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import React, {Component, PropTypes} from 'react';
 import classNames from 'classnames';
-import {mutuallyExclusive} from '../../utils/customPropTypes';
+import {customPropTypes} from '../../utils/propUtils';
 import META from '../../utils/Meta';
 
 export default class Item extends Component {
@@ -9,7 +9,7 @@ export default class Item extends Component {
     children: PropTypes.node,
     className: PropTypes.string,
     contentClass: PropTypes.string,
-    description: mutuallyExclusive(['children']),
+    description: customPropTypes.mutuallyExclusive(['children']),
     extra: PropTypes.node,
     header: PropTypes.node,
     image: PropTypes.node,

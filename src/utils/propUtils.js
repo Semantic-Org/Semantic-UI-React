@@ -1,7 +1,27 @@
 import {Children} from 'react';
 import _ from 'lodash';
 
-const customPropTypes = {
+/**
+ * Selects all of the props specified in pluginPropTypes
+ * @param {object} props React.Component props
+ * @param {object} pluginPropTypes SemanticUI related plugin props
+ * @returns {object} keys are the filtered props, values are the prop values
+ */
+export const getPluginProps = (props, pluginPropTypes) => {
+  return _.pick(props, _.keys(pluginPropTypes));
+};
+
+/**
+ * Filters out all of the props specified in pluginPropTypes
+ * @param {object} props React.Component props
+ * @param {object} pluginPropTypes SemanticUI related plugin props
+ * @returns {object} keys are the filtered props, values are the prop values
+ */
+export const getComponentProps = (props, pluginPropTypes) => {
+  return _.omit(props, _.keys(pluginPropTypes));
+};
+
+export const customPropTypes = {
   /*
    * Ensures children are of a set of types
    * Similar to `oneOfType` built-in validator
@@ -40,4 +60,3 @@ const customPropTypes = {
   },
 };
 
-export default customPropTypes;

@@ -1,47 +1,48 @@
-import React, {Component, PropTypes} from 'react';
-import classNames from 'classnames';
 import $ from 'jquery';
+import classNames from 'classnames';
+import React, {Component, PropTypes} from 'react';
+
 import META from '../../utils/Meta';
-import _ from 'lodash';
+import {getPluginProps, getComponentProps} from '../../utils/propUtils';
+
+const pluginPropTypes = {
+  autoSuccess: PropTypes.bool,
+  label: PropTypes.oneOf(['ratio', 'percent']),
+  limitValues: PropTypes.bool,
+  onActive: PropTypes.func,
+  onChange: PropTypes.func,
+  onError: PropTypes.func,
+  onSuccess: PropTypes.func,
+  onWarning: PropTypes.func,
+  percent: PropTypes.number,
+  precision: PropTypes.number,
+  random: PropTypes.bool,
+  showActivity: PropTypes.bool,
+  total: PropTypes.bool,
+  value: PropTypes.bool,
+};
 
 export default class Progress extends Component {
   static propTypes = {
-    autoSuccess: PropTypes.bool,
+    ...pluginPropTypes,
     children: PropTypes.node,
     className: PropTypes.string,
-    label: PropTypes.oneOf(['ratio', 'percent']),
-    limitValues: PropTypes.bool,
-    onActive: PropTypes.func,
-    onChange: PropTypes.func,
-    onError: PropTypes.func,
-    onSuccess: PropTypes.func,
-    onWarning: PropTypes.func,
-    percent: PropTypes.number,
-    precision: PropTypes.number,
-    random: PropTypes.bool,
-    showActivity: PropTypes.bool,
-    total: PropTypes.bool,
-    value: PropTypes.bool,
+    /**
+     * Display progress inside the bar.
+     */
+    showProgress: PropTypes.bool,
+  };
+
+  static defaultProps = {
+    showActivity: false
   };
 
   componentDidMount() {
-    this.element = $(this.refs.element);
-    this.element.progress({
-      autoSuccess: this.props.autoSuccess,
-      label: this.props.label,
-      limitValues: this.props.limitValues,
-      onActive: this.props.onActive,
-      onChange: this.props.onChange,
-      onError: this.props.onError,
-      onSuccess: this.props.onSuccess,
-      onWarning: this.props.onWarning,
-      percent: this.props.percent,
-      precision: this.props.precision,
-      random: this.props.random,
-      showActivity: this.props.showActivity,
-      total: this.props.total,
-      value: this.props.value,
-    });
+    this.refresh();
+  }
+
+  componentDidUpdate() {
+    this.refresh();
   }
 
   static _meta = {
@@ -54,41 +55,31 @@ export default class Progress extends Component {
     return this.element.progress(...arguments);
   }
 
-  renderAttachedBar = () => {
-    return (
-      <div className='bar' />
-    );
-  };
-
-  renderStandardBar = () => {
-    const label = (
-      <div className='label'>
-        {this.props.children}
-      </div>
-    );
-
-    return (
-      <div>
-        <div className='bar'>
-          <div className='progress'/>
-        </div>
-        {this.props.children && label}
-      </div>
-    );
-  };
+  refresh() {
+    this.element = $(this.refs.element);
+    this.element.progress(getPluginProps(this.props, pluginPropTypes));
+  }
 
   render() {
     const classes = classNames(
       'sd-progress',
       'ui',
       this.props.className,
-      'progress',
+      'progress'
     );
 
-    const isAttached = _.contains(this.props.className, 'attached');
+    const labelText = (
+      <div className='label'>
+        {this.props.children}
+      </div>
+    );
+
     return (
-      <div {...this.props} className={classes}>
-        {isAttached ? this.renderAttachedBar() : this.renderStandardBar()}
+      <div {...getComponentProps(this.props, pluginPropTypes)} className={classes} ref='element'>
+        <div className='bar'>
+          {this.props.showProgress && <div className='progress' />}
+        </div>
+        {this.props.children && labelText}
       </div>
     );
   }
