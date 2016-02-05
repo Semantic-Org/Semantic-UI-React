@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import React, {Children, Component, PropTypes} from 'react';
 import classNames from 'classnames';
-import customPropTypes from '../../utils/propUtils';
+import {customPropTypes} from '../../utils/propUtils';
 import META from '../../utils/Meta';
 
 export default class Table extends Component {

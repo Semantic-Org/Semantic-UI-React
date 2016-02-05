@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import React, {Component, PropTypes} from 'react';
 
 import getUnhandledProps from '../../utils/getUnhandledProps';
-import customPropTypes from '../../utils/propUtils';
+import {customPropTypes} from '../../utils/propUtils';
 import META from '../../utils/Meta';
 
 import Statistics from './Statistics';
