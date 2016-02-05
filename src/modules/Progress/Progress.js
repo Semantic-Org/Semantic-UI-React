@@ -4,41 +4,35 @@ import $ from 'jquery';
 import META from '../../utils/Meta';
 import _ from 'lodash';
 
-const pluginProps = [
-  'autoSuccess',
-  'label',
-  'limitValues',
-  'onActive',
-  'onChange',
-  'onError',
-  'onSuccess',
-  'onWarning',
-  'percent',
-  'precision',
-  'random',
-  'showActivity',
-  'total',
-  'value',
-];
+const pluginPropTypes = {
+  autoSuccess: PropTypes.bool,
+  label: PropTypes.oneOf(['ratio', 'percent']),
+  limitValues: PropTypes.bool,
+  onActive: PropTypes.func,
+  onChange: PropTypes.func,
+  onError: PropTypes.func,
+  onSuccess: PropTypes.func,
+  onWarning: PropTypes.func,
+  percent: PropTypes.number,
+  precision: PropTypes.number,
+  random: PropTypes.bool,
+  showActivity: PropTypes.bool,
+  total: PropTypes.bool,
+  value: PropTypes.bool,
+};
+
+const getPluginProps = (props, pluginPropsTypes) => {
+  return _.pick(props, _.keys(pluginPropTypes));
+};
+const getComponentProps = (props, pluginPropsTypes) => {
+  return _.omit(props, _.keys(pluginPropTypes));
+};
 
 export default class Progress extends Component {
   static propTypes = {
-    autoSuccess: PropTypes.bool,
     children: PropTypes.node,
     className: PropTypes.string,
-    label: PropTypes.oneOf(['ratio', 'percent']),
-    limitValues: PropTypes.bool,
-    onActive: PropTypes.func,
-    onChange: PropTypes.func,
-    onError: PropTypes.func,
-    onSuccess: PropTypes.func,
-    onWarning: PropTypes.func,
-    percent: PropTypes.number,
-    precision: PropTypes.number,
-    random: PropTypes.bool,
-    showActivity: PropTypes.bool,
-    total: PropTypes.bool,
-    value: PropTypes.bool,
+    ...pluginPropTypes,
   };
 
   componentDidMount() {
@@ -47,18 +41,12 @@ export default class Progress extends Component {
 
   shouldComponentUpdate(nextProps) {
     // only re-render if non-plugin settings changed
-    if (_.omit(this.props, pluginProps) !== _.omit(nextProps, pluginProps)) {
-      return true;
-    }
+    return !_.isEqual(getComponentProps(this.props, pluginPropTypes), getComponentProps(nextProps, pluginPropTypes));
   }
 
   componentDidUpdate(prevProps) {
-    if (!_.isEqual(_.pick(this.props, pluginProps), _.pick(prevProps, pluginProps))) {
-      console.log('component did update, plugin props DID change');
-      this.refresh();
-    } else {
-      console.log('component did update, plugin props DID NOT change');
-    }
+    // only refresh plugin if plugin settings changed
+    return !_.isEqual(getPluginProps(this.props, pluginPropTypes), getPluginProps(prevProps, pluginPropTypes));
   }
 
   static _meta = {
@@ -74,22 +62,7 @@ export default class Progress extends Component {
   refresh() {
     console.log('updating progress');
     this.element = $(this.refs.element);
-    this.element.progress({
-      autoSuccess: this.props.autoSuccess,
-      label: this.props.label,
-      limitValues: this.props.limitValues,
-      onActive: this.props.onActive,
-      onChange: this.props.onChange,
-      onError: this.props.onError,
-      onSuccess: this.props.onSuccess,
-      onWarning: this.props.onWarning,
-      percent: this.props.percent,
-      precision: this.props.precision,
-      random: this.props.random,
-      showActivity: this.props.showActivity,
-      total: this.props.total,
-      value: this.props.value,
-    });
+    this.element.progress(getPluginProps(this.props, pluginPropTypes));
   }
 
   render() {
@@ -107,7 +80,7 @@ export default class Progress extends Component {
     );
 
     return (
-      <div {...this.props} className={classes} ref='element'>
+      <div {...getComponentProps(this.props, pluginPropTypes)} className={classes} ref='element'>
         <div className='bar'>
           <div className='progress'/>
         </div>
