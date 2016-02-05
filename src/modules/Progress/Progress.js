@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import $ from 'jquery';
 import classNames from 'classnames';
 import React, {Component, PropTypes} from 'react';
@@ -25,9 +24,12 @@ const pluginPropTypes = {
 
 export default class Progress extends Component {
   static propTypes = {
+    ...pluginPropTypes,
     children: PropTypes.node,
     className: PropTypes.string,
-    ...pluginPropTypes,
+    /**
+     * Display progress inside the bar.
+     */
     progress: PropTypes.bool,
   };
 
@@ -35,14 +37,8 @@ export default class Progress extends Component {
     this.refresh();
   }
 
-  shouldComponentUpdate(nextProps) {
-    // only re-render if non-plugin settings changed
-    return !_.isEqual(getComponentProps(this.props, pluginPropTypes), getComponentProps(nextProps, pluginPropTypes));
-  }
-
   componentDidUpdate(prevProps) {
-    // only refresh plugin if plugin settings changed
-    return !_.isEqual(getPluginProps(this.props, pluginPropTypes), getPluginProps(prevProps, pluginPropTypes));
+    this.refresh();
   }
 
   static _meta = {
@@ -77,7 +73,7 @@ export default class Progress extends Component {
     return (
       <div {...getComponentProps(this.props, pluginPropTypes)} className={classes} ref='element'>
         <div className='bar'>
-          {this.props.progress && <div className='progress'/>}
+          {this.props.progress && <div className='progress' />}
         </div>
         {this.props.children && labelText}
       </div>
