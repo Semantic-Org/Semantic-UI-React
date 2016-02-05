@@ -28,6 +28,7 @@ export default class Progress extends Component {
     children: PropTypes.node,
     className: PropTypes.string,
     ...pluginPropTypes,
+    progress: PropTypes.bool,
   };
 
   componentDidMount() {
@@ -76,7 +77,7 @@ export default class Progress extends Component {
     return (
       <div {...getComponentProps(this.props, pluginPropTypes)} className={classes} ref='element'>
         <div className='bar'>
-          <div className='progress'/>
+          {this.props.progress && <div className='progress'/>}
         </div>
         {this.props.children && labelText}
       </div>
