@@ -41,7 +41,7 @@ export default class Progress extends Component {
     this.refresh();
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate() {
     this.refresh();
   }
 
