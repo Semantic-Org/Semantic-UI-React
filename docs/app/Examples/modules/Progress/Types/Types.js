@@ -7,13 +7,13 @@ export default class ProgressTypesExamples extends Component {
     return (
       <ExampleSection title='Types'>
         <ComponentExample
-          title='Indicating (Standard)'
-          description='An indicating progress bar visually indicates the current level of progress of a task.'
+          title='Standard'
+          description='A standard progress bar.'
           examplePath='modules/Progress/Types/Standard'
         />
         <ComponentExample
-          title='Not Indicating'
-          description='A standard progress bar.'
+          title='Indicating'
+          description='An indicating progress bar visually indicates the current level of progress of a task.'
           examplePath='modules/Progress/Types/Indicating'
         />
       </ExampleSection>
