@@ -33,6 +33,10 @@ export default class Progress extends Component {
     showProgress: PropTypes.bool,
   };
 
+  static defaultProps = {
+    showActivity: false
+  }
+
   componentDidMount() {
     this.refresh();
   }
