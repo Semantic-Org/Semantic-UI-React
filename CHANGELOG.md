@@ -1,5 +1,18 @@
 # Change Log
 
+## [Unreleased](https://github.com/TechnologyAdvice/stardust/tree/HEAD)
+
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.11.0...HEAD)
+
+**Fixed bugs:**
+
+- \[Segment\] Piled Segments not piling [\#116](https://github.com/TechnologyAdvice/stardust/issues/116)
+- Radium integration Issue [\#104](https://github.com/TechnologyAdvice/stardust/issues/104)
+
+**Merged pull requests:**
+
+- Update doc site Semantic UI to 2.1.8 [\#162](https://github.com/TechnologyAdvice/stardust/pull/162) ([levithomason](https://github.com/levithomason))
+
 ## [v0.11.0](https://github.com/TechnologyAdvice/stardust/tree/v0.11.0) (2016-02-05)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.10.2...v0.11.0)
 
