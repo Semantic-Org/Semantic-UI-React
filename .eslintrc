@@ -1,6 +1,6 @@
 {
-  "extends": "ta-webapp",
-  "rules": {
-    "react/jsx-sort-prop-types": 0
-  }
+  "extends": [
+    "ta",
+    "ta/frontend",
+  ]
 }

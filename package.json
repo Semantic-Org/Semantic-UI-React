@@ -58,7 +58,7 @@
     "dirty-chai": "^1.2.2",
     "doctrine": "^0.7.0",
     "eslint": "^1.5.1",
-    "eslint-config-ta-webapp": "^2.1.0",
+    "eslint-config-ta": "^4.1.0",
     "eslint-friendly-formatter": "^1.2.2",
     "eslint-loader": "^1.0.0",
     "eslint-plugin-mocha": "^1.0.0",
