@@ -4,6 +4,6 @@ const SEMANTIC_TYPES = {
   element: 'element',
   view: 'view',
   module: 'module',
-};
+}
 
-export default SEMANTIC_TYPES;
+export default SEMANTIC_TYPES

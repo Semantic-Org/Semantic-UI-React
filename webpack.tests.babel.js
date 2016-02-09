@@ -1,6 +1,5 @@
-import paths from './paths';
-import statConfig from './webpack-stats';
-import friendlyFormatter from 'eslint-friendly-formatter';
+import paths from './paths'
+import statConfig from './webpack-stats'
 
 /**
  * This config is for writing tests.  Results are shown in browser with livereload.
@@ -11,12 +10,9 @@ module.exports = {
   entry: './test/tests.bundle.js',
   output: {
     path: './',
-    filename: 'testBundle.js'
+    filename: 'testBundle.js',
   },
   devtool: 'inline-source-map',
-  eslint: {
-    formatter: friendlyFormatter,
-  },
   module: {
     loaders: [
       {
@@ -33,12 +29,12 @@ module.exports = {
       {
         test: /\.js$/,
         loaders: ['babel', 'eslint'],
-        exclude: paths.node_modules
+        exclude: paths.node_modules,
       },
       {
         test: /\.json$/,
         loaders: ['json'],
-        exclude: paths.node_modules
+        exclude: paths.node_modules,
       },
     ],
     postLoaders: [
@@ -63,7 +59,7 @@ module.exports = {
     stats: statConfig,
     debug: true,
     noInfo: true,
-    quiet: false
+    quiet: false,
   },
-  debug: true
-};
+  debug: true,
+}

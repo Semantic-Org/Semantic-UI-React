@@ -1,8 +1,8 @@
-const style = {};
-const sidebarWidth = 200;
+const style = {}
+const sidebarWidth = 200
 
 style.container = {
-};
+}
 
 style.menu = {
   position: 'fixed',
@@ -12,12 +12,12 @@ style.menu = {
   width: sidebarWidth,
   background: '#333',
   overflowY: 'scroll',
-};
+}
 
 style.main = {
   marginLeft: sidebarWidth,
   minWidth: sidebarWidth + 300,
   maxWidth: sidebarWidth + 900,
-};
+}
 
-export default style;
+export default style

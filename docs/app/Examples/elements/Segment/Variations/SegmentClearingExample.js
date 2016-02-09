@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {Button, Segment} from 'stardust';
+import React, { Component } from 'react'
+import { Button, Segment } from 'stardust'
 
 export default class SegmentClearingExample extends Component {
   render() {
@@ -9,6 +9,6 @@ export default class SegmentClearingExample extends Component {
           floated
         </Button>
       </Segment>
-    );
+    )
   }
 }

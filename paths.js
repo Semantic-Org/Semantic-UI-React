@@ -1,5 +1,5 @@
-import path from 'path';
-const PROJECT_ROOT = path.resolve(__dirname);
+import path from 'path'
+const PROJECT_ROOT = path.resolve(__dirname)
 
 const PATHS = {
   root: PROJECT_ROOT + '/',
@@ -17,6 +17,6 @@ const PATHS = {
   test: PROJECT_ROOT + '/test',
   testMocks: PROJECT_ROOT + '/test/mocks',
   node_modules: PROJECT_ROOT + '/node_modules',
-};
+}
 
-export default PATHS;
+export default PATHS

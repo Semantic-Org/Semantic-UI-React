@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {Button, Checkbox, Field, Form, Input} from 'stardust';
+import React, { Component } from 'react'
+import { Button, Checkbox, Field, Form, Input } from 'stardust'
 
 export default class FormFormExample extends Component {
   render() {
@@ -16,6 +16,6 @@ export default class FormFormExample extends Component {
         </Field>
         <Button type='submit'>Submit</Button>
       </Form>
-    );
+    )
   }
 }

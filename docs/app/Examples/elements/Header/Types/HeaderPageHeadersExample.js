@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {Header} from 'stardust';
+import React, { Component } from 'react'
+import { Header } from 'stardust'
 
 export default class HeaderPageHeadersExamples extends Component {
   render() {
@@ -24,6 +24,6 @@ export default class HeaderPageHeadersExamples extends Component {
           Sixth Header
         </Header.H6>
       </div>
-    );
+    )
   }
 }

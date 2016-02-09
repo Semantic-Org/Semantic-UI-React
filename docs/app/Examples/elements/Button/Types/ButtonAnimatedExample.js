@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {Button} from 'stardust';
+import React, { Component } from 'react'
+import { Button } from 'stardust'
 
 export default class ButtonAnimatedExample extends Component {
   render() {
@@ -10,6 +10,6 @@ export default class ButtonAnimatedExample extends Component {
           <i className='right arrow icon' />
         </div>
       </Button>
-    );
+    )
   }
 }

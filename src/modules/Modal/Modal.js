@@ -1,6 +1,6 @@
-import React, {Component, PropTypes} from 'react';
-import classNames from 'classnames';
-import META from '../../utils/Meta';
+import React, { Component, PropTypes } from 'react'
+import classNames from 'classnames'
+import META from '../../utils/Meta'
 
 export default class Modal extends Component {
   static propTypes = {
@@ -14,14 +14,14 @@ export default class Modal extends Component {
     ref: 'modal',
   };
 
-  state = {isShown: false};
+  state = { isShown: false };
 
   showModal = () => {
-    this.setState({isShown: true});
+    this.setState({ isShown: true })
   };
 
   hideModal = () => {
-    this.setState({isShown: false});
+    this.setState({ isShown: false })
   };
 
   static _meta = {
@@ -36,13 +36,13 @@ export default class Modal extends Component {
       'ui',
       this.props.className,
       'modal',
-      {'transition visible active': this.state.isShown},
-    );
+      { 'transition visible active': this.state.isShown },
+    )
 
     return (
       <div {...this.props} className={classes}>
         {this.props.children}
       </div>
-    );
+    )
   }
 }

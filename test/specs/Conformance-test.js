@@ -1,94 +1,94 @@
-import _ from 'lodash';
-import faker from 'faker';
-import React, {Component} from 'react';
-import {isDOMComponent} from 'react-addons-test-utils';
-import stardust from 'stardust';
-import META from '../../src/utils/Meta';
+import _ from 'lodash'
+import faker from 'faker'
+import React, { Component } from 'react'
+import { isDOMComponent } from 'react-addons-test-utils'
+import stardust from 'stardust'
+import META from '../../src/utils/Meta'
 
-const getSDClassName = componentName => `sd-${_.kebabCase(componentName)}`;
+const getSDClassName = componentName => `sd-${_.kebabCase(componentName)}`
 
 /**
  * This test ensures all Stardust components conform to our guidelines.
  */
 describe('Conformance', () => {
   /* eslint-disable no-console */
-  console.info('Conformance-test renders each component with no props, required prop warnings may occur.');
+  console.info('Conformance-test renders each component with no props, required prop warnings may occur.')
   /* eslint-enable no-console */
   _.each(stardust, (SDComponent, name) => {
-    const classes = faker.fake('{{hacker.noun}} {{hacker.noun}} {{hacker.noun}}');
-    const sdClass = getSDClassName(name);
-    const firstChild = _.first(render(<SDComponent />).children());
+    const classes = faker.fake('{{hacker.noun}} {{hacker.noun}} {{hacker.noun}}')
+    const sdClass = getSDClassName(name)
+    const firstChild = _.first(render(<SDComponent />).children())
 
     describe(name, () => {
       it('extends Component', () => {
-        expect(SDComponent.prototype).to.eql(Component.prototype);
-      });
+        expect(SDComponent.prototype).to.eql(Component.prototype)
+      })
 
       it(`constructor name is "${name}" (matches component name)`, () => {
-        SDComponent.prototype.constructor.name.should.equal(name);
-      });
+        SDComponent.prototype.constructor.name.should.equal(name)
+      })
 
       it(`has the "${sdClass}" element as its first child (no wrapper elements)`, () => {
         // private components may be used as root elements and will not have the sd-* class
         // skip any assertions if the first child is a private component
         // TODO: this excludes private components from conformance, need to find a sane way to get conformance coverage
         if (META.isPrivate(firstChild)) {
-          return;
+          return
         }
 
         if (isDOMComponent(firstChild)) {
-          expect(firstChild.getAttribute('class')).to.contain(sdClass);
+          expect(firstChild.getAttribute('class')).to.contain(sdClass)
         } else {
-          expect(firstChild.props.className).to.contain(sdClass);
+          expect(firstChild.props.className).to.contain(sdClass)
         }
-      });
+      })
 
       describe('_meta', () => {
-        const _meta = SDComponent._meta;
+        const _meta = SDComponent._meta
 
         it('is a static object prop', () => {
-          expect(_meta).to.be.an('object');
-        });
+          expect(_meta).to.be.an('object')
+        })
 
         describe('library', () => {
           it('is defined', () => {
-            expect(_meta).to.have.any.keys('library');
-          });
+            expect(_meta).to.have.any.keys('library')
+          })
           it('is a META.library', () => {
-            expect(_.values(META.library)).to.include(_meta.library);
-          });
-        });
+            expect(_.values(META.library)).to.include(_meta.library)
+          })
+        })
         describe('name', () => {
           it('is defined', () => {
-            expect(_meta).to.have.any.keys('name');
-          });
+            expect(_meta).to.have.any.keys('name')
+          })
           it('matches the component name', () => {
-            expect(_meta.name).to.equal(name);
-          });
-        });
+            expect(_meta.name).to.equal(name)
+          })
+        })
         if (_.has(_meta, 'parent')) {
           describe('parent', () => {
             it('is a stardust component name', () => {
-              expect(_.keys(stardust)).to.contain(_meta.parent);
-            });
-          });
+              expect(_.keys(stardust)).to.contain(_meta.parent)
+            })
+          })
         }
         describe('type', () => {
           it('is defined', () => {
-            expect(_meta).to.have.any.keys('type');
-          });
+            expect(_meta).to.have.any.keys('type')
+          })
           it('is a META.type', () => {
-            expect(_.values(META.type)).to.include(_meta.type);
-          });
-        });
-      });
+            expect(_.values(META.type)).to.include(_meta.type)
+          })
+        })
+      })
 
       describe('props', () => {
         it('spreads props', () => {
-          const props = {};
+          const props = {}
           // JSX does not render custom html attributes so we prefix them with data-*.
           // https://facebook.github.io/react/docs/jsx-gotchas.html#custom-html-attributes
-          props[`data-${_.kebabCase(faker.hacker.noun())}`] = faker.hacker.noun();
+          props[`data-${_.kebabCase(faker.hacker.noun())}`] = faker.hacker.noun()
 
           // create element with random props
           render(<SDComponent {...props} />)
@@ -97,25 +97,25 @@ describe('Conformance', () => {
               return _.every(props, (val, key) => {
                 return isDOMComponent(child)
                   ? child.getAttribute(key) === val
-                  : child.props[key] === val;
-              });
+                  : child.props[key] === val
+              })
             })
-            .should.equal(true);
-        });
+            .should.equal(true)
+        })
         describe('className', () => {
           it(`has props.className after "${sdClass}"`, () => {
-            let renderedClasses;
+            let renderedClasses
             const rendered = render(<SDComponent className={classes} />)
-              .findClass(sdClass);
+              .findClass(sdClass)
             if (isDOMComponent(rendered)) {
-              renderedClasses = rendered.getAttribute('class');
+              renderedClasses = rendered.getAttribute('class')
             } else {
-              renderedClasses = rendered.props.className;
+              renderedClasses = rendered.props.className
             }
-            const sdClassIndex = renderedClasses.indexOf(sdClass);
-            const classesIndex = renderedClasses.indexOf(classes);
-            expect(sdClassIndex).to.be.below(classesIndex);
-          });
+            const sdClassIndex = renderedClasses.indexOf(sdClass)
+            const classesIndex = renderedClasses.indexOf(classes)
+            expect(sdClassIndex).to.be.below(classesIndex)
+          })
 
           // Determine if this SDComponent is composed of DOM components (div, span, etc)
           // or if it is composed of other components (<Modal />, <textarea />, etc)
@@ -137,11 +137,11 @@ describe('Conformance', () => {
               render(<SDComponent />)
                 .findClass(sdClass)
                 .getAttribute('class')
-                .indexOf(sdClass).should.equal(0);
-            });
+                .indexOf(sdClass).should.equal(0)
+            })
           }
-        });
-      });
-    });
-  });
-});
+        })
+      })
+    })
+  })
+})

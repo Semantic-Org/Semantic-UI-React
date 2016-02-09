@@ -5,7 +5,5 @@ export default {
   aliases: [],                      // adds aliases to the default help task
   hideEmpty: true,                  // hide all tasks with no help message
   hideDepsMessage: true,            // hide all task dependencies
-  afterPrintCallback: () => {  // run after the default help task runs
-
-  }
-};
+  afterPrintCallback: () => {},     // run after the default help task runs
+}

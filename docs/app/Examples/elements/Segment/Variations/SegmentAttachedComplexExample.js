@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {Header, Message, Segment} from 'stardust';
+import React, { Component } from 'react'
+import { Header, Message, Segment } from 'stardust'
 
 export default class SegmentAttachedComplexExample extends Component {
   render() {
@@ -28,6 +28,6 @@ export default class SegmentAttachedComplexExample extends Component {
           You've reached the end of this content segment!
         </Message>
       </div>
-    );
+    )
   }
 }

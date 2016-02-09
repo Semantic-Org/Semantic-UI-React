@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {Segment} from 'stardust';
+import React, { Component } from 'react'
+import { Segment } from 'stardust'
 
 export default class SegmentBasicExample extends Component {
   render() {
@@ -9,6 +9,6 @@ export default class SegmentBasicExample extends Component {
         Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante.
         Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.
       </Segment>
-    );
+    )
   }
 }

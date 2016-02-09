@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {Header, Segment} from 'stardust';
+import React, { Component } from 'react'
+import { Header, Segment } from 'stardust'
 
 export default class HeaderInvertedExample extends Component {
   render() {
@@ -18,6 +18,6 @@ export default class HeaderInvertedExample extends Component {
         <Header.H4 className='brown inverted'>Brown</Header.H4>
         <Header.H4 className='grey inverted'>Grey</Header.H4>
       </Segment>
-    );
+    )
   }
 }

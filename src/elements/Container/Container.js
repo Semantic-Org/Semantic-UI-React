@@ -1,6 +1,6 @@
-import React, {Component, PropTypes} from 'react';
-import classNames from 'classnames';
-import META from '../../utils/Meta';
+import React, { Component, PropTypes } from 'react'
+import classNames from 'classnames'
+import META from '../../utils/Meta'
 
 /**
  * A container that gives your content some side padding.
@@ -23,11 +23,11 @@ export default class Container extends Component {
       'ui',
       this.props.className,
       'container',
-    );
+    )
     return (
       <div {...this.props} className={classes}>
         {this.props.children}
       </div>
-    );
+    )
   }
 }

@@ -1,6 +1,6 @@
-import React, {Component, PropTypes} from 'react';
-import classNames from 'classnames';
-import META from '../../utils/Meta';
+import React, { Component, PropTypes } from 'react'
+import classNames from 'classnames'
+import META from '../../utils/Meta'
 
 export default class ModalHeader extends Component {
   static propTypes = {
@@ -20,11 +20,11 @@ export default class ModalHeader extends Component {
       'sd-modal-header',
       this.props.className,
       'header'
-    );
+    )
     return (
       <div {...this.props} className={classes}>
         {this.props.children}
       </div>
-    );
+    )
   }
 }

@@ -1,6 +1,6 @@
-import React, {Component, PropTypes} from 'react';
-import classNames from 'classnames';
-import META from '../../utils/Meta';
+import React, { Component, PropTypes } from 'react'
+import classNames from 'classnames'
+import META from '../../utils/Meta'
 
 export default class Statistics extends Component {
   static propTypes = {
@@ -12,7 +12,7 @@ export default class Statistics extends Component {
     library: META.library.semanticUI,
     name: 'Statistics',
     type: META.type.view,
-    parent: 'Statistic'
+    parent: 'Statistic',
   };
 
   render() {
@@ -21,11 +21,11 @@ export default class Statistics extends Component {
       'ui',
       this.props.className,
       'statistics'
-    );
+    )
     return (
       <div {...this.props} className={classes}>
         {this.props.children}
       </div>
-    );
+    )
   }
 }

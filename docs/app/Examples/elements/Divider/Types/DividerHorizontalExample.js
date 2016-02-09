@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {Segment, Button, Divider} from 'stardust';
+import React, { Component } from 'react'
+import { Segment, Button, Divider } from 'stardust'
 
 export default class DividerHorizontalExample extends Component {
   render() {
@@ -9,6 +9,6 @@ export default class DividerHorizontalExample extends Component {
         <Divider className='large horizontal'>Or</Divider>
         <Button className='secondary fluid'>Sign Up Now</Button>
       </Segment>
-    );
+    )
   }
 }

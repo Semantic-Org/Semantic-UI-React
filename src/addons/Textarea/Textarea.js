@@ -1,6 +1,6 @@
-import React, {Component, PropTypes} from 'react';
-import classNames from 'classnames';
-import META from '../../utils/Meta';
+import React, { Component, PropTypes } from 'react'
+import classNames from 'classnames'
+import META from '../../utils/Meta'
 
 export default class Textarea extends Component {
   static propTypes = {
@@ -18,9 +18,9 @@ export default class Textarea extends Component {
     const classes = classNames(
       'sd-textarea',
       this.props.className
-    );
+    )
     return (
       <textarea {...this.props} className={classes} />
-    );
+    )
   }
 }

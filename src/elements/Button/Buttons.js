@@ -1,6 +1,6 @@
-import React, {Component, PropTypes} from 'react';
-import classNames from 'classnames';
-import META from '../../utils/Meta';
+import React, { Component, PropTypes } from 'react'
+import classNames from 'classnames'
+import META from '../../utils/Meta'
 
 export default class Buttons extends Component {
   static propTypes = {
@@ -12,7 +12,7 @@ export default class Buttons extends Component {
     library: META.library.semanticUI,
     name: 'Buttons',
     type: META.type.element,
-    parent: 'Button'
+    parent: 'Button',
   };
 
   render() {
@@ -21,11 +21,11 @@ export default class Buttons extends Component {
       'ui',
       this.props.className,
       'buttons'
-    );
+    )
     return (
       <div {...this.props} className={classes}>
         {this.props.children}
       </div>
-    );
+    )
   }
 }

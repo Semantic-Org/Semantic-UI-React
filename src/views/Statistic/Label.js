@@ -1,7 +1,7 @@
-import React, {Component, PropTypes} from 'react';
-import classNames from 'classnames';
-import getUnhandledProps from '../../utils/getUnhandledProps';
-import META from '../../utils/Meta';
+import React, { Component, PropTypes } from 'react'
+import classNames from 'classnames'
+import getUnhandledProps from '../../utils/getUnhandledProps'
+import META from '../../utils/Meta'
 
 export default class Label extends Component {
   static propTypes = {
@@ -21,14 +21,14 @@ export default class Label extends Component {
       'sd-statistic-label',
       this.props.className,
       'label',
-    );
+    )
 
-    const props = getUnhandledProps(this);
+    const props = getUnhandledProps(this)
 
     return (
       <div {...props} className={classes}>
         {this.props.children}
       </div>
-    );
+    )
   }
 }

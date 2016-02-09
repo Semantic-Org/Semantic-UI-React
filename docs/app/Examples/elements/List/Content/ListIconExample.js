@@ -1,10 +1,10 @@
-import React, {Component} from 'react';
-import {List, ListItem} from 'stardust';
+import React, { Component } from 'react'
+import { List, ListItem } from 'stardust'
 
 export default class ListIconExample extends Component {
   render() {
-    const helpIcon = <i className='help icon' />;
-    const triangleIcon = <i className='right triangle icon' />;
+    const helpIcon = <i className='help icon' />
+    const triangleIcon = <i className='right triangle icon' />
 
     return (
       <List>
@@ -22,6 +22,6 @@ export default class ListIconExample extends Component {
           This item uses <code>child</code> text, check the code.
         </ListItem>
       </List>
-    );
+    )
   }
 }

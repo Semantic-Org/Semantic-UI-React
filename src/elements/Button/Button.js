@@ -1,6 +1,6 @@
-import React, {Component, PropTypes} from 'react';
-import classNames from 'classnames';
-import META from '../../utils/Meta';
+import React, { Component, PropTypes } from 'react'
+import classNames from 'classnames'
+import META from '../../utils/Meta'
 
 export default class Button extends Component {
   static propTypes = {
@@ -10,7 +10,7 @@ export default class Button extends Component {
 
   static defaultProps = {
     children: 'Click Here',
-    type: 'button'
+    type: 'button',
   };
 
   static _meta = {
@@ -25,11 +25,11 @@ export default class Button extends Component {
       'ui',
       this.props.className,
       'button'
-    );
+    )
     return (
       <button {...this.props} className={classes}>
         {this.props.children}
       </button>
-    );
+    )
   }
 }

@@ -1,5 +1,5 @@
-import React from 'react';
-import {Progress} from 'stardust';
+import React from 'react'
+import { Progress } from 'stardust'
 
 describe('Progress', () => {
   it('should be able to receive children', () => {
@@ -7,10 +7,10 @@ describe('Progress', () => {
       <Progress>
         Child
       </Progress>
-    ).assertText('Child');
-  });
+    ).assertText('Child')
+  })
 
   it('should create a div with the class of bar', () => {
-    render(<Progress />).findClass('bar');
-  });
-});
+    render(<Progress />).findClass('bar')
+  })
+})

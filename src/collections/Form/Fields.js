@@ -1,9 +1,9 @@
-import _ from 'lodash';
-import React, {Children, Component, PropTypes} from 'react';
-import classNames from 'classnames';
-import getUnhandledProps from '../../utils/getUnhandledProps';
-import numberToWord from '../../utils/numberToWord';
-import META from '../../utils/Meta.js';
+import _ from 'lodash'
+import React, { Children, Component, PropTypes } from 'react'
+import classNames from 'classnames'
+import getUnhandledProps from '../../utils/getUnhandledProps'
+import numberToWord from '../../utils/numberToWord'
+import META from '../../utils/Meta.js'
 
 export default class Fields extends Component {
   static propTypes = {
@@ -23,23 +23,23 @@ export default class Fields extends Component {
   };
 
   render() {
-    let fieldCount = 0;
+    let fieldCount = 0
     Children.forEach(this.props.children, child => {
-      _.get(child, 'type._meta.name') === 'Field' && fieldCount++;
-    });
-    fieldCount = numberToWord(fieldCount);
+      if (_.get(child, 'type._meta.name') === 'Field') fieldCount += 1
+    })
+    fieldCount = numberToWord(fieldCount)
 
     const classes = classNames(
       'sd-fields',
       this.props.evenlyDivided && fieldCount,
       this.props.className,
       'fields'
-    );
-    const props = getUnhandledProps(this);
+    )
+    const props = getUnhandledProps(this)
     return (
       <div {...props} className={classes}>
         {this.props.children}
       </div>
-    );
+    )
   }
 }

@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {Button, Checkbox, Dropdown, Field, Fields, Form, Input, Message} from 'stardust';
+import React, { Component } from 'react'
+import { Button, Checkbox, Dropdown, Field, Fields, Form, Input, Message } from 'stardust'
 
 export default class FormSpecifyingValidationRulesExample extends Component {
   formSettings = {
@@ -9,25 +9,25 @@ export default class FormSpecifyingValidationRulesExample extends Component {
       username: 'empty',
       password: ['minLength[6]', 'empty'],
       skills: ['minCount[2]', 'empty'],
-      terms: 'checked'
-    }
+      terms: 'checked',
+    },
   };
 
   genderOptions = [
-    {value: '', text: 'Gender'},
-    {value: 'male', text: 'Male'},
-    {value: 'female', text: 'Female'},
+    { value: '', text: 'Gender' },
+    { value: 'male', text: 'Male' },
+    { value: 'female', text: 'Female' },
   ];
 
   skillsOptions = [
-    {value: '', text: 'Select Skills'},
-    {value: 'css', text: 'CSS'},
-    {value: 'html', text: 'HTML'},
-    {value: 'javascript', text: 'Javascript'},
-    {value: 'design', text: 'Graphic Design'},
-    {value: 'plumbing', text: 'Plumbing'},
-    {value: 'mech', text: 'Mechanical Engineering'},
-    {value: 'repair', text: 'Kitchen Repair'},
+    { value: '', text: 'Select Skills' },
+    { value: 'css', text: 'CSS' },
+    { value: 'html', text: 'HTML' },
+    { value: 'javascript', text: 'Javascript' },
+    { value: 'design', text: 'Graphic Design' },
+    { value: 'plumbing', text: 'Plumbing' },
+    { value: 'mech', text: 'Mechanical Engineering' },
+    { value: 'repair', text: 'Kitchen Repair' },
   ];
 
   render() {
@@ -60,6 +60,6 @@ export default class FormSpecifyingValidationRulesExample extends Component {
         <Button className='blue submit'>Submit</Button>
         <Message className='error' />
       </Form>
-    );
+    )
   }
 }

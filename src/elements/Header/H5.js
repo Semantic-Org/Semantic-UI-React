@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
-import META from '../../utils/Meta';
-import _Header from './_Header';
+import React, { Component } from 'react'
+import META from '../../utils/Meta'
+import _Header from './_Header'
 
 export default class H5 extends Component {
   static _meta = {
@@ -12,6 +12,6 @@ export default class H5 extends Component {
   render() {
     return (
       <_Header {...this.props} _headerElement='h5'/>
-    );
+    )
   }
 }

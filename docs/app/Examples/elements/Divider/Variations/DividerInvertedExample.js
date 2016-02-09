@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {Segment, Divider} from 'stardust';
+import React, { Component } from 'react'
+import { Segment, Divider } from 'stardust'
 
 export default class DividerInvertedExample extends Component {
   render() {
@@ -8,6 +8,6 @@ export default class DividerInvertedExample extends Component {
         <Divider className='inverted' />
         <Divider className='horizontal inverted'>Horizontal</Divider>
       </Segment>
-    );
+    )
   }
 }

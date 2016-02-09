@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {Grid, Column, Segment, Divider} from 'stardust';
+import React, { Component } from 'react'
+import { Grid, Column, Segment, Divider } from 'stardust'
 
 export default class DividerVerticalExample extends Component {
   render() {
@@ -23,6 +23,6 @@ export default class DividerVerticalExample extends Component {
           </Segment>
         </Column>
       </Grid>
-    );
+    )
   }
 }

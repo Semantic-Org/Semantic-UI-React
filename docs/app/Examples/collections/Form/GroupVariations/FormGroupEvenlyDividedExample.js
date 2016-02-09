@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {Field, Fields, Form, Input} from 'stardust';
+import React, { Component } from 'react'
+import { Field, Fields, Form, Input } from 'stardust'
 
 export default class FormGroupEvenlyDividedExample extends Component {
   render() {
@@ -14,6 +14,6 @@ export default class FormGroupEvenlyDividedExample extends Component {
           </Field>
         </Fields>
       </Form>
-    );
+    )
   }
 }

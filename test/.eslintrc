@@ -1,5 +1,5 @@
 {
-  "extends": "ta-webapp/tests",
+  "extends": "ta/frontend/test",
   "globals": {
     "render": false
   }

@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {Segment} from 'stardust';
+import React, { Component } from 'react'
+import { Segment } from 'stardust'
 
 export default class SegmentPiledSegmentsExample extends Component {
   render() {
@@ -9,6 +9,6 @@ export default class SegmentPiledSegmentsExample extends Component {
         <Segment>Middle</Segment>
         <Segment>Bottom</Segment>
       </Segment.Segments>
-    );
+    )
   }
 }

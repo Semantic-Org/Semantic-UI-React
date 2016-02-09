@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {Header} from 'stardust';
+import React, { Component } from 'react'
+import { Header } from 'stardust'
 
 export default class HeaderSubheaderExample extends Component {
   render() {
@@ -10,6 +10,6 @@ export default class HeaderSubheaderExample extends Component {
           Manage your account settings and set email preferences
         </Header.Subheader>
       </Header.H2>
-    );
+    )
   }
 }

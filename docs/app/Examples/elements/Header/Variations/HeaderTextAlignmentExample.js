@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {Header, Segment} from 'stardust';
+import React, { Component } from 'react'
+import { Header, Segment } from 'stardust'
 
 export default class HeaderTextAlignmentExample extends Component {
   render() {
@@ -18,6 +18,6 @@ export default class HeaderTextAlignmentExample extends Component {
           Centered
         </Header.H3>
       </Segment>
-    );
+    )
   }
 }

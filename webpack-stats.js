@@ -18,5 +18,5 @@ module.exports = {
   chunkOrigins: false,    // the origins of chunks and chunk merging info
   modulesSort: '',        // (string) sort the modules by that field
   chunksSort: '',         // (string) sort the chunks by that field
-  assetsSort: ''          // (string) sort the assets by that field
-};
+  assetsSort: '',         // (string) sort the assets by that field
+}

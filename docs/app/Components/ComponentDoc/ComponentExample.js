@@ -1,7 +1,7 @@
-import React, {Component, createElement, PropTypes} from 'react';
-import {Grid, Column, Button} from 'stardust';
-import Highlight from 'react-highlight';
-import exampleContext from 'docs/app/utils/ExampleContext';
+import React, { Component, createElement, PropTypes } from 'react'
+import { Grid, Column, Button } from 'stardust'
+import Highlight from 'react-highlight'
+import exampleContext from 'docs/app/utils/ExampleContext'
 
 /**
  * Renders a `component` and the raw `code` that produced it.
@@ -15,22 +15,25 @@ export default class ComponentExample extends Component {
     title: PropTypes.string,
   };
 
-  state = {showCode: false};
-  fileContents = require(`!raw!docs/app/Examples/${this.props.examplePath}`);
-  component = exampleContext(`./${this.props.examplePath}.js`);
-  // 'elements/Button/Types/Button' => #Button-Types-Button
-  anchor = this.props.examplePath.split('/').slice(1).join('-');
-
-  toggleShowCode = () => {
-    this.setState({showCode: !this.state.showCode});
-  };
+  constructor(props, context) {
+    super(props, context)
+    this.state = { showCode: false }
+    this.fileContents = require(`!raw!docs/app/Examples/${props.examplePath}`)
+    this.component = exampleContext(`./${props.examplePath}.js`)
+    // 'elements/Button/Types/Button' => #Button-Types-Button
+    this.anchor = props.examplePath.split('/').slice(1).join('-')
+  }
 
   handleMouseEnter = () => {
-    this.setState({showLink: true});
+    this.setState({ showLink: true })
   };
 
   handleMouseLeave = () => {
-    this.setState({showLink: false});
+    this.setState({ showLink: false })
+  };
+
+  toggleShowCode = () => {
+    this.setState({ showCode: !this.state.showCode })
   };
 
   render() {
@@ -40,23 +43,23 @@ export default class ComponentExample extends Component {
           {this.fileContents}
         </Highlight>
       </Column>
-    );
+    )
 
     const linkIconStyle = {
       display: this.state.showLink ? 'inline-block' : 'none',
       marginLeft: '0.25em',
-    };
+    }
 
-    const children = <Column>{this.props.children}</Column>;
+    const children = <Column>{this.props.children}</Column>
 
     return (
-      <Grid className='one column' style={{marginBottom: '4em'}} id={this.anchor}>
+      <Grid className='one column' style={{ marginBottom: '4em' }} id={this.anchor}>
         <Column>
           <Grid>
             <Column width={12}>
               <h3
                 className='ui header'
-                style={{marginBottom: 0}}
+                style={{ marginBottom: 0 }}
                 onMouseEnter={this.handleMouseEnter}
                 onMouseLeave={this.handleMouseLeave}
               >
@@ -81,6 +84,6 @@ export default class ComponentExample extends Component {
         </Column>
         {this.state.showCode && code}
       </Grid>
-    );
+    )
   }
 }

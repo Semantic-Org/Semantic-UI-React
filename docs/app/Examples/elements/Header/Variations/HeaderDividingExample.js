@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {Header} from 'stardust';
+import React, { Component } from 'react'
+import { Header } from 'stardust'
 
 export default class HeaderDividingExample extends Component {
   render() {
@@ -7,6 +7,6 @@ export default class HeaderDividingExample extends Component {
       <Header.H3 className='dividing'>
         Dividing Header
       </Header.H3>
-    );
+    )
   }
 }

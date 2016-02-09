@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import TableVariationsExamples from './Variations/TableVariationsExamples';
+import React, { Component } from 'react'
+import TableVariationsExamples from './Variations/TableVariationsExamples'
 
 export default class TableExamples extends Component {
   render() {
@@ -7,6 +7,6 @@ export default class TableExamples extends Component {
       <div>
         <TableVariationsExamples />
       </div>
-    );
+    )
   }
 }

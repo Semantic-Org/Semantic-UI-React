@@ -1,10 +1,10 @@
-import React, {Component, PropTypes} from 'react';
-import {Segment} from 'stardust';
+import React, { Component, PropTypes } from 'react'
+import { Segment } from 'stardust'
 
-import ComponentDescription from './ComponentDescription';
-import ComponentExamples from './ComponentExamples';
-import ComponentProps from './ComponentProps';
-import getComponentDocInfo from 'docs/app/utils/getComponentDocInfo';
+import ComponentDescription from './ComponentDescription'
+import ComponentExamples from './ComponentExamples'
+import ComponentProps from './ComponentProps'
+import getComponentDocInfo from 'docs/app/utils/getComponentDocInfo'
 
 export default class ComponentDoc extends Component {
   static propTypes = {
@@ -12,7 +12,7 @@ export default class ComponentDoc extends Component {
   };
 
   render() {
-    const doc = getComponentDocInfo(this.props.name);
+    const doc = getComponentDocInfo(this.props.name)
 
     return (
       <Segment id={doc.name}>
@@ -26,6 +26,6 @@ export default class ComponentDoc extends Component {
         <ComponentProps props={doc.props} />
         <ComponentExamples name={doc.name} />
       </Segment>
-    );
+    )
   }
 }

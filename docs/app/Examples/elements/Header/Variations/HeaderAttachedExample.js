@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {Header, Segment} from 'stardust';
+import React, { Component } from 'react'
+import { Header, Segment } from 'stardust'
 
 export default class HeaderAttachedExample extends Component {
   render() {
@@ -14,6 +14,6 @@ export default class HeaderAttachedExample extends Component {
           laboris nisi ut aliquip ex ea commodo consequat.
         </Segment>
       </div>
-    );
+    )
   }
 }

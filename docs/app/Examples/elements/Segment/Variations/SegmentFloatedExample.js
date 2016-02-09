@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {Segment} from 'stardust';
+import React, { Component } from 'react'
+import { Segment } from 'stardust'
 
 export default class SegmentFloatedExample extends Component {
   render() {
@@ -12,6 +12,6 @@ export default class SegmentFloatedExample extends Component {
           This segment will appear to the left
         </Segment>
       </div>
-    );
+    )
   }
 }

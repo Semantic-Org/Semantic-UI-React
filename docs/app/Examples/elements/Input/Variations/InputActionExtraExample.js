@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {Button, Input} from 'stardust';
+import React, { Component } from 'react'
+import { Button, Input } from 'stardust'
 
 export default class InputActionExtraExample extends Component {
   render() {
@@ -10,6 +10,6 @@ export default class InputActionExtraExample extends Component {
           Checkout
         </Button>
       </Input>
-    );
+    )
   }
 }

@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {Button} from 'stardust';
+import React, { Component } from 'react'
+import { Button } from 'stardust'
 
 export default class ButtonPositiveNegativeExample extends Component {
   render() {
@@ -8,6 +8,6 @@ export default class ButtonPositiveNegativeExample extends Component {
         <Button className='positive'>Positive</Button>
         <Button className='negative'>Negative</Button>
       </div>
-    );
+    )
   }
 }

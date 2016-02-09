@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {Checkbox, Segment} from 'stardust';
+import React, { Component } from 'react'
+import { Checkbox, Segment } from 'stardust'
 
 export default class CheckboxFittedExample extends Component {
   render() {
@@ -15,6 +15,6 @@ export default class CheckboxFittedExample extends Component {
           <Checkbox className='toggle' />
         </Segment>
       </div>
-    );
+    )
   }
 }

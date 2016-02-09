@@ -1,9 +1,9 @@
-import _ from 'lodash';
-import META from '../../utils/Meta';
-import getUnhandledProps from '../../utils/getUnhandledProps';
-import React, {Component, PropTypes} from 'react';
-import classNames from 'classnames';
-import $ from 'jquery';
+import _ from 'lodash'
+import META from '../../utils/Meta'
+import getUnhandledProps from '../../utils/getUnhandledProps'
+import React, { Component, PropTypes } from 'react'
+import classNames from 'classnames'
+import $ from 'jquery'
 
 export default class Checkbox extends Component {
   static propTypes = {
@@ -24,11 +24,11 @@ export default class Checkbox extends Component {
   };
 
   static defaultProps = {
-    type: 'checkbox'
+    type: 'checkbox',
   };
 
   componentDidMount() {
-    this.element = $(this.refs.element);
+    this.element = $(this.refs.element)
     this.element.checkbox({
       onChange: this.props.onChange,
       onChecked: this.props.onChecked,
@@ -41,11 +41,11 @@ export default class Checkbox extends Component {
       beforeUnchecked: this.props.beforeUnchecked,
       onEnable: this.props.onEnable,
       onDisable: this.props.onDisable,
-    });
+    })
   }
 
   componentWillUnmount() {
-    this.element.off();
+    this.element.off()
   }
 
   static _meta = {
@@ -55,13 +55,13 @@ export default class Checkbox extends Component {
   };
 
   plugin() {
-    return this.element.checkbox(...arguments);
+    return this.element.checkbox(...arguments)
   }
 
   render() {
-    let type = this.props.type;
+    let type = this.props.type
     if (_.includes(this.props.className, 'radio')) {
-      type = 'radio';
+      type = 'radio'
     }
     const classes = classNames(
       'sd-checkbox',
@@ -69,15 +69,15 @@ export default class Checkbox extends Component {
       this.props.className,
       // auto apply fitted class to compact white space when there is no label
       // http://semantic-ui.com/modules/checkbox.html#fitted
-      {fitted: !this.props.label},
+      { fitted: !this.props.label },
       'checkbox'
-    );
-    const props = getUnhandledProps(this);
+    )
+    const props = getUnhandledProps(this)
     return (
       <div className={classes} ref='element'>
         <input {...props} type={type} />
         <label>{this.props.label}</label>
       </div>
-    );
+    )
   }
 }

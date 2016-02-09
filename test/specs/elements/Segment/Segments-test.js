@@ -1,5 +1,5 @@
-import React from 'react';
-import {Segment} from 'stardust';
+import React from 'react'
+import { Segment } from 'stardust'
 
 describe('Segments', () => {
   it('should render children', () => {
@@ -8,15 +8,15 @@ describe('Segments', () => {
         <Segment>Top</Segment>
         <Segment>Bottom</Segment>
       </Segment.Segments>
-    ).scryClass('sd-segment');
+    ).scryClass('sd-segment')
 
     segmentOne
       .textContent
-      .should.equal('Top');
+      .should.equal('Top')
     segmentTwo
       .textContent
-      .should.equal('Bottom');
-  });
+      .should.equal('Bottom')
+  })
 
   it('renders expected number of children', () => {
     render(
@@ -27,6 +27,6 @@ describe('Segments', () => {
       </Segment.Segments>
     )
       .scryClass('sd-segment')
-      .should.have.a.lengthOf(3);
-  });
-});
+      .should.have.a.lengthOf(3)
+  })
+})

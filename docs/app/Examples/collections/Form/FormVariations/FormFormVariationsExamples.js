@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
-import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection';
-import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample';
+import React, { Component } from 'react'
+import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
+import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
 
 export default class FormFormVariationsExamples extends Component {
   render() {
@@ -15,6 +15,6 @@ export default class FormFormVariationsExamples extends Component {
           examplePath='collections/Form/FormVariations/FormSizeLargeExample'
         />
       </ExampleSection>
-    );
+    )
   }
 }

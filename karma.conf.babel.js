@@ -1,8 +1,7 @@
-import paths from './paths';
-import statConfig from './webpack-stats';
-import friendlyFormatter from 'eslint-friendly-formatter';
-import exitPlugin from './webpack-exit-plugin';
-import ENV from './ENV';
+import paths from './paths'
+import statConfig from './webpack-stats'
+import exitPlugin from './webpack-exit-plugin'
+import ENV from './ENV'
 
 /**
  * This config is for running tests on the command line and will fail on errors.
@@ -16,42 +15,39 @@ export default (config) => {
     reporters: [ENV.isDevelopment() ? 'mocha' : 'dots'],
     files: [
       './node_modules/phantomjs-polyfill/bind-polyfill.js',
-      './test/tests.bundle.js'
+      './test/tests.bundle.js',
     ],
     frameworks: [
-      'mocha'
+      'mocha',
     ],
     preprocessors: {
-      '**/*.bundle.js': ['webpack', 'sourcemap']
+      '**/*.bundle.js': ['webpack', 'sourcemap'],
     },
     client: {
       mocha: {
         // require: '',
         reporter: 'html',   // change Karma's debug.html to mocha web reporter
-        ui: 'bdd'
-      }
+        ui: 'bdd',
+      },
     },
     webpack: {
       // karma watches the test entry points
       // (you don't need to specify the entry option)
       // webpack watches dependencies
       devtool: 'inline-source-map',
-      eslint: {
-        formatter: friendlyFormatter,
-      },
       module: {
         loaders: [
           {
             test: /\.js$/,
             loaders: ['babel', 'eslint'],
-            exclude: paths.node_modules
+            exclude: paths.node_modules,
           },
           {
             test: /\.json$/,
             loaders: ['json'],
-            exclude: paths.node_modules
-          }
-        ]
+            exclude: paths.node_modules,
+          },
+        ],
       },
       resolve: {
         root: paths.root,
@@ -70,7 +66,7 @@ export default (config) => {
       stats: statConfig,
       debug: true,
       noInfo: true,
-      quiet: false
-    }
-  });
-};
+      quiet: false,
+    },
+  })
+}

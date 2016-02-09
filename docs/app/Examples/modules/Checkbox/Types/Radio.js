@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {Checkbox} from 'stardust';
+import React, { Component } from 'react'
+import { Checkbox } from 'stardust'
 
 export default class CheckboxRadioExample extends Component {
   render() {
@@ -7,6 +7,6 @@ export default class CheckboxRadioExample extends Component {
       <div>
         <Checkbox className='radio' label='Radio choice' />
       </div>
-    );
+    )
   }
 }

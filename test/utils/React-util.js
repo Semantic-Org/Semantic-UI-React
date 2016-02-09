@@ -1,5 +1,5 @@
-import _ from 'lodash';
-import {findDOMNode} from 'react-dom';
+import _ from 'lodash'
+import { findDOMNode } from 'react-dom'
 import {
   createRenderer,
   findAllInRenderedTree,
@@ -11,7 +11,7 @@ import {
   scryRenderedDOMComponentsWithClass,
   scryRenderedDOMComponentsWithTag,
   scryRenderedComponentsWithType,
-} from 'react-addons-test-utils';
+} from 'react-addons-test-utils'
 //
 // RenderTree
 //
@@ -23,8 +23,8 @@ import {
  */
 class RenderedTree {
   constructor(reactElement) {
-    this._root = renderIntoDocument(reactElement);
-    this.all = findAllInRenderedTree(this._root, _.isObject);
+    this._root = renderIntoDocument(reactElement)
+    this.all = findAllInRenderedTree(this._root, _.isObject)
   }
 
   /**
@@ -32,7 +32,7 @@ class RenderedTree {
    * @returns {ReactElement[]} An array of elements that are children of the rendered element.
    */
   children() {
-    return this.all.slice(1);
+    return this.all.slice(1)
   }
 
   /**
@@ -41,7 +41,7 @@ class RenderedTree {
    * @returns {ReactComponent} first React component anywhere in the tree with matching className.
    */
   findClass(className) {
-    return findRenderedDOMComponentWithClass(this._root, className);
+    return findRenderedDOMComponentWithClass(this._root, className)
   }
 
   /**
@@ -50,7 +50,7 @@ class RenderedTree {
    * @returns {ReactComponent} first React component anywhere in the tree with matching html tag.
    */
   findTag(elementType) {
-    return findRenderedDOMComponentWithTag(this._root, elementType);
+    return findRenderedDOMComponentWithTag(this._root, elementType)
   }
 
   /**
@@ -59,7 +59,7 @@ class RenderedTree {
    * @returns {ReactComponent} first React component anywhere in the tree with matching React Element Type.
    */
   findType(componentClass) {
-    return findRenderedComponentWithType(this._root, componentClass);
+    return findRenderedComponentWithType(this._root, componentClass)
   }
 
   /**
@@ -67,7 +67,7 @@ class RenderedTree {
    * @returns {ReactComponent} first React component in rendered tree.
    */
   first() {
-    return _.first(this.all);
+    return _.first(this.all)
   }
 
   /**
@@ -75,7 +75,7 @@ class RenderedTree {
    * @returns {ReactComponent} last React component in rendered tree.
    */
   last() {
-    return _.last(this.all);
+    return _.last(this.all)
   }
 
   /**
@@ -84,7 +84,7 @@ class RenderedTree {
    * @returns {ReactComponent[]} array of React components in the tree with matching className.
    */
   scryClass(className) {
-    return scryRenderedDOMComponentsWithClass(this._root, className);
+    return scryRenderedDOMComponentsWithClass(this._root, className)
   }
 
   /**
@@ -93,7 +93,7 @@ class RenderedTree {
    * @returns {ReactComponent[]} array of React components in the tree with matching html tag.
    */
   scryTag(elementType) {
-    return scryRenderedDOMComponentsWithTag(this._root, elementType);
+    return scryRenderedDOMComponentsWithTag(this._root, elementType)
   }
 
   /**
@@ -102,7 +102,7 @@ class RenderedTree {
    * @returns {ReactComponent[]} all React components in the tree with matching React Element Type.
    */
   scryType(componentClass) {
-    return scryRenderedComponentsWithType(this._root, componentClass);
+    return scryRenderedComponentsWithType(this._root, componentClass)
   }
 
   /**
@@ -111,14 +111,14 @@ class RenderedTree {
    * @return {boolean} Indicating the text was found.
    */
   assertText(text) {
-    const re = new RegExp(text, 'g');
-    const first = this.first();
-    const textContent = isDOMComponent(first) ? first.textContent : findDOMNode(first).textContent;
-    const all = _.words(textContent, re);
+    const re = new RegExp(text, 'g')
+    const first = this.first()
+    const textContent = isDOMComponent(first) ? first.textContent : findDOMNode(first).textContent
+    const all = _.words(textContent, re)
     if (all.length !== 1) {
-      throw new Error(`Did not find exactly one match (found: ${all.length}) for text: "${text}"`);
+      throw new Error(`Did not find exactly one match (found: ${all.length}) for text: "${text}"`)
     }
-    return true;
+    return true
   }
 }
 
@@ -132,10 +132,10 @@ class RenderedTree {
  * @returns {*} Tree rendered one level deep.
  */
 global.shallowRender = (reactElement) => {
-  const shallowRenderer = createRenderer();
-  shallowRenderer.render(reactElement);
-  return shallowRenderer.getRenderOutput();
-};
+  const shallowRenderer = createRenderer()
+  shallowRenderer.render(reactElement)
+  return shallowRenderer.getRenderOutput()
+}
 
 //
 // Render
@@ -147,5 +147,5 @@ global.shallowRender = (reactElement) => {
  * @returns {RenderedTree} RenderedTree test utils.
  */
 global.render = (reactElement) => {
-  return new RenderedTree(reactElement);
-};
+  return new RenderedTree(reactElement)
+}

@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {Button, Segment} from 'stardust';
+import React, { Component } from 'react'
+import { Button, Segment } from 'stardust'
 
 export default class ButtonVerticallyAttachedExample extends Component {
   render() {
@@ -12,6 +12,6 @@ export default class ButtonVerticallyAttachedExample extends Component {
         <Button className='bottom attached'>Bottom</Button>
       </div>
       // TODO: Extend button component to work with an attached div - see issue #46
-    );
+    )
   }
 }

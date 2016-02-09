@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
-import {Statistic} from 'stardust';
-const {Statistics, Label, Value} = Statistic;
+import React, { Component } from 'react'
+import { Statistic } from 'stardust'
+const { Statistics, Label, Value } = Statistic
 
 export default class StatisticGroupExample extends Component {
   render() {
@@ -19,6 +19,6 @@ export default class StatisticGroupExample extends Component {
           <Label>Members</Label>
         </Statistic>
       </Statistics>
-    );
+    )
   }
 }

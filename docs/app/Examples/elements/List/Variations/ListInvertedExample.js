@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {Segment, List, ListItem} from 'stardust';
+import React, { Component } from 'react'
+import { Segment, List, ListItem } from 'stardust'
 
 export default class ListInvertedExample extends Component {
   render() {
@@ -11,6 +11,6 @@ export default class ListInvertedExample extends Component {
           <ListItem header='Nashville' description='Located in the state of Tennessee' />
         </List>
       </Segment>
-    );
+    )
   }
 }

@@ -5,30 +5,30 @@
  */
 const ENV = {
   setTest() {
-    process.env.NODE_ENV = 'test';
+    process.env.NODE_ENV = 'test'
   },
   setStaging() {
-    process.env.NODE_ENV = 'staging';
+    process.env.NODE_ENV = 'staging'
   },
   setProduction() {
-    process.env.NODE_ENV = 'production';
+    process.env.NODE_ENV = 'production'
   },
   setDevelopment() {
-    process.env.NODE_ENV = 'development';
+    process.env.NODE_ENV = 'development'
   },
 
   isProduction() {
-    return process.env.NODE_ENV === 'production';
+    return process.env.NODE_ENV === 'production'
   },
   isTest() {
-    return process.env.NODE_ENV === 'test';
+    return process.env.NODE_ENV === 'test'
   },
   isStaging() {
-    return process.env.NODE_ENV === 'staging';
+    return process.env.NODE_ENV === 'staging'
   },
   isDevelopment() {
-    return process.env.NODE_ENV === 'development' || !ENV.isProduction() && !ENV.isTest() && !ENV.isStaging();
+    return process.env.NODE_ENV === 'development' || !ENV.isProduction() && !ENV.isTest() && !ENV.isStaging()
   },
-};
+}
 
-export default ENV;
+export default ENV

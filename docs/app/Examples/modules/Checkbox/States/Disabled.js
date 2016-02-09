@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {Form, Checkbox, Field} from 'stardust';
+import React, { Component } from 'react'
+import { Form, Checkbox, Field } from 'stardust'
 
 export default class CheckboxDisabledExample extends Component {
   render() {
@@ -12,6 +12,6 @@ export default class CheckboxDisabledExample extends Component {
           <Checkbox className='toggle' disabled label='Disabled' />
         </Field>
       </Form>
-    );
+    )
   }
 }

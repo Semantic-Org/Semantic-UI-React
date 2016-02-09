@@ -1,8 +1,8 @@
-import _ from 'lodash';
-import $ from 'jquery';
-import React, {Component, PropTypes} from 'react';
-import classNames from 'classnames';
-import META from '../../utils/Meta';
+import _ from 'lodash'
+import $ from 'jquery'
+import React, { Component, PropTypes } from 'react'
+import classNames from 'classnames'
+import META from '../../utils/Meta'
 
 export default class Form extends Component {
   static propTypes = {
@@ -12,45 +12,45 @@ export default class Form extends Component {
   };
 
   componentDidMount() {
-    this.element = $(this.refs.element);
-    this.element.form(this.props.settings);
+    this.element = $(this.refs.element)
+    this.element.form(this.props.settings)
   }
 
   componentWillUnmount() {
-    this.element.off();
+    this.element.off()
   }
 
   plugin() {
-    return this.element.form(...arguments);
+    return this.element.form(...arguments)
   }
 
   serializeJson = () => {
-    const form = this.refs.element;
-    const json = {};
+    const form = this.refs.element
+    const json = {}
 
     _.each(['input', 'textarea', 'select'], (tag) => {
       _.each(form.getElementsByTagName(tag), (node, index, arr) => {
-        const name = node.getAttribute('name');
+        const name = node.getAttribute('name')
 
         switch (node.getAttribute('type')) {
           case 'checkbox':
-            json[name] = {checked: node.checked};
-            break;
+            json[name] = { checked: node.checked }
+            break
 
           case 'radio':
             json[name] = {
-              value: _.find(arr, {name, checked: true}).value
-            };
-            break;
+              value: _.find(arr, { name, checked: true }).value,
+            }
+            break
 
           default:
-            json[name] = {value: node.value};
-            break;
+            json[name] = { value: node.value }
+            break
         }
-      });
-    });
+      })
+    })
 
-    return json;
+    return json
   };
 
   static _meta = {
@@ -65,11 +65,11 @@ export default class Form extends Component {
       'ui',
       this.props.className,
       'form'
-    );
+    )
     return (
       <form {...this.props} className={classes} ref='element'>
         {this.props.children}
       </form>
-    );
+    )
   }
 }

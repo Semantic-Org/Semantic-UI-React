@@ -1,9 +1,9 @@
-import _ from 'lodash';
-import $ from 'jquery';
-import classNames from 'classnames';
-import React, {Component, PropTypes} from 'react';
-import META from '../../utils/Meta';
-import getUnhandledProps from '../../utils/getUnhandledProps';
+import _ from 'lodash'
+import $ from 'jquery'
+import classNames from 'classnames'
+import React, { Component, PropTypes } from 'react'
+import META from '../../utils/Meta'
+import getUnhandledProps from '../../utils/getUnhandledProps'
 
 /* eslint react/jsx-sort-prop-types:0 */
 export default class Dropdown extends Component {
@@ -59,7 +59,7 @@ export default class Dropdown extends Component {
   };
 
   componentDidMount() {
-    this.element = $(this.refs.select);
+    this.element = $(this.refs.select)
     this.element.dropdown({
       // Settings
       action: this.props.action,
@@ -101,15 +101,15 @@ export default class Dropdown extends Component {
       onLabelCreate: this.props.onLabelCreate,
       onAdd: this.props.onAdd,
       onRemove: this.props.onRemove,
-    });
+    })
   }
 
   componentDidUpdate(prevProps, prevState) {
-    this.element.dropdown('refresh');
+    this.element.dropdown('refresh')
   }
 
   componentWillUnmount() {
-    this.element.off();
+    this.element.off()
   }
 
   static _meta = {
@@ -119,25 +119,25 @@ export default class Dropdown extends Component {
   };
 
   plugin() {
-    return this.element.dropdown(...arguments);
+    return this.element.dropdown(...arguments)
   }
 
   render() {
     const options = _.map(this.props.options, (opt, i) => {
-      return <option key={`${opt.value}-${i}`} value={opt.value}>{opt.text}</option>;
-    });
+      return <option key={`${opt.value}-${i}`} value={opt.value}>{opt.text}</option>
+    })
     const classes = classNames(
       'sd-dropdown',
       'ui',
       this.props.className,
       'dropdown'
-    );
-    const props = getUnhandledProps(this);
+    )
+    const props = getUnhandledProps(this)
 
     return (
       <select {...props} className={classes} ref='select'>
         {options}
       </select>
-    );
+    )
   }
 }
