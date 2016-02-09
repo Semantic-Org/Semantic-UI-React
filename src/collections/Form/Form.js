@@ -3,6 +3,28 @@ import $ from 'jquery'
 import React, { Component, PropTypes } from 'react'
 import classNames from 'classnames'
 import META from '../../utils/Meta'
+import { getPluginProps, getComponentProps } from '../../utils/propUtils'
+
+const pluginPropTypes = {
+  // form settings
+  keyboardShortcuts: PropTypes.bool,
+  on: PropTypes.oneOf([
+    'blur',
+    'change',
+    'submit',
+  ]),
+  revalidate: PropTypes.bool,
+  delay: PropTypes.bool,
+  inline: PropTypes.bool,
+  transition: PropTypes.string,
+  duration: PropTypes.number,
+  // callbacks
+  onValid: PropTypes.func,
+  onInvalid: PropTypes.func,
+  onSuccess: PropTypes.func,
+  onFailure: PropTypes.func,
+  fields: PropTypes.object,
+}
 
 export default class Form extends Component {
   static propTypes = {
@@ -12,8 +34,11 @@ export default class Form extends Component {
   };
 
   componentDidMount() {
-    this.element = $(this.refs.element)
-    this.element.form(this.props.settings)
+    this.refresh()
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    this.refresh()
   }
 
   componentWillUnmount() {
@@ -22,6 +47,11 @@ export default class Form extends Component {
 
   plugin() {
     return this.element.form(...arguments)
+  }
+
+  refresh() {
+    this.element = $(this.refs.element)
+    this.element.form(getPluginProps(this.props, pluginPropTypes))
   }
 
   serializeJson = () => {
@@ -66,8 +96,9 @@ export default class Form extends Component {
       this.props.className,
       'form'
     )
+    const props = getComponentProps(this.props, pluginPropTypes)
     return (
-      <form {...this.props} className={classes} ref='element'>
+      <form {...props} className={classes} ref='element'>
         {this.props.children}
       </form>
     )
