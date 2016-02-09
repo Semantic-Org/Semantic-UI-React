@@ -5,7 +5,6 @@
     "stage-1"
   ],
   "plugins": [
-    "add-module-exports",
-    "transform-decorators-legacy"
+    "add-module-exports"
   ]
 }
