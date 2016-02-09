@@ -4,6 +4,7 @@ import React, { Component, PropTypes } from 'react'
 import classNames from 'classnames'
 import META from '../../utils/Meta'
 import { getPluginProps, getComponentProps } from '../../utils/propUtils'
+import * as deprecate from '../../utils/deprecate'
 
 const pluginPropTypes = {
   // form settings
@@ -26,6 +27,9 @@ const pluginPropTypes = {
   fields: PropTypes.object,
 }
 
+@deprecate.props({
+  settings: 'Use a separate prop for each setting.',
+})
 export default class Form extends Component {
   static propTypes = {
     children: PropTypes.node,
