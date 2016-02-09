@@ -35,7 +35,7 @@ export default class Segments extends Component {
       'sd-segments',
       'ui',
       this.props.className,
-      'segments',
+      'segments'
     )
 
     return (
