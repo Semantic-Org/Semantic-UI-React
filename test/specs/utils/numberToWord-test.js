@@ -1,5 +1,5 @@
-import _ from 'lodash';
-import numberToWord from '../../../src/utils/numberToWord';
+import _ from 'lodash'
+import numberToWord from '../../../src/utils/numberToWord'
 
 const words = [
   'one',
@@ -18,10 +18,10 @@ const words = [
   'fourteen',
   'fifteen',
   'sixteen',
-];
+]
 
 describe('numberToWord', () => {
   it('returns words for numbers 1-16', () => {
-    _.times(16, n => numberToWord(n + 1).should.equal(words[n]));
-  });
-});
+    _.times(16, n => numberToWord(n + 1).should.equal(words[n]))
+  })
+})

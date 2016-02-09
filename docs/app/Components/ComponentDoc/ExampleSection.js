@@ -1,4 +1,4 @@
-import React, {Component, PropTypes} from 'react';
+import React, { Component, PropTypes } from 'react'
 
 export default class ExampleSection extends Component {
   static propTypes = {
@@ -9,11 +9,11 @@ export default class ExampleSection extends Component {
   render() {
     return (
       <div>
-        <h3 className='ui dividing header' style={{margin: '2em 0'}}>
+        <h3 className='ui dividing header' style={{ margin: '2em 0' }}>
           {this.props.title}
         </h3>
         {this.props.children}
       </div>
-    );
+    )
   }
 }

@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
-import MessageStatesExamples from './States/MessageStatesExamples';
-import MessageTypesExamples from './Types/MessageTypesExamples';
-import MessageVariationsExamples from './Variations/MessageVariationsExamples';
+import React, { Component } from 'react'
+import MessageStatesExamples from './States/MessageStatesExamples'
+import MessageTypesExamples from './Types/MessageTypesExamples'
+import MessageVariationsExamples from './Variations/MessageVariationsExamples'
 
 export default class MessageExamples extends Component {
   render() {
@@ -11,6 +11,6 @@ export default class MessageExamples extends Component {
         <MessageStatesExamples />
         <MessageVariationsExamples />
       </div>
-    );
+    )
   }
 }

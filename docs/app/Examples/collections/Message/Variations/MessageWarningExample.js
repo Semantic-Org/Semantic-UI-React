@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {Message} from 'stardust';
+import React, { Component } from 'react'
+import { Message } from 'stardust'
 
 export default class MessageWarningExample extends Component {
   render() {
@@ -7,6 +7,6 @@ export default class MessageWarningExample extends Component {
       <Message className='warning' header='You must register before you can do that!'>
         Visit our registration page, then try again.
       </Message>
-    );
+    )
   }
 }

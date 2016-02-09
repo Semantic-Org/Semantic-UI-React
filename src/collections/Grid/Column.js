@@ -1,8 +1,8 @@
-import _ from 'lodash';
-import classNames from 'classnames';
-import React, {Component, PropTypes} from 'react';
-import numberToWord from '../../utils/numberToWord';
-import META from '../../utils/Meta.js';
+import _ from 'lodash'
+import classNames from 'classnames'
+import React, { Component, PropTypes } from 'react'
+import numberToWord from '../../utils/numberToWord'
+import META from '../../utils/Meta.js'
 
 export default class Column extends Component {
   static propTypes = {
@@ -25,11 +25,11 @@ export default class Column extends Component {
       this.props.className,
       this.props.width && numberToWord(this.props.width) + ' wide',
       'column'
-    );
+    )
     return (
       <div {...this.props} className={classes}>
         {this.props.children}
       </div>
-    );
+    )
   }
 }

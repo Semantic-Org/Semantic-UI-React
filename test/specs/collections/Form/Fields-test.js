@@ -1,7 +1,7 @@
-import faker from 'faker';
-import React from 'react';
+import faker from 'faker'
+import React from 'react'
 
-import {Field, Fields} from 'stardust';
+import { Field, Fields } from 'stardust'
 
 describe('Fields', () => {
   it('evenlyDivided adds the word class for the number of child fields', () => {
@@ -11,11 +11,11 @@ describe('Fields', () => {
         <Field />
       </Fields>
     )
-      .findClass('two fields');
-  });
+      .findClass('two fields')
+  })
   it('renders children', () => {
-    const child = faker.hacker.phrase();
+    const child = faker.hacker.phrase()
     render(<Fields>{child}</Fields>)
-      .assertText(child);
-  });
-});
+      .assertText(child)
+  })
+})

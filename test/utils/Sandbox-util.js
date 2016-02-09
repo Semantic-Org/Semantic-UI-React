@@ -1,4 +1,4 @@
-import sinon from 'sinon';
+import sinon from 'sinon'
 
 /**
  * Sinon Sandbox
@@ -6,10 +6,10 @@ import sinon from 'sinon';
  *
  * A sandbox to house spy(), stub(), mock(), etc. that is automatically reset after each test.
  */
-const sandbox = sinon.sandbox.create();
+const sandbox = sinon.sandbox.create()
 
 afterEach(() => {
-  sandbox.restore();
-});
+  sandbox.restore()
+})
 
-export default sandbox;
+export default sandbox

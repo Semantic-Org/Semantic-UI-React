@@ -1,8 +1,8 @@
-import _ from 'lodash';
-import React, {Children, Component, PropTypes} from 'react';
-import classNames from 'classnames';
-import {customPropTypes} from '../../utils/propUtils';
-import META from '../../utils/Meta';
+import _ from 'lodash'
+import React, { Children, Component, PropTypes } from 'react'
+import classNames from 'classnames'
+import { customPropTypes } from '../../utils/propUtils'
+import META from '../../utils/Meta'
 
 export default class Table extends Component {
   static propTypes = {
@@ -26,107 +26,107 @@ export default class Table extends Component {
   };
 
   constructor(props, context) {
-    super(props, context);
+    super(props, context)
     this.state = {
       selectedRows: this.props.defaultSelectedRows || [],
-    };
+    }
   }
 
   static getSafeCellContents(content) {
     // React cannot render objects, stringify them instead
-    return _.isObject(content) ? JSON.stringify(content) : content;
+    return _.isObject(content) ? JSON.stringify(content) : content
   }
 
   _isRowSelected(index) {
-    return _.includes(this.state.selectedRows, index);
+    return _.includes(this.state.selectedRows, index)
   }
 
   _isSelectable = () => {
-    return _.includes(this.props.className, 'selectable');
+    return _.includes(this.props.className, 'selectable')
   };
 
   _unselectRow(index) {
-    if (!this._isSelectable()) return;
+    if (!this._isSelectable()) return
     this.setState({
-      selectedRows: _.without(this.state.selectedRows, index)
-    });
+      selectedRows: _.without(this.state.selectedRows, index),
+    })
   }
 
   _selectRow(index) {
-    if (!this._isSelectable()) return;
-    this.setState({selectedRows: [index]});
+    if (!this._isSelectable()) return
+    this.setState({ selectedRows: [index] })
   }
 
   _unselectAllRows() {
-    if (!this._isSelectable()) return;
-    this.setState({selectedRows: []});
+    if (!this._isSelectable()) return
+    this.setState({ selectedRows: [] })
   }
 
   _toggleSelectRow(index) {
     if (this._isRowSelected(index)) {
-      this._unselectRow(index);
+      this._unselectRow(index)
     } else {
-      this._selectRow(index);
+      this._selectRow(index)
     }
   }
 
   _handleSelectRow(rowItem, rowIndex) {
-    this._toggleSelectRow(rowIndex);
-    if (this.props.onSelectRow) this.props.onSelectRow(rowItem, rowIndex);
+    this._toggleSelectRow(rowIndex)
+    if (this.props.onSelectRow) this.props.onSelectRow(rowItem, rowIndex)
   }
 
   _handleSortHeaderChange(key, direction) {
-    const {onSortChange} = this.props;
+    const { onSortChange } = this.props
     if (onSortChange) {
-      this._unselectAllRows();
-      onSortChange(key, direction);
+      this._unselectAllRows()
+      onSortChange(key, direction)
     }
   }
 
   _getHeaders() {
-    const {children, data, sort} = this.props;
+    const { children, data, sort } = this.props
 
     return Children.map(children, (column) => {
-      const {dataKey, headerRenderer} = column.props;
-      const content = headerRenderer ? headerRenderer(data[0]) : _.startCase(dataKey);
-      const isSorted = sort.key === dataKey;
+      const { dataKey, headerRenderer } = column.props
+      const content = headerRenderer ? headerRenderer(data[0]) : _.startCase(dataKey)
+      const isSorted = sort.key === dataKey
       const onClick = () => this._handleSortHeaderChange(
         dataKey, sort.direction === 'ascending' ? 'descending' : 'ascending'
-      );
+      )
       const classes = classNames('sd-table-header', {
         sorted: isSorted,
         ascending: isSorted && sort.direction === 'ascending',
         descending: isSorted && sort.direction === 'descending',
-      });
+      })
 
-      return <th className={classes} key={dataKey} onClick={onClick}>{content}</th>;
-    });
+      return <th className={classes} key={dataKey} onClick={onClick}>{content}</th>
+    })
   }
 
   _getCells(dataItem, rowIndex) {
     return Children.map(this.props.children, (column) => {
-      let content;
+      let content
       if (column.props.cellRenderer) {
-        content = column.props.cellRenderer(dataItem);
+        content = column.props.cellRenderer(dataItem)
       } else {
-        const itemContents = dataItem[column.props.dataKey];
-        content = Table.getSafeCellContents(itemContents);
+        const itemContents = dataItem[column.props.dataKey]
+        content = Table.getSafeCellContents(itemContents)
       }
 
-      return <td key={rowIndex + column.props.dataKey} className={'sd-table-cell'}>{content}</td>;
-    });
+      return <td key={rowIndex + column.props.dataKey} className={'sd-table-cell'}>{content}</td>
+    })
   }
 
   _getRows() {
     return _.map(this.props.data, (dataItem, rowIndex) => {
-      const cells = this._getCells(dataItem, rowIndex);
+      const cells = this._getCells(dataItem, rowIndex)
       const classes = classNames('sd-table-row', {
         active: this._isRowSelected(rowIndex),
-      });
-      const onClick = () => this._handleSelectRow(dataItem, rowIndex);
+      })
+      const onClick = () => this._handleSelectRow(dataItem, rowIndex)
 
-      return <tr className={classes} key={rowIndex} onClick={onClick}>{cells}</tr>;
-    });
+      return <tr className={classes} key={rowIndex} onClick={onClick}>{cells}</tr>
+    })
   }
 
   static _meta = {
@@ -136,15 +136,15 @@ export default class Table extends Component {
   };
 
   render() {
-    const {onSelectRow, onSortChange, defaultSelectedRows} = this.props;
+    const { onSelectRow, onSortChange, defaultSelectedRows } = this.props
     const classes = classNames(
       'sd-table',
       'ui',
-      {selectable: !!onSelectRow || !!defaultSelectedRows},
-      {sortable: !!onSortChange},
+      { selectable: !!onSelectRow || !!defaultSelectedRows },
+      { sortable: !!onSortChange },
       this.props.className,
       'table'
-    );
+    )
     return (
       <table {...this.props} className={classes}>
         <thead>
@@ -156,6 +156,6 @@ export default class Table extends Component {
           {this._getRows()}
         </tbody>
       </table>
-    );
+    )
   }
 }

@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {Segment} from 'stardust';
+import React, { Component } from 'react'
+import { Segment } from 'stardust'
 
 export default class SegmentColoredExample extends Component {
   render() {
@@ -45,6 +45,6 @@ export default class SegmentColoredExample extends Component {
           Black
         </Segment>
       </div>
-    );
+    )
   }
 }

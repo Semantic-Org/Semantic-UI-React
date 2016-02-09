@@ -1,5 +1,5 @@
-import {Children} from 'react';
-import _ from 'lodash';
+import { Children } from 'react'
+import _ from 'lodash'
 
 /**
  * Selects all of the props specified in pluginPropTypes
@@ -8,8 +8,8 @@ import _ from 'lodash';
  * @returns {object} keys are the filtered props, values are the prop values
  */
 export const getPluginProps = (props, pluginPropTypes) => {
-  return _.pick(props, _.keys(pluginPropTypes));
-};
+  return _.pick(props, _.keys(pluginPropTypes))
+}
 
 /**
  * Filters out all of the props specified in pluginPropTypes
@@ -18,8 +18,8 @@ export const getPluginProps = (props, pluginPropTypes) => {
  * @returns {object} keys are the filtered props, values are the prop values
  */
 export const getComponentProps = (props, pluginPropTypes) => {
-  return _.omit(props, _.keys(pluginPropTypes));
-};
+  return _.omit(props, _.keys(pluginPropTypes))
+}
 
 export const customPropTypes = {
   /*
@@ -30,16 +30,16 @@ export const customPropTypes = {
    */
   ofComponentTypes: (allowedTypes) => {
     return (props, propName, componentName) => {
-      const {children} = props;
+      const { children } = props
       const disallowed = Children.map(children, child => {
-        return _.includes(allowedTypes, _.get(child, 'type._meta.name')) ? null : child;
-      });
+        return _.includes(allowedTypes, _.get(child, 'type._meta.name')) ? null : child
+      })
       if (disallowed && disallowed.length !== 0) {
         return new Error(
           `\`${componentName}\` should only have children of type \`${allowedTypes}\`.`
-        );
+        )
       }
-    };
+    }
   },
   /*
    * Verifies exclusivity of a given prop
@@ -53,10 +53,10 @@ export const customPropTypes = {
         if (props[propName] && props[exclusiveProp]) {
           return new Error(
             `\`${componentName}\` should only have one of type \`${propName}\` or \`${exclusiveProp}\` not both.`
-          );
+          )
         }
-      });
-    };
+      })
+    }
   },
-};
+}
 

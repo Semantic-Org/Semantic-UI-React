@@ -16,7 +16,7 @@ export default function numberToWord(number) {
     14: 'fourteen',
     15: 'fifteen',
     16: 'sixteen',
-  };
+  }
 
-  return map[number];
+  return map[number]
 }

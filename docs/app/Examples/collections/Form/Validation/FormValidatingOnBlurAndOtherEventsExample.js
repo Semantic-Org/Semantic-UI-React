@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {Button, Checkbox, Field, Fields, Form, Input, Message} from 'stardust';
+import React, { Component } from 'react'
+import { Button, Checkbox, Field, Fields, Form, Input, Message } from 'stardust'
 
 export default class FormValidatingOnBlurAndOtherEventsExample extends Component {
   formSettings = {
@@ -9,35 +9,35 @@ export default class FormValidatingOnBlurAndOtherEventsExample extends Component
       'first-name': {
         identifier: 'first-name',
         rules: [
-          {type: 'empty'}
+          { type: 'empty' },
         ],
       },
       'last-name': {
         identifier: 'last-name',
         rules: [
-          {type: 'empty'}
+          { type: 'empty' },
         ],
       },
       'username': {
         identifier: 'username',
         rules: [
-          {type: 'empty'}
+          { type: 'empty' },
         ],
       },
       'password': {
         identifier: 'password',
         rules: [
-          {type: 'empty'},
-          {type: 'minLength[6]'},
+          { type: 'empty' },
+          { type: 'minLength[6]' },
         ],
       },
       'terms': {
         identifier: 'terms',
         rules: [
-          {type: 'checked'}
+          { type: 'checked' },
         ],
       },
-    }
+    },
   };
 
   render() {
@@ -68,6 +68,6 @@ export default class FormValidatingOnBlurAndOtherEventsExample extends Component
         <Button className='blue submit'>Submit</Button>
         <Message className='error' />
       </Form>
-    );
+    )
   }
 }

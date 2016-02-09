@@ -3,16 +3,16 @@
  * Without this, when lint/tests fail, Webpack will exit code 0 (success) and CI is hosed.
  */
 function failOnError() {
-  this.plugin('done', function(stats) {
+  this.plugin('done', (stats) => {
     if (stats.compilation.errors && stats.compilation.errors.length) {
-      stats.compilation.errors.forEach(function(err) {
+      stats.compilation.errors.forEach((err) => {
         /* eslint-disable no-console */
-        console.log(err.toString());
+        console.log(err.toString())
         /* eslint-enable no-console */
-      });
-      process.exit(1);
+      })
+      process.exit(1)
     }
-  });
+  })
 }
 
-module.exports = failOnError;
+module.exports = failOnError

@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {Button} from 'stardust';
+import React, { Component } from 'react'
+import { Button } from 'stardust'
 
 export default class ButtonSizeExample extends Component {
   render() {
@@ -30,6 +30,6 @@ export default class ButtonSizeExample extends Component {
           Massive
         </Button>
       </div>
-    );
+    )
   }
 }

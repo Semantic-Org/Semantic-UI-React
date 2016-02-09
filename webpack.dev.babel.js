@@ -1,6 +1,5 @@
-import friendlyFormatter from 'eslint-friendly-formatter';
-import paths from './paths';
-import webpack from 'webpack';
+import paths from './paths'
+import webpack from 'webpack'
 
 /**
  * This config builds and serves the doc site with webpack dev server.
@@ -11,7 +10,7 @@ export default {
     app: [
       'webpack-dev-server/client?http://localhost:8080',
       'webpack/hot/dev-server',
-      paths.docsApp + '/DocsApp.js'
+      paths.docsApp + '/DocsApp.js',
     ],
     vendor: [
       'bluebird',
@@ -21,11 +20,11 @@ export default {
       'lodash',
       'react',
       'react-highlight',
-    ]
+    ],
   },
   output: {
     path: paths.docsBuild,
-    filename: '[name].js'
+    filename: '[name].js',
   },
   module: {
     noParse: [/autoit.js/],
@@ -33,17 +32,14 @@ export default {
       {
         test: /\.js$/,
         loaders: ['react-hot', 'babel', 'eslint'],
-        exclude: paths.node_modules
+        exclude: paths.node_modules,
       },
       {
         test: /\.json$/,
         loaders: ['json'],
-        exclude: paths.node_modules
-      }
-    ]
-  },
-  eslint: {
-    formatter: friendlyFormatter,
+        exclude: paths.node_modules,
+      },
+    ],
   },
   externals: {
     bluebird: 'Promise',
@@ -54,11 +50,11 @@ export default {
   devtool: 'source-map',
   resolve: {
     root: [
-      paths.docsRoot
+      paths.docsRoot,
     ],
     modulesDirectories: [
       'node_modules',
-      '.'
+      '.',
     ],
     alias: {
       stardust: `${paths.src}/index.js`,
@@ -66,6 +62,6 @@ export default {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js')
-  ]
-};
+    new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js'),
+  ],
+}

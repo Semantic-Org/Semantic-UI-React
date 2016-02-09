@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {Segment} from 'stardust';
+import React, { Component } from 'react'
+import { Segment } from 'stardust'
 
 export default class SegmentVeryPaddedExample extends Component {
   render() {
@@ -7,6 +7,6 @@ export default class SegmentVeryPaddedExample extends Component {
       <Segment className='very padded'>
         Very padded content.
       </Segment>
-    );
+    )
   }
 }

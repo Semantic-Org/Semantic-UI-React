@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {Input} from 'stardust';
+import React, { Component } from 'react'
+import { Input } from 'stardust'
 
 export default class InputLabeledExample extends Component {
   render() {
@@ -7,6 +7,6 @@ export default class InputLabeledExample extends Component {
       <Input className='labeled' placeholder='mysite.com'>
         <div className='ui label'>http://</div>
       </Input>
-    );
+    )
   }
 }

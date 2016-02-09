@@ -1,7 +1,7 @@
-import React, {Component, PropTypes} from 'react';
-import classNames from 'classnames';
-import META from '../../utils/Meta';
-import {customPropTypes} from '../../utils/propUtils';
+import React, { Component, PropTypes } from 'react'
+import classNames from 'classnames'
+import META from '../../utils/Meta'
+import { customPropTypes } from '../../utils/propUtils'
 
 /**
  * A group of segments can be formatted to appear together.
@@ -16,7 +16,7 @@ export default class Segments extends Component {
       'Segments',
       'H1', 'H2', 'H3', 'H4', 'H5', 'H6',
       'Subheader',
-      'Message'
+      'Message',
     ]),
     className: PropTypes.string,
   };
@@ -25,23 +25,23 @@ export default class Segments extends Component {
     library: META.library.semanticUI,
     name: 'Segments',
     type: META.type.element,
-    parent: 'Segment'
+    parent: 'Segment',
   };
 
   render() {
-    const {children} = this.props;
+    const { children } = this.props
 
     const classes = classNames(
       'sd-segments',
       'ui',
       this.props.className,
       'segments',
-    );
+    )
 
     return (
       <div {...this.props} className={classes}>
         {children}
       </div>
-    );
+    )
   }
 }

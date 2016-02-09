@@ -1,9 +1,9 @@
-import React, {Component} from 'react';
-import HeaderTypesExamples from './Types/HeaderTypesExamples';
-import HeaderContentExamples from './Content/HeaderContentExamples';
-import HeaderStatesExamples from './States/HeaderStatesExamples';
-import HeaderVariationsExamples from './Variations/HeaderVariationsExamples';
-import {Message} from 'stardust';
+import React, { Component } from 'react'
+import HeaderTypesExamples from './Types/HeaderTypesExamples'
+import HeaderContentExamples from './Content/HeaderContentExamples'
+import HeaderStatesExamples from './States/HeaderStatesExamples'
+import HeaderVariationsExamples from './Variations/HeaderVariationsExamples'
+import { Message } from 'stardust'
 
 export default class HeaderExamples extends Component {
   render() {
@@ -20,6 +20,6 @@ export default class HeaderExamples extends Component {
         <HeaderStatesExamples />
         <HeaderVariationsExamples />
       </div>
-    );
+    )
   }
 }

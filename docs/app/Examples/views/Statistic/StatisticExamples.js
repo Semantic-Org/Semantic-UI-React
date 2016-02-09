@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import StatisticTypesExamples from './Types/StatisticTypesExamples';
+import React, { Component } from 'react'
+import StatisticTypesExamples from './Types/StatisticTypesExamples'
 
 export default class StatisticExamples extends Component {
   render() {
@@ -7,6 +7,6 @@ export default class StatisticExamples extends Component {
       <div>
         <StatisticTypesExamples />
       </div>
-    );
+    )
   }
 }

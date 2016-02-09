@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {Header, Segment} from 'stardust';
+import React, { Component } from 'react'
+import { Header, Segment } from 'stardust'
 
 export default class HeaderFloatingExample extends Component {
   render() {
@@ -12,6 +12,6 @@ export default class HeaderFloatingExample extends Component {
           Float Left
         </Header.H2>
       </Segment>
-    );
+    )
   }
 }

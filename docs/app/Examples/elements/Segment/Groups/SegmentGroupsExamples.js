@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
-import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample';
-import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection';
+import React, { Component } from 'react'
+import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
+import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
 
 export default class SegmentGroupsExamples extends Component {
   render() {
@@ -37,6 +37,6 @@ export default class SegmentGroupsExamples extends Component {
           examplePath='elements/Segment/Groups/SegmentPiledSegmentsExample'
         />
       </ExampleSection>
-    );
+    )
   }
 }

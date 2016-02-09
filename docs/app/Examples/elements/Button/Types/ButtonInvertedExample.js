@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {Button, Segment} from 'stardust';
+import React, { Component } from 'react'
+import { Button, Segment } from 'stardust'
 
 export default class ButtonInvertedExample extends Component {
   render() {
@@ -38,6 +38,6 @@ export default class ButtonInvertedExample extends Component {
           <Button className='inverted black basic'>Black</Button>
         </Segment>
       </div>
-    );
+    )
   }
 }

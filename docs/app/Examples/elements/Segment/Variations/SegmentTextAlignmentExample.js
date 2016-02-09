@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {Segment} from 'stardust';
+import React, { Component } from 'react'
+import { Segment } from 'stardust'
 
 export default class SegmentTextAlignmentExample extends Component {
   render() {
@@ -15,6 +15,6 @@ export default class SegmentTextAlignmentExample extends Component {
           Center aligned content.
         </Segment>
       </div>
-    );
+    )
   }
 }

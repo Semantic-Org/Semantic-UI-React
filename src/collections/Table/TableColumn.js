@@ -1,6 +1,6 @@
-import React, {Component, PropTypes} from 'react';
-import classNames from 'classnames';
-import META from '../../utils/Meta';
+import React, { Component, PropTypes } from 'react'
+import classNames from 'classnames'
+import META from '../../utils/Meta'
 
 export default class TableColumn extends Component {
   static propTypes = {
@@ -21,7 +21,7 @@ export default class TableColumn extends Component {
     const classes = classNames(
       'sd-table-column',
       this.props.className
-    );
-    return <div {...this.props} className={classes}></div>;
+    )
+    return <div {...this.props} className={classes}></div>
   }
 }

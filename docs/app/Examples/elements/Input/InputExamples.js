@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
-import InputTypesExamples from './Types/InputTypesExamples';
-import InputStatesExamples from './States/InputStatesExamples';
-import InputVariationsExamples from './Variations/InputVariationsExamples';
+import React, { Component } from 'react'
+import InputTypesExamples from './Types/InputTypesExamples'
+import InputStatesExamples from './States/InputStatesExamples'
+import InputVariationsExamples from './Variations/InputVariationsExamples'
 
 export default class InputExamples extends Component {
   render() {
@@ -11,6 +11,6 @@ export default class InputExamples extends Component {
         <InputStatesExamples />
         <InputVariationsExamples />
       </div>
-    );
+    )
   }
 }

@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {Segment, Button, Divider} from 'stardust';
+import React, { Component } from 'react'
+import { Segment, Button, Divider } from 'stardust'
 
 export default class DividerClearingExample extends Component {
   render() {
@@ -9,6 +9,6 @@ export default class DividerClearingExample extends Component {
         <Divider className='clearing' />
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore...
       </Segment>
-    );
+    )
   }
 }

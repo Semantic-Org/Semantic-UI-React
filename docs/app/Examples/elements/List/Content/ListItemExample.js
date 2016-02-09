@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {List, ListItem} from 'stardust';
+import React, { Component } from 'react'
+import { List, ListItem } from 'stardust'
 
 export default class ListItemExample extends Component {
   render() {
@@ -9,6 +9,6 @@ export default class ListItemExample extends Component {
         <ListItem description='2' />
         <ListItem description='3' />
       </List>
-    );
+    )
   }
 }

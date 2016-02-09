@@ -1,13 +1,13 @@
-import classNames from 'classnames';
-import React, {Component, PropTypes} from 'react';
+import classNames from 'classnames'
+import React, { Component, PropTypes } from 'react'
 
-import getUnhandledProps from '../../utils/getUnhandledProps';
-import {customPropTypes} from '../../utils/propUtils';
-import META from '../../utils/Meta';
+import getUnhandledProps from '../../utils/getUnhandledProps'
+import { customPropTypes } from '../../utils/propUtils'
+import META from '../../utils/Meta'
 
-import Statistics from './Statistics';
-import Label from './Label';
-import Value from './Value';
+import Statistics from './Statistics'
+import Label from './Label'
+import Value from './Value'
 
 export default class Statistic extends Component {
   static propTypes = {
@@ -30,15 +30,15 @@ export default class Statistic extends Component {
       'sd-statistic',
       'ui',
       this.props.className,
-      'statistic',
-    );
+      'statistic'
+    )
 
-    const props = getUnhandledProps(this);
+    const props = getUnhandledProps(this)
 
     return (
       <div {...props} className={classes}>
         {this.props.children}
       </div>
-    );
+    )
   }
 }

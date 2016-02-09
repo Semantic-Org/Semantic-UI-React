@@ -1,9 +1,9 @@
-import $ from 'jquery';
-import classNames from 'classnames';
-import React, {Component, PropTypes} from 'react';
+import $ from 'jquery'
+import classNames from 'classnames'
+import React, { Component, PropTypes } from 'react'
 
-import META from '../../utils/Meta';
-import {getPluginProps, getComponentProps} from '../../utils/propUtils';
+import META from '../../utils/Meta'
+import { getPluginProps, getComponentProps } from '../../utils/propUtils'
 
 const pluginPropTypes = {
   autoSuccess: PropTypes.bool,
@@ -20,7 +20,7 @@ const pluginPropTypes = {
   showActivity: PropTypes.bool,
   total: PropTypes.bool,
   value: PropTypes.bool,
-};
+}
 
 export default class Progress extends Component {
   static propTypes = {
@@ -34,15 +34,15 @@ export default class Progress extends Component {
   };
 
   static defaultProps = {
-    showActivity: false
+    showActivity: false,
   };
 
   componentDidMount() {
-    this.refresh();
+    this.refresh()
   }
 
   componentDidUpdate() {
-    this.refresh();
+    this.refresh()
   }
 
   static _meta = {
@@ -52,12 +52,12 @@ export default class Progress extends Component {
   };
 
   plugin() {
-    return this.element.progress(...arguments);
+    return this.element.progress(...arguments)
   }
 
   refresh() {
-    this.element = $(this.refs.element);
-    this.element.progress(getPluginProps(this.props, pluginPropTypes));
+    this.element = $(this.refs.element)
+    this.element.progress(getPluginProps(this.props, pluginPropTypes))
   }
 
   render() {
@@ -66,13 +66,13 @@ export default class Progress extends Component {
       'ui',
       this.props.className,
       'progress'
-    );
+    )
 
     const labelText = (
       <div className='label'>
         {this.props.children}
       </div>
-    );
+    )
 
     return (
       <div {...getComponentProps(this.props, pluginPropTypes)} className={classes} ref='element'>
@@ -81,6 +81,6 @@ export default class Progress extends Component {
         </div>
         {this.props.children && labelText}
       </div>
-    );
+    )
   }
 }

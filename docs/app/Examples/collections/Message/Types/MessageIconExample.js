@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {Message} from 'stardust';
+import React, { Component } from 'react'
+import { Message } from 'stardust'
 
 export default class MessageIconExample extends Component {
   render() {
@@ -13,6 +13,6 @@ export default class MessageIconExample extends Component {
           We're fetching that content for you.
         </Message>
       </div>
-    );
+    )
   }
 }

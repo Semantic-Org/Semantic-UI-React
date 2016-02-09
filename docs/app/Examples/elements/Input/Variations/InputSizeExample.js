@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {Input} from 'stardust';
+import React, { Component } from 'react'
+import { Input } from 'stardust'
 
 export default class InputSizeExample extends Component {
   render() {
@@ -18,6 +18,6 @@ export default class InputSizeExample extends Component {
         <Input className='massive icon' icon='search' placeholder='Search...' />
         <br />
       </div>
-    );
+    )
   }
 }

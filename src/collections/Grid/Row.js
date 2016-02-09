@@ -1,6 +1,6 @@
-import classNames from 'classnames';
-import React, {Component, PropTypes} from 'react';
-import META from '../../utils/Meta';
+import classNames from 'classnames'
+import React, { Component, PropTypes } from 'react'
+import META from '../../utils/Meta'
 
 export default class Row extends Component {
   static propTypes = {
@@ -20,11 +20,11 @@ export default class Row extends Component {
       'sd-row',
       this.props.className,
       'row'
-    );
+    )
     return (
       <div {...this.props} className={classes}>
         {this.props.children}
       </div>
-    );
+    )
   }
 }

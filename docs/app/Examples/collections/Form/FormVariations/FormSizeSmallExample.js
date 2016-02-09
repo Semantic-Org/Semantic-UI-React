@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {Button, Field, Fields, Form, Input} from 'stardust';
+import React, { Component } from 'react'
+import { Button, Field, Fields, Form, Input } from 'stardust'
 
 export default class FormSizeSmallExample extends Component {
   render() {
@@ -15,6 +15,6 @@ export default class FormSizeSmallExample extends Component {
         </Fields>
         <Button type='submit'>Submit</Button>
       </Form>
-    );
+    )
   }
 }

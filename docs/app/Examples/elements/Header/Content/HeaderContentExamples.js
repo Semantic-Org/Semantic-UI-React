@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
-import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample';
-import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection';
+import React, { Component } from 'react'
+import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
+import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
 
 export default class HeaderContentExamples extends Component {
   render() {
@@ -22,6 +22,6 @@ export default class HeaderContentExamples extends Component {
           examplePath='elements/Header/Content/HeaderSubheaderExample'
         />
       </ExampleSection>
-    );
+    )
   }
 }

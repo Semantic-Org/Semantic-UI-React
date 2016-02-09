@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {Segment} from 'stardust';
+import React, { Component } from 'react'
+import { Segment } from 'stardust'
 
 export default class SegmentNestedSegmentsExample extends Component {
   render() {
@@ -18,6 +18,6 @@ export default class SegmentNestedSegmentsExample extends Component {
         </Segment.Segments>
         <Segment>Bottom</Segment>
       </Segment.Segments>
-    );
+    )
   }
 }

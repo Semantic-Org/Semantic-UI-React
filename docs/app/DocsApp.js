@@ -1,18 +1,18 @@
-import React, {Component} from 'react';
-import {render} from 'react-dom';
-import stardust, {Grid, Column} from 'stardust';
+import React, { Component } from 'react'
+import { render } from 'react-dom'
+import stardust, { Grid, Column } from 'stardust'
 
-import ComponentDoc from 'docs/app/Components/ComponentDoc/ComponentDoc';
-import DocsMenu from 'Components/Sidebar/Sidebar';
-import style from './Style';
+import ComponentDoc from 'docs/app/Components/ComponentDoc/ComponentDoc'
+import DocsMenu from 'Components/Sidebar/Sidebar'
+import style from './Style'
 
 class DocsApp extends Component {
-  state = {menuSearch: ''};
+  state = { menuSearch: '' };
 
   render() {
     const components = Object.keys(stardust)
       .sort()
-      .map(name => <ComponentDoc key={name} name={name} />);
+      .map(name => <ComponentDoc key={name} name={name} />)
 
     return (
       <div style={style.container}>
@@ -27,8 +27,8 @@ class DocsApp extends Component {
           </Grid>
         </div>
       </div>
-    );
+    )
   }
 }
 
-render(<DocsApp />, document.getElementById('root'));
+render(<DocsApp />, document.getElementById('root'))

@@ -1,8 +1,8 @@
-import _ from 'lodash';
-import React, {Component, PropTypes} from 'react';
-import classNames from 'classnames';
-import META from '../../utils/Meta';
-import getUnhandledProps from '../../utils/getUnhandledProps';
+import _ from 'lodash'
+import React, { Component, PropTypes } from 'react'
+import classNames from 'classnames'
+import META from '../../utils/Meta'
+import getUnhandledProps from '../../utils/getUnhandledProps'
 
 export default class _Header extends Component {
   static propTypes = {
@@ -25,18 +25,18 @@ export default class _Header extends Component {
       'ui',
       this.props.className,
       'header'
-    );
+    )
 
-    const props = getUnhandledProps(this);
+    const props = getUnhandledProps(this)
     const children = this.props.image || this.props.icon
       ? <div className='content'>{this.props.children}</div>
-      : this.props.children;
+      : this.props.children
 
     return React.createElement(
       this.props._headerElement,
-      _.assign({}, props, {className: classes}),
+      _.assign({}, props, { className: classes }),
       this.props.image || this.props.icon,
       children,
-    );
+    )
   }
 }

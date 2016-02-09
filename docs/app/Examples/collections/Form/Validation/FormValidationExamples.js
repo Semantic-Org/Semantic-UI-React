@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
-import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection';
-import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample';
-import {Message} from 'stardust';
+import React, { Component } from 'react'
+import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
+import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
+import { Message } from 'stardust'
 
 export default class FormValidationExamples extends Component {
   render() {
@@ -27,6 +27,6 @@ export default class FormValidationExamples extends Component {
           </Message>
         </ComponentExample>
       </ExampleSection>
-    );
+    )
   }
 }

@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {List, ListItem} from 'stardust';
+import React, { Component } from 'react'
+import { List, ListItem } from 'stardust'
 
 export default class ListOrderedExample extends Component {
   render() {
@@ -15,6 +15,6 @@ export default class ListOrderedExample extends Component {
         <ListItem description='Pears' />
         <ListItem description='Oranges' />
       </List>
-    );
+    )
   }
 }

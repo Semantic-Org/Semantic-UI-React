@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {Header, Segment} from 'stardust';
+import React, { Component } from 'react'
+import { Header, Segment } from 'stardust'
 
 export default class SegmentCircularExample extends Component {
   render() {
@@ -22,6 +22,6 @@ export default class SegmentCircularExample extends Component {
           </Header.H3>
         </Segment>
       </div>
-    );
+    )
   }
 }

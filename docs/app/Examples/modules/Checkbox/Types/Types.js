@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
-import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample';
-import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection';
+import React, { Component } from 'react'
+import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
+import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
 
 export default class CheckboxTypesExamples extends Component {
   render() {
@@ -28,6 +28,6 @@ export default class CheckboxTypesExamples extends Component {
         />
         <ComponentExample examplePath='modules/Checkbox/Types/RadioGroup' />
       </ExampleSection>
-    );
+    )
   }
 }

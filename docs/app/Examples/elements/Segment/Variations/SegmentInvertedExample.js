@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {Segment} from 'stardust';
+import React, { Component } from 'react'
+import { Segment } from 'stardust'
 
 export default class SegmentInvertedExample extends Component {
   render() {
@@ -7,6 +7,6 @@ export default class SegmentInvertedExample extends Component {
       <Segment className='inverted'>
         Inverted content.
       </Segment>
-    );
+    )
   }
 }

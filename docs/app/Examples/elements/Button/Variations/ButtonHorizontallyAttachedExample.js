@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {Button} from 'stardust';
+import React, { Component } from 'react'
+import { Button } from 'stardust'
 
 export default class ButtonHorizontallyAttachedExample extends Component {
   render() {
@@ -8,6 +8,6 @@ export default class ButtonHorizontallyAttachedExample extends Component {
         <Button className='left attached'>Left</Button>
         <Button className='right attached'>Right</Button>
       </div>
-    );
+    )
   }
 }

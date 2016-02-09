@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {Message} from 'stardust';
+import React, { Component } from 'react'
+import { Message } from 'stardust'
 
 export default class MessageInfoExample extends Component {
   render() {
@@ -7,6 +7,6 @@ export default class MessageInfoExample extends Component {
       <Message className='info' header='Was this what you wanted?'>
         Did you know it's been a while?
       </Message>
-    );
+    )
   }
 }

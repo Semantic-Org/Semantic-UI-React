@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {List, ListItem} from 'stardust';
+import React, { Component } from 'react'
+import { List, ListItem } from 'stardust'
 
 export default class ListHeaderExample extends Component {
   render() {
@@ -9,6 +9,6 @@ export default class ListHeaderExample extends Component {
         <ListItem header='Chapter 2' description='The chapter in which the bad guy is introduced' />
         <ListItem header='Chapter 3' description='Spoiler alert: The chapter in which the good guy wins!'/>
       </List>
-    );
+    )
   }
 }

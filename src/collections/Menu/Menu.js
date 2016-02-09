@@ -1,7 +1,7 @@
-import React, {Component, PropTypes} from 'react';
-import classNames from 'classnames';
-import META from '../../utils/Meta';
-import getUnhandledProps from '../../utils/getUnhandledProps';
+import React, { Component, PropTypes } from 'react'
+import classNames from 'classnames'
+import META from '../../utils/Meta'
+import getUnhandledProps from '../../utils/getUnhandledProps'
 
 export default class Menu extends Component {
   static propTypes = {
@@ -10,10 +10,10 @@ export default class Menu extends Component {
     className: PropTypes.string,
   };
 
-  state = {activeItem: this.props.activeItem};
+  state = { activeItem: this.props.activeItem };
 
   handleClickItem = (activeItem) => {
-    this.setState({activeItem});
+    this.setState({ activeItem })
   };
 
   static _meta = {
@@ -28,22 +28,22 @@ export default class Menu extends Component {
       'ui',
       this.props.className,
       'menu'
-    );
-    const hasActiveItem = !!this.state.activeItem || !!this.props.activeItem;
+    )
+    const hasActiveItem = !!this.state.activeItem || !!this.props.activeItem
     const children = React.Children.map(this.props.children, (child, i) => {
       const activeItemName = !hasActiveItem && i === 0
         ? child.props.name
-        : this.state.activeItem || this.props.activeItem;
+        : this.state.activeItem || this.props.activeItem
       return child && React.cloneElement(child, {
         activeItem: activeItemName,
         callbackParent: this.handleClickItem,
-      });
-    });
-    const props = getUnhandledProps(this);
+      })
+    })
+    const props = getUnhandledProps(this)
     return (
       <div {...props} className={classes}>
         {children}
       </div>
-    );
+    )
   }
 }

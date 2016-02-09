@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {Buttons, Button} from 'stardust';
+import React, { Component } from 'react'
+import { Buttons, Button } from 'stardust'
 
 export default class ButtonConditionalsExample extends Component {
   render() {
@@ -9,6 +9,6 @@ export default class ButtonConditionalsExample extends Component {
         <div className='or' />
         <Button className='positive'>Save</Button>
       </Buttons>
-    );
+    )
   }
 }

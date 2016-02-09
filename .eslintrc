@@ -1,6 +1,6 @@
 {
   "extends": [
     "ta",
-    "ta/frontend",
+    "ta/frontend"
   ]
 }

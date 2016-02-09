@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
-import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection';
-import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample';
+import React, { Component } from 'react'
+import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
+import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
 
 export default class TableVariationsExamples extends Component {
   render() {
@@ -12,6 +12,6 @@ export default class TableVariationsExamples extends Component {
           examplePath='collections/Table/Variations/TableSelectableExample'
         />
       </ExampleSection>
-    );
+    )
   }
 }

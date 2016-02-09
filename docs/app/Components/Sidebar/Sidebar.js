@@ -1,20 +1,20 @@
-import _ from 'lodash';
-import React, {Component} from 'react';
-import stardust, {Menu, MenuItem, Input} from 'stardust';
-import META from 'src/utils/Meta';
+import _ from 'lodash'
+import React, { Component } from 'react'
+import stardust, { Menu, MenuItem, Input } from 'stardust'
+import META from 'src/utils/Meta'
 
 export default class Sidebar extends Component {
-  state = {query: ''};
+  state = { query: '' };
 
-  handleSearchChange = e => this.setState({query: e.target.value});
+  handleSearchChange = e => this.setState({ query: e.target.value });
 
   getComponentsByQuery() {
     return _.filter(stardust, component => {
-      const name = component._meta.name;
-      const isParent = META.isParent(component);
-      const isQueryMatch = new RegExp(this.state.query, 'i').test(name);
-      return isParent && isQueryMatch;
-    });
+      const name = component._meta.name
+      const isParent = META.isParent(component)
+      const isQueryMatch = new RegExp(this.state.query, 'i').test(name)
+      return isParent && isQueryMatch
+    })
   }
 
   getComponentsByType = type => {
@@ -22,29 +22,29 @@ export default class Sidebar extends Component {
       .filter(component => META.isType(component, type))
       .sortBy((component, name) => name)
       .map(component => {
-        const name = component._meta.name;
-        return <MenuItem key={name} name={name} href={`#${name}`} />;
+        const name = component._meta.name
+        return <MenuItem key={name} name={name} href={`#${name}`} />
       })
-      .value();
+      .value()
 
     const subMenu = (
       <div className='item'>
         <div className='header'>{_.capitalize(type)}s</div>
         <div className='menu'>{items}</div>
       </div>
-    );
+    )
 
-    return items && subMenu;
+    return items && subMenu
   };
 
   render() {
-    const elements = this.getComponentsByType(META.type.element);
-    const collections = this.getComponentsByType(META.type.collection);
-    const views = this.getComponentsByType(META.type.view);
-    const modules = this.getComponentsByType(META.type.module);
+    const elements = this.getComponentsByType(META.type.element)
+    const collections = this.getComponentsByType(META.type.collection)
+    const views = this.getComponentsByType(META.type.view)
+    const modules = this.getComponentsByType(META.type.module)
 
     return (
-      <Menu className='inverted secondary vertical fluid' style={{margin: 0}}>
+      <Menu className='inverted secondary vertical fluid' style={{ margin: 0 }}>
         <MenuItem>
           <Input
             className='transparent inverted icon'
@@ -59,6 +59,6 @@ export default class Sidebar extends Component {
         {views}
         {modules}
       </Menu>
-    );
+    )
   }
 }

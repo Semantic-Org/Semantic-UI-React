@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
-import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample';
-import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection';
+import React, { Component } from 'react'
+import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
+import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
 
 export default class InputTypesExamples extends Component {
   render() {
@@ -12,6 +12,6 @@ export default class InputTypesExamples extends Component {
           examplePath='elements/Input/Types/InputInputExample'
         />
       </ExampleSection>
-    );
+    )
   }
 }

@@ -1,13 +1,13 @@
-import React, {Component} from 'react';
-import META from '../../utils/Meta';
-import _Header from './_Header';
-import H1 from './H1';
-import H2 from './H2';
-import H3 from './H3';
-import H4 from './H4';
-import H5 from './H5';
-import H6 from './H6';
-import Subheader from './Subheader';
+import React, { Component } from 'react'
+import META from '../../utils/Meta'
+import _Header from './_Header'
+import H1 from './H1'
+import H2 from './H2'
+import H3 from './H3'
+import H4 from './H4'
+import H5 from './H5'
+import H6 from './H6'
+import Subheader from './Subheader'
 
 export default class Header extends Component {
   static _meta = {
@@ -25,6 +25,6 @@ export default class Header extends Component {
   render() {
     return (
       <_Header {...this.props} _headerElement='div'/>
-    );
+    )
   }
 }

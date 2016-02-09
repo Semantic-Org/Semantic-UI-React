@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {Header} from 'stardust';
+import React, { Component } from 'react'
+import { Header } from 'stardust'
 
 export default class HeaderColoredExample extends Component {
   render() {
@@ -18,6 +18,6 @@ export default class HeaderColoredExample extends Component {
         <Header.H4 className='brown'>Brown</Header.H4>
         <Header.H4 className='grey'>Grey</Header.H4>
       </div>
-    );
+    )
   }
 }

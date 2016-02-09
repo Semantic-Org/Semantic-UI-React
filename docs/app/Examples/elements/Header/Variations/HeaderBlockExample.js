@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {Header} from 'stardust';
+import React, { Component } from 'react'
+import { Header } from 'stardust'
 
 export default class HeaderBlockExample extends Component {
   render() {
@@ -7,6 +7,6 @@ export default class HeaderBlockExample extends Component {
       <Header.H3 className='block'>
         Block Header
       </Header.H3>
-    );
+    )
   }
 }
