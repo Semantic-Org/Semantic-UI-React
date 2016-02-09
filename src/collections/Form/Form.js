@@ -9,6 +9,8 @@ export default class Form extends Component {
     children: PropTypes.node,
     className: PropTypes.string,
     settings: PropTypes.object,
+    validate: PropTypes.bool,
+    validateInline: PropTypes.bool,
   };
 
   componentDidMount() {
