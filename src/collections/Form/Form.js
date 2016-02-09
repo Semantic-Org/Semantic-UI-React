@@ -27,15 +27,23 @@ const pluginPropTypes = {
   fields: PropTypes.object,
 }
 
-@deprecate.props({
-  settings: 'Use a separate prop for each setting.',
-})
 export default class Form extends Component {
   static propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
-    settings: PropTypes.object,
+    settings: PropTypes.shape({
+      on: PropTypes.string,
+      inline: PropTypes.bool,
+      fields: PropTypes.object,
+    }),
   };
+
+  constructor(props, context) {
+    super(props, context)
+    deprecate.props(this, {
+      settings: 'Use a separate prop for each setting.',
+    })
+  }
 
   componentDidMount() {
     this.refresh()
