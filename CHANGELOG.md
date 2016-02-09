@@ -11,6 +11,7 @@
 
 **Merged pull requests:**
 
+- Update linter \(eslint-config-ta\) [\#163](https://github.com/TechnologyAdvice/stardust/pull/163) ([levithomason](https://github.com/levithomason))
 - Update doc site Semantic UI to 2.1.8 [\#162](https://github.com/TechnologyAdvice/stardust/pull/162) ([levithomason](https://github.com/levithomason))
 
 ## [v0.11.0](https://github.com/TechnologyAdvice/stardust/tree/v0.11.0) (2016-02-05)
