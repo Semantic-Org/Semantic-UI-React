@@ -29,6 +29,7 @@ const pluginPropTypes = {
 
 export default class Form extends Component {
   static propTypes = {
+    ...pluginPropTypes,
     children: PropTypes.node,
     className: PropTypes.string,
     settings: PropTypes.shape({
