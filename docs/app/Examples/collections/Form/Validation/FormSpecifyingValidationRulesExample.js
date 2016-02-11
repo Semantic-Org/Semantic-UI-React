@@ -24,7 +24,7 @@ const skillsOptions = [
 ]
 
 const FormSpecifyingValidationRulesExample = (props) => (
-  <Form className='segment' fields={fields} onSuccess={() => false}>
+  <Form className='segment' fields={fields}>
     <p>Tell Us About Yourself</p>
     <Fields evenlyDivided>
       <Field>

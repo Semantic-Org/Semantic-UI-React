@@ -10,7 +10,7 @@ const fields = {
 }
 
 const FormValidatingOnBlurAndOtherEventsExample = (props) => (
-  <Form className='segment' fields={fields} on='blur' inline onSuccess={() => false}>
+  <Form className='segment' fields={fields} on='blur' inline>
     <p>Let's go ahead and get you signed up.</p>
     <Fields evenlyDivided>
       <Field>

@@ -39,6 +39,12 @@ export default class Form extends Component {
     }),
   };
 
+  static defaultProps = {
+    // prevent submit by default
+    // https://github.com/Semantic-Org/Semantic-UI/issues/546
+    onSuccess: () => false,
+  };
+
   constructor(props, context) {
     super(props, context)
     deprecate.props(this, {
