@@ -3,17 +3,61 @@ import $ from 'jquery'
 import React, { Component, PropTypes } from 'react'
 import classNames from 'classnames'
 import META from '../../utils/Meta'
+import { getPluginProps, getComponentProps } from '../../utils/propUtils'
+import * as deprecate from '../../utils/deprecate'
+
+const pluginPropTypes = {
+  // form settings
+  keyboardShortcuts: PropTypes.bool,
+  on: PropTypes.oneOf([
+    'blur',
+    'change',
+    'submit',
+  ]),
+  revalidate: PropTypes.bool,
+  delay: PropTypes.bool,
+  inline: PropTypes.bool,
+  transition: PropTypes.string,
+  duration: PropTypes.number,
+  // callbacks
+  onValid: PropTypes.func,
+  onInvalid: PropTypes.func,
+  onSuccess: PropTypes.func,
+  onFailure: PropTypes.func,
+  fields: PropTypes.object,
+}
 
 export default class Form extends Component {
   static propTypes = {
+    ...pluginPropTypes,
     children: PropTypes.node,
     className: PropTypes.string,
-    settings: PropTypes.object,
+    settings: PropTypes.shape({
+      on: PropTypes.string,
+      inline: PropTypes.bool,
+      fields: PropTypes.object,
+    }),
   };
 
+  static defaultProps = {
+    // prevent submit by default
+    // https://github.com/Semantic-Org/Semantic-UI/issues/546
+    onSuccess: () => false,
+  };
+
+  constructor(props, context) {
+    super(props, context)
+    deprecate.props(this, {
+      settings: 'Use a separate prop for each setting.',
+    })
+  }
+
   componentDidMount() {
-    this.element = $(this.refs.element)
-    this.element.form(this.props.settings)
+    this.refresh()
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    this.refresh()
   }
 
   componentWillUnmount() {
@@ -22,6 +66,11 @@ export default class Form extends Component {
 
   plugin() {
     return this.element.form(...arguments)
+  }
+
+  refresh() {
+    this.element = $(this.refs.element)
+    this.element.form(getPluginProps(this.props, pluginPropTypes))
   }
 
   serializeJson = () => {
@@ -66,8 +115,9 @@ export default class Form extends Component {
       this.props.className,
       'form'
     )
+    const props = getComponentProps(this.props, pluginPropTypes)
     return (
-      <form {...this.props} className={classes} ref='element'>
+      <form {...props} className={classes} ref='element'>
         {this.props.children}
       </form>
     )
