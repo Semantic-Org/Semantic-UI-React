@@ -6,11 +6,13 @@
 
 **Fixed bugs:**
 
+- Form props are not passed to settings \(prevent submit\) [\#160](https://github.com/TechnologyAdvice/stardust/issues/160)
 - \[Segment\] Piled Segments not piling [\#116](https://github.com/TechnologyAdvice/stardust/issues/116)
 - Radium integration Issue [\#104](https://github.com/TechnologyAdvice/stardust/issues/104)
 
 **Merged pull requests:**
 
+- Support Form settings and callback props [\#165](https://github.com/TechnologyAdvice/stardust/pull/165) ([levithomason](https://github.com/levithomason))
 - Update linter \(eslint-config-ta\) [\#163](https://github.com/TechnologyAdvice/stardust/pull/163) ([levithomason](https://github.com/levithomason))
 - Update doc site Semantic UI to 2.1.8 [\#162](https://github.com/TechnologyAdvice/stardust/pull/162) ([levithomason](https://github.com/levithomason))
 
