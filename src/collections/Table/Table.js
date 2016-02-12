@@ -3,6 +3,7 @@ import React, { Children, Component, PropTypes } from 'react'
 import classNames from 'classnames'
 import { customPropTypes } from '../../utils/propUtils'
 import META from '../../utils/Meta'
+import TableColumn from './TableColumn'
 
 export default class Table extends Component {
   static propTypes = {
@@ -36,6 +37,8 @@ export default class Table extends Component {
     // React cannot render objects, stringify them instead
     return _.isObject(content) ? JSON.stringify(content) : content
   }
+
+  static Column = TableColumn;
 
   _isRowSelected(index) {
     return _.includes(this.state.selectedRows, index)
