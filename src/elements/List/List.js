@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import classNames from 'classnames'
 import META from '../../utils/Meta'
+import ListItem from './ListItem'
 
 export default class List extends Component {
   static propTypes = {
@@ -13,6 +14,8 @@ export default class List extends Component {
     name: 'List',
     type: META.type.element,
   };
+
+  static Item = ListItem;
 
   render() {
     const classes = classNames(
