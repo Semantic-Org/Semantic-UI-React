@@ -90,12 +90,13 @@ const stardust = {
   Statistic,
 }
 
-deprecateComponents(stardust, {
-  TableColumn: `Use "Table.Column" instead.`,
-  ListItem: `Use "List.Item" instead.`,
-  ModalContent: `Use "Modal.Content" instead.`,
-  ModalFooter: `Use "Modal.Footer" instead.`,
-  ModalHeader: `Use "Modal.Header" instead.`,
-})
+deprecateComponents(stardust, [
+  [TableColumn, `Use "Table.Column" instead.`],
+  [ListItem, `Use "List.Item" instead.`],
+  [MenuItem, `Use "List.Item" instead.`],
+  [ModalContent, `Use "Modal.Content" instead.`],
+  [ModalFooter, `Use "Modal.Footer" instead.`],
+  [ModalHeader, `Use "Modal.Header" instead.`],
+])
 
 export default stardust
