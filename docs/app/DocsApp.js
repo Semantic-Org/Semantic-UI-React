@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { render } from 'react-dom'
-import stardust, { Grid, Column } from 'stardust'
+import stardust, { Grid } from 'stardust'
 
 import ComponentDoc from 'docs/app/Components/ComponentDoc/ComponentDoc'
 import DocsMenu from 'Components/Sidebar/Sidebar'
@@ -21,9 +21,9 @@ class DocsApp extends Component {
         </div>
         <div style={style.main}>
           <Grid className='padded'>
-            <Column>
+            <Grid.Column>
               {components}
-            </Column>
+            </Grid.Column>
           </Grid>
         </div>
       </div>

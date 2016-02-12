@@ -50,12 +50,10 @@ const stardust = {
   Textarea,
 
   // Collections
-  Column,
   Field,
   Fields,
   Form,
   Grid,
-  Row,
   Menu,
   Message,
   Table,
@@ -85,12 +83,14 @@ const stardust = {
 }
 
 deprecateComponents(stardust, [
+  [Column, `Use "Grid.Column" instead.`],
   [TableColumn, `Use "Table.Column" instead.`],
   [ListItem, `Use "List.Item" instead.`],
   [MenuItem, `Use "List.Item" instead.`],
   [ModalContent, `Use "Modal.Content" instead.`],
   [ModalFooter, `Use "Modal.Footer" instead.`],
   [ModalHeader, `Use "Modal.Header" instead.`],
+  [Row, `Use "Grid.Row" instead.`],
 ])
 
 export default stardust

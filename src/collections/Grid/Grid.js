@@ -1,6 +1,8 @@
 import classNames from 'classnames'
 import React, { Component, PropTypes } from 'react'
 import META from '../../utils/Meta'
+import Column from './Column'
+import Row from './Row'
 
 export default class Grid extends Component {
   static propTypes = {
@@ -13,6 +15,9 @@ export default class Grid extends Component {
     name: 'Grid',
     type: META.type.collection,
   };
+
+  static Column = Column;
+  static Row = Row;
 
   render() {
     const classes = classNames(
