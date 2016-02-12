@@ -57,10 +57,8 @@ const stardust = {
   Grid,
   Row,
   Menu,
-  MenuItem,
   Message,
   Table,
-  TableColumn,
 
   // Elements
   Button,
@@ -71,7 +69,6 @@ const stardust = {
   Image,
   Input,
   List,
-  ListItem,
   Segment,
   Segments,
 
@@ -79,9 +76,6 @@ const stardust = {
   Checkbox,
   Dropdown,
   Modal,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
   Progress,
 
   // Views
