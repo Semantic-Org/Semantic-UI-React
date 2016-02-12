@@ -1,3 +1,5 @@
+import { deprecateSubComponents } from './utils/deprecate'
+
 // Addons
 import Confirm from './addons/Confirm/Confirm'
 import Textarea from './addons/Textarea/Textarea'
@@ -87,5 +89,13 @@ const stardust = {
   Items,
   Statistic,
 }
+
+deprecateSubComponents(stardust, [
+  TableColumn,
+  ListItem,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+])
 
 export default stardust
