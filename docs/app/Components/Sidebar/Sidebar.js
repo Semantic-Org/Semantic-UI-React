@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
-import stardust, { Menu, MenuItem, Input } from 'stardust'
+import stardust, { Menu, Input } from 'stardust'
 import META from 'src/utils/Meta'
 
 export default class Sidebar extends Component {
@@ -23,7 +23,7 @@ export default class Sidebar extends Component {
       .sortBy((component, name) => name)
       .map(component => {
         const name = component._meta.name
-        return <MenuItem key={name} name={name} href={`#${name}`} />
+        return <Menu.Item key={name} name={name} href={`#${name}`} />
       })
       .value()
 
@@ -45,7 +45,7 @@ export default class Sidebar extends Component {
 
     return (
       <Menu className='inverted secondary vertical fluid' style={{ margin: 0 }}>
-        <MenuItem>
+        <Menu.Item>
           <Input
             className='transparent inverted icon'
             icon='search'
@@ -53,7 +53,7 @@ export default class Sidebar extends Component {
             iconClass='search link icon'
             onChange={this.handleSearchChange}
           />
-        </MenuItem>
+        </Menu.Item>
         {elements}
         {collections}
         {views}
