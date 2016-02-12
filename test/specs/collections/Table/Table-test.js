@@ -2,7 +2,7 @@ import _ from 'lodash'
 import faker from 'faker'
 import React from 'react'
 import { Simulate } from 'react-addons-test-utils'
-import { Table, TableColumn } from 'stardust'
+import { Table } from 'stardust'
 import sandbox from 'test/utils/Sandbox-util'
 
 describe('Table', () => {
@@ -58,7 +58,7 @@ describe('Table', () => {
         const rowItem = { name: 'bob' }
         const row = render(
           <Table className='selectable' onSelectRow={spy} data={[rowItem]}>
-            <TableColumn dataKey='name' />
+            <Table.Column dataKey='name' />
           </Table>
         )
           .scryClass('sd-table-row')[0]
@@ -74,7 +74,7 @@ describe('Table', () => {
     it('uses Start Cased column dataKey as the default content', () => {
       render(
         <Table data={tableData}>
-          <TableColumn dataKey='firstName' />
+          <Table.Column dataKey='firstName' />
         </Table>
       )
         .findClass('sd-table-header')
@@ -84,7 +84,7 @@ describe('Table', () => {
     it('renders contents with headerRenderer', () => {
       render(
         <Table data={tableData}>
-          <TableColumn dataKey={randomDataKey} headerRenderer={() => 'YO!'} />
+          <Table.Column dataKey={randomDataKey} headerRenderer={() => 'YO!'} />
         </Table>
       )
         .findClass('sd-table-header')
@@ -96,7 +96,7 @@ describe('Table', () => {
     it('uses object values as default contents', () => {
       render(
         <Table data={tableData}>
-          <TableColumn dataKey={randomDataKey} />
+          <Table.Column dataKey={randomDataKey} />
         </Table>
       )
         .scryClass('sd-table-cell')
@@ -110,7 +110,7 @@ describe('Table', () => {
     it('renders contents with the cellRenderer', () => {
       render(
         <Table data={tableData}>
-          <TableColumn dataKey={randomDataKey} cellRenderer={() => 'REDACTED'} />
+          <Table.Column dataKey={randomDataKey} cellRenderer={() => 'REDACTED'} />
         </Table>
       )
         .scryClass('sd-table-cell')
@@ -123,7 +123,7 @@ describe('Table', () => {
       // use the permissions key here as it is an object
       render(
         <Table data={tableData}>
-          <TableColumn dataKey='permissions' />
+          <Table.Column dataKey='permissions' />
         </Table>
       )
         .scryClass('sd-table-cell')
@@ -137,7 +137,7 @@ describe('Table', () => {
     it('only contains cells that were defined in TableColumns', () => {
       render(
         <Table data={tableData}>
-          <TableColumn dataKey={randomDataKey} />
+          <Table.Column dataKey={randomDataKey} />
         </Table>
       )
         .scryClass('sd-table-cell')
@@ -160,7 +160,7 @@ describe('Table', () => {
     beforeEach(() => {
       rows = render(
         <Table className='selectable' data={[{ row: 1 }, { row: 2 }]}>
-          <TableColumn dataKey='row' />
+          <Table.Column dataKey='row' />
         </Table>
       )
         .scryClass('sd-table-row')
@@ -195,7 +195,7 @@ describe('Table', () => {
     it('unselects all rows', () => {
       const tree = render(
         <Table className='selectable' data={tableData} onSortChange={_.noop}>
-          <TableColumn dataKey={randomDataKey} />
+          <Table.Column dataKey={randomDataKey} />
         </Table>
       )
 
