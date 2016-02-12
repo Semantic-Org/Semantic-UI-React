@@ -1,4 +1,4 @@
-import { deprecateSubComponents } from './utils/deprecate'
+import { deprecateComponents } from './utils/deprecate'
 
 // Addons
 import Confirm from './addons/Confirm/Confirm'
@@ -90,12 +90,12 @@ const stardust = {
   Statistic,
 }
 
-deprecateSubComponents(stardust, [
-  TableColumn,
-  ListItem,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
-])
+deprecateComponents(stardust, {
+  TableColumn: `Use "Table.Column" instead.`,
+  ListItem: `Use "List.Item" instead.`,
+  ModalContent: `Use "Modal.Content" instead.`,
+  ModalFooter: `Use "Modal.Footer" instead.`,
+  ModalHeader: `Use "Modal.Header" instead.`,
+})
 
 export default stardust

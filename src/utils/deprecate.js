@@ -17,18 +17,19 @@ export const deprecateProps = (context, deprecated) => {
 }
 
 /**
- * Show a deprecated warning for sub components.
+ * Show a deprecated warning for Stardust components.
  * @param {object} stardust A reference to Stardust.
- * @param {React.Component[]} subComponents The components to deprecate.
+ * @param {object} deprecated Keys/values are deprecated components/warning messages.
+ *   The component name and "is deprecated" is automatically added.
+ *   Only add help messages as values.
  */
-export const deprecateSubComponents = (stardust, subComponents) => {
-  subComponents.forEach(SubComponent => {
-    const name = SubComponent.prototype.constructor.name
-    const newName = _.words(name).join('.')
-    Object.defineProperty(stardust, name, {
+export const deprecateComponents = (stardust, deprecated) => {
+  _.each(deprecated, (warning, componentName) => {
+    const component = stardust[componentName]
+    Object.defineProperty(stardust, componentName, {
       get() {
-        console.warn(`Stardust component "${name}" is deprecated. Use "${newName}" instead.`)
-        return SubComponent
+        console.warn(`Stardust component "${componentName}" is deprecated. ${warning}`)
+        return component
       },
     })
   })
