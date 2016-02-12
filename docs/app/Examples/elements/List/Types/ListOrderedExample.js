@@ -1,19 +1,19 @@
 import React, { Component } from 'react'
-import { List, ListItem } from 'stardust'
+import { List } from 'stardust'
 
 export default class ListOrderedExample extends Component {
   render() {
     return (
       <List className='ordered'>
-        <ListItem description='Apples'>
+        <List.Item description='Apples'>
           <List>
-            <ListItem description='Fuji' />
-            <ListItem description='Granny Smith' />
-            <ListItem description='Honeycrisp' />
+            <List.Item description='Fuji' />
+            <List.Item description='Granny Smith' />
+            <List.Item description='Honeycrisp' />
           </List>
-        </ListItem>
-        <ListItem description='Pears' />
-        <ListItem description='Oranges' />
+        </List.Item>
+        <List.Item description='Pears' />
+        <List.Item description='Oranges' />
       </List>
     )
   }

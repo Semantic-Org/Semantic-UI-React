@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { List, ListItem, Image } from 'stardust'
+import { List, Image } from 'stardust'
 import faker from 'faker'
 
 export default class ListSizeSmallExample extends Component {
@@ -9,9 +9,9 @@ export default class ListSizeSmallExample extends Component {
     const danielAvatar = <Image className='avatar' src={faker.image.avatar()} />
     return (
       <List className='small horizontal divided'>
-        <ListItem image={helenAvatar} header='Helen' />
-        <ListItem image={christianAvatar} header='Christian' />
-        <ListItem image={danielAvatar} header='Daniel' />
+        <List.Item image={helenAvatar} header='Helen' />
+        <List.Item image={christianAvatar} header='Christian' />
+        <List.Item image={danielAvatar} header='Daniel' />
       </List>
     )
   }

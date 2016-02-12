@@ -1,6 +1,6 @@
 import faker from 'faker'
 import React, { Component } from 'react'
-import { List, ListItem, Image } from 'stardust'
+import { List, Image } from 'stardust'
 
 export default class ListHorizontalExample extends Component {
   render() {
@@ -9,9 +9,9 @@ export default class ListHorizontalExample extends Component {
     const image3 = <Image className='avatar' src={faker.image.city(100, 100)} />
     return (
       <List className='horizontal'>
-        <ListItem image={image1} header='Chicago' description='This city is located in the state of Illinois' />
-        <ListItem image={image2} header='Indianapolis' description='This city is located in the state of Indiana' />
-        <ListItem image={image3} header='Nashville' description='This city is located in the state of Tennessee' />
+        <List.Item image={image1} header='Chicago' description='This city is located in the state of Illinois' />
+        <List.Item image={image2} header='Indianapolis' description='This city is located in the state of Indiana' />
+        <List.Item image={image3} header='Nashville' description='This city is located in the state of Tennessee' />
       </List>
     )
   }

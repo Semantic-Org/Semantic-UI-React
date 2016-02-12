@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { List, ListItem } from 'stardust'
+import { List } from 'stardust'
 
 export default class ListLinkExample extends Component {
   render() {
@@ -8,9 +8,9 @@ export default class ListLinkExample extends Component {
     const link3 = <a>Where is our office located?</a>
     return (
       <List>
-        <ListItem description={link1} />
-        <ListItem description={link2} />
-        <ListItem description={link3} />
+        <List.Item description={link1} />
+        <List.Item description={link2} />
+        <List.Item description={link3} />
       </List>
     )
   }
