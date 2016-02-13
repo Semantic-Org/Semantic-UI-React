@@ -6,8 +6,8 @@ import Textarea from './addons/Textarea/Textarea'
 
 // Collections
 import Column from './collections/Grid/Column'
-import Field from './collections/Form/Field'
-import Fields from './collections/Form/Fields'
+import { default as Field } from './collections/Form/FormField'
+import { default as Fields } from './collections/Form/FormFields'
 import Form from './collections/Form/Form'
 import Grid from './collections/Grid/Grid'
 import Row from './collections/Grid/Row'
@@ -50,8 +50,6 @@ const stardust = {
   Textarea,
 
   // Collections
-  Field,
-  Fields,
   Form,
   Grid,
   Menu,
@@ -83,6 +81,8 @@ const stardust = {
 }
 
 deprecateComponents(stardust, [
+  [Field, 'Use "Form.Field" instead.'],
+  [Fields, 'Use "Form.Fields" instead.'],
   [Column, `Use "Grid.Column" instead.`],
   [TableColumn, `Use "Table.Column" instead.`],
   [ListItem, `Use "List.Item" instead.`],
