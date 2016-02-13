@@ -118,9 +118,9 @@ export default class Input extends Component {
 export default class Input extends Component {
   render() {
     return (
-      <Field
+      <Form.Field
         <input className='sd-input' />
-      </Field>
+      </Form.Field>
     );
   }
 }
@@ -189,26 +189,26 @@ All magic is noted in the documentation examples.
 **Always**
 
 ```jsx
-<Field className='inherit-this' />
+<Form.Field className='inherit-this' />
 // => <div className='sd-field inherit-this field>...
 ```
 
 **Never**
 
 ```jsx
-<Field className='inherit-this' />
+<Form.Field className='inherit-this' />
 // => <div className='sd-field field>...
 ```
 >className was not inherited
 
 ```jsx
-<Field className='inherit-this' />
+<Form.Field className='inherit-this' />
 // => <div className='inherit-this sd-field field>...
 ```
 >className was inherited before sd-field
 
 ```jsx
-<Field className='inherit-this' />
+<Form.Field className='inherit-this' />
 // => <div className='inherit-this sd-field field>...
 ```
 >className was not inherited before sd-field

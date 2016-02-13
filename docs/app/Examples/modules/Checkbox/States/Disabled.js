@@ -5,12 +5,12 @@ export default class CheckboxDisabledExample extends Component {
   render() {
     return (
       <Form>
-        <Field>
+        <Form.Field>
           <Checkbox className='disabled' label='Disabled' />
-        </Field>
-        <Field>
+        </Form.Field>
+        <Form.Field>
           <Checkbox className='toggle' disabled label='Disabled' />
-        </Field>
+        </Form.Field>
       </Form>
     )
   }

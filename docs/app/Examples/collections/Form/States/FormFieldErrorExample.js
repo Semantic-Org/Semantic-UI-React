@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
-import { Field, Form, Input } from 'stardust'
+import { Form, Input } from 'stardust'
 
 export default class FormFieldErrorExample extends Component {
   render() {
     return (
       <Form>
-        <Field label='First name' className='error'>
+        <Form.Field label='First name' className='error'>
           <Input placeholder='First name' />
-        </Field>
+        </Form.Field>
       </Form>
     )
   }

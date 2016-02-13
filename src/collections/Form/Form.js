@@ -5,6 +5,8 @@ import classNames from 'classnames'
 import META from '../../utils/Meta'
 import { getPluginProps, getComponentProps } from '../../utils/propUtils'
 import { deprecateProps } from '../../utils/deprecate'
+import Field from './Field'
+import Fields from './Fields'
 
 const pluginPropTypes = {
   // form settings
@@ -64,6 +66,15 @@ export default class Form extends Component {
     this.element.off()
   }
 
+  static _meta = {
+    library: META.library.semanticUI,
+    name: 'Form',
+    type: META.type.collection,
+  };
+
+  static Field = Field;
+  static Fields = Fields;
+
   plugin() {
     return this.element.form(...arguments)
   }
@@ -100,12 +111,6 @@ export default class Form extends Component {
     })
 
     return json
-  };
-
-  static _meta = {
-    library: META.library.semanticUI,
-    name: 'Form',
-    type: META.type.collection,
   };
 
   render() {

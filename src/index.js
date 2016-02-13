@@ -50,8 +50,6 @@ const stardust = {
   Textarea,
 
   // Collections
-  Field,
-  Fields,
   Form,
   Grid,
   Menu,
@@ -83,6 +81,8 @@ const stardust = {
 }
 
 deprecateComponents(stardust, [
+  [Field, 'Use "Form.Field" instead.'],
+  [Fields, 'Use "Form.Fields" instead.'],
   [Column, `Use "Grid.Column" instead.`],
   [TableColumn, `Use "Table.Column" instead.`],
   [ListItem, `Use "List.Item" instead.`],
