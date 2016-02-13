@@ -15,7 +15,7 @@ export default class HeaderSubheader extends Component {
   };
   render() {
     const classes = classNames(
-      'sd-sub',
+      'sd-sub-header',
       'sub',
       this.props.className,
       'header',

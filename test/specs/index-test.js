@@ -1,3 +1,4 @@
+/* eslint-disable */
 import _ from 'lodash'
 import path from 'path'
 import stardust from 'stardust'
@@ -9,33 +10,39 @@ const componentCtx = require.context(
   /(addons|collections|elements|modules|views).*\.js$/
 )
 
-const componentNames = _.map(componentCtx.keys(), key => {
-  return path.basename(key).replace('.js', '')
+console.log(componentCtx.keys().map(componentCtx))
+const componentFilenames = _.map(componentCtx.keys(), key => {
+  return path.basename(key, '.js')
 })
 
 describe('stardust (index.js)', () => {
-  _.each(componentNames, name => {
-    const nameWithoutPrefix = _.words(name).splice(1).join('')                           // => HeaderH1 => H1
-    const isPrivate = META.isPrivate(name)
-    const isStardustProp = _.has(stardust, name) || _.has(stardust, nameWithoutPrefix)   // => stardust.H1
-    const isSubComponent = _.some(stardust, name) || _.some(stardust, nameWithoutPrefix) // => stardust.Header.H1
+  _.each(componentFilenames, filename => {
+    const nameWithoutPrefix = _.words(filename).splice(1).join('')                           // => HeaderH1 => H1
+    const isPrivate = META.isPrivate(filename)
+    const isStardustProp = _.has(stardust, filename) || _.has(stardust, nameWithoutPrefix)   // => stardust.H1
+    const isSubComponent = _.some(stardust, filename) || _.some(stardust, nameWithoutPrefix) // => stardust.Header.H1
+
+    if (filename === 'Statistics') {
+      console.log(stardust)
+      // debugger
+    }
 
     if (isPrivate) {
-      it(`does not expose private component "${name}"`, () => {
+      it(`does not expose private component "${filename}"`, () => {
         expect(!isStardustProp).to.equal(true,
-          `"${name}" is private (starts with  "_"), it cannot be a key on the stardust object`
+          `"${filename}" is private (starts with  "_"), it cannot be a key on the stardust object`
         )
 
         expect(!isSubComponent).to.equal(true,
-          `"${name}" is private (starts with "_"), it cannot be a static prop of another component (sub-component)`
+          `"${filename}" is private (starts with "_"), it cannot be a static prop of another component (sub-component)`
         )
       })
     }
 
     if (!isPrivate) {
-      it(`exposes public component "${name}"`, () => {
-        expect(!isStardustProp && !isSubComponent).to.equal(false,
-          `"${name}" must be: a key on stardust || key on another component (sub-component) || private (start with "_")`
+      it(`exposes public component "${filename}"`, () => {
+        expect(isStardustProp || isSubComponent).to.equal(true,
+          `"${filename}" must be: a key on stardust || key on another component (sub-component) || private (start with "_")`
         )
       })
     }
