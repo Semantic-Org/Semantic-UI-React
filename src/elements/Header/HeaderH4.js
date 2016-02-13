@@ -2,16 +2,16 @@ import React, { Component } from 'react'
 import META from '../../utils/Meta'
 import _Header from './_Header'
 
-export default class H6 extends Component {
+export default class HeaderH4 extends Component {
   static _meta = {
     library: META.library.semanticUI,
-    name: 'H6',
+    name: 'H4',
     type: META.type.element,
   };
 
   render() {
     return (
-      <_Header {...this.props} _headerElement='h6'/>
+      <_Header {...this.props} _headerElement='h4'/>
     )
   }
 }

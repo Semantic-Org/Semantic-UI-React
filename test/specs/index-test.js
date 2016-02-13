@@ -15,10 +15,10 @@ const componentNames = _.map(componentCtx.keys(), key => {
 
 describe('stardust (index.js)', () => {
   _.each(componentNames, name => {
-    const shortName = _.words(name)[1]                                           // => FormField => Field
+    const nameWithoutPrefix = _.words(name).splice(1).join('')                           // => HeaderH1 => H1
     const isPrivate = META.isPrivate(name)
-    const isStardustProp = _.has(stardust, name) || _.has(stardust, shortName)   // => stardust.H1
-    const isSubComponent = _.some(stardust, name)                                // => stardust.Header.H1
+    const isStardustProp = _.has(stardust, name) || _.has(stardust, nameWithoutPrefix)   // => stardust.H1
+    const isSubComponent = _.some(stardust, name) || _.some(stardust, nameWithoutPrefix) // => stardust.Header.H1
 
     if (isPrivate) {
       it(`does not expose private component "${name}"`, () => {

@@ -1,28 +1,30 @@
-import classNames from 'classnames'
 import React, { Component, PropTypes } from 'react'
+import classNames from 'classnames'
 import META from '../../utils/Meta'
+import getUnhandledProps from '../../utils/getUnhandledProps'
 
-export default class Row extends Component {
+export default class HeaderSubheader extends Component {
   static propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
   };
-
   static _meta = {
     library: META.library.semanticUI,
-    name: 'Row',
-    type: META.type.collection,
-    parent: 'Grid',
+    name: 'Subheader',
+    type: META.type.element,
   };
-
   render() {
     const classes = classNames(
-      'sd-row',
+      'sd-sub',
+      'sub',
       this.props.className,
-      'row'
+      'header',
     )
+
+    const props = getUnhandledProps(this)
+
     return (
-      <div {...this.props} className={classes}>
+      <div {...props} className={classes}>
         {this.props.children}
       </div>
     )

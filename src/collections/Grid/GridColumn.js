@@ -4,7 +4,7 @@ import React, { Component, PropTypes } from 'react'
 import numberToWord from '../../utils/numberToWord'
 import META from '../../utils/Meta.js'
 
-export default class Column extends Component {
+export default class GridColumn extends Component {
   static propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
