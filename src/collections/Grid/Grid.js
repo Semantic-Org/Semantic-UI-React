@@ -1,8 +1,8 @@
 import classNames from 'classnames'
 import React, { Component, PropTypes } from 'react'
 import META from '../../utils/Meta'
-import Column from './Column'
-import Row from './Row'
+import GridColumn from './GridColumn'
+import GridRow from './GridRow'
 
 export default class Grid extends Component {
   static propTypes = {
@@ -16,15 +16,15 @@ export default class Grid extends Component {
     type: META.type.collection,
   };
 
-  static Column = Column;
-  static Row = Row;
+  static Column = GridColumn;
+  static Row = GridRow;
 
   render() {
     const classes = classNames(
       'sd-grid',
       'ui',
       this.props.className,
-      'grid',
+      'grid'
     )
     return (
       <div {...this.props} className={classes}>
