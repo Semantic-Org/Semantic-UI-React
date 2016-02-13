@@ -6,8 +6,8 @@ import { customPropTypes } from '../../utils/propUtils'
 import META from '../../utils/Meta'
 
 import Statistics from './Statistics'
-import Label from './Label'
-import Value from './Value'
+import StatisticLabel from './StatisticLabel'
+import StatisticValue from './StatisticValue'
 
 export default class Statistic extends Component {
   static propTypes = {
@@ -22,8 +22,8 @@ export default class Statistic extends Component {
   };
 
   static Statistics = Statistics;
-  static Label = Label;
-  static Value = Value;
+  static Label = StatisticLabel;
+  static Value = StatisticValue;
 
   render() {
     const classes = classNames(
