@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import META from '../../utils/Meta'
 import _Header from './_Header'
-import H1 from './H1'
-import H2 from './H2'
-import H3 from './H3'
-import H4 from './H4'
-import H5 from './H5'
-import H6 from './H6'
+import HeaderH1 from './HeaderH1'
+import HeaderH2 from './HeaderH2'
+import HeaderH3 from './HeaderH3'
+import HeaderH4 from './HeaderH4'
+import HeaderH5 from './HeaderH5'
+import HeaderH6 from './HeaderH6'
 import Subheader from './Subheader'
 
 export default class Header extends Component {
@@ -15,12 +15,12 @@ export default class Header extends Component {
     name: 'Header',
     type: META.type.element,
   };
-  static H1 = H1;
-  static H2 = H2;
-  static H3 = H3;
-  static H4 = H4;
-  static H5 = H5;
-  static H6 = H6;
+  static H1 = HeaderH1;
+  static H2 = HeaderH2;
+  static H3 = HeaderH3;
+  static H4 = HeaderH4;
+  static H5 = HeaderH5;
+  static H6 = HeaderH6;
   static Subheader = Subheader;
   render() {
     return (
