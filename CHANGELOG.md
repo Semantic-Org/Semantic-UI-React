@@ -1,5 +1,18 @@
 # Change Log
 
+## [Unreleased](https://github.com/TechnologyAdvice/stardust/tree/HEAD)
+
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.11.1...HEAD)
+
+**Closed issues:**
+
+- Use 0.0.0.0 in webpack dev server [\#135](https://github.com/TechnologyAdvice/stardust/issues/135)
+- Restructure sub components [\#99](https://github.com/TechnologyAdvice/stardust/issues/99)
+
+**Merged pull requests:**
+
+- Add subcomponents [\#167](https://github.com/TechnologyAdvice/stardust/pull/167) ([levithomason](https://github.com/levithomason))
+
 ## [v0.11.1](https://github.com/TechnologyAdvice/stardust/tree/v0.11.1) (2016-02-11)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.11.0...v0.11.1)
 
