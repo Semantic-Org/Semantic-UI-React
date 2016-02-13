@@ -3,7 +3,7 @@ import classNames from 'classnames'
 import getUnhandledProps from '../../utils/getUnhandledProps'
 import META from '../../utils/Meta'
 
-export default class Value extends Component {
+export default class StatisticValue extends Component {
   static propTypes = {
     children: PropTypes.node.isRequired,
     className: PropTypes.string,

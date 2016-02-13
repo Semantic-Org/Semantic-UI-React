@@ -3,7 +3,7 @@ import classNames from 'classnames'
 import META from '../../utils/Meta'
 import getUnhandledProps from '../../utils/getUnhandledProps'
 
-export default class Subheader extends Component {
+export default class HeaderSubheader extends Component {
   static propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,

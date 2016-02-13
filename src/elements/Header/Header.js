@@ -7,7 +7,7 @@ import HeaderH3 from './HeaderH3'
 import HeaderH4 from './HeaderH4'
 import HeaderH5 from './HeaderH5'
 import HeaderH6 from './HeaderH6'
-import Subheader from './Subheader'
+import HeaderSubheader from './HeaderSubheader'
 
 export default class Header extends Component {
   static _meta = {
@@ -21,7 +21,7 @@ export default class Header extends Component {
   static H4 = HeaderH4;
   static H5 = HeaderH5;
   static H6 = HeaderH6;
-  static Subheader = Subheader;
+  static Subheader = HeaderSubheader;
   render() {
     return (
       <_Header {...this.props} _headerElement='div'/>

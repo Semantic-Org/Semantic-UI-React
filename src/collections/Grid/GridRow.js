@@ -2,7 +2,7 @@ import classNames from 'classnames'
 import React, { Component, PropTypes } from 'react'
 import META from '../../utils/Meta'
 
-export default class Row extends Component {
+export default class GridRow extends Component {
   static propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
