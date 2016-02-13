@@ -1,6 +1,9 @@
 import React, { Component, PropTypes } from 'react'
 import classNames from 'classnames'
 import META from '../../utils/Meta'
+import ModalContent from './ModalContent'
+import ModalHeader from './ModalHeader'
+import ModalFooter from './ModalFooter'
 
 export default class Modal extends Component {
   static propTypes = {
@@ -15,6 +18,10 @@ export default class Modal extends Component {
   };
 
   state = { isShown: false };
+
+  static Content = ModalContent;
+  static Header = ModalHeader;
+  static Footer = ModalFooter;
 
   showModal = () => {
     this.setState({ isShown: true })

@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import classNames from 'classnames'
 import META from '../../utils/Meta'
 import getUnhandledProps from '../../utils/getUnhandledProps'
+import MenuItem from './MenuItem'
 
 export default class Menu extends Component {
   static propTypes = {
@@ -21,6 +22,8 @@ export default class Menu extends Component {
     name: 'Menu',
     type: META.type.collection,
   };
+
+  static Item = MenuItem;
 
   render() {
     const classes = classNames(

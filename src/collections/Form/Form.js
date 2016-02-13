@@ -4,7 +4,7 @@ import React, { Component, PropTypes } from 'react'
 import classNames from 'classnames'
 import META from '../../utils/Meta'
 import { getPluginProps, getComponentProps } from '../../utils/propUtils'
-import * as deprecate from '../../utils/deprecate'
+import { deprecateProps } from '../../utils/deprecate'
 
 const pluginPropTypes = {
   // form settings
@@ -47,7 +47,7 @@ export default class Form extends Component {
 
   constructor(props, context) {
     super(props, context)
-    deprecate.props(this, {
+    deprecateProps(this, {
       settings: 'Use a separate prop for each setting.',
     })
   }

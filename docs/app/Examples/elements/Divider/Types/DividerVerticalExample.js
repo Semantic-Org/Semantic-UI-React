@@ -1,27 +1,27 @@
 import React, { Component } from 'react'
-import { Grid, Column, Segment, Divider } from 'stardust'
+import { Grid, Segment, Divider } from 'stardust'
 
 export default class DividerVerticalExample extends Component {
   render() {
     return (
       <Grid className='three column relaxed'>
-        <Column>
+        <Grid.Column>
           <Segment className='basic'>
             Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio.
           </Segment>
-        </Column>
+        </Grid.Column>
         <Divider className='vertical'>Or</Divider>
-        <Column>
+        <Grid.Column>
           <Segment className='basic'>
             Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio.
           </Segment>
-        </Column>
+        </Grid.Column>
         <Divider className='vertical'>And</Divider>
-        <Column>
+        <Grid.Column>
           <Segment className='basic'>
             Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio.
           </Segment>
-        </Column>
+        </Grid.Column>
       </Grid>
     )
   }

@@ -1,3 +1,5 @@
+import { deprecateComponents } from './utils/deprecate'
+
 // Addons
 import Confirm from './addons/Confirm/Confirm'
 import Textarea from './addons/Textarea/Textarea'
@@ -48,17 +50,13 @@ const stardust = {
   Textarea,
 
   // Collections
-  Column,
   Field,
   Fields,
   Form,
   Grid,
-  Row,
   Menu,
-  MenuItem,
   Message,
   Table,
-  TableColumn,
 
   // Elements
   Button,
@@ -69,7 +67,6 @@ const stardust = {
   Image,
   Input,
   List,
-  ListItem,
   Segment,
   Segments,
 
@@ -77,9 +74,6 @@ const stardust = {
   Checkbox,
   Dropdown,
   Modal,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
   Progress,
 
   // Views
@@ -87,5 +81,16 @@ const stardust = {
   Items,
   Statistic,
 }
+
+deprecateComponents(stardust, [
+  [Column, `Use "Grid.Column" instead.`],
+  [TableColumn, `Use "Table.Column" instead.`],
+  [ListItem, `Use "List.Item" instead.`],
+  [MenuItem, `Use "List.Item" instead.`],
+  [ModalContent, `Use "Modal.Content" instead.`],
+  [ModalFooter, `Use "Modal.Footer" instead.`],
+  [ModalHeader, `Use "Modal.Header" instead.`],
+  [Row, `Use "Grid.Row" instead.`],
+])
 
 export default stardust

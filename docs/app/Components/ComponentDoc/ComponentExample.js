@@ -1,5 +1,5 @@
 import React, { Component, createElement, PropTypes } from 'react'
-import { Grid, Column, Button } from 'stardust'
+import { Grid, Button } from 'stardust'
 import Highlight from 'react-highlight'
 import exampleContext from 'docs/app/utils/ExampleContext'
 
@@ -38,11 +38,11 @@ export default class ComponentExample extends Component {
 
   render() {
     const code = (
-      <Column>
+      <Grid.Column>
         <Highlight className='language-javascript'>
           {this.fileContents}
         </Highlight>
-      </Column>
+      </Grid.Column>
     )
 
     const linkIconStyle = {
@@ -50,13 +50,13 @@ export default class ComponentExample extends Component {
       marginLeft: '0.25em',
     }
 
-    const children = <Column>{this.props.children}</Column>
+    const children = <Grid.Column>{this.props.children}</Grid.Column>
 
     return (
       <Grid className='one column' style={{ marginBottom: '4em' }} id={this.anchor}>
-        <Column>
+        <Grid.Column>
           <Grid>
-            <Column width={12}>
+            <Grid.Column width={12}>
               <h3
                 className='ui header'
                 style={{ marginBottom: 0 }}
@@ -69,19 +69,19 @@ export default class ComponentExample extends Component {
                 </a>
               </h3>
               <p>{this.props.description}</p>
-            </Column>
-            <Column width={4} className='right aligned'>
+            </Grid.Column>
+            <Grid.Column width={4} className='right aligned'>
               <Button className='basic mini labeled icon' onClick={this.toggleShowCode}>
                 code
                 <i className='code icon' />
               </Button>
-            </Column>
+            </Grid.Column>
           </Grid>
-        </Column>
+        </Grid.Column>
         {this.props.children && children}
-        <Column>
+        <Grid.Column>
           {createElement(this.component)}
-        </Column>
+        </Grid.Column>
         {this.state.showCode && code}
       </Grid>
     )

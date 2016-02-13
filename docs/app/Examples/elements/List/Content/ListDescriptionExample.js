@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { List, ListItem } from 'stardust'
+import { List } from 'stardust'
 
 export default class ListDescriptionExample extends Component {
   render() {
@@ -7,8 +7,16 @@ export default class ListDescriptionExample extends Component {
 
     return (
       <List>
-        <ListItem icon={mapIcon} header='Chicago' description='This city is located in the state of Illinois' />
-        <ListItem icon={mapIcon} header='Nashville' description='This city is located in the state of Tennessee' />
+        <List.Item
+          icon={mapIcon}
+          header='Chicago'
+          description='This city is located in the state of Illinois'
+        />
+        <List.Item
+          icon={mapIcon}
+          header='Nashville'
+          description='This city is located in the state of Tennessee'
+        />
       </List>
     )
   }

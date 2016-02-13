@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { List, ListItem } from 'stardust'
+import { List } from 'stardust'
 
 export default class ListIconExample extends Component {
   render() {
@@ -8,19 +8,19 @@ export default class ListIconExample extends Component {
 
     return (
       <List>
-        <ListItem
+        <List.Item
           icon={helpIcon}
           header='Floated Icon'
           description='This text will always have a left margin so it sits alongside the icon'
         />
-        <ListItem
+        <List.Item
           icon={triangleIcon}
           header='Icon Alignment'
           description='Floated icons are by default top aligned'
         />
-        <ListItem icon={helpIcon}>
+        <List.Item icon={helpIcon}>
           This item uses <code>child</code> text, check the code.
-        </ListItem>
+        </List.Item>
       </List>
     )
   }
