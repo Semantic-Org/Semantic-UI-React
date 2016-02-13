@@ -6,6 +6,7 @@
 
 **Merged pull requests:**
 
+- Prefix remaining subcomponents with parent name [\#170](https://github.com/TechnologyAdvice/stardust/pull/170) ([levithomason](https://github.com/levithomason))
 - Make Field and Fields subcomponents of Form [\#169](https://github.com/TechnologyAdvice/stardust/pull/169) ([levithomason](https://github.com/levithomason))
 
 ## [v0.12.0](https://github.com/TechnologyAdvice/stardust/tree/v0.12.0) (2016-02-13)
