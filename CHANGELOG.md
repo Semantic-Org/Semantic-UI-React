@@ -1,5 +1,13 @@
 # Change Log
 
+## [Unreleased](https://github.com/TechnologyAdvice/stardust/tree/HEAD)
+
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.12.0...HEAD)
+
+**Merged pull requests:**
+
+- Make Field and Fields subcomponents of Form [\#169](https://github.com/TechnologyAdvice/stardust/pull/169) ([levithomason](https://github.com/levithomason))
+
 ## [v0.12.0](https://github.com/TechnologyAdvice/stardust/tree/v0.12.0) (2016-02-13)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.11.1...v0.12.0)
 
