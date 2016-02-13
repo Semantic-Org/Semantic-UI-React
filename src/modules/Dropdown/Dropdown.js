@@ -1,143 +1,203 @@
 import _ from 'lodash'
 import $ from 'jquery'
-import classNames from 'classnames'
+import cx from 'classnames'
 import React, { Component, PropTypes } from 'react'
-import META from '../../utils/Meta'
-import getUnhandledProps from '../../utils/getUnhandledProps'
 
-/* eslint react/jsx-sort-prop-types:0 */
+import META from '../../utils/Meta'
+import { getPluginProps, getComponentProps } from '../../utils/propUtils'
+import { customPropTypes } from '../../utils/propUtils'
+
+import DropdownDivider from './DropdownDivider'
+import DropdownItem from './DropdownItem'
+import DropdownMenu from './DropdownMenu'
+
+const pluginPropTypes = {
+  // Settings
+  action: PropTypes.string,
+  allowAdditions: PropTypes.bool,
+  allowCategorySelection: PropTypes.bool,
+  apiSettings: PropTypes.object,
+  fields: PropTypes.object,
+  forceSelection: PropTypes.bool,
+  glyphWidth: PropTypes.number,
+  label: PropTypes.object,
+  match: PropTypes.string,
+  maxSelections: PropTypes.number,
+  on: PropTypes.string,
+  placeholder: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.bool,
+  ]),
+  saveRemoteData: PropTypes.bool,
+  useLabels: PropTypes.bool,
+
+  // Additional Settings
+  allowTab: PropTypes.bool,
+  context: PropTypes.object,
+  delay: PropTypes.object,
+  direction: PropTypes.string,
+  duration: PropTypes.number,
+  fullTextSearch: PropTypes.bool,
+  keepOnScreen: PropTypes.bool,
+  keys: PropTypes.object,
+  preserveHTML: PropTypes.bool,
+  showOnFocus: PropTypes.bool,
+  sortSelect: PropTypes.bool,
+  transition: PropTypes.string,
+
+  // Callbacks
+  onAdd: PropTypes.func,
+  onChange: PropTypes.func,
+  onHide: PropTypes.func,
+  onRemove: PropTypes.func,
+  onShow: PropTypes.func,
+  onLabelSelect: PropTypes.func,
+  onLabelRemove: PropTypes.func,
+  onLabelCreate: PropTypes.func,
+  onNoResults: PropTypes.func,
+}
+
 export default class Dropdown extends Component {
   static propTypes = {
-    // Settings
-    action: PropTypes.string,
-    allowAdditions: PropTypes.bool,
-    allowCategorySelection: PropTypes.bool,
-    apiSettings: PropTypes.object,
+    ...pluginPropTypes,
+    text: PropTypes.string,
+    defaultText: PropTypes.string,
     className: PropTypes.string,
-    fields: PropTypes.object,
-    forceSelection: PropTypes.bool,
-    glyphWidth: PropTypes.number,
-    label: PropTypes.object,
-    match: PropTypes.string,
-    maxSelections: PropTypes.number,
-    on: PropTypes.string,
-    options: PropTypes.arrayOf(PropTypes.shape({
-      value: PropTypes.string,
-      text: PropTypes.string,
-    })),
-    placeholder: PropTypes.oneOf([
+    children: customPropTypes.mutuallyExclusive(['options']),
+    icon: PropTypes.string,
+    defaultValue: PropTypes.oneOfType([
       PropTypes.string,
-      PropTypes.bool,
+      PropTypes.number,
+      PropTypes.arrayOf([
+        PropTypes.string,
+        PropTypes.number,
+      ]),
     ]),
-    saveRemoteData: PropTypes.bool,
-    useLabels: PropTypes.bool,
+    value: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+      PropTypes.arrayOf([
+        PropTypes.string,
+        PropTypes.number,
+      ]),
+    ]),
+    options: PropTypes.arrayOf(PropTypes.shape({
+      value: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number,
+      ]),
+      text: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number,
+      ]),
+    })),
+  }
 
-    // Additional Settings
-    direction: PropTypes.string,
-    keepOnScreen: PropTypes.bool,
-    context: PropTypes.object,
-    fullTextSearch: PropTypes.bool,
-    preserveHTML: PropTypes.bool,
-    sortSelect: PropTypes.bool,
-    showOnFocus: PropTypes.bool,
-    allowTab: PropTypes.bool,
-    transition: PropTypes.string,
-    duration: PropTypes.number,
-    keys: PropTypes.object,
-    delay: PropTypes.object,
-
-    // Callbacks
-    onChange: PropTypes.func,
-    onShow: PropTypes.func,
-    onHide: PropTypes.func,
-    onNoResults: PropTypes.func,
-    onLabelSelect: PropTypes.func,
-    onLabelRemove: PropTypes.func,
-    onLabelCreate: PropTypes.func,
-    onAdd: PropTypes.func,
-    onRemove: PropTypes.func,
-  };
+  static defaultProps = {
+    icon: 'dropdown',
+  }
 
   componentDidMount() {
-    this.element = $(this.refs.select)
-    this.element.dropdown({
-      // Settings
-      action: this.props.action,
-      allowAdditions: this.props.allowAdditions,
-      allowCategorySelection: this.props.allowCategorySelection,
-      apiSettings: this.props.apiSettings,
-      fields: this.props.fields,
-      forceSelection: this.props.forceSelection,
-      glyphWidth: this.props.glyphWidth,
-      label: this.props.label,
-      match: this.props.match,
-      maxSelections: this.props.maxSelections,
-      on: this.props.on,
-      placeholder: this.props.placeholder,
-      saveRemoveData: this.props.saveRemoteData,
-      useLabels: this.props.useLabels,
-
-      // Additional Settings
-      direction: this.props.delay,
-      keepOnScreen: this.props.keys,
-      context: this.props.duration,
-      fullTextSearch: this.props.transition,
-      preserveHTML: this.props.allowTab,
-      sortSelect: this.props.showOnFocus,
-      showOnFocus: this.props.sortSelect,
-      allowTab: this.props.preserveHTML,
-      transition: this.props.fullTextSearch,
-      duration: this.props.context,
-      keys: this.props.keepOnScreen,
-      delay: this.props.direction,
-
-      // Callbacks
-      onChange: this.props.onChange,
-      onHide: this.props.onHide,
-      onShow: this.props.onShow,
-      onNoResults: this.props.onNoResults,
-      onLabelSelect: this.props.onLabelSelect,
-      onLabelRemove: this.props.onLabelRemove,
-      onLabelCreate: this.props.onLabelCreate,
-      onAdd: this.props.onAdd,
-      onRemove: this.props.onRemove,
+    this.element = $(this.refs.element).dropdown({
+      ...getPluginProps(this.props, pluginPropTypes),
+      onAdd: this.handleAdd,
+      onChange: this.handleChange,
+      onRemove: this.handleRemove,
     })
   }
 
   componentDidUpdate(prevProps, prevState) {
     this.element.dropdown('refresh')
+    const isDOMInSync = _.isEqual(this.props.value, this.getValue())
+    if (!isDOMInSync && this.isSelection()) this._syncFromProps()
   }
 
   componentWillUnmount() {
     this.element.off()
   }
 
+  handleAdd = (value) => {
+    if (this._isSyncing) return
+    if (this.props.onAdd) this.props.onAdd(value) // eslint-disable-line
+  }
+
+  handleChange = () => {
+    if (this._isSyncing) return
+    // callback with the appropriate value type
+    if (this.props.onChange) this.props.onChange(this.getValue()) // eslint-disable-line
+  }
+
+  handleRemove = (value) => {
+    if (this._isSyncing) return
+    if (this.props.onRemove) this.props.onRemove(value) // eslint-disable-line
+  }
+
+  // dropdown values are stored in a hidden input value (string)
+  // multiselect dropdown values should be arrays since they accept array values
+  // empty values should not be empty strings ""
+  getValue = () => {
+    const value = this.element.dropdown('get value')
+    if (value) {
+      // multiselect dropdown values are delimited strings
+      return this.isMultiselect() ? value.split(Dropdown._DELIMITER) : value
+    }
+
+    // sensible empty values
+    return this.isMultiselect() ? [] : undefined
+  }
+
+  // sync's the jQuery module to the React props
+  _syncFromProps = () => {
+    // flag that we are syncing so we don't call back on React -> DOM syncing changes
+    this._isSyncing = true
+    const { value } = this.props
+    this.setValue(value)
+    this._isSyncing = false
+  }
+
+  static _DELIMITER = ','
   static _meta = {
     library: META.library.semanticUI,
     name: 'Dropdown',
     type: META.type.module,
-  };
-
-  plugin() {
-    return this.element.dropdown(...arguments)
   }
+  static Divider = DropdownDivider
+  static Item = DropdownItem
+  static Menu = DropdownMenu
+
+  isMultiselect = () => _.includes(this.props.className, 'multiple')
+  isSelection = () => _.includes(this.props.className, 'selection')
+  setValue = (value) => this.element.dropdown('set exactly', value)
 
   render() {
-    const options = _.map(this.props.options, (opt, i) => {
-      return <option key={`${opt.value}-${i}`} value={opt.value}>{opt.text}</option>
-    })
-    const classes = classNames(
+    const { children, className, defaultText, defaultValue, icon, options, text } = this.props
+    const classes = cx(
       'sd-dropdown',
       'ui',
-      this.props.className,
+      className,
       'dropdown'
     )
-    const props = getUnhandledProps(this)
-
+    const iconClasses = cx(
+      'sd-dropdown-icon',
+      icon,
+      'icon'
+    )
+    const items = _.map(options, (opt, i) => (
+      <DropdownItem key={`${opt.value}-${i}`} data-text={opt.text} data-value={opt.value}>
+        {opt.text}
+      </DropdownItem>
+    ))
+    const componentProps = getComponentProps(this.props, pluginPropTypes)
     return (
-      <select {...props} className={classes} ref='select'>
-        {options}
-      </select>
+      <div {...componentProps} className={classes} ref='element'>
+        {this.isSelection() && <input type='hidden' defaultValue={defaultValue} />}
+        {text && <div className='text'>{text}</div>}
+        {icon && <i className={iconClasses} />}
+        {defaultText && <div className='default text'>{defaultText}</div>}
+        <DropdownMenu>
+          {children || items}
+        </DropdownMenu>
+      </div>
     )
   }
 }

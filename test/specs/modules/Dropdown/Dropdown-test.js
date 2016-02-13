@@ -2,14 +2,14 @@ import React from 'react'
 import { Dropdown } from 'stardust'
 
 describe('Dropdown', () => {
-  it('has a default value', () => {
+  it('accepts a default value', () => {
     const options = [
       { value: '', text: 'Please select a role' },
       { value: 'admin', text: 'Admin' },
       { value: 'editor', text: 'Editor' },
     ]
-    render(<Dropdown label='Roles' defaultValue='admin' options={options} />)
-      .findTag('select')
+    render(<Dropdown className='selection' defaultValue='admin' options={options} />)
+      .findTag('input')
       .value.should.equal('admin')
   })
   it('has assigned amount of options', () => {
@@ -21,11 +21,12 @@ describe('Dropdown', () => {
       { value: 'purple', text: 'purple' },
       { value: 'blue', text: 'blue' },
     ]
-    render(<Dropdown options={options} />)
-      .scryTag('option')
-      .map((opt, i) => {
-        opt.text.should.equal(options[i].text)
-        opt.value.should.equal(options[i].value)
-      })
+    const items = render(<Dropdown options={options} />)
+      .scryClass('sd-dropdown-item')
+    items.should.have.a.lengthOf(6)
+    items.map((item, i) => {
+      item.textContent.should.equal(options[i].text)
+      item.getAttribute('data-value').should.equal(options[i].value)
+    })
   })
 })
