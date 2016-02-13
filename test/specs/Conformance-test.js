@@ -1,40 +1,48 @@
+/* eslint-disable */
 import _ from 'lodash'
 import faker from 'faker'
-import React, { Component } from 'react'
+import React from 'react'
 import { isDOMComponent } from 'react-addons-test-utils'
 import stardust from 'stardust'
 import META from '../../src/utils/Meta'
+import componentInfo from '../utils/componentInfo'
 
-const getSDClassName = componentName => `sd-${_.kebabCase(componentName)}`
+// HeaderH1 => sd-header-h1
+const getSDClassName = constructorName => (
+  `sd-${constructorName.replace(/(?!^)([A-Z])/g, '-$1').toLowerCase()}`
+)
 
 /**
  * This test ensures all Stardust components conform to our guidelines.
  */
-describe('Conformance', () => {
+describe.only('Conformance', () => {
   /* eslint-disable no-console */
   console.info('Conformance-test renders each component with no props, required prop warnings may occur.')
   /* eslint-enable no-console */
-  _.each(stardust, (SDComponent, name) => {
-    const classes = faker.fake('{{hacker.noun}} {{hacker.noun}} {{hacker.noun}}')
-    const sdClass = getSDClassName(name)
-    const firstChild = _.first(render(<SDComponent />).children())
+  _.each(componentInfo, (info) => {
+    const { Component, constructorName, filenameWithoutExt } = info
 
-    describe(name, () => {
+    const classes = faker.fake(_.repeat('{{hacker.noun}}', _.random(1, 3)))
+    const sdClass = getSDClassName(info.constructorName)
+    const children = render(<Component />).children()
+    const firstChild = _.first(children)
+
+    describe(constructorName, () => {
       it('extends Component', () => {
-        expect(SDComponent.prototype).to.eql(Component.prototype)
+        expect(Component.prototype).to.eql(React.Component.prototype)
       })
 
-      it(`constructor name is "${name}" (matches component name)`, () => {
-        SDComponent.prototype.constructor.name.should.equal(name)
+      it(`constructor name matches filename "${constructorName}"`, () => {
+        constructorName.should.equal(filenameWithoutExt)
       })
 
-      it(`has the "${sdClass}" element as its first child (no wrapper elements)`, () => {
+      it(`has no wrapper elements, first child is "${sdClass}"`, () => {
         // private components may be used as root elements and will not have the sd-* class
         // skip any assertions if the first child is a private component
         // TODO: this excludes private components from conformance, need to find a sane way to get conformance coverage
-        if (META.isPrivate(firstChild)) {
-          return
-        }
+        // if (META.isPrivate(_.first(children))) {
+        //   return
+        // }
 
         if (isDOMComponent(firstChild)) {
           expect(firstChild.getAttribute('class')).to.contain(sdClass)
@@ -44,7 +52,7 @@ describe('Conformance', () => {
       })
 
       describe('_meta', () => {
-        const _meta = SDComponent._meta
+        const _meta = Component._meta
 
         it('is a static object prop', () => {
           expect(_meta).to.be.an('object')
@@ -62,14 +70,14 @@ describe('Conformance', () => {
           it('is defined', () => {
             expect(_meta).to.have.any.keys('name')
           })
-          it('matches the component name', () => {
-            expect(_meta.name).to.equal(name)
+          it('matches the constructor name', () => {
+            expect(_meta.name).to.equal(constructorName)
           })
         })
         if (_.has(_meta, 'parent')) {
           describe('parent', () => {
-            it('is a stardust component name', () => {
-              expect(_.keys(stardust)).to.contain(_meta.parent)
+            it('matches some component name', () => {
+              expect(_.pluck(componentInfo, 'constructorName')).to.contain(_meta.parent)
             })
           })
         }
@@ -91,7 +99,7 @@ describe('Conformance', () => {
           props[`data-${_.kebabCase(faker.hacker.noun())}`] = faker.hacker.noun()
 
           // create element with random props
-          render(<SDComponent {...props} />)
+          render(<Component {...props} />)
             .children()
             .some(child => {
               return _.every(props, (val, key) => {
@@ -105,7 +113,7 @@ describe('Conformance', () => {
         describe('className', () => {
           it(`has props.className after "${sdClass}"`, () => {
             let renderedClasses
-            const rendered = render(<SDComponent className={classes} />)
+            const rendered = render(<Component className={classes} />)
               .findClass(sdClass)
             if (isDOMComponent(rendered)) {
               renderedClasses = rendered.getAttribute('class')
@@ -117,7 +125,7 @@ describe('Conformance', () => {
             expect(sdClassIndex).to.be.below(classesIndex)
           })
 
-          // Determine if this SDComponent is composed of DOM components (div, span, etc)
+          // Determine if this Component is composed of DOM components (div, span, etc)
           // or if it is composed of other components (<Modal />, <textarea />, etc)
           //
           // Components composed of DOM components will have their "sd-*" class listed first:
@@ -134,7 +142,7 @@ describe('Conformance', () => {
 
           if (isDOMComponent(firstChild)) {
             it(`has "${sdClass}" as the first class`, () => {
-              render(<SDComponent />)
+              render(<Component />)
                 .findClass(sdClass)
                 .getAttribute('class')
                 .indexOf(sdClass).should.equal(0)

@@ -9,7 +9,7 @@ const componentCtx = require.context(
 
 const componentInfo = _.map(componentCtx.keys(), key => {
   const Component = componentCtx(key)
-  const className = Component.prototype.constructor.name
+  const constructorName = Component.prototype.constructor.name
   const filePath = key
   const filename = path.basename(key)
   const filenameWithoutExt = path.basename(key, '.js')
@@ -17,7 +17,7 @@ const componentInfo = _.map(componentCtx.keys(), key => {
 
   const info = {
     _meta,
-    className,
+    constructorName,
     Component,
     filePath,
     filename,
