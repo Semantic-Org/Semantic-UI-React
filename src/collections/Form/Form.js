@@ -5,8 +5,8 @@ import classNames from 'classnames'
 import META from '../../utils/Meta'
 import { getPluginProps, getComponentProps } from '../../utils/propUtils'
 import { deprecateProps } from '../../utils/deprecate'
-import Field from './Field'
-import Fields from './Fields'
+import FormField from './FormField'
+import FormFields from './FormFields'
 
 const pluginPropTypes = {
   // form settings
@@ -72,8 +72,8 @@ export default class Form extends Component {
     type: META.type.collection,
   };
 
-  static Field = Field;
-  static Fields = Fields;
+  static Field = FormField;
+  static Fields = FormFields;
 
   plugin() {
     return this.element.form(...arguments)
