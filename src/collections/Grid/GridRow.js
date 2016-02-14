@@ -10,14 +10,14 @@ export default class GridRow extends Component {
 
   static _meta = {
     library: META.library.semanticUI,
-    name: 'Row',
+    name: 'GridRow',
     type: META.type.collection,
     parent: 'Grid',
   };
 
   render() {
     const classes = classNames(
-      'sd-row',
+      'sd-grid-row',
       this.props.className,
       'row'
     )

@@ -1,6 +1,5 @@
 import _ from 'lodash'
 import React, { Component, PropTypes } from 'react'
-import classNames from 'classnames'
 import META from '../../utils/Meta'
 import getUnhandledProps from '../../utils/getUnhandledProps'
 
@@ -20,13 +19,6 @@ export default class _Header extends Component {
   };
 
   render() {
-    const classes = classNames(
-      'sd-header',
-      'ui',
-      this.props.className,
-      'header'
-    )
-
     const props = getUnhandledProps(this)
     const children = this.props.image || this.props.icon
       ? <div className='content'>{this.props.children}</div>
@@ -34,7 +26,7 @@ export default class _Header extends Component {
 
     return React.createElement(
       this.props._headerElement,
-      _.assign({}, props, { className: classes }),
+      _.assign({}, props),
       this.props.image || this.props.icon,
       children,
     )

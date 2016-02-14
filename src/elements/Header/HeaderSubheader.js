@@ -10,12 +10,12 @@ export default class HeaderSubheader extends Component {
   };
   static _meta = {
     library: META.library.semanticUI,
-    name: 'Subheader',
+    name: 'HeaderSubheader',
     type: META.type.element,
   };
   render() {
     const classes = classNames(
-      'sd-sub-header',
+      'sd-header-subheader',
       'sub',
       this.props.className,
       'header',

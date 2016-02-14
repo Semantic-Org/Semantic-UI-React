@@ -3,7 +3,7 @@ import classNames from 'classnames'
 import numberToWord from '../../utils/numberToWord'
 import META from '../../utils/Meta.js'
 
-export default class Field extends Component {
+export default class FormField extends Component {
   static propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
@@ -13,14 +13,14 @@ export default class Field extends Component {
 
   static _meta = {
     library: META.library.semanticUI,
-    name: 'Field',
+    name: 'FormField',
     parent: 'Form',
     type: META.type.collection,
   };
 
   render() {
     const classes = classNames(
-      'sd-field',
+      'sd-form-field',
       this.props.width && numberToWord(this.props.width) + ' wide',
       this.props.className,
       'field'

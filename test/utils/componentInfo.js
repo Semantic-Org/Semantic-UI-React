@@ -24,8 +24,6 @@ const componentInfo = _.map(componentCtx.keys(), key => {
     filenameWithoutExt,
   }
 
-  console.log(info)
-
   return info
 })
 
