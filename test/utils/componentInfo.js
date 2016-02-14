@@ -1,4 +1,4 @@
-/* eslint-disable */
+import _ from 'lodash'
 import path from 'path'
 
 const componentCtx = require.context(
@@ -15,7 +15,7 @@ const componentInfo = _.map(componentCtx.keys(), key => {
   const filenameWithoutExt = path.basename(key, '.js')
   const _meta = Component._meta
 
-  const info = {
+  return {
     _meta,
     constructorName,
     Component,
@@ -23,8 +23,6 @@ const componentInfo = _.map(componentCtx.keys(), key => {
     filename,
     filenameWithoutExt,
   }
-
-  return info
 })
 
 export default componentInfo
