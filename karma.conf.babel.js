@@ -65,7 +65,7 @@ export default (config) => {
       progress: false,
       stats: statConfig,
       debug: true,
-      noInfo: true,
+      noInfo: false,
       quiet: false,
     },
   })

@@ -58,7 +58,7 @@ module.exports = {
     progress: false,
     stats: statConfig,
     debug: true,
-    noInfo: true,
+    noInfo: false,
     quiet: false,
   },
   debug: true,
