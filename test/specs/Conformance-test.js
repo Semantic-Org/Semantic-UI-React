@@ -1,9 +1,7 @@
-/* eslint-disable */
 import _ from 'lodash'
 import faker from 'faker'
 import React from 'react'
 import { isDOMComponent } from 'react-addons-test-utils'
-import stardust from 'stardust'
 import META from '../../src/utils/Meta'
 import componentInfo from '../utils/componentInfo'
 
@@ -15,14 +13,13 @@ const getSDClassName = constructorName => (
 /**
  * This test ensures all Stardust components conform to our guidelines.
  */
-describe.only('Conformance', () => {
+describe('Conformance', () => {
   /* eslint-disable no-console */
   console.info('Conformance-test renders each component with no props, required prop warnings may occur.')
   /* eslint-enable no-console */
   _.each(componentInfo, (info) => {
     const { Component, constructorName, filenameWithoutExt } = info
 
-    const classes = faker.fake(_.repeat('{{hacker.noun}}', _.random(1, 3)))
     const sdClass = getSDClassName(info.constructorName)
     const children = render(<Component />).children()
     const firstChild = _.first(children)
@@ -113,16 +110,13 @@ describe.only('Conformance', () => {
         describe('className', () => {
           it(`has props.className after "${sdClass}"`, () => {
             let renderedClasses
-            const rendered = render(<Component className={classes} />)
-              .findClass(sdClass)
-            if (isDOMComponent(rendered)) {
-              renderedClasses = rendered.getAttribute('class')
+            if (isDOMComponent(firstChild)) {
+              renderedClasses = firstChild.getAttribute('class')
             } else {
-              renderedClasses = rendered.props.className
+              renderedClasses = firstChild.props.className
             }
             const sdClassIndex = renderedClasses.indexOf(sdClass)
-            const classesIndex = renderedClasses.indexOf(classes)
-            expect(sdClassIndex).to.be.below(classesIndex)
+            expect(sdClassIndex).to.equal(0)
           })
 
           // Determine if this Component is composed of DOM components (div, span, etc)
