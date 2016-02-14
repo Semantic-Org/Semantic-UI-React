@@ -44,7 +44,7 @@
   },
   "devDependencies": {
     "babel-cli": "^6.5.1",
-    "babel-core": "^6.5.1",
+    "babel-core": "^6.5.2",
     "babel-eslint": "^4.1.6",
     "babel-loader": "^6.2.0",
     "babel-plugin-add-module-exports": "^0.1.2",

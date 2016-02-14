@@ -1,48 +1,49 @@
-/* eslint-disable */
 import _ from 'lodash'
-import path from 'path'
 import stardust from 'stardust'
 import META from '../../src/utils/Meta'
-
-const componentCtx = require.context(
-  '../../src/',
-  true,
-  /(addons|collections|elements|modules|views).*\.js$/
-)
-
-console.log(componentCtx.keys().map(componentCtx))
-const componentFilenames = _.map(componentCtx.keys(), key => {
-  return path.basename(key, '.js')
-})
+import componentInfo from '../utils/componentInfo'
 
 describe('stardust (index.js)', () => {
-  _.each(componentFilenames, filename => {
-    const nameWithoutPrefix = _.words(filename).splice(1).join('')                           // => HeaderH1 => H1
-    const isPrivate = META.isPrivate(filename)
-    const isStardustProp = _.has(stardust, filename) || _.has(stardust, nameWithoutPrefix)   // => stardust.H1
-    const isSubComponent = _.some(stardust, filename) || _.some(stardust, nameWithoutPrefix) // => stardust.Header.H1
+  _.each(componentInfo, (info) => {
+    const { constructorName, subComponentName } = info
+    const isPrivate = META.isPrivate(constructorName)
 
-    if (filename === 'Statistics') {
-      console.log(stardust)
-      // debugger
+    const isStardustProp =
+      _.has(stardust, constructorName) || // stardust.H1
+      _.has(stardust, subComponentName)   // stardust.MenuItem (being deprecated)
+
+    const isSubComponent =
+      _.some(stardust, constructorName) ||  // stardust.Form
+      _.some(stardust, subComponentName)    // stardust.Form.Field (ie FormField component)
+
+    // TODO: why is this not failing tests, Statistics are not exposed in index.js
+    if (constructorName === 'Statistics') {
+      /* eslint-disable */
+      debugger
+      /* eslint-enable */
     }
 
     if (isPrivate) {
-      it(`does not expose private component "${filename}"`, () => {
+      it(`does not expose private component "${constructorName}"`, () => {
         expect(!isStardustProp).to.equal(true,
-          `"${filename}" is private (starts with  "_"), it cannot be a key on the stardust object`
+          `"${constructorName}" is private (starts with  "_").` +
+          ` It cannot be a key on the stardust object`
         )
 
         expect(!isSubComponent).to.equal(true,
-          `"${filename}" is private (starts with "_"), it cannot be a static prop of another component (sub-component)`
+          `"${constructorName}" is private (starts with "_").` +
+          ` It cannot be a static prop of another component (sub-component)`
         )
       })
     }
 
     if (!isPrivate) {
-      it(`exposes public component "${filename}"`, () => {
+      it(`exposes public component "${constructorName}"`, () => {
         expect(isStardustProp || isSubComponent).to.equal(true,
-          `"${filename}" must be: a key on stardust || key on another component (sub-component) || private (start with "_")`
+          `"${constructorName}" must be:` +
+          ` a key on stardust` +
+          ` || key on another component (sub-component)` +
+          ` || private (start with "_")`
         )
       })
     }
