@@ -15,9 +15,6 @@ describe('Conformance', () => {
   _.each(componentInfo, (info) => {
     const { Component, constructorName, filenameWithoutExt, sdClass } = info
 
-    const children = render(<Component />).children()
-    const firstChild = _.first(children)
-
     describe(constructorName, () => {
       it('extends Component', () => {
         expect(Component.prototype).to.eql(React.Component.prototype)
@@ -25,14 +22,6 @@ describe('Conformance', () => {
 
       it(`constructor name matches filename "${constructorName}"`, () => {
         constructorName.should.equal(filenameWithoutExt)
-      })
-
-      it(`has no wrapper elements, first child is "${sdClass}"`, () => {
-        if (isDOMComponent(firstChild)) {
-          expect(firstChild.getAttribute('class')).to.contain(sdClass)
-        } else {
-          expect(firstChild.props.className).to.contain(sdClass)
-        }
       })
 
       describe('_meta', () => {
@@ -94,41 +83,9 @@ describe('Conformance', () => {
             })
             .should.equal(true)
         })
-        describe('className', () => {
-          it(`has props.className after "${sdClass}"`, () => {
-            let renderedClasses
-            if (isDOMComponent(firstChild)) {
-              renderedClasses = firstChild.getAttribute('class')
-            } else {
-              renderedClasses = firstChild.props.className
-            }
-            const sdClassIndex = renderedClasses.indexOf(sdClass)
-            expect(sdClassIndex).to.equal(0)
-          })
-
-          // Determine if this Component is composed of DOM components (div, span, etc)
-          // or if it is composed of other components (<Modal />, <textarea />, etc)
-          //
-          // Components composed of DOM components will have their "sd-*" class listed first:
-          //
-          //   <Modal /> => <div className='sd-modal...
-          //   The "sd-modal" class is first.
-          //
-          // Components composed of Components will have their "sd-*" classes in an unknown position:
-          //
-          //   <Confirm /> => <Modal /> => <div className='sd-modal sd-confirm...
-          //   The "sd-confirm" class is inherited by Modal, after the "sd-modal" class
-          //   It is not practical to assume the position of the "sd-*" for composite components.
-          //   There may be intermediate classes such as "ui" and other composite component classes.
-
-          if (isDOMComponent(firstChild)) {
-            it(`has "${sdClass}" as the first class`, () => {
-              render(<Component />)
-                .findClass(sdClass)
-                .getAttribute('class')
-                .indexOf(sdClass).should.equal(0)
-            })
-          }
+        it(`has some child with the "${sdClass}" class`, () => {
+          render(<Component />)
+            .findClass(sdClass)
         })
       })
     })

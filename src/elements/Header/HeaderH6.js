@@ -1,13 +1,8 @@
-import cx from 'classnames'
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
 import META from '../../utils/Meta'
 import _Header from './_Header'
 
 export default class HeaderH6 extends Component {
-  static propTypes = {
-    className: PropTypes.string,
-  };
-
   static _meta = {
     library: META.library.semanticUI,
     name: 'HeaderH6',
@@ -16,14 +11,8 @@ export default class HeaderH6 extends Component {
   };
 
   render() {
-    const classes = cx(
-      'sd-header-h6',
-      'ui',
-      this.props.className,
-      'header'
-    )
     return (
-      <_Header {...this.props} className={classes} _headerElement='h6' />
+      <_Header {...this.props} _sdClass='sd-header-h6' _headerElement='h6' />
     )
   }
 }

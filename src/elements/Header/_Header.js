@@ -1,13 +1,12 @@
-import _ from 'lodash'
 import cx from 'classnames'
-import React, { Component, PropTypes } from 'react'
+import React, { createElement, Component, PropTypes } from 'react'
 
 import META from '../../utils/Meta'
-import getUnhandledProps from '../../utils/getUnhandledProps'
 
 export default class _Header extends Component {
   static propTypes = {
     _headerElement: PropTypes.string,
+    _sdClass: PropTypes.string,
     children: PropTypes.node,
     className: PropTypes.string,
     icon: PropTypes.node,
@@ -15,7 +14,8 @@ export default class _Header extends Component {
   }
 
   static defaultProps = {
-    _headerElement: 'h3',
+    _headerElement: 'div',
+    _sdClass: 'sd-header',
   }
 
   static _meta = {
@@ -25,19 +25,18 @@ export default class _Header extends Component {
   };
 
   render() {
-    const props = getUnhandledProps(this)
-    const children = this.props.image || this.props.icon
+    const content = this.props.image || this.props.icon
       ? <div className='content'>{this.props.children}</div>
       : this.props.children
 
-    return React.createElement(
-      this.props._headerElement,
-      {
-        ...props,
-        className: cx('sd-header', props.className),
-      },
-      this.props.image || this.props.icon,
-      children,
-    )
+    return createElement(this.props._headerElement, {
+      ...this.props,
+      className: cx(
+        this.props._sdClass,
+        'ui',
+        this.props.className,
+        'header'
+      ),
+    }, content)
   }
 }
