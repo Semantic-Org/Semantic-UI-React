@@ -17,7 +17,7 @@ describe('Conformance', () => {
 
     describe(constructorName, () => {
       it('extends Component', () => {
-        expect(Component.prototype).to.eql(React.Component.prototype)
+        expect(Component.prototype).to.deep.equal(React.Component.prototype)
       })
 
       it(`constructor name matches filename "${constructorName}"`, () => {
