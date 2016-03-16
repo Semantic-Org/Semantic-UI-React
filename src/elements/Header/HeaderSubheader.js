@@ -11,6 +11,7 @@ export default class HeaderSubheader extends Component {
   static _meta = {
     library: META.library.semanticUI,
     name: 'HeaderSubheader',
+    parent: 'Header',
     type: META.type.element,
   };
   render() {

@@ -10,7 +10,11 @@ export default class _Header extends Component {
     className: PropTypes.string,
     icon: PropTypes.node,
     image: PropTypes.node,
-  };
+  }
+
+  static defaultProps = {
+    _headerElement: 'h3',
+  }
 
   static _meta = {
     library: META.library.stardust,

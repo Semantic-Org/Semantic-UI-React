@@ -11,6 +11,7 @@ export default class HeaderH6 extends Component {
   static _meta = {
     library: META.library.semanticUI,
     name: 'HeaderH6',
+    parent: 'Header',
     type: META.type.element,
   };
 
