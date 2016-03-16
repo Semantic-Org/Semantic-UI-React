@@ -30,7 +30,7 @@ export default class _Header extends Component {
 
     return React.createElement(
       this.props._headerElement,
-      _.assign({}, props),
+      { ...props },
       this.props.image || this.props.icon,
       children,
     )
