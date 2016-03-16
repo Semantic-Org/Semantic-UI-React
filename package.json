@@ -4,7 +4,8 @@
   "description": "Semantic UI components for React.",
   "main": "dist/index.js",
   "files": [
-    "src"
+    "src",
+    "dist"
   ],
   "scripts": {
     "build": "babel src -d dist",
