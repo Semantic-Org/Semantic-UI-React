@@ -1,5 +1,17 @@
 # Change Log
 
+## [Unreleased](https://github.com/TechnologyAdvice/stardust/tree/HEAD)
+
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.12.1...HEAD)
+
+**Closed issues:**
+
+- Webpack build error - `Module parse failed` [\#173](https://github.com/TechnologyAdvice/stardust/issues/173)
+
+**Merged pull requests:**
+
+- Properly split dependencies [\#172](https://github.com/TechnologyAdvice/stardust/pull/172) ([levithomason](https://github.com/levithomason))
+
 ## [v0.12.1](https://github.com/TechnologyAdvice/stardust/tree/v0.12.1) (2016-02-15)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.12.0...v0.12.1)
 
