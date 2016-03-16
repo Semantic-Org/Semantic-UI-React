@@ -5,13 +5,14 @@ import _Header from './_Header'
 export default class HeaderH4 extends Component {
   static _meta = {
     library: META.library.semanticUI,
-    name: 'H4',
+    name: 'HeaderH4',
+    parent: 'Header',
     type: META.type.element,
   };
 
   render() {
     return (
-      <_Header {...this.props} _headerElement='h4'/>
+      <_Header {...this.props} _sdClass='sd-header-h4' _headerElement='h4' />
     )
   }
 }

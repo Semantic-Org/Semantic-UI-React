@@ -1,41 +1,43 @@
 import _ from 'lodash'
-import path from 'path'
 import stardust from 'stardust'
 import META from '../../src/utils/Meta'
-
-const componentCtx = require.context(
-  '../../src/',
-  true,
-  /(addons|collections|elements|modules|views).*\.js$/
-)
-
-const componentNames = _.map(componentCtx.keys(), key => {
-  return path.basename(key).replace('.js', '')
-})
+import componentInfo from '../utils/componentInfo'
 
 describe('stardust (index.js)', () => {
-  _.each(componentNames, name => {
-    const nameWithoutPrefix = _.words(name).splice(1).join('')                           // => HeaderH1 => H1
-    const isPrivate = META.isPrivate(name)
-    const isStardustProp = _.has(stardust, name) || _.has(stardust, nameWithoutPrefix)   // => stardust.H1
-    const isSubComponent = _.some(stardust, name) || _.some(stardust, nameWithoutPrefix) // => stardust.Header.H1
+  _.each(componentInfo, (info) => {
+    const { _meta, constructorName, subComponentName } = info
+    const isPrivate = META.isPrivate(constructorName)
+
+    // stardust.H1
+    const isStardustProp = _.has(stardust, constructorName)
+
+    // stardust.Form.Field (ie FormField component)
+    //
+    // only search the 'parent' for the sub component
+    // avoids false positives like DropdownItem & MenuItem
+    //   which both have sub component names of "Item", and appear
+    //   on both Dropdown.Item and Menu.Item (not to mention Stardust.Item)
+    const isSubComponent = _.isFunction(_.get(stardust, `[${_meta.parent}][${subComponentName}]`))
 
     if (isPrivate) {
-      it(`does not expose private component "${name}"`, () => {
+      it(`does not expose private component "${constructorName}"`, () => {
         expect(!isStardustProp).to.equal(true,
-          `"${name}" is private (starts with  "_"), it cannot be a key on the stardust object`
+          `"${constructorName}" is private (starts with  "_").` +
+          ` It cannot be a key on the stardust object`
         )
 
         expect(!isSubComponent).to.equal(true,
-          `"${name}" is private (starts with "_"), it cannot be a static prop of another component (sub-component)`
+          `"${constructorName}" is private (starts with "_").` +
+          ` It cannot be a static prop of another component (sub-component)`
         )
       })
-    }
-
-    if (!isPrivate) {
-      it(`exposes public component "${name}"`, () => {
-        expect(!isStardustProp && !isSubComponent).to.equal(false,
-          `"${name}" must be: a key on stardust || key on another component (sub-component) || private (start with "_")`
+    } else {
+      it(`exposes public component "${constructorName}"`, () => {
+        expect(isStardustProp || isSubComponent).to.equal(true,
+          `"${constructorName}" must be:` +
+          ` a key on stardust` +
+          ` || key on another component (sub-component)` +
+          ` || private (start with "_")`
         )
       })
     }

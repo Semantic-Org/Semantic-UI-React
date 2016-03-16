@@ -190,28 +190,28 @@ All magic is noted in the documentation examples.
 
 ```jsx
 <Form.Field className='inherit-this' />
-// => <div className='sd-field inherit-this field>...
+// => <div className='sd-form-field inherit-this field>...
 ```
 
 **Never**
 
 ```jsx
 <Form.Field className='inherit-this' />
-// => <div className='sd-field field>...
+// => <div className='sd-form-field field>...
 ```
 >className was not inherited
 
 ```jsx
 <Form.Field className='inherit-this' />
-// => <div className='inherit-this sd-field field>...
+// => <div className='inherit-this sd-form-field field>...
 ```
->className was inherited before sd-field
+>className was inherited before sd-form-field
 
 ```jsx
 <Form.Field className='inherit-this' />
-// => <div className='inherit-this sd-field field>...
+// => <div className='inherit-this sd-form-field field>...
 ```
->className was not inherited before sd-field
+>className was not inherited before sd-form-field
 
 #### Has `sd-<component>` as the first class
 

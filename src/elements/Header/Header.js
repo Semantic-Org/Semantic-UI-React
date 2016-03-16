@@ -15,6 +15,7 @@ export default class Header extends Component {
     name: 'Header',
     type: META.type.element,
   };
+
   static H1 = HeaderH1;
   static H2 = HeaderH2;
   static H3 = HeaderH3;
@@ -22,9 +23,10 @@ export default class Header extends Component {
   static H5 = HeaderH5;
   static H6 = HeaderH6;
   static Subheader = HeaderSubheader;
+
   render() {
     return (
-      <_Header {...this.props} _headerElement='div'/>
+      <_Header {...this.props} />
     )
   }
 }

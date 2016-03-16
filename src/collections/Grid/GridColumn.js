@@ -14,14 +14,14 @@ export default class GridColumn extends Component {
 
   static _meta = {
     library: META.library.semanticUI,
-    name: 'Column',
+    name: 'GridColumn',
     type: META.type.collection,
     parent: 'Grid',
   };
 
   render() {
     const classes = classNames(
-      'sd-column',
+      'sd-grid-column',
       this.props.className,
       this.props.width && numberToWord(this.props.width) + ' wide',
       'column'

@@ -5,7 +5,7 @@ import getUnhandledProps from '../../utils/getUnhandledProps'
 import { customPropTypes } from '../../utils/propUtils'
 import META from '../../utils/Meta'
 
-import Statistics from './Statistics'
+import StatisticStatistics from './StatisticStatistics'
 import StatisticLabel from './StatisticLabel'
 import StatisticValue from './StatisticValue'
 
@@ -21,7 +21,7 @@ export default class Statistic extends Component {
     type: META.type.view,
   };
 
-  static Statistics = Statistics;
+  static Statistics = StatisticStatistics;
   static Label = StatisticLabel;
   static Value = StatisticValue;
 

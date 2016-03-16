@@ -11,7 +11,7 @@ export default class StatisticLabel extends Component {
 
   static _meta = {
     library: META.library.semanticUI,
-    name: 'Label',
+    name: 'StatisticLabel',
     type: META.type.view,
     parent: 'Statistic',
   };

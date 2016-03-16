@@ -5,7 +5,7 @@ import getUnhandledProps from '../../utils/getUnhandledProps'
 import numberToWord from '../../utils/numberToWord'
 import META from '../../utils/Meta.js'
 
-export default class Fields extends Component {
+export default class FormFields extends Component {
   static propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
@@ -17,22 +17,25 @@ export default class Fields extends Component {
 
   static _meta = {
     library: META.library.semanticUI,
-    name: 'Fields',
+    name: 'FormFields',
     parent: 'Form',
     type: META.type.collection,
   };
 
   render() {
     let fieldCount = 0
-    Children.forEach(this.props.children, child => {
-      if (_.get(child, 'type._meta.name') === 'Field') fieldCount += 1
-    })
-    fieldCount = numberToWord(fieldCount)
+    if (this.props.evenlyDivided) {
+      Children.forEach(this.props.children, child => {
+        if (_.get(child, 'type._meta.name') === 'FormField') {
+          fieldCount += 1
+        }
+      })
+    }
 
     const classes = classNames(
-      'sd-fields',
-      this.props.evenlyDivided && fieldCount,
+      'sd-form-fields',
       this.props.className,
+      numberToWord(fieldCount),
       'fields'
     )
     const props = getUnhandledProps(this)

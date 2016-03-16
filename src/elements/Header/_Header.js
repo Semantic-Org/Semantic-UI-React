@@ -1,17 +1,22 @@
-import _ from 'lodash'
-import React, { Component, PropTypes } from 'react'
-import classNames from 'classnames'
+import cx from 'classnames'
+import React, { createElement, Component, PropTypes } from 'react'
+
 import META from '../../utils/Meta'
-import getUnhandledProps from '../../utils/getUnhandledProps'
 
 export default class _Header extends Component {
   static propTypes = {
     _headerElement: PropTypes.string,
+    _sdClass: PropTypes.string,
     children: PropTypes.node,
     className: PropTypes.string,
     icon: PropTypes.node,
     image: PropTypes.node,
-  };
+  }
+
+  static defaultProps = {
+    _headerElement: 'div',
+    _sdClass: 'sd-header',
+  }
 
   static _meta = {
     library: META.library.stardust,
@@ -20,23 +25,18 @@ export default class _Header extends Component {
   };
 
   render() {
-    const classes = classNames(
-      'sd-header',
-      'ui',
-      this.props.className,
-      'header'
-    )
-
-    const props = getUnhandledProps(this)
-    const children = this.props.image || this.props.icon
+    const content = this.props.image || this.props.icon
       ? <div className='content'>{this.props.children}</div>
       : this.props.children
 
-    return React.createElement(
-      this.props._headerElement,
-      _.assign({}, props, { className: classes }),
-      this.props.image || this.props.icon,
-      children,
-    )
+    return createElement(this.props._headerElement, {
+      ...this.props,
+      className: cx(
+        this.props._sdClass,
+        'ui',
+        this.props.className,
+        'header'
+      ),
+    }, content)
   }
 }
