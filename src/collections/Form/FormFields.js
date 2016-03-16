@@ -24,15 +24,18 @@ export default class FormFields extends Component {
 
   render() {
     let fieldCount = 0
-    Children.forEach(this.props.children, child => {
-      if (_.get(child, 'type._meta.name') === 'Field') fieldCount += 1
-    })
-    fieldCount = numberToWord(fieldCount)
+    if (this.props.evenlyDivided) {
+      Children.forEach(this.props.children, child => {
+        if (_.get(child, 'type._meta.name') === 'FormField') {
+          fieldCount += 1
+        }
+      })
+    }
 
     const classes = classNames(
       'sd-form-fields',
-      this.props.evenlyDivided && fieldCount,
       this.props.className,
+      numberToWord(fieldCount),
       'fields'
     )
     const props = getUnhandledProps(this)
