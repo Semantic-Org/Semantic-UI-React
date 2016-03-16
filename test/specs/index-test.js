@@ -5,23 +5,19 @@ import componentInfo from '../utils/componentInfo'
 
 describe('stardust (index.js)', () => {
   _.each(componentInfo, (info) => {
-    const { constructorName, subComponentName } = info
+    const { _meta, constructorName, subComponentName } = info
     const isPrivate = META.isPrivate(constructorName)
 
-    const isStardustProp =
-      _.has(stardust, constructorName) || // stardust.H1
-      _.has(stardust, subComponentName)   // stardust.MenuItem (being deprecated)
+    // stardust.H1
+    const isStardustProp = _.has(stardust, constructorName)
 
-    const isSubComponent =
-      _.some(stardust, constructorName) ||  // stardust.Form
-      _.some(stardust, subComponentName)    // stardust.Form.Field (ie FormField component)
-
-    // TODO: why is this not failing tests, Statistics are not exposed in index.js
-    if (constructorName === 'Statistics') {
-      /* eslint-disable */
-      debugger
-      /* eslint-enable */
-    }
+    // stardust.Form.Field (ie FormField component)
+    //
+    // only search the 'parent' for the sub component
+    // avoids false positives like DropdownItem & MenuItem
+    //   which both have sub component names of "Item", and appear
+    //   on both Dropdown.Item and Menu.Item (not to mention Stardust.Item)
+    const isSubComponent = _.isFunction(_.get(stardust, `[${_meta.parent}][${subComponentName}]`))
 
     if (isPrivate) {
       it(`does not expose private component "${constructorName}"`, () => {
@@ -35,9 +31,7 @@ describe('stardust (index.js)', () => {
           ` It cannot be a static prop of another component (sub-component)`
         )
       })
-    }
-
-    if (!isPrivate) {
+    } else {
       it(`exposes public component "${constructorName}"`, () => {
         expect(isStardustProp || isSubComponent).to.equal(true,
           `"${constructorName}" must be:` +

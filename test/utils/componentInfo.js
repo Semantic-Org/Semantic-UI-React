@@ -9,13 +9,13 @@ const componentCtx = require.context(
 
 const componentInfo = _.map(componentCtx.keys(), key => {
   const Component = componentCtx(key)
-  const _meta = Component._meta
+  const { _meta, prototype } = Component
 
-  const constructorName = Component.prototype.constructor.name
+  const constructorName = prototype.constructor.name
   const filePath = key
   const filename = path.basename(key)
   const filenameWithoutExt = path.basename(key, '.js')
-  const subComponentName = Component._meta.name.replace(_meta.parent, '')
+  const subComponentName = _meta.parent ? _meta.name.replace(_meta.parent, '') : null
   // HeaderH1 => sd-header-h1
   const sdClass = 'sd-' + constructorName
     .replace('_', '')                 // remove underscore
