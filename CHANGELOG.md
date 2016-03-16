@@ -7,9 +7,11 @@
 **Closed issues:**
 
 - Webpack build error - `Module parse failed` [\#173](https://github.com/TechnologyAdvice/stardust/issues/173)
+- Create Semantic UI Card Component [\#146](https://github.com/TechnologyAdvice/stardust/issues/146)
 
 **Merged pull requests:**
 
+- Build package on prepublish [\#176](https://github.com/TechnologyAdvice/stardust/pull/176) ([levithomason](https://github.com/levithomason))
 - Properly split dependencies [\#172](https://github.com/TechnologyAdvice/stardust/pull/172) ([levithomason](https://github.com/levithomason))
 
 ## [v0.12.1](https://github.com/TechnologyAdvice/stardust/tree/v0.12.1) (2016-02-15)
