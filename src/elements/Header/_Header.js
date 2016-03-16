@@ -1,5 +1,7 @@
 import _ from 'lodash'
+import cx from 'classnames'
 import React, { Component, PropTypes } from 'react'
+
 import META from '../../utils/Meta'
 import getUnhandledProps from '../../utils/getUnhandledProps'
 
@@ -30,7 +32,10 @@ export default class _Header extends Component {
 
     return React.createElement(
       this.props._headerElement,
-      { ...props },
+      {
+        ...props,
+        className: cx('sd-header', props.className),
+      },
       this.props.image || this.props.icon,
       children,
     )

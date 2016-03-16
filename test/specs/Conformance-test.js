@@ -5,11 +5,6 @@ import { isDOMComponent } from 'react-addons-test-utils'
 import META from '../../src/utils/Meta'
 import componentInfo from '../utils/componentInfo'
 
-// HeaderH1 => sd-header-h1
-const getSDClassName = constructorName => (
-  `sd-${constructorName.replace(/(?!^)([A-Z])/g, '-$1').toLowerCase()}`
-)
-
 /**
  * This test ensures all Stardust components conform to our guidelines.
  */
@@ -18,9 +13,8 @@ describe('Conformance', () => {
   console.info('Conformance-test renders each component with no props, required prop warnings may occur.')
   /* eslint-enable no-console */
   _.each(componentInfo, (info) => {
-    const { Component, constructorName, filenameWithoutExt } = info
+    const { Component, constructorName, filenameWithoutExt, sdClass } = info
 
-    const sdClass = getSDClassName(info.constructorName)
     const children = render(<Component />).children()
     const firstChild = _.first(children)
 
@@ -34,13 +28,6 @@ describe('Conformance', () => {
       })
 
       it(`has no wrapper elements, first child is "${sdClass}"`, () => {
-        // private components may be used as root elements and will not have the sd-* class
-        // skip any assertions if the first child is a private component
-        // TODO: this excludes private components from conformance, need to find a sane way to get conformance coverage
-        // if (META.isPrivate(_.first(children))) {
-        //   return
-        // }
-
         if (isDOMComponent(firstChild)) {
           expect(firstChild.getAttribute('class')).to.contain(sdClass)
         } else {
