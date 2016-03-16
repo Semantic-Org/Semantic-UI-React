@@ -1,5 +1,13 @@
 # Change Log
 
+## [Unreleased](https://github.com/TechnologyAdvice/stardust/tree/HEAD)
+
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.12.3...HEAD)
+
+**Merged pull requests:**
+
+- Fix conformance tests [\#171](https://github.com/TechnologyAdvice/stardust/pull/171) ([levithomason](https://github.com/levithomason))
+
 ## [v0.12.3](https://github.com/TechnologyAdvice/stardust/tree/v0.12.3) (2016-03-16)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.12.2...v0.12.3)
 
