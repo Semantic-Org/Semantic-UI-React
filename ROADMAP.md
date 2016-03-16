@@ -1,11 +1,12 @@
-Stardust is a set of themeable React components and usage documentation wrapping the delightful Semantic UI. Our milestones are tracked and managed using GitHub [Milestones and labels](https://guides.github.com/features/issues/#filtering), while the Roadmap presented here is intended to represent a high-level outline of what you can expect in forthcoming major releases.
+Stardust is a React component library wrapping the delightful Semantic UI.
+This Roadmap is intended to represent a high-level outline of what you can expect in forthcoming major releases.
 
 ## Milestones
 
-v1.0
+### v1.0
 
 - [ ] Provide licensing information
-- [x] Functional [docs website](https://technologyadvice.github.io/stardust) hosted on GitHub Pages (#129)
+- [x] Functional [docs website][2] hosted on GitHub Pages (#129)
 - [ ] Identify and target a specific version of Semantic UI for the release
 - [ ] Implement available Semantic UI `Elements`, `Collections`, `Views` and `Modules`
 - [ ] Complete usage documentation for all implemented components
@@ -15,7 +16,9 @@ v1.0
 - [ ] Provide at least one test for each component and automate test coverage reporting
 - [ ] Create annotated StackShare and collaborator chatroom
 
-v2.0
+### v2.0
 
 - [ ] Remove jQuery dependency
-- [ ] Eliminate use of `className`s for styling and use
+- [ ] Use `props` in place of `className`s for component definitions
+
+[2]: https://technologyadvice.github.io/stardust
