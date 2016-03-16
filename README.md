@@ -7,8 +7,6 @@ Hey, we're in development. Minor versions may introduce **breaking changes until
 
 ### Installation
 
-Install and save Stardust as a project dependency:
-
     npm i stardust -S
 
 ### Usage
@@ -17,29 +15,14 @@ For more complete examples, check out the [Doc Site][2].
 
 **ES6**
 ```jsx
-import React, {Component} from 'react';
-import {Button} from 'stardust';
+import React, { Component } from 'react'
+import { Button } from 'stardust'
 
 export default class TryStardust extends Component {
   render() {
-    return <Button>Hello</Button>;
+    return <Button>Hello</Button>
   }
 }
-```
-
-**ES5**
-```js
-var React = require('react');
-var stardust = require('stardust');
-var Button = stardust.Button;
-
-var TryStardust = React.createClass({
-  render: function() {
-    return <Button>Make it happen!</Button>;
-  }
-});
-
-module.exports = TryStardust;
 ```
 
 ## Support
