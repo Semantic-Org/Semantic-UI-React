@@ -3,6 +3,7 @@
 A [React] component library based on the delightful and easy-to-use [Semantic UI].
 
 ## Getting Started
+
 Hey, we're in development. Minor versions may introduce **breaking changes until the [v1.0] release**. Please review [Contributing](#contributing) before submitting a PR.
 
 ### Installation
@@ -44,7 +45,71 @@ var TryStardust = React.createClass({
 module.exports = TryStardust;
 ```
 
+## Support
+
+### Elements
+
+- [x] Button
+- [x] Container
+- [x] Divider
+- [ ] Flag
+- [x] Header
+- [ ] Icon
+- [x] Image
+- [x] Input
+- [ ] Label
+- [x] List
+- [ ] Loader
+- [ ] Rail
+- [ ] Reveal
+- [x] Segment
+- [ ] Step
+
+### Collections
+
+- [ ] Breadcrumb
+- [x] Form
+- [x] Grid
+- [x] Menu
+- [x] Message
+- [x] Table
+
+### Views
+
+- [ ] Advertisement
+- [ ] Card
+- [ ] Comment
+- [ ] Feed
+- [x] Item
+- [x] Statistic
+
+### Modules
+
+- [ ] Accordion
+- [x] Checkbox
+- [ ] Dimmer
+- [x] Dropdown
+- [ ] Embed
+- [x] Modal
+- [ ] Nag
+- [ ] Popup
+- [x] Progress
+- [ ] Rating
+- [ ] Search
+- [ ] Shape
+- [ ] Sidebar
+- [ ] Sticky
+- [ ] Tab
+- [ ] Transition
+
+### Behaviors
+
+- API (not supported)
+- [x] Form Validation
+- Visibility (not supported)
+
 ## Development
+
 Start by cloning this repo and installing dependencies:
 
     git clone git@github.com:TechnologyAdvice/stardust.git
