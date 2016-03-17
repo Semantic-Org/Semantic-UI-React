@@ -32,11 +32,18 @@ export default class FormFields extends Component {
       })
     }
 
+    // Only apply the class "fields" if the className from props does not
+    // include "field" (styles do not work when both are applied).
+    const fieldClass = (
+      !this.props.className ||
+      !this.props.className.includes('field')
+    ) ? 'fields' : null
+
     const classes = classNames(
       'sd-form-fields',
       this.props.className,
       numberToWord(fieldCount),
-      'fields'
+      fieldClass,
     )
     const props = getUnhandledProps(this)
     return (
