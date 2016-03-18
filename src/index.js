@@ -68,6 +68,8 @@ export Dropdown from './modules/Dropdown/Dropdown'
 // Views
 // ----------------------------------------
 
+export Card from './views/Card/Card'
+
 import _Item from './views/Item/Item'
 export { _Item as Item }
 export const Items = deprecateComponent('Items', 'Use "Item.Items" instead.', _Item.Items)
