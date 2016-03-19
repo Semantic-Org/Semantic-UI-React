@@ -13,6 +13,8 @@ dependencies:
     - npm install -g npm@3
 
 test:
+  pre:
+    - npm run lint
   post:
     - nvm install 5 && npm test
 
