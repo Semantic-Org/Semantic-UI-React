@@ -25,4 +25,5 @@ deployment:
   production:
     branch: master
     commands:
-      - bash scripts/circle_deploy.sh
+      - $(npm bin)/ta-script circle_ci/create_changelog
+      - npm run deploy:docs
