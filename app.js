@@ -30877,11 +30877,11 @@ webpackJsonp([0],[
 				"tags": []
 			}
 		},
-		"src/elements/Input/Input.js": {
+		"src/elements/Image/Image.js": {
 			"props": {
-				"children": {
+				"alt": {
 					"type": {
-						"name": "node"
+						"name": "string"
 					},
 					"required": false,
 					"docBlock": {
@@ -30899,31 +30899,11 @@ webpackJsonp([0],[
 						"tags": []
 					}
 				},
-				"icon": {
+				"src": {
 					"type": {
 						"name": "string"
 					},
 					"required": false,
-					"docBlock": {
-						"description": "",
-						"tags": []
-					}
-				},
-				"ref": {
-					"type": {
-						"name": "string"
-					},
-					"required": false,
-					"docBlock": {
-						"description": "",
-						"tags": []
-					}
-				},
-				"type": {
-					"defaultValue": {
-						"value": "'text'",
-						"computed": false
-					},
 					"docBlock": {
 						"description": "",
 						"tags": []
@@ -31081,6 +31061,64 @@ webpackJsonp([0],[
 				"tags": []
 			}
 		},
+		"src/elements/Input/Input.js": {
+			"props": {
+				"children": {
+					"type": {
+						"name": "node"
+					},
+					"required": false,
+					"docBlock": {
+						"description": "",
+						"tags": []
+					}
+				},
+				"className": {
+					"type": {
+						"name": "string"
+					},
+					"required": false,
+					"docBlock": {
+						"description": "",
+						"tags": []
+					}
+				},
+				"icon": {
+					"type": {
+						"name": "string"
+					},
+					"required": false,
+					"docBlock": {
+						"description": "",
+						"tags": []
+					}
+				},
+				"ref": {
+					"type": {
+						"name": "string"
+					},
+					"required": false,
+					"docBlock": {
+						"description": "",
+						"tags": []
+					}
+				},
+				"type": {
+					"defaultValue": {
+						"value": "'text'",
+						"computed": false
+					},
+					"docBlock": {
+						"description": "",
+						"tags": []
+					}
+				}
+			},
+			"docBlock": {
+				"description": "",
+				"tags": []
+			}
+		},
 		"src/elements/List/List.js": {
 			"props": {
 				"children": {
@@ -31164,44 +31202,6 @@ webpackJsonp([0],[
 				"image": {
 					"type": {
 						"name": "node"
-					},
-					"required": false,
-					"docBlock": {
-						"description": "",
-						"tags": []
-					}
-				}
-			},
-			"docBlock": {
-				"description": "",
-				"tags": []
-			}
-		},
-		"src/elements/Image/Image.js": {
-			"props": {
-				"alt": {
-					"type": {
-						"name": "string"
-					},
-					"required": false,
-					"docBlock": {
-						"description": "",
-						"tags": []
-					}
-				},
-				"className": {
-					"type": {
-						"name": "string"
-					},
-					"required": false,
-					"docBlock": {
-						"description": "",
-						"tags": []
-					}
-				},
-				"src": {
-					"type": {
-						"name": "string"
 					},
 					"required": false,
 					"docBlock": {
@@ -31664,64 +31664,6 @@ webpackJsonp([0],[
 				"tags": []
 			}
 		},
-		"src/collections/Message/Message.js": {
-			"props": {
-				"children": {
-					"type": {
-						"name": "node"
-					},
-					"required": false,
-					"docBlock": {
-						"description": "",
-						"tags": []
-					}
-				},
-				"className": {
-					"type": {
-						"name": "string"
-					},
-					"required": false,
-					"docBlock": {
-						"description": "",
-						"tags": []
-					}
-				},
-				"dismissable": {
-					"type": {
-						"name": "bool"
-					},
-					"required": false,
-					"docBlock": {
-						"description": "",
-						"tags": []
-					}
-				},
-				"header": {
-					"type": {
-						"name": "string"
-					},
-					"required": false,
-					"docBlock": {
-						"description": "",
-						"tags": []
-					}
-				},
-				"icon": {
-					"type": {
-						"name": "string"
-					},
-					"required": false,
-					"docBlock": {
-						"description": "",
-						"tags": []
-					}
-				}
-			},
-			"docBlock": {
-				"description": "",
-				"tags": []
-			}
-		},
 		"src/collections/Menu/Menu.js": {
 			"props": {
 				"activeItem": {
@@ -31833,6 +31775,64 @@ webpackJsonp([0],[
 				"onClick": {
 					"type": {
 						"name": "func"
+					},
+					"required": false,
+					"docBlock": {
+						"description": "",
+						"tags": []
+					}
+				}
+			},
+			"docBlock": {
+				"description": "",
+				"tags": []
+			}
+		},
+		"src/collections/Message/Message.js": {
+			"props": {
+				"children": {
+					"type": {
+						"name": "node"
+					},
+					"required": false,
+					"docBlock": {
+						"description": "",
+						"tags": []
+					}
+				},
+				"className": {
+					"type": {
+						"name": "string"
+					},
+					"required": false,
+					"docBlock": {
+						"description": "",
+						"tags": []
+					}
+				},
+				"dismissable": {
+					"type": {
+						"name": "bool"
+					},
+					"required": false,
+					"docBlock": {
+						"description": "",
+						"tags": []
+					}
+				},
+				"header": {
+					"type": {
+						"name": "string"
+					},
+					"required": false,
+					"docBlock": {
+						"description": "",
+						"tags": []
+					}
+				},
+				"icon": {
+					"type": {
+						"name": "string"
 					},
 					"required": false,
 					"docBlock": {
@@ -32553,6 +32553,142 @@ webpackJsonp([0],[
 				"tags": []
 			}
 		},
+		"src/modules/Modal/Modal.js": {
+			"props": {
+				"children": {
+					"type": {
+						"name": "any"
+					},
+					"required": false,
+					"docBlock": {
+						"description": "",
+						"tags": []
+					}
+				},
+				"className": {
+					"type": {
+						"name": "string"
+					},
+					"required": false,
+					"docBlock": {
+						"description": "",
+						"tags": []
+					}
+				},
+				"ref": {
+					"type": {
+						"name": "string"
+					},
+					"required": false,
+					"defaultValue": {
+						"value": "'modal'",
+						"computed": false
+					},
+					"docBlock": {
+						"description": "",
+						"tags": []
+					}
+				},
+				"settings": {
+					"type": {
+						"name": "object"
+					},
+					"required": false,
+					"docBlock": {
+						"description": "",
+						"tags": []
+					}
+				}
+			},
+			"docBlock": {
+				"description": "",
+				"tags": []
+			}
+		},
+		"src/modules/Modal/ModalContent.js": {
+			"props": {
+				"children": {
+					"type": {
+						"name": "any"
+					},
+					"required": false,
+					"docBlock": {
+						"description": "",
+						"tags": []
+					}
+				},
+				"className": {
+					"type": {
+						"name": "string"
+					},
+					"required": false,
+					"docBlock": {
+						"description": "",
+						"tags": []
+					}
+				}
+			},
+			"docBlock": {
+				"description": "",
+				"tags": []
+			}
+		},
+		"src/modules/Modal/ModalFooter.js": {
+			"props": {
+				"children": {
+					"type": {
+						"name": "any"
+					},
+					"required": false,
+					"docBlock": {
+						"description": "",
+						"tags": []
+					}
+				},
+				"className": {
+					"type": {
+						"name": "string"
+					},
+					"required": false,
+					"docBlock": {
+						"description": "",
+						"tags": []
+					}
+				}
+			},
+			"docBlock": {
+				"description": "",
+				"tags": []
+			}
+		},
+		"src/modules/Modal/ModalHeader.js": {
+			"props": {
+				"children": {
+					"type": {
+						"name": "any"
+					},
+					"required": false,
+					"docBlock": {
+						"description": "",
+						"tags": []
+					}
+				},
+				"className": {
+					"type": {
+						"name": "string"
+					},
+					"required": false,
+					"docBlock": {
+						"description": "",
+						"tags": []
+					}
+				}
+			},
+			"docBlock": {
+				"description": "",
+				"tags": []
+			}
+		},
 		"src/modules/Progress/Progress.js": {
 			"props": {
 				"autoSuccess": {
@@ -32736,142 +32872,6 @@ webpackJsonp([0],[
 					"required": false,
 					"docBlock": {
 						"description": "Display progress inside the bar.",
-						"tags": []
-					}
-				}
-			},
-			"docBlock": {
-				"description": "",
-				"tags": []
-			}
-		},
-		"src/modules/Modal/Modal.js": {
-			"props": {
-				"children": {
-					"type": {
-						"name": "any"
-					},
-					"required": false,
-					"docBlock": {
-						"description": "",
-						"tags": []
-					}
-				},
-				"className": {
-					"type": {
-						"name": "string"
-					},
-					"required": false,
-					"docBlock": {
-						"description": "",
-						"tags": []
-					}
-				},
-				"ref": {
-					"type": {
-						"name": "string"
-					},
-					"required": false,
-					"defaultValue": {
-						"value": "'modal'",
-						"computed": false
-					},
-					"docBlock": {
-						"description": "",
-						"tags": []
-					}
-				},
-				"settings": {
-					"type": {
-						"name": "object"
-					},
-					"required": false,
-					"docBlock": {
-						"description": "",
-						"tags": []
-					}
-				}
-			},
-			"docBlock": {
-				"description": "",
-				"tags": []
-			}
-		},
-		"src/modules/Modal/ModalContent.js": {
-			"props": {
-				"children": {
-					"type": {
-						"name": "any"
-					},
-					"required": false,
-					"docBlock": {
-						"description": "",
-						"tags": []
-					}
-				},
-				"className": {
-					"type": {
-						"name": "string"
-					},
-					"required": false,
-					"docBlock": {
-						"description": "",
-						"tags": []
-					}
-				}
-			},
-			"docBlock": {
-				"description": "",
-				"tags": []
-			}
-		},
-		"src/modules/Modal/ModalFooter.js": {
-			"props": {
-				"children": {
-					"type": {
-						"name": "any"
-					},
-					"required": false,
-					"docBlock": {
-						"description": "",
-						"tags": []
-					}
-				},
-				"className": {
-					"type": {
-						"name": "string"
-					},
-					"required": false,
-					"docBlock": {
-						"description": "",
-						"tags": []
-					}
-				}
-			},
-			"docBlock": {
-				"description": "",
-				"tags": []
-			}
-		},
-		"src/modules/Modal/ModalHeader.js": {
-			"props": {
-				"children": {
-					"type": {
-						"name": "any"
-					},
-					"required": false,
-					"docBlock": {
-						"description": "",
-						"tags": []
-					}
-				},
-				"className": {
-					"type": {
-						"name": "string"
-					},
-					"required": false,
-					"docBlock": {
-						"description": "",
 						"tags": []
 					}
 				}
