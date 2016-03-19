@@ -30849,34 +30849,6 @@ webpackJsonp([0],[
 				"tags": []
 			}
 		},
-		"src/elements/Divider/Divider.js": {
-			"props": {
-				"children": {
-					"type": {
-						"name": "node"
-					},
-					"required": false,
-					"docBlock": {
-						"description": "",
-						"tags": []
-					}
-				},
-				"className": {
-					"type": {
-						"name": "string"
-					},
-					"required": false,
-					"docBlock": {
-						"description": "",
-						"tags": []
-					}
-				}
-			},
-			"docBlock": {
-				"description": "",
-				"tags": []
-			}
-		},
 		"src/elements/Header/Header.js": {
 			"docBlock": {
 				"description": "",
@@ -31023,44 +30995,6 @@ webpackJsonp([0],[
 				"tags": []
 			}
 		},
-		"src/elements/Image/Image.js": {
-			"props": {
-				"alt": {
-					"type": {
-						"name": "string"
-					},
-					"required": false,
-					"docBlock": {
-						"description": "",
-						"tags": []
-					}
-				},
-				"className": {
-					"type": {
-						"name": "string"
-					},
-					"required": false,
-					"docBlock": {
-						"description": "",
-						"tags": []
-					}
-				},
-				"src": {
-					"type": {
-						"name": "string"
-					},
-					"required": false,
-					"docBlock": {
-						"description": "",
-						"tags": []
-					}
-				}
-			},
-			"docBlock": {
-				"description": "",
-				"tags": []
-			}
-		},
 		"src/elements/Input/Input.js": {
 			"props": {
 				"children": {
@@ -31108,6 +31042,34 @@ webpackJsonp([0],[
 						"value": "'text'",
 						"computed": false
 					},
+					"docBlock": {
+						"description": "",
+						"tags": []
+					}
+				}
+			},
+			"docBlock": {
+				"description": "",
+				"tags": []
+			}
+		},
+		"src/elements/Divider/Divider.js": {
+			"props": {
+				"children": {
+					"type": {
+						"name": "node"
+					},
+					"required": false,
+					"docBlock": {
+						"description": "",
+						"tags": []
+					}
+				},
+				"className": {
+					"type": {
+						"name": "string"
+					},
+					"required": false,
 					"docBlock": {
 						"description": "",
 						"tags": []
@@ -31279,6 +31241,44 @@ webpackJsonp([0],[
 			},
 			"docBlock": {
 				"description": "A group of segments can be formatted to appear together.",
+				"tags": []
+			}
+		},
+		"src/elements/Image/Image.js": {
+			"props": {
+				"alt": {
+					"type": {
+						"name": "string"
+					},
+					"required": false,
+					"docBlock": {
+						"description": "",
+						"tags": []
+					}
+				},
+				"className": {
+					"type": {
+						"name": "string"
+					},
+					"required": false,
+					"docBlock": {
+						"description": "",
+						"tags": []
+					}
+				},
+				"src": {
+					"type": {
+						"name": "string"
+					},
+					"required": false,
+					"docBlock": {
+						"description": "",
+						"tags": []
+					}
+				}
+			},
+			"docBlock": {
+				"description": "",
 				"tags": []
 			}
 		},
