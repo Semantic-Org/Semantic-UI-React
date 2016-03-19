@@ -22,7 +22,6 @@
     "test": "npm run lint && npm run karma -- karma.conf.babel.js",
     "test:watch": "webpack-dev-server --config webpack.tests.babel.js"
   },
-  "pre-commit": "lint",
   "repository": {
     "type": "git",
     "url": "git+ssh://github.com/TechnologyAdvice/stardust.git"
@@ -82,7 +81,6 @@
     "mocha-loader": "^0.7.1",
     "phantomjs": "^1.9.18",
     "phantomjs-polyfill": "0.0.1",
-    "pre-commit": "^1.1.2",
     "raw-loader": "^0.5.1",
     "react": "^0.14.0",
     "react-addons-test-utils": "^0.14.0",
