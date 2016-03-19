@@ -94,7 +94,7 @@
     "run-sequence": "^1.1.4",
     "sinon": "git://github.com/cjohansen/Sinon.JS#b672042043517b9f84e14ed0fb8265126168778a",
     "sinon-chai": "^2.8.0",
-    "ta-scripts": "^2.3.0",
+    "ta-scripts": "^2.3.1",
     "through2": "^2.0.0",
     "watch": "^0.16.0",
     "webpack": "1.12.2",
