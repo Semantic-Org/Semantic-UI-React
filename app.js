@@ -30821,6 +30821,34 @@ webpackJsonp([0],[
 				"tags": []
 			}
 		},
+		"src/elements/Divider/Divider.js": {
+			"props": {
+				"children": {
+					"type": {
+						"name": "node"
+					},
+					"required": false,
+					"docBlock": {
+						"description": "",
+						"tags": []
+					}
+				},
+				"className": {
+					"type": {
+						"name": "string"
+					},
+					"required": false,
+					"docBlock": {
+						"description": "",
+						"tags": []
+					}
+				}
+			},
+			"docBlock": {
+				"description": "",
+				"tags": []
+			}
+		},
 		"src/elements/Container/Container.js": {
 			"props": {
 				"children": {
@@ -30846,6 +30874,64 @@ webpackJsonp([0],[
 			},
 			"docBlock": {
 				"description": "A container that gives your content some side padding.",
+				"tags": []
+			}
+		},
+		"src/elements/Input/Input.js": {
+			"props": {
+				"children": {
+					"type": {
+						"name": "node"
+					},
+					"required": false,
+					"docBlock": {
+						"description": "",
+						"tags": []
+					}
+				},
+				"className": {
+					"type": {
+						"name": "string"
+					},
+					"required": false,
+					"docBlock": {
+						"description": "",
+						"tags": []
+					}
+				},
+				"icon": {
+					"type": {
+						"name": "string"
+					},
+					"required": false,
+					"docBlock": {
+						"description": "",
+						"tags": []
+					}
+				},
+				"ref": {
+					"type": {
+						"name": "string"
+					},
+					"required": false,
+					"docBlock": {
+						"description": "",
+						"tags": []
+					}
+				},
+				"type": {
+					"defaultValue": {
+						"value": "'text'",
+						"computed": false
+					},
+					"docBlock": {
+						"description": "",
+						"tags": []
+					}
+				}
+			},
+			"docBlock": {
+				"description": "",
 				"tags": []
 			}
 		},
@@ -30995,92 +31081,6 @@ webpackJsonp([0],[
 				"tags": []
 			}
 		},
-		"src/elements/Input/Input.js": {
-			"props": {
-				"children": {
-					"type": {
-						"name": "node"
-					},
-					"required": false,
-					"docBlock": {
-						"description": "",
-						"tags": []
-					}
-				},
-				"className": {
-					"type": {
-						"name": "string"
-					},
-					"required": false,
-					"docBlock": {
-						"description": "",
-						"tags": []
-					}
-				},
-				"icon": {
-					"type": {
-						"name": "string"
-					},
-					"required": false,
-					"docBlock": {
-						"description": "",
-						"tags": []
-					}
-				},
-				"ref": {
-					"type": {
-						"name": "string"
-					},
-					"required": false,
-					"docBlock": {
-						"description": "",
-						"tags": []
-					}
-				},
-				"type": {
-					"defaultValue": {
-						"value": "'text'",
-						"computed": false
-					},
-					"docBlock": {
-						"description": "",
-						"tags": []
-					}
-				}
-			},
-			"docBlock": {
-				"description": "",
-				"tags": []
-			}
-		},
-		"src/elements/Divider/Divider.js": {
-			"props": {
-				"children": {
-					"type": {
-						"name": "node"
-					},
-					"required": false,
-					"docBlock": {
-						"description": "",
-						"tags": []
-					}
-				},
-				"className": {
-					"type": {
-						"name": "string"
-					},
-					"required": false,
-					"docBlock": {
-						"description": "",
-						"tags": []
-					}
-				}
-			},
-			"docBlock": {
-				"description": "",
-				"tags": []
-			}
-		},
 		"src/elements/List/List.js": {
 			"props": {
 				"children": {
@@ -31177,6 +31177,44 @@ webpackJsonp([0],[
 				"tags": []
 			}
 		},
+		"src/elements/Image/Image.js": {
+			"props": {
+				"alt": {
+					"type": {
+						"name": "string"
+					},
+					"required": false,
+					"docBlock": {
+						"description": "",
+						"tags": []
+					}
+				},
+				"className": {
+					"type": {
+						"name": "string"
+					},
+					"required": false,
+					"docBlock": {
+						"description": "",
+						"tags": []
+					}
+				},
+				"src": {
+					"type": {
+						"name": "string"
+					},
+					"required": false,
+					"docBlock": {
+						"description": "",
+						"tags": []
+					}
+				}
+			},
+			"docBlock": {
+				"description": "",
+				"tags": []
+			}
+		},
 		"src/elements/Segment/Segment.js": {
 			"props": {
 				"children": {
@@ -31241,44 +31279,6 @@ webpackJsonp([0],[
 			},
 			"docBlock": {
 				"description": "A group of segments can be formatted to appear together.",
-				"tags": []
-			}
-		},
-		"src/elements/Image/Image.js": {
-			"props": {
-				"alt": {
-					"type": {
-						"name": "string"
-					},
-					"required": false,
-					"docBlock": {
-						"description": "",
-						"tags": []
-					}
-				},
-				"className": {
-					"type": {
-						"name": "string"
-					},
-					"required": false,
-					"docBlock": {
-						"description": "",
-						"tags": []
-					}
-				},
-				"src": {
-					"type": {
-						"name": "string"
-					},
-					"required": false,
-					"docBlock": {
-						"description": "",
-						"tags": []
-					}
-				}
-			},
-			"docBlock": {
-				"description": "",
 				"tags": []
 			}
 		},
@@ -31664,6 +31664,64 @@ webpackJsonp([0],[
 				"tags": []
 			}
 		},
+		"src/collections/Message/Message.js": {
+			"props": {
+				"children": {
+					"type": {
+						"name": "node"
+					},
+					"required": false,
+					"docBlock": {
+						"description": "",
+						"tags": []
+					}
+				},
+				"className": {
+					"type": {
+						"name": "string"
+					},
+					"required": false,
+					"docBlock": {
+						"description": "",
+						"tags": []
+					}
+				},
+				"dismissable": {
+					"type": {
+						"name": "bool"
+					},
+					"required": false,
+					"docBlock": {
+						"description": "",
+						"tags": []
+					}
+				},
+				"header": {
+					"type": {
+						"name": "string"
+					},
+					"required": false,
+					"docBlock": {
+						"description": "",
+						"tags": []
+					}
+				},
+				"icon": {
+					"type": {
+						"name": "string"
+					},
+					"required": false,
+					"docBlock": {
+						"description": "",
+						"tags": []
+					}
+				}
+			},
+			"docBlock": {
+				"description": "",
+				"tags": []
+			}
+		},
 		"src/collections/Menu/Menu.js": {
 			"props": {
 				"activeItem": {
@@ -31775,64 +31833,6 @@ webpackJsonp([0],[
 				"onClick": {
 					"type": {
 						"name": "func"
-					},
-					"required": false,
-					"docBlock": {
-						"description": "",
-						"tags": []
-					}
-				}
-			},
-			"docBlock": {
-				"description": "",
-				"tags": []
-			}
-		},
-		"src/collections/Message/Message.js": {
-			"props": {
-				"children": {
-					"type": {
-						"name": "node"
-					},
-					"required": false,
-					"docBlock": {
-						"description": "",
-						"tags": []
-					}
-				},
-				"className": {
-					"type": {
-						"name": "string"
-					},
-					"required": false,
-					"docBlock": {
-						"description": "",
-						"tags": []
-					}
-				},
-				"dismissable": {
-					"type": {
-						"name": "bool"
-					},
-					"required": false,
-					"docBlock": {
-						"description": "",
-						"tags": []
-					}
-				},
-				"header": {
-					"type": {
-						"name": "string"
-					},
-					"required": false,
-					"docBlock": {
-						"description": "",
-						"tags": []
-					}
-				},
-				"icon": {
-					"type": {
-						"name": "string"
 					},
 					"required": false,
 					"docBlock": {
@@ -32553,142 +32553,6 @@ webpackJsonp([0],[
 				"tags": []
 			}
 		},
-		"src/modules/Modal/Modal.js": {
-			"props": {
-				"children": {
-					"type": {
-						"name": "any"
-					},
-					"required": false,
-					"docBlock": {
-						"description": "",
-						"tags": []
-					}
-				},
-				"className": {
-					"type": {
-						"name": "string"
-					},
-					"required": false,
-					"docBlock": {
-						"description": "",
-						"tags": []
-					}
-				},
-				"ref": {
-					"type": {
-						"name": "string"
-					},
-					"required": false,
-					"defaultValue": {
-						"value": "'modal'",
-						"computed": false
-					},
-					"docBlock": {
-						"description": "",
-						"tags": []
-					}
-				},
-				"settings": {
-					"type": {
-						"name": "object"
-					},
-					"required": false,
-					"docBlock": {
-						"description": "",
-						"tags": []
-					}
-				}
-			},
-			"docBlock": {
-				"description": "",
-				"tags": []
-			}
-		},
-		"src/modules/Modal/ModalContent.js": {
-			"props": {
-				"children": {
-					"type": {
-						"name": "any"
-					},
-					"required": false,
-					"docBlock": {
-						"description": "",
-						"tags": []
-					}
-				},
-				"className": {
-					"type": {
-						"name": "string"
-					},
-					"required": false,
-					"docBlock": {
-						"description": "",
-						"tags": []
-					}
-				}
-			},
-			"docBlock": {
-				"description": "",
-				"tags": []
-			}
-		},
-		"src/modules/Modal/ModalFooter.js": {
-			"props": {
-				"children": {
-					"type": {
-						"name": "any"
-					},
-					"required": false,
-					"docBlock": {
-						"description": "",
-						"tags": []
-					}
-				},
-				"className": {
-					"type": {
-						"name": "string"
-					},
-					"required": false,
-					"docBlock": {
-						"description": "",
-						"tags": []
-					}
-				}
-			},
-			"docBlock": {
-				"description": "",
-				"tags": []
-			}
-		},
-		"src/modules/Modal/ModalHeader.js": {
-			"props": {
-				"children": {
-					"type": {
-						"name": "any"
-					},
-					"required": false,
-					"docBlock": {
-						"description": "",
-						"tags": []
-					}
-				},
-				"className": {
-					"type": {
-						"name": "string"
-					},
-					"required": false,
-					"docBlock": {
-						"description": "",
-						"tags": []
-					}
-				}
-			},
-			"docBlock": {
-				"description": "",
-				"tags": []
-			}
-		},
 		"src/modules/Progress/Progress.js": {
 			"props": {
 				"autoSuccess": {
@@ -32872,6 +32736,142 @@ webpackJsonp([0],[
 					"required": false,
 					"docBlock": {
 						"description": "Display progress inside the bar.",
+						"tags": []
+					}
+				}
+			},
+			"docBlock": {
+				"description": "",
+				"tags": []
+			}
+		},
+		"src/modules/Modal/Modal.js": {
+			"props": {
+				"children": {
+					"type": {
+						"name": "any"
+					},
+					"required": false,
+					"docBlock": {
+						"description": "",
+						"tags": []
+					}
+				},
+				"className": {
+					"type": {
+						"name": "string"
+					},
+					"required": false,
+					"docBlock": {
+						"description": "",
+						"tags": []
+					}
+				},
+				"ref": {
+					"type": {
+						"name": "string"
+					},
+					"required": false,
+					"defaultValue": {
+						"value": "'modal'",
+						"computed": false
+					},
+					"docBlock": {
+						"description": "",
+						"tags": []
+					}
+				},
+				"settings": {
+					"type": {
+						"name": "object"
+					},
+					"required": false,
+					"docBlock": {
+						"description": "",
+						"tags": []
+					}
+				}
+			},
+			"docBlock": {
+				"description": "",
+				"tags": []
+			}
+		},
+		"src/modules/Modal/ModalContent.js": {
+			"props": {
+				"children": {
+					"type": {
+						"name": "any"
+					},
+					"required": false,
+					"docBlock": {
+						"description": "",
+						"tags": []
+					}
+				},
+				"className": {
+					"type": {
+						"name": "string"
+					},
+					"required": false,
+					"docBlock": {
+						"description": "",
+						"tags": []
+					}
+				}
+			},
+			"docBlock": {
+				"description": "",
+				"tags": []
+			}
+		},
+		"src/modules/Modal/ModalFooter.js": {
+			"props": {
+				"children": {
+					"type": {
+						"name": "any"
+					},
+					"required": false,
+					"docBlock": {
+						"description": "",
+						"tags": []
+					}
+				},
+				"className": {
+					"type": {
+						"name": "string"
+					},
+					"required": false,
+					"docBlock": {
+						"description": "",
+						"tags": []
+					}
+				}
+			},
+			"docBlock": {
+				"description": "",
+				"tags": []
+			}
+		},
+		"src/modules/Modal/ModalHeader.js": {
+			"props": {
+				"children": {
+					"type": {
+						"name": "any"
+					},
+					"required": false,
+					"docBlock": {
+						"description": "",
+						"tags": []
+					}
+				},
+				"className": {
+					"type": {
+						"name": "string"
+					},
+					"required": false,
+					"docBlock": {
+						"description": "",
 						"tags": []
 					}
 				}
