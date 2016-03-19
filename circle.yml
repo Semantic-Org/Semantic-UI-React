@@ -17,6 +17,11 @@ test:
     - nvm install 5 && npm test
 
 deployment:
+  development:
+    branch: /^(?!master).*$/
+    commands:
+      - gulp docs
+      - $(npm bin)/ta-script aws/stage -d docs/build -r $CIRCLE_PROJECT_REPONAME -b $CIRCLE_BRANCH
   production:
     branch: master
     commands:
