@@ -1,6 +1,0 @@
-{
-  "extends": "ta/frontend/test",
-  "globals": {
-    "render": false
-  }
-}
