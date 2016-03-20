@@ -139,11 +139,11 @@ export default class Dropdown extends Component {
     const value = this.element.dropdown('get value')
     if (value) {
       // multiselect dropdown values are delimited strings
-      return this.isMultiselect() ? value.split(Dropdown._DELIMITER) : value
+      return this.isMultiple() ? value.split(Dropdown._DELIMITER) : value
     }
 
     // sensible empty values
-    return this.isMultiselect() ? [] : undefined
+    return this.isMultiple() ? [] : undefined
   }
 
   // sync's the jQuery module to the React props
@@ -165,7 +165,7 @@ export default class Dropdown extends Component {
   static Item = DropdownItem
   static Menu = DropdownMenu
 
-  isMultiselect = () => _.includes(this.props.className, 'multiple')
+  isMultiple = () => _.includes(this.props.className, 'multiple')
   isSelection = () => _.includes(this.props.className, 'selection')
   setValue = (value) => this.element.dropdown('set exactly', value)
 
@@ -193,7 +193,7 @@ export default class Dropdown extends Component {
         {this.isSelection() && <input type='hidden' defaultValue={defaultValue} />}
         {text && <div className='text'>{text}</div>}
         {icon && <i className={iconClasses} />}
-        {defaultText && <div className='default text'>{defaultText}</div>}
+        {this.isSelection() && <div className='default text'>{defaultText}</div>}
         <DropdownMenu>
           {children || items}
         </DropdownMenu>
