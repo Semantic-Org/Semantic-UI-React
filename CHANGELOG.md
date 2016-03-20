@@ -4,10 +4,19 @@
 
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.12.3...HEAD)
 
+**Implemented enhancements:**
+
+- Support all dropdown types [\#4](https://github.com/TechnologyAdvice/stardust/issues/4)
+
+**Closed issues:**
+
+- Dropdown fails to open on initial render with dynamic className change [\#149](https://github.com/TechnologyAdvice/stardust/issues/149)
+
 **Merged pull requests:**
 
 - Stage branches and improve workflow [\#204](https://github.com/TechnologyAdvice/stardust/pull/204) ([levithomason](https://github.com/levithomason))
 - Fix conformance tests [\#171](https://github.com/TechnologyAdvice/stardust/pull/171) ([levithomason](https://github.com/levithomason))
+- Support full dropdown functionality [\#168](https://github.com/TechnologyAdvice/stardust/pull/168) ([levithomason](https://github.com/levithomason))
 
 ## [v0.12.3](https://github.com/TechnologyAdvice/stardust/tree/v0.12.3) (2016-03-16)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.12.2...v0.12.3)
