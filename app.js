@@ -7652,15 +7652,15 @@ webpackJsonp([0],[
 	
 	var _stardust2 = _interopRequireDefault(_stardust);
 	
-	var _ComponentDoc = __webpack_require__(280);
+	var _ComponentDoc = __webpack_require__(283);
 	
 	var _ComponentDoc2 = _interopRequireDefault(_ComponentDoc);
 	
-	var _Sidebar = __webpack_require__(843);
+	var _Sidebar = __webpack_require__(860);
 	
 	var _Sidebar2 = _interopRequireDefault(_Sidebar);
 	
-	var _Style = __webpack_require__(844);
+	var _Style = __webpack_require__(861);
 	
 	var _Style2 = _interopRequireDefault(_Style);
 	
@@ -8447,15 +8447,15 @@ webpackJsonp([0],[
 	
 	var _Dropdown2 = _interopRequireDefault(_Dropdown);
 	
-	var _Item = __webpack_require__(274);
+	var _Item = __webpack_require__(277);
 	
 	var _Item2 = _interopRequireDefault(_Item);
 	
-	var _Items = __webpack_require__(275);
+	var _Items = __webpack_require__(278);
 	
 	var _Items2 = _interopRequireDefault(_Items);
 	
-	var _Statistic = __webpack_require__(276);
+	var _Statistic = __webpack_require__(279);
 	
 	var _Statistic2 = _interopRequireDefault(_Statistic);
 	
@@ -12723,9 +12723,19 @@ webpackJsonp([0],[
 	
 	var _Meta2 = _interopRequireDefault(_Meta);
 	
-	var _getUnhandledProps = __webpack_require__(241);
+	var _propUtils = __webpack_require__(244);
 	
-	var _getUnhandledProps2 = _interopRequireDefault(_getUnhandledProps);
+	var _DropdownDivider = __webpack_require__(274);
+	
+	var _DropdownDivider2 = _interopRequireDefault(_DropdownDivider);
+	
+	var _DropdownItem = __webpack_require__(275);
+	
+	var _DropdownItem2 = _interopRequireDefault(_DropdownItem);
+	
+	var _DropdownMenu = __webpack_require__(276);
+	
+	var _DropdownMenu2 = _interopRequireDefault(_DropdownMenu);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -12735,112 +12745,12 @@ webpackJsonp([0],[
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	/* eslint react/jsx-sort-prop-types:0 */
-	
-	var Dropdown = function (_Component) {
-	  _inherits(Dropdown, _Component);
-	
-	  function Dropdown() {
-	    _classCallCheck(this, Dropdown);
-	
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Dropdown).apply(this, arguments));
-	  }
-	
-	  _createClass(Dropdown, [{
-	    key: 'componentDidMount',
-	    value: function componentDidMount() {
-	      this.element = (0, _jquery2.default)(this.refs.select);
-	      this.element.dropdown({
-	        // Settings
-	        action: this.props.action,
-	        allowAdditions: this.props.allowAdditions,
-	        allowCategorySelection: this.props.allowCategorySelection,
-	        apiSettings: this.props.apiSettings,
-	        fields: this.props.fields,
-	        forceSelection: this.props.forceSelection,
-	        glyphWidth: this.props.glyphWidth,
-	        label: this.props.label,
-	        match: this.props.match,
-	        maxSelections: this.props.maxSelections,
-	        on: this.props.on,
-	        placeholder: this.props.placeholder,
-	        saveRemoveData: this.props.saveRemoteData,
-	        useLabels: this.props.useLabels,
-	
-	        // Additional Settings
-	        direction: this.props.delay,
-	        keepOnScreen: this.props.keys,
-	        context: this.props.duration,
-	        fullTextSearch: this.props.transition,
-	        preserveHTML: this.props.allowTab,
-	        sortSelect: this.props.showOnFocus,
-	        showOnFocus: this.props.sortSelect,
-	        allowTab: this.props.preserveHTML,
-	        transition: this.props.fullTextSearch,
-	        duration: this.props.context,
-	        keys: this.props.keepOnScreen,
-	        delay: this.props.direction,
-	
-	        // Callbacks
-	        onChange: this.props.onChange,
-	        onHide: this.props.onHide,
-	        onShow: this.props.onShow,
-	        onNoResults: this.props.onNoResults,
-	        onLabelSelect: this.props.onLabelSelect,
-	        onLabelRemove: this.props.onLabelRemove,
-	        onLabelCreate: this.props.onLabelCreate,
-	        onAdd: this.props.onAdd,
-	        onRemove: this.props.onRemove
-	      });
-	    }
-	  }, {
-	    key: 'componentDidUpdate',
-	    value: function componentDidUpdate(prevProps, prevState) {
-	      this.element.dropdown('refresh');
-	    }
-	  }, {
-	    key: 'componentWillUnmount',
-	    value: function componentWillUnmount() {
-	      this.element.off();
-	    }
-	  }, {
-	    key: 'plugin',
-	    value: function plugin() {
-	      var _element;
-	
-	      return (_element = this.element).dropdown.apply(_element, arguments);
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      var options = _lodash2.default.map(this.props.options, function (opt, i) {
-	        return _react2.default.createElement(
-	          'option',
-	          { key: opt.value + '-' + i, value: opt.value },
-	          opt.text
-	        );
-	      });
-	      var classes = (0, _classnames2.default)('sd-dropdown', 'ui', this.props.className, 'dropdown');
-	      var props = (0, _getUnhandledProps2.default)(this);
-	
-	      return _react2.default.createElement(
-	        'select',
-	        _extends({}, props, { className: classes, ref: 'select' }),
-	        options
-	      );
-	    }
-	  }]);
-	
-	  return Dropdown;
-	}(_react.Component);
-	
-	Dropdown.propTypes = {
+	var pluginPropTypes = {
 	  // Settings
 	  action: _react.PropTypes.string,
 	  allowAdditions: _react.PropTypes.bool,
 	  allowCategorySelection: _react.PropTypes.bool,
 	  apiSettings: _react.PropTypes.object,
-	  className: _react.PropTypes.string,
 	  fields: _react.PropTypes.object,
 	  forceSelection: _react.PropTypes.bool,
 	  glyphWidth: _react.PropTypes.number,
@@ -12848,44 +12758,188 @@ webpackJsonp([0],[
 	  match: _react.PropTypes.string,
 	  maxSelections: _react.PropTypes.number,
 	  on: _react.PropTypes.string,
-	  options: _react.PropTypes.arrayOf(_react.PropTypes.shape({
-	    value: _react.PropTypes.string,
-	    text: _react.PropTypes.string
-	  })),
-	  placeholder: _react.PropTypes.oneOf([_react.PropTypes.string, _react.PropTypes.bool]),
+	  placeholder: _react.PropTypes.oneOfType([_react.PropTypes.string, _react.PropTypes.bool]),
 	  saveRemoteData: _react.PropTypes.bool,
 	  useLabels: _react.PropTypes.bool,
 	
 	  // Additional Settings
-	  direction: _react.PropTypes.string,
-	  keepOnScreen: _react.PropTypes.bool,
-	  context: _react.PropTypes.object,
-	  fullTextSearch: _react.PropTypes.bool,
-	  preserveHTML: _react.PropTypes.bool,
-	  sortSelect: _react.PropTypes.bool,
-	  showOnFocus: _react.PropTypes.bool,
 	  allowTab: _react.PropTypes.bool,
-	  transition: _react.PropTypes.string,
-	  duration: _react.PropTypes.number,
-	  keys: _react.PropTypes.object,
+	  context: _react.PropTypes.object,
 	  delay: _react.PropTypes.object,
+	  direction: _react.PropTypes.string,
+	  duration: _react.PropTypes.number,
+	  fullTextSearch: _react.PropTypes.bool,
+	  keepOnScreen: _react.PropTypes.bool,
+	  keys: _react.PropTypes.object,
+	  preserveHTML: _react.PropTypes.bool,
+	  showOnFocus: _react.PropTypes.bool,
+	  sortSelect: _react.PropTypes.bool,
+	  transition: _react.PropTypes.string,
 	
 	  // Callbacks
+	  onAdd: _react.PropTypes.func,
 	  onChange: _react.PropTypes.func,
-	  onShow: _react.PropTypes.func,
 	  onHide: _react.PropTypes.func,
-	  onNoResults: _react.PropTypes.func,
+	  onRemove: _react.PropTypes.func,
+	  onShow: _react.PropTypes.func,
 	  onLabelSelect: _react.PropTypes.func,
 	  onLabelRemove: _react.PropTypes.func,
 	  onLabelCreate: _react.PropTypes.func,
-	  onAdd: _react.PropTypes.func,
-	  onRemove: _react.PropTypes.func
+	  onNoResults: _react.PropTypes.func
 	};
+	
+	var Dropdown = function (_Component) {
+	  _inherits(Dropdown, _Component);
+	
+	  function Dropdown() {
+	    var _Object$getPrototypeO;
+	
+	    var _temp, _this, _ret;
+	
+	    _classCallCheck(this, Dropdown);
+	
+	    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+	      args[_key] = arguments[_key];
+	    }
+	
+	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(Dropdown)).call.apply(_Object$getPrototypeO, [this].concat(args))), _this), _this.handleAdd = function (value) {
+	      if (_this._isSyncing) return;
+	      if (_this.props.onAdd) _this.props.onAdd(value); // eslint-disable-line
+	    }, _this.handleChange = function () {
+	      if (_this._isSyncing) return;
+	      // callback with the appropriate value type
+	      if (_this.props.onChange) _this.props.onChange(_this.getValue()); // eslint-disable-line
+	    }, _this.handleRemove = function (value) {
+	      if (_this._isSyncing) return;
+	      if (_this.props.onRemove) _this.props.onRemove(value); // eslint-disable-line
+	    }, _this.getValue = function () {
+	      var value = _this.element.dropdown('get value');
+	      if (value) {
+	        // multiselect dropdown values are delimited strings
+	        return _this.isMultiselect() ? value.split(Dropdown._DELIMITER) : value;
+	      }
+	
+	      // sensible empty values
+	      return _this.isMultiselect() ? [] : undefined;
+	    }, _this._syncFromProps = function () {
+	      // flag that we are syncing so we don't call back on React -> DOM syncing changes
+	      _this._isSyncing = true;
+	      var value = _this.props.value;
+	
+	      _this.setValue(value);
+	      _this._isSyncing = false;
+	    }, _this.isMultiselect = function () {
+	      return _lodash2.default.includes(_this.props.className, 'multiple');
+	    }, _this.isSelection = function () {
+	      return _lodash2.default.includes(_this.props.className, 'selection');
+	    }, _this.setValue = function (value) {
+	      return _this.element.dropdown('set exactly', value);
+	    }, _temp), _possibleConstructorReturn(_this, _ret);
+	  }
+	
+	  _createClass(Dropdown, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      this.element = (0, _jquery2.default)(this.refs.element).dropdown(_extends({}, (0, _propUtils.getPluginProps)(this.props, pluginPropTypes), {
+	        onAdd: this.handleAdd,
+	        onChange: this.handleChange,
+	        onRemove: this.handleRemove
+	      }));
+	    }
+	  }, {
+	    key: 'componentDidUpdate',
+	    value: function componentDidUpdate(prevProps, prevState) {
+	      this.element.dropdown('refresh');
+	      var isDOMInSync = _lodash2.default.isEqual(this.props.value, this.getValue());
+	      if (!isDOMInSync && this.isSelection()) this._syncFromProps();
+	    }
+	  }, {
+	    key: 'componentWillUnmount',
+	    value: function componentWillUnmount() {
+	      this.element.off();
+	    }
+	
+	    // dropdown values are stored in a hidden input value (string)
+	    // multiselect dropdown values should be arrays since they accept array values
+	    // empty values should not be empty strings ""
+	
+	
+	    // sync's the jQuery module to the React props
+	
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _props = this.props;
+	      var children = _props.children;
+	      var className = _props.className;
+	      var defaultText = _props.defaultText;
+	      var defaultValue = _props.defaultValue;
+	      var icon = _props.icon;
+	      var options = _props.options;
+	      var text = _props.text;
+	
+	      var classes = (0, _classnames2.default)('sd-dropdown', 'ui', className, 'dropdown');
+	      var iconClasses = (0, _classnames2.default)('sd-dropdown-icon', icon, 'icon');
+	      var items = _lodash2.default.map(options, function (opt, i) {
+	        return _react2.default.createElement(
+	          _DropdownItem2.default,
+	          { key: opt.value + '-' + i, 'data-text': opt.text, 'data-value': opt.value },
+	          opt.text
+	        );
+	      });
+	      var componentProps = (0, _propUtils.getComponentProps)(this.props, pluginPropTypes);
+	      return _react2.default.createElement(
+	        'div',
+	        _extends({}, componentProps, { className: classes, ref: 'element' }),
+	        this.isSelection() && _react2.default.createElement('input', { type: 'hidden', defaultValue: defaultValue }),
+	        text && _react2.default.createElement(
+	          'div',
+	          { className: 'text' },
+	          text
+	        ),
+	        icon && _react2.default.createElement('i', { className: iconClasses }),
+	        defaultText && _react2.default.createElement(
+	          'div',
+	          { className: 'default text' },
+	          defaultText
+	        ),
+	        _react2.default.createElement(
+	          _DropdownMenu2.default,
+	          null,
+	          children || items
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return Dropdown;
+	}(_react.Component);
+	
+	Dropdown.propTypes = _extends({}, pluginPropTypes, {
+	  text: _react.PropTypes.string,
+	  defaultText: _react.PropTypes.string,
+	  className: _react.PropTypes.string,
+	  children: _propUtils.customPropTypes.mutuallyExclusive(['options']),
+	  icon: _react.PropTypes.string,
+	  defaultValue: _react.PropTypes.oneOfType([_react.PropTypes.string, _react.PropTypes.number, _react.PropTypes.arrayOf([_react.PropTypes.string, _react.PropTypes.number])]),
+	  value: _react.PropTypes.oneOfType([_react.PropTypes.string, _react.PropTypes.number, _react.PropTypes.arrayOf([_react.PropTypes.string, _react.PropTypes.number])]),
+	  options: _react.PropTypes.arrayOf(_react.PropTypes.shape({
+	    value: _react.PropTypes.oneOfType([_react.PropTypes.string, _react.PropTypes.number]),
+	    text: _react.PropTypes.oneOfType([_react.PropTypes.string, _react.PropTypes.number])
+	  }))
+	});
+	Dropdown.defaultProps = {
+	  icon: 'dropdown'
+	};
+	Dropdown._DELIMITER = ',';
 	Dropdown._meta = {
 	  library: _Meta2.default.library.semanticUI,
 	  name: 'Dropdown',
 	  type: _Meta2.default.type.module
 	};
+	Dropdown.Divider = _DropdownDivider2.default;
+	Dropdown.Item = _DropdownItem2.default;
+	Dropdown.Menu = _DropdownMenu2.default;
 	exports.default = Dropdown;
 	module.exports = exports['default'];
 
@@ -12894,6 +12948,248 @@ webpackJsonp([0],[
 
 /***/ },
 /* 274 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+	
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(117);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _Meta = __webpack_require__(231);
+	
+	var _Meta2 = _interopRequireDefault(_Meta);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var DropdownDivider = function (_Component) {
+	  _inherits(DropdownDivider, _Component);
+	
+	  function DropdownDivider() {
+	    _classCallCheck(this, DropdownDivider);
+	
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(DropdownDivider).apply(this, arguments));
+	  }
+	
+	  _createClass(DropdownDivider, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement('div', _extends({ className: 'sd-dropdown-divider divider' }, this.props));
+	    }
+	  }]);
+	
+	  return DropdownDivider;
+	}(_react.Component);
+	
+	DropdownDivider.propTypes = {
+	  children: _react.PropTypes.node
+	};
+	DropdownDivider._meta = {
+	  library: _Meta2.default.library.semanticUI,
+	  name: 'DropdownDivider',
+	  parent: 'Dropdown',
+	  type: _Meta2.default.type.module
+	};
+	exports.default = DropdownDivider;
+	module.exports = exports['default'];
+
+	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(225); if (makeExportsHot(module, __webpack_require__(117))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "DropdownDivider.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
+
+/***/ },
+/* 275 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+	
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(117);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _classnames = __webpack_require__(230);
+	
+	var _classnames2 = _interopRequireDefault(_classnames);
+	
+	var _Meta = __webpack_require__(231);
+	
+	var _Meta2 = _interopRequireDefault(_Meta);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var DropdownItem = function (_Component) {
+	  _inherits(DropdownItem, _Component);
+	
+	  function DropdownItem() {
+	    _classCallCheck(this, DropdownItem);
+	
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(DropdownItem).apply(this, arguments));
+	  }
+	
+	  _createClass(DropdownItem, [{
+	    key: 'render',
+	    value: function render() {
+	      var _props = this.props;
+	      var children = _props.children;
+	      var className = _props.className;
+	      var description = _props.description;
+	      var icon = _props.icon;
+	      var text = _props.text;
+	      var value = _props.value;
+	
+	      var rest = _objectWithoutProperties(_props, ['children', 'className', 'description', 'icon', 'text', 'value']);
+	
+	      var classes = (0, _classnames2.default)('sd-dropdown-item', 'item', className);
+	
+	      // add default dropdown icon if item contains another menu
+	      var iconName = icon;
+	      if (!icon) {
+	        _react.Children.map(children, function (child) {
+	          iconName = child.type && child.type.name === 'DropdownMenu' && 'dropdown';
+	        });
+	      }
+	
+	      var iconClasses = (0, _classnames2.default)('sd-dropdown-item-icon', iconName, 'icon');
+	
+	      return _react2.default.createElement(
+	        'div',
+	        _extends({ className: classes, 'data-value': value, 'data-text': text }, rest),
+	        description && _react2.default.createElement(
+	          'span',
+	          { className: 'description' },
+	          description
+	        ),
+	        iconName && _react2.default.createElement('i', { className: iconClasses }),
+	        text,
+	        children
+	      );
+	    }
+	  }]);
+	
+	  return DropdownItem;
+	}(_react.Component);
+	
+	DropdownItem.propTypes = {
+	  children: _react.PropTypes.node,
+	  className: _react.PropTypes.string,
+	  description: _react.PropTypes.string,
+	  icon: _react.PropTypes.string,
+	  text: _react.PropTypes.string,
+	  value: _react.PropTypes.oneOfType([_react.PropTypes.number, _react.PropTypes.string])
+	};
+	DropdownItem._meta = {
+	  library: _Meta2.default.library.semanticUI,
+	  name: 'DropdownItem',
+	  parent: 'Dropdown',
+	  type: _Meta2.default.type.module
+	};
+	exports.default = DropdownItem;
+	module.exports = exports['default'];
+
+	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(225); if (makeExportsHot(module, __webpack_require__(117))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "DropdownItem.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
+
+/***/ },
+/* 276 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+	
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(117);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _Meta = __webpack_require__(231);
+	
+	var _Meta2 = _interopRequireDefault(_Meta);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var DropdownMenu = function (_Component) {
+	  _inherits(DropdownMenu, _Component);
+	
+	  function DropdownMenu() {
+	    _classCallCheck(this, DropdownMenu);
+	
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(DropdownMenu).apply(this, arguments));
+	  }
+	
+	  _createClass(DropdownMenu, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement('div', _extends({ className: 'sd-dropdown-menu menu' }, this.props));
+	    }
+	  }]);
+	
+	  return DropdownMenu;
+	}(_react.Component);
+	
+	DropdownMenu.propTypes = {
+	  children: _react.PropTypes.node
+	};
+	DropdownMenu._meta = {
+	  library: _Meta2.default.library.semanticUI,
+	  name: 'DropdownMenu',
+	  parent: 'Dropdown',
+	  type: _Meta2.default.type.module
+	};
+	exports.default = DropdownMenu;
+	module.exports = exports['default'];
+
+	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(225); if (makeExportsHot(module, __webpack_require__(117))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "DropdownMenu.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
+
+/***/ },
+/* 277 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -13034,7 +13330,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 275 */
+/* 278 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -13110,7 +13406,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 276 */
+/* 279 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -13143,15 +13439,15 @@ webpackJsonp([0],[
 	
 	var _Meta2 = _interopRequireDefault(_Meta);
 	
-	var _StatisticStatistics = __webpack_require__(277);
+	var _StatisticStatistics = __webpack_require__(280);
 	
 	var _StatisticStatistics2 = _interopRequireDefault(_StatisticStatistics);
 	
-	var _StatisticLabel = __webpack_require__(278);
+	var _StatisticLabel = __webpack_require__(281);
 	
 	var _StatisticLabel2 = _interopRequireDefault(_StatisticLabel);
 	
-	var _StatisticValue = __webpack_require__(279);
+	var _StatisticValue = __webpack_require__(282);
 	
 	var _StatisticValue2 = _interopRequireDefault(_StatisticValue);
 	
@@ -13209,7 +13505,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 277 */
+/* 280 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -13285,7 +13581,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 278 */
+/* 281 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -13368,7 +13664,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 279 */
+/* 282 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -13451,7 +13747,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 280 */
+/* 283 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -13470,19 +13766,19 @@ webpackJsonp([0],[
 	
 	var _stardust = __webpack_require__(222);
 	
-	var _ComponentDescription = __webpack_require__(281);
+	var _ComponentDescription = __webpack_require__(284);
 	
 	var _ComponentDescription2 = _interopRequireDefault(_ComponentDescription);
 	
-	var _ComponentExamples = __webpack_require__(284);
+	var _ComponentExamples = __webpack_require__(287);
 	
 	var _ComponentExamples2 = _interopRequireDefault(_ComponentExamples);
 	
-	var _ComponentProps = __webpack_require__(840);
+	var _ComponentProps = __webpack_require__(857);
 	
 	var _ComponentProps2 = _interopRequireDefault(_ComponentProps);
 	
-	var _getComponentDocInfo = __webpack_require__(841);
+	var _getComponentDocInfo = __webpack_require__(858);
 	
 	var _getComponentDocInfo2 = _interopRequireDefault(_getComponentDocInfo);
 	
@@ -13537,7 +13833,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 281 */
+/* 284 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -13558,11 +13854,11 @@ webpackJsonp([0],[
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _SemanticTypes = __webpack_require__(282);
+	var _SemanticTypes = __webpack_require__(285);
 	
 	var _SemanticTypes2 = _interopRequireDefault(_SemanticTypes);
 	
-	var _StardustTypes = __webpack_require__(283);
+	var _StardustTypes = __webpack_require__(286);
 	
 	var _StardustTypes2 = _interopRequireDefault(_StardustTypes);
 	
@@ -13670,7 +13966,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 282 */
+/* 285 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -13695,7 +13991,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 283 */
+/* 286 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -13716,7 +14012,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 284 */
+/* 287 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -13735,7 +14031,7 @@ webpackJsonp([0],[
 	
 	var _stardust = __webpack_require__(222);
 	
-	var _ExampleContext = __webpack_require__(285);
+	var _ExampleContext = __webpack_require__(288);
 	
 	var _ExampleContext2 = _interopRequireDefault(_ExampleContext);
 	
@@ -13800,7 +14096,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 285 */
+/* 288 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -13810,221 +14106,228 @@ webpackJsonp([0],[
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.default = __webpack_require__(286);
+	exports.default = __webpack_require__(289);
 	module.exports = exports['default'];
 
 	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(225); if (makeExportsHot(module, __webpack_require__(117))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "ExampleContext.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 286 */
+/* 289 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var map = {
-		"./collections/Form/Content/FormContentExamples.js": 287,
-		"./collections/Form/Content/FormFieldExample.js": 636,
-		"./collections/Form/FieldVariations/FormFieldInlineExample.js": 637,
-		"./collections/Form/FieldVariations/FormFieldVariationsExamples.js": 638,
-		"./collections/Form/FormExamples.js": 639,
-		"./collections/Form/FormVariations/FormFormVariationsExamples.js": 642,
-		"./collections/Form/FormVariations/FormSizeLargeExample.js": 645,
-		"./collections/Form/FormVariations/FormSizeSmallExample.js": 646,
-		"./collections/Form/GroupVariations/FormGroupEvenlyDividedExample.js": 647,
-		"./collections/Form/GroupVariations/FormGroupVariationsExamples.js": 641,
-		"./collections/Form/States/FormFieldErrorExample.js": 648,
-		"./collections/Form/States/FormStatesExamples.js": 643,
-		"./collections/Form/Types/FormFormExample.js": 649,
-		"./collections/Form/Types/FormTypesExamples.js": 640,
-		"./collections/Form/Validation/FormSpecifyingValidationRulesExample.js": 650,
-		"./collections/Form/Validation/FormValidatingOnBlurAndOtherEventsExample.js": 651,
-		"./collections/Form/Validation/FormValidationExamples.js": 644,
-		"./collections/Message/MessageExamples.js": 652,
-		"./collections/Message/States/MessageStatesExamples.js": 653,
-		"./collections/Message/States/MessageVisibleExample.js": 656,
-		"./collections/Message/Types/MessageDismissableBlockExample.js": 657,
-		"./collections/Message/Types/MessageIconExample.js": 658,
-		"./collections/Message/Types/MessageTypesExamples.js": 654,
-		"./collections/Message/Variations/MessageInfoExample.js": 659,
-		"./collections/Message/Variations/MessageVariationsExamples.js": 655,
-		"./collections/Message/Variations/MessageWarningExample.js": 660,
-		"./collections/Table/TableExamples.js": 661,
-		"./collections/Table/Variations/TableSelectableExample.js": 663,
-		"./collections/Table/Variations/TableVariationsExamples.js": 662,
-		"./elements/Button/ButtonExamples.js": 665,
-		"./elements/Button/Content/ButtonConditionalsExample.js": 671,
-		"./elements/Button/Content/ButtonContentExamples.js": 668,
-		"./elements/Button/Groups/ButtonButtonsExample.js": 672,
-		"./elements/Button/Groups/ButtonGroupsExamples.js": 667,
-		"./elements/Button/Groups/ButtonIconButtonsExample.js": 673,
-		"./elements/Button/States/ButtonActiveExample.js": 674,
-		"./elements/Button/States/ButtonDisabledExample.js": 675,
-		"./elements/Button/States/ButtonLoadingExample.js": 676,
-		"./elements/Button/States/ButtonStatesExamples.js": 669,
-		"./elements/Button/Types/ButtonAnimatedExample.js": 677,
-		"./elements/Button/Types/ButtonBasicExample.js": 678,
-		"./elements/Button/Types/ButtonButtonExample.js": 679,
-		"./elements/Button/Types/ButtonEmphasisExample.js": 680,
-		"./elements/Button/Types/ButtonIconExample.js": 681,
-		"./elements/Button/Types/ButtonInvertedExample.js": 682,
-		"./elements/Button/Types/ButtonLabeledExample.js": 683,
-		"./elements/Button/Types/ButtonLabeledIconExample.js": 684,
-		"./elements/Button/Types/ButtonTypesExamples.js": 666,
-		"./elements/Button/Variations/ButtonCircularExample.js": 685,
-		"./elements/Button/Variations/ButtonColoredExample.js": 686,
-		"./elements/Button/Variations/ButtonCompactExample.js": 687,
-		"./elements/Button/Variations/ButtonFloatedExample.js": 688,
-		"./elements/Button/Variations/ButtonFluidExample.js": 689,
-		"./elements/Button/Variations/ButtonHorizontallyAttachedExample.js": 690,
-		"./elements/Button/Variations/ButtonPositiveNegativeExample.js": 691,
-		"./elements/Button/Variations/ButtonSizeExample.js": 692,
-		"./elements/Button/Variations/ButtonSocialExample.js": 693,
-		"./elements/Button/Variations/ButtonToggleExample.js": 694,
-		"./elements/Button/Variations/ButtonVerticallyAttachedExample.js": 695,
-		"./elements/Button/Variations/ButtonsVariationsExamples.js": 670,
-		"./elements/Divider/DividerExamples.js": 696,
-		"./elements/Divider/Types/DividerDividerExample.js": 699,
-		"./elements/Divider/Types/DividerHorizontalExample.js": 700,
-		"./elements/Divider/Types/DividerTypesExamples.js": 697,
-		"./elements/Divider/Types/DividerVerticalExample.js": 701,
-		"./elements/Divider/Variations/DividerClearingExample.js": 702,
-		"./elements/Divider/Variations/DividerFittedExample.js": 703,
-		"./elements/Divider/Variations/DividerHiddenExample.js": 704,
-		"./elements/Divider/Variations/DividerInvertedExample.js": 705,
-		"./elements/Divider/Variations/DividerSectionExample.js": 706,
-		"./elements/Divider/Variations/DividerVariationsExamples.js": 698,
-		"./elements/Header/Content/HeaderContentExamples.js": 707,
-		"./elements/Header/Content/HeaderIconExample.js": 708,
-		"./elements/Header/Content/HeaderImageExample.js": 709,
-		"./elements/Header/Content/HeaderSubheaderExample.js": 710,
-		"./elements/Header/HeaderExamples.js": 711,
-		"./elements/Header/States/HeaderDisabledExample.js": 715,
-		"./elements/Header/States/HeaderStatesExamples.js": 713,
-		"./elements/Header/Types/HeaderContentHeadersExamples.js": 716,
-		"./elements/Header/Types/HeaderIconHeadersExamples.js": 717,
-		"./elements/Header/Types/HeaderPageHeadersExample.js": 718,
-		"./elements/Header/Types/HeaderSubHeadersExample.js": 719,
-		"./elements/Header/Types/HeaderTypesExamples.js": 712,
-		"./elements/Header/Variations/HeaderAttachedExample.js": 720,
-		"./elements/Header/Variations/HeaderBlockExample.js": 721,
-		"./elements/Header/Variations/HeaderColoredExample.js": 722,
-		"./elements/Header/Variations/HeaderDividingExample.js": 723,
-		"./elements/Header/Variations/HeaderFloatingExample.js": 724,
-		"./elements/Header/Variations/HeaderInvertedExample.js": 725,
-		"./elements/Header/Variations/HeaderTextAlignmentExample.js": 726,
-		"./elements/Header/Variations/HeaderVariationsExamples.js": 714,
-		"./elements/Input/InputExamples.js": 727,
-		"./elements/Input/States/InputDisabledExample.js": 731,
-		"./elements/Input/States/InputErrorExample.js": 732,
-		"./elements/Input/States/InputFocusExample.js": 733,
-		"./elements/Input/States/InputLoadingExample.js": 734,
-		"./elements/Input/States/InputStatesExamples.js": 729,
-		"./elements/Input/Types/InputInputExample.js": 735,
-		"./elements/Input/Types/InputTypesExamples.js": 728,
-		"./elements/Input/Variations/InputActionExample.js": 736,
-		"./elements/Input/Variations/InputActionExtraExample.js": 737,
-		"./elements/Input/Variations/InputFluidExample.js": 738,
-		"./elements/Input/Variations/InputIconExample.js": 739,
-		"./elements/Input/Variations/InputInvertedExample.js": 740,
-		"./elements/Input/Variations/InputLabeledExample.js": 741,
-		"./elements/Input/Variations/InputRightLabeledExample.js": 742,
-		"./elements/Input/Variations/InputSizeExample.js": 743,
-		"./elements/Input/Variations/InputTransparentExample.js": 744,
-		"./elements/Input/Variations/InputVariationsExamples.js": 730,
-		"./elements/List/Content/ListContentExamples.js": 745,
-		"./elements/List/Content/ListDescriptionExample.js": 746,
-		"./elements/List/Content/ListHeaderExample.js": 747,
-		"./elements/List/Content/ListIconExample.js": 748,
-		"./elements/List/Content/ListImageExample.js": 749,
-		"./elements/List/Content/ListItemExample.js": 750,
-		"./elements/List/Content/ListLinkExample.js": 751,
-		"./elements/List/ListExamples.js": 752,
-		"./elements/List/Types/ListBulletedExample.js": 755,
-		"./elements/List/Types/ListLinkExample.js": 756,
-		"./elements/List/Types/ListListExample.js": 757,
-		"./elements/List/Types/ListOrderedExample.js": 758,
-		"./elements/List/Types/ListTypesExamples.js": 753,
-		"./elements/List/Variations/ListAnimatedExample.js": 759,
-		"./elements/List/Variations/ListCelledExample.js": 760,
-		"./elements/List/Variations/ListDividedExample.js": 761,
-		"./elements/List/Variations/ListHorizontalExample.js": 762,
-		"./elements/List/Variations/ListInvertedExample.js": 763,
-		"./elements/List/Variations/ListRelaxedExample.js": 764,
-		"./elements/List/Variations/ListSelectionExample.js": 765,
-		"./elements/List/Variations/ListSizeBigExample.js": 766,
-		"./elements/List/Variations/ListSizeHugeExample.js": 767,
-		"./elements/List/Variations/ListSizeLargeExample.js": 768,
-		"./elements/List/Variations/ListSizeMassiveExample.js": 769,
-		"./elements/List/Variations/ListSizeMiniExample.js": 770,
-		"./elements/List/Variations/ListSizeSmallExample.js": 771,
-		"./elements/List/Variations/ListSizeTinyExample.js": 772,
-		"./elements/List/Variations/ListVariationsExamples.js": 754,
-		"./elements/List/Variations/ListVeryRelaxedExample.js": 773,
-		"./elements/Segment/Groups/SegmentGroupsExamples.js": 774,
-		"./elements/Segment/Groups/SegmentHorizontalSegmentsExample.js": 775,
-		"./elements/Segment/Groups/SegmentNestedSegmentsExample.js": 776,
-		"./elements/Segment/Groups/SegmentPiledSegmentsExample.js": 777,
-		"./elements/Segment/Groups/SegmentRaisedSegmentsExample.js": 778,
-		"./elements/Segment/Groups/SegmentSegmentsExample.js": 779,
-		"./elements/Segment/Groups/SegmentStackedSegmentsExample.js": 780,
-		"./elements/Segment/SegmentExamples.js": 781,
-		"./elements/Segment/States/SegmentDisabledExample.js": 785,
-		"./elements/Segment/States/SegmentLoadingExample.js": 786,
-		"./elements/Segment/States/SegmentStatesExamples.js": 783,
-		"./elements/Segment/Types/SegmentPiledExample.js": 787,
-		"./elements/Segment/Types/SegmentRaisedExample.js": 788,
-		"./elements/Segment/Types/SegmentSegmentExample.js": 789,
-		"./elements/Segment/Types/SegmentStackedExample.js": 790,
-		"./elements/Segment/Types/SegmentTypesExamples.js": 782,
-		"./elements/Segment/Types/SegmentVerticalSegmentExample.js": 791,
-		"./elements/Segment/Variations/SegmentAttachedComplexExample.js": 792,
-		"./elements/Segment/Variations/SegmentAttachedExample.js": 793,
-		"./elements/Segment/Variations/SegmentBasicExample.js": 794,
-		"./elements/Segment/Variations/SegmentCircularExample.js": 795,
-		"./elements/Segment/Variations/SegmentClearingExample.js": 796,
-		"./elements/Segment/Variations/SegmentColoredExample.js": 797,
-		"./elements/Segment/Variations/SegmentColoredInvertedExample.js": 798,
-		"./elements/Segment/Variations/SegmentCompactExample.js": 799,
-		"./elements/Segment/Variations/SegmentCompactGroupExample.js": 800,
-		"./elements/Segment/Variations/SegmentEmphasisExample.js": 801,
-		"./elements/Segment/Variations/SegmentFloatedExample.js": 802,
-		"./elements/Segment/Variations/SegmentInvertedExample.js": 803,
-		"./elements/Segment/Variations/SegmentPaddedExample.js": 804,
-		"./elements/Segment/Variations/SegmentTextAlignmentExample.js": 805,
-		"./elements/Segment/Variations/SegmentVariationsExamples.js": 784,
-		"./elements/Segment/Variations/SegmentVeryPaddedExample.js": 806,
-		"./modules/Checkbox/CheckboxExamples.js": 807,
-		"./modules/Checkbox/States/CheckboxRemoteControlExample.js": 811,
-		"./modules/Checkbox/States/Checked.js": 812,
-		"./modules/Checkbox/States/Disabled.js": 813,
-		"./modules/Checkbox/States/ReadOnly.js": 814,
-		"./modules/Checkbox/States/States.js": 809,
-		"./modules/Checkbox/Types/Checkbox.js": 815,
-		"./modules/Checkbox/Types/Radio.js": 816,
-		"./modules/Checkbox/Types/RadioGroup.js": 817,
-		"./modules/Checkbox/Types/Slider.js": 818,
-		"./modules/Checkbox/Types/Toggle.js": 819,
-		"./modules/Checkbox/Types/Types.js": 808,
-		"./modules/Checkbox/Variations/Fitted.js": 820,
-		"./modules/Checkbox/Variations/Variations.js": 810,
-		"./modules/Progress/Content/Bar.js": 821,
-		"./modules/Progress/Content/Content.js": 822,
-		"./modules/Progress/Content/Label.js": 823,
-		"./modules/Progress/Content/Progress.js": 824,
-		"./modules/Progress/ProgressExamples.js": 825,
-		"./modules/Progress/States/Active.js": 828,
-		"./modules/Progress/States/Disabled.js": 829,
-		"./modules/Progress/States/Error.js": 830,
-		"./modules/Progress/States/States.js": 827,
-		"./modules/Progress/States/Success.js": 831,
-		"./modules/Progress/States/Warning.js": 832,
-		"./modules/Progress/Types/Indicating.js": 833,
-		"./modules/Progress/Types/Standard.js": 834,
-		"./modules/Progress/Types/Types.js": 826,
-		"./views/Statistic/StatisticExamples.js": 835,
-		"./views/Statistic/Types/StatisticBottomLabelExample.js": 837,
-		"./views/Statistic/Types/StatisticGroupExample.js": 838,
-		"./views/Statistic/Types/StatisticTopLabelExample.js": 839,
-		"./views/Statistic/Types/StatisticTypesExamples.js": 836
+		"./collections/Form/Content/FormContentExamples.js": 290,
+		"./collections/Form/Content/FormFieldExample.js": 646,
+		"./collections/Form/FieldVariations/FormFieldInlineExample.js": 647,
+		"./collections/Form/FieldVariations/FormFieldVariationsExamples.js": 648,
+		"./collections/Form/FormExamples.js": 649,
+		"./collections/Form/FormVariations/FormFormVariationsExamples.js": 652,
+		"./collections/Form/FormVariations/FormSizeLargeExample.js": 655,
+		"./collections/Form/FormVariations/FormSizeSmallExample.js": 656,
+		"./collections/Form/GroupVariations/FormGroupEvenlyDividedExample.js": 657,
+		"./collections/Form/GroupVariations/FormGroupVariationsExamples.js": 651,
+		"./collections/Form/States/FormFieldErrorExample.js": 658,
+		"./collections/Form/States/FormStatesExamples.js": 653,
+		"./collections/Form/Types/FormFormExample.js": 659,
+		"./collections/Form/Types/FormTypesExamples.js": 650,
+		"./collections/Form/Validation/FormSpecifyingValidationRulesExample.js": 660,
+		"./collections/Form/Validation/FormValidatingOnBlurAndOtherEventsExample.js": 661,
+		"./collections/Form/Validation/FormValidationExamples.js": 654,
+		"./collections/Message/MessageExamples.js": 662,
+		"./collections/Message/States/MessageStatesExamples.js": 663,
+		"./collections/Message/States/MessageVisibleExample.js": 666,
+		"./collections/Message/Types/MessageDismissableBlockExample.js": 667,
+		"./collections/Message/Types/MessageIconExample.js": 668,
+		"./collections/Message/Types/MessageTypesExamples.js": 664,
+		"./collections/Message/Variations/MessageInfoExample.js": 669,
+		"./collections/Message/Variations/MessageVariationsExamples.js": 665,
+		"./collections/Message/Variations/MessageWarningExample.js": 670,
+		"./collections/Table/TableExamples.js": 671,
+		"./collections/Table/Variations/TableSelectableExample.js": 673,
+		"./collections/Table/Variations/TableVariationsExamples.js": 672,
+		"./elements/Button/ButtonExamples.js": 675,
+		"./elements/Button/Content/ButtonConditionalsExample.js": 681,
+		"./elements/Button/Content/ButtonContentExamples.js": 678,
+		"./elements/Button/Groups/ButtonButtonsExample.js": 682,
+		"./elements/Button/Groups/ButtonGroupsExamples.js": 677,
+		"./elements/Button/Groups/ButtonIconButtonsExample.js": 683,
+		"./elements/Button/States/ButtonActiveExample.js": 684,
+		"./elements/Button/States/ButtonDisabledExample.js": 685,
+		"./elements/Button/States/ButtonLoadingExample.js": 686,
+		"./elements/Button/States/ButtonStatesExamples.js": 679,
+		"./elements/Button/Types/ButtonAnimatedExample.js": 687,
+		"./elements/Button/Types/ButtonBasicExample.js": 688,
+		"./elements/Button/Types/ButtonButtonExample.js": 689,
+		"./elements/Button/Types/ButtonEmphasisExample.js": 690,
+		"./elements/Button/Types/ButtonIconExample.js": 691,
+		"./elements/Button/Types/ButtonInvertedExample.js": 692,
+		"./elements/Button/Types/ButtonLabeledExample.js": 693,
+		"./elements/Button/Types/ButtonLabeledIconExample.js": 694,
+		"./elements/Button/Types/ButtonTypesExamples.js": 676,
+		"./elements/Button/Variations/ButtonCircularExample.js": 695,
+		"./elements/Button/Variations/ButtonColoredExample.js": 696,
+		"./elements/Button/Variations/ButtonCompactExample.js": 697,
+		"./elements/Button/Variations/ButtonFloatedExample.js": 698,
+		"./elements/Button/Variations/ButtonFluidExample.js": 699,
+		"./elements/Button/Variations/ButtonHorizontallyAttachedExample.js": 700,
+		"./elements/Button/Variations/ButtonPositiveNegativeExample.js": 701,
+		"./elements/Button/Variations/ButtonSizeExample.js": 702,
+		"./elements/Button/Variations/ButtonSocialExample.js": 703,
+		"./elements/Button/Variations/ButtonToggleExample.js": 704,
+		"./elements/Button/Variations/ButtonVerticallyAttachedExample.js": 705,
+		"./elements/Button/Variations/ButtonsVariationsExamples.js": 680,
+		"./elements/Divider/DividerExamples.js": 706,
+		"./elements/Divider/Types/DividerDividerExample.js": 709,
+		"./elements/Divider/Types/DividerHorizontalExample.js": 710,
+		"./elements/Divider/Types/DividerTypesExamples.js": 707,
+		"./elements/Divider/Types/DividerVerticalExample.js": 711,
+		"./elements/Divider/Variations/DividerClearingExample.js": 712,
+		"./elements/Divider/Variations/DividerFittedExample.js": 713,
+		"./elements/Divider/Variations/DividerHiddenExample.js": 714,
+		"./elements/Divider/Variations/DividerInvertedExample.js": 715,
+		"./elements/Divider/Variations/DividerSectionExample.js": 716,
+		"./elements/Divider/Variations/DividerVariationsExamples.js": 708,
+		"./elements/Header/Content/HeaderContentExamples.js": 717,
+		"./elements/Header/Content/HeaderIconExample.js": 718,
+		"./elements/Header/Content/HeaderImageExample.js": 719,
+		"./elements/Header/Content/HeaderSubheaderExample.js": 720,
+		"./elements/Header/HeaderExamples.js": 721,
+		"./elements/Header/States/HeaderDisabledExample.js": 725,
+		"./elements/Header/States/HeaderStatesExamples.js": 723,
+		"./elements/Header/Types/HeaderContentHeadersExamples.js": 726,
+		"./elements/Header/Types/HeaderIconHeadersExamples.js": 727,
+		"./elements/Header/Types/HeaderPageHeadersExample.js": 728,
+		"./elements/Header/Types/HeaderSubHeadersExample.js": 729,
+		"./elements/Header/Types/HeaderTypesExamples.js": 722,
+		"./elements/Header/Variations/HeaderAttachedExample.js": 730,
+		"./elements/Header/Variations/HeaderBlockExample.js": 731,
+		"./elements/Header/Variations/HeaderColoredExample.js": 732,
+		"./elements/Header/Variations/HeaderDividingExample.js": 733,
+		"./elements/Header/Variations/HeaderFloatingExample.js": 734,
+		"./elements/Header/Variations/HeaderInvertedExample.js": 735,
+		"./elements/Header/Variations/HeaderTextAlignmentExample.js": 736,
+		"./elements/Header/Variations/HeaderVariationsExamples.js": 724,
+		"./elements/Input/InputExamples.js": 737,
+		"./elements/Input/States/InputDisabledExample.js": 741,
+		"./elements/Input/States/InputErrorExample.js": 742,
+		"./elements/Input/States/InputFocusExample.js": 743,
+		"./elements/Input/States/InputLoadingExample.js": 744,
+		"./elements/Input/States/InputStatesExamples.js": 739,
+		"./elements/Input/Types/InputInputExample.js": 745,
+		"./elements/Input/Types/InputTypesExamples.js": 738,
+		"./elements/Input/Variations/InputActionExample.js": 746,
+		"./elements/Input/Variations/InputActionExtraExample.js": 747,
+		"./elements/Input/Variations/InputFluidExample.js": 748,
+		"./elements/Input/Variations/InputIconExample.js": 749,
+		"./elements/Input/Variations/InputInvertedExample.js": 750,
+		"./elements/Input/Variations/InputLabeledExample.js": 751,
+		"./elements/Input/Variations/InputRightLabeledExample.js": 752,
+		"./elements/Input/Variations/InputSizeExample.js": 753,
+		"./elements/Input/Variations/InputTransparentExample.js": 754,
+		"./elements/Input/Variations/InputVariationsExamples.js": 740,
+		"./elements/List/Content/ListContentExamples.js": 755,
+		"./elements/List/Content/ListDescriptionExample.js": 756,
+		"./elements/List/Content/ListHeaderExample.js": 757,
+		"./elements/List/Content/ListIconExample.js": 758,
+		"./elements/List/Content/ListImageExample.js": 759,
+		"./elements/List/Content/ListItemExample.js": 760,
+		"./elements/List/Content/ListLinkExample.js": 761,
+		"./elements/List/ListExamples.js": 762,
+		"./elements/List/Types/ListBulletedExample.js": 765,
+		"./elements/List/Types/ListLinkExample.js": 766,
+		"./elements/List/Types/ListListExample.js": 767,
+		"./elements/List/Types/ListOrderedExample.js": 768,
+		"./elements/List/Types/ListTypesExamples.js": 763,
+		"./elements/List/Variations/ListAnimatedExample.js": 769,
+		"./elements/List/Variations/ListCelledExample.js": 770,
+		"./elements/List/Variations/ListDividedExample.js": 771,
+		"./elements/List/Variations/ListHorizontalExample.js": 772,
+		"./elements/List/Variations/ListInvertedExample.js": 773,
+		"./elements/List/Variations/ListRelaxedExample.js": 774,
+		"./elements/List/Variations/ListSelectionExample.js": 775,
+		"./elements/List/Variations/ListSizeBigExample.js": 776,
+		"./elements/List/Variations/ListSizeHugeExample.js": 777,
+		"./elements/List/Variations/ListSizeLargeExample.js": 778,
+		"./elements/List/Variations/ListSizeMassiveExample.js": 779,
+		"./elements/List/Variations/ListSizeMiniExample.js": 780,
+		"./elements/List/Variations/ListSizeSmallExample.js": 781,
+		"./elements/List/Variations/ListSizeTinyExample.js": 782,
+		"./elements/List/Variations/ListVariationsExamples.js": 764,
+		"./elements/List/Variations/ListVeryRelaxedExample.js": 783,
+		"./elements/Segment/Groups/SegmentGroupsExamples.js": 784,
+		"./elements/Segment/Groups/SegmentHorizontalSegmentsExample.js": 785,
+		"./elements/Segment/Groups/SegmentNestedSegmentsExample.js": 786,
+		"./elements/Segment/Groups/SegmentPiledSegmentsExample.js": 787,
+		"./elements/Segment/Groups/SegmentRaisedSegmentsExample.js": 788,
+		"./elements/Segment/Groups/SegmentSegmentsExample.js": 789,
+		"./elements/Segment/Groups/SegmentStackedSegmentsExample.js": 790,
+		"./elements/Segment/SegmentExamples.js": 791,
+		"./elements/Segment/States/SegmentDisabledExample.js": 795,
+		"./elements/Segment/States/SegmentLoadingExample.js": 796,
+		"./elements/Segment/States/SegmentStatesExamples.js": 793,
+		"./elements/Segment/Types/SegmentPiledExample.js": 797,
+		"./elements/Segment/Types/SegmentRaisedExample.js": 798,
+		"./elements/Segment/Types/SegmentSegmentExample.js": 799,
+		"./elements/Segment/Types/SegmentStackedExample.js": 800,
+		"./elements/Segment/Types/SegmentTypesExamples.js": 792,
+		"./elements/Segment/Types/SegmentVerticalSegmentExample.js": 801,
+		"./elements/Segment/Variations/SegmentAttachedComplexExample.js": 802,
+		"./elements/Segment/Variations/SegmentAttachedExample.js": 803,
+		"./elements/Segment/Variations/SegmentBasicExample.js": 804,
+		"./elements/Segment/Variations/SegmentCircularExample.js": 805,
+		"./elements/Segment/Variations/SegmentClearingExample.js": 806,
+		"./elements/Segment/Variations/SegmentColoredExample.js": 807,
+		"./elements/Segment/Variations/SegmentColoredInvertedExample.js": 808,
+		"./elements/Segment/Variations/SegmentCompactExample.js": 809,
+		"./elements/Segment/Variations/SegmentCompactGroupExample.js": 810,
+		"./elements/Segment/Variations/SegmentEmphasisExample.js": 811,
+		"./elements/Segment/Variations/SegmentFloatedExample.js": 812,
+		"./elements/Segment/Variations/SegmentInvertedExample.js": 813,
+		"./elements/Segment/Variations/SegmentPaddedExample.js": 814,
+		"./elements/Segment/Variations/SegmentTextAlignmentExample.js": 815,
+		"./elements/Segment/Variations/SegmentVariationsExamples.js": 794,
+		"./elements/Segment/Variations/SegmentVeryPaddedExample.js": 816,
+		"./modules/Checkbox/CheckboxExamples.js": 817,
+		"./modules/Checkbox/States/CheckboxRemoteControlExample.js": 821,
+		"./modules/Checkbox/States/Checked.js": 822,
+		"./modules/Checkbox/States/Disabled.js": 823,
+		"./modules/Checkbox/States/ReadOnly.js": 824,
+		"./modules/Checkbox/States/States.js": 819,
+		"./modules/Checkbox/Types/Checkbox.js": 825,
+		"./modules/Checkbox/Types/Radio.js": 826,
+		"./modules/Checkbox/Types/RadioGroup.js": 827,
+		"./modules/Checkbox/Types/Slider.js": 828,
+		"./modules/Checkbox/Types/Toggle.js": 829,
+		"./modules/Checkbox/Types/Types.js": 818,
+		"./modules/Checkbox/Variations/Fitted.js": 830,
+		"./modules/Checkbox/Variations/Variations.js": 820,
+		"./modules/Dropdown/Content/AsyncOptions.js": 831,
+		"./modules/Dropdown/Content/Content.js": 832,
+		"./modules/Dropdown/DropdownExamples.js": 833,
+		"./modules/Dropdown/States/Disabled.js": 836,
+		"./modules/Dropdown/States/States.js": 835,
+		"./modules/Dropdown/Types/Dropdown.js": 837,
+		"./modules/Dropdown/Types/Types.js": 834,
+		"./modules/Progress/Content/Bar.js": 838,
+		"./modules/Progress/Content/Content.js": 839,
+		"./modules/Progress/Content/Label.js": 840,
+		"./modules/Progress/Content/Progress.js": 841,
+		"./modules/Progress/ProgressExamples.js": 842,
+		"./modules/Progress/States/Active.js": 845,
+		"./modules/Progress/States/Disabled.js": 846,
+		"./modules/Progress/States/Error.js": 847,
+		"./modules/Progress/States/States.js": 844,
+		"./modules/Progress/States/Success.js": 848,
+		"./modules/Progress/States/Warning.js": 849,
+		"./modules/Progress/Types/Indicating.js": 850,
+		"./modules/Progress/Types/Standard.js": 851,
+		"./modules/Progress/Types/Types.js": 843,
+		"./views/Statistic/StatisticExamples.js": 852,
+		"./views/Statistic/Types/StatisticBottomLabelExample.js": 854,
+		"./views/Statistic/Types/StatisticGroupExample.js": 855,
+		"./views/Statistic/Types/StatisticTopLabelExample.js": 856,
+		"./views/Statistic/Types/StatisticTypesExamples.js": 853
 	};
 	function webpackContext(req) {
 		return __webpack_require__(webpackContextResolve(req));
@@ -14037,11 +14340,11 @@ webpackJsonp([0],[
 	};
 	webpackContext.resolve = webpackContextResolve;
 	module.exports = webpackContext;
-	webpackContext.id = 286;
+	webpackContext.id = 289;
 
 
 /***/ },
-/* 287 */
+/* 290 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -14058,11 +14361,11 @@ webpackJsonp([0],[
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _ExampleSection = __webpack_require__(288);
+	var _ExampleSection = __webpack_require__(291);
 	
 	var _ExampleSection2 = _interopRequireDefault(_ExampleSection);
 	
-	var _ComponentExample = __webpack_require__(289);
+	var _ComponentExample = __webpack_require__(292);
 	
 	var _ComponentExample2 = _interopRequireDefault(_ComponentExample);
 	
@@ -14108,7 +14411,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 288 */
+/* 291 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -14172,7 +14475,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 289 */
+/* 292 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -14191,11 +14494,11 @@ webpackJsonp([0],[
 	
 	var _stardust = __webpack_require__(222);
 	
-	var _reactHighlight = __webpack_require__(290);
+	var _reactHighlight = __webpack_require__(293);
 	
 	var _reactHighlight2 = _interopRequireDefault(_reactHighlight);
 	
-	var _ExampleContext = __webpack_require__(285);
+	var _ExampleContext = __webpack_require__(288);
 	
 	var _ExampleContext2 = _interopRequireDefault(_ExampleContext);
 	
@@ -14233,7 +14536,7 @@ webpackJsonp([0],[
 	    };
 	
 	    _this.state = { showCode: false };
-	    _this.fileContents = __webpack_require__(431)("./" + props.examplePath);
+	    _this.fileContents = __webpack_require__(434)("./" + props.examplePath);
 	    _this.component = (0, _ExampleContext2.default)('./' + props.examplePath + '.js');
 	    // 'elements/Button/Types/Button' => #Button-Types-Button
 	    _this.anchor = props.examplePath.split('/').slice(1).join('-');
@@ -14336,9 +14639,6 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 290 */,
-/* 291 */,
-/* 292 */,
 /* 293 */,
 /* 294 */,
 /* 295 */,
@@ -14477,418 +14777,435 @@ webpackJsonp([0],[
 /* 428 */,
 /* 429 */,
 /* 430 */,
-/* 431 */
+/* 431 */,
+/* 432 */,
+/* 433 */,
+/* 434 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var map = {
-		"./collections/Form/Content/FormContentExamples": 432,
-		"./collections/Form/Content/FormContentExamples.js": 432,
-		"./collections/Form/Content/FormFieldExample": 433,
-		"./collections/Form/Content/FormFieldExample.js": 433,
-		"./collections/Form/FieldVariations/FormFieldInlineExample": 434,
-		"./collections/Form/FieldVariations/FormFieldInlineExample.js": 434,
-		"./collections/Form/FieldVariations/FormFieldVariationsExamples": 435,
-		"./collections/Form/FieldVariations/FormFieldVariationsExamples.js": 435,
-		"./collections/Form/FormExamples": 436,
-		"./collections/Form/FormExamples.js": 436,
-		"./collections/Form/FormVariations/FormFormVariationsExamples": 437,
-		"./collections/Form/FormVariations/FormFormVariationsExamples.js": 437,
-		"./collections/Form/FormVariations/FormSizeLargeExample": 438,
-		"./collections/Form/FormVariations/FormSizeLargeExample.js": 438,
-		"./collections/Form/FormVariations/FormSizeSmallExample": 439,
-		"./collections/Form/FormVariations/FormSizeSmallExample.js": 439,
-		"./collections/Form/GroupVariations/FormGroupEvenlyDividedExample": 440,
-		"./collections/Form/GroupVariations/FormGroupEvenlyDividedExample.js": 440,
-		"./collections/Form/GroupVariations/FormGroupVariationsExamples": 441,
-		"./collections/Form/GroupVariations/FormGroupVariationsExamples.js": 441,
-		"./collections/Form/States/FormFieldErrorExample": 442,
-		"./collections/Form/States/FormFieldErrorExample.js": 442,
-		"./collections/Form/States/FormStatesExamples": 443,
-		"./collections/Form/States/FormStatesExamples.js": 443,
-		"./collections/Form/Types/FormFormExample": 444,
-		"./collections/Form/Types/FormFormExample.js": 444,
-		"./collections/Form/Types/FormTypesExamples": 445,
-		"./collections/Form/Types/FormTypesExamples.js": 445,
-		"./collections/Form/Validation/FormSpecifyingValidationRulesExample": 446,
-		"./collections/Form/Validation/FormSpecifyingValidationRulesExample.js": 446,
-		"./collections/Form/Validation/FormValidatingOnBlurAndOtherEventsExample": 447,
-		"./collections/Form/Validation/FormValidatingOnBlurAndOtherEventsExample.js": 447,
-		"./collections/Form/Validation/FormValidationExamples": 448,
-		"./collections/Form/Validation/FormValidationExamples.js": 448,
-		"./collections/Message/MessageExamples": 449,
-		"./collections/Message/MessageExamples.js": 449,
-		"./collections/Message/States/MessageStatesExamples": 450,
-		"./collections/Message/States/MessageStatesExamples.js": 450,
-		"./collections/Message/States/MessageVisibleExample": 451,
-		"./collections/Message/States/MessageVisibleExample.js": 451,
-		"./collections/Message/Types/MessageDismissableBlockExample": 452,
-		"./collections/Message/Types/MessageDismissableBlockExample.js": 452,
-		"./collections/Message/Types/MessageIconExample": 453,
-		"./collections/Message/Types/MessageIconExample.js": 453,
-		"./collections/Message/Types/MessageTypesExamples": 454,
-		"./collections/Message/Types/MessageTypesExamples.js": 454,
-		"./collections/Message/Variations/MessageInfoExample": 455,
-		"./collections/Message/Variations/MessageInfoExample.js": 455,
-		"./collections/Message/Variations/MessageVariationsExamples": 456,
-		"./collections/Message/Variations/MessageVariationsExamples.js": 456,
-		"./collections/Message/Variations/MessageWarningExample": 457,
-		"./collections/Message/Variations/MessageWarningExample.js": 457,
-		"./collections/Table/TableExamples": 458,
-		"./collections/Table/TableExamples.js": 458,
-		"./collections/Table/Variations/TableSelectableExample": 459,
-		"./collections/Table/Variations/TableSelectableExample.js": 459,
-		"./collections/Table/Variations/TableVariationsExamples": 460,
-		"./collections/Table/Variations/TableVariationsExamples.js": 460,
-		"./elements/Button/ButtonExamples": 461,
-		"./elements/Button/ButtonExamples.js": 461,
-		"./elements/Button/Content/ButtonConditionalsExample": 462,
-		"./elements/Button/Content/ButtonConditionalsExample.js": 462,
-		"./elements/Button/Content/ButtonContentExamples": 463,
-		"./elements/Button/Content/ButtonContentExamples.js": 463,
-		"./elements/Button/Groups/ButtonButtonsExample": 464,
-		"./elements/Button/Groups/ButtonButtonsExample.js": 464,
-		"./elements/Button/Groups/ButtonGroupsExamples": 465,
-		"./elements/Button/Groups/ButtonGroupsExamples.js": 465,
-		"./elements/Button/Groups/ButtonIconButtonsExample": 466,
-		"./elements/Button/Groups/ButtonIconButtonsExample.js": 466,
-		"./elements/Button/States/ButtonActiveExample": 467,
-		"./elements/Button/States/ButtonActiveExample.js": 467,
-		"./elements/Button/States/ButtonDisabledExample": 468,
-		"./elements/Button/States/ButtonDisabledExample.js": 468,
-		"./elements/Button/States/ButtonLoadingExample": 469,
-		"./elements/Button/States/ButtonLoadingExample.js": 469,
-		"./elements/Button/States/ButtonStatesExamples": 470,
-		"./elements/Button/States/ButtonStatesExamples.js": 470,
-		"./elements/Button/Types/ButtonAnimatedExample": 471,
-		"./elements/Button/Types/ButtonAnimatedExample.js": 471,
-		"./elements/Button/Types/ButtonBasicExample": 472,
-		"./elements/Button/Types/ButtonBasicExample.js": 472,
-		"./elements/Button/Types/ButtonButtonExample": 473,
-		"./elements/Button/Types/ButtonButtonExample.js": 473,
-		"./elements/Button/Types/ButtonEmphasisExample": 474,
-		"./elements/Button/Types/ButtonEmphasisExample.js": 474,
-		"./elements/Button/Types/ButtonIconExample": 475,
-		"./elements/Button/Types/ButtonIconExample.js": 475,
-		"./elements/Button/Types/ButtonInvertedExample": 476,
-		"./elements/Button/Types/ButtonInvertedExample.js": 476,
-		"./elements/Button/Types/ButtonLabeledExample": 477,
-		"./elements/Button/Types/ButtonLabeledExample.js": 477,
-		"./elements/Button/Types/ButtonLabeledIconExample": 478,
-		"./elements/Button/Types/ButtonLabeledIconExample.js": 478,
-		"./elements/Button/Types/ButtonTypesExamples": 479,
-		"./elements/Button/Types/ButtonTypesExamples.js": 479,
-		"./elements/Button/Variations/ButtonCircularExample": 480,
-		"./elements/Button/Variations/ButtonCircularExample.js": 480,
-		"./elements/Button/Variations/ButtonColoredExample": 481,
-		"./elements/Button/Variations/ButtonColoredExample.js": 481,
-		"./elements/Button/Variations/ButtonCompactExample": 482,
-		"./elements/Button/Variations/ButtonCompactExample.js": 482,
-		"./elements/Button/Variations/ButtonFloatedExample": 483,
-		"./elements/Button/Variations/ButtonFloatedExample.js": 483,
-		"./elements/Button/Variations/ButtonFluidExample": 484,
-		"./elements/Button/Variations/ButtonFluidExample.js": 484,
-		"./elements/Button/Variations/ButtonHorizontallyAttachedExample": 485,
-		"./elements/Button/Variations/ButtonHorizontallyAttachedExample.js": 485,
-		"./elements/Button/Variations/ButtonPositiveNegativeExample": 486,
-		"./elements/Button/Variations/ButtonPositiveNegativeExample.js": 486,
-		"./elements/Button/Variations/ButtonSizeExample": 487,
-		"./elements/Button/Variations/ButtonSizeExample.js": 487,
-		"./elements/Button/Variations/ButtonSocialExample": 488,
-		"./elements/Button/Variations/ButtonSocialExample.js": 488,
-		"./elements/Button/Variations/ButtonToggleExample": 489,
-		"./elements/Button/Variations/ButtonToggleExample.js": 489,
-		"./elements/Button/Variations/ButtonVerticallyAttachedExample": 490,
-		"./elements/Button/Variations/ButtonVerticallyAttachedExample.js": 490,
-		"./elements/Button/Variations/ButtonsVariationsExamples": 491,
-		"./elements/Button/Variations/ButtonsVariationsExamples.js": 491,
-		"./elements/Divider/DividerExamples": 492,
-		"./elements/Divider/DividerExamples.js": 492,
-		"./elements/Divider/Types/DividerDividerExample": 493,
-		"./elements/Divider/Types/DividerDividerExample.js": 493,
-		"./elements/Divider/Types/DividerHorizontalExample": 494,
-		"./elements/Divider/Types/DividerHorizontalExample.js": 494,
-		"./elements/Divider/Types/DividerTypesExamples": 495,
-		"./elements/Divider/Types/DividerTypesExamples.js": 495,
-		"./elements/Divider/Types/DividerVerticalExample": 496,
-		"./elements/Divider/Types/DividerVerticalExample.js": 496,
-		"./elements/Divider/Variations/DividerClearingExample": 497,
-		"./elements/Divider/Variations/DividerClearingExample.js": 497,
-		"./elements/Divider/Variations/DividerFittedExample": 498,
-		"./elements/Divider/Variations/DividerFittedExample.js": 498,
-		"./elements/Divider/Variations/DividerHiddenExample": 499,
-		"./elements/Divider/Variations/DividerHiddenExample.js": 499,
-		"./elements/Divider/Variations/DividerInvertedExample": 500,
-		"./elements/Divider/Variations/DividerInvertedExample.js": 500,
-		"./elements/Divider/Variations/DividerSectionExample": 501,
-		"./elements/Divider/Variations/DividerSectionExample.js": 501,
-		"./elements/Divider/Variations/DividerVariationsExamples": 502,
-		"./elements/Divider/Variations/DividerVariationsExamples.js": 502,
-		"./elements/Header/Content/HeaderContentExamples": 503,
-		"./elements/Header/Content/HeaderContentExamples.js": 503,
-		"./elements/Header/Content/HeaderIconExample": 504,
-		"./elements/Header/Content/HeaderIconExample.js": 504,
-		"./elements/Header/Content/HeaderImageExample": 505,
-		"./elements/Header/Content/HeaderImageExample.js": 505,
-		"./elements/Header/Content/HeaderSubheaderExample": 506,
-		"./elements/Header/Content/HeaderSubheaderExample.js": 506,
-		"./elements/Header/HeaderExamples": 507,
-		"./elements/Header/HeaderExamples.js": 507,
-		"./elements/Header/States/HeaderDisabledExample": 508,
-		"./elements/Header/States/HeaderDisabledExample.js": 508,
-		"./elements/Header/States/HeaderStatesExamples": 509,
-		"./elements/Header/States/HeaderStatesExamples.js": 509,
-		"./elements/Header/Types/HeaderContentHeadersExamples": 510,
-		"./elements/Header/Types/HeaderContentHeadersExamples.js": 510,
-		"./elements/Header/Types/HeaderIconHeadersExamples": 511,
-		"./elements/Header/Types/HeaderIconHeadersExamples.js": 511,
-		"./elements/Header/Types/HeaderPageHeadersExample": 512,
-		"./elements/Header/Types/HeaderPageHeadersExample.js": 512,
-		"./elements/Header/Types/HeaderSubHeadersExample": 513,
-		"./elements/Header/Types/HeaderSubHeadersExample.js": 513,
-		"./elements/Header/Types/HeaderTypesExamples": 514,
-		"./elements/Header/Types/HeaderTypesExamples.js": 514,
-		"./elements/Header/Variations/HeaderAttachedExample": 515,
-		"./elements/Header/Variations/HeaderAttachedExample.js": 515,
-		"./elements/Header/Variations/HeaderBlockExample": 516,
-		"./elements/Header/Variations/HeaderBlockExample.js": 516,
-		"./elements/Header/Variations/HeaderColoredExample": 517,
-		"./elements/Header/Variations/HeaderColoredExample.js": 517,
-		"./elements/Header/Variations/HeaderDividingExample": 518,
-		"./elements/Header/Variations/HeaderDividingExample.js": 518,
-		"./elements/Header/Variations/HeaderFloatingExample": 519,
-		"./elements/Header/Variations/HeaderFloatingExample.js": 519,
-		"./elements/Header/Variations/HeaderInvertedExample": 520,
-		"./elements/Header/Variations/HeaderInvertedExample.js": 520,
-		"./elements/Header/Variations/HeaderTextAlignmentExample": 521,
-		"./elements/Header/Variations/HeaderTextAlignmentExample.js": 521,
-		"./elements/Header/Variations/HeaderVariationsExamples": 522,
-		"./elements/Header/Variations/HeaderVariationsExamples.js": 522,
-		"./elements/Input/InputExamples": 523,
-		"./elements/Input/InputExamples.js": 523,
-		"./elements/Input/States/InputDisabledExample": 524,
-		"./elements/Input/States/InputDisabledExample.js": 524,
-		"./elements/Input/States/InputErrorExample": 525,
-		"./elements/Input/States/InputErrorExample.js": 525,
-		"./elements/Input/States/InputFocusExample": 526,
-		"./elements/Input/States/InputFocusExample.js": 526,
-		"./elements/Input/States/InputLoadingExample": 527,
-		"./elements/Input/States/InputLoadingExample.js": 527,
-		"./elements/Input/States/InputStatesExamples": 528,
-		"./elements/Input/States/InputStatesExamples.js": 528,
-		"./elements/Input/Types/InputInputExample": 529,
-		"./elements/Input/Types/InputInputExample.js": 529,
-		"./elements/Input/Types/InputTypesExamples": 530,
-		"./elements/Input/Types/InputTypesExamples.js": 530,
-		"./elements/Input/Variations/InputActionExample": 531,
-		"./elements/Input/Variations/InputActionExample.js": 531,
-		"./elements/Input/Variations/InputActionExtraExample": 532,
-		"./elements/Input/Variations/InputActionExtraExample.js": 532,
-		"./elements/Input/Variations/InputFluidExample": 533,
-		"./elements/Input/Variations/InputFluidExample.js": 533,
-		"./elements/Input/Variations/InputIconExample": 534,
-		"./elements/Input/Variations/InputIconExample.js": 534,
-		"./elements/Input/Variations/InputInvertedExample": 535,
-		"./elements/Input/Variations/InputInvertedExample.js": 535,
-		"./elements/Input/Variations/InputLabeledExample": 536,
-		"./elements/Input/Variations/InputLabeledExample.js": 536,
-		"./elements/Input/Variations/InputRightLabeledExample": 537,
-		"./elements/Input/Variations/InputRightLabeledExample.js": 537,
-		"./elements/Input/Variations/InputSizeExample": 538,
-		"./elements/Input/Variations/InputSizeExample.js": 538,
-		"./elements/Input/Variations/InputTransparentExample": 539,
-		"./elements/Input/Variations/InputTransparentExample.js": 539,
-		"./elements/Input/Variations/InputVariationsExamples": 540,
-		"./elements/Input/Variations/InputVariationsExamples.js": 540,
-		"./elements/List/Content/ListContentExamples": 541,
-		"./elements/List/Content/ListContentExamples.js": 541,
-		"./elements/List/Content/ListDescriptionExample": 542,
-		"./elements/List/Content/ListDescriptionExample.js": 542,
-		"./elements/List/Content/ListHeaderExample": 543,
-		"./elements/List/Content/ListHeaderExample.js": 543,
-		"./elements/List/Content/ListIconExample": 544,
-		"./elements/List/Content/ListIconExample.js": 544,
-		"./elements/List/Content/ListImageExample": 545,
-		"./elements/List/Content/ListImageExample.js": 545,
-		"./elements/List/Content/ListItemExample": 546,
-		"./elements/List/Content/ListItemExample.js": 546,
-		"./elements/List/Content/ListLinkExample": 547,
-		"./elements/List/Content/ListLinkExample.js": 547,
-		"./elements/List/ListExamples": 548,
-		"./elements/List/ListExamples.js": 548,
-		"./elements/List/Types/ListBulletedExample": 549,
-		"./elements/List/Types/ListBulletedExample.js": 549,
-		"./elements/List/Types/ListLinkExample": 550,
-		"./elements/List/Types/ListLinkExample.js": 550,
-		"./elements/List/Types/ListListExample": 551,
-		"./elements/List/Types/ListListExample.js": 551,
-		"./elements/List/Types/ListOrderedExample": 552,
-		"./elements/List/Types/ListOrderedExample.js": 552,
-		"./elements/List/Types/ListTypesExamples": 553,
-		"./elements/List/Types/ListTypesExamples.js": 553,
-		"./elements/List/Variations/ListAnimatedExample": 554,
-		"./elements/List/Variations/ListAnimatedExample.js": 554,
-		"./elements/List/Variations/ListCelledExample": 555,
-		"./elements/List/Variations/ListCelledExample.js": 555,
-		"./elements/List/Variations/ListDividedExample": 556,
-		"./elements/List/Variations/ListDividedExample.js": 556,
-		"./elements/List/Variations/ListHorizontalExample": 557,
-		"./elements/List/Variations/ListHorizontalExample.js": 557,
-		"./elements/List/Variations/ListInvertedExample": 558,
-		"./elements/List/Variations/ListInvertedExample.js": 558,
-		"./elements/List/Variations/ListRelaxedExample": 559,
-		"./elements/List/Variations/ListRelaxedExample.js": 559,
-		"./elements/List/Variations/ListSelectionExample": 560,
-		"./elements/List/Variations/ListSelectionExample.js": 560,
-		"./elements/List/Variations/ListSizeBigExample": 561,
-		"./elements/List/Variations/ListSizeBigExample.js": 561,
-		"./elements/List/Variations/ListSizeHugeExample": 562,
-		"./elements/List/Variations/ListSizeHugeExample.js": 562,
-		"./elements/List/Variations/ListSizeLargeExample": 563,
-		"./elements/List/Variations/ListSizeLargeExample.js": 563,
-		"./elements/List/Variations/ListSizeMassiveExample": 564,
-		"./elements/List/Variations/ListSizeMassiveExample.js": 564,
-		"./elements/List/Variations/ListSizeMiniExample": 565,
-		"./elements/List/Variations/ListSizeMiniExample.js": 565,
-		"./elements/List/Variations/ListSizeSmallExample": 566,
-		"./elements/List/Variations/ListSizeSmallExample.js": 566,
-		"./elements/List/Variations/ListSizeTinyExample": 567,
-		"./elements/List/Variations/ListSizeTinyExample.js": 567,
-		"./elements/List/Variations/ListVariationsExamples": 568,
-		"./elements/List/Variations/ListVariationsExamples.js": 568,
-		"./elements/List/Variations/ListVeryRelaxedExample": 569,
-		"./elements/List/Variations/ListVeryRelaxedExample.js": 569,
-		"./elements/Segment/Groups/SegmentGroupsExamples": 570,
-		"./elements/Segment/Groups/SegmentGroupsExamples.js": 570,
-		"./elements/Segment/Groups/SegmentHorizontalSegmentsExample": 571,
-		"./elements/Segment/Groups/SegmentHorizontalSegmentsExample.js": 571,
-		"./elements/Segment/Groups/SegmentNestedSegmentsExample": 572,
-		"./elements/Segment/Groups/SegmentNestedSegmentsExample.js": 572,
-		"./elements/Segment/Groups/SegmentPiledSegmentsExample": 573,
-		"./elements/Segment/Groups/SegmentPiledSegmentsExample.js": 573,
-		"./elements/Segment/Groups/SegmentRaisedSegmentsExample": 574,
-		"./elements/Segment/Groups/SegmentRaisedSegmentsExample.js": 574,
-		"./elements/Segment/Groups/SegmentSegmentsExample": 575,
-		"./elements/Segment/Groups/SegmentSegmentsExample.js": 575,
-		"./elements/Segment/Groups/SegmentStackedSegmentsExample": 576,
-		"./elements/Segment/Groups/SegmentStackedSegmentsExample.js": 576,
-		"./elements/Segment/SegmentExamples": 577,
-		"./elements/Segment/SegmentExamples.js": 577,
-		"./elements/Segment/States/SegmentDisabledExample": 578,
-		"./elements/Segment/States/SegmentDisabledExample.js": 578,
-		"./elements/Segment/States/SegmentLoadingExample": 579,
-		"./elements/Segment/States/SegmentLoadingExample.js": 579,
-		"./elements/Segment/States/SegmentStatesExamples": 580,
-		"./elements/Segment/States/SegmentStatesExamples.js": 580,
-		"./elements/Segment/Types/SegmentPiledExample": 581,
-		"./elements/Segment/Types/SegmentPiledExample.js": 581,
-		"./elements/Segment/Types/SegmentRaisedExample": 582,
-		"./elements/Segment/Types/SegmentRaisedExample.js": 582,
-		"./elements/Segment/Types/SegmentSegmentExample": 583,
-		"./elements/Segment/Types/SegmentSegmentExample.js": 583,
-		"./elements/Segment/Types/SegmentStackedExample": 584,
-		"./elements/Segment/Types/SegmentStackedExample.js": 584,
-		"./elements/Segment/Types/SegmentTypesExamples": 585,
-		"./elements/Segment/Types/SegmentTypesExamples.js": 585,
-		"./elements/Segment/Types/SegmentVerticalSegmentExample": 586,
-		"./elements/Segment/Types/SegmentVerticalSegmentExample.js": 586,
-		"./elements/Segment/Variations/SegmentAttachedComplexExample": 587,
-		"./elements/Segment/Variations/SegmentAttachedComplexExample.js": 587,
-		"./elements/Segment/Variations/SegmentAttachedExample": 588,
-		"./elements/Segment/Variations/SegmentAttachedExample.js": 588,
-		"./elements/Segment/Variations/SegmentBasicExample": 589,
-		"./elements/Segment/Variations/SegmentBasicExample.js": 589,
-		"./elements/Segment/Variations/SegmentCircularExample": 590,
-		"./elements/Segment/Variations/SegmentCircularExample.js": 590,
-		"./elements/Segment/Variations/SegmentClearingExample": 591,
-		"./elements/Segment/Variations/SegmentClearingExample.js": 591,
-		"./elements/Segment/Variations/SegmentColoredExample": 592,
-		"./elements/Segment/Variations/SegmentColoredExample.js": 592,
-		"./elements/Segment/Variations/SegmentColoredInvertedExample": 593,
-		"./elements/Segment/Variations/SegmentColoredInvertedExample.js": 593,
-		"./elements/Segment/Variations/SegmentCompactExample": 594,
-		"./elements/Segment/Variations/SegmentCompactExample.js": 594,
-		"./elements/Segment/Variations/SegmentCompactGroupExample": 595,
-		"./elements/Segment/Variations/SegmentCompactGroupExample.js": 595,
-		"./elements/Segment/Variations/SegmentEmphasisExample": 596,
-		"./elements/Segment/Variations/SegmentEmphasisExample.js": 596,
-		"./elements/Segment/Variations/SegmentFloatedExample": 597,
-		"./elements/Segment/Variations/SegmentFloatedExample.js": 597,
-		"./elements/Segment/Variations/SegmentInvertedExample": 598,
-		"./elements/Segment/Variations/SegmentInvertedExample.js": 598,
-		"./elements/Segment/Variations/SegmentPaddedExample": 599,
-		"./elements/Segment/Variations/SegmentPaddedExample.js": 599,
-		"./elements/Segment/Variations/SegmentTextAlignmentExample": 600,
-		"./elements/Segment/Variations/SegmentTextAlignmentExample.js": 600,
-		"./elements/Segment/Variations/SegmentVariationsExamples": 601,
-		"./elements/Segment/Variations/SegmentVariationsExamples.js": 601,
-		"./elements/Segment/Variations/SegmentVeryPaddedExample": 602,
-		"./elements/Segment/Variations/SegmentVeryPaddedExample.js": 602,
-		"./modules/Checkbox/CheckboxExamples": 603,
-		"./modules/Checkbox/CheckboxExamples.js": 603,
-		"./modules/Checkbox/States/CheckboxRemoteControlExample": 604,
-		"./modules/Checkbox/States/CheckboxRemoteControlExample.js": 604,
-		"./modules/Checkbox/States/Checked": 605,
-		"./modules/Checkbox/States/Checked.js": 605,
-		"./modules/Checkbox/States/Disabled": 606,
-		"./modules/Checkbox/States/Disabled.js": 606,
-		"./modules/Checkbox/States/ReadOnly": 607,
-		"./modules/Checkbox/States/ReadOnly.js": 607,
-		"./modules/Checkbox/States/States": 608,
-		"./modules/Checkbox/States/States.js": 608,
-		"./modules/Checkbox/Types/Checkbox": 609,
-		"./modules/Checkbox/Types/Checkbox.js": 609,
-		"./modules/Checkbox/Types/Radio": 610,
-		"./modules/Checkbox/Types/Radio.js": 610,
-		"./modules/Checkbox/Types/RadioGroup": 611,
-		"./modules/Checkbox/Types/RadioGroup.js": 611,
-		"./modules/Checkbox/Types/Slider": 612,
-		"./modules/Checkbox/Types/Slider.js": 612,
-		"./modules/Checkbox/Types/Toggle": 613,
-		"./modules/Checkbox/Types/Toggle.js": 613,
-		"./modules/Checkbox/Types/Types": 614,
-		"./modules/Checkbox/Types/Types.js": 614,
-		"./modules/Checkbox/Variations/Fitted": 615,
-		"./modules/Checkbox/Variations/Fitted.js": 615,
-		"./modules/Checkbox/Variations/Variations": 616,
-		"./modules/Checkbox/Variations/Variations.js": 616,
-		"./modules/Progress/Content/Bar": 617,
-		"./modules/Progress/Content/Bar.js": 617,
-		"./modules/Progress/Content/Content": 618,
-		"./modules/Progress/Content/Content.js": 618,
-		"./modules/Progress/Content/Label": 619,
-		"./modules/Progress/Content/Label.js": 619,
-		"./modules/Progress/Content/Progress": 620,
-		"./modules/Progress/Content/Progress.js": 620,
-		"./modules/Progress/ProgressExamples": 621,
-		"./modules/Progress/ProgressExamples.js": 621,
-		"./modules/Progress/States/Active": 622,
-		"./modules/Progress/States/Active.js": 622,
-		"./modules/Progress/States/Disabled": 623,
-		"./modules/Progress/States/Disabled.js": 623,
-		"./modules/Progress/States/Error": 624,
-		"./modules/Progress/States/Error.js": 624,
-		"./modules/Progress/States/States": 625,
-		"./modules/Progress/States/States.js": 625,
-		"./modules/Progress/States/Success": 626,
-		"./modules/Progress/States/Success.js": 626,
-		"./modules/Progress/States/Warning": 627,
-		"./modules/Progress/States/Warning.js": 627,
-		"./modules/Progress/Types/Indicating": 628,
-		"./modules/Progress/Types/Indicating.js": 628,
-		"./modules/Progress/Types/Standard": 629,
-		"./modules/Progress/Types/Standard.js": 629,
-		"./modules/Progress/Types/Types": 630,
-		"./modules/Progress/Types/Types.js": 630,
-		"./views/Statistic/StatisticExamples": 631,
-		"./views/Statistic/StatisticExamples.js": 631,
-		"./views/Statistic/Types/StatisticBottomLabelExample": 632,
-		"./views/Statistic/Types/StatisticBottomLabelExample.js": 632,
-		"./views/Statistic/Types/StatisticGroupExample": 633,
-		"./views/Statistic/Types/StatisticGroupExample.js": 633,
-		"./views/Statistic/Types/StatisticTopLabelExample": 634,
-		"./views/Statistic/Types/StatisticTopLabelExample.js": 634,
-		"./views/Statistic/Types/StatisticTypesExamples": 635,
-		"./views/Statistic/Types/StatisticTypesExamples.js": 635
+		"./collections/Form/Content/FormContentExamples": 435,
+		"./collections/Form/Content/FormContentExamples.js": 435,
+		"./collections/Form/Content/FormFieldExample": 436,
+		"./collections/Form/Content/FormFieldExample.js": 436,
+		"./collections/Form/FieldVariations/FormFieldInlineExample": 437,
+		"./collections/Form/FieldVariations/FormFieldInlineExample.js": 437,
+		"./collections/Form/FieldVariations/FormFieldVariationsExamples": 438,
+		"./collections/Form/FieldVariations/FormFieldVariationsExamples.js": 438,
+		"./collections/Form/FormExamples": 439,
+		"./collections/Form/FormExamples.js": 439,
+		"./collections/Form/FormVariations/FormFormVariationsExamples": 440,
+		"./collections/Form/FormVariations/FormFormVariationsExamples.js": 440,
+		"./collections/Form/FormVariations/FormSizeLargeExample": 441,
+		"./collections/Form/FormVariations/FormSizeLargeExample.js": 441,
+		"./collections/Form/FormVariations/FormSizeSmallExample": 442,
+		"./collections/Form/FormVariations/FormSizeSmallExample.js": 442,
+		"./collections/Form/GroupVariations/FormGroupEvenlyDividedExample": 443,
+		"./collections/Form/GroupVariations/FormGroupEvenlyDividedExample.js": 443,
+		"./collections/Form/GroupVariations/FormGroupVariationsExamples": 444,
+		"./collections/Form/GroupVariations/FormGroupVariationsExamples.js": 444,
+		"./collections/Form/States/FormFieldErrorExample": 445,
+		"./collections/Form/States/FormFieldErrorExample.js": 445,
+		"./collections/Form/States/FormStatesExamples": 446,
+		"./collections/Form/States/FormStatesExamples.js": 446,
+		"./collections/Form/Types/FormFormExample": 447,
+		"./collections/Form/Types/FormFormExample.js": 447,
+		"./collections/Form/Types/FormTypesExamples": 448,
+		"./collections/Form/Types/FormTypesExamples.js": 448,
+		"./collections/Form/Validation/FormSpecifyingValidationRulesExample": 449,
+		"./collections/Form/Validation/FormSpecifyingValidationRulesExample.js": 449,
+		"./collections/Form/Validation/FormValidatingOnBlurAndOtherEventsExample": 450,
+		"./collections/Form/Validation/FormValidatingOnBlurAndOtherEventsExample.js": 450,
+		"./collections/Form/Validation/FormValidationExamples": 451,
+		"./collections/Form/Validation/FormValidationExamples.js": 451,
+		"./collections/Message/MessageExamples": 452,
+		"./collections/Message/MessageExamples.js": 452,
+		"./collections/Message/States/MessageStatesExamples": 453,
+		"./collections/Message/States/MessageStatesExamples.js": 453,
+		"./collections/Message/States/MessageVisibleExample": 454,
+		"./collections/Message/States/MessageVisibleExample.js": 454,
+		"./collections/Message/Types/MessageDismissableBlockExample": 455,
+		"./collections/Message/Types/MessageDismissableBlockExample.js": 455,
+		"./collections/Message/Types/MessageIconExample": 456,
+		"./collections/Message/Types/MessageIconExample.js": 456,
+		"./collections/Message/Types/MessageTypesExamples": 457,
+		"./collections/Message/Types/MessageTypesExamples.js": 457,
+		"./collections/Message/Variations/MessageInfoExample": 458,
+		"./collections/Message/Variations/MessageInfoExample.js": 458,
+		"./collections/Message/Variations/MessageVariationsExamples": 459,
+		"./collections/Message/Variations/MessageVariationsExamples.js": 459,
+		"./collections/Message/Variations/MessageWarningExample": 460,
+		"./collections/Message/Variations/MessageWarningExample.js": 460,
+		"./collections/Table/TableExamples": 461,
+		"./collections/Table/TableExamples.js": 461,
+		"./collections/Table/Variations/TableSelectableExample": 462,
+		"./collections/Table/Variations/TableSelectableExample.js": 462,
+		"./collections/Table/Variations/TableVariationsExamples": 463,
+		"./collections/Table/Variations/TableVariationsExamples.js": 463,
+		"./elements/Button/ButtonExamples": 464,
+		"./elements/Button/ButtonExamples.js": 464,
+		"./elements/Button/Content/ButtonConditionalsExample": 465,
+		"./elements/Button/Content/ButtonConditionalsExample.js": 465,
+		"./elements/Button/Content/ButtonContentExamples": 466,
+		"./elements/Button/Content/ButtonContentExamples.js": 466,
+		"./elements/Button/Groups/ButtonButtonsExample": 467,
+		"./elements/Button/Groups/ButtonButtonsExample.js": 467,
+		"./elements/Button/Groups/ButtonGroupsExamples": 468,
+		"./elements/Button/Groups/ButtonGroupsExamples.js": 468,
+		"./elements/Button/Groups/ButtonIconButtonsExample": 469,
+		"./elements/Button/Groups/ButtonIconButtonsExample.js": 469,
+		"./elements/Button/States/ButtonActiveExample": 470,
+		"./elements/Button/States/ButtonActiveExample.js": 470,
+		"./elements/Button/States/ButtonDisabledExample": 471,
+		"./elements/Button/States/ButtonDisabledExample.js": 471,
+		"./elements/Button/States/ButtonLoadingExample": 472,
+		"./elements/Button/States/ButtonLoadingExample.js": 472,
+		"./elements/Button/States/ButtonStatesExamples": 473,
+		"./elements/Button/States/ButtonStatesExamples.js": 473,
+		"./elements/Button/Types/ButtonAnimatedExample": 474,
+		"./elements/Button/Types/ButtonAnimatedExample.js": 474,
+		"./elements/Button/Types/ButtonBasicExample": 475,
+		"./elements/Button/Types/ButtonBasicExample.js": 475,
+		"./elements/Button/Types/ButtonButtonExample": 476,
+		"./elements/Button/Types/ButtonButtonExample.js": 476,
+		"./elements/Button/Types/ButtonEmphasisExample": 477,
+		"./elements/Button/Types/ButtonEmphasisExample.js": 477,
+		"./elements/Button/Types/ButtonIconExample": 478,
+		"./elements/Button/Types/ButtonIconExample.js": 478,
+		"./elements/Button/Types/ButtonInvertedExample": 479,
+		"./elements/Button/Types/ButtonInvertedExample.js": 479,
+		"./elements/Button/Types/ButtonLabeledExample": 480,
+		"./elements/Button/Types/ButtonLabeledExample.js": 480,
+		"./elements/Button/Types/ButtonLabeledIconExample": 481,
+		"./elements/Button/Types/ButtonLabeledIconExample.js": 481,
+		"./elements/Button/Types/ButtonTypesExamples": 482,
+		"./elements/Button/Types/ButtonTypesExamples.js": 482,
+		"./elements/Button/Variations/ButtonCircularExample": 483,
+		"./elements/Button/Variations/ButtonCircularExample.js": 483,
+		"./elements/Button/Variations/ButtonColoredExample": 484,
+		"./elements/Button/Variations/ButtonColoredExample.js": 484,
+		"./elements/Button/Variations/ButtonCompactExample": 485,
+		"./elements/Button/Variations/ButtonCompactExample.js": 485,
+		"./elements/Button/Variations/ButtonFloatedExample": 486,
+		"./elements/Button/Variations/ButtonFloatedExample.js": 486,
+		"./elements/Button/Variations/ButtonFluidExample": 487,
+		"./elements/Button/Variations/ButtonFluidExample.js": 487,
+		"./elements/Button/Variations/ButtonHorizontallyAttachedExample": 488,
+		"./elements/Button/Variations/ButtonHorizontallyAttachedExample.js": 488,
+		"./elements/Button/Variations/ButtonPositiveNegativeExample": 489,
+		"./elements/Button/Variations/ButtonPositiveNegativeExample.js": 489,
+		"./elements/Button/Variations/ButtonSizeExample": 490,
+		"./elements/Button/Variations/ButtonSizeExample.js": 490,
+		"./elements/Button/Variations/ButtonSocialExample": 491,
+		"./elements/Button/Variations/ButtonSocialExample.js": 491,
+		"./elements/Button/Variations/ButtonToggleExample": 492,
+		"./elements/Button/Variations/ButtonToggleExample.js": 492,
+		"./elements/Button/Variations/ButtonVerticallyAttachedExample": 493,
+		"./elements/Button/Variations/ButtonVerticallyAttachedExample.js": 493,
+		"./elements/Button/Variations/ButtonsVariationsExamples": 494,
+		"./elements/Button/Variations/ButtonsVariationsExamples.js": 494,
+		"./elements/Divider/DividerExamples": 495,
+		"./elements/Divider/DividerExamples.js": 495,
+		"./elements/Divider/Types/DividerDividerExample": 496,
+		"./elements/Divider/Types/DividerDividerExample.js": 496,
+		"./elements/Divider/Types/DividerHorizontalExample": 497,
+		"./elements/Divider/Types/DividerHorizontalExample.js": 497,
+		"./elements/Divider/Types/DividerTypesExamples": 498,
+		"./elements/Divider/Types/DividerTypesExamples.js": 498,
+		"./elements/Divider/Types/DividerVerticalExample": 499,
+		"./elements/Divider/Types/DividerVerticalExample.js": 499,
+		"./elements/Divider/Variations/DividerClearingExample": 500,
+		"./elements/Divider/Variations/DividerClearingExample.js": 500,
+		"./elements/Divider/Variations/DividerFittedExample": 501,
+		"./elements/Divider/Variations/DividerFittedExample.js": 501,
+		"./elements/Divider/Variations/DividerHiddenExample": 502,
+		"./elements/Divider/Variations/DividerHiddenExample.js": 502,
+		"./elements/Divider/Variations/DividerInvertedExample": 503,
+		"./elements/Divider/Variations/DividerInvertedExample.js": 503,
+		"./elements/Divider/Variations/DividerSectionExample": 504,
+		"./elements/Divider/Variations/DividerSectionExample.js": 504,
+		"./elements/Divider/Variations/DividerVariationsExamples": 505,
+		"./elements/Divider/Variations/DividerVariationsExamples.js": 505,
+		"./elements/Header/Content/HeaderContentExamples": 506,
+		"./elements/Header/Content/HeaderContentExamples.js": 506,
+		"./elements/Header/Content/HeaderIconExample": 507,
+		"./elements/Header/Content/HeaderIconExample.js": 507,
+		"./elements/Header/Content/HeaderImageExample": 508,
+		"./elements/Header/Content/HeaderImageExample.js": 508,
+		"./elements/Header/Content/HeaderSubheaderExample": 509,
+		"./elements/Header/Content/HeaderSubheaderExample.js": 509,
+		"./elements/Header/HeaderExamples": 510,
+		"./elements/Header/HeaderExamples.js": 510,
+		"./elements/Header/States/HeaderDisabledExample": 511,
+		"./elements/Header/States/HeaderDisabledExample.js": 511,
+		"./elements/Header/States/HeaderStatesExamples": 512,
+		"./elements/Header/States/HeaderStatesExamples.js": 512,
+		"./elements/Header/Types/HeaderContentHeadersExamples": 513,
+		"./elements/Header/Types/HeaderContentHeadersExamples.js": 513,
+		"./elements/Header/Types/HeaderIconHeadersExamples": 514,
+		"./elements/Header/Types/HeaderIconHeadersExamples.js": 514,
+		"./elements/Header/Types/HeaderPageHeadersExample": 515,
+		"./elements/Header/Types/HeaderPageHeadersExample.js": 515,
+		"./elements/Header/Types/HeaderSubHeadersExample": 516,
+		"./elements/Header/Types/HeaderSubHeadersExample.js": 516,
+		"./elements/Header/Types/HeaderTypesExamples": 517,
+		"./elements/Header/Types/HeaderTypesExamples.js": 517,
+		"./elements/Header/Variations/HeaderAttachedExample": 518,
+		"./elements/Header/Variations/HeaderAttachedExample.js": 518,
+		"./elements/Header/Variations/HeaderBlockExample": 519,
+		"./elements/Header/Variations/HeaderBlockExample.js": 519,
+		"./elements/Header/Variations/HeaderColoredExample": 520,
+		"./elements/Header/Variations/HeaderColoredExample.js": 520,
+		"./elements/Header/Variations/HeaderDividingExample": 521,
+		"./elements/Header/Variations/HeaderDividingExample.js": 521,
+		"./elements/Header/Variations/HeaderFloatingExample": 522,
+		"./elements/Header/Variations/HeaderFloatingExample.js": 522,
+		"./elements/Header/Variations/HeaderInvertedExample": 523,
+		"./elements/Header/Variations/HeaderInvertedExample.js": 523,
+		"./elements/Header/Variations/HeaderTextAlignmentExample": 524,
+		"./elements/Header/Variations/HeaderTextAlignmentExample.js": 524,
+		"./elements/Header/Variations/HeaderVariationsExamples": 525,
+		"./elements/Header/Variations/HeaderVariationsExamples.js": 525,
+		"./elements/Input/InputExamples": 526,
+		"./elements/Input/InputExamples.js": 526,
+		"./elements/Input/States/InputDisabledExample": 527,
+		"./elements/Input/States/InputDisabledExample.js": 527,
+		"./elements/Input/States/InputErrorExample": 528,
+		"./elements/Input/States/InputErrorExample.js": 528,
+		"./elements/Input/States/InputFocusExample": 529,
+		"./elements/Input/States/InputFocusExample.js": 529,
+		"./elements/Input/States/InputLoadingExample": 530,
+		"./elements/Input/States/InputLoadingExample.js": 530,
+		"./elements/Input/States/InputStatesExamples": 531,
+		"./elements/Input/States/InputStatesExamples.js": 531,
+		"./elements/Input/Types/InputInputExample": 532,
+		"./elements/Input/Types/InputInputExample.js": 532,
+		"./elements/Input/Types/InputTypesExamples": 533,
+		"./elements/Input/Types/InputTypesExamples.js": 533,
+		"./elements/Input/Variations/InputActionExample": 534,
+		"./elements/Input/Variations/InputActionExample.js": 534,
+		"./elements/Input/Variations/InputActionExtraExample": 535,
+		"./elements/Input/Variations/InputActionExtraExample.js": 535,
+		"./elements/Input/Variations/InputFluidExample": 536,
+		"./elements/Input/Variations/InputFluidExample.js": 536,
+		"./elements/Input/Variations/InputIconExample": 537,
+		"./elements/Input/Variations/InputIconExample.js": 537,
+		"./elements/Input/Variations/InputInvertedExample": 538,
+		"./elements/Input/Variations/InputInvertedExample.js": 538,
+		"./elements/Input/Variations/InputLabeledExample": 539,
+		"./elements/Input/Variations/InputLabeledExample.js": 539,
+		"./elements/Input/Variations/InputRightLabeledExample": 540,
+		"./elements/Input/Variations/InputRightLabeledExample.js": 540,
+		"./elements/Input/Variations/InputSizeExample": 541,
+		"./elements/Input/Variations/InputSizeExample.js": 541,
+		"./elements/Input/Variations/InputTransparentExample": 542,
+		"./elements/Input/Variations/InputTransparentExample.js": 542,
+		"./elements/Input/Variations/InputVariationsExamples": 543,
+		"./elements/Input/Variations/InputVariationsExamples.js": 543,
+		"./elements/List/Content/ListContentExamples": 544,
+		"./elements/List/Content/ListContentExamples.js": 544,
+		"./elements/List/Content/ListDescriptionExample": 545,
+		"./elements/List/Content/ListDescriptionExample.js": 545,
+		"./elements/List/Content/ListHeaderExample": 546,
+		"./elements/List/Content/ListHeaderExample.js": 546,
+		"./elements/List/Content/ListIconExample": 547,
+		"./elements/List/Content/ListIconExample.js": 547,
+		"./elements/List/Content/ListImageExample": 548,
+		"./elements/List/Content/ListImageExample.js": 548,
+		"./elements/List/Content/ListItemExample": 549,
+		"./elements/List/Content/ListItemExample.js": 549,
+		"./elements/List/Content/ListLinkExample": 550,
+		"./elements/List/Content/ListLinkExample.js": 550,
+		"./elements/List/ListExamples": 551,
+		"./elements/List/ListExamples.js": 551,
+		"./elements/List/Types/ListBulletedExample": 552,
+		"./elements/List/Types/ListBulletedExample.js": 552,
+		"./elements/List/Types/ListLinkExample": 553,
+		"./elements/List/Types/ListLinkExample.js": 553,
+		"./elements/List/Types/ListListExample": 554,
+		"./elements/List/Types/ListListExample.js": 554,
+		"./elements/List/Types/ListOrderedExample": 555,
+		"./elements/List/Types/ListOrderedExample.js": 555,
+		"./elements/List/Types/ListTypesExamples": 556,
+		"./elements/List/Types/ListTypesExamples.js": 556,
+		"./elements/List/Variations/ListAnimatedExample": 557,
+		"./elements/List/Variations/ListAnimatedExample.js": 557,
+		"./elements/List/Variations/ListCelledExample": 558,
+		"./elements/List/Variations/ListCelledExample.js": 558,
+		"./elements/List/Variations/ListDividedExample": 559,
+		"./elements/List/Variations/ListDividedExample.js": 559,
+		"./elements/List/Variations/ListHorizontalExample": 560,
+		"./elements/List/Variations/ListHorizontalExample.js": 560,
+		"./elements/List/Variations/ListInvertedExample": 561,
+		"./elements/List/Variations/ListInvertedExample.js": 561,
+		"./elements/List/Variations/ListRelaxedExample": 562,
+		"./elements/List/Variations/ListRelaxedExample.js": 562,
+		"./elements/List/Variations/ListSelectionExample": 563,
+		"./elements/List/Variations/ListSelectionExample.js": 563,
+		"./elements/List/Variations/ListSizeBigExample": 564,
+		"./elements/List/Variations/ListSizeBigExample.js": 564,
+		"./elements/List/Variations/ListSizeHugeExample": 565,
+		"./elements/List/Variations/ListSizeHugeExample.js": 565,
+		"./elements/List/Variations/ListSizeLargeExample": 566,
+		"./elements/List/Variations/ListSizeLargeExample.js": 566,
+		"./elements/List/Variations/ListSizeMassiveExample": 567,
+		"./elements/List/Variations/ListSizeMassiveExample.js": 567,
+		"./elements/List/Variations/ListSizeMiniExample": 568,
+		"./elements/List/Variations/ListSizeMiniExample.js": 568,
+		"./elements/List/Variations/ListSizeSmallExample": 569,
+		"./elements/List/Variations/ListSizeSmallExample.js": 569,
+		"./elements/List/Variations/ListSizeTinyExample": 570,
+		"./elements/List/Variations/ListSizeTinyExample.js": 570,
+		"./elements/List/Variations/ListVariationsExamples": 571,
+		"./elements/List/Variations/ListVariationsExamples.js": 571,
+		"./elements/List/Variations/ListVeryRelaxedExample": 572,
+		"./elements/List/Variations/ListVeryRelaxedExample.js": 572,
+		"./elements/Segment/Groups/SegmentGroupsExamples": 573,
+		"./elements/Segment/Groups/SegmentGroupsExamples.js": 573,
+		"./elements/Segment/Groups/SegmentHorizontalSegmentsExample": 574,
+		"./elements/Segment/Groups/SegmentHorizontalSegmentsExample.js": 574,
+		"./elements/Segment/Groups/SegmentNestedSegmentsExample": 575,
+		"./elements/Segment/Groups/SegmentNestedSegmentsExample.js": 575,
+		"./elements/Segment/Groups/SegmentPiledSegmentsExample": 576,
+		"./elements/Segment/Groups/SegmentPiledSegmentsExample.js": 576,
+		"./elements/Segment/Groups/SegmentRaisedSegmentsExample": 577,
+		"./elements/Segment/Groups/SegmentRaisedSegmentsExample.js": 577,
+		"./elements/Segment/Groups/SegmentSegmentsExample": 578,
+		"./elements/Segment/Groups/SegmentSegmentsExample.js": 578,
+		"./elements/Segment/Groups/SegmentStackedSegmentsExample": 579,
+		"./elements/Segment/Groups/SegmentStackedSegmentsExample.js": 579,
+		"./elements/Segment/SegmentExamples": 580,
+		"./elements/Segment/SegmentExamples.js": 580,
+		"./elements/Segment/States/SegmentDisabledExample": 581,
+		"./elements/Segment/States/SegmentDisabledExample.js": 581,
+		"./elements/Segment/States/SegmentLoadingExample": 582,
+		"./elements/Segment/States/SegmentLoadingExample.js": 582,
+		"./elements/Segment/States/SegmentStatesExamples": 583,
+		"./elements/Segment/States/SegmentStatesExamples.js": 583,
+		"./elements/Segment/Types/SegmentPiledExample": 584,
+		"./elements/Segment/Types/SegmentPiledExample.js": 584,
+		"./elements/Segment/Types/SegmentRaisedExample": 585,
+		"./elements/Segment/Types/SegmentRaisedExample.js": 585,
+		"./elements/Segment/Types/SegmentSegmentExample": 586,
+		"./elements/Segment/Types/SegmentSegmentExample.js": 586,
+		"./elements/Segment/Types/SegmentStackedExample": 587,
+		"./elements/Segment/Types/SegmentStackedExample.js": 587,
+		"./elements/Segment/Types/SegmentTypesExamples": 588,
+		"./elements/Segment/Types/SegmentTypesExamples.js": 588,
+		"./elements/Segment/Types/SegmentVerticalSegmentExample": 589,
+		"./elements/Segment/Types/SegmentVerticalSegmentExample.js": 589,
+		"./elements/Segment/Variations/SegmentAttachedComplexExample": 590,
+		"./elements/Segment/Variations/SegmentAttachedComplexExample.js": 590,
+		"./elements/Segment/Variations/SegmentAttachedExample": 591,
+		"./elements/Segment/Variations/SegmentAttachedExample.js": 591,
+		"./elements/Segment/Variations/SegmentBasicExample": 592,
+		"./elements/Segment/Variations/SegmentBasicExample.js": 592,
+		"./elements/Segment/Variations/SegmentCircularExample": 593,
+		"./elements/Segment/Variations/SegmentCircularExample.js": 593,
+		"./elements/Segment/Variations/SegmentClearingExample": 594,
+		"./elements/Segment/Variations/SegmentClearingExample.js": 594,
+		"./elements/Segment/Variations/SegmentColoredExample": 595,
+		"./elements/Segment/Variations/SegmentColoredExample.js": 595,
+		"./elements/Segment/Variations/SegmentColoredInvertedExample": 596,
+		"./elements/Segment/Variations/SegmentColoredInvertedExample.js": 596,
+		"./elements/Segment/Variations/SegmentCompactExample": 597,
+		"./elements/Segment/Variations/SegmentCompactExample.js": 597,
+		"./elements/Segment/Variations/SegmentCompactGroupExample": 598,
+		"./elements/Segment/Variations/SegmentCompactGroupExample.js": 598,
+		"./elements/Segment/Variations/SegmentEmphasisExample": 599,
+		"./elements/Segment/Variations/SegmentEmphasisExample.js": 599,
+		"./elements/Segment/Variations/SegmentFloatedExample": 600,
+		"./elements/Segment/Variations/SegmentFloatedExample.js": 600,
+		"./elements/Segment/Variations/SegmentInvertedExample": 601,
+		"./elements/Segment/Variations/SegmentInvertedExample.js": 601,
+		"./elements/Segment/Variations/SegmentPaddedExample": 602,
+		"./elements/Segment/Variations/SegmentPaddedExample.js": 602,
+		"./elements/Segment/Variations/SegmentTextAlignmentExample": 603,
+		"./elements/Segment/Variations/SegmentTextAlignmentExample.js": 603,
+		"./elements/Segment/Variations/SegmentVariationsExamples": 604,
+		"./elements/Segment/Variations/SegmentVariationsExamples.js": 604,
+		"./elements/Segment/Variations/SegmentVeryPaddedExample": 605,
+		"./elements/Segment/Variations/SegmentVeryPaddedExample.js": 605,
+		"./modules/Checkbox/CheckboxExamples": 606,
+		"./modules/Checkbox/CheckboxExamples.js": 606,
+		"./modules/Checkbox/States/CheckboxRemoteControlExample": 607,
+		"./modules/Checkbox/States/CheckboxRemoteControlExample.js": 607,
+		"./modules/Checkbox/States/Checked": 608,
+		"./modules/Checkbox/States/Checked.js": 608,
+		"./modules/Checkbox/States/Disabled": 609,
+		"./modules/Checkbox/States/Disabled.js": 609,
+		"./modules/Checkbox/States/ReadOnly": 610,
+		"./modules/Checkbox/States/ReadOnly.js": 610,
+		"./modules/Checkbox/States/States": 611,
+		"./modules/Checkbox/States/States.js": 611,
+		"./modules/Checkbox/Types/Checkbox": 612,
+		"./modules/Checkbox/Types/Checkbox.js": 612,
+		"./modules/Checkbox/Types/Radio": 613,
+		"./modules/Checkbox/Types/Radio.js": 613,
+		"./modules/Checkbox/Types/RadioGroup": 614,
+		"./modules/Checkbox/Types/RadioGroup.js": 614,
+		"./modules/Checkbox/Types/Slider": 615,
+		"./modules/Checkbox/Types/Slider.js": 615,
+		"./modules/Checkbox/Types/Toggle": 616,
+		"./modules/Checkbox/Types/Toggle.js": 616,
+		"./modules/Checkbox/Types/Types": 617,
+		"./modules/Checkbox/Types/Types.js": 617,
+		"./modules/Checkbox/Variations/Fitted": 618,
+		"./modules/Checkbox/Variations/Fitted.js": 618,
+		"./modules/Checkbox/Variations/Variations": 619,
+		"./modules/Checkbox/Variations/Variations.js": 619,
+		"./modules/Dropdown/Content/AsyncOptions": 620,
+		"./modules/Dropdown/Content/AsyncOptions.js": 620,
+		"./modules/Dropdown/Content/Content": 621,
+		"./modules/Dropdown/Content/Content.js": 621,
+		"./modules/Dropdown/DropdownExamples": 622,
+		"./modules/Dropdown/DropdownExamples.js": 622,
+		"./modules/Dropdown/States/Disabled": 623,
+		"./modules/Dropdown/States/Disabled.js": 623,
+		"./modules/Dropdown/States/States": 624,
+		"./modules/Dropdown/States/States.js": 624,
+		"./modules/Dropdown/Types/Dropdown": 625,
+		"./modules/Dropdown/Types/Dropdown.js": 625,
+		"./modules/Dropdown/Types/Types": 626,
+		"./modules/Dropdown/Types/Types.js": 626,
+		"./modules/Progress/Content/Bar": 627,
+		"./modules/Progress/Content/Bar.js": 627,
+		"./modules/Progress/Content/Content": 628,
+		"./modules/Progress/Content/Content.js": 628,
+		"./modules/Progress/Content/Label": 629,
+		"./modules/Progress/Content/Label.js": 629,
+		"./modules/Progress/Content/Progress": 630,
+		"./modules/Progress/Content/Progress.js": 630,
+		"./modules/Progress/ProgressExamples": 631,
+		"./modules/Progress/ProgressExamples.js": 631,
+		"./modules/Progress/States/Active": 632,
+		"./modules/Progress/States/Active.js": 632,
+		"./modules/Progress/States/Disabled": 633,
+		"./modules/Progress/States/Disabled.js": 633,
+		"./modules/Progress/States/Error": 634,
+		"./modules/Progress/States/Error.js": 634,
+		"./modules/Progress/States/States": 635,
+		"./modules/Progress/States/States.js": 635,
+		"./modules/Progress/States/Success": 636,
+		"./modules/Progress/States/Success.js": 636,
+		"./modules/Progress/States/Warning": 637,
+		"./modules/Progress/States/Warning.js": 637,
+		"./modules/Progress/Types/Indicating": 638,
+		"./modules/Progress/Types/Indicating.js": 638,
+		"./modules/Progress/Types/Standard": 639,
+		"./modules/Progress/Types/Standard.js": 639,
+		"./modules/Progress/Types/Types": 640,
+		"./modules/Progress/Types/Types.js": 640,
+		"./views/Statistic/StatisticExamples": 641,
+		"./views/Statistic/StatisticExamples.js": 641,
+		"./views/Statistic/Types/StatisticBottomLabelExample": 642,
+		"./views/Statistic/Types/StatisticBottomLabelExample.js": 642,
+		"./views/Statistic/Types/StatisticGroupExample": 643,
+		"./views/Statistic/Types/StatisticGroupExample.js": 643,
+		"./views/Statistic/Types/StatisticTopLabelExample": 644,
+		"./views/Statistic/Types/StatisticTopLabelExample.js": 644,
+		"./views/Statistic/Types/StatisticTypesExamples": 645,
+		"./views/Statistic/Types/StatisticTypesExamples.js": 645
 	};
 	function webpackContext(req) {
 		return __webpack_require__(webpackContextResolve(req));
@@ -14901,1235 +15218,1277 @@ webpackJsonp([0],[
 	};
 	webpackContext.resolve = webpackContextResolve;
 	module.exports = webpackContext;
-	webpackContext.id = 431;
+	webpackContext.id = 434;
 
-
-/***/ },
-/* 432 */
-/***/ function(module, exports) {
-
-	module.exports = "import React, { Component } from 'react'\nimport ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'\nimport ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'\n\nexport default class FormTypesExamples extends Component {\n  render() {\n    return (\n      <ExampleSection title='Content'>\n        <ComponentExample\n          title='Field'\n          description='A field is a form element containing a label and an input.'\n          examplePath='collections/Form/Content/FormFieldExample'\n        />\n      </ExampleSection>\n    )\n  }\n}\n"
-
-/***/ },
-/* 433 */
-/***/ function(module, exports) {
-
-	module.exports = "import React, { Component } from 'react'\nimport { Form, Input } from 'stardust'\n\nexport default class FormFieldExample extends Component {\n  render() {\n    return (\n      <Form>\n        <Form.Field label='User Input'>\n          <Input placeholder='User Input' />\n        </Form.Field>\n      </Form>\n    )\n  }\n}\n"
-
-/***/ },
-/* 434 */
-/***/ function(module, exports) {
-
-	module.exports = "import React, { Component } from 'react'\nimport { Form, Input } from 'stardust'\n\nexport default class FormFieldInlineExample extends Component {\n  render() {\n    return (\n      <Form>\n        <Form.Field label='First name' className='inline'>\n          <Input placeholder='First name' />\n        </Form.Field>\n      </Form>\n    )\n  }\n}\n"
 
 /***/ },
 /* 435 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'\nimport ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'\n\nexport default class FormFieldVariationsExamples extends Component {\n  render() {\n    return (\n      <ExampleSection title='Field Variations'>\n        <ComponentExample\n          title='Inline'\n          description='A field can have its label next to instead of above it.'\n          examplePath='collections/Form/FieldVariations/FormFieldInlineExample'\n        />\n      </ExampleSection>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'\nimport ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'\n\nexport default class FormTypesExamples extends Component {\n  render() {\n    return (\n      <ExampleSection title='Content'>\n        <ComponentExample\n          title='Field'\n          description='A field is a form element containing a label and an input.'\n          examplePath='collections/Form/Content/FormFieldExample'\n        />\n      </ExampleSection>\n    )\n  }\n}\n"
 
 /***/ },
 /* 436 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport FormContentExamples from './Content/FormContentExamples'\nimport FormTypesExamples from './Types/FormTypesExamples'\nimport FormFieldVariationsExamples from './FieldVariations/FormFieldVariationsExamples'\nimport FormGroupVariationsExamples from './GroupVariations/FormGroupVariationsExamples'\nimport FormFormVariationsExamples from './FormVariations/FormFormVariationsExamples'\nimport FormStatesExamples from './States/FormStatesExamples'\nimport FormValidationExamples from './Validation/FormValidationExamples'\n\nexport default class FormExamples extends Component {\n  render() {\n    return (\n      <div>\n        <FormTypesExamples />\n        <FormContentExamples />\n        <FormStatesExamples />\n        <FormFormVariationsExamples />\n        <FormFieldVariationsExamples />\n        <FormGroupVariationsExamples />\n        <FormValidationExamples />\n      </div>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Form, Input } from 'stardust'\n\nexport default class FormFieldExample extends Component {\n  render() {\n    return (\n      <Form>\n        <Form.Field label='User Input'>\n          <Input placeholder='User Input' />\n        </Form.Field>\n      </Form>\n    )\n  }\n}\n"
 
 /***/ },
 /* 437 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'\nimport ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'\n\nexport default class FormFormVariationsExamples extends Component {\n  render() {\n    return (\n      <ExampleSection title='Form Variations'>\n        <ComponentExample\n          title='Size'\n          description='A form can also be small or large.'\n          examplePath='collections/Form/FormVariations/FormSizeSmallExample'\n        />\n        <ComponentExample\n          examplePath='collections/Form/FormVariations/FormSizeLargeExample'\n        />\n      </ExampleSection>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Form, Input } from 'stardust'\n\nexport default class FormFieldInlineExample extends Component {\n  render() {\n    return (\n      <Form>\n        <Form.Field label='First name' className='inline'>\n          <Input placeholder='First name' />\n        </Form.Field>\n      </Form>\n    )\n  }\n}\n"
 
 /***/ },
 /* 438 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Button, Form, Input } from 'stardust'\n\nexport default class FormSizeLargeExample extends Component {\n  render() {\n    return (\n      <Form className='large'>\n        <Form.Fields>\n          <Form.Field label='First name'>\n            <Input placeholder='First name' />\n          </Form.Field>\n          <Form.Field label='Last name'>\n            <Input placeholder='Last name' />\n          </Form.Field>\n        </Form.Fields>\n        <Button type='submit'>Submit</Button>\n      </Form>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'\nimport ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'\n\nexport default class FormFieldVariationsExamples extends Component {\n  render() {\n    return (\n      <ExampleSection title='Field Variations'>\n        <ComponentExample\n          title='Inline'\n          description='A field can have its label next to instead of above it.'\n          examplePath='collections/Form/FieldVariations/FormFieldInlineExample'\n        />\n      </ExampleSection>\n    )\n  }\n}\n"
 
 /***/ },
 /* 439 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Button, Form, Input } from 'stardust'\n\nexport default class FormSizeSmallExample extends Component {\n  render() {\n    return (\n      <Form className='small'>\n        <Form.Fields>\n          <Form.Field label='First name'>\n            <Input placeholder='First name' />\n          </Form.Field>\n          <Form.Field label='Last name'>\n            <Input placeholder='Last name' />\n          </Form.Field>\n        </Form.Fields>\n        <Button type='submit'>Submit</Button>\n      </Form>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport FormContentExamples from './Content/FormContentExamples'\nimport FormTypesExamples from './Types/FormTypesExamples'\nimport FormFieldVariationsExamples from './FieldVariations/FormFieldVariationsExamples'\nimport FormGroupVariationsExamples from './GroupVariations/FormGroupVariationsExamples'\nimport FormFormVariationsExamples from './FormVariations/FormFormVariationsExamples'\nimport FormStatesExamples from './States/FormStatesExamples'\nimport FormValidationExamples from './Validation/FormValidationExamples'\n\nexport default class FormExamples extends Component {\n  render() {\n    return (\n      <div>\n        <FormTypesExamples />\n        <FormContentExamples />\n        <FormStatesExamples />\n        <FormFormVariationsExamples />\n        <FormFieldVariationsExamples />\n        <FormGroupVariationsExamples />\n        <FormValidationExamples />\n      </div>\n    )\n  }\n}\n"
 
 /***/ },
 /* 440 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Form, Input } from 'stardust'\n\nexport default class FormGroupEvenlyDividedExample extends Component {\n  render() {\n    return (\n      <Form>\n        <Form.Fields evenlyDivided>\n          <Form.Field label='First name'>\n            <Input placeholder='First name' />\n          </Form.Field>\n          <Form.Field label='Last name'>\n            <Input placeholder='Last name' />\n          </Form.Field>\n        </Form.Fields>\n      </Form>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'\nimport ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'\n\nexport default class FormFormVariationsExamples extends Component {\n  render() {\n    return (\n      <ExampleSection title='Form Variations'>\n        <ComponentExample\n          title='Size'\n          description='A form can also be small or large.'\n          examplePath='collections/Form/FormVariations/FormSizeSmallExample'\n        />\n        <ComponentExample\n          examplePath='collections/Form/FormVariations/FormSizeLargeExample'\n        />\n      </ExampleSection>\n    )\n  }\n}\n"
 
 /***/ },
 /* 441 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'\nimport ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'\n\nexport default class FormGroupVariationsExamples extends Component {\n  render() {\n    return (\n      <ExampleSection title='Group Variations'>\n        <ComponentExample\n          title='Evenly Divided'\n          description='Fields can have their widths divided evenly.'\n          examplePath='collections/Form/GroupVariations/FormGroupEvenlyDividedExample'\n        />\n      </ExampleSection>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Button, Form, Input } from 'stardust'\n\nexport default class FormSizeLargeExample extends Component {\n  render() {\n    return (\n      <Form className='large'>\n        <Form.Fields>\n          <Form.Field label='First name'>\n            <Input placeholder='First name' />\n          </Form.Field>\n          <Form.Field label='Last name'>\n            <Input placeholder='Last name' />\n          </Form.Field>\n        </Form.Fields>\n        <Button type='submit'>Submit</Button>\n      </Form>\n    )\n  }\n}\n"
 
 /***/ },
 /* 442 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Form, Input } from 'stardust'\n\nexport default class FormFieldErrorExample extends Component {\n  render() {\n    return (\n      <Form>\n        <Form.Field label='First name' className='error'>\n          <Input placeholder='First name' />\n        </Form.Field>\n      </Form>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Button, Form, Input } from 'stardust'\n\nexport default class FormSizeSmallExample extends Component {\n  render() {\n    return (\n      <Form className='small'>\n        <Form.Fields>\n          <Form.Field label='First name'>\n            <Input placeholder='First name' />\n          </Form.Field>\n          <Form.Field label='Last name'>\n            <Input placeholder='Last name' />\n          </Form.Field>\n        </Form.Fields>\n        <Button type='submit'>Submit</Button>\n      </Form>\n    )\n  }\n}\n"
 
 /***/ },
 /* 443 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'\nimport ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'\n\nexport default class FormStatesExamples extends Component {\n  render() {\n    return (\n      <ExampleSection title='States'>\n        <ComponentExample\n          title='Error'\n          description='If a form is in an error state, it will automatically show any error message blocks.'\n          examplePath='collections/Form/States/FormFieldErrorExample'\n        />\n      </ExampleSection>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Form, Input } from 'stardust'\n\nexport default class FormGroupEvenlyDividedExample extends Component {\n  render() {\n    return (\n      <Form>\n        <Form.Fields evenlyDivided>\n          <Form.Field label='First name'>\n            <Input placeholder='First name' />\n          </Form.Field>\n          <Form.Field label='Last name'>\n            <Input placeholder='Last name' />\n          </Form.Field>\n        </Form.Fields>\n      </Form>\n    )\n  }\n}\n"
 
 /***/ },
 /* 444 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Button, Checkbox, Form, Input } from 'stardust'\n\nexport default class FormFormExample extends Component {\n  render() {\n    return (\n      <Form>\n        <Form.Field label='First Name'>\n          <Input placeholder='First Name' />\n        </Form.Field>\n        <Form.Field label='Last Name'>\n          <Input placeholder='Last Name' />\n        </Form.Field>\n        <Form.Field label='First Name'>\n          <Checkbox label='I agree to the Terms and Conditions' />\n        </Form.Field>\n        <Button type='submit'>Submit</Button>\n      </Form>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'\nimport ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'\n\nexport default class FormGroupVariationsExamples extends Component {\n  render() {\n    return (\n      <ExampleSection title='Group Variations'>\n        <ComponentExample\n          title='Evenly Divided'\n          description='Fields can have their widths divided evenly.'\n          examplePath='collections/Form/GroupVariations/FormGroupEvenlyDividedExample'\n        />\n      </ExampleSection>\n    )\n  }\n}\n"
 
 /***/ },
 /* 445 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'\nimport ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'\n\nexport default class FormTypesExamples extends Component {\n  render() {\n    return (\n      <ExampleSection title='Types'>\n        <ComponentExample\n          title='Form'\n          description='A form.'\n          examplePath='collections/Form/Types/FormFormExample'\n        />\n      </ExampleSection>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Form, Input } from 'stardust'\n\nexport default class FormFieldErrorExample extends Component {\n  render() {\n    return (\n      <Form>\n        <Form.Field label='First name' className='error'>\n          <Input placeholder='First name' />\n        </Form.Field>\n      </Form>\n    )\n  }\n}\n"
 
 /***/ },
 /* 446 */
 /***/ function(module, exports) {
 
-	module.exports = "import React from 'react'\nimport { Button, Checkbox, Dropdown, Form, Input, Message } from 'stardust'\n\nconst fields = {\n  name: 'empty',\n  gender: 'empty',\n  username: 'empty',\n  password: ['minLength[6]', 'empty'],\n  skills: ['minCount[2]', 'empty'],\n  terms: 'checked',\n}\n\nconst genderOptions = [\n  { value: '', text: 'Gender' },\n  { value: 'male', text: 'Male' },\n  { value: 'female', text: 'Female' },\n]\n\nconst skillsOptions = [\n  { value: '', text: 'Select Skills' },\n  { value: 'css', text: 'CSS' },\n  { value: 'html', text: 'HTML' },\n  { value: 'javascript', text: 'Javascript' },\n]\n\nconst FormSpecifyingValidationRulesExample = (props) => (\n  <Form className='segment' fields={fields}>\n    <p>Tell Us About Yourself</p>\n    <Form.Fields evenlyDivided>\n      <Form.Field>\n        <label>Name</label>\n        <Input placeholder='First Name' name='name' type='text' />\n      </Form.Field>\n      <Form.Field label='Gender'>\n        <Dropdown className='selection' name='gender' options={genderOptions} />\n      </Form.Field>\n    </Form.Fields>\n    <Form.Fields evenlyDivided>\n      <Form.Field label='Username'>\n        <Input placeholder='Username' name='username' type='text' />\n      </Form.Field>\n      <Form.Field label='Password'>\n        <Input type='password' name='password' />\n      </Form.Field>\n    </Form.Fields>\n    <Form.Field label='Skills'>\n      <Dropdown className='selection multiple' name='skills' options={skillsOptions} />\n    </Form.Field>\n    <Form.Field className='inline'>\n      <Checkbox name='terms' className='hidden' label='I agree to the terms and conditions' />\n    </Form.Field>\n    <Button className='blue submit'>Submit</Button>\n    <Message className='error' />\n  </Form>\n)\n\nexport default FormSpecifyingValidationRulesExample\n"
+	module.exports = "import React, { Component } from 'react'\nimport ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'\nimport ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'\n\nexport default class FormStatesExamples extends Component {\n  render() {\n    return (\n      <ExampleSection title='States'>\n        <ComponentExample\n          title='Error'\n          description='If a form is in an error state, it will automatically show any error message blocks.'\n          examplePath='collections/Form/States/FormFieldErrorExample'\n        />\n      </ExampleSection>\n    )\n  }\n}\n"
 
 /***/ },
 /* 447 */
 /***/ function(module, exports) {
 
-	module.exports = "import React from 'react'\nimport { Button, Checkbox, Form, Input } from 'stardust'\n\nconst fields = {\n  firstName: 'empty',\n  lastName: 'empty',\n  username: 'empty',\n  password: 'minLength[6]',\n  terms: 'checked',\n}\n\nconst FormValidatingOnBlurAndOtherEventsExample = (props) => (\n  <Form className='segment' fields={fields} on='blur' inline>\n    <p>Let's go ahead and get you signed up.</p>\n    <Form.Fields evenlyDivided>\n      <Form.Field>\n        <label>First Name</label>\n        <Input placeholder='First Name' name='firstName' type='text' />\n      </Form.Field>\n      <Form.Field>\n        <label>Last Name</label>\n        <Input placeholder='Last Name' name='lastName' type='text' />\n      </Form.Field>\n    </Form.Fields>\n    <Form.Fields evenlyDivided>\n      <Form.Field label='Username'>\n        <Input placeholder='Username' name='username' type='text' />\n      </Form.Field>\n      <Form.Field label='Password'>\n        <Input type='password' name='password' />\n      </Form.Field>\n    </Form.Fields>\n    <Form.Field className='inline'>\n      <Checkbox name='terms' className='hidden' label='I agree to the terms and conditions' />\n    </Form.Field>\n    <Button className='blue submit'>Submit</Button>\n  </Form>\n)\n\nexport default FormValidatingOnBlurAndOtherEventsExample\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Button, Checkbox, Form, Input } from 'stardust'\n\nexport default class FormFormExample extends Component {\n  render() {\n    return (\n      <Form>\n        <Form.Field label='First Name'>\n          <Input placeholder='First Name' />\n        </Form.Field>\n        <Form.Field label='Last Name'>\n          <Input placeholder='Last Name' />\n        </Form.Field>\n        <Form.Field label='First Name'>\n          <Checkbox label='I agree to the Terms and Conditions' />\n        </Form.Field>\n        <Button type='submit'>Submit</Button>\n      </Form>\n    )\n  }\n}\n"
 
 /***/ },
 /* 448 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'\nimport ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'\nimport { Message } from 'stardust'\n\nexport default class FormValidationExamples extends Component {\n  render() {\n    return (\n      <ExampleSection title='Validation'>\n        <ComponentExample\n          title='Specifying Validation Rules'\n          description='Pass in a validation object with the rules required to validate your form.'\n          examplePath='collections/Form/Validation/FormSpecifyingValidationRulesExample'\n        />\n        <ComponentExample\n          title='Validating on Blur and other Events'\n          description={`\n            Validation messages can also appear inline.\n            UI Forms automatically format labels with the class name <code>prompt</code>.\n            These validation prompts are also set to appear on input change instead of form submission.\n          `}\n          examplePath='collections/Form/Validation/FormValidatingOnBlurAndOtherEventsExample'\n        >\n          <Message className='warning'>\n            This example also uses a different validation event.\n            Each element will be validated on input blur instead of the default form submit.\n          </Message>\n        </ComponentExample>\n      </ExampleSection>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'\nimport ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'\n\nexport default class FormTypesExamples extends Component {\n  render() {\n    return (\n      <ExampleSection title='Types'>\n        <ComponentExample\n          title='Form'\n          description='A form.'\n          examplePath='collections/Form/Types/FormFormExample'\n        />\n      </ExampleSection>\n    )\n  }\n}\n"
 
 /***/ },
 /* 449 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport MessageStatesExamples from './States/MessageStatesExamples'\nimport MessageTypesExamples from './Types/MessageTypesExamples'\nimport MessageVariationsExamples from './Variations/MessageVariationsExamples'\n\nexport default class MessageExamples extends Component {\n  render() {\n    return (\n      <div>\n        <MessageTypesExamples />\n        <MessageStatesExamples />\n        <MessageVariationsExamples />\n      </div>\n    )\n  }\n}\n"
+	module.exports = "import React from 'react'\nimport { Button, Checkbox, Dropdown, Form, Input, Message } from 'stardust'\n\nconst fields = {\n  name: 'empty',\n  gender: 'empty',\n  username: 'empty',\n  password: ['minLength[6]', 'empty'],\n  skills: ['minCount[2]', 'empty'],\n  terms: 'checked',\n}\n\nconst genderOptions = [\n  { value: '', text: 'Gender' },\n  { value: 'male', text: 'Male' },\n  { value: 'female', text: 'Female' },\n]\n\nconst skillsOptions = [\n  { value: '', text: 'Select Skills' },\n  { value: 'css', text: 'CSS' },\n  { value: 'html', text: 'HTML' },\n  { value: 'javascript', text: 'Javascript' },\n]\n\nconst FormSpecifyingValidationRulesExample = (props) => (\n  <Form className='segment' fields={fields}>\n    <p>Tell Us About Yourself</p>\n    <Form.Fields evenlyDivided>\n      <Form.Field>\n        <label>Name</label>\n        <Input placeholder='First Name' name='name' type='text' />\n      </Form.Field>\n      <Form.Field label='Gender'>\n        <Dropdown className='selection' name='gender' options={genderOptions} />\n      </Form.Field>\n    </Form.Fields>\n    <Form.Fields evenlyDivided>\n      <Form.Field label='Username'>\n        <Input placeholder='Username' name='username' type='text' />\n      </Form.Field>\n      <Form.Field label='Password'>\n        <Input type='password' name='password' />\n      </Form.Field>\n    </Form.Fields>\n    <Form.Field label='Skills'>\n      <Dropdown className='selection multiple' name='skills' options={skillsOptions} />\n    </Form.Field>\n    <Form.Field className='inline'>\n      <Checkbox name='terms' className='hidden' label='I agree to the terms and conditions' />\n    </Form.Field>\n    <Button className='blue submit'>Submit</Button>\n    <Message className='error' />\n  </Form>\n)\n\nexport default FormSpecifyingValidationRulesExample\n"
 
 /***/ },
 /* 450 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'\nimport ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'\n\nexport default class MessageStatesExamples extends Component {\n  render() {\n    return (\n      <ExampleSection title='States'>\n        <ComponentExample\n          title='Visible'\n          description='A message can be set to visible to force itself to be shown.'\n          examplePath='collections/Message/States/MessageVisibleExample'\n        />\n      </ExampleSection>\n    )\n  }\n}\n"
+	module.exports = "import React from 'react'\nimport { Button, Checkbox, Form, Input } from 'stardust'\n\nconst fields = {\n  firstName: 'empty',\n  lastName: 'empty',\n  username: 'empty',\n  password: 'minLength[6]',\n  terms: 'checked',\n}\n\nconst FormValidatingOnBlurAndOtherEventsExample = (props) => (\n  <Form className='segment' fields={fields} on='blur' inline>\n    <p>Let's go ahead and get you signed up.</p>\n    <Form.Fields evenlyDivided>\n      <Form.Field>\n        <label>First Name</label>\n        <Input placeholder='First Name' name='firstName' type='text' />\n      </Form.Field>\n      <Form.Field>\n        <label>Last Name</label>\n        <Input placeholder='Last Name' name='lastName' type='text' />\n      </Form.Field>\n    </Form.Fields>\n    <Form.Fields evenlyDivided>\n      <Form.Field label='Username'>\n        <Input placeholder='Username' name='username' type='text' />\n      </Form.Field>\n      <Form.Field label='Password'>\n        <Input type='password' name='password' />\n      </Form.Field>\n    </Form.Fields>\n    <Form.Field className='inline'>\n      <Checkbox name='terms' className='hidden' label='I agree to the terms and conditions' />\n    </Form.Field>\n    <Button className='blue submit'>Submit</Button>\n  </Form>\n)\n\nexport default FormValidatingOnBlurAndOtherEventsExample\n"
 
 /***/ },
 /* 451 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Message } from 'stardust'\n\nexport default class MessageVisibleExample extends Component {\n  render() {\n    return (\n      <Message className='visible'>\n        You can always see me\n      </Message>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'\nimport ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'\nimport { Message } from 'stardust'\n\nexport default class FormValidationExamples extends Component {\n  render() {\n    return (\n      <ExampleSection title='Validation'>\n        <ComponentExample\n          title='Specifying Validation Rules'\n          description='Pass in a validation object with the rules required to validate your form.'\n          examplePath='collections/Form/Validation/FormSpecifyingValidationRulesExample'\n        />\n        <ComponentExample\n          title='Validating on Blur and other Events'\n          description={`\n            Validation messages can also appear inline.\n            UI Forms automatically format labels with the class name <code>prompt</code>.\n            These validation prompts are also set to appear on input change instead of form submission.\n          `}\n          examplePath='collections/Form/Validation/FormValidatingOnBlurAndOtherEventsExample'\n        >\n          <Message className='warning'>\n            This example also uses a different validation event.\n            Each element will be validated on input blur instead of the default form submit.\n          </Message>\n        </ComponentExample>\n      </ExampleSection>\n    )\n  }\n}\n"
 
 /***/ },
 /* 452 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Message } from 'stardust'\n\nexport default class MessageDismissableBlockExample extends Component {\n  render() {\n    return (\n      <Message dismissable header='Welcome back!'>\n        This is a special notification which you can dismiss.\n      </Message>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport MessageStatesExamples from './States/MessageStatesExamples'\nimport MessageTypesExamples from './Types/MessageTypesExamples'\nimport MessageVariationsExamples from './Variations/MessageVariationsExamples'\n\nexport default class MessageExamples extends Component {\n  render() {\n    return (\n      <div>\n        <MessageTypesExamples />\n        <MessageStatesExamples />\n        <MessageVariationsExamples />\n      </div>\n    )\n  }\n}\n"
 
 /***/ },
 /* 453 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Message } from 'stardust'\n\nexport default class MessageIconExample extends Component {\n  render() {\n    return (\n      <div>\n        <Message icon='inbox' header='Have you heard about our mailing list?'>\n          Get the best news in your e-mail every day.\n        </Message>\n\n        <Message icon='notched circle loading' header='Just one second'>\n          We're fetching that content for you.\n        </Message>\n      </div>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'\nimport ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'\n\nexport default class MessageStatesExamples extends Component {\n  render() {\n    return (\n      <ExampleSection title='States'>\n        <ComponentExample\n          title='Visible'\n          description='A message can be set to visible to force itself to be shown.'\n          examplePath='collections/Message/States/MessageVisibleExample'\n        />\n      </ExampleSection>\n    )\n  }\n}\n"
 
 /***/ },
 /* 454 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'\nimport ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'\n\nexport default class MessageTypesExamples extends Component {\n  render() {\n    return (\n      <ExampleSection title='Types'>\n        <ComponentExample\n          title='Dismissable Block'\n          description='A message that the can choose to hide.'\n          examplePath='collections/Message/Types/MessageDismissableBlockExample'\n        />\n        <ComponentExample\n          title='Icon Message'\n          description='A message can contain an icon.'\n          examplePath='collections/Message/Types/MessageIconExample'\n        />\n      </ExampleSection>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Message } from 'stardust'\n\nexport default class MessageVisibleExample extends Component {\n  render() {\n    return (\n      <Message className='visible'>\n        You can always see me\n      </Message>\n    )\n  }\n}\n"
 
 /***/ },
 /* 455 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Message } from 'stardust'\n\nexport default class MessageInfoExample extends Component {\n  render() {\n    return (\n      <Message className='info' header='Was this what you wanted?'>\n        Did you know it's been a while?\n      </Message>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Message } from 'stardust'\n\nexport default class MessageDismissableBlockExample extends Component {\n  render() {\n    return (\n      <Message dismissable header='Welcome back!'>\n        This is a special notification which you can dismiss.\n      </Message>\n    )\n  }\n}\n"
 
 /***/ },
 /* 456 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'\nimport ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'\n\nexport default class MessageVariationsExamples extends Component {\n  render() {\n    return (\n      <ExampleSection title='Variations'>\n        <ComponentExample\n          title='Info'\n          description='A message may be formatted to display information.'\n          examplePath='collections/Message/Variations/MessageInfoExample'\n        />\n        <ComponentExample\n          title='Warning'\n          description='A message may be formatted to display warning message.'\n          examplePath='collections/Message/Variations/MessageWarningExample'\n        />\n      </ExampleSection>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Message } from 'stardust'\n\nexport default class MessageIconExample extends Component {\n  render() {\n    return (\n      <div>\n        <Message icon='inbox' header='Have you heard about our mailing list?'>\n          Get the best news in your e-mail every day.\n        </Message>\n\n        <Message icon='notched circle loading' header='Just one second'>\n          We're fetching that content for you.\n        </Message>\n      </div>\n    )\n  }\n}\n"
 
 /***/ },
 /* 457 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Message } from 'stardust'\n\nexport default class MessageWarningExample extends Component {\n  render() {\n    return (\n      <Message className='warning' header='You must register before you can do that!'>\n        Visit our registration page, then try again.\n      </Message>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'\nimport ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'\n\nexport default class MessageTypesExamples extends Component {\n  render() {\n    return (\n      <ExampleSection title='Types'>\n        <ComponentExample\n          title='Dismissable Block'\n          description='A message that the can choose to hide.'\n          examplePath='collections/Message/Types/MessageDismissableBlockExample'\n        />\n        <ComponentExample\n          title='Icon Message'\n          description='A message can contain an icon.'\n          examplePath='collections/Message/Types/MessageIconExample'\n        />\n      </ExampleSection>\n    )\n  }\n}\n"
 
 /***/ },
 /* 458 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport TableVariationsExamples from './Variations/TableVariationsExamples'\n\nexport default class TableExamples extends Component {\n  render() {\n    return (\n      <div>\n        <TableVariationsExamples />\n      </div>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Message } from 'stardust'\n\nexport default class MessageInfoExample extends Component {\n  render() {\n    return (\n      <Message className='info' header='Was this what you wanted?'>\n        Did you know it's been a while?\n      </Message>\n    )\n  }\n}\n"
 
 /***/ },
 /* 459 */
 /***/ function(module, exports) {
 
-	module.exports = "import _ from 'lodash'\nimport faker from 'faker'\nimport React, { Component } from 'react'\nimport { Table, Segment } from 'stardust'\n\nconst data = _.times(5, n => ({\n  name: faker.name.findName(),\n  phone: faker.phone.phoneNumber(),\n  state: faker.address.state(),\n}))\n\nexport default class TableSelectableExample extends Component {\n  state = {};\n\n  handleSelectRow = (item, index) => {\n    this.setState({\n      selectedItem: JSON.stringify(item, null, 2),\n      selectedIndex: index,\n    })\n  };\n\n  render() {\n    const { selectedItem, selectedIndex } = this.state\n    return (\n      <div>\n        <Table className='selectable' data={data} onSelectRow={this.handleSelectRow}>\n          <Table.Column dataKey='name' />\n          <Table.Column dataKey='phone' />\n          <Table.Column dataKey='state' />\n        </Table>\n        <Segment className='secondary' heading='Selected:'>\n          <pre>Index: {selectedIndex}{'\\n'}Item: {selectedItem}</pre>\n        </Segment>\n      </div>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'\nimport ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'\n\nexport default class MessageVariationsExamples extends Component {\n  render() {\n    return (\n      <ExampleSection title='Variations'>\n        <ComponentExample\n          title='Info'\n          description='A message may be formatted to display information.'\n          examplePath='collections/Message/Variations/MessageInfoExample'\n        />\n        <ComponentExample\n          title='Warning'\n          description='A message may be formatted to display warning message.'\n          examplePath='collections/Message/Variations/MessageWarningExample'\n        />\n      </ExampleSection>\n    )\n  }\n}\n"
 
 /***/ },
 /* 460 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'\nimport ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'\n\nexport default class TableVariationsExamples extends Component {\n  render() {\n    return (\n      <ExampleSection title='Variations'>\n        <ComponentExample\n          title='Selectable'\n          description='A table can make its rows selectable'\n          examplePath='collections/Table/Variations/TableSelectableExample'\n        />\n      </ExampleSection>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Message } from 'stardust'\n\nexport default class MessageWarningExample extends Component {\n  render() {\n    return (\n      <Message className='warning' header='You must register before you can do that!'>\n        Visit our registration page, then try again.\n      </Message>\n    )\n  }\n}\n"
 
 /***/ },
 /* 461 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport ButtonTypesExamples from './Types/ButtonTypesExamples'\nimport ButtonGroupsExamples from './Groups/ButtonGroupsExamples'\nimport ButtonContentExamples from './Content/ButtonContentExamples'\nimport ButtonStatesExamples from './States/ButtonStatesExamples'\nimport ButtonsVariationsExamples from './Variations/ButtonsVariationsExamples'\n\nexport default class ButtonExamples extends Component {\n  render() {\n    return (\n      <div>\n        <ButtonTypesExamples />\n        <ButtonGroupsExamples />\n        <ButtonContentExamples />\n        <ButtonStatesExamples />\n        <ButtonsVariationsExamples />\n      </div>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport TableVariationsExamples from './Variations/TableVariationsExamples'\n\nexport default class TableExamples extends Component {\n  render() {\n    return (\n      <div>\n        <TableVariationsExamples />\n      </div>\n    )\n  }\n}\n"
 
 /***/ },
 /* 462 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Buttons, Button } from 'stardust'\n\nexport default class ButtonConditionalsExample extends Component {\n  render() {\n    return (\n      <Buttons>\n        <Button>Cancel</Button>\n        <div className='or' />\n        <Button className='positive'>Save</Button>\n      </Buttons>\n    )\n  }\n}\n"
+	module.exports = "import _ from 'lodash'\nimport faker from 'faker'\nimport React, { Component } from 'react'\nimport { Table, Segment } from 'stardust'\n\nconst data = _.times(5, n => ({\n  name: faker.name.findName(),\n  phone: faker.phone.phoneNumber(),\n  state: faker.address.state(),\n}))\n\nexport default class TableSelectableExample extends Component {\n  state = {};\n\n  handleSelectRow = (item, index) => {\n    this.setState({\n      selectedItem: JSON.stringify(item, null, 2),\n      selectedIndex: index,\n    })\n  };\n\n  render() {\n    const { selectedItem, selectedIndex } = this.state\n    return (\n      <div>\n        <Table className='selectable' data={data} onSelectRow={this.handleSelectRow}>\n          <Table.Column dataKey='name' />\n          <Table.Column dataKey='phone' />\n          <Table.Column dataKey='state' />\n        </Table>\n        <Segment className='secondary' heading='Selected:'>\n          <pre>Index: {selectedIndex}{'\\n'}Item: {selectedItem}</pre>\n        </Segment>\n      </div>\n    )\n  }\n}\n"
 
 /***/ },
 /* 463 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'\nimport ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'\nimport { Message } from 'stardust'\n\nexport default class ButtonContentExamples extends Component {\n  render() {\n    return (\n      <ExampleSection title='Content'>\n        <ComponentExample\n          title='Conditionals'\n          description='Button groups can contain conditionals'\n          examplePath='elements/Button/Content/ButtonConditionalsExample'\n        >\n          <Message className='warning'>\n            Or buttons can have their text localized, or adjusted by using the data-text attribute.\n            If the size of the conditional changes you will need to adjust @orCircleSize.\n          </Message>\n        </ComponentExample>\n      </ExampleSection>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'\nimport ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'\n\nexport default class TableVariationsExamples extends Component {\n  render() {\n    return (\n      <ExampleSection title='Variations'>\n        <ComponentExample\n          title='Selectable'\n          description='A table can make its rows selectable'\n          examplePath='collections/Table/Variations/TableSelectableExample'\n        />\n      </ExampleSection>\n    )\n  }\n}\n"
 
 /***/ },
 /* 464 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Buttons, Button } from 'stardust'\n\nexport default class ButtonButtonsExample extends Component {\n  render() {\n    return (\n      <Buttons>\n        <Button>One</Button>\n        <Button>Two</Button>\n        <Button>Three</Button>\n      </Buttons>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport ButtonTypesExamples from './Types/ButtonTypesExamples'\nimport ButtonGroupsExamples from './Groups/ButtonGroupsExamples'\nimport ButtonContentExamples from './Content/ButtonContentExamples'\nimport ButtonStatesExamples from './States/ButtonStatesExamples'\nimport ButtonsVariationsExamples from './Variations/ButtonsVariationsExamples'\n\nexport default class ButtonExamples extends Component {\n  render() {\n    return (\n      <div>\n        <ButtonTypesExamples />\n        <ButtonGroupsExamples />\n        <ButtonContentExamples />\n        <ButtonStatesExamples />\n        <ButtonsVariationsExamples />\n      </div>\n    )\n  }\n}\n"
 
 /***/ },
 /* 465 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'\nimport ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'\n\nexport default class ButtonGroupsExamples extends Component {\n  render() {\n    return (\n      <ExampleSection title='Groups'>\n        <ComponentExample\n          title='Buttons'\n          description='Buttons can exist together as a group'\n          examplePath='elements/Button/Groups/ButtonButtonsExample'\n        />\n        <ComponentExample\n          title='Icon Buttons'\n          description='Button groups can show groups of icons'\n          examplePath='elements/Button/Groups/ButtonIconButtonsExample'\n        />\n      </ExampleSection>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Buttons, Button } from 'stardust'\n\nexport default class ButtonConditionalsExample extends Component {\n  render() {\n    return (\n      <Buttons>\n        <Button>Cancel</Button>\n        <div className='or' />\n        <Button className='positive'>Save</Button>\n      </Buttons>\n    )\n  }\n}\n"
 
 /***/ },
 /* 466 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Buttons, Button } from 'stardust'\n\nexport default class ButtonIconButtonsExample extends Component {\n  render() {\n    return (\n      <Buttons>\n        <Button className='icon'>\n          <i className='save icon' />\n        </Button>\n        <Button className='icon'>\n          <i className='delete icon' />\n        </Button>\n        <Button className='icon'>\n          <i className='edit icon' />\n        </Button>\n      </Buttons>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'\nimport ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'\nimport { Message } from 'stardust'\n\nexport default class ButtonContentExamples extends Component {\n  render() {\n    return (\n      <ExampleSection title='Content'>\n        <ComponentExample\n          title='Conditionals'\n          description='Button groups can contain conditionals'\n          examplePath='elements/Button/Content/ButtonConditionalsExample'\n        >\n          <Message className='warning'>\n            Or buttons can have their text localized, or adjusted by using the data-text attribute.\n            If the size of the conditional changes you will need to adjust @orCircleSize.\n          </Message>\n        </ComponentExample>\n      </ExampleSection>\n    )\n  }\n}\n"
 
 /***/ },
 /* 467 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Button } from 'stardust'\n\nexport default class ButtonActiveExample extends Component {\n  render() {\n    return (\n      <Button className='active' />\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Buttons, Button } from 'stardust'\n\nexport default class ButtonButtonsExample extends Component {\n  render() {\n    return (\n      <Buttons>\n        <Button>One</Button>\n        <Button>Two</Button>\n        <Button>Three</Button>\n      </Buttons>\n    )\n  }\n}\n"
 
 /***/ },
 /* 468 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Button } from 'stardust'\n\nexport default class ButtonDisabledExample extends Component {\n  render() {\n    return (\n      <Button className='disabled'>Disabled</Button>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'\nimport ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'\n\nexport default class ButtonGroupsExamples extends Component {\n  render() {\n    return (\n      <ExampleSection title='Groups'>\n        <ComponentExample\n          title='Buttons'\n          description='Buttons can exist together as a group'\n          examplePath='elements/Button/Groups/ButtonButtonsExample'\n        />\n        <ComponentExample\n          title='Icon Buttons'\n          description='Button groups can show groups of icons'\n          examplePath='elements/Button/Groups/ButtonIconButtonsExample'\n        />\n      </ExampleSection>\n    )\n  }\n}\n"
 
 /***/ },
 /* 469 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Button } from 'stardust'\n\nexport default class ButtonLoadingExample extends Component {\n  render() {\n    return (\n      <div>\n        <Button className='loading' />\n        <Button className='basic loading' />\n        <Button className='primary loading' />\n        <Button className='secondary loading' />\n      </div>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Buttons, Button } from 'stardust'\n\nexport default class ButtonIconButtonsExample extends Component {\n  render() {\n    return (\n      <Buttons>\n        <Button className='icon'>\n          <i className='save icon' />\n        </Button>\n        <Button className='icon'>\n          <i className='delete icon' />\n        </Button>\n        <Button className='icon'>\n          <i className='edit icon' />\n        </Button>\n      </Buttons>\n    )\n  }\n}\n"
 
 /***/ },
 /* 470 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'\nimport ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'\n\nexport default class ButtonStatesExamples extends Component {\n  render() {\n    return (\n      <ExampleSection title='States'>\n        <ComponentExample\n          title='Active'\n          description='A button can show it is currently the active user selection'\n          examplePath='elements/Button/States/ButtonActiveExample'\n        />\n        <ComponentExample\n          title='Disabled'\n          description='A button can show it is currently unable to be interacted with'\n          examplePath='elements/Button/States/ButtonDisabledExample'\n        />\n        <ComponentExample\n          title='Loading'\n          description='A button can show a loading indicator'\n          examplePath='elements/Button/States/ButtonLoadingExample'\n        />\n      </ExampleSection>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Button } from 'stardust'\n\nexport default class ButtonActiveExample extends Component {\n  render() {\n    return (\n      <Button className='active' />\n    )\n  }\n}\n"
 
 /***/ },
 /* 471 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Button } from 'stardust'\n\nexport default class ButtonAnimatedExample extends Component {\n  render() {\n    return (\n      <Button className='animated'>\n        <div className='visible content'>Next</div>\n        <div className='hidden content'>\n          <i className='right arrow icon' />\n        </div>\n      </Button>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Button } from 'stardust'\n\nexport default class ButtonDisabledExample extends Component {\n  render() {\n    return (\n      <Button className='disabled'>Disabled</Button>\n    )\n  }\n}\n"
 
 /***/ },
 /* 472 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Button } from 'stardust'\n\nexport default class ButtonBasicExample extends Component {\n  render() {\n    return (\n      <div>\n        <Button className='basic'>Standard</Button>\n        <Button className='red basic'>Red</Button>\n        <Button className='orange basic'>Orange</Button>\n        <Button className='yellow basic'>Yellow</Button>\n        <Button className='olive basic'>Olive</Button>\n        <Button className='green basic'>Green</Button>\n        <Button className='teal basic'>Teal</Button>\n        <Button className='blue basic'>Blue</Button>\n        <Button className='violet basic'>Violet</Button>\n        <Button className='purple basic'>Purple</Button>\n        <Button className='pink basic'>Pink</Button>\n        <Button className='brown basic'>Brown</Button>\n        <Button className='grey basic'>Grey</Button>\n        <Button className='black basic'>Black</Button>\n      </div>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Button } from 'stardust'\n\nexport default class ButtonLoadingExample extends Component {\n  render() {\n    return (\n      <div>\n        <Button className='loading' />\n        <Button className='basic loading' />\n        <Button className='primary loading' />\n        <Button className='secondary loading' />\n      </div>\n    )\n  }\n}\n"
 
 /***/ },
 /* 473 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Button } from 'stardust'\n\nexport default class ButtonButtonExample extends Component {\n  render() {\n    return (\n      <Button />\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'\nimport ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'\n\nexport default class ButtonStatesExamples extends Component {\n  render() {\n    return (\n      <ExampleSection title='States'>\n        <ComponentExample\n          title='Active'\n          description='A button can show it is currently the active user selection'\n          examplePath='elements/Button/States/ButtonActiveExample'\n        />\n        <ComponentExample\n          title='Disabled'\n          description='A button can show it is currently unable to be interacted with'\n          examplePath='elements/Button/States/ButtonDisabledExample'\n        />\n        <ComponentExample\n          title='Loading'\n          description='A button can show a loading indicator'\n          examplePath='elements/Button/States/ButtonLoadingExample'\n        />\n      </ExampleSection>\n    )\n  }\n}\n"
 
 /***/ },
 /* 474 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Button } from 'stardust'\n\nexport default class ButtonEmphasisExample extends Component {\n  render() {\n    return (\n      <div>\n        <Button className='primary'>Primary</Button>\n        <Button className='secondary'>Secondary</Button>\n      </div>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Button } from 'stardust'\n\nexport default class ButtonAnimatedExample extends Component {\n  render() {\n    return (\n      <Button className='animated'>\n        <div className='visible content'>Next</div>\n        <div className='hidden content'>\n          <i className='right arrow icon' />\n        </div>\n      </Button>\n    )\n  }\n}\n"
 
 /***/ },
 /* 475 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Button } from 'stardust'\n\nexport default class ButtonIconExample extends Component {\n  render() {\n    return (\n      <Button className='icon'>\n        <i className='world icon' />\n      </Button>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Button } from 'stardust'\n\nexport default class ButtonBasicExample extends Component {\n  render() {\n    return (\n      <div>\n        <Button className='basic'>Standard</Button>\n        <Button className='red basic'>Red</Button>\n        <Button className='orange basic'>Orange</Button>\n        <Button className='yellow basic'>Yellow</Button>\n        <Button className='olive basic'>Olive</Button>\n        <Button className='green basic'>Green</Button>\n        <Button className='teal basic'>Teal</Button>\n        <Button className='blue basic'>Blue</Button>\n        <Button className='violet basic'>Violet</Button>\n        <Button className='purple basic'>Purple</Button>\n        <Button className='pink basic'>Pink</Button>\n        <Button className='brown basic'>Brown</Button>\n        <Button className='grey basic'>Grey</Button>\n        <Button className='black basic'>Black</Button>\n      </div>\n    )\n  }\n}\n"
 
 /***/ },
 /* 476 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Button, Segment } from 'stardust'\n\nexport default class ButtonInvertedExample extends Component {\n  render() {\n    return (\n      <div>\n        <Segment className='inverted'>\n          <Button className='inverted'>Standard</Button>\n          <Button className='inverted red'>Red</Button>\n          <Button className='inverted orange'>Orange</Button>\n          <Button className='inverted yellow'>Yellow</Button>\n          <Button className='inverted olive'>Olive</Button>\n          <Button className='inverted green'>Green</Button>\n          <Button className='inverted teal'>Teal</Button>\n          <Button className='inverted blue'>Blue</Button>\n          <Button className='inverted violet'>Violet</Button>\n          <Button className='inverted purple'>Purple</Button>\n          <Button className='inverted pink'>Pink</Button>\n          <Button className='inverted brown'>Brown</Button>\n          <Button className='inverted grey'>Grey</Button>\n          <Button className='inverted black'>Black</Button>\n        </Segment>\n        <Segment className='inverted'>\n          <Button className='inverted basic'>Standard</Button>\n          <Button className='inverted red basic'>Red</Button>\n          <Button className='inverted orange basic'>Orange</Button>\n          <Button className='inverted yellow basic'>Yellow</Button>\n          <Button className='inverted olive basic'>Olive</Button>\n          <Button className='inverted green basic'>Green</Button>\n          <Button className='inverted teal basic'>Teal</Button>\n          <Button className='inverted blue basic'>Blue</Button>\n          <Button className='inverted violet basic'>Violet</Button>\n          <Button className='inverted purple basic'>Purple</Button>\n          <Button className='inverted pink basic'>Pink</Button>\n          <Button className='inverted brown basic'>Brown</Button>\n          <Button className='inverted grey basic'>Grey</Button>\n          <Button className='inverted black basic'>Black</Button>\n        </Segment>\n      </div>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Button } from 'stardust'\n\nexport default class ButtonButtonExample extends Component {\n  render() {\n    return (\n      <Button />\n    )\n  }\n}\n"
 
 /***/ },
 /* 477 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Button } from 'stardust'\n\nexport default class ButtonLabeledExample extends Component {\n  render() {\n    return (\n      <Button className='labeled'>\n        <Button>\n          <i className='heart icon' /> Like\n        </Button>\n        {/* TODO: See issue #46 - button needs to render as a div */}\n        <a className='ui basic label'>\n          3,000\n        </a>\n      </Button>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Button } from 'stardust'\n\nexport default class ButtonEmphasisExample extends Component {\n  render() {\n    return (\n      <div>\n        <Button className='primary'>Primary</Button>\n        <Button className='secondary'>Secondary</Button>\n      </div>\n    )\n  }\n}\n"
 
 /***/ },
 /* 478 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Button } from 'stardust'\n\nexport default class ButtonLabeledIconExample extends Component {\n  render() {\n    return (\n      <div>\n        <Button className='labeled icon'>\n          <i className='pause icon' />\n          Pause\n        </Button>\n        <Button className='right labeled icon'>\n          <i className='right arrow icon' />\n          Next\n        </Button>\n      </div>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Button } from 'stardust'\n\nexport default class ButtonIconExample extends Component {\n  render() {\n    return (\n      <Button className='icon'>\n        <i className='world icon' />\n      </Button>\n    )\n  }\n}\n"
 
 /***/ },
 /* 479 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'\nimport ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'\n\nexport default class ButtonTypesExamples extends Component {\n  render() {\n    return (\n      <ExampleSection title='Types'>\n        <ComponentExample\n          title='Button'\n          description='A standard button'\n          examplePath='elements/Button/Types/ButtonButtonExample'\n        />\n        <ComponentExample\n          title='Emphasis'\n          description='Button formatting can reflect different types of emphasis'\n          examplePath='elements/Button/Types/ButtonEmphasisExample'\n        />\n        <ComponentExample\n          title='Animated'\n          description='Buttons can animate to show additional or hidden content'\n          examplePath='elements/Button/Types/ButtonAnimatedExample'\n        />\n        <ComponentExample\n          title='Labeled'\n          description='A button can be accompanied by a label'\n          examplePath='elements/Button/Types/ButtonLabeledExample'\n        />\n        <ComponentExample\n          title='Icon'\n          description='A button can be made of only an icon'\n          examplePath='elements/Button/Types/ButtonIconExample'\n        />\n        <ComponentExample\n          title='Labeled Icon'\n          description='A button can use an icon as a label'\n          examplePath='elements/Button/Types/ButtonLabeledIconExample'\n        />\n        <ComponentExample\n          title='Basic'\n          description='The basic button has a subtle appearance'\n          examplePath='elements/Button/Types/ButtonBasicExample'\n        />\n        <ComponentExample\n          title='Inverted'\n          description='A button can be formatted to appear on a dark background'\n          examplePath='elements/Button/Types/ButtonInvertedExample'\n        />\n      </ExampleSection>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Button, Segment } from 'stardust'\n\nexport default class ButtonInvertedExample extends Component {\n  render() {\n    return (\n      <div>\n        <Segment className='inverted'>\n          <Button className='inverted'>Standard</Button>\n          <Button className='inverted red'>Red</Button>\n          <Button className='inverted orange'>Orange</Button>\n          <Button className='inverted yellow'>Yellow</Button>\n          <Button className='inverted olive'>Olive</Button>\n          <Button className='inverted green'>Green</Button>\n          <Button className='inverted teal'>Teal</Button>\n          <Button className='inverted blue'>Blue</Button>\n          <Button className='inverted violet'>Violet</Button>\n          <Button className='inverted purple'>Purple</Button>\n          <Button className='inverted pink'>Pink</Button>\n          <Button className='inverted brown'>Brown</Button>\n          <Button className='inverted grey'>Grey</Button>\n          <Button className='inverted black'>Black</Button>\n        </Segment>\n        <Segment className='inverted'>\n          <Button className='inverted basic'>Standard</Button>\n          <Button className='inverted red basic'>Red</Button>\n          <Button className='inverted orange basic'>Orange</Button>\n          <Button className='inverted yellow basic'>Yellow</Button>\n          <Button className='inverted olive basic'>Olive</Button>\n          <Button className='inverted green basic'>Green</Button>\n          <Button className='inverted teal basic'>Teal</Button>\n          <Button className='inverted blue basic'>Blue</Button>\n          <Button className='inverted violet basic'>Violet</Button>\n          <Button className='inverted purple basic'>Purple</Button>\n          <Button className='inverted pink basic'>Pink</Button>\n          <Button className='inverted brown basic'>Brown</Button>\n          <Button className='inverted grey basic'>Grey</Button>\n          <Button className='inverted black basic'>Black</Button>\n        </Segment>\n      </div>\n    )\n  }\n}\n"
 
 /***/ },
 /* 480 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Button } from 'stardust'\n\nexport default class ButtonCircularExample extends Component {\n  render() {\n    return (\n      <Button className='circular icon'>\n        <i className='heart icon' />\n      </Button>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Button } from 'stardust'\n\nexport default class ButtonLabeledExample extends Component {\n  render() {\n    return (\n      <Button className='labeled'>\n        <Button>\n          <i className='heart icon' /> Like\n        </Button>\n        {/* TODO: See issue #46 - button needs to render as a div */}\n        <a className='ui basic label'>\n          3,000\n        </a>\n      </Button>\n    )\n  }\n}\n"
 
 /***/ },
 /* 481 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Button } from 'stardust'\n\nexport default class ButtonColoredExample extends Component {\n  render() {\n    return (\n      <div>\n        <Button className='red'>Red</Button>\n        <Button className='orange'>Orange</Button>\n        <Button className='yellow'>Yellow</Button>\n        <Button className='olive'>Olive</Button>\n        <Button className='green'>Green</Button>\n        <Button className='teal'>Teal</Button>\n        <Button className='blue'>Blue</Button>\n        <Button className='violet'>Violet</Button>\n        <Button className='purple'>Purple</Button>\n        <Button className='pink'>Pink</Button>\n        <Button className='brown'>Brown</Button>\n        <Button className='grey'>Grey</Button>\n        <Button className='black'>Black</Button>\n      </div>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Button } from 'stardust'\n\nexport default class ButtonLabeledIconExample extends Component {\n  render() {\n    return (\n      <div>\n        <Button className='labeled icon'>\n          <i className='pause icon' />\n          Pause\n        </Button>\n        <Button className='right labeled icon'>\n          <i className='right arrow icon' />\n          Next\n        </Button>\n      </div>\n    )\n  }\n}\n"
 
 /***/ },
 /* 482 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Button } from 'stardust'\n\nexport default class ButtonCompactExample extends Component {\n  render() {\n    return (\n      <div>\n        <Button className='compact'>Compact</Button>\n        <Button>Normal</Button>\n      </div>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'\nimport ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'\n\nexport default class ButtonTypesExamples extends Component {\n  render() {\n    return (\n      <ExampleSection title='Types'>\n        <ComponentExample\n          title='Button'\n          description='A standard button'\n          examplePath='elements/Button/Types/ButtonButtonExample'\n        />\n        <ComponentExample\n          title='Emphasis'\n          description='Button formatting can reflect different types of emphasis'\n          examplePath='elements/Button/Types/ButtonEmphasisExample'\n        />\n        <ComponentExample\n          title='Animated'\n          description='Buttons can animate to show additional or hidden content'\n          examplePath='elements/Button/Types/ButtonAnimatedExample'\n        />\n        <ComponentExample\n          title='Labeled'\n          description='A button can be accompanied by a label'\n          examplePath='elements/Button/Types/ButtonLabeledExample'\n        />\n        <ComponentExample\n          title='Icon'\n          description='A button can be made of only an icon'\n          examplePath='elements/Button/Types/ButtonIconExample'\n        />\n        <ComponentExample\n          title='Labeled Icon'\n          description='A button can use an icon as a label'\n          examplePath='elements/Button/Types/ButtonLabeledIconExample'\n        />\n        <ComponentExample\n          title='Basic'\n          description='The basic button has a subtle appearance'\n          examplePath='elements/Button/Types/ButtonBasicExample'\n        />\n        <ComponentExample\n          title='Inverted'\n          description='A button can be formatted to appear on a dark background'\n          examplePath='elements/Button/Types/ButtonInvertedExample'\n        />\n      </ExampleSection>\n    )\n  }\n}\n"
 
 /***/ },
 /* 483 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Button } from 'stardust'\n\nexport default class ButtonFloatedExample extends Component {\n  render() {\n    return (\n      <div>\n        <Button className='right floated'>Right Floated</Button>\n        <Button className='left floated'>Left Floated</Button>\n      </div>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Button } from 'stardust'\n\nexport default class ButtonCircularExample extends Component {\n  render() {\n    return (\n      <Button className='circular icon'>\n        <i className='heart icon' />\n      </Button>\n    )\n  }\n}\n"
 
 /***/ },
 /* 484 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Button } from 'stardust'\n\nexport default class ButtonFluidExample extends Component {\n  render() {\n    return (\n      <Button className='fluid'>Fits to Container</Button>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Button } from 'stardust'\n\nexport default class ButtonColoredExample extends Component {\n  render() {\n    return (\n      <div>\n        <Button className='red'>Red</Button>\n        <Button className='orange'>Orange</Button>\n        <Button className='yellow'>Yellow</Button>\n        <Button className='olive'>Olive</Button>\n        <Button className='green'>Green</Button>\n        <Button className='teal'>Teal</Button>\n        <Button className='blue'>Blue</Button>\n        <Button className='violet'>Violet</Button>\n        <Button className='purple'>Purple</Button>\n        <Button className='pink'>Pink</Button>\n        <Button className='brown'>Brown</Button>\n        <Button className='grey'>Grey</Button>\n        <Button className='black'>Black</Button>\n      </div>\n    )\n  }\n}\n"
 
 /***/ },
 /* 485 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Button } from 'stardust'\n\nexport default class ButtonHorizontallyAttachedExample extends Component {\n  render() {\n    return (\n      <div>\n        <Button className='left attached'>Left</Button>\n        <Button className='right attached'>Right</Button>\n      </div>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Button } from 'stardust'\n\nexport default class ButtonCompactExample extends Component {\n  render() {\n    return (\n      <div>\n        <Button className='compact'>Compact</Button>\n        <Button>Normal</Button>\n      </div>\n    )\n  }\n}\n"
 
 /***/ },
 /* 486 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Button } from 'stardust'\n\nexport default class ButtonPositiveNegativeExample extends Component {\n  render() {\n    return (\n      <div>\n        <Button className='positive'>Positive</Button>\n        <Button className='negative'>Negative</Button>\n      </div>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Button } from 'stardust'\n\nexport default class ButtonFloatedExample extends Component {\n  render() {\n    return (\n      <div>\n        <Button className='right floated'>Right Floated</Button>\n        <Button className='left floated'>Left Floated</Button>\n      </div>\n    )\n  }\n}\n"
 
 /***/ },
 /* 487 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Button } from 'stardust'\n\nexport default class ButtonSizeExample extends Component {\n  render() {\n    return (\n      <div>\n        <Button className='mini'>\n          Mini\n        </Button>\n        <Button className='tiny'>\n          Tiny\n        </Button>\n        <Button className='small'>\n          Small\n        </Button>\n        <Button className='medium'>\n          Medium\n        </Button>\n        <Button className='large'>\n          Large\n        </Button>\n        <Button className='big'>\n          Big\n        </Button>\n        <Button className='huge'>\n          Huge\n        </Button>\n        <Button className='massive'>\n          Massive\n        </Button>\n      </div>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Button } from 'stardust'\n\nexport default class ButtonFluidExample extends Component {\n  render() {\n    return (\n      <Button className='fluid'>Fits to Container</Button>\n    )\n  }\n}\n"
 
 /***/ },
 /* 488 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Button } from 'stardust'\n\nexport default class ButtonSocialExample extends Component {\n  render() {\n    return (\n      <div>\n        <Button className='facebook'>\n          <i className='facebook icon' />\n          Facebook\n        </Button>\n        <Button className='twitter'>\n          <i className='twitter icon' />\n          Twitter\n        </Button>\n        <Button className='google plus'>\n          <i className='google plus icon' />\n          Google Plus\n        </Button>\n        <Button className='vk'>\n          <i className='vk icon' />\n          VK\n        </Button>\n        <Button className='linkedin'>\n          <i className='linkedin icon' />\n          LinkedIn\n        </Button>\n        <Button className='instagram'>\n          <i className='instagram icon' />\n          Instagram\n        </Button>\n        <Button className='youtube'>\n          <i className='youtube icon' />\n          YouTube\n        </Button>\n      </div>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Button } from 'stardust'\n\nexport default class ButtonHorizontallyAttachedExample extends Component {\n  render() {\n    return (\n      <div>\n        <Button className='left attached'>Left</Button>\n        <Button className='right attached'>Right</Button>\n      </div>\n    )\n  }\n}\n"
 
 /***/ },
 /* 489 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Button } from 'stardust'\n\nexport default class ButtonToggleExample extends Component {\n  render() {\n    return (\n      <Button className='toggle'>Toggle</Button>\n      // TODO: Need to add functionality for toggle button - See issue #43\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Button } from 'stardust'\n\nexport default class ButtonPositiveNegativeExample extends Component {\n  render() {\n    return (\n      <div>\n        <Button className='positive'>Positive</Button>\n        <Button className='negative'>Negative</Button>\n      </div>\n    )\n  }\n}\n"
 
 /***/ },
 /* 490 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Button, Segment } from 'stardust'\n\nexport default class ButtonVerticallyAttachedExample extends Component {\n  render() {\n    return (\n      <div>\n        <Button className='top attached'>Top</Button>\n        <Segment className='attached'>\n          <p>Content goes here</p>\n        </Segment>\n        <Button className='bottom attached'>Bottom</Button>\n      </div>\n      // TODO: Extend button component to work with an attached div - see issue #46\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Button } from 'stardust'\n\nexport default class ButtonSizeExample extends Component {\n  render() {\n    return (\n      <div>\n        <Button className='mini'>\n          Mini\n        </Button>\n        <Button className='tiny'>\n          Tiny\n        </Button>\n        <Button className='small'>\n          Small\n        </Button>\n        <Button className='medium'>\n          Medium\n        </Button>\n        <Button className='large'>\n          Large\n        </Button>\n        <Button className='big'>\n          Big\n        </Button>\n        <Button className='huge'>\n          Huge\n        </Button>\n        <Button className='massive'>\n          Massive\n        </Button>\n      </div>\n    )\n  }\n}\n"
 
 /***/ },
 /* 491 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'\nimport ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'\n\nexport default class ButtonVariationsExamples extends Component {\n  render() {\n    return (\n      <ExampleSection title='Variations'>\n        <ComponentExample\n          title='Social'\n          description='A button can be formatted to link to a social website'\n          examplePath='elements/Button/Variations/ButtonSocialExample'\n        />\n        <ComponentExample\n          title='Size'\n          description='Buttons can have assorted sizes'\n          examplePath='elements/Button/Variations/ButtonSizeExample'\n        />\n        <ComponentExample\n          title='Floated'\n          description='A button can be aligned to the left or right of its container'\n          examplePath='elements/Button/Variations/ButtonFloatedExample'\n        />\n        <ComponentExample\n          title='Colored'\n          description='A button can have different containers'\n          examplePath='elements/Button/Variations/ButtonColoredExample'\n        />\n        <ComponentExample\n          title='Compact'\n          description='Buttons can have reduced padding'\n          examplePath='elements/Button/Variations/ButtonCompactExample'\n        />\n        <ComponentExample\n          title='Toggle'\n          description='A button can be formatted to toggle on or off'\n          examplePath='elements/Button/Variations/ButtonToggleExample'\n        />\n        <ComponentExample\n          title='Positive/Negative'\n          description='A button can visually indicate consequence'\n          examplePath='elements/Button/Variations/ButtonPositiveNegativeExample'\n        />\n        <ComponentExample\n          title='Fluid'\n          description='A button can take the width of its container'\n          examplePath='elements/Button/Variations/ButtonFluidExample'\n        />\n        <ComponentExample\n          title='Circular'\n          description='A button can be circular'\n          examplePath='elements/Button/Variations/ButtonCircularExample'\n        />\n        <ComponentExample\n          title='Vertically Attached'\n          description='A button can be attached to the top or bottom of other content'\n          examplePath='elements/Button/Variations/ButtonVerticallyAttachedExample'\n        />\n        <ComponentExample\n          title='Horizontally Attached'\n          description='A button can be attached to the left or right of other content'\n          examplePath='elements/Button/Variations/ButtonHorizontallyAttachedExample'\n        />\n      </ExampleSection>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Button } from 'stardust'\n\nexport default class ButtonSocialExample extends Component {\n  render() {\n    return (\n      <div>\n        <Button className='facebook'>\n          <i className='facebook icon' />\n          Facebook\n        </Button>\n        <Button className='twitter'>\n          <i className='twitter icon' />\n          Twitter\n        </Button>\n        <Button className='google plus'>\n          <i className='google plus icon' />\n          Google Plus\n        </Button>\n        <Button className='vk'>\n          <i className='vk icon' />\n          VK\n        </Button>\n        <Button className='linkedin'>\n          <i className='linkedin icon' />\n          LinkedIn\n        </Button>\n        <Button className='instagram'>\n          <i className='instagram icon' />\n          Instagram\n        </Button>\n        <Button className='youtube'>\n          <i className='youtube icon' />\n          YouTube\n        </Button>\n      </div>\n    )\n  }\n}\n"
 
 /***/ },
 /* 492 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport DividerTypesExamples from './Types/DividerTypesExamples'\nimport DividerVariationsExamples from './Variations/DividerVariationsExamples'\n\nexport default class DividerExamples extends Component {\n  render() {\n    return (\n      <div>\n        <DividerTypesExamples />\n        <DividerVariationsExamples />\n      </div>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Button } from 'stardust'\n\nexport default class ButtonToggleExample extends Component {\n  render() {\n    return (\n      <Button className='toggle'>Toggle</Button>\n      // TODO: Need to add functionality for toggle button - See issue #43\n    )\n  }\n}\n"
 
 /***/ },
 /* 493 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Divider } from 'stardust'\n\nexport default class DividerDividerExample extends Component {\n  render() {\n    return (\n      <Divider />\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Button, Segment } from 'stardust'\n\nexport default class ButtonVerticallyAttachedExample extends Component {\n  render() {\n    return (\n      <div>\n        <Button className='top attached'>Top</Button>\n        <Segment className='attached'>\n          <p>Content goes here</p>\n        </Segment>\n        <Button className='bottom attached'>Bottom</Button>\n      </div>\n      // TODO: Extend button component to work with an attached div - see issue #46\n    )\n  }\n}\n"
 
 /***/ },
 /* 494 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Segment, Button, Divider } from 'stardust'\n\nexport default class DividerHorizontalExample extends Component {\n  render() {\n    return (\n      <Segment className='padded'>\n        <Button className='primary fluid'>Login</Button>\n        <Divider className='large horizontal'>Or</Divider>\n        <Button className='secondary fluid'>Sign Up Now</Button>\n      </Segment>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'\nimport ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'\n\nexport default class ButtonVariationsExamples extends Component {\n  render() {\n    return (\n      <ExampleSection title='Variations'>\n        <ComponentExample\n          title='Social'\n          description='A button can be formatted to link to a social website'\n          examplePath='elements/Button/Variations/ButtonSocialExample'\n        />\n        <ComponentExample\n          title='Size'\n          description='Buttons can have assorted sizes'\n          examplePath='elements/Button/Variations/ButtonSizeExample'\n        />\n        <ComponentExample\n          title='Floated'\n          description='A button can be aligned to the left or right of its container'\n          examplePath='elements/Button/Variations/ButtonFloatedExample'\n        />\n        <ComponentExample\n          title='Colored'\n          description='A button can have different containers'\n          examplePath='elements/Button/Variations/ButtonColoredExample'\n        />\n        <ComponentExample\n          title='Compact'\n          description='Buttons can have reduced padding'\n          examplePath='elements/Button/Variations/ButtonCompactExample'\n        />\n        <ComponentExample\n          title='Toggle'\n          description='A button can be formatted to toggle on or off'\n          examplePath='elements/Button/Variations/ButtonToggleExample'\n        />\n        <ComponentExample\n          title='Positive/Negative'\n          description='A button can visually indicate consequence'\n          examplePath='elements/Button/Variations/ButtonPositiveNegativeExample'\n        />\n        <ComponentExample\n          title='Fluid'\n          description='A button can take the width of its container'\n          examplePath='elements/Button/Variations/ButtonFluidExample'\n        />\n        <ComponentExample\n          title='Circular'\n          description='A button can be circular'\n          examplePath='elements/Button/Variations/ButtonCircularExample'\n        />\n        <ComponentExample\n          title='Vertically Attached'\n          description='A button can be attached to the top or bottom of other content'\n          examplePath='elements/Button/Variations/ButtonVerticallyAttachedExample'\n        />\n        <ComponentExample\n          title='Horizontally Attached'\n          description='A button can be attached to the left or right of other content'\n          examplePath='elements/Button/Variations/ButtonHorizontallyAttachedExample'\n        />\n      </ExampleSection>\n    )\n  }\n}\n"
 
 /***/ },
 /* 495 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'\nimport ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'\n\nexport default class DividerTypesExamples extends Component {\n  render() {\n    return (\n      <ExampleSection title='Types'>\n        <ComponentExample\n          title='Divider'\n          description='A standard divider'\n          examplePath='elements/Divider/Types/DividerDividerExample'\n        />\n        <ComponentExample\n          title='Vertical Divider'\n          description='A divider can segment content vertically'\n          examplePath='elements/Divider/Types/DividerVerticalExample'\n        />\n        <ComponentExample\n          title='Horizontal Divider'\n          description='A divider can segement content horizontally'\n          examplePath='elements/Divider/Types/DividerHorizontalExample'\n        />\n      </ExampleSection>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport DividerTypesExamples from './Types/DividerTypesExamples'\nimport DividerVariationsExamples from './Variations/DividerVariationsExamples'\n\nexport default class DividerExamples extends Component {\n  render() {\n    return (\n      <div>\n        <DividerTypesExamples />\n        <DividerVariationsExamples />\n      </div>\n    )\n  }\n}\n"
 
 /***/ },
 /* 496 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Grid, Segment, Divider } from 'stardust'\n\nexport default class DividerVerticalExample extends Component {\n  render() {\n    return (\n      <Grid className='three column relaxed'>\n        <Grid.Column>\n          <Segment className='basic'>\n            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio.\n          </Segment>\n        </Grid.Column>\n        <Divider className='vertical'>Or</Divider>\n        <Grid.Column>\n          <Segment className='basic'>\n            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio.\n          </Segment>\n        </Grid.Column>\n        <Divider className='vertical'>And</Divider>\n        <Grid.Column>\n          <Segment className='basic'>\n            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio.\n          </Segment>\n        </Grid.Column>\n      </Grid>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Divider } from 'stardust'\n\nexport default class DividerDividerExample extends Component {\n  render() {\n    return (\n      <Divider />\n    )\n  }\n}\n"
 
 /***/ },
 /* 497 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Segment, Button, Divider } from 'stardust'\n\nexport default class DividerClearingExample extends Component {\n  render() {\n    return (\n      <Segment>\n        <Button className='right floated'>Floated Button</Button>\n        <Divider className='clearing' />\n        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore...\n      </Segment>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Segment, Button, Divider } from 'stardust'\n\nexport default class DividerHorizontalExample extends Component {\n  render() {\n    return (\n      <Segment className='padded'>\n        <Button className='primary fluid'>Login</Button>\n        <Divider className='large horizontal'>Or</Divider>\n        <Button className='secondary fluid'>Sign Up Now</Button>\n      </Segment>\n    )\n  }\n}\n"
 
 /***/ },
 /* 498 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Segment, Divider } from 'stardust'\n\nexport default class DividerFittedExample extends Component {\n  render() {\n    return (\n      <Segment>\n        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore...\n        <Divider className='fitted' />\n        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore...\n      </Segment>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'\nimport ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'\n\nexport default class DividerTypesExamples extends Component {\n  render() {\n    return (\n      <ExampleSection title='Types'>\n        <ComponentExample\n          title='Divider'\n          description='A standard divider'\n          examplePath='elements/Divider/Types/DividerDividerExample'\n        />\n        <ComponentExample\n          title='Vertical Divider'\n          description='A divider can segment content vertically'\n          examplePath='elements/Divider/Types/DividerVerticalExample'\n        />\n        <ComponentExample\n          title='Horizontal Divider'\n          description='A divider can segement content horizontally'\n          examplePath='elements/Divider/Types/DividerHorizontalExample'\n        />\n      </ExampleSection>\n    )\n  }\n}\n"
 
 /***/ },
 /* 499 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Segment, Divider } from 'stardust'\n\nexport default class DividerHiddenExample extends Component {\n  render() {\n    return (\n      <Segment>\n        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore...\n        <Divider className='hidden' />\n        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore...\n      </Segment>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Grid, Segment, Divider } from 'stardust'\n\nexport default class DividerVerticalExample extends Component {\n  render() {\n    return (\n      <Grid className='three column relaxed'>\n        <Grid.Column>\n          <Segment className='basic'>\n            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio.\n          </Segment>\n        </Grid.Column>\n        <Divider className='vertical'>Or</Divider>\n        <Grid.Column>\n          <Segment className='basic'>\n            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio.\n          </Segment>\n        </Grid.Column>\n        <Divider className='vertical'>And</Divider>\n        <Grid.Column>\n          <Segment className='basic'>\n            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio.\n          </Segment>\n        </Grid.Column>\n      </Grid>\n    )\n  }\n}\n"
 
 /***/ },
 /* 500 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Segment, Divider } from 'stardust'\n\nexport default class DividerInvertedExample extends Component {\n  render() {\n    return (\n      <Segment className='inverted'>\n        <Divider className='inverted' />\n        <Divider className='horizontal inverted'>Horizontal</Divider>\n      </Segment>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Segment, Button, Divider } from 'stardust'\n\nexport default class DividerClearingExample extends Component {\n  render() {\n    return (\n      <Segment>\n        <Button className='right floated'>Floated Button</Button>\n        <Divider className='clearing' />\n        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore...\n      </Segment>\n    )\n  }\n}\n"
 
 /***/ },
 /* 501 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Segment, Divider } from 'stardust'\n\nexport default class DividerSectionExample extends Component {\n  render() {\n    return (\n      <Segment>\n        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore...\n        <Divider className='section' />\n        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore...\n      </Segment>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Segment, Divider } from 'stardust'\n\nexport default class DividerFittedExample extends Component {\n  render() {\n    return (\n      <Segment>\n        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore...\n        <Divider className='fitted' />\n        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore...\n      </Segment>\n    )\n  }\n}\n"
 
 /***/ },
 /* 502 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'\nimport ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'\n\nexport default class DividerVariationsExamples extends Component {\n  render() {\n    return (\n      <ExampleSection title='Types'>\n        <ComponentExample\n          title='Inverted'\n          description='A divider can have its colors inverted'\n          examplePath='elements/Divider/Variations/DividerInvertedExample'\n        />\n        <ComponentExample\n          title='Fitted'\n          description='A divider can be fitted, without any space above or below it'\n          examplePath='elements/Divider/Variations/DividerFittedExample'\n        />\n        <ComponentExample\n          title='Hidden'\n          description='A hidden divider divides content without creating a dividing line'\n          examplePath='elements/Divider/Variations/DividerHiddenExample'\n        />\n        <ComponentExample\n          title='Section'\n          description='A divider can provide greater margins to divide sections of content'\n          examplePath='elements/Divider/Variations/DividerSectionExample'\n        />\n        <ComponentExample\n          title='Clearing'\n          description='A divider can clear the contents above it'\n          examplePath='elements/Divider/Variations/DividerClearingExample'\n        />\n      </ExampleSection>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Segment, Divider } from 'stardust'\n\nexport default class DividerHiddenExample extends Component {\n  render() {\n    return (\n      <Segment>\n        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore...\n        <Divider className='hidden' />\n        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore...\n      </Segment>\n    )\n  }\n}\n"
 
 /***/ },
 /* 503 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'\nimport ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'\n\nexport default class HeaderContentExamples extends Component {\n  render() {\n    return (\n      <ExampleSection title='Content'>\n        <ComponentExample\n          title='Image'\n          description='A header may contain an image'\n          examplePath='elements/Header/Content/HeaderImageExample'\n        />\n        <ComponentExample\n          title='Icon'\n          description='A header may contain an icon'\n          examplePath='elements/Header/Content/HeaderIconExample'\n        />\n        <ComponentExample\n          title='Subheader'\n          description='Headers may contain subheaders'\n          examplePath='elements/Header/Content/HeaderSubheaderExample'\n        />\n      </ExampleSection>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Segment, Divider } from 'stardust'\n\nexport default class DividerInvertedExample extends Component {\n  render() {\n    return (\n      <Segment className='inverted'>\n        <Divider className='inverted' />\n        <Divider className='horizontal inverted'>Horizontal</Divider>\n      </Segment>\n    )\n  }\n}\n"
 
 /***/ },
 /* 504 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Header } from 'stardust'\n\nexport default class HeaderIconExample extends Component {\n  render() {\n    const plug = <i className='plug icon' />\n    return (\n      <Header.H2 icon={plug}>\n        Is Your Electricity Truly Electrifying?\n      </Header.H2>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Segment, Divider } from 'stardust'\n\nexport default class DividerSectionExample extends Component {\n  render() {\n    return (\n      <Segment>\n        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore...\n        <Divider className='section' />\n        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore...\n      </Segment>\n    )\n  }\n}\n"
 
 /***/ },
 /* 505 */
 /***/ function(module, exports) {
 
-	module.exports = "import faker from 'faker'\nimport React, { Component } from 'react'\nimport { Header, Image } from 'stardust'\n\nexport default class HeaderImageExample extends Component {\n  render() {\n    const photo = <Image className='circular' src={faker.image.city(120, 120)} />\n    return (\n      <Header.H2 image={photo}>\n        Welcome to Our City!\n      </Header.H2>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'\nimport ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'\n\nexport default class DividerVariationsExamples extends Component {\n  render() {\n    return (\n      <ExampleSection title='Types'>\n        <ComponentExample\n          title='Inverted'\n          description='A divider can have its colors inverted'\n          examplePath='elements/Divider/Variations/DividerInvertedExample'\n        />\n        <ComponentExample\n          title='Fitted'\n          description='A divider can be fitted, without any space above or below it'\n          examplePath='elements/Divider/Variations/DividerFittedExample'\n        />\n        <ComponentExample\n          title='Hidden'\n          description='A hidden divider divides content without creating a dividing line'\n          examplePath='elements/Divider/Variations/DividerHiddenExample'\n        />\n        <ComponentExample\n          title='Section'\n          description='A divider can provide greater margins to divide sections of content'\n          examplePath='elements/Divider/Variations/DividerSectionExample'\n        />\n        <ComponentExample\n          title='Clearing'\n          description='A divider can clear the contents above it'\n          examplePath='elements/Divider/Variations/DividerClearingExample'\n        />\n      </ExampleSection>\n    )\n  }\n}\n"
 
 /***/ },
 /* 506 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Header } from 'stardust'\n\nexport default class HeaderSubheaderExample extends Component {\n  render() {\n    return (\n      <Header.H2>\n        Account Settings\n        <Header.Subheader>\n          Manage your account settings and set email preferences\n        </Header.Subheader>\n      </Header.H2>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'\nimport ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'\n\nexport default class HeaderContentExamples extends Component {\n  render() {\n    return (\n      <ExampleSection title='Content'>\n        <ComponentExample\n          title='Image'\n          description='A header may contain an image'\n          examplePath='elements/Header/Content/HeaderImageExample'\n        />\n        <ComponentExample\n          title='Icon'\n          description='A header may contain an icon'\n          examplePath='elements/Header/Content/HeaderIconExample'\n        />\n        <ComponentExample\n          title='Subheader'\n          description='Headers may contain subheaders'\n          examplePath='elements/Header/Content/HeaderSubheaderExample'\n        />\n      </ExampleSection>\n    )\n  }\n}\n"
 
 /***/ },
 /* 507 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport HeaderTypesExamples from './Types/HeaderTypesExamples'\nimport HeaderContentExamples from './Content/HeaderContentExamples'\nimport HeaderStatesExamples from './States/HeaderStatesExamples'\nimport HeaderVariationsExamples from './Variations/HeaderVariationsExamples'\nimport { Message } from 'stardust'\n\nexport default class HeaderExamples extends Component {\n  render() {\n    return (\n      <div>\n        <Message className='warning'>\n          Semantic UI uses both <code>&lt;div&gt;</code> and <code>&lt;h*&gt;</code> tags\n          for headers. In Stardust, the <code>&lt;Header&gt;</code> component renders a\n          <code>&lt;div&gt;</code>. While subcomponents, <code>&lt;Header.H*&gt;</code>,\n          render an <code>&lt;h*&gt;</code>. See the examples below for further clarfication.\n        </Message>\n        <HeaderTypesExamples />\n        <HeaderContentExamples />\n        <HeaderStatesExamples />\n        <HeaderVariationsExamples />\n      </div>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Header } from 'stardust'\n\nexport default class HeaderIconExample extends Component {\n  render() {\n    const plug = <i className='plug icon' />\n    return (\n      <Header.H2 icon={plug}>\n        Is Your Electricity Truly Electrifying?\n      </Header.H2>\n    )\n  }\n}\n"
 
 /***/ },
 /* 508 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Header } from 'stardust'\n\nexport default class HeaderDisabledExample extends Component {\n  render() {\n    return (\n      <Header.H2 className='disabled'>\n        Disabled Header\n      </Header.H2>\n    )\n  }\n}\n"
+	module.exports = "import faker from 'faker'\nimport React, { Component } from 'react'\nimport { Header, Image } from 'stardust'\n\nexport default class HeaderImageExample extends Component {\n  render() {\n    const photo = <Image className='circular' src={faker.image.city(120, 120)} />\n    return (\n      <Header.H2 image={photo}>\n        Welcome to Our City!\n      </Header.H2>\n    )\n  }\n}\n"
 
 /***/ },
 /* 509 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'\nimport ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'\n\nexport default class HeaderStatesExamples extends Component {\n  render() {\n    return (\n      <ExampleSection title='States'>\n        <ComponentExample\n          title='Disabled'\n          description='A header can show that it is inactive'\n          examplePath='elements/Header/States/HeaderDisabledExample'\n        />\n      </ExampleSection>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Header } from 'stardust'\n\nexport default class HeaderSubheaderExample extends Component {\n  render() {\n    return (\n      <Header.H2>\n        Account Settings\n        <Header.Subheader>\n          Manage your account settings and set email preferences\n        </Header.Subheader>\n      </Header.H2>\n    )\n  }\n}\n"
 
 /***/ },
 /* 510 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Header } from 'stardust'\n\nexport default class HeaderContentHeadersExamples extends Component {\n  render() {\n    return (\n      <div>\n        <Header className='huge'>\n          Huge Header\n        </Header>\n        <Header className='large'>\n          Large Header\n        </Header>\n        <Header className='medium'>\n          Medium Header\n        </Header>\n        <Header className='small'>\n          Small Header\n        </Header>\n        <Header className='tiny'>\n          Tiny Header\n        </Header>\n      </div>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport HeaderTypesExamples from './Types/HeaderTypesExamples'\nimport HeaderContentExamples from './Content/HeaderContentExamples'\nimport HeaderStatesExamples from './States/HeaderStatesExamples'\nimport HeaderVariationsExamples from './Variations/HeaderVariationsExamples'\nimport { Message } from 'stardust'\n\nexport default class HeaderExamples extends Component {\n  render() {\n    return (\n      <div>\n        <Message className='warning'>\n          Semantic UI uses both <code>&lt;div&gt;</code> and <code>&lt;h*&gt;</code> tags\n          for headers. In Stardust, the <code>&lt;Header&gt;</code> component renders a\n          <code>&lt;div&gt;</code>. While subcomponents, <code>&lt;Header.H*&gt;</code>,\n          render an <code>&lt;h*&gt;</code>. See the examples below for further clarfication.\n        </Message>\n        <HeaderTypesExamples />\n        <HeaderContentExamples />\n        <HeaderStatesExamples />\n        <HeaderVariationsExamples />\n      </div>\n    )\n  }\n}\n"
 
 /***/ },
 /* 511 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Header } from 'stardust'\n\nexport default class HeaderIconHeadersExamples extends Component {\n  render() {\n    const settings = <i className='settings icon' />\n    return (\n      <Header.H2 className='icon' icon={settings} >\n        Account Settings\n        <Header.Subheader>\n          Manage your account settings and set e-mail preferences.\n        </Header.Subheader>\n      </Header.H2>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Header } from 'stardust'\n\nexport default class HeaderDisabledExample extends Component {\n  render() {\n    return (\n      <Header.H2 className='disabled'>\n        Disabled Header\n      </Header.H2>\n    )\n  }\n}\n"
 
 /***/ },
 /* 512 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Header } from 'stardust'\n\nexport default class HeaderPageHeadersExamples extends Component {\n  render() {\n    return (\n      <div>\n        <Header.H1>\n          First Header\n        </Header.H1>\n        <Header.H2>\n          Second Header\n        </Header.H2>\n        <Header.H3>\n          Third Header\n        </Header.H3>\n        <Header.H4>\n          Fourth Header\n        </Header.H4>\n        <Header.H5>\n          Fifth Header\n        </Header.H5>\n        <Header.H6>\n          Sixth Header\n        </Header.H6>\n      </div>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'\nimport ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'\n\nexport default class HeaderStatesExamples extends Component {\n  render() {\n    return (\n      <ExampleSection title='States'>\n        <ComponentExample\n          title='Disabled'\n          description='A header can show that it is inactive'\n          examplePath='elements/Header/States/HeaderDisabledExample'\n        />\n      </ExampleSection>\n    )\n  }\n}\n"
 
 /***/ },
 /* 513 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Header } from 'stardust'\n\nexport default class HeaderSubHeadersExamples extends Component {\n  render() {\n    return (\n      <Header.H2 className='sub'>\n        Price\n        <Header.Subheader>\n          $10.99\n        </Header.Subheader>\n      </Header.H2>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Header } from 'stardust'\n\nexport default class HeaderContentHeadersExamples extends Component {\n  render() {\n    return (\n      <div>\n        <Header className='huge'>\n          Huge Header\n        </Header>\n        <Header className='large'>\n          Large Header\n        </Header>\n        <Header className='medium'>\n          Medium Header\n        </Header>\n        <Header className='small'>\n          Small Header\n        </Header>\n        <Header className='tiny'>\n          Tiny Header\n        </Header>\n      </div>\n    )\n  }\n}\n"
 
 /***/ },
 /* 514 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'\nimport ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'\nimport { Message } from 'stardust'\n\nexport default class HeaderTypesExamples extends Component {\n  render() {\n    return (\n      <ExampleSection title='Types'>\n        <ComponentExample\n          title='Page Headers'\n          description='Headers may be oriented to give the hierarchy of a section in the context of the page'\n          examplePath='elements/Header/Types/HeaderPageHeadersExample'\n        >\n          <Message>\n            Page headings are sized using rem and are not affected by surrounding content size.\n          </Message>\n        </ComponentExample>\n        <ComponentExample\n          title='Content Headers'\n          description='Headers may be oriented to give the importance of a section'\n          examplePath='elements/Header/Types/HeaderContentHeadersExamples'\n        >\n          <Message>\n            Content headings are sized with em and are based on the font-size of their container.\n          </Message>\n        </ComponentExample>\n        <ComponentExample\n          title='Icon Headers'\n          description='A header can be formatted to emphasize an icon'\n          examplePath='elements/Header/Types/HeaderIconHeadersExamples'\n        />\n        <ComponentExample\n          title='Sub Headers'\n          description='Headers may be formatted to label smaller or de-emphasized content'\n          examplePath='elements/Header/Types/HeaderSubHeadersExample'\n        />\n      </ExampleSection>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Header } from 'stardust'\n\nexport default class HeaderIconHeadersExamples extends Component {\n  render() {\n    const settings = <i className='settings icon' />\n    return (\n      <Header.H2 className='icon' icon={settings} >\n        Account Settings\n        <Header.Subheader>\n          Manage your account settings and set e-mail preferences.\n        </Header.Subheader>\n      </Header.H2>\n    )\n  }\n}\n"
 
 /***/ },
 /* 515 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Header, Segment } from 'stardust'\n\nexport default class HeaderAttachedExample extends Component {\n  render() {\n    return (\n      <div>\n        <Header.H2 className='top attached'>\n          Attached Header\n        </Header.H2>\n        <Segment className='attached'>\n          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt\n          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco\n          laboris nisi ut aliquip ex ea commodo consequat.\n        </Segment>\n      </div>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Header } from 'stardust'\n\nexport default class HeaderPageHeadersExamples extends Component {\n  render() {\n    return (\n      <div>\n        <Header.H1>\n          First Header\n        </Header.H1>\n        <Header.H2>\n          Second Header\n        </Header.H2>\n        <Header.H3>\n          Third Header\n        </Header.H3>\n        <Header.H4>\n          Fourth Header\n        </Header.H4>\n        <Header.H5>\n          Fifth Header\n        </Header.H5>\n        <Header.H6>\n          Sixth Header\n        </Header.H6>\n      </div>\n    )\n  }\n}\n"
 
 /***/ },
 /* 516 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Header } from 'stardust'\n\nexport default class HeaderBlockExample extends Component {\n  render() {\n    return (\n      <Header.H3 className='block'>\n        Block Header\n      </Header.H3>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Header } from 'stardust'\n\nexport default class HeaderSubHeadersExamples extends Component {\n  render() {\n    return (\n      <Header.H2 className='sub'>\n        Price\n        <Header.Subheader>\n          $10.99\n        </Header.Subheader>\n      </Header.H2>\n    )\n  }\n}\n"
 
 /***/ },
 /* 517 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Header } from 'stardust'\n\nexport default class HeaderColoredExample extends Component {\n  render() {\n    return (\n      <div>\n        <Header.H4 className='red'>Red</Header.H4>\n        <Header.H4 className='orange'>Orange</Header.H4>\n        <Header.H4 className='yellow'>Yellow</Header.H4>\n        <Header.H4 className='olive'>Olive</Header.H4>\n        <Header.H4 className='green'>Green</Header.H4>\n        <Header.H4 className='teal'>Teal</Header.H4>\n        <Header.H4 className='blue'>Blue</Header.H4>\n        <Header.H4 className='purple'>Purple</Header.H4>\n        <Header.H4 className='violent'>Violent</Header.H4>\n        <Header.H4 className='pink'>Pink</Header.H4>\n        <Header.H4 className='brown'>Brown</Header.H4>\n        <Header.H4 className='grey'>Grey</Header.H4>\n      </div>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'\nimport ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'\nimport { Message } from 'stardust'\n\nexport default class HeaderTypesExamples extends Component {\n  render() {\n    return (\n      <ExampleSection title='Types'>\n        <ComponentExample\n          title='Page Headers'\n          description='Headers may be oriented to give the hierarchy of a section in the context of the page'\n          examplePath='elements/Header/Types/HeaderPageHeadersExample'\n        >\n          <Message>\n            Page headings are sized using rem and are not affected by surrounding content size.\n          </Message>\n        </ComponentExample>\n        <ComponentExample\n          title='Content Headers'\n          description='Headers may be oriented to give the importance of a section'\n          examplePath='elements/Header/Types/HeaderContentHeadersExamples'\n        >\n          <Message>\n            Content headings are sized with em and are based on the font-size of their container.\n          </Message>\n        </ComponentExample>\n        <ComponentExample\n          title='Icon Headers'\n          description='A header can be formatted to emphasize an icon'\n          examplePath='elements/Header/Types/HeaderIconHeadersExamples'\n        />\n        <ComponentExample\n          title='Sub Headers'\n          description='Headers may be formatted to label smaller or de-emphasized content'\n          examplePath='elements/Header/Types/HeaderSubHeadersExample'\n        />\n      </ExampleSection>\n    )\n  }\n}\n"
 
 /***/ },
 /* 518 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Header } from 'stardust'\n\nexport default class HeaderDividingExample extends Component {\n  render() {\n    return (\n      <Header.H3 className='dividing'>\n        Dividing Header\n      </Header.H3>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Header, Segment } from 'stardust'\n\nexport default class HeaderAttachedExample extends Component {\n  render() {\n    return (\n      <div>\n        <Header.H2 className='top attached'>\n          Attached Header\n        </Header.H2>\n        <Segment className='attached'>\n          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt\n          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco\n          laboris nisi ut aliquip ex ea commodo consequat.\n        </Segment>\n      </div>\n    )\n  }\n}\n"
 
 /***/ },
 /* 519 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Header, Segment } from 'stardust'\n\nexport default class HeaderFloatingExample extends Component {\n  render() {\n    return (\n      <Segment className='clearing'>\n        <Header.H2 className='right floated'>\n          Float Right\n        </Header.H2>\n        <Header.H2 className='left floated'>\n          Float Left\n        </Header.H2>\n      </Segment>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Header } from 'stardust'\n\nexport default class HeaderBlockExample extends Component {\n  render() {\n    return (\n      <Header.H3 className='block'>\n        Block Header\n      </Header.H3>\n    )\n  }\n}\n"
 
 /***/ },
 /* 520 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Header, Segment } from 'stardust'\n\nexport default class HeaderInvertedExample extends Component {\n  render() {\n    return (\n      <Segment className='inverted'>\n        <Header.H4 className='red inverted'>Red</Header.H4>\n        <Header.H4 className='orange inverted'>Orange</Header.H4>\n        <Header.H4 className='yellow inverted'>Yellow</Header.H4>\n        <Header.H4 className='olive inverted'>Olive</Header.H4>\n        <Header.H4 className='green inverted'>Green</Header.H4>\n        <Header.H4 className='teal inverted'>Teal</Header.H4>\n        <Header.H4 className='blue inverted'>Blue</Header.H4>\n        <Header.H4 className='purple inverted'>Purple</Header.H4>\n        <Header.H4 className='violent inverted'>Violent</Header.H4>\n        <Header.H4 className='pink inverted'>Pink</Header.H4>\n        <Header.H4 className='brown inverted'>Brown</Header.H4>\n        <Header.H4 className='grey inverted'>Grey</Header.H4>\n      </Segment>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Header } from 'stardust'\n\nexport default class HeaderColoredExample extends Component {\n  render() {\n    return (\n      <div>\n        <Header.H4 className='red'>Red</Header.H4>\n        <Header.H4 className='orange'>Orange</Header.H4>\n        <Header.H4 className='yellow'>Yellow</Header.H4>\n        <Header.H4 className='olive'>Olive</Header.H4>\n        <Header.H4 className='green'>Green</Header.H4>\n        <Header.H4 className='teal'>Teal</Header.H4>\n        <Header.H4 className='blue'>Blue</Header.H4>\n        <Header.H4 className='purple'>Purple</Header.H4>\n        <Header.H4 className='violent'>Violent</Header.H4>\n        <Header.H4 className='pink'>Pink</Header.H4>\n        <Header.H4 className='brown'>Brown</Header.H4>\n        <Header.H4 className='grey'>Grey</Header.H4>\n      </div>\n    )\n  }\n}\n"
 
 /***/ },
 /* 521 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Header, Segment } from 'stardust'\n\nexport default class HeaderTextAlignmentExample extends Component {\n  render() {\n    return (\n      <Segment>\n        <Header.H3 className='right aligned'>\n          Float Right\n        </Header.H3>\n        <Header.H3 className='left aligned'>\n          Float Left\n        </Header.H3>\n        <Header.H3 className='justified'>\n          This text takes up the full width of the container\n        </Header.H3>\n        <Header.H3 className='center aligned'>\n          Centered\n        </Header.H3>\n      </Segment>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Header } from 'stardust'\n\nexport default class HeaderDividingExample extends Component {\n  render() {\n    return (\n      <Header.H3 className='dividing'>\n        Dividing Header\n      </Header.H3>\n    )\n  }\n}\n"
 
 /***/ },
 /* 522 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'\nimport ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'\nimport { Message } from 'stardust'\n\nexport default class HeaderVariationsExamples extends Component {\n  render() {\n    return (\n      <ExampleSection title='Variations'>\n        <ComponentExample\n          title='Dividing'\n          description='A header can be formatted to divide itself from the content below it'\n          examplePath='elements/Header/Variations/HeaderDividingExample'\n        />\n        <ComponentExample\n          title='Block'\n          description='A header can be formatted to appear inside a content block'\n          examplePath='elements/Header/Variations/HeaderBlockExample'\n        />\n        <ComponentExample\n          title='Attached'\n          description='A header can be attached to other content, like a segment'\n          examplePath='elements/Header/Variations/HeaderAttachedExample'\n        />\n        <ComponentExample\n          title='Floating'\n          description='A header can sit to the left or right of other content'\n          examplePath='elements/Header/Variations/HeaderFloatingExample'\n        />\n        <ComponentExample\n          title='Text Alignment'\n          description='A header can have its text aligned to a side'\n          examplePath='elements/Header/Variations/HeaderTextAlignmentExample'\n        />\n        <ComponentExample\n          title='Colored'\n          description='A header can be formatted with different colors'\n          examplePath='elements/Header/Variations/HeaderColoredExample'\n        />\n        <ComponentExample\n          title='Inverted'\n          description='A header can have its colors inverted for contrast'\n          examplePath='elements/Header/Variations/HeaderInvertedExample'\n        >\n          <Message className='warning'>\n            Inverted headers use modified light versions of the site color scheme\n          </Message>\n        </ComponentExample>\n      </ExampleSection>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Header, Segment } from 'stardust'\n\nexport default class HeaderFloatingExample extends Component {\n  render() {\n    return (\n      <Segment className='clearing'>\n        <Header.H2 className='right floated'>\n          Float Right\n        </Header.H2>\n        <Header.H2 className='left floated'>\n          Float Left\n        </Header.H2>\n      </Segment>\n    )\n  }\n}\n"
 
 /***/ },
 /* 523 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport InputTypesExamples from './Types/InputTypesExamples'\nimport InputStatesExamples from './States/InputStatesExamples'\nimport InputVariationsExamples from './Variations/InputVariationsExamples'\n\nexport default class InputExamples extends Component {\n  render() {\n    return (\n      <div>\n        <InputTypesExamples />\n        <InputStatesExamples />\n        <InputVariationsExamples />\n      </div>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Header, Segment } from 'stardust'\n\nexport default class HeaderInvertedExample extends Component {\n  render() {\n    return (\n      <Segment className='inverted'>\n        <Header.H4 className='red inverted'>Red</Header.H4>\n        <Header.H4 className='orange inverted'>Orange</Header.H4>\n        <Header.H4 className='yellow inverted'>Yellow</Header.H4>\n        <Header.H4 className='olive inverted'>Olive</Header.H4>\n        <Header.H4 className='green inverted'>Green</Header.H4>\n        <Header.H4 className='teal inverted'>Teal</Header.H4>\n        <Header.H4 className='blue inverted'>Blue</Header.H4>\n        <Header.H4 className='purple inverted'>Purple</Header.H4>\n        <Header.H4 className='violent inverted'>Violent</Header.H4>\n        <Header.H4 className='pink inverted'>Pink</Header.H4>\n        <Header.H4 className='brown inverted'>Brown</Header.H4>\n        <Header.H4 className='grey inverted'>Grey</Header.H4>\n      </Segment>\n    )\n  }\n}\n"
 
 /***/ },
 /* 524 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Input } from 'stardust'\n\nexport default class InputDisabledExample extends Component {\n  render() {\n    return (\n      <Input className='disabled' placeholder='Search...' />\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Header, Segment } from 'stardust'\n\nexport default class HeaderTextAlignmentExample extends Component {\n  render() {\n    return (\n      <Segment>\n        <Header.H3 className='right aligned'>\n          Float Right\n        </Header.H3>\n        <Header.H3 className='left aligned'>\n          Float Left\n        </Header.H3>\n        <Header.H3 className='justified'>\n          This text takes up the full width of the container\n        </Header.H3>\n        <Header.H3 className='center aligned'>\n          Centered\n        </Header.H3>\n      </Segment>\n    )\n  }\n}\n"
 
 /***/ },
 /* 525 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Input } from 'stardust'\n\nexport default class InputErrorExample extends Component {\n  render() {\n    return (\n      <Input className='error' placeholder='Search...' />\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'\nimport ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'\nimport { Message } from 'stardust'\n\nexport default class HeaderVariationsExamples extends Component {\n  render() {\n    return (\n      <ExampleSection title='Variations'>\n        <ComponentExample\n          title='Dividing'\n          description='A header can be formatted to divide itself from the content below it'\n          examplePath='elements/Header/Variations/HeaderDividingExample'\n        />\n        <ComponentExample\n          title='Block'\n          description='A header can be formatted to appear inside a content block'\n          examplePath='elements/Header/Variations/HeaderBlockExample'\n        />\n        <ComponentExample\n          title='Attached'\n          description='A header can be attached to other content, like a segment'\n          examplePath='elements/Header/Variations/HeaderAttachedExample'\n        />\n        <ComponentExample\n          title='Floating'\n          description='A header can sit to the left or right of other content'\n          examplePath='elements/Header/Variations/HeaderFloatingExample'\n        />\n        <ComponentExample\n          title='Text Alignment'\n          description='A header can have its text aligned to a side'\n          examplePath='elements/Header/Variations/HeaderTextAlignmentExample'\n        />\n        <ComponentExample\n          title='Colored'\n          description='A header can be formatted with different colors'\n          examplePath='elements/Header/Variations/HeaderColoredExample'\n        />\n        <ComponentExample\n          title='Inverted'\n          description='A header can have its colors inverted for contrast'\n          examplePath='elements/Header/Variations/HeaderInvertedExample'\n        >\n          <Message className='warning'>\n            Inverted headers use modified light versions of the site color scheme\n          </Message>\n        </ComponentExample>\n      </ExampleSection>\n    )\n  }\n}\n"
 
 /***/ },
 /* 526 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Input } from 'stardust'\n\nexport default class InputFocusExample extends Component {\n  render() {\n    return (\n      <Input className='focus' placeholder='Search...' />\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport InputTypesExamples from './Types/InputTypesExamples'\nimport InputStatesExamples from './States/InputStatesExamples'\nimport InputVariationsExamples from './Variations/InputVariationsExamples'\n\nexport default class InputExamples extends Component {\n  render() {\n    return (\n      <div>\n        <InputTypesExamples />\n        <InputStatesExamples />\n        <InputVariationsExamples />\n      </div>\n    )\n  }\n}\n"
 
 /***/ },
 /* 527 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Input } from 'stardust'\n\nexport default class InputLoadingExample extends Component {\n  render() {\n    return (\n      <Input className='left icon loading' icon='user' placeholder='Search...' />\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Input } from 'stardust'\n\nexport default class InputDisabledExample extends Component {\n  render() {\n    return (\n      <Input className='disabled' placeholder='Search...' />\n    )\n  }\n}\n"
 
 /***/ },
 /* 528 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'\nimport ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'\n\nexport default class InputStatesExamples extends Component {\n  render() {\n    return (\n      <ExampleSection title='States'>\n        <ComponentExample\n          title='Focus'\n          description='An input field can show a user is currently interacting with it'\n          examplePath='elements/Input/States/InputFocusExample'\n        />\n        <ComponentExample\n          title='Loading'\n          description='An icon input field can show that it is currently loading data'\n          warning='Loading inputs automatically modify the inputs icon on loading state to show loading indication'\n          examplePath='elements/Input/States/InputLoadingExample'\n        />\n        <ComponentExample\n          title='Disabled'\n          description='An input field can show that it is disabled'\n          examplePath='elements/Input/States/InputDisabledExample'\n        />\n        <ComponentExample\n          title='Error'\n          description='An input field can show that the data contains errors'\n          examplePath='elements/Input/States/InputErrorExample'\n        />\n      </ExampleSection>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Input } from 'stardust'\n\nexport default class InputErrorExample extends Component {\n  render() {\n    return (\n      <Input className='error' placeholder='Search...' />\n    )\n  }\n}\n"
 
 /***/ },
 /* 529 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Input } from 'stardust'\n\nexport default class InputInputExample extends Component {\n  render() {\n    return (\n      <Input placeholder='Search...' />\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Input } from 'stardust'\n\nexport default class InputFocusExample extends Component {\n  render() {\n    return (\n      <Input className='focus' placeholder='Search...' />\n    )\n  }\n}\n"
 
 /***/ },
 /* 530 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'\nimport ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'\n\nexport default class InputTypesExamples extends Component {\n  render() {\n    return (\n      <ExampleSection title='Types'>\n        <ComponentExample\n          title='Input'\n          description='A standard input field'\n          examplePath='elements/Input/Types/InputInputExample'\n        />\n      </ExampleSection>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Input } from 'stardust'\n\nexport default class InputLoadingExample extends Component {\n  render() {\n    return (\n      <Input className='left icon loading' icon='user' placeholder='Search...' />\n    )\n  }\n}\n"
 
 /***/ },
 /* 531 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Button, Dropdown, Input } from 'stardust'\n\nexport default class InputActionExample extends Component {\n  render() {\n    const options = [\n      { value: 'articles', text: 'Articles' },\n      { value: 'products', text: 'Products' },\n    ]\n    return (\n      <Input className='left icon action' icon='search' placeholder='Search...'>\n        <Dropdown className='compact selection' options={options} />\n        <Button type='submit'>Search</Button>\n      </Input>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'\nimport ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'\n\nexport default class InputStatesExamples extends Component {\n  render() {\n    return (\n      <ExampleSection title='States'>\n        <ComponentExample\n          title='Focus'\n          description='An input field can show a user is currently interacting with it'\n          examplePath='elements/Input/States/InputFocusExample'\n        />\n        <ComponentExample\n          title='Loading'\n          description='An icon input field can show that it is currently loading data'\n          warning='Loading inputs automatically modify the inputs icon on loading state to show loading indication'\n          examplePath='elements/Input/States/InputLoadingExample'\n        />\n        <ComponentExample\n          title='Disabled'\n          description='An input field can show that it is disabled'\n          examplePath='elements/Input/States/InputDisabledExample'\n        />\n        <ComponentExample\n          title='Error'\n          description='An input field can show that the data contains errors'\n          examplePath='elements/Input/States/InputErrorExample'\n        />\n      </ExampleSection>\n    )\n  }\n}\n"
 
 /***/ },
 /* 532 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Button, Input } from 'stardust'\n\nexport default class InputActionExtraExample extends Component {\n  render() {\n    return (\n      <Input className='left action' placeholder='$23.43'>\n        <Button className='ui teal labeled icon button'>\n          <i className='cart icon' />\n          Checkout\n        </Button>\n      </Input>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Input } from 'stardust'\n\nexport default class InputInputExample extends Component {\n  render() {\n    return (\n      <Input placeholder='Search...' />\n    )\n  }\n}\n"
 
 /***/ },
 /* 533 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Input } from 'stardust'\n\nexport default class InputFluidExample extends Component {\n  render() {\n    return (\n      <Input className='fluid icon' icon='search' placeholder='Search...' />\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'\nimport ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'\n\nexport default class InputTypesExamples extends Component {\n  render() {\n    return (\n      <ExampleSection title='Types'>\n        <ComponentExample\n          title='Input'\n          description='A standard input field'\n          examplePath='elements/Input/Types/InputInputExample'\n        />\n      </ExampleSection>\n    )\n  }\n}\n"
 
 /***/ },
 /* 534 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Input } from 'stardust'\n\nexport default class InputIconExample extends Component {\n  render() {\n    return (\n      <Input className='icon' icon='search' placeholder='Search...' />\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Button, Dropdown, Input } from 'stardust'\n\nexport default class InputActionExample extends Component {\n  render() {\n    const options = [\n      { value: 'articles', text: 'Articles' },\n      { value: 'products', text: 'Products' },\n    ]\n    return (\n      <Input className='left icon action' icon='search' placeholder='Search...'>\n        <Dropdown className='compact selection' options={options} />\n        <Button type='submit'>Search</Button>\n      </Input>\n    )\n  }\n}\n"
 
 /***/ },
 /* 535 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Segment, Input } from 'stardust'\n\nexport default class InputInvertedExample extends Component {\n  render() {\n    return (\n      <Segment className='inverted'>\n        <Input className='inverted' placeholder='Search...' />\n      </Segment>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Button, Input } from 'stardust'\n\nexport default class InputActionExtraExample extends Component {\n  render() {\n    return (\n      <Input className='left action' placeholder='$23.43'>\n        <Button className='ui teal labeled icon button'>\n          <i className='cart icon' />\n          Checkout\n        </Button>\n      </Input>\n    )\n  }\n}\n"
 
 /***/ },
 /* 536 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Input } from 'stardust'\n\nexport default class InputLabeledExample extends Component {\n  render() {\n    return (\n      <Input className='labeled' placeholder='mysite.com'>\n        <div className='ui label'>http://</div>\n      </Input>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Input } from 'stardust'\n\nexport default class InputFluidExample extends Component {\n  render() {\n    return (\n      <Input className='fluid icon' icon='search' placeholder='Search...' />\n    )\n  }\n}\n"
 
 /***/ },
 /* 537 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Input } from 'stardust'\n\nexport default class InputRightLabeledExample extends Component {\n  render() {\n    return (\n      <Input className='right labeled' placeholder='mysite.com'>\n        <div className='ui label'>http://</div>\n      </Input>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Input } from 'stardust'\n\nexport default class InputIconExample extends Component {\n  render() {\n    return (\n      <Input className='icon' icon='search' placeholder='Search...' />\n    )\n  }\n}\n"
 
 /***/ },
 /* 538 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Input } from 'stardust'\n\nexport default class InputSizeExample extends Component {\n  render() {\n    return (\n      <div>\n        <Input className='mini icon' icon='search' placeholder='Search...' />\n        <br />\n        <Input className='small icon' icon='search' placeholder='Search...' />\n        <br />\n        <Input className='large icon' icon='search' placeholder='Search...' />\n        <br />\n        <Input className='big icon' icon='search' placeholder='Search...' />\n        <br />\n        <Input className='huge icon' icon='search' placeholder='Search...' />\n        <br />\n        <Input className='massive icon' icon='search' placeholder='Search...' />\n        <br />\n      </div>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Segment, Input } from 'stardust'\n\nexport default class InputInvertedExample extends Component {\n  render() {\n    return (\n      <Segment className='inverted'>\n        <Input className='inverted' placeholder='Search...' />\n      </Segment>\n    )\n  }\n}\n"
 
 /***/ },
 /* 539 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Input } from 'stardust'\n\nexport default class InputTransparentExample extends Component {\n  render() {\n    return (\n      <Input className='transparent' placeholder='Search...' />\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Input } from 'stardust'\n\nexport default class InputLabeledExample extends Component {\n  render() {\n    return (\n      <Input className='labeled' placeholder='mysite.com'>\n        <div className='ui label'>http://</div>\n      </Input>\n    )\n  }\n}\n"
 
 /***/ },
 /* 540 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'\nimport ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'\n\nexport default class InputVariationsExamples extends Component {\n  render() {\n    return (\n      <ExampleSection title='Variations'>\n        <ComponentExample\n          title='Icon'\n          description='An input can be formatted with an icon'\n          examplePath='elements/Input/Variations/InputIconExample'\n        />\n        <ComponentExample\n          title='Labeled'\n          description='An input can be formatted with an label'\n          examplePath='elements/Input/Variations/InputLabeledExample'\n        />\n        <ComponentExample\n          examplePath='elements/Input/Variations/InputRightLabeledExample'\n        />\n        <ComponentExample\n          title='Action'\n          description='An input can be formatted to alert the user to an action they may perform'\n          examplePath='elements/Input/Variations/InputActionExample'\n        />\n        <ComponentExample\n          examplePath='elements/Input/Variations/InputActionExtraExample'\n        />\n        <ComponentExample\n          title='Transparent'\n          description='A transparent input has no background'\n          examplePath='elements/Input/Variations/InputTransparentExample'\n        />\n        <ComponentExample\n          title='Inverted'\n          description='An input can be formatted to appear on dark backgrounds'\n          examplePath='elements/Input/Variations/InputInvertedExample'\n        />\n        <ComponentExample\n          title='Fluid'\n          description='An input can take on the size of its container'\n          examplePath='elements/Input/Variations/InputFluidExample'\n        />\n        <ComponentExample\n          title='Size'\n          description='An input can vary in sizee'\n          examplePath='elements/Input/Variations/InputSizeExample'\n        />\n\n      </ExampleSection>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Input } from 'stardust'\n\nexport default class InputRightLabeledExample extends Component {\n  render() {\n    return (\n      <Input className='right labeled' placeholder='mysite.com'>\n        <div className='ui label'>http://</div>\n      </Input>\n    )\n  }\n}\n"
 
 /***/ },
 /* 541 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'\nimport ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'\n\nexport default class ListContentExamples extends Component {\n  render() {\n    return (\n      <ExampleSection title='Content'>\n        <ComponentExample\n          title='Item'\n          description='A list item can contain a set of items'\n          examplePath='elements/List/Content/ListItemExample'\n        />\n        <ComponentExample\n          title='Icon'\n          description='A list item can contain an icon'\n          examplePath='elements/List/Content/ListIconExample'\n        />\n        <ComponentExample\n          title='Image'\n          description='A list can contain an image'\n          examplePath='elements/List/Content/ListImageExample'\n        />\n        <ComponentExample\n          title='Link'\n          description='A list can contain links'\n          examplePath='elements/List/Content/ListLinkExample'\n        />\n        <ComponentExample\n          title='Header'\n          description='A list can contain a header'\n          examplePath='elements/List/Content/ListHeaderExample'\n        />\n        <ComponentExample\n          title='Description'\n          description='A list can contain a description'\n          examplePath='elements/List/Content/ListDescriptionExample'\n        />\n      </ExampleSection>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Input } from 'stardust'\n\nexport default class InputSizeExample extends Component {\n  render() {\n    return (\n      <div>\n        <Input className='mini icon' icon='search' placeholder='Search...' />\n        <br />\n        <Input className='small icon' icon='search' placeholder='Search...' />\n        <br />\n        <Input className='large icon' icon='search' placeholder='Search...' />\n        <br />\n        <Input className='big icon' icon='search' placeholder='Search...' />\n        <br />\n        <Input className='huge icon' icon='search' placeholder='Search...' />\n        <br />\n        <Input className='massive icon' icon='search' placeholder='Search...' />\n        <br />\n      </div>\n    )\n  }\n}\n"
 
 /***/ },
 /* 542 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { List } from 'stardust'\n\nexport default class ListDescriptionExample extends Component {\n  render() {\n    const mapIcon = <i className='map marker icon' />\n\n    return (\n      <List>\n        <List.Item\n          icon={mapIcon}\n          header='Chicago'\n          description='This city is located in the state of Illinois'\n        />\n        <List.Item\n          icon={mapIcon}\n          header='Nashville'\n          description='This city is located in the state of Tennessee'\n        />\n      </List>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Input } from 'stardust'\n\nexport default class InputTransparentExample extends Component {\n  render() {\n    return (\n      <Input className='transparent' placeholder='Search...' />\n    )\n  }\n}\n"
 
 /***/ },
 /* 543 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { List } from 'stardust'\n\nexport default class ListHeaderExample extends Component {\n  render() {\n    return (\n      <List>\n        <List.Item header='Chapter 1' description='The chapter in which we meet the characters' />\n        <List.Item header='Chapter 2' description='The chapter in which the bad guy is introduced' />\n        <List.Item header='Chapter 3' description='Spoiler alert: The chapter in which the good guy wins!'/>\n      </List>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'\nimport ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'\n\nexport default class InputVariationsExamples extends Component {\n  render() {\n    return (\n      <ExampleSection title='Variations'>\n        <ComponentExample\n          title='Icon'\n          description='An input can be formatted with an icon'\n          examplePath='elements/Input/Variations/InputIconExample'\n        />\n        <ComponentExample\n          title='Labeled'\n          description='An input can be formatted with an label'\n          examplePath='elements/Input/Variations/InputLabeledExample'\n        />\n        <ComponentExample\n          examplePath='elements/Input/Variations/InputRightLabeledExample'\n        />\n        <ComponentExample\n          title='Action'\n          description='An input can be formatted to alert the user to an action they may perform'\n          examplePath='elements/Input/Variations/InputActionExample'\n        />\n        <ComponentExample\n          examplePath='elements/Input/Variations/InputActionExtraExample'\n        />\n        <ComponentExample\n          title='Transparent'\n          description='A transparent input has no background'\n          examplePath='elements/Input/Variations/InputTransparentExample'\n        />\n        <ComponentExample\n          title='Inverted'\n          description='An input can be formatted to appear on dark backgrounds'\n          examplePath='elements/Input/Variations/InputInvertedExample'\n        />\n        <ComponentExample\n          title='Fluid'\n          description='An input can take on the size of its container'\n          examplePath='elements/Input/Variations/InputFluidExample'\n        />\n        <ComponentExample\n          title='Size'\n          description='An input can vary in sizee'\n          examplePath='elements/Input/Variations/InputSizeExample'\n        />\n\n      </ExampleSection>\n    )\n  }\n}\n"
 
 /***/ },
 /* 544 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { List } from 'stardust'\n\nexport default class ListIconExample extends Component {\n  render() {\n    const helpIcon = <i className='help icon' />\n    const triangleIcon = <i className='right triangle icon' />\n\n    return (\n      <List>\n        <List.Item\n          icon={helpIcon}\n          header='Floated Icon'\n          description='This text will always have a left margin so it sits alongside the icon'\n        />\n        <List.Item\n          icon={triangleIcon}\n          header='Icon Alignment'\n          description='Floated icons are by default top aligned'\n        />\n        <List.Item icon={helpIcon}>\n          This item uses <code>child</code> text, check the code.\n        </List.Item>\n      </List>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'\nimport ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'\n\nexport default class ListContentExamples extends Component {\n  render() {\n    return (\n      <ExampleSection title='Content'>\n        <ComponentExample\n          title='Item'\n          description='A list item can contain a set of items'\n          examplePath='elements/List/Content/ListItemExample'\n        />\n        <ComponentExample\n          title='Icon'\n          description='A list item can contain an icon'\n          examplePath='elements/List/Content/ListIconExample'\n        />\n        <ComponentExample\n          title='Image'\n          description='A list can contain an image'\n          examplePath='elements/List/Content/ListImageExample'\n        />\n        <ComponentExample\n          title='Link'\n          description='A list can contain links'\n          examplePath='elements/List/Content/ListLinkExample'\n        />\n        <ComponentExample\n          title='Header'\n          description='A list can contain a header'\n          examplePath='elements/List/Content/ListHeaderExample'\n        />\n        <ComponentExample\n          title='Description'\n          description='A list can contain a description'\n          examplePath='elements/List/Content/ListDescriptionExample'\n        />\n      </ExampleSection>\n    )\n  }\n}\n"
 
 /***/ },
 /* 545 */
 /***/ function(module, exports) {
 
-	module.exports = "import faker from 'faker'\nimport React, { Component } from 'react'\nimport { List, Image } from 'stardust'\n\nexport default class ListImageExample extends Component {\n  render() {\n    const helenAvatar = <Image className='avatar' src={faker.image.avatar()} />\n    const christianAvatar = <Image className='avatar' src={faker.image.avatar()} />\n    const danielAvatar = <Image className='avatar' src={faker.image.avatar()} />\n    return (\n      <List>\n        <List.Item image={helenAvatar} header='Helen' />\n        <List.Item image={christianAvatar} header='Christian' />\n        <List.Item image={danielAvatar} header='Daniel' />\n      </List>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { List } from 'stardust'\n\nexport default class ListDescriptionExample extends Component {\n  render() {\n    const mapIcon = <i className='map marker icon' />\n\n    return (\n      <List>\n        <List.Item\n          icon={mapIcon}\n          header='Chicago'\n          description='This city is located in the state of Illinois'\n        />\n        <List.Item\n          icon={mapIcon}\n          header='Nashville'\n          description='This city is located in the state of Tennessee'\n        />\n      </List>\n    )\n  }\n}\n"
 
 /***/ },
 /* 546 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { List } from 'stardust'\n\nexport default class ListItemExample extends Component {\n  render() {\n    return (\n      <List>\n        <List.Item description='1' />\n        <List.Item description='2' />\n        <List.Item description='3' />\n      </List>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { List } from 'stardust'\n\nexport default class ListHeaderExample extends Component {\n  render() {\n    return (\n      <List>\n        <List.Item header='Chapter 1' description='The chapter in which we meet the characters' />\n        <List.Item header='Chapter 2' description='The chapter in which the bad guy is introduced' />\n        <List.Item header='Chapter 3' description='Spoiler alert: The chapter in which the good guy wins!'/>\n      </List>\n    )\n  }\n}\n"
 
 /***/ },
 /* 547 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { List } from 'stardust'\n\nexport default class ListLinkExample extends Component {\n  render() {\n    const link1 = <a>What is a FAQ?</a>\n    const link2 = <a>Who is our user base?</a>\n    const link3 = <a>Where is our office located?</a>\n    return (\n      <List>\n        <List.Item description={link1} />\n        <List.Item description={link2} />\n        <List.Item description={link3} />\n      </List>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { List } from 'stardust'\n\nexport default class ListIconExample extends Component {\n  render() {\n    const helpIcon = <i className='help icon' />\n    const triangleIcon = <i className='right triangle icon' />\n\n    return (\n      <List>\n        <List.Item\n          icon={helpIcon}\n          header='Floated Icon'\n          description='This text will always have a left margin so it sits alongside the icon'\n        />\n        <List.Item\n          icon={triangleIcon}\n          header='Icon Alignment'\n          description='Floated icons are by default top aligned'\n        />\n        <List.Item icon={helpIcon}>\n          This item uses <code>child</code> text, check the code.\n        </List.Item>\n      </List>\n    )\n  }\n}\n"
 
 /***/ },
 /* 548 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport ListTypesExamples from './Types/ListTypesExamples'\nimport ListContentExamples from './Content/ListContentExamples'\nimport ListVariationsExamples from './Variations/ListVariationsExamples'\n\nexport default class ListExamples extends Component {\n  render() {\n    return (\n      <div>\n        <ListTypesExamples />\n        <ListContentExamples />\n        <ListVariationsExamples />\n      </div>\n    )\n  }\n}\n"
+	module.exports = "import faker from 'faker'\nimport React, { Component } from 'react'\nimport { List, Image } from 'stardust'\n\nexport default class ListImageExample extends Component {\n  render() {\n    const helenAvatar = <Image className='avatar' src={faker.image.avatar()} />\n    const christianAvatar = <Image className='avatar' src={faker.image.avatar()} />\n    const danielAvatar = <Image className='avatar' src={faker.image.avatar()} />\n    return (\n      <List>\n        <List.Item image={helenAvatar} header='Helen' />\n        <List.Item image={christianAvatar} header='Christian' />\n        <List.Item image={danielAvatar} header='Daniel' />\n      </List>\n    )\n  }\n}\n"
 
 /***/ },
 /* 549 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { List } from 'stardust'\n\nexport default class ListBulletedExample extends Component {\n  render() {\n    return (\n      <List className='bulleted'>\n        <List.Item description='Apples' />\n        <List.Item description='Pears' />\n        <List.Item description='Oranges' />\n      </List>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { List } from 'stardust'\n\nexport default class ListItemExample extends Component {\n  render() {\n    return (\n      <List>\n        <List.Item description='1' />\n        <List.Item description='2' />\n        <List.Item description='3' />\n      </List>\n    )\n  }\n}\n"
 
 /***/ },
 /* 550 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { List } from 'stardust'\n\nexport default class ListLinkExample extends Component {\n  render() {\n    const link1 = <a>Home</a>\n    const link2 = <a>About</a>\n    const link3 = <a>Services</a>\n    const link4 = <a>Careers</a>\n    return (\n      <List className='link'>\n        <List.Item className='active' description={link1} />\n        <List.Item description={link2} />\n        <List.Item description={link3} />\n        <List.Item description={link4} />\n      </List>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { List } from 'stardust'\n\nexport default class ListLinkExample extends Component {\n  render() {\n    const link1 = <a>What is a FAQ?</a>\n    const link2 = <a>Who is our user base?</a>\n    const link3 = <a>Where is our office located?</a>\n    return (\n      <List>\n        <List.Item description={link1} />\n        <List.Item description={link2} />\n        <List.Item description={link3} />\n      </List>\n    )\n  }\n}\n"
 
 /***/ },
 /* 551 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { List } from 'stardust'\n\nexport default class ListListExample extends Component {\n  render() {\n    return (\n      <List>\n        <List.Item description='Apples' />\n        <List.Item description='Pears' />\n        <List.Item description='Oranges' />\n      </List>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport ListTypesExamples from './Types/ListTypesExamples'\nimport ListContentExamples from './Content/ListContentExamples'\nimport ListVariationsExamples from './Variations/ListVariationsExamples'\n\nexport default class ListExamples extends Component {\n  render() {\n    return (\n      <div>\n        <ListTypesExamples />\n        <ListContentExamples />\n        <ListVariationsExamples />\n      </div>\n    )\n  }\n}\n"
 
 /***/ },
 /* 552 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { List } from 'stardust'\n\nexport default class ListOrderedExample extends Component {\n  render() {\n    return (\n      <List className='ordered'>\n        <List.Item description='Apples'>\n          <List>\n            <List.Item description='Fuji' />\n            <List.Item description='Granny Smith' />\n            <List.Item description='Honeycrisp' />\n          </List>\n        </List.Item>\n        <List.Item description='Pears' />\n        <List.Item description='Oranges' />\n      </List>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { List } from 'stardust'\n\nexport default class ListBulletedExample extends Component {\n  render() {\n    return (\n      <List className='bulleted'>\n        <List.Item description='Apples' />\n        <List.Item description='Pears' />\n        <List.Item description='Oranges' />\n      </List>\n    )\n  }\n}\n"
 
 /***/ },
 /* 553 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'\nimport ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'\n\nexport default class ListTypesExamples extends Component {\n  render() {\n    return (\n      <ExampleSection title='Types'>\n        <ComponentExample\n          title='List'\n          description='A list groups related content'\n          examplePath='elements/List/Types/ListListExample'\n        />\n        <ComponentExample\n          title='Bulleted'\n          description='A list can mark items with a bullet'\n          examplePath='elements/List/Types/ListBulletedExample'\n        />\n        <ComponentExample\n          title='Ordered'\n          description='A list can be ordered numerically'\n          examplePath='elements/List/Types/ListOrderedExample'\n        />\n        <ComponentExample\n          title='Link'\n          description='A list can be specially formatted for navigation links'\n          examplePath='elements/List/Types/ListLinkExample'\n        />\n      </ExampleSection>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { List } from 'stardust'\n\nexport default class ListLinkExample extends Component {\n  render() {\n    const link1 = <a>Home</a>\n    const link2 = <a>About</a>\n    const link3 = <a>Services</a>\n    const link4 = <a>Careers</a>\n    return (\n      <List className='link'>\n        <List.Item className='active' description={link1} />\n        <List.Item description={link2} />\n        <List.Item description={link3} />\n        <List.Item description={link4} />\n      </List>\n    )\n  }\n}\n"
 
 /***/ },
 /* 554 */
 /***/ function(module, exports) {
 
-	module.exports = "import faker from 'faker'\nimport React, { Component } from 'react'\nimport { List, Image } from 'stardust'\n\nexport default class ListAnimatedExample extends Component {\n  render() {\n    const avatar1 = <Image className='avatar' src={faker.image.avatar()} />\n    const avatar2 = <Image className='avatar' src={faker.image.avatar()} />\n    const avatar3 = <Image className='avatar' src={faker.image.avatar()} />\n    return (\n      <List className='middle aligned animated'>\n        <List.Item image={avatar1} header='Helen' />\n        <List.Item image={avatar2} header='Christian' />\n        <List.Item image={avatar3} header='Daniel' />\n      </List>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { List } from 'stardust'\n\nexport default class ListListExample extends Component {\n  render() {\n    return (\n      <List>\n        <List.Item description='Apples' />\n        <List.Item description='Pears' />\n        <List.Item description='Oranges' />\n      </List>\n    )\n  }\n}\n"
 
 /***/ },
 /* 555 */
 /***/ function(module, exports) {
 
-	module.exports = "import faker from 'faker'\nimport React, { Component } from 'react'\nimport { List, Image } from 'stardust'\n\nexport default class ListCelledExample extends Component {\n  render() {\n    const avatar1 = <Image className='avatar' src={faker.image.avatar()} />\n    const avatar2 = <Image className='avatar' src={faker.image.avatar()} />\n    const avatar3 = <Image className='avatar' src={faker.image.avatar()} />\n    return (\n      <List className='celled'>\n        <List.Item image={avatar1} header='Helen' />\n        <List.Item image={avatar2} header='Christian' />\n        <List.Item image={avatar3} header='Daniel' />\n      </List>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { List } from 'stardust'\n\nexport default class ListOrderedExample extends Component {\n  render() {\n    return (\n      <List className='ordered'>\n        <List.Item description='Apples'>\n          <List>\n            <List.Item description='Fuji' />\n            <List.Item description='Granny Smith' />\n            <List.Item description='Honeycrisp' />\n          </List>\n        </List.Item>\n        <List.Item description='Pears' />\n        <List.Item description='Oranges' />\n      </List>\n    )\n  }\n}\n"
 
 /***/ },
 /* 556 */
 /***/ function(module, exports) {
 
-	module.exports = "import faker from 'faker'\nimport React, { Component } from 'react'\nimport { List, Image } from 'stardust'\n\nexport default class ListDividedExample extends Component {\n  render() {\n    const avatar1 = <Image className='avatar' src={faker.image.avatar()} />\n    const avatar2 = <Image className='avatar' src={faker.image.avatar()} />\n    const avatar3 = <Image className='avatar' src={faker.image.avatar()} />\n    return (\n      <List className='middle aligned divided'>\n        <List.Item image={avatar1} header='Helen' />\n        <List.Item image={avatar2} header='Christian' />\n        <List.Item image={avatar3} header='Daniel' />\n      </List>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'\nimport ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'\n\nexport default class ListTypesExamples extends Component {\n  render() {\n    return (\n      <ExampleSection title='Types'>\n        <ComponentExample\n          title='List'\n          description='A list groups related content'\n          examplePath='elements/List/Types/ListListExample'\n        />\n        <ComponentExample\n          title='Bulleted'\n          description='A list can mark items with a bullet'\n          examplePath='elements/List/Types/ListBulletedExample'\n        />\n        <ComponentExample\n          title='Ordered'\n          description='A list can be ordered numerically'\n          examplePath='elements/List/Types/ListOrderedExample'\n        />\n        <ComponentExample\n          title='Link'\n          description='A list can be specially formatted for navigation links'\n          examplePath='elements/List/Types/ListLinkExample'\n        />\n      </ExampleSection>\n    )\n  }\n}\n"
 
 /***/ },
 /* 557 */
 /***/ function(module, exports) {
 
-	module.exports = "import faker from 'faker'\nimport React, { Component } from 'react'\nimport { List, Image } from 'stardust'\n\nexport default class ListHorizontalExample extends Component {\n  render() {\n    const image1 = <Image className='avatar' src={faker.image.city(100, 100)} />\n    const image2 = <Image className='avatar' src={faker.image.city(100, 100)} />\n    const image3 = <Image className='avatar' src={faker.image.city(100, 100)} />\n    return (\n      <List className='horizontal'>\n        <List.Item image={image1} header='Chicago' description='This city is located in the state of Illinois' />\n        <List.Item image={image2} header='Indianapolis' description='This city is located in the state of Indiana' />\n        <List.Item image={image3} header='Nashville' description='This city is located in the state of Tennessee' />\n      </List>\n    )\n  }\n}\n"
+	module.exports = "import faker from 'faker'\nimport React, { Component } from 'react'\nimport { List, Image } from 'stardust'\n\nexport default class ListAnimatedExample extends Component {\n  render() {\n    const avatar1 = <Image className='avatar' src={faker.image.avatar()} />\n    const avatar2 = <Image className='avatar' src={faker.image.avatar()} />\n    const avatar3 = <Image className='avatar' src={faker.image.avatar()} />\n    return (\n      <List className='middle aligned animated'>\n        <List.Item image={avatar1} header='Helen' />\n        <List.Item image={avatar2} header='Christian' />\n        <List.Item image={avatar3} header='Daniel' />\n      </List>\n    )\n  }\n}\n"
 
 /***/ },
 /* 558 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Segment, List } from 'stardust'\n\nexport default class ListInvertedExample extends Component {\n  render() {\n    return (\n      <Segment className='inverted'>\n        <List className='inverted relaxed divided'>\n          <List.Item header='Chicago' description='Located in the state of Illinois' />\n          <List.Item header='Indianapolis' description='Located in the state of Indiana' />\n          <List.Item header='Nashville' description='Located in the state of Tennessee' />\n        </List>\n      </Segment>\n    )\n  }\n}\n"
+	module.exports = "import faker from 'faker'\nimport React, { Component } from 'react'\nimport { List, Image } from 'stardust'\n\nexport default class ListCelledExample extends Component {\n  render() {\n    const avatar1 = <Image className='avatar' src={faker.image.avatar()} />\n    const avatar2 = <Image className='avatar' src={faker.image.avatar()} />\n    const avatar3 = <Image className='avatar' src={faker.image.avatar()} />\n    return (\n      <List className='celled'>\n        <List.Item image={avatar1} header='Helen' />\n        <List.Item image={avatar2} header='Christian' />\n        <List.Item image={avatar3} header='Daniel' />\n      </List>\n    )\n  }\n}\n"
 
 /***/ },
 /* 559 */
 /***/ function(module, exports) {
 
-	module.exports = "import faker from 'faker'\nimport React, { Component } from 'react'\nimport { List, Image } from 'stardust'\n\nexport default class ListRelaxedExample extends Component {\n  render() {\n    const avatar1 = <Image className='avatar' src={faker.image.avatar()} />\n    const avatar2 = <Image className='avatar' src={faker.image.avatar()} />\n    const avatar3 = <Image className='avatar' src={faker.image.avatar()} />\n    return (\n      <List className='relaxed'>\n        <List.Item image={avatar1} header='Helen' />\n        <List.Item image={avatar2} header='Christian' />\n        <List.Item image={avatar3} header='Daniel' />\n      </List>\n    )\n  }\n}\n"
+	module.exports = "import faker from 'faker'\nimport React, { Component } from 'react'\nimport { List, Image } from 'stardust'\n\nexport default class ListDividedExample extends Component {\n  render() {\n    const avatar1 = <Image className='avatar' src={faker.image.avatar()} />\n    const avatar2 = <Image className='avatar' src={faker.image.avatar()} />\n    const avatar3 = <Image className='avatar' src={faker.image.avatar()} />\n    return (\n      <List className='middle aligned divided'>\n        <List.Item image={avatar1} header='Helen' />\n        <List.Item image={avatar2} header='Christian' />\n        <List.Item image={avatar3} header='Daniel' />\n      </List>\n    )\n  }\n}\n"
 
 /***/ },
 /* 560 */
 /***/ function(module, exports) {
 
-	module.exports = "import faker from 'faker'\nimport React, { Component } from 'react'\nimport { List, Image } from 'stardust'\n\nexport default class ListSelectionExample extends Component {\n  render() {\n    const avatar1 = <Image className='avatar' src={faker.image.avatar()} />\n    const avatar2 = <Image className='avatar' src={faker.image.avatar()} />\n    const avatar3 = <Image className='avatar' src={faker.image.avatar()} />\n    return (\n      <List className='selection'>\n        <List.Item image={avatar1} header='Helen' />\n        <List.Item image={avatar2} header='Christian' />\n        <List.Item image={avatar3} header='Daniel' />\n      </List>\n    )\n  }\n}\n"
+	module.exports = "import faker from 'faker'\nimport React, { Component } from 'react'\nimport { List, Image } from 'stardust'\n\nexport default class ListHorizontalExample extends Component {\n  render() {\n    const image1 = <Image className='avatar' src={faker.image.city(100, 100)} />\n    const image2 = <Image className='avatar' src={faker.image.city(100, 100)} />\n    const image3 = <Image className='avatar' src={faker.image.city(100, 100)} />\n    return (\n      <List className='horizontal'>\n        <List.Item image={image1} header='Chicago' description='This city is located in the state of Illinois' />\n        <List.Item image={image2} header='Indianapolis' description='This city is located in the state of Indiana' />\n        <List.Item image={image3} header='Nashville' description='This city is located in the state of Tennessee' />\n      </List>\n    )\n  }\n}\n"
 
 /***/ },
 /* 561 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { List, Image } from 'stardust'\nimport faker from 'faker'\n\nexport default class ListSizeBigExample extends Component {\n  render() {\n    const helenAvatar = <Image className='avatar' src={faker.image.avatar()} />\n    const christianAvatar = <Image className='avatar' src={faker.image.avatar()} />\n    const danielAvatar = <Image className='avatar' src={faker.image.avatar()} />\n    return (\n      <List className='big horizontal divided'>\n        <List.Item image={helenAvatar} header='Helen' />\n        <List.Item image={christianAvatar} header='Christian' />\n        <List.Item image={danielAvatar} header='Daniel' />\n      </List>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Segment, List } from 'stardust'\n\nexport default class ListInvertedExample extends Component {\n  render() {\n    return (\n      <Segment className='inverted'>\n        <List className='inverted relaxed divided'>\n          <List.Item header='Chicago' description='Located in the state of Illinois' />\n          <List.Item header='Indianapolis' description='Located in the state of Indiana' />\n          <List.Item header='Nashville' description='Located in the state of Tennessee' />\n        </List>\n      </Segment>\n    )\n  }\n}\n"
 
 /***/ },
 /* 562 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { List, Image } from 'stardust'\nimport faker from 'faker'\n\nexport default class ListSizeHugeExample extends Component {\n  render() {\n    const helenAvatar = <Image className='avatar' src={faker.image.avatar()} />\n    const christianAvatar = <Image className='avatar' src={faker.image.avatar()} />\n    const danielAvatar = <Image className='avatar' src={faker.image.avatar()} />\n    return (\n      <List className='huge horizontal divided'>\n        <List.Item image={helenAvatar} header='Helen' />\n        <List.Item image={christianAvatar} header='Christian' />\n        <List.Item image={danielAvatar} header='Daniel' />\n      </List>\n    )\n  }\n}\n"
+	module.exports = "import faker from 'faker'\nimport React, { Component } from 'react'\nimport { List, Image } from 'stardust'\n\nexport default class ListRelaxedExample extends Component {\n  render() {\n    const avatar1 = <Image className='avatar' src={faker.image.avatar()} />\n    const avatar2 = <Image className='avatar' src={faker.image.avatar()} />\n    const avatar3 = <Image className='avatar' src={faker.image.avatar()} />\n    return (\n      <List className='relaxed'>\n        <List.Item image={avatar1} header='Helen' />\n        <List.Item image={avatar2} header='Christian' />\n        <List.Item image={avatar3} header='Daniel' />\n      </List>\n    )\n  }\n}\n"
 
 /***/ },
 /* 563 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { List, Image } from 'stardust'\nimport faker from 'faker'\n\nexport default class ListSizeLargeExample extends Component {\n  render() {\n    const helenAvatar = <Image className='avatar' src={faker.image.avatar()} />\n    const christianAvatar = <Image className='avatar' src={faker.image.avatar()} />\n    const danielAvatar = <Image className='avatar' src={faker.image.avatar()} />\n    return (\n      <List className='large horizontal divided'>\n        <List.Item image={helenAvatar} header='Helen' />\n        <List.Item image={christianAvatar} header='Christian' />\n        <List.Item image={danielAvatar} header='Daniel' />\n      </List>\n    )\n  }\n}\n"
+	module.exports = "import faker from 'faker'\nimport React, { Component } from 'react'\nimport { List, Image } from 'stardust'\n\nexport default class ListSelectionExample extends Component {\n  render() {\n    const avatar1 = <Image className='avatar' src={faker.image.avatar()} />\n    const avatar2 = <Image className='avatar' src={faker.image.avatar()} />\n    const avatar3 = <Image className='avatar' src={faker.image.avatar()} />\n    return (\n      <List className='selection'>\n        <List.Item image={avatar1} header='Helen' />\n        <List.Item image={avatar2} header='Christian' />\n        <List.Item image={avatar3} header='Daniel' />\n      </List>\n    )\n  }\n}\n"
 
 /***/ },
 /* 564 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { List, Image } from 'stardust'\nimport faker from 'faker'\n\nexport default class ListSizeMassiveExample extends Component {\n  render() {\n    const helenAvatar = <Image className='avatar' src={faker.image.avatar()} />\n    const christianAvatar = <Image className='avatar' src={faker.image.avatar()} />\n    const danielAvatar = <Image className='avatar' src={faker.image.avatar()} />\n    return (\n      <List className='massive horizontal divided'>\n        <List.Item image={helenAvatar} header='Helen' />\n        <List.Item image={christianAvatar} header='Christian' />\n        <List.Item image={danielAvatar} header='Daniel' />\n      </List>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { List, Image } from 'stardust'\nimport faker from 'faker'\n\nexport default class ListSizeBigExample extends Component {\n  render() {\n    const helenAvatar = <Image className='avatar' src={faker.image.avatar()} />\n    const christianAvatar = <Image className='avatar' src={faker.image.avatar()} />\n    const danielAvatar = <Image className='avatar' src={faker.image.avatar()} />\n    return (\n      <List className='big horizontal divided'>\n        <List.Item image={helenAvatar} header='Helen' />\n        <List.Item image={christianAvatar} header='Christian' />\n        <List.Item image={danielAvatar} header='Daniel' />\n      </List>\n    )\n  }\n}\n"
 
 /***/ },
 /* 565 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { List, Image } from 'stardust'\nimport faker from 'faker'\n\nexport default class ListSizeMiniExample extends Component {\n  render() {\n    const helenAvatar = <Image className='avatar' src={faker.image.avatar()} />\n    const christianAvatar = <Image className='avatar' src={faker.image.avatar()} />\n    const danielAvatar = <Image className='avatar' src={faker.image.avatar()} />\n    return (\n      <List className='mini horizontal divided'>\n        <List.Item image={helenAvatar} header='Helen' />\n        <List.Item image={christianAvatar} header='Christian' />\n        <List.Item image={danielAvatar} header='Daniel' />\n      </List>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { List, Image } from 'stardust'\nimport faker from 'faker'\n\nexport default class ListSizeHugeExample extends Component {\n  render() {\n    const helenAvatar = <Image className='avatar' src={faker.image.avatar()} />\n    const christianAvatar = <Image className='avatar' src={faker.image.avatar()} />\n    const danielAvatar = <Image className='avatar' src={faker.image.avatar()} />\n    return (\n      <List className='huge horizontal divided'>\n        <List.Item image={helenAvatar} header='Helen' />\n        <List.Item image={christianAvatar} header='Christian' />\n        <List.Item image={danielAvatar} header='Daniel' />\n      </List>\n    )\n  }\n}\n"
 
 /***/ },
 /* 566 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { List, Image } from 'stardust'\nimport faker from 'faker'\n\nexport default class ListSizeSmallExample extends Component {\n  render() {\n    const helenAvatar = <Image className='avatar' src={faker.image.avatar()} />\n    const christianAvatar = <Image className='avatar' src={faker.image.avatar()} />\n    const danielAvatar = <Image className='avatar' src={faker.image.avatar()} />\n    return (\n      <List className='small horizontal divided'>\n        <List.Item image={helenAvatar} header='Helen' />\n        <List.Item image={christianAvatar} header='Christian' />\n        <List.Item image={danielAvatar} header='Daniel' />\n      </List>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { List, Image } from 'stardust'\nimport faker from 'faker'\n\nexport default class ListSizeLargeExample extends Component {\n  render() {\n    const helenAvatar = <Image className='avatar' src={faker.image.avatar()} />\n    const christianAvatar = <Image className='avatar' src={faker.image.avatar()} />\n    const danielAvatar = <Image className='avatar' src={faker.image.avatar()} />\n    return (\n      <List className='large horizontal divided'>\n        <List.Item image={helenAvatar} header='Helen' />\n        <List.Item image={christianAvatar} header='Christian' />\n        <List.Item image={danielAvatar} header='Daniel' />\n      </List>\n    )\n  }\n}\n"
 
 /***/ },
 /* 567 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { List, Image } from 'stardust'\nimport faker from 'faker'\n\nexport default class ListSizeTinyExample extends Component {\n  render() {\n    const helenAvatar = <Image className='avatar' src={faker.image.avatar()} />\n    const christianAvatar = <Image className='avatar' src={faker.image.avatar()} />\n    const danielAvatar = <Image className='avatar' src={faker.image.avatar()} />\n    return (\n      <List className='tiny horizontal divided'>\n        <List.Item image={helenAvatar} header='Helen' />\n        <List.Item image={christianAvatar} header='Christian' />\n        <List.Item image={danielAvatar} header='Daniel' />\n      </List>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { List, Image } from 'stardust'\nimport faker from 'faker'\n\nexport default class ListSizeMassiveExample extends Component {\n  render() {\n    const helenAvatar = <Image className='avatar' src={faker.image.avatar()} />\n    const christianAvatar = <Image className='avatar' src={faker.image.avatar()} />\n    const danielAvatar = <Image className='avatar' src={faker.image.avatar()} />\n    return (\n      <List className='massive horizontal divided'>\n        <List.Item image={helenAvatar} header='Helen' />\n        <List.Item image={christianAvatar} header='Christian' />\n        <List.Item image={danielAvatar} header='Daniel' />\n      </List>\n    )\n  }\n}\n"
 
 /***/ },
 /* 568 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'\nimport ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'\nimport { Message } from 'stardust'\n\nexport default class ListVariationsExamples extends Component {\n  render() {\n    return (\n      <ExampleSection title='Types'>\n        <ComponentExample\n          title='Horizontal'\n          description='A list can be formatted to have items appear horizontally'\n          examplePath='elements/List/Variations/ListHorizontalExample'\n        />\n        <ComponentExample\n          title='Inverted'\n          description='A list can be inverted to appear on a dark background'\n          examplePath='elements/List/Variations/ListInvertedExample'\n        />\n        <ComponentExample\n          title='Selection'\n          description='A selection list formats list items as possible choices'\n          examplePath='elements/List/Variations/ListSelectionExample'\n        />\n        <ComponentExample\n          title='Animated'\n          description='A list can animate to set the current item apart from the list'\n          examplePath='elements/List/Variations/ListAnimatedExample'\n        >\n          <Message className='info'>\n            Be sure content can fit on one line, otherwise text content will reflow when hovered.\n          </Message>\n        </ComponentExample>\n        <ComponentExample\n          title='Relaxed'\n          description='A list can relax its padding to provide more negative space'\n          examplePath='elements/List/Variations/ListRelaxedExample'\n        />\n        <ComponentExample\n          title='Very Relaxed'\n          examplePath='elements/List/Variations/ListVeryRelaxedExample'\n        />\n        <ComponentExample\n          title='Divided'\n          description='A list can show divisions between content'\n          examplePath='elements/List/Variations/ListDividedExample'\n        />\n        <ComponentExample\n          title='Celled'\n          description='A list can divide its items into cells'\n          examplePath='elements/List/Variations/ListCelledExample'\n        />\n        <ComponentExample\n          title='Size'\n          description='A list can vary in size'\n          examplePath='elements/List/Variations/ListSizeMiniExample'\n        />\n        <ComponentExample examplePath='elements/List/Variations/ListSizeTinyExample' />\n        <ComponentExample examplePath='elements/List/Variations/ListSizeSmallExample' />\n        <ComponentExample examplePath='elements/List/Variations/ListSizeLargeExample' />\n        <ComponentExample examplePath='elements/List/Variations/ListSizeBigExample' />\n        <ComponentExample examplePath='elements/List/Variations/ListSizeHugeExample' />\n        <ComponentExample examplePath='elements/List/Variations/ListSizeMassiveExample' />\n      </ExampleSection>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { List, Image } from 'stardust'\nimport faker from 'faker'\n\nexport default class ListSizeMiniExample extends Component {\n  render() {\n    const helenAvatar = <Image className='avatar' src={faker.image.avatar()} />\n    const christianAvatar = <Image className='avatar' src={faker.image.avatar()} />\n    const danielAvatar = <Image className='avatar' src={faker.image.avatar()} />\n    return (\n      <List className='mini horizontal divided'>\n        <List.Item image={helenAvatar} header='Helen' />\n        <List.Item image={christianAvatar} header='Christian' />\n        <List.Item image={danielAvatar} header='Daniel' />\n      </List>\n    )\n  }\n}\n"
 
 /***/ },
 /* 569 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { List, Image } from 'stardust'\nimport faker from 'faker'\n\nexport default class ListVeryRelaxedExample extends Component {\n  render() {\n    const avatar1 = <Image className='avatar' src={faker.image.avatar()} />\n    const avatar2 = <Image className='avatar' src={faker.image.avatar()} />\n    const avatar3 = <Image className='avatar' src={faker.image.avatar()} />\n\n    return (\n      <List className='very relaxed'>\n        <List.Item image={avatar1} header='Helen' />\n        <List.Item image={avatar2} header='Christian' />\n        <List.Item image={avatar3} header='Daniel' />\n      </List>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { List, Image } from 'stardust'\nimport faker from 'faker'\n\nexport default class ListSizeSmallExample extends Component {\n  render() {\n    const helenAvatar = <Image className='avatar' src={faker.image.avatar()} />\n    const christianAvatar = <Image className='avatar' src={faker.image.avatar()} />\n    const danielAvatar = <Image className='avatar' src={faker.image.avatar()} />\n    return (\n      <List className='small horizontal divided'>\n        <List.Item image={helenAvatar} header='Helen' />\n        <List.Item image={christianAvatar} header='Christian' />\n        <List.Item image={danielAvatar} header='Daniel' />\n      </List>\n    )\n  }\n}\n"
 
 /***/ },
 /* 570 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'\nimport ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'\n\nexport default class SegmentGroupsExamples extends Component {\n  render() {\n    return (\n      <ExampleSection title='Groups'>\n        <ComponentExample\n          title='Segments'\n          description='A group of segments can be formatted to appear together.'\n          examplePath='elements/Segment/Groups/SegmentSegmentsExample'\n        />\n        <ComponentExample\n          title='Nested Segments'\n          description='A group of segments can be nested in another group of segments.'\n          examplePath='elements/Segment/Groups/SegmentNestedSegmentsExample'\n        />\n        <ComponentExample\n          title='Horizontal Segments'\n          description='A segment group can appear horizontally.'\n          examplePath='elements/Segment/Groups/SegmentHorizontalSegmentsExample'\n        />\n        <ComponentExample\n          title='Raised Segments'\n          description='A segment group can be raised.'\n          examplePath='elements/Segment/Groups/SegmentRaisedSegmentsExample'\n        />\n        <ComponentExample\n          title='Stacked Segments'\n          description='A segment group can be stacked.'\n          examplePath='elements/Segment/Groups/SegmentStackedSegmentsExample'\n        />\n        <ComponentExample\n          title='Piled Segments'\n          description='A segment group can be piled.'\n          examplePath='elements/Segment/Groups/SegmentPiledSegmentsExample'\n        />\n      </ExampleSection>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { List, Image } from 'stardust'\nimport faker from 'faker'\n\nexport default class ListSizeTinyExample extends Component {\n  render() {\n    const helenAvatar = <Image className='avatar' src={faker.image.avatar()} />\n    const christianAvatar = <Image className='avatar' src={faker.image.avatar()} />\n    const danielAvatar = <Image className='avatar' src={faker.image.avatar()} />\n    return (\n      <List className='tiny horizontal divided'>\n        <List.Item image={helenAvatar} header='Helen' />\n        <List.Item image={christianAvatar} header='Christian' />\n        <List.Item image={danielAvatar} header='Daniel' />\n      </List>\n    )\n  }\n}\n"
 
 /***/ },
 /* 571 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Segment } from 'stardust'\n\nexport default class SegmentHorizontalSegmentsExample extends Component {\n  render() {\n    return (\n      <Segment.Segments className='horizontal'>\n        <Segment>Left</Segment>\n        <Segment>Middle</Segment>\n        <Segment>Right</Segment>\n      </Segment.Segments>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'\nimport ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'\nimport { Message } from 'stardust'\n\nexport default class ListVariationsExamples extends Component {\n  render() {\n    return (\n      <ExampleSection title='Types'>\n        <ComponentExample\n          title='Horizontal'\n          description='A list can be formatted to have items appear horizontally'\n          examplePath='elements/List/Variations/ListHorizontalExample'\n        />\n        <ComponentExample\n          title='Inverted'\n          description='A list can be inverted to appear on a dark background'\n          examplePath='elements/List/Variations/ListInvertedExample'\n        />\n        <ComponentExample\n          title='Selection'\n          description='A selection list formats list items as possible choices'\n          examplePath='elements/List/Variations/ListSelectionExample'\n        />\n        <ComponentExample\n          title='Animated'\n          description='A list can animate to set the current item apart from the list'\n          examplePath='elements/List/Variations/ListAnimatedExample'\n        >\n          <Message className='info'>\n            Be sure content can fit on one line, otherwise text content will reflow when hovered.\n          </Message>\n        </ComponentExample>\n        <ComponentExample\n          title='Relaxed'\n          description='A list can relax its padding to provide more negative space'\n          examplePath='elements/List/Variations/ListRelaxedExample'\n        />\n        <ComponentExample\n          title='Very Relaxed'\n          examplePath='elements/List/Variations/ListVeryRelaxedExample'\n        />\n        <ComponentExample\n          title='Divided'\n          description='A list can show divisions between content'\n          examplePath='elements/List/Variations/ListDividedExample'\n        />\n        <ComponentExample\n          title='Celled'\n          description='A list can divide its items into cells'\n          examplePath='elements/List/Variations/ListCelledExample'\n        />\n        <ComponentExample\n          title='Size'\n          description='A list can vary in size'\n          examplePath='elements/List/Variations/ListSizeMiniExample'\n        />\n        <ComponentExample examplePath='elements/List/Variations/ListSizeTinyExample' />\n        <ComponentExample examplePath='elements/List/Variations/ListSizeSmallExample' />\n        <ComponentExample examplePath='elements/List/Variations/ListSizeLargeExample' />\n        <ComponentExample examplePath='elements/List/Variations/ListSizeBigExample' />\n        <ComponentExample examplePath='elements/List/Variations/ListSizeHugeExample' />\n        <ComponentExample examplePath='elements/List/Variations/ListSizeMassiveExample' />\n      </ExampleSection>\n    )\n  }\n}\n"
 
 /***/ },
 /* 572 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Segment } from 'stardust'\n\nexport default class SegmentNestedSegmentsExample extends Component {\n  render() {\n    return (\n      <Segment.Segments>\n        <Segment>Top</Segment>\n        <Segment.Segments>\n          <Segment>Nested Top</Segment>\n          <Segment>Nested Middle</Segment>\n          <Segment>Nested Bottom</Segment>\n        </Segment.Segments>\n        <Segment.Segments className='horizontal'>\n          <Segment>Top</Segment>\n          <Segment>Middle</Segment>\n          <Segment>Bottom</Segment>\n        </Segment.Segments>\n        <Segment>Bottom</Segment>\n      </Segment.Segments>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { List, Image } from 'stardust'\nimport faker from 'faker'\n\nexport default class ListVeryRelaxedExample extends Component {\n  render() {\n    const avatar1 = <Image className='avatar' src={faker.image.avatar()} />\n    const avatar2 = <Image className='avatar' src={faker.image.avatar()} />\n    const avatar3 = <Image className='avatar' src={faker.image.avatar()} />\n\n    return (\n      <List className='very relaxed'>\n        <List.Item image={avatar1} header='Helen' />\n        <List.Item image={avatar2} header='Christian' />\n        <List.Item image={avatar3} header='Daniel' />\n      </List>\n    )\n  }\n}\n"
 
 /***/ },
 /* 573 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Segment } from 'stardust'\n\nexport default class SegmentPiledSegmentsExample extends Component {\n  render() {\n    return (\n      <Segment.Segments className='piled'>\n        <Segment>Top</Segment>\n        <Segment>Middle</Segment>\n        <Segment>Bottom</Segment>\n      </Segment.Segments>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'\nimport ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'\n\nexport default class SegmentGroupsExamples extends Component {\n  render() {\n    return (\n      <ExampleSection title='Groups'>\n        <ComponentExample\n          title='Segments'\n          description='A group of segments can be formatted to appear together.'\n          examplePath='elements/Segment/Groups/SegmentSegmentsExample'\n        />\n        <ComponentExample\n          title='Nested Segments'\n          description='A group of segments can be nested in another group of segments.'\n          examplePath='elements/Segment/Groups/SegmentNestedSegmentsExample'\n        />\n        <ComponentExample\n          title='Horizontal Segments'\n          description='A segment group can appear horizontally.'\n          examplePath='elements/Segment/Groups/SegmentHorizontalSegmentsExample'\n        />\n        <ComponentExample\n          title='Raised Segments'\n          description='A segment group can be raised.'\n          examplePath='elements/Segment/Groups/SegmentRaisedSegmentsExample'\n        />\n        <ComponentExample\n          title='Stacked Segments'\n          description='A segment group can be stacked.'\n          examplePath='elements/Segment/Groups/SegmentStackedSegmentsExample'\n        />\n        <ComponentExample\n          title='Piled Segments'\n          description='A segment group can be piled.'\n          examplePath='elements/Segment/Groups/SegmentPiledSegmentsExample'\n        />\n      </ExampleSection>\n    )\n  }\n}\n"
 
 /***/ },
 /* 574 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Segment } from 'stardust'\n\nexport default class SegmentRaisedSegmentsExample extends Component {\n  render() {\n    return (\n      <Segment.Segments className='raised'>\n        <Segment>Left</Segment>\n        <Segment>Middle</Segment>\n        <Segment>Right</Segment>\n      </Segment.Segments>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Segment } from 'stardust'\n\nexport default class SegmentHorizontalSegmentsExample extends Component {\n  render() {\n    return (\n      <Segment.Segments className='horizontal'>\n        <Segment>Left</Segment>\n        <Segment>Middle</Segment>\n        <Segment>Right</Segment>\n      </Segment.Segments>\n    )\n  }\n}\n"
 
 /***/ },
 /* 575 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Segment } from 'stardust'\n\nexport default class SegmentSegmentsExample extends Component {\n  render() {\n    return (\n      <Segment.Segments>\n        <Segment>Top</Segment>\n        <Segment>Middle</Segment>\n        <Segment>Middle</Segment>\n        <Segment>Middle</Segment>\n        <Segment>Bottom</Segment>\n      </Segment.Segments>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Segment } from 'stardust'\n\nexport default class SegmentNestedSegmentsExample extends Component {\n  render() {\n    return (\n      <Segment.Segments>\n        <Segment>Top</Segment>\n        <Segment.Segments>\n          <Segment>Nested Top</Segment>\n          <Segment>Nested Middle</Segment>\n          <Segment>Nested Bottom</Segment>\n        </Segment.Segments>\n        <Segment.Segments className='horizontal'>\n          <Segment>Top</Segment>\n          <Segment>Middle</Segment>\n          <Segment>Bottom</Segment>\n        </Segment.Segments>\n        <Segment>Bottom</Segment>\n      </Segment.Segments>\n    )\n  }\n}\n"
 
 /***/ },
 /* 576 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Segment } from 'stardust'\n\nexport default class SegmentStackedSegmentsExample extends Component {\n  render() {\n    return (\n      <Segment.Segments className='stacked'>\n        <Segment>Top</Segment>\n        <Segment>Middle</Segment>\n        <Segment>Bottom</Segment>\n      </Segment.Segments>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Segment } from 'stardust'\n\nexport default class SegmentPiledSegmentsExample extends Component {\n  render() {\n    return (\n      <Segment.Segments className='piled'>\n        <Segment>Top</Segment>\n        <Segment>Middle</Segment>\n        <Segment>Bottom</Segment>\n      </Segment.Segments>\n    )\n  }\n}\n"
 
 /***/ },
 /* 577 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport SegmentTypesExamples from './Types/SegmentTypesExamples'\nimport SegmentGroupsExamples from './Groups/SegmentGroupsExamples'\nimport SegmentStatesExamples from './States/SegmentStatesExamples'\nimport SegmentVariationsExamples from './Variations/SegmentVariationsExamples'\n\nexport default class SegmentExamples extends Component {\n  render() {\n    return (\n      <div>\n        <SegmentTypesExamples />\n        <SegmentGroupsExamples />\n        <SegmentStatesExamples />\n        <SegmentVariationsExamples />\n      </div>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Segment } from 'stardust'\n\nexport default class SegmentRaisedSegmentsExample extends Component {\n  render() {\n    return (\n      <Segment.Segments className='raised'>\n        <Segment>Left</Segment>\n        <Segment>Middle</Segment>\n        <Segment>Right</Segment>\n      </Segment.Segments>\n    )\n  }\n}\n"
 
 /***/ },
 /* 578 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Segment } from 'stardust'\n\nexport default class SegmentDisabledExample extends Component {\n  render() {\n    return (\n      <Segment className='disabled'>\n        Disabled content\n      </Segment>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Segment } from 'stardust'\n\nexport default class SegmentSegmentsExample extends Component {\n  render() {\n    return (\n      <Segment.Segments>\n        <Segment>Top</Segment>\n        <Segment>Middle</Segment>\n        <Segment>Middle</Segment>\n        <Segment>Middle</Segment>\n        <Segment>Bottom</Segment>\n      </Segment.Segments>\n    )\n  }\n}\n"
 
 /***/ },
 /* 579 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Segment } from 'stardust'\n\nexport default class SegmentLoadingExample extends Component {\n  render() {\n    return (\n      <Segment className='loading'>\n        Loading content.\n      </Segment>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Segment } from 'stardust'\n\nexport default class SegmentStackedSegmentsExample extends Component {\n  render() {\n    return (\n      <Segment.Segments className='stacked'>\n        <Segment>Top</Segment>\n        <Segment>Middle</Segment>\n        <Segment>Bottom</Segment>\n      </Segment.Segments>\n    )\n  }\n}\n"
 
 /***/ },
 /* 580 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'\nimport ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'\n\nexport default class SegmentStatesExamples extends Component {\n  render() {\n    return (\n      <ExampleSection title='States'>\n        <ComponentExample\n          title='Disabled'\n          description='A segment may show its content is disabled.'\n          examplePath='elements/Segment/States/SegmentDisabledExample'\n        />\n        <ComponentExample\n          title='Loading'\n          description='A segment may show its content is being loaded.'\n          examplePath='elements/Segment/States/SegmentLoadingExample'\n        />\n      </ExampleSection>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport SegmentTypesExamples from './Types/SegmentTypesExamples'\nimport SegmentGroupsExamples from './Groups/SegmentGroupsExamples'\nimport SegmentStatesExamples from './States/SegmentStatesExamples'\nimport SegmentVariationsExamples from './Variations/SegmentVariationsExamples'\n\nexport default class SegmentExamples extends Component {\n  render() {\n    return (\n      <div>\n        <SegmentTypesExamples />\n        <SegmentGroupsExamples />\n        <SegmentStatesExamples />\n        <SegmentVariationsExamples />\n      </div>\n    )\n  }\n}\n"
 
 /***/ },
 /* 581 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Segment } from 'stardust'\n\nexport default class SegmentPiledExample extends Component {\n  render() {\n    return <Segment className='piled'>Pellentesque habitant morbi tristique senectus.</Segment>\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Segment } from 'stardust'\n\nexport default class SegmentDisabledExample extends Component {\n  render() {\n    return (\n      <Segment className='disabled'>\n        Disabled content\n      </Segment>\n    )\n  }\n}\n"
 
 /***/ },
 /* 582 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Segment } from 'stardust'\n\nexport default class SegmentRaisedExample extends Component {\n  render() {\n    return <Segment>Pellentesque habitant morbi tristique senectus.</Segment>\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Segment } from 'stardust'\n\nexport default class SegmentLoadingExample extends Component {\n  render() {\n    return (\n      <Segment className='loading'>\n        Loading content.\n      </Segment>\n    )\n  }\n}\n"
 
 /***/ },
 /* 583 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Segment } from 'stardust'\n\nexport default class SegmentSegmentExample extends Component {\n  render() {\n    return <Segment>Pellentesque habitant morbi tristique senectus.</Segment>\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'\nimport ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'\n\nexport default class SegmentStatesExamples extends Component {\n  render() {\n    return (\n      <ExampleSection title='States'>\n        <ComponentExample\n          title='Disabled'\n          description='A segment may show its content is disabled.'\n          examplePath='elements/Segment/States/SegmentDisabledExample'\n        />\n        <ComponentExample\n          title='Loading'\n          description='A segment may show its content is being loaded.'\n          examplePath='elements/Segment/States/SegmentLoadingExample'\n        />\n      </ExampleSection>\n    )\n  }\n}\n"
 
 /***/ },
 /* 584 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Segment } from 'stardust'\n\nexport default class SegmentStackedExample extends Component {\n  render() {\n    return <Segment className='stacked'>Pellentesque habitant morbi tristique senectus.</Segment>\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Segment } from 'stardust'\n\nexport default class SegmentPiledExample extends Component {\n  render() {\n    return <Segment className='piled'>Pellentesque habitant morbi tristique senectus.</Segment>\n  }\n}\n"
 
 /***/ },
 /* 585 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'\nimport ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'\nimport { Message } from 'stardust'\n\nexport default class SegmentTypesExamples extends Component {\n  render() {\n    return (\n      <ExampleSection title='Types'>\n        <ComponentExample\n          title='Segment'\n          description='A segment of content.'\n          examplePath='elements/Segment/Types/SegmentSegmentExample'\n        />\n        <ComponentExample\n          title='Raised'\n          description='A segment may be formatted to raise above the page.'\n          examplePath='elements/Segment/Types/SegmentRaisedExample'\n        />\n        <ComponentExample\n          title='Stacked'\n          description='A segment can be formatted to show it contains multiple pages.'\n          examplePath='elements/Segment/Types/SegmentStackedExample'\n        />\n        <ComponentExample\n          title='Piled'\n          description='A segment can be formatted to look like a pile of pages.'\n          examplePath='elements/Segment/Types/SegmentPiledExample'\n        >\n          <Message className='warning'>\n            Piled segments use <b>negative z-index</b> to format the additional pages below the segment.\n            In order for them to appear correctly, your segment's offset container must have a z-index declared.\n          </Message>\n        </ComponentExample>\n        <ComponentExample\n          title='Vertical Segment'\n          description='A vertical segment formats content to be aligned as part of a vertical group.'\n          examplePath='elements/Segment/Types/SegmentVerticalSegmentExample'\n        />\n      </ExampleSection>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Segment } from 'stardust'\n\nexport default class SegmentRaisedExample extends Component {\n  render() {\n    return <Segment>Pellentesque habitant morbi tristique senectus.</Segment>\n  }\n}\n"
 
 /***/ },
 /* 586 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Segment } from 'stardust'\n\nexport default class SegmentVerticalSegmentExample extends Component {\n  render() {\n    return (\n      <Segment>\n        <Segment className='vertical'>Te eum doming eirmod, nominati pertinacia argumentum ad his.</Segment>\n        <Segment className='vertical'>Pellentesque habitant morbi tristique senectus.</Segment>\n        <Segment className='vertical'>Eu quo homero blandit intellegebat. Incorrupte consequuntur mei id.</Segment>\n      </Segment>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Segment } from 'stardust'\n\nexport default class SegmentSegmentExample extends Component {\n  render() {\n    return <Segment>Pellentesque habitant morbi tristique senectus.</Segment>\n  }\n}\n"
 
 /***/ },
 /* 587 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Header, Message, Segment } from 'stardust'\n\nexport default class SegmentAttachedComplexExample extends Component {\n  render() {\n    return (\n      <div>\n        <Header.H5 className='attached'>\n          Dogs\n        </Header.H5>\n        <Segment className='attached segment'>\n          Dogs are one type of animal\n        </Segment>\n        <Header.H5 className='attached header'>\n          Cats\n        </Header.H5>\n        <Segment className='attached segment'>\n          Cats are thought of as being related to dogs, but only humans think this.\n        </Segment>\n        <Header.H5 className='attached header'>\n          Lions\n        </Header.H5>\n        <Segment className='attached segment'>\n          Humans don't think of lions as being like cats, but they are.\n        </Segment>\n        <Message className='bottom attached warning'>\n          <i className='warning icon'></i>\n          You've reached the end of this content segment!\n        </Message>\n      </div>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Segment } from 'stardust'\n\nexport default class SegmentStackedExample extends Component {\n  render() {\n    return <Segment className='stacked'>Pellentesque habitant morbi tristique senectus.</Segment>\n  }\n}\n"
 
 /***/ },
 /* 588 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Segment } from 'stardust'\n\nexport default class SegmentAttachedExample extends Component {\n  render() {\n    return (\n      <div>\n        <Segment className='top attached'>\n          This segment is on top\n        </Segment>\n        <Segment className='attached'>\n          This segment is attached on both sides\n        </Segment>\n        <Segment className='bottom attached'>\n          This segment is on bottom\n        </Segment>\n      </div>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'\nimport ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'\nimport { Message } from 'stardust'\n\nexport default class SegmentTypesExamples extends Component {\n  render() {\n    return (\n      <ExampleSection title='Types'>\n        <ComponentExample\n          title='Segment'\n          description='A segment of content.'\n          examplePath='elements/Segment/Types/SegmentSegmentExample'\n        />\n        <ComponentExample\n          title='Raised'\n          description='A segment may be formatted to raise above the page.'\n          examplePath='elements/Segment/Types/SegmentRaisedExample'\n        />\n        <ComponentExample\n          title='Stacked'\n          description='A segment can be formatted to show it contains multiple pages.'\n          examplePath='elements/Segment/Types/SegmentStackedExample'\n        />\n        <ComponentExample\n          title='Piled'\n          description='A segment can be formatted to look like a pile of pages.'\n          examplePath='elements/Segment/Types/SegmentPiledExample'\n        >\n          <Message className='warning'>\n            Piled segments use <b>negative z-index</b> to format the additional pages below the segment.\n            In order for them to appear correctly, your segment's offset container must have a z-index declared.\n          </Message>\n        </ComponentExample>\n        <ComponentExample\n          title='Vertical Segment'\n          description='A vertical segment formats content to be aligned as part of a vertical group.'\n          examplePath='elements/Segment/Types/SegmentVerticalSegmentExample'\n        />\n      </ExampleSection>\n    )\n  }\n}\n"
 
 /***/ },
 /* 589 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Segment } from 'stardust'\n\nexport default class SegmentBasicExample extends Component {\n  render() {\n    return (\n      <Segment className='basic'>\n        Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.\n        Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante.\n        Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.\n      </Segment>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Segment } from 'stardust'\n\nexport default class SegmentVerticalSegmentExample extends Component {\n  render() {\n    return (\n      <Segment>\n        <Segment className='vertical'>Te eum doming eirmod, nominati pertinacia argumentum ad his.</Segment>\n        <Segment className='vertical'>Pellentesque habitant morbi tristique senectus.</Segment>\n        <Segment className='vertical'>Eu quo homero blandit intellegebat. Incorrupte consequuntur mei id.</Segment>\n      </Segment>\n    )\n  }\n}\n"
 
 /***/ },
 /* 590 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Header, Segment } from 'stardust'\n\nexport default class SegmentCircularExample extends Component {\n  render() {\n    return (\n      <div>\n        <Segment className='circular'>\n          <Header.H2>\n            Sale!\n            <Header.Subheader>\n              $10.99\n            </Header.Subheader>\n          </Header.H2>\n        </Segment>\n        <Segment className='red inverted circular'>\n          <Header.H3>\n            Buy Now\n            <Header.Subheader>\n              $10.99\n            </Header.Subheader>\n          </Header.H3>\n        </Segment>\n      </div>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Header, Message, Segment } from 'stardust'\n\nexport default class SegmentAttachedComplexExample extends Component {\n  render() {\n    return (\n      <div>\n        <Header.H5 className='attached'>\n          Dogs\n        </Header.H5>\n        <Segment className='attached segment'>\n          Dogs are one type of animal\n        </Segment>\n        <Header.H5 className='attached header'>\n          Cats\n        </Header.H5>\n        <Segment className='attached segment'>\n          Cats are thought of as being related to dogs, but only humans think this.\n        </Segment>\n        <Header.H5 className='attached header'>\n          Lions\n        </Header.H5>\n        <Segment className='attached segment'>\n          Humans don't think of lions as being like cats, but they are.\n        </Segment>\n        <Message className='bottom attached warning'>\n          <i className='warning icon'></i>\n          You've reached the end of this content segment!\n        </Message>\n      </div>\n    )\n  }\n}\n"
 
 /***/ },
 /* 591 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Button, Segment } from 'stardust'\n\nexport default class SegmentClearingExample extends Component {\n  render() {\n    return (\n      <Segment className='clearing'>\n        <Button className='right floated'>\n          floated\n        </Button>\n      </Segment>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Segment } from 'stardust'\n\nexport default class SegmentAttachedExample extends Component {\n  render() {\n    return (\n      <div>\n        <Segment className='top attached'>\n          This segment is on top\n        </Segment>\n        <Segment className='attached'>\n          This segment is attached on both sides\n        </Segment>\n        <Segment className='bottom attached'>\n          This segment is on bottom\n        </Segment>\n      </div>\n    )\n  }\n}\n"
 
 /***/ },
 /* 592 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Segment } from 'stardust'\n\nexport default class SegmentColoredExample extends Component {\n  render() {\n    return (\n      <div>\n        <Segment className='red'>\n          Red\n        </Segment>\n        <Segment className='orange'>\n          Orange\n        </Segment>\n        <Segment className='yellow'>\n          Yellow\n        </Segment>\n        <Segment className='olive'>\n          Olive\n        </Segment>\n        <Segment className='green'>\n          Green\n        </Segment>\n        <Segment className='teal'>\n          Teal\n        </Segment>\n        <Segment className='blue'>\n          Blue\n        </Segment>\n        <Segment className='violet'>\n          Violet\n        </Segment>\n        <Segment className='purple'>\n          Purple\n        </Segment>\n        <Segment className='pink'>\n          Pink\n        </Segment>\n        <Segment className='brown'>\n          Brown\n        </Segment>\n        <Segment className='grey'>\n          Grey\n        </Segment>\n        <Segment className='black'>\n          Black\n        </Segment>\n      </div>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Segment } from 'stardust'\n\nexport default class SegmentBasicExample extends Component {\n  render() {\n    return (\n      <Segment className='basic'>\n        Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.\n        Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante.\n        Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.\n      </Segment>\n    )\n  }\n}\n"
 
 /***/ },
 /* 593 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Segment } from 'stardust'\n\nexport default class SegmentColoredInvertedExample extends Component {\n  render() {\n    return (\n      <div>\n        <Segment className='red inverted'>\n          Red\n        </Segment>\n        <Segment className='orange inverted'>\n          Orange\n        </Segment>\n        <Segment className='yellow inverted'>\n          Yellow\n        </Segment>\n        <Segment className='olive inverted'>\n          Olive\n        </Segment>\n        <Segment className='green inverted'>\n          Green\n        </Segment>\n        <Segment className='teal inverted'>\n          Teal\n        </Segment>\n        <Segment className='blue inverted'>\n          Blue\n        </Segment>\n        <Segment className='violet inverted'>\n          Violet\n        </Segment>\n        <Segment className='purple inverted'>\n          Purple\n        </Segment>\n        <Segment className='pink inverted'>\n          Pink\n        </Segment>\n        <Segment className='brown inverted'>\n          Brown\n        </Segment>\n        <Segment className='grey inverted'>\n          Grey\n        </Segment>\n        <Segment className='black inverted'>\n          Black\n        </Segment>\n      </div>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Header, Segment } from 'stardust'\n\nexport default class SegmentCircularExample extends Component {\n  render() {\n    return (\n      <div>\n        <Segment className='circular'>\n          <Header.H2>\n            Sale!\n            <Header.Subheader>\n              $10.99\n            </Header.Subheader>\n          </Header.H2>\n        </Segment>\n        <Segment className='red inverted circular'>\n          <Header.H3>\n            Buy Now\n            <Header.Subheader>\n              $10.99\n            </Header.Subheader>\n          </Header.H3>\n        </Segment>\n      </div>\n    )\n  }\n}\n"
 
 /***/ },
 /* 594 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Segment } from 'stardust'\n\nexport default class SegmentCompactExample extends Component {\n  render() {\n    return (\n      <Segment className='compact'>\n        Compact content.\n      </Segment>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Button, Segment } from 'stardust'\n\nexport default class SegmentClearingExample extends Component {\n  render() {\n    return (\n      <Segment className='clearing'>\n        <Button className='right floated'>\n          floated\n        </Button>\n      </Segment>\n    )\n  }\n}\n"
 
 /***/ },
 /* 595 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Segment } from 'stardust'\n\nexport default class SegmentCompactGroupExample extends Component {\n  render() {\n    return (\n      <Segment.Segments className='compact'>\n        <Segment>\n          Pellentesque habitant morbi\n        </Segment>\n        <Segment>\n          Pellentesque habitant morbi\n        </Segment>\n      </Segment.Segments>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Segment } from 'stardust'\n\nexport default class SegmentColoredExample extends Component {\n  render() {\n    return (\n      <div>\n        <Segment className='red'>\n          Red\n        </Segment>\n        <Segment className='orange'>\n          Orange\n        </Segment>\n        <Segment className='yellow'>\n          Yellow\n        </Segment>\n        <Segment className='olive'>\n          Olive\n        </Segment>\n        <Segment className='green'>\n          Green\n        </Segment>\n        <Segment className='teal'>\n          Teal\n        </Segment>\n        <Segment className='blue'>\n          Blue\n        </Segment>\n        <Segment className='violet'>\n          Violet\n        </Segment>\n        <Segment className='purple'>\n          Purple\n        </Segment>\n        <Segment className='pink'>\n          Pink\n        </Segment>\n        <Segment className='brown'>\n          Brown\n        </Segment>\n        <Segment className='grey'>\n          Grey\n        </Segment>\n        <Segment className='black'>\n          Black\n        </Segment>\n      </div>\n    )\n  }\n}\n"
 
 /***/ },
 /* 596 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Segment } from 'stardust'\n\nexport default class SegmentEmphasisExample extends Component {\n  render() {\n    return (\n      <div>\n        <Segment>\n          I'm here to tell you something, and you will probably read me first.\n        </Segment>\n        <Segment className='secondary'>\n          I am pretty noticeable but you might check out other content before you look at me.\n        </Segment>\n        <Segment className='tertiary'>\n          If you notice me you must be looking very hard.\n        </Segment>\n      </div>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Segment } from 'stardust'\n\nexport default class SegmentColoredInvertedExample extends Component {\n  render() {\n    return (\n      <div>\n        <Segment className='red inverted'>\n          Red\n        </Segment>\n        <Segment className='orange inverted'>\n          Orange\n        </Segment>\n        <Segment className='yellow inverted'>\n          Yellow\n        </Segment>\n        <Segment className='olive inverted'>\n          Olive\n        </Segment>\n        <Segment className='green inverted'>\n          Green\n        </Segment>\n        <Segment className='teal inverted'>\n          Teal\n        </Segment>\n        <Segment className='blue inverted'>\n          Blue\n        </Segment>\n        <Segment className='violet inverted'>\n          Violet\n        </Segment>\n        <Segment className='purple inverted'>\n          Purple\n        </Segment>\n        <Segment className='pink inverted'>\n          Pink\n        </Segment>\n        <Segment className='brown inverted'>\n          Brown\n        </Segment>\n        <Segment className='grey inverted'>\n          Grey\n        </Segment>\n        <Segment className='black inverted'>\n          Black\n        </Segment>\n      </div>\n    )\n  }\n}\n"
 
 /***/ },
 /* 597 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Segment } from 'stardust'\n\nexport default class SegmentFloatedExample extends Component {\n  render() {\n    return (\n      <div>\n        <Segment className='floated right'>\n          This segment will appear to the right\n        </Segment>\n        <Segment className='floated left'>\n          This segment will appear to the left\n        </Segment>\n      </div>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Segment } from 'stardust'\n\nexport default class SegmentCompactExample extends Component {\n  render() {\n    return (\n      <Segment className='compact'>\n        Compact content.\n      </Segment>\n    )\n  }\n}\n"
 
 /***/ },
 /* 598 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Segment } from 'stardust'\n\nexport default class SegmentInvertedExample extends Component {\n  render() {\n    return (\n      <Segment className='inverted'>\n        Inverted content.\n      </Segment>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Segment } from 'stardust'\n\nexport default class SegmentCompactGroupExample extends Component {\n  render() {\n    return (\n      <Segment.Segments className='compact'>\n        <Segment>\n          Pellentesque habitant morbi\n        </Segment>\n        <Segment>\n          Pellentesque habitant morbi\n        </Segment>\n      </Segment.Segments>\n    )\n  }\n}\n"
 
 /***/ },
 /* 599 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Segment } from 'stardust'\n\nexport default class SegmentPaddedExample extends Component {\n  render() {\n    return (\n      <Segment className='padded'>\n        Padded content.\n      </Segment>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Segment } from 'stardust'\n\nexport default class SegmentEmphasisExample extends Component {\n  render() {\n    return (\n      <div>\n        <Segment>\n          I'm here to tell you something, and you will probably read me first.\n        </Segment>\n        <Segment className='secondary'>\n          I am pretty noticeable but you might check out other content before you look at me.\n        </Segment>\n        <Segment className='tertiary'>\n          If you notice me you must be looking very hard.\n        </Segment>\n      </div>\n    )\n  }\n}\n"
 
 /***/ },
 /* 600 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Segment } from 'stardust'\n\nexport default class SegmentTextAlignmentExample extends Component {\n  render() {\n    return (\n      <div>\n        <Segment className='right aligned'>\n          Right aligned content.\n        </Segment>\n        <Segment className='left aligned'>\n          Left aligned content.\n        </Segment>\n        <Segment className='center aligned'>\n          Center aligned content.\n        </Segment>\n      </div>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Segment } from 'stardust'\n\nexport default class SegmentFloatedExample extends Component {\n  render() {\n    return (\n      <div>\n        <Segment className='floated right'>\n          This segment will appear to the right\n        </Segment>\n        <Segment className='floated left'>\n          This segment will appear to the left\n        </Segment>\n      </div>\n    )\n  }\n}\n"
 
 /***/ },
 /* 601 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'\nimport ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'\nimport { Message } from 'stardust'\n\nexport default class SegmentVariationsExamples extends Component {\n  render() {\n    return (\n      <ExampleSection title='Variations'>\n        <ComponentExample\n          title='Inverted'\n          description='A segment can have its colors inverted for contrast.'\n          examplePath='elements/Segment/Variations/SegmentInvertedExample'\n        />\n        <ComponentExample\n          title='Attached'\n          description='A segment can be attached to other content on a page.'\n          examplePath='elements/Segment/Variations/SegmentAttachedExample'\n        >\n          <Message className='info'>\n            Attached segments are designed to be used with other <code>attached</code> variations like\n            the <a href='#Header-Variations-HeaderAttachedExample'>attached header</a> or <i>attached messages</i>.\n          </Message>\n        </ComponentExample>\n        <ComponentExample\n          title='Attached Complex'\n          description='A segment can be attached in complex ways.'\n          examplePath='elements/Segment/Variations/SegmentAttachedComplexExample'\n        />\n        <ComponentExample\n          title='Padding'\n          description='A segment can increase its padding.'\n          examplePath='elements/Segment/Variations/SegmentPaddedExample'\n        />\n        <ComponentExample\n          title='Very Padded'\n          description='A segment can further increase its padding.'\n          examplePath='elements/Segment/Variations/SegmentVeryPaddedExample'\n        />\n        <ComponentExample\n          title='Compact'\n          description='A segment may take up only as much space as is necessary.'\n          examplePath='elements/Segment/Variations/SegmentCompactExample'\n        />\n        <ComponentExample\n          title='Compact Group'\n          description='A segment group may take up only as much space as is necessary.'\n          examplePath='elements/Segment/Variations/SegmentCompactGroupExample'\n        />\n        <ComponentExample\n          title='Colored'\n          description='A segment can be colored.'\n          examplePath='elements/Segment/Variations/SegmentColoredExample'\n        />\n        <ComponentExample\n          title='Colored'\n          description='These colors can be inverted.'\n          examplePath='elements/Segment/Variations/SegmentColoredInvertedExample'\n        />\n        <ComponentExample\n          title='Emphasis'\n          description='A segment can be formatted to appear more or less noticeable.'\n          examplePath='elements/Segment/Variations/SegmentEmphasisExample'\n        />\n        <ComponentExample\n          title='Circular'\n          description='A segment can be circular.'\n          examplePath='elements/Segment/Variations/SegmentCircularExample'\n        >\n          <Message className='info'>\n            A circular segment will most likely have to have its content manually sized to be equal width and height,\n            otherwise it will flow to the size of your content.\n          </Message>\n        </ComponentExample>\n        <ComponentExample\n          title='Clearing'\n          description='A segment can clear floated content.'\n          examplePath='elements/Segment/Variations/SegmentClearingExample'\n        />\n        <ComponentExample\n          title='Floated'\n          description='A segment can appear to the left or right of other content.'\n          examplePath='elements/Segment/Variations/SegmentFloatedExample'\n        />\n        <ComponentExample\n          title='Text Alignment'\n          description='A segment can have its text aligned to a side.'\n          examplePath='elements/Segment/Variations/SegmentTextAlignmentExample'\n        />\n        <ComponentExample\n          title='Basic'\n          description='A basic segment has no special formatting.'\n          examplePath='elements/Segment/Variations/SegmentBasicExample'\n        />\n      </ExampleSection>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Segment } from 'stardust'\n\nexport default class SegmentInvertedExample extends Component {\n  render() {\n    return (\n      <Segment className='inverted'>\n        Inverted content.\n      </Segment>\n    )\n  }\n}\n"
 
 /***/ },
 /* 602 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Segment } from 'stardust'\n\nexport default class SegmentVeryPaddedExample extends Component {\n  render() {\n    return (\n      <Segment className='very padded'>\n        Very padded content.\n      </Segment>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Segment } from 'stardust'\n\nexport default class SegmentPaddedExample extends Component {\n  render() {\n    return (\n      <Segment className='padded'>\n        Padded content.\n      </Segment>\n    )\n  }\n}\n"
 
 /***/ },
 /* 603 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport Types from './Types/Types'\nimport States from './States/States'\nimport Variations from './Variations/Variations'\n\nexport default class CheckboxExamples extends Component {\n  render() {\n    return (\n      <div>\n        <Types />\n        <States />\n        <Variations />\n      </div>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Segment } from 'stardust'\n\nexport default class SegmentTextAlignmentExample extends Component {\n  render() {\n    return (\n      <div>\n        <Segment className='right aligned'>\n          Right aligned content.\n        </Segment>\n        <Segment className='left aligned'>\n          Left aligned content.\n        </Segment>\n        <Segment className='center aligned'>\n          Center aligned content.\n        </Segment>\n      </div>\n    )\n  }\n}\n"
 
 /***/ },
 /* 604 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Button, Checkbox } from 'stardust'\n\nexport default class CheckboxRemoteControlExample extends Component {\n  toggle = () => {\n    this.refs.checkbox.plugin('toggle')\n  };\n\n  render() {\n    return (\n      <div>\n        <Button onClick={this.toggle}>Toggle it</Button>\n        <Checkbox label='Check this box' ref='checkbox' />\n      </div>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'\nimport ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'\nimport { Message } from 'stardust'\n\nexport default class SegmentVariationsExamples extends Component {\n  render() {\n    return (\n      <ExampleSection title='Variations'>\n        <ComponentExample\n          title='Inverted'\n          description='A segment can have its colors inverted for contrast.'\n          examplePath='elements/Segment/Variations/SegmentInvertedExample'\n        />\n        <ComponentExample\n          title='Attached'\n          description='A segment can be attached to other content on a page.'\n          examplePath='elements/Segment/Variations/SegmentAttachedExample'\n        >\n          <Message className='info'>\n            Attached segments are designed to be used with other <code>attached</code> variations like\n            the <a href='#Header-Variations-HeaderAttachedExample'>attached header</a> or <i>attached messages</i>.\n          </Message>\n        </ComponentExample>\n        <ComponentExample\n          title='Attached Complex'\n          description='A segment can be attached in complex ways.'\n          examplePath='elements/Segment/Variations/SegmentAttachedComplexExample'\n        />\n        <ComponentExample\n          title='Padding'\n          description='A segment can increase its padding.'\n          examplePath='elements/Segment/Variations/SegmentPaddedExample'\n        />\n        <ComponentExample\n          title='Very Padded'\n          description='A segment can further increase its padding.'\n          examplePath='elements/Segment/Variations/SegmentVeryPaddedExample'\n        />\n        <ComponentExample\n          title='Compact'\n          description='A segment may take up only as much space as is necessary.'\n          examplePath='elements/Segment/Variations/SegmentCompactExample'\n        />\n        <ComponentExample\n          title='Compact Group'\n          description='A segment group may take up only as much space as is necessary.'\n          examplePath='elements/Segment/Variations/SegmentCompactGroupExample'\n        />\n        <ComponentExample\n          title='Colored'\n          description='A segment can be colored.'\n          examplePath='elements/Segment/Variations/SegmentColoredExample'\n        />\n        <ComponentExample\n          title='Colored'\n          description='These colors can be inverted.'\n          examplePath='elements/Segment/Variations/SegmentColoredInvertedExample'\n        />\n        <ComponentExample\n          title='Emphasis'\n          description='A segment can be formatted to appear more or less noticeable.'\n          examplePath='elements/Segment/Variations/SegmentEmphasisExample'\n        />\n        <ComponentExample\n          title='Circular'\n          description='A segment can be circular.'\n          examplePath='elements/Segment/Variations/SegmentCircularExample'\n        >\n          <Message className='info'>\n            A circular segment will most likely have to have its content manually sized to be equal width and height,\n            otherwise it will flow to the size of your content.\n          </Message>\n        </ComponentExample>\n        <ComponentExample\n          title='Clearing'\n          description='A segment can clear floated content.'\n          examplePath='elements/Segment/Variations/SegmentClearingExample'\n        />\n        <ComponentExample\n          title='Floated'\n          description='A segment can appear to the left or right of other content.'\n          examplePath='elements/Segment/Variations/SegmentFloatedExample'\n        />\n        <ComponentExample\n          title='Text Alignment'\n          description='A segment can have its text aligned to a side.'\n          examplePath='elements/Segment/Variations/SegmentTextAlignmentExample'\n        />\n        <ComponentExample\n          title='Basic'\n          description='A basic segment has no special formatting.'\n          examplePath='elements/Segment/Variations/SegmentBasicExample'\n        />\n      </ExampleSection>\n    )\n  }\n}\n"
 
 /***/ },
 /* 605 */
 /***/ function(module, exports) {
 
-	module.exports = "import React from 'react'\nimport { Checkbox } from 'stardust'\n\nexport default CheckboxCheckedExample => {\n  return (\n    <Checkbox defaultChecked label='This checkbox comes prechecked' />\n  )\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Segment } from 'stardust'\n\nexport default class SegmentVeryPaddedExample extends Component {\n  render() {\n    return (\n      <Segment className='very padded'>\n        Very padded content.\n      </Segment>\n    )\n  }\n}\n"
 
 /***/ },
 /* 606 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Form, Checkbox, Field } from 'stardust'\n\nexport default class CheckboxDisabledExample extends Component {\n  render() {\n    return (\n      <Form>\n        <Form.Field>\n          <Checkbox className='disabled' label='Disabled' />\n        </Form.Field>\n        <Form.Field>\n          <Checkbox className='toggle' disabled label='Disabled' />\n        </Form.Field>\n      </Form>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport Types from './Types/Types'\nimport States from './States/States'\nimport Variations from './Variations/Variations'\n\nexport default class CheckboxExamples extends Component {\n  render() {\n    return (\n      <div>\n        <Types />\n        <States />\n        <Variations />\n      </div>\n    )\n  }\n}\n"
 
 /***/ },
 /* 607 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Checkbox } from 'stardust'\n\nexport default class CheckboxReadOnlyExample extends Component {\n  render() {\n    return (\n      <Checkbox className='read-only' label='This checkbox is read-only' />\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Button, Checkbox } from 'stardust'\n\nexport default class CheckboxRemoteControlExample extends Component {\n  toggle = () => {\n    this.refs.checkbox.plugin('toggle')\n  };\n\n  render() {\n    return (\n      <div>\n        <Button onClick={this.toggle}>Toggle it</Button>\n        <Checkbox label='Check this box' ref='checkbox' />\n      </div>\n    )\n  }\n}\n"
 
 /***/ },
 /* 608 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'\nimport ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'\nimport { Message } from 'stardust'\n\nexport default class CheckboxStatesExamples extends Component {\n  render() {\n    return (\n      <ExampleSection title='States'>\n        <ComponentExample\n          title='Checked'\n          description='A checkbox can come pre-checked'\n          examplePath='modules/Checkbox/States/Checked'\n        >\n          <Message>\n            Use\n            &nbsp;\n            <a href='https://facebook.github.io/react/docs/forms.html#default-value' target='_blank'>\n              <code>defaultChecked</code>\n            </a>\n            &nbsp;\n            as you normally would to set default form values.\n          </Message>\n        </ComponentExample>\n        <ComponentExample\n          title='Disabled'\n          description='Checkboxes can be disabled'\n          examplePath='modules/Checkbox/States/Disabled'\n        />\n        <ComponentExample\n          title='ReadOnly'\n          description='Make the checkbox unable to be edited by the user'\n          examplePath='modules/Checkbox/States/ReadOnly'\n        />\n        <ComponentExample\n          title='Remote Control'\n          description='You can trigger events remotely.'\n          examplePath='modules/Checkbox/States/CheckboxRemoteControlExample'\n        />\n      </ExampleSection>\n    )\n  }\n}\n"
+	module.exports = "import React from 'react'\nimport { Checkbox } from 'stardust'\n\nexport default CheckboxCheckedExample => {\n  return (\n    <Checkbox defaultChecked label='This checkbox comes prechecked' />\n  )\n}\n"
 
 /***/ },
 /* 609 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Checkbox } from 'stardust'\n\nexport default class CheckboxCheckboxExample extends Component {\n  render() {\n    return (\n      <Checkbox label='Make my profile visible' />\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Form, Checkbox, Field } from 'stardust'\n\nexport default class CheckboxDisabledExample extends Component {\n  render() {\n    return (\n      <Form>\n        <Form.Field>\n          <Checkbox className='disabled' label='Disabled' />\n        </Form.Field>\n        <Form.Field>\n          <Checkbox className='toggle' disabled label='Disabled' />\n        </Form.Field>\n      </Form>\n    )\n  }\n}\n"
 
 /***/ },
 /* 610 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Checkbox } from 'stardust'\n\nexport default class CheckboxRadioExample extends Component {\n  render() {\n    return (\n      <div>\n        <Checkbox className='radio' label='Radio choice' />\n      </div>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Checkbox } from 'stardust'\n\nexport default class CheckboxReadOnlyExample extends Component {\n  render() {\n    return (\n      <Checkbox className='read-only' label='This checkbox is read-only' />\n    )\n  }\n}\n"
 
 /***/ },
 /* 611 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Form, Checkbox } from 'stardust'\n\nexport default class CheckboxRadioGroupExample extends Component {\n  render() {\n    return (\n      <Form>\n        <Form.Field>\n          <Checkbox className='radio' label='Choose this' name='radioGroup' />\n        </Form.Field>\n        <Form.Field>\n          <Checkbox className='radio' label='Or that' name='radioGroup' />\n        </Form.Field>\n      </Form>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'\nimport ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'\nimport { Message } from 'stardust'\n\nexport default class CheckboxStatesExamples extends Component {\n  render() {\n    return (\n      <ExampleSection title='States'>\n        <ComponentExample\n          title='Checked'\n          description='A checkbox can come pre-checked'\n          examplePath='modules/Checkbox/States/Checked'\n        >\n          <Message>\n            Use\n            &nbsp;\n            <a href='https://facebook.github.io/react/docs/forms.html#default-value' target='_blank'>\n              <code>defaultChecked</code>\n            </a>\n            &nbsp;\n            as you normally would to set default form values.\n          </Message>\n        </ComponentExample>\n        <ComponentExample\n          title='Disabled'\n          description='Checkboxes can be disabled'\n          examplePath='modules/Checkbox/States/Disabled'\n        />\n        <ComponentExample\n          title='ReadOnly'\n          description='Make the checkbox unable to be edited by the user'\n          examplePath='modules/Checkbox/States/ReadOnly'\n        />\n        <ComponentExample\n          title='Remote Control'\n          description='You can trigger events remotely.'\n          examplePath='modules/Checkbox/States/CheckboxRemoteControlExample'\n        />\n      </ExampleSection>\n    )\n  }\n}\n"
 
 /***/ },
 /* 612 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Checkbox } from 'stardust'\n\nexport default class CheckboxSliderExample extends Component {\n  render() {\n    return (\n      <Checkbox className='slider' />\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Checkbox } from 'stardust'\n\nexport default class CheckboxCheckboxExample extends Component {\n  render() {\n    return (\n      <Checkbox label='Make my profile visible' />\n    )\n  }\n}\n"
 
 /***/ },
 /* 613 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Checkbox } from 'stardust'\n\nexport default class CheckboxToggleExample extends Component {\n  render() {\n    return (\n      <Checkbox className='toggle' />\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Checkbox } from 'stardust'\n\nexport default class CheckboxRadioExample extends Component {\n  render() {\n    return (\n      <div>\n        <Checkbox className='radio' label='Radio choice' />\n      </div>\n    )\n  }\n}\n"
 
 /***/ },
 /* 614 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'\nimport ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'\n\nexport default class CheckboxTypesExamples extends Component {\n  render() {\n    return (\n      <ExampleSection title='Types'>\n        <ComponentExample\n          title='Checkbox'\n          description='A box for checking.'\n          examplePath='modules/Checkbox/Types/Checkbox'\n        />\n        <ComponentExample\n          title='Toggle'\n          description='A checkbox can toggle.'\n          examplePath='modules/Checkbox/Types/Toggle'\n        />\n        <ComponentExample\n          title='Slider'\n          description='A checkbox can look like a slider.'\n          examplePath='modules/Checkbox/Types/Slider'\n        />\n        <ComponentExample\n          title='Radio'\n          description='A checkbox can be formatted as a radio element. This means it is an exclusive option.'\n          examplePath='modules/Checkbox/Types/Radio'\n        />\n        <ComponentExample examplePath='modules/Checkbox/Types/RadioGroup' />\n      </ExampleSection>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Form, Checkbox } from 'stardust'\n\nexport default class CheckboxRadioGroupExample extends Component {\n  render() {\n    return (\n      <Form>\n        <Form.Field>\n          <Checkbox className='radio' label='Choose this' name='radioGroup' />\n        </Form.Field>\n        <Form.Field>\n          <Checkbox className='radio' label='Or that' name='radioGroup' />\n        </Form.Field>\n      </Form>\n    )\n  }\n}\n"
 
 /***/ },
 /* 615 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Checkbox, Segment } from 'stardust'\n\nexport default class CheckboxFittedExample extends Component {\n  render() {\n    return (\n      <div>\n        <Segment className='compact'>\n          <Checkbox />\n        </Segment>\n        <Segment className='compact'>\n          <Checkbox className='slider' />\n        </Segment>\n        <Segment className='compact'>\n          <Checkbox className='toggle' />\n        </Segment>\n      </div>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Checkbox } from 'stardust'\n\nexport default class CheckboxSliderExample extends Component {\n  render() {\n    return (\n      <Checkbox className='slider' />\n    )\n  }\n}\n"
 
 /***/ },
 /* 616 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'\nimport ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'\nimport { Message } from 'stardust'\n\nexport default class CheckboxVariationsExamples extends Component {\n  render() {\n    return (\n      <ExampleSection title='Variations'>\n        <ComponentExample\n          title='Fitted'\n          description='A fitted checkbox does not leave padding for a label'\n          examplePath='modules/Checkbox/Variations/Fitted'\n        >\n          <Message>\n            The&nbsp;\n            <a href='http://semantic-ui.com/modules/checkbox.html#fitted' target='_blank'>\n              <code>fitted</code>\n            </a>\n            &nbsp;class is automatically applied if there is no <code>label</code> prop.\n          </Message>\n        </ComponentExample>\n      </ExampleSection>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Checkbox } from 'stardust'\n\nexport default class CheckboxToggleExample extends Component {\n  render() {\n    return (\n      <Checkbox className='toggle' />\n    )\n  }\n}\n"
 
 /***/ },
 /* 617 */
 /***/ function(module, exports) {
 
-	module.exports = "import React from 'react'\nimport { Progress } from 'stardust'\n\nconst ProgressBarExample = () => (\n  <Progress percent={33} />\n)\n\nexport default ProgressBarExample\n"
+	module.exports = "import React, { Component } from 'react'\nimport ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'\nimport ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'\n\nexport default class CheckboxTypesExamples extends Component {\n  render() {\n    return (\n      <ExampleSection title='Types'>\n        <ComponentExample\n          title='Checkbox'\n          description='A box for checking.'\n          examplePath='modules/Checkbox/Types/Checkbox'\n        />\n        <ComponentExample\n          title='Toggle'\n          description='A checkbox can toggle.'\n          examplePath='modules/Checkbox/Types/Toggle'\n        />\n        <ComponentExample\n          title='Slider'\n          description='A checkbox can look like a slider.'\n          examplePath='modules/Checkbox/Types/Slider'\n        />\n        <ComponentExample\n          title='Radio'\n          description='A checkbox can be formatted as a radio element. This means it is an exclusive option.'\n          examplePath='modules/Checkbox/Types/Radio'\n        />\n        <ComponentExample examplePath='modules/Checkbox/Types/RadioGroup' />\n      </ExampleSection>\n    )\n  }\n}\n"
 
 /***/ },
 /* 618 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'\nimport ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'\n\nexport default class ProgressContentExamples extends Component {\n  render() {\n    return (\n      <ExampleSection title='Content'>\n        <ComponentExample\n          title='Bar'\n          description='A progress element can contain a bar visually indicating progress.'\n          examplePath='modules/Progress/Content/Bar'\n        />\n        <ComponentExample\n          title='Progress'\n          description='A progress bar can contain a text value indicating current progress.'\n          examplePath='modules/Progress/Content/Progress'\n        />\n        <ComponentExample\n          title='Label'\n          description='A progress element can contain a label.'\n          examplePath='modules/Progress/Content/Label'\n        />\n      </ExampleSection>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Checkbox, Segment } from 'stardust'\n\nexport default class CheckboxFittedExample extends Component {\n  render() {\n    return (\n      <div>\n        <Segment className='compact'>\n          <Checkbox />\n        </Segment>\n        <Segment className='compact'>\n          <Checkbox className='slider' />\n        </Segment>\n        <Segment className='compact'>\n          <Checkbox className='toggle' />\n        </Segment>\n      </div>\n    )\n  }\n}\n"
 
 /***/ },
 /* 619 */
 /***/ function(module, exports) {
 
-	module.exports = "import React from 'react'\nimport { Progress } from 'stardust'\n\nconst ProgressLabelExample = () => (\n  <Progress percent={55}>Label</Progress>\n)\n\nexport default ProgressLabelExample\n"
+	module.exports = "import React, { Component } from 'react'\nimport ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'\nimport ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'\nimport { Message } from 'stardust'\n\nexport default class CheckboxVariationsExamples extends Component {\n  render() {\n    return (\n      <ExampleSection title='Variations'>\n        <ComponentExample\n          title='Fitted'\n          description='A fitted checkbox does not leave padding for a label'\n          examplePath='modules/Checkbox/Variations/Fitted'\n        >\n          <Message>\n            The&nbsp;\n            <a href='http://semantic-ui.com/modules/checkbox.html#fitted' target='_blank'>\n              <code>fitted</code>\n            </a>\n            &nbsp;class is automatically applied if there is no <code>label</code> prop.\n          </Message>\n        </ComponentExample>\n      </ExampleSection>\n    )\n  }\n}\n"
 
 /***/ },
 /* 620 */
 /***/ function(module, exports) {
 
-	module.exports = "import React from 'react'\nimport { Progress } from 'stardust'\n\nconst ProgressExample = () => (\n  <Progress percent={44} showProgress />\n)\n\nexport default ProgressExample\n"
+	module.exports = "import _ from 'lodash'\nimport cx from 'classnames'\nimport faker from 'faker'\nimport React, { Component } from 'react'\nimport { Button, Dropdown } from 'stardust'\n\nconst getOptions = () => _.times(3, () => {\n  const name = faker.name.findName()\n  return { text: name, value: _.snakeCase(name) }\n})\n\nexport default class DropdownAsyncOptions extends Component {\n  state = { isFetching: false, value: [], options: [] }\n\n  handleChange = value => this.setState({ value })\n\n  // fake api call\n  fetchOptions = () => {\n    this.setState({ isFetching: true })\n\n    setTimeout(() => {\n      this.setState({ isFetching: false, options: getOptions() })\n      this.selectRandom()\n    }, 500)\n  }\n\n  selectRandom = () => this.setState({ value: _.sample(this.state.options).value })\n\n  render() {\n    const { options, isFetching, value } = this.state\n    const classes = cx('search selection multiple', { 'disabled loading': isFetching })\n\n    return (\n      <div>\n        <Button onClick={this.fetchOptions}>Fetch</Button>\n        <Button onClick={this.selectRandom} disabled={_.isEmpty(options)}>Random</Button>\n        <Dropdown\n          defaultText='Add Users'\n          className={classes}\n          options={options}\n          value={value}\n          onChange={this.handleChange}\n        />\n        <pre>{JSON.stringify(this.state, null, 2)}</pre>\n      </div>\n    )\n  }\n}\n"
 
 /***/ },
 /* 621 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport Types from './Types/Types'\nimport Content from './Content/Content'\nimport States from './States/States'\n\nexport default class ProgressExamples extends Component {\n  render() {\n    return (\n      <div>\n        <Types />\n        <Content />\n        <States />\n      </div>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'\nimport ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'\n\nexport default class DropdownContentExamples extends Component {\n  render() {\n    return (\n      <ExampleSection title='Content'>\n        <ComponentExample\n          title='Async Options'\n          description=\"A dropdown's options can change over time\"\n          examplePath='modules/Dropdown/Content/AsyncOptions'\n        />\n      </ExampleSection>\n    )\n  }\n}\n"
 
 /***/ },
 /* 622 */
 /***/ function(module, exports) {
 
-	module.exports = "import React from 'react'\nimport { Progress } from 'stardust'\n\nconst ProgressActiveExample = () => (\n  <Progress percent={60} className='active'>\n    Active\n  </Progress>\n)\n\nexport default ProgressActiveExample\n"
+	module.exports = "import React, { Component } from 'react'\nimport Types from './Types/Types'\nimport Content from './Content/Content'\nimport States from './States/States'\n\nexport default class DropdownExamples extends Component {\n  render() {\n    return (\n      <div>\n        <Types />\n        <Content />\n        <States />\n      </div>\n    )\n  }\n}\n"
 
 /***/ },
 /* 623 */
 /***/ function(module, exports) {
 
-	module.exports = "import React from 'react'\nimport { Progress } from 'stardust'\n\nconst ProgressDisabledExample = () => (\n  <Progress percent={60} className='disabled'>\n    Disabled\n  </Progress>\n)\n\nexport default ProgressDisabledExample\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Dropdown } from 'stardust'\n\nexport default class DropdownDisabledExample extends Component {\n  render() {\n    return (\n      <Dropdown className='disabled' text='Dropdown'>\n        <Dropdown.Menu>\n          <Dropdown.Item text='Choice 1' />\n          <Dropdown.Item text='Choice 2' />\n          <Dropdown.Item text='Choice 3' />\n        </Dropdown.Menu>\n      </Dropdown>\n    )\n  }\n}\n"
 
 /***/ },
 /* 624 */
 /***/ function(module, exports) {
 
-	module.exports = "import React from 'react'\nimport { Progress } from 'stardust'\n\nconst ProgressErrorExample = () => (\n  <Progress percent={100} className='error'>\n    There was an error\n  </Progress>\n)\n\nexport default ProgressErrorExample\n"
+	module.exports = "import React, { Component } from 'react'\nimport ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'\nimport ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'\n\nexport default class DropdownStatesExamples extends Component {\n  render() {\n    return (\n      <ExampleSection title='States'>\n        <ComponentExample\n          title='Disabled'\n          description='A disabled dropdown menu or item does not allow user interaction'\n          examplePath='modules/Dropdown/States/Disabled'\n        />\n      </ExampleSection>\n    )\n  }\n}\n"
 
 /***/ },
 /* 625 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'\nimport ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'\nimport { Message } from 'stardust'\n\nexport default class ProgressStatesExamples extends Component {\n  render() {\n    return (\n      <ExampleSection title='States'>\n        <Message className='info'>\n          Semantic UI state classes <code>success</code>, <code>warning</code>, and <code>error</code>\n          {' '}are only retained at 100% completion.\n        </Message>\n        <ComponentExample\n          title='Active'\n          description='A progress bar can show activity'\n          examplePath='modules/Progress/States/Active'\n        />\n        <ComponentExample\n          title='Success'\n          description='A progress bar can show a success state.'\n          examplePath='modules/Progress/States/Success'\n        />\n        <ComponentExample\n          title='Warning'\n          description='A progress bar can show a warning state.'\n          examplePath='modules/Progress/States/Warning'\n        />\n        <ComponentExample\n          title='Error'\n          description='A progress bar can show an error state.'\n          examplePath='modules/Progress/States/Error'\n        />\n        <ComponentExample\n          title='Disabled'\n          description='A progress bar can be disabled.'\n          examplePath='modules/Progress/States/Disabled'\n        />\n      </ExampleSection>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport { Dropdown } from 'stardust'\n\nexport default class DropdownDropdownExample extends Component {\n  render() {\n    return (\n      <Dropdown text='File' action='hide'>\n        <Dropdown.Item text='New' />\n        <Dropdown.Item text='Open...' description='ctrl + o' />\n        <Dropdown.Item text='Save as...' description='ctrl + s' />\n        <Dropdown.Item text='Rename' description='ctrl + r' />\n        <Dropdown.Item text='Make a copy' />\n        <Dropdown.Item icon='trash' text='Move to trash' />\n        <Dropdown.Divider />\n        <Dropdown.Item text='Download As...' />\n        <Dropdown.Item text='Publish To Web'>\n          <Dropdown.Menu>\n            <Dropdown.Item text='Google Docs' />\n            <Dropdown.Item text='Google Drive' />\n            <Dropdown.Item text='Dropbox' />\n            <Dropdown.Item text='Adobe Creative Cloud' />\n            <Dropdown.Item text='Private FTP' />\n            <Dropdown.Item text='Another Service...' />\n          </Dropdown.Menu>\n        </Dropdown.Item>\n        {/* item text can also be defined as children */}\n        <Dropdown.Item>E-mail Collaborators</Dropdown.Item>\n      </Dropdown>\n    )\n  }\n}\n"
 
 /***/ },
 /* 626 */
 /***/ function(module, exports) {
 
-	module.exports = "import React from 'react'\nimport { Progress } from 'stardust'\n\nconst ProgressSuccessExample = () => (\n  <Progress percent={100} className='success'>\n    The progress was successful\n  </Progress>\n)\n\nexport default ProgressSuccessExample\n"
+	module.exports = "import React, { Component } from 'react'\nimport ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'\nimport ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'\nimport { Message } from 'stardust'\n\nexport default class DropdownTypesExamples extends Component {\n  render() {\n    return (\n      <ExampleSection title='Types'>\n        <ComponentExample\n          title='Dropdown'\n          description='A dropdown'\n          examplePath='modules/Dropdown/Types/Dropdown'\n        >\n          <Message>\n            Dropdown <code>children</code> are automatically wrapped in a\n            {' '}<code>{`<Dropdown.Menu />`}</code> for convenience.\n          </Message>\n        </ComponentExample>\n      </ExampleSection>\n    )\n  }\n}\n"
 
 /***/ },
 /* 627 */
 /***/ function(module, exports) {
 
-	module.exports = "import React from 'react'\nimport { Progress } from 'stardust'\n\nconst ProgressWarningExample = () => (\n  <Progress percent={100} className='warning'>\n    I am warning you\n  </Progress>\n)\n\nexport default ProgressWarningExample\n"
+	module.exports = "import React from 'react'\nimport { Progress } from 'stardust'\n\nconst ProgressBarExample = () => (\n  <Progress percent={33} />\n)\n\nexport default ProgressBarExample\n"
 
 /***/ },
 /* 628 */
 /***/ function(module, exports) {
 
-	module.exports = "import React from 'react'\nimport { Progress } from 'stardust'\n\nconst ProgressIndicatingExample = () => (\n  <Progress percent={22} showActivity />\n)\n\nexport default ProgressIndicatingExample\n"
+	module.exports = "import React, { Component } from 'react'\nimport ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'\nimport ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'\n\nexport default class ProgressContentExamples extends Component {\n  render() {\n    return (\n      <ExampleSection title='Content'>\n        <ComponentExample\n          title='Bar'\n          description='A progress element can contain a bar visually indicating progress.'\n          examplePath='modules/Progress/Content/Bar'\n        />\n        <ComponentExample\n          title='Progress'\n          description='A progress bar can contain a text value indicating current progress.'\n          examplePath='modules/Progress/Content/Progress'\n        />\n        <ComponentExample\n          title='Label'\n          description='A progress element can contain a label.'\n          examplePath='modules/Progress/Content/Label'\n        />\n      </ExampleSection>\n    )\n  }\n}\n"
 
 /***/ },
 /* 629 */
 /***/ function(module, exports) {
 
-	module.exports = "import React from 'react'\nimport { Progress } from 'stardust'\n\nconst ProgressStandardExample = () => (\n  <Progress percent={11} />\n)\n\nexport default ProgressStandardExample\n"
+	module.exports = "import React from 'react'\nimport { Progress } from 'stardust'\n\nconst ProgressLabelExample = () => (\n  <Progress percent={55}>Label</Progress>\n)\n\nexport default ProgressLabelExample\n"
 
 /***/ },
 /* 630 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'\nimport ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'\n\nexport default class ProgressTypesExamples extends Component {\n  render() {\n    return (\n      <ExampleSection title='Types'>\n        <ComponentExample\n          title='Standard'\n          description='A standard progress bar.'\n          examplePath='modules/Progress/Types/Standard'\n        />\n        <ComponentExample\n          title='Indicating'\n          description='An indicating progress bar visually indicates the current level of progress of a task.'\n          examplePath='modules/Progress/Types/Indicating'\n        />\n      </ExampleSection>\n    )\n  }\n}\n"
+	module.exports = "import React from 'react'\nimport { Progress } from 'stardust'\n\nconst ProgressExample = () => (\n  <Progress percent={44} showProgress />\n)\n\nexport default ProgressExample\n"
 
 /***/ },
 /* 631 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport StatisticTypesExamples from './Types/StatisticTypesExamples'\n\nexport default class StatisticExamples extends Component {\n  render() {\n    return (\n      <div>\n        <StatisticTypesExamples />\n      </div>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport Types from './Types/Types'\nimport Content from './Content/Content'\nimport States from './States/States'\n\nexport default class ProgressExamples extends Component {\n  render() {\n    return (\n      <div>\n        <Types />\n        <Content />\n        <States />\n      </div>\n    )\n  }\n}\n"
 
 /***/ },
 /* 632 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Statistic } from 'stardust'\n\nexport default class StatisticBottomLabelExample extends Component {\n  render() {\n    return (\n      <Statistic>\n        <Statistic.Value>5,550</Statistic.Value>\n        <Statistic.Label>Downloads</Statistic.Label>\n      </Statistic>\n    )\n  }\n}\n"
+	module.exports = "import React from 'react'\nimport { Progress } from 'stardust'\n\nconst ProgressActiveExample = () => (\n  <Progress percent={60} className='active'>\n    Active\n  </Progress>\n)\n\nexport default ProgressActiveExample\n"
 
 /***/ },
 /* 633 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Statistic } from 'stardust'\nconst { Statistics, Label, Value } = Statistic\n\nexport default class StatisticGroupExample extends Component {\n  render() {\n    return (\n      <Statistics>\n        <Statistic>\n          <Value>22</Value>\n          <Label>Faves</Label>\n        </Statistic>\n        <Statistic>\n          <Value>31,200</Value>\n          <Label>Views</Label>\n        </Statistic>\n        <Statistic>\n          <Value>22</Value>\n          <Label>Members</Label>\n        </Statistic>\n      </Statistics>\n    )\n  }\n}\n"
+	module.exports = "import React from 'react'\nimport { Progress } from 'stardust'\n\nconst ProgressDisabledExample = () => (\n  <Progress percent={60} className='disabled'>\n    Disabled\n  </Progress>\n)\n\nexport default ProgressDisabledExample\n"
 
 /***/ },
 /* 634 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport { Statistic } from 'stardust'\n\nexport default class StatisticTopLabelExample extends Component {\n  render() {\n    return (\n      <Statistic>\n        <Statistic.Label>Views</Statistic.Label>\n        <Statistic.Value>40,509</Statistic.Value>\n      </Statistic>\n    )\n  }\n}\n"
+	module.exports = "import React from 'react'\nimport { Progress } from 'stardust'\n\nconst ProgressErrorExample = () => (\n  <Progress percent={100} className='error'>\n    There was an error\n  </Progress>\n)\n\nexport default ProgressErrorExample\n"
 
 /***/ },
 /* 635 */
 /***/ function(module, exports) {
 
-	module.exports = "import React, { Component } from 'react'\nimport ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'\nimport ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'\n\nexport default class StatisticTypesExamples extends Component {\n  render() {\n    return (\n      <ExampleSection title='Types'>\n        <ComponentExample\n          title='Statistic'\n          description='A statistic can display a value with a label above or below it.'\n          examplePath='views/Statistic/Types/StatisticBottomLabelExample'\n        />\n        <ComponentExample\n          examplePath='views/Statistic/Types/StatisticTopLabelExample'\n        />\n        <ComponentExample\n          title='Statistic Group'\n          description='A group of statistics'\n          examplePath='views/Statistic/Types/StatisticGroupExample'\n        />\n      </ExampleSection>\n    )\n  }\n}\n"
+	module.exports = "import React, { Component } from 'react'\nimport ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'\nimport ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'\nimport { Message } from 'stardust'\n\nexport default class ProgressStatesExamples extends Component {\n  render() {\n    return (\n      <ExampleSection title='States'>\n        <Message className='info'>\n          Semantic UI state classes <code>success</code>, <code>warning</code>, and <code>error</code>\n          {' '}are only retained at 100% completion.\n        </Message>\n        <ComponentExample\n          title='Active'\n          description='A progress bar can show activity'\n          examplePath='modules/Progress/States/Active'\n        />\n        <ComponentExample\n          title='Success'\n          description='A progress bar can show a success state.'\n          examplePath='modules/Progress/States/Success'\n        />\n        <ComponentExample\n          title='Warning'\n          description='A progress bar can show a warning state.'\n          examplePath='modules/Progress/States/Warning'\n        />\n        <ComponentExample\n          title='Error'\n          description='A progress bar can show an error state.'\n          examplePath='modules/Progress/States/Error'\n        />\n        <ComponentExample\n          title='Disabled'\n          description='A progress bar can be disabled.'\n          examplePath='modules/Progress/States/Disabled'\n        />\n      </ExampleSection>\n    )\n  }\n}\n"
 
 /***/ },
 /* 636 */
+/***/ function(module, exports) {
+
+	module.exports = "import React from 'react'\nimport { Progress } from 'stardust'\n\nconst ProgressSuccessExample = () => (\n  <Progress percent={100} className='success'>\n    The progress was successful\n  </Progress>\n)\n\nexport default ProgressSuccessExample\n"
+
+/***/ },
+/* 637 */
+/***/ function(module, exports) {
+
+	module.exports = "import React from 'react'\nimport { Progress } from 'stardust'\n\nconst ProgressWarningExample = () => (\n  <Progress percent={100} className='warning'>\n    I am warning you\n  </Progress>\n)\n\nexport default ProgressWarningExample\n"
+
+/***/ },
+/* 638 */
+/***/ function(module, exports) {
+
+	module.exports = "import React from 'react'\nimport { Progress } from 'stardust'\n\nconst ProgressIndicatingExample = () => (\n  <Progress percent={22} showActivity />\n)\n\nexport default ProgressIndicatingExample\n"
+
+/***/ },
+/* 639 */
+/***/ function(module, exports) {
+
+	module.exports = "import React from 'react'\nimport { Progress } from 'stardust'\n\nconst ProgressStandardExample = () => (\n  <Progress percent={11} />\n)\n\nexport default ProgressStandardExample\n"
+
+/***/ },
+/* 640 */
+/***/ function(module, exports) {
+
+	module.exports = "import React, { Component } from 'react'\nimport ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'\nimport ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'\n\nexport default class ProgressTypesExamples extends Component {\n  render() {\n    return (\n      <ExampleSection title='Types'>\n        <ComponentExample\n          title='Standard'\n          description='A standard progress bar.'\n          examplePath='modules/Progress/Types/Standard'\n        />\n        <ComponentExample\n          title='Indicating'\n          description='An indicating progress bar visually indicates the current level of progress of a task.'\n          examplePath='modules/Progress/Types/Indicating'\n        />\n      </ExampleSection>\n    )\n  }\n}\n"
+
+/***/ },
+/* 641 */
+/***/ function(module, exports) {
+
+	module.exports = "import React, { Component } from 'react'\nimport StatisticTypesExamples from './Types/StatisticTypesExamples'\n\nexport default class StatisticExamples extends Component {\n  render() {\n    return (\n      <div>\n        <StatisticTypesExamples />\n      </div>\n    )\n  }\n}\n"
+
+/***/ },
+/* 642 */
+/***/ function(module, exports) {
+
+	module.exports = "import React, { Component } from 'react'\nimport { Statistic } from 'stardust'\n\nexport default class StatisticBottomLabelExample extends Component {\n  render() {\n    return (\n      <Statistic>\n        <Statistic.Value>5,550</Statistic.Value>\n        <Statistic.Label>Downloads</Statistic.Label>\n      </Statistic>\n    )\n  }\n}\n"
+
+/***/ },
+/* 643 */
+/***/ function(module, exports) {
+
+	module.exports = "import React, { Component } from 'react'\nimport { Statistic } from 'stardust'\nconst { Statistics, Label, Value } = Statistic\n\nexport default class StatisticGroupExample extends Component {\n  render() {\n    return (\n      <Statistics>\n        <Statistic>\n          <Value>22</Value>\n          <Label>Faves</Label>\n        </Statistic>\n        <Statistic>\n          <Value>31,200</Value>\n          <Label>Views</Label>\n        </Statistic>\n        <Statistic>\n          <Value>22</Value>\n          <Label>Members</Label>\n        </Statistic>\n      </Statistics>\n    )\n  }\n}\n"
+
+/***/ },
+/* 644 */
+/***/ function(module, exports) {
+
+	module.exports = "import React, { Component } from 'react'\nimport { Statistic } from 'stardust'\n\nexport default class StatisticTopLabelExample extends Component {\n  render() {\n    return (\n      <Statistic>\n        <Statistic.Label>Views</Statistic.Label>\n        <Statistic.Value>40,509</Statistic.Value>\n      </Statistic>\n    )\n  }\n}\n"
+
+/***/ },
+/* 645 */
+/***/ function(module, exports) {
+
+	module.exports = "import React, { Component } from 'react'\nimport ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'\nimport ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'\n\nexport default class StatisticTypesExamples extends Component {\n  render() {\n    return (\n      <ExampleSection title='Types'>\n        <ComponentExample\n          title='Statistic'\n          description='A statistic can display a value with a label above or below it.'\n          examplePath='views/Statistic/Types/StatisticBottomLabelExample'\n        />\n        <ComponentExample\n          examplePath='views/Statistic/Types/StatisticTopLabelExample'\n        />\n        <ComponentExample\n          title='Statistic Group'\n          description='A group of statistics'\n          examplePath='views/Statistic/Types/StatisticGroupExample'\n        />\n      </ExampleSection>\n    )\n  }\n}\n"
+
+/***/ },
+/* 646 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -16190,7 +16549,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 637 */
+/* 647 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -16251,7 +16610,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 638 */
+/* 648 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -16268,11 +16627,11 @@ webpackJsonp([0],[
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _ExampleSection = __webpack_require__(288);
+	var _ExampleSection = __webpack_require__(291);
 	
 	var _ExampleSection2 = _interopRequireDefault(_ExampleSection);
 	
-	var _ComponentExample = __webpack_require__(289);
+	var _ComponentExample = __webpack_require__(292);
 	
 	var _ComponentExample2 = _interopRequireDefault(_ComponentExample);
 	
@@ -16318,7 +16677,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 639 */
+/* 649 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -16335,31 +16694,31 @@ webpackJsonp([0],[
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _FormContentExamples = __webpack_require__(287);
+	var _FormContentExamples = __webpack_require__(290);
 	
 	var _FormContentExamples2 = _interopRequireDefault(_FormContentExamples);
 	
-	var _FormTypesExamples = __webpack_require__(640);
+	var _FormTypesExamples = __webpack_require__(650);
 	
 	var _FormTypesExamples2 = _interopRequireDefault(_FormTypesExamples);
 	
-	var _FormFieldVariationsExamples = __webpack_require__(638);
+	var _FormFieldVariationsExamples = __webpack_require__(648);
 	
 	var _FormFieldVariationsExamples2 = _interopRequireDefault(_FormFieldVariationsExamples);
 	
-	var _FormGroupVariationsExamples = __webpack_require__(641);
+	var _FormGroupVariationsExamples = __webpack_require__(651);
 	
 	var _FormGroupVariationsExamples2 = _interopRequireDefault(_FormGroupVariationsExamples);
 	
-	var _FormFormVariationsExamples = __webpack_require__(642);
+	var _FormFormVariationsExamples = __webpack_require__(652);
 	
 	var _FormFormVariationsExamples2 = _interopRequireDefault(_FormFormVariationsExamples);
 	
-	var _FormStatesExamples = __webpack_require__(643);
+	var _FormStatesExamples = __webpack_require__(653);
 	
 	var _FormStatesExamples2 = _interopRequireDefault(_FormStatesExamples);
 	
-	var _FormValidationExamples = __webpack_require__(644);
+	var _FormValidationExamples = __webpack_require__(654);
 	
 	var _FormValidationExamples2 = _interopRequireDefault(_FormValidationExamples);
 	
@@ -16407,7 +16766,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 640 */
+/* 650 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -16424,11 +16783,11 @@ webpackJsonp([0],[
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _ExampleSection = __webpack_require__(288);
+	var _ExampleSection = __webpack_require__(291);
 	
 	var _ExampleSection2 = _interopRequireDefault(_ExampleSection);
 	
-	var _ComponentExample = __webpack_require__(289);
+	var _ComponentExample = __webpack_require__(292);
 	
 	var _ComponentExample2 = _interopRequireDefault(_ComponentExample);
 	
@@ -16474,7 +16833,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 641 */
+/* 651 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -16491,11 +16850,11 @@ webpackJsonp([0],[
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _ExampleSection = __webpack_require__(288);
+	var _ExampleSection = __webpack_require__(291);
 	
 	var _ExampleSection2 = _interopRequireDefault(_ExampleSection);
 	
-	var _ComponentExample = __webpack_require__(289);
+	var _ComponentExample = __webpack_require__(292);
 	
 	var _ComponentExample2 = _interopRequireDefault(_ComponentExample);
 	
@@ -16541,7 +16900,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 642 */
+/* 652 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -16558,11 +16917,11 @@ webpackJsonp([0],[
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _ExampleSection = __webpack_require__(288);
+	var _ExampleSection = __webpack_require__(291);
 	
 	var _ExampleSection2 = _interopRequireDefault(_ExampleSection);
 	
-	var _ComponentExample = __webpack_require__(289);
+	var _ComponentExample = __webpack_require__(292);
 	
 	var _ComponentExample2 = _interopRequireDefault(_ComponentExample);
 	
@@ -16611,7 +16970,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 643 */
+/* 653 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -16628,11 +16987,11 @@ webpackJsonp([0],[
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _ExampleSection = __webpack_require__(288);
+	var _ExampleSection = __webpack_require__(291);
 	
 	var _ExampleSection2 = _interopRequireDefault(_ExampleSection);
 	
-	var _ComponentExample = __webpack_require__(289);
+	var _ComponentExample = __webpack_require__(292);
 	
 	var _ComponentExample2 = _interopRequireDefault(_ComponentExample);
 	
@@ -16678,7 +17037,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 644 */
+/* 654 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -16695,11 +17054,11 @@ webpackJsonp([0],[
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _ExampleSection = __webpack_require__(288);
+	var _ExampleSection = __webpack_require__(291);
 	
 	var _ExampleSection2 = _interopRequireDefault(_ExampleSection);
 	
-	var _ComponentExample = __webpack_require__(289);
+	var _ComponentExample = __webpack_require__(292);
 	
 	var _ComponentExample2 = _interopRequireDefault(_ComponentExample);
 	
@@ -16760,7 +17119,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 645 */
+/* 655 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -16835,7 +17194,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 646 */
+/* 656 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -16910,7 +17269,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 647 */
+/* 657 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -16980,7 +17339,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 648 */
+/* 658 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -17041,7 +17400,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 649 */
+/* 659 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -17117,7 +17476,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 650 */
+/* 660 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -17217,7 +17576,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 651 */
+/* 661 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -17311,7 +17670,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 652 */
+/* 662 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -17328,15 +17687,15 @@ webpackJsonp([0],[
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _MessageStatesExamples = __webpack_require__(653);
+	var _MessageStatesExamples = __webpack_require__(663);
 	
 	var _MessageStatesExamples2 = _interopRequireDefault(_MessageStatesExamples);
 	
-	var _MessageTypesExamples = __webpack_require__(654);
+	var _MessageTypesExamples = __webpack_require__(664);
 	
 	var _MessageTypesExamples2 = _interopRequireDefault(_MessageTypesExamples);
 	
-	var _MessageVariationsExamples = __webpack_require__(655);
+	var _MessageVariationsExamples = __webpack_require__(665);
 	
 	var _MessageVariationsExamples2 = _interopRequireDefault(_MessageVariationsExamples);
 	
@@ -17380,7 +17739,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 653 */
+/* 663 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -17397,11 +17756,11 @@ webpackJsonp([0],[
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _ExampleSection = __webpack_require__(288);
+	var _ExampleSection = __webpack_require__(291);
 	
 	var _ExampleSection2 = _interopRequireDefault(_ExampleSection);
 	
-	var _ComponentExample = __webpack_require__(289);
+	var _ComponentExample = __webpack_require__(292);
 	
 	var _ComponentExample2 = _interopRequireDefault(_ComponentExample);
 	
@@ -17447,7 +17806,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 654 */
+/* 664 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -17464,11 +17823,11 @@ webpackJsonp([0],[
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _ExampleSection = __webpack_require__(288);
+	var _ExampleSection = __webpack_require__(291);
 	
 	var _ExampleSection2 = _interopRequireDefault(_ExampleSection);
 	
-	var _ComponentExample = __webpack_require__(289);
+	var _ComponentExample = __webpack_require__(292);
 	
 	var _ComponentExample2 = _interopRequireDefault(_ComponentExample);
 	
@@ -17519,7 +17878,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 655 */
+/* 665 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -17536,11 +17895,11 @@ webpackJsonp([0],[
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _ExampleSection = __webpack_require__(288);
+	var _ExampleSection = __webpack_require__(291);
 	
 	var _ExampleSection2 = _interopRequireDefault(_ExampleSection);
 	
-	var _ComponentExample = __webpack_require__(289);
+	var _ComponentExample = __webpack_require__(292);
 	
 	var _ComponentExample2 = _interopRequireDefault(_ComponentExample);
 	
@@ -17591,7 +17950,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 656 */
+/* 666 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -17648,7 +18007,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 657 */
+/* 667 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -17705,7 +18064,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 658 */
+/* 668 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -17771,7 +18130,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 659 */
+/* 669 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -17828,7 +18187,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 660 */
+/* 670 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -17885,7 +18244,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 661 */
+/* 671 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -17902,7 +18261,7 @@ webpackJsonp([0],[
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _TableVariationsExamples = __webpack_require__(662);
+	var _TableVariationsExamples = __webpack_require__(672);
 	
 	var _TableVariationsExamples2 = _interopRequireDefault(_TableVariationsExamples);
 	
@@ -17944,7 +18303,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 662 */
+/* 672 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -17961,11 +18320,11 @@ webpackJsonp([0],[
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _ExampleSection = __webpack_require__(288);
+	var _ExampleSection = __webpack_require__(291);
 	
 	var _ExampleSection2 = _interopRequireDefault(_ExampleSection);
 	
-	var _ComponentExample = __webpack_require__(289);
+	var _ComponentExample = __webpack_require__(292);
 	
 	var _ComponentExample2 = _interopRequireDefault(_ComponentExample);
 	
@@ -18011,7 +18370,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 663 */
+/* 673 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -18028,7 +18387,7 @@ webpackJsonp([0],[
 	
 	var _lodash2 = _interopRequireDefault(_lodash);
 	
-	var _faker = __webpack_require__(664);
+	var _faker = __webpack_require__(674);
 	
 	var _faker2 = _interopRequireDefault(_faker);
 	
@@ -18120,8 +18479,8 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 664 */,
-/* 665 */
+/* 674 */,
+/* 675 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -18138,23 +18497,23 @@ webpackJsonp([0],[
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _ButtonTypesExamples = __webpack_require__(666);
+	var _ButtonTypesExamples = __webpack_require__(676);
 	
 	var _ButtonTypesExamples2 = _interopRequireDefault(_ButtonTypesExamples);
 	
-	var _ButtonGroupsExamples = __webpack_require__(667);
+	var _ButtonGroupsExamples = __webpack_require__(677);
 	
 	var _ButtonGroupsExamples2 = _interopRequireDefault(_ButtonGroupsExamples);
 	
-	var _ButtonContentExamples = __webpack_require__(668);
+	var _ButtonContentExamples = __webpack_require__(678);
 	
 	var _ButtonContentExamples2 = _interopRequireDefault(_ButtonContentExamples);
 	
-	var _ButtonStatesExamples = __webpack_require__(669);
+	var _ButtonStatesExamples = __webpack_require__(679);
 	
 	var _ButtonStatesExamples2 = _interopRequireDefault(_ButtonStatesExamples);
 	
-	var _ButtonsVariationsExamples = __webpack_require__(670);
+	var _ButtonsVariationsExamples = __webpack_require__(680);
 	
 	var _ButtonsVariationsExamples2 = _interopRequireDefault(_ButtonsVariationsExamples);
 	
@@ -18200,7 +18559,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 666 */
+/* 676 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -18217,11 +18576,11 @@ webpackJsonp([0],[
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _ComponentExample = __webpack_require__(289);
+	var _ComponentExample = __webpack_require__(292);
 	
 	var _ComponentExample2 = _interopRequireDefault(_ComponentExample);
 	
-	var _ExampleSection = __webpack_require__(288);
+	var _ExampleSection = __webpack_require__(291);
 	
 	var _ExampleSection2 = _interopRequireDefault(_ExampleSection);
 	
@@ -18302,7 +18661,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 667 */
+/* 677 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -18319,11 +18678,11 @@ webpackJsonp([0],[
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _ComponentExample = __webpack_require__(289);
+	var _ComponentExample = __webpack_require__(292);
 	
 	var _ComponentExample2 = _interopRequireDefault(_ComponentExample);
 	
-	var _ExampleSection = __webpack_require__(288);
+	var _ExampleSection = __webpack_require__(291);
 	
 	var _ExampleSection2 = _interopRequireDefault(_ExampleSection);
 	
@@ -18374,7 +18733,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 668 */
+/* 678 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -18391,11 +18750,11 @@ webpackJsonp([0],[
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _ComponentExample = __webpack_require__(289);
+	var _ComponentExample = __webpack_require__(292);
 	
 	var _ComponentExample2 = _interopRequireDefault(_ComponentExample);
 	
-	var _ExampleSection = __webpack_require__(288);
+	var _ExampleSection = __webpack_require__(291);
 	
 	var _ExampleSection2 = _interopRequireDefault(_ExampleSection);
 	
@@ -18451,7 +18810,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 669 */
+/* 679 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -18468,11 +18827,11 @@ webpackJsonp([0],[
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _ComponentExample = __webpack_require__(289);
+	var _ComponentExample = __webpack_require__(292);
 	
 	var _ComponentExample2 = _interopRequireDefault(_ComponentExample);
 	
-	var _ExampleSection = __webpack_require__(288);
+	var _ExampleSection = __webpack_require__(291);
 	
 	var _ExampleSection2 = _interopRequireDefault(_ExampleSection);
 	
@@ -18528,7 +18887,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 670 */
+/* 680 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -18545,11 +18904,11 @@ webpackJsonp([0],[
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _ComponentExample = __webpack_require__(289);
+	var _ComponentExample = __webpack_require__(292);
 	
 	var _ComponentExample2 = _interopRequireDefault(_ComponentExample);
 	
-	var _ExampleSection = __webpack_require__(288);
+	var _ExampleSection = __webpack_require__(291);
 	
 	var _ExampleSection2 = _interopRequireDefault(_ExampleSection);
 	
@@ -18645,7 +19004,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 671 */
+/* 681 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -18712,7 +19071,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 672 */
+/* 682 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -18783,7 +19142,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 673 */
+/* 683 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -18854,7 +19213,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 674 */
+/* 684 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -18907,7 +19266,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 675 */
+/* 685 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -18964,7 +19323,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 676 */
+/* 686 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -19024,7 +19383,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 677 */
+/* 687 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -19090,7 +19449,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 678 */
+/* 688 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -19216,7 +19575,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 679 */
+/* 689 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -19269,7 +19628,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 680 */
+/* 690 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -19335,7 +19694,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 681 */
+/* 691 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -19392,7 +19751,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 682 */
+/* 692 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -19596,7 +19955,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 683 */
+/* 693 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -19663,7 +20022,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 684 */
+/* 694 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -19731,7 +20090,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 685 */
+/* 695 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -19788,7 +20147,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 686 */
+/* 696 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -19909,7 +20268,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 687 */
+/* 697 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -19975,7 +20334,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 688 */
+/* 698 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -20041,7 +20400,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 689 */
+/* 699 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -20098,7 +20457,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 690 */
+/* 700 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -20164,7 +20523,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 691 */
+/* 701 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -20230,7 +20589,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 692 */
+/* 702 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -20326,7 +20685,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 693 */
+/* 703 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -20424,7 +20783,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 694 */
+/* 704 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -20483,7 +20842,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 695 */
+/* 705 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -20560,7 +20919,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 696 */
+/* 706 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -20577,11 +20936,11 @@ webpackJsonp([0],[
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _DividerTypesExamples = __webpack_require__(697);
+	var _DividerTypesExamples = __webpack_require__(707);
 	
 	var _DividerTypesExamples2 = _interopRequireDefault(_DividerTypesExamples);
 	
-	var _DividerVariationsExamples = __webpack_require__(698);
+	var _DividerVariationsExamples = __webpack_require__(708);
 	
 	var _DividerVariationsExamples2 = _interopRequireDefault(_DividerVariationsExamples);
 	
@@ -20624,7 +20983,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 697 */
+/* 707 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -20641,11 +21000,11 @@ webpackJsonp([0],[
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _ComponentExample = __webpack_require__(289);
+	var _ComponentExample = __webpack_require__(292);
 	
 	var _ComponentExample2 = _interopRequireDefault(_ComponentExample);
 	
-	var _ExampleSection = __webpack_require__(288);
+	var _ExampleSection = __webpack_require__(291);
 	
 	var _ExampleSection2 = _interopRequireDefault(_ExampleSection);
 	
@@ -20701,7 +21060,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 698 */
+/* 708 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -20718,11 +21077,11 @@ webpackJsonp([0],[
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _ComponentExample = __webpack_require__(289);
+	var _ComponentExample = __webpack_require__(292);
 	
 	var _ComponentExample2 = _interopRequireDefault(_ComponentExample);
 	
-	var _ExampleSection = __webpack_require__(288);
+	var _ExampleSection = __webpack_require__(291);
 	
 	var _ExampleSection2 = _interopRequireDefault(_ExampleSection);
 	
@@ -20788,7 +21147,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 699 */
+/* 709 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -20841,7 +21200,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 700 */
+/* 710 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -20912,7 +21271,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 701 */
+/* 711 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -21005,7 +21364,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 702 */
+/* 712 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -21068,7 +21427,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 703 */
+/* 713 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -21127,7 +21486,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 704 */
+/* 714 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -21186,7 +21545,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 705 */
+/* 715 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -21248,7 +21607,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 706 */
+/* 716 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -21307,7 +21666,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 707 */
+/* 717 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -21324,11 +21683,11 @@ webpackJsonp([0],[
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _ComponentExample = __webpack_require__(289);
+	var _ComponentExample = __webpack_require__(292);
 	
 	var _ComponentExample2 = _interopRequireDefault(_ComponentExample);
 	
-	var _ExampleSection = __webpack_require__(288);
+	var _ExampleSection = __webpack_require__(291);
 	
 	var _ExampleSection2 = _interopRequireDefault(_ExampleSection);
 	
@@ -21384,7 +21743,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 708 */
+/* 718 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -21442,7 +21801,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 709 */
+/* 719 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -21455,7 +21814,7 @@ webpackJsonp([0],[
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
-	var _faker = __webpack_require__(664);
+	var _faker = __webpack_require__(674);
 	
 	var _faker2 = _interopRequireDefault(_faker);
 	
@@ -21504,7 +21863,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 710 */
+/* 720 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -21566,7 +21925,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 711 */
+/* 721 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -21583,19 +21942,19 @@ webpackJsonp([0],[
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _HeaderTypesExamples = __webpack_require__(712);
+	var _HeaderTypesExamples = __webpack_require__(722);
 	
 	var _HeaderTypesExamples2 = _interopRequireDefault(_HeaderTypesExamples);
 	
-	var _HeaderContentExamples = __webpack_require__(707);
+	var _HeaderContentExamples = __webpack_require__(717);
 	
 	var _HeaderContentExamples2 = _interopRequireDefault(_HeaderContentExamples);
 	
-	var _HeaderStatesExamples = __webpack_require__(713);
+	var _HeaderStatesExamples = __webpack_require__(723);
 	
 	var _HeaderStatesExamples2 = _interopRequireDefault(_HeaderStatesExamples);
 	
-	var _HeaderVariationsExamples = __webpack_require__(714);
+	var _HeaderVariationsExamples = __webpack_require__(724);
 	
 	var _HeaderVariationsExamples2 = _interopRequireDefault(_HeaderVariationsExamples);
 	
@@ -21683,7 +22042,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 712 */
+/* 722 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -21700,11 +22059,11 @@ webpackJsonp([0],[
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _ComponentExample = __webpack_require__(289);
+	var _ComponentExample = __webpack_require__(292);
 	
 	var _ComponentExample2 = _interopRequireDefault(_ComponentExample);
 	
-	var _ExampleSection = __webpack_require__(288);
+	var _ExampleSection = __webpack_require__(291);
 	
 	var _ExampleSection2 = _interopRequireDefault(_ExampleSection);
 	
@@ -21783,7 +22142,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 713 */
+/* 723 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -21800,11 +22159,11 @@ webpackJsonp([0],[
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _ComponentExample = __webpack_require__(289);
+	var _ComponentExample = __webpack_require__(292);
 	
 	var _ComponentExample2 = _interopRequireDefault(_ComponentExample);
 	
-	var _ExampleSection = __webpack_require__(288);
+	var _ExampleSection = __webpack_require__(291);
 	
 	var _ExampleSection2 = _interopRequireDefault(_ExampleSection);
 	
@@ -21850,7 +22209,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 714 */
+/* 724 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -21867,11 +22226,11 @@ webpackJsonp([0],[
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _ComponentExample = __webpack_require__(289);
+	var _ComponentExample = __webpack_require__(292);
 	
 	var _ComponentExample2 = _interopRequireDefault(_ComponentExample);
 	
-	var _ExampleSection = __webpack_require__(288);
+	var _ExampleSection = __webpack_require__(291);
 	
 	var _ExampleSection2 = _interopRequireDefault(_ExampleSection);
 	
@@ -21957,7 +22316,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 715 */
+/* 725 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -22014,7 +22373,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 716 */
+/* 726 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -22095,7 +22454,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 717 */
+/* 727 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -22158,7 +22517,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 718 */
+/* 728 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -22244,7 +22603,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 719 */
+/* 729 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -22306,7 +22665,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 720 */
+/* 730 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -22372,7 +22731,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 721 */
+/* 731 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -22429,7 +22788,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 722 */
+/* 732 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -22545,7 +22904,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 723 */
+/* 733 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -22602,7 +22961,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 724 */
+/* 734 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -22668,7 +23027,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 725 */
+/* 735 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -22784,7 +23143,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 726 */
+/* 736 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -22860,7 +23219,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 727 */
+/* 737 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -22877,15 +23236,15 @@ webpackJsonp([0],[
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _InputTypesExamples = __webpack_require__(728);
+	var _InputTypesExamples = __webpack_require__(738);
 	
 	var _InputTypesExamples2 = _interopRequireDefault(_InputTypesExamples);
 	
-	var _InputStatesExamples = __webpack_require__(729);
+	var _InputStatesExamples = __webpack_require__(739);
 	
 	var _InputStatesExamples2 = _interopRequireDefault(_InputStatesExamples);
 	
-	var _InputVariationsExamples = __webpack_require__(730);
+	var _InputVariationsExamples = __webpack_require__(740);
 	
 	var _InputVariationsExamples2 = _interopRequireDefault(_InputVariationsExamples);
 	
@@ -22929,7 +23288,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 728 */
+/* 738 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -22946,11 +23305,11 @@ webpackJsonp([0],[
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _ComponentExample = __webpack_require__(289);
+	var _ComponentExample = __webpack_require__(292);
 	
 	var _ComponentExample2 = _interopRequireDefault(_ComponentExample);
 	
-	var _ExampleSection = __webpack_require__(288);
+	var _ExampleSection = __webpack_require__(291);
 	
 	var _ExampleSection2 = _interopRequireDefault(_ExampleSection);
 	
@@ -22996,7 +23355,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 729 */
+/* 739 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -23013,11 +23372,11 @@ webpackJsonp([0],[
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _ComponentExample = __webpack_require__(289);
+	var _ComponentExample = __webpack_require__(292);
 	
 	var _ComponentExample2 = _interopRequireDefault(_ComponentExample);
 	
-	var _ExampleSection = __webpack_require__(288);
+	var _ExampleSection = __webpack_require__(291);
 	
 	var _ExampleSection2 = _interopRequireDefault(_ExampleSection);
 	
@@ -23079,7 +23438,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 730 */
+/* 740 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -23096,11 +23455,11 @@ webpackJsonp([0],[
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _ComponentExample = __webpack_require__(289);
+	var _ComponentExample = __webpack_require__(292);
 	
 	var _ComponentExample2 = _interopRequireDefault(_ComponentExample);
 	
-	var _ExampleSection = __webpack_require__(288);
+	var _ExampleSection = __webpack_require__(291);
 	
 	var _ExampleSection2 = _interopRequireDefault(_ExampleSection);
 	
@@ -23182,7 +23541,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 731 */
+/* 741 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -23235,7 +23594,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 732 */
+/* 742 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -23288,7 +23647,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 733 */
+/* 743 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -23341,7 +23700,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 734 */
+/* 744 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -23394,7 +23753,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 735 */
+/* 745 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -23447,7 +23806,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 736 */
+/* 746 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -23510,7 +23869,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 737 */
+/* 747 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -23572,7 +23931,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 738 */
+/* 748 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -23625,7 +23984,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 739 */
+/* 749 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -23678,7 +24037,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 740 */
+/* 750 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -23735,7 +24094,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 741 */
+/* 751 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -23796,7 +24155,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 742 */
+/* 752 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -23857,7 +24216,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 743 */
+/* 753 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -23925,7 +24284,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 744 */
+/* 754 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -23978,7 +24337,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 745 */
+/* 755 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -23995,11 +24354,11 @@ webpackJsonp([0],[
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _ComponentExample = __webpack_require__(289);
+	var _ComponentExample = __webpack_require__(292);
 	
 	var _ComponentExample2 = _interopRequireDefault(_ComponentExample);
 	
-	var _ExampleSection = __webpack_require__(288);
+	var _ExampleSection = __webpack_require__(291);
 	
 	var _ExampleSection2 = _interopRequireDefault(_ExampleSection);
 	
@@ -24070,7 +24429,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 746 */
+/* 756 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -24138,7 +24497,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 747 */
+/* 757 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -24197,7 +24556,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 748 */
+/* 758 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -24277,7 +24636,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 749 */
+/* 759 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -24290,7 +24649,7 @@ webpackJsonp([0],[
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
-	var _faker = __webpack_require__(664);
+	var _faker = __webpack_require__(674);
 	
 	var _faker2 = _interopRequireDefault(_faker);
 	
@@ -24343,7 +24702,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 750 */
+/* 760 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -24402,7 +24761,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 751 */
+/* 761 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -24476,7 +24835,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 752 */
+/* 762 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -24493,15 +24852,15 @@ webpackJsonp([0],[
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _ListTypesExamples = __webpack_require__(753);
+	var _ListTypesExamples = __webpack_require__(763);
 	
 	var _ListTypesExamples2 = _interopRequireDefault(_ListTypesExamples);
 	
-	var _ListContentExamples = __webpack_require__(745);
+	var _ListContentExamples = __webpack_require__(755);
 	
 	var _ListContentExamples2 = _interopRequireDefault(_ListContentExamples);
 	
-	var _ListVariationsExamples = __webpack_require__(754);
+	var _ListVariationsExamples = __webpack_require__(764);
 	
 	var _ListVariationsExamples2 = _interopRequireDefault(_ListVariationsExamples);
 	
@@ -24545,7 +24904,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 753 */
+/* 763 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -24562,11 +24921,11 @@ webpackJsonp([0],[
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _ComponentExample = __webpack_require__(289);
+	var _ComponentExample = __webpack_require__(292);
 	
 	var _ComponentExample2 = _interopRequireDefault(_ComponentExample);
 	
-	var _ExampleSection = __webpack_require__(288);
+	var _ExampleSection = __webpack_require__(291);
 	
 	var _ExampleSection2 = _interopRequireDefault(_ExampleSection);
 	
@@ -24627,7 +24986,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 754 */
+/* 764 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -24644,11 +25003,11 @@ webpackJsonp([0],[
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _ComponentExample = __webpack_require__(289);
+	var _ComponentExample = __webpack_require__(292);
 	
 	var _ComponentExample2 = _interopRequireDefault(_ComponentExample);
 	
-	var _ExampleSection = __webpack_require__(288);
+	var _ExampleSection = __webpack_require__(291);
 	
 	var _ExampleSection2 = _interopRequireDefault(_ExampleSection);
 	
@@ -24749,7 +25108,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 755 */
+/* 765 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -24808,7 +25167,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 756 */
+/* 766 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -24888,7 +25247,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 757 */
+/* 767 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -24947,7 +25306,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 758 */
+/* 768 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -25016,7 +25375,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 759 */
+/* 769 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -25029,7 +25388,7 @@ webpackJsonp([0],[
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
-	var _faker = __webpack_require__(664);
+	var _faker = __webpack_require__(674);
 	
 	var _faker2 = _interopRequireDefault(_faker);
 	
@@ -25082,7 +25441,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 760 */
+/* 770 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -25095,7 +25454,7 @@ webpackJsonp([0],[
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
-	var _faker = __webpack_require__(664);
+	var _faker = __webpack_require__(674);
 	
 	var _faker2 = _interopRequireDefault(_faker);
 	
@@ -25148,7 +25507,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 761 */
+/* 771 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -25161,7 +25520,7 @@ webpackJsonp([0],[
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
-	var _faker = __webpack_require__(664);
+	var _faker = __webpack_require__(674);
 	
 	var _faker2 = _interopRequireDefault(_faker);
 	
@@ -25214,7 +25573,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 762 */
+/* 772 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -25227,7 +25586,7 @@ webpackJsonp([0],[
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
-	var _faker = __webpack_require__(664);
+	var _faker = __webpack_require__(674);
 	
 	var _faker2 = _interopRequireDefault(_faker);
 	
@@ -25280,7 +25639,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 763 */
+/* 773 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -25343,7 +25702,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 764 */
+/* 774 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -25356,7 +25715,7 @@ webpackJsonp([0],[
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
-	var _faker = __webpack_require__(664);
+	var _faker = __webpack_require__(674);
 	
 	var _faker2 = _interopRequireDefault(_faker);
 	
@@ -25409,7 +25768,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 765 */
+/* 775 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -25422,7 +25781,7 @@ webpackJsonp([0],[
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
-	var _faker = __webpack_require__(664);
+	var _faker = __webpack_require__(674);
 	
 	var _faker2 = _interopRequireDefault(_faker);
 	
@@ -25475,7 +25834,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 766 */
+/* 776 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -25494,7 +25853,7 @@ webpackJsonp([0],[
 	
 	var _stardust = __webpack_require__(222);
 	
-	var _faker = __webpack_require__(664);
+	var _faker = __webpack_require__(674);
 	
 	var _faker2 = _interopRequireDefault(_faker);
 	
@@ -25541,7 +25900,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 767 */
+/* 777 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -25560,7 +25919,7 @@ webpackJsonp([0],[
 	
 	var _stardust = __webpack_require__(222);
 	
-	var _faker = __webpack_require__(664);
+	var _faker = __webpack_require__(674);
 	
 	var _faker2 = _interopRequireDefault(_faker);
 	
@@ -25607,7 +25966,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 768 */
+/* 778 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -25626,7 +25985,7 @@ webpackJsonp([0],[
 	
 	var _stardust = __webpack_require__(222);
 	
-	var _faker = __webpack_require__(664);
+	var _faker = __webpack_require__(674);
 	
 	var _faker2 = _interopRequireDefault(_faker);
 	
@@ -25673,7 +26032,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 769 */
+/* 779 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -25692,7 +26051,7 @@ webpackJsonp([0],[
 	
 	var _stardust = __webpack_require__(222);
 	
-	var _faker = __webpack_require__(664);
+	var _faker = __webpack_require__(674);
 	
 	var _faker2 = _interopRequireDefault(_faker);
 	
@@ -25739,7 +26098,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 770 */
+/* 780 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -25758,7 +26117,7 @@ webpackJsonp([0],[
 	
 	var _stardust = __webpack_require__(222);
 	
-	var _faker = __webpack_require__(664);
+	var _faker = __webpack_require__(674);
 	
 	var _faker2 = _interopRequireDefault(_faker);
 	
@@ -25805,7 +26164,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 771 */
+/* 781 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -25824,7 +26183,7 @@ webpackJsonp([0],[
 	
 	var _stardust = __webpack_require__(222);
 	
-	var _faker = __webpack_require__(664);
+	var _faker = __webpack_require__(674);
 	
 	var _faker2 = _interopRequireDefault(_faker);
 	
@@ -25871,7 +26230,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 772 */
+/* 782 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -25890,7 +26249,7 @@ webpackJsonp([0],[
 	
 	var _stardust = __webpack_require__(222);
 	
-	var _faker = __webpack_require__(664);
+	var _faker = __webpack_require__(674);
 	
 	var _faker2 = _interopRequireDefault(_faker);
 	
@@ -25937,7 +26296,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 773 */
+/* 783 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -25956,7 +26315,7 @@ webpackJsonp([0],[
 	
 	var _stardust = __webpack_require__(222);
 	
-	var _faker = __webpack_require__(664);
+	var _faker = __webpack_require__(674);
 	
 	var _faker2 = _interopRequireDefault(_faker);
 	
@@ -26004,7 +26363,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 774 */
+/* 784 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -26021,11 +26380,11 @@ webpackJsonp([0],[
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _ComponentExample = __webpack_require__(289);
+	var _ComponentExample = __webpack_require__(292);
 	
 	var _ComponentExample2 = _interopRequireDefault(_ComponentExample);
 	
-	var _ExampleSection = __webpack_require__(288);
+	var _ExampleSection = __webpack_require__(291);
 	
 	var _ExampleSection2 = _interopRequireDefault(_ExampleSection);
 	
@@ -26096,7 +26455,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 775 */
+/* 785 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -26167,7 +26526,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 776 */
+/* 786 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -26271,7 +26630,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 777 */
+/* 787 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -26342,7 +26701,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 778 */
+/* 788 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -26413,7 +26772,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 779 */
+/* 789 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -26494,7 +26853,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 780 */
+/* 790 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -26565,7 +26924,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 781 */
+/* 791 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -26582,19 +26941,19 @@ webpackJsonp([0],[
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _SegmentTypesExamples = __webpack_require__(782);
+	var _SegmentTypesExamples = __webpack_require__(792);
 	
 	var _SegmentTypesExamples2 = _interopRequireDefault(_SegmentTypesExamples);
 	
-	var _SegmentGroupsExamples = __webpack_require__(774);
+	var _SegmentGroupsExamples = __webpack_require__(784);
 	
 	var _SegmentGroupsExamples2 = _interopRequireDefault(_SegmentGroupsExamples);
 	
-	var _SegmentStatesExamples = __webpack_require__(783);
+	var _SegmentStatesExamples = __webpack_require__(793);
 	
 	var _SegmentStatesExamples2 = _interopRequireDefault(_SegmentStatesExamples);
 	
-	var _SegmentVariationsExamples = __webpack_require__(784);
+	var _SegmentVariationsExamples = __webpack_require__(794);
 	
 	var _SegmentVariationsExamples2 = _interopRequireDefault(_SegmentVariationsExamples);
 	
@@ -26639,7 +26998,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 782 */
+/* 792 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -26656,11 +27015,11 @@ webpackJsonp([0],[
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _ComponentExample = __webpack_require__(289);
+	var _ComponentExample = __webpack_require__(292);
 	
 	var _ComponentExample2 = _interopRequireDefault(_ComponentExample);
 	
-	var _ExampleSection = __webpack_require__(288);
+	var _ExampleSection = __webpack_require__(291);
 	
 	var _ExampleSection2 = _interopRequireDefault(_ExampleSection);
 	
@@ -26742,7 +27101,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 783 */
+/* 793 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -26759,11 +27118,11 @@ webpackJsonp([0],[
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _ComponentExample = __webpack_require__(289);
+	var _ComponentExample = __webpack_require__(292);
 	
 	var _ComponentExample2 = _interopRequireDefault(_ComponentExample);
 	
-	var _ExampleSection = __webpack_require__(288);
+	var _ExampleSection = __webpack_require__(291);
 	
 	var _ExampleSection2 = _interopRequireDefault(_ExampleSection);
 	
@@ -26814,7 +27173,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 784 */
+/* 794 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -26831,11 +27190,11 @@ webpackJsonp([0],[
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _ComponentExample = __webpack_require__(289);
+	var _ComponentExample = __webpack_require__(292);
 	
 	var _ComponentExample2 = _interopRequireDefault(_ComponentExample);
 	
-	var _ExampleSection = __webpack_require__(288);
+	var _ExampleSection = __webpack_require__(291);
 	
 	var _ExampleSection2 = _interopRequireDefault(_ExampleSection);
 	
@@ -26987,7 +27346,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 785 */
+/* 795 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -27044,7 +27403,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 786 */
+/* 796 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -27101,7 +27460,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 787 */
+/* 797 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -27158,7 +27517,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 788 */
+/* 798 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -27215,7 +27574,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 789 */
+/* 799 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -27272,7 +27631,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 790 */
+/* 800 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -27329,7 +27688,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 791 */
+/* 801 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -27400,7 +27759,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 792 */
+/* 802 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -27492,7 +27851,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 793 */
+/* 803 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -27563,7 +27922,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 794 */
+/* 804 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -27620,7 +27979,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 795 */
+/* 805 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -27704,7 +28063,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 796 */
+/* 806 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -27765,7 +28124,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 797 */
+/* 807 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -27886,7 +28245,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 798 */
+/* 808 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -28007,7 +28366,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 799 */
+/* 809 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -28064,7 +28423,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 800 */
+/* 810 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -28130,7 +28489,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 801 */
+/* 811 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -28201,7 +28560,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 802 */
+/* 812 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -28267,7 +28626,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 803 */
+/* 813 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -28324,7 +28683,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 804 */
+/* 814 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -28381,7 +28740,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 805 */
+/* 815 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -28452,7 +28811,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 806 */
+/* 816 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -28509,7 +28868,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 807 */
+/* 817 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -28526,15 +28885,15 @@ webpackJsonp([0],[
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _Types = __webpack_require__(808);
+	var _Types = __webpack_require__(818);
 	
 	var _Types2 = _interopRequireDefault(_Types);
 	
-	var _States = __webpack_require__(809);
+	var _States = __webpack_require__(819);
 	
 	var _States2 = _interopRequireDefault(_States);
 	
-	var _Variations = __webpack_require__(810);
+	var _Variations = __webpack_require__(820);
 	
 	var _Variations2 = _interopRequireDefault(_Variations);
 	
@@ -28578,7 +28937,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 808 */
+/* 818 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -28595,11 +28954,11 @@ webpackJsonp([0],[
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _ComponentExample = __webpack_require__(289);
+	var _ComponentExample = __webpack_require__(292);
 	
 	var _ComponentExample2 = _interopRequireDefault(_ComponentExample);
 	
-	var _ExampleSection = __webpack_require__(288);
+	var _ExampleSection = __webpack_require__(291);
 	
 	var _ExampleSection2 = _interopRequireDefault(_ExampleSection);
 	
@@ -28661,7 +29020,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 809 */
+/* 819 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -28678,11 +29037,11 @@ webpackJsonp([0],[
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _ComponentExample = __webpack_require__(289);
+	var _ComponentExample = __webpack_require__(292);
 	
 	var _ComponentExample2 = _interopRequireDefault(_ComponentExample);
 	
-	var _ExampleSection = __webpack_require__(288);
+	var _ExampleSection = __webpack_require__(291);
 	
 	var _ExampleSection2 = _interopRequireDefault(_ExampleSection);
 	
@@ -28763,7 +29122,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 810 */
+/* 820 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -28780,11 +29139,11 @@ webpackJsonp([0],[
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _ComponentExample = __webpack_require__(289);
+	var _ComponentExample = __webpack_require__(292);
 	
 	var _ComponentExample2 = _interopRequireDefault(_ComponentExample);
 	
-	var _ExampleSection = __webpack_require__(288);
+	var _ExampleSection = __webpack_require__(291);
 	
 	var _ExampleSection2 = _interopRequireDefault(_ExampleSection);
 	
@@ -28856,7 +29215,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 811 */
+/* 821 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -28928,7 +29287,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 812 */
+/* 822 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -28957,7 +29316,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 813 */
+/* 823 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -29023,7 +29382,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 814 */
+/* 824 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -29076,7 +29435,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 815 */
+/* 825 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -29129,7 +29488,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 816 */
+/* 826 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -29186,7 +29545,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 817 */
+/* 827 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -29252,7 +29611,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 818 */
+/* 828 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -29305,7 +29664,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 819 */
+/* 829 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -29358,7 +29717,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 820 */
+/* 830 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -29429,7 +29788,572 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 821 */
+/* 831 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+	
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _lodash = __webpack_require__(224);
+	
+	var _lodash2 = _interopRequireDefault(_lodash);
+	
+	var _classnames = __webpack_require__(230);
+	
+	var _classnames2 = _interopRequireDefault(_classnames);
+	
+	var _faker = __webpack_require__(674);
+	
+	var _faker2 = _interopRequireDefault(_faker);
+	
+	var _react = __webpack_require__(117);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _stardust = __webpack_require__(222);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var getOptions = function getOptions() {
+	  return _lodash2.default.times(3, function () {
+	    var name = _faker2.default.name.findName();
+	    return { text: name, value: _lodash2.default.snakeCase(name) };
+	  });
+	};
+	
+	var DropdownAsyncOptions = function (_Component) {
+	  _inherits(DropdownAsyncOptions, _Component);
+	
+	  function DropdownAsyncOptions() {
+	    var _Object$getPrototypeO;
+	
+	    var _temp, _this, _ret;
+	
+	    _classCallCheck(this, DropdownAsyncOptions);
+	
+	    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+	      args[_key] = arguments[_key];
+	    }
+	
+	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(DropdownAsyncOptions)).call.apply(_Object$getPrototypeO, [this].concat(args))), _this), _this.state = { isFetching: false, value: [], options: [] }, _this.handleChange = function (value) {
+	      return _this.setState({ value: value });
+	    }, _this.fetchOptions = function () {
+	      _this.setState({ isFetching: true });
+	
+	      setTimeout(function () {
+	        _this.setState({ isFetching: false, options: getOptions() });
+	        _this.selectRandom();
+	      }, 500);
+	    }, _this.selectRandom = function () {
+	      return _this.setState({ value: _lodash2.default.sample(_this.state.options).value });
+	    }, _temp), _possibleConstructorReturn(_this, _ret);
+	  }
+	
+	  // fake api call
+	
+	
+	  _createClass(DropdownAsyncOptions, [{
+	    key: 'render',
+	    value: function render() {
+	      var _state = this.state;
+	      var options = _state.options;
+	      var isFetching = _state.isFetching;
+	      var value = _state.value;
+	
+	      var classes = (0, _classnames2.default)('search selection multiple', { 'disabled loading': isFetching });
+	
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(
+	          _stardust.Button,
+	          { onClick: this.fetchOptions },
+	          'Fetch'
+	        ),
+	        _react2.default.createElement(
+	          _stardust.Button,
+	          { onClick: this.selectRandom, disabled: _lodash2.default.isEmpty(options) },
+	          'Random'
+	        ),
+	        _react2.default.createElement(_stardust.Dropdown, {
+	          defaultText: 'Add Users',
+	          className: classes,
+	          options: options,
+	          value: value,
+	          onChange: this.handleChange
+	        }),
+	        _react2.default.createElement(
+	          'pre',
+	          null,
+	          JSON.stringify(this.state, null, 2)
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return DropdownAsyncOptions;
+	}(_react.Component);
+
+	exports.default = DropdownAsyncOptions;
+	module.exports = exports['default'];
+
+	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(225); if (makeExportsHot(module, __webpack_require__(117))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "AsyncOptions.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
+
+/***/ },
+/* 832 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+	
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(117);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _ComponentExample = __webpack_require__(292);
+	
+	var _ComponentExample2 = _interopRequireDefault(_ComponentExample);
+	
+	var _ExampleSection = __webpack_require__(291);
+	
+	var _ExampleSection2 = _interopRequireDefault(_ExampleSection);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var DropdownContentExamples = function (_Component) {
+	  _inherits(DropdownContentExamples, _Component);
+	
+	  function DropdownContentExamples() {
+	    _classCallCheck(this, DropdownContentExamples);
+	
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(DropdownContentExamples).apply(this, arguments));
+	  }
+	
+	  _createClass(DropdownContentExamples, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        _ExampleSection2.default,
+	        { title: 'Content' },
+	        _react2.default.createElement(_ComponentExample2.default, {
+	          title: 'Async Options',
+	          description: 'A dropdown\'s options can change over time',
+	          examplePath: 'modules/Dropdown/Content/AsyncOptions'
+	        })
+	      );
+	    }
+	  }]);
+	
+	  return DropdownContentExamples;
+	}(_react.Component);
+
+	exports.default = DropdownContentExamples;
+	module.exports = exports['default'];
+
+	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(225); if (makeExportsHot(module, __webpack_require__(117))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "Content.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
+
+/***/ },
+/* 833 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+	
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(117);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _Types = __webpack_require__(834);
+	
+	var _Types2 = _interopRequireDefault(_Types);
+	
+	var _Content = __webpack_require__(832);
+	
+	var _Content2 = _interopRequireDefault(_Content);
+	
+	var _States = __webpack_require__(835);
+	
+	var _States2 = _interopRequireDefault(_States);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var DropdownExamples = function (_Component) {
+	  _inherits(DropdownExamples, _Component);
+	
+	  function DropdownExamples() {
+	    _classCallCheck(this, DropdownExamples);
+	
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(DropdownExamples).apply(this, arguments));
+	  }
+	
+	  _createClass(DropdownExamples, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(_Types2.default, null),
+	        _react2.default.createElement(_Content2.default, null),
+	        _react2.default.createElement(_States2.default, null)
+	      );
+	    }
+	  }]);
+	
+	  return DropdownExamples;
+	}(_react.Component);
+
+	exports.default = DropdownExamples;
+	module.exports = exports['default'];
+
+	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(225); if (makeExportsHot(module, __webpack_require__(117))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "DropdownExamples.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
+
+/***/ },
+/* 834 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+	
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(117);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _ComponentExample = __webpack_require__(292);
+	
+	var _ComponentExample2 = _interopRequireDefault(_ComponentExample);
+	
+	var _ExampleSection = __webpack_require__(291);
+	
+	var _ExampleSection2 = _interopRequireDefault(_ExampleSection);
+	
+	var _stardust = __webpack_require__(222);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var DropdownTypesExamples = function (_Component) {
+	  _inherits(DropdownTypesExamples, _Component);
+	
+	  function DropdownTypesExamples() {
+	    _classCallCheck(this, DropdownTypesExamples);
+	
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(DropdownTypesExamples).apply(this, arguments));
+	  }
+	
+	  _createClass(DropdownTypesExamples, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        _ExampleSection2.default,
+	        { title: 'Types' },
+	        _react2.default.createElement(
+	          _ComponentExample2.default,
+	          {
+	            title: 'Dropdown',
+	            description: 'A dropdown',
+	            examplePath: 'modules/Dropdown/Types/Dropdown'
+	          },
+	          _react2.default.createElement(
+	            _stardust.Message,
+	            null,
+	            'Dropdown ',
+	            _react2.default.createElement(
+	              'code',
+	              null,
+	              'children'
+	            ),
+	            ' are automatically wrapped in a',
+	            ' ',
+	            _react2.default.createElement(
+	              'code',
+	              null,
+	              '<Dropdown.Menu />'
+	            ),
+	            ' for convenience.'
+	          )
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return DropdownTypesExamples;
+	}(_react.Component);
+
+	exports.default = DropdownTypesExamples;
+	module.exports = exports['default'];
+
+	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(225); if (makeExportsHot(module, __webpack_require__(117))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "Types.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
+
+/***/ },
+/* 835 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+	
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(117);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _ComponentExample = __webpack_require__(292);
+	
+	var _ComponentExample2 = _interopRequireDefault(_ComponentExample);
+	
+	var _ExampleSection = __webpack_require__(291);
+	
+	var _ExampleSection2 = _interopRequireDefault(_ExampleSection);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var DropdownStatesExamples = function (_Component) {
+	  _inherits(DropdownStatesExamples, _Component);
+	
+	  function DropdownStatesExamples() {
+	    _classCallCheck(this, DropdownStatesExamples);
+	
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(DropdownStatesExamples).apply(this, arguments));
+	  }
+	
+	  _createClass(DropdownStatesExamples, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        _ExampleSection2.default,
+	        { title: 'States' },
+	        _react2.default.createElement(_ComponentExample2.default, {
+	          title: 'Disabled',
+	          description: 'A disabled dropdown menu or item does not allow user interaction',
+	          examplePath: 'modules/Dropdown/States/Disabled'
+	        })
+	      );
+	    }
+	  }]);
+	
+	  return DropdownStatesExamples;
+	}(_react.Component);
+
+	exports.default = DropdownStatesExamples;
+	module.exports = exports['default'];
+
+	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(225); if (makeExportsHot(module, __webpack_require__(117))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "States.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
+
+/***/ },
+/* 836 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+	
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(117);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _stardust = __webpack_require__(222);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var DropdownDisabledExample = function (_Component) {
+	  _inherits(DropdownDisabledExample, _Component);
+	
+	  function DropdownDisabledExample() {
+	    _classCallCheck(this, DropdownDisabledExample);
+	
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(DropdownDisabledExample).apply(this, arguments));
+	  }
+	
+	  _createClass(DropdownDisabledExample, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        _stardust.Dropdown,
+	        { className: 'disabled', text: 'Dropdown' },
+	        _react2.default.createElement(
+	          _stardust.Dropdown.Menu,
+	          null,
+	          _react2.default.createElement(_stardust.Dropdown.Item, { text: 'Choice 1' }),
+	          _react2.default.createElement(_stardust.Dropdown.Item, { text: 'Choice 2' }),
+	          _react2.default.createElement(_stardust.Dropdown.Item, { text: 'Choice 3' })
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return DropdownDisabledExample;
+	}(_react.Component);
+
+	exports.default = DropdownDisabledExample;
+	module.exports = exports['default'];
+
+	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(225); if (makeExportsHot(module, __webpack_require__(117))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "Disabled.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
+
+/***/ },
+/* 837 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+	
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(117);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _stardust = __webpack_require__(222);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var DropdownDropdownExample = function (_Component) {
+	  _inherits(DropdownDropdownExample, _Component);
+	
+	  function DropdownDropdownExample() {
+	    _classCallCheck(this, DropdownDropdownExample);
+	
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(DropdownDropdownExample).apply(this, arguments));
+	  }
+	
+	  _createClass(DropdownDropdownExample, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        _stardust.Dropdown,
+	        { text: 'File', action: 'hide' },
+	        _react2.default.createElement(_stardust.Dropdown.Item, { text: 'New' }),
+	        _react2.default.createElement(_stardust.Dropdown.Item, { text: 'Open...', description: 'ctrl + o' }),
+	        _react2.default.createElement(_stardust.Dropdown.Item, { text: 'Save as...', description: 'ctrl + s' }),
+	        _react2.default.createElement(_stardust.Dropdown.Item, { text: 'Rename', description: 'ctrl + r' }),
+	        _react2.default.createElement(_stardust.Dropdown.Item, { text: 'Make a copy' }),
+	        _react2.default.createElement(_stardust.Dropdown.Item, { icon: 'trash', text: 'Move to trash' }),
+	        _react2.default.createElement(_stardust.Dropdown.Divider, null),
+	        _react2.default.createElement(_stardust.Dropdown.Item, { text: 'Download As...' }),
+	        _react2.default.createElement(
+	          _stardust.Dropdown.Item,
+	          { text: 'Publish To Web' },
+	          _react2.default.createElement(
+	            _stardust.Dropdown.Menu,
+	            null,
+	            _react2.default.createElement(_stardust.Dropdown.Item, { text: 'Google Docs' }),
+	            _react2.default.createElement(_stardust.Dropdown.Item, { text: 'Google Drive' }),
+	            _react2.default.createElement(_stardust.Dropdown.Item, { text: 'Dropbox' }),
+	            _react2.default.createElement(_stardust.Dropdown.Item, { text: 'Adobe Creative Cloud' }),
+	            _react2.default.createElement(_stardust.Dropdown.Item, { text: 'Private FTP' }),
+	            _react2.default.createElement(_stardust.Dropdown.Item, { text: 'Another Service...' })
+	          )
+	        ),
+	        _react2.default.createElement(
+	          _stardust.Dropdown.Item,
+	          null,
+	          'E-mail Collaborators'
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return DropdownDropdownExample;
+	}(_react.Component);
+
+	exports.default = DropdownDropdownExample;
+	module.exports = exports['default'];
+
+	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(225); if (makeExportsHot(module, __webpack_require__(117))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "Dropdown.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
+
+/***/ },
+/* 838 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -29459,7 +30383,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 822 */
+/* 839 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -29476,11 +30400,11 @@ webpackJsonp([0],[
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _ComponentExample = __webpack_require__(289);
+	var _ComponentExample = __webpack_require__(292);
 	
 	var _ComponentExample2 = _interopRequireDefault(_ComponentExample);
 	
-	var _ExampleSection = __webpack_require__(288);
+	var _ExampleSection = __webpack_require__(291);
 	
 	var _ExampleSection2 = _interopRequireDefault(_ExampleSection);
 	
@@ -29536,7 +30460,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 823 */
+/* 840 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -29570,7 +30494,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 824 */
+/* 841 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -29600,7 +30524,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 825 */
+/* 842 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -29617,15 +30541,15 @@ webpackJsonp([0],[
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _Types = __webpack_require__(826);
+	var _Types = __webpack_require__(843);
 	
 	var _Types2 = _interopRequireDefault(_Types);
 	
-	var _Content = __webpack_require__(822);
+	var _Content = __webpack_require__(839);
 	
 	var _Content2 = _interopRequireDefault(_Content);
 	
-	var _States = __webpack_require__(827);
+	var _States = __webpack_require__(844);
 	
 	var _States2 = _interopRequireDefault(_States);
 	
@@ -29669,7 +30593,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 826 */
+/* 843 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -29686,11 +30610,11 @@ webpackJsonp([0],[
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _ComponentExample = __webpack_require__(289);
+	var _ComponentExample = __webpack_require__(292);
 	
 	var _ComponentExample2 = _interopRequireDefault(_ComponentExample);
 	
-	var _ExampleSection = __webpack_require__(288);
+	var _ExampleSection = __webpack_require__(291);
 	
 	var _ExampleSection2 = _interopRequireDefault(_ExampleSection);
 	
@@ -29741,7 +30665,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 827 */
+/* 844 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -29758,11 +30682,11 @@ webpackJsonp([0],[
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _ComponentExample = __webpack_require__(289);
+	var _ComponentExample = __webpack_require__(292);
 	
 	var _ComponentExample2 = _interopRequireDefault(_ComponentExample);
 	
-	var _ExampleSection = __webpack_require__(288);
+	var _ExampleSection = __webpack_require__(291);
 	
 	var _ExampleSection2 = _interopRequireDefault(_ExampleSection);
 	
@@ -29854,7 +30778,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 828 */
+/* 845 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -29888,7 +30812,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 829 */
+/* 846 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -29922,7 +30846,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 830 */
+/* 847 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -29956,7 +30880,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 831 */
+/* 848 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -29990,7 +30914,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 832 */
+/* 849 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -30024,7 +30948,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 833 */
+/* 850 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -30054,7 +30978,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 834 */
+/* 851 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -30084,7 +31008,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 835 */
+/* 852 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -30101,7 +31025,7 @@ webpackJsonp([0],[
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _StatisticTypesExamples = __webpack_require__(836);
+	var _StatisticTypesExamples = __webpack_require__(853);
 	
 	var _StatisticTypesExamples2 = _interopRequireDefault(_StatisticTypesExamples);
 	
@@ -30143,7 +31067,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 836 */
+/* 853 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -30160,11 +31084,11 @@ webpackJsonp([0],[
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _ComponentExample = __webpack_require__(289);
+	var _ComponentExample = __webpack_require__(292);
 	
 	var _ComponentExample2 = _interopRequireDefault(_ComponentExample);
 	
-	var _ExampleSection = __webpack_require__(288);
+	var _ExampleSection = __webpack_require__(291);
 	
 	var _ExampleSection2 = _interopRequireDefault(_ExampleSection);
 	
@@ -30218,7 +31142,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 837 */
+/* 854 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -30284,7 +31208,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 838 */
+/* 855 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -30386,7 +31310,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 839 */
+/* 856 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -30452,7 +31376,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 840 */
+/* 857 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -30598,7 +31522,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 841 */
+/* 858 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -30613,7 +31537,7 @@ webpackJsonp([0],[
 	
 	var _lodash2 = _interopRequireDefault(_lodash);
 	
-	var _docgenInfo = __webpack_require__(842);
+	var _docgenInfo = __webpack_require__(859);
 	
 	var _docgenInfo2 = _interopRequireDefault(_docgenInfo);
 	
@@ -30649,7 +31573,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 842 */
+/* 859 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -32194,16 +33118,6 @@ webpackJsonp([0],[
 						"tags": []
 					}
 				},
-				"className": {
-					"type": {
-						"name": "string"
-					},
-					"required": false,
-					"docBlock": {
-						"description": "",
-						"tags": []
-					}
-				},
 				"fields": {
 					"type": {
 						"name": "object"
@@ -32274,40 +33188,15 @@ webpackJsonp([0],[
 						"tags": []
 					}
 				},
-				"options": {
-					"type": {
-						"name": "arrayOf",
-						"value": {
-							"name": "shape",
-							"value": {
-								"value": {
-									"name": "string",
-									"required": false
-								},
-								"text": {
-									"name": "string",
-									"required": false
-								}
-							}
-						}
-					},
-					"required": false,
-					"docBlock": {
-						"description": "",
-						"tags": []
-					}
-				},
 				"placeholder": {
 					"type": {
-						"name": "enum",
+						"name": "union",
 						"value": [
 							{
-								"value": "PropTypes.string",
-								"computed": true
+								"name": "string"
 							},
 							{
-								"value": "PropTypes.bool",
-								"computed": true
+								"name": "bool"
 							}
 						]
 					},
@@ -32337,17 +33226,7 @@ webpackJsonp([0],[
 						"tags": []
 					}
 				},
-				"direction": {
-					"type": {
-						"name": "string"
-					},
-					"required": false,
-					"docBlock": {
-						"description": "",
-						"tags": []
-					}
-				},
-				"keepOnScreen": {
+				"allowTab": {
 					"type": {
 						"name": "bool"
 					},
@@ -32367,9 +33246,9 @@ webpackJsonp([0],[
 						"tags": []
 					}
 				},
-				"fullTextSearch": {
+				"delay": {
 					"type": {
-						"name": "bool"
+						"name": "object"
 					},
 					"required": false,
 					"docBlock": {
@@ -32377,47 +33256,7 @@ webpackJsonp([0],[
 						"tags": []
 					}
 				},
-				"preserveHTML": {
-					"type": {
-						"name": "bool"
-					},
-					"required": false,
-					"docBlock": {
-						"description": "",
-						"tags": []
-					}
-				},
-				"sortSelect": {
-					"type": {
-						"name": "bool"
-					},
-					"required": false,
-					"docBlock": {
-						"description": "",
-						"tags": []
-					}
-				},
-				"showOnFocus": {
-					"type": {
-						"name": "bool"
-					},
-					"required": false,
-					"docBlock": {
-						"description": "",
-						"tags": []
-					}
-				},
-				"allowTab": {
-					"type": {
-						"name": "bool"
-					},
-					"required": false,
-					"docBlock": {
-						"description": "",
-						"tags": []
-					}
-				},
-				"transition": {
+				"direction": {
 					"type": {
 						"name": "string"
 					},
@@ -32437,6 +33276,26 @@ webpackJsonp([0],[
 						"tags": []
 					}
 				},
+				"fullTextSearch": {
+					"type": {
+						"name": "bool"
+					},
+					"required": false,
+					"docBlock": {
+						"description": "",
+						"tags": []
+					}
+				},
+				"keepOnScreen": {
+					"type": {
+						"name": "bool"
+					},
+					"required": false,
+					"docBlock": {
+						"description": "",
+						"tags": []
+					}
+				},
 				"keys": {
 					"type": {
 						"name": "object"
@@ -32447,9 +33306,9 @@ webpackJsonp([0],[
 						"tags": []
 					}
 				},
-				"delay": {
+				"preserveHTML": {
 					"type": {
-						"name": "object"
+						"name": "bool"
 					},
 					"required": false,
 					"docBlock": {
@@ -32457,7 +33316,37 @@ webpackJsonp([0],[
 						"tags": []
 					}
 				},
-				"onChange": {
+				"showOnFocus": {
+					"type": {
+						"name": "bool"
+					},
+					"required": false,
+					"docBlock": {
+						"description": "",
+						"tags": []
+					}
+				},
+				"sortSelect": {
+					"type": {
+						"name": "bool"
+					},
+					"required": false,
+					"docBlock": {
+						"description": "",
+						"tags": []
+					}
+				},
+				"transition": {
+					"type": {
+						"name": "string"
+					},
+					"required": false,
+					"docBlock": {
+						"description": "",
+						"tags": []
+					}
+				},
+				"onAdd": {
 					"type": {
 						"name": "func"
 					},
@@ -32467,7 +33356,7 @@ webpackJsonp([0],[
 						"tags": []
 					}
 				},
-				"onShow": {
+				"onChange": {
 					"type": {
 						"name": "func"
 					},
@@ -32487,7 +33376,17 @@ webpackJsonp([0],[
 						"tags": []
 					}
 				},
-				"onNoResults": {
+				"onRemove": {
+					"type": {
+						"name": "func"
+					},
+					"required": false,
+					"docBlock": {
+						"description": "",
+						"tags": []
+					}
+				},
+				"onShow": {
 					"type": {
 						"name": "func"
 					},
@@ -32527,7 +33426,7 @@ webpackJsonp([0],[
 						"tags": []
 					}
 				},
-				"onAdd": {
+				"onNoResults": {
 					"type": {
 						"name": "func"
 					},
@@ -32537,9 +33436,255 @@ webpackJsonp([0],[
 						"tags": []
 					}
 				},
-				"onRemove": {
+				"text": {
 					"type": {
-						"name": "func"
+						"name": "string"
+					},
+					"required": false,
+					"docBlock": {
+						"description": "",
+						"tags": []
+					}
+				},
+				"defaultText": {
+					"type": {
+						"name": "string"
+					},
+					"required": false,
+					"docBlock": {
+						"description": "",
+						"tags": []
+					}
+				},
+				"className": {
+					"type": {
+						"name": "string"
+					},
+					"required": false,
+					"docBlock": {
+						"description": "",
+						"tags": []
+					}
+				},
+				"children": {
+					"type": {
+						"name": "custom",
+						"raw": "customPropTypes.mutuallyExclusive(['options'])"
+					},
+					"required": false,
+					"docBlock": {
+						"description": "",
+						"tags": []
+					}
+				},
+				"icon": {
+					"type": {
+						"name": "string"
+					},
+					"required": false,
+					"defaultValue": {
+						"value": "'dropdown'",
+						"computed": false
+					},
+					"docBlock": {
+						"description": "",
+						"tags": []
+					}
+				},
+				"defaultValue": {
+					"type": {
+						"name": "union",
+						"value": [
+							{
+								"name": "string"
+							},
+							{
+								"name": "number"
+							},
+							{
+								"name": "arrayOf",
+								"value": {
+									"name": "custom",
+									"raw": "[\n  PropTypes.string,\n  PropTypes.number,\n]"
+								}
+							}
+						]
+					},
+					"required": false,
+					"docBlock": {
+						"description": "",
+						"tags": []
+					}
+				},
+				"value": {
+					"type": {
+						"name": "union",
+						"value": [
+							{
+								"name": "string"
+							},
+							{
+								"name": "number"
+							},
+							{
+								"name": "arrayOf",
+								"value": {
+									"name": "custom",
+									"raw": "[\n  PropTypes.string,\n  PropTypes.number,\n]"
+								}
+							}
+						]
+					},
+					"required": false,
+					"docBlock": {
+						"description": "",
+						"tags": []
+					}
+				},
+				"options": {
+					"type": {
+						"name": "arrayOf",
+						"value": {
+							"name": "shape",
+							"value": {
+								"value": {
+									"name": "union",
+									"value": [
+										{
+											"name": "string"
+										},
+										{
+											"name": "number"
+										}
+									],
+									"required": false
+								},
+								"text": {
+									"name": "union",
+									"value": [
+										{
+											"name": "string"
+										},
+										{
+											"name": "number"
+										}
+									],
+									"required": false
+								}
+							}
+						}
+					},
+					"required": false,
+					"docBlock": {
+						"description": "",
+						"tags": []
+					}
+				}
+			},
+			"docBlock": {
+				"description": "",
+				"tags": []
+			}
+		},
+		"src/modules/Dropdown/DropdownDivider.js": {
+			"props": {
+				"children": {
+					"type": {
+						"name": "node"
+					},
+					"required": false,
+					"docBlock": {
+						"description": "",
+						"tags": []
+					}
+				}
+			},
+			"docBlock": {
+				"description": "",
+				"tags": []
+			}
+		},
+		"src/modules/Dropdown/DropdownItem.js": {
+			"props": {
+				"children": {
+					"type": {
+						"name": "node"
+					},
+					"required": false,
+					"docBlock": {
+						"description": "",
+						"tags": []
+					}
+				},
+				"className": {
+					"type": {
+						"name": "string"
+					},
+					"required": false,
+					"docBlock": {
+						"description": "",
+						"tags": []
+					}
+				},
+				"description": {
+					"type": {
+						"name": "string"
+					},
+					"required": false,
+					"docBlock": {
+						"description": "",
+						"tags": []
+					}
+				},
+				"icon": {
+					"type": {
+						"name": "string"
+					},
+					"required": false,
+					"docBlock": {
+						"description": "",
+						"tags": []
+					}
+				},
+				"text": {
+					"type": {
+						"name": "string"
+					},
+					"required": false,
+					"docBlock": {
+						"description": "",
+						"tags": []
+					}
+				},
+				"value": {
+					"type": {
+						"name": "union",
+						"value": [
+							{
+								"name": "number"
+							},
+							{
+								"name": "string"
+							}
+						]
+					},
+					"required": false,
+					"docBlock": {
+						"description": "",
+						"tags": []
+					}
+				}
+			},
+			"docBlock": {
+				"description": "",
+				"tags": []
+			}
+		},
+		"src/modules/Dropdown/DropdownMenu.js": {
+			"props": {
+				"children": {
+					"type": {
+						"name": "node"
 					},
 					"required": false,
 					"docBlock": {
@@ -33118,7 +34263,7 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 843 */
+/* 860 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -33253,7 +34398,7 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 844 */
+/* 861 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
