@@ -25,7 +25,7 @@ deployment:
   production:
     branch: master
     commands:
-      - $(npm bin)/ta-script circle_ci/create_changelog
       - git config --global user.email "devteam+deweybot@technologyadvice.com"
       - git config --global user.name "deweybot"
+      - $(npm bin)/ta-script circle_ci/create_changelog
       - npm run deploy:docs
