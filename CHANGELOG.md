@@ -1,5 +1,8 @@
 # Change Log
 
+## [v0.13.2](https://github.com/TechnologyAdvice/stardust/tree/v0.13.2) (2016-03-20)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.13.1...v0.13.2)
+
 ## [v0.13.1](https://github.com/TechnologyAdvice/stardust/tree/v0.13.1) (2016-03-20)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.13.0...v0.13.1)
 
