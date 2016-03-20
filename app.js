@@ -8331,25 +8331,25 @@ webpackJsonp([0],[
 	
 	var _Textarea2 = _interopRequireDefault(_Textarea);
 	
-	var _GridColumn = __webpack_require__(237);
-	
-	var _GridColumn2 = _interopRequireDefault(_GridColumn);
-	
-	var _FormField = __webpack_require__(239);
-	
-	var _FormField2 = _interopRequireDefault(_FormField);
-	
-	var _FormFields = __webpack_require__(240);
-	
-	var _FormFields2 = _interopRequireDefault(_FormFields);
-	
-	var _Form = __webpack_require__(242);
+	var _Form = __webpack_require__(237);
 	
 	var _Form2 = _interopRequireDefault(_Form);
 	
-	var _Grid = __webpack_require__(245);
+	var _FormField = __webpack_require__(240);
+	
+	var _FormField2 = _interopRequireDefault(_FormField);
+	
+	var _FormFields = __webpack_require__(242);
+	
+	var _FormFields2 = _interopRequireDefault(_FormFields);
+	
+	var _Grid = __webpack_require__(244);
 	
 	var _Grid2 = _interopRequireDefault(_Grid);
+	
+	var _GridColumn = __webpack_require__(245);
+	
+	var _GridColumn2 = _interopRequireDefault(_GridColumn);
 	
 	var _GridRow = __webpack_require__(246);
 	
@@ -8512,7 +8512,7 @@ webpackJsonp([0],[
 	// Elements
 	
 	
-	(0, _deprecate.deprecateComponents)(stardust, [[_FormField2.default, 'Use "Form.Field" instead.'], [_FormFields2.default, 'Use "Form.Fields" instead.'], [_GridColumn2.default, 'Use "Grid.Column" instead.'], [_TableColumn2.default, 'Use "Table.Column" instead.'], [_ListItem2.default, 'Use "List.Item" instead.'], [_MenuItem2.default, 'Use "List.Item" instead.'], [_ModalContent2.default, 'Use "Modal.Content" instead.'], [_ModalFooter2.default, 'Use "Modal.Footer" instead.'], [_ModalHeader2.default, 'Use "Modal.Header" instead.'], [_GridRow2.default, 'Use "Grid.Row" instead.']]);
+	(0, _deprecate.deprecateComponents)(stardust, [['Field', _FormField2.default, 'Use "Form.Field" instead.'], ['Fields', _FormFields2.default, 'Use "Form.Fields" instead.'], ['Column', _GridColumn2.default, 'Use "Grid.Column" instead.'], ['TableColumn', _TableColumn2.default, 'Use "Table.Column" instead.'], ['ListItem', _ListItem2.default, 'Use "List.Item" instead.'], ['MenuItem', _MenuItem2.default, 'Use "Menu.Item" instead.'], ['ModalContent', _ModalContent2.default, 'Use "Modal.Content" instead.'], ['ModalFooter', _ModalFooter2.default, 'Use "Modal.Footer" instead.'], ['ModalHeader', _ModalHeader2.default, 'Use "Modal.Header" instead.'], ['Row', _GridRow2.default, 'Use "Grid.Row" instead.']]);
 	
 	exports.default = stardust;
 	module.exports = exports['default'];
@@ -8567,12 +8567,12 @@ webpackJsonp([0],[
 	 */
 	var deprecateComponents = exports.deprecateComponents = function deprecateComponents(stardust, deprecated) {
 	  _lodash2.default.each(deprecated, function (_ref) {
-	    var _ref2 = _slicedToArray(_ref, 2);
+	    var _ref2 = _slicedToArray(_ref, 3);
 	
-	    var component = _ref2[0];
-	    var warning = _ref2[1];
+	    var name = _ref2[0];
+	    var component = _ref2[1];
+	    var warning = _ref2[2];
 	
-	    var name = component.prototype.constructor.name;
 	    Object.defineProperty(stardust, name, {
 	      get: function get() {
 	        console.warn('Stardust component "' + name + '" is deprecated. ' + warning);
@@ -9411,358 +9411,7 @@ webpackJsonp([0],[
 	
 	var _lodash2 = _interopRequireDefault(_lodash);
 	
-	var _classnames = __webpack_require__(230);
-	
-	var _classnames2 = _interopRequireDefault(_classnames);
-	
-	var _react = __webpack_require__(117);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _numberToWord = __webpack_require__(238);
-	
-	var _numberToWord2 = _interopRequireDefault(_numberToWord);
-	
-	var _Meta = __webpack_require__(231);
-	
-	var _Meta2 = _interopRequireDefault(_Meta);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var GridColumn = function (_Component) {
-	  _inherits(GridColumn, _Component);
-	
-	  function GridColumn() {
-	    _classCallCheck(this, GridColumn);
-	
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(GridColumn).apply(this, arguments));
-	  }
-	
-	  _createClass(GridColumn, [{
-	    key: 'render',
-	    value: function render() {
-	      var classes = (0, _classnames2.default)('sd-grid-column', this.props.className, this.props.width && (0, _numberToWord2.default)(this.props.width) + ' wide', 'column');
-	      return _react2.default.createElement(
-	        'div',
-	        _extends({}, this.props, { className: classes }),
-	        this.props.children
-	      );
-	    }
-	  }]);
-	
-	  return GridColumn;
-	}(_react.Component);
-	
-	GridColumn.propTypes = {
-	  children: _react.PropTypes.node,
-	  className: _react.PropTypes.string,
-	  style: _react.PropTypes.object,
-	  width: _react.PropTypes.oneOf(_lodash2.default.range(1, 17))
-	};
-	GridColumn._meta = {
-	  library: _Meta2.default.library.semanticUI,
-	  name: 'GridColumn',
-	  type: _Meta2.default.type.collection,
-	  parent: 'Grid'
-	};
-	exports.default = GridColumn;
-	module.exports = exports['default'];
-
-	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(225); if (makeExportsHot(module, __webpack_require__(117))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "GridColumn.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
-
-/***/ },
-/* 238 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
-	
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = numberToWord;
-	function numberToWord(number) {
-	  var map = {
-	    1: 'one',
-	    2: 'two',
-	    3: 'three',
-	    4: 'four',
-	    5: 'five',
-	    6: 'six',
-	    7: 'seven',
-	    8: 'eight',
-	    9: 'nine',
-	    10: 'ten',
-	    11: 'eleven',
-	    12: 'twelve',
-	    13: 'thirteen',
-	    14: 'fourteen',
-	    15: 'fifteen',
-	    16: 'sixteen'
-	  };
-	
-	  return map[number];
-	}
-	module.exports = exports['default'];
-
-	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(225); if (makeExportsHot(module, __webpack_require__(117))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "numberToWord.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
-
-/***/ },
-/* 239 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
-	
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(117);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _classnames = __webpack_require__(230);
-	
-	var _classnames2 = _interopRequireDefault(_classnames);
-	
-	var _numberToWord = __webpack_require__(238);
-	
-	var _numberToWord2 = _interopRequireDefault(_numberToWord);
-	
-	var _Meta = __webpack_require__(231);
-	
-	var _Meta2 = _interopRequireDefault(_Meta);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var FormField = function (_Component) {
-	  _inherits(FormField, _Component);
-	
-	  function FormField() {
-	    _classCallCheck(this, FormField);
-	
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(FormField).apply(this, arguments));
-	  }
-	
-	  _createClass(FormField, [{
-	    key: 'render',
-	    value: function render() {
-	      var classes = (0, _classnames2.default)('sd-form-field', this.props.width && (0, _numberToWord2.default)(this.props.width) + ' wide', this.props.className, 'field');
-	      return _react2.default.createElement(
-	        'div',
-	        _extends({}, this.props, { className: classes }),
-	        this.props.label && _react2.default.createElement(
-	          'label',
-	          null,
-	          this.props.label
-	        ),
-	        this.props.children
-	      );
-	    }
-	  }]);
-	
-	  return FormField;
-	}(_react.Component);
-	
-	FormField.propTypes = {
-	  children: _react.PropTypes.node,
-	  className: _react.PropTypes.string,
-	  label: _react.PropTypes.string,
-	  width: _react.PropTypes.number
-	};
-	FormField._meta = {
-	  library: _Meta2.default.library.semanticUI,
-	  name: 'FormField',
-	  parent: 'Form',
-	  type: _Meta2.default.type.collection
-	};
-	exports.default = FormField;
-	module.exports = exports['default'];
-
-	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(225); if (makeExportsHot(module, __webpack_require__(117))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "FormField.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
-
-/***/ },
-/* 240 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
-	
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _lodash = __webpack_require__(224);
-	
-	var _lodash2 = _interopRequireDefault(_lodash);
-	
-	var _react = __webpack_require__(117);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _classnames = __webpack_require__(230);
-	
-	var _classnames2 = _interopRequireDefault(_classnames);
-	
-	var _getUnhandledProps = __webpack_require__(241);
-	
-	var _getUnhandledProps2 = _interopRequireDefault(_getUnhandledProps);
-	
-	var _numberToWord = __webpack_require__(238);
-	
-	var _numberToWord2 = _interopRequireDefault(_numberToWord);
-	
-	var _Meta = __webpack_require__(231);
-	
-	var _Meta2 = _interopRequireDefault(_Meta);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var FormFields = function (_Component) {
-	  _inherits(FormFields, _Component);
-	
-	  function FormFields() {
-	    _classCallCheck(this, FormFields);
-	
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(FormFields).apply(this, arguments));
-	  }
-	
-	  _createClass(FormFields, [{
-	    key: 'render',
-	    value: function render() {
-	      var fieldCount = 0;
-	      if (this.props.evenlyDivided) {
-	        _react.Children.forEach(this.props.children, function (child) {
-	          if (_lodash2.default.get(child, 'type._meta.name') === 'FormField') {
-	            fieldCount += 1;
-	          }
-	        });
-	      }
-	
-	      var classes = (0, _classnames2.default)('sd-form-fields', this.props.className, (0, _numberToWord2.default)(fieldCount), 'fields');
-	      var props = (0, _getUnhandledProps2.default)(this);
-	      return _react2.default.createElement(
-	        'div',
-	        _extends({}, props, { className: classes }),
-	        this.props.children
-	      );
-	    }
-	  }]);
-	
-	  return FormFields;
-	}(_react.Component);
-	
-	FormFields.propTypes = {
-	  children: _react.PropTypes.node,
-	  className: _react.PropTypes.string,
-	  /**
-	   * Dynamically adds className='<count> fields'.
-	   */
-	  evenlyDivided: _react.PropTypes.bool
-	};
-	FormFields._meta = {
-	  library: _Meta2.default.library.semanticUI,
-	  name: 'FormFields',
-	  parent: 'Form',
-	  type: _Meta2.default.type.collection
-	};
-	exports.default = FormFields;
-	module.exports = exports['default'];
-
-	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(225); if (makeExportsHot(module, __webpack_require__(117))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "FormFields.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
-
-/***/ },
-/* 241 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
-	
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _lodash = __webpack_require__(224);
-	
-	var _lodash2 = _interopRequireDefault(_lodash);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	/**
-	 * Returns an object consisting of props not defined in propTypes unless defined in defaultProps.
-	 * @param {*} instance The `this` keyword in a React Component class.
-	 * @returns {{}} A shallow copy of the prop object
-	 */
-	var getUnhandledProps = function getUnhandledProps(instance) {
-	  return _lodash2.default.omit(instance.props, function (val, key) {
-	    var inPropTypes = _lodash2.default.has(instance.constructor.propTypes, key);
-	    var inDefaultProps = _lodash2.default.has(instance.constructor.defaultProps, key);
-	    return inPropTypes && !inDefaultProps;
-	  });
-	};
-	
-	exports.default = getUnhandledProps;
-	module.exports = exports['default'];
-
-	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(225); if (makeExportsHot(module, __webpack_require__(117))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "getUnhandledProps.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
-
-/***/ },
-/* 242 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
-	
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _lodash = __webpack_require__(224);
-	
-	var _lodash2 = _interopRequireDefault(_lodash);
-	
-	var _jquery = __webpack_require__(243);
+	var _jquery = __webpack_require__(238);
 	
 	var _jquery2 = _interopRequireDefault(_jquery);
 	
@@ -9778,15 +9427,15 @@ webpackJsonp([0],[
 	
 	var _Meta2 = _interopRequireDefault(_Meta);
 	
-	var _propUtils = __webpack_require__(244);
+	var _propUtils = __webpack_require__(239);
 	
 	var _deprecate = __webpack_require__(223);
 	
-	var _FormField = __webpack_require__(239);
+	var _FormField = __webpack_require__(240);
 	
 	var _FormField2 = _interopRequireDefault(_FormField);
 	
-	var _FormFields = __webpack_require__(240);
+	var _FormFields = __webpack_require__(242);
 	
 	var _FormFields2 = _interopRequireDefault(_FormFields);
 	
@@ -9932,8 +9581,8 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 243 */,
-/* 244 */
+/* 238 */,
+/* 239 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -10013,7 +9662,272 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
-/* 245 */
+/* 240 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+	
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(117);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _classnames = __webpack_require__(230);
+	
+	var _classnames2 = _interopRequireDefault(_classnames);
+	
+	var _numberToWord = __webpack_require__(241);
+	
+	var _numberToWord2 = _interopRequireDefault(_numberToWord);
+	
+	var _Meta = __webpack_require__(231);
+	
+	var _Meta2 = _interopRequireDefault(_Meta);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var FormField = function (_Component) {
+	  _inherits(FormField, _Component);
+	
+	  function FormField() {
+	    _classCallCheck(this, FormField);
+	
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(FormField).apply(this, arguments));
+	  }
+	
+	  _createClass(FormField, [{
+	    key: 'render',
+	    value: function render() {
+	      var classes = (0, _classnames2.default)('sd-form-field', this.props.width && (0, _numberToWord2.default)(this.props.width) + ' wide', this.props.className, 'field');
+	      return _react2.default.createElement(
+	        'div',
+	        _extends({}, this.props, { className: classes }),
+	        this.props.label && _react2.default.createElement(
+	          'label',
+	          null,
+	          this.props.label
+	        ),
+	        this.props.children
+	      );
+	    }
+	  }]);
+	
+	  return FormField;
+	}(_react.Component);
+	
+	FormField.propTypes = {
+	  children: _react.PropTypes.node,
+	  className: _react.PropTypes.string,
+	  label: _react.PropTypes.string,
+	  width: _react.PropTypes.number
+	};
+	FormField._meta = {
+	  library: _Meta2.default.library.semanticUI,
+	  name: 'FormField',
+	  parent: 'Form',
+	  type: _Meta2.default.type.collection
+	};
+	exports.default = FormField;
+	module.exports = exports['default'];
+
+	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(225); if (makeExportsHot(module, __webpack_require__(117))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "FormField.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
+
+/***/ },
+/* 241 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+	
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = numberToWord;
+	function numberToWord(number) {
+	  var map = {
+	    1: 'one',
+	    2: 'two',
+	    3: 'three',
+	    4: 'four',
+	    5: 'five',
+	    6: 'six',
+	    7: 'seven',
+	    8: 'eight',
+	    9: 'nine',
+	    10: 'ten',
+	    11: 'eleven',
+	    12: 'twelve',
+	    13: 'thirteen',
+	    14: 'fourteen',
+	    15: 'fifteen',
+	    16: 'sixteen'
+	  };
+	
+	  return map[number];
+	}
+	module.exports = exports['default'];
+
+	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(225); if (makeExportsHot(module, __webpack_require__(117))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "numberToWord.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
+
+/***/ },
+/* 242 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+	
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _lodash = __webpack_require__(224);
+	
+	var _lodash2 = _interopRequireDefault(_lodash);
+	
+	var _react = __webpack_require__(117);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _classnames = __webpack_require__(230);
+	
+	var _classnames2 = _interopRequireDefault(_classnames);
+	
+	var _getUnhandledProps = __webpack_require__(243);
+	
+	var _getUnhandledProps2 = _interopRequireDefault(_getUnhandledProps);
+	
+	var _numberToWord = __webpack_require__(241);
+	
+	var _numberToWord2 = _interopRequireDefault(_numberToWord);
+	
+	var _Meta = __webpack_require__(231);
+	
+	var _Meta2 = _interopRequireDefault(_Meta);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var FormFields = function (_Component) {
+	  _inherits(FormFields, _Component);
+	
+	  function FormFields() {
+	    _classCallCheck(this, FormFields);
+	
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(FormFields).apply(this, arguments));
+	  }
+	
+	  _createClass(FormFields, [{
+	    key: 'render',
+	    value: function render() {
+	      var fieldCount = 0;
+	      if (this.props.evenlyDivided) {
+	        _react.Children.forEach(this.props.children, function (child) {
+	          if (_lodash2.default.get(child, 'type._meta.name') === 'FormField') {
+	            fieldCount += 1;
+	          }
+	        });
+	      }
+	
+	      var classes = (0, _classnames2.default)('sd-form-fields', this.props.className, (0, _numberToWord2.default)(fieldCount), 'fields');
+	      var props = (0, _getUnhandledProps2.default)(this);
+	      return _react2.default.createElement(
+	        'div',
+	        _extends({}, props, { className: classes }),
+	        this.props.children
+	      );
+	    }
+	  }]);
+	
+	  return FormFields;
+	}(_react.Component);
+	
+	FormFields.propTypes = {
+	  children: _react.PropTypes.node,
+	  className: _react.PropTypes.string,
+	  /**
+	   * Dynamically adds className='<count> fields'.
+	   */
+	  evenlyDivided: _react.PropTypes.bool
+	};
+	FormFields._meta = {
+	  library: _Meta2.default.library.semanticUI,
+	  name: 'FormFields',
+	  parent: 'Form',
+	  type: _Meta2.default.type.collection
+	};
+	exports.default = FormFields;
+	module.exports = exports['default'];
+
+	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(225); if (makeExportsHot(module, __webpack_require__(117))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "FormFields.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
+
+/***/ },
+/* 243 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+	
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _lodash = __webpack_require__(224);
+	
+	var _lodash2 = _interopRequireDefault(_lodash);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	/**
+	 * Returns an object consisting of props not defined in propTypes unless defined in defaultProps.
+	 * @param {*} instance The `this` keyword in a React Component class.
+	 * @returns {{}} A shallow copy of the prop object
+	 */
+	var getUnhandledProps = function getUnhandledProps(instance) {
+	  return _lodash2.default.omit(instance.props, function (val, key) {
+	    var inPropTypes = _lodash2.default.has(instance.constructor.propTypes, key);
+	    var inDefaultProps = _lodash2.default.has(instance.constructor.defaultProps, key);
+	    return inPropTypes && !inDefaultProps;
+	  });
+	};
+	
+	exports.default = getUnhandledProps;
+	module.exports = exports['default'];
+
+	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(225); if (makeExportsHot(module, __webpack_require__(117))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "getUnhandledProps.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
+
+/***/ },
+/* 244 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -10040,7 +9954,7 @@ webpackJsonp([0],[
 	
 	var _Meta2 = _interopRequireDefault(_Meta);
 	
-	var _GridColumn = __webpack_require__(237);
+	var _GridColumn = __webpack_require__(245);
 	
 	var _GridColumn2 = _interopRequireDefault(_GridColumn);
 	
@@ -10095,6 +10009,92 @@ webpackJsonp([0],[
 	module.exports = exports['default'];
 
 	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(225); if (makeExportsHot(module, __webpack_require__(117))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "Grid.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
+
+/***/ },
+/* 245 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(54), RootInstanceProvider = __webpack_require__(62), ReactMount = __webpack_require__(64), React = __webpack_require__(117); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+	
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _lodash = __webpack_require__(224);
+	
+	var _lodash2 = _interopRequireDefault(_lodash);
+	
+	var _classnames = __webpack_require__(230);
+	
+	var _classnames2 = _interopRequireDefault(_classnames);
+	
+	var _react = __webpack_require__(117);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _numberToWord = __webpack_require__(241);
+	
+	var _numberToWord2 = _interopRequireDefault(_numberToWord);
+	
+	var _Meta = __webpack_require__(231);
+	
+	var _Meta2 = _interopRequireDefault(_Meta);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var GridColumn = function (_Component) {
+	  _inherits(GridColumn, _Component);
+	
+	  function GridColumn() {
+	    _classCallCheck(this, GridColumn);
+	
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(GridColumn).apply(this, arguments));
+	  }
+	
+	  _createClass(GridColumn, [{
+	    key: 'render',
+	    value: function render() {
+	      var classes = (0, _classnames2.default)('sd-grid-column', this.props.className, this.props.width && (0, _numberToWord2.default)(this.props.width) + ' wide', 'column');
+	      return _react2.default.createElement(
+	        'div',
+	        _extends({}, this.props, { className: classes }),
+	        this.props.children
+	      );
+	    }
+	  }]);
+	
+	  return GridColumn;
+	}(_react.Component);
+	
+	GridColumn.propTypes = {
+	  children: _react.PropTypes.node,
+	  className: _react.PropTypes.string,
+	  style: _react.PropTypes.object,
+	  width: _react.PropTypes.oneOf(_lodash2.default.range(1, 17))
+	};
+	GridColumn._meta = {
+	  library: _Meta2.default.library.semanticUI,
+	  name: 'GridColumn',
+	  type: _Meta2.default.type.collection,
+	  parent: 'Grid'
+	};
+	exports.default = GridColumn;
+	module.exports = exports['default'];
+
+	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(225); if (makeExportsHot(module, __webpack_require__(117))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "GridColumn.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)(module)))
 
 /***/ },
@@ -10201,7 +10201,7 @@ webpackJsonp([0],[
 	
 	var _Meta2 = _interopRequireDefault(_Meta);
 	
-	var _getUnhandledProps = __webpack_require__(241);
+	var _getUnhandledProps = __webpack_require__(243);
 	
 	var _getUnhandledProps2 = _interopRequireDefault(_getUnhandledProps);
 	
@@ -10409,7 +10409,7 @@ webpackJsonp([0],[
 	
 	var _classnames2 = _interopRequireDefault(_classnames);
 	
-	var _jquery = __webpack_require__(243);
+	var _jquery = __webpack_require__(238);
 	
 	var _jquery2 = _interopRequireDefault(_jquery);
 	
@@ -10544,7 +10544,7 @@ webpackJsonp([0],[
 	
 	var _classnames2 = _interopRequireDefault(_classnames);
 	
-	var _propUtils = __webpack_require__(244);
+	var _propUtils = __webpack_require__(239);
 	
 	var _Meta = __webpack_require__(231);
 	
@@ -11771,7 +11771,7 @@ webpackJsonp([0],[
 	
 	var _Meta2 = _interopRequireDefault(_Meta);
 	
-	var _getUnhandledProps = __webpack_require__(241);
+	var _getUnhandledProps = __webpack_require__(243);
 	
 	var _getUnhandledProps2 = _interopRequireDefault(_getUnhandledProps);
 	
@@ -11929,7 +11929,7 @@ webpackJsonp([0],[
 	
 	var _Meta2 = _interopRequireDefault(_Meta);
 	
-	var _getUnhandledProps = __webpack_require__(241);
+	var _getUnhandledProps = __webpack_require__(243);
 	
 	var _getUnhandledProps2 = _interopRequireDefault(_getUnhandledProps);
 	
@@ -12341,7 +12341,7 @@ webpackJsonp([0],[
 	
 	var _Meta2 = _interopRequireDefault(_Meta);
 	
-	var _propUtils = __webpack_require__(244);
+	var _propUtils = __webpack_require__(239);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -12426,7 +12426,7 @@ webpackJsonp([0],[
 	
 	var _Meta2 = _interopRequireDefault(_Meta);
 	
-	var _getUnhandledProps = __webpack_require__(241);
+	var _getUnhandledProps = __webpack_require__(243);
 	
 	var _getUnhandledProps2 = _interopRequireDefault(_getUnhandledProps);
 	
@@ -12438,7 +12438,7 @@ webpackJsonp([0],[
 	
 	var _classnames2 = _interopRequireDefault(_classnames);
 	
-	var _jquery = __webpack_require__(243);
+	var _jquery = __webpack_require__(238);
 	
 	var _jquery2 = _interopRequireDefault(_jquery);
 	
@@ -12563,7 +12563,7 @@ webpackJsonp([0],[
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
-	var _jquery = __webpack_require__(243);
+	var _jquery = __webpack_require__(238);
 	
 	var _jquery2 = _interopRequireDefault(_jquery);
 	
@@ -12579,7 +12579,7 @@ webpackJsonp([0],[
 	
 	var _Meta2 = _interopRequireDefault(_Meta);
 	
-	var _propUtils = __webpack_require__(244);
+	var _propUtils = __webpack_require__(239);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -12707,7 +12707,7 @@ webpackJsonp([0],[
 	
 	var _lodash2 = _interopRequireDefault(_lodash);
 	
-	var _jquery = __webpack_require__(243);
+	var _jquery = __webpack_require__(238);
 	
 	var _jquery2 = _interopRequireDefault(_jquery);
 	
@@ -12723,7 +12723,7 @@ webpackJsonp([0],[
 	
 	var _Meta2 = _interopRequireDefault(_Meta);
 	
-	var _propUtils = __webpack_require__(244);
+	var _propUtils = __webpack_require__(239);
 	
 	var _DropdownDivider = __webpack_require__(274);
 	
@@ -13216,7 +13216,7 @@ webpackJsonp([0],[
 	
 	var _classnames2 = _interopRequireDefault(_classnames);
 	
-	var _propUtils = __webpack_require__(244);
+	var _propUtils = __webpack_require__(239);
 	
 	var _Meta = __webpack_require__(231);
 	
@@ -13429,11 +13429,11 @@ webpackJsonp([0],[
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _getUnhandledProps = __webpack_require__(241);
+	var _getUnhandledProps = __webpack_require__(243);
 	
 	var _getUnhandledProps2 = _interopRequireDefault(_getUnhandledProps);
 	
-	var _propUtils = __webpack_require__(244);
+	var _propUtils = __webpack_require__(239);
 	
 	var _Meta = __webpack_require__(231);
 	
@@ -13604,7 +13604,7 @@ webpackJsonp([0],[
 	
 	var _classnames2 = _interopRequireDefault(_classnames);
 	
-	var _getUnhandledProps = __webpack_require__(241);
+	var _getUnhandledProps = __webpack_require__(243);
 	
 	var _getUnhandledProps2 = _interopRequireDefault(_getUnhandledProps);
 	
@@ -13687,7 +13687,7 @@ webpackJsonp([0],[
 	
 	var _classnames2 = _interopRequireDefault(_classnames);
 	
-	var _getUnhandledProps = __webpack_require__(241);
+	var _getUnhandledProps = __webpack_require__(243);
 	
 	var _getUnhandledProps2 = _interopRequireDefault(_getUnhandledProps);
 	
