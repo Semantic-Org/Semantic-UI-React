@@ -30751,62 +30751,6 @@ webpackJsonp([0],[
 				"tags": []
 			}
 		},
-		"src/elements/Container/Container.js": {
-			"props": {
-				"children": {
-					"type": {
-						"name": "node"
-					},
-					"required": false,
-					"docBlock": {
-						"description": "",
-						"tags": []
-					}
-				},
-				"className": {
-					"type": {
-						"name": "string"
-					},
-					"required": false,
-					"docBlock": {
-						"description": "",
-						"tags": []
-					}
-				}
-			},
-			"docBlock": {
-				"description": "A container that gives your content some side padding.",
-				"tags": []
-			}
-		},
-		"src/elements/Divider/Divider.js": {
-			"props": {
-				"children": {
-					"type": {
-						"name": "node"
-					},
-					"required": false,
-					"docBlock": {
-						"description": "",
-						"tags": []
-					}
-				},
-				"className": {
-					"type": {
-						"name": "string"
-					},
-					"required": false,
-					"docBlock": {
-						"description": "",
-						"tags": []
-					}
-				}
-			},
-			"docBlock": {
-				"description": "",
-				"tags": []
-			}
-		},
 		"src/elements/Button/Button.js": {
 			"props": {
 				"children": {
@@ -30850,6 +30794,62 @@ webpackJsonp([0],[
 			}
 		},
 		"src/elements/Button/Buttons.js": {
+			"props": {
+				"children": {
+					"type": {
+						"name": "node"
+					},
+					"required": false,
+					"docBlock": {
+						"description": "",
+						"tags": []
+					}
+				},
+				"className": {
+					"type": {
+						"name": "string"
+					},
+					"required": false,
+					"docBlock": {
+						"description": "",
+						"tags": []
+					}
+				}
+			},
+			"docBlock": {
+				"description": "",
+				"tags": []
+			}
+		},
+		"src/elements/Container/Container.js": {
+			"props": {
+				"children": {
+					"type": {
+						"name": "node"
+					},
+					"required": false,
+					"docBlock": {
+						"description": "",
+						"tags": []
+					}
+				},
+				"className": {
+					"type": {
+						"name": "string"
+					},
+					"required": false,
+					"docBlock": {
+						"description": "",
+						"tags": []
+					}
+				}
+			},
+			"docBlock": {
+				"description": "A container that gives your content some side padding.",
+				"tags": []
+			}
+		},
+		"src/elements/Divider/Divider.js": {
 			"props": {
 				"children": {
 					"type": {
@@ -31664,64 +31664,6 @@ webpackJsonp([0],[
 				"tags": []
 			}
 		},
-		"src/collections/Message/Message.js": {
-			"props": {
-				"children": {
-					"type": {
-						"name": "node"
-					},
-					"required": false,
-					"docBlock": {
-						"description": "",
-						"tags": []
-					}
-				},
-				"className": {
-					"type": {
-						"name": "string"
-					},
-					"required": false,
-					"docBlock": {
-						"description": "",
-						"tags": []
-					}
-				},
-				"dismissable": {
-					"type": {
-						"name": "bool"
-					},
-					"required": false,
-					"docBlock": {
-						"description": "",
-						"tags": []
-					}
-				},
-				"header": {
-					"type": {
-						"name": "string"
-					},
-					"required": false,
-					"docBlock": {
-						"description": "",
-						"tags": []
-					}
-				},
-				"icon": {
-					"type": {
-						"name": "string"
-					},
-					"required": false,
-					"docBlock": {
-						"description": "",
-						"tags": []
-					}
-				}
-			},
-			"docBlock": {
-				"description": "",
-				"tags": []
-			}
-		},
 		"src/collections/Menu/Menu.js": {
 			"props": {
 				"activeItem": {
@@ -31833,6 +31775,64 @@ webpackJsonp([0],[
 				"onClick": {
 					"type": {
 						"name": "func"
+					},
+					"required": false,
+					"docBlock": {
+						"description": "",
+						"tags": []
+					}
+				}
+			},
+			"docBlock": {
+				"description": "",
+				"tags": []
+			}
+		},
+		"src/collections/Message/Message.js": {
+			"props": {
+				"children": {
+					"type": {
+						"name": "node"
+					},
+					"required": false,
+					"docBlock": {
+						"description": "",
+						"tags": []
+					}
+				},
+				"className": {
+					"type": {
+						"name": "string"
+					},
+					"required": false,
+					"docBlock": {
+						"description": "",
+						"tags": []
+					}
+				},
+				"dismissable": {
+					"type": {
+						"name": "bool"
+					},
+					"required": false,
+					"docBlock": {
+						"description": "",
+						"tags": []
+					}
+				},
+				"header": {
+					"type": {
+						"name": "string"
+					},
+					"required": false,
+					"docBlock": {
+						"description": "",
+						"tags": []
+					}
+				},
+				"icon": {
+					"type": {
+						"name": "string"
 					},
 					"required": false,
 					"docBlock": {
