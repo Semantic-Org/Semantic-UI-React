@@ -12816,11 +12816,11 @@ webpackJsonp([0],[
 	      var value = _this.element.dropdown('get value');
 	      if (value) {
 	        // multiselect dropdown values are delimited strings
-	        return _this.isMultiselect() ? value.split(Dropdown._DELIMITER) : value;
+	        return _this.isMultiple() ? value.split(Dropdown._DELIMITER) : value;
 	      }
 	
 	      // sensible empty values
-	      return _this.isMultiselect() ? [] : undefined;
+	      return _this.isMultiple() ? [] : undefined;
 	    }, _this._syncFromProps = function () {
 	      // flag that we are syncing so we don't call back on React -> DOM syncing changes
 	      _this._isSyncing = true;
@@ -12828,7 +12828,7 @@ webpackJsonp([0],[
 	
 	      _this.setValue(value);
 	      _this._isSyncing = false;
-	    }, _this.isMultiselect = function () {
+	    }, _this.isMultiple = function () {
 	      return _lodash2.default.includes(_this.props.className, 'multiple');
 	    }, _this.isSelection = function () {
 	      return _lodash2.default.includes(_this.props.className, 'selection');
@@ -12898,7 +12898,7 @@ webpackJsonp([0],[
 	          text
 	        ),
 	        icon && _react2.default.createElement('i', { className: iconClasses }),
-	        defaultText && _react2.default.createElement(
+	        this.isSelection() && _react2.default.createElement(
 	          'div',
 	          { className: 'default text' },
 	          defaultText
