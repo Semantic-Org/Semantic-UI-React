@@ -5,12 +5,12 @@ import Confirm from './addons/Confirm/Confirm'
 import Textarea from './addons/Textarea/Textarea'
 
 // Collections
-import { default as Column } from './collections/Grid/GridColumn'
-import { default as Field } from './collections/Form/FormField'
-import { default as Fields } from './collections/Form/FormFields'
 import Form from './collections/Form/Form'
+import FormField from './collections/Form/FormField'
+import FormFields from './collections/Form/FormFields'
 import Grid from './collections/Grid/Grid'
-import { default as Row } from './collections/Grid/GridRow'
+import GridColumn from './collections/Grid/GridColumn'
+import GridRow from './collections/Grid/GridRow'
 import Menu from './collections/Menu/Menu'
 import MenuItem from './collections/Menu/MenuItem'
 import Message from './collections/Message/Message'
@@ -81,16 +81,16 @@ const stardust = {
 }
 
 deprecateComponents(stardust, [
-  [Field, 'Use "Form.Field" instead.'],
-  [Fields, 'Use "Form.Fields" instead.'],
-  [Column, `Use "Grid.Column" instead.`],
-  [TableColumn, `Use "Table.Column" instead.`],
-  [ListItem, `Use "List.Item" instead.`],
-  [MenuItem, `Use "List.Item" instead.`],
-  [ModalContent, `Use "Modal.Content" instead.`],
-  [ModalFooter, `Use "Modal.Footer" instead.`],
-  [ModalHeader, `Use "Modal.Header" instead.`],
-  [Row, `Use "Grid.Row" instead.`],
+  ['Field', FormField, 'Use "Form.Field" instead.'],
+  ['Fields', FormFields, 'Use "Form.Fields" instead.'],
+  ['Column', GridColumn, `Use "Grid.Column" instead.`],
+  ['TableColumn', TableColumn, `Use "Table.Column" instead.`],
+  ['ListItem', ListItem, `Use "List.Item" instead.`],
+  ['MenuItem', MenuItem, `Use "Menu.Item" instead.`],
+  ['ModalContent', ModalContent, `Use "Modal.Content" instead.`],
+  ['ModalFooter', ModalFooter, `Use "Modal.Footer" instead.`],
+  ['ModalHeader', ModalHeader, `Use "Modal.Header" instead.`],
+  ['Row', GridRow, `Use "Grid.Row" instead.`],
 ])
 
 export default stardust

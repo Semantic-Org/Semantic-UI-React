@@ -25,8 +25,7 @@ export const deprecateProps = (context, deprecated) => {
  *   Only add help messages as values.
  */
 export const deprecateComponents = (stardust, deprecated) => {
-  _.each(deprecated, ([component, warning]) => {
-    const name = component.prototype.constructor.name
+  _.each(deprecated, ([name, component, warning]) => {
     Object.defineProperty(stardust, name, {
       get() {
         console.warn(`Stardust component "${name}" is deprecated. ${warning}`)
