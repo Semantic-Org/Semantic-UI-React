@@ -10,6 +10,7 @@
   "scripts": {
     "build": "babel src -d dist",
     "clean": "while read line; do rm -rf $line; done < .gitignore",
+    "deploy:docs": "gulp docs && $(npm bin)/gh-pages -d docs/build -m 'deploy docs [ci skip]'",
     "lint": "eslint .",
     "lint:fix": "npm run lint -- --fix",
     "lint:watch": "watch 'npm run lint' docs gulp src test",
@@ -19,10 +20,9 @@
     "release:patch": "ta-script npm/release.sh patch",
     "start": "gulp",
     "karma": "babel-node $(npm bin)/karma start",
-    "test": "npm run karma  -- karma.conf.babel.js",
+    "test": "npm run lint && npm run karma -- karma.conf.babel.js",
     "test:watch": "webpack-dev-server --config webpack.tests.babel.js"
   },
-  "pre-commit": "lint",
   "repository": {
     "type": "git",
     "url": "git+ssh://github.com/TechnologyAdvice/stardust.git"
@@ -61,6 +61,7 @@
     "eslint-plugin-mocha": "^1.0.0",
     "eslint-plugin-react": "^3.5.1",
     "faker": "^3.0.1",
+    "gh-pages": "^0.11.0",
     "gulp": "^3.9.0",
     "gulp-help": "^1.6.1",
     "gulp-html-replace": "^1.5.4",
@@ -82,7 +83,6 @@
     "mocha-loader": "^0.7.1",
     "phantomjs": "^1.9.18",
     "phantomjs-polyfill": "0.0.1",
-    "pre-commit": "^1.1.2",
     "raw-loader": "^0.5.1",
     "react": "^0.14.0",
     "react-addons-test-utils": "^0.14.0",
@@ -94,7 +94,7 @@
     "run-sequence": "^1.1.4",
     "sinon": "git://github.com/cjohansen/Sinon.JS#b672042043517b9f84e14ed0fb8265126168778a",
     "sinon-chai": "^2.8.0",
-    "ta-scripts": "^2.3.0",
+    "ta-scripts": "^2.3.1",
     "through2": "^2.0.0",
     "watch": "^0.16.0",
     "webpack": "1.12.2",
