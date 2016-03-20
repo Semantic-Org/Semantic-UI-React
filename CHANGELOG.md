@@ -6,6 +6,7 @@
 
 **Merged pull requests:**
 
+- Stage branches and improve workflow [\#204](https://github.com/TechnologyAdvice/stardust/pull/204) ([levithomason](https://github.com/levithomason))
 - Fix conformance tests [\#171](https://github.com/TechnologyAdvice/stardust/pull/171) ([levithomason](https://github.com/levithomason))
 
 ## [v0.12.3](https://github.com/TechnologyAdvice/stardust/tree/v0.12.3) (2016-03-16)
