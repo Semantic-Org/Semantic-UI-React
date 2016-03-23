@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Header, Message, Segment } from 'stardust'
+import { Header, Icon, Message, Segment } from 'stardust'
 
 export default class SegmentAttachedComplexExample extends Component {
   render() {
@@ -24,7 +24,7 @@ export default class SegmentAttachedComplexExample extends Component {
           Humans don't think of lions as being like cats, but they are.
         </Segment>
         <Message className='bottom attached warning'>
-          <i className='warning icon'></i>
+          <Icon className='warning' />
           You've reached the end of this content segment!
         </Message>
       </div>

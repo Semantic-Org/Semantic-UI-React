@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import { List } from 'stardust'
+import { Icon, List } from 'stardust'
 
 export default class ListIconExample extends Component {
   render() {
-    const helpIcon = <i className='help icon' />
-    const triangleIcon = <i className='right triangle icon' />
+    const helpIcon = <Icon className='help' />
+    const triangleIcon = <Icon className='right triangle' />
 
     return (
       <List>

@@ -10,6 +10,7 @@ import { customPropTypes } from '../../utils/propUtils'
 import DropdownDivider from './DropdownDivider'
 import DropdownItem from './DropdownItem'
 import DropdownMenu from './DropdownMenu'
+import Icon from '../../elements/Icon/Icon'
 
 const pluginPropTypes = {
   // Settings
@@ -192,7 +193,7 @@ export default class Dropdown extends Component {
       <div {...componentProps} className={classes} ref='element'>
         {this.isSelection() && <input type='hidden' defaultValue={defaultValue} />}
         {text && <div className='text'>{text}</div>}
-        {icon && <i className={iconClasses} />}
+        {icon && <Icon className={iconClasses} />}
         {this.isSelection() && <div className='default text'>{defaultText}</div>}
         <DropdownMenu>
           {children || items}

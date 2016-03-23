@@ -1,36 +1,36 @@
 import React, { Component } from 'react'
-import { Button } from 'stardust'
+import { Button, Icon } from 'stardust'
 
 export default class ButtonSocialExample extends Component {
   render() {
     return (
       <div>
         <Button className='facebook'>
-          <i className='facebook icon' />
+          <Icon className='facebook' />
           Facebook
         </Button>
         <Button className='twitter'>
-          <i className='twitter icon' />
+          <Icon className='twitter' />
           Twitter
         </Button>
         <Button className='google plus'>
-          <i className='google plus icon' />
+          <Icon className='google plus' />
           Google Plus
         </Button>
         <Button className='vk'>
-          <i className='vk icon' />
+          <Icon className='vk' />
           VK
         </Button>
         <Button className='linkedin'>
-          <i className='linkedin icon' />
+          <Icon className='linkedin' />
           LinkedIn
         </Button>
         <Button className='instagram'>
-          <i className='instagram icon' />
+          <Icon className='instagram' />
           Instagram
         </Button>
         <Button className='youtube'>
-          <i className='youtube icon' />
+          <Icon className='youtube' />
           YouTube
         </Button>
       </div>
