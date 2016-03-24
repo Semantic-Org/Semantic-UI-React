@@ -1,6 +1,5 @@
-import _ from 'lodash'
 import React, { Component, PropTypes } from 'react'
-import classNames from 'classnames'
+import cx from 'classnames'
 import META from '../../utils/Meta'
 
 export default class ListItem extends Component {
@@ -21,31 +20,21 @@ export default class ListItem extends Component {
   };
 
   render() {
-    const children = _.clone(this.props.children)
-    const classes = classNames('sd-list-item', this.props.className, 'item')
-    const description = _.clone(this.props.description)
-    const hasHeader = !!this.props.header
-    const header = <div className='header'>{this.props.header}</div>
-    const icon = _.clone(this.props.icon)
-    const image = _.clone(this.props.image)
+    const { children, className, description, header, icon, image, ...rest } = this.props
+    const classes = cx('sd-list-item', className, 'item')
 
-    const props = _.clone(this.props)
-    delete props.children
-    delete props.className
-    delete props.description
-    delete props.header
-    delete props.icon
-    delete props.image
+    const content = !header ? description : (
+      <div className='content'>
+        <div className='header'>{header}</div>
+        {description && <div className='description'>{description}</div>}
+      </div>
+    )
 
     return (
-      <div {...props} className={classes}>
+      <div {...rest} className={classes}>
         {image || icon}
-        <div className='content'>
-          {hasHeader && header}
-          <div className='description'>
-            {children || description}
-          </div>
-        </div>
+        {content}
+        {children}
       </div>
     )
   }
