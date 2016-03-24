@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import React, { Component, PropTypes } from 'react'
-import classNames from 'classnames'
+import cx from 'classnames'
 import { customPropTypes } from '../../utils/propUtils'
 import META from '../../utils/Meta'
 
@@ -8,7 +8,7 @@ export default class Item extends Component {
   static propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
-    contentClass: PropTypes.string,
+    contentClassName: PropTypes.string,
     description: customPropTypes.mutuallyExclusive(['children']),
     extra: PropTypes.node,
     header: PropTypes.node,
@@ -17,7 +17,7 @@ export default class Item extends Component {
   };
 
   static defaultProps = {
-    contentClass: 'middle aligned',
+    contentClassName: 'middle aligned',
   };
 
   static _meta = {
@@ -27,55 +27,29 @@ export default class Item extends Component {
   };
 
   render() {
-    const description = <div className='description'>{this.props.children || this.props.description}</div>
-    const extra = <div className='extra'>{this.props.extra}</div>
-    const header = <div className='header'>{this.props.header}</div>
+    const { children, className, contentClassName, description, extra, header, image, meta, ...rest } = this.props
 
-    const imageClasses = classNames(
-      'sd-item-image',
-      'ui',
-      _.get(this.props, 'image.props.className'),
-      'image'
-    )
-    const imageProps = _.omit(_.get(this.props, 'image.props', {}), 'className')
-    const image = (
-      <div className={imageClasses}>
-        <img {...imageProps} />
-      </div>
-    )
-    const meta = <div className='meta'>{this.props.meta}</div>
+    const { className: imageClassName, ...imageProps } = _.get(image, 'props', {})
 
-    const contentClass = classNames('sd-item-content', this.props.contentClass, 'content')
-    const content = (
-      <div className={contentClass}>
-        {this.props.header && header}
-        {this.props.meta && meta}
-        {(this.props.children || this.props.description) && description}
-        {this.props.extra && extra}
-      </div>
-    )
-    const hasContent = !!this.props.header || !!this.props.meta || !!this.props.extra || !!this.props.children
-    || !!this.props.description
+    const classes = cx('sd-item', className, 'item')
+    const imageClasses = cx('sd-item-image ui', imageClassName, 'image')
+    const contentClasses = cx('sd-item-content', contentClassName, 'content')
 
-    const classes = classNames(
-      'sd-item',
-      this.props.className,
-      'item'
-    )
-    const props = _.clone(this.props)
-    // Delete all static PropTypes props in cloned porps object before spreading of props onto rendered component
-    delete props.children
-    delete props.className
-    delete props.description
-    delete props.extra
-    delete props.header
-    delete props.image
-    delete props.meta
+    const _description = children || description
+
+    const content = header || meta || extra ? [
+      header && <div className='header'>{header}</div>,
+      meta && <div className='meta'>{meta}</div>,
+      _description && <div className='description'>{_description}</div>,
+      extra && <div className='extra'>{extra}</div>,
+    ] : [
+      _description,
+    ]
 
     return (
-      <div {...props} className={classes}>
-        {this.props.image && image}
-        {hasContent && content}
+      <div {...rest} className={classes}>
+        {image && <div className={imageClasses}><img {...imageProps} /></div>}}
+        {content && <div className={contentClasses}>{content}</div>}
       </div>
     )
   }
