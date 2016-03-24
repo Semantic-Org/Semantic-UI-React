@@ -10402,10 +10402,6 @@ webpackJsonp([0],[
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
-	var _lodash = __webpack_require__(224);
-	
-	var _lodash2 = _interopRequireDefault(_lodash);
-	
 	var _react = __webpack_require__(117);
 	
 	var _react2 = _interopRequireDefault(_react);
@@ -10489,7 +10485,7 @@ webpackJsonp([0],[
 	      );
 	
 	      // prevent spreading icon classes as props on message element
-	      var messageProps = _lodash2.default.clone(this.props);
+	      var messageProps = _extends({}, this.props);
 	      delete messageProps.icon;
 	
 	      return _react2.default.createElement(
@@ -12201,10 +12197,6 @@ webpackJsonp([0],[
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
-	var _lodash = __webpack_require__(224);
-	
-	var _lodash2 = _interopRequireDefault(_lodash);
-	
 	var _react = __webpack_require__(117);
 	
 	var _react2 = _interopRequireDefault(_react);
@@ -12218,6 +12210,8 @@ webpackJsonp([0],[
 	var _Meta2 = _interopRequireDefault(_Meta);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -12237,40 +12231,39 @@ webpackJsonp([0],[
 	  _createClass(ListItem, [{
 	    key: 'render',
 	    value: function render() {
-	      var children = _lodash2.default.clone(this.props.children);
-	      var classes = (0, _classnames2.default)('sd-list-item', this.props.className, 'item');
-	      var description = _lodash2.default.clone(this.props.description);
-	      var hasHeader = !!this.props.header;
-	      var header = _react2.default.createElement(
-	        'div',
-	        { className: 'header' },
-	        this.props.header
-	      );
-	      var icon = _lodash2.default.clone(this.props.icon);
-	      var image = _lodash2.default.clone(this.props.image);
+	      var _props = this.props;
+	      var children = _props.children;
+	      var className = _props.className;
+	      var description = _props.description;
+	      var header = _props.header;
+	      var icon = _props.icon;
+	      var image = _props.image;
 	
-	      var props = _lodash2.default.clone(this.props);
-	      delete props.children;
-	      delete props.className;
-	      delete props.description;
-	      delete props.header;
-	      delete props.icon;
-	      delete props.image;
+	      var rest = _objectWithoutProperties(_props, ['children', 'className', 'description', 'header', 'icon', 'image']);
+	
+	      var classes = (0, _classnames2.default)('sd-list-item', className, 'item');
+	
+	      var content = !header ? description : _react2.default.createElement(
+	        'div',
+	        { className: 'content' },
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'header' },
+	          header
+	        ),
+	        description && _react2.default.createElement(
+	          'div',
+	          { className: 'description' },
+	          description
+	        )
+	      );
 	
 	      return _react2.default.createElement(
 	        'div',
-	        _extends({}, props, { className: classes }),
+	        _extends({}, rest, { className: classes }),
 	        image || icon,
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'content' },
-	          hasHeader && header,
-	          _react2.default.createElement(
-	            'div',
-	            { className: 'description' },
-	            children || description
-	          )
-	        )
+	        content,
+	        children
 	      );
 	    }
 	  }]);
@@ -13315,6 +13308,8 @@ webpackJsonp([0],[
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
+	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -13333,62 +13328,62 @@ webpackJsonp([0],[
 	  _createClass(Item, [{
 	    key: 'render',
 	    value: function render() {
-	      var description = _react2.default.createElement(
-	        'div',
-	        { className: 'description' },
-	        this.props.children || this.props.description
-	      );
-	      var extra = _react2.default.createElement(
-	        'div',
-	        { className: 'extra' },
-	        this.props.extra
-	      );
-	      var header = _react2.default.createElement(
+	      var _props = this.props;
+	      var children = _props.children;
+	      var className = _props.className;
+	      var contentClassName = _props.contentClassName;
+	      var description = _props.description;
+	      var extra = _props.extra;
+	      var header = _props.header;
+	      var image = _props.image;
+	      var meta = _props.meta;
+	
+	      var rest = _objectWithoutProperties(_props, ['children', 'className', 'contentClassName', 'description', 'extra', 'header', 'image', 'meta']);
+	
+	      var _$get = _lodash2.default.get(image, 'props', {});
+	
+	      var imageClassName = _$get.className;
+	
+	      var imageProps = _objectWithoutProperties(_$get, ['className']);
+	
+	      var classes = (0, _classnames2.default)('sd-item', className, 'item');
+	      var imageClasses = (0, _classnames2.default)('sd-item-image ui', imageClassName, 'image');
+	      var contentClasses = (0, _classnames2.default)('sd-item-content', contentClassName, 'content');
+	
+	      var _description = children || description;
+	
+	      var content = header || meta || extra ? [header && _react2.default.createElement(
 	        'div',
 	        { className: 'header' },
-	        this.props.header
-	      );
-	
-	      var imageClasses = (0, _classnames2.default)('sd-item-image', 'ui', _lodash2.default.get(this.props, 'image.props.className'), 'image');
-	      var imageProps = _lodash2.default.omit(_lodash2.default.get(this.props, 'image.props', {}), 'className');
-	      var image = _react2.default.createElement(
-	        'div',
-	        { className: imageClasses },
-	        _react2.default.createElement('img', imageProps)
-	      );
-	      var meta = _react2.default.createElement(
+	        header
+	      ), meta && _react2.default.createElement(
 	        'div',
 	        { className: 'meta' },
-	        this.props.meta
-	      );
-	
-	      var contentClass = (0, _classnames2.default)('sd-item-content', this.props.contentClass, 'content');
-	      var content = _react2.default.createElement(
+	        meta
+	      ), _description && _react2.default.createElement(
 	        'div',
-	        { className: contentClass },
-	        this.props.header && header,
-	        this.props.meta && meta,
-	        (this.props.children || this.props.description) && description,
-	        this.props.extra && extra
-	      );
-	      var hasContent = !!this.props.header || !!this.props.meta || !!this.props.extra || !!this.props.children || !!this.props.description;
-	
-	      var classes = (0, _classnames2.default)('sd-item', this.props.className, 'item');
-	      var props = _lodash2.default.clone(this.props);
-	      // Delete all static PropTypes props in cloned porps object before spreading of props onto rendered component
-	      delete props.children;
-	      delete props.className;
-	      delete props.description;
-	      delete props.extra;
-	      delete props.header;
-	      delete props.image;
-	      delete props.meta;
+	        { className: 'description' },
+	        _description
+	      ), extra && _react2.default.createElement(
+	        'div',
+	        { className: 'extra' },
+	        extra
+	      )] : [_description];
 	
 	      return _react2.default.createElement(
 	        'div',
-	        _extends({}, props, { className: classes }),
-	        this.props.image && image,
-	        hasContent && content
+	        _extends({}, rest, { className: classes }),
+	        image && _react2.default.createElement(
+	          'div',
+	          { className: imageClasses },
+	          _react2.default.createElement('img', imageProps)
+	        ),
+	        '}',
+	        content && _react2.default.createElement(
+	          'div',
+	          { className: contentClasses },
+	          content
+	        )
 	      );
 	    }
 	  }]);
@@ -13399,7 +13394,7 @@ webpackJsonp([0],[
 	Item.propTypes = {
 	  children: _react.PropTypes.node,
 	  className: _react.PropTypes.string,
-	  contentClass: _react.PropTypes.string,
+	  contentClassName: _react.PropTypes.string,
 	  description: _propUtils.customPropTypes.mutuallyExclusive(['children']),
 	  extra: _react.PropTypes.node,
 	  header: _react.PropTypes.node,
@@ -13407,7 +13402,7 @@ webpackJsonp([0],[
 	  meta: _react.PropTypes.node
 	};
 	Item.defaultProps = {
-	  contentClass: 'middle aligned'
+	  contentClassName: 'middle aligned'
 	};
 	Item._meta = {
 	  library: _Meta2.default.library.semanticUI,
@@ -34369,7 +34364,7 @@ webpackJsonp([0],[
 						"tags": []
 					}
 				},
-				"contentClass": {
+				"contentClassName": {
 					"type": {
 						"name": "string"
 					},
