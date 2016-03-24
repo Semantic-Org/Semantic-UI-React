@@ -1,5 +1,17 @@
 # Change Log
 
+## [Unreleased](https://github.com/TechnologyAdvice/stardust/tree/HEAD)
+
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.13.3...HEAD)
+
+**Closed issues:**
+
+- \<Icon /\> Component [\#178](https://github.com/TechnologyAdvice/stardust/issues/178)
+
+**Merged pull requests:**
+
+- Icon component [\#205](https://github.com/TechnologyAdvice/stardust/pull/205) ([levithomason](https://github.com/levithomason))
+
 ## [v0.13.3](https://github.com/TechnologyAdvice/stardust/tree/v0.13.3) (2016-03-20)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.13.2...v0.13.3)
 
