@@ -10,6 +10,7 @@
 
 **Merged pull requests:**
 
+- Update dependencies [\#207](https://github.com/TechnologyAdvice/stardust/pull/207) ([levithomason](https://github.com/levithomason))
 - Icon component [\#205](https://github.com/TechnologyAdvice/stardust/pull/205) ([levithomason](https://github.com/levithomason))
 
 ## [v0.13.3](https://github.com/TechnologyAdvice/stardust/tree/v0.13.3) (2016-03-20)
