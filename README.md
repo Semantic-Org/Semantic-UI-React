@@ -34,7 +34,7 @@ export default class TryStardust extends Component {
 - [x] Divider
 - [ ] Flag
 - [x] Header
-- [ ] Icon
+- [x] Icon
 - [x] Image
 - [x] Input
 - [ ] Label
