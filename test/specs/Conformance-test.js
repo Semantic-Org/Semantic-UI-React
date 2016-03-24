@@ -50,7 +50,7 @@ describe('Conformance', () => {
         if (_.has(_meta, 'parent')) {
           describe('parent', () => {
             it('matches some component name', () => {
-              expect(_.pluck(componentInfo, 'constructorName')).to.contain(_meta.parent)
+              expect(_.map(componentInfo, 'constructorName')).to.contain(_meta.parent)
             })
           })
         }
