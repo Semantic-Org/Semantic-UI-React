@@ -38,9 +38,9 @@
     "npm": "2 - 4"
   },
   "dependencies": {
-    "bluebird": "^2.10.2",
+    "bluebird": "^3.3.4",
     "classnames": "^2.1.5",
-    "lodash": "^3.10.1"
+    "lodash": "^4.6.1"
   },
   "devDependencies": {
     "babel-cli": "^6.5.1",

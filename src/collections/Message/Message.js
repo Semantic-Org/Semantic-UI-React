@@ -1,4 +1,3 @@
-import _ from 'lodash'
 import React, { Component, PropTypes } from 'react'
 import classNames from 'classnames'
 import $ from 'jquery'
@@ -58,7 +57,7 @@ export default class Message extends Component {
     )
 
     // prevent spreading icon classes as props on message element
-    const messageProps = _.clone(this.props)
+    const messageProps = { ...this.props }
     delete messageProps.icon
 
     return (

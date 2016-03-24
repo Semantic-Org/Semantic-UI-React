@@ -1,18 +1,4 @@
-import _ from 'lodash'
 import sandbox from '../utils/Sandbox-util'
-
-//
-// jQuery Mock
-//
-const jQueryObject = {
-  on: sandbox.stub().returnsThis(),
-}
-
-function jQuery() {
-  return jQueryObject
-}
-
-jQuery.ajax = sandbox.stub().returnsThis()
 
 //
 // jQuery Plugin Mocks
@@ -27,7 +13,18 @@ const jQueryPlugins = {
   transition: sandbox.stub().returnsThis(),
 }
 
-// Extend jQuery with plugins
-_.assign(jQueryObject, jQueryPlugins)
+//
+// jQuery Mock
+//
+const jQueryObject = {
+  on: sandbox.stub().returnsThis(),
+  ...jQueryPlugins,
+}
+
+function jQuery() {
+  return jQueryObject
+}
+
+jQuery.ajax = sandbox.stub().returnsThis()
 
 export default jQuery
