@@ -23,6 +23,7 @@ import Buttons from './elements/Button/Buttons'
 import Container from './elements/Container/Container'
 import Divider from './elements/Divider/Divider'
 import Header from './elements/Header/Header'
+import Icon from './elements/Icon/Icon'
 import Image from './elements/Image/Image'
 import Input from './elements/Input/Input'
 import List from './elements/List/List'
@@ -62,6 +63,7 @@ const stardust = {
   Container,
   Divider,
   Header,
+  Icon,
   Image,
   Input,
   List,

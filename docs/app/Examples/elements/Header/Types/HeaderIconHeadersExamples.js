@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import { Header } from 'stardust'
+import { Header, Icon } from 'stardust'
 
 export default class HeaderIconHeadersExamples extends Component {
   render() {
-    const settings = <i className='settings icon' />
+    const settings = <Icon className='settings' />
     return (
       <Header.H2 className='icon' icon={settings} >
         Account Settings

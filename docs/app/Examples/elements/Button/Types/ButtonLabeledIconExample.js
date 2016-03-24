@@ -1,16 +1,16 @@
 import React, { Component } from 'react'
-import { Button } from 'stardust'
+import { Button, Icon } from 'stardust'
 
 export default class ButtonLabeledIconExample extends Component {
   render() {
     return (
       <div>
         <Button className='labeled icon'>
-          <i className='pause icon' />
+          <Icon className='pause' />
           Pause
         </Button>
         <Button className='right labeled icon'>
-          <i className='right arrow icon' />
+          <Icon className='right arrow' />
           Next
         </Button>
       </div>

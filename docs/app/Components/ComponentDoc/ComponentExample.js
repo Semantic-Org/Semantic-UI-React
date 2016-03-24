@@ -1,5 +1,5 @@
 import React, { Component, createElement, PropTypes } from 'react'
-import { Grid, Button } from 'stardust'
+import { Grid, Button, Icon } from 'stardust'
 import Highlight from 'react-highlight'
 import exampleContext from 'docs/app/utils/ExampleContext'
 
@@ -65,7 +65,7 @@ export default class ComponentExample extends Component {
               >
                 {this.props.title}
                 <a href={`#${this.anchor}`}>
-                  <i className='linkify icon' style={linkIconStyle} />
+                  <Icon className='linkify' style={linkIconStyle} />
                 </a>
               </h3>
               <p>{this.props.description}</p>
@@ -73,7 +73,7 @@ export default class ComponentExample extends Component {
             <Grid.Column width={4} className='right aligned'>
               <Button className='basic mini labeled icon' onClick={this.toggleShowCode}>
                 code
-                <i className='code icon' />
+                <Icon className='code' />
               </Button>
             </Grid.Column>
           </Grid>

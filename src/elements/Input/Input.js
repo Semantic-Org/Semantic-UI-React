@@ -3,6 +3,7 @@ import classNames from 'classnames'
 import React, { Component, PropTypes, Children } from 'react'
 import META from '../../utils/Meta'
 import getUnhandledProps from '../../utils/getUnhandledProps'
+import Icon from '../../elements/Icon/Icon'
 
 export default class Input extends Component {
   static propTypes = {
@@ -23,11 +24,6 @@ export default class Input extends Component {
   };
 
   render() {
-    // TODO: replace with <Icon /> once it is merged
-    const iconClasses = classNames(
-      this.props.icon,
-      'icon'
-    )
     // Semantic supports actions and labels on either side of an input.
     // The element must be on the same side as the indicated class.
     // We first determine the left/right classes for each type of child,
@@ -55,7 +51,7 @@ export default class Input extends Component {
       }
     })
 
-    const icon = <i className={iconClasses} />
+    const icon = <Icon className={this.props.icon} />
     const classes = classNames(
       'sd-input',
       'ui',

@@ -1,18 +1,18 @@
 import React, { Component } from 'react'
-import { Buttons, Button } from 'stardust'
+import { Buttons, Button, Icon } from 'stardust'
 
 export default class ButtonIconButtonsExample extends Component {
   render() {
     return (
       <Buttons>
         <Button className='icon'>
-          <i className='save icon' />
+          <Icon className='save' />
         </Button>
         <Button className='icon'>
-          <i className='delete icon' />
+          <Icon className='delete' />
         </Button>
         <Button className='icon'>
-          <i className='edit icon' />
+          <Icon className='edit' />
         </Button>
       </Buttons>
     )

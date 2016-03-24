@@ -1,6 +1,7 @@
 import React, { Children, Component, PropTypes } from 'react'
 import cx from 'classnames'
 import META from '../../utils/Meta'
+import Icon from '../../elements/Icon/Icon'
 
 export default class DropdownItem extends Component {
   static propTypes = {
@@ -47,7 +48,7 @@ export default class DropdownItem extends Component {
     return (
       <div className={classes} data-value={value} data-text={text} {...rest}>
         {description && <span className='description'>{description}</span>}
-        {iconName && <i className={iconClasses} />}
+        {iconName && <Icon className={iconClasses} />}
         {text}
         {children}
       </div>

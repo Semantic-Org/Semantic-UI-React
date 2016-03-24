@@ -2,7 +2,7 @@ import _ from 'lodash'
 import React, { Component, PropTypes } from 'react'
 import SEMANTIC_TYPES from 'docs/app/utils/SemanticTypes'
 import STARDUST_TYPES from 'docs/app/utils/StardustTypes'
-import { Segment } from 'stardust'
+import { Icon, Segment } from 'stardust'
 
 export default class ComponentDescription extends Component {
   static propTypes = {
@@ -45,7 +45,7 @@ export default class ComponentDescription extends Component {
   render() {
     const semanticDocsLink = (
       <a href={this.semanticDocUrl} target='_blank'>
-        <i className='book icon' />
+        <Icon className='book' />
         Semantic UI Docs
       </a>
     )
@@ -55,7 +55,7 @@ export default class ComponentDescription extends Component {
           {_.capitalize(this.props.name)}
           <code className='sub header' style={{ float: 'right' }}>
             <a href={`https://github.com/TechnologyAdvice/stardust/blob/master/${this.props.path}`} target='_blank'>
-              <i className='github icon' />
+              <Icon className='github' />
               {this.props.path}
             </a>
           </code>

@@ -3,6 +3,7 @@ import React, { Component, PropTypes } from 'react'
 import classNames from 'classnames'
 import $ from 'jquery'
 import META from '../../utils/Meta'
+import Icon from '../../elements/Icon/Icon'
 
 export default class Message extends Component {
   static propTypes = {
@@ -38,13 +39,12 @@ export default class Message extends Component {
 
     const iconClasses = classNames(
       'sd-message-icon',
-      this.props.icon,
-      'icon'
+      this.props.icon
     )
 
-    const closeIcon = <i className='sd-message-close-icon close icon' onClick={this.handleDismiss} />
+    const closeIcon = <Icon className='sd-message-close-icon close' onClick={this.handleDismiss} />
     const header = <div className='sd-message-header header'>{this.props.header}</div>
-    const icon = <i className={iconClasses} />
+    const icon = <Icon className={iconClasses} />
 
     // wrap children in <p> if there is a header
     const children = this.props.header ? <p>{this.props.children}</p> : this.props.children
