@@ -1,16 +1,15 @@
-import defaultGulp from 'gulp'
-import helpConfig from '../gulphelp'
+import { task, watch, series } from 'gulp'
 import loadPlugins from 'gulp-load-plugins'
+import config from '../../config'
 
 const g = loadPlugins()
-const gulp = g.help(defaultGulp, helpConfig)
+const { log } = g.util
 
-import paths from '../../paths'
+task('watch', (cb) => {
+  const handleChange = (e) => log(`File ${e.path} was ${e.type}, running tasks...`)
 
-gulp.task('watch', 'watch and build docs', cb => {
-  gulp.watch([paths.src + '/**/*.js'], [
-    'generate-docs-json',    // rebuild doc info
-  ])
-  gulp.watch([paths.docsRoot + '/**/*.html'], ['build-docs-html'])
+  // rebuild doc info
+  watch(config.paths.src() + '/**/*.js', series('generate-docs-json'))
+    .on('change', handleChange)
   cb()
 })

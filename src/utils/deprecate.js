@@ -18,19 +18,19 @@ export const deprecateProps = (context, deprecated) => {
 
 /**
  * Show a deprecated warning for Stardust components.
- * @param {object} stardust A reference to Stardust.
- * @param {array} deprecated Two dimensional array.
- *   Elements in second dimension are deprecated components/warning messages.
- *   The component name and "is deprecated" is automatically added.
- *   Only add help messages as values.
+ * @param {String} name Name of the component being deprecated.
+ * @param {String} warning Message to display to the user.
+ * @param {String} Replacement Component to be returned in its place.
+ * @returns {DeprecatedComponent}
  */
-export const deprecateComponents = (stardust, deprecated) => {
-  _.each(deprecated, ([name, component, warning]) => {
-    Object.defineProperty(stardust, name, {
-      get() {
-        console.warn(`Stardust component "${name}" is deprecated. ${warning}`)
-        return component
-      },
-    })
-  })
+export const deprecateComponent = (name, warning, Replacement) => {
+  return class DeprecatedComponent extends Replacement {
+    constructor(...args) {
+      super(...args)
+      console.warn(warning
+        ? `Stardust component "${name}" is deprecated. ${warning}`
+        : `"${name}" will be removed in future versions. ${warning}`
+      )
+    }
+  }
 }

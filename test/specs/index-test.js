@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import stardust from 'stardust'
+import * as stardust from 'stardust'
 import META from '../../src/utils/Meta'
 import componentInfo from '../utils/componentInfo'
 
@@ -8,10 +8,10 @@ describe('stardust (index.js)', () => {
     const { _meta, constructorName, subComponentName } = info
     const isPrivate = META.isPrivate(constructorName)
 
-    // stardust.H1
+    // handle components: stardust.H1
     const isStardustProp = _.has(stardust, constructorName)
 
-    // stardust.Form.Field (ie FormField component)
+    // handle sub components: stardust.Form.Field (ie FormField component)
     //
     // only search the 'parent' for the sub component
     // avoids false positives like DropdownItem & MenuItem

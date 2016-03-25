@@ -1,0 +1,168 @@
+import config from '../config'
+import webpack from 'webpack'
+import HtmlWebpackPlugin from 'html-webpack-plugin'
+import _ from 'lodash'
+
+const { paths } = config
+const { __DEV__, __TEST__ } = config.compiler_globals
+
+const webpackConfig = {
+  name: 'client',
+  target: 'web',
+  devtool: config.compiler_devtool,
+  resolve: {
+    root: paths.base(),
+    alias: {
+      stardust: paths.src('index.js'),
+    },
+  },
+  externals: {
+    bluebird: 'Promise',
+    faker: 'faker',
+    jquery: 'jQuery',
+    lodash: '_',
+  },
+  module: {},
+}
+
+// ------------------------------------
+// Entry Points
+// ------------------------------------
+
+const webpackHotPath = `${config.compiler_public_path}__webpack_hmr`
+
+const webpackHotMiddlewareEntry = 'webpack-hot-middleware/client?' + _.map({
+  path: webpackHotPath,   // The path which the middleware is serving the event stream on
+  timeout: 2000,          // The time to wait after a disconnection before attempting to reconnect
+  overlay: true,          // Set to false to disable the DOM-based client-side overlay.
+  reload: true,           // Set to true to auto-reload the page when webpack gets stuck.
+  noInfo: false,          // Set to true to disable informational console logging.
+  quiet: false,           // Set to true to disable all console logging.
+}, (val, key) => `&${key}=${val}`).join('')
+
+const APP_ENTRY = paths.docsSrc('DocsApp.js')
+
+webpackConfig.entry = {
+  app: __DEV__
+    ? [webpackHotMiddlewareEntry, APP_ENTRY]
+    : [APP_ENTRY],
+  vendor: [
+    webpackHotMiddlewareEntry,
+    'babel-polyfill',
+    ...config.compiler_vendor,
+  ],
+}
+
+// ------------------------------------
+// Bundle Output
+// ------------------------------------
+webpackConfig.output = {
+  filename: `[name].[${config.compiler_hash_type}].js`,
+  path: config.compiler_output_path,
+  publicPath: config.compiler_public_path,
+  pathinfo: true,
+}
+
+// ------------------------------------
+// Plugins
+// ------------------------------------
+webpackConfig.plugins = [
+  new webpack.DefinePlugin(config.compiler_globals),
+  new HtmlWebpackPlugin({
+    template: paths.docsSrc('index.html'),
+    hash: false,
+    filename: 'index.html',
+    inject: 'body',
+    minify: {
+      collapseWhitespace: true,
+    },
+  }),
+]
+
+if (__DEV__) {
+  webpackConfig.plugins.push(
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoErrorsPlugin(),
+  )
+} else if (!__TEST__) {
+  webpackConfig.plugins.push(
+    new webpack.optimize.OccurrenceOrderPlugin(),
+    new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        unused: true,
+        dead_code: true,
+        warnings: false,
+      },
+    })
+  )
+}
+
+// Don't split bundles during testing, since we only want import one bundle
+if (!__TEST__) {
+  webpackConfig.plugins.push(new webpack.optimize.CommonsChunkPlugin({
+    names: ['vendor'],
+  }))
+}
+
+// ------------------------------------
+// No Parse
+// ------------------------------------
+webpackConfig.module.noParse = [
+  /autoit.js/,    // highlight.js dep throws if parsed
+]
+
+// ------------------------------------
+// Pre-Loaders
+// ------------------------------------
+webpackConfig.module.preLoaders = [{
+  test: /\.js$/,
+  loader: 'eslint',
+  exclude: /node_modules/,
+}]
+
+webpackConfig.eslint = {
+  configFile: paths.base('.eslintrc'),
+  emitWarning: __DEV__,
+}
+
+// ------------------------------------
+// Loaders
+// ------------------------------------
+webpackConfig.module.loaders = [{
+  //
+  // Babel
+  //
+  test: /\.js$/,
+  exclude: /node_modules/,
+  loader: 'babel',
+  query: {
+    cacheDirectory: true,
+    plugins: [],
+    presets: ['es2015', 'react', 'stage-1'],
+    env: {
+      development: {
+        plugins: [
+          ['react-transform', {
+            transforms: [{
+              transform: 'react-transform-hmr',
+              imports: ['react'],
+              locals: ['module'],
+            }, {
+              transform: 'react-transform-catch-errors',
+              imports: ['react', 'redbox-react'],
+            }],
+          }],
+        ],
+      },
+    },
+  },
+}, {
+  //
+  // JSON
+  //
+  test: /\.json$/,
+  loader: 'json',
+}]
+
+export default webpackConfig

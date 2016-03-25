@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
 import { render } from 'react-dom'
-import stardust, { Grid } from 'stardust'
+import * as stardust from 'stardust'
 
-import ComponentDoc from 'docs/app/Components/ComponentDoc/ComponentDoc'
-import DocsMenu from 'Components/Sidebar/Sidebar'
+import ComponentDoc from './Components/ComponentDoc/ComponentDoc'
+import DocsMenu from './Components/Sidebar/Sidebar'
 import style from './Style'
+
+const { Grid } = stardust
 
 class DocsApp extends Component {
   state = { menuSearch: '' };

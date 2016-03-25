@@ -12,7 +12,7 @@ const iconClasses = [
 ]
 
 const icons = _.map(iconClasses, iconClass => (
-  <Grid.Column>
+  <Grid.Column key={iconClass}>
     <Icon className={iconClass} style={{ fontSize: '2em' }} />
     <div>{_.startCase(iconClass)}</div>
   </Grid.Column>
