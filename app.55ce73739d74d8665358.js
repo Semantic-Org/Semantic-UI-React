@@ -116,7 +116,7 @@
 	    key: 'render',
 	    value: function render() {
 	      var components = Object.keys(stardust).sort().map(function (name) {
-	        return _react2.default.createElement(_ComponentDoc2.default, { key: name, name: name });
+	        return _react2.default.createElement(_ComponentDoc2.default, { key: name, meta: stardust[name]._meta });
 	      });
 
 	      return _react2.default.createElement(
@@ -25409,7 +25409,7 @@
 	  _createClass(ComponentDoc, [{
 	    key: 'render',
 	    value: function render() {
-	      var doc = (0, _getComponentDocInfo2.default)(this.props.name);
+	      var doc = (0, _getComponentDocInfo2.default)(this.props.meta);
 
 	      return _react2.default.createElement(
 	        _stardust.Segment,
@@ -25431,7 +25431,7 @@
 	}(_react.Component);
 
 	ComponentDoc.propTypes = {
-	  name: _react.PropTypes.string
+	  meta: _react.PropTypes.object
 	};
 	exports.default = ComponentDoc;
 
@@ -57956,27 +57956,26 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	/**
-	 * This util extracts and formats a doc object from docgenInfo.json for a single `component`.
-	 * @param {string} component Stardust component name.
+	 * This util extracts and formats a doc object from docgenInfo.json for a single `component` and merges it with
+	 * the component's meta information.
+	 * @param {string} meta Stardust component _meta object.
 	 * @returns {{}} Documentation object.
 	 */
 
-	exports.default = function (component) {
-	  var doc = {};
-	  doc.name = component;
-	  doc.path = _lodash2.default.filter(_lodash2.default.keys(_docgenInfo2.default), function (path) {
-	    return _lodash2.default.includes(path, '/' + component + '.js');
-	  })[0];
+	exports.default = function (meta) {
+	  var docPath = _lodash2.default.find(_lodash2.default.keys(_docgenInfo2.default), function (path) {
+	    return path.includes('/' + meta.name + '.js');
+	  });
+	  var definition = _docgenInfo2.default[docPath];
 
-	  var pathParts = doc.path.split('/');
-	  doc.parent = pathParts[2]; // src/elements/Grid/Column.js => Grid
-	  doc.type = pathParts[1].replace('s', ''); // src/elements/Grid/Column.js => element
-
-	  var definition = _docgenInfo2.default[doc.path];
-	  doc.docBlock = definition.docBlock;
-	  doc.props = definition.props;
-
-	  return doc;
+	  return {
+	    name: meta.name,
+	    path: docPath,
+	    parent: meta.parent,
+	    type: meta.type,
+	    docBlock: definition.docBlock,
+	    props: definition.props
+	  };
 	};
 
 /***/ },
