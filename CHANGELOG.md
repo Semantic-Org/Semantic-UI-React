@@ -6,10 +6,12 @@
 
 **Closed issues:**
 
+- Solidify component API for className buildup [\#208](https://github.com/TechnologyAdvice/stardust/issues/208)
 - \<Icon /\> Component [\#178](https://github.com/TechnologyAdvice/stardust/issues/178)
 
 **Merged pull requests:**
 
+- Update build system [\#209](https://github.com/TechnologyAdvice/stardust/pull/209) ([levithomason](https://github.com/levithomason))
 - Update dependencies [\#207](https://github.com/TechnologyAdvice/stardust/pull/207) ([levithomason](https://github.com/levithomason))
 - Icon component [\#205](https://github.com/TechnologyAdvice/stardust/pull/205) ([levithomason](https://github.com/levithomason))
 
