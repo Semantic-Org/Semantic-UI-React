@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import META from '../../utils/Meta'
-import getUnhandledProps from '../../utils/getUnhandledProps'
+import { getUnhandledProps } from '../../utils/propUtils'
 import React, { Component, PropTypes } from 'react'
 import classNames from 'classnames'
 import $ from 'jquery'

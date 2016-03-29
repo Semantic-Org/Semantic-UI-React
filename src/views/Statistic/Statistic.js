@@ -1,7 +1,7 @@
 import classNames from 'classnames'
 import React, { Component, PropTypes } from 'react'
 
-import getUnhandledProps from '../../utils/getUnhandledProps'
+import { getUnhandledProps } from '../../utils/propUtils'
 import { customPropTypes } from '../../utils/propUtils'
 import META from '../../utils/Meta'
 
