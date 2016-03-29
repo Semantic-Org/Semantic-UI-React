@@ -8,7 +8,7 @@ const componentCtx = require.context(
 )
 
 const componentInfo = _.map(componentCtx.keys(), key => {
-  const Component = componentCtx(key)
+  const Component = componentCtx(key).default
   const { _meta, prototype } = Component
 
   const constructorName = prototype.constructor.name

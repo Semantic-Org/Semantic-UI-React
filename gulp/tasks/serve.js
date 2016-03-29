@@ -1,53 +1,42 @@
-import childProcess from 'child_process'
-import defaultGulp from 'gulp'
-import helpConfig from '../gulphelp'
+import { series, task } from 'gulp'
 import loadPlugins from 'gulp-load-plugins'
+import express from 'express'
 import webpack from 'webpack'
-import WebpackDevServer from 'webpack-dev-server'
+import WebpackDevMiddleware from 'webpack-dev-middleware'
+import WebpackHotMiddleware from 'webpack-hot-middleware'
+import historyApiFallback from 'connect-history-api-fallback'
+
+import config from '../../config'
+import webpackConfig from '../../build/webpack.config'
 
 const g = loadPlugins()
-const gulp = g.help(defaultGulp, helpConfig)
+const { log, colors } = g.util
 
-import paths from '../../paths'
-import statsConfig from '../../webpack-stats'
-import webpackConfig from '../../webpack.dev.babel'
-
-gulp.task('serve', 'serve, build (in memory only), and watch the app', cb => {
-  const host = 'localhost'
-  const port = '8080'
-  const protocol = 'http'
-  const serverUrl = `${protocol}://${host}:${port}`
-
-  // http://webpack.github.io/docs/webpack-dev-server.html#api
-  const devMiddlewareConfig = {
-    contentBase: paths.docsBuild,
-    historyApiFallback: true,
-    hot: true,
-    quiet: false,                    // log nothing
-    noInfo: true,                    // log only warnings and errors
-
-    // http://webpack.github.io/docs/node.js-api.html#stats
-    stats: statsConfig,
-  }
-
-  // http://webpack.github.io/docs/configuration.html
+const serve = (cb) => {
+  const app = express()
   const compiler = webpack(webpackConfig)
 
-  function onComplete(err, stdout, stderr) {
-    cb(err)
-  }
+  app
+    .use(historyApiFallback({
+      verbose: false,
+    }))
 
-  new WebpackDevServer(compiler, devMiddlewareConfig)
-    .listen(port, host, err => {
-      if (err) {
-        throw new g.util.PluginError('webpack-dev-server', err)
-      }
+    .use(WebpackDevMiddleware(compiler, {
+      publicPath: webpackConfig.output.publicPath,
+      contentBase: config.paths.docsSrc(),
+      hot: true,
+      quiet: false,
+      noInfo: true, // must be quiet for hot middleware to show overlay
+      lazy: false,
+      stats: config.compiler_stats,
+    }))
 
-      g.util.log(
-        g.util.colors.green('[webpack-dev-server]'),
-        serverUrl
-      )
+    .use(WebpackHotMiddleware(compiler))
 
-      childProcess.exec('open ' + serverUrl, onComplete)
+    .listen(config.server_port, config.server_host, () => {
+      log(colors.yellow('Server running at http://%s:%d'), config.server_host, config.server_port)
+      cb()
     })
-})
+}
+
+task('serve', series('clean-docs', 'generate-docs-json', serve))

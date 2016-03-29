@@ -1,75 +1,58 @@
 import del from 'del'
-import defaultGulp from 'gulp'
-import helpConfig from '../gulphelp'
+import { task, src, dest, series } from 'gulp'
 import loadPlugins from 'gulp-load-plugins'
-import runSequence from 'run-sequence'
-
-const g = loadPlugins()
-const gulp = g.help(defaultGulp, helpConfig)
-
-import ENV from '../../ENV'
-import config from '../../webpack.dev.babel'
-import paths from '../../paths'
-import statsConfig from '../../webpack-stats'
 import webpack from 'webpack'
 
-gulp.task('docs', 'build doc sites', cb => {
-  runSequence(
-    'clean-docs',
-    'build-docs-html',
-    'generate-docs-json',
-    'webpack-docs',
-    cb
-  )
-})
+import config from '../../config'
+import webpackConfig from '../../build/webpack.config'
 
-gulp.task('clean-docs', cb => {
-  del.sync(paths.docsBuild)
-  cb()
-})
+const g = loadPlugins()
+const { log, PluginError } = g.util
 
-gulp.task('generate-docs-json', cb => {
+task('clean-docs', () => del(config.paths.docsDist()))
+
+task('generate-docs-json', () => {
   const gulpReactDocgen = require('../plugins/gulp-react-docgen')
 
-  return gulp.src([
-    paths.srcAddons + '/**/*.js',
-    paths.srcElements + '/**/*.js',
-    paths.srcCollections + '/**/*.js',
-    paths.srcModules + '/**/*.js',
-    paths.srcViews + '/**/*.js',
-    '!' + paths.src + '/**/Style.js',
+  return src([
+    config.paths.src() + '/addons/**/*.js',
+    config.paths.src() + '/elements/**/*.js',
+    config.paths.src() + '/collections/**/*.js',
+    config.paths.src() + '/modules/**/*.js',
+    config.paths.src() + '/views/**/*.js',
   ])
     // do not remove the function keyword
     // we need 'this' scope here
     .pipe(g.plumber(function handleError(err) {
-      g.util.log(err)
+      log(err)
       this.emit('end')
     }))
     .pipe(gulpReactDocgen())
-    .pipe(gulp.dest(paths.docsApp))
+    .pipe(dest(config.paths.docsSrc()))
 })
 
-gulp.task('webpack-docs', cb => {
-  webpack(config, (err, stats) => {
-    if (err) throw new g.util.PluginError('webpack', err)
+task('webpack-docs', (cb) => {
+  const compiler = webpack(webpackConfig)
 
-    g.util.log(
-      g.util.colors.cyan('Docs bundle:'),
-      stats.toString(statsConfig)
-    )
+  compiler.run((err, stats) => {
+    const { errors, warnings } = stats.toJson()
+
+    log(stats.toString(config.compiler_stats))
+
+    if (err) {
+      log('Webpack compiler encountered a fatal error.')
+      throw new PluginError('webpack', err.toString())
+    }
+    if (errors.length > 0) {
+      log('Webpack compiler encountered errors.')
+      throw new PluginError('webpack', errors.toString())
+    }
+    if (warnings.length > 0 && config.compiler_fail_on_warning) {
+      throw new PluginError('webpack', warnings.toString())
+    }
 
     cb(err)
   })
 })
 
-gulp.task('build-docs-html', cb => {
-  const replaceOpts = {
-    keepUnassigned: true,   // keep build blocks without a defined replacement
-  }
-  const replaceTasks = {}
-  replaceTasks[ENV.isProduction() ? 'development' : 'production'] = ''
-
-  return gulp.src(paths.docsApp + '/**/*.html')
-    .pipe(g.htmlReplace(replaceTasks, replaceOpts))
-    .pipe(gulp.dest(paths.docsBuild))
-})
+task('docs', series('clean-docs', 'generate-docs-json', 'webpack-docs'))

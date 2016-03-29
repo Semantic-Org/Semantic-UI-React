@@ -1,7 +1,9 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
-import stardust, { Menu, Input } from 'stardust'
+import * as stardust from 'stardust'
 import META from 'src/utils/Meta'
+
+const { Menu, Input } = stardust
 
 export default class Sidebar extends Component {
   state = { query: '' };

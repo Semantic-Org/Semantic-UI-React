@@ -1,12 +1,3 @@
-import _ from 'lodash'
-
-// clear the console before rebundling.
-/* eslint-disable no-console */
-if (_.isFunction(console.clear)) {
-  console.clear()
-}
-/* eslint-enable no-console */
-
 // setup
 const setupContext = require.context('./', true, /setup\.js$/)
 setupContext.keys().forEach(setupContext)

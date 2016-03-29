@@ -6,7 +6,7 @@ import docgenInfo from '../docgenInfo.json'
  * @param {string} component Stardust component name.
  * @returns {{}} Documentation object.
  */
-export default component => {
+export default (component) => {
   const doc = {}
   doc.name = component
   doc.path = _.filter(_.keys(docgenInfo), path => _.includes(path, `/${component}.js`))[0]
