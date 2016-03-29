@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import classNames from 'classnames'
 import META from '../../utils/Meta'
-import getUnhandledProps from '../../utils/getUnhandledProps'
+import { getUnhandledProps } from '../../utils/propUtils'
 
 export default class HeaderSubheader extends Component {
   static propTypes = {

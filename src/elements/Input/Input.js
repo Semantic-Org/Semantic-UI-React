@@ -2,7 +2,7 @@ import _ from 'lodash'
 import classNames from 'classnames'
 import React, { Component, PropTypes, Children } from 'react'
 import META from '../../utils/Meta'
-import getUnhandledProps from '../../utils/getUnhandledProps'
+import { getUnhandledProps } from '../../utils/propUtils'
 import Icon from '../../elements/Icon/Icon'
 
 export default class Input extends Component {

@@ -1,4 +1,4 @@
-import getUnhandledProps from '../../../src/utils/getUnhandledProps'
+import { getUnhandledProps } from '../../../src/utils/propUtils'
 
 // Helper class that takes in props and merges defaultProps
 class TestClass {
