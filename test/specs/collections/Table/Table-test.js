@@ -243,7 +243,7 @@ describe('Table', () => {
     it('is not auto applied by default', () => {
       render(<Table />)
         .findClass('sd-table')
-        .props.className
+        .getAttribute('class')
         .should.not.include('selectable')
     })
   })

@@ -2,7 +2,6 @@ import classNames from 'classnames'
 import React, { Component, PropTypes } from 'react'
 
 import getUnhandledProps from '../../utils/getUnhandledProps'
-import { customPropTypes } from '../../utils/propUtils'
 import META from '../../utils/Meta'
 
 import StatisticStatistics from './StatisticStatistics'
@@ -11,7 +10,7 @@ import StatisticValue from './StatisticValue'
 
 export default class Statistic extends Component {
   static propTypes = {
-    children: customPropTypes.ofComponentTypes(['Statistics', 'Label', 'Value']),
+    children: PropTypes.node,
     className: PropTypes.string,
   }
 
