@@ -72,7 +72,7 @@ describe('Conformance', () => {
           props[`data-${_.kebabCase(faker.hacker.noun())}`] = faker.hacker.noun()
 
           // create element with random props
-          render(<Component {...props} />)
+          deprecatedRender(<Component {...props} />)
             .children()
             .some(child => {
               return _.every(props, (val, key) => {
@@ -84,7 +84,7 @@ describe('Conformance', () => {
             .should.equal(true)
         })
         it(`has some child with the "${sdClass}" class`, () => {
-          render(<Component />)
+          deprecatedRender(<Component />)
             .findClass(sdClass)
         })
       })

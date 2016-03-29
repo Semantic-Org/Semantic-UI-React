@@ -11,33 +11,33 @@ describe('Menu', () => {
 
   it('should render children', () => {
     // TODO: Menu does not render child text without a containing element
-    render(<Menu><i>{string}</i></Menu>)
+    deprecatedRender(<Menu><i>{string}</i></Menu>)
       .assertText(string)
   })
 
   describe('Menu.Item', () => {
     it('uses the name prop as text', () => {
-      render(<Menu.Item name='This is an item' />)
+      deprecatedRender(<Menu.Item name='This is an item' />)
         .assertText('This is an item')
     })
     it('should not have a label by default', () => {
-      render(<Menu.Item name='item' />)
+      deprecatedRender(<Menu.Item name='item' />)
         .scryClass('sd-menu-label')
         .should.have.length(0)
     })
     it('should not have active class by default', () => {
-      render(<Menu.Item name='item' />)
+      deprecatedRender(<Menu.Item name='item' />)
         .scryClass('active')
         .should.have.length(0)
     })
     it('should render a label if prop given', () => {
-      render(<Menu.Item name='item' label='37' />)
+      deprecatedRender(<Menu.Item name='item' label='37' />)
         .findClass('sd-menu-label')
         .textContent
         .should.equal('37')
     })
     it('should have active class if first child', () => {
-      const [firstItem, secondItem] = render(
+      const [firstItem, secondItem] = deprecatedRender(
         <Menu>
           <Menu.Item name='item1' />
           <Menu.Item name='item2' />
@@ -53,7 +53,7 @@ describe('Menu', () => {
     })
 
     it('should have active class after click', () => {
-      const [firstItem, secondItem] = render(
+      const [firstItem, secondItem] = deprecatedRender(
         <Menu>
           <Menu.Item name='item1' />
           <Menu.Item name='item2' />

@@ -3,7 +3,7 @@ import { Progress } from 'stardust'
 
 describe('Progress', () => {
   it('should be able to receive children', () => {
-    render(
+    deprecatedRender(
       <Progress>
         Child
       </Progress>
@@ -11,6 +11,6 @@ describe('Progress', () => {
   })
 
   it('should create a div with the class of bar', () => {
-    render(<Progress />).findClass('bar')
+    deprecatedRender(<Progress />).findClass('bar')
   })
 })

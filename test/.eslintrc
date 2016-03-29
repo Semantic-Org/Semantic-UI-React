@@ -1,6 +1,10 @@
 {
   "extends": "ta/frontend/test",
   "globals": {
-    "render": false
+    "enzyme": false,
+    "shallow": false,
+    "render": false,
+    "mount": false,
+    "deprecatedRender": false
   }
 }
