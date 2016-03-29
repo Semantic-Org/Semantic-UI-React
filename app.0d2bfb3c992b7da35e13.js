@@ -59501,6 +59501,142 @@
 				"tags": []
 			}
 		},
+		"src/modules/Modal/Modal.js": {
+			"props": {
+				"children": {
+					"type": {
+						"name": "any"
+					},
+					"required": false,
+					"docBlock": {
+						"description": "",
+						"tags": []
+					}
+				},
+				"className": {
+					"type": {
+						"name": "string"
+					},
+					"required": false,
+					"docBlock": {
+						"description": "",
+						"tags": []
+					}
+				},
+				"ref": {
+					"type": {
+						"name": "string"
+					},
+					"required": false,
+					"defaultValue": {
+						"value": "'modal'",
+						"computed": false
+					},
+					"docBlock": {
+						"description": "",
+						"tags": []
+					}
+				},
+				"settings": {
+					"type": {
+						"name": "object"
+					},
+					"required": false,
+					"docBlock": {
+						"description": "",
+						"tags": []
+					}
+				}
+			},
+			"docBlock": {
+				"description": "",
+				"tags": []
+			}
+		},
+		"src/modules/Modal/ModalContent.js": {
+			"props": {
+				"children": {
+					"type": {
+						"name": "any"
+					},
+					"required": false,
+					"docBlock": {
+						"description": "",
+						"tags": []
+					}
+				},
+				"className": {
+					"type": {
+						"name": "string"
+					},
+					"required": false,
+					"docBlock": {
+						"description": "",
+						"tags": []
+					}
+				}
+			},
+			"docBlock": {
+				"description": "",
+				"tags": []
+			}
+		},
+		"src/modules/Modal/ModalFooter.js": {
+			"props": {
+				"children": {
+					"type": {
+						"name": "any"
+					},
+					"required": false,
+					"docBlock": {
+						"description": "",
+						"tags": []
+					}
+				},
+				"className": {
+					"type": {
+						"name": "string"
+					},
+					"required": false,
+					"docBlock": {
+						"description": "",
+						"tags": []
+					}
+				}
+			},
+			"docBlock": {
+				"description": "",
+				"tags": []
+			}
+		},
+		"src/modules/Modal/ModalHeader.js": {
+			"props": {
+				"children": {
+					"type": {
+						"name": "any"
+					},
+					"required": false,
+					"docBlock": {
+						"description": "",
+						"tags": []
+					}
+				},
+				"className": {
+					"type": {
+						"name": "string"
+					},
+					"required": false,
+					"docBlock": {
+						"description": "",
+						"tags": []
+					}
+				}
+			},
+			"docBlock": {
+				"description": "",
+				"tags": []
+			}
+		},
 		"src/modules/Dropdown/Dropdown.js": {
 			"props": {
 				"action": {
@@ -60110,142 +60246,6 @@
 				"children": {
 					"type": {
 						"name": "node"
-					},
-					"required": false,
-					"docBlock": {
-						"description": "",
-						"tags": []
-					}
-				}
-			},
-			"docBlock": {
-				"description": "",
-				"tags": []
-			}
-		},
-		"src/modules/Modal/Modal.js": {
-			"props": {
-				"children": {
-					"type": {
-						"name": "any"
-					},
-					"required": false,
-					"docBlock": {
-						"description": "",
-						"tags": []
-					}
-				},
-				"className": {
-					"type": {
-						"name": "string"
-					},
-					"required": false,
-					"docBlock": {
-						"description": "",
-						"tags": []
-					}
-				},
-				"ref": {
-					"type": {
-						"name": "string"
-					},
-					"required": false,
-					"defaultValue": {
-						"value": "'modal'",
-						"computed": false
-					},
-					"docBlock": {
-						"description": "",
-						"tags": []
-					}
-				},
-				"settings": {
-					"type": {
-						"name": "object"
-					},
-					"required": false,
-					"docBlock": {
-						"description": "",
-						"tags": []
-					}
-				}
-			},
-			"docBlock": {
-				"description": "",
-				"tags": []
-			}
-		},
-		"src/modules/Modal/ModalContent.js": {
-			"props": {
-				"children": {
-					"type": {
-						"name": "any"
-					},
-					"required": false,
-					"docBlock": {
-						"description": "",
-						"tags": []
-					}
-				},
-				"className": {
-					"type": {
-						"name": "string"
-					},
-					"required": false,
-					"docBlock": {
-						"description": "",
-						"tags": []
-					}
-				}
-			},
-			"docBlock": {
-				"description": "",
-				"tags": []
-			}
-		},
-		"src/modules/Modal/ModalFooter.js": {
-			"props": {
-				"children": {
-					"type": {
-						"name": "any"
-					},
-					"required": false,
-					"docBlock": {
-						"description": "",
-						"tags": []
-					}
-				},
-				"className": {
-					"type": {
-						"name": "string"
-					},
-					"required": false,
-					"docBlock": {
-						"description": "",
-						"tags": []
-					}
-				}
-			},
-			"docBlock": {
-				"description": "",
-				"tags": []
-			}
-		},
-		"src/modules/Modal/ModalHeader.js": {
-			"props": {
-				"children": {
-					"type": {
-						"name": "any"
-					},
-					"required": false,
-					"docBlock": {
-						"description": "",
-						"tags": []
-					}
-				},
-				"className": {
-					"type": {
-						"name": "string"
 					},
 					"required": false,
 					"docBlock": {
