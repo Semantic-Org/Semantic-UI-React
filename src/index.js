@@ -40,6 +40,7 @@ export Header from './elements/Header/Header'
 export Icon from './elements/Icon/Icon'
 export Image from './elements/Image/Image'
 export Input from './elements/Input/Input'
+export Label from './elements/Label/Label'
 
 import _List from './elements/List/List'
 export { _List as List }

@@ -94,6 +94,7 @@
     "phantomjs-polyfill": "0.0.1",
     "raw-loader": "^0.5.1",
     "react": "^0.14.0",
+    "react-addons-create-fragment": "^0.14.8",
     "react-addons-test-utils": "^0.14.0",
     "react-docgen": "^2.2.0",
     "react-dom": "^0.14.0",
