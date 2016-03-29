@@ -11,6 +11,7 @@
 
 **Merged pull requests:**
 
+- Setup enzyme for testing [\#214](https://github.com/TechnologyAdvice/stardust/pull/214) ([levithomason](https://github.com/levithomason))
 - Cleanup deprecated usage and warnings [\#213](https://github.com/TechnologyAdvice/stardust/pull/213) ([levithomason](https://github.com/levithomason))
 - Fix and simplify component doc info [\#211](https://github.com/TechnologyAdvice/stardust/pull/211) ([levithomason](https://github.com/levithomason))
 - Cleanup semis now that Babel is sane again [\#210](https://github.com/TechnologyAdvice/stardust/pull/210) ([levithomason](https://github.com/levithomason))
