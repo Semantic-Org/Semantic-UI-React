@@ -8,7 +8,7 @@ describe('Dropdown', () => {
       { value: 'admin', text: 'Admin' },
       { value: 'editor', text: 'Editor' },
     ]
-    render(<Dropdown className='selection' defaultValue='admin' options={options} />)
+    deprecatedRender(<Dropdown className='selection' defaultValue='admin' options={options} />)
       .findTag('input')
       .value.should.equal('admin')
   })
@@ -21,7 +21,7 @@ describe('Dropdown', () => {
       { value: 'purple', text: 'purple' },
       { value: 'blue', text: 'blue' },
     ]
-    const items = render(<Dropdown options={options} />)
+    const items = deprecatedRender(<Dropdown options={options} />)
       .scryClass('sd-dropdown-item')
     items.should.have.a.lengthOf(6)
     items.map((item, i) => {

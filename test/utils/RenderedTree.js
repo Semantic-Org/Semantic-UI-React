@@ -1,7 +1,6 @@
 import _ from 'lodash'
 import { findDOMNode } from 'react-dom'
 import {
-  createRenderer,
   findAllInRenderedTree,
   findRenderedComponentWithType,
   findRenderedDOMComponentWithClass,
@@ -12,16 +11,13 @@ import {
   scryRenderedDOMComponentsWithTag,
   scryRenderedComponentsWithType,
 } from 'react-addons-test-utils'
-//
-// RenderTree
-//
 
 /**
  * Render a ReactElement and use helpful test utility methods against it.
  * @param {ReactElement} reactElement The element to render.
  * @returns {RenderedTree}
  */
-class RenderedTree {
+export default class RenderedTree {
   constructor(reactElement) {
     this._root = renderIntoDocument(reactElement)
     this.all = findAllInRenderedTree(this._root, _.isObject)
@@ -120,32 +116,4 @@ class RenderedTree {
     }
     return true
   }
-}
-
-//
-// Shallow Renderer
-//
-
-/**
- * Shallow render a ReactElement and get the result back.
- * @param {ReactElement} reactElement The element to render.
- * @returns {*} Tree rendered one level deep.
- */
-global.shallowRender = (reactElement) => {
-  const shallowRenderer = createRenderer()
-  shallowRenderer.render(reactElement)
-  return shallowRenderer.getRenderOutput()
-}
-
-//
-// Render
-//
-
-/**
- * Render a ReactElement and get back the root DOM node with helper methods to make assertions on.
- * @param {ReactElement|XML} reactElement The element to render.
- * @returns {RenderedTree} RenderedTree test utils.
- */
-global.render = (reactElement) => {
-  return new RenderedTree(reactElement)
 }

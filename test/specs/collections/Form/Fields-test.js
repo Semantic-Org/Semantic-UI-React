@@ -5,7 +5,7 @@ import { Form } from 'stardust'
 
 describe('Fields', () => {
   it('evenlyDivided adds the word class for the number of child fields', () => {
-    render(
+    deprecatedRender(
       <Form.Fields evenlyDivided>
         <Form.Field />
         <Form.Field />
@@ -15,7 +15,7 @@ describe('Fields', () => {
   })
   it('renders children', () => {
     const child = faker.hacker.phrase()
-    render(<Form.Fields>{child}</Form.Fields>)
+    deprecatedRender(<Form.Fields>{child}</Form.Fields>)
       .assertText(child)
   })
 })

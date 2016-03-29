@@ -27,7 +27,7 @@ describe('Table', () => {
 
   describe('defaultProps', () => {
     it('should have empty defaultSelectedRows', () => {
-      render(<Table />)
+      deprecatedRender(<Table />)
         .first()
         .props.sort
         .should.deep.equal({ key: null, direction: 'descending' })
@@ -36,7 +36,7 @@ describe('Table', () => {
 
   describe('initial state', () => {
     it('selectedRows should default to an empty array', () => {
-      render(<Table />)
+      deprecatedRender(<Table />)
         .first()
         .state.selectedRows
         .should.deep.equal([])
@@ -44,7 +44,7 @@ describe('Table', () => {
 
     it('selectedRows should match defined defaultSelectedRows prop', () => {
       const defaultSelectedRows = _.times(_.random(1, 20))
-      render(<Table defaultSelectedRows={defaultSelectedRows} />)
+      deprecatedRender(<Table defaultSelectedRows={defaultSelectedRows} />)
         .first()
         .state.selectedRows
         .should.equal(defaultSelectedRows)
@@ -56,7 +56,7 @@ describe('Table', () => {
       it('is called with the rowItem and index onClick', () => {
         const spy = sandbox.spy()
         const rowItem = { name: 'bob' }
-        const row = render(
+        const row = deprecatedRender(
           <Table className='selectable' onSelectRow={spy} data={[rowItem]}>
             <Table.Column dataKey='name' />
           </Table>
@@ -72,7 +72,7 @@ describe('Table', () => {
 
   describe('header', () => {
     it('uses Start Cased column dataKey as the default content', () => {
-      render(
+      deprecatedRender(
         <Table data={tableData}>
           <Table.Column dataKey='firstName' />
         </Table>
@@ -82,7 +82,7 @@ describe('Table', () => {
     })
 
     it('renders contents with headerRenderer', () => {
-      render(
+      deprecatedRender(
         <Table data={tableData}>
           <Table.Column dataKey={randomDataKey} headerRenderer={() => 'YO!'} />
         </Table>
@@ -94,7 +94,7 @@ describe('Table', () => {
 
   describe('cell', () => {
     it('uses object values as default contents', () => {
-      render(
+      deprecatedRender(
         <Table data={tableData}>
           <Table.Column dataKey={randomDataKey} />
         </Table>
@@ -108,7 +108,7 @@ describe('Table', () => {
     })
 
     it('renders contents with the cellRenderer', () => {
-      render(
+      deprecatedRender(
         <Table data={tableData}>
           <Table.Column dataKey={randomDataKey} cellRenderer={() => 'REDACTED'} />
         </Table>
@@ -121,7 +121,7 @@ describe('Table', () => {
 
     it('stringifies contents if they are objects', () => {
       // use the permissions key here as it is an object
-      render(
+      deprecatedRender(
         <Table data={tableData}>
           <Table.Column dataKey='permissions' />
         </Table>
@@ -135,7 +135,7 @@ describe('Table', () => {
 
   describe('row', () => {
     it('only contains cells that were defined in TableColumns', () => {
-      render(
+      deprecatedRender(
         <Table data={tableData}>
           <Table.Column dataKey={randomDataKey} />
         </Table>
@@ -158,7 +158,7 @@ describe('Table', () => {
     let rows
 
     beforeEach(() => {
-      rows = render(
+      rows = deprecatedRender(
         <Table className='selectable' data={[{ row: 1 }, { row: 2 }]}>
           <Table.Column dataKey='row' />
         </Table>
@@ -193,7 +193,7 @@ describe('Table', () => {
 
   describe('sort', () => {
     it('unselects all rows', () => {
-      const tree = render(
+      const tree = deprecatedRender(
         <Table className='selectable' data={tableData} onSortChange={_.noop}>
           <Table.Column dataKey={randomDataKey} />
         </Table>
@@ -215,13 +215,13 @@ describe('Table', () => {
 
   describe('"sortable" class', () => {
     it('is auto applied when "onSortChange" prop is present', () => {
-      render(<Table onSortChange={_.noop} />)
+      deprecatedRender(<Table onSortChange={_.noop} />)
         .findClass('sortable')
     })
 
     it('is not auto applied by default', () => {
       it('does not have class "sortable"', () => {
-        render(<Table />)
+        deprecatedRender(<Table />)
           .findClass('sd-table')
           .props.className
           .should.not.include('sortable')
@@ -231,17 +231,17 @@ describe('Table', () => {
 
   describe('"selectable" class', () => {
     it('is auto applied when "onSelectRow" prop is present', () => {
-      render(<Table onSelectRow={_.noop} />)
+      deprecatedRender(<Table onSelectRow={_.noop} />)
         .findClass('selectable')
     })
 
     it('is auto applied when "defaultSelectedRows" prop is present', () => {
-      render(<Table defaultSelectedRows={[]} />)
+      deprecatedRender(<Table defaultSelectedRows={[]} />)
         .findClass('selectable')
     })
 
     it('is not auto applied by default', () => {
-      render(<Table />)
+      deprecatedRender(<Table />)
         .findClass('sd-table')
         .getAttribute('class')
         .should.not.include('selectable')

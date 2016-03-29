@@ -3,7 +3,7 @@ import { Segment } from 'stardust'
 
 describe('Segments', () => {
   it('should render children', () => {
-    const [segmentOne, segmentTwo] = render(
+    const [segmentOne, segmentTwo] = deprecatedRender(
       <Segment.Segments>
         <Segment>Top</Segment>
         <Segment>Bottom</Segment>
@@ -19,7 +19,7 @@ describe('Segments', () => {
   })
 
   it('renders expected number of children', () => {
-    render(
+    deprecatedRender(
       <Segment.Segments>
         <Segment>Top</Segment>
         <Segment>Middle</Segment>

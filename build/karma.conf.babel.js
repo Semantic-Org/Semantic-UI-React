@@ -33,16 +33,7 @@ module.exports = (karmaConfig) => {
             test: /sinon\.js$/,
             loader: 'imports?define=>false,require=>false',
           },
-          {
-            test: /\.js$/,
-            loaders: ['babel', 'eslint'],
-            exclude: paths.base('node_modules'),
-          },
-          {
-            test: /\.json$/,
-            loaders: ['json'],
-            exclude: paths.base('node_modules'),
-          },
+          ...webpackConfig.module.loaders,
         ],
       },
       resolve: {
@@ -51,6 +42,11 @@ module.exports = (karmaConfig) => {
           ...webpackConfig.resolve.alias,
           jquery: `${paths.test('mocks')}/SemanticjQuery-mock.js`,
           sinon: 'sinon/pkg/sinon',
+          // These are internal deps specific to React 0.13 required() by enzyme
+          // They shouldn't be requiring these at all, issues and fix proposed
+          // https://github.com/airbnb/enzyme/issues/285
+          'react/lib/ExecutionEnvironment': 'empty/object',
+          'react/lib/ReactContext': 'empty/object',
         },
       },
     },
