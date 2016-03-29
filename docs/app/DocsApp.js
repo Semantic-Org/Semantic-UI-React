@@ -14,7 +14,7 @@ class DocsApp extends Component {
   render() {
     const components = Object.keys(stardust)
       .sort()
-      .map(name => <ComponentDoc key={name} name={name} />)
+      .map(name => <ComponentDoc key={name} meta={stardust[name]._meta} />)
 
     return (
       <div style={style.container}>

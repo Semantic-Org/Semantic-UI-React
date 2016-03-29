@@ -8,11 +8,11 @@ import getComponentDocInfo from 'docs/app/utils/getComponentDocInfo'
 
 export default class ComponentDoc extends Component {
   static propTypes = {
-    name: PropTypes.string,
+    meta: PropTypes.object,
   };
 
   render() {
-    const doc = getComponentDocInfo(this.props.name)
+    const doc = getComponentDocInfo(this.props.meta)
 
     return (
       <Segment id={doc.name}>
