@@ -11,6 +11,8 @@
 
 **Merged pull requests:**
 
+- Fix and simplify component doc info [\#211](https://github.com/TechnologyAdvice/stardust/pull/211) ([levithomason](https://github.com/levithomason))
+- Cleanup semis now that Babel is sane again [\#210](https://github.com/TechnologyAdvice/stardust/pull/210) ([levithomason](https://github.com/levithomason))
 - Update build system [\#209](https://github.com/TechnologyAdvice/stardust/pull/209) ([levithomason](https://github.com/levithomason))
 - Update dependencies [\#207](https://github.com/TechnologyAdvice/stardust/pull/207) ([levithomason](https://github.com/levithomason))
 - Icon component [\#205](https://github.com/TechnologyAdvice/stardust/pull/205) ([levithomason](https://github.com/levithomason))
