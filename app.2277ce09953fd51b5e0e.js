@@ -25052,8 +25052,6 @@
 
 	var _getUnhandledProps2 = _interopRequireDefault(_getUnhandledProps);
 
-	var _propUtils = __webpack_require__(/*! ../../utils/propUtils */ 173);
-
 	var _Meta = __webpack_require__(/*! ../../utils/Meta */ 165);
 
 	var _Meta2 = _interopRequireDefault(_Meta);
@@ -25106,7 +25104,7 @@
 	}(_react.Component);
 
 	Statistic.propTypes = {
-	  children: _propUtils.customPropTypes.ofComponentTypes(['Statistics', 'Label', 'Value']),
+	  children: _react.PropTypes.node,
 	  className: _react.PropTypes.string
 	};
 	Statistic._meta = {
@@ -60578,8 +60576,7 @@
 			"props": {
 				"children": {
 					"type": {
-						"name": "custom",
-						"raw": "customPropTypes.ofComponentTypes(['Statistics', 'Label', 'Value'])"
+						"name": "node"
 					},
 					"required": false,
 					"docBlock": {
