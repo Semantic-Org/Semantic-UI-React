@@ -1,5 +1,5 @@
 import React from 'react'
-import { Modal, ModalHeader, ModalContent, ModalFooter } from 'stardust'
+import { Modal } from 'stardust'
 
 describe('Modal', () => {
   it('should default ref to be "modal"', () => {
@@ -23,17 +23,17 @@ describe('Modal', () => {
   })
   describe('ModalHeader', () => {
     it('should render children', () => {
-      render(<ModalHeader>Hello</ModalHeader>).assertText('Hello')
+      render(<Modal.Header>Hello</Modal.Header>).assertText('Hello')
     })
   })
   describe('ModalContent', () => {
     it('should render children', () => {
-      render(<ModalContent>Hello</ModalContent>).assertText('Hello')
+      render(<Modal.Content>Hello</Modal.Content>).assertText('Hello')
     })
   })
   describe('ModalFooter', () => {
     it('should render children', () => {
-      render(<ModalFooter>Hey You</ModalFooter>).assertText('Hey You')
+      render(<Modal.Footer>Hey You</Modal.Footer>).assertText('Hey You')
     })
   })
 })
