@@ -14,15 +14,15 @@ export default class Header extends Component {
     library: META.library.semanticUI,
     name: 'Header',
     type: META.type.element,
-  };
+  }
 
-  static H1 = HeaderH1;
-  static H2 = HeaderH2;
-  static H3 = HeaderH3;
-  static H4 = HeaderH4;
-  static H5 = HeaderH5;
-  static H6 = HeaderH6;
-  static Subheader = HeaderSubheader;
+  static H1 = HeaderH1
+  static H2 = HeaderH2
+  static H3 = HeaderH3
+  static H4 = HeaderH4
+  static H5 = HeaderH5
+  static H6 = HeaderH6
+  static Subheader = HeaderSubheader
 
   render() {
     return (

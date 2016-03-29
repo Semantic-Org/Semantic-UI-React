@@ -11,31 +11,31 @@ export default class Modal extends Component {
     className: PropTypes.string,
     ref: PropTypes.string,
     settings: PropTypes.object,
-  };
+  }
 
   static defaultProps = {
     ref: 'modal',
-  };
+  }
 
-  state = { isShown: false };
+  state = { isShown: false }
 
-  static Content = ModalContent;
-  static Header = ModalHeader;
-  static Footer = ModalFooter;
+  static Content = ModalContent
+  static Header = ModalHeader
+  static Footer = ModalFooter
 
   showModal = () => {
     this.setState({ isShown: true })
-  };
+  }
 
   hideModal = () => {
     this.setState({ isShown: false })
-  };
+  }
 
   static _meta = {
     library: META.library.semanticUI,
     name: 'Modal',
     type: META.type.module,
-  };
+  }
 
   render() {
     const classes = classNames(

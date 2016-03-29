@@ -21,11 +21,11 @@ export default class Checkbox extends Component {
     onIndeterminate: PropTypes.func,
     onUnchecked: PropTypes.func,
     type: PropTypes.string,
-  };
+  }
 
   static defaultProps = {
     type: 'checkbox',
-  };
+  }
 
   componentDidMount() {
     this.element = $(this.refs.element)
@@ -52,7 +52,7 @@ export default class Checkbox extends Component {
     library: META.library.semanticUI,
     name: 'Checkbox',
     type: META.type.module,
-  };
+  }
 
   plugin() {
     return this.element.checkbox(...arguments)

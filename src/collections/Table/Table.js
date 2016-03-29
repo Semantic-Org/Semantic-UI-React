@@ -17,14 +17,14 @@ export default class Table extends Component {
       key: PropTypes.string,
       direction: PropTypes.oneOf(['descending', 'ascending']),
     }),
-  };
+  }
 
   static defaultProps = {
     sort: {
       key: null,
       direction: 'descending',
     },
-  };
+  }
 
   constructor(props, context) {
     super(props, context)
@@ -38,7 +38,7 @@ export default class Table extends Component {
     return _.isObject(content) ? JSON.stringify(content) : content
   }
 
-  static Column = TableColumn;
+  static Column = TableColumn
 
   _isRowSelected(index) {
     return _.includes(this.state.selectedRows, index)
@@ -46,7 +46,7 @@ export default class Table extends Component {
 
   _isSelectable = () => {
     return _.includes(this.props.className, 'selectable')
-  };
+  }
 
   _unselectRow(index) {
     if (!this._isSelectable()) return
@@ -136,7 +136,7 @@ export default class Table extends Component {
     library: META.library.semanticUI,
     name: 'Table',
     type: META.type.collection,
-  };
+  }
 
   render() {
     const { onSelectRow, onSortChange, defaultSelectedRows } = this.props

@@ -10,14 +10,14 @@ export default class ListItem extends Component {
     header: PropTypes.string,
     icon: PropTypes.node,
     image: PropTypes.node,
-  };
+  }
 
   static _meta = {
     library: META.library.semanticUI,
     name: 'ListItem',
     type: META.type.element,
     parent: 'List',
-  };
+  }
 
   render() {
     const { children, className, description, header, icon, image, ...rest } = this.props

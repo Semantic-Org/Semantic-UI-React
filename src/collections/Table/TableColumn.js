@@ -8,14 +8,14 @@ export default class TableColumn extends Component {
     className: PropTypes.string,
     dataKey: PropTypes.string,
     headerRenderer: PropTypes.func,
-  };
+  }
 
   static _meta = {
     library: META.library.semanticUI,
     name: 'TableColumn',
     type: META.type.collection,
     parent: 'Table',
-  };
+  }
 
   render() {
     const classes = classNames(

@@ -7,14 +7,14 @@ export default class StatisticValue extends Component {
   static propTypes = {
     children: PropTypes.node.isRequired,
     className: PropTypes.string,
-  };
+  }
 
   static _meta = {
     library: META.library.semanticUI,
     name: 'StatisticValue',
     type: META.type.view,
     parent: 'Statistic',
-  };
+  }
 
   render() {
     const classes = classNames(

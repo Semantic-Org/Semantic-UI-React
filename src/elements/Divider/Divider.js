@@ -6,13 +6,13 @@ export default class Divider extends Component {
   static propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
-  };
+  }
 
   static _meta = {
     library: META.library.semanticUI,
     name: 'Divider',
     type: META.type.element,
-  };
+  }
 
   render() {
     const classes = classNames(

@@ -22,7 +22,7 @@ export default class _Header extends Component {
     library: META.library.stardust,
     name: '_Header',
     type: META.type.element,
-  };
+  }
 
   render() {
     const content = this.props.image || this.props.icon

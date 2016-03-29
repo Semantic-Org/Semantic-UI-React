@@ -7,14 +7,14 @@ export default class StatisticLabel extends Component {
   static propTypes = {
     children: PropTypes.node.isRequired,
     className: PropTypes.string,
-  };
+  }
 
   static _meta = {
     library: META.library.semanticUI,
     name: 'StatisticLabel',
     type: META.type.view,
     parent: 'Statistic',
-  };
+  }
 
   render() {
     const classes = classNames(

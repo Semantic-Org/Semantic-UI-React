@@ -9,21 +9,21 @@ export default class Menu extends Component {
     activeItem: PropTypes.string,
     children: PropTypes.node,
     className: PropTypes.string,
-  };
+  }
 
-  state = { activeItem: this.props.activeItem };
+  state = { activeItem: this.props.activeItem }
 
   handleClickItem = (activeItem) => {
     this.setState({ activeItem })
-  };
+  }
 
   static _meta = {
     library: META.library.semanticUI,
     name: 'Menu',
     type: META.type.collection,
-  };
+  }
 
-  static Item = MenuItem;
+  static Item = MenuItem
 
   render() {
     const classes = classNames(

@@ -39,13 +39,13 @@ export default class Form extends Component {
       inline: PropTypes.bool,
       fields: PropTypes.object,
     }),
-  };
+  }
 
   static defaultProps = {
     // prevent submit by default
     // https://github.com/Semantic-Org/Semantic-UI/issues/546
     onSuccess: () => false,
-  };
+  }
 
   constructor(props, context) {
     super(props, context)
@@ -70,10 +70,10 @@ export default class Form extends Component {
     library: META.library.semanticUI,
     name: 'Form',
     type: META.type.collection,
-  };
+  }
 
-  static Field = FormField;
-  static Fields = FormFields;
+  static Field = FormField
+  static Fields = FormFields
 
   plugin() {
     return this.element.form(...arguments)
@@ -111,7 +111,7 @@ export default class Form extends Component {
     })
 
     return json
-  };
+  }
 
   render() {
     const classes = classNames(

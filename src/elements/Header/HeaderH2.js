@@ -9,7 +9,7 @@ export default class HeaderH2 extends Component {
     name: 'HeaderH2',
     parent: 'Header',
     type: META.type.element,
-  };
+  }
 
   render() {
     return (

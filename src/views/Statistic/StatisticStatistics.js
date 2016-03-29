@@ -6,14 +6,14 @@ export default class StatisticStatistics extends Component {
   static propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
-  };
+  }
 
   static _meta = {
     library: META.library.semanticUI,
     name: 'StatisticStatistics',
     type: META.type.view,
     parent: 'Statistic',
-  };
+  }
 
   render() {
     const classes = classNames(

@@ -8,7 +8,7 @@ export default class HeaderH1 extends Component {
     name: 'HeaderH1',
     parent: 'Header',
     type: META.type.element,
-  };
+  }
 
   render() {
     return (
