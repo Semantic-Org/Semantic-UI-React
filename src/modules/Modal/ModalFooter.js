@@ -6,14 +6,14 @@ export default class ModalFooter extends Component {
   static propTypes = {
     children: PropTypes.any,
     className: PropTypes.string,
-  };
+  }
 
   static _meta = {
     library: META.library.semanticUI,
     name: 'ModalFooter',
     type: META.type.module,
     parent: 'Modal',
-  };
+  }
 
   render() {
     const classes = classNames(

@@ -31,11 +31,11 @@ export default class Progress extends Component {
      * Display progress inside the bar.
      */
     showProgress: PropTypes.bool,
-  };
+  }
 
   static defaultProps = {
     showActivity: false,
-  };
+  }
 
   componentDidMount() {
     this.refresh()
@@ -49,7 +49,7 @@ export default class Progress extends Component {
     library: META.library.stardust,
     name: 'Progress',
     type: META.type.module,
-  };
+  }
 
   plugin() {
     return this.element.progress(...arguments)

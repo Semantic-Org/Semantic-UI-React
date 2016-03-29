@@ -6,14 +6,14 @@ export default class Buttons extends Component {
   static propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
-  };
+  }
 
   static _meta = {
     library: META.library.semanticUI,
     name: 'Buttons',
     type: META.type.element,
     parent: 'Button',
-  };
+  }
 
   render() {
     const classes = classNames(

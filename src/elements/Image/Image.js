@@ -7,13 +7,13 @@ export default class Image extends Component {
     alt: PropTypes.string,
     className: PropTypes.string,
     src: PropTypes.string,
-  };
+  }
 
   static _meta = {
     library: META.library.semanticUI,
     name: 'Image',
     type: META.type.element,
-  };
+  }
 
   render() {
     const classes = classNames(

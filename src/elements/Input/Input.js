@@ -11,17 +11,17 @@ export default class Input extends Component {
     className: PropTypes.string,
     icon: PropTypes.string,
     ref: PropTypes.string,
-  };
+  }
 
   static defaultProps = {
     type: 'text',
-  };
+  }
 
   static _meta = {
     library: META.library.semanticUI,
     name: 'Input',
     type: META.type.element,
-  };
+  }
 
   render() {
     // Semantic supports actions and labels on either side of an input.

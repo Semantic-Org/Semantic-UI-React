@@ -19,14 +19,14 @@ export default class Segments extends Component {
       'Message',
     ]),
     className: PropTypes.string,
-  };
+  }
 
   static _meta = {
     library: META.library.semanticUI,
     name: 'Segments',
     type: META.type.element,
     parent: 'Segment',
-  };
+  }
 
   render() {
     const { children } = this.props

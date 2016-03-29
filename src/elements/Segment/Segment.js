@@ -17,15 +17,15 @@ export default class Segment extends Component {
      * Optional segment heading.
      */
     heading: PropTypes.any,
-  };
+  }
 
   static _meta = {
     library: META.library.semanticUI,
     name: 'Segment',
     type: META.type.element,
-  };
+  }
 
-  static Segments = Segments;
+  static Segments = Segments
 
   render() {
     const heading = <h4 className='sd-segment-heading ui header'>{this.props.heading}</h4>

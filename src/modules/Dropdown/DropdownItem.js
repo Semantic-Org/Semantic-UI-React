@@ -14,7 +14,7 @@ export default class DropdownItem extends Component {
       PropTypes.number,
       PropTypes.string,
     ]),
-  };
+  }
 
   static _meta = {
     library: META.library.semanticUI,

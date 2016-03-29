@@ -13,14 +13,14 @@ export default class FormFields extends Component {
      * Dynamically adds className='<count> fields'.
      */
     evenlyDivided: PropTypes.bool,
-  };
+  }
 
   static _meta = {
     library: META.library.semanticUI,
     name: 'FormFields',
     parent: 'Form',
     type: META.type.collection,
-  };
+  }
 
   render() {
     let fieldCount = 0

@@ -9,14 +9,14 @@ export default class FormField extends Component {
     className: PropTypes.string,
     label: PropTypes.string,
     width: PropTypes.number,
-  };
+  }
 
   static _meta = {
     library: META.library.semanticUI,
     name: 'FormField',
     parent: 'Form',
     type: META.type.collection,
-  };
+  }
 
   render() {
     const classes = classNames(

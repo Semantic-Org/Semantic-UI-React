@@ -13,17 +13,17 @@ export default class Statistic extends Component {
   static propTypes = {
     children: customPropTypes.ofComponentTypes(['Statistics', 'Label', 'Value']),
     className: PropTypes.string,
-  };
+  }
 
   static _meta = {
     library: META.library.semanticUI,
     name: 'Statistic',
     type: META.type.view,
-  };
+  }
 
-  static Statistics = StatisticStatistics;
-  static Label = StatisticLabel;
-  static Value = StatisticValue;
+  static Statistics = StatisticStatistics
+  static Label = StatisticLabel
+  static Value = StatisticValue
 
   render() {
     const classes = classNames(

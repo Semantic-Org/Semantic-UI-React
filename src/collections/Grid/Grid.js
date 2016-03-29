@@ -8,16 +8,16 @@ export default class Grid extends Component {
   static propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
-  };
+  }
 
   static _meta = {
     library: META.library.semanticUI,
     name: 'Grid',
     type: META.type.collection,
-  };
+  }
 
-  static Column = GridColumn;
-  static Row = GridRow;
+  static Column = GridColumn
+  static Row = GridRow
 
   render() {
     const classes = classNames(

@@ -14,17 +14,17 @@ export default class Item extends Component {
     header: PropTypes.node,
     image: PropTypes.node,
     meta: PropTypes.node,
-  };
+  }
 
   static defaultProps = {
     contentClassName: 'middle aligned',
-  };
+  }
 
   static _meta = {
     library: META.library.semanticUI,
     name: 'Item',
     type: META.type.view,
-  };
+  }
 
   render() {
     const { children, className, contentClassName, description, extra, header, image, meta, ...rest } = this.props

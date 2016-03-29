@@ -14,21 +14,21 @@ export default class MenuItem extends Component {
     ]),
     name: PropTypes.string,
     onClick: PropTypes.func,
-  };
+  }
 
   handleClick = e => {
     if (this.props.onClick) {
       this.props.onClick(this.props.name)
     }
     this.props.callbackParent(this.props.name)
-  };
+  }
 
   static _meta = {
     library: META.library.semanticUI,
     name: 'MenuItem',
     type: META.type.collection,
     parent: 'Menu',
-  };
+  }
 
   render() {
     const menuLabel = <div className='sd-menu-label ui blue label'>{this.props.label}</div>

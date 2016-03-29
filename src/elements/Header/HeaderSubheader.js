@@ -7,13 +7,13 @@ export default class HeaderSubheader extends Component {
   static propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
-  };
+  }
   static _meta = {
     library: META.library.semanticUI,
     name: 'HeaderSubheader',
     parent: 'Header',
     type: META.type.element,
-  };
+  }
   render() {
     const classes = classNames(
       'sd-header-subheader',

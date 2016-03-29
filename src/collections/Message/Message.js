@@ -11,7 +11,7 @@ export default class Message extends Component {
     dismissable: PropTypes.bool,
     header: PropTypes.string,
     icon: PropTypes.string,
-  };
+  }
 
   componentDidMount() {
     this.messageElm = $(this.refs.message)
@@ -19,13 +19,13 @@ export default class Message extends Component {
 
   handleDismiss = e => {
     this.messageElm.transition('fade')
-  };
+  }
 
   static _meta = {
     library: META.library.semanticUI,
     name: 'Message',
     type: META.type.collection,
-  };
+  }
 
   render() {
     const classes = classNames(

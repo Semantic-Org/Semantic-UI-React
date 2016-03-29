@@ -9,13 +9,13 @@ export default class Container extends Component {
   static propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
-  };
+  }
 
   static _meta = {
     library: META.library.semanticUI,
     name: 'Container',
     type: META.type.element,
-  };
+  }
 
   render() {
     const classes = classNames(

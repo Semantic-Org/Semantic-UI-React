@@ -10,14 +10,14 @@ export default class GridColumn extends Component {
     className: PropTypes.string,
     style: PropTypes.object,
     width: PropTypes.oneOf(_.range(1, 17)),
-  };
+  }
 
   static _meta = {
     library: META.library.semanticUI,
     name: 'GridColumn',
     type: META.type.collection,
     parent: 'Grid',
-  };
+  }
 
   render() {
     const classes = classNames(
