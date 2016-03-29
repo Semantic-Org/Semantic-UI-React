@@ -6,17 +6,16 @@ import chai from 'chai'
 import chaiEnzyme from 'chai-enzyme'
 import dirtyChai from 'dirty-chai'
 import sinonChai from 'sinon-chai'
-import enzyme from 'enzyme'
+import * as enzyme from 'enzyme'
 import RenderedTree from 'test/utils/RenderedTree'
 
 //
 // Enzyme
 //
 global.enzyme = enzyme
-
-global.shallow = chai.expect
-global.render = chai.expect
-global.mount = chai.expect
+global.shallow = enzyme.shallow
+global.render = enzyme.render
+global.mount = enzyme.mount
 
 //
 // Our Deprecated render method
