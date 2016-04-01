@@ -1,8 +1,12 @@
 import React from 'react'
 import { Simulate } from 'react-addons-test-utils'
+
 import { Confirm } from 'stardust'
+import * as common from '../commonTests'
 
 describe('Confirm', () => {
+  common.isConformant(Confirm)
+
   it('default prop abortLabel should be "Cancel"', () => {
     deprecatedRender(<Confirm />).first().props.abortLabel.should.equal('Cancel')
   })
