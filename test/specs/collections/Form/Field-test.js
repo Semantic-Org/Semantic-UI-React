@@ -1,22 +1,24 @@
 import _ from 'lodash'
 import React from 'react'
-import { Form } from 'stardust'
-import numberToWord from '../../../../src/utils/numberToWord'
+
+import Form from 'src/collections/Form/Form'
+import * as common from 'test/specs/commonTests'
+import numberToWord from 'src/utils/numberToWord'
 
 describe('Field', () => {
-  it('has a label', () => {
-    deprecatedRender(<Form.Field label='First Name' />)
-      .findTag('label')
-      .textContent.should.equal('First Name')
-  })
+  common.isConformant(Form.Field)
+  common.rendersChildren(Form.Field)
 
-  it('renders children', () => {
-    deprecatedRender(<Form.Field>yo child</Form.Field>).assertText('yo child')
+  it('has a label', () => {
+    shallow(<Form.Field label='First Name' />)
+      .find('label')
+      .should.contain.text('First Name')
   })
 
   it('can specify a width', () => {
     _.each(_.range(1, 17), n => {
-      deprecatedRender(<Form.Field width={n} />).findClass(`${numberToWord(n)} wide`)
+      shallow(<Form.Field width={n} />)
+        .should.have.className(`${numberToWord(n)} wide`)
     })
   })
 })
