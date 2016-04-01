@@ -67,6 +67,7 @@ config = {
     'react',
     'react-dom',
     'react-highlight',
+    'semantic-ui-css/semantic.js',
   ],
   compiler_stats: {
     hash: false,            // the hash of the compilation

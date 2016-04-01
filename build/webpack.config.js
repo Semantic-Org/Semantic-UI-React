@@ -16,12 +16,6 @@ const webpackConfig = {
       stardust: paths.src('index.js'),
     },
   },
-  externals: {
-    bluebird: 'Promise',
-    faker: 'faker',
-    jquery: 'jQuery',
-    lodash: '_',
-  },
   module: {},
 }
 
@@ -68,6 +62,11 @@ webpackConfig.output = {
 // ------------------------------------
 webpackConfig.plugins = [
   new webpack.DefinePlugin(config.compiler_globals),
+  new webpack.ProvidePlugin({
+    $: 'jquery',
+    jQuery: 'jquery',
+    'window.jQuery': 'jquery',
+  }),
   new HtmlWebpackPlugin({
     template: paths.docsSrc('index.html'),
     hash: false,
@@ -163,6 +162,18 @@ webpackConfig.module.loaders = [{
   //
   test: /\.json$/,
   loader: 'json',
+}, {
+  //
+  // SASS
+  //
+  test: /\.s?css$/,
+  loaders: ['style', 'css', 'sass'],
+}, {
+  //
+  // Files
+  //
+  test: /\.(eot|ttf|woff|woff2|svg|png)$/,
+  loader: 'file',
 }]
 
 export default webpackConfig
