@@ -12,6 +12,10 @@ dependencies:
     - echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
     - npm install -g npm@3
 
+test:
+  pre:
+    - npm run lint
+
 deployment:
   development:
     branch: /^(?!master).*$/

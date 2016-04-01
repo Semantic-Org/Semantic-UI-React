@@ -1,5 +1,9 @@
+import 'semantic-ui-css/semantic.js'
+import 'semantic-ui-css/semantic.css'
+import 'highlight.js/styles/github.css'
 import React, { Component } from 'react'
 import { render } from 'react-dom'
+
 import * as stardust from 'stardust'
 
 import ComponentDoc from './Components/ComponentDoc/ComponentDoc'

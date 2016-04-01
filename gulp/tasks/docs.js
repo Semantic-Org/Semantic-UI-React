@@ -24,7 +24,7 @@ task('generate-docs-json', () => {
     // do not remove the function keyword
     // we need 'this' scope here
     .pipe(g.plumber(function handleError(err) {
-      log(err)
+      log(err.toString())
       this.emit('end')
     }))
     .pipe(gulpReactDocgen())
