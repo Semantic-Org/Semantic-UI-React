@@ -47,10 +47,9 @@ module.exports = (filename) => {
 
       cb()
     } catch (err) {
-      this.emit(
-        'error',
-        new gutil.PluginError(pluginName, err)
-      )
+      const pluginError = new gutil.PluginError(pluginName, err)
+      pluginError.message += `\nFile: ${file.path}.`
+      this.emit('error', pluginError)
     }
   }
 
