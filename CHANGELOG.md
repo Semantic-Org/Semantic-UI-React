@@ -11,6 +11,7 @@
 
 **Merged pull requests:**
 
+- Create common tests [\#217](https://github.com/TechnologyAdvice/stardust/pull/217) ([levithomason](https://github.com/levithomason))
 - Build system fixes [\#216](https://github.com/TechnologyAdvice/stardust/pull/216) ([levithomason](https://github.com/levithomason))
 - Setup enzyme for testing [\#214](https://github.com/TechnologyAdvice/stardust/pull/214) ([levithomason](https://github.com/levithomason))
 - Cleanup deprecated usage and warnings [\#213](https://github.com/TechnologyAdvice/stardust/pull/213) ([levithomason](https://github.com/levithomason))
