@@ -1,7 +1,14 @@
 import React from 'react'
-import { Dropdown } from 'stardust'
+
+import Dropdown from 'src/modules/Dropdown/Dropdown'
+import * as common from 'test/specs/commonTests'
 
 describe('Dropdown', () => {
+  common.isConformant(Dropdown)
+  common.hasUIClassName(Dropdown)
+  // TODO: child text is not rendered correctly?
+  // common.rendersChildren(Dropdown)
+
   it('accepts a default value', () => {
     const options = [
       { value: '', text: 'Please select a role' },
