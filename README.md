@@ -37,7 +37,7 @@ export default class TryStardust extends Component {
 - [x] Icon
 - [x] Image
 - [x] Input
-- [ ] Label
+- [x] Label
 - [x] List
 - [ ] Loader
 - [ ] Rail
