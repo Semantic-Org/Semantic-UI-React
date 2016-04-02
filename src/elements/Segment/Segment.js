@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import classNames from 'classnames'
 import META from '../../utils/Meta'
-import Segments from './Segments'
+import Segments from './SegmentSegments'
 
 /**
  * A segment is used to create a grouping of related content.

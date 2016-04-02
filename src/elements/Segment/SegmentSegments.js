@@ -6,7 +6,7 @@ import { customPropTypes } from '../../utils/propUtils'
 /**
  * A group of segments can be formatted to appear together.
  */
-export default class Segments extends Component {
+export default class SegmentSegments extends Component {
   static propTypes = {
     /**
      * Must be of type Segment, Segments, H1, H2, H3, H4, H5, H6, Subheader or Message.
@@ -23,7 +23,7 @@ export default class Segments extends Component {
 
   static _meta = {
     library: META.library.semanticUI,
-    name: 'Segments',
+    name: 'SegmentSegments',
     type: META.type.element,
     parent: 'Segment',
   }
@@ -32,7 +32,7 @@ export default class Segments extends Component {
     const { children } = this.props
 
     const classes = classNames(
-      'sd-segments',
+      'sd-segment-segments',
       'ui',
       this.props.className,
       'segments'

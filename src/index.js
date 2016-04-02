@@ -46,7 +46,7 @@ export { _List as List }
 export const ListItem = deprecateComponent('ListItem', 'Use "List.Item" instead.', _List.Item)
 
 export Segment from './elements/Segment/Segment'
-export Segments from './elements/Segment/Segments'
+export Segments from './elements/Segment/SegmentSegments'
 
 // ----------------------------------------
 // Modules
