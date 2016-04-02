@@ -1,32 +1,8 @@
-import React from 'react'
-import { Segment } from 'stardust'
+import Segments from 'src/elements/Segment/SegmentSegments'
+import * as common from 'test/specs/commonTests'
 
 describe('Segments', () => {
-  it('should render children', () => {
-    const [segmentOne, segmentTwo] = deprecatedRender(
-      <Segment.Segments>
-        <Segment>Top</Segment>
-        <Segment>Bottom</Segment>
-      </Segment.Segments>
-    ).scryClass('sd-segment')
-
-    segmentOne
-      .textContent
-      .should.equal('Top')
-    segmentTwo
-      .textContent
-      .should.equal('Bottom')
-  })
-
-  it('renders expected number of children', () => {
-    deprecatedRender(
-      <Segment.Segments>
-        <Segment>Top</Segment>
-        <Segment>Middle</Segment>
-        <Segment>Bottom</Segment>
-      </Segment.Segments>
-    )
-      .scryClass('sd-segment')
-      .should.have.a.lengthOf(3)
-  })
+  common.isConformant(Segments)
+  common.hasUIClassName(Segments)
+  common.rendersChildren(Segments)
 })
