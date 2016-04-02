@@ -1,35 +1,28 @@
-import React from 'react'
-import { Statistic } from 'stardust'
-import faker from 'faker'
+import Statistic from 'src/views/Statistic/Statistic'
+import StatisticLabel from 'src/views/Statistic/StatisticLabel'
+import StatisticValue from 'src/views/Statistic/StatisticValue'
+import StatisticStatistics from 'src/views/Statistic/StatisticStatistics'
+import * as common from 'test/specs/commonTests'
 
 describe('Statistic', () => {
-  it('renders children', () => {
-    const child = faker.hacker.phrase()
-    deprecatedRender(<Statistic>{child}</Statistic>)
-      .assertText(child)
-  })
+  common.isConformant(Statistic)
+  common.hasUIClassName(StatisticStatistics)
+  common.rendersChildren(Statistic)
+  common.hasSubComponents(Statistic, [StatisticLabel, StatisticValue, StatisticStatistics])
+})
 
-  describe('Statistics', () => {
-    it('renders children', () => {
-      const child = faker.hacker.phrase()
-      deprecatedRender(<Statistic.Statistics>{child}</Statistic.Statistics>)
-        .assertText(child)
-    })
-  })
+describe('StatisticLabel', () => {
+  common.isConformant(Statistic)
+  common.rendersChildren(Statistic)
+})
 
-  describe('Label', () => {
-    it('renders children', () => {
-      const child = faker.hacker.phrase()
-      deprecatedRender(<Statistic.Label>{child}</Statistic.Label>)
-        .assertText(child)
-    })
-  })
+describe('StatisticValue', () => {
+  common.isConformant(Statistic)
+  common.rendersChildren(Statistic)
+})
 
-  describe('Value', () => {
-    it('renders children', () => {
-      const child = faker.hacker.phrase()
-      deprecatedRender(<Statistic.Value>{child}</Statistic.Value>)
-        .assertText(child)
-    })
-  })
+describe('Statistics', () => {
+  common.isConformant(StatisticStatistics)
+  common.hasUIClassName(StatisticStatistics)
+  common.rendersChildren(StatisticStatistics)
 })
