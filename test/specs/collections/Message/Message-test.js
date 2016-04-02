@@ -1,9 +1,15 @@
 import faker from 'faker'
 import React from 'react'
 import { Simulate } from 'react-addons-test-utils'
-import { Message } from 'stardust'
+
+import Message from 'src/collections/Message/Message'
+import * as common from 'test/specs/commonTests'
 
 describe('Message', () => {
+  common.isConformant(Message)
+  common.hasUIClassName(Message)
+  common.rendersChildren(Message)
+
   describe('with header', () => {
     it('has a header', () => {
       const header = faker.hacker.phrase()
