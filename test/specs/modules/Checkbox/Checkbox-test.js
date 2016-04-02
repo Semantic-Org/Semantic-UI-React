@@ -1,7 +1,13 @@
 import React from 'react'
-import { Checkbox } from 'stardust'
+
+import Checkbox from 'src/modules/Checkbox/Checkbox'
+import * as common from 'test/specs/commonTests'
 
 describe('Checkbox', () => {
+  common.isConformant(Checkbox)
+  common.hasUIClassName(Checkbox)
+  common.rendersChildren(Checkbox)
+
   it('can be checked by default', () => {
     deprecatedRender(<Checkbox defaultChecked name='firstName' />)
       .findTag('input')
