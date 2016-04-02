@@ -1,17 +1,15 @@
-import React from 'react'
-
-import Item from 'src/views/Items/Item'
-import Items from 'src/views/Items/Items'
+import Item from 'src/views/Item/Item'
+import ItemItems from 'src/views/Item/ItemItems'
 import * as common from 'test/specs/commonTests'
 
-// TODO: make parent item, deprecate, fix tests
-describe('Items', () => {
-  common.isConformant(Items)
-  common.hasUIClassName(Items)
-  common.rendersChildren(Items)
+describe('ItemItems', () => {
+  common.isConformant(ItemItems)
+  common.hasUIClassName(ItemItems)
+  common.rendersChildren(ItemItems)
 })
 
 describe('Item', () => {
   common.isConformant(Item)
   common.rendersChildren(Item)
+  common.hasSubComponents(Item, [ItemItems])
 })
