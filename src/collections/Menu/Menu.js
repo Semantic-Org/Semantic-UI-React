@@ -1,8 +1,11 @@
-import React, { Component, PropTypes } from 'react'
-import classNames from 'classnames'
-import META from '../../utils/Meta'
-import getUnhandledProps from '../../utils/getUnhandledProps'
+import React, { Children, Component, cloneElement, PropTypes } from 'react'
+import cx from 'classnames'
+
 import MenuItem from './MenuItem'
+import META from '../../utils/Meta'
+
+// TODO make generic and move to child utils
+const getMenuItems = (children) => Children.toArray(children).find(({ type }) => type === MenuItem)
 
 export default class Menu extends Component {
   static propTypes = {
@@ -11,7 +14,15 @@ export default class Menu extends Component {
     className: PropTypes.string,
   }
 
-  state = { activeItem: this.props.activeItem }
+  constructor(props, context) {
+    super(props, context)
+    const { activeItem, children } = this.props
+    const firstMenuItem = getMenuItems(children)
+
+    this.state = {
+      activeItem: activeItem || firstMenuItem && firstMenuItem.props.name,
+    }
+  }
 
   handleClickItem = (activeItem) => {
     this.setState({ activeItem })
@@ -26,26 +37,23 @@ export default class Menu extends Component {
   static Item = MenuItem
 
   render() {
-    const classes = classNames(
-      'sd-menu',
-      'ui',
-      this.props.className,
-      'menu'
-    )
-    const hasActiveItem = !!this.state.activeItem || !!this.props.activeItem
-    const children = React.Children.map(this.props.children, (child, i) => {
-      const activeItemName = !hasActiveItem && i === 0
-        ? child.props.name
-        : this.state.activeItem || this.props.activeItem
-      return child && React.cloneElement(child, {
-        activeItem: activeItemName,
-        callbackParent: this.handleClickItem,
+    const { activeItem, children, className, ...rest } = this.props
+
+    const classes = cx('sd-menu ui', className, 'menu')
+
+    const _children = Children.map(children, (child) => {
+      const { type, props } = child
+
+      if (type !== MenuItem) return child
+
+      return cloneElement(child, {
+        active: props.name === this.state.activeItem || props.name === activeItem,
+        __onClick: this.handleClickItem,
       })
     })
-    const props = getUnhandledProps(this)
     return (
-      <div {...props} className={classes}>
-        {children}
+      <div {...rest} className={classes}>
+        {_children}
       </div>
     )
   }

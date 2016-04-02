@@ -46,7 +46,7 @@ export { _List as List }
 export const ListItem = deprecateComponent('ListItem', 'Use "List.Item" instead.', _List.Item)
 
 export Segment from './elements/Segment/Segment'
-export Segments from './elements/Segment/Segments'
+export Segments from './elements/Segment/SegmentSegments'
 
 // ----------------------------------------
 // Modules
@@ -66,6 +66,7 @@ export Dropdown from './modules/Dropdown/Dropdown'
 // Views
 // ----------------------------------------
 
-export Item from './views/Items/Item'
-export Items from './views/Items/Items'
+import _Item from './views/Item/Item'
+export { _Item as Item }
+export const Items = deprecateComponent('Items', 'Use "Item.Items" instead.', _Item.Items)
 export Statistic from './views/Statistic/Statistic'

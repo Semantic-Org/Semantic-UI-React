@@ -4,6 +4,8 @@ import cx from 'classnames'
 import { customPropTypes } from '../../utils/propUtils'
 import META from '../../utils/Meta'
 
+import ItemItems from './ItemItems'
+
 export default class Item extends Component {
   static propTypes = {
     children: PropTypes.node,
@@ -25,6 +27,8 @@ export default class Item extends Component {
     name: 'Item',
     type: META.type.view,
   }
+
+  static Items = ItemItems
 
   render() {
     const { children, className, contentClassName, description, extra, header, image, meta, ...rest } = this.props

@@ -2,10 +2,17 @@ import _ from 'lodash'
 import faker from 'faker'
 import React from 'react'
 import { Simulate } from 'react-addons-test-utils'
-import { Table } from 'stardust'
+
+import Table from 'src/collections/Table/Table'
+import TableColumn from 'src/collections/Table/TableColumn'
 import sandbox from 'test/utils/Sandbox-util'
+import * as common from 'test/specs/commonTests'
 
 describe('Table', () => {
+  common.isConformant(Table)
+  common.hasUIClassName(Table)
+  common.hasSubComponents(Table, [TableColumn])
+
   let randomDataKey
   const tableData = _.times(_.random(1, 20), () => {
     return {

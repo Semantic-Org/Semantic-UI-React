@@ -1,7 +1,15 @@
 import React from 'react'
-import { Input } from 'stardust'
+
+import Input from 'src/elements/Input/Input'
+import * as common from 'test/specs/commonTests'
 
 describe('Input', () => {
+  common.isConformant(Input)
+  common.hasUIClassName(Input)
+  // TODO: inputs do not render child text, only child components in special cases
+  // see component and find solution
+  // common.rendersChildren(Input)
+
   it('has the input type of text by default', () => {
     deprecatedRender(<Input />)
       .findTag('input')

@@ -1,7 +1,11 @@
 import React from 'react'
+
 import { Textarea } from 'stardust'
+import * as common from '../commonTests'
 
 describe('Textarea', () => {
+  common.isConformant(Textarea)
+
   it('has a default value', () => {
     deprecatedRender(<Textarea defaultValue='Hello World' />)
       .findTag('textarea')

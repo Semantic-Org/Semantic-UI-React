@@ -1,16 +1,16 @@
 import React from 'react'
-import { Progress } from 'stardust'
+
+import Progress from 'src/modules/Progress/Progress'
+import * as common from 'test/specs/commonTests'
 
 describe('Progress', () => {
-  it('should be able to receive children', () => {
-    deprecatedRender(
-      <Progress>
-        Child
-      </Progress>
-    ).assertText('Child')
-  })
+  common.isConformant(Progress)
+  common.hasUIClassName(Progress)
+  common.rendersChildren(Progress)
 
-  it('should create a div with the class of bar', () => {
-    deprecatedRender(<Progress />).findClass('bar')
+  it('is a div with className bar', () => {
+    shallow(<Progress />)
+      .childAt(0)
+      .should.have.className('bar')
   })
 })
