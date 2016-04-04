@@ -13,6 +13,7 @@
 
 - Create common tests [\#217](https://github.com/TechnologyAdvice/stardust/pull/217) ([levithomason](https://github.com/levithomason))
 - Build system fixes [\#216](https://github.com/TechnologyAdvice/stardust/pull/216) ([levithomason](https://github.com/levithomason))
+- Label component [\#215](https://github.com/TechnologyAdvice/stardust/pull/215) ([levithomason](https://github.com/levithomason))
 - Setup enzyme for testing [\#214](https://github.com/TechnologyAdvice/stardust/pull/214) ([levithomason](https://github.com/levithomason))
 - Cleanup deprecated usage and warnings [\#213](https://github.com/TechnologyAdvice/stardust/pull/213) ([levithomason](https://github.com/levithomason))
 - Fix and simplify component doc info [\#211](https://github.com/TechnologyAdvice/stardust/pull/211) ([levithomason](https://github.com/levithomason))
