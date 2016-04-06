@@ -106,6 +106,7 @@
     "rimraf": "^2.5.2",
     "sass-loader": "^3.2.0",
     "semantic-ui-css": "^2.1.8",
+    "simulant": "^0.2.1",
     "sinon": "^1.17.3",
     "sinon-chai": "^2.8.0",
     "style-loader": "^0.13.1",
