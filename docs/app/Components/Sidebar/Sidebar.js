@@ -6,9 +6,9 @@ import META from 'src/utils/Meta'
 const { Menu, Input } = stardust
 
 export default class Sidebar extends Component {
-  state = { query: '' };
+  state = { query: '' }
 
-  handleSearchChange = e => this.setState({ query: e.target.value });
+  handleSearchChange = e => this.setState({ query: e.target.value })
 
   getComponentsByQuery() {
     return _.filter(stardust, component => {
@@ -29,17 +29,16 @@ export default class Sidebar extends Component {
       })
       .value()
 
-    const subMenu = (
+    return _.isEmpty(items) ? [] : (
       <div className='item'>
         <div className='header'>{_.capitalize(type)}s</div>
         <div className='menu'>{items}</div>
       </div>
     )
-
-    return items && subMenu
-  };
+  }
 
   render() {
+    const addons = this.getComponentsByType(META.type.addon)
     const elements = this.getComponentsByType(META.type.element)
     const collections = this.getComponentsByType(META.type.collection)
     const views = this.getComponentsByType(META.type.view)
@@ -56,6 +55,7 @@ export default class Sidebar extends Component {
             onChange={this.handleSearchChange}
           />
         </Menu.Item>
+        {addons}
         {elements}
         {collections}
         {views}

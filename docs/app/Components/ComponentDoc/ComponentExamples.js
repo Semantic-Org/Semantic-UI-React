@@ -1,30 +1,25 @@
-import React, { Component, PropTypes } from 'react'
-import { Segment } from 'stardust'
+import React, { Component, createElement, PropTypes } from 'react'
+
 import exampleContext from 'docs/app/utils/ExampleContext'
+import { Divider, Header } from 'stardust'
 
 export default class ComponentExamples extends Component {
   static propTypes = {
     name: PropTypes.string,
-  };
+  }
 
   render() {
+    const { name } = this.props
+
     const examples = exampleContext.keys()
-      .filter(path => path.includes(`/${this.props.name}Examples.js`))
-      .map((path, i) => {
-        const Example = exampleContext(path).default
-        return <Example key={i} />
-      })
+      .filter(path => path.includes(`/${name}Examples.js`))
+      .map((path, i) => createElement(exampleContext(path).default, { key: i }))
 
-    const content = (
-      <Segment className='basic vertical'>
-        <h2 className='ui header'>Examples</h2>
+    return !examples.length ? null : (
+      <div>
+        <Header.H2>Examples</Header.H2>
         {examples}
-      </Segment>
-    )
-
-    return (
-      <div className='stardust-examples'>
-        {!!examples.length && content}
+        <Divider className='hidden section' />
       </div>
     )
   }

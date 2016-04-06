@@ -1,31 +1,31 @@
-import React, { Component, PropTypes } from 'react'
-import { Segment } from 'stardust'
+import React, { PropTypes } from 'react'
 
 import ComponentDescription from './ComponentDescription'
 import ComponentExamples from './ComponentExamples'
 import ComponentProps from './ComponentProps'
 import getComponentDocInfo from 'docs/app/utils/getComponentDocInfo'
 
-export default class ComponentDoc extends Component {
-  static propTypes = {
-    meta: PropTypes.object,
-  };
+const ComponentDoc = ({ _meta }) => {
+  // TODO remove util in favor of separate docgen.json in each component directory
+  // this util just parses out a single docgen file based on component path name
+  // our current docgen gulp task concats these into one, only for us to split it back out
+  const doc = getComponentDocInfo(_meta)
 
-  render() {
-    const doc = getComponentDocInfo(this.props.meta)
-
-    return (
-      <Segment id={doc.name}>
-        <ComponentDescription
-          path={doc.path}
-          name={doc.name}
-          parent={doc.parent}
-          type={doc.type}
-          description={doc.docBlock.description}
-        />
-        <ComponentProps props={doc.props} />
-        <ComponentExamples name={doc.name} />
-      </Segment>
-    )
-  }
+  return (
+    <div>
+      <ComponentDescription
+        _meta={_meta}
+        docgen={doc.docgen}
+        docPath={doc.docPath}
+      />
+      <ComponentProps props={doc.docgen.props} />
+      <ComponentExamples name={_meta.name} />
+    </div>
+  )
 }
+
+ComponentDoc.propTypes = {
+  _meta: PropTypes.object,
+}
+
+export default ComponentDoc

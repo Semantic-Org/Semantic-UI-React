@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import React, { Component, PropTypes } from 'react'
-import { Header, Segment, Table } from 'stardust'
+import { Divider, Header, Table } from 'stardust'
 
 const DOCBLOCK_DESCRIPTION_DEFAULTS = {
   children: 'Body of the component.',
@@ -62,15 +62,16 @@ export default class ComponentProps extends Component {
     })
 
     return (
-      <Segment className='basic vertical'>
-        <Header.H2 className='ui header'>Props</Header.H2>
-        <Table data={content} className='very basic'>
+      <div>
+        <Header.H2>Props</Header.H2>
+        <Table data={content} className='very basic compact'>
           <Table.Column dataKey='name' cellRenderer={this.nameRenderer} />
           <Table.Column dataKey='type' />
           <Table.Column dataKey='defaultValue' cellRenderer={this.defaultValueRenderer} />
           <Table.Column dataKey='description' />
         </Table>
-      </Segment>
+        <Divider className='hidden section' />
+      </div>
     )
   }
 }

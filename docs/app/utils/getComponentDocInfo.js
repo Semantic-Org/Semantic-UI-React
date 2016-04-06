@@ -9,14 +9,7 @@ import docgenInfo from '../docgenInfo.json'
  */
 export default (_meta) => {
   const docPath = _.find(_.keys(docgenInfo), path => path.includes(`/${_meta.name}.js`))
-  const definition = docgenInfo[docPath]
+  const docgen = docgenInfo[docPath]
 
-  return {
-    name: _meta.name,
-    path: docPath,
-    parent: _meta.parent,
-    type: _meta.type,
-    docBlock: definition.docBlock,
-    props: definition.props,
-  }
+  return { docPath, docgen }
 }
