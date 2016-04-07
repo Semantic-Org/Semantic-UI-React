@@ -7,6 +7,7 @@
 **Closed issues:**
 
 - Solidify component API for className buildup [\#208](https://github.com/TechnologyAdvice/stardust/issues/208)
+- \<Label /\> Component [\#179](https://github.com/TechnologyAdvice/stardust/issues/179)
 - \<Icon /\> Component [\#178](https://github.com/TechnologyAdvice/stardust/issues/178)
 
 **Merged pull requests:**
