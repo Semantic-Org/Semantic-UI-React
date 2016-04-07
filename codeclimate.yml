@@ -38,6 +38,6 @@ ratings:
 # exclude_paths key.
 
 exclude_paths:
-  - docs/*
+  - docs/**/*
   - node_modules/**/*
   - test/**/*
