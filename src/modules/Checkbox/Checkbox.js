@@ -45,7 +45,7 @@ export default class Checkbox extends Component {
   }
 
   componentWillUnmount() {
-    this.element.off()
+    _.invoke(this, 'element.off')
   }
 
   static _meta = {

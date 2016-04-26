@@ -6,6 +6,8 @@ import React, { createElement } from 'react'
 import META from 'src/utils/Meta'
 import * as stardust from 'stardust'
 import * as consoleUtil from 'test/utils/consoleUtil'
+import sandbox from 'test/utils/Sandbox-util'
+import * as syntheticEvent from 'test/utils/syntheticEvent'
 
 const componentCtx = require.context('../../src/', true, /(addons|collections|elements|modules|views).*\.js$/)
 
@@ -46,7 +48,7 @@ const componentInfo = componentCtx.keys().map(key => {
  * @param {Object} [requiredProps={}] Props required to render Component without errors or warnings.
  */
 export const isConformant = (Component, requiredProps = {}) => {
-  const info = componentInfo.find(i => i.constructorName === Component.prototype.constructor.name)
+  const info = _.find(componentInfo, i => i.constructorName === Component.prototype.constructor.name)
   const { _meta, constructorName, componentClassName, filenameWithoutExt, sdClass } = info
 
   const subComponentName = _meta.parent && _meta.name.replace(_meta.parent, '')
@@ -97,9 +99,9 @@ export const isConformant = (Component, requiredProps = {}) => {
   }
 
   // ----------------------------------------
-  // Handles props
+  // Props
   // ----------------------------------------
-  it('spreads props', () => {
+  it('spreads user props', () => {
     // JSX does not render custom html attributes so we prefix them with data-*.
     // https://facebook.github.io/react/docs/jsx-gotchas.html#custom-html-attributes
     const props = {
@@ -108,6 +110,67 @@ export const isConformant = (Component, requiredProps = {}) => {
 
     shallow(<Component {...requiredProps} {...props} />)
       .should.have.descendants(props)
+  })
+
+  // ----------------------------------------
+  // Events
+  // ----------------------------------------
+  it('handles events transparently', () => {
+    // Stardust events should be handled transparently, working just as they would in vanilla React.
+    // Example, both of these handler()s should be called with the same event:
+    //
+    //   <Button onClick={handler} />
+    //   <button onClick={handler} />
+    //
+    // This test catches the case where a developer forgot to call the event prop
+    // after handling it internally. It also catch cases where the synthetic event was not passed back.
+    _.each(syntheticEvent.types, ({ eventShape, listeners }) => {
+      _.each(listeners, listenerName => {
+        // onKeyDown => keyDown
+        const eventName = _.camelCase(listenerName.replace('on', ''))
+
+        // onKeyDown => handleKeyDown
+        const handlerName = _.camelCase(listenerName.replace('on', 'handle'))
+
+        const handlerSpy = sandbox.spy()
+        const props = {
+          ...requiredProps,
+          [listenerName]: handlerSpy,
+          simulateEventOnThisComponent: true,
+        }
+
+        const wrapper = shallow(<Component {...props} />)
+
+        wrapper
+          .find('[simulateEventOnThisComponent]')
+          .simulate(eventName, eventShape)
+
+        // give event listeners opportunity to cleanup
+        if (wrapper && wrapper.unmount && wrapper.instance().componentWillUnmount) {
+          wrapper.instance().componentWillUnmount()
+        }
+
+        // <Dropdown onBlur={handleBlur} />
+        //                   ^ was not called on "blur"
+        const leftPad = ' '.repeat(constructorName.length + listenerName.length + 3)
+
+        handlerSpy.called.should.equal(true,
+          `<${constructorName} ${listenerName}={${handlerName}} />\n` +
+          `${leftPad} ^ was not called on "${eventName}"\n`
+        )
+
+        // TODO: https://github.com/TechnologyAdvice/stardust/issues/218
+        // some components currently return useful data in the first position
+        // update those to return the event first, then any data, finally uncomment this test
+        //
+        // handlerSpy.calledWithMatch(eventShape).should.equal(true,
+        //   `<${constructorName} ${listenerName}={${handlerName}} />\n` +
+        //   `${leftPad} ^ was not called with an "${listenerName}" event\n` +
+        //   'It was called with args:\n' +
+        //   JSON.stringify(handlerSpy.args, null, 2)
+        // )
+      })
+    })
   })
 
   // ----------------------------------------
@@ -154,14 +217,14 @@ export const isConformant = (Component, requiredProps = {}) => {
   // ----------------------------------------
   // Handles className
   // ----------------------------------------
-  describe('className', () => {
-    it(`has some child with the "${sdClass}" class`, () => {
+  describe('className (common)', () => {
+    it(`has the Stardust className "${sdClass}"`, () => {
       render(<Component {...requiredProps} />)
         .should.have.className(sdClass)
     })
 
     if (META.isSemanticUI(Component)) {
-      it(`has the component className "${componentClassName}"`, () => {
+      it(`has the Semantic UI className "${componentClassName}"`, () => {
         render(<Component {...requiredProps} />)
           .should.have.className(componentClassName)
       })
@@ -170,7 +233,7 @@ export const isConformant = (Component, requiredProps = {}) => {
     it("applies user's className to root component", () => {
       const classes = faker.hacker.phrase()
       shallow(<Component {...requiredProps} className={classes} />)
-        .hasClass(classes)
+        .should.have.className(classes)
     })
   })
 }
@@ -182,7 +245,7 @@ export const isConformant = (Component, requiredProps = {}) => {
  */
 export const hasUIClassName = (Component, requiredProps = {}) => {
   it('has the "ui" className', () => {
-    shallow(createElement(Component, requiredProps))
+    shallow(<Component {...requiredProps} />)
       .should.have.className('ui')
   })
 }
@@ -199,6 +262,18 @@ export const hasSubComponents = (Component, subComponents) => {
     it(`has sub component ${subComponent._meta.name}`, () => {
       staticValues.should.contain(subComponent)
     })
+  })
+}
+
+/**
+ * Assert a component can be receive focus via the tab key.
+ * @param {React.Component|Function} Component The Component.
+ * @param {Object} [requiredProps={}] Props required to render the component.
+ */
+export const isTabbable = (Component, requiredProps = {}) => {
+  it('is tabbable', () => {
+    shallow(<Component {...requiredProps} />)
+      .should.have.attr('tabindex', '0')
   })
 }
 
@@ -237,7 +312,12 @@ const _noDefaultClassNameFromProp = (Component, propKey, requiredProps = {}) => 
   it('is not included in className when not defined', () => {
     const wrapper = shallow(<Component {...requiredProps} />)
     wrapper.should.not.have.className(propKey)
-    _.each(Component._meta.props[propKey], propVal => {
+
+    // not all component props define prop options in _meta.props
+    // if they do, ensure that none of the prop option values are in className
+    // SUI classes ought to be built up using a declarative component API
+    const propOptions = _.get(Component, `_meta.props[${propKey}]`)
+    _.each(propOptions, propVal => {
       wrapper.should.not.have.className(propVal)
     })
   })
@@ -277,7 +357,7 @@ const _classNamePropValueBeforePropName = (Component, propKey, requiredProps) =>
  * @param {Object} [requiredProps={}] Props required to render the component.
  */
 export const propKeyOnlyToClassName = (Component, propKey, requiredProps = {}) => {
-  describe(propKey, () => {
+  describe(`${propKey} (common)`, () => {
     _noDefaultClassNameFromProp(Component, propKey, requiredProps)
 
     it(`adds prop name to className`, () => {
@@ -303,7 +383,7 @@ export const propKeyOnlyToClassName = (Component, propKey, requiredProps = {}) =
  * @param {Object} [requiredProps={}] Props required to render the component.
  */
 export const propValueOnlyToClassName = (Component, propKey, requiredProps = {}) => {
-  describe(propKey, () => {
+  describe(`${propKey} (common)`, () => {
     _definesPropOptions(Component, propKey)
     _noDefaultClassNameFromProp(Component, propKey, requiredProps)
     _noClassNameFromBoolProps(Component, propKey, requiredProps)
@@ -332,7 +412,7 @@ export const propValueOnlyToClassName = (Component, propKey, requiredProps = {})
  * @param {Object} [requiredProps={}] Props required to render the component.
  */
 export const propKeyAndValueToClassName = (Component, propKey, requiredProps = {}) => {
-  describe(propKey, () => {
+  describe(`${propKey} (common)`, () => {
     _definesPropOptions(Component, propKey)
     _noDefaultClassNameFromProp(Component, propKey)
     _noClassNameFromBoolProps(Component, propKey, requiredProps)
@@ -347,7 +427,7 @@ export const propKeyAndValueToClassName = (Component, propKey, requiredProps = {
  * @param {Object} [requiredProps={}] Props required to render the component.
  */
 export const propKeyOrValueToClassName = (Component, propKey, requiredProps = {}) => {
-  describe(propKey, () => {
+  describe(`${propKey} (common)`, () => {
     _definesPropOptions(Component, propKey)
     _noDefaultClassNameFromProp(Component, propKey, requiredProps)
     _classNamePropValueBeforePropName(Component, propKey, requiredProps)

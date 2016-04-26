@@ -25,6 +25,8 @@ const pluginPropTypes = {
 export default class Progress extends Component {
   static propTypes = {
     ...pluginPropTypes,
+    onChange: PropTypes.func,
+    onError: PropTypes.func,
     children: PropTypes.node,
     className: PropTypes.string,
     /**
@@ -75,7 +77,13 @@ export default class Progress extends Component {
     )
 
     return (
-      <div {...getComponentProps(this.props, pluginPropTypes)} className={classes} ref='element'>
+      <div
+        {...getComponentProps(this.props, pluginPropTypes)}
+        className={classes}
+        ref='element'
+        onChange={this.props.onChange}
+        onError={this.props.onError}
+      >
         <div className='bar'>
           {this.props.showProgress && <div className='progress' />}
         </div>

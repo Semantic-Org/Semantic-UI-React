@@ -4,7 +4,7 @@ import META from '../../utils/Meta'
 
 const MenuItem = ({ __onClick, active, children, className, label, name, onClick, ...rest }) => {
   const handleClick = (e) => {
-    __onClick(name)
+    if (__onClick) __onClick(name)
     if (onClick) onClick(name)
   }
 
