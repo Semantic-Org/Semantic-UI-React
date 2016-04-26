@@ -12,6 +12,7 @@
 
 **Merged pull requests:**
 
+- Update testing rig [\#219](https://github.com/TechnologyAdvice/stardust/pull/219) ([levithomason](https://github.com/levithomason))
 - Create common tests [\#217](https://github.com/TechnologyAdvice/stardust/pull/217) ([levithomason](https://github.com/levithomason))
 - Build system fixes [\#216](https://github.com/TechnologyAdvice/stardust/pull/216) ([levithomason](https://github.com/levithomason))
 - Label component [\#215](https://github.com/TechnologyAdvice/stardust/pull/215) ([levithomason](https://github.com/levithomason))
