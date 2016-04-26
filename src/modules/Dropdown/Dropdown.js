@@ -108,13 +108,13 @@ export default class Dropdown extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    this.element.dropdown('refresh')
+    _.invoke(this, 'element.dropdown', 'refresh')
     const isDOMInSync = _.isEqual(this.props.value, this.getValue())
     if (!isDOMInSync && this.isSelection()) this._syncFromProps()
   }
 
   componentWillUnmount() {
-    this.element.off()
+    _.invoke(this, 'element.off')
   }
 
   handleAdd = (value) => {
@@ -137,7 +137,7 @@ export default class Dropdown extends Component {
   // multiselect dropdown values should be arrays since they accept array values
   // empty values should not be empty strings ""
   getValue = () => {
-    const value = this.element.dropdown('get value')
+    const value = _.invoke(this, 'element.dropdown', 'get value')
     if (value) {
       // multiselect dropdown values are delimited strings
       return this.isMultiple() ? value.split(Dropdown._DELIMITER) : value
@@ -168,7 +168,7 @@ export default class Dropdown extends Component {
 
   isMultiple = () => _.includes(this.props.className, 'multiple')
   isSelection = () => _.includes(this.props.className, 'selection')
-  setValue = (value) => this.element.dropdown('set exactly', value)
+  setValue = (value) => _.invoke(this, 'element.dropdown', 'set exactly', value)
 
   render() {
     const { children, className, defaultText, defaultValue, icon, options, text } = this.props
@@ -190,7 +190,7 @@ export default class Dropdown extends Component {
     ))
     const componentProps = getComponentProps(this.props, pluginPropTypes)
     return (
-      <div {...componentProps} className={classes} ref='element'>
+      <div {...componentProps} className={classes} ref='element' onChange={this.handleChange}>
         {this.isSelection() && <input type='hidden' defaultValue={defaultValue} />}
         {text && <div className='text'>{text}</div>}
         {icon && <Icon className={iconClasses} />}
