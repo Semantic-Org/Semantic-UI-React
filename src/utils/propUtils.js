@@ -1,3 +1,4 @@
+/* eslint-disable react/no-multi-comp */
 import _ from 'lodash'
 import React, { Children } from 'react'
 
