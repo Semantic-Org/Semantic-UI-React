@@ -34,12 +34,15 @@ const webpackHotMiddlewareEntry = 'webpack-hot-middleware/client?' + _.map({
   quiet: false,           // Set to true to disable all console logging.
 }, (val, key) => `&${key}=${val}`).join('')
 
-const APP_ENTRY = paths.docsSrc('DocsApp.js')
+const APP_ENTRY = [
+  require.resolve('babel-polyfill'),
+  paths.docsSrc('DocsApp.js'),
+]
 
 webpackConfig.entry = {
   app: __DEV__
-    ? [webpackHotMiddlewareEntry, APP_ENTRY]
-    : [APP_ENTRY],
+    ? [webpackHotMiddlewareEntry, ...APP_ENTRY]
+    : [...APP_ENTRY],
   vendor: [
     webpackHotMiddlewareEntry,
     'babel-polyfill',

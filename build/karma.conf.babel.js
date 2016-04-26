@@ -10,13 +10,12 @@ module.exports = (karmaConfig) => {
     singleRun: !argv.watch,
     reporters: ['mocha'],
     files: [
-      './node_modules/babel-polyfill/dist/polyfill.js',
-      './node_modules/phantomjs-polyfill/bind-polyfill.js',
+      require.resolve('babel-polyfill/browser'),
       './test/tests.bundle.js',
     ],
     frameworks: ['mocha'],
     preprocessors: {
-      '**/*.bundle.js': ['webpack', 'sourcemap'],
+      '**/*.bundle.js': ['webpack'],
     },
     client: {
       mocha: {
@@ -25,7 +24,7 @@ module.exports = (karmaConfig) => {
       },
     },
     webpack: {
-      devtool: 'inline-source-map',
+      devtool: 'cheap-module-source-map',
       module: {
         ...webpackConfig.module,
         loaders: [
