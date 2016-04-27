@@ -1,9 +1,15 @@
 import React, { Component, PropTypes } from 'react'
+import cx from 'classnames'
+
 import META from '../../utils/Meta'
 
 class DropdownMenu extends Component {
   static propTypes = {
+    /** Should be <Dropdown.Item /> components. */
     children: PropTypes.node,
+
+    /** Classes to add to the className. */
+    className: PropTypes.string,
   }
 
   static _meta = {
@@ -14,7 +20,9 @@ class DropdownMenu extends Component {
   }
 
   render() {
-    return <div className='sd-dropdown-menu menu' {...this.props} />
+    const { className, ...rest } = this.props
+    const classes = cx('sd-dropdown-menu menu transition', className)
+    return <div {...rest} className={classes} />
   }
 }
 
