@@ -12,6 +12,7 @@
 
 **Merged pull requests:**
 
+- Common test for events [\#223](https://github.com/TechnologyAdvice/stardust/pull/223) ([levithomason](https://github.com/levithomason))
 - Component utils [\#222](https://github.com/TechnologyAdvice/stardust/pull/222) ([levithomason](https://github.com/levithomason))
 - List item prop renderers [\#221](https://github.com/TechnologyAdvice/stardust/pull/221) ([levithomason](https://github.com/levithomason))
 - Update docs [\#220](https://github.com/TechnologyAdvice/stardust/pull/220) ([levithomason](https://github.com/levithomason))
