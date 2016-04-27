@@ -1,68 +1,104 @@
 import _ from 'lodash'
 import React, { Component, PropTypes } from 'react'
-import SEMANTIC_TYPES from 'docs/app/utils/SemanticTypes'
-import STARDUST_TYPES from 'docs/app/utils/StardustTypes'
-import { Icon, Segment } from 'stardust'
+import { Divider, Grid, Header, List } from 'stardust'
+import META from 'src/utils/Meta'
+
+const headerStyle = {
+  fontSize: '2.2em',
+}
+
+const descriptionStyle = {
+  fontSize: '1.2em',
+}
 
 export default class ComponentDescription extends Component {
   static propTypes = {
-    /**
-     * String describing the Stardust component.
-     */
-    description: PropTypes.string.isRequired,
+    /** Stardust component _meta object. */
+    _meta: PropTypes.object.isRequired,
 
-    /**
-     * Name of the Stardust component
-     */
-    name: PropTypes.string.isRequired,
+    /** Relative path to the component in the Stardust repo ('src/foo/bar/baz.js'). */
+    docPath: PropTypes.string.isRequired,
 
-    /**
-     * Name of the Stardust parent component (i.e. 'Grid' for Column).
-     */
-    parent: PropTypes.string.isRequired,
-
-    /**
-     * Relative path to the component in the Stardust repo ('src/foo/bar/baz.js').
-     */
-    path: PropTypes.string.isRequired,
-
-    /**
-     * Semantic UI category for this component.
-     */
-    type: PropTypes.oneOf(_.union(
-      _.keys(SEMANTIC_TYPES),
-      _.keys(STARDUST_TYPES)
-    )).isRequired,
+    /** The gulp-docgen object for this component. */
+    docgen: PropTypes.object.isRequired,
   };
 
-  componentWillMount() {
-    this.isSemanticComponent = this.props.type in SEMANTIC_TYPES
-    if (this.isSemanticComponent) {
-      this.semanticDocUrl = `http://semantic-ui.com/${this.props.type}s/${this.props.parent}.html`.toLowerCase()
+  renderSemanticDocsLink = () => {
+    const { _meta } = this.props
+    if (!META.isSemanticUI(_meta) || !META.isParent(_meta)) {
+      return null
     }
+    const url = `http://semantic-ui.com/${_meta.type}s/${_meta.name}.html`.toLowerCase()
+    return (
+      <List.Item icon='book'>
+        <a href={url} target='_blank'>
+          Semantic UI Docs
+        </a>
+      </List.Item>
+    )
+  }
+
+  renderSourceLink() {
+    const { docPath } = this.props
+    return (
+      <List.Item icon='github'>
+        <code>
+          <a href={`https://github.com/TechnologyAdvice/stardust/blob/master/${docPath}`} target='_blank'>
+            {docPath}
+          </a>
+        </code>
+      </List.Item>
+    )
+  }
+
+  renderRelated() {
+    const { docgen: { docBlock: { tags } } } = this.props
+    const seeTags = _.filter(tags, ['title', 'see'])
+    if (_.isEmpty(seeTags)) return null
+
+    const relatedLinks = _.map(seeTags, ({ title, description }) => {
+      return (
+        <a key={description} href={`#${description}`} className='item' style={{ display: 'inline-block' }}>
+          {`<${description} />`}
+        </a>
+      )
+    })
+
+    return (
+      <Grid.Row className='one column'>
+        <Grid.Column>
+          <Header.H3 className='grey'>Related</Header.H3>
+          <List className='large bulleted'>
+            {relatedLinks}
+          </List>
+        </Grid.Column>
+      </Grid.Row>
+    )
   }
 
   render() {
-    const semanticDocsLink = (
-      <a href={this.semanticDocUrl} target='_blank'>
-        <Icon className='book' />
-        Semantic UI Docs
-      </a>
-    )
+    const { _meta, docgen } = this.props
     return (
-      <Segment className='basic vertical'>
-        <h1 className='ui header'>
-          {_.capitalize(this.props.name)}
-          <code className='sub header' style={{ float: 'right' }}>
-            <a href={`https://github.com/TechnologyAdvice/stardust/blob/master/${this.props.path}`} target='_blank'>
-              <Icon className='github' />
-              {this.props.path}
-            </a>
-          </code>
-        </h1>
-        <p>{this.props.description}</p>
-        <p>{this.isSemanticComponent && semanticDocsLink}</p>
-      </Segment>
+      <Grid>
+        <Grid.Row className='two column'>
+          <Grid.Column>
+            <Header.H1 style={headerStyle}>{_.capitalize(_meta.name)}</Header.H1>
+          </Grid.Column>
+          <Grid.Column className='right aligned'>
+            <List className='link' style={{ float: 'right' }}>
+              {this.renderSourceLink()}
+              {this.renderSemanticDocsLink()}
+            </List>
+          </Grid.Column>
+        </Grid.Row>
+        <Grid.Row className='one column'>
+          <Grid.Column>
+            <p style={descriptionStyle}>{docgen.docBlock.description}</p>
+          </Grid.Column>
+        </Grid.Row>
+        {this.renderRelated()}
+        <Divider className='hidden section' />
+      </Grid>
     )
   }
 }
