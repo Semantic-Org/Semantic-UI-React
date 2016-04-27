@@ -1,6 +1,9 @@
 import { argv } from 'yargs'
+import webpack from 'webpack'
+
 import config from '../config'
 import webpackConfig from './webpack.config'
+
 const { paths } = config
 
 module.exports = (karmaConfig) => {
@@ -35,6 +38,9 @@ module.exports = (karmaConfig) => {
           ...webpackConfig.module.loaders,
         ],
       },
+      plugins: [
+        new webpack.DefinePlugin(config.compiler_globals),
+      ],
       resolve: {
         ...webpackConfig.resolve,
         alias: {
