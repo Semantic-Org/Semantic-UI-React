@@ -1,4 +1,4 @@
-import _ from 'lodash'
+import _ from 'lodash/fp'
 import React, { Component } from 'react'
 import * as stardust from 'stardust'
 import META from 'src/utils/Meta'
@@ -11,23 +11,23 @@ export default class Sidebar extends Component {
   handleSearchChange = e => this.setState({ query: e.target.value })
 
   getComponentsByQuery() {
-    return _.filter(stardust, component => {
+    return _.filter(component => {
       const name = component._meta.name
       const isParent = META.isParent(component)
       const isQueryMatch = new RegExp(this.state.query, 'i').test(name)
       return isParent && isQueryMatch
-    })
+    }, stardust)
   }
 
   getComponentsByType = type => {
-    const items = _(this.getComponentsByQuery())
-      .filter(component => META.isType(component, type))
-      .sortBy((component, name) => name)
-      .map(component => {
+    const items = _.flow(
+      _.filter(component => META.isType(component, type)),
+      _.sortBy((component, name) => name),
+      _.map(component => {
         const name = component._meta.name
         return <Menu.Item key={name} name={name} href={`#${name}`} />
       })
-      .value()
+    )(this.getComponentsByQuery())
 
     return _.isEmpty(items) ? [] : (
       <div className='item'>
