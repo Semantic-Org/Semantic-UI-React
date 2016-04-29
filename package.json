@@ -65,7 +65,6 @@
     "enzyme": "^2.2.0",
     "eslint": "^1.5.1",
     "eslint-config-ta": "^4.1.0",
-    "eslint-loader": "^1.0.0",
     "eslint-plugin-mocha": "^1.0.0",
     "eslint-plugin-react": "^4.2.3",
     "express": "^4.13.4",

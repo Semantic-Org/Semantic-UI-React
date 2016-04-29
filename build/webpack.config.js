@@ -117,16 +117,7 @@ webpackConfig.module.noParse = [
 // ------------------------------------
 // Pre-Loaders
 // ------------------------------------
-webpackConfig.module.preLoaders = [{
-  test: /\.js$/,
-  loader: 'eslint',
-  exclude: /node_modules/,
-}]
-
-webpackConfig.eslint = {
-  configFile: paths.base('.eslintrc'),
-  emitWarning: __DEV__,
-}
+webpackConfig.module.preLoaders = []
 
 // ------------------------------------
 // Loaders
