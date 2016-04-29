@@ -12,6 +12,7 @@
 
 **Merged pull requests:**
 
+- Remove eslint-loader, for performance [\#227](https://github.com/TechnologyAdvice/stardust/pull/227) ([levithomason](https://github.com/levithomason))
 - Common test for events [\#223](https://github.com/TechnologyAdvice/stardust/pull/223) ([levithomason](https://github.com/levithomason))
 - Component utils [\#222](https://github.com/TechnologyAdvice/stardust/pull/222) ([levithomason](https://github.com/levithomason))
 - List item prop renderers [\#221](https://github.com/TechnologyAdvice/stardust/pull/221) ([levithomason](https://github.com/levithomason))
