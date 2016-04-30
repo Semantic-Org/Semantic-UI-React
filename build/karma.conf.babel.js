@@ -13,10 +13,16 @@ module.exports = (karmaConfig) => {
     singleRun: !argv.watch,
     reporters: ['mocha'],
     files: [
-      require.resolve('babel-polyfill/browser'),
       './test/tests.bundle.js',
     ],
-    frameworks: ['mocha'],
+    frameworks: [
+      'phantomjs-shim',
+      'mocha',
+    ],
+    phantomjsLauncher: {
+      // exit on ResourceError, useful if karma exits without killing phantom
+      exitOnResourceError: true,
+    },
     preprocessors: {
       '**/*.bundle.js': ['webpack'],
     },

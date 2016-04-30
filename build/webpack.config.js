@@ -35,7 +35,6 @@ const webpackHotMiddlewareEntry = 'webpack-hot-middleware/client?' + _.map({
 }, (val, key) => `&${key}=${val}`).join('')
 
 const APP_ENTRY = [
-  require.resolve('babel-polyfill'),
   paths.docsSrc('DocsApp.js'),
 ]
 
@@ -45,7 +44,6 @@ webpackConfig.entry = {
     : [...APP_ENTRY],
   vendor: [
     webpackHotMiddlewareEntry,
-    'babel-polyfill',
     ...config.compiler_vendor,
   ],
 }
