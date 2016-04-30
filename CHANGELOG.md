@@ -12,7 +12,10 @@
 
 **Merged pull requests:**
 
+- Add babel-plugin-lodash for smaller bundles [\#228](https://github.com/TechnologyAdvice/stardust/pull/228) ([levithomason](https://github.com/levithomason))
 - Remove eslint-loader, for performance [\#227](https://github.com/TechnologyAdvice/stardust/pull/227) ([levithomason](https://github.com/levithomason))
+- Dropdown without jQuery [\#226](https://github.com/TechnologyAdvice/stardust/pull/226) ([levithomason](https://github.com/levithomason))
+- Add Select component [\#225](https://github.com/TechnologyAdvice/stardust/pull/225) ([levithomason](https://github.com/levithomason))
 - AutoControlledComponent [\#224](https://github.com/TechnologyAdvice/stardust/pull/224) ([levithomason](https://github.com/levithomason))
 - Common test for events [\#223](https://github.com/TechnologyAdvice/stardust/pull/223) ([levithomason](https://github.com/levithomason))
 - Component utils [\#222](https://github.com/TechnologyAdvice/stardust/pull/222) ([levithomason](https://github.com/levithomason))
