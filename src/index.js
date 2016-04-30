@@ -1,4 +1,7 @@
+import keyboardeventKeyPolyfill from 'keyboardevent-key-polyfill'
 import { deprecateComponent } from './utils/deprecate'
+
+keyboardeventKeyPolyfill.polyfill()
 
 // ----------------------------------------
 // Addons

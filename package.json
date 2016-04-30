@@ -43,6 +43,7 @@
   "dependencies": {
     "bluebird": "^3.3.4",
     "classnames": "^2.1.5",
+    "keyboardevent-key-polyfill": "github:technologyadvice/keyboardevent-key-polyfill#0eb142e8d6845a90f23d21b468a3c8c8162b5a25",
     "lodash": "^4.6.1"
   },
   "devDependencies": {

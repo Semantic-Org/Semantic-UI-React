@@ -1,16 +1,19 @@
 import _ from 'lodash'
-import cx from 'classnames'
 import faker from 'faker'
 import React, { Component } from 'react'
 import { Button, Dropdown } from 'stardust'
 
-const getOptions = () => _.times(3, () => {
+const getOptions = () => _.times(5, () => {
   const name = faker.name.findName()
   return { text: name, value: _.snakeCase(name) }
 })
 
 export default class DropdownAsyncOptions extends Component {
-  state = { isFetching: false, value: [], options: [] }
+  componentWillMount() {
+    const options = getOptions()
+    const value = _.sample(options).value
+    this.setState({ isFetching: false, search: true, value, options })
+  }
 
   handleChange = value => this.setState({ value })
 
@@ -25,22 +28,31 @@ export default class DropdownAsyncOptions extends Component {
   }
 
   selectRandom = () => this.setState({ value: _.sample(this.state.options).value })
+  toggleSearch = (e) => this.setState({ search: e.target.checked })
 
   render() {
-    const { options, isFetching, value } = this.state
-    const classes = cx('search selection multiple', { 'disabled loading': isFetching })
+    const { options, isFetching, search, value } = this.state
 
     return (
       <div>
         <Button onClick={this.fetchOptions}>Fetch</Button>
         <Button onClick={this.selectRandom} disabled={_.isEmpty(options)}>Random</Button>
         <Dropdown
-          defaultText='Add Users'
-          className={classes}
           options={options}
           value={value}
+          placeholder='Add Users'
+          search={search}
+          selection
           onChange={this.handleChange}
+          disabled={isFetching}
+          loading={isFetching}
         />
+        <p>
+          <label>
+            <input type='checkbox' value={search} onChange={this.toggleSearch} />
+            {' '}Search
+          </label>
+        </p>
         <pre>{JSON.stringify(this.state, null, 2)}</pre>
       </div>
     )

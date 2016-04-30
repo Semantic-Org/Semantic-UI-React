@@ -1,57 +1,93 @@
-import React, { Children, Component, PropTypes } from 'react'
+import React, { PropTypes } from 'react'
 import cx from 'classnames'
-import META from '../../utils/Meta'
+
 import Icon from '../../elements/Icon/Icon'
+import { someChildType } from '../../utils/childrenUtils'
+import { useKeyOnly } from '../../utils/propUtils'
+import META from '../../utils/Meta'
 
-export default class DropdownItem extends Component {
-  static propTypes = {
-    children: PropTypes.node,
-    className: PropTypes.string,
-    description: PropTypes.string,
-    icon: PropTypes.string,
-    text: PropTypes.string,
-    value: PropTypes.oneOfType([
-      PropTypes.number,
-      PropTypes.string,
-    ]),
+const DropdownItem = (props) => {
+  const {
+    active,
+    children,
+    className,
+    description,
+    icon,
+    onClick,
+    selected,
+    text,
+    value,
+    ...rest,
+  } = props
+
+  const handleClick = (e) => {
+    onClick(e, value)
   }
 
-  static _meta = {
-    library: META.library.semanticUI,
-    name: 'DropdownItem',
-    parent: 'Dropdown',
-    type: META.type.module,
-  }
+  const classes = cx(
+    'sd-dropdown-item',
+    useKeyOnly(active, 'active'),
+    useKeyOnly(selected, 'selected'),
+    'item',
+    className,
+  )
+  // add default dropdown icon if item contains another menu
+  const iconName = icon || someChildType(children, 'DropdownMenu') && 'dropdown'
+  const iconClasses = cx('sd-dropdown-item-icon', iconName, 'icon')
 
-  render() {
-    const { children, className, description, icon, text, value, ...rest } = this.props
-    const classes = cx(
-      'sd-dropdown-item',
-      'item',
-      className
-    )
-
-    // add default dropdown icon if item contains another menu
-    let iconName = icon
-    if (!icon) {
-      Children.map(children, (child) => {
-        iconName = child.type && child.type.name === 'DropdownMenu' && 'dropdown'
-      })
-    }
-
-    const iconClasses = cx(
-      'sd-dropdown-item-icon',
-      iconName,
-      'icon'
-    )
-
-    return (
-      <div className={classes} data-value={value} data-text={text} {...rest}>
-        {description && <span className='description'>{description}</span>}
-        {iconName && <Icon className={iconClasses} />}
-        {text}
-        {children}
-      </div>
-    )
-  }
+  return (
+    <div {...rest} className={classes} onClick={handleClick}>
+      {description && <span className='description'>{description}</span>}
+      {iconName && <Icon className={iconClasses} />}
+      {text}
+      {children}
+    </div>
+  )
 }
+
+DropdownItem._meta = {
+  library: META.library.semanticUI,
+  name: 'DropdownItem',
+  parent: 'Dropdown',
+  type: META.type.module,
+}
+
+DropdownItem.propTypes = {
+  // TODO: filter private methods out of docs or support @private tags
+  __onClick: PropTypes.func,
+
+  /** Style as the currently chosen item. */
+  active: PropTypes.bool,
+
+  /** Additional className. */
+  children: PropTypes.node,
+
+  /** Additional className. */
+  className: PropTypes.string,
+
+  /** Additional text with less emphasis. */
+  description: PropTypes.string,
+
+  /** Add an icon to the item. */
+  icon: PropTypes.string,
+
+  /**
+   * The item currently selected by keyboard shortcut.
+   * This is not the active item.
+   */
+  selected: PropTypes.bool,
+
+  /** Display text. */
+  text: PropTypes.string,
+
+  /** Stored value */
+  value: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string,
+  ]),
+
+  /** Called on click with (event, value, text). */
+  onClick: PropTypes.func,
+}
+
+export default DropdownItem
