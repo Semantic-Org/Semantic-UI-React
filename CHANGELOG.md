@@ -12,6 +12,7 @@
 
 **Merged pull requests:**
 
+- Remove babel-polyfill [\#229](https://github.com/TechnologyAdvice/stardust/pull/229) ([levithomason](https://github.com/levithomason))
 - Add babel-plugin-lodash for smaller bundles [\#228](https://github.com/TechnologyAdvice/stardust/pull/228) ([levithomason](https://github.com/levithomason))
 - Remove eslint-loader, for performance [\#227](https://github.com/TechnologyAdvice/stardust/pull/227) ([levithomason](https://github.com/levithomason))
 - Dropdown without jQuery [\#226](https://github.com/TechnologyAdvice/stardust/pull/226) ([levithomason](https://github.com/levithomason))
