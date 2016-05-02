@@ -10,7 +10,7 @@
   "scripts": {
     "docs": "gulp",
     "build": "npm run build:dist && npm run build:docs",
-    "build:dist": "rimraf dist && babel src -d dist",
+    "build:dist": "rm -rf dist && babel src -d dist",
     "build:docs": "gulp docs",
     "clean": "while read line; do rm -rf $line; done < .gitignore",
     "predeploy:docs": "npm run build:docs",
@@ -105,7 +105,6 @@
     "react-transform-hmr": "^1.0.4",
     "redbox-react": "^1.2.2",
     "require-dir": "^0.3.0",
-    "rimraf": "^2.5.2",
     "sass-loader": "^3.2.0",
     "semantic-ui-css": "^2.1.8",
     "simulant": "^0.2.1",
