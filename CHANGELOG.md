@@ -12,6 +12,7 @@
 
 **Merged pull requests:**
 
+- Use main fork of karma phantomjs shim [\#230](https://github.com/TechnologyAdvice/stardust/pull/230) ([levithomason](https://github.com/levithomason))
 - Remove babel-polyfill [\#229](https://github.com/TechnologyAdvice/stardust/pull/229) ([levithomason](https://github.com/levithomason))
 - Add babel-plugin-lodash for smaller bundles [\#228](https://github.com/TechnologyAdvice/stardust/pull/228) ([levithomason](https://github.com/levithomason))
 - Remove eslint-loader, for performance [\#227](https://github.com/TechnologyAdvice/stardust/pull/227) ([levithomason](https://github.com/levithomason))
