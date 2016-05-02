@@ -10,7 +10,8 @@
   "scripts": {
     "docs": "gulp",
     "build": "npm run build:dist && npm run build:docs",
-    "build:dist": "rimraf dist && babel src -d dist",
+    "prebuild:dist": "rimraf dist",
+    "build:dist": "babel src -d dist",
     "build:docs": "gulp docs",
     "clean": "while read line; do rm -rf $line; done < .gitignore",
     "predeploy:docs": "npm run build:docs",
@@ -87,6 +88,7 @@
     "karma-mocha": "^0.2.2",
     "karma-mocha-reporter": "^2.0.0",
     "karma-phantomjs-launcher": "^1.0.0",
+    "karma-phantomjs-shim": "github:technologyadvice/karma-phantomjs-shim",
     "karma-webpack-with-fast-source-maps": "^1.9.2",
     "mocha": "^2.3.3",
     "mocha-loader": "^0.7.1",
