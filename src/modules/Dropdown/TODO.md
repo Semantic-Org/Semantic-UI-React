@@ -3,7 +3,7 @@ Animations are not yet supported
 
 Ideally we'd reuse CSS animations baked into Semantic UI.
 This requires dynamic classNames on the dropdown and the menu as well as a dynamic style for the menu transition duration.
-This state based implementation should be generalized using ReactTransitionGroup hooks and used for all components.
+This state based implementation should be generalized using ReactTransitionGroup hooks (or similar) and used for all components.
 
 ```jsx
 state = {
