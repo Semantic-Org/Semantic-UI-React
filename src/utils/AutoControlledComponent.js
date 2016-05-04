@@ -7,6 +7,7 @@
  * 1. Single Renders
  *    Calling trySetState() in constructor(), componentWillMount(), or componentWillReceiveProps()
  *    does not cause two renders. Consumers and tests do not have to wait two renders to get state.
+ *    See www.react.run/4kJFdKoxb/27 for an example of this issue.
  *
  * 2. Simple Testing
  *    Using a HOC means you must either test the undecorated component or test through the decorator.
