@@ -7,6 +7,7 @@ import React, { PropTypes } from 'react'
 import META from '../../utils/Meta'
 import { useKeyOnly, useKeyOrValueAndKey } from '../../utils/propUtils'
 import { iconPropRenderer } from '../../utils/propUtils'
+import keyboardKey from '../../utils/keyboardKey'
 
 // import as Component so eslint react/prop-types recognizes Dropdown
 import { default as Component } from '../../utils/AutoControlledComponent'
@@ -255,20 +256,20 @@ export default class Dropdown extends Component {
   }
 
   closeOnEscape = (e) => {
-    if (e.key !== 'Escape') return
+    if (keyboardKey.getCode(e) !== keyboardKey.Escape) return
     e.preventDefault()
     this.close()
   }
 
   moveSelectionOnKeyDown = (e) => {
     // console.debug('Dropdown.moveSelectionOnKeyDown()')
-    // console.log(`key: ${e.key}`)
-    switch (e.key) {
-      case 'ArrowDown':
+    // console.log(`key: ${keyboardKey.getCode(e)}`)
+    switch (keyboardKey.getCode(e)) {
+      case keyboardKey.ArrowDown:
         e.preventDefault()
         this.moveSelectionBy(1)
         break
-      case 'ArrowUp':
+      case keyboardKey.ArrowUp:
         e.preventDefault()
         this.moveSelectionBy(-1)
         break
@@ -278,20 +279,21 @@ export default class Dropdown extends Component {
   }
 
   openOnSpace = (e) => {
-    if (e.key !== ' ') return
+    if (keyboardKey.getCode(e) !== keyboardKey.Spacebar) return
     e.preventDefault()
     this.open()
   }
 
   openOnArrow = (e) => {
-    if (e.key !== 'ArrowDown' && e.key !== 'ArrowUp') return
+    const code = keyboardKey.getCode(e)
+    if (!_.includes([keyboardKey.ArrowDown, keyboardKey.ArrowUp], code)) return
     e.preventDefault()
     this.open()
   }
 
   selectItemOnEnter = (e) => {
     // console.debug('Dropdown.selectItemOnEnter()')
-    if (e.key !== 'Enter') return
+    if (keyboardKey.getCode(e) !== keyboardKey.Enter) return
     e.preventDefault()
     const value = this.getSelectedValue()
     if (!value) return
@@ -350,18 +352,6 @@ export default class Dropdown extends Component {
     // item clicks are circumvented by calling close() here
     // this.close()
     this.setState({ focus: false })
-  }
-
-  handleSearchKeyDown = (e) => {
-    // console.debug('Dropdown.handleSearchKeyDown()')
-    // console.log(e.key)
-    switch (e.key) {
-      case 'ArrowDown':
-        this.open()
-        break
-      default:
-        break
-    }
   }
 
   handleSearchChange = (e) => {
@@ -545,7 +535,6 @@ export default class Dropdown extends Component {
         onBlur={this.handleBlur}
         onChange={this.handleSearchChange}
         onFocus={this.handleFocus}
-        onKeyDown={this.handleSearchKeyDown}
         className='search'
         autoComplete='off'
         tabIndex='0'
