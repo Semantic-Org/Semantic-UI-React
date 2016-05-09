@@ -7,6 +7,7 @@
 **Merged pull requests:**
 
 - Use process.env instead of globals [\#232](https://github.com/TechnologyAdvice/stardust/pull/232) ([levithomason](https://github.com/levithomason))
+- Remove keyboard event polyfill [\#231](https://github.com/TechnologyAdvice/stardust/pull/231) ([levithomason](https://github.com/levithomason))
 
 ## [v0.12.4](https://github.com/TechnologyAdvice/stardust/tree/v0.12.4) (2016-05-06)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.13.3...v0.12.4)
