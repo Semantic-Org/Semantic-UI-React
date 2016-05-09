@@ -43,7 +43,7 @@ export default class AutoControlledComponent extends Component {
       // apply default props if they exist
       res[prop] = this.props[defaultPropName in this.props ? defaultPropName : prop]
 
-      if (!__PROD__) {
+      if (process.env.NODE_ENV !== 'production') {
         const { name } = this.constructor
         // prevent defaultFoo={} along side foo={}
         if (defaultPropName in this.props && prop in this.props) {
@@ -54,7 +54,7 @@ export default class AutoControlledComponent extends Component {
       }
     }, {})
 
-    if (!__PROD__) {
+    if (process.env.NODE_ENV !== 'production') {
       const { defaultProps, name, propTypes } = this.constructor
       // require static autoControlledProps
       if (!autoControlledProps) {
@@ -122,7 +122,7 @@ export default class AutoControlledComponent extends Component {
     // console.debug('trySetState')
     // console.log('maybe:', maybeState, 'state:', state)
     const { autoControlledProps } = this.constructor
-    if (!__PROD__) {
+    if (process.env.NODE_ENV !== 'production') {
       const { name } = this.constructor
       // warn about failed attempts to setState for keys not listed in autoControlledProps
       const illegalKeys = _.difference(_.keys(maybeState), autoControlledProps)
