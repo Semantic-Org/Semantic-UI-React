@@ -21,7 +21,7 @@ export default class FormField extends Component {
   render() {
     const classes = classNames(
       'sd-form-field',
-      this.props.width && numberToWord(this.props.width) + ' wide',
+      this.props.width && `${numberToWord(this.props.width)} wide`,
       this.props.className,
       'field'
     )

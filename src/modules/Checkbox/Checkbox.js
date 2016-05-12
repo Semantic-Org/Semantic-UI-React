@@ -54,8 +54,8 @@ export default class Checkbox extends Component {
     type: META.type.module,
   }
 
-  plugin() {
-    return this.element.checkbox(...arguments)
+  plugin(...args) {
+    return this.element.checkbox(...args)
   }
 
   render() {

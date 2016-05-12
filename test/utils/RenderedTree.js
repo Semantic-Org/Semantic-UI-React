@@ -63,7 +63,7 @@ export default class RenderedTree {
    * @returns {ReactComponent} first React component in rendered tree.
    */
   first() {
-    return _.first(this.all)
+    return _.head(this.all)
   }
 
   /**
@@ -71,7 +71,7 @@ export default class RenderedTree {
    * @returns {ReactComponent} last React component in rendered tree.
    */
   last() {
-    return _.last(this.all)
+    return _.tail(this.all)
   }
 
   /**

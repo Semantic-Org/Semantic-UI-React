@@ -172,11 +172,10 @@ describe('Label Component', () => {
       shallow(<Label onClick={() => {}} />)
         .should.have.tagName('a')
     })
-    it('is called with (event, props) when label is clicked', () => {
+    it('is called when label is clicked', () => {
       const props = {
         onClick: sandbox.spy(),
       }
-      const eventMatcher = { target: null }
 
       // mount to get click event to propagate on click
       mount(<Label {...props} />)
@@ -184,7 +183,6 @@ describe('Label Component', () => {
         .simulate('click')
 
       props.onClick.should.have.been.calledOnce()
-      props.onClick.should.have.been.calledWithMatch(eventMatcher, props)
     })
   })
 
@@ -201,11 +199,10 @@ describe('Label Component', () => {
         .should.match('.delete')
     })
 
-    it('is called with (event, props) when delete icon is clicked', () => {
+    it('is called when delete icon is clicked', () => {
       const props = {
         onClickRemove: sandbox.spy(),
       }
-      const eventMatcher = { target: null }
 
       // mount to get click event to propagate on click
       mount(<Label {...props} />)
@@ -213,7 +210,6 @@ describe('Label Component', () => {
         .simulate('click')
 
       props.onClickRemove.should.have.been.calledOnce()
-      props.onClickRemove.should.have.been.calledWithMatch(eventMatcher, props)
     })
   })
 
@@ -224,12 +220,11 @@ describe('Label Component', () => {
         .should.have.tagName('a')
     })
 
-    it('is called with (event, props) when detail is clicked', () => {
+    it('is called when detail is clicked', () => {
       const props = {
         detail: faker.hacker.noun(),
         onClickDetail: sandbox.spy(),
       }
-      const eventMatcher = { target: null }
 
       // mount to get click event to propagate on click
       mount(<Label {...props} />)
@@ -237,7 +232,6 @@ describe('Label Component', () => {
         .simulate('click')
 
       props.onClickDetail.should.have.been.calledOnce()
-      props.onClickDetail.should.have.been.calledWithMatch(eventMatcher, props)
     })
   })
 

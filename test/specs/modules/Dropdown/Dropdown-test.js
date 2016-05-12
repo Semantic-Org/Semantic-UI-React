@@ -24,8 +24,8 @@ const wrapperMount = (node, opts) => {
   wrapper = global.mount(node, { ...opts, attachTo })
   return wrapper
 }
-const wrapperShallow = (...args) => wrapper = global.shallow(...args)
-const wrapperRender = (...args) => wrapper = global.render(...args)
+const wrapperShallow = (...args) => (wrapper = global.shallow(...args))
+const wrapperRender = (...args) => (wrapper = global.render(...args))
 
 // ----------------------------------------
 // Options
@@ -216,7 +216,7 @@ describe('Dropdown Component', () => {
       // make sure last item is selected
       wrapper
         .find('.selected')
-        .should.contain.text(_.last(opts).text)
+        .should.contain.text(_.tail(opts).text)
 
       // menu should be completely scrolled to the bottom
       const isMenuScrolledToBottom = menu.scrollTop + menu.clientHeight === menu.scrollHeight
@@ -518,7 +518,7 @@ describe('Dropdown Component', () => {
 
   describe('onChange', () => {
     let spy
-    beforeEach(() => spy = sandbox.spy())
+    beforeEach(() => (spy = sandbox.spy()))
 
     it('is a prop on the hidden input', () => {
       wrapperShallow(<Dropdown {...defaultProps} selection onChange={spy} />)

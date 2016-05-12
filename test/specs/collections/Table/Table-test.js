@@ -29,7 +29,7 @@ describe('Table', () => {
   })
 
   beforeEach(() => {
-    randomDataKey = _.sample(_.keys(_.first(tableData)))
+    randomDataKey = _.sample(_.keys(_.head(tableData)))
   })
 
   describe('defaultProps', () => {
