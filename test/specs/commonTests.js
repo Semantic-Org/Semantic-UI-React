@@ -21,11 +21,10 @@ const componentInfo = componentCtx.keys().map(key => {
   const filenameWithoutExt = path.basename(key, '.js')
   const subComponentName = _meta.parent ? _meta.name.replace(_meta.parent, '') : null
   // HeaderH1 => sd-header-h1
-  const sdClass =
-    'sd-' + constructorName
-      .replace('_', '')                 // remove underscore
-      .replace(/(?!^)([A-Z])/g, '-$1')  // prefix capitals with hyphen
-      .toLowerCase()                    // lowercase
+  const sdClass = `sd-${constructorName
+    .replace('_', '')                 // remove underscore
+    .replace(/(?!^)([A-Z])/g, '-$1')  // prefix capitals with hyphen
+    .toLowerCase()}`                  // lowercase
 
   const componentClassName = (subComponentName || constructorName).toLowerCase()
 
@@ -76,24 +75,24 @@ export const isConformant = (Component, requiredProps = {}) => {
   const isSubComponent = _.isFunction(_.get(stardust, `[${_meta.parent}][${subComponentName}]`))
 
   if (isPrivate) {
-    it(`is not exported as a component nor sub component`, () => {
+    it('is not exported as a component nor sub component', () => {
       expect(isStardustProp).to.equal(false,
         `"${constructorName}" is private (starts with  "_").` +
-        ` It cannot be a key on the stardust object`
+        ' It cannot be a key on the stardust object'
       )
 
       expect(isSubComponent).to.equal(false,
         `"${constructorName}" is private (starts with "_").` +
-        ` It cannot be a static prop of another component (sub-component)`
+        ' It cannot be a static prop of another component (sub-component)'
       )
     })
   } else {
-    it(`is exported as a component or sub component`, () => {
+    it('is exported as a component or sub component', () => {
       expect(isStardustProp || isSubComponent).to.equal(true,
         `"${constructorName}" must be:` +
-        ` a key on stardust` +
-        ` || key on another component (sub-component)` +
-        ` || private (start with "_")`
+        ' a key on stardust' +
+        ' || key on another component (sub-component)' +
+        ' || private (start with "_")'
       )
     })
   }
@@ -360,12 +359,12 @@ export const propKeyOnlyToClassName = (Component, propKey, requiredProps = {}) =
   describe(`${propKey} (common)`, () => {
     _noDefaultClassNameFromProp(Component, propKey, requiredProps)
 
-    it(`adds prop name to className`, () => {
+    it('adds prop name to className', () => {
       shallow(createElement(Component, { ...requiredProps, [propKey]: true }))
         .should.have.className(propKey)
     })
 
-    it(`does not add prop value to className`, () => {
+    it('does not add prop value to className', () => {
       // silence propType warnings
       consoleUtil.disableOnce()
 
@@ -436,12 +435,12 @@ export const propKeyOrValueToClassName = (Component, propKey, requiredProps = {}
       consoleUtil.disableOnce()
     })
 
-    it(`adds only the name to className when true`, () => {
+    it('adds only the name to className when true', () => {
       shallow(createElement(Component, { ...requiredProps, [propKey]: true }))
         .should.have.className(propKey)
     })
 
-    it(`adds no className when false`, () => {
+    it('adds no className when false', () => {
       const wrapper = shallow(createElement(Component, { ...requiredProps, [propKey]: false }))
 
       wrapper.should.not.have.className(propKey)
