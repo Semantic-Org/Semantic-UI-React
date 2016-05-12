@@ -75,8 +75,8 @@ export default class Form extends Component {
   static Field = FormField
   static Fields = FormFields
 
-  plugin() {
-    return this.element.form(...arguments)
+  plugin(...args) {
+    return this.element.form(...args)
   }
 
   refresh() {

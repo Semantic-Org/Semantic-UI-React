@@ -53,8 +53,8 @@ export default class Progress extends Component {
     type: META.type.module,
   }
 
-  plugin() {
-    return this.element.progress(...arguments)
+  plugin(...args) {
+    return this.element.progress(...args)
   }
 
   refresh() {

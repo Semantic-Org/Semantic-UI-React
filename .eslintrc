@@ -4,7 +4,10 @@
     "ta/frontend"
   ],
   "rules": {
-    "react/sort-comp": 1
+    "consistent-return": 0,
+    "no-confusing-arrow": 0,
+    "react/sort-comp": 1,
+    "valid-jsdoc": 1
   },
   "globals": {
     "__DEV__": false,
