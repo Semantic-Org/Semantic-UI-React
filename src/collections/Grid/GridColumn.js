@@ -23,7 +23,7 @@ export default class GridColumn extends Component {
     const classes = classNames(
       'sd-grid-column',
       this.props.className,
-      this.props.width && numberToWord(this.props.width) + ' wide',
+      this.props.width && `${numberToWord(this.props.width)} wide`,
       'column'
     )
     return (
