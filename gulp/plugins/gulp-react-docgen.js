@@ -30,7 +30,7 @@ module.exports = (filename) => {
     }
 
     try {
-      const relativePath = file.path.replace(process.cwd() + '/', '')
+      const relativePath = file.path.replace(`${process.cwd()}/`, '')
       const parsed = docgen.parse(file.contents)
 
       // replace the component`description` string with a parsed doc block object
