@@ -216,7 +216,7 @@ describe('Dropdown Component', () => {
       // make sure last item is selected
       wrapper
         .find('.selected')
-        .should.contain.text(_.last(opts).text)
+        .should.contain.text(_.tail(opts).text)
 
       // menu should be completely scrolled to the bottom
       const isMenuScrolledToBottom = menu.scrollTop + menu.clientHeight === menu.scrollHeight
