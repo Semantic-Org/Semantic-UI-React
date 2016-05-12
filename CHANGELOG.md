@@ -7,6 +7,7 @@
 **Merged pull requests:**
 
 - Update babel-plugin-lodash to version 3.1.3 🚀 [\#235](https://github.com/TechnologyAdvice/stardust/pull/235) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+- Update all dependencies 🌴 [\#234](https://github.com/TechnologyAdvice/stardust/pull/234) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
 - Use process.env instead of globals [\#232](https://github.com/TechnologyAdvice/stardust/pull/232) ([levithomason](https://github.com/levithomason))
 - Remove keyboard event polyfill [\#231](https://github.com/TechnologyAdvice/stardust/pull/231) ([levithomason](https://github.com/levithomason))
 
