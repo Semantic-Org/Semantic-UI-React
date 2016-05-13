@@ -10,6 +10,7 @@
 
 **Merged pull requests:**
 
+- Hot reload in dev only [\#240](https://github.com/TechnologyAdvice/stardust/pull/240) ([levithomason](https://github.com/levithomason))
 - Remove unused Input ref [\#239](https://github.com/TechnologyAdvice/stardust/pull/239) ([levithomason](https://github.com/levithomason))
 - html-webpack-plugin@2.16.2 untested ⚠️ [\#237](https://github.com/TechnologyAdvice/stardust/pull/237) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
 - babel-plugin-lodash@3.1.4 untested ⚠️ [\#236](https://github.com/TechnologyAdvice/stardust/pull/236) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
