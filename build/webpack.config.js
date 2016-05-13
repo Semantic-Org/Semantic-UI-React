@@ -38,14 +38,18 @@ const APP_ENTRY = [
   paths.docsSrc('DocsApp.js'),
 ]
 
-webpackConfig.entry = {
-  app: __DEV__
-    ? [webpackHotMiddlewareEntry, ...APP_ENTRY]
-    : [...APP_ENTRY],
+webpackConfig.entry = __DEV__ ? {
+  app: [
+    webpackHotMiddlewareEntry,
+    ...APP_ENTRY,
+  ],
   vendor: [
     webpackHotMiddlewareEntry,
     ...config.compiler_vendor,
   ],
+} : {
+  app: APP_ENTRY,
+  vendor: config.compiler_vendor,
 }
 
 // ------------------------------------

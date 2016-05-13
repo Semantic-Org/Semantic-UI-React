@@ -20,7 +20,7 @@ deployment:
   development:
     branch: /^(?!master).*$/
     commands:
-      - gulp docs
+      - NODE_ENV=production gulp docs
       - $(npm bin)/ta-script aws/stage -d docs/build -r $CIRCLE_PROJECT_REPONAME -b $CIRCLE_BRANCH
   production:
     branch: master
@@ -28,4 +28,4 @@ deployment:
       - git config --global user.email "devteam+deweybot@technologyadvice.com"
       - git config --global user.name "deweybot"
       - $(npm bin)/ta-script circle_ci/create_changelog
-      - npm run deploy:docs
+      - NODE_ENV=production npm run deploy:docs
