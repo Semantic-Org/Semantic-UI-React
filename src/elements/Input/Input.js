@@ -58,6 +58,7 @@ export default class Input extends Component {
       'input'
     )
     const props = getUnhandledProps(this)
+    delete props.children
 
     return (
       <div className={classes}>
