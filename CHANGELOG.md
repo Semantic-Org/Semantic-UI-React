@@ -7,6 +7,7 @@
 **Merged pull requests:**
 
 - html-webpack-plugin@2.16.2 untested ⚠️ [\#237](https://github.com/TechnologyAdvice/stardust/pull/237) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+- babel-plugin-lodash@3.1.4 untested ⚠️ [\#236](https://github.com/TechnologyAdvice/stardust/pull/236) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
 - Update babel-plugin-lodash to version 3.1.3 🚀 [\#235](https://github.com/TechnologyAdvice/stardust/pull/235) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
 - Update all dependencies 🌴 [\#234](https://github.com/TechnologyAdvice/stardust/pull/234) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
 - Use process.env instead of globals [\#232](https://github.com/TechnologyAdvice/stardust/pull/232) ([levithomason](https://github.com/levithomason))
