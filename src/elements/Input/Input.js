@@ -10,7 +10,6 @@ export default class Input extends Component {
     children: PropTypes.node,
     className: PropTypes.string,
     icon: PropTypes.string,
-    ref: PropTypes.string,
   }
 
   static defaultProps = {
