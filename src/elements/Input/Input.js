@@ -10,7 +10,6 @@ export default class Input extends Component {
     children: PropTypes.node,
     className: PropTypes.string,
     icon: PropTypes.string,
-    ref: PropTypes.string,
   }
 
   static defaultProps = {
@@ -59,6 +58,7 @@ export default class Input extends Component {
       'input'
     )
     const props = getUnhandledProps(this)
+    delete props.children
 
     return (
       <div className={classes}>
