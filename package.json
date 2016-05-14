@@ -65,7 +65,7 @@
     "doctrine": "^1.2.1",
     "empty": "^0.10.1",
     "enzyme": "^2.2.0",
-    "eslint": "^2.9.0",
+    "eslint": "^2.10.1",
     "eslint-config-ta": "^5.1.0",
     "eslint-plugin-mocha": "^2.2.0",
     "eslint-plugin-react": "^5.1.1",
