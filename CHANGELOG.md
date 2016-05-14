@@ -11,6 +11,7 @@
 **Merged pull requests:**
 
 - html-webpack-plugin@2.17.0 untested ⚠️ [\#242](https://github.com/TechnologyAdvice/stardust/pull/242) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+- eslint@2.10.1 untested ⚠️ [\#241](https://github.com/TechnologyAdvice/stardust/pull/241) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
 - Hot reload in dev only [\#240](https://github.com/TechnologyAdvice/stardust/pull/240) ([levithomason](https://github.com/levithomason))
 - Remove unused Input ref [\#239](https://github.com/TechnologyAdvice/stardust/pull/239) ([levithomason](https://github.com/levithomason))
 - html-webpack-plugin@2.16.2 untested ⚠️ [\#237](https://github.com/TechnologyAdvice/stardust/pull/237) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
