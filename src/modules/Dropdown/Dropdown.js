@@ -308,7 +308,7 @@ export default class Dropdown extends Component {
   }
 
   closeOnDocumentClick = (e) => {
-    debug.groupCollapsed('handleDocumentClick()')
+    debug.groupCollapsed('closeOnDocumentClick()')
     debug(e)
     debug.groupEnd()
     this.close()
