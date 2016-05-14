@@ -18,6 +18,7 @@
 - babel-plugin-lodash@3.1.4 untested ⚠️ [\#236](https://github.com/TechnologyAdvice/stardust/pull/236) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
 - Update babel-plugin-lodash to version 3.1.3 🚀 [\#235](https://github.com/TechnologyAdvice/stardust/pull/235) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
 - Update all dependencies 🌴 [\#234](https://github.com/TechnologyAdvice/stardust/pull/234) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+- Debug utility [\#233](https://github.com/TechnologyAdvice/stardust/pull/233) ([levithomason](https://github.com/levithomason))
 - Use process.env instead of globals [\#232](https://github.com/TechnologyAdvice/stardust/pull/232) ([levithomason](https://github.com/levithomason))
 - Remove keyboard event polyfill [\#231](https://github.com/TechnologyAdvice/stardust/pull/231) ([levithomason](https://github.com/levithomason))
 
