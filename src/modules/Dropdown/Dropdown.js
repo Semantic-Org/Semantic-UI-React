@@ -189,6 +189,7 @@ export default class Dropdown extends Component {
   componentWillReceiveProps(nextProps) {
     super.componentWillReceiveProps(nextProps)
     debug.groupCollapsed('componentDidUpdate()')
+    // TODO objectDiff still runs in prod, stop it
     debug('changed props:', objectDiff(nextProps, this.props))
     debug.groupEnd()
 
@@ -199,6 +200,7 @@ export default class Dropdown extends Component {
 
   componentDidUpdate(prevProps, prevState) { // eslint-disable-line complexity
     debug.groupCollapsed('componentDidUpdate()')
+    // TODO objectDiff still runs in prod, stop it
     debug('changed state:', objectDiff(this.state, prevState))
     debug.groupEnd()
 
