@@ -8,6 +8,8 @@ import META from '../../utils/Meta'
 import { useKeyOnly, useKeyOrValueAndKey } from '../../utils/propUtils'
 import { iconPropRenderer } from '../../utils/propUtils'
 import keyboardKey from '../../utils/keyboardKey'
+import { makeDebugger } from '../../utils/debug'
+import { objectDiff } from '../../utils/utils'
 
 // import as Component so eslint react/prop-types recognizes Dropdown
 import { default as Component } from '../../utils/AutoControlledComponent'
@@ -15,6 +17,8 @@ import DropdownDivider from './DropdownDivider'
 import DropdownItem from './DropdownItem'
 import DropdownMenu from './DropdownMenu'
 import Icon from '../../elements/Icon/Icon'
+
+const debug = makeDebugger('dropdown')
 
 const _meta = {
   library: META.library.semanticUI,
@@ -163,7 +167,7 @@ export default class Dropdown extends Component {
 
   componentWillMount() {
     if (super.componentWillMount) super.componentWillMount()
-    // console.debug('Dropdown.componentWillMount()')
+    debug('componentWillMount()')
     const { open, options } = this.props
     const { value } = this.state
 
@@ -184,10 +188,10 @@ export default class Dropdown extends Component {
 
   componentWillReceiveProps(nextProps) {
     super.componentWillReceiveProps(nextProps)
-    // console.debug('Dropdown.componentWillReceiveProps()')
-    // console.log('changed props:', _.transform(nextProps, (res, val, key) => {
-    //   if (val !== this.props[key]) res[key] = val
-    // }, {}))
+    debug.groupCollapsed('componentDidUpdate()')
+    // TODO objectDiff still runs in prod, stop it
+    debug('changed props:', objectDiff(nextProps, this.props))
+    debug.groupEnd()
 
     if (nextProps.value !== this.state.value) {
       this.setValue(nextProps.value)
@@ -195,10 +199,10 @@ export default class Dropdown extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) { // eslint-disable-line complexity
-    // console.debug('Dropdown.componentDidUpdate()')
-    // console.log('changed state:', _.transform(this.state, (res, val, key) => {
-    //   if (val !== prevState[key]) res[key] = val
-    // }, {}))
+    debug.groupCollapsed('componentDidUpdate()')
+    // TODO objectDiff still runs in prod, stop it
+    debug('changed state:', objectDiff(this.state, prevState))
+    debug.groupEnd()
 
     // focused / blurred
     if (!prevState.focus && this.state.focus) {
@@ -233,7 +237,7 @@ export default class Dropdown extends Component {
   }
 
   componentWillUnmount() {
-    // console.debug('Dropdown.componentWillUnmount()')
+    debug('componentWillUnmount()')
     document.removeEventListener('keydown', this.openOnArrow)
     document.removeEventListener('keydown', this.openOnSpace)
     document.removeEventListener('keydown', this.moveSelectionOnKeyDown)
@@ -249,8 +253,9 @@ export default class Dropdown extends Component {
   // onChange needs to receive a value
   // can't rely on props.value if we are controlled
   onChange = (value) => {
-    // console.debug('Dropdown.onChange()')
-    // console.log(value)
+    debug.groupCollapsed('onChange()')
+    debug(value)
+    debug.groupEnd()
     const { onChange } = this.props
     if (onChange) onChange(value)
   }
@@ -262,8 +267,9 @@ export default class Dropdown extends Component {
   }
 
   moveSelectionOnKeyDown = (e) => {
-    // console.debug('Dropdown.moveSelectionOnKeyDown()')
-    // console.log(`key: ${keyboardKey.getCode(e)}`)
+    debug.groupCollapsed('moveSelectionOnKeyDown()')
+    debug(keyboardKey.getName(e))
+    debug.groupEnd()
     switch (keyboardKey.getCode(e)) {
       case keyboardKey.ArrowDown:
         e.preventDefault()
@@ -292,7 +298,9 @@ export default class Dropdown extends Component {
   }
 
   selectItemOnEnter = (e) => {
-    // console.debug('Dropdown.selectItemOnEnter()')
+    debug.groupCollapsed('selectItemOnEnter()')
+    debug(keyboardKey.getName(e))
+    debug.groupEnd()
     if (keyboardKey.getCode(e) !== keyboardKey.Enter) return
     e.preventDefault()
     const value = this.getSelectedValue()
@@ -302,8 +310,9 @@ export default class Dropdown extends Component {
   }
 
   closeOnDocumentClick = (e) => {
-    // console.debug('Dropdown.handleDocumentClick()')
-    // console.log(e)
+    debug.groupCollapsed('closeOnDocumentClick()')
+    debug(e)
+    debug.groupEnd()
     this.close()
   }
 
@@ -312,8 +321,9 @@ export default class Dropdown extends Component {
   // ----------------------------------------
 
   handleClick = (e) => {
-    // console.debug('Dropdown.handleClick()')
-    // console.log(e)
+    debug.groupCollapsed('handleClick()')
+    debug(e)
+    debug.groupEnd()
     const { onClick } = this.props
     if (onClick) onClick(e)
     // prevent closeOnDocumentClick()
@@ -322,8 +332,9 @@ export default class Dropdown extends Component {
   }
 
   handleItemClick = (e, value) => {
-    // console.debug('Dropdown.handleClickItem()')
-    // console.log(value)
+    debug.groupCollapsed('handleClickItem()')
+    debug(value)
+    debug.groupEnd()
     // prevent toggle() in handleClick()
     e.stopPropagation()
     this.setValue(value)
@@ -331,7 +342,7 @@ export default class Dropdown extends Component {
   }
 
   handleFocus = (e) => {
-    // console.debug('Dropdown.handleFocus()')
+    debug('handleFocus()')
     const { onFocus } = this.props
     if (onFocus) onFocus(e)
     this.setState({ focus: true })
@@ -343,7 +354,7 @@ export default class Dropdown extends Component {
   }
 
   handleBlur = (e) => {
-    // console.debug('Dropdown.handleBlur()')
+    debug('handleBlur()')
     const { onBlur } = this.props
     if (onBlur) onBlur(e)
     // TODO
@@ -355,7 +366,9 @@ export default class Dropdown extends Component {
   }
 
   handleSearchChange = (e) => {
-    // console.debug('Dropdown.handleSearchChange()')
+    debug.groupCollapsed('handleSearchChange()')
+    debug(e.target.value)
+    debug.groupEnd()
     // prevent propagating to this.props.onChange()
     e.stopPropagation()
     const { search } = this.props
@@ -386,7 +399,7 @@ export default class Dropdown extends Component {
   }
 
   getSelectedValue = () => {
-    // console.debug('Dropdown.getSelectedValue()')
+    debug('getSelectedValue()')
     const { selectedIndex } = this.state
     const options = this.getOptions()
 
@@ -394,7 +407,7 @@ export default class Dropdown extends Component {
   }
 
   getItemIndexByValue = (value) => {
-    // console.debug('Dropdown.getItemIndexByValue()')
+    debug('getItemIndexByValue()')
     const options = this.getOptions()
 
     return _.findIndex(options, ['value', value])
@@ -406,8 +419,9 @@ export default class Dropdown extends Component {
 
   setValue = (value) => {
     const { multiple } = this.props
-    // console.debug('Dropdown.setValue()')
-    // console.log(value)
+    debug.groupCollapsed('setValue()')
+    debug(value)
+    debug.groupEnd()
     this.trySetState({
       value,
     }, {
@@ -419,8 +433,9 @@ export default class Dropdown extends Component {
   }
 
   moveSelectionBy = (offset) => {
-    // console.debug('Dropdown.moveSelectionBy()')
-    // console.log(`offset: ${offset}`)
+    debug.groupCollapsed('moveSelectionBy()')
+    debug(`offset: ${offset}`)
+    debug.groupEnd()
     const { selectedIndex } = this.state
 
     const options = this.getOptions()
@@ -441,10 +456,12 @@ export default class Dropdown extends Component {
   // ----------------------------------------
 
   scrollSelectedItemIntoView = () => {
-    // console.debug('Dropdown.scrollSelectedItemIntoView()')
+    debug.groupCollapsed('scrollSelectedItemIntoView()')
     const menu = document.querySelector('.ui.dropdown.active.visible .menu.visible')
     const item = menu.querySelector('.item.selected')
-    // console.log(menu, selectedItem)
+    debug(`menu: ${menu}`)
+    debug(`item: ${item}`)
+    debug.groupEnd()
     const isOutOfUpperView = item.offsetTop < menu.scrollTop
     const isOutOfLowerView = (item.offsetTop + item.clientHeight) > menu.scrollTop + menu.clientHeight
 
@@ -454,8 +471,9 @@ export default class Dropdown extends Component {
   }
 
   open = () => {
-    // console.debug('Dropdown.open()')
-    // console.log(`dropdown is ${this.state.open ? 'already' : 'not yet'} open`)
+    debug.groupCollapsed('open()')
+    debug(`dropdown is ${this.state.open ? 'already' : 'not yet'} open`)
+    debug.groupEnd()
     if (this.state.open) return
     if (this.props.search) this.refs.search.focus()
 
@@ -468,8 +486,9 @@ export default class Dropdown extends Component {
   }
 
   close = () => {
-    // console.debug('Dropdown.close()')
-    // console.log(`dropdown is ${this.state.open ? 'already' : 'not yet'} open`)
+    debug.groupCollapsed('close()')
+    debug(`dropdown is ${!this.state.open ? 'already' : 'not yet'} closed`)
+    debug.groupEnd()
     if (!this.state.open) return
 
     this.trySetState({
@@ -515,10 +534,13 @@ export default class Dropdown extends Component {
   // TODO hidden input only exists for backwards compatibility with SUI jQuery plugins
   // remove once those are removed
   renderHiddenInput = () => {
+    debug.groupCollapsed('renderHiddenInput()')
     const { value } = this.state
     const { name, onChange, selection } = this.props
-    // console.debug('Dropdown.renderHiddenInput()')
-    // console.log({ name, selection, value })
+    debug(`name:      ${name}`)
+    debug(`selection: ${selection}`)
+    debug(`value:     ${value}`)
+    debug.groupEnd()
     if (!selection) return null
     const _value = Array.isArray(value) ? value.join(',') : value
 
@@ -562,9 +584,10 @@ export default class Dropdown extends Component {
   }
 
   render() {
-    // console.debug('RENDER')
-    // console.log('props', this.props)
-    // console.log('state', this.state)
+    debug.groupCollapsed('render()')
+    debug('props', this.props)
+    debug('state', this.state)
+    debug.groupEnd()
     const { dropdownClasses, menuClasses } = this.state
 
     const {

@@ -60,6 +60,7 @@
     "chai-enzyme": "^0.4.1",
     "connect-history-api-fallback": "^1.2.0",
     "css-loader": "^0.23.1",
+    "debug": "^2.2.0",
     "del": "^2.0.2",
     "dirty-chai": "^1.2.2",
     "doctrine": "^1.2.1",
