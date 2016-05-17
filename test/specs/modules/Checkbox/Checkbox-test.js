@@ -9,16 +9,19 @@ describe('Checkbox', () => {
   common.rendersChildren(Checkbox)
 
   it('can be checked by default', () => {
-    deprecatedRender(<Checkbox defaultChecked name='firstName' />)
-      .findTag('input')
-      .checked.should.equal(true)
+    shallow(<Checkbox defaultChecked name='firstName' />)
+      .find('input')
+      .should.be.checked()
   })
-  it('should have a semantic ui plugin to handle the check action', () => {
-    deprecatedRender(<Checkbox name='firstName' label='Include First' />)
-      .first()
+  it('should init the semantic ui plugin', () => {
+    mount(<Checkbox />)
+      .instance()
+      // the component exposes the jQuery element as 'element'
+      // 'checkbox' is the jQuery plugin
       .element.checkbox.called.should.equal(true)
   })
   it('should have a fitted class if no label is given', () => {
-    deprecatedRender(<Checkbox name='firstName' />).findClass('fitted')
+    shallow(<Checkbox name='firstName' />)
+      .should.have.className('fitted')
   })
 })
