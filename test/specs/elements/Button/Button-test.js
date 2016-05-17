@@ -1,5 +1,4 @@
 import React from 'react'
-import { Simulate } from 'react-addons-test-utils'
 
 import Button from 'src/elements/Button/Button'
 import * as common from 'test/specs/commonTests'
@@ -11,24 +10,20 @@ describe('Button', () => {
   common.rendersChildren(Button)
 
   it('has type button by default', () => {
-    deprecatedRender(<Button />)
-      .findTag('button')
-      .getAttribute('type')
-      .should.equal('button')
-  })
-  it('renders "Click Here" by default', () => {
-    deprecatedRender(<Button />).assertText('Click Here')
+    shallow(<Button />)
+      .find('button')
+      .should.have.prop('type', 'button')
   })
   it('inherits type', () => {
-    deprecatedRender(<Button type='submit' />)
-      .findTag('button')
-      .getAttribute('type')
-      .should.equal('submit')
+    shallow(<Button type='submit' />)
+      .find('button')
+      .should.have.prop('type', 'submit')
   })
-  it('spreads callbacks on the button element', () => {
+  it('calls onClick when clicked', () => {
     const handleClick = sandbox.spy()
-    const button = deprecatedRender(<Button type='submit' onClick={handleClick} />).findTag('button')
-    Simulate.click(button)
-    handleClick.called.should.equal(true)
+    shallow(<Button type='submit' onClick={handleClick} />)
+      .simulate('click')
+
+    handleClick.should.have.been.calledOnce()
   })
 })

@@ -9,7 +9,6 @@ export default class Button extends Component {
   }
 
   static defaultProps = {
-    children: 'Click Here',
     type: 'button',
   }
 
