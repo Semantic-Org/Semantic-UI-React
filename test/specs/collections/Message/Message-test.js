@@ -1,6 +1,5 @@
 import faker from 'faker'
 import React from 'react'
-import { Simulate } from 'react-addons-test-utils'
 
 import Message from 'src/collections/Message/Message'
 import * as common from 'test/specs/commonTests'
@@ -13,59 +12,64 @@ describe('Message', () => {
   describe('with header', () => {
     it('has a header', () => {
       const header = faker.hacker.phrase()
-      const message = deprecatedRender(<Message header={header} />)
+      const message = shallow(<Message header={header} />)
 
-      message.findClass('sd-message-header')
-      message.assertText(header)
+      message.should.have.descendants('.sd-message-header')
+      message.should.contain.text(header)
     })
   })
   describe('without header', () => {
     it('has no header', () => {
-      deprecatedRender(<Message />)
-        .scryClass('sd-message-header')
-        .should.have.a.lengthOf(0)
+      shallow(<Message />)
+        .should.not.have.descendants('.sd-message-header')
     })
   })
   describe('with icon', () => {
-    it('has an icon', () => {
-      deprecatedRender(<Message icon='inbox' />).findClass('sd-message-icon')
+    it('adds an Icon', () => {
+      shallow(<Message icon='inbox' />)
+        .should.have.descendants('Icon')
     })
     it('has a "content" wrapper', () => {
-      deprecatedRender(<Message icon='inbox' />).findClass('sd-message-content')
+      shallow(<Message icon='inbox' />)
+        .should.have.descendants('.sd-message-content')
     })
   })
   describe('without icon', () => {
     it('has no icon', () => {
-      deprecatedRender(<Message />)
-        .scryClass('sd-message-icon')
-        .should.have.a.lengthOf(0)
+      shallow(<Message />)
+        .should.not.have.descendants('Icon')
     })
     it('has no "content" wrapper', () => {
-      deprecatedRender(<Message />)
-        .scryClass('sd-message-content')
-        .should.have.a.lengthOf(0)
+      shallow(<Message />)
+        .should.not.have.descendants('.sd-message-content')
     })
   })
   describe('dismissable', () => {
     it('adds a close icon', () => {
-      deprecatedRender(<Message dismissable />).findClass('sd-message-close-icon')
+      shallow(<Message dismissable />)
+        .should.have.descendants('.sd-message-close-icon')
     })
 
     it('calls transition "fade" when dismissed', () => {
-      const tree = deprecatedRender(<Message dismissable />)
-      const message = tree.first()
-      const closeIcon = tree.findClass('sd-message-close-icon')
+      const wrapper = mount(<Message dismissable />)
+      const instance = wrapper.instance()
 
-      message.messageElm.transition.called.should.equal(false)
-      Simulate.click(closeIcon)
-      message.messageElm.transition.calledWith('fade').should.equal(true)
+      instance.messageElm.transition
+        .should.not.have.been.called()
+
+
+      wrapper
+        .find('.sd-message-close-icon')
+        .simulate('click')
+
+      instance.messageElm.transition
+        .should.have.been.calledWith('fade')
     })
   })
   describe('not dismissable', () => {
     it('has no close icon', () => {
-      deprecatedRender(<Message />)
-        .scryClass('sd-message-close-icon')
-        .should.have.a.lengthOf(0)
+      shallow(<Message />)
+        .should.not.have.descendants('.sd-message-close-icon')
     })
   })
 })
