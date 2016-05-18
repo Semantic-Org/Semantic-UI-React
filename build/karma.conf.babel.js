@@ -58,6 +58,9 @@ module.exports = (karmaConfig) => {
           // https://github.com/airbnb/enzyme/issues/285
           'react/lib/ExecutionEnvironment': 'empty/object',
           'react/lib/ReactContext': 'empty/object',
+          // this is a React 0.13 dep required by enzyme
+          // ignore it since we don't have it
+          'react/addons': 'empty/object',
         },
       },
     },
