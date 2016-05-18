@@ -6,20 +6,24 @@ import * as common from '../commonTests'
 describe('Textarea', () => {
   common.isConformant(Textarea)
 
-  it('has a default value', () => {
-    deprecatedRender(<Textarea defaultValue='Hello World' />)
-      .findTag('textarea')
-      .value.should.equal('Hello World')
+  it('accepts a default value', () => {
+    const wrapper = mount(<Textarea defaultValue='Hello World' />)
+
+    wrapper
+      .should.have.have.exactly(1).descendants('textarea')
+
+    wrapper
+      .should.have.value('Hello World')
   })
+
   it('has a name assigned', () => {
-    deprecatedRender(<Textarea name='sample-post' />)
-      .first()
-      .props.name.should.equal('sample-post')
+    shallow(<Textarea name='sample-post' />)
+      .should.have.prop('name', 'sample-post')
   })
+
   it('has assigned amount of rows', () => {
-    deprecatedRender(<Textarea rows='6' />)
-      .findTag('textarea')
-      .getAttribute('rows')
-      .should.equal('6')
+    shallow(<Textarea rows='6' />)
+      .should.have.tagName('textarea')
+      .with.attr('rows', '6')
   })
 })
