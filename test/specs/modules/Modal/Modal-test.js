@@ -12,21 +12,36 @@ describe('Modal', () => {
   common.rendersChildren(Modal)
   common.hasSubComponents(Modal, [ModalHeader, ModalContent, ModalFooter])
 
-  it('should default ref to be "modal"', () => {
-    Modal.defaultProps.ref.should.equal('modal')
+  describe('initial state', () => {
+    it('isShown is false', () => {
+      shallow(<Modal />)
+        .should.have.state('isShown', false)
+    })
   })
-  it('should initially have a state where `isShown` is false', () => {
-    deprecatedRender(<Modal />).first().state.isShown.should.equal(false)
+
+  describe('showModal()', () => {
+    it('sets isShown true', () => {
+      const modal = shallow(<Modal />)
+
+      modal
+        .instance()
+        .showModal()
+
+      modal
+        .should.have.state('isShown', true)
+    })
   })
-  it('sets isShown true', () => {
-    const modal = deprecatedRender(<Modal />).first()
-    modal.showModal()
-    modal.state.isShown.should.equal(true)
-  })
-  it('sets isShown false', () => {
-    const modal = deprecatedRender(<Modal />).first()
-    modal.hideModal()
-    modal.state.isShown.should.equal(false)
+  describe('hideModal()', () => {
+    it('sets isShown false', () => {
+      const modal = shallow(<Modal />)
+
+      modal
+        .instance()
+        .hideModal()
+
+      modal
+        .should.have.state('isShown', false)
+    })
   })
 })
 

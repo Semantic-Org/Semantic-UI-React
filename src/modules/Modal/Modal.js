@@ -9,12 +9,7 @@ export default class Modal extends Component {
   static propTypes = {
     children: PropTypes.any,
     className: PropTypes.string,
-    ref: PropTypes.string,
     settings: PropTypes.object,
-  }
-
-  static defaultProps = {
-    ref: 'modal',
   }
 
   state = { isShown: false }
