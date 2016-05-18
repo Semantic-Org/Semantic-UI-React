@@ -7,12 +7,12 @@ describe('Icon', () => {
   common.isConformant(Icon)
 
   it('renders an <i /> element', () => {
-    deprecatedRender(<Icon />)
-      .findTag('i')
+    shallow(<Icon />)
+      .should.have.tagName('i')
   })
 
   it('adds the "icon" class', () => {
-    deprecatedRender(<Icon />)
-      .findClass('icon')
+    shallow(<Icon />)
+      .should.have.className('icon')
   })
 })
