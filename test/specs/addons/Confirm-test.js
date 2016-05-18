@@ -1,5 +1,4 @@
 import React from 'react'
-import { Simulate } from 'react-addons-test-utils'
 
 import { Confirm } from 'stardust'
 import * as common from '../commonTests'
@@ -8,30 +7,31 @@ describe('Confirm', () => {
   common.isConformant(Confirm)
 
   it('default prop abortLabel should be "Cancel"', () => {
-    deprecatedRender(<Confirm />).first().props.abortLabel.should.equal('Cancel')
+    shallow(<Confirm />)
+      .should.have.prop('abortLabel', 'Cancel')
   })
   it('default prop confirmLabel should be "Yes"', () => {
-    Confirm.defaultProps.confirmLabel.should.equal('Yes')
-  })
-  it('default prop ref should be "modal"', () => {
-    Confirm.defaultProps.ref.should.equal('modal')
+    Confirm.defaultProps.confirmLabel
+      .should.equal('Yes')
   })
   it('should return true on confirm', () => {
-    const confirm = deprecatedRender(<Confirm />)
-    const button = confirm.findClass('sd-confirm-button')
+    const confirm = mount(<Confirm />)
     confirm
-      .first()
+      .instance()
       .show()
       .then(isConfirmed => isConfirmed.should.equal(true))
-    Simulate.click(button)
+    confirm
+      .find('.sd-confirm-button')
+      .simulate('click')
   })
   it('should return false on abort', () => {
-    const confirm = deprecatedRender(<Confirm />)
-    const button = confirm.findClass('sd-abort-button')
+    const confirm = mount(<Confirm />)
     confirm
-      .first()
+      .instance()
       .show()
       .then(isConfirmed => isConfirmed.should.equal(false))
-    Simulate.click(button)
+    confirm
+      .find('.sd-abort-button')
+      .simulate('click')
   })
 })

@@ -14,46 +14,29 @@ export default class Confirm extends Component {
     className: PropTypes.string,
     confirmLabel: PropTypes.string,
     header: PropTypes.string,
-    ref: PropTypes.string,
   }
 
   static defaultProps = {
     abortLabel: 'Cancel',
     confirmLabel: 'Yes',
-    ref: 'modal',
   }
 
   state = {
     message: 'Are you sure?',
   }
 
-  componentDidMount() {
-    this.deferred = Promise.defer()
-  }
-
-  handleAbort = () => {
-    // Promise is resolved, confirmation is false
-    this.deferred.resolve(false)
-    // TODO: as of React 0.14, refs returns the DOM node, not the component, his may not work anymore
-    this.refs.modal.hideModal()
-  }
-
-  handleConfirm = () => {
-    // Promise is resolved, confirmation is true
-    this.deferred.resolve(true)
-    this.refs.modal.hideModal()
-  }
-
-  show = (message) => {
-    // Need to reset promise with every time show() is called to clear out the promise resolve
-    // from the previous button that called show method:
-    this.deferred = Promise.defer()
+  show = (message) => new Promise((resolve, reject) => {
     this.setState({ message })
 
+    this.handleAbort = () => resolve(false)
+    this.handleConfirm = () => resolve(true)
+
     this.refs.modal.showModal()
-    // Send back promise to be resolved
-    return this.deferred.promise
-  }
+  })
+    .then(isConfirmed => {
+      this.refs.modal.hideModal()
+      return isConfirmed
+    })
 
   static _meta = {
     library: META.library.stardust,
