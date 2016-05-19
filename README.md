@@ -1,6 +1,6 @@
 # Stardust  [![Code Climate](https://img.shields.io/codeclimate/github/TechnologyAdvice/stardust.svg?style=flat-square)](https://codeclimate.com/github/TechnologyAdvice/stardust) [![Gemnasium](https://img.shields.io/gemnasium/TechnologyAdvice/stardust.svg?style=flat-square)](https://gemnasium.com/TechnologyAdvice/stardust) [![Circle CI](https://img.shields.io/circleci/project/TechnologyAdvice/stardust/master.svg?style=flat-square)](https://circleci.com/gh/TechnologyAdvice/stardust/tree/master)
 
-A [React][3] component library based on the delightful and easy-to-use [Semantic UI][5].
+The (soon to be) [official][8] integration between [Semantic UI][5] and [React][3].
 
 ## Getting Started
 Hey, we're in development. Minor versions may introduce **breaking changes until the [v1.0][6] release**.
@@ -128,3 +128,4 @@ Before submitting PRs please review our [Component Guidelines][1] and [Roadmap][
 [5]: http://semantic-ui.com/
 [6]: https://github.com/TechnologyAdvice/stardust/blob/master/ROADMAP.md#v1.0
 [7]: https://github.com/webpack/webpack-dev-server/
+[8]: https://github.com/TechnologyAdvice/stardust/issues/243
