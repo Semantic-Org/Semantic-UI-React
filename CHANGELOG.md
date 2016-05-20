@@ -10,6 +10,7 @@
 
 **Merged pull requests:**
 
+- Use enzyme in all tests [\#244](https://github.com/TechnologyAdvice/stardust/pull/244) ([levithomason](https://github.com/levithomason))
 - html-webpack-plugin@2.17.0 untested ⚠️ [\#242](https://github.com/TechnologyAdvice/stardust/pull/242) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
 - eslint@2.10.1 untested ⚠️ [\#241](https://github.com/TechnologyAdvice/stardust/pull/241) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
 - Hot reload in dev only [\#240](https://github.com/TechnologyAdvice/stardust/pull/240) ([levithomason](https://github.com/levithomason))
