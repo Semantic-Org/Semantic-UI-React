@@ -1,5 +1,4 @@
 import { argv } from 'yargs'
-import webpack from 'webpack'
 
 import config from '../config'
 import webpackConfig from './webpack.config'
@@ -11,7 +10,7 @@ module.exports = (karmaConfig) => {
     basePath: process.cwd(),
     browsers: ['PhantomJS'],
     singleRun: !argv.watch,
-    reporters: ['mocha'],
+    reporters: ['mocha', 'coverage'],
     files: [
       './test/tests.bundle.js',
     ],
@@ -23,7 +22,16 @@ module.exports = (karmaConfig) => {
       // exit on ResourceError, useful if karma exits without killing phantom
       exitOnResourceError: true,
     },
+    coverageReporter: {
+      reporters: [
+        { type: 'lcov', dir: 'coverage', subdir: '.' },
+        { type: 'text-summary' },
+      ],
+      includeAllSources: true,
+    },
     preprocessors: {
+      // do not include 'coverage' preprocessor for karma-coverage
+      // code is already instrumented by babel-plugin-__coverage__
       '**/*.bundle.js': ['webpack'],
     },
     client: {
@@ -45,7 +53,7 @@ module.exports = (karmaConfig) => {
         ],
       },
       plugins: [
-        new webpack.DefinePlugin(config.compiler_globals),
+        ...webpackConfig.plugins,
       ],
       resolve: {
         ...webpackConfig.resolve,

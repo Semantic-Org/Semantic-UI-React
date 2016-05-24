@@ -47,6 +47,16 @@ const componentInfo = componentCtx.keys().map(key => {
  * @param {Object} [requiredProps={}] Props required to render Component without errors or warnings.
  */
 export const isConformant = (Component, requiredProps = {}) => {
+  // tests depend on Component constructor names, enforce them
+  if (!Component.prototype.constructor.name) {
+    const ReactDOMServer = require('react-dom/server')
+    throw new Error([
+      'Component is not a named function. This should help identify it:',
+      `static _meta = ${JSON.stringify(Component._meta, null, 2)}`,
+      `Rendered:\n${ReactDOMServer.renderToStaticMarkup(<Component />)}`,
+    ].join('\n'))
+  }
+
   const info = _.find(componentInfo, i => i.constructorName === Component.prototype.constructor.name)
   const { _meta, constructorName, componentClassName, filenameWithoutExt, sdClass } = info
 

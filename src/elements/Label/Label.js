@@ -19,7 +19,7 @@ import Image from '../Image/Image'
 /**
  * A label displays content classification
  */
-const Label = (props) => {
+function Label(props) {
   const {
     attached, children, color, corner, className, circular, detail, detailLink, floating, horizontal, icon,
     image, link, onClick, onClickDetail, onClickRemove, pointing, removable, ribbon, size, tag, text,

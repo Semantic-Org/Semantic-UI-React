@@ -12,7 +12,7 @@ describe('Fields', () => {
 
   describe('evenlyDivided', () => {
     it('adds the word class for the number of child fields', () => {
-      const children = _.times(_.random(1, 16), () => <FormField />)
+      const children = _.times(_.random(1, 16), (i) => <FormField key={i} />)
       const className = `${numberToWord(children.length)} fields`
 
       shallow(<FormFields evenlyDivided>{children}</FormFields>)
