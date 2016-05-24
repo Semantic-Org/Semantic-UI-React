@@ -39,6 +39,8 @@ describe('extending AutoControlledComponent', () => {
     })
 
     it('sets state for autoControlledProps', () => {
+      consoleUtil.disableOnce()
+
       const autoControlledProps = _.keys(makeProps())
       const randomProp = _.sample(autoControlledProps)
       const randomValue = faker.hacker.verb()
@@ -70,6 +72,8 @@ describe('extending AutoControlledComponent', () => {
     })
 
     it('does not set state for props defined by the parent', () => {
+      consoleUtil.disableOnce()
+
       const props = makeProps()
       const autoControlledProps = _.keys(props)
 
@@ -95,6 +99,8 @@ describe('extending AutoControlledComponent', () => {
 
   describe('initial state', () => {
     it('is derived from autoControlledProps in props', () => {
+      consoleUtil.disableOnce()
+
       const props = makeProps()
       const autoControlledProps = _.keys(props)
 
@@ -114,6 +120,8 @@ describe('extending AutoControlledComponent', () => {
 
   describe('default props', () => {
     it('are applied to state for props in autoControlledProps', () => {
+      consoleUtil.disableOnce()
+
       const props = makeProps()
       const autoControlledProps = _.keys(props)
       const defaultProps = makeDefaultProps(props)
@@ -134,6 +142,8 @@ describe('extending AutoControlledComponent', () => {
     })
 
     it('allows trySetState to work on non-default autoControlledProps', () => {
+      consoleUtil.disableOnce()
+
       const props = makeProps()
       const autoControlledProps = _.keys(props)
       const defaultProps = makeDefaultProps(props)
@@ -155,6 +165,8 @@ describe('extending AutoControlledComponent', () => {
 
   describe('changing props', () => {
     it('sets state for props in autoControlledProps', () => {
+      consoleUtil.disableOnce()
+
       const props = makeProps()
       const autoControlledProps = _.keys(props)
 
@@ -189,6 +201,8 @@ describe('extending AutoControlledComponent', () => {
     })
 
     it('does not set state for default props when changed', () => {
+      consoleUtil.disableOnce()
+
       const props = makeProps()
       const autoControlledProps = _.keys(props)
       const defaultProps = makeDefaultProps(props)
