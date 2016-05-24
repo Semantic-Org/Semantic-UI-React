@@ -2,31 +2,20 @@ import React, { Component } from 'react'
 import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
 import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
 
-export default class CheckboxTypesExamples extends Component {
+export default class AccordionTypesExamples extends Component {
   render() {
     return (
       <ExampleSection title='Types'>
         <ComponentExample
-          title='Checkbox'
-          description='A box for checking.'
-          examplePath='modules/Checkbox/Types/Checkbox'
+          title='Accordion'
+          description='A standard Accordion.'
+          examplePath='modules/Accordion/Types/Accordion'
         />
         <ComponentExample
-          title='Toggle'
-          description='A checkbox can toggle.'
-          examplePath='modules/Checkbox/Types/Toggle'
+          title='Styled'
+          description='A styled accordion adds basic formatting'
+          examplePath='modules/Accordion/Types/Styled'
         />
-        <ComponentExample
-          title='Slider'
-          description='A checkbox can look like a slider.'
-          examplePath='modules/Checkbox/Types/Slider'
-        />
-        <ComponentExample
-          title='Radio'
-          description='A checkbox can be formatted as a radio element. This means it is an exclusive option.'
-          examplePath='modules/Checkbox/Types/Radio'
-        />
-        <ComponentExample examplePath='modules/Checkbox/Types/RadioGroup' />
       </ExampleSection>
     )
   }
