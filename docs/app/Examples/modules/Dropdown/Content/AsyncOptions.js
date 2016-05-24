@@ -47,12 +47,11 @@ export default class DropdownAsyncOptions extends Component {
           disabled={isFetching}
           loading={isFetching}
         />
-        <p>
-          <label>
-            <input type='checkbox' value={search} onChange={this.toggleSearch} />
-            {' '}Search
-          </label>
-        </p>
+        {' '}
+        <label>
+          <input type='checkbox' checked={search} onChange={this.toggleSearch} />
+          {' '}Search
+        </label>
         <pre>{JSON.stringify(this.state, null, 2)}</pre>
       </div>
     )
