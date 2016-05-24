@@ -37,7 +37,6 @@ function Label(props) {
     color,
     useKeyOnly(floating, 'floating'),
     useKeyOnly(horizontal, 'horizontal'),
-    useKeyOnly(pointing, 'pointing'),
     useKeyOnly(tag, 'tag'),
     useValueAndKey(attached, 'attached'),
     useValueAndKey(corner, 'corner'),
