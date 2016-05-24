@@ -9,7 +9,7 @@ import Dropdown from '../../modules/Dropdown/Dropdown'
  * A <Select /> is sugar for <Dropdown selection />.
  * @see Dropdown
  */
-const Select = ({ className, ...rest }) => {
+function Select({ className, ...rest }) {
   const classes = cx('sd-select', className)
 
   return <Dropdown {...rest} className={classes} selection />
