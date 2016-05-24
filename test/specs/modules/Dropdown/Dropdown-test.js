@@ -21,11 +21,11 @@ const wrapperMount = (node, opts) => {
   attachTo = document.createElement('div')
   document.body.appendChild(attachTo)
 
-  wrapper = global.mount(node, { ...opts, attachTo })
+  wrapper = mount(node, { ...opts, attachTo })
   return wrapper
 }
-const wrapperShallow = (...args) => (wrapper = global.shallow(...args))
-const wrapperRender = (...args) => (wrapper = global.render(...args))
+const wrapperShallow = (...args) => (wrapper = shallow(...args))
+const wrapperRender = (...args) => (wrapper = render(...args))
 
 // ----------------------------------------
 // Options
@@ -51,9 +51,6 @@ const dropdownMenuIsOpen = () => {
   wrapper.should.have.className('visible')
   menu.should.have.className('visible')
 }
-
-options = getOptions()
-defaultProps = { options }
 
 describe('Dropdown Component', () => {
   beforeEach(() => {
@@ -720,12 +717,15 @@ describe('Dropdown Component', () => {
     })
 
     it('still allows moving selection after blur/focus', () => {
+      // open, first item is selected
       const search = wrapperMount(<Dropdown {...defaultProps} search />)
         .find('input.search')
+        .simulate('focus')
 
-      // open, first item is selected
+      domEvent.keyDown(document, { key: 'ArrowDown' })
+      dropdownMenuIsOpen()
+
       const items = wrapper
-        .simulate('click')
         .find('DropdownItem')
 
       items
