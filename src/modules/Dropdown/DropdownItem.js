@@ -6,7 +6,7 @@ import { someChildType } from '../../utils/childrenUtils'
 import { useKeyOnly } from '../../utils/propUtils'
 import META from '../../utils/Meta'
 
-const DropdownItem = (props) => {
+function DropdownItem(props) {
   const {
     active,
     children,
