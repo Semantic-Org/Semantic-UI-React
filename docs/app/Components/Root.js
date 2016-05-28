@@ -28,7 +28,6 @@ export default class Root extends Component {
   state = { menuSearch: '' }
 
   render() {
-    const { children, location, params, route, routeParams } = this.props
     const components = _.map(stardust, '_meta')
       .sort(({ name }) => name)
       .map(_meta => (
