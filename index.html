@@ -1,1 +1,8 @@
-<!DOCTYPE html><html><head><title>Stardust</title></head><body><div id="root"></div><script type="text/javascript" src="vendor.f16b4f18d10ea4c5d468.js"></script><script type="text/javascript" src="app.53dc38431b113dc7b502.js"></script></body></html>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>Stardust</title><script>// Apply gh-pages SPA redirect that was applied in 404.html
+    (function() {
+      var ghPagesRedirect = sessionStorage.ghPagesRedirect
+      delete sessionStorage.ghPagesRedirect
+      if (ghPagesRedirect && ghPagesRedirect !== location.href) {
+        history.replaceState(null, null, ghPagesRedirect)
+      }
+    })()</script></head><body><script type="text/javascript" src="vendor.0d1d0a5eef7e4b00094e.js"></script><script type="text/javascript" src="app.583dd471eaa1e4f4e929.js"></script></body></html>
