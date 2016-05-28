@@ -4,10 +4,12 @@
 [![Code Climate](https://img.shields.io/codeclimate/github/TechnologyAdvice/stardust.svg?style=flat-square)](https://codeclimate.com/github/TechnologyAdvice/stardust)
 [![Gemnasium](https://img.shields.io/gemnasium/TechnologyAdvice/stardust.svg?style=flat-square)](https://gemnasium.com/TechnologyAdvice/stardust)
 
-The (soon to be) [official][8] integration between [Semantic UI][5] and [React][3].
+The [official][8] integration between [Semantic UI][5] and [React][3].
 
 ## Getting Started
 Hey, we're in development. Minor versions may introduce **breaking changes until the [v1.0][6] release**.
+
+>There are [big changes][11] taking place while we [migrate to SUI-Org][12].
 
 ### Installation
 
@@ -28,6 +30,19 @@ export default class TryStardust extends Component {
   }
 }
 ```
+
+## Our Principles
+
+[TechnologyAdvice][9] has been [dogfooding][10] Stardust in production since fall of 2015.  This living list is updated as we iterate.  We'll lock it in as our v1.0 constitution soon.
+
+- No jQuery dependency
+- No animation dependencies
+- Reuse SUI CSS transitions
+- Complete keyboard support
+- Complete SUI component definition support
+- Completely documented
+- Completely tested
+- Abstract away HTML markup intricacies
 
 ## Support
 
@@ -125,6 +140,11 @@ On the latest clean `master`:
 
 Before submitting PRs please review our [Component Guidelines][1] and [Roadmap][4].
 
+## Credit
+
+Originally created with :heart: at [TechnologyAdvice][9].
+
+
 [1]: https://github.com/TechnologyAdvice/stardust/blob/master/docs/app/ComponentGuidelines.md
 [2]: https://technologyadvice.github.io/stardust/
 [3]: https://facebook.github.io/react/
@@ -133,3 +153,7 @@ Before submitting PRs please review our [Component Guidelines][1] and [Roadmap][
 [6]: https://github.com/TechnologyAdvice/stardust/blob/master/ROADMAP.md#v1.0
 [7]: https://github.com/webpack/webpack-dev-server/
 [8]: https://github.com/TechnologyAdvice/stardust/issues/243
+[9]: https://github.com/TechnologyAdvice
+[10]: https://en.wikipedia.org/wiki/Eating_your_own_dog_food
+[11]: https://github.com/TechnologyAdvice/stardust/issues/247
+[12]: https://github.com/TechnologyAdvice/stardust/issues/243
