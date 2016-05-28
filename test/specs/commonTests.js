@@ -117,6 +117,10 @@ export const isConformant = (Component, requiredProps = {}) => {
       [`data-${_.kebabCase(faker.hacker.noun())}`]: faker.hacker.verb(),
     }
 
+    // descendants() accepts an enzyme <selector>
+    // props should be spread on some descendant
+    // we find the descendant with spread props via a matching props object selector
+    // we do not test Component for props, of course they exist as we are spreading them
     shallow(<Component {...requiredProps} {...props} />)
       .should.have.descendants(props)
   })

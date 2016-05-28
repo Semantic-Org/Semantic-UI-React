@@ -35,7 +35,7 @@ const webpackHotMiddlewareEntry = `webpack-hot-middleware/client?${_.map({
 }, (val, key) => `&${key}=${val}`).join('')}`
 
 const APP_ENTRY = [
-  paths.docsSrc('DocsApp.js'),
+  paths.docsSrc('index.js'),
 ]
 
 webpackConfig.entry = __DEV__ ? {
