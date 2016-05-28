@@ -1,9 +1,20 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
   <title>Stardust</title>
+  <script>
+    // Apply gh-pages SPA redirect that was applied in 404.html
+    (function() {
+      var ghPagesRedirect = sessionStorage.ghPagesRedirect
+      delete sessionStorage.ghPagesRedirect
+      if (ghPagesRedirect && ghPagesRedirect !== location.href) {
+        history.replaceState(null, null, ghPagesRedirect)
+      }
+    })()
+  </script>
 </head>
 <body>
-  <div id="root"></div>
+
 </body>
 </html>
