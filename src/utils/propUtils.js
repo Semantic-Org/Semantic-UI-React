@@ -5,32 +5,14 @@ import React, { Children } from 'react'
 import Icon from '../elements/Icon/Icon'
 import Image from '../elements/Image/Image'
 
-/**
- * Selects all of the props specified in pluginPropTypes
- * @param {object} props React.Component props
- * @param {object} pluginPropTypes SemanticUI related plugin props
- * @returns {object} keys are the filtered props, values are the prop values
- */
-export const getPluginProps = (props, pluginPropTypes) => {
-  return _.pick(props, _.keys(pluginPropTypes))
-}
-
-/**
- * Filters out all of the props specified in pluginPropTypes
- * @param {object} props React.Component props
- * @param {object} pluginPropTypes SemanticUI related plugin props
- * @returns {object} keys are the filtered props, values are the prop values
- */
-export const getComponentProps = (props, pluginPropTypes) => {
-  return _.omit(props, _.keys(pluginPropTypes))
-}
-
+// ===============================================================
+// Custom PropTypes
+// ===============================================================
 export const customPropTypes = {
-  /*
-   * Ensures children are of a set of types
+  /**
+   * Ensures children are of a set of types.
    * Similar to `oneOfType` built-in validator
-   * @param {Array<string>} allowedTypes Collection of allowed Stardust component types
-   * @returns {Array} containing children of the specified type
+   * @param {String[]} allowedTypes Collection of allowed Stardust component types
    */
   ofComponentTypes: (allowedTypes) => {
     return (props, propName, componentName) => {
@@ -45,11 +27,9 @@ export const customPropTypes = {
       }
     }
   },
-  /*
+  /**
    * Verifies exclusivity of a given prop
    * @param {string} exclusives property used for exclusivity check
-   * @throws {Error} if named prop not mutually exclusive
-   * @returns no-op
    */
   mutuallyExclusive: exclusives => {
     return (props, propName, componentName) => {
@@ -64,15 +44,38 @@ export const customPropTypes = {
   },
 }
 
-// ------------------------------------
+// ===============================================================
+// Instance Utils
+// ===============================================================
+/**
+ * Returns an object consisting of props beyond the scope of the Component.
+ * Useful for getting and spreading unknown props from the user.
+ * @param {*} Component A React.Component.
+ * @param {*} props Props from a React.Component instance.
+ * @returns {{}} A shallow copy of the prop object
+ */
+export const getUnhandledProps = (Component, props) => {
+  const handledProps = _.union(
+    Component.autoControlledProps,
+    _.keys(Component.defaultProps),
+    _.keys(Component.propTypes),
+  )
+
+  return _.omit(props, handledProps)
+}
+
+// ----------------------------------------
 // Prop Renderers
-// ------------------------------------
+//
+// Many components share many props. Some of those props should be smart.
+// These give all our components props consistent smart capabilities.
+// ----------------------------------------
 export const iconPropRenderer = (val) => _.isString(val) ? <Icon className={val} /> : val
 export const imagePropRenderer = (val) => _.isString(val) ? <Image src={val} /> : val
 
-// ------------------------------------
+// ----------------------------------------
 // Prop To Class Name
-// ------------------------------------
+//
 // There are 4 prop patterns used to build up the className for a component.
 // Each utility here is meant for use in a classnames() argument.
 //
@@ -80,6 +83,7 @@ export const imagePropRenderer = (val) => _.isString(val) ? <Image src={val} /> 
 // Use the prop value inline instead.
 //   <Label size='big' />
 //   <div class="ui big label"></div>
+// ----------------------------------------
 
 /**
  * Props where only the prop key is used in the className.
@@ -89,8 +93,6 @@ export const imagePropRenderer = (val) => _.isString(val) ? <Image src={val} /> 
  * @example
  * <Label tag />
  * <div class="ui tag label"></div>
- *
- * @returns {false|string}
  */
 export const useKeyOnly = (val, key) => val && key
 
@@ -102,8 +104,6 @@ export const useKeyOnly = (val, key) => val && key
  * @example
  * <Label corner='left' />
  * <div class="ui left corner label"></div>
- *
- * @returns {false|string}
  */
 export const useValueAndKey = (val, key) => val && val !== true && `${val} ${key}`
 
@@ -119,7 +119,5 @@ export const useValueAndKey = (val, key) => val && val !== true && `${val} ${key
  * @example Key and Value
  * <Label pointing='left' />
  * <div class="ui left pointing label"></div>
- *
- * @returns {false|string}
  */
 export const useKeyOrValueAndKey = (val, key) => val && (val === true ? key : `${val} ${key}`)

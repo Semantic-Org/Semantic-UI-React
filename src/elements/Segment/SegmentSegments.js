@@ -13,7 +13,7 @@ export default class SegmentSegments extends Component {
      */
     children: customPropTypes.ofComponentTypes([
       'Segment',
-      'Segments',
+      'SegmentSegments',
       'H1', 'H2', 'H3', 'H4', 'H5', 'H6',
       'Subheader',
       'Message',

@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import classNames from 'classnames'
-import getUnhandledProps from '../../utils/getUnhandledProps'
+import { getUnhandledProps } from '../../utils/propUtils'
 import META from '../../utils/Meta'
 
 export default class StatisticLabel extends Component {
@@ -23,7 +23,7 @@ export default class StatisticLabel extends Component {
       'label',
     )
 
-    const props = getUnhandledProps(this)
+    const props = getUnhandledProps(StatisticLabel, this.props)
 
     return (
       <div {...props} className={classes}>

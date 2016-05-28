@@ -1,7 +1,8 @@
 import _ from 'lodash'
 import React, { Children, Component, PropTypes } from 'react'
 import classNames from 'classnames'
-import getUnhandledProps from '../../utils/getUnhandledProps'
+
+import { getUnhandledProps } from '../../utils/propUtils'
 import numberToWord from '../../utils/numberToWord'
 import META from '../../utils/Meta.js'
 
@@ -38,7 +39,7 @@ export default class FormFields extends Component {
       numberToWord(fieldCount),
       'fields'
     )
-    const props = getUnhandledProps(this)
+    const props = getUnhandledProps(FormFields, this.props)
     return (
       <div {...props} className={classes}>
         {this.props.children}
