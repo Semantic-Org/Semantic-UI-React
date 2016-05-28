@@ -10,6 +10,7 @@
 
 **Merged pull requests:**
 
+- User prop spreading util [\#250](https://github.com/TechnologyAdvice/stardust/pull/250) ([levithomason](https://github.com/levithomason))
 - Setup doc site router [\#249](https://github.com/TechnologyAdvice/stardust/pull/249) ([levithomason](https://github.com/levithomason))
 - Update README [\#248](https://github.com/TechnologyAdvice/stardust/pull/248) ([levithomason](https://github.com/levithomason))
 - Setup coverage [\#245](https://github.com/TechnologyAdvice/stardust/pull/245) ([levithomason](https://github.com/levithomason))
