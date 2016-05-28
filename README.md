@@ -42,7 +42,6 @@ export default class TryStardust extends Component {
 - Complete SUI component definition support
 - Completely documented
 - Completely tested
-- Simple high-level component APIs
 - Abstract away HTML markup intricacies
 
 ## Support
