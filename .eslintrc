@@ -4,10 +4,11 @@
     "ta/frontend"
   ],
   "rules": {
+    "complexity": [1, 10],
     "consistent-return": 0,
     "no-confusing-arrow": 0,
     "react/sort-comp": 1,
-    "valid-jsdoc": 1
+    "valid-jsdoc": 0
   },
   "globals": {
     "__DEV__": false,
