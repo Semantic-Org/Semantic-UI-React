@@ -10,6 +10,7 @@
 
 **Merged pull requests:**
 
+- Setup doc site router [\#249](https://github.com/TechnologyAdvice/stardust/pull/249) ([levithomason](https://github.com/levithomason))
 - Update README [\#248](https://github.com/TechnologyAdvice/stardust/pull/248) ([levithomason](https://github.com/levithomason))
 - Setup coverage [\#245](https://github.com/TechnologyAdvice/stardust/pull/245) ([levithomason](https://github.com/levithomason))
 - Use enzyme in all tests [\#244](https://github.com/TechnologyAdvice/stardust/pull/244) ([levithomason](https://github.com/levithomason))
