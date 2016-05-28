@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import classNames from 'classnames'
-import getUnhandledProps from '../../utils/getUnhandledProps'
+
+import { getUnhandledProps } from '../../utils/propUtils'
 import META from '../../utils/Meta'
 
 export default class StatisticValue extends Component {
@@ -23,7 +24,7 @@ export default class StatisticValue extends Component {
       'value',
     )
 
-    const props = getUnhandledProps(this)
+    const props = getUnhandledProps(StatisticValue, this.props)
 
     return (
       <div {...props} className={classes}>

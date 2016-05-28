@@ -3,35 +3,13 @@ import $ from 'jquery'
 import React, { Component, PropTypes } from 'react'
 import classNames from 'classnames'
 import META from '../../utils/Meta'
-import { getPluginProps, getComponentProps } from '../../utils/propUtils'
+import { getUnhandledProps } from '../../utils/propUtils'
 import { deprecateProps } from '../../utils/deprecate'
 import FormField from './FormField'
 import FormFields from './FormFields'
 
-const pluginPropTypes = {
-  // form settings
-  keyboardShortcuts: PropTypes.bool,
-  on: PropTypes.oneOf([
-    'blur',
-    'change',
-    'submit',
-  ]),
-  revalidate: PropTypes.bool,
-  delay: PropTypes.bool,
-  inline: PropTypes.bool,
-  transition: PropTypes.string,
-  duration: PropTypes.number,
-  // callbacks
-  onValid: PropTypes.func,
-  onInvalid: PropTypes.func,
-  onSuccess: PropTypes.func,
-  onFailure: PropTypes.func,
-  fields: PropTypes.object,
-}
-
 export default class Form extends Component {
   static propTypes = {
-    ...pluginPropTypes,
     children: PropTypes.node,
     className: PropTypes.string,
     settings: PropTypes.shape({
@@ -39,6 +17,25 @@ export default class Form extends Component {
       inline: PropTypes.bool,
       fields: PropTypes.object,
     }),
+
+    // form settings
+    keyboardShortcuts: PropTypes.bool,
+    on: PropTypes.oneOf([
+      'blur',
+      'change',
+      'submit',
+    ]),
+    revalidate: PropTypes.bool,
+    delay: PropTypes.bool,
+    inline: PropTypes.bool,
+    transition: PropTypes.string,
+    duration: PropTypes.number,
+    // callbacks
+    onValid: PropTypes.func,
+    onInvalid: PropTypes.func,
+    onSuccess: PropTypes.func,
+    onFailure: PropTypes.func,
+    fields: PropTypes.object,
   }
 
   static defaultProps = {
@@ -81,7 +78,13 @@ export default class Form extends Component {
 
   refresh() {
     this.element = $(this.refs.element)
-    this.element.form(getPluginProps(this.props, pluginPropTypes))
+    this.element.form(_.pick(this.props, [
+      'keyboardShortcuts',
+      // validation
+      'delay', 'duration', 'fields', 'on', 'inline', 'revalidate', 'transition',
+      // callbacks
+      'onValid', 'onInvalid', 'onSuccess', 'onFailure',
+    ]))
   }
 
   serializeJson = () => {
@@ -120,7 +123,7 @@ export default class Form extends Component {
       this.props.className,
       'form'
     )
-    const props = getComponentProps(this.props, pluginPropTypes)
+    const props = getUnhandledProps(Form, this.props)
     return (
       <form {...props} className={classes} ref='element'>
         {this.props.children}

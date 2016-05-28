@@ -2,7 +2,7 @@ import _ from 'lodash'
 import classNames from 'classnames'
 import React, { Component, PropTypes, Children } from 'react'
 import META from '../../utils/Meta'
-import getUnhandledProps from '../../utils/getUnhandledProps'
+import { getUnhandledProps } from '../../utils/propUtils'
 import Icon from '../../elements/Icon/Icon'
 
 export default class Input extends Component {
@@ -10,6 +10,7 @@ export default class Input extends Component {
     children: PropTypes.node,
     className: PropTypes.string,
     icon: PropTypes.string,
+    type: PropTypes.string,
   }
 
   static defaultProps = {
@@ -23,20 +24,21 @@ export default class Input extends Component {
   }
 
   render() {
+    const { className, children, icon, type } = this.props
     // Semantic supports actions and labels on either side of an input.
     // The element must be on the same side as the indicated class.
     // We first determine the left/right classes for each type of child,
     //   then we extract the children and place them on the correct side
     //   of the input.
-    const isLeftAction = _.includes(this.props.className, 'left action')
-    const isRightAction = !isLeftAction && _.includes(this.props.className, 'action')
-    const isRightLabeled = _.includes(this.props.className, 'right labeled')
-    const isLeftLabeled = !isRightLabeled && _.includes(this.props.className, 'labeled')
+    const isLeftAction = _.includes(className, 'left action')
+    const isRightAction = !isLeftAction && _.includes(className, 'action')
+    const isRightLabeled = _.includes(className, 'right labeled')
+    const isLeftLabeled = !isRightLabeled && _.includes(className, 'labeled')
 
     const labelChildren = []
     const actionChildren = []
 
-    Children.forEach(this.props.children, child => {
+    Children.forEach(children, child => {
       const isButton = child.type.name === 'Button'
       const isDropdown = child.type.name === 'Dropdown'
       // TODO: use child.type.name === 'Label' once Label component is merged.
@@ -50,22 +52,20 @@ export default class Input extends Component {
       }
     })
 
-    const icon = <Icon className={this.props.icon} />
     const classes = classNames(
       'sd-input',
       'ui',
-      this.props.className,
+      className,
       'input'
     )
-    const props = getUnhandledProps(this)
-    delete props.children
+    const props = getUnhandledProps(Input, this.props)
 
     return (
       <div className={classes}>
         {isLeftLabeled && labelChildren}
         {isLeftAction && actionChildren}
-        <input {...props} />
-        {this.props.icon && icon}
+        <input {...props} type={type} />
+        {icon && <Icon className={icon} />}
         {isRightLabeled && labelChildren}
         {isRightAction && actionChildren}
       </div>

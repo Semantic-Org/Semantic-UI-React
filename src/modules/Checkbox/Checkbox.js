@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import META from '../../utils/Meta'
-import getUnhandledProps from '../../utils/getUnhandledProps'
+import { getUnhandledProps } from '../../utils/propUtils'
 import React, { Component, PropTypes } from 'react'
 import classNames from 'classnames'
 import $ from 'jquery'
@@ -54,6 +54,11 @@ export default class Checkbox extends Component {
     type: META.type.module,
   }
 
+  handleChange = (e) => {
+    const { onChange } = this.props
+    if (onChange) onChange(e)
+  }
+
   plugin(...args) {
     return this.element.checkbox(...args)
   }
@@ -72,10 +77,10 @@ export default class Checkbox extends Component {
       { fitted: !this.props.label },
       'checkbox'
     )
-    const props = getUnhandledProps(this)
+    const props = getUnhandledProps(Checkbox, this.props)
     return (
       <div className={classes} ref='element'>
-        <input {...props} type={type} />
+        <input {...props} type={type} onChange={this.handleChange} />
         <label>{this.props.label}</label>
       </div>
     )
