@@ -47,27 +47,9 @@ export default class Root extends Component {
           <DocsMenu />
         </div>
         <div style={style.main}>
-          {location.pathname !== '' ? (
-            <div>
-              {/* TODO will cleanup, debug to prove router works */}
-              <h1>router:</h1>
-              <pre>{JSON.stringify(this.context.router, null, 2)}</pre>
-              <h1>location:</h1>
-              <pre>{JSON.stringify(location, null, 2)}</pre>
-              <h1>params:</h1>
-              <pre>{JSON.stringify(params, null, 2)}</pre>
-              <h1>route:</h1>
-              <pre>{JSON.stringify(route, null, 2)}</pre>
-              <h1>routeParams:</h1>
-              <pre>{JSON.stringify(routeParams, null, 2)}</pre>
-              <h1>children:</h1>
-              {children}
-            </div>
-          ) : (
-            <Grid className='vertically divided padded'>
-              {components}
-            </Grid>
-          )}
+          <Grid className='vertically divided padded'>
+            {components}
+          </Grid>
         </div>
       </div>
     )
