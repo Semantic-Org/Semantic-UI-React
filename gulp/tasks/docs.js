@@ -21,8 +21,8 @@ task('generate-docs-json', () => {
     `${config.paths.src()}/modules/**/*.js`,
     `${config.paths.src()}/views/**/*.js`,
   ])
-    // do not remove the function keyword
-    // we need 'this' scope here
+  // do not remove the function keyword
+  // we need 'this' scope here
     .pipe(g.plumber(function handleError(err) {
       log(err.toString())
       this.emit('end')
@@ -55,4 +55,9 @@ task('webpack-docs', (cb) => {
   })
 })
 
-task('docs', series('clean-docs', 'generate-docs-json', 'webpack-docs'))
+task('docs-html', (cb) => {
+  return src(config.paths.docsSrc('404.html'))
+    .pipe(dest(config.paths.docsDist()))
+})
+
+task('docs', series('clean-docs', 'generate-docs-json', 'webpack-docs', 'docs-html'))
