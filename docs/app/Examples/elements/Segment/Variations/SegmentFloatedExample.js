@@ -5,10 +5,10 @@ export default class SegmentFloatedExample extends Component {
   render() {
     return (
       <div>
-        <Segment className='floated right'>
+        <Segment className='right floated'>
           This segment will appear to the right
         </Segment>
-        <Segment className='floated left'>
+        <Segment className='left floated'>
           This segment will appear to the left
         </Segment>
       </div>
