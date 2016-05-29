@@ -4,12 +4,28 @@
 
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.12.4...HEAD)
 
+**Implemented enhancements:**
+
+- Warn when duplicating classes [\#96](https://github.com/TechnologyAdvice/stardust/issues/96)
+- Add toggle button functionality [\#43](https://github.com/TechnologyAdvice/stardust/issues/43)
+- Use local modules in dev [\#29](https://github.com/TechnologyAdvice/stardust/issues/29)
+- Add animation to Modal Show AND Modal Hide [\#13](https://github.com/TechnologyAdvice/stardust/issues/13)
+
 **Fixed bugs:**
 
 - Doc site is broken [\#238](https://github.com/TechnologyAdvice/stardust/issues/238)
+- \[Segment\] Right floated segment not floating [\#120](https://github.com/TechnologyAdvice/stardust/issues/120)
+
+**Closed issues:**
+
+- Add README bullet points explaining the point of Stardust [\#166](https://github.com/TechnologyAdvice/stardust/issues/166)
+- Set value instead of object for serializing Form data [\#75](https://github.com/TechnologyAdvice/stardust/issues/75)
+- Conformance test for children/description/text props [\#71](https://github.com/TechnologyAdvice/stardust/issues/71)
+- Code coverage [\#63](https://github.com/TechnologyAdvice/stardust/issues/63)
 
 **Merged pull requests:**
 
+- Fix floated Segment examples [\#251](https://github.com/TechnologyAdvice/stardust/pull/251) ([levithomason](https://github.com/levithomason))
 - User prop spreading util [\#250](https://github.com/TechnologyAdvice/stardust/pull/250) ([levithomason](https://github.com/levithomason))
 - Setup doc site router [\#249](https://github.com/TechnologyAdvice/stardust/pull/249) ([levithomason](https://github.com/levithomason))
 - Update README [\#248](https://github.com/TechnologyAdvice/stardust/pull/248) ([levithomason](https://github.com/levithomason))
