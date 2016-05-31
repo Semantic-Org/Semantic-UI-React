@@ -25,6 +25,7 @@
 
 **Merged pull requests:**
 
+- Defensively handle component \_meta [\#252](https://github.com/TechnologyAdvice/stardust/pull/252) ([levithomason](https://github.com/levithomason))
 - Fix floated Segment examples [\#251](https://github.com/TechnologyAdvice/stardust/pull/251) ([levithomason](https://github.com/levithomason))
 - User prop spreading util [\#250](https://github.com/TechnologyAdvice/stardust/pull/250) ([levithomason](https://github.com/levithomason))
 - Setup doc site router [\#249](https://github.com/TechnologyAdvice/stardust/pull/249) ([levithomason](https://github.com/levithomason))
