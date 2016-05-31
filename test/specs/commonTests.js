@@ -19,7 +19,9 @@ const componentInfo = componentCtx.keys().map(key => {
   const filePath = key
   const filename = path.basename(key)
   const filenameWithoutExt = path.basename(key, '.js')
-  const subComponentName = _meta.parent ? _meta.name.replace(_meta.parent, '') : null
+  const subComponentName = _.has(_meta, 'parent') && _.has(_meta, 'name')
+    ? _meta.name.replace(_meta.parent, '')
+    : null
   // HeaderH1 => sd-header-h1
   const sdClass = `sd-${constructorName
     .replace('_', '')                 // remove underscore
@@ -57,10 +59,15 @@ export const isConformant = (Component, requiredProps = {}) => {
     ].join('\n'))
   }
 
-  const info = _.find(componentInfo, i => i.constructorName === Component.prototype.constructor.name)
-  const { _meta, constructorName, componentClassName, filenameWithoutExt, sdClass } = info
-
-  const subComponentName = _meta.parent && _meta.name.replace(_meta.parent, '')
+  // extract componentInfo for this component
+  const {
+    _meta,
+    constructorName,
+    componentClassName,
+    filenameWithoutExt,
+    sdClass,
+    subComponentName,
+  } = _.find(componentInfo, i => i.constructorName === Component.prototype.constructor.name)
 
   // ----------------------------------------
   // Class and file name
@@ -72,8 +79,6 @@ export const isConformant = (Component, requiredProps = {}) => {
   // ----------------------------------------
   // Is exported or private
   // ----------------------------------------
-  const isPrivate = META.isPrivate(constructorName)
-
   // detect components like: stardust.H1
   const isStardustProp = _.has(stardust, constructorName)
 
@@ -82,9 +87,9 @@ export const isConformant = (Component, requiredProps = {}) => {
   // avoid false positives like DropdownItem & MenuItem
   //   which both have sub component names of "Item", and appear
   //   on both Dropdown.Item and Menu.Item (not to mention Stardust.Item)
-  const isSubComponent = _.isFunction(_.get(stardust, `[${_meta.parent}][${subComponentName}]`))
+  const isSubComponent = _.isFunction(_.get(stardust, `[${_.get(_meta, 'parent')}][${subComponentName}]`))
 
-  if (isPrivate) {
+  if (META.isPrivate(constructorName)) {
     it('is not exported as a component nor sub component', () => {
       expect(isStardustProp).to.equal(false,
         `"${constructorName}" is private (starts with  "_").` +
@@ -210,7 +215,7 @@ export const isConformant = (Component, requiredProps = {}) => {
         expect(_meta.name).to.equal(filenameWithoutExt)
       })
     })
-    if ('parent' in _meta) {
+    if (_.has(_meta, 'parent')) {
       describe('parent', () => {
         it('matches some component name', () => {
           expect(_.map(stardust, c => c.prototype.constructor.name)).to.contain(_meta.parent)
