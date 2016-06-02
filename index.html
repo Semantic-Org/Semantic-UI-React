@@ -1,19 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Stardust</title>
-  <script>// Apply gh-pages SPA redirect that was applied in 404.html
-  (function() {
-//    var ghPagesRedirect = sessionStorage.ghPagesRedirect
-//    delete sessionStorage.ghPagesRedirect
-//    if (ghPagesRedirect && ghPagesRedirect !== location.href) {
-//      history.replaceState(null, null, ghPagesRedirect)
-//    }
-  })()</script>
-</head>
-<body>
-  <script type="text/javascript" src="vendor.30aacfdae4504c70def8.js"></script>
-  <script type="text/javascript" src="app.71a224aca797b69945ae.js"></script>
-</body>
-</html>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>Stardust</title><script>// Apply gh-pages SPA redirect that was applied in 404.html
+    (function() {
+      var redirect = sessionStorage.redirect
+      delete sessionStorage.redirect
+      if (redirect && redirect !== location.href) {
+        history.replaceState(null, null, redirect)
+      }
+    })()</script></head><body><script type="text/javascript" src="http://localhost:8080/vendor.bd4b897be954c22e97ba.js"></script><script type="text/javascript" src="http://localhost:8080/app.bd4b897be954c22e97ba.js"></script></body></html>
