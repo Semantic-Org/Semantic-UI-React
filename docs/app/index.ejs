@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!-- baseHref value already includes quotes "/foo" -->
+  <base href=<%= htmlWebpackPlugin.options.baseHref %> />
+  <title>Stardust</title>
+  <script>
+    // Apply gh-pages SPA redirect that was applied in 404.html
+    (function() {
+      var redirect = sessionStorage.redirect
+      delete sessionStorage.redirect
+      if (redirect && redirect !== location.href) {
+        history.replaceState(null, null, redirect)
+      }
+    })()
+  </script>
+</head>
+<body>
+
+</body>
+</html>

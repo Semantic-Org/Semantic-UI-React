@@ -11,7 +11,7 @@ const routes = (
     <Route path='elements'>
       <Route path='button' component={ButtonExamples} />
     </Route>
-    <Route path='*' onEnter={redirect('/')} />
+    <Route path='*' onEnter={redirect(__BASE__)} />
   </Route>
 )
 

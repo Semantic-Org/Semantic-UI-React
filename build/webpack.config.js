@@ -4,7 +4,7 @@ import HtmlWebpackPlugin from 'html-webpack-plugin'
 import _ from 'lodash'
 
 const { paths } = config
-const { __DEV__, __TEST__ } = config.compiler_globals
+const { __BASE__, __DEV__, __TEST__ } = config.compiler_globals
 
 const webpackConfig = {
   name: 'client',
@@ -73,7 +73,8 @@ webpackConfig.plugins = [
     'window.jQuery': 'jquery',
   }),
   new HtmlWebpackPlugin({
-    template: paths.docsSrc('index.html'),
+    template: paths.docsSrc('index.ejs'),
+    baseHref: __BASE__,
     hash: false,
     filename: 'index.html',
     inject: 'body',

@@ -6,6 +6,7 @@ const __DEV__ = env === 'development'
 const __STAGING__ = env === 'staging'
 const __TEST__ = env === 'test'
 const __PROD__ = env === 'production'
+const __BASE__ = '/'
 
 let config = {
   env,
@@ -57,7 +58,7 @@ config = {
   compiler_lint: argv.lint !== false,
   compiler_quiet: false,
   compiler_output_path: paths.base(config.dir_docs_dist),
-  compiler_public_path: '/',
+  compiler_public_path: __BASE__,
   compiler_vendor: [
     'bluebird',
     'classnames',
@@ -93,6 +94,7 @@ config = {
         NODE_ENV: JSON.stringify(env),
       },
     },
+    __BASE__: JSON.stringify(__BASE__),
     __DEV__,
     __DEBUG__: !!argv.debug,
     __STAGING__,

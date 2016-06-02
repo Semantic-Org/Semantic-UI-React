@@ -1,12 +1,17 @@
 import React, { Component } from 'react'
-import { Router, browserHistory } from 'react-router'
+import { Router, useRouterHistory } from 'react-router'
+import { createHistory } from 'history'
 
 import routes from './routes'
+
+const history = useRouterHistory(createHistory)({
+  basename: __BASE__,
+})
 
 export default class App extends Component {
   render() {
     return (
-      <Router history={browserHistory} routes={routes} />
+      <Router history={history} routes={routes} />
     )
   }
 }
