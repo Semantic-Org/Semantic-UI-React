@@ -7,12 +7,12 @@ import WebpackHotMiddleware from 'webpack-hot-middleware'
 import historyApiFallback from 'connect-history-api-fallback'
 
 import config from '../../config'
-import webpackConfig from '../../build/webpack.config'
 
 const g = loadPlugins()
 const { log, colors } = g.util
 
 const serve = (cb) => {
+  const webpackConfig = require('../../build/webpack.config').default
   const app = express()
   const compiler = webpack(webpackConfig)
 
@@ -39,4 +39,4 @@ const serve = (cb) => {
     })
 }
 
-task('serve', series('clean-docs', 'generate-docs-json', serve))
+task('serve', series('dll', serve))

@@ -10,3 +10,4 @@ coverage/
 dist/
 docs/build
 docs/app/docgenInfo.json
+dll/

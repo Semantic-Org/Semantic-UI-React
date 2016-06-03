@@ -1,10 +1,9 @@
 import del from 'del'
-import { task, src, dest, series } from 'gulp'
+import { task, src, dest, parallel, series } from 'gulp'
 import loadPlugins from 'gulp-load-plugins'
 import webpack from 'webpack'
 
 import config from '../../config'
-import webpackConfig from '../../build/webpack.config'
 
 const g = loadPlugins()
 const { log, PluginError } = g.util
@@ -32,6 +31,7 @@ task('generate-docs-json', () => {
 })
 
 task('webpack-docs', (cb) => {
+  const webpackConfig = require('../../build/webpack.config').default
   const compiler = webpack(webpackConfig)
 
   compiler.run((err, stats) => {
@@ -60,4 +60,11 @@ task('docs-html', (cb) => {
     .pipe(dest(config.paths.docsDist()))
 })
 
-task('docs', series('clean-docs', 'generate-docs-json', 'webpack-docs', 'docs-html'))
+task('docs', series(
+  parallel(
+    'dll',
+    'generate-docs-json',
+    'docs-html'
+  ),
+  'webpack-docs',
+))

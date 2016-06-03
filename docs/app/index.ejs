@@ -4,6 +4,12 @@
   <meta charset="UTF-8">
   <!-- baseHref value already includes quotes "/foo" -->
   <base href=<%= htmlWebpackPlugin.options.baseHref %> />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/<%= htmlWebpackPlugin.options.versions.highlightjs %>/styles/github.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/<%= htmlWebpackPlugin.options.versions.sui %>/semantic.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/Faker/<%= htmlWebpackPlugin.options.versions.faker %>/faker.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/<%= htmlWebpackPlugin.options.versions.jquery %>/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/<%= htmlWebpackPlugin.options.versions.lodash %>/lodash.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/<%= htmlWebpackPlugin.options.versions.sui %>/semantic.min.js"></script>
   <title>Stardust</title>
   <script>
     // Apply gh-pages SPA redirect that was applied in 404.html

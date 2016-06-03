@@ -23,6 +23,8 @@
     "release:minor": "ta-script npm/release.sh minor",
     "release:patch": "ta-script npm/release.sh patch",
     "start": "npm run docs",
+    "start:local-modules": "npm run docs -- --local-modules",
+    "pretest": "gulp dll",
     "test": "NODE_ENV=test babel-node $(npm bin)/karma start build/karma.conf.babel.js",
     "test:watch": "npm run test --silent -- --watch"
   },
