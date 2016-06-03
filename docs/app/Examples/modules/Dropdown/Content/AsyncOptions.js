@@ -12,7 +12,7 @@ export default class DropdownAsyncOptions extends Component {
   componentWillMount() {
     const options = getOptions()
     const value = _.sample(options).value
-    this.setState({ isFetching: false, search: true, value, options })
+    this.setState({ isFetching: false, search: true, multiple: true, value, options })
   }
 
   handleChange = value => this.setState({ value })
@@ -29,29 +29,36 @@ export default class DropdownAsyncOptions extends Component {
 
   selectRandom = () => this.setState({ value: _.sample(this.state.options).value })
   toggleSearch = (e) => this.setState({ search: e.target.checked })
+  toggleMultiple = (e) => this.setState({ multiple: e.target.checked })
 
   render() {
-    const { options, isFetching, search, value } = this.state
+    const { multiple, options, isFetching, search, value } = this.state
 
     return (
       <div>
-        <Button onClick={this.fetchOptions}>Fetch</Button>
-        <Button onClick={this.selectRandom} disabled={_.isEmpty(options)}>Random</Button>
+        <p>
+          <Button onClick={this.fetchOptions}>Fetch</Button>
+          <Button onClick={this.selectRandom} disabled={_.isEmpty(options)}>Random</Button>
+          <label>
+            <input type='checkbox' checked={search} onChange={this.toggleSearch} /> Search
+          </label>
+          {' '}
+          <label>
+            <input type='checkbox' checked={multiple} onChange={this.toggleMultiple} /> Multiple
+          </label>
+        </p>
         <Dropdown
           options={options}
           value={value}
           placeholder='Add Users'
+          multiple={multiple}
           search={search}
           selection
+          fluid
           onChange={this.handleChange}
           disabled={isFetching}
           loading={isFetching}
         />
-        {' '}
-        <label>
-          <input type='checkbox' checked={search} onChange={this.toggleSearch} />
-          {' '}Search
-        </label>
         <pre>{JSON.stringify(this.state, null, 2)}</pre>
       </div>
     )
