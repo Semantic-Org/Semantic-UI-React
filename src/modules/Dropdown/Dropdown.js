@@ -6,7 +6,6 @@ import React, { PropTypes } from 'react'
 
 import META from '../../utils/Meta'
 import { useKeyOnly, useKeyOrValueAndKey } from '../../utils/propUtils'
-import { iconPropRenderer } from '../../utils/propUtils'
 import keyboardKey from '../../utils/keyboardKey'
 import { makeDebugger } from '../../utils/debug'
 import { objectDiff } from '../../utils/utils'
@@ -17,6 +16,7 @@ import DropdownDivider from './DropdownDivider'
 import DropdownItem from './DropdownItem'
 import DropdownMenu from './DropdownMenu'
 import Icon from '../../elements/Icon/Icon'
+import Label from '../../elements/Label/Label'
 
 const debug = makeDebugger('dropdown')
 
@@ -303,10 +303,17 @@ export default class Dropdown extends Component {
     debug.groupEnd()
     if (keyboardKey.getCode(e) !== keyboardKey.Enter) return
     e.preventDefault()
+
+    const { multiple } = this.props
     const value = this.getSelectedValue()
+
     if (!value) return
+
     this.setValue(value)
-    this.onChange(value)
+    // notify the onChange prop that the user is trying to change value
+    this.onChange(this.getValueWith(value))
+
+    if (!multiple) this.close()
   }
 
   closeOnDocumentClick = (e) => {
@@ -332,13 +339,23 @@ export default class Dropdown extends Component {
   }
 
   handleItemClick = (e, value) => {
-    debug.groupCollapsed('handleClickItem()')
+    debug.groupCollapsed('handleItemClick()')
     debug(value)
     debug.groupEnd()
+    const { multiple } = this.props
+
     // prevent toggle() in handleClick()
     e.stopPropagation()
+    // prevent closeOnDocumentClick() if multiple
+    if (multiple) {
+      e.nativeEvent.stopImmediatePropagation()
+    }
+
     this.setValue(value)
-    this.onChange(value)
+    // notify the onChange prop that the user is trying to change value
+    this.onChange(this.getValueWith(value))
+
+    if (!multiple) this.close()
   }
 
   handleFocus = (e) => {
@@ -389,13 +406,23 @@ export default class Dropdown extends Component {
   // ----------------------------------------
 
   getOptions = () => {
-    const { options, search } = this.props
+    const { multiple, options, search } = this.props
     const { searchQuery } = this.state
 
-    if (!search || !searchQuery) return options
+    let _options = options
 
-    const re = new RegExp(_.escapeRegExp(searchQuery), 'i')
-    return _.filter(options, (opt) => re.test(opt.text))
+    // filter out active options
+    if (multiple) {
+      _options = _.filter(_options, opt => !_.includes(this.getValueArray(), opt.value))
+    }
+
+    // filter by search query
+    if (search && searchQuery) {
+      const re = new RegExp(_.escapeRegExp(searchQuery), 'i')
+      _options = _.filter(_options, (opt) => re.test(opt.text))
+    }
+
+    return _options
   }
 
   getSelectedValue = () => {
@@ -406,6 +433,11 @@ export default class Dropdown extends Component {
     return _.get(options, `[${selectedIndex}].value`)
   }
 
+  getItemByValue = (value) => {
+    const { options } = this.props
+    return _.find(options, { value })
+  }
+
   getItemIndexByValue = (value) => {
     debug('getItemIndexByValue()')
     const options = this.getOptions()
@@ -413,23 +445,97 @@ export default class Dropdown extends Component {
     return _.findIndex(options, ['value', value])
   }
 
+  getItemTextByValue = (value) => {
+    return _.get(this.getItemByValue(value), 'text')
+  }
+
+  getValueArray = () => {
+    debug.groupCollapsed('getValueArray()')
+    const { value } = this.state
+    debug('value', value)
+    // when there is no value, splitting it causes an empty string as the first element
+    // concatenating and joining that results in `,foo`
+    // later this splits to `[undefined, 'foo'] we compact to avoid the leading comma
+    const arr = _.compact(_.split(value, ','))
+    debug('arr', arr)
+    debug.groupEnd()
+    return arr
+  }
+
+  getValueWith = (newValue) => {
+    debug.groupCollapsed('getValueWith()')
+    const { multiple } = this.props
+    debug('newValue', newValue)
+
+    if (multiple) {
+      const ret = this.getValueArray().concat(newValue).join(',')
+      debug('is multiple, ret', ret)
+      return ret
+    }
+    debug('is not multiple, ret newValue', newValue)
+
+    debug.groupEnd()
+    return newValue
+  }
+
+  getValueWithout = (removeValue) => {
+    debug.groupCollapsed('getValueWithout()')
+    const { value } = this.state
+    const valueArr = this.getValueArray()
+    const newValue = _.without(valueArr, removeValue).join(',')
+    debug('current value', value)
+    debug('value arr', valueArr)
+    debug('remove value', removeValue)
+    debug('new without', newValue)
+    debug.groupEnd()
+    return newValue
+  }
+
   // ----------------------------------------
   // Setters
   // ----------------------------------------
 
   setValue = (value) => {
-    const { multiple } = this.props
     debug.groupCollapsed('setValue()')
     debug(value)
     debug.groupEnd()
-    this.trySetState({
-      value,
-    }, {
+    const options = this.getOptions()
+    const { multiple } = this.props
+    const { selectedIndex } = this.state
+    const newState = {
       searchQuery: '',
-      selectedIndex: this.getItemIndexByValue(value),
-    })
+    }
 
-    if (!multiple) this.close()
+    // update the selected index
+    if (multiple) {
+      // multiple selects remove options from the menu as they are made active
+      // keep the selected index within range of the remaining items
+      if (selectedIndex >= options.length - 1) {
+        newState.selectedIndex = selectedIndex - 1
+      }
+    } else {
+      // regular selects can only have one active item
+      // set the selected index to the currently active item
+      newState.selectedIndex = this.getItemIndexByValue(value) // || 0
+    }
+
+    this.trySetState({ value }, newState)
+  }
+
+  handleLabelRemove = (e, props) => {
+    debug.groupCollapsed('handleLabelRemove()')
+    // prevent focusing search input on click
+    e.stopPropagation()
+    const { value } = this.state
+    const newValue = this.getValueWithout(props.value)
+    debug('label:', props)
+    debug('current value:', value)
+    debug('remove value:', props.value)
+    debug('new value:', newValue)
+    debug.groupEnd()
+
+    this.setValue(newValue)
+    this.onChange(newValue)
   }
 
   moveSelectionBy = (offset) => {
@@ -506,17 +612,13 @@ export default class Dropdown extends Component {
   // ----------------------------------------
 
   renderText = () => {
-    const { options, search, text } = this.props
+    const { multiple, search, text } = this.props
     const { searchQuery, value } = this.state
 
-    const classes = cx('text', search && searchQuery && 'filtered')
+    if (multiple) return
 
-    let _text
-    if (text) {
-      _text = text
-    } else {
-      _text = !value || searchQuery ? null : _.get(_.find(options, { value }), 'text')
-    }
+    const classes = cx('text', search && searchQuery && 'filtered')
+    const _text = text || ((!value || searchQuery) ? null : this.getItemTextByValue(value))
 
     return <div className={classes}>{_text}</div>
   }
@@ -536,15 +638,14 @@ export default class Dropdown extends Component {
   renderHiddenInput = () => {
     debug.groupCollapsed('renderHiddenInput()')
     const { value } = this.state
-    const { name, onChange, selection } = this.props
+    const { name, selection } = this.props
     debug(`name:      ${name}`)
     debug(`selection: ${selection}`)
     debug(`value:     ${value}`)
     debug.groupEnd()
     if (!selection) return null
-    const _value = Array.isArray(value) ? value.join(',') : value
 
-    return <input type='hidden' name={name} onChange={onChange} value={_value} />
+    return <input type='hidden' name={name} value={value} />
   }
 
   renderSearchInput = () => {
@@ -565,13 +666,37 @@ export default class Dropdown extends Component {
     )
   }
 
-  renderOptions = () => {
-    const { selectedIndex, value } = this.state
-    const _options = this.getOptions()
+  renderLabels = () => {
+    debug('renderLabels()')
+    const { multiple } = this.props
+    const { value } = this.state
+    if (!value || !multiple) {
+      debug('exiting, !value || !multiple')
+      return
+    }
 
-    return _.isEmpty(_options) ? (
+    const items = _.map(this.getValueArray(), this.getItemByValue)
+    debug('items', items)
+
+    return _.map(items, (item) => (
+      <Label
+        key={item.value}
+        text={item.text}
+        value={item.value}
+        onClickRemove={this.handleLabelRemove}
+        link
+      />
+    ))
+  }
+
+  renderOptions = () => {
+    const { search } = this.props
+    const { selectedIndex, value } = this.state
+    const options = this.getOptions()
+
+    return search && _.isEmpty(options) ? (
       <div className='message'>No results found.</div>
-    ) : _.map(_options, (opt, i) => (
+    ) : _.map(options, (opt, i) => (
       <DropdownItem
         key={`${opt.value}-${i}`}
         active={opt.value === value}
@@ -656,10 +781,10 @@ export default class Dropdown extends Component {
         className={classes}
       >
         {this.renderHiddenInput()}
-        {iconPropRenderer()}
+        <Icon className={'dropdown'} />
+        {this.renderLabels()}
         {this.renderSearchInput()}
         {this.renderText()}
-        <Icon className={'dropdown'} />
         {this.renderPlaceholder()}
         <DropdownMenu className={menuClasses} ref='menu'>
           {this.renderOptions()}
