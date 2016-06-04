@@ -565,6 +565,34 @@ describe('Dropdown Component', () => {
         .at(requiredProps.options.length - 2)
         .should.have.prop('selected', true)
     })
+    it('has labels with delete icons', () => {
+      // add a value so we have a label
+      const value = _.head(requiredProps.options).value
+      wrapperRender(<Dropdown {...requiredProps} value={value} multiple />)
+        .should.have.descendants('.label')
+
+      wrapper
+        .find('.label')
+        .should.have.descendants('.delete.icon')
+    })
+    it('calls handleLabelRemove on label delete icon click', () => {
+      // add a value so we have a label
+      const value = _.head(requiredProps.options).value
+      wrapperMount(<Dropdown {...requiredProps} value={value} multiple />)
+
+      const instance = wrapper.instance()
+      sandbox.spy(instance, 'handleLabelRemove')
+
+      wrapper
+        .find('.delete.icon')
+        .simulate('click')
+
+      // TODO why do we need to timeout here in order to wait for the call?
+      setTimeout(() => {
+        instance.handleLabelRemove
+          .should.have.been.calledOnce()
+      }, 0)
+    })
   })
 
   describe('onChange', () => {

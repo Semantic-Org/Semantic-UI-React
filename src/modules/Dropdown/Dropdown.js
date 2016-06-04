@@ -683,7 +683,7 @@ export default class Dropdown extends Component {
         key={item.value}
         text={item.text}
         value={item.value}
-        onClickRemove={this.handleLabelRemove}
+        onRemove={this.handleLabelRemove}
         link
       />
     ))
