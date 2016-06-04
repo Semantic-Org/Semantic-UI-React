@@ -53,9 +53,6 @@ DropdownItem._meta = {
 }
 
 DropdownItem.propTypes = {
-  // TODO: filter private methods out of docs or support @private tags
-  __onClick: PropTypes.func,
-
   /** Style as the currently chosen item. */
   active: PropTypes.bool,
 
