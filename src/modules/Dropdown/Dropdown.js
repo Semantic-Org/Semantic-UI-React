@@ -66,16 +66,16 @@ export default class Dropdown extends Component {
      * Current value, creates a controlled component.
      * This is always an array for simplicity between single and multiple dropdown types.
      */
-    value: PropTypes.arrayOf([
+    value: PropTypes.arrayOf(PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.number,
-    ]),
+    ])),
 
     /** Initial value or value array if multiple. */
-    defaultValue: PropTypes.arrayOf([
+    defaultValue: PropTypes.arrayOf(PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.number,
-    ]),
+    ])),
 
     /** Placeholder text. */
     placeholder: PropTypes.string,
@@ -587,7 +587,7 @@ export default class Dropdown extends Component {
     const { placeholder, search } = this.props
     const { searchQuery, value } = this.state
 
-    if (value || !placeholder) return null
+    if (!_.isEmpty(value) || !placeholder) return null
     const classes = cx('default text', search && searchQuery && 'filtered')
 
     return <div className={classes}>{placeholder}</div>
