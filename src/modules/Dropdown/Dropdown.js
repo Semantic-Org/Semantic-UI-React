@@ -62,24 +62,19 @@ export default class Dropdown extends Component {
     /** Initial value of open. */
     defaultOpen: PropTypes.bool,
 
-    /** Current value, creates a controlled component. */
-    value: PropTypes.oneOfType([
+    /**
+     * Current value, creates a controlled component.
+     * This is always an array for simplicity between single and multiple dropdown types.
+     */
+    value: PropTypes.arrayOf([
       PropTypes.string,
       PropTypes.number,
-      PropTypes.arrayOf([
-        PropTypes.string,
-        PropTypes.number,
-      ]),
     ]),
 
-    /** Must match one of the option values. */
-    defaultValue: PropTypes.oneOfType([
+    /** Initial value or value array if multiple. */
+    defaultValue: PropTypes.arrayOf([
       PropTypes.string,
       PropTypes.number,
-      PropTypes.arrayOf([
-        PropTypes.string,
-        PropTypes.number,
-      ]),
     ]),
 
     /** Placeholder text. */
@@ -171,13 +166,9 @@ export default class Dropdown extends Component {
     const { open, options } = this.props
     const { value } = this.state
 
-    const selectedIndex = this.getItemIndexByValue(value || _.get(options, '[0].value'))
+    const selectedIndex = this.getItemIndexByValue(_.head(value) || _.get(options, '[0].value'))
 
-    this.trySetState({
-      value,
-    }, {
-      selectedIndex,
-    })
+    this.trySetState({ value }, { selectedIndex })
 
     if (open) this.open()
   }
@@ -193,7 +184,7 @@ export default class Dropdown extends Component {
     debug('changed props:', objectDiff(nextProps, this.props))
     debug.groupEnd()
 
-    if (nextProps.value !== this.state.value) {
+    if (!_.isEqual(nextProps.value, this.state.value)) {
       this.setValue(nextProps.value)
     }
   }
@@ -305,15 +296,19 @@ export default class Dropdown extends Component {
     e.preventDefault()
 
     const { multiple } = this.props
-    const value = this.getSelectedValue()
+    const value = this.getSelectedItemValue()
 
     if (!value) return
 
-    this.setValue(value)
-    // notify the onChange prop that the user is trying to change value
-    this.onChange(this.getValueWith(value))
+    this.setValue([value])
 
-    if (!multiple) this.close()
+    // notify the onChange prop that the user is trying to change value
+    if (multiple) {
+      this.onChange(e, _.union(this.state.value, [value]))
+    } else {
+      this.onChange(e, [value])
+      this.close()
+    }
   }
 
   closeOnDocumentClick = (e) => {
@@ -351,11 +346,15 @@ export default class Dropdown extends Component {
       e.nativeEvent.stopImmediatePropagation()
     }
 
-    this.setValue(value)
-    // notify the onChange prop that the user is trying to change value
-    this.onChange(this.getValueWith(value))
+    this.setValue([value])
 
-    if (!multiple) this.close()
+    // notify the onChange prop that the user is trying to change value
+    if (multiple) {
+      this.onChange(e, _.union(this.state.value, [value]))
+    } else {
+      this.onChange(e, [value])
+      this.close()
+    }
   }
 
   handleFocus = (e) => {
@@ -407,26 +406,26 @@ export default class Dropdown extends Component {
 
   getOptions = () => {
     const { multiple, options, search } = this.props
-    const { searchQuery } = this.state
+    const { searchQuery, value } = this.state
 
-    let _options = options
+    let filteredOptions = options
 
     // filter out active options
     if (multiple) {
-      _options = _.filter(_options, opt => !_.includes(this.getValueArray(), opt.value))
+      filteredOptions = _.filter(filteredOptions, opt => !_.includes(value, opt.value))
     }
 
     // filter by search query
     if (search && searchQuery) {
       const re = new RegExp(_.escapeRegExp(searchQuery), 'i')
-      _options = _.filter(_options, (opt) => re.test(opt.text))
+      filteredOptions = _.filter(filteredOptions, (opt) => re.test(opt.text))
     }
 
-    return _options
+    return filteredOptions
   }
 
-  getSelectedValue = () => {
-    debug('getSelectedValue()')
+  getSelectedItemValue = () => {
+    debug('getSelectedItemValue()')
     const { selectedIndex } = this.state
     const options = this.getOptions()
 
@@ -443,52 +442,6 @@ export default class Dropdown extends Component {
     const options = this.getOptions()
 
     return _.findIndex(options, ['value', value])
-  }
-
-  getItemTextByValue = (value) => {
-    return _.get(this.getItemByValue(value), 'text')
-  }
-
-  getValueArray = () => {
-    debug.groupCollapsed('getValueArray()')
-    const { value } = this.state
-    debug('value', value)
-    // when there is no value, splitting it causes an empty string as the first element
-    // concatenating and joining that results in `,foo`
-    // later this splits to `[undefined, 'foo'] we compact to avoid the leading comma
-    const arr = _.compact(_.split(value, ','))
-    debug('arr', arr)
-    debug.groupEnd()
-    return arr
-  }
-
-  getValueWith = (newValue) => {
-    debug.groupCollapsed('getValueWith()')
-    const { multiple } = this.props
-    debug('newValue', newValue)
-
-    if (multiple) {
-      const ret = this.getValueArray().concat(newValue).join(',')
-      debug('is multiple, ret', ret)
-      return ret
-    }
-    debug('is not multiple, ret newValue', newValue)
-
-    debug.groupEnd()
-    return newValue
-  }
-
-  getValueWithout = (removeValue) => {
-    debug.groupCollapsed('getValueWithout()')
-    const { value } = this.state
-    const valueArr = this.getValueArray()
-    const newValue = _.without(valueArr, removeValue).join(',')
-    debug('current value', value)
-    debug('value arr', valueArr)
-    debug('remove value', removeValue)
-    debug('new without', newValue)
-    debug.groupEnd()
-    return newValue
   }
 
   // ----------------------------------------
@@ -516,7 +469,7 @@ export default class Dropdown extends Component {
     } else {
       // regular selects can only have one active item
       // set the selected index to the currently active item
-      newState.selectedIndex = this.getItemIndexByValue(value) // || 0
+      newState.selectedIndex = this.getItemIndexByValue(_.head(value))
     }
 
     this.trySetState({ value }, newState)
@@ -527,7 +480,7 @@ export default class Dropdown extends Component {
     // prevent focusing search input on click
     e.stopPropagation()
     const { value } = this.state
-    const newValue = this.getValueWithout(props.value)
+    const newValue = _.without(value, props.value)
     debug('label:', props)
     debug('current value:', value)
     debug('remove value:', props.value)
@@ -535,7 +488,7 @@ export default class Dropdown extends Component {
     debug.groupEnd()
 
     this.setValue(newValue)
-    this.onChange(newValue)
+    this.onChange(e, newValue)
   }
 
   moveSelectionBy = (offset) => {
@@ -618,7 +571,14 @@ export default class Dropdown extends Component {
     if (multiple) return
 
     const classes = cx('text', search && searchQuery && 'filtered')
-    const _text = text || ((!value || searchQuery) ? null : this.getItemTextByValue(value))
+    let _text
+    if (text) {
+      _text = text
+    } else if (searchQuery) {
+      _text = null
+    } else if (!_.isEmpty(value)) {
+      _text = _.get(this.getItemByValue(_.head(value)), 'text')
+    }
 
     return <div className={classes}>{_text}</div>
   }
@@ -638,14 +598,16 @@ export default class Dropdown extends Component {
   renderHiddenInput = () => {
     debug.groupCollapsed('renderHiddenInput()')
     const { value } = this.state
-    const { name, selection } = this.props
+    const { multiple, name, selection } = this.props
     debug(`name:      ${name}`)
     debug(`selection: ${selection}`)
     debug(`value:     ${value}`)
     debug.groupEnd()
     if (!selection) return null
 
-    return <input type='hidden' name={name} value={value} />
+    const _value = multiple ? value.join(',') : value
+
+    return <input type='hidden' name={name} value={_value} />
   }
 
   renderSearchInput = () => {
@@ -667,18 +629,14 @@ export default class Dropdown extends Component {
   }
 
   renderLabels = () => {
-    debug('renderLabels()')
+    debug.groupCollapsed('renderLabels()')
     const { multiple } = this.props
     const { value } = this.state
-    if (!value || !multiple) {
-      debug('exiting, !value || !multiple')
-      return
-    }
+    const selectedItems = _.map(value, this.getItemByValue)
+    debug('selectedItems', selectedItems)
+    debug.groupEnd()
 
-    const items = _.map(this.getValueArray(), this.getItemByValue)
-    debug('items', items)
-
-    return _.map(items, (item) => (
+    return _.isEmpty(value) || !multiple ? null : _.map(selectedItems, (item) => (
       <Label
         key={item.value}
         text={item.text}
@@ -694,12 +652,14 @@ export default class Dropdown extends Component {
     const { selectedIndex, value } = this.state
     const options = this.getOptions()
 
-    return search && _.isEmpty(options) ? (
-      <div className='message'>No results found.</div>
-    ) : _.map(options, (opt, i) => (
+    if (search && _.isEmpty(options)) {
+      return <div className='message'>No results found.</div>
+    }
+
+    return _.map(options, (opt, i) => (
       <DropdownItem
         key={`${opt.value}-${i}`}
-        active={opt.value === value}
+        active={_.includes(value, opt.value)}
         onClick={this.handleItemClick}
         selected={selectedIndex === i}
         text={opt.text}
@@ -771,15 +731,17 @@ export default class Dropdown extends Component {
     }
 
     const rest = getUnhandledProps(Dropdown, this.props)
-    {/*
+
+    /*
      TODO onChange needs to be handled transparently
      we should allow all changes to bubble, and not go into setValue loops
      */
-    }
+
     return (
       <div
         {...rest}
         {...conditionalProps}
+        onChange={this.onChange}
         onClick={this.handleClick}
         className={classes}
       >

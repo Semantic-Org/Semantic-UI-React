@@ -11,11 +11,11 @@ const getOptions = () => _.times(5, () => {
 export default class DropdownAsyncOptions extends Component {
   componentWillMount() {
     const options = getOptions()
-    const value = _.sample(options).value
+    const value = [_.sample(options).value]
     this.setState({ isFetching: false, search: true, multiple: true, value, options })
   }
 
-  handleChange = value => this.setState({ value })
+  handleChange = (e, value) => this.setState({ value })
 
   // fake api call
   fetchOptions = () => {

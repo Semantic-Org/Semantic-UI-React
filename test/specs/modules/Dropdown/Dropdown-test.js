@@ -311,18 +311,17 @@ describe('Dropdown Component', () => {
     })
 
     it('updates text when value changed', () => {
-      const sample = _.sample(options)
-      let next
-      while (!next || next === sample) next = _.sample(options)
+      const initialItem = _.sample(options)
+      const nextItem = _.sample(_.without(options, initialItem))
 
-      wrapperMount(<Dropdown {...requiredProps} value={sample.value} />)
+      wrapperMount(<Dropdown {...requiredProps} value={[initialItem.value]} />)
         .find('.text')
-        .should.contain.text(sample.text)
+        .should.contain.text(initialItem.text)
 
       wrapper
-        .setProps({ value: next.value })
+        .setProps({ value: [nextItem.value] })
         .find('.text')
-        .should.contain.text(next.text)
+        .should.contain.text(nextItem.text)
     })
   })
 
@@ -518,14 +517,14 @@ describe('Dropdown Component', () => {
     })
     it('filters active options out of the list', () => {
       // make all the items active, expect to see none in the list
-      const value = _.map(requiredProps.options, 'value').join(',')
+      const value = _.map(requiredProps.options, 'value')
       wrapperShallow(<Dropdown {...requiredProps} value={value} multiple />)
         .should.not.have.descendants('DropdownItem')
     })
     it('displays a label for active items', () => {
       // select a random item, expect a label with the item's text
       const activeItem = _.sample(requiredProps.options)
-      wrapperShallow(<Dropdown {...requiredProps} value={activeItem.value} multiple />)
+      wrapperShallow(<Dropdown {...requiredProps} value={[activeItem.value]} multiple />)
         .should.have.descendants('Label')
 
       wrapper
@@ -567,7 +566,7 @@ describe('Dropdown Component', () => {
     })
     it('has labels with delete icons', () => {
       // add a value so we have a label
-      const value = _.head(requiredProps.options).value
+      const value = [_.head(requiredProps.options).value]
       wrapperRender(<Dropdown {...requiredProps} value={value} multiple />)
         .should.have.descendants('.label')
 
@@ -577,7 +576,7 @@ describe('Dropdown Component', () => {
     })
     it('calls handleLabelRemove on label delete icon click', () => {
       // add a value so we have a label
-      const value = _.head(requiredProps.options).value
+      const value = [_.head(requiredProps.options).value]
       wrapperMount(<Dropdown {...requiredProps} value={value} multiple />)
 
       const instance = wrapper.instance()
@@ -844,7 +843,7 @@ describe('Dropdown Component', () => {
 
     it('is not shown on multiple dropdowns with no remaining items', () => {
       // make all the items active so there are no remaining options
-      const value = _.map(requiredProps.options, 'value').join(',')
+      const value = _.map(requiredProps.options, 'value')
       wrapperMount(<Dropdown {...requiredProps} value={value} multiple />)
 
       // open the menu
