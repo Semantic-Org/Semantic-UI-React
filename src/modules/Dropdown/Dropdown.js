@@ -5,7 +5,7 @@ import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
 import META from '../../utils/Meta'
-import { useKeyOnly, useKeyOrValueAndKey } from '../../utils/propUtils'
+import { getUnhandledProps, useKeyOnly, useKeyOrValueAndKey } from '../../utils/propUtils'
 import keyboardKey from '../../utils/keyboardKey'
 import { makeDebugger } from '../../utils/debug'
 import { objectDiff } from '../../utils/utils'
@@ -734,9 +734,6 @@ export default class Dropdown extends Component {
       error,
       disabled,
       scrolling,
-      // TODO: not all our props have been destructured, `rest` includes some of our props here
-      // we should only spread user props
-      ...rest,
     } = this.props
 
     // Classes
@@ -773,6 +770,12 @@ export default class Dropdown extends Component {
       tabIndex: 0,
     }
 
+    const rest = getUnhandledProps(Dropdown, this.props)
+    {/*
+     TODO onChange needs to be handled transparently
+     we should allow all changes to bubble, and not go into setValue loops
+     */
+    }
     return (
       <div
         {...rest}
