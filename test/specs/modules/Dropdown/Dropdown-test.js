@@ -1362,6 +1362,26 @@ describe('Dropdown Component', () => {
     })
   })
 
+  describe('placeholder', () => {
+    it('is present when defined', () => {
+      wrapperShallow(<Dropdown {...requiredProps} placeholder='hi' />)
+        .should.have.descendants('.default.text')
+    })
+    it('is not present when not defined', () => {
+      wrapperShallow(<Dropdown {...requiredProps} />)
+        .should.not.have.descendants('.default.text')
+    })
+    it('is not present when there is a value', () => {
+      wrapperShallow(<Dropdown {...requiredProps} value={['hi']} placeholder='hi' />)
+        .should.not.have.descendants('.default.text')
+    })
+    it('has a filtered className when there is a search query', () => {
+      wrapperMount(<Dropdown {...requiredProps} search placeholder='hi' />)
+        .setState({ searchQuery: 'a' })
+        .should.have.descendants('.default.text.filtered')
+    })
+  })
+
   describe('render', () => {
     it('calls renderText', () => {
       wrapperShallow(<Dropdown options={options} selection />)
