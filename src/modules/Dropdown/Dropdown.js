@@ -179,14 +179,15 @@ export default class Dropdown extends Component {
 
   componentWillReceiveProps(nextProps) {
     super.componentWillReceiveProps(nextProps)
-    debug.groupCollapsed('componentDidUpdate()')
+    debug.groupCollapsed('componentWillReceiveProps()')
     // TODO objectDiff still runs in prod, stop it
     debug('changed props:', objectDiff(nextProps, this.props))
-    debug.groupEnd()
 
     if (!_.isEqual(nextProps.value, this.state.value)) {
+      debug('value changed, setting', nextProps.value)
       this.setValue(nextProps.value)
     }
+    debug.groupEnd()
   }
 
   componentDidUpdate(prevProps, prevState) { // eslint-disable-line complexity
@@ -243,12 +244,12 @@ export default class Dropdown extends Component {
 
   // onChange needs to receive a value
   // can't rely on props.value if we are controlled
-  onChange = (value) => {
+  onChange = (e, value) => {
     debug.groupCollapsed('onChange()')
     debug(value)
     debug.groupEnd()
     const { onChange } = this.props
-    if (onChange) onChange(value)
+    if (onChange) onChange(e, value)
   }
 
   closeOnEscape = (e) => {
