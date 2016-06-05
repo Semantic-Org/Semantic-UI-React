@@ -174,8 +174,8 @@ describe('Dropdown Component', () => {
       // search for 'a'
       wrapperMount(<Dropdown options={opts} search />)
         .simulate('click')
-        // TODO: simulate on change to input
-        .setState({ searchQuery: 'a' })
+        .find('input.search')
+        .simulate('change', { target: { value: 'a' } })
 
       wrapper
         .find('.selected')
@@ -269,21 +269,21 @@ describe('Dropdown Component', () => {
 
   describe('value', () => {
     it('sets the corresponding item to active', () => {
-      const { value } = _.sample(options)
+      const value = _.sample(options).value
 
-      wrapperShallow(<Dropdown {...requiredProps} value={value} />)
-        .children()
-        .find({ value })
-        .should.have.prop('active', true)
+      wrapperShallow(<Dropdown {...requiredProps} value={[value]} />)
+        .find('DropdownItem')
+        .find({ value, active: true })
+        .should.be.present()
     })
 
     it('sets the corresponding item text', () => {
       const { text, value } = _.sample(options)
 
-      wrapperShallow(<Dropdown value={value} {...requiredProps} />)
-        .children()
-        .find({ value })
-        .should.have.prop('text', text)
+      wrapperShallow(<Dropdown value={[value]} {...requiredProps} />)
+        .find('DropdownItem')
+        .find({ value, text })
+        .should.be.present()
     })
 
     it('updates active item when changed', () => {
@@ -291,7 +291,7 @@ describe('Dropdown Component', () => {
       let next
       while (!next || next === value) next = _.sample(options).value
 
-      wrapperShallow(<Dropdown value={value} {...requiredProps} />)
+      wrapperShallow(<Dropdown value={[value]} {...requiredProps} />)
 
       // initial active item
       wrapper
@@ -301,7 +301,7 @@ describe('Dropdown Component', () => {
 
       // change value
       wrapper
-        .setProps({ value: next })
+        .setProps({ value: [next] })
 
       // next active item
       wrapper
@@ -517,13 +517,13 @@ describe('Dropdown Component', () => {
     })
     it('filters active options out of the list', () => {
       // make all the items active, expect to see none in the list
-      const value = _.map(requiredProps.options, 'value')
+      const value = _.map(options, 'value')
       wrapperShallow(<Dropdown {...requiredProps} value={value} multiple />)
         .should.not.have.descendants('DropdownItem')
     })
     it('displays a label for active items', () => {
       // select a random item, expect a label with the item's text
-      const activeItem = _.sample(requiredProps.options)
+      const activeItem = _.sample(options)
       wrapperShallow(<Dropdown {...requiredProps} value={[activeItem.value]} multiple />)
         .should.have.descendants('Label')
 
@@ -556,17 +556,17 @@ describe('Dropdown Component', () => {
       // (ie the last() item will vary)
       wrapper
         .find('DropdownItem')
-        .at(requiredProps.options.length - 1)
+        .at(options.length - 1)
         .should.not.have.prop('selected', true)
 
       wrapper
         .find('DropdownItem')
-        .at(requiredProps.options.length - 2)
+        .at(options.length - 2)
         .should.have.prop('selected', true)
     })
     it('has labels with delete icons', () => {
       // add a value so we have a label
-      const value = [_.head(requiredProps.options).value]
+      const value = [_.head(options).value]
       wrapperRender(<Dropdown {...requiredProps} value={value} multiple />)
         .should.have.descendants('.label')
 
@@ -574,52 +574,59 @@ describe('Dropdown Component', () => {
         .find('.label')
         .should.have.descendants('.delete.icon')
     })
-    it('calls handleLabelRemove on label delete icon click', () => {
-      // add a value so we have a label
-      const value = [_.head(requiredProps.options).value]
-      wrapperMount(<Dropdown {...requiredProps} value={value} multiple />)
 
-      const instance = wrapper.instance()
-      sandbox.spy(instance, 'handleLabelRemove')
+    describe('removing items', () => {
+      it('calls onChange without the clicked value', () => {
+        const value = _.map(options, 'value')
+        const randomIndex = _.random(options.length - 1)
+        const randomValue = value[randomIndex]
+        const expected = _.without(value, randomValue)
+        const spy = sandbox.spy()
+        wrapperMount(<Dropdown {...requiredProps} value={value} multiple onChange={spy} />)
 
-      wrapper
-        .find('.delete.icon')
-        .simulate('click')
+        wrapper
+          .find('.delete.icon')
+          .at(randomIndex)
+          .simulate('click')
 
-      // TODO why do we need to timeout here in order to wait for the call?
-      setTimeout(() => {
-        instance.handleLabelRemove
-          .should.have.been.calledOnce()
-      }, 0)
+        spy.should.have.been.calledOnce()
+        spy.firstCall.args[1].should.deep.equal(expected)
+      })
     })
   })
 
   describe('onChange', () => {
     let spy
-    beforeEach(() => (spy = sandbox.spy()))
+    beforeEach(() => {
+      spy = sandbox.spy()
+    })
 
-    it('is called on item click', () => {
+    it('is called with event and value on item click', () => {
+      const randomIndex = _.random(options.length - 1)
+      const randomValue = options[randomIndex].value
       wrapperMount(<Dropdown {...requiredProps} onChange={spy} />)
         .simulate('click')
         .find('DropdownItem')
-        .at(_.random(options.length - 1))
+        .at(randomIndex)
         .simulate('click')
 
-      spy.should.have.been.called()
+      spy.should.have.been.calledOnce()
+      spy.firstCall.args[1].should.deep.equal([randomValue])
     })
-    it('is called when pressing enter on a selected item', () => {
+    it('is called with event and value when pressing enter on a selected item', () => {
+      const firstValue = options[0].value
       wrapperMount(<Dropdown {...requiredProps} onChange={spy} />)
         .simulate('click')
 
-      domEvent.keyDown(document, { key: 'ArrowDown' })
       domEvent.keyDown(document, { key: 'Enter' })
 
-      spy.should.have.been.called()
+      spy.should.have.been.calledOnce()
+      spy.firstCall.args[1].should.deep.equal([firstValue])
     })
     it('is not called when updating the value prop', () => {
-      const value = _.sample(options).value
+      const value = [_.sample(options).value]
       let next
-      while (!next || next === value) next = _.sample(options).value
+      while (!next || next === value) next = [_.sample(options).value]
 
       wrapperMount(<Dropdown {...requiredProps} value={value} onChange={spy} />)
         .setProps({ value: next })
@@ -843,7 +850,7 @@ describe('Dropdown Component', () => {
 
     it('is not shown on multiple dropdowns with no remaining items', () => {
       // make all the items active so there are no remaining options
-      const value = _.map(requiredProps.options, 'value')
+      const value = _.map(options, 'value')
       wrapperMount(<Dropdown {...requiredProps} value={value} multiple />)
 
       // open the menu
