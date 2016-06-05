@@ -11,7 +11,7 @@ const getOptions = () => _.times(5, () => {
 export default class DropdownAsyncOptions extends Component {
   componentWillMount() {
     const options = getOptions()
-    const value = [_.sample(options).value]
+    const value = []
     this.setState({ isFetching: false, search: true, multiple: true, value, options })
   }
 
