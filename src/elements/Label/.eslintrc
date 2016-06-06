@@ -1,0 +1,36 @@
+{
+  "rules": {
+    "no-unused-vars": 0,
+    "react/react-in-jsx-scope": 0
+  },
+  "globals": {
+    "_": false,
+    "React": false,
+    "faker": false,
+    "Confirm": false,
+    "Textarea": false,
+    "Form": false,
+    "Grid": false,
+    "Menu": false,
+    "Message": false,
+    "Table": false,
+    "Button": false,
+    "Buttons": false,
+    "Container": false,
+    "Divider": false,
+    "Header": false,
+    "Icon": false,
+    "Image": false,
+    "Input": false,
+    "Label": false,
+    "List": false,
+    "Segment": false,
+    "Segments": false,
+    "Checkbox": false,
+    "Progress": false,
+    "Modal": false,
+    "Dropdown": false,
+    "Item": false,
+    "Statistic": false
+  }
+}
