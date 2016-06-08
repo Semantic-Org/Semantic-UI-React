@@ -280,7 +280,7 @@ describe('Dropdown Component', () => {
     it('sets the corresponding item text', () => {
       const { text, value } = _.sample(options)
 
-      wrapperShallow(<Dropdown value={[value]} {...requiredProps} />)
+      wrapperShallow(<Dropdown value={value} {...requiredProps} />)
         .find('DropdownItem')
         .find({ value, text })
         .should.be.present()
@@ -653,9 +653,8 @@ describe('Dropdown Component', () => {
       spy.firstCall.args[1].should.deep.equal(firstValue)
     })
     it('is not called when updating the value prop', () => {
-      const value = [_.sample(options).value]
-      let next
-      while (!next || next === value) next = [_.sample(options).value]
+      const value = _.sample(options).value
+      const next = _.sample(_.without(options, value)).value
 
       wrapperMount(<Dropdown {...requiredProps} value={value} onChange={spy} />)
         .setProps({ value: next })
@@ -697,10 +696,6 @@ describe('Dropdown Component', () => {
       wrapperRender(<Dropdown {...requiredProps} selection />)
         .find('input[type="hidden"]')
         .should.be.present()
-    })
-
-    it('does not allow a null item', () => {
-
     })
   })
 
@@ -911,7 +906,7 @@ describe('Dropdown Component', () => {
         .should.not.have.descendants('.default.text')
     })
     it('is not present when there is a value', () => {
-      wrapperShallow(<Dropdown {...requiredProps} value={['hi']} placeholder='hi' />)
+      wrapperShallow(<Dropdown {...requiredProps} value='hi' placeholder='hi' />)
         .should.not.have.descendants('.default.text')
     })
     it('has a filtered className when there is a search query', () => {
