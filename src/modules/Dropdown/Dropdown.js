@@ -774,11 +774,6 @@ export default class Dropdown extends Component {
 
     const rest = getUnhandledProps(Dropdown, this.props)
 
-    /*
-     TODO onChange needs to be handled transparently
-     we should allow all changes to bubble, and not go into setValue loops
-     */
-
     return (
       <div
         {...rest}
