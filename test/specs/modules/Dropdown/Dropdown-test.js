@@ -936,20 +936,5 @@ describe('Dropdown Component', () => {
       instance.renderText
         .should.have.been.called()
     })
-
-    it('calls renderPlaceholder', () => {
-      wrapperShallow(<Dropdown {...requiredProps} />)
-
-      const instance = wrapper.instance()
-      sandbox.spy(instance, 'renderPlaceholder')
-
-      instance.renderPlaceholder
-        .should.not.have.been.called()
-
-      instance.render()
-
-      instance.renderPlaceholder
-        .should.have.been.called()
-    })
   })
 })

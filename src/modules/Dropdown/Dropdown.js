@@ -600,13 +600,18 @@ export default class Dropdown extends Component {
   // ----------------------------------------
 
   renderText = () => {
-    const { multiple, search, text } = this.props
+    const { multiple, placeholder, search, text } = this.props
     const { searchQuery, value } = this.state
+    const hasValue = multiple ? !_.isEmpty(value) : !!value
 
     if (multiple) return
 
-    const classes = cx('text', search && searchQuery && 'filtered')
-    let _text
+    const classes = cx(
+      placeholder && !hasValue && 'default',
+      'text',
+      search && searchQuery && 'filtered'
+    )
+    let _text = placeholder
     if (text && !searchQuery) {
       _text = text
     } else if (searchQuery) {
@@ -616,17 +621,6 @@ export default class Dropdown extends Component {
     }
 
     return <div className={classes}>{_text}</div>
-  }
-
-  renderPlaceholder = () => {
-    const { multiple, placeholder, search } = this.props
-    const { searchQuery, value } = this.state
-    const hasValue = multiple ? !_.isEmpty(value) : !!value
-
-    if (hasValue || !placeholder) return null
-    const classes = cx('default text', search && searchQuery && 'filtered')
-
-    return <div className={classes}>{placeholder}</div>
   }
 
   // TODO hidden input only exists for backwards compatibility with SUI jQuery plugins
@@ -641,7 +635,7 @@ export default class Dropdown extends Component {
     debug.groupEnd()
     if (!selection) return null
 
-    const _value = multiple ? value.join(',') : value
+    const _value = multiple ? (value || []).join(',') : value
 
     return <input type='hidden' name={name} value={_value} />
   }
@@ -794,11 +788,10 @@ export default class Dropdown extends Component {
         className={classes}
       >
         {this.renderHiddenInput()}
-        <Icon className={'dropdown'} />
         {this.renderLabels()}
         {this.renderSearchInput()}
         {this.renderText()}
-        {this.renderPlaceholder()}
+        <Icon className={'dropdown'} />
         <DropdownMenu className={menuClasses} ref='menu'>
           {this.renderOptions()}
         </DropdownMenu>
