@@ -11,8 +11,7 @@ const getOptions = () => _.times(5, () => {
 export default class DropdownAsyncOptions extends Component {
   componentWillMount() {
     const options = getOptions()
-    const value = []
-    this.setState({ isFetching: false, search: true, multiple: true, value, options })
+    this.setState({ isFetching: false, search: true, multiple: true, value: [], options })
   }
 
   handleChange = (e, value) => this.setState({ value })
@@ -29,7 +28,12 @@ export default class DropdownAsyncOptions extends Component {
 
   selectRandom = () => this.setState({ value: _.sample(this.state.options).value })
   toggleSearch = (e) => this.setState({ search: e.target.checked })
-  toggleMultiple = (e) => this.setState({ multiple: e.target.checked })
+  toggleMultiple = (e) => {
+    const { value } = this.state
+    // convert the value to/from an array
+    const newValue = e.target.checked ? _.compact([value]) : value[0]
+    this.setState({ multiple: e.target.checked, value: newValue })
+  }
 
   render() {
     const { multiple, options, isFetching, search, value } = this.state

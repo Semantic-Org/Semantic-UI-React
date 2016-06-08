@@ -271,7 +271,7 @@ describe('Dropdown Component', () => {
     it('sets the corresponding item to active', () => {
       const value = _.sample(options).value
 
-      wrapperShallow(<Dropdown {...requiredProps} value={[value]} />)
+      wrapperShallow(<Dropdown {...requiredProps} value={value} />)
         .find('DropdownItem')
         .find({ value, active: true })
         .should.be.present()
@@ -291,7 +291,7 @@ describe('Dropdown Component', () => {
       let next
       while (!next || next === value) next = _.sample(options).value
 
-      wrapperShallow(<Dropdown value={[value]} {...requiredProps} />)
+      wrapperShallow(<Dropdown value={value} {...requiredProps} />)
 
       // initial active item
       wrapper
@@ -301,7 +301,7 @@ describe('Dropdown Component', () => {
 
       // change value
       wrapper
-        .setProps({ value: [next] })
+        .setProps({ value: next })
 
       // next active item
       wrapper
@@ -314,12 +314,12 @@ describe('Dropdown Component', () => {
       const initialItem = _.sample(options)
       const nextItem = _.sample(_.without(options, initialItem))
 
-      wrapperMount(<Dropdown {...requiredProps} value={[initialItem.value]} />)
+      wrapperMount(<Dropdown {...requiredProps} value={initialItem.value} />)
         .find('.text')
         .should.contain.text(initialItem.text)
 
       wrapper
-        .setProps({ value: [nextItem.value] })
+        .setProps({ value: nextItem.value })
         .find('.text')
         .should.contain.text(nextItem.text)
     })
@@ -611,7 +611,7 @@ describe('Dropdown Component', () => {
         .simulate('click')
 
       spy.should.have.been.calledOnce()
-      spy.firstCall.args[1].should.deep.equal([randomValue])
+      spy.firstCall.args[1].should.deep.equal(randomValue)
     })
     it('is called with event and value when pressing enter on a selected item', () => {
       const firstValue = options[0].value
@@ -621,7 +621,7 @@ describe('Dropdown Component', () => {
       domEvent.keyDown(document, { key: 'Enter' })
 
       spy.should.have.been.calledOnce()
-      spy.firstCall.args[1].should.deep.equal([firstValue])
+      spy.firstCall.args[1].should.deep.equal(firstValue)
     })
     it('is not called when updating the value prop', () => {
       const value = [_.sample(options).value]
@@ -668,6 +668,10 @@ describe('Dropdown Component', () => {
       wrapperRender(<Dropdown {...requiredProps} selection />)
         .find('input[type="hidden"]')
         .should.be.present()
+    })
+
+    it('does not allow a null item', () => {
+
     })
   })
 

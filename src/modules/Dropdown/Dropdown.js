@@ -62,20 +62,25 @@ export default class Dropdown extends Component {
     /** Initial value of open. */
     defaultOpen: PropTypes.bool,
 
-    /**
-     * Current value, creates a controlled component.
-     * This is always an array for simplicity between single and multiple dropdown types.
-     */
-    value: PropTypes.arrayOf(PropTypes.oneOfType([
+    /** Current value or value array if multiple. Creates a controlled component. */
+    value: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.number,
-    ])),
+      PropTypes.arrayOf(PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number,
+      ])),
+    ]),
 
     /** Initial value or value array if multiple. */
-    defaultValue: PropTypes.arrayOf(PropTypes.oneOfType([
+    defaultValue: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.number,
-    ])),
+      PropTypes.arrayOf(PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number,
+      ])),
+    ]),
 
     /** Placeholder text. */
     placeholder: PropTypes.string,
@@ -90,7 +95,7 @@ export default class Dropdown extends Component {
     /** Called with the React Synthetic Event on Dropdown blur. */
     onBlur: PropTypes.func,
 
-    /** Called with the current value on change. */
+    /** Called with the React Synthetic Event and current value on change. */
     onChange: PropTypes.func,
 
     /** Called with the React Synthetic Event on Dropdown click. */
@@ -163,10 +168,13 @@ export default class Dropdown extends Component {
   componentWillMount() {
     if (super.componentWillMount) super.componentWillMount()
     debug('componentWillMount()')
-    const { open, options } = this.props
-    const { value } = this.state
+    const { multiple, options } = this.props
+    const { open, value } = this.state
 
-    const selectedIndex = this.getItemIndexByValue(_.head(value) || _.get(options, '[0].value'))
+    // Select the currently active item, if none, use the first item.
+    // Multiple selects remove active items from the list,
+    // their initial selected index should be 0.
+    const selectedIndex = multiple ? 0 : this.getMenuItemIndexByValue(value || _.get(options, '[0].value'))
 
     this.trySetState({ value }, { selectedIndex })
 
@@ -183,10 +191,28 @@ export default class Dropdown extends Component {
     // TODO objectDiff still runs in prod, stop it
     debug('changed props:', objectDiff(nextProps, this.props))
 
+    if (process.env.NODE_ENV !== 'production') {
+      // in development, validate value type matches dropdown type
+      const isNextValueArray = Array.isArray(nextProps.value)
+
+      if (nextProps.multiple && !isNextValueArray) {
+        console.error(
+          'Dropdown `value` must be an array when `multiple` is set.' +
+          ` Received type: \`${Object.prototype.toString.call(nextProps.value)}\`.`,
+        )
+      } else if (!nextProps.multiple && isNextValueArray) {
+        console.error(
+          'Dropdown `value` must not be an array when `multiple` is not set.' +
+          ' Either set `multiple={true}` or use a string or number value.'
+        )
+      }
+    }
+
     if (!_.isEqual(nextProps.value, this.state.value)) {
       debug('value changed, setting', nextProps.value)
       this.setValue(nextProps.value)
     }
+
     debug.groupEnd()
   }
 
@@ -299,15 +325,17 @@ export default class Dropdown extends Component {
     const { multiple } = this.props
     const value = this.getSelectedItemValue()
 
+    // prevent selecting null if there was no selected item value
     if (!value) return
 
-    this.setValue([value])
+    this.setValue(value)
 
     // notify the onChange prop that the user is trying to change value
     if (multiple) {
+      // state value may be undefined
       this.onChange(e, _.union(this.state.value, [value]))
     } else {
-      this.onChange(e, [value])
+      this.onChange(e, value)
       this.close()
     }
   }
@@ -347,13 +375,13 @@ export default class Dropdown extends Component {
       e.nativeEvent.stopImmediatePropagation()
     }
 
-    this.setValue([value])
+    this.setValue(value)
 
     // notify the onChange prop that the user is trying to change value
     if (multiple) {
       this.onChange(e, _.union(this.state.value, [value]))
     } else {
-      this.onChange(e, [value])
+      this.onChange(e, value)
       this.close()
     }
   }
@@ -390,14 +418,14 @@ export default class Dropdown extends Component {
     e.stopPropagation()
     const { search } = this.props
     const { open } = this.state
-    const newValue = e.target.value
+    const newQuery = e.target.value
 
     // open search dropdown on search query
-    if (search && newValue && !open) this.open()
+    if (search && newQuery && !open) this.open()
 
     this.setState({
       selectedIndex: 0,
-      searchQuery: newValue,
+      searchQuery: newQuery,
     })
   }
 
@@ -405,7 +433,7 @@ export default class Dropdown extends Component {
   // Getters
   // ----------------------------------------
 
-  getOptions = () => {
+  getMenuOptions = () => {
     const { multiple, options, search } = this.props
     const { searchQuery, value } = this.state
 
@@ -426,9 +454,8 @@ export default class Dropdown extends Component {
   }
 
   getSelectedItemValue = () => {
-    debug('getSelectedItemValue()')
     const { selectedIndex } = this.state
-    const options = this.getOptions()
+    const options = this.getMenuOptions()
 
     return _.get(options, `[${selectedIndex}].value`)
   }
@@ -438,11 +465,10 @@ export default class Dropdown extends Component {
     return _.find(options, { value })
   }
 
-  getItemIndexByValue = (value) => {
-    debug('getItemIndexByValue()')
-    const options = this.getOptions()
+  getMenuItemIndexByValue = (value) => {
+    const options = this.getMenuOptions()
 
-    return _.findIndex(options, ['value', value])
+    return _.findIndex(options, opt => opt.value === value)
   }
 
   // ----------------------------------------
@@ -451,11 +477,11 @@ export default class Dropdown extends Component {
 
   setValue = (value) => {
     debug.groupCollapsed('setValue()')
-    debug(value)
+    debug('value', value)
     debug.groupEnd()
-    const options = this.getOptions()
     const { multiple } = this.props
     const { selectedIndex } = this.state
+    const options = this.getMenuOptions()
     const newState = {
       searchQuery: '',
     }
@@ -470,21 +496,21 @@ export default class Dropdown extends Component {
     } else {
       // regular selects can only have one active item
       // set the selected index to the currently active item
-      newState.selectedIndex = this.getItemIndexByValue(_.head(value))
+      newState.selectedIndex = this.getMenuItemIndexByValue(value)
     }
 
     this.trySetState({ value }, newState)
   }
 
-  handleLabelRemove = (e, props) => {
+  handleLabelRemove = (e, labelProps) => {
     debug.groupCollapsed('handleLabelRemove()')
     // prevent focusing search input on click
     e.stopPropagation()
     const { value } = this.state
-    const newValue = _.without(value, props.value)
-    debug('label:', props)
+    const newValue = _.without(value, labelProps.value)
+    debug('label props:', labelProps)
     debug('current value:', value)
-    debug('remove value:', props.value)
+    debug('remove value:', labelProps.value)
     debug('new value:', newValue)
     debug.groupEnd()
 
@@ -498,7 +524,7 @@ export default class Dropdown extends Component {
     debug.groupEnd()
     const { selectedIndex } = this.state
 
-    const options = this.getOptions()
+    const options = this.getMenuOptions()
     const lastIndex = options.length - 1
 
     // next is after last, wrap to beginning
@@ -573,22 +599,23 @@ export default class Dropdown extends Component {
 
     const classes = cx('text', search && searchQuery && 'filtered')
     let _text
-    if (text) {
+    if (text && !searchQuery) {
       _text = text
     } else if (searchQuery) {
       _text = null
-    } else if (!_.isEmpty(value)) {
-      _text = _.get(this.getItemByValue(_.head(value)), 'text')
+    } else if (value) {
+      _text = _.get(this.getItemByValue(value), 'text')
     }
 
     return <div className={classes}>{_text}</div>
   }
 
   renderPlaceholder = () => {
-    const { placeholder, search } = this.props
+    const { multiple, placeholder, search } = this.props
     const { searchQuery, value } = this.state
+    const hasValue = multiple ? !_.isEmpty(value) : !!value
 
-    if (!_.isEmpty(value) || !placeholder) return null
+    if (hasValue || !placeholder) return null
     const classes = cx('default text', search && searchQuery && 'filtered')
 
     return <div className={classes}>{placeholder}</div>
@@ -633,34 +660,46 @@ export default class Dropdown extends Component {
     debug.groupCollapsed('renderLabels()')
     const { multiple } = this.props
     const { value } = this.state
+    if (!multiple || _.isEmpty(value)) {
+      debug.groupEnd()
+      return
+    }
     const selectedItems = _.map(value, this.getItemByValue)
     debug('selectedItems', selectedItems)
     debug.groupEnd()
 
-    return _.isEmpty(value) || !multiple ? null : _.map(selectedItems, (item) => (
-      <Label
-        key={item.value}
-        text={item.text}
-        value={item.value}
-        onRemove={this.handleLabelRemove}
-        link
-      />
-    ))
+    return _.map(selectedItems, (item) => {
+      // if no item could be found for a given state value the selected item will be undefined
+      // prevent cannot read property foo of undefined errors
+      return _.isUndefined(item) ? null : (
+        <Label
+          key={item.value}
+          text={item.text}
+          value={item.value}
+          onRemove={this.handleLabelRemove}
+          link
+        />
+      )
+    })
   }
 
   renderOptions = () => {
-    const { search } = this.props
+    const { multiple, search } = this.props
     const { selectedIndex, value } = this.state
-    const options = this.getOptions()
+    const options = this.getMenuOptions()
 
     if (search && _.isEmpty(options)) {
       return <div className='message'>No results found.</div>
     }
 
+    const isActive = multiple
+      ? optValue => _.includes(value, optValue)
+      : optValue => optValue === value
+
     return _.map(options, (opt, i) => (
       <DropdownItem
         key={`${opt.value}-${i}`}
-        active={_.includes(value, opt.value)}
+        active={isActive(opt.value)}
         onClick={this.handleItemClick}
         selected={selectedIndex === i}
         text={opt.text}
