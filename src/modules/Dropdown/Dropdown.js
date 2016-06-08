@@ -168,16 +168,9 @@ export default class Dropdown extends Component {
   componentWillMount() {
     if (super.componentWillMount) super.componentWillMount()
     debug('componentWillMount()')
-    const { multiple, options } = this.props
     const { open, value } = this.state
 
-    // Select the currently active item, if none, use the first item.
-    // Multiple selects remove active items from the list,
-    // their initial selected index should be 0.
-    const selectedIndex = multiple ? 0 : this.getMenuItemIndexByValue(value || _.get(options, '[0].value'))
-
-    this.trySetState({ value }, { selectedIndex })
-
+    this.setValue(value)
     if (open) this.open()
   }
 
@@ -495,7 +488,12 @@ export default class Dropdown extends Component {
     }
 
     // update the selected index
-    if (multiple) {
+    if (!selectedIndex) {
+      // Select the currently active item, if none, use the first item.
+      // Multiple selects remove active items from the list,
+      // their initial selected index should be 0.
+      newState.selectedIndex = multiple ? 0 : this.getMenuItemIndexByValue(value || _.get(options, '[0].value'))
+    } else if (multiple) {
       // multiple selects remove options from the menu as they are made active
       // keep the selected index within range of the remaining items
       if (selectedIndex >= options.length - 1) {
@@ -506,6 +504,8 @@ export default class Dropdown extends Component {
       // set the selected index to the currently active item
       newState.selectedIndex = this.getMenuItemIndexByValue(value)
     }
+
+    this.trySetState({ value }, { selectedIndex })
 
     this.trySetState({ value }, newState)
   }
