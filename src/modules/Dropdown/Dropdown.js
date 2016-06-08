@@ -240,6 +240,7 @@ export default class Dropdown extends Component {
 
     // opened / closed
     if (!prevState.open && this.state.open) {
+      this.open()
       document.addEventListener('keydown', this.closeOnEscape)
       document.addEventListener('keydown', this.moveSelectionOnKeyDown)
       document.addEventListener('keydown', this.selectItemOnEnter)
@@ -247,6 +248,7 @@ export default class Dropdown extends Component {
       document.removeEventListener('keydown', this.openOnArrow)
       document.removeEventListener('keydown', this.openOnSpace)
     } else if (prevState.open && !this.state.open) {
+      this.close()
       document.removeEventListener('keydown', this.closeOnEscape)
       document.removeEventListener('keydown', this.moveSelectionOnKeyDown)
       document.removeEventListener('keydown', this.selectItemOnEnter)
@@ -303,16 +305,22 @@ export default class Dropdown extends Component {
   }
 
   openOnSpace = (e) => {
+    console.log('openOnSpace')
+    console.log('open:', this.state.open)
     if (keyboardKey.getCode(e) !== keyboardKey.Spacebar) return
+    if (this.state.open) return
     e.preventDefault()
-    this.open()
+    // TODO open/close should only change state, open/closeMenu should be called on did update
+    this.trySetState({ open: true })
   }
 
   openOnArrow = (e) => {
     const code = keyboardKey.getCode(e)
     if (!_.includes([keyboardKey.ArrowDown, keyboardKey.ArrowUp], code)) return
+    if (this.state.open) return
     e.preventDefault()
-    this.open()
+    // TODO open/close should only change state, open/closeMenu should be called on did update
+    this.trySetState({ open: true })
   }
 
   selectItemOnEnter = (e) => {
@@ -560,8 +568,8 @@ export default class Dropdown extends Component {
     debug.groupCollapsed('open()')
     debug(`dropdown is ${this.state.open ? 'already' : 'not yet'} open`)
     debug.groupEnd()
-    if (this.state.open) return
-    if (this.props.search) this.refs.search.focus()
+    const { search } = this.props
+    if (search) this.refs.search.focus()
 
     this.trySetState({
       open: true,

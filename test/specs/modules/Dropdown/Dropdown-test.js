@@ -493,6 +493,35 @@ describe('Dropdown Component', () => {
     })
   })
 
+  describe('open', () => {
+    it('defaultOpen opens the menu when true', () => {
+      wrapperShallow(<Dropdown {...requiredProps} defaultOpen />)
+      dropdownMenuIsOpen()
+    })
+    it('defaultOpen closes the menu when false', () => {
+      wrapperShallow(<Dropdown {...requiredProps} defaultOpen={false} />)
+      dropdownMenuIsClosed()
+    })
+    it('closes the menu when true', () => {
+      wrapperShallow(<Dropdown {...requiredProps} open />)
+      dropdownMenuIsOpen()
+    })
+    it('closes the menu when false', () => {
+      wrapperShallow(<Dropdown {...requiredProps} open={false} />)
+      dropdownMenuIsClosed()
+    })
+    it('closes the menu when toggled from true to false', () => {
+      wrapperShallow(<Dropdown {...requiredProps} open />)
+        .setProps({ open: false })
+      dropdownMenuIsOpen()
+    })
+    it('closes the menu when toggled from false to true', () => {
+      wrapperShallow(<Dropdown {...requiredProps} open={false} />)
+        .setProps({ open: true })
+      dropdownMenuIsClosed()
+    })
+  })
+
   describe('multiple', () => {
     it('does not close the menu on item selection with enter', () => {
       wrapperMount(<Dropdown {...requiredProps} multiple />)
