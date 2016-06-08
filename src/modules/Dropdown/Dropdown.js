@@ -195,6 +195,7 @@ export default class Dropdown extends Component {
       // in development, validate value type matches dropdown type
       const isNextValueArray = Array.isArray(nextProps.value)
 
+      /* eslint-disable no-console */
       if (nextProps.multiple && !isNextValueArray) {
         console.error(
           'Dropdown `value` must be an array when `multiple` is set.' +
@@ -206,6 +207,7 @@ export default class Dropdown extends Component {
           ' Either set `multiple={true}` or use a string or number value.'
         )
       }
+      /* eslint-enable no-console */
     }
 
     if (!_.isEqual(nextProps.value, this.state.value)) {
@@ -305,8 +307,6 @@ export default class Dropdown extends Component {
   }
 
   openOnSpace = (e) => {
-    console.log('openOnSpace')
-    console.log('open:', this.state.open)
     if (keyboardKey.getCode(e) !== keyboardKey.Spacebar) return
     if (this.state.open) return
     e.preventDefault()
