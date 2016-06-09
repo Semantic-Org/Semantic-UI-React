@@ -26,7 +26,11 @@ export default class DropdownAsyncOptions extends Component {
     }, 500)
   }
 
-  selectRandom = () => this.setState({ value: _.sample(this.state.options).value })
+  selectRandom = () => {
+    const { multiple, options } = this.state
+    const value = _.sample(options).value
+    this.setState({ value: multiple ? [value] : value })
+  }
   toggleSearch = (e) => this.setState({ search: e.target.checked })
   toggleMultiple = (e) => {
     const { value } = this.state
