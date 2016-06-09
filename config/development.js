@@ -4,7 +4,7 @@ export default (config) => {
   const __BASE__ = `http://${config.server_host}:${config.server_port}/`
 
   return {
-    compiler_devtool: 'source-map',
+    compiler_devtool: 'eval-cheap-module-source-map',
     compiler_public_path: __BASE__,
     compiler_globals: {
       ...config.compiler_globals,

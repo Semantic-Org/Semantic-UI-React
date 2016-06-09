@@ -2,6 +2,8 @@ import config from '../config'
 import webpack from 'webpack'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import _ from 'lodash'
+import yargs from 'yargs'
+const { argv } = yargs
 
 const { paths } = config
 const { __BASE__, __DEV__, __TEST__ } = config.compiler_globals
@@ -25,7 +27,7 @@ const webpackConfig = {
 
 const webpackHotPath = `${config.compiler_public_path}__webpack_hmr`
 
-const webpackHotMiddlewareEntry = `webpack-hot-middleware/client?${_.map({
+export const webpackHotMiddlewareEntry = `webpack-hot-middleware/client?${_.map({
   path: webpackHotPath,   // The path which the middleware is serving the event stream on
   timeout: 2000,          // The time to wait after a disconnection before attempting to reconnect
   overlay: true,          // Set to false to disable the DOM-based client-side overlay.
@@ -72,6 +74,10 @@ webpackConfig.plugins = [
     jQuery: 'jquery',
     'window.jQuery': 'jquery',
   }),
+  new webpack.DllReferencePlugin({
+    context: paths.base('node_modules'),
+    manifest: require(paths.base('dll/vendor-manifest.json')),
+  }),
   new HtmlWebpackPlugin({
     template: paths.docsSrc('index.ejs'),
     baseHref: __BASE__,
@@ -80,6 +86,13 @@ webpackConfig.plugins = [
     inject: 'body',
     minify: {
       collapseWhitespace: true,
+    },
+    versions: {
+      sui: require('semantic-ui-css/package.json').version,
+      highlightjs: require('highlight.js/package.json').version,
+      faker: require('faker/package.json').version,
+      jquery: require('jquery/package.json').version,
+      lodash: require('lodash/package.json').version,
     },
   }),
 ]
@@ -114,7 +127,9 @@ if (!__TEST__) {
 // No Parse
 // ------------------------------------
 webpackConfig.module.noParse = [
-  /autoit.js/,    // highlight.js dep throws if parsed
+  // highlight.js dep throws if parsed
+  /autoit/,
+  /\.json$/,
 ]
 
 // ------------------------------------
@@ -141,18 +156,52 @@ webpackConfig.module.loaders = [{
   //
   test: /\.json$/,
   loader: 'json',
-}, {
-  //
-  // SASS
-  //
-  test: /\.s?css$/,
-  loaders: ['style', 'css', 'sass'],
-}, {
-  //
-  // Files
-  //
-  test: /\.(eot|ttf|woff|woff2|svg|png)$/,
-  loader: 'file',
 }]
+
+// ----------------------------------------
+// Local Modules
+// ----------------------------------------
+// For faster builds in dev, rely on prebuilt libraries
+// Local modules can still be enabled (ie for offline development)
+if (argv.localModules) {
+  webpackConfig.module.loaders = [
+    ...webpackConfig.module.loaders,
+    {
+      //
+      // SASS
+      //
+      test: /\.s?css$/,
+      loaders: ['style', 'css', 'sass'],
+    }, {
+      //
+      // Files
+      //
+      test: /\.(eot|ttf|woff|woff2|svg|png)$/,
+      loader: 'file',
+    },
+  ]
+} else {
+  webpackConfig.module.noParse = [
+    ...webpackConfig.module.noParse,
+    // /faker/,
+    /jquery/,
+    // /lodash/,
+    /semantic-ui-css\/semantic\.js/,
+    /semantic-ui-css\/semantic\.css/,
+  ]
+
+  webpackConfig.resolve.alias = {
+    ...webpackConfig.resolve.alias,
+    'semantic-ui-css/semantic.js': 'empty',
+    'semantic-ui-css/semantic.css': 'empty',
+    'highlight.js/styles/github.css': 'empty',
+  }
+
+  webpackConfig.externals = {
+    jquery: 'jQuery',
+    faker: 'faker',
+    lodash: '_',
+  }
+}
 
 export default webpackConfig
