@@ -602,8 +602,6 @@ export default class Dropdown extends Component {
     const { searchQuery, value } = this.state
     const hasValue = multiple ? !_.isEmpty(value) : !!value
 
-    if (multiple) return
-
     const classes = cx(
       placeholder && !hasValue && 'default',
       'text',
@@ -614,7 +612,7 @@ export default class Dropdown extends Component {
       _text = text
     } else if (searchQuery) {
       _text = null
-    } else if (value) {
+    } else if (hasValue) {
       _text = _.get(this.getItemByValue(value), 'text')
     }
 

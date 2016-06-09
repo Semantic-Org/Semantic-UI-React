@@ -363,10 +363,6 @@ describe('Dropdown Component', () => {
         .find('.text')
         .should.contain.text(item.text())
     })
-    it('is not present on multiple dropdowns', () => {
-      wrapperShallow(<Dropdown {...requiredProps} multiple />)
-        .should.not.have.descendants('.text')
-    })
   })
 
   describe('menu', () => {
@@ -909,8 +905,12 @@ describe('Dropdown Component', () => {
       wrapperShallow(<Dropdown {...requiredProps} value='hi' placeholder='hi' />)
         .should.not.have.descendants('.default.text')
     })
+    it('is present on a multiple dropdown with an empty value array', () => {
+      wrapperShallow(<Dropdown {...requiredProps} value={[]} multiple placeholder='hi' />)
+        .should.have.descendants('.default.text')
+    })
     it('has a filtered className when there is a search query', () => {
-      wrapperMount(<Dropdown {...requiredProps} search placeholder='hi' />)
+      wrapperShallow(<Dropdown {...requiredProps} search placeholder='hi' />)
         .setState({ searchQuery: 'a' })
         .should.have.descendants('.default.text.filtered')
     })
