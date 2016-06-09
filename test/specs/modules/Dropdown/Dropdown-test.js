@@ -502,7 +502,7 @@ describe('Dropdown Component', () => {
       wrapperShallow(<Dropdown {...requiredProps} defaultOpen={false} />)
       dropdownMenuIsClosed()
     })
-    it('closes the menu when true', () => {
+    it('opens the menu when true', () => {
       wrapperShallow(<Dropdown {...requiredProps} open />)
       dropdownMenuIsOpen()
     })
@@ -515,7 +515,7 @@ describe('Dropdown Component', () => {
         .setProps({ open: false })
       dropdownMenuIsOpen()
     })
-    it('closes the menu when toggled from false to true', () => {
+    it('opens the menu when toggled from false to true', () => {
       wrapperShallow(<Dropdown {...requiredProps} open={false} />)
         .setProps({ open: true })
       dropdownMenuIsClosed()

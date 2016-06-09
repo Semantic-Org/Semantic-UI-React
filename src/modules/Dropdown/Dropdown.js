@@ -469,7 +469,7 @@ export default class Dropdown extends Component {
   getMenuItemIndexByValue = (value) => {
     const options = this.getMenuOptions()
 
-    return _.findIndex(options, opt => opt.value === value)
+    return _.findIndex(options, ['value', value])
   }
 
   // ----------------------------------------
@@ -668,10 +668,10 @@ export default class Dropdown extends Component {
     debug('selectedItems', selectedItems)
     debug.groupEnd()
 
-    return _.map(selectedItems, (item) => {
-      // if no item could be found for a given state value the selected item will be undefined
-      // prevent cannot read property foo of undefined errors
-      return _.isUndefined(item) ? null : (
+    // if no item could be found for a given state value the selected item will be undefined
+    // compact the selectedItems so we only have actual objects left
+    return _.map(_.compact(selectedItems), (item) => {
+      return (
         <Label
           key={item.value}
           text={item.text}
