@@ -18,6 +18,7 @@
 
 **Closed issues:**
 
+- Slack integration test [\#253](https://github.com/TechnologyAdvice/stardust/issues/253)
 - Add README bullet points explaining the point of Stardust [\#166](https://github.com/TechnologyAdvice/stardust/issues/166)
 - Set value instead of object for serializing Form data [\#75](https://github.com/TechnologyAdvice/stardust/issues/75)
 - Conformance test for children/description/text props [\#71](https://github.com/TechnologyAdvice/stardust/issues/71)
@@ -25,6 +26,7 @@
 
 **Merged pull requests:**
 
+- Improve webpack performance [\#255](https://github.com/TechnologyAdvice/stardust/pull/255) ([levithomason](https://github.com/levithomason))
 - Defensively handle component \_meta [\#252](https://github.com/TechnologyAdvice/stardust/pull/252) ([levithomason](https://github.com/levithomason))
 - Fix floated Segment examples [\#251](https://github.com/TechnologyAdvice/stardust/pull/251) ([levithomason](https://github.com/levithomason))
 - User prop spreading util [\#250](https://github.com/TechnologyAdvice/stardust/pull/250) ([levithomason](https://github.com/levithomason))
