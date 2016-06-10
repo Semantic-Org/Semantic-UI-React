@@ -27,6 +27,7 @@
 **Merged pull requests:**
 
 - Improve webpack performance [\#255](https://github.com/TechnologyAdvice/stardust/pull/255) ([levithomason](https://github.com/levithomason))
+- Support multiple dropdown type [\#254](https://github.com/TechnologyAdvice/stardust/pull/254) ([levithomason](https://github.com/levithomason))
 - Defensively handle component \_meta [\#252](https://github.com/TechnologyAdvice/stardust/pull/252) ([levithomason](https://github.com/levithomason))
 - Fix floated Segment examples [\#251](https://github.com/TechnologyAdvice/stardust/pull/251) ([levithomason](https://github.com/levithomason))
 - User prop spreading util [\#250](https://github.com/TechnologyAdvice/stardust/pull/250) ([levithomason](https://github.com/levithomason))
