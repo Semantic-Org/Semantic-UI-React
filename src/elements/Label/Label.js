@@ -1,12 +1,12 @@
-/* eslint-disable valid-jsdoc, complexity */
 import cx from 'classnames'
-import React, { createElement, PropTypes } from 'react'
+import React, { PropTypes } from 'react'
 import createFragment from 'react-addons-create-fragment'
 
 import META from '../../utils/Meta'
 import * as sui from '../../utils/semanticUtils'
 import { someChildType } from '../../utils/childrenUtils'
 import {
+  getUnhandledProps,
   iconPropRenderer,
   imagePropRenderer,
   useKeyOnly,
@@ -21,16 +21,13 @@ import Image from '../Image/Image'
  */
 function Label(props) {
   const {
-    attached, children, color, corner, className, circular, detail, detailLink, floating, horizontal, icon,
-    image, link, onClick, onClickDetail, onClickRemove, pointing, removable, ribbon, size, tag, text,
-    ...rest,
+    attached, children, color, corner, className, circular, detail, detailLink, floating, horizontal,
+    icon, image, link, onClick, onDetailClick, onRemove, pointing, removable, ribbon, size, tag, text,
   } = props
 
   const handleClick = e => onClick && onClick(e, props)
-  const handleClickRemove = e => onClickRemove && onClickRemove(e, props)
-  const handleClickDetail = e => onClickDetail && onClickDetail(e, props)
-
-  const _component = image || link || onClick ? 'a' : 'div'
+  const handleRemove = e => onRemove && onRemove(e, props)
+  const handleDetailClick = e => onDetailClick && onDetailClick(e, props)
 
   const classes = cx('sd-label ui',
     size,
@@ -49,27 +46,29 @@ function Label(props) {
     className
   )
 
-  const _props = {
-    className: classes,
-    onClick: handleClick,
-    ...rest,
-  }
-
-  const _detail = detail || detailLink
-  const detailComponent = (detailLink || onClickDetail) && 'a' || detail && 'div'
+  const DetailComponent = (detailLink || onDetailClick) && 'a' || 'div'
 
   const _children = createFragment({
     icon: iconPropRenderer(icon),
     image: imagePropRenderer(image),
     text,
     children,
-    detail: _detail && createElement(detailComponent, { className: 'detail', onClick: handleClickDetail }, _detail),
-    remove: (removable || onClickRemove) && <Icon className='delete' onClick={handleClickRemove} />,
+    detail: detail && (
+      <DetailComponent className='detail' onClick={handleDetailClick}>{detail}</DetailComponent>
+    ),
+    remove: (removable || onRemove) && (
+      <Icon className='delete' onClick={handleRemove} />
+    ),
   })
 
-  // Do not destructure createElement import
-  // react-docgen only recognizes a stateless component when React.createElement is returned
-  return React.createElement(_component, _props, _children)
+  const LabelComponent = image || link || onClick ? 'a' : 'div'
+  const rest = getUnhandledProps(Label, props)
+
+  return (
+    <LabelComponent className={classes} onClick={handleClick} {...rest}>
+      {_children}
+    </LabelComponent>
+  )
 }
 
 Label._meta = {
@@ -106,7 +105,7 @@ Label.propTypes = {
   /** Additional text with less emphasis. */
   detail: PropTypes.string,
 
-  /** Same as detail but formatted as a link. */
+  /** Format the detail as a link. */
   detailLink: PropTypes.string,
 
   /** Format a label to align better alongside text. */
@@ -136,13 +135,13 @@ Label.propTypes = {
   /** Adds the link style when present, called with (event, props). */
   onClick: PropTypes.func,
 
-  /** Click callback for detail, called with (event, props). */
-  onClickDetail: PropTypes.func,
+  /** Click callback for detail, called with (event, props). Formats the detail as a link. */
+  onDetailClick: PropTypes.func,
 
   /** Adds an "x" icon, called with (event, props) when "x" is clicked. */
-  onClickRemove: PropTypes.func,
+  onRemove: PropTypes.func,
 
-  /** Add an "x" icon that calls onClickRemove when clicked. */
+  /** Add an "x" icon that calls onRemove when clicked. */
   removable: PropTypes.bool,
 
   /** Point to content next to it. */

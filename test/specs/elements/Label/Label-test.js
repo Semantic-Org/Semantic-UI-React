@@ -75,23 +75,9 @@ describe('Label Component', () => {
     })
 
     it('renders detail as an a tag', () => {
-      shallow(<Label detailLink={faker.hacker.noun()} />)
+      shallow(<Label detail={faker.hacker.noun()} detailLink />)
         .find('.detail')
         .should.have.tagName('a')
-    })
-
-    it('adds a detail last child', () => {
-      shallow(<Label detailLink={faker.hacker.noun()}><br /></Label>)
-        .children()
-        .last()
-        .should.match('.detail')
-    })
-
-    it('adds the value as the detail text', () => {
-      const detailLink = faker.hacker.noun()
-      shallow(<Label detailLink={detailLink} />)
-        .find('.detail')
-        .should.contain.text(detailLink)
     })
   })
 
@@ -186,14 +172,14 @@ describe('Label Component', () => {
     })
   })
 
-  describe('onClickRemove', () => {
+  describe('onRemove', () => {
     it('has no delete icon when not defined', () => {
       shallow(<Label />)
         .should.not.have.descendants('.delete')
     })
 
     it('adds a delete icon as last child', () => {
-      shallow(<Label onClickRemove={() => {}}><br /></Label>)
+      shallow(<Label onRemove={() => {}}><br /></Label>)
         .children()
         .last()
         .should.match('.delete')
@@ -201,7 +187,7 @@ describe('Label Component', () => {
 
     it('is called when delete icon is clicked', () => {
       const props = {
-        onClickRemove: sandbox.spy(),
+        onRemove: sandbox.spy(),
       }
 
       // mount to get click event to propagate on click
@@ -209,21 +195,20 @@ describe('Label Component', () => {
         .find('.delete')
         .simulate('click')
 
-      props.onClickRemove.should.have.been.calledOnce()
+      props.onRemove.should.have.been.calledOnce()
     })
   })
 
-  describe('onClickDetail', () => {
+  describe('onDetailClick', () => {
     it('renders detail as an a tag', () => {
-      shallow(<Label detail={faker.hacker.noun()} onClickDetail={() => {}} />)
-        .find('.detail')
-        .should.have.tagName('a')
+      shallow(<Label detail={faker.hacker.noun()} onDetailClick={() => {}} />)
+        .should.have.descendants('a.detail')
     })
 
     it('is called when detail is clicked', () => {
       const props = {
         detail: faker.hacker.noun(),
-        onClickDetail: sandbox.spy(),
+        onDetailClick: sandbox.spy(),
       }
 
       // mount to get click event to propagate on click
@@ -231,7 +216,7 @@ describe('Label Component', () => {
         .find('.detail')
         .simulate('click')
 
-      props.onClickDetail.should.have.been.calledOnce()
+      props.onDetailClick.should.have.been.calledOnce()
     })
   })
 
