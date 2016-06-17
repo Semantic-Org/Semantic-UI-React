@@ -19,11 +19,6 @@ test:
     - bash <(curl -s https://codecov.io/bash)
 
 deployment:
-  development:
-    branch: /^(?!master).*$/
-    commands:
-      - NODE_ENV=production gulp docs
-      - $(npm bin)/ta-script aws/stage -d docs/build -r $CIRCLE_PROJECT_REPONAME -b $CIRCLE_BRANCH
   production:
     branch: master
     commands:
