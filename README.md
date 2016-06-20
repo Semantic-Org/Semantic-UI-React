@@ -17,9 +17,8 @@ Hey, we're in development. Minor versions may introduce **breaking changes until
 
 ### Usage
 
-For more complete examples, check out the [Doc Site][2].
+**App.js**
 
-**ES6**
 ```jsx
 import React, { Component } from 'react'
 import { Button } from 'stardust'
@@ -30,6 +29,32 @@ export default class TryStardust extends Component {
   }
 }
 ```
+
+**index.html**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Try Stardust</title>
+
+  <!-- SUI CSS -->
+  <link href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/semantic.css" rel="stylesheet">
+
+  <!-- Temporary script dependencies until we're done removing jQuery -->
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/semantic.js"></script>
+</head>
+<body>
+  <script src="bundle.js"></script>
+</body>
+</html>
+```
+
+We then use [Webpack][13] to create `bundle.js` from `App.js` and include it in `index.html`.
+
+For more complete examples, check out the [Doc Site][2].
 
 ## Our Principles
 
@@ -157,3 +182,4 @@ Originally created with :heart: at [TechnologyAdvice][9].
 [10]: https://en.wikipedia.org/wiki/Eating_your_own_dog_food
 [11]: https://github.com/TechnologyAdvice/stardust/issues/247
 [12]: https://github.com/TechnologyAdvice/stardust/issues/243
+[13]: https://webpack.github.io
