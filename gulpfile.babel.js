@@ -10,4 +10,4 @@ requireDir('./gulp/tasks')
 // do not use tasks/default
 // the default task must be loaded after all other tasks
 // requireDir above loads all our tasks in alphabetical order
-gulp.task('default', gulp.series('serve', 'watch'))
+gulp.task('default', gulp.series('generate-docs-json', 'serve', 'watch'))
