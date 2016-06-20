@@ -18,6 +18,9 @@
 
 **Closed issues:**
 
+- how to do pull request on docs? [\#258](https://github.com/TechnologyAdvice/stardust/issues/258)
+- CSS with stardust [\#257](https://github.com/TechnologyAdvice/stardust/issues/257)
+- Stardust's dependency on Semantic UI [\#256](https://github.com/TechnologyAdvice/stardust/issues/256)
 - Slack integration test [\#253](https://github.com/TechnologyAdvice/stardust/issues/253)
 - Add README bullet points explaining the point of Stardust [\#166](https://github.com/TechnologyAdvice/stardust/issues/166)
 - Set value instead of object for serializing Form data [\#75](https://github.com/TechnologyAdvice/stardust/issues/75)
@@ -26,6 +29,7 @@
 
 **Merged pull requests:**
 
+- Show index.html in usage [\#259](https://github.com/TechnologyAdvice/stardust/pull/259) ([levithomason](https://github.com/levithomason))
 - Improve webpack performance [\#255](https://github.com/TechnologyAdvice/stardust/pull/255) ([levithomason](https://github.com/levithomason))
 - Support multiple dropdown type [\#254](https://github.com/TechnologyAdvice/stardust/pull/254) ([levithomason](https://github.com/levithomason))
 - Defensively handle component \_meta [\#252](https://github.com/TechnologyAdvice/stardust/pull/252) ([levithomason](https://github.com/levithomason))
