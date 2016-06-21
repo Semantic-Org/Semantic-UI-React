@@ -1,5 +1,18 @@
 # Change Log
 
+## [Unreleased](https://github.com/TechnologyAdvice/stardust/tree/HEAD)
+
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.14.0...HEAD)
+
+**Closed issues:**
+
+- Published NPM package executes dev dependencies \(HMR\) [\#264](https://github.com/TechnologyAdvice/stardust/issues/264)
+- Publishing latest versions to NPM [\#261](https://github.com/TechnologyAdvice/stardust/issues/261)
+
+**Merged pull requests:**
+
+- Publish the production build [\#265](https://github.com/TechnologyAdvice/stardust/pull/265) ([levithomason](https://github.com/levithomason))
+
 ## [v0.14.0](https://github.com/TechnologyAdvice/stardust/tree/v0.14.0) (2016-06-21)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.12.4...v0.14.0)
 
