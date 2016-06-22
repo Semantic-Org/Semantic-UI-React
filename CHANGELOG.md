@@ -11,6 +11,7 @@
 
 **Merged pull requests:**
 
+- Add React 15 to peer deps [\#266](https://github.com/TechnologyAdvice/stardust/pull/266) ([levithomason](https://github.com/levithomason))
 - Publish the production build [\#265](https://github.com/TechnologyAdvice/stardust/pull/265) ([levithomason](https://github.com/levithomason))
 
 ## [v0.14.0](https://github.com/TechnologyAdvice/stardust/tree/v0.14.0) (2016-06-21)
