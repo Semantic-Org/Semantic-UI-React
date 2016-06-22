@@ -14,7 +14,7 @@ import {
 function Divider(props) {
   const {
     horizontal, vertical, inverted, fitted, hidden, section, clearing,
-    children
+    children, className
   } = props;
 
   const classes = cx('sd-divider ui',
@@ -25,7 +25,8 @@ function Divider(props) {
     useKeyOnly(hidden, 'hidden'),
     useKeyOnly(section, 'section'),
     useKeyOnly(clearing, 'clearing'),
-    'divider'
+    'divider',
+    className
   )
 
   const _children = createFragment({
