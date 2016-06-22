@@ -10,6 +10,7 @@
 
 **Merged pull requests:**
 
+- "How can I help?" README update [\#270](https://github.com/TechnologyAdvice/stardust/pull/270) ([levithomason](https://github.com/levithomason))
 - Divider Component updated to v1 API [\#268](https://github.com/TechnologyAdvice/stardust/pull/268) ([jamiehill](https://github.com/jamiehill))
 - Update circle.yml [\#267](https://github.com/TechnologyAdvice/stardust/pull/267) ([levithomason](https://github.com/levithomason))
 
