@@ -5,8 +5,8 @@ export default class DividerInvertedExample extends Component {
   render() {
     return (
       <Segment className='inverted'>
-        <Divider className='inverted' />
-        <Divider className='horizontal inverted'>Horizontal</Divider>
+        <Divider inverted />
+        <Divider horizontal inverted >Horizontal</Divider>
       </Segment>
     )
   }

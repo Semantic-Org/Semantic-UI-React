@@ -6,7 +6,7 @@ export default class DividerHiddenExample extends Component {
     return (
       <Segment>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore...
-        <Divider className='hidden' />
+        <Divider hidden />
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore...
       </Segment>
     )
