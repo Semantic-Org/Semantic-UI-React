@@ -14,7 +14,7 @@ import {
 function Divider(props) {
   const {
     horizontal, vertical, inverted, fitted, hidden, section, clearing,
-    children, className
+    children, className,
   } = props;
 
   const classes = cx('sd-divider ui',
@@ -52,6 +52,9 @@ Divider._meta = {
 Divider.propTypes = {
   /** Primary content of the Divider */
   children: PropTypes.node,
+
+  /** Classes to add to the divider className. */
+  className: PropTypes.string,
 
   /** Divider can segment content horizontally */
   horizontal: PropTypes.bool,
