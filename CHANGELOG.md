@@ -11,6 +11,7 @@
 **Merged pull requests:**
 
 - Divider Component updated to v1 API [\#268](https://github.com/TechnologyAdvice/stardust/pull/268) ([jamiehill](https://github.com/jamiehill))
+- Update circle.yml [\#267](https://github.com/TechnologyAdvice/stardust/pull/267) ([levithomason](https://github.com/levithomason))
 
 ## [v0.14.1](https://github.com/TechnologyAdvice/stardust/tree/v0.14.1) (2016-06-22)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.14.0...v0.14.1)
