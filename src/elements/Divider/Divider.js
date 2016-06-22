@@ -1,7 +1,5 @@
 import cx from 'classnames'
 import React, { PropTypes } from 'react'
-import createFragment from 'react-addons-create-fragment'
-
 import META from '../../utils/Meta'
 import {
   getUnhandledProps,
@@ -29,16 +27,12 @@ function Divider(props) {
     className
   )
 
-  const _children = createFragment({
-    children,
-  })
-
   const DividerComponent = 'div'
   const rest = getUnhandledProps(Divider, props)
 
   return (
     <DividerComponent className={classes} {...rest}>
-      {_children}
+      {children}
     </DividerComponent>
   )
 }
