@@ -1,5 +1,17 @@
 # Change Log
 
+## [Unreleased](https://github.com/TechnologyAdvice/stardust/tree/HEAD)
+
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.14.1...HEAD)
+
+**Implemented enhancements:**
+
+- Update Divider to v1 API [\#262](https://github.com/TechnologyAdvice/stardust/issues/262)
+
+**Merged pull requests:**
+
+- Divider Component updated to v1 API [\#268](https://github.com/TechnologyAdvice/stardust/pull/268) ([jamiehill](https://github.com/jamiehill))
+
 ## [v0.14.1](https://github.com/TechnologyAdvice/stardust/tree/v0.14.1) (2016-06-22)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.14.0...v0.14.1)
 
