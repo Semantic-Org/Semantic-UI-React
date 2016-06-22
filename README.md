@@ -56,6 +56,23 @@ We then use [Webpack][13] to create `bundle.js` from `App.js` and include it in 
 
 For more complete examples, check out the [Doc Site][2].
 
+## How Can I Help?
+
+### v1.0 Migrations
+
+We're making two migrations right now:
+
+1. [Moving legacy component APIs to our v1 API][15]
+1. [Removing jQuery and SUI JS][11]
+
+Each of these issues includes a list of components and more information on how you can help.
+
+### New Components
+
+There is an [issue][14] for every missing component.  They are all labeled `enhancement` `help wanted` and we're accepting PRs for these.
+
+Be sure to check out the above migrations before embarking on a new component.  All new components should be written in accordance with the migrations above.
+
 ## Our Principles
 
 [TechnologyAdvice][9] has been [dogfooding][10] Stardust in production since fall of 2015.  This living list is updated as we iterate.  We'll lock it in as our v1.0 constitution soon.
@@ -144,7 +161,13 @@ Once dependencies are installed, start the application with:
 
     npm start
 
-This will start a [Webpack Dev Server][7] which will watch your JS files for changes and automatically transpile, lint and provide source maps for development.
+This launches the doc site for development.  [Webpack Dev Server][7] will watch your JS files for changes and automatically transpile, lint and provide source maps.
+
+It is also helpful to develop against tests:
+
+    npm test
+    
+This will run PhantomJS with Karma on the command line.  Just as before, JS files are watched and re-tested on change.
 
 ### Commands
 
@@ -183,3 +206,5 @@ Originally created with :heart: at [TechnologyAdvice][9].
 [11]: https://github.com/TechnologyAdvice/stardust/issues/247
 [12]: https://github.com/TechnologyAdvice/stardust/issues/243
 [13]: https://webpack.github.io
+[14]: https://github.com/TechnologyAdvice/stardust/issues
+[15]: https://github.com/TechnologyAdvice/stardust/issues/269
