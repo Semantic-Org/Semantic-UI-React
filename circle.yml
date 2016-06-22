@@ -5,12 +5,7 @@ general:
 
 machine:
   node:
-    version: 5
-
-dependencies:
-  pre:
-    - echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
-    - npm install -g npm@3
+    version: 6
 
 test:
   pre:
