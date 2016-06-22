@@ -6,7 +6,7 @@ export default class DividerClearingExample extends Component {
     return (
       <Segment>
         <Button className='right floated'>Floated Button</Button>
-        <Divider className='clearing' />
+        <Divider clearing />
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore...
       </Segment>
     )

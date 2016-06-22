@@ -1,30 +1,76 @@
-import React, { Component, PropTypes } from 'react'
-import classNames from 'classnames'
+import cx from 'classnames'
+import React, { PropTypes } from 'react'
+import createFragment from 'react-addons-create-fragment'
+
 import META from '../../utils/Meta'
+import {
+  getUnhandledProps,
+  useKeyOnly,
+} from '../../utils/propUtils'
 
-export default class Divider extends Component {
-  static propTypes = {
-    children: PropTypes.node,
-    className: PropTypes.string,
-  }
+/**
+ * A divider visually segments content into groups
+ */
+function Divider(props) {
+  const {
+    horizontal, vertical, inverted, fitted, hidden, section, clearing,
+    children
+  } = props;
 
-  static _meta = {
-    library: META.library.semanticUI,
-    name: 'Divider',
-    type: META.type.element,
-  }
+  const classes = cx('sd-divider ui',
+    useKeyOnly(horizontal, 'horizontal'),
+    useKeyOnly(vertical, 'vertical'),
+    useKeyOnly(inverted, 'inverted'),
+    useKeyOnly(fitted, 'fitted'),
+    useKeyOnly(hidden, 'hidden'),
+    useKeyOnly(section, 'section'),
+    useKeyOnly(clearing, 'clearing'),
+    'divider'
+  )
 
-  render() {
-    const classes = classNames(
-      'sd-divider',
-      'ui',
-      this.props.className,
-      'divider'
-    )
-    return (
-      <div {...this.props} className={classes}>
-        {this.props.children}
-      </div>
-    )
-  }
+  const _children = createFragment({
+    children
+  })
+
+  const DividerComponent = 'div';
+  const rest = getUnhandledProps(Divider, props)
+
+  return (
+    <DividerComponent className={classes} {...rest}>
+      {_children}
+    </DividerComponent>
+  )
 }
+
+Divider._meta = {
+  library: META.library.semanticUI,
+  name: 'Divider',
+  type: META.type.element
+}
+
+Divider.propTypes = {
+  /** Divider can segment content horizontally */
+
+  horizontal: PropTypes.bool,
+
+  /** Divider can segment content vertically */
+
+  vertical: PropTypes.bool,
+
+  /** Divider can have it's colours inverted */
+  inverted: PropTypes.bool,
+
+  /** Divider can be fitted without any space above or below it */
+  fitted: PropTypes.bool,
+
+  /** Divider can divide content without creating a dividing line */
+  hidden: PropTypes.bool,
+
+  /** Divider can provide greater margins to divide sections of content */
+  section: PropTypes.bool,
+
+  /** Divider can clear the content above it */
+  clearing: PropTypes.bool
+}
+
+export default Divider
