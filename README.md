@@ -184,10 +184,6 @@ On the latest clean `master`:
     npm run release:minor
     npm run release:patch
 
-## Contributing
-
-Before submitting PRs please review our [Component Guidelines][1] and [Roadmap][4].
-
 ## Credit
 
 Originally created with :heart: at [TechnologyAdvice][9].
