@@ -15,7 +15,7 @@ function Divider(props) {
   const {
     horizontal, vertical, inverted, fitted, hidden, section, clearing,
     children, className,
-  } = props;
+  } = props
 
   const classes = cx('sd-divider ui',
     useKeyOnly(horizontal, 'horizontal'),
@@ -33,7 +33,7 @@ function Divider(props) {
     children,
   })
 
-  const DividerComponent = 'div';
+  const DividerComponent = 'div'
   const rest = getUnhandledProps(Divider, props)
 
   return (
