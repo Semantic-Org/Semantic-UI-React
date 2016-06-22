@@ -30,7 +30,7 @@ function Divider(props) {
   )
 
   const _children = createFragment({
-    children
+    children,
   })
 
   const DividerComponent = 'div';
@@ -46,16 +46,17 @@ function Divider(props) {
 Divider._meta = {
   library: META.library.semanticUI,
   name: 'Divider',
-  type: META.type.element
+  type: META.type.element,
 }
 
 Divider.propTypes = {
-  /** Divider can segment content horizontally */
+  /** Primary content of the Divider */
+  children: PropTypes.node,
 
+  /** Divider can segment content horizontally */
   horizontal: PropTypes.bool,
 
   /** Divider can segment content vertically */
-
   vertical: PropTypes.bool,
 
   /** Divider can have it's colours inverted */
@@ -71,7 +72,7 @@ Divider.propTypes = {
   section: PropTypes.bool,
 
   /** Divider can clear the content above it */
-  clearing: PropTypes.bool
+  clearing: PropTypes.bool,
 }
 
 export default Divider
