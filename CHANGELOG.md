@@ -1,5 +1,16 @@
 # Change Log
 
+## [v0.15.1](https://github.com/TechnologyAdvice/stardust/tree/v0.15.1) (2016-06-23)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.15.0...v0.15.1)
+
+**Fixed bugs:**
+
+- Unlisted peer dependency on react-addons-create-fragment [\#274](https://github.com/TechnologyAdvice/stardust/issues/274)
+
+**Merged pull requests:**
+
+- Remove create fragment dependency [\#275](https://github.com/TechnologyAdvice/stardust/pull/275) ([levithomason](https://github.com/levithomason))
+
 ## [v0.15.0](https://github.com/TechnologyAdvice/stardust/tree/v0.15.0) (2016-06-23)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.14.1...v0.15.0)
 
