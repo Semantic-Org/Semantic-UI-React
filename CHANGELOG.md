@@ -1,15 +1,19 @@
 # Change Log
 
-## [Unreleased](https://github.com/TechnologyAdvice/stardust/tree/HEAD)
-
-[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.14.1...HEAD)
+## [v0.15.0](https://github.com/TechnologyAdvice/stardust/tree/v0.15.0) (2016-06-23)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.14.1...v0.15.0)
 
 **Implemented enhancements:**
 
 - Update Divider to v1 API [\#262](https://github.com/TechnologyAdvice/stardust/issues/262)
 
+**Closed issues:**
+
+- Remove console.group [\#272](https://github.com/TechnologyAdvice/stardust/issues/272)
+
 **Merged pull requests:**
 
+- Remove console.group\* usage [\#273](https://github.com/TechnologyAdvice/stardust/pull/273) ([levithomason](https://github.com/levithomason))
 - Remove outdated docs [\#271](https://github.com/TechnologyAdvice/stardust/pull/271) ([levithomason](https://github.com/levithomason))
 - "How can I help?" README update [\#270](https://github.com/TechnologyAdvice/stardust/pull/270) ([levithomason](https://github.com/levithomason))
 - Divider Component updated to v1 API [\#268](https://github.com/TechnologyAdvice/stardust/pull/268) ([jamiehill](https://github.com/jamiehill))
