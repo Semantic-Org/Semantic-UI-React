@@ -180,7 +180,7 @@ export default class Dropdown extends Component {
 
   componentWillReceiveProps(nextProps) {
     super.componentWillReceiveProps(nextProps)
-    debug.groupCollapsed('componentWillReceiveProps()')
+    debug('componentWillReceiveProps()')
     // TODO objectDiff still runs in prod, stop it
     debug('changed props:', objectDiff(nextProps, this.props))
 
@@ -207,15 +207,12 @@ export default class Dropdown extends Component {
       debug('value changed, setting', nextProps.value)
       this.setValue(nextProps.value)
     }
-
-    debug.groupEnd()
   }
 
   componentDidUpdate(prevProps, prevState) { // eslint-disable-line complexity
-    debug.groupCollapsed('componentDidUpdate()')
+    debug('componentDidUpdate()')
     // TODO objectDiff still runs in prod, stop it
     debug('changed state:', objectDiff(this.state, prevState))
-    debug.groupEnd()
 
     // focused / blurred
     if (!prevState.focus && this.state.focus) {
@@ -268,9 +265,8 @@ export default class Dropdown extends Component {
   // onChange needs to receive a value
   // can't rely on props.value if we are controlled
   onChange = (e, value) => {
-    debug.groupCollapsed('onChange()')
+    debug('onChange()')
     debug(value)
-    debug.groupEnd()
     const { onChange } = this.props
     if (onChange) onChange(e, value)
   }
@@ -282,9 +278,8 @@ export default class Dropdown extends Component {
   }
 
   moveSelectionOnKeyDown = (e) => {
-    debug.groupCollapsed('moveSelectionOnKeyDown()')
+    debug('moveSelectionOnKeyDown()')
     debug(keyboardKey.getName(e))
-    debug.groupEnd()
     switch (keyboardKey.getCode(e)) {
       case keyboardKey.ArrowDown:
         e.preventDefault()
@@ -317,9 +312,8 @@ export default class Dropdown extends Component {
   }
 
   selectItemOnEnter = (e) => {
-    debug.groupCollapsed('selectItemOnEnter()')
+    debug('selectItemOnEnter()')
     debug(keyboardKey.getName(e))
-    debug.groupEnd()
     if (keyboardKey.getCode(e) !== keyboardKey.Enter) return
     e.preventDefault()
 
@@ -342,9 +336,8 @@ export default class Dropdown extends Component {
   }
 
   closeOnDocumentClick = (e) => {
-    debug.groupCollapsed('closeOnDocumentClick()')
+    debug('closeOnDocumentClick()')
     debug(e)
-    debug.groupEnd()
     this.close()
   }
 
@@ -353,9 +346,8 @@ export default class Dropdown extends Component {
   // ----------------------------------------
 
   handleClick = (e) => {
-    debug.groupCollapsed('handleClick()')
+    debug('handleClick()')
     debug(e)
-    debug.groupEnd()
     const { onClick } = this.props
     if (onClick) onClick(e)
     // prevent closeOnDocumentClick()
@@ -364,9 +356,8 @@ export default class Dropdown extends Component {
   }
 
   handleItemClick = (e, value) => {
-    debug.groupCollapsed('handleItemClick()')
+    debug('handleItemClick()')
     debug(value)
-    debug.groupEnd()
     const { multiple } = this.props
 
     // prevent toggle() in handleClick()
@@ -412,9 +403,8 @@ export default class Dropdown extends Component {
   }
 
   handleSearchChange = (e) => {
-    debug.groupCollapsed('handleSearchChange()')
+    debug('handleSearchChange()')
     debug(e.target.value)
-    debug.groupEnd()
     // prevent propagating to this.props.onChange()
     e.stopPropagation()
     const { search } = this.props
@@ -477,9 +467,8 @@ export default class Dropdown extends Component {
   // ----------------------------------------
 
   setValue = (value) => {
-    debug.groupCollapsed('setValue()')
+    debug('setValue()')
     debug('value', value)
-    debug.groupEnd()
     const { multiple } = this.props
     const { selectedIndex } = this.state
     const options = this.getMenuOptions()
@@ -509,7 +498,7 @@ export default class Dropdown extends Component {
   }
 
   handleLabelRemove = (e, labelProps) => {
-    debug.groupCollapsed('handleLabelRemove()')
+    debug('handleLabelRemove()')
     // prevent focusing search input on click
     e.stopPropagation()
     const { value } = this.state
@@ -518,16 +507,14 @@ export default class Dropdown extends Component {
     debug('current value:', value)
     debug('remove value:', labelProps.value)
     debug('new value:', newValue)
-    debug.groupEnd()
 
     this.setValue(newValue)
     this.onChange(e, newValue)
   }
 
   moveSelectionBy = (offset) => {
-    debug.groupCollapsed('moveSelectionBy()')
+    debug('moveSelectionBy()')
     debug(`offset: ${offset}`)
-    debug.groupEnd()
     const { selectedIndex } = this.state
 
     const options = this.getMenuOptions()
@@ -548,12 +535,11 @@ export default class Dropdown extends Component {
   // ----------------------------------------
 
   scrollSelectedItemIntoView = () => {
-    debug.groupCollapsed('scrollSelectedItemIntoView()')
+    debug('scrollSelectedItemIntoView()')
     const menu = document.querySelector('.ui.dropdown.active.visible .menu.visible')
     const item = menu.querySelector('.item.selected')
     debug(`menu: ${menu}`)
     debug(`item: ${item}`)
-    debug.groupEnd()
     const isOutOfUpperView = item.offsetTop < menu.scrollTop
     const isOutOfLowerView = (item.offsetTop + item.clientHeight) > menu.scrollTop + menu.clientHeight
 
@@ -563,9 +549,8 @@ export default class Dropdown extends Component {
   }
 
   open = () => {
-    debug.groupCollapsed('open()')
+    debug('open()')
     debug(`dropdown is ${this.state.open ? 'already' : 'not yet'} open`)
-    debug.groupEnd()
     const { search } = this.props
     if (search) this.refs.search.focus()
 
@@ -578,9 +563,8 @@ export default class Dropdown extends Component {
   }
 
   close = () => {
-    debug.groupCollapsed('close()')
+    debug('close()')
     debug(`dropdown is ${!this.state.open ? 'already' : 'not yet'} closed`)
-    debug.groupEnd()
     if (!this.state.open) return
 
     this.trySetState({
@@ -622,13 +606,12 @@ export default class Dropdown extends Component {
   // TODO hidden input only exists for backwards compatibility with SUI jQuery plugins
   // remove once those are removed
   renderHiddenInput = () => {
-    debug.groupCollapsed('renderHiddenInput()')
+    debug('renderHiddenInput()')
     const { value } = this.state
     const { multiple, name, selection } = this.props
     debug(`name:      ${name}`)
     debug(`selection: ${selection}`)
     debug(`value:     ${value}`)
-    debug.groupEnd()
     if (!selection) return null
 
     const _value = multiple ? (value || []).join(',') : value
@@ -655,16 +638,14 @@ export default class Dropdown extends Component {
   }
 
   renderLabels = () => {
-    debug.groupCollapsed('renderLabels()')
+    debug('renderLabels()')
     const { multiple } = this.props
     const { value } = this.state
     if (!multiple || _.isEmpty(value)) {
-      debug.groupEnd()
       return
     }
     const selectedItems = _.map(value, this.getItemByValue)
     debug('selectedItems', selectedItems)
-    debug.groupEnd()
 
     // if no item could be found for a given state value the selected item will be undefined
     // compact the selectedItems so we only have actual objects left
@@ -707,10 +688,9 @@ export default class Dropdown extends Component {
   }
 
   render() {
-    debug.groupCollapsed('render()')
+    debug('render()')
     debug('props', this.props)
     debug('state', this.state)
-    debug.groupEnd()
     const { dropdownClasses, menuClasses } = this.state
 
     const {
