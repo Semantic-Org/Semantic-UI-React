@@ -99,7 +99,6 @@
     "phantomjs-prebuilt": "^2.1.7",
     "raw-loader": "^0.5.1",
     "react": "^15.0.2",
-    "react-addons-create-fragment": "^15.0.2",
     "react-addons-test-utils": "^15.0.2",
     "react-docgen": "^2.2.0",
     "react-dom": "^15.0.2",
