@@ -3,7 +3,7 @@
 import React, { Component } from 'react'
 import { Container, Message } from 'stardust'
 
-export default class ContainerContainerExample extends Component {
+export default class ContainerTextExample extends Component {
   render() {
     return (
       <div>
