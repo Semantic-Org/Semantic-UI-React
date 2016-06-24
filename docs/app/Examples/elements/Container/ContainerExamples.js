@@ -6,8 +6,8 @@ export default class ContainerExamples extends Component {
   render() {
     return (
       <div>
-        <ContainerTypesExamples/>
-        <ContainerVariationsExamples/>
+        <ContainerTypesExamples />
+        <ContainerVariationsExamples />
       </div>
     )
   }
