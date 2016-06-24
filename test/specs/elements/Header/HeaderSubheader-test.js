@@ -14,7 +14,7 @@ describe('HeaderSubheader', () => {
     wrapper.should.have.className('sd-header-subheader')
   })
 
-  it(`adds the sub class`, () => {
+  it('adds the sub class', () => {
     wrapper.should.have.className('sub')
   })
 })
