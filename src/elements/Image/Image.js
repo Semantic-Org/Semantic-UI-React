@@ -1,38 +1,28 @@
-import React, { PropTypes } from 'react'
-import cx from 'classnames'
+import React, { Component, PropTypes } from 'react'
+import classNames from 'classnames'
 import META from '../../utils/Meta'
 
-function Image(props) {
-  const {
-    className,
-  } = props
+export default class Image extends Component {
+  static propTypes = {
+    alt: PropTypes.string,
+    className: PropTypes.string,
+    src: PropTypes.string,
+  }
 
-  const classes = cx(
-    'sd-image', 'ui',
-    className,
-    'image'
-  )
+  static _meta = {
+    library: META.library.semanticUI,
+    name: 'Image',
+    type: META.type.element,
+  }
 
-  return (
-    <img {...props} className={classes} />
-  )
+  render() {
+    const classes = classNames(
+      'sd-image',
+      'ui',
+      this.props.className,
+      'image'
+    )
+
+    return <img {...this.props} className={classes} />
+  }
 }
-
-Image._meta = {
-  library: META.library.semanticUI,
-  name: 'Image',
-  type: META.type.element,
-}
-
-Image.propTypes = {
-  /** Class names for custom styling. */
-  className: PropTypes.string,
-
-  /** Alternate text for the image specified */
-  alt: PropTypes.string,
-
-  /** Specifies the URL of the image */
-  src: PropTypes.string,
-}
-
-export default Image
