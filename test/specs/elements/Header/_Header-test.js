@@ -1,5 +1,3 @@
-import React from 'react'
-
 import _Header from 'src/elements/Header/_Header'
 import * as common from 'test/specs/commonTests'
 

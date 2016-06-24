@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
 import META from '../../utils/Meta'
 import _Header from './_Header'
 
