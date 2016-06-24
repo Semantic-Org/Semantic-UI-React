@@ -5,6 +5,7 @@ import {
   getUnhandledProps,
   iconPropRenderer,
   imagePropRenderer,
+  useValueAndKey,
   useKeyOnly,
 } from '../../utils/propUtils'
 
@@ -24,7 +25,7 @@ function _Header(props) {
     useKeyOnly(dividing, 'dividing'),
     useKeyOnly(block, 'block'),
     useKeyOnly(attached, 'attached'),
-    useKeyOnly(floating, 'floating'),
+    useValueAndKey(floating, 'floating'),
     className,
     'header',
   )
