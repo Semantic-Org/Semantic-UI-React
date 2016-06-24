@@ -5,17 +5,17 @@ export default class InputSizeExample extends Component {
   render() {
     return (
       <div>
-        <Input className='mini icon' icon='search' placeholder='Search...' />
+        <Input className='mini' icon='search' placeholder='Search...' />
         <br />
-        <Input className='small icon' icon='search' placeholder='Search...' />
+        <Input className='small' icon='search' placeholder='Search...' />
         <br />
-        <Input className='large icon' icon='search' placeholder='Search...' />
+        <Input className='large' icon='search' placeholder='Search...' />
         <br />
-        <Input className='big icon' icon='search' placeholder='Search...' />
+        <Input className='big' icon='search' placeholder='Search...' />
         <br />
-        <Input className='huge icon' icon='search' placeholder='Search...' />
+        <Input className='huge' icon='search' placeholder='Search...' />
         <br />
-        <Input className='massive icon' icon='search' placeholder='Search...' />
+        <Input className='massive' icon='search' placeholder='Search...' />
         <br />
       </div>
     )

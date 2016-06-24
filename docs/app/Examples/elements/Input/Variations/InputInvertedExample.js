@@ -5,7 +5,7 @@ export default class InputInvertedExample extends Component {
   render() {
     return (
       <Segment inverted>
-        <Input className='inverted' placeholder='Search...' />
+        <Input inverted placeholder='Search...' />
       </Segment>
     )
   }
