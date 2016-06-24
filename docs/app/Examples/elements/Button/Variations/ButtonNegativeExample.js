@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
 import { Button } from 'stardust'
 
-export default class ButtonCompactExample extends Component {
+export default class ButtonNegativeExample extends Component {
   render() {
     return (
       <div>
-        <Button compact>Compact</Button>
-        <Button>Normal</Button>
+        <Button negative>Negative Button</Button>
       </div>
     )
   }

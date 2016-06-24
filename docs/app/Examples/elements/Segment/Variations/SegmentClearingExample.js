@@ -3,7 +3,7 @@ import { Button, Segment } from 'stardust'
 
 const SegmentClearingExample = () => (
   <Segment clearing>
-    <Button className='right floated'>
+    <Button floated='right'>
       floated
     </Button>
   </Segment>

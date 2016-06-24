@@ -5,8 +5,8 @@ export default class ButtonHorizontallyAttachedExample extends Component {
   render() {
     return (
       <div>
-        <Button className='left attached'>Left</Button>
-        <Button className='right attached'>Right</Button>
+        <Button attached='left'>Left</Button>
+        <Button attached='right'>Right</Button>
       </div>
     )
   }

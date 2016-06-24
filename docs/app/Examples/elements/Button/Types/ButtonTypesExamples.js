@@ -13,7 +13,7 @@ export default class ButtonTypesExamples extends Component {
         />
         <ComponentExample
           title='Emphasis'
-          description='Button formatting can reflect different types of emphasis'
+          description='A button can be formatted to show different levels of emphasis'
           examplePath='elements/Button/Types/ButtonEmphasisExample'
         />
         <ComponentExample

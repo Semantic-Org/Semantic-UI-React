@@ -3,9 +3,9 @@ node_modules/
 bower_components/
 coverage/
 dist/
-docs/build
+docs/build/
 docs/app/docgenInfo.json
-dll
+dll/
 
 .DS_Store
 .idea/

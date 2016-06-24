@@ -5,8 +5,8 @@ export default class ButtonFloatedExample extends Component {
   render() {
     return (
       <div>
-        <Button className='right floated'>Right Floated</Button>
-        <Button className='left floated'>Left Floated</Button>
+        <Button floated='right'>Right Floated</Button>
+        <Button floated='left'>Left Floated</Button>
       </div>
     )
   }

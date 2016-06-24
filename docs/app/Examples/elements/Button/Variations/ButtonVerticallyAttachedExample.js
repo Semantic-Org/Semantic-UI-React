@@ -5,11 +5,11 @@ export default class ButtonVerticallyAttachedExample extends Component {
   render() {
     return (
       <div>
-        <Button className='top attached'>Top</Button>
+        <Button attached='top'>Top</Button>
         <Segment attached>
           <p>Content goes here</p>
         </Segment>
-        <Button className='bottom attached'>Bottom</Button>
+        <Button attached='bottom'>Bottom</Button>
       </div>
       // TODO: Extend button component to work with an attached div - see issue #46
     )

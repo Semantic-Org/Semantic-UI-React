@@ -5,10 +5,10 @@ export default class ButtonLoadingExample extends Component {
   render() {
     return (
       <div>
-        <Button className='loading' />
-        <Button className='basic loading' />
-        <Button className='primary loading' />
-        <Button className='secondary loading' />
+        <Button loading />
+        <Button basic loading />
+        <Button loading className='primary' />
+        <Button loading className='secondary' />
       </div>
     )
   }

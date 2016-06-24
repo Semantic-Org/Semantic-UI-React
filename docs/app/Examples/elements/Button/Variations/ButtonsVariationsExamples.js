@@ -37,9 +37,14 @@ export default class ButtonVariationsExamples extends Component {
           examplePath='elements/Button/Variations/ButtonToggleExample'
         />
         <ComponentExample
-          title='Positive/Negative'
-          description='A button can visually indicate consequence'
-          examplePath='elements/Button/Variations/ButtonPositiveNegativeExample'
+          title='Positive'
+          description='A button can hint towards a positive consequence'
+          examplePath='elements/Button/Variations/ButtonPositiveExample'
+        />
+        <ComponentExample
+          title='Negative'
+          description='A button can hint towards a negative consequence'
+          examplePath='elements/Button/Variations/ButtonNegativeExample'
         />
         <ComponentExample
           title='Fluid'

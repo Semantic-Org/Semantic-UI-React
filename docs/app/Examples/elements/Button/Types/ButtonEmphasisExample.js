@@ -5,8 +5,8 @@ export default class ButtonEmphasisExample extends Component {
   render() {
     return (
       <div>
-        <Button className='primary'>Primary</Button>
-        <Button className='secondary'>Secondary</Button>
+        <Button primary>Primary</Button>
+        <Button secondary>Secondary</Button>
       </div>
     )
   }

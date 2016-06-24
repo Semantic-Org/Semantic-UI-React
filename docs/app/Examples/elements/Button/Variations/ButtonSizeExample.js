@@ -5,28 +5,28 @@ export default class ButtonSizeExample extends Component {
   render() {
     return (
       <div>
-        <Button className='mini'>
+        <Button size='mini'>
           Mini
         </Button>
-        <Button className='tiny'>
+        <Button size='tiny'>
           Tiny
         </Button>
-        <Button className='small'>
+        <Button size='small'>
           Small
         </Button>
-        <Button className='medium'>
+        <Button size='medium'>
           Medium
         </Button>
-        <Button className='large'>
+        <Button size='large'>
           Large
         </Button>
-        <Button className='big'>
+        <Button size='big'>
           Big
         </Button>
-        <Button className='huge'>
+        <Button size='huge'>
           Huge
         </Button>
-        <Button className='massive'>
+        <Button size='massive'>
           Massive
         </Button>
       </div>
