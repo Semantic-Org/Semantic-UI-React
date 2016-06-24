@@ -9,14 +9,16 @@ describe('Container', () => {
   common.hasUIClassName(Container)
 
   common.propKeyOnlyToClassName(Container, 'text')
-  common.propKeyOnlyToClassName(Container, 'left', { className: 'aligned' })
-  common.propKeyOnlyToClassName(Container, 'center', { className: 'aligned' })
-  common.propKeyOnlyToClassName(Container, 'right', { className: 'aligned' })
-  common.propKeyOnlyToClassName(Container, 'justified')
+  common.propKeyAndValueToClassName(Container, 'aligned')
   common.propKeyOnlyToClassName(Container, 'fluid')
 
   it('renders a <div /> element', () => {
     shallow(<Container />)
       .should.have.tagName('div')
+  })
+
+  it('does not have aligned class when justified', () => {
+    shallow(<Container aligned='justified' />)
+      .should.not.have.className('aligned')
   })
 })
