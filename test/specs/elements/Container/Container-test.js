@@ -19,9 +19,4 @@ describe('Container', () => {
     shallow(<Container />)
       .should.have.tagName('div')
   })
-
-  it('adds the Container class', () => {
-    shallow(<Container />)
-      .should.have.className('container')
-  })
 })
