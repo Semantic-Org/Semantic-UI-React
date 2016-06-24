@@ -6,7 +6,7 @@ export default class DividerFittedExample extends Component {
     return (
       <Segment>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore...
-        <Divider className='fitted' />
+        <Divider fitted />
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore...
       </Segment>
     )

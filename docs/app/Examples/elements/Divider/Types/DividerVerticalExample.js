@@ -10,13 +10,13 @@ export default class DividerVerticalExample extends Component {
             Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio.
           </Segment>
         </Grid.Column>
-        <Divider className='vertical'>Or</Divider>
+        <Divider vertical>Or</Divider>
         <Grid.Column>
           <Segment className='basic'>
             Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio.
           </Segment>
         </Grid.Column>
-        <Divider className='vertical'>And</Divider>
+        <Divider vertical>And</Divider>
         <Grid.Column>
           <Segment className='basic'>
             Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio.
