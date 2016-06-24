@@ -9,9 +9,9 @@ describe('Container', () => {
   common.hasUIClassName(Container)
 
   common.propKeyOnlyToClassName(Container, 'text')
-  common.propKeyOnlyToClassName(Container, 'left', {className: "aligned"})
-  common.propKeyOnlyToClassName(Container, 'center', {className: "aligned"})
-  common.propKeyOnlyToClassName(Container, 'right', {className: "aligned"})
+  common.propKeyOnlyToClassName(Container, 'left', { className: 'aligned' })
+  common.propKeyOnlyToClassName(Container, 'center', { className: 'aligned' })
+  common.propKeyOnlyToClassName(Container, 'right', { className: 'aligned' })
   common.propKeyOnlyToClassName(Container, 'justified')
   common.propKeyOnlyToClassName(Container, 'fluid')
 
@@ -20,7 +20,7 @@ describe('Container', () => {
       .should.have.tagName('div')
   })
 
-  it('adds the "Container" class', () => {
+  it('adds the Container class', () => {
     shallow(<Container />)
       .should.have.className('container')
   })

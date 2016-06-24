@@ -1,7 +1,7 @@
-import cx from "classnames";
-import React, {PropTypes} from "react";
-import META from "../../utils/Meta";
-import {getUnhandledProps, useKeyOnly} from "../../utils/propUtils";
+import cx from 'classnames'
+import React, { PropTypes } from 'react'
+import META from '../../utils/Meta';
+import { getUnhandledProps, useKeyOnly } from '../../utils/propUtils'
 
 /**
  * A container limits content to a maximum width
@@ -36,7 +36,7 @@ function Container(props) {
 Container._meta = {
   library: META.library.semanticUI,
   name: 'Container',
-  type: META.type.element
+  type: META.type.element,
 }
 
 Container.propTypes = {
@@ -59,7 +59,7 @@ Container.propTypes = {
   right: PropTypes.bool,
 
   /** Justify content to available space */
-  justify: PropTypes.bool,
+  justified: PropTypes.bool,
 
   /** Container has no maximum with */
   fluid: PropTypes.bool,

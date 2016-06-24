@@ -7,7 +7,7 @@ export default class ContainerFluidExample extends Component {
   render() {
     return (
       <div>
-        <Message className="info">
+        <Message className='info'>
           Fluid containers are useful for setting text alignment, or other variations on unstyled content
         </Message>
         <Container fluid>
