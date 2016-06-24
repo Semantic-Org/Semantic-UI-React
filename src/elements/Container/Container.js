@@ -23,13 +23,12 @@ function Container(props) {
     className
   )
 
-  const ContainerComponent = 'div'
   const rest = getUnhandledProps(Container, props)
 
   return (
-    <ContainerComponent className={classes} {...rest}>
+    <div className={classes} {...rest}>
       {children}
-    </ContainerComponent>
+    </div>
   )
 }
 
