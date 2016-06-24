@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="086747b3-b669-4fe9-a7d7-329c6f8632a5" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/elements/Icon/Icon.js" afterPath="$PROJECT_DIR$/src/elements/Icon/Icon.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/elements/Image/Image.js" afterPath="$PROJECT_DIR$/src/elements/Image/Image.js" />
     </list>
     <ignored path="stardust.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -36,14 +36,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Icon.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Icon.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/elements/Icon/Icon.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="465">
-              <caret line="31" column="29" selection-start-line="31" selection-start-column="29" selection-end-line="31" selection-end-column="29" />
+            <state relative-caret-position="420">
+              <caret line="28" column="33" selection-start-line="28" selection-start-column="33" selection-end-line="28" selection-end-column="33" />
               <folding>
                 <element signature="e#0#27#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Image.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/elements/Image/Image.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="525">
+              <caret line="37" column="20" selection-start-line="37" selection-start-column="20" selection-end-line="37" selection-end-column="20" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -101,7 +111,6 @@
         <option value="$PROJECT_DIR$/test/specs/elements/Label/Label-test.js" />
         <option value="$PROJECT_DIR$/src/elements/Header/_Header.js" />
         <option value="$PROJECT_DIR$/docs/app/Examples/elements/Button/Types/ButtonLabeledExample.js" />
-        <option value="$PROJECT_DIR$/src/elements/Image/Image.js" />
         <option value="$PROJECT_DIR$/build/webpack.config.js" />
         <option value="$PROJECT_DIR$/src/collections/Grid/Grid.js" />
         <option value="$PROJECT_DIR$/src/collections/Grid/GridColumn.js" />
@@ -120,6 +129,7 @@
         <option value="$PROJECT_DIR$/test/specs/commonTests.js" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/src/elements/Icon/Icon.js" />
+        <option value="$PROJECT_DIR$/src/elements/Image/Image.js" />
       </list>
     </option>
   </component>
@@ -597,16 +607,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/elements/Image/Image.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#51#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/collections/Grid/GridRow.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="630">
@@ -890,11 +890,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/elements/Icon/Icon.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="31" column="29" selection-start-line="31" selection-start-column="29" selection-end-line="31" selection-end-column="29" />
+        <state relative-caret-position="420">
+          <caret line="28" column="33" selection-start-line="28" selection-start-column="33" selection-end-line="28" selection-end-column="33" />
           <folding>
             <element signature="e#0#27#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/elements/Image/Image.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="37" column="20" selection-start-line="37" selection-start-column="20" selection-end-line="37" selection-end-column="20" />
+          <folding />
         </state>
       </provider>
     </entry>
