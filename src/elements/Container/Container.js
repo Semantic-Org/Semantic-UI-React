@@ -1,23 +1,24 @@
 import cx from 'classnames'
 import React, { PropTypes } from 'react'
 import META from '../../utils/Meta';
-import { getUnhandledProps, useKeyOnly } from '../../utils/propUtils'
+import {
+  getUnhandledProps,
+  useValueAndKey,
+  useKeyOnly
+} from '../../utils/propUtils'
 
 /**
  * A container limits content to a maximum width
  */
 function Container(props) {
   const {
-    text, left, center, right, justified, fluid,
+    text, aligned, justified, fluid,
     children, className,
   } = props
 
   const classes = cx('sd-container ui',
     useKeyOnly(text, 'text'),
-    useKeyOnly(left, 'left aligned'),
-    useKeyOnly(center, 'center aligned'),
-    useKeyOnly(right, 'right aligned'),
-    useKeyOnly(justified, 'justified'),
+    aligned === 'justified' ? 'justified' : useValueAndKey(aligned, 'aligned'),
     useKeyOnly(fluid, 'fluid'),
     'container',
     className
@@ -36,6 +37,9 @@ Container._meta = {
   library: META.library.semanticUI,
   name: 'Container',
   type: META.type.element,
+  props: {
+    aligned: ['left', 'center', 'right', 'justified'],
+  },
 }
 
 Container.propTypes = {
@@ -49,16 +53,7 @@ Container.propTypes = {
   text: PropTypes.bool,
 
   /** Align container content to left */
-  left: PropTypes.bool,
-
-  /** Align container content to center */
-  center: PropTypes.bool,
-
-  /** Align container content to right */
-  right: PropTypes.bool,
-
-  /** Justify content to available space */
-  justified: PropTypes.bool,
+  aligned: PropTypes.oneOf(Container._meta.props.aligned),
 
   /** Container has no maximum with */
   fluid: PropTypes.bool,
