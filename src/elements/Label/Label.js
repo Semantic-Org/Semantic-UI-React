@@ -1,6 +1,5 @@
 import cx from 'classnames'
 import React, { PropTypes } from 'react'
-import createFragment from 'react-addons-create-fragment'
 
 import META from '../../utils/Meta'
 import * as sui from '../../utils/semanticUtils'
@@ -48,25 +47,21 @@ function Label(props) {
 
   const DetailComponent = (detailLink || onDetailClick) && 'a' || 'div'
 
-  const _children = createFragment({
-    icon: iconPropRenderer(icon),
-    image: imagePropRenderer(image),
-    text,
-    children,
-    detail: detail && (
-      <DetailComponent className='detail' onClick={handleDetailClick}>{detail}</DetailComponent>
-    ),
-    remove: (removable || onRemove) && (
-      <Icon className='delete' onClick={handleRemove} />
-    ),
-  })
-
   const LabelComponent = image || link || onClick ? 'a' : 'div'
   const rest = getUnhandledProps(Label, props)
 
   return (
     <LabelComponent className={classes} onClick={handleClick} {...rest}>
-      {_children}
+      {iconPropRenderer(icon)}
+      {imagePropRenderer(image)}
+      {text}
+      {children}
+      {detail && (
+        <DetailComponent className='detail' onClick={handleDetailClick}>{detail}</DetailComponent>
+      )}
+      {(removable || onRemove) && (
+        <Icon className='delete' onClick={handleRemove} />
+      )}
     </LabelComponent>
   )
 }
