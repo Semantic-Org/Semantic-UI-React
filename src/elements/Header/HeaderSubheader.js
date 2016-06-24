@@ -15,13 +15,12 @@ function HeaderSubheader(props) {
     'header'
   )
 
-  const SubHeaderComponent = 'div'
   const rest = getUnhandledProps(HeaderSubheader, props)
 
   return (
-    <SubHeaderComponent className={classes} {...rest}>
+    <div className={classes} {...rest}>
       {children}
-    </SubHeaderComponent>
+    </div>
   )
 }
 
