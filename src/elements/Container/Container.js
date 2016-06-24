@@ -1,33 +1,68 @@
-import React, { Component, PropTypes } from 'react'
-import classNames from 'classnames'
-import META from '../../utils/Meta'
+import cx from "classnames";
+import React, {PropTypes} from "react";
+import META from "../../utils/Meta";
+import {getUnhandledProps, useKeyOnly} from "../../utils/propUtils";
 
 /**
- * A container that gives your content some side padding.
+ * A container limits content to a maximum width
  */
-export default class Container extends Component {
-  static propTypes = {
-    children: PropTypes.node,
-    className: PropTypes.string,
-  }
+function Container(props) {
+  const {
+    text, left, center, right, justified, fluid,
+    children, className,
+  } = props
 
-  static _meta = {
-    library: META.library.semanticUI,
-    name: 'Container',
-    type: META.type.element,
-  }
+  const classes = cx('sd-container ui',
+    useKeyOnly(text, 'text'),
+    useKeyOnly(left, 'left aligned'),
+    useKeyOnly(center, 'center aligned'),
+    useKeyOnly(right, 'right aligned'),
+    useKeyOnly(justified, 'justified'),
+    useKeyOnly(fluid, 'fluid'),
+    'container',
+    className
+  )
 
-  render() {
-    const classes = classNames(
-      'sd-container',
-      'ui',
-      this.props.className,
-      'container',
-    )
-    return (
-      <div {...this.props} className={classes}>
-        {this.props.children}
-      </div>
-    )
-  }
+  const ContainerComponent = 'div'
+  const rest = getUnhandledProps(Container, props)
+
+  return (
+    <ContainerComponent className={classes} {...rest}>
+      {children}
+    </ContainerComponent>
+  )
 }
+
+Container._meta = {
+  library: META.library.semanticUI,
+  name: 'Container',
+  type: META.type.element
+}
+
+Container.propTypes = {
+  /** Primary content of the Container */
+  children: PropTypes.node,
+
+  /** Classes to add to the container className. */
+  className: PropTypes.string,
+
+  /** Reduce maximum width to more naturally accomodate text */
+  text: PropTypes.bool,
+
+  /** Align container content to left */
+  left: PropTypes.bool,
+
+  /** Align container content to center */
+  center: PropTypes.bool,
+
+  /** Align container content to right */
+  right: PropTypes.bool,
+
+  /** Justify content to available space */
+  justify: PropTypes.bool,
+
+  /** Container has no maximum with */
+  fluid: PropTypes.bool,
+}
+
+export default Container
