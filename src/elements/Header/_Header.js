@@ -13,16 +13,13 @@ import {
 function _Header(props) {
   const {
     _sdClass, _headerElement,
-    left, center, right, justified, dividing, block, attached, floating,
+    aligned, dividing, block, attached, floating,
     icon, image, children, className,
   } = props
 
   const classes = cx(
     _sdClass, 'ui',
-    useKeyOnly(left, 'left aligned'),
-    useKeyOnly(center, 'center aligned'),
-    useKeyOnly(right, 'right aligned'),
-    useKeyOnly(justified, 'justified'),
+    aligned === 'justified' ? 'justified' : useValueAndKey(aligned, 'aligned'),
     useKeyOnly(dividing, 'dividing'),
     useKeyOnly(block, 'block'),
     useKeyOrValueAndKey(attached, 'attached'),
@@ -47,6 +44,9 @@ _Header._meta = {
   library: META.library.semanticUI,
   name: '_Header',
   type: META.type.element,
+  props: {
+    aligned: ['left', 'center', 'right', 'justified'],
+  },
 }
 
 _Header.propTypes = {
@@ -67,17 +67,8 @@ _Header.propTypes = {
     PropTypes.element,
   ]),
 
-  /** Align header content to left */
-  left: PropTypes.bool,
-
-  /** Align header content to center */
-  center: PropTypes.bool,
-
-  /** Align header content to right */
-  right: PropTypes.bool,
-
-  /** Justify content to available space */
-  justified: PropTypes.bool,
+  /** Align header content */
+  aligned: PropTypes.oneOf(_Header._meta.props.aligned),
 
   /** Divide header from the content below it */
   dividing: PropTypes.bool,
