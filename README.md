@@ -9,7 +9,7 @@ The [official][8] integration between [Semantic UI][5] and [React][3].
 ## Getting Started
 Hey, we're in development. Minor versions may introduce **breaking changes until the [v1.0][6] release**.
 
->There are [big changes][11] taking place while we [migrate to SUI-Org][12].
+>There are [big changes](#how-can-i-help) taking place while we [migrate to SUI-Org][12].
 
 ### Installation
 
