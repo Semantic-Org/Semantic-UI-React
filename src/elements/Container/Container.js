@@ -4,7 +4,7 @@ import META from '../../utils/Meta';
 import {
   getUnhandledProps,
   useValueAndKey,
-  useKeyOnly
+  useKeyOnly,
 } from '../../utils/propUtils'
 
 /**
@@ -12,7 +12,7 @@ import {
  */
 function Container(props) {
   const {
-    text, aligned, justified, fluid,
+    text, aligned, fluid,
     children, className,
   } = props
 
