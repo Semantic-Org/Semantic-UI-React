@@ -1,5 +1,13 @@
 # Change Log
 
+## [Unreleased](https://github.com/TechnologyAdvice/stardust/tree/HEAD)
+
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.16.0...HEAD)
+
+**Merged pull requests:**
+
+- Header Component updated to v1 API [\#278](https://github.com/TechnologyAdvice/stardust/pull/278) ([jamiehill](https://github.com/jamiehill))
+
 ## [v0.16.0](https://github.com/TechnologyAdvice/stardust/tree/v0.16.0) (2016-06-26)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.15.2...v0.16.0)
 
