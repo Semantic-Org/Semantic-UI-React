@@ -32,7 +32,7 @@ const FormSpecifyingValidationRulesExample = (props) => (
         <Input placeholder='First Name' name='name' type='text' />
       </Form.Field>
       <Form.Field label='Gender'>
-        <Dropdown className='selection' name='gender' options={genderOptions} />
+        <Dropdown selection name='gender' options={genderOptions} />
       </Form.Field>
     </Form.Fields>
     <Form.Fields evenlyDivided>
@@ -44,7 +44,7 @@ const FormSpecifyingValidationRulesExample = (props) => (
       </Form.Field>
     </Form.Fields>
     <Form.Field label='Skills'>
-      <Dropdown className='selection multiple' name='skills' options={skillsOptions} />
+      <Dropdown selection multiple name='skills' options={skillsOptions} />
     </Form.Field>
     <Form.Field className='inline'>
       <Checkbox name='terms' className='hidden' label='I agree to the terms and conditions' />
