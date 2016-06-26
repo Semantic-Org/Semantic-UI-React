@@ -2,16 +2,15 @@ import faker from 'faker'
 import React from 'react'
 
 import Segment from 'src/elements/Segment/Segment'
-import Segments from 'src/elements/Segment/SegmentSegments'
+import SegmentGroup from 'src/elements/Segment/SegmentGroup'
 import * as common from 'test/specs/commonTests'
 
 describe('Segment', () => {
   common.isConformant(Segment)
-  common.hasUIClassName(Segment)
-  common.rendersChildren(Segment)
-  common.hasSubComponents(Segment, [Segments])
+  common.hasSubComponents(Segment, [SegmentGroup])
 
-  describe('heading', () => {
+  // TODO re-enable when Header v1 merged to master
+  xdescribe('heading', () => {
     it('is not present by default', () => {
       shallow(<Segment />)
         .should.not.have.descendants('.sd-segment-heading')

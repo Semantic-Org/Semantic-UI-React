@@ -11,7 +11,7 @@ export default class SegmentNestedSegmentsExample extends Component {
           <Segment>Nested Middle</Segment>
           <Segment>Nested Bottom</Segment>
         </Segment.Group>
-        <Segment.Group horizontal>
+        <Segment.Group aligned='horizontal'>
           <Segment>Top</Segment>
           <Segment>Middle</Segment>
           <Segment>Bottom</Segment>

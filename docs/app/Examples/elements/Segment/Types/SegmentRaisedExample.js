@@ -3,6 +3,6 @@ import { Segment } from 'stardust'
 
 export default class SegmentRaisedExample extends Component {
   render() {
-    return <Segment>Pellentesque habitant morbi tristique senectus.</Segment>
+    return <Segment raised>Pellentesque habitant morbi tristique senectus.</Segment>
   }
 }

@@ -1,3 +1,4 @@
+import cx from 'classnames'
 import React, { PropTypes } from 'react'
 import META from '../../utils/Meta'
 import {
@@ -7,13 +8,17 @@ import _Segment from './_Segment'
 
 function SegmentGroup(props) {
   const {
-    children,
+    children, className,
   } = props
+
+  const classes = cx(
+    className
+  )
 
   const rest = getUnhandledProps(SegmentGroup, props)
 
   return (
-    <_Segment {...rest} _sdClass='sd-segment-group' _segmentClass='segments'>
+    <_Segment className={classes} {...rest} _sdClass='sd-segment-group' _segmentClass='segments'>
       {children}
     </_Segment>
   )
@@ -31,7 +36,7 @@ SegmentGroup._meta = {
 SegmentGroup.propTypes = {
   /** Class names for custom styling. */
   className: PropTypes.string,
-  children: PropTypes.array,
+  children: PropTypes.any,
 }
 
 export default SegmentGroup

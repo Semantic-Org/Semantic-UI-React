@@ -42,13 +42,12 @@ export Icon from './elements/Icon/Icon'
 export Image from './elements/Image/Image'
 export Input from './elements/Input/Input'
 export Label from './elements/Label/Label'
+export Segment from './elements/Segment/Segment'
 
 import _List from './elements/List/List'
 export { _List as List }
 export const ListItem = deprecateComponent('ListItem', 'Use "List.Item" instead.', _List.Item)
 
-export Segment from './elements/Segment/_Segment'
-export Segments from './elements/Segment/SegmentSegments'
 
 // ----------------------------------------
 // Modules

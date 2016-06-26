@@ -4,7 +4,7 @@ import { Segment } from 'stardust'
 export default class SegmentCompactExample extends Component {
   render() {
     return (
-      <Segment className='compact'>
+      <Segment compact>
         Compact content.
       </Segment>
     )

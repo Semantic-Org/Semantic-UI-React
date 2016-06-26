@@ -5,7 +5,7 @@ export default class SegmentCircularExample extends Component {
   render() {
     return (
       <div>
-        <Segment className='circular'>
+        <Segment circular>
           <Header.H2>
             Sale!
             <Header.Subheader>
@@ -13,7 +13,7 @@ export default class SegmentCircularExample extends Component {
             </Header.Subheader>
           </Header.H2>
         </Segment>
-        <Segment className='red inverted circular'>
+        <Segment circular inverted color='red'>
           <Header.H3>
             Buy Now
             <Header.Subheader>
