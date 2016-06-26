@@ -4,6 +4,10 @@
 
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.16.0...HEAD)
 
+**Implemented enhancements:**
+
+- Add Label "basic" option [\#289](https://github.com/TechnologyAdvice/stardust/pull/289) ([levithomason](https://github.com/levithomason))
+
 **Merged pull requests:**
 
 - Extend semanticUtils [\#288](https://github.com/TechnologyAdvice/stardust/pull/288) ([levithomason](https://github.com/levithomason))
