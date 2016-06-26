@@ -620,6 +620,80 @@ describe('Dropdown Component', () => {
     })
   })
 
+  describe('removing items on backspace', () => {
+    let spy
+    beforeEach(() => {
+      spy = sandbox.spy()
+    })
+
+    it('does nothing without selected items', () => {
+      wrapperMount(<Dropdown {...requiredProps} multiple search onChange={spy} />)
+
+      // open
+      wrapper.simulate('click')
+
+      domEvent.keyDown(document, { key: 'Backspace' })
+
+      spy.should.not.have.been.called()
+    })
+    it('removes the last item when there is no search query', () => {
+      const value = _.map(options, 'value')
+      const expected = _.dropRight(value)
+      wrapperMount(<Dropdown {...requiredProps} value={value} multiple search onChange={spy} />)
+
+      // open
+      wrapper.simulate('click')
+
+      domEvent.keyDown(document, { key: 'Backspace' })
+
+      spy.should.have.been.calledOnce()
+      spy.firstCall.args[1].should.deep.equal(expected)
+    })
+    it('removes the last item when there is no search query when uncontrolled', () => {
+      const value = _.map(options, 'value')
+      const expected = _.dropRight(value)
+      wrapperMount(<Dropdown {...requiredProps} defaultValue={value} multiple search onChange={spy} />)
+
+      // open
+      wrapper.simulate('click')
+
+      domEvent.keyDown(document, { key: 'Backspace' })
+
+      spy.should.have.been.calledOnce()
+      spy.firstCall.args[1].should.deep.equal(expected)
+
+      wrapper
+        .state('value')
+        .should.deep.equal(expected)
+    })
+    it('does not remove the last item when there is a search query', () => {
+      // search for random item
+      const searchQuery = _.sample(options).text
+      const value = _.map(options, 'value')
+      wrapperMount(<Dropdown {...requiredProps} value={value} multiple search onChange={spy} />)
+
+      // open and simulate search
+      wrapper
+        .simulate('click')
+        .setState({ searchQuery })
+
+      domEvent.keyDown(document, { key: 'Backspace' })
+
+      spy.should.not.have.been.called()
+    })
+    it('does not remove items for multiple dropdowns without search', () => {
+      const value = _.map(options, 'value')
+      wrapperMount(<Dropdown {...requiredProps} value={value} multiple onChange={spy} />)
+
+      // open
+      wrapper.simulate('click')
+
+      domEvent.keyDown(document, { key: 'Backspace' })
+
+      spy.should.not.have.been.called()
+    })
+  })
+
   describe('onChange', () => {
     let spy
     beforeEach(() => {

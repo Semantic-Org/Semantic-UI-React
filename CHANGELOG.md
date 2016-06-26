@@ -1,5 +1,20 @@
 # Change Log
 
+## [Unreleased](https://github.com/TechnologyAdvice/stardust/tree/HEAD)
+
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.15.2...HEAD)
+
+**Merged pull requests:**
+
+- "aligned" prop util and common test [\#285](https://github.com/TechnologyAdvice/stardust/pull/285) ([levithomason](https://github.com/levithomason))
+
+## [v0.15.2](https://github.com/TechnologyAdvice/stardust/tree/v0.15.2) (2016-06-24)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.15.1...v0.15.2)
+
+**Merged pull requests:**
+
+- Add ability to remove dropdown items on backspace [\#283](https://github.com/TechnologyAdvice/stardust/pull/283) ([ianunruh](https://github.com/ianunruh))
+
 ## [v0.15.1](https://github.com/TechnologyAdvice/stardust/tree/v0.15.1) (2016-06-23)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.15.0...v0.15.1)
 

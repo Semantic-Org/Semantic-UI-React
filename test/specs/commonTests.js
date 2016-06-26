@@ -361,10 +361,38 @@ const _noClassNameFromBoolProps = (Component, propKey, requiredProps) => {
 }
 
 const _classNamePropValueBeforePropName = (Component, propKey, requiredProps) => {
-  it('adds "${value} ${name}" to className', () => {
-    const sample = _.sample(Component._meta.props[propKey])
-    shallow(createElement(Component, { ...requiredProps, [propKey]: sample }))
-      .should.have.className(`${sample} ${propKey}`)
+  _.each(Component._meta.props[propKey], (propVal) => {
+    it(`adds "${propVal} ${propKey}" to className`, () => {
+      shallow(createElement(Component, { ...requiredProps, [propKey]: propVal }))
+        .should.have.className(`${propVal} ${propKey}`)
+    })
+  })
+}
+
+/**
+ * Assert that a Component correctly implements the "aligned" prop.
+ * @param {React.Component|Function} Component The component to test.
+ * @param {Object} [requiredProps={}] Props required to render the component.
+ */
+export const implementsAlignedProp = (Component, requiredProps = {}) => {
+  describe('aligned (common)', () => {
+    _definesPropOptions(Component, 'aligned')
+    _noDefaultClassNameFromProp(Component, 'aligned')
+    _noClassNameFromBoolProps(Component, 'aligned', requiredProps)
+
+    _.each(Component._meta.props.aligned, (propVal) => {
+      if (propVal === 'justified') {
+        it('adds "justified" without "aligned" to className', () => {
+          shallow(<Component { ...requiredProps } aligned='justified' />)
+            .should.have.className('justified')
+        })
+      } else {
+        it(`adds "${propVal} aligned" to className`, () => {
+          shallow(<Component { ...requiredProps } aligned={propVal} />)
+            .should.have.className(`${propVal} ${'aligned'}`)
+        })
+      }
+    })
   })
 }
 
