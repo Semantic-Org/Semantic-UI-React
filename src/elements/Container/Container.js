@@ -49,7 +49,7 @@ Container.propTypes = {
   /** Classes to add to the container className. */
   className: PropTypes.string,
 
-  /** Reduce maximum width to more naturally accomodate text */
+  /** Reduce maximum width to more naturally accommodate text */
   text: PropTypes.bool,
 
   /** Align container content to left */
