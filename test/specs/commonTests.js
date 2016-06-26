@@ -9,6 +9,9 @@ import * as consoleUtil from 'test/utils/consoleUtil'
 import sandbox from 'test/utils/Sandbox-util'
 import * as syntheticEvent from 'test/utils/syntheticEvent'
 
+import Icon from 'src/elements/Icon/Icon'
+import Image from 'src/elements/Image/Image'
+
 const componentCtx = require.context('../../src/', true, /(addons|collections|elements|modules|views).*\.js$/)
 
 const componentInfo = componentCtx.keys().map(key => {
@@ -385,6 +388,9 @@ export const implementsAlignedProp = (Component, requiredProps = {}) => {
         it('adds "justified" without "aligned" to className', () => {
           shallow(<Component { ...requiredProps } aligned='justified' />)
             .should.have.className('justified')
+
+          shallow(<Component { ...requiredProps } aligned='justified' />)
+            .should.not.have.className('aligned')
         })
       } else {
         it(`adds "${propVal} aligned" to className`, () => {
@@ -392,6 +398,72 @@ export const implementsAlignedProp = (Component, requiredProps = {}) => {
             .should.have.className(`${propVal} ${'aligned'}`)
         })
       }
+    })
+  })
+}
+
+export const implementsIconProp = (Component, requiredProps = {}) => {
+  const iconClass = faker.hacker.noun()
+  const assertValid = (wrapper) => {
+    wrapper.should.have.className('icon')
+    wrapper.should.have.descendants('Icon')
+    wrapper.find('Icon')
+      .should.have.className(iconClass)
+  }
+
+  describe('icon (common)', () => {
+    _noDefaultClassNameFromProp(Component, 'icon')
+
+    it('has no i when not defined', () => {
+      shallow(<Component />)
+        .should.not.have.descendants('i')
+    })
+
+    it('adds a i as first child', () => {
+      shallow(<Component icon={iconClass} />)
+        .childAt(0)
+        .should.match('i')
+    })
+
+    it('accepts an Icon instance', () => {
+      const icon = <Icon className={iconClass} />
+      assertValid(shallow(<Component icon={icon} />))
+    })
+
+    it('accepts an icon className string', () => {
+      assertValid(shallow(<Component icon={iconClass} />))
+    })
+  })
+}
+
+export const implementsImageProp = (Component, requiredProps = {}) => {
+  const imageSrc = faker.internet.avatar()
+  const assertValid = (wrapper) => {
+    wrapper.should.have.descendants('Image')
+    wrapper.find('Image')
+      .should.have.prop('src', imageSrc)
+  }
+  describe('image (common)', () => {
+    _noDefaultClassNameFromProp(Component, 'image')
+
+    it('has no img when prop is not defined', () => {
+      shallow(<Component />)
+        .should.not.have.descendants('img')
+    })
+
+    it('adds a img as first child', () => {
+      shallow(<Component image={imageSrc} />)
+        .childAt(0)
+        .should.match('img')
+    })
+
+    it('accepts an Image instance', () => {
+      const image = <Image src={imageSrc} />
+      assertValid(shallow(<Component image={image} />))
+    })
+
+    it('accepts an image src string', () => {
+      assertValid(shallow(<Component image={imageSrc} />))
     })
   })
 }

@@ -1,42 +1,110 @@
 import cx from 'classnames'
-import React, { createElement, Component, PropTypes } from 'react'
+import React, { PropTypes } from 'react'
 
 import META from '../../utils/Meta'
+import * as sui from '../../utils/semanticUtils'
+import {
+  getUnhandledProps,
+  iconPropRenderer,
+  imagePropRenderer,
+  useValueAndKey,
+  useAlignedProp,
+  useKeyOrValueAndKey,
+  useKeyOnly,
+} from '../../utils/propUtils'
 
-export default class _Header extends Component {
-  static propTypes = {
-    _headerElement: PropTypes.string,
-    _sdClass: PropTypes.string,
-    children: PropTypes.node,
-    className: PropTypes.string,
-    icon: PropTypes.node,
-    image: PropTypes.node,
-  }
+function _Header(props) {
+  const {
+    _sdClass, _headerElement,
+    color, aligned, dividing, block, attached, floated, inverted, disabled,
+    icon, image, children, className,
+  } = props
 
-  static defaultProps = {
-    _headerElement: 'div',
-    _sdClass: 'sd-header',
-  }
+  const classes = cx(
+    _sdClass, 'ui',
+    icon && 'icon',
+    color,
+    useAlignedProp(aligned),
+    useKeyOnly(dividing, 'dividing'),
+    useKeyOnly(block, 'block'),
+    useKeyOrValueAndKey(attached, 'attached'),
+    useValueAndKey(floated, 'floated'),
+    useKeyOnly(inverted, 'inverted'),
+    useKeyOnly(disabled, 'disabled'),
+    className,
+    'header',
+  )
 
-  static _meta = {
-    library: META.library.stardust,
-    name: '_Header',
-    type: META.type.element,
-  }
+  const _HeaderComponent = _headerElement
+  const rest = getUnhandledProps(_Header, props)
 
-  render() {
-    const content = this.props.image || this.props.icon
-      ? <div className='content'>{this.props.children}</div>
-      : this.props.children
-
-    return createElement(this.props._headerElement, {
-      ...this.props,
-      className: cx(
-        this.props._sdClass,
-        'ui',
-        this.props.className,
-        'header'
-      ),
-    }, content)
-  }
+  return (
+    <_HeaderComponent className={classes} {...rest}>
+      {iconPropRenderer(icon)}
+      {imagePropRenderer(image)}
+      {children}
+    </_HeaderComponent>
+  )
 }
+
+_Header._meta = {
+  library: META.library.semanticUI,
+  name: '_Header',
+  type: META.type.element,
+  props: {
+    aligned: ['left', 'center', 'right', 'justified'],
+    floated: ['left', 'right'],
+    attached: ['top', 'bottom'],
+    color: sui.colors,
+  },
+}
+
+_Header.propTypes = {
+  _headerElement: PropTypes.string,
+  _sdClass: PropTypes.string,
+  className: PropTypes.string,
+  children: PropTypes.node,
+
+  /** Add an icon by icon className or pass an <Icon /.>*/
+  icon: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.element,
+  ]),
+
+  /** Add an image by img src or pass an <Image />. */
+  image: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.element,
+  ]),
+
+  /** Color of the header. */
+  color: PropTypes.oneOf(_Header._meta.props.colors),
+
+  /** Align header content */
+  aligned: PropTypes.oneOf(_Header._meta.props.aligned),
+
+  /** Divide header from the content below it */
+  dividing: PropTypes.bool,
+
+  /** Format header to appear inside a content block */
+  block: PropTypes.bool,
+
+  /** Attach header  to other content, like a segment */
+  attached: PropTypes.oneOf(_Header._meta.props.attached),
+
+  /** Header can sit to the left or right of other content */
+  floated: PropTypes.oneOf(_Header._meta.props.floated),
+
+  /** Inverts the color of the header for dark backgrounds */
+  inverted: PropTypes.bool,
+
+  /** Show that the header is inactive */
+  disabled: PropTypes.bool,
+}
+
+_Header.defaultProps = {
+  _headerElement: 'div',
+  _sdClass: 'sd-header',
+}
+
+export default _Header
