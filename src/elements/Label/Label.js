@@ -76,7 +76,6 @@ Label._meta = {
     color: sui.colors,
     pointing: ['bottom', 'left', 'right'],
     corner: ['left', 'right'],
-    right: ['left', 'right'],
     ribbon: ['right'],
   },
 }

@@ -52,8 +52,8 @@ _Header._meta = {
   name: '_Header',
   type: META.type.element,
   props: {
-    aligned: ['left', 'center', 'right', 'justified'],
-    floated: ['left', 'right'],
+    aligned: sui.textAlignments,
+    floated: sui.floats,
     attached: ['top', 'bottom'],
     color: sui.colors,
   },
