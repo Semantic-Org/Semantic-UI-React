@@ -15,7 +15,7 @@ const headers = {
   h6: H6,
 }
 
-describe.only('HeaderHeadings', () => {
+describe('HeaderHeadings', () => {
   Object.keys(headers).forEach((key) => {
     describe(`Header.${key.toUpperCase()}`, () => {
       const Component = headers[key]
