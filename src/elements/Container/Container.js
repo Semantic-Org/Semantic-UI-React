@@ -1,33 +1,62 @@
-import React, { Component, PropTypes } from 'react'
-import classNames from 'classnames'
-import META from '../../utils/Meta'
+import cx from 'classnames'
+import React, { PropTypes } from 'react'
+import META from '../../utils/Meta';
+import {
+  getUnhandledProps,
+  useAlignedProp,
+  useKeyOnly,
+} from '../../utils/propUtils'
 
 /**
- * A container that gives your content some side padding.
+ * A container limits content to a maximum width
  */
-export default class Container extends Component {
-  static propTypes = {
-    children: PropTypes.node,
-    className: PropTypes.string,
-  }
+function Container(props) {
+  const {
+    text, aligned, fluid,
+    children, className,
+  } = props
 
-  static _meta = {
-    library: META.library.semanticUI,
-    name: 'Container',
-    type: META.type.element,
-  }
+  const classes = cx('sd-container ui',
+    useKeyOnly(text, 'text'),
+    useAlignedProp(aligned),
+    useKeyOnly(fluid, 'fluid'),
+    'container',
+    className
+  )
 
-  render() {
-    const classes = classNames(
-      'sd-container',
-      'ui',
-      this.props.className,
-      'container',
-    )
-    return (
-      <div {...this.props} className={classes}>
-        {this.props.children}
-      </div>
-    )
-  }
+  const rest = getUnhandledProps(Container, props)
+
+  return (
+    <div className={classes} {...rest}>
+      {children}
+    </div>
+  )
 }
+
+Container._meta = {
+  library: META.library.semanticUI,
+  name: 'Container',
+  type: META.type.element,
+  props: {
+    aligned: ['left', 'center', 'right', 'justified'],
+  },
+}
+
+Container.propTypes = {
+  /** Primary content of the Container */
+  children: PropTypes.node,
+
+  /** Classes to add to the container className. */
+  className: PropTypes.string,
+
+  /** Reduce maximum width to more naturally accomodate text */
+  text: PropTypes.bool,
+
+  /** Align container content to left */
+  aligned: PropTypes.oneOf(Container._meta.props.aligned),
+
+  /** Container has no maximum with */
+  fluid: PropTypes.bool,
+}
+
+export default Container
