@@ -52,7 +52,7 @@ Container.propTypes = {
   /** Reduce maximum width to more naturally accommodate text */
   text: PropTypes.bool,
 
-  /** Align container content to left */
+  /** Align container text */
   aligned: PropTypes.oneOf(Container._meta.props.aligned),
 
   /** Container has no maximum with */
