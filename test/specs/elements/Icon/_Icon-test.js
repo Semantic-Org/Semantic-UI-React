@@ -1,7 +1,7 @@
 import _Icon from 'src/elements/Icon/_Icon'
 import * as common from 'test/specs/commonTests'
 
-describe.only('_Icon', () => {
+describe('_Icon', () => {
   common.rendersChildren(_Icon)
 
   common.propKeyOnlyToClassName(_Icon, 'disabled')

@@ -9,15 +9,15 @@ export default class IconSizeExample extends Component {
         <Icon className='home' size='tiny' />
         <Icon className='home' size='small' />
         <Icon className='home' size='small' />
-        <br/>
+        <br />
         <Icon className='home' />
-        <br/>
+        <br />
         <Icon className='home' size='large' />
-        <br/>
+        <br />
         <Icon className='home' size='big' />
-        <br/>
+        <br />
         <Icon className='home' size='huge' />
-        <br/>
+        <br />
         <Icon className='home' size='massive' />
       </div>
     )
