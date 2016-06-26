@@ -4,20 +4,20 @@ import { Segment } from 'stardust'
 export default class SegmentNestedSegmentsExample extends Component {
   render() {
     return (
-      <Segment.Segments>
+      <Segment.Group>
         <Segment>Top</Segment>
-        <Segment.Segments>
+        <Segment.Group>
           <Segment>Nested Top</Segment>
           <Segment>Nested Middle</Segment>
           <Segment>Nested Bottom</Segment>
-        </Segment.Segments>
-        <Segment.Segments className='horizontal'>
+        </Segment.Group>
+        <Segment.Group horizontal>
           <Segment>Top</Segment>
           <Segment>Middle</Segment>
           <Segment>Bottom</Segment>
-        </Segment.Segments>
+        </Segment.Group>
         <Segment>Bottom</Segment>
-      </Segment.Segments>
+      </Segment.Group>
     )
   }
 }
