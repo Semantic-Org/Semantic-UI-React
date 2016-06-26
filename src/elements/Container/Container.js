@@ -3,7 +3,6 @@ import React, { PropTypes } from 'react'
 import META from '../../utils/Meta';
 import {
   getUnhandledProps,
-  useValueAndKey,
   useAlignedProp,
   useKeyOnly,
 } from '../../utils/propUtils'

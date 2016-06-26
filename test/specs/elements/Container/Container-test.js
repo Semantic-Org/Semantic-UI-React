@@ -3,7 +3,7 @@ import React from 'react'
 import Container from 'src/elements/Container/Container'
 import * as common from 'test/specs/commonTests'
 
-describe.only('Container', () => {
+describe('Container', () => {
   common.isConformant(Container)
   common.rendersChildren(Container)
   common.hasUIClassName(Container)
