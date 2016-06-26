@@ -6,6 +6,7 @@
 
 **Merged pull requests:**
 
+- Extend semanticUtils [\#288](https://github.com/TechnologyAdvice/stardust/pull/288) ([levithomason](https://github.com/levithomason))
 - Header Component updated to v1 API [\#278](https://github.com/TechnologyAdvice/stardust/pull/278) ([jamiehill](https://github.com/jamiehill))
 
 ## [v0.16.0](https://github.com/TechnologyAdvice/stardust/tree/v0.16.0) (2016-06-26)
