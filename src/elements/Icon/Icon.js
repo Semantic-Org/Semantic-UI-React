@@ -1,22 +1,14 @@
-import React, { PropTypes } from 'react'
-import cx from 'classnames'
+import React from 'react'
 import META from '../../utils/Meta'
+import _Icon from './_Icon'
+import IconGroup from './IconGroup'
 
 function Icon(props) {
-  const {
-    className,
-  } = props
-
-  const classes = cx(
-    'sd-icon',
-    className,
-    'icon'
-  )
-
   return (
-    <i {...props} className={classes} />
+    <_Icon {...props} />
   )
 }
+
 
 Icon._meta = {
   library: META.library.semanticUI,
@@ -24,9 +16,6 @@ Icon._meta = {
   type: META.type.element,
 }
 
-Icon.propTypes = {
-  /** Class names for custom styling. */
-  className: PropTypes.string,
-}
+Icon.Group = IconGroup
 
 export default Icon
