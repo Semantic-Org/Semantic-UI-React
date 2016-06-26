@@ -4,6 +4,7 @@ import META from '../../utils/Meta';
 import {
   getUnhandledProps,
   useValueAndKey,
+  useAlignedProp,
   useKeyOnly,
 } from '../../utils/propUtils'
 
@@ -18,7 +19,7 @@ function Container(props) {
 
   const classes = cx('sd-container ui',
     useKeyOnly(text, 'text'),
-    aligned === 'justified' ? 'justified' : useValueAndKey(aligned, 'aligned'),
+    useAlignedProp(aligned),
     useKeyOnly(fluid, 'fluid'),
     'container',
     className
