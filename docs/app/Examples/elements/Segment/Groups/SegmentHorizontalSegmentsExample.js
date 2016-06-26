@@ -1,14 +1,12 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Segment } from 'stardust'
 
-export default class SegmentHorizontalSegmentsExample extends Component {
-  render() {
-    return (
-      <Segment.Segments className='horizontal'>
-        <Segment>Left</Segment>
-        <Segment>Middle</Segment>
-        <Segment>Right</Segment>
-      </Segment.Segments>
-    )
-  }
-}
+const SegmentHorizontalSegmentsExample = () => (
+  <Segment.Group horizontal>
+    <Segment>Left</Segment>
+    <Segment>Middle</Segment>
+    <Segment>Right</Segment>
+  </Segment.Group>
+)
+
+export default SegmentHorizontalSegmentsExample

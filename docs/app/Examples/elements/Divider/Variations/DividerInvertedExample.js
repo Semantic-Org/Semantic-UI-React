@@ -4,7 +4,7 @@ import { Segment, Divider } from 'stardust'
 export default class DividerInvertedExample extends Component {
   render() {
     return (
-      <Segment className='inverted'>
+      <Segment inverted>
         <Divider inverted />
         <Divider horizontal inverted >Horizontal</Divider>
       </Segment>

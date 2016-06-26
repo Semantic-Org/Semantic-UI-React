@@ -5,43 +5,43 @@ export default class SegmentColoredExample extends Component {
   render() {
     return (
       <div>
-        <Segment className='red'>
+        <Segment color='red'>
           Red
         </Segment>
-        <Segment className='orange'>
+        <Segment color='orange'>
           Orange
         </Segment>
-        <Segment className='yellow'>
+        <Segment color='yellow'>
           Yellow
         </Segment>
-        <Segment className='olive'>
+        <Segment color='olive'>
           Olive
         </Segment>
-        <Segment className='green'>
+        <Segment color='green'>
           Green
         </Segment>
-        <Segment className='teal'>
+        <Segment color='teal'>
           Teal
         </Segment>
-        <Segment className='blue'>
+        <Segment color='blue'>
           Blue
         </Segment>
-        <Segment className='violet'>
+        <Segment color='violet'>
           Violet
         </Segment>
-        <Segment className='purple'>
+        <Segment color='purple'>
           Purple
         </Segment>
-        <Segment className='pink'>
+        <Segment color='pink'>
           Pink
         </Segment>
-        <Segment className='brown'>
+        <Segment color='brown'>
           Brown
         </Segment>
-        <Segment className='grey'>
+        <Segment color='grey'>
           Grey
         </Segment>
-        <Segment className='black'>
+        <Segment color='black'>
           Black
         </Segment>
       </div>

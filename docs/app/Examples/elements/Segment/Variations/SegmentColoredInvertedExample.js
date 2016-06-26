@@ -5,43 +5,43 @@ export default class SegmentColoredInvertedExample extends Component {
   render() {
     return (
       <div>
-        <Segment className='red inverted'>
+        <Segment inverted color='red'>
           Red
         </Segment>
-        <Segment className='orange inverted'>
+        <Segment inverted color='orange'>
           Orange
         </Segment>
-        <Segment className='yellow inverted'>
+        <Segment inverted color='yellow'>
           Yellow
         </Segment>
-        <Segment className='olive inverted'>
+        <Segment inverted color='olive'>
           Olive
         </Segment>
-        <Segment className='green inverted'>
+        <Segment inverted color='green'>
           Green
         </Segment>
-        <Segment className='teal inverted'>
+        <Segment inverted color='teal'>
           Teal
         </Segment>
-        <Segment className='blue inverted'>
+        <Segment inverted color='blue'>
           Blue
         </Segment>
-        <Segment className='violet inverted'>
+        <Segment inverted color='violet'>
           Violet
         </Segment>
-        <Segment className='purple inverted'>
+        <Segment inverted color='purple'>
           Purple
         </Segment>
-        <Segment className='pink inverted'>
+        <Segment inverted color='pink'>
           Pink
         </Segment>
-        <Segment className='brown inverted'>
+        <Segment inverted color='brown'>
           Brown
         </Segment>
-        <Segment className='grey inverted'>
+        <Segment inverted color='grey'>
           Grey
         </Segment>
-        <Segment className='black inverted'>
+        <Segment inverted color='black'>
           Black
         </Segment>
       </div>
