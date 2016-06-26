@@ -1,10 +1,7 @@
-import React from 'react'
-import faker from 'faker'
-
 import _Header from 'src/elements/Header/_Header'
 import * as common from 'test/specs/commonTests'
 
-describe.only('_Header', () => {
+describe('_Header', () => {
   common.hasUIClassName(_Header)
   common.rendersChildren(_Header)
 
