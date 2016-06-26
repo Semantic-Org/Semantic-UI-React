@@ -20,7 +20,7 @@ import Image from '../Image/Image'
  */
 function Label(props) {
   const {
-    attached, children, color, corner, className, circular, detail, detailLink, floating, horizontal,
+    attached, basic, children, color, corner, className, circular, detail, detailLink, floating, horizontal,
     icon, image, link, onClick, onDetailClick, onRemove, pointing, removable, ribbon, size, tag, text,
   } = props
 
@@ -31,6 +31,7 @@ function Label(props) {
   const classes = cx('sd-label ui',
     size,
     color,
+    useKeyOnly(basic, 'basic'),
     useKeyOnly(floating, 'floating'),
     useKeyOnly(horizontal, 'horizontal'),
     useKeyOnly(tag, 'tag'),
@@ -83,6 +84,9 @@ Label._meta = {
 Label.propTypes = {
   /** Attach to a <Segment />. */
   attached: PropTypes.oneOf(Label._meta.props.attached),
+
+  /** A label can reduce its complexity */
+  basic: PropTypes.bool,
 
   /** Primary content of the label, same as text. */
   children: PropTypes.node,
