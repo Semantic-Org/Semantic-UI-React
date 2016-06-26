@@ -8,7 +8,7 @@ export default class IconSetExamples extends Component {
       <ExampleSection title='Icon Set'>
         <ComponentExample
           title='Web Content'
-          description='Button groups can contain conditionals'
+          description='Icons can represent types of content found on websites'
           examplePath='elements/Icon/IconSet/IconWebContentExample'
         />
       </ExampleSection>

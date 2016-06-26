@@ -5,13 +5,13 @@ export default class SegmentAttachedExample extends Component {
   render() {
     return (
       <div>
-        <Segment className='top attached'>
+        <Segment attached='top'>
           This segment is on top
         </Segment>
-        <Segment className='attached'>
+        <Segment attached>
           This segment is attached on both sides
         </Segment>
-        <Segment className='bottom attached'>
+        <Segment attached='bottom'>
           This segment is on bottom
         </Segment>
       </div>

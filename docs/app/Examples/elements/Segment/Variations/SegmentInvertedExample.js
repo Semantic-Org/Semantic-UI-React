@@ -4,7 +4,7 @@ import { Segment } from 'stardust'
 export default class SegmentInvertedExample extends Component {
   render() {
     return (
-      <Segment className='inverted'>
+      <Segment inverted>
         Inverted content.
       </Segment>
     )

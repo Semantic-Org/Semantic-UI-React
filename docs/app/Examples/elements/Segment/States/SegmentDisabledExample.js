@@ -4,7 +4,7 @@ import { Segment } from 'stardust'
 export default class SegmentDisabledExample extends Component {
   render() {
     return (
-      <Segment className='disabled'>
+      <Segment disabled>
         Disabled content
       </Segment>
     )

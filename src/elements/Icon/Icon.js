@@ -1,27 +1,21 @@
-import React, { Component, PropTypes } from 'react'
-import cx from 'classnames'
+import React from 'react'
 import META from '../../utils/Meta'
+import _Icon from './_Icon'
+import IconGroup from './IconGroup'
 
-export default class Icon extends Component {
-  static propTypes = {
-    className: PropTypes.string,
-  }
-
-  static _meta = {
-    library: META.library.semanticUI,
-    name: 'Icon',
-    type: META.type.element,
-  }
-
-  render() {
-    const { className } = this.props
-    const classes = cx(
-      'sd-icon',
-      className,
-      'icon',
-    )
-    return (
-      <i {...this.props} className={classes} />
-    )
-  }
+function Icon(props) {
+  return (
+    <_Icon {...props} />
+  )
 }
+
+
+Icon._meta = {
+  library: META.library.semanticUI,
+  name: 'Icon',
+  type: META.type.element,
+}
+
+Icon.Group = IconGroup
+
+export default Icon
