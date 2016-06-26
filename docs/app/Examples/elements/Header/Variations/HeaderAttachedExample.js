@@ -5,7 +5,7 @@ export default class HeaderAttachedExample extends Component {
   render() {
     return (
       <div>
-        <Header.H2 className='top attached'>
+        <Header.H2 attached='top'>
           Attached Header
         </Header.H2>
         <Segment className='attached'>

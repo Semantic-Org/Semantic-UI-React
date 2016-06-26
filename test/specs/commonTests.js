@@ -385,6 +385,9 @@ export const implementsAlignedProp = (Component, requiredProps = {}) => {
         it('adds "justified" without "aligned" to className', () => {
           shallow(<Component { ...requiredProps } aligned='justified' />)
             .should.have.className('justified')
+
+          shallow(<Component { ...requiredProps } aligned='justified' />)
+            .should.not.have.className('aligned')
         })
       } else {
         it(`adds "${propVal} aligned" to className`, () => {

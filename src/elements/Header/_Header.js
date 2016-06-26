@@ -1,11 +1,14 @@
 import cx from 'classnames'
 import React, { PropTypes } from 'react'
+
 import META from '../../utils/Meta'
+import * as sui from '../../utils/semanticUtils'
 import {
   getUnhandledProps,
   iconPropRenderer,
   imagePropRenderer,
   useValueAndKey,
+  useAlignedProp,
   useKeyOrValueAndKey,
   useKeyOnly,
 } from '../../utils/propUtils'
@@ -13,17 +16,20 @@ import {
 function _Header(props) {
   const {
     _sdClass, _headerElement,
-    aligned, dividing, block, attached, floating,
+    color, aligned, dividing, block, attached, floated, inverted, disabled,
     icon, image, children, className,
   } = props
 
   const classes = cx(
     _sdClass, 'ui',
-    aligned === 'justified' ? 'justified' : useValueAndKey(aligned, 'aligned'),
+    color,
+    useAlignedProp(aligned),
     useKeyOnly(dividing, 'dividing'),
     useKeyOnly(block, 'block'),
     useKeyOrValueAndKey(attached, 'attached'),
-    useValueAndKey(floating, 'floating'),
+    useValueAndKey(floated, 'floated'),
+    useKeyOnly(inverted, 'inverted'),
+    useKeyOnly(disabled, 'disabled'),
     className,
     'header',
   )
@@ -46,6 +52,9 @@ _Header._meta = {
   type: META.type.element,
   props: {
     aligned: ['left', 'center', 'right', 'justified'],
+    floated: ['left', 'right'],
+    attached: ['top', 'bottom'],
+    color: sui.colors,
   },
 }
 
@@ -67,6 +76,9 @@ _Header.propTypes = {
     PropTypes.element,
   ]),
 
+  /** Color of the header. */
+  color: PropTypes.oneOf(_Header._meta.props.colors),
+
   /** Align header content */
   aligned: PropTypes.oneOf(_Header._meta.props.aligned),
 
@@ -77,10 +89,16 @@ _Header.propTypes = {
   block: PropTypes.bool,
 
   /** Attach header  to other content, like a segment */
-  attached: PropTypes.bool,
+  attached: PropTypes.oneOf(_Header._meta.props.attached),
 
   /** Header can sit to the left or right of other content */
-  floating: PropTypes.bool,
+  floated: PropTypes.oneOf(_Header._meta.props.floated),
+
+  /** Inverts the color of the header for dark backgrounds */
+  inverted: PropTypes.bool,
+
+  /** Show that the header is inactive */
+  disabled: PropTypes.bool,
 }
 
 _Header.defaultProps = {

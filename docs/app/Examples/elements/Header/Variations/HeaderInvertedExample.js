@@ -5,18 +5,18 @@ export default class HeaderInvertedExample extends Component {
   render() {
     return (
       <Segment className='inverted'>
-        <Header.H4 className='red inverted'>Red</Header.H4>
-        <Header.H4 className='orange inverted'>Orange</Header.H4>
-        <Header.H4 className='yellow inverted'>Yellow</Header.H4>
-        <Header.H4 className='olive inverted'>Olive</Header.H4>
-        <Header.H4 className='green inverted'>Green</Header.H4>
-        <Header.H4 className='teal inverted'>Teal</Header.H4>
-        <Header.H4 className='blue inverted'>Blue</Header.H4>
-        <Header.H4 className='purple inverted'>Purple</Header.H4>
-        <Header.H4 className='violent inverted'>Violent</Header.H4>
-        <Header.H4 className='pink inverted'>Pink</Header.H4>
-        <Header.H4 className='brown inverted'>Brown</Header.H4>
-        <Header.H4 className='grey inverted'>Grey</Header.H4>
+        <Header.H4 inverted color='red'>Red</Header.H4>
+        <Header.H4 inverted color='orange'>Orange</Header.H4>
+        <Header.H4 inverted color='yellow'>Yellow</Header.H4>
+        <Header.H4 inverted color='olive'>Olive</Header.H4>
+        <Header.H4 inverted color='green'>Green</Header.H4>
+        <Header.H4 inverted color='teal'>Teal</Header.H4>
+        <Header.H4 inverted color='blue'>Blue</Header.H4>
+        <Header.H4 inverted color='purple'>Purple</Header.H4>
+        <Header.H4 inverted color='violent'>Violent</Header.H4>
+        <Header.H4 inverted color='pink'>Pink</Header.H4>
+        <Header.H4 inverted color='brown'>Brown</Header.H4>
+        <Header.H4 inverted color='grey'>Grey</Header.H4>
       </Segment>
     )
   }
