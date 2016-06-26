@@ -1,12 +1,12 @@
 # Change Log
 
-## [Unreleased](https://github.com/TechnologyAdvice/stardust/tree/HEAD)
-
-[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.15.2...HEAD)
+## [v0.16.0](https://github.com/TechnologyAdvice/stardust/tree/v0.16.0) (2016-06-26)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.15.2...v0.16.0)
 
 **Merged pull requests:**
 
 - "aligned" prop util and common test [\#285](https://github.com/TechnologyAdvice/stardust/pull/285) ([levithomason](https://github.com/levithomason))
+- Container Component updated to v1 API [\#277](https://github.com/TechnologyAdvice/stardust/pull/277) ([jamiehill](https://github.com/jamiehill))
 
 ## [v0.15.2](https://github.com/TechnologyAdvice/stardust/tree/v0.15.2) (2016-06-24)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.15.1...v0.15.2)
