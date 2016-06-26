@@ -5,7 +5,33 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="086747b3-b669-4fe9-a7d7-329c6f8632a5" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/elements/Image/Image.js" afterPath="$PROJECT_DIR$/src/elements/Image/Image.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/app/Examples/elements/Icon/Groups/IconCornerGroupExample.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/app/Examples/elements/Icon/Groups/IconGroupsExamples.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/app/Examples/elements/Icon/Groups/IconIconGroupExample.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/app/Examples/elements/Icon/Groups/IconLoadingGroupExample.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/app/Examples/elements/Icon/Groups/IconTwitterGroupExample.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/app/Examples/elements/Icon/States/IconDisabledExample.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/app/Examples/elements/Icon/States/IconLoadingExample.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/app/Examples/elements/Icon/States/IconStatesExamples.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/app/Examples/elements/Icon/Types/IconTypesExamples.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/app/Examples/elements/Icon/Variations/IconBorderedExample.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/app/Examples/elements/Icon/Variations/IconCircularExample.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/app/Examples/elements/Icon/Variations/IconColoredExample.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/app/Examples/elements/Icon/Variations/IconFittedExample.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/app/Examples/elements/Icon/Variations/IconFlippedExample.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/app/Examples/elements/Icon/Variations/IconInvertedColoredExample.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/app/Examples/elements/Icon/Variations/IconLinkExample.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/app/Examples/elements/Icon/Variations/IconRotatedExample.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/app/Examples/elements/Icon/Variations/IconSizeExample.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/app/Examples/elements/Icon/Variations/IconVariationsExamples.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/elements/Icon/IconGroup.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/elements/Icon/_Icon.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/specs/elements/Icon/IconGroup-test.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/specs/elements/Icon/_Icon-test.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/app/Examples/elements/Icon/IconExamples.js" afterPath="$PROJECT_DIR$/docs/app/Examples/elements/Icon/IconExamples.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/app/Examples/elements/Icon/IconSet/IconSetExamples.js" afterPath="$PROJECT_DIR$/docs/app/Examples/elements/Icon/IconSet/IconSetExamples.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/elements/Icon/Icon.js" afterPath="$PROJECT_DIR$/src/elements/Icon/Icon.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/specs/elements/Icon/Icon-test.js" afterPath="$PROJECT_DIR$/test/specs/elements/Icon/Icon-test.js" />
     </list>
     <ignored path="stardust.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -36,11 +62,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Icon.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Icon.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/elements/Icon/Icon.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
-              <caret line="28" column="33" selection-start-line="28" selection-start-column="33" selection-end-line="28" selection-end-column="33" />
+            <state relative-caret-position="150">
+              <caret line="10" column="35" selection-start-line="10" selection-start-column="35" selection-end-line="10" selection-end-column="35" />
               <folding>
                 <element signature="e#0#27#0" expanded="true" />
               </folding>
@@ -48,11 +74,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Image.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Image.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/elements/Image/Image.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="525">
-              <caret line="37" column="20" selection-start-line="37" selection-start-column="20" selection-end-line="37" selection-end-column="20" />
+            <state relative-caret-position="420">
+              <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -128,8 +154,8 @@
         <option value="$PROJECT_DIR$/test/specs/elements/Header/_Header-test.js" />
         <option value="$PROJECT_DIR$/test/specs/commonTests.js" />
         <option value="$PROJECT_DIR$/package.json" />
-        <option value="$PROJECT_DIR$/src/elements/Icon/Icon.js" />
         <option value="$PROJECT_DIR$/src/elements/Image/Image.js" />
+        <option value="$PROJECT_DIR$/src/elements/Icon/Icon.js" />
       </list>
     </option>
   </component>
@@ -406,7 +432,7 @@
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28095734" sideWeight="0.49815693" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.6347555" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32778355" sideWeight="0.49815693" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32778355" sideWeight="0.49815693" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1342812" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21748179" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -855,9 +881,9 @@
           <caret line="32" column="12" selection-start-line="32" selection-start-column="12" selection-end-line="32" selection-end-column="12" />
           <folding>
             <element signature="e#0#40#0" expanded="true" />
-            <marker date="1468338506000" expanded="true" signature="570:594" placeholder="..." />
-            <marker date="1468338506000" expanded="true" signature="520:543" placeholder="..." />
-            <marker date="1468338506000" expanded="true" signature="1402:1663" placeholder="..." />
+            <marker date="1468338645000" expanded="true" signature="570:594" placeholder="..." />
+            <marker date="1468338645000" expanded="true" signature="536:559" placeholder="..." />
+            <marker date="1468338645000" expanded="true" signature="1402:1663" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -888,21 +914,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/elements/Icon/Icon.js">
+    <entry file="file://$PROJECT_DIR$/src/elements/Image/Image.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="420">
-          <caret line="28" column="33" selection-start-line="28" selection-start-column="33" selection-end-line="28" selection-end-column="33" />
-          <folding>
-            <element signature="e#0#27#0" expanded="true" />
-          </folding>
+          <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/elements/Image/Image.js">
+    <entry file="file://$PROJECT_DIR$/src/elements/Icon/Icon.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="37" column="20" selection-start-line="37" selection-start-column="20" selection-end-line="37" selection-end-column="20" />
-          <folding />
+        <state relative-caret-position="150">
+          <caret line="10" column="35" selection-start-line="10" selection-start-column="35" selection-end-line="10" selection-end-column="35" />
+          <folding>
+            <element signature="e#0#27#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
