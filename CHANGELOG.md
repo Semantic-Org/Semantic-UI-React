@@ -8,6 +8,10 @@
 
 - Add Label "basic" option [\#289](https://github.com/TechnologyAdvice/stardust/pull/289) ([levithomason](https://github.com/levithomason))
 
+**Fixed bugs:**
+
+- Update doc examples [\#290](https://github.com/TechnologyAdvice/stardust/pull/290) ([levithomason](https://github.com/levithomason))
+
 **Merged pull requests:**
 
 - Extend semanticUtils [\#288](https://github.com/TechnologyAdvice/stardust/pull/288) ([levithomason](https://github.com/levithomason))
