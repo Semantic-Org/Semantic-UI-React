@@ -222,12 +222,14 @@ export default class Dropdown extends Component {
       } else {
         document.addEventListener('keydown', this.moveSelectionOnKeyDown)
         document.addEventListener('keydown', this.selectItemOnEnter)
+        document.addEventListener('keydown', this.removeItemOnBackspace)
       }
     } else if (prevState.focus && !this.state.focus) {
       document.removeEventListener('keydown', this.openOnArrow)
       document.removeEventListener('keydown', this.openOnSpace)
       document.removeEventListener('keydown', this.moveSelectionOnKeyDown)
       document.removeEventListener('keydown', this.selectItemOnEnter)
+      document.removeEventListener('keydown', this.removeItemOnBackspace)
     }
 
     // opened / closed
@@ -236,6 +238,7 @@ export default class Dropdown extends Component {
       document.addEventListener('keydown', this.closeOnEscape)
       document.addEventListener('keydown', this.moveSelectionOnKeyDown)
       document.addEventListener('keydown', this.selectItemOnEnter)
+      document.addEventListener('keydown', this.removeItemOnBackspace)
       document.addEventListener('click', this.closeOnDocumentClick)
       document.removeEventListener('keydown', this.openOnArrow)
       document.removeEventListener('keydown', this.openOnSpace)
@@ -244,6 +247,7 @@ export default class Dropdown extends Component {
       document.removeEventListener('keydown', this.closeOnEscape)
       document.removeEventListener('keydown', this.moveSelectionOnKeyDown)
       document.removeEventListener('keydown', this.selectItemOnEnter)
+      document.removeEventListener('keydown', this.removeItemOnBackspace)
       document.removeEventListener('click', this.closeOnDocumentClick)
     }
   }
@@ -254,6 +258,7 @@ export default class Dropdown extends Component {
     document.removeEventListener('keydown', this.openOnSpace)
     document.removeEventListener('keydown', this.moveSelectionOnKeyDown)
     document.removeEventListener('keydown', this.selectItemOnEnter)
+    document.removeEventListener('keydown', this.removeItemOnBackspace)
     document.removeEventListener('keydown', this.closeOnEscape)
     document.removeEventListener('click', this.closeOnDocumentClick)
   }
@@ -333,6 +338,25 @@ export default class Dropdown extends Component {
       this.onChange(e, value)
       this.close()
     }
+  }
+
+  removeItemOnBackspace = (e) => {
+    debug('removeItemOnBackspace()')
+    debug(keyboardKey.getName(e))
+    if (keyboardKey.getCode(e) !== keyboardKey.Backspace) return
+
+    const { multiple, search } = this.props
+    const { searchQuery, value } = this.state
+
+    if (searchQuery || !search || !multiple || _.isEmpty(value)) return
+
+    e.preventDefault()
+
+    // remove most recent value
+    const newValue = _.dropRight(value)
+
+    this.setValue(newValue)
+    this.onChange(e, newValue)
   }
 
   closeOnDocumentClick = (e) => {

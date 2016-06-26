@@ -74,7 +74,7 @@ export const iconPropRenderer = (val) => _.isString(val) ? <Icon className={val}
 export const imagePropRenderer = (val) => _.isString(val) ? <Image src={val} /> : val
 
 // ----------------------------------------
-// Prop To Class Name
+// Prop to className
 //
 // There are 4 prop patterns used to build up the className for a component.
 // Each utility here is meant for use in a classnames() argument.
@@ -121,3 +121,22 @@ export const useValueAndKey = (val, key) => val && val !== true && `${val} ${key
  * <div class="ui left pointing label"></div>
  */
 export const useKeyOrValueAndKey = (val, key) => val && (val === true ? key : `${val} ${key}`)
+
+//
+// Prop to className exceptions
+//
+
+/**
+ * The "aligned" prop follows the useValueAndKey except when the value is "justified'.
+ * In this case, only the class "justified" is used, ignoring the "aligned" class.
+ * @param {*} val The value of the "aligned" prop
+ *
+ * @example
+ * <Container aligned='justified' />
+ * <div class="ui justified container"></div>
+ *
+ * @example
+ * <Container aligned='left' />
+ * <div class="ui left aligned container"></div>
+ */
+export const useAlignedProp = val => val === 'justified' ? 'justified' : useValueAndKey(val, 'aligned')
