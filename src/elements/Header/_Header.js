@@ -22,6 +22,7 @@ function _Header(props) {
 
   const classes = cx(
     _sdClass, 'ui',
+    icon && 'icon',
     color,
     useAlignedProp(aligned),
     useKeyOnly(dividing, 'dividing'),
