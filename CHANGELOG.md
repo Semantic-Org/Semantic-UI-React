@@ -1,8 +1,7 @@
 # Change Log
 
-## [Unreleased](https://github.com/TechnologyAdvice/stardust/tree/HEAD)
-
-[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.16.0...HEAD)
+## [v0.16.1](https://github.com/TechnologyAdvice/stardust/tree/v0.16.1) (2016-06-27)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.16.0...v0.16.1)
 
 **Implemented enhancements:**
 
@@ -20,6 +19,7 @@
 
 **Merged pull requests:**
 
+- Fix debug dependency [\#300](https://github.com/TechnologyAdvice/stardust/pull/300) ([levithomason](https://github.com/levithomason))
 - Debug on/off instructions [\#299](https://github.com/TechnologyAdvice/stardust/pull/299) ([levithomason](https://github.com/levithomason))
 - Label allow bool corner prop [\#294](https://github.com/TechnologyAdvice/stardust/pull/294) ([levithomason](https://github.com/levithomason))
 - Extend semanticUtils [\#288](https://github.com/TechnologyAdvice/stardust/pull/288) ([levithomason](https://github.com/levithomason))
