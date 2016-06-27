@@ -13,8 +13,14 @@
 
 - Update doc examples [\#290](https://github.com/TechnologyAdvice/stardust/pull/290) ([levithomason](https://github.com/levithomason))
 
+**Closed issues:**
+
+- Disable debug logs [\#298](https://github.com/TechnologyAdvice/stardust/issues/298)
+- Progress Error: this.element.progress is not a function [\#297](https://github.com/TechnologyAdvice/stardust/issues/297)
+
 **Merged pull requests:**
 
+- Debug on/off instructions [\#299](https://github.com/TechnologyAdvice/stardust/pull/299) ([levithomason](https://github.com/levithomason))
 - Label allow bool corner prop [\#294](https://github.com/TechnologyAdvice/stardust/pull/294) ([levithomason](https://github.com/levithomason))
 - Extend semanticUtils [\#288](https://github.com/TechnologyAdvice/stardust/pull/288) ([levithomason](https://github.com/levithomason))
 - Header Component updated to v1 API [\#278](https://github.com/TechnologyAdvice/stardust/pull/278) ([jamiehill](https://github.com/jamiehill))
