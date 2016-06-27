@@ -14,3 +14,5 @@ export const colors = [
   'black',
 ]
 export const sizes = ['mini', 'tiny', 'small', 'medium', 'large', 'big', 'huge', 'massive']
+export const textAlignments = ['left', 'center', 'right', 'justified']
+export const floats = ['left', 'right']

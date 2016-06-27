@@ -5,7 +5,7 @@ import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
 export default class DividerVariationsExamples extends Component {
   render() {
     return (
-      <ExampleSection title='Types'>
+      <ExampleSection title='Variations'>
         <ComponentExample
           title='Inverted'
           description='A divider can have its colors inverted'

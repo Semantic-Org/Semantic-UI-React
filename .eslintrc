@@ -8,6 +8,7 @@
     "consistent-return": 0,
     "no-confusing-arrow": 0,
     "react/sort-comp": 1,
-    "valid-jsdoc": 0
+    "valid-jsdoc": 0,
+    "react/jsx-curly-spacing": 0
   }
 }

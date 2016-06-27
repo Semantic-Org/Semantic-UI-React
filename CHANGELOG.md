@@ -1,5 +1,39 @@
 # Change Log
 
+## [Unreleased](https://github.com/TechnologyAdvice/stardust/tree/HEAD)
+
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.16.0...HEAD)
+
+**Implemented enhancements:**
+
+- Label corner without value [\#292](https://github.com/TechnologyAdvice/stardust/issues/292)
+- Add Label "basic" option [\#289](https://github.com/TechnologyAdvice/stardust/pull/289) ([levithomason](https://github.com/levithomason))
+
+**Fixed bugs:**
+
+- Update doc examples [\#290](https://github.com/TechnologyAdvice/stardust/pull/290) ([levithomason](https://github.com/levithomason))
+
+**Merged pull requests:**
+
+- Label allow bool corner prop [\#294](https://github.com/TechnologyAdvice/stardust/pull/294) ([levithomason](https://github.com/levithomason))
+- Extend semanticUtils [\#288](https://github.com/TechnologyAdvice/stardust/pull/288) ([levithomason](https://github.com/levithomason))
+- Header Component updated to v1 API [\#278](https://github.com/TechnologyAdvice/stardust/pull/278) ([jamiehill](https://github.com/jamiehill))
+
+## [v0.16.0](https://github.com/TechnologyAdvice/stardust/tree/v0.16.0) (2016-06-26)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.15.2...v0.16.0)
+
+**Merged pull requests:**
+
+- "aligned" prop util and common test [\#285](https://github.com/TechnologyAdvice/stardust/pull/285) ([levithomason](https://github.com/levithomason))
+- Container Component updated to v1 API [\#277](https://github.com/TechnologyAdvice/stardust/pull/277) ([jamiehill](https://github.com/jamiehill))
+
+## [v0.15.2](https://github.com/TechnologyAdvice/stardust/tree/v0.15.2) (2016-06-24)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.15.1...v0.15.2)
+
+**Merged pull requests:**
+
+- Add ability to remove dropdown items on backspace [\#283](https://github.com/TechnologyAdvice/stardust/pull/283) ([ianunruh](https://github.com/ianunruh))
+
 ## [v0.15.1](https://github.com/TechnologyAdvice/stardust/tree/v0.15.1) (2016-06-23)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.15.0...v0.15.1)
 

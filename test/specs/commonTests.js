@@ -9,6 +9,9 @@ import * as consoleUtil from 'test/utils/consoleUtil'
 import sandbox from 'test/utils/Sandbox-util'
 import * as syntheticEvent from 'test/utils/syntheticEvent'
 
+import Icon from 'src/elements/Icon/Icon'
+import Image from 'src/elements/Image/Image'
+
 const componentCtx = require.context('../../src/', true, /(addons|collections|elements|modules|views).*\.js$/)
 
 const componentInfo = componentCtx.keys().map(key => {
@@ -361,10 +364,107 @@ const _noClassNameFromBoolProps = (Component, propKey, requiredProps) => {
 }
 
 const _classNamePropValueBeforePropName = (Component, propKey, requiredProps) => {
-  it('adds "${value} ${name}" to className', () => {
-    const sample = _.sample(Component._meta.props[propKey])
-    shallow(createElement(Component, { ...requiredProps, [propKey]: sample }))
-      .should.have.className(`${sample} ${propKey}`)
+  _.each(Component._meta.props[propKey], (propVal) => {
+    it(`adds "${propVal} ${propKey}" to className`, () => {
+      shallow(createElement(Component, { ...requiredProps, [propKey]: propVal }))
+        .should.have.className(`${propVal} ${propKey}`)
+    })
+  })
+}
+
+/**
+ * Assert that a Component correctly implements the "aligned" prop.
+ * @param {React.Component|Function} Component The component to test.
+ * @param {Object} [requiredProps={}] Props required to render the component.
+ */
+export const implementsAlignedProp = (Component, requiredProps = {}) => {
+  describe('aligned (common)', () => {
+    _definesPropOptions(Component, 'aligned')
+    _noDefaultClassNameFromProp(Component, 'aligned')
+    _noClassNameFromBoolProps(Component, 'aligned', requiredProps)
+
+    _.each(Component._meta.props.aligned, (propVal) => {
+      if (propVal === 'justified') {
+        it('adds "justified" without "aligned" to className', () => {
+          shallow(<Component { ...requiredProps } aligned='justified' />)
+            .should.have.className('justified')
+
+          shallow(<Component { ...requiredProps } aligned='justified' />)
+            .should.not.have.className('aligned')
+        })
+      } else {
+        it(`adds "${propVal} aligned" to className`, () => {
+          shallow(<Component { ...requiredProps } aligned={propVal} />)
+            .should.have.className(`${propVal} ${'aligned'}`)
+        })
+      }
+    })
+  })
+}
+
+export const implementsIconProp = (Component, requiredProps = {}) => {
+  const iconClass = faker.hacker.noun()
+  const assertValid = (wrapper) => {
+    wrapper.should.have.className('icon')
+    wrapper.should.have.descendants('Icon')
+    wrapper.find('Icon')
+      .should.have.className(iconClass)
+  }
+
+  describe('icon (common)', () => {
+    _noDefaultClassNameFromProp(Component, 'icon')
+
+    it('has no i when not defined', () => {
+      shallow(<Component />)
+        .should.not.have.descendants('i')
+    })
+
+    it('adds a i as first child', () => {
+      shallow(<Component icon={iconClass} />)
+        .childAt(0)
+        .should.match('i')
+    })
+
+    it('accepts an Icon instance', () => {
+      const icon = <Icon className={iconClass} />
+      assertValid(shallow(<Component icon={icon} />))
+    })
+
+    it('accepts an icon className string', () => {
+      assertValid(shallow(<Component icon={iconClass} />))
+    })
+  })
+}
+
+export const implementsImageProp = (Component, requiredProps = {}) => {
+  const imageSrc = faker.internet.avatar()
+  const assertValid = (wrapper) => {
+    wrapper.should.have.descendants('Image')
+    wrapper.find('Image')
+      .should.have.prop('src', imageSrc)
+  }
+  describe('image (common)', () => {
+    _noDefaultClassNameFromProp(Component, 'image')
+
+    it('has no img when prop is not defined', () => {
+      shallow(<Component />)
+        .should.not.have.descendants('img')
+    })
+
+    it('adds a img as first child', () => {
+      shallow(<Component image={imageSrc} />)
+        .childAt(0)
+        .should.match('img')
+    })
+
+    it('accepts an Image instance', () => {
+      const image = <Image src={imageSrc} />
+      assertValid(shallow(<Component image={image} />))
+    })
+
+    it('accepts an image src string', () => {
+      assertValid(shallow(<Component image={imageSrc} />))
+    })
   })
 }
 

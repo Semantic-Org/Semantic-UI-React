@@ -9,7 +9,7 @@ The [official][8] integration between [Semantic UI][5] and [React][3].
 ## Getting Started
 Hey, we're in development. Minor versions may introduce **breaking changes until the [v1.0][6] release**.
 
->There are [big changes][11] taking place while we [migrate to SUI-Org][12].
+>There are [big changes](#how-can-i-help) taking place while we [migrate to SUI-Org][12].
 
 ### Installation
 
@@ -155,7 +155,7 @@ Start by cloning this repo and installing dependencies:
 
     git clone git@github.com:TechnologyAdvice/stardust.git
     cd stardust
-    npm install               # or simply npm i
+    npm install
 
 Once dependencies are installed, start the application with:
 
@@ -171,10 +171,9 @@ This will run PhantomJS with Karma on the command line.  Just as before, JS file
 
 ### Commands
 
-For a listing of development commands use the following:
+List all scripts:
 
-    npm run                   # list npm commands 
-    gulp help                 # list gulp commands
+    npm run
 
 ### Releasing
 

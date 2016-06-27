@@ -20,7 +20,7 @@ import Image from '../Image/Image'
  */
 function Label(props) {
   const {
-    attached, children, color, corner, className, circular, detail, detailLink, floating, horizontal,
+    attached, basic, children, color, corner, className, circular, detail, detailLink, floating, horizontal,
     icon, image, link, onClick, onDetailClick, onRemove, pointing, removable, ribbon, size, tag, text,
   } = props
 
@@ -31,11 +31,12 @@ function Label(props) {
   const classes = cx('sd-label ui',
     size,
     color,
+    useKeyOnly(basic, 'basic'),
     useKeyOnly(floating, 'floating'),
     useKeyOnly(horizontal, 'horizontal'),
     useKeyOnly(tag, 'tag'),
     useValueAndKey(attached, 'attached'),
-    useValueAndKey(corner, 'corner'),
+    useKeyOrValueAndKey(corner, 'corner'),
     useKeyOrValueAndKey(pointing, 'pointing'),
     useKeyOrValueAndKey(ribbon, 'ribbon'),
     circular && (children && 'circular' || 'empty circular'),
@@ -76,7 +77,6 @@ Label._meta = {
     color: sui.colors,
     pointing: ['bottom', 'left', 'right'],
     corner: ['left', 'right'],
-    right: ['left', 'right'],
     ribbon: ['right'],
   },
 }
@@ -84,6 +84,9 @@ Label._meta = {
 Label.propTypes = {
   /** Attach to a <Segment />. */
   attached: PropTypes.oneOf(Label._meta.props.attached),
+
+  /** A label can reduce its complexity */
+  basic: PropTypes.bool,
 
   /** Primary content of the label, same as text. */
   children: PropTypes.node,
@@ -95,7 +98,10 @@ Label.propTypes = {
   color: PropTypes.oneOf(Label._meta.props.colors),
 
   /** Place the label in one of the upper corners . */
-  corner: PropTypes.oneOf(Label._meta.props.corner),
+  corner: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.oneOf(Label._meta.props.corner),
+  ]),
 
   /** Additional text with less emphasis. */
   detail: PropTypes.string,
