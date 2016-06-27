@@ -20,8 +20,8 @@ describe('Label Component', () => {
   common.propValueOnlyToClassName(Label, 'size')
 
   common.propKeyAndValueToClassName(Label, 'attached')
-  common.propKeyAndValueToClassName(Label, 'corner')
 
+  common.propKeyOrValueToClassName(Label, 'corner')
   common.propKeyOrValueToClassName(Label, 'pointing')
   common.propKeyOrValueToClassName(Label, 'ribbon')
 
