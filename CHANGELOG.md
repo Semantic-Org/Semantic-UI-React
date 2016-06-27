@@ -6,6 +6,7 @@
 
 **Implemented enhancements:**
 
+- Label corner without value [\#292](https://github.com/TechnologyAdvice/stardust/issues/292)
 - Add Label "basic" option [\#289](https://github.com/TechnologyAdvice/stardust/pull/289) ([levithomason](https://github.com/levithomason))
 
 **Fixed bugs:**
@@ -14,6 +15,7 @@
 
 **Merged pull requests:**
 
+- Label allow bool corner prop [\#294](https://github.com/TechnologyAdvice/stardust/pull/294) ([levithomason](https://github.com/levithomason))
 - Extend semanticUtils [\#288](https://github.com/TechnologyAdvice/stardust/pull/288) ([levithomason](https://github.com/levithomason))
 - Header Component updated to v1 API [\#278](https://github.com/TechnologyAdvice/stardust/pull/278) ([jamiehill](https://github.com/jamiehill))
 
