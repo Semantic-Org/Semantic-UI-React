@@ -183,6 +183,8 @@ localStorage.debug = 'stardust:dropdown'  // debug only the dropdown
 localStorage.debug = null                 // turn debug off
 ```
 
+Once you change the flag, you need to refresh your browser to see the changes in debug output.
+
 ### Commands
 
 List all scripts:
