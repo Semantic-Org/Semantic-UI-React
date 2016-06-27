@@ -175,7 +175,7 @@ This will run PhantomJS with Karma on the command line.  Just as before, JS file
 
 ### Debugger
 
-We use the [debug](https://www.npmjs.com/package/debug) module for debugging.  You can tun debugging on and off via the `localStorage.debug` flag from the browser console.  See the [debug docs](https://www.npmjs.com/package/debug) for more.
+We use the [debug](https://www.npmjs.com/package/debug) module for debugging.  You can turn debugging on and off via the `localStorage.debug` flag from the browser console.  See the [debug docs](https://www.npmjs.com/package/debug) for more.
 
 ```js
 localStorage.debug = 'stardust:*'         // default, debug all components
