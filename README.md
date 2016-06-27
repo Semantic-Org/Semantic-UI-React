@@ -157,17 +157,31 @@ Start by cloning this repo and installing dependencies:
     cd stardust
     npm install
 
+**Doc Site**
+
 Once dependencies are installed, start the application with:
 
     npm start
 
 This launches the doc site for development.  [Webpack Dev Server][7] will watch your JS files for changes and automatically transpile, lint and provide source maps.
 
+**Tests**
+
 It is also helpful to develop against tests:
 
     npm test
     
 This will run PhantomJS with Karma on the command line.  Just as before, JS files are watched and re-tested on change.
+
+**Debugger**
+
+We use the [debug](https://www.npmjs.com/package/debug) module for debugging.  You can tun debugging on and off via the `localStorage.debug` flag from the browser console.  See the [debug docs](https://www.npmjs.com/package/debug) for more.
+
+```
+localStorage.debug = 'stardust:*'         // default, debug all components
+localStorage.debug = 'stardust:dropdown'  // debug only the dropdown
+localStorage.debug = null                 // turn debug off
+```
 
 ### Commands
 
