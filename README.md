@@ -155,7 +155,7 @@ Start by cloning this repo and installing dependencies:
 
     git clone git@github.com:TechnologyAdvice/stardust.git
     cd stardust
-    npm install               # or simply npm i
+    npm install
 
 Once dependencies are installed, start the application with:
 
@@ -171,10 +171,9 @@ This will run PhantomJS with Karma on the command line.  Just as before, JS file
 
 ### Commands
 
-For a listing of development commands use the following:
+List all scripts:
 
-    npm run                   # list npm commands 
-    gulp help                 # list gulp commands
+    npm run
 
 ### Releasing
 

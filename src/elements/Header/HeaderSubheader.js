@@ -1,33 +1,42 @@
-import React, { Component, PropTypes } from 'react'
-import classNames from 'classnames'
+import React, { PropTypes } from 'react'
+import cx from 'classnames'
 import META from '../../utils/Meta'
-import { getUnhandledProps } from '../../utils/propUtils'
+import {
+  getUnhandledProps,
+} from '../../utils/propUtils'
 
-export default class HeaderSubheader extends Component {
-  static propTypes = {
-    children: PropTypes.node,
-    className: PropTypes.string,
-  }
-  static _meta = {
-    library: META.library.semanticUI,
-    name: 'HeaderSubheader',
-    parent: 'Header',
-    type: META.type.element,
-  }
-  render() {
-    const classes = classNames(
-      'sd-header-subheader',
-      'sub',
-      this.props.className,
-      'header',
-    )
+function HeaderSubheader(props) {
+  const {
+    children, className,
+  } = props
 
-    const props = getUnhandledProps(HeaderSubheader, this.props)
+  const classes = cx('sd-header-subheader', 'sub',
+    className,
+    'header'
+  )
 
-    return (
-      <div {...props} className={classes}>
-        {this.props.children}
-      </div>
-    )
-  }
+  const rest = getUnhandledProps(HeaderSubheader, props)
+
+  return (
+    <div className={classes} {...rest}>
+      {children}
+    </div>
+  )
 }
+
+HeaderSubheader._meta = {
+  library: META.library.semanticUI,
+  name: 'HeaderSubheader',
+  parent: 'Header',
+  type: META.type.element,
+}
+
+HeaderSubheader.propTypes = {
+  /** Primary content of the HeaderSubheader */
+  children: PropTypes.node,
+
+  /** Classes to add to the subheader className. */
+  className: PropTypes.string,
+}
+
+export default HeaderSubheader

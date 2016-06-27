@@ -10,6 +10,7 @@ describe('Label Component', () => {
   common.hasUIClassName(Label)
   common.rendersChildren(Label)
 
+  common.propKeyOnlyToClassName(Label, 'basic')
   common.propKeyOnlyToClassName(Label, 'circular')
   common.propKeyOnlyToClassName(Label, 'floating')
   common.propKeyOnlyToClassName(Label, 'horizontal')
