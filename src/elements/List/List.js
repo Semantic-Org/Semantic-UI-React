@@ -15,13 +15,12 @@ function List(props) {
     className
   )
 
-  const ListComponent = 'div'
   const rest = getUnhandledProps(List, props)
 
   return (
-    <ListComponent className={classes} {...rest}>
+    <div className={classes} {...rest}>
       {children}
-    </ListComponent>
+    </div>
   )
 }
 
