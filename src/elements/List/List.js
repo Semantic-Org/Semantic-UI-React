@@ -4,7 +4,7 @@ import META from '../../utils/Meta'
 import {getUnhandledProps} from '../../utils/propUtils'
 import ListItem from './ListItem'
 
-function _List(props) {
+function List(props) {
   const {
     children, className,
     } = props
@@ -16,7 +16,7 @@ function _List(props) {
   )
 
   const ListComponent = 'div'
-  const rest = getUnhandledProps(_List, props)
+  const rest = getUnhandledProps(List, props)
 
   return (
     <ListComponent className={classes} {...rest}>
@@ -25,15 +25,15 @@ function _List(props) {
   )
 }
 
-_List.Item = ListItem
+List.Item = ListItem
 
-_List._meta = {
+List._meta = {
   library: META.library.semanticUI,
   name: 'List',
   type: META.type.element,
 }
 
-_List.propTypes = {
+List.propTypes = {
   /** Primary content of the List */
   children: PropTypes.node,
 
@@ -41,4 +41,4 @@ _List.propTypes = {
   className: PropTypes.string,
 }
 
-export default _List
+export default List
