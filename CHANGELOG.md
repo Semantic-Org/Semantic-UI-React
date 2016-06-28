@@ -1,5 +1,17 @@
 # Change Log
 
+## [Unreleased](https://github.com/TechnologyAdvice/stardust/tree/HEAD)
+
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.16.2...HEAD)
+
+**Closed issues:**
+
+- Remove sd-\* classes [\#293](https://github.com/TechnologyAdvice/stardust/issues/293)
+
+**Merged pull requests:**
+
+- Remove sd-\* classNames [\#301](https://github.com/TechnologyAdvice/stardust/pull/301) ([levithomason](https://github.com/levithomason))
+
 ## [v0.16.2](https://github.com/TechnologyAdvice/stardust/tree/v0.16.2) (2016-06-27)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.16.1...v0.16.2)
 
