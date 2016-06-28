@@ -187,14 +187,15 @@ export default class Dropdown extends Component {
     if (process.env.NODE_ENV !== 'production') {
       // in development, validate value type matches dropdown type
       const isNextValueArray = Array.isArray(nextProps.value)
+      const hasValue = _.has(nextProps, 'value')
 
       /* eslint-disable no-console */
-      if (nextProps.multiple && !isNextValueArray) {
+      if (hasValue && nextProps.multiple && !isNextValueArray) {
         console.error(
           'Dropdown `value` must be an array when `multiple` is set.' +
           ` Received type: \`${Object.prototype.toString.call(nextProps.value)}\`.`,
         )
-      } else if (!nextProps.multiple && isNextValueArray) {
+      } else if (hasValue && !nextProps.multiple && isNextValueArray) {
         console.error(
           'Dropdown `value` must not be an array when `multiple` is not set.' +
           ' Either set `multiple={true}` or use a string or number value.'
@@ -328,13 +329,15 @@ export default class Dropdown extends Component {
     // prevent selecting null if there was no selected item value
     if (!value) return
 
-    this.setValue(value)
 
     // notify the onChange prop that the user is trying to change value
     if (multiple) {
       // state value may be undefined
-      this.onChange(e, _.union(this.state.value, [value]))
+      const newValue = _.union(this.state.value, [value])
+      this.setValue(newValue)
+      this.onChange(e, newValue)
     } else {
+      this.setValue(value)
       this.onChange(e, value)
       this.close()
     }
@@ -391,12 +394,13 @@ export default class Dropdown extends Component {
       e.nativeEvent.stopImmediatePropagation()
     }
 
-    this.setValue(value)
-
     // notify the onChange prop that the user is trying to change value
     if (multiple) {
-      this.onChange(e, _.union(this.state.value, [value]))
+      const newValue = _.union(this.state.value, [value])
+      this.setValue(newValue)
+      this.onChange(e, newValue)
     } else {
+      this.setValue(value)
       this.onChange(e, value)
       this.close()
     }

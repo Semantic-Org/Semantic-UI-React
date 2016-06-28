@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 import cx from 'classnames'
 import META from '../../utils/Meta'
-import Label from 'src/elements/Label/Label'
+import Label from '../../elements/Label/Label'
 
 function MenuItem({ __onClick, active, children, className, label, name, onClick, ...rest }) {
   const handleClick = (e) => {
