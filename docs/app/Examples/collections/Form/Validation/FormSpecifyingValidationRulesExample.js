@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Checkbox, Dropdown, Form, Input, Message } from 'stardust'
+import { Button, Checkbox, Select, Form, Input, Message } from 'stardust'
 
 const fields = {
   name: 'empty',
@@ -32,7 +32,7 @@ const FormSpecifyingValidationRulesExample = (props) => (
         <Input placeholder='First Name' name='name' type='text' />
       </Form.Field>
       <Form.Field label='Gender'>
-        <Dropdown selection name='gender' options={genderOptions} />
+        <Select name='gender' options={genderOptions} />
       </Form.Field>
     </Form.Fields>
     <Form.Fields evenlyDivided>
@@ -44,7 +44,7 @@ const FormSpecifyingValidationRulesExample = (props) => (
       </Form.Field>
     </Form.Fields>
     <Form.Field label='Skills'>
-      <Dropdown selection multiple name='skills' options={skillsOptions} />
+      <Select multiple name='skills' options={skillsOptions} />
     </Form.Field>
     <Form.Field className='inline'>
       <Checkbox name='terms' className='hidden' label='I agree to the terms and conditions' />
