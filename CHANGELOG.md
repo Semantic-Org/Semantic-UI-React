@@ -6,6 +6,7 @@
 
 **Closed issues:**
 
+- Would love to contribute [\#302](https://github.com/TechnologyAdvice/stardust/issues/302)
 - Remove sd-\* classes [\#293](https://github.com/TechnologyAdvice/stardust/issues/293)
 
 **Merged pull requests:**
