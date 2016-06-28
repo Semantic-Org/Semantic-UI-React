@@ -203,7 +203,7 @@ export default class Dropdown extends Component {
       /* eslint-enable no-console */
     }
 
-    if (!_.isEqual(nextProps.value, this.state.value)) {
+    if (!_.isEqual(nextProps.value, this.props.value)) {
       debug('value changed, setting', nextProps.value)
       this.setValue(nextProps.value)
     }
