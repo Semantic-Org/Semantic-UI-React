@@ -25,11 +25,6 @@ const componentInfo = componentCtx.keys().map(key => {
   const subComponentName = _.has(_meta, 'parent') && _.has(_meta, 'name')
     ? _meta.name.replace(_meta.parent, '')
     : null
-  // HeaderH1 => sd-header-h1
-  const sdClass = `sd-${constructorName
-    .replace('_', '')                 // remove underscore
-    .replace(/(?!^)([A-Z])/g, '-$1')  // prefix capitals with hyphen
-    .toLowerCase()}`                  // lowercase
 
   const componentClassName = (subComponentName || constructorName).toLowerCase()
 
@@ -37,7 +32,6 @@ const componentInfo = componentCtx.keys().map(key => {
     _meta,
     Component,
     constructorName,
-    sdClass,
     componentClassName,
     subComponentName,
     filePath,
@@ -68,7 +62,6 @@ export const isConformant = (Component, requiredProps = {}) => {
     constructorName,
     componentClassName,
     filenameWithoutExt,
-    sdClass,
     subComponentName,
   } = _.find(componentInfo, i => i.constructorName === Component.prototype.constructor.name)
 
@@ -239,9 +232,19 @@ export const isConformant = (Component, requiredProps = {}) => {
   // Handles className
   // ----------------------------------------
   describe('className (common)', () => {
-    it(`has the Stardust className "${sdClass}"`, () => {
-      render(<Component {...requiredProps} />)
-        .should.have.className(sdClass)
+    it('does not have an sd-* className', () => {
+      const wrapper = shallow(<Component {...requiredProps} />)
+      const className = wrapper.prop('className')
+      const children = wrapper.children()
+
+      // component itself
+      if (className) className.should.not.contain('sd-')
+
+      // children
+      children.forEach(c => {
+        const childClassName = c.prop('className')
+        if (childClassName) childClassName.should.not.contain('sd-')
+      })
     })
 
     if (META.isSemanticUI(Component)) {

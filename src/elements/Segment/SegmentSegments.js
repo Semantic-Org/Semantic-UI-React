@@ -32,7 +32,6 @@ export default class SegmentSegments extends Component {
     const { children } = this.props
 
     const classes = classNames(
-      'sd-segment-segments',
       'ui',
       this.props.className,
       'segments'

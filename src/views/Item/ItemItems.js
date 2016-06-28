@@ -4,7 +4,7 @@ import META from '../../utils/Meta'
 
 function ItemItems(props) {
   const { className, children, ...rest } = props
-  const classes = cx('sd-item-items ui', className, 'items')
+  const classes = cx('ui', className, 'items')
 
   return <div {...rest} className={classes}>{children}</div>
 }

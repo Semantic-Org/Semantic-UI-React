@@ -21,7 +21,7 @@ class DropdownMenu extends Component {
 
   render() {
     const { className, ...rest } = this.props
-    const classes = cx('sd-dropdown-menu menu transition', className)
+    const classes = cx('menu transition', className)
     return <div {...rest} className={classes} />
   }
 }

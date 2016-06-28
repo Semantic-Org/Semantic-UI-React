@@ -17,7 +17,6 @@ export default class GridRow extends Component {
 
   render() {
     const classes = classNames(
-      'sd-grid-row',
       this.props.className,
       'row'
     )

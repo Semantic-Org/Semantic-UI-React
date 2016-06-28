@@ -17,7 +17,8 @@ function Container(props) {
     children, className,
   } = props
 
-  const classes = cx('sd-container ui',
+  const classes = cx(
+    'ui',
     useKeyOnly(text, 'text'),
     useAlignedProp(aligned),
     useKeyOnly(fluid, 'fluid'),

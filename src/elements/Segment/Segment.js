@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import classNames from 'classnames'
 import META from '../../utils/Meta'
 import Segments from './SegmentSegments'
+import Header from '../Header/Header'
 
 /**
  * A segment is used to create a grouping of related content.
@@ -28,9 +29,8 @@ export default class Segment extends Component {
   static Segments = Segments
 
   render() {
-    const heading = <h4 className='sd-segment-heading ui header'>{this.props.heading}</h4>
+    const heading = <Header.H4>{this.props.heading}</Header.H4>
     const classes = classNames(
-      'sd-segment',
       'ui',
       this.props.className,
       'segment'

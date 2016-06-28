@@ -86,7 +86,6 @@ export default class Progress extends Component {
   render() {
     const { children, className, onChange, onError, showProgress } = this.props
     const classes = classNames(
-      'sd-progress',
       'ui',
       className,
       'progress'

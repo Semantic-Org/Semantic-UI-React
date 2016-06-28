@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react'
-import classNames from 'classnames'
+import cx from 'classnames'
 import META from '../../utils/Meta'
+import Label from 'src/elements/Label/Label'
 
 function MenuItem({ __onClick, active, children, className, label, name, onClick, ...rest }) {
   const handleClick = (e) => {
@@ -8,9 +9,7 @@ function MenuItem({ __onClick, active, children, className, label, name, onClick
     if (onClick) onClick(name)
   }
 
-  const menuLabel = label && <div className='sd-menu-label ui blue label'>{label}</div>
-  const classes = classNames(
-    'sd-menu-item',
+  const classes = cx(
     active && 'active',
     className,
     'item',
@@ -19,7 +18,7 @@ function MenuItem({ __onClick, active, children, className, label, name, onClick
   return (
     <a {...rest} className={classes} onClick={handleClick}>
       {name}
-      {menuLabel}
+      {label && <Label>{label}</Label>}
       {children}
     </a>
   )

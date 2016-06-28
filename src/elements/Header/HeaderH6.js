@@ -4,7 +4,7 @@ import _Header from './_Header'
 
 function HeaderH6(props) {
   return (
-    <_Header {...props} _sdClass='sd-header-h6' _headerElement='h6' />
+    <_Header {...props} _headerElement='h6' />
   )
 }
 

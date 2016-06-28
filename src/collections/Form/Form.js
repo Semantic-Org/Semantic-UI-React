@@ -118,7 +118,6 @@ export default class Form extends Component {
 
   render() {
     const classes = classNames(
-      'sd-form',
       'ui',
       this.props.className,
       'form'

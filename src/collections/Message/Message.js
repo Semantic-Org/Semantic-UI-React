@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import classNames from 'classnames'
 import $ from 'jquery'
 import META from '../../utils/Meta'
+import Header from '../../elements/Header/Header'
 import Icon from '../../elements/Icon/Icon'
 
 export default class Message extends Component {
@@ -29,28 +30,22 @@ export default class Message extends Component {
 
   render() {
     const classes = classNames(
-      'sd-message',
       'ui',
       this.props.className,
       { icon: this.props.icon },
       'message'
     )
 
-    const iconClasses = classNames(
-      'sd-message-icon',
-      this.props.icon
-    )
-
-    const closeIcon = <Icon className='sd-message-close-icon close' onClick={this.handleDismiss} />
-    const header = <div className='sd-message-header header'>{this.props.header}</div>
-    const icon = <Icon className={iconClasses} />
+    const closeIcon = <Icon className='close' onClick={this.handleDismiss} />
+    const header = <Header>{this.props.header}</Header>
+    const icon = <Icon className={this.props.icon} />
 
     // wrap children in <p> if there is a header
     const children = this.props.header ? <p>{this.props.children}</p> : this.props.children
 
     // wrap header and children in content if there is an icon
     const content = (
-      <div className='sd-message-content content'>
+      <div className='content'>
         {this.props.header && header}
         {children}
       </div>

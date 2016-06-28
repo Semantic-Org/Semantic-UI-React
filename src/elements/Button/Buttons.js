@@ -17,7 +17,6 @@ export default class Buttons extends Component {
 
   render() {
     const classes = classNames(
-      'sd-buttons',
       'ui',
       this.props.className,
       'buttons'

@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import React, { Children, Component, PropTypes } from 'react'
-import classNames from 'classnames'
+import cx from 'classnames'
 import { customPropTypes } from '../../utils/propUtils'
 import META from '../../utils/Meta'
 import TableColumn from './TableColumn'
@@ -96,7 +96,7 @@ export default class Table extends Component {
       const onClick = () => this._handleSortHeaderChange(
         dataKey, sort.direction === 'ascending' ? 'descending' : 'ascending'
       )
-      const classes = classNames('sd-table-header', {
+      const classes = cx({
         sorted: isSorted,
         ascending: isSorted && sort.direction === 'ascending',
         descending: isSorted && sort.direction === 'descending',
@@ -116,14 +116,14 @@ export default class Table extends Component {
         content = Table.getSafeCellContents(itemContents)
       }
 
-      return <td key={rowIndex + column.props.dataKey} className={'sd-table-cell'}>{content}</td>
+      return <td key={rowIndex + column.props.dataKey}>{content}</td>
     })
   }
 
   _getRows() {
     return _.map(this.props.data, (dataItem, rowIndex) => {
       const cells = this._getCells(dataItem, rowIndex)
-      const classes = classNames('sd-table-row', {
+      const classes = cx({
         active: this._isRowSelected(rowIndex),
       })
       const onClick = () => this._handleSelectRow(dataItem, rowIndex)
@@ -140,8 +140,7 @@ export default class Table extends Component {
 
   render() {
     const { onSelectRow, onSortChange, defaultSelectedRows } = this.props
-    const classes = classNames(
-      'sd-table',
+    const classes = cx(
       'ui',
       { selectable: !!onSelectRow || !!defaultSelectedRows },
       { sortable: !!onSortChange },

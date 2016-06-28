@@ -34,7 +34,6 @@ export default class Modal extends Component {
 
   render() {
     const classes = classNames(
-      'sd-modal',
       'ui',
       this.props.className,
       'modal',

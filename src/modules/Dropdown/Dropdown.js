@@ -739,7 +739,8 @@ export default class Dropdown extends Component {
     } = this.props
 
     // Classes
-    const classes = cx('sd-dropdown ui',
+    const classes = cx(
+      'ui',
       dropdownClasses,
       useKeyOnly(disabled, 'disabled'),
       useKeyOnly(error, 'error'),
