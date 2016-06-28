@@ -12,16 +12,17 @@ describe('Message', () => {
   describe('with header', () => {
     it('has a header', () => {
       const header = faker.hacker.phrase()
-      const message = shallow(<Message header={header} />)
+      const message = mount(<Message header={header} />)
 
-      message.should.have.descendants('.sd-message-header')
-      message.should.contain.text(header)
+      message
+        .should.have.descendants('Header')
+        .and.contain.text(header)
     })
   })
   describe('without header', () => {
     it('has no header', () => {
       shallow(<Message />)
-        .should.not.have.descendants('.sd-message-header')
+        .should.not.have.descendants('Header')
     })
   })
   describe('with icon', () => {
@@ -31,7 +32,7 @@ describe('Message', () => {
     })
     it('has a "content" wrapper', () => {
       shallow(<Message icon='inbox' />)
-        .should.have.descendants('.sd-message-content')
+        .should.have.descendants('.content')
     })
   })
   describe('without icon', () => {
@@ -41,13 +42,13 @@ describe('Message', () => {
     })
     it('has no "content" wrapper', () => {
       shallow(<Message />)
-        .should.not.have.descendants('.sd-message-content')
+        .should.not.have.descendants('.content')
     })
   })
   describe('dismissable', () => {
     it('adds a close icon', () => {
-      shallow(<Message dismissable />)
-        .should.have.descendants('.sd-message-close-icon')
+      mount(<Message dismissable />)
+        .should.have.descendants('.close.icon')
     })
 
     it('calls transition "fade" when dismissed', () => {
@@ -57,9 +58,8 @@ describe('Message', () => {
       instance.messageElm.transition
         .should.not.have.been.called()
 
-
       wrapper
-        .find('.sd-message-close-icon')
+        .find('.close.icon')
         .simulate('click')
 
       instance.messageElm.transition
@@ -69,7 +69,7 @@ describe('Message', () => {
   describe('not dismissable', () => {
     it('has no close icon', () => {
       shallow(<Message />)
-        .should.not.have.descendants('.sd-message-close-icon')
+        .should.not.have.descendants('.close.icon')
     })
   })
 })

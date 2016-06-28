@@ -23,7 +23,7 @@ export default class ListItem extends Component {
 
   render() {
     const { children, className, description, header, icon, image, ...rest } = this.props
-    const classes = cx('sd-list-item', className, 'item')
+    const classes = cx(className, 'item')
 
     const media = iconPropRenderer(icon) || imagePropRenderer(image)
     const _description = description || children

@@ -16,7 +16,6 @@ export default class Icon extends Component {
   render() {
     const { className } = this.props
     const classes = cx(
-      'sd-icon',
       className,
       'icon',
     )

@@ -25,7 +25,6 @@ function DropdownItem(props) {
   }
 
   const classes = cx(
-    'sd-dropdown-item',
     useKeyOnly(active, 'active'),
     useKeyOnly(selected, 'selected'),
     'item',

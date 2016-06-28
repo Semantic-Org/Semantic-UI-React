@@ -34,7 +34,6 @@ export default class FormFields extends Component {
     }
 
     const classes = classNames(
-      'sd-form-fields',
       this.props.className,
       numberToWord(fieldCount),
       'fields'

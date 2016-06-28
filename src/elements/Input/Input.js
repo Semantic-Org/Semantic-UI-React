@@ -53,7 +53,6 @@ export default class Input extends Component {
     })
 
     const classes = classNames(
-      'sd-input',
       'ui',
       className,
       'input'

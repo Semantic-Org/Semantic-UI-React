@@ -13,15 +13,15 @@ describe('Segment', () => {
 
   describe('heading', () => {
     it('is not present by default', () => {
-      shallow(<Segment />)
-        .should.not.have.descendants('.sd-segment-heading')
+      mount(<Segment />)
+        .should.not.have.descendants('.header')
     })
 
     it('adds a heading', () => {
       const heading = faker.hacker.phrase()
-      const wrapper = shallow(<Segment heading={heading} />)
+      const wrapper = mount(<Segment heading={heading} />)
       wrapper
-        .should.have.descendants('.sd-segment-heading')
+        .should.have.descendants('.header')
       wrapper
         .should.contain.text(heading)
     })

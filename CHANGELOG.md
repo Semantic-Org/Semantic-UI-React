@@ -2,7 +2,21 @@
 
 ## [Unreleased](https://github.com/TechnologyAdvice/stardust/tree/HEAD)
 
-[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.16.0...HEAD)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.16.2...HEAD)
+
+**Closed issues:**
+
+- Remove sd-\* classes [\#293](https://github.com/TechnologyAdvice/stardust/issues/293)
+
+**Merged pull requests:**
+
+- Remove sd-\* classNames [\#301](https://github.com/TechnologyAdvice/stardust/pull/301) ([levithomason](https://github.com/levithomason))
+
+## [v0.16.2](https://github.com/TechnologyAdvice/stardust/tree/v0.16.2) (2016-06-27)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.16.1...v0.16.2)
+
+## [v0.16.1](https://github.com/TechnologyAdvice/stardust/tree/v0.16.1) (2016-06-27)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.16.0...v0.16.1)
 
 **Implemented enhancements:**
 
@@ -13,8 +27,15 @@
 
 - Update doc examples [\#290](https://github.com/TechnologyAdvice/stardust/pull/290) ([levithomason](https://github.com/levithomason))
 
+**Closed issues:**
+
+- Disable debug logs [\#298](https://github.com/TechnologyAdvice/stardust/issues/298)
+- Progress Error: this.element.progress is not a function [\#297](https://github.com/TechnologyAdvice/stardust/issues/297)
+
 **Merged pull requests:**
 
+- Fix debug dependency [\#300](https://github.com/TechnologyAdvice/stardust/pull/300) ([levithomason](https://github.com/levithomason))
+- Debug on/off instructions [\#299](https://github.com/TechnologyAdvice/stardust/pull/299) ([levithomason](https://github.com/levithomason))
 - Label allow bool corner prop [\#294](https://github.com/TechnologyAdvice/stardust/pull/294) ([levithomason](https://github.com/levithomason))
 - Extend semanticUtils [\#288](https://github.com/TechnologyAdvice/stardust/pull/288) ([levithomason](https://github.com/levithomason))
 - Header Component updated to v1 API [\#278](https://github.com/TechnologyAdvice/stardust/pull/278) ([jamiehill](https://github.com/jamiehill))

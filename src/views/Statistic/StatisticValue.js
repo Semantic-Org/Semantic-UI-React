@@ -19,7 +19,6 @@ export default class StatisticValue extends Component {
 
   render() {
     const classes = classNames(
-      'sd-statistic-value',
       this.props.className,
       'value',
     )

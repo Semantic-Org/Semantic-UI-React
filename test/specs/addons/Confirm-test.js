@@ -21,7 +21,7 @@ describe('Confirm', () => {
       .show()
       .then(isConfirmed => isConfirmed.should.equal(true))
     confirm
-      .find('.sd-confirm-button')
+      .findWhere(c => c.text() === 'Yes')
       .simulate('click')
   })
   it('should return false on abort', () => {
@@ -31,7 +31,7 @@ describe('Confirm', () => {
       .show()
       .then(isConfirmed => isConfirmed.should.equal(false))
     confirm
-      .find('.sd-abort-button')
+      .findWhere(c => c.text() === 'Cancel')
       .simulate('click')
   })
 })

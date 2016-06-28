@@ -70,12 +70,12 @@ describe('MenuItem', () => {
   describe('label', () => {
     it('should not have a label by default', () => {
       shallow(<MenuItem name='item' />)
-        .should.not.have.className('sd-menu-label')
+        .should.not.have.descendants('Label')
     })
     it('should render a label if prop given', () => {
-      shallow(<MenuItem name='item' label='37' />)
-        .find('.sd-menu-label')
-        .should.have.text('37')
+      mount(<MenuItem name='item' label='37' />)
+        .should.have.descendants('Label')
+        .and.contain.text('37')
     })
   })
 })

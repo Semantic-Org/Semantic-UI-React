@@ -28,7 +28,7 @@ function Label(props) {
   const handleRemove = e => onRemove && onRemove(e, props)
   const handleDetailClick = e => onDetailClick && onDetailClick(e, props)
 
-  const classes = cx('sd-label ui',
+  const classes = cx('ui',
     size,
     color,
     useKeyOnly(basic, 'basic'),

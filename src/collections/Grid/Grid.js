@@ -21,7 +21,6 @@ export default class Grid extends Component {
 
   render() {
     const classes = classNames(
-      'sd-grid',
       'ui',
       this.props.className,
       'grid'

@@ -62,16 +62,17 @@ describe('Table', () => {
       it('is called with the rowItem and index onClick', () => {
         const spy = sandbox.spy()
         const rowItem = { name: 'bob' }
-        const row = shallow(
+        shallow(
           <Table className='selectable' onSelectRow={spy} data={[rowItem]}>
             <Table.Column dataKey='name' />
           </Table>
         )
-          .find('.sd-table-row')
+          .find('tbody')
+          .find('tr')
           .first()
+          .simulate('click')
 
-        spy.should.have.not.been.called()
-        row.simulate('click')
+        spy.should.have.been.calledOnce()
         spy.should.have.been.calledWith(rowItem, 0)
       })
     })
@@ -84,7 +85,7 @@ describe('Table', () => {
           <Table.Column dataKey='firstName' />
         </Table>
       )
-        .find('.sd-table-header')
+        .find('th')
         .should.contain.text('First Name')
     })
 
@@ -94,7 +95,7 @@ describe('Table', () => {
           <Table.Column dataKey={randomDataKey} headerRenderer={() => 'YO!'} />
         </Table>
       )
-        .find('.sd-table-header')
+        .find('th')
         .should.contain.text('YO!')
     })
   })
@@ -106,7 +107,7 @@ describe('Table', () => {
           <Table.Column dataKey={randomDataKey} />
         </Table>
       )
-        .find('.sd-table-cell')
+        .find('td')
         .forEach((tableCell, i) => {
           const originalItem = tableData[i][randomDataKey]
           const originalValue = Table.getSafeCellContents(originalItem)
@@ -120,7 +121,7 @@ describe('Table', () => {
           <Table.Column dataKey={randomDataKey} cellRenderer={() => 'REDACTED'} />
         </Table>
       )
-        .find('.sd-table-cell')
+        .find('td')
         .forEach((tableCell) => {
           tableCell.should.contain.text('REDACTED')
         })
@@ -133,7 +134,7 @@ describe('Table', () => {
           <Table.Column dataKey='permissions' />
         </Table>
       )
-        .find('.sd-table-cell')
+        .find('td')
         .forEach((tableCell) => {
           const text = tableCell.text()
           text.should.be.a('string')
@@ -149,7 +150,7 @@ describe('Table', () => {
           <Table.Column dataKey={randomDataKey} />
         </Table>
       )
-        .find('.sd-table-cell')
+        .find('td')
         .forEach((tableCell, i) => {
           // remove this table's column from the current data object
           // then expect this cell's value to not be found in the object
@@ -172,7 +173,8 @@ describe('Table', () => {
           <Table.Column dataKey='row' />
         </Table>
       )
-        .find('.sd-table-row')
+        .find('tbody')
+        .find('tr')
     })
 
     it('applies class "active" only to the clicked row', () => {
@@ -209,8 +211,8 @@ describe('Table', () => {
       )
 
       const table = wrapper.instance()
-      const headers = wrapper.find('.sd-table-header')
-      const rows = wrapper.find('.sd-table-row')
+      const headers = wrapper.find('th')
+      const rows = wrapper.find('tbody').find('tr')
 
       // select a row
       rows

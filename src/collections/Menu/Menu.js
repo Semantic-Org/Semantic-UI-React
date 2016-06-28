@@ -37,7 +37,7 @@ export default class Menu extends Component {
   render() {
     const { activeItem, children, className, ...rest } = this.props
 
-    const classes = cx('sd-menu ui', className, 'menu')
+    const classes = cx('ui', className, 'menu')
 
     const _children = Children.map(children, (child) => {
       const { type, props } = child

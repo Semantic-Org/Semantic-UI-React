@@ -18,7 +18,6 @@ export default class StatisticLabel extends Component {
 
   render() {
     const classes = classNames(
-      'sd-statistic-label',
       this.props.className,
       'label',
     )

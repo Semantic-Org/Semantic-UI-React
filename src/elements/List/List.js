@@ -19,7 +19,6 @@ export default class List extends Component {
 
   render() {
     const classes = classNames(
-      'sd-list',
       'ui',
       this.props.className,
       'list'

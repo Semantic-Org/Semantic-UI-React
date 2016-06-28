@@ -15,7 +15,8 @@ function Divider(props) {
     children, className,
   } = props
 
-  const classes = cx('sd-divider ui',
+  const classes = cx(
+    'ui',
     useKeyOnly(horizontal, 'horizontal'),
     useKeyOnly(vertical, 'vertical'),
     useKeyOnly(inverted, 'inverted'),

@@ -166,7 +166,6 @@ describe('Label Component', () => {
 
       // mount to get click event to propagate on click
       mount(<Label {...props} />)
-        .find('.sd-label')
         .simulate('click')
 
       props.onClick.should.have.been.calledOnce()

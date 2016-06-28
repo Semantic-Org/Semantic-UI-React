@@ -14,7 +14,7 @@ class DropdownDivider extends Component {
   }
 
   render() {
-    return <div className='sd-dropdown-divider divider' {...this.props} />
+    return <div className='divider' {...this.props} />
   }
 }
 
