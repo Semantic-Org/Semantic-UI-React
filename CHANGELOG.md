@@ -2,16 +2,26 @@
 
 ## [Unreleased](https://github.com/TechnologyAdvice/stardust/tree/HEAD)
 
-[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.16.2...HEAD)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.16.3...HEAD)
+
+**Fixed bugs:**
+
+- Relax Dropdown CWRP value error for multiple dropdowns [\#309](https://github.com/TechnologyAdvice/stardust/issues/309)
+
+## [v0.16.3](https://github.com/TechnologyAdvice/stardust/tree/v0.16.3) (2016-06-28)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.16.2...v0.16.3)
 
 **Closed issues:**
 
+- Introducing Semantic-UI-React-Storybook [\#308](https://github.com/TechnologyAdvice/stardust/issues/308)
+- Update List to v1 API [\#306](https://github.com/TechnologyAdvice/stardust/issues/306)
 - Missing dependencies in package.json [\#303](https://github.com/TechnologyAdvice/stardust/issues/303)
 - Would love to contribute [\#302](https://github.com/TechnologyAdvice/stardust/issues/302)
 - Remove sd-\* classes [\#293](https://github.com/TechnologyAdvice/stardust/issues/293)
 
 **Merged pull requests:**
 
+- Fix dropdown set value and error [\#310](https://github.com/TechnologyAdvice/stardust/pull/310) ([levithomason](https://github.com/levithomason))
 - Fix input action examples [\#305](https://github.com/TechnologyAdvice/stardust/pull/305) ([levithomason](https://github.com/levithomason))
 - Remove sd-\* classNames [\#301](https://github.com/TechnologyAdvice/stardust/pull/301) ([levithomason](https://github.com/levithomason))
 
