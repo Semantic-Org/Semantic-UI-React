@@ -69,7 +69,6 @@ export default class Checkbox extends Component {
       type = 'radio'
     }
     const classes = classNames(
-      'sd-checkbox',
       'ui',
       this.props.className,
       // auto apply fitted class to compact white space when there is no label

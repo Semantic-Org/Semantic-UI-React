@@ -10,7 +10,8 @@ function HeaderSubheader(props) {
     children, className,
   } = props
 
-  const classes = cx('sd-header-subheader', 'sub',
+  const classes = cx(
+    'sub',
     className,
     'header'
   )

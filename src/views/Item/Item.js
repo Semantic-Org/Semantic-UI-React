@@ -35,9 +35,9 @@ export default class Item extends Component {
 
     const { className: imageClassName, ...imageProps } = _.get(image, 'props', {})
 
-    const classes = cx('sd-item', className, 'item')
-    const imageClasses = cx('sd-item-image ui', imageClassName, 'image')
-    const contentClasses = cx('sd-item-content', contentClassName, 'content')
+    const classes = cx(className, 'item')
+    const imageClasses = cx('ui', imageClassName, 'image')
+    const contentClasses = cx(contentClassName, 'content')
 
     const _description = children || description
 

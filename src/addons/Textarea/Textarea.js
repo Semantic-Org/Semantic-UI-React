@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react'
-import classNames from 'classnames'
 import META from '../../utils/Meta'
 
 export default class Textarea extends Component {
@@ -15,12 +14,8 @@ export default class Textarea extends Component {
   }
 
   render() {
-    const classes = classNames(
-      'sd-textarea',
-      this.props.className
-    )
     return (
-      <textarea {...this.props} className={classes} />
+      <textarea {...this.props} />
     )
   }
 }

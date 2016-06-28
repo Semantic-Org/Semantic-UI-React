@@ -17,7 +17,6 @@ export default class Image extends Component {
 
   render() {
     const classes = classNames(
-      'sd-image',
       'ui',
       this.props.className,
       'image'

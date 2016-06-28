@@ -46,7 +46,6 @@ export default class Confirm extends Component {
 
   render() {
     const classes = classNames(
-      'sd-confirm',
       this.props.className
     )
     return (
@@ -58,8 +57,8 @@ export default class Confirm extends Component {
           {this.state.message}
         </ModalContent>
         <ModalFooter>
-          <div className='sd-abort-button ui button' onClick={this.handleAbort}>{this.props.abortLabel}</div>
-          <div className='sd-confirm-button ui blue button' onClick={this.handleConfirm}>{this.props.confirmLabel}</div>
+          <div className='ui button' onClick={this.handleAbort}>{this.props.abortLabel}</div>
+          <div className='ui blue button' onClick={this.handleConfirm}>{this.props.confirmLabel}</div>
         </ModalFooter>
       </Modal>
     )

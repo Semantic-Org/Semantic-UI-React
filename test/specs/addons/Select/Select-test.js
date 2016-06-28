@@ -14,6 +14,6 @@ describe('Select', () => {
   it('renders a selection Dropdown', () => {
     shallow(<Select {...requiredProps} />)
       .first()
-      .should.contain(<Dropdown {...requiredProps} className='sd-select' selection />)
+      .should.contain(<Dropdown {...requiredProps} selection />)
   })
 })

@@ -15,13 +15,13 @@ import {
 
 function _Header(props) {
   const {
-    _sdClass, _headerElement,
+    _headerElement,
     color, aligned, dividing, block, attached, floated, inverted, disabled,
     icon, image, children, className,
   } = props
 
   const classes = cx(
-    _sdClass, 'ui',
+    'ui',
     icon && 'icon',
     color,
     useAlignedProp(aligned),
@@ -61,7 +61,6 @@ _Header._meta = {
 
 _Header.propTypes = {
   _headerElement: PropTypes.string,
-  _sdClass: PropTypes.string,
   className: PropTypes.string,
   children: PropTypes.node,
 
@@ -104,7 +103,6 @@ _Header.propTypes = {
 
 _Header.defaultProps = {
   _headerElement: 'div',
-  _sdClass: 'sd-header',
 }
 
 export default _Header
