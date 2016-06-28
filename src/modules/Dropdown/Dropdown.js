@@ -187,14 +187,15 @@ export default class Dropdown extends Component {
     if (process.env.NODE_ENV !== 'production') {
       // in development, validate value type matches dropdown type
       const isNextValueArray = Array.isArray(nextProps.value)
+      const hasValue = _.has(nextProps, 'value')
 
       /* eslint-disable no-console */
-      if (nextProps.multiple && !isNextValueArray) {
+      if (hasValue && nextProps.multiple && !isNextValueArray) {
         console.error(
           'Dropdown `value` must be an array when `multiple` is set.' +
           ` Received type: \`${Object.prototype.toString.call(nextProps.value)}\`.`,
         )
-      } else if (!nextProps.multiple && isNextValueArray) {
+      } else if (hasValue && !nextProps.multiple && isNextValueArray) {
         console.error(
           'Dropdown `value` must not be an array when `multiple` is not set.' +
           ' Either set `multiple={true}` or use a string or number value.'
