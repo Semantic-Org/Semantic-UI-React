@@ -16,7 +16,7 @@ function _List(props) {
   )
 
   const ListComponent = 'div'
-  const rest = getUnhandledProps(List, props)
+  const rest = getUnhandledProps(_List, props)
 
   return (
     <ListComponent className={classes} {...rest}>
