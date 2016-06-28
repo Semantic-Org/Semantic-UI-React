@@ -1,7 +1,7 @@
 import cx from 'classnames'
 import React, { PropTypes } from 'react'
 import META from '../../utils/Meta'
-import {getUnhandledProps} from '../../utils/propUtils'
+import { getUnhandledProps } from '../../utils/propUtils'
 import ListItem from './ListItem'
 
 function List(props) {
