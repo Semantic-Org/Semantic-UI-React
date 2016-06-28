@@ -6,11 +6,13 @@
 
 **Closed issues:**
 
+- Missing dependencies in package.json [\#303](https://github.com/TechnologyAdvice/stardust/issues/303)
 - Would love to contribute [\#302](https://github.com/TechnologyAdvice/stardust/issues/302)
 - Remove sd-\* classes [\#293](https://github.com/TechnologyAdvice/stardust/issues/293)
 
 **Merged pull requests:**
 
+- Fix input action examples [\#305](https://github.com/TechnologyAdvice/stardust/pull/305) ([levithomason](https://github.com/levithomason))
 - Remove sd-\* classNames [\#301](https://github.com/TechnologyAdvice/stardust/pull/301) ([levithomason](https://github.com/levithomason))
 
 ## [v0.16.2](https://github.com/TechnologyAdvice/stardust/tree/v0.16.2) (2016-06-27)
