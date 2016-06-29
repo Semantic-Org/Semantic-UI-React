@@ -57,6 +57,7 @@ export default class ListVariationsExamples extends Component {
         />
         <ComponentExample examplePath='elements/List/Variations/ListSizeTinyExample' />
         <ComponentExample examplePath='elements/List/Variations/ListSizeSmallExample' />
+        <ComponentExample examplePath='elements/List/Variations/ListSizeMediumExample' />
         <ComponentExample examplePath='elements/List/Variations/ListSizeLargeExample' />
         <ComponentExample examplePath='elements/List/Variations/ListSizeBigExample' />
         <ComponentExample examplePath='elements/List/Variations/ListSizeHugeExample' />

@@ -4,7 +4,7 @@ import { List } from 'stardust'
 export default class ListOrderedExample extends Component {
   render() {
     return (
-      <List className='ordered'>
+      <List ordered>
         <List.Item description='Apples'>
           <List>
             <List.Item description='Fuji' />

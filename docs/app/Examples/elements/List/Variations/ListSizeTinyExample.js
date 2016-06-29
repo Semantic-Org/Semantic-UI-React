@@ -8,7 +8,7 @@ export default class ListSizeTinyExample extends Component {
     const christianAvatar = <Image className='avatar' src={faker.image.avatar()} />
     const danielAvatar = <Image className='avatar' src={faker.image.avatar()} />
     return (
-      <List className='tiny horizontal divided'>
+      <List size='tiny' horizontal divided>
         <List.Item image={helenAvatar} header='Helen' />
         <List.Item image={christianAvatar} header='Christian' />
         <List.Item image={danielAvatar} header='Daniel' />

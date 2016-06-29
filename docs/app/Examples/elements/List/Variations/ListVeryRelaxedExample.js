@@ -9,7 +9,7 @@ export default class ListVeryRelaxedExample extends Component {
     const avatar3 = <Image className='avatar' src={faker.image.avatar()} />
 
     return (
-      <List className='very relaxed'>
+      <List relaxed='very'>
         <List.Item image={avatar1} header='Helen' />
         <List.Item image={avatar2} header='Christian' />
         <List.Item image={avatar3} header='Daniel' />
