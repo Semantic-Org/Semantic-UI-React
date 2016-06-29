@@ -26,7 +26,6 @@ describe('List', () => {
    * tests for useKeyOrValueAndKey which doesn't seem to be
    * available.
    */
-  //common.propKeyOrValueToClassName(List, 'relaxed')
 
   it('renders a <div /> element', () => {
     shallow(<List />)
