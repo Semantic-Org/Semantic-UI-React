@@ -149,7 +149,7 @@ npm run release:patch
 
 Originally created with :heart: at [TechnologyAdvice][9].  A ridiculous [place to work][15].
 
-[1]: https://github.com/TechnologyAdvice/stardust/blob/master/docs/app/ComponentGuidelines.md
+[1]: https://github.com/TechnologyAdvice/stardust/blob/master/CONTRIBUTING.md
 [2]: https://technologyadvice.github.io/stardust/
 [3]: https://facebook.github.io/react/
 [4]: https://github.com/TechnologyAdvice/stardust/blob/master/ROADMAP.md
