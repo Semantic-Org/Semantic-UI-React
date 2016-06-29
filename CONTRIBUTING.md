@@ -7,18 +7,26 @@ CONTRIBUTING
 
 - [Getting Started](#getting-started)
   - [Clone & Install](#clone-&-install)
-  - [Create the Component](#create-the-component)
-  - [Open A PR](#open-a-pr)
+  - [Commit Messages](#commit-messages)
   - [Commands](#commands)
-- [Writing A Component](#writing-a-component)
-  - [_meta](#_meta)
-  - [API](#api)
-    - [SUI HTML Classes](#sui-html-classes)
-    - [SUI HTML Markup](#sui-html-markup)
-  - [State](#state)
-    - [AutoControlledComponent](#autocontrolledcomponent)
-  - [Testing](#testing)
-    - [Common Tests](#common-tests)
+- [Workflow](#workflow)
+  - [Create a Component](#create-a-component)
+  - [Define _meta](#define-_meta)
+  - [Conformance Test](#conformance-test)
+  - [Open A PR](#open-a-pr)
+  - [Spec out the API](#spec-out-the-api)
+- [API](#api)
+  - [SUI HTML Classes](#sui-html-classes)
+    - [API Patterns](#api-patterns)
+    - [Prop Utils](#prop-utils)
+    - [Testing className](#testing-classname)
+  - [SUI HTML Markup](#sui-html-markup)
+- [Testing](#testing)
+  - [Common Tests](#common-tests)
+    - [Usage](#usage)
+    - [isConformant (required)](#isconformant-required)
+- [State](#state)
+  - [AutoControlledComponent](#autocontrolledcomponent)
 - [Documentation](#documentation)
   - [Website](#website)
   - [Components](#components)
@@ -39,37 +47,13 @@ cd stardust
 npm install
 ```
 
-### Create the Component
+### Commit Messages
 
-Create components in `src`.  The directory structure follows SUI naming conventions.
-
-Stateless components should be written as a `function`:
-
-```js
-function Button(props) {
-  // ...
-}
-```
-
-Stateful components should be classes:
- 
-```js
-import AutoControlledComponent from 'src/utils/AutoControlledComponent'
-
-class Dropdown extends AutoControlledComponent {
-  // ...
-}
-```
-
-You probably need to extend our [`AutoControlledComponent`](#autocontrolledcomponent) to support both [controlled][2] and [uncontrolled][3] component patterns.
-
-### Open A PR
-
-This is a good time to open your PR.  The component has been created, but the API and internals are not yet coded.
+Please follow the [Angular Git Commit Guidelines][8] format.
 
 ### Commands
 
-This list is not updated, you should run `npm run` to see all scripts.
+>This list is not updated, you should run `npm run` to see all scripts.
 
 ```sh
 npm start                     // run doc site
@@ -90,9 +74,39 @@ npm run lint:fix              // lint and attempt to fix
 npm run lint:watch            // lint on file change
 ```
 
-## Writing A Component
+## Workflow
 
-### _meta
+- [Create a Component](#create-a-component)
+- [Define _meta](#define-_meta)
+- [Conformance Test](#conformance-test)
+- [Open A PR](#open-a-pr)
+- [Spec out the API](#spec-out-the-api)
+
+### Create a Component
+
+Create components in `src`.  The directory structure follows SUI naming conventions.  If you're updating a component, push a small change so you can open a PR early.
+
+Stateless components should be written as a `function`:
+
+```js
+function Button(props) {
+  // ...
+}
+```
+
+Stateful components should be classes:
+ 
+```js
+import AutoControlledComponent from 'src/utils/AutoControlledComponent'
+
+class Dropdown extends AutoControlledComponent {
+  // ...
+}
+```
+
+>You probably need to extend our [`AutoControlledComponent`](#autocontrolledcomponent) to support both [controlled][2] and [uncontrolled][3] component patterns.
+
+### Define _meta
 
 Every component has a static property called `_meta`.  This object defines the component.  The values here are used in `propTypes`, generated documentation, generated test cases, and some utilities.
 
@@ -131,7 +145,23 @@ class MyComponent {
 }
 ```
 
-### API
+### Conformance Test
+
+Review [common tests](#common-tests) below.  You should now add the [`isConformant()`](#isconformant-required) common test and get it to pass.  This will validate the `_meta` and help you get your component off the ground.
+
+### Open A PR
+
+This is a good time to open your PR.  The component has been created, but the API and internals are not yet coded.  We prefer to collaborate on these things to minimize rework.
+
+This will also with getting early feedback and smaller faster iterations on your component.
+
+### Spec out the API
+
+Review the SUI documentation for the component. Spec out the component's proposed API. The spec should demonstrate how your component's API will support all the native SUI features. You can reference this [API proposal][7] for the Input.
+
+Once we have solidified the component spec, it's time to write some code.  The following sections cover everything you'll need to spec and build your awesome component.
+
+## API
 
 The primary areas of focus when designing a component API are:
 
@@ -140,7 +170,7 @@ The primary areas of focus when designing a component API are:
 
 Our goal is to map these to a declarative component API.  We map HTML classes to component props.  We map markup to sub components (and sometimes props).
 
-#### SUI HTML Classes
+### SUI HTML Classes
 
 SUI component definitions (style and behavior) are defined by HTML classes.  These classes can be split into 4 groups:
 
@@ -151,11 +181,7 @@ SUI component definitions (style and behavior) are defined by HTML classes.  The
 
 Each group has an API pattern and prop util for building up the `className` and a [Common test](#commont-tests).
 
-##### Development Workflow
-
-Review the SUI documentation for the component.  Identify which types of 
-
-###### API Patterns
+#### API Patterns
 
 ```js
 <Segment basic />                     // standalone
@@ -173,7 +199,7 @@ Review the SUI documentation for the component.  Identify which types of
 <div class="ui small red segment"></div>
 ```
 
-###### Prop Util
+#### Prop Utils
 
 Use [`propUtils`][4] to extract the prop values and build up the `className`.  Grouped classes like `color` and `size` simply use the prop value as the `className`.
 
@@ -196,7 +222,7 @@ function Segment({ size, color, basic, floated, padded }) {
 }
 ```
 
-##### Testing className
+#### Testing className
 
 Use [`commonTests`](#common-tests) to test the `className` build up for each prop.  These tests will run your component through all the possible usage permutations:
  
@@ -213,13 +239,13 @@ describe('Segment', () => {
 })
 ````
 
-#### SUI HTML Markup
+### SUI HTML Markup
 
 SUI components can be nested.  When nested, the supported features and markup usually change.
 
 Example, a [`header` element][5] accepts a size.  It can be nested in a `list`, `modal`, `menu`, etc.  The `header` size class is not valid when nested in these components.  You size the parent component instead.
 
-Though these headers share the class `header`, they are entirely different components.  In order to preserve accurate `propTypes` validation and separate concerns, use sub components to design component markup.  This allows each sub component to have it's own props and markup:
+Though these headers share the class `header`, they are entirely different components.  In order to preserve accurate `propTypes` validation and separate concerns, use sub components to design component markup.  This allows each sub component to have its own props and markup:
 
 ```js
 <List>
@@ -229,7 +255,7 @@ Though these headers share the class `header`, they are entirely different compo
 </List>
 ```
 
-Create the sub component a separate component in the parent component's directory:
+Create the sub component as a separate component in the parent component's directory:
 
 ```js
 function  ListItem() {
@@ -257,19 +283,11 @@ class List {
 }
 ````
 
-### State
-
-TODO
-
-#### AutoControlledComponent
-
-TODO
-
-### Testing
+## Testing
 
 Run tests during development with `npm run test:watch` to re-run tests on file changes.
 
-#### Common Tests
+### Common Tests
 
 There are many common things to test for.  Because of this, we have [`test/specs/commonTests.js`][1].
 
@@ -290,7 +308,7 @@ common.propKeyAndValueToClassName()
 common.propKeyOrValueToClassName()
 ````
 
-##### Usage
+#### Usage
   
 Every common test receives your component as its first argument.
 
@@ -323,9 +341,9 @@ describe('Select', () => {
 })
 ```
 
-##### isConformant (required)
+#### isConformant (required)
 
-This is the only required test.  It ensures a consistent baseline for the framework, and can can help you get your component off the ground.
+This is the only required test.  It ensures a consistent baseline for the framework. It also helps you get your component off the ground.  You should add this test to new components right away.
 
 >This list is not updated, check the [source][1] for the latest assertions.
 
@@ -336,13 +354,28 @@ This is the only required test.  It ensures a consistent baseline for the framew
 1. Base `className`s are applied
 1. Component is exported if public / hidden if private
 
+## State
+
+TODO
+
+### AutoControlledComponent
+
+TODO
+
+>For now, you should reference Dropdown as an example implementation.  You can also consult the comments in AutoControlledComponent.js for more background. 
+
 ## Documentation
+
+- [Website](#website)
+- [Components](#components)
+- [Props](#props)
+- [Examples](#examples)
 
 Our docs are generated from doc block comments, `propTypes`, and hand written examples. 
 
 ### Website
 
-Developing against the doc site is good way to try your component as you build it. Run the doc site with:
+Developing against the doc site is a good way to try your component as you build it. Run the doc site with:
 
 ```sh
 npm start
@@ -370,7 +403,7 @@ A doc block should appear above each prop in `propTypes` to describe them:
 
 ```js
 Label.propTypes = {
-  /** A label can reduce its complexity */
+  /** A label can reduce its complexity. */
   basic: PropTypes.bool,
 
   /** Primary content of the label, same as text. */
@@ -388,7 +421,7 @@ Label.propTypes = {
     PropTypes.oneOf(Label._meta.props.corner),
   ]),
 
-  /** Add an icon by icon className or pass an <Icon /.> */
+  /** Add an icon by icon className or pass an <Icon /> */
   icon: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.element,
@@ -398,11 +431,11 @@ Label.propTypes = {
 
 ### Examples
 
+>This section is lacking in instruction as the the docs are set to be overhauled (PRs welcome!).
+
 Usage examples for a component live in `docs/app/Examples`.  The examples follow the SUI doc site examples.
 
 Adding documentation for new components is a bit tedious.  The best way to do this (for now) is to copy an existing component's and update them.
-
-Yes, we're sorry.  This will be reworked.  PRs welcome!
 
 [1]: https://github.com/TechnologyAdvice/stardust/blob/master/test/specs/commonTests.js
 [2]: https://facebook.github.io/react/docs/forms.html#controlled-components
@@ -410,3 +443,5 @@ Yes, we're sorry.  This will be reworked.  PRs welcome!
 [4]: https://github.com/TechnologyAdvice/stardust/blob/master/src/utils/propUtils.js
 [5]: http://semantic-ui.com/elements/header
 [6]: http://semantic-ui.com/views/item
+[7]: https://github.com/TechnologyAdvice/stardust/pull/281#issuecomment-228663527
+[8]: https://github.com/angular/angular.js/blob/master/CONTRIBUTING.md#commit
