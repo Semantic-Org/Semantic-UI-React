@@ -85,7 +85,7 @@ Label.propTypes = {
   /** Attach to a <Segment />. */
   attached: PropTypes.oneOf(Label._meta.props.attached),
 
-  /** A label can reduce its complexity */
+  /** A label can reduce its complexity. */
   basic: PropTypes.bool,
 
   /** Primary content of the label, same as text. */
@@ -97,7 +97,7 @@ Label.propTypes = {
   /** Color of the label. */
   color: PropTypes.oneOf(Label._meta.props.colors),
 
-  /** Place the label in one of the upper corners . */
+  /** Place the label in one of the upper corners. */
   corner: PropTypes.oneOfType([
     PropTypes.bool,
     PropTypes.oneOf(Label._meta.props.corner),
@@ -118,7 +118,7 @@ Label.propTypes = {
   /** Make the label circular, or a dot if it is empty. */
   circular: PropTypes.bool,
 
-  /** Add an icon by icon className or pass an <Icon /.>*/
+  /** Add an icon by icon className or pass an <Icon /> */
   icon: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.element,
