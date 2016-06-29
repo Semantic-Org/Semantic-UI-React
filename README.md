@@ -6,16 +6,30 @@
 
 The [official][8] integration between [Semantic UI][5] and [React][3].
 
-## Getting Started
-Hey, we're in development. Minor versions may introduce **breaking changes until the [v1.0][6] release**.
+>Hey, we're in development. There are [big changes](#how-can-i-help) taking place while we [migrate to SUI-Org][12]. Minor versions may introduce **breaking changes until the [v1.0][6] release**.
 
->There are [big changes](#how-can-i-help) taking place while we [migrate to SUI-Org][12].
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-### Installation
+
+- [Install](#install)
+- [Usage](#usage)
+- [Debugger](#debugger)
+- [How Can I Help?](#how-can-i-help)
+  - [v1.0 Migrations](#v10-migrations)
+  - [New Components](#new-components)
+- [Our Principles](#our-principles)
+- [Support](#support)
+- [Releasing](#releasing)
+- [Credit](#credit)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+## Install
 
     npm i stardust -S
 
-### Usage
+## Usage
 
 **App.js**
 
@@ -56,7 +70,21 @@ We then use [Webpack][13] to create `bundle.js` from `App.js` and include it in 
 
 For more complete examples, check out the [Doc Site][2].
 
+## Debugger
+
+We use the [debug](https://www.npmjs.com/package/debug) module for debugging.  You can turn debugging on and off via the `localStorage.debug` flag from the browser console.  See the [debug docs](https://www.npmjs.com/package/debug) for more.
+
+```js
+localStorage.debug = 'stardust:*'         // default, debug all components
+localStorage.debug = 'stardust:dropdown'  // debug only the dropdown
+localStorage.debug = null                 // turn debug off
+```
+
+Once you change the flag, you need to refresh your browser to see the changes in debug output.
+
 ## How Can I Help?
+
+First, get setup and acquainted with development by reading the [contributing guidelines][1].
 
 ### v1.0 Migrations
 
@@ -88,121 +116,38 @@ Be sure to check out the above migrations before embarking on a new component.  
 
 ## Support
 
-### Elements
+|    Elements     |   Collections   |      Views      |     Modules     |     Behaviors      |
+|-----------------|-----------------|-----------------|-----------------|--------------------|
+| x Button        | _ Breadcrumb    | _ Advertisement | _ Accordion     | x Form Validation  |
+| x Container     | x Form          | _ Card          | x Checkbox      | *API (NA)*         |
+| x Divider       | x Grid          | _ Comment       | _ Dimmer        | *Visibility (NA)*  |
+| _ Flag          | x Menu          | _ Feed          | x Dropdown      |                    |
+| x Header        | x Message       | x Item          | _ Embed         |                    |
+| x Icon          | x Table         | x Statistic     | x Modal         |                    |
+| x Image         |                 |                 | _ Nag           |                    |
+| x Input         |                 |                 | _ Popup         |                    |
+| x Label         |                 |                 | x Progress      |                    |
+| x List          |                 |                 | _ Rating        |                    |
+| _ Loader        |                 |                 | _ Search        |                    |
+| _ Rail          |                 |                 | _ Shape         |                    |
+| _ Reveal        |                 |                 | _ Sidebar       |                    |
+| x Segment       |                 |                 | _ Sticky        |                    |
+| _ Step          |                 |                 | _ Tab           |                    |
+|                 |                 |                 | _ Transition    |                    |
 
-- [x] Button
-- [x] Container
-- [x] Divider
-- [ ] Flag
-- [x] Header
-- [x] Icon
-- [x] Image
-- [x] Input
-- [x] Label
-- [x] List
-- [ ] Loader
-- [ ] Rail
-- [ ] Reveal
-- [x] Segment
-- [ ] Step
-
-### Collections
-
-- [ ] Breadcrumb
-- [x] Form
-- [x] Grid
-- [x] Menu
-- [x] Message
-- [x] Table
-
-### Views
-
-- [ ] Advertisement
-- [ ] Card
-- [ ] Comment
-- [ ] Feed
-- [x] Item
-- [x] Statistic
-
-### Modules
-
-- [ ] Accordion
-- [x] Checkbox
-- [ ] Dimmer
-- [x] Dropdown
-- [ ] Embed
-- [x] Modal
-- [ ] Nag
-- [ ] Popup
-- [x] Progress
-- [ ] Rating
-- [ ] Search
-- [ ] Shape
-- [ ] Sidebar
-- [ ] Sticky
-- [ ] Tab
-- [ ] Transition
-
-### Behaviors
-
-- API (not supported)
-- [x] Form Validation
-- Visibility (not supported)
-
-## Development
-
-Start by cloning this repo and installing dependencies:
-
-    git clone git@github.com:TechnologyAdvice/stardust.git
-    cd stardust
-    npm install
-
-### Doc Site
-
-Once dependencies are installed, start the application with:
-
-    npm start
-
-This launches the doc site for development.  [Webpack Dev Server][7] will watch your JS files for changes and automatically transpile, lint and provide source maps.
-
-### Tests
-
-It is also helpful to develop against tests:
-
-    npm test
-    
-This will run PhantomJS with Karma on the command line.  Just as before, JS files are watched and re-tested on change.
-
-### Debugger
-
-We use the [debug](https://www.npmjs.com/package/debug) module for debugging.  You can turn debugging on and off via the `localStorage.debug` flag from the browser console.  See the [debug docs](https://www.npmjs.com/package/debug) for more.
-
-```js
-localStorage.debug = 'stardust:*'         // default, debug all components
-localStorage.debug = 'stardust:dropdown'  // debug only the dropdown
-localStorage.debug = null                 // turn debug off
-```
-
-Once you change the flag, you need to refresh your browser to see the changes in debug output.
-
-### Commands
-
-List all scripts:
-
-    npm run
-
-### Releasing
+## Releasing
 
 On the latest clean `master`:
 
-    npm run release:major
-    npm run release:minor
-    npm run release:patch
+```sh
+npm run release:major
+npm run release:minor
+npm run release:patch
+```
 
 ## Credit
 
-Originally created with :heart: at [TechnologyAdvice][9].
-
+Originally created with :heart: at [TechnologyAdvice][9].  A ridiculous [place to work][15].
 
 [1]: https://github.com/TechnologyAdvice/stardust/blob/master/docs/app/ComponentGuidelines.md
 [2]: https://technologyadvice.github.io/stardust/
@@ -219,3 +164,4 @@ Originally created with :heart: at [TechnologyAdvice][9].
 [13]: https://webpack.github.io
 [14]: https://github.com/TechnologyAdvice/stardust/issues
 [15]: https://github.com/TechnologyAdvice/stardust/issues/269
+[16]: https://github.com/TechnologyAdvice/careers
