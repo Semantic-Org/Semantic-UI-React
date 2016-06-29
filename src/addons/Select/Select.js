@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
 
 import META from '../../utils/Meta'
 import Dropdown from '../../modules/Dropdown/Dropdown'
@@ -9,11 +9,6 @@ import Dropdown from '../../modules/Dropdown/Dropdown'
  */
 function Select(props) {
   return <Dropdown {...props} selection />
-}
-
-Select.propTypes = {
-  /** Classes to add to the className. */
-  className: PropTypes.string,
 }
 
 Select._meta = {
