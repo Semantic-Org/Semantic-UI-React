@@ -21,6 +21,9 @@ CONTRIBUTING
     - [Prop Utils](#prop-utils)
     - [Testing className](#testing-classname)
   - [SUI HTML Markup](#sui-html-markup)
+    - [SUI Components vs Component Parts](#sui-components-vs-component-parts)
+    - [React Components & Sub Components](#react-components-&-sub-components)
+    - [Component Part Props](#component-part-props)
 - [Testing](#testing)
   - [Common Tests](#common-tests)
     - [Usage](#usage)
@@ -241,11 +244,39 @@ describe('Segment', () => {
 
 ### SUI HTML Markup
 
-SUI components can be nested.  When nested, the supported features and markup usually change.
+#### SUI Components vs Component Parts
 
-Example, a [`header` element][5] accepts a size.  It can be nested in a `list`, `modal`, `menu`, etc.  The `header` size class is not valid when nested in these components.  You size the parent component instead.
+It is important to first differentiate between *components* and *component parts* in SUI.  Per the [SUI Glossary][9] for `ui`:
 
-Though these headers share the class `header`, they are entirely different components.  In order to preserve accurate `propTypes` validation and separate concerns, use sub components to design component markup.  This allows each sub component to have its own props and markup:
+>`ui` is a special class name used to distinguish parts of components from components.
+>
+>For example, a list will receive the class `ui list` because it has a corresponding definition, however a list item, will receive just the class `item`.
+
+The `ui header` *component* is not the same as a `header` *component part*.  They share the same name but do not support the same features.
+
+A [`ui header`][5] accepts a size class.  The `ui modal` has a *component part* called `header`.  However, the size class is not valid on the `header` *component part*.  You size the `ui modal` *component* instead.
+
+**Header Component**
+
+```html
+<div class="ui small header">...</div>
+```
+
+**Modal Component (with header *component part*)**
+
+```html
+<div class="ui small modal">
+  <div class="header">...</div>
+</div>
+```
+
+#### React Components & Sub Components
+
+Top level Stardust components correspond to SUI *components*.  Stardust sub components correspond to SUI *component parts*.
+
+This allows us to provide accurate `propTypes` validation.  It also separates concerns, isolating features and tests.
+
+Use sub components to design *component part* markup.
 
 ```js
 <List>
@@ -282,6 +313,38 @@ class List {
   static Item = ListItem
 }
 ````
+
+#### Component Part Props
+
+>Warning, this pattern is experimental.  Feel free to consider it in your API spec if it makes sense.  We do not yet know if it is here to stay.
+
+Sometimes it is convenient to use props to generate markup.  Example, the [Label][10] markup is minimal.  One configuration includes an image and detail:
+
+```html
+<a class="ui image label">
+  <img src="veronika.jpg">
+  Veronika
+  <div class="detail">Friend</div>
+</a>
+```
+
+We allow props to define these minimal *component parts*:
+
+```jsx
+<Label 
+  image='veronika.jpg' 
+  detail='Friend'
+  text='Veronica'
+/>
+
+// or
+
+<Label image='veronika.jpg' detail='Friend'>
+  Veronica
+</Label>
+```
+
+See [`propUtils`][4] for special prop renderers for handling `image` and `icon` props for this purpose.
 
 ## Testing
 
@@ -445,3 +508,5 @@ Adding documentation for new components is a bit tedious.  The best way to do th
 [6]: http://semantic-ui.com/views/item
 [7]: https://github.com/TechnologyAdvice/stardust/pull/281#issuecomment-228663527
 [8]: https://github.com/angular/angular.js/blob/master/CONTRIBUTING.md#commit
+[9]: http://semantic-ui.com/introduction/glossary.html
+[10]: http://semantic-ui.com/elements/label.html
