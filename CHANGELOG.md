@@ -6,11 +6,14 @@
 
 **Closed issues:**
 
+- Setting NODE\_ENV and $\(npm bin\) on Windows [\#315](https://github.com/TechnologyAdvice/stardust/issues/315)
+- Create Contributing Guidelines [\#314](https://github.com/TechnologyAdvice/stardust/issues/314)
 - Compilation issue with docgenInfo.json \(windows\) [\#307](https://github.com/TechnologyAdvice/stardust/issues/307)
 - File docgenInfo.json missing from 'docs/app' [\#304](https://github.com/TechnologyAdvice/stardust/issues/304)
 
 **Merged pull requests:**
 
+- Add CONTRIBUTING guidelines [\#317](https://github.com/TechnologyAdvice/stardust/pull/317) ([levithomason](https://github.com/levithomason))
 - Fix getComponentDocInfo docPath on windows [\#312](https://github.com/TechnologyAdvice/stardust/pull/312) ([levithomason](https://github.com/levithomason))
 
 ## [v0.16.4](https://github.com/TechnologyAdvice/stardust/tree/v0.16.4) (2016-06-28)

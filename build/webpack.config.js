@@ -183,9 +183,7 @@ if (argv.localModules) {
 } else {
   webpackConfig.module.noParse = [
     ...webpackConfig.module.noParse,
-    // /faker/,
     /jquery/,
-    // /lodash/,
     /semantic-ui-css\/semantic\.js/,
     /semantic-ui-css\/semantic\.css/,
   ]
