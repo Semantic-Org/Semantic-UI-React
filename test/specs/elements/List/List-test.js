@@ -31,9 +31,4 @@ describe('List', () => {
     shallow(<List />)
       .should.have.tagName('div')
   })
-
-  it('adds the "list" class', () => {
-    shallow(<List />)
-      .should.have.className('list')
-  })
 })

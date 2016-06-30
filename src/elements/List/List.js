@@ -51,7 +51,7 @@ List._meta = {
   type: META.type.element,
   props: {
     size: sui.sizes,
-    aligned: sui.vertAlignments,
+    aligned: sui.verticalAlignments,
   },
 }
 

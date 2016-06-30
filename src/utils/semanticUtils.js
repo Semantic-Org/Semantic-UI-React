@@ -15,5 +15,5 @@ export const colors = [
 ]
 export const sizes = ['mini', 'tiny', 'small', 'medium', 'large', 'big', 'huge', 'massive']
 export const textAlignments = ['left', 'center', 'right', 'justified']
-export const vertAlignments = ['top', 'middle', 'bottom']
+export const verticalAlignments = ['top', 'middle', 'bottom']
 export const floats = ['left', 'right']
