@@ -5,33 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="086747b3-b669-4fe9-a7d7-329c6f8632a5" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/app/Examples/elements/Icon/Groups/IconCornerGroupExample.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/app/Examples/elements/Icon/Groups/IconGroupsExamples.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/app/Examples/elements/Icon/Groups/IconIconGroupExample.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/app/Examples/elements/Icon/Groups/IconLoadingGroupExample.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/app/Examples/elements/Icon/Groups/IconTwitterGroupExample.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/app/Examples/elements/Icon/States/IconDisabledExample.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/app/Examples/elements/Icon/States/IconLoadingExample.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/app/Examples/elements/Icon/States/IconStatesExamples.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/app/Examples/elements/Icon/Types/IconTypesExamples.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/app/Examples/elements/Icon/Variations/IconBorderedExample.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/app/Examples/elements/Icon/Variations/IconCircularExample.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/app/Examples/elements/Icon/Variations/IconColoredExample.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/app/Examples/elements/Icon/Variations/IconFittedExample.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/app/Examples/elements/Icon/Variations/IconFlippedExample.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/app/Examples/elements/Icon/Variations/IconInvertedColoredExample.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/app/Examples/elements/Icon/Variations/IconLinkExample.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/app/Examples/elements/Icon/Variations/IconRotatedExample.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/app/Examples/elements/Icon/Variations/IconSizeExample.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/app/Examples/elements/Icon/Variations/IconVariationsExamples.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/elements/Icon/IconGroup.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/elements/Icon/_Icon.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/specs/elements/Icon/IconGroup-test.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/specs/elements/Icon/_Icon-test.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/app/Examples/elements/Icon/IconExamples.js" afterPath="$PROJECT_DIR$/docs/app/Examples/elements/Icon/IconExamples.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/app/Examples/elements/Icon/IconSet/IconSetExamples.js" afterPath="$PROJECT_DIR$/docs/app/Examples/elements/Icon/IconSet/IconSetExamples.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/elements/Icon/Icon.js" afterPath="$PROJECT_DIR$/src/elements/Icon/Icon.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/specs/elements/Icon/Icon-test.js" afterPath="$PROJECT_DIR$/test/specs/elements/Icon/Icon-test.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/webpack.config.js" afterPath="$PROJECT_DIR$/build/webpack.config.js" />
     </list>
     <ignored path="stardust.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -62,7 +36,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Icon.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Icon.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/elements/Icon/Icon.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="150">
@@ -79,6 +53,16 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="420">
               <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="webpack.config.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/build/webpack.config.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="783">
+              <caret line="196" column="3" selection-start-line="196" selection-start-column="3" selection-end-line="196" selection-end-column="3" />
               <folding />
             </state>
           </provider>
@@ -137,7 +121,6 @@
         <option value="$PROJECT_DIR$/test/specs/elements/Label/Label-test.js" />
         <option value="$PROJECT_DIR$/src/elements/Header/_Header.js" />
         <option value="$PROJECT_DIR$/docs/app/Examples/elements/Button/Types/ButtonLabeledExample.js" />
-        <option value="$PROJECT_DIR$/build/webpack.config.js" />
         <option value="$PROJECT_DIR$/src/collections/Grid/Grid.js" />
         <option value="$PROJECT_DIR$/src/collections/Grid/GridColumn.js" />
         <option value="$PROJECT_DIR$/src/collections/Grid/GridRow.js" />
@@ -156,6 +139,7 @@
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/src/elements/Image/Image.js" />
         <option value="$PROJECT_DIR$/src/elements/Icon/Icon.js" />
+        <option value="$PROJECT_DIR$/build/webpack.config.js" />
       </list>
     </option>
   </component>
@@ -805,14 +789,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/build/webpack.config.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2199">
-          <caret line="16" column="38" selection-start-line="16" selection-start-column="38" selection-end-line="16" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/docs/app/utils/icons.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="228">
@@ -929,6 +905,14 @@
           <folding>
             <element signature="e#0#27#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build/webpack.config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="783">
+          <caret line="196" column="3" selection-start-line="196" selection-start-column="3" selection-end-line="196" selection-end-column="3" />
+          <folding />
         </state>
       </provider>
     </entry>
