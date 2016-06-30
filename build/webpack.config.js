@@ -204,4 +204,7 @@ if (argv.localModules) {
   }
 }
 
+console.log(webpackConfig.module.loaders)
+
+
 export default webpackConfig
