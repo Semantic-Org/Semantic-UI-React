@@ -10,9 +10,11 @@
 - Create Contributing Guidelines [\#314](https://github.com/TechnologyAdvice/stardust/issues/314)
 - Compilation issue with docgenInfo.json \(windows\) [\#307](https://github.com/TechnologyAdvice/stardust/issues/307)
 - File docgenInfo.json missing from 'docs/app' [\#304](https://github.com/TechnologyAdvice/stardust/issues/304)
+- Better document component className buildup methods [\#282](https://github.com/TechnologyAdvice/stardust/issues/282)
 
 **Merged pull requests:**
 
+- Add npm badge and update description [\#318](https://github.com/TechnologyAdvice/stardust/pull/318) ([levithomason](https://github.com/levithomason))
 - Add CONTRIBUTING guidelines [\#317](https://github.com/TechnologyAdvice/stardust/pull/317) ([levithomason](https://github.com/levithomason))
 - Fix getComponentDocInfo docPath on windows [\#312](https://github.com/TechnologyAdvice/stardust/pull/312) ([levithomason](https://github.com/levithomason))
 
