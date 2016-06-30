@@ -78,4 +78,19 @@ describe('MenuItem', () => {
         .and.contain.text('37')
     })
   })
+
+  describe('header', () => {
+    it('should be a <div> tag when header is present', () => {
+      shallow(<MenuItem header />)
+        .should.match('div')
+    })
+    it('should be an <a> tag when header not present', () => {
+      shallow(<MenuItem />)
+        .should.match('a')
+    })
+    it('should be an <a> tag when header present and href defined', () => {
+      shallow(<MenuItem header href="link" />)
+        .should.match('a')
+    })
+  })
 })

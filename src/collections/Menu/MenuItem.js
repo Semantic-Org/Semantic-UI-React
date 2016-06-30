@@ -3,7 +3,7 @@ import cx from 'classnames'
 import META from '../../utils/Meta'
 import Label from '../../elements/Label/Label'
 
-function MenuItem({ __onClick, active, children, className, label, name, onClick, ...rest }) {
+function MenuItem({ __onClick, active, header, children, className, label, name, onClick, ...rest }) {
   const handleClick = (e) => {
     if (__onClick) __onClick(name)
     if (onClick) onClick(name)
@@ -11,17 +11,18 @@ function MenuItem({ __onClick, active, children, className, label, name, onClick
 
   const classes = cx(
     active && 'active',
+    header && 'header',
     className,
     'item',
   )
 
-  return (
-    <a {...rest} className={classes} onClick={handleClick}>
-      {name}
-      {label && <Label>{label}</Label>}
-      {children}
-    </a>
-  )
+  const tag = (!header || rest.href) ? "a" : "div"
+
+  return React.createElement(tag,
+            {...rest, className: classes, onClick: handleClick },
+            name,
+            label && <Label>{label}</Label>,
+            children)
 }
 
 MenuItem._meta = {
