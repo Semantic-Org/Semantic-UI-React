@@ -89,7 +89,7 @@ describe('MenuItem', () => {
         .should.match('a')
     })
     it('should be an <a> tag when header present and href defined', () => {
-      shallow(<MenuItem header href="link" />)
+      shallow(<MenuItem header href='link' />)
         .should.match('a')
     })
   })

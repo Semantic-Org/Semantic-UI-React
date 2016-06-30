@@ -16,10 +16,10 @@ function MenuItem({ __onClick, active, header, children, className, label, name,
     'item',
   )
 
-  const tag = (!header || rest.href) ? "a" : "div"
+  const tag = (!header || rest.href) ? 'a' : 'div'
 
   return React.createElement(tag,
-            {...rest, className: classes, onClick: handleClick },
+            { ...rest, className: classes, onClick: handleClick },
             name,
             label && <Label>{label}</Label>,
             children)
@@ -35,6 +35,7 @@ MenuItem._meta = {
 MenuItem.propTypes = {
   __onClick: PropTypes.func,
   active: PropTypes.bool,
+  header: PropTypes.bool,
   children: PropTypes.node,
   className: PropTypes.string,
   label: PropTypes.oneOfType([
