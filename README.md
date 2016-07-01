@@ -3,6 +3,7 @@
 [![Codecov](https://img.shields.io/codecov/c/github/TechnologyAdvice/stardust/master.svg?style=flat-square)](https://codecov.io/gh/TechnologyAdvice/stardust)
 [![Code Climate](https://img.shields.io/codeclimate/github/TechnologyAdvice/stardust.svg?style=flat-square)](https://codeclimate.com/github/TechnologyAdvice/stardust)
 [![Gemnasium](https://img.shields.io/gemnasium/TechnologyAdvice/stardust.svg?style=flat-square)](https://gemnasium.com/TechnologyAdvice/stardust)
+[![npm](https://img.shields.io/npm/v/stardust.svg?style=flat-square)](https://www.npmjs.com/package/stardust)
 
 The [official][8] integration between [Semantic UI][5] and [React][3].
 
@@ -27,7 +28,9 @@ The [official][8] integration between [Semantic UI][5] and [React][3].
 
 ## Install
 
-    npm i stardust -S
+```sh
+npm i stardust -S
+```
 
 ## Usage
 

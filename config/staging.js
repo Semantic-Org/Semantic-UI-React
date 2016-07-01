@@ -1,6 +1,6 @@
-import config from './production'
+const config = require('./production')
 
 // Enable source-maps in staging
 config.compiler_devtool = 'source-map'
 
-export default config
+module.exports = config

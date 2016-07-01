@@ -12,7 +12,7 @@ const g = loadPlugins()
 const { log, colors } = g.util
 
 const serve = (cb) => {
-  const webpackConfig = require('../../build/webpack.config').default
+  const webpackConfig = require('../../build/webpack.config')
   const app = express()
   const compiler = webpack(webpackConfig)
 
