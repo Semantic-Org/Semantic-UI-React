@@ -14,6 +14,7 @@
 
 **Merged pull requests:**
 
+- Drop babel-node from build process [\#320](https://github.com/TechnologyAdvice/stardust/pull/320) ([levithomason](https://github.com/levithomason))
 - Add npm badge and update description [\#318](https://github.com/TechnologyAdvice/stardust/pull/318) ([levithomason](https://github.com/levithomason))
 - Add CONTRIBUTING guidelines [\#317](https://github.com/TechnologyAdvice/stardust/pull/317) ([levithomason](https://github.com/levithomason))
 - Fix getComponentDocInfo docPath on windows [\#312](https://github.com/TechnologyAdvice/stardust/pull/312) ([levithomason](https://github.com/levithomason))
