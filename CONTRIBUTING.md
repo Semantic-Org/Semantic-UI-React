@@ -40,6 +40,14 @@ CONTRIBUTING
 
 ## Getting Started
 
+Make sure you have at least [Node.js v6][11]:
+
+```sh
+node -v
+
+v6.2.1
+```
+
 ### Clone & Install
 
 Start by cloning this repo and installing dependencies:
@@ -510,3 +518,4 @@ Adding documentation for new components is a bit tedious.  The best way to do th
 [8]: https://github.com/angular/angular.js/blob/master/CONTRIBUTING.md#commit
 [9]: http://semantic-ui.com/introduction/glossary.html
 [10]: http://semantic-ui.com/elements/label.html
+[11]: https://nodejs.org/

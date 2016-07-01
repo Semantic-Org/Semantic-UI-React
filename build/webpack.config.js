@@ -1,9 +1,8 @@
-import config from '../config'
-import webpack from 'webpack'
-import HtmlWebpackPlugin from 'html-webpack-plugin'
-import _ from 'lodash'
-import yargs from 'yargs'
-const { argv } = yargs
+const config = require('../config')
+const webpack = require('webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const _ = require('lodash')
+const { argv } = require('yargs')
 
 const { paths } = config
 const { __BASE__, __DEV__, __TEST__ } = config.compiler_globals
@@ -27,7 +26,7 @@ const webpackConfig = {
 
 const webpackHotPath = `${config.compiler_public_path}__webpack_hmr`
 
-export const webpackHotMiddlewareEntry = `webpack-hot-middleware/client?${_.map({
+const webpackHotMiddlewareEntry = `webpack-hot-middleware/client?${_.map({
   path: webpackHotPath,   // The path which the middleware is serving the event stream on
   timeout: 2000,          // The time to wait after a disconnection before attempting to reconnect
   overlay: true,          // Set to false to disable the DOM-based client-side overlay.
@@ -36,14 +35,12 @@ export const webpackHotMiddlewareEntry = `webpack-hot-middleware/client?${_.map(
   quiet: false,           // Set to true to disable all console logging.
 }, (val, key) => `&${key}=${val}`).join('')}`
 
-const APP_ENTRY = [
-  paths.docsSrc('index.js'),
-]
+const APP_ENTRY = paths.docsSrc('index.js')
 
 webpackConfig.entry = __DEV__ ? {
   app: [
     webpackHotMiddlewareEntry,
-    ...APP_ENTRY,
+    APP_ENTRY,
   ],
   vendor: [
     webpackHotMiddlewareEntry,
@@ -100,7 +97,7 @@ webpackConfig.plugins = [
 if (__DEV__) {
   webpackConfig.plugins.push(
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin(),
+    new webpack.NoErrorsPlugin()
   )
 } else if (!__TEST__) {
   webpackConfig.plugins.push(
@@ -187,14 +184,11 @@ if (argv.localModules) {
     /semantic-ui-css\/semantic\.js/,
     /semantic-ui-css\/semantic\.css/,
   ]
-
-  webpackConfig.resolve.alias = {
-    ...webpackConfig.resolve.alias,
+  webpackConfig.resolve.alias = Object.assign({}, webpackConfig.resolve.alias, {
     'semantic-ui-css/semantic.js': 'empty',
     'semantic-ui-css/semantic.css': 'empty',
     'highlight.js/styles/github.css': 'empty',
-  }
-
+  })
   webpackConfig.externals = {
     jquery: 'jQuery',
     faker: 'faker',
@@ -202,4 +196,4 @@ if (argv.localModules) {
   }
 }
 
-export default webpackConfig
+module.exports = webpackConfig
