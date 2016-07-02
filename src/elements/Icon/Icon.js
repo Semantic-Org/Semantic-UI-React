@@ -18,7 +18,7 @@ function Icon(props) {
     className, disabled, fitted, size, color, link, flipped, rotated, circular, bordered, inverted, loading, corner,
   } = props
 
-  const classes = cx('sd-icon',
+  const classes = cx('icon',
     size,
     color,
     useKeyOnly(disabled, 'disabled'),
