@@ -1,37 +1,56 @@
+import cx from 'classnames'
 import React, { PropTypes } from 'react'
+
 import META from '../../utils/Meta'
+import * as sui from '../../utils/semanticUtils'
 import {
   getUnhandledProps,
 } from '../../utils/propUtils'
-import _Icon from './_Icon'
 
+/**
+ * Several icons can be used together as a group
+ */
 function IconGroup(props) {
   const {
-    children,
+    className, children, size,
   } = props
+
+  const classes = cx('icon-group',
+    size,
+    className,
+    'icons'
+  )
 
   const rest = getUnhandledProps(IconGroup, props)
 
   return (
-    <_Icon {...rest} _sdClass='sd-icon-group' _iconClass='icons'>
+    <i className={classes} {...rest}>
       {children}
-    </_Icon>
+    </i>
   )
 }
 
+IconGroup.Group = IconGroup
 
 IconGroup._meta = {
   library: META.library.semanticUI,
   name: 'IconGroup',
   parent: 'Icon',
   type: META.type.element,
+  props: {
+    sizes: sui.sizes,
+  },
 }
-
 
 IconGroup.propTypes = {
   /** Class names for custom styling. */
   className: PropTypes.string,
+
   children: PropTypes.array,
+
+  /** Size of the icon group. */
+  size: PropTypes.oneOf(IconGroup._meta.props.sizes),
 }
 
 export default IconGroup
+
