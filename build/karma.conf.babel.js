@@ -1,7 +1,6 @@
-import { argv } from 'yargs'
-
-import config from '../config'
-import webpackConfig from './webpack.config'
+const { argv } = require('yargs')
+const config = require('../config')
+const webpackConfig = require('./webpack.config')
 
 const { paths } = config
 
@@ -42,8 +41,7 @@ module.exports = (karmaConfig) => {
     },
     webpack: {
       devtool: 'cheap-module-source-map',
-      module: {
-        ...webpackConfig.module,
+      module: Object.assign({}, webpackConfig.module, {
         loaders: [
           {
             test: /sinon\.js$/,
@@ -51,14 +49,10 @@ module.exports = (karmaConfig) => {
           },
           ...webpackConfig.module.loaders,
         ],
-      },
-      plugins: [
-        ...webpackConfig.plugins,
-      ],
-      resolve: {
-        ...webpackConfig.resolve,
-        alias: {
-          ...webpackConfig.resolve.alias,
+      }),
+      plugins: webpackConfig.plugins,
+      resolve: Object.assign({}, webpackConfig.resolve, {
+        alias: Object.assign({}, webpackConfig.resolve.alias, {
           jquery: `${paths.test('mocks')}/SemanticjQuery-mock.js`,
           sinon: 'sinon/pkg/sinon',
           // These are internal deps specific to React 0.13 required() by enzyme
@@ -69,8 +63,8 @@ module.exports = (karmaConfig) => {
           // this is a React 0.13 dep required by enzyme
           // ignore it since we don't have it
           'react/addons': 'empty/object',
-        },
-      },
+        }),
+      }),
     },
     webpackServer: {
       progress: false,

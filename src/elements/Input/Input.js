@@ -39,13 +39,10 @@ export default class Input extends Component {
     const actionChildren = []
 
     Children.forEach(children, child => {
-      const isButton = child.type.name === 'Button'
-      const isDropdown = child.type.name === 'Dropdown'
-      // TODO: use child.type.name === 'Label' once Label component is merged.
-      const isLabel = _.isString(child.props.className) && !!child.props.className.match(/ui.*label$/)
-      const childIsAction = !isLabel && isButton || isDropdown
+      const isAction = _.includes(['Button', 'Dropdown', 'Select'], child.type._meta.name)
+      const isLabel = child.type._meta.name === 'Label'
 
-      if (childIsAction) {
+      if (isAction) {
         actionChildren.push(child)
       } else if (isLabel) {
         labelChildren.push(child)

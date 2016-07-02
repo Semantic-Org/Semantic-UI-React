@@ -1,5 +1,7 @@
-import path from 'path'
-import { argv } from 'yargs'
+const path = require('path')
+const yargs = require('yargs')
+
+const { argv } = yargs
 
 const env = process.env.NODE_ENV || 'development'
 const __DEV__ = env === 'development'
@@ -38,8 +40,7 @@ const paths = {
   docsSrc: base.bind(null, config.dir_docs_src),
 }
 
-config = {
-  ...config,
+config = Object.assign({}, config, {
   paths,
 
   // ----------------------------------
@@ -115,6 +116,6 @@ config = {
       dir: 'coverage',
     },
   ],
-}
+})
 
-export default config
+module.exports = config

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Dropdown, Input } from 'stardust'
+import { Button, Select, Input } from 'stardust'
 
 export default class InputActionExample extends Component {
   render() {
@@ -10,7 +10,7 @@ export default class InputActionExample extends Component {
     ]
     return (
       <Input className='left icon action' icon='search' placeholder='Search...'>
-        <Dropdown compact selection options={options} defaultValue='articles' />
+        <Select compact options={options} defaultValue='articles' />
         <Button type='submit'>Search</Button>
       </Input>
     )
