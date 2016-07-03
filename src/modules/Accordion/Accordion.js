@@ -1,35 +1,57 @@
 import _ from 'lodash'
 import cx from 'classnames'
-import React, { Children, PropTypes } from 'react'
+import React, { Children, cloneElement, PropTypes } from 'react'
 
-import Icon from '../../elements/Icon/Icon'
-import AccordionPanel from '../../modules/Accordion/AccordionPanel'
+import AccordionContent from '../../modules/Accordion/AccordionContent'
+import AccordionTitle from '../../modules/Accordion/AccordionTitle'
 import AutoControlledComponent from '../../utils/AutoControlledComponent'
+import Icon from '../../elements/Icon/Icon'
 import META from '../../utils/Meta'
-import { customPropTypes, getUnhandledProps } from '../../utils/propUtils'
+import { customPropTypes, useKeyOnly } from '../../utils/propUtils'
 
+/**
+ * An accordion allows users to toggle the display of sections of content
+ */
 export default class Accordion extends AutoControlledComponent {
   static autoControlledProps = [
     'activeIndex',
   ]
 
   static propTypes = {
-    /** Adds some basic styling to accordion panels. */
-    styled: PropTypes.bool,
+    /** Index of the currently active panel. */
+    activeIndex: PropTypes.number,
 
-    /** Format for dark backgrounds. */
-    inverted: PropTypes.bool,
+    /** Accordion.Title and Accordion.Content components.  Mutually exclusive with the panels prop. */
+    children: customPropTypes.mutuallyExclusive('panels'),
+
+    /** Classes to add to the Accordion className. */
+    className: PropTypes.string,
+
+    /** Initial activeIndex value. */
+    defaultActiveIndex: PropTypes.number,
 
     /** Format to take up the width of it's container. */
     fluid: PropTypes.bool,
 
-    children: customPropTypes.ofComponentTypes('AccordionPanel'),
+    /** Format for dark backgrounds. */
+    inverted: PropTypes.bool,
 
-    /** Index of the currently active panel. */
-    activeIndex: PropTypes.number,
+    /** Called with (event, index) when a panel title is clicked. */
+    onTitleClick: PropTypes.func,
 
-    /** Initial activeIndex value. */
-    defaultActiveIndex: PropTypes.number,
+    /**
+     * Create simple accordion panels from an array of { text: <string>, content: <string> } objects.
+     * Object can optionally define an `active` key to open/close the panel.
+     * Mutually exclusive with children.
+     */
+    panels: PropTypes.arrayOf(PropTypes.shape({
+      active: PropTypes.bool,
+      title: PropTypes.string,
+      content: PropTypes.string,
+    })),
+
+    /** Adds some basic styling to accordion panels. */
+    styled: PropTypes.bool,
   }
 
   static _meta = {
@@ -38,64 +60,99 @@ export default class Accordion extends AutoControlledComponent {
     type: META.type.module,
   }
 
-  static Panel = AccordionPanel
+  static Content = AccordionContent
+  static Title = AccordionTitle
 
-  handleTitleClick = (index, e) => {
+  state = {}
+
+  componentWillMount() {
+    this.trySetState({ activeIndex: -1 })
+  }
+
+  handleTitleClick = (e, index) => {
+    const { onTitleClick } = this.props
+    const { activeIndex } = this.state
+
     this.trySetState({
-      activeIndex: index === this.state.activeIndex ? -1 : index,
+      activeIndex: index === activeIndex ? -1 : index,
+    })
+    if (onTitleClick) onTitleClick(e, index)
+  }
+
+  renderChildren = () => {
+    const { children } = this.props
+    const { activeIndex } = this.state
+
+    return Children.map(children, (child, i) => {
+      const isTitle = child.type === AccordionTitle
+      const isContent = child.type === AccordionContent
+
+      if (isTitle) {
+        const isActive = _.has(child, 'props.active') ? child.active : activeIndex === i
+        const onClick = (e) => {
+          this.handleTitleClick(e, i)
+          if (child.props.onClick) child.props.onClick(e, i)
+        }
+        return cloneElement(child, { ...child.props, active: isActive, onClick })
+      }
+
+      if (isContent) {
+        // content must be the a sibling too title
+        // it is active if the active title index that precedes it is active
+        const isActive = _.has(child, 'props.active') ? child.active : activeIndex === i - 1
+        return cloneElement(child, { ...child.props, active: isActive })
+      }
+
+      return child
     })
   }
 
   renderPanels = () => {
-    const titles = []
-    const contents = []
+    const { panels } = this.props
+    const { activeIndex } = this.state
+    const children = []
 
-    _.each(Children.toArray(this.props.children), (panel, i) => {
-      const { children, content, title } = panel.props
+    _.each(panels, (panel, i) => {
+      const isActive = _.has(panel, 'active') ? panel.active : activeIndex === i
 
-      const isActive = this.state.activeIndex === i
-      const titleClasses = cx('title', isActive && 'active')
-      const contentClasses = cx('content', isActive && 'active')
-      const paragraphClasses = cx('transition', isActive ? 'visible' : 'hidden')
+      const onClick = (e) => {
+        this.handleTitleClick(e, i)
+        if (panel.onClick) panel.onClick(e, i)
+      }
 
-      titles.push(
-        <div key={title} className={titleClasses} onClick={this.handleTitleClick.bind(this, i)}>
+      children.push(
+        <AccordionTitle key={`${panel.title}-title`} active={isActive} onClick={onClick}>
           <Icon className='dropdown' />
-          {title}
-        </div>
+          {panel.title}
+        </AccordionTitle>
       )
-      contents.push(
-        <div key={`${title}-content`} className={contentClasses}>
-          <p className={paragraphClasses}>
-            {content || children}
-          </p>
-        </div>
+      children.push(
+        <AccordionContent key={`${panel.title}-content`} active={isActive}>
+          {panel.content}
+        </AccordionContent>
       )
     })
 
-    return _.zip(titles, contents)
+    return children
   }
 
   render() {
-    const {
-      fluid,
-      inverted,
-      styled,
-    } = this.props
+    const { className, fluid, inverted, panels, styled } = this.props
 
     const classes = cx(
+      className,
       'ui',
-      fluid && 'fluid',
-      inverted && 'inverted',
-      styled && 'styled',
+      useKeyOnly(fluid, 'fluid'),
+      useKeyOnly(inverted, 'inverted'),
+      useKeyOnly(styled, 'styled'),
       'accordion'
     )
 
-    const rest = getUnhandledProps(Accordion, this.props)
+    const rest = _.omit(this.props, _.keys(Accordion.propTypes))
 
     return (
-      <div className={classes} {...rest}>
-        {this.renderPanels()}
+      <div {...rest} className={classes}>
+        {panels ? this.renderPanels() : this.renderChildren()}
       </div>
     )
   }
