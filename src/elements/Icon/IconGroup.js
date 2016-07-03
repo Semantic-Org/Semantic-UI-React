@@ -38,7 +38,7 @@ IconGroup._meta = {
   parent: 'Icon',
   type: META.type.element,
   props: {
-    sizes: sui.sizes,
+    size: sui.sizes,
   },
 }
 
@@ -46,10 +46,11 @@ IconGroup.propTypes = {
   /** Class names for custom styling. */
   className: PropTypes.string,
 
-  children: PropTypes.array,
+  /** Icon children for the Icon group */
+  children: PropTypes.any,
 
   /** Size of the icon group. */
-  size: PropTypes.oneOf(IconGroup._meta.props.sizes),
+  size: PropTypes.oneOf(IconGroup._meta.props.size),
 }
 
 export default IconGroup
