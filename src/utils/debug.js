@@ -3,7 +3,7 @@ const noop = () => undefined
 
 if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'test') {
   debug = require('debug')
-  localStorage.debug = 'stardust:*'
+  localStorage.debug = localStorage.debug || 'stardust:*'
 } else {
   debug = () => noop
 }

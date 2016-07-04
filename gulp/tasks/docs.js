@@ -31,7 +31,7 @@ task('generate-docs-json', () => {
 })
 
 task('webpack-docs', (cb) => {
-  const webpackConfig = require('../../build/webpack.config').default
+  const webpackConfig = require('../../build/webpack.config')
   const compiler = webpack(webpackConfig)
 
   compiler.run((err, stats) => {

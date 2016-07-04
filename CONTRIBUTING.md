@@ -25,6 +25,7 @@ CONTRIBUTING
     - [React Components & Sub Components](#react-components-&-sub-components)
     - [Component Part Props](#component-part-props)
 - [Testing](#testing)
+  - [Coverage](#coverage)
   - [Common Tests](#common-tests)
     - [Usage](#usage)
     - [isConformant (required)](#isconformant-required)
@@ -39,6 +40,14 @@ CONTRIBUTING
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## Getting Started
+
+Make sure you have at least [Node.js v6][11]:
+
+```sh
+node -v
+
+v6.2.1
+```
 
 ### Clone & Install
 
@@ -350,6 +359,12 @@ See [`propUtils`][4] for special prop renderers for handling `image` and `icon` 
 
 Run tests during development with `npm run test:watch` to re-run tests on file changes.
 
+### Coverage
+
+All PRs must meet or exceed test coverage limits before they can be merged.
+
+Every time tests run, `/coverage` information is updated.  Open `coverage/lcov/index.html` to inspect test coverage.  This interactive report will reveal areas lacking test coverage.  You can then write tests for these areas and increase coverage. 
+
 ### Common Tests
 
 There are many common things to test for.  Because of this, we have [`test/specs/commonTests.js`][1].
@@ -510,3 +525,4 @@ Adding documentation for new components is a bit tedious.  The best way to do th
 [8]: https://github.com/angular/angular.js/blob/master/CONTRIBUTING.md#commit
 [9]: http://semantic-ui.com/introduction/glossary.html
 [10]: http://semantic-ui.com/elements/label.html
+[11]: https://nodejs.org/

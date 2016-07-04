@@ -1,5 +1,6 @@
-import base from './_default'
+const base = require('./_default')
 
-const envConfig = require(`./${base.env}`).default(base)
+const envConfig = require(`./${base.env}`)(base)
 
-export default { ...base, ...envConfig }
+
+module.exports = Object.assign({}, base, envConfig)

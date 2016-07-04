@@ -1,4 +1,4 @@
 // Just use the production configuration
-import production from './production'
+const production = require('./production')
 
-export default production
+module.exports = production

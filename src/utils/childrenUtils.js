@@ -48,6 +48,14 @@ export const someChildType = (children, type) => someChild(children, { type })
 export const findChildType = (children, type) => findChild(children, { type })
 
 /**
+ * _.filter for props.children by child type.
+ * @param {Object} children The children prop of a component.
+ * @param {string|Function} type An html tag name string or React component.
+ * @returns {Array}
+ */
+export const filterChildType = (children, type) => filterChildren(children, { type })
+
+/**
  * _.map over children of a specific type.
  * @param {Object} children The children prop of a component.
  * @param {string|Function} type An html tag name string or React component.
