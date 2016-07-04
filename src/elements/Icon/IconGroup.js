@@ -15,7 +15,7 @@ function IconGroup(props) {
     className, children, size,
   } = props
 
-  const classes = cx('icon-group',
+  const classes = cx(
     size,
     className,
     'icons'

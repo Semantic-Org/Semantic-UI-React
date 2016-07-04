@@ -18,7 +18,7 @@ function Icon(props) {
     className, disabled, fitted, size, color, link, flipped, rotated, circular, bordered, inverted, loading, corner,
   } = props
 
-  const classes = cx('icon',
+  const classes = cx(
     size,
     color,
     useKeyOnly(disabled, 'disabled'),
