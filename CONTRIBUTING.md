@@ -25,6 +25,7 @@ CONTRIBUTING
     - [React Components & Sub Components](#react-components-&-sub-components)
     - [Component Part Props](#component-part-props)
 - [Testing](#testing)
+  - [Coverage](#coverage)
   - [Common Tests](#common-tests)
     - [Usage](#usage)
     - [isConformant (required)](#isconformant-required)
@@ -357,6 +358,12 @@ See [`propUtils`][4] for special prop renderers for handling `image` and `icon` 
 ## Testing
 
 Run tests during development with `npm run test:watch` to re-run tests on file changes.
+
+### Coverage
+
+All PRs must meet or exceed test coverage limits before they can be merged.
+
+Every time tests run, `/coverage` information is updated.  Open `coverage/lcov/index.html` to inspect test coverage.  This interactive report will reveal areas lacking test coverage.  You can then write tests for these areas and increase coverage. 
 
 ### Common Tests
 
