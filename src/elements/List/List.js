@@ -9,6 +9,11 @@ import {
   useKeyOnly,
 } from '../../utils/propUtils'
 import ListItem from './ListItem'
+import Icon from '../Icon/Icon'
+import Image from '../Image/Image'
+import ItemHeader from './ItemHeader'
+import Content from '../Content/Content'
+import Description from '../Description/Description'
 
 function List(props) {
   const {
@@ -44,6 +49,11 @@ function List(props) {
 }
 
 List.Item = ListItem
+List.ItemIcon = Icon
+List.ItemImage = Image
+List.ItemHeader = ItemHeader
+List.ItemContent = Content
+List.ItemDescription = Description
 
 List._meta = {
   library: META.library.semanticUI,
@@ -52,6 +62,7 @@ List._meta = {
   props: {
     size: sui.sizes,
     aligned: sui.verticalAlignments,
+    relaxed: 'very',
   },
 }
 
@@ -93,7 +104,10 @@ List.propTypes = {
   inverted: PropTypes.bool,
 
   /** List can relax its padding to provide more negative space */
-  relaxed: PropTypes.bool,
+  relaxed: PropTypes.oneOf(
+    List._meta.props.relaxed,
+    PropTypes.bool
+  ),
 
   /** A selection list formats list items as possible choices */
   selection: PropTypes.bool,

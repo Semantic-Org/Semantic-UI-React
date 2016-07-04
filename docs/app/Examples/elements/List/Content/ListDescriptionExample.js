@@ -17,6 +17,15 @@ export default class ListDescriptionExample extends Component {
           header='Nashville'
           description='This city is located in the state of Tennessee'
         />
+        <List.Item>
+          <List.ItemIcon className='user' />
+          <List.ItemContent>
+            <List.ItemHeader>Daniel Louise</List.ItemHeader>
+            <List.ItemDescription>
+              This is an example of using sub-components.
+            </List.ItemDescription>
+          </List.ItemContent>
+        </List.Item>
       </List>
     )
   }

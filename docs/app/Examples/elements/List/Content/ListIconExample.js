@@ -21,6 +21,12 @@ export default class ListIconExample extends Component {
         <List.Item icon={helpIcon}>
           This item uses <code>child</code> text, check the code.
         </List.Item>
+        <List.Item>
+          <List.ItemIcon className='right triangle' />
+          <List.ItemContent>
+            This is an example of using sub-components
+          </List.ItemContent>
+        </List.Item>
       </List>
     )
   }
