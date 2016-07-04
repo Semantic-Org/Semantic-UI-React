@@ -66,6 +66,7 @@ export default class Accordion extends AutoControlledComponent {
   state = {}
 
   componentWillMount() {
+    super.componentWillMount()
     this.trySetState({ activeIndex: -1 })
   }
 
@@ -88,7 +89,7 @@ export default class Accordion extends AutoControlledComponent {
       const isContent = child.type === AccordionContent
 
       if (isTitle) {
-        const isActive = _.has(child, 'props.active') ? child.active : activeIndex === i
+        const isActive = _.has(child, 'props.active') ? child.props.active : activeIndex === i
         const onClick = (e) => {
           this.handleTitleClick(e, i)
           if (child.props.onClick) child.props.onClick(e, i)
@@ -99,7 +100,7 @@ export default class Accordion extends AutoControlledComponent {
       if (isContent) {
         // content must be the a sibling too title
         // it is active if the active title index that precedes it is active
-        const isActive = _.has(child, 'props.active') ? child.active : activeIndex === i - 1
+        const isActive = _.has(child, 'props.active') ? child.props.active : activeIndex === i - 1
         return cloneElement(child, { ...child.props, active: isActive })
       }
 

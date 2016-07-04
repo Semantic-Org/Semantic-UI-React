@@ -7,9 +7,15 @@ import AccordionTitle from 'src/modules/Accordion/AccordionTitle'
 
 describe('AccordionTitle', () => {
   common.isConformant(AccordionTitle)
+  common.rendersChildren(AccordionTitle)
   common.propKeyOnlyToClassName(AccordionTitle, 'active')
 
   describe('onClick', () => {
+    it('can be omitted', () => {
+      const wrapper = shallow(<AccordionTitle />)
+      const click = () => wrapper.simulate('click')
+      expect(click).to.not.throw()
+    })
     it('is called with (event, undefined) when not a child of Accordion', () => {
       const spy = sandbox.spy()
       shallow(<AccordionTitle onClick={spy} />)

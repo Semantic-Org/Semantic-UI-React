@@ -34,7 +34,7 @@ AccordionTitle.propTypes = {
   /** Classes to add to the title className. */
   className: PropTypes.string,
 
-  /** Called with (event) on title click. */
+  /** Called with (event, index) on title click. */
   onClick: PropTypes.func,
 }
 
