@@ -1,13 +1,18 @@
 # Change Log
 
-## [Unreleased](https://github.com/TechnologyAdvice/stardust/tree/HEAD)
+## [v0.17.0](https://github.com/TechnologyAdvice/stardust/tree/v0.17.0) (2016-07-04)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.16.4...v0.17.0)
 
-[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.16.4...HEAD)
+**Implemented enhancements:**
+
+- \<Accordion /\> Component [\#189](https://github.com/TechnologyAdvice/stardust/issues/189)
+- ListItem updates and fixes [\#102](https://github.com/TechnologyAdvice/stardust/issues/102)
 
 **Closed issues:**
 
 - Setting NODE\_ENV and $\(npm bin\) on Windows [\#315](https://github.com/TechnologyAdvice/stardust/issues/315)
 - Create Contributing Guidelines [\#314](https://github.com/TechnologyAdvice/stardust/issues/314)
+- Support Windows env var assignments [\#313](https://github.com/TechnologyAdvice/stardust/issues/313)
 - Compilation issue with docgenInfo.json \(windows\) [\#307](https://github.com/TechnologyAdvice/stardust/issues/307)
 - File docgenInfo.json missing from 'docs/app' [\#304](https://github.com/TechnologyAdvice/stardust/issues/304)
 - Better document component className buildup methods [\#282](https://github.com/TechnologyAdvice/stardust/issues/282)
@@ -17,7 +22,9 @@
 - Drop babel-node from build process [\#320](https://github.com/TechnologyAdvice/stardust/pull/320) ([levithomason](https://github.com/levithomason))
 - Add npm badge and update description [\#318](https://github.com/TechnologyAdvice/stardust/pull/318) ([levithomason](https://github.com/levithomason))
 - Add CONTRIBUTING guidelines [\#317](https://github.com/TechnologyAdvice/stardust/pull/317) ([levithomason](https://github.com/levithomason))
+- Supporting env var assignments on Windows [\#316](https://github.com/TechnologyAdvice/stardust/pull/316) ([joshuazmiller](https://github.com/joshuazmiller))
 - Fix getComponentDocInfo docPath on windows [\#312](https://github.com/TechnologyAdvice/stardust/pull/312) ([levithomason](https://github.com/levithomason))
+- Add Accordion Component [\#246](https://github.com/TechnologyAdvice/stardust/pull/246) ([levithomason](https://github.com/levithomason))
 
 ## [v0.16.4](https://github.com/TechnologyAdvice/stardust/tree/v0.16.4) (2016-06-28)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.16.3...v0.16.4)
