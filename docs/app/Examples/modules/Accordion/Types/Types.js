@@ -19,7 +19,8 @@ export default class AccordionTypesExamples extends Component {
           examplePath='modules/Accordion/Types/PanelsProp'
         >
           <Message className='info'>
-            Panel objects can also define an <code>active</code> key to open/close the panel.
+            Panel objects can define an <code>active</code> key to open/close the panel.
+            {' '}They can also define an <code>onClick</code> key to be applied to the <code>Accordion.Title</code>.
           </Message>
         </ComponentExample>
         <ComponentExample
