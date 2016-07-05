@@ -1,15 +1,15 @@
 import React from 'react'
-import Breadcrumb from 'src/collections/Breadcrumb/Breadcrumb'
+import BreadcrumbSection from 'src/collections/Breadcrumb/BreadcrumbSection'
 import * as common from 'test/specs/commonTests'
 import sandbox from 'test/utils/Sandbox-util'
 
 describe('BreadcrumbSection', () => {
-  common.isConformant(Breadcrumb.Section)
-  common.rendersChildren(Breadcrumb.Section)
-  common.propValueOnlyToClassName(Breadcrumb.Section, 'active')
+  common.isConformant(BreadcrumbSection)
+  common.rendersChildren(BreadcrumbSection)
+  common.propKeyOnlyToClassName(BreadcrumbSection, 'active')
 
   it('is div by default and does not have `href` attr', () => {
-    const section = shallow(<Breadcrumb.Section>Home</Breadcrumb.Section>)
+    const section = shallow(<BreadcrumbSection>Home</BreadcrumbSection>)
 
     section.should.have.tagName('div')
     section.should.not.have.attr('href')
@@ -17,7 +17,7 @@ describe('BreadcrumbSection', () => {
 
   describe('link prop', () => {
     it('is should be `a` when has prop link', () => {
-      const section = shallow(<Breadcrumb.Section link>Home</Breadcrumb.Section>)
+      const section = shallow(<BreadcrumbSection link>Home</BreadcrumbSection>)
 
       section.should.have.tagName('a')
       section.should.have.attr('href').and.equal('javascript:void(0)')
@@ -26,7 +26,7 @@ describe('BreadcrumbSection', () => {
 
   describe('href prop', () => {
     it('is should have attr `href` when has prop', () => {
-      const section = shallow(<Breadcrumb.Section href='http://google.com'>Home</Breadcrumb.Section>)
+      const section = shallow(<BreadcrumbSection href='http://google.com'>Home</BreadcrumbSection>)
 
       section.should.have.tagName('a')
       section.should.have.attr('href').and.equal('http://google.com')
@@ -36,7 +36,7 @@ describe('BreadcrumbSection', () => {
   describe('onclick prop', () => {
     it('is should run click by prop', () => {
       const handleClick = sandbox.spy()
-      const wrapper = shallow(<Breadcrumb.Section onClick={handleClick}>Home</Breadcrumb.Section>)
+      const wrapper = shallow(<BreadcrumbSection onClick={handleClick}>Home</BreadcrumbSection>)
 
       wrapper.should.have.tagName('a')
       wrapper.should.have.attr('href').and.equal('javascript:void(0)')

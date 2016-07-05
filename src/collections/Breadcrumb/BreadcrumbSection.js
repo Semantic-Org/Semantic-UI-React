@@ -1,7 +1,7 @@
-import React, {PropTypes} from 'react'
+import React, { PropTypes } from 'react'
 import cx from 'classnames'
 import META from '../../utils/Meta'
-import {customPropTypes, useKeyOnly} from '../../utils/propUtils'
+import { customPropTypes, useKeyOnly } from '../../utils/propUtils'
 
 /**
  * A section sub-component for Breadcrumb component.
@@ -82,13 +82,13 @@ BreadcrumbSection.propTypes = {
   /** Makes element link (<a>) instead of text (<div>) */
   link: customPropTypes.all([
     customPropTypes.mutuallyExclusive(['href']),
-    PropTypes.bool
+    PropTypes.bool,
   ]),
 
   /** Makes element link (<a>) instead of text (<div>) and adds href attribute. */
   href: customPropTypes.all([
     customPropTypes.mutuallyExclusive(['link']),
-    PropTypes.string
+    PropTypes.string,
   ]),
 
   /** Makes element link (<a>) instead of text (<div>) and adds onClick event. */
