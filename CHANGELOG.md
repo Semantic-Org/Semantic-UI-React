@@ -1,12 +1,12 @@
 # Change Log
 
-## [Unreleased](https://github.com/TechnologyAdvice/stardust/tree/HEAD)
-
-[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.17.0...HEAD)
+## [v0.18.0](https://github.com/TechnologyAdvice/stardust/tree/v0.18.0) (2016-07-05)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.17.0...v0.18.0)
 
 **Merged pull requests:**
 
 - Add "all" custom prop type and fix issues [\#323](https://github.com/TechnologyAdvice/stardust/pull/323) ([levithomason](https://github.com/levithomason))
+- Add Flag component  [\#322](https://github.com/TechnologyAdvice/stardust/pull/322) ([layershifter](https://github.com/layershifter))
 
 ## [v0.17.0](https://github.com/TechnologyAdvice/stardust/tree/v0.17.0) (2016-07-04)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.16.4...v0.17.0)
