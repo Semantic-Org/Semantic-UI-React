@@ -121,7 +121,7 @@ Be sure to check out the above migrations before embarking on a new component.  
 
 |    Elements     |   Collections   |      Views      |     Modules     |     Behaviors      |
 |-----------------|-----------------|-----------------|-----------------|--------------------|
-| x Button        | _ Breadcrumb    | _ Advertisement | _ Accordion     | x Form Validation  |
+| x Button        | _ Breadcrumb    | _ Advertisement | x Accordion     | x Form Validation  |
 | x Container     | x Form          | _ Card          | x Checkbox      | *API (NA)*         |
 | x Divider       | x Grid          | _ Comment       | _ Dimmer        | *Visibility (NA)*  |
 | _ Flag          | x Menu          | _ Feed          | x Dropdown      |                    |

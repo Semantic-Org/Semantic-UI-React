@@ -55,6 +55,7 @@ export Segments from './elements/Segment/SegmentSegments'
 // ----------------------------------------
 // Modules
 // ----------------------------------------
+export Accordion from './modules/Accordion/Accordion'
 export Checkbox from './modules/Checkbox/Checkbox'
 export Progress from './modules/Progress/Progress'
 
