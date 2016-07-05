@@ -16,7 +16,7 @@ export const customPropTypes = {
   ofComponentTypes: (allowedTypes) => {
     return (props, propName, componentName) => {
       if (propName !== 'children') {
-        throw new Error(`ofComponentTypes can only be used on the \`children\` prop, not ${propName}`)
+        throw new Error(`ofComponentTypes can only be used on the \`children\` prop, not ${propName}.`)
       }
       if (!_.isArray(allowedTypes)) {
         throw new Error([
@@ -73,9 +73,9 @@ export const customPropTypes = {
     return (props, propName, componentName) => {
       if (!_.isArray(validators)) {
         throw new Error([
-          'Invalid argument supplied to all, expected an instance of array.'
-            ` See ${componentName} prop \`${propName}\`.`,
-        ].join(''))
+          'Invalid argument supplied to all, expected an instance of array.',
+          `See ${componentName} prop \`${propName}\`.`,
+        ].join(' '))
       }
 
       const errors = _.compact(_.map(validators, validator => {
