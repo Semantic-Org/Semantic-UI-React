@@ -17,10 +17,8 @@ describe('BreadcrumbSection', () => {
 
   describe('link prop', () => {
     it('is should be `a` when has prop link', () => {
-      const section = shallow(<BreadcrumbSection link>Home</BreadcrumbSection>)
-
-      section.should.have.tagName('a')
-      section.should.have.attr('href').and.equal('javascript:void(0)')
+      shallow(<BreadcrumbSection link>Home</BreadcrumbSection>)
+        .should.have.tagName('a')
     })
   })
 
@@ -39,7 +37,6 @@ describe('BreadcrumbSection', () => {
       const wrapper = shallow(<BreadcrumbSection onClick={handleClick}>Home</BreadcrumbSection>)
 
       wrapper.should.have.tagName('a')
-      wrapper.should.have.attr('href').and.equal('javascript:void(0)')
 
       wrapper.simulate('click')
       handleClick.should.have.been.calledOnce()

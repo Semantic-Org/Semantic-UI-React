@@ -33,7 +33,7 @@ function BreadcrumbSection(props) {
 
   if (link || onClick) {
     return (
-      <a {...rest} className={classes} href='javascript:void(0)' onClick={handleClick}>
+      <a {...rest} className={classes} onClick={handleClick}>
         {children}
       </a>
     )
