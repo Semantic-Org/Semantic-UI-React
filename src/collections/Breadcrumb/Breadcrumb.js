@@ -3,6 +3,7 @@ import React, { PropTypes } from 'react'
 import META from 'src/utils/Meta'
 import { getUnhandledProps } from '../../utils/propUtils'
 import * as sui from '../../utils/semanticUtils'
+import BreadcrumbSection from './BreadcrumbSection'
 
 function Breadcrumb(props) {
   const {
@@ -35,11 +36,13 @@ Breadcrumb._meta = {
 }
 
 Breadcrumb.propTypes = {
-  /** Primary content of the Container */
+  /** Primary content of the Breadcrumb */
   children: PropTypes.node,
 
-  /** Size of breadcrumb */
+  /** Size of Breadcrumb */
   size: PropTypes.oneOf(Breadcrumb._meta.props.size),
 }
+
+Breadcrumb.Section = BreadcrumbSection
 
 export default Breadcrumb
