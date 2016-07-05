@@ -11,11 +11,6 @@ describe('Flag', () => {
       .should.have.tagName('i')
   })
 
-  it('adds the "flag" class', () => {
-    shallow(<Flag />)
-      .should.have.className('flag')
-  })
-
   it('passes property "name" to class', () => {
     shallow(<Flag name='ru' />)
       .should.have.className('ru')
