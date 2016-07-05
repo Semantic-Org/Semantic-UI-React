@@ -1,7 +1,7 @@
-import * as _ from 'lodash'
-import React, { PropTypes } from 'react'
+import React, {PropTypes} from 'react'
 import cx from 'classnames'
 import META from '../../utils/Meta'
+import {customPropTypes, useKeyOnly} from '../../utils/propUtils'
 
 /**
  * A section sub-component for Breadcrumb component.
@@ -17,14 +17,11 @@ function BreadcrumbSection(props) {
    * Handles onClick event. If onClick is not defined, does nothing.
    * */
   const handleClick = (e) => {
-    if (!_.isUndefined(e)) e.preventDefault()
-    if (!_.isFunction(onClick)) return
-
-    onClick()
+    if (onClick) onClick(e)
   }
 
   const classes = cx(
-    active && 'active',
+    useKeyOnly(active, 'active'),
     className,
     'section',
   )
@@ -36,7 +33,7 @@ function BreadcrumbSection(props) {
 
   if (link || onClick) {
     return (
-      <a {...rest} className={classes} href='#' onClick={handleClick}>
+      <a {...rest} className={classes} href='javascript:void(0)' onClick={handleClick}>
         {children}
       </a>
     )
@@ -83,10 +80,16 @@ BreadcrumbSection.propTypes = {
   className: PropTypes.string,
 
   /** Makes element link (<a>) instead of text (<div>) */
-  link: PropTypes.bool,
+  link: customPropTypes.all([
+    customPropTypes.mutuallyExclusive(['href']),
+    PropTypes.bool
+  ]),
 
   /** Makes element link (<a>) instead of text (<div>) and adds href attribute. */
-  href: PropTypes.string,
+  href: customPropTypes.all([
+    customPropTypes.mutuallyExclusive(['link']),
+    PropTypes.string
+  ]),
 
   /** Makes element link (<a>) instead of text (<div>) and adds onClick event. */
   onClick: PropTypes.func,
