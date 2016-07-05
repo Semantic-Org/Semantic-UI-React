@@ -49,9 +49,9 @@ export const customPropTypes = {
       }
 
       // mutually exclusive
-      const disallowed = _.transform(exclusives, (acc, exclusive) => {
+      const disallowed = exclusives.reduce((acc, exclusive) => {
         if (_.has(props, propName) && _.has(props, exclusive)) {
-          return acc.push(exclusive)
+          return [...acc, exclusive]
         }
         return acc
       }, [])
