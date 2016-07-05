@@ -77,7 +77,7 @@ _Header.propTypes = {
   ]),
 
   /** Color of the header. */
-  color: PropTypes.oneOf(_Header._meta.props.colors),
+  color: PropTypes.oneOf(_Header._meta.props.color),
 
   /** Align header content */
   aligned: PropTypes.oneOf(_Header._meta.props.aligned),
