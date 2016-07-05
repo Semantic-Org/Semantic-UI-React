@@ -8,10 +8,16 @@ import ItemItems from './ItemItems'
 
 export default class Item extends Component {
   static propTypes = {
-    children: PropTypes.node,
+    children: customPropTypes.all([
+      customPropTypes.mutuallyExclusive(['description']),
+      PropTypes.node,
+    ]),
     className: PropTypes.string,
     contentClassName: PropTypes.string,
-    description: customPropTypes.mutuallyExclusive(['children']),
+    description: customPropTypes.all([
+      customPropTypes.mutuallyExclusive(['children']),
+      PropTypes.node,
+    ]),
     extra: PropTypes.node,
     header: PropTypes.node,
     image: PropTypes.node,
