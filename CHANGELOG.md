@@ -1,12 +1,23 @@
 # Change Log
 
+## [Unreleased](https://github.com/TechnologyAdvice/stardust/tree/HEAD)
+
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.18.0...HEAD)
+
+**Implemented enhancements:**
+
+- \<Flag /\> Component [\#177](https://github.com/TechnologyAdvice/stardust/issues/177)
+
 ## [v0.18.0](https://github.com/TechnologyAdvice/stardust/tree/v0.18.0) (2016-07-05)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.17.0...v0.18.0)
+
+**Implemented enhancements:**
+
+- Add Flag component  [\#322](https://github.com/TechnologyAdvice/stardust/pull/322) ([layershifter](https://github.com/layershifter))
 
 **Merged pull requests:**
 
 - Add "all" custom prop type and fix issues [\#323](https://github.com/TechnologyAdvice/stardust/pull/323) ([levithomason](https://github.com/levithomason))
-- Add Flag component  [\#322](https://github.com/TechnologyAdvice/stardust/pull/322) ([layershifter](https://github.com/layershifter))
 
 ## [v0.17.0](https://github.com/TechnologyAdvice/stardust/tree/v0.17.0) (2016-07-04)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.16.4...v0.17.0)
@@ -15,6 +26,7 @@
 
 - \<Accordion /\> Component [\#189](https://github.com/TechnologyAdvice/stardust/issues/189)
 - ListItem updates and fixes [\#102](https://github.com/TechnologyAdvice/stardust/issues/102)
+- Add Accordion Component [\#246](https://github.com/TechnologyAdvice/stardust/pull/246) ([levithomason](https://github.com/levithomason))
 
 **Closed issues:**
 
@@ -32,7 +44,6 @@
 - Add CONTRIBUTING guidelines [\#317](https://github.com/TechnologyAdvice/stardust/pull/317) ([levithomason](https://github.com/levithomason))
 - Supporting env var assignments on Windows [\#316](https://github.com/TechnologyAdvice/stardust/pull/316) ([joshuazmiller](https://github.com/joshuazmiller))
 - Fix getComponentDocInfo docPath on windows [\#312](https://github.com/TechnologyAdvice/stardust/pull/312) ([levithomason](https://github.com/levithomason))
-- Add Accordion Component [\#246](https://github.com/TechnologyAdvice/stardust/pull/246) ([levithomason](https://github.com/levithomason))
 
 ## [v0.16.4](https://github.com/TechnologyAdvice/stardust/tree/v0.16.4) (2016-06-28)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.16.3...v0.16.4)
@@ -68,6 +79,7 @@
 
 - Label corner without value [\#292](https://github.com/TechnologyAdvice/stardust/issues/292)
 - Add Label "basic" option [\#289](https://github.com/TechnologyAdvice/stardust/pull/289) ([levithomason](https://github.com/levithomason))
+- Header Component updated to v1 API [\#278](https://github.com/TechnologyAdvice/stardust/pull/278) ([jamiehill](https://github.com/jamiehill))
 
 **Fixed bugs:**
 
@@ -84,15 +96,17 @@
 - Debug on/off instructions [\#299](https://github.com/TechnologyAdvice/stardust/pull/299) ([levithomason](https://github.com/levithomason))
 - Label allow bool corner prop [\#294](https://github.com/TechnologyAdvice/stardust/pull/294) ([levithomason](https://github.com/levithomason))
 - Extend semanticUtils [\#288](https://github.com/TechnologyAdvice/stardust/pull/288) ([levithomason](https://github.com/levithomason))
-- Header Component updated to v1 API [\#278](https://github.com/TechnologyAdvice/stardust/pull/278) ([jamiehill](https://github.com/jamiehill))
 
 ## [v0.16.0](https://github.com/TechnologyAdvice/stardust/tree/v0.16.0) (2016-06-26)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.15.2...v0.16.0)
 
+**Implemented enhancements:**
+
+- Container Component updated to v1 API [\#277](https://github.com/TechnologyAdvice/stardust/pull/277) ([jamiehill](https://github.com/jamiehill))
+
 **Merged pull requests:**
 
 - "aligned" prop util and common test [\#285](https://github.com/TechnologyAdvice/stardust/pull/285) ([levithomason](https://github.com/levithomason))
-- Container Component updated to v1 API [\#277](https://github.com/TechnologyAdvice/stardust/pull/277) ([jamiehill](https://github.com/jamiehill))
 
 ## [v0.15.2](https://github.com/TechnologyAdvice/stardust/tree/v0.15.2) (2016-06-24)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.15.1...v0.15.2)
@@ -118,6 +132,7 @@
 **Implemented enhancements:**
 
 - Update Divider to v1 API [\#262](https://github.com/TechnologyAdvice/stardust/issues/262)
+- Divider Component updated to v1 API [\#268](https://github.com/TechnologyAdvice/stardust/pull/268) ([jamiehill](https://github.com/jamiehill))
 
 **Closed issues:**
 
@@ -128,7 +143,6 @@
 - Remove console.group\* usage [\#273](https://github.com/TechnologyAdvice/stardust/pull/273) ([levithomason](https://github.com/levithomason))
 - Remove outdated docs [\#271](https://github.com/TechnologyAdvice/stardust/pull/271) ([levithomason](https://github.com/levithomason))
 - "How can I help?" README update [\#270](https://github.com/TechnologyAdvice/stardust/pull/270) ([levithomason](https://github.com/levithomason))
-- Divider Component updated to v1 API [\#268](https://github.com/TechnologyAdvice/stardust/pull/268) ([jamiehill](https://github.com/jamiehill))
 - Update circle.yml [\#267](https://github.com/TechnologyAdvice/stardust/pull/267) ([levithomason](https://github.com/levithomason))
 
 ## [v0.14.1](https://github.com/TechnologyAdvice/stardust/tree/v0.14.1) (2016-06-22)
