@@ -36,11 +36,8 @@ describe('BreadcrumbSection', () => {
 
   describe('onClick prop', () => {
     it('can be omitted', () => {
-      const handleClick = sandbox.spy()
-      shallow(<BreadcrumbSection>Home</BreadcrumbSection>)
-        .simulate('click')
-
-      handleClick.should.not.have.been.calledOnce()
+      const click = () => mount(<BreadcrumbSection>Home</BreadcrumbSection>).simulate('click')
+      expect(click).to.not.throw()
     })
 
     it('is called with (event) on click', () => {
