@@ -5,17 +5,12 @@ import { customPropTypes, useKeyOnly } from '../../utils/propUtils'
 
 /**
  * A section sub-component for Breadcrumb component.
- *
- * @see Breadcrumb
  */
 function BreadcrumbSection(props) {
   const {
     active, children, className, link, href, onClick, ...rest,
   } = props
 
-  /**
-   * Handles onClick event. If onClick is not defined, does nothing.
-   * */
   const handleClick = (e) => {
     if (onClick) onClick(e)
   }
@@ -26,11 +21,6 @@ function BreadcrumbSection(props) {
     'section',
   )
 
-  // Handle link and onClick props.
-  //
-  // <Breadcrumb.Section link>Home</Breadcrumb.Section>
-  // <Breadcrumb.Section onClick={this.handleClick}>Home</Breadcrumb.Section>
-
   if (link || onClick) {
     return (
       <a {...rest} className={classes} onClick={handleClick}>
@@ -39,10 +29,6 @@ function BreadcrumbSection(props) {
     )
   }
 
-  // Handle href prop.
-  //
-  // <Breadcrumb.Section href='http://google.com'>Home</Breadcrumb.Section>
-
   if (href) {
     return (
       <a {...rest} className={classes} href={href} onClick={handleClick}>
@@ -50,10 +36,6 @@ function BreadcrumbSection(props) {
       </a>
     )
   }
-
-  // Default variant.
-  //
-  // <Breadcrumb.Section>Home</Breadcrumb.Section>
 
   return (
     <div {...rest} className={classes} onClick={handleClick}>
@@ -70,28 +52,28 @@ BreadcrumbSection._meta = {
 }
 
 BreadcrumbSection.propTypes = {
-  /** Optional props that adds class active */
+  /** Style as the currently active section. */
   active: PropTypes.bool,
 
-  /** Primary content of the Breadcrumb.Section */
+  /** Primary content of the Breadcrumb.Section. */
   children: PropTypes.node,
 
   /** Additional classes added to the element. */
   className: PropTypes.string,
 
-  /** Makes element link (<a>) instead of text (<div>) */
+  /** Render as an `a` tag instead of a `div`. */
   link: customPropTypes.all([
     customPropTypes.mutuallyExclusive(['href']),
     PropTypes.bool,
   ]),
 
-  /** Makes element link (<a>) instead of text (<div>) and adds href attribute. */
+  /** Render as an `a` tag instead of a `div` and adds the href attribute. */
   href: customPropTypes.all([
     customPropTypes.mutuallyExclusive(['link']),
     PropTypes.string,
   ]),
 
-  /** Makes element link (<a>) instead of text (<div>) and adds onClick event. */
+  /** Render as an `a` tag instead of a `div` and called with event on Section click. */
   onClick: PropTypes.func,
 }
 

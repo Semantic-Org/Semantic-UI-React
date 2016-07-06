@@ -8,11 +8,9 @@ describe('BreadcrumbSection', () => {
   common.rendersChildren(BreadcrumbSection)
   common.propKeyOnlyToClassName(BreadcrumbSection, 'active')
 
-  it('is div by default and does not have `href` attr', () => {
-    const section = shallow(<BreadcrumbSection>Home</BreadcrumbSection>)
-
-    section.should.have.tagName('div')
-    section.should.not.have.attr('href')
+  it('renders as a div by default', () => {
+    shallow(<BreadcrumbSection>Home</BreadcrumbSection>)
+      .should.have.tagName('div')
   })
 
   describe('link prop', () => {
@@ -23,7 +21,12 @@ describe('BreadcrumbSection', () => {
   })
 
   describe('href prop', () => {
-    it('is should have attr `href` when has prop', () => {
+    it('is not present by default', () => {
+      shallow(<BreadcrumbSection>Home</BreadcrumbSection>)
+        .should.not.have.attr('href')
+    })
+
+    it('should have attr `href` when has prop', () => {
       const section = shallow(<BreadcrumbSection href='http://google.com'>Home</BreadcrumbSection>)
 
       section.should.have.tagName('a')
@@ -31,8 +34,8 @@ describe('BreadcrumbSection', () => {
     })
   })
 
-  describe('onclick prop', () => {
-    it('is should run click by prop', () => {
+  describe('onClick prop', () => {
+    it('should run click by prop', () => {
       const handleClick = sandbox.spy()
       const wrapper = shallow(<BreadcrumbSection onClick={handleClick}>Home</BreadcrumbSection>)
 
