@@ -3,6 +3,7 @@ import React, { PropTypes } from 'react'
 import META from 'src/utils/Meta'
 import { getUnhandledProps } from '../../utils/propUtils'
 import * as sui from '../../utils/semanticUtils'
+import BreadcrumbDivider from './BreadcrumbDivider'
 import BreadcrumbSection from './BreadcrumbSection'
 
 function Breadcrumb(props) {
@@ -43,6 +44,7 @@ Breadcrumb.propTypes = {
   size: PropTypes.oneOf(Breadcrumb._meta.props.size),
 }
 
+Breadcrumb.Divider = BreadcrumbDivider
 Breadcrumb.Section = BreadcrumbSection
 
 export default Breadcrumb
