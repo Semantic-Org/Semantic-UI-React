@@ -1,8 +1,8 @@
-import React, {PropTypes} from "react";
-import cx from "classnames";
-import META from "../../utils/Meta";
-import {customPropTypes} from "../../utils/propUtils";
-import Icon from "src/elements/Icon/Icon";
+import React, { PropTypes } from 'react'
+import cx from 'classnames'
+import META from '../../utils/Meta'
+import { customPropTypes } from '../../utils/propUtils'
+import Icon from 'src/elements/Icon/Icon'
 
 /**
  * A divider sub-component for Breadcrumb component.
@@ -18,7 +18,7 @@ function BreadcrumbDivider(props) {
   )
 
   if (icon) {
-    return <Icon className='divider' name={icon}/>
+    return <Icon className='divider' name={icon} />
   }
 
   if (children) {
