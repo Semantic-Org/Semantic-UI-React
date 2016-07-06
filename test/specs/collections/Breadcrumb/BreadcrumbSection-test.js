@@ -35,7 +35,15 @@ describe('BreadcrumbSection', () => {
   })
 
   describe('onClick prop', () => {
-    it('should run click by prop', () => {
+    it('can be omitted', () => {
+      const handleClick = sandbox.spy()
+      shallow(<BreadcrumbSection>Home</BreadcrumbSection>)
+        .simulate('click')
+
+      handleClick.should.not.have.been.calledOnce()
+    })
+
+    it('is called with (event) on click', () => {
       const handleClick = sandbox.spy()
       const wrapper = shallow(<BreadcrumbSection onClick={handleClick}>Home</BreadcrumbSection>)
 
