@@ -160,7 +160,7 @@ describe('Accordion', () => {
     })
 
     describe('onClick', () => {
-      it('is can be omitted', () => {
+      it('can be omitted', () => {
         const panels = [{
           text: faker.lorem.sentence(),
           content: faker.lorem.paragraph(),
