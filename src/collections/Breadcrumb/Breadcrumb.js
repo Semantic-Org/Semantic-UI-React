@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import cx from 'classnames'
 import React, { PropTypes } from 'react'
 import META from 'src/utils/Meta'
@@ -53,7 +54,7 @@ Breadcrumb._meta = {
   name: 'Breadcrumb',
   type: META.type.collection,
   props: {
-    size: sui.sizes,
+    size: _.without(sui.sizes, 'medium'),
   },
 }
 
