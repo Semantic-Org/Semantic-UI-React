@@ -30,7 +30,7 @@ function Breadcrumb(props) {
 
   sections.forEach(({ text, ...restSection }, index) => {
     const key = `${text}-${index}`
-    const dividerKey = `$divider-${index}`
+    const dividerKey = `${key}-divider`
 
     sectionsJSX.push(
       <Breadcrumb.Section {...restSection} key={key}>{text}</Breadcrumb.Section>
