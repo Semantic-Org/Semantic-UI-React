@@ -5,9 +5,9 @@ export default class IconLoadingExample extends Component {
   render() {
     return (
       <div>
-        <Icon loading className='spinner' />
-        <Icon loading className='certificate' />
-        <Icon loading className='asterisk' />
+        <Icon loading name='spinner' />
+        <Icon loading name='certificate' />
+        <Icon loading name='asterisk' />
       </div>
     )
   }

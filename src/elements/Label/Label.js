@@ -61,7 +61,7 @@ function Label(props) {
         <DetailComponent className='detail' onClick={handleDetailClick}>{detail}</DetailComponent>
       )}
       {(removable || onRemove) && (
-        <Icon className='delete' onClick={handleRemove} />
+        <Icon name='delete' onClick={handleRemove} />
       )}
     </LabelComponent>
   )

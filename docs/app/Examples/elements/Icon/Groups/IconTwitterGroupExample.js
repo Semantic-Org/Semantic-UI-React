@@ -6,8 +6,8 @@ export default class IconTwitterGroupExample extends Component {
     return (
       <Header.H2>
         <Icon.Group size='large'>
-          <Icon className='twitter' />
-          <Icon corner className='add' />
+          <Icon name='twitter' />
+          <Icon corner name='add' />
         </Icon.Group>
         Add on Twitter
       </Header.H2>

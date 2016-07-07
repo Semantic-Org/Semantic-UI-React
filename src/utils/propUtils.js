@@ -70,7 +70,7 @@ export const getUnhandledProps = (Component, props) => {
 // Many components share many props. Some of those props should be smart.
 // These give all our components props consistent smart capabilities.
 // ----------------------------------------
-export const iconPropRenderer = (val) => _.isString(val) ? <Icon className={val} /> : val
+export const iconPropRenderer = (val) => _.isString(val) ? <Icon name={val} /> : val
 export const imagePropRenderer = (val) => _.isString(val) ? <Image src={val} /> : val
 
 // ----------------------------------------

@@ -37,7 +37,7 @@ function DropdownItem(props) {
   return (
     <div {...rest} className={classes} onClick={handleClick}>
       {description && <span className='description'>{description}</span>}
-      {iconName && <Icon className={iconClasses} />}
+      {iconName && <Icon name={iconClasses} />}
       {text}
       {children}
     </div>

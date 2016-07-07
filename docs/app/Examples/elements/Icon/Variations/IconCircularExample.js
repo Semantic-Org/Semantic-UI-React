@@ -5,10 +5,10 @@ export default class IconCircularExample extends Component {
   render() {
     return (
       <div>
-        <Icon circular className='users' />
-        <Icon circular color='teal' className='users' />
-        <Icon circular inverted className='users' />
-        <Icon circular inverted color='teal' className='users' />
+        <Icon circular name='users' />
+        <Icon circular color='teal' name='users' />
+        <Icon circular inverted name='users' />
+        <Icon circular inverted color='teal' name='users' />
       </div>
     )
   }

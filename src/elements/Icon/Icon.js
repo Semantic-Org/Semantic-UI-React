@@ -15,22 +15,24 @@ import IconGroup from './IconGroup'
  */
 function Icon(props) {
   const {
-    className, disabled, fitted, size, color, link, flipped, rotated, circular, bordered, inverted, loading, corner,
+    bordered, className, circular, color, corner, disabled,
+    fitted, flipped, inverted, link, loading, name, rotated, size,
   } = props
 
   const classes = cx(
     size,
     color,
+    useKeyOnly(bordered, 'bordered'),
+    useKeyOnly(circular, 'circular'),
+    useKeyOnly(corner, 'corner'),
     useKeyOnly(disabled, 'disabled'),
     useKeyOnly(fitted, 'fitted'),
-    useKeyOnly(link, 'link'),
     useValueAndKey(flipped, 'flipped'),
-    useValueAndKey(rotated, 'rotated'),
-    useKeyOnly(circular, 'circular'),
-    useKeyOnly(bordered, 'bordered'),
     useKeyOnly(inverted, 'inverted'),
+    useKeyOnly(link, 'link'),
     useKeyOnly(loading, 'loading'),
-    useKeyOnly(corner, 'corner'),
+    useValueAndKey(rotated, 'rotated'),
+    name,
     className,
     'icon'
   )
@@ -49,7 +51,7 @@ Icon._meta = {
   name: 'Icon',
   type: META.type.element,
   props: {
-    sizes: sui.sizes,
+    size: sui.sizes,
     flipped: ['horizontally', 'vertically'],
     rotated: ['clockwise', 'counterclockwise'],
     color: sui.colors,
@@ -57,8 +59,20 @@ Icon._meta = {
 }
 
 Icon.propTypes = {
+  /** Formatted to appear bordered */
+  bordered: PropTypes.bool,
+
   /** Class names for custom styling. */
   className: PropTypes.string,
+
+  /** Icon can formatted to appear circular */
+  circular: PropTypes.bool,
+
+  /** Color of the icon. */
+  color: PropTypes.oneOf(Icon._meta.props.colors),
+
+  /** Icons can display a smaller corner icon */
+  corner: PropTypes.bool,
 
   /** Show that the icon is inactive */
   disabled: PropTypes.bool,
@@ -66,35 +80,26 @@ Icon.propTypes = {
   /** Fitted, without space to left or right of Icon. */
   fitted: PropTypes.bool,
 
-  /** Size of the icon. */
-  size: PropTypes.oneOf(Icon._meta.props.sizes),
-
-  /** Icon can be formatter as a link */
-  link: PropTypes.bool,
-
   /** Icon can flipped */
   flipped: PropTypes.oneOf(Icon._meta.props.flipped),
-
-  /** Icon can rotated */
-  rotated: PropTypes.oneOf(Icon._meta.props.rotated),
-
-  /** Icon can formatted to appear circular */
-  circular: PropTypes.bool,
-
-  /** Formatted to appear bordered */
-  bordered: PropTypes.bool,
 
   /** Formatted to have its colors inverted for contrast */
   inverted: PropTypes.bool,
 
+  /** Name of the icon */
+  name: PropTypes.string,
+
+  /** Icon can be formatter as a link */
+  link: PropTypes.bool,
+
   /** Icon can be used as a simple loader */
   loading: PropTypes.bool,
 
-  /** Color of the icon. */
-  color: PropTypes.oneOf(Icon._meta.props.colors),
+  /** Icon can rotated */
+  rotated: PropTypes.oneOf(Icon._meta.props.rotated),
 
-  /** Icons can display a smaller corner icon */
-  corner: PropTypes.bool,
+  /** Size of the icon. */
+  size: PropTypes.oneOf(Icon._meta.props.size),
 }
 
 export default Icon

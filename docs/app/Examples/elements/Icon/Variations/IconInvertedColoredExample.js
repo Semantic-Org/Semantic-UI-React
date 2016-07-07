@@ -5,19 +5,19 @@ export default class IconInvertedColoredExample extends Component {
   render() {
     return (
       <Segment className='inverted'>
-        <Icon inverted color='red' className='users' />
-        <Icon inverted color='orange' className='users' />
-        <Icon inverted color='yellow' className='users' />
-        <Icon inverted color='oliver' className='users' />
-        <Icon inverted color='green' className='users' />
-        <Icon inverted color='teal' className='users' />
-        <Icon inverted color='blue' className='users' />
-        <Icon inverted color='violet' className='users' />
-        <Icon inverted color='purple' className='users' />
-        <Icon inverted color='pink' className='users' />
-        <Icon inverted color='brown' className='users' />
-        <Icon inverted color='grey' className='users' />
-        <Icon inverted color='black' className='users' />
+        <Icon inverted color='red' name='users' />
+        <Icon inverted color='orange' name='users' />
+        <Icon inverted color='yellow' name='users' />
+        <Icon inverted color='oliver' name='users' />
+        <Icon inverted color='green' name='users' />
+        <Icon inverted color='teal' name='users' />
+        <Icon inverted color='blue' name='users' />
+        <Icon inverted color='violet' name='users' />
+        <Icon inverted color='purple' name='users' />
+        <Icon inverted color='pink' name='users' />
+        <Icon inverted color='brown' name='users' />
+        <Icon inverted color='grey' name='users' />
+        <Icon inverted color='black' name='users' />
       </Segment>
     )
   }

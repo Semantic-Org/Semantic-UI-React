@@ -6,7 +6,7 @@ export default class IconFittedExample extends Component {
     return (
       <div>
         <p>Tight spacing</p>
-        <Icon fitted className='help' />
+        <Icon fitted name='help' />
         <p>Tight spacing</p>
       </div>
     )
