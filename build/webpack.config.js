@@ -66,11 +66,6 @@ webpackConfig.output = {
 // ------------------------------------
 webpackConfig.plugins = [
   new webpack.DefinePlugin(config.compiler_globals),
-  new webpack.ProvidePlugin({
-    $: 'jquery',
-    jQuery: 'jquery',
-    'window.jQuery': 'jquery',
-  }),
   new webpack.DllReferencePlugin({
     context: paths.base('node_modules'),
     manifest: require(paths.base('dll/vendor-manifest.json')),
@@ -160,7 +155,8 @@ webpackConfig.module.loaders = [{
 // ----------------------------------------
 // For faster builds in dev, rely on prebuilt libraries
 // Local modules can still be enabled (ie for offline development)
-if (argv.localModules) {
+// in TEST we need local modules because karma uses a different index.html (no CDNs)
+if (__TEST__ || argv.localModules) {
   webpackConfig.module.loaders = [
     ...webpackConfig.module.loaders,
     {
@@ -178,21 +174,27 @@ if (argv.localModules) {
     },
   ]
 } else {
+  // we're not using local modules, we're loading deps via CDNs
+  webpackConfig.entry.vendor = _.without(webpackConfig.entry.vendor, [
+    'faker',
+  ])
+
+  // these are browser ready modules or aliased to empty
+  // do not parse their source for faster builds
   webpackConfig.module.noParse = [
     ...webpackConfig.module.noParse,
-    /jquery/,
-    /semantic-ui-css\/semantic\.js/,
-    /semantic-ui-css\/semantic\.css/,
+    /faker/,
   ]
+
+  // alias imports to empty
   webpackConfig.resolve.alias = Object.assign({}, webpackConfig.resolve.alias, {
-    'semantic-ui-css/semantic.js': 'empty',
     'semantic-ui-css/semantic.css': 'empty',
     'highlight.js/styles/github.css': 'empty',
   })
+
+  // find them on the window
   webpackConfig.externals = {
-    jquery: 'jQuery',
     faker: 'faker',
-    lodash: '_',
   }
 }
 

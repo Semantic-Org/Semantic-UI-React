@@ -1,3 +1,4 @@
+import './utils/jquery'
 import { deprecateComponent } from './utils/deprecate'
 
 // ----------------------------------------
