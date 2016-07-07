@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Icon, Label } from 'stardust'
+import { Button, Label } from 'stardust'
 
 export default class ButtonLabeledExample extends Component {
   render() {
