@@ -5,10 +5,46 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="086747b3-b669-4fe9-a7d7-329c6f8632a5" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/elements/Icon/_Icon.js" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/app/Components/ComponentDoc/ComponentExample.js" afterPath="$PROJECT_DIR$/docs/app/Components/ComponentDoc/ComponentExample.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/app/Examples/elements/Button/Groups/ButtonIconButtonsExample.js" afterPath="$PROJECT_DIR$/docs/app/Examples/elements/Button/Groups/ButtonIconButtonsExample.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/app/Examples/elements/Button/Types/ButtonAnimatedExample.js" afterPath="$PROJECT_DIR$/docs/app/Examples/elements/Button/Types/ButtonAnimatedExample.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/app/Examples/elements/Button/Types/ButtonIconExample.js" afterPath="$PROJECT_DIR$/docs/app/Examples/elements/Button/Types/ButtonIconExample.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/app/Examples/elements/Button/Types/ButtonLabeledExample.js" afterPath="$PROJECT_DIR$/docs/app/Examples/elements/Button/Types/ButtonLabeledExample.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/app/Examples/elements/Header/Content/HeaderIconExample.js" afterPath="$PROJECT_DIR$/docs/app/Examples/elements/Header/Content/HeaderIconExample.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/app/Examples/elements/Header/Types/HeaderIconHeadersExamples.js" afterPath="$PROJECT_DIR$/docs/app/Examples/elements/Header/Types/HeaderIconHeadersExamples.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/app/Examples/elements/Icon/Groups/IconCornerGroupExample.js" afterPath="$PROJECT_DIR$/docs/app/Examples/elements/Icon/Groups/IconCornerGroupExample.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/app/Examples/elements/Icon/Groups/IconIconGroupExample.js" afterPath="$PROJECT_DIR$/docs/app/Examples/elements/Icon/Groups/IconIconGroupExample.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/app/Examples/elements/Icon/Groups/IconLoadingGroupExample.js" afterPath="$PROJECT_DIR$/docs/app/Examples/elements/Icon/Groups/IconLoadingGroupExample.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/app/Examples/elements/Icon/Groups/IconTwitterGroupExample.js" afterPath="$PROJECT_DIR$/docs/app/Examples/elements/Icon/Groups/IconTwitterGroupExample.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/app/Examples/elements/Icon/IconSet/IconWebContentExample.js" afterPath="$PROJECT_DIR$/docs/app/Examples/elements/Icon/IconSet/IconWebContentExample.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/app/Examples/elements/Icon/States/IconDisabledExample.js" afterPath="$PROJECT_DIR$/docs/app/Examples/elements/Icon/States/IconDisabledExample.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/app/Examples/elements/Icon/States/IconLoadingExample.js" afterPath="$PROJECT_DIR$/docs/app/Examples/elements/Icon/States/IconLoadingExample.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/app/Examples/elements/Icon/Variations/IconBorderedExample.js" afterPath="$PROJECT_DIR$/docs/app/Examples/elements/Icon/Variations/IconBorderedExample.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/app/Examples/elements/Icon/Variations/IconCircularExample.js" afterPath="$PROJECT_DIR$/docs/app/Examples/elements/Icon/Variations/IconCircularExample.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/app/Examples/elements/Icon/Variations/IconColoredExample.js" afterPath="$PROJECT_DIR$/docs/app/Examples/elements/Icon/Variations/IconColoredExample.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/app/Examples/elements/Icon/Variations/IconFittedExample.js" afterPath="$PROJECT_DIR$/docs/app/Examples/elements/Icon/Variations/IconFittedExample.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/app/Examples/elements/Icon/Variations/IconFlippedExample.js" afterPath="$PROJECT_DIR$/docs/app/Examples/elements/Icon/Variations/IconFlippedExample.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/app/Examples/elements/Icon/Variations/IconInvertedColoredExample.js" afterPath="$PROJECT_DIR$/docs/app/Examples/elements/Icon/Variations/IconInvertedColoredExample.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/app/Examples/elements/Icon/Variations/IconLinkExample.js" afterPath="$PROJECT_DIR$/docs/app/Examples/elements/Icon/Variations/IconLinkExample.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/app/Examples/elements/Icon/Variations/IconRotatedExample.js" afterPath="$PROJECT_DIR$/docs/app/Examples/elements/Icon/Variations/IconRotatedExample.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/app/Examples/elements/Icon/Variations/IconSizeExample.js" afterPath="$PROJECT_DIR$/docs/app/Examples/elements/Icon/Variations/IconSizeExample.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/app/Examples/elements/Input/Variations/InputActionExtraExample.js" afterPath="$PROJECT_DIR$/docs/app/Examples/elements/Input/Variations/InputActionExtraExample.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/app/Examples/elements/List/Content/ListDescriptionExample.js" afterPath="$PROJECT_DIR$/docs/app/Examples/elements/List/Content/ListDescriptionExample.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/app/Examples/elements/List/Content/ListIconExample.js" afterPath="$PROJECT_DIR$/docs/app/Examples/elements/List/Content/ListIconExample.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/app/Examples/elements/Segment/Variations/SegmentAttachedComplexExample.js" afterPath="$PROJECT_DIR$/docs/app/Examples/elements/Segment/Variations/SegmentAttachedComplexExample.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/app/Examples/modules/Accordion/Types/Accordion.js" afterPath="$PROJECT_DIR$/docs/app/Examples/modules/Accordion/Types/Accordion.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/collections/Message/Message.js" afterPath="$PROJECT_DIR$/src/collections/Message/Message.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/elements/Icon/Icon.js" afterPath="$PROJECT_DIR$/src/elements/Icon/Icon.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/elements/Icon/IconGroup.js" afterPath="$PROJECT_DIR$/src/elements/Icon/IconGroup.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/elements/Input/Input.js" afterPath="$PROJECT_DIR$/src/elements/Input/Input.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/elements/Label/Label.js" afterPath="$PROJECT_DIR$/src/elements/Label/Label.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/modules/Accordion/Accordion.js" afterPath="$PROJECT_DIR$/src/modules/Accordion/Accordion.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/modules/Dropdown/Dropdown.js" afterPath="$PROJECT_DIR$/src/modules/Dropdown/Dropdown.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/modules/Dropdown/DropdownItem.js" afterPath="$PROJECT_DIR$/src/modules/Dropdown/DropdownItem.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/utils/propUtils.js" afterPath="$PROJECT_DIR$/src/utils/propUtils.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/specs/commonTests.js" afterPath="$PROJECT_DIR$/test/specs/commonTests.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/specs/elements/Header/_Header-test.js" afterPath="$PROJECT_DIR$/test/specs/elements/Header/_Header-test.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/specs/elements/Icon/Icon-test.js" afterPath="$PROJECT_DIR$/test/specs/elements/Icon/Icon-test.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/specs/elements/Label/Label-test.js" afterPath="$PROJECT_DIR$/test/specs/elements/Label/Label-test.js" />
     </list>
     <ignored path="stardust.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -39,11 +75,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Icon.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Icon.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/elements/Icon/Icon.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="525">
-              <caret line="35" column="14" selection-start-line="35" selection-start-column="14" selection-end-line="35" selection-end-column="14" />
+            <state relative-caret-position="379">
+              <caret line="107" column="0" selection-start-line="107" selection-start-column="0" selection-end-line="107" selection-end-column="0" />
               <folding>
                 <element signature="e#0#27#0" expanded="true" />
               </folding>
@@ -51,13 +87,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="_Icon-test.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/specs/elements/Icon/_Icon-test.js">
+      <file leaf-file-name="ComponentExample.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/docs/app/Components/ComponentDoc/ComponentExample.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+            <state relative-caret-position="663">
+              <caret line="81" column="7" selection-start-line="81" selection-start-column="7" selection-end-line="81" selection-end-column="7" />
               <folding>
-                <element signature="e#0#43#0" expanded="true" />
+                <element signature="e#0#66#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -67,7 +103,7 @@
         <entry file="file://$PROJECT_DIR$/test/specs/elements/Icon/IconGroup-test.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="90">
-              <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+              <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
               <folding>
                 <element signature="e#0#51#0" expanded="true" />
               </folding>
@@ -176,7 +212,6 @@
         <option value="$PROJECT_DIR$/config/development.js" />
         <option value="$PROJECT_DIR$/docs/app/Examples/elements/Icon/IconSet/IconCategoryExample.js" />
         <option value="$PROJECT_DIR$/docs/app/utils/icons.js" />
-        <option value="$PROJECT_DIR$/docs/app/Components/ComponentDoc/ComponentExample.js" />
         <option value="$PROJECT_DIR$/docs/app/Examples/elements/Icon/IconSet/IconSetExamples.js" />
         <option value="$PROJECT_DIR$/src/utils/semanticUtils.js" />
         <option value="$PROJECT_DIR$/test/specs/elements/Header/_Header-test.js" />
@@ -189,6 +224,7 @@
         <option value="$PROJECT_DIR$/src/elements/Icon/IconGroup.js" />
         <option value="$PROJECT_DIR$/docs/app/Examples/elements/Icon/Variations/IconSizeExample.js" />
         <option value="$PROJECT_DIR$/src/elements/Icon/Icon.js" />
+        <option value="$PROJECT_DIR$/docs/app/Components/ComponentDoc/ComponentExample.js" />
       </list>
     </option>
   </component>
@@ -885,16 +921,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/docs/app/Components/ComponentDoc/ComponentExample.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="219">
-          <caret line="45" column="51" selection-start-line="45" selection-start-column="51" selection-end-line="45" selection-end-column="51" />
-          <folding>
-            <element signature="e#0#66#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/docs/app/Examples/elements/Icon/IconSet/IconCategoryExample.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
@@ -931,16 +957,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
           <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#43#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test/specs/elements/Icon/IconGroup-test.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
-          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
           <folding>
             <element signature="e#0#51#0" expanded="true" />
           </folding>
@@ -967,10 +991,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/elements/Icon/Icon.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="35" column="14" selection-start-line="35" selection-start-column="14" selection-end-line="35" selection-end-column="14" />
+        <state relative-caret-position="379">
+          <caret line="107" column="0" selection-start-line="107" selection-start-column="0" selection-end-line="107" selection-end-column="0" />
           <folding>
             <element signature="e#0#27#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/app/Components/ComponentDoc/ComponentExample.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="663">
+          <caret line="81" column="7" selection-start-line="81" selection-start-column="7" selection-end-line="81" selection-end-column="7" />
+          <folding>
+            <element signature="e#0#66#0" expanded="true" />
           </folding>
         </state>
       </provider>

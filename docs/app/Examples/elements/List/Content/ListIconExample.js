@@ -3,8 +3,8 @@ import { Icon, List } from 'stardust'
 
 export default class ListIconExample extends Component {
   render() {
-    const helpIcon = <Icon className='help' />
-    const triangleIcon = <Icon className='right triangle' />
+    const helpIcon = <Icon name='help' />
+    const triangleIcon = <Icon name='right triangle' />
 
     return (
       <List>

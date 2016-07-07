@@ -69,13 +69,16 @@ export default class ComponentExample extends Component {
               >
                 {this.props.title}
                 <a href={`#${this.anchor}`}>
-                  <Icon className='linkify' style={linkIconStyle} />
+                  <Icon name='linkify' style={linkIconStyle} />
                 </a>
               </Header>
               <p>{this.props.description}</p>
             </Grid.Column>
             <Grid.Column width={4} className='right aligned'>
-              <Icon className='grey code link' onClick={this.toggleShowCode} style={codeIconStyle} />
+              <Button className='basic mini labeled icon' onClick={this.toggleShowCode}>
+                code
+                <Icon name='code' />
+              </Button>
             </Grid.Column>
           </Grid>
         </Grid.Column>

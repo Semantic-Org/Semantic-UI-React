@@ -5,20 +5,20 @@ export default class IconSizeExample extends Component {
   render() {
     return (
       <div>
-        <Icon className='home' size='mini' />
-        <Icon className='home' size='tiny' />
-        <Icon className='home' size='small' />
-        <Icon className='home' size='small' />
+        <Icon name='home' size='mini' />
+        <Icon name='home' size='tiny' />
+        <Icon name='home' size='small' />
+        <Icon name='home' size='small' />
         <br />
-        <Icon className='home' />
+        <Icon name='home' />
         <br />
-        <Icon className='home' size='large' />
+        <Icon name='home' size='large' />
         <br />
-        <Icon className='home' size='big' />
+        <Icon name='home' size='big' />
         <br />
-        <Icon className='home' size='huge' />
+        <Icon name='home' size='huge' />
         <br />
-        <Icon className='home' size='massive' />
+        <Icon name='home' size='massive' />
       </div>
     )
   }

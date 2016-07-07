@@ -5,8 +5,8 @@ export default class IconFlippedExample extends Component {
   render() {
     return (
       <div>
-        <Icon flipped='horizontally' className='cloud' />
-        <Icon flipped='vertically' className='cloud' />
+        <Icon flipped='horizontally' name='cloud' />
+        <Icon flipped='vertically' name='cloud' />
       </div>
     )
   }

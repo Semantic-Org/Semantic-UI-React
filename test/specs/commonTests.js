@@ -408,10 +408,13 @@ export const implementsAlignedProp = (Component, requiredProps = {}) => {
 export const implementsIconProp = (Component, requiredProps = {}) => {
   const iconClass = faker.hacker.noun()
   const assertValid = (wrapper) => {
-    wrapper.should.have.className('icon')
-    wrapper.should.have.descendants('Icon')
-    wrapper.find('Icon')
-      .should.have.className(iconClass)
+    it('has an Icon descendant', () => {
+      wrapper.should.contain(<Icon name={iconClass} />)
+    })
+
+    it('has Icon descendant with icon class name', () => {
+      wrapper.find('Icon').should.have.className(iconClass)
+    })
   }
 
   describe('icon (common)', () => {
@@ -428,13 +431,13 @@ export const implementsIconProp = (Component, requiredProps = {}) => {
         .should.match('i')
     })
 
-    it('accepts an Icon instance', () => {
-      const icon = <Icon className={iconClass} />
-      assertValid(shallow(<Component icon={icon} />))
+    describe('accepts an Icon instance', () => {
+      const icon = <Icon name={iconClass} />
+      assertValid(mount(<Component icon={icon} />))
     })
 
-    it('accepts an icon className string', () => {
-      assertValid(shallow(<Component icon={iconClass} />))
+    describe('accepts an icon className string', () => {
+      assertValid(mount(<Component icon={iconClass} />))
     })
   })
 }
@@ -503,14 +506,14 @@ export const propKeyOnlyToClassName = (Component, propKey, requiredProps = {}) =
  * @param {String} propKey A props key.
  * @param {Object} [requiredProps={}] Props required to render the component.
  */
-export const propValueOnlyToClassName = (Component, propKey, requiredProps = {}) => {
+export const propValueOnlyToClassName = (Component, propKey, requiredProps = {}, propVal = null) => {
   describe(`${propKey} (common)`, () => {
-    _definesPropOptions(Component, propKey)
+    if (!propVal) _definesPropOptions(Component, propKey)
     _noDefaultClassNameFromProp(Component, propKey, requiredProps)
     _noClassNameFromBoolProps(Component, propKey, requiredProps)
 
     it('adds prop value to className', () => {
-      const sample = _.sample(Component._meta.props[propKey])
+      const sample = propVal || _.sample(Component._meta.props[propKey])
       shallow(createElement(Component, { ...requiredProps, [propKey]: sample }))
         .should.have.className(sample)
     })
@@ -519,7 +522,7 @@ export const propValueOnlyToClassName = (Component, propKey, requiredProps = {})
       // silence propType warnings
       consoleUtil.disableOnce()
 
-      const sample = _.sample(Component._meta.props[propKey])
+      const sample = propVal || _.sample(Component._meta.props[propKey])
       shallow(createElement(Component, { ...requiredProps, [propKey]: sample }))
         .should.not.have.className(propKey)
     })

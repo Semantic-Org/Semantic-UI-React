@@ -6,12 +6,12 @@ export default class IconLoadingGroupExample extends Component {
     return (
       <div>
         <Icon.Group size='huge'>
-          <Icon size='big' color='red' className='dont' />
-          <Icon color='black' className='use' />
+          <Icon size='big' color='red' name='dont' />
+          <Icon color='black' name='use' />
         </Icon.Group>
         <Icon.Group size='huge'>
-          <Icon loading size='big' className='sun' />
-          <Icon className='user' />
+          <Icon loading size='big' name='sun' />
+          <Icon name='user' />
         </Icon.Group>
       </div>
     )

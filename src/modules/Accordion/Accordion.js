@@ -130,7 +130,7 @@ export default class Accordion extends AutoControlledComponent {
 
       children.push(
         <AccordionTitle key={`${panel.title}-title`} active={isActive} onClick={onClick}>
-          <Icon className='dropdown' />
+          <Icon name='dropdown' />
           {panel.title}
         </AccordionTitle>
       )

@@ -5,8 +5,8 @@ export default class IconRotatedExample extends Component {
   render() {
     return (
       <div>
-        <Icon rotated='clockwise' className='cloud' />
-        <Icon rotated='counterclockwise' className='cloud' />
+        <Icon rotated='clockwise' name='cloud' />
+        <Icon rotated='counterclockwise' name='cloud' />
       </div>
     )
   }
