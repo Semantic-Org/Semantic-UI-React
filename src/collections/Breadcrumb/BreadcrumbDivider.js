@@ -18,14 +18,10 @@ function BreadcrumbDivider(props) {
   )
 
   if (icon) {
-    return <Icon className='divider' name={icon} />
+    return <Icon className={classes} name={icon} {...rest} />
   }
 
-  if (children) {
-    return <div className={classes} {...rest}>{children}</div>
-  }
-
-  return <div className={classes} {...rest}>/</div>
+  return <div className={classes} {...rest}>{children}</div>
 }
 
 BreadcrumbDivider._meta = {
@@ -33,6 +29,10 @@ BreadcrumbDivider._meta = {
   name: 'BreadcrumbDivider',
   type: META.type.collection,
   parent: 'Breadcrumb',
+}
+
+BreadcrumbDivider.defaultProps = {
+  children: '/',
 }
 
 BreadcrumbDivider.propTypes = {

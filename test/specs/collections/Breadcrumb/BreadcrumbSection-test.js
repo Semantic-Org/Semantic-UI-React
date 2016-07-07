@@ -42,12 +42,13 @@ describe('BreadcrumbSection', () => {
 
     it('is called with (event) on click', () => {
       const handleClick = sandbox.spy()
-      const wrapper = shallow(<BreadcrumbSection onClick={handleClick}>Home</BreadcrumbSection>)
+      const section = mount(<BreadcrumbSection onClick={handleClick}>Home</BreadcrumbSection>)
 
-      wrapper.should.have.tagName('a')
+      section.should.have.tagName('a')
+      section.simulate('click')
 
-      wrapper.simulate('click')
       handleClick.should.have.been.calledOnce()
+      handleClick.should.have.been.calledWithMatch({})
     })
   })
 })

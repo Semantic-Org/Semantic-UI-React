@@ -25,28 +25,23 @@ function Breadcrumb(props) {
     return <div className={classes} {...rest}>{children}</div>
   }
 
-  let dividerJSX = <Breadcrumb.Divider />
+  const dividerJSX = <Breadcrumb.Divider icon={icon}>{divider}</Breadcrumb.Divider>
+  const sectionsJSX = []
 
-  if (divider) {
-    dividerJSX = <Breadcrumb.Divider>{divider}</Breadcrumb.Divider>
-  }
+  sections.forEach(({ text, ...restSection }, index) => {
+    const key = `${text}-${index}`
+    const dividerKey = `$divider-${index}`
 
-  if (icon) {
-    dividerJSX = <Breadcrumb.Divider icon={icon} />
-  }
+    sectionsJSX.push(
+      <Breadcrumb.Section {...restSection} key={key}>{text}</Breadcrumb.Section>
+    )
 
-  return (
-    <div className={classes} {...rest}>
-      {sections.map((section, index) => {
-        const isLast = index === (sections.length - 1)
+    if (index !== sections.length - 1) {
+      sectionsJSX.push(React.cloneElement(dividerJSX, { key: dividerKey }))
+    }
+  })
 
-        return [
-          <Breadcrumb.Section {...section}>{section.text}</Breadcrumb.Section>,
-          isLast ? null : dividerJSX,
-        ]
-      })}
-    </div>
-  )
+  return <div className={classes} {...rest}>{sectionsJSX}</div>
 }
 
 Breadcrumb._meta = {
@@ -65,13 +60,14 @@ Breadcrumb.propTypes = {
     PropTypes.node,
   ]),
 
-  /** Primary content of the Breadcrumb.Divider. */
+  /** For use with the sections prop. Primary content of the Breadcrumb.Divider. */
   divider: customPropTypes.all([
     customPropTypes.mutuallyExclusive(['icon']),
     PropTypes.string,
   ]),
 
-  /** Render as an `Icon` component with `divider` class instead of a `div` in Breadcrumb.Divider. */
+  /** For use with the sections prop. Render as an `Icon` component with `divider` class instead of a `div` in
+   *  Breadcrumb.Divider. */
   icon: customPropTypes.all([
     customPropTypes.mutuallyExclusive(['divider']),
     PropTypes.string,
@@ -80,20 +76,7 @@ Breadcrumb.propTypes = {
   /** Array of props for Breadcrumb.Section. */
   sections: customPropTypes.all([
     customPropTypes.mutuallyExclusive(['children']),
-    customPropTypes.all([
-      React.PropTypes.arrayOf(React.PropTypes.shape({
-        text: React.PropTypes.string.isRequired,
-        link: customPropTypes.all([
-          customPropTypes.mutuallyExclusive(['href']),
-          PropTypes.bool,
-        ]),
-        href: customPropTypes.all([
-          customPropTypes.mutuallyExclusive(['link']),
-          PropTypes.string,
-        ]),
-        onClick: PropTypes.func,
-      })),
-    ]),
+    React.PropTypes.array,
   ]),
 
   /** Size of Breadcrumb */
