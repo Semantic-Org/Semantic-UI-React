@@ -16,10 +16,7 @@ describe('Icon', () => {
   common.propKeyOnlyToClassName(Icon, 'fitted')
   common.propKeyAndValueToClassName(Icon, 'flipped')
   common.propKeyOnlyToClassName(Icon, 'inverted')
-
-  const icon = faker.hacker.noun()
-  common.propValueOnlyToClassName(Icon, 'name', {}, icon)
-
+  common.propValueOnlyToClassName(Icon, 'name')
   common.propKeyOnlyToClassName(Icon, 'link')
   common.propKeyOnlyToClassName(Icon, 'loading')
   common.propKeyAndValueToClassName(Icon, 'rotated')

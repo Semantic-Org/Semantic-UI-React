@@ -2,7 +2,7 @@ import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
 import META from '../../utils/Meta'
-import * as sui from '../../utils/semanticUtils'
+import * as sui from '../../utils/semanticutils'
 import {
   useKeyOnly,
   useValueAndKey,
