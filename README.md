@@ -150,7 +150,7 @@ npm run release:patch
 
 ## Credit
 
-Originally created with :heart: at [TechnologyAdvice][9].  A ridiculous [place to work][15].
+Originally created with :heart: at [TechnologyAdvice][9], a ridiculous [place to work][16].
 
 [1]: https://github.com/TechnologyAdvice/stardust/blob/master/CONTRIBUTING.md
 [2]: https://technologyadvice.github.io/stardust/
@@ -167,4 +167,4 @@ Originally created with :heart: at [TechnologyAdvice][9].  A ridiculous [place t
 [13]: https://webpack.github.io
 [14]: https://github.com/TechnologyAdvice/stardust/issues
 [15]: https://github.com/TechnologyAdvice/stardust/issues/269
-[16]: https://github.com/TechnologyAdvice/careers
+[16]: http://technologyadvice.com/careers
