@@ -12,6 +12,7 @@ describe('Loader', () => {
   common.propKeyOrValueToClassName(Loader, 'inline')
   common.propKeyOnlyToClassName(Loader, 'inverted')
   common.propKeyOnlyToClassName(Loader, 'text')
+  common.propValueOnlyToClassName(Loader, 'size')
   common.rendersChildren(Loader)
 
   it('renders an div element', () => {

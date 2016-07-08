@@ -58,7 +58,7 @@ Loader.propTypes = {
   /** Show that the Loader is inline. */
   inline: PropTypes.oneOfType([
     PropTypes.bool,
-    PropTypes.string,
+    PropTypes.oneOf(Loader._meta.props.inline),
   ]),
 
   /** Size of the Loader. */
@@ -67,7 +67,7 @@ Loader.propTypes = {
   /** Text content of the Loader. Mutually exclusive with the children prop. */
   text: customPropTypes.all([
     customPropTypes.mutuallyExclusive(['children']),
-    PropTypes.string,
+    PropTypes.node,
   ]),
 }
 
