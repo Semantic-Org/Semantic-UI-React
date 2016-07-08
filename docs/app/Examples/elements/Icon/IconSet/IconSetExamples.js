@@ -2,7 +2,7 @@ import _ from 'lodash'
 import React, { Component } from 'react'
 import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
 import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
-import { iconCats as categories } from 'src/utils/semanticutils'
+import { iconCats as categories } from 'src/utils/semanticUtils'
 
 export default class IconSetExamples extends Component {
   render() {
