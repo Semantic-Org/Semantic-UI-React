@@ -100,7 +100,7 @@ Each of these issues includes a list of components and more information on how y
 
 ### New Components
 
-There is an [issue][14] for every missing component.  They are all labeled `enhancement` `help wanted` and we're accepting PRs for these.
+There is an issue for every missing component.  They are all labeled [`enhancement` `help wanted`][17] and we're accepting PRs for these.
 
 Be sure to check out the above migrations before embarking on a new component.  All new components should be written in accordance with the migrations above.
 
@@ -168,3 +168,4 @@ Originally created with :heart: at [TechnologyAdvice][9], a ridiculous [place to
 [14]: https://github.com/TechnologyAdvice/stardust/issues
 [15]: https://github.com/TechnologyAdvice/stardust/issues/269
 [16]: http://technologyadvice.com/careers
+[17]: https://github.com/TechnologyAdvice/stardust/issues?q=is%3Aopen+is%3Aissue+label%3A%22help+wanted%22+label%3Aenhancement
