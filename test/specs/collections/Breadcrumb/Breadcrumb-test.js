@@ -20,21 +20,14 @@ describe('Breadcrumb', () => {
   it('renders children with `sections` prop', () => {
     const wrapper = shallow(<Breadcrumb sections={sections} />)
 
-    wrapper.find('BreadcrumbDivider').should.have.length(1)
-    wrapper.find('BreadcrumbSection').should.have.length(2)
+    wrapper.should.have.exactly(1).descendants('BreadcrumbDivider')
+    wrapper.should.have.exactly(2).descendants('BreadcrumbSection')
   })
 
   it('renders defined divider with `divider` prop', () => {
     const wrapper = mount(<Breadcrumb sections={sections} divider='>' />)
     const divider = wrapper.find('BreadcrumbDivider').first()
 
-    divider.text().should.to.equal('>')
-  })
-
-  it('renders divider as `Icon` with `icon` prop', () => {
-    const icon = mount(<Breadcrumb sections={sections} icon='right mangle' />).find('Icon')
-
-    icon.should.have.class('right mangle')
-    icon.should.have.tagName('i')
+    divider.should.contain.text('>')
   })
 })
