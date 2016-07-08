@@ -2,7 +2,7 @@ import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
 import META from '../../utils/Meta'
-import * as sui from '../../utils/semanticUtils'
+import * as sui from '../../utils/semanticutils'
 import {
   useKeyOnly,
   useValueAndKey,
@@ -51,10 +51,11 @@ Icon._meta = {
   name: 'Icon',
   type: META.type.element,
   props: {
-    size: sui.sizes,
-    flipped: ['horizontally', 'vertically'],
-    rotated: ['clockwise', 'counterclockwise'],
     color: sui.colors,
+    flipped: ['horizontally', 'vertically'],
+    name: sui.icons(),
+    rotated: ['clockwise', 'counterclockwise'],
+    size: sui.sizes,
   },
 }
 

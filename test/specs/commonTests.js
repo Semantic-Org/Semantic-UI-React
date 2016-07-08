@@ -506,14 +506,14 @@ export const propKeyOnlyToClassName = (Component, propKey, requiredProps = {}) =
  * @param {String} propKey A props key.
  * @param {Object} [requiredProps={}] Props required to render the component.
  */
-export const propValueOnlyToClassName = (Component, propKey, requiredProps = {}, propVal = null) => {
+export const propValueOnlyToClassName = (Component, propKey, requiredProps = {}) => {
   describe(`${propKey} (common)`, () => {
-    if (!propVal) _definesPropOptions(Component, propKey)
+    _definesPropOptions(Component, propKey)
     _noDefaultClassNameFromProp(Component, propKey, requiredProps)
     _noClassNameFromBoolProps(Component, propKey, requiredProps)
 
     it('adds prop value to className', () => {
-      const sample = propVal || _.sample(Component._meta.props[propKey])
+      const sample = _.sample(Component._meta.props[propKey])
       shallow(createElement(Component, { ...requiredProps, [propKey]: sample }))
         .should.have.className(sample)
     })
@@ -522,7 +522,7 @@ export const propValueOnlyToClassName = (Component, propKey, requiredProps = {},
       // silence propType warnings
       consoleUtil.disableOnce()
 
-      const sample = propVal || _.sample(Component._meta.props[propKey])
+      const sample = _.sample(Component._meta.props[propKey])
       shallow(createElement(Component, { ...requiredProps, [propKey]: sample }))
         .should.not.have.className(propKey)
     })
