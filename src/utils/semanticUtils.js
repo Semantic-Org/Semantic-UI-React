@@ -1,3 +1,5 @@
+/* eslint-disable max-len */
+
 export const colors = [
   'red',
   'orange',
@@ -17,9 +19,7 @@ export const sizes = ['mini', 'tiny', 'small', 'medium', 'large', 'big', 'huge',
 export const textAlignments = ['left', 'center', 'right', 'justified']
 export const floats = ['left', 'right']
 
-export const icons = () => iconCats.reduce((all, cat) => [ ...all, ...cat.icons ], [])
-export const iconCats = [
-  {
+export const iconCategories = [{
     name: 'Web Content',
     icons: [
       'add to calendar', 'alarm outline', 'alarm mute outline', 'alarm mute', 'alarm', 'at', 'browser', 'bug',
@@ -31,7 +31,8 @@ export const iconCats = [
       'protect', 'registered', 'remove from calendar', 'search', 'setting', 'settings', 'shop', 'shopping bag',
       'shopping basket', 'signal', 'sitemap', 'tag', 'tags', 'tasks', 'terminal', 'text telephone', 'ticket', 'trademark',
       'trophy', 'wifi',
-    ]},
+    ],
+  },
   {
     name: 'User Actions',
     icons: [
@@ -42,30 +43,35 @@ export const iconCats = [
       'send', 'send outline', 'share alternate', 'share alternate square', 'share', 'share square', 'sign in', 'sign out',
       'theme', 'translate', 'undo', 'unhide', 'unlock alternate', 'unlock', 'upload', 'wait', 'wizard', 'write',
       'write square',
-    ]},
+    ],
+  },
   {
     name: 'Message',
     icons: [
       'announcement', 'birthday:', 'help circle', 'help', 'info circle', 'info', 'warning circle', 'warning',
       'warning sign',
-    ]},
+    ],
+  },
   {
     name: 'Usr Types',
     icons: [
       'child', 'doctor', 'handicap', 'spy', 'student', 'user', 'users',
-    ]},
+    ],
+  },
   {
     name: 'Gender & Sexuality',
     icons: [
       'female', 'gay', 'genderless', 'heterosexual', 'intergender', 'lesbian', 'male', 'man', 'neuter',
       'non binary transgender', 'other gender horizontal', 'other gender', 'other gender vertical', 'transgender', 'woman',
-    ]},
+    ],
+  },
   {
     name: 'Layout Adjustment',
     icons: [
       'block layout', 'crop', 'grid layout', 'list layout', 'maximize', 'resize horizontal', 'resize vertical', 'zoom',
       'zoom out',
-    ]},
+    ],
+  },
   {
     name: 'Objects',
     icons: [
@@ -74,25 +80,29 @@ export const iconCats = [
       'hand scissors', 'hand spock', 'law', 'leaf', 'legal', 'lemon', 'life ring', 'lightning', 'magnet', 'money', 'moon',
       'plane', 'puzzle', 'road', 'rocket', 'shipping', 'soccer', 'sticky note', 'sticky note outline', 'suitcase', 'sun',
       'travel', 'treatment', 'umbrella', 'world',
-    ]},
+    ],
+  },
   {
     name: 'Shapes',
     icons: [
       'asterisk', 'certificate', 'circle', 'circle notched', 'circle thin', 'crosshairs', 'cube', 'cubes',
       'ellipsis horizontal', 'ellipsis vertical', 'quote left', 'quote right', 'spinner', 'square', 'square outline',
-    ]},
+    ],
+  },
   {
     name: 'Item Selection',
     icons: [
       'add circle', 'add square', 'check circle', 'check circle outline', 'check square', 'checkmark box', 'checkmark',
       'minus circle', 'minus', 'minus square', 'minus square outline', 'move', 'plus', 'plus square outline', 'radio',
       'remove circle', 'remove circle outline', 'remove', 'selected radio', 'toggle off', 'toggle on',
-    ]},
+    ],
+  },
   {
     name: 'Media',
     icons: [
       'area chart', 'bar chart', 'camera retro', 'film', 'line chart', 'newspaper', 'photo', 'pie chart', 'sound',
-    ]},
+    ],
+  },
   {
     name: 'Pointers',
     icons: [
@@ -103,45 +113,52 @@ export const iconCats = [
       'caret up', 'chevron circle down', 'chevron circle left', 'chevron circle right', 'chevron circle up', 'chevron down',
       'chevron left', 'chevron right', 'chevron up', 'long arrow down', 'long arrow left', 'long arrow right',
       'long arrow up', 'pointing down', 'pointing left', 'pointing right', 'pointing up', 'toggle down', 'toggle left',
-      'toggle right', 'toggle up'
-    ]},
+      'toggle right', 'toggle up',
+    ],
+  },
   {
     name: 'Mobile',
     icons : [
       'mobile', 'tablet', 'battery empty', 'battery full', 'battery low', 'battery medium',
-    ]},
+    ],
+  },
   {
     name: 'Computer',
     icons: [
       'desktop', 'disk outline', 'game', 'high battery', 'keyboard', 'laptop', 'plug', 'power',
-    ]},
+    ],
+  },
   {
     name: 'Computer and File System',
     icons: [
       'file archive outline', 'file audio outline', 'file code outline', 'file excel outline', 'file', 'file image outline',
       'file outline', `file pdf outline`, 'file powerpoint outline', 'file text', 'file text outline', 'file video outline',
       'file word outline', 'folder', 'folder open', 'folder open outline', 'folder outline', 'level down', 'level up',
-      'trash', 'trash outline'
-    ]},
+      'trash', 'trash outline',
+    ],
+  },
   {
     name: 'Technologies',
     icons: [
       'barcode', 'bluetooth alternative', 'bluetooth', 'css3', 'database', 'fork', 'html5', 'openid', 'qrcode', 'rss',
       'rss square', 'server', 'usb',
-    ]},
+    ],
+  },
   {
     name: 'Rating',
     icons: [
       'empty heart', 'empty star', 'frown', 'heart', 'meh', 'smile', 'star half empty', 'star half', 'star', 'thumbs down',
-      'thumbs outline down', 'thumbs outline up', 'thumbs up'
-    ]},
+      'thumbs outline down', 'thumbs outline up', 'thumbs up',
+    ],
+  },
   {
     name: 'Audio',
     icons: [
       'backward', 'closed captioning', 'eject', 'fast backward', 'fast forward', 'forward', 'music', 'mute', 'pause circle',
       'pause circle outline', 'pause', 'play', 'record', 'step backward', 'step forward', 'stop circle',
       'stop circle outline', 'stop', 'unmute', 'video play', 'video play outline', 'volume down', 'volume off', 'volume up',
-    ]},
+    ],
+  },
   {
     name: 'Map',
     icons: [
@@ -149,13 +166,15 @@ export const iconCats = [
       'hospital', 'hotel', 'location arrow', 'map', 'map outline', 'map pin', 'map signs', 'marker', 'military',
       'motorcycle', 'paw', 'ship', 'space shuttle', 'spoon', 'street view', 'subway', 'taxi', 'train', 'television', 'tree',
       'university',
-    ]},
+    ],
+  },
   {
     name: 'Tables',
     icons: [
       'columns', 'sort alphabet ascending', 'sort alphabet descending', 'sort ascending', 'sort content ascending',
       'sort content descending', 'sort descending', 'sort', 'sort numeric ascending', 'sort numeric descending', 'table',
-    ]},
+    ],
+  },
   {
     name: 'Text Editor',
     icons: [
@@ -163,24 +182,28 @@ export const iconCats = [
       'header', 'indent', 'italic', 'linkify', 'list', 'ordered list', 'outdent', 'paragraph', 'paste', 'save',
       'strikethrough', 'subscript', 'superscript', 'text cursor', 'text height', 'text width', 'underline', 'unlinkify',
       'unordered list',
-    ]},
+    ],
+  },
   {
     name: 'Currency',
     icons: [
       'bitcoin', 'dollar', 'euro', 'lira', 'pound', 'ruble', 'rupee', 'shekel', 'won', 'yen',
-    ]},
+    ],
+  },
   {
     name: 'Payment Options',
     icons: [
       'american express', 'credit card alternative', 'diners club', 'discover', 'google wallet', 'japan credit bureau',
       'mastercard', 'paypal card', 'paypal', 'stripe', 'visa',
-    ]},
+    ],
+  },
   {
     name: 'Accessibility',
     icons: [
       'wheelchair', 'asl interpreting', 'assistive listening systems', 'audio description', 'blind', 'braille', 'deafness',
       'low vision', 'sign language', 'universal access', 'volume control phone',
-    ]},
+    ],
+  },
   {
     name: 'Brands',
     icons: [
@@ -201,5 +224,9 @@ export const iconCats = [
       'tumblr square', 'twitch', 'twitter', 'twitter square', 'viacoin', 'viadeo', 'viadeo square', 'vimeo', 'vimeo square',
       'vine', 'vk', 'wechat', 'weibo', 'whatsapp', 'wikipedia', 'windows', 'wordpress', 'wpbeginner', 'wpforms', 'xing',
       'xing square', 'y combinator', 'yahoo', 'yelp', 'yoast', 'youtube', 'youtube play', 'youtube square',
-    ]},
+    ],
+  },
 ]
+
+export const icons = () => iconCategories.reduce((all, cat) => [ ...all, ...cat.icons ], [])
+
