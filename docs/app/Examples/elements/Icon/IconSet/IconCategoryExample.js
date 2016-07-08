@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import React from 'react'
+import React, { PropTypes } from 'react'
 import { Grid, Icon } from 'stardust'
 
 const columns = (icons) => _.map(icons, icon => (
@@ -9,8 +9,16 @@ const columns = (icons) => _.map(icons, icon => (
   </Grid.Column>
 ))
 
-export default ({ category }) => (
+const IconCategoryExample = ({ category }) => (
   <Grid className='center aligned doubling five column'>
     {columns(category.icons)}
   </Grid>
 )
+
+IconCategoryExample.propTypes = {
+  category: PropTypes.shape({
+    icons: PropTypes.array.isRequired,
+  }),
+}
+
+export default IconCategoryExample
