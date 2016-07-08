@@ -19,7 +19,8 @@ export const sizes = ['mini', 'tiny', 'small', 'medium', 'large', 'big', 'huge',
 export const textAlignments = ['left', 'center', 'right', 'justified']
 export const floats = ['left', 'right']
 
-export const iconCategories = [{
+export const iconCategories = [
+  {
     name: 'Web Content',
     icons: [
       'add to calendar', 'alarm outline', 'alarm mute outline', 'alarm mute', 'alarm', 'at', 'browser', 'bug',
@@ -118,7 +119,7 @@ export const iconCategories = [{
   },
   {
     name: 'Mobile',
-    icons : [
+    icons: [
       'mobile', 'tablet', 'battery empty', 'battery full', 'battery low', 'battery medium',
     ],
   },
@@ -132,7 +133,7 @@ export const iconCategories = [{
     name: 'Computer and File System',
     icons: [
       'file archive outline', 'file audio outline', 'file code outline', 'file excel outline', 'file', 'file image outline',
-      'file outline', `file pdf outline`, 'file powerpoint outline', 'file text', 'file text outline', 'file video outline',
+      'file outline', 'file pdf outline', 'file powerpoint outline', 'file text', 'file text outline', 'file video outline',
       'file word outline', 'folder', 'folder open', 'folder open outline', 'folder outline', 'level down', 'level up',
       'trash', 'trash outline',
     ],
@@ -228,5 +229,5 @@ export const iconCategories = [{
   },
 ]
 
-export const icons = () => iconCategories.reduce((all, cat) => [ ...all, ...cat.icons ], [])
+export const icons = () => iconCategories.reduce((all, cat) => [...all, ...cat.icons], [])
 
