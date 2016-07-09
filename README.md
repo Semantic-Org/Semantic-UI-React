@@ -155,9 +155,9 @@ Originally created with :heart: at [TechnologyAdvice][9], a ridiculous [place to
 [1]: https://github.com/TechnologyAdvice/stardust/blob/master/CONTRIBUTING.md
 [2]: https://technologyadvice.github.io/stardust/
 [3]: https://facebook.github.io/react/
-[4]: https://github.com/TechnologyAdvice/stardust/blob/master/ROADMAP.md
+[4]: #
 [5]: http://semantic-ui.com/
-[6]: https://github.com/TechnologyAdvice/stardust/blob/master/ROADMAP.md#v1.0
+[6]: https://github.com/TechnologyAdvice/stardust/milestone/1
 [7]: https://github.com/webpack/webpack-dev-server/
 [8]: https://github.com/TechnologyAdvice/stardust/issues/243
 [9]: https://github.com/TechnologyAdvice
