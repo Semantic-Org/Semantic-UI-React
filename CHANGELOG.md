@@ -8,6 +8,10 @@
 
 - \<Flag /\> Component [\#177](https://github.com/TechnologyAdvice/stardust/issues/177)
 
+**Closed issues:**
+
+- Gitter [\#329](https://github.com/TechnologyAdvice/stardust/issues/329)
+
 ## [v0.18.0](https://github.com/TechnologyAdvice/stardust/tree/v0.18.0) (2016-07-05)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.17.0...v0.18.0)
 
