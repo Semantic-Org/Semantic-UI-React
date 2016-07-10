@@ -16,7 +16,7 @@ export default class FormValidationExamples extends Component {
           title='Validating on Blur and other Events'
           description={`
             Validation messages can also appear inline.
-            UI Forms automatically format labels with the class name <code>prompt</code>.
+            UI Forms automatically format labels with the class name "prompt".
             These validation prompts are also set to appear on input change instead of form submission.
           `}
           examplePath='collections/Form/Validation/FormValidatingOnBlurAndOtherEventsExample'

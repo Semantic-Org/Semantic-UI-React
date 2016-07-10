@@ -1,5 +1,6 @@
 const { argv } = require('yargs')
 const config = require('../config')
+const webpack = require('webpack')
 const webpackConfig = require('./webpack.config')
 
 const { paths } = config
@@ -50,7 +51,13 @@ module.exports = (karmaConfig) => {
           ...webpackConfig.module.loaders,
         ],
       }),
-      plugins: webpackConfig.plugins,
+      plugins: [
+        ...webpackConfig.plugins,
+        // utils/jquery loads real jQuery and semantic-ui-css
+        // we alias jquery and semantic-ui-css to mocks during tests
+        // ignore this module so we can use the mock versions in alias below
+        new webpack.NormalModuleReplacementPlugin(/utils\/jquery/, 'empty'),
+      ],
       resolve: Object.assign({}, webpackConfig.resolve, {
         alias: Object.assign({}, webpackConfig.resolve.alias, {
           jquery: `${paths.test('mocks')}/SemanticjQuery-mock.js`,
