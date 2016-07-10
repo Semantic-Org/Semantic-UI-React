@@ -49,9 +49,12 @@ export default class Progress extends Component {
     inverted: PropTypes.bool,
 
     /** Can be set to either to display progress as percent or ratio. */
-    label: PropTypes.oneOf(['ratio', 'percent']),
+    label: customPropTypes.all([
+      PropTypes.oneOf(['ratio', 'percent']),
+      customPropTypes.require(['total', 'value']),
+    ]),
 
-    /** Current percentage complete. */
+    /** Current percent complete. */
     percent: customPropTypes.all([
       customPropTypes.mutuallyExclusive(['total', 'value']),
       PropTypes.oneOfType([
@@ -74,6 +77,7 @@ export default class Progress extends Component {
 
     /** For use with value. Together, these will calculate the percent. Cannot be used with percent. */
     total: customPropTypes.all([
+      customPropTypes.require(['value']),
       customPropTypes.mutuallyExclusive(['percent']),
       PropTypes.oneOfType([
         PropTypes.string,
@@ -83,6 +87,7 @@ export default class Progress extends Component {
 
     /** For use with total. Together, these will calculate the percent. Cannot be used with percent. */
     value: customPropTypes.all([
+      customPropTypes.require(['total']),
       customPropTypes.mutuallyExclusive(['percent']),
       PropTypes.oneOfType([
         PropTypes.string,
@@ -94,6 +99,10 @@ export default class Progress extends Component {
     warning: PropTypes.bool,
   }
 
+  static defaultProps = {
+    precision: 1,
+  }
+
   static _meta = _meta
 
   render() {
@@ -102,12 +111,30 @@ export default class Progress extends Component {
       inverted, label, percent, progress, precision, size, success, total, value, warning,
     } = this.props
 
+    const isAutoSuccess = autoSuccess && (percent >= 100 || value >= total)
+
+    let progressText
+    let progressValue
+    let progressJSX
+    if (progress || label) {
+      progressValue = (!_.isUndefined(percent) ? percent : value / total * 100)
+        .toPrecision(precision + 1)
+
+      if (label === 'percent') {
+        progressText = `${progressValue}%`
+      } else if (label === 'ratio') {
+        progressText = `${value}/${total}`
+      }
+
+      progressJSX = <div className='progress'>{progressText}</div>
+    }
+
     const classes = cx(
       'ui',
       size,
       color,
       useKeyOnly(active, 'active'),
-      useKeyOnly(success, 'success'),
+      useKeyOnly(isAutoSuccess || success, 'success'),
       useKeyOnly(warning, 'warning'),
       useKeyOnly(error, 'error'),
       useKeyOnly(disabled, 'disabled'),
@@ -123,7 +150,7 @@ export default class Progress extends Component {
     return (
       <div {...rest} className={classes}>
         <div className='bar'>
-          {progress && <div className='progress' />}
+          {progressJSX}
         </div>
         {children && <div className='label'>{children}</div>}
       </div>
