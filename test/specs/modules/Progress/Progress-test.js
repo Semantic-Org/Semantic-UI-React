@@ -3,7 +3,7 @@ import React from 'react'
 import Progress from 'src/modules/Progress/Progress'
 import * as common from 'test/specs/commonTests'
 
-describe('Progress', () => {
+describe.only('Progress', () => {
   common.isConformant(Progress)
   common.hasUIClassName(Progress)
   common.rendersChildren(Progress)
@@ -27,24 +27,57 @@ describe('Progress', () => {
   })
 
   describe('autoSuccess', () => {
-    it('applies the success class when 100%', () => {
-      throw ''
+    it('applies the success class when percent >= 100%', () => {
+      const wrapper = shallow(<Progress autoSuccess />)
+
+      wrapper
+        .setProps({ percent: 100 })
+        .should.have.have.className('success')
+
+      wrapper
+        .setProps({ percent: 99 })
+        .should.not.have.have.className('success')
+
+      wrapper
+        .setProps({ percent: 101 })
+        .should.have.have.className('success')
     })
-    it('applies the success class when value === total', () => {
-      throw ''
+    it('applies the success class when value >= total', () => {
+      const wrapper = shallow(<Progress total={1} autoSuccess />)
+
+      wrapper
+        .should.have.not.have.className('success')
+
+      wrapper
+        .setProps({ value: 1 })
+        .should.have.have.className('success')
+
+      wrapper
+        .setProps({ value: 0 })
+        .should.not.have.have.className('success')
+
+      wrapper
+        .setProps({ value: 2 })
+        .should.have.have.className('success')
     })
   })
 
   describe('label', () => {
     it('can display the progress as a percentage', () => {
-      throw ''
+      shallow(<Progress label='percent' value={1} total={2} />)
+        .children()
+        .find('.progress')
+        .should.contain.text('50%')
     })
     it('can display the progress as a ratio', () => {
-      throw ''
+      shallow(<Progress label='ratio' value={1} total={2} />)
+        .children()
+        .find('.progress')
+        .should.contain.text('1/2')
     })
   })
 
-  describe('percentage', () => {
+  describe('percent', () => {
     it('sets the bar width', () => {
       throw ''
     })
@@ -75,7 +108,7 @@ describe('Progress', () => {
   })
 
   describe('total/value', () => {
-    it('calculates the percentage complete', () => {
+    it('calculates the percent complete', () => {
       throw ''
     })
   })
