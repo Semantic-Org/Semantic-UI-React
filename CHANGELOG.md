@@ -1,12 +1,16 @@
 # Change Log
 
-## [Unreleased](https://github.com/TechnologyAdvice/stardust/tree/HEAD)
-
-[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.18.0...HEAD)
+## [v0.19.0](https://github.com/TechnologyAdvice/stardust/tree/v0.19.0) (2016-07-10)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.18.0...v0.19.0)
 
 **Implemented enhancements:**
 
 - \<Flag /\> Component [\#177](https://github.com/TechnologyAdvice/stardust/issues/177)
+
+**Fixed bugs:**
+
+- Form: Uncaught TypeError: this.element.form is not a function [\#326](https://github.com/TechnologyAdvice/stardust/issues/326)
+- Temporarily bundle jQuery and SUI JS [\#327](https://github.com/TechnologyAdvice/stardust/pull/327) ([levithomason](https://github.com/levithomason))
 
 **Closed issues:**
 
