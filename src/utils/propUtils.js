@@ -94,7 +94,7 @@ export const customPropTypes = {
   },
 
   /**
-   * Ensure a prop adherers to at least one of the given prop type validator.
+   * Ensure a prop adherers to at least one of the given prop type validators.
    * @param {function[]} validators An array of propType functions.
    */
   any: (validators) => {
