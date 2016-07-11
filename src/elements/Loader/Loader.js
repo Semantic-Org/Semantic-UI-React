@@ -2,11 +2,11 @@ import React, { PropTypes } from 'react'
 import cx from 'classnames'
 
 import * as sui from '../../utils/semanticUtils'
-import { customPropTypes, useKeyOnly, useKeyOrValueAndKey } from '../../utils/propUtils'
+import { customPropTypes, getUnhandledProps, useKeyOnly, useKeyOrValueAndKey } from '../../utils/propUtils'
 import META from '../../utils/Meta'
 
 function Loader(props) {
-  const { children, className, active, disabled, indeterminate, inline, inverted, size, text, ...rest } = props
+  const { children, className, active, disabled, indeterminate, inline, inverted, size, text } = props
   const classes = cx(
     'ui',
     useKeyOnly(active, 'active'),
@@ -19,6 +19,7 @@ function Loader(props) {
     className,
     'loader',
   )
+  const rest = getUnhandledProps(Loader, props)
 
   return <div className={classes} {...rest}>{ children || text }</div>
 }
