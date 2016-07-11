@@ -22,6 +22,7 @@ export const floats = ['left', 'right']
 export const iconCategories = [
   {
     name: 'Web Content',
+    description: 'Icons can represent types of content found on websites',
     icons: [
       'add to calendar', 'alarm outline', 'alarm mute outline', 'alarm mute', 'alarm', 'at', 'browser', 'bug',
       'calendar outline', 'calendar', 'checked calendar', 'cloud', 'code', 'comment outline', 'comment', 'comments outline',
@@ -36,6 +37,7 @@ export const iconCategories = [
   },
   {
     name: 'User Actions',
+    description: 'Icons can represent common actions a user can take',
     icons: [
       'add to cart', 'add user', 'adjust', 'archive', 'ban', 'bookmark', 'call', 'call square', 'clone', 'cloud download',
       'cloud upload', 'talk', 'talk outline', 'compress', 'configure', 'download', 'edit', 'erase', 'exchange', 'expand',
@@ -48,6 +50,7 @@ export const iconCategories = [
   },
   {
     name: 'Message',
+    description: 'Icons can alert users to the type of message being displayed',
     icons: [
       'announcement', 'birthday:', 'help circle', 'help', 'info circle', 'info', 'warning circle', 'warning',
       'warning sign',
@@ -55,12 +58,14 @@ export const iconCategories = [
   },
   {
     name: 'Usr Types',
+    description: 'Icons can represent types of people',
     icons: [
       'child', 'doctor', 'handicap', 'spy', 'student', 'user', 'users',
     ],
   },
   {
     name: 'Gender & Sexuality',
+    description: 'Icons can represent genders or types of sexuality',
     icons: [
       'female', 'gay', 'genderless', 'heterosexual', 'intergender', 'lesbian', 'male', 'man', 'neuter',
       'non binary transgender', 'other gender horizontal', 'other gender', 'other gender vertical', 'transgender', 'woman',
@@ -68,6 +73,7 @@ export const iconCategories = [
   },
   {
     name: 'Layout Adjustment',
+    description: 'Icons can alert users to common ways to adjust page layouts',
     icons: [
       'block layout', 'crop', 'grid layout', 'list layout', 'maximize', 'resize horizontal', 'resize vertical', 'zoom',
       'zoom out',
@@ -75,6 +81,7 @@ export const iconCategories = [
   },
   {
     name: 'Objects',
+    description: 'Icons can be used to represent common objects',
     icons: [
       'anchor', 'bar', 'bomb', 'book', 'bullseye', 'calculator', 'cocktail', 'diamond', 'fax', 'fire extinguisher', 'fire',
       'flag checkered', 'flag', 'flag outline', 'gift', 'hand lizard', 'hand peace', 'hand paper', 'hand rock',
@@ -85,6 +92,7 @@ export const iconCategories = [
   },
   {
     name: 'Shapes',
+    description: 'Icons can be used to create shapes',
     icons: [
       'asterisk', 'certificate', 'circle', 'circle notched', 'circle thin', 'crosshairs', 'cube', 'cubes',
       'ellipsis horizontal', 'ellipsis vertical', 'quote left', 'quote right', 'spinner', 'square', 'square outline',
@@ -92,6 +100,7 @@ export const iconCategories = [
   },
   {
     name: 'Item Selection',
+    description: 'Icons can show whether an item is included in a set',
     icons: [
       'add circle', 'add square', 'check circle', 'check circle outline', 'check square', 'checkmark box', 'checkmark',
       'minus circle', 'minus', 'minus square', 'minus square outline', 'move', 'plus', 'plus square outline', 'radio',
@@ -100,12 +109,14 @@ export const iconCategories = [
   },
   {
     name: 'Media',
+    description: 'Icons can represent common media types',
     icons: [
       'area chart', 'bar chart', 'camera retro', 'film', 'line chart', 'newspaper', 'photo', 'pie chart', 'sound',
     ],
   },
   {
     name: 'Pointers',
+    description: 'Icons can be used to indicate a direction',
     icons: [
       'angle double down', 'angle double left', 'angle double right', 'angle double up', 'angle down', 'angle left',
       'angle right', 'angle up', 'arrow circle down', 'arrow circle left', 'arrow circle outline down',
@@ -119,18 +130,21 @@ export const iconCategories = [
   },
   {
     name: 'Mobile',
+    description: 'Icons can represent mobile devices, types of content found on mobile devices.',
     icons: [
       'mobile', 'tablet', 'battery empty', 'battery full', 'battery low', 'battery medium',
     ],
   },
   {
     name: 'Computer',
+    description: 'Icons can represent computing devices, or types of content found on a computer.',
     icons: [
       'desktop', 'disk outline', 'game', 'high battery', 'keyboard', 'laptop', 'plug', 'power',
     ],
   },
   {
     name: 'Computer and File System',
+    description: 'Icons can represent elements of a computer and its file system',
     icons: [
       'file archive outline', 'file audio outline', 'file code outline', 'file excel outline', 'file', 'file image outline',
       'file outline', 'file pdf outline', 'file powerpoint outline', 'file text', 'file text outline', 'file video outline',
@@ -140,6 +154,7 @@ export const iconCategories = [
   },
   {
     name: 'Technologies',
+    description: 'Icons can represent common technologies',
     icons: [
       'barcode', 'bluetooth alternative', 'bluetooth', 'css3', 'database', 'fork', 'html5', 'openid', 'qrcode', 'rss',
       'rss square', 'server', 'usb',
@@ -147,6 +162,7 @@ export const iconCategories = [
   },
   {
     name: 'Rating',
+    description: 'Icons can be used to represent users attitude towards content',
     icons: [
       'empty heart', 'empty star', 'frown', 'heart', 'meh', 'smile', 'star half empty', 'star half', 'star', 'thumbs down',
       'thumbs outline down', 'thumbs outline up', 'thumbs up',
@@ -154,6 +170,7 @@ export const iconCategories = [
   },
   {
     name: 'Audio',
+    description: 'Icons can be used to represent common ways to interact with audio',
     icons: [
       'backward', 'closed captioning', 'eject', 'fast backward', 'fast forward', 'forward', 'music', 'mute', 'pause circle',
       'pause circle outline', 'pause', 'play', 'record', 'step backward', 'step forward', 'stop circle',
@@ -162,6 +179,7 @@ export const iconCategories = [
   },
   {
     name: 'Map',
+    description: 'Icons can be used to represent elements on a map',
     icons: [
       'bicycle', 'building', 'building outline', 'bus', 'car', 'coffee', 'compass', 'emergency', 'first aid', 'food', 'h',
       'hospital', 'hotel', 'location arrow', 'map', 'map outline', 'map pin', 'map signs', 'marker', 'military',
@@ -171,6 +189,7 @@ export const iconCategories = [
   },
   {
     name: 'Tables',
+    description: 'Icons can be used to represent common actions inside a table',
     icons: [
       'columns', 'sort alphabet ascending', 'sort alphabet descending', 'sort ascending', 'sort content ascending',
       'sort content descending', 'sort descending', 'sort', 'sort numeric ascending', 'sort numeric descending', 'table',
@@ -178,6 +197,7 @@ export const iconCategories = [
   },
   {
     name: 'Text Editor',
+    description: 'Icons can represent common actions when editing text',
     icons: [
       'align center', 'align justify', 'align left', 'align right', 'attach', 'bold', 'content', 'copy', 'cut', 'font',
       'header', 'indent', 'italic', 'linkify', 'list', 'ordered list', 'outdent', 'paragraph', 'paste', 'save',
@@ -187,12 +207,14 @@ export const iconCategories = [
   },
   {
     name: 'Currency',
+    description: 'Icons can represent units of currency',
     icons: [
       'bitcoin', 'dollar', 'euro', 'lira', 'pound', 'ruble', 'rupee', 'shekel', 'won', 'yen',
     ],
   },
   {
     name: 'Payment Options',
+    description: 'Icons can represent common forms of payment',
     icons: [
       'american express', 'credit card alternative', 'diners club', 'discover', 'google wallet', 'japan credit bureau',
       'mastercard', 'paypal card', 'paypal', 'stripe', 'visa',
@@ -200,6 +222,7 @@ export const iconCategories = [
   },
   {
     name: 'Accessibility',
+    description: 'Icons can represent accessibility standards',
     icons: [
       'wheelchair', 'asl interpreting', 'assistive listening systems', 'audio description', 'blind', 'braille', 'deafness',
       'low vision', 'sign language', 'universal access', 'volume control phone',
@@ -207,6 +230,7 @@ export const iconCategories = [
   },
   {
     name: 'Brands',
+    description: 'Icons can represent logos to common brands',
     icons: [
       '500px', 'adn', 'amazon', 'android', 'angellist', 'apple', 'behance', 'behance square', 'bitbucket',
       'bitbucket square', 'black tie', 'buysellads', 'chrome', 'codepen', 'codiepie', 'connectdevelop', 'contao',
