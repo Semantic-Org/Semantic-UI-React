@@ -1,5 +1,5 @@
 import React, { Component, createElement, PropTypes } from 'react'
-import { Grid, Button, Icon } from 'stardust'
+import { Grid, Header, Icon } from 'stardust'
 import Highlight from 'react-highlight'
 import exampleContext from 'docs/app/utils/ExampleContext'
 
@@ -13,7 +13,7 @@ export default class ComponentExample extends Component {
     description: PropTypes.string,
     examplePath: PropTypes.string.isRequired,
     title: PropTypes.string,
-  };
+  }
 
   constructor(props, context) {
     super(props, context)
@@ -26,15 +26,15 @@ export default class ComponentExample extends Component {
 
   handleMouseEnter = () => {
     this.setState({ showLink: true })
-  };
+  }
 
   handleMouseLeave = () => {
     this.setState({ showLink: false })
-  };
+  }
 
   toggleShowCode = () => {
     this.setState({ showCode: !this.state.showCode })
-  };
+  }
 
   render() {
     const code = (
@@ -50,6 +50,11 @@ export default class ComponentExample extends Component {
       marginLeft: '0.25em',
     }
 
+    const codeIconStyle = {
+      fontSize: '1.5em',
+      fontWeight: 'bold',
+    }
+
     const children = <Grid.Column>{this.props.children}</Grid.Column>
 
     return (
@@ -57,8 +62,7 @@ export default class ComponentExample extends Component {
         <Grid.Column>
           <Grid>
             <Grid.Column width={12}>
-              <h3
-                className='ui header'
+              <Header
                 style={{ marginBottom: 0 }}
                 onMouseEnter={this.handleMouseEnter}
                 onMouseLeave={this.handleMouseLeave}
@@ -67,14 +71,11 @@ export default class ComponentExample extends Component {
                 <a href={`#${this.anchor}`}>
                   <Icon className='linkify' style={linkIconStyle} />
                 </a>
-              </h3>
+              </Header>
               <p>{this.props.description}</p>
             </Grid.Column>
             <Grid.Column width={4} className='right aligned'>
-              <Button className='basic mini labeled icon' onClick={this.toggleShowCode}>
-                code
-                <Icon className='code' />
-              </Button>
+              <Icon className='grey code link' onClick={this.toggleShowCode} style={codeIconStyle} />
             </Grid.Column>
           </Grid>
         </Grid.Column>

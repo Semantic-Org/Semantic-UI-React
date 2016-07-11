@@ -81,7 +81,6 @@ webpackConfig.plugins = [
     },
     versions: {
       sui: require('semantic-ui-css/package.json').version,
-      highlightjs: require('highlight.js/package.json').version,
       faker: require('faker/package.json').version,
       jquery: require('jquery/package.json').version,
       lodash: require('lodash/package.json').version,
