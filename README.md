@@ -128,7 +128,7 @@ Be sure to check out the above migrations before embarking on a new component.  
 | x Input         |                 |                 | _ Popup         |                    |
 | x Label         |                 |                 | x Progress      |                    |
 | x List          |                 |                 | _ Rating        |                    |
-| _ Loader        |                 |                 | _ Search        |                    |
+| x Loader        |                 |                 | _ Search        |                    |
 | _ Rail          |                 |                 | _ Shape         |                    |
 | _ Reveal        |                 |                 | _ Sidebar       |                    |
 | x Segment       |                 |                 | _ Sticky        |                    |
