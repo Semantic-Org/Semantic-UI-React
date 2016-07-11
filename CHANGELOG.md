@@ -1,5 +1,12 @@
 # Change Log
 
+## [v0.20.0](https://github.com/TechnologyAdvice/stardust/tree/v0.20.0) (2016-07-11)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.19.0...v0.20.0)
+
+**Merged pull requests:**
+
+- Progress without jQuery [\#324](https://github.com/TechnologyAdvice/stardust/pull/324) ([levithomason](https://github.com/levithomason))
+
 ## [v0.19.0](https://github.com/TechnologyAdvice/stardust/tree/v0.19.0) (2016-07-10)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.18.0...v0.19.0)
 
