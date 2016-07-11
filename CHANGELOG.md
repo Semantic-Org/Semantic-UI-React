@@ -1,5 +1,12 @@
 # Change Log
 
+## [v0.21.0](https://github.com/TechnologyAdvice/stardust/tree/v0.21.0) (2016-07-11)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.20.0...v0.21.0)
+
+**Implemented enhancements:**
+
+- Add Loader component [\#328](https://github.com/TechnologyAdvice/stardust/pull/328) ([layershifter](https://github.com/layershifter))
+
 ## [v0.20.0](https://github.com/TechnologyAdvice/stardust/tree/v0.20.0) (2016-07-11)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.19.0...v0.20.0)
 
