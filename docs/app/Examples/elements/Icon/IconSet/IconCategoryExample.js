@@ -10,7 +10,7 @@ const columns = (icons) => _.map(icons, icon => (
 ))
 
 const IconCategoryExample = ({ category }) => (
-  <Grid className='left aligned doubling five column'>
+  <Grid className='doubling five column'>
     {columns(category.icons)}
   </Grid>
 )
