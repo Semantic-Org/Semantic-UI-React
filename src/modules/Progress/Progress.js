@@ -79,6 +79,7 @@ Progress._meta = {
   props: {
     attached: ['top', 'bottom'],
     color: sui.colors,
+    label: ['ratio', 'percent'],
     size: _.without(sui.sizes, 'mini', 'huge', 'massive'),
   },
 }
@@ -122,7 +123,7 @@ Progress.propTypes = {
     ]),
     PropTypes.oneOfType([
       PropTypes.bool,
-      PropTypes.oneOf(['ratio', 'percent']),
+      PropTypes.oneOf(Progress._meta.props.label),
     ]),
   ]),
 
@@ -150,7 +151,8 @@ Progress.propTypes = {
   /**
    * For use with value.
    * Together, these will calculate the percent.
-   * Mutually excludes percent. */
+   * Mutually excludes percent.
+   */
   total: customPropTypes.all([
     customPropTypes.require(['value']),
     customPropTypes.mutuallyExclusive(['percent']),
@@ -163,7 +165,8 @@ Progress.propTypes = {
   /**
    * For use with total.
    * Together, these will calculate the percent.
-   * Mutually excludes percent. */
+   * Mutually excludes percent.
+   */
   value: customPropTypes.all([
     customPropTypes.require(['total']),
     customPropTypes.mutuallyExclusive(['percent']),
