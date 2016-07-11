@@ -56,15 +56,10 @@ function Progress(props) {
   )
 
   const rest = getUnhandledProps(Progress, props)
-  const barProps = _.isUndefined(_percent) ? {} : {
-    style: {
-      width: `${_percent}%`,
-    },
-  }
 
   return (
     <div {...rest} className={classes} data-percent={_percent}>
-      <div className='bar' { ...barProps }>
+      <div className='bar' style={{ width: `${_percent}%` }}>
         {showProgress && <div className='progress'>{progressText}</div>}
       </div>
       {children && <div className='label'>{children}</div>}
