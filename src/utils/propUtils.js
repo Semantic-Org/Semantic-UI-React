@@ -1,4 +1,3 @@
-/* eslint-disable react/no-multi-comp */
 import _ from 'lodash'
 import React, { Children } from 'react'
 
@@ -8,6 +7,8 @@ import Image from '../elements/Image/Image'
 // ===============================================================
 // Custom PropTypes
 // ===============================================================
+const type = (...args) => Object.prototype.toString.call(...args)
+
 export const customPropTypes = {
   /**
    * Ensures children are of a set of types. Matches are made against the component _meta.name property.
@@ -81,7 +82,7 @@ export const customPropTypes = {
       const errors = _.compact(_.map(validators, validator => {
         if (!_.isFunction(validator)) {
           throw new Error(
-            `all() argument "validators" should contain functions, found: ${typeof validator}.`
+            `all() argument "validators" should contain functions, found: ${type(validator)}.`
           )
         }
         return validator(props, propName, componentName)
@@ -96,7 +97,7 @@ export const customPropTypes = {
    * Ensure a prop adherers to at least one of the given prop type validator.
    * @param {function[]} validators An array of propType functions.
    */
-  some: (validators) => {
+  any: (validators) => {
     return (props, propName, componentName) => {
       if (!_.isArray(validators)) {
         throw new Error([
@@ -108,7 +109,7 @@ export const customPropTypes = {
       const errors = _.map(validators, validator => {
         if (!_.isFunction(validator)) {
           throw new Error(
-            `any() argument "validators" should contain functions, found: ${typeof validator}.`
+            `any() argument "validators" should contain functions, found: ${type(validator)}.`
           )
         }
         return validator(props, propName, componentName)
@@ -123,21 +124,11 @@ export const customPropTypes = {
   },
 
   /**
-   * Define inter-prop dependencies by requiring other props.
-   * If condition is false, the props will not be required.
-   * Condition may be a boolean value, or a function.
-   * If a function is used it is called with all the propType arguments: (props, propName, componentName).
-   * @param {string[]} requiredProps An array of required props.
-   * @param {boolean|function} [condition=true] Only require the props if condition is true or returns true.
+   * Define prop dependencies by requiring other props.
+   * @param {string[]} requiredProps An array of required prop names.
    */
-  require: (requiredProps, condition = true) => {
+  require: (requiredProps) => {
     return (props, propName, componentName) => {
-      if (!_.isFunction(condition) && !_.isBoolean(condition)) {
-        throw new Error([
-          'Invalid `condition` argument supplied to require, expected a boolean or function.'
-            ` See ${componentName} prop \`${propName}\`.`,
-        ].join(''))
-      }
       if (!_.isArray(requiredProps)) {
         throw new Error([
           'Invalid `requiredProps` argument supplied to require, expected an instance of array.'
@@ -145,9 +136,8 @@ export const customPropTypes = {
         ].join(''))
       }
 
-      // do not validate if the condition is false
-      const shouldValidate = _.isBoolean(condition) ? condition : condition(props, propName, componentName)
-      if (!shouldValidate) return
+      // do not require requiredProps if the prop does not exist in props
+      if (!_.has(props, propName)) return
 
       const missingRequired = requiredProps.filter(required => !_.has(props, required))
       if (!_.isEmpty(missingRequired)) {

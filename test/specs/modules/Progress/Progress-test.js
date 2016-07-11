@@ -1,9 +1,8 @@
 import React from 'react'
-
 import Progress from 'src/modules/Progress/Progress'
 import * as common from 'test/specs/commonTests'
 
-describe.only('Progress', () => {
+describe('Progress', () => {
   common.isConformant(Progress)
   common.hasUIClassName(Progress)
   common.rendersChildren(Progress)
@@ -31,85 +30,125 @@ describe.only('Progress', () => {
       const wrapper = shallow(<Progress autoSuccess />)
 
       wrapper
-        .setProps({ percent: 100 })
+        .setProps({ percent: 100, autoSuccess: true })
         .should.have.have.className('success')
 
       wrapper
-        .setProps({ percent: 99 })
+        .setProps({ percent: 99, autoSuccess: true })
         .should.not.have.have.className('success')
 
       wrapper
-        .setProps({ percent: 101 })
+        .setProps({ percent: 101, autoSuccess: true })
         .should.have.have.className('success')
     })
     it('applies the success class when value >= total', () => {
-      const wrapper = shallow(<Progress total={1} autoSuccess />)
+      const wrapper = shallow(<Progress autoSuccess />)
 
       wrapper
-        .should.have.not.have.className('success')
-
-      wrapper
-        .setProps({ value: 1 })
+        .setProps({ total: 1, value: 1, autoSuccess: true })
         .should.have.have.className('success')
 
       wrapper
-        .setProps({ value: 0 })
+        .setProps({ total: 1, value: 0, autoSuccess: true })
         .should.not.have.have.className('success')
 
       wrapper
-        .setProps({ value: 2 })
+        .setProps({ total: 1, value: 2, autoSuccess: true })
         .should.have.have.className('success')
     })
   })
 
   describe('label', () => {
-    it('can display the progress as a percentage', () => {
-      shallow(<Progress label='percent' value={1} total={2} />)
+    it('displays the progress as a percentage by default', () => {
+      shallow(<Progress percent={20} label />)
         .children()
-        .find('.progress')
-        .should.contain.text('50%')
+        .should.have.descendants('.progress')
+        .and.contain.text('20%')
     })
-    it('can display the progress as a ratio', () => {
+    it('displays the progress as a ratio when set to "ratio"', () => {
       shallow(<Progress label='ratio' value={1} total={2} />)
         .children()
         .find('.progress')
         .should.contain.text('1/2')
     })
+    it('displays the progress as a percentage when set to "percent"', () => {
+      shallow(<Progress label='percent' value={1} total={2} />)
+        .children()
+        .find('.progress')
+        .should.contain.text('50%')
+    })
   })
 
   describe('percent', () => {
     it('sets the bar width', () => {
-      throw ''
+      shallow(<Progress percent={33.333} />)
+        .find('.bar')
+        .should.have.style('width', '33.333%')
     })
-    it('sets the label (percent)', () => {
-      throw ''
+    it('sets the progress label with a decimal', () => {
+      shallow(<Progress percent={10.12345} label='percent' />)
+        .children()
+        .find('.progress')
+        .should.contain.text('10.12345%')
     })
-    it('sets the label (ratio)', () => {
-      throw ''
+    it('sets the progress label without a decimal', () => {
+      shallow(<Progress percent={35} label='percent' />)
+        .children()
+        .find('.progress')
+        .should.contain.text('35%')
     })
   })
 
   describe('progress', () => {
     it('hides the progress text by default', () => {
-      throw ''
+      shallow(<Progress />)
+        .children()
+        .should.not.have.descendants('.progress')
     })
     it('shows the progress text when true', () => {
-      throw ''
+      shallow(<Progress progress />)
+        .children()
+        .should.have.descendants('.progress')
     })
     it('hides the progress text when false', () => {
-      throw ''
+      shallow(<Progress progress={false} />)
+        .children()
+        .should.not.have.descendants('.progress')
     })
   })
 
   describe('precision', () => {
-    it('controlls the decimal precision of the progress label', () => {
-      throw ''
+    it('rounds the progress label to 0 decimal places by default', () => {
+      shallow(<Progress percent={10.12345} precision={0} />)
+        .children()
+        .find('.progress')
+        .should.contain.text('10%')
+    })
+    it('removes the decimal from progress label when set to 0', () => {
+      shallow(<Progress percent={10.12345} precision={0} />)
+        .children()
+        .find('.progress')
+        .should.contain.text('10%')
+    })
+    it('rounds the decimal in the progress label to the number of digits', () => {
+      shallow(<Progress percent={10.12345} precision={1} />)
+        .children()
+        .find('.progress')
+        .should.contain.text('10.1%')
+
+      shallow(<Progress percent={10.12345} precision={4} />)
+        .children()
+        .find('.progress')
+        .should.contain.text('10.1235%')
     })
   })
 
   describe('total/value', () => {
     it('calculates the percent complete', () => {
-      throw ''
+      shallow(<Progress value={1} total={2} />)
+        .children()
+        .find('.progress')
+        .should.contain.text('50%')
     })
   })
 })

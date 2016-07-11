@@ -50,8 +50,14 @@ export default class Progress extends Component {
 
     /** Can be set to either to display progress as percent or ratio. */
     label: customPropTypes.all([
-      PropTypes.oneOf(['ratio', 'percent']),
-      customPropTypes.require(['total', 'value']),
+      customPropTypes.any([
+        customPropTypes.require(['percent']),
+        customPropTypes.require(['total', 'value']),
+      ]),
+      PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.oneOf(['ratio', 'percent']),
+      ]),
     ]),
 
     /** Current percent complete. */
@@ -99,35 +105,60 @@ export default class Progress extends Component {
     warning: PropTypes.bool,
   }
 
-  static defaultProps = {
-    precision: 1,
+  static _meta = _meta
+
+  renderProgress = () => {
+    const { label, percent, precision, progress, total, value } = this.props
+
+    const shouldRender = progress
+      || label
+      || !(_.every([percent, precision], _.isUndefined))
+      || !(_.every([percent, total, value], _.isUndefined))
+
+    if (!shouldRender) return
+
+    let progressValue = _.isUndefined(percent) ? (value / total * 100) : percent
+    if (!_.isUndefined(precision)) {
+      progressValue = _.round(progressValue, precision)
+    }
+
+    let progressText
+    if (label === 'percent' || label === true || _.isUndefined(label)) {
+      progressText = `${progressValue}%`
+    } else if (label === 'ratio') {
+      progressText = `${value}/${total}`
+    }
+
+    return <div className='progress'>{progressText}</div>
   }
 
-  static _meta = _meta
+  renderBar = () => {
+    const { percent } = this.props
+    const style = {
+      width: `${percent}%`,
+    }
+    return (
+      <div className='bar' style={style}>
+        {this.renderProgress()}
+      </div>
+    )
+  }
+
+  renderLabel = () => {
+    const { children } = this.props
+
+    return !children ? null : (
+      <div className='label'>{children}</div>
+    )
+  }
 
   render() {
     const {
-      active, attached, autoSuccess, color, children, className, disabled, error, indicating,
-      inverted, label, percent, progress, precision, size, success, total, value, warning,
+      active, attached, autoSuccess, color, className, disabled, error,
+      indicating, inverted, percent, size, success, total, value, warning,
     } = this.props
 
     const isAutoSuccess = autoSuccess && (percent >= 100 || value >= total)
-
-    let progressText
-    let progressValue
-    let progressJSX
-    if (progress || label) {
-      progressValue = (!_.isUndefined(percent) ? percent : value / total * 100)
-        .toPrecision(precision + 1)
-
-      if (label === 'percent') {
-        progressText = `${progressValue}%`
-      } else if (label === 'ratio') {
-        progressText = `${value}/${total}`
-      }
-
-      progressJSX = <div className='progress'>{progressText}</div>
-    }
 
     const classes = cx(
       'ui',
@@ -149,10 +180,8 @@ export default class Progress extends Component {
 
     return (
       <div {...rest} className={classes}>
-        <div className='bar'>
-          {progressJSX}
-        </div>
-        {children && <div className='label'>{children}</div>}
+        {this.renderBar()}
+        {this.renderLabel()}
       </div>
     )
   }
