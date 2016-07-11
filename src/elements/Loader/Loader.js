@@ -62,7 +62,7 @@ Loader.propTypes = {
   ]),
 
   /** Size of the Loader. */
-  size: PropTypes.oneOf(Loader._meta.props.sizes),
+  size: PropTypes.oneOf(Loader._meta.props.size),
 
   /** Text content of the Loader. Mutually exclusive with the children prop. */
   text: customPropTypes.all([

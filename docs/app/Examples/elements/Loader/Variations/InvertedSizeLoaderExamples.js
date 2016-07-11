@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Loader, Segment } from 'stardust'
 
-export default class SizeLoaderExamples extends Component {
+export default class InvertedSizeLoaderExamples extends Component {
   render() {
     return (
       <div>
