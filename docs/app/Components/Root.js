@@ -1,4 +1,3 @@
-import 'semantic-ui-css/semantic.js'
 import 'semantic-ui-css/semantic.css'
 import 'highlight.js/styles/github.css'
 import _ from 'lodash'

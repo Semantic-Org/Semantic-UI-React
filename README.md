@@ -1,4 +1,5 @@
 # Stardust
+[![Gitter](https://img.shields.io/badge/gitter-join_chat-1dce73.svg?logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB4PSIwIiB5PSI1IiBmaWxsPSIjZmZmIiB3aWR0aD0iMSIgaGVpZ2h0PSI1Ii8%2BPHJlY3QgeD0iMiIgeT0iNiIgZmlsbD0iI2ZmZiIgd2lkdGg9IjEiIGhlaWdodD0iNyIvPjxyZWN0IHg9IjQiIHk9IjYiIGZpbGw9IiNmZmYiIHdpZHRoPSIxIiBoZWlnaHQ9IjciLz48cmVjdCB4PSI2IiB5PSI2IiBmaWxsPSIjZmZmIiB3aWR0aD0iMSIgaGVpZ2h0PSI0Ii8%2BPC9zdmc%2B&logoWidth=8&style=flat-square&maxAge=2592000)](https://gitter.im/TechnologyAdvice/stardust)
 [![Circle CI](https://img.shields.io/circleci/project/TechnologyAdvice/stardust/master.svg?style=flat-square)](https://circleci.com/gh/TechnologyAdvice/stardust/tree/master)
 [![Codecov](https://img.shields.io/codecov/c/github/TechnologyAdvice/stardust/master.svg?style=flat-square)](https://codecov.io/gh/TechnologyAdvice/stardust)
 [![Code Climate](https://img.shields.io/codeclimate/github/TechnologyAdvice/stardust.svg?style=flat-square)](https://codeclimate.com/github/TechnologyAdvice/stardust)
@@ -58,10 +59,6 @@ export default class TryStardust extends Component {
 
   <!-- SUI CSS -->
   <link href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/semantic.css" rel="stylesheet">
-
-  <!-- Temporary script dependencies until we're done removing jQuery -->
-  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/semantic.js"></script>
 </head>
 <body>
   <script src="bundle.js"></script>
@@ -155,9 +152,9 @@ Originally created with :heart: at [TechnologyAdvice][9], a ridiculous [place to
 [1]: https://github.com/TechnologyAdvice/stardust/blob/master/CONTRIBUTING.md
 [2]: https://technologyadvice.github.io/stardust/
 [3]: https://facebook.github.io/react/
-[4]: https://github.com/TechnologyAdvice/stardust/blob/master/ROADMAP.md
+[4]: #
 [5]: http://semantic-ui.com/
-[6]: https://github.com/TechnologyAdvice/stardust/blob/master/ROADMAP.md#v1.0
+[6]: https://github.com/TechnologyAdvice/stardust/milestone/1
 [7]: https://github.com/webpack/webpack-dev-server/
 [8]: https://github.com/TechnologyAdvice/stardust/issues/243
 [9]: https://github.com/TechnologyAdvice

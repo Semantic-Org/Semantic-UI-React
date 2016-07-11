@@ -64,12 +64,9 @@ config = Object.assign({}, config, {
     'bluebird',
     'classnames',
     'faker',
-    'jquery',
-    'lodash',
     'react',
     'react-dom',
     'react-highlight',
-    'semantic-ui-css/semantic.js',
   ],
   compiler_stats: {
     hash: false,            // the hash of the compilation
