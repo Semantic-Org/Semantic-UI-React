@@ -1,25 +1,25 @@
 import React, { PropTypes } from 'react'
 import cx from 'classnames'
 import META from '../../utils/Meta'
-import { customPropTypes, useKeyOnly } from '../../utils/propUtils'
+import { customPropTypes, getUnhandledProps, useKeyOnly } from '../../utils/propUtils'
 
 /**
  * A section sub-component for Breadcrumb component.
  */
 function BreadcrumbSection(props) {
   const {
-    active, children, className, link, href, onClick, ...rest,
+    active, children, className, link, href, onClick,
   } = props
-
-  const handleClick = (e) => {
-    if (onClick) onClick(e)
-  }
-
   const classes = cx(
     useKeyOnly(active, 'active'),
     className,
     'section',
   )
+  const rest = getUnhandledProps(BreadcrumbSection, props)
+
+  const handleClick = (e) => {
+    if (onClick) onClick(e)
+  }
 
   if (link || onClick) {
     return (

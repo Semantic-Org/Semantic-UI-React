@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 import cx from 'classnames'
 import META from '../../utils/Meta'
-import { customPropTypes } from '../../utils/propUtils'
+import { customPropTypes, getUnhandledProps } from '../../utils/propUtils'
 import Icon from 'src/elements/Icon/Icon'
 
 /**
@@ -9,13 +9,13 @@ import Icon from 'src/elements/Icon/Icon'
  */
 function BreadcrumbDivider(props) {
   const {
-    children, icon, className, ...rest,
+    children, icon, className,
   } = props
-
   const classes = cx(
     className,
     'divider',
   )
+  const rest = getUnhandledProps(BreadcrumbDivider, props)
 
   if (icon) {
     return <Icon className={classes} name={icon} {...rest} />

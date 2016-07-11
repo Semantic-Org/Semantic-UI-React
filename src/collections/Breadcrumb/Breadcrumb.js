@@ -2,7 +2,7 @@ import _ from 'lodash'
 import cx from 'classnames'
 import React, { PropTypes } from 'react'
 import META from 'src/utils/Meta'
-import { customPropTypes } from '../../utils/propUtils'
+import { customPropTypes, getUnhandledProps } from '../../utils/propUtils'
 import * as sui from '../../utils/semanticUtils'
 import BreadcrumbDivider from './BreadcrumbDivider'
 import BreadcrumbSection from './BreadcrumbSection'
@@ -12,14 +12,14 @@ import BreadcrumbSection from './BreadcrumbSection'
  */
 function Breadcrumb(props) {
   const {
-    children, divider, icon, size, sections, ...rest,
+    children, divider, icon, size, sections,
   } = props
-
   const classes = cx(
     'ui',
     size,
     'breadcrumb'
   )
+  const rest = getUnhandledProps(Breadcrumb, props)
 
   if (!sections) {
     return <div className={classes} {...rest}>{children}</div>
