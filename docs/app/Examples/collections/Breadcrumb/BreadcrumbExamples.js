@@ -19,8 +19,10 @@ export default class BreadcrumbExamples extends Component {
         <ExampleSection title='Content'>
           <ComponentExample
             title='Divider'
-            description='A breadcrumb can contain a divider to show the relationship between sections, this can be
-            formatted as an icon or text.'
+            description={[
+              'A breadcrumb can contain a divider to show the relationship between sections,',
+              'this can be formatted as an icon or text.',
+            ].join(' ')}
             examplePath='collections/Breadcrumb/Content/BreadcrumbDividerExample'
           />
           <ComponentExample examplePath='collections/Breadcrumb/Content/BreadcrumbDividerPropExample' />
