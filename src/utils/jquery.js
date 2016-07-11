@@ -26,6 +26,3 @@ require('semantic-ui-css/components/checkbox')
 
 debug('Loading SUI Form plugin')
 require('semantic-ui-css/components/form')
-
-debug('Loading SUI Progress plugin')
-require('semantic-ui-css/components/progress')

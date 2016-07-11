@@ -1,4 +1,3 @@
-/* eslint-disable react/no-multi-comp */
 import _ from 'lodash'
 import React, { Children } from 'react'
 
@@ -8,6 +7,8 @@ import Image from '../elements/Image/Image'
 // ===============================================================
 // Custom PropTypes
 // ===============================================================
+const type = (...args) => Object.prototype.toString.call(...args)
+
 export const customPropTypes = {
   /**
    * Ensures children are of a set of types. Matches are made against the component _meta.name property.
@@ -80,13 +81,70 @@ export const customPropTypes = {
 
       const errors = _.compact(_.map(validators, validator => {
         if (!_.isFunction(validator)) {
-          throw new Error(`all() "validators" functions, received: ${typeof validator}.`)
+          throw new Error(
+            `all() argument "validators" should contain functions, found: ${type(validator)}.`
+          )
         }
         return validator(props, propName, componentName)
       }))
 
       // we can only return one error at a time
       return errors[0]
+    }
+  },
+
+  /**
+   * Ensure a prop adherers to at least one of the given prop type validators.
+   * @param {function[]} validators An array of propType functions.
+   */
+  any: (validators) => {
+    return (props, propName, componentName) => {
+      if (!_.isArray(validators)) {
+        throw new Error([
+          'Invalid argument supplied to all, expected an instance of array.',
+          `See ${componentName} prop \`${propName}\`.`,
+        ].join(' '))
+      }
+
+      const errors = _.map(validators, validator => {
+        if (!_.isFunction(validator)) {
+          throw new Error(
+            `any() argument "validators" should contain functions, found: ${type(validator)}.`
+          )
+        }
+        return validator(props, propName, componentName)
+      })
+
+      // if no validator returned undefined (no error)
+      // return the first error found
+      if (!_.some(errors, _.isUndefined)) {
+        return _.find(errors, error => !_.isUndefined(error))
+      }
+    }
+  },
+
+  /**
+   * Define prop dependencies by requiring other props.
+   * @param {string[]} requiredProps An array of required prop names.
+   */
+  require: (requiredProps) => {
+    return (props, propName, componentName) => {
+      if (!_.isArray(requiredProps)) {
+        throw new Error([
+          'Invalid `requiredProps` argument supplied to require, expected an instance of array.'
+            ` See ${componentName} prop \`${propName}\`.`,
+        ].join(''))
+      }
+
+      // do not require requiredProps if the prop does not exist in props
+      if (!_.has(props, propName)) return
+
+      const missingRequired = requiredProps.filter(required => !_.has(props, required))
+      if (!_.isEmpty(missingRequired)) {
+        return new Error(
+          `\`${componentName}\` prop \`${propName}\` requires props: \`${missingRequired.join('`, `')}\`.`,
+        )
+      }
     }
   },
 }

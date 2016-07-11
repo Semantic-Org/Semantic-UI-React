@@ -55,7 +55,7 @@ DropdownItem.propTypes = {
   /** Style as the currently chosen item. */
   active: PropTypes.bool,
 
-  /** Additional className. */
+  /** Primary content. */
   children: PropTypes.node,
 
   /** Additional className. */

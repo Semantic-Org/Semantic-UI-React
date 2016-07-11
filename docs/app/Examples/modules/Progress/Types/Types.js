@@ -16,6 +16,11 @@ export default class ProgressTypesExamples extends Component {
           description='An indicating progress bar visually indicates the current level of progress of a task.'
           examplePath='modules/Progress/Types/Indicating'
         />
+        <ComponentExample
+          title='Auto Success'
+          description='A progress bar can automatically trigger the success state when progress completes.'
+          examplePath='modules/Progress/Types/AutoSuccess'
+        />
       </ExampleSection>
     )
   }

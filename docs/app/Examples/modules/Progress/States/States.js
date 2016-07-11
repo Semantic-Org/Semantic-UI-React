@@ -8,7 +8,7 @@ export default class ProgressStatesExamples extends Component {
     return (
       <ExampleSection title='States'>
         <Message className='info'>
-          Semantic UI state classes <code>success</code>, <code>warning</code>, and <code>error</code>
+          Semantic UI states <code>success</code>, <code>warning</code>, and <code>error</code>
           {' '}are only retained at 100% completion.
         </Message>
         <ComponentExample

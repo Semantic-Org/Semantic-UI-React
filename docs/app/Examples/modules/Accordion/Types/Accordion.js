@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Accordion, Icon } from 'stardust'
 
-export default class AccordionStyledExample extends Component {
+export default class AccordionAccordionExample extends Component {
   render() {
     return (
       <Accordion>
