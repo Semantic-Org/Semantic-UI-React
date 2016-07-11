@@ -12,13 +12,14 @@ export default class ComponentExample extends Component {
     children: PropTypes.node,
     description: PropTypes.string,
     examplePath: PropTypes.string.isRequired,
+    exampleSrc: PropTypes.node,
     title: PropTypes.string,
   };
 
   constructor(props, context) {
     super(props, context)
     this.state = { showCode: false }
-    this.fileContents = require(`!raw!docs/app/Examples/${props.examplePath}`)
+    this.fileContents = props.exampleSrc || require(`!raw!docs/app/Examples/${props.examplePath}`)
     this.component = exampleContext(`./${props.examplePath}.js`).default
     // 'elements/Button/Types/Button' => #Button-Types-Button
     this.anchor = props.examplePath.split('/').slice(1).join('-')
