@@ -13,7 +13,7 @@ export default class HeaderColoredExample extends Component {
         <Header.H4 color='teal'>Teal</Header.H4>
         <Header.H4 color='blue'>Blue</Header.H4>
         <Header.H4 color='purple'>Purple</Header.H4>
-        <Header.H4 color='violent'>Violent</Header.H4>
+        <Header.H4 color='violet'>Violet</Header.H4>
         <Header.H4 color='pink'>Pink</Header.H4>
         <Header.H4 color='brown'>Brown</Header.H4>
         <Header.H4 color='grey'>Grey</Header.H4>

@@ -1,4 +1,5 @@
 # Stardust
+[![Gitter](https://img.shields.io/badge/gitter-join_chat-1dce73.svg?logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB4PSIwIiB5PSI1IiBmaWxsPSIjZmZmIiB3aWR0aD0iMSIgaGVpZ2h0PSI1Ii8%2BPHJlY3QgeD0iMiIgeT0iNiIgZmlsbD0iI2ZmZiIgd2lkdGg9IjEiIGhlaWdodD0iNyIvPjxyZWN0IHg9IjQiIHk9IjYiIGZpbGw9IiNmZmYiIHdpZHRoPSIxIiBoZWlnaHQ9IjciLz48cmVjdCB4PSI2IiB5PSI2IiBmaWxsPSIjZmZmIiB3aWR0aD0iMSIgaGVpZ2h0PSI0Ii8%2BPC9zdmc%2B&logoWidth=8&style=flat-square&maxAge=2592000)](https://gitter.im/TechnologyAdvice/stardust)
 [![Circle CI](https://img.shields.io/circleci/project/TechnologyAdvice/stardust/master.svg?style=flat-square)](https://circleci.com/gh/TechnologyAdvice/stardust/tree/master)
 [![Codecov](https://img.shields.io/codecov/c/github/TechnologyAdvice/stardust/master.svg?style=flat-square)](https://codecov.io/gh/TechnologyAdvice/stardust)
 [![Code Climate](https://img.shields.io/codeclimate/github/TechnologyAdvice/stardust.svg?style=flat-square)](https://codeclimate.com/github/TechnologyAdvice/stardust)
@@ -58,10 +59,6 @@ export default class TryStardust extends Component {
 
   <!-- SUI CSS -->
   <link href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/semantic.css" rel="stylesheet">
-
-  <!-- Temporary script dependencies until we're done removing jQuery -->
-  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/semantic.js"></script>
 </head>
 <body>
   <script src="bundle.js"></script>
@@ -100,7 +97,7 @@ Each of these issues includes a list of components and more information on how y
 
 ### New Components
 
-There is an [issue][14] for every missing component.  They are all labeled `enhancement` `help wanted` and we're accepting PRs for these.
+There is an issue for every missing component.  They are all labeled [`enhancement` `help wanted`][17] and we're accepting PRs for these.
 
 Be sure to check out the above migrations before embarking on a new component.  All new components should be written in accordance with the migrations above.
 
@@ -124,7 +121,7 @@ Be sure to check out the above migrations before embarking on a new component.  
 | x Button        | _ Breadcrumb    | _ Advertisement | x Accordion     | x Form Validation  |
 | x Container     | x Form          | _ Card          | x Checkbox      | *API (NA)*         |
 | x Divider       | x Grid          | _ Comment       | _ Dimmer        | *Visibility (NA)*  |
-| _ Flag          | x Menu          | _ Feed          | x Dropdown      |                    |
+| x Flag          | x Menu          | _ Feed          | x Dropdown      |                    |
 | x Header        | x Message       | x Item          | _ Embed         |                    |
 | x Icon          | x Table         | x Statistic     | x Modal         |                    |
 | x Image         |                 |                 | _ Nag           |                    |
@@ -150,14 +147,14 @@ npm run release:patch
 
 ## Credit
 
-Originally created with :heart: at [TechnologyAdvice][9].  A ridiculous [place to work][15].
+Originally created with :heart: at [TechnologyAdvice][9], a ridiculous [place to work][16].
 
 [1]: https://github.com/TechnologyAdvice/stardust/blob/master/CONTRIBUTING.md
 [2]: https://technologyadvice.github.io/stardust/
 [3]: https://facebook.github.io/react/
-[4]: https://github.com/TechnologyAdvice/stardust/blob/master/ROADMAP.md
+[4]: #
 [5]: http://semantic-ui.com/
-[6]: https://github.com/TechnologyAdvice/stardust/blob/master/ROADMAP.md#v1.0
+[6]: https://github.com/TechnologyAdvice/stardust/milestone/1
 [7]: https://github.com/webpack/webpack-dev-server/
 [8]: https://github.com/TechnologyAdvice/stardust/issues/243
 [9]: https://github.com/TechnologyAdvice
@@ -167,4 +164,5 @@ Originally created with :heart: at [TechnologyAdvice][9].  A ridiculous [place t
 [13]: https://webpack.github.io
 [14]: https://github.com/TechnologyAdvice/stardust/issues
 [15]: https://github.com/TechnologyAdvice/stardust/issues/269
-[16]: https://github.com/TechnologyAdvice/careers
+[16]: http://technologyadvice.com/careers
+[17]: https://github.com/TechnologyAdvice/stardust/issues?q=is%3Aopen+is%3Aissue+label%3A%22help+wanted%22+label%3Aenhancement

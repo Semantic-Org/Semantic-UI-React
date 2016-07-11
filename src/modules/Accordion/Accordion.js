@@ -22,7 +22,10 @@ export default class Accordion extends AutoControlledComponent {
     activeIndex: PropTypes.number,
 
     /** Accordion.Title and Accordion.Content components.  Mutually exclusive with the panels prop. */
-    children: customPropTypes.mutuallyExclusive('panels'),
+    children: customPropTypes.all([
+      customPropTypes.mutuallyExclusive(['panels']),
+      PropTypes.node,
+    ]),
 
     /** Classes to add to the Accordion className. */
     className: PropTypes.string,
@@ -44,11 +47,15 @@ export default class Accordion extends AutoControlledComponent {
      * Object can optionally define an `active` key to open/close the panel.
      * Mutually exclusive with children.
      */
-    panels: PropTypes.arrayOf(PropTypes.shape({
-      active: PropTypes.bool,
-      title: PropTypes.string,
-      content: PropTypes.string,
-    })),
+    panels: customPropTypes.all([
+      customPropTypes.mutuallyExclusive(['children']),
+      PropTypes.arrayOf(PropTypes.shape({
+        active: PropTypes.bool,
+        title: PropTypes.string,
+        content: PropTypes.string,
+        onClick: PropTypes.func,
+      })),
+    ]),
 
     /** Adds some basic styling to accordion panels. */
     styled: PropTypes.bool,

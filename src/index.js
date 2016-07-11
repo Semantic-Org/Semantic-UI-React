@@ -1,3 +1,4 @@
+import './utils/jquery'
 import { deprecateComponent } from './utils/deprecate'
 
 // ----------------------------------------
@@ -37,6 +38,7 @@ export Button from './elements/Button/Button'
 export Buttons from './elements/Button/Buttons'
 export Container from './elements/Container/Container'
 export Divider from './elements/Divider/Divider'
+export Flag from './elements/Flag/Flag'
 export Header from './elements/Header/Header'
 export Icon from './elements/Icon/Icon'
 export Image from './elements/Image/Image'
