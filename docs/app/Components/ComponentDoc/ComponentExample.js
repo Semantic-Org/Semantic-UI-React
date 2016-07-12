@@ -2,6 +2,9 @@ import React, { Component, createElement, PropTypes } from 'react'
 import { Grid, Header, Icon } from 'stardust'
 import Highlight from 'react-highlight'
 import exampleContext from 'docs/app/utils/ExampleContext'
+import {
+  getUnhandledProps,
+} from 'src/utils/propUtils'
 
 /**
  * Renders a `component` and the raw `code` that produced it.
@@ -57,6 +60,7 @@ export default class ComponentExample extends Component {
     }
 
     const children = <Grid.Column>{this.props.children}</Grid.Column>
+    const rest = getUnhandledProps(ComponentExample, this.props)
 
     return (
       <Grid className='one column' style={{ marginBottom: '4em' }} id={this.anchor}>
@@ -85,7 +89,7 @@ export default class ComponentExample extends Component {
         </Grid.Column>
         {this.props.children && children}
         <Grid.Column>
-          {createElement(this.component, this.props)}
+          {createElement(this.component, rest)}
         </Grid.Column>
         {this.state.showCode && code}
       </Grid>

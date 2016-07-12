@@ -33,9 +33,6 @@ export default class IconSetExamples extends Component {
     return (
       <ExampleSection title='Icon Set'>
         An icon set contains an arbitrary number of glyphs
-        <Message className='warning'>
-          Icons serve a very similar function to text in a page. In Semantic icons receive a special tag &lt;i&gt; which allow for an abbreviated markup when sitting along-side text.
-        </Message>
         <Message>
           Semantic includes a complete port of <a href='http://fortawesome.github.io/Font-Awesome/' target='_blank'>Font Awesome 4.5.6</a> designed by <a href='http://www.twitter.com/davegandy' target='_blank'>Dave Gandy</a> for its standard icon set.
         </Message>
