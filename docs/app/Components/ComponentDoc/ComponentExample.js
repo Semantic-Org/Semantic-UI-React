@@ -80,10 +80,7 @@ export default class ComponentExample extends Component {
               <p>{this.props.description}</p>
             </Grid.Column>
             <Grid.Column width={4} className='right aligned'>
-              <Button className='basic mini labeled icon' onClick={this.toggleShowCode}>
-                code
-                <Icon name='code' />
-              </Button>
+              <Icon name='code link' color='grey' onClick={this.toggleShowCode} style={codeIconStyle} />
             </Grid.Column>
           </Grid>
         </Grid.Column>
