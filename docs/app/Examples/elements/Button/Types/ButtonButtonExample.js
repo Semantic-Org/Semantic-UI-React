@@ -4,7 +4,9 @@ import { Button } from 'stardust'
 export default class ButtonButtonExample extends Component {
   render() {
     return (
-      <Button />
+      <Button>
+        Click Here
+      </Button>
     )
   }
 }

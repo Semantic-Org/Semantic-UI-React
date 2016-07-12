@@ -10,36 +10,83 @@ import Image from '../elements/Image/Image'
 // ===============================================================
 export const customPropTypes = {
   /**
-   * Ensures children are of a set of types.
-   * Similar to `oneOfType` built-in validator
-   * @param {String[]} allowedTypes Collection of allowed Stardust component types
+   * Ensures children are of a set of types. Matches are made against the component _meta.name property.
+   * @param {String[]} allowedTypes Collection of allowed component types.
    */
   ofComponentTypes: (allowedTypes) => {
     return (props, propName, componentName) => {
-      const { children } = props
-      const disallowed = Children.map(children, child => {
+      if (propName !== 'children') {
+        throw new Error(`ofComponentTypes can only be used on the \`children\` prop, not ${propName}.`)
+      }
+      if (!_.isArray(allowedTypes)) {
+        throw new Error([
+          'Invalid argument supplied to ofComponentTypes, expected an instance of array.'
+            ` See ${componentName} prop \`${propName}\`.`,
+        ].join(''))
+      }
+      const disallowed = _.compact(Children.map(props.children, child => {
         return _.includes(allowedTypes, _.get(child, 'type._meta.name')) ? null : child
-      })
-      if (disallowed && disallowed.length !== 0) {
+      }))
+      if (!_.isEmpty(disallowed)) {
         return new Error(
           `\`${componentName}\` should only have children of type \`${allowedTypes}\`.`
         )
       }
     }
   },
+
   /**
-   * Verifies exclusivity of a given prop
-   * @param {string} exclusives property used for exclusivity check
+   * Verifies exclusivity of a given prop.
+   * @param {string[]} exclusives An array of props that cannot be used with this prop.
    */
   mutuallyExclusive: exclusives => {
     return (props, propName, componentName) => {
-      _.forEach(exclusives, exclusiveProp => {
-        if (props[propName] && props[exclusiveProp]) {
-          return new Error(
-            `\`${componentName}\` should only have one of type \`${propName}\` or \`${exclusiveProp}\` not both.`
-          )
+      if (!_.isArray(exclusives)) {
+        throw new Error([
+          'Invalid argument supplied to mutuallyExclusive, expected an instance of array.'
+            ` See ${componentName} prop \`${propName}\`.`,
+        ].join(''))
+      }
+
+      // mutually exclusive
+      const disallowed = exclusives.reduce((acc, exclusive) => {
+        if (_.has(props, propName) && _.has(props, exclusive)) {
+          return [...acc, exclusive]
         }
-      })
+        return acc
+      }, [])
+
+      if (!_.isEmpty(disallowed)) {
+        return new Error([
+          `\`${componentName}\` prop \`${propName}\` conflicts with props: \`${disallowed.join('`, `')}\`.`,
+          'They cannot be defined together, choose one or the other.',
+        ].join(' '))
+      }
+    }
+  },
+
+  /**
+   * Ensure a prop adherers to multiple prop type validators.
+   * @param {function[]} validators An array of propType functions.
+   */
+  all: (validators) => {
+    return (props, propName, componentName) => {
+      if (!_.isArray(validators)) {
+        throw new Error([
+          'Invalid argument supplied to all, expected an instance of array.',
+          `See ${componentName} prop \`${propName}\`.`,
+        ].join(' '))
+      }
+
+      const errors = _.compact(_.map(validators, validator => {
+        if (!_.isFunction(validator)) {
+          throw new Error(`all() "validators" functions, received: ${typeof validator}.`)
+        }
+        return validator(props, propName, componentName)
+      }))
+
+      // we can only return one error at a time
+      return errors[0]
     }
   },
 }
