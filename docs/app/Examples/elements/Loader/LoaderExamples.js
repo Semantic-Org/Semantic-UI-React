@@ -63,7 +63,7 @@ export default class LoaderExamples extends Component {
           <ComponentExample
             title='Inline Center'
             description='Loaders can appear inline centered with content'
-            examplePath='elements/Loader/Variations/InlineCenterLoaderExample'
+            examplePath='elements/Loader/Variations/InlineCenteredLoaderExample'
           >
             <Message>
               An active dimmer may not be clearly visible without using a "ui dimmer".
