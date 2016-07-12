@@ -129,7 +129,7 @@ Be sure to check out the above migrations before embarking on a new component.  
 | x Label         |                 |                 | x Progress      |                    |
 | x List          |                 |                 | _ Rating        |                    |
 | x Loader        |                 |                 | _ Search        |                    |
-| _ Rail          |                 |                 | _ Shape         |                    |
+| x Rail          |                 |                 | _ Shape         |                    |
 | _ Reveal        |                 |                 | _ Sidebar       |                    |
 | x Segment       |                 |                 | _ Sticky        |                    |
 | _ Step          |                 |                 | _ Tab           |                    |
