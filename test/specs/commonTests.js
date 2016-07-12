@@ -411,10 +411,6 @@ export const implementsIconProp = (Component, requiredProps = {}) => {
     it('has an Icon descendant', () => {
       wrapper.should.contain(<Icon name={iconClass} />)
     })
-
-    it('has Icon descendant with icon class name', () => {
-      wrapper.find('Icon').should.have.className(iconClass)
-    })
   }
 
   describe('icon (common)', () => {
@@ -433,11 +429,11 @@ export const implementsIconProp = (Component, requiredProps = {}) => {
 
     describe('accepts an Icon instance', () => {
       const icon = <Icon name={iconClass} />
-      assertValid(mount(<Component icon={icon} />))
+      assertValid(shallow(<Component icon={icon} />))
     })
 
     describe('accepts an icon className string', () => {
-      assertValid(mount(<Component icon={iconClass} />))
+      assertValid(shallow(<Component icon={iconClass} />))
     })
   })
 }
