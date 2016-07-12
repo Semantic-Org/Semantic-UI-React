@@ -54,4 +54,3 @@ IconGroup.propTypes = {
 }
 
 export default IconGroup
-
