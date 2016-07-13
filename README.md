@@ -37,7 +37,7 @@ npm i stardust -S
 
 **App.js**
 
-```jsx
+```js
 import React, { Component } from 'react'
 import { Button } from 'stardust'
 
@@ -118,7 +118,7 @@ Be sure to check out the above migrations before embarking on a new component.  
 
 |    Elements     |   Collections   |      Views      |     Modules     |     Behaviors      |
 |-----------------|-----------------|-----------------|-----------------|--------------------|
-| x Button        | _ Breadcrumb    | _ Advertisement | x Accordion     | x Form Validation  |
+| x Button        | x Breadcrumb    | _ Advertisement | x Accordion     | x Form Validation  |
 | x Container     | x Form          | _ Card          | x Checkbox      | *API (NA)*         |
 | x Divider       | x Grid          | _ Comment       | _ Dimmer        | *Visibility (NA)*  |
 | x Flag          | x Menu          | _ Feed          | x Dropdown      |                    |
@@ -129,7 +129,7 @@ Be sure to check out the above migrations before embarking on a new component.  
 | x Label         |                 |                 | x Progress      |                    |
 | x List          |                 |                 | _ Rating        |                    |
 | x Loader        |                 |                 | _ Search        |                    |
-| _ Rail          |                 |                 | _ Shape         |                    |
+| x Rail          |                 |                 | _ Shape         |                    |
 | _ Reveal        |                 |                 | _ Sidebar       |                    |
 | x Segment       |                 |                 | _ Sticky        |                    |
 | _ Step          |                 |                 | _ Tab           |                    |

@@ -7,7 +7,7 @@
     "complexity": [1, 10],
     "consistent-return": 0,
     "no-confusing-arrow": 0,
-    "react/sort-comp": 1,
+    "react/sort-comp": 0,
     "valid-jsdoc": 0,
     "react/jsx-curly-spacing": 0
   }

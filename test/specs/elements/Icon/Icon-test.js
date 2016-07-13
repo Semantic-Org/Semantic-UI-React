@@ -1,3 +1,4 @@
+import faker from 'faker'
 import Icon from 'src/elements/Icon/Icon'
 import IconGroup from 'src/elements/Icon/IconGroup'
 import * as common from 'test/specs/commonTests'

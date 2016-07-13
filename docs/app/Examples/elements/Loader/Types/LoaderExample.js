@@ -1,14 +1,14 @@
-import React, { Component } from 'react'
-import { Loader, Segment } from 'stardust'
+import React from 'react'
+import { Loader, Image, Segment } from 'stardust'
 
-export default class LoaderExample extends Component {
-  render() {
-    return (
-      <Segment className='very padded'>
-        <div className='ui active dimmer'>
-          <Loader active />
-        </div>
-      </Segment>
-    )
-  }
-}
+const LoaderExample = () => (
+  <Segment>
+    <div className='ui active dimmer'>
+      <Loader />
+    </div>
+
+    <Image src='http://semantic-ui.com/images/wireframe/short-paragraph.png' />
+  </Segment>
+)
+
+export default LoaderExample

@@ -116,6 +116,22 @@ describe('extending AutoControlledComponent', () => {
 
       _.each(props, (val, key) => wrapper.should.not.have.state(key, val))
     })
+
+    it('defaults "checked" to false if not present', () => {
+      consoleUtil.disableOnce()
+      TestClass.autoControlledProps.push('checked')
+
+      shallow(<TestClass />)
+        .should.have.state('checked', false)
+    })
+
+    it('defaults "value" to an empty string if not present', () => {
+      consoleUtil.disableOnce()
+      TestClass.autoControlledProps.push('value')
+
+      shallow(<TestClass />)
+        .should.have.state('value', '')
+    })
   })
 
   describe('default props', () => {

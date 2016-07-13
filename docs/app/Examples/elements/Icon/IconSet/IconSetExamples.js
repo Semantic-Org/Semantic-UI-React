@@ -1,10 +1,8 @@
-/* eslint-disable max-len */
-
 import _ from 'lodash'
 import React, { Component } from 'react'
 import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
 import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
-import { iconsByCategory as categories } from 'docs/app/utils/icons'
+import { iconsByCategory as categories } from '../../../../utils/icons'
 import { Message } from 'stardust'
 
 const template = (content, name) => (

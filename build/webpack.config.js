@@ -197,4 +197,4 @@ if (__TEST__ || argv.localModules) {
   }
 }
 
-module.exports = webpackConfig
+export default webpackConfig
