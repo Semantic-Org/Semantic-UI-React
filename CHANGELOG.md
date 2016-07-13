@@ -1,5 +1,17 @@
 # Change Log
 
+## [Unreleased](https://github.com/TechnologyAdvice/stardust/tree/HEAD)
+
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.21.0...HEAD)
+
+**Implemented enhancements:**
+
+- \<Loader /\> Component [\#180](https://github.com/TechnologyAdvice/stardust/issues/180)
+
+**Merged pull requests:**
+
+- fix\(Contributing\): typo correction [\#331](https://github.com/TechnologyAdvice/stardust/pull/331) ([kyleturco](https://github.com/kyleturco))
+
 ## [v0.21.0](https://github.com/TechnologyAdvice/stardust/tree/v0.21.0) (2016-07-11)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.20.0...v0.21.0)
 
