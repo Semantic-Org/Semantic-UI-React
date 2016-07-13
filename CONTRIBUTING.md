@@ -75,11 +75,11 @@ npm test                      // test once
 npm run test:watch            // test on file change
 
 npm run build                 // build everything
-npm run build:dist            // build dist 
+npm run build:dist            // build dist
 npm run build:docs            // build docs
 npm run build:docs-toc        // build toc for markdown files
 
-npm run deploy:docs           // deploy gh-pages doc site 
+npm run deploy:docs           // deploy gh-pages doc site
 
 npm run lint                  // lint once
 npm run lint:fix              // lint and attempt to fix
@@ -107,7 +107,7 @@ function Button(props) {
 ```
 
 Stateful components should be classes:
- 
+
 ```js
 import AutoControlledComponent from 'src/utils/AutoControlledComponent'
 
@@ -150,7 +150,7 @@ MyComponent._meta = _meta
 ```js
 class MyComponent {
   static _meta = _meta
-  
+
   render() {
     return <div>Hello World</div>
   }
@@ -165,7 +165,7 @@ Review [common tests](#common-tests) below.  You should now add the [`isConforma
 
 This is a good time to open your PR.  The component has been created, but the API and internals are not yet coded.  We prefer to collaborate on these things to minimize rework.
 
-This will also with getting early feedback and smaller faster iterations on your component.
+This will also help with getting early feedback and smaller faster iterations on your component.
 
 ### Spec out the API
 
@@ -237,7 +237,7 @@ function Segment({ size, color, basic, floated, padded }) {
 #### Testing className
 
 Use [`commonTests`](#common-tests) to test the `className` build up for each prop.  These tests will run your component through all the possible usage permutations:
- 
+
 ```js
 import * as common from 'test/specs/commonTests'
 import Segment from 'src/elements/Segment/Segment'
@@ -309,7 +309,7 @@ Attach it to the parent via static properties:
 import ListItem from './ListItem'
 
 function List() {
-  // ... 
+  // ...
 }
 
 List.Item = ListItem
@@ -340,8 +340,8 @@ Sometimes it is convenient to use props to generate markup.  Example, the [Label
 We allow props to define these minimal *component parts*:
 
 ```jsx
-<Label 
-  image='veronika.jpg' 
+<Label
+  image='veronika.jpg'
   detail='Friend'
   text='Veronica'
 />
@@ -363,7 +363,7 @@ Run tests during development with `npm run test:watch` to re-run tests on file c
 
 All PRs must meet or exceed test coverage limits before they can be merged.
 
-Every time tests run, `/coverage` information is updated.  Open `coverage/lcov/index.html` to inspect test coverage.  This interactive report will reveal areas lacking test coverage.  You can then write tests for these areas and increase coverage. 
+Every time tests run, `/coverage` information is updated.  Open `coverage/lcov/index.html` to inspect test coverage.  This interactive report will reveal areas lacking test coverage.  You can then write tests for these areas and increase coverage.
 
 ### Common Tests
 
@@ -387,7 +387,7 @@ common.propKeyOrValueToClassName()
 ````
 
 #### Usage
-  
+
 Every common test receives your component as its first argument.
 
 ```js
@@ -404,7 +404,7 @@ describe('Menu', () => {
 })
 ```
 
-The last argument to a common test is always `requiredProps`.  If your component requires certain props to render, you can pass those last: 
+The last argument to a common test is always `requiredProps`.  If your component requires certain props to render, you can pass those last:
 
 ```js
 import * as common from 'test/specs/commonTests'
@@ -440,7 +440,7 @@ TODO
 
 TODO
 
->For now, you should reference Dropdown as an example implementation.  You can also consult the comments in AutoControlledComponent.js for more background. 
+>For now, you should reference Dropdown as an example implementation.  You can also consult the comments in AutoControlledComponent.js for more background.
 
 ## Documentation
 
@@ -449,7 +449,7 @@ TODO
 - [Props](#props)
 - [Examples](#examples)
 
-Our docs are generated from doc block comments, `propTypes`, and hand written examples. 
+Our docs are generated from doc block comments, `propTypes`, and hand written examples.
 
 ### Website
 
