@@ -37,7 +37,7 @@ npm i stardust -S
 
 **App.js**
 
-```jsx
+```js
 import React, { Component } from 'react'
 import { Button } from 'stardust'
 
