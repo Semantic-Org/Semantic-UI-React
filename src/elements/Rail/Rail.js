@@ -27,12 +27,12 @@ function Rail(props) {
 Rail._meta = {
   library: META.library.semanticUI,
   name: 'Rail',
-  type: META.type.element,
   props: {
     close: ['very'],
     position: sui.floats,
     size: _.without(sui.sizes, 'mini', 'small', 'medium', 'big'),
   },
+  type: META.type.element,
 }
 
 Rail.propTypes = {
