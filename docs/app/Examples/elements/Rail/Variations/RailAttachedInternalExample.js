@@ -1,18 +1,16 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Rail, Segment } from 'stardust'
 
-export default class RailDividingInternalExample extends Component {
-  render() {
-    return (
-      <Segment>
-        <Rail attached internal position='left'>
-          <Segment>Left Rail Content</Segment>
-        </Rail>
+const RailAttachedInternalExample = () => (
+  <Segment>
+    <Rail attached internal position='left'>
+      <Segment>Left Rail Content</Segment>
+    </Rail>
 
-        <Rail attached internal position='right'>
-          <Segment>Right Rail Content</Segment>
-        </Rail>
-      </Segment>
-    )
-  }
-}
+    <Rail attached internal position='right'>
+      <Segment>Right Rail Content</Segment>
+    </Rail>
+  </Segment>
+)
+
+export default RailAttachedInternalExample

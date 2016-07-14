@@ -1,9 +1,7 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Grid, Rail, Segment } from 'stardust'
 
-export default class RailSizeExample extends Component {
-  render() {
-    return (
+const RailSizeExample = () => (
       <Grid className='three column'>
         <Grid.Column className='centered'>
           <Segment>
@@ -20,5 +18,5 @@ export default class RailSizeExample extends Component {
         </Grid.Column>
       </Grid>
     )
-  }
-}
+
+export default RailSizeExample

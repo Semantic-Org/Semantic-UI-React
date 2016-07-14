@@ -3,7 +3,7 @@ import React, { PropTypes } from 'react'
 import cx from 'classnames'
 
 import * as sui from '../../utils/semanticUtils'
-import { customPropTypes, getUnhandledProps, useKeyOnly, useKeyOrValueAndKey } from '../../utils/propUtils'
+import { getUnhandledProps, useKeyOnly, useKeyOrValueAndKey } from '../../utils/propUtils'
 import META from '../../utils/Meta'
 
 function Rail(props) {
@@ -36,38 +36,32 @@ Rail._meta = {
 }
 
 Rail.propTypes = {
-  /** Show that the Rail is attached. */
+  /** A rail can appear attached to the main viewport. */
   attached: PropTypes.bool,
 
   /** Classes that will be added to the Rail className. */
   className: PropTypes.string,
 
-  /** Show that the Rail is close. */
+  /** A rail can appear closer to the main viewport. */
   close: PropTypes.oneOfType([
     PropTypes.bool,
     PropTypes.oneOf(Rail._meta.props.close),
   ]),
 
   /** Primary content of the Rail. */
-  children: customPropTypes.ofComponentTypes([
-    'Segment',
-  ]),
+  children: PropTypes.node,
 
-  /** Show that the Rail is dividing. */
+  /** A rail can create a division between itself and a container. */
   dividing: PropTypes.bool,
 
-  /** Show that the Rail is internal. */
+  /** A rail can attach itself to the inside of a container. */
   internal: PropTypes.bool,
 
-  /** Show that the Rail is inverted. */
-  inverted: PropTypes.bool,
-
-  /** Shows Rail's position. */
+  /** A rail can be presented on the left or right side of a container. */
   position: PropTypes.oneOf(Rail._meta.props.position).isRequired,
 
-  /** Size of the Rail. */
+  /** A rail can have different sizes. */
   size: PropTypes.oneOf(Rail._meta.props.size),
 }
 
 export default Rail
-
