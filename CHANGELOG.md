@@ -1,5 +1,21 @@
 # Change Log
 
+## [v0.21.1](https://github.com/TechnologyAdvice/stardust/tree/v0.21.1) (2016-07-13)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.21.0...v0.21.1)
+
+**Implemented enhancements:**
+
+- \<Loader /\> Component [\#180](https://github.com/TechnologyAdvice/stardust/issues/180)
+
+**Fixed bugs:**
+
+- Setting localStorage throws in Safari private mode [\#332](https://github.com/TechnologyAdvice/stardust/issues/332)
+
+**Merged pull requests:**
+
+- Fix Safari private mode localStorage [\#333](https://github.com/TechnologyAdvice/stardust/pull/333) ([levithomason](https://github.com/levithomason))
+- fix\(Contributing\): typo correction [\#331](https://github.com/TechnologyAdvice/stardust/pull/331) ([kyleturco](https://github.com/kyleturco))
+
 ## [v0.21.0](https://github.com/TechnologyAdvice/stardust/tree/v0.21.0) (2016-07-11)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.20.0...v0.21.0)
 
