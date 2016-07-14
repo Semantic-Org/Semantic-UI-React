@@ -3,7 +3,7 @@ import { Icon, List } from 'stardust'
 
 export default class ListDescriptionExample extends Component {
   render() {
-    const mapIcon = <Icon className='map marker' />
+    const mapIcon = <Icon name='map marker' />
 
     return (
       <List>

@@ -408,10 +408,9 @@ export const implementsAlignedProp = (Component, requiredProps = {}) => {
 export const implementsIconProp = (Component, requiredProps = {}) => {
   const iconClass = faker.hacker.noun()
   const assertValid = (wrapper) => {
-    wrapper.should.have.className('icon')
-    wrapper.should.have.descendants('Icon')
-    wrapper.find('Icon')
-      .should.have.className(iconClass)
+    it('has an Icon descendant', () => {
+      wrapper.should.contain(<Icon name={iconClass} />)
+    })
   }
 
   describe('icon (common)', () => {
@@ -428,12 +427,12 @@ export const implementsIconProp = (Component, requiredProps = {}) => {
         .should.match('i')
     })
 
-    it('accepts an Icon instance', () => {
-      const icon = <Icon className={iconClass} />
+    describe('accepts an Icon instance', () => {
+      const icon = <Icon name={iconClass} />
       assertValid(shallow(<Component icon={icon} />))
     })
 
-    it('accepts an icon className string', () => {
+    describe('accepts an icon className string', () => {
       assertValid(shallow(<Component icon={iconClass} />))
     })
   })

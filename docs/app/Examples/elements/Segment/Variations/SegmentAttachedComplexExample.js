@@ -24,7 +24,7 @@ export default class SegmentAttachedComplexExample extends Component {
           Humans don't think of lions as being like cats, but they are.
         </Segment>
         <Message className='bottom attached warning'>
-          <Icon className='warning' />
+          <Icon name='warning' />
           You've reached the end of this content segment!
         </Message>
       </div>

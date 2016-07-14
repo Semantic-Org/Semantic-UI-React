@@ -791,7 +791,7 @@ export default class Dropdown extends Component {
         {this.renderLabels()}
         {this.renderSearchInput()}
         {this.renderText()}
-        <Icon className={'dropdown'} />
+        <Icon name={'dropdown'} />
         <DropdownMenu className={menuClasses} ref='menu'>
           {this.renderOptions()}
         </DropdownMenu>

@@ -6,13 +6,13 @@ export default class ButtonIconButtonsExample extends Component {
     return (
       <Buttons>
         <Button className='icon'>
-          <Icon className='save' />
+          <Icon name='save' />
         </Button>
         <Button className='icon'>
-          <Icon className='delete' />
+          <Icon name='delete' />
         </Button>
         <Button className='icon'>
-          <Icon className='edit' />
+          <Icon name='edit' />
         </Button>
       </Buttons>
     )

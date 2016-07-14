@@ -61,7 +61,7 @@ export default class Input extends Component {
         {isLeftLabeled && labelChildren}
         {isLeftAction && actionChildren}
         <input {...props} type={type} />
-        {icon && <Icon className={icon} />}
+        {icon && <Icon name={icon} />}
         {isRightLabeled && labelChildren}
         {isRightAction && actionChildren}
       </div>
