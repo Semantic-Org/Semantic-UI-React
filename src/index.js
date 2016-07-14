@@ -52,6 +52,7 @@ export const ListItem = deprecateComponent('ListItem', 'Use "List.Item" instead.
 
 export Segment from './elements/Segment/Segment'
 export Segments from './elements/Segment/SegmentSegments'
+export Rail from './elements/Rail/Rail'
 
 // ----------------------------------------
 // Modules
