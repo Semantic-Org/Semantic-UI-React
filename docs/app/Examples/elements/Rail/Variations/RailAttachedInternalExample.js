@@ -1,8 +1,10 @@
 import React from 'react'
-import { Rail, Segment } from 'stardust'
+import { Image, Rail, Segment } from 'stardust'
 
 const RailAttachedInternalExample = () => (
   <Segment>
+    <Image src='http://semantic-ui.com/images/wireframe/paragraph.png' />
+
     <Rail attached internal position='left'>
       <Segment>Left Rail Content</Segment>
     </Rail>

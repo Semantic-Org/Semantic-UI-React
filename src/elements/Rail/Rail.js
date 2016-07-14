@@ -6,6 +6,9 @@ import * as sui from '../../utils/semanticUtils'
 import { getUnhandledProps, useKeyOnly, useKeyOrValueAndKey } from '../../utils/propUtils'
 import META from '../../utils/Meta'
 
+/**
+ * A rail is used to show accompanying content outside the boundaries of the main view of a site.
+ */
 function Rail(props) {
   const { attached, className, close, children, dividing, internal, position, size } = props
   const classes = cx(

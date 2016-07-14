@@ -1,10 +1,12 @@
 import React from 'react'
-import { Grid, Rail, Segment } from 'stardust'
+import { Image, Grid, Rail, Segment } from 'stardust'
 
 const RailCloseExample = () => (
   <Grid className='three column'>
     <Grid.Column className='centered'>
       <Segment>
+        <Image src='http://semantic-ui.com/images/wireframe/paragraph.png' />
+
         <Rail close position='left'>
           <Segment>Left Rail Content</Segment>
         </Rail>
@@ -12,8 +14,6 @@ const RailCloseExample = () => (
         <Rail close position='right'>
           <Segment>Right Rail Content</Segment>
         </Rail>
-
-        Segment content
       </Segment>
     </Grid.Column>
   </Grid>

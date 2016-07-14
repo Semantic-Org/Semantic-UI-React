@@ -1,8 +1,10 @@
 import React from 'react'
-import { Rail, Segment } from 'stardust'
+import { Image, Rail, Segment } from 'stardust'
 
 const RailInternalExample = () => (
   <Segment className='center aligned'>
+    <Image src='http://semantic-ui.com/images/wireframe/paragraph.png' />
+
     <Rail internal position='left'>
       <Segment>Left Rail Content</Segment>
     </Rail>
@@ -10,8 +12,6 @@ const RailInternalExample = () => (
     <Rail internal position='right'>
       <Segment>Right Rail Content</Segment>
     </Rail>
-
-    Segment content
   </Segment>
 )
 

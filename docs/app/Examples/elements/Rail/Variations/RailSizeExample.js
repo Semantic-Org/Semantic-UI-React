@@ -1,22 +1,22 @@
 import React from 'react'
-import { Grid, Rail, Segment } from 'stardust'
+import { Image, Grid, Rail, Segment } from 'stardust'
 
 const RailSizeExample = () => (
-      <Grid className='three column'>
-        <Grid.Column className='centered'>
-          <Segment>
-            <Rail size='mini' position='left'>
-              <Segment>Left Rail Content</Segment>
-            </Rail>
+  <Grid className='three column'>
+    <Grid.Column className='centered'>
+      <Segment>
+        <Image src='http://semantic-ui.com/images/wireframe/paragraph.png' />
 
-            <Rail size='mini' position='right'>
-              <Segment>Right Rail Content</Segment>
-            </Rail>
+        <Rail size='tiny' position='left'>
+          <Segment>Left Rail Content</Segment>
+        </Rail>
 
-            Segment content
-          </Segment>
-        </Grid.Column>
-      </Grid>
-    )
+        <Rail size='tiny' position='right'>
+          <Segment>Right Rail Content</Segment>
+        </Rail>
+      </Segment>
+    </Grid.Column>
+  </Grid>
+)
 
 export default RailSizeExample
