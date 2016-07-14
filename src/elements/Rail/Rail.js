@@ -33,7 +33,7 @@ Rail._meta = {
   props: {
     close: ['very'],
     position: sui.floats,
-    size: _.without(sui.sizes, 'mini', 'small', 'medium', 'big'),
+    size: _.without(sui.sizes, 'medium'),
   },
   type: META.type.element,
 }
