@@ -247,7 +247,9 @@ export const isConformant = (Component, requiredProps = {}) => {
       })
     })
 
-    if (META.isSemanticUI(Component)) {
+    // TODO: do not exclude headers once updating their APIs
+    const isHeader = /(header|h1|h2|h3|h4|h5|h6)/i.test(componentClassName)
+    if (META.isSemanticUI(Component) && !isHeader) {
       it(`has the Semantic UI className "${componentClassName}"`, () => {
         render(<Component {...requiredProps} />)
           .should.have.className(componentClassName)
