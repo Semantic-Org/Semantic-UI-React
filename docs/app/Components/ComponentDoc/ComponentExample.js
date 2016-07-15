@@ -1,7 +1,7 @@
 import React, { Component, createElement, PropTypes } from 'react'
 import { Grid, Header, Icon } from 'stardust'
 import Highlight from 'react-highlight'
-import exampleContext from 'docs/app/utils/ExampleContext'
+import { exampleContext } from 'docs/app/utils'
 
 /**
  * Renders a `component` and the raw `code` that produced it.
