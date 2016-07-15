@@ -1,17 +1,14 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Breadcrumb } from 'stardust'
 
-export default class BreadcrumbDividerPropExample extends Component {
+const sections = [
+  { text: 'Home', link: true },
+  { text: 'Registration', link: true },
+  { text: 'Personal Information', active: true },
+]
 
-  sections = [
-    { text: 'Home', link: true },
-    { text: 'Registration', link: true },
-    { text: 'Personal Information', active: true },
-  ];
+const BreadcrumbDividerPropExample = () => (
+  <Breadcrumb divider='/' sections={sections} />
+)
 
-  render() {
-    return (
-      <Breadcrumb divider='/' sections={this.sections} />
-    )
-  }
-}
+export default BreadcrumbDividerPropExample

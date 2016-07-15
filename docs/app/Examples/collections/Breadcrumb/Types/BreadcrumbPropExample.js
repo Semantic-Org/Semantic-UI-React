@@ -1,17 +1,14 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Breadcrumb } from 'stardust'
 
-export default class BreadcrumbPropExample extends Component {
+const sections = [
+  { text: 'Home', link: true },
+  { text: 'Store', link: true },
+  { text: 'T-Shirt', active: true },
+]
 
-  sections = [
-    { text: 'Home', link: true },
-    { text: 'Store', link: true },
-    { text: 'T-Shirt', active: true },
-  ];
+const BreadcrumbPropExample = () => (
+  <Breadcrumb icon='right angle' sections={sections} />
+)
 
-  render() {
-    return (
-      <Breadcrumb icon='right angle' sections={this.sections} />
-    )
-  }
-}
+export default BreadcrumbPropExample
