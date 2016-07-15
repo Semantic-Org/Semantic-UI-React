@@ -18,7 +18,10 @@ function BreadcrumbDivider(props) {
   const rest = getUnhandledProps(BreadcrumbDivider, props)
 
   if (icon) {
-    return <Icon className={classes} name={icon} {...rest} />
+    // TODO: After update <Icon> to API replace with this code:
+    // return <Icon className={classes} name={icon} {...rest} />
+
+    return <Icon className={[icon, classes].join(' ')} {...rest} />
   }
 
   return <div className={classes} {...rest}>{children}</div>
