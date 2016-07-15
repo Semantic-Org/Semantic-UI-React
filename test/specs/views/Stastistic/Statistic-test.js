@@ -1,28 +1,24 @@
-import Statistic from 'src/views/Statistic/Statistic'
-import StatisticLabel from 'src/views/Statistic/StatisticLabel'
-import StatisticValue from 'src/views/Statistic/StatisticValue'
-import StatisticStatistics from 'src/views/Statistic/StatisticStatistics'
+import React from 'react'
 import * as common from 'test/specs/commonTests'
+
+import Statistic from 'src/views/Statistic/Statistic'
 
 describe('Statistic', () => {
   common.isConformant(Statistic)
-  common.hasUIClassName(StatisticStatistics)
+  common.hasUIClassName(Statistic)
+  // TODO: Add value and label
+  // common.hasSubComponents()
   common.rendersChildren(Statistic)
-  common.hasSubComponents(Statistic, [StatisticLabel, StatisticValue, StatisticStatistics])
+
+  common.propValueOnlyToClassName(Statistic, 'color')
+  common.propKeyAndValueToClassName(Statistic, 'floated')
+  common.propKeyOnlyToClassName(Statistic, 'horizontal')
+  common.propKeyOnlyToClassName(Statistic, 'inverted')
+  common.propValueOnlyToClassName(Statistic, 'size')
+
+  it('renders an div element', () => {
+    shallow(<Statistic />)
+      .should.have.tagName('div')
+  })
 })
 
-describe('StatisticLabel', () => {
-  common.isConformant(Statistic)
-  common.rendersChildren(Statistic)
-})
-
-describe('StatisticValue', () => {
-  common.isConformant(Statistic)
-  common.rendersChildren(Statistic)
-})
-
-describe('Statistics', () => {
-  common.isConformant(StatisticStatistics)
-  common.hasUIClassName(StatisticStatistics)
-  common.rendersChildren(StatisticStatistics)
-})
