@@ -33,7 +33,7 @@ Statistic._meta = {
   props: {
     color: sui.colors,
     floated: sui.floats,
-    size: _.without(sui.sizes, 'medium'),
+    size: _.without(sui.sizes, 'big', 'massive', 'medium'),
   },
 }
 
