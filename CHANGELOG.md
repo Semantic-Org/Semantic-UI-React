@@ -1,5 +1,13 @@
 # Change Log
 
+## [Unreleased](https://github.com/TechnologyAdvice/stardust/tree/HEAD)
+
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.22.0...HEAD)
+
+**Merged pull requests:**
+
+- Sort docs, use functional META [\#336](https://github.com/TechnologyAdvice/stardust/pull/336) ([levithomason](https://github.com/levithomason))
+
 ## [v0.22.0](https://github.com/TechnologyAdvice/stardust/tree/v0.22.0) (2016-07-14)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.21.1...v0.22.0)
 
