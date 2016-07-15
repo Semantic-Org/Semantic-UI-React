@@ -2,10 +2,12 @@ import _ from 'lodash'
 import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
-import { getUnhandledProps, useKeyOnly, useValueAndKey } from '../../utils/propUtils'
+import { customPropTypes, getUnhandledProps, useKeyOnly, useValueAndKey } from '../../utils/propUtils'
 import * as sui from '../../utils/semanticUtils'
 import META from '../../utils/Meta'
-// import StatisticGroup from './StatisticGroup'
+import StatisticGroup from './StatisticGroup'
+import StatisticLabel from './StatisticLabel'
+import StatisticValue from './StatisticValue'
 
 function Statistic(props) {
   const { children, className, color, floated, horizontal, inverted, size } = props
@@ -37,7 +39,10 @@ Statistic._meta = {
 
 Statistic.propTypes = {
   /** Primary content of the Statistic. */
-  children: PropTypes.node,
+  children: customPropTypes.ofComponentTypes([
+    'StatisticLabel',
+    'StatisticValue',
+  ]),
 
   /** Classes that will be added to the Statistic className. */
   className: PropTypes.string,
@@ -58,6 +63,8 @@ Statistic.propTypes = {
   size: PropTypes.oneOf(Statistic._meta.props.size),
 }
 
-// Statistic.Group = StatisticGroup
+Statistic.Group = StatisticGroup
+Statistic.Label = StatisticLabel
+Statistic.Value = StatisticValue
 
 export default Statistic
