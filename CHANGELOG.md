@@ -1,12 +1,61 @@
 # Change Log
 
-## [Unreleased](https://github.com/TechnologyAdvice/stardust/tree/HEAD)
+## [v0.22.0](https://github.com/TechnologyAdvice/stardust/tree/v0.22.0) (2016-07-14)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.21.1...v0.22.0)
 
-[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.18.0...HEAD)
+**Implemented enhancements:**
+
+- \<Rail /\> Component [\#181](https://github.com/TechnologyAdvice/stardust/issues/181)
+
+**Merged pull requests:**
+
+- Add Rail component [\#330](https://github.com/TechnologyAdvice/stardust/pull/330) ([layershifter](https://github.com/layershifter))
+
+## [v0.21.1](https://github.com/TechnologyAdvice/stardust/tree/v0.21.1) (2016-07-13)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.21.0...v0.21.1)
+
+**Implemented enhancements:**
+
+- \<Loader /\> Component [\#180](https://github.com/TechnologyAdvice/stardust/issues/180)
+
+**Fixed bugs:**
+
+- Setting localStorage throws in Safari private mode [\#332](https://github.com/TechnologyAdvice/stardust/issues/332)
+
+**Merged pull requests:**
+
+- Fix Safari private mode localStorage [\#333](https://github.com/TechnologyAdvice/stardust/pull/333) ([levithomason](https://github.com/levithomason))
+- fix\(Contributing\): typo correction [\#331](https://github.com/TechnologyAdvice/stardust/pull/331) ([kyleturco](https://github.com/kyleturco))
+
+## [v0.21.0](https://github.com/TechnologyAdvice/stardust/tree/v0.21.0) (2016-07-11)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.20.0...v0.21.0)
+
+**Implemented enhancements:**
+
+- Add Loader component [\#328](https://github.com/TechnologyAdvice/stardust/pull/328) ([layershifter](https://github.com/layershifter))
+
+## [v0.20.0](https://github.com/TechnologyAdvice/stardust/tree/v0.20.0) (2016-07-11)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.19.0...v0.20.0)
+
+**Merged pull requests:**
+
+- Progress without jQuery [\#324](https://github.com/TechnologyAdvice/stardust/pull/324) ([levithomason](https://github.com/levithomason))
+
+## [v0.19.0](https://github.com/TechnologyAdvice/stardust/tree/v0.19.0) (2016-07-10)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.18.0...v0.19.0)
 
 **Implemented enhancements:**
 
 - \<Flag /\> Component [\#177](https://github.com/TechnologyAdvice/stardust/issues/177)
+
+**Fixed bugs:**
+
+- Form: Uncaught TypeError: this.element.form is not a function [\#326](https://github.com/TechnologyAdvice/stardust/issues/326)
+- Temporarily bundle jQuery and SUI JS [\#327](https://github.com/TechnologyAdvice/stardust/pull/327) ([levithomason](https://github.com/levithomason))
+
+**Closed issues:**
+
+- Gitter [\#329](https://github.com/TechnologyAdvice/stardust/issues/329)
 
 ## [v0.18.0](https://github.com/TechnologyAdvice/stardust/tree/v0.18.0) (2016-07-05)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.17.0...v0.18.0)

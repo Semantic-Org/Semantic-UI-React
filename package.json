@@ -1,6 +1,6 @@
 {
   "name": "stardust",
-  "version": "0.18.0",
+  "version": "0.22.0",
   "description": "The official Semantic-UI-React integration.",
   "main": "dist/index.js",
   "files": [
@@ -47,7 +47,9 @@
     "bluebird": "^3.3.4",
     "classnames": "^2.1.5",
     "debug": "^2.2.0",
-    "lodash": "^4.6.1"
+    "jquery": "^3.1.0",
+    "lodash": "^4.6.1",
+    "semantic-ui-css": "^2.2.1"
   },
   "devDependencies": {
     "babel-cli": "^6.5.1",
@@ -85,7 +87,6 @@
     "gulp-load-plugins": "^1.2.2",
     "gulp-plumber": "^1.0.1",
     "gulp-util": "^3.0.6",
-    "highlight.js": "9.3.0",
     "history": "^2.1.2",
     "html-webpack-plugin": "^2.17.0",
     "imports-loader": "^0.6.4",
@@ -116,7 +117,6 @@
     "require-dir": "^0.3.0",
     "rimraf": "^2.5.2",
     "sass-loader": "^3.2.0",
-    "semantic-ui-css": "^2.1.8",
     "simulant": "^0.2.1",
     "sinon": "^1.17.3",
     "sinon-chai": "^2.8.0",
@@ -130,7 +130,6 @@
     "yargs": "^4.3.2"
   },
   "peerDependencies": {
-    "jquery": "^2.1.4",
     "react": ">=0.14.0 <= 15",
     "react-dom": ">=0.14.0 <= 15"
   }

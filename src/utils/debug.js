@@ -3,7 +3,15 @@ const noop = () => undefined
 
 if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'test') {
   debug = require('debug')
-  localStorage.debug = localStorage.debug || 'stardust:*'
+  // Safari private mode throws when writing to localStorage
+  // https://github.com/TechnologyAdvice/stardust/issues/332
+  try {
+    localStorage.debug = localStorage.debug || 'stardust:*'
+  } catch (err) {
+    /* eslint-disable no-console */
+    console.log('Stardust debug disabled. The browser could not write to localStorage.', err)
+    /* eslint-enable no-console */
+  }
 } else {
   debug = () => noop
 }
