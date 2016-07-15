@@ -49,14 +49,20 @@ node -v
 v6.2.1
 ```
 
-### Clone & Install
+### Fork, Clone & Install
 
-Start by cloning this repo and installing dependencies:
+Start by [forking stardust][12] to your GitHub account.  Then clone your fork and install dependencies:
 
 ```sh
-git clone git@github.com:TechnologyAdvice/stardust.git
+git clone git@github.com:<your-user>/stardust.git
 cd stardust
 npm install
+```
+
+Add our repo as a git remote so you can pull/rebase your fork with our latest updates:
+
+```
+git remote add upstream git@github.com:TechnologyAdvice/stardust.git
 ```
 
 ### Commit Messages
@@ -526,3 +532,4 @@ Adding documentation for new components is a bit tedious.  The best way to do th
 [9]: http://semantic-ui.com/introduction/glossary.html
 [10]: http://semantic-ui.com/elements/label.html
 [11]: https://nodejs.org/
+[12]: https://github.com/TechnologyAdvice/stardust#fork-destination-box
