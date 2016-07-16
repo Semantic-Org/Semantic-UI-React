@@ -20,7 +20,6 @@ const ComponentDoc = ({ _meta }) => {
         docgen={docgen}
         docPath={docPath}
       />
-      <ComponentProps props={docgen.props} />
       {docgen.props && <ComponentProps props={docgen.props} />}
       <ComponentExamples name={_meta.name} />
     </div>
