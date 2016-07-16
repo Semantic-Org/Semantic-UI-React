@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Loader, Segment } from 'stardust'
 
-export default class TextLoaderExamples extends Component {
+export default class TextLoaderExample extends Component {
   render() {
     return (
       <div>
