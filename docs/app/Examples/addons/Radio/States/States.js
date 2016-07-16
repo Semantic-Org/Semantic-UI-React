@@ -3,14 +3,14 @@ import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
 import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
 import { Message } from 'stardust'
 
-export default class CheckboxStatesExamples extends Component {
+export default class RadioStatesExamples extends Component {
   render() {
     return (
       <ExampleSection title='States'>
         <ComponentExample
           title='Checked'
-          description='A checkbox can come pre-checked'
-          examplePath='modules/Checkbox/States/Checked'
+          description='A radio can come pre-checked'
+          examplePath='addons/Radio/States/Checked'
         >
           <Message>
             Use{' '}
@@ -22,18 +22,18 @@ export default class CheckboxStatesExamples extends Component {
         </ComponentExample>
         <ComponentExample
           title='Disabled'
-          description='Checkboxes can be disabled'
-          examplePath='modules/Checkbox/States/Disabled'
+          description='Radioes can be disabled'
+          examplePath='addons/Radio/States/Disabled'
         />
         <ComponentExample
           title='Read Only'
-          description='Make the checkbox unable to be edited by the user'
-          examplePath='modules/Checkbox/States/ReadOnly'
+          description='Make the radio unable to be edited by the user'
+          examplePath='addons/Radio/States/ReadOnly'
         />
         <ComponentExample
           title='Remote Control'
           description='You can trigger events remotely.'
-          examplePath='modules/Checkbox/States/CheckboxRemoteControlExample'
+          examplePath='addons/Radio/States/RadioRemoteControlExample'
         />
       </ExampleSection>
     )
