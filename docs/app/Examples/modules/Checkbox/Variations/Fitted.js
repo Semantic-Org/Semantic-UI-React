@@ -9,10 +9,10 @@ export default class CheckboxFittedExample extends Component {
           <Checkbox />
         </Segment>
         <Segment className='compact'>
-          <Checkbox className='slider' />
+          <Checkbox type='slider' />
         </Segment>
         <Segment className='compact'>
-          <Checkbox className='toggle' />
+          <Checkbox type='toggle' />
         </Segment>
       </div>
     )

@@ -21,8 +21,5 @@ debug('Loading jQuery')
 // load jQuery, then load SUI jQuery
 window.jQuery = window.$ = require('jquery')
 
-debug('Loading SUI Checkbox plugin')
-require('semantic-ui-css/components/checkbox')
-
 debug('Loading SUI Form plugin')
 require('semantic-ui-css/components/form')

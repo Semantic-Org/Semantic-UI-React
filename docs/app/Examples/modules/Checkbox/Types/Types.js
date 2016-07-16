@@ -2,10 +2,17 @@ import React, { Component } from 'react'
 import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
 import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
 
+import { Message } from 'stardust'
+
 export default class CheckboxTypesExamples extends Component {
   render() {
     return (
       <ExampleSection title='Types'>
+        <Message className='info'>
+          All checkbox types use an input with type <code>checkbox</code>, except for type <code>radio</code>.
+          {' '}Use <code>inputType</code> if you'd like to mix and match style and behavior.
+          {' '}For instance, type <code>slider</code> with <code>inputType</code> radio for exclusive sliders.
+        </Message>
         <ComponentExample
           title='Checkbox'
           description='A box for checking.'

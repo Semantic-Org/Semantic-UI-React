@@ -13,13 +13,11 @@ export default class CheckboxStatesExamples extends Component {
           examplePath='modules/Checkbox/States/Checked'
         >
           <Message>
-            Use
-            &nbsp;
+            Use{' '}
             <a href='https://facebook.github.io/react/docs/forms.html#default-value' target='_blank'>
               <code>defaultChecked</code>
             </a>
-            &nbsp;
-            as you normally would to set default form values.
+            {' '}as you normally would to set default form values.
           </Message>
         </ComponentExample>
         <ComponentExample
@@ -28,7 +26,7 @@ export default class CheckboxStatesExamples extends Component {
           examplePath='modules/Checkbox/States/Disabled'
         />
         <ComponentExample
-          title='ReadOnly'
+          title='Read Only'
           description='Make the checkbox unable to be edited by the user'
           examplePath='modules/Checkbox/States/ReadOnly'
         />
