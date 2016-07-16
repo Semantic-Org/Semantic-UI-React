@@ -40,8 +40,22 @@ export default class AutoControlledComponent extends Component {
     this.state = _.transform(autoControlledProps, (res, prop) => {
       const defaultPropName = getDefaultPropName(prop)
 
-      // apply default props if they exist
-      res[prop] = this.props[defaultPropName in this.props ? defaultPropName : prop]
+      // try to set initial state in this order:
+      //  - default props
+      //  - then, regular props
+      //  - then, `checked` defaults to false
+      //  - then, `value` defaults to null
+      // React doesn't allow changing from uncontrolled to controlled components
+      // this is why we default checked/value if they are not present.
+      if (_.has(this.props, defaultPropName)) {
+        res[prop] = this.props[defaultPropName]
+      } else if (_.has(this.props, prop)) {
+        res[prop] = this.props[prop]
+      } else if (prop === 'checked') {
+        res[prop] = false
+      } else if (prop === 'value') {
+        res[prop] = ''
+      }
 
       if (process.env.NODE_ENV !== 'production') {
         const { name } = this.constructor
