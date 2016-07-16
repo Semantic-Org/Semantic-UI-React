@@ -35,7 +35,7 @@ describe('Accordion', () => {
       titles.at(1).should.have.className('active')
       contents.at(1).should.have.className('active')
     })
-    it('Accordion.Content is active at activeIndex - 1', () => {
+    it('makes Accordion.Content at activeIndex - 1 "active"', () => {
       const contents = shallow(
         <Accordion activeIndex={0}>
           <Accordion.Title />
