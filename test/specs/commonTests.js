@@ -170,7 +170,8 @@ export const isConformant = (Component, requiredProps = {}) => {
 
         handlerSpy.called.should.equal(true,
           `<${constructorName} ${listenerName}={${handlerName}} />\n` +
-          `${leftPad} ^ was not called on "${eventName}"\n`
+          `${leftPad} ^ was not called on "${eventName}".` +
+          'You may need to hoist your event handlers up to the root element.\n'
         )
 
         // TODO: https://github.com/TechnologyAdvice/stardust/issues/218
