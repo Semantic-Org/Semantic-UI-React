@@ -21,6 +21,7 @@ const ComponentDoc = ({ _meta }) => {
         docPath={docPath}
       />
       <ComponentProps props={docgen.props} />
+      {docgen.props && <ComponentProps props={docgen.props} />}
       <ComponentExamples name={_meta.name} />
     </div>
   )
