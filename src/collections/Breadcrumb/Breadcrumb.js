@@ -12,17 +12,18 @@ import BreadcrumbSection from './BreadcrumbSection'
  */
 function Breadcrumb(props) {
   const {
-    children, divider, icon, size, sections,
+    children, className, divider, icon, size, sections,
   } = props
   const classes = cx(
     'ui',
+    className,
     size,
     'breadcrumb'
   )
   const rest = getUnhandledProps(Breadcrumb, props)
 
   if (!sections) {
-    return <div className={classes} {...rest}>{children}</div>
+    return <div {...rest} className={classes}>{children}</div>
   }
 
   const dividerJSX = <Breadcrumb.Divider icon={icon}>{divider}</Breadcrumb.Divider>
@@ -41,7 +42,7 @@ function Breadcrumb(props) {
     }
   })
 
-  return <div className={classes} {...rest}>{sectionsJSX}</div>
+  return <div {...rest} className={classes}>{sectionsJSX}</div>
 }
 
 Breadcrumb._meta = {
@@ -60,6 +61,9 @@ Breadcrumb.propTypes = {
     PropTypes.node,
   ]),
 
+  /** Classes that will be added to the Breadcrumb className. */
+  className: PropTypes.string,
+
   /** For use with the sections prop. Primary content of the Breadcrumb.Divider. */
   divider: customPropTypes.all([
     customPropTypes.mutuallyExclusive(['icon']),
@@ -70,7 +74,7 @@ Breadcrumb.propTypes = {
    *  Breadcrumb.Divider. */
   icon: customPropTypes.all([
     customPropTypes.mutuallyExclusive(['divider']),
-    PropTypes.string,
+    PropTypes.node,
   ]),
 
   /** Array of props for Breadcrumb.Section. */

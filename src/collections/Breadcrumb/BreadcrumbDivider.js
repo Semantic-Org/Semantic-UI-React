@@ -1,8 +1,8 @@
+import _ from 'lodash'
 import React, { PropTypes } from 'react'
 import cx from 'classnames'
 import META from '../../utils/Meta'
-import { customPropTypes, getUnhandledProps } from '../../utils/propUtils'
-import Icon from 'src/elements/Icon/Icon'
+import { customPropTypes, iconPropRenderer, getUnhandledProps } from '../../utils/propUtils'
 
 /**
  * A divider sub-component for Breadcrumb component.
@@ -18,13 +18,16 @@ function BreadcrumbDivider(props) {
   const rest = getUnhandledProps(BreadcrumbDivider, props)
 
   if (icon) {
-    // TODO: After update <Icon> to API replace with this code:
-    // return <Icon className={classes} name={icon} {...rest} />
+    // TODO: After update <Icon> to API update propName
 
-    return <Icon className={[icon, classes].join(' ')} {...rest} />
+    const iconClasses = _.isString(icon)
+      ? cx(icon, classes)
+      : cx(icon.props.className, classes)
+
+    return iconPropRenderer(icon, { ...rest, className: iconClasses })
   }
 
-  return <div className={classes} {...rest}>{children}</div>
+  return <div {...rest} className={classes}>{children}</div>
 }
 
 BreadcrumbDivider._meta = {
@@ -45,14 +48,14 @@ BreadcrumbDivider.propTypes = {
     PropTypes.node,
   ]),
 
+  /** Classes that will be added to the BreadcrumbDivider className. */
+  className: PropTypes.string,
+
   /** Render as an `Icon` component with `divider` class instead of a `div`. */
   icon: customPropTypes.all([
     customPropTypes.mutuallyExclusive(['children']),
-    PropTypes.string,
+    PropTypes.node,
   ]),
-
-  /** Additional classes added to the element. */
-  className: PropTypes.string,
 }
 
 export default BreadcrumbDivider

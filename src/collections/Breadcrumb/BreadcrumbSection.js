@@ -58,7 +58,7 @@ BreadcrumbSection.propTypes = {
   /** Primary content of the Breadcrumb.Section. */
   children: PropTypes.node,
 
-  /** Additional classes added to the element. */
+  /** Classes that will be added to the BreadcrumbSection className. */
   className: PropTypes.string,
 
   /** Render as an `a` tag instead of a `div`. */
