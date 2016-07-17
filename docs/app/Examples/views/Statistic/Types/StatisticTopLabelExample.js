@@ -7,11 +7,6 @@ const StatisticTopLabelExample = () => (
       <Statistic.Label>Views</Statistic.Label>
       <Statistic.Value>40,509</Statistic.Value>
     </Statistic>
-
-    <Statistic>
-      <Statistic.Label content='Views' />
-      <Statistic.Value content='40,509' />
-    </Statistic>
   </div>
 )
 

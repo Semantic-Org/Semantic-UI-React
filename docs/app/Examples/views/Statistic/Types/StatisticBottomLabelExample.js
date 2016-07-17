@@ -8,11 +8,6 @@ const StatisticBottomLabelExample = () => (
       <Statistic.Label>Downloads</Statistic.Label>
     </Statistic>
 
-    <Statistic>
-      <Statistic.Value content='5,550' />
-      <Statistic.Label content='Downloads' />
-    </Statistic>
-
     <Statistic value='5,500' label='Downloads' />
   </div>
 )

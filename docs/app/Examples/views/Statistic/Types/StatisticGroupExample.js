@@ -16,8 +16,8 @@ const StatisticGroupExample = () => (
         <Label>Faves</Label>
       </Statistic>
       <Statistic>
-        <Value content='31,200' />
-        <Label content='Views' />
+        <Value>31,200</Value>
+        <Label>Views</Label>
       </Statistic>
       <Statistic label='Members' value='22' />
     </Group>

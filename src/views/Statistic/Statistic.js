@@ -28,8 +28,8 @@ function Statistic(props) {
   }
 
   return (<div className={classes} {...rest}>
-    <Statistic.Value content={value} text={text} />
-    <Statistic.Label content={label} />
+    <Statistic.Value text={text}>{value}</Statistic.Value>
+    <Statistic.Label>{label}</Statistic.Label>
   </div>)
 }
 

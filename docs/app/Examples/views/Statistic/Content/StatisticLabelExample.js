@@ -10,11 +10,6 @@ const StatisticLabelExample = () => (
       <Label>Views</Label>
     </Statistic>
 
-    <Statistic>
-      <Value content='2,204' />
-      <Label content='Views' />
-    </Statistic>
-
     <Statistic value='2,204' label='Views' />
   </div>
 )
