@@ -1,15 +1,15 @@
 import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
-import { getUnhandledProps, useKeyOnly } from '../../utils/propUtils'
+import { customPropTypes, getUnhandledProps, useKeyOnly } from '../../utils/propUtils'
 import META from '../../utils/Meta'
 
 function StatisticValue(props) {
-  const { children, className, text } = props
+  const { children, className, content, text } = props
   const classes = cx(useKeyOnly(text, 'text'), className, 'value')
   const rest = getUnhandledProps(StatisticValue, props)
 
-  return <div className={classes} {...rest}>{children}</div>
+  return <div className={classes} {...rest}>{children || content}</div>
 }
 
 StatisticValue._meta = {
@@ -21,12 +21,21 @@ StatisticValue._meta = {
 
 StatisticValue.propTypes = {
   /** Primary content of the StatisticValue. */
-  children: PropTypes.node,
+  children: customPropTypes.all([
+    customPropTypes.mutuallyExclusive(['content']),
+    PropTypes.node,
+  ]),
 
   /** Classes that will be added to the StatisticValue className. */
   className: PropTypes.string,
 
-  /** Show that StatisticValue is text. */
+  /** Primary content of the StatisticValue. Mutually exclusive with the children prop. */
+  content: customPropTypes.all([
+    customPropTypes.mutuallyExclusive(['children']),
+    PropTypes.node,
+  ]),
+
+  /** Shows that StatisticValue is text. */
   text: PropTypes.bool,
 }
 

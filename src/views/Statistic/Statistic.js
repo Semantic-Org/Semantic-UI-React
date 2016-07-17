@@ -1,8 +1,8 @@
 import _ from 'lodash'
 import cx from 'classnames'
-import React, { PropTypes } from 'react'
+import React, {PropTypes} from 'react'
 
-import { customPropTypes, getUnhandledProps, useKeyOnly, useValueAndKey } from '../../utils/propUtils'
+import {customPropTypes, getUnhandledProps, useKeyOnly, useValueAndKey} from '../../utils/propUtils'
 import * as sui from '../../utils/semanticUtils'
 import META from '../../utils/Meta'
 import StatisticGroup from './StatisticGroup'
@@ -10,7 +10,7 @@ import StatisticLabel from './StatisticLabel'
 import StatisticValue from './StatisticValue'
 
 function Statistic(props) {
-  const { children, className, color, floated, horizontal, inverted, size } = props
+  const {children, className, color, floated, horizontal, inverted, label, size, text, value} = props
   const classes = cx(
     'ui',
     color,
@@ -23,7 +23,14 @@ function Statistic(props) {
   )
   const rest = getUnhandledProps(Statistic, props)
 
-  return <div className={classes} {...rest}>{children}</div>
+  if (children) {
+    return <div className={classes} {...rest}>{children}</div>
+  }
+
+  return <div className={classes} {...rest}>
+    <Statistic.Value content={value} text={text}/>
+    <Statistic.Label content={label}/>
+  </div>
 }
 
 Statistic._meta = {
@@ -39,9 +46,12 @@ Statistic._meta = {
 
 Statistic.propTypes = {
   /** Primary content of the Statistic. */
-  children: customPropTypes.ofComponentTypes([
-    'StatisticLabel',
-    'StatisticValue',
+  children: customPropTypes.all([
+    customPropTypes.mutuallyExclusive(['label', 'value']),
+    customPropTypes.ofComponentTypes([
+      'StatisticLabel',
+      'StatisticValue',
+    ])
   ]),
 
   /** Classes that will be added to the Statistic className. */
@@ -59,8 +69,23 @@ Statistic.propTypes = {
   /** A statistic can be formatted to fit on a dark background. */
   inverted: PropTypes.bool,
 
+  /** Label content of the Statistic. Mutually exclusive with the children prop. */
+  label: customPropTypes.all([
+    customPropTypes.mutuallyExclusive(['children']),
+    PropTypes.node,
+  ]),
+
   /** A statistic can vary in size. */
   size: PropTypes.oneOf(Statistic._meta.props.size),
+
+  /** Shows that StatisticValue is text. */
+  text: PropTypes.bool,
+
+  /** Value content of the Statistic. Mutually exclusive with the children prop. */
+  value: customPropTypes.all([
+    customPropTypes.mutuallyExclusive(['children']),
+    PropTypes.node,
+  ]),
 }
 
 Statistic.Group = StatisticGroup

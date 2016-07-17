@@ -1,20 +1,30 @@
+import _ from 'lodash'
 import cx from 'classnames'
-import React, { PropTypes } from 'react'
+import React, {PropTypes} from 'react'
 
-import { getUnhandledProps, useKeyOnly } from '../../utils/propUtils'
+import {customPropTypes, getUnhandledProps, useKeyOnly} from '../../utils/propUtils'
+import numberToWord from '../../utils/numberToWord'
 import META from '../../utils/Meta'
+import Statistic from './Statistic'
 
 function StatisticGroup(props) {
-  const { children, className, horizontal } = props
+  const {children, className, horizontal, items, widths} = props
   const classes = cx(
     'ui',
-    className,
     useKeyOnly(horizontal, 'horizontal'),
-    'value'
+    _.isNumber(widths) ? numberToWord(widths) : widths,
+    className,
+    'statistics'
   )
   const rest = getUnhandledProps(StatisticGroup, props)
 
-  return <div className={classes} {...rest}>{children}</div>
+  if (children) {
+    return <div className={classes} {...rest}>{children}</div>
+  }
+
+  let itemsJSX = items.map((item) => <Statistic {...item}/>)
+
+  return <div className={classes} {...rest}>{itemsJSX}</div>
 }
 
 StatisticGroup._meta = {
@@ -25,14 +35,29 @@ StatisticGroup._meta = {
 }
 
 StatisticGroup.propTypes = {
-  /** Primary content of the StatisticLabel. */
-  children: PropTypes.node,
+  /** Primary content of the StatisticGroup. */
+  children: customPropTypes.all([
+    customPropTypes.mutuallyExclusive(['content']),
+    PropTypes.node,
+  ]),
 
-  /** Classes that will be added to the StatisticLabel className. */
+  /** Classes that will be added to the StatisticGroup className. */
   className: PropTypes.string,
 
   /** A statistic can present its measurement horizontally. */
   horizontal: PropTypes.bool,
+
+  /** Array of props for Statistic. */
+  items: customPropTypes.all([
+    customPropTypes.mutuallyExclusive(['children']),
+    PropTypes.array,
+  ]),
+
+  /** A statistic group can have its items divided evenly. */
+  widths: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number
+  ]),
 }
 
 export default StatisticGroup
