@@ -12,7 +12,11 @@ export default class ComponentExamples extends Component {
     const { name } = this.props
 
     const examples = exampleContext.keys()
-      .filter(path => new RegExp(`${name}/index.js$`).test(path))
+      .filter(path => (
+        // TODO only filter index.js files once PRs for old components are merged and
+        // the docs are updated to use the new naming scheme
+        new RegExp(`(${name}Examples|${name}/index).js$`).test(path)
+      ))
       .map((path, i) => createElement(exampleContext(path).default, { key: i }))
 
     return !examples.length ? null : (
