@@ -20,11 +20,7 @@ function BreadcrumbDivider(props) {
   if (icon) {
     // TODO: After update <Icon> to API update propName
 
-    const iconClasses = _.isString(icon)
-      ? cx(icon, classes)
-      : cx(icon.props.className, classes)
-
-    return iconPropRenderer(icon, { ...rest, className: iconClasses })
+    return iconPropRenderer(icon, { ...rest, className: classes })
   }
 
   return <div {...rest} className={classes}>{children}</div>
