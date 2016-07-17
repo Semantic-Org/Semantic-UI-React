@@ -14,7 +14,7 @@ function StatisticLabel(props) {
   const rest = getUnhandledProps(StatisticLabel, props)
 
   // return <div className={classes} {...rest}>{children || content}</div>
-  return <div className={classes} {...rest}>{children}</div>
+  return <div {...rest} className={classes}>{children}</div>
 }
 
 StatisticLabel._meta = {

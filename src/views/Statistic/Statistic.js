@@ -24,7 +24,7 @@ function Statistic(props) {
   const rest = getUnhandledProps(Statistic, props)
 
   if (children) {
-    return <div className={classes} {...rest}>{children}</div>
+    return <div {...rest} className={classes}>{children}</div>
   }
 
   return (

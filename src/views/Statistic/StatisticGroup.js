@@ -19,7 +19,7 @@ function StatisticGroup(props) {
   const rest = getUnhandledProps(StatisticGroup, props)
 
   if (!items) {
-    return <div className={classes} {...rest}>{children}</div>
+    return <div {...rest} className={classes}>{children}</div>
   }
 
   let itemsJSX = []
@@ -29,7 +29,7 @@ function StatisticGroup(props) {
     itemsJSX.push(<Statistic key={key} {...item} />)
   })
 
-  return <div className={classes} {...rest}>{itemsJSX}</div>
+  return <div {...rest} className={classes}>{itemsJSX}</div>
 }
 
 StatisticGroup._meta = {
