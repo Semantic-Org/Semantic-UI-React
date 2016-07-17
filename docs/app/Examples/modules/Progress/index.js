@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import Types from './Types/Types'
-import Content from './Content/Content'
-import States from './States/States'
-import Variations from './Variations/Variations'
+import Types from './Types'
+import Content from './Content'
+import States from './States'
+import Variations from './Variations'
 
 export default class ProgressExamples extends Component {
   render() {

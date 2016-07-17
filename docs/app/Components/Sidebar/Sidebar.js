@@ -1,5 +1,7 @@
 import _ from 'lodash/fp'
 import React, { Component } from 'react'
+import { routerShape } from 'react-router'
+
 import * as stardust from 'stardust'
 import { typeOrder } from 'docs/app/utils'
 import META from 'src/utils/Meta'
@@ -7,11 +9,15 @@ import META from 'src/utils/Meta'
 const { Menu, Input } = stardust
 
 export default class Sidebar extends Component {
+  static contextTypes = {
+    router: routerShape,
+  }
   state = { query: '' }
 
   handleSearchChange = e => this.setState({ query: e.target.value })
 
   renderItemsByType = (type) => {
+    const { router } = this.context
     const items = _.flow(
       _.filter(_.overEvery([
         META.isParent,
@@ -19,9 +25,12 @@ export default class Sidebar extends Component {
         ({ _meta }) => new RegExp(this.state.query, 'i').test(_meta.name),
       ])),
       _.sortBy('_meta.name'),
-      _.map(component => {
-        const name = component._meta.name
-        return <Menu.Item key={name} name={name} href={`#${name}`} />
+      _.map(({ _meta }) => {
+        const route = `${_meta.type}s/${_.kebabCase(_meta.name)}`
+
+        return (
+          <Menu.Item key={_meta.name} name={_meta.name} onClick={() => router.push(route)} />
+        )
       })
     )(stardust)
 

@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
-import DividerTypesExamples from './Types/DividerTypesExamples'
-import DividerVariationsExamples from './Variations/DividerVariationsExamples'
+import Types from './Types'
+import Variations from './Variations'
 
 export default class DividerExamples extends Component {
   render() {
     return (
       <div>
-        <DividerTypesExamples />
-        <DividerVariationsExamples />
+        <Types />
+        <Variations />
       </div>
     )
   }

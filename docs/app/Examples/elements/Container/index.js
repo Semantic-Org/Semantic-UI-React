@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
-import ContainerTypesExamples from './Types/ContainerTypesExamples'
-import ContainerVariationsExamples from './Variations/ContainerVariationsExamples'
+import Types from './Types'
+import Variations from './Variations'
 
 export default class ContainerExamples extends Component {
   render() {
     return (
       <div>
-        <ContainerTypesExamples />
-        <ContainerVariationsExamples />
+        <Types />
+        <Variations />
       </div>
     )
   }

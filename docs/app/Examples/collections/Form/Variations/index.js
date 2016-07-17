@@ -9,10 +9,10 @@ export default class FormFormVariationsExamples extends Component {
         <ComponentExample
           title='Size'
           description='A form can also be small or large.'
-          examplePath='collections/Form/FormVariations/FormSizeSmallExample'
+          examplePath='collections/Form/Variations/FormSizeSmallExample'
         />
         <ComponentExample
-          examplePath='collections/Form/FormVariations/FormSizeLargeExample'
+          examplePath='collections/Form/Variations/FormSizeLargeExample'
         />
       </ExampleSection>
     )

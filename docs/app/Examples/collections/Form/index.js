@@ -1,23 +1,23 @@
 import React, { Component } from 'react'
-import FormContentExamples from './Content/FormContentExamples'
-import FormTypesExamples from './Types/FormTypesExamples'
-import FormFieldVariationsExamples from './FieldVariations/FormFieldVariationsExamples'
-import FormGroupVariationsExamples from './GroupVariations/FormGroupVariationsExamples'
-import FormFormVariationsExamples from './FormVariations/FormFormVariationsExamples'
-import FormStatesExamples from './States/FormStatesExamples'
-import FormValidationExamples from './Validation/FormValidationExamples'
+import Content from './Content'
+import Types from './Types'
+import Variations from './Variations'
+import FieldVariations from './FieldVariations'
+import GroupVariations from './GroupVariations'
+import States from './States'
+import Validation from './Validation'
 
 export default class FormExamples extends Component {
   render() {
     return (
       <div>
-        <FormTypesExamples />
-        <FormContentExamples />
-        <FormStatesExamples />
-        <FormFormVariationsExamples />
-        <FormFieldVariationsExamples />
-        <FormGroupVariationsExamples />
-        <FormValidationExamples />
+        <Types />
+        <Content />
+        <States />
+        <Variations />
+        <FieldVariations />
+        <GroupVariations />
+        <Validation />
       </div>
     )
   }

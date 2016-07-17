@@ -12,7 +12,7 @@ export default class ComponentExamples extends Component {
     const { name } = this.props
 
     const examples = exampleContext.keys()
-      .filter(path => path.includes(`/${name}Examples.js`))
+      .filter(path => new RegExp(`${name}/index.js$`).test(path))
       .map((path, i) => createElement(exampleContext(path).default, { key: i }))
 
     return !examples.length ? null : (
