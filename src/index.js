@@ -13,6 +13,8 @@ export Textarea from './addons/Textarea/Textarea'
 // Collections
 // ----------------------------------------
 
+export Breadcrumb from './collections/Breadcrumb/Breadcrumb'
+
 import _Form from './collections/Form/Form'
 export { _Form as Form }
 export const Field = deprecateComponent('Field', 'Use "Form.Field" instead.', _Form.Field)
