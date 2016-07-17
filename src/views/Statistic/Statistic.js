@@ -80,7 +80,7 @@ Statistic.propTypes = {
   /** A statistic can vary in size. */
   size: PropTypes.oneOf(Statistic._meta.props.size),
 
-  /** Shows that StatisticValue is text. */
+  /** Format the StatisticValue with smaller font size to fit nicely beside number values. */
   text: PropTypes.bool,
 
   /** Value content of the Statistic. Mutually exclusive with the children prop. */
