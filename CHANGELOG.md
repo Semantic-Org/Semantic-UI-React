@@ -1,5 +1,16 @@
 # Change Log
 
+## [v0.22.0](https://github.com/TechnologyAdvice/stardust/tree/v0.22.0) (2016-07-14)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.21.1...v0.22.0)
+
+**Implemented enhancements:**
+
+- \<Rail /\> Component [\#181](https://github.com/TechnologyAdvice/stardust/issues/181)
+
+**Merged pull requests:**
+
+- Add Rail component [\#330](https://github.com/TechnologyAdvice/stardust/pull/330) ([layershifter](https://github.com/layershifter))
+
 ## [v0.21.1](https://github.com/TechnologyAdvice/stardust/tree/v0.21.1) (2016-07-13)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.21.0...v0.21.1)
 
