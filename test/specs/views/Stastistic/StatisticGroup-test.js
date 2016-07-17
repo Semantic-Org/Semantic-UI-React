@@ -4,10 +4,10 @@ import StatisticGroup from 'src/views/Statistic/StatisticGroup'
 
 describe('StatisticGroup', () => {
   common.isConformant(StatisticGroup)
+  common.implementsNumberToWordProp(StatisticGroup, 'widths')
   common.hasUIClassName(StatisticGroup)
   common.rendersChildren(StatisticGroup)
   common.propKeyOnlyToClassName(StatisticGroup, 'horizontal')
-  common.propValueOnlyToClassName(StatisticGroup, 'widths')
 
   it('renders an div element', () => {
     shallow(<StatisticGroup />)
