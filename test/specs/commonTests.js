@@ -5,6 +5,8 @@ import React, { createElement } from 'react'
 
 import META from 'src/utils/Meta'
 import * as stardust from 'stardust'
+import * as sui from 'src/utils/semanticUtils'
+import numberToWord from 'src/utils/numberToWord'
 import * as consoleUtil from 'test/utils/consoleUtil'
 import sandbox from 'test/utils/Sandbox-util'
 import * as syntheticEvent from 'test/utils/syntheticEvent'
@@ -367,7 +369,7 @@ const _noDefaultClassNameFromProp = (Component, propKey, requiredProps = {}) => 
     // SUI classes ought to be built up using a declarative component API
     const propOptions = _.get(Component, `_meta.props[${propKey}]`)
     _.each(propOptions, propVal => {
-      wrapper.should.not.have.className(propVal)
+      wrapper.should.not.have.className(propVal.toString())
     })
   })
 }
@@ -386,7 +388,7 @@ const _noClassNameFromBoolProps = (Component, propKey, requiredProps) => {
     wrapper.should.not.have.className('false')
 
     _.each(Component._meta.props[propKey], propVal => {
-      wrapper.should.not.have.className(propVal)
+      wrapper.should.not.have.className(propVal.toString())
     })
   }))
 }
@@ -492,6 +494,27 @@ export const implementsImageProp = (Component, requiredProps = {}) => {
 
     it('accepts an image src string', () => {
       assertValid(shallow(<Component image={imageSrc} />))
+    })
+  })
+}
+
+/**
+ * Assert that a Component correctly implements the "widths" prop.
+ * @param {React.Component|Function} Component The component to test.
+ * @param {string} Prop name.
+ * @param {Object} [requiredProps={}] Props required to render the component.
+ */
+export const implementsNumberToWordProp = (Component, propKey, requiredProps = {}) => {
+  describe(`${propKey} (common)`, () => {
+    _definesPropOptions(Component, propKey)
+    _noDefaultClassNameFromProp(Component, propKey, requiredProps)
+    _noClassNameFromBoolProps(Component, propKey, requiredProps)
+
+    it('adds prop value to className', () => {
+      const propVal = _.sample(sui.widths)
+
+      shallow(createElement(Component, { ...requiredProps, [propKey]: propVal }))
+        .should.have.className(numberToWord(propVal))
     })
   })
 }
