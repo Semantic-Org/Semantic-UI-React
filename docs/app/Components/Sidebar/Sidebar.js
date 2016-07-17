@@ -1,6 +1,7 @@
 import _ from 'lodash/fp'
 import React, { Component } from 'react'
 import * as stardust from 'stardust'
+import { typeOrder } from 'docs/app/utils'
 import META from 'src/utils/Meta'
 
 const { Menu, Input } = stardust
@@ -10,27 +11,22 @@ export default class Sidebar extends Component {
 
   handleSearchChange = e => this.setState({ query: e.target.value })
 
-  getComponentsByQuery() {
-    return _.filter(component => {
-      const name = component._meta.name
-      const isParent = META.isParent(component)
-      const isQueryMatch = new RegExp(this.state.query, 'i').test(name)
-      return isParent && isQueryMatch
-    }, stardust)
-  }
-
-  getComponentsByType = type => {
+  renderItemsByType = (type) => {
     const items = _.flow(
-      _.filter(component => META.isType(component, type)),
-      _.sortBy((component, name) => name),
+      _.filter(_.overEvery([
+        META.isParent,
+        META.isType(type),
+        ({ _meta }) => new RegExp(this.state.query, 'i').test(_meta.name),
+      ])),
+      _.sortBy('_meta.name'),
       _.map(component => {
         const name = component._meta.name
         return <Menu.Item key={name} name={name} href={`#${name}`} />
       })
-    )(this.getComponentsByQuery())
+    )(stardust)
 
     return _.isEmpty(items) ? [] : (
-      <div className='item'>
+      <div className='item' key={type}>
         <div className='header'>{_.capitalize(type)}s</div>
         <div className='menu'>{items}</div>
       </div>
@@ -38,12 +34,6 @@ export default class Sidebar extends Component {
   }
 
   render() {
-    const addons = this.getComponentsByType(META.type.addon)
-    const elements = this.getComponentsByType(META.type.element)
-    const collections = this.getComponentsByType(META.type.collection)
-    const views = this.getComponentsByType(META.type.view)
-    const modules = this.getComponentsByType(META.type.module)
-
     return (
       <Menu className='inverted secondary vertical fluid' style={{ margin: 0 }}>
         <Menu.Item>
@@ -55,11 +45,7 @@ export default class Sidebar extends Component {
             onChange={this.handleSearchChange}
           />
         </Menu.Item>
-        {addons}
-        {elements}
-        {collections}
-        {views}
-        {modules}
+        {_.map(this.renderItemsByType, typeOrder)}
       </Menu>
     )
   }

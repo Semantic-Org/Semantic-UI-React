@@ -25,10 +25,12 @@ export default class ComponentDescription extends Component {
 
   renderSemanticDocsLink = () => {
     const { _meta } = this.props
-    if (!META.isSemanticUI(_meta) || !META.isParent(_meta)) {
-      return null
-    }
-    const url = `http://semantic-ui.com/${_meta.type}s/${_meta.name}.html`.toLowerCase()
+
+    if (!META.isSemanticUI(_meta)) return null
+
+    const name = META.isParent(_meta) ? _meta.name : _meta.parent
+    const url = `http://semantic-ui.com/${_meta.type}s/${name}.html`.toLowerCase()
+
     return (
       <List.Item icon='book'>
         <a href={url} target='_blank'>
