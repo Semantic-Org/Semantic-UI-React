@@ -1,8 +1,8 @@
-import _ from 'lodash'
 import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
 import { customPropTypes, getUnhandledProps, useKeyOnly } from '../../utils/propUtils'
+import * as sui from '../../utils/semanticUtils'
 import numberToWord from '../../utils/numberToWord'
 import META from '../../utils/Meta'
 import Statistic from './Statistic'
@@ -12,7 +12,7 @@ function StatisticGroup(props) {
   const classes = cx(
     'ui',
     useKeyOnly(horizontal, 'horizontal'),
-    _.isNumber(widths) ? numberToWord(widths) : widths,
+    numberToWord(widths),
     className,
     'statistics'
   )
@@ -37,6 +37,9 @@ StatisticGroup._meta = {
   name: 'StatisticGroup',
   type: META.type.view,
   parent: 'Statistic',
+  props: {
+    widths: sui.widths,
+  },
 }
 
 StatisticGroup.propTypes = {
@@ -59,10 +62,7 @@ StatisticGroup.propTypes = {
   ]),
 
   /** A statistic group can have its items divided evenly. */
-  widths: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-  ]),
+  widths: PropTypes.oneOf(StatisticGroup._meta.props.widths),
 }
 
 export default StatisticGroup
