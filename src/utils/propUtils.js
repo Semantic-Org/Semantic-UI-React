@@ -175,8 +175,25 @@ export const getUnhandledProps = (Component, props) => {
 // Many components share many props. Some of those props should be smart.
 // These give all our components props consistent smart capabilities.
 // ----------------------------------------
-export const iconPropRenderer = (val) => _.isString(val) ? <Icon className={val} /> : val
-export const imagePropRenderer = (val) => _.isString(val) ? <Image src={val} /> : val
+export const iconPropRenderer = (val, props = {}) => {
+  if (_.isString(val)) {
+    return <Icon {...props} className={val} />
+  }
+
+  if (_.isObject(val)) {
+    return React.cloneElement(val, { ...val.props, ...props })
+  }
+}
+
+export const imagePropRenderer = (val, props = {}) => {
+  if (_.isString(val)) {
+    return <Image {...props} src={val} />
+  }
+
+  if (_.isObject(val)) {
+    return React.cloneElement(val, { ...val.props, ...props })
+  }
+}
 
 // ----------------------------------------
 // Prop to className
