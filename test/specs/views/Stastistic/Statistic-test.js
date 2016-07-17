@@ -1,3 +1,4 @@
+import faker from 'faker'
 import React from 'react'
 import * as common from 'test/specs/commonTests'
 
@@ -21,6 +22,35 @@ describe('Statistic', () => {
   it('renders an div element', () => {
     shallow(<Statistic />)
       .should.have.tagName('div')
+  })
+
+  it('renders StatisticLabel component with `label` prop', () => {
+    const text = faker.hacker.phrase()
+    const wrapper = mount(<Statistic label={text} />)
+    const label = wrapper.find('StatisticLabel').first()
+
+    wrapper.should.have.exactly(1).descendants('StatisticLabel')
+    label.should.contain.text(text)
+  })
+
+  it('renders StatisticValue component and passes `text` prop', () => {
+    const text = faker.hacker.phrase()
+    const wrapper = mount(<Statistic value={text} text />)
+    const value = wrapper.find('StatisticValue').first()
+
+    wrapper.should.have.exactly(1).descendants('StatisticValue')
+    value.should.contain.text(text)
+    value.should.have.prop('text', true)
+  })
+
+  it('renders StatisticValue component', () => {
+    const text = faker.hacker.phrase()
+    const wrapper = mount(<Statistic value={text} />)
+    const value = wrapper.find('StatisticValue').first()
+
+    wrapper.should.have.exactly(1).descendants('StatisticValue')
+    value.should.contain.text(text)
+    value.should.not.have.prop('text')
   })
 })
 
