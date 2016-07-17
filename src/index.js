@@ -5,8 +5,9 @@ import { deprecateComponent } from './utils/deprecate'
 // Addons
 // ----------------------------------------
 export Confirm from './addons/Confirm/Confirm'
-export Textarea from './addons/Textarea/Textarea'
+export Radio from './addons/Radio/Radio'
 export Select from './addons/Select/Select'
+export Textarea from './addons/Textarea/Textarea'
 
 // ----------------------------------------
 // Collections

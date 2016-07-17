@@ -1,6 +1,6 @@
 import React, { Component, createElement, PropTypes } from 'react'
 
-import exampleContext from 'docs/app/utils/ExampleContext'
+import { exampleContext } from 'docs/app/utils'
 import { Divider, Header } from 'stardust'
 
 export default class ComponentExamples extends Component {

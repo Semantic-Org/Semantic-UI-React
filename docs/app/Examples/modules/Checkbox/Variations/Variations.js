@@ -13,11 +13,11 @@ export default class CheckboxVariationsExamples extends Component {
           examplePath='modules/Checkbox/Variations/Fitted'
         >
           <Message>
-            The&nbsp;
+            The{' '}
             <a href='http://semantic-ui.com/modules/checkbox.html#fitted' target='_blank'>
               <code>fitted</code>
             </a>
-            &nbsp;class is automatically applied if there is no <code>label</code> prop.
+            {' '}class is automatically applied if there is no <code>label</code> prop.
           </Message>
         </ComponentExample>
       </ExampleSection>

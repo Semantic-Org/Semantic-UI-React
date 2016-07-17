@@ -170,7 +170,8 @@ export const isConformant = (Component, requiredProps = {}) => {
 
         handlerSpy.called.should.equal(true,
           `<${constructorName} ${listenerName}={${handlerName}} />\n` +
-          `${leftPad} ^ was not called on "${eventName}"\n`
+          `${leftPad} ^ was not called on "${eventName}".` +
+          'You may need to hoist your event handlers up to the root element.\n'
         )
 
         // TODO: https://github.com/TechnologyAdvice/stardust/issues/218
@@ -232,6 +233,8 @@ export const isConformant = (Component, requiredProps = {}) => {
   // Handles className
   // ----------------------------------------
   describe('className (common)', () => {
+    const isHeader = /(header|h1|h2|h3|h4|h5|h6)/i.test(componentClassName)
+
     it('does not have an sd-* className', () => {
       const wrapper = shallow(<Component {...requiredProps} />)
       const className = wrapper.prop('className')
@@ -247,7 +250,8 @@ export const isConformant = (Component, requiredProps = {}) => {
       })
     })
 
-    if (META.isSemanticUI(Component)) {
+    // TODO: do not exclude headers once their APIs are updated
+    if (!isHeader && META.isSemanticUI(Component)) {
       it(`has the Semantic UI className "${componentClassName}"`, () => {
         render(<Component {...requiredProps} />)
           .should.have.className(componentClassName)
@@ -259,6 +263,27 @@ export const isConformant = (Component, requiredProps = {}) => {
       shallow(<Component {...requiredProps} className={classes} />)
         .should.have.className(classes)
     })
+
+    // TODO: do not exclude headers once their APIs are updated
+    if (!isHeader) {
+      it("user's className does not override the default classes", () => {
+        const defaultClasses = shallow(<Component {...requiredProps} />)
+          .prop('className')
+
+        if (!defaultClasses) return
+
+        const userClasses = faker.hacker.verb()
+        const mixedClasses = shallow(<Component {...requiredProps} className={userClasses} />)
+          .prop('className')
+
+        defaultClasses.split(' ').forEach((defaultClass) => {
+          mixedClasses.should.include(defaultClass, [
+            'Make sure you are using the `getUnhandledProps` util to spread the `rest` props.',
+            'This may also be of help: https://facebook.github.io/react/docs/transferring-props.html.',
+          ].join(' '))
+        })
+      })
+    }
   })
 }
 
@@ -408,7 +433,6 @@ export const implementsAlignedProp = (Component, requiredProps = {}) => {
 export const implementsIconProp = (Component, requiredProps = {}) => {
   const iconClass = faker.hacker.noun()
   const assertValid = (wrapper) => {
-    wrapper.should.have.className('icon')
     wrapper.should.have.descendants('Icon')
     wrapper.find('Icon')
       .should.have.className(iconClass)
@@ -420,12 +444,6 @@ export const implementsIconProp = (Component, requiredProps = {}) => {
     it('has no i when not defined', () => {
       shallow(<Component />)
         .should.not.have.descendants('i')
-    })
-
-    it('adds a i as first child', () => {
-      shallow(<Component icon={iconClass} />)
-        .childAt(0)
-        .should.match('i')
     })
 
     it('accepts an Icon instance', () => {

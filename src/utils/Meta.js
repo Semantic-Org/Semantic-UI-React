@@ -1,5 +1,4 @@
-import _ from 'lodash'
-import * as stardust from 'stardust'
+import _ from 'lodash/fp'
 
 const LIBRARIES = {
   semanticUI: 'Semantic UI',
@@ -17,7 +16,6 @@ const TYPES = {
 
 const LIBRARY_VALUES = _.values(LIBRARIES)
 const TYPE_VALUES = _.values(TYPES)
-const NAME_VALUES = _.keys(stardust)
 
 /**
  * Determine if an object qualifies as a META object.
@@ -27,34 +25,31 @@ const NAME_VALUES = _.keys(stardust)
  * @returns {Boolean}
  */
 const isMeta = (_meta) => (
-  _.includes(LIBRARY_VALUES, _.get(_meta, 'library')) &&
-  _.includes(TYPE_VALUES, _.get(_meta, 'type')) &&
-  _.includes(NAME_VALUES, _.get(_meta, 'name'))
+  _.includes(_.get('library', _meta), LIBRARY_VALUES) &&
+  _.includes(_.get('type', _meta), TYPE_VALUES)
 )
 
 /**
  * Extract the Stardust _meta object and optional key.
  * Handles literal _meta objects, classes with _meta, objects with _meta
  * @private
- * @param {function|object} arg A class, a component instance, or meta object..
- * @param {string} [key] A key to pluck from the _meta object.
+ * @param {function|object} metaArg A class, a component instance, or meta object..
  * @returns {object|string|undefined}
  */
-const getMeta = (arg, key) => {
-  let _meta = {}
-
+const getMeta = (metaArg) => {
   // literal
-  if (isMeta(arg)) _meta = arg
+  if (isMeta(metaArg)) return metaArg
 
   // from prop
-  else if (isMeta(_.get(arg, '_meta'))) _meta = arg._meta
+  else if (isMeta(_.get('_meta', metaArg))) return metaArg._meta
 
   // from class
-  else if (isMeta(_.get(arg, 'constructor._meta'))) _meta = arg.constructor._meta
-
-  // default values
-  return key ? _meta[key] : _meta
+  else if (isMeta(_.get('constructor._meta', metaArg))) return metaArg.constructor._meta
 }
+
+const metaHasKeyValue = _.curry((key, val, metaArg) => _.flow(getMeta, _.get(key), _.eq(val))(metaArg))
+const isType = metaHasKeyValue('type')
+const isLibrary = metaHasKeyValue('library')
 
 /**
  * Component meta information.  Used to declaratively classify and identify components.
@@ -65,24 +60,24 @@ const META = {
   type: TYPES,
 
   // library
-  isSemanticUI: (arg) => getMeta(arg, 'library') === META.library.semanticUI,
-  isStardust: (arg) => getMeta(arg, 'library') === META.library.stardust,
+  isSemanticUI: isLibrary(LIBRARIES.semanticUI),
+  isStardust: isLibrary(LIBRARIES.stardust),
 
   // type
-  isAddon: (arg) => getMeta(arg, 'type') === META.type.addon,
-  isGlobal: (arg) => getMeta(arg, 'type') === META.type.global,
-  isCollection: (arg) => getMeta(arg, 'type') === META.type.collection,
-  isElement: (arg) => getMeta(arg, 'type') === META.type.element,
-  isView: (arg) => getMeta(arg, 'type') === META.type.view,
-  isModule: (arg) => getMeta(arg, 'type') === META.type.module,
-  isType: (arg, type) => getMeta(arg, 'type') === type,
+  isType,
+  isAddon: isType(TYPES.addon),
+  isGlobal: isType(TYPES.global),
+  isCollection: isType(TYPES.collection),
+  isElement: isType(TYPES.element),
+  isView: isType(TYPES.view),
+  isModule: isType(TYPES.module),
 
   // parent
-  isParent: (arg) => !getMeta(arg, 'parent'),
-  isChild: (arg) => !!getMeta(arg, 'parent'),
+  isParent: _.flow(getMeta, _.has('parent'), _.eq(false)),
+  isChild: _.flow(getMeta, _.has('parent')),
 
   // other
-  isPrivate: (arg) => _.startsWith(getMeta(arg, 'name'), '_'),
+  isPrivate: _.flow(getMeta, _.get('name'), _.startsWith('_')),
 }
 
 export default META

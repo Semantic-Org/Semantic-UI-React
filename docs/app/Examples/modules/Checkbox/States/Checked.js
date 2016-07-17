@@ -3,6 +3,6 @@ import { Checkbox } from 'stardust'
 
 export default CheckboxCheckedExample => {
   return (
-    <Checkbox defaultChecked label='This checkbox comes prechecked' />
+    <Checkbox label='This checkbox comes prechecked' defaultChecked />
   )
 }
