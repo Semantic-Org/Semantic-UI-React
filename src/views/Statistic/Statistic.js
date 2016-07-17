@@ -27,10 +27,12 @@ function Statistic(props) {
     return <div className={classes} {...rest}>{children}</div>
   }
 
-  return (<div className={classes} {...rest}>
-    <Statistic.Value text={text}>{value}</Statistic.Value>
-    <Statistic.Label>{label}</Statistic.Label>
-  </div>)
+  return (
+    <div {...rest} className={classes}>
+      <Statistic.Value text={text}>{value}</Statistic.Value>
+      <Statistic.Label>{label}</Statistic.Label>
+    </div>
+  )
 }
 
 Statistic._meta = {
