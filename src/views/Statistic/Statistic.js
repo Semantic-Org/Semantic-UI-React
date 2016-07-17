@@ -1,8 +1,8 @@
 import _ from 'lodash'
 import cx from 'classnames'
-import React, {PropTypes} from 'react'
+import React, { PropTypes } from 'react'
 
-import {customPropTypes, getUnhandledProps, useKeyOnly, useValueAndKey} from '../../utils/propUtils'
+import { customPropTypes, getUnhandledProps, useKeyOnly, useValueAndKey } from '../../utils/propUtils'
 import * as sui from '../../utils/semanticUtils'
 import META from '../../utils/Meta'
 import StatisticGroup from './StatisticGroup'
@@ -10,7 +10,7 @@ import StatisticLabel from './StatisticLabel'
 import StatisticValue from './StatisticValue'
 
 function Statistic(props) {
-  const {children, className, color, floated, horizontal, inverted, label, size, text, value} = props
+  const { children, className, color, floated, horizontal, inverted, label, size, text, value } = props
   const classes = cx(
     'ui',
     color,
@@ -27,10 +27,10 @@ function Statistic(props) {
     return <div className={classes} {...rest}>{children}</div>
   }
 
-  return <div className={classes} {...rest}>
-    <Statistic.Value content={value} text={text}/>
-    <Statistic.Label content={label}/>
-  </div>
+  return (<div className={classes} {...rest}>
+    <Statistic.Value content={value} text={text} />
+    <Statistic.Label content={label} />
+  </div>)
 }
 
 Statistic._meta = {
@@ -51,7 +51,7 @@ Statistic.propTypes = {
     customPropTypes.ofComponentTypes([
       'StatisticLabel',
       'StatisticValue',
-    ])
+    ]),
   ]),
 
   /** Classes that will be added to the Statistic className. */
