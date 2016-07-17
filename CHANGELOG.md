@@ -1,5 +1,14 @@
 # Change Log
 
+## [Unreleased](https://github.com/TechnologyAdvice/stardust/tree/HEAD)
+
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.23.0...HEAD)
+
+**Implemented enhancements:**
+
+- \<Breadcrumb /\> Component [\#184](https://github.com/TechnologyAdvice/stardust/issues/184)
+- Add Breadcrumb component [\#321](https://github.com/TechnologyAdvice/stardust/pull/321) ([layershifter](https://github.com/layershifter))
+
 ## [v0.23.0](https://github.com/TechnologyAdvice/stardust/tree/v0.23.0) (2016-07-16)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.22.0...v0.23.0)
 
