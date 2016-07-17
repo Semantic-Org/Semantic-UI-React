@@ -435,7 +435,6 @@ export const implementsAlignedProp = (Component, requiredProps = {}) => {
 export const implementsIconProp = (Component, requiredProps = {}) => {
   const iconClass = faker.hacker.noun()
   const assertValid = (wrapper) => {
-    wrapper.should.have.className('icon')
     wrapper.should.have.descendants('Icon')
     wrapper.find('Icon')
       .should.have.className(iconClass)
@@ -447,12 +446,6 @@ export const implementsIconProp = (Component, requiredProps = {}) => {
     it('has no i when not defined', () => {
       shallow(<Component />)
         .should.not.have.descendants('i')
-    })
-
-    it('adds a i as first child', () => {
-      shallow(<Component icon={iconClass} />)
-        .childAt(0)
-        .should.match('i')
     })
 
     it('accepts an Icon instance', () => {
