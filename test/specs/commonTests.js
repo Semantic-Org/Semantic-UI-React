@@ -233,6 +233,8 @@ export const isConformant = (Component, requiredProps = {}) => {
   // Handles className
   // ----------------------------------------
   describe('className (common)', () => {
+    const isHeader = /(header|h1|h2|h3|h4|h5|h6)/i.test(componentClassName)
+
     it('does not have an sd-* className', () => {
       const wrapper = shallow(<Component {...requiredProps} />)
       const className = wrapper.prop('className')
@@ -248,9 +250,8 @@ export const isConformant = (Component, requiredProps = {}) => {
       })
     })
 
-    // TODO: do not exclude headers once updating their APIs
-    const isHeader = /(header|h1|h2|h3|h4|h5|h6)/i.test(componentClassName)
-    if (META.isSemanticUI(Component) && !isHeader) {
+    // TODO: do not exclude headers once their APIs are updated
+    if (!isHeader && META.isSemanticUI(Component)) {
       it(`has the Semantic UI className "${componentClassName}"`, () => {
         render(<Component {...requiredProps} />)
           .should.have.className(componentClassName)
@@ -262,6 +263,27 @@ export const isConformant = (Component, requiredProps = {}) => {
       shallow(<Component {...requiredProps} className={classes} />)
         .should.have.className(classes)
     })
+
+    // TODO: do not exclude headers once their APIs are updated
+    if (!isHeader) {
+      it("user's className does not override the default classes", () => {
+        const defaultClasses = shallow(<Component {...requiredProps} />)
+          .prop('className')
+
+        if (!defaultClasses) return
+
+        const userClasses = faker.hacker.verb()
+        const mixedClasses = shallow(<Component {...requiredProps} className={userClasses} />)
+          .prop('className')
+
+        defaultClasses.split(' ').forEach((defaultClass) => {
+          mixedClasses.should.include(defaultClass, [
+            'Make sure you are using the `getUnhandledProps` util to spread the `rest` props.',
+            'This may also be of help: https://facebook.github.io/react/docs/transferring-props.html.',
+          ].join(' '))
+        })
+      })
+    }
   })
 }
 
