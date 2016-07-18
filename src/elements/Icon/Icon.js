@@ -16,8 +16,8 @@ export default class Icon extends Component {
   render() {
     const { className } = this.props
     const classes = cx(
-      className,
       'icon',
+      className
     )
     return (
       <i {...this.props} className={classes} />

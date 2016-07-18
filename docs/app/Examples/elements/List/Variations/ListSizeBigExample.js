@@ -8,7 +8,7 @@ export default class ListSizeBigExample extends Component {
     const christianAvatar = <Image className='avatar' src={faker.image.avatar()} />
     const danielAvatar = <Image className='avatar' src={faker.image.avatar()} />
     return (
-      <List className='big horizontal divided'>
+      <List size='big' horizontal divided>
         <List.Item image={helenAvatar} header='Helen' />
         <List.Item image={christianAvatar} header='Christian' />
         <List.Item image={danielAvatar} header='Daniel' />

@@ -8,7 +8,7 @@ export default class ListSelectionExample extends Component {
     const avatar2 = <Image className='avatar' src={faker.image.avatar()} />
     const avatar3 = <Image className='avatar' src={faker.image.avatar()} />
     return (
-      <List className='selection'>
+      <List selection>
         <List.Item image={avatar1} header='Helen' />
         <List.Item image={avatar2} header='Christian' />
         <List.Item image={avatar3} header='Daniel' />

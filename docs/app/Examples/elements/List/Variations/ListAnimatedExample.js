@@ -8,7 +8,7 @@ export default class ListAnimatedExample extends Component {
     const avatar2 = <Image className='avatar' src={faker.image.avatar()} />
     const avatar3 = <Image className='avatar' src={faker.image.avatar()} />
     return (
-      <List className='middle aligned animated'>
+      <List animated aligned='middle'>
         <List.Item image={avatar1} header='Helen' />
         <List.Item image={avatar2} header='Christian' />
         <List.Item image={avatar3} header='Daniel' />
