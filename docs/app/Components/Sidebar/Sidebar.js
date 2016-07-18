@@ -63,6 +63,9 @@ export default class Sidebar extends Component {
           />
         </div>
         {_.map(this.renderItemsByType, typeOrder)}
+        <a className='item' href='https://github.com/TechnologyAdvice/stardust/blob/master/CHANGELOG.md'>
+          <Icon className='file text outline' /> CHANGELOG
+        </a>
       </Menu>
     )
   }
