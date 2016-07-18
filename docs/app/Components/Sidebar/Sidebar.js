@@ -1,6 +1,6 @@
 import _ from 'lodash/fp'
 import React, { Component } from 'react'
-import { routerShape } from 'react-router'
+import { Link, routerShape } from 'react-router'
 
 import * as stardust from 'stardust'
 import { typeOrder } from 'docs/app/utils'
@@ -17,7 +17,6 @@ export default class Sidebar extends Component {
   handleSearchChange = e => this.setState({ query: e.target.value })
 
   renderItemsByType = (type) => {
-    const { router } = this.context
     const items = _.flow(
       _.filter(_.overEvery([
         META.isParent,
@@ -29,7 +28,9 @@ export default class Sidebar extends Component {
         const route = `${_meta.type}s/${_.kebabCase(_meta.name)}`
 
         return (
-          <Menu.Item key={_meta.name} name={_meta.name} onClick={() => router.push(route)} />
+          <Link to={route} className='item' activeClassName='active' key={_meta.name}>
+            {_meta.name}
+          </Link>
         )
       })
     )(stardust)
