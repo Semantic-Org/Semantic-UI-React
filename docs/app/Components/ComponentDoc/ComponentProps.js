@@ -17,14 +17,16 @@ export default class ComponentProps extends Component {
      * @type {object} Props info object where keys are prop names and values are prop definitions.
      */
     props: PropTypes.object,
-  };
-
-  nameRenderer(item) {
-    const required = item.required && <span className='ui empty mini red circular label' />
-    return <code>{item.name} {required}</code>
   }
 
-  defaultValueRenderer(item) {
+  nameRenderer = (item) => <code>{item.name}</code>
+
+  requiredRenderer = (item) => {
+    if (item.required) {
+      return <span className='ui mini red circular label'>required</span>
+    }
+  }
+  defaultValueRenderer = (item) => {
     const defaultValue = _.get(item, 'defaultValue.value')
     const defaultIsComputed = <span className='ui mini gray circular label'>computed</span>
 
@@ -66,6 +68,7 @@ export default class ComponentProps extends Component {
         <Header.H2>Props</Header.H2>
         <Table data={content} className='very basic compact'>
           <Table.Column dataKey='name' cellRenderer={this.nameRenderer} />
+          <Table.Column cellRenderer={this.requiredRenderer} />
           <Table.Column dataKey='type' />
           <Table.Column dataKey='defaultValue' cellRenderer={this.defaultValueRenderer} />
           <Table.Column dataKey='description' />
