@@ -1,5 +1,13 @@
 # Change Log
 
+## [Unreleased](https://github.com/TechnologyAdvice/stardust/tree/HEAD)
+
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.24.1...HEAD)
+
+**Merged pull requests:**
+
+- Add doc site routes [\#337](https://github.com/TechnologyAdvice/stardust/pull/337) ([levithomason](https://github.com/levithomason))
+
 ## [v0.24.1](https://github.com/TechnologyAdvice/stardust/tree/v0.24.1) (2016-07-17)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.24.0...v0.24.1)
 
