@@ -6,6 +6,7 @@
 
 **Merged pull requests:**
 
+- Cleanup docs for Loader [\#338](https://github.com/TechnologyAdvice/stardust/pull/338) ([layershifter](https://github.com/layershifter))
 - Add doc site routes [\#337](https://github.com/TechnologyAdvice/stardust/pull/337) ([levithomason](https://github.com/levithomason))
 
 ## [v0.24.1](https://github.com/TechnologyAdvice/stardust/tree/v0.24.1) (2016-07-17)
