@@ -1,4 +1,5 @@
 import _ from 'lodash'
+import cx from 'classnames'
 import React, { Children } from 'react'
 
 import Icon from '../elements/Icon/Icon'
@@ -176,22 +177,20 @@ export const getUnhandledProps = (Component, props) => {
 // These give all our components props consistent smart capabilities.
 // ----------------------------------------
 export const iconPropRenderer = (val, props = {}) => {
-  if (_.isString(val)) {
-    return <Icon {...props} className={val} />
-  }
+  if (_.isString(val)) return <Icon {...props} className={val} />
 
   if (_.isObject(val)) {
-    return React.cloneElement(val, { ...val.props, ...props })
+    const className = cx(val.props.className, props.className) // eslint-disable-line
+    return React.cloneElement(val, { ...val.props, ...props, className })
   }
 }
 
 export const imagePropRenderer = (val, props = {}) => {
-  if (_.isString(val)) {
-    return <Image {...props} src={val} />
-  }
+  if (_.isString(val)) return <Image {...props} src={val} />
 
   if (_.isObject(val)) {
-    return React.cloneElement(val, { ...val.props, ...props })
+    const className = cx(val.props.className, props.className) // eslint-disable-line
+    return React.cloneElement(val, { ...val.props, ...props, className })
   }
 }
 

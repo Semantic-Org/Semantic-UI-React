@@ -1,17 +1,42 @@
 import React from 'react'
-import { Route } from 'react-router'
+import { Route, IndexRedirect } from 'react-router'
 
-import Root from './Components/Root'
-import ButtonExamples from './Examples/elements/Button/ButtonExamples'
+import Root from 'docs/app/Components/Root'
+import Layout from 'docs/app/Components/Layout'
+import ComponentDoc from 'docs/app/Components/ComponentDoc/ComponentDoc'
+import PageNotFound from 'docs/app/Components/PageNotFound/PageNotFound'
 
-const redirect = to => (nextState, replace) => replace(to)
+// TODO remove these once PRs are merged and docs are updated to use index.js files
+import { Button, Icon, Input, List, Segment, Statistic } from 'stardust'
+const ButtonDoc = () => <ComponentDoc _meta={Button._meta} />
+const IconDoc = () => <ComponentDoc _meta={Icon._meta} />
+const InputDoc = () => <ComponentDoc _meta={Input._meta} />
+const ListDoc = () => <ComponentDoc _meta={List._meta} />
+const SegmentDoc = () => <ComponentDoc _meta={Segment._meta} />
+const StatisticDoc = () => <ComponentDoc _meta={Statistic._meta} />
 
 const routes = (
-  <Route path='/' component={Root}>
+  <Route path='/' component={Layout}>
+    <IndexRedirect to='elements/button' />
+
+    {/* TODO remove routes once open PRs are merged and docs are updated to use index.js files */}
     <Route path='elements'>
-      <Route path='button' component={ButtonExamples} />
+      <Route path='button' component={ButtonDoc} />
+      <Route path='icon' component={IconDoc} />
+      <Route path='input' component={InputDoc} />
+      <Route path='list' component={ListDoc} />
+      <Route path='segment' component={SegmentDoc} />
     </Route>
-    <Route path='*' onEnter={redirect(__BASE__)} />
+    <Route path='views'>
+      <Route path='statistic' component={StatisticDoc} />
+    </Route>
+
+    {/* v1 Routes */}
+    <Route path=':type'>
+      <Route path=':name' component={Root} />
+    </Route>
+
+    <Route path='*' component={PageNotFound} />
   </Route>
 )
 
