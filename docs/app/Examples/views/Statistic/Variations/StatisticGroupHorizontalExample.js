@@ -7,8 +7,6 @@ const items = [
   { label: 'Tasks', value: 22 },
 ]
 
-const StatisticGroupHorizontalExample = () => (
-  <Statistic.Group horizontal items={items} />
-)
+const StatisticGroupHorizontalExample = () => <Statistic.Group horizontal items={items} />
 
 export default StatisticGroupHorizontalExample
