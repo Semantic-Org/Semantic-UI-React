@@ -4,7 +4,8 @@ import _ from 'lodash/fp'
 import React, { Component, PropTypes } from 'react'
 
 import ComponentDoc from 'docs/app/Components/ComponentDoc/ComponentDoc'
-import PageNotFound from 'docs/app/Components/PageNotFound'
+import PageNotFound from 'docs/app/Components/PageNotFound/PageNotFound'
+import META from 'src/utils/Meta'
 import * as stardust from 'stardust'
 
 export default class Root extends Component {
@@ -19,7 +20,7 @@ export default class Root extends Component {
     const { name } = this.props.params
     const component = stardust[_.startCase(name)]
 
-    if (!component || !component._meta) {
+    if (!component || !component._meta || !META.isParent(component)) {
       return <PageNotFound />
     }
 

@@ -1,10 +1,10 @@
 import React from 'react'
-import { Route } from 'react-router'
+import { Route, IndexRedirect } from 'react-router'
 
 import Root from 'docs/app/Components/Root'
 import Layout from 'docs/app/Components/Layout'
 import ComponentDoc from 'docs/app/Components/ComponentDoc/ComponentDoc'
-import PageNotFound from 'docs/app/Components/PageNotFound'
+import PageNotFound from 'docs/app/Components/PageNotFound/PageNotFound'
 
 // TODO remove these once PRs are merged and docs are updated to use index.js files
 import { Button, Icon, Input, List, Segment, Statistic } from 'stardust'
@@ -17,6 +17,8 @@ const StatisticDoc = () => <ComponentDoc _meta={Statistic._meta} />
 
 const routes = (
   <Route path='/' component={Layout}>
+    <IndexRedirect to='elements/button' />
+
     {/* TODO remove routes once open PRs are merged and docs are updated to use index.js files */}
     <Route path='elements'>
       <Route path='button' component={ButtonDoc} />
