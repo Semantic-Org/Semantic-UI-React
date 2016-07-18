@@ -2,6 +2,7 @@ import faker from 'faker'
 import _ from 'lodash'
 import path from 'path'
 import React, { createElement } from 'react'
+import ReactDOMServer from 'react-dom/server'
 
 import META from 'src/utils/Meta'
 import * as stardust from 'stardust'
@@ -18,6 +19,13 @@ const componentInfo = componentCtx.keys().map(key => {
   const Component = componentCtx(key).default
   const { _meta, prototype } = Component
 
+  if (!_meta) {
+    throw new Error([
+      'Component is missing a static _meta object property. This should help identify it:',
+      `Rendered:\n${ReactDOMServer.renderToStaticMarkup(<Component />)}`,
+    ].join('\n'))
+  }
+
   const constructorName = prototype.constructor.name
   const filePath = key
   const filename = path.basename(key)
@@ -26,7 +34,12 @@ const componentInfo = componentCtx.keys().map(key => {
     ? _meta.name.replace(_meta.parent, '')
     : null
 
-  const componentClassName = (subComponentName || constructorName).toLowerCase()
+  // name of the component, sub component, or plural parent for sub component groups
+  const componentClassName = (
+    META.isChild(Component)
+      ? subComponentName.replace(/Group$/, `${_meta.parent}s`)
+      : _meta.name
+  ).toLowerCase()
 
   return {
     _meta,
@@ -48,7 +61,6 @@ const componentInfo = componentCtx.keys().map(key => {
 export const isConformant = (Component, requiredProps = {}) => {
   // tests depend on Component constructor names, enforce them
   if (!Component.prototype.constructor.name) {
-    const ReactDOMServer = require('react-dom/server')
     throw new Error([
       'Component is not a named function. This should help identify it:',
       `static _meta = ${JSON.stringify(Component._meta, null, 2)}`,
