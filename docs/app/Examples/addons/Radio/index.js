@@ -1,7 +1,7 @@
 import React from 'react'
-import Types from './Types/Types'
-import States from './States/States'
-import Variations from './Variations/Variations'
+import Types from './Types'
+import States from './States'
+import Variations from './Variations'
 
 const RadioExamples = () => (
   <div>

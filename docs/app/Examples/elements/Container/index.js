@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import Types from './Types/Types'
-import Variations from './Variations/Variations'
+import Types from './Types'
+import Variations from './Variations'
 
-export default class AccordionExamples extends Component {
+export default class ContainerExamples extends Component {
   render() {
     return (
       <div>

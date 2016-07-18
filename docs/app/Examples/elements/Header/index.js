@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import HeaderTypesExamples from './Types/HeaderTypesExamples'
-import HeaderContentExamples from './Content/HeaderContentExamples'
-import HeaderStatesExamples from './States/HeaderStatesExamples'
-import HeaderVariationsExamples from './Variations/HeaderVariationsExamples'
+import Types from './Types'
+import Content from './Content'
+import States from './States'
+import Variations from './Variations'
 import { Message } from 'stardust'
 
 export default class HeaderExamples extends Component {
@@ -15,10 +15,10 @@ export default class HeaderExamples extends Component {
           <code>&lt;div&gt;</code>. While subcomponents, <code>&lt;Header.H*&gt;</code>,
           render an <code>&lt;h*&gt;</code>. See the examples below for further clarfication.
         </Message>
-        <HeaderTypesExamples />
-        <HeaderContentExamples />
-        <HeaderStatesExamples />
-        <HeaderVariationsExamples />
+        <Types />
+        <Content />
+        <States />
+        <Variations />
       </div>
     )
   }

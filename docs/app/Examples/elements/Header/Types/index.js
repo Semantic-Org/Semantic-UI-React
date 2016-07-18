@@ -19,7 +19,7 @@ export default class HeaderTypesExamples extends Component {
         <ComponentExample
           title='Content Headers'
           description='Headers may be oriented to give the importance of a section'
-          examplePath='elements/Header/Types/HeaderContentHeadersExamples'
+          examplePath='elements/Header/Types/HeaderContentHeadersExample'
         >
           <Message>
             Content headings are sized with em and are based on the font-size of their container.
@@ -28,7 +28,7 @@ export default class HeaderTypesExamples extends Component {
         <ComponentExample
           title='Icon Headers'
           description='A header can be formatted to emphasize an icon'
-          examplePath='elements/Header/Types/HeaderIconHeadersExamples'
+          examplePath='elements/Header/Types/HeaderIconHeadersExample'
         />
         <ComponentExample
           title='Sub Headers'

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Header } from 'stardust'
 
-export default class HeaderContentHeadersExamples extends Component {
+export default class HeaderContentHeadersExample extends Component {
   render() {
     return (
       <div>

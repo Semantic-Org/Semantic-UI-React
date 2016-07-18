@@ -34,7 +34,7 @@ export default class ComponentDescription extends Component {
     return (
       <List.Item icon='book'>
         <a href={url} target='_blank'>
-          Semantic UI Docs
+          Semantic UI {name} Docs
         </a>
       </List.Item>
     )

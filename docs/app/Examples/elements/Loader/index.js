@@ -25,7 +25,7 @@ export default class LoaderExamples extends Component {
           <ComponentExample
             title='Text Loader'
             description='A loader can contain text'
-            examplePath='elements/Loader/Types/TextLoaderExamples'
+            examplePath='elements/Loader/Types/TextLoaderExample'
           />
         </ExampleSection>
 
@@ -73,7 +73,7 @@ export default class LoaderExamples extends Component {
           <ComponentExample
             title='Size'
             description='Loaders can have different sizes'
-            examplePath='elements/Loader/Variations/SizeLoaderExamples'
+            examplePath='elements/Loader/Variations/SizeLoaderExample'
           />
 
           <ComponentExample
@@ -85,7 +85,7 @@ export default class LoaderExamples extends Component {
           <ComponentExample
             title='Inverted'
             description='Loaders can have their colors inverted.'
-            examplePath='elements/Loader/Variations/InvertedSizeLoaderExamples'
+            examplePath='elements/Loader/Variations/InvertedSizeLoaderExample'
           >
             <Message>
               Loaders will automatically be inverted inside "inverted dimmer".

@@ -1,12 +1,17 @@
 import _ from 'lodash/fp'
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
+import { Link } from 'react-router'
+
 import * as stardust from 'stardust'
 import { typeOrder } from 'docs/app/utils'
 import META from 'src/utils/Meta'
 
-const { Menu, Input } = stardust
+const { Menu, Icon, Input } = stardust
 
 export default class Sidebar extends Component {
+  static propTypes = {
+    style: PropTypes.object,
+  }
   state = { query: '' }
 
   handleSearchChange = e => this.setState({ query: e.target.value })
@@ -19,9 +24,14 @@ export default class Sidebar extends Component {
         ({ _meta }) => new RegExp(this.state.query, 'i').test(_meta.name),
       ])),
       _.sortBy('_meta.name'),
-      _.map(component => {
-        const name = component._meta.name
-        return <Menu.Item key={name} name={name} href={`#${name}`} />
+      _.map(({ _meta }) => {
+        const route = `${_meta.type}s/${_.kebabCase(_meta.name)}`
+
+        return (
+          <Link to={route} className='item' activeClassName='active' key={_meta.name}>
+            {_meta.name}
+          </Link>
+        )
       })
     )(stardust)
 
@@ -34,9 +44,17 @@ export default class Sidebar extends Component {
   }
 
   render() {
+    const { style } = this.props
     return (
-      <Menu className='inverted secondary vertical fluid' style={{ margin: 0 }}>
-        <Menu.Item>
+      <Menu className='vertical fixed inverted' style={{ ...style }}>
+        <div className='item'>
+          <img src='http://semantic-ui.com/images/logo.png' style={{ marginRight: '1em' }} />
+          <strong>UI-React Docs</strong>
+        </div>
+        <a className='item' href='https://github.com/TechnologyAdvice/stardust'>
+          <Icon className='github' /> GitHub
+        </a>
+        <div className='item'>
           <Input
             className='transparent inverted icon'
             icon='search'
@@ -44,7 +62,7 @@ export default class Sidebar extends Component {
             iconClass='search link icon'
             onChange={this.handleSearchChange}
           />
-        </Menu.Item>
+        </div>
         {_.map(this.renderItemsByType, typeOrder)}
       </Menu>
     )
