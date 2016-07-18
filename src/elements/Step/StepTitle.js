@@ -5,7 +5,7 @@ import { getUnhandledProps } from '../../utils/propUtils'
 import META from '../../utils/Meta'
 
 function StepTitle(props) {
-  const { className, children, } = props
+  const { className, children } = props
   const classes = cx(
     className,
     'title',
