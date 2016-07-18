@@ -14,9 +14,7 @@ export default class Root extends Component {
   render() {
     return (
       <div style={style.container}>
-        <div style={style.menu}>
-          <Sidebar />
-        </div>
+        <Sidebar style={style.menu} />
         <div style={style.main}>
           <Grid className='padded'>
             <Grid.Column>
