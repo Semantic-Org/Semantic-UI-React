@@ -30,7 +30,7 @@ const imageStyle = {
   zIndex: 2000,
 }
 
-// we use slightly random sized image sizes to ensure we get a new image from unsplash.it
+// we use slightly random image sizes to ensure we get a new image from unsplash.it
 const getImageUrl = () => `url(//unsplash.it/${_.random(1500, 1600)}/${_.random(1100, 1200)}})`
 
 class PageNotFound extends Component {

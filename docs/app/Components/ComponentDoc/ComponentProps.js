@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import React, { Component, PropTypes } from 'react'
-import { Divider, Header, Table } from 'stardust'
+import { Divider, Header, Label, Table } from 'stardust'
 
 const DOCBLOCK_DESCRIPTION_DEFAULTS = {
   children: 'Body of the component.',
@@ -23,7 +23,7 @@ export default class ComponentProps extends Component {
 
   requiredRenderer = (item) => {
     if (item.required) {
-      return <span className='ui mini red circular label'>required</span>
+      return <Label size='mini' color='red' circular>required</Label>
     }
   }
   defaultValueRenderer = (item) => {

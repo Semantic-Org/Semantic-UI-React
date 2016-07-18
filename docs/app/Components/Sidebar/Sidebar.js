@@ -1,7 +1,6 @@
 import _ from 'lodash/fp'
 import React, { Component, PropTypes } from 'react'
 import { Link } from 'react-router'
-
 import * as stardust from 'stardust'
 import { typeOrder } from 'docs/app/utils'
 import META from 'src/utils/Meta'
