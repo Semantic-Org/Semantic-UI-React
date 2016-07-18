@@ -35,7 +35,7 @@ Loader._meta = {
 }
 
 Loader.propTypes = {
-  /** Show that the Loader is active. */
+  /** A loader can be active or visible. */
   active: PropTypes.bool,
 
   /** Classes that will be added to the Loader className. */
@@ -47,25 +47,25 @@ Loader.propTypes = {
     PropTypes.node,
   ]),
 
-  /** Show that the Loader is inactive. */
+  /** A loader can be disabled or hidden. */
   disabled: PropTypes.bool,
 
-  /** Show that the Loader is indeterminate. */
+  /** A loader can show it's unsure of how long a task will take. */
   indeterminate: PropTypes.bool,
 
-  /** Show that the Loader is inverted. */
+  /** Loaders can have their colors inverted. */
   inverted: PropTypes.bool,
 
-  /** Show that the Loader is inline. */
+  /** Loaders can appear inline with content. */
   inline: PropTypes.oneOfType([
     PropTypes.bool,
     PropTypes.oneOf(Loader._meta.props.inline),
   ]),
 
-  /** Size of the Loader. */
+  /** Loaders can have different sizes. */
   size: PropTypes.oneOf(Loader._meta.props.size),
 
-  /** Text content of the Loader. Mutually exclusive with the children prop. */
+  /** Primary content of the Loader. Mutually exclusive with the children prop. */
   text: customPropTypes.all([
     customPropTypes.mutuallyExclusive(['children']),
     PropTypes.node,
@@ -73,4 +73,3 @@ Loader.propTypes = {
 }
 
 export default Loader
-
