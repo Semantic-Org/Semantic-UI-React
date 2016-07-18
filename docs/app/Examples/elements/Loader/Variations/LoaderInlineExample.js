@@ -1,4 +1,6 @@
 import React from 'react'
 import { Loader } from 'stardust'
 
-export default () => <Loader active inline />
+const LoaderInlineExample = () => <Loader active inline />
+
+export default LoaderInlineExample
