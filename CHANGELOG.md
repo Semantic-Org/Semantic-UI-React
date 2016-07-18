@@ -1,13 +1,13 @@
 # Change Log
 
-## [Unreleased](https://github.com/TechnologyAdvice/stardust/tree/HEAD)
-
-[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.24.1...HEAD)
+## [v0.25.0](https://github.com/TechnologyAdvice/stardust/tree/v0.25.0) (2016-07-18)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.24.1...v0.25.0)
 
 **Merged pull requests:**
 
 - Cleanup docs for Loader [\#338](https://github.com/TechnologyAdvice/stardust/pull/338) ([layershifter](https://github.com/layershifter))
 - Add doc site routes [\#337](https://github.com/TechnologyAdvice/stardust/pull/337) ([levithomason](https://github.com/levithomason))
+- Update Statistic to v1 API [\#334](https://github.com/TechnologyAdvice/stardust/pull/334) ([layershifter](https://github.com/layershifter))
 
 ## [v0.24.1](https://github.com/TechnologyAdvice/stardust/tree/v0.24.1) (2016-07-17)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.24.0...v0.24.1)
