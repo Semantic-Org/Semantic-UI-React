@@ -1,5 +1,13 @@
 # Change Log
 
+## [Unreleased](https://github.com/TechnologyAdvice/stardust/tree/HEAD)
+
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.25.0...HEAD)
+
+**Fixed bugs:**
+
+- Fixed broken reference to utils/Meta [\#342](https://github.com/TechnologyAdvice/stardust/pull/342) ([tslater](https://github.com/tslater))
+
 ## [v0.25.0](https://github.com/TechnologyAdvice/stardust/tree/v0.25.0) (2016-07-18)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.24.1...v0.25.0)
 
