@@ -24,14 +24,6 @@ export default class ComponentExample extends Component {
     this.anchor = props.examplePath.split('/').slice(1).join('-')
   }
 
-  handleMouseEnter = () => {
-    this.setState({ showLink: true })
-  }
-
-  handleMouseLeave = () => {
-    this.setState({ showLink: false })
-  }
-
   toggleShowCode = () => {
     this.setState({ showCode: !this.state.showCode })
   }
@@ -45,11 +37,6 @@ export default class ComponentExample extends Component {
       </Grid.Column>
     )
 
-    const linkIconStyle = {
-      display: this.state.showLink ? 'inline-block' : 'none',
-      marginLeft: '0.25em',
-    }
-
     const codeIconStyle = {
       fontSize: '1.5em',
       fontWeight: 'bold',
@@ -62,16 +49,9 @@ export default class ComponentExample extends Component {
         <Grid.Column>
           <Grid>
             <Grid.Column width={12}>
-              <Header
-                style={{ marginBottom: 0 }}
-                onMouseEnter={this.handleMouseEnter}
-                onMouseLeave={this.handleMouseLeave}
-              >
+              <Header.H3 style={{ marginBottom: 0 }}>
                 {this.props.title}
-                <a href={`#${this.anchor}`}>
-                  <Icon className='linkify' style={linkIconStyle} />
-                </a>
-              </Header>
+              </Header.H3>
               <p>{this.props.description}</p>
             </Grid.Column>
             <Grid.Column width={4} className='right aligned'>

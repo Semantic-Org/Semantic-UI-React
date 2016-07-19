@@ -72,7 +72,6 @@ webpackConfig.plugins = [
   }),
   new HtmlWebpackPlugin({
     template: paths.docsSrc('index.ejs'),
-    baseHref: __BASE__,
     hash: false,
     filename: 'index.html',
     inject: 'body',
@@ -194,6 +193,7 @@ if (__TEST__ || argv.localModules) {
   // find them on the window
   webpackConfig.externals = {
     faker: 'faker',
+    'anchor-js': 'AnchorJS',
   }
 }
 

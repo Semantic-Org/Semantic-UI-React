@@ -2,12 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <!-- baseHref value already includes quotes "/foo" -->
-  <base href=<%= htmlWebpackPlugin.options.baseHref %> />
+  <link rel="shortcut icon" type="image/x-icon" href="http://semantic-ui.com/images/logo.png" />
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.5.0/styles/github-gist.min.css">
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/<%= htmlWebpackPlugin.options.versions.sui %>/semantic.min.css">
+  <link rel="stylesheet"
+        href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/<%= htmlWebpackPlugin.options.versions.sui %>/semantic.min.css">
   <script src="//cdnjs.cloudflare.com/ajax/libs/Faker/<%= htmlWebpackPlugin.options.versions.faker %>/faker.min.js"></script>
-  <title>Stardust</title>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.1/anchor.min.js"></script>
+  <title>Semantic UI React</title>
   <script>
     // Apply gh-pages SPA redirect that was applied in 404.html
     (function() {
@@ -21,5 +22,29 @@
 </head>
 <body>
 
+  <style>
+    .anchorjs-link {
+      transition: margin-left .25s, color .25s, opacity 0.25s;
+      margin-left: -0.2em;
+      color: #777;
+      opacity: 0;
+    }
+
+    h1:hover > .anchorjs-link:not(:hover),
+    h2:hover > .anchorjs-link:not(:hover),
+    h3:hover > .anchorjs-link:not(:hover),
+    h4:hover > .anchorjs-link:not(:hover),
+    h5:hover > .anchorjs-link:not(:hover),
+    h6:hover > .anchorjs-link:not(:hover) {
+      margin-left: 0em;
+      opacity: 0.5;
+    }
+
+    .anchorjs-link:hover {
+      margin-left: 0em;
+      color: cornflowerblue;
+      opacity: 1;
+    }
+  </style>
 </body>
 </html>
