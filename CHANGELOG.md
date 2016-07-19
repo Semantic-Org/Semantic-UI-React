@@ -1,5 +1,12 @@
 # Change Log
 
+## [v0.26.0](https://github.com/TechnologyAdvice/stardust/tree/v0.26.0) (2016-07-19)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.25.1...v0.26.0)
+
+**Merged pull requests:**
+
+- Icon Component updated to v1 API [\#343](https://github.com/TechnologyAdvice/stardust/pull/343) ([levithomason](https://github.com/levithomason))
+
 ## [v0.25.1](https://github.com/TechnologyAdvice/stardust/tree/v0.25.1) (2016-07-19)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.25.0...v0.25.1)
 
