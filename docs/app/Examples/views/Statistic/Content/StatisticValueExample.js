@@ -23,7 +23,7 @@ const StatisticValueExample = () => (
 
     <Statistic>
       <Value>
-        <Icon className='plane' />
+        <Icon name='plane' />
         5
       </Value>
       <Label>Flights</Label>

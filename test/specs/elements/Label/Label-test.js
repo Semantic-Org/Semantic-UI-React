@@ -25,6 +25,8 @@ describe('Label Component', () => {
   common.propKeyOrValueToClassName(Label, 'pointing')
   common.propKeyOrValueToClassName(Label, 'ribbon')
 
+  common.implementsIconProp(Label)
+
   it('is a div by default', () => {
     shallow(<Label />)
       .should.have.tagName('div')
@@ -83,22 +85,10 @@ describe('Label Component', () => {
   })
 
   describe('icon', () => {
-    it('has no i when not defined', () => {
-      shallow(<Label />)
-        .should.not.have.descendants('i')
-    })
-
     it('adds a i as first child', () => {
       shallow(<Label icon={faker.hacker.noun()}><br /></Label>)
         .childAt(0)
         .should.match('i')
-    })
-
-    it('adds the value to the Icon className', () => {
-      const className = faker.hacker.noun()
-      shallow(<Label icon={className}><br /></Label>)
-        .find('Icon')
-        .should.have.className(className)
     })
   })
 
