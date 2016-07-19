@@ -10,4 +10,7 @@ coverage/
 dist/
 docs/build
 docs/app/docgenInfo.json
-dll/
+dll
+
+.DS_Store
+.idea/
