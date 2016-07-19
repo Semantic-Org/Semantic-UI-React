@@ -1,8 +1,7 @@
 # Change Log
 
-## [Unreleased](https://github.com/TechnologyAdvice/stardust/tree/HEAD)
-
-[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.25.0...HEAD)
+## [v0.25.1](https://github.com/TechnologyAdvice/stardust/tree/v0.25.1) (2016-07-19)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.25.0...v0.25.1)
 
 **Fixed bugs:**
 
