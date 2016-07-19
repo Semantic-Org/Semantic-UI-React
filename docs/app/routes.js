@@ -7,7 +7,7 @@ import ComponentDoc from 'docs/app/Components/ComponentDoc/ComponentDoc'
 import PageNotFound from 'docs/app/Components/PageNotFound/PageNotFound'
 
 // TODO remove these once PRs are merged and docs are updated to use index.js files
-import { Button, Icon, Input, List, Segment, Statistic } from 'stardust'
+import { Button, Input, List, Segment, Statistic } from 'stardust'
 const ButtonDoc = () => <ComponentDoc _meta={Button._meta} />
 const IconDoc = () => <ComponentDoc _meta={Icon._meta} />
 const InputDoc = () => <ComponentDoc _meta={Input._meta} />
