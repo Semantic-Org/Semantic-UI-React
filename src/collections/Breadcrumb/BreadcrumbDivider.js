@@ -1,5 +1,6 @@
-import React, { PropTypes } from 'react'
 import cx from 'classnames'
+import React, { PropTypes } from 'react'
+
 import META from '../../utils/Meta'
 import { customPropTypes, iconPropRenderer, getUnhandledProps } from '../../utils/propUtils'
 
@@ -17,8 +18,6 @@ function BreadcrumbDivider(props) {
   const rest = getUnhandledProps(BreadcrumbDivider, props)
 
   if (icon) {
-    // TODO: After update <Icon> to API update propName
-
     return iconPropRenderer(icon, { ...rest, className: classes })
   }
 
