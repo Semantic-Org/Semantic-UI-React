@@ -1,5 +1,6 @@
 import _ from 'lodash'
 import React, { PropTypes } from 'react'
+import DocumentTitle from 'react-document-title'
 
 import ComponentDescription from './ComponentDescription'
 import ComponentExamples from './ComponentExamples'
@@ -14,15 +15,17 @@ const ComponentDoc = ({ _meta }) => {
   const docgen = docgenInfo[docPath]
 
   return (
-    <div>
-      <ComponentDescription
-        _meta={_meta}
-        docgen={docgen}
-        docPath={docPath}
-      />
-      {docgen.props && <ComponentProps props={docgen.props} />}
-      <ComponentExamples name={_meta.name} />
-    </div>
+    <DocumentTitle title={`${_meta.name} | UI React`}>
+      <div>
+        <ComponentDescription
+          _meta={_meta}
+          docgen={docgen}
+          docPath={docPath}
+        />
+        {docgen.props && <ComponentProps props={docgen.props} />}
+        <ComponentExamples name={_meta.name} />
+      </div>
+    </DocumentTitle>
   )
 }
 

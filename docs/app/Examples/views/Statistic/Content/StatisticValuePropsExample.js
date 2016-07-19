@@ -1,17 +1,20 @@
 import React from 'react'
 import { Icon, Image, Statistic } from 'stardust'
 
-// TODO: Update <Icon> usage after <Icon> will be updated to v1 API
 // TODO: Update <Image> usage after <Image> will be updated to v1 API
 
-const iconValue = (<div><Icon className='plane' /> 5</div>)
+const iconValue = (
+  <div>
+    <Icon name='plane' /> 5
+  </div>
+)
 const imageValue = (
   <div>
     <Image src='http://semantic-ui.com/images/avatar/small/joe.jpg' className='circular inline' />
     42
   </div>
 )
-const textValue = (<div>Three<br />Thousand</div>)
+const textValue = <div>Three<br />Thousand</div>
 
 const items = [
   { label: 'Saves', value: 22 },
@@ -24,9 +27,9 @@ const StatisticValuePropsExample = () => (
   <div>
     <Statistic.Group>
       <Statistic label='Saves' value='22' />
-      <Statistic label='Signups' text value={textValue} />
-      <Statistic label='Flights' value={iconValue} />
-      <Statistic label='Team Members' value={imageValue} />
+      <Statistic Label='Signups' value={textValue} text />
+      <Statistic Label='Flights' value={iconValue} />
+      <Statistic Label='Team Members' value={imageValue} />
     </Statistic.Group>
 
     <Statistic.Group items={items} />

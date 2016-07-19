@@ -51,7 +51,7 @@ export default class Sidebar extends Component {
           <strong>UI-React Docs</strong>
         </div>
         <a className='item' href='https://github.com/TechnologyAdvice/stardust'>
-          <Icon className='github' /> GitHub
+          <Icon name='github' /> GitHub
         </a>
         <div className='item'>
           <Input
@@ -64,7 +64,7 @@ export default class Sidebar extends Component {
         </div>
         {_.map(this.renderItemsByType, typeOrder)}
         <a className='item' href='https://github.com/TechnologyAdvice/stardust/blob/master/CHANGELOG.md'>
-          <Icon className='file text outline' /> CHANGELOG
+          <Icon name='file text outline' /> CHANGELOG
         </a>
       </Menu>
     )

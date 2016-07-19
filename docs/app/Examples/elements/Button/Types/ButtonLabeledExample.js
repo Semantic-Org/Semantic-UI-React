@@ -6,7 +6,7 @@ export default class ButtonLabeledExample extends Component {
     return (
       <Button className='labeled'>
         <Button>
-          <Icon className='heart' /> Like
+          <Icon name='heart' /> Like
         </Button>
         {/* TODO: See issue #46 - button needs to render as a div */}
         <Label basic link>

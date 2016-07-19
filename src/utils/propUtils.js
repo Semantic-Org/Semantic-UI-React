@@ -177,7 +177,7 @@ export const getUnhandledProps = (Component, props) => {
 // These give all our components props consistent smart capabilities.
 // ----------------------------------------
 export const iconPropRenderer = (val, props = {}) => {
-  if (_.isString(val)) return <Icon {...props} className={val} />
+  if (_.isString(val)) return <Icon {...props} name={val} />
 
   if (_.isObject(val)) {
     const className = cx(val.props.className, props.className) // eslint-disable-line

@@ -6,31 +6,31 @@ export default class ButtonSocialExample extends Component {
     return (
       <div>
         <Button className='facebook'>
-          <Icon className='facebook' />
+          <Icon name='facebook' />
           Facebook
         </Button>
         <Button className='twitter'>
-          <Icon className='twitter' />
+          <Icon name='twitter' />
           Twitter
         </Button>
         <Button className='google plus'>
-          <Icon className='google plus' />
+          <Icon name='google plus' />
           Google Plus
         </Button>
         <Button className='vk'>
-          <Icon className='vk' />
+          <Icon name='vk' />
           VK
         </Button>
         <Button className='linkedin'>
-          <Icon className='linkedin' />
+          <Icon name='linkedin' />
           LinkedIn
         </Button>
         <Button className='instagram'>
-          <Icon className='instagram' />
+          <Icon name='instagram' />
           Instagram
         </Button>
         <Button className='youtube'>
-          <Icon className='youtube' />
+          <Icon name='youtube' />
           YouTube
         </Button>
       </div>

@@ -3,7 +3,7 @@ import { Header, Icon } from 'stardust'
 
 export default class HeaderIconHeadersExample extends Component {
   render() {
-    const settings = <Icon className='settings' />
+    const settings = <Icon name='settings' />
     return (
       <Header.H2 className='icon' icon={settings} >
         Account Settings

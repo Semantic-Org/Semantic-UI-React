@@ -36,9 +36,9 @@ export default class Message extends Component {
       'message'
     )
 
-    const closeIcon = <Icon className='close' onClick={this.handleDismiss} />
+    const closeIcon = <Icon name='close' onClick={this.handleDismiss} />
     const header = <Header>{this.props.header}</Header>
-    const icon = <Icon className={this.props.icon} />
+    const icon = <Icon name={this.props.icon} />
 
     // wrap children in <p> if there is a header
     const children = this.props.header ? <p>{this.props.children}</p> : this.props.children

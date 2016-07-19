@@ -5,7 +5,7 @@ export default class ButtonIconExample extends Component {
   render() {
     return (
       <Button className='icon'>
-        <Icon className='world' />
+        <Icon name='world' />
       </Button>
     )
   }
