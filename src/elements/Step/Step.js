@@ -1,14 +1,15 @@
 import React, { PropTypes } from 'react'
 import cx from 'classnames'
 
-import { getUnhandledProps, useKeyOnly } from '../../utils/propUtils'
+import { iconPropRenderer, getUnhandledProps, useKeyOnly } from '../../utils/propUtils'
 import META from '../../utils/Meta'
+import StepDescription from './StepDescription'
 import StepGroup from './StepGroup'
 import StepTitle from './StepTitle'
 
 /** A step shows the completion status of an activity in a series of activities. */
 function Step(props) {
-  const { children, className, active, completed, disabled, link, href, onClick } = props
+  const { children, className, active, completed, disabled, icon, link, href, onClick } = props
   const classes = cx(
     'ui',
     useKeyOnly(active, 'active'),
@@ -24,14 +25,21 @@ function Step(props) {
   const rest = getUnhandledProps(Step, props)
 
   if (href) {
-    return <a {...rest} className={classes} href={href} onClick={handleClick}>{children}</a>
+    return <a {...rest} className={classes} href={href} onClick={handleClick}>{content}</a>
   }
 
   if (onClick) {
-    return <a {...rest} className={classes} onClick={handleClick}>{children}</a>
+    return <a {...rest} className={classes} onClick={handleClick}>{content}</a>
   }
 
-  return <div {...rest} className={classes} onClick={handleClick}>{children}</div>
+  return (
+    <div {...rest} className={classes} onClick={handleClick}>
+      {iconPropRenderer(icon)}
+      <div className='content'>
+        {children}
+      </div>
+    </div>
+  )
 }
 
 Step._meta = {
@@ -40,6 +48,7 @@ Step._meta = {
   type: META.type.element,
 }
 
+Step.Description = StepDescription
 Step.Group = StepGroup
 Step.Title = StepTitle
 
@@ -58,6 +67,8 @@ Step.propTypes = {
 
   /** Show that the Loader is inactive. */
   disabled: PropTypes.bool,
+
+  icon: PropTypes.string,
 
   /** A step can be link. */
   link: PropTypes.bool,

@@ -4,25 +4,25 @@ import cx from 'classnames'
 import { getUnhandledProps } from '../../utils/propUtils'
 import META from '../../utils/Meta'
 
-function StepTitle(props) {
+function StepDescription(props) {
   const { className, children } = props
   const classes = cx(
     className,
-    'title',
+    'description',
   )
-  const rest = getUnhandledProps(StepTitle, props)
+  const rest = getUnhandledProps(StepDescription, props)
 
   return <div className={classes} {...rest}>{ children }</div>
 }
 
-StepTitle._meta = {
+StepDescription._meta = {
   library: META.library.semanticUI,
   name: 'StepTitle',
   parent: 'Step',
   type: META.type.element,
 }
 
-StepTitle.propTypes = {
+StepDescription.propTypes = {
   /** Classes that will be added to the StepDescription className. */
   className: PropTypes.string,
 
@@ -30,4 +30,4 @@ StepTitle.propTypes = {
   children: PropTypes.node,
 }
 
-export default StepTitle
+export default StepDescription
