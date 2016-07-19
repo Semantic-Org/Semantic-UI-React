@@ -3,7 +3,6 @@ import { Icon, Image, Statistic } from 'stardust'
 
 const { Group, Label, Value } = Statistic
 
-// TODO: Update <Icon> usage after <Icon> will be updated to v1 API
 // TODO: Update <Image> usage after <Image> will be updated to v1 API
 
 const StatisticValueExample = () => (
