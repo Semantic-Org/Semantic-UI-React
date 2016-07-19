@@ -2,7 +2,6 @@ import 'semantic-ui-css/semantic.css'
 import 'highlight.js/styles/github.css'
 import _ from 'lodash/fp'
 import React, { Component, PropTypes } from 'react'
-import DocumentTitle from 'react-document-title'
 
 import ComponentDoc from 'docs/app/Components/ComponentDoc/ComponentDoc'
 import PageNotFound from 'docs/app/Components/PageNotFound/PageNotFound'
@@ -25,9 +24,7 @@ export default class Root extends Component {
     }
 
     return (
-      <DocumentTitle title={`${component._meta.name} | UI React`}>
-        <ComponentDoc _meta={component._meta} />
-      </DocumentTitle>
+      <ComponentDoc _meta={component._meta} />
     )
   }
 }
