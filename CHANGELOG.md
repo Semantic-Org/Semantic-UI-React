@@ -6,7 +6,12 @@
 
 **Fixed bugs:**
 
+- Error trying to run in webpack cannot resolve module 'utils/Meta' [\#340](https://github.com/TechnologyAdvice/stardust/issues/340)
 - Fixed broken reference to utils/Meta [\#342](https://github.com/TechnologyAdvice/stardust/pull/342) ([tslater](https://github.com/tslater))
+
+**Merged pull requests:**
+
+- Fix import path in Breadcrumb [\#341](https://github.com/TechnologyAdvice/stardust/pull/341) ([layershifter](https://github.com/layershifter))
 
 ## [v0.25.0](https://github.com/TechnologyAdvice/stardust/tree/v0.25.0) (2016-07-18)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.24.1...v0.25.0)
