@@ -164,13 +164,13 @@ export const isConformant = (Component, requiredProps = {}) => {
         const props = {
           ...requiredProps,
           [listenerName]: handlerSpy,
-          simulateEventOnThisComponent: true,
+          'data-simulate-event-here': true,
         }
 
         const wrapper = shallow(<Component {...props} />)
 
         wrapper
-          .find('[simulateEventOnThisComponent]')
+          .find('[data-simulate-event-here]')
           .simulate(eventName, eventShape)
 
         // give event listeners opportunity to cleanup
@@ -445,11 +445,14 @@ export const implementsAlignedProp = (Component, requiredProps = {}) => {
 }
 
 export const implementsIconProp = (Component, requiredProps = {}) => {
-  const iconClass = faker.hacker.noun()
-  const assertValid = (wrapper) => {
-    wrapper.should.have.descendants('Icon')
-    wrapper.find('Icon')
-      .should.have.className(iconClass)
+  const iconName = faker.hacker.noun()
+  const assertValid = (element) => {
+    const wrapper = shallow(element)
+    wrapper
+      .should.have.descendants('Icon')
+    wrapper
+      .find('Icon')
+      .should.have.prop('name', iconName)
   }
 
   describe('icon (common)', () => {
@@ -461,12 +464,12 @@ export const implementsIconProp = (Component, requiredProps = {}) => {
     })
 
     it('accepts an Icon instance', () => {
-      const icon = <Icon className={iconClass} />
-      assertValid(shallow(<Component icon={icon} />))
+      const icon = <Icon name={iconName} />
+      assertValid(<Component icon={icon} />)
     })
 
-    it('accepts an icon className string', () => {
-      assertValid(shallow(<Component icon={iconClass} />))
+    it('accepts an icon name string', () => {
+      assertValid(<Component icon={iconName} />)
     })
   })
 }
@@ -504,9 +507,9 @@ export const implementsImageProp = (Component, requiredProps = {}) => {
 }
 
 /**
- * Assert that a Component correctly implements the "widths" prop.
+ * Assert that a Component correctly implements some width prop.
  * @param {React.Component|Function} Component The component to test.
- * @param {string} Prop name.
+ * @param {string} propKey The prop name that accepts numbers/words.
  * @param {Object} [requiredProps={}] Props required to render the component.
  */
 export const implementsNumberToWordProp = (Component, propKey, requiredProps = {}) => {
