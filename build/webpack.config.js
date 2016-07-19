@@ -5,7 +5,7 @@ const _ = require('lodash')
 const { argv } = require('yargs')
 
 const { paths } = config
-const { __BASE__, __DEV__, __TEST__ } = config.compiler_globals
+const { __DEV__, __TEST__ } = config.compiler_globals
 
 const webpackConfig = {
   name: 'client',
