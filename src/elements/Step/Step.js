@@ -3,7 +3,10 @@ import cx from 'classnames'
 
 import { getUnhandledProps, useKeyOnly } from '../../utils/propUtils'
 import META from '../../utils/Meta'
+import StepGroup from './StepGroup'
+import StepTitle from './StepTitle'
 
+/** A step shows the completion status of an activity in a series of activities. */
 function Step(props) {
   const { children, className, active, completed, disabled, link, href, onClick } = props
   const classes = cx(
@@ -36,6 +39,9 @@ Step._meta = {
   name: 'Step',
   type: META.type.element,
 }
+
+Step.Group = StepGroup
+Step.Title = StepTitle
 
 Step.propTypes = {
   /** A step can be highlighted as active. */
