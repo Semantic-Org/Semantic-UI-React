@@ -434,7 +434,8 @@ export const implementsIconProp = (Component, requiredProps = {}) => {
   const iconClass = faker.hacker.noun()
   const assertValid = (wrapper) => {
     it('has an Icon descendant', () => {
-      wrapper.should.contain(<Icon name={iconClass} />)
+      wrapper.should.have.descendants('Icon')
+      wrapper.find('Icon').should.have.className(iconClass)
     })
   }
 
@@ -447,18 +448,26 @@ export const implementsIconProp = (Component, requiredProps = {}) => {
     })
 
     it('adds a i as first child', () => {
-      shallow(<Component icon={iconClass} />)
-        .childAt(0)
-        .should.match('i')
+      const componentName = Component.prototype.constructor.name
+      const isBreadcrumbDivider = /BreadcrumbDivider/i.test(componentName)
+
+      const wrapper = shallow(<Component icon={iconClass} />)
+      if (isBreadcrumbDivider) {
+        wrapper.should.have.tagName('i')
+      } else {
+        wrapper.childAt(0).should.match('i')
+      }
     })
 
     describe('accepts an Icon instance', () => {
       const icon = <Icon name={iconClass} />
-      assertValid(shallow(<Component icon={icon} />))
+      // assertion fails if not mounted
+      assertValid(mount(<Component icon={icon} />))
     })
 
     describe('accepts an icon className string', () => {
-      assertValid(shallow(<Component icon={iconClass} />))
+      // assertion fails if not mounted
+      assertValid(mount(<Component icon={iconClass} />))
     })
   })
 }
