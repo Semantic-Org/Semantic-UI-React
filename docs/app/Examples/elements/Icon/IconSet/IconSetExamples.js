@@ -1,3 +1,5 @@
+/* eslint-disable max-len */
+
 import _ from 'lodash'
 import React, { Component } from 'react'
 import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
