@@ -131,7 +131,7 @@ Every component has a static property called `_meta`.  This object defines the c
 Here's an example `_meta` object:
 
 ```js
-import META from 'src/utils/Meta'
+import META from '../../utils/Meta'
 
 const _meta = {
   library: META.library.semanticUI,
