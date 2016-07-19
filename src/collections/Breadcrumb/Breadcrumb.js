@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import cx from 'classnames'
 import React, { PropTypes } from 'react'
-import META from 'src/utils/Meta'
+import META from '../../utils/Meta'
 import { customPropTypes, getUnhandledProps } from '../../utils/propUtils'
 import * as sui from '../../utils/semanticUtils'
 import BreadcrumbDivider from './BreadcrumbDivider'
