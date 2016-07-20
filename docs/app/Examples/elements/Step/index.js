@@ -79,6 +79,26 @@ const StepExamples = () => (
         examplePath='elements/Step/States/StepDisabledExample'
       />
     </ExampleSection>
+
+    <ExampleSection title='Variations'>
+      <ComponentExample
+        title='Stackable'
+        description='A step can stack vertically only on smaller screens'
+        examplePath='elements/Step/Variations/StepStackableExample'
+      />
+
+      <ComponentExample
+        title='Fluid'
+        description='A fluid step takes up the width of its container'
+        examplePath='elements/Step/Variations/StepFluidExample'
+      />
+
+      <ComponentExample
+        title='Size'
+        description='Steps can have different sizes'
+        examplePath='elements/Step/Variations/StepSizeExamples'
+      />
+    </ExampleSection>
   </div>
 )
 
