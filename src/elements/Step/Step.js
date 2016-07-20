@@ -7,9 +7,33 @@ import StepDescription from './StepDescription'
 import StepGroup from './StepGroup'
 import StepTitle from './StepTitle'
 
+const getContent = (props) => {
+  const { icon, children, title, description } = props
+  const content = []
+
+  if (icon) {
+    content.push(iconPropRenderer(icon))
+  }
+
+  if (children) {
+    content.push(<div className='content'>{children}</div>)
+
+    return content
+  }
+
+  content.push(
+    <div className='content'>
+      <Step.Title>{title}</Step.Title>
+      <Step.Description>{description}</Step.Description>
+    </div>
+  )
+
+  return content
+}
+
 /** A step shows the completion status of an activity in a series of activities. */
 function Step(props) {
-  const { active, children, className, completed, description, disabled, icon, link, href, onClick, title } = props
+  const { active, className, completed, disabled, link, href, onClick } = props
   const classes = cx(
     'ui',
     useKeyOnly(active, 'active'),
@@ -19,25 +43,15 @@ function Step(props) {
     className,
     'step',
   )
-  const getChildren = () => {
-    if (children) return children
-
-    return [<Step.Title>{title}</Step.Title>, <Step.Description>{description}</Step.Description>].map((item) => item)
-  }
-  const getContent = () => {
-    if (!icon) return <div className='content'>{getChildren()}</div>
-
-    return [iconPropRenderer(icon), <div className='content'>{getChildren()}</div>].map((item) => item)
-  }
   const handleClick = (e) => {
     if (onClick) onClick(e)
   }
   const rest = getUnhandledProps(Step, props)
 
-  if (href) return <a {...rest} className={classes} href={href} onClick={handleClick}>{getContent()}</a>
-  if (onClick) return <a {...rest} className={classes} onClick={handleClick}>{getContent()}</a>
+  if (href) return <a {...rest} className={classes} href={href} onClick={handleClick}>{getContent(props)}</a>
+  if (onClick) return <a {...rest} className={classes} onClick={handleClick}>{getContent(props)}</a>
 
-  return <div {...rest} className={classes} onClick={handleClick}>{getContent()}</div>
+  return <div {...rest} className={classes} onClick={handleClick}>{getContent(props)}</div>
 }
 
 Step._meta = {
@@ -45,10 +59,6 @@ Step._meta = {
   name: 'Step',
   type: META.type.element,
 }
-
-Step.Description = StepDescription
-Step.Group = StepGroup
-Step.Title = StepTitle
 
 Step.propTypes = {
   /** A step can be highlighted as active. */
@@ -93,5 +103,9 @@ Step.propTypes = {
     PropTypes.node,
   ]),
 }
+
+Step.Description = StepDescription
+Step.Group = StepGroup
+Step.Title = StepTitle
 
 export default Step
