@@ -1,15 +1,12 @@
-import React, { PropTypes } from 'react'
 import cx from 'classnames'
+import React, { PropTypes } from 'react'
 
-import { getUnhandledProps } from '../../utils/propUtils'
 import META from '../../utils/Meta'
+import { getUnhandledProps } from '../../utils/propUtils'
 
 function StepDescription(props) {
   const { className, children } = props
-  const classes = cx(
-    className,
-    'description',
-  )
+  const classes = cx(className, 'description')
   const rest = getUnhandledProps(StepDescription, props)
 
   return <div className={classes} {...rest}>{ children }</div>
