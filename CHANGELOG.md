@@ -1,5 +1,63 @@
 # Change Log
 
+## [v0.26.0](https://github.com/TechnologyAdvice/stardust/tree/v0.26.0) (2016-07-19)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.25.1...v0.26.0)
+
+**Merged pull requests:**
+
+- Icon Component updated to v1 API [\#343](https://github.com/TechnologyAdvice/stardust/pull/343) ([levithomason](https://github.com/levithomason))
+
+## [v0.25.1](https://github.com/TechnologyAdvice/stardust/tree/v0.25.1) (2016-07-19)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.25.0...v0.25.1)
+
+**Fixed bugs:**
+
+- Error trying to run in webpack cannot resolve module 'utils/Meta' [\#340](https://github.com/TechnologyAdvice/stardust/issues/340)
+- Fixed broken reference to utils/Meta [\#342](https://github.com/TechnologyAdvice/stardust/pull/342) ([tslater](https://github.com/tslater))
+
+**Merged pull requests:**
+
+- Fix import path in Breadcrumb [\#341](https://github.com/TechnologyAdvice/stardust/pull/341) ([layershifter](https://github.com/layershifter))
+
+## [v0.25.0](https://github.com/TechnologyAdvice/stardust/tree/v0.25.0) (2016-07-18)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.24.1...v0.25.0)
+
+**Merged pull requests:**
+
+- Cleanup docs for Loader [\#338](https://github.com/TechnologyAdvice/stardust/pull/338) ([layershifter](https://github.com/layershifter))
+- Add doc site routes [\#337](https://github.com/TechnologyAdvice/stardust/pull/337) ([levithomason](https://github.com/levithomason))
+- Update Statistic to v1 API [\#334](https://github.com/TechnologyAdvice/stardust/pull/334) ([layershifter](https://github.com/layershifter))
+
+## [v0.24.1](https://github.com/TechnologyAdvice/stardust/tree/v0.24.1) (2016-07-17)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.24.0...v0.24.1)
+
+## [v0.24.0](https://github.com/TechnologyAdvice/stardust/tree/v0.24.0) (2016-07-17)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.23.0...v0.24.0)
+
+**Implemented enhancements:**
+
+- \<Breadcrumb /\> Component [\#184](https://github.com/TechnologyAdvice/stardust/issues/184)
+- Add Breadcrumb component [\#321](https://github.com/TechnologyAdvice/stardust/pull/321) ([layershifter](https://github.com/layershifter))
+
+## [v0.23.0](https://github.com/TechnologyAdvice/stardust/tree/v0.23.0) (2016-07-16)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.22.0...v0.23.0)
+
+**Merged pull requests:**
+
+- Sort docs, use functional META [\#336](https://github.com/TechnologyAdvice/stardust/pull/336) ([levithomason](https://github.com/levithomason))
+- Checkbox without jQuery [\#260](https://github.com/TechnologyAdvice/stardust/pull/260) ([levithomason](https://github.com/levithomason))
+
+## [v0.22.0](https://github.com/TechnologyAdvice/stardust/tree/v0.22.0) (2016-07-14)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.21.1...v0.22.0)
+
+**Implemented enhancements:**
+
+- \<Rail /\> Component [\#181](https://github.com/TechnologyAdvice/stardust/issues/181)
+
+**Merged pull requests:**
+
+- Add Rail component [\#330](https://github.com/TechnologyAdvice/stardust/pull/330) ([layershifter](https://github.com/layershifter))
+
 ## [v0.21.1](https://github.com/TechnologyAdvice/stardust/tree/v0.21.1) (2016-07-13)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.21.0...v0.21.1)
 

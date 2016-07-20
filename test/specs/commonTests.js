@@ -2,9 +2,12 @@ import faker from 'faker'
 import _ from 'lodash'
 import path from 'path'
 import React, { createElement } from 'react'
+import ReactDOMServer from 'react-dom/server'
 
 import META from 'src/utils/Meta'
 import * as stardust from 'stardust'
+import * as sui from 'src/utils/semanticUtils'
+import numberToWord from 'src/utils/numberToWord'
 import * as consoleUtil from 'test/utils/consoleUtil'
 import sandbox from 'test/utils/Sandbox-util'
 import * as syntheticEvent from 'test/utils/syntheticEvent'
@@ -18,6 +21,13 @@ const componentInfo = componentCtx.keys().map(key => {
   const Component = componentCtx(key).default
   const { _meta, prototype } = Component
 
+  if (!_meta) {
+    throw new Error([
+      'Component is missing a static _meta object property. This should help identify it:',
+      `Rendered:\n${ReactDOMServer.renderToStaticMarkup(<Component />)}`,
+    ].join('\n'))
+  }
+
   const constructorName = prototype.constructor.name
   const filePath = key
   const filename = path.basename(key)
@@ -26,7 +36,12 @@ const componentInfo = componentCtx.keys().map(key => {
     ? _meta.name.replace(_meta.parent, '')
     : null
 
-  const componentClassName = (subComponentName || constructorName).toLowerCase()
+  // name of the component, sub component, or plural parent for sub component groups
+  const componentClassName = (
+    META.isChild(Component)
+      ? subComponentName.replace(/Group$/, `${_meta.parent}s`)
+      : _meta.name
+  ).toLowerCase()
 
   return {
     _meta,
@@ -48,7 +63,6 @@ const componentInfo = componentCtx.keys().map(key => {
 export const isConformant = (Component, requiredProps = {}) => {
   // tests depend on Component constructor names, enforce them
   if (!Component.prototype.constructor.name) {
-    const ReactDOMServer = require('react-dom/server')
     throw new Error([
       'Component is not a named function. This should help identify it:',
       `static _meta = ${JSON.stringify(Component._meta, null, 2)}`,
@@ -150,13 +164,13 @@ export const isConformant = (Component, requiredProps = {}) => {
         const props = {
           ...requiredProps,
           [listenerName]: handlerSpy,
-          simulateEventOnThisComponent: true,
+          'data-simulate-event-here': true,
         }
 
         const wrapper = shallow(<Component {...props} />)
 
         wrapper
-          .find('[simulateEventOnThisComponent]')
+          .find('[data-simulate-event-here]')
           .simulate(eventName, eventShape)
 
         // give event listeners opportunity to cleanup
@@ -170,7 +184,8 @@ export const isConformant = (Component, requiredProps = {}) => {
 
         handlerSpy.called.should.equal(true,
           `<${constructorName} ${listenerName}={${handlerName}} />\n` +
-          `${leftPad} ^ was not called on "${eventName}"\n`
+          `${leftPad} ^ was not called on "${eventName}".` +
+          'You may need to hoist your event handlers up to the root element.\n'
         )
 
         // TODO: https://github.com/TechnologyAdvice/stardust/issues/218
@@ -232,6 +247,8 @@ export const isConformant = (Component, requiredProps = {}) => {
   // Handles className
   // ----------------------------------------
   describe('className (common)', () => {
+    const isHeader = /(header|h1|h2|h3|h4|h5|h6)/i.test(componentClassName)
+
     it('does not have an sd-* className', () => {
       const wrapper = shallow(<Component {...requiredProps} />)
       const className = wrapper.prop('className')
@@ -247,7 +264,8 @@ export const isConformant = (Component, requiredProps = {}) => {
       })
     })
 
-    if (META.isSemanticUI(Component)) {
+    // TODO: do not exclude headers once their APIs are updated
+    if (!isHeader && META.isSemanticUI(Component)) {
       it(`has the Semantic UI className "${componentClassName}"`, () => {
         render(<Component {...requiredProps} />)
           .should.have.className(componentClassName)
@@ -259,6 +277,27 @@ export const isConformant = (Component, requiredProps = {}) => {
       shallow(<Component {...requiredProps} className={classes} />)
         .should.have.className(classes)
     })
+
+    // TODO: do not exclude headers once their APIs are updated
+    if (!isHeader) {
+      it("user's className does not override the default classes", () => {
+        const defaultClasses = shallow(<Component {...requiredProps} />)
+          .prop('className')
+
+        if (!defaultClasses) return
+
+        const userClasses = faker.hacker.verb()
+        const mixedClasses = shallow(<Component {...requiredProps} className={userClasses} />)
+          .prop('className')
+
+        defaultClasses.split(' ').forEach((defaultClass) => {
+          mixedClasses.should.include(defaultClass, [
+            'Make sure you are using the `getUnhandledProps` util to spread the `rest` props.',
+            'This may also be of help: https://facebook.github.io/react/docs/transferring-props.html.',
+          ].join(' '))
+        })
+      })
+    }
   })
 }
 
@@ -342,7 +381,7 @@ const _noDefaultClassNameFromProp = (Component, propKey, requiredProps = {}) => 
     // SUI classes ought to be built up using a declarative component API
     const propOptions = _.get(Component, `_meta.props[${propKey}]`)
     _.each(propOptions, propVal => {
-      wrapper.should.not.have.className(propVal)
+      wrapper.should.not.have.className(propVal.toString())
     })
   })
 }
@@ -361,7 +400,7 @@ const _noClassNameFromBoolProps = (Component, propKey, requiredProps) => {
     wrapper.should.not.have.className('false')
 
     _.each(Component._meta.props[propKey], propVal => {
-      wrapper.should.not.have.className(propVal)
+      wrapper.should.not.have.className(propVal.toString())
     })
   }))
 }
@@ -406,12 +445,14 @@ export const implementsAlignedProp = (Component, requiredProps = {}) => {
 }
 
 export const implementsIconProp = (Component, requiredProps = {}) => {
-  const iconClass = faker.hacker.noun()
-  const assertValid = (wrapper) => {
-    wrapper.should.have.className('icon')
-    wrapper.should.have.descendants('Icon')
-    wrapper.find('Icon')
-      .should.have.className(iconClass)
+  const iconName = faker.hacker.noun()
+  const assertValid = (element) => {
+    const wrapper = shallow(element)
+    wrapper
+      .should.have.descendants('Icon')
+    wrapper
+      .find('Icon')
+      .should.have.prop('name', iconName)
   }
 
   describe('icon (common)', () => {
@@ -422,19 +463,13 @@ export const implementsIconProp = (Component, requiredProps = {}) => {
         .should.not.have.descendants('i')
     })
 
-    it('adds a i as first child', () => {
-      shallow(<Component icon={iconClass} />)
-        .childAt(0)
-        .should.match('i')
-    })
-
     it('accepts an Icon instance', () => {
-      const icon = <Icon className={iconClass} />
-      assertValid(shallow(<Component icon={icon} />))
+      const icon = <Icon name={iconName} />
+      assertValid(<Component icon={icon} />)
     })
 
-    it('accepts an icon className string', () => {
-      assertValid(shallow(<Component icon={iconClass} />))
+    it('accepts an icon name string', () => {
+      assertValid(<Component icon={iconName} />)
     })
   })
 }
@@ -467,6 +502,27 @@ export const implementsImageProp = (Component, requiredProps = {}) => {
 
     it('accepts an image src string', () => {
       assertValid(shallow(<Component image={imageSrc} />))
+    })
+  })
+}
+
+/**
+ * Assert that a Component correctly implements some width prop.
+ * @param {React.Component|Function} Component The component to test.
+ * @param {string} propKey The prop name that accepts numbers/words.
+ * @param {Object} [requiredProps={}] Props required to render the component.
+ */
+export const implementsNumberToWordProp = (Component, propKey, requiredProps = {}) => {
+  describe(`${propKey} (common)`, () => {
+    _definesPropOptions(Component, propKey)
+    _noDefaultClassNameFromProp(Component, propKey, requiredProps)
+    _noClassNameFromBoolProps(Component, propKey, requiredProps)
+
+    it('adds prop value to className', () => {
+      const propVal = _.sample(sui.widths)
+
+      shallow(createElement(Component, { ...requiredProps, [propKey]: propVal }))
+        .should.have.className(numberToWord(propVal))
     })
   })
 }

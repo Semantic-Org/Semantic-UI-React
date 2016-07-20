@@ -1,7 +1,9 @@
 import _ from 'lodash'
 import React, { Component, PropTypes } from 'react'
-import { Divider, Grid, Header, List } from 'stardust'
+import * as stardust from 'stardust'
 import META from 'src/utils/Meta'
+import { Link } from 'react-router'
+const { Divider, Grid, Header, List } = stardust
 
 const headerStyle = {
   fontSize: '2.2em',
@@ -25,14 +27,16 @@ export default class ComponentDescription extends Component {
 
   renderSemanticDocsLink = () => {
     const { _meta } = this.props
-    if (!META.isSemanticUI(_meta) || !META.isParent(_meta)) {
-      return null
-    }
-    const url = `http://semantic-ui.com/${_meta.type}s/${_meta.name}.html`.toLowerCase()
+
+    if (!META.isSemanticUI(_meta)) return null
+
+    const name = META.isParent(_meta) ? _meta.name : _meta.parent
+    const url = `http://semantic-ui.com/${_meta.type}s/${name}.html`.toLowerCase()
+
     return (
       <List.Item icon='book'>
         <a href={url} target='_blank'>
-          Semantic UI Docs
+          Semantic UI {name} Docs
         </a>
       </List.Item>
     )
@@ -56,11 +60,21 @@ export default class ComponentDescription extends Component {
     const seeTags = _.filter(tags, ['title', 'see'])
     if (_.isEmpty(seeTags)) return null
 
-    const relatedLinks = _.map(seeTags, ({ title, description }) => {
+    const relatedLinks = _.map(seeTags, ({ description }) => {
+      const relatedMeta = _.get(stardust[description], '_meta')
+      if (!relatedMeta) return
+
+      const { type, name } = relatedMeta
+
       return (
-        <a key={description} href={`#${description}`} className='item' style={{ display: 'inline-block' }}>
+        <Link
+          key={description}
+          to={`${type}s/${_.kebabCase(name)}`}
+          className='item'
+          style={{ display: 'inline-block' }}
+        >
           {`<${description} />`}
-        </a>
+        </Link>
       )
     })
 

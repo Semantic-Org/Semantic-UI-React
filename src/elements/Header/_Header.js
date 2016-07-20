@@ -64,7 +64,7 @@ _Header.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node,
 
-  /** Add an icon by icon className or pass an <Icon /.>*/
+  /** Add an icon by icon name or pass an <Icon /.> */
   icon: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.element,

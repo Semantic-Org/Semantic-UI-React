@@ -6,7 +6,7 @@ export default class AccordionAccordionExample extends Component {
     return (
       <Accordion>
         <Accordion.Title>
-          <Icon className='dropdown' />
+          <Icon name='dropdown' />
           What is a dog?
         </Accordion.Title>
         <Accordion.Content>
@@ -16,7 +16,7 @@ export default class AccordionAccordionExample extends Component {
           </p>
         </Accordion.Content>
         <Accordion.Title>
-          <Icon className='dropdown' />
+          <Icon name='dropdown' />
           What kinds of dogs are there?
         </Accordion.Title>
         <Accordion.Content>
@@ -27,7 +27,7 @@ export default class AccordionAccordionExample extends Component {
           </p>
         </Accordion.Content>
         <Accordion.Title>
-          <Icon className='dropdown' />
+          <Icon name='dropdown' />
           How do you acquire a dog?
         </Accordion.Title>
         <Accordion.Content>

@@ -6,7 +6,7 @@ export default class InputActionExtraExample extends Component {
     return (
       <Input className='left action' placeholder='$23.43'>
         <Button className='teal labeled icon'>
-          <Icon className='cart' />
+          <Icon name='cart' />
           Checkout
         </Button>
       </Input>

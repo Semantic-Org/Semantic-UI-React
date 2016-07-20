@@ -1,33 +1,44 @@
-import React, { Component, PropTypes } from 'react'
-import classNames from 'classnames'
-import { getUnhandledProps } from '../../utils/propUtils'
+import cx from 'classnames'
+import React, { PropTypes } from 'react'
+
+import { customPropTypes, getUnhandledProps } from '../../utils/propUtils'
 import META from '../../utils/Meta'
 
-export default class StatisticLabel extends Component {
-  static propTypes = {
-    children: PropTypes.node.isRequired,
-    className: PropTypes.string,
-  }
+// TODO: This file has disabled shorthand props
+// @see https://github.com/TechnologyAdvice/stardust/pull/334
 
-  static _meta = {
-    library: META.library.semanticUI,
-    name: 'StatisticLabel',
-    type: META.type.view,
-    parent: 'Statistic',
-  }
+function StatisticLabel(props) {
+  // const { children, className, content } = props
+  const { children, className } = props
+  const classes = cx(className, 'label')
+  const rest = getUnhandledProps(StatisticLabel, props)
 
-  render() {
-    const classes = classNames(
-      this.props.className,
-      'label',
-    )
-
-    const props = getUnhandledProps(StatisticLabel, this.props)
-
-    return (
-      <div {...props} className={classes}>
-        {this.props.children}
-      </div>
-    )
-  }
+  // return <div className={classes} {...rest}>{children || content}</div>
+  return <div {...rest} className={classes}>{children}</div>
 }
+
+StatisticLabel._meta = {
+  library: META.library.semanticUI,
+  name: 'StatisticLabel',
+  parent: 'Statistic',
+  type: META.type.view,
+}
+
+StatisticLabel.propTypes = {
+  /** Primary content of the StatisticLabel. */
+  children: customPropTypes.all([
+    customPropTypes.mutuallyExclusive(['content']),
+    PropTypes.node,
+  ]),
+
+  /** Classes that will be added to the StatisticLabel className. */
+  className: PropTypes.string,
+
+  // /** Primary content of the StatisticLabel. Mutually exclusive with the children prop. */
+  // content: customPropTypes.all([
+  //   customPropTypes.mutuallyExclusive(['children']),
+  //   PropTypes.node,
+  // ]),
+}
+
+export default StatisticLabel

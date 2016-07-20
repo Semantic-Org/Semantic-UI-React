@@ -5,7 +5,7 @@ const _ = require('lodash')
 const { argv } = require('yargs')
 
 const { paths } = config
-const { __BASE__, __DEV__, __TEST__ } = config.compiler_globals
+const { __DEV__, __TEST__ } = config.compiler_globals
 
 const webpackConfig = {
   name: 'client',
@@ -72,7 +72,6 @@ webpackConfig.plugins = [
   }),
   new HtmlWebpackPlugin({
     template: paths.docsSrc('index.ejs'),
-    baseHref: __BASE__,
     hash: false,
     filename: 'index.html',
     inject: 'body',
@@ -194,6 +193,7 @@ if (__TEST__ || argv.localModules) {
   // find them on the window
   webpackConfig.externals = {
     faker: 'faker',
+    'anchor-js': 'AnchorJS',
   }
 }
 
