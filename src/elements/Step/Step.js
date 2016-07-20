@@ -34,17 +34,10 @@ function Step(props) {
   }
   const rest = getUnhandledProps(Step, props)
 
-  if (href) {
-    return <a {...rest} className={classes} href={href} onClick={handleClick}>{getContent(props)}</a>
-  }
+  if (href) return <a {...rest} className={classes} href={href} onClick={handleClick}>{getContent()}</a>
+  if (onClick) return <a {...rest} className={classes} onClick={handleClick}>{getContent()}</a>
 
-  if (onClick) {
-    return <a {...rest} className={classes} onClick={handleClick}>{getContent(props)}</a>
-  }
-
-  return (
-    <div {...rest} className={classes} onClick={handleClick}>{getContent(props)}</div>
-  )
+  return <div {...rest} className={classes} onClick={handleClick}>{getContent()}</div>
 }
 
 Step._meta = {
