@@ -15,6 +15,15 @@ const StepDescriptionExample = () => (
     <br />
 
     <Group>
+      <Step>
+        <Title title='Shipping' />
+        <Description description='Choose your shipping options' />
+      </Step>
+    </Group>
+
+    <br />
+
+    <Group>
       <Step title='Shipping' description='Choose your shipping options' />
     </Group>
   </div>
