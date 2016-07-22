@@ -2,7 +2,7 @@ import React from 'react'
 import { Step } from 'stardust'
 
 // eslint-disable-next-line no-alert
-const handleClick = () => alert('Clicked!')
+const handleClick = (e) => {alert('Clicked!'), console.log(e.target)}
 
 const StepLinkExamples = () => (
   <div>

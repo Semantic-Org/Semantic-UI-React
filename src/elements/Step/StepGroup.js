@@ -23,7 +23,11 @@ function StepGroup(props) {
 
   if (!items) return <div {...rest} className={classes}>{ children }</div>
 
-  return <div {...rest} className={classes}>{ items.map((item) => <Step {...item} />) }</div>
+  return (
+    <div {...rest} className={classes}>
+      { items.map((item, index) => <Step key={index} {...item} />) }
+    </div>
+  )
 }
 
 StepGroup._meta = {
