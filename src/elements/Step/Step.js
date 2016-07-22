@@ -83,6 +83,12 @@ Step.propTypes = {
 
   /** Render as an `a` tag instead of a `div` and called with event on Step click. */
   onClick: PropTypes.func,
+
+  /** Shorthand prop for StepTitle. Mutually exclusive with children. */
+  title: customPropTypes.all([
+    customPropTypes.mutuallyExclusive(['children']),
+    PropTypes.node,
+  ]),
 }
 
 Step.Content = StepContent
