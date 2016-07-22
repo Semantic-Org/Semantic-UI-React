@@ -7,7 +7,7 @@ function Title(props) {
   const classes = cx(className, 'title')
   const rest = getUnhandledProps(Title, props)
 
-  return <div className={classes} {...rest}>{ children || title }</div>
+  return <div {...rest} className={classes}>{ children || title }</div>
 }
 
 Title.propTypes = {

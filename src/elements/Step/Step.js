@@ -1,63 +1,61 @@
 import cx from 'classnames'
-import React, { PropTypes } from 'react'
+import React, { Component, PropTypes } from 'react'
 
 import META from '../../utils/Meta'
 import { customPropTypes, iconPropRenderer, getUnhandledProps, useKeyOnly } from '../../utils/propUtils'
+import StepContent from './StepContent'
 import StepDescription from './StepDescription'
 import StepGroup from './StepGroup'
 import StepTitle from './StepTitle'
 
-const getContent = (props) => {
-  const { icon, children, title, description } = props
-  const content = []
-
-  if (icon) {
-    content.push(iconPropRenderer(icon))
-  }
-
-  if (children) {
-    content.push(<div className='content'>{children}</div>)
-
-    return content
-  }
-
-  content.push(
-    <div className='content'>
-      <Step.Title>{title}</Step.Title>
-      <Step.Description>{description}</Step.Description>
-    </div>
-  )
-
-  return content
-}
-
 /** A step shows the completion status of an activity in a series of activities. */
-function Step(props) {
-  const { active, className, completed, disabled, link, href, onClick } = props
-  const classes = cx(
-    'ui',
-    useKeyOnly(active, 'active'),
-    useKeyOnly(completed, 'completed'),
-    useKeyOnly(disabled, 'disabled'),
-    useKeyOnly(link, 'link'),
-    className,
-    'step',
-  )
-  const handleClick = (e) => {
-    if (onClick) onClick(e)
+export default class Step extends Component {
+
+  static Content = StepContent
+  static Description = StepDescription
+  static Group = StepGroup
+  static Title = StepTitle
+
+  getChildContext() {
+    return { owner: Step }
   }
-  const rest = getUnhandledProps(Step, props)
 
-  if (href) return <a {...rest} className={classes} href={href} onClick={handleClick}>{getContent(props)}</a>
-  if (onClick) return <a {...rest} className={classes} onClick={handleClick}>{getContent(props)}</a>
+  render() {
+    const { active, className, completed, disabled, icon, link, onClick } = this.props
+    const classes = cx(
+      'ui',
+      useKeyOnly(active, 'active'),
+      useKeyOnly(completed, 'completed'),
+      useKeyOnly(disabled, 'disabled'),
+      useKeyOnly(link, 'link'),
+      className,
+      'step',
+    )
+    const handleClick = (e) => {
+      if (onClick) onClick(e)
+    }
+    const rest = getUnhandledProps(Step, this.props)
 
-  return <div {...rest} className={classes} onClick={handleClick}>{getContent(props)}</div>
+    // if (href) return <a {...rest} className={classes} href={href} onClick={handleClick}>{getChildren(props)}</a>
+    // if (onClick) return <a {...rest} className={classes} onClick={handleClick}>{getChildren(props)}</a>
+
+    return (
+      <div {...rest} className={classes} onClick={handleClick}>
+        {icon && iconPropRenderer(icon)}
+        {<StepContent {...rest} />}
+      </div>
+    )
+  }
 }
 
 Step._meta = {
   library: META.library.semanticUI,
   name: 'Step',
   type: META.type.element,
+}
+
+Step.childContextTypes = {
+  owner: PropTypes.any,
 }
 
 Step.propTypes = {
@@ -103,9 +101,3 @@ Step.propTypes = {
     PropTypes.node,
   ]),
 }
-
-Step.Description = StepDescription
-Step.Group = StepGroup
-Step.Title = StepTitle
-
-export default Step

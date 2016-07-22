@@ -7,7 +7,7 @@ function Description(props) {
   const classes = cx(className, 'description')
   const rest = getUnhandledProps(Description, props)
 
-  return <div className={classes} {...rest}>{ children || description }</div>
+  return <div {...rest} className={classes}>{ children || description }</div>
 }
 
 Description.propTypes = {

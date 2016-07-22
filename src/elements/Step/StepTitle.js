@@ -1,39 +1,14 @@
-import cx from 'classnames'
-import React, { PropTypes } from 'react'
-
+import React from 'react'
 import META from '../../utils/Meta'
-import { customPropTypes, getUnhandledProps } from '../../utils/propUtils'
+import Title from '../../parts/Title'
 
-function StepTitle(props) {
-  const { className, children, title } = props
-  const classes = cx(className, 'title')
-  const rest = getUnhandledProps(StepTitle, props)
-
-  return <div className={classes} {...rest}>{ children || title }</div>
-}
+const StepTitle = (props) => <Title {...props} />
 
 StepTitle._meta = {
   library: META.library.semanticUI,
   name: 'StepTitle',
   parent: 'Step',
   type: META.type.element,
-}
-
-StepTitle.propTypes = {
-  /** Classes that will be added to the StepTitle className. */
-  className: PropTypes.string,
-
-  /** Primary content of the StepTitle. Mutually exclusive with title prop. */
-  children: customPropTypes.all([
-    customPropTypes.mutuallyExclusive(['title']),
-    PropTypes.node,
-  ]),
-
-  /** Primary content of the StepTitle. Mutually exclusive with children. */
-  title: customPropTypes.all([
-    customPropTypes.mutuallyExclusive(['children']),
-    PropTypes.node,
-  ]),
 }
 
 export default StepTitle
