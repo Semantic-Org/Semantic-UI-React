@@ -21,7 +21,7 @@ function DropdownItem(props) {
   } = props
 
   const handleClick = (e) => {
-    onClick(e, value)
+    if (onClick) onClick(e, value)
   }
 
   const classes = cx(
