@@ -1,11 +1,9 @@
-/* eslint-disable react/sort-comp */
-
 import _ from 'lodash'
 import cx from 'classnames'
-import React, { PropTypes } from 'react'
+import React, { cloneElement, PropTypes } from 'react'
 
 import META from '../../utils/Meta'
-import { getUnhandledProps, useKeyOnly, useKeyOrValueAndKey } from '../../utils/propUtils'
+import { customPropTypes, getUnhandledProps, useKeyOnly, useKeyOrValueAndKey } from '../../utils/propUtils'
 import keyboardKey from '../../utils/keyboardKey'
 import { makeDebugger } from '../../utils/debug'
 import { objectDiff } from '../../utils/utils'
@@ -53,7 +51,7 @@ export default class Dropdown extends Component {
       text: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.number,
-      ]).isRequired,
+      ]),
     })),
 
     /** Controls whether or not the dropdown menu is displayed. */
@@ -61,6 +59,12 @@ export default class Dropdown extends Component {
 
     /** Initial value of open. */
     defaultOpen: PropTypes.bool,
+
+    /** A Dropdown can contain a single <Dropdown.Menu /> child. */
+    children: customPropTypes.all([
+      React.PropTypes.element,
+      customPropTypes.ofComponentTypes(['DropdownMenu']),
+    ]),
 
     /** Current value or value array if multiple. Creates a controlled component. */
     value: PropTypes.oneOfType([
@@ -328,7 +332,6 @@ export default class Dropdown extends Component {
 
     // prevent selecting null if there was no selected item value
     if (!value) return
-
 
     // notify the onChange prop that the user is trying to change value
     if (multiple) {
@@ -715,11 +718,25 @@ export default class Dropdown extends Component {
     ))
   }
 
+  renderMenu = () => {
+    const { children } = this.props
+    const { menuClasses } = this.state
+
+    // single menu child
+    if (children) return cloneElement(children, { className: menuClasses })
+
+    return (
+      <DropdownMenu className={menuClasses}>
+        {this.renderOptions()}
+      </DropdownMenu>
+    )
+  }
+
   render() {
     debug('render()')
     debug('props', this.props)
     debug('state', this.state)
-    const { dropdownClasses, menuClasses } = this.state
+    const { dropdownClasses } = this.state
 
     const {
       button,
@@ -792,9 +809,7 @@ export default class Dropdown extends Component {
         {this.renderSearchInput()}
         {this.renderText()}
         <Icon name={'dropdown'} />
-        <DropdownMenu className={menuClasses} ref='menu'>
-          {this.renderOptions()}
-        </DropdownMenu>
+        {this.renderMenu()}
       </div>
     )
   }
