@@ -1,5 +1,16 @@
 # Change Log
 
+## [v0.27.0](https://github.com/TechnologyAdvice/stardust/tree/v0.27.0) (2016-07-23)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.26.0...v0.27.0)
+
+**Implemented enhancements:**
+
+- Dropdown.Item doesn't render [\#346](https://github.com/TechnologyAdvice/stardust/issues/346)
+
+**Merged pull requests:**
+
+- Support Dropdown sub component markup [\#347](https://github.com/TechnologyAdvice/stardust/pull/347) ([levithomason](https://github.com/levithomason))
+
 ## [v0.26.0](https://github.com/TechnologyAdvice/stardust/tree/v0.26.0) (2016-07-19)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.25.1...v0.26.0)
 
