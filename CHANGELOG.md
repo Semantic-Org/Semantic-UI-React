@@ -1,5 +1,12 @@
 # Change Log
 
+## [v0.27.1](https://github.com/TechnologyAdvice/stardust/tree/v0.27.1) (2016-07-25)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.27.0...v0.27.1)
+
+**Merged pull requests:**
+
+- Dropdown propTypes and docs update [\#348](https://github.com/TechnologyAdvice/stardust/pull/348) ([levithomason](https://github.com/levithomason))
+
 ## [v0.27.0](https://github.com/TechnologyAdvice/stardust/tree/v0.27.0) (2016-07-23)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.26.0...v0.27.0)
 
