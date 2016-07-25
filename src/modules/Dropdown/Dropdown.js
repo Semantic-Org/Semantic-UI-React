@@ -43,16 +43,20 @@ export default class Dropdown extends Component {
     ]),
 
     /** Array of `{ text: '', value: '' }` options */
-    options: PropTypes.arrayOf(PropTypes.shape({
-      value: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.number,
-      ]).isRequired,
-      text: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.number,
-      ]),
-    })),
+    options: customPropTypes.all([
+      customPropTypes.mutuallyExclusive(['children']),
+      customPropTypes.require(['selection']),
+      PropTypes.arrayOf(PropTypes.shape({
+        value: PropTypes.oneOfType([
+          PropTypes.string,
+          PropTypes.number,
+        ]).isRequired,
+        text: PropTypes.oneOfType([
+          PropTypes.string,
+          PropTypes.number,
+        ]),
+      })),
+    ]),
 
     /** Controls whether or not the dropdown menu is displayed. */
     open: PropTypes.bool,
@@ -62,6 +66,8 @@ export default class Dropdown extends Component {
 
     /** A Dropdown can contain a single <Dropdown.Menu /> child. */
     children: customPropTypes.all([
+      customPropTypes.mutuallyExclusive(['options', 'selection']),
+      customPropTypes.require(['text']),
       React.PropTypes.element,
       customPropTypes.ofComponentTypes(['DropdownMenu']),
     ]),
@@ -149,7 +155,11 @@ export default class Dropdown extends Component {
     // TODO 'searchInMenu' or 'search='in menu' or ???  How to handle this markup and functionality?
 
     /** Behave as an html select. */
-    selection: PropTypes.bool,
+    selection: customPropTypes.all([
+      customPropTypes.mutuallyExclusive(['children']),
+      customPropTypes.require(['options']),
+      PropTypes.bool,
+    ]),
     simple: PropTypes.bool,
 
     loading: PropTypes.bool,
