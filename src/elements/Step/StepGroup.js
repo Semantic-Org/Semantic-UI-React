@@ -57,7 +57,7 @@ StepGroup.propTypes = {
   /** Primary content of the StepGroup. Mutually exclusive with items prop. */
   children: customPropTypes.all([
     customPropTypes.mutuallyExclusive(['description', 'title']),
-    customPropTypes.ofComponentTypes(['Step']),    // <-- only allow Step children
+    customPropTypes.ofComponentTypes(['Step']),
     PropTypes.node,
   ]),
 
