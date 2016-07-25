@@ -31,7 +31,9 @@ export default class DropdownAsyncOptions extends Component {
     const value = _.sample(options).value
     this.setState({ value: multiple ? [value] : value })
   }
+
   toggleSearch = (e) => this.setState({ search: e.target.checked })
+
   toggleMultiple = (e) => {
     const { value } = this.state
     // convert the value to/from an array
