@@ -22,23 +22,40 @@ function Step(props) {
   )
   const rest = getUnhandledProps(Step, props)
 
-  const content = [
-    icon && iconPropRenderer(icon),
-    <StepContent {...{ children, description, title, ...rest }} />,
-  ]
   const handleClick = (e) => {
     if (onClick) onClick(e)
   }
+  const wrapped = completed || icon // || ordered
+
+  const content = () => {
+    if (wrapped) {
+      return [
+        icon && iconPropRenderer(icon),
+        children
+          ? <StepContent key='content' children={children} />
+          : <StepContent key='content' {...{ description, title }} />,
+      ]
+    }
+
+    if (children) {
+      return children
+    }
+
+    return [
+      title && <StepTitle key='title' title={title} />,
+      description && <StepDescription key='description' description={description} />,
+    ]
+  }
 
   if (href) {
-    return <a {...rest} className={classes} href={href} onClick={handleClick}>{content}</a>
+    return <a {...rest} className={classes} href={href} onClick={handleClick}>{content()}</a>
   }
 
   if (onClick) {
-    return <a {...rest} className={classes} onClick={handleClick}>{content}</a>
+    return <a {...rest} className={classes} onClick={handleClick}>{content()}</a>
   }
 
-  return <div {...rest} className={classes} onClick={handleClick}>{content}</div>
+  return <div {...rest} className={classes} onClick={handleClick}>{content()}</div>
 }
 
 Step._meta = {
