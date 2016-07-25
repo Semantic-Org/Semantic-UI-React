@@ -10,9 +10,10 @@ import StepTitle from './StepTitle'
 
 /** A step shows the completion status of an activity in a series of activities. */
 function Step(props) {
-  const { active, className, children, completed, description, disabled, icon, href, link, onClick, title } = props
+  const {
+    active, className, children, completed, description, disabled, icon, href, link, onClick, ordered, title,
+  } = props
   const classes = cx(
-    'ui',
     useKeyOnly(active, 'active'),
     useKeyOnly(completed, 'completed'),
     useKeyOnly(disabled, 'disabled'),
@@ -25,37 +26,28 @@ function Step(props) {
   const handleClick = (e) => {
     if (onClick) onClick(e)
   }
-  const wrapped = completed || icon // || ordered
 
-  const content = () => {
-    if (wrapped) {
-      return [
-        icon && iconPropRenderer(icon),
-        children
-          ? <StepContent key='content' children={children} />
-          : <StepContent key='content' {...{ description, title }} />,
-      ]
-    }
+  const contentJSX = completed || icon || ordered ? [
+    icon && iconPropRenderer(icon, { key: icon }),
+    children && <StepContent key='content' children={children} />,
+    (title || description) && <StepContent key='content' description={description} title={title} />,
+  ] : [
+    children && children,
+    title && <StepTitle key='title' title={title} />,
+    description && <StepDescription key='description' description={description} />,
+  ]
+  const StepComponent = href || onClick ? 'a' : 'div'
 
-    if (children) {
-      return children
-    }
-
-    return [
-      title && <StepTitle key='title' title={title} />,
-      description && <StepDescription key='description' description={description} />,
-    ]
-  }
-
-  if (href) {
-    return <a {...rest} className={classes} href={href} onClick={handleClick}>{content()}</a>
-  }
-
-  if (onClick) {
-    return <a {...rest} className={classes} onClick={handleClick}>{content()}</a>
-  }
-
-  return <div {...rest} className={classes} onClick={handleClick}>{content()}</div>
+  return (
+    <StepComponent
+      {...rest}
+      className={classes}
+      href={href}
+      onClick={handleClick}
+    >
+      {contentJSX}
+    </StepComponent>
+  )
 }
 
 Step._meta = {
@@ -100,6 +92,9 @@ Step.propTypes = {
 
   /** Render as an `a` tag instead of a `div` and called with event on Step click. */
   onClick: PropTypes.func,
+
+  /** A step can show a ordered sequence of steps. Passed from StepGroup. */
+  ordered: PropTypes.bool,
 
   /** Shorthand prop for StepTitle. Mutually exclusive with children. */
   title: customPropTypes.all([

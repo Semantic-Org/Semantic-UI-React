@@ -12,10 +12,13 @@ const StepVerticalExample = () => (
   <div>
     <Group vertical>
       <Step completed icon='truck'>
-        <Title>Shipping</Title>
-        <Description>Choose your shipping options</Description>
+          <Title>Shipping</Title>
+          <Description>Choose your shipping options</Description>
       </Step>
-      <Step completed icon='credit card' title='Billing' description='Enter billing information' />
+      <Step completed icon='credit card'>
+        <Title>Billing</Title>
+        <Description>Enter billing information</Description>
+      </Step>
       <Step active icon='info' title='Confirm Order' description='Verify order details' />
     </Group>
 

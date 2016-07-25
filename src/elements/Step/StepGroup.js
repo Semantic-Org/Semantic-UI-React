@@ -2,6 +2,7 @@ import _ from 'lodash'
 import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
+import { mapChildType } from '../../utils/childrenUtils'
 import META from '../../utils/Meta'
 import { customPropTypes, getUnhandledProps, useValueAndKey, useKeyOnly } from '../../utils/propUtils'
 import * as sui from '../../utils/semanticUtils'
@@ -21,11 +22,19 @@ function StepGroup(props) {
   )
   const rest = getUnhandledProps(StepGroup, props)
 
-  if (!items) return <div {...rest} className={classes}>{ children }</div>
+  if (items) {
+    return (
+      <div {...rest} className={classes}>
+        {items.map((item, index) => <Step key={index} {...item} ordered={ordered} />)}
+      </div>
+    )
+  }
 
   return (
     <div {...rest} className={classes}>
-      { items.map((item, index) => <Step key={index} {...item} />) }
+      {mapChildType(children, Step, (step, index) => (
+        <Step {...step.props} key={index} ordered={ordered} />
+      ))}
     </div>
   )
 }
@@ -48,6 +57,7 @@ StepGroup.propTypes = {
   /** Primary content of the StepGroup. Mutually exclusive with items prop. */
   children: customPropTypes.all([
     customPropTypes.mutuallyExclusive(['description', 'title']),
+    customPropTypes.ofComponentTypes(['Step']),    // <-- only allow Step children
     PropTypes.node,
   ]),
 
