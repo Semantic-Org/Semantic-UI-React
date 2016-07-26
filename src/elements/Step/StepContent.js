@@ -36,7 +36,7 @@ StepContent.propTypes = {
 
   /** Primary content of StepContent. Mutually exclusive with description and title props. */
   children: customPropTypes.all([
-    customPropTypes.mutuallyExclusive(['description']),
+    customPropTypes.mutuallyExclusive(['description', 'title']),
     PropTypes.node,
   ]),
 
