@@ -4,10 +4,14 @@ import React from 'react'
 import * as common from 'test/specs/commonTests'
 import sandbox from 'test/utils/Sandbox-util'
 import Step from 'src/elements/Step/Step'
+import StepContent from 'src/elements/Step/StepContent'
+import StepDescription from 'src/elements/Step/StepDescription'
+import StepTitle from 'src/elements/Step/StepTitle'
 
 describe('Step', () => {
   common.isConformant(Step)
   common.implementsIconProp(Step)
+  common.hasSubComponents(Step, [StepContent, StepDescription, StepTitle])
   common.propKeyOnlyToClassName(Step, 'active')
   common.propKeyOnlyToClassName(Step, 'completed')
   common.propKeyOnlyToClassName(Step, 'disabled')
