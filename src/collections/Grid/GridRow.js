@@ -1,29 +1,33 @@
-import classNames from 'classnames'
-import React, { Component, PropTypes } from 'react'
+import cx from 'classnames'
+import React, { PropTypes } from 'react'
+
 import META from '../../utils/Meta'
+import { getUnhandledProps } from '../../utils/propUtils'
 
-export default class GridRow extends Component {
-  static propTypes = {
-    children: PropTypes.node,
-    className: PropTypes.string,
-  }
+function GridRow(props) {
+  const { children, className } = props
+  const classes = cx(
+    className,
+    'row'
+  )
+  const rest = getUnhandledProps(GridRow, props)
 
-  static _meta = {
-    library: META.library.semanticUI,
-    name: 'GridRow',
-    type: META.type.collection,
-    parent: 'Grid',
-  }
-
-  render() {
-    const classes = classNames(
-      this.props.className,
-      'row'
-    )
-    return (
-      <div {...this.props} className={classes}>
-        {this.props.children}
-      </div>
-    )
-  }
+  return <div {...rest} className={classes}>{children}</div>
 }
+
+GridRow._meta = {
+  library: META.library.semanticUI,
+  name: 'GridRow',
+  parent: 'Grid',
+  type: META.type.collection,
+}
+
+GridRow.propTypes = {
+  /** Primary content of the GridRow. */
+  children: PropTypes.node,
+
+  /** Classes that will be added to the GridRow className. */
+  className: PropTypes.string,
+}
+
+export default GridRow

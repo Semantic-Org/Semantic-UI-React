@@ -1,34 +1,33 @@
-import _ from 'lodash'
-import classNames from 'classnames'
-import React, { Component, PropTypes } from 'react'
-import numberToWord from '../../utils/numberToWord'
-import META from '../../utils/Meta.js'
+import cx from 'classnames'
+import React, { PropTypes } from 'react'
 
-export default class GridColumn extends Component {
-  static propTypes = {
-    children: PropTypes.node,
-    className: PropTypes.string,
-    style: PropTypes.object,
-    width: PropTypes.oneOf(_.range(1, 17)),
-  }
+import META from '../../utils/Meta'
+import { getUnhandledProps } from '../../utils/propUtils'
 
-  static _meta = {
-    library: META.library.semanticUI,
-    name: 'GridColumn',
-    type: META.type.collection,
-    parent: 'Grid',
-  }
+function GridColumn(props) {
+  const { children, className } = props
+  const classes = cx(
+    className,
+    'column'
+  )
+  const rest = getUnhandledProps(GridColumn, props)
 
-  render() {
-    const classes = classNames(
-      this.props.className,
-      this.props.width && `${numberToWord(this.props.width)} wide`,
-      'column'
-    )
-    return (
-      <div {...this.props} className={classes}>
-        {this.props.children}
-      </div>
-    )
-  }
+  return <div {...rest} className={classes}>{children}</div>
 }
+
+GridColumn._meta = {
+  library: META.library.semanticUI,
+  name: 'GridColumn',
+  parent: 'Grid',
+  type: META.type.collection,
+}
+
+GridColumn.propTypes = {
+  /** Primary content of the GridColumn. */
+  children: PropTypes.node,
+
+  /** Classes that will be added to the GridColumn className. */
+  className: PropTypes.string,
+}
+
+export default GridColumn
