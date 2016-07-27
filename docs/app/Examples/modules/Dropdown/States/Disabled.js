@@ -1,10 +1,8 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Dropdown } from 'stardust'
 
-export default class DropdownDisabledExample extends Component {
-  render() {
-    return (
-      <Dropdown disabled text='Dropdown' options={[]} />
-    )
-  }
-}
+const DropdownDisabledExample = () => (
+  <Dropdown text='Dropdown' disabled />
+)
+
+export default DropdownDisabledExample
