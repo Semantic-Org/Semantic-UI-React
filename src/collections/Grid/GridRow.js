@@ -8,7 +8,7 @@ function GridRow(props) {
   const { children, className } = props
   const classes = cx(
     className,
-    'Row'
+    'row'
   )
   const rest = getUnhandledProps(GridRow, props)
 
