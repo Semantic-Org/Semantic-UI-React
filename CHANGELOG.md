@@ -1,5 +1,16 @@
 # Change Log
 
+## [v0.27.2](https://github.com/TechnologyAdvice/stardust/tree/v0.27.2) (2016-07-28)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.27.1...v0.27.2)
+
+**Implemented enhancements:**
+
+- Don't throw error if jquery is detected [\#352](https://github.com/TechnologyAdvice/stardust/issues/352)
+
+**Merged pull requests:**
+
+- fix\(jQuery\): weaken window.jQuery error [\#353](https://github.com/TechnologyAdvice/stardust/pull/353) ([davezuko](https://github.com/davezuko))
+
 ## [v0.27.1](https://github.com/TechnologyAdvice/stardust/tree/v0.27.1) (2016-07-25)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.27.0...v0.27.1)
 
