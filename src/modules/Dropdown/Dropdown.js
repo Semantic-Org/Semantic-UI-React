@@ -27,6 +27,7 @@ const _meta = {
   type: META.TYPES.MODULE,
   props: {
     pointing: ['bottom left', 'bottom right'],
+    additionPosition: ['top', 'bottom'],
   },
 }
 
@@ -100,6 +101,24 @@ export default class Dropdown extends Component {
 
     /** Name of the hidden input which holds the value. */
     name: PropTypes.string,
+
+    /**
+     * Allow user additions to the list of options (boolean).
+     * Requires the use of `selection`, `options` and `search`.
+     */
+    allowAdditions: customPropTypes.every([
+      customPropTypes.demand(['options', 'selection', 'search']),
+      PropTypes.bool,
+    ]),
+
+    /** Called with the new value added by the user. Use this to update the options list. */
+    onAddItem: PropTypes.func,
+
+    /** Position of the `Add: ...` option in the dropdown list ('top' or 'bottom'). */
+    additionPosition: PropTypes.oneOf(_meta.props.additionPosition),
+
+    /** Label prefixed to an option added by a user. */
+    additionLabel: PropTypes.string,
 
     // ------------------------------------
     // Callbacks
@@ -177,6 +196,7 @@ export default class Dropdown extends Component {
 
   static defaultProps = {
     icon: 'dropdown',
+    additionLabel: 'Add:',
   }
 
   static autoControlledProps = [
@@ -347,11 +367,14 @@ export default class Dropdown extends Component {
     if (keyboardKey.getCode(e) !== keyboardKey.Enter) return
     e.preventDefault()
 
-    const { multiple } = this.props
+    const { multiple, onAddItem, options } = this.props
     const value = this.getSelectedItemValue()
 
     // prevent selecting null if there was no selected item value
     if (!value) return
+
+    // notify the onAddItem prop if this is a new value
+    if (onAddItem && !_.some(options, { text: value })) onAddItem(value)
 
     // notify the onChange prop that the user is trying to change value
     if (multiple) {
@@ -408,7 +431,7 @@ export default class Dropdown extends Component {
   handleItemClick = (e, value) => {
     debug('handleItemClick()')
     debug(value)
-    const { multiple } = this.props
+    const { multiple, onAddItem, options } = this.props
 
     // prevent toggle() in handleClick()
     e.stopPropagation()
@@ -416,6 +439,9 @@ export default class Dropdown extends Component {
     if (multiple) {
       e.nativeEvent.stopImmediatePropagation()
     }
+
+    // notify the onAddItem prop if this is a new value
+    if (onAddItem && !_.some(options, { value })) onAddItem(value)
 
     // notify the onChange prop that the user is trying to change value
     if (multiple) {
@@ -488,7 +514,7 @@ export default class Dropdown extends Component {
   // ----------------------------------------
 
   getMenuOptions = () => {
-    const { multiple, options, search } = this.props
+    const { multiple, search, allowAdditions, additionPosition, additionLabel, options } = this.props
     const { searchQuery, value } = this.state
 
     let filteredOptions = options
@@ -502,6 +528,16 @@ export default class Dropdown extends Component {
     if (search && searchQuery) {
       const re = new RegExp(_.escapeRegExp(searchQuery), 'i')
       filteredOptions = _.filter(filteredOptions, (opt) => re.test(opt.text))
+    }
+
+    // insert the "add" item
+    if (allowAdditions && search && searchQuery && !_.some(filteredOptions, { text: searchQuery })) {
+      const addItem = {
+        text: additionLabel ? `${additionLabel} ${searchQuery}` : searchQuery,
+        value: searchQuery,
+      }
+      if (additionPosition === 'top') filteredOptions.unshift(addItem)
+      else filteredOptions.push(addItem)
     }
 
     return filteredOptions

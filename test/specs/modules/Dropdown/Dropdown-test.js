@@ -777,6 +777,34 @@ describe('Dropdown Component', () => {
 
       instance.handleItemClick.should.have.been.calledOnce()
     })
+    it('renders new options when options change', () => {
+      const customOptions = [
+        { text: 'abra', value: 'abra' },
+        { text: 'cadabra', value: 'cadabra' },
+        { text: 'bang', value: 'bang' },
+      ]
+      wrapperMount(
+        <Dropdown options={customOptions} />
+      )
+        .find('input.search')
+
+      wrapper
+        .find('DropdownItem')
+        .should.have.lengthOf(3)
+
+      wrapper.setProps({ options: [...customOptions, { text: 'bar', value: 'bar' }] })
+
+      wrapper
+        .find('DropdownItem')
+        .should.have.lengthOf(4)
+
+      const newItem = wrapper
+        .find('DropdownItem')
+        .last()
+
+      newItem.should.have.prop('text', 'bar')
+      newItem.should.have.prop('value', 'bar')
+    })
   })
 
   describe('selection', () => {
@@ -1049,6 +1077,190 @@ describe('Dropdown Component', () => {
       dropdownMenuIsClosed()
       wrapper.simulate('click')
       dropdownMenuIsOpen()
+    })
+  })
+
+  describe('allowAdditions', () => {
+    const customOptions = [
+      { text: 'abra', value: 'abra' },
+      { text: 'cadabra', value: 'cadabra' },
+      { text: 'bang', value: 'bang' },
+    ]
+
+    it('adds an option for arbitrary search value', () => {
+      const search = wrapperMount(<Dropdown options={customOptions} selection search allowAdditions />)
+        .find('input.search')
+
+      wrapper
+        .find('DropdownItem')
+        .should.have.lengthOf(3)
+
+      search.simulate('change', { target: { value: 'boo' } })
+
+      wrapper
+        .find('DropdownItem')
+        .should.have.lengthOf(1)
+
+      wrapper
+        .find('DropdownItem')
+        .should.have.prop('value', 'boo')
+    })
+
+    it('adds an option for prefix search value', () => {
+      const search = wrapperMount(<Dropdown options={customOptions} selection search allowAdditions />)
+        .find('input.search')
+
+      wrapper
+        .find('DropdownItem')
+        .should.have.lengthOf(3)
+
+      search.simulate('change', { target: { value: 'a' } })
+
+      wrapper
+        .find('DropdownItem')
+        .should.have.lengthOf(4)
+
+      wrapper
+        .find('DropdownItem')
+        .last()
+        .should.have.prop('value', 'a')
+    })
+
+    it('uses default additionLabel', () => {
+      const search = wrapperMount(<Dropdown options={customOptions} selection search allowAdditions />)
+        .find('input.search')
+
+      search.simulate('change', { target: { value: 'boo' } })
+
+      wrapper
+        .find('DropdownItem')
+        .should.have.lengthOf(1)
+
+      wrapper
+        .find('DropdownItem')
+        .should.have.prop('text', 'Add: boo')
+    })
+
+    it('uses custom additionLabel', () => {
+      const search = wrapperMount(
+        <Dropdown options={customOptions} selection search allowAdditions additionLabel='New:' />
+      )
+        .find('input.search')
+
+      search.simulate('change', { target: { value: 'boo' } })
+
+      wrapper
+        .find('DropdownItem')
+        .should.have.lengthOf(1)
+
+      wrapper
+        .find('DropdownItem')
+        .should.have.prop('text', 'New: boo')
+    })
+
+    it('uses no additionLabel', () => {
+      const search = wrapperMount(
+        <Dropdown options={customOptions} selection search allowAdditions additionLabel='' />
+      )
+        .find('input.search')
+
+      search.simulate('change', { target: { value: 'boo' } })
+
+      wrapper
+        .find('DropdownItem')
+        .should.have.lengthOf(1)
+
+      wrapper
+        .find('DropdownItem')
+        .should.have.prop('text', 'boo')
+    })
+
+    it('keeps custom value option (bottom) when options change', () => {
+      const search = wrapperMount(<Dropdown options={customOptions} selection search allowAdditions />)
+        .find('input.search')
+
+      search.simulate('change', { target: { value: 'a' } })
+
+      wrapper
+        .find('DropdownItem')
+        .should.have.lengthOf(4)
+
+      wrapper
+        .find('DropdownItem')
+        .last()
+        .should.have.prop('value', 'a')
+
+      wrapper.setProps({ options: [...customOptions, { text: 'bar', value: 'bar' }] })
+
+      wrapper
+        .find('DropdownItem')
+        .should.have.lengthOf(5)
+
+      wrapper
+        .find('DropdownItem')
+        .last()
+        .should.have.prop('value', 'a')
+    })
+
+    it('keeps custom value option (top) when options change', () => {
+      const search = wrapperMount(
+        <Dropdown options={customOptions} selection search allowAdditions additionPosition='top' />
+      )
+        .find('input.search')
+
+      search.simulate('change', { target: { value: 'a' } })
+
+      wrapper
+        .find('DropdownItem')
+        .should.have.lengthOf(4)
+
+      wrapper
+        .find('DropdownItem')
+        .first()
+        .should.have.prop('value', 'a')
+
+      wrapper.setProps({ options: [...customOptions, { text: 'bar', value: 'bar' }] })
+
+      wrapper
+        .find('DropdownItem')
+        .should.have.lengthOf(5)
+
+      wrapper
+        .find('DropdownItem')
+        .first()
+        .should.have.prop('value', 'a')
+    })
+
+    it('calls onAddItem prop when clicking new value', () => {
+      const spy = sandbox.spy()
+      const search = wrapperMount(
+        <Dropdown options={customOptions} selection search allowAdditions onAddItem={spy} />
+      )
+        .find('input.search')
+
+      search.simulate('change', { target: { value: 'boo' } })
+
+      wrapper
+        .find('DropdownItem')
+        .first()
+        .simulate('click')
+
+      spy.should.have.been.calledOnce()
+      spy.firstCall.args[0].should.equal('boo')
+    })
+
+    it('calls onAddItem prop when pressing enter on new value', () => {
+      const spy = sandbox.spy()
+      const search = wrapperMount(
+        <Dropdown options={customOptions} selection search allowAdditions onAddItem={spy} />
+      )
+        .find('input.search')
+
+      search.simulate('change', { target: { value: 'boo' } })
+      domEvent.keyDown(document, { key: 'Enter' })
+
+      spy.should.have.been.calledOnce()
+      spy.firstCall.args[0].should.equal('boo')
     })
   })
 })

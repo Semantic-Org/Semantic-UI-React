@@ -21,6 +21,16 @@ const DropdownExamples = () => (
           Selection dropdowns must use the <code>options</code> prop, instead of sub component markup.
         </Message>
       </ComponentExample>
+      <ComponentExample
+        title='Allow Additions'
+        description='A dropdown that allows user additions'
+        examplePath='modules/Dropdown/Types/AllowAdditions'
+      >
+        <Message className='info'>
+          The <code>allowAdditions</code> prop requires you to handle updating the options list
+          with the new value via the <code>onAddItem</code> prop.
+        </Message>
+      </ComponentExample>
     </ExampleSection>
     <ExampleSection title='States'>
       <ComponentExample
