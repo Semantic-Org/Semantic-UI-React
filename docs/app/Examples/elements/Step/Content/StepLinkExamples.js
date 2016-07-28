@@ -1,21 +1,38 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { Step } from 'stardust'
 
-// eslint-disable-next-line no-alert
-const handleClick = () => alert('Clicked!')
+class ClickableStep extends Component {
+
+  state = {}
+
+  handleClick = () => {
+    console.log(this)
+  }
+
+  render() {
+    return <Step active={this.state.active} onClick={this.handleClick} />
+  }
+}
 
 const StepLinkExamples = () => (
   <div>
     <Step.Group>
       <Step active href='http://google.com' icon='truck' title='Shipping' description='Choose your shipping options' />
-      <Step onClick={handleClick} icon='credit card' title='Shipping' description='Choose your shipping options' />
+      <Step href='http://google.com' icon='credit card' title='Billing' description='Enter billing information' />
+    </Step.Group>
+
+    <br />
+
+    <Step.Group>
+      <ClickableStep icon='truck' title='Shipping' description='Choose your shipping options' />
+      <ClickableStep icon='credit card' title='Billing' description='Enter billing information' />
     </Step.Group>
 
     <br />
 
     <Step.Group>
       <Step link icon='truck' title='Shipping' description='Choose your shipping options' />
-      <Step link icon='credit card' title='Shipping' description='Choose your shipping options' />
+      <Step link icon='credit card' title='Billing' description='Enter billing information' />
     </Step.Group>
   </div>
 )
