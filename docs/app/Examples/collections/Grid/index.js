@@ -11,6 +11,16 @@ const GridExamples = () => (
         description='A basic grid'
         examplePath='collections/Grid/Types/GridExample'
       />
+      <ComponentExample
+        title='Divided'
+        description='A grid can have dividers between its columns'
+        examplePath='collections/Grid/Types/GridDividedExample'
+      />
+      <ComponentExample
+        title='Vertically Divided'
+        description='A grid can have dividers between rows'
+        examplePath='collections/Grid/Types/GridVerticallyDividedExample'
+      />
     </ExampleSection>
   </div>
 )
