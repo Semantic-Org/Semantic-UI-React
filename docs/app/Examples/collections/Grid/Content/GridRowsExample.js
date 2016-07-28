@@ -3,14 +3,14 @@ import { Image, Grid } from 'stardust'
 
 const image = <Image src='http://semantic-ui.com/images/wireframe/paragraph.png' />
 
-const GridVerticallyDividedExample = () => (
-  <Grid divided='vertically'>
-    <Grid.Row column={2}>
+const GridRowsExample = () => (
+  <Grid column={3}>
+    <Grid.Row>
       <Grid.Column>{image}</Grid.Column>
       <Grid.Column>{image}</Grid.Column>
     </Grid.Row>
 
-    <Grid.Row column={3}>
+    <Grid.Row>
       <Grid.Column>{image}</Grid.Column>
       <Grid.Column>{image}</Grid.Column>
       <Grid.Column>{image}</Grid.Column>
@@ -18,4 +18,4 @@ const GridVerticallyDividedExample = () => (
   </Grid>
 )
 
-export default GridVerticallyDividedExample
+export default GridRowsExample
