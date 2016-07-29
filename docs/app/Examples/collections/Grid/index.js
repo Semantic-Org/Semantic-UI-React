@@ -107,6 +107,20 @@ const GridExamples = () => (
         examplePath='collections/Grid/Variations/GridCenteredExample'
       />
     </ExampleSection>
+
+    <ExampleSection title='Responsive Variations'>
+      <ComponentExample
+        title='Doubling'
+        description='A grid can double its column width on tablet and mobile sizes'
+        examplePath='collections/Grid/ResponsiveVariations/GridDoublingExample'
+      />
+
+      <ComponentExample
+        title='Stackable'
+        description='A grid can have its columns stack on-top of each other after reaching mobile breakpoints'
+        examplePath='collections/Grid/ResponsiveVariations/GridStackableExample'
+      />
+    </ExampleSection>
   </div>
 )
 
