@@ -3,14 +3,15 @@ import React, { PropTypes } from 'react'
 
 import numberToWord from '../../utils/numberToWord'
 import META from '../../utils/Meta'
-import { getUnhandledProps, useValueAndKey } from '../../utils/propUtils'
+import { getUnhandledProps, useAlignedProp, useValueAndKey } from '../../utils/propUtils'
 import * as sui from '../../utils/semanticUtils'
 
 function GridColumn(props) {
-  const { children, className, color, floated, width } = props
+  const { aligned, children, className, color, floated, width } = props
   const classes = cx(
     className,
     color,
+    useAlignedProp(aligned),
     useValueAndKey(floated, 'floated'),
     useValueAndKey(numberToWord(width), 'wide'),
     'column'
@@ -26,6 +27,7 @@ GridColumn._meta = {
   parent: 'Grid',
   type: META.type.collection,
   props: {
+    aligned: sui.textAlignments,
     color: sui.colors,
     floated: sui.floats,
     width: sui.widths,
@@ -33,6 +35,9 @@ GridColumn._meta = {
 }
 
 GridColumn.propTypes = {
+  /** A row can specify its text alignment. */
+  aligned: PropTypes.oneOf(GridColumn._meta.props.aligned),
+
   /** Primary content of the GridColumn. */
   children: PropTypes.node,
 

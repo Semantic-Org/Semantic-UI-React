@@ -3,17 +3,26 @@ import React, { PropTypes } from 'react'
 
 import numberToWord from '../../utils/numberToWord'
 import META from '../../utils/Meta'
-import { getUnhandledProps, useKeyOnly, useKeyOrValueAndKey, useValueAndKey } from '../../utils/propUtils'
+import {
+  getUnhandledProps,
+  useAlignedProp,
+  useKeyOnly,
+  useKeyOrValueAndKey,
+  useValueAndKey,
+} from '../../utils/propUtils'
 import * as sui from '../../utils/semanticUtils'
 import GridColumn from './GridColumn'
 import GridRow from './GridRow'
 
 /** A grid is used to harmonize negative space in a layout. */
 function Grid(props) {
-  const { children, className, celled, centered, column, divided, doubling, padded, relaxed, stackable, width } = props
+  const {
+    aligned, children, className, celled, centered, column, divided, doubling, padded, relaxed, stackable, width,
+  } = props
   const classes = cx(
     'ui',
     className,
+    useAlignedProp(aligned),
     useValueAndKey(numberToWord(column), 'column'),
     useKeyOrValueAndKey(celled, 'celled'),
     useKeyOnly(centered, 'centered'),
@@ -38,6 +47,7 @@ Grid._meta = {
   name: 'Grid',
   type: META.type.collection,
   props: {
+    aligned: sui.textAlignments,
     celled: ['internally'],
     column: sui.widths,
     divided: ['vertically'],
@@ -48,6 +58,9 @@ Grid._meta = {
 }
 
 Grid.propTypes = {
+  /** A grid its text alignment. */
+  aligned: PropTypes.oneOf(Grid._meta.props.aligned),
+
   /** A grid can have rows divided into cells. */
   celled: PropTypes.oneOfType([
     PropTypes.bool,

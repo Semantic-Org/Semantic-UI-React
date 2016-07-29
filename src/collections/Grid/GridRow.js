@@ -3,14 +3,15 @@ import React, { PropTypes } from 'react'
 
 import numberToWord from '../../utils/numberToWord'
 import META from '../../utils/Meta'
-import { getUnhandledProps, useKeyOnly, useValueAndKey } from '../../utils/propUtils'
+import { getUnhandledProps, useAlignedProp, useKeyOnly, useValueAndKey } from '../../utils/propUtils'
 import * as sui from '../../utils/semanticUtils'
 
 function GridRow(props) {
-  const { centered, children, className, color, column, stretched } = props
+  const { aligned, centered, children, className, color, column, stretched } = props
   const classes = cx(
     className,
     color,
+    useAlignedProp(aligned),
     useKeyOnly(centered, 'centered'),
     useValueAndKey(numberToWord(column), 'column'),
     useKeyOnly(stretched, 'stretched'),
@@ -27,12 +28,16 @@ GridRow._meta = {
   parent: 'Grid',
   type: META.type.collection,
   props: {
+    aligned: sui.textAlignments,
     color: sui.colors,
     column: sui.widths,
   },
 }
 
 GridRow.propTypes = {
+  /** A row can specify its text alignment. */
+  aligned: PropTypes.oneOf(GridRow._meta.props.aligned),
+
   /** A row can have its columns centered. */
   centered: PropTypes.bool,
 
