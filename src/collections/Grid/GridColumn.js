@@ -7,9 +7,11 @@ import { getUnhandledProps, useValueAndKey } from '../../utils/propUtils'
 import * as sui from '../../utils/semanticUtils'
 
 function GridColumn(props) {
-  const { children, className, width } = props
+  const { children, className, color, floated, width } = props
   const classes = cx(
     className,
+    color,
+    useValueAndKey(floated, 'floated'),
     useValueAndKey(numberToWord(width), 'wide'),
     'column'
   )
@@ -24,6 +26,8 @@ GridColumn._meta = {
   parent: 'Grid',
   type: META.type.collection,
   props: {
+    color: sui.colors,
+    floated: sui.floats,
     width: sui.widths,
   },
 }
@@ -35,6 +39,13 @@ GridColumn.propTypes = {
   /** Classes that will be added to the GridColumn className. */
   className: PropTypes.string,
 
+  /** A grid column can be colored. */
+  color: PropTypes.oneOf(GridColumn._meta.props.color),
+
+  /** A column can sit flush against the left or right edge of a row. */
+  floated: PropTypes.oneOf(GridColumn._meta.props.floated),
+
+  /** Represents width of column. */
   width: PropTypes.oneOf(GridColumn._meta.props.width),
 }
 

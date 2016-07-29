@@ -3,21 +3,24 @@ import React, { PropTypes } from 'react'
 
 import numberToWord from '../../utils/numberToWord'
 import META from '../../utils/Meta'
-import { getUnhandledProps, useKeyOrValueAndKey, useValueAndKey } from '../../utils/propUtils'
+import { getUnhandledProps, useKeyOnly, useKeyOrValueAndKey, useValueAndKey } from '../../utils/propUtils'
 import * as sui from '../../utils/semanticUtils'
 import GridColumn from './GridColumn'
 import GridRow from './GridRow'
 
 /** A grid is used to harmonize negative space in a layout. */
 function Grid(props) {
-  const { children, className, celled, column, divided, floated } = props
+  const { children, className, celled, centered, column, divided, padded, relaxed, width } = props
   const classes = cx(
     'ui',
     className,
     useValueAndKey(numberToWord(column), 'column'),
     useKeyOrValueAndKey(celled, 'celled'),
+    useKeyOnly(centered, 'centered'),
     useKeyOrValueAndKey(divided, 'divided'),
-    useValueAndKey(floated, 'floated'),
+    useKeyOrValueAndKey(padded, 'padded'),
+    useKeyOrValueAndKey(relaxed, 'relaxed'),
+    useValueAndKey(width, 'width'),
     'grid'
   )
   const rest = getUnhandledProps(Grid, props)
@@ -36,28 +39,51 @@ Grid._meta = {
     celled: ['internally'],
     column: sui.widths,
     divided: ['vertically'],
-    floated: sui.floats,
+    padded: ['horizontally', 'vertically'],
+    relaxed: ['very'],
+    width: ['equal'],
   },
 }
 
 Grid.propTypes = {
+  /** A grid can have rows divided into cells. */
+  celled: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.oneOf(Grid._meta.props.celled),
+  ]),
+
+  /** A grid can have its columns centered. */
+  centered: PropTypes.bool,
+
   /** Primary content of the Grid. */
   children: PropTypes.node,
 
   /** Classes that will be added to the Grid className. */
   className: PropTypes.string,
 
-  /** A grid can have rows divided into cells. */
-  celled: PropTypes.oneOf(Grid._meta.props.celled),
-
   /** Represents column count per line in Grid. */
   column: PropTypes.oneOf(Grid._meta.props.column),
 
   /** A grid can have dividers between its columns. */
-  divided: PropTypes.oneOf(Grid._meta.props.divided),
+  divided: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.oneOf(Grid._meta.props.divided),
+  ]),
 
-  /** A column can sit flush against the left or right edge of a row. */
-  floated: PropTypes.oneOf(Grid._meta.props.floated),
+  /** A grid can preserve its vertical and horizontal gutters on first and last columns. */
+  padded: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.oneOf(Grid._meta.props.padded),
+  ]),
+
+  /** A grid can increase its gutters to allow for more negative space. */
+  relaxed: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.oneOf(Grid._meta.props.relaxed),
+  ]),
+
+  /** A row can automatically resize all elements to split the available width evenly. */
+  width: PropTypes.oneOf(Grid._meta.props.width),
 }
 
 export default Grid
