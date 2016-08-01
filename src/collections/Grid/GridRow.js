@@ -7,7 +7,7 @@ import { getUnhandledProps, useAlignedProp, useKeyOnly, useValueAndKey } from '.
 import * as sui from '../../utils/semanticUtils'
 
 function GridRow(props) {
-  const { aligned, centered, children, className, color, column, stretched } = props
+  const { aligned, centered, children, className, color, column, stretched, vertical } = props
   const classes = cx(
     className,
     color,
@@ -15,6 +15,7 @@ function GridRow(props) {
     useKeyOnly(centered, 'centered'),
     useValueAndKey(numberToWord(column), 'column'),
     useKeyOnly(stretched, 'stretched'),
+    useValueAndKey(vertical, 'aligned'),
     'row'
   )
   const rest = getUnhandledProps(GridRow, props)
@@ -31,6 +32,7 @@ GridRow._meta = {
     aligned: sui.textAlignments,
     color: sui.colors,
     column: sui.widths,
+    vertical: sui.verticalAlignments,
   },
 }
 
@@ -55,6 +57,9 @@ GridRow.propTypes = {
 
   /** An can stretch its contents to take up the entire column height. */
   stretched: PropTypes.bool,
+
+  /** A row can specify its vertical alignment to have all its columns vertically centered. */
+  vertical: PropTypes.oneOf(GridRow._meta.props.vertical),
 }
 
 export default GridRow

@@ -3,7 +3,7 @@ import { Divider, Grid, Segment } from 'stardust'
 
 const { Column, Row } = Grid
 
-const GridStretchedExamples = () => (
+const GridEqualWidthExamples = () => (
   <div>
     <Grid width='equal'>
       <Column>
@@ -57,4 +57,4 @@ const GridStretchedExamples = () => (
   </div>
 )
 
-export default GridStretchedExamples
+export default GridEqualWidthExamples

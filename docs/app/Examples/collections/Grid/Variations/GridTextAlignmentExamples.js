@@ -5,7 +5,7 @@ import { Divider, Grid, Menu } from 'stardust'
 
 const { Column, Row } = Grid
 
-const GridCenteredExample = () => (
+const GridTextAlignmentExample = () => (
   <div>
     <Grid aligned='center' column={3}>
       <Row>
@@ -91,4 +91,4 @@ const GridCenteredExample = () => (
   </div>
 )
 
-export default GridCenteredExample
+export default GridTextAlignmentExample

@@ -1,5 +1,4 @@
 import React from 'react'
-
 import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
 import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
 
@@ -111,6 +110,14 @@ const GridExamples = () => (
         title='Text Alignment'
         description='A grid, row, or column can specify its text alignment'
         examplePath='collections/Grid/Variations/GridTextAlignmentExamples'
+      />
+
+      <ComponentExample
+        title='Vertical Alignment'
+        description={
+          'A grid, row, or column can specify its vertical alignment to have all its columns vertically centered'
+        }
+        examplePath='collections/Grid/Variations/GridVerticalAlignmentExamples'
       />
     </ExampleSection>
 

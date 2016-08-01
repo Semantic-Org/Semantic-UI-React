@@ -17,7 +17,8 @@ import GridRow from './GridRow'
 /** A grid is used to harmonize negative space in a layout. */
 function Grid(props) {
   const {
-    aligned, children, className, celled, centered, column, divided, doubling, padded, relaxed, stackable, width,
+    aligned, children, className, celled, centered, column, divided, doubling, padded, relaxed, stackable, vertical,
+    width,
   } = props
   const classes = cx(
     'ui',
@@ -31,6 +32,7 @@ function Grid(props) {
     useKeyOrValueAndKey(padded, 'padded'),
     useKeyOrValueAndKey(relaxed, 'relaxed'),
     useKeyOnly(stackable, 'stackable'),
+    useValueAndKey(vertical, 'aligned'),
     useValueAndKey(width, 'width'),
     'grid'
   )
@@ -102,6 +104,9 @@ Grid.propTypes = {
 
   /** A grid can have its columns stack on-top of each other after reaching mobile breakpoints. */
   stackable: PropTypes.bool,
+
+  /** A grid can specify its vertical alignment to have all its columns vertically centered. */
+  vertical: PropTypes.oneOf(GridColumn._meta.props.vertical),
 
   /** A row can automatically resize all elements to split the available width evenly. */
   width: PropTypes.oneOf(Grid._meta.props.width),

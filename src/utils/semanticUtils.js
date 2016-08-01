@@ -16,9 +16,10 @@ export const colors = [
   'grey',
   'black',
 ]
+export const floats = ['left', 'right']
 export const sizes = ['mini', 'tiny', 'small', 'medium', 'large', 'big', 'huge', 'massive']
 export const textAlignments = ['left', 'center', 'right', 'justified']
-export const floats = ['left', 'right']
+export const verticalAlignments = ['bottom', 'middle', 'top']
 
 export const widths = [
   ..._.keys(numberToWordMap),
