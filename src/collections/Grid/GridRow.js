@@ -7,13 +7,15 @@ import { getUnhandledProps, useAlignedProp, useKeyOnly, useValueAndKey } from '.
 import * as sui from '../../utils/semanticUtils'
 
 function GridRow(props) {
-  const { aligned, centered, children, className, color, column, stretched, vertical } = props
+  const { aligned, centered, children, className, color, column, only, reversed, stretched, vertical } = props
   const classes = cx(
     className,
     color,
     useAlignedProp(aligned),
     useKeyOnly(centered, 'centered'),
     useValueAndKey(numberToWord(column), 'column'),
+    useValueAndKey(only, 'only'),
+    useValueAndKey(reversed, 'reversed'),
     useKeyOnly(stretched, 'stretched'),
     useValueAndKey(vertical, 'aligned'),
     'row'
@@ -32,6 +34,8 @@ GridRow._meta = {
     aligned: sui.textAlignments,
     color: sui.colors,
     column: sui.widths,
+    only: ['computer', 'large screen', 'mobile', 'tablet mobile', 'tablet', 'widescreen'],
+    reversed: ['computer', 'computer vertically', 'mobile', 'mobile vertically', 'tablet', 'tablet vertically'],
     vertical: sui.verticalAlignments,
   },
 }
@@ -54,6 +58,12 @@ GridRow.propTypes = {
 
   /** Represents column count per line in Row. */
   column: PropTypes.oneOf(GridRow._meta.props.column),
+
+  /** A row can appear only for a specific device, or screen sizes. */
+  only: PropTypes.oneOf(GridRow._meta.props.only),
+
+  /** A  row can specify that its columns should reverse order at different device sizes. */
+  reversed: PropTypes.oneOf(GridRow._meta.props.reversed),
 
   /** An can stretch its contents to take up the entire column height. */
   stretched: PropTypes.bool,

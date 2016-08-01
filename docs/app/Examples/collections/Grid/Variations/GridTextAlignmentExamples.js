@@ -38,7 +38,7 @@ const GridTextAlignmentExample = () => (
             <Menu.Item className='header'>Cats</Menu.Item>
           </Menu>
         </Column>
-        <Column aligned='aligned'>
+        <Column aligned='left'>
           <Menu className='vertical fluid'>
             <Menu.Item className='header'>Dogs</Menu.Item>
             <Menu.Item>Poodle</Menu.Item>

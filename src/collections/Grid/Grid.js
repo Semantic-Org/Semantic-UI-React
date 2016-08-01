@@ -17,8 +17,8 @@ import GridRow from './GridRow'
 /** A grid is used to harmonize negative space in a layout. */
 function Grid(props) {
   const {
-    aligned, children, className, celled, centered, column, divided, doubling, padded, relaxed, stackable, vertical,
-    width,
+    aligned, children, className, celled, centered, column, divided, doubling, padded, relaxed, reversed, stackable,
+    vertical, width,
   } = props
   const classes = cx(
     'ui',
@@ -31,6 +31,7 @@ function Grid(props) {
     useKeyOnly(doubling, 'doubling'),
     useKeyOrValueAndKey(padded, 'padded'),
     useKeyOrValueAndKey(relaxed, 'relaxed'),
+    useValueAndKey(reversed, 'reversed'),
     useKeyOnly(stackable, 'stackable'),
     useValueAndKey(vertical, 'aligned'),
     useValueAndKey(width, 'width'),
@@ -55,6 +56,7 @@ Grid._meta = {
     divided: ['vertically'],
     padded: ['horizontally', 'vertically'],
     relaxed: ['very'],
+    reversed: ['computer', 'computer vertically', 'mobile', 'mobile vertically', 'tablet', 'tablet vertically'],
     width: ['equal'],
   },
 }
@@ -101,6 +103,9 @@ Grid.propTypes = {
     PropTypes.bool,
     PropTypes.oneOf(Grid._meta.props.relaxed),
   ]),
+
+  /** A grid can specify that its columns should reverse order at different device sizes. */
+  reversed: PropTypes.oneOf(Grid._meta.props.reversed),
 
   /** A grid can have its columns stack on-top of each other after reaching mobile breakpoints. */
   stackable: PropTypes.bool,
