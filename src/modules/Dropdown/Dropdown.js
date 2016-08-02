@@ -108,6 +108,9 @@ export default class Dropdown extends Component {
     /** Called with the React Synthetic Event and current value on change. */
     onChange: PropTypes.func,
 
+    /** Called with the React Synthetic Event and current value on search input change. */
+    onSearchChange: PropTypes.func,
+
     /** Called with the React Synthetic Event on Dropdown click. */
     onClick: PropTypes.func,
 
@@ -448,9 +451,11 @@ export default class Dropdown extends Component {
     debug(e.target.value)
     // prevent propagating to this.props.onChange()
     e.stopPropagation()
-    const { search } = this.props
+    const { search, onSearchChange } = this.props
     const { open } = this.state
     const newQuery = e.target.value
+
+    if (onSearchChange) onSearchChange(e, newQuery)
 
     // open search dropdown on search query
     if (search && newQuery && !open) this.open()
