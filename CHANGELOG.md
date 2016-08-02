@@ -1,5 +1,12 @@
 # Change Log
 
+## [v0.27.3](https://github.com/TechnologyAdvice/stardust/tree/v0.27.3) (2016-08-02)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.27.2...v0.27.3)
+
+**Merged pull requests:**
+
+- Fix names of countries in \<Flag\> [\#358](https://github.com/TechnologyAdvice/stardust/pull/358) ([layershifter](https://github.com/layershifter))
+
 ## [v0.27.2](https://github.com/TechnologyAdvice/stardust/tree/v0.27.2) (2016-07-28)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.27.1...v0.27.2)
 
