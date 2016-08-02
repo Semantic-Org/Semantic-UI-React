@@ -1,1228 +1,1228 @@
 import React, { Component } from 'react'
-import { Flag, Table, Divider } from 'stardust'
+import { Table } from 'stardust'
 
 const countries = [
   {
-    "name": "afghanistan",
-    "country_Code": "af",
-    "alias": ""
+    name: 'afghanistan',
+    country_code: 'af',
+    alias: '',
   },
   {
-    "name": "aland.islands",
-    "country_Code": "ax",
-    "alias": ""
+    name: 'aland.islands',
+    country_code: 'ax',
+    alias: '',
   },
   {
-    "name": "albania",
-    "country_Code": "al",
-    "alias": ""
+    name: 'albania',
+    country_code: 'al',
+    alias: '',
   },
   {
-    "name": "algeria",
-    "country_Code": "dz",
-    "alias": ""
+    name: 'algeria',
+    country_code: 'dz',
+    alias: '',
   },
   {
-    "name": "american.samoa",
-    "country_Code": "as",
-    "alias": ""
+    name: 'american.samoa',
+    country_code: 'as',
+    alias: '',
   },
   {
-    "name": "andorra",
-    "country_Code": "ad",
-    "alias": ""
+    name: 'andorra',
+    country_code: 'ad',
+    alias: '',
   },
   {
-    "name": "angola",
-    "country_Code": "ao",
-    "alias": ""
+    name: 'angola',
+    country_code: 'ao',
+    alias: '',
   },
   {
-    "name": "anguilla",
-    "country_Code": "ai",
-    "alias": ""
+    name: 'anguilla',
+    country_code: 'ai',
+    alias: '',
   },
   {
-    "name": "antigua",
-    "country_Code": "ag",
-    "alias": ""
+    name: 'antigua',
+    country_code: 'ag',
+    alias: '',
   },
   {
-    "name": "argentina",
-    "country_Code": "ar",
-    "alias": ""
+    name: 'argentina',
+    country_code: 'ar',
+    alias: '',
   },
   {
-    "name": "armenia",
-    "country_Code": "am",
-    "alias": ""
+    name: 'armenia',
+    country_code: 'am',
+    alias: '',
   },
   {
-    "name": "aruba",
-    "country_Code": "aw",
-    "alias": ""
+    name: 'aruba',
+    country_code: 'aw',
+    alias: '',
   },
   {
-    "name": "australia",
-    "country_Code": "au",
-    "alias": ""
+    name: 'australia',
+    country_code: 'au',
+    alias: '',
   },
   {
-    "name": "austria",
-    "country_Code": "at",
-    "alias": ""
+    name: 'austria',
+    country_code: 'at',
+    alias: '',
   },
   {
-    "name": "azerbaijan",
-    "country_Code": "az",
-    "alias": ""
+    name: 'azerbaijan',
+    country_code: 'az',
+    alias: '',
   },
   {
-    "name": "bahamas",
-    "country_Code": "bs",
-    "alias": ""
+    name: 'bahamas',
+    country_code: 'bs',
+    alias: '',
   },
   {
-    "name": "bahrain",
-    "country_Code": "bh",
-    "alias": ""
+    name: 'bahrain',
+    country_code: 'bh',
+    alias: '',
   },
   {
-    "name": "bangladesh",
-    "country_Code": "bd",
-    "alias": ""
+    name: 'bangladesh',
+    country_code: 'bd',
+    alias: '',
   },
   {
-    "name": "barbados",
-    "country_Code": "bb",
-    "alias": ""
+    name: 'barbados',
+    country_code: 'bb',
+    alias: '',
   },
   {
-    "name": "belarus",
-    "country_Code": "by",
-    "alias": ""
+    name: 'belarus',
+    country_code: 'by',
+    alias: '',
   },
   {
-    "name": "belgium",
-    "country_Code": "be",
-    "alias": ""
+    name: 'belgium',
+    country_code: 'be',
+    alias: '',
   },
   {
-    "name": "belize",
-    "country_Code": "bz",
-    "alias": ""
+    name: 'belize',
+    country_code: 'bz',
+    alias: '',
   },
   {
-    "name": "benin",
-    "country_Code": "bj",
-    "alias": ""
+    name: 'benin',
+    country_code: 'bj',
+    alias: '',
   },
   {
-    "name": "bermuda",
-    "country_Code": "bm",
-    "alias": ""
+    name: 'bermuda',
+    country_code: 'bm',
+    alias: '',
   },
   {
-    "name": "bhutan",
-    "country_Code": "bt",
-    "alias": ""
+    name: 'bhutan',
+    country_code: 'bt',
+    alias: '',
   },
   {
-    "name": "bolivia",
-    "country_Code": "bo",
-    "alias": ""
+    name: 'bolivia',
+    country_code: 'bo',
+    alias: '',
   },
   {
-    "name": "bosnia",
-    "country_Code": "ba",
-    "alias": ""
+    name: 'bosnia',
+    country_code: 'ba',
+    alias: '',
   },
   {
-    "name": "botswana",
-    "country_Code": "bw",
-    "alias": ""
+    name: 'botswana',
+    country_code: 'bw',
+    alias: '',
   },
   {
-    "name": "bouvet.island",
-    "country_Code": "bv",
-    "alias": ""
+    name: 'bouvet.island',
+    country_code: 'bv',
+    alias: '',
   },
   {
-    "name": "brazil",
-    "country_Code": "br",
-    "alias": ""
+    name: 'brazil',
+    country_code: 'br',
+    alias: '',
   },
   {
-    "name": "british.virgin.islands",
-    "country_Code": "vg",
-    "alias": ""
+    name: 'british.virgin.islands',
+    country_code: 'vg',
+    alias: '',
   },
   {
-    "name": "brunei",
-    "country_Code": "bn",
-    "alias": ""
+    name: 'brunei',
+    country_code: 'bn',
+    alias: '',
   },
   {
-    "name": "bulgaria",
-    "country_Code": "bg",
-    "alias": ""
+    name: 'bulgaria',
+    country_code: 'bg',
+    alias: '',
   },
   {
-    "name": "burkina.faso",
-    "country_Code": "bf",
-    "alias": ""
+    name: 'burkina.faso',
+    country_code: 'bf',
+    alias: '',
   },
   {
-    "name": "burma",
-    "country_Code": "mm",
-    "alias": "myanmar"
+    name: 'burma',
+    country_code: 'mm',
+    alias: 'myanmar',
   },
   {
-    "name": "burundi",
-    "country_Code": "bi",
-    "alias": ""
+    name: 'burundi',
+    country_code: 'bi',
+    alias: '',
   },
   {
-    "name": "caicos.islands",
-    "country_Code": "tc",
-    "alias": ""
+    name: 'caicos.islands',
+    country_code: 'tc',
+    alias: '',
   },
   {
-    "name": "cambodia",
-    "country_Code": "kh",
-    "alias": ""
+    name: 'cambodia',
+    country_code: 'kh',
+    alias: '',
   },
   {
-    "name": "cameroon",
-    "country_Code": "cm",
-    "alias": ""
+    name: 'cameroon',
+    country_code: 'cm',
+    alias: '',
   },
   {
-    "name": "canada",
-    "country_Code": "ca",
-    "alias": ""
+    name: 'canada',
+    country_code: 'ca',
+    alias: '',
   },
   {
-    "name": "cape.verde",
-    "country_Code": "cv",
-    "alias": ""
+    name: 'cape.verde',
+    country_code: 'cv',
+    alias: '',
   },
   {
-    "name": "cayman.islands",
-    "country_Code": "ky",
-    "alias": ""
+    name: 'cayman.islands',
+    country_code: 'ky',
+    alias: '',
   },
   {
-    "name": "central.african.republic",
-    "country_Code": "cf",
-    "alias": ""
+    name: 'central.african.republic',
+    country_code: 'cf',
+    alias: '',
   },
   {
-    "name": "chad",
-    "country_Code": "td",
-    "alias": ""
+    name: 'chad',
+    country_code: 'td',
+    alias: '',
   },
   {
-    "name": "chile",
-    "country_Code": "cl",
-    "alias": ""
+    name: 'chile',
+    country_code: 'cl',
+    alias: '',
   },
   {
-    "name": "china",
-    "country_Code": "cn",
-    "alias": ""
+    name: 'china',
+    country_code: 'cn',
+    alias: '',
   },
   {
-    "name": "christmas.island",
-    "country_Code": "cx",
-    "alias": ""
+    name: 'christmas.island',
+    country_code: 'cx',
+    alias: '',
   },
   {
-    "name": "cocos.islands",
-    "country_Code": "cc",
-    "alias": ""
+    name: 'cocos.islands',
+    country_code: 'cc',
+    alias: '',
   },
   {
-    "name": "colombia",
-    "country_Code": "co",
-    "alias": ""
+    name: 'colombia',
+    country_code: 'co',
+    alias: '',
   },
   {
-    "name": "comoros",
-    "country_Code": "km",
-    "alias": ""
+    name: 'comoros',
+    country_code: 'km',
+    alias: '',
   },
   {
-    "name": "congo",
-    "country_Code": "cd",
-    "alias": ""
+    name: 'congo',
+    country_code: 'cd',
+    alias: '',
   },
   {
-    "name": "congo.brazzaville",
-    "country_Code": "cg",
-    "alias": ""
+    name: 'congo.brazzaville',
+    country_code: 'cg',
+    alias: '',
   },
   {
-    "name": "cook.islands",
-    "country_Code": "ck",
-    "alias": ""
+    name: 'cook.islands',
+    country_code: 'ck',
+    alias: '',
   },
   {
-    "name": "costa.rica",
-    "country_Code": "cr",
-    "alias": ""
+    name: 'costa.rica',
+    country_code: 'cr',
+    alias: '',
   },
   {
-    "name": "cote.divoire",
-    "country_Code": "ci",
-    "alias": ""
+    name: 'cote.divoire',
+    country_code: 'ci',
+    alias: '',
   },
   {
-    "name": "croatia",
-    "country_Code": "hr",
-    "alias": ""
+    name: 'croatia',
+    country_code: 'hr',
+    alias: '',
   },
   {
-    "name": "cuba",
-    "country_Code": "cu",
-    "alias": ""
+    name: 'cuba',
+    country_code: 'cu',
+    alias: '',
   },
   {
-    "name": "cyprus",
-    "country_Code": "cy",
-    "alias": ""
+    name: 'cyprus',
+    country_code: 'cy',
+    alias: '',
   },
   {
-    "name": "czech.republic",
-    "country_Code": "cz",
-    "alias": ""
+    name: 'czech.republic',
+    country_code: 'cz',
+    alias: '',
   },
   {
-    "name": "denmark",
-    "country_Code": "dk",
-    "alias": ""
+    name: 'denmark',
+    country_code: 'dk',
+    alias: '',
   },
   {
-    "name": "djibouti",
-    "country_Code": "dj",
-    "alias": ""
+    name: 'djibouti',
+    country_code: 'dj',
+    alias: '',
   },
   {
-    "name": "dominica",
-    "country_Code": "dm",
-    "alias": ""
+    name: 'dominica',
+    country_code: 'dm',
+    alias: '',
   },
   {
-    "name": "dominican.republic",
-    "country_Code": "do",
-    "alias": ""
+    name: 'dominican.republic',
+    country_code: 'do',
+    alias: '',
   },
   {
-    "name": "ecuador",
-    "country_Code": "ec",
-    "alias": ""
+    name: 'ecuador',
+    country_code: 'ec',
+    alias: '',
   },
   {
-    "name": "egypt",
-    "country_Code": "eg",
-    "alias": ""
+    name: 'egypt',
+    country_code: 'eg',
+    alias: '',
   },
   {
-    "name": "el.salvador",
-    "country_Code": "sv",
-    "alias": ""
+    name: 'el.salvador',
+    country_code: 'sv',
+    alias: '',
   },
   {
-    "name": "equatorial.guinea",
-    "country_Code": "gq",
-    "alias": ""
+    name: 'equatorial.guinea',
+    country_code: 'gq',
+    alias: '',
   },
   {
-    "name": "eritrea",
-    "country_Code": "er",
-    "alias": ""
+    name: 'eritrea',
+    country_code: 'er',
+    alias: '',
   },
   {
-    "name": "estonia",
-    "country_Code": "ee",
-    "alias": ""
+    name: 'estonia',
+    country_code: 'ee',
+    alias: '',
   },
   {
-    "name": "ethiopia",
-    "country_Code": "et",
-    "alias": ""
+    name: 'ethiopia',
+    country_code: 'et',
+    alias: '',
   },
   {
-    "name": "european union",
-    "country_Code": "eu",
-    "alias": ""
+    name: 'european union',
+    country_code: 'eu',
+    alias: '',
   },
   {
-    "name": "falkland.islands",
-    "country_Code": "fk",
-    "alias": ""
+    name: 'falkland.islands',
+    country_code: 'fk',
+    alias: '',
   },
   {
-    "name": "faroe.islands",
-    "country_Code": "fo",
-    "alias": ""
+    name: 'faroe.islands',
+    country_code: 'fo',
+    alias: '',
   },
   {
-    "name": "fiji",
-    "country_Code": "fj",
-    "alias": ""
+    name: 'fiji',
+    country_code: 'fj',
+    alias: '',
   },
   {
-    "name": "finland",
-    "country_Code": "fi",
-    "alias": ""
+    name: 'finland',
+    country_code: 'fi',
+    alias: '',
   },
   {
-    "name": "france",
-    "country_Code": "fr",
-    "alias": ""
+    name: 'france',
+    country_code: 'fr',
+    alias: '',
   },
   {
-    "name": "french.guiana",
-    "country_Code": "gf",
-    "alias": ""
+    name: 'french.guiana',
+    country_code: 'gf',
+    alias: '',
   },
   {
-    "name": "french.polynesia",
-    "country_Code": "pf",
-    "alias": ""
+    name: 'french.polynesia',
+    country_code: 'pf',
+    alias: '',
   },
   {
-    "name": "french.territories",
-    "country_Code": "tf",
-    "alias": ""
+    name: 'french.territories',
+    country_code: 'tf',
+    alias: '',
   },
   {
-    "name": "gabon",
-    "country_Code": "ga",
-    "alias": ""
+    name: 'gabon',
+    country_code: 'ga',
+    alias: '',
   },
   {
-    "name": "gambia",
-    "country_Code": "gm",
-    "alias": ""
+    name: 'gambia',
+    country_code: 'gm',
+    alias: '',
   },
   {
-    "name": "georgia",
-    "country_Code": "ge",
-    "alias": ""
+    name: 'georgia',
+    country_code: 'ge',
+    alias: '',
   },
   {
-    "name": "germany",
-    "country_Code": "de",
-    "alias": ""
+    name: 'germany',
+    country_code: 'de',
+    alias: '',
   },
   {
-    "name": "ghana",
-    "country_Code": "gh",
-    "alias": ""
+    name: 'ghana',
+    country_code: 'gh',
+    alias: '',
   },
   {
-    "name": "gibraltar",
-    "country_Code": "gi",
-    "alias": ""
+    name: 'gibraltar',
+    country_code: 'gi',
+    alias: '',
   },
   {
-    "name": "greece",
-    "country_Code": "gr",
-    "alias": ""
+    name: 'greece',
+    country_code: 'gr',
+    alias: '',
   },
   {
-    "name": "greenland",
-    "country_Code": "gl",
-    "alias": ""
+    name: 'greenland',
+    country_code: 'gl',
+    alias: '',
   },
   {
-    "name": "grenada",
-    "country_Code": "gd",
-    "alias": ""
+    name: 'grenada',
+    country_code: 'gd',
+    alias: '',
   },
   {
-    "name": "guadeloupe",
-    "country_Code": "gp",
-    "alias": ""
+    name: 'guadeloupe',
+    country_code: 'gp',
+    alias: '',
   },
   {
-    "name": "guam",
-    "country_Code": "gu",
-    "alias": ""
+    name: 'guam',
+    country_code: 'gu',
+    alias: '',
   },
   {
-    "name": "guatemala",
-    "country_Code": "gt",
-    "alias": ""
+    name: 'guatemala',
+    country_code: 'gt',
+    alias: '',
   },
   {
-    "name": "guinea",
-    "country_Code": "gn",
-    "alias": ""
+    name: 'guinea',
+    country_code: 'gn',
+    alias: '',
   },
   {
-    "name": "guinea-bissau",
-    "country_Code": "gw",
-    "alias": ""
+    name: 'guinea-bissau',
+    country_code: 'gw',
+    alias: '',
   },
   {
-    "name": "guyana",
-    "country_Code": "gy",
-    "alias": ""
+    name: 'guyana',
+    country_code: 'gy',
+    alias: '',
   },
   {
-    "name": "haiti",
-    "country_Code": "ht",
-    "alias": ""
+    name: 'haiti',
+    country_code: 'ht',
+    alias: '',
   },
   {
-    "name": "heard.island",
-    "country_Code": "hm",
-    "alias": ""
+    name: 'heard.island',
+    country_code: 'hm',
+    alias: '',
   },
   {
-    "name": "honduras",
-    "country_Code": "hn",
-    "alias": ""
+    name: 'honduras',
+    country_code: 'hn',
+    alias: '',
   },
   {
-    "name": "hong.kong",
-    "country_Code": "hk",
-    "alias": ""
+    name: 'hong.kong',
+    country_code: 'hk',
+    alias: '',
   },
   {
-    "name": "hungary",
-    "country_Code": "hu",
-    "alias": ""
+    name: 'hungary',
+    country_code: 'hu',
+    alias: '',
   },
   {
-    "name": "iceland",
-    "country_Code": "is",
-    "alias": ""
+    name: 'iceland',
+    country_code: 'is',
+    alias: '',
   },
   {
-    "name": "india",
-    "country_Code": "in",
-    "alias": ""
+    name: 'india',
+    country_code: 'in',
+    alias: '',
   },
   {
-    "name": "indian.ocean.territory",
-    "country_Code": "io",
-    "alias": ""
+    name: 'indian.ocean.territory',
+    country_code: 'io',
+    alias: '',
   },
   {
-    "name": "indonesia",
-    "country_Code": "id",
-    "alias": ""
+    name: 'indonesia',
+    country_code: 'id',
+    alias: '',
   },
   {
-    "name": "iran",
-    "country_Code": "ir",
-    "alias": ""
+    name: 'iran',
+    country_code: 'ir',
+    alias: '',
   },
   {
-    "name": "iraq",
-    "country_Code": "iq",
-    "alias": ""
+    name: 'iraq',
+    country_code: 'iq',
+    alias: '',
   },
   {
-    "name": "ireland",
-    "country_Code": "ie",
-    "alias": ""
+    name: 'ireland',
+    country_code: 'ie',
+    alias: '',
   },
   {
-    "name": "israel",
-    "country_Code": "il",
-    "alias": ""
+    name: 'israel',
+    country_code: 'il',
+    alias: '',
   },
   {
-    "name": "italy",
-    "country_Code": "it",
-    "alias": ""
+    name: 'italy',
+    country_code: 'it',
+    alias: '',
   },
   {
-    "name": "jamaica",
-    "country_Code": "jm",
-    "alias": ""
+    name: 'jamaica',
+    country_code: 'jm',
+    alias: '',
   },
   {
-    "name": "jan.mayen",
-    "country_Code": "sj",
-    "alias": "svalbard"
+    name: 'jan.mayen',
+    country_code: 'sj',
+    alias: 'svalbard',
   },
   {
-    "name": "japan",
-    "country_Code": "jp",
-    "alias": ""
+    name: 'japan',
+    country_code: 'jp',
+    alias: '',
   },
   {
-    "name": "jordan",
-    "country_Code": "jo",
-    "alias": ""
+    name: 'jordan',
+    country_code: 'jo',
+    alias: '',
   },
   {
-    "name": "kazakhstan",
-    "country_Code": "kz",
-    "alias": ""
+    name: 'kazakhstan',
+    country_code: 'kz',
+    alias: '',
   },
   {
-    "name": "kenya",
-    "country_Code": "ke",
-    "alias": ""
+    name: 'kenya',
+    country_code: 'ke',
+    alias: '',
   },
   {
-    "name": "kiribati",
-    "country_Code": "ki",
-    "alias": ""
+    name: 'kiribati',
+    country_code: 'ki',
+    alias: '',
   },
   {
-    "name": "kuwait",
-    "country_Code": "kw",
-    "alias": ""
+    name: 'kuwait',
+    country_code: 'kw',
+    alias: '',
   },
   {
-    "name": "kyrgyzstan",
-    "country_Code": "kg",
-    "alias": ""
+    name: 'kyrgyzstan',
+    country_code: 'kg',
+    alias: '',
   },
   {
-    "name": "laos",
-    "country_Code": "la",
-    "alias": ""
+    name: 'laos',
+    country_code: 'la',
+    alias: '',
   },
   {
-    "name": "latvia",
-    "country_Code": "lv",
-    "alias": ""
+    name: 'latvia',
+    country_code: 'lv',
+    alias: '',
   },
   {
-    "name": "lebanon",
-    "country_Code": "lb",
-    "alias": ""
+    name: 'lebanon',
+    country_code: 'lb',
+    alias: '',
   },
   {
-    "name": "lesotho",
-    "country_Code": "ls",
-    "alias": ""
+    name: 'lesotho',
+    country_code: 'ls',
+    alias: '',
   },
   {
-    "name": "liberia",
-    "country_Code": "lr",
-    "alias": ""
+    name: 'liberia',
+    country_code: 'lr',
+    alias: '',
   },
   {
-    "name": "libya",
-    "country_Code": "ly",
-    "alias": ""
+    name: 'libya',
+    country_code: 'ly',
+    alias: '',
   },
   {
-    "name": "liechtenstein",
-    "country_Code": "li",
-    "alias": ""
+    name: 'liechtenstein',
+    country_code: 'li',
+    alias: '',
   },
   {
-    "name": "lithuania",
-    "country_Code": "lt",
-    "alias": ""
+    name: 'lithuania',
+    country_code: 'lt',
+    alias: '',
   },
   {
-    "name": "luxembourg",
-    "country_Code": "lu",
-    "alias": ""
+    name: 'luxembourg',
+    country_code: 'lu',
+    alias: '',
   },
   {
-    "name": "macau",
-    "country_Code": "mo",
-    "alias": ""
+    name: 'macau',
+    country_code: 'mo',
+    alias: '',
   },
   {
-    "name": "macedonia",
-    "country_Code": "mk",
-    "alias": ""
+    name: 'macedonia',
+    country_code: 'mk',
+    alias: '',
   },
   {
-    "name": "madagascar",
-    "country_Code": "mg",
-    "alias": ""
+    name: 'madagascar',
+    country_code: 'mg',
+    alias: '',
   },
   {
-    "name": "malawi",
-    "country_Code": "mw",
-    "alias": ""
+    name: 'malawi',
+    country_code: 'mw',
+    alias: '',
   },
   {
-    "name": "malaysia",
-    "country_Code": "my",
-    "alias": ""
+    name: 'malaysia',
+    country_code: 'my',
+    alias: '',
   },
   {
-    "name": "maldives",
-    "country_Code": "mv",
-    "alias": ""
+    name: 'maldives',
+    country_code: 'mv',
+    alias: '',
   },
   {
-    "name": "mali",
-    "country_Code": "ml",
-    "alias": ""
+    name: 'mali',
+    country_code: 'ml',
+    alias: '',
   },
   {
-    "name": "malta",
-    "country_Code": "mt",
-    "alias": ""
+    name: 'malta',
+    country_code: 'mt',
+    alias: '',
   },
   {
-    "name": "marshall.islands",
-    "country_Code": "mh",
-    "alias": ""
+    name: 'marshall.islands',
+    country_code: 'mh',
+    alias: '',
   },
   {
-    "name": "martinique",
-    "country_Code": "mq",
-    "alias": ""
+    name: 'martinique',
+    country_code: 'mq',
+    alias: '',
   },
   {
-    "name": "mauritania",
-    "country_Code": "mr",
-    "alias": ""
+    name: 'mauritania',
+    country_code: 'mr',
+    alias: '',
   },
   {
-    "name": "mauritius",
-    "country_Code": "mu",
-    "alias": ""
+    name: 'mauritius',
+    country_code: 'mu',
+    alias: '',
   },
   {
-    "name": "mayotte",
-    "country_Code": "yt",
-    "alias": ""
+    name: 'mayotte',
+    country_code: 'yt',
+    alias: '',
   },
   {
-    "name": "mexico",
-    "country_Code": "mx",
-    "alias": ""
+    name: 'mexico',
+    country_code: 'mx',
+    alias: '',
   },
   {
-    "name": "micronesia",
-    "country_Code": "fm",
-    "alias": ""
+    name: 'micronesia',
+    country_code: 'fm',
+    alias: '',
   },
   {
-    "name": "moldova",
-    "country_Code": "md",
-    "alias": ""
+    name: 'moldova',
+    country_code: 'md',
+    alias: '',
   },
   {
-    "name": "monaco",
-    "country_Code": "mc",
-    "alias": ""
+    name: 'monaco',
+    country_code: 'mc',
+    alias: '',
   },
   {
-    "name": "mongolia",
-    "country_Code": "mn",
-    "alias": ""
+    name: 'mongolia',
+    country_code: 'mn',
+    alias: '',
   },
   {
-    "name": "montenegro",
-    "country_Code": "me",
-    "alias": ""
+    name: 'montenegro',
+    country_code: 'me',
+    alias: '',
   },
   {
-    "name": "montserrat",
-    "country_Code": "ms",
-    "alias": ""
+    name: 'montserrat',
+    country_code: 'ms',
+    alias: '',
   },
   {
-    "name": "morocco",
-    "country_Code": "ma",
-    "alias": ""
+    name: 'morocco',
+    country_code: 'ma',
+    alias: '',
   },
   {
-    "name": "mozambique",
-    "country_Code": "mz",
-    "alias": ""
+    name: 'mozambique',
+    country_code: 'mz',
+    alias: '',
   },
   {
-    "name": "namibia",
-    "country_Code": "na",
-    "alias": ""
+    name: 'namibia',
+    country_code: 'na',
+    alias: '',
   },
   {
-    "name": "nauru",
-    "country_Code": "nr",
-    "alias": ""
+    name: 'nauru',
+    country_code: 'nr',
+    alias: '',
   },
   {
-    "name": "nepal",
-    "country_Code": "np",
-    "alias": ""
+    name: 'nepal',
+    country_code: 'np',
+    alias: '',
   },
   {
-    "name": "netherlands",
-    "country_Code": "nl",
-    "alias": ""
+    name: 'netherlands',
+    country_code: 'nl',
+    alias: '',
   },
   {
-    "name": "netherlands antilles",
-    "country_Code": "an",
-    "alias": ""
+    name: 'netherlands antilles',
+    country_code: 'an',
+    alias: '',
   },
   {
-    "name": "new.caledonia",
-    "country_Code": "nc",
-    "alias": ""
+    name: 'new.caledonia',
+    country_code: 'nc',
+    alias: '',
   },
   {
-    "name": "new.guinea",
-    "country_Code": "pg",
-    "alias": ""
+    name: 'new.guinea',
+    country_code: 'pg',
+    alias: '',
   },
   {
-    "name": "new.zealand",
-    "country_Code": "nz",
-    "alias": ""
+    name: 'new.zealand',
+    country_code: 'nz',
+    alias: '',
   },
   {
-    "name": "nicaragua",
-    "country_Code": "ni",
-    "alias": ""
+    name: 'nicaragua',
+    country_code: 'ni',
+    alias: '',
   },
   {
-    "name": "niger",
-    "country_Code": "ne",
-    "alias": ""
+    name: 'niger',
+    country_code: 'ne',
+    alias: '',
   },
   {
-    "name": "nigeria",
-    "country_Code": "ng",
-    "alias": ""
+    name: 'nigeria',
+    country_code: 'ng',
+    alias: '',
   },
   {
-    "name": "niue",
-    "country_Code": "nu",
-    "alias": ""
+    name: 'niue',
+    country_code: 'nu',
+    alias: '',
   },
   {
-    "name": "norfolk.island",
-    "country_Code": "nf",
-    "alias": ""
+    name: 'norfolk.island',
+    country_code: 'nf',
+    alias: '',
   },
   {
-    "name": "north.korea",
-    "country_Code": "kp",
-    "alias": ""
+    name: 'north.korea',
+    country_code: 'kp',
+    alias: '',
   },
   {
-    "name": "northern.mariana.islands",
-    "country_Code": "mp",
-    "alias": ""
+    name: 'northern.mariana.islands',
+    country_code: 'mp',
+    alias: '',
   },
   {
-    "name": "norway",
-    "country_Code": "no",
-    "alias": ""
+    name: 'norway',
+    country_code: 'no',
+    alias: '',
   },
   {
-    "name": "oman",
-    "country_Code": "om",
-    "alias": ""
+    name: 'oman',
+    country_code: 'om',
+    alias: '',
   },
   {
-    "name": "pakistan",
-    "country_Code": "pk",
-    "alias": ""
+    name: 'pakistan',
+    country_code: 'pk',
+    alias: '',
   },
   {
-    "name": "palau",
-    "country_Code": "pw",
-    "alias": ""
+    name: 'palau',
+    country_code: 'pw',
+    alias: '',
   },
   {
-    "name": "palestine",
-    "country_Code": "ps",
-    "alias": ""
+    name: 'palestine',
+    country_code: 'ps',
+    alias: '',
   },
   {
-    "name": "panama",
-    "country_Code": "pa",
-    "alias": ""
+    name: 'panama',
+    country_code: 'pa',
+    alias: '',
   },
   {
-    "name": "paraguay",
-    "country_Code": "py",
-    "alias": ""
+    name: 'paraguay',
+    country_code: 'py',
+    alias: '',
   },
   {
-    "name": "peru",
-    "country_Code": "pe",
-    "alias": ""
+    name: 'peru',
+    country_code: 'pe',
+    alias: '',
   },
   {
-    "name": "philippines",
-    "country_Code": "ph",
-    "alias": ""
+    name: 'philippines',
+    country_code: 'ph',
+    alias: '',
   },
   {
-    "name": "pitcairn.islands",
-    "country_Code": "pn",
-    "alias": ""
+    name: 'pitcairn.islands',
+    country_code: 'pn',
+    alias: '',
   },
   {
-    "name": "poland",
-    "country_Code": "pl",
-    "alias": ""
+    name: 'poland',
+    country_code: 'pl',
+    alias: '',
   },
   {
-    "name": "portugal",
-    "country_Code": "pt",
-    "alias": ""
+    name: 'portugal',
+    country_code: 'pt',
+    alias: '',
   },
   {
-    "name": "puerto.rico",
-    "country_Code": "pr",
-    "alias": ""
+    name: 'puerto.rico',
+    country_code: 'pr',
+    alias: '',
   },
   {
-    "name": "qatar",
-    "country_Code": "qa",
-    "alias": ""
+    name: 'qatar',
+    country_code: 'qa',
+    alias: '',
   },
   {
-    "name": "reunion",
-    "country_Code": "re",
-    "alias": ""
+    name: 'reunion',
+    country_code: 're',
+    alias: '',
   },
   {
-    "name": "romania",
-    "country_Code": "ro",
-    "alias": ""
+    name: 'romania',
+    country_code: 'ro',
+    alias: '',
   },
   {
-    "name": "russia",
-    "country_Code": "ru",
-    "alias": ""
+    name: 'russia',
+    country_code: 'ru',
+    alias: '',
   },
   {
-    "name": "rwanda",
-    "country_Code": "rw",
-    "alias": ""
+    name: 'rwanda',
+    country_code: 'rw',
+    alias: '',
   },
   {
-    "name": "saint.helena",
-    "country_Code": "sh",
-    "alias": ""
+    name: 'saint.helena',
+    country_code: 'sh',
+    alias: '',
   },
   {
-    "name": "saint.kitts.and.nevis",
-    "country_Code": "kn",
-    "alias": ""
+    name: 'saint.kitts.and.nevis',
+    country_code: 'kn',
+    alias: '',
   },
   {
-    "name": "saint.lucia",
-    "country_Code": "lc",
-    "alias": ""
+    name: 'saint.lucia',
+    country_code: 'lc',
+    alias: '',
   },
   {
-    "name": "saint.pierre",
-    "country_Code": "pm",
-    "alias": ""
+    name: 'saint.pierre',
+    country_code: 'pm',
+    alias: '',
   },
   {
-    "name": "saint.vincent",
-    "country_Code": "vc",
-    "alias": ""
+    name: 'saint.vincent',
+    country_code: 'vc',
+    alias: '',
   },
   {
-    "name": "samoa",
-    "country_Code": "ws",
-    "alias": ""
+    name: 'samoa',
+    country_code: 'ws',
+    alias: '',
   },
   {
-    "name": "san.marino",
-    "country_Code": "sm",
-    "alias": ""
+    name: 'san.marino',
+    country_code: 'sm',
+    alias: '',
   },
   {
-    "name": "sandwich.islands",
-    "country_Code": "gs",
-    "alias": ""
+    name: 'sandwich.islands',
+    country_code: 'gs',
+    alias: '',
   },
   {
-    "name": "sao.tome",
-    "country_Code": "st",
-    "alias": ""
+    name: 'sao.tome',
+    country_code: 'st',
+    alias: '',
   },
   {
-    "name": "saudi.arabia",
-    "country_Code": "sa",
-    "alias": ""
+    name: 'saudi.arabia',
+    country_code: 'sa',
+    alias: '',
   },
   {
-    "name": "scotland",
-    "country_Code": "gb.sct",
-    "alias": ""
+    name: 'scotland',
+    country_code: 'gb.sct',
+    alias: '',
   },
   {
-    "name": "senegal",
-    "country_Code": "sn",
-    "alias": ""
+    name: 'senegal',
+    country_code: 'sn',
+    alias: '',
   },
   {
-    "name": "serbia",
-    "country_Code": "cs",
-    "alias": ""
+    name: 'serbia',
+    country_code: 'cs',
+    alias: '',
   },
   {
-    "name": "serbia",
-    "country_Code": "rs",
-    "alias": ""
+    name: 'serbia',
+    country_code: 'rs',
+    alias: '',
   },
   {
-    "name": "seychelles",
-    "country_Code": "sc",
-    "alias": ""
+    name: 'seychelles',
+    country_code: 'sc',
+    alias: '',
   },
   {
-    "name": "sierra.leone",
-    "country_Code": "sl",
-    "alias": ""
+    name: 'sierra.leone',
+    country_code: 'sl',
+    alias: '',
   },
   {
-    "name": "singapore",
-    "country_Code": "sg",
-    "alias": ""
+    name: 'singapore',
+    country_code: 'sg',
+    alias: '',
   },
   {
-    "name": "slovakia",
-    "country_Code": "sk",
-    "alias": ""
+    name: 'slovakia',
+    country_code: 'sk',
+    alias: '',
   },
   {
-    "name": "slovenia",
-    "country_Code": "si",
-    "alias": ""
+    name: 'slovenia',
+    country_code: 'si',
+    alias: '',
   },
   {
-    "name": "solomon.islands",
-    "country_Code": "sb",
-    "alias": ""
+    name: 'solomon.islands',
+    country_code: 'sb',
+    alias: '',
   },
   {
-    "name": "somalia",
-    "country_Code": "so",
-    "alias": ""
+    name: 'somalia',
+    country_code: 'so',
+    alias: '',
   },
   {
-    "name": "south.africa",
-    "country_Code": "za",
-    "alias": ""
+    name: 'south.africa',
+    country_code: 'za',
+    alias: '',
   },
   {
-    "name": "south.korea",
-    "country_Code": "kr",
-    "alias": ""
+    name: 'south.korea',
+    country_code: 'kr',
+    alias: '',
   },
   {
-    "name": "spain",
-    "country_Code": "es",
-    "alias": ""
+    name: 'spain',
+    country_code: 'es',
+    alias: '',
   },
   {
-    "name": "sri.lanka",
-    "country_Code": "lk",
-    "alias": ""
+    name: 'sri.lanka',
+    country_code: 'lk',
+    alias: '',
   },
   {
-    "name": "sudan",
-    "country_Code": "sd",
-    "alias": ""
+    name: 'sudan',
+    country_code: 'sd',
+    alias: '',
   },
   {
-    "name": "suriname",
-    "country_Code": "sr",
-    "alias": ""
+    name: 'suriname',
+    country_code: 'sr',
+    alias: '',
   },
   {
-    "name": "swaziland",
-    "country_Code": "sz",
-    "alias": ""
+    name: 'swaziland',
+    country_code: 'sz',
+    alias: '',
   },
   {
-    "name": "sweden",
-    "country_Code": "se",
-    "alias": ""
+    name: 'sweden',
+    country_code: 'se',
+    alias: '',
   },
   {
-    "name": "switzerland",
-    "country_Code": "ch",
-    "alias": ""
+    name: 'switzerland',
+    country_code: 'ch',
+    alias: '',
   },
   {
-    "name": "syria",
-    "country_Code": "sy",
-    "alias": ""
+    name: 'syria',
+    country_code: 'sy',
+    alias: '',
   },
   {
-    "name": "taiwan",
-    "country_Code": "tw",
-    "alias": ""
+    name: 'taiwan',
+    country_code: 'tw',
+    alias: '',
   },
   {
-    "name": "tajikistan",
-    "country_Code": "tj",
-    "alias": ""
+    name: 'tajikistan',
+    country_code: 'tj',
+    alias: '',
   },
   {
-    "name": "tanzania",
-    "country_Code": "tz",
-    "alias": ""
+    name: 'tanzania',
+    country_code: 'tz',
+    alias: '',
   },
   {
-    "name": "thailand",
-    "country_Code": "th",
-    "alias": ""
+    name: 'thailand',
+    country_code: 'th',
+    alias: '',
   },
   {
-    "name": "timorleste",
-    "country_Code": "tl",
-    "alias": ""
+    name: 'timorleste',
+    country_code: 'tl',
+    alias: '',
   },
   {
-    "name": "togo",
-    "country_Code": "tg",
-    "alias": ""
+    name: 'togo',
+    country_code: 'tg',
+    alias: '',
   },
   {
-    "name": "tokelau",
-    "country_Code": "tk",
-    "alias": ""
+    name: 'tokelau',
+    country_code: 'tk',
+    alias: '',
   },
   {
-    "name": "tonga",
-    "country_Code": "to",
-    "alias": ""
+    name: 'tonga',
+    country_code: 'to',
+    alias: '',
   },
   {
-    "name": "trinidad",
-    "country_Code": "tt",
-    "alias": ""
+    name: 'trinidad',
+    country_code: 'tt',
+    alias: '',
   },
   {
-    "name": "tunisia",
-    "country_Code": "tn",
-    "alias": ""
+    name: 'tunisia',
+    country_code: 'tn',
+    alias: '',
   },
   {
-    "name": "turkey",
-    "country_Code": "tr",
-    "alias": ""
+    name: 'turkey',
+    country_code: 'tr',
+    alias: '',
   },
   {
-    "name": "turkmenistan",
-    "country_Code": "tm",
-    "alias": ""
+    name: 'turkmenistan',
+    country_code: 'tm',
+    alias: '',
   },
   {
-    "name": "tuvalu",
-    "country_Code": "tv",
-    "alias": ""
+    name: 'tuvalu',
+    country_code: 'tv',
+    alias: '',
   },
   {
-    "name": "uae",
-    "country_Code": "ae",
-    "alias": "united arab emirates"
+    name: 'uae',
+    country_code: 'ae',
+    alias: 'united arab emirates',
   },
   {
-    "name": "uganda",
-    "country_Code": "ug",
-    "alias": ""
+    name: 'uganda',
+    country_code: 'ug',
+    alias: '',
   },
   {
-    "name": "ukraine",
-    "country_Code": "ua",
-    "alias": ""
+    name: 'ukraine',
+    country_code: 'ua',
+    alias: '',
   },
   {
-    "name": "united.kingdom",
-    "country_Code": "gb",
-    "alias": ""
+    name: 'united.kingdom',
+    country_code: 'gb',
+    alias: '',
   },
   {
-    "name": "united.states",
-    "country_Code": "us",
-    "alias": "america"
+    name: 'united.states',
+    country_code: 'us',
+    alias: 'america',
   },
   {
-    "name": "uruguay",
-    "country_Code": "uy",
-    "alias": ""
+    name: 'uruguay',
+    country_code: 'uy',
+    alias: '',
   },
   {
-    "name": "us.minor.islands",
-    "country_Code": "um",
-    "alias": ""
+    name: 'us.minor.islands',
+    country_code: 'um',
+    alias: '',
   },
   {
-    "name": "us.virgin.islands",
-    "country_Code": "vi",
-    "alias": ""
+    name: 'us.virgin.islands',
+    country_code: 'vi',
+    alias: '',
   },
   {
-    "name": "uzbekistan",
-    "country_Code": "uz",
-    "alias": ""
+    name: 'uzbekistan',
+    country_code: 'uz',
+    alias: '',
   },
   {
-    "name": "vanuatu",
-    "country_Code": "vu",
-    "alias": ""
+    name: 'vanuatu',
+    country_code: 'vu',
+    alias: '',
   },
   {
-    "name": "vatican.city",
-    "country_Code": "va",
-    "alias": ""
+    name: 'vatican.city',
+    country_code: 'va',
+    alias: '',
   },
   {
-    "name": "venezuela",
-    "country_Code": "ve",
-    "alias": ""
+    name: 'venezuela',
+    country_code: 've',
+    alias: '',
   },
   {
-    "name": "vietnam",
-    "country_Code": "vn",
-    "alias": ""
+    name: 'vietnam',
+    country_code: 'vn',
+    alias: '',
   },
   {
-    "name": "wales",
-    "country_Code": "gb.wls",
-    "alias": ""
+    name: 'wales',
+    country_code: 'gb.wls',
+    alias: '',
   },
   {
-    "name": "wallis.and.futuna",
-    "country_Code": "wf",
-    "alias": ""
+    name: 'wallis.and.futuna',
+    country_code: 'wf',
+    alias: '',
   },
   {
-    "name": "western.sahara",
-    "country_Code": "eh",
-    "alias": ""
+    name: 'western.sahara',
+    country_code: 'eh',
+    alias: '',
   },
   {
-    "name": "yemen",
-    "country_Code": "ye",
-    "alias": ""
+    name: 'yemen',
+    country_code: 'ye',
+    alias: '',
   },
   {
-    "name": "zambia",
-    "country_Code": "zm",
-    "alias": ""
+    name: 'zambia',
+    country_code: 'zm',
+    alias: '',
   },
   {
-    "name": "zimbabwe",
-    "country_Code": "zw",
-    "alias": ""
-  }
-];
+    name: 'zimbabwe',
+    country_code: 'zw',
+    alias: '',
+  },
+]
 
 export default class FlagTableExample extends Component {
 
@@ -1230,7 +1230,7 @@ export default class FlagTableExample extends Component {
     return (
       <Table data={countries}>
         <Table.Column dataKey='name' />
-        <Table.Column dataKey='country_Code' />
+        <Table.Column dataKey='country_code' />
         <Table.Column dataKey='alias' />
       </Table>
     )
