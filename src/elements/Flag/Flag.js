@@ -1,17 +1,8 @@
-import React, { PropTypes } from 'react'
 import cx from 'classnames'
+import React, { PropTypes } from 'react'
+
 import META from '../../utils/Meta'
-
-function Flag(props) {
-  const { className, name, ...rest } = props
-  const classes = cx(
-    name,
-    className,
-    'flag',
-  )
-
-  return <i className={classes} {...rest} />
-}
+import { getUnhandledProps } from '../../utils/propUtils'
 
 const names = [
   'ad', 'andorra', 'ae', 'united arab emirates', 'uae', 'af', 'afghanistan', 'ag', 'antigua', 'ai', 'anguilla', 'al',
@@ -57,6 +48,14 @@ const names = [
   'ye', 'yemen', 'yt', 'mayotte', 'za', 'south africa', 'zm', 'zambia', 'zw', 'zimbabwe',
 ]
 
+function Flag(props) {
+  const { className, name } = props
+  const rest = getUnhandledProps(Flag, props)
+  const classes = cx(name, className, 'flag')
+
+  return <i className={classes} {...rest} />
+}
+
 Flag._meta = {
   library: META.library.semanticUI,
   name: 'Flag',
@@ -71,7 +70,7 @@ Flag.propTypes = {
   className: PropTypes.string,
 
   /** Flag name, can use the two digit country code, the full name, or a common alias */
-  name: PropTypes.oneOf(names).isRequired,
+  name: PropTypes.oneOf(Flag._meta.props.name).isRequired,
 }
 
 export default Flag
