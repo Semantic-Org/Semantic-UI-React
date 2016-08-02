@@ -1,5 +1,13 @@
 # Change Log
 
+## [Unreleased](https://github.com/TechnologyAdvice/stardust/tree/HEAD)
+
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.27.3...HEAD)
+
+**Merged pull requests:**
+
+- Update Flag rest props and propTypes [\#359](https://github.com/TechnologyAdvice/stardust/pull/359) ([levithomason](https://github.com/levithomason))
+
 ## [v0.27.3](https://github.com/TechnologyAdvice/stardust/tree/v0.27.3) (2016-08-02)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.27.2...v0.27.3)
 
