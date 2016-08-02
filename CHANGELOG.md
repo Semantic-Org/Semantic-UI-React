@@ -1,8 +1,12 @@
 # Change Log
 
-## [Unreleased](https://github.com/TechnologyAdvice/stardust/tree/HEAD)
+## [v0.27.4](https://github.com/TechnologyAdvice/stardust/tree/v0.27.4) (2016-08-02)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.27.3...v0.27.4)
 
-[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.27.3...HEAD)
+**Implemented enhancements:**
+
+- How to access input value while typing on Dropdown [\#355](https://github.com/TechnologyAdvice/stardust/issues/355)
+- Add Dropdown onSearchChange callback [\#360](https://github.com/TechnologyAdvice/stardust/pull/360) ([levithomason](https://github.com/levithomason))
 
 **Merged pull requests:**
 
