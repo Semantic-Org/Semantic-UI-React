@@ -1,25 +1,10 @@
 import React from 'react'
-import { Divider, Grid, Image } from 'stardust'
+import { Grid, Image } from 'stardust'
 
 const { Column, Row } = Grid
 const image = <Image src='http://semantic-ui.com/images/wireframe/image.png' />
 
-const GridVerticalAlignmentExamples = () => (
-  <div>
-    <Grid verticalAlign='middle' columns={4} centered>
-      <Row>
-        <Column>{image}</Column>
-        <Column>
-          {image}
-          <br />
-          {image}
-        </Column>
-        <Column>{image}</Column>
-      </Row>
-    </Grid>
-
-    <Divider />
-
+const GridVerticalAlignmentRowExample = () => (
     <Grid columns={4} centered>
       <Row verticalAlign='top'>
         <Column>{image}</Column>
@@ -49,7 +34,6 @@ const GridVerticalAlignmentExamples = () => (
         <Column>{image}</Column>
       </Row>
     </Grid>
-  </div>
 )
 
-export default GridVerticalAlignmentExamples
+export default GridVerticalAlignmentRowExample

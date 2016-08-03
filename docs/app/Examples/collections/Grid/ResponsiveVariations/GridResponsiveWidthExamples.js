@@ -4,7 +4,7 @@ import { Image, Grid } from 'stardust'
 const { Column } = Grid
 const image = <Image src='http://semantic-ui.com/images/wireframe/paragraph.png' />
 
-const GridResponsiveWidthExample = () => (
+const GridResponsiveWidthExamples = () => (
   <div>
     <Grid>
       <Column mobile={16} tablet={8} computer={4}>{image}</Column>
@@ -23,4 +23,4 @@ const GridResponsiveWidthExample = () => (
   </div>
 )
 
-export default GridResponsiveWidthExample
+export default GridResponsiveWidthExamples

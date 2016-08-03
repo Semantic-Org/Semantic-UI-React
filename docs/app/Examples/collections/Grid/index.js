@@ -14,8 +14,9 @@ const GridExamples = () => (
       <ComponentExample
         title='Divided'
         description='A grid can have dividers between its columns'
-        examplePath='collections/Grid/Types/GridDividedExample'
+        examplePath='collections/Grid/Types/GridDividedNumberExample'
       />
+      <ComponentExample examplePath='collections/Grid/Types/GridDividedPhraseExample' />
 
       <ComponentExample
         title='Vertically Divided'
@@ -72,20 +73,24 @@ const GridExamples = () => (
       <ComponentExample
         title='Equal Width'
         description='A row can automatically resize all elements to split the available width evenly'
-        examplePath='collections/Grid/Variations/GridEqualWidthExamples'
+        examplePath='collections/Grid/Variations/GridEqualWidthColumnExample'
       />
+      <ComponentExample examplePath='collections/Grid/Variations/GridEqualWidthRowExample' />
 
       <ComponentExample
         title='Stretched'
         description='A row can automatically resize all elements to split the available width evenly'
-        examplePath='collections/Grid/Variations/GridStretchedExamples'
+        examplePath='collections/Grid/Variations/GridStretchedExample'
       />
+      <ComponentExample examplePath='collections/Grid/Variations/GridStretchedEqualExample' />
 
       <ComponentExample
         title='Padded'
         description='A grid can preserve its vertical and horizontal gutters on first and last columns'
-        examplePath='collections/Grid/Variations/GridPaddedExamples'
+        examplePath='collections/Grid/Variations/GridPaddedExample'
       />
+      <ComponentExample examplePath='collections/Grid/Variations/GridPaddedVerticallyExample' />
+      <ComponentExample examplePath='collections/Grid/Variations/GridPaddedHorizontallyExample' />
 
       <ComponentExample
         title='Relaxed'
@@ -97,8 +102,9 @@ const GridExamples = () => (
       <ComponentExample
         title='Colored'
         description='A grid row or column can be colored'
-        examplePath='collections/Grid/Variations/GridColoredExamples'
+        examplePath='collections/Grid/Variations/GridColoredColumnExample'
       />
+      <ComponentExample examplePath='collections/Grid/Variations/GridColoredRowExample' />
 
       <ComponentExample
         title='Centered'
@@ -109,16 +115,19 @@ const GridExamples = () => (
       <ComponentExample
         title='Text Alignment'
         description='A grid, row, or column can specify its text alignment'
-        examplePath='collections/Grid/Variations/GridTextAlignmentExamples'
+        examplePath='collections/Grid/Variations/GridTextAlignmentExample'
       />
+      <ComponentExample examplePath='collections/Grid/Variations/GridTextAlignmentJustifiedExample' />
+      <ComponentExample examplePath='collections/Grid/Variations/GridTextAlignmentRightExample' />
 
       <ComponentExample
         title='Vertical Alignment'
         description={
           'A grid, row, or column can specify its vertical alignment to have all its columns vertically centered'
         }
-        examplePath='collections/Grid/Variations/GridVerticalAlignmentExamples'
+        examplePath='collections/Grid/Variations/GridVerticalAlignmentGridExample'
       />
+      <ComponentExample examplePath='collections/Grid/Variations/GridVerticalAlignmentRowExample' />
     </ExampleSection>
 
     <ExampleSection title='Responsive Variations'>
@@ -137,8 +146,13 @@ const GridExamples = () => (
       <ComponentExample
         title='Reversed'
         description='A grid or row can specify that its columns should reverse order at different device sizes'
-        examplePath='collections/Grid/ResponsiveVariations/GridReversedExamples'
+        examplePath='collections/Grid/ResponsiveVariations/GridReversedComputerExample'
       />
+      <ComponentExample examplePath='collections/Grid/ResponsiveVariations/GridReversedTabletExample' />
+      <ComponentExample examplePath='collections/Grid/ResponsiveVariations/GridReversedMobileExample' />
+      <ComponentExample examplePath='collections/Grid/ResponsiveVariations/GridReversedComputerVerticallyExample' />
+      <ComponentExample examplePath='collections/Grid/ResponsiveVariations/GridReversedTabletVerticallyExample' />
+      <ComponentExample examplePath='collections/Grid/ResponsiveVariations/GridReversedMobileVerticallyExample' />
 
       <ComponentExample
         title='Device Visibility'
