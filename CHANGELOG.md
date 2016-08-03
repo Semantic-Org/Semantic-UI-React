@@ -1,5 +1,13 @@
 # Change Log
 
+## [Unreleased](https://github.com/TechnologyAdvice/stardust/tree/HEAD)
+
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.27.4...HEAD)
+
+**Merged pull requests:**
+
+- Add Flag examples [\#357](https://github.com/TechnologyAdvice/stardust/pull/357) ([fodurrr](https://github.com/fodurrr))
+
 ## [v0.27.4](https://github.com/TechnologyAdvice/stardust/tree/v0.27.4) (2016-08-02)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.27.3...v0.27.4)
 
