@@ -6,14 +6,14 @@ import { Grid, Menu } from 'stardust'
 const { Column, Row } = Grid
 
 const GridTextAlignmentJustifiedExample = () => (
-  <Grid textAlign='center'>
+  <Grid>
     <Row columns={3}>
       <Column>
         <Menu className='vertical fluid'>
           <Menu.Item className='header'>Cats</Menu.Item>
         </Menu>
       </Column>
-      <Column textAlign='left'>
+      <Column textAlign='center'>
         <Menu className='vertical fluid'>
           <Menu.Item className='header'>Dogs</Menu.Item>
           <Menu.Item>Poodle</Menu.Item>
