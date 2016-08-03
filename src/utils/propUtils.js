@@ -268,27 +268,27 @@ export const useColumnsProp = (val, canEqual = false) => val === 'equal' && canE
   : useValueAndKey(numberToWord(val), 'column')
 
 /**
- * The "aligned" prop follows the useValueAndKey except when the value is "justified'.
+ * The "textAlign" prop follows the useValueAndKey except when the value is "justified'.
  * In this case, only the class "justified" is used, ignoring the "aligned" class.
- * @param {*} val The value of the "aligned" prop
+ * @param {*} val The value of the "textAlign" prop
  *
  * @example
- * <Container aligned='justified' />
+ * <Container textAlign='justified' />
  * <div class="ui justified container"></div>
  *
  * @example
- * <Container aligned='left' />
+ * <Container textAlign='left' />
  * <div class="ui left aligned container"></div>
  */
 export const useTextAlignProp = val => val === 'justified' ? 'justified' : useValueAndKey(val, 'aligned')
 
 /**
- * The "aligned" prop follows the useValueAndKey except when the value is "justified'.
- * In this case, only the class "justified" is used, ignoring the "aligned" class.
- * @param {*} val The value of the "aligned" prop
+ * The "verticalAlign" prop follows the useValueAndKey.
+ *
+ * @param {*} val The value of the "verticalAlign" prop
  *
  * @example
- * <Grid aligned='middle' />
+ * <Grid verticalAlign='middle' />
  * <div class="ui middle aligned grid"></div>
  */
 export const useVerticalAlignProp = val => useValueAndKey(val, 'aligned')
