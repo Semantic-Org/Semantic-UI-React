@@ -4,7 +4,7 @@ import { Flag, Segment } from 'stardust'
 export default class FlagExample extends Component {
   render() {
     return (
-      <Segment className='padded'>
+      <Segment>
         <Flag name='ae' />
         <Flag name='france' />
         <Flag name='myanmar' />
