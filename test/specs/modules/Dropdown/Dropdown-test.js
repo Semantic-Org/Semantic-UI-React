@@ -733,6 +733,18 @@ describe('Dropdown Component', () => {
     })
   })
 
+  describe('onSearchChange', () => {
+    it('is called with (event, value) on search input change', () => {
+      const spy = sandbox.spy()
+      wrapperMount(<Dropdown {...optionsProp} search selection onSearchChange={spy} />)
+        .find('input.search')
+        .simulate('change', { target: { value: 'a' }, stopPropagation: _.noop })
+
+      spy.should.have.been.calledOnce()
+      spy.should.have.been.calledWithMatch({ target: { value: 'a' } }, 'a')
+    })
+  })
+
   describe('options', () => {
     it('adds the onClick handler to all items', () => {
       wrapperShallow(<Dropdown {...optionsProp} />)
