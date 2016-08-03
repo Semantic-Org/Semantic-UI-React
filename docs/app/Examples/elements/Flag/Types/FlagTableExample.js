@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Table, Flag } from 'stardust'
 
 const countries = [
@@ -250,16 +250,13 @@ const countries = [
 
 const flagRenderer = (item) => <Flag name={item.countryCode} />
 
-export default class FlagTableExample extends Component {
+const FlagTableExample = () => (
+  <Table data={countries}>
+    <Table.Column dataKey='Flag' cellRenderer={flagRenderer} />
+    <Table.Column dataKey='name' />
+    <Table.Column dataKey='countryCode' />
+    <Table.Column dataKey='alias' />
+  </Table>
+)
 
-  render() {
-    return (
-      <Table data={countries}>
-        <Table.Column dataKey='Flag' cellRenderer={flagRenderer} />
-        <Table.Column dataKey='name' />
-        <Table.Column dataKey='countryCode' />
-        <Table.Column dataKey='alias' />
-      </Table>
-    )
-  }
-}
+export default FlagTableExample
