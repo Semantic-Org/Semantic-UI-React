@@ -8,7 +8,7 @@ import {
   iconPropRenderer,
   imagePropRenderer,
   useValueAndKey,
-  useAlignedProp,
+  useTextAlignProp,
   useKeyOrValueAndKey,
   useKeyOnly,
 } from '../../utils/propUtils'
@@ -16,7 +16,7 @@ import {
 function _Header(props) {
   const {
     _headerElement,
-    color, aligned, dividing, block, attached, floated, inverted, disabled,
+    color, dividing, block, attached, floated, inverted, disabled, textAlign,
     icon, image, children, className,
   } = props
 
@@ -24,13 +24,13 @@ function _Header(props) {
     'ui',
     icon && 'icon',
     color,
-    useAlignedProp(aligned),
     useKeyOnly(dividing, 'dividing'),
     useKeyOnly(block, 'block'),
     useKeyOrValueAndKey(attached, 'attached'),
     useValueAndKey(floated, 'floated'),
     useKeyOnly(inverted, 'inverted'),
     useKeyOnly(disabled, 'disabled'),
+    useTextAlignProp(textAlign),
     className,
     'header',
   )
@@ -52,10 +52,10 @@ _Header._meta = {
   name: '_Header',
   type: META.type.element,
   props: {
-    aligned: sui.textAlignments,
-    floated: sui.floats,
     attached: ['top', 'bottom'],
     color: sui.colors,
+    floated: sui.floats,
+    textAlign: sui.textAlignments,
   },
 }
 
@@ -79,9 +79,6 @@ _Header.propTypes = {
   /** Color of the header. */
   color: PropTypes.oneOf(_Header._meta.props.color),
 
-  /** Align header content */
-  aligned: PropTypes.oneOf(_Header._meta.props.aligned),
-
   /** Divide header from the content below it */
   dividing: PropTypes.bool,
 
@@ -99,6 +96,9 @@ _Header.propTypes = {
 
   /** Show that the header is inactive */
   disabled: PropTypes.bool,
+
+  /** Align header content */
+  textAlign: PropTypes.oneOf(_Header._meta.props.textAlign),
 }
 
 _Header.defaultProps = {

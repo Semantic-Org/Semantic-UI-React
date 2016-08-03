@@ -260,4 +260,15 @@ export const useKeyOrValueAndKey = (val, key) => val && (val === true ? key : `$
  * <Container aligned='left' />
  * <div class="ui left aligned container"></div>
  */
-export const useAlignedProp = val => val === 'justified' ? 'justified' : useValueAndKey(val, 'aligned')
+export const useTextAlignProp = val => val === 'justified' ? 'justified' : useValueAndKey(val, 'aligned')
+
+/**
+ * The "aligned" prop follows the useValueAndKey except when the value is "justified'.
+ * In this case, only the class "justified" is used, ignoring the "aligned" class.
+ * @param {*} val The value of the "aligned" prop
+ *
+ * @example
+ * <Grid aligned='middle' />
+ * <div class="ui middle aligned grid"></div>
+ */
+export const useVerticalAlignProp = val => useValueAndKey(val, 'aligned')

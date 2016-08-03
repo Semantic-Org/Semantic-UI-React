@@ -3,21 +3,27 @@ import React, { PropTypes } from 'react'
 
 import numberToWord from '../../utils/numberToWord'
 import META from '../../utils/Meta'
-import { getUnhandledProps, useAlignedProp, useKeyOnly, useValueAndKey } from '../../utils/propUtils'
+import {
+  getUnhandledProps,
+  useKeyOnly,
+  useTextAlignProp,
+  useValueAndKey,
+  useVerticalAlignProp,
+} from '../../utils/propUtils'
 import * as sui from '../../utils/semanticUtils'
 
 function GridRow(props) {
-  const { aligned, centered, children, className, color, column, only, reversed, stretched, vertical } = props
+  const { centered, children, className, color, column, only, reversed, stretched, textAlign, verticalAlign } = props
   const classes = cx(
     className,
     color,
-    useAlignedProp(aligned),
     useKeyOnly(centered, 'centered'),
     useValueAndKey(numberToWord(column), 'column'),
     useValueAndKey(only, 'only'),
     useValueAndKey(reversed, 'reversed'),
     useKeyOnly(stretched, 'stretched'),
-    useValueAndKey(vertical, 'aligned'),
+    useTextAlignProp(textAlign),
+    useVerticalAlignProp(verticalAlign),
     'row'
   )
   const rest = getUnhandledProps(GridRow, props)
@@ -31,19 +37,16 @@ GridRow._meta = {
   parent: 'Grid',
   type: META.type.collection,
   props: {
-    aligned: sui.textAlignments,
     color: sui.colors,
     column: sui.widths,
     only: ['computer', 'large screen', 'mobile', 'tablet mobile', 'tablet', 'widescreen'],
     reversed: ['computer', 'computer vertically', 'mobile', 'mobile vertically', 'tablet', 'tablet vertically'],
-    vertical: sui.verticalAlignments,
+    textAlign: sui.textAlignments,
+    verticalAlign: sui.verticalAlignments,
   },
 }
 
 GridRow.propTypes = {
-  /** A row can specify its text alignment. */
-  aligned: PropTypes.oneOf(GridRow._meta.props.aligned),
-
   /** A row can have its columns centered. */
   centered: PropTypes.bool,
 
@@ -68,8 +71,11 @@ GridRow.propTypes = {
   /** An can stretch its contents to take up the entire column height. */
   stretched: PropTypes.bool,
 
+  /** A row can specify its text alignment. */
+  textAlign: PropTypes.oneOf(GridRow._meta.props.textAlign),
+
   /** A row can specify its vertical alignment to have all its columns vertically centered. */
-  vertical: PropTypes.oneOf(GridRow._meta.props.vertical),
+  verticalAlign: PropTypes.oneOf(GridRow._meta.props.verticalAlign),
 }
 
 export default GridRow

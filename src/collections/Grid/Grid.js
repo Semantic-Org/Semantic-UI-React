@@ -5,10 +5,11 @@ import numberToWord from '../../utils/numberToWord'
 import META from '../../utils/Meta'
 import {
   getUnhandledProps,
-  useAlignedProp,
   useKeyOnly,
   useKeyOrValueAndKey,
+  useTextAlignProp,
   useValueAndKey,
+  useVerticalAlignProp,
 } from '../../utils/propUtils'
 import * as sui from '../../utils/semanticUtils'
 import GridColumn from './GridColumn'
@@ -17,13 +18,12 @@ import GridRow from './GridRow'
 /** A grid is used to harmonize negative space in a layout. */
 function Grid(props) {
   const {
-    aligned, children, className, celled, centered, column, divided, doubling, padded, relaxed, reversed, stackable,
-    vertical, width,
+    children, className, celled, centered, column, divided, doubling, padded, relaxed, reversed, stackable, textAlign,
+    verticalAlign, width,
   } = props
   const classes = cx(
     'ui',
     className,
-    useAlignedProp(aligned),
     useValueAndKey(numberToWord(column), 'column'),
     useKeyOrValueAndKey(celled, 'celled'),
     useKeyOnly(centered, 'centered'),
@@ -33,7 +33,8 @@ function Grid(props) {
     useKeyOrValueAndKey(relaxed, 'relaxed'),
     useValueAndKey(reversed, 'reversed'),
     useKeyOnly(stackable, 'stackable'),
-    useValueAndKey(vertical, 'aligned'),
+    useTextAlignProp(textAlign),
+    useVerticalAlignProp(verticalAlign),
     useValueAndKey(width, 'width'),
     'grid'
   )
@@ -50,21 +51,19 @@ Grid._meta = {
   name: 'Grid',
   type: META.type.collection,
   props: {
-    aligned: sui.textAlignments,
     celled: ['internally'],
     column: sui.widths,
     divided: ['vertically'],
     padded: ['horizontally', 'vertically'],
     relaxed: ['very'],
     reversed: ['computer', 'computer vertically', 'mobile', 'mobile vertically', 'tablet', 'tablet vertically'],
+    textAlign: sui.textAlignments,
+    verticalAlign: sui.verticalAlignments,
     width: ['equal'],
   },
 }
 
 Grid.propTypes = {
-  /** A grid its text alignment. */
-  aligned: PropTypes.oneOf(Grid._meta.props.aligned),
-
   /** A grid can have rows divided into cells. */
   celled: PropTypes.oneOfType([
     PropTypes.bool,
@@ -110,8 +109,11 @@ Grid.propTypes = {
   /** A grid can have its columns stack on-top of each other after reaching mobile breakpoints. */
   stackable: PropTypes.bool,
 
+  /** A grid its text alignment. */
+  textAlign: PropTypes.oneOf(Grid._meta.props.textAlign),
+
   /** A grid can specify its vertical alignment to have all its columns vertically centered. */
-  vertical: PropTypes.oneOf(GridColumn._meta.props.vertical),
+  verticalAlign: PropTypes.oneOf(GridColumn._meta.props.verticalAlign),
 
   /** A row can automatically resize all elements to split the available width evenly. */
   width: PropTypes.oneOf(Grid._meta.props.width),

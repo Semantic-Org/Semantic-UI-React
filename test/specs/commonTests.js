@@ -414,36 +414,6 @@ const _classNamePropValueBeforePropName = (Component, propKey, requiredProps) =>
   })
 }
 
-/**
- * Assert that a Component correctly implements the "aligned" prop.
- * @param {React.Component|Function} Component The component to test.
- * @param {Object} [requiredProps={}] Props required to render the component.
- */
-export const implementsAlignedProp = (Component, requiredProps = {}) => {
-  describe('aligned (common)', () => {
-    _definesPropOptions(Component, 'aligned')
-    _noDefaultClassNameFromProp(Component, 'aligned')
-    _noClassNameFromBoolProps(Component, 'aligned', requiredProps)
-
-    _.each(Component._meta.props.aligned, (propVal) => {
-      if (propVal === 'justified') {
-        it('adds "justified" without "aligned" to className', () => {
-          shallow(<Component { ...requiredProps } aligned='justified' />)
-            .should.have.className('justified')
-
-          shallow(<Component { ...requiredProps } aligned='justified' />)
-            .should.not.have.className('aligned')
-        })
-      } else {
-        it(`adds "${propVal} aligned" to className`, () => {
-          shallow(<Component { ...requiredProps } aligned={propVal} />)
-            .should.have.className(`${propVal} ${'aligned'}`)
-        })
-      }
-    })
-  })
-}
-
 export const implementsIconProp = (Component, requiredProps = {}) => {
   const iconName = faker.hacker.noun()
   const assertValid = (element) => {
@@ -523,6 +493,56 @@ export const implementsNumberToWordProp = (Component, propKey, requiredProps = {
 
       shallow(createElement(Component, { ...requiredProps, [propKey]: propVal }))
         .should.have.className(numberToWord(propVal))
+    })
+  })
+}
+
+/**
+ * Assert that a Component correctly implements the "textAlign" prop.
+ * @param {React.Component|Function} Component The component to test.
+ * @param {Object} [requiredProps={}] Props required to render the component.
+ */
+export const implementsTextAlignProp = (Component, requiredProps = {}) => {
+  describe('aligned (common)', () => {
+    _definesPropOptions(Component, 'textAlign')
+    _noDefaultClassNameFromProp(Component, 'textAlign')
+    _noClassNameFromBoolProps(Component, 'textAlign', requiredProps)
+
+    _.each(Component._meta.props.aligned, (propVal) => {
+      if (propVal === 'justified') {
+        it('adds "justified" without "aligned" to className', () => {
+          shallow(<Component { ...requiredProps } aligned='justified' />)
+            .should.have.className('justified')
+
+          shallow(<Component { ...requiredProps } aligned='justified' />)
+            .should.not.have.className('aligned')
+        })
+      } else {
+        it(`adds "${propVal} aligned" to className`, () => {
+          shallow(<Component { ...requiredProps } aligned={propVal} />)
+            .should.have.className(`${propVal} ${'aligned'}`)
+        })
+      }
+    })
+  })
+}
+
+/**
+ * Assert that a Component correctly implements the "verticalAlign" prop.
+ * @param {React.Component|Function} Component The component to test.
+ * @param {Object} [requiredProps={}] Props required to render the component.
+ */
+export const implementsVerticalAlignProp = (Component, requiredProps = {}) => {
+  describe('verticalAlign (common)', () => {
+    _definesPropOptions(Component, 'verticalAlign')
+    _noDefaultClassNameFromProp(Component, 'verticalAlign')
+    _noClassNameFromBoolProps(Component, 'verticalAlign', requiredProps)
+
+    _.each(Component._meta.props.verticalAlign, (propVal) => {
+      it(`adds "${propVal} verticalAlign" to className`, () => {
+        shallow(<Component { ...requiredProps } verticalAlign={propVal} />)
+            .should.have.className(`${propVal} ${'aligned'}`)
+      })
     })
   })
 }

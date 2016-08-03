@@ -7,7 +7,7 @@ const { Column, Row } = Grid
 
 const GridTextAlignmentExample = () => (
   <div>
-    <Grid aligned='center' column={3}>
+    <Grid textAlign='center' column={3}>
       <Row>
         <Column>
           <Menu className='vertical fluid'>
@@ -31,14 +31,14 @@ const GridTextAlignmentExample = () => (
 
     <Divider />
 
-    <Grid aligned='center'>
+    <Grid textAlign='center'>
       <Row column={3}>
         <Column>
           <Menu className='vertical fluid'>
             <Menu.Item className='header'>Cats</Menu.Item>
           </Menu>
         </Column>
-        <Column aligned='left'>
+        <Column textAlign='left'>
           <Menu className='vertical fluid'>
             <Menu.Item className='header'>Dogs</Menu.Item>
             <Menu.Item>Poodle</Menu.Item>
@@ -51,7 +51,7 @@ const GridTextAlignmentExample = () => (
           </Menu>
         </Column>
       </Row>
-      <Row aligned='justified'>
+      <Row textAlign='justified'>
         <Column>
           <p>
             Justified content fits exactly inside the grid column, taking up the entire width from one side to the
@@ -67,7 +67,7 @@ const GridTextAlignmentExample = () => (
 
     <Divider />
 
-    <Grid aligned='right' column={3}>
+    <Grid textAlign='right' column={3}>
       <Row>
         <Column>
           <Menu className='vertical fluid'>

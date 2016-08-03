@@ -7,7 +7,6 @@ describe('GridColumn', () => {
 
   // TODO: Miss with tests
 
-  common.implementsAlignedProp(GridColumn, 'aligned')
   common.propValueOnlyToClassName(GridColumn, 'color')
   // common.implementsNumberToWordProp(GridColumn, 'computer')
   common.propKeyAndValueToClassName(GridColumn, 'floated')
@@ -15,7 +14,8 @@ describe('GridColumn', () => {
   // common.implementsNumberToWordProp(GridColumn, 'mobile')
   common.propKeyAndValueToClassName(GridColumn, 'only')
   // common.implementsNumberToWordProp(GridColumn, 'tablet')
-  // common.propKeyAndValueToClassName(GridColumn, 'vertical')
+  common.implementsTextAlignProp(GridColumn)
+  common.implementsVerticalAlignProp(GridColumn)
   // common.implementsNumberToWordProp(GridColumn, 'widescreen')
   common.implementsNumberToWordProp(GridColumn, 'width')
 })

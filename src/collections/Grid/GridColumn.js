@@ -3,25 +3,25 @@ import React, { PropTypes } from 'react'
 
 import numberToWord from '../../utils/numberToWord'
 import META from '../../utils/Meta'
-import { getUnhandledProps, useAlignedProp, useValueAndKey } from '../../utils/propUtils'
+import { getUnhandledProps, useTextAlignProp, useValueAndKey, useVerticalAlignProp } from '../../utils/propUtils'
 import * as sui from '../../utils/semanticUtils'
 
 function GridColumn(props) {
   const {
-    aligned, children, computer, className, color, floated, largeScreen, mobile, only, tablet, vertical, widescreen,
-    width,
+    children, computer, className, color, floated, largeScreen, mobile, only, tablet, textAlign, verticalAlign,
+    widescreen, width,
   } = props
   const classes = cx(
     className,
     color,
-    useAlignedProp(aligned),
     useValueAndKey(numberToWord(computer), 'wide computer'),
     useValueAndKey(floated, 'floated'),
     useValueAndKey(numberToWord(largeScreen), 'wide large screen'),
     useValueAndKey(numberToWord(mobile), 'wide mobile'),
     useValueAndKey(only, 'only'),
     useValueAndKey(numberToWord(tablet), 'wide tablet'),
-    useValueAndKey(vertical, 'aligned'),
+    useTextAlignProp(textAlign),
+    useVerticalAlignProp(verticalAlign),
     useValueAndKey(numberToWord(widescreen), 'wide widescreen'),
     useValueAndKey(numberToWord(width), 'wide'),
     'column'
@@ -37,20 +37,17 @@ GridColumn._meta = {
   parent: 'Grid',
   type: META.type.collection,
   props: {
-    aligned: sui.textAlignments,
     color: sui.colors,
     computer: sui.widths,
     floated: sui.floats,
     only: ['computer', 'large screen', 'mobile', 'tablet mobile', 'tablet', 'widescreen'],
-    vertical: sui.verticalAlignments,
+    textAlign: sui.textAlignments,
+    verticalAlign: sui.verticalAlignments,
     width: sui.widths,
   },
 }
 
 GridColumn.propTypes = {
-  /** A row can specify its text alignment. */
-  aligned: PropTypes.oneOf(GridColumn._meta.props.aligned),
-
   /** Primary content of the GridColumn. */
   children: PropTypes.node,
 
@@ -78,8 +75,11 @@ GridColumn.propTypes = {
   /** A column can specify a width for a tablet device. */
   tablet: PropTypes.oneOf(GridColumn._meta.props.width),
 
+  /** A row can specify its text alignment. */
+  textAlign: PropTypes.oneOf(GridColumn._meta.props.textAlign),
+
   /** A column can specify its vertical alignment to have all its columns vertically centered. */
-  vertical: PropTypes.oneOf(GridColumn._meta.props.vertical),
+  verticalAlign: PropTypes.oneOf(GridColumn._meta.props.verticalAlign),
 
   /** A column can specify a width for a wide screen device. */
   widescreen: PropTypes.oneOf(GridColumn._meta.props.width),

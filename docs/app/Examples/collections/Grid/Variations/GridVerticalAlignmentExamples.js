@@ -6,7 +6,7 @@ const image = <Image src='http://semantic-ui.com/images/wireframe/image.png' />
 
 const GridVerticalAlignmentExamples = () => (
   <div>
-    <Grid vertical='middle' column={4} centered>
+    <Grid verticalAlign='middle' column={4} centered>
       <Row>
         <Column>{image}</Column>
         <Column>
@@ -21,7 +21,7 @@ const GridVerticalAlignmentExamples = () => (
     <Divider />
 
     <Grid column={4} centered>
-      <Row vertical='top'>
+      <Row verticalAlign='top'>
         <Column>{image}</Column>
         <Column>
           {image}
@@ -30,7 +30,7 @@ const GridVerticalAlignmentExamples = () => (
         </Column>
         <Column>{image}</Column>
       </Row>
-      <Row vertical='middle'>
+      <Row verticalAlign='middle'>
         <Column>{image}</Column>
         <Column>
           {image}
@@ -39,7 +39,7 @@ const GridVerticalAlignmentExamples = () => (
         </Column>
         <Column>{image}</Column>
       </Row>
-      <Row vertical='bottom'>
+      <Row verticalAlign='bottom'>
         <Column>{image}</Column>
         <Column>
           {image}
