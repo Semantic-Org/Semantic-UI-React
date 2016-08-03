@@ -40,9 +40,13 @@ GridColumn._meta = {
     color: sui.colors,
     computer: sui.widths,
     floated: sui.floats,
+    largeScreen: sui.widths,
+    mobile: sui.widths,
     only: ['computer', 'large screen', 'mobile', 'tablet mobile', 'tablet', 'widescreen'],
+    tablet: sui.widths,
     textAlign: sui.textAlignments,
     verticalAlign: sui.verticalAlignments,
+    widescreen: sui.widths,
     width: sui.widths,
   },
 }
