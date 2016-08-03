@@ -6,10 +6,10 @@ if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'test') {
   // Safari private mode throws when writing to localStorage
   // https://github.com/TechnologyAdvice/stardust/issues/332
   try {
-    localStorage.debug = localStorage.debug || 'stardust:*'
+    if (typeof localStorage === 'object') localStorage.debug = localStorage.debug || 'stardust:*'
   } catch (err) {
     /* eslint-disable no-console */
-    console.log('Stardust debug disabled. The browser could not write to localStorage.', err)
+    console.log('Stardust debug disabled. Could not write to localStorage.', err)
     /* eslint-enable no-console */
   }
 } else {
