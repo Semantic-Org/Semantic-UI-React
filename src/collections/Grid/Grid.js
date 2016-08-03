@@ -1,10 +1,10 @@
 import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
-import numberToWord from '../../utils/numberToWord'
 import META from '../../utils/Meta'
 import {
   getUnhandledProps,
+  useColumnsProp,
   useKeyOnly,
   useKeyOrValueAndKey,
   useTextAlignProp,
@@ -18,13 +18,13 @@ import GridRow from './GridRow'
 /** A grid is used to harmonize negative space in a layout. */
 function Grid(props) {
   const {
-    children, className, celled, centered, column, divided, doubling, padded, relaxed, reversed, stackable, textAlign,
-    verticalAlign, width,
+    children, className, celled, centered, columns, divided, doubling, padded, relaxed, reversed, stackable, textAlign,
+    verticalAlign,
   } = props
   const classes = cx(
     'ui',
     className,
-    useValueAndKey(numberToWord(column), 'column'),
+    useColumnsProp(columns, true),
     useKeyOrValueAndKey(celled, 'celled'),
     useKeyOnly(centered, 'centered'),
     useKeyOrValueAndKey(divided, 'divided'),
@@ -35,7 +35,6 @@ function Grid(props) {
     useKeyOnly(stackable, 'stackable'),
     useTextAlignProp(textAlign),
     useVerticalAlignProp(verticalAlign),
-    useValueAndKey(width, 'width'),
     'grid'
   )
   const rest = getUnhandledProps(Grid, props)
@@ -52,14 +51,13 @@ Grid._meta = {
   type: META.type.collection,
   props: {
     celled: ['internally'],
-    column: sui.widths,
+    columns: [...sui.widths, 'equal'],
     divided: ['vertically'],
     padded: ['horizontally', 'vertically'],
     relaxed: ['very'],
     reversed: ['computer', 'computer vertically', 'mobile', 'mobile vertically', 'tablet', 'tablet vertically'],
     textAlign: sui.textAlignments,
     verticalAlign: sui.verticalAlignments,
-    width: ['equal'],
   },
 }
 
@@ -80,7 +78,7 @@ Grid.propTypes = {
   className: PropTypes.string,
 
   /** Represents column count per line in Grid. */
-  column: PropTypes.oneOf(Grid._meta.props.column),
+  columns: PropTypes.oneOf(Grid._meta.props.columns),
 
   /** A grid can have dividers between its columns. */
   divided: PropTypes.oneOfType([
@@ -114,9 +112,6 @@ Grid.propTypes = {
 
   /** A grid can specify its vertical alignment to have all its columns vertically centered. */
   verticalAlign: PropTypes.oneOf(GridColumn._meta.props.verticalAlign),
-
-  /** A row can automatically resize all elements to split the available width evenly. */
-  width: PropTypes.oneOf(Grid._meta.props.width),
 }
 
 export default Grid

@@ -7,7 +7,7 @@ describe('GridRow', () => {
 
   common.propKeyOnlyToClassName(GridRow, 'centered')
   common.propValueOnlyToClassName(GridRow, 'color')
-  common.implementsNumberToWordProp(GridRow, 'column')
+  common.implementsColumnsProp(GridRow, false)
   common.propKeyAndValueToClassName(GridRow, 'only')
   common.propKeyAndValueToClassName(GridRow, 'reversed')
   common.propKeyOnlyToClassName(GridRow, 'stretched')

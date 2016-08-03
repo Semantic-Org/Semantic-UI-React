@@ -5,7 +5,7 @@ const { Column } = Grid
 const image = <Image src='http://semantic-ui.com/images/wireframe/image.png' />
 
 const GridRelaxedExample = () => (
-  <Grid relaxed column={4}>
+  <Grid relaxed columns={4}>
     <Column>{image}</Column>
     <Column>{image}</Column>
     <Column>{image}</Column>

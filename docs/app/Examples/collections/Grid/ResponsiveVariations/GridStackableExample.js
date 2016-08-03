@@ -5,7 +5,7 @@ const { Column } = Grid
 const image = <Image src='http://semantic-ui.com/images/wireframe/paragraph.png' />
 
 const GridStackableExample = () => (
-  <Grid stackable column={2}>
+  <Grid stackable columns={2}>
     <Column>
       <Segment>{image}</Segment>
     </Column>

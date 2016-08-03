@@ -5,7 +5,7 @@ const { Column } = Grid
 const image = <Image src='http://semantic-ui.com/images/wireframe/image.png' />
 
 const GridDoublingExample = () => (
-  <Grid doubling column={5}>
+  <Grid doubling columns={5}>
     <Column>{image}</Column>
     <Column>{image}</Column>
     <Column>{image}</Column>

@@ -1,10 +1,10 @@
 import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
-import numberToWord from '../../utils/numberToWord'
 import META from '../../utils/Meta'
 import {
   getUnhandledProps,
+  useColumnsProp,
   useKeyOnly,
   useTextAlignProp,
   useValueAndKey,
@@ -13,12 +13,12 @@ import {
 import * as sui from '../../utils/semanticUtils'
 
 function GridRow(props) {
-  const { centered, children, className, color, column, only, reversed, stretched, textAlign, verticalAlign } = props
+  const { centered, children, className, color, columns, only, reversed, stretched, textAlign, verticalAlign } = props
   const classes = cx(
     className,
     color,
     useKeyOnly(centered, 'centered'),
-    useValueAndKey(numberToWord(column), 'column'),
+    useColumnsProp(columns),
     useValueAndKey(only, 'only'),
     useValueAndKey(reversed, 'reversed'),
     useKeyOnly(stretched, 'stretched'),
@@ -38,7 +38,7 @@ GridRow._meta = {
   type: META.type.collection,
   props: {
     color: sui.colors,
-    column: sui.widths,
+    columns: sui.widths,
     only: ['computer', 'large screen', 'mobile', 'tablet mobile', 'tablet', 'widescreen'],
     reversed: ['computer', 'computer vertically', 'mobile', 'mobile vertically', 'tablet', 'tablet vertically'],
     textAlign: sui.textAlignments,
@@ -60,7 +60,7 @@ GridRow.propTypes = {
   color: PropTypes.oneOf(GridRow._meta.props.color),
 
   /** Represents column count per line in Row. */
-  column: PropTypes.oneOf(GridRow._meta.props.column),
+  columns: PropTypes.oneOf(GridRow._meta.props.columns),
 
   /** A row can appear only for a specific device, or screen sizes. */
   only: PropTypes.oneOf(GridRow._meta.props.only),

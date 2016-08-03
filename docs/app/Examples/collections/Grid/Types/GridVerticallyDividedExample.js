@@ -5,12 +5,12 @@ const image = <Image src='http://semantic-ui.com/images/wireframe/paragraph.png'
 
 const GridVerticallyDividedExample = () => (
   <Grid divided='vertically'>
-    <Grid.Row column={2}>
+    <Grid.Row columns={2}>
       <Grid.Column>{image}</Grid.Column>
       <Grid.Column>{image}</Grid.Column>
     </Grid.Row>
 
-    <Grid.Row column={3}>
+    <Grid.Row columns={3}>
       <Grid.Column>{image}</Grid.Column>
       <Grid.Column>{image}</Grid.Column>
       <Grid.Column>{image}</Grid.Column>

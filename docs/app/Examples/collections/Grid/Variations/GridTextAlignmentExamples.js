@@ -7,7 +7,7 @@ const { Column, Row } = Grid
 
 const GridTextAlignmentExample = () => (
   <div>
-    <Grid textAlign='center' column={3}>
+    <Grid textAlign='center' columns={3}>
       <Row>
         <Column>
           <Menu className='vertical fluid'>
@@ -32,7 +32,7 @@ const GridTextAlignmentExample = () => (
     <Divider />
 
     <Grid textAlign='center'>
-      <Row column={3}>
+      <Row columns={3}>
         <Column>
           <Menu className='vertical fluid'>
             <Menu.Item className='header'>Cats</Menu.Item>
@@ -67,7 +67,7 @@ const GridTextAlignmentExample = () => (
 
     <Divider />
 
-    <Grid textAlign='right' column={3}>
+    <Grid textAlign='right' columns={3}>
       <Row>
         <Column>
           <Menu className='vertical fluid'>

@@ -5,7 +5,7 @@ const { Column, Row } = Grid
 
 const GridreversedExamples = () => (
   <div>
-    <Grid reversed='computer' width='equal'>
+    <Grid reversed='computer' columns='equal'>
       <Row>
         <Column>Computer A Fourth</Column>
         <Column>Computer A Third</Column>
@@ -22,7 +22,7 @@ const GridreversedExamples = () => (
 
     <Divider />
 
-    <Grid reversed='tablet' width='equal'>
+    <Grid reversed='tablet' columns='equal'>
       <Column>Tablet Fourth</Column>
       <Column>Tablet Third</Column>
       <Column>Tablet Second</Column>
@@ -31,7 +31,7 @@ const GridreversedExamples = () => (
 
     <Divider />
 
-    <Grid reversed='mobile' width='equal'>
+    <Grid reversed='mobile' columns='equal'>
       <Column>Mobile Fourth</Column>
       <Column>Mobile Third</Column>
       <Column>Mobile Second</Column>

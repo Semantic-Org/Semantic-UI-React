@@ -10,7 +10,7 @@ describe('Grid', () => {
   common.rendersChildren(Grid)
   common.hasSubComponents(Grid, [GridRow, GridColumn])
 
-  common.implementsNumberToWordProp(Grid, 'column')
+  common.implementsColumnsProp(Grid, true)
   common.propKeyOrValueToClassName(Grid, 'celled')
   common.propKeyOnlyToClassName(Grid, 'centered')
   common.propKeyOrValueToClassName(Grid, 'divided')
@@ -21,5 +21,4 @@ describe('Grid', () => {
   common.propKeyOnlyToClassName(Grid, 'stackable')
   common.implementsTextAlignProp(Grid)
   common.implementsVerticalAlignProp(Grid)
-  common.propKeyAndValueToClassName(Grid, 'width')
 })

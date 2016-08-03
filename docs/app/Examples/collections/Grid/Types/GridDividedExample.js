@@ -5,7 +5,7 @@ const image = <Image src='http://semantic-ui.com/images/wireframe/media-paragrap
 
 const GridDividedExample = () => (
   <div>
-    <Grid column={3} divided>
+    <Grid columns={3} divided>
       <Grid.Row>
         <Grid.Column>{image}</Grid.Column>
         <Grid.Column>{image}</Grid.Column>
@@ -21,7 +21,7 @@ const GridDividedExample = () => (
 
     <Divider />
 
-    <Grid column='three' divided>
+    <Grid columns='three' divided>
       <Grid.Row>
         <Grid.Column>{image}</Grid.Column>
         <Grid.Column>{image}</Grid.Column>

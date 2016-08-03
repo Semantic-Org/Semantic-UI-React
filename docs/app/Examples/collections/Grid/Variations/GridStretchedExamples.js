@@ -6,7 +6,7 @@ const image = <Image src='http://semantic-ui.com/images/wireframe/paragraph.png'
 
 const GridStretchedExamples = () => (
   <div>
-    <Grid column={3} divided>
+    <Grid columns={3} divided>
       <Row stretched>
         <Column>
           <Segment>1</Segment>
@@ -25,7 +25,7 @@ const GridStretchedExamples = () => (
 
     <Divider />
 
-    <Grid width='equal'>
+    <Grid columns='equal'>
       <Row stretched>
         <Column>
           <Segment>1</Segment>

@@ -6,20 +6,20 @@ const image = <Image src='http://semantic-ui.com/images/wireframe/image.png' />
 
 const GridColumnCountExample = () => (
   <Grid>
-    <Row column={3}>
+    <Row columns={3}>
       <Column>{image}</Column>
       <Column>{image}</Column>
       <Column>{image}</Column>
     </Row>
 
-    <Row column={4}>
+    <Row columns={4}>
       <Column>{image}</Column>
       <Column>{image}</Column>
       <Column>{image}</Column>
       <Column>{image}</Column>
     </Row>
 
-    <Row column={5}>
+    <Row columns={5}>
       <Column>{image}</Column>
       <Column>{image}</Column>
       <Column>{image}</Column>

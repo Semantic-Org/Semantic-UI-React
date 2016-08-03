@@ -5,7 +5,7 @@ const { Column, Row } = Grid
 
 const GridDeviceVisibilityExample = () => (
   <Grid>
-    <Row column={2} only='large screen'>
+    <Row columns={2} only='large screen'>
       <Column>
         <Segment>Large Screen</Segment>
       </Column>
@@ -13,7 +13,7 @@ const GridDeviceVisibilityExample = () => (
         <Segment>Large Screen</Segment>
       </Column>
     </Row>
-    <Row column={2} only='widescreen'>
+    <Row columns={2} only='widescreen'>
       <Column>
         <Segment>Widescreen</Segment>
       </Column>
@@ -21,7 +21,7 @@ const GridDeviceVisibilityExample = () => (
         <Segment>Widescreen</Segment>
       </Column>
     </Row>
-    <Row column={2} only='mobile'>
+    <Row columns={2} only='mobile'>
       <Column>
         <Segment>Mobile</Segment>
       </Column>
@@ -29,7 +29,7 @@ const GridDeviceVisibilityExample = () => (
         <Segment>Mobile</Segment>
       </Column>
     </Row>
-    <Row column={3}>
+    <Row columns={3}>
       <Column only='computer'>
         <Segment>Computer</Segment>
       </Column>
@@ -43,7 +43,7 @@ const GridDeviceVisibilityExample = () => (
         <Segment>All Sizes</Segment>
       </Column>
     </Row>
-    <Row column={4} only='computer'>
+    <Row columns={4} only='computer'>
       <Column>
         <Segment>Computer</Segment>
       </Column>

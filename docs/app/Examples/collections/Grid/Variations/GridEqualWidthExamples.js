@@ -5,7 +5,7 @@ const { Column, Row } = Grid
 
 const GridEqualWidthExamples = () => (
   <div>
-    <Grid width='equal'>
+    <Grid columns='equal'>
       <Column>
         <Segment>1</Segment>
       </Column>
@@ -19,7 +19,7 @@ const GridEqualWidthExamples = () => (
 
     <Divider />
 
-    <Grid width='equal'>
+    <Grid columns='equal'>
       <Row>
         <Column>
           <Segment>1</Segment>

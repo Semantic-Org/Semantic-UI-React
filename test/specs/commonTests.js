@@ -414,6 +414,34 @@ const _classNamePropValueBeforePropName = (Component, propKey, requiredProps) =>
   })
 }
 
+/**
+ * Assert that a Component correctly implements columns prop.
+ * @param {React.Component|Function} Component The component to test.
+ * @param {boolean} canEqual Flag that indicates possibility of "equal" value.
+ * @param {Object} [requiredProps={}] Props required to render the component.
+ */
+export const implementsColumnsProp = (Component, canEqual, requiredProps = {}) => {
+  describe('columns (common)', () => {
+    _definesPropOptions(Component, 'columns')
+    _noDefaultClassNameFromProp(Component, 'columns', requiredProps)
+    _noClassNameFromBoolProps(Component, 'columns', requiredProps)
+
+    it('adds prop value to className', () => {
+      const propVal = _.sample(sui.widths)
+
+      shallow(createElement(Component, { ...requiredProps, columns: propVal }))
+        .should.have.className([numberToWord(propVal), 'column'].join(' '))
+    })
+
+    if (canEqual) {
+      it('adds equal width to className', () => {
+        shallow(createElement(Component, { ...requiredProps, columns: 'equal' }))
+          .should.have.className('equal width')
+      })
+    }
+  })
+}
+
 export const implementsIconProp = (Component, requiredProps = {}) => {
   const iconName = faker.hacker.noun()
   const assertValid = (element) => {

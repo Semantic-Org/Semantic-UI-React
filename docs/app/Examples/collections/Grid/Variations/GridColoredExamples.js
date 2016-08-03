@@ -5,7 +5,7 @@ const { Column, Row } = Grid
 
 const GridColoredExamples = () => (
   <div>
-    <Grid column={5} padded>
+    <Grid columns={5} padded>
       <Column color='red'>Red</Column>
       <Column color='orange'>Orange</Column>
       <Column color='yellow'>Yellow</Column>

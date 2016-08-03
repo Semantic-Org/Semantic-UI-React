@@ -2,6 +2,8 @@ import _ from 'lodash'
 import cx from 'classnames'
 import React, { Children } from 'react'
 
+import numberToWord from './numberToWord'
+
 import Icon from '../elements/Icon/Icon'
 import Image from '../elements/Image/Image'
 
@@ -246,6 +248,24 @@ export const useKeyOrValueAndKey = (val, key) => val && (val === true ? key : `$
 //
 // Prop to className exceptions
 //
+
+/**
+ * The "columns" prop follows the useValueAndKey except when the value is "equal" and value equal is allowed.
+ * In this case, classes "equal width" are used, ignoring the "column" class.
+ * @param {*} val The value of the "columns" prop
+ * @param {boolean} canEqual Flag that indicates possibility of "equal" value
+ *
+ * @example
+ * <Grid columns='equal' />
+ * <div class="ui equal width grid"></div>
+ *
+ * @example
+ * <Grid columns={4} />
+ * <div class="ui four column grid"></div>
+ */
+export const useColumnsProp = (val, canEqual = false) => val === 'equal' && canEqual
+  ? 'equal width'
+  : useValueAndKey(numberToWord(val), 'column')
 
 /**
  * The "aligned" prop follows the useValueAndKey except when the value is "justified'.

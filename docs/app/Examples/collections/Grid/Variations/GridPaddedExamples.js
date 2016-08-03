@@ -10,7 +10,7 @@ const GridPaddedExamples = () => (
     <p>The following grid has vertical and horizontal gutters</p>
     <Divider />
 
-    <Grid column={2} padded>
+    <Grid columns={2} padded>
       <Column>{image}</Column>
       <Column>{image}</Column>
     </Grid>
@@ -18,7 +18,7 @@ const GridPaddedExamples = () => (
     <p>The following grid has vertical gutters</p>
     <Divider />
 
-    <Grid column={2} padded='vertically'>
+    <Grid columns={2} padded='vertically'>
       <Column>{image}</Column>
       <Column>{image}</Column>
     </Grid>
@@ -26,7 +26,7 @@ const GridPaddedExamples = () => (
     <p>The following grid has horizontal gutters</p>
     <Divider />
 
-    <Grid column={2} padded='horizontally'>
+    <Grid columns={2} padded='horizontally'>
       <Column>{image}</Column>
       <Column>{image}</Column>
     </Grid>
