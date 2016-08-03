@@ -1,11 +1,16 @@
 # Change Log
 
-## [Unreleased](https://github.com/TechnologyAdvice/stardust/tree/HEAD)
+## [v0.27.5](https://github.com/TechnologyAdvice/stardust/tree/v0.27.5) (2016-08-03)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.27.4...v0.27.5)
 
-[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.27.4...HEAD)
+**Implemented enhancements:**
+
+- Support server side rendering [\#364](https://github.com/TechnologyAdvice/stardust/issues/364)
+- Use a transitions enum for transition propTypes [\#164](https://github.com/TechnologyAdvice/stardust/issues/164)
 
 **Merged pull requests:**
 
+- Support server side rendering [\#365](https://github.com/TechnologyAdvice/stardust/pull/365) ([levithomason](https://github.com/levithomason))
 - Add Flag examples [\#357](https://github.com/TechnologyAdvice/stardust/pull/357) ([fodurrr](https://github.com/fodurrr))
 
 ## [v0.27.4](https://github.com/TechnologyAdvice/stardust/tree/v0.27.4) (2016-08-02)
