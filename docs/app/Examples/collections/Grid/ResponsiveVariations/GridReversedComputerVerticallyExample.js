@@ -3,7 +3,7 @@ import { Grid } from 'stardust'
 
 const { Column, Row } = Grid
 
-const GridReversedMobileVerticallyExamples = () => (
+const GridReversedComputerVerticallyExample = () => (
   <Grid reversed='computer vertically'>
     <Row>
       <Column>Computer Row 4</Column>
@@ -20,4 +20,4 @@ const GridReversedMobileVerticallyExamples = () => (
   </Grid>
 )
 
-export default GridReversedMobileVerticallyExamples
+export default GridReversedComputerVerticallyExample

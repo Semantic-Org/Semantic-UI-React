@@ -5,7 +5,7 @@ import { Grid, Menu } from 'stardust'
 
 const { Column, Row } = Grid
 
-const GridTextAlignmentExample = () => (
+const GridTextAlignmentCenterExample = () => (
   <Grid textAlign='center' columns={3}>
     <Row>
       <Column>
@@ -29,4 +29,4 @@ const GridTextAlignmentExample = () => (
   </Grid>
 )
 
-export default GridTextAlignmentExample
+export default GridTextAlignmentCenterExample

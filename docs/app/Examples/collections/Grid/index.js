@@ -115,7 +115,7 @@ const GridExamples = () => (
       <ComponentExample
         title='Text Alignment'
         description='A grid, row, or column can specify its text alignment'
-        examplePath='collections/Grid/Variations/GridTextAlignmentExample'
+        examplePath='collections/Grid/Variations/GridTextAlignmentCenterExample'
       />
       <ComponentExample examplePath='collections/Grid/Variations/GridTextAlignmentJustifiedExample' />
       <ComponentExample examplePath='collections/Grid/Variations/GridTextAlignmentRightExample' />
