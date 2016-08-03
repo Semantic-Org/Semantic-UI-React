@@ -426,7 +426,7 @@ export const implementsColumnsProp = (Component, canEqual, requiredProps = {}) =
     _noDefaultClassNameFromProp(Component, 'columns', requiredProps)
     _noClassNameFromBoolProps(Component, 'columns', requiredProps)
 
-    it('adds prop value to className', () => {
+    it('adds numberToWord value to className', () => {
       const propVal = _.sample(sui.widths)
 
       shallow(createElement(Component, { ...requiredProps, columns: propVal }))
@@ -434,7 +434,7 @@ export const implementsColumnsProp = (Component, canEqual, requiredProps = {}) =
     })
 
     if (canEqual) {
-      it('adds equal width to className', () => {
+      it('adds "equal width" to className', () => {
         shallow(createElement(Component, { ...requiredProps, columns: 'equal' }))
           .should.have.className('equal width')
       })
@@ -516,7 +516,7 @@ export const implementsNumberToWordProp = (Component, propKey, requiredProps = {
     _noDefaultClassNameFromProp(Component, propKey, requiredProps)
     _noClassNameFromBoolProps(Component, propKey, requiredProps)
 
-    it('adds prop value to className', () => {
+    it('adds numberToWord value to className', () => {
       const propVal = _.sample(sui.widths)
 
       shallow(createElement(Component, { ...requiredProps, [propKey]: propVal }))
@@ -567,7 +567,7 @@ export const implementsVerticalAlignProp = (Component, requiredProps = {}) => {
     _noClassNameFromBoolProps(Component, 'verticalAlign', requiredProps)
 
     _.each(Component._meta.props.verticalAlign, (propVal) => {
-      it(`adds "${propVal} verticalAlign" to className`, () => {
+      it(`adds "${propVal} aligned" to className`, () => {
         shallow(<Component { ...requiredProps } verticalAlign={propVal} />)
             .should.have.className(`${propVal} ${'aligned'}`)
       })
