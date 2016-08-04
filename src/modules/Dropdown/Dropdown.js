@@ -1,6 +1,7 @@
 import _ from 'lodash'
 import cx from 'classnames'
 import React, { cloneElement, PropTypes } from 'react'
+import { findDOMNode } from 'react-dom'
 
 import META from '../../utils/Meta'
 import { customPropTypes, getUnhandledProps, useKeyOnly, useKeyOrValueAndKey } from '../../utils/propUtils'
@@ -460,9 +461,19 @@ export default class Dropdown extends Component {
     // open search dropdown on search query
     if (search && newQuery && !open) this.open()
 
+    // resize the search input, temporarily show the sizer so we can measure it
+    let searchWidth
+    if (newQuery) {
+      const sizer = findDOMNode(this.refs.sizer)
+      sizer.style.display = 'inline'
+      searchWidth = Math.ceil(sizer.getBoundingClientRect().width)
+      sizer.style.removeProperty('display')
+    }
+
     this.setState({
       selectedIndex: 0,
       searchQuery: newQuery,
+      searchWidth,
     })
   }
 
@@ -667,7 +678,7 @@ export default class Dropdown extends Component {
 
   renderSearchInput = () => {
     const { search } = this.props
-    const { searchQuery } = this.state
+    const { searchQuery, searchWidth } = this.state
 
     return !search ? null : (
       <input
@@ -678,9 +689,17 @@ export default class Dropdown extends Component {
         className='search'
         autoComplete='off'
         tabIndex='0'
+        style={{ width: searchWidth }}
         ref='search'
       />
     )
+  }
+
+  renderSearchSizer = () => {
+    const { search } = this.props
+    const { searchQuery } = this.state
+
+    return !search ? null : <span className='sizer' ref='sizer'>{searchQuery}</span>
   }
 
   renderLabels = () => {
@@ -822,6 +841,7 @@ export default class Dropdown extends Component {
         {this.renderHiddenInput()}
         {this.renderLabels()}
         {this.renderSearchInput()}
+        {this.renderSearchSizer()}
         {this.renderText()}
         <Icon name={'dropdown'} />
         {this.renderMenu()}
