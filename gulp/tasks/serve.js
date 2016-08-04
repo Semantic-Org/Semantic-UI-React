@@ -17,6 +17,8 @@ const serve = (cb) => {
   const compiler = webpack(webpackConfig)
 
   app
+    .use(express.static(config.paths.docsDist()))
+
     .use(historyApiFallback({
       verbose: false,
     }))
