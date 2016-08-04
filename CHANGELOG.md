@@ -1,12 +1,12 @@
 # Change Log
 
-## [Unreleased](https://github.com/TechnologyAdvice/stardust/tree/HEAD)
-
-[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.27.7...HEAD)
+## [v0.28.0](https://github.com/TechnologyAdvice/stardust/tree/v0.28.0) (2016-08-04)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.27.7...v0.28.0)
 
 **Merged pull requests:**
 
 - Add logo and links to docs [\#372](https://github.com/TechnologyAdvice/stardust/pull/372) ([levithomason](https://github.com/levithomason))
+- Update Grid to v1 API [\#351](https://github.com/TechnologyAdvice/stardust/pull/351) ([layershifter](https://github.com/layershifter))
 
 ## [v0.27.7](https://github.com/TechnologyAdvice/stardust/tree/v0.27.7) (2016-08-04)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.27.6...v0.27.7)
