@@ -497,7 +497,7 @@ Label.propTypes = {
   className: PropTypes.string,
 
   /** Color of the label. */
-  color: PropTypes.oneOf(Label._meta.props.colors),
+  color: PropTypes.oneOf(Label._meta.props.color),
 
   /** Place the label in one of the upper corners . */
   corner: PropTypes.oneOfType([

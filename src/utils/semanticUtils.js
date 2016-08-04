@@ -212,4 +212,3 @@ export const icons = [
   ...accessibilityIcons,
   ...brandsIcons,
 ]
-
