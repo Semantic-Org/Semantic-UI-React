@@ -50,7 +50,7 @@ const FormSpecifyingValidationRulesExample = (props) => (
       <Checkbox name='terms' className='hidden' label='I agree to the terms and conditions' />
     </Form.Field>
     <Button className='blue submit'>Submit</Button>
-    <Message className='error' />
+    <Message error />
   </Form>
 )
 

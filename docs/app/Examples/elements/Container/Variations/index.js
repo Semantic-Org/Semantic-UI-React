@@ -19,7 +19,7 @@ export default class ContainerVariationsExamples extends Component {
           description='A fluid container has no maximum width'
           examplePath='elements/Container/Variations/ContainerFluidExample'
         >
-          <Message className='info'>
+          <Message info>
             Fluid containers are useful for setting text alignment, or other variations on unstyled content
           </Message>
         </ComponentExample>

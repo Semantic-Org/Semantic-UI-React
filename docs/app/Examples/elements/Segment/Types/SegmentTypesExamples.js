@@ -27,7 +27,7 @@ export default class SegmentTypesExamples extends Component {
           description='A segment can be formatted to look like a pile of pages.'
           examplePath='elements/Segment/Types/SegmentPiledExample'
         >
-          <Message className='warning'>
+          <Message warning>
             Piled segments use <b>negative z-index</b> to format the additional pages below the segment.
             In order for them to appear correctly, your segment's offset container must have a z-index declared.
           </Message>

@@ -12,7 +12,7 @@ export default class ButtonContentExamples extends Component {
           description='Button groups can contain conditionals'
           examplePath='elements/Button/Content/ButtonConditionalsExample'
         >
-          <Message className='warning'>
+          <Message warning>
             Or buttons can have their text localized, or adjusted by using the data-text attribute.
             If the size of the conditional changes you will need to adjust @orCircleSize.
           </Message>
