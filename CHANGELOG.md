@@ -1,5 +1,20 @@
 # Change Log
 
+## [v0.27.7](https://github.com/TechnologyAdvice/stardust/tree/v0.27.7) (2016-08-04)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.27.6...v0.27.7)
+
+**Fixed bugs:**
+
+- Dropdown \(multiple\) search box does not grow with input [\#370](https://github.com/TechnologyAdvice/stardust/issues/370)
+
+**Closed issues:**
+
+- Transpilation \(?\) causes an error [\#367](https://github.com/TechnologyAdvice/stardust/issues/367)
+
+**Merged pull requests:**
+
+- Resize Dropdown search on change [\#371](https://github.com/TechnologyAdvice/stardust/pull/371) ([levithomason](https://github.com/levithomason))
+
 ## [v0.27.6](https://github.com/TechnologyAdvice/stardust/tree/v0.27.6) (2016-08-04)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.27.5...v0.27.6)
 
