@@ -11,7 +11,7 @@ describe('Container', () => {
   common.propKeyOnlyToClassName(Container, 'text')
   common.propKeyOnlyToClassName(Container, 'fluid')
 
-  common.implementsAlignedProp(Container)
+  common.implementsTextAlignProp(Container)
 
   it('renders a <div /> element', () => {
     shallow(<Container />)

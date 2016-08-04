@@ -5,16 +5,16 @@ export default class HeaderTextAlignmentExample extends Component {
   render() {
     return (
       <Segment>
-        <Header.H3 aligned='right'>
+        <Header.H3 textAlign='right'>
           Float Right
         </Header.H3>
-        <Header.H3 aligned='left'>
+        <Header.H3 textAlign='left'>
           Float Left
         </Header.H3>
-        <Header.H3 aligned='justified'>
+        <Header.H3 textAlign='justified'>
           This text takes up the full width of the container
         </Header.H3>
-        <Header.H3 aligned='center'>
+        <Header.H3 textAlign='center'>
           Centered
         </Header.H3>
       </Segment>
