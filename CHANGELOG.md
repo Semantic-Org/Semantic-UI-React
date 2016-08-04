@@ -1,5 +1,13 @@
 # Change Log
 
+## [Unreleased](https://github.com/TechnologyAdvice/stardust/tree/HEAD)
+
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.27.7...HEAD)
+
+**Merged pull requests:**
+
+- Add logo and links to docs [\#372](https://github.com/TechnologyAdvice/stardust/pull/372) ([levithomason](https://github.com/levithomason))
+
 ## [v0.27.7](https://github.com/TechnologyAdvice/stardust/tree/v0.27.7) (2016-08-04)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.27.6...v0.27.7)
 
