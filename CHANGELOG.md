@@ -1,5 +1,24 @@
 # Change Log
 
+## [Unreleased](https://github.com/TechnologyAdvice/stardust/tree/HEAD)
+
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.28.1...HEAD)
+
+**Fixed bugs:**
+
+- Invalid argument supplied to oneOf, expected an instance of array. [\#375](https://github.com/TechnologyAdvice/stardust/issues/375)
+
+## [v0.28.1](https://github.com/TechnologyAdvice/stardust/tree/v0.28.1) (2016-08-05)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.28.0...v0.28.1)
+
+**Implemented enhancements:**
+
+- Update MenuItem label propType to node [\#373](https://github.com/TechnologyAdvice/stardust/pull/373) ([Johnsel](https://github.com/Johnsel))
+
+**Merged pull requests:**
+
+- Support React 15.3.0 [\#374](https://github.com/TechnologyAdvice/stardust/pull/374) ([levithomason](https://github.com/levithomason))
+
 ## [v0.28.0](https://github.com/TechnologyAdvice/stardust/tree/v0.28.0) (2016-08-04)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.27.7...v0.28.0)
 
