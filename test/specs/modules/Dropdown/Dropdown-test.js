@@ -9,7 +9,6 @@ import sandbox from 'test/utils/Sandbox-util'
 
 let attachTo
 let options
-let optionsProp
 let wrapper
 
 // ----------------------------------------
@@ -57,7 +56,6 @@ describe('Dropdown Component', () => {
     attachTo = undefined
     wrapper = undefined
     options = getOptions()
-    optionsProp = { options }
   })
 
   afterEach(() => {
@@ -65,15 +63,15 @@ describe('Dropdown Component', () => {
     if (attachTo) document.body.removeChild(attachTo)
   })
 
-  common.isConformant(Dropdown, optionsProp)
-  common.hasUIClassName(Dropdown, optionsProp)
-  common.isTabbable(Dropdown, optionsProp)
-  common.propKeyOnlyToClassName(Dropdown, 'multiple', optionsProp)
-  common.propKeyOnlyToClassName(Dropdown, 'search', optionsProp)
-  common.propKeyOnlyToClassName(Dropdown, 'selection', optionsProp)
+  common.isConformant(Dropdown)
+  common.hasUIClassName(Dropdown)
+  common.isTabbable(Dropdown)
+  common.propKeyOnlyToClassName(Dropdown, 'multiple')
+  common.propKeyOnlyToClassName(Dropdown, 'search')
+  common.propKeyOnlyToClassName(Dropdown, 'selection')
 
   it('does not add a hidden input by default', () => {
-    wrapperMount(<Dropdown {...optionsProp} />)
+    wrapperMount(<Dropdown />)
       .find('input[type="hidden"]')
       .should.not.be.present()
   })
@@ -105,7 +103,7 @@ describe('Dropdown Component', () => {
 
   describe('selected item', () => {
     it('defaults to the first item', () => {
-      wrapperShallow(<Dropdown {...optionsProp} />)
+      wrapperShallow(<Dropdown options={options} selection />)
         .find('DropdownItem')
         .first()
         .should.have.prop('selected', true)
@@ -114,14 +112,14 @@ describe('Dropdown Component', () => {
       // random item, skip the first as its selected by default
       const randomIndex = 1 + _.random(options.length - 2)
 
-      wrapperMount(<Dropdown {...optionsProp} />)
+      wrapperMount(<Dropdown options={options} selection />)
         .find('DropdownItem')
         .at(randomIndex)
         .simulate('click')
         .should.have.prop('selected', true)
     })
     it('moves down on arrow down when open', () => {
-      wrapperMount(<Dropdown {...optionsProp} />)
+      wrapperMount(<Dropdown options={options} selection />)
 
       // open
       wrapper.simulate('click')
@@ -142,7 +140,7 @@ describe('Dropdown Component', () => {
         .should.have.prop('selected', true)
     })
     it('moves up on arrow up when open', () => {
-      wrapperMount(<Dropdown {...optionsProp} />)
+      wrapperMount(<Dropdown options={options} selection />)
 
       // open
       wrapper
@@ -172,7 +170,7 @@ describe('Dropdown Component', () => {
         { text: 'a2', value: 'a2' },
       ]
       // search for 'a'
-      wrapperMount(<Dropdown options={opts} search />)
+      wrapperMount(<Dropdown options={opts} search selection />)
         .simulate('click')
         .find('input.search')
         .simulate('change', { target: { value: 'a' } })
@@ -192,7 +190,7 @@ describe('Dropdown Component', () => {
       // get enough options to make the menu scrollable
       const opts = getOptions(20)
 
-      wrapperMount(<Dropdown options={opts} />)
+      wrapperMount(<Dropdown options={opts} selection />)
         .simulate('click')
 
       dropdownMenuIsOpen()
@@ -240,7 +238,7 @@ describe('Dropdown Component', () => {
       )
     })
     it('becomes active on enter when open', () => {
-      const item = wrapperMount(<Dropdown {...optionsProp} />)
+      const item = wrapperMount(<Dropdown options={options} selection />)
         .simulate('click')
         .find('DropdownItem')
         .at(1)
@@ -256,7 +254,7 @@ describe('Dropdown Component', () => {
       item.should.have.prop('active', true)
     })
     it('closes the menu', () => {
-      wrapperMount(<Dropdown {...optionsProp} />)
+      wrapperMount(<Dropdown options={options} selection />)
         .simulate('click')
 
       dropdownMenuIsOpen()
@@ -271,7 +269,7 @@ describe('Dropdown Component', () => {
     it('sets the corresponding item to active', () => {
       const value = _.sample(options).value
 
-      wrapperShallow(<Dropdown {...optionsProp} value={value} />)
+      wrapperShallow(<Dropdown options={options} selection value={value} />)
         .find('DropdownItem')
         .find({ value, active: true })
         .should.be.present()
@@ -280,7 +278,7 @@ describe('Dropdown Component', () => {
     it('sets the corresponding item text', () => {
       const { text, value } = _.sample(options)
 
-      wrapperShallow(<Dropdown value={value} {...optionsProp} />)
+      wrapperShallow(<Dropdown value={value} options={options} selection />)
         .find('DropdownItem')
         .find({ value, text })
         .should.be.present()
@@ -291,11 +289,11 @@ describe('Dropdown Component', () => {
       let next
       while (!next || next === value) next = _.sample(options).value
 
-      wrapperShallow(<Dropdown value={value} {...optionsProp} />)
+      wrapperShallow(<Dropdown value={value} options={options} selection />)
 
       // initial active item
       wrapper
-        .children()
+        .find('DropdownItem')
         .find({ value })
         .should.have.prop('active', true)
 
@@ -305,7 +303,7 @@ describe('Dropdown Component', () => {
 
       // next active item
       wrapper
-        .children()
+        .find('DropdownItem')
         .find({ value: next })
         .should.have.prop('active', true)
     })
@@ -314,7 +312,7 @@ describe('Dropdown Component', () => {
       const initialItem = _.sample(options)
       const nextItem = _.sample(_.without(options, initialItem))
 
-      wrapperMount(<Dropdown {...optionsProp} value={initialItem.value} />)
+      wrapperMount(<Dropdown options={options} selection value={initialItem.value} />)
         .find('.text')
         .should.contain.text(initialItem.text)
 
@@ -329,14 +327,14 @@ describe('Dropdown Component', () => {
     it('sets the display text', () => {
       const text = faker.hacker.phrase()
 
-      wrapperRender(<Dropdown {...optionsProp} text={text} />)
+      wrapperRender(<Dropdown options={options} selection text={text} />)
         .find('.text')
         .should.contain.text(text)
     })
     it('prevents updates on item click if defined', () => {
       const text = faker.hacker.phrase()
 
-      wrapperMount(<Dropdown {...optionsProp} text={text} />)
+      wrapperMount(<Dropdown options={options} selection text={text} />)
         .simulate('click')
         .find('DropdownItem')
         .at(_.random(options.length - 1))
@@ -347,7 +345,7 @@ describe('Dropdown Component', () => {
         .should.contain.text(text)
     })
     it('is updated on item click if not already defined', () => {
-      wrapperMount(<Dropdown {...optionsProp} />)
+      wrapperMount(<Dropdown options={options} selection />)
 
       // open
       wrapper.simulate('click')
@@ -373,7 +371,7 @@ describe('Dropdown Component', () => {
     // https://github.com/facebook/react/issues/5043
 
     it('opens on dropdown click', () => {
-      wrapperMount(<Dropdown {...optionsProp} />)
+      wrapperMount(<Dropdown options={options} selection />)
 
       dropdownMenuIsClosed()
       wrapper.simulate('click')
@@ -381,7 +379,7 @@ describe('Dropdown Component', () => {
     })
 
     it('opens on arrow down when focused', () => {
-      wrapperMount(<Dropdown {...optionsProp} />)
+      wrapperMount(<Dropdown options={options} selection />)
 
       dropdownMenuIsClosed()
       wrapper.simulate('focus')
@@ -390,7 +388,7 @@ describe('Dropdown Component', () => {
     })
 
     it('opens on arrow up when focused', () => {
-      wrapperMount(<Dropdown {...optionsProp} />)
+      wrapperMount(<Dropdown options={options} selection />)
 
       dropdownMenuIsClosed()
       wrapper.simulate('focus')
@@ -399,7 +397,7 @@ describe('Dropdown Component', () => {
     })
 
     it('opens on space when focused and closed', () => {
-      wrapperMount(<Dropdown {...optionsProp} />)
+      wrapperMount(<Dropdown options={options} selection />)
 
       dropdownMenuIsClosed()
       wrapper.simulate('focus')
@@ -408,7 +406,7 @@ describe('Dropdown Component', () => {
     })
 
     it('does not call open on space if already open', () => {
-      wrapperMount(<Dropdown {...optionsProp} />)
+      wrapperMount(<Dropdown options={options} selection />)
 
       const instance = wrapper.instance()
       sandbox.spy(instance, 'open')
@@ -432,7 +430,7 @@ describe('Dropdown Component', () => {
     })
 
     it('does not open on arrow down when not focused', () => {
-      wrapperMount(<Dropdown {...optionsProp} />)
+      wrapperMount(<Dropdown options={options} selection />)
 
       dropdownMenuIsClosed()
       domEvent.keyDown(document, { key: 'ArrowDown' })
@@ -440,7 +438,7 @@ describe('Dropdown Component', () => {
     })
 
     it('does not open on space when not focused', () => {
-      wrapperMount(<Dropdown {...optionsProp} />)
+      wrapperMount(<Dropdown options={options} selection />)
 
       dropdownMenuIsClosed()
       domEvent.keyDown(document, { key: ' ' })
@@ -448,7 +446,7 @@ describe('Dropdown Component', () => {
     })
 
     it('closes on menu item click', () => {
-      wrapperMount(<Dropdown {...optionsProp} />)
+      wrapperMount(<Dropdown options={options} selection />)
       const item = wrapper
         .find('DropdownItem')
         .at(_.random(options.length - 1))
@@ -463,7 +461,7 @@ describe('Dropdown Component', () => {
     })
 
     it('closes on click outside', () => {
-      wrapperMount(<Dropdown {...optionsProp} />)
+      wrapperMount(<Dropdown options={options} selection />)
 
       // open
       wrapper.simulate('click')
@@ -475,7 +473,7 @@ describe('Dropdown Component', () => {
     })
 
     it('closes on esc key', () => {
-      wrapperMount(<Dropdown {...optionsProp} />)
+      wrapperMount(<Dropdown options={options} selection />)
 
       // open
       wrapper
@@ -491,28 +489,28 @@ describe('Dropdown Component', () => {
 
   describe('open', () => {
     it('defaultOpen opens the menu when true', () => {
-      wrapperShallow(<Dropdown {...optionsProp} defaultOpen />)
+      wrapperShallow(<Dropdown options={options} selection defaultOpen />)
       dropdownMenuIsOpen()
     })
     it('defaultOpen closes the menu when false', () => {
-      wrapperShallow(<Dropdown {...optionsProp} defaultOpen={false} />)
+      wrapperShallow(<Dropdown options={options} selection defaultOpen={false} />)
       dropdownMenuIsClosed()
     })
     it('opens the menu when true', () => {
-      wrapperShallow(<Dropdown {...optionsProp} open />)
+      wrapperShallow(<Dropdown options={options} selection open />)
       dropdownMenuIsOpen()
     })
     it('closes the menu when false', () => {
-      wrapperShallow(<Dropdown {...optionsProp} open={false} />)
+      wrapperShallow(<Dropdown options={options} selection open={false} />)
       dropdownMenuIsClosed()
     })
     it('closes the menu when toggled from true to false', () => {
-      wrapperShallow(<Dropdown {...optionsProp} open />)
+      wrapperShallow(<Dropdown options={options} selection open />)
         .setProps({ open: false })
       dropdownMenuIsOpen()
     })
     it('opens the menu when toggled from false to true', () => {
-      wrapperShallow(<Dropdown {...optionsProp} open={false} />)
+      wrapperShallow(<Dropdown options={options} selection open={false} />)
         .setProps({ open: true })
       dropdownMenuIsClosed()
     })
@@ -520,7 +518,7 @@ describe('Dropdown Component', () => {
 
   describe('multiple', () => {
     it('does not close the menu on item selection with enter', () => {
-      wrapperMount(<Dropdown {...optionsProp} multiple />)
+      wrapperMount(<Dropdown options={options} selection multiple />)
         .simulate('click')
 
       dropdownMenuIsOpen()
@@ -532,7 +530,7 @@ describe('Dropdown Component', () => {
     })
     it('does not close the menu on clicking on an item', () => {
       const nativeEvent = { nativeEvent: { stopImmediatePropagation: _.noop } }
-      wrapperMount(<Dropdown {...optionsProp} multiple />)
+      wrapperMount(<Dropdown options={options} selection multiple />)
         .simulate('click', nativeEvent)
         .find('DropdownItem')
         .at(_.random(options.length - 1))
@@ -543,13 +541,13 @@ describe('Dropdown Component', () => {
     it('filters active options out of the list', () => {
       // make all the items active, expect to see none in the list
       const value = _.map(options, 'value')
-      wrapperShallow(<Dropdown {...optionsProp} value={value} multiple />)
+      wrapperShallow(<Dropdown options={options} selection value={value} multiple />)
         .should.not.have.descendants('DropdownItem')
     })
     it('displays a label for active items', () => {
       // select a random item, expect a label with the item's text
       const activeItem = _.sample(options)
-      wrapperShallow(<Dropdown {...optionsProp} value={[activeItem.value]} multiple />)
+      wrapperShallow(<Dropdown options={options} selection value={[activeItem.value]} multiple />)
         .should.have.descendants('Label')
 
       wrapper
@@ -559,7 +557,7 @@ describe('Dropdown Component', () => {
     it('keeps the selection within the range of remaining options', () => {
       // items are removed as they are made active
       // the selection should move if the last item is made active
-      wrapperMount(<Dropdown {...optionsProp} multiple />)
+      wrapperMount(<Dropdown options={options} selection multiple />)
 
       // open
       wrapper.simulate('click')
@@ -592,7 +590,7 @@ describe('Dropdown Component', () => {
     it('has labels with delete icons', () => {
       // add a value so we have a label
       const value = [_.head(options).value]
-      wrapperRender(<Dropdown {...optionsProp} value={value} multiple />)
+      wrapperRender(<Dropdown options={options} selection value={value} multiple />)
         .should.have.descendants('.label')
 
       wrapper
@@ -607,7 +605,7 @@ describe('Dropdown Component', () => {
         const randomValue = value[randomIndex]
         const expected = _.without(value, randomValue)
         const spy = sandbox.spy()
-        wrapperMount(<Dropdown {...optionsProp} value={value} multiple onChange={spy} />)
+        wrapperMount(<Dropdown options={options} selection value={value} multiple onChange={spy} />)
 
         wrapper
           .find('.delete.icon')
@@ -627,7 +625,7 @@ describe('Dropdown Component', () => {
     })
 
     it('does nothing without selected items', () => {
-      wrapperMount(<Dropdown {...optionsProp} multiple search onChange={spy} />)
+      wrapperMount(<Dropdown options={options} selection multiple search onChange={spy} />)
 
       // open
       wrapper.simulate('click')
@@ -639,7 +637,7 @@ describe('Dropdown Component', () => {
     it('removes the last item when there is no search query', () => {
       const value = _.map(options, 'value')
       const expected = _.dropRight(value)
-      wrapperMount(<Dropdown {...optionsProp} value={value} multiple search onChange={spy} />)
+      wrapperMount(<Dropdown options={options} selection value={value} multiple search onChange={spy} />)
 
       // open
       wrapper.simulate('click')
@@ -652,7 +650,7 @@ describe('Dropdown Component', () => {
     it('removes the last item when there is no search query when uncontrolled', () => {
       const value = _.map(options, 'value')
       const expected = _.dropRight(value)
-      wrapperMount(<Dropdown {...optionsProp} defaultValue={value} multiple search onChange={spy} />)
+      wrapperMount(<Dropdown options={options} selection defaultValue={value} multiple search onChange={spy} />)
 
       // open
       wrapper.simulate('click')
@@ -670,7 +668,7 @@ describe('Dropdown Component', () => {
       // search for random item
       const searchQuery = _.sample(options).text
       const value = _.map(options, 'value')
-      wrapperMount(<Dropdown {...optionsProp} value={value} multiple search onChange={spy} />)
+      wrapperMount(<Dropdown options={options} selection value={value} multiple search onChange={spy} />)
 
       // open and simulate search
       wrapper
@@ -683,7 +681,7 @@ describe('Dropdown Component', () => {
     })
     it('does not remove items for multiple dropdowns without search', () => {
       const value = _.map(options, 'value')
-      wrapperMount(<Dropdown {...optionsProp} value={value} multiple onChange={spy} />)
+      wrapperMount(<Dropdown options={options} selection value={value} multiple onChange={spy} />)
 
       // open
       wrapper.simulate('click')
@@ -703,7 +701,7 @@ describe('Dropdown Component', () => {
     it('is called with event and value on item click', () => {
       const randomIndex = _.random(options.length - 1)
       const randomValue = options[randomIndex].value
-      wrapperMount(<Dropdown {...optionsProp} onChange={spy} />)
+      wrapperMount(<Dropdown options={options} selection onChange={spy} />)
         .simulate('click')
         .find('DropdownItem')
         .at(randomIndex)
@@ -714,7 +712,7 @@ describe('Dropdown Component', () => {
     })
     it('is called with event and value when pressing enter on a selected item', () => {
       const firstValue = options[0].value
-      wrapperMount(<Dropdown {...optionsProp} onChange={spy} />)
+      wrapperMount(<Dropdown options={options} selection onChange={spy} />)
         .simulate('click')
 
       domEvent.keyDown(document, { key: 'Enter' })
@@ -726,7 +724,7 @@ describe('Dropdown Component', () => {
       const value = _.sample(options).value
       const next = _.sample(_.without(options, value)).value
 
-      wrapperMount(<Dropdown {...optionsProp} value={value} onChange={spy} />)
+      wrapperMount(<Dropdown options={options} selection value={value} onChange={spy} />)
         .setProps({ value: next })
 
       spy.should.not.have.been.called()
@@ -736,7 +734,7 @@ describe('Dropdown Component', () => {
   describe('onSearchChange', () => {
     it('is called with (event, value) on search input change', () => {
       const spy = sandbox.spy()
-      wrapperMount(<Dropdown {...optionsProp} search selection onSearchChange={spy} />)
+      wrapperMount(<Dropdown options={options} search selection onSearchChange={spy} />)
         .find('input.search')
         .simulate('change', { target: { value: 'a' }, stopPropagation: _.noop })
 
@@ -747,12 +745,12 @@ describe('Dropdown Component', () => {
 
   describe('options', () => {
     it('adds the onClick handler to all items', () => {
-      wrapperShallow(<Dropdown {...optionsProp} />)
+      wrapperShallow(<Dropdown options={options} selection />)
         .children('DropdownItem')
         .everyWhere(item => item.should.have.prop('onClick'))
     })
     it('calls handleItemClick when an item is clicked', () => {
-      wrapperMount(<Dropdown {...optionsProp} />)
+      wrapperMount(<Dropdown options={options} selection />)
 
       const instance = wrapper.instance()
       sandbox.spy(instance, 'handleItemClick')
@@ -775,7 +773,7 @@ describe('Dropdown Component', () => {
 
   describe('selection', () => {
     it('adds a hidden input', () => {
-      wrapperRender(<Dropdown {...optionsProp} selection />)
+      wrapperRender(<Dropdown options={options} selection />)
         .find('input[type="hidden"]')
         .should.be.present()
     })
@@ -783,17 +781,17 @@ describe('Dropdown Component', () => {
 
   describe('search', () => {
     it('does not add a search input when not defined', () => {
-      wrapperShallow(<Dropdown {...optionsProp} />)
+      wrapperShallow(<Dropdown options={options} selection />)
         .should.not.have.descendants('input.search')
     })
 
     it('adds a search input when present', () => {
-      wrapperRender(<Dropdown {...optionsProp} search />)
+      wrapperRender(<Dropdown options={options} selection search />)
         .should.have.descendants('input.search')
     })
 
     it('sets focus to the search input on open', () => {
-      wrapperMount(<Dropdown {...optionsProp} search />)
+      wrapperMount(<Dropdown options={options} selection search />)
         .simulate('click')
 
       const activeElement = document.activeElement
@@ -804,12 +802,12 @@ describe('Dropdown Component', () => {
     })
 
     it('removes Dropdown tabIndex', () => {
-      wrapperShallow(<Dropdown {...optionsProp} search />)
+      wrapperShallow(<Dropdown options={options} selection search />)
         .should.not.have.prop('tabIndex')
     })
 
     it('has a search input with a tabIndex of 0', () => {
-      wrapperShallow(<Dropdown {...optionsProp} search />)
+      wrapperShallow(<Dropdown options={options} selection search />)
         .find('input.search')
         .should.have.prop('tabIndex', '0')
     })
@@ -818,7 +816,7 @@ describe('Dropdown Component', () => {
       // search for random item
       const searchQuery = _.sample(options).text
 
-      wrapperMount(<Dropdown {...optionsProp} search />)
+      wrapperMount(<Dropdown options={options} selection search />)
 
       // open and simulate search
       wrapper
@@ -836,7 +834,7 @@ describe('Dropdown Component', () => {
     })
 
     it('opens the menu on change if there is a query and not already open', () => {
-      wrapperMount(<Dropdown {...optionsProp} search />)
+      wrapperMount(<Dropdown options={options} selection search />)
 
       dropdownMenuIsClosed()
 
@@ -850,7 +848,7 @@ describe('Dropdown Component', () => {
 
     it('does not call onChange on query change', () => {
       const onChangeSpy = sandbox.spy()
-      wrapperMount(<Dropdown {...optionsProp} search onChange={onChangeSpy} />)
+      wrapperMount(<Dropdown options={options} selection search onChange={onChangeSpy} />)
 
       // simulate search
       wrapper
@@ -861,7 +859,7 @@ describe('Dropdown Component', () => {
     })
 
     it('filters the items based on display text', () => {
-      const search = wrapperMount(<Dropdown {...optionsProp} search />)
+      const search = wrapperMount(<Dropdown options={options} selection search />)
         .find('input.search')
 
       // search for value yields 0 results
@@ -880,7 +878,7 @@ describe('Dropdown Component', () => {
     })
 
     it('sets the selected item to the first search result', () => {
-      const search = wrapperMount(<Dropdown {...optionsProp} search />)
+      const search = wrapperMount(<Dropdown options={options} selection search />)
         .find('input.search')
 
       // the first item is selected by default
@@ -895,7 +893,7 @@ describe('Dropdown Component', () => {
 
     it('still allows moving selection after blur/focus', () => {
       // open, first item is selected
-      const search = wrapperMount(<Dropdown {...optionsProp} search />)
+      const search = wrapperMount(<Dropdown options={options} selection search />)
         .find('input.search')
         .simulate('focus')
 
@@ -943,7 +941,7 @@ describe('Dropdown Component', () => {
 
   describe('no results message', () => {
     it('is shown when a search yields no results', () => {
-      const search = wrapperMount(<Dropdown {...optionsProp} search />)
+      const search = wrapperMount(<Dropdown options={options} selection search />)
         .find('input.search')
 
       wrapper
@@ -961,7 +959,7 @@ describe('Dropdown Component', () => {
     it('is not shown on multiple dropdowns with no remaining items', () => {
       // make all the items active so there are no remaining options
       const value = _.map(options, 'value')
-      wrapperMount(<Dropdown {...optionsProp} value={value} multiple />)
+      wrapperMount(<Dropdown options={options} selection value={value} multiple />)
 
       // open the menu
       wrapper.simulate('click')
@@ -980,23 +978,23 @@ describe('Dropdown Component', () => {
 
   describe('placeholder', () => {
     it('is present when defined', () => {
-      wrapperShallow(<Dropdown {...optionsProp} placeholder='hi' />)
+      wrapperShallow(<Dropdown options={options} selection placeholder='hi' />)
         .should.have.descendants('.default.text')
     })
     it('is not present when not defined', () => {
-      wrapperShallow(<Dropdown {...optionsProp} />)
+      wrapperShallow(<Dropdown options={options} selection />)
         .should.not.have.descendants('.default.text')
     })
     it('is not present when there is a value', () => {
-      wrapperShallow(<Dropdown {...optionsProp} value='hi' placeholder='hi' />)
+      wrapperShallow(<Dropdown options={options} selection value='hi' placeholder='hi' />)
         .should.not.have.descendants('.default.text')
     })
     it('is present on a multiple dropdown with an empty value array', () => {
-      wrapperShallow(<Dropdown {...optionsProp} value={[]} multiple placeholder='hi' />)
+      wrapperShallow(<Dropdown options={options} selection multiple placeholder='hi' />)
         .should.have.descendants('.default.text')
     })
     it('has a filtered className when there is a search query', () => {
-      wrapperShallow(<Dropdown {...optionsProp} search placeholder='hi' />)
+      wrapperShallow(<Dropdown options={options} selection search placeholder='hi' />)
         .setState({ searchQuery: 'a' })
         .should.have.descendants('.default.text.filtered')
     })
@@ -1004,7 +1002,7 @@ describe('Dropdown Component', () => {
 
   describe('render', () => {
     it('calls renderText', () => {
-      wrapperShallow(<Dropdown {...optionsProp} />)
+      wrapperShallow(<Dropdown options={options} selection />)
 
       const instance = wrapper.instance()
       sandbox.spy(instance, 'renderText')
