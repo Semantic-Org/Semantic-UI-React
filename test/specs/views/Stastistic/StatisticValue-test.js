@@ -3,7 +3,7 @@ import * as common from 'test/specs/commonTests'
 
 import StatisticValue from 'src/views/Statistic/StatisticValue'
 
-describe('Statistic', () => {
+describe('StatisticValue', () => {
   common.isConformant(StatisticValue)
   common.rendersChildren(StatisticValue)
   common.propKeyOnlyToClassName(StatisticValue, 'text')
