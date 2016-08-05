@@ -372,6 +372,11 @@ const _definesPropOptions = (Component, propKey) => {
 }
 
 const _noDefaultClassNameFromProp = (Component, propKey, requiredProps = {}) => {
+  // required props may include a prop that creates a className
+  // if so, we cannot assert that it doesn't exist by default because it is required to exist
+  // skip assertions for required props
+  if (propKey in requiredProps) return
+
   it('is not included in className when not defined', () => {
     const wrapper = shallow(<Component {...requiredProps} />)
     wrapper.should.not.have.className(propKey)

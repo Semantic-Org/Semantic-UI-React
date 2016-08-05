@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import React, { Children, Component, PropTypes } from 'react'
 import cx from 'classnames'
-import { customPropTypes } from '../../utils/propUtils'
+import { customPropTypes, getUnhandledProps } from '../../utils/propUtils'
 import META from '../../utils/Meta'
 import TableColumn from './TableColumn'
 
@@ -147,8 +147,11 @@ export default class Table extends Component {
       this.props.className,
       'table'
     )
+
+    const rest = getUnhandledProps(Table, this.props)
+
     return (
-      <table {...this.props} className={classes}>
+      <table {...rest} className={classes}>
         <thead>
           <tr>
             {this._getHeaders()}

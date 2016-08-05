@@ -1,8 +1,9 @@
 import React, { Component, PropTypes } from 'react'
 import Promise from 'bluebird'
-import classNames from 'classnames'
 
-import META from '../../utils/Meta.js'
+import META from '../../utils/Meta'
+import { getUnhandledProps } from '../../utils/propUtils'
+
 import Modal from '../../modules/Modal/Modal'
 import ModalContent from '../../modules/Modal/ModalContent'
 import ModalFooter from '../../modules/Modal/ModalFooter'
@@ -11,7 +12,6 @@ import ModalHeader from '../../modules/Modal/ModalHeader'
 export default class Confirm extends Component {
   static propTypes = {
     abortLabel: PropTypes.string,
-    className: PropTypes.string,
     confirmLabel: PropTypes.string,
     header: PropTypes.string,
   }
@@ -45,20 +45,19 @@ export default class Confirm extends Component {
   }
 
   render() {
-    const classes = classNames(
-      this.props.className
-    )
+    const { header, abortLabel, confirmLabel } = this.props
+    const rest = getUnhandledProps(Confirm, this.props)
     return (
-      <Modal {...this.props} className={classes} ref='modal'>
+      <Modal {...rest} ref='modal'>
         <ModalHeader>
-          {this.props.header}
+          {header}
         </ModalHeader>
         <ModalContent>
           {this.state.message}
         </ModalContent>
         <ModalFooter>
-          <div className='ui button' onClick={this.handleAbort}>{this.props.abortLabel}</div>
-          <div className='ui blue button' onClick={this.handleConfirm}>{this.props.confirmLabel}</div>
+          <div className='ui button' onClick={this.handleAbort}>{abortLabel}</div>
+          <div className='ui blue button' onClick={this.handleConfirm}>{confirmLabel}</div>
         </ModalFooter>
       </Modal>
     )

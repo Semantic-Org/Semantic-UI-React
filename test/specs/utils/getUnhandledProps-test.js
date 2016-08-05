@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 
 import { getUnhandledProps } from 'src/utils/propUtils'
 
@@ -17,27 +17,27 @@ beforeEach(() => {
 
 describe('getUnhandledProps', () => {
   it('removes props defined in propTypes', () => {
-    TestComponent.propTypes = { removeMe: 'thanks' }
+    TestComponent.propTypes = { 'data-remove-me': PropTypes.string }
     shallow(<TestComponent />)
-      .should.not.have.prop('removeMe', 'thanks')
+      .should.not.have.prop('data-remove-me', 'thanks')
   })
   it('removes props defined in defaultProps', () => {
-    TestComponent.defaultProps = { removeMe: 'thanks' }
+    TestComponent.defaultProps = { 'data-remove-me': 'thanks' }
     shallow(<TestComponent />)
-      .should.not.have.prop('removeMe', 'thanks')
+      .should.not.have.prop('data-remove-me', 'thanks')
   })
   it('removes props defined in autoControlledProps', () => {
-    TestComponent.autoControlledProps = ['removeMe']
+    TestComponent.autoControlledProps = ['data-remove-me']
     shallow(<TestComponent />)
-      .should.not.have.prop('removeMe')
+      .should.not.have.prop('data-remove-me')
   })
   it('removes default versions of autoControlledProps', () => {
-    TestComponent.autoControlledProps = ['removeMe']
+    TestComponent.autoControlledProps = ['data-remove-me']
     shallow(<TestComponent />)
       .should.not.have.prop('defaultRemoveMe')
   })
   it('leaves props that are not defined in propTypes', () => {
-    shallow(<TestComponent leaveThis='it is unhandled' />)
-      .should.have.prop('leaveThis')
+    shallow(<TestComponent data-leave-this='it is unhandled' />)
+      .should.have.prop('data-leave-this')
   })
 })

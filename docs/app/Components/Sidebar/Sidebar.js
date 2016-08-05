@@ -58,7 +58,6 @@ export default class Sidebar extends Component {
             className='transparent inverted icon'
             icon='search'
             placeholder='Search'
-            iconClass='search link icon'
             onChange={this.handleSearchChange}
           />
         </div>

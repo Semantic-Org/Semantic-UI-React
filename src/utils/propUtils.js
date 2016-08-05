@@ -74,7 +74,7 @@ export const customPropTypes = {
    * @param {function[]} validators An array of propType functions.
    */
   all: (validators) => {
-    return (props, propName, componentName) => {
+    return (props, propName, componentName, ...rest) => {
       if (!_.isArray(validators)) {
         throw new Error([
           'Invalid argument supplied to all, expected an instance of array.',
@@ -88,7 +88,7 @@ export const customPropTypes = {
             `all() argument "validators" should contain functions, found: ${type(validator)}.`
           )
         }
-        return validator(props, propName, componentName)
+        return validator(props, propName, componentName, ...rest)
       }))
 
       // we can only return one error at a time
@@ -101,7 +101,7 @@ export const customPropTypes = {
    * @param {function[]} validators An array of propType functions.
    */
   any: (validators) => {
-    return (props, propName, componentName) => {
+    return (props, propName, componentName, ...rest) => {
       if (!_.isArray(validators)) {
         throw new Error([
           'Invalid argument supplied to all, expected an instance of array.',
@@ -115,7 +115,7 @@ export const customPropTypes = {
             `any() argument "validators" should contain functions, found: ${type(validator)}.`
           )
         }
-        return validator(props, propName, componentName)
+        return validator(props, propName, componentName, ...rest)
       })
 
       // if no validator returned undefined (no error)

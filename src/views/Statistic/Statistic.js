@@ -50,10 +50,7 @@ Statistic.propTypes = {
   /** Primary content of the Statistic. */
   children: customPropTypes.all([
     customPropTypes.mutuallyExclusive(['label', 'value']),
-    customPropTypes.ofComponentTypes([
-      'StatisticLabel',
-      'StatisticValue',
-    ]),
+    PropTypes.node,
   ]),
 
   /** Classes that will be added to the Statistic className. */
