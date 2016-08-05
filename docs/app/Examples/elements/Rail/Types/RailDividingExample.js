@@ -2,8 +2,8 @@ import React from 'react'
 import { Image, Grid, Rail, Segment } from 'stardust'
 
 const RailDividingExample = () => (
-  <Grid className='three column'>
-    <Grid.Column className='centered'>
+  <Grid columns={3}>
+    <Grid.Column centered>
       <Segment>
         <Image src='http://semantic-ui.com/images/wireframe/paragraph.png' />
 

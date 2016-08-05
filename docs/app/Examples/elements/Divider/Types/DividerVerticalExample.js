@@ -4,7 +4,7 @@ import { Grid, Segment, Divider } from 'stardust'
 export default class DividerVerticalExample extends Component {
   render() {
     return (
-      <Grid className='three column relaxed'>
+      <Grid columns={3} relaxed>
         <Grid.Column>
           <Segment className='basic'>
             Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio.

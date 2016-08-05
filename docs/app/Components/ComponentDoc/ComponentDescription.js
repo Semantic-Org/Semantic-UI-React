@@ -79,7 +79,7 @@ export default class ComponentDescription extends Component {
     })
 
     return (
-      <Grid.Row className='one column'>
+      <Grid.Row columns={1}>
         <Grid.Column>
           <Header.H3 className='grey'>Related</Header.H3>
           <List className='large bulleted'>
@@ -98,7 +98,7 @@ export default class ComponentDescription extends Component {
           <Grid.Column>
             <Header.H1 style={headerStyle}>{_.capitalize(_meta.name)}</Header.H1>
           </Grid.Column>
-          <Grid.Column className='right aligned'>
+          <Grid.Column textAlign='right'>
             <List className='link' style={{ float: 'right' }}>
               {this.renderSourceLink()}
               {this.renderSemanticDocsLink()}

@@ -47,7 +47,7 @@ export default class ComponentExample extends Component {
     const rest = getUnhandledProps(ComponentExample, this.props)
 
     return (
-      <Grid className='one column' style={{ marginBottom: '4em' }}>
+      <Grid columns={1} style={{ marginBottom: '4em' }}>
         <Grid.Column>
           <Grid>
             <Grid.Column width={12}>
@@ -56,7 +56,7 @@ export default class ComponentExample extends Component {
               </Header.H3>}
               {this.props.description && <p>{this.props.description}</p>}
             </Grid.Column>
-            <Grid.Column width={4} className='right aligned'>
+            <Grid.Column width={4} textAlign='right'>
               <Icon name='code link' color='grey' onClick={this.toggleShowCode} style={codeIconStyle} />
             </Grid.Column>
           </Grid>
