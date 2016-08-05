@@ -11,6 +11,13 @@ const FeedContentExamples = () => {
         examplePath='views/Feed/Content/LabelImage'
       />
       <ComponentExample examplePath='views/Feed/Content/LabelIcon' />
+
+      <ComponentExample
+        title='Date'
+        description='An event or an event summary can contain a date.'
+        examplePath='views/Feed/Content/Date'
+      />
+      <ComponentExample examplePath='views/Feed/Content/DateSummary' />
     </ExampleSection>
   )
 }
