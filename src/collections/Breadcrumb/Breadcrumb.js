@@ -18,7 +18,7 @@ function Breadcrumb(props) {
 
   if (!sections) return <div {...rest} className={classes}>{children}</div>
 
-  const dividerJSX = <BreadcrumbDivider>{divider || icon}</BreadcrumbDivider>
+  const dividerJSX = <BreadcrumbDivider icon={icon}>{divider}</BreadcrumbDivider>
   const sectionsJSX = []
 
   sections.forEach(({ text, ...restSection }, index) => {
