@@ -21,12 +21,12 @@ function Breadcrumb(props) {
   const dividerJSX = <BreadcrumbDivider icon={icon}>{divider}</BreadcrumbDivider>
   const sectionsJSX = []
 
-  sections.forEach(({ text, ...restSection }, index) => {
-    const key = `${text}-${index}`
-    const dividerKey = `${key}-divider`
+  sections.forEach(({ text, key, ...restSection }, index) => {
+    const finalKey = key || text
+    const dividerKey = `${finalKey}-divider`
 
     sectionsJSX.push(
-      <BreadcrumbSection {...restSection} key={key}>{text}</BreadcrumbSection>
+      <BreadcrumbSection {...restSection} key={finalKey}>{text}</BreadcrumbSection>
     )
 
     if (index !== sections.length - 1) {
