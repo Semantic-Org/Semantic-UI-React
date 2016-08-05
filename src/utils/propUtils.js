@@ -54,7 +54,7 @@ export const customPropTypes = {
 
       // mutually exclusive
       const disallowed = exclusives.reduce((acc, exclusive) => {
-        if (_.has(props, propName) && _.has(props, exclusive)) {
+        if (!_.isUndefined(props[propName]) && !_.isUndefined(props[exclusive])) {
           return [...acc, exclusive]
         }
         return acc
