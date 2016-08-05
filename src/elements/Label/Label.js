@@ -107,7 +107,7 @@ Label.propTypes = {
   detail: PropTypes.string,
 
   /** Format the detail as a link. */
-  detailLink: PropTypes.string,
+  detailLink: PropTypes.bool,
 
   /** Format a label to align better alongside text. */
   horizontal: PropTypes.bool,
