@@ -155,7 +155,7 @@ Label.propTypes = {
   ribbon: PropTypes.oneOf(Label._meta.props.ribbon),
 
   /** Size of the label. */
-  size: PropTypes.oneOf(Label._meta.props.sizes),
+  size: PropTypes.oneOf(Label._meta.props.size),
 
   /** Format the label like a product tag. */
   tag: PropTypes.bool,
