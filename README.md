@@ -133,7 +133,7 @@ Be sure to check out the above migrations before embarking on a new component.  
 | x Button        | x Breadcrumb    | _ Advertisement | x Accordion     | x Form Validation  |
 | x Container     | x Form          | _ Card          | x Checkbox      | *API (NA)*         |
 | x Divider       | x Grid          | _ Comment       | _ Dimmer        | *Visibility (NA)*  |
-| x Flag          | x Menu          | _ Feed          | x Dropdown      |                    |
+| x Flag          | x Menu          | x Feed          | x Dropdown      |                    |
 | x Header        | x Message       | x Item          | _ Embed         |                    |
 | x Icon          | x Table         | x Statistic     | x Modal         |                    |
 | x Image         |                 |                 | _ Nag           |                    |

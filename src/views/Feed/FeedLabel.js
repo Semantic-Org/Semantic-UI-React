@@ -1,22 +1,20 @@
 import cx from 'classnames'
 import React, { PropTypes } from 'react'
-
 import META from '../../utils/Meta'
 import { customPropTypes, getUnhandledProps, iconPropRenderer, imagePropRenderer } from '../../utils/propUtils'
 
 function FeedLabel(props) {
   const { children, className, icon, image } = props
-  const classes = cx(
-    className,
-    'label',
-  )
+  const classes = cx(className, 'label')
   const rest = getUnhandledProps(FeedLabel, props)
 
-  return (<div {...rest} className={classes}>
-    {children && children}
-    {icon && iconPropRenderer(icon)}
-    {image && imagePropRenderer(image)}
-  </div>)
+  return (
+    <div {...rest} className={classes}>
+      {children && children}
+      {icon && iconPropRenderer(icon)}
+      {image && imagePropRenderer(image)}
+    </div>
+  )
 }
 
 FeedLabel._meta = {
