@@ -36,10 +36,7 @@ MenuItem.propTypes = {
   active: PropTypes.bool,
   children: PropTypes.node,
   className: PropTypes.string,
-  label: PropTypes.oneOfType([
-    PropTypes.number,
-    PropTypes.string,
-  ]),
+  label: PropTypes.node,
   name: PropTypes.string,
   onClick: PropTypes.func,
 }
