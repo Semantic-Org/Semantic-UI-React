@@ -2,7 +2,7 @@ import React from 'react'
 import MessageContent from 'src/collections/Message/MessageContent'
 import * as common from 'test/specs/commonTests'
 
-describe.only('MessageContent', () => {
+describe('MessageContent', () => {
   common.isConformant(MessageContent)
   common.rendersChildren(MessageContent)
 

@@ -1,13 +1,13 @@
 import React from 'react'
-import MessageListItem from 'src/collections/Message/MessageListItem'
+import MessageItem from 'src/collections/Message/MessageItem'
 import * as common from 'test/specs/commonTests'
 
 describe('MessageList', () => {
-  common.isConformant(MessageListItem)
-  common.rendersChildren(MessageListItem)
+  common.isConformant(MessageItem)
+  common.rendersChildren(MessageItem)
 
   it('renders an li tag', () => {
-    shallow(<MessageListItem />)
+    shallow(<MessageItem />)
       .should.have.tagName('li')
   })
 })
