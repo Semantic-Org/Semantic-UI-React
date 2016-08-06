@@ -47,7 +47,7 @@ export default class Sidebar extends Component {
     return (
       <Menu className='vertical fixed inverted' style={{ ...style }}>
         <div className='item'>
-          <img src='/logo.png' style={{ marginRight: '1em' }} />
+          <img src={(__PROD__ ? '/stardust/' : '/') + 'logo.png'} style={{ marginRight: '1em' }} />
           <strong>UI-React Docs</strong>
         </div>
         <a className='item' href='https://github.com/TechnologyAdvice/stardust'>
