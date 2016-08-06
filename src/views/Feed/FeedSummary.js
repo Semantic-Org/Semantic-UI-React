@@ -20,7 +20,7 @@ function FeedSummary(props) {
 
 FeedSummary._meta = {
   library: META.library.semanticUI,
-  name: 'FeedDate',
+  name: 'FeedSummary',
   parent: 'Feed',
   type: META.type.view,
 }

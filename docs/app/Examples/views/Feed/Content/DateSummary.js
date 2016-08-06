@@ -20,7 +20,7 @@ const DateSummary = () => {
 
       <Event>
         <Label image={image} />
-        <Content class='content'>
+        <Content>
           <Summary>
             You added <a>Jenny Hess</a> to your <a>coworker</a> group.
 
@@ -31,7 +31,7 @@ const DateSummary = () => {
 
       <Event>
         <Label image={image} />
-        <Content class='content'>
+        <Content>
           <Summary date='3 days ago'>
             You added <a>Jenny Hess</a> to your <a>coworker</a> group.
           </Summary>
