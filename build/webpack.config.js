@@ -5,7 +5,7 @@ const _ = require('lodash')
 const { argv } = require('yargs')
 
 const { paths } = config
-const { __DEV__, __TEST__ } = config.compiler_globals
+const { __DEV__, __TEST__, __PROD__ } = config.compiler_globals
 
 const webpackConfig = {
   name: 'client',
@@ -84,6 +84,7 @@ webpackConfig.plugins = [
       jquery: require('jquery/package.json').version,
       lodash: require('lodash/package.json').version,
     },
+    base: __PROD__ ? '/stardust/' : '/',
   }),
 ]
 
