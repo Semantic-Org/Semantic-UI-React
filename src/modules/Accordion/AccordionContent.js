@@ -32,7 +32,6 @@ AccordionContent.propTypes = {
 }
 
 AccordionContent._meta = {
-  library: META.library.semanticUI,
   name: 'AccordionContent',
   type: META.type.module,
   parent: 'Accordion',

@@ -22,7 +22,6 @@ export default class Segment extends Component {
   }
 
   static _meta = {
-    library: META.library.semanticUI,
     name: 'Segment',
     type: META.type.element,
   }

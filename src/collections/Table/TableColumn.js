@@ -13,7 +13,6 @@ TableColumn.propTypes = {
 }
 
 TableColumn._meta = {
-  library: META.library.semanticUI,
   name: 'TableColumn',
   type: META.type.collection,
   parent: 'Table',

@@ -24,7 +24,6 @@ export default class Message extends Component {
   }
 
   static _meta = {
-    library: META.library.semanticUI,
     name: 'Message',
     type: META.type.collection,
   }

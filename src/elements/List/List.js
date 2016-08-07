@@ -10,7 +10,6 @@ export default class List extends Component {
   }
 
   static _meta = {
-    library: META.library.semanticUI,
     name: 'List',
     type: META.type.element,
   }

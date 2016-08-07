@@ -68,7 +68,6 @@ function Label(props) {
 }
 
 Label._meta = {
-  library: META.library.semanticUI,
   name: 'Label',
   type: META.type.element,
   props: {

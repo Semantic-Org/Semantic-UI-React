@@ -15,7 +15,6 @@ ItemItems.propTypes = {
 }
 
 ItemItems._meta = {
-  library: META.library.semanticUI,
   name: 'ItemItems',
   type: META.type.view,
   parent: 'Item',

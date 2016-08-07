@@ -133,7 +133,6 @@ export default class Table extends Component {
   }
 
   static _meta = {
-    library: META.library.semanticUI,
     name: 'Table',
     type: META.type.collection,
   }

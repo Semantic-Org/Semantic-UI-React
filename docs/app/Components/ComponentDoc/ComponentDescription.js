@@ -28,7 +28,7 @@ export default class ComponentDescription extends Component {
   renderSemanticDocsLink = () => {
     const { _meta } = this.props
 
-    if (!META.isSemanticUI(_meta)) return null
+    if (META.isAddon(_meta)) return null
 
     const name = META.isParent(_meta) ? _meta.name : _meta.parent
     const url = `http://semantic-ui.com/${_meta.type}s/${name}.html`.toLowerCase()

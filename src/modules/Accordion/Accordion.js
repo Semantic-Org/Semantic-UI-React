@@ -62,7 +62,6 @@ export default class Accordion extends AutoControlledComponent {
   }
 
   static _meta = {
-    library: META.library.semanticUI,
     name: 'Accordion',
     type: META.type.module,
   }

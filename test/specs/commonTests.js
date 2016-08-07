@@ -211,11 +211,8 @@ export const isConformant = (Component, requiredProps = {}) => {
     })
 
     describe('library', () => {
-      it('is defined', () => {
-        expect(_meta).to.have.any.keys('library')
-      })
-      it('is a META.library', () => {
-        expect(_.values(META.library)).to.contain(_meta.library)
+      it('is not defined', () => {
+        expect(_meta).not.to.have.any.keys('library', 'Remove _meta.library, it is deprecated.')
       })
     })
     describe('name', () => {
@@ -265,7 +262,7 @@ export const isConformant = (Component, requiredProps = {}) => {
     })
 
     // TODO: do not exclude headers once their APIs are updated
-    if (!isHeader && META.isSemanticUI(Component)) {
+    if (!isHeader && !META.isAddon(Component)) {
       it(`has the Semantic UI className "${componentClassName}"`, () => {
         render(<Component {...requiredProps} />)
           .should.have.className(componentClassName)

@@ -45,7 +45,6 @@ function DropdownItem(props) {
 }
 
 DropdownItem._meta = {
-  library: META.library.semanticUI,
   name: 'DropdownItem',
   parent: 'Dropdown',
   type: META.type.module,

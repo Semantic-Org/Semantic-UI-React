@@ -17,7 +17,6 @@ export default class FormFields extends Component {
   }
 
   static _meta = {
-    library: META.library.semanticUI,
     name: 'FormFields',
     parent: 'Form',
     type: META.type.collection,

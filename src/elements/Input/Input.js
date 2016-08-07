@@ -18,7 +18,6 @@ export default class Input extends Component {
   }
 
   static _meta = {
-    library: META.library.semanticUI,
     name: 'Input',
     type: META.type.element,
   }

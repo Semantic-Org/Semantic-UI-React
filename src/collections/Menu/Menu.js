@@ -27,7 +27,6 @@ export default class Menu extends Component {
   }
 
   static _meta = {
-    library: META.library.semanticUI,
     name: 'Menu',
     type: META.type.collection,
   }

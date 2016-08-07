@@ -57,7 +57,6 @@ function Flag(props) {
 }
 
 Flag._meta = {
-  library: META.library.semanticUI,
   name: 'Flag',
   type: META.type.element,
   props: {

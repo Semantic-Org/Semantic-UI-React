@@ -27,7 +27,6 @@ export default class Modal extends Component {
   }
 
   static _meta = {
-    library: META.library.semanticUI,
     name: 'Modal',
     type: META.type.module,
   }

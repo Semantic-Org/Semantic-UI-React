@@ -7,7 +7,6 @@ class DropdownDivider extends Component {
   }
 
   static _meta = {
-    library: META.library.semanticUI,
     name: 'DropdownDivider',
     parent: 'Dropdown',
     type: META.type.module,

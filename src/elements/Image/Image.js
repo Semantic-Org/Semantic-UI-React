@@ -10,7 +10,6 @@ export default class Image extends Component {
   }
 
   static _meta = {
-    library: META.library.semanticUI,
     name: 'Image',
     type: META.type.element,
   }

@@ -46,7 +46,6 @@ Grid.Column = GridColumn
 Grid.Row = GridRow
 
 Grid._meta = {
-  library: META.library.semanticUI,
   name: 'Grid',
   type: META.type.collection,
   props: {
