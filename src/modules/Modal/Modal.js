@@ -1,48 +1,64 @@
-import React, { Component, PropTypes } from 'react'
-import classNames from 'classnames'
+import React, { PropTypes } from 'react'
+import cx from 'classnames'
 import META from '../../utils/Meta'
-import ModalContent from './ModalContent'
 import ModalHeader from './ModalHeader'
-import ModalFooter from './ModalFooter'
+import ModalContent from './ModalContent'
+import ModalActions from './ModalActions'
+import {
+  getUnhandledProps,
+  useKeyOnly,
+} from '../../utils/propUtils'
 
-export default class Modal extends Component {
-  static propTypes = {
-    children: PropTypes.any,
-    className: PropTypes.string,
-    settings: PropTypes.object,
-  }
+function Modal(props) {
+  const {
+    children, className,
+    active, basic, size,
+  } = props
 
-  state = { isShown: false }
+  const classes = cx('ui',
+    useKeyOnly(active, 'transition visible active'),
+    useKeyOnly(basic, 'basic'),
+    size,
+    'modal',
+    className,
+  )
 
-  static Content = ModalContent
-  static Header = ModalHeader
-  static Footer = ModalFooter
+  const rest = getUnhandledProps(Modal, props)
 
-  showModal = () => {
-    this.setState({ isShown: true })
-  }
-
-  hideModal = () => {
-    this.setState({ isShown: false })
-  }
-
-  static _meta = {
-    name: 'Modal',
-    type: META.type.module,
-  }
-
-  render() {
-    const classes = classNames(
-      'ui',
-      this.props.className,
-      'modal',
-      { 'transition visible active': this.state.isShown },
-    )
-
-    return (
-      <div {...this.props} className={classes}>
-        {this.props.children}
-      </div>
-    )
-  }
+  return (
+    <div className={classes} {...rest} >
+      {children}
+    </div>
+  )
 }
+
+Modal._meta = {
+  name: 'Modal',
+  type: META.type.module,
+  props: {
+    size: ['fullscreen', 'large', 'small'],
+  },
+}
+
+Modal.propTypes = {
+  /** Primary content of the modal. Consider using ModalHeader, ModalContent or ModalActions here */
+  children: PropTypes.any,
+
+  /** Classes to add to the modal className */
+  className: PropTypes.string,
+
+  /** An active modal is visible on the page */
+  active: PropTypes.bool,
+
+  /** A modal can reduce its complexity */
+  basic: PropTypes.bool,
+
+  /** A modal can vary in size */
+  size: PropTypes.oneOf(Modal._meta.props.size),
+}
+
+Modal.Header = ModalHeader
+Modal.Content = ModalContent
+Modal.Actions = ModalActions
+
+export default Modal
