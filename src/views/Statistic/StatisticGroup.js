@@ -33,7 +33,6 @@ function StatisticGroup(props) {
 }
 
 StatisticGroup._meta = {
-  library: META.library.semanticUI,
   name: 'StatisticGroup',
   type: META.type.view,
   parent: 'Statistic',

@@ -134,7 +134,6 @@ Here's an example `_meta` object:
 import META from '../../utils/Meta'
 
 const _meta = {
-  library: META.library.semanticUI,
   name: 'MyComponent',
   type: META.type.module,
   props: {

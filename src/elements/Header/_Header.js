@@ -48,7 +48,6 @@ function _Header(props) {
 }
 
 _Header._meta = {
-  library: META.library.semanticUI,
   name: '_Header',
   type: META.type.element,
   props: {

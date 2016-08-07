@@ -18,7 +18,6 @@ function BreadcrumbDivider(props) {
 }
 
 BreadcrumbDivider._meta = {
-  library: META.library.semanticUI,
   name: 'BreadcrumbDivider',
   type: META.type.collection,
   parent: 'Breadcrumb',

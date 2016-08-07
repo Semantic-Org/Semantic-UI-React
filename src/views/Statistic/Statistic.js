@@ -36,7 +36,6 @@ function Statistic(props) {
 }
 
 Statistic._meta = {
-  library: META.library.semanticUI,
   name: 'Statistic',
   type: META.type.view,
   props: {

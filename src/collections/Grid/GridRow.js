@@ -32,7 +32,6 @@ function GridRow(props) {
 }
 
 GridRow._meta = {
-  library: META.library.semanticUI,
   name: 'GridRow',
   parent: 'Grid',
   type: META.type.collection,

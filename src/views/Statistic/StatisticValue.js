@@ -18,7 +18,6 @@ function StatisticValue(props) {
 }
 
 StatisticValue._meta = {
-  library: META.library.semanticUI,
   name: 'StatisticValue',
   parent: 'Statistic',
   type: META.type.view,

@@ -23,7 +23,6 @@ function Container(props) {
 }
 
 Container._meta = {
-  library: META.library.semanticUI,
   name: 'Container',
   type: META.type.element,
   props: {

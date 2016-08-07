@@ -15,7 +15,6 @@ export default class ListItem extends Component {
   }
 
   static _meta = {
-    library: META.library.semanticUI,
     name: 'ListItem',
     type: META.type.element,
     parent: 'List',

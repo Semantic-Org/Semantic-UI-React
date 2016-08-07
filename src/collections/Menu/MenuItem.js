@@ -25,7 +25,6 @@ function MenuItem({ __onClick, active, children, className, label, name, onClick
 }
 
 MenuItem._meta = {
-  library: META.library.semanticUI,
   name: 'MenuItem',
   type: META.type.collection,
   parent: 'Menu',

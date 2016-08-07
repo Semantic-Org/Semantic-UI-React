@@ -13,7 +13,6 @@ class DropdownMenu extends Component {
   }
 
   static _meta = {
-    library: META.library.semanticUI,
     name: 'DropdownMenu',
     parent: 'Dropdown',
     type: META.type.module,

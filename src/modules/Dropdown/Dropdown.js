@@ -20,7 +20,6 @@ import Label from '../../elements/Label/Label'
 const debug = makeDebugger('dropdown')
 
 const _meta = {
-  library: META.library.semanticUI,
   name: 'Dropdown',
   type: META.type.module,
   props: {

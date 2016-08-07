@@ -39,7 +39,6 @@ export default class Confirm extends Component {
     })
 
   static _meta = {
-    library: META.library.stardust,
     name: 'Confirm',
     type: META.type.addon,
   }

@@ -1,20 +1,13 @@
 import _ from 'lodash/fp'
 
-const LIBRARIES = {
-  semanticUI: 'Semantic UI',
-  stardust: 'Stardust',
-}
-
 const TYPES = {
   addon: 'addon',
-  global: 'global',
   collection: 'collection',
   element: 'element',
   view: 'view',
   module: 'module',
 }
 
-const LIBRARY_VALUES = _.values(LIBRARIES)
 const TYPE_VALUES = _.values(TYPES)
 
 /**
@@ -25,7 +18,6 @@ const TYPE_VALUES = _.values(TYPES)
  * @returns {Boolean}
  */
 const isMeta = (_meta) => (
-  _.includes(_.get('library', _meta), LIBRARY_VALUES) &&
   _.includes(_.get('type', _meta), TYPE_VALUES)
 )
 
@@ -49,24 +41,17 @@ const getMeta = (metaArg) => {
 
 const metaHasKeyValue = _.curry((key, val, metaArg) => _.flow(getMeta, _.get(key), _.eq(val))(metaArg))
 const isType = metaHasKeyValue('type')
-const isLibrary = metaHasKeyValue('library')
 
 /**
  * Component meta information.  Used to declaratively classify and identify components.
  * @type {{}}
  */
 const META = {
-  library: LIBRARIES,
   type: TYPES,
-
-  // library
-  isSemanticUI: isLibrary(LIBRARIES.semanticUI),
-  isStardust: isLibrary(LIBRARIES.stardust),
 
   // type
   isType,
   isAddon: isType(TYPES.addon),
-  isGlobal: isType(TYPES.global),
   isCollection: isType(TYPES.collection),
   isElement: isType(TYPES.element),
   isView: isType(TYPES.view),

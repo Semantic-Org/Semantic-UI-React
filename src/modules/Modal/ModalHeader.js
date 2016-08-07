@@ -9,7 +9,6 @@ export default class ModalHeader extends Component {
   }
 
   static _meta = {
-    library: META.library.semanticUI,
     name: 'ModalHeader',
     type: META.type.module,
     parent: 'Modal',

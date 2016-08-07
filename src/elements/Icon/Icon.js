@@ -47,7 +47,6 @@ function Icon(props) {
 Icon.Group = IconGroup
 
 Icon._meta = {
-  library: META.library.semanticUI,
   name: 'Icon',
   type: META.type.element,
   props: {

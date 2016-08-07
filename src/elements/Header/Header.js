@@ -16,7 +16,6 @@ function Header(props) {
 }
 
 Header._meta = {
-  library: META.library.semanticUI,
   name: 'Header',
   type: META.type.element,
 }

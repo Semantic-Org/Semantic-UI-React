@@ -29,7 +29,6 @@ export default class Item extends Component {
   }
 
   static _meta = {
-    library: META.library.semanticUI,
     name: 'Item',
     type: META.type.view,
   }

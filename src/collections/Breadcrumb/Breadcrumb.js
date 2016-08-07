@@ -38,7 +38,6 @@ function Breadcrumb(props) {
 }
 
 Breadcrumb._meta = {
-  library: META.library.semanticUI,
   name: 'Breadcrumb',
   type: META.type.collection,
   props: {

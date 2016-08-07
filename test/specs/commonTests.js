@@ -211,11 +211,8 @@ export const isConformant = (Component, requiredProps = {}) => {
     })
 
     describe('library', () => {
-      it('is defined', () => {
-        expect(_meta).to.have.any.keys('library')
-      })
-      it('is a META.library', () => {
-        expect(_.values(META.library)).to.contain(_meta.library)
+      it('is not defined', () => {
+        expect(_meta).not.to.have.any.keys('library', 'Remove _meta.library, it is deprecated.')
       })
     })
     describe('name', () => {
@@ -249,23 +246,8 @@ export const isConformant = (Component, requiredProps = {}) => {
   describe('className (common)', () => {
     const isHeader = /(header|h1|h2|h3|h4|h5|h6)/i.test(componentClassName)
 
-    it('does not have an sd-* className', () => {
-      const wrapper = shallow(<Component {...requiredProps} />)
-      const className = wrapper.prop('className')
-      const children = wrapper.children()
-
-      // component itself
-      if (className) className.should.not.contain('sd-')
-
-      // children
-      children.forEach(c => {
-        const childClassName = c.prop('className')
-        if (childClassName) childClassName.should.not.contain('sd-')
-      })
-    })
-
     // TODO: do not exclude headers once their APIs are updated
-    if (!isHeader && META.isSemanticUI(Component)) {
+    if (!isHeader && !META.isAddon(Component)) {
       it(`has the Semantic UI className "${componentClassName}"`, () => {
         render(<Component {...requiredProps} />)
           .should.have.className(componentClassName)

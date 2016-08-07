@@ -9,7 +9,6 @@ export default class ModalFooter extends Component {
   }
 
   static _meta = {
-    library: META.library.semanticUI,
     name: 'ModalFooter',
     type: META.type.module,
     parent: 'Modal',

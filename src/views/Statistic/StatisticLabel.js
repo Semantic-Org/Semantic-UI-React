@@ -18,7 +18,6 @@ function StatisticLabel(props) {
 }
 
 StatisticLabel._meta = {
-  library: META.library.semanticUI,
   name: 'StatisticLabel',
   parent: 'Statistic',
   type: META.type.view,

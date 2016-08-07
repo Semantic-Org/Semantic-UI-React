@@ -39,7 +39,6 @@ function Divider(props) {
 }
 
 Divider._meta = {
-  library: META.library.semanticUI,
   name: 'Divider',
   type: META.type.element,
 }

@@ -32,7 +32,7 @@ function DropdownItem(props) {
   )
   // add default dropdown icon if item contains another menu
   const iconName = icon || someChildType(children, 'DropdownMenu') && 'dropdown'
-  const iconClasses = cx('sd-dropdown-item-icon', iconName, 'icon')
+  const iconClasses = cx(iconName, 'icon')
 
   return (
     <div {...rest} className={classes} onClick={handleClick}>
@@ -45,7 +45,6 @@ function DropdownItem(props) {
 }
 
 DropdownItem._meta = {
-  library: META.library.semanticUI,
   name: 'DropdownItem',
   parent: 'Dropdown',
   type: META.type.module,

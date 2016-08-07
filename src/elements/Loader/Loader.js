@@ -25,7 +25,6 @@ function Loader(props) {
 }
 
 Loader._meta = {
-  library: META.library.semanticUI,
   name: 'Loader',
   type: META.type.element,
   props: {
