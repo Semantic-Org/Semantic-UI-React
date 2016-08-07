@@ -246,21 +246,6 @@ export const isConformant = (Component, requiredProps = {}) => {
   describe('className (common)', () => {
     const isHeader = /(header|h1|h2|h3|h4|h5|h6)/i.test(componentClassName)
 
-    it('does not have an sd-* className', () => {
-      const wrapper = shallow(<Component {...requiredProps} />)
-      const className = wrapper.prop('className')
-      const children = wrapper.children()
-
-      // component itself
-      if (className) className.should.not.contain('sd-')
-
-      // children
-      children.forEach(c => {
-        const childClassName = c.prop('className')
-        if (childClassName) childClassName.should.not.contain('sd-')
-      })
-    })
-
     // TODO: do not exclude headers once their APIs are updated
     if (!isHeader && !META.isAddon(Component)) {
       it(`has the Semantic UI className "${componentClassName}"`, () => {
