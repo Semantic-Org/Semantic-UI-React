@@ -49,6 +49,11 @@ const isType = metaHasKeyValue('type')
 const META = {
   type: TYPES,
 
+  // TODO remove once all PRs remove use of the library key
+  // this exists only to prevent foo of undefined errors
+  // there is a test that fails if a components uses this property
+  library: {},
+
   // type
   isType,
   isAddon: isType(TYPES.addon),

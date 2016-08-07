@@ -210,10 +210,9 @@ export const isConformant = (Component, requiredProps = {}) => {
       expect(_meta).to.be.an('object')
     })
 
-    describe('library', () => {
-      it('is not defined', () => {
-        expect(_meta).not.to.have.any.keys('library', 'Remove _meta.library, it is deprecated.')
-      })
+    // TODO remove once all PRs remove use of the library key
+    it('does not define the deprecated "library" key', () => {
+      expect(_meta).not.to.have.any.keys('library')
     })
     describe('name', () => {
       it('is defined', () => {
@@ -556,7 +555,7 @@ export const implementsVerticalAlignProp = (Component, requiredProps = {}) => {
     _.each(Component._meta.props.verticalAlign, (propVal) => {
       it(`adds "${propVal} aligned" to className`, () => {
         shallow(<Component { ...requiredProps } verticalAlign={propVal} />)
-            .should.have.className(`${propVal} ${'aligned'}`)
+          .should.have.className(`${propVal} ${'aligned'}`)
       })
     })
   })
