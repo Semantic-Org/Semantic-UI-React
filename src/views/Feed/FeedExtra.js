@@ -57,6 +57,7 @@ FeedExtra.propTypes = {
     PropTypes.oneOfType([
       PropTypes.bool,
       PropTypes.node,
+      PropTypes.arrayOf(PropTypes.string),
     ]),
   ]),
 }

@@ -2,17 +2,19 @@ import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
 import META from '../../utils/Meta'
-import { getUnhandledProps } from '../../utils/propUtils'
+import { customPropTypes, getUnhandledProps } from '../../utils/propUtils'
+import FeedContent from './FeedContent'
 import FeedLabel from './FeedLabel'
 
 function FeedEvent(props) {
-  const { children, className, image, icon } = props
+  const { content, children, className, image, icon } = props
   const classes = cx(className, 'event')
   const rest = getUnhandledProps(FeedEvent, props)
 
   return (<div {...rest} className={classes}>
     {icon && <FeedLabel icon={icon} />}
     {image && <FeedLabel image={image} />}
+    {content && <FeedContent {...{ content }} />}
     {children}
   </div>)
 }
@@ -25,7 +27,10 @@ FeedEvent._meta = {
 
 FeedEvent.propTypes = {
   /** Primary content of the FeedEvent. */
-  children: PropTypes.node,
+  children: customPropTypes.all([
+    customPropTypes.mutuallyExclusive(['content']),
+    PropTypes.node,
+  ]),
 
   /** Classes that will be added to the FeedEvent className. */
   className: PropTypes.string,
@@ -35,6 +40,12 @@ FeedEvent.propTypes = {
 
   /** An event can contain image label. */
   image: PropTypes.node,
+
+  /** Shorthand for FeedContent. */
+  content: customPropTypes.all([
+    customPropTypes.mutuallyExclusive(['children']),
+    PropTypes.node,
+  ]),
 }
 
 export default FeedEvent

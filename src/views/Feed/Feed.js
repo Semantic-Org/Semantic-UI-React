@@ -3,7 +3,7 @@ import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
 import META from '../../utils/Meta'
-import { getUnhandledProps } from '../../utils/propUtils'
+import { customPropTypes, getUnhandledProps } from '../../utils/propUtils'
 import * as sui from '../../utils/semanticUtils'
 import FeedContent from './FeedContent'
 import FeedDate from './FeedDate'
@@ -16,11 +16,21 @@ import FeedSummary from './FeedSummary'
 import FeedUser from './FeedUser'
 
 function Feed(props) {
-  const { children, className, size } = props
+  const { children, className, items, size } = props
   const classes = cx('ui', className, size, 'feed')
   const rest = getUnhandledProps(Feed, props)
 
-  return <div {...rest} className={classes}>{children}</div>
+  if (!items) {
+    return <div {...rest} className={classes}>{children}</div>
+  }
+
+  const eventsJSX = items.map(({ key, event }, index) => {
+    const finalKey = key || index
+
+    return <FeedEvent key={finalKey} {...event} />
+  })
+
+  return <div {...rest} className={classes}>{eventsJSX}</div>
 }
 
 Feed._meta = {
@@ -33,10 +43,19 @@ Feed._meta = {
 
 Feed.propTypes = {
   /** Primary content of the Feed. */
-  children: PropTypes.node,
+  children: customPropTypes.all([
+    customPropTypes.mutuallyExclusive(['events']),
+    PropTypes.node,
+  ]),
 
   /** Classes that will be added to the Feed className. */
   className: PropTypes.string,
+
+  /** Array of props for FeedEvent. */
+  events: customPropTypes.all([
+    customPropTypes.mutuallyExclusive(['children']),
+    PropTypes.arrayOf(Object),
+  ]),
 
   /** A feed can have different sizes. */
   size: PropTypes.oneOf(Feed._meta.props.size),

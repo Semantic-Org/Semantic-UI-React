@@ -34,6 +34,14 @@ const Date = () => {
           </Feed.Summary>
         </Feed.Content>
       </Feed.Event>
+
+      <Feed.Event>
+        <Feed.Label image={imageSrc} />
+        <Feed.Content
+          date='3 days ago'
+          summary={<span>You added <a>Jenny Hess</a> to your <a>coworker</a> group.</span>}
+        />
+      </Feed.Event>
     </Feed>
   )
 }
