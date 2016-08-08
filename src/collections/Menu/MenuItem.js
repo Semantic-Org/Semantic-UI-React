@@ -1,37 +1,25 @@
-import React, { PropTypes } from 'react'
 import cx from 'classnames'
+import React, { PropTypes } from 'react'
 
-import { getElementType, getUnhandledProps, META } from '../../lib'
-import { Label } from '../../elements'
+import { getElementType, getUnhandledProps, META, useKeyOnly } from '../../lib'
 
 function MenuItem(props) {
-  const { __onClick, active, children, className, label, name, onClick } = props
-  const handleClick = (e) => {
-    if (__onClick) __onClick(name)
-    if (onClick) onClick(name)
-  }
+  const { active, children, className } = props
 
   const classes = cx(
-    active && 'active',
     className,
+    useKeyOnly(active, 'active'),
     'item',
   )
-
-  const ElementType = getElementType(MenuItem, props)
   const rest = getUnhandledProps(MenuItem, props)
+  const ElementType = getElementType(MenuItem, props)
 
-  return (
-    <ElementType {...rest} className={classes} onClick={handleClick}>
-      {name}
-      {label && <Label>{label}</Label>}
-      {children}
-    </ElementType>
-  )
+  return <ElementType {...rest} className={classes}>{children}</ElementType>
 }
 
 MenuItem._meta = {
   name: 'MenuItem',
-  type: META.TYPES.COLLECTION,
+  type: META.type.collection,
   parent: 'Menu',
 }
 
@@ -42,13 +30,14 @@ MenuItem.propTypes = {
     PropTypes.func,
   ]),
 
-  __onClick: PropTypes.func,
+  /** A menu item can be active. */
   active: PropTypes.bool,
+
+  /** Primary content of the MenuItem. */
   children: PropTypes.node,
+
+  /** Classes that will be added to the MenuItem className. */
   className: PropTypes.string,
-  label: PropTypes.node,
-  name: PropTypes.string,
-  onClick: PropTypes.func,
 }
 
 MenuItem.defaultProps = {

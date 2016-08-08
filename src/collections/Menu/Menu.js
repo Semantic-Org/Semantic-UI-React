@@ -1,10 +1,33 @@
-import React, { Children, Component, cloneElement, PropTypes } from 'react'
+import _ from 'lodash'
 import cx from 'classnames'
+import React, { Children, cloneElement, PropTypes } from 'react'
 
+import {
+  AutoControlledComponent as Component,
+  getElementType,
+  getUnhandledProps,
+  META,
+  numberToWord,
+  SUI,
+} from '../../lib'
 import MenuItem from './MenuItem'
-import { childrenUtils, getElementType, getUnhandledProps, META } from '../../lib'
 
+/**
+ * A menu displays grouped navigation actions.
+ * */
 export default class Menu extends Component {
+  static autoControlledProps = [
+    'activeIndex',
+  ]
+
+  static _meta = {
+    name: 'Menu',
+    type: META.TYPES.COLLECTION,
+    props: {
+      widths: SUI.WIDTHS,
+    },
+  }
+
   static propTypes = {
     /** An element type to render as (string or function). */
     as: PropTypes.oneOfType([
@@ -12,50 +35,76 @@ export default class Menu extends Component {
       PropTypes.func,
     ]),
 
-    activeItem: PropTypes.string,
+    /** Index of the currently active item. */
+    activeIndex: PropTypes.number,
+
+    /** Primary content of the Menu. */
     children: PropTypes.node,
+
+    /** Classes that will be added to the Menu className. */
     className: PropTypes.string,
-  }
 
-  constructor(props, context) {
-    super(props, context)
-    const { activeItem, children } = this.props
-    const firstMenuItem = childrenUtils.findByType(children, MenuItem)
+    /** Initial activeIndex value. */
+    defaultActiveIndex: PropTypes.number,
 
-    this.state = {
-      activeItem: activeItem || firstMenuItem && firstMenuItem.props.name,
-    }
-  }
-
-  handleClickItem = (activeItem) => {
-    this.setState({ activeItem })
-  }
-
-  static _meta = {
-    name: 'Menu',
-    type: META.TYPES.COLLECTION,
+    /** A menu can have its items divided evenly. */
+    widths: PropTypes.oneOf(Menu._meta.props.widths),
   }
 
   static Item = MenuItem
 
-  render() {
-    const { activeItem, children, className } = this.props
+  state = {}
 
-    const classes = cx('ui', className, 'menu')
+  componentWillMount() {
+    super.componentWillMount()
 
-    const _children = Children.map(children, (child) => {
-      const { type, props } = child
-
-      return type !== MenuItem ? child : cloneElement(child, {
-        active: props.name === this.state.activeItem || props.name === activeItem,
-        __onClick: this.handleClickItem,
-      })
+    const activeIndex = _.findIndex(this.props.children, child => {
+      return child.type === MenuItem && _.has(child, 'props.active') && child.props.active
     })
-    const ElementType = getElementType(Menu, this.props)
+    this.trySetState({ activeIndex: _.isNumber(activeIndex) ? activeIndex : 0 })
+  }
+
+  handleItemClick = (e, index) => {
+    const { onItemClick } = this.props
+
+    this.trySetState({ activeIndex: index })
+    if (onItemClick) onItemClick(e, index)
+  }
+
+  renderChildren = () => {
+    const { children } = this.props
+    const { activeIndex } = this.state
+
+    return Children.map(children, (child, i) => {
+      const isItem = child.type === MenuItem
+
+      if (isItem) {
+        const onClick = (e) => {
+          this.handleItemClick(e, i)
+          if (child.props.onClick) child.props.onClick(e, i)
+        }
+
+        return cloneElement(child, { ...child.props, active: activeIndex === i, onClick })
+      }
+
+      return child
+    })
+  }
+
+  render() {
+    const { className, widths } = this.props
+    const classes = cx(
+      'ui',
+      className,
+      numberToWord(widths),
+      'menu'
+    )
     const rest = getUnhandledProps(Menu, this.props)
+    const ElementType = getElementType(Menu, this.props)
+
     return (
       <ElementType {...rest} className={classes}>
-        {_children}
+        {this.renderChildren()}
       </ElementType>
     )
   }
