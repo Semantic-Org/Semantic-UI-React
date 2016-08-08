@@ -5,9 +5,6 @@ import META from '../../utils/Meta'
 import { getUnhandledProps } from '../../utils/propUtils'
 
 import Modal from '../../modules/Modal/Modal'
-import ModalContent from '../../modules/Modal/ModalContent'
-import ModalFooter from '../../modules/Modal/ModalFooter'
-import ModalHeader from '../../modules/Modal/ModalHeader'
 
 export default class Confirm extends Component {
   static propTypes = {
@@ -23,6 +20,7 @@ export default class Confirm extends Component {
 
   state = {
     message: 'Are you sure?',
+    active: true,
   }
 
   show = (message) => new Promise((resolve, reject) => {
@@ -30,11 +28,9 @@ export default class Confirm extends Component {
 
     this.handleAbort = () => resolve(false)
     this.handleConfirm = () => resolve(true)
-
-    this.refs.modal.showModal()
   })
     .then(isConfirmed => {
-      this.refs.modal.hideModal()
+      this.setState({ active: false })
       return isConfirmed
     })
 
@@ -47,17 +43,17 @@ export default class Confirm extends Component {
     const { header, abortLabel, confirmLabel } = this.props
     const rest = getUnhandledProps(Confirm, this.props)
     return (
-      <Modal {...rest} ref='modal'>
-        <ModalHeader>
+      <Modal active={this.state.active} {...rest}>
+        <Modal.Header>
           {header}
-        </ModalHeader>
-        <ModalContent>
+        </Modal.Header>
+        <Modal.Content>
           {this.state.message}
-        </ModalContent>
-        <ModalFooter>
+        </Modal.Content>
+        <Modal.Actions>
           <div className='ui button' onClick={this.handleAbort}>{abortLabel}</div>
           <div className='ui blue button' onClick={this.handleConfirm}>{confirmLabel}</div>
-        </ModalFooter>
+        </Modal.Actions>
       </Modal>
     )
   }

@@ -3,15 +3,15 @@ import classNames from 'classnames'
 import META from '../../utils/Meta'
 import { getUnhandledProps } from '../../utils/propUtils'
 
-function ModalHeader(props) {
+function ModalActions(props) {
   const { children, className } = props
 
   const classes = classNames(
     className,
-    'header'
+    'actions'
   )
 
-  const rest = getUnhandledProps(ModalHeader, props)
+  const rest = getUnhandledProps(ModalActions, props)
 
   return (
     <div className={classes} {...rest}>
@@ -20,18 +20,18 @@ function ModalHeader(props) {
   )
 }
 
-ModalHeader._meta = {
-  name: 'ModalHeader',
+ModalActions._meta = {
+  name: 'ModalActions',
   type: META.type.module,
   parent: 'Modal',
 }
 
-ModalHeader.propTypes = {
-  /** Primary content of the modal header */
+ModalActions.propTypes = {
+  /** Primary content of the modal actions */
   children: PropTypes.any,
 
-  /** Classes to add to the modal header className */
+  /** Classes to add to the modal actions className */
   className: PropTypes.string,
 }
 
-export default ModalHeader
+export default ModalActions

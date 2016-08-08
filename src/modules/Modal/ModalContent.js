@@ -1,28 +1,44 @@
-import React, { Component, PropTypes } from 'react'
+import React, { PropTypes } from 'react'
 import classNames from 'classnames'
 import META from '../../utils/Meta'
+import {
+  getUnhandledProps,
+  useKeyOnly,
+} from '../../utils/propUtils'
 
-export default class ModalContent extends Component {
-  static propTypes = {
-    children: PropTypes.any,
-    className: PropTypes.string,
-  }
+function ModalContent(props) {
+  const { children, image, className } = props
 
-  static _meta = {
-    name: 'ModalContent',
-    type: META.type.module,
-    parent: 'Modal',
-  }
+  const classes = classNames(
+    className,
+    useKeyOnly(image, 'image'),
+    'content'
+  )
 
-  render() {
-    const classes = classNames(
-      this.props.className,
-      'content'
-    )
-    return (
-      <div {...this.props} className={classes}>
-        {this.props.children}
-      </div>
-    )
-  }
+  const rest = getUnhandledProps(ModalContent, props)
+
+  return (
+    <div className={classes} {...rest}>
+      {children}
+    </div>
+  )
 }
+
+ModalContent._meta = {
+  name: 'ModalContent',
+  type: META.type.module,
+  parent: 'Modal',
+}
+
+ModalContent.propTypes = {
+  /** Primary content of the modal content */
+  children: PropTypes.any,
+
+  /** Classes to add to the modal content className */
+  className: PropTypes.string,
+
+  /** A modal can contain image content */
+  image: PropTypes.bool,
+}
+
+export default ModalContent
