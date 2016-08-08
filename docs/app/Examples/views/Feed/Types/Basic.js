@@ -1,5 +1,5 @@
 import React from 'react'
-import { Feed, Image } from 'stardust'
+import { Feed } from 'stardust'
 
 const { Content, Date, Event, Extra, Label, Like, Meta, Summary, User } = Feed
 
@@ -8,7 +8,7 @@ const Basic = () => {
     <Feed>
       <Event>
         <Label>
-          <Image src='http://semantic-ui.com/images/avatar/small/elliot.jpg' />
+          <img src='http://semantic-ui.com/images/avatar/small/elliot.jpg' />
         </Label>
         <Content>
           <Summary>

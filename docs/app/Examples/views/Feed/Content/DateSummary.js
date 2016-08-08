@@ -2,13 +2,13 @@ import React from 'react'
 import { Feed } from 'stardust'
 
 const { Content, Date, Event, Label, Summary } = Feed
-const image = 'http://semantic-ui.com/images/avatar/small/jenny.jpg'
+const imageSrc = 'http://semantic-ui.com/images/avatar/small/jenny.jpg'
 
 const DateSummary = () => {
   return (
     <Feed>
       <Event>
-        <Label image={image} />
+        <Label image={imageSrc} />
         <Content>
           <Summary>
             You added <a>Jenny Hess</a> to your <a>coworker</a> group.
@@ -19,7 +19,7 @@ const DateSummary = () => {
       </Event>
 
       <Event>
-        <Label image={image} />
+        <Label image={imageSrc} />
         <Content>
           <Summary>
             You added <a>Jenny Hess</a> to your <a>coworker</a> group.
@@ -30,7 +30,7 @@ const DateSummary = () => {
       </Event>
 
       <Event>
-        <Label image={image} />
+        <Label image={imageSrc} />
         <Content>
           <Summary date='3 days ago'>
             You added <a>Jenny Hess</a> to your <a>coworker</a> group.

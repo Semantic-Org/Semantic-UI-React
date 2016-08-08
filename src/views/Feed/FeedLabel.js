@@ -1,18 +1,22 @@
+import _ from 'lodash'
 import cx from 'classnames'
 import React, { PropTypes } from 'react'
+
 import META from '../../utils/Meta'
-import { customPropTypes, getUnhandledProps, iconPropRenderer, imagePropRenderer } from '../../utils/propUtils'
+import { customPropTypes, getUnhandledProps, iconPropRenderer } from '../../utils/propUtils'
 
 function FeedLabel(props) {
   const { children, className, icon, image } = props
   const classes = cx(className, 'label')
   const rest = getUnhandledProps(FeedLabel, props)
 
+  const imageJSX = image && (_.isString(image) ? <img src={image} /> : image)
+
   return (
     <div {...rest} className={classes}>
       {children && children}
       {icon && iconPropRenderer(icon)}
-      {image && imagePropRenderer(image)}
+      {imageJSX}
     </div>
   )
 }

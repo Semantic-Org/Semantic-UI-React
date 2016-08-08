@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
@@ -14,7 +15,17 @@ function FeedExtra(props) {
   )
   const rest = getUnhandledProps(FeedExtra, props)
 
-  return <div {...rest} className={classes}>{children || text}</div>
+  if (!images || _.isBoolean(images)) {
+    return <div {...rest} className={classes}>{children || text}</div>
+  }
+
+  const imagesJSX = images.map((image, index) => {
+    const key = `${index}`
+
+    return _.isString(image) ? <img key={key} src={image} /> : image
+  })
+
+  return <div {...rest} className={classes}>{imagesJSX}</div>
 }
 
 FeedExtra._meta = {
@@ -33,7 +44,11 @@ FeedExtra.propTypes = {
   /** An event can contain additional information like a set of images. */
   images: customPropTypes.all([
     customPropTypes.mutuallyExclusive(['text']),
-    PropTypes.bool,
+    PropTypes.oneOfType([
+      PropTypes.bool,
+      PropTypes.arrayOf(PropTypes.node),
+      PropTypes.arrayOf(PropTypes.string),
+    ]),
   ]),
 
   /** An event can contain additional information like a set of images. */
