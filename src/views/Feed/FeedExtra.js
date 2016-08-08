@@ -19,10 +19,8 @@ function FeedExtra(props) {
     return <div {...rest} className={classes}>{children || text}</div>
   }
 
-  const imagesJSX = images.map((image, index) => {
-    const key = `${index}`
-
-    return _.isString(image) ? <img key={key} src={image} /> : image
+  const imagesJSX = images.map(image => {
+    return _.isString(image) ? <img key={image} src={image} /> : image
   })
 
   return <div {...rest} className={classes}>{imagesJSX}</div>

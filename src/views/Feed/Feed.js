@@ -16,18 +16,18 @@ import FeedSummary from './FeedSummary'
 import FeedUser from './FeedUser'
 
 function Feed(props) {
-  const { children, className, items, size } = props
+  const { children, className, events, size } = props
   const classes = cx('ui', className, size, 'feed')
   const rest = getUnhandledProps(Feed, props)
 
-  if (!items) {
+  if (!events) {
     return <div {...rest} className={classes}>{children}</div>
   }
 
-  const eventsJSX = items.map(({ key, event }, index) => {
+  const eventsJSX = events.map(({ key, ...eventData }, index) => {
     const finalKey = key || index
 
-    return <FeedEvent key={finalKey} {...event} />
+    return <FeedEvent key={finalKey} {...eventData} />
   })
 
   return <div {...rest} className={classes}>{eventsJSX}</div>
@@ -54,7 +54,7 @@ Feed.propTypes = {
   /** Array of props for FeedEvent. */
   events: customPropTypes.all([
     customPropTypes.mutuallyExclusive(['children']),
-    PropTypes.arrayOf(Object),
+    PropTypes.array,
   ]),
 
   /** A feed can have different sizes. */

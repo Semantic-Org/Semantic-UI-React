@@ -4,11 +4,12 @@ import React, { PropTypes } from 'react'
 import META from '../../utils/Meta'
 import { customPropTypes, getUnhandledProps } from '../../utils/propUtils'
 import FeedDate from './FeedDate'
+import FeedExtra from './FeedExtra'
 import FeedMeta from './FeedMeta'
 import FeedSummary from './FeedSummary'
 
 function FeedContent(props) {
-  const { children, content, className, date, meta, summary } = props
+  const { children, content, className, extraImages, extraText, date, meta, summary } = props
   const classes = cx(className, 'content')
   const rest = getUnhandledProps(FeedContent, props)
 
@@ -16,6 +17,8 @@ function FeedContent(props) {
     <div {...rest} className={classes}>
       {date && <FeedDate date={date} />}
       {summary && <FeedSummary summary={summary} />}
+      {extraImages && <FeedExtra images={extraImages} />}
+      {extraText && <FeedExtra text={extraText} />}
       {meta && <FeedMeta meta={meta} />}
       {children || content}
     </div>
@@ -38,7 +41,7 @@ FeedContent.propTypes = {
   /** Classes that will be added to the FeedContent className. */
   className: PropTypes.string,
 
-  /** Primary content of the FeedContent. */
+  /** Primary content of the FeedContent. Mutually exclusive with children. */
   content: customPropTypes.all([
     customPropTypes.mutuallyExclusive(['children']),
     PropTypes.node,
@@ -46,6 +49,21 @@ FeedContent.propTypes = {
 
   /** An event can contain a date. */
   date: PropTypes.node,
+
+  /** Shorthand for FeedExtra with prop images. */
+  extraImages: customPropTypes.all([
+    customPropTypes.mutuallyExclusive(['children', 'content', 'extraText']),
+    PropTypes.oneOf([
+      PropTypes.array,
+      PropTypes.node,
+    ]),
+  ]),
+
+  /** Shorthand for FeedExtra with prop text. */
+  extraText: customPropTypes.all([
+    customPropTypes.mutuallyExclusive(['children', 'content', 'extraImages']),
+    PropTypes.node,
+  ]),
 
   /** A shorthand for FeedMeta. */
   meta: PropTypes.node,
