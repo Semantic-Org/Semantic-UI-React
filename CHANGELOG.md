@@ -1,12 +1,29 @@
 # Change Log
 
-## [Unreleased](https://github.com/TechnologyAdvice/stardust/tree/HEAD)
+## [v0.30.0](https://github.com/TechnologyAdvice/stardust/tree/v0.30.0) (2016-08-08)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.29.0...v0.30.0)
 
-[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.28.1...HEAD)
+**Implemented enhancements:**
+
+- Update Modal to v1 API [\#379](https://github.com/TechnologyAdvice/stardust/pull/379) ([asiniy](https://github.com/asiniy))
+
+## [v0.29.0](https://github.com/TechnologyAdvice/stardust/tree/v0.29.0) (2016-08-08)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.28.1...v0.29.0)
+
+**Implemented enhancements:**
+
+- Add typings for typescript [\#361](https://github.com/TechnologyAdvice/stardust/issues/361)
+- \<Rating /\> Component [\#194](https://github.com/TechnologyAdvice/stardust/issues/194)
 
 **Fixed bugs:**
 
 - Invalid argument supplied to oneOf, expected an instance of array. [\#375](https://github.com/TechnologyAdvice/stardust/issues/375)
+
+**Merged pull requests:**
+
+- Remove \_meta.library [\#380](https://github.com/TechnologyAdvice/stardust/pull/380) ([levithomason](https://github.com/levithomason))
+- fix\(breadcrumb\): do not apply index to component keys [\#376](https://github.com/TechnologyAdvice/stardust/pull/376) ([davezuko](https://github.com/davezuko))
+- Add Rating Component [\#339](https://github.com/TechnologyAdvice/stardust/pull/339) ([levithomason](https://github.com/levithomason))
 
 ## [v0.28.1](https://github.com/TechnologyAdvice/stardust/tree/v0.28.1) (2016-08-05)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.28.0...v0.28.1)
