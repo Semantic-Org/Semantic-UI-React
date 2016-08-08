@@ -139,7 +139,7 @@ Be sure to check out the above migrations before embarking on a new component.  
 | x Image         |                 |                 | _ Nag           |                    |
 | x Input         |                 |                 | _ Popup         |                    |
 | x Label         |                 |                 | x Progress      |                    |
-| x List          |                 |                 | _ Rating        |                    |
+| x List          |                 |                 | x Rating        |                    |
 | x Loader        |                 |                 | _ Search        |                    |
 | x Rail          |                 |                 | _ Shape         |                    |
 | _ Reveal        |                 |                 | _ Sidebar       |                    |
