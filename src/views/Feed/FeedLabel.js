@@ -18,7 +18,6 @@ function FeedLabel(props) {
 }
 
 FeedLabel._meta = {
-  library: META.library.semanticUI,
   name: 'FeedLabel',
   parent: 'Feed',
   type: META.type.view,

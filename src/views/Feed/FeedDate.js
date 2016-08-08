@@ -13,7 +13,6 @@ function FeedDate(props) {
 }
 
 FeedDate._meta = {
-  library: META.library.semanticUI,
   name: 'FeedDate',
   parent: 'Feed',
   type: META.type.view,

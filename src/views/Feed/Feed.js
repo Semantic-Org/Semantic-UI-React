@@ -24,7 +24,6 @@ function Feed(props) {
 }
 
 Feed._meta = {
-  library: META.library.semanticUI,
   name: 'Feed',
   type: META.type.view,
   props: {

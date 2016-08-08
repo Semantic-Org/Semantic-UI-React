@@ -18,7 +18,6 @@ function FeedLike(props) {
 }
 
 FeedLike._meta = {
-  library: META.library.semanticUI,
   name: 'FeedLike',
   parent: 'Feed',
   type: META.type.view,

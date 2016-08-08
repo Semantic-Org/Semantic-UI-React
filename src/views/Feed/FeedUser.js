@@ -13,7 +13,6 @@ function FeedUser(props) {
 }
 
 FeedUser._meta = {
-  library: META.library.semanticUI,
   name: 'FeedUser',
   parent: 'Feed',
   type: META.type.view,

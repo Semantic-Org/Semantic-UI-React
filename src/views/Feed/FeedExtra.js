@@ -18,7 +18,6 @@ function FeedExtra(props) {
 }
 
 FeedExtra._meta = {
-  library: META.library.semanticUI,
   name: 'FeedExtra',
   parent: 'Feed',
   type: META.type.view,

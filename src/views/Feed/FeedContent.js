@@ -19,7 +19,6 @@ function FeedContent(props) {
 }
 
 FeedContent._meta = {
-  library: META.library.semanticUI,
   name: 'FeedContent',
   parent: 'Feed',
   type: META.type.view,

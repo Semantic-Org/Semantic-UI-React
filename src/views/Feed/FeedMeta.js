@@ -19,7 +19,6 @@ function FeedMeta(props) {
 }
 
 FeedMeta._meta = {
-  library: META.library.semanticUI,
   name: 'FeedMeta',
   parent: 'Feed',
   type: META.type.view,
