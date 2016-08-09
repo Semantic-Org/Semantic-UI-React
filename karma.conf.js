@@ -1,5 +1,5 @@
 const { argv } = require('yargs')
-const config = require('../config')
+const config = require('./config')
 const webpack = require('webpack')
 const webpackConfig = require('./webpack.config')
 
