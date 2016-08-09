@@ -21,3 +21,11 @@ export const objectDiff = (source, target) => _.transform(source, (res, val, key
   // new keys / changed values
   else if (!_.isEqual(val, target[key])) res[key] = target[key]
 }, {})
+
+export const isNodeInRoot = (node, root) => {
+  while (node) {
+    if (node === root) return true
+    node = node.parentNode
+  }
+  return false
+}
