@@ -13,7 +13,6 @@ function StepDescription(props) {
 }
 
 StepDescription._meta = {
-  library: META.library.semanticUI,
   name: 'StepDescription',
   parent: 'Step',
   type: META.type.element,

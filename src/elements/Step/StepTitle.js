@@ -13,7 +13,6 @@ function StepTitle(props) {
 }
 
 StepTitle._meta = {
-  library: META.library.semanticUI,
   name: 'StepTitle',
   parent: 'Step',
   type: META.type.element,

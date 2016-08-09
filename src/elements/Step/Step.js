@@ -51,7 +51,6 @@ function Step(props) {
 }
 
 Step._meta = {
-  library: META.library.semanticUI,
   name: 'Step',
   type: META.type.element,
 }

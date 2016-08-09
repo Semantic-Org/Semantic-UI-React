@@ -40,7 +40,6 @@ function StepGroup(props) {
 }
 
 StepGroup._meta = {
-  library: META.library.semanticUI,
   name: 'StepGroup',
   parent: 'Step',
   props: {

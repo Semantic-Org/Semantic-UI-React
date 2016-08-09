@@ -24,7 +24,6 @@ function StepContent(props) {
 }
 
 StepContent._meta = {
-  library: META.library.semanticUI,
   name: 'StepContent',
   parent: 'Step',
   type: META.type.element,
