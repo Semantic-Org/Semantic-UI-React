@@ -3,7 +3,7 @@ import React from 'react'
 import { Feed } from 'stardust'
 
 const { Content, Event, Extra, Label, Summary } = Feed
-const imageElements = _.times(2, () => <img src='http://semantic-ui.com/images/wireframe/image.png' />)
+const imageElements = _.times(2, (i) => <img key={i} src='http://semantic-ui.com/images/wireframe/image.png' />)
 const imageSources = _.times(2, () => 'http://semantic-ui.com/images/wireframe/image.png')
 
 const AdditionalInformation = () => {

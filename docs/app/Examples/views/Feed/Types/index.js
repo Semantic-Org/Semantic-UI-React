@@ -7,7 +7,7 @@ const FeedTypesExamples = () => {
     <ExampleSection title='Types'>
       <ComponentExample
         title='Feed'
-        description='A feed.'
+        description='A feed'
         examplePath='views/Feed/Types/Basic'
       />
       <ComponentExample examplePath='views/Feed/Types/Props' />

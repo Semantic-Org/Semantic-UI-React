@@ -7,7 +7,7 @@ const FeedVariationsExamples = () => {
     <ExampleSection title='Variations'>
       <ComponentExample
         title='Size'
-        description='A feed can have different sizes.'
+        description='A feed can have different sizes'
         examplePath='views/Feed/Variations/SizeSmall'
       />
       <ComponentExample examplePath='views/Feed/Variations/SizeLarge' />

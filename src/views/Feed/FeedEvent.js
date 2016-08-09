@@ -41,28 +41,25 @@ FeedEvent.propTypes = {
   /** Shorthand for FeedContent. */
   content: customPropTypes.all([
     customPropTypes.mutuallyExclusive(['children', 'date', 'extraImages', 'extraText', 'meta', 'summary']),
-    PropTypes.node,
+    PropTypes.string,
   ]),
 
   /** Shorthand for FeedDate. */
   date: customPropTypes.all([
     customPropTypes.mutuallyExclusive(['children', 'content']),
-    PropTypes.node,
+    PropTypes.string,
   ]),
 
   /** Shorthand for FeedExtra with prop images. */
   extraImages: customPropTypes.all([
-    customPropTypes.mutuallyExclusive(['children', 'content', 'extraText']),
-    PropTypes.oneOf([
-      PropTypes.array,
-      PropTypes.node,
-    ]),
+    customPropTypes.mutuallyExclusive(['children', 'content']),
+    PropTypes.arrayOf(PropTypes.node),
   ]),
 
   /** Shorthand for FeedExtra with prop text. */
   extraText: customPropTypes.all([
-    customPropTypes.mutuallyExclusive(['children', 'content', 'extraImages']),
-    PropTypes.node,
+    customPropTypes.mutuallyExclusive(['children', 'content']),
+    PropTypes.string,
   ]),
 
   /** An event can contain icon label. */
@@ -74,13 +71,13 @@ FeedEvent.propTypes = {
   /** Shorthand for FeedMeta. */
   meta: customPropTypes.all([
     customPropTypes.mutuallyExclusive(['children', 'content']),
-    PropTypes.node,
+    PropTypes.string,
   ]),
 
   /** Shorthand for FeedSummary. */
   summary: customPropTypes.all([
     customPropTypes.mutuallyExclusive(['children', 'content']),
-    PropTypes.node,
+    PropTypes.string,
   ]),
 }
 

@@ -35,11 +35,11 @@ FeedSummary.propTypes = {
   className: PropTypes.string,
 
   /** An event summary can contain a date. */
-  date: PropTypes.node,
+  date: PropTypes.string,
 
   summary: customPropTypes.all([
     customPropTypes.mutuallyExclusive(['children']),
-    PropTypes.node,
+    PropTypes.string,
   ]),
 }
 

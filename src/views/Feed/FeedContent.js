@@ -52,16 +52,13 @@ FeedContent.propTypes = {
 
   /** Shorthand for FeedExtra with prop images. */
   extraImages: customPropTypes.all([
-    customPropTypes.mutuallyExclusive(['children', 'content', 'extraText']),
-    PropTypes.oneOf([
-      PropTypes.array,
-      PropTypes.node,
-    ]),
+    customPropTypes.mutuallyExclusive(['children', 'content']),
+    PropTypes.arrayOf(PropTypes.node),
   ]),
 
   /** Shorthand for FeedExtra with prop text. */
   extraText: customPropTypes.all([
-    customPropTypes.mutuallyExclusive(['children', 'content', 'extraImages']),
+    customPropTypes.mutuallyExclusive(['children', 'content']),
     PropTypes.node,
   ]),
 

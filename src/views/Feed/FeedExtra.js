@@ -15,15 +15,15 @@ function FeedExtra(props) {
   )
   const rest = getUnhandledProps(FeedExtra, props)
 
-  if (!images || _.isBoolean(images)) {
-    return <div {...rest} className={classes}>{children || text}</div>
+  if (Array.isArray(images)) {
+    const imagesJSX = images.map((image, i) => {
+      return _.isString(image) ? <img key={i} src={image} /> : image
+    })
+
+    return <div {...rest} className={classes}>{imagesJSX}</div>
   }
 
-  const imagesJSX = images.map(image => {
-    return _.isString(image) ? <img key={image} src={image} /> : image
-  })
-
-  return <div {...rest} className={classes}>{imagesJSX}</div>
+  return <div {...rest} className={classes}>{children || text}</div>
 }
 
 FeedExtra._meta = {
@@ -45,7 +45,6 @@ FeedExtra.propTypes = {
     PropTypes.oneOfType([
       PropTypes.bool,
       PropTypes.arrayOf(PropTypes.node),
-      PropTypes.arrayOf(PropTypes.string),
     ]),
   ]),
 

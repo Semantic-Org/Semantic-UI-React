@@ -39,7 +39,7 @@ const Date = () => {
         <Feed.Label image={imageSrc} />
         <Feed.Content
           date='3 days ago'
-          summary={<span>You added <a>Jenny Hess</a> to your <a>coworker</a> group.</span>}
+          summary='You added Jenny Hess to your coworker group.'
         />
       </Feed.Event>
     </Feed>

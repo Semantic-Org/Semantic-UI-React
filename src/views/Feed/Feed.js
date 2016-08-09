@@ -54,7 +54,16 @@ Feed.propTypes = {
   /** Array of props for FeedEvent. */
   events: customPropTypes.all([
     customPropTypes.mutuallyExclusive(['children']),
-    PropTypes.array,
+    PropTypes.arrayOf(PropTypes.shape({
+      key: PropTypes.string,
+      date: PropTypes.string,
+      image: PropTypes.node,
+      icon: PropTypes.node,
+      meta: PropTypes.string,
+      summary: PropTypes.string,
+      extraText: PropTypes.string,
+      extraImages: PropTypes.arrayOf(PropTypes.node),
+    })),
   ]),
 
   /** A feed can have different sizes. */
