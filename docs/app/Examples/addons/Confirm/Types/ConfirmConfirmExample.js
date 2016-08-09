@@ -1,33 +1,25 @@
 import React, { Component } from 'react'
-import { Button, Header, Image, Modal } from 'stardust'
+import { Button, Confirm } from 'stardust'
 
-class ModalModalExample extends Component {
+class ConfirmConfirmExample extends Component {
   state = { active: false }
 
   show = () => this.setState({ active: true })
-  hide = () => this.setState({ active: false })
+  handleConfirm = () => this.setState({ active: false })
+  handleCancel = () => this.setState({ active: false })
 
   render() {
-    const { active } = this.state
-
     return (
       <div>
-        <Button onClick={this.show}>Show Modal</Button>
-
-        <Modal active={active} onHide={this.hide}>
-          <Modal.Header>Select a Photo</Modal.Header>
-          <Modal.Content image>
-            <Image className='medium' src='http://semantic-ui.com/images/avatar2/large/rachel.png' />
-            <Modal.Description>
-              <Header>Default Profile Image</Header>
-              <p>We've found the following gravatar image associated with your e-mail address.</p>
-              <p>Is it okay to use this photo?</p>
-            </Modal.Description>
-          </Modal.Content>
-        </Modal>
+        <Button onClick={this.show}>Show</Button>
+        <Confirm
+          active={this.state.active}
+          onCancel={this.handleCancel}
+          onConfirm={this.handleConfirm}
+        />
       </div>
     )
   }
 }
 
-export default ModalModalExample
+export default ConfirmConfirmExample

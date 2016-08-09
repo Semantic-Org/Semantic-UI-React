@@ -2,41 +2,43 @@ import React, { Component } from 'react'
 import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
 import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
 
-export default class ModalExamples extends Component {
+import { Message } from 'stardust'
+
+export default class ConfirmExamples extends Component {
   render() {
     return (
       <div>
+        <Message className='info'>
+          A Confirm is a pre-configured Modal.  You can use all the props of a regular Modal.
+        </Message>
         <ExampleSection title='Types'>
           <ComponentExample
-            title='Modal'
-            description='A standard modal'
-            examplePath='modules/Modal/Types/ModalModalExample'
+            title='Confirm'
+            description='A default confirm'
+            examplePath='addons/Confirm/Types/ConfirmConfirmExample'
           />
           <ComponentExample
-            title='Basic'
-            description='A modal can reduce its complexity'
-            examplePath='modules/Modal/Types/ModalBasicExample'
-          />
-          <ComponentExample
-            title='Scrolling'
-            description={[
-              'When your modal content exceeds the height of the browser the scrollable area will automatically',
-              'expand to include just enough space for scrolling, without scrolling the page below.',
-            ].join(' ')}
-            examplePath='modules/Modal/Types/ModalScrollingExample'
+            title='Callbacks'
+            description='A confirm has callbacks for cancel and confirm actions'
+            examplePath='addons/Confirm/Types/ConfirmCallbacksExample'
           />
         </ExampleSection>
 
         <ExampleSection title='Variations'>
           <ComponentExample
-            title='Size'
-            description='A modal can vary in size'
-            examplePath='modules/Modal/Variations/ModalSizeExample'
+            title='Header'
+            description='A confirm can define a header'
+            examplePath='addons/Confirm/Variations/ConfirmHeaderExample'
           />
           <ComponentExample
-            title='Dimmer Variations'
-            description='A modal can specify dimmer variations'
-            examplePath='modules/Modal/Variations/ModalDimmerExample'
+            title='Content'
+            description='A confirm can define content'
+            examplePath='addons/Confirm/Variations/ConfirmContentExample'
+          />
+          <ComponentExample
+            title='Button Text'
+            description='A confirm can customize button text'
+            examplePath='addons/Confirm/Variations/ConfirmButtonsExample'
           />
         </ExampleSection>
       </div>
