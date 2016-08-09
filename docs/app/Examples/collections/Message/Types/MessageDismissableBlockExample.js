@@ -16,7 +16,6 @@ export default class MessageDismissableBlockExample extends Component {
     if (this.state.visible) {
       return (
         <Message
-          dismissable
           onDismiss={this.handleDismiss}
           header='Welcome back!'
           content='This is a special notification which you can dismiss.'

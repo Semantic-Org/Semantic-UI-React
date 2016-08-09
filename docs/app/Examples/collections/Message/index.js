@@ -12,20 +12,32 @@ const MessageExamples = () => (
         description='A basic message'
         examplePath='collections/Message/Types/MessageMessageExample'
       />
-      <ComponentExample examplePath='collections/Message/Types/MessageMessagePropsExample' />
+      <ComponentExample
+        description='A basic message built with props'
+        examplePath='collections/Message/Types/MessageMessagePropsExample'
+      />
       <ComponentExample
         title='List Message'
         description='A message with a list'
         examplePath='collections/Message/Types/MessageListExample'
       />
-      <ComponentExample examplePath='collections/Message/Types/MessageListPropExample' />
-      <ComponentExample examplePath='collections/Message/Types/MessageListItemsPropExample' />
+      <ComponentExample
+        description='Pass array of items to the Message list prop'
+        examplePath='collections/Message/Types/MessageListPropExample'
+      />
+      <ComponentExample
+        description='Pass an array of items to the MessageList items prop'
+        examplePath='collections/Message/Types/MessageListItemsPropExample'
+      />
       <ComponentExample
         title='Icon Message'
         description='A message can contain an icon'
         examplePath='collections/Message/Types/MessageIconExample'
       />
-      <ComponentExample examplePath='collections/Message/Types/MessageIconPropsExample' />
+      <ComponentExample
+        description='You can pass an Icon name to the Message icon prop'
+        examplePath='collections/Message/Types/MessageIconPropExample'
+      />
       <ComponentExample
         title='Dismissable Block'
         description='A message that the user can choose to hide'
@@ -56,13 +68,19 @@ const MessageExamples = () => (
         description='A message can float above content that it is related to'
         examplePath='collections/Message/Variations/MessageFloatingExample'
       />
-      <ComponentExample examplePath='collections/Message/Variations/MessageFloatingPropsExample' />
+      <ComponentExample
+        description='You can also use props to configure the markup'
+        examplePath='collections/Message/Variations/MessageFloatingPropsExample'
+      />
       <ComponentExample
         title='Compact'
         description='A message can only take up the width of its content'
         examplePath='collections/Message/Variations/MessageCompactExample'
       />
-      <ComponentExample examplePath='collections/Message/Variations/MessageCompactPropsExample' />
+      <ComponentExample
+        description='You can also use props to configure the markup'
+        examplePath='collections/Message/Variations/MessageCompactPropsExample'
+      />
       <ComponentExample
         title='Attached'
         description='A message can be formatted to attach itself to other content'
@@ -73,25 +91,37 @@ const MessageExamples = () => (
         description='A message may be formatted to display information'
         examplePath='collections/Message/Variations/MessageInfoExample'
       />
-      <ComponentExample examplePath='collections/Message/Variations/MessageInfoPropsExample' />
+      <ComponentExample
+        description='You can also use props to configure the markup'
+        examplePath='collections/Message/Variations/MessageInfoPropsExample'
+      />
       <ComponentExample
         title='Warning'
         description='A message may be formatted to display warning message'
         examplePath='collections/Message/Variations/MessageWarningExample'
       />
-      <ComponentExample examplePath='collections/Message/Variations/MessageWarningPropsExample' />
+      <ComponentExample
+        description='You can also use props to configure the markup'
+        examplePath='collections/Message/Variations/MessageWarningPropsExample'
+      />
       <ComponentExample
         title='Positive/Success'
         description='A message may be formatted to display a positive message'
         examplePath='collections/Message/Variations/MessagePositiveExample'
       />
-      <ComponentExample examplePath='collections/Message/Variations/MessageSuccessExample' />
+      <ComponentExample
+        description='You can also use props to configure the markup'
+        examplePath='collections/Message/Variations/MessageSuccessExample'
+      />
       <ComponentExample
         title='Negative/Error'
         description='A message may be formatted to display a negative message'
         examplePath='collections/Message/Variations/MessageNegativeExample'
       />
-      <ComponentExample examplePath='collections/Message/Variations/MessageErrorExample' />
+      <ComponentExample
+        description='You can also use props to configure the markup'
+        examplePath='collections/Message/Variations/MessageErrorExample'
+      />
       <ComponentExample
         title='Colored'
         description='A message can be formatted to be different colors'

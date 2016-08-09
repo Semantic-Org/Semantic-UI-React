@@ -1,7 +1,7 @@
 import React from 'react'
 import { Message } from 'stardust'
 
-const MessageIconPropsExample = () => (
+const MessageIconPropExample = () => (
   <Message
     icon='inbox'
     header='Have you heard about our mailing list?'
@@ -9,4 +9,4 @@ const MessageIconPropsExample = () => (
   />
 )
 
-export default MessageIconPropsExample
+export default MessageIconPropExample

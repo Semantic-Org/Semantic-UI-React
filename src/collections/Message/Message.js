@@ -25,7 +25,6 @@ function Message(props) {
     header,
     icon,
     list,
-    dismissable,
     onDismiss,
     hidden,
     visible,
@@ -62,19 +61,21 @@ function Message(props) {
     className,
   )
 
-  const dismissIcon = (dismissable || onDismiss) && <Icon name='close' onClick={onDismiss || _.noop} />
+  const dismissIcon = onDismiss && <Icon name='close' onClick={onDismiss} />
   const rest = getUnhandledProps(Message, props)
 
-  if (content || header || icon || list) {
+  if (content || header || (icon && icon !== true) || list) {
     return (
       <div {...rest} className={classes}>
         {dismissIcon}
         {icon && iconPropRenderer(icon)}
-        {(header || content || list) && <MessageContent>
-          {header && <MessageHeader>{header}</MessageHeader>}
-          {list && <MessageList items={list} />}
-          {content && <p>{content}</p>}
-        </MessageContent>}
+        {(header || content || list) && (
+          <MessageContent>
+            {header && <MessageHeader>{header}</MessageHeader>}
+            {list && <MessageList items={list} />}
+            {content && <p>{content}</p>}
+          </MessageContent>
+        )}
       </div>
     )
   }
@@ -111,8 +112,8 @@ Message.propTypes = {
   /** Additional classes. */
   className: PropTypes.string,
 
-  /** Primary content.  Mutually exclusive with children. */
-  content: PropTypes.node,
+  /** The body of the message.  Mutually exclusive with children. */
+  content: PropTypes.string,
 
   /** The content of the MessageHeader. Mutually exclusive with children. */
   header: customPropTypes.all([
@@ -141,10 +142,10 @@ Message.propTypes = {
     PropTypes.arrayOf(PropTypes.string),
   ]),
 
-  /** A message that the user can choose to hide. */
-  dismissable: PropTypes.bool,
-
-  /** Called when the user clicks the "x" icon. This also adds the "x" icon. */
+  /**
+   * A message that the user can choose to hide.
+   * Called when the user clicks the "x" icon. This also adds the "x" icon.
+   */
   onDismiss: PropTypes.func,
 
   /** A message can be hidden. */

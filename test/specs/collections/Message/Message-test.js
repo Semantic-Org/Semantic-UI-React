@@ -14,6 +14,23 @@ describe('Message', () => {
   common.rendersChildren(Message)
   common.hasSubComponents(Message, [MessageContent, MessageHeader, MessageList])
 
+  common.propValueOnlyToClassName(Message, 'size')
+  common.propValueOnlyToClassName(Message, 'color')
+
+  common.propKeyOnlyToClassName(Message, 'icon')
+  common.propKeyOnlyToClassName(Message, 'hidden')
+  common.propKeyOnlyToClassName(Message, 'visible')
+  common.propKeyOnlyToClassName(Message, 'floating')
+  common.propKeyOnlyToClassName(Message, 'compact')
+  common.propKeyOnlyToClassName(Message, 'warning')
+  common.propKeyOnlyToClassName(Message, 'info')
+  common.propKeyOnlyToClassName(Message, 'positive')
+  common.propKeyOnlyToClassName(Message, 'success')
+  common.propKeyOnlyToClassName(Message, 'negative')
+  common.propKeyOnlyToClassName(Message, 'error')
+
+  common.propKeyOrValueToClassName(Message, 'attached')
+
   describe('content', () => {
     it('does not exist by default', () => {
       shallow(<Message />)
@@ -81,6 +98,16 @@ describe('Message', () => {
         .find('Icon')
         .should.have.prop('name', 'user')
     })
+    it('renders children when "true"', () => {
+      const text = 'child text'
+      const node = <div id='foo' />
+
+      shallow(<Message icon>{text}</Message>)
+        .should.have.text(text)
+
+      shallow(<Message icon>{node}</Message>)
+        .should.contain(node)
+    })
   })
 
   describe('list', () => {
@@ -101,17 +128,6 @@ describe('Message', () => {
     it('adds a "content" wrapper when defined', () => {
       shallow(<Message list={[]} />)
         .should.have.descendants('MessageContent')
-    })
-  })
-
-  describe('dismissable', () => {
-    it('has no close icon by default', () => {
-      shallow(<Message />)
-        .should.not.have.descendants('.close.icon')
-    })
-    it('adds a close icon when defined', () => {
-      render(<Message dismissable />)
-        .should.have.descendants('.close.icon')
     })
   })
 
