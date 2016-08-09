@@ -12,7 +12,6 @@ function Select(props) {
 }
 
 Select._meta = {
-  library: META.library.stardust,
   name: 'Select',
   type: META.type.addon,
 }

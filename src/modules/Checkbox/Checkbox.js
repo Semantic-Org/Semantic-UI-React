@@ -18,7 +18,6 @@ const typeMap = {
 }
 
 const _meta = {
-  library: META.library.semanticUI,
   name: 'Checkbox',
   type: META.type.module,
   props: {

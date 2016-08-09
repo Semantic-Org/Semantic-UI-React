@@ -9,7 +9,6 @@ function HeaderH5(props) {
 }
 
 HeaderH5._meta = {
-  library: META.library.semanticUI,
   name: 'HeaderH5',
   parent: 'Header',
   type: META.type.element,

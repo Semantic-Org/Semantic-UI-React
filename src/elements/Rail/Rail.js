@@ -28,7 +28,6 @@ function Rail(props) {
 }
 
 Rail._meta = {
-  library: META.library.semanticUI,
   name: 'Rail',
   props: {
     close: ['very'],

@@ -1,28 +1,18 @@
 import React, { Component, PropTypes } from 'react'
 import classNames from 'classnames'
 import META from '../../utils/Meta'
-import { customPropTypes } from '../../utils/propUtils'
+import { getUnhandledProps } from '../../utils/propUtils'
 
 /**
  * A group of segments can be formatted to appear together.
  */
 export default class SegmentSegments extends Component {
   static propTypes = {
-    /**
-     * Must be of type Segment, Segments, H1, H2, H3, H4, H5, H6, Subheader or Message.
-     */
-    children: customPropTypes.ofComponentTypes([
-      'Segment',
-      'SegmentSegments',
-      'H1', 'H2', 'H3', 'H4', 'H5', 'H6',
-      'Subheader',
-      'Message',
-    ]),
+    children: PropTypes.node,
     className: PropTypes.string,
   }
 
   static _meta = {
-    library: META.library.semanticUI,
     name: 'SegmentSegments',
     type: META.type.element,
     parent: 'Segment',
@@ -37,8 +27,10 @@ export default class SegmentSegments extends Component {
       'segments'
     )
 
+    const rest = getUnhandledProps(SegmentSegments, this.props)
+
     return (
-      <div {...this.props} className={classes}>
+      <div {...rest} className={classes}>
         {children}
       </div>
     )

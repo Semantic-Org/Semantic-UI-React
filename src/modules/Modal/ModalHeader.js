@@ -1,29 +1,37 @@
-import React, { Component, PropTypes } from 'react'
+import React, { PropTypes } from 'react'
 import classNames from 'classnames'
 import META from '../../utils/Meta'
+import { getUnhandledProps } from '../../utils/propUtils'
 
-export default class ModalHeader extends Component {
-  static propTypes = {
-    children: PropTypes.any,
-    className: PropTypes.string,
-  }
+function ModalHeader(props) {
+  const { children, className } = props
 
-  static _meta = {
-    library: META.library.semanticUI,
-    name: 'ModalHeader',
-    type: META.type.module,
-    parent: 'Modal',
-  }
+  const classes = classNames(
+    className,
+    'header'
+  )
 
-  render() {
-    const classes = classNames(
-      this.props.className,
-      'header'
-    )
-    return (
-      <div {...this.props} className={classes}>
-        {this.props.children}
-      </div>
-    )
-  }
+  const rest = getUnhandledProps(ModalHeader, props)
+
+  return (
+    <div className={classes} {...rest}>
+      {children}
+    </div>
+  )
 }
+
+ModalHeader._meta = {
+  name: 'ModalHeader',
+  type: META.type.module,
+  parent: 'Modal',
+}
+
+ModalHeader.propTypes = {
+  /** Primary content of the modal header */
+  children: PropTypes.any,
+
+  /** Classes to add to the modal header className */
+  className: PropTypes.string,
+}
+
+export default ModalHeader

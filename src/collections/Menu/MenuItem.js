@@ -25,7 +25,6 @@ function MenuItem({ __onClick, active, children, className, label, name, onClick
 }
 
 MenuItem._meta = {
-  library: META.library.semanticUI,
   name: 'MenuItem',
   type: META.type.collection,
   parent: 'Menu',
@@ -36,10 +35,7 @@ MenuItem.propTypes = {
   active: PropTypes.bool,
   children: PropTypes.node,
   className: PropTypes.string,
-  label: PropTypes.oneOfType([
-    PropTypes.number,
-    PropTypes.string,
-  ]),
+  label: PropTypes.node,
   name: PropTypes.string,
   onClick: PropTypes.func,
 }

@@ -12,11 +12,13 @@ const g = loadPlugins()
 const { log, colors } = g.util
 
 const serve = (cb) => {
-  const webpackConfig = require('../../build/webpack.config')
+  const webpackConfig = require('../../webpack.config')
   const app = express()
   const compiler = webpack(webpackConfig)
 
   app
+    .use(express.static(config.paths.docsDist()))
+
     .use(historyApiFallback({
       verbose: false,
     }))

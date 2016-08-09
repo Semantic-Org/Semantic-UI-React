@@ -7,8 +7,8 @@ describe('Confirm', () => {
   common.isConformant(Confirm)
 
   it('default prop abortLabel should be "Cancel"', () => {
-    shallow(<Confirm />)
-      .should.have.prop('abortLabel', 'Cancel')
+    Confirm.defaultProps.abortLabel
+      .should.equal('Cancel')
   })
   it('default prop confirmLabel should be "Yes"', () => {
     Confirm.defaultProps.confirmLabel

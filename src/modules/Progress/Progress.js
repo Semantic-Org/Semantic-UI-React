@@ -68,7 +68,6 @@ function Progress(props) {
 }
 
 Progress._meta = {
-  library: META.library.semanticUI,
   name: 'Progress',
   type: META.type.module,
   props: {

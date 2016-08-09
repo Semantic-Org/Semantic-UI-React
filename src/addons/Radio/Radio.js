@@ -14,7 +14,6 @@ function Radio(props) {
 }
 
 Radio._meta = {
-  library: META.library.stardust,
   name: 'Radio',
   type: META.type.addon,
 }

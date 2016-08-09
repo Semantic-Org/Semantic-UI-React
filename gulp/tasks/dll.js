@@ -8,7 +8,7 @@ const g = loadPlugins()
 const { log, PluginError } = g.util
 
 task('dll', (cb) => {
-  const webpackDLLConfig = require('../../build/webpack.dll')
+  const webpackDLLConfig = require('../../webpack.dll')
   const compiler = webpack(webpackDLLConfig)
 
   compiler.run((err, stats) => {

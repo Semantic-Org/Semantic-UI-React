@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import classNames from 'classnames'
 import $ from 'jquery'
 import META from '../../utils/Meta'
+import { getUnhandledProps } from '../../utils/propUtils'
 import Header from '../../elements/Header/Header'
 import Icon from '../../elements/Icon/Icon'
 
@@ -23,7 +24,6 @@ export default class Message extends Component {
   }
 
   static _meta = {
-    library: META.library.semanticUI,
     name: 'Message',
     type: META.type.collection,
   }
@@ -51,12 +51,10 @@ export default class Message extends Component {
       </div>
     )
 
-    // prevent spreading icon classes as props on message element
-    const messageProps = { ...this.props }
-    delete messageProps.icon
+    const rest = getUnhandledProps(Message, this.props)
 
     return (
-      <div {...messageProps} className={classes} ref='message'>
+      <div {...rest} className={classes} ref='message'>
         {this.props.dismissable && closeIcon}
         {this.props.icon && icon}
         {this.props.icon && content}

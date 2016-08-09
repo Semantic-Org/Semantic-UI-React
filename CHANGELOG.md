@@ -1,5 +1,136 @@
 # Change Log
 
+## [v0.30.0](https://github.com/TechnologyAdvice/stardust/tree/v0.30.0) (2016-08-08)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.29.0...v0.30.0)
+
+**Implemented enhancements:**
+
+- Update Modal to v1 API [\#379](https://github.com/TechnologyAdvice/stardust/pull/379) ([asiniy](https://github.com/asiniy))
+
+## [v0.29.0](https://github.com/TechnologyAdvice/stardust/tree/v0.29.0) (2016-08-08)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.28.1...v0.29.0)
+
+**Implemented enhancements:**
+
+- Add typings for typescript [\#361](https://github.com/TechnologyAdvice/stardust/issues/361)
+- \<Rating /\> Component [\#194](https://github.com/TechnologyAdvice/stardust/issues/194)
+
+**Fixed bugs:**
+
+- Invalid argument supplied to oneOf, expected an instance of array. [\#375](https://github.com/TechnologyAdvice/stardust/issues/375)
+
+**Merged pull requests:**
+
+- Remove \_meta.library [\#380](https://github.com/TechnologyAdvice/stardust/pull/380) ([levithomason](https://github.com/levithomason))
+- fix\(breadcrumb\): do not apply index to component keys [\#376](https://github.com/TechnologyAdvice/stardust/pull/376) ([davezuko](https://github.com/davezuko))
+- Add Rating Component [\#339](https://github.com/TechnologyAdvice/stardust/pull/339) ([levithomason](https://github.com/levithomason))
+
+## [v0.28.1](https://github.com/TechnologyAdvice/stardust/tree/v0.28.1) (2016-08-05)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.28.0...v0.28.1)
+
+**Implemented enhancements:**
+
+- Update MenuItem label propType to node [\#373](https://github.com/TechnologyAdvice/stardust/pull/373) ([Johnsel](https://github.com/Johnsel))
+
+**Merged pull requests:**
+
+- Support React 15.3.0 [\#374](https://github.com/TechnologyAdvice/stardust/pull/374) ([levithomason](https://github.com/levithomason))
+
+## [v0.28.0](https://github.com/TechnologyAdvice/stardust/tree/v0.28.0) (2016-08-04)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.27.7...v0.28.0)
+
+**Merged pull requests:**
+
+- Add logo and links to docs [\#372](https://github.com/TechnologyAdvice/stardust/pull/372) ([levithomason](https://github.com/levithomason))
+- Update Grid to v1 API [\#351](https://github.com/TechnologyAdvice/stardust/pull/351) ([layershifter](https://github.com/layershifter))
+
+## [v0.27.7](https://github.com/TechnologyAdvice/stardust/tree/v0.27.7) (2016-08-04)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.27.6...v0.27.7)
+
+**Fixed bugs:**
+
+- Dropdown \(multiple\) search box does not grow with input [\#370](https://github.com/TechnologyAdvice/stardust/issues/370)
+
+**Closed issues:**
+
+- Transpilation \(?\) causes an error [\#367](https://github.com/TechnologyAdvice/stardust/issues/367)
+
+**Merged pull requests:**
+
+- Resize Dropdown search on change [\#371](https://github.com/TechnologyAdvice/stardust/pull/371) ([levithomason](https://github.com/levithomason))
+
+## [v0.27.6](https://github.com/TechnologyAdvice/stardust/tree/v0.27.6) (2016-08-04)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.27.5...v0.27.6)
+
+**Fixed bugs:**
+
+- Importing SELECT causes error [\#368](https://github.com/TechnologyAdvice/stardust/issues/368)
+
+**Merged pull requests:**
+
+- Fix Label color propType argument [\#369](https://github.com/TechnologyAdvice/stardust/pull/369) ([levithomason](https://github.com/levithomason))
+
+## [v0.27.5](https://github.com/TechnologyAdvice/stardust/tree/v0.27.5) (2016-08-03)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.27.4...v0.27.5)
+
+**Implemented enhancements:**
+
+- Support server side rendering [\#364](https://github.com/TechnologyAdvice/stardust/issues/364)
+- Use a transitions enum for transition propTypes [\#164](https://github.com/TechnologyAdvice/stardust/issues/164)
+
+**Merged pull requests:**
+
+- Support server side rendering [\#365](https://github.com/TechnologyAdvice/stardust/pull/365) ([levithomason](https://github.com/levithomason))
+- Add Flag examples [\#357](https://github.com/TechnologyAdvice/stardust/pull/357) ([fodurrr](https://github.com/fodurrr))
+
+## [v0.27.4](https://github.com/TechnologyAdvice/stardust/tree/v0.27.4) (2016-08-02)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.27.3...v0.27.4)
+
+**Implemented enhancements:**
+
+- How to access input value while typing on Dropdown [\#355](https://github.com/TechnologyAdvice/stardust/issues/355)
+- Add Dropdown onSearchChange callback [\#360](https://github.com/TechnologyAdvice/stardust/pull/360) ([levithomason](https://github.com/levithomason))
+
+**Merged pull requests:**
+
+- Update Flag rest props and propTypes [\#359](https://github.com/TechnologyAdvice/stardust/pull/359) ([levithomason](https://github.com/levithomason))
+
+## [v0.27.3](https://github.com/TechnologyAdvice/stardust/tree/v0.27.3) (2016-08-02)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.27.2...v0.27.3)
+
+**Merged pull requests:**
+
+- Fix names of countries in \<Flag\> [\#358](https://github.com/TechnologyAdvice/stardust/pull/358) ([layershifter](https://github.com/layershifter))
+
+## [v0.27.2](https://github.com/TechnologyAdvice/stardust/tree/v0.27.2) (2016-07-28)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.27.1...v0.27.2)
+
+**Implemented enhancements:**
+
+- Don't throw error if jquery is detected [\#352](https://github.com/TechnologyAdvice/stardust/issues/352)
+
+**Merged pull requests:**
+
+- fix\(jQuery\): weaken window.jQuery error [\#353](https://github.com/TechnologyAdvice/stardust/pull/353) ([davezuko](https://github.com/davezuko))
+
+## [v0.27.1](https://github.com/TechnologyAdvice/stardust/tree/v0.27.1) (2016-07-25)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.27.0...v0.27.1)
+
+**Merged pull requests:**
+
+- Dropdown propTypes and docs update [\#348](https://github.com/TechnologyAdvice/stardust/pull/348) ([levithomason](https://github.com/levithomason))
+
+## [v0.27.0](https://github.com/TechnologyAdvice/stardust/tree/v0.27.0) (2016-07-23)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.26.0...v0.27.0)
+
+**Implemented enhancements:**
+
+- Dropdown.Item doesn't render [\#346](https://github.com/TechnologyAdvice/stardust/issues/346)
+
+**Merged pull requests:**
+
+- Support Dropdown sub component markup [\#347](https://github.com/TechnologyAdvice/stardust/pull/347) ([levithomason](https://github.com/levithomason))
+
 ## [v0.26.0](https://github.com/TechnologyAdvice/stardust/tree/v0.26.0) (2016-07-19)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.25.1...v0.26.0)
 

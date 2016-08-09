@@ -3,6 +3,7 @@ import classNames from 'classnames'
 import META from '../../utils/Meta'
 import Segments from './SegmentSegments'
 import Header from '../Header/Header'
+import { getUnhandledProps } from '../../utils/propUtils'
 
 /**
  * A segment is used to create a grouping of related content.
@@ -21,7 +22,6 @@ export default class Segment extends Component {
   }
 
   static _meta = {
-    library: META.library.semanticUI,
     name: 'Segment',
     type: META.type.element,
   }
@@ -36,8 +36,10 @@ export default class Segment extends Component {
       'segment'
     )
 
+    const rest = getUnhandledProps(Segment, this.props)
+
     return (
-      <div {...this.props} className={classes}>
+      <div {...rest} className={classes}>
         {this.props.heading && heading}
         {this.props.children}
       </div>

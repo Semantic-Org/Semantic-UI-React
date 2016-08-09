@@ -12,30 +12,21 @@ import BreadcrumbSection from './BreadcrumbSection'
  * A breadcrumb is used to show hierarchy between content.
  */
 function Breadcrumb(props) {
-  const {
-    children, className, divider, icon, size, sections,
-  } = props
-  const classes = cx(
-    'ui',
-    className,
-    size,
-    'breadcrumb'
-  )
+  const { children, className, divider, icon, size, sections } = props
   const rest = getUnhandledProps(Breadcrumb, props)
+  const classes = cx('ui', className, size, 'breadcrumb')
 
-  if (!sections) {
-    return <div {...rest} className={classes}>{children}</div>
-  }
+  if (!sections) return <div {...rest} className={classes}>{children}</div>
 
-  const dividerJSX = <Breadcrumb.Divider icon={icon}>{divider}</Breadcrumb.Divider>
+  const dividerJSX = <BreadcrumbDivider icon={icon}>{divider}</BreadcrumbDivider>
   const sectionsJSX = []
 
-  sections.forEach(({ text, ...restSection }, index) => {
-    const key = `${text}-${index}`
-    const dividerKey = `${key}-divider`
+  sections.forEach(({ text, key, ...restSection }, index) => {
+    const finalKey = key || text
+    const dividerKey = `${finalKey}-divider`
 
     sectionsJSX.push(
-      <Breadcrumb.Section {...restSection} key={key}>{text}</Breadcrumb.Section>
+      <BreadcrumbSection {...restSection} key={finalKey}>{text}</BreadcrumbSection>
     )
 
     if (index !== sections.length - 1) {
@@ -47,7 +38,6 @@ function Breadcrumb(props) {
 }
 
 Breadcrumb._meta = {
-  library: META.library.semanticUI,
   name: 'Breadcrumb',
   type: META.type.collection,
   props: {

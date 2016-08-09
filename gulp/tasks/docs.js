@@ -31,7 +31,7 @@ task('generate-docs-json', () => {
 })
 
 task('webpack-docs', (cb) => {
-  const webpackConfig = require('../../build/webpack.config')
+  const webpackConfig = require('../../webpack.config')
   const compiler = webpack(webpackConfig)
 
   compiler.run((err, stats) => {
@@ -60,11 +60,18 @@ task('docs-html', (cb) => {
     .pipe(dest(config.paths.docsDist()))
 })
 
+task('docs-images', (cb) => {
+  return src(config.paths.docsSrc('logo.png'))
+    .pipe(dest(config.paths.docsDist()))
+})
+
 task('docs', series(
+  'clean-docs',
   parallel(
     'dll',
     'generate-docs-json',
-    'docs-html'
+    'docs-html',
+    'docs-images'
   ),
   'webpack-docs',
 ))

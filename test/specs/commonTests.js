@@ -210,13 +210,9 @@ export const isConformant = (Component, requiredProps = {}) => {
       expect(_meta).to.be.an('object')
     })
 
-    describe('library', () => {
-      it('is defined', () => {
-        expect(_meta).to.have.any.keys('library')
-      })
-      it('is a META.library', () => {
-        expect(_.values(META.library)).to.contain(_meta.library)
-      })
+    // TODO remove once all PRs remove use of the library key
+    it('does not define the deprecated "library" key', () => {
+      expect(_meta).not.to.have.any.keys('library')
     })
     describe('name', () => {
       it('is defined', () => {
@@ -249,23 +245,8 @@ export const isConformant = (Component, requiredProps = {}) => {
   describe('className (common)', () => {
     const isHeader = /(header|h1|h2|h3|h4|h5|h6)/i.test(componentClassName)
 
-    it('does not have an sd-* className', () => {
-      const wrapper = shallow(<Component {...requiredProps} />)
-      const className = wrapper.prop('className')
-      const children = wrapper.children()
-
-      // component itself
-      if (className) className.should.not.contain('sd-')
-
-      // children
-      children.forEach(c => {
-        const childClassName = c.prop('className')
-        if (childClassName) childClassName.should.not.contain('sd-')
-      })
-    })
-
     // TODO: do not exclude headers once their APIs are updated
-    if (!isHeader && META.isSemanticUI(Component)) {
+    if (!isHeader && !META.isAddon(Component)) {
       it(`has the Semantic UI className "${componentClassName}"`, () => {
         render(<Component {...requiredProps} />)
           .should.have.className(componentClassName)
@@ -372,6 +353,11 @@ const _definesPropOptions = (Component, propKey) => {
 }
 
 const _noDefaultClassNameFromProp = (Component, propKey, requiredProps = {}) => {
+  // required props may include a prop that creates a className
+  // if so, we cannot assert that it doesn't exist by default because it is required to exist
+  // skip assertions for required props
+  if (propKey in requiredProps) return
+
   it('is not included in className when not defined', () => {
     const wrapper = shallow(<Component {...requiredProps} />)
     wrapper.should.not.have.className(propKey)
@@ -415,32 +401,30 @@ const _classNamePropValueBeforePropName = (Component, propKey, requiredProps) =>
 }
 
 /**
- * Assert that a Component correctly implements the "aligned" prop.
+ * Assert that a Component correctly implements columns prop.
  * @param {React.Component|Function} Component The component to test.
+ * @param {boolean} canEqual Flag that indicates possibility of "equal" value.
  * @param {Object} [requiredProps={}] Props required to render the component.
  */
-export const implementsAlignedProp = (Component, requiredProps = {}) => {
-  describe('aligned (common)', () => {
-    _definesPropOptions(Component, 'aligned')
-    _noDefaultClassNameFromProp(Component, 'aligned')
-    _noClassNameFromBoolProps(Component, 'aligned', requiredProps)
+export const implementsColumnsProp = (Component, canEqual, requiredProps = {}) => {
+  describe('columns (common)', () => {
+    _definesPropOptions(Component, 'columns')
+    _noDefaultClassNameFromProp(Component, 'columns', requiredProps)
+    _noClassNameFromBoolProps(Component, 'columns', requiredProps)
 
-    _.each(Component._meta.props.aligned, (propVal) => {
-      if (propVal === 'justified') {
-        it('adds "justified" without "aligned" to className', () => {
-          shallow(<Component { ...requiredProps } aligned='justified' />)
-            .should.have.className('justified')
+    it('adds numberToWord value to className', () => {
+      const propVal = _.sample(sui.widths)
 
-          shallow(<Component { ...requiredProps } aligned='justified' />)
-            .should.not.have.className('aligned')
-        })
-      } else {
-        it(`adds "${propVal} aligned" to className`, () => {
-          shallow(<Component { ...requiredProps } aligned={propVal} />)
-            .should.have.className(`${propVal} ${'aligned'}`)
-        })
-      }
+      shallow(createElement(Component, { ...requiredProps, columns: propVal }))
+        .should.have.className([numberToWord(propVal), 'column'].join(' '))
     })
+
+    if (canEqual) {
+      it('adds "equal width" to className', () => {
+        shallow(createElement(Component, { ...requiredProps, columns: 'equal' }))
+          .should.have.className('equal width')
+      })
+    }
   })
 }
 
@@ -518,11 +502,61 @@ export const implementsNumberToWordProp = (Component, propKey, requiredProps = {
     _noDefaultClassNameFromProp(Component, propKey, requiredProps)
     _noClassNameFromBoolProps(Component, propKey, requiredProps)
 
-    it('adds prop value to className', () => {
+    it('adds numberToWord value to className', () => {
       const propVal = _.sample(sui.widths)
 
       shallow(createElement(Component, { ...requiredProps, [propKey]: propVal }))
         .should.have.className(numberToWord(propVal))
+    })
+  })
+}
+
+/**
+ * Assert that a Component correctly implements the "textAlign" prop.
+ * @param {React.Component|Function} Component The component to test.
+ * @param {Object} [requiredProps={}] Props required to render the component.
+ */
+export const implementsTextAlignProp = (Component, requiredProps = {}) => {
+  describe('aligned (common)', () => {
+    _definesPropOptions(Component, 'textAlign')
+    _noDefaultClassNameFromProp(Component, 'textAlign')
+    _noClassNameFromBoolProps(Component, 'textAlign', requiredProps)
+
+    _.each(Component._meta.props.aligned, (propVal) => {
+      if (propVal === 'justified') {
+        it('adds "justified" without "aligned" to className', () => {
+          shallow(<Component { ...requiredProps } aligned='justified' />)
+            .should.have.className('justified')
+
+          shallow(<Component { ...requiredProps } aligned='justified' />)
+            .should.not.have.className('aligned')
+        })
+      } else {
+        it(`adds "${propVal} aligned" to className`, () => {
+          shallow(<Component { ...requiredProps } aligned={propVal} />)
+            .should.have.className(`${propVal} ${'aligned'}`)
+        })
+      }
+    })
+  })
+}
+
+/**
+ * Assert that a Component correctly implements the "verticalAlign" prop.
+ * @param {React.Component|Function} Component The component to test.
+ * @param {Object} [requiredProps={}] Props required to render the component.
+ */
+export const implementsVerticalAlignProp = (Component, requiredProps = {}) => {
+  describe('verticalAlign (common)', () => {
+    _definesPropOptions(Component, 'verticalAlign')
+    _noDefaultClassNameFromProp(Component, 'verticalAlign')
+    _noClassNameFromBoolProps(Component, 'verticalAlign', requiredProps)
+
+    _.each(Component._meta.props.verticalAlign, (propVal) => {
+      it(`adds "${propVal} aligned" to className`, () => {
+        shallow(<Component { ...requiredProps } verticalAlign={propVal} />)
+          .should.have.className(`${propVal} ${'aligned'}`)
+      })
     })
   })
 }

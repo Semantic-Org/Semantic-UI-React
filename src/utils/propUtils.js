@@ -2,6 +2,8 @@ import _ from 'lodash'
 import cx from 'classnames'
 import React, { Children } from 'react'
 
+import numberToWord from './numberToWord'
+
 import Icon from '../elements/Icon/Icon'
 import Image from '../elements/Image/Image'
 
@@ -52,7 +54,7 @@ export const customPropTypes = {
 
       // mutually exclusive
       const disallowed = exclusives.reduce((acc, exclusive) => {
-        if (_.has(props, propName) && _.has(props, exclusive)) {
+        if (!_.isUndefined(props[propName]) && !_.isUndefined(props[exclusive])) {
           return [...acc, exclusive]
         }
         return acc
@@ -72,7 +74,7 @@ export const customPropTypes = {
    * @param {function[]} validators An array of propType functions.
    */
   all: (validators) => {
-    return (props, propName, componentName) => {
+    return (props, propName, componentName, ...rest) => {
       if (!_.isArray(validators)) {
         throw new Error([
           'Invalid argument supplied to all, expected an instance of array.',
@@ -86,7 +88,7 @@ export const customPropTypes = {
             `all() argument "validators" should contain functions, found: ${type(validator)}.`
           )
         }
-        return validator(props, propName, componentName)
+        return validator(props, propName, componentName, ...rest)
       }))
 
       // we can only return one error at a time
@@ -99,7 +101,7 @@ export const customPropTypes = {
    * @param {function[]} validators An array of propType functions.
    */
   any: (validators) => {
-    return (props, propName, componentName) => {
+    return (props, propName, componentName, ...rest) => {
       if (!_.isArray(validators)) {
         throw new Error([
           'Invalid argument supplied to all, expected an instance of array.',
@@ -113,7 +115,7 @@ export const customPropTypes = {
             `any() argument "validators" should contain functions, found: ${type(validator)}.`
           )
         }
-        return validator(props, propName, componentName)
+        return validator(props, propName, componentName, ...rest)
       })
 
       // if no validator returned undefined (no error)
@@ -248,16 +250,45 @@ export const useKeyOrValueAndKey = (val, key) => val && (val === true ? key : `$
 //
 
 /**
- * The "aligned" prop follows the useValueAndKey except when the value is "justified'.
- * In this case, only the class "justified" is used, ignoring the "aligned" class.
- * @param {*} val The value of the "aligned" prop
+ * The "columns" prop follows the useValueAndKey except when the value is "equal" and value equal is allowed.
+ * In this case, classes "equal width" are used, ignoring the "column" class.
+ * @param {*} val The value of the "columns" prop
+ * @param {boolean} canEqual Flag that indicates possibility of "equal" value
  *
  * @example
- * <Container aligned='justified' />
+ * <Grid columns='equal' />
+ * <div class="ui equal width grid"></div>
+ *
+ * @example
+ * <Grid columns={4} />
+ * <div class="ui four column grid"></div>
+ */
+export const useColumnsProp = (val, canEqual = false) => val === 'equal' && canEqual
+  ? 'equal width'
+  : useValueAndKey(numberToWord(val), 'column')
+
+/**
+ * The "textAlign" prop follows the useValueAndKey except when the value is "justified'.
+ * In this case, only the class "justified" is used, ignoring the "aligned" class.
+ * @param {*} val The value of the "textAlign" prop
+ *
+ * @example
+ * <Container textAlign='justified' />
  * <div class="ui justified container"></div>
  *
  * @example
- * <Container aligned='left' />
+ * <Container textAlign='left' />
  * <div class="ui left aligned container"></div>
  */
-export const useAlignedProp = val => val === 'justified' ? 'justified' : useValueAndKey(val, 'aligned')
+export const useTextAlignProp = val => val === 'justified' ? 'justified' : useValueAndKey(val, 'aligned')
+
+/**
+ * The "verticalAlign" prop follows the useValueAndKey.
+ *
+ * @param {*} val The value of the "verticalAlign" prop
+ *
+ * @example
+ * <Grid verticalAlign='middle' />
+ * <div class="ui middle aligned grid"></div>
+ */
+export const useVerticalAlignProp = val => useValueAndKey(val, 'aligned')

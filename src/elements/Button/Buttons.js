@@ -9,7 +9,6 @@ export default class Buttons extends Component {
   }
 
   static _meta = {
-    library: META.library.semanticUI,
     name: 'Buttons',
     type: META.type.element,
     parent: 'Button',

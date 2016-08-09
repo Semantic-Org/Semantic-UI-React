@@ -64,7 +64,6 @@ export default class Form extends Component {
   }
 
   static _meta = {
-    library: META.library.semanticUI,
     name: 'Form',
     type: META.type.collection,
   }

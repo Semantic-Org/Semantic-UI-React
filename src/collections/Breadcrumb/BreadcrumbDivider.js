@@ -8,31 +8,19 @@ import { customPropTypes, iconPropRenderer, getUnhandledProps } from '../../util
  * A divider sub-component for Breadcrumb component.
  */
 function BreadcrumbDivider(props) {
-  const {
-    children, icon, className,
-  } = props
-  const classes = cx(
-    className,
-    'divider',
-  )
+  const { children, icon, className } = props
   const rest = getUnhandledProps(BreadcrumbDivider, props)
+  const classes = cx(className, 'divider')
 
-  if (icon) {
-    return iconPropRenderer(icon, { ...rest, className: classes })
-  }
+  if (icon) return iconPropRenderer(icon, { ...rest, className: classes })
 
-  return <div {...rest} className={classes}>{children}</div>
+  return <div {...rest} className={classes}>{children || '/'}</div>
 }
 
 BreadcrumbDivider._meta = {
-  library: META.library.semanticUI,
   name: 'BreadcrumbDivider',
   type: META.type.collection,
   parent: 'Breadcrumb',
-}
-
-BreadcrumbDivider.defaultProps = {
-  children: '/',
 }
 
 BreadcrumbDivider.propTypes = {

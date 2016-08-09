@@ -1,6 +1,6 @@
 {
   "name": "stardust",
-  "version": "0.26.0",
+  "version": "0.30.0",
   "description": "The official Semantic-UI-React integration.",
   "main": "dist/index.js",
   "files": [
@@ -26,7 +26,7 @@
     "start": "npm run docs",
     "start:local-modules": "npm run docs -- --local-modules",
     "pretest": "gulp dll",
-    "test": "cross-env NODE_ENV=test karma start build/karma.conf.babel.js",
+    "test": "cross-env NODE_ENV=test karma start",
     "test:watch": "npm run test --silent -- --watch"
   },
   "repository": {
@@ -104,7 +104,7 @@
     "node-sass": "^3.4.2",
     "phantomjs-prebuilt": "^2.1.7",
     "raw-loader": "^0.5.1",
-    "react": "^15.0.2",
+    "react": "^15.3.0",
     "react-addons-test-utils": "^15.0.2",
     "react-docgen": "^2.2.0",
     "react-document-title": "^2.0.2",

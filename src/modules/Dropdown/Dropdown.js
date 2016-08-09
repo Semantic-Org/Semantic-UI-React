@@ -1,11 +1,10 @@
-/* eslint-disable react/sort-comp */
-
 import _ from 'lodash'
 import cx from 'classnames'
-import React, { PropTypes } from 'react'
+import React, { cloneElement, PropTypes } from 'react'
+import { findDOMNode } from 'react-dom'
 
 import META from '../../utils/Meta'
-import { getUnhandledProps, useKeyOnly, useKeyOrValueAndKey } from '../../utils/propUtils'
+import { customPropTypes, getUnhandledProps, useKeyOnly, useKeyOrValueAndKey } from '../../utils/propUtils'
 import keyboardKey from '../../utils/keyboardKey'
 import { makeDebugger } from '../../utils/debug'
 import { objectDiff } from '../../utils/utils'
@@ -21,7 +20,6 @@ import Label from '../../elements/Label/Label'
 const debug = makeDebugger('dropdown')
 
 const _meta = {
-  library: META.library.semanticUI,
   name: 'Dropdown',
   type: META.type.module,
   props: {
@@ -45,22 +43,34 @@ export default class Dropdown extends Component {
     ]),
 
     /** Array of `{ text: '', value: '' }` options */
-    options: PropTypes.arrayOf(PropTypes.shape({
-      value: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.number,
-      ]).isRequired,
-      text: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.number,
-      ]).isRequired,
-    })),
+    options: customPropTypes.all([
+      customPropTypes.mutuallyExclusive(['children']),
+      customPropTypes.require(['selection']),
+      PropTypes.arrayOf(PropTypes.shape({
+        value: PropTypes.oneOfType([
+          PropTypes.string,
+          PropTypes.number,
+        ]).isRequired,
+        text: PropTypes.oneOfType([
+          PropTypes.string,
+          PropTypes.number,
+        ]),
+      })),
+    ]),
 
     /** Controls whether or not the dropdown menu is displayed. */
     open: PropTypes.bool,
 
     /** Initial value of open. */
     defaultOpen: PropTypes.bool,
+
+    /** A Dropdown can contain a single <Dropdown.Menu /> child. */
+    children: customPropTypes.all([
+      customPropTypes.mutuallyExclusive(['options', 'selection']),
+      customPropTypes.require(['text']),
+      React.PropTypes.element,
+      customPropTypes.ofComponentTypes(['DropdownMenu']),
+    ]),
 
     /** Current value or value array if multiple. Creates a controlled component. */
     value: PropTypes.oneOfType([
@@ -97,6 +107,9 @@ export default class Dropdown extends Component {
 
     /** Called with the React Synthetic Event and current value on change. */
     onChange: PropTypes.func,
+
+    /** Called with the React Synthetic Event and current value on search input change. */
+    onSearchChange: PropTypes.func,
 
     /** Called with the React Synthetic Event on Dropdown click. */
     onClick: PropTypes.func,
@@ -145,7 +158,11 @@ export default class Dropdown extends Component {
     // TODO 'searchInMenu' or 'search='in menu' or ???  How to handle this markup and functionality?
 
     /** Behave as an html select. */
-    selection: PropTypes.bool,
+    selection: customPropTypes.all([
+      customPropTypes.mutuallyExclusive(['children']),
+      customPropTypes.require(['options']),
+      PropTypes.bool,
+    ]),
     simple: PropTypes.bool,
 
     loading: PropTypes.bool,
@@ -329,7 +346,6 @@ export default class Dropdown extends Component {
     // prevent selecting null if there was no selected item value
     if (!value) return
 
-
     // notify the onChange prop that the user is trying to change value
     if (multiple) {
       // state value may be undefined
@@ -435,16 +451,28 @@ export default class Dropdown extends Component {
     debug(e.target.value)
     // prevent propagating to this.props.onChange()
     e.stopPropagation()
-    const { search } = this.props
+    const { search, onSearchChange } = this.props
     const { open } = this.state
     const newQuery = e.target.value
+
+    if (onSearchChange) onSearchChange(e, newQuery)
 
     // open search dropdown on search query
     if (search && newQuery && !open) this.open()
 
+    // resize the search input, temporarily show the sizer so we can measure it
+    let searchWidth
+    if (newQuery) {
+      const sizer = findDOMNode(this.refs.sizer)
+      sizer.style.display = 'inline'
+      searchWidth = Math.ceil(sizer.getBoundingClientRect().width)
+      sizer.style.removeProperty('display')
+    }
+
     this.setState({
       selectedIndex: 0,
       searchQuery: newQuery,
+      searchWidth,
     })
   }
 
@@ -649,7 +677,7 @@ export default class Dropdown extends Component {
 
   renderSearchInput = () => {
     const { search } = this.props
-    const { searchQuery } = this.state
+    const { searchQuery, searchWidth } = this.state
 
     return !search ? null : (
       <input
@@ -660,9 +688,17 @@ export default class Dropdown extends Component {
         className='search'
         autoComplete='off'
         tabIndex='0'
+        style={{ width: searchWidth }}
         ref='search'
       />
     )
+  }
+
+  renderSearchSizer = () => {
+    const { search } = this.props
+    const { searchQuery } = this.state
+
+    return !search ? null : <span className='sizer' ref='sizer'>{searchQuery}</span>
   }
 
   renderLabels = () => {
@@ -715,11 +751,25 @@ export default class Dropdown extends Component {
     ))
   }
 
+  renderMenu = () => {
+    const { children } = this.props
+    const { menuClasses } = this.state
+
+    // single menu child
+    if (children) return cloneElement(children, { className: menuClasses })
+
+    return (
+      <DropdownMenu className={menuClasses}>
+        {this.renderOptions()}
+      </DropdownMenu>
+    )
+  }
+
   render() {
     debug('render()')
     debug('props', this.props)
     debug('state', this.state)
-    const { dropdownClasses, menuClasses } = this.state
+    const { dropdownClasses } = this.state
 
     const {
       button,
@@ -790,11 +840,10 @@ export default class Dropdown extends Component {
         {this.renderHiddenInput()}
         {this.renderLabels()}
         {this.renderSearchInput()}
+        {this.renderSearchSizer()}
         {this.renderText()}
         <Icon name={'dropdown'} />
-        <DropdownMenu className={menuClasses} ref='menu'>
-          {this.renderOptions()}
-        </DropdownMenu>
+        {this.renderMenu()}
       </div>
     )
   }

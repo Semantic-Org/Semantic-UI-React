@@ -46,7 +46,6 @@ function BreadcrumbSection(props) {
 }
 
 BreadcrumbSection._meta = {
-  library: META.library.semanticUI,
   name: 'BreadcrumbSection',
   type: META.type.collection,
   parent: 'Breadcrumb',

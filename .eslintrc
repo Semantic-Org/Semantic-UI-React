@@ -9,6 +9,11 @@
     "no-confusing-arrow": 0,
     "react/sort-comp": 0,
     "valid-jsdoc": 0,
-    "react/jsx-curly-spacing": 0
+    "react/jsx-curly-spacing": 0,
+    "padded-blocks": [2, {
+      "blocks": "never",
+      "switches": "never",
+      "classes": "never"
+    }]
   }
 }

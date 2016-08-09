@@ -36,7 +36,6 @@ function Statistic(props) {
 }
 
 Statistic._meta = {
-  library: META.library.semanticUI,
   name: 'Statistic',
   type: META.type.view,
   props: {
@@ -50,10 +49,7 @@ Statistic.propTypes = {
   /** Primary content of the Statistic. */
   children: customPropTypes.all([
     customPropTypes.mutuallyExclusive(['label', 'value']),
-    customPropTypes.ofComponentTypes([
-      'StatisticLabel',
-      'StatisticValue',
-    ]),
+    PropTypes.node,
   ]),
 
   /** Classes that will be added to the Statistic className. */

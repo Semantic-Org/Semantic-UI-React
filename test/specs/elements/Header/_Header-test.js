@@ -17,9 +17,9 @@ describe('_Header', () => {
 
   common.propValueOnlyToClassName(_Header, 'color')
 
-  common.implementsAlignedProp(_Header)
   common.implementsIconProp(_Header)
   common.implementsImageProp(_Header)
+  common.implementsTextAlignProp(_Header)
 
   it('has an icon class when adding an icon', () => {
     const iconClass = faker.hacker.noun()

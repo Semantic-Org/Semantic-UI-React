@@ -63,15 +63,16 @@ export Rail from './elements/Rail/Rail'
 // ----------------------------------------
 export Accordion from './modules/Accordion/Accordion'
 export Checkbox from './modules/Checkbox/Checkbox'
-export Progress from './modules/Progress/Progress'
+export Dropdown from './modules/Dropdown/Dropdown'
 
 import _Modal from './modules/Modal/Modal'
 export { _Modal as Modal }
 export const ModalContent = deprecateComponent('ModalContent', 'Use "Modal.Content" instead.', _Modal.Content)
-export const ModalFooter = deprecateComponent('ModalFooter', 'Use "Modal.Footer" instead.', _Modal.Footer)
 export const ModalHeader = deprecateComponent('ModalHeader', 'Use "Modal.Header" instead.', _Modal.Header)
+export const ModalFooter = deprecateComponent('ModalFooter', 'Use "Modal.Actions" instead.', _Modal.Actions)
 
-export Dropdown from './modules/Dropdown/Dropdown'
+export Progress from './modules/Progress/Progress'
+export Rating from './modules/Rating/Rating'
 
 // ----------------------------------------
 // Views

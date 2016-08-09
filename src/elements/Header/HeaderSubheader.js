@@ -26,7 +26,6 @@ function HeaderSubheader(props) {
 }
 
 HeaderSubheader._meta = {
-  library: META.library.semanticUI,
   name: 'HeaderSubheader',
   parent: 'Header',
   type: META.type.element,

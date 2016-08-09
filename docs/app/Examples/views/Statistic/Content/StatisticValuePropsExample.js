@@ -27,9 +27,9 @@ const StatisticValuePropsExample = () => (
   <div>
     <Statistic.Group>
       <Statistic label='Saves' value='22' />
-      <Statistic Label='Signups' value={textValue} text />
-      <Statistic Label='Flights' value={iconValue} />
-      <Statistic Label='Team Members' value={imageValue} />
+      <Statistic label='Signups' value={textValue} text />
+      <Statistic label='Flights' value={iconValue} />
+      <Statistic label='Team Members' value={imageValue} />
     </Statistic.Group>
 
     <Statistic.Group items={items} />
