@@ -1,6 +1,6 @@
 const webpack = require('webpack')
 
-const config = require('../config')
+const config = require('./config')
 const webpackDllConfig = { module: {} }
 
 const { paths } = config

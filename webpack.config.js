@@ -1,4 +1,4 @@
-const config = require('../config')
+const config = require('./config')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const _ = require('lodash')

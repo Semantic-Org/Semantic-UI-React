@@ -1,8 +1,3 @@
-# HEADS UP!
-#
-#   'npm run clean' runs rm -rf on all lines in this file.
-#
-
 npm-debug.log*
 node_modules/
 bower_components/

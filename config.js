@@ -8,7 +8,7 @@ const __DEV__ = env === 'development'
 const __STAGING__ = env === 'staging'
 const __TEST__ = env === 'test'
 const __PROD__ = env === 'production'
-const __BASE__ = '/'
+const __BASE__ = __PROD__ ? '/stardust' : ''
 
 let config = {
   env,
@@ -16,7 +16,7 @@ let config = {
   // ----------------------------------
   // Project Structure
   // ----------------------------------
-  path_base: path.resolve(__dirname, '../'),
+  path_base: __dirname,
   dir_src: 'src',
   dir_dist: 'dist',
   dir_docs_root: 'docs',
@@ -52,14 +52,14 @@ config = Object.assign({}, config, {
   // ----------------------------------
   // Compiler Configuration
   // ----------------------------------
-  compiler_devtool: false,
-  compiler_hash_type: 'hash',
+  compiler_devtool: __DEV__ && 'eval-cheap-module-source-map' || __STAGING__ && 'source-map',
+  compiler_hash_type: __PROD__ ? 'chunkhash' : 'hash',
   compiler_inline_manifest: false,
-  compiler_fail_on_warning: false,
+  compiler_fail_on_warning: __TEST__ || __PROD__,
   compiler_lint: argv.lint !== false,
   compiler_quiet: false,
   compiler_output_path: paths.base(config.dir_docs_dist),
-  compiler_public_path: __BASE__,
+  compiler_public_path: __BASE__ || '/',
   compiler_vendor: [
     'bluebird',
     'classnames',
