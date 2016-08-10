@@ -18,7 +18,7 @@ export default class AccordionTypesExamples extends Component {
           description='Accordion panels can be define using the `panels` prop.'
           examplePath='modules/Accordion/Types/PanelsProp'
         >
-          <Message className='info'>
+          <Message info>
             Panel objects can define an <code>active</code> key to open/close the panel.
             {' '}They can also define an <code>onClick</code> key to be applied to the <code>Accordion.Title</code>.
           </Message>
@@ -28,7 +28,7 @@ export default class AccordionTypesExamples extends Component {
           description='The `activeIndex` prop controls which panel is open.'
           examplePath='modules/Accordion/Types/ActiveIndex'
         >
-          <Message className='info'>
+          <Message info>
             An <code>active</code> prop on an
             {' '}<code>&lt;Accordion.Title&gt;</code> or <code>&lt;Accordion.Content&gt;</code>
             {' '}will override the <code>&lt;Accordion&gt;</code> <code>&lt;activeIndex&gt;</code> prop.

@@ -1,18 +1,14 @@
-import React, { Component } from 'react'
-import { Message } from 'stardust'
+import React from 'react'
+import { Message, Icon } from 'stardust'
 
-export default class MessageIconExample extends Component {
-  render() {
-    return (
-      <div>
-        <Message icon='inbox' header='Have you heard about our mailing list?'>
-          Get the best news in your e-mail every day.
-        </Message>
+const MessageIconExample = () => (
+  <Message icon>
+    <Icon name='circle notched' loading />
+    <Message.Content>
+      <Message.Header>Just one second</Message.Header>
+      We are fetching that content for you.
+    </Message.Content>
+  </Message>
+)
 
-        <Message icon='notched circle loading' header='Just one second'>
-          We're fetching that content for you.
-        </Message>
-      </div>
-    )
-  }
-}
+export default MessageIconExample

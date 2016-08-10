@@ -23,7 +23,7 @@ export default class ComponentDescription extends Component {
 
     /** The gulp-docgen object for this component. */
     docgen: PropTypes.object.isRequired,
-  };
+  }
 
   renderSemanticDocsLink = () => {
     const { _meta } = this.props
@@ -94,7 +94,7 @@ export default class ComponentDescription extends Component {
     const { _meta, docgen } = this.props
     return (
       <Grid>
-        <Grid.Row className='two column'>
+        <Grid.Row columns={2}>
           <Grid.Column>
             <Header.H1 style={headerStyle}>{_.capitalize(_meta.name)}</Header.H1>
           </Grid.Column>
@@ -105,7 +105,7 @@ export default class ComponentDescription extends Component {
             </List>
           </Grid.Column>
         </Grid.Row>
-        <Grid.Row className='one column'>
+        <Grid.Row columns={1}>
           <Grid.Column>
             <p style={descriptionStyle}>{docgen.docBlock.description}</p>
           </Grid.Column>

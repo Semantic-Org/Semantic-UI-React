@@ -27,7 +27,7 @@ export default class ListVariationsExamples extends Component {
           description='A list can animate to set the current item apart from the list'
           examplePath='elements/List/Variations/ListAnimatedExample'
         >
-          <Message className='info'>
+          <Message info>
             Be sure content can fit on one line, otherwise text content will reflow when hovered.
           </Message>
         </ComponentExample>

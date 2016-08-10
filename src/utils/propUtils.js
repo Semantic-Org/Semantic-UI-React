@@ -118,10 +118,50 @@ export const customPropTypes = {
         return validator(props, propName, componentName, ...rest)
       })
 
-      // if no validator returned undefined (no error)
-      // return the first error found
-      if (!_.some(errors, _.isUndefined)) {
+      // if no validator passed return the first error found
+      if (!_.some(errors, _.overSome(_.isNull, _.isUndefined))) {
         return _.find(errors, error => !_.isUndefined(error))
+      }
+    }
+  },
+
+  /**
+   * Ensure a validator passes only when a component has a given propsShape.
+   * @param {object} propsShape An object describing the prop shape.
+   * @param {function} validator A propType function.
+   */
+  givenProps: (propsShape, validator) => {
+    return (props, propName, componentName, ...rest) => {
+      // only validate if all propsShape validators pass
+      if (!_.every(propsShape, (val, key) => !val(props, key, componentName, ...rest))) return
+
+      if (!_.isPlainObject(propsShape)) {
+        throw new Error(
+          `Invalid argument supplied to whenShape, expected an object. See ${componentName} prop \`${propName}\`.`,
+        )
+      }
+
+      if (!_.isFunction(validator)) {
+        throw new Error(
+          `Invalid argument supplied to whenShape, expected a function. See ${componentName} prop \`${propName}\`.`,
+        )
+      }
+
+      const error = validator(props, propName, componentName, ...rest)
+
+      if (error) {
+        // poor mans shallow pretty print, prevents JSON circular reference errors
+        const prettyProps = `{ ${_.map(_.pick(props, _.keys(propsShape)), (val, key) => {
+          let value = val
+          if (_.isString(val)) value = `"${val}"`
+          else if (_.isArray(val)) value = `[${val.join(', ')}]`
+          else if (_.isObject(val)) value = '{...}'
+
+          return `${key}: ${value}`
+        }).join(', ')} }`
+
+        error.message = `Given props ${prettyProps}: ${error.message}`
+        return error
       }
     }
   },

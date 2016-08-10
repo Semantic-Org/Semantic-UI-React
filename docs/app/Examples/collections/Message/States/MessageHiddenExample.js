@@ -1,10 +1,10 @@
 import React from 'react'
 import { Message } from 'stardust'
 
-const MessageVisibleExample = () => (
-  <Message visible>
+const MessageHiddenExample = () => (
+  <Message hidden>
     You can always see me
   </Message>
 )
 
-export default MessageVisibleExample
+export default MessageHiddenExample
