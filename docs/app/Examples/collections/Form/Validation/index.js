@@ -21,7 +21,7 @@ export default class FormValidationExamples extends Component {
           `}
           examplePath='collections/Form/Validation/FormValidatingOnBlurAndOtherEventsExample'
         >
-          <Message className='warning'>
+          <Message warning>
             This example also uses a different validation event.
             Each element will be validated on input blur instead of the default form submit.
           </Message>

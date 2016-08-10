@@ -17,7 +17,7 @@ export default class SegmentVariationsExamples extends Component {
           description='A segment can be attached to other content on a page.'
           examplePath='elements/Segment/Variations/SegmentAttachedExample'
         >
-          <Message className='info'>
+          <Message info>
             Attached segments are designed to be used with other <code>attached</code> variations like
             the <a href='#Header-Variations-HeaderAttachedExample'>attached header</a> or <i>attached messages</i>.
           </Message>
@@ -67,7 +67,7 @@ export default class SegmentVariationsExamples extends Component {
           description='A segment can be circular.'
           examplePath='elements/Segment/Variations/SegmentCircularExample'
         >
-          <Message className='info'>
+          <Message info>
             A circular segment will most likely have to have its content manually sized to be equal width and height,
             otherwise it will flow to the size of your content.
           </Message>

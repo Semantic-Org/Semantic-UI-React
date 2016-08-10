@@ -42,7 +42,7 @@ export default class HeaderVariationsExamples extends Component {
           description='A header can have its colors inverted for contrast'
           examplePath='elements/Header/Variations/HeaderInvertedExample'
         >
-          <Message className='warning'>
+          <Message warning>
             Inverted headers use modified light versions of the site color scheme
           </Message>
         </ComponentExample>

@@ -52,10 +52,10 @@ export default class ComponentExample extends Component {
         <Grid.Column>
           <Grid>
             <Grid.Column width={12}>
-              <Header.H3 style={{ marginBottom: 0 }}>
+              {this.props.title && <Header.H3 style={{ marginBottom: 0 }}>
                 {this.props.title}
-              </Header.H3>
-              <p>{this.props.description}</p>
+              </Header.H3>}
+              {this.props.description && <p>{this.props.description}</p>}
             </Grid.Column>
             <Grid.Column width={4} className='right aligned'>
               <Icon name='code link' color='grey' onClick={this.toggleShowCode} style={codeIconStyle} />
