@@ -1,10 +1,8 @@
 import React from 'react'
 import { Grid, Step } from 'stardust'
 
-// TODO: Update usage of <Grid> after update to v1 API
-
-const StepOrderedExample = () => (
-  <Grid className='two column'>
+const Fluid = () => (
+  <Grid columns={2}>
     <Grid.Column>
       <Step.Group fluid vertical>
         <Step completed icon='truck' title='Shipping' description='Choose your shipping options' />
@@ -18,4 +16,4 @@ const StepOrderedExample = () => (
   </Grid>
 )
 
-export default StepOrderedExample
+export default Fluid

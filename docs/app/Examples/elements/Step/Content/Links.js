@@ -3,13 +3,15 @@ import { Step } from 'stardust'
 
 class ClickableStep extends Component {
   state = {}
+
   handleClick = () => this.setState({ active: !this.state.active })
+
   render() {
     return <Step {...this.props} active={this.state.active} onClick={this.handleClick} />
   }
 }
 
-const StepLinkExamples = () => (
+const Links = () => (
   <div>
     <Step.Group>
       <Step active href='http://google.com' icon='truck' title='Shipping' description='Choose your shipping options' />
@@ -32,4 +34,4 @@ const StepLinkExamples = () => (
   </div>
 )
 
-export default StepLinkExamples
+export default Links

@@ -22,8 +22,10 @@ function StepGroup(props) {
   const rest = getUnhandledProps(StepGroup, props)
 
   const content = items
-  ? items.map((item, index) => <Step key={index} {...item} ordered={ordered} />)
-  : children
+  ? items.map(item => {
+    const key = item.key || [item.title, item.description].join('-')
+    return <Step key={key} {...item} />
+  }) : children
 
   return <div {...rest} className={classes}>{content}</div>
 }
@@ -54,7 +56,12 @@ StepGroup.propTypes = {
   /** Primary content of the StepGroup. Mutually exclusive with items children. */
   items: customPropTypes.all([
     customPropTypes.mutuallyExclusive(['description', 'title']),
-    PropTypes.array,
+    PropTypes.arrayOf(PropTypes.shape({
+      description: PropTypes.node,
+      icon: PropTypes.node,
+      key: PropTypes.string,
+      title: PropTypes.node,
+    })),
   ]),
 
   /** A step can show a ordered sequence of steps. */

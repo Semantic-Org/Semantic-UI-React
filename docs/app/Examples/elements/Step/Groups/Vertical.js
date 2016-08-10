@@ -1,24 +1,29 @@
 import React from 'react'
-import { Step } from 'stardust'
+import { Icon, Step } from 'stardust'
 
-const { Description, Group, Title } = Step
+const { Content, Description, Group, Title } = Step
 const steps = [
   { completed: true, icon: 'truck', title: 'Shipping', description: 'Choose your shipping options' },
   { completed: true, icon: 'credit card', title: 'Billing', description: 'Enter billing information' },
   { active: true, icon: 'info', title: 'Confirm Order', description: 'Verify order details' },
 ]
 
-const StepVerticalExample = () => (
+const Vertical = () => (
   <div>
     <Group vertical>
-      <Step completed icon='truck'>
+      <Step completed>
+        <Icon name='truck' />
+        <Content>
           <Title>Shipping</Title>
           <Description>Choose your shipping options</Description>
+        </Content>
       </Step>
-      <Step completed icon='credit card'>
-        <Title>Billing</Title>
-        <Description>Enter billing information</Description>
+
+      <Step completed>
+        <Icon name='credit card' />
+        <Content title='Billing' description='Enter billing information' />
       </Step>
+
       <Step active icon='info' title='Confirm Order' description='Verify order details' />
     </Group>
 
@@ -28,4 +33,4 @@ const StepVerticalExample = () => (
   </div>
 )
 
-export default StepVerticalExample
+export default Vertical

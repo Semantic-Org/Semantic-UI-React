@@ -18,58 +18,23 @@ describe('Step', () => {
   common.propKeyOnlyToClassName(Step, 'link')
   common.rendersChildren(Step)
 
-  describe('renders Content component', () => {
-    it('only children by default', () => {
-      shallow(<Step>{faker.hacker.phrase()}</Step>)
-        .should.not.have.descendants('StepContent')
-    })
-
-    it('with `completed` prop', () => {
-      shallow(<Step completed>{faker.hacker.phrase()}</Step>)
-        .should.have.descendants('StepContent')
-    })
-
-    it('with `icon` prop', () => {
-      shallow(<Step icon={faker.hacker.noun()}>{faker.hacker.phrase()}</Step>)
-        .should.have.descendants('StepContent')
-    })
-
-    it('with `ordered` prop', () => {
-      shallow(<Step ordered>{faker.hacker.phrase()}</Step>)
-        .should.have.descendants('StepContent')
-    })
+  it('renders only children by default', () => {
+    shallow(<Step>{faker.hacker.phrase()}</Step>)
+      .should.not.have.descendants('StepContent')
   })
 
-  describe('renders Description component', () => {
-    it('only Description by default', () => {
-      const wrapper = shallow(<Step description={faker.hacker.phrase()} />)
+  it('renders Description component', () => {
+    const wrapper = mount(<Step description={faker.hacker.phrase()} />)
 
-      wrapper.should.not.have.descendants('StepContent')
-      wrapper.should.have.descendants('StepDescription')
-    })
-
-    it('Description inside content with `icon` prop', () => {
-      const wrapper = mount(<Step icon={faker.hacker.noun()} description={faker.hacker.phrase()} />)
-
-      wrapper.should.have.descendants('StepContent')
-      wrapper.find('StepContent').should.have.descendants('StepDescription')
-    })
+    wrapper.should.have.descendants('StepContent')
+    wrapper.find('StepContent').should.have.descendants('StepDescription')
   })
 
-  describe('renders Title component', () => {
-    it('only Title by default', () => {
-      const wrapper = shallow(<Step title={faker.hacker.phrase()} />)
+  it('renders Title component', () => {
+    const wrapper = mount(<Step title={faker.hacker.phrase()} />)
 
-      wrapper.should.not.have.descendants('StepContent')
-      wrapper.should.have.descendants('StepTitle')
-    })
-
-    it('Title inside content with `icon` prop', () => {
-      const wrapper = mount(<Step icon={faker.hacker.noun()} title={faker.hacker.phrase()} />)
-
-      wrapper.should.have.descendants('StepContent')
-      wrapper.find('StepContent').should.have.descendants('StepTitle')
-    })
+    wrapper.should.have.descendants('StepContent')
+    wrapper.find('StepContent').should.have.descendants('StepTitle')
   })
 
   describe('renders different elements', () => {
@@ -85,15 +50,22 @@ describe('Step', () => {
       wrapper.should.have.attr('href', url)
     })
 
-    it('<a> with `onClick` prop', () => {
-      const handleClick = sandbox.spy()
-      const wrapper = mount(<Step onClick={handleClick} />)
+    describe('onClick prop', () => {
+      it('can be omitted', () => {
+        const click = () => mount(<Step>{faker.hacker.phrase()}</Step>).simulate('click')
+        expect(click).to.not.throw()
+      })
 
-      wrapper.should.have.tagName('a')
-      wrapper.simulate('click')
+      it('renders <a> and handles click', () => {
+        const handleClick = sandbox.spy()
+        const wrapper = mount(<Step onClick={handleClick} />)
 
-      handleClick.should.have.been.calledOnce()
-      handleClick.should.have.been.calledWithMatch({})
+        wrapper.should.have.tagName('a')
+        wrapper.simulate('click')
+
+        handleClick.should.have.been.calledOnce()
+        handleClick.should.have.been.calledWithMatch({})
+      })
     })
   })
 })

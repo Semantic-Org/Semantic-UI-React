@@ -11,7 +11,7 @@ import StepTitle from './StepTitle'
 /** A step shows the completion status of an activity in a series of activities. */
 function Step(props) {
   const {
-    active, className, children, completed, description, disabled, icon, href, link, onClick, ordered, title,
+    active, className, children, completed, description, disabled, icon, href, link, onClick, title,
   } = props
   const classes = cx(
     useKeyOnly(active, 'active'),
@@ -26,16 +26,6 @@ function Step(props) {
   const handleClick = (e) => {
     if (onClick) onClick(e)
   }
-
-  const contentJSX = completed || icon || ordered ? [
-    icon && iconPropRenderer(icon, { key: icon }),
-    children && <StepContent key='content' children={children} />,
-    (title || description) && <StepContent key='content' description={description} title={title} />,
-  ] : [
-    children && children,
-    title && <StepTitle key='title' title={title} />,
-    description && <StepDescription key='description' description={description} />,
-  ]
   const StepComponent = href || onClick ? 'a' : 'div'
 
   return (
@@ -45,7 +35,8 @@ function Step(props) {
       href={href}
       onClick={handleClick}
     >
-      {contentJSX}
+      {!children && iconPropRenderer(icon)}
+      {children || <StepContent description={description} title={title} />}
     </StepComponent>
   )
 }

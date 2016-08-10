@@ -1,10 +1,10 @@
 import React from 'react'
 import { Step } from 'stardust'
 
-const StepDisabledExample = () => (
+const Disabled = () => (
   <Step.Group>
     <Step disabled>Billing</Step>
   </Step.Group>
 )
 
-export default StepDisabledExample
+export default Disabled

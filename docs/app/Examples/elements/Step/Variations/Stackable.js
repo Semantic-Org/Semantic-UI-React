@@ -1,7 +1,7 @@
 import React from 'react'
 import { Step } from 'stardust'
 
-const StepOrderedExample = () => (
+const Stackable = () => (
   <Step.Group stackable='tablet'>
     <Step icon='plane' title='Shipping' description='Choose your shipping options' />
     <Step active icon='dollar' title='Billing' description='Enter billing information' />
@@ -9,4 +9,4 @@ const StepOrderedExample = () => (
   </Step.Group>
 )
 
-export default StepOrderedExample
+export default Stackable

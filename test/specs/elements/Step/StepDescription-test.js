@@ -16,7 +16,7 @@ describe('StepDescription', () => {
         .should.contain.text(text)
     })
 
-    it('renders child components', () => {
+    it('renders child node', () => {
       const child = <div data-child={faker.hacker.noun()} />
 
       shallow(<StepDescription description={child} />)

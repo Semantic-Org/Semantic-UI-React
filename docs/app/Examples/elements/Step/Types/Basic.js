@@ -1,10 +1,10 @@
 import React from 'react'
 import { Step } from 'stardust'
 
-const StepExample = () => (
+const Basic = () => (
   <Step.Group>
     <Step>Shipping</Step>
   </Step.Group>
 )
 
-export default StepExample
+export default Basic

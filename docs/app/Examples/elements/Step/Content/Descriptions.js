@@ -3,7 +3,7 @@ import { Step } from 'stardust'
 
 const { Description, Group, Title } = Step
 
-const StepDescriptionExample = () => (
+const Descriptions = () => (
   <div>
     <Group>
       <Step>
@@ -29,4 +29,4 @@ const StepDescriptionExample = () => (
   </div>
 )
 
-export default StepDescriptionExample
+export default Descriptions

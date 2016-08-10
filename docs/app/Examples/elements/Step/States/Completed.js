@@ -1,18 +1,20 @@
 import React from 'react'
 import { Step } from 'stardust'
 
-const StepCompletedExample = () => (
+const { Group } = Step
+
+const Completed = () => (
   <div>
-    <Step.Group>
+    <Group>
       <Step completed icon='payment' title='Billing' description='Enter billing information' />
-    </Step.Group>
+    </Group>
 
     <br />
 
-    <Step.Group ordered>
+    <Group ordered>
       <Step completed title='Billing' description='Enter billing information' />
-    </Step.Group>
+    </Group>
   </div>
 )
 
-export default StepCompletedExample
+export default Completed
