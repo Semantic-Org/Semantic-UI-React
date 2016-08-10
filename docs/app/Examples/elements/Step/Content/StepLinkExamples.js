@@ -2,15 +2,10 @@ import React, { Component } from 'react'
 import { Step } from 'stardust'
 
 class ClickableStep extends Component {
-
   state = {}
-
-  handleClick = () => {
-    console.log(this)
-  }
-
+  handleClick = () => this.setState({ active: !this.state.active })
   render() {
-    return <Step active={this.state.active} onClick={this.handleClick} />
+    return <Step {...this.props} active={this.state.active} onClick={this.handleClick} />
   }
 }
 

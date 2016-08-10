@@ -81,7 +81,10 @@ Step.propTypes = {
   disabled: PropTypes.bool,
 
   /** A step can contain an icon. */
-  icon: PropTypes.string,
+  icon: customPropTypes.all([
+    customPropTypes.mutuallyExclusive(['children']),
+    PropTypes.node,
+  ]),
 
   /** A step can be link. */
   link: PropTypes.bool,
