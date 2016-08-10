@@ -1,5 +1,13 @@
 # Change Log
 
+## [v0.31.0](https://github.com/TechnologyAdvice/stardust/tree/v0.31.0) (2016-08-10)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.30.0...v0.31.0)
+
+**Merged pull requests:**
+
+- Fix baseHref, refactor config and build [\#385](https://github.com/TechnologyAdvice/stardust/pull/385) ([levithomason](https://github.com/levithomason))
+- Update Message to v1 API [\#344](https://github.com/TechnologyAdvice/stardust/pull/344) ([levithomason](https://github.com/levithomason))
+
 ## [v0.30.0](https://github.com/TechnologyAdvice/stardust/tree/v0.30.0) (2016-08-08)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.29.0...v0.30.0)
 
@@ -53,7 +61,7 @@
 
 **Closed issues:**
 
-- Transpilation \(?\) causes an error [\#367](https://github.com/TechnologyAdvice/stardust/issues/367)
+- Transpilation \(?\) causes TypeError: Cannot call a class as a function [\#367](https://github.com/TechnologyAdvice/stardust/issues/367)
 
 **Merged pull requests:**
 
