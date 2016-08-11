@@ -18,9 +18,10 @@ style.menu = {
 }
 
 style.main = {
+  background: '#fff',
   marginLeft: sidebarWidth,
-  minWidth: sidebarWidth + 300,
-  maxWidth: sidebarWidth + 900,
+  minWidth: parseInt(sidebarWidth, 10) + 300,
+  maxWidth: parseInt(sidebarWidth, 10) + 900,
 }
 
 export default style
