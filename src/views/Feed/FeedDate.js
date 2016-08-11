@@ -31,7 +31,7 @@ FeedDate.propTypes = {
   /** Shorthand for primary content of the FeedDate. Mutually exclusive with the children prop. */
   date: customPropTypes.all([
     customPropTypes.mutuallyExclusive(['children']),
-    PropTypes.node,
+    PropTypes.string,
   ]),
 }
 
