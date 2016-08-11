@@ -53,8 +53,7 @@ FeedExtra.propTypes = {
     customPropTypes.mutuallyExclusive(['images']),
     PropTypes.oneOfType([
       PropTypes.bool,
-      PropTypes.node,
-      PropTypes.arrayOf(PropTypes.string),
+      PropTypes.string,
     ]),
   ]),
 }

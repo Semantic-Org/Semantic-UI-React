@@ -44,29 +44,29 @@ FeedContent.propTypes = {
   /** Primary content of the FeedContent. Mutually exclusive with children. */
   content: customPropTypes.all([
     customPropTypes.mutuallyExclusive(['children']),
-    PropTypes.node,
+    PropTypes.string,
   ]),
 
   /** An event can contain a date. */
-  date: PropTypes.node,
+  date: PropTypes.string,
 
   /** Shorthand for FeedExtra with prop images. */
   extraImages: customPropTypes.all([
     customPropTypes.mutuallyExclusive(['children', 'content']),
-    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.arrayOf(PropTypes.string),
   ]),
 
   /** Shorthand for FeedExtra with prop text. */
   extraText: customPropTypes.all([
     customPropTypes.mutuallyExclusive(['children', 'content']),
-    PropTypes.node,
+    PropTypes.string,
   ]),
 
   /** A shorthand for FeedMeta. */
-  meta: PropTypes.node,
+  meta: PropTypes.string,
 
   /** A shorthand for FeedSummary. */
-  summary: PropTypes.node,
+  summary: PropTypes.string,
 }
 
 export default FeedContent

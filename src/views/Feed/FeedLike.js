@@ -43,7 +43,7 @@ FeedLike.propTypes = {
   /** Primary content of the FeedLike, mutually exclusive with children prop. */
   like: customPropTypes.all([
     customPropTypes.mutuallyExclusive(['children']),
-    PropTypes.node,
+    PropTypes.string,
   ]),
 }
 

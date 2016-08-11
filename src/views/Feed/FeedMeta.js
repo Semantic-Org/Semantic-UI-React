@@ -39,8 +39,8 @@ FeedMeta.propTypes = {
 
   /** Primary content of the FeedMeta. Mutually exclusive with children. */
   meta: customPropTypes.all([
-    customPropTypes.mutuallyExclusive(['content']),
-    PropTypes.node,
+    customPropTypes.mutuallyExclusive(['children']),
+    PropTypes.string,
   ]),
 }
 
