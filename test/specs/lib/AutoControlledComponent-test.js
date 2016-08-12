@@ -3,8 +3,8 @@ import faker from 'faker'
 import _ from 'lodash'
 import React from 'react'
 
-import AutoControlledComponent from 'src/utils/AutoControlledComponent'
-import * as consoleUtil from 'test/utils/consoleUtil.js'
+import { AutoControlledComponent } from 'src/lib'
+import { consoleUtil } from 'test/utils'
 
 let TestClass
 

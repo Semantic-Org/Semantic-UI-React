@@ -1,17 +1,16 @@
 import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
-import META from '../../utils/Meta'
-import * as sui from '../../utils/semanticUtils'
 import {
   getUnhandledProps,
-  iconPropRenderer,
-  imagePropRenderer,
+  META,
+  SUI,
   useValueAndKey,
   useTextAlignProp,
   useKeyOrValueAndKey,
   useKeyOnly,
-} from '../../utils/propUtils'
+} from '../../lib'
+import { createIcon, createImage } from '../../factories'
 
 function _Header(props) {
   const {
@@ -40,8 +39,8 @@ function _Header(props) {
 
   return (
     <_HeaderComponent className={classes} {...rest}>
-      {iconPropRenderer(icon)}
-      {imagePropRenderer(image)}
+      {createIcon(icon)}
+      {createImage(image)}
       {children}
     </_HeaderComponent>
   )
@@ -49,12 +48,12 @@ function _Header(props) {
 
 _Header._meta = {
   name: '_Header',
-  type: META.type.element,
+  type: META.TYPES.ELEMENT,
   props: {
     attached: ['top', 'bottom'],
-    color: sui.colors,
-    floated: sui.floats,
-    textAlign: sui.textAlignments,
+    color: SUI.COLORS,
+    floated: SUI.FLOATS,
+    textAlign: SUI.TEXT_ALIGNMENTS,
   },
 }
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import META from '../../utils/Meta'
+import { META } from '../../lib'
 import _Header from './_Header'
 
 function HeaderH1(props) {
@@ -11,7 +11,7 @@ function HeaderH1(props) {
 HeaderH1._meta = {
   name: 'HeaderH1',
   parent: 'Header',
-  type: META.type.element,
+  type: META.TYPES.ELEMENT,
 }
 
 export default HeaderH1

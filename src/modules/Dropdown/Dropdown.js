@@ -3,25 +3,27 @@ import cx from 'classnames'
 import React, { cloneElement, PropTypes } from 'react'
 import { findDOMNode } from 'react-dom'
 
-import META from '../../utils/Meta'
-import { customPropTypes, getUnhandledProps, useKeyOnly, useKeyOrValueAndKey } from '../../utils/propUtils'
-import keyboardKey from '../../utils/keyboardKey'
-import { makeDebugger } from '../../utils/debug'
-import { objectDiff } from '../../utils/utils'
-
-// import as Component so eslint react/prop-types recognizes Dropdown
-import { default as Component } from '../../utils/AutoControlledComponent'
+import {
+  AutoControlledComponent as Component,
+  customPropTypes,
+  getUnhandledProps,
+  keyboardKey,
+  makeDebugger,
+  META,
+  objectDiff,
+  useKeyOnly,
+  useKeyOrValueAndKey,
+} from '../../lib'
+import { Icon, Label } from '../../elements'
 import DropdownDivider from './DropdownDivider'
 import DropdownItem from './DropdownItem'
 import DropdownMenu from './DropdownMenu'
-import Icon from '../../elements/Icon/Icon'
-import Label from '../../elements/Label/Label'
 
 const debug = makeDebugger('dropdown')
 
 const _meta = {
   name: 'Dropdown',
-  type: META.type.module,
+  type: META.TYPES.MODULE,
   props: {
     pointing: ['bottom left', 'bottom right'],
   },
@@ -43,9 +45,9 @@ export default class Dropdown extends Component {
     ]),
 
     /** Array of `{ text: '', value: '' }` options */
-    options: customPropTypes.all([
-      customPropTypes.mutuallyExclusive(['children']),
-      customPropTypes.require(['selection']),
+    options: customPropTypes.every([
+      customPropTypes.disallow(['children']),
+      customPropTypes.demand(['selection']),
       PropTypes.arrayOf(PropTypes.shape({
         value: PropTypes.oneOfType([
           PropTypes.string,
@@ -65,9 +67,9 @@ export default class Dropdown extends Component {
     defaultOpen: PropTypes.bool,
 
     /** A Dropdown can contain a single <Dropdown.Menu /> child. */
-    children: customPropTypes.all([
-      customPropTypes.mutuallyExclusive(['options', 'selection']),
-      customPropTypes.require(['text']),
+    children: customPropTypes.every([
+      customPropTypes.disallow(['options', 'selection']),
+      customPropTypes.demand(['text']),
       React.PropTypes.element,
       customPropTypes.ofComponentTypes(['DropdownMenu']),
     ]),
@@ -158,9 +160,9 @@ export default class Dropdown extends Component {
     // TODO 'searchInMenu' or 'search='in menu' or ???  How to handle this markup and functionality?
 
     /** Behave as an html select. */
-    selection: customPropTypes.all([
-      customPropTypes.mutuallyExclusive(['children']),
-      customPropTypes.require(['options']),
+    selection: customPropTypes.every([
+      customPropTypes.disallow(['children']),
+      customPropTypes.demand(['options']),
       PropTypes.bool,
     ]),
     simple: PropTypes.bool,

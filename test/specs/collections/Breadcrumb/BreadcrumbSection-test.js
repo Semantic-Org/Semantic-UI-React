@@ -1,7 +1,7 @@
 import React from 'react'
 import BreadcrumbSection from 'src/collections/Breadcrumb/BreadcrumbSection'
 import * as common from 'test/specs/commonTests'
-import sandbox from 'test/utils/Sandbox-util'
+import { sandbox } from 'test/utils'
 
 describe('BreadcrumbSection', () => {
   common.isConformant(BreadcrumbSection)

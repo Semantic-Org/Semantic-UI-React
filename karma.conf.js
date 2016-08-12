@@ -56,7 +56,7 @@ module.exports = (karmaConfig) => {
         // utils/jquery loads real jQuery and semantic-ui-css
         // we alias jquery and semantic-ui-css to mocks during tests
         // ignore this module so we can use the mock versions in alias below
-        new webpack.NormalModuleReplacementPlugin(/utils\/jquery/, 'empty'),
+        new webpack.NormalModuleReplacementPlugin(/lib\/jquery/, 'empty'),
       ],
       resolve: Object.assign({}, webpackConfig.resolve, {
         alias: Object.assign({}, webpackConfig.resolve.alias, {

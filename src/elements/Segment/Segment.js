@@ -1,9 +1,9 @@
 import React, { Component, PropTypes } from 'react'
 import classNames from 'classnames'
-import META from '../../utils/Meta'
+
+import { getUnhandledProps, META } from '../../lib'
+import { Header } from '../'
 import Segments from './SegmentSegments'
-import Header from '../Header/Header'
-import { getUnhandledProps } from '../../utils/propUtils'
 
 /**
  * A segment is used to create a grouping of related content.
@@ -23,7 +23,7 @@ export default class Segment extends Component {
 
   static _meta = {
     name: 'Segment',
-    type: META.type.element,
+    type: META.TYPES.ELEMENT,
   }
 
   static Segments = Segments

@@ -2,17 +2,20 @@ import _ from 'lodash'
 import cx from 'classnames'
 import React, { Children, cloneElement, PropTypes } from 'react'
 
+import {
+  AutoControlledComponent as Component,
+  customPropTypes,
+  META,
+  useKeyOnly,
+} from '../../lib'
+import { Icon } from '../../elements'
 import AccordionContent from '../../modules/Accordion/AccordionContent'
 import AccordionTitle from '../../modules/Accordion/AccordionTitle'
-import AutoControlledComponent from '../../utils/AutoControlledComponent'
-import Icon from '../../elements/Icon/Icon'
-import META from '../../utils/Meta'
-import { customPropTypes, useKeyOnly } from '../../utils/propUtils'
 
 /**
  * An accordion allows users to toggle the display of sections of content
  */
-export default class Accordion extends AutoControlledComponent {
+export default class Accordion extends Component {
   static autoControlledProps = [
     'activeIndex',
   ]
@@ -22,8 +25,8 @@ export default class Accordion extends AutoControlledComponent {
     activeIndex: PropTypes.number,
 
     /** Accordion.Title and Accordion.Content components.  Mutually exclusive with the panels prop. */
-    children: customPropTypes.all([
-      customPropTypes.mutuallyExclusive(['panels']),
+    children: customPropTypes.every([
+      customPropTypes.disallow(['panels']),
       PropTypes.node,
     ]),
 
@@ -47,8 +50,8 @@ export default class Accordion extends AutoControlledComponent {
      * Object can optionally define an `active` key to open/close the panel.
      * Mutually exclusive with children.
      */
-    panels: customPropTypes.all([
-      customPropTypes.mutuallyExclusive(['children']),
+    panels: customPropTypes.every([
+      customPropTypes.disallow(['children']),
       PropTypes.arrayOf(PropTypes.shape({
         active: PropTypes.bool,
         title: PropTypes.string,
@@ -63,7 +66,7 @@ export default class Accordion extends AutoControlledComponent {
 
   static _meta = {
     name: 'Accordion',
-    type: META.type.module,
+    type: META.TYPES.MODULE,
   }
 
   static Content = AccordionContent

@@ -1,10 +1,9 @@
 import React, { Component, createElement, PropTypes } from 'react'
-import { Grid, Header, Icon } from 'stardust'
 import Highlight from 'react-highlight'
+
 import { exampleContext } from 'docs/app/utils'
-import {
-  getUnhandledProps,
-} from 'src/utils/propUtils'
+import { getUnhandledProps } from 'src/lib'
+import { Grid, Header, Icon } from 'stardust'
 
 /**
  * Renders a `component` and the raw `code` that produced it.

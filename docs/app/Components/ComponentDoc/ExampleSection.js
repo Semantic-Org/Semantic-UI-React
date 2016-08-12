@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react'
+
 import { Header } from 'stardust'
 
 export default class ExampleSection extends Component {

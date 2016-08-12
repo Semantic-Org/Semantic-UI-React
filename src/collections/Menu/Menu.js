@@ -2,8 +2,7 @@ import React, { Children, Component, cloneElement, PropTypes } from 'react'
 import cx from 'classnames'
 
 import MenuItem from './MenuItem'
-import META from '../../utils/Meta'
-import { findChildType } from '../../utils/childrenUtils'
+import { childrenUtils, META } from '../../lib'
 
 export default class Menu extends Component {
   static propTypes = {
@@ -15,7 +14,7 @@ export default class Menu extends Component {
   constructor(props, context) {
     super(props, context)
     const { activeItem, children } = this.props
-    const firstMenuItem = findChildType(children, MenuItem)
+    const firstMenuItem = childrenUtils.findByType(children, MenuItem)
 
     this.state = {
       activeItem: activeItem || firstMenuItem && firstMenuItem.props.name,
@@ -28,7 +27,7 @@ export default class Menu extends Component {
 
   static _meta = {
     name: 'Menu',
-    type: META.type.collection,
+    type: META.TYPES.COLLECTION,
   }
 
   static Item = MenuItem

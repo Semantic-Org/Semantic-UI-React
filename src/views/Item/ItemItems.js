@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 import cx from 'classnames'
-import META from '../../utils/Meta'
+import { META } from '../../lib'
 
 function ItemItems(props) {
   const { className, children, ...rest } = props
@@ -16,7 +16,7 @@ ItemItems.propTypes = {
 
 ItemItems._meta = {
   name: 'ItemItems',
-  type: META.type.view,
+  type: META.TYPES.VIEW,
   parent: 'Item',
 }
 

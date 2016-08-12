@@ -1,10 +1,7 @@
 import cx from 'classnames'
 import React, { PropTypes } from 'react'
-import META from '../../utils/Meta'
-import {
-  getUnhandledProps,
-  useKeyOnly,
-} from '../../utils/propUtils'
+
+import { getUnhandledProps, META, useKeyOnly } from '../../lib'
 
 /**
  * A divider visually segments content into groups
@@ -40,7 +37,7 @@ function Divider(props) {
 
 Divider._meta = {
   name: 'Divider',
-  type: META.type.element,
+  type: META.TYPES.ELEMENT,
 }
 
 Divider.propTypes = {

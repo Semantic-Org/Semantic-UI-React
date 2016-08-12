@@ -3,9 +3,8 @@ import _ from 'lodash'
 import React from 'react'
 
 import Dropdown from 'src/modules/Dropdown/Dropdown'
-import * as domEvent from 'test/utils/domEvent'
 import * as common from 'test/specs/commonTests'
-import sandbox from 'test/utils/Sandbox-util'
+import { domEvent, sandbox } from 'test/utils'
 
 let attachTo
 let options

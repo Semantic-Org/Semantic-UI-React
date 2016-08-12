@@ -2,9 +2,14 @@ import _ from 'lodash'
 import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
-import { customPropTypes, getUnhandledProps, useKeyOnly, useValueAndKey } from '../../utils/propUtils'
-import * as sui from '../../utils/semanticUtils'
-import META from '../../utils/Meta'
+import {
+  customPropTypes,
+  getUnhandledProps,
+  META,
+  SUI,
+  useKeyOnly,
+  useValueAndKey,
+} from '../../lib'
 import StatisticGroup from './StatisticGroup'
 import StatisticLabel from './StatisticLabel'
 import StatisticValue from './StatisticValue'
@@ -37,18 +42,18 @@ function Statistic(props) {
 
 Statistic._meta = {
   name: 'Statistic',
-  type: META.type.view,
+  type: META.TYPES.VIEW,
   props: {
-    color: sui.colors,
-    floated: sui.floats,
-    size: _.without(sui.sizes, 'big', 'massive', 'medium'),
+    color: SUI.COLORS,
+    floated: SUI.FLOATS,
+    size: _.without(SUI.SIZES, 'big', 'massive', 'medium'),
   },
 }
 
 Statistic.propTypes = {
   /** Primary content of the Statistic. */
-  children: customPropTypes.all([
-    customPropTypes.mutuallyExclusive(['label', 'value']),
+  children: customPropTypes.every([
+    customPropTypes.disallow(['label', 'value']),
     PropTypes.node,
   ]),
 
@@ -68,8 +73,8 @@ Statistic.propTypes = {
   inverted: PropTypes.bool,
 
   /** Label content of the Statistic. Mutually exclusive with the children prop. */
-  label: customPropTypes.all([
-    customPropTypes.mutuallyExclusive(['children']),
+  label: customPropTypes.every([
+    customPropTypes.disallow(['children']),
     PropTypes.node,
   ]),
 
@@ -80,8 +85,8 @@ Statistic.propTypes = {
   text: PropTypes.bool,
 
   /** Value content of the Statistic. Mutually exclusive with the children prop. */
-  value: customPropTypes.all([
-    customPropTypes.mutuallyExclusive(['children']),
+  value: customPropTypes.every([
+    customPropTypes.disallow(['children']),
     PropTypes.node,
   ]),
 }

@@ -2,7 +2,7 @@ import faker from 'faker'
 import React from 'react'
 
 import * as common from 'test/specs/commonTests'
-import sandbox from 'test/utils/Sandbox-util'
+import { sandbox } from 'test/utils'
 import Step from 'src/elements/Step/Step'
 import StepContent from 'src/elements/Step/StepContent'
 import StepDescription from 'src/elements/Step/StepDescription'

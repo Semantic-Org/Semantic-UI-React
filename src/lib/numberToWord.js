@@ -17,6 +17,6 @@ export const numberToWordMap = {
   16: 'sixteen',
 }
 
-export default function numberToWord(number) {
+export function numberToWord(number) {
   return numberToWordMap[number] || number
 }

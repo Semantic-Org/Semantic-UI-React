@@ -1,10 +1,7 @@
 import React, { PropTypes } from 'react'
 import classNames from 'classnames'
-import META from '../../utils/Meta'
-import {
-  getUnhandledProps,
-  useKeyOnly,
-} from '../../utils/propUtils'
+
+import { getUnhandledProps, META, useKeyOnly } from '../../lib'
 
 function ModalContent(props) {
   const { children, image, className } = props
@@ -26,7 +23,7 @@ function ModalContent(props) {
 
 ModalContent._meta = {
   name: 'ModalContent',
-  type: META.type.module,
+  type: META.TYPES.MODULE,
   parent: 'Modal',
 }
 

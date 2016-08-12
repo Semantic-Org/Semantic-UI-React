@@ -1,8 +1,11 @@
 import _ from 'lodash'
 import React, { Children, Component, PropTypes } from 'react'
 import cx from 'classnames'
-import { customPropTypes, getUnhandledProps } from '../../utils/propUtils'
-import META from '../../utils/Meta'
+import {
+  customPropTypes,
+  getUnhandledProps,
+  META,
+} from '../../lib'
 import TableColumn from './TableColumn'
 
 export default class Table extends Component {
@@ -134,7 +137,7 @@ export default class Table extends Component {
 
   static _meta = {
     name: 'Table',
-    type: META.type.collection,
+    type: META.TYPES.COLLECTION,
   }
 
   render() {

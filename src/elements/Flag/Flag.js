@@ -1,8 +1,7 @@
 import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
-import META from '../../utils/Meta'
-import { getUnhandledProps } from '../../utils/propUtils'
+import { getUnhandledProps, META } from '../../lib'
 
 const names = [
   'ad', 'andorra', 'ae', 'united arab emirates', 'uae', 'af', 'afghanistan', 'ag', 'antigua', 'ai', 'anguilla', 'al',
@@ -58,7 +57,7 @@ function Flag(props) {
 
 Flag._meta = {
   name: 'Flag',
-  type: META.type.element,
+  type: META.TYPES.ELEMENT,
   props: {
     name: names,
   },

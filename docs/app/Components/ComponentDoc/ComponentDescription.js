@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import React, { Component, PropTypes } from 'react'
 import * as stardust from 'stardust'
-import META from 'src/utils/Meta'
+import { META } from 'src/lib'
 import { Link } from 'react-router'
 const { Divider, Grid, Header, List } = stardust
 

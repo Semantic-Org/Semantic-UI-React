@@ -1,6 +1,6 @@
 import _ from 'lodash'
 
-import keyboardKey, { codes } from '../../../src/utils/keyboardKey'
+import { keyboardKey } from 'src/lib'
 
 const _wrongReturn = (method, arg, ret) =>
   `keyboardKey.${method}(${arg}) should return key name "${ret}"\n`
@@ -14,7 +14,7 @@ const missingPair = (key, val) => (
 
 describe('keyboardKey', () => {
   it('has a key/value for every value/key in codes', () => {
-    _.each(codes, (name, code) => {
+    _.each(keyboardKey.codes, (name, code) => {
       if (Array.isArray(name)) {
         String(keyboardKey[name[0]]).should.equal(code, missingPair(name[0], code))
         String(keyboardKey[name[1]]).should.equal(code, missingPair(name[1], code))
@@ -32,7 +32,7 @@ describe('keyboardKey', () => {
       keyboardKey.getCode('Enter').should.equal(13, wrongCode('Enter', 13))
     })
     it('handles all key names in codes', () => {
-      _.each(codes, (name, code) => {
+      _.each(keyboardKey.codes, (name, code) => {
         const _code = Number(code)
 
         if (Array.isArray(name)) {
@@ -44,7 +44,7 @@ describe('keyboardKey', () => {
       })
     })
     it('handles event like objects with `key` prop', () => {
-      _.each(codes, (name, code) => {
+      _.each(keyboardKey.codes, (name, code) => {
         const _code = Number(code)
 
         if (Array.isArray(name)) {
@@ -68,7 +68,7 @@ describe('keyboardKey', () => {
       keyboardKey.getName(13).should.equal('Enter', wrongName(13, 'Enter'))
     })
     it('handles all codes', () => {
-      _.each(codes, (name, code) => {
+      _.each(keyboardKey.codes, (name, code) => {
         const keyName = keyboardKey.getName(code)
         if (Array.isArray(name)) {
           expect(keyName).to.equal(name[0], wrongName(code, name[0]))
@@ -78,7 +78,7 @@ describe('keyboardKey', () => {
       })
     })
     it('handles event like object: { keyCode: code, shiftKey: false }`', () => {
-      _.each(codes, (name, code) => {
+      _.each(keyboardKey.codes, (name, code) => {
         const keyName = keyboardKey.getName({ keyCode: code, shiftKey: false })
 
         if (Array.isArray(name)) {
@@ -89,7 +89,7 @@ describe('keyboardKey', () => {
       })
     })
     it('handles event like object: { keyCode: code, shiftKey: true }`', () => {
-      _.each(codes, (name, code) => {
+      _.each(keyboardKey.codes, (name, code) => {
         const keyName = keyboardKey.getName({ keyCode: code, shiftKey: true })
 
         if (Array.isArray(name)) {
@@ -100,7 +100,7 @@ describe('keyboardKey', () => {
       })
     })
     it('handles event like object: { which: code, shiftKey: false }', () => {
-      _.each(codes, (name, code) => {
+      _.each(keyboardKey.codes, (name, code) => {
         const keyName = keyboardKey.getName({ which: code, shiftKey: false })
 
         if (Array.isArray(name)) {
@@ -111,7 +111,7 @@ describe('keyboardKey', () => {
       })
     })
     it('handles event like object: { which: code, shiftKey: true }', () => {
-      _.each(codes, (name, code) => {
+      _.each(keyboardKey.codes, (name, code) => {
         const keyName = keyboardKey.getName({ which: code, shiftKey: true })
 
         if (Array.isArray(name)) {

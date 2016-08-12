@@ -1,10 +1,8 @@
 import React, { Component, PropTypes } from 'react'
 import Promise from 'bluebird'
 
-import META from '../../utils/Meta'
-import { getUnhandledProps } from '../../utils/propUtils'
-
-import Modal from '../../modules/Modal/Modal'
+import { getUnhandledProps, META } from '../../lib'
+import { Modal } from '../../modules'
 
 export default class Confirm extends Component {
   static propTypes = {
@@ -36,7 +34,7 @@ export default class Confirm extends Component {
 
   static _meta = {
     name: 'Confirm',
-    type: META.type.addon,
+    type: META.TYPES.ADDON,
   }
 
   render() {

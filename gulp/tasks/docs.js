@@ -19,6 +19,7 @@ task('generate-docs-json', () => {
     `${config.paths.src()}/collections/**/*.js`,
     `${config.paths.src()}/modules/**/*.js`,
     `${config.paths.src()}/views/**/*.js`,
+    '!**/index.js',
   ])
   // do not remove the function keyword
   // we need 'this' scope here

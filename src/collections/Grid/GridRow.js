@@ -1,16 +1,16 @@
 import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
-import META from '../../utils/Meta'
 import {
   getUnhandledProps,
+  META,
+  SUI,
   useColumnsProp,
   useKeyOnly,
   useTextAlignProp,
   useValueAndKey,
   useVerticalAlignProp,
-} from '../../utils/propUtils'
-import * as sui from '../../utils/semanticUtils'
+} from '../../lib'
 
 function GridRow(props) {
   const { centered, children, className, color, columns, only, reversed, stretched, textAlign, verticalAlign } = props
@@ -34,14 +34,14 @@ function GridRow(props) {
 GridRow._meta = {
   name: 'GridRow',
   parent: 'Grid',
-  type: META.type.collection,
+  type: META.TYPES.COLLECTION,
   props: {
-    color: sui.colors,
-    columns: sui.widths,
+    color: SUI.COLORS,
+    columns: SUI.WIDTHS,
     only: ['computer', 'large screen', 'mobile', 'tablet mobile', 'tablet', 'widescreen'],
     reversed: ['computer', 'computer vertically', 'mobile', 'mobile vertically', 'tablet', 'tablet vertically'],
-    textAlign: sui.textAlignments,
-    verticalAlign: sui.verticalAlignments,
+    textAlign: SUI.TEXT_ALIGNMENTS,
+    verticalAlign: SUI.VERTICAL_ALIGNMENTS,
   },
 }
 

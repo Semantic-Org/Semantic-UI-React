@@ -33,3 +33,9 @@ export const keyDown = (node, data) => fire(node, 'keydown', data)
  * @returns {Object} The event
  */
 export const click = (node, data) => fire(node, 'click', data)
+
+export default {
+  fire,
+  keyDown,
+  click,
+}

@@ -1,7 +1,7 @@
 import React, { Component, createElement, PropTypes } from 'react'
 
 import { exampleContext } from 'docs/app/utils'
-import { Divider, Header, Message } from 'stardust'
+import { Divider, Header, Icon, Message } from 'stardust'
 
 export default class ComponentExamples extends Component {
   static propTypes = {
@@ -22,15 +22,18 @@ export default class ComponentExamples extends Component {
   renderMissingExamples = () => {
     const { name } = this.props
     return (
-      <Message icon='book' className='info'>
-        If there's no
-        <a
-          href='https://github.com/TechnologyAdvice/stardust/pulls'
-        > pull request </a>
-        open for <code>&lt;{name} /&gt;</code> examples, you should
-        <a
-          href='https://github.com/TechnologyAdvice/stardust/blob/master/CONTRIBUTING.md'
-        > contribute</a>!
+      <Message info icon>
+        <Icon name='book' />
+        <Message.Content>
+          If there's no
+          <a
+            href='https://github.com/TechnologyAdvice/stardust/pulls'
+          > pull request </a>
+          open for <code>&lt;{name} /&gt;</code> examples, you should
+          <a
+            href='https://github.com/TechnologyAdvice/stardust/blob/master/CONTRIBUTING.md'
+          > contribute</a>!
+        </Message.Content>
       </Message>
     )
   }

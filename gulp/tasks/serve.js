@@ -17,8 +17,6 @@ const serve = (cb) => {
   const compiler = webpack(webpackConfig)
 
   app
-    .use(express.static(config.paths.docsDist()))
-
     .use(historyApiFallback({
       verbose: false,
     }))
@@ -34,6 +32,8 @@ const serve = (cb) => {
     }))
 
     .use(WebpackHotMiddleware(compiler))
+
+    .use(express.static(config.paths.docsDist()))
 
     .listen(config.server_port, config.server_host, () => {
       log(colors.yellow('Server running at http://%s:%d'), config.server_host, config.server_port)

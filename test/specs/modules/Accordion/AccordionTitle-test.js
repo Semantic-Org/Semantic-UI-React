@@ -1,6 +1,6 @@
 import React from 'react'
 import * as common from 'test/specs/commonTests'
-import sandbox from 'test/utils/Sandbox-util'
+import { sandbox } from 'test/utils'
 
 import Accordion from 'src/modules/Accordion/Accordion'
 import AccordionTitle from 'src/modules/Accordion/AccordionTitle'

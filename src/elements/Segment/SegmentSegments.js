@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import classNames from 'classnames'
-import META from '../../utils/Meta'
-import { getUnhandledProps } from '../../utils/propUtils'
+import { getUnhandledProps, META } from '../../lib'
 
 /**
  * A group of segments can be formatted to appear together.
@@ -14,7 +13,7 @@ export default class SegmentSegments extends Component {
 
   static _meta = {
     name: 'SegmentSegments',
-    type: META.type.element,
+    type: META.TYPES.ELEMENT,
     parent: 'Segment',
   }
 

@@ -1,21 +1,23 @@
 import _ from 'lodash'
 import React, { Component, PropTypes } from 'react'
 import cx from 'classnames'
-import { customPropTypes } from '../../utils/propUtils'
-import META from '../../utils/Meta'
 
+import {
+  customPropTypes,
+  META,
+} from '../../lib'
 import ItemItems from './ItemItems'
 
 export default class Item extends Component {
   static propTypes = {
-    children: customPropTypes.all([
-      customPropTypes.mutuallyExclusive(['description']),
+    children: customPropTypes.every([
+      customPropTypes.disallow(['description']),
       PropTypes.node,
     ]),
     className: PropTypes.string,
     contentClassName: PropTypes.string,
-    description: customPropTypes.all([
-      customPropTypes.mutuallyExclusive(['children']),
+    description: customPropTypes.every([
+      customPropTypes.disallow(['children']),
       PropTypes.node,
     ]),
     extra: PropTypes.node,
@@ -30,7 +32,7 @@ export default class Item extends Component {
 
   static _meta = {
     name: 'Item',
-    type: META.type.view,
+    type: META.TYPES.VIEW,
   }
 
   static Items = ItemItems

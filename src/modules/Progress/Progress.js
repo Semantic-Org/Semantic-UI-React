@@ -2,9 +2,14 @@ import _ from 'lodash'
 import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
-import META from '../../utils/Meta'
-import { customPropTypes, getUnhandledProps, useKeyOnly, useValueAndKey } from '../../utils/propUtils'
-import * as sui from '../../utils/semanticUtils'
+import {
+  customPropTypes,
+  getUnhandledProps,
+  META,
+  SUI,
+  useKeyOnly,
+  useValueAndKey,
+} from '../../lib'
 
 function Progress(props) {
   const {
@@ -69,12 +74,12 @@ function Progress(props) {
 
 Progress._meta = {
   name: 'Progress',
-  type: META.type.module,
+  type: META.TYPES.MODULE,
   props: {
     attached: ['top', 'bottom'],
-    color: sui.colors,
+    color: SUI.COLORS,
     label: ['ratio', 'percent'],
-    size: _.without(sui.sizes, 'mini', 'huge', 'massive'),
+    size: _.without(SUI.SIZES, 'mini', 'huge', 'massive'),
   },
 }
 
@@ -110,10 +115,10 @@ Progress.propTypes = {
   inverted: PropTypes.bool,
 
   /** Can be set to either to display progress as percent or ratio. */
-  label: customPropTypes.all([
-    customPropTypes.any([
-      customPropTypes.require(['percent']),
-      customPropTypes.require(['total', 'value']),
+  label: customPropTypes.every([
+    customPropTypes.some([
+      customPropTypes.demand(['percent']),
+      customPropTypes.demand(['total', 'value']),
     ]),
     PropTypes.oneOfType([
       PropTypes.bool,
@@ -122,8 +127,8 @@ Progress.propTypes = {
   ]),
 
   /** Current percent complete. */
-  percent: customPropTypes.all([
-    customPropTypes.mutuallyExclusive(['total', 'value']),
+  percent: customPropTypes.every([
+    customPropTypes.disallow(['total', 'value']),
     PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.number,
@@ -147,9 +152,9 @@ Progress.propTypes = {
    * Together, these will calculate the percent.
    * Mutually excludes percent.
    */
-  total: customPropTypes.all([
-    customPropTypes.require(['value']),
-    customPropTypes.mutuallyExclusive(['percent']),
+  total: customPropTypes.every([
+    customPropTypes.demand(['value']),
+    customPropTypes.disallow(['percent']),
     PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.number,
@@ -157,13 +162,11 @@ Progress.propTypes = {
   ]),
 
   /**
-   * For use with total.
-   * Together, these will calculate the percent.
-   * Mutually excludes percent.
+   * For use with total. Together, these will calculate the percent. Mutually excludes percent.
    */
-  value: customPropTypes.all([
-    customPropTypes.require(['total']),
-    customPropTypes.mutuallyExclusive(['percent']),
+  value: customPropTypes.every([
+    customPropTypes.demand(['total']),
+    customPropTypes.disallow(['percent']),
     PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.number,

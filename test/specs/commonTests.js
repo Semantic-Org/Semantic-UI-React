@@ -4,18 +4,25 @@ import path from 'path'
 import React, { createElement } from 'react'
 import ReactDOMServer from 'react-dom/server'
 
-import META from 'src/utils/Meta'
+import {
+  META,
+  numberToWord,
+  SUI,
+} from 'src/lib'
+import {
+  consoleUtil,
+  sandbox,
+  syntheticEvent,
+} from 'test/utils'
 import * as stardust from 'stardust'
-import * as sui from 'src/utils/semanticUtils'
-import numberToWord from 'src/utils/numberToWord'
-import * as consoleUtil from 'test/utils/consoleUtil'
-import sandbox from 'test/utils/Sandbox-util'
-import * as syntheticEvent from 'test/utils/syntheticEvent'
 
-import Icon from 'src/elements/Icon/Icon'
-import Image from 'src/elements/Image/Image'
+import { Icon, Image } from 'src/elements'
 
-const componentCtx = require.context('../../src/', true, /(addons|collections|elements|modules|views).*\.js$/)
+const componentCtx = require.context(
+  '../../src/',
+  true,
+  /(addons|collections|elements|modules|views).(?!index).*\.js/
+)
 
 const componentInfo = componentCtx.keys().map(key => {
   const Component = componentCtx(key).default
@@ -209,10 +216,6 @@ export const isConformant = (Component, requiredProps = {}) => {
       expect(_meta).to.be.an('object')
     })
 
-    // TODO remove once all PRs remove use of the library key
-    it('does not define the deprecated "library" key', () => {
-      expect(_meta).not.to.have.any.keys('library')
-    })
     describe('name', () => {
       it('is defined', () => {
         expect(_meta).to.have.any.keys('name')
@@ -232,8 +235,8 @@ export const isConformant = (Component, requiredProps = {}) => {
       it('is defined', () => {
         expect(_meta).to.have.any.keys('type')
       })
-      it('is a META.type', () => {
-        expect(_.values(META.type)).to.contain(_meta.type)
+      it('is a META.TYPES value', () => {
+        expect(_.values(META.TYPES)).to.contain(_meta.type)
       })
     })
   })
@@ -415,7 +418,7 @@ export const implementsColumnsProp = (Component, canEqual, requiredProps = {}) =
     _noClassNameFromBoolProps(Component, 'columns', requiredProps)
 
     it('adds numberToWord value to className', () => {
-      const propVal = _.sample(sui.widths)
+      const propVal = _.sample(SUI.WIDTHS)
 
       shallow(createElement(Component, { ...requiredProps, columns: propVal }))
         .should.have.className([numberToWord(propVal), 'column'].join(' '))
@@ -505,7 +508,7 @@ export const implementsNumberToWordProp = (Component, propKey, requiredProps = {
     _noClassNameFromBoolProps(Component, propKey, requiredProps)
 
     it('adds numberToWord value to className', () => {
-      const propVal = _.sample(sui.widths)
+      const propVal = _.sample(SUI.WIDTHS)
 
       shallow(createElement(Component, { ...requiredProps, [propKey]: propVal }))
         .should.have.className(numberToWord(propVal))

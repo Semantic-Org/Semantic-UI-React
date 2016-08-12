@@ -3,7 +3,7 @@ import React from 'react'
 
 import Form from 'src/collections/Form/Form'
 import * as common from 'test/specs/commonTests'
-import numberToWord from 'src/utils/numberToWord'
+import { numberToWord } from 'src/lib'
 
 describe('Field', () => {
   common.isConformant(Form.Field)

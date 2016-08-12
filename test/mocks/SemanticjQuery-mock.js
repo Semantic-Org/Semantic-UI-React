@@ -1,4 +1,4 @@
-import sandbox from '../utils/Sandbox-util'
+import { sandbox } from 'test/utils'
 
 //
 // jQuery Plugin Mocks

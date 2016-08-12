@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import classNames from 'classnames'
-import META from '../../utils/Meta'
+import { META } from '../../lib'
 
 export default class Image extends Component {
   static propTypes = {
@@ -11,7 +11,7 @@ export default class Image extends Component {
 
   static _meta = {
     name: 'Image',
-    type: META.type.element,
+    type: META.TYPES.ELEMENT,
   }
 
   render() {

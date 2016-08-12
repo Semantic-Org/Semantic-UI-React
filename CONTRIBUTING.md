@@ -6,7 +6,7 @@ CONTRIBUTING
 
 
 - [Getting Started](#getting-started)
-  - [Clone & Install](#clone-&-install)
+  - [Fork, Clone & Install](#fork-clone-&-install)
   - [Commit Messages](#commit-messages)
   - [Commands](#commands)
 - [Workflow](#workflow)
@@ -18,7 +18,7 @@ CONTRIBUTING
 - [API](#api)
   - [SUI HTML Classes](#sui-html-classes)
     - [API Patterns](#api-patterns)
-    - [Prop Utils](#prop-utils)
+    - [Building className](#building-classname)
     - [Testing className](#testing-classname)
   - [SUI HTML Markup](#sui-html-markup)
     - [SUI Components vs Component Parts](#sui-components-vs-component-parts)
@@ -115,9 +115,9 @@ function Button(props) {
 Stateful components should be classes:
 
 ```js
-import AutoControlledComponent from 'src/utils/AutoControlledComponent'
+import { AutoControlledComponent as Component } from '../../lib'
 
-class Dropdown extends AutoControlledComponent {
+class Dropdown extends Component {
   // ...
 }
 ```
@@ -131,11 +131,11 @@ Every component has a static property called `_meta`.  This object defines the c
 Here's an example `_meta` object:
 
 ```js
-import META from '../../utils/Meta'
+import { META } from '../../lib'
 
 const _meta = {
   name: 'MyComponent',
-  type: META.type.module,
+  type: META.TYPES.MODULE,
   props: {
     pointing: ['bottom left', 'bottom right'],
   },
@@ -216,13 +216,13 @@ Each group has an API pattern and prop util for building up the `className` and 
 <div class="ui small red segment"></div>
 ```
 
-#### Prop Utils
+#### Building className
 
-Use [`propUtils`][4] to extract the prop values and build up the `className`.  Grouped classes like `color` and `size` simply use the prop value as the `className`.
+Use [`classNameBuilders`][4] to extract the prop values and build up the `className`.  Grouped classes like `color` and `size` simply use the prop value as the `className`.
 
 ```js
 import cx from 'classnames'
-import { useKeyOnly, useValueAndKey, useKeyOrValueAndKey } from 'src/utils/propUtils'
+import { useKeyOnly, useValueAndKey, useKeyOrValueAndKey } from '../../lib'
 
 function Segment({ size, color, basic, floated, padded }) {
   const classes = cx(
@@ -330,8 +330,6 @@ class List {
 
 #### Component Part Props
 
->Warning, this pattern is experimental.  Feel free to consider it in your API spec if it makes sense.  We do not yet know if it is here to stay.
-
 Sometimes it is convenient to use props to generate markup.  Example, the [Label][10] markup is minimal.  One configuration includes an image and detail:
 
 ```html
@@ -350,15 +348,11 @@ We allow props to define these minimal *component parts*:
   detail='Friend'
   text='Veronica'
 />
-
-// or
-
-<Label image='veronika.jpg' detail='Friend'>
-  Veronica
-</Label>
 ```
 
-See [`propUtils`][4] for special prop renderers for handling `image` and `icon` props for this purpose.
+When props are used for component markup generation, children are not allowed in order to prevent conflicts.  See [this response][14] for more.
+
+See [`src/factories`][13] for special methods to convert props values into ReactElements for this purpose.
 
 ## Testing
 
@@ -523,7 +517,7 @@ Adding documentation for new components is a bit tedious.  The best way to do th
 [1]: https://github.com/TechnologyAdvice/stardust/blob/master/test/specs/commonTests.js
 [2]: https://facebook.github.io/react/docs/forms.html#controlled-components
 [3]: https://facebook.github.io/react/docs/forms.html#uncontrolled-components
-[4]: https://github.com/TechnologyAdvice/stardust/blob/master/src/utils/propUtils.js
+[4]: https://github.com/TechnologyAdvice/stardust/blob/master/src/lib/classNameBuilders.js
 [5]: http://semantic-ui.com/elements/header
 [6]: http://semantic-ui.com/views/item
 [7]: https://github.com/TechnologyAdvice/stardust/pull/281#issuecomment-228663527
@@ -532,3 +526,5 @@ Adding documentation for new components is a bit tedious.  The best way to do th
 [10]: http://semantic-ui.com/elements/label.html
 [11]: https://nodejs.org/
 [12]: https://github.com/TechnologyAdvice/stardust#fork-destination-box
+[13]: https://github.com/TechnologyAdvice/stardust/blob/master/src/factories
+[14]: https://github.com/TechnologyAdvice/stardust/pull/335#issuecomment-238960895

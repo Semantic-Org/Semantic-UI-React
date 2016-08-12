@@ -1,8 +1,7 @@
 import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
-import META from '../../utils/Meta'
-import { getUnhandledProps } from '../../utils/propUtils'
+import { getUnhandledProps, META } from '../../lib'
 
 function MessageHeader(props) {
   const { className, children } = props
@@ -15,7 +14,7 @@ function MessageHeader(props) {
 MessageHeader._meta = {
   name: 'MessageHeader',
   parent: 'Message',
-  type: META.type.collection,
+  type: META.TYPES.COLLECTION,
 }
 
 MessageHeader.propTypes = {

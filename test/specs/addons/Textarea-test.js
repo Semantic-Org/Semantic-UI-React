@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Textarea } from 'stardust'
+import Textarea from 'src/addons/Textarea/Textarea'
 import * as common from '../commonTests'
 
 describe('Textarea', () => {

@@ -1,9 +1,6 @@
 import React, { PropTypes } from 'react'
 import cx from 'classnames'
-import META from '../../utils/Meta'
-import {
-  getUnhandledProps,
-} from '../../utils/propUtils'
+import { getUnhandledProps, META } from '../../lib'
 
 function HeaderSubheader(props) {
   const {
@@ -28,7 +25,7 @@ function HeaderSubheader(props) {
 HeaderSubheader._meta = {
   name: 'HeaderSubheader',
   parent: 'Header',
-  type: META.type.element,
+  type: META.TYPES.ELEMENT,
 }
 
 HeaderSubheader.propTypes = {

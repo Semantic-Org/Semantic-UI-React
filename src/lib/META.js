@@ -1,11 +1,11 @@
 import _ from 'lodash/fp'
 
-const TYPES = {
-  addon: 'addon',
-  collection: 'collection',
-  element: 'element',
-  view: 'view',
-  module: 'module',
+export const TYPES = {
+  ADDON: 'ADDON',
+  COLLECTION: 'COLLECTION',
+  ELEMENT: 'ELEMENT',
+  VIEW: 'VIEW',
+  MODULE: 'MODULE',
 }
 
 const TYPE_VALUES = _.values(TYPES)
@@ -40,34 +40,22 @@ const getMeta = (metaArg) => {
 }
 
 const metaHasKeyValue = _.curry((key, val, metaArg) => _.flow(getMeta, _.get(key), _.eq(val))(metaArg))
-const isType = metaHasKeyValue('type')
+export const isType = metaHasKeyValue('type')
 
-/**
- * Component meta information.  Used to declaratively classify and identify components.
- * @type {{}}
- */
-const META = {
-  type: TYPES,
+// ----------------------------------------
+// Export
+// ----------------------------------------
 
-  // TODO remove once all PRs remove use of the library key
-  // this exists only to prevent foo of undefined errors
-  // there is a test that fails if a components uses this property
-  library: {},
+// type
+export const isAddon = isType(TYPES.ADDON)
+export const isCollection = isType(TYPES.COLLECTION)
+export const isElement = isType(TYPES.ELEMENT)
+export const isView = isType(TYPES.VIEW)
+export const isModule = isType(TYPES.MODULE)
 
-  // type
-  isType,
-  isAddon: isType(TYPES.addon),
-  isCollection: isType(TYPES.collection),
-  isElement: isType(TYPES.element),
-  isView: isType(TYPES.view),
-  isModule: isType(TYPES.module),
+// parent
+export const isParent = _.flow(getMeta, _.has('parent'), _.eq(false))
+export const isChild = _.flow(getMeta, _.has('parent'))
 
-  // parent
-  isParent: _.flow(getMeta, _.has('parent'), _.eq(false)),
-  isChild: _.flow(getMeta, _.has('parent')),
-
-  // other
-  isPrivate: _.flow(getMeta, _.get('name'), _.startsWith('_')),
-}
-
-export default META
+// other
+export const isPrivate = _.flow(getMeta, _.get('name'), _.startsWith('_'))

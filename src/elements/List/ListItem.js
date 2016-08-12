@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react'
 import cx from 'classnames'
 
-import META from '../../utils/Meta'
-import { iconPropRenderer, imagePropRenderer } from '../../utils/propUtils'
+import { META } from '../../lib'
+import { createIcon, createImage } from '../../factories'
 
 export default class ListItem extends Component {
   static propTypes = {
@@ -16,7 +16,7 @@ export default class ListItem extends Component {
 
   static _meta = {
     name: 'ListItem',
-    type: META.type.element,
+    type: META.TYPES.ELEMENT,
     parent: 'List',
   }
 
@@ -24,7 +24,7 @@ export default class ListItem extends Component {
     const { children, className, description, header, icon, image, ...rest } = this.props
     const classes = cx(className, 'item')
 
-    const media = iconPropRenderer(icon) || imagePropRenderer(image)
+    const media = createIcon(icon) || createImage(image)
     const _description = description || children
 
     let content = header ? [

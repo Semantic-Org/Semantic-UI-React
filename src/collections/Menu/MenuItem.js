@@ -1,7 +1,8 @@
 import React, { PropTypes } from 'react'
 import cx from 'classnames'
-import META from '../../utils/Meta'
-import Label from '../../elements/Label/Label'
+
+import { META } from '../../lib'
+import { Label } from '../../elements'
 
 function MenuItem({ __onClick, active, children, className, label, name, onClick, ...rest }) {
   const handleClick = (e) => {
@@ -26,7 +27,7 @@ function MenuItem({ __onClick, active, children, className, label, name, onClick
 
 MenuItem._meta = {
   name: 'MenuItem',
-  type: META.type.collection,
+  type: META.TYPES.COLLECTION,
   parent: 'Menu',
 }
 

@@ -1,10 +1,12 @@
 import React, { PropTypes } from 'react'
 import cx from 'classnames'
 
-import Icon from '../../elements/Icon/Icon'
-import { someChildType } from '../../utils/childrenUtils'
-import { useKeyOnly } from '../../utils/propUtils'
-import META from '../../utils/Meta'
+import {
+  childrenUtils,
+  META,
+  useKeyOnly,
+} from '../../lib'
+import { Icon } from '../../elements'
 
 function DropdownItem(props) {
   const {
@@ -31,7 +33,7 @@ function DropdownItem(props) {
     className,
   )
   // add default dropdown icon if item contains another menu
-  const iconName = icon || someChildType(children, 'DropdownMenu') && 'dropdown'
+  const iconName = icon || childrenUtils.someByType(children, 'DropdownMenu') && 'dropdown'
   const iconClasses = cx(iconName, 'icon')
 
   return (
@@ -47,7 +49,7 @@ function DropdownItem(props) {
 DropdownItem._meta = {
   name: 'DropdownItem',
   parent: 'Dropdown',
-  type: META.type.module,
+  type: META.TYPES.MODULE,
 }
 
 DropdownItem.propTypes = {

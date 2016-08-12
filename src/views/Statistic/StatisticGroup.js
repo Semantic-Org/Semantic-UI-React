@@ -1,10 +1,14 @@
 import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
-import { customPropTypes, getUnhandledProps, useKeyOnly } from '../../utils/propUtils'
-import * as sui from '../../utils/semanticUtils'
-import numberToWord from '../../utils/numberToWord'
-import META from '../../utils/Meta'
+import {
+  customPropTypes,
+  getUnhandledProps,
+  META,
+  numberToWord,
+  SUI,
+  useKeyOnly,
+} from '../../lib'
 import Statistic from './Statistic'
 
 function StatisticGroup(props) {
@@ -34,17 +38,17 @@ function StatisticGroup(props) {
 
 StatisticGroup._meta = {
   name: 'StatisticGroup',
-  type: META.type.view,
+  type: META.TYPES.VIEW,
   parent: 'Statistic',
   props: {
-    widths: sui.widths,
+    widths: SUI.WIDTHS,
   },
 }
 
 StatisticGroup.propTypes = {
   /** Primary content of the StatisticGroup. */
-  children: customPropTypes.all([
-    customPropTypes.mutuallyExclusive(['content']),
+  children: customPropTypes.every([
+    customPropTypes.disallow(['content']),
     PropTypes.node,
   ]),
 
@@ -55,8 +59,8 @@ StatisticGroup.propTypes = {
   horizontal: PropTypes.bool,
 
   /** Array of props for Statistic. */
-  items: customPropTypes.all([
-    customPropTypes.mutuallyExclusive(['children']),
+  items: customPropTypes.every([
+    customPropTypes.disallow(['children']),
     PropTypes.array,
   ]),
 

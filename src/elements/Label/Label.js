@@ -1,19 +1,17 @@
 import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
-import META from '../../utils/Meta'
-import * as sui from '../../utils/semanticUtils'
-import { someChildType } from '../../utils/childrenUtils'
 import {
   getUnhandledProps,
-  iconPropRenderer,
-  imagePropRenderer,
+  META,
+  SUI,
+  childrenUtils,
   useKeyOnly,
-  useValueAndKey,
   useKeyOrValueAndKey,
-} from '../../utils/propUtils'
-import Icon from '../Icon/Icon'
-import Image from '../Image/Image'
+  useValueAndKey,
+} from '../../lib'
+import { createIcon, createImage } from '../../factories'
+import { Icon, Image } from '../'
 
 /**
  * A label displays content classification
@@ -41,7 +39,7 @@ function Label(props) {
     useKeyOrValueAndKey(ribbon, 'ribbon'),
     circular && (children && 'circular' || 'empty circular'),
     // TODO how to handle image child with no image class? there are two image style labels.
-    (image || someChildType(children, Image) || someChildType(children, 'img')) && 'image',
+    (image || childrenUtils.someByType(children, Image) || childrenUtils.someByType(children, 'img')) && 'image',
     'label',
     className
   )
@@ -53,8 +51,8 @@ function Label(props) {
 
   return (
     <LabelComponent className={classes} onClick={handleClick} {...rest}>
-      {iconPropRenderer(icon)}
-      {imagePropRenderer(image)}
+      {createIcon(icon)}
+      {createImage(image)}
       {text}
       {children}
       {detail && (
@@ -69,11 +67,11 @@ function Label(props) {
 
 Label._meta = {
   name: 'Label',
-  type: META.type.element,
+  type: META.TYPES.ELEMENT,
   props: {
     attached: ['top', 'bottom', 'top right', 'top left', 'bottom left', 'bottom right'],
-    size: sui.sizes,
-    color: sui.colors,
+    size: SUI.SIZES,
+    color: SUI.COLORS,
     pointing: ['bottom', 'left', 'right'],
     corner: ['left', 'right'],
     ribbon: ['right'],

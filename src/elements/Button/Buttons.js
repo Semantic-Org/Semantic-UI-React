@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import classNames from 'classnames'
-import META from '../../utils/Meta'
+import { META } from '../../lib'
 
 export default class Buttons extends Component {
   static propTypes = {
@@ -10,7 +10,7 @@ export default class Buttons extends Component {
 
   static _meta = {
     name: 'Buttons',
-    type: META.type.element,
+    type: META.TYPES.ELEMENT,
     parent: 'Button',
   }
 

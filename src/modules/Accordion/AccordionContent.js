@@ -1,8 +1,7 @@
 import React, { PropTypes } from 'react'
 import cx from 'classnames'
 
-import META from '../../utils/Meta'
-import { useKeyOnly } from '../../utils/propUtils'
+import { META, useKeyOnly } from '../../lib'
 
 function AccordionContent({ active, children, className, ...rest }) {
   const classes = cx(
@@ -33,7 +32,7 @@ AccordionContent.propTypes = {
 
 AccordionContent._meta = {
   name: 'AccordionContent',
-  type: META.type.module,
+  type: META.TYPES.MODULE,
   parent: 'Accordion',
 }
 

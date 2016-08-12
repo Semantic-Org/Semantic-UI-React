@@ -1,8 +1,12 @@
 import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
-import META from '../../utils/Meta'
-import { customPropTypes, iconPropRenderer, getUnhandledProps } from '../../utils/propUtils'
+import {
+  customPropTypes,
+  getUnhandledProps,
+  META,
+} from '../../lib'
+import { createIcon } from '../../factories'
 
 /**
  * A divider sub-component for Breadcrumb component.
@@ -12,21 +16,21 @@ function BreadcrumbDivider(props) {
   const rest = getUnhandledProps(BreadcrumbDivider, props)
   const classes = cx(className, 'divider')
 
-  if (icon) return iconPropRenderer(icon, { ...rest, className: classes })
+  if (icon) return createIcon(icon, { ...rest, className: classes })
 
   return <div {...rest} className={classes}>{children || '/'}</div>
 }
 
 BreadcrumbDivider._meta = {
   name: 'BreadcrumbDivider',
-  type: META.type.collection,
+  type: META.TYPES.COLLECTION,
   parent: 'Breadcrumb',
 }
 
 BreadcrumbDivider.propTypes = {
   /** Primary content of the Breadcrumb.Divider. */
-  children: customPropTypes.all([
-    customPropTypes.mutuallyExclusive(['icon']),
+  children: customPropTypes.every([
+    customPropTypes.disallow(['icon']),
     PropTypes.node,
   ]),
 
@@ -34,8 +38,8 @@ BreadcrumbDivider.propTypes = {
   className: PropTypes.string,
 
   /** Render as an `Icon` component with `divider` class instead of a `div`. */
-  icon: customPropTypes.all([
-    customPropTypes.mutuallyExclusive(['children']),
+  icon: customPropTypes.every([
+    customPropTypes.disallow(['children']),
     PropTypes.node,
   ]),
 }

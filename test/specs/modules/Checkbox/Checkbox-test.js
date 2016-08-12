@@ -3,7 +3,7 @@ import React from 'react'
 
 import Checkbox from 'src/modules/Checkbox/Checkbox'
 import * as common from 'test/specs/commonTests'
-import sandbox from 'test/utils/Sandbox-util'
+import { sandbox } from 'test/utils'
 
 describe('Checkbox', () => {
   common.isConformant(Checkbox)

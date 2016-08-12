@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import numberToWord from '../../../src/utils/numberToWord'
+import { numberToWord } from 'src/lib'
 
 const words = [
   'one',

@@ -1,8 +1,12 @@
 import cx from 'classnames'
 import React, { PropTypes } from 'react'
-import META from '../../utils/Meta'
-import { getUnhandledProps, useTextAlignProp, useKeyOnly } from '../../utils/propUtils'
-import * as sui from '../../utils/semanticUtils'
+import {
+  META,
+  SUI,
+  getUnhandledProps,
+  useKeyOnly,
+  useTextAlignProp,
+} from '../../lib'
 
 /**
  * A container limits content to a maximum width
@@ -24,9 +28,9 @@ function Container(props) {
 
 Container._meta = {
   name: 'Container',
-  type: META.type.element,
+  type: META.TYPES.ELEMENT,
   props: {
-    textAlign: sui.textAlignments,
+    textAlign: SUI.TEXT_ALIGNMENTS,
   },
 }
 

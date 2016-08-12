@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import cx from 'classnames'
 
-import META from '../../utils/Meta'
+import { META } from '../../lib'
 
 class DropdownMenu extends Component {
   static propTypes = {
@@ -15,7 +15,7 @@ class DropdownMenu extends Component {
   static _meta = {
     name: 'DropdownMenu',
     parent: 'Dropdown',
-    type: META.type.module,
+    type: META.TYPES.MODULE,
   }
 
   render() {

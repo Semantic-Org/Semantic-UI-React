@@ -2,7 +2,7 @@ import React from 'react'
 
 import Button from 'src/elements/Button/Button'
 import * as common from 'test/specs/commonTests'
-import sandbox from 'test/utils/Sandbox-util'
+import { sandbox } from 'test/utils'
 
 describe('Button', () => {
   common.isConformant(Button)
