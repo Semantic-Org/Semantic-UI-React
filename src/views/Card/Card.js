@@ -4,6 +4,10 @@ import React, { PropTypes } from 'react'
 import META from '../../utils/Meta'
 import * as sui from '../../utils/semanticUtils'
 import { useKeyOnly } from '../../utils/propUtils'
+import CardContent from './CardContent'
+import CardDescription from './CardDescription'
+import CardHeader from './CardHeader'
+import CardMeta from './CardMeta'
 
 function Card(props) {
   const {
@@ -62,5 +66,10 @@ Card.propTypes = {
   onClick: PropTypes.func,
   raised: PropTypes.bool,
 }
+
+Card.Content = CardContent
+Card.Description = CardDescription
+Card.Header = CardHeader
+Card.Meta = CardMeta
 
 export default Card
