@@ -12,6 +12,8 @@ function Card(props) {
     className,
     color,
     fluid,
+    href,
+    onClick,
     raised,
     ...rest,
   } = props
@@ -25,10 +27,20 @@ function Card(props) {
     className,
   )
 
+  const handleClick = (e) => {
+    if (onClick) onClick(e)
+  }
+  const CardComponent = href || onClick ? 'a' : 'div'
+
   return (
-    <div {...rest} className={classes}>
+    <CardComponent
+      {...rest}
+      className={classes}
+      href={href}
+      onClick={handleClick}
+    >
       {children}
-    </div>
+    </CardComponent>
   )
 }
 
@@ -46,6 +58,8 @@ Card.propTypes = {
   className: PropTypes.string,
   color: PropTypes.oneOf(Card._meta.props.color),
   fluid: PropTypes.bool,
+  href: PropTypes.string,
+  onClick: PropTypes.func,
   raised: PropTypes.bool,
 }
 
