@@ -1,11 +1,11 @@
 import _ from 'lodash/fp'
 
 export const TYPES = {
-  ADDON: 'ADDON',
-  COLLECTION: 'COLLECTION',
-  ELEMENT: 'ELEMENT',
-  VIEW: 'VIEW',
-  MODULE: 'MODULE',
+  ADDON: 'addon',
+  COLLECTION: 'collection',
+  ELEMENT: 'element',
+  VIEW: 'view',
+  MODULE: 'module',
 }
 
 const TYPE_VALUES = _.values(TYPES)
