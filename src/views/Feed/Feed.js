@@ -29,15 +29,17 @@ function Feed(props) {
 
   const eventsJSX = events.map(eventProps => {
     const { childKey, date, meta, summary, ...eventData } = eventProps
-    const finalKey = childKey || `${date}-${meta}-${summary}`
+    const finalKey = childKey || [date, meta, summary].join('-')
 
-    return (<FeedEvent
-      date={date}
-      key={finalKey}
-      meta={meta}
-      summary={summary}
-      {...eventData}
-            />)
+    return (
+      <FeedEvent
+        date={date}
+        key={finalKey}
+        meta={meta}
+        summary={summary}
+        {...eventData}
+      />
+    )
   })
 
   return <div {...rest} className={classes}>{eventsJSX}</div>

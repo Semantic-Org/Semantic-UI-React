@@ -17,12 +17,14 @@ function FeedEvent(props) {
   const hasContentProp = (content || date || extraImages || extraText || meta || summary)
   const contentProps = { content, date, extraImages, extraText, meta, summary }
 
-  return (<div {...rest} className={classes}>
+  return (
+    <div {...rest} className={classes}>
     {icon && <FeedLabel icon={icon} />}
     {image && <FeedLabel image={image} />}
     {hasContentProp && <FeedContent {...contentProps} />}
     {children}
-  </div>)
+  </div>
+  )
 }
 
 FeedEvent._meta = {
