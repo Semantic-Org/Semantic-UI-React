@@ -26,6 +26,7 @@ const componentCtx = require.context(
 
 const componentInfo = componentCtx.keys().map(key => {
   const Component = componentCtx(key).default
+  console.log(Component)
   const { _meta, prototype } = Component
 
   if (!_meta) {
