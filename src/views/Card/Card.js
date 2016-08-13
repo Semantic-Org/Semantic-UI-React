@@ -1,9 +1,11 @@
 import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
-import META from '../../utils/Meta'
-import * as sui from '../../utils/semanticUtils'
-import { useKeyOnly } from '../../utils/propUtils'
+import {
+  META,
+  SUI,
+  useKeyOnly,
+} from '../../lib'
 import CardContent from './CardContent'
 import CardDescription from './CardDescription'
 import CardHeader from './CardHeader'
@@ -50,9 +52,9 @@ function Card(props) {
 
 Card._meta = {
   name: 'Card',
-  type: META.type.view,
+  type: META.TYPES.VIEW,
   props: {
-    color: sui.colors,
+    color: SUI.COLORS,
   },
 }
 

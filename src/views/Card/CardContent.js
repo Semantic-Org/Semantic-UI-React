@@ -1,8 +1,11 @@
 import React, { PropTypes } from 'react'
 import cx from 'classnames'
 
-import META from '../../utils/Meta'
-import { customPropTypes, useKeyOnly } from '../../utils/propUtils'
+import {
+  customPropTypes,
+  META,
+  useKeyOnly,
+} from '../../lib'
 import CardDescription from './CardDescription'
 import CardHeader from './CardHeader'
 import CardMeta from './CardMeta'
@@ -21,9 +24,9 @@ function CardContent(props) {
 
   return (
     <div {...rest} className={classes}>
-      {header && <CardHeader header={header} />}
-      {meta && <CardMeta meta={meta} />}
-      {description && <CardDescription description={description} />}
+      {header && <CardHeader content={header} />}
+      {meta && <CardMeta content={meta} />}
+      {description && <CardDescription content={description} />}
     </div>
   )
 }
@@ -31,27 +34,36 @@ function CardContent(props) {
 CardContent._meta = {
   name: 'CardContent',
   parent: 'Card',
-  type: META.type.view,
+  type: META.TYPES.VIEW,
 }
 
 CardContent.propTypes = {
   className: PropTypes.string,
-  children: customPropTypes.all([
-    customPropTypes.mutuallyExclusive(['description', 'header', 'meta']),
+  children: customPropTypes.every([
+    customPropTypes.disallow(['description', 'header', 'meta']),
     PropTypes.node,
   ]),
-  description: customPropTypes.all([
-    customPropTypes.mutuallyExclusive(['children']),
-    PropTypes.node,
+  description: customPropTypes.every([
+    customPropTypes.disallow(['children']),
+    PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+    ]),
   ]),
   extra: PropTypes.bool,
-  header: customPropTypes.all([
-    customPropTypes.mutuallyExclusive(['children']),
-    PropTypes.node,
+  header: customPropTypes.every([
+    customPropTypes.disallow(['children']),
+    PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+    ]),
   ]),
-  meta: customPropTypes.all([
-    customPropTypes.mutuallyExclusive(['children']),
-    PropTypes.node,
+  meta: customPropTypes.every([
+    customPropTypes.disallow(['children']),
+    PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+    ]),
   ]),
 }
 

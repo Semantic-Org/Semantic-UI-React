@@ -1,31 +1,36 @@
 import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
-import META from '../../utils/Meta'
-import { customPropTypes } from '../../utils/propUtils'
+import {
+  customPropTypes,
+  META,
+} from '../../lib'
 
 function CardHeader(props) {
-  const { className, children, header, ...rest } = props
+  const { className, children, content, ...rest } = props
   const classes = cx(className, 'header')
 
-  return <div {...rest} className={classes}>{children || header}</div>
+  return <div {...rest} className={classes}>{children || content}</div>
 }
 
 CardHeader._meta = {
   name: 'CardHeader',
   parent: 'Card',
-  type: META.type.view,
+  type: META.TYPES.VIEW,
 }
 
 CardHeader.propTypes = {
   className: PropTypes.string,
-  children: customPropTypes.all([
-    customPropTypes.mutuallyExclusive(['header']),
+  children: customPropTypes.every([
+    customPropTypes.disallow(['header']),
     PropTypes.node,
   ]),
-  header: customPropTypes.all([
-    customPropTypes.mutuallyExclusive(['children']),
-    PropTypes.node,
+  content: customPropTypes.every([
+    customPropTypes.disallow(['children']),
+    PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+    ]),
   ]),
 }
 
