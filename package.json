@@ -45,12 +45,11 @@
     "npm": "2 - 4"
   },
   "dependencies": {
-    "bluebird": "^3.3.4",
     "classnames": "^2.1.5",
     "debug": "^2.2.0",
     "jquery": "^3.1.0",
     "lodash": "^4.6.1",
-    "semantic-ui-css": "^2.2.1"
+    "react-portal": "^2.2.1"
   },
   "devDependencies": {
     "babel-cli": "^6.5.1",
@@ -118,7 +117,8 @@
     "require-dir": "^0.3.0",
     "rimraf": "^2.5.2",
     "sass-loader": "^3.2.0",
-    "simulant": "^0.2.1",
+    "semantic-ui-css": "^2.2.2",
+    "simulant": "^0.2.2",
     "sinon": "^1.17.3",
     "sinon-chai": "^2.8.0",
     "style-loader": "^0.13.1",
