@@ -1,7 +1,7 @@
 import React from 'react'
 import { Statistic } from 'stardust'
 
-const StatisticSizeExamples = () => (
+const Size = () => (
   <div>
     <Statistic size='mini' label='Views' value='2,204' />
     <Statistic size='tiny' label='Views' value='2,204' />
@@ -12,4 +12,4 @@ const StatisticSizeExamples = () => (
   </div>
 )
 
-export default StatisticSizeExamples
+export default Size

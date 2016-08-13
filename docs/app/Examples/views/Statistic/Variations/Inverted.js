@@ -3,7 +3,7 @@ import { Segment, Statistic } from 'stardust'
 
 // TODO: Update <Segment> usage after <Segment> will be updated to v1 API
 
-const StatisticInvertedExample = () => (
+const Inverted = () => (
   <Segment className='inverted'>
     <Statistic inverted value='54' label='inverted' />
     <Statistic inverted color='red' value='27' label='red' />
@@ -21,4 +21,4 @@ const StatisticInvertedExample = () => (
   </Segment>
 )
 
-export default StatisticInvertedExample
+export default Inverted

@@ -1,9 +1,11 @@
 import React from 'react'
-import { Icon, Image, Statistic } from 'stardust'
+import {Icon, Image, Statistic} from 'stardust'
 
-const { Group, Label, Value } = Statistic
+const {Group, Label, Value} = Statistic
 
-const StatisticValueExample = () => (
+// TODO: Update <Image> usage after <Image> will be updated to v1 API
+
+const Values = () => (
   <Group>
     <Statistic>
       <Value>22</Value>
@@ -20,7 +22,7 @@ const StatisticValueExample = () => (
 
     <Statistic>
       <Value>
-        <Icon name='plane' />
+        <Icon name='plane'/>
         5
       </Value>
       <Label>Flights</Label>
@@ -28,7 +30,7 @@ const StatisticValueExample = () => (
 
     <Statistic>
       <Value>
-        <Image inline shape='circular' src='http://semantic-ui.com/images/avatar/small/joe.jpg' />
+        <Image src='http://semantic-ui.com/images/avatar/small/joe.jpg' className='circular inline'/>
         42
       </Value>
       <Label>Team Members</Label>
@@ -36,4 +38,4 @@ const StatisticValueExample = () => (
   </Group>
 )
 
-export default StatisticValueExample
+export default Values

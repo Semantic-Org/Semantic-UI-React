@@ -1,7 +1,7 @@
 import React from 'react'
 import { Divider, Statistic } from 'stardust'
 
-const StatisticSizeDividedExamples = () => (
+const SizeDivided = () => (
   <div>
     <Statistic size='mini' label='Views' value='2,204' />
     <Divider />
@@ -22,4 +22,4 @@ const StatisticSizeDividedExamples = () => (
   </div>
 )
 
-export default StatisticSizeDividedExamples
+export default SizeDivided

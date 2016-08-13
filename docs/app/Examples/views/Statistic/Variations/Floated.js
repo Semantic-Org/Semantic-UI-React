@@ -1,7 +1,7 @@
 import React from 'react'
 import { Segment, Statistic } from 'stardust'
 
-const StatisticFloatedExample = () => (
+const Floated = () => (
   <Segment>
     <Statistic floated='right' label='Views' value='2,204' />
 
@@ -32,4 +32,4 @@ const StatisticFloatedExample = () => (
   </Segment>
 )
 
-export default StatisticFloatedExample
+export default Floated
