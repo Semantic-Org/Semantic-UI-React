@@ -4,8 +4,6 @@ import { Icon, Message } from 'stardust'
 import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
 import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
 
-// TODO: Update <Message> usage after v1 API
-
 const Groups = () => (
   <ExampleSection title='Groups'>
     <ComponentExample
