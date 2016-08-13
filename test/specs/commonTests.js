@@ -303,6 +303,8 @@ export const isConformant = (Component, requiredProps = {}) => {
  */
 export const hasUIClassName = (Component, requiredProps = {}) => {
   it('has the "ui" className', () => {
+    if (!Component) throw new Error(`hasUIClassName requires a Component, got: ${typeof Component}`)
+
     shallow(<Component {...requiredProps} />)
       .should.have.className('ui')
   })
@@ -330,6 +332,8 @@ export const hasSubComponents = (Component, subComponents) => {
  */
 export const isTabbable = (Component, requiredProps = {}) => {
   it('is tabbable', () => {
+    if (!Component) throw new Error(`isTabbable requires a Component, got: ${typeof Component}`)
+
     shallow(<Component {...requiredProps} />)
       .should.have.attr('tabindex', '0')
   })
@@ -342,6 +346,8 @@ export const isTabbable = (Component, requiredProps = {}) => {
  */
 export const rendersChildren = (Component, requiredProps = {}) => {
   it('renders child text', () => {
+    if (!Component) throw new Error(`rendersChildren requires a Component, got: ${typeof Component}`)
+
     const text = faker.hacker.phrase()
     shallow(createElement(Component, requiredProps, text))
       .should.contain.text(text)
@@ -422,6 +428,8 @@ const _classNamePropValueBeforePropName = (Component, propKey, requiredProps) =>
  */
 export const implementsColumnsProp = (Component, canEqual, requiredProps = {}) => {
   describe('columns (common)', () => {
+    if (!Component) throw new Error(`implementsColumnsProp requires a Component, got: ${typeof Component}`)
+
     _definesPropOptions(Component, 'columns')
     _noDefaultClassNameFromProp(Component, 'columns', requiredProps)
     _noClassNameFromBoolProps(Component, 'columns', requiredProps)
@@ -454,6 +462,8 @@ export const implementsIconProp = (Component, requiredProps = {}) => {
   }
 
   describe('icon (common)', () => {
+    if (!Component) throw new Error(`implementsIconProp requires a Component, got: ${typeof Component}`)
+
     _noDefaultClassNameFromProp(Component, 'icon')
 
     it('has no i when not defined', () => {
@@ -480,6 +490,8 @@ export const implementsImageProp = (Component, requiredProps = {}) => {
       .should.have.prop('src', imageSrc)
   }
   describe('image (common)', () => {
+    if (!Component) throw new Error(`implementsImageProp requires a Component, got: ${typeof Component}`)
+
     _noDefaultClassNameFromProp(Component, 'image')
 
     it('has no img when prop is not defined', () => {
@@ -512,6 +524,9 @@ export const implementsImageProp = (Component, requiredProps = {}) => {
  */
 export const implementsNumberToWordProp = (Component, propKey, requiredProps = {}) => {
   describe(`${propKey} (common)`, () => {
+    if (!Component) throw new Error(`implementsNumberToWordProp requires a Component, got: ${typeof Component}`)
+    if (!propKey) throw new Error(`implementsNumberToWordProp requires a propKey, got: ${typeof propKey}`)
+
     _definesPropOptions(Component, propKey)
     _noDefaultClassNameFromProp(Component, propKey, requiredProps)
     _noClassNameFromBoolProps(Component, propKey, requiredProps)
@@ -532,6 +547,8 @@ export const implementsNumberToWordProp = (Component, propKey, requiredProps = {
  */
 export const implementsTextAlignProp = (Component, requiredProps = {}) => {
   describe('aligned (common)', () => {
+    if (!Component) throw new Error(`implementsTextAlignProp requires a Component, got: ${typeof Component}`)
+
     _definesPropOptions(Component, 'textAlign')
     _noDefaultClassNameFromProp(Component, 'textAlign')
     _noClassNameFromBoolProps(Component, 'textAlign', requiredProps)
@@ -562,6 +579,8 @@ export const implementsTextAlignProp = (Component, requiredProps = {}) => {
  */
 export const implementsVerticalAlignProp = (Component, requiredProps = {}) => {
   describe('verticalAlign (common)', () => {
+    if (!Component) throw new Error(`implementsVerticalAlignProp requires a Component, got: ${typeof Component}`)
+
     _definesPropOptions(Component, 'verticalAlign')
     _noDefaultClassNameFromProp(Component, 'verticalAlign')
     _noClassNameFromBoolProps(Component, 'verticalAlign', requiredProps)
@@ -583,6 +602,9 @@ export const implementsVerticalAlignProp = (Component, requiredProps = {}) => {
  */
 export const propKeyOnlyToClassName = (Component, propKey, requiredProps = {}) => {
   describe(`${propKey} (common)`, () => {
+    if (!Component) throw new Error(`propKeyOnlyToClassName requires a Component, got: ${typeof Component}`)
+    if (!propKey) throw new Error(`propKeyOnlyToClassName requires a propKey, got: ${typeof propKey}`)
+
     _noDefaultClassNameFromProp(Component, propKey, requiredProps)
 
     it('adds prop name to className', () => {
@@ -609,6 +631,9 @@ export const propKeyOnlyToClassName = (Component, propKey, requiredProps = {}) =
  */
 export const propValueOnlyToClassName = (Component, propKey, requiredProps = {}) => {
   describe(`${propKey} (common)`, () => {
+    if (!Component) throw new Error(`propValueOnlyToClassName requires a Component, got: ${typeof Component}`)
+    if (!propKey) throw new Error(`propValueOnlyToClassName requires a propKey, got: ${typeof propKey}`)
+
     _definesPropOptions(Component, propKey)
     _noDefaultClassNameFromProp(Component, propKey, requiredProps)
     _noClassNameFromBoolProps(Component, propKey, requiredProps)
@@ -638,6 +663,9 @@ export const propValueOnlyToClassName = (Component, propKey, requiredProps = {})
  */
 export const propKeyAndValueToClassName = (Component, propKey, requiredProps = {}) => {
   describe(`${propKey} (common)`, () => {
+    if (!Component) throw new Error(`propKeyAndValueToClassName requires a Component, got: ${typeof Component}`)
+    if (!propKey) throw new Error(`propKeyAndValueToClassName requires a propKey, got: ${typeof propKey}`)
+
     _definesPropOptions(Component, propKey)
     _noDefaultClassNameFromProp(Component, propKey)
     _noClassNameFromBoolProps(Component, propKey, requiredProps)
@@ -653,6 +681,9 @@ export const propKeyAndValueToClassName = (Component, propKey, requiredProps = {
  */
 export const propKeyOrValueToClassName = (Component, propKey, requiredProps = {}) => {
   describe(`${propKey} (common)`, () => {
+    if (!Component) throw new Error(`propKeyOrValueToClassName requires a Component, got: ${typeof Component}`)
+    if (!propKey) throw new Error(`propKeyOrValueToClassName requires a propKey, got: ${typeof propKey}`)
+
     _definesPropOptions(Component, propKey)
     _noDefaultClassNameFromProp(Component, propKey, requiredProps)
     _classNamePropValueBeforePropName(Component, propKey, requiredProps)
