@@ -3,13 +3,12 @@ import React from 'react'
 import { META, getUnhandledProps } from '../../lib'
 
 const _meta = {
-  name: 'Comment',
+  name: 'CommentActions',
   type: META.TYPES.VIEW,
-  props: {},
 }
 
-function CommentAction(props) {
-  const rest = getUnhandledProps(CommentAction, props)
+function CommentActions(props) {
+  const rest = getUnhandledProps(CommentActions, props)
   return (
     <div {...rest}>
         
@@ -17,7 +16,7 @@ function CommentAction(props) {
   )
 }
 
-CommentAction._meta = _meta
+CommentActions._meta = _meta
 
 
-export default CommentAction
+export default CommentActions

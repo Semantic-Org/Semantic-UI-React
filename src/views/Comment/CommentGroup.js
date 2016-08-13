@@ -5,7 +5,6 @@ import { META, getUnhandledProps } from '../../lib'
 const _meta = {
   name: 'CommentGroup',
   type: META.TYPES.VIEW,
-  props: {},
 }
 
 function CommentGroup(props) {

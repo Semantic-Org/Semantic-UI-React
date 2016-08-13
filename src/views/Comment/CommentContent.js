@@ -3,9 +3,8 @@ import React from 'react'
 import { META, getUnhandledProps } from '../../lib'
 
 const _meta = {
-  name: 'Comment',
+  name: 'CommentContent',
   type: META.TYPES.VIEW,
-  props: {},
 }
 
 function CommentContent(props) {

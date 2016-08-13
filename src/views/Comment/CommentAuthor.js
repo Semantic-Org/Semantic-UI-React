@@ -3,16 +3,14 @@ import React from 'react'
 import { META, getUnhandledProps } from '../../lib'
 
 const _meta = {
-  name: 'Comment',
+  name: 'CommentAuthor',
   type: META.TYPES.VIEW,
-  props: {},
 }
 
 function CommentAuthor(props) {
   const rest = getUnhandledProps(CommentAuthor, props)
   return (
     <div {...rest}>
-        
     </div> 
   )
 }
