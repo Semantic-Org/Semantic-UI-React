@@ -9,7 +9,7 @@ describe('FeedMeta', () => {
   common.rendersChildren(FeedMeta)
 
   it('renders <FeedLike> with like prop', () => {
-    mount(<FeedMeta like={faker.hacker.phrase()} />)
+    shallow(<FeedMeta like={faker.hacker.phrase()} />)
       .should.have.descendants('FeedLike')
   })
 

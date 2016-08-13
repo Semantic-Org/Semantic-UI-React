@@ -2,8 +2,12 @@ import _ from 'lodash'
 import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
-import META from '../../utils/Meta'
-import { customPropTypes, getUnhandledProps, useKeyOnly } from '../../utils/propUtils'
+import {
+  customPropTypes,
+  getUnhandledProps,
+  META,
+  useKeyOnly,
+} from '../../lib'
 
 function FeedExtra(props) {
   const { children, className, images, text } = props
@@ -29,7 +33,7 @@ function FeedExtra(props) {
 FeedExtra._meta = {
   name: 'FeedExtra',
   parent: 'Feed',
-  type: META.type.view,
+  type: META.TYPES.VIEW,
 }
 
 FeedExtra.propTypes = {
@@ -40,8 +44,8 @@ FeedExtra.propTypes = {
   className: PropTypes.string,
 
   /** An event can contain additional information like a set of images. */
-  images: customPropTypes.all([
-    customPropTypes.mutuallyExclusive(['text']),
+  images: customPropTypes.every([
+    customPropTypes.disallow(['text']),
     PropTypes.oneOfType([
       PropTypes.bool,
       PropTypes.arrayOf(PropTypes.node),
@@ -49,8 +53,8 @@ FeedExtra.propTypes = {
   ]),
 
   /** An event can contain additional information like a set of images. */
-  text: customPropTypes.all([
-    customPropTypes.mutuallyExclusive(['images']),
+  text: customPropTypes.every([
+    customPropTypes.disallow(['images']),
     PropTypes.oneOfType([
       PropTypes.bool,
       PropTypes.string,

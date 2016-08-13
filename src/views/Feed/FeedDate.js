@@ -1,8 +1,11 @@
 import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
-import META from '../../utils/Meta'
-import { customPropTypes, getUnhandledProps } from '../../utils/propUtils'
+import {
+   customPropTypes,
+   getUnhandledProps,
+   META,
+} from '../../lib'
 
 function FeedDate(props) {
   const { children, className, date } = props
@@ -15,13 +18,13 @@ function FeedDate(props) {
 FeedDate._meta = {
   name: 'FeedDate',
   parent: 'Feed',
-  type: META.type.view,
+  type: META.TYPES.VIEW,
 }
 
 FeedDate.propTypes = {
   /** Primary content of the FeedDate. Mutually exclusive with the date prop. */
-  children: customPropTypes.all([
-    customPropTypes.mutuallyExclusive(['date']),
+  children: customPropTypes.every([
+    customPropTypes.disallow(['date']),
     PropTypes.node,
   ]),
 
@@ -29,8 +32,8 @@ FeedDate.propTypes = {
   className: PropTypes.string,
 
   /** Shorthand for primary content of the FeedDate. Mutually exclusive with the children prop. */
-  date: customPropTypes.all([
-    customPropTypes.mutuallyExclusive(['children']),
+  date: customPropTypes.every([
+    customPropTypes.disallow(['children']),
     PropTypes.string,
   ]),
 }

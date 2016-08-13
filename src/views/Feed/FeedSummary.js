@@ -1,8 +1,11 @@
 import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
-import META from '../../utils/Meta'
-import { customPropTypes, getUnhandledProps } from '../../utils/propUtils'
+import {
+   customPropTypes,
+   getUnhandledProps,
+   META,
+} from '../../lib'
 import FeedDate from './FeedDate'
 
 function FeedSummary(props) {
@@ -21,13 +24,13 @@ function FeedSummary(props) {
 FeedSummary._meta = {
   name: 'FeedSummary',
   parent: 'Feed',
-  type: META.type.view,
+  type: META.TYPES.VIEW,
 }
 
 FeedSummary.propTypes = {
   /** Primary content of the FeedSummary. */
-  children: customPropTypes.all([
-    customPropTypes.mutuallyExclusive(['summary']),
+  children: customPropTypes.every([
+    customPropTypes.disallow(['summary']),
     PropTypes.node,
   ]),
 
@@ -37,8 +40,8 @@ FeedSummary.propTypes = {
   /** An event summary can contain a date. */
   date: PropTypes.string,
 
-  summary: customPropTypes.all([
-    customPropTypes.mutuallyExclusive(['children']),
+  summary: customPropTypes.every([
+    customPropTypes.disallow(['children']),
     PropTypes.string,
   ]),
 }

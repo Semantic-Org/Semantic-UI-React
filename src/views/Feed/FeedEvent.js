@@ -1,8 +1,11 @@
 import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
-import META from '../../utils/Meta'
-import { customPropTypes, getUnhandledProps } from '../../utils/propUtils'
+import {
+   customPropTypes,
+   getUnhandledProps,
+   META,
+} from '../../lib'
 import FeedContent from './FeedContent'
 import FeedLabel from './FeedLabel'
 
@@ -25,13 +28,13 @@ function FeedEvent(props) {
 FeedEvent._meta = {
   name: 'FeedEvent',
   parent: 'Feed',
-  type: META.type.view,
+  type: META.TYPES.VIEW,
 }
 
 FeedEvent.propTypes = {
   /** Primary content of the FeedEvent. */
-  children: customPropTypes.all([
-    customPropTypes.mutuallyExclusive(['content', 'date', 'extraImages', 'extraText', 'meta', 'summary']),
+  children: customPropTypes.every([
+    customPropTypes.disallow(['content', 'date', 'extraImages', 'extraText', 'meta', 'summary']),
     PropTypes.node,
   ]),
 
@@ -39,26 +42,26 @@ FeedEvent.propTypes = {
   className: PropTypes.string,
 
   /** Shorthand for FeedContent. */
-  content: customPropTypes.all([
-    customPropTypes.mutuallyExclusive(['children', 'date', 'extraImages', 'extraText', 'meta', 'summary']),
+  content: customPropTypes.every([
+    customPropTypes.disallow(['children', 'date', 'extraImages', 'extraText', 'meta', 'summary']),
     PropTypes.string,
   ]),
 
   /** Shorthand for FeedDate. */
-  date: customPropTypes.all([
-    customPropTypes.mutuallyExclusive(['children', 'content']),
+  date: customPropTypes.every([
+    customPropTypes.disallow(['children', 'content']),
     PropTypes.string,
   ]),
 
   /** Shorthand for FeedExtra with prop images. */
-  extraImages: customPropTypes.all([
-    customPropTypes.mutuallyExclusive(['children', 'content']),
+  extraImages: customPropTypes.every([
+    customPropTypes.disallow(['children', 'content']),
     PropTypes.arrayOf(PropTypes.node),
   ]),
 
   /** Shorthand for FeedExtra with prop text. */
-  extraText: customPropTypes.all([
-    customPropTypes.mutuallyExclusive(['children', 'content']),
+  extraText: customPropTypes.every([
+    customPropTypes.disallow(['children', 'content']),
     PropTypes.string,
   ]),
 
@@ -69,14 +72,14 @@ FeedEvent.propTypes = {
   image: PropTypes.node,
 
   /** Shorthand for FeedMeta. */
-  meta: customPropTypes.all([
-    customPropTypes.mutuallyExclusive(['children', 'content']),
+  meta: customPropTypes.every([
+    customPropTypes.disallow(['children', 'content']),
     PropTypes.string,
   ]),
 
   /** Shorthand for FeedSummary. */
-  summary: customPropTypes.all([
-    customPropTypes.mutuallyExclusive(['children', 'content']),
+  summary: customPropTypes.every([
+    customPropTypes.disallow(['children', 'content']),
     PropTypes.string,
   ]),
 }

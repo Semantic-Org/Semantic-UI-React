@@ -1,8 +1,11 @@
 import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
-import META from '../../utils/Meta'
-import { customPropTypes, getUnhandledProps } from '../../utils/propUtils'
+import {
+   customPropTypes,
+   getUnhandledProps,
+   META,
+} from '../../lib'
 import FeedLike from './FeedLike'
 
 function FeedMeta(props) {
@@ -21,13 +24,13 @@ function FeedMeta(props) {
 FeedMeta._meta = {
   name: 'FeedMeta',
   parent: 'Feed',
-  type: META.type.view,
+  type: META.TYPES.VIEW,
 }
 
 FeedMeta.propTypes = {
   /** Primary content of the FeedMeta. */
-  children: customPropTypes.all([
-    customPropTypes.mutuallyExclusive(['meta']),
+  children: customPropTypes.every([
+    customPropTypes.disallow(['meta']),
     PropTypes.node,
   ]),
 
@@ -38,8 +41,8 @@ FeedMeta.propTypes = {
   like: PropTypes.node,
 
   /** Primary content of the FeedMeta. Mutually exclusive with children. */
-  meta: customPropTypes.all([
-    customPropTypes.mutuallyExclusive(['children']),
+  meta: customPropTypes.every([
+    customPropTypes.disallow(['children']),
     PropTypes.string,
   ]),
 }

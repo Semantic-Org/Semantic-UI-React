@@ -9,7 +9,7 @@ describe('FeedSummary', () => {
   common.rendersChildren(FeedSummary)
 
   it('renders <FeedDate> with date prop', () => {
-    mount(<FeedSummary date={faker.hacker.phrase()} />)
+    shallow(<FeedSummary date={faker.hacker.phrase()} />)
       .should.have.descendants('FeedDate')
   })
 

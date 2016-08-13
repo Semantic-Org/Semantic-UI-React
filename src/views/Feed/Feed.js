@@ -2,9 +2,12 @@ import _ from 'lodash'
 import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
-import META from '../../utils/Meta'
-import { customPropTypes, getUnhandledProps } from '../../utils/propUtils'
-import * as sui from '../../utils/semanticUtils'
+import {
+  customPropTypes,
+  getUnhandledProps,
+  META,
+  SUI,
+} from '../../lib'
 import FeedContent from './FeedContent'
 import FeedDate from './FeedDate'
 import FeedEvent from './FeedEvent'
@@ -24,8 +27,8 @@ function Feed(props) {
     return <div {...rest} className={classes}>{children}</div>
   }
 
-  const eventsJSX = events.map(({ key, ...eventData }, index) => {
-    const finalKey = key || index
+  const eventsJSX = events.map(({ childKey, ...eventData }, index) => {
+    const finalKey = childKey || index
 
     return <FeedEvent key={finalKey} {...eventData} />
   })
@@ -35,16 +38,16 @@ function Feed(props) {
 
 Feed._meta = {
   name: 'Feed',
-  type: META.type.view,
+  type: META.TYPES.VIEW,
   props: {
-    size: _.without(sui.sizes, 'mini', 'tiny', 'medium', 'big', 'huge', 'massive'),
+    size: _.without(SUI.SIZES, 'mini', 'tiny', 'medium', 'big', 'huge', 'massive'),
   },
 }
 
 Feed.propTypes = {
   /** Primary content of the Feed. */
-  children: customPropTypes.all([
-    customPropTypes.mutuallyExclusive(['events']),
+  children: customPropTypes.every([
+    customPropTypes.disallow(['events']),
     PropTypes.node,
   ]),
 
@@ -52,10 +55,10 @@ Feed.propTypes = {
   className: PropTypes.string,
 
   /** Array of props for FeedEvent. */
-  events: customPropTypes.all([
-    customPropTypes.mutuallyExclusive(['children']),
+  events: customPropTypes.every([
+    customPropTypes.disallow(['children']),
     PropTypes.arrayOf(PropTypes.shape({
-      key: PropTypes.string,
+      childKey: PropTypes.string,
       date: PropTypes.string,
       image: PropTypes.node,
       icon: PropTypes.node,

@@ -1,8 +1,12 @@
 import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
-import META from '../../utils/Meta'
-import { customPropTypes, getUnhandledProps, iconPropRenderer } from '../../utils/propUtils'
+import {
+  customPropTypes,
+  getUnhandledProps,
+  META,
+} from '../../lib'
+import { createIcon } from '../../factories'
 
 function FeedLike(props) {
   const { children, className, icon, like } = props
@@ -11,7 +15,7 @@ function FeedLike(props) {
 
   return (
     <a {...rest} className={classes}>
-      {iconPropRenderer(icon)}
+      {createIcon(icon)}
       {children || like}
     </a>
   )
@@ -20,7 +24,7 @@ function FeedLike(props) {
 FeedLike._meta = {
   name: 'FeedLike',
   parent: 'Feed',
-  type: META.type.view,
+  type: META.TYPES.VIEW,
 }
 
 FeedLike.defaultProps = {
@@ -29,8 +33,8 @@ FeedLike.defaultProps = {
 
 FeedLike.propTypes = {
   /** Primary content of the FeedLike. */
-  children: customPropTypes.all([
-    customPropTypes.mutuallyExclusive(['like']),
+  children: customPropTypes.every([
+    customPropTypes.disallow(['like']),
     PropTypes.node,
   ]),
 
@@ -41,8 +45,8 @@ FeedLike.propTypes = {
   icon: PropTypes.node,
 
   /** Primary content of the FeedLike, mutually exclusive with children prop. */
-  like: customPropTypes.all([
-    customPropTypes.mutuallyExclusive(['children']),
+  like: customPropTypes.every([
+    customPropTypes.disallow(['children']),
     PropTypes.string,
   ]),
 }

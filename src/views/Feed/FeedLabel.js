@@ -1,22 +1,23 @@
-import _ from 'lodash'
 import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
-import META from '../../utils/Meta'
-import { customPropTypes, getUnhandledProps, iconPropRenderer } from '../../utils/propUtils'
+import {
+  customPropTypes,
+  getUnhandledProps,
+  META,
+} from '../../lib'
+import { createIcon, createImg } from '../../factories'
 
 function FeedLabel(props) {
   const { children, className, icon, image } = props
   const classes = cx(className, 'label')
   const rest = getUnhandledProps(FeedLabel, props)
 
-  const imageJSX = image && (_.isString(image) ? <img src={image} /> : image)
-
   return (
     <div {...rest} className={classes}>
-      {children && children}
-      {icon && iconPropRenderer(icon)}
-      {imageJSX}
+      {children}
+      {createIcon(icon)}
+      {createImg(image)}
     </div>
   )
 }
@@ -24,13 +25,13 @@ function FeedLabel(props) {
 FeedLabel._meta = {
   name: 'FeedLabel',
   parent: 'Feed',
-  type: META.type.view,
+  type: META.TYPES.VIEW,
 }
 
 FeedLabel.propTypes = {
   /** Primary content of the FeedLabel. */
-  children: customPropTypes.all([
-    customPropTypes.mutuallyExclusive(['icon', 'image']),
+  children: customPropTypes.every([
+    customPropTypes.disallow(['icon', 'image']),
     PropTypes.node,
   ]),
 
@@ -38,14 +39,14 @@ FeedLabel.propTypes = {
   className: PropTypes.string,
 
   /** An event can contain icon label. */
-  icon: customPropTypes.all([
-    customPropTypes.mutuallyExclusive(['children', 'image']),
+  icon: customPropTypes.every([
+    customPropTypes.disallow(['children', 'image']),
     PropTypes.node,
   ]),
 
   /** An event can contain image label. */
-  image: customPropTypes.all([
-    customPropTypes.mutuallyExclusive(['children', 'icon']),
+  image: customPropTypes.every([
+    customPropTypes.disallow(['children', 'icon']),
     PropTypes.node,
   ]),
 }

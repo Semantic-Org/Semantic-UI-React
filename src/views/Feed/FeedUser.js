@@ -1,8 +1,11 @@
 import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
-import META from '../../utils/Meta'
-import { customPropTypes, getUnhandledProps } from '../../utils/propUtils'
+import {
+   customPropTypes,
+   getUnhandledProps,
+   META,
+} from '../../lib'
 
 function FeedUser(props) {
   const { children, className, user } = props
@@ -15,13 +18,13 @@ function FeedUser(props) {
 FeedUser._meta = {
   name: 'FeedUser',
   parent: 'Feed',
-  type: META.type.view,
+  type: META.TYPES.VIEW,
 }
 
 FeedUser.propTypes = {
   /** Primary content of the FeedUser. */
-  children: customPropTypes.all([
-    customPropTypes.mutuallyExclusive(['user']),
+  children: customPropTypes.every([
+    customPropTypes.disallow(['user']),
     PropTypes.node,
   ]),
 
@@ -29,8 +32,8 @@ FeedUser.propTypes = {
   className: PropTypes.string,
 
   /** Shorthand for primary content of the FeedUser. Mutually exclusive with the children prop. */
-  user: customPropTypes.all([
-    customPropTypes.mutuallyExclusive(['children']),
+  user: customPropTypes.every([
+    customPropTypes.disallow(['children']),
     PropTypes.string,
   ]),
 }

@@ -1,8 +1,11 @@
 import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
-import META from '../../utils/Meta'
-import { customPropTypes, getUnhandledProps } from '../../utils/propUtils'
+import {
+   customPropTypes,
+   getUnhandledProps,
+   META,
+} from '../../lib'
 import FeedDate from './FeedDate'
 import FeedExtra from './FeedExtra'
 import FeedMeta from './FeedMeta'
@@ -28,13 +31,13 @@ function FeedContent(props) {
 FeedContent._meta = {
   name: 'FeedContent',
   parent: 'Feed',
-  type: META.type.view,
+  type: META.TYPES.VIEW,
 }
 
 FeedContent.propTypes = {
   /** Primary content of the FeedContent. */
-  children: customPropTypes.all([
-    customPropTypes.mutuallyExclusive(['content']),
+  children: customPropTypes.every([
+    customPropTypes.disallow(['content']),
     PropTypes.node,
   ]),
 
@@ -42,8 +45,8 @@ FeedContent.propTypes = {
   className: PropTypes.string,
 
   /** Primary content of the FeedContent. Mutually exclusive with children. */
-  content: customPropTypes.all([
-    customPropTypes.mutuallyExclusive(['children']),
+  content: customPropTypes.every([
+    customPropTypes.disallow(['children']),
     PropTypes.string,
   ]),
 
@@ -51,14 +54,14 @@ FeedContent.propTypes = {
   date: PropTypes.string,
 
   /** Shorthand for FeedExtra with prop images. */
-  extraImages: customPropTypes.all([
-    customPropTypes.mutuallyExclusive(['children', 'content']),
+  extraImages: customPropTypes.every([
+    customPropTypes.disallow(['children', 'content']),
     PropTypes.arrayOf(PropTypes.string),
   ]),
 
   /** Shorthand for FeedExtra with prop text. */
-  extraText: customPropTypes.all([
-    customPropTypes.mutuallyExclusive(['children', 'content']),
+  extraText: customPropTypes.every([
+    customPropTypes.disallow(['children', 'content']),
     PropTypes.string,
   ]),
 
