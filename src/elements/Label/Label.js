@@ -45,7 +45,6 @@ function Label(props) {
   )
 
   const DetailComponent = (detailLink || onDetailClick) && 'a' || 'div'
-
   const LabelComponent = image || link || onClick ? 'a' : 'div'
   const rest = getUnhandledProps(Label, props)
 

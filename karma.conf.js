@@ -41,7 +41,7 @@ module.exports = (karmaConfig) => {
       },
     },
     webpack: {
-      devtool: 'cheap-module-source-map',
+      devtool: config.compiler_devtool,
       module: Object.assign({}, webpackConfig.module, {
         loaders: [
           {
