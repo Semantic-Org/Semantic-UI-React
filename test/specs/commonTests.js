@@ -26,6 +26,15 @@ const componentCtx = require.context(
 
 const componentInfo = componentCtx.keys().map(key => {
   const Component = componentCtx(key).default
+
+  const componentType = typeof Component
+  if (componentType !== 'function') {
+    throw new Error([
+      `${key} is not properly exported.`,
+      `Components should export a class or function, got: ${componentType}.`,
+    ].join(' '))
+  }
+
   const { _meta, prototype } = Component
 
   if (!_meta) {
