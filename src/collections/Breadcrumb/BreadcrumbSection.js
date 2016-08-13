@@ -1,8 +1,12 @@
 import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
-import META from '../../utils/Meta'
-import { customPropTypes, getUnhandledProps, useKeyOnly } from '../../utils/propUtils'
+import {
+  customPropTypes,
+  getUnhandledProps,
+  META,
+  useKeyOnly,
+} from '../../lib'
 
 /**
  * A section sub-component for Breadcrumb component.
@@ -47,7 +51,7 @@ function BreadcrumbSection(props) {
 
 BreadcrumbSection._meta = {
   name: 'BreadcrumbSection',
-  type: META.type.collection,
+  type: META.TYPES.COLLECTION,
   parent: 'Breadcrumb',
 }
 
@@ -62,14 +66,14 @@ BreadcrumbSection.propTypes = {
   className: PropTypes.string,
 
   /** Render as an `a` tag instead of a `div`. */
-  link: customPropTypes.all([
-    customPropTypes.mutuallyExclusive(['href']),
+  link: customPropTypes.every([
+    customPropTypes.disallow(['href']),
     PropTypes.bool,
   ]),
 
   /** Render as an `a` tag instead of a `div` and adds the href attribute. */
-  href: customPropTypes.all([
-    customPropTypes.mutuallyExclusive(['link']),
+  href: customPropTypes.every([
+    customPropTypes.disallow(['link']),
     PropTypes.string,
   ]),
 

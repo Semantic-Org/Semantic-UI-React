@@ -2,9 +2,14 @@ import _ from 'lodash'
 import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
-import META from '../../utils/Meta'
-import { customPropTypes, getUnhandledProps, useValueAndKey, useKeyOnly } from '../../utils/propUtils'
-import * as sui from '../../utils/semanticUtils'
+import {
+  customPropTypes,
+  getUnhandledProps,
+  META,
+  SUI,
+  useValueAndKey,
+  useKeyOnly,
+} from '../../lib'
 import Step from './Step'
 
 function StepGroup(props) {
@@ -21,11 +26,10 @@ function StepGroup(props) {
   )
   const rest = getUnhandledProps(StepGroup, props)
 
-  const content = items
-  ? items.map(item => {
+  const content = !items ? children : items.map(item => {
     const key = item.key || [item.title, item.description].join('-')
     return <Step key={key} {...item} />
-  }) : children
+  })
 
   return <div {...rest} className={classes}>{content}</div>
 }
@@ -34,10 +38,10 @@ StepGroup._meta = {
   name: 'StepGroup',
   parent: 'Step',
   props: {
-    sizes: _.without(sui.sizes, 'medium'),
+    sizes: _.without(SUI.SIZES, 'medium'),
     stackable: ['tablet'],
   },
-  type: META.type.element,
+  type: META.TYPES.ELEMENT,
 }
 
 StepGroup.propTypes = {
@@ -45,8 +49,8 @@ StepGroup.propTypes = {
   className: PropTypes.string,
 
   /** Primary content of the StepGroup. Mutually exclusive with items prop. */
-  children: customPropTypes.all([
-    customPropTypes.mutuallyExclusive(['items']),
+  children: customPropTypes.every([
+    customPropTypes.disallow(['items']),
     PropTypes.node,
   ]),
 
@@ -54,8 +58,8 @@ StepGroup.propTypes = {
   fluid: PropTypes.bool,
 
   /** Primary content of the StepGroup. Mutually exclusive with items children. */
-  items: customPropTypes.all([
-    customPropTypes.mutuallyExclusive(['description', 'title']),
+  items: customPropTypes.every([
+    customPropTypes.disallow(['description', 'title']),
     PropTypes.arrayOf(PropTypes.shape({
       description: PropTypes.node,
       icon: PropTypes.node,

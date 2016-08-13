@@ -1,7 +1,7 @@
 import React from 'react'
 
-import META from '../../utils/Meta'
-import Dropdown from '../../modules/Dropdown/Dropdown'
+import { META } from '../../lib'
+import { Dropdown } from '../../modules'
 
 /**
  * A <Select /> is sugar for <Dropdown selection />.
@@ -13,7 +13,7 @@ function Select(props) {
 
 Select._meta = {
   name: 'Select',
-  type: META.type.addon,
+  type: META.TYPES.ADDON,
 }
 
 export default Select

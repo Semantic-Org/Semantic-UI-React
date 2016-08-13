@@ -9,18 +9,18 @@ let isDisabledOnce
  * Enable console logging.
  * @returns {Object} console
  */
-export const enable = () => Object.assign(console, original)
+const enable = () => Object.assign(console, original)
 
 /**
  * Disable console logging.
  * @returns {Object} console
  */
-export const disable = () => Object.assign(console, disabled)
+const disable = () => Object.assign(console, disabled)
 
 /**
  * Silence the console for a single test.  It will be re-enabled after it().
  */
-export const disableOnce = () => {
+const disableOnce = () => {
   isDisabledOnce = true
   disable()
 }
@@ -31,3 +31,9 @@ afterEach(() => {
     enable()
   }
 })
+
+export default {
+  enable,
+  disable,
+  disableOnce,
+}

@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 import classNames from 'classnames'
-import META from '../../utils/Meta'
-import { getUnhandledProps } from '../../utils/propUtils'
+
+import { getUnhandledProps, META } from '../../lib'
 
 function ModalHeader(props) {
   const { children, className } = props
@@ -22,7 +22,7 @@ function ModalHeader(props) {
 
 ModalHeader._meta = {
   name: 'ModalHeader',
-  type: META.type.module,
+  type: META.TYPES.MODULE,
   parent: 'Modal',
 }
 

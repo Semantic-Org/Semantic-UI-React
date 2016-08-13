@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Confirm } from 'stardust'
+import Confirm from 'src/addons/Confirm/Confirm'
 import * as common from '../commonTests'
 
 describe('Confirm', () => {

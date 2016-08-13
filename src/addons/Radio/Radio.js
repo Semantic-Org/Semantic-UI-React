@@ -1,6 +1,6 @@
 import React from 'react'
-import META from '../../utils/Meta'
-import Checkbox from '../../modules/Checkbox/Checkbox'
+import { META } from '../../lib'
+import { Checkbox } from '../../modules'
 
 /**
  * A <Radio /> is sugar for <Checkbox type='radio' inputType='radio' />.
@@ -8,14 +8,12 @@ import Checkbox from '../../modules/Checkbox/Checkbox'
  * @see Checkbox
  */
 function Radio(props) {
-  return (
-    <Checkbox type='radio' {...props} inputType='radio' />
-  )
+  return <Checkbox type='radio' {...props} inputType='radio' />
 }
 
 Radio._meta = {
   name: 'Radio',
-  type: META.type.addon,
+  type: META.TYPES.ADDON,
 }
 
 export default Radio

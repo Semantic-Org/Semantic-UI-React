@@ -4,7 +4,7 @@
 import _ from 'lodash'
 import { makeDebugger } from './debug'
 
-// do nothing if we're not in a browser
+// only load in the browser
 if (typeof window === 'object' && window.window === window) {
   const debug = makeDebugger('jquery')
 

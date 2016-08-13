@@ -2,22 +2,24 @@ import _ from 'lodash'
 import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
-import AutoControlledComponent from '../../utils/AutoControlledComponent'
-import META from '../../utils/Meta'
-import { getUnhandledProps } from '../../utils/propUtils'
-import * as sui from '../../utils/semanticUtils'
+import {
+  AutoControlledComponent as Component,
+  getUnhandledProps,
+  META,
+  SUI,
+} from '../../lib'
 
 const _meta = {
   name: 'Rating',
-  type: META.type.module,
+  type: META.TYPES.MODULE,
   props: {
     clearable: ['auto'],
     icon: ['star', 'heart'],
-    size: _.without(sui.sizes, 'medium', 'big'),
+    size: _.without(SUI.SIZES, 'medium', 'big'),
   },
 }
 
-class Rating extends AutoControlledComponent {
+class Rating extends Component {
   static propTypes = {
     /** Additional className. */
     className: PropTypes.string,

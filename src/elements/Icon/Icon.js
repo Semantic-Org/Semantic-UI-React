@@ -1,13 +1,13 @@
 import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
-import META from '../../utils/Meta'
-import * as sui from '../../utils/semanticUtils'
 import {
+  getUnhandledProps,
+  META,
+  SUI,
   useKeyOnly,
   useValueAndKey,
-  getUnhandledProps,
-} from '../../utils/propUtils'
+} from '../../lib'
 import IconGroup from './IconGroup'
 
 /**
@@ -48,13 +48,13 @@ Icon.Group = IconGroup
 
 Icon._meta = {
   name: 'Icon',
-  type: META.type.element,
+  type: META.TYPES.ELEMENT,
   props: {
-    color: sui.colors,
+    color: SUI.COLORS,
     flipped: ['horizontally', 'vertically'],
-    name: sui.icons,
+    name: SUI.icons,
     rotated: ['clockwise', 'counterclockwise'],
-    size: sui.sizes,
+    size: SUI.SIZES,
   },
 }
 

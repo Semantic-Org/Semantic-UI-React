@@ -2,9 +2,11 @@ import _ from 'lodash'
 import React, { Children, Component, PropTypes } from 'react'
 import classNames from 'classnames'
 
-import { getUnhandledProps } from '../../utils/propUtils'
-import numberToWord from '../../utils/numberToWord'
-import META from '../../utils/Meta.js'
+import {
+  getUnhandledProps,
+  META,
+  numberToWord,
+} from '../../lib'
 
 export default class FormFields extends Component {
   static propTypes = {
@@ -19,7 +21,7 @@ export default class FormFields extends Component {
   static _meta = {
     name: 'FormFields',
     parent: 'Form',
-    type: META.type.collection,
+    type: META.TYPES.COLLECTION,
   }
 
   render() {

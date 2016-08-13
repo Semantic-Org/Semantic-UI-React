@@ -6,7 +6,7 @@ import MessageHeader from 'src/collections/Message/MessageHeader'
 import MessageList from 'src/collections/Message/MessageList'
 
 import * as common from 'test/specs/commonTests'
-import sandbox from 'test/utils/Sandbox-util'
+import { sandbox } from 'test/utils'
 
 describe('Message', () => {
   common.isConformant(Message)

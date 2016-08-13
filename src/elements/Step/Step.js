@@ -1,14 +1,21 @@
 import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
-import META from '../../utils/Meta'
-import { customPropTypes, iconPropRenderer, getUnhandledProps, useKeyOnly } from '../../utils/propUtils'
+import {
+  customPropTypes,
+  getUnhandledProps,
+  META,
+  useKeyOnly,
+} from '../../lib'
+import { createIcon } from '../../factories'
 import StepContent from './StepContent'
 import StepDescription from './StepDescription'
 import StepGroup from './StepGroup'
 import StepTitle from './StepTitle'
 
-/** A step shows the completion status of an activity in a series of activities. */
+/**
+ * A step shows the completion status of an activity in a series of activities.
+ */
 function Step(props) {
   const {
     active, className, children, completed, description, disabled, icon, href, link, onClick, title,
@@ -35,7 +42,7 @@ function Step(props) {
       href={href}
       onClick={handleClick}
     >
-      {!children && iconPropRenderer(icon)}
+      {!children && createIcon(icon)}
       {children || <StepContent description={description} title={title} />}
     </StepComponent>
   )
@@ -43,7 +50,7 @@ function Step(props) {
 
 Step._meta = {
   name: 'Step',
-  type: META.type.element,
+  type: META.TYPES.ELEMENT,
 }
 
 Step.propTypes = {
@@ -54,8 +61,8 @@ Step.propTypes = {
   className: PropTypes.string,
 
   /** Primary content of the Step. Mutually exclusive with description and title props. */
-  children: customPropTypes.all([
-    customPropTypes.mutuallyExclusive(['description', 'title']),
+  children: customPropTypes.every([
+    customPropTypes.disallow(['description', 'title']),
     PropTypes.node,
   ]),
 
@@ -63,8 +70,8 @@ Step.propTypes = {
   completed: PropTypes.bool,
 
   /** Shorthand prop for StepDescription. Mutually exclusive with children. */
-  description: customPropTypes.all([
-    customPropTypes.mutuallyExclusive(['children']),
+  description: customPropTypes.every([
+    customPropTypes.disallow(['children']),
     PropTypes.node,
   ]),
 
@@ -72,8 +79,8 @@ Step.propTypes = {
   disabled: PropTypes.bool,
 
   /** A step can contain an icon. */
-  icon: customPropTypes.all([
-    customPropTypes.mutuallyExclusive(['children']),
+  icon: customPropTypes.every([
+    customPropTypes.disallow(['children']),
     PropTypes.node,
   ]),
 
@@ -90,8 +97,8 @@ Step.propTypes = {
   ordered: PropTypes.bool,
 
   /** Shorthand prop for StepTitle. Mutually exclusive with children. */
-  title: customPropTypes.all([
-    customPropTypes.mutuallyExclusive(['children']),
+  title: customPropTypes.every([
+    customPropTypes.disallow(['children']),
     PropTypes.node,
   ]),
 }

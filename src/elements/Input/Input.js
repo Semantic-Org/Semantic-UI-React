@@ -1,9 +1,9 @@
 import _ from 'lodash'
 import classNames from 'classnames'
 import React, { Component, PropTypes, Children } from 'react'
-import META from '../../utils/Meta'
-import { getUnhandledProps } from '../../utils/propUtils'
-import Icon from '../../elements/Icon/Icon'
+
+import { getUnhandledProps, META } from '../../lib'
+import { Icon } from '../../elements'
 
 export default class Input extends Component {
   static propTypes = {
@@ -19,7 +19,7 @@ export default class Input extends Component {
 
   static _meta = {
     name: 'Input',
-    type: META.type.element,
+    type: META.TYPES.ELEMENT,
   }
 
   render() {

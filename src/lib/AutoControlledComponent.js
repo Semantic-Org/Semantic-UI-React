@@ -20,7 +20,7 @@
  *    components.
  *
  * 4. Instance Methods
- *    Some instances methods may be exposed to users via refs.  Again, these are lost with HOC unless
+ *    Some instance methods may be exposed to users via refs.  Again, these are lost with HOC unless
  *    hoisted and exposed by the HOC.
  */
 import _ from 'lodash'
@@ -133,8 +133,6 @@ export default class AutoControlledComponent extends Component {
    * @param {object} [state] Actual state, useful when you also need to setState.
    */
   trySetState = (maybeState, state) => {
-    // console.debug('trySetState')
-    // console.log('maybe:', maybeState, 'state:', state)
     const { autoControlledProps } = this.constructor
     if (process.env.NODE_ENV !== 'production') {
       const { name } = this.constructor

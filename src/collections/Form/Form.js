@@ -1,10 +1,13 @@
-import _ from 'lodash'
+import cx from 'classnames'
 import $ from 'jquery'
+import _ from 'lodash'
 import React, { Component, PropTypes } from 'react'
-import classNames from 'classnames'
-import META from '../../utils/Meta'
-import { getUnhandledProps } from '../../utils/propUtils'
-import { deprecateProps } from '../../utils/deprecate'
+
+import {
+  deprecateProps,
+  getUnhandledProps,
+  META,
+} from '../../lib'
 import FormField from './FormField'
 import FormFields from './FormFields'
 
@@ -65,7 +68,7 @@ export default class Form extends Component {
 
   static _meta = {
     name: 'Form',
-    type: META.type.collection,
+    type: META.TYPES.COLLECTION,
   }
 
   static Field = FormField
@@ -116,7 +119,7 @@ export default class Form extends Component {
   }
 
   render() {
-    const classes = classNames(
+    const classes = cx(
       'ui',
       this.props.className,
       'form'

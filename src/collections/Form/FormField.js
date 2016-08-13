@@ -1,7 +1,10 @@
 import React, { Component, PropTypes } from 'react'
 import classNames from 'classnames'
-import numberToWord from '../../utils/numberToWord'
-import META from '../../utils/Meta.js'
+
+import {
+  META,
+  numberToWord,
+} from '../../lib'
 
 export default class FormField extends Component {
   static propTypes = {
@@ -14,7 +17,7 @@ export default class FormField extends Component {
   static _meta = {
     name: 'FormField',
     parent: 'Form',
-    type: META.type.collection,
+    type: META.TYPES.COLLECTION,
   }
 
   render() {

@@ -1,8 +1,11 @@
 import React, { PropTypes } from 'react'
 import cx from 'classnames'
 
-import META from '../../utils/Meta'
-import { customPropTypes, getUnhandledProps } from '../../utils/propUtils'
+import {
+  customPropTypes,
+  getUnhandledProps,
+  META,
+} from '../../lib'
 import StepDescription from './StepDescription'
 import StepTitle from './StepTitle'
 
@@ -26,7 +29,7 @@ function StepContent(props) {
 StepContent._meta = {
   name: 'StepContent',
   parent: 'Step',
-  type: META.type.element,
+  type: META.TYPES.ELEMENT,
 }
 
 StepContent.propTypes = {
@@ -34,20 +37,20 @@ StepContent.propTypes = {
   className: PropTypes.string,
 
   /** Primary content of StepContent. Mutually exclusive with description and title props. */
-  children: customPropTypes.all([
-    customPropTypes.mutuallyExclusive(['description', 'title']),
+  children: customPropTypes.every([
+    customPropTypes.disallow(['description', 'title']),
     PropTypes.node,
   ]),
 
   /** Primary content of the StepDescription. Mutually exclusive with children. */
-  description: customPropTypes.all([
-    customPropTypes.mutuallyExclusive(['children']),
+  description: customPropTypes.every([
+    customPropTypes.disallow(['children']),
     PropTypes.node,
   ]),
 
   /** Primary content of the StepTitle. Mutually exclusive with children. */
-  title: customPropTypes.all([
-    customPropTypes.mutuallyExclusive(['children']),
+  title: customPropTypes.every([
+    customPropTypes.disallow(['children']),
     PropTypes.node,
   ]),
 }

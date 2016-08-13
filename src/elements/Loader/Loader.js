@@ -1,9 +1,14 @@
 import React, { PropTypes } from 'react'
 import cx from 'classnames'
 
-import * as sui from '../../utils/semanticUtils'
-import { customPropTypes, getUnhandledProps, useKeyOnly, useKeyOrValueAndKey } from '../../utils/propUtils'
-import META from '../../utils/Meta'
+import {
+  customPropTypes,
+  getUnhandledProps,
+  META,
+  SUI,
+  useKeyOnly,
+  useKeyOrValueAndKey,
+} from '../../lib'
 
 function Loader(props) {
   const { children, className, active, disabled, indeterminate, inline, inverted, size, text } = props
@@ -26,10 +31,10 @@ function Loader(props) {
 
 Loader._meta = {
   name: 'Loader',
-  type: META.type.element,
+  type: META.TYPES.ELEMENT,
   props: {
     inline: ['centered'],
-    size: sui.sizes,
+    size: SUI.SIZES,
   },
 }
 
@@ -41,8 +46,8 @@ Loader.propTypes = {
   className: PropTypes.string,
 
   /** Primary content of the Loader. Mutually exclusive with the text prop. */
-  children: customPropTypes.all([
-    customPropTypes.mutuallyExclusive(['text']),
+  children: customPropTypes.every([
+    customPropTypes.disallow(['text']),
     PropTypes.node,
   ]),
 
@@ -65,8 +70,8 @@ Loader.propTypes = {
   size: PropTypes.oneOf(Loader._meta.props.size),
 
   /** Primary content of the Loader. Mutually exclusive with the children prop. */
-  text: customPropTypes.all([
-    customPropTypes.mutuallyExclusive(['children']),
+  text: customPropTypes.every([
+    customPropTypes.disallow(['children']),
     PropTypes.node,
   ]),
 }

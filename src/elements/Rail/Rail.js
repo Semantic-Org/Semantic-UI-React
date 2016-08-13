@@ -2,9 +2,13 @@ import _ from 'lodash'
 import React, { PropTypes } from 'react'
 import cx from 'classnames'
 
-import * as sui from '../../utils/semanticUtils'
-import { getUnhandledProps, useKeyOnly, useKeyOrValueAndKey } from '../../utils/propUtils'
-import META from '../../utils/Meta'
+import {
+  getUnhandledProps,
+  META,
+  SUI,
+  useKeyOnly,
+  useKeyOrValueAndKey,
+} from '../../lib'
 
 /**
  * A rail is used to show accompanying content outside the boundaries of the main view of a site.
@@ -31,10 +35,10 @@ Rail._meta = {
   name: 'Rail',
   props: {
     close: ['very'],
-    position: sui.floats,
-    size: _.without(sui.sizes, 'medium'),
+    position: SUI.FLOATS,
+    size: _.without(SUI.SIZES, 'medium'),
   },
-  type: META.type.element,
+  type: META.TYPES.ELEMENT,
 }
 
 Rail.propTypes = {

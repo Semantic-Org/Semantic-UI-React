@@ -12,6 +12,7 @@
     "build": "npm run build:dist && npm run build:docs",
     "prebuild:dist": "rimraf dist",
     "build:dist": "babel src -d dist",
+    "prebuild:docs": "npm run build:docs-toc",
     "build:docs": "gulp docs",
     "build:docs-toc": "doctoc README.md CONTRIBUTING.md --github --maxlevel 4",
     "predeploy:docs": "cross-env NODE_ENV=production npm run build:docs",

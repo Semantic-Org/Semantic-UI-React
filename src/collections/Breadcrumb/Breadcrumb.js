@@ -2,9 +2,12 @@ import _ from 'lodash'
 import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
-import META from '../../utils/Meta'
-import { customPropTypes, getUnhandledProps } from '../../utils/propUtils'
-import * as sui from '../../utils/semanticUtils'
+import {
+  customPropTypes,
+  getUnhandledProps,
+  META,
+  SUI,
+} from '../../lib'
 import BreadcrumbDivider from './BreadcrumbDivider'
 import BreadcrumbSection from './BreadcrumbSection'
 
@@ -39,16 +42,16 @@ function Breadcrumb(props) {
 
 Breadcrumb._meta = {
   name: 'Breadcrumb',
-  type: META.type.collection,
+  type: META.TYPES.COLLECTION,
   props: {
-    size: _.without(sui.sizes, 'medium'),
+    size: _.without(SUI.SIZES, 'medium'),
   },
 }
 
 Breadcrumb.propTypes = {
   /** Primary content of the Breadcrumb */
-  children: customPropTypes.all([
-    customPropTypes.mutuallyExclusive(['sections', 'icon', 'divider']),
+  children: customPropTypes.every([
+    customPropTypes.disallow(['sections', 'icon', 'divider']),
     PropTypes.node,
   ]),
 
@@ -56,21 +59,21 @@ Breadcrumb.propTypes = {
   className: PropTypes.string,
 
   /** For use with the sections prop. Primary content of the Breadcrumb.Divider. */
-  divider: customPropTypes.all([
-    customPropTypes.mutuallyExclusive(['icon']),
+  divider: customPropTypes.every([
+    customPropTypes.disallow(['icon']),
     PropTypes.string,
   ]),
 
   /** For use with the sections prop. Render as an `Icon` component with `divider` class instead of a `div` in
    *  Breadcrumb.Divider. */
-  icon: customPropTypes.all([
-    customPropTypes.mutuallyExclusive(['divider']),
+  icon: customPropTypes.every([
+    customPropTypes.disallow(['divider']),
     PropTypes.node,
   ]),
 
   /** Array of props for Breadcrumb.Section. */
-  sections: customPropTypes.all([
-    customPropTypes.mutuallyExclusive(['children']),
+  sections: customPropTypes.every([
+    customPropTypes.disallow(['children']),
     React.PropTypes.array,
   ]),
 

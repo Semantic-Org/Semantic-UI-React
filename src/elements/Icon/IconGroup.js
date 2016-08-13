@@ -1,11 +1,11 @@
 import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
-import META from '../../utils/Meta'
-import * as sui from '../../utils/semanticUtils'
 import {
   getUnhandledProps,
-} from '../../utils/propUtils'
+  META,
+  SUI,
+} from '../../lib'
 
 /**
  * Several icons can be used together as a group
@@ -30,13 +30,12 @@ function IconGroup(props) {
   )
 }
 
-
 IconGroup._meta = {
   name: 'IconGroup',
   parent: 'Icon',
-  type: META.type.element,
+  type: META.TYPES.ELEMENT,
   props: {
-    size: sui.sizes,
+    size: SUI.SIZES,
   },
 }
 

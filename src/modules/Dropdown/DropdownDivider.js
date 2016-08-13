@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react'
-import META from '../../utils/Meta'
+
+import { META } from '../../lib'
 
 class DropdownDivider extends Component {
   static propTypes = {
@@ -9,7 +10,7 @@ class DropdownDivider extends Component {
   static _meta = {
     name: 'DropdownDivider',
     parent: 'Dropdown',
-    type: META.type.module,
+    type: META.TYPES.MODULE,
   }
 
   render() {

@@ -7,7 +7,7 @@ import _ from 'lodash'
  * @param {{}} target The target object.
  * @returns {{}} A new object containing new/modified/deleted keys.
  * @example
- * import { objectDiff } from 'src/utils/utils'
+ * import { objectDiff } from 'src/lib'
  *
  * const a = { key: 'val', foo: 'bar' }
  * const b = { key: 'val', foo: 'baz' }

@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-import META from '../../utils/Meta'
+import { META } from '../../lib'
 
 export default class Textarea extends Component {
   static propTypes = {
@@ -9,7 +9,7 @@ export default class Textarea extends Component {
 
   static _meta = {
     name: 'Textarea',
-    type: META.type.addon,
+    type: META.TYPES.ADDON,
   }
 
   render() {

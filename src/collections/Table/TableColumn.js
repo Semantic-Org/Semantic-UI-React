@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import META from '../../utils/Meta'
+import { META } from '../../lib'
 
 // This is an abstract component
 // it is only used by the user to configure a Table
@@ -14,7 +14,7 @@ TableColumn.propTypes = {
 
 TableColumn._meta = {
   name: 'TableColumn',
-  type: META.type.collection,
+  type: META.TYPES.COLLECTION,
   parent: 'Table',
 }
 

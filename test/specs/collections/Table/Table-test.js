@@ -4,7 +4,7 @@ import React from 'react'
 
 import Table from 'src/collections/Table/Table'
 import TableColumn from 'src/collections/Table/TableColumn'
-import sandbox from 'test/utils/Sandbox-util'
+import { sandbox } from 'test/utils'
 import * as common from 'test/specs/commonTests'
 
 describe('Table', () => {

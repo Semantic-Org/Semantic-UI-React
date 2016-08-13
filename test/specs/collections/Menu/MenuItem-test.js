@@ -3,7 +3,7 @@ import React from 'react'
 import Menu from 'src/collections/Menu/Menu'
 import MenuItem from 'src/collections/Menu/MenuItem'
 import * as common from 'test/specs/commonTests'
-import sandbox from 'test/utils/Sandbox-util.js'
+import { sandbox } from 'test/utils/sandbox'
 
 describe('MenuItem', () => {
   common.isConformant(MenuItem)

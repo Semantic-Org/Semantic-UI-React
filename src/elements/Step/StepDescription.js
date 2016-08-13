@@ -1,8 +1,11 @@
 import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
-import META from '../../utils/Meta'
-import { customPropTypes, getUnhandledProps } from '../../utils/propUtils'
+import {
+  customPropTypes,
+  getUnhandledProps,
+  META,
+} from '../../lib'
 
 function StepDescription(props) {
   const { className, children, description } = props
@@ -15,7 +18,7 @@ function StepDescription(props) {
 StepDescription._meta = {
   name: 'StepDescription',
   parent: 'Step',
-  type: META.type.element,
+  type: META.TYPES.ELEMENT,
 }
 
 StepDescription.propTypes = {
@@ -23,14 +26,14 @@ StepDescription.propTypes = {
   className: PropTypes.string,
 
   /** Primary content of the StepDescription. Mutually exclusive with description prop. */
-  children: customPropTypes.all([
-    customPropTypes.mutuallyExclusive(['description']),
+  children: customPropTypes.every([
+    customPropTypes.disallow(['description']),
     PropTypes.node,
   ]),
 
   /** Primary content of the StepDescription. Mutually exclusive with children. */
-  description: customPropTypes.all([
-    customPropTypes.mutuallyExclusive(['children']),
+  description: customPropTypes.every([
+    customPropTypes.disallow(['children']),
     PropTypes.node,
   ]),
 }

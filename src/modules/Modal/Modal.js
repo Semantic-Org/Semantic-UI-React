@@ -1,13 +1,10 @@
 import React, { PropTypes } from 'react'
 import cx from 'classnames'
-import META from '../../utils/Meta'
+
+import { getUnhandledProps, META, useKeyOnly } from '../../lib'
 import ModalHeader from './ModalHeader'
 import ModalContent from './ModalContent'
 import ModalActions from './ModalActions'
-import {
-  getUnhandledProps,
-  useKeyOnly,
-} from '../../utils/propUtils'
 
 function Modal(props) {
   const {
@@ -34,7 +31,7 @@ function Modal(props) {
 
 Modal._meta = {
   name: 'Modal',
-  type: META.type.module,
+  type: META.TYPES.MODULE,
   props: {
     size: ['fullscreen', 'large', 'small'],
   },

@@ -1,9 +1,10 @@
 import _ from 'lodash/fp'
 import React, { Component, PropTypes } from 'react'
 import { Link } from 'react-router'
-import * as stardust from 'stardust'
+
 import { typeOrder } from 'docs/app/utils'
-import META from 'src/utils/Meta'
+import { META } from 'src/lib'
+import * as stardust from 'stardust'
 
 const { Menu, Icon, Input } = stardust
 
@@ -24,7 +25,7 @@ export default class Sidebar extends Component {
       ])),
       _.sortBy('_meta.name'),
       _.map(({ _meta }) => {
-        const route = `${_meta.type}s/${_.kebabCase(_meta.name)}`
+        const route = `/${_meta.type}s/${_.kebabCase(_meta.name)}`
 
         return (
           <Link to={route} className='item' activeClassName='active' key={_meta.name}>

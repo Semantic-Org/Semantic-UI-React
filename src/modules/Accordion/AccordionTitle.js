@@ -1,8 +1,7 @@
 import React, { PropTypes } from 'react'
 import cx from 'classnames'
 
-import META from '../../utils/Meta'
-import { useKeyOnly } from '../../utils/propUtils'
+import { META, useKeyOnly } from '../../lib'
 
 function AccordionTitle({ active, children, className, onClick, ...rest }) {
   const classes = cx(
@@ -40,7 +39,7 @@ AccordionTitle.propTypes = {
 
 AccordionTitle._meta = {
   name: 'AccordionTitle',
-  type: META.type.module,
+  type: META.TYPES.MODULE,
   parent: 'Accordion',
 }
 

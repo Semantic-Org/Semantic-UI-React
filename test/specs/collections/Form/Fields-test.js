@@ -4,7 +4,7 @@ import React from 'react'
 import FormFields from 'src/collections/Form/FormFields'
 import FormField from 'src/collections/Form/FormField'
 import * as common from 'test/specs/commonTests'
-import numberToWord from 'src/utils/numberToWord'
+import { numberToWord } from 'src/lib'
 
 describe('Fields', () => {
   common.isConformant(FormFields)

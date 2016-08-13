@@ -1,84 +1,51 @@
-import './utils/jquery'
-import { deprecateComponent } from './utils/deprecate'
+import './lib/jquery'
+import { deprecateComponent } from './lib'
+
+export * from './addons'
+export * from './collections'
+export * from './elements'
+export * from './modules'
+export * from './views'
 
 // ----------------------------------------
-// Addons
+// Deprecated Components
 // ----------------------------------------
-export Confirm from './addons/Confirm/Confirm'
-export Radio from './addons/Radio/Radio'
-export Select from './addons/Select/Select'
-export Textarea from './addons/Textarea/Textarea'
 
-// ----------------------------------------
+//
 // Collections
-// ----------------------------------------
+//
+import Form from './collections/Form/Form'
+export const Field = deprecateComponent('Field', 'Use "Form.Field" instead.', Form.Field)
+export const Fields = deprecateComponent('Fields', 'Use "Form.Fields" instead.', Form.Fields)
 
-export Breadcrumb from './collections/Breadcrumb/Breadcrumb'
+import Grid from './collections/Grid/Grid'
+export const Column = deprecateComponent('Column', 'Use "Grid.Column" instead.', Grid.Column)
+export const Row = deprecateComponent('Row', 'Use "Grid.Row" instead.', Grid.Row)
 
-import _Form from './collections/Form/Form'
-export { _Form as Form }
-export const Field = deprecateComponent('Field', 'Use "Form.Field" instead.', _Form.Field)
-export const Fields = deprecateComponent('Fields', 'Use "Form.Fields" instead.', _Form.Fields)
+import Menu from './collections/Menu/Menu'
+export const MenuItem = deprecateComponent('MenuItem', 'Use "Menu.Item" instead.', Menu.Item)
 
-import _Grid from './collections/Grid/Grid'
-export { _Grid as Grid }
-export const Column = deprecateComponent('Column', 'Use "Grid.Column" instead.', _Grid.Column)
-export const Row = deprecateComponent('Row', 'Use "Grid.Row" instead.', _Grid.Row)
+import Table from './collections/Table/Table'
+export const TableColumn = deprecateComponent('TableColumn', 'Use "Table.Column" instead.', Table.Column)
 
-import _Menu from './collections/Menu/Menu'
-export { _Menu as Menu }
-export const MenuItem = deprecateComponent('MenuItem', 'Use "Menu.Item" instead.', _Menu.Item)
-export Message from './collections/Message/Message'
-
-import _Table from './collections/Table/Table'
-export { _Table as Table }
-export const TableColumn = deprecateComponent('TableColumn', 'Use "Table.Column" instead.', _Table.Column)
-
-// ----------------------------------------
+//
 // Elements
-// ----------------------------------------
-export Button from './elements/Button/Button'
+//
+// TODO deprecate Buttons once updated to v1 API
 export Buttons from './elements/Button/Buttons'
-export Container from './elements/Container/Container'
-export Divider from './elements/Divider/Divider'
-export Flag from './elements/Flag/Flag'
-export Header from './elements/Header/Header'
-export Icon from './elements/Icon/Icon'
-export Image from './elements/Image/Image'
-export Input from './elements/Input/Input'
-export Label from './elements/Label/Label'
-export Loader from './elements/Loader/Loader'
+import List from './elements/List/List'
+export const ListItem = deprecateComponent('ListItem', 'Use "List.Item" instead.', List.Item)
 
-import _List from './elements/List/List'
-export { _List as List }
-export const ListItem = deprecateComponent('ListItem', 'Use "List.Item" instead.', _List.Item)
-
-export Segment from './elements/Segment/Segment'
-export Segments from './elements/Segment/SegmentSegments'
-export Step from './elements/Step/Step'
-export Rail from './elements/Rail/Rail'
-
-// ----------------------------------------
+//
 // Modules
-// ----------------------------------------
-export Accordion from './modules/Accordion/Accordion'
-export Checkbox from './modules/Checkbox/Checkbox'
-export Dropdown from './modules/Dropdown/Dropdown'
+//
+import Modal from './modules/Modal/Modal'
+export const ModalContent = deprecateComponent('ModalContent', 'Use "Modal.Content" instead.', Modal.Content)
+export const ModalHeader = deprecateComponent('ModalHeader', 'Use "Modal.Header" instead.', Modal.Header)
+export const ModalFooter = deprecateComponent('ModalFooter', 'Use "Modal.Actions" instead.', Modal.Actions)
 
-import _Modal from './modules/Modal/Modal'
-export { _Modal as Modal }
-export const ModalContent = deprecateComponent('ModalContent', 'Use "Modal.Content" instead.', _Modal.Content)
-export const ModalHeader = deprecateComponent('ModalHeader', 'Use "Modal.Header" instead.', _Modal.Header)
-export const ModalFooter = deprecateComponent('ModalFooter', 'Use "Modal.Actions" instead.', _Modal.Actions)
-
-export Progress from './modules/Progress/Progress'
-export Rating from './modules/Rating/Rating'
-
-// ----------------------------------------
+//
 // Views
-// ----------------------------------------
-
-import _Item from './views/Item/Item'
-export { _Item as Item }
-export const Items = deprecateComponent('Items', 'Use "Item.Items" instead.', _Item.Items)
-export Statistic from './views/Statistic/Statistic'
+//
+import Item from './views/Item/Item'
+export const Items = deprecateComponent('Items', 'Use "Item.Items" instead.', Item.Items)

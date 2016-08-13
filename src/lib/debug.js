@@ -1,8 +1,8 @@
-let debug
+let _debug
 const noop = () => undefined
 
 if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'test') {
-  debug = require('debug')
+  _debug = require('debug')
   // Safari private mode throws when writing to localStorage
   // https://github.com/TechnologyAdvice/stardust/issues/332
   try {
@@ -13,27 +13,27 @@ if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'test') {
     /* eslint-enable no-console */
   }
 } else {
-  debug = () => noop
+  _debug = () => noop
 }
 
 /**
  * Create a namespaced debug function.
  * @param {String} namespace Usually a component name.
  * @example
- * import { makeDebugger } from 'src/utils/debug'
+ * import { makeDebugger } from 'src/lib'
  * const debug = makeDebugger('namespace')
  *
  * debug('Some message')
  * @returns {Function}
  */
 export const makeDebugger = (namespace) => {
-  return debug(`stardust:${namespace}`)
+  return _debug(`stardust:${namespace}`)
 }
 
 /**
  * Default debugger, simple log.
  * @example
- * import debug from 'src/utils/debug'
+ * import { debug } from 'src/lib'
  * debug('Some message')
  */
-export default makeDebugger('log')
+export const debug = makeDebugger('log')

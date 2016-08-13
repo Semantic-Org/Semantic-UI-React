@@ -1,8 +1,11 @@
 import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
-import { customPropTypes, getUnhandledProps } from '../../utils/propUtils'
-import META from '../../utils/Meta'
+import {
+  customPropTypes,
+  getUnhandledProps,
+  META,
+} from '../../lib'
 
 // TODO: This file has disabled shorthand props
 // @see https://github.com/TechnologyAdvice/stardust/pull/334
@@ -20,13 +23,13 @@ function StatisticLabel(props) {
 StatisticLabel._meta = {
   name: 'StatisticLabel',
   parent: 'Statistic',
-  type: META.type.view,
+  type: META.TYPES.VIEW,
 }
 
 StatisticLabel.propTypes = {
   /** Primary content of the StatisticLabel. */
-  children: customPropTypes.all([
-    customPropTypes.mutuallyExclusive(['content']),
+  children: customPropTypes.every([
+    customPropTypes.disallow(['content']),
     PropTypes.node,
   ]),
 
@@ -34,8 +37,8 @@ StatisticLabel.propTypes = {
   className: PropTypes.string,
 
   // /** Primary content of the StatisticLabel. Mutually exclusive with the children prop. */
-  // content: customPropTypes.all([
-  //   customPropTypes.mutuallyExclusive(['children']),
+  // content: customPropTypes.every([
+  //   customPropTypes.disallow(['children']),
   //   PropTypes.node,
   // ]),
 }

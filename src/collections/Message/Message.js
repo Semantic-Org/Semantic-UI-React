@@ -2,17 +2,20 @@ import _ from 'lodash'
 import React, { PropTypes } from 'react'
 import cx from 'classnames'
 
-import Icon from '../../elements/Icon/Icon'
+import {
+  customPropTypes,
+  getUnhandledProps,
+  META,
+  SUI,
+  useKeyOnly,
+  useKeyOrValueAndKey,
+} from '../../lib'
+import { createIcon } from '../../factories'
+import { Icon } from '../../elements'
 import MessageContent from './MessageContent'
 import MessageHeader from './MessageHeader'
 import MessageList from './MessageList'
 import MessageItem from './MessageItem'
-
-import META from '../../utils/Meta'
-import {
-  customPropTypes, getUnhandledProps, iconPropRenderer, useKeyOnly, useKeyOrValueAndKey,
-} from '../../utils/propUtils'
-import * as sui from '../../utils/semanticUtils'
 
 /**
  * A message displays information that explains nearby content
@@ -68,7 +71,7 @@ function Message(props) {
     return (
       <div {...rest} className={classes}>
         {dismissIcon}
-        {icon && iconPropRenderer(icon)}
+        {icon && createIcon(icon)}
         {(header || content || list) && (
           <MessageContent>
             {header && <MessageHeader>{header}</MessageHeader>}
@@ -90,22 +93,22 @@ function Message(props) {
 
 Message._meta = {
   name: 'Message',
-  type: META.type.collection,
+  type: META.TYPES.COLLECTION,
   props: {
     attached: ['bottom'],
-    color: sui.colors,
-    size: _.without(sui.sizes, 'medium'),
+    color: SUI.COLORS,
+    size: _.without(SUI.SIZES, 'medium'),
   },
 }
 
 Message.propTypes = {
   /** Primary content of the message. */
-  children: customPropTypes.all([
+  children: customPropTypes.every([
     PropTypes.node,
-    customPropTypes.mutuallyExclusive(['header', 'content']),
+    customPropTypes.disallow(['header', 'content']),
     customPropTypes.givenProps(
       { icon: PropTypes.node.isRequired },
-      customPropTypes.mutuallyExclusive(['icon'])
+      customPropTypes.disallow(['icon'])
     ),
   ]),
 
@@ -116,8 +119,8 @@ Message.propTypes = {
   content: PropTypes.string,
 
   /** The content of the MessageHeader. Mutually exclusive with children. */
-  header: customPropTypes.all([
-    customPropTypes.mutuallyExclusive(['children']),
+  header: customPropTypes.every([
+    customPropTypes.disallow(['children']),
     PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.node,
@@ -125,20 +128,20 @@ Message.propTypes = {
   ]),
 
   /** A message can contain an icon. */
-  icon: customPropTypes.all([
+  icon: customPropTypes.every([
     customPropTypes.givenProps(
       { children: PropTypes.node.isRequired },
       PropTypes.bool
     ),
     customPropTypes.givenProps(
       { icon: PropTypes.string.isRequired },
-      customPropTypes.mutuallyExclusive(['children'])
+      customPropTypes.disallow(['children'])
     ),
   ]),
 
   /** Array of string items for the MessageList. Mutually exclusive with children. */
-  list: customPropTypes.all([
-    customPropTypes.mutuallyExclusive(['children']),
+  list: customPropTypes.every([
+    customPropTypes.disallow(['children']),
     PropTypes.arrayOf(PropTypes.string),
   ]),
 

@@ -1,9 +1,10 @@
 import faker from 'faker'
 import React from 'react'
 
-import { Label, Image } from 'stardust'
-import * as common from '../../commonTests.js'
-import sandbox from '../../../utils/Sandbox-util.js'
+import * as common from 'test/specs/commonTests'
+import { sandbox } from 'test/utils'
+import Label from 'src/elements/Label/Label'
+import Image from 'src/elements/Image/Image'
 
 describe('Label Component', () => {
   common.isConformant(Label)
@@ -146,7 +147,8 @@ describe('Label Component', () => {
         .should.not.have.tagName('a')
     })
     it('renders label as an "a"', () => {
-      shallow(<Label onClick={() => {}} />)
+      shallow(<Label onClick={() => {
+      }} />)
         .should.have.tagName('a')
     })
     it('is called when label is clicked', () => {
@@ -169,7 +171,8 @@ describe('Label Component', () => {
     })
 
     it('adds a delete icon as last child', () => {
-      shallow(<Label onRemove={() => {}}><br /></Label>)
+      shallow(<Label onRemove={() => {
+      }}><br /></Label>)
         .children()
         .last()
         .should.match('.delete')
@@ -191,7 +194,8 @@ describe('Label Component', () => {
 
   describe('onDetailClick', () => {
     it('renders detail as an a tag', () => {
-      shallow(<Label detail={faker.hacker.noun()} onDetailClick={() => {}} />)
+      shallow(<Label detail={faker.hacker.noun()} onDetailClick={() => {
+      }} />)
         .should.have.descendants('a.detail')
     })
 

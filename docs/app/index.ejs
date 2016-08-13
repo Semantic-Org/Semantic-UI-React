@@ -2,13 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <% if (htmlWebpackPlugin.options.baseHref) { %>
-  <base href="<%= htmlWebpackPlugin.options.baseHref %>" />
+  <% if (__BASE__) { %>
+  <base href="<%= __BASE__ %>" />
   <% } %>
-  <link rel="shortcut icon" type="image/x-icon" href="<%= htmlWebpackPlugin.options.base %>/logo.png" />
+  <link rel="shortcut icon" type="image/x-icon" href=<%= (__BASE__ || '') + '/logo'%> />
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.5.0/styles/github-gist.min.css">
-  <link rel="stylesheet"
-        href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/<%= htmlWebpackPlugin.options.versions.sui %>/semantic.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/<%= htmlWebpackPlugin.options.versions.sui %>/semantic.min.css">
   <script src="//cdnjs.cloudflare.com/ajax/libs/Faker/<%= htmlWebpackPlugin.options.versions.faker %>/faker.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.1/anchor.min.js"></script>
   <title>Semantic UI React</title>
@@ -24,7 +23,6 @@
   </script>
 </head>
 <body>
-
   <style>
     .anchorjs-link {
       transition: margin-left .25s, color .25s, opacity 0.25s;

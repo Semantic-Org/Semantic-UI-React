@@ -5,7 +5,7 @@
  */
 import _ from 'lodash'
 
-export const codes = {
+const codes = {
   // ----------------------------------------
   // By Code
   // ----------------------------------------
@@ -88,6 +88,8 @@ _.times(26, (i) => {
 })
 
 const keyboardKey = {
+  codes,
+
   /**
    * Get the `keyCode` or `which` value from a keyboard event or `key` name.
    * @param {string|object} name A keyboard event like object or `key` name.

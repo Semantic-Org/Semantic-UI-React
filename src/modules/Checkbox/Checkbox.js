@@ -2,10 +2,12 @@ import _ from 'lodash'
 import React, { PropTypes } from 'react'
 import cx from 'classnames'
 
-import AutoControlledComponent from '../../utils/AutoControlledComponent'
-import META from '../../utils/Meta'
-import { makeDebugger } from '../../utils/debug'
-import { getUnhandledProps } from '../../utils/propUtils'
+import {
+  AutoControlledComponent as Component,
+  getUnhandledProps,
+  META,
+  makeDebugger,
+} from '../../lib'
 
 const debug = makeDebugger('checkbox')
 
@@ -19,7 +21,7 @@ const typeMap = {
 
 const _meta = {
   name: 'Checkbox',
-  type: META.type.module,
+  type: META.TYPES.MODULE,
   props: {
     inputType: [
       'checkbox',
@@ -38,7 +40,7 @@ const _meta = {
  * A checkbox allows a user to select a value from a small set of options, often binary
  * @see Radio
  */
-export default class Checkbox extends AutoControlledComponent {
+export default class Checkbox extends Component {
   static propTypes = {
     /** Additional classes. */
     className: PropTypes.string,
@@ -49,6 +51,9 @@ export default class Checkbox extends AutoControlledComponent {
     /** The initial value of checked. */
     defaultChecked: PropTypes.bool,
 
+    /** A checkbox can appear disabled and be unable to change states */
+    disabled: PropTypes.bool,
+
     /** Removes padding for a label. Auto applied when there is no label. */
     fitted: PropTypes.bool,
 
@@ -58,8 +63,17 @@ export default class Checkbox extends AutoControlledComponent {
     /** HTML input type, either checkbox or radio. */
     inputType: PropTypes.oneOf(_meta.props.inputType),
 
+    /** The HTML input name. */
+    name: PropTypes.string,
+
+    /** Called with (event, { name, value, checked }) when the user attempts to change the value. */
+    onChange: PropTypes.func,
+
     /** Called with (event, { name, value, checked }) when the checkbox or label is clicked. */
     onClick: PropTypes.func,
+
+    /** A checkbox can be read-only and unable to change states */
+    readOnly: PropTypes.bool,
 
     /**
      * Display as a checkbox, radio, slider, or toggle.
@@ -68,14 +82,8 @@ export default class Checkbox extends AutoControlledComponent {
      */
     type: PropTypes.oneOf(_meta.props.type),
 
-    /** The HTML input name. */
-    name: PropTypes.string,
-
     /** The HTML input value. */
     value: PropTypes.string,
-
-    /** Called with (event, { name, value, checked }) when the user attempts to change the value. */
-    onChange: PropTypes.func,
   }
 
   static defaultProps = {

@@ -3,7 +3,7 @@ import React from 'react'
 
 import Rating from 'src/modules/Rating/Rating'
 import * as common from 'test/specs/commonTests'
-import sandbox from 'test/utils/Sandbox-util'
+import { sandbox } from 'test/utils'
 
 describe('Rating', () => {
   common.isConformant(Rating)

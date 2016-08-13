@@ -1,10 +1,15 @@
 import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
-import numberToWord from '../../utils/numberToWord'
-import META from '../../utils/Meta'
-import { getUnhandledProps, useTextAlignProp, useValueAndKey, useVerticalAlignProp } from '../../utils/propUtils'
-import * as sui from '../../utils/semanticUtils'
+import {
+  getUnhandledProps,
+  META,
+  numberToWord,
+  SUI,
+  useTextAlignProp,
+  useValueAndKey,
+  useVerticalAlignProp,
+} from '../../lib'
 
 function GridColumn(props) {
   const {
@@ -34,19 +39,19 @@ function GridColumn(props) {
 GridColumn._meta = {
   name: 'GridColumn',
   parent: 'Grid',
-  type: META.type.collection,
+  type: META.TYPES.COLLECTION,
   props: {
-    color: sui.colors,
-    computer: sui.widths,
-    floated: sui.floats,
-    largeScreen: sui.widths,
-    mobile: sui.widths,
+    color: SUI.COLORS,
+    computer: SUI.WIDTHS,
+    floated: SUI.FLOATS,
+    largeScreen: SUI.WIDTHS,
+    mobile: SUI.WIDTHS,
     only: ['computer', 'large screen', 'mobile', 'tablet mobile', 'tablet', 'widescreen'],
-    tablet: sui.widths,
-    textAlign: sui.textAlignments,
-    verticalAlign: sui.verticalAlignments,
-    widescreen: sui.widths,
-    width: sui.widths,
+    tablet: SUI.WIDTHS,
+    textAlign: SUI.TEXT_ALIGNMENTS,
+    verticalAlign: SUI.VERTICAL_ALIGNMENTS,
+    widescreen: SUI.WIDTHS,
+    width: SUI.WIDTHS,
   },
 }
 
