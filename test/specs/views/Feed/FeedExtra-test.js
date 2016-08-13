@@ -15,4 +15,10 @@ describe('FeedExtra', () => {
 
     shallow(<FeedExtra text={text} />).should.contain(text)
   })
+
+  it('renders <img> with images prop', () => {
+    const images = _.times(3, () => faker.image.imageUrl())
+
+    shallow(<FeedExtra images={images} />).should.have.exactly(3).descendants('img')
+  })
 })

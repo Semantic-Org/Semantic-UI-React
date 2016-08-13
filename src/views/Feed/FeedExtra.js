@@ -1,4 +1,3 @@
-import _ from 'lodash'
 import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
@@ -8,6 +7,7 @@ import {
   META,
   useKeyOnly,
 } from '../../lib'
+import { createImg } from '../../factories'
 
 function FeedExtra(props) {
   const { children, className, images, text } = props
@@ -20,8 +20,10 @@ function FeedExtra(props) {
   const rest = getUnhandledProps(FeedExtra, props)
 
   if (Array.isArray(images)) {
-    const imagesJSX = images.map((image, i) => {
-      return _.isString(image) ? <img key={i} src={image} /> : image
+    const imagesJSX = images.map((image, index) => {
+      const key = [index, image].join('-')
+
+      return createImg(image, {key})
     })
 
     return <div {...rest} className={classes}>{imagesJSX}</div>
@@ -48,7 +50,7 @@ FeedExtra.propTypes = {
     customPropTypes.disallow(['text']),
     PropTypes.oneOfType([
       PropTypes.bool,
-      PropTypes.arrayOf(PropTypes.node),
+      PropTypes.arrayOf(PropTypes.string),
     ]),
   ]),
 
