@@ -31,13 +31,13 @@ function Feed(props) {
     const { childKey, date, meta, summary, ...eventData } = eventProps
     const finalKey = childKey || `${date}-${meta}-${summary}`
 
-    return <FeedEvent
+    return (<FeedEvent
       date={date}
       key={finalKey}
       meta={meta}
       summary={summary}
       {...eventData}
-    />
+            />)
   })
 
   return <div {...rest} className={classes}>{eventsJSX}</div>

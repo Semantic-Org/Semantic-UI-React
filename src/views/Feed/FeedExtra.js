@@ -23,7 +23,7 @@ function FeedExtra(props) {
     const imagesJSX = images.map((image, index) => {
       const key = [index, image].join('-')
 
-      return createImg(image, {key})
+      return createImg(image, { key })
     })
 
     return <div {...rest} className={classes}>{imagesJSX}</div>
