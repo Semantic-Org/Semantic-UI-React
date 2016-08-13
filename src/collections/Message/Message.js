@@ -71,7 +71,7 @@ function Message(props) {
     return (
       <div {...rest} className={classes}>
         {dismissIcon}
-        {icon && createIcon(icon)}
+        {createIcon(icon)}
         {(header || content || list) && (
           <MessageContent>
             {header && <MessageHeader>{header}</MessageHeader>}
