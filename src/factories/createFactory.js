@@ -9,7 +9,10 @@ import React, { isValidElement } from 'react'
  * @returns {{className: *}}
  */
 const mergePropsAndClassName = (props, extraProps) => {
-  const className = cx(props.className, extraProps.className) // eslint-disable-line react/prop-types
+  let className
+  if (_.has(props, 'className') || _.has(extraProps.className)) {
+    className = cx(props.className, extraProps.className) // eslint-disable-line react/prop-types
+  }
   return { ...props, ...extraProps, className }
 }
 
