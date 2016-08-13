@@ -6,8 +6,8 @@ import Variations from './Variations'
 
 const StatisticExamples = () => (
   <div>
-    <Types/>
-    <Content/>
+    <Types />
+    <Content />
     <Variations />
   </div>
 )

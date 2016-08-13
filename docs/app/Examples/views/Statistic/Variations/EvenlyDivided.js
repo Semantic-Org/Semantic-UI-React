@@ -1,7 +1,7 @@
 import React from 'react'
-import {Icon, Image, Statistic} from 'stardust'
+import { Icon, Image, Statistic } from 'stardust'
 
-const {Group, Label, Value} = Statistic
+const { Group, Label, Value } = Statistic
 
 const EvenlyDivided = () => (
   <Group widths='four'>
@@ -20,7 +20,7 @@ const EvenlyDivided = () => (
 
     <Statistic>
       <Value>
-        <Icon name='plane'/>
+        <Icon name='plane' />
         5
       </Value>
       <Label>Flights</Label>
@@ -28,7 +28,7 @@ const EvenlyDivided = () => (
 
     <Statistic>
       <Value>
-        <Image src='http://semantic-ui.com/images/avatar/small/joe.jpg' className='circular inline'/>
+        <Image src='http://semantic-ui.com/images/avatar/small/joe.jpg' className='circular inline' />
         42
       </Value>
       <Label>Team Members</Label>

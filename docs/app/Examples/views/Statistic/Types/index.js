@@ -10,7 +10,7 @@ const Types = () => (
       description='A statistic can display a value with a label above or below it'
       examplePath='views/Statistic/Types/BottomLabel'
     />
-    <ComponentExample examplePath='views/Statistic/Types/TopLabel'/>
+    <ComponentExample examplePath='views/Statistic/Types/TopLabel' />
 
     <ComponentExample
       title='Statistic Group'

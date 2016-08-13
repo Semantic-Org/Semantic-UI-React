@@ -10,7 +10,7 @@ const Variations = () => (
       description='A statistic can present its measurement horizontally'
       examplePath='views/Statistic/Variations/Horizontal'
     />
-    <ComponentExample examplePath='views/Statistic/Variations/HorizontalGroup'/>
+    <ComponentExample examplePath='views/Statistic/Variations/HorizontalGroup' />
 
     <ComponentExample
       title='Colored'
@@ -41,7 +41,7 @@ const Variations = () => (
       description='A statistic can vary in size'
       examplePath='views/Statistic/Variations/Size'
     />
-    <ComponentExample examplePath='views/Statistic/Variations/SizeDivided'/>
+    <ComponentExample examplePath='views/Statistic/Variations/SizeDivided' />
   </ExampleSection>
 )
 

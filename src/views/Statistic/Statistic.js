@@ -35,7 +35,7 @@ function Statistic(props) {
   return (
     <div {...rest} className={classes}>
       <StatisticValue text={text} value={value} />
-      <StatisticLabel label={label}/>
+      <StatisticLabel label={label} />
     </div>
   )
 }

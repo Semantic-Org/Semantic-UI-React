@@ -10,7 +10,7 @@ const Content = () => (
       description='A statistic can contain a numeric, icon, image, or text value'
       examplePath='views/Statistic/Content/Values'
     />
-    <ComponentExample examplePath='views/Statistic/Content/Props'/>
+    <ComponentExample examplePath='views/Statistic/Content/Props' />
 
     <ComponentExample
       title='Label'
