@@ -1,11 +1,19 @@
 # Change Log
 
-## [Unreleased](https://github.com/TechnologyAdvice/stardust/tree/HEAD)
+## [v0.34.2](https://github.com/TechnologyAdvice/stardust/tree/v0.34.2) (2016-08-14)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.34.1...v0.34.2)
 
-[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.34.1...HEAD)
+**Implemented enhancements:**
+
+- Statistic: enhance shorthand props and propTypes [\#390](https://github.com/TechnologyAdvice/stardust/pull/390) ([layershifter](https://github.com/layershifter))
+
+**Closed issues:**
+
+- Remove bluebird dependency [\#84](https://github.com/TechnologyAdvice/stardust/issues/84)
 
 **Merged pull requests:**
 
+- Image, add inline prop [\#394](https://github.com/TechnologyAdvice/stardust/pull/394) ([layershifter](https://github.com/layershifter))
 - Add Introduction page [\#377](https://github.com/TechnologyAdvice/stardust/pull/377) ([levithomason](https://github.com/levithomason))
 
 ## [v0.34.1](https://github.com/TechnologyAdvice/stardust/tree/v0.34.1) (2016-08-13)
