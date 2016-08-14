@@ -3,8 +3,6 @@ import { Icon, Image, Statistic } from 'stardust'
 
 const { Group, Label, Value } = Statistic
 
-// TODO: Update <Image> usage after <Image> will be updated to v1 API
-
 const StatisticValueExample = () => (
   <Group>
     <Statistic>
@@ -30,7 +28,7 @@ const StatisticValueExample = () => (
 
     <Statistic>
       <Value>
-        <Image src='http://semantic-ui.com/images/avatar/small/joe.jpg' className='circular inline' />
+        <Image inline shape='circular' src='http://semantic-ui.com/images/avatar/small/joe.jpg' />
         42
       </Value>
       <Label>Team Members</Label>

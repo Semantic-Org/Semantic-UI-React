@@ -19,7 +19,7 @@ import ImageGroup from './ImageGroup'
 function Image(props) {
   const {
     verticalAlign, alt, avatar, bordered, centered, className, disabled, floated, fluid,
-    hidden, height, href, shape, size, spaced, src, width, wrapped,
+    hidden, height, href, inline, shape, size, spaced, src, width, wrapped,
   } = props
 
   const classes = cx(
@@ -33,6 +33,7 @@ function Image(props) {
     useValueAndKey(floated, 'floated'),
     useKeyOnly(fluid, 'fluid'),
     useKeyOnly(hidden, 'hidden'),
+    useKeyOnly(inline, 'inline'),
     useKeyOrValueAndKey(spaced, 'spaced'),
     shape,
     className,
@@ -118,6 +119,9 @@ Image.propTypes = {
 
   /** Renders the Image as an <a> tag with this href */
   href: PropTypes.string,
+
+  /** An image may appear inline */
+  inline: PropTypes.bool,
 
   /** An image may appear rounded or circular */
   shape: PropTypes.oneOf(Image._meta.props.shape),
