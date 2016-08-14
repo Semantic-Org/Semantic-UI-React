@@ -2,13 +2,14 @@ import React from 'react'
 import { Statistic } from 'stardust'
 
 const { Group, Label, Value } = Statistic
+
 const items = [
-  { label: 'Faves', value: 22 },
+  { label: 'Faves', value: '22' },
   { label: 'Views', value: '31,200' },
-  { label: 'Members', value: 22 },
+  { label: 'Members', value: '22' },
 ]
 
-const StatisticGroupExample = () => (
+const Groups = () => (
   <div>
     <Group>
       <Statistic>
@@ -26,4 +27,4 @@ const StatisticGroupExample = () => (
   </div>
 )
 
-export default StatisticGroupExample
+export default Groups

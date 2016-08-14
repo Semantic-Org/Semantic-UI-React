@@ -1,7 +1,7 @@
 import React from 'react'
 import { Statistic } from 'stardust'
 
-const StatisticColoredExample = () => (
+const Colored = () => (
   <Statistic.Group>
     <Statistic color='red' value='27' label='red' />
     <Statistic color='orange' value='8' label='orange' />
@@ -18,4 +18,4 @@ const StatisticColoredExample = () => (
   </Statistic.Group>
 )
 
-export default StatisticColoredExample
+export default Colored

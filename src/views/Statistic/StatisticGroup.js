@@ -26,11 +26,10 @@ function StatisticGroup(props) {
     return <div {...rest} className={classes}>{children}</div>
   }
 
-  let itemsJSX = []
+  let itemsJSX = items.map(item => {
+    const key = item.key || [item.label, item.title].join('-')
 
-  items.forEach((item, index) => {
-    const key = `${item.label}-${item.value}-${index}`
-    itemsJSX.push(<Statistic key={key} {...item} />)
+    return <Statistic key={key} {...item} />
   })
 
   return <div {...rest} className={classes}>{itemsJSX}</div>
@@ -61,7 +60,12 @@ StatisticGroup.propTypes = {
   /** Array of props for Statistic. */
   items: customPropTypes.every([
     customPropTypes.disallow(['children']),
-    PropTypes.array,
+    PropTypes.arrayOf(PropTypes.shape({
+      key: PropTypes.string,
+      label: PropTypes.string,
+      text: PropTypes.bool,
+      value: PropTypes.string,
+    })),
   ]),
 
   /** A statistic group can have its items divided evenly. */

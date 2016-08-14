@@ -4,7 +4,6 @@ import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
 import { Message } from 'stardust'
 
 // TODO: Update dimmers after implement <Dimmer>
-// TODO: Update messages after convert <Message> to v1 API
 
 const LoaderExamples = () => (
   <div>
@@ -14,7 +13,7 @@ const LoaderExamples = () => (
         description='A loader'
         examplePath='elements/Loader/Types/LoaderExample'
       >
-        <Message>
+        <Message info>
           Loaders are hidden unless has prop "active" or inside an "dimmer" with active prop.
         </Message>
       </ComponentExample>

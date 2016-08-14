@@ -144,7 +144,7 @@ Be sure to check out the above migrations before embarking on a new component.  
 | x Rail          |                 |                 | _ Shape         |                    |
 | _ Reveal        |                 |                 | _ Sidebar       |                    |
 | x Segment       |                 |                 | _ Sticky        |                    |
-| _ Step          |                 |                 | _ Tab           |                    |
+| x Step          |                 |                 | _ Tab           |                    |
 |                 |                 |                 | _ Transition    |                    |
 
 ## Releasing

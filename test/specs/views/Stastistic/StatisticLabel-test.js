@@ -1,6 +1,7 @@
+import faker from 'faker'
 import React from 'react'
-import * as common from 'test/specs/commonTests'
 
+import * as common from 'test/specs/commonTests'
 import StatisticLabel from 'src/views/Statistic/StatisticLabel'
 
 describe('StatisticLabel', () => {
@@ -12,19 +13,9 @@ describe('StatisticLabel', () => {
       .should.have.tagName('div')
   })
 
-  // describe('content prop', () => {
-  //   it('renders child text', () => {
-  //     const text = faker.hacker.phrase()
-  //
-  //     shallow(<StatisticLabel content={text} />)
-  //       .should.contain.text(text)
-  //   })
-  //
-  //   it('renders child components', () => {
-  //     const child = <div data-child={faker.hacker.noun()} />
-  //
-  //     shallow(<StatisticLabel content={child} />)
-  //       .should.contain(child)
-  //   })
-  // })
+  it('renders text with label prop', () => {
+    const text = faker.hacker.phrase()
+
+    shallow(<StatisticLabel label={text} />).should.contain.text(text)
+  })
 })

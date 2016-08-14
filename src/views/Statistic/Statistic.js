@@ -34,8 +34,8 @@ function Statistic(props) {
 
   return (
     <div {...rest} className={classes}>
-      <Statistic.Value text={text}>{value}</Statistic.Value>
-      <Statistic.Label>{label}</Statistic.Label>
+      <StatisticValue text={text} value={value} />
+      <StatisticLabel label={label} />
     </div>
   )
 }
@@ -75,7 +75,7 @@ Statistic.propTypes = {
   /** Label content of the Statistic. Mutually exclusive with the children prop. */
   label: customPropTypes.every([
     customPropTypes.disallow(['children']),
-    PropTypes.node,
+    PropTypes.string,
   ]),
 
   /** A statistic can vary in size. */
@@ -87,7 +87,7 @@ Statistic.propTypes = {
   /** Value content of the Statistic. Mutually exclusive with the children prop. */
   value: customPropTypes.every([
     customPropTypes.disallow(['children']),
-    PropTypes.node,
+    PropTypes.string,
   ]),
 }
 

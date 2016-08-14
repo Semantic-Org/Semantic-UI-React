@@ -1,7 +1,7 @@
 import React from 'react'
 import { Statistic } from 'stardust'
 
-const StatisticBottomLabelExample = () => (
+const BottomLabel = () => (
   <div>
     <Statistic>
       <Statistic.Value>5,550</Statistic.Value>
@@ -12,4 +12,4 @@ const StatisticBottomLabelExample = () => (
   </div>
 )
 
-export default StatisticBottomLabelExample
+export default BottomLabel

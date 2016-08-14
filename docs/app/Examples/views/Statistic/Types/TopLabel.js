@@ -1,7 +1,7 @@
 import React from 'react'
 import { Statistic } from 'stardust'
 
-const StatisticTopLabelExample = () => (
+const TopLabel = () => (
   <div>
     <Statistic>
       <Statistic.Label>Views</Statistic.Label>
@@ -10,4 +10,4 @@ const StatisticTopLabelExample = () => (
   </div>
 )
 
-export default StatisticTopLabelExample
+export default TopLabel
