@@ -17,6 +17,7 @@ describe('Image Component', () => {
   common.propKeyOnlyToClassName(Image, 'disabled')
   common.propKeyOnlyToClassName(Image, 'fluid')
   common.propKeyOnlyToClassName(Image, 'hidden')
+  common.propKeyOnlyToClassName(Image, 'inline')
 
   common.propKeyAndValueToClassName(Image, 'floated')
   common.propKeyOrValueToClassName(Image, 'spaced')
