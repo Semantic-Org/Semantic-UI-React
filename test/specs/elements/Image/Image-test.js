@@ -32,18 +32,11 @@ describe('Image Component', () => {
       .should.equal('img')
   })
 
-  describe('onClick', () => {
+  describe('href', () => {
     it('renders an a tag', () => {
-      shallow(<Image onClick={() => null} />)
+      shallow(<Image href='http://google.com' />)
         .type()
         .should.equal('a')
-    })
-    describe('href', () => {
-      it('renders an a tag', () => {
-        shallow(<Image href='http://google.com' />)
-          .type()
-          .should.equal('a')
-      })
     })
   })
 

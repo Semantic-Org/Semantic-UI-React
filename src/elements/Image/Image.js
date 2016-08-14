@@ -19,7 +19,7 @@ import ImageGroup from './ImageGroup'
 function Image(props) {
   const {
     verticalAlign, alt, avatar, bordered, centered, className, disabled, floated, fluid,
-    hidden, height, href, onClick, shape, size, spaced, src, width, wrapped,
+    hidden, height, href, shape, size, spaced, src, width, wrapped,
   } = props
 
   const classes = cx(
@@ -40,10 +40,10 @@ function Image(props) {
   )
 
   const rest = getUnhandledProps(Image, props)
-  const rootProps = { className: classes, onClick, ...rest }
+  const rootProps = { className: classes, ...rest }
   const imgTagProps = { src, alt, width, height }
 
-  if (onClick || href) {
+  if (href) {
     return (
       <a {...rootProps} href={href}>
         <img {...imgTagProps} />
@@ -119,9 +119,6 @@ Image.propTypes = {
   /** Renders the Image as an <a> tag with this href */
   href: PropTypes.string,
 
-  /** Called on image click. Formats the Image as a link by rendering as an <a> tag. */
-  onClick: PropTypes.func,
-
   /** An image may appear rounded or circular */
   shape: PropTypes.oneOf(Image._meta.props.shape),
 
@@ -147,7 +144,7 @@ Image.propTypes = {
   wrapped: customPropTypes.every([
     PropTypes.bool,
     // these props wrap the image in an a tag already
-    customPropTypes.disallow(['onClick', 'href']),
+    customPropTypes.disallow(['href']),
   ]),
 }
 

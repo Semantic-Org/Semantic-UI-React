@@ -25,14 +25,10 @@ const ImageTypesExamples = () => (
       description='An image can be formatted to link to other content'
       examplePath='elements/Image/Types/ImageHrefExample'
     >
-      <Message>
-        An image renders as a <code>{'<a />'}</code> if it has an <code>href</code> or an <code>onClick</code> handler
+      <Message info>
+        An Image automatically renders as a <code>{'<a />'}</code> if it has an <code>href</code>
       </Message>
     </ComponentExample>
-    <ComponentExample
-      description='Using an onClick handler'
-      examplePath='elements/Image/Types/ImageOnClickExample'
-    />
   </ExampleSection>
 )
 
