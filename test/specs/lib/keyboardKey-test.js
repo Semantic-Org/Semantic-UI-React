@@ -3,7 +3,7 @@ import _ from 'lodash'
 import { keyboardKey } from 'src/lib'
 
 const _wrongReturn = (method, arg, ret) =>
-  `keyboardKey.${method}(${arg}) should return key name "${ret}"\n`
+  `keyboardKey.${method}(${arg}) should return "${ret}"\n`
 
 const wrongCode = (...args) => _wrongReturn('getCode', ...args)
 const wrongName = (...args) => _wrongReturn('getName', ...args)
