@@ -1,12 +1,18 @@
 import _ from 'lodash/fp'
 import React, { Component, PropTypes } from 'react'
+import { findDOMNode } from 'react-dom'
 import { Link } from 'react-router'
 
+import pkg from 'package.json'
+import * as stardust from 'src'
 import { typeOrder } from 'docs/app/utils'
-import { META } from 'src/lib'
-import * as stardust from 'stardust'
-
-const { Menu, Icon, Input } = stardust
+import { keyboardKey, META } from 'src/lib'
+import Logo from 'docs/app/Components/Logo/Logo'
+import {
+  Menu,
+  Icon,
+  Input,
+} from 'src'
 
 export default class Sidebar extends Component {
   static propTypes = {
@@ -15,6 +21,22 @@ export default class Sidebar extends Component {
   state = { query: '' }
 
   handleSearchChange = e => this.setState({ query: e.target.value })
+
+  componentDidMount() {
+    document.addEventListener('keydown', this.handleDocumentKeyDown)
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('keydown', this.handleDocumentKeyDown)
+  }
+
+  handleDocumentKeyDown = (e) => {
+    const code = keyboardKey.getCode(e)
+    const isAZ = code >= 65 && code <= 90
+    const bodyHasFocus = document.activeElement === document.body
+
+    if (isAZ && bodyHasFocus) this._searchInput.focus()
+  }
 
   renderItemsByType = (type) => {
     const items = _.flow(
@@ -48,9 +70,15 @@ export default class Sidebar extends Component {
     return (
       <Menu className='vertical fixed inverted' style={{ ...style }}>
         <div className='item'>
-          <img src={__BASE__ + '/logo.png'} style={{ marginRight: '1em' }} />
-          <strong>UI-React Docs</strong>
+          <Logo spaced='right' size='mini' />
+          <strong>
+            Semantic-UI-React &nbsp;
+            <small><em>{pkg.version}</em></small>
+          </strong>
         </div>
+        <Link to='/introduction' className='item' activeClassName='active'>
+          Introduction
+        </Link>
         <a className='item' href='https://github.com/TechnologyAdvice/stardust'>
           <Icon name='github' /> GitHub
         </a>
@@ -58,8 +86,11 @@ export default class Sidebar extends Component {
           <Input
             className='transparent inverted icon'
             icon='search'
-            placeholder='Search'
+            placeholder='Start typing...'
             onChange={this.handleSearchChange}
+            ref={(c) => {
+              if (c !== null) this._searchInput = findDOMNode(c).querySelector('input')
+            }}
           />
         </div>
         {_.map(this.renderItemsByType, typeOrder)}

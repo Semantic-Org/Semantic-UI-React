@@ -1,5 +1,5 @@
 const style = {}
-const sidebarWidth = '16rem'
+const sidebarWidth = 250
 
 style.container = {
 }
