@@ -1,5 +1,49 @@
 # Change Log
 
+## [Unreleased](https://github.com/TechnologyAdvice/stardust/tree/HEAD)
+
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.34.1...HEAD)
+
+**Merged pull requests:**
+
+- Add Introduction page [\#377](https://github.com/TechnologyAdvice/stardust/pull/377) ([levithomason](https://github.com/levithomason))
+
+## [v0.34.1](https://github.com/TechnologyAdvice/stardust/tree/v0.34.1) (2016-08-13)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.34.0...v0.34.1)
+
+## [v0.34.0](https://github.com/TechnologyAdvice/stardust/tree/v0.34.0) (2016-08-13)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.33.0...v0.34.0)
+
+**Implemented enhancements:**
+
+- \<Feed /\> Component [\#188](https://github.com/TechnologyAdvice/stardust/issues/188)
+
+**Merged pull requests:**
+
+- Add Feed component [\#363](https://github.com/TechnologyAdvice/stardust/pull/363) ([layershifter](https://github.com/layershifter))
+
+## [v0.33.0](https://github.com/TechnologyAdvice/stardust/tree/v0.33.0) (2016-08-13)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.32.0...v0.33.0)
+
+**Implemented enhancements:**
+
+- Modal Keyboard Event Handlers [\#175](https://github.com/TechnologyAdvice/stardust/issues/175)
+- Add full Modal feature support with Dimmer and docs [\#383](https://github.com/TechnologyAdvice/stardust/pull/383) ([levithomason](https://github.com/levithomason))
+
+## [v0.32.0](https://github.com/TechnologyAdvice/stardust/tree/v0.32.0) (2016-08-13)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.31.0...v0.32.0)
+
+**Implemented enhancements:**
+
+- \<Step /\> Component [\#183](https://github.com/TechnologyAdvice/stardust/issues/183)
+- Validate commonTest arguments [\#389](https://github.com/TechnologyAdvice/stardust/pull/389) ([levithomason](https://github.com/levithomason))
+- Image Component updated to v1 API [\#280](https://github.com/TechnologyAdvice/stardust/pull/280) ([jamiehill](https://github.com/jamiehill))
+
+**Merged pull requests:**
+
+- Refactor utils [\#388](https://github.com/TechnologyAdvice/stardust/pull/388) ([levithomason](https://github.com/levithomason))
+- Add Step component [\#335](https://github.com/TechnologyAdvice/stardust/pull/335) ([layershifter](https://github.com/layershifter))
+
 ## [v0.31.0](https://github.com/TechnologyAdvice/stardust/tree/v0.31.0) (2016-08-10)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.30.0...v0.31.0)
 
