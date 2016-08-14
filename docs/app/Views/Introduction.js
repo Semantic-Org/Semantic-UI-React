@@ -141,6 +141,7 @@ const Introduction = () => (
         <List.Item icon='check mark'>jQuery Free</List.Item>
         <List.Item icon='check mark'>Declarative Components</List.Item>
         <List.Item icon='check mark'>Shorthand Props</List.Item>
+        <List.Item icon='check mark'>Sub Components</List.Item>
         <List.Item icon='check mark'>Auto Controlled State</List.Item>
       </List>
     </Segment>
@@ -209,7 +210,15 @@ const Introduction = () => (
       <Header.H2 dividing>Auto Controlled State</Header.H2>
 
       <p>
-        Stateful components self manage their state out of the box, without wiring. Dropdowns open on click without
+        React has the concept of
+        <a href='https://facebook.github.io/react/docs/forms.html' target='_blank'>
+          &nbsp;controlled and uncontrolled&nbsp;
+        </a>
+        components.
+      </p>
+
+      <p>
+        Our stateful components self manage their state out of the box, without wiring. Dropdowns open on click without
         wiring <code>onClick</code> to the <code>open</code> prop. The value is also stored internally, without
         wiring <code>onChange</code> to <code>value</code>.
       </p>
