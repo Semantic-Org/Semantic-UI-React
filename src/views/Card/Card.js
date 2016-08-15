@@ -9,6 +9,7 @@ import {
 } from '../../lib'
 import CardContent from './CardContent'
 import CardDescription from './CardDescription'
+import CardGroup from './CardGroup'
 import CardHeader from './CardHeader'
 import CardMeta from './CardMeta'
 
@@ -72,6 +73,7 @@ Card.propTypes = {
 
 Card.Content = CardContent
 Card.Description = CardDescription
+Card.Group = CardGroup
 Card.Header = CardHeader
 Card.Meta = CardMeta
 
