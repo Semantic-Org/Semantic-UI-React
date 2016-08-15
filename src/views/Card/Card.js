@@ -4,6 +4,7 @@ import React, { PropTypes } from 'react'
 import {
   META,
   SUI,
+  getUnhandledProps,
   useKeyOnly,
 } from '../../lib'
 import CardContent from './CardContent'
@@ -21,7 +22,6 @@ function Card(props) {
     href,
     onClick,
     raised,
-    ...rest,
   } = props
 
   const classes = cx('ui',
@@ -32,6 +32,7 @@ function Card(props) {
     'card',
     className,
   )
+  const rest = getUnhandledProps(Card, props)
 
   const handleClick = (e) => {
     if (onClick) onClick(e)

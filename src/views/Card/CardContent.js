@@ -3,6 +3,7 @@ import cx from 'classnames'
 
 import {
   customPropTypes,
+  getUnhandledProps,
   META,
   useKeyOnly,
 } from '../../lib'
@@ -11,12 +12,13 @@ import CardHeader from './CardHeader'
 import CardMeta from './CardMeta'
 
 function CardContent(props) {
-  const { className, children, description, extra, header, meta, ...rest } = props
+  const { className, children, description, extra, header, meta } = props
   const classes = cx(
     className,
     useKeyOnly(extra, 'extra'),
     'content',
   )
+  const rest = getUnhandledProps(CardContent, props)
 
   if (children) {
     return <div {...rest} className={classes}>{children}</div>

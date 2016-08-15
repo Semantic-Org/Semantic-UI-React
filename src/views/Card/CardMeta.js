@@ -3,12 +3,14 @@ import React, { PropTypes } from 'react'
 
 import {
   customPropTypes,
+  getUnhandledProps,
   META,
 } from '../../lib'
 
 function CardMeta(props) {
-  const { className, children, content, ...rest } = props
+  const { className, children, content } = props
   const classes = cx(className, 'meta')
+  const rest = getUnhandledProps(CardMeta, props)
 
   return <div {...rest} className={classes}>{children || content}</div>
 }
