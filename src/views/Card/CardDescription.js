@@ -24,7 +24,7 @@ CardDescription._meta = {
 CardDescription.propTypes = {
   className: PropTypes.string,
   children: customPropTypes.every([
-    customPropTypes.disallow(['description']),
+    customPropTypes.disallow(['content']),
     PropTypes.node,
   ]),
   content: customPropTypes.every([

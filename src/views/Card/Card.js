@@ -61,13 +61,28 @@ Card._meta = {
 }
 
 Card.propTypes = {
+  /** A Card can center itself inside its container. */
   centered: PropTypes.bool,
+
+  /** Primary content of the Card. */
   children: PropTypes.node,
+
+  /** Classes that will be added to the Card className. */
   className: PropTypes.string,
+
+  /** A Card can be formatted to display different colors. */
   color: PropTypes.oneOf(Card._meta.props.color),
+
+  /** A Card can be formatted to take up the width of its container. */
   fluid: PropTypes.bool,
+
+  /** Render as an `a` tag instead of a `div` and adds the href attribute. */
   href: PropTypes.string,
+
+  /** Render as an `a` tag instead of a `div` and called with event on Card click. */
   onClick: PropTypes.func,
+
+  /** A Card can be formatted to raise above the page. */
   raised: PropTypes.bool,
 }
 

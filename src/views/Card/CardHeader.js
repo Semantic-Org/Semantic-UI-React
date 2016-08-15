@@ -24,7 +24,7 @@ CardHeader._meta = {
 CardHeader.propTypes = {
   className: PropTypes.string,
   children: customPropTypes.every([
-    customPropTypes.disallow(['header']),
+    customPropTypes.disallow(['content']),
     PropTypes.node,
   ]),
   content: customPropTypes.every([
