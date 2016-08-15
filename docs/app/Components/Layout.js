@@ -6,6 +6,7 @@ import React, { Component, PropTypes } from 'react'
 import Sidebar from 'docs/app/Components/Sidebar/Sidebar'
 import style from 'docs/app/Style'
 import { Grid } from 'stardust'
+import TAAttribution from 'docs/app/Components/TAAttribution/TAAttribution'
 
 const anchors = new AnchorJS({
   icon: '#',
@@ -39,6 +40,7 @@ export default class Root extends Component {
               {this.props.children}
             </Grid.Column>
           </Grid>
+          <TAAttribution />
         </div>
       </div>
     )

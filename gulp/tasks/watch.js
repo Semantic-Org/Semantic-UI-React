@@ -11,5 +11,9 @@ task('watch', (cb) => {
   // rebuild doc info
   watch(`${config.paths.src()}/**/*.js`, series('generate-docs-json'))
     .on('change', handleChange)
+
+  // rebuild images
+  watch(`${config.paths.src()}/**/*.{png,jpg,gif}`, series('docs-images'))
+    .on('change', handleChange)
   cb()
 })

@@ -159,7 +159,7 @@ npm run release:patch
 
 ## Credit
 
-Originally created with :heart: at [TechnologyAdvice][9], a ridiculous [place to work][16].
+Made with :heart: [@TechnologyAdvice][9], a ridiculous [place to work][16].
 
 [1]: https://github.com/TechnologyAdvice/stardust/blob/master/CONTRIBUTING.md
 [2]: https://technologyadvice.github.io/stardust/

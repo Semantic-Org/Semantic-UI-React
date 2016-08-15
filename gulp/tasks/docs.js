@@ -62,7 +62,7 @@ task('docs-html', (cb) => {
 })
 
 task('docs-images', (cb) => {
-  return src(config.paths.docsSrc('logo.png'))
+  return src(`${config.paths.docsSrc()}/**/*.{png,jpg,gif}`)
     .pipe(dest(config.paths.docsDist()))
 })
 
