@@ -49,6 +49,10 @@ const ButtonHTML = `<button class="ui small green button">
   <i class="download icon"></i>
   Download
 </button>`
+const LabelJSX = "<Label image='veronika.jpg' />"
+const LabelHTML = `<div class="ui image label">
+  <img src="veronika.jpg">
+</div>`
 const RatingJSX = '<Rating rating={1} maxRating={5} />'
 const RatingHTML = `<div
   class="ui rating"
@@ -195,6 +199,7 @@ const Introduction = () => (
         The <code>image</code> prop is standard for many components.
         It can accept an image <code>src</code>, an Image props object, or an <code>{'<Image />'}</code> instance.
       </p>
+      <Comparison jsx={LabelJSX} html={LabelHTML} />
     </Segment>
 
     <Segment className='basic padded'>
@@ -228,7 +233,12 @@ const Introduction = () => (
         uncontrolled props. Add and remove control at any time by adding or removing props. Everything just works.
       </p>
       <p>
-        See the docs for more examples.
+        Take a look at our
+        <a href='https://github.com/TechnologyAdvice/stardust/blob/master/src/utils/AutoControlledComponent.js'>
+          &nbsp;<code>AutoControlledComponent</code>&nbsp;
+        </a>
+        to see how this was done.
+        See the docs try it out live.
       </p>
       <Divider hidden section />
       <Divider hidden section />
