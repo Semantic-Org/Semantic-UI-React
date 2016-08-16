@@ -2,8 +2,8 @@ import React, { PropTypes } from 'react'
 import { Image, Grid, Rail, Segment } from 'stardust'
 
 const Wrapper = ({ children }) => (
-  <Grid className='three column center aligned'>
-    <Grid.Column className='centered'>
+  <Grid columns={3} textAlign='center'>
+    <Grid.Column centered>
       <Segment>
         <Image src='http://semantic-ui.com/images/wireframe/paragraph.png' />
         {children}

@@ -35,7 +35,7 @@ export default class Root extends Component {
       <div style={style.container}>
         <Sidebar style={style.menu} />
         <div style={style.main}>
-          <Grid className='padded'>
+          <Grid padded>
             <Grid.Column>
               {this.props.children}
             </Grid.Column>
