@@ -2,9 +2,10 @@ import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
 import {
+  customPropTypes,
+  getUnhandledProps,
   META,
   SUI,
-  getUnhandledProps,
   useKeyOnly,
 } from '../../lib'
 import CardContent from './CardContent'
@@ -19,8 +20,11 @@ function Card(props) {
     children,
     className,
     color,
+    description,
     fluid,
+    header,
     href,
+    meta,
     onClick,
     raised,
   } = props
@@ -47,7 +51,7 @@ function Card(props) {
       href={href}
       onClick={handleClick}
     >
-      {children}
+      {children || <CardContent description={description} header={header} meta={meta} />}
     </CardComponent>
   )
 }
@@ -73,11 +77,29 @@ Card.propTypes = {
   /** A Card can be formatted to display different colors. */
   color: PropTypes.oneOf(Card._meta.props.color),
 
+  /** Shorthand prop for CardDescription. Mutually exclusive with children. */
+  description: customPropTypes.every([
+    customPropTypes.disallow(['children']),
+    PropTypes.node,
+  ]),
+
   /** A Card can be formatted to take up the width of its container. */
   fluid: PropTypes.bool,
 
+  /** Shorthand prop for CardHeader. Mutually exclusive with children. */
+  header: customPropTypes.every([
+    customPropTypes.disallow(['children']),
+    PropTypes.node,
+  ]),
+
   /** Render as an `a` tag instead of a `div` and adds the href attribute. */
   href: PropTypes.string,
+
+  /** Shorthand prop for CardMeta. Mutually exclusive with children. */
+  meta: customPropTypes.every([
+    customPropTypes.disallow(['children']),
+    PropTypes.node,
+  ]),
 
   /** Render as an `a` tag instead of a `div` and called with event on Card click. */
   onClick: PropTypes.func,

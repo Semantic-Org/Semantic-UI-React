@@ -34,7 +34,7 @@ CardGroup._meta = {
   name: 'CardGroup',
   parent: 'Card',
   props: {
-    width: SUI.WIDTHS,
+    itemsPerRow: SUI.WIDTHS,
   },
   type: META.TYPES.VIEW,
 }
@@ -47,7 +47,7 @@ CardGroup.propTypes = {
   ]),
   doubling: PropTypes.bool,
   items: customPropTypes.every([
-    customPropTypes.disallow(['description', 'title']),
+    customPropTypes.disallow(['description', 'header']),
     PropTypes.arrayOf(PropTypes.shape({
       description: PropTypes.node,
       meta: PropTypes.node,
