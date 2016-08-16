@@ -8,6 +8,7 @@ import {
   SUI,
   useKeyOnly,
 } from '../../lib'
+import { createImage } from '../../factories'
 import CardContent from './CardContent'
 import CardDescription from './CardDescription'
 import CardGroup from './CardGroup'
@@ -24,6 +25,7 @@ function Card(props) {
     fluid,
     header,
     href,
+    image,
     meta,
     onClick,
     raised,
@@ -51,6 +53,7 @@ function Card(props) {
       href={href}
       onClick={handleClick}
     >
+      {createImage(image)}
       {children || <CardContent description={description} header={header} meta={meta} />}
     </CardComponent>
   )
@@ -69,7 +72,10 @@ Card.propTypes = {
   centered: PropTypes.bool,
 
   /** Primary content of the Card. */
-  children: PropTypes.node,
+  children: customPropTypes.every([
+    customPropTypes.disallow(['description', 'header', 'image', 'meta']),
+    PropTypes.node,
+  ]),
 
   /** Classes that will be added to the Card className. */
   className: PropTypes.string,
@@ -94,6 +100,12 @@ Card.propTypes = {
 
   /** Render as an `a` tag instead of a `div` and adds the href attribute. */
   href: PropTypes.string,
+
+  /** An card can contain image. */
+  image: customPropTypes.every([
+    customPropTypes.disallow(['children']),
+    PropTypes.node,
+  ]),
 
   /** Shorthand prop for CardMeta. Mutually exclusive with children. */
   meta: customPropTypes.every([
