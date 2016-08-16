@@ -48,6 +48,7 @@ export Image from './elements/Image/Image'
 export Input from './elements/Input/Input'
 export Label from './elements/Label/Label'
 export Loader from './elements/Loader/Loader'
+export Reveal from './elements/Reveal/Reveal'
 
 import _List from './elements/List/List'
 export { _List as List }
