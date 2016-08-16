@@ -159,7 +159,7 @@ const Introduction = () => (
       </p>
       <p>
         It is not feasible to keep real DOM manipulations in sync with React's virtual DOM. Because of this, all
-        jQuery functionality has been re-implemented in React. There is jQuery nor any direct DOM manipulation.
+        jQuery functionality has been re-implemented in React.
       </p>
     </Segment>
 
