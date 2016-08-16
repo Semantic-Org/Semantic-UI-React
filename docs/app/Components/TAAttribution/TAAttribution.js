@@ -30,7 +30,7 @@ const imageStyle = {
 }
 
 const defaultState = {
-  iconColor: 'gray',
+  iconColor: 'grey',
   style: containerStyle,
 }
 class TAAttribution extends Component {
