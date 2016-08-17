@@ -65,6 +65,7 @@ describe('Dropdown Component', () => {
   common.isConformant(Dropdown)
   common.hasUIClassName(Dropdown)
   common.isTabbable(Dropdown)
+  common.implementsIconProp(Dropdown)
   common.propKeyOnlyToClassName(Dropdown, 'multiple')
   common.propKeyOnlyToClassName(Dropdown, 'search')
   common.propKeyOnlyToClassName(Dropdown, 'selection')
@@ -99,6 +100,14 @@ describe('Dropdown Component', () => {
   //
   //   dropdownMenuIsOpen()
   // })
+
+  describe('icon', () => {
+    it('defaults to a dropdown icon', () => {
+      Dropdown.defaultProps.icon.should.equal('dropdown')
+      wrapperRender(<Dropdown />)
+        .should.contain.descendants('.dropdown.icon')
+    })
+  })
 
   describe('selected item', () => {
     it('defaults to the first item', () => {
@@ -1019,7 +1028,7 @@ describe('Dropdown Component', () => {
   describe('Dropdown.Menu child', () => {
     it('renders child passed', () => {
       wrapperShallow(
-        <Dropdown>
+        <Dropdown text='required prop'>
           <Dropdown.Menu data-find-me />
         </Dropdown>
       )
@@ -1032,7 +1041,7 @@ describe('Dropdown Component', () => {
 
     it('opens on click', () => {
       wrapperMount(
-        <Dropdown>
+        <Dropdown text='required prop'>
           <Dropdown.Menu />
         </Dropdown>
       )

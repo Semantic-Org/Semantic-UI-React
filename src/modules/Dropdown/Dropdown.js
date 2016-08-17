@@ -14,7 +14,8 @@ import {
   useKeyOnly,
   useKeyOrValueAndKey,
 } from '../../lib'
-import { Icon, Label } from '../../elements'
+import { createIcon } from '../../factories'
+import { Label } from '../../elements'
 import DropdownDivider from './DropdownDivider'
 import DropdownItem from './DropdownItem'
 import DropdownMenu from './DropdownMenu'
@@ -39,7 +40,7 @@ export default class Dropdown extends Component {
     // Behavior
     // ------------------------------------
     /** Add an icon by name or as a component. */
-    icon: PropTypes.oneOf([
+    icon: PropTypes.oneOfType([
       PropTypes.element,
       PropTypes.string,
     ]),
@@ -172,6 +173,10 @@ export default class Dropdown extends Component {
     disabled: PropTypes.bool,
 
     scrolling: PropTypes.bool,
+  }
+
+  static defaultProps = {
+    icon: 'dropdown',
   }
 
   static autoControlledProps = [
@@ -807,7 +812,10 @@ export default class Dropdown extends Component {
       useKeyOnly(fluid, 'fluid'),
       useKeyOnly(floating, 'floating'),
       useKeyOnly(inline, 'inline'),
-      useKeyOnly(icon, 'icon'),
+      // TODO: consider augmentation to render Dropdowns as Button/Menu, solves icon/link item issues
+      // https://github.com/TechnologyAdvice/stardust/issues/401#issuecomment-240487229
+      // TODO: the icon class is only required when a dropdown is a button
+      // useKeyOnly(icon, 'icon'),
       useKeyOnly(labeled, 'labeled'),
       // TODO: linkItem is required only when Menu child, add dynamically
       useKeyOnly(linkItem, 'link item'),
@@ -844,7 +852,7 @@ export default class Dropdown extends Component {
         {this.renderSearchInput()}
         {this.renderSearchSizer()}
         {this.renderText()}
-        <Icon name={'dropdown'} />
+        {createIcon(icon)}
         {this.renderMenu()}
       </div>
     )
