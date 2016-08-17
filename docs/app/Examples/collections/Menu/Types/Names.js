@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Menu } from 'stardust'
 
-export default class Width extends Component {
+export default class Names extends Component {
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
   render() {
@@ -10,28 +10,20 @@ export default class Width extends Component {
     return (
       <Menu>
         <Menu.Item
-          name='editorials'
-          active={activeItem === 'editorials'}
+          name='Editorials'
+          active={activeItem === 'Editorials'}
           onClick={this.handleItemClick}
-        >
-          Editorials
-        </Menu.Item>
-
+        />
         <Menu.Item
-          name='reviews'
-          active={activeItem === 'reviews'}
+          name='Reviews'
+          active={activeItem === 'Reviews'}
           onClick={this.handleItemClick}
-        >
-          Reviews
-        </Menu.Item>
-
+        />
         <Menu.Item
-          name='events'
-          active={activeItem === 'events'}
+          name='Events'
+          active={activeItem === 'Events'}
           onClick={this.handleItemClick}
-        >
-          Upcoming Events
-        </Menu.Item>
+        />
       </Menu>
     )
   }

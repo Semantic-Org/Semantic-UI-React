@@ -7,45 +7,21 @@ import { sandbox } from 'test/utils/sandbox'
 
 describe('MenuItem', () => {
   common.isConformant(MenuItem)
+  common.propKeyOnlyToClassName(MenuItem, 'active')
+  common.propKeyOnlyToClassName(MenuItem, 'header')
+  common.propKeyOnlyToClassName(MenuItem, 'link')
+  common.propValueOnlyToClassName(MenuItem, 'position')
   common.rendersChildren(MenuItem)
+
+  it('renders a `div` by default', () => {
+    shallow(<MenuItem />)
+      .should.have.tagName('div')
+  })
 
   describe('active', () => {
     it('is not by default', () => {
       shallow(<MenuItem name='item' />)
         .should.not.have.className('active')
-    })
-
-    it('should have active class if first child', () => {
-      const wrapper = shallow(
-        <Menu>
-          <Menu.Item name='item1' />
-          <Menu.Item name='item2' />
-        </Menu>
-      )
-        .find('MenuItem')
-
-      wrapper
-        .first()
-        .should.have.prop('active', true)
-      wrapper
-        .last()
-        .should.have.prop('active', false)
-    })
-
-    it('should have active class after click', () => {
-      const wrapper = mount(
-        <Menu>
-          <MenuItem name='item1' />
-          <MenuItem name='item2' />
-        </Menu>
-      )
-        .find('MenuItem')
-
-      const lastItem = wrapper.last()
-
-      lastItem.should.have.prop('active', false)
-      lastItem.simulate('click')
-      lastItem.should.have.prop('active', true)
     })
   })
 
@@ -56,7 +32,7 @@ describe('MenuItem', () => {
     })
   })
 
-  it('onClick', () => {
+  describe('onClick', () => {
     it('is called when clicked', () => {
       const handleClick = sandbox.spy()
 
@@ -65,17 +41,20 @@ describe('MenuItem', () => {
 
       handleClick.should.have.been.called()
     })
-  })
-
-  describe('label', () => {
-    it('should not have a label by default', () => {
-      shallow(<MenuItem name='item' />)
-        .should.not.have.descendants('Label')
+    it('renders an `a` tag', () => {
+      shallow(<MenuItem onClick={() => null} />)
+        .should.have.tagName('a')
     })
-    it('should render a label if prop given', () => {
-      mount(<MenuItem name='item' label='37' />)
-        .should.have.descendants('Label')
-        .and.contain.text('37')
+    it('is called when the item is clicked', () => {
+      const props = {
+        onClick: sandbox.spy(),
+      }
+
+      // mount to get click event to propagate on click
+      mount(<MenuItem {...props} />)
+        .simulate('click')
+
+      props.onClick.should.have.been.calledOnce()
     })
   })
 })
