@@ -1,5 +1,12 @@
 # Change Log
 
+## [v0.35.0](https://github.com/TechnologyAdvice/stardust/tree/v0.35.0) (2016-08-18)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.34.4...v0.35.0)
+
+**Merged pull requests:**
+
+- Card: add component [\#387](https://github.com/TechnologyAdvice/stardust/pull/387) ([athurman](https://github.com/athurman))
+
 ## [v0.34.4](https://github.com/TechnologyAdvice/stardust/tree/v0.34.4) (2016-08-18)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.34.3...v0.34.4)
 
