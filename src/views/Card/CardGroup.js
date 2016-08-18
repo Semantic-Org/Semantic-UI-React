@@ -40,14 +40,21 @@ CardGroup._meta = {
 }
 
 CardGroup.propTypes = {
-  className: PropTypes.string,
+  /** A group of Card components. Mutually exclusive with items. */
   children: customPropTypes.every([
     customPropTypes.disallow(['items']),
     PropTypes.node,
   ]),
+
+  /** Classes that will be added to the CardGroup className */
+  className: PropTypes.string,
+
+  /** A group of cards can double its column width for mobile */
   doubling: PropTypes.bool,
+
+  /** Shorthand prop for children. Mutually exclusive with children. */
   items: customPropTypes.every([
-    customPropTypes.disallow(['description', 'header']),
+    customPropTypes.disallow(['children']),
     PropTypes.arrayOf(PropTypes.shape({
       description: PropTypes.node,
       meta: PropTypes.node,
@@ -55,9 +62,12 @@ CardGroup.propTypes = {
       header: PropTypes.node,
     })),
   ]),
+
+  /** A group of cards can set how many cards should exist in a row */
   itemsPerRow: PropTypes.oneOf(CardGroup._meta.props.width),
+
+  /** A group of cards can automatically stack rows to a single columns on mobile devices */
   stackable: PropTypes.bool,
-  width: PropTypes.oneOf(CardGroup._meta.props.width),
 }
 
 export default CardGroup

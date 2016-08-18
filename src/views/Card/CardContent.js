@@ -40,11 +40,16 @@ CardContent._meta = {
 }
 
 CardContent.propTypes = {
-  className: PropTypes.string,
+  /** Primary content of the CardContent. Mutually exclusive with all shorthand props. */
   children: customPropTypes.every([
     customPropTypes.disallow(['description', 'header', 'meta']),
     PropTypes.node,
   ]),
+
+  /** Classes that will be added to the CardContent className */
+  className: PropTypes.string,
+
+  /** Shorthand prop for CardDescription. Mutually exclusive with children. */
   description: customPropTypes.every([
     customPropTypes.disallow(['children']),
     PropTypes.oneOfType([
@@ -52,7 +57,11 @@ CardContent.propTypes = {
       PropTypes.number,
     ]),
   ]),
+
+  /** A card can contain extra content meant to be formatted separately from the main content */
   extra: PropTypes.bool,
+
+  /** Shorthand prop for CardHeader. Mutually exclusive with children. */
   header: customPropTypes.every([
     customPropTypes.disallow(['children']),
     PropTypes.oneOfType([
@@ -60,6 +69,8 @@ CardContent.propTypes = {
       PropTypes.number,
     ]),
   ]),
+
+  /** Shorthand prop for CardMeta. Mutually exclusive with children. */
   meta: customPropTypes.every([
     customPropTypes.disallow(['children']),
     PropTypes.oneOfType([

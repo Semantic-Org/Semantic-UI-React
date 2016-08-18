@@ -22,11 +22,16 @@ CardMeta._meta = {
 }
 
 CardMeta.propTypes = {
-  className: PropTypes.string,
+  /** Primary content of the CardMeta. Mutually exclusive with content. */
   children: customPropTypes.every([
     customPropTypes.disallow(['content']),
     PropTypes.node,
   ]),
+
+  /** Classes that will be added to the CardMeta className */
+  className: PropTypes.string,
+
+  /** Primary content of the CardMeta. Mutually exclusive with children. */
   content: customPropTypes.every([
     customPropTypes.disallow(['children']),
     PropTypes.oneOfType([

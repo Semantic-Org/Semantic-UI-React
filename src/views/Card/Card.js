@@ -22,6 +22,7 @@ function Card(props) {
     className,
     color,
     description,
+    extra,
     fluid,
     header,
     href,
@@ -46,15 +47,21 @@ function Card(props) {
   }
   const CardComponent = href || onClick ? 'a' : 'div'
 
+  if (children) {
+    return (
+      <CardComponent {...rest} className={classes} href={href} onClick={handleClick}>
+        {children}
+      </CardComponent>
+    )
+  }
+
   return (
-    <CardComponent
-      {...rest}
-      className={classes}
-      href={href}
-      onClick={handleClick}
-    >
+    <CardComponent {...rest} className={classes} href={href} onClick={handleClick}>
       {createImage(image)}
-      {children || <CardContent description={description} header={header} meta={meta} />}
+      {(description || header || meta) && (
+        <CardContent description={description} header={header} meta={meta} />
+      )}
+      {extra && <CardContent extra>{extra}</CardContent>}
     </CardComponent>
   )
 }
@@ -89,6 +96,12 @@ Card.propTypes = {
     PropTypes.node,
   ]),
 
+  /** Shorthand prop for CardContent containing extra prop. Mutually exclusive with children. */
+  extra: customPropTypes.every([
+    customPropTypes.disallow(['children']),
+    PropTypes.node,
+  ]),
+
   /** A Card can be formatted to take up the width of its container. */
   fluid: PropTypes.bool,
 
@@ -101,7 +114,7 @@ Card.propTypes = {
   /** Render as an `a` tag instead of a `div` and adds the href attribute. */
   href: PropTypes.string,
 
-  /** An card can contain image. */
+  /** A card can contain an Image component. */
   image: customPropTypes.every([
     customPropTypes.disallow(['children']),
     PropTypes.node,
