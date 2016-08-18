@@ -64,7 +64,7 @@ CardGroup.propTypes = {
   ]),
 
   /** A group of cards can set how many cards should exist in a row */
-  itemsPerRow: PropTypes.oneOf(CardGroup._meta.props.width),
+  itemsPerRow: PropTypes.oneOf(CardGroup._meta.props.itemsPerRow),
 
   /** A group of cards can automatically stack rows to a single columns on mobile devices */
   stackable: PropTypes.bool,
