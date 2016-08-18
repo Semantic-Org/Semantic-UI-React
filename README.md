@@ -20,7 +20,9 @@
 
 Hey, we're in development. There are big changes taking place while we migrate to Semantic-UI-Org. Minor versions may introduce **breaking changes until the [v1.0][6] release**.  You should [**read the CHANGELOG**][18] and related issues/PRs to stay up to date.
 
-Get started below and checkout our [**Documentation**][2].
+### [Documentation][2]
+
+### Getting started
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->

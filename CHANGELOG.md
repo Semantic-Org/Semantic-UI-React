@@ -1,5 +1,26 @@
 # Change Log
 
+## [v0.34.4](https://github.com/TechnologyAdvice/stardust/tree/v0.34.4) (2016-08-18)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.34.3...v0.34.4)
+
+**Implemented enhancements:**
+
+- Dropdown: add support for allowAdditions [\#356](https://github.com/TechnologyAdvice/stardust/pull/356) ([dylankiss](https://github.com/dylankiss))
+
+## [v0.34.3](https://github.com/TechnologyAdvice/stardust/tree/v0.34.3) (2016-08-17)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.34.2...v0.34.3)
+
+**Fixed bugs:**
+
+- Support to change Icon in Dropdown Component [\#401](https://github.com/TechnologyAdvice/stardust/issues/401)
+
+**Merged pull requests:**
+
+- Dropdown: fix icon prop [\#402](https://github.com/TechnologyAdvice/stardust/pull/402) ([levithomason](https://github.com/levithomason))
+- Docs: update Grid usages [\#399](https://github.com/TechnologyAdvice/stardust/pull/399) ([levithomason](https://github.com/levithomason))
+- Docs: add Introduction image prop example [\#396](https://github.com/TechnologyAdvice/stardust/pull/396) ([levithomason](https://github.com/levithomason))
+- Docs: add TA attribution [\#395](https://github.com/TechnologyAdvice/stardust/pull/395) ([levithomason](https://github.com/levithomason))
+
 ## [v0.34.2](https://github.com/TechnologyAdvice/stardust/tree/v0.34.2) (2016-08-14)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.34.1...v0.34.2)
 
@@ -13,7 +34,7 @@
 
 **Merged pull requests:**
 
-- Image, add inline prop [\#394](https://github.com/TechnologyAdvice/stardust/pull/394) ([layershifter](https://github.com/layershifter))
+- Image: add inline prop [\#394](https://github.com/TechnologyAdvice/stardust/pull/394) ([layershifter](https://github.com/layershifter))
 - Add Introduction page [\#377](https://github.com/TechnologyAdvice/stardust/pull/377) ([levithomason](https://github.com/levithomason))
 
 ## [v0.34.1](https://github.com/TechnologyAdvice/stardust/tree/v0.34.1) (2016-08-13)
@@ -28,7 +49,7 @@
 
 **Merged pull requests:**
 
-- Add Feed component [\#363](https://github.com/TechnologyAdvice/stardust/pull/363) ([layershifter](https://github.com/layershifter))
+- Feed: add component [\#363](https://github.com/TechnologyAdvice/stardust/pull/363) ([layershifter](https://github.com/layershifter))
 
 ## [v0.33.0](https://github.com/TechnologyAdvice/stardust/tree/v0.33.0) (2016-08-13)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.32.0...v0.33.0)
@@ -36,7 +57,7 @@
 **Implemented enhancements:**
 
 - Modal Keyboard Event Handlers [\#175](https://github.com/TechnologyAdvice/stardust/issues/175)
-- Add full Modal feature support with Dimmer and docs [\#383](https://github.com/TechnologyAdvice/stardust/pull/383) ([levithomason](https://github.com/levithomason))
+- Modal: full feature support with Dimmer and docs [\#383](https://github.com/TechnologyAdvice/stardust/pull/383) ([levithomason](https://github.com/levithomason))
 
 ## [v0.32.0](https://github.com/TechnologyAdvice/stardust/tree/v0.32.0) (2016-08-13)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.31.0...v0.32.0)
@@ -65,7 +86,7 @@
 
 **Implemented enhancements:**
 
-- Update Modal to v1 API [\#379](https://github.com/TechnologyAdvice/stardust/pull/379) ([asiniy](https://github.com/asiniy))
+- Modal: update to v1 API [\#379](https://github.com/TechnologyAdvice/stardust/pull/379) ([asiniy](https://github.com/asiniy))
 
 ## [v0.29.0](https://github.com/TechnologyAdvice/stardust/tree/v0.29.0) (2016-08-08)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.28.1...v0.29.0)
@@ -117,7 +138,7 @@
 
 **Merged pull requests:**
 
-- Resize Dropdown search on change [\#371](https://github.com/TechnologyAdvice/stardust/pull/371) ([levithomason](https://github.com/levithomason))
+- Dropdown: resize search on change [\#371](https://github.com/TechnologyAdvice/stardust/pull/371) ([levithomason](https://github.com/levithomason))
 
 ## [v0.27.6](https://github.com/TechnologyAdvice/stardust/tree/v0.27.6) (2016-08-04)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.27.5...v0.27.6)
@@ -128,7 +149,7 @@
 
 **Merged pull requests:**
 
-- Fix Label color propType argument [\#369](https://github.com/TechnologyAdvice/stardust/pull/369) ([levithomason](https://github.com/levithomason))
+- Label: fix color propType argument [\#369](https://github.com/TechnologyAdvice/stardust/pull/369) ([levithomason](https://github.com/levithomason))
 
 ## [v0.27.5](https://github.com/TechnologyAdvice/stardust/tree/v0.27.5) (2016-08-03)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.27.4...v0.27.5)
@@ -149,18 +170,18 @@
 **Implemented enhancements:**
 
 - How to access input value while typing on Dropdown [\#355](https://github.com/TechnologyAdvice/stardust/issues/355)
-- Add Dropdown onSearchChange callback [\#360](https://github.com/TechnologyAdvice/stardust/pull/360) ([levithomason](https://github.com/levithomason))
+- Dropdown: add onSearchChange callback [\#360](https://github.com/TechnologyAdvice/stardust/pull/360) ([levithomason](https://github.com/levithomason))
 
 **Merged pull requests:**
 
-- Update Flag rest props and propTypes [\#359](https://github.com/TechnologyAdvice/stardust/pull/359) ([levithomason](https://github.com/levithomason))
+- Flag: update rest props and propTypes [\#359](https://github.com/TechnologyAdvice/stardust/pull/359) ([levithomason](https://github.com/levithomason))
 
 ## [v0.27.3](https://github.com/TechnologyAdvice/stardust/tree/v0.27.3) (2016-08-02)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.27.2...v0.27.3)
 
 **Merged pull requests:**
 
-- Fix names of countries in \<Flag\> [\#358](https://github.com/TechnologyAdvice/stardust/pull/358) ([layershifter](https://github.com/layershifter))
+- Flag: fix names of countries [\#358](https://github.com/TechnologyAdvice/stardust/pull/358) ([layershifter](https://github.com/layershifter))
 
 ## [v0.27.2](https://github.com/TechnologyAdvice/stardust/tree/v0.27.2) (2016-07-28)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.27.1...v0.27.2)
