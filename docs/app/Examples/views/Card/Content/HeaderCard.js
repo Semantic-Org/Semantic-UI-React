@@ -5,15 +5,9 @@ const HeaderCards = () => (
   <Card.Group>
     <Card>
       <Card.Content>
-        <Card.Header>
-          Matthew Harris
-        </Card.Header>
-        <Card.Meta>
-          Co-Worker
-        </Card.Meta>
-        <Card.Description>
-          Matthew is a pianist living in Nashville.
-        </Card.Description>
+        <Card.Header>Matthew Harris</Card.Header>
+        <Card.Meta>Co-Worker</Card.Meta>
+        <Card.Description>Matthew is a pianist living in Nashville.</Card.Description>
       </Card.Content>
     </Card>
 
@@ -32,6 +26,12 @@ const HeaderCards = () => (
         description='Elliot is a music producer living in Chicago.'
       />
     </Card>
+
+    <Card
+      header='Jenny Hess'
+      meta='Friend'
+      description='Jenny is a student studying Media Management at the New School'
+    />
   </Card.Group>
 )
 

@@ -8,11 +8,7 @@ const description = [
 
 const ExtraContent = () => (
   <Card>
-    <Card.Content>
-      <Card.Header>
-        About Amy
-      </Card.Header>
-    </Card.Content>
+    <Card.Content header='About Amy' />
     <Card.Content description={description} />
     <Card.Content extra>
       <Icon name='user' />
