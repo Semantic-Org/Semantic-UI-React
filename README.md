@@ -20,6 +20,10 @@
 
 Hey, we're in development. There are big changes taking place while we migrate to Semantic-UI-Org. Minor versions may introduce **breaking changes until the [v1.0][6] release**.  You should [**read the CHANGELOG**][18] and related issues/PRs to stay up to date.
 
+### [Voice Your Opinion][19]
+
+Help shape this library by weighing in on our [RFC (request for comments)][19] issues. 
+
 ### [Documentation][2]
 
 ### Getting started
@@ -181,3 +185,4 @@ Made with :heart: [@TechnologyAdvice][9], a ridiculous [place to work][16].
 [16]: http://technologyadvice.com/careers
 [17]: https://github.com/TechnologyAdvice/stardust/issues?q=is%3Aopen+is%3Aissue+label%3A%22help+wanted%22+label%3Aenhancement
 [18]: https://github.com/TechnologyAdvice/stardust/blob/master/CHANGELOG.md
+[19]: https://github.com/TechnologyAdvice/stardust/issues?q=is%3Aissue+is%3Aopen+RFC+label%3ARFC
