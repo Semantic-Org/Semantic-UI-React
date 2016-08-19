@@ -20,11 +20,13 @@
 
 Hey, we're in development. There are big changes taking place while we migrate to Semantic-UI-Org. Minor versions may introduce **breaking changes until the [v1.0][6] release**.  You should [**read the CHANGELOG**][18] and related issues/PRs to stay up to date.
 
-### [Voice Your Opinion][19]
+### [Voice Your Opinion][19] :speech_balloon:
 
 Help shape this library by weighing in on our [RFC (request for comments)][19] issues. 
 
-### [Documentation][2]
+### [How Can I Help?](#how-can-i-help) :hand:
+
+### [Documentation][2] :blue_book:
 
 ### Getting started
 
@@ -102,22 +104,18 @@ Once you change the flag, you need to refresh your browser to see the changes in
 
 ## How Can I Help?
 
-First, get setup and acquainted with development by reading the [contributing guidelines][1].
+Our [CONTRIBUTING.md][1] is a step-by-step setup and development guide. It is meant to be read from top to bottom.  Once you're up to speed, we have two areas of focus:
 
 ### v1.0 Migrations
 
-We're making two migrations right now:
+Each issue includes more information on how you can help:
 
 1. [Moving legacy component APIs to our v1 API][15]
 1. [Removing jQuery and SUI JS][11]
 
-Each of these issues includes a list of components and more information on how you can help.
-
 ### New Components
 
-There is an issue for every missing component.  They are all labeled [`enhancement` `help wanted`][17] and we're accepting PRs for these.
-
-Be sure to check out the above migrations before embarking on a new component.  All new components should be written in accordance with the migrations above.
+We're seeking component parity with Semantic UI, plus some addons.  There is an issue for every missing component, labeled [`enhancement` `help wanted`][17].
 
 ## Our Principles
 
