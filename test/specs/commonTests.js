@@ -108,11 +108,22 @@ export const isConformant = (Component, requiredProps = {}) => {
   const isStardustProp = _.has(stardust, constructorName)
 
   // detect sub components like: stardust.Form.Field (ie FormField component)
-  // only search the 'parent' for the sub component
-  // avoid false positives like DropdownItem & MenuItem
-  //   which both have sub component names of "Item", and appear
-  //   on both Dropdown.Item and Menu.Item (not to mention Stardust.Item)
-  const isSubComponent = _.isFunction(_.get(stardust, constructorName.split(/(?=[A-Z])/)))
+  // Build a path by following _meta.parents to the root:
+  //   ['Form', 'FormField', 'FormFieldTextArea']
+  let stardustPath = []
+  let meta = _meta
+  while (meta) {
+    stardustPath.unshift(meta.name)
+    meta = _.get(stardust, [meta.parent, '_meta'])
+  }
+  // Remove parent name from paths:
+  //   ['Form', 'Field', 'TextArea']
+  stardustPath = stardustPath.reduce((acc, next) => (
+    [...acc, next.replace(acc.join(''), '')]
+  ), [])
+
+  // find the stardustPath in the stardust object
+  const isSubComponent = _.isFunction(_.get(stardust, stardustPath))
 
   if (META.isPrivate(constructorName)) {
     it('is not exported as a component nor sub component', () => {
@@ -189,7 +200,7 @@ export const isConformant = (Component, requiredProps = {}) => {
           .simulate(eventName, eventShape)
 
         // give event listeners opportunity to cleanup
-        if (wrapper && wrapper.unmount && wrapper.instance().componentWillUnmount) {
+        if (wrapper.instance() && wrapper.instance().componentWillUnmount) {
           wrapper.instance().componentWillUnmount()
         }
 
@@ -616,7 +627,7 @@ export const propKeyOnlyToClassName = (Component, propKey, requiredProps = {}) =
       // silence propType warnings
       consoleUtil.disableOnce()
 
-      const value = faker.hacker.noun()
+      const value = 'foo-bar-baz'
       shallow(createElement(Component, { ...requiredProps, [propKey]: value }))
         .should.not.have.className(value)
     })
