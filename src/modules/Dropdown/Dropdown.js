@@ -697,8 +697,6 @@ export default class Dropdown extends Component {
     return <div className={classes}>{_text}</div>
   }
 
-  // TODO hidden input only exists for backwards compatibility with SUI jQuery plugins
-  // remove once those are removed
   renderHiddenInput = () => {
     debug('renderHiddenInput()')
     const { value } = this.state

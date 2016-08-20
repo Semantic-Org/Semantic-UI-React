@@ -1,5 +1,3 @@
-import './lib/jquery'
-
 export * from './addons'
 export * from './collections'
 export * from './elements'

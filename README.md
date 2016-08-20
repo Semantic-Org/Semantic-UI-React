@@ -103,14 +103,13 @@ Once you change the flag, you need to refresh your browser to see the changes in
 
 ## How Can I Help?
 
-Our [CONTRIBUTING.md][1] is a step-by-step setup and development guide. It is meant to be read from top to bottom.  Once you're up to speed, we have two areas of focus:
+Our [CONTRIBUTING.md][1] is a step-by-step setup and development guide. It is meant to be read from top to bottom.  Once you're up to speed, each issue here includes more information on how you can help:
 
-### v1.0 Migrations
+### [v1.0 Migrations][15]
 
-Each issue includes more information on how you can help:
+Have a look at the task list on the issue to see where you can jump in.
 
-1. [Moving legacy component APIs to our v1 API][15]
-1. [Removing jQuery and SUI JS][11]
+### [Missing Components][17]
 
 We're seeking component parity with Semantic UI, plus some addons.  There is an issue for every missing component, labeled [`enhancement` `help wanted`][17].  Just comment on the issue you'd like to take.
 
