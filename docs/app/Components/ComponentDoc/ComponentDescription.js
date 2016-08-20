@@ -67,13 +67,8 @@ export default class ComponentDescription extends Component {
       const { type, name } = relatedMeta
 
       return (
-        <Link
-          key={description}
-          to={`${type}s/${_.kebabCase(name)}`}
-          className='item'
-          style={{ display: 'inline-block' }}
-        >
-          {`<${description} />`}
+        <Link key={description} to={`/${type}s/${_.kebabCase(name)}`} className='item'>
+          {description}
         </Link>
       )
     })
@@ -81,8 +76,10 @@ export default class ComponentDescription extends Component {
     return (
       <Grid.Row columns={1}>
         <Grid.Column>
-          <Header.H3 className='grey'>Related</Header.H3>
-          <List className='large bulleted'>
+          <List className='large horizontal'>
+            <div className='item'>
+              <div className='header'>Related:</div>
+            </div>
             {relatedLinks}
           </List>
         </Grid.Column>
@@ -96,7 +93,7 @@ export default class ComponentDescription extends Component {
       <Grid>
         <Grid.Row columns={2}>
           <Grid.Column>
-            <Header.H1 style={headerStyle}>{_.capitalize(_meta.name)}</Header.H1>
+            <Header.H1 style={headerStyle}>{_meta.name}</Header.H1>
           </Grid.Column>
           <Grid.Column textAlign='right'>
             <List className='link' style={{ float: 'right' }}>

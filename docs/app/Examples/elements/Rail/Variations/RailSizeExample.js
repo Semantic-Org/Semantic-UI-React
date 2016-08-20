@@ -3,7 +3,7 @@ import { Image, Grid, Rail, Segment } from 'stardust'
 
 const Wrapper = ({ children }) => (
   <Grid columns={3} textAlign='center'>
-    <Grid.Column centered>
+    <Grid.Column>
       <Segment>
         <Image src='http://semantic-ui.com/images/wireframe/paragraph.png' />
         {children}

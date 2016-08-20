@@ -18,7 +18,8 @@ export default class Root extends Component {
 
   render() {
     const { name } = this.props.params
-    const component = stardust[_.startCase(name)]
+    const componentName = _.startCase(name).replace(/ /g, '')
+    const component = stardust[componentName]
     if (!component || !component._meta || !META.isParent(component)) {
       return <PageNotFound />
     }
