@@ -3,7 +3,7 @@ import { Image, Grid, Rail, Segment } from 'stardust'
 
 const RailAttachedExample = () => (
   <Grid columns={3}>
-    <Grid.Column centered>
+    <Grid.Column>
       <Segment className='center aligned'>
         <Image src='http://semantic-ui.com/images/wireframe/paragraph.png' />
 
