@@ -1,4 +1,3 @@
-import _ from 'lodash'
 import React, { PropTypes } from 'react'
 import cx from 'classnames'
 
@@ -8,6 +7,7 @@ import {
   getUnhandledProps,
   META,
   makeDebugger,
+  useKeyOnly,
 } from '../../lib'
 
 const debug = makeDebugger('checkbox')
@@ -109,24 +109,21 @@ export default class Checkbox extends Component {
   handleClick = (e) => {
     debug('handleClick()')
     const { disabled, onChange, onClick, name, readOnly, value } = this.props
-    // using a ref here allows us to let the browser manage radio group state for us
-    // this is a special exception where we are reading state from the DOM
-    // otherwise, all radio groups would have to be controlled components
-    const refChecked = _.get(this.refs, 'input.checked')
+    const { checked } = this.state
     debug(`  name:       ${name}`)
     debug(`  value:      ${value}`)
-    debug(`  refChecked: ${refChecked}`)
+    debug(`  checked:    ${checked}`)
 
-    if (onClick) onClick(e, { name, value, checked: !!refChecked })
-    if (onChange) onChange(e, { name, value, checked: !refChecked })
+    if (onClick) onClick(e, { name, value, checked: !!checked })
+    if (onChange) onChange(e, { name, value, checked: !checked })
 
     if (!disabled && !readOnly) {
-      this.trySetState({ checked: !refChecked })
+      this.trySetState({ checked: !checked })
     }
   }
 
   render() {
-    const { className, inputType, label, name, onChange, type, value } = this.props
+    const { className, inputType, label, name, type, value } = this.props
     const { checked } = this.state
     const classes = cx(
       'ui',
@@ -134,31 +131,27 @@ export default class Checkbox extends Component {
       type !== 'checkbox' && type,
       // auto apply fitted class to compact white space when there is no label
       // http://semantic-ui.com/modules/checkbox.html#fitted
-      !label && 'fitted',
-      checked && 'checked',
+      useKeyOnly(!label, 'fitted'),
+      useKeyOnly(checked, 'checked'),
       'checkbox',
       className
     )
     const rest = getUnhandledProps(Checkbox, this.props)
     const ElementType = getElementType(Checkbox, this.props)
-    // Heads Up!
-    // onChange props are never called as the user cannot click on the hidden input.
-    // We call onChange in the onClick handler.
-    // This exists only to prevent React "prop checked without onChange" warnings.
     return (
       <ElementType
         {...rest}
         className={classes}
         onClick={this.handleClick}
-        onChange={onChange || _.noop}
+        onChange={this.handleClick}
       >
         <input
-          ref='input'
+          ref={c => (this._input = c)}
           type={inputType || typeMap[type]}
           name={name}
-          onChange={onChange || _.noop}
           checked={checked}
           className='hidden'
+          readOnly
           tabIndex={0}
           value={value}
         />

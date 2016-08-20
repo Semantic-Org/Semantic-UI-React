@@ -9,8 +9,7 @@ import { deprecateComponent } from './lib'
 // Collections
 //
 import Form from './collections/Form/Form'
-export const Field = deprecateComponent('Field', 'Use "Form.Field" instead.', Form.Field)
-export const Fields = deprecateComponent('Fields', 'Use "Form.Fields" instead.', Form.Fields)
+export const Fields = deprecateComponent('Fields', 'Use "Form.Group" instead.', Form.Group)
 
 import Grid from './collections/Grid/Grid'
 export const Column = deprecateComponent('Column', 'Use "Grid.Column" instead.', Grid.Column)
