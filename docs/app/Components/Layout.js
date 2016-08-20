@@ -12,7 +12,7 @@ const anchors = new AnchorJS({
   icon: '#',
 })
 
-export default class Root extends Component {
+export default class Layout extends Component {
   static propTypes = {
     children: PropTypes.node,
   }
