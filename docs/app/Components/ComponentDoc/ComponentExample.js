@@ -6,6 +6,9 @@ import { getUnhandledProps } from 'src/lib'
 import { Grid, Header, Icon } from 'stardust'
 
 const codeIconStyle = {
+  position: 'absolute',
+  top: '0.6em',
+  right: '0.5em',
   fontSize: '1.5em',
   fontWeight: 'bold',
 }
@@ -17,10 +20,10 @@ const codeIconStyle = {
 export default class ComponentExample extends Component {
   static propTypes = {
     children: PropTypes.node,
-    description: PropTypes.string,
+    description: PropTypes.node,
     examplePath: PropTypes.string.isRequired,
     exampleSrc: PropTypes.node,
-    title: PropTypes.string,
+    title: PropTypes.node,
   }
 
   constructor(props, context) {
@@ -57,14 +60,14 @@ export default class ComponentExample extends Component {
           <Grid>
             <Grid.Column width={12}>
               {title && <Header as='h3' style={{ marginBottom: 0 }}>{title}</Header>}
-              {description && <p>{description}</p>}
+              {description ? <p>{description}</p> : children}
             </Grid.Column>
             <Grid.Column width={4} textAlign='right'>
               <Icon name='code link' color='grey' onClick={this.toggleShowCode} style={codeIconStyle} />
             </Grid.Column>
           </Grid>
         </Grid.Column>
-        {children && <Grid.Column>{children}</Grid.Column>}
+        {description && children && <Grid.Column>{children}</Grid.Column>}
         <Grid.Column className='rendered-example'>
           {createElement(this.component, rest)}
         </Grid.Column>

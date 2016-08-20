@@ -9,7 +9,7 @@ export default class CheckboxRemoteControlExample extends Component {
     return (
       <div>
         <Button onClick={this.toggle}>Toggle it</Button>
-        <Checkbox label='Check this box' onClick={this.toggle} checked={this.state.checked} />
+        <Checkbox label='Check this box' onChange={this.toggle} checked={this.state.checked} />
       </div>
     )
   }

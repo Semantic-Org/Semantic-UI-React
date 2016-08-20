@@ -112,9 +112,11 @@ Each issue includes more information on how you can help:
 1. [Moving legacy component APIs to our v1 API][15]
 1. [Removing jQuery and SUI JS][11]
 
-### New Components
+We're seeking component parity with Semantic UI, plus some addons.  There is an issue for every missing component, labeled [`enhancement` `help wanted`][17].  Just comment on the issue you'd like to take.
 
-We're seeking component parity with Semantic UI, plus some addons.  There is an issue for every missing component, labeled [`enhancement` `help wanted`][17].
+### [Help Wanted Label][4]
+
+Any other issue labeled [`help wanted`][4] is ready for a PR.
 
 ## Our Principles
 
@@ -167,7 +169,7 @@ Made with :heart: [@TechnologyAdvice][9], a ridiculous [place to work][16].
 [1]: https://github.com/TechnologyAdvice/stardust/blob/master/CONTRIBUTING.md
 [2]: https://technologyadvice.github.io/stardust/
 [3]: https://facebook.github.io/react/
-[4]: #
+[4]: https://github.com/TechnologyAdvice/stardust/issues?q=is%3Aopen+is%3Aissue+label%3A%22help+wanted
 [5]: http://semantic-ui.com/
 [6]: https://github.com/TechnologyAdvice/stardust/milestone/1
 [7]: https://github.com/webpack/webpack-dev-server/

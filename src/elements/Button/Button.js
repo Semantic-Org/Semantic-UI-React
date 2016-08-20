@@ -2,6 +2,10 @@ import React, { Component, PropTypes } from 'react'
 import classNames from 'classnames'
 import { getElementType, getUnhandledProps, META } from '../../lib'
 
+/**
+ * A Button indicates a possible user action
+ * @see Form
+ */
 export default class Button extends Component {
   static propTypes = {
     /** An element type to render as (string or function). */

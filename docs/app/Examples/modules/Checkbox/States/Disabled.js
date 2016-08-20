@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Form, Checkbox, Field } from 'stardust'
+import { Form, Checkbox } from 'stardust'
 
 export default class CheckboxDisabledExample extends Component {
   render() {
@@ -9,7 +9,7 @@ export default class CheckboxDisabledExample extends Component {
           <Checkbox label='Disabled' disabled />
         </Form.Field>
         <Form.Field>
-          <Checkbox type='toggle' label='Disabled' disabled />
+          <Checkbox toggle label='Disabled' disabled />
         </Form.Field>
       </Form>
     )

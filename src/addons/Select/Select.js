@@ -6,6 +6,7 @@ import { Dropdown } from '../../modules'
 /**
  * A <Select /> is sugar for <Dropdown selection />.
  * @see Dropdown
+ * @see Form
  */
 function Select(props) {
   const ElementType = getElementType(Select, props)

@@ -3,7 +3,7 @@ import { Form, Radio } from 'stardust'
 
 export default class RadioGroupExample extends Component {
   state = {}
-  handleClick = (e, { value }) => this.setState({ value })
+  handleChange = (e, { value }) => this.setState({ value })
 
   render() {
     return (
@@ -17,7 +17,7 @@ export default class RadioGroupExample extends Component {
             name='radioGroup'
             value='this'
             checked={this.state.value === 'this'}
-            onClick={this.handleClick}
+            onChange={this.handleChange}
           />
         </Form.Field>
         <Form.Field>
@@ -26,7 +26,7 @@ export default class RadioGroupExample extends Component {
             name='radioGroup'
             value='that'
             checked={this.state.value === 'that'}
-            onClick={this.handleClick}
+            onChange={this.handleChange}
           />
         </Form.Field>
       </Form>

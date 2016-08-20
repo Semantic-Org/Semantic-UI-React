@@ -1,20 +1,15 @@
-import React, { Component } from 'react'
+import React from 'react'
 import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
 import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
 
-export default class FormFormVariationsExamples extends Component {
-  render() {
-    return (
-      <ExampleSection title='Form Variations'>
-        <ComponentExample
-          title='Size'
-          description='A form can also be small or large.'
-          examplePath='collections/Form/Variations/FormSizeSmallExample'
-        />
-        <ComponentExample
-          examplePath='collections/Form/Variations/FormSizeLargeExample'
-        />
-      </ExampleSection>
-    )
-  }
-}
+const FormFormVariationsExamples = () => (
+  <ExampleSection title='Form Variations'>
+    <ComponentExample
+      title='Size'
+      description='A form can vary in size'
+      examplePath='collections/Form/Variations/FormSizeExample'
+    />
+  </ExampleSection>
+)
+
+export default FormFormVariationsExamples

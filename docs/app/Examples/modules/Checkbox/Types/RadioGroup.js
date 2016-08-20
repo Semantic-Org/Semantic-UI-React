@@ -3,7 +3,7 @@ import { Form, Checkbox } from 'stardust'
 
 export default class CheckboxRadioGroupExample extends Component {
   state = {}
-  handleClick = (e, { value }) => this.setState({ value })
+  handleChange = (e, { value }) => this.setState({ value })
 
   render() {
     return (
@@ -13,22 +13,22 @@ export default class CheckboxRadioGroupExample extends Component {
         </Form.Field>
         <Form.Field>
           <Checkbox
-            type='radio'
+            radio
             label='Choose this'
             name='checkboxRadioGroup'
             value='this'
             checked={this.state.value === 'this'}
-            onClick={this.handleClick}
+            onChange={this.handleChange}
           />
         </Form.Field>
         <Form.Field>
           <Checkbox
-            type='radio'
+            radio
             label='Or that'
             name='checkboxRadioGroup'
             value='that'
             checked={this.state.value === 'that'}
-            onClick={this.handleClick}
+            onChange={this.handleChange}
           />
         </Form.Field>
       </Form>

@@ -20,6 +20,7 @@ import MessageItem from './MessageItem'
 
 /**
  * A message displays information that explains nearby content
+ * @see Form
  */
 function Message(props) {
   const {

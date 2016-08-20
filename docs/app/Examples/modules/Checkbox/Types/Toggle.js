@@ -4,7 +4,7 @@ import { Checkbox } from 'stardust'
 export default class CheckboxToggleExample extends Component {
   render() {
     return (
-      <Checkbox type='toggle' />
+      <Checkbox toggle />
     )
   }
 }

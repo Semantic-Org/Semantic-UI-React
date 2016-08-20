@@ -37,7 +37,7 @@ MenuItem.defaultProps = {
   activeClassName: 'active',
   className: 'item',
 }
-const selectedItemLabel = <span style={{ color: '#4db', float: 'right' }}>Press Enter</span>
+const selectedItemLabel = <span style={{ color: '#35bdb2', float: 'right' }}>Press Enter</span>
 
 export default class Sidebar extends Component {
   static contextTypes = {
