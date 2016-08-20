@@ -101,7 +101,7 @@ export const isConformant = (Component, requiredProps = {}) => {
 
   // detect sub components like: stardust.Form.Field (ie FormField component)
   // Build a path by following _meta.parents to the root:
-  //   ['Form', 'FormField', 'FormFieldTextArea']
+  //   ['Form', 'FormField', 'FormTextArea']
   let stardustPath = []
   let meta = _meta
   while (meta) {
