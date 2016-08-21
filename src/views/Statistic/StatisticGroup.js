@@ -5,9 +5,9 @@ import {
   customPropTypes,
   getUnhandledProps,
   META,
-  numberToWord,
   SUI,
   useKeyOnly,
+  useWidthProp,
 } from '../../lib'
 import Statistic from './Statistic'
 
@@ -16,7 +16,7 @@ function StatisticGroup(props) {
   const classes = cx(
     'ui',
     useKeyOnly(horizontal, 'horizontal'),
-    numberToWord(widths),
+    useWidthProp(widths),
     className,
     'statistics'
   )

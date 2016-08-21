@@ -4,7 +4,7 @@ import StatisticGroup from 'src/views/Statistic/StatisticGroup'
 
 describe('StatisticGroup', () => {
   common.isConformant(StatisticGroup)
-  common.implementsNumberToWordProp(StatisticGroup, 'widths')
+  common.implementsWidthProp(StatisticGroup, { propKey: 'widths', canEqual: false })
   common.hasUIClassName(StatisticGroup)
   common.rendersChildren(StatisticGroup)
   common.propKeyOnlyToClassName(StatisticGroup, 'horizontal')
