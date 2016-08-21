@@ -1,13 +1,13 @@
 import React from 'react'
 
-import Textarea from 'src/addons/Textarea/Textarea'
+import TextArea from 'src/addons/TextArea/TextArea'
 import * as common from '../commonTests'
 
-describe('Textarea', () => {
-  common.isConformant(Textarea)
+describe('TextArea', () => {
+  common.isConformant(TextArea)
 
   it('accepts a default value', () => {
-    const wrapper = mount(<Textarea defaultValue='Hello World' />)
+    const wrapper = mount(<TextArea defaultValue='Hello World' />)
 
     wrapper
       .should.have.have.exactly(1).descendants('textarea')
@@ -17,12 +17,12 @@ describe('Textarea', () => {
   })
 
   it('has a name assigned', () => {
-    shallow(<Textarea name='sample-post' />)
+    shallow(<TextArea name='sample-post' />)
       .should.have.prop('name', 'sample-post')
   })
 
   it('has assigned amount of rows', () => {
-    shallow(<Textarea rows='6' />)
+    shallow(<TextArea rows='6' />)
       .should.have.tagName('textarea')
       .with.attr('rows', '6')
   })
