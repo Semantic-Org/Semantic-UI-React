@@ -17,6 +17,18 @@ export const numberToWordMap = {
   16: 'sixteen',
 }
 
-export function numberToWord(number) {
-  return numberToWordMap[number] || number
+/**
+ * Return the number word for numbers 1-16.
+ * Returns strings or numbers as is if there is no corresponding word.
+ * Returns an empty string if value is not a string or number.
+ * @param {string|number} value The value to convert to a word.
+ * @returns {string}
+ */
+export function numberToWord(value) {
+  const type = typeof value
+  if (type === 'string' || type === 'number') {
+    return numberToWordMap[value] || value
+  }
+
+  return ''
 }
