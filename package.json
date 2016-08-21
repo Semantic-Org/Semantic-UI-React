@@ -126,7 +126,7 @@
     "sinon": "^1.17.3",
     "sinon-chai": "^2.8.0",
     "style-loader": "^0.13.1",
-    "ta-scripts": "^2.4.2",
+    "ta-scripts": "^2.4.3",
     "through2": "^2.0.0",
     "watch": "^0.18.0",
     "webpack": "^1.12.14",
