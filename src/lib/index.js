@@ -5,7 +5,7 @@ export {
   useKeyOnly,
   useValueAndKey,
   useKeyOrValueAndKey,
-  useColumnsProp,
+  useWidthProp,
   useTextAlignProp,
   useVerticalAlignProp,
 } from './classNameBuilders'

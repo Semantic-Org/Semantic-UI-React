@@ -5,16 +5,16 @@ import {
   customPropTypes,
   getUnhandledProps,
   META,
-  numberToWord,
   SUI,
   useKeyOnly,
+  useWidthProp,
 } from '../../lib'
 import Card from './Card'
 
 function CardGroup(props) {
   const { className, children, doubling, items, itemsPerRow, stackable } = props
   const classes = cx('ui',
-    numberToWord(itemsPerRow),
+    useWidthProp(itemsPerRow),
     useKeyOnly(doubling, 'doubling'),
     useKeyOnly(stackable, 'stackable'),
     className,

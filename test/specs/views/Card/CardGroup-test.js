@@ -6,9 +6,9 @@ import CardGroup from 'src/views/Card/CardGroup'
 describe('CardGroup', () => {
   common.isConformant(CardGroup)
   common.hasUIClassName(CardGroup)
+  common.implementsWidthProp(CardGroup, { propKey: 'itemsPerRow', canEqual: false })
   common.propKeyOnlyToClassName(CardGroup, 'doubling')
   common.propKeyOnlyToClassName(CardGroup, 'stackable')
-  common.implementsNumberToWordProp(CardGroup, 'itemsPerRow')
   common.rendersChildren(CardGroup)
 
   describe('renders children', () => {

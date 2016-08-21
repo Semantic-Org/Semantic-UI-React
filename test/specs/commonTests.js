@@ -4,16 +4,8 @@ import path from 'path'
 import React, { createElement } from 'react'
 import ReactDOMServer from 'react-dom/server'
 
-import {
-  META,
-  numberToWord,
-  SUI,
-} from 'src/lib'
-import {
-  consoleUtil,
-  sandbox,
-  syntheticEvent,
-} from 'test/utils'
+import { META, numberToWord } from 'src/lib'
+import { consoleUtil, sandbox, syntheticEvent } from 'test/utils'
 import * as stardust from 'stardust'
 
 import { Icon, Image } from 'src/elements'
@@ -432,29 +424,36 @@ const _classNamePropValueBeforePropName = (Component, propKey, requiredProps) =>
 }
 
 /**
- * Assert that a Component correctly implements columns prop.
+ * Assert that a Component correctly implements a width prop.
  * @param {React.Component|Function} Component The component to test.
- * @param {boolean} canEqual Flag that indicates possibility of "equal" value.
+ * @param {object} options
+ * @param {string} [options.propKey] The prop name that accepts a width value.
+ * @param {string} [options.widthClass] The className that follows the wordToNumber className.
+ *   Examples: one WIDE column, two COLUMN grid, three [none] fields, etc.
+ * @param {boolean} [options.canEqual=true] Whether or not to test 'equal width' usage.
  * @param {Object} [requiredProps={}] Props required to render the component.
  */
-export const implementsColumnsProp = (Component, canEqual, requiredProps = {}) => {
-  describe('columns (common)', () => {
-    if (!Component) throw new Error(`implementsColumnsProp requires a Component, got: ${typeof Component}`)
+export const implementsWidthProp = (Component, options, requiredProps = {}) => {
+  const { propKey, widthClass, canEqual = true } = options
+  describe(`${propKey} (common)`, () => {
+    if (!Component) throw new Error(`implementsWidthProp requires a Component, got: ${typeof Component}`)
 
-    _definesPropOptions(Component, 'columns')
-    _noDefaultClassNameFromProp(Component, 'columns', requiredProps)
-    _noClassNameFromBoolProps(Component, 'columns', requiredProps)
+    _definesPropOptions(Component, propKey)
+    _noDefaultClassNameFromProp(Component, propKey, requiredProps)
+    _noClassNameFromBoolProps(Component, propKey, requiredProps)
 
     it('adds numberToWord value to className', () => {
-      const propVal = _.sample(SUI.WIDTHS)
+      _.without(Component._meta.props[propKey], 'equal').forEach((width) => {
+        const expectClass = widthClass ? `${numberToWord(width)} ${widthClass}` : numberToWord(width)
 
-      shallow(createElement(Component, { ...requiredProps, columns: propVal }))
-        .should.have.className([numberToWord(propVal), 'column'].join(' '))
+        shallow(createElement(Component, { ...requiredProps, [propKey]: width }))
+          .should.have.className(expectClass)
+      })
     })
 
     if (canEqual) {
       it('adds "equal width" to className', () => {
-        shallow(createElement(Component, { ...requiredProps, columns: 'equal' }))
+        shallow(createElement(Component, { ...requiredProps, [propKey]: 'equal' }))
           .should.have.className('equal width')
       })
     }
@@ -523,30 +522,6 @@ export const implementsImageProp = (Component, requiredProps = {}) => {
 
     it('accepts an image src string', () => {
       assertValid(shallow(<Component image={imageSrc} />))
-    })
-  })
-}
-
-/**
- * Assert that a Component correctly implements some width prop.
- * @param {React.Component|Function} Component The component to test.
- * @param {string} propKey The prop name that accepts numbers/words.
- * @param {Object} [requiredProps={}] Props required to render the component.
- */
-export const implementsNumberToWordProp = (Component, propKey, requiredProps = {}) => {
-  describe(`${propKey} (common)`, () => {
-    if (!Component) throw new Error(`implementsNumberToWordProp requires a Component, got: ${typeof Component}`)
-    if (!propKey) throw new Error(`implementsNumberToWordProp requires a propKey, got: ${typeof propKey}`)
-
-    _definesPropOptions(Component, propKey)
-    _noDefaultClassNameFromProp(Component, propKey, requiredProps)
-    _noClassNameFromBoolProps(Component, propKey, requiredProps)
-
-    it('adds numberToWord value to className', () => {
-      const propVal = _.sample(SUI.WIDTHS)
-
-      shallow(createElement(Component, { ...requiredProps, [propKey]: propVal }))
-        .should.have.className(numberToWord(propVal))
     })
   })
 }
