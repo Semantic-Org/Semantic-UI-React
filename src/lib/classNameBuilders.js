@@ -51,23 +51,36 @@ export const useKeyOrValueAndKey = (val, key) => val && (val === true ? key : `$
 //
 
 /**
- * The "columns" prop follows the useValueAndKey except when the value is "equal" and value equal is allowed.
- * In this case, classes "equal width" are used, ignoring the "column" class.
- * @param {*} val The value of the "columns" prop
- * @param {boolean} canEqual Flag that indicates possibility of "equal" value
+ * Create "X", "X wide" and "equal width" classNames.
+ * "X" is a numberToWord value and "wide" is configurable.
+ * @param {*} val The prop value
+ * @param {string} [widthClass=''] The class
+ * @param {boolean} [canEqual=false] Flag that indicates possibility of "equal" value
  *
  * @example
  * <Grid columns='equal' />
  * <div class="ui equal width grid"></div>
  *
+ * <Form widths='equal' />
+ * <div class="ui equal width form"></div>
+ *
+ * <FieldGroup widths='equal' />
+ * <div class="equal width fields"></div>
+ *
  * @example
  * <Grid columns={4} />
  * <div class="ui four column grid"></div>
  */
-export const useColumnsProp = (val, canEqual = false) => val === 'equal' && canEqual
-  ? 'equal width'
-  : useValueAndKey(numberToWord(val), 'column')
-
+export const useWidthProp = (val, widthClass = '', canEqual = false) => {
+  if (canEqual && val === 'equal') {
+    return 'equal width'
+  }
+  const valType = typeof val
+  if ((valType === 'string' || valType === 'number') && widthClass) {
+    return `${numberToWord(val)} ${widthClass}`
+  }
+  return numberToWord(val)
+}
 /**
  * The "textAlign" prop follows the useValueAndKey except when the value is "justified'.
  * In this case, only the class "justified" is used, ignoring the "aligned" class.
