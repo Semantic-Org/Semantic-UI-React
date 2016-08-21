@@ -4,11 +4,11 @@ import React, { PropTypes } from 'react'
 import {
   getUnhandledProps,
   META,
-  numberToWord,
   SUI,
   useTextAlignProp,
   useValueAndKey,
   useVerticalAlignProp,
+  useWidthProp,
 } from '../../lib'
 
 function GridColumn(props) {
@@ -19,16 +19,16 @@ function GridColumn(props) {
   const classes = cx(
     className,
     color,
-    useValueAndKey(numberToWord(computer), 'wide computer'),
+    useWidthProp(computer, 'wide computer'),
     useValueAndKey(floated, 'floated'),
-    useValueAndKey(numberToWord(largeScreen), 'wide large screen'),
-    useValueAndKey(numberToWord(mobile), 'wide mobile'),
+    useWidthProp(largeScreen, 'wide large screen'),
+    useWidthProp(mobile, 'wide mobile'),
     useValueAndKey(only, 'only'),
-    useValueAndKey(numberToWord(tablet), 'wide tablet'),
+    useWidthProp(tablet, 'wide tablet'),
     useTextAlignProp(textAlign),
     useVerticalAlignProp(verticalAlign),
-    useValueAndKey(numberToWord(widescreen), 'wide widescreen'),
-    useValueAndKey(numberToWord(width), 'wide'),
+    useWidthProp(widescreen, 'wide widescreen'),
+    useWidthProp(width, 'wide'),
     'column'
   )
   const rest = getUnhandledProps(GridColumn, props)

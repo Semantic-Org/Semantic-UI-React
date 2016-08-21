@@ -5,7 +5,7 @@ import {
   getUnhandledProps,
   META,
   SUI,
-  useColumnsProp,
+  useWidthProp,
   useKeyOnly,
   useKeyOrValueAndKey,
   useTextAlignProp,
@@ -24,7 +24,7 @@ function Grid(props) {
   const classes = cx(
     'ui',
     className,
-    useColumnsProp(columns, true),
+    useWidthProp(columns, 'column', true),
     useKeyOrValueAndKey(celled, 'celled'),
     useKeyOnly(centered, 'centered'),
     useKeyOrValueAndKey(divided, 'divided'),
@@ -76,7 +76,7 @@ Grid.propTypes = {
   /** Classes that will be added to the Grid className. */
   className: PropTypes.string,
 
-  /** Represents column count per line in Grid. */
+  /** Represents column count per row in Grid. */
   columns: PropTypes.oneOf(Grid._meta.props.columns),
 
   /** A grid can have dividers between its columns. */
@@ -106,7 +106,7 @@ Grid.propTypes = {
   /** A grid can have its columns stack on-top of each other after reaching mobile breakpoints. */
   stackable: PropTypes.bool,
 
-  /** A grid its text alignment. */
+  /** A grid can specify its text alignment. */
   textAlign: PropTypes.oneOf(Grid._meta.props.textAlign),
 
   /** A grid can specify its vertical alignment to have all its columns vertically centered. */
