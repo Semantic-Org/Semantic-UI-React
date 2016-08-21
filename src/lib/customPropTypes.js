@@ -122,8 +122,12 @@ export const some = (validators) => {
  */
 export const givenProps = (propsShape, validator) => {
   return (props, propName, componentName, ...rest) => {
-    // only validate if all propsShape validators pass
-    if (!_.every(propsShape, (val, key) => !val(props, key, componentName, ...rest))) return
+    const shouldValidate = _.every(propsShape, (val, key) => {
+      // require propShape validators to pass or prop values to match
+      return _.isFunction(val) ? !val(props, key, componentName, ...rest) : val === props[propName]
+    })
+
+    if (!shouldValidate) return
 
     if (!_.isPlainObject(propsShape)) {
       throw new Error(
@@ -170,9 +174,9 @@ export const demand = (requiredProps) => {
     }
 
     // do not require requiredProps if the prop does not exist in props
-    if (!_.has(props, propName)) return
+    if (_.isUndefined(props, propName)) return
 
-    const missingRequired = requiredProps.filter(required => !_.has(props, required))
+    const missingRequired = requiredProps.filter(required => _.isUndefined(props, required))
     if (!_.isEmpty(missingRequired)) {
       return new Error(
         `\`${componentName}\` prop \`${propName}\` requires props: \`${missingRequired.join('`, `')}\`.`,
