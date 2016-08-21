@@ -59,7 +59,7 @@ export default class Item extends Component {
 
     return (
       <div {...rest} className={classes}>
-        {image && <div className={imageClasses}><img {...imageProps} /></div>}}
+        {image && <div className={imageClasses}><img {...imageProps} /></div>}
         {content && <div className={contentClasses}>{content}</div>}
       </div>
     )
