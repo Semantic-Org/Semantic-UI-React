@@ -1,5 +1,40 @@
 # Change Log
 
+## [v0.36.1](https://github.com/TechnologyAdvice/stardust/tree/v0.36.1) (2016-08-21)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.36.0...v0.36.1)
+
+**Fixed bugs:**
+
+- Removed extra curly brace [\#415](https://github.com/TechnologyAdvice/stardust/pull/415) ([fuatsengul](https://github.com/fuatsengul))
+
+**Merged pull requests:**
+
+- feat\(useWidthProp\): tools/tests for width props [\#413](https://github.com/TechnologyAdvice/stardust/pull/413) ([levithomason](https://github.com/levithomason))
+- fix\(commonTests\): handle deeply nested subcomponents [\#412](https://github.com/TechnologyAdvice/stardust/pull/412) ([levithomason](https://github.com/levithomason))
+
+## [v0.36.0](https://github.com/TechnologyAdvice/stardust/tree/v0.36.0) (2016-08-21)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.35.1...v0.36.0)
+
+**Merged pull requests:**
+
+- refactor\(TextArea\): rename and use functional component [\#409](https://github.com/TechnologyAdvice/stardust/pull/409) ([levithomason](https://github.com/levithomason))
+
+## [v0.35.1](https://github.com/TechnologyAdvice/stardust/tree/v0.35.1) (2016-08-21)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.35.0...v0.35.1)
+
+**Implemented enhancements:**
+
+- \<Card /\> Component [\#186](https://github.com/TechnologyAdvice/stardust/issues/186)
+
+**Fixed bugs:**
+
+- fix\(customPropTypes\): false demand\(\) errors [\#411](https://github.com/TechnologyAdvice/stardust/pull/411) ([levithomason](https://github.com/levithomason))
+
+**Merged pull requests:**
+
+- Docs: fixes and updates [\#410](https://github.com/TechnologyAdvice/stardust/pull/410) ([levithomason](https://github.com/levithomason))
+- chore\(package\): update react 15.3.1 [\#408](https://github.com/TechnologyAdvice/stardust/pull/408) ([levithomason](https://github.com/levithomason))
+
 ## [v0.35.0](https://github.com/TechnologyAdvice/stardust/tree/v0.35.0) (2016-08-18)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.34.4...v0.35.0)
 
