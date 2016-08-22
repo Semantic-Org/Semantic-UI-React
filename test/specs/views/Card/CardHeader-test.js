@@ -15,12 +15,5 @@ describe('CardHeader', () => {
       shallow(<CardHeader content={text} />)
         .should.contain.text(text)
     })
-
-    it('renders child node', () => {
-      const child = <div data-child={faker.hacker.noun()} />
-
-      shallow(<CardHeader content={child} />)
-        .should.contain(child)
-    })
   })
 })

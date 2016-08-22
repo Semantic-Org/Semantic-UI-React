@@ -87,7 +87,6 @@ describe('Checkbox', () => {
       const spy = sandbox.spy()
       const expectProps = { name: 'foo', value: 'bar', checked: false }
       mount(<Checkbox onClick={spy} {...expectProps} />)
-        .find('label')
         .simulate('click')
 
       spy.should.have.been.calledOnce()
@@ -102,7 +101,6 @@ describe('Checkbox', () => {
       const spy = sandbox.spy()
       const expectProps = { name: 'foo', value: 'bar', checked: false }
       mount(<Checkbox onChange={spy} {...expectProps} />)
-        .find('label')
         .simulate('click')
 
       spy.should.have.been.calledOnce()

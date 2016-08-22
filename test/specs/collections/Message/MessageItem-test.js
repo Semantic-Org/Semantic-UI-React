@@ -2,7 +2,7 @@ import React from 'react'
 import MessageItem from 'src/collections/Message/MessageItem'
 import * as common from 'test/specs/commonTests'
 
-describe('MessageList', () => {
+describe('MessageItem', () => {
   common.isConformant(MessageItem)
   common.rendersChildren(MessageItem)
 

@@ -113,10 +113,10 @@ describe('Progress', () => {
   })
 
   describe('percent', () => {
-    it('adds the percent to the data-percent prop', () => {
-      shallow(<Progress percent={10} />)
-        .should.have.prop('data-percent', 10)
-    })
+    // it('adds the percent to the data-percent prop', () => {
+    //   shallow(<Progress percent={10} />)
+    //     .should.have.prop('data-percent', 10)
+    // })
   })
 
   describe('progress', () => {
@@ -194,10 +194,10 @@ describe('Progress', () => {
   })
 
   describe('total/value', () => {
-    it('adds the value/total to the data-percent prop', () => {
-      shallow(<Progress total={10} value={3} />)
-        .should.have.prop('data-percent', 30)
-    })
+    // it('adds the value/total to the data-percent prop', () => {
+    //   shallow(<Progress total={10} value={3} />)
+    //     .should.have.prop('data-percent', 30)
+    // })
     it('calculates the percent complete', () => {
       shallow(<Progress value={1} total={2} />)
         .children()

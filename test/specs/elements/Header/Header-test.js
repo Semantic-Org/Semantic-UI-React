@@ -1,16 +1,39 @@
+import faker from 'faker'
+import React from 'react'
 import Header from 'src/elements/Header/Header'
-import H1 from 'src/elements/Header/HeaderH1'
-import H2 from 'src/elements/Header/HeaderH2'
-import H3 from 'src/elements/Header/HeaderH3'
-import H4 from 'src/elements/Header/HeaderH4'
-import H5 from 'src/elements/Header/HeaderH5'
-import H6 from 'src/elements/Header/HeaderH6'
 import Subheader from 'src/elements/Header/HeaderSubheader'
 import * as common from 'test/specs/commonTests'
 
 describe('Header', () => {
-  common.isConformant(Header)
-  common.hasSubComponents(Header, [
-    H1, H2, H3, H4, H5, H6, Subheader,
-  ])
+  common.hasUIClassName(Header)
+  common.hasSubComponents(Header, [Subheader])
+  common.rendersChildren(Header)
+
+  common.propKeyOnlyToClassName(Header, 'dividing')
+  common.propKeyOnlyToClassName(Header, 'block')
+  common.propKeyOnlyToClassName(Header, 'inverted')
+  common.propKeyOnlyToClassName(Header, 'disabled')
+  common.propKeyOnlyToClassName(Header, 'sub')
+
+  common.propKeyAndValueToClassName(Header, 'floated')
+  common.propKeyOrValueToClassName(Header, 'attached')
+
+  common.propValueOnlyToClassName(Header, 'color')
+
+  common.implementsIconProp(Header)
+  common.implementsImageProp(Header)
+  common.implementsTextAlignProp(Header)
+
+  it('has an icon class when adding an icon', () => {
+    const iconClass = faker.hacker.noun()
+    const wrapper = mount(<Header icon={iconClass} />)
+    wrapper.should.have.className('icon')
+  })
+
+  describe('content', () => {
+    it('renders text', () => {
+      shallow(<Header content='foo' />)
+        .should.contain.text('foo')
+    })
+  })
 })
