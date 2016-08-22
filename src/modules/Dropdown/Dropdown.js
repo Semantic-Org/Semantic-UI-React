@@ -46,20 +46,11 @@ export default class Dropdown extends Component {
       PropTypes.string,
     ]),
 
-    /** Array of `{ text: '', value: '' }` options */
+    /** Array of Dropdown.Item props e.g. `{ text: '', value: '' }` */
     options: customPropTypes.every([
       customPropTypes.disallow(['children']),
       customPropTypes.demand(['selection']),
-      PropTypes.arrayOf(PropTypes.shape({
-        value: PropTypes.oneOfType([
-          PropTypes.string,
-          PropTypes.number,
-        ]).isRequired,
-        text: PropTypes.oneOfType([
-          PropTypes.string,
-          PropTypes.number,
-        ]),
-      })),
+      PropTypes.arrayOf(PropTypes.shape(DropdownItem.propTypes)),
     ]),
 
     /** Controls whether or not the dropdown menu is displayed. */
@@ -792,8 +783,7 @@ export default class Dropdown extends Component {
         active={isActive(opt.value)}
         onClick={this.handleItemClick}
         selected={selectedIndex === i}
-        text={opt.text}
-        value={opt.value}
+        {...opt}
       />
     ))
   }

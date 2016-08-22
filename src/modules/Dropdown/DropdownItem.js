@@ -3,6 +3,7 @@ import cx from 'classnames'
 
 import {
   childrenUtils,
+  customPropTypes,
   META,
   useKeyOnly,
 } from '../../lib'
@@ -57,7 +58,10 @@ DropdownItem.propTypes = {
   active: PropTypes.bool,
 
   /** Primary content. */
-  children: PropTypes.node,
+  children: customPropTypes.every([
+    customPropTypes.disallow(['text']),
+    PropTypes.node,
+  ]),
 
   /** Additional className. */
   className: PropTypes.string,
@@ -75,7 +79,13 @@ DropdownItem.propTypes = {
   selected: PropTypes.bool,
 
   /** Display text. */
-  text: PropTypes.string,
+  text: customPropTypes.every([
+    customPropTypes.disallow(['children']),
+    PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
+  ]),
 
   /** Stored value */
   value: PropTypes.oneOfType([
