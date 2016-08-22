@@ -153,7 +153,7 @@ export default class Checkbox extends Component {
           tabIndex={0}
           value={value}
         />
-        <label>{label}</label>
+        {label && <label>{label}</label>}
       </div>
     )
   }

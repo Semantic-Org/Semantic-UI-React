@@ -18,11 +18,6 @@ describe('Checkbox', () => {
     })
   })
 
-  it('adds the "fitted" class if no label is given', () => {
-    shallow(<Checkbox name='firstName' />)
-      .should.have.className('fitted')
-  })
-
   describe('disabled', () => {
     it('cannot be checked', () => {
       shallow(<Checkbox disabled />)
@@ -129,6 +124,29 @@ describe('Checkbox', () => {
         .simulate('click')
         .find('input')
         .should.be.checked()
+    })
+  })
+
+  describe('label', () => {
+    it('is not present by default', () => {
+      shallow(<Checkbox />)
+        .should.not.have.descendants('label')
+    })
+
+    it('adds the "fitted" class when not present', () => {
+      shallow(<Checkbox name='firstName' />)
+        .should.have.className('fitted')
+    })
+
+    it('adds a <label> with the value as text', () => {
+      const wrapper = shallow(<Checkbox label='a label' />)
+
+      wrapper
+        .should.have.descendants('label')
+
+      wrapper
+        .find('label')
+        .should.have.text('a label')
     })
   })
 })
