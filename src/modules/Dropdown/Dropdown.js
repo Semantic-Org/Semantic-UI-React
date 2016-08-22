@@ -120,6 +120,9 @@ export default class Dropdown extends Component {
     /** Label prefixed to an option added by a user. */
     additionLabel: PropTypes.string,
 
+    /** Message to display when there are no results. */
+    noResultsMessage: PropTypes.string,
+
     // ------------------------------------
     // Callbacks
     // ------------------------------------
@@ -197,6 +200,7 @@ export default class Dropdown extends Component {
   static defaultProps = {
     icon: 'dropdown',
     additionLabel: 'Add:',
+    noResultsMessage: 'No results found.',
   }
 
   static autoControlledProps = [
@@ -770,12 +774,12 @@ export default class Dropdown extends Component {
   }
 
   renderOptions = () => {
-    const { multiple, search } = this.props
+    const { multiple, search, noResultsMessage } = this.props
     const { selectedIndex, value } = this.state
     const options = this.getMenuOptions()
 
     if (search && _.isEmpty(options)) {
-      return <div className='message'>No results found.</div>
+      return <div className='message'>{noResultsMessage}</div>
     }
 
     const isActive = multiple

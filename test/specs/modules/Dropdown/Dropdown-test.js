@@ -1010,6 +1010,42 @@ describe('Dropdown Component', () => {
         .find('.message')
         .should.not.be.present()
     })
+
+    it('uses default noResultsMessage', () => {
+      const search = wrapperMount(<Dropdown options={options} selection search />)
+        .find('input.search')
+
+      // search for something we know will not exist
+      search.simulate('change', { target: { value: '_________________' } })
+
+      wrapper
+        .find('.message')
+        .should.have.text('No results found.')
+    })
+
+    it('uses custom noResultsMessage', () => {
+      const search = wrapperMount(<Dropdown options={options} selection search noResultsMessage='Something custom' />)
+        .find('input.search')
+
+      // search for something we know will not exist
+      search.simulate('change', { target: { value: '_________________' } })
+
+      wrapper
+        .find('.message')
+        .should.have.text('Something custom')
+    })
+
+    it('uses no noResultsMessage', () => {
+      const search = wrapperMount(<Dropdown options={options} selection search noResultsMessage='' />)
+        .find('input.search')
+
+      // search for something we know will not exist
+      search.simulate('change', { target: { value: '_________________' } })
+
+      wrapper
+        .find('.message')
+        .should.have.text('')
+    })
   })
 
   describe('placeholder', () => {
