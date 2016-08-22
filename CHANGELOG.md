@@ -5,14 +5,14 @@
 
 **Implemented enhancements:**
 
-- Custom "No results" message [\#417](https://github.com/TechnologyAdvice/stardust/pull/417) ([jcarbo](https://github.com/jcarbo))
+- feat\(Dropdown\): add custom noResultsMessage [\#417](https://github.com/TechnologyAdvice/stardust/pull/417) ([jcarbo](https://github.com/jcarbo))
 
 ## [v0.36.1](https://github.com/TechnologyAdvice/stardust/tree/v0.36.1) (2016-08-21)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.36.0...v0.36.1)
 
 **Fixed bugs:**
 
-- Removed extra curly brace [\#415](https://github.com/TechnologyAdvice/stardust/pull/415) ([fuatsengul](https://github.com/fuatsengul))
+- fix\(Input\): remove extra curly brace [\#415](https://github.com/TechnologyAdvice/stardust/pull/415) ([fuatsengul](https://github.com/fuatsengul))
 
 **Merged pull requests:**
 
