@@ -1,5 +1,12 @@
 # Change Log
 
+## [v0.36.2](https://github.com/TechnologyAdvice/stardust/tree/v0.36.2) (2016-08-22)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.36.1...v0.36.2)
+
+**Implemented enhancements:**
+
+- Custom "No results" message [\#417](https://github.com/TechnologyAdvice/stardust/pull/417) ([jcarbo](https://github.com/jcarbo))
+
 ## [v0.36.1](https://github.com/TechnologyAdvice/stardust/tree/v0.36.1) (2016-08-21)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.36.0...v0.36.1)
 
