@@ -1,12 +1,10 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Header } from 'stardust'
 
-export default class HeaderDividingExample extends Component {
-  render() {
-    return (
-      <Header.H3 dividing>
-        Dividing Header
-      </Header.H3>
-    )
-  }
-}
+const HeaderDividingExample = () => (
+  <Header as='h3' dividing>
+    Dividing Header
+  </Header>
+)
+
+export default HeaderDividingExample

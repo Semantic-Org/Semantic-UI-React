@@ -1,12 +1,10 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Header } from 'stardust'
 
-export default class HeaderBlockExample extends Component {
-  render() {
-    return (
-      <Header.H3 block>
-        Block Header
-      </Header.H3>
-    )
-  }
-}
+const HeaderBlockExample = () => (
+  <Header as='h3' block>
+    Block Header
+  </Header>
+)
+
+export default HeaderBlockExample

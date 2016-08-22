@@ -1,17 +1,15 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Header, Segment } from 'stardust'
 
-export default class HeaderFloatingExample extends Component {
-  render() {
-    return (
-      <Segment className='clearing'>
-        <Header.H2 floated='right'>
-          Float Right
-        </Header.H2>
-        <Header.H2 floated='left'>
-          Float Left
-        </Header.H2>
-      </Segment>
-    )
-  }
-}
+const HeaderFloatingExample = () => (
+  <Segment className='clearing'>
+    <Header as='h2' floated='right'>
+      Float Right
+    </Header>
+    <Header as='h2' floated='left'>
+      Float Left
+    </Header>
+  </Segment>
+)
+
+export default HeaderFloatingExample

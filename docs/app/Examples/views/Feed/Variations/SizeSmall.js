@@ -6,7 +6,7 @@ const { Content, Event, Summary } = Feed
 const SizeSmall = () => {
   return (
     <Feed size='small'>
-      <Header.H4>Followers Activity</Header.H4>
+      <Header as='h4'>Followers Activity</Header>
 
       <Event>
         <Content>

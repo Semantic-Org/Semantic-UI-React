@@ -41,7 +41,7 @@ export default class ComponentExamples extends Component {
   render() {
     return (
       <div>
-        <Header.H2>Examples</Header.H2>
+        <Header as='h2'>Examples</Header>
         {this.renderExample() || this.renderMissingExamples()}
         <Divider className='hidden section' />
       </div>

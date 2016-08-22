@@ -5,21 +5,21 @@ export default class SegmentAttachedComplexExample extends Component {
   render() {
     return (
       <div>
-        <Header.H5 className='attached'>
+        <Header as='h5' className='attached'>
           Dogs
-        </Header.H5>
+        </Header>
         <Segment className='attached segment'>
           Dogs are one type of animal
         </Segment>
-        <Header.H5 className='attached header'>
+        <Header as='h5' className='attached header'>
           Cats
-        </Header.H5>
+        </Header>
         <Segment className='attached segment'>
           Cats are thought of as being related to dogs, but only humans think this.
         </Segment>
-        <Header.H5 className='attached header'>
+        <Header as='h5' className='attached header'>
           Lions
-        </Header.H5>
+        </Header>
         <Segment className='attached segment'>
           Humans don't think of lions as being like cats, but they are.
         </Segment>

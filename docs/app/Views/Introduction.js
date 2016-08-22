@@ -120,6 +120,12 @@ const Comparison = ({ jsx, html }) => (
 )
 
 Comparison.propTypes = {
+  /** An element type to render as (string or function). */
+  as: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.func,
+  ]),
+
   jsx: PropTypes.string,
   html: PropTypes.string,
 }
@@ -128,16 +134,16 @@ const Introduction = () => (
   <Container id='introduction-page'>
     <Segment className='center aligned basic'>
       <Logo centered size='small' />
-      <Header.H1 textAlign='center'>
+      <Header as='h1' textAlign='center'>
         Semantic-UI-React
         <Header.Subheader>
           {pkg.description}
         </Header.Subheader>
-      </Header.H1>
+      </Header>
     </Segment>
 
     <Segment className='basic padded'>
-      <Header.H2 dividing>Install</Header.H2>
+      <Header as='h2' dividing>Install</Header>
       <Message>
         <pre>$ npm install {pkg.name}</pre>
       </Message>
@@ -151,7 +157,7 @@ const Introduction = () => (
     </Segment>
 
     <Segment className='basic padded'>
-      <Header.H2 dividing>jQuery Free</Header.H2>
+      <Header as='h2' dividing>jQuery Free</Header>
       <p>
         jQuery is a DOM manipulation library. It reads from and writes to the DOM.
         React uses a virtual DOM (a JavaScript representation of the real DOM).
@@ -164,7 +170,7 @@ const Introduction = () => (
     </Segment>
 
     <Segment className='basic padded'>
-      <Header.H2 dividing>Declarative Components</Header.H2>
+      <Header as='h2' dividing>Declarative Components</Header>
       Declarative APIs provide for robust features and prop validation.
 
       <Comparison jsx={RatingJSX} html={RatingHTML} />
@@ -172,12 +178,12 @@ const Introduction = () => (
     </Segment>
 
     <Segment className='basic padded'>
-      <Header.H2 dividing>Shorthand Props</Header.H2>
+      <Header as='h2' dividing>Shorthand Props</Header>
       <p>
         Shorthand props generate markup for you, making many use cases a breeze.
       </p>
 
-      <Header.H3>Child Object Arrays</Header.H3>
+      <Header as='h3'>Child Object Arrays</Header>
       <p>
         Components with repeating children accept arrays of plain objects.
         <a href='https://facebook.github.io/react/docs/context.html#parent-child-coupling' target='_blank'>
@@ -187,14 +193,14 @@ const Introduction = () => (
       </p>
       <Comparison jsx={AccordionJSX} html={AccordionHTML} />
 
-      <Header.H3>{'icon={...}'}</Header.H3>
+      <Header as='h3'>{'icon={...}'}</Header>
       <p>
         The <code>icon</code> prop is standard for many components.
         It can accept an Icon <code>name</code>, an Icon props object, or an <code>{'<Icon />'}</code> instance.
       </p>
       <Comparison jsx={MessageIconJSX} html={MessageIconHTML} />
 
-      <Header.H3>{'image={...}'}</Header.H3>
+      <Header as='h3'>{'image={...}'}</Header>
       <p>
         The <code>image</code> prop is standard for many components.
         It can accept an image <code>src</code>, an Image props object, or an <code>{'<Image />'}</code> instance.
@@ -203,7 +209,7 @@ const Introduction = () => (
     </Segment>
 
     <Segment className='basic padded'>
-      <Header.H2 dividing>Sub Components</Header.H2>
+      <Header as='h2' dividing>Sub Components</Header>
       <p>
         Sub components give you complete access to the markup.
         This is essential for flexibility in customizing components.
@@ -212,7 +218,7 @@ const Introduction = () => (
     </Segment>
 
     <Segment className='basic padded'>
-      <Header.H2 dividing>Auto Controlled State</Header.H2>
+      <Header as='h2' dividing>Auto Controlled State</Header>
 
       <p>
         React has the concept of

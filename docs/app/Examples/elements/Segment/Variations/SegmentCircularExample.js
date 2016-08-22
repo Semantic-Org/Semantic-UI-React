@@ -6,20 +6,20 @@ export default class SegmentCircularExample extends Component {
     return (
       <div>
         <Segment className='circular'>
-          <Header.H2>
+          <Header as='h2'>
             Sale!
             <Header.Subheader>
               $10.99
             </Header.Subheader>
-          </Header.H2>
+          </Header>
         </Segment>
         <Segment className='red inverted circular'>
-          <Header.H3>
+          <Header as='h3'>
             Buy Now
             <Header.Subheader>
               $10.99
             </Header.Subheader>
-          </Header.H3>
+          </Header>
         </Segment>
       </div>
     )

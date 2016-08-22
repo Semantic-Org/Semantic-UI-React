@@ -1,23 +1,21 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Header, Segment } from 'stardust'
 
-export default class HeaderTextAlignmentExample extends Component {
-  render() {
-    return (
-      <Segment>
-        <Header.H3 textAlign='right'>
-          Float Right
-        </Header.H3>
-        <Header.H3 textAlign='left'>
-          Float Left
-        </Header.H3>
-        <Header.H3 textAlign='justified'>
-          This text takes up the full width of the container
-        </Header.H3>
-        <Header.H3 textAlign='center'>
-          Centered
-        </Header.H3>
-      </Segment>
-    )
-  }
-}
+const HeaderTextAlignmentExample = () => (
+  <Segment>
+    <Header as='h3' textAlign='right'>
+      Float Right
+    </Header>
+    <Header as='h3' textAlign='left'>
+      Float Left
+    </Header>
+    <Header as='h3' textAlign='justified'>
+      This text takes up the full width of the container
+    </Header>
+    <Header as='h3' textAlign='center'>
+      Centered
+    </Header>
+  </Segment>
+)
+
+export default HeaderTextAlignmentExample

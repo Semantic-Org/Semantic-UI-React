@@ -51,9 +51,11 @@ export default class ComponentExample extends Component {
         <Grid.Column>
           <Grid>
             <Grid.Column width={12}>
-              {this.props.title && <Header.H3 style={{ marginBottom: 0 }}>
-                {this.props.title}
-              </Header.H3>}
+              {this.props.title && (
+                <Header as='h4' style={{ marginBottom: 0 }}>
+                  {this.props.title}
+                </Header>
+              )}
               {this.props.description && <p>{this.props.description}</p>}
             </Grid.Column>
             <Grid.Column width={4} textAlign='right'>
