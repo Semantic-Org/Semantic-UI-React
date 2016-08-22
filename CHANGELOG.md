@@ -1,5 +1,12 @@
 # Change Log
 
+## [v0.36.3](https://github.com/TechnologyAdvice/stardust/tree/v0.36.3) (2016-08-22)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.36.2...v0.36.3)
+
+**Merged pull requests:**
+
+- Dropdown: Pass 'options' objects as props to Dropdown.Item [\#418](https://github.com/TechnologyAdvice/stardust/pull/418) ([jcarbo](https://github.com/jcarbo))
+
 ## [v0.36.2](https://github.com/TechnologyAdvice/stardust/tree/v0.36.2) (2016-08-22)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.36.1...v0.36.2)
 
