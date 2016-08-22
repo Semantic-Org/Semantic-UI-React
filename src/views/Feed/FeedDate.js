@@ -2,17 +2,19 @@ import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
 import {
-   customPropTypes,
-   getUnhandledProps,
-   META,
+  customPropTypes,
+  getElementType,
+  getUnhandledProps,
+  META,
 } from '../../lib'
 
 function FeedDate(props) {
   const { children, className, date } = props
   const classes = cx(className, 'date')
   const rest = getUnhandledProps(FeedDate, props)
+  const ElementType = getElementType(FeedDate, props)
 
-  return <div {...rest} className={classes}>{children || date}</div>
+  return <ElementType {...rest} className={classes}>{children || date}</ElementType>
 }
 
 FeedDate._meta = {
@@ -22,6 +24,12 @@ FeedDate._meta = {
 }
 
 FeedDate.propTypes = {
+  /** An element type to render as (string or function). */
+  as: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.func,
+  ]),
+
   /** Primary content of the FeedDate. Mutually exclusive with the date prop. */
   children: customPropTypes.every([
     customPropTypes.disallow(['date']),

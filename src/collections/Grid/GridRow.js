@@ -2,6 +2,7 @@ import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
 import {
+  getElementType,
   getUnhandledProps,
   META,
   SUI,
@@ -27,8 +28,9 @@ function GridRow(props) {
     'row'
   )
   const rest = getUnhandledProps(GridRow, props)
+  const ElementType = getElementType(GridRow, props)
 
-  return <div {...rest} className={classes}>{children}</div>
+  return <ElementType {...rest} className={classes}>{children}</ElementType>
 }
 
 GridRow._meta = {
@@ -46,6 +48,12 @@ GridRow._meta = {
 }
 
 GridRow.propTypes = {
+  /** An element type to render as (string or function). */
+  as: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.func,
+  ]),
+
   /** A row can have its columns centered. */
   centered: PropTypes.bool,
 

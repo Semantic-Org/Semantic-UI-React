@@ -3,6 +3,7 @@ import cx from 'classnames'
 
 import {
   customPropTypes,
+  getElementType,
   getUnhandledProps,
   META,
   SUI,
@@ -25,8 +26,9 @@ function Loader(props) {
     'loader',
   )
   const rest = getUnhandledProps(Loader, props)
+  const ElementType = getElementType(Loader, props)
 
-  return <div className={classes} {...rest}>{ children || text }</div>
+  return <ElementType className={classes} {...rest}>{ children || text }</ElementType>
 }
 
 Loader._meta = {
@@ -39,6 +41,12 @@ Loader._meta = {
 }
 
 Loader.propTypes = {
+  /** An element type to render as (string or function). */
+  as: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.func,
+  ]),
+
   /** A loader can be active or visible. */
   active: PropTypes.bool,
 

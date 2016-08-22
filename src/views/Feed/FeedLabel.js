@@ -3,6 +3,7 @@ import React, { PropTypes } from 'react'
 
 import {
   customPropTypes,
+  getElementType,
   getUnhandledProps,
   META,
 } from '../../lib'
@@ -12,13 +13,14 @@ function FeedLabel(props) {
   const { children, className, icon, image } = props
   const classes = cx(className, 'label')
   const rest = getUnhandledProps(FeedLabel, props)
+  const ElementType = getElementType(FeedLabel, props)
 
   return (
-    <div {...rest} className={classes}>
+    <ElementType {...rest} className={classes}>
       {children}
       {createIcon(icon)}
       {createImg(image)}
-    </div>
+    </ElementType>
   )
 }
 
@@ -29,6 +31,12 @@ FeedLabel._meta = {
 }
 
 FeedLabel.propTypes = {
+  /** An element type to render as (string or function). */
+  as: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.func,
+  ]),
+
   /** Primary content of the FeedLabel. */
   children: customPropTypes.every([
     customPropTypes.disallow(['icon', 'image']),

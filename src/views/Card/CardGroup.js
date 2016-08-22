@@ -3,6 +3,7 @@ import React, { PropTypes } from 'react'
 
 import {
   customPropTypes,
+  getElementType,
   getUnhandledProps,
   META,
   SUI,
@@ -21,13 +22,14 @@ function CardGroup(props) {
     'cards',
   )
   const rest = getUnhandledProps(CardGroup, props)
+  const ElementType = getElementType(CardGroup, props)
 
   const content = !items ? children : items.map(item => {
     const key = item.key || [item.header, item.description].join('-')
     return <Card key={key} {...item} />
   })
 
-  return <div {...rest} className={classes}>{content}</div>
+  return <ElementType {...rest} className={classes}>{content}</ElementType>
 }
 
 CardGroup._meta = {
@@ -40,6 +42,12 @@ CardGroup._meta = {
 }
 
 CardGroup.propTypes = {
+  /** An element type to render as (string or function). */
+  as: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.func,
+  ]),
+
   /** A group of Card components. Mutually exclusive with items. */
   children: customPropTypes.every([
     customPropTypes.disallow(['items']),

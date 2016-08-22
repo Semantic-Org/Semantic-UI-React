@@ -4,6 +4,7 @@ import React, { PropTypes } from 'react'
 
 import {
   AutoControlledComponent as Component,
+  getElementType,
   getUnhandledProps,
   META,
   SUI,
@@ -21,6 +22,12 @@ const _meta = {
 
 class Rating extends Component {
   static propTypes = {
+    /** An element type to render as (string or function). */
+    as: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.func,
+    ]),
+
     /** Additional className. */
     className: PropTypes.string,
 
@@ -146,11 +153,12 @@ class Rating extends Component {
     )
 
     const rest = getUnhandledProps(Rating, this.props)
+    const ElementType = getElementType(Rating, this.props)
 
     return (
-      <div {...rest} className={classes} onMouseLeave={this.handleMouseLeave}>
+      <ElementType {...rest} className={classes} onMouseLeave={this.handleMouseLeave}>
         {this.renderIcons()}
-      </div>
+      </ElementType>
     )
   }
 }

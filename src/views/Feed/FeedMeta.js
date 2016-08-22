@@ -2,9 +2,10 @@ import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
 import {
-   customPropTypes,
-   getUnhandledProps,
-   META,
+  customPropTypes,
+  getElementType,
+  getUnhandledProps,
+  META,
 } from '../../lib'
 import FeedLike from './FeedLike'
 
@@ -12,12 +13,13 @@ function FeedMeta(props) {
   const { children, className, like, meta } = props
   const classes = cx(className, 'meta')
   const rest = getUnhandledProps(FeedMeta, props)
+  const ElementType = getElementType(FeedMeta, props)
 
   return (
-    <div {...rest} className={classes}>
+    <ElementType {...rest} className={classes}>
       {like && <FeedLike like={like} />}
       {children || meta}
-    </div>
+    </ElementType>
   )
 }
 
@@ -28,6 +30,12 @@ FeedMeta._meta = {
 }
 
 FeedMeta.propTypes = {
+  /** An element type to render as (string or function). */
+  as: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.func,
+  ]),
+
   /** Primary content of the FeedMeta. */
   children: customPropTypes.every([
     customPropTypes.disallow(['meta']),

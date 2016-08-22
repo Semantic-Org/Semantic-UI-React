@@ -4,10 +4,17 @@ import classNames from 'classnames'
 import {
   META,
   numberToWord,
+  getElementType,
 } from '../../lib'
 
 export default class FormField extends Component {
   static propTypes = {
+    /** An element type to render as (string or function). */
+    as: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.func,
+    ]),
+
     children: PropTypes.node,
     className: PropTypes.string,
     label: PropTypes.string,
@@ -26,11 +33,12 @@ export default class FormField extends Component {
       this.props.className,
       'field'
     )
+    const ElementType = getElementType(FormField, this.props)
     return (
-      <div {...this.props} className={classes}>
+      <ElementType {...this.props} className={classes}>
         {this.props.label && <label>{this.props.label}</label>}
         {this.props.children}
-      </div>
+      </ElementType>
     )
   }
 }

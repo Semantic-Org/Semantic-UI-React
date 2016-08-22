@@ -1,8 +1,10 @@
 import cx from 'classnames'
+import _ from 'lodash'
 import React, { PropTypes } from 'react'
 
 import {
   customPropTypes,
+  getElementType,
   getUnhandledProps,
   META,
   SUI,
@@ -17,22 +19,21 @@ function StatisticGroup(props) {
     'ui',
     useKeyOnly(horizontal, 'horizontal'),
     useWidthProp(widths),
+    'statistics',
     className,
-    'statistics'
   )
   const rest = getUnhandledProps(StatisticGroup, props)
+  const ElementType = getElementType(StatisticGroup, props)
 
-  if (!items) {
-    return <div {...rest} className={classes}>{children}</div>
+  if (children) {
+    return <ElementType {...rest} className={classes}>{children}</ElementType>
   }
 
-  let itemsJSX = items.map(item => {
-    const key = item.key || [item.label, item.title].join('-')
+  let itemsJSX = _.map(items, item => (
+    <Statistic key={item.childKey || [item.label, item.title].join('-')} {...item} />
+  ))
 
-    return <Statistic key={key} {...item} />
-  })
-
-  return <div {...rest} className={classes}>{itemsJSX}</div>
+  return <ElementType {...rest} className={classes}>{itemsJSX}</ElementType>
 }
 
 StatisticGroup._meta = {
@@ -45,6 +46,12 @@ StatisticGroup._meta = {
 }
 
 StatisticGroup.propTypes = {
+  /** An element type to render as (string or function). */
+  as: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.func,
+  ]),
+
   /** Primary content of the StatisticGroup. */
   children: customPropTypes.every([
     customPropTypes.disallow(['content']),
@@ -61,10 +68,9 @@ StatisticGroup.propTypes = {
   items: customPropTypes.every([
     customPropTypes.disallow(['children']),
     PropTypes.arrayOf(PropTypes.shape({
-      key: PropTypes.string,
-      label: PropTypes.string,
-      text: PropTypes.bool,
-      value: PropTypes.string,
+      childKey: PropTypes.string,
+      // this object is spread on the Statistic
+      // allow it to validate props instead
     })),
   ]),
 

@@ -3,6 +3,7 @@ import React, { PropTypes } from 'react'
 import cx from 'classnames'
 
 import {
+  getElementType,
   getUnhandledProps,
   META,
   SUI,
@@ -27,8 +28,9 @@ function Rail(props) {
     'rail',
   )
   const rest = getUnhandledProps(Rail, props)
+  const ElementType = getElementType(Rail, props)
 
-  return <div className={classes} {...rest}>{ children }</div>
+  return <ElementType className={classes} {...rest}>{ children }</ElementType>
 }
 
 Rail._meta = {
@@ -42,6 +44,12 @@ Rail._meta = {
 }
 
 Rail.propTypes = {
+  /** An element type to render as (string or function). */
+  as: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.func,
+  ]),
+
   /** A rail can appear attached to the main viewport. */
   attached: PropTypes.bool,
 

@@ -1,24 +1,17 @@
 import React, { PropTypes } from 'react'
 import cx from 'classnames'
-import { getUnhandledProps, META } from '../../lib'
+import { getElementType, getUnhandledProps, META } from '../../lib'
 
 function HeaderSubheader(props) {
-  const {
-    children, className,
-  } = props
-
-  const classes = cx(
-    'sub',
-    className,
-    'header'
-  )
-
+  const { children, className } = props
+  const classes = cx('sub header', className)
   const rest = getUnhandledProps(HeaderSubheader, props)
+  const ElementType = getElementType(HeaderSubheader, props)
 
   return (
-    <div className={classes} {...rest}>
+    <ElementType className={classes} {...rest}>
       {children}
-    </div>
+    </ElementType>
   )
 }
 
@@ -29,6 +22,12 @@ HeaderSubheader._meta = {
 }
 
 HeaderSubheader.propTypes = {
+  /** An element type to render as (string or function). */
+  as: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.func,
+  ]),
+
   /** Primary content of the HeaderSubheader */
   children: PropTypes.node,
 

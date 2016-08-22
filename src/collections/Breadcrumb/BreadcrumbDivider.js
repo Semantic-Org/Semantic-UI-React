@@ -4,6 +4,7 @@ import React, { PropTypes } from 'react'
 import {
   customPropTypes,
   getUnhandledProps,
+  getElementType,
   META,
 } from '../../lib'
 import { createIcon } from '../../factories'
@@ -15,10 +16,11 @@ function BreadcrumbDivider(props) {
   const { children, icon, className } = props
   const rest = getUnhandledProps(BreadcrumbDivider, props)
   const classes = cx(className, 'divider')
+  const ElementType = getElementType(BreadcrumbDivider, props)
 
   if (icon) return createIcon(icon, { ...rest, className: classes })
 
-  return <div {...rest} className={classes}>{children || '/'}</div>
+  return <ElementType {...rest} className={classes}>{children || '/'}</ElementType>
 }
 
 BreadcrumbDivider._meta = {
@@ -28,6 +30,12 @@ BreadcrumbDivider._meta = {
 }
 
 BreadcrumbDivider.propTypes = {
+  /** An element type to render as (string or function). */
+  as: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.func,
+  ]),
+
   /** Primary content of the Breadcrumb.Divider. */
   children: customPropTypes.every([
     customPropTypes.disallow(['icon']),

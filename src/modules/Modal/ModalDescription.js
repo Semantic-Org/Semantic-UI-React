@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 import cx from 'classnames'
 
-import { getUnhandledProps, META } from '../../lib'
+import { getElementType, getUnhandledProps, META } from '../../lib'
 
 function ModalDescription(props) {
   const { children, className } = props
@@ -12,11 +12,11 @@ function ModalDescription(props) {
   )
 
   const rest = getUnhandledProps(ModalDescription, props)
-
+  const ElementType = getElementType(ModalDescription, props)
   return (
-    <div className={classes} {...rest}>
+    <ElementType className={classes} {...rest}>
       {children}
-    </div>
+    </ElementType>
   )
 }
 
@@ -27,6 +27,12 @@ ModalDescription._meta = {
 }
 
 ModalDescription.propTypes = {
+  /** An element type to render as (string or function). */
+  as: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.func,
+  ]),
+
   /** Primary content */
   children: PropTypes.any,
 

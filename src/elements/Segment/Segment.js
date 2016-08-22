@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import classNames from 'classnames'
 
-import { getUnhandledProps, META } from '../../lib'
+import { getElementType, getUnhandledProps, META } from '../../lib'
 import { Header } from '../'
 import Segments from './SegmentSegments'
 
@@ -10,6 +10,12 @@ import Segments from './SegmentSegments'
  */
 export default class Segment extends Component {
   static propTypes = {
+    /** An element type to render as (string or function). */
+    as: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.func,
+    ]),
+
     /**
      * Segment tag body content.
      */
@@ -29,7 +35,7 @@ export default class Segment extends Component {
   static Segments = Segments
 
   render() {
-    const heading = <Header.H4>{this.props.heading}</Header.H4>
+    const heading = <Header as='h4'>{this.props.heading}</Header>
     const classes = classNames(
       'ui',
       this.props.className,
@@ -37,12 +43,13 @@ export default class Segment extends Component {
     )
 
     const rest = getUnhandledProps(Segment, this.props)
+    const ElementType = getElementType(Segment, this.props)
 
     return (
-      <div {...rest} className={classes}>
+      <ElementType {...rest} className={classes}>
         {this.props.heading && heading}
         {this.props.children}
-      </div>
+      </ElementType>
     )
   }
 }

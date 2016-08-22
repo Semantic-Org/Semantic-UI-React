@@ -5,6 +5,7 @@ import React, { PropTypes } from 'react'
 import {
   customPropTypes,
   getUnhandledProps,
+  getElementType,
   META,
   SUI,
 } from '../../lib'
@@ -18,8 +19,9 @@ function Breadcrumb(props) {
   const { children, className, divider, icon, size, sections } = props
   const rest = getUnhandledProps(Breadcrumb, props)
   const classes = cx('ui', className, size, 'breadcrumb')
+  const ElementType = getElementType(Breadcrumb, props)
 
-  if (!sections) return <div {...rest} className={classes}>{children}</div>
+  if (!sections) return <ElementType {...rest} className={classes}>{children}</ElementType>
 
   const dividerJSX = <BreadcrumbDivider icon={icon}>{divider}</BreadcrumbDivider>
   const sectionsJSX = []
@@ -37,7 +39,8 @@ function Breadcrumb(props) {
     }
   })
 
-  return <div {...rest} className={classes}>{sectionsJSX}</div>
+
+  return <ElementType {...rest} className={classes}>{sectionsJSX}</ElementType>
 }
 
 Breadcrumb._meta = {
@@ -49,6 +52,12 @@ Breadcrumb._meta = {
 }
 
 Breadcrumb.propTypes = {
+  /** An element type to render as (string or function). */
+  as: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.func,
+  ]),
+
   /** Primary content of the Breadcrumb */
   children: customPropTypes.every([
     customPropTypes.disallow(['sections', 'icon', 'divider']),

@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 import classNames from 'classnames'
 
-import { getUnhandledProps, META } from '../../lib'
+import { getElementType, getUnhandledProps, META } from '../../lib'
 
 function ModalHeader(props) {
   const { children, className } = props
@@ -12,11 +12,12 @@ function ModalHeader(props) {
   )
 
   const rest = getUnhandledProps(ModalHeader, props)
+  const ElementType = getElementType(ModalHeader, props)
 
   return (
-    <div className={classes} {...rest}>
+    <ElementType className={classes} {...rest}>
       {children}
-    </div>
+    </ElementType>
   )
 }
 
@@ -27,6 +28,12 @@ ModalHeader._meta = {
 }
 
 ModalHeader.propTypes = {
+  /** An element type to render as (string or function). */
+  as: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.func,
+  ]),
+
   /** Primary content of the modal header */
   children: PropTypes.any,
 

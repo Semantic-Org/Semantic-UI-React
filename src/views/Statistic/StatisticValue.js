@@ -3,6 +3,7 @@ import React, { PropTypes } from 'react'
 
 import {
   customPropTypes,
+  getElementType,
   getUnhandledProps,
   META,
   useKeyOnly,
@@ -12,8 +13,9 @@ function StatisticValue(props) {
   const { children, className, text, value } = props
   const classes = cx(useKeyOnly(text, 'text'), className, 'value')
   const rest = getUnhandledProps(StatisticValue, props)
+  const ElementType = getElementType(StatisticValue, props)
 
-  return <div {...rest} className={classes}>{children || value}</div>
+  return <ElementType {...rest} className={classes}>{children || value}</ElementType>
 }
 
 StatisticValue._meta = {
@@ -23,6 +25,12 @@ StatisticValue._meta = {
 }
 
 StatisticValue.propTypes = {
+  /** An element type to render as (string or function). */
+  as: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.func,
+  ]),
+
   /** Primary content of the StatisticValue. */
   children: customPropTypes.every([
     customPropTypes.disallow(['content']),

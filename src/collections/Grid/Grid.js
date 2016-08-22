@@ -2,6 +2,7 @@ import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
 import {
+  getElementType,
   getUnhandledProps,
   META,
   SUI,
@@ -38,8 +39,9 @@ function Grid(props) {
     'grid'
   )
   const rest = getUnhandledProps(Grid, props)
+  const ElementType = getElementType(Grid, props)
 
-  return <div {...rest} className={classes}>{children}</div>
+  return <ElementType {...rest} className={classes}>{children}</ElementType>
 }
 
 Grid.Column = GridColumn
@@ -61,6 +63,12 @@ Grid._meta = {
 }
 
 Grid.propTypes = {
+  /** An element type to render as (string or function). */
+  as: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.func,
+  ]),
+
   /** A grid can have rows divided into cells. */
   celled: PropTypes.oneOfType([
     PropTypes.bool,

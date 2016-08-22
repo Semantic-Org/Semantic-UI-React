@@ -3,6 +3,7 @@ import cx from 'classnames'
 
 import {
   customPropTypes,
+  getElementType,
   getUnhandledProps,
   META,
 } from '../../lib'
@@ -13,16 +14,17 @@ function StepContent(props) {
   const { className, children, description, title } = props
   const classes = cx(className, 'content')
   const rest = getUnhandledProps(StepContent, props)
+  const ElementType = getElementType(StepContent, props)
 
   if (children) {
     return <div {...rest} className={classes}>{ children }</div>
   }
 
   return (
-    <div {...rest} className={classes}>
+    <ElementType {...rest} className={classes}>
       { title && <StepTitle title={title} /> }
       { description && <StepDescription description={description} /> }
-    </div>
+    </ElementType>
   )
 }
 
@@ -33,6 +35,12 @@ StepContent._meta = {
 }
 
 StepContent.propTypes = {
+  /** An element type to render as (string or function). */
+  as: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.func,
+  ]),
+
   /** Classes that will be added to the StepContent className. */
   className: PropTypes.string,
 

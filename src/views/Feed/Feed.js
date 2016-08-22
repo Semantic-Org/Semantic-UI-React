@@ -4,6 +4,7 @@ import React, { PropTypes } from 'react'
 
 import {
   customPropTypes,
+  getElementType,
   getUnhandledProps,
   META,
   SUI,
@@ -22,12 +23,13 @@ function Feed(props) {
   const { children, className, events, size } = props
   const classes = cx('ui', className, size, 'feed')
   const rest = getUnhandledProps(Feed, props)
+  const ElementType = getElementType(Feed, props)
 
-  if (!events) {
-    return <div {...rest} className={classes}>{children}</div>
+  if (children) {
+    return <ElementType {...rest} className={classes}>{children}</ElementType>
   }
 
-  const eventsJSX = events.map(eventProps => {
+  const eventsJSX = _.map(events, eventProps => {
     const { childKey, date, meta, summary, ...eventData } = eventProps
     const finalKey = childKey || [date, meta, summary].join('-')
 
@@ -42,7 +44,7 @@ function Feed(props) {
     )
   })
 
-  return <div {...rest} className={classes}>{eventsJSX}</div>
+  return <ElementType {...rest} className={classes}>{eventsJSX}</ElementType>
 }
 
 Feed._meta = {
@@ -54,6 +56,12 @@ Feed._meta = {
 }
 
 Feed.propTypes = {
+  /** An element type to render as (string or function). */
+  as: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.func,
+  ]),
+
   /** Primary content of the Feed. */
   children: customPropTypes.every([
     customPropTypes.disallow(['events']),

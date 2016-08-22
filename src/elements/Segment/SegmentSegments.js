@@ -1,12 +1,18 @@
 import React, { Component, PropTypes } from 'react'
 import classNames from 'classnames'
-import { getUnhandledProps, META } from '../../lib'
+import { getElementType, getUnhandledProps, META } from '../../lib'
 
 /**
  * A group of segments can be formatted to appear together.
  */
 export default class SegmentSegments extends Component {
   static propTypes = {
+    /** An element type to render as (string or function). */
+    as: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.func,
+    ]),
+
     children: PropTypes.node,
     className: PropTypes.string,
   }
@@ -27,11 +33,12 @@ export default class SegmentSegments extends Component {
     )
 
     const rest = getUnhandledProps(SegmentSegments, this.props)
+    const ElementType = getElementType(SegmentSegments, this.props)
 
     return (
-      <div {...rest} className={classes}>
+      <ElementType {...rest} className={classes}>
         {children}
-      </div>
+      </ElementType>
     )
   }
 }

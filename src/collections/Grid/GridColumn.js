@@ -2,6 +2,7 @@ import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
 import {
+  getElementType,
   getUnhandledProps,
   META,
   SUI,
@@ -32,8 +33,9 @@ function GridColumn(props) {
     'column'
   )
   const rest = getUnhandledProps(GridColumn, props)
+  const ElementType = getElementType(GridColumn, props)
 
-  return <div {...rest} className={classes}>{children}</div>
+  return <ElementType {...rest} className={classes}>{children}</ElementType>
 }
 
 GridColumn._meta = {
@@ -56,6 +58,12 @@ GridColumn._meta = {
 }
 
 GridColumn.propTypes = {
+  /** An element type to render as (string or function). */
+  as: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.func,
+  ]),
+
   /** Primary content of the GridColumn. */
   children: PropTypes.node,
 

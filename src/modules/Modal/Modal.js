@@ -9,6 +9,7 @@ import ModalDescription from './ModalDescription'
 import Portal from 'react-portal'
 
 import {
+  getElementType,
   getUnhandledProps,
   keyboardKey,
   makeDebugger,
@@ -33,6 +34,12 @@ const _meta = {
  */
 class Modal extends Component {
   static propTypes = {
+    /** An element type to render as (string or function). */
+    as: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.func,
+    ]),
+
     /** Primary content of the modal. Consider using ModalHeader, ModalContent or ModalActions here */
     children: PropTypes.node,
 
@@ -191,11 +198,12 @@ class Modal extends Component {
       className,
     )
     const rest = getUnhandledProps(Modal, this.props)
+    const ElementType = getElementType(Modal, this.props)
 
-    let modalJSX = (
-      <div {...rest} className={classes} style={{ marginTop }} ref={c => (this._modalNode = c)}>
+    const modalJSX = (
+      <ElementType {...rest} className={classes} style={{ marginTop }} ref={c => (this._modalNode = c)}>
         {children}
-      </div>
+      </ElementType>
     )
 
     // wrap dimmer modals

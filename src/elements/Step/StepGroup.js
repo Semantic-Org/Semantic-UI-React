@@ -4,6 +4,7 @@ import React, { PropTypes } from 'react'
 
 import {
   customPropTypes,
+  getElementType,
   getUnhandledProps,
   META,
   SUI,
@@ -25,13 +26,14 @@ function StepGroup(props) {
     'steps',
   )
   const rest = getUnhandledProps(StepGroup, props)
+  const ElementType = getElementType(StepGroup, props)
 
   const content = !items ? children : items.map(item => {
     const key = item.key || [item.title, item.description].join('-')
     return <Step key={key} {...item} />
   })
 
-  return <div {...rest} className={classes}>{content}</div>
+  return <ElementType {...rest} className={classes}>{content}</ElementType>
 }
 
 StepGroup._meta = {
@@ -45,6 +47,12 @@ StepGroup._meta = {
 }
 
 StepGroup.propTypes = {
+  /** An element type to render as (string or function). */
+  as: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.func,
+  ]),
+
   /** Classes that will be added to the StepGroup className. */
   className: PropTypes.string,
 

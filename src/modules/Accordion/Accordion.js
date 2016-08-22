@@ -5,6 +5,7 @@ import React, { Children, cloneElement, PropTypes } from 'react'
 import {
   AutoControlledComponent as Component,
   customPropTypes,
+  getElementType,
   META,
   useKeyOnly,
 } from '../../lib'
@@ -21,6 +22,12 @@ export default class Accordion extends Component {
   ]
 
   static propTypes = {
+    /** An element type to render as (string or function). */
+    as: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.func,
+    ]),
+
     /** Index of the currently active panel. */
     activeIndex: PropTypes.number,
 
@@ -159,11 +166,12 @@ export default class Accordion extends Component {
     )
 
     const rest = _.omit(this.props, _.keys(Accordion.propTypes))
+    const ElementType = getElementType(Accordion, this.props)
 
     return (
-      <div {...rest} className={classes}>
+      <ElementType {...rest} className={classes}>
         {panels ? this.renderPanels() : this.renderChildren()}
-      </div>
+      </ElementType>
     )
   }
 }

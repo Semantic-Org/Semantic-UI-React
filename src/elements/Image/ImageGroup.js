@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react'
 import cx from 'classnames'
 
 import {
+  getElementType,
   getUnhandledProps,
   META,
   SUI,
@@ -14,8 +15,9 @@ function ImageGroup(props) {
   const { className, children, size } = props
   const classes = cx('ui', size, className, 'images')
   const rest = getUnhandledProps(ImageGroup, props)
+  const ElementType = getElementType(ImageGroup, props)
 
-  return <div className={classes} {...rest}>{children}</div>
+  return <ElementType className={classes} {...rest}>{children}</ElementType>
 }
 
 ImageGroup._meta = {
@@ -28,6 +30,12 @@ ImageGroup._meta = {
 }
 
 ImageGroup.propTypes = {
+  /** An element type to render as (string or function). */
+  as: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.func,
+  ]),
+
   /** Class names for custom styling. */
   children: PropTypes.any,
 

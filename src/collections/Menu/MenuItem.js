@@ -1,10 +1,11 @@
 import React, { PropTypes } from 'react'
 import cx from 'classnames'
 
-import { META } from '../../lib'
+import { getElementType, META } from '../../lib'
 import { Label } from '../../elements'
 
-function MenuItem({ __onClick, active, children, className, label, name, onClick, ...rest }) {
+function MenuItem(props) {
+  const { __onClick, active, children, className, label, name, onClick, ...rest } = props
   const handleClick = (e) => {
     if (__onClick) __onClick(name)
     if (onClick) onClick(name)
@@ -16,12 +17,14 @@ function MenuItem({ __onClick, active, children, className, label, name, onClick
     'item',
   )
 
+  const ElementType = getElementType(MenuItem, props)
+
   return (
-    <a {...rest} className={classes} onClick={handleClick}>
+    <ElementType {...rest} className={classes} onClick={handleClick}>
       {name}
       {label && <Label>{label}</Label>}
       {children}
-    </a>
+    </ElementType>
   )
 }
 
@@ -32,6 +35,12 @@ MenuItem._meta = {
 }
 
 MenuItem.propTypes = {
+  /** An element type to render as (string or function). */
+  as: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.func,
+  ]),
+
   __onClick: PropTypes.func,
   active: PropTypes.bool,
   children: PropTypes.node,
@@ -39,6 +48,10 @@ MenuItem.propTypes = {
   label: PropTypes.node,
   name: PropTypes.string,
   onClick: PropTypes.func,
+}
+
+MenuItem.defaultProps = {
+  as: 'a',
 }
 
 export default MenuItem

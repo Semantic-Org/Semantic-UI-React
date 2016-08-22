@@ -42,4 +42,4 @@ export const ModalFooter = deprecateComponent('ModalFooter', 'Use "Modal.Actions
 // Views
 //
 import Item from './views/Item/Item'
-export const Items = deprecateComponent('Items', 'Use "Item.Items" instead.', Item.Items)
+export const Items = deprecateComponent('Items', 'Use "Item.Group" instead.', Item.Group)

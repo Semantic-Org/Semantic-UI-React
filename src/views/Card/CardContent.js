@@ -3,6 +3,7 @@ import React, { PropTypes } from 'react'
 
 import {
   customPropTypes,
+  getElementType,
   getUnhandledProps,
   META,
   useKeyOnly,
@@ -22,17 +23,18 @@ function CardContent(props) {
     'content',
   )
   const rest = getUnhandledProps(CardContent, props)
+  const ElementType = getElementType(CardContent, props)
 
   if (children) {
     return <div {...rest} className={classes}>{children}</div>
   }
 
   return (
-    <div {...rest} className={classes}>
+    <ElementType {...rest} className={classes}>
       {header && <CardHeader content={header} />}
       {meta && <CardMeta content={meta} />}
       {description && <CardDescription content={description} />}
-    </div>
+    </ElementType>
   )
 }
 
@@ -43,6 +45,12 @@ CardContent._meta = {
 }
 
 CardContent.propTypes = {
+  /** An element type to render as (string or function). */
+  as: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.func,
+  ]),
+
   /** Primary content of the CardContent. Mutually exclusive with all shorthand props. */
   children: customPropTypes.every([
     customPropTypes.disallow(['description', 'header', 'meta']),

@@ -4,6 +4,7 @@ import React, { PropTypes } from 'react'
 
 import {
   customPropTypes,
+  getElementType,
   getUnhandledProps,
   META,
   SUI,
@@ -27,16 +28,17 @@ function Statistic(props) {
     'statistic',
   )
   const rest = getUnhandledProps(Statistic, props)
+  const ElementType = getElementType(Statistic, props)
 
   if (children) {
-    return <div {...rest} className={classes}>{children}</div>
+    return <ElementType {...rest} className={classes}>{children}</ElementType>
   }
 
   return (
-    <div {...rest} className={classes}>
+    <ElementType {...rest} className={classes}>
       <StatisticValue text={text} value={value} />
       <StatisticLabel label={label} />
-    </div>
+    </ElementType>
   )
 }
 
@@ -51,6 +53,12 @@ Statistic._meta = {
 }
 
 Statistic.propTypes = {
+  /** An element type to render as (string or function). */
+  as: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.func,
+  ]),
+
   /** Primary content of the Statistic. */
   children: customPropTypes.every([
     customPropTypes.disallow(['label', 'value']),
@@ -87,7 +95,10 @@ Statistic.propTypes = {
   /** Value content of the Statistic. Mutually exclusive with the children prop. */
   value: customPropTypes.every([
     customPropTypes.disallow(['children']),
-    PropTypes.string,
+    PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+    ]),
   ]),
 }
 

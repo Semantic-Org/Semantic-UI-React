@@ -6,6 +6,7 @@ import { findDOMNode } from 'react-dom'
 import {
   AutoControlledComponent as Component,
   customPropTypes,
+  getElementType,
   getUnhandledProps,
   keyboardKey,
   makeDebugger,
@@ -37,6 +38,12 @@ const _meta = {
  */
 export default class Dropdown extends Component {
   static propTypes = {
+    /** An element type to render as (string or function). */
+    as: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.func,
+    ]),
+
     // ------------------------------------
     // Behavior
     // ------------------------------------
@@ -868,9 +875,10 @@ export default class Dropdown extends Component {
     }
 
     const rest = getUnhandledProps(Dropdown, this.props)
+    const ElementType = getElementType(Dropdown, this.props)
 
     return (
-      <div
+      <ElementType
         {...rest}
         {...conditionalProps}
         onChange={this.onChange}
@@ -884,7 +892,7 @@ export default class Dropdown extends Component {
         {this.renderText()}
         {createIcon(icon)}
         {this.renderMenu()}
-      </div>
+      </ElementType>
     )
   }
 }

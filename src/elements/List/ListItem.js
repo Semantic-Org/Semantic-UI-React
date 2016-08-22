@@ -1,11 +1,17 @@
 import React, { Component, PropTypes } from 'react'
 import cx from 'classnames'
 
-import { META } from '../../lib'
+import { getElementType, META } from '../../lib'
 import { createIcon, createImage } from '../../factories'
 
 export default class ListItem extends Component {
   static propTypes = {
+    /** An element type to render as (string or function). */
+    as: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.func,
+    ]),
+
     children: PropTypes.node,
     className: PropTypes.string,
     description: PropTypes.node,
@@ -36,12 +42,12 @@ export default class ListItem extends Component {
 
     // wrap content for icon/image layouts
     if (media) content = <div className='content'>{content}</div>
-
+    const ElementType = getElementType(ListItem, this.props)
     return (
-      <div {...rest} className={classes}>
+      <ElementType {...rest} className={classes}>
         {media}
         {content}
-      </div>
+      </ElementType>
     )
   }
 }

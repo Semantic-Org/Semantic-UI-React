@@ -5,6 +5,7 @@ import React, { Component, PropTypes } from 'react'
 
 import {
   deprecateProps,
+  getElementType,
   getUnhandledProps,
   META,
 } from '../../lib'
@@ -13,6 +14,12 @@ import FormFields from './FormFields'
 
 export default class Form extends Component {
   static propTypes = {
+    /** An element type to render as (string or function). */
+    as: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.func,
+    ]),
+
     children: PropTypes.node,
     className: PropTypes.string,
     settings: PropTypes.shape({
@@ -42,6 +49,7 @@ export default class Form extends Component {
   }
 
   static defaultProps = {
+    as: 'form',
     // prevent submit by default
     // https://github.com/Semantic-Org/Semantic-UI/issues/546
     onSuccess: () => false,
@@ -125,10 +133,11 @@ export default class Form extends Component {
       'form'
     )
     const props = getUnhandledProps(Form, this.props)
+    const ElementType = getElementType(Form, this.props)
     return (
-      <form {...props} className={classes} ref='element'>
+      <ElementType {...props} className={classes} ref='element'>
         {this.props.children}
-      </form>
+      </ElementType>
     )
   }
 }
