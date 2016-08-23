@@ -100,20 +100,6 @@ config = Object.assign({}, config, {
     __TEST__,
     __PROD__,
   },
-
-  // ----------------------------------
-  // Test Configuration
-  // ----------------------------------
-  coverage_enabled: !!argv.coverage,
-  coverage_reporters: [
-    {
-      type: 'text-summary',
-    },
-    {
-      type: 'lcov',
-      dir: 'coverage',
-    },
-  ],
 })
 
 module.exports = config
