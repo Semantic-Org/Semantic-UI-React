@@ -33,9 +33,10 @@ export default class Sidebar extends Component {
   handleDocumentKeyDown = (e) => {
     const code = keyboardKey.getCode(e)
     const isAZ = code >= 65 && code <= 90
+    const hasModifier = e.altKey || e.ctrlKey || e.metaKey
     const bodyHasFocus = document.activeElement === document.body
 
-    if (isAZ && bodyHasFocus) this._searchInput.focus()
+    if (!hasModifier && isAZ && bodyHasFocus) this._searchInput.focus()
   }
 
   renderItemsByType = (type) => {
