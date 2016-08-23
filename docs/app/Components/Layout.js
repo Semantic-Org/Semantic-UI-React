@@ -20,6 +20,7 @@ export default class Layout extends Component {
   resetPage = () => {
     anchors.add('h2, h3, h4, h5, h6')
     window.scrollTo(0, 0)
+    console.log(this.props)
   }
 
   componentDidMount() {
