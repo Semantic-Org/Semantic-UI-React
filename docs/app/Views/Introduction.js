@@ -104,7 +104,7 @@ const Comparison = ({ jsx, html }) => (
           {jsx}
         </Highlight>
       </Grid.Column>
-      <Grid.Column only='large screen' large='1' textAlign='center'>
+      <Grid.Column only='large screen' textAlign='center'>
         <Divider vertical>
           <Icon name='right arrow circle' />
         </Divider>
