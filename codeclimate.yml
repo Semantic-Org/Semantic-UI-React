@@ -12,32 +12,29 @@
 # For a list of all available engines, see here:
 # http://docs.codeclimate.com/article/296-engines-available-engines
 
+---
 engines:
-# to turn on an engine, add it here and set enabled to `true`
-# to turn off an engine, set enabled to `false` or remove it
+  duplication:
+    enabled: true
+    config:
+      languages:
+      - javascript
   eslint:
     enabled: true
   csslint:
     enabled: true
-
-# Engines can analyze files and report issues on them, but you can separately
-# decide which files will receive ratings based on those issues. This is
-# specified by path patterns under the ratings key.
-
-# For more details see here:
-# http://docs.codeclimate.com/article/289-configuring-your-repository-via-codeclimate-yml#platform
-
-# Note: If the ratings key is not specified, this will result in a 0.0 GPA on your dashboard.
+  fixme:
+    enabled: true
 
 ratings:
   paths:
   - src/**
   - "**.js"
 
-# You can globally exclude files from being analyzed by any engine using the
-# exclude_paths key.
-
 exclude_paths:
-  - docs/**/*
-  - node_modules/**/*
-  - test/**/*
+  - coverage/
+  - docs/
+  - dist/
+  - dll/
+  - node_modules/
+  - test/
