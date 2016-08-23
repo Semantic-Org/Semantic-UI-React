@@ -94,13 +94,31 @@ const MessageSubComponentsHTML = `<div class="ui icon message">
     We're fetching that content for you.
   </div>
 </div>`
+const HeaderAugmentationJSX = `<Header as='h3'>
+  Learn More
+</Header>`
+const HeaderAugmentationHTML = `<h3 class="ui header">
+  Learn More
+</h3>`
+const MenuItemLinkAugmentationJSX = `import { Link } from 'react-router'
+
+<Menu>
+  <MenuItem as={Link} to='/home'>
+    Home
+  </MenuItem>
+</Menu>`
+const MenuItemLinkAugmentationHTML = `<div class="ui menu">
+  <a class="item">
+    Learn More
+  </a>
+</div>`
 
 const Comparison = ({ jsx, html }) => (
   <Segment className='code-example'>
     <Grid columns='equal' centered textAlign='left'>
       <Grid.Column mobile='16' tablet='16' computer='8' largeScreen='7'>
         <Label size='tiny' attached='top left'>JSX</Label>
-        <Highlight className='language-xml'>
+        <Highlight className='language-javascript'>
           {jsx}
         </Highlight>
       </Grid.Column>
@@ -149,13 +167,17 @@ const Introduction = () => (
       </Message>
       <List>
         <List.Item icon='check mark'>jQuery Free</List.Item>
-        <List.Item icon='check mark'>Declarative Components</List.Item>
+        <List.Item icon='check mark'>Declarative API</List.Item>
+        <List.Item icon='check mark'>Augmentation</List.Item>
         <List.Item icon='check mark'>Shorthand Props</List.Item>
         <List.Item icon='check mark'>Sub Components</List.Item>
         <List.Item icon='check mark'>Auto Controlled State</List.Item>
       </List>
     </Segment>
 
+    {/* ----------------------------------------
+     *  jQuery Free
+     * -------------------------------------- */}
     <Segment className='basic padded'>
       <Header as='h2' dividing>jQuery Free</Header>
       <p>
@@ -169,18 +191,46 @@ const Introduction = () => (
       </p>
     </Segment>
 
+    {/* ----------------------------------------
+     *  Declarative API
+     * -------------------------------------- */}
     <Segment className='basic padded'>
-      <Header as='h2' dividing>Declarative Components</Header>
-      Declarative APIs provide for robust features and prop validation.
+      <Header as='h2' dividing>Declarative API</Header>
+      <p>
+        Declarative APIs provide for robust features and prop validation.
+      </p>
 
       <Comparison jsx={RatingJSX} html={RatingHTML} />
       <Comparison jsx={ButtonJSX} html={ButtonHTML} />
     </Segment>
 
+    {/* ----------------------------------------
+     *  Augmentation
+     * -------------------------------------- */}
+    <Segment className='basic padded'>
+      <Header as='h2' dividing>Augmentation</Header>
+      <p>
+        Control the rendered HTML tag, or render one component <code>as</code> another component.
+        Extra props are passed to the component you are rending <code>as</code>.
+      </p>
+
+      <p>
+        Augmentation is powerful. You can compose component features and props without adding extra nested components.
+        This is essential for working with <code>MenuLinks</code> and <code>react-router</code>.
+      </p>
+
+      <Comparison jsx={HeaderAugmentationJSX} html={HeaderAugmentationHTML} />
+      <Comparison jsx={MenuItemLinkAugmentationJSX} html={MenuItemLinkAugmentationHTML} />
+    </Segment>
+
+    {/* ----------------------------------------
+     *  Shorthand Props
+     * -------------------------------------- */}
     <Segment className='basic padded'>
       <Header as='h2' dividing>Shorthand Props</Header>
       <p>
         Shorthand props generate markup for you, making many use cases a breeze.
+        All object props are spread on the child components.
       </p>
 
       <Header as='h3'>Child Object Arrays</Header>
@@ -208,6 +258,9 @@ const Introduction = () => (
       <Comparison jsx={LabelJSX} html={LabelHTML} />
     </Segment>
 
+    {/* ----------------------------------------
+     *  Sub Components
+     * -------------------------------------- */}
     <Segment className='basic padded'>
       <Header as='h2' dividing>Sub Components</Header>
       <p>
@@ -217,6 +270,9 @@ const Introduction = () => (
       <Comparison jsx={MessageSubComponentsJSX} html={MessageSubComponentsHTML} />
     </Segment>
 
+    {/* ----------------------------------------
+     *  Auto Controlled State
+     * -------------------------------------- */}
     <Segment className='basic padded'>
       <Header as='h2' dividing>Auto Controlled State</Header>
 
