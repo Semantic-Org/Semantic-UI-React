@@ -147,8 +147,7 @@ describe('Label Component', () => {
         .should.not.have.tagName('a')
     })
     it('renders label as an "a"', () => {
-      shallow(<Label onClick={() => {
-      }} />)
+      shallow(<Label onClick={() => null} />)
         .should.have.tagName('a')
     })
     it('is called when label is clicked', () => {
@@ -171,8 +170,7 @@ describe('Label Component', () => {
     })
 
     it('adds a delete icon as last child', () => {
-      shallow(<Label onRemove={() => {
-      }}><br /></Label>)
+      shallow(<Label onRemove={() => null}><br /></Label>)
         .children()
         .last()
         .should.match('.delete')
@@ -194,8 +192,7 @@ describe('Label Component', () => {
 
   describe('onDetailClick', () => {
     it('renders detail as an a tag', () => {
-      shallow(<Label detail={faker.hacker.noun()} onDetailClick={() => {
-      }} />)
+      shallow(<Label detail={faker.hacker.noun()} onDetailClick={() => null} />)
         .should.have.descendants('a.detail')
     })
 
