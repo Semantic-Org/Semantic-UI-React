@@ -7,6 +7,9 @@ import {
   META,
 } from '../../lib'
 
+/**
+ * A card can contain content metadata
+ */
 function CardMeta(props) {
   const { className, children, content } = props
   const classes = cx(className, 'meta')

@@ -11,6 +11,9 @@ import CardDescription from './CardDescription'
 import CardHeader from './CardHeader'
 import CardMeta from './CardMeta'
 
+/**
+ * A card can contain blocks of content or extra content meant to be formatted separately from the main content
+ */
 function CardContent(props) {
   const { className, children, description, extra, header, meta } = props
   const classes = cx(

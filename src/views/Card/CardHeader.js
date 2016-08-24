@@ -7,6 +7,9 @@ import {
   META,
 } from '../../lib'
 
+/**
+ * A card can contain a header
+ */
 function CardHeader(props) {
   const { className, children, content } = props
   const classes = cx(className, 'header')
