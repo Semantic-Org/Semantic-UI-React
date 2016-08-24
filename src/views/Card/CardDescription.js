@@ -7,6 +7,9 @@ import {
   META,
 } from '../../lib'
 
+/**
+ * A card can contain a description with one or more paragraphs
+ */
 function CardDescription(props) {
   const { className, children, content } = props
   const classes = cx(className, 'description')

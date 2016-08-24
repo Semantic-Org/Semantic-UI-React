@@ -15,6 +15,9 @@ import CardGroup from './CardGroup'
 import CardHeader from './CardHeader'
 import CardMeta from './CardMeta'
 
+/**
+ * A card displays site content in a manner similar to a playing card
+ */
 function Card(props) {
   const {
     centered,
