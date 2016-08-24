@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import React, { Component, PropTypes } from 'react'
 
-import { Divider, Header, Label, Table } from 'stardust'
+import { Label, Table } from 'stardust'
 
 /**
  * Displays a table of a Component's PropTypes.
@@ -61,7 +61,6 @@ export default class ComponentProps extends Component {
 
     return (
       <div>
-        <Header as='h2'>Props</Header>
         <Table data={content} className='very basic compact'>
           <Table.Column dataKey='name' cellRenderer={this.nameRenderer} />
           <Table.Column cellRenderer={this.requiredRenderer} />
@@ -69,7 +68,6 @@ export default class ComponentProps extends Component {
           <Table.Column dataKey='defaultValue' cellRenderer={this.defaultValueRenderer} />
           <Table.Column dataKey='description' />
         </Table>
-        <Divider className='hidden section' />
       </div>
     )
   }

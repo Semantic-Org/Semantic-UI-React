@@ -1,7 +1,7 @@
 import React, { Component, createElement, PropTypes } from 'react'
 
 import { exampleContext } from 'docs/app/utils'
-import { Divider, Header, Icon, Message } from 'stardust'
+import { Grid, Icon, Message } from 'stardust'
 
 export default class ComponentExamples extends Component {
   static propTypes = {
@@ -22,29 +22,23 @@ export default class ComponentExamples extends Component {
   renderMissingExamples = () => {
     const { name } = this.props
     return (
-      <Message info icon>
-        <Icon name='book' />
-        <Message.Content>
-          If there's no
-          <a
-            href='https://github.com/TechnologyAdvice/stardust/pulls'
-          > pull request </a>
-          open for <code>&lt;{name} /&gt;</code> examples, you should
-          <a
-            href='https://github.com/TechnologyAdvice/stardust/blob/master/CONTRIBUTING.md'
-          > contribute</a>!
-        </Message.Content>
-      </Message>
+      <Grid padded>
+        <Grid.Column>
+          <Message info icon>
+            <Icon name='search' />
+            <Message.Content>
+              If there's no
+              <a href='https://github.com/TechnologyAdvice/stardust/pulls'> pull request </a>
+              open for <code>&lt;{name} /&gt;</code> examples, you should
+              <a href='https://github.com/TechnologyAdvice/stardust/blob/master/CONTRIBUTING.md'> contribute</a>!
+            </Message.Content>
+          </Message>
+        </Grid.Column>
+      </Grid>
     )
   }
 
   render() {
-    return (
-      <div>
-        <Header as='h2'>Examples</Header>
-        {this.renderExample() || this.renderMissingExamples()}
-        <Divider className='hidden section' />
-      </div>
-    )
+    return this.renderExample() || this.renderMissingExamples()
   }
 }

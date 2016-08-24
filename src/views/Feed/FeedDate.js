@@ -7,7 +7,9 @@ import {
   getUnhandledProps,
   META,
 } from '../../lib'
-
+/**
+ * Show a feed date
+ */
 function FeedDate(props) {
   const { children, className, date } = props
   const classes = cx(className, 'date')

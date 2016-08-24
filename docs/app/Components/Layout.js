@@ -5,7 +5,6 @@ import React, { Component, PropTypes } from 'react'
 
 import Sidebar from 'docs/app/Components/Sidebar/Sidebar'
 import style from 'docs/app/Style'
-import { Grid } from 'stardust'
 import TAAttribution from 'docs/app/Components/TAAttribution/TAAttribution'
 
 const anchors = new AnchorJS({
@@ -22,6 +21,7 @@ export default class Layout extends Component {
     anchors
       .add('h2, h3, h4, h5, h6')
       .remove([1, 2, 3, 4, 5, 6].map(n => `.rendered-example h${n}`).join(', '))
+      .remove('.no-anchor')
   }
 
   componentDidMount() {
@@ -37,11 +37,7 @@ export default class Layout extends Component {
       <div style={style.container}>
         <Sidebar style={style.menu} />
         <div style={style.main}>
-          <Grid padded>
-            <Grid.Column>
-              {this.props.children}
-            </Grid.Column>
-          </Grid>
+          {this.props.children}
           <TAAttribution />
         </div>
       </div>
