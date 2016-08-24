@@ -88,7 +88,7 @@
     "gulp-load-plugins": "^1.2.2",
     "gulp-plumber": "^1.0.1",
     "gulp-util": "^3.0.6",
-    "history": "^3.0.0",
+    "history": "^2.1.2",
     "html-webpack-plugin": "^2.17.0",
     "imports-loader": "^0.6.4",
     "json-loader": "^0.5.3",
