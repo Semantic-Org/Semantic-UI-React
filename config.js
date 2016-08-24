@@ -97,6 +97,7 @@ config = Object.assign({}, config, {
     __DEV__,
     __DEBUG__: !!argv.debug,
     __STAGING__,
+    __PATH_SEP__: JSON.stringify(path.sep),
     __TEST__,
     __PROD__,
   },
