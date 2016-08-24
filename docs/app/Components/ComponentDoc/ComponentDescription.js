@@ -13,6 +13,8 @@ const descriptionStyle = {
   fontSize: '1.2em',
 }
 
+const pathSepRegEx = new RegExp(__PATH_SEP__, 'g')
+
 export default class ComponentDescription extends Component {
   static propTypes = {
     /** Stardust component _meta object. */
@@ -44,11 +46,13 @@ export default class ComponentDescription extends Component {
 
   renderSourceLink() {
     const { docPath } = this.props
+    // no matter the OS path separator, use '/' since these link to github
+    const posixPath = docPath.replace(pathSepRegEx, '/')
     return (
       <List.Item icon='github'>
         <code>
-          <a href={`https://github.com/TechnologyAdvice/stardust/blob/master/${docPath}`} target='_blank'>
-            {docPath}
+          <a href={`https://github.com/TechnologyAdvice/stardust/blob/master/${posixPath}`} target='_blank'>
+            {posixPath}
           </a>
         </code>
       </List.Item>
