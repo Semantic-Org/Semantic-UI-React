@@ -116,18 +116,18 @@ const MenuItemLinkAugmentationHTML = `<div class="ui menu">
 const Comparison = ({ jsx, html }) => (
   <Segment className='code-example'>
     <Grid columns='equal' centered textAlign='left'>
-      <Grid.Column mobile='16' tablet='16' computer='8' largeScreen='7'>
+      <Grid.Column computer='8' largeScreen='7' widescreen='7' width='16'>
         <Label size='tiny' attached='top left'>JSX</Label>
         <Highlight className='language-javascript'>
           {jsx}
         </Highlight>
       </Grid.Column>
-      <Grid.Column only='large screen' textAlign='center'>
+      <Grid.Column largeScreen='2' only='large screen' textAlign='center'>
         <Divider vertical>
           <Icon name='right arrow circle' />
         </Divider>
       </Grid.Column>
-      <Grid.Column mobile='16' tablet='16' computer='8' largeScreen='7'>
+      <Grid.Column computer='8' largeScreen='7' widescreen='7' width='16'>
         <Label size='tiny' attached='top right'>Rendered HTML</Label>
         <Highlight className='language-html'>
           {html}
