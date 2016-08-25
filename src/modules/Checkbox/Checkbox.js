@@ -161,7 +161,11 @@ export default class Checkbox extends Component {
           tabIndex={0}
           value={value}
         />
-        {label && <label>{label}</label>}
+        {/*
+         Heads Up!
+         Do not remove empty labels, they are required by SUI CSS
+         */}
+        <label>{label}</label>
       </ElementType>
     )
   }

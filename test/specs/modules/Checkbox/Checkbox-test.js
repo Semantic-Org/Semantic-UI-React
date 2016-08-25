@@ -126,9 +126,12 @@ describe('Checkbox', () => {
   })
 
   describe('label', () => {
-    it('is not present by default', () => {
+    // Heads Up!
+    // This is required for SUI CSS
+    it('is present when not defined', () => {
       shallow(<Checkbox />)
-        .should.not.have.descendants('label')
+        .should.have.descendants('label')
+        .and.have.text('')
     })
 
     it('adds the "fitted" class when not present', () => {
