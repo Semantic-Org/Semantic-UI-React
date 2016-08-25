@@ -1,7 +1,7 @@
 import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
-import { getUnhandledProps, META, useKeyOnly } from '../../lib'
+import { getElementType, getUnhandledProps, META, useKeyOnly } from '../../lib'
 
 /**
  * A divider visually segments content into groups
@@ -25,13 +25,13 @@ function Divider(props) {
     className
   )
 
-  const DividerComponent = 'div'
+  const ElementType = getElementType(Divider, props)
   const rest = getUnhandledProps(Divider, props)
 
   return (
-    <DividerComponent className={classes} {...rest}>
+    <ElementType className={classes} {...rest}>
       {children}
-    </DividerComponent>
+    </ElementType>
   )
 }
 
@@ -41,6 +41,12 @@ Divider._meta = {
 }
 
 Divider.propTypes = {
+  /** An element type to render as (string or function). */
+  as: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.func,
+  ]),
+
   /** Primary content of the Divider */
   children: PropTypes.node,
 

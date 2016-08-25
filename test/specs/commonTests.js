@@ -158,6 +158,51 @@ export const isConformant = (Component, requiredProps = {}) => {
       .should.have.descendants(props)
   })
 
+  describe('"as" prop (common)', () => {
+    it('is defined in propTypes', () => {
+      Component.should.have.any.keys('propTypes')
+      Component.propTypes.should.have.any.keys('as')
+    })
+    it('renders the component as HTML tags', () => {
+      // silence element nesting warnings
+      consoleUtil.disableOnce()
+
+      const tags = ['a', 'em', 'div', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'i', 'p', 'span', 'strong']
+      tags.forEach((tag) => {
+        shallow(<Component as={tag} />)
+          .should.have.tagName(tag)
+      })
+    })
+
+    it('renders the component as stateless functional components', () => {
+      const MyComponent = () => null
+
+      shallow(<Component as={MyComponent} />)
+        .type()
+        .should.equal(MyComponent)
+    })
+
+    it('renders the component as React.Component classes', () => {
+      class MyComponent extends React.Component {
+        render() {
+          return null
+        }
+      }
+
+      shallow(<Component as={MyComponent} />)
+        .type()
+        .should.equal(MyComponent)
+    })
+
+    it('passes extra props to the component it is renders as', () => {
+      const MyComponent = () => null
+
+      shallow(<Component as={MyComponent} data-extra-prop='foo' />)
+        .first()
+        .should.have.prop('data-extra-prop', 'foo')
+    })
+  })
+
   // ----------------------------------------
   // Events
   // ----------------------------------------

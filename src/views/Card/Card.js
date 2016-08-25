@@ -3,6 +3,7 @@ import React, { PropTypes } from 'react'
 
 import {
   customPropTypes,
+  getElementType,
   getUnhandledProps,
   META,
   SUI,
@@ -48,24 +49,26 @@ function Card(props) {
   const handleClick = (e) => {
     if (onClick) onClick(e)
   }
-  const CardComponent = href || onClick ? 'a' : 'div'
+  const ElementType = getElementType(Card, props, {
+    onClick: 'a',
+  })
 
   if (children) {
     return (
-      <CardComponent {...rest} className={classes} href={href} onClick={handleClick}>
+      <ElementType {...rest} className={classes} href={href} onClick={handleClick}>
         {children}
-      </CardComponent>
+      </ElementType>
     )
   }
 
   return (
-    <CardComponent {...rest} className={classes} href={href} onClick={handleClick}>
+    <ElementType {...rest} className={classes} href={href} onClick={handleClick}>
       {createImage(image)}
       {(description || header || meta) && (
         <CardContent description={description} header={header} meta={meta} />
       )}
       {extra && <CardContent extra>{extra}</CardContent>}
-    </CardComponent>
+    </ElementType>
   )
 }
 
@@ -78,6 +81,12 @@ Card._meta = {
 }
 
 Card.propTypes = {
+  /** An element type to render as (string or function). */
+  as: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.func,
+  ]),
+
   /** A Card can center itself inside its container. */
   centered: PropTypes.bool,
 

@@ -11,9 +11,9 @@ export default class ExampleSection extends Component {
   render() {
     return (
       <div>
-        <Header.H3 dividing style={{ margin: '2em 0' }}>
+        <Header as='h3' dividing style={{ margin: '2em 0' }}>
           {this.props.title}
-        </Header.H3>
+        </Header>
         {this.props.children}
       </div>
     )

@@ -23,6 +23,7 @@ export {
 } from './deprecate'
 
 export { default as getUnhandledProps } from './getUnhandledProps'
+export { default as getElementType } from './getElementType'
 export * as META from './META'
 export * as SUI from './SUI'
 

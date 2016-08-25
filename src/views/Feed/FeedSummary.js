@@ -2,9 +2,10 @@ import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
 import {
-   customPropTypes,
-   getUnhandledProps,
-   META,
+  customPropTypes,
+  getElementType,
+  getUnhandledProps,
+  META,
 } from '../../lib'
 import FeedDate from './FeedDate'
 
@@ -12,12 +13,13 @@ function FeedSummary(props) {
   const { children, className, date, summary } = props
   const classes = cx(className, 'summary')
   const rest = getUnhandledProps(FeedSummary, props)
+  const ElementType = getElementType(FeedSummary, props)
 
   return (
-    <div {...rest} className={classes}>
+    <ElementType {...rest} className={classes}>
       {children || summary }
       {date && <FeedDate date={date} />}
-    </div>
+    </ElementType>
   )
 }
 
@@ -28,6 +30,12 @@ FeedSummary._meta = {
 }
 
 FeedSummary.propTypes = {
+  /** An element type to render as (string or function). */
+  as: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.func,
+  ]),
+
   /** Primary content of the FeedSummary. */
   children: customPropTypes.every([
     customPropTypes.disallow(['summary']),

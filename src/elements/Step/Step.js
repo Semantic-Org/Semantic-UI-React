@@ -3,6 +3,7 @@ import React, { PropTypes } from 'react'
 
 import {
   customPropTypes,
+  getElementType,
   getUnhandledProps,
   META,
   useKeyOnly,
@@ -33,10 +34,12 @@ function Step(props) {
   const handleClick = (e) => {
     if (onClick) onClick(e)
   }
-  const StepComponent = href || onClick ? 'a' : 'div'
+  const ElementType = getElementType(Step, props, {
+    onClick: 'a',
+  })
 
   return (
-    <StepComponent
+    <ElementType
       {...rest}
       className={classes}
       href={href}
@@ -44,7 +47,7 @@ function Step(props) {
     >
       {!children && createIcon(icon)}
       {children || <StepContent description={description} title={title} />}
-    </StepComponent>
+    </ElementType>
   )
 }
 
@@ -54,6 +57,12 @@ Step._meta = {
 }
 
 Step.propTypes = {
+  /** An element type to render as (string or function). */
+  as: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.func,
+  ]),
+
   /** A step can be highlighted as active. */
   active: PropTypes.bool,
 

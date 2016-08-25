@@ -2,9 +2,10 @@ import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
 import {
-   customPropTypes,
-   getUnhandledProps,
-   META,
+  customPropTypes,
+  getElementType,
+  getUnhandledProps,
+  META,
 } from '../../lib'
 import FeedContent from './FeedContent'
 import FeedLabel from './FeedLabel'
@@ -13,17 +14,18 @@ function FeedEvent(props) {
   const { content, children, className, date, extraImages, extraText, image, icon, meta, summary } = props
   const classes = cx(className, 'event')
   const rest = getUnhandledProps(FeedEvent, props)
+  const ElementType = getElementType(FeedEvent, props)
 
   const hasContentProp = (content || date || extraImages || extraText || meta || summary)
   const contentProps = { content, date, extraImages, extraText, meta, summary }
 
   return (
-    <div {...rest} className={classes}>
-    {icon && <FeedLabel icon={icon} />}
-    {image && <FeedLabel image={image} />}
-    {hasContentProp && <FeedContent {...contentProps} />}
-    {children}
-  </div>
+    <ElementType {...rest} className={classes}>
+      {icon && <FeedLabel icon={icon} />}
+      {image && <FeedLabel image={image} />}
+      {hasContentProp && <FeedContent {...contentProps} />}
+      {children}
+    </ElementType>
   )
 }
 
@@ -34,6 +36,12 @@ FeedEvent._meta = {
 }
 
 FeedEvent.propTypes = {
+  /** An element type to render as (string or function). */
+  as: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.func,
+  ]),
+
   /** Primary content of the FeedEvent. */
   children: customPropTypes.every([
     customPropTypes.disallow(['content', 'date', 'extraImages', 'extraText', 'meta', 'summary']),

@@ -4,6 +4,7 @@ import cx from 'classnames'
 
 import {
   customPropTypes,
+  getElementType,
   getUnhandledProps,
   META,
   SUI,
@@ -66,10 +67,11 @@ function Message(props) {
 
   const dismissIcon = onDismiss && <Icon name='close' onClick={onDismiss} />
   const rest = getUnhandledProps(Message, props)
+  const ElementType = getElementType(Message, props)
 
   if (content || header || (icon && icon !== true) || list) {
     return (
-      <div {...rest} className={classes}>
+      <ElementType {...rest} className={classes}>
         {dismissIcon}
         {createIcon(icon)}
         {(header || content || list) && (
@@ -79,15 +81,15 @@ function Message(props) {
             {content && <p>{content}</p>}
           </MessageContent>
         )}
-      </div>
+      </ElementType>
     )
   }
 
   return (
-    <div {...rest} className={classes}>
+    <ElementType {...rest} className={classes}>
       {dismissIcon}
       {children}
-    </div>
+    </ElementType>
   )
 }
 
@@ -102,6 +104,12 @@ Message._meta = {
 }
 
 Message.propTypes = {
+  /** An element type to render as (string or function). */
+  as: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.func,
+  ]),
+
   /** Primary content of the message. */
   children: customPropTypes.every([
     PropTypes.node,

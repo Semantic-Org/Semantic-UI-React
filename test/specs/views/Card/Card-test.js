@@ -58,7 +58,7 @@ describe('Card', () => {
   })
 
   describe('extra prop', () => {
-    it('renders an CardContent component', () => {
+    it('renders a CardContent', () => {
       const wrapper = shallow(<Card extra={faker.hacker.phrase()} />)
 
       wrapper.should.have.descendants('CardContent')

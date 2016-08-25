@@ -1,25 +1,33 @@
 import React, { PropTypes } from 'react'
 import cx from 'classnames'
 
-import { META, useKeyOnly } from '../../lib'
+import { getElementType, getUnhandledProps, META, useKeyOnly } from '../../lib'
 
-function AccordionContent({ active, children, className, ...rest }) {
+function AccordionContent(props) {
+  const { active, children, className } = props
   const classes = cx(
     'content',
     useKeyOnly(active, 'active'),
     className
   )
-
+  const rest = getUnhandledProps(AccordionContent, props)
+  const ElementType = getElementType(AccordionContent, props)
   return (
-    <div {...rest} className={classes}>
+    <ElementType {...rest} className={classes}>
       {children}
-    </div>
+    </ElementType>
   )
 }
 
 AccordionContent.displayName = 'AccordionContent'
 
 AccordionContent.propTypes = {
+  /** An element type to render as (string or function). */
+  as: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.func,
+  ]),
+
   /** Whether or not the content is visible. */
   active: PropTypes.bool,
 

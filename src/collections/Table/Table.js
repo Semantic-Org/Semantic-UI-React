@@ -3,6 +3,7 @@ import React, { Children, Component, PropTypes } from 'react'
 import cx from 'classnames'
 import {
   customPropTypes,
+  getElementType,
   getUnhandledProps,
   META,
 } from '../../lib'
@@ -10,6 +11,12 @@ import TableColumn from './TableColumn'
 
 export default class Table extends Component {
   static propTypes = {
+    /** An element type to render as (string or function). */
+    as: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.func,
+    ]),
+
     children: customPropTypes.ofComponentTypes(['TableColumn']),
     className: PropTypes.string,
     data: PropTypes.array,
@@ -23,6 +30,7 @@ export default class Table extends Component {
   }
 
   static defaultProps = {
+    as: 'table',
     sort: {
       key: null,
       direction: 'descending',
@@ -151,9 +159,10 @@ export default class Table extends Component {
     )
 
     const rest = getUnhandledProps(Table, this.props)
+    const ElementType = getElementType(Table, this.props)
 
     return (
-      <table {...rest} className={classes}>
+      <ElementType {...rest} className={classes}>
         <thead>
           <tr>
             {this._getHeaders()}
@@ -162,7 +171,7 @@ export default class Table extends Component {
         <tbody>
           {this._getRows()}
         </tbody>
-      </table>
+      </ElementType>
     )
   }
 }

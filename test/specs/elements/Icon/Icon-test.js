@@ -1,3 +1,4 @@
+import React from 'react'
 import Icon from 'src/elements/Icon/Icon'
 import IconGroup from 'src/elements/Icon/IconGroup'
 import * as common from 'test/specs/commonTests'
@@ -20,4 +21,9 @@ describe('Icon', () => {
   common.propKeyOnlyToClassName(Icon, 'loading')
   common.propKeyAndValueToClassName(Icon, 'rotated')
   common.propValueOnlyToClassName(Icon, 'size')
+
+  it('renders as an <i> by default', () => {
+    shallow(<Icon />)
+      .should.have.tagName('i')
+  })
 })

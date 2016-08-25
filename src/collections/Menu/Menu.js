@@ -2,10 +2,16 @@ import React, { Children, Component, cloneElement, PropTypes } from 'react'
 import cx from 'classnames'
 
 import MenuItem from './MenuItem'
-import { childrenUtils, META } from '../../lib'
+import { childrenUtils, getElementType, META } from '../../lib'
 
 export default class Menu extends Component {
   static propTypes = {
+    /** An element type to render as (string or function). */
+    as: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.func,
+    ]),
+
     activeItem: PropTypes.string,
     children: PropTypes.node,
     className: PropTypes.string,
@@ -45,10 +51,11 @@ export default class Menu extends Component {
         __onClick: this.handleClickItem,
       })
     })
+    const ElementType = getElementType(Menu, this.props)
     return (
-      <div {...rest} className={classes}>
+      <ElementType {...rest} className={classes}>
         {_children}
-      </div>
+      </ElementType>
     )
   }
 }

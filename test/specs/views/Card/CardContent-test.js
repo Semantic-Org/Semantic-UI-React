@@ -13,7 +13,7 @@ describe('CardContent', () => {
   common.rendersChildren(CardContent)
 
   describe('description prop', () => {
-    it('renders description component', () => {
+    it('renders CardDescription component', () => {
       const text = faker.hacker.phrase()
 
       shallow(<CardContent description={text} />)
@@ -22,7 +22,7 @@ describe('CardContent', () => {
   })
 
   describe('header prop', () => {
-    it('renders header component', () => {
+    it('renders CardHeader component', () => {
       const text = faker.hacker.phrase()
 
       shallow(<CardContent header={text} />)
@@ -31,7 +31,7 @@ describe('CardContent', () => {
   })
 
   describe('meta prop', () => {
-    it('renders meta component', () => {
+    it('renders CardMeta component', () => {
       const text = faker.hacker.phrase()
 
       shallow(<CardContent meta={text} />)

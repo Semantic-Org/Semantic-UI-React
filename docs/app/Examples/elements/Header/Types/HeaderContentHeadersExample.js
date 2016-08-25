@@ -1,26 +1,24 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Header } from 'stardust'
 
-export default class HeaderContentHeadersExample extends Component {
-  render() {
-    return (
-      <div>
-        <Header className='huge'>
-          Huge Header
-        </Header>
-        <Header className='large'>
-          Large Header
-        </Header>
-        <Header className='medium'>
-          Medium Header
-        </Header>
-        <Header className='small'>
-          Small Header
-        </Header>
-        <Header className='tiny'>
-          Tiny Header
-        </Header>
-      </div>
-    )
-  }
-}
+const HeaderContentHeadersExample = () => (
+  <div>
+    <Header size='huge'>
+      Huge Header
+    </Header>
+    <Header size='large'>
+      Large Header
+    </Header>
+    <Header size='medium'>
+      Medium Header
+    </Header>
+    <Header size='small'>
+      Small Header
+    </Header>
+    <Header size='tiny'>
+      Tiny Header
+    </Header>
+  </div>
+)
+
+export default HeaderContentHeadersExample

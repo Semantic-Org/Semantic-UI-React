@@ -3,6 +3,7 @@ import React, { PropTypes } from 'react'
 
 import {
   customPropTypes,
+  getElementType,
   getUnhandledProps,
   META,
 } from '../../lib'
@@ -11,8 +12,9 @@ function StatisticLabel(props) {
   const { children, className, label } = props
   const classes = cx(className, 'label')
   const rest = getUnhandledProps(StatisticLabel, props)
+  const ElementType = getElementType(StatisticLabel, props)
 
-  return <div {...rest} className={classes}>{children || label}</div>
+  return <ElementType {...rest} className={classes}>{children || label}</ElementType>
 }
 
 StatisticLabel._meta = {
@@ -22,6 +24,12 @@ StatisticLabel._meta = {
 }
 
 StatisticLabel.propTypes = {
+  /** An element type to render as (string or function). */
+  as: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.func,
+  ]),
+
   /** Primary content of the StatisticLabel. */
   children: customPropTypes.every([
     customPropTypes.disallow(['content']),

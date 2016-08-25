@@ -1,9 +1,10 @@
 import React, { PropTypes } from 'react'
 import cx from 'classnames'
 
-import { META, useKeyOnly } from '../../lib'
+import { getElementType, getUnhandledProps, META, useKeyOnly } from '../../lib'
 
-function AccordionTitle({ active, children, className, onClick, ...rest }) {
+function AccordionTitle(props) {
+  const { active, children, className, onClick } = props
   const classes = cx(
     'title',
     useKeyOnly(active, 'active'),
@@ -14,16 +15,25 @@ function AccordionTitle({ active, children, className, onClick, ...rest }) {
     if (onClick) onClick(e)
   }
 
+  const ElementType = getElementType(AccordionTitle, props)
+  const rest = getUnhandledProps(AccordionTitle, props)
+
   return (
-    <div {...rest} className={classes} onClick={handleClick}>
+    <ElementType {...rest} className={classes} onClick={handleClick}>
       {children}
-    </div>
+    </ElementType>
   )
 }
 
 AccordionTitle.displayName = 'AccordionTitle'
 
 AccordionTitle.propTypes = {
+  /** An element type to render as (string or function). */
+  as: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.func,
+  ]),
+
   /** Whether or not the title is in the open state. */
   active: PropTypes.bool,
 

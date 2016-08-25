@@ -2,8 +2,8 @@ import _ from 'lodash'
 /**
  * Returns an object consisting of props beyond the scope of the Component.
  * Useful for getting and spreading unknown props from the user.
- * @param {*} Component A React.Component.
- * @param {*} props Props from a React.Component instance.
+ * @param {function} Component A function or ReactClass.
+ * @param {object} props A ReactElement props object
  * @returns {{}} A shallow copy of the prop object
  */
 const getUnhandledProps = (Component, props) => {

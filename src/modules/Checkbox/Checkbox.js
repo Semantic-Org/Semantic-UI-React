@@ -4,6 +4,7 @@ import cx from 'classnames'
 
 import {
   AutoControlledComponent as Component,
+  getElementType,
   getUnhandledProps,
   META,
   makeDebugger,
@@ -42,6 +43,12 @@ const _meta = {
  */
 export default class Checkbox extends Component {
   static propTypes = {
+    /** An element type to render as (string or function). */
+    as: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.func,
+    ]),
+
     /** Additional classes. */
     className: PropTypes.string,
 
@@ -132,12 +139,13 @@ export default class Checkbox extends Component {
       className
     )
     const rest = getUnhandledProps(Checkbox, this.props)
+    const ElementType = getElementType(Checkbox, this.props)
     // Heads Up!
     // onChange props are never called as the user cannot click on the hidden input.
     // We call onChange in the onClick handler.
     // This exists only to prevent React "prop checked without onChange" warnings.
     return (
-      <div
+      <ElementType
         {...rest}
         className={classes}
         onClick={this.handleClick}
@@ -153,8 +161,8 @@ export default class Checkbox extends Component {
           tabIndex={0}
           value={value}
         />
-        <label>{label}</label>
-      </div>
+        {label && <label>{label}</label>}
+      </ElementType>
     )
   }
 }

@@ -484,6 +484,12 @@ A doc block should appear above each prop in `propTypes` to describe them:
 
 ```js
 Label.propTypes = {
+  /** An element type to render as (string or function). */
+  as: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.func,
+  ]),
+
   /** A label can reduce its complexity. */
   basic: PropTypes.bool,
 

@@ -94,13 +94,31 @@ const MessageSubComponentsHTML = `<div class="ui icon message">
     We're fetching that content for you.
   </div>
 </div>`
+const HeaderAugmentationJSX = `<Header as='h3'>
+  Learn More
+</Header>`
+const HeaderAugmentationHTML = `<h3 class="ui header">
+  Learn More
+</h3>`
+const MenuItemLinkAugmentationJSX = `import { Link } from 'react-router'
+
+<Menu>
+  <MenuItem as={Link} to='/home'>
+    Home
+  </MenuItem>
+</Menu>`
+const MenuItemLinkAugmentationHTML = `<div class="ui menu">
+  <a class="item">
+    Learn More
+  </a>
+</div>`
 
 const Comparison = ({ jsx, html }) => (
   <Segment className='code-example'>
     <Grid columns='equal' centered textAlign='left'>
       <Grid.Column mobile='16' tablet='16' computer='8' largeScreen='7'>
         <Label size='tiny' attached='top left'>JSX</Label>
-        <Highlight className='language-xml'>
+        <Highlight className='language-javascript'>
           {jsx}
         </Highlight>
       </Grid.Column>
@@ -120,6 +138,12 @@ const Comparison = ({ jsx, html }) => (
 )
 
 Comparison.propTypes = {
+  /** An element type to render as (string or function). */
+  as: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.func,
+  ]),
+
   jsx: PropTypes.string,
   html: PropTypes.string,
 }
@@ -128,30 +152,34 @@ const Introduction = () => (
   <Container id='introduction-page'>
     <Segment className='center aligned basic'>
       <Logo centered size='small' />
-      <Header.H1 textAlign='center'>
+      <Header as='h1' textAlign='center'>
         Semantic-UI-React
         <Header.Subheader>
           {pkg.description}
         </Header.Subheader>
-      </Header.H1>
+      </Header>
     </Segment>
 
     <Segment className='basic padded'>
-      <Header.H2 dividing>Install</Header.H2>
+      <Header as='h2' dividing>Install</Header>
       <Message>
         <pre>$ npm install {pkg.name}</pre>
       </Message>
       <List>
         <List.Item icon='check mark'>jQuery Free</List.Item>
-        <List.Item icon='check mark'>Declarative Components</List.Item>
+        <List.Item icon='check mark'>Declarative API</List.Item>
+        <List.Item icon='check mark'>Augmentation</List.Item>
         <List.Item icon='check mark'>Shorthand Props</List.Item>
         <List.Item icon='check mark'>Sub Components</List.Item>
         <List.Item icon='check mark'>Auto Controlled State</List.Item>
       </List>
     </Segment>
 
+    {/* ----------------------------------------
+     *  jQuery Free
+     * -------------------------------------- */}
     <Segment className='basic padded'>
-      <Header.H2 dividing>jQuery Free</Header.H2>
+      <Header as='h2' dividing>jQuery Free</Header>
       <p>
         jQuery is a DOM manipulation library. It reads from and writes to the DOM.
         React uses a virtual DOM (a JavaScript representation of the real DOM).
@@ -163,21 +191,49 @@ const Introduction = () => (
       </p>
     </Segment>
 
+    {/* ----------------------------------------
+     *  Declarative API
+     * -------------------------------------- */}
     <Segment className='basic padded'>
-      <Header.H2 dividing>Declarative Components</Header.H2>
-      Declarative APIs provide for robust features and prop validation.
+      <Header as='h2' dividing>Declarative API</Header>
+      <p>
+        Declarative APIs provide for robust features and prop validation.
+      </p>
 
       <Comparison jsx={RatingJSX} html={RatingHTML} />
       <Comparison jsx={ButtonJSX} html={ButtonHTML} />
     </Segment>
 
+    {/* ----------------------------------------
+     *  Augmentation
+     * -------------------------------------- */}
     <Segment className='basic padded'>
-      <Header.H2 dividing>Shorthand Props</Header.H2>
+      <Header as='h2' dividing>Augmentation</Header>
       <p>
-        Shorthand props generate markup for you, making many use cases a breeze.
+        Control the rendered HTML tag, or render one component <code>as</code> another component.
+        Extra props are passed to the component you are rending <code>as</code>.
       </p>
 
-      <Header.H3>Child Object Arrays</Header.H3>
+      <p>
+        Augmentation is powerful. You can compose component features and props without adding extra nested components.
+        This is essential for working with <code>MenuLinks</code> and <code>react-router</code>.
+      </p>
+
+      <Comparison jsx={HeaderAugmentationJSX} html={HeaderAugmentationHTML} />
+      <Comparison jsx={MenuItemLinkAugmentationJSX} html={MenuItemLinkAugmentationHTML} />
+    </Segment>
+
+    {/* ----------------------------------------
+     *  Shorthand Props
+     * -------------------------------------- */}
+    <Segment className='basic padded'>
+      <Header as='h2' dividing>Shorthand Props</Header>
+      <p>
+        Shorthand props generate markup for you, making many use cases a breeze.
+        All object props are spread on the child components.
+      </p>
+
+      <Header as='h3'>Child Object Arrays</Header>
       <p>
         Components with repeating children accept arrays of plain objects.
         <a href='https://facebook.github.io/react/docs/context.html#parent-child-coupling' target='_blank'>
@@ -187,14 +243,14 @@ const Introduction = () => (
       </p>
       <Comparison jsx={AccordionJSX} html={AccordionHTML} />
 
-      <Header.H3>{'icon={...}'}</Header.H3>
+      <Header as='h3'>{'icon={...}'}</Header>
       <p>
         The <code>icon</code> prop is standard for many components.
         It can accept an Icon <code>name</code>, an Icon props object, or an <code>{'<Icon />'}</code> instance.
       </p>
       <Comparison jsx={MessageIconJSX} html={MessageIconHTML} />
 
-      <Header.H3>{'image={...}'}</Header.H3>
+      <Header as='h3'>{'image={...}'}</Header>
       <p>
         The <code>image</code> prop is standard for many components.
         It can accept an image <code>src</code>, an Image props object, or an <code>{'<Image />'}</code> instance.
@@ -202,8 +258,11 @@ const Introduction = () => (
       <Comparison jsx={LabelJSX} html={LabelHTML} />
     </Segment>
 
+    {/* ----------------------------------------
+     *  Sub Components
+     * -------------------------------------- */}
     <Segment className='basic padded'>
-      <Header.H2 dividing>Sub Components</Header.H2>
+      <Header as='h2' dividing>Sub Components</Header>
       <p>
         Sub components give you complete access to the markup.
         This is essential for flexibility in customizing components.
@@ -211,8 +270,11 @@ const Introduction = () => (
       <Comparison jsx={MessageSubComponentsJSX} html={MessageSubComponentsHTML} />
     </Segment>
 
+    {/* ----------------------------------------
+     *  Auto Controlled State
+     * -------------------------------------- */}
     <Segment className='basic padded'>
-      <Header.H2 dividing>Auto Controlled State</Header.H2>
+      <Header as='h2' dividing>Auto Controlled State</Header>
 
       <p>
         React has the concept of

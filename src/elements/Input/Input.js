@@ -2,11 +2,51 @@ import _ from 'lodash'
 import classNames from 'classnames'
 import React, { Component, PropTypes, Children } from 'react'
 
-import { getUnhandledProps, META } from '../../lib'
+import { getElementType, getUnhandledProps, META } from '../../lib'
 import { Icon } from '../../elements'
+
+const inputPropNames = [
+  // React
+  'selected',
+  'defaultValue',
+  'defaultChecked',
+
+  // HTML
+  'accept',
+  'alt',
+  'autoComplete',
+  'autoFocus',
+  'checked',
+  'dirname',
+  'disabled',
+  'form',
+  'height',
+  'list',
+  'max',
+  'maxLength',
+  'min',
+  'multiple',
+  'name',
+  'pattern',
+  'placeholder',
+  'readOnly',
+  'required',
+  'size',
+  'src',
+  'step',
+  'type',
+  'value',
+  'width',
+]
 
 export default class Input extends Component {
   static propTypes = {
+    /** An element type to render as (string or function). */
+    as: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.func,
+    ]),
+
     children: PropTypes.node,
     className: PropTypes.string,
     icon: PropTypes.string,
@@ -53,17 +93,19 @@ export default class Input extends Component {
       className,
       'input'
     )
-    const props = getUnhandledProps(Input, this.props)
-
+    const unhandledProps = getUnhandledProps(Input, this.props)
+    const inputProps = _.pick(unhandledProps, inputPropNames)
+    const rest = _.omit(unhandledProps, inputPropNames)
+    const ElementType = getElementType(Input, this.props)
     return (
-      <div className={classes}>
+      <ElementType {...rest} className={classes}>
         {isLeftLabeled && labelChildren}
         {isLeftAction && actionChildren}
-        <input {...props} type={type} />
+        <input {...inputProps} type={type} />
         {icon && <Icon name={icon} />}
         {isRightLabeled && labelChildren}
         {isRightAction && actionChildren}
-      </div>
+      </ElementType>
     )
   }
 }

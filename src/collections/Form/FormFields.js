@@ -4,12 +4,19 @@ import classNames from 'classnames'
 
 import {
   getUnhandledProps,
+  getElementType,
   META,
   numberToWord,
 } from '../../lib'
 
 export default class FormFields extends Component {
   static propTypes = {
+    /** An element type to render as (string or function). */
+    as: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.func,
+    ]),
+
     children: PropTypes.node,
     className: PropTypes.string,
     /**
@@ -40,10 +47,11 @@ export default class FormFields extends Component {
       'fields'
     )
     const props = getUnhandledProps(FormFields, this.props)
+    const ElementType = getElementType(FormFields, this.props)
     return (
-      <div {...props} className={classes}>
+      <ElementType {...props} className={classes}>
         {this.props.children}
-      </div>
+      </ElementType>
     )
   }
 }

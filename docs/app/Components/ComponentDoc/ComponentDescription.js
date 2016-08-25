@@ -97,7 +97,7 @@ export default class ComponentDescription extends Component {
       <Grid>
         <Grid.Row columns={2}>
           <Grid.Column>
-            <Header.H1 style={headerStyle}>{_meta.name}</Header.H1>
+            <Header as='h1' style={headerStyle}>{_meta.name}</Header>
           </Grid.Column>
           <Grid.Column textAlign='right'>
             <List className='link' style={{ float: 'right' }}>

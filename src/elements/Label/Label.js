@@ -2,6 +2,7 @@ import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
 import {
+  getElementType,
   getUnhandledProps,
   META,
   SUI,
@@ -19,7 +20,7 @@ import { Icon, Image } from '../'
 function Label(props) {
   const {
     attached, basic, children, color, corner, className, circular, detail, detailLink, floating, horizontal,
-    icon, image, link, onClick, onDetailClick, onRemove, pointing, removable, ribbon, size, tag, text,
+    icon, image, onClick, onDetailClick, onRemove, pointing, removable, ribbon, size, tag, text,
   } = props
 
   const handleClick = e => onClick && onClick(e, props)
@@ -45,11 +46,15 @@ function Label(props) {
   )
 
   const DetailComponent = (detailLink || onDetailClick) && 'a' || 'div'
-  const LabelComponent = image || link || onClick ? 'a' : 'div'
+  const ElementType = getElementType(Label, props, {
+    image: 'a',
+    link: 'a',
+    onClick: 'a',
+  })
   const rest = getUnhandledProps(Label, props)
 
   return (
-    <LabelComponent className={classes} onClick={handleClick} {...rest}>
+    <ElementType className={classes} onClick={handleClick} {...rest}>
       {createIcon(icon)}
       {createImage(image)}
       {text}
@@ -60,7 +65,7 @@ function Label(props) {
       {(removable || onRemove) && (
         <Icon name='delete' onClick={handleRemove} />
       )}
-    </LabelComponent>
+    </ElementType>
   )
 }
 
@@ -78,6 +83,12 @@ Label._meta = {
 }
 
 Label.propTypes = {
+  /** An element type to render as (string or function). */
+  as: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.func,
+  ]),
+
   /** Attach to a <Segment />. */
   attached: PropTypes.oneOf(Label._meta.props.attached),
 

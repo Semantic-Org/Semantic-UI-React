@@ -3,6 +3,7 @@ import React, { PropTypes } from 'react'
 
 import {
   customPropTypes,
+  getElementType,
   getUnhandledProps,
   META,
 } from '../../lib'
@@ -14,8 +15,9 @@ function CardDescription(props) {
   const { className, children, content } = props
   const classes = cx(className, 'description')
   const rest = getUnhandledProps(CardDescription, props)
+  const ElementType = getElementType(CardDescription, props)
 
-  return <div {...rest} className={classes}>{ children || content }</div>
+  return <ElementType {...rest} className={classes}>{ children || content }</ElementType>
 }
 
 CardDescription._meta = {
@@ -25,6 +27,12 @@ CardDescription._meta = {
 }
 
 CardDescription.propTypes = {
+  /** An element type to render as (string or function). */
+  as: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.func,
+  ]),
+
   /** Primary content of the CardDescription. Mutually exclusive with content. */
   children: customPropTypes.every([
     customPropTypes.disallow(['content']),

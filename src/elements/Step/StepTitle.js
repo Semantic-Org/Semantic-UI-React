@@ -3,6 +3,7 @@ import React, { PropTypes } from 'react'
 
 import {
   customPropTypes,
+  getElementType,
   getUnhandledProps,
   META,
 } from '../../lib'
@@ -11,8 +12,9 @@ function StepTitle(props) {
   const { className, children, title } = props
   const classes = cx(className, 'title')
   const rest = getUnhandledProps(StepTitle, props)
+  const ElementType = getElementType(StepTitle, props)
 
-  return <div {...rest} className={classes}>{ children || title }</div>
+  return <ElementType {...rest} className={classes}>{ children || title }</ElementType>
 }
 
 StepTitle._meta = {
@@ -22,6 +24,12 @@ StepTitle._meta = {
 }
 
 StepTitle.propTypes = {
+  /** An element type to render as (string or function). */
+  as: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.func,
+  ]),
+
   /** Classes that will be added to the StepTitle className. */
   className: PropTypes.string,
 

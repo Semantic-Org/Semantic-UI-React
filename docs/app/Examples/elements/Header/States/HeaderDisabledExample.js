@@ -1,12 +1,10 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Header } from 'stardust'
 
-export default class HeaderDisabledExample extends Component {
-  render() {
-    return (
-      <Header.H2 disabled>
-        Disabled Header
-      </Header.H2>
-    )
-  }
-}
+const HeaderDisabledExample = () => (
+  <Header as='h2' disabled>
+    Disabled Header
+  </Header>
+)
+
+export default HeaderDisabledExample

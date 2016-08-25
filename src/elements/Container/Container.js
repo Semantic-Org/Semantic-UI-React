@@ -3,6 +3,7 @@ import React, { PropTypes } from 'react'
 import {
   META,
   SUI,
+  getElementType,
   getUnhandledProps,
   useKeyOnly,
   useTextAlignProp,
@@ -22,8 +23,9 @@ function Container(props) {
     className
   )
   const rest = getUnhandledProps(Container, props)
+  const ElementType = getElementType(Container, props)
 
-  return <div className={classes} {...rest}>{children}</div>
+  return <ElementType className={classes} {...rest}>{children}</ElementType>
 }
 
 Container._meta = {
@@ -35,6 +37,12 @@ Container._meta = {
 }
 
 Container.propTypes = {
+  /** An element type to render as (string or function). */
+  as: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.func,
+  ]),
+
   /** Primary content of the Container */
   children: PropTypes.node,
 

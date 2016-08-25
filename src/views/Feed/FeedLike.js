@@ -3,6 +3,7 @@ import React, { PropTypes } from 'react'
 
 import {
   customPropTypes,
+  getElementType,
   getUnhandledProps,
   META,
 } from '../../lib'
@@ -12,12 +13,13 @@ function FeedLike(props) {
   const { children, className, icon, like } = props
   const classes = cx(className, 'like')
   const rest = getUnhandledProps(FeedLike, props)
+  const ElementType = getElementType(FeedLike, props)
 
   return (
-    <a {...rest} className={classes}>
+    <ElementType {...rest} className={classes}>
       {createIcon(icon)}
       {children || like}
-    </a>
+    </ElementType>
   )
 }
 
@@ -28,10 +30,17 @@ FeedLike._meta = {
 }
 
 FeedLike.defaultProps = {
+  as: 'a',
   icon: 'like',
 }
 
 FeedLike.propTypes = {
+  /** An element type to render as (string or function). */
+  as: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.func,
+  ]),
+
   /** Primary content of the FeedLike. */
   children: customPropTypes.every([
     customPropTypes.disallow(['like']),

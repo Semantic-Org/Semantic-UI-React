@@ -2,6 +2,7 @@ import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
 import {
+  getElementType,
   getUnhandledProps,
   META,
   SUI,
@@ -38,9 +39,10 @@ function Icon(props) {
   )
 
   const rest = getUnhandledProps(Icon, props)
+  const ElementType = getElementType(Icon, props)
 
   return (
-    <i className={classes} {...rest} />
+    <ElementType className={classes} {...rest} />
   )
 }
 
@@ -59,6 +61,12 @@ Icon._meta = {
 }
 
 Icon.propTypes = {
+  /** An element type to render as (string or function). */
+  as: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.func,
+  ]),
+
   /** Formatted to appear bordered */
   bordered: PropTypes.bool,
 
@@ -100,6 +108,10 @@ Icon.propTypes = {
 
   /** Size of the icon. */
   size: PropTypes.oneOf(Icon._meta.props.size),
+}
+
+Icon.defaultProps = {
+  as: 'i',
 }
 
 export default Icon

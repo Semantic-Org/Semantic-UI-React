@@ -1,9 +1,15 @@
 import React, { Component, PropTypes } from 'react'
 import classNames from 'classnames'
-import { META } from '../../lib'
+import { getElementType, META } from '../../lib'
 
 export default class Buttons extends Component {
   static propTypes = {
+    /** An element type to render as (string or function). */
+    as: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.func,
+    ]),
+
     children: PropTypes.node,
     className: PropTypes.string,
   }
@@ -20,10 +26,11 @@ export default class Buttons extends Component {
       this.props.className,
       'buttons'
     )
+    const ElementType = getElementType(Buttons, this.props)
     return (
-      <div {...this.props} className={classes}>
+      <ElementType {...this.props} className={classes}>
         {this.props.children}
-      </div>
+      </ElementType>
     )
   }
 }

@@ -1,7 +1,7 @@
 import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
-import { getUnhandledProps, META } from '../../lib'
+import { getElementType, getUnhandledProps, META } from '../../lib'
 
 import MessageItem from './MessageItem'
 
@@ -9,10 +9,11 @@ function MessageList(props) {
   const { className, children, items } = props
   const rest = getUnhandledProps(MessageList, props)
   const classes = cx('list', className)
+  const ElementType = getElementType(MessageList, props)
 
   const itemsJSX = items && items.map(item => <MessageItem key={item}>{item}</MessageItem>)
 
-  return <ul {...rest} className={classes}>{itemsJSX || children}</ul>
+  return <ElementType {...rest} className={classes}>{itemsJSX || children}</ElementType>
 }
 
 MessageList._meta = {
@@ -22,6 +23,12 @@ MessageList._meta = {
 }
 
 MessageList.propTypes = {
+  /** An element type to render as (string or function). */
+  as: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.func,
+  ]),
+
   /** Primary content. */
   children: PropTypes.node,
 
@@ -30,6 +37,10 @@ MessageList.propTypes = {
 
   /** Strings to use as list items. Mutually exclusive with children. */
   items: PropTypes.arrayOf(PropTypes.string),
+}
+
+MessageList.defaultProps = {
+  as: 'ul',
 }
 
 export default MessageList

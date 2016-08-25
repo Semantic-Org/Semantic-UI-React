@@ -2,6 +2,7 @@ import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
 import {
+  getElementType,
   customPropTypes,
   getUnhandledProps,
   META,
@@ -19,7 +20,7 @@ import ImageGroup from './ImageGroup'
 function Image(props) {
   const {
     verticalAlign, alt, avatar, bordered, centered, className, disabled, floated, fluid,
-    hidden, height, href, inline, shape, size, spaced, src, width, wrapped,
+    hidden, height, href, inline, shape, size, spaced, src, width,
   } = props
 
   const classes = cx(
@@ -43,24 +44,19 @@ function Image(props) {
   const rest = getUnhandledProps(Image, props)
   const rootProps = { className: classes, ...rest }
   const imgTagProps = { src, alt, width, height }
+  const ElementType = getElementType(Image, props, {
+    wrapped: 'div',
+  })
 
-  if (href) {
-    return (
-      <a {...rootProps} href={href}>
-        <img {...imgTagProps} />
-      </a>
-    )
+  if (ElementType === 'img') {
+    return <ElementType {...rootProps} {...imgTagProps} />
   }
 
-  if (wrapped) {
-    return (
-      <div {...rootProps}>
-        <img {...imgTagProps} />
-      </div>
-    )
-  }
-
-  return <img {...rootProps} {...imgTagProps} />
+  return (
+    <ElementType {...rootProps} href={href}>
+      <img {...imgTagProps} />
+    </ElementType>
+  )
 }
 
 Image.Group = ImageGroup
@@ -78,6 +74,12 @@ Image._meta = {
 }
 
 Image.propTypes = {
+  /** An element type to render as (string or function). */
+  as: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.func,
+  ]),
+
   /** An image can specify its vertical alignment */
   verticalAlign: PropTypes.oneOf(Image._meta.props.verticalAlign),
 
@@ -150,6 +152,10 @@ Image.propTypes = {
     // these props wrap the image in an a tag already
     customPropTypes.disallow(['href']),
   ]),
+}
+
+Image.defaultProps = {
+  as: 'img',
 }
 
 export default Image

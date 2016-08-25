@@ -1,13 +1,10 @@
-import React, { Component } from 'react'
-import { Header, Icon } from 'stardust'
+import React from 'react'
+import { Header } from 'stardust'
 
-export default class HeaderIconExample extends Component {
-  render() {
-    const plug = <Icon name='plug' />
-    return (
-      <Header.H2 icon={plug}>
-        Is Your Electricity Truly Electrifying?
-      </Header.H2>
-    )
-  }
-}
+const HeaderIconExample = () => (
+  <Header as='h2' icon='plug'>
+    Is Your Electricity Truly Electrifying?
+  </Header>
+)
+
+export default HeaderIconExample

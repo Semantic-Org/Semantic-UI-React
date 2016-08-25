@@ -1,11 +1,17 @@
 import React, { Component, PropTypes } from 'react'
 import classNames from 'classnames'
 
-import { META } from '../../lib'
+import { getElementType, META } from '../../lib'
 import ListItem from './ListItem'
 
 export default class List extends Component {
   static propTypes = {
+    /** An element type to render as (string or function). */
+    as: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.func,
+    ]),
+
     children: PropTypes.node,
     className: PropTypes.string,
   }
@@ -23,10 +29,11 @@ export default class List extends Component {
       this.props.className,
       'list'
     )
+    const ElementType = getElementType(List, this.props)
     return (
-      <div {...this.props} className={classes}>
+      <ElementType {...this.props} className={classes}>
         {this.props.children}
-      </div>
+      </ElementType>
     )
   }
 }

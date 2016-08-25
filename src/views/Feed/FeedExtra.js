@@ -3,6 +3,7 @@ import React, { PropTypes } from 'react'
 
 import {
   customPropTypes,
+  getElementType,
   getUnhandledProps,
   META,
   useKeyOnly,
@@ -18,6 +19,7 @@ function FeedExtra(props) {
     'extra'
   )
   const rest = getUnhandledProps(FeedExtra, props)
+  const ElementType = getElementType(FeedExtra, props)
 
   if (Array.isArray(images)) {
     const imagesJSX = images.map((image, index) => {
@@ -26,10 +28,10 @@ function FeedExtra(props) {
       return createImg(image, { key })
     })
 
-    return <div {...rest} className={classes}>{imagesJSX}</div>
+    return <ElementType {...rest} className={classes}>{imagesJSX}</ElementType>
   }
 
-  return <div {...rest} className={classes}>{children || text}</div>
+  return <ElementType {...rest} className={classes}>{children || text}</ElementType>
 }
 
 FeedExtra._meta = {
@@ -39,6 +41,12 @@ FeedExtra._meta = {
 }
 
 FeedExtra.propTypes = {
+  /** An element type to render as (string or function). */
+  as: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.func,
+  ]),
+
   /** Primary content of the FeedExtra. */
   children: PropTypes.node,
 

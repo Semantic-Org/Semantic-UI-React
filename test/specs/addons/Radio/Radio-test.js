@@ -8,8 +8,10 @@ describe('Radio', () => {
   common.isConformant(Radio)
 
   it('renders a radio Checkbox', () => {
-    shallow(<Radio />)
-      .first()
-      .should.contain(<Checkbox type='radio' inputType='radio' />)
+    const wrapper = shallow(<Radio />)
+    wrapper.type().should.equal(Checkbox)
+
+    wrapper.should.have.prop('type', 'radio')
+    wrapper.should.have.prop('inputType', 'radio')
   })
 })

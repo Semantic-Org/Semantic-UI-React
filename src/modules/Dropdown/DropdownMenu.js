@@ -1,28 +1,35 @@
-import React, { Component, PropTypes } from 'react'
+import React, { PropTypes } from 'react'
 import cx from 'classnames'
 
-import { META } from '../../lib'
+import { getElementType, getUnhandledProps, META } from '../../lib'
 
-class DropdownMenu extends Component {
-  static propTypes = {
-    /** Should be <Dropdown.Item /> components. */
-    children: PropTypes.node,
+function DropdownMenu(props) {
+  const { children, className } = props
+  const classes = cx('menu transition', className)
+  const rest = getUnhandledProps(DropdownMenu, props)
+  const ElementType = getElementType(DropdownMenu, props)
 
-    /** Classes to add to the className. */
-    className: PropTypes.string,
-  }
+  return <ElementType {...rest} className={classes}>{children}</ElementType>
+}
 
-  static _meta = {
-    name: 'DropdownMenu',
-    parent: 'Dropdown',
-    type: META.TYPES.MODULE,
-  }
+DropdownMenu._meta = {
+  name: 'DropdownMenu',
+  parent: 'Dropdown',
+  type: META.TYPES.MODULE,
+}
 
-  render() {
-    const { className, ...rest } = this.props
-    const classes = cx('menu transition', className)
-    return <div {...rest} className={classes} />
-  }
+DropdownMenu.propTypes = {
+  /** An element type to render as (string or function). */
+  as: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.func,
+  ]),
+
+  /** Should be <Dropdown.Item /> components. */
+  children: PropTypes.node,
+
+  /** Classes to add to the className. */
+  className: PropTypes.string,
 }
 
 export default DropdownMenu

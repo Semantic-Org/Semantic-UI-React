@@ -1,7 +1,7 @@
 import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
-import { getUnhandledProps, META } from '../../lib'
+import { getElementType, getUnhandledProps, META } from '../../lib'
 
 const names = [
   'ad', 'andorra', 'ae', 'united arab emirates', 'uae', 'af', 'afghanistan', 'ag', 'antigua', 'ai', 'anguilla', 'al',
@@ -51,8 +51,9 @@ function Flag(props) {
   const { className, name } = props
   const rest = getUnhandledProps(Flag, props)
   const classes = cx(name, className, 'flag')
+  const ElementType = getElementType(Flag, props)
 
-  return <i className={classes} {...rest} />
+  return <ElementType className={classes} {...rest} />
 }
 
 Flag._meta = {
@@ -64,11 +65,21 @@ Flag._meta = {
 }
 
 Flag.propTypes = {
+  /** An element type to render as (string or function). */
+  as: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.func,
+  ]),
+
   /** Classes that will be added to the Flag className. */
   className: PropTypes.string,
 
   /** Flag name, can use the two digit country code, the full name, or a common alias */
   name: PropTypes.oneOf(Flag._meta.props.name).isRequired,
+}
+
+Flag.defaultProps = {
+  as: 'i',
 }
 
 export default Flag

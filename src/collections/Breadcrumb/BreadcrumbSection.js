@@ -4,6 +4,7 @@ import React, { PropTypes } from 'react'
 import {
   customPropTypes,
   getUnhandledProps,
+  getElementType,
   META,
   useKeyOnly,
 } from '../../lib'
@@ -12,40 +13,26 @@ import {
  * A section sub-component for Breadcrumb component.
  */
 function BreadcrumbSection(props) {
-  const {
-    active, children, className, link, href, onClick,
-  } = props
+  const { active, children, className, href, onClick } = props
   const classes = cx(
     useKeyOnly(active, 'active'),
     className,
     'section',
   )
   const rest = getUnhandledProps(BreadcrumbSection, props)
+  const ElementType = getElementType(BreadcrumbSection, props, {
+    link: 'a',
+    onClick: 'a',
+  })
 
   const handleClick = (e) => {
     if (onClick) onClick(e)
   }
 
-  if (link || onClick) {
-    return (
-      <a {...rest} className={classes} onClick={handleClick}>
-        {children}
-      </a>
-    )
-  }
-
-  if (href) {
-    return (
-      <a {...rest} className={classes} href={href} onClick={handleClick}>
-        {children}
-      </a>
-    )
-  }
-
   return (
-    <div {...rest} className={classes} onClick={handleClick}>
+    <ElementType {...rest} className={classes} href={href} onClick={handleClick}>
       {children}
-    </div>
+    </ElementType>
   )
 }
 
@@ -56,6 +43,12 @@ BreadcrumbSection._meta = {
 }
 
 BreadcrumbSection.propTypes = {
+  /** An element type to render as (string or function). */
+  as: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.func,
+  ]),
+
   /** Style as the currently active section. */
   active: PropTypes.bool,
 

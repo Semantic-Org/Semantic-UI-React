@@ -2,6 +2,7 @@ import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
 import {
+  getElementType,
   getUnhandledProps,
   META,
   SUI,
@@ -22,11 +23,12 @@ function IconGroup(props) {
   )
 
   const rest = getUnhandledProps(IconGroup, props)
+  const ElementType = getElementType(IconGroup, props)
 
   return (
-    <i className={classes} {...rest}>
+    <ElementType className={classes} {...rest}>
       {children}
-    </i>
+    </ElementType>
   )
 }
 
@@ -40,6 +42,12 @@ IconGroup._meta = {
 }
 
 IconGroup.propTypes = {
+  /** An element type to render as (string or function). */
+  as: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.func,
+  ]),
+
   /** Class names for custom styling. */
   className: PropTypes.string,
 
@@ -48,6 +56,10 @@ IconGroup.propTypes = {
 
   /** Size of the icon group. */
   size: PropTypes.oneOf(IconGroup._meta.props.size),
+}
+
+IconGroup.defaultProps = {
+  as: 'i',
 }
 
 export default IconGroup

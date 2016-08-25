@@ -4,6 +4,7 @@ import React, { PropTypes } from 'react'
 
 import {
   customPropTypes,
+  getElementType,
   getUnhandledProps,
   META,
   SUI,
@@ -61,14 +62,15 @@ function Progress(props) {
   )
 
   const rest = getUnhandledProps(Progress, props)
+  const ElementType = getElementType(Progress, props)
 
   return (
-    <div {...rest} className={classes} data-percent={_percent}>
+    <ElementType {...rest} className={classes}>
       <div className='bar' style={{ width: `${_percent}%` }}>
         {showProgress && <div className='progress'>{progressText}</div>}
       </div>
       {children && <div className='label'>{children}</div>}
-    </div>
+    </ElementType>
   )
 }
 
@@ -84,6 +86,12 @@ Progress._meta = {
 }
 
 Progress.propTypes = {
+  /** An element type to render as (string or function). */
+  as: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.func,
+  ]),
+
   /** A progress bar can show activity. */
   active: PropTypes.bool,
 
