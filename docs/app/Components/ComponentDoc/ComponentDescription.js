@@ -13,7 +13,7 @@ const descriptionStyle = {
   fontSize: '1.2em',
 }
 
-const pathSepRegEx = new RegExp(__PATH_SEP__, 'g')
+const pathSepRegEx = new RegExp(_.escapeRegExp(__PATH_SEP__), 'g')
 
 export default class ComponentDescription extends Component {
   static propTypes = {
