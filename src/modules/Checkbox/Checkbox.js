@@ -108,6 +108,8 @@ export default class Checkbox extends Component {
 
   handleClick = (e) => {
     debug('handleClick()')
+    debug('firing change event')
+
     const { disabled, onChange, onClick, name, readOnly, value } = this.props
     const { checked } = this.state
     debug(`  name:       ${name}`)
@@ -146,7 +148,6 @@ export default class Checkbox extends Component {
         onChange={this.handleClick}
       >
         <input
-          ref={c => (this._input = c)}
           type={inputType || typeMap[type]}
           name={name}
           checked={checked}
