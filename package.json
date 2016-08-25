@@ -106,7 +106,7 @@
     "raw-loader": "^0.5.1",
     "react": "^15.3.1",
     "react-addons-test-utils": "^15.3.1",
-    "react-docgen": "^2.2.0",
+    "react-docgen": "^2.10.0",
     "react-document-title": "^2.0.2",
     "react-dom": "^15.3.1",
     "react-highlight": "^0.8.0",
