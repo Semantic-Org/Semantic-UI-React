@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react'
 
 import { Button } from '../../elements'
 import { Modal } from '../../modules'
-import { getElementType, getUnhandledProps, META } from '../../lib'
+import { getUnhandledProps, META } from '../../lib'
 
 /**
  * A Confirm modal gives the user a choice to confirm or cancel an action
@@ -11,17 +11,16 @@ import { getElementType, getUnhandledProps, META } from '../../lib'
 function Confirm(props) {
   const { active, cancelButton, confirmButton, header, content, onConfirm, onCancel } = props
   const rest = getUnhandledProps(Confirm, props)
-  const ElementType = getElementType(Confirm, props)
 
   return (
-    <ElementType active={active} size='small' onHide={onCancel} {...rest}>
+    <Modal active={active} size='small' onHide={onCancel} {...rest}>
       {header && <Modal.Header>{header}</Modal.Header>}
       {content && <Modal.Content>{content}</Modal.Content>}
       <Modal.Actions>
         <Button onClick={onCancel}>{cancelButton}</Button>
         <Button className='primary' onClick={onConfirm}>{confirmButton}</Button>
       </Modal.Actions>
-    </ElementType>
+    </Modal>
   )
 }
 
@@ -31,12 +30,6 @@ Confirm._meta = {
 }
 
 Confirm.propTypes = {
-  /** An element type to render as (string or function). */
-  as: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.func,
-  ]),
-
   /** Whether or not the modal is visible */
   active: PropTypes.bool,
 
@@ -60,7 +53,6 @@ Confirm.propTypes = {
 }
 
 Confirm.defaultProps = {
-  as: Modal,
   cancelButton: 'Cancel',
   confirmButton: 'OK',
   content: 'Are you sure?',
