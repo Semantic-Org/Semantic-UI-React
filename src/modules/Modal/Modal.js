@@ -147,17 +147,14 @@ class Modal extends Component {
   }
 
   handleClickOutside = (e) => {
-    // do nothing when clicking inside the modal
-    if (this._modalNode.contains(e.target)) return
+    // do nothing when clicking inside the modal or if clickOnClickOutside is disabled
+    const { closeOnClickOutside } = this.props
+    if (!closeOnClickOutside || this._modalNode.contains(e.target)) return
 
     debug('handleDimmerClick()')
 
     e.stopPropagation()
-
-    const { closeOnClickOutside } = this.props
-    if (closeOnClickOutside) {
-      this.onHide()
-    }
+    this.onHide()
   }
 
   handleDocumentKeyDown = (e) => {
