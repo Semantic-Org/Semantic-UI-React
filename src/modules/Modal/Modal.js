@@ -131,7 +131,7 @@ class Modal extends Component {
 
   handleShow = () => {
     debug('handleShow()')
-    const { dimmer, closeOnEscape, closeOnClickOutside } = this.props
+    const { dimmer } = this.props
     if (dimmer) {
       debug('adding dimmer')
       document.body.classList.add('dimmable', 'dimmed')
