@@ -284,7 +284,7 @@ describe('Modal', () => {
 
     beforeEach(() => {
       spy = sandbox.spy()
-      wrapperMount(<Modal onHide={spy} active closeOnEscape={false} closeOnClickOutside={false}/>)
+      wrapperMount(<Modal onHide={spy} active closeOnEscape={false} closeOnClickOutside={false} />)
     })
 
     it('is not called on dimmer click', () => {
