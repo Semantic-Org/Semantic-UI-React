@@ -119,20 +119,14 @@ class Modal extends Component {
 
   handleHide = () => {
     debug('handleHide()')
-    const { closeOnEscape, closeOnClickOutside } = this.props
 
     // Always remove all dimmer classes.
     // If the dimmer value changes while the modal is open,
     //   then removing its current value could leave cruft classes previously added.
     document.body.classList.remove('blurring', 'dimmable', 'dimmed', 'scrollable')
 
-    if (closeOnEscape) {
-      document.removeEventListener('keydown', this.handleDocumentKeyDown)
-    }
-
-    if (closeOnClickOutside) {
-      document.removeEventListener('click', this.handleClickOutside)
-    }
+    document.removeEventListener('keydown', this.handleDocumentKeyDown)
+    document.removeEventListener('click', this.handleClickOutside)
   }
 
   handleShow = () => {
@@ -148,13 +142,8 @@ class Modal extends Component {
       }
     }
 
-    if (closeOnEscape) {
-      document.addEventListener('keydown', this.handleDocumentKeyDown)
-    }
-
-    if (closeOnClickOutside) {
-      document.addEventListener('click', this.handleClickOutside)
-    }
+    document.addEventListener('keydown', this.handleDocumentKeyDown)
+    document.addEventListener('click', this.handleClickOutside)
   }
 
   handleClickOutside = (e) => {
@@ -164,16 +153,24 @@ class Modal extends Component {
     debug('handleDimmerClick()')
 
     e.stopPropagation()
-    this.onHide()
+
+    const { closeOnClickOutside } = this.props
+    if (closeOnClickOutside) {
+      this.onHide()
+    }
   }
 
   handleDocumentKeyDown = (e) => {
+    const { closeOnEscape } = this.props
     const key = keyboardKey.getCode(e)
     debug('handleDocumentKeyDown()', key)
 
     switch (key) {
       case keyboardKey.Escape:
-        this.onHide()
+        if (closeOnEscape) {
+          this.onHide()
+        }
+
         break
       default:
         break
