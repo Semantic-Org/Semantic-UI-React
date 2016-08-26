@@ -52,10 +52,10 @@ class Modal extends Component {
     /** A modal can reduce its complexity */
     basic: PropTypes.bool,
 
-    /** Closes the modal if Escape is pressed. Defaults to true */
+    /** Closes the modal if Escape is pressed */
     closeOnEscape: PropTypes.bool,
 
-    /** Closes the modal if user clicks anywhere outside the modal. Defaults to true */
+    /** Closes the modal if user clicks anywhere outside the modal */
     closeOnClickOutside: PropTypes.bool,
 
     /** A modal can appear in a dimmer */
@@ -206,7 +206,7 @@ class Modal extends Component {
   }
 
   render() {
-    const { active, basic, children, className, dimmer, size} = this.props
+    const { active, basic, children, className, dimmer, size } = this.props
     const { marginTop, scrolling } = this.state
     const classes = cx(
       'ui',
