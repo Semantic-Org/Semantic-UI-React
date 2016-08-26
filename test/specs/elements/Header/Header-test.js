@@ -19,6 +19,7 @@ describe('Header', () => {
   common.propKeyOrValueToClassName(Header, 'attached')
 
   common.propValueOnlyToClassName(Header, 'color')
+  common.propValueOnlyToClassName(Header, 'size')
 
   common.implementsIconProp(Header)
   common.implementsImageProp(Header)

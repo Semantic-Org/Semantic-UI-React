@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import cx from 'classnames'
 import React, { PropTypes } from 'react'
 import {
@@ -16,13 +17,14 @@ import HeaderSubheader from './HeaderSubheader'
 
 function Header(props) {
   const {
-    color, content, dividing, block, attached, floated, inverted, disabled, sub, textAlign,
+    color, content, dividing, block, attached, floated, inverted, disabled, sub, size, textAlign,
     icon, image, children, className,
   } = props
 
   const classes = cx(
     'ui',
     icon && 'icon',
+    size,
     color,
     useKeyOnly(sub, 'sub'),
     useKeyOnly(dividing, 'dividing'),
@@ -57,6 +59,7 @@ Header._meta = {
   props: {
     attached: ['top', 'bottom'],
     color: SUI.COLORS,
+    size: _.without(SUI.SIZES, 'big', 'massive'),
     floated: SUI.FLOATS,
     textAlign: SUI.TEXT_ALIGNMENTS,
   },
@@ -127,6 +130,9 @@ Header.propTypes = {
 
   /** Headers may be formatted to label smaller or de-emphasized content */
   sub: PropTypes.bool,
+
+  /** Content headings are sized with em and are based on the font-size of their container. */
+  size: PropTypes.oneOf(Header._meta.props.size),
 
   /** Align header content */
   textAlign: PropTypes.oneOf(Header._meta.props.textAlign),

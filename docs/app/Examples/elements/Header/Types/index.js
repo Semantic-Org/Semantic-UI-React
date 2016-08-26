@@ -10,8 +10,8 @@ const HeaderTypesExamples = () => (
       description='Headers may be oriented to give the hierarchy of a section in the context of the page'
       examplePath='elements/Header/Types/HeaderPageHeadersExample'
     >
-      <Message>
-        Page headings are sized using rem and are not affected by surrounding content size.
+      <Message info>
+        Page headings are sized using <code>rem</code> and are not affected by surrounding content size.
       </Message>
     </ComponentExample>
     <ComponentExample
@@ -19,8 +19,8 @@ const HeaderTypesExamples = () => (
       description='Headers may be oriented to give the importance of a section'
       examplePath='elements/Header/Types/HeaderContentHeadersExample'
     >
-      <Message>
-        Content headings are sized with em and are based on the font-size of their container.
+      <Message info>
+        Content headings are sized with <code>em</code> and are based on the font-size of their container.
       </Message>
     </ComponentExample>
     <ComponentExample
