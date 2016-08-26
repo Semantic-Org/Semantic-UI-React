@@ -20,7 +20,7 @@ class ModalCloseConfigExample extends Component {
 
         <Modal active={active} onHide={this.hide}
           closeOnEscape={closeOnEscape} closeOnClickOutside={closeOnClickOutside}
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      >
+        >
           <Modal.Header>
             Delete Your Account
           </Modal.Header>
