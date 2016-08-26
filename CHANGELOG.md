@@ -1,9 +1,44 @@
 # Change Log
 
+## [v0.37.1](https://github.com/TechnologyAdvice/stardust/tree/v0.37.1) (2016-08-25)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.37.0...v0.37.1)
+
+**Fixed bugs:**
+
+- Docs: Generation issue of docgenInfo.json on Windows [\#434](https://github.com/TechnologyAdvice/stardust/issues/434)
+- fix\(Checkbox\): render required empty labels [\#439](https://github.com/TechnologyAdvice/stardust/pull/439) ([levithomason](https://github.com/levithomason))
+
+## [v0.37.0](https://github.com/TechnologyAdvice/stardust/tree/v0.37.0) (2016-08-25)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.36.3...v0.37.0)
+
+**Implemented enhancements:**
+
+- RFC: Consider component augmentation [\#403](https://github.com/TechnologyAdvice/stardust/issues/403)
+- Breaking Changes: Add component augmentation [\#414](https://github.com/TechnologyAdvice/stardust/pull/414) ([levithomason](https://github.com/levithomason))
+
+**Fixed bugs:**
+
+- Docs: Comparison width error [\#433](https://github.com/TechnologyAdvice/stardust/issues/433)
+- Bug: Doc website prevents the use of cmd + c [\#425](https://github.com/TechnologyAdvice/stardust/issues/425)
+- Docs: use platform path sep [\#435](https://github.com/TechnologyAdvice/stardust/pull/435) ([levithomason](https://github.com/levithomason))
+
+**Closed issues:**
+
+- Doc: CI deploys a broken doc site build [\#423](https://github.com/TechnologyAdvice/stardust/issues/423)
+
+**Merged pull requests:**
+
+- Docs: Comparison width fix [\#438](https://github.com/TechnologyAdvice/stardust/pull/438) ([layershifter](https://github.com/layershifter))
+- docs\(Card\): add component descriptions [\#429](https://github.com/TechnologyAdvice/stardust/pull/429) ([levithomason](https://github.com/levithomason))
+- Docs: fix search focus [\#426](https://github.com/TechnologyAdvice/stardust/pull/426) ([levithomason](https://github.com/levithomason))
+- Update dependencies [\#422](https://github.com/TechnologyAdvice/stardust/pull/422) ([levithomason](https://github.com/levithomason))
+- chore\(codeclimate\): remove codeclimate [\#421](https://github.com/TechnologyAdvice/stardust/pull/421) ([levithomason](https://github.com/levithomason))
+- Update codeclimate [\#420](https://github.com/TechnologyAdvice/stardust/pull/420) ([levithomason](https://github.com/levithomason))
+
 ## [v0.36.3](https://github.com/TechnologyAdvice/stardust/tree/v0.36.3) (2016-08-22)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.36.2...v0.36.3)
 
-**Merged pull requests:**
+**Implemented enhancements:**
 
 - Dropdown: Pass 'options' objects as props to Dropdown.Item [\#418](https://github.com/TechnologyAdvice/stardust/pull/418) ([jcarbo](https://github.com/jcarbo))
 
