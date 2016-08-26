@@ -4,7 +4,7 @@ import { Button, Icon, Modal } from 'stardust'
 class ModalCloseConfigExample extends Component {
   state = { active: false }
 
-  closeConfigShow = ( closeOnEscape, closeOnClickOutside ) => () => {
+  closeConfigShow = (closeOnEscape, closeOnClickOutside) => () => {
     this.setState({ closeOnEscape, closeOnClickOutside, active: true })
   }
 
@@ -19,7 +19,8 @@ class ModalCloseConfigExample extends Component {
         <Button onClick={this.closeConfigShow(true, false)}>No Close on Click Outside</Button>
 
         <Modal active={active} onHide={this.hide}
-               closeOnEscape={closeOnEscape} closeOnClickOutside={closeOnClickOutside}>
+          closeOnEscape={closeOnEscape} closeOnClickOutside={closeOnClickOutside}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      >
           <Modal.Header>
             Delete Your Account
           </Modal.Header>
