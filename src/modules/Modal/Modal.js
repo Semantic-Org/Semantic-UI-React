@@ -52,6 +52,12 @@ class Modal extends Component {
     /** A modal can reduce its complexity */
     basic: PropTypes.bool,
 
+    /** Closes the modal if Escape is pressed. Defaults to true */
+    closeOnEscape: PropTypes.bool,
+
+    /** Closes the modal if user clicks anywhere outside the modal. Defaults to true */
+    closeOnClickOutside: PropTypes.bool,
+
     /** A modal can appear in a dimmer */
     dimmer: PropTypes.oneOfType([
       PropTypes.bool,
@@ -67,6 +73,8 @@ class Modal extends Component {
 
   static defaultProps = {
     dimmer: true,
+    closeOnEscape: true,
+    closeOnClickOutside: true,
   }
 
   static _meta = _meta
@@ -111,18 +119,25 @@ class Modal extends Component {
 
   handleHide = () => {
     debug('handleHide()')
+    const { closeOnEscape, closeOnClickOutside } = this.props
+
     // Always remove all dimmer classes.
     // If the dimmer value changes while the modal is open,
     //   then removing its current value could leave cruft classes previously added.
     document.body.classList.remove('blurring', 'dimmable', 'dimmed', 'scrollable')
 
-    document.removeEventListener('keydown', this.handleDocumentKeyDown)
-    document.removeEventListener('click', this.handleClickOutside)
+    if (closeOnEscape) {
+      document.removeEventListener('keydown', this.handleDocumentKeyDown)
+    }
+
+    if (closeOnClickOutside) {
+      document.removeEventListener('click', this.handleClickOutside)
+    }
   }
 
   handleShow = () => {
     debug('handleShow()')
-    const { dimmer } = this.props
+    const { dimmer, closeOnEscape, closeOnClickOutside } = this.props
     if (dimmer) {
       debug('adding dimmer')
       document.body.classList.add('dimmable', 'dimmed')
@@ -133,8 +148,13 @@ class Modal extends Component {
       }
     }
 
-    document.addEventListener('keydown', this.handleDocumentKeyDown)
-    document.addEventListener('click', this.handleClickOutside)
+    if (closeOnEscape) {
+      document.addEventListener('keydown', this.handleDocumentKeyDown)
+    }
+
+    if (closeOnClickOutside) {
+      document.addEventListener('click', this.handleClickOutside)
+    }
   }
 
   handleClickOutside = (e) => {
@@ -186,7 +206,7 @@ class Modal extends Component {
   }
 
   render() {
-    const { active, basic, children, className, dimmer, size } = this.props
+    const { active, basic, children, className, dimmer, size, closeOnEscape, closeOnClickOutside } = this.props
     const { marginTop, scrolling } = this.state
     const classes = cx(
       'ui',
