@@ -180,6 +180,6 @@ Made with :heart: [@TechnologyAdvice][9], a ridiculous [place to work][16].
 [14]: https://github.com/TechnologyAdvice/stardust/issues
 [15]: https://github.com/TechnologyAdvice/stardust/issues/269
 [16]: http://technologyadvice.com/careers
-[17]: https://github.com/TechnologyAdvice/stardust/issues?q=is%3Aopen+is%3Aissue+label%3A%22help+wanted%22+label%3Aenhancement
+[17]: https://github.com/TechnologyAdvice/stardust/issues?q=is%3Aopen+label%3A%22help+wanted%22+label%3Aenhancement
 [18]: https://github.com/TechnologyAdvice/stardust/blob/master/CHANGELOG.md
-[19]: https://github.com/TechnologyAdvice/stardust/issues?q=is%3Aissue+is%3Aopen+RFC+label%3ARFC
+[19]: https://github.com/TechnologyAdvice/stardust/issues?q=is%3Aopen+RFC+label%3ARFC
