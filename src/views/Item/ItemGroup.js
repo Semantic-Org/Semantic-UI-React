@@ -5,11 +5,18 @@ import {
   getElementType,
   getUnhandledProps,
   META,
+  useKeyOnly,
 } from '../../lib'
 
 function ItemGroup(props) {
-  const { className, children } = props
-  const classes = cx('ui', className, 'items')
+  const { className, children, divided } = props
+  const classes = cx(
+    'ui',
+    className,
+    useKeyOnly(divided, 'divided'),
+    'items'
+  )
+
   const rest = getUnhandledProps(ItemGroup, props)
   const ElementType = getElementType(ItemGroup, props)
 

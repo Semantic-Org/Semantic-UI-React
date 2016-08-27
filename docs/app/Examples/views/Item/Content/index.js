@@ -14,13 +14,13 @@ const Content = () => (
     <ComponentExample
       title='Content'
       description='An item can contain content'
-      examplePath='views/Item/Content/Content'
+      examplePath='views/Item/Content/Contents'
     />
 
     <ComponentExample
       title='Header'
       description='An item can contain a header'
-      examplePath='views/Item/Content/Header'
+      examplePath='views/Item/Content/Headers'
     />
 
     <ComponentExample
@@ -38,7 +38,7 @@ const Content = () => (
     <ComponentExample
       title='Description'
       description='An item can contain contain links as images, headers, or inside content'
-      examplePath='views/Item/Content/Description'
+      examplePath='views/Item/Content/Descriptions'
     />
 
     <ComponentExample
@@ -47,11 +47,11 @@ const Content = () => (
       examplePath='views/Item/Content/ExtraContent'
     />
 
-    <ComponentExample
-      title='Rating'
-      description='An item can contain icons signifying a "like" or "favorite" action'
-      examplePath='views/Item/Content/Rating'
-    />
+     <ComponentExample
+       title='Rating'
+       description='An item can contain icons signifying a "like" or "favorite" action'
+       examplePath='views/Item/Content/Ratings'
+     />
   </ExampleSection>
 )
 

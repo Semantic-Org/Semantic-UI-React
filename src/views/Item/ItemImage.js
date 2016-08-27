@@ -1,9 +1,15 @@
-import React, { PropTypes } from 'react'
-import { META } from '../../lib'
+import React from 'react'
+
+import {
+  getElementType,
+  META,
+} from '../../lib'
 import Image from '../../elements/Image/Image'
 
 function ItemImage(props) {
-  return <Image {...props} />
+  const ElementType = getElementType(ItemImage, props)
+
+  return <Image {...props} as={ElementType} />
 }
 
 ItemImage._meta = {
