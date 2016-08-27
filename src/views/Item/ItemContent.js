@@ -8,42 +8,42 @@ getElementType,
   META,
 } from '../../lib'
 
-function ItemDescription(props) {
+function ItemContent(props) {
   const { children, className, content } = props
-  const classes = cx(className, 'description')
-  const rest = getUnhandledProps(ItemDescription, props)
-  const ElementType = getElementType(ItemDescription, props)
+  const classes = cx(className, 'content')
+  const rest = getUnhandledProps(ItemContent, props)
+  const ElementType = getElementType(ItemContent, props)
 
   return <ElementType {...rest} className={classes}>{children || content}</ElementType>
 }
 
-ItemDescription._meta = {
-  name: 'ItemDescription',
+ItemContent._meta = {
+  name: 'ItemContent',
   parent: 'Item',
   type: META.TYPES.VIEW,
 }
 
-ItemDescription.propTypes = {
+ItemContent.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.func,
   ]),
 
-  /** Primary content of the ItemDescription. */
+  /** Primary content of the ItemContent. */
   children: customPropTypes.every([
     customPropTypes.disallow(['content']),
     PropTypes.node,
   ]),
 
-  /** Classes that will be added to the ItemDescription className. */
+  /** Classes that will be added to the ItemContent className. */
   className: PropTypes.string,
 
-  /** Primary content of the ItemDescription. Mutually exclusive with the children prop. */
+  /** Primary content of the ItemContent. Mutually exclusive with the children prop. */
   content: customPropTypes.every([
     customPropTypes.disallow(['children']),
     PropTypes.string,
   ]),
 }
 
-export default ItemDescription
+export default ItemContent
