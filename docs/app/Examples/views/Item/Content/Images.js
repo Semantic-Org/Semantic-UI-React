@@ -6,9 +6,7 @@ const { Group, Image } = Item
 const Images = () => (
   <Group divided>
     <Item>
-      <Image>
-        <img src='http://semantic-ui.com/images/wireframe/image.png' />
-      </Image>
+      <Image src='http://semantic-ui.com/images/wireframe/image.png' />
     </Item>
 
     <Item>
