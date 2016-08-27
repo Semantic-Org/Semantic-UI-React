@@ -3,7 +3,7 @@ import React, { PropTypes } from 'react'
 
 import {
   customPropTypes,
-getElementType,
+  getElementType,
   getUnhandledProps,
   META,
 } from '../../lib'
