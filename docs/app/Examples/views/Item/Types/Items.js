@@ -4,7 +4,7 @@ import { Image, Item } from 'stardust'
 const Metadata = () => (
   <Item.Group>
     <Item>
-      <Image size='tiny' src='http://semantic-ui.com/images/wireframe/image.png' />
+      <Item.Image size='tiny' src='http://semantic-ui.com/images/wireframe/image.png' />
 
       <Item.Content>
         <Item.Header as='a'>Header</Item.Header>
@@ -17,7 +17,7 @@ const Metadata = () => (
     </Item>
 
     <Item>
-      <Image size='tiny' src='http://semantic-ui.com/images/wireframe/image.png' />
+      <Item.Image size='tiny' src='http://semantic-ui.com/images/wireframe/image.png' />
 
       <Item.Content>
         <Item.Header as='a'>Header</Item.Header>
