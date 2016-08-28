@@ -1,8 +1,8 @@
 import React from 'react'
-import { Item, Image as ImageComponent } from 'stardust'
+import { Image as ImageComponent, Item } from 'stardust'
 
 const { Content, Description, Group, Header, Image, Meta } = Item
-const image = <ImageComponent src='http://semantic-ui.com/images/wireframe/short-paragraph.png' />
+const paragraph = <ImageComponent src='http://semantic-ui.com/images/wireframe/short-paragraph.png' />
 
 const Link = () => (
   <Group>
@@ -15,7 +15,7 @@ const Link = () => (
           <span className='price'>$1200</span>
           <span className='stay'>1 Month</span>
         </Meta>
-        <Description>{image}</Description>
+        <Description>{paragraph}</Description>
       </Content>
     </Item>
 
@@ -25,7 +25,7 @@ const Link = () => (
       <Content>
         <Header>Buck's Homebrew Stayaway</Header>
         <Meta content='$1000 2 Weeks' />
-        <Description>{image}</Description>
+        <Description>{paragraph}</Description>
       </Content>
     </Item>
 

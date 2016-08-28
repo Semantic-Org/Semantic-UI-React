@@ -14,6 +14,9 @@ import ItemDescription from './ItemDescription'
 import ItemExtra from './ItemExtra'
 import ItemMeta from './ItemMeta'
 
+/**
+ * An item can contain content
+ * */
 function ItemContent(props) {
   const { children, className, content, description, extra, header, meta, verticalAlign } = props
   const classes = cx(
