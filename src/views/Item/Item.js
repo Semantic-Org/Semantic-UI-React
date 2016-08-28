@@ -20,7 +20,7 @@ import ItemMeta from './ItemMeta'
  * An item view presents large collections of site content for display
  * */
 function Item(props) {
-  const { children, className, content, extra, header, image, meta } = props
+  const { children, className, content, description, extra, header, image, meta } = props
   const classes = cx(className, 'item')
   const rest = getUnhandledProps(Item, props)
   const ElementType = getElementType(Item, props)
@@ -35,6 +35,7 @@ function Item(props) {
 
       <ItemContent
         content={content}
+        description={description}
         extra={extra}
         header={header}
         meta={meta}
@@ -71,6 +72,12 @@ Item.propTypes = {
 
   /** Shorthand for ItemContent component. */
   content: customPropTypes.every([
+    customPropTypes.disallow(['children']),
+    PropTypes.string,
+  ]),
+
+  /** Shorthand for ItemDescription component. */
+  description: customPropTypes.every([
     customPropTypes.disallow(['children']),
     PropTypes.string,
   ]),

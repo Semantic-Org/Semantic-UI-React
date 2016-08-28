@@ -1,8 +1,8 @@
 import React from 'react'
-import { Item, Icon, Image as ImageComponent } from 'stardust'
+import { Icon, Image as ImageComponent, Item } from 'stardust'
 
 const { Content, Description, Extra, Group, Header, Image } = Item
-const image = <ImageComponent src='http://semantic-ui.com/images/wireframe/short-paragraph.png' />
+const paragraph = <ImageComponent src='http://semantic-ui.com/images/wireframe/short-paragraph.png' />
 
 const ExtraContent = () => (
   <Group>
@@ -11,7 +11,7 @@ const ExtraContent = () => (
 
       <Content>
         <Header as='a'>Cute Dog</Header>
-        <Description>{image}</Description>
+        <Description>{paragraph}</Description>
         <Extra>
           <Icon name='green check' /> 121 Votes
         </Extra>
@@ -23,7 +23,7 @@ const ExtraContent = () => (
 
       <Content>
         <Header as='a'>Cute Dog</Header>
-        <Description>{image}</Description>
+        <Description>{paragraph}</Description>
         <Extra content='121 Votes' />
       </Content>
     </Item>

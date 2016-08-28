@@ -1,7 +1,7 @@
 import React from 'react'
 import { Image, Item } from 'stardust'
 
-const Metadata = () => (
+const Items = () => (
   <Item.Group>
     <Item>
       <Item.Image size='tiny' src='http://semantic-ui.com/images/wireframe/image.png' />
@@ -31,4 +31,4 @@ const Metadata = () => (
   </Item.Group>
 )
 
-export default Metadata
+export default Items
