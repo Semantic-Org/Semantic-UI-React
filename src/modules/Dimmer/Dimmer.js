@@ -14,7 +14,7 @@ const _meta = {
   type: META.TYPES.MODULE,
 }
 
-class Rating extends Component {
+class Dimmer extends Component {
   static propTypes = {
     /** An active dimmer will dim its parent container. */
     active: PropTypes.bool,
@@ -71,4 +71,4 @@ class Rating extends Component {
   }
 }
 
-export default Rating
+export default Dimmer
