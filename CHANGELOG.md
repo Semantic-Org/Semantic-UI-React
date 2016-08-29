@@ -1,5 +1,36 @@
 # Change Log
 
+## [Unreleased](https://github.com/TechnologyAdvice/stardust/tree/HEAD)
+
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.37.3...HEAD)
+
+**Implemented enhancements:**
+
+- React Router `Links` and `MenuItems` [\#142](https://github.com/TechnologyAdvice/stardust/issues/142)
+
+**Closed issues:**
+
+- Dropdown: support Menu classname [\#448](https://github.com/TechnologyAdvice/stardust/issues/448)
+
+## [v0.37.3](https://github.com/TechnologyAdvice/stardust/tree/v0.37.3) (2016-08-28)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.37.2...v0.37.3)
+
+**Fixed bugs:**
+
+- Dropdown: fix search type issues [\#397](https://github.com/TechnologyAdvice/stardust/issues/397)
+
+**Merged pull requests:**
+
+- fix\(Dropdown\): fix search width [\#443](https://github.com/TechnologyAdvice/stardust/pull/443) ([levithomason](https://github.com/levithomason))
+
+## [v0.37.2](https://github.com/TechnologyAdvice/stardust/tree/v0.37.2) (2016-08-26)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.37.1...v0.37.2)
+
+**Merged pull requests:**
+
+- feat\(Header\): support size prop [\#444](https://github.com/TechnologyAdvice/stardust/pull/444) ([levithomason](https://github.com/levithomason))
+- feat\(docs\): complete keyboard nav search [\#441](https://github.com/TechnologyAdvice/stardust/pull/441) ([levithomason](https://github.com/levithomason))
+
 ## [v0.37.1](https://github.com/TechnologyAdvice/stardust/tree/v0.37.1) (2016-08-25)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.37.0...v0.37.1)
 
