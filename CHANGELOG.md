@@ -1,5 +1,16 @@
 # Change Log
 
+## [v0.38.1](https://github.com/TechnologyAdvice/stardust/tree/v0.38.1) (2016-08-29)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.38.0...v0.38.1)
+
+**Fixed bugs:**
+
+- Dropdown: support Menu classname [\#448](https://github.com/TechnologyAdvice/stardust/issues/448)
+
+**Merged pull requests:**
+
+- fix\(Dropdown\): merge Dropdown.Menu className [\#453](https://github.com/TechnologyAdvice/stardust/pull/453) ([levithomason](https://github.com/levithomason))
+
 ## [v0.38.0](https://github.com/TechnologyAdvice/stardust/tree/v0.38.0) (2016-08-29)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.37.4...v0.38.0)
 
@@ -15,10 +26,6 @@
 - Modal: Support configurable close behaviors [\#437](https://github.com/TechnologyAdvice/stardust/issues/437)
 - React Router `Links` and `MenuItems` [\#142](https://github.com/TechnologyAdvice/stardust/issues/142)
 - feat\(Modal\): add configurable close behaviors \(\#440\) [\#440](https://github.com/TechnologyAdvice/stardust/pull/440) ([brsanthu](https://github.com/brsanthu))
-
-**Closed issues:**
-
-- Dropdown: support Menu classname [\#448](https://github.com/TechnologyAdvice/stardust/issues/448)
 
 ## [v0.37.3](https://github.com/TechnologyAdvice/stardust/tree/v0.37.3) (2016-08-28)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.37.2...v0.37.3)
