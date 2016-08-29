@@ -24,7 +24,7 @@ function Image(props) {
   } = props
 
   const classes = cx(
-    ui && 'ui',
+    useKeyOnly(ui, 'ui'),
     size,
     useVerticalAlignProp(verticalAlign, 'aligned'),
     useKeyOnly(avatar, 'avatar'),
