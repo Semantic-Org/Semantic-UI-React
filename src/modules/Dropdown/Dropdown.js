@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import cx from 'classnames'
-import React, { cloneElement, PropTypes } from 'react'
+import React, { Children, cloneElement, PropTypes } from 'react'
 
 import {
   AutoControlledComponent as Component,
@@ -69,7 +69,10 @@ export default class Dropdown extends Component {
     children: customPropTypes.every([
       customPropTypes.disallow(['options', 'selection']),
       customPropTypes.demand(['text']),
-      React.PropTypes.element,
+      customPropTypes.givenProps(
+        { children: PropTypes.any.isRequired },
+        React.PropTypes.element.isRequired,
+      ),
       customPropTypes.ofComponentTypes(['DropdownMenu']),
     ]),
 
@@ -801,7 +804,12 @@ export default class Dropdown extends Component {
     const { menuClasses } = this.state
 
     // single menu child
-    if (children) return cloneElement(children, { className: menuClasses })
+    if (children) {
+      const menuChild = Children.only(children)
+      const className = cx(menuClasses, menuChild.props.className)
+
+      return cloneElement(menuChild, { className })
+    }
 
     return (
       <DropdownMenu className={menuClasses}>
