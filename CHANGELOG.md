@@ -1,12 +1,20 @@
 # Change Log
 
-## [Unreleased](https://github.com/TechnologyAdvice/stardust/tree/HEAD)
-
-[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.37.3...HEAD)
+## [v0.38.0](https://github.com/TechnologyAdvice/stardust/tree/v0.38.0) (2016-08-29)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.37.4...v0.38.0)
 
 **Implemented enhancements:**
 
+- Item: Update to v1 API [\#431](https://github.com/TechnologyAdvice/stardust/pull/431) ([layershifter](https://github.com/layershifter))
+
+## [v0.37.4](https://github.com/TechnologyAdvice/stardust/tree/v0.37.4) (2016-08-29)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.37.3...v0.37.4)
+
+**Implemented enhancements:**
+
+- Modal: Support configurable close behaviors [\#437](https://github.com/TechnologyAdvice/stardust/issues/437)
 - React Router `Links` and `MenuItems` [\#142](https://github.com/TechnologyAdvice/stardust/issues/142)
+- feat\(Modal\): add configurable close behaviors \(\#440\) [\#440](https://github.com/TechnologyAdvice/stardust/pull/440) ([brsanthu](https://github.com/brsanthu))
 
 **Closed issues:**
 
