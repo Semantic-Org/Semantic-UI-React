@@ -1125,6 +1125,35 @@ describe('Dropdown Component', () => {
       wrapper.simulate('click')
       dropdownMenuIsOpen()
     })
+
+    it('spreads extra menu props', () => {
+      wrapperShallow(
+        <Dropdown text='required prop'>
+          <Dropdown.Menu data-foo-bar />
+        </Dropdown>
+      )
+        .should.contain.descendants('DropdownMenu')
+
+      wrapper
+        .find('DropdownMenu')
+        .should.have.prop('data-foo-bar', true)
+    })
+
+    it("merges the user's menu className", () => {
+      wrapperShallow(
+        <Dropdown text='required prop'>
+          <Dropdown.Menu className='foo-bar' />
+        </Dropdown>
+      )
+        .should.contain.descendants('DropdownMenu')
+
+      const menu = wrapper
+        .find('DropdownMenu')
+        .shallow()
+
+      menu.should.have.className('menu')
+      menu.should.have.className('foo-bar')
+    })
   })
 
   describe('allowAdditions', () => {
