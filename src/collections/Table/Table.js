@@ -9,6 +9,9 @@ import {
 } from '../../lib'
 import TableColumn from './TableColumn'
 
+/**
+ * A table displays a collections of data grouped into rows
+ */
 export default class Table extends Component {
   static propTypes = {
     /** An element type to render as (string or function). */
