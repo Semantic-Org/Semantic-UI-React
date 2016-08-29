@@ -37,7 +37,7 @@ function ItemGroup(props) {
     const { childKey, ...itemProps } = item
     const finalKey = childKey || [itemProps.content, itemProps.description, itemProps.header, itemProps.meta].join('-')
 
-    return <Item key={finalKey} {...itemProps} />
+    return <Item {...itemProps} key={finalKey} />
   })
 
   return <ElementType {...rest} className={classes}>{itemsJSX}</ElementType>
