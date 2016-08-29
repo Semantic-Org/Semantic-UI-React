@@ -20,11 +20,11 @@ import ImageGroup from './ImageGroup'
 function Image(props) {
   const {
     verticalAlign, alt, avatar, bordered, centered, className, disabled, floated, fluid,
-    hidden, height, href, inline, shape, size, spaced, src, width,
+    hidden, height, href, inline, shape, size, spaced, src, width, ui,
   } = props
 
   const classes = cx(
-    'ui',
+    useKeyOnly(ui, 'ui'),
     size,
     useVerticalAlignProp(verticalAlign, 'aligned'),
     useKeyOnly(avatar, 'avatar'),
@@ -140,6 +140,9 @@ Image.propTypes = {
   /** Specifies the URL of the image */
   src: PropTypes.string,
 
+  /** Whether or not to add the ui className */
+  ui: PropTypes.bool,
+
   /** The img element width attribute */
   width: PropTypes.oneOfType([
     PropTypes.string,
@@ -156,6 +159,7 @@ Image.propTypes = {
 
 Image.defaultProps = {
   as: 'img',
+  ui: true,
 }
 
 export default Image
