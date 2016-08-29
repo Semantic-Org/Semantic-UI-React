@@ -1,6 +1,7 @@
 import React from 'react'
 import {
   getElementType,
+  getUnhandledProps,
   META,
 } from '../../lib'
 import Image from '../../elements/Image/Image'
@@ -10,8 +11,8 @@ import Image from '../../elements/Image/Image'
  * */
 function ItemImage(props) {
   const ElementType = getElementType(ItemImage, props)
-
-  return <Image {...props} as={ElementType} />
+  const rest = getUnhandledProps(ItemImage, props)
+  return <Image {...rest} as={ElementType} ui={false} />
 }
 
 ItemImage._meta = {

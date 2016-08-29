@@ -65,6 +65,7 @@ export default class AllowAdditionsExample extends Component {
             onAddItem={this.handleAdditionMultiple}
             onChange={this.handleChangeMultiple}
           />
+          Using <code>additionPosition='top' additionLabel=''</code>
         </Grid.Column>
       </Grid>
     )

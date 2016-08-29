@@ -279,6 +279,55 @@ describe('Modal', () => {
     })
   })
 
+  describe('with configurable close behaviours, onHide', () => {
+    let spy
+
+    beforeEach(() => {
+      spy = sandbox.spy()
+      wrapperMount(<Modal onHide={spy} active closeOnEscape={false} closeOnClickOutside={false} />)
+    })
+
+    it('is not called on dimmer click', () => {
+      domEvent.click('.ui.dimmer')
+      spy.should.not.have.been.calledOnce()
+    })
+
+    it('is not called on click outside of the modal', () => {
+      domEvent.click(document.querySelector('.ui.modal').parentNode)
+      spy.should.not.have.been.calledOnce()
+    })
+
+    it('is not called on click inside of the modal', () => {
+      domEvent.click(document.querySelector('.ui.modal'))
+      spy.should.not.have.been.calledOnce()
+    })
+
+    it('is not called on body click', () => {
+      domEvent.click('body')
+      spy.should.not.have.been.calledOnce()
+    })
+
+    it('is not called when pressing escape', () => {
+      domEvent.keyDown(document, { key: 'Escape' })
+      spy.should.not.have.been.calledOnce()
+    })
+
+    it('is not called when pressing a key other than "Escape"', () => {
+      _.each(keyboardKey, (val, key) => {
+        // skip Escape key
+        if (val === keyboardKey.Escape) return
+
+        domEvent.keyDown(document, { key })
+        spy.should.not.have.been.called(`onHide was called when pressing "${key}"`)
+      })
+    })
+
+    it('is not called when the active prop changes to false', () => {
+      wrapper.setProps({ active: false })
+      spy.should.not.have.been.called()
+    })
+  })
+
   describe('scrolling', () => {
     afterEach(() => {
       document.body.classList.remove('scrolling')

@@ -1,7 +1,6 @@
 import _ from 'lodash'
 import cx from 'classnames'
 import React, { cloneElement, PropTypes } from 'react'
-import { findDOMNode } from 'react-dom'
 
 import {
   AutoControlledComponent as Component,
@@ -495,19 +494,9 @@ export default class Dropdown extends Component {
     // open search dropdown on search query
     if (search && newQuery && !open) this.open()
 
-    // resize the search input, temporarily show the sizer so we can measure it
-    let searchWidth
-    if (newQuery) {
-      const sizer = findDOMNode(this.refs.sizer)
-      sizer.style.display = 'inline'
-      searchWidth = Math.ceil(sizer.getBoundingClientRect().width)
-      sizer.style.removeProperty('display')
-    }
-
     this.setState({
       selectedIndex: 0,
       searchQuery: newQuery,
-      searchWidth,
     })
   }
 
@@ -722,9 +711,20 @@ export default class Dropdown extends Component {
 
   renderSearchInput = () => {
     const { search } = this.props
-    const { searchQuery, searchWidth } = this.state
+    const { searchQuery } = this.state
 
-    return !search ? null : (
+    if (!search) return null
+
+    // resize the search input, temporarily show the sizer so we can measure it
+    let searchWidth
+    if (this._sizer && searchQuery) {
+      this._sizer.style.display = 'inline'
+      this._sizer.textContent = searchQuery
+      searchWidth = Math.ceil(this._sizer.getBoundingClientRect().width)
+      this._sizer.style.removeProperty('display')
+    }
+
+    return (
       <input
         value={searchQuery}
         onBlur={this.handleBlur}
@@ -740,10 +740,11 @@ export default class Dropdown extends Component {
   }
 
   renderSearchSizer = () => {
-    const { search } = this.props
-    const { searchQuery } = this.state
+    const { search, multiple } = this.props
 
-    return !search ? null : <span className='sizer' ref='sizer'>{searchQuery}</span>
+    if (!(search && multiple)) return null
+
+    return <span className='sizer' ref={c => (this._sizer = c)} />
   }
 
   renderLabels = () => {

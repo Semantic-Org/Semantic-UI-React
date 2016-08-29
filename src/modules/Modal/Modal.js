@@ -52,6 +52,12 @@ class Modal extends Component {
     /** A modal can reduce its complexity */
     basic: PropTypes.bool,
 
+    /** Closes the modal if Escape is pressed */
+    closeOnEscape: PropTypes.bool,
+
+    /** Closes the modal if user clicks anywhere outside the modal */
+    closeOnClickOutside: PropTypes.bool,
+
     /** A modal can appear in a dimmer */
     dimmer: PropTypes.oneOfType([
       PropTypes.bool,
@@ -67,6 +73,8 @@ class Modal extends Component {
 
   static defaultProps = {
     dimmer: true,
+    closeOnEscape: true,
+    closeOnClickOutside: true,
   }
 
   static _meta = _meta
@@ -111,6 +119,7 @@ class Modal extends Component {
 
   handleHide = () => {
     debug('handleHide()')
+
     // Always remove all dimmer classes.
     // If the dimmer value changes while the modal is open,
     //   then removing its current value could leave cruft classes previously added.
@@ -138,8 +147,9 @@ class Modal extends Component {
   }
 
   handleClickOutside = (e) => {
-    // do nothing when clicking inside the modal
-    if (this._modalNode.contains(e.target)) return
+    // do nothing when clicking inside the modal or if clickOnClickOutside is disabled
+    const { closeOnClickOutside } = this.props
+    if (!closeOnClickOutside || this._modalNode.contains(e.target)) return
 
     debug('handleDimmerClick()')
 
@@ -148,12 +158,16 @@ class Modal extends Component {
   }
 
   handleDocumentKeyDown = (e) => {
+    const { closeOnEscape } = this.props
     const key = keyboardKey.getCode(e)
     debug('handleDocumentKeyDown()', key)
 
     switch (key) {
       case keyboardKey.Escape:
-        this.onHide()
+        if (closeOnEscape) {
+          this.onHide()
+        }
+
         break
       default:
         break
