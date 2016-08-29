@@ -41,6 +41,21 @@ describe('Image Component', () => {
     })
   })
 
+  describe('ui', () => {
+    it('is true by default', () => {
+      Image.defaultProps.should.have.any.keys('ui')
+      Image.defaultProps.ui.should.equal(true)
+    })
+    it('adds the "ui" className when true', () => {
+      shallow(<Image ui />)
+        .should.have.className('ui')
+    })
+    it('removes the "ui" className when false', () => {
+      shallow(<Image ui={false} />)
+        .should.not.have.className('ui')
+    })
+  })
+
   describe('wrapped', () => {
     it('applies all img attribute props to the img tag', () => {
       const props = { src: 'http://g.co', alt: 'alt text', width: 10, height: '10' }
