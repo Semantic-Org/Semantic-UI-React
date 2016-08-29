@@ -33,9 +33,12 @@ function ItemGroup(props) {
     return <ElementType {...rest} className={classes}>{children}</ElementType>
   }
 
-  const itemsJSX = _.map(items, item => (
-    <Item key={item.childKey || [item.content, item.description, item.header, item.meta].join('-')} {...item} />
-  ))
+  const itemsJSX = _.map(items, item => {
+    const {childKey, ...itemProps} = item
+    const finalKey = childKey || [itemProps.content, itemProps.description, itemProps.header, itemProps.meta].join('-')
+
+      return <Item key={finalKey} {...itemProps} />
+  })
 
   return <ElementType {...rest} className={classes}>{itemsJSX}</ElementType>
 }
@@ -69,7 +72,10 @@ ItemGroup.propTypes = {
   items: customPropTypes.every([
     customPropTypes.disallow(['children']),
     PropTypes.arrayOf(PropTypes.shape({
-      childKey: PropTypes.string,
+      childKey: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.string,
+      ]),
       // this object is spread on the Item
       // allow it to validate props instead
     })),
