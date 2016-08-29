@@ -12,6 +12,7 @@ import Image from '../../elements/Image/Image'
 function ItemImage(props) {
   const ElementType = getElementType(ItemImage, props)
   const rest = getUnhandledProps(ItemImage, props)
+
   return <Image {...rest} as={ElementType} ui={false} />
 }
 
