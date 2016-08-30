@@ -37,10 +37,7 @@ StatisticLabel.propTypes = {
   className: PropTypes.string,
 
   /** Primary content of the StatisticLabel. Mutually exclusive with the children prop. */
-  label: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.string,
-  ]),
+  label: customPropTypes.shorthand,
 }
 
 export default StatisticLabel

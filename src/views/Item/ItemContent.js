@@ -63,34 +63,19 @@ ItemContent.propTypes = {
   className: PropTypes.string,
 
   /** Primary content of the ItemContent. Mutually exclusive with the children prop. */
-  content: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.string,
-  ]),
+  content: customPropTypes.shorthand,
 
   /** Shorthand for of the ItemDescription. Mutually exclusive with the children prop. */
-  description: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.string,
-  ]),
+  description: customPropTypes.shorthand,
 
   /** Shorthand for ItemExtra component. Mutually exclusive with the children prop. */
-  extra: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.string,
-  ]),
+  extra: customPropTypes.shorthand,
 
   /** Shorthand for ItemHeader component. Mutually exclusive with the children prop. */
-  header: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.string,
-  ]),
+  header: customPropTypes.shorthand,
 
   /** Shorthand for ItemMeta component. Mutually exclusive with the children prop. */
-  meta: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.string,
-  ]),
+  meta: customPropTypes.shorthand,
 
   /** Content can specify its vertical alignment */
   verticalAlign: PropTypes.oneOf(ItemContent._meta.props.verticalAlign),

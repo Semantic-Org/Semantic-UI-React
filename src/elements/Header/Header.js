@@ -100,10 +100,7 @@ Header.propTypes = {
   children: PropTypes.node,
 
   /** Primary content.  Mutually exclusive with children. */
-  content: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.string,
-  ]),
+  content: customPropTypes.shorthand,
 
   /** Add an icon by icon name or pass an <Icon /.> */
   icon: customPropTypes.every([

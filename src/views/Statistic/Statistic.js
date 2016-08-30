@@ -78,10 +78,7 @@ Statistic.propTypes = {
   inverted: PropTypes.bool,
 
   /** Label content of the Statistic. Mutually exclusive with the children prop. */
-  label: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.string,
-  ]),
+  label: customPropTypes.shorthand,
 
   /** A statistic can vary in size. */
   size: PropTypes.oneOf(Statistic._meta.props.size),

@@ -68,40 +68,22 @@ Item.propTypes = {
   className: PropTypes.string,
 
   /** Shorthand for ItemContent component. */
-  content: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.string,
-  ]),
+  content: customPropTypes.shorthand,
 
   /** Shorthand for ItemDescription component. */
-  description: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.string,
-  ]),
+  description: customPropTypes.shorthand,
 
   /** Shorthand for ItemExtra component. */
-  extra: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.string,
-  ]),
+  extra: customPropTypes.shorthand,
 
   /** Shorthand for ItemImage component. */
-  image: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.string,
-  ]),
+  image: customPropTypes.shorthand,
 
   /** Shorthand for ItemHeader component. */
-  header: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.string,
-  ]),
+  header: customPropTypes.shorthand,
 
   /** Shorthand for ItemMeta component. */
-  meta: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.string,
-  ]),
+  meta: customPropTypes.shorthand,
 }
 
 export default Item

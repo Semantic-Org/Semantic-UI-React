@@ -41,10 +41,7 @@ StatisticValue.propTypes = {
   text: PropTypes.bool,
 
   /** Primary content of the StatisticValue. Mutually exclusive with the children prop. */
-  value: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.string,
-  ]),
+  value: customPropTypes.shorthand,
 }
 
 export default StatisticValue

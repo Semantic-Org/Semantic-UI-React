@@ -40,10 +40,7 @@ ItemMeta.propTypes = {
   className: PropTypes.string,
 
   /** Primary content of the ItemMeta. Mutually exclusive with the children prop. */
-  content: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.string,
-  ]),
+  content: customPropTypes.shorthand,
 }
 
 export default ItemMeta

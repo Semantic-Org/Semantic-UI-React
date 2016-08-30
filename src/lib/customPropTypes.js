@@ -187,7 +187,10 @@ export const demand = (requiredProps) => {
  */
 export const deprecate = (help, validator) => {
   return (props, propName, componentName, ...args) => {
-    if (typeof help !== 'string') {
+    // do not show deprecation warnings in production
+    if (process.env.NODE_ENV === 'production') return
+
+    if (!_.isString(help)) {
       throw new Error([
         'Invalid `help` argument supplied to deprecate, expected a string.',
         `See \`${propName}\` prop in \`${componentName}\`.`,
@@ -219,3 +222,35 @@ export const deprecate = (help, validator) => {
     return error
   }
 }
+
+/**
+ * Ensure a prop conforms to shorthand prop standards.
+ */
+export const shorthand = (...args) => every([
+  disallow(['children']),
+  PropTypes.string,
+])(...args)
+
+/**
+ * Ensure a prop conforms to icon prop standards.
+ */
+export const icon = (...args) => every([
+  disallow(['children']),
+  PropTypes.node,
+])(...args)
+
+/**
+ * Ensure a prop conforms to icon prop standards.
+ */
+export const image = (...args) => every([
+  disallow(['children']),
+  PropTypes.node,
+])(...args)
+
+/**
+ * Ensure a prop can be used as a React key in an array of child components.
+ */
+export const childKey = (...args) => every([
+  PropTypes.string,
+  PropTypes.number,
+])(...args)

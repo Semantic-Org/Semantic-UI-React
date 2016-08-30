@@ -50,31 +50,13 @@ FeedSummary.propTypes = {
   className: PropTypes.string,
 
   /** Shorthand for children. Mutually exclusive with children. */
-  content: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number,
-    ]),
-  ]),
+  content: customPropTypes.shorthand,
 
   /** Shorthand for the FeedDate component. Mutually exclusive with children. */
-  date: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number,
-    ]),
-  ]),
+  date: customPropTypes.shorthand,
 
   /** Shorthand for the FeedUser component. Mutually exclusive with children. */
-  user: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number,
-    ]),
-  ]),
+  user: customPropTypes.shorthand,
 }
 
 export default FeedSummary

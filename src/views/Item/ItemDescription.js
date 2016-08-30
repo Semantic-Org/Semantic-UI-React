@@ -40,10 +40,7 @@ ItemDescription.propTypes = {
   className: PropTypes.string,
 
   /** Primary content of the ItemDescription. Mutually exclusive with the children prop. */
-  content: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.string,
-  ]),
+  content: customPropTypes.shorthand,
 }
 
 export default ItemDescription
