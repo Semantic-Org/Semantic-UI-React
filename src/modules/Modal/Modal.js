@@ -2,10 +2,15 @@ import _ from 'lodash'
 import React, { PropTypes, Component } from 'react'
 import cx from 'classnames'
 
-import ModalHeader from './ModalHeader'
+import {
+  ActionsPart,
+  DescriptionPart,
+  HeaderPart,
+} from '../../parts'
+// import ModalHeader from './ModalHeader'
 import ModalContent from './ModalContent'
-import ModalActions from './ModalActions'
-import ModalDescription from './ModalDescription'
+// import ModalActions from './ModalActions'
+// import ModalDescription from './ModalDescription'
 import Portal from 'react-portal'
 
 import {
@@ -78,10 +83,13 @@ class Modal extends Component {
   }
 
   static _meta = _meta
-  static Header = ModalHeader
+  // static Header = ModalHeader
+  static Header = HeaderPart
   static Content = ModalContent
-  static Description = ModalDescription
-  static Actions = ModalActions
+  // static Description = ModalDescription
+  static Description = DescriptionPart
+  // static Actions = ModalActions
+  static Actions = ActionsPart
 
   state = {}
 

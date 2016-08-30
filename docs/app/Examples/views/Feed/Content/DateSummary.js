@@ -24,7 +24,7 @@ const DateSummary = () => {
           <Summary>
             You added <a>Jenny Hess</a> to your <a>coworker</a> group.
 
-            <Date date='3 days ago' />
+            <Date children='3 days ago' />
           </Summary>
         </Content>
       </Event>

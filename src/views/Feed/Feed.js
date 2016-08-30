@@ -9,15 +9,20 @@ import {
   META,
   SUI,
 } from '../../lib'
+import {
+  DatePart,
+  createUserPart,
+} from '../../parts'
+
 import FeedContent from './FeedContent'
-import FeedDate from './FeedDate'
+// import FeedDate from './FeedDate'
 import FeedEvent from './FeedEvent'
 import FeedExtra from './FeedExtra'
 import FeedLabel from './FeedLabel'
 import FeedLike from './FeedLike'
 import FeedMeta from './FeedMeta'
 import FeedSummary from './FeedSummary'
-import FeedUser from './FeedUser'
+// import FeedUser from './FeedUser'
 
 function Feed(props) {
   const { children, className, events, size } = props
@@ -91,13 +96,15 @@ Feed.propTypes = {
 }
 
 Feed.Content = FeedContent
-Feed.Date = FeedDate
+// Feed.Date = FeedDate
+Feed.Date = DatePart
 Feed.Event = FeedEvent
 Feed.Extra = FeedExtra
 Feed.Label = FeedLabel
 Feed.Like = FeedLike
 Feed.Meta = FeedMeta
 Feed.Summary = FeedSummary
-Feed.User = FeedUser
+// Feed.User = FeedUser
+Feed.User = createUserPart({ elementType: 'a' })
 
 export default Feed
