@@ -11,6 +11,9 @@ const webpackConfig = {
   name: 'client',
   target: 'web',
   devtool: config.compiler_devtool,
+  externals: {
+    segmentio: 'analytics',
+  },
   resolve: {
     root: paths.base(),
     alias: {
@@ -191,10 +194,10 @@ if (__TEST__ || argv.localModules) {
   })
 
   // find them on the window
-  webpackConfig.externals = {
+  webpackConfig.externals = Object.assign({}, webpackConfig.externals, {
     faker: 'faker',
     'anchor-js': 'AnchorJS',
-  }
+  })
 }
 
 module.exports = webpackConfig
