@@ -26,7 +26,10 @@ const HeaderTypesExamples = () => (
     <ComponentExample
       title='Icon Headers'
       description='A header can be formatted to emphasize an icon'
-      examplePath='elements/Header/Types/HeaderIconHeadersExample'
+      examplePath='elements/Header/Types/HeaderSettingsIconHeaderExample'
+    />
+    <ComponentExample
+      examplePath='elements/Header/Types/HeaderUsersIconHeaderExample'
     />
     <ComponentExample
       title='Sub Headers'
