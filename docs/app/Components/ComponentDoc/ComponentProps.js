@@ -3,11 +3,6 @@ import React, { Component, PropTypes } from 'react'
 
 import { Divider, Header, Label, Table } from 'stardust'
 
-const DOCBLOCK_DESCRIPTION_DEFAULTS = {
-  children: 'Body of the component.',
-  className: 'Class names for custom styling.',
-}
-
 /**
  * Displays a table of a Component's PropTypes.
  */
@@ -42,7 +37,7 @@ export default class ComponentProps extends Component {
     const propsDefinition = this.props.props
     const content = _.map(propsDefinition, (propConfig, propName) => {
       const name = propName
-      const description = _.get(propConfig, 'docBlock.description') || DOCBLOCK_DESCRIPTION_DEFAULTS[name]
+      const description = _.get(propConfig, 'docBlock.description')
 
       const value = _.get(propConfig, 'type.value')
       let type = _.get(propConfig, 'type.name')
