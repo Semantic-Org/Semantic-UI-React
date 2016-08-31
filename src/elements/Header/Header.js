@@ -16,6 +16,9 @@ import { createIcon, createImage } from '../../factories'
 import HeaderSubheader from './HeaderSubheader'
 import HeaderContent from './HeaderContent'
 
+/**
+ * A header provides a short summary of content
+ */
 function Header(props) {
   const {
     color, content, dividing, block, attached, floated, inverted, disabled, sub, size, textAlign,
