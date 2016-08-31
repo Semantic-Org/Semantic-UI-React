@@ -64,7 +64,7 @@ export default class ComponentExample extends Component {
           </Grid>
         </Grid.Column>
         {this.props.children && children}
-        <Grid.Column>
+        <Grid.Column className='rendered-example'>
           {createElement(this.component, rest)}
         </Grid.Column>
         {this.state.showCode && code}
