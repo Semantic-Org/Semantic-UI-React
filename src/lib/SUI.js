@@ -186,7 +186,7 @@ export const BRANDS_ICONS = [
   'xing square', 'y combinator', 'yahoo', 'yelp', 'yoast', 'youtube', 'youtube play', 'youtube square',
 ]
 
-export const icons = [
+export const ICONS = [
   ...WEB_CONTENT_ICONS,
   ...USER_ACTIONS_ICONS,
   ...MESSAGE_ICONS,
