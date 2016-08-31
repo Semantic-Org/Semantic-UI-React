@@ -1,11 +1,11 @@
 import React, { PropTypes } from 'react'
 import cx from 'classnames'
 
-import { getElementType, META } from '../../lib'
+import { getElementType, getUnhandledProps, META } from '../../lib'
 import { Label } from '../../elements'
 
 function MenuItem(props) {
-  const { __onClick, active, children, className, label, name, onClick, ...rest } = props
+  const { __onClick, active, children, className, label, name, onClick } = props
   const handleClick = (e) => {
     if (__onClick) __onClick(name)
     if (onClick) onClick(name)
@@ -18,6 +18,7 @@ function MenuItem(props) {
   )
 
   const ElementType = getElementType(MenuItem, props)
+  const rest = getUnhandledProps(MenuItem, props)
 
   return (
     <ElementType {...rest} className={classes} onClick={handleClick}>
