@@ -14,6 +14,7 @@ import {
 } from '../../lib'
 import { createIcon, createImage } from '../../factories'
 import HeaderSubheader from './HeaderSubheader'
+import HeaderContent from './HeaderContent'
 
 function Header(props) {
   const {
@@ -23,9 +24,9 @@ function Header(props) {
 
   const classes = cx(
     'ui',
-    icon && 'icon',
     size,
     color,
+    useKeyOnly(icon === true, 'icon'),
     useKeyOnly(sub, 'sub'),
     useKeyOnly(dividing, 'dividing'),
     useKeyOnly(block, 'block'),
@@ -41,16 +42,24 @@ function Header(props) {
   const ElementType = getElementType(Header, props)
   const rest = getUnhandledProps(Header, props)
 
-  if (children) {
-    return <ElementType {...rest} className={classes}>{children}</ElementType>
+  if (icon && typeof icon !== 'boolean') {
+    return (
+      <ElementType className={classes} {...rest}>
+        {createIcon(icon)}
+        {content && <HeaderContent>{content}</HeaderContent>}
+      </ElementType>
+    )
   }
 
-  return (
-    <ElementType className={classes} {...rest}>
-      {createIcon(icon) || createImage(image)}
-      <div className='content'>{content}</div>
-    </ElementType>
-  )
+  if (image) {
+    return (
+      <ElementType className={classes} {...rest}>
+        {createImage(image)} {content}
+      </ElementType>
+    )
+  }
+
+  return <ElementType {...rest} className={classes}>{children || content}</ElementType>
 }
 
 Header._meta = {
@@ -77,8 +86,12 @@ Header.propTypes = {
 
   /** Primary content */
   children: customPropTypes.every([
-    customPropTypes.disallow(['icon', 'image']),
     PropTypes.node,
+    customPropTypes.disallow(['image']),
+    customPropTypes.givenProps(
+      { icon: PropTypes.oneOfType([PropTypes.string, PropTypes.element, PropTypes.object]) },
+      customPropTypes.disallow(['icon']),
+    ),
   ]),
 
   /** Primary content.  Mutually exclusive with children. */
@@ -89,12 +102,15 @@ Header.propTypes = {
 
   /** Add an icon by icon name or pass an <Icon /.> */
   icon: customPropTypes.every([
-    customPropTypes.disallow(['children', 'image']),
-    PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.element,
-      PropTypes.object,
-    ]),
+    customPropTypes.disallow(['image']),
+    customPropTypes.givenProps(
+      { children: PropTypes.node.isRequired },
+      PropTypes.bool,
+    ),
+    customPropTypes.givenProps(
+      { icon: PropTypes.oneOfType([PropTypes.string, PropTypes.element, PropTypes.object]) },
+      customPropTypes.disallow(['children']),
+    ),
   ]),
 
   /** Add an image by img src or pass an <Image />. */
@@ -138,6 +154,7 @@ Header.propTypes = {
   textAlign: PropTypes.oneOf(Header._meta.props.textAlign),
 }
 
+Header.Content = HeaderContent
 Header.Subheader = HeaderSubheader
 
 export default Header
