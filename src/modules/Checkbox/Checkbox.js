@@ -106,11 +106,21 @@ export default class Checkbox extends Component {
 
   state = {}
 
+  get inputType() {
+    const { inputType, type } = this.props
+    return inputType || typeMap[type]
+  }
+
+  canToggle = () => {
+    const { disabled, readOnly } = this.props
+    const { checked } = this.state
+
+    return !(disabled || readOnly || this.inputType === 'radio' && checked)
+  }
+
   handleClick = (e) => {
     debug('handleClick()')
-    debug('firing change event')
-
-    const { disabled, onChange, onClick, name, readOnly, value } = this.props
+    const { onChange, onClick, name, value } = this.props
     const { checked } = this.state
     debug(`  name:       ${name}`)
     debug(`  value:      ${value}`)
@@ -119,13 +129,13 @@ export default class Checkbox extends Component {
     if (onClick) onClick(e, { name, value, checked: !!checked })
     if (onChange) onChange(e, { name, value, checked: !checked })
 
-    if (!disabled && !readOnly) {
+    if (this.canToggle()) {
       this.trySetState({ checked: !checked })
     }
   }
 
   render() {
-    const { className, inputType, label, name, type, value } = this.props
+    const { className, label, name, type, value } = this.props
     const { checked } = this.state
     const classes = cx(
       'ui',
@@ -148,7 +158,7 @@ export default class Checkbox extends Component {
         onChange={this.handleClick}
       >
         <input
-          type={inputType || typeMap[type]}
+          type={this.inputType}
           name={name}
           checked={checked}
           className='hidden'

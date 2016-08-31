@@ -80,6 +80,20 @@ describe('Checkbox', () => {
         .match(/checkbox/g)
         .should.have.length(1)
     })
+    it('can be checked but not unchecked when radio', () => {
+      const wrapper = shallow(<Checkbox type='radio' />)
+
+      wrapper.find('input').should.not.be.checked()
+      wrapper.simulate('click').find('input').should.be.checked()
+      wrapper.simulate('click').find('input').should.be.checked()
+    })
+    it('can be checked and unchecked when checkbox', () => {
+      const wrapper = shallow(<Checkbox type='checkbox' />)
+
+      wrapper.find('input').should.not.be.checked()
+      wrapper.simulate('click').find('input').should.be.checked()
+      wrapper.simulate('click').find('input').should.not.be.checked()
+    })
   })
 
   describe('onClick', () => {
