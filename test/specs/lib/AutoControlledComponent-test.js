@@ -132,6 +132,14 @@ describe('extending AutoControlledComponent', () => {
       shallow(<TestClass />)
         .should.have.state('value', '')
     })
+
+    it('defaults "value" to an empty array if "multiple"', () => {
+      consoleUtil.disableOnce()
+      TestClass.autoControlledProps.push('value')
+
+      shallow(<TestClass multiple />)
+        .state().should.deep.equal({ value: [] })
+    })
   })
 
   describe('default props', () => {
