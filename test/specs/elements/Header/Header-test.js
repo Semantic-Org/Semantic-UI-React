@@ -1,12 +1,12 @@
-import faker from 'faker'
 import React from 'react'
 import Header from 'src/elements/Header/Header'
-import Subheader from 'src/elements/Header/HeaderSubheader'
+import HeaderContent from 'src/elements/Header/HeaderContent'
+import HeaderSubheader from 'src/elements/Header/HeaderSubheader'
 import * as common from 'test/specs/commonTests'
 
 describe('Header', () => {
   common.hasUIClassName(Header)
-  common.hasSubComponents(Header, [Subheader])
+  common.hasSubComponents(Header, [HeaderContent, HeaderSubheader])
   common.rendersChildren(Header)
 
   common.propKeyOnlyToClassName(Header, 'dividing')
@@ -25,16 +25,44 @@ describe('Header', () => {
   common.implementsImageProp(Header)
   common.implementsTextAlignProp(Header)
 
-  it('has an icon class when adding an icon', () => {
-    const iconClass = faker.hacker.noun()
-    const wrapper = mount(<Header icon={iconClass} />)
-    wrapper.should.have.className('icon')
+  describe('icon', () => {
+    it('adds an icon class when true', () => {
+      shallow(<Header icon />)
+        .should.have.className('icon')
+    })
+    it('does not add an Icon when true', () => {
+      shallow(<Header icon />)
+        .should.not.have.descendants('Icon')
+    })
+    it('adds an Icon when given a name', () => {
+      shallow(<Header icon='user' />)
+        .should.have.descendants('Icon')
+    })
+    it('does not add an icon class given a name', () => {
+      shallow(<Header icon='user' />)
+        .should.not.have.className('icon')
+    })
   })
 
   describe('content', () => {
-    it('renders text', () => {
+    it('adds child text', () => {
       shallow(<Header content='foo' />)
+        .should.have.prop('children', 'foo')
+    })
+    it('adds child text when there is an image', () => {
+      shallow(<Header content='foo' image='foo.png' />)
         .should.contain.text('foo')
+    })
+    it('is wrapped in HeaderContent when there is an icon name', () => {
+      shallow(<Header icon='users' content='Friends' />)
+        .find('HeaderContent')
+        .should.have.prop('children', 'Friends')
+    })
+    it('is not wrapped in HeaderContent when icon is true', () => {
+      const wrapper = shallow(<Header icon content='Friends' />)
+
+      wrapper.should.contain.text('Friends')
+      wrapper.should.not.have.descendants('HeaderContent')
     })
   })
 })
