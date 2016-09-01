@@ -168,7 +168,7 @@ Made with :heart: [@TechnologyAdvice][9], a ridiculous [place to work][16].
 [1]: https://github.com/TechnologyAdvice/stardust/blob/master/CONTRIBUTING.md
 [2]: https://technologyadvice.github.io/stardust/
 [3]: https://facebook.github.io/react/
-[4]: https://github.com/TechnologyAdvice/stardust/issues?q=is%3Aopen+is%3Aissue+label%3A%22help+wanted
+[4]: https://github.com/TechnologyAdvice/stardust/labels/help%20wanted
 [5]: http://semantic-ui.com/
 [6]: https://github.com/TechnologyAdvice/stardust/milestone/1
 [7]: https://github.com/webpack/webpack-dev-server/
