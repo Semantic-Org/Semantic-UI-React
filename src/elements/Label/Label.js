@@ -20,7 +20,7 @@ import { Icon, Image } from '../'
 function Label(props) {
   const {
     attached, basic, children, color, corner, className, circular, detail, detailLink, floating, horizontal,
-    icon, image, onClick, onDetailClick, onRemove, pointing, removable, ribbon, size, tag, text,
+    icon, image, link, onClick, onDetailClick, onRemove, pointing, removable, ribbon, size, tag, text,
   } = props
 
   const handleClick = e => onClick && onClick(e, props)
@@ -46,10 +46,8 @@ function Label(props) {
   )
 
   const DetailComponent = (detailLink || onDetailClick) && 'a' || 'div'
-  const ElementType = getElementType(Label, props, {
-    image: 'a',
-    link: 'a',
-    onClick: 'a',
+  const ElementType = getElementType(Label, props, () => {
+    if (image || link || onClick) return 'a'
   })
   const rest = getUnhandledProps(Label, props)
 
