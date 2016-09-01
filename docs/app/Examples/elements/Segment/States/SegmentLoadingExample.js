@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import { Segment } from 'stardust'
+import { Image, Segment } from 'stardust'
 
 export default class SegmentLoadingExample extends Component {
   render() {
     return (
       <Segment loading>
-        Loading content.
+        <Image src='http://semantic-ui.com/images/wireframe/paragraph.png' />
       </Segment>
     )
   }

@@ -6,28 +6,44 @@ import {
   getUnhandledProps,
   META,
   SUI,
-  useAlignedProp,
   useKeyOnly,
   useKeyOrValueAndKey,
+  useTextAlignProp,
   useValueAndKey,
 } from '../../lib'
 import SegmentGroup from './SegmentGroup'
-import { Header } from '../'
-
 
 /**
  * A segment is used to create a grouping of related content.
  */
 function Segment(props) {
   const {
-    className, children, attached, aligned, floated, disabled, loading, padded,
-    basic, inverted, circular, color, clearing, compact, heading, vertical,
+    attached,
+    basic,
+    children,
+    circular,
+    className,
+    clearing,
+    color,
+    compact,
+    disabled,
+    floated,
+    inverted,
+    loading,
+    padded,
+    piled,
+    raised,
+    secondary,
+    stacked,
+    tertiary,
+    textAlign,
+    vertical,
   } = props
 
-  const classes = cx('ui',
+  const classes = cx(
+    'ui',
     color,
     useKeyOrValueAndKey(attached, 'attached'),
-    useAlignedProp(aligned, 'aligned'),
     useKeyOnly(basic, 'basic'),
     useKeyOnly(circular, 'circular'),
     useKeyOnly(clearing, 'clearing'),
@@ -37,6 +53,12 @@ function Segment(props) {
     useKeyOnly(inverted, 'inverted'),
     useKeyOnly(loading, 'loading'),
     useKeyOrValueAndKey(padded, 'padded'),
+    useKeyOnly(piled, 'piled'),
+    useKeyOnly(raised, 'raised'),
+    useKeyOnly(secondary, 'secondary'),
+    useKeyOnly(stacked, 'stacked'),
+    useKeyOnly(tertiary, 'tertiary'),
+    useTextAlignProp(textAlign),
     useKeyOnly(vertical, 'vertical'),
     className,
     'segment',
@@ -45,12 +67,7 @@ function Segment(props) {
   const rest = getUnhandledProps(Segment, props)
   const ElementType = getElementType(Segment, props)
 
-  return (
-    <ElementType {...rest} className={classes}>
-      {heading && <Header as='h4'>{heading}</Header>}
-      {children}
-    </ElementType>
-  )
+  return <ElementType {...rest} className={classes}>{children}</ElementType>
 }
 
 Segment.Group = SegmentGroup
@@ -61,7 +78,7 @@ Segment._meta = {
   props: {
     attached: ['top', 'bottom'],
     floated: SUI.FLOATS,
-    aligned: SUI.VERTICAL_ALIGNMENTS,
+    textAlign: SUI.TEXT_ALIGNMENTS,
     padded: ['very'],
     color: SUI.COLORS,
   },
@@ -75,10 +92,10 @@ Segment.propTypes = {
   ]),
 
   /** Attach segment to other content, like a header */
-  attached: PropTypes.oneOf(Segment._meta.props.attached),
-
-  /** Formats content to be aligned as part of a vertical group. */
-  aligned: PropTypes.oneOf(Segment._meta.props.aligned),
+  attached: PropTypes.oneOfType([
+    PropTypes.oneOf(Segment._meta.props.attached),
+    PropTypes.bool,
+  ]),
 
   /** A basic segment has no special formatting */
   basic: PropTypes.bool,
@@ -107,9 +124,6 @@ Segment.propTypes = {
   /** Segment content can be floated to the left or right */
   floated: PropTypes.oneOf(Segment._meta.props.floated),
 
-  /** Optional segment heading. */
-  heading: PropTypes.string,
-
   /** A segment can have its colors inverted for contrast */
   inverted: PropTypes.bool,
 
@@ -117,7 +131,10 @@ Segment.propTypes = {
   loading: PropTypes.bool,
 
   /** A segment can increase its padding */
-  padded: PropTypes.oneOf(Segment._meta.props.padded),
+  padded: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.oneOf(Segment._meta.props.padded),
+  ]),
 
   /** Formatted to look like a pile of pages. */
   piled: PropTypes.bool,
@@ -125,8 +142,17 @@ Segment.propTypes = {
   /** A segment may be formatted to raise above the page. */
   raised: PropTypes.bool,
 
+  /** A segment can be formatted to appear less noticeable */
+  secondary: PropTypes.bool,
+
   /** Formatted to show it contains multiple pages. */
   stacked: PropTypes.bool,
+
+  /** A segment can be formatted to appear even less noticeable */
+  tertiary: PropTypes.bool,
+
+  /** Formats content to be aligned as part of a vertical group. */
+  textAlign: PropTypes.oneOf(Segment._meta.props.textAlign),
 
   /** Formats content to be aligned vertically */
   vertical: PropTypes.bool,

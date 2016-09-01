@@ -11,8 +11,8 @@ const SegmentCircularExample = () => (
         </Header.Subheader>
       </Header>
     </Segment>
-    <Segment circular inverted color='red'>
-      <Header as='h3'>
+    <Segment circular inverted>
+      <Header as='h2' inverted>
         Buy Now
         <Header.Subheader>
           $10.99

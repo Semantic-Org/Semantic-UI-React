@@ -2,7 +2,7 @@ import React from 'react'
 import { Progress, Segment } from 'stardust'
 
 const ProgressInvertedExample = () => (
-  <Segment className='inverted'>
+  <Segment inverted>
     <Progress percent={21} inverted label>
       Uploading Files
     </Progress>

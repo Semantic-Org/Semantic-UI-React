@@ -3,7 +3,7 @@ import { Header, Icon, Message, Segment } from 'stardust'
 
 const SegmentAttachedComplexExample = () => (
   <div>
-    <Header as='h5' attached>
+    <Header as='h5' attached='top'>
       Dogs
     </Header>
     <Segment attached>

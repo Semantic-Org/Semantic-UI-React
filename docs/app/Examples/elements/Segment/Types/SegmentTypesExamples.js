@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
 import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
-import { Message } from 'stardust'
 
 export default class SegmentTypesExamples extends Component {
   render() {
@@ -26,12 +25,7 @@ export default class SegmentTypesExamples extends Component {
           title='Piled'
           description='A segment can be formatted to look like a pile of pages.'
           examplePath='elements/Segment/Types/SegmentPiledExample'
-        >
-          <Message warning>
-            Piled segments use <b>negative z-index</b> to format the additional pages below the segment.
-            In order for them to appear correctly, your segment's offset container must have a z-index declared.
-          </Message>
-        </ComponentExample>
+        />
         <ComponentExample
           title='Vertical Segment'
           description='A vertical segment formats content to be aligned as part of a vertical group.'

@@ -4,7 +4,7 @@ import { Loader, Segment } from 'stardust'
 // TODO: Update <Segment> usage to V1 API
 
 const LoaderInvertedExample = () => (
-  <Segment className='inverted'>
+  <Segment inverted>
     <Loader active inverted />
 
     <br />

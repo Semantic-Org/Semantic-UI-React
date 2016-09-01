@@ -5,13 +5,13 @@ export default class SegmentTextAlignmentExample extends Component {
   render() {
     return (
       <div>
-        <Segment aligned='right'>
+        <Segment textAlign='right'>
           Right aligned content.
         </Segment>
-        <Segment aligned='left'>
+        <Segment textAlign='left'>
           Left aligned content.
         </Segment>
-        <Segment aligned='center'>
+        <Segment textAlign='center'>
           Center aligned content.
         </Segment>
       </div>

@@ -4,7 +4,7 @@ import { Segment, Icon } from 'stardust'
 export default class IconInvertedColoredExample extends Component {
   render() {
     return (
-      <Segment className='inverted'>
+      <Segment inverted>
         <Icon inverted color='red' name='users' />
         <Icon inverted color='orange' name='users' />
         <Icon inverted color='yellow' name='users' />

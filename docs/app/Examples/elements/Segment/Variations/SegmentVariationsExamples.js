@@ -19,7 +19,7 @@ export default class SegmentVariationsExamples extends Component {
         >
           <Message info>
             Attached segments are designed to be used with other <code>attached</code> variations like
-            the <a href='#Header-Variations-HeaderAttachedExample'>attached header</a> or <i>attached messages</i>.
+            the attached Header or attached Messages.
           </Message>
         </ComponentExample>
         <ComponentExample
@@ -53,7 +53,6 @@ export default class SegmentVariationsExamples extends Component {
           examplePath='elements/Segment/Variations/SegmentColoredExample'
         />
         <ComponentExample
-          title='Colored'
           description='These colors can be inverted.'
           examplePath='elements/Segment/Variations/SegmentColoredInvertedExample'
         />
@@ -63,15 +62,18 @@ export default class SegmentVariationsExamples extends Component {
           examplePath='elements/Segment/Variations/SegmentEmphasisExample'
         />
         <ComponentExample
+          description='Inverted colors may be more or less noticeable.'
+          examplePath='elements/Segment/Variations/SegmentEmphasisInvertedExample'
+        />
+        <ComponentExample
+          description='Inverted colors may be more or less noticeable.'
+          examplePath='elements/Segment/Variations/SegmentEmphasisColoredInvertedExample'
+        />
+        <ComponentExample
           title='Circular'
           description='A segment can be circular.'
           examplePath='elements/Segment/Variations/SegmentCircularExample'
-        >
-          <Message info>
-            A circular segment will most likely have to have its content manually sized to be equal width and height,
-            otherwise it will flow to the size of your content.
-          </Message>
-        </ComponentExample>
+        />
         <ComponentExample
           title='Clearing'
           description='A segment can clear floated content.'
