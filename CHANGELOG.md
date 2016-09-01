@@ -1,5 +1,34 @@
 # Change Log
 
+## [v0.40.0](https://github.com/TechnologyAdvice/stardust/tree/v0.40.0) (2016-09-01)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.39.0...v0.40.0)
+
+**Implemented enhancements:**
+
+- Doc: show sub component props [\#428](https://github.com/TechnologyAdvice/stardust/pull/428) ([levithomason](https://github.com/levithomason))
+- feat\(Form\): update to v1 API [\#400](https://github.com/TechnologyAdvice/stardust/pull/400) ([levithomason](https://github.com/levithomason))
+
+**Fixed bugs:**
+
+- Docs: Fix absolute anchor links [\#455](https://github.com/TechnologyAdvice/stardust/issues/455)
+
+**Closed issues:**
+
+- Hoist propTypes for all wrapper components [\#432](https://github.com/TechnologyAdvice/stardust/issues/432)
+- Remove jQuery dependency [\#247](https://github.com/TechnologyAdvice/stardust/issues/247)
+
+**Merged pull requests:**
+
+- fix\(docs\): anchor links [\#457](https://github.com/TechnologyAdvice/stardust/pull/457) ([levithomason](https://github.com/levithomason))
+
+## [v0.39.0](https://github.com/TechnologyAdvice/stardust/tree/v0.39.0) (2016-08-31)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.38.1...v0.39.0)
+
+**Fixed bugs:**
+
+- Header: update doc usage of shorthand props [\#454](https://github.com/TechnologyAdvice/stardust/issues/454)
+- fix\(Header\): correct shorthand props API [\#456](https://github.com/TechnologyAdvice/stardust/pull/456) ([levithomason](https://github.com/levithomason))
+
 ## [v0.38.1](https://github.com/TechnologyAdvice/stardust/tree/v0.38.1) (2016-08-29)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.38.0...v0.38.1)
 
