@@ -13,16 +13,15 @@ import {
  * A section sub-component for Breadcrumb component.
  */
 function BreadcrumbSection(props) {
-  const { active, children, className, href, onClick } = props
+  const { active, children, className, href, link, onClick } = props
   const classes = cx(
     useKeyOnly(active, 'active'),
     className,
     'section',
   )
   const rest = getUnhandledProps(BreadcrumbSection, props)
-  const ElementType = getElementType(BreadcrumbSection, props, {
-    link: 'a',
-    onClick: 'a',
+  const ElementType = getElementType(BreadcrumbSection, props, () => {
+    if (link || onClick) return 'a'
   })
 
   const handleClick = (e) => {

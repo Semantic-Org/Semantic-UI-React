@@ -21,7 +21,7 @@ import ImageGroup from './ImageGroup'
 function Image(props) {
   const {
     verticalAlign, alt, avatar, bordered, centered, className, disabled, floated, fluid,
-    hidden, height, href, inline, shape, size, spaced, src, width, ui,
+    hidden, height, href, inline, shape, size, spaced, src, width, wrapped, ui,
   } = props
 
   const classes = cx(
@@ -45,8 +45,8 @@ function Image(props) {
   const rest = getUnhandledProps(Image, props)
   const rootProps = { className: classes, ...rest }
   const imgTagProps = { src, alt, width, height }
-  const ElementType = getElementType(Image, props, {
-    wrapped: 'div',
+  const ElementType = getElementType(Image, props, () => {
+    if (wrapped) return 'div'
   })
 
   if (ElementType === 'img') {
