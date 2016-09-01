@@ -23,7 +23,12 @@ export default class ComponentProps extends Component {
     }
   }
   defaultValueRenderer = (item) => {
-    const defaultValue = _.get(item, 'defaultValue.value')
+    let defaultValue = _.get(item, 'defaultValue.value')
+
+    if (_.startsWith(defaultValue, 'function ')) {
+      defaultValue = defaultValue.match(/^function(.*)\{/)[1].trim()
+    }
+
     const defaultIsComputed = <span className='ui mini gray circular label'>computed</span>
 
     return (
@@ -62,7 +67,7 @@ export default class ComponentProps extends Component {
     return (
       <div>
         <Table data={content} className='very basic compact'>
-          <Table.Column dataKey='name' cellRenderer={this.nameRenderer} />
+          <Table.Column dataKey='Prop' cellRenderer={this.nameRenderer} />
           <Table.Column cellRenderer={this.requiredRenderer} />
           <Table.Column dataKey='type' />
           <Table.Column dataKey='defaultValue' cellRenderer={this.defaultValueRenderer} />

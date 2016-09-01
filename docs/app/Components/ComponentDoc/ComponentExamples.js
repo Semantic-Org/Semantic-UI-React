@@ -29,7 +29,7 @@ export default class ComponentExamples extends Component {
             <Message.Content>
               If there's no
               <a href='https://github.com/TechnologyAdvice/stardust/pulls'> pull request </a>
-              open for <code>&lt;{name} /&gt;</code> examples, you should
+              open for <code>{`<${name} />`}</code> examples, you should
               <a href='https://github.com/TechnologyAdvice/stardust/blob/master/CONTRIBUTING.md'> contribute</a>!
             </Message.Content>
           </Message>

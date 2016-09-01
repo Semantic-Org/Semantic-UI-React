@@ -1,14 +1,13 @@
-import React, { Component } from 'react'
-import { Form, Input } from 'stardust'
+import React from 'react'
+import { Form } from 'stardust'
 
-export default class FormFieldExample extends Component {
-  render() {
-    return (
-      <Form>
-        <Form.Field label='User Input'>
-          <Input placeholder='User Input' />
-        </Form.Field>
-      </Form>
-    )
-  }
-}
+const FormFieldExample = () => (
+  <Form>
+    <Form.Field>
+      <label>User Input</label>
+      <input />
+    </Form.Field>
+  </Form>
+)
+
+export default FormFieldExample

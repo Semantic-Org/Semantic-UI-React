@@ -7,10 +7,10 @@ const RadioFittedExample = () => (
       <Radio />
     </Segment>
     <Segment className='compact'>
-      <Radio type='slider' />
+      <Radio slider />
     </Segment>
     <Segment className='compact'>
-      <Radio type='toggle' />
+      <Radio toggle />
     </Segment>
   </div>
 )

@@ -70,12 +70,6 @@ describe('Dropdown Component', () => {
   common.propKeyOnlyToClassName(Dropdown, 'search')
   common.propKeyOnlyToClassName(Dropdown, 'selection')
 
-  it('does not add a hidden input by default', () => {
-    wrapperMount(<Dropdown />)
-      .find('input[type="hidden"]')
-      .should.not.be.present()
-  })
-
   // TODO: see Dropdown.handleBlur() todo
   // it('closes on blur', () => {
   //   wrapperMount(<Dropdown {...requiredProps} />)
@@ -819,10 +813,43 @@ describe('Dropdown Component', () => {
   })
 
   describe('selection', () => {
-    it('adds a hidden input', () => {
-      wrapperRender(<Dropdown options={options} selection />)
-        .find('input[type="hidden"]')
-        .should.be.present()
+    it('does not add a hidden select by default', () => {
+      wrapperMount(<Dropdown />)
+        .should.not.have.descendants('select[type="hidden"]')
+    })
+    it('adds a hidden select', () => {
+      wrapperShallow(<Dropdown options={options} selection />)
+        .should.have.exactly(1).descendants('select[type="hidden"]')
+    })
+    it('passes the name prop to the hidden select', () => {
+      wrapperShallow(<Dropdown name='foo' options={options} selection />)
+        .find('select[type="hidden"]').should.have.prop('name', 'foo')
+    })
+    it('passes the value prop to the hidden select', () => {
+      const value = _.values(options)
+
+      wrapperShallow(<Dropdown name='foo' value={value} options={options} selection />)
+        .find('select[type="hidden"][name="foo"]').should.have.prop('value', value)
+    })
+    it('passes the multiple prop to the hidden select', () => {
+      const selector = 'select[type="hidden"][name="foo"]'
+
+      wrapperShallow(<Dropdown name='foo' multiple options={options} selection />)
+        .find(selector).should.have.prop('multiple', true)
+
+      wrapperShallow(<Dropdown name='foo' multiple={false} options={options} selection />)
+        .find(selector).should.have.prop('multiple', false)
+    })
+    it('adds options to the hidden select', () => {
+      wrapperShallow(<Dropdown options={options} selection />)
+        .should.have.exactly(options.length).descendants('option')
+
+      options.forEach((opt, i) => {
+        const optionElement = wrapper.find('option').at(i)
+
+        optionElement.should.have.prop('value', opt.value)
+        optionElement.should.have.text(opt.text)
+      })
     })
   })
 
@@ -833,8 +860,15 @@ describe('Dropdown Component', () => {
     })
 
     it('adds a search input when present', () => {
-      wrapperRender(<Dropdown options={options} selection search />)
+      wrapperShallow(<Dropdown options={options} selection search />)
+        .should.have.exactly(1).descendants('input.search')
+    })
+
+    it('adds the name prop to the search input', () => {
+      wrapperShallow(<Dropdown name='foo' options={options} selection search />)
         .should.have.descendants('input.search')
+
+      wrapper.find('input.search').should.have.prop('name', 'foo-search')
     })
 
     it('sets focus to the search input on open', () => {

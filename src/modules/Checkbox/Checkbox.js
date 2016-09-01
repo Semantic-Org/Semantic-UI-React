@@ -1,44 +1,32 @@
-import _ from 'lodash'
 import React, { PropTypes } from 'react'
 import cx from 'classnames'
 
 import {
   AutoControlledComponent as Component,
+  customPropTypes,
   getElementType,
   getUnhandledProps,
   META,
   makeDebugger,
+  useKeyOnly,
 } from '../../lib'
 
 const debug = makeDebugger('checkbox')
-
-// maps checkbox types to input types
-const typeMap = {
-  checkbox: 'checkbox',
-  radio: 'radio',
-  slider: 'checkbox',
-  toggle: 'checkbox',
-}
 
 const _meta = {
   name: 'Checkbox',
   type: META.TYPES.MODULE,
   props: {
-    inputType: [
-      'checkbox',
-      'radio',
-    ],
     type: [
       'checkbox',
       'radio',
-      'slider',
-      'toggle',
     ],
   },
 }
 
 /**
  * A checkbox allows a user to select a value from a small set of options, often binary
+ * @see Form
  * @see Radio
  */
 export default class Checkbox extends Component {
@@ -58,6 +46,24 @@ export default class Checkbox extends Component {
     /** The initial value of checked. */
     defaultChecked: PropTypes.bool,
 
+    /** Format to emphasize the current selection state */
+    slider: customPropTypes.every([
+      PropTypes.bool,
+      customPropTypes.disallow(['radio', 'toggle']),
+    ]),
+
+    /** Format as a radio element. This means it is an exclusive option.*/
+    radio: customPropTypes.every([
+      PropTypes.bool,
+      customPropTypes.disallow(['slider', 'toggle']),
+    ]),
+
+    /** Format to show an on or off choice */
+    toggle: customPropTypes.every([
+      PropTypes.bool,
+      customPropTypes.disallow(['radio', 'slider']),
+    ]),
+
     /** A checkbox can appear disabled and be unable to change states */
     disabled: PropTypes.bool,
 
@@ -68,7 +74,7 @@ export default class Checkbox extends Component {
     label: PropTypes.string,
 
     /** HTML input type, either checkbox or radio. */
-    inputType: PropTypes.oneOf(_meta.props.inputType),
+    type: PropTypes.oneOf(_meta.props.type),
 
     /** The HTML input name. */
     name: PropTypes.string,
@@ -81,13 +87,6 @@ export default class Checkbox extends Component {
 
     /** A checkbox can be read-only and unable to change states */
     readOnly: PropTypes.bool,
-
-    /**
-     * Display as a checkbox, radio, slider, or toggle.
-     * The input type is `checkbox` for both slider and toggle types.
-     * You can set `inputType` separately to mix and match appearance and behavior.
-     */
-    type: PropTypes.oneOf(_meta.props.type),
 
     /** The HTML input value. */
     value: PropTypes.string,
@@ -105,59 +104,54 @@ export default class Checkbox extends Component {
 
   state = {}
 
+  canToggle = () => {
+    const { disabled, radio, readOnly } = this.props
+    const { checked } = this.state
+
+    return !disabled && !readOnly && !(radio && checked)
+  }
+
   handleClick = (e) => {
     debug('handleClick()')
-    const { disabled, onChange, onClick, name, readOnly, value } = this.props
-    // using a ref here allows us to let the browser manage radio group state for us
-    // this is a special exception where we are reading state from the DOM
-    // otherwise, all radio groups would have to be controlled components
-    const refChecked = _.get(this.refs, 'input.checked')
+    const { onChange, onClick, name, value } = this.props
+    const { checked } = this.state
     debug(`  name:       ${name}`)
     debug(`  value:      ${value}`)
-    debug(`  refChecked: ${refChecked}`)
+    debug(`  checked:    ${checked}`)
 
-    if (onClick) onClick(e, { name, value, checked: !!refChecked })
-    if (onChange) onChange(e, { name, value, checked: !refChecked })
+    if (onClick) onClick(e, { name, value, checked: !!checked })
+    if (onChange) onChange(e, { name, value, checked: !checked })
 
-    if (!disabled && !readOnly) {
-      this.trySetState({ checked: !refChecked })
+    if (this.canToggle()) {
+      this.trySetState({ checked: !checked })
     }
   }
 
   render() {
-    const { className, inputType, label, name, onChange, type, value } = this.props
+    const { className, label, name, radio, slider, toggle, type, value } = this.props
     const { checked } = this.state
     const classes = cx(
       'ui',
-      // don't add duplicate "checkbox" classes, but add any other type
-      type !== 'checkbox' && type,
+      useKeyOnly(checked, 'checked'),
       // auto apply fitted class to compact white space when there is no label
       // http://semantic-ui.com/modules/checkbox.html#fitted
-      !label && 'fitted',
-      checked && 'checked',
+      useKeyOnly(!label, 'fitted'),
+      useKeyOnly(radio, 'radio'),
+      useKeyOnly(slider, 'slider'),
+      useKeyOnly(toggle, 'toggle'),
       'checkbox',
       className
     )
     const rest = getUnhandledProps(Checkbox, this.props)
     const ElementType = getElementType(Checkbox, this.props)
-    // Heads Up!
-    // onChange props are never called as the user cannot click on the hidden input.
-    // We call onChange in the onClick handler.
-    // This exists only to prevent React "prop checked without onChange" warnings.
     return (
-      <ElementType
-        {...rest}
-        className={classes}
-        onClick={this.handleClick}
-        onChange={onChange || _.noop}
-      >
+      <ElementType {...rest} className={classes} onClick={this.handleClick} onChange={this.handleClick}>
         <input
-          ref='input'
-          type={inputType || typeMap[type]}
+          type={type}
           name={name}
-          onChange={onChange || _.noop}
           checked={checked}
           className='hidden'
+          readOnly
           tabIndex={0}
           value={value}
         />

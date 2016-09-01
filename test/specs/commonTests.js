@@ -101,7 +101,7 @@ export const isConformant = (Component, requiredProps = {}) => {
 
   // detect sub components like: stardust.Form.Field (ie FormField component)
   // Build a path by following _meta.parents to the root:
-  //   ['Form', 'FormField', 'FormFieldTextArea']
+  //   ['Form', 'FormField', 'FormTextArea']
   let stardustPath = []
   let meta = _meta
   while (meta) {
@@ -159,47 +159,62 @@ export const isConformant = (Component, requiredProps = {}) => {
   })
 
   describe('"as" prop (common)', () => {
-    it('is defined in propTypes', () => {
-      Component.should.have.any.keys('propTypes')
-      Component.propTypes.should.have.any.keys('as')
-    })
-    it('renders the component as HTML tags', () => {
+    it('renders the component as HTML tags or passes "as" to the next component', () => {
       // silence element nesting warnings
       consoleUtil.disableOnce()
 
       const tags = ['a', 'em', 'div', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'i', 'p', 'span', 'strong']
-      tags.forEach((tag) => {
-        shallow(<Component as={tag} />)
-          .should.have.tagName(tag)
-      })
+      try {
+        tags.forEach((tag) => {
+          shallow(<Component as={tag} />)
+            .should.have.tagName(tag)
+        })
+      } catch (err) {
+        tags.forEach((tag) => {
+          const wrapper = shallow(<Component as={tag} />)
+          wrapper.type().should.not.equal(Component)
+          wrapper.should.have.prop('as', tag)
+        })
+      }
     })
 
-    it('renders the component as stateless functional components', () => {
+    it('renders as a functional component or passes "as" to the next component', () => {
       const MyComponent = () => null
 
-      shallow(<Component as={MyComponent} />)
-        .type()
-        .should.equal(MyComponent)
+      try {
+        shallow(<Component as={MyComponent} />)
+          .type()
+          .should.equal(MyComponent)
+      } catch (err) {
+        const wrapper = shallow(<Component as={MyComponent} />)
+        wrapper.type().should.not.equal(Component)
+        wrapper.should.have.prop('as', MyComponent)
+      }
     })
 
-    it('renders the component as React.Component classes', () => {
+    it('renders as a ReactClass or passes "as" to the next component', () => {
       class MyComponent extends React.Component {
         render() {
-          return null
+          return <div data-my-react-class />
         }
       }
 
-      shallow(<Component as={MyComponent} />)
-        .type()
-        .should.equal(MyComponent)
+      try {
+        shallow(<Component as={MyComponent} />)
+          .type()
+          .should.equal(MyComponent)
+      } catch (err) {
+        const wrapper = shallow(<Component as={MyComponent} />)
+        wrapper.type().should.not.equal(Component)
+        wrapper.should.have.prop('as', MyComponent)
+      }
     })
 
     it('passes extra props to the component it is renders as', () => {
       const MyComponent = () => null
 
       shallow(<Component as={MyComponent} data-extra-prop='foo' />)
-        .first()
-        .should.have.prop('data-extra-prop', 'foo')
+        .should.have.descendants('[data-extra-prop="foo"]')
     })
   })
 

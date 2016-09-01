@@ -33,7 +33,17 @@ export default class CheckboxTypesExamples extends Component {
           description='A checkbox can be formatted as a radio element. This means it is an exclusive option.'
           examplePath='modules/Checkbox/Types/Radio'
         />
-        <ComponentExample examplePath='modules/Checkbox/Types/RadioGroup' />
+        <ComponentExample
+          title='Radio Group'
+          examplePath='modules/Checkbox/Types/RadioGroup'
+        >
+          <Message warning>
+            Radios in a group must be
+            <a href='https://facebook.github.io/react/docs/forms.html#controlled-components' target='_blank'>
+              &nbsp;controlled components.
+            </a>
+          </Message>
+        </ComponentExample>
       </ExampleSection>
     )
   }

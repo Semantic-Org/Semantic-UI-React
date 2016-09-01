@@ -2,7 +2,7 @@ import React, { Children, Component, cloneElement, PropTypes } from 'react'
 import cx from 'classnames'
 
 import MenuItem from './MenuItem'
-import { childrenUtils, getElementType, META } from '../../lib'
+import { childrenUtils, getElementType, getUnhandledProps, META } from '../../lib'
 
 export default class Menu extends Component {
   static propTypes = {
@@ -39,7 +39,7 @@ export default class Menu extends Component {
   static Item = MenuItem
 
   render() {
-    const { activeItem, children, className, ...rest } = this.props
+    const { activeItem, children, className } = this.props
 
     const classes = cx('ui', className, 'menu')
 
@@ -52,6 +52,7 @@ export default class Menu extends Component {
       })
     })
     const ElementType = getElementType(Menu, this.props)
+    const rest = getUnhandledProps(Menu, this.props)
     return (
       <ElementType {...rest} className={classes}>
         {_children}

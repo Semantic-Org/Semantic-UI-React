@@ -33,6 +33,7 @@ const _meta = {
 
 /**
  * A dropdown allows a user to select a value from a series of options.
+ * @see Form
  * @see Select
  */
 export default class Dropdown extends Component {
@@ -696,24 +697,26 @@ export default class Dropdown extends Component {
     return <div className={classes}>{_text}</div>
   }
 
-  // TODO hidden input only exists for backwards compatibility with SUI jQuery plugins
-  // remove once those are removed
   renderHiddenInput = () => {
     debug('renderHiddenInput()')
     const { value } = this.state
-    const { multiple, name, selection } = this.props
+    const { multiple, name, options, selection } = this.props
     debug(`name:      ${name}`)
     debug(`selection: ${selection}`)
     debug(`value:     ${value}`)
     if (!selection) return null
 
-    const _value = multiple ? (value || []).join(',') : value
-
-    return <input type='hidden' name={name} value={_value} />
+    return (
+      <select type='hidden' name={name} value={value} multiple={multiple}>
+        {_.map(options, option => (
+          <option key={option.value} value={option.value}>{option.text}</option>
+        ))}
+      </select>
+    )
   }
 
   renderSearchInput = () => {
-    const { search } = this.props
+    const { search, name } = this.props
     const { searchQuery } = this.state
 
     if (!search) return null
@@ -734,6 +737,7 @@ export default class Dropdown extends Component {
         onChange={this.handleSearchChange}
         onFocus={this.handleFocus}
         className='search'
+        name={[name, 'search'].join('-')}
         autoComplete='off'
         tabIndex='0'
         style={{ width: searchWidth }}

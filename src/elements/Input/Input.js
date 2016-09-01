@@ -39,6 +39,10 @@ const inputPropNames = [
   'width',
 ]
 
+/**
+ * An Input is a field used to elicit a response from a user
+ * @see Form
+ */
 export default class Input extends Component {
   static propTypes = {
     /** An element type to render as (string or function). */

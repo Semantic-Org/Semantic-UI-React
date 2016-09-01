@@ -55,7 +55,7 @@ Icon._meta = {
   props: {
     color: SUI.COLORS,
     flipped: ['horizontally', 'vertically'],
-    name: SUI.icons,
+    name: SUI.ICONS,
     rotated: ['clockwise', 'counterclockwise'],
     size: SUI.SIZES,
   },
