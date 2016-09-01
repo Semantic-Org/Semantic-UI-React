@@ -3,6 +3,7 @@ import cx from 'classnames'
 
 import {
   AutoControlledComponent as Component,
+  customPropTypes,
   getElementType,
   getUnhandledProps,
   META,
@@ -12,27 +13,13 @@ import {
 
 const debug = makeDebugger('checkbox')
 
-// maps checkbox types to input types
-const typeMap = {
-  checkbox: 'checkbox',
-  radio: 'radio',
-  slider: 'checkbox',
-  toggle: 'checkbox',
-}
-
 const _meta = {
   name: 'Checkbox',
   type: META.TYPES.MODULE,
   props: {
-    inputType: [
-      'checkbox',
-      'radio',
-    ],
     type: [
       'checkbox',
       'radio',
-      'slider',
-      'toggle',
     ],
   },
 }
@@ -59,6 +46,24 @@ export default class Checkbox extends Component {
     /** The initial value of checked. */
     defaultChecked: PropTypes.bool,
 
+    /** Format to emphasize the current selection state */
+    slider: customPropTypes.every([
+      PropTypes.bool,
+      customPropTypes.disallow(['radio', 'toggle']),
+    ]),
+
+    /** Format as a radio element. This means it is an exclusive option.*/
+    radio: customPropTypes.every([
+      PropTypes.bool,
+      customPropTypes.disallow(['slider', 'toggle']),
+    ]),
+
+    /** Format to show an on or off choice */
+    toggle: customPropTypes.every([
+      PropTypes.bool,
+      customPropTypes.disallow(['radio', 'slider']),
+    ]),
+
     /** A checkbox can appear disabled and be unable to change states */
     disabled: PropTypes.bool,
 
@@ -69,7 +74,7 @@ export default class Checkbox extends Component {
     label: PropTypes.string,
 
     /** HTML input type, either checkbox or radio. */
-    inputType: PropTypes.oneOf(_meta.props.inputType),
+    type: PropTypes.oneOf(_meta.props.type),
 
     /** The HTML input name. */
     name: PropTypes.string,
@@ -82,13 +87,6 @@ export default class Checkbox extends Component {
 
     /** A checkbox can be read-only and unable to change states */
     readOnly: PropTypes.bool,
-
-    /**
-     * Display as a checkbox, radio, slider, or toggle.
-     * The input type is `checkbox` for both slider and toggle types.
-     * You can set `inputType` separately to mix and match appearance and behavior.
-     */
-    type: PropTypes.oneOf(_meta.props.type),
 
     /** The HTML input value. */
     value: PropTypes.string,
@@ -106,16 +104,11 @@ export default class Checkbox extends Component {
 
   state = {}
 
-  get inputType() {
-    const { inputType, type } = this.props
-    return inputType || typeMap[type]
-  }
-
   canToggle = () => {
-    const { disabled, readOnly } = this.props
+    const { disabled, radio, readOnly } = this.props
     const { checked } = this.state
 
-    return !(disabled || readOnly || this.inputType === 'radio' && checked)
+    return !disabled && !readOnly && !(radio && checked)
   }
 
   handleClick = (e) => {
@@ -135,30 +128,26 @@ export default class Checkbox extends Component {
   }
 
   render() {
-    const { className, label, name, type, value } = this.props
+    const { className, label, name, radio, slider, toggle, type, value } = this.props
     const { checked } = this.state
     const classes = cx(
       'ui',
-      // don't add duplicate "checkbox" classes, but add any other type
-      type !== 'checkbox' && type,
+      useKeyOnly(checked, 'checked'),
       // auto apply fitted class to compact white space when there is no label
       // http://semantic-ui.com/modules/checkbox.html#fitted
       useKeyOnly(!label, 'fitted'),
-      useKeyOnly(checked, 'checked'),
+      useKeyOnly(radio, 'radio'),
+      useKeyOnly(slider, 'slider'),
+      useKeyOnly(toggle, 'toggle'),
       'checkbox',
       className
     )
     const rest = getUnhandledProps(Checkbox, this.props)
     const ElementType = getElementType(Checkbox, this.props)
     return (
-      <ElementType
-        {...rest}
-        className={classes}
-        onClick={this.handleClick}
-        onChange={this.handleClick}
-      >
+      <ElementType {...rest} className={classes} onClick={this.handleClick} onChange={this.handleClick}>
         <input
-          type={this.inputType}
+          type={type}
           name={name}
           checked={checked}
           className='hidden'
