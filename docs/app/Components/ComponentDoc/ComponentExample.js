@@ -5,6 +5,11 @@ import { exampleContext } from 'docs/app/utils'
 import { getUnhandledProps } from 'src/lib'
 import { Grid, Header, Icon } from 'stardust'
 
+const codeIconStyle = {
+  fontSize: '1.5em',
+  fontWeight: 'bold',
+}
+
 /**
  * Renders a `component` and the raw `code` that produced it.
  * Allows toggling the the raw `code` code block.
@@ -29,21 +34,21 @@ export default class ComponentExample extends Component {
     this.setState({ showCode: !this.state.showCode })
   }
 
-  render() {
-    const code = (
+  renderCode = () => {
+    const { showCode } = this.state
+    if (!showCode) return
+
+    return (
       <Grid.Column>
         <Highlight className='language-javascript'>
           {this.fileContents}
         </Highlight>
       </Grid.Column>
     )
+  }
 
-    const codeIconStyle = {
-      fontSize: '1.5em',
-      fontWeight: 'bold',
-    }
-
-    const children = <Grid.Column>{this.props.children}</Grid.Column>
+  render() {
+    const { children, description, title } = this.props
     const rest = getUnhandledProps(ComponentExample, this.props)
 
     return (
@@ -51,23 +56,19 @@ export default class ComponentExample extends Component {
         <Grid.Column>
           <Grid>
             <Grid.Column width={12}>
-              {this.props.title && (
-                <Header as='h4' style={{ marginBottom: 0 }}>
-                  {this.props.title}
-                </Header>
-              )}
-              {this.props.description && <p>{this.props.description}</p>}
+              {title && <Header as='h3' style={{ marginBottom: 0 }}>{title}</Header>}
+              {description && <p>{description}</p>}
             </Grid.Column>
             <Grid.Column width={4} textAlign='right'>
               <Icon name='code link' color='grey' onClick={this.toggleShowCode} style={codeIconStyle} />
             </Grid.Column>
           </Grid>
         </Grid.Column>
-        {this.props.children && children}
+        {children && <Grid.Column>{children}</Grid.Column>}
         <Grid.Column className='rendered-example'>
           {createElement(this.component, rest)}
         </Grid.Column>
-        {this.state.showCode && code}
+        {this.renderCode()}
       </Grid>
     )
   }

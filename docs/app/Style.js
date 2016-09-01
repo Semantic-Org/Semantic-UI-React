@@ -18,7 +18,6 @@ style.menu = {
 }
 
 style.main = {
-  background: '#fff',
   marginLeft: sidebarWidth,
   minWidth: parseInt(sidebarWidth, 10) + 300,
   maxWidth: parseInt(sidebarWidth, 10) + 900,

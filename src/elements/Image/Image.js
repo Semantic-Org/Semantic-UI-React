@@ -16,6 +16,7 @@ import ImageGroup from './ImageGroup'
 
 /**
  * An image is a graphic representation of something
+ * @see Icon
  */
 function Image(props) {
   const {

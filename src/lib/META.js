@@ -17,7 +17,7 @@ const TYPE_VALUES = _.values(TYPES)
  * @param {Object} _meta A proposed Stardust _meta object.
  * @returns {Boolean}
  */
-const isMeta = (_meta) => (
+export const isMeta = (_meta) => (
   _.includes(_.get('type', _meta), TYPE_VALUES)
 )
 

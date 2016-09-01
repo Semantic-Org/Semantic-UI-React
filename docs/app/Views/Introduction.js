@@ -10,7 +10,6 @@ import {
   Icon,
   Label,
   List,
-  Message,
   Segment,
 } from 'src'
 import Logo from '../Components/Logo/Logo'
@@ -162,9 +161,9 @@ const Introduction = () => (
 
     <Segment className='basic padded'>
       <Header as='h2' dividing>Install</Header>
-      <Message>
+      <Segment>
         <pre>$ npm install {pkg.name}</pre>
-      </Message>
+      </Segment>
       <List>
         <List.Item icon='check mark'>jQuery Free</List.Item>
         <List.Item icon='check mark'>Declarative API</List.Item>

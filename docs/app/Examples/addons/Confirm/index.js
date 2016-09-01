@@ -2,15 +2,10 @@ import React, { Component } from 'react'
 import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
 import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
 
-import { Message } from 'stardust'
-
 export default class ConfirmExamples extends Component {
   render() {
     return (
       <div>
-        <Message className='info'>
-          A Confirm is a pre-configured Modal.  You can use all the props of a regular Modal.
-        </Message>
         <ExampleSection title='Types'>
           <ComponentExample
             title='Confirm'
