@@ -39,8 +39,8 @@ const getSemanticUIDocsUrl = (_meta) => {
 
 const showPropsStyle = {
   display: 'inline-flex',
-  marginRight: '0.5em',
-  marginTop: 0,
+  margin: '1em 0.5em',
+  marginLeft: 0,
   cursor: 'pointer',
 }
 
@@ -96,12 +96,12 @@ export default class ComponentDoc extends Component {
 
     // still render empty lists to reserve the whitespace
     return (
-      <List className='horizontal' style={{ display: 'block' }}>
-        <div className='item'>
+      <List className='small horizontal link' style={{ display: 'block' }}>
+        <List.Item>
           <Header size='tiny' color='grey'>
             {seeLinks.length > 0 ? 'See:' : ' '}
           </Header>
-        </div>
+        </List.Item>
         {seeLinks}
       </List>
     )
@@ -160,12 +160,13 @@ export default class ComponentDoc extends Component {
         <Header
           as='h4'
           className='no-anchor'
+          color={cx(showPropsFor ? 'green' : 'grey')}
           style={showPropsStyle}
           onClick={() => this.toggleProps(showPropsFor || _meta.name)}
         >
-          <a><Icon name={toggleIcon} /> Props{hasSubComponents && ':'}</a>
+          <a style={{ color: 'inherit' }}><Icon name={toggleIcon} /> Props{hasSubComponents && ':'}</a>
         </Header>
-        <div className='ui compact secondary menu'>
+        <div className='ui small compact secondary green menu'>
           {hasSubComponents && (
             <div className={itemCX(_meta.name)} onClick={() => this.toggleProps(_meta.name)}>
               {_meta.name}
