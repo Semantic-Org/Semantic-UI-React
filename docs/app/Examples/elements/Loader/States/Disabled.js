@@ -1,12 +1,12 @@
 import React from 'react'
 import { Loader, Image, Segment } from 'stardust'
 
-const LoaderActiveExample = () => (
+const Disabled = () => (
   <Segment>
-    <Loader active />
+    <Loader disabled />
 
     <Image src='http://semantic-ui.com/images/wireframe/short-paragraph.png' />
   </Segment>
 )
 
-export default LoaderActiveExample
+export default Disabled

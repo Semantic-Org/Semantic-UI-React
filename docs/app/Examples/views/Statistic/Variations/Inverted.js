@@ -1,8 +1,6 @@
 import React from 'react'
 import { Segment, Statistic } from 'stardust'
 
-// TODO: Update <Segment> usage after <Segment> will be updated to v1 API
-
 const Inverted = () => (
   <Segment inverted>
     <Statistic inverted value='54' label='inverted' />

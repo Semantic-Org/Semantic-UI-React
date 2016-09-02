@@ -1,7 +1,9 @@
 import React from 'react'
 import { Loader, Image, Segment } from 'stardust'
 
-const LoaderExample = () => (
+// TODO: Update <Dimmer> usage after its update to v1 API
+
+const Basic = () => (
   <Segment>
     <div className='ui active dimmer'>
       <Loader />
@@ -11,4 +13,4 @@ const LoaderExample = () => (
   </Segment>
 )
 
-export default LoaderExample
+export default Basic
