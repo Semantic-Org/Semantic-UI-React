@@ -10,7 +10,7 @@ import docgenInfo from '../../docgenInfo.json'
 
 import { META } from 'src/lib'
 import * as stardust from 'src'
-import { Grid, Header, Icon, List } from 'src'
+import { Divider, Grid, Header, Icon, List } from 'src'
 
 const docgenPaths = _.keys(docgenInfo)
 
@@ -42,6 +42,11 @@ const showPropsStyle = {
   margin: '1em 0.5em',
   marginLeft: 0,
   cursor: 'pointer',
+}
+
+const subDescriptionStyle = {
+  fontSize: '1.08em',
+  color: '#777',
 }
 
 const linkListStyle = {
@@ -148,6 +153,7 @@ export default class ComponentDoc extends Component {
     )))
 
     const hasSubComponents = !_.isEmpty(subComponents)
+    const showSubDescription = hasSubComponents && _.get(selectedDocgen, 'docBlock.description')
 
     const subComponentItems = _.map(subComponents, ({ _meta: { name } }) => (
       <div key={name} className={itemCX(name)} onClick={() => this.toggleProps(name)}>
@@ -176,7 +182,12 @@ export default class ComponentDoc extends Component {
         </div>
         {selectedDocgen && (
           <div>
-            <br />
+            {showSubDescription && (
+              <div style={subDescriptionStyle}>
+                {selectedDocgen.docBlock.description}
+                <Divider />
+              </div>
+            )}
             <ComponentProps props={selectedDocgen.props} />
           </div>
         )}
