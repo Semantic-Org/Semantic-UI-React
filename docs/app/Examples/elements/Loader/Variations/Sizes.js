@@ -1,11 +1,13 @@
 import React from 'react'
 import { Loader, Image, Segment } from 'stardust'
 
-const LoaderSizeExamples = () => (
+// TODO: Update <Dimmer> usage after its update to v1 API
+
+const Sizes = () => (
   <div>
     <Segment>
       <div className='ui active dimmer'>
-        <Loader size='mini' text='Loading' />
+        <Loader size='mini'>Loading</Loader>
       </div>
 
       <Image src='http://semantic-ui.com/images/wireframe/short-paragraph.png' />
@@ -13,7 +15,7 @@ const LoaderSizeExamples = () => (
 
     <Segment>
       <div className='ui active dimmer'>
-        <Loader size='tiny' text='Loading' />
+        <Loader size='tiny'>Loading</Loader>
       </div>
 
       <Image src='http://semantic-ui.com/images/wireframe/short-paragraph.png' />
@@ -21,7 +23,7 @@ const LoaderSizeExamples = () => (
 
     <Segment>
       <div className='ui active dimmer'>
-        <Loader size='small' text='Loading' />
+        <Loader size='small'>Loading</Loader>
       </div>
 
       <Image src='http://semantic-ui.com/images/wireframe/short-paragraph.png' />
@@ -29,7 +31,7 @@ const LoaderSizeExamples = () => (
 
     <Segment>
       <div className='ui active dimmer'>
-        <Loader size='medium' text='Loading' />
+        <Loader size='medium'>Loading</Loader>
       </div>
 
       <Image src='http://semantic-ui.com/images/wireframe/short-paragraph.png' />
@@ -38,17 +40,7 @@ const LoaderSizeExamples = () => (
 
     <Segment>
       <div className='ui active dimmer'>
-        <Loader size='large' text='Loading' />
-      </div>
-
-      <Image src='http://semantic-ui.com/images/wireframe/short-paragraph.png' />
-      <Image src='http://semantic-ui.com/images/wireframe/short-paragraph.png' />
-      <Image src='http://semantic-ui.com/images/wireframe/short-paragraph.png' />
-    </Segment>
-
-    <Segment>
-      <div className='ui active dimmer'>
-        <Loader size='big' text='Loading' />
+        <Loader size='large'>Loading</Loader>
       </div>
 
       <Image src='http://semantic-ui.com/images/wireframe/short-paragraph.png' />
@@ -58,7 +50,7 @@ const LoaderSizeExamples = () => (
 
     <Segment>
       <div className='ui active dimmer'>
-        <Loader size='huge' text='Loading' />
+        <Loader size='big'>Loading</Loader>
       </div>
 
       <Image src='http://semantic-ui.com/images/wireframe/short-paragraph.png' />
@@ -68,7 +60,17 @@ const LoaderSizeExamples = () => (
 
     <Segment>
       <div className='ui active dimmer'>
-        <Loader size='massive' text='Loading' />
+        <Loader size='huge'>Loading</Loader>
+      </div>
+
+      <Image src='http://semantic-ui.com/images/wireframe/short-paragraph.png' />
+      <Image src='http://semantic-ui.com/images/wireframe/short-paragraph.png' />
+      <Image src='http://semantic-ui.com/images/wireframe/short-paragraph.png' />
+    </Segment>
+
+    <Segment>
+      <div className='ui active dimmer'>
+        <Loader size='massive'>Loading</Loader>
       </div>
 
       <Image src='http://semantic-ui.com/images/wireframe/short-paragraph.png' />
@@ -78,4 +80,4 @@ const LoaderSizeExamples = () => (
   </div>
 )
 
-export default LoaderSizeExamples
+export default Sizes

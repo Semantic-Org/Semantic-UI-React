@@ -1,11 +1,13 @@
 import React from 'react'
 import { Loader, Image, Segment } from 'stardust'
 
-const LoaderInvertedSizeExamples = () => (
+// TODO: Update <Dimmer> usage after its update to v1 API
+
+const SizesInverted = () => (
   <div>
     <Segment>
       <div className='ui active inverted dimmer'>
-        <Loader size='mini' text='Loading' />
+        <Loader size='mini'>Loading</Loader>
       </div>
 
       <Image src='http://semantic-ui.com/images/wireframe/short-paragraph.png' />
@@ -13,7 +15,7 @@ const LoaderInvertedSizeExamples = () => (
 
     <Segment>
       <div className='ui active inverted dimmer'>
-        <Loader size='small' text='Loading' />
+        <Loader size='small'>Loading</Loader>
       </div>
 
       <Image src='http://semantic-ui.com/images/wireframe/short-paragraph.png' />
@@ -21,7 +23,7 @@ const LoaderInvertedSizeExamples = () => (
 
     <Segment>
       <div className='ui active inverted dimmer'>
-        <Loader size='medium' text='Loading' />
+        <Loader size='medium'>Loading</Loader>
       </div>
 
       <Image src='http://semantic-ui.com/images/wireframe/paragraph.png' />
@@ -29,7 +31,7 @@ const LoaderInvertedSizeExamples = () => (
 
     <Segment>
       <div className='ui active inverted dimmer'>
-        <Loader size='large' text='Loading' />
+        <Loader size='large'>Loading</Loader>
       </div>
 
       <Image src='http://semantic-ui.com/images/wireframe/paragraph.png' />
@@ -37,4 +39,4 @@ const LoaderInvertedSizeExamples = () => (
   </div>
 )
 
-export default LoaderInvertedSizeExamples
+export default SizesInverted
