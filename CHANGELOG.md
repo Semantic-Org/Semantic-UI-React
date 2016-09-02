@@ -1,5 +1,20 @@
 # Change Log
 
+## [v0.41.0](https://github.com/TechnologyAdvice/stardust/tree/v0.41.0) (2016-09-02)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.40.0...v0.41.0)
+
+**Implemented enhancements:**
+
+- Segment: update to v1 API [\#287](https://github.com/TechnologyAdvice/stardust/pull/287) ([jamiehill](https://github.com/jamiehill))
+
+**Closed issues:**
+
+- MenuItem is rendered as active link with React 15.3.1 [\#460](https://github.com/TechnologyAdvice/stardust/issues/460)
+
+**Merged pull requests:**
+
+- Provide callback for default element type [\#459](https://github.com/TechnologyAdvice/stardust/pull/459) ([levithomason](https://github.com/levithomason))
+
 ## [v0.40.0](https://github.com/TechnologyAdvice/stardust/tree/v0.40.0) (2016-09-01)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.39.0...v0.40.0)
 
