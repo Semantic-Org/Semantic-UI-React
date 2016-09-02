@@ -1,12 +1,10 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Segment } from 'stardust'
 
-export default class SegmentDisabledExample extends Component {
-  render() {
-    return (
-      <Segment disabled>
-        Disabled content
-      </Segment>
-    )
-  }
-}
+const SegmentDisabledExample = () => (
+  <Segment disabled>
+    Disabled content
+  </Segment>
+)
+
+export default SegmentDisabledExample

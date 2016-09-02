@@ -5,7 +5,7 @@ export default class ButtonInvertedExample extends Component {
   render() {
     return (
       <div>
-        <Segment inverted >
+        <Segment inverted>
           <Button className='inverted'>Standard</Button>
           <Button className='inverted red'>Red</Button>
           <Button className='inverted orange'>Orange</Button>
@@ -21,7 +21,7 @@ export default class ButtonInvertedExample extends Component {
           <Button className='inverted grey'>Grey</Button>
           <Button className='inverted black'>Black</Button>
         </Segment>
-        <Segment inverted >
+        <Segment inverted>
           <Button className='inverted basic'>Standard</Button>
           <Button className='inverted red basic'>Red</Button>
           <Button className='inverted orange basic'>Orange</Button>

@@ -1,12 +1,10 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Segment } from 'stardust'
 
-export default class SegmentCompactExample extends Component {
-  render() {
-    return (
-      <Segment compact>
-        Compact content.
-      </Segment>
-    )
-  }
-}
+const SegmentCompactExample = () => (
+  <Segment compact>
+    Compact content.
+  </Segment>
+)
+
+export default SegmentCompactExample

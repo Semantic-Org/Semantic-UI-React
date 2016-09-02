@@ -1,15 +1,15 @@
 import React from 'react'
-import SegmentTypesExamples from './Types/SegmentTypesExamples'
-import SegmentGroupsExamples from './Groups/SegmentGroupsExamples'
-import SegmentStatesExamples from './States/SegmentStatesExamples'
-import SegmentVariationsExamples from './Variations/SegmentVariationsExamples'
+import Types from './Types'
+import Groups from './Groups'
+import States from './States'
+import Variations from './Variations'
 
 const SegmentExamples = () => (
   <div>
-    <SegmentTypesExamples />
-    <SegmentGroupsExamples />
-    <SegmentStatesExamples />
-    <SegmentVariationsExamples />
+    <Types />
+    <Groups />
+    <States />
+    <Variations />
   </div>
 )
 

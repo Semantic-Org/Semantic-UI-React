@@ -1,12 +1,10 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Segment } from 'stardust'
 
-export default class SegmentInvertedExample extends Component {
-  render() {
-    return (
-      <Segment inverted>
-        Inverted content.
-      </Segment>
-    )
-  }
-}
+const SegmentInvertedExample = () => (
+  <Segment inverted>
+    Inverted content.
+  </Segment>
+)
+
+export default SegmentInvertedExample

@@ -1,9 +1,11 @@
 import React from 'react'
 import { Header, Segment } from 'stardust'
 
+const square = { width: 175, height: 175 }
+
 const SegmentCircularExample = () => (
   <div>
-    <Segment circular>
+    <Segment circular style={square}>
       <Header as='h2'>
         Sale!
         <Header.Subheader>
@@ -11,7 +13,7 @@ const SegmentCircularExample = () => (
         </Header.Subheader>
       </Header>
     </Segment>
-    <Segment circular inverted>
+    <Segment circular inverted style={square}>
       <Header as='h2' inverted>
         Buy Now
         <Header.Subheader>

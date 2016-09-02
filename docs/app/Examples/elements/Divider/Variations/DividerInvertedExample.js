@@ -6,7 +6,7 @@ export default class DividerInvertedExample extends Component {
     return (
       <Segment inverted>
         <Divider inverted />
-        <Divider horizontal inverted >Horizontal</Divider>
+        <Divider horizontal inverted>Horizontal</Divider>
       </Segment>
     )
   }
