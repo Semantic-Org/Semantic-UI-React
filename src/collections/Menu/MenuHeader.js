@@ -17,7 +17,7 @@ function MenuHeader(props) {
 }
 
 MenuHeader._meta = {
-  name: 'MenuItem',
+  name: 'MenuHeader',
   type: META.TYPES.COLLECTION,
   parent: 'Menu',
 }
@@ -29,10 +29,10 @@ MenuHeader.propTypes = {
     PropTypes.func,
   ]),
 
-  /** Primary content of the MenuItem. */
+  /** Primary content */
   children: PropTypes.node,
 
-  /** Classes that will be added to the MenuItem className. */
+  /** Additional classes */
   className: PropTypes.string,
 }
 

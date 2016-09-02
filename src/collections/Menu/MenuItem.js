@@ -83,8 +83,4 @@ MenuItem.propTypes = {
   position: PropTypes.oneOf(MenuItem._meta.props.position),
 }
 
-MenuItem.defaultProps = {
-  as: 'a',
-}
-
 export default MenuItem

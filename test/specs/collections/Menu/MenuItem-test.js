@@ -1,9 +1,8 @@
 import React from 'react'
 
-import Menu from 'src/collections/Menu/Menu'
 import MenuItem from 'src/collections/Menu/MenuItem'
 import * as common from 'test/specs/commonTests'
-import { sandbox } from 'test/utils/sandbox'
+import { sandbox } from 'test/utils'
 
 describe('MenuItem', () => {
   common.isConformant(MenuItem)
@@ -18,13 +17,6 @@ describe('MenuItem', () => {
       .should.have.tagName('div')
   })
 
-  describe('active', () => {
-    it('is not by default', () => {
-      shallow(<MenuItem name='item' />)
-        .should.not.have.className('active')
-    })
-  })
-
   describe('name', () => {
     it('uses the name prop as text', () => {
       shallow(<MenuItem name='This is an item' />)
@@ -33,28 +25,21 @@ describe('MenuItem', () => {
   })
 
   describe('onClick', () => {
-    it('is called when clicked', () => {
-      const handleClick = sandbox.spy()
+    it('is called with (e, { name, index }) when clicked', () => {
+      const spy = sandbox.spy()
+      const event = { target: null }
+      const props = { name: 'home', index: 0 }
 
-      const wrapper = shallow(<MenuItem onClick={handleClick} />)
-      wrapper.simulate('click')
+      shallow(<MenuItem onClick={spy} {...props} />)
+        .simulate('click', event)
 
-      handleClick.should.have.been.called()
+      spy.should.have.been.calledOnce()
+      spy.should.have.been.calledWithMatch(event, props)
     })
+
     it('renders an `a` tag', () => {
       shallow(<MenuItem onClick={() => null} />)
         .should.have.tagName('a')
-    })
-    it('is called when the item is clicked', () => {
-      const props = {
-        onClick: sandbox.spy(),
-      }
-
-      // mount to get click event to propagate on click
-      mount(<MenuItem {...props} />)
-        .simulate('click')
-
-      props.onClick.should.have.been.calledOnce()
     })
   })
 })
