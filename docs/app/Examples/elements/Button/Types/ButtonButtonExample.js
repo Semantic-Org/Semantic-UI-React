@@ -1,12 +1,10 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Button } from 'stardust'
 
-export default class ButtonButtonExample extends Component {
-  render() {
-    return (
-      <Button>
-        Click Here
-      </Button>
-    )
-  }
-}
+const ButtonButtonExample = () => (
+  <Button>
+    Click Here
+  </Button>
+)
+
+export default ButtonButtonExample

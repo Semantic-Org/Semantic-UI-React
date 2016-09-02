@@ -15,7 +15,7 @@ const Floated = () => (
         <Header>Content A</Header>
         <Description>{paragraph}</Description>
         <Extra>
-          <Button className='right floated'>
+          <Button floated='right'>
             Action
           </Button>
         </Extra>
@@ -29,7 +29,7 @@ const Floated = () => (
         <Header>Content B</Header>
         <Description>{paragraph}</Description>
         <Extra>
-          <Button className='right floated'>
+          <Button floated='right'>
             Action
           </Button>
         </Extra>
@@ -43,7 +43,7 @@ const Floated = () => (
         <Header>Content C</Header>
         <Description>{paragraph}</Description>
         <Extra>
-          <Button className='right floated'>
+          <Button floated='right'>
             Action
           </Button>
         </Extra>

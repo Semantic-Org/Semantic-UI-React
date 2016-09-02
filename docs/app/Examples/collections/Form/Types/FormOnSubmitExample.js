@@ -59,7 +59,7 @@ class FormOnSubmitExample extends Component {
         </Form.Group>
         <Form.TextArea name='details' label='Details' placeholder='Anything else we should know?' rows='3' />
         <Form.Checkbox name='terms' label='I agree to the Terms and Conditions' />
-        <Button className='primary' type='submit'>Submit</Button>
+        <Button primary type='submit'>Submit</Button>
 
         <Message>
           <pre>serializedForm: {JSON.stringify(serializedForm, null, 2)}</pre>

@@ -1,11 +1,9 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Button } from 'stardust'
 
-export default class ButtonToggleExample extends Component {
-  render() {
-    return (
-      <Button toggle>Toggle</Button>
-      // TODO: Need to add functionality for toggle button - See issue #43
-    )
-  }
-}
+const ButtonToggleExample = () => (
+  <Button toggle>Toggle</Button>
+  // TODO: Need to add functionality for toggle button - See issue #43
+)
+
+export default ButtonToggleExample

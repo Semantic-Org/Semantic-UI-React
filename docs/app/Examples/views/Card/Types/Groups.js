@@ -18,8 +18,8 @@ const Groups = () => (
       </Card.Content>
       <Card.Content extra>
         <div className='ui two buttons'>
-          <Button className='basic green'>Approve</Button>
-          <Button className='basic red'>Decline</Button>
+          <Button basic color='green'>Approve</Button>
+          <Button basic color='red'>Decline</Button>
         </div>
       </Card.Content>
     </Card>
@@ -38,8 +38,8 @@ const Groups = () => (
       </Card.Content>
       <Card.Content extra>
         <div className='ui two buttons'>
-          <Button className='basic green'>Approve</Button>
-          <Button className='basic red'>Decline</Button>
+          <Button basic color='green'>Approve</Button>
+          <Button basic color='red'>Decline</Button>
         </div>
       </Card.Content>
     </Card>
@@ -58,8 +58,8 @@ const Groups = () => (
       </Card.Content>
       <Card.Content extra>
         <div className='ui two buttons'>
-          <Button className='basic green'>Approve</Button>
-          <Button className='basic red'>Decline</Button>
+          <Button basic color='green'>Approve</Button>
+          <Button basic color='red'>Decline</Button>
         </div>
       </Card.Content>
     </Card>

@@ -34,7 +34,7 @@ const Divided = () => (
         </Meta>
         <Description>{paragraph}</Description>
         <Extra>
-          <Button className='right floated primary'>
+          <Button primary floated='right'>
             Buy tickets
             <Icon name='right chevron' />
           </Button>
@@ -53,7 +53,7 @@ const Divided = () => (
         </Meta>
         <Description>{paragraph}</Description>
         <Extra>
-          <Button className='right floated primary'>
+          <Button primary floated='right'>
             Buy tickets
             <Icon name='right chevron' />
           </Button>

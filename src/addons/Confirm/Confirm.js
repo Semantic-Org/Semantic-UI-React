@@ -18,7 +18,7 @@ function Confirm(props) {
       {content && <Modal.Content>{content}</Modal.Content>}
       <Modal.Actions>
         <Button onClick={onCancel}>{cancelButton}</Button>
-        <Button className='primary' onClick={onConfirm}>{confirmButton}</Button>
+        <Button primary onClick={onConfirm}>{confirmButton}</Button>
       </Modal.Actions>
     </Modal>
   )

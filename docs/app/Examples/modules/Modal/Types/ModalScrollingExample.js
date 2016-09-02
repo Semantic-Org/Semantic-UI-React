@@ -32,7 +32,7 @@ class ModalScrollingExample extends Component {
             </Modal.Description>
           </Modal.Content>
           <Modal.Actions>
-            <Button className='primary icon' onClick={this.hide}>
+            <Button primary icon onClick={this.hide}>
               Proceed <Icon name='right chevron' />
             </Button>
           </Modal.Actions>

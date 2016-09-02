@@ -47,7 +47,7 @@ class PageNotFound extends Component {
           <Header inverted>
             Couldn't find that, but check this out:
           </Header>
-          <Button className='mini inverted basic' onClick={this.getNewImage}>
+          <Button basic inverted size='mini' onClick={this.getNewImage}>
             See Another
           </Button>
         </div>

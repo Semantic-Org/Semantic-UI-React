@@ -1,12 +1,10 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Button } from 'stardust'
 
-export default class ButtonNegativeExample extends Component {
-  render() {
-    return (
-      <div>
-        <Button negative>Negative Button</Button>
-      </div>
-    )
-  }
-}
+const ButtonNegativeExample = () => (
+  <div>
+    <Button negative>Negative Button</Button>
+  </div>
+)
+
+export default ButtonNegativeExample

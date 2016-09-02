@@ -18,7 +18,7 @@ const MessageAttachedExample = () => (
       <Form.Input label='Username' placeholder='Username' type='text' />
       <Form.Input label='Password' type='password' />
       <Form.Checkbox inline label='I agree to the terms and conditions' />
-      <Button className='blue submit button'>Submit</Button>
+      <Button color='blue'>Submit</Button>
     </Form>
     <Message attached='bottom' warning>
       <Icon name='help' />
