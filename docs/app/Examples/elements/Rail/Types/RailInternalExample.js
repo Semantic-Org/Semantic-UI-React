@@ -2,7 +2,7 @@ import React from 'react'
 import { Image, Rail, Segment } from 'stardust'
 
 const RailInternalExample = () => (
-  <Segment className='center aligned'>
+  <Segment textAlign='center'>
     <Image src='http://semantic-ui.com/images/wireframe/paragraph.png' />
 
     <Rail internal position='left'>

@@ -11,7 +11,7 @@ const panels = _.times(3, () => ({
 export default class AccordionInvertedExample extends Component {
   render() {
     return (
-      <Segment className='inverted'>
+      <Segment inverted>
         <Accordion panels={panels} inverted />
       </Segment>
     )

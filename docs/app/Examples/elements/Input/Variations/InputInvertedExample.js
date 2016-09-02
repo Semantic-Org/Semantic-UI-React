@@ -4,7 +4,7 @@ import { Segment, Input } from 'stardust'
 export default class InputInvertedExample extends Component {
   render() {
     return (
-      <Segment className='inverted'>
+      <Segment inverted>
         <Input className='inverted' placeholder='Search...' />
       </Segment>
     )

@@ -2,7 +2,7 @@ import React from 'react'
 import { Header, Segment } from 'stardust'
 
 const HeaderFloatingExample = () => (
-  <Segment className='clearing'>
+  <Segment clearing>
     <Header as='h2' floated='right'>
       Float Right
     </Header>

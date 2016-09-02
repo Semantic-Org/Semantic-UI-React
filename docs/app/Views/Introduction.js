@@ -149,7 +149,7 @@ Comparison.propTypes = {
 
 const Introduction = () => (
   <Container id='introduction-page'>
-    <Segment className='center aligned basic'>
+    <Segment basic textAlign='center'>
       <Logo centered size='small' />
       <Header as='h1' textAlign='center'>
         Semantic-UI-React
@@ -159,7 +159,7 @@ const Introduction = () => (
       </Header>
     </Segment>
 
-    <Segment className='basic padded'>
+    <Segment basic padded>
       <Header as='h2' dividing>Install</Header>
       <Segment>
         <pre>$ npm install {pkg.name}</pre>
@@ -177,7 +177,7 @@ const Introduction = () => (
     {/* ----------------------------------------
      *  jQuery Free
      * -------------------------------------- */}
-    <Segment className='basic padded'>
+    <Segment basic padded>
       <Header as='h2' dividing>jQuery Free</Header>
       <p>
         jQuery is a DOM manipulation library. It reads from and writes to the DOM.
@@ -193,7 +193,7 @@ const Introduction = () => (
     {/* ----------------------------------------
      *  Declarative API
      * -------------------------------------- */}
-    <Segment className='basic padded'>
+    <Segment basic padded>
       <Header as='h2' dividing>Declarative API</Header>
       <p>
         Declarative APIs provide for robust features and prop validation.
@@ -206,7 +206,7 @@ const Introduction = () => (
     {/* ----------------------------------------
      *  Augmentation
      * -------------------------------------- */}
-    <Segment className='basic padded'>
+    <Segment basic padded>
       <Header as='h2' dividing>Augmentation</Header>
       <p>
         Control the rendered HTML tag, or render one component <code>as</code> another component.
@@ -225,7 +225,7 @@ const Introduction = () => (
     {/* ----------------------------------------
      *  Shorthand Props
      * -------------------------------------- */}
-    <Segment className='basic padded'>
+    <Segment basic padded>
       <Header as='h2' dividing>Shorthand Props</Header>
       <p>
         Shorthand props generate markup for you, making many use cases a breeze.
@@ -260,7 +260,7 @@ const Introduction = () => (
     {/* ----------------------------------------
      *  Sub Components
      * -------------------------------------- */}
-    <Segment className='basic padded'>
+    <Segment basic padded>
       <Header as='h2' dividing>Sub Components</Header>
       <p>
         Sub components give you complete access to the markup.
@@ -272,7 +272,7 @@ const Introduction = () => (
     {/* ----------------------------------------
      *  Auto Controlled State
      * -------------------------------------- */}
-    <Segment className='basic padded'>
+    <Segment basic padded>
       <Header as='h2' dividing>Auto Controlled State</Header>
 
       <p>

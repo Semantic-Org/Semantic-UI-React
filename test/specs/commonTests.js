@@ -317,18 +317,13 @@ export const isConformant = (Component, requiredProps = {}) => {
   // Handles className
   // ----------------------------------------
   describe('className (common)', () => {
-    const isHeader = /^Header|_Header/.test(componentClassName)
-
-    // TODO: do not exclude headers once their APIs are updated
-    if (!isHeader && !META.isAddon(Component)) {
-      it(`has the Semantic UI className "${componentClassName}"`, () => {
-        const wrapper = render(<Component {...requiredProps} />)
-        // don't test components with no className at all (i.e. MessageItem)
-        if (wrapper.prop('className')) {
-          wrapper.should.have.className(componentClassName)
-        }
-      })
-    }
+    it(`has the Semantic UI className "${componentClassName}"`, () => {
+      const wrapper = render(<Component {...requiredProps} />)
+      // don't test components with no className at all (i.e. MessageItem)
+      if (wrapper.prop('className')) {
+        wrapper.should.have.className(componentClassName)
+      }
+    })
 
     it("applies user's className to root component", () => {
       const classes = faker.hacker.phrase()
@@ -336,26 +331,23 @@ export const isConformant = (Component, requiredProps = {}) => {
         .should.have.className(classes)
     })
 
-    // TODO: do not exclude headers once their APIs are updated
-    if (!isHeader) {
-      it("user's className does not override the default classes", () => {
-        const defaultClasses = shallow(<Component {...requiredProps} />)
-          .prop('className')
+    it("user's className does not override the default classes", () => {
+      const defaultClasses = shallow(<Component {...requiredProps} />)
+        .prop('className')
 
-        if (!defaultClasses) return
+      if (!defaultClasses) return
 
-        const userClasses = faker.hacker.verb()
-        const mixedClasses = shallow(<Component {...requiredProps} className={userClasses} />)
-          .prop('className')
+      const userClasses = faker.hacker.verb()
+      const mixedClasses = shallow(<Component {...requiredProps} className={userClasses} />)
+        .prop('className')
 
-        defaultClasses.split(' ').forEach((defaultClass) => {
-          mixedClasses.should.include(defaultClass, [
-            'Make sure you are using the `getUnhandledProps` util to spread the `rest` props.',
-            'This may also be of help: https://facebook.github.io/react/docs/transferring-props.html.',
-          ].join(' '))
-        })
+      defaultClasses.split(' ').forEach((defaultClass) => {
+        mixedClasses.should.include(defaultClass, [
+          'Make sure you are using the `getUnhandledProps` util to spread the `rest` props.',
+          'This may also be of help: https://facebook.github.io/react/docs/transferring-props.html.',
+        ].join(' '))
       })
-    }
+    })
   })
 }
 

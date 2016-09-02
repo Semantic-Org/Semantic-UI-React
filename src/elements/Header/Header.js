@@ -136,7 +136,10 @@ Header.propTypes = {
   block: PropTypes.bool,
 
   /** Attach header  to other content, like a segment */
-  attached: PropTypes.oneOf(Header._meta.props.attached),
+  attached: PropTypes.oneOfType([
+    PropTypes.oneOf(Header._meta.props.attached),
+    PropTypes.bool,
+  ]),
 
   /** Header can sit to the left or right of other content */
   floated: PropTypes.oneOf(Header._meta.props.floated),

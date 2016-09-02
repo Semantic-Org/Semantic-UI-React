@@ -1,12 +1,10 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Segment } from 'stardust'
 
-export default class SegmentPaddedExample extends Component {
-  render() {
-    return (
-      <Segment className='padded'>
-        Padded content.
-      </Segment>
-    )
-  }
-}
+const SegmentPaddedExample = () => (
+  <Segment padded>
+    Padded content.
+  </Segment>
+)
+
+export default SegmentPaddedExample

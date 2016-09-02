@@ -2,7 +2,7 @@ import React from 'react'
 import { Progress, Segment } from 'stardust'
 
 const ProgressInvertedColorExample = () => (
-  <Segment className='inverted'>
+  <Segment inverted>
     <Progress percent={32} inverted color='red' label />
     <Progress percent={59} inverted color='orange' label />
     <Progress percent={13} inverted color='yellow' label />

@@ -6,7 +6,7 @@ export default class ButtonVerticallyAttachedExample extends Component {
     return (
       <div>
         <Button className='top attached'>Top</Button>
-        <Segment className='attached'>
+        <Segment attached>
           <p>Content goes here</p>
         </Segment>
         <Button className='bottom attached'>Bottom</Button>

@@ -1,27 +1,27 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Header, Segment } from 'stardust'
 
-export default class SegmentCircularExample extends Component {
-  render() {
-    return (
-      <div>
-        <Segment className='circular'>
-          <Header as='h2'>
-            Sale!
-            <Header.Subheader>
-              $10.99
-            </Header.Subheader>
-          </Header>
-        </Segment>
-        <Segment className='red inverted circular'>
-          <Header as='h3'>
-            Buy Now
-            <Header.Subheader>
-              $10.99
-            </Header.Subheader>
-          </Header>
-        </Segment>
-      </div>
-    )
-  }
-}
+const square = { width: 175, height: 175 }
+
+const SegmentCircularExample = () => (
+  <div>
+    <Segment circular style={square}>
+      <Header as='h2'>
+        Sale!
+        <Header.Subheader>
+          $10.99
+        </Header.Subheader>
+      </Header>
+    </Segment>
+    <Segment circular inverted style={square}>
+      <Header as='h2' inverted>
+        Buy Now
+        <Header.Subheader>
+          $10.99
+        </Header.Subheader>
+      </Header>
+    </Segment>
+  </div>
+)
+
+export default SegmentCircularExample
