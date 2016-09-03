@@ -8,12 +8,12 @@ import {
 } from '../../lib'
 
 function MenuHeader(props) {
-  const { children, className } = props
+  const { children, className, content } = props
   const classes = cx(className, 'header')
   const ElementType = getElementType(MenuHeader, props)
   const rest = getUnhandledProps(MenuHeader, props)
 
-  return <ElementType {...rest} className={classes}>{children}</ElementType>
+  return <ElementType {...rest} className={classes}>{children || content}</ElementType>
 }
 
 MenuHeader._meta = {
@@ -34,6 +34,12 @@ MenuHeader.propTypes = {
 
   /** Additional classes */
   className: PropTypes.string,
+
+  /** Shorthand for primary content */
+  content: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string,
+  ]),
 }
 
 export default MenuHeader

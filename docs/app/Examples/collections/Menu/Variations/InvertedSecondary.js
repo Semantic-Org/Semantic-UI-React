@@ -1,13 +1,8 @@
 import React, { Component } from 'react'
 import { Menu, Segment } from 'stardust'
 
-// TODO: Update <Segment> usage after its update to v1 API
-
 export default class InvertedSecondary extends Component {
-  constructor() {
-    super()
-    this.state = { activeItem: 'Home' }
-  }
+  state = { activeItem: 'home' }
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
@@ -15,23 +10,31 @@ export default class InvertedSecondary extends Component {
     const { activeItem } = this.state
 
     return (
-      <Segment className='inverted'>
+      <Segment inverted>
         <Menu inverted pointing secondary>
           <Menu.Item
-            name='Home'
-            active={activeItem === 'Home'}
+            name='home'
+            active={activeItem === 'home'}
             onClick={this.handleItemClick}
-          />
+          >
+            Home
+          </Menu.Item>
+
           <Menu.Item
-            name='Messages'
-            active={activeItem === 'Messages'}
+            name='messages'
+            active={activeItem === 'messages'}
             onClick={this.handleItemClick}
-          />
+          >
+            Messages
+          </Menu.Item>
+
           <Menu.Item
-            name='Friends'
-            active={activeItem === 'Friends'}
+            name='friends'
+            active={activeItem === 'friends'}
             onClick={this.handleItemClick}
-          />
+          >
+            Friends
+          </Menu.Item>
         </Menu>
       </Segment>
     )

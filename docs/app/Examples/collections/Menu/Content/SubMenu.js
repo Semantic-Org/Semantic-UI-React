@@ -1,43 +1,79 @@
-import React from 'react'
-import { Icon, Input, Menu } from 'stardust'
+import React, { Component } from 'react'
+import { Dropdown, Icon, Input, Menu } from 'stardust'
 
-const { Item } = Menu
+export default class SubMenu extends Component {
+  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
-const SubMenu = () => {
-  return (
-    <Menu vertical>
-      <Item>
-        <Input placeholder='Search...' />
-      </Item>
+  render() {
+    const { activeItem } = this.state || {}
 
-      <Item>
-        Home
+    return (
+      <Menu vertical>
+        <Menu.Item>
+          <Input placeholder='Search...' />
+        </Menu.Item>
 
-        <Menu>
-          <Item active>Search</Item>
-          <Item>Add</Item>
-          <Item>Remove</Item>
-        </Menu>
-      </Item>
+        <Menu.Item>
+          Home
 
-      <Item>
-        <Icon name='grid layout' /> Browse
-      </Item>
-      <Item icon='grid layout'>Browse</Item>
-      <Item>Messages</Item>
+          <Menu.Menu>
+            <Menu.Item
+              name='search'
+              active={activeItem === 'search'}
+              onClick={this.handleItemClick}
+            >
+              Search
+            </Menu.Item>
+            <Menu.Item
+              name='add'
+              active={activeItem === 'add'}
+              onClick={this.handleItemClick}
+            >
+              Add
+            </Menu.Item>
+            <Menu.Item
+              name='about'
+              active={activeItem === 'about'}
+              onClick={this.handleItemClick}
+            >
+              Remove
+            </Menu.Item>
+          </Menu.Menu>
+        </Menu.Item>
 
-      <div className='ui dropdown item'>
-        More
+        <Menu.Item
+          name='browse'
+          active={activeItem === 'browse'}
+          onClick={this.handleItemClick}
+        >
+          <Icon name='grid layout' />
+          Browse
+        </Menu.Item>
+        <Menu.Item
+          name='messages'
+          active={activeItem === 'messages'}
+          onClick={this.handleItemClick}
+        >
+          Messages
+        </Menu.Item>
 
-        <i className='dropdown icon'></i>
-        <div className='menu'>
-          <a className='item'><i className='edit icon'></i> Edit Profile</a>
-          <a className='item'><i className='globe icon'></i> Choose Language</a>
-          <a className='item'><i className='settings icon'></i> Account Settings</a>
-        </div>
-      </div>
-    </Menu>
-  )
+        <Menu.Item as={Dropdown} text='More'>
+          <Dropdown.Menu>
+            <Dropdown.Item>
+              <Icon name='edit' />
+              Edit Profile
+            </Dropdown.Item>
+            <Dropdown.Item>
+              <Icon name='globe' />
+              Choose Language
+            </Dropdown.Item>
+            <Dropdown.Item>
+              <Icon name='settings' />
+              Account Settings
+            </Dropdown.Item>
+          </Dropdown.Menu>
+        </Menu.Item>
+      </Menu>
+    )
+  }
 }
-
-export default SubMenu

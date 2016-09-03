@@ -3,10 +3,6 @@ import React from 'react'
 import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
 import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
 
-// TODO: Add example with dropdown
-// TODO: Add example with sub menu
-// TODO: Add example with props
-
 // TODO: Add example with <Popup> after it will be added
 // TODO: Add example with <Search> after it will be added
 
@@ -44,11 +40,11 @@ const Content = () => {
         examplePath='collections/Menu/Content/LinkItem'
       />
 
-      {/* <ComponentExample*/}
-        {/* title='Dropdown Item'*/}
-        {/* description='An item may contain a nested menu in a dropdown'*/}
-        {/* examplePath='collections/Menu/Content/LinkItem'*/}
-      {/* />*/}
+       <ComponentExample
+         title='Dropdown Item'
+         description='An item may contain a nested menu in a dropdown'
+         examplePath='collections/Menu/Content/DropdownItem'
+       />
 
       {/* <ComponentExample*/}
         {/* title='Popup Menu'*/}

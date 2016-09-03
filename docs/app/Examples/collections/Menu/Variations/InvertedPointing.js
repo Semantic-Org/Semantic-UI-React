@@ -2,10 +2,7 @@ import React, { Component } from 'react'
 import { Menu } from 'stardust'
 
 export default class InvertedPointing extends Component {
-  constructor() {
-    super()
-    this.state = { activeItem: 'Home' }
-  }
+  state = { activeItem: 'home' }
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
@@ -15,20 +12,28 @@ export default class InvertedPointing extends Component {
     return (
       <Menu inverted pointing vertical>
         <Menu.Item
-          name='Home'
-          active={activeItem === 'Home'}
+          name='home'
+          active={activeItem === 'home'}
           onClick={this.handleItemClick}
-        />
+        >
+          Home
+        </Menu.Item>
+
         <Menu.Item
-          name='Messages'
-          active={activeItem === 'Messages'}
+          name='messages'
+          active={activeItem === 'messages'}
           onClick={this.handleItemClick}
-        />
+        >
+          Messages
+        </Menu.Item>
+
         <Menu.Item
-          name='Friends'
-          active={activeItem === 'Friends'}
+          name='friends'
+          active={activeItem === 'friends'}
           onClick={this.handleItemClick}
-        />
+        >
+          Friends
+        </Menu.Item>
       </Menu>
     )
   }

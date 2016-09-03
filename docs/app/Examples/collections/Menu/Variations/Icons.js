@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import { Menu } from 'stardust'
+import { Icon, Menu } from 'stardust'
 
-export default class Inverted extends Component {
-  state = { activeItem: 'home' }
+export default class Icons extends Component {
+  state = { activeItem: 'gamepad' }
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
@@ -10,29 +10,29 @@ export default class Inverted extends Component {
     const { activeItem } = this.state
 
     return (
-      <Menu inverted>
+      <Menu icon>
         <Menu.Item
-          name='home'
-          active={activeItem === 'home'}
+          name='gamepad'
+          active={activeItem === 'gamepad'}
           onClick={this.handleItemClick}
         >
-          Home
+          <Icon name='gamepad' />
         </Menu.Item>
 
         <Menu.Item
-          name='messages'
-          active={activeItem === 'messages'}
+          name='video camera'
+          active={activeItem === 'video camera'}
           onClick={this.handleItemClick}
         >
-          Messages
+          <Icon name='video camera' />
         </Menu.Item>
 
         <Menu.Item
-          name='friends'
-          active={activeItem === 'friends'}
+          name='video play'
+          active={activeItem === 'video play'}
           onClick={this.handleItemClick}
         >
-          Friends
+          <Icon name='video play' />
         </Menu.Item>
       </Menu>
     )

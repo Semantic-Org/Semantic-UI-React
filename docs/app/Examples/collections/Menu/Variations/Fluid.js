@@ -1,38 +1,36 @@
 import React, { Component } from 'react'
 import { Menu } from 'stardust'
 
-export default class Inverted extends Component {
-  state = { activeItem: 'home' }
-
+export default class Fluid extends Component {
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
   render() {
-    const { activeItem } = this.state
+    const { activeItem } = this.state || {}
 
     return (
-      <Menu inverted>
+      <Menu fluid vertical>
         <Menu.Item
-          name='home'
-          active={activeItem === 'home'}
+          name='run'
+          active={activeItem === 'run'}
           onClick={this.handleItemClick}
         >
-          Home
+          Run
         </Menu.Item>
 
         <Menu.Item
-          name='messages'
-          active={activeItem === 'messages'}
+          name='walk'
+          active={activeItem === 'walk'}
           onClick={this.handleItemClick}
         >
-          Messages
+          Walk
         </Menu.Item>
 
         <Menu.Item
-          name='friends'
-          active={activeItem === 'friends'}
+          name='bike'
+          active={activeItem === 'bike'}
           onClick={this.handleItemClick}
         >
-          Friends
+          Bike
         </Menu.Item>
       </Menu>
     )

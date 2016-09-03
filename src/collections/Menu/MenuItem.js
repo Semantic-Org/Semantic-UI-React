@@ -5,15 +5,19 @@ import {
   getElementType,
   getUnhandledProps,
   META,
+  SUI,
   useKeyOnly,
+  useKeyOrValueAndKey,
 } from '../../lib'
 
 function MenuItem(props) {
-  const { active, children, className, header, index, link, name, onClick, position } = props
+  const { active, children, className, color, fitted, header, index, link, name, onClick, position } = props
   const classes = cx(
     useKeyOnly(active, 'active'),
+    useKeyOrValueAndKey(fitted, 'fitted'),
     useKeyOnly(header, 'header'),
     useKeyOnly(link, 'link'),
+    color,
     position,
     className,
     'item',
@@ -38,6 +42,8 @@ MenuItem._meta = {
   type: META.TYPES.COLLECTION,
   parent: 'Menu',
   props: {
+    color: SUI.COLORS,
+    fitted: ['horizontally', 'vertically'],
     position: ['right'],
   },
 }
@@ -58,8 +64,17 @@ MenuItem.propTypes = {
   /** Classes that will be added to the MenuItem className. */
   className: PropTypes.string,
 
+  /** Additional colors can be specified. */
+  color: PropTypes.oneOf(MenuItem._meta.props.color),
+
   /** A menu item can be pressed in. */
   down: PropTypes.bool,
+
+  /** A menu item or menu can remove element padding, vertically or horizontally. */
+  fitted: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.oneOf(MenuItem._meta.props.fitted),
+  ]),
 
   /** A menu item can be link. */
   link: PropTypes.bool,

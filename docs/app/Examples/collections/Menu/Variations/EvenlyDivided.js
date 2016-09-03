@@ -1,38 +1,36 @@
 import React, { Component } from 'react'
 import { Menu } from 'stardust'
 
-export default class Inverted extends Component {
-  state = { activeItem: 'home' }
-
+export default class EvenlyDivided extends Component {
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
   render() {
-    const { activeItem } = this.state
+    const { activeItem } = this.state || {}
 
     return (
-      <Menu inverted>
+      <Menu fluid widths={3}>
         <Menu.Item
-          name='home'
-          active={activeItem === 'home'}
+          name='buy'
+          active={activeItem === 'buy'}
           onClick={this.handleItemClick}
         >
-          Home
+          Buy
         </Menu.Item>
 
         <Menu.Item
-          name='messages'
-          active={activeItem === 'messages'}
+          name='sell'
+          active={activeItem === 'sell'}
           onClick={this.handleItemClick}
         >
-          Messages
+          Sell
         </Menu.Item>
 
         <Menu.Item
-          name='friends'
-          active={activeItem === 'friends'}
+          name='rent'
+          active={activeItem === 'rent'}
           onClick={this.handleItemClick}
         >
-          Friends
+          Rent
         </Menu.Item>
       </Menu>
     )

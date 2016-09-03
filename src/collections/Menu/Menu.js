@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
@@ -8,6 +9,8 @@ import {
   META,
   SUI,
   useKeyOnly,
+  useKeyOrValueAndKey,
+  useValueAndKey,
   useWidthProp,
 } from '../../lib'
 import MenuHeader from './MenuHeader'
@@ -18,6 +21,11 @@ const _meta = {
   name: 'Menu',
   type: META.TYPES.COLLECTION,
   props: {
+    attached: ['top', 'bottom'],
+    color: SUI.COLORS,
+    icon: ['labeled'],
+    fixed: ['bottom', 'top'],
+    size: _.without(SUI.SIZES, 'medium', 'big'),
     widths: SUI.WIDTHS,
   },
 }
@@ -27,14 +35,23 @@ const _meta = {
  * */
 class Menu extends Component {
   static propTypes = {
-    /** Index of the currently active item. */
-    activeIndex: PropTypes.number,
-
     /** An element type to render as (string or function). */
     as: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.func,
     ]),
+
+    /** Index of the currently active item. */
+    activeIndex: PropTypes.number,
+
+    /** A menu may be attached to other content segments. */
+    attached: PropTypes.oneOfType([
+      PropTypes.bool,
+      PropTypes.oneOf(_meta.props.attached),
+    ]),
+
+    /** A menu item or menu can have no borders. */
+    borderless: PropTypes.bool,
 
     /** Primary content of the Menu. */
     children: PropTypes.node,
@@ -42,11 +59,26 @@ class Menu extends Component {
     /** Classes that will be added to the Menu className. */
     className: PropTypes.string,
 
+    /** Additional colors can be specified. */
+    color: PropTypes.oneOf(_meta.props.color),
+
     /** A menu can take up only the space necessary to fit its content. */
     compact: PropTypes.bool,
 
     /** Initial activeIndex value. */
     defaultActiveIndex: PropTypes.number,
+
+    /** A menu can be fixed to a side of its context. */
+    fixed: PropTypes.oneOf(_meta.props.fixed),
+
+    /** A vertical menu may take the size of its container. */
+    fluid: PropTypes.bool,
+
+    /** A menu may have labeled icons. */
+    icon: PropTypes.oneOfType([
+      PropTypes.bool,
+      PropTypes.oneOf(_meta.props.icon),
+    ]),
 
     /** A menu may have its colors inverted to show greater contrast. */
     inverted: PropTypes.bool,
@@ -63,8 +95,14 @@ class Menu extends Component {
     /** A menu can stack at mobile resolutions. */
     stackable: PropTypes.bool,
 
+    /** A menu can be formatted to show tabs of information. */
+    tabular: PropTypes.bool,
+
     /** A vertical menu displays elements vertically. */
     vertical: PropTypes.bool,
+
+    /** A menu can vary in size. */
+    size: PropTypes.oneOf(_meta.props.size),
 
     /** A menu can have its items divided evenly. */
     widths: PropTypes.oneOf(_meta.props.widths),
@@ -118,17 +156,28 @@ class Menu extends Component {
   // }
 
   render() {
-    const { className, children, compact, inverted, pointing, secondary, stackable, vertical, widths } = this.props
+    const {
+      attached, borderless, className, children, color, compact, fixed, fluid, icon, inverted, pointing, secondary,
+      stackable, tabular, vertical, size, widths,
+    } = this.props
     const classes = cx(
       'ui',
-      className,
-      useWidthProp(widths),
+      color,
+      size,
+      useWidthProp(widths, 'item'),
+      useKeyOrValueAndKey(attached, 'attached'),
+      useKeyOnly(borderless, 'borderless'),
       useKeyOnly(compact, 'compact'),
+      useValueAndKey(fixed, 'fixed'),
+      useKeyOnly(fluid, 'fluid'),
+      useKeyOrValueAndKey(icon, 'icon'),
       useKeyOnly(inverted, 'inverted'),
       useKeyOnly(pointing, 'pointing'),
       useKeyOnly(secondary, 'secondary'),
       useKeyOnly(stackable, 'stackable'),
+      useKeyOnly(tabular, 'tabular'),
       useKeyOnly(vertical, 'vertical'),
+      className,
       'menu'
     )
 

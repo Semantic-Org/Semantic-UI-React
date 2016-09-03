@@ -1,40 +1,39 @@
 import React, { Component } from 'react'
 import { Menu } from 'stardust'
 
-export default class Stackable extends Component {
+export default class Fitted extends Component {
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
   render() {
     const { activeItem } = this.state || {}
 
     return (
-      <Menu stackable>
-        <Menu.Item>
-          <img src='http://semantic-ui.com/images/logo.png' />
+      <Menu>
+        <Menu.Item
+          name='default'
+          active={activeItem === 'default'}
+          fitted
+          onClick={this.handleItemClick}
+        >
+          No padding whatsoever
         </Menu.Item>
 
         <Menu.Item
-          name='features'
-          active={activeItem === 'features'}
+          name='horizontally'
+          active={activeItem === 'horizontally'}
+          fitted='horizontally'
           onClick={this.handleItemClick}
         >
-          Features
+          No horizontal padding
         </Menu.Item>
 
         <Menu.Item
-          name='testimonials'
-          active={activeItem === 'testimonials'}
+          name='vertically'
+          active={activeItem === 'vertically'}
+          fitted='vertically'
           onClick={this.handleItemClick}
         >
-          Testimonials
-        </Menu.Item>
-
-        <Menu.Item
-          name='sign-in'
-          active={activeItem === 'sign-in'}
-          onClick={this.handleItemClick}
-        >
-          Sign-in
+          No vertical padding
         </Menu.Item>
       </Menu>
     )
