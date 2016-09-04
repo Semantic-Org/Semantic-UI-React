@@ -1,14 +1,16 @@
 import React, { Component } from 'react'
 import { Menu } from 'stardust'
 
-export default class Borderless extends Component {
+export default class Pagination extends Component {
+  state = { activeItem: '10' }
+
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
   render() {
-    const { activeItem } = this.state || {}
+    const { activeItem } = this.state
 
     return (
-      <Menu borderless>
+      <Menu pagination>
         <Menu.Item
           name='1'
           active={activeItem === '1'}
@@ -17,44 +19,32 @@ export default class Borderless extends Component {
           1
         </Menu.Item>
 
-        <Menu.Item
-          name='2'
-          active={activeItem === '2'}
-          onClick={this.handleItemClick}
-        >
-          2
+        <Menu.Item disabled>
+          ...
         </Menu.Item>
 
         <Menu.Item
-          name='3'
-          active={activeItem === '3'}
+          name='10'
+          active={activeItem === '10'}
           onClick={this.handleItemClick}
         >
-          3
+          10
         </Menu.Item>
 
         <Menu.Item
-          name='4'
-          active={activeItem === '4'}
+          name='11'
+          active={activeItem === '11'}
           onClick={this.handleItemClick}
         >
-          4
+          11
         </Menu.Item>
 
         <Menu.Item
-          name='5'
-          active={activeItem === '5'}
+          name='12'
+          active={activeItem === '12'}
           onClick={this.handleItemClick}
         >
-          5
-        </Menu.Item>
-
-        <Menu.Item
-          name='6'
-          active={activeItem === '6'}
-          onClick={this.handleItemClick}
-        >
-          6
+          12
         </Menu.Item>
       </Menu>
     )

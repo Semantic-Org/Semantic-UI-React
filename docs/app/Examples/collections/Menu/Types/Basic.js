@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Menu } from 'stardust'
 
-export default class Width extends Component {
+export default class Basic extends Component {
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
   render() {

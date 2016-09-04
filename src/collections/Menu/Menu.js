@@ -26,6 +26,7 @@ const _meta = {
     icon: ['labeled'],
     fixed: ['bottom', 'top'],
     size: _.without(SUI.SIZES, 'medium', 'big'),
+    tabular: ['right'],
     widths: SUI.WIDTHS,
   },
 }
@@ -86,6 +87,9 @@ class Menu extends Component {
     /** onClick handler for MenuItem. */
     onItemClick: PropTypes.func,
 
+    /** A pagination menu is specially formatted to present links to pages of content. */
+    pagination: PropTypes.bool,
+
     /** A menu can point to show its relationship to nearby content. */
     pointing: PropTypes.bool,
 
@@ -96,7 +100,13 @@ class Menu extends Component {
     stackable: PropTypes.bool,
 
     /** A menu can be formatted to show tabs of information. */
-    tabular: PropTypes.bool,
+    tabular: PropTypes.oneOfType([
+      PropTypes.bool,
+      PropTypes.oneOf(_meta.props.tabular),
+    ]),
+
+    /** A menu can be formatted for text content. */
+    text: PropTypes.bool,
 
     /** A vertical menu displays elements vertically. */
     vertical: PropTypes.bool,
@@ -118,47 +128,10 @@ class Menu extends Component {
   static Item = MenuItem
   static Menu = MenuMenu
 
-  // componentWillMount() {
-  //   super.componentWillMount()
-  //
-  //   const activeIndex = _.findIndex(this.props.children, child => {
-  //     return child.type === MenuItem && _.has(child, 'props.active') && child.props.active
-  //   })
-  //   this.trySetState({ activeIndex: _.isNumber(activeIndex) ? activeIndex : 0 })
-  // }
-  //
-  // handleItemClick = (e, index) => {
-  //   const { onItemClick } = this.props
-  //
-  //   this.trySetState({ activeIndex: index })
-  //   if (onItemClick) onItemClick(e, index)
-  // }
-  //
-  // renderChildren = () => {
-  //   const { children } = this.props
-  //   const { activeIndex } = this.state
-  //
-  //   return Children.map(children, (child, i) => {
-  //     const isItem = child.type === MenuItem
-  //     const isLink = _.has(child, 'props.href') || _.has(child, 'props.link') || _.has(child, 'props.onClick')
-  //
-  //     if (isItem) {
-  //       const onClick = (e) => {
-  //         if (isLink) this.handleItemClick(e, i)
-  //         if (child.props.onClick) child.props.onClick(e, i)
-  //       }
-  //
-  //       return cloneElement(child, { ...child.props, active: activeIndex === i, onClick })
-  //     }
-  //
-  //     return child
-  //   })
-  // }
-
   render() {
     const {
-      attached, borderless, className, children, color, compact, fixed, fluid, icon, inverted, pointing, secondary,
-      stackable, tabular, vertical, size, widths,
+      attached, borderless, className, children, color, compact, fixed, fluid, icon, inverted, pagination, pointing,
+      secondary, stackable, tabular, text, vertical, size, widths,
     } = this.props
     const classes = cx(
       'ui',
@@ -172,10 +145,12 @@ class Menu extends Component {
       useKeyOnly(fluid, 'fluid'),
       useKeyOrValueAndKey(icon, 'icon'),
       useKeyOnly(inverted, 'inverted'),
+      useKeyOnly(pagination, 'pagination'),
       useKeyOnly(pointing, 'pointing'),
       useKeyOnly(secondary, 'secondary'),
       useKeyOnly(stackable, 'stackable'),
-      useKeyOnly(tabular, 'tabular'),
+      useKeyOrValueAndKey(tabular, 'tabular'),
+      useKeyOnly(text, 'text'),
       useKeyOnly(vertical, 'vertical'),
       className,
       'menu'

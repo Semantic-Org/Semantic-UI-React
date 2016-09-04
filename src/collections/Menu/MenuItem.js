@@ -2,6 +2,7 @@ import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
 import {
+  customPropTypes,
   getElementType,
   getUnhandledProps,
   META,
@@ -11,7 +12,7 @@ import {
 } from '../../lib'
 
 function MenuItem(props) {
-  const { active, children, className, color, fitted, header, index, link, name, onClick, position } = props
+  const { active, children, className, color, content, fitted, header, index, link, name, onClick, position } = props
   const classes = cx(
     useKeyOnly(active, 'active'),
     useKeyOrValueAndKey(fitted, 'fitted'),
@@ -32,7 +33,7 @@ function MenuItem(props) {
 
   return (
     <ElementType {...rest} className={classes} onClick={handleClick}>
-      {children || name}
+      {children || content || name}
     </ElementType>
   )
 }
@@ -59,13 +60,22 @@ MenuItem.propTypes = {
   active: PropTypes.bool,
 
   /** Primary content of the MenuItem. */
-  children: PropTypes.node,
+  children: customPropTypes.every([
+    customPropTypes.disallow(['content']),
+    PropTypes.node,
+  ]),
 
   /** Classes that will be added to the MenuItem className. */
   className: PropTypes.string,
 
   /** Additional colors can be specified. */
   color: PropTypes.oneOf(MenuItem._meta.props.color),
+
+  /** Shorthand for primary content of the MenuItem. Mutually exclusive with the children. */
+  content: customPropTypes.every([
+    customPropTypes.disallow(['children']),
+    PropTypes.string,
+  ]),
 
   /** A menu item can be pressed in. */
   down: PropTypes.bool,
@@ -81,9 +91,6 @@ MenuItem.propTypes = {
 
   /** A menu item may include a header or may itself be a header. */
   header: PropTypes.bool,
-
-  /** Render as an `a` tag instead of a `div` and adds the href attribute. */
-  href: PropTypes.string,
 
   /** MenuItem index inside Menu. */
   index: PropTypes.number,

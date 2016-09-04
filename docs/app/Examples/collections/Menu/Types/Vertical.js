@@ -3,7 +3,7 @@ import { Input, Label, Menu } from 'stardust'
 
 // TODO: Update <Input> usage after its update to v1 API
 
-export default class SizeVerticalLarge extends Component {
+export default class Vertical extends Component {
   state = { activeItem: 'inbox' }
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
@@ -12,7 +12,7 @@ export default class SizeVerticalLarge extends Component {
     const { activeItem } = this.state
 
     return (
-      <Menu size='large' vertical>
+      <Menu vertical>
         <Menu.Item
           name='inbox'
           active={activeItem === 'inbox'}

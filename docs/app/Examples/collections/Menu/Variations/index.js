@@ -3,8 +3,6 @@ import React from 'react'
 import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
 import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
 
-// TODO: Add example for sizes
-
 const Variations = () => {
   return (
     <ExampleSection title='Variations'>
