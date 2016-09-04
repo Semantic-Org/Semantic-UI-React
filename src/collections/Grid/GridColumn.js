@@ -90,7 +90,7 @@ GridColumn.propTypes = {
   /** A column can appear only for a specific device, or screen sizes. */
   only: PropTypes.oneOf(GridColumn._meta.props.only),
 
-  /** An can stretch its contents to take up the entire column height. */
+  /** An can stretch its contents to take up the entire grid or row height. */
   stretched: PropTypes.bool,
 
   /** A column can specify a width for a tablet device. */
