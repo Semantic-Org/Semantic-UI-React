@@ -19,5 +19,6 @@ describe('Grid', () => {
   common.propKeyOrValueToClassName(Grid, 'relaxed')
   common.propKeyAndValueToClassName(Grid, 'reversed')
   common.propKeyOnlyToClassName(Grid, 'stackable')
+  common.propKeyOnlyToClassName(Grid, 'stretched')
   common.rendersChildren(Grid)
 })
