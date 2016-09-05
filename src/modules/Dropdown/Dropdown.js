@@ -280,6 +280,7 @@ export default class Dropdown extends Component {
       document.removeEventListener('keydown', this.moveSelectionOnKeyDown)
       document.removeEventListener('keydown', this.selectItemOnEnter)
       document.removeEventListener('keydown', this.removeItemOnBackspace)
+      this.close()
     }
 
     // opened / closed
@@ -299,6 +300,10 @@ export default class Dropdown extends Component {
       document.removeEventListener('keydown', this.selectItemOnEnter)
       document.removeEventListener('keydown', this.removeItemOnBackspace)
       document.removeEventListener('click', this.closeOnDocumentClick)
+      if (prevState.focus && this.state.focus) {
+        document.addEventListener('keydown', this.openOnArrow)
+        document.addEventListener('keydown', this.openOnSpace)
+      }
     }
   }
 
@@ -476,11 +481,6 @@ export default class Dropdown extends Component {
     debug('handleBlur()')
     const { onBlur } = this.props
     if (onBlur) onBlur(e)
-    // TODO
-    // handleBlur() is called on mouse down
-    // handleClickItem() it called on mouse up
-    // item clicks are circumvented by calling close() here
-    // this.close()
     this.setState({ focus: false })
   }
 
@@ -798,6 +798,7 @@ export default class Dropdown extends Component {
         active={isActive(opt.value)}
         onClick={this.handleItemClick}
         selected={selectedIndex === i}
+        onMouseDown={e => e.preventDefault()} // prevent default to allow item select without closing on blur
         {...opt}
       />
     ))
