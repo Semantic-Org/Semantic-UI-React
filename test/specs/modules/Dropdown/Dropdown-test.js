@@ -70,18 +70,18 @@ describe('Dropdown Component', () => {
   common.propKeyOnlyToClassName(Dropdown, 'search')
   common.propKeyOnlyToClassName(Dropdown, 'selection')
 
-  // TODO: see Dropdown.handleBlur() todo
-  // it('closes on blur', () => {
-  //   wrapperMount(<Dropdown {...requiredProps} />)
-  //     .simulate('click')
-  //
-  //   dropdownMenuIsOpen()
-  //
-  //   wrapper
-  //     .simulate('blur')
-  //
-  //   dropdownMenuIsClosed()
-  // })
+  it('closes on blur', () => {
+    wrapperMount(<Dropdown options={options} />)
+      .simulate('focus')
+      .simulate('click')
+
+    dropdownMenuIsOpen()
+
+    wrapper
+      .simulate('blur')
+
+    dropdownMenuIsClosed()
+  })
 
   // TODO: see Dropdown.handleFocus() todo
   // it('opens on focus', () => {
@@ -458,6 +458,23 @@ describe('Dropdown Component', () => {
       dropdownMenuIsOpen()
 
       // select item
+      item.simulate('click')
+      dropdownMenuIsClosed()
+    })
+
+    it('blurs after menu item click (mousedown)', () => {
+      wrapperMount(<Dropdown options={options} selection />)
+      const item = wrapper
+        .find('DropdownItem')
+        .at(_.random(options.length - 1))
+
+      // open
+      wrapper.simulate('click')
+      dropdownMenuIsOpen()
+
+      // select item
+      item.simulate('mousedown')
+      dropdownMenuIsOpen()
       item.simulate('click')
       dropdownMenuIsClosed()
     })
@@ -988,11 +1005,12 @@ describe('Dropdown Component', () => {
         .first()
         .should.have.prop('selected', true)
 
-      // blur, focus, move item selection down
+      // blur, focus, open, move item selection down
       search
         .simulate('blur')
         .simulate('focus')
 
+      domEvent.keyDown(document, { key: 'ArrowDown' })
       domEvent.keyDown(document, { key: 'ArrowDown' })
 
       items
@@ -1003,11 +1021,12 @@ describe('Dropdown Component', () => {
         .at(1)
         .should.have.prop('selected', true)
 
-      // blur, focus, move item selection up
+      // blur, focus, open, move item selection up
       search
         .simulate('blur')
         .simulate('focus')
 
+      domEvent.keyDown(document, { key: 'ArrowDown' })
       domEvent.keyDown(document, { key: 'ArrowUp' })
 
       items
