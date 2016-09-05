@@ -744,6 +744,35 @@ describe('Dropdown Component', () => {
       spy.should.have.been.calledOnce()
       spy.firstCall.args[1].should.deep.equal(firstValue)
     })
+    it('is called with event and value when blurring', () => {
+      const firstValue = options[0].value
+      wrapperMount(<Dropdown options={options} selection onChange={spy} />)
+        .simulate('focus')
+        .simulate('click')
+
+      wrapper.simulate('blur')
+
+      spy.should.have.been.calledOnce()
+      spy.firstCall.args[1].should.deep.equal(firstValue)
+    })
+    it('is not called on blur when selectOnBlur is false', () => {
+      wrapperMount(<Dropdown options={options} selection onChange={spy} selectOnBlur={false} />)
+        .simulate('focus')
+        .simulate('click')
+
+      wrapper.simulate('blur')
+
+      spy.should.not.have.been.called()
+    })
+    it('is not called on blur with multiple select', () => {
+      wrapperMount(<Dropdown options={options} selection onChange={spy} multiple />)
+        .simulate('focus')
+        .simulate('click')
+
+      wrapper.simulate('blur')
+
+      spy.should.not.have.been.called()
+    })
     it('is not called when updating the value prop', () => {
       const value = _.sample(options).value
       const next = _.sample(_.without(options, value)).value

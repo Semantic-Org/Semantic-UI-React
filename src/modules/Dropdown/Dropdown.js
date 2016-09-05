@@ -125,6 +125,9 @@ export default class Dropdown extends Component {
     /** Message to display when there are no results. */
     noResultsMessage: PropTypes.string,
 
+    /** Define whether the highlighted item should be selected on blur */
+    selectOnBlur: PropTypes.bool,
+
     // ------------------------------------
     // Callbacks
     // ------------------------------------
@@ -203,6 +206,7 @@ export default class Dropdown extends Component {
     icon: 'dropdown',
     additionLabel: 'Add:',
     noResultsMessage: 'No results found.',
+    selectOnBlur: true,
   }
 
   static autoControlledProps = [
@@ -373,14 +377,9 @@ export default class Dropdown extends Component {
     this.trySetState({ open: true })
   }
 
-  selectItemOnEnter = (e) => {
-    debug('selectItemOnEnter()')
-    debug(keyboardKey.getName(e))
-    if (keyboardKey.getCode(e) !== keyboardKey.Enter) return
-    e.preventDefault()
-
+  selectHighlightedItem = (e) => {
     const { multiple, onAddItem, options } = this.props
-    const value = this.getSelectedItemValue()
+    const value = _.get(this.getSelectedItem(), 'value')
 
     // prevent selecting null if there was no selected item value
     if (!value) return
@@ -399,6 +398,15 @@ export default class Dropdown extends Component {
       this.onChange(e, value)
       this.close()
     }
+  }
+
+  selectItemOnEnter = (e) => {
+    debug('selectItemOnEnter()')
+    debug(keyboardKey.getName(e))
+    if (keyboardKey.getCode(e) !== keyboardKey.Enter) return
+    e.preventDefault()
+
+    this.selectHighlightedItem(e)
   }
 
   removeItemOnBackspace = (e) => {
@@ -481,8 +489,9 @@ export default class Dropdown extends Component {
 
   handleBlur = (e) => {
     debug('handleBlur()')
-    const { onBlur } = this.props
+    const { multiple, onBlur, selectOnBlur } = this.props
     if (onBlur) onBlur(e)
+    if (selectOnBlur && !multiple) this.selectHighlightedItem(e)
     this.setState({ focus: false })
   }
 
@@ -540,11 +549,11 @@ export default class Dropdown extends Component {
     return filteredOptions
   }
 
-  getSelectedItemValue = () => {
+  getSelectedItem = () => {
     const { selectedIndex } = this.state
     const options = this.getMenuOptions()
 
-    return _.get(options, `[${selectedIndex}].value`)
+    return _.get(options, `[${selectedIndex}]`)
   }
 
   getItemByValue = (value) => {
@@ -679,7 +688,7 @@ export default class Dropdown extends Component {
 
   renderText = () => {
     const { multiple, placeholder, search, text } = this.props
-    const { searchQuery, value } = this.state
+    const { searchQuery, value, open } = this.state
     const hasValue = multiple ? !_.isEmpty(value) : !!value
 
     const classes = cx(
@@ -688,10 +697,12 @@ export default class Dropdown extends Component {
       search && searchQuery && 'filtered'
     )
     let _text = placeholder
-    if (text && !searchQuery) {
-      _text = text
-    } else if (searchQuery) {
+    if (searchQuery) {
       _text = null
+    } else if (text) {
+      _text = text
+    } else if (open && !multiple) {
+      _text = _.get(this.getSelectedItem(), 'text')
     } else if (hasValue) {
       _text = _.get(this.getItemByValue(value), 'text')
     }
