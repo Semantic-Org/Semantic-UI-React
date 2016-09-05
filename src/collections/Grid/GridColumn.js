@@ -6,6 +6,7 @@ import {
   getUnhandledProps,
   META,
   SUI,
+  useKeyOnly,
   useTextAlignProp,
   useValueAndKey,
   useVerticalAlignProp,
@@ -14,8 +15,8 @@ import {
 
 function GridColumn(props) {
   const {
-    children, computer, className, color, floated, largeScreen, mobile, only, tablet, textAlign, verticalAlign,
-    widescreen, width,
+    children, computer, className, color, floated, largeScreen, mobile, only, stretched, tablet, textAlign,
+    verticalAlign, widescreen, width,
   } = props
   const classes = cx(
     className,
@@ -25,6 +26,7 @@ function GridColumn(props) {
     useWidthProp(largeScreen, 'wide large screen'),
     useWidthProp(mobile, 'wide mobile'),
     useValueAndKey(only, 'only'),
+    useKeyOnly(stretched, 'stretched'),
     useWidthProp(tablet, 'wide tablet'),
     useTextAlignProp(textAlign),
     useVerticalAlignProp(verticalAlign),
@@ -87,6 +89,9 @@ GridColumn.propTypes = {
 
   /** A column can appear only for a specific device, or screen sizes. */
   only: PropTypes.oneOf(GridColumn._meta.props.only),
+
+  /** An can stretch its contents to take up the entire grid or row height. */
+  stretched: PropTypes.bool,
 
   /** A column can specify a width for a tablet device. */
   tablet: PropTypes.oneOf(GridColumn._meta.props.width),

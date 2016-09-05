@@ -26,5 +26,6 @@ describe('GridColumn', () => {
   common.propValueOnlyToClassName(GridColumn, 'color')
   common.propKeyAndValueToClassName(GridColumn, 'floated')
   common.propKeyAndValueToClassName(GridColumn, 'only')
+  common.propKeyOnlyToClassName(GridColumn, 'stretched')
   common.rendersChildren(GridColumn)
 })
