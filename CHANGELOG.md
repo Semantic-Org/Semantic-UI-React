@@ -1,5 +1,28 @@
 # Change Log
 
+## [v0.41.2](https://github.com/TechnologyAdvice/stardust/tree/v0.41.2) (2016-09-05)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.41.1...v0.41.2)
+
+**Implemented enhancements:**
+
+- feat\(Dropdown\): close on blur [\#467](https://github.com/TechnologyAdvice/stardust/pull/467) ([dylankiss](https://github.com/dylankiss))
+
+## [v0.41.1](https://github.com/TechnologyAdvice/stardust/tree/v0.41.1) (2016-09-05)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.41.0...v0.41.1)
+
+**Implemented enhancements:**
+
+- feat\(Grid\): add stretched prop [\#466](https://github.com/TechnologyAdvice/stardust/pull/466) ([layershifter](https://github.com/layershifter))
+- docs\(Loader\): update docs [\#463](https://github.com/TechnologyAdvice/stardust/pull/463) ([layershifter](https://github.com/layershifter))
+
+**Closed issues:**
+
+- Adding animation effects to component [\#465](https://github.com/TechnologyAdvice/stardust/issues/465)
+
+**Merged pull requests:**
+
+- feature\(docs\): show sub component descriptions [\#462](https://github.com/TechnologyAdvice/stardust/pull/462) ([levithomason](https://github.com/levithomason))
+
 ## [v0.41.0](https://github.com/TechnologyAdvice/stardust/tree/v0.41.0) (2016-09-02)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.40.0...v0.41.0)
 
