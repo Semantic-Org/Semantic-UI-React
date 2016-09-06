@@ -12,9 +12,12 @@ import {
 } from '../../lib'
 
 function MenuItem(props) {
-  const { active, children, className, color, content, fitted, header, index, link, name, onClick, position } = props
+  const {
+    active, children, className, color, content, down, fitted, header, index, link, name, onClick, position
+  } = props
   const classes = cx(
     useKeyOnly(active, 'active'),
+    useKeyOnly(down, 'down'),
     useKeyOrValueAndKey(fitted, 'fitted'),
     useKeyOnly(header, 'header'),
     useKeyOnly(link, 'link'),
@@ -86,14 +89,14 @@ MenuItem.propTypes = {
     PropTypes.oneOf(MenuItem._meta.props.fitted),
   ]),
 
-  /** A menu item can be link. */
-  link: PropTypes.bool,
-
   /** A menu item may include a header or may itself be a header. */
   header: PropTypes.bool,
 
   /** MenuItem index inside Menu. */
   index: PropTypes.number,
+
+  /** A menu item can be link. */
+  link: PropTypes.bool,
 
   /** Internal name of the MenuItem. */
   name: PropTypes.string,
