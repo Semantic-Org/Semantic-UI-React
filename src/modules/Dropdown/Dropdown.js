@@ -18,6 +18,7 @@ import { createIcon } from '../../factories'
 import { Label } from '../../elements'
 import DropdownDivider from './DropdownDivider'
 import DropdownItem from './DropdownItem'
+import DropdownHeader from './DropdownHeader'
 import DropdownMenu from './DropdownMenu'
 
 const debug = makeDebugger('dropdown')
@@ -211,6 +212,7 @@ export default class Dropdown extends Component {
 
   static _meta = _meta
   static Divider = DropdownDivider
+  static Header = DropdownHeader
   static Item = DropdownItem
   static Menu = DropdownMenu
 
