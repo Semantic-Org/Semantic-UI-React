@@ -1,5 +1,12 @@
 # Change Log
 
+## [v0.41.3](https://github.com/TechnologyAdvice/stardust/tree/v0.41.3) (2016-09-06)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.41.2...v0.41.3)
+
+**Implemented enhancements:**
+
+- feat\(Dropdown\): Add Header sub-component [\#471](https://github.com/TechnologyAdvice/stardust/pull/471) ([layershifter](https://github.com/layershifter))
+
 ## [v0.41.2](https://github.com/TechnologyAdvice/stardust/tree/v0.41.2) (2016-09-05)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.41.1...v0.41.2)
 
