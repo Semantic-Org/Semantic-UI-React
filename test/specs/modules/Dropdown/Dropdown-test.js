@@ -1,10 +1,14 @@
-import faker from 'faker'
 import _ from 'lodash'
+import faker from 'faker'
 import React from 'react'
 
-import Dropdown from 'src/modules/Dropdown/Dropdown'
 import * as common from 'test/specs/commonTests'
 import { domEvent, sandbox } from 'test/utils'
+import Dropdown from 'src/modules/Dropdown/Dropdown'
+import DropdownDivider from 'src/modules/Dropdown/DropdownDivider'
+import DropdownHeader from 'src/modules/Dropdown/DropdownHeader'
+import DropdownItem from 'src/modules/Dropdown/DropdownItem'
+import DropdownMenu from 'src/modules/Dropdown/DropdownMenu'
 
 let attachTo
 let options
@@ -64,6 +68,7 @@ describe('Dropdown Component', () => {
 
   common.isConformant(Dropdown)
   common.hasUIClassName(Dropdown)
+  common.hasSubComponents(Dropdown, [DropdownDivider, DropdownHeader, DropdownItem, DropdownMenu])
   common.isTabbable(Dropdown)
   common.implementsIconProp(Dropdown)
   common.propKeyOnlyToClassName(Dropdown, 'multiple')
