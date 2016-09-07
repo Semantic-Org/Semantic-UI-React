@@ -38,7 +38,7 @@ describe('Confirm', () => {
     })
     it('sets the confirm button text', () => {
       shallow(<Confirm confirmButton='foo' />)
-        .find('Button.primary')
+        .find('Button[primary]')
         .shallow()
         .should.have.text('foo')
     })
@@ -105,7 +105,7 @@ describe('Confirm', () => {
     it('is called on OK button click', () => {
       const spy = sandbox.spy()
       shallow(<Confirm onConfirm={spy} />)
-        .find('Button.primary')
+        .find('Button[primary]')
         .simulate('click')
 
       spy.should.have.been.calledOnce()
