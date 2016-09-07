@@ -1,81 +1,64 @@
+import faker from 'faker'
 import React from 'react'
 
-import Menu from 'src/collections/Menu/Menu'
 import MenuItem from 'src/collections/Menu/MenuItem'
 import * as common from 'test/specs/commonTests'
-import { sandbox } from 'test/utils/sandbox'
+import { sandbox } from 'test/utils'
 
 describe('MenuItem', () => {
   common.isConformant(MenuItem)
+  common.propKeyOnlyToClassName(MenuItem, 'active')
+  common.propValueOnlyToClassName(MenuItem, 'color')
+  common.propKeyOnlyToClassName(MenuItem, 'down')
+  common.propKeyOrValueToClassName(MenuItem, 'fitted')
+  common.propKeyOnlyToClassName(MenuItem, 'header')
+  common.propKeyOnlyToClassName(MenuItem, 'link')
+  common.propValueOnlyToClassName(MenuItem, 'position')
   common.rendersChildren(MenuItem)
 
-  describe('active', () => {
-    it('is not by default', () => {
-      shallow(<MenuItem name='item' />)
-        .should.not.have.className('active')
-    })
+  it('renders a `div` by default', () => {
+    shallow(<MenuItem />)
+      .should.have.tagName('div')
+  })
 
-    it('should have active class if first child', () => {
-      const wrapper = shallow(
-        <Menu>
-          <Menu.Item name='item1' />
-          <Menu.Item name='item2' />
-        </Menu>
-      )
-        .find('MenuItem')
+  describe('content', () => {
+    it('renders text', () => {
+      const text = faker.hacker.phrase()
 
-      wrapper
-        .first()
-        .should.have.prop('active', true)
-      wrapper
-        .last()
-        .should.have.prop('active', false)
-    })
-
-    it('should have active class after click', () => {
-      const wrapper = mount(
-        <Menu>
-          <MenuItem name='item1' />
-          <MenuItem name='item2' />
-        </Menu>
-      )
-        .find('MenuItem')
-
-      const lastItem = wrapper.last()
-
-      lastItem.should.have.prop('active', false)
-      lastItem.simulate('click')
-      lastItem.should.have.prop('active', true)
+      shallow(<MenuItem content={text} />)
+        .should.contain.text(text)
     })
   })
 
   describe('name', () => {
-    it('uses the name prop as text', () => {
-      shallow(<MenuItem name='This is an item' />)
-        .should.contain.text('This is an item')
+    it('uses the name prop as Start Cased child text', () => {
+      shallow(<MenuItem name='upcomingEvents' />)
+        .should.contain.text('Upcoming Events')
     })
   })
 
-  it('onClick', () => {
-    it('is called when clicked', () => {
-      const handleClick = sandbox.spy()
+  describe('onClick', () => {
+    it('can be omitted', () => {
+      const click = () => mount(<MenuItem />).simulate('click')
 
-      const wrapper = shallow(<MenuItem onClick={handleClick} />)
-      wrapper.simulate('click')
-
-      handleClick.should.have.been.called()
+      expect(click).to.not.throw()
     })
-  })
 
-  describe('label', () => {
-    it('should not have a label by default', () => {
-      shallow(<MenuItem name='item' />)
-        .should.not.have.descendants('Label')
+    it('is called with (e, { name, index }) when clicked', () => {
+      const spy = sandbox.spy()
+      const event = { target: null }
+      const props = { name: 'home', index: 0 }
+
+      shallow(<MenuItem onClick={spy} {...props} />)
+        .simulate('click', event)
+
+      spy.should.have.been.calledOnce()
+      spy.should.have.been.calledWithMatch(event, props)
     })
-    it('should render a label if prop given', () => {
-      mount(<MenuItem name='item' label='37' />)
-        .should.have.descendants('Label')
-        .and.contain.text('37')
+
+    it('renders an `a` tag', () => {
+      shallow(<MenuItem onClick={() => null} />)
+        .should.have.tagName('a')
     })
   })
 })
