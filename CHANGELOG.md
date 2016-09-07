@@ -1,5 +1,26 @@
 # Change Log
 
+## [v0.42.1](https://github.com/TechnologyAdvice/stardust/tree/v0.42.1) (2016-09-07)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.42.0...v0.42.1)
+
+**Merged pull requests:**
+
+- fix\(customPropTypes\): show all errors if some\(\) fails [\#473](https://github.com/TechnologyAdvice/stardust/pull/473) ([levithomason](https://github.com/levithomason))
+
+## [v0.42.0](https://github.com/TechnologyAdvice/stardust/tree/v0.42.0) (2016-09-07)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.41.4...v0.42.0)
+
+**Implemented enhancements:**
+
+- feat\(Menu\): Update to v1 API  [\#382](https://github.com/TechnologyAdvice/stardust/pull/382) ([layershifter](https://github.com/layershifter))
+
+## [v0.41.4](https://github.com/TechnologyAdvice/stardust/tree/v0.41.4) (2016-09-06)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.41.3...v0.41.4)
+
+**Merged pull requests:**
+
+- feat\(Dropdown\): Select highlighted item on blur [\#468](https://github.com/TechnologyAdvice/stardust/pull/468) ([dylankiss](https://github.com/dylankiss))
+
 ## [v0.41.3](https://github.com/TechnologyAdvice/stardust/tree/v0.41.3) (2016-09-06)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.41.2...v0.41.3)
 
