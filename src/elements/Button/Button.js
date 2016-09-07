@@ -2,6 +2,7 @@ import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
 import {
+  customPropTypes,
   getElementType,
   getUnhandledProps,
   META,
@@ -97,7 +98,13 @@ Button.propTypes = {
   basic: PropTypes.bool,
 
   /** Primary content of the button */
-  children: PropTypes.node,
+  children: customPropTypes.every([
+    PropTypes.node,
+    customPropTypes.givenProps(
+      { icon: PropTypes.bool.isRequired },
+      customPropTypes.disallow(['icon']),
+    ),
+  ]),
 
   /** A button can be circular */
   circular: PropTypes.bool,
@@ -121,16 +128,27 @@ Button.propTypes = {
   fluid: PropTypes.bool,
 
   /** Add an icon by icon className or pass an <Icon /.>*/
-  icon: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.element,
+  icon: customPropTypes.every([
+    PropTypes.oneOfType([
+      PropTypes.bool,
+      PropTypes.string,
+      PropTypes.object,
+      PropTypes.element,
+    ]),
+    customPropTypes.givenProps(
+      { icon: PropTypes.bool.isRequired },
+      customPropTypes.disallow(['children']),
+    ),
   ]),
 
   /** A button can be formatted to appear on dark backgrounds */
   inverted: PropTypes.bool,
 
   /** A button can appear alongside a label */
-  labeled: PropTypes.oneOf(Button._meta.props.labeled),
+  labeled: customPropTypes.some([
+    PropTypes.bool,
+    PropTypes.oneOf(Button._meta.props.labeled),
+  ]),
 
   /** A button can show a loading indicator */
   loading: PropTypes.bool,
