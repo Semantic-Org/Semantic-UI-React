@@ -2,10 +2,12 @@ import React, { Component } from 'react'
 import { Header, Menu } from 'stardust'
 
 export default class Text extends Component {
+  state = {}
+
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
   render() {
-    const { activeItem } = this.state || {}
+    const { activeItem } = this.state
 
     return (
       <Menu vertical>

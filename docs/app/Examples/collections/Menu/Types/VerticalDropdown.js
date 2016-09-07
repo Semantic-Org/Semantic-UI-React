@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import { Dropdown, Menu } from 'stardust'
 
-// TODO: Fix Dropdown usage
-
 export default class VerticalDropdown extends Component {
   state = { activeItem: 'account' }
 
@@ -13,31 +11,16 @@ export default class VerticalDropdown extends Component {
 
     return (
       <Menu secondary vertical>
-        <Menu.Item
-          name='home'
-          active={activeItem === 'home'}
-          onClick={this.handleItemClick}
-        >
-          Account
-        </Menu.Item>
-
-        <Menu.Item
-          name='settings'
-          active={activeItem === 'settings'}
-          onClick={this.handleItemClick}
-        >
-          Settings
-        </Menu.Item>
-
-        <Menu.Item as={Dropdown} text='Display Options'>
+        <Menu.Item name='account' active={activeItem === 'account'} onClick={this.handleItemClick} />
+        <Menu.Item name='settings' active={activeItem === 'settings'} onClick={this.handleItemClick} />
+        <Dropdown as={Menu.Item} text='Display Options'>
           <Dropdown.Menu>
-            <div className='header'>Text Size</div>
-
+            <Dropdown.Header>Text Size</Dropdown.Header>
             <Dropdown.Item>Small</Dropdown.Item>
             <Dropdown.Item>Medium</Dropdown.Item>
             <Dropdown.Item>Large</Dropdown.Item>
           </Dropdown.Menu>
-        </Menu.Item>
+        </Dropdown>
       </Menu>
     )
   }

@@ -2,26 +2,28 @@ import React, { Component } from 'react'
 import { Menu } from 'stardust'
 
 export default class Names extends Component {
+  state = {}
+
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
   render() {
-    const { activeItem } = this.state || {}
+    const { activeItem } = this.state
 
     return (
       <Menu>
         <Menu.Item
-          name='Editorials'
+          name='editorials'
           active={activeItem === 'Editorials'}
           onClick={this.handleItemClick}
         />
         <Menu.Item
-          name='Reviews'
+          name='reviews'
           active={activeItem === 'Reviews'}
           onClick={this.handleItemClick}
         />
         <Menu.Item
-          name='Events'
-          active={activeItem === 'Events'}
+          name='upcomingEvents'
+          active={activeItem === 'upcomingEvents'}
           onClick={this.handleItemClick}
         />
       </Menu>

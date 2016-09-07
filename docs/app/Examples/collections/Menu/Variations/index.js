@@ -33,13 +33,11 @@ const Variations = () => {
         description='Additional colors can be specified'
         examplePath='collections/Menu/Variations/Colored'
       />
-      <ComponentExample examplePath='collections/Menu/Variations/ColoredRest' />
       <ComponentExample examplePath='collections/Menu/Variations/ColoredMenus' />
       <ComponentExample
         description='These colors can also be inverted'
         examplePath='collections/Menu/Variations/ColoredInverted'
       />
-      <ComponentExample examplePath='collections/Menu/Variations/ColoredInvertedRest' />
       <ComponentExample examplePath='collections/Menu/Variations/ColoredInvertedMenus' />
 
       <ComponentExample

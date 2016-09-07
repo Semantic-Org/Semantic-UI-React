@@ -13,30 +13,17 @@ export default class SizeSmall extends Component {
 
     return (
       <Menu size='small'>
-        <Menu.Item
-          name='home'
-          active={activeItem === 'home'}
-          onClick={this.handleItemClick}
-        >
-          Home
-        </Menu.Item>
-
-        <Menu.Item
-          name='messages'
-          active={activeItem === 'messages'}
-          onClick={this.handleItemClick}
-        >
-          Messages
-        </Menu.Item>
+        <Menu.Item name='home' active={activeItem === 'home'} onClick={this.handleItemClick} />
+        <Menu.Item name='messages' active={activeItem === 'messages'} onClick={this.handleItemClick} />
 
         <Menu.Menu position='right'>
-          <Menu.Item as={Dropdown} text='Language'>
+          <Dropdown as={Menu.Item} text='Language'>
             <Dropdown.Menu>
               <Dropdown.Item>English</Dropdown.Item>
               <Dropdown.Item>Russian</Dropdown.Item>
               <Dropdown.Item>Spanish</Dropdown.Item>
             </Dropdown.Menu>
-          </Menu.Item>
+          </Dropdown>
 
           <Menu.Item>
             <Button className='primary'>Sign Up</Button>

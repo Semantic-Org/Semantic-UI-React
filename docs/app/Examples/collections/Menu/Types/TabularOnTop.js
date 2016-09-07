@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Menu, Segment } from 'stardust'
 
-// TODO: Update <Search> usage after its will implemented
+// TODO: Update <Input /> usage after its will implemented
 
 export default class TabularOnTop extends Component {
   state = { activeItem: 'bio' }
@@ -14,22 +14,8 @@ export default class TabularOnTop extends Component {
     return (
       <div>
         <Menu attached='top' tabular>
-          <Menu.Item
-            name='bio'
-            active={activeItem === 'bio'}
-            onClick={this.handleItemClick}
-          >
-            Bio
-          </Menu.Item>
-
-          <Menu.Item
-            name='photos'
-            active={activeItem === 'photos'}
-            onClick={this.handleItemClick}
-          >
-            Photos
-          </Menu.Item>
-
+          <Menu.Item name='bio' active={activeItem === 'bio'} onClick={this.handleItemClick} />
+          <Menu.Item name='photos' active={activeItem === 'photos'} onClick={this.handleItemClick} />
           <Menu.Menu position='right'>
             <Menu.Item>
               <div className='ui transparent icon input'>

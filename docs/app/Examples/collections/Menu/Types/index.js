@@ -15,11 +15,11 @@ const Types = () => {
         examplePath='collections/Menu/Types/Basic'
       />
       <ComponentExample
-        description='A basic menu items built with content prop'
+        description='Menu item text can be defined with the content prop'
         examplePath='collections/Menu/Types/ContentProp'
       />
       <ComponentExample
-        description='If neither children nor content props are defined, name prop will be used for content'
+        description='The name prop will be used for content if neither children nor content props are defined'
         examplePath='collections/Menu/Types/NameProp'
       />
       <ComponentExample examplePath='collections/Menu/Types/Attached' />

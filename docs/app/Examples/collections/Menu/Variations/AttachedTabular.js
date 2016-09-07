@@ -12,21 +12,8 @@ export default class AttachedTabular extends Component {
     return (
       <div>
         <Menu attached='top' tabular>
-          <Menu.Item
-            name='tab1'
-            active={activeItem === 'tab1'}
-            onClick={this.handleItemClick}
-          >
-            Tab 1
-          </Menu.Item>
-
-          <Menu.Item
-            name='tab2'
-            active={activeItem === 'tab2'}
-            onClick={this.handleItemClick}
-          >
-            Tab 2
-          </Menu.Item>
+          <Menu.Item name='tab1' active={activeItem === 'tab1'} onClick={this.handleItemClick} />
+          <Menu.Item name='tab2' active={activeItem === 'tab2'} onClick={this.handleItemClick} />
         </Menu>
 
         <Segment attached='bottom'>

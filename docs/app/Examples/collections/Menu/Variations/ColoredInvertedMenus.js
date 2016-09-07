@@ -1,6 +1,11 @@
 import React, { Component, PropTypes } from 'react'
 import { Menu } from 'stardust'
 
+const colors = [
+  'red', 'orange', 'yellow', 'olive', 'green', 'teal',
+  'blue', 'violet', 'purple', 'pink', 'brown', 'grey', 'black',
+]
+
 class ExampleMenu extends Component {
   static propTypes = {
     color: PropTypes.string,
@@ -16,36 +21,15 @@ class ExampleMenu extends Component {
 
     return (
       <Menu color={color} inverted widths={3}>
-        <Menu.Item
-          name='home'
-          active={activeItem === 'home'}
-          onClick={this.handleItemClick}
-        >
-          Home
-        </Menu.Item>
-
-        <Menu.Item
-          name='messages'
-          active={activeItem === 'messages'}
-          onClick={this.handleItemClick}
-        >
-          Messages
-        </Menu.Item>
-
-        <Menu.Item
-          name='friends'
-          active={activeItem === 'friends'}
-          onClick={this.handleItemClick}
-        >
-          Friends
-        </Menu.Item>
+        <Menu.Item name='home' active={activeItem === 'home'} onClick={this.handleItemClick} />
+        <Menu.Item name='messages' active={activeItem === 'messages'} onClick={this.handleItemClick} />
+        <Menu.Item name='friends' active={activeItem === 'friends'} onClick={this.handleItemClick} />
       </Menu>
     )
   }
 }
 
 const ColoredInvertedMenus = () => {
-  const colors = Menu._meta.props.color
   const menus = colors.map(color => <ExampleMenu color={color} key={color} />)
 
   return <div>{menus}</div>

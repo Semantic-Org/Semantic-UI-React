@@ -2,10 +2,12 @@ import React, { Component } from 'react'
 import { Menu } from 'stardust'
 
 export default class ContentProp extends Component {
+  state = {}
+
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
   render() {
-    const { activeItem } = this.state || {}
+    const { activeItem } = this.state
 
     return (
       <Menu>
@@ -24,8 +26,8 @@ export default class ContentProp extends Component {
         />
 
         <Menu.Item
-          name='events'
-          active={activeItem === 'events'}
+          name='upcomingEvents'
+          active={activeItem === 'upcomingEvents'}
           content='Upcoming Events'
           onClick={this.handleItemClick}
         />

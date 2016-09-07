@@ -11,33 +11,10 @@ export default class VerticalText extends Component {
 
     return (
       <Menu text vertical>
-        <Menu.Item header>
-          Sort By
-        </Menu.Item>
-
-        <Menu.Item
-          name='closest'
-          active={activeItem === 'closest'}
-          onClick={this.handleItemClick}
-        >
-          Closest
-        </Menu.Item>
-
-        <Menu.Item
-          name='comments'
-          active={activeItem === 'comments'}
-          onClick={this.handleItemClick}
-        >
-          Most Comments
-        </Menu.Item>
-
-        <Menu.Item
-          name='popular'
-          active={activeItem === 'popular'}
-          onClick={this.handleItemClick}
-        >
-          Most Popular
-        </Menu.Item>
+        <Menu.Item header>Sort By</Menu.Item>
+        <Menu.Item name='closest' active={activeItem === 'closest'} onClick={this.handleItemClick} />
+        <Menu.Item name='mostComments' active={activeItem === 'mostComments'} onClick={this.handleItemClick} />
+        <Menu.Item name='mostPopular' active={activeItem === 'mostPopular'} onClick={this.handleItemClick} />
       </Menu>
     )
   }

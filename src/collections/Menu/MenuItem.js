@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
@@ -36,7 +37,7 @@ function MenuItem(props) {
 
   return (
     <ElementType {...rest} className={classes} onClick={handleClick}>
-      {children || content || name}
+      {children || content || _.startCase(name)}
     </ElementType>
   )
 }

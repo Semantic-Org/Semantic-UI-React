@@ -4,13 +4,13 @@ import { Dropdown, Menu } from 'stardust'
 const DropdownItem = () => {
   return (
     <Menu vertical>
-      <Menu.Item as={Dropdown} text='Categories'>
+      <Dropdown as={Menu.Item} text='Categories'>
         <Dropdown.Menu>
           <Dropdown.Item>Electronics</Dropdown.Item>
           <Dropdown.Item>Automotive</Dropdown.Item>
           <Dropdown.Item>Home</Dropdown.Item>
         </Dropdown.Menu>
-      </Menu.Item>
+      </Dropdown>
     </Menu>
   )
 }

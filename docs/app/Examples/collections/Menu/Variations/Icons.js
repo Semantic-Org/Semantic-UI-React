@@ -11,27 +11,15 @@ export default class Icons extends Component {
 
     return (
       <Menu icon>
-        <Menu.Item
-          name='gamepad'
-          active={activeItem === 'gamepad'}
-          onClick={this.handleItemClick}
-        >
+        <Menu.Item name='gamepad' active={activeItem === 'gamepad'} onClick={this.handleItemClick}>
           <Icon name='gamepad' />
         </Menu.Item>
 
-        <Menu.Item
-          name='video camera'
-          active={activeItem === 'video camera'}
-          onClick={this.handleItemClick}
-        >
+        <Menu.Item name='video camera' active={activeItem === 'video camera'} onClick={this.handleItemClick}>
           <Icon name='video camera' />
         </Menu.Item>
 
-        <Menu.Item
-          name='video play'
-          active={activeItem === 'video play'}
-          onClick={this.handleItemClick}
-        >
+        <Menu.Item name='video play' active={activeItem === 'video play'} onClick={this.handleItemClick}>
           <Icon name='video play' />
         </Menu.Item>
       </Menu>

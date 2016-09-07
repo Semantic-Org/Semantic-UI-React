@@ -11,41 +11,11 @@ export default class Pagination extends Component {
 
     return (
       <Menu pagination>
-        <Menu.Item
-          name='1'
-          active={activeItem === '1'}
-          onClick={this.handleItemClick}
-        >
-          1
-        </Menu.Item>
-
-        <Menu.Item disabled>
-          ...
-        </Menu.Item>
-
-        <Menu.Item
-          name='10'
-          active={activeItem === '10'}
-          onClick={this.handleItemClick}
-        >
-          10
-        </Menu.Item>
-
-        <Menu.Item
-          name='11'
-          active={activeItem === '11'}
-          onClick={this.handleItemClick}
-        >
-          11
-        </Menu.Item>
-
-        <Menu.Item
-          name='12'
-          active={activeItem === '12'}
-          onClick={this.handleItemClick}
-        >
-          12
-        </Menu.Item>
+        <Menu.Item name='1' active={activeItem === '1'} onClick={this.handleItemClick} />
+        <Menu.Item disabled>...</Menu.Item>
+        <Menu.Item name='10' active={activeItem === '10'} onClick={this.handleItemClick} />
+        <Menu.Item name='11' active={activeItem === '11'} onClick={this.handleItemClick} />
+        <Menu.Item name='12' active={activeItem === '12'} onClick={this.handleItemClick} />
       </Menu>
     )
   }

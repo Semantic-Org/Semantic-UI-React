@@ -31,11 +31,9 @@ describe('MenuItem', () => {
   })
 
   describe('name', () => {
-    it('uses the name prop as text', () => {
-      const text = faker.hacker.phrase()
-
-      shallow(<MenuItem name={text} />)
-        .should.contain.text(text)
+    it('uses the name prop as Start Cased child text', () => {
+      shallow(<MenuItem name='upcomingEvents' />)
+        .should.contain.text('Upcoming Events')
     })
   })
 
