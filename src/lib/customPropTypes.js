@@ -99,18 +99,20 @@ export const some = (validators) => {
       ].join(' '))
     }
 
-    const errors = _.map(validators, validator => {
+    const errors = _.compact(_.map(validators, validator => {
       if (!_.isFunction(validator)) {
         throw new Error(
           `any() argument "validators" should contain functions, found: ${type(validator)}.`
         )
       }
       return validator(props, propName, componentName, ...rest)
-    })
+    }))
 
-    // if no validator passed return the first error found
-    if (!_.some(errors, _.overSome(_.isNull, _.isUndefined))) {
-      return _.find(errors, error => !_.isUndefined(error))
+    // fail only if all validators failed
+    if (errors.length === validators.length) {
+      const error = new Error('One of these validators must pass:')
+      error.message += '\n' + _.map(errors, (err, i) => (`[${i + 1}]: ${err.message}`)).join('\n')
+      return error
     }
   }
 }
