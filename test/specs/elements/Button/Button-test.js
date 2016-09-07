@@ -30,8 +30,6 @@ describe('Button', () => {
   common.propKeyOnlyToClassName(Button, 'positive')
   common.propKeyOnlyToClassName(Button, 'secondary')
   common.propValueOnlyToClassName(Button, 'size')
-  common.propKeyOnlyToClassName(Button, 'toggle')
-
 
   it('inherits type', () => {
     shallow(<Button type='submit' />)
@@ -47,21 +45,22 @@ describe('Button', () => {
   })
 
   describe('tagName', () => {
-    it('has tagname=button by default', () => {
+    it('is button by default', () => {
       shallow(<Button />)
-        .first().type().should.equal('button')
+        .first()
+        .should.have.tagName('button')
     })
-    it('has tagName=div when attached prop added', () => {
+    it('is a div when attached prop added', () => {
       shallow(<Button attached='top' />)
-        .type().should.equal('div')
+        .should.have.tagName('div')
     })
     it('adds tabIndex=0 when tag type is div', () => {
       shallow(<Button attached='top' />)
         .should.have.prop('tabIndex', 0)
     })
-    it('has tagName=button when type=submit', () => {
+    it('is button when type=submit', () => {
       shallow(<Button type='submit' attached='top' />)
-        .type().should.equal('button')
+        .should.have.tagName('button')
     })
   })
 })

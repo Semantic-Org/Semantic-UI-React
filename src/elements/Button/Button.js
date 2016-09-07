@@ -4,13 +4,13 @@ import React, { PropTypes } from 'react'
 import {
   getElementType,
   getUnhandledProps,
-  iconPropRenderer,
   META,
   SUI,
   useKeyOnly,
   useKeyOrValueAndKey,
   useValueAndKey,
 } from '../../lib'
+import { createIcon } from '../../factories'
 import ButtonGroup from './ButtonGroup'
 
 /**
@@ -49,18 +49,15 @@ function Button(props) {
   )
 
   const rest = getUnhandledProps(Button, props)
-  // TODO: this utility only maps props to element types
-  // it does not handle mapping prop values to element types
-  // we'll need to extend it to do so
-  const ElementType = getElementType(Button, props, {
-    // type === 'submit' then 'button'
-    attached: 'div',
+  const ElementType = getElementType(Button, props, () => {
+    if (type === 'submit') return 'button'
+    if (attached) return 'div'
   })
   const tabIndex = ElementType === 'div' && { tabIndex: 0 }
 
   return (
     <ElementType {...rest} type={type} className={classes} {...tabIndex}>
-      {iconPropRenderer(icon)}
+      {createIcon(icon)}
       {children}
     </ElementType>
   )
