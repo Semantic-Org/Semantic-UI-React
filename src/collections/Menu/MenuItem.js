@@ -13,7 +13,7 @@ import {
 
 function MenuItem(props) {
   const {
-    active, children, className, color, content, down, fitted, header, index, link, name, onClick, position
+    active, children, className, color, content, down, fitted, header, index, link, name, onClick, position,
   } = props
   const classes = cx(
     useKeyOnly(active, 'active'),
