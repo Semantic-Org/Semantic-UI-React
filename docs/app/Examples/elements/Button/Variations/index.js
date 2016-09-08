@@ -63,6 +63,9 @@ const ButtonVariationsExamples = () => (
       examplePath='elements/Button/Variations/ButtonVerticallyAttachedExample'
     />
     <ComponentExample
+      examplePath='elements/Button/Variations/ButtonVerticallyAttachedGroupExample'
+    />
+    <ComponentExample
       title='Horizontally Attached'
       description='A button can be attached to the left or right of other content'
       examplePath='elements/Button/Variations/ButtonHorizontallyAttachedExample'

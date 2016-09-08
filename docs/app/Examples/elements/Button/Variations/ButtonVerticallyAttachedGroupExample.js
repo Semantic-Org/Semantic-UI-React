@@ -3,11 +3,17 @@ import { Button, Segment } from 'stardust'
 
 const ButtonVerticallyAttachedExample = () => (
   <div>
-    <Button attached='top'>Top</Button>
+    <Button.Group attached='top'>
+      <Button>One</Button>
+      <Button>Two</Button>
+    </Button.Group>
     <Segment attached>
       <img src='http://semantic-ui.com/images/wireframe/paragraph.png' />
     </Segment>
-    <Button attached='bottom'>Bottom</Button>
+    <Button.Group attached='bottom'>
+      <Button>One</Button>
+      <Button>Two</Button>
+    </Button.Group>
   </div>
 )
 
