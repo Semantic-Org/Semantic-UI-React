@@ -5,6 +5,7 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
+  makeDebugger,
   META,
   SUI,
   useKeyOnly,
@@ -15,6 +16,8 @@ import { createIcon, createLabel } from '../../factories'
 import ButtonGroup from './ButtonGroup'
 import Icon from '../Icon/Icon'
 import Label from '../Label/Label'
+
+const debug = makeDebugger('button')
 
 /**
  * A Button indicates a possible user action
@@ -63,7 +66,7 @@ function Button(props) {
 
   if (children) {
     const classes = cx('ui', baseClasses, labeledClasses, 'button', className)
-    console.debug('RENDER children:', { classes })
+    debug('render children:', { classes })
     return (
       <ElementType {...rest} type={type} className={classes} tabIndex={tabIndex}>
         {children}
@@ -74,7 +77,7 @@ function Button(props) {
   if (label) {
     const classes = cx('ui', baseClasses, 'button', className)
     const containerClasses = cx('ui', labeledClasses, 'button', className)
-    console.debug('RENDER label:', { classes, containerClasses }, props)
+    debug('render label:', { classes, containerClasses }, props)
     const labelJSX = createLabel(label, {
       basic: true,
       pointing: labeled === 'left' ? 'right' : 'left',
@@ -92,7 +95,7 @@ function Button(props) {
 
   if (icon && !label) {
     const classes = cx('ui', labeledClasses, baseClasses, 'button', className)
-    console.debug('RENDER icon && !label:', { classes })
+    debug('render icon && !label:', { classes })
     return (
       <ElementType {...rest} type={type} className={classes} tabIndex={tabIndex}>
         {createIcon(icon)} {content}
@@ -101,7 +104,7 @@ function Button(props) {
   }
 
   const classes = cx('ui', labeledClasses, baseClasses, 'button', className)
-  console.debug('RENDER default:', { classes })
+  debug('render default:', { classes })
 
   return (
     <ElementType {...rest} type={type} className={classes} tabIndex={tabIndex}>
