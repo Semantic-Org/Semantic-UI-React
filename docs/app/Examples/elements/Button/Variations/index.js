@@ -31,7 +31,7 @@ const ButtonVariationsExamples = () => (
     />
     <ComponentExample
       title='Toggle'
-      description='A button can be formatted to toggle on or off'
+      description='A button can be formatted to toggle when active'
       examplePath='elements/Button/Variations/ButtonToggleExample'
     />
     <ComponentExample

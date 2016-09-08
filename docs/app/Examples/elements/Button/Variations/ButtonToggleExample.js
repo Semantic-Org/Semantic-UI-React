@@ -1,9 +1,19 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { Button } from 'stardust'
 
-const ButtonToggleExample = () => (
-  <Button toggle>Toggle</Button>
-  // TODO: Need to add functionality for toggle button - See issue #43
-)
+class ButtonToggleExample extends Component {
+  state = {}
+
+  handleClick = () => this.setState({ active: !this.state.active })
+
+  render() {
+    const { active } = this.state
+    return (
+      <Button toggle active={active} onClick={this.handleClick}>
+        Toggle
+      </Button>
+    )
+  }
+}
 
 export default ButtonToggleExample
