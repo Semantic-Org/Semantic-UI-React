@@ -128,6 +128,12 @@ export default class Dropdown extends Component {
     /** Define whether the highlighted item should be selected on blur */
     selectOnBlur: PropTypes.bool,
 
+    /** Make search text editable on refocus instead of disappear (boolean). Requires `search` */
+    editableSearch: customPropTypes.every([
+      customPropTypes.demand(['search']),
+      PropTypes.bool,
+    ]),
+
     // ------------------------------------
     // Callbacks
     // ------------------------------------
@@ -207,6 +213,7 @@ export default class Dropdown extends Component {
     additionLabel: 'Add:',
     noResultsMessage: 'No results found.',
     selectOnBlur: true,
+    editableSearch: false,
   }
 
   static autoControlledProps = [
@@ -262,6 +269,22 @@ export default class Dropdown extends Component {
     if (!_.isEqual(nextProps.value, this.props.value)) {
       debug('value changed, setting', nextProps.value)
       this.setValue(nextProps.value)
+    }
+
+    const { searchQuery, multiple } = this.state
+    const value = nextProps.value || this.state.value
+
+    if (nextProps.editableSearch && !this.props.editableSearch && !searchQuery && !multiple
+      && _.some(nextProps.options, { value })) {
+      // editableSearch was switched to true, set the searchQuery to the current value
+      this.setState({
+        searchQuery: _.get(_.find(nextProps.options, { value }), 'text'),
+      })
+    } else if (!nextProps.editableSearch && this.props.editableSearch && searchQuery) {
+      // editableSearch was switched to false, reset the searchQuery
+      this.setState({
+        searchQuery: '',
+      })
     }
   }
 
@@ -574,11 +597,11 @@ export default class Dropdown extends Component {
   setValue = (value) => {
     debug('setValue()')
     debug('value', value)
-    const { multiple } = this.props
-    const { selectedIndex } = this.state
+    const { multiple, editableSearch } = this.props
+    const { selectedIndex, searchQuery } = this.state
     const options = this.getMenuOptions()
     const newState = {
-      searchQuery: '',
+      searchQuery: editableSearch ? _.get(this.getItemByValue(value), 'text') || searchQuery || '' : '',
     }
 
     // update the selected index

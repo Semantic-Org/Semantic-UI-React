@@ -14,6 +14,7 @@ export default class DropdownSelectionExample extends Component {
       isFetching: false,
       multiple: true,
       search: true,
+      editableSearch: false,
       searchQuery: null,
       value: [],
       options: getOptions(),
@@ -38,7 +39,12 @@ export default class DropdownSelectionExample extends Component {
     this.setState({ value: multiple ? [value] : value })
   }
 
-  toggleSearch = (e) => this.setState({ search: e.target.checked })
+  toggleSearch = (e) => this.setState({
+    search: e.target.checked,
+    editableSearch: e.target.checked ? this.state.editableSearch : false,
+  })
+
+  toggleEditableSearch = (e) => this.setState({ editableSearch: e.target.checked })
 
   toggleMultiple = (e) => {
     const { value } = this.state
@@ -49,7 +55,7 @@ export default class DropdownSelectionExample extends Component {
   }
 
   render() {
-    const { multiple, options, isFetching, search, value } = this.state
+    const { multiple, options, isFetching, search, value, editableSearch } = this.state
 
     return (
       <Grid>
@@ -62,6 +68,12 @@ export default class DropdownSelectionExample extends Component {
             </label>
             {' '}
             <label>
+              <input type='checkbox' checked={editableSearch && search}
+                disabled={!search} onChange={this.toggleEditableSearch}
+              /> Editable Search
+            </label>
+            {' '}
+            <label>
               <input type='checkbox' checked={multiple} onChange={this.toggleMultiple} /> Multiple
             </label>
           </p>
@@ -70,6 +82,7 @@ export default class DropdownSelectionExample extends Component {
             selection
             multiple={multiple}
             search={search}
+            editableSearch={editableSearch}
             options={options}
             value={value}
             placeholder='Add Users'
