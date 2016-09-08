@@ -120,7 +120,16 @@ Button._meta = {
   type: META.TYPES.ELEMENT,
   props: {
     attached: ['left', 'right', 'top', 'bottom'],
-    color: SUI.COLORS,
+    color: [
+      ...SUI.COLORS,
+      'facebook',
+      'twitter',
+      'google plus',
+      'vk',
+      'linkedin',
+      'instagram',
+      'youtube',
+    ],
     floated: SUI.FLOATS,
     labeled: ['right', 'left'],
     size: SUI.SIZES,

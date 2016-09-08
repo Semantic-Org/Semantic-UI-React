@@ -3,25 +3,25 @@ import { Button } from 'stardust'
 
 const ButtonSocialExample = () => (
   <div>
-    <Button className='facebook' icon='facebook'>
+    <Button color='facebook' icon='facebook'>
       Facebook
     </Button>
-    <Button className='twitter' icon='twitter'>
+    <Button color='twitter' icon='twitter'>
       Twitter
     </Button>
-    <Button className='google plus' icon='google plus'>
+    <Button color='google plus' icon='google plus'>
       Google Plus
     </Button>
-    <Button className='vk' icon='vk'>
+    <Button color='vk' icon='vk'>
       VK
     </Button>
-    <Button className='linkedin' icon='linkedin'>
+    <Button color='linkedin' icon='linkedin'>
       LinkedIn
     </Button>
-    <Button className='instagram' icon='instagram'>
+    <Button color='instagram' icon='instagram'>
       Instagram
     </Button>
-    <Button className='youtube' icon='youtube'>
+    <Button color='youtube' icon='youtube'>
       YouTube
     </Button>
   </div>
