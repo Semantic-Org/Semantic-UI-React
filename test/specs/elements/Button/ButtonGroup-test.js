@@ -6,6 +6,7 @@ describe('ButtonGroup', () => {
   common.hasUIClassName(ButtonGroup)
   common.rendersChildren(ButtonGroup)
 
+  common.propKeyAndValueToClassName(ButtonGroup, 'attached')
   common.propKeyOnlyToClassName(ButtonGroup, 'basic')
   common.propKeyOnlyToClassName(ButtonGroup, 'icon')
   common.propKeyOnlyToClassName(ButtonGroup, 'vertical')

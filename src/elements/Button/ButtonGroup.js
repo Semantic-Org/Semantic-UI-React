@@ -7,6 +7,7 @@ import {
   META,
   SUI,
   useKeyOnly,
+  useValueAndKey,
   useWidthProp,
 } from '../../lib'
 
@@ -15,18 +16,19 @@ import {
  */
 function ButtonGroup(props) {
   const {
-    basic, className, children, color, icon, size, vertical, widths,
+    attached, basic, className, children, color, icon, size, vertical, widths,
   } = props
 
   const classes = cx('ui',
     size,
     color,
+    useValueAndKey(attached, 'attached'),
     useKeyOnly(basic, 'basic'),
     useKeyOnly(icon, 'icon'),
     useKeyOnly(vertical, 'vertical'),
-    className,
     useWidthProp(widths),
-    'buttons'
+    'buttons',
+    className,
   )
 
   const rest = getUnhandledProps(ButtonGroup, props)
@@ -44,6 +46,7 @@ ButtonGroup._meta = {
   parent: 'Button',
   type: META.TYPES.ELEMENT,
   props: {
+    attached: ['left', 'right', 'top', 'bottom'],
     color: SUI.COLORS,
     size: SUI.SIZES,
     widths: SUI.WIDTHS,
@@ -57,13 +60,16 @@ ButtonGroup.propTypes = {
     PropTypes.func,
   ]),
 
-  /** A button group can be less pronounced */
+  /** A button can be attached to the top or bottom of other content */
+  attached: PropTypes.oneOf(ButtonGroup._meta.props.attached),
+
+  /** Groups can be less pronounced */
   basic: PropTypes.bool,
 
-  /** Class names for custom styling. */
+  /** Additional classes */
   className: PropTypes.string,
 
-  /** */
+  /** Primary content, intended to be Button elements */
   children: PropTypes.any,
 
   /** Groups can have a shared color */
@@ -72,7 +78,7 @@ ButtonGroup.propTypes = {
   /** Groups can be formatted as icons */
   icon: PropTypes.bool,
 
-  /** A button can have different sizes */
+  /** Groups can have different sizes */
   size: PropTypes.oneOf(ButtonGroup._meta.props.size),
 
   /** Groups can be formatted to appear vertically */
