@@ -1071,6 +1071,84 @@ describe('Dropdown Component', () => {
         .at(1)
         .should.not.have.prop('selected', true)
     })
+
+    describe('editableSearch', () => {
+      it('sets the current value text as value prop to the search input', () => {
+        wrapperShallow(
+          <Dropdown name='foo' value={options[1].value} options={options} selection search editableSearch />
+        )
+          .should.have.descendants('input.search')
+
+        wrapper.find('input.search').should.have.prop('value', options[1].text)
+      })
+
+      it('does not set the current value text as value prop to the search input when multiple is true', () => {
+        wrapperShallow(
+          <Dropdown name='foo' value={[options[1].value]} options={options} selection search editableSearch multiple />
+        )
+          .should.have.descendants('input.search')
+
+        wrapper.find('input.search').should.have.prop('value', '')
+      })
+
+      it('sets the current value text as value prop to the search input when editableSearch is changed to true', () => {
+        wrapperShallow(<Dropdown name='foo' value={options[1].value} options={options} selection search />)
+          .should.have.descendants('input.search')
+
+        wrapper.find('input.search').should.have.prop('value', '')
+
+        wrapper.setProps({ editableSearch: true })
+
+        wrapper.find('input.search').should.have.prop('value', options[1].text)
+      })
+
+      it('does not set the current value text as value prop to the search input when'
+        + ' editableSearch is changed to false', () => {
+        wrapperShallow(
+          <Dropdown name='foo' value={options[1].value} options={options} selection search editableSearch />
+        )
+          .should.have.descendants('input.search')
+
+        wrapper.find('input.search').should.have.prop('value', options[1].text)
+
+        wrapper.setProps({ editableSearch: false })
+
+        wrapper.find('input.search').should.have.prop('value', '')
+      })
+
+      it('does not set the current value text as value prop to the search input when'
+        + ' editableSearch is changed to true and multiple is true', () => {
+        wrapperShallow(<Dropdown name='foo' value={[options[1].value]} options={options} selection search multiple />)
+          .should.have.descendants('input.search')
+
+        wrapper.find('input.search').should.have.prop('value', '')
+
+        wrapper.setProps({ editableSearch: true })
+
+        wrapper.find('input.search').should.have.prop('value', '')
+      })
+
+      it('does not clear the search query when an item is selected', () => {
+        // search for random item
+        const searchQuery = _.sample(options).text
+
+        wrapperMount(<Dropdown options={options} selection search editableSearch />)
+
+        // open and simulate search
+        wrapper
+          .simulate('click')
+          .setState({ searchQuery })
+
+        // click first item (we searched for exact text)
+        wrapper
+          .find('DropdownItem')
+          .first()
+          .simulate('click')
+
+        // search query still here
+        wrapper.should.have.state('searchQuery', searchQuery)
+      })
+    })
   })
 
   describe('no results message', () => {
