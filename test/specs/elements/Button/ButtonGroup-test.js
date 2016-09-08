@@ -9,6 +9,7 @@ describe('ButtonGroup', () => {
   common.propKeyAndValueToClassName(ButtonGroup, 'attached')
   common.propKeyOnlyToClassName(ButtonGroup, 'basic')
   common.propKeyOnlyToClassName(ButtonGroup, 'icon')
+  common.propKeyOnlyToClassName(ButtonGroup, 'labeled')
   common.propKeyOnlyToClassName(ButtonGroup, 'vertical')
 
   common.propValueOnlyToClassName(ButtonGroup, 'color')

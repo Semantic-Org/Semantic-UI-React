@@ -4,6 +4,7 @@ import Groups from './Groups'
 import Content from './Content'
 import States from './States'
 import Variations from './Variations'
+import GroupVariations from './GroupVariations'
 
 const ButtonExamples = () => (
   <div>
@@ -12,6 +13,7 @@ const ButtonExamples = () => (
     <Content />
     <States />
     <Variations />
+    <GroupVariations />
   </div>
 )
 

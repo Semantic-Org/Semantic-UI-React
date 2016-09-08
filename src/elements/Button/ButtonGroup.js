@@ -16,7 +16,7 @@ import {
  */
 function ButtonGroup(props) {
   const {
-    attached, basic, className, children, color, icon, size, vertical, widths,
+    attached, basic, children, className, color, icon, labeled, size, vertical, widths,
   } = props
 
   const classes = cx('ui',
@@ -25,6 +25,7 @@ function ButtonGroup(props) {
     useValueAndKey(attached, 'attached'),
     useKeyOnly(basic, 'basic'),
     useKeyOnly(icon, 'icon'),
+    useKeyOnly(labeled, 'labeled'),
     useKeyOnly(vertical, 'vertical'),
     useWidthProp(widths),
     'buttons',
@@ -77,6 +78,9 @@ ButtonGroup.propTypes = {
 
   /** Groups can be formatted as icons */
   icon: PropTypes.bool,
+
+  /** Groups can be formatted as labeled icon buttons */
+  labeled: PropTypes.bool,
 
   /** Groups can have different sizes */
   size: PropTypes.oneOf(ButtonGroup._meta.props.size),
