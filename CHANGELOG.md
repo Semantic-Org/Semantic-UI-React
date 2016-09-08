@@ -1,5 +1,13 @@
 # Change Log
 
+## [v0.42.2](https://github.com/TechnologyAdvice/stardust/tree/v0.42.2) (2016-09-08)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.42.1...v0.42.2)
+
+**Implemented enhancements:**
+
+- Header: add subheader shorthand [\#461](https://github.com/TechnologyAdvice/stardust/issues/461)
+- feat\(Header\): Add subheader prop [\#476](https://github.com/TechnologyAdvice/stardust/pull/476) ([layershifter](https://github.com/layershifter))
+
 ## [v0.42.1](https://github.com/TechnologyAdvice/stardust/tree/v0.42.1) (2016-09-07)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.42.0...v0.42.1)
 
