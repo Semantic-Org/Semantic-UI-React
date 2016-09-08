@@ -64,9 +64,17 @@ function Header(props) {
     )
   }
 
+  if (children) {
+    return (
+      <ElementType {...rest} className={classes}>
+        {children}
+      </ElementType>
+    )
+  }
+
   return (
     <ElementType {...rest} className={classes}>
-      {children || content}
+      {content}
       {subheader && <HeaderSubheader content={subheader} />}
     </ElementType>
   )
