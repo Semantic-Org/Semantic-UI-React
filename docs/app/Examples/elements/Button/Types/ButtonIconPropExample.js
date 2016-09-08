@@ -1,10 +1,8 @@
 import React from 'react'
-import { Button, Icon } from 'stardust'
+import { Button } from 'stardust'
 
 const ButtonIconExample = () => (
-  <Button icon>
-    <Icon name='world' />
-  </Button>
+  <Button icon='world' />
 )
 
 export default ButtonIconExample

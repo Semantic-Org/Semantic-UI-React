@@ -1,7 +1,17 @@
 import createFactory from './createFactory'
 
-import Image from '../elements/Image/Image'
 import Icon from '../elements/Icon/Icon'
+import Image from '../elements/Image/Image'
+import Label from '../elements/Label/Label'
+
+/**
+ * Returns an Icon element from an icon name, ReactElement, or props object.
+ * @type {function}
+ * @param {string|ReactElement|object} val The value to render.
+ * @param {object} [props = {}] Optional additional props.
+ * @returns {ReactElement|undefined}
+ */
+export const createIcon = createFactory(Icon, value => ({ name: value }))
 
 /**
  * Returns an Image element from an img src, ReactElement, or props object.
@@ -22,10 +32,10 @@ export const createImage = createFactory(Image, value => ({ src: value }))
 export const createImg = createFactory('img', value => ({ src: value }))
 
 /**
- * Returns an Icon element from an icon name, ReactElement, or props object.
+ * Returns a Label element from label text, ReactElement, or props object.
  * @type {function}
  * @param {string|ReactElement|object} val The value to render.
  * @param {object} [props = {}] Optional additional props.
  * @returns {ReactElement|undefined}
  */
-export const createIcon = createFactory(Icon, value => ({ name: value }))
+export const createLabel = createFactory(Label, value => ({ text: value }))
