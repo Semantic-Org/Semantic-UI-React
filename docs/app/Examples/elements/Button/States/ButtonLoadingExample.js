@@ -3,10 +3,10 @@ import { Button } from 'stardust'
 
 const ButtonLoadingExample = () => (
   <div>
-    <Button loading />
-    <Button basic loading />
-    <Button loading primary />
-    <Button loading secondary />
+    <Button loading>Loading</Button>
+    <Button basic loading>Loading</Button>
+    <Button loading primary>Loading</Button>
+    <Button loading secondary>Loading</Button>
   </div>
 )
 
