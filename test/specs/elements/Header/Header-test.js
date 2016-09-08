@@ -76,5 +76,19 @@ describe('Header', () => {
         .find('HeaderSubheader')
         .should.have.prop('content', text)
     })
+    it('adds HeaderSubheader as child when given a name to icon prop', () => {
+      const text = faker.hacker.phrase()
+
+      shallow(<Header icon='user' subheader={text} />)
+        .find('HeaderSubheader')
+        .should.have.prop('content', text)
+    })
+    it('adds HeaderSubheader as child when there is an image', () => {
+      const text = faker.hacker.phrase()
+
+      shallow(<Header image='foo.png' subheader={text} />)
+        .find('HeaderSubheader')
+        .should.have.prop('content', text)
+    })
   })
 })
