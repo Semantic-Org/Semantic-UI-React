@@ -1,4 +1,6 @@
+import faker from 'faker'
 import React from 'react'
+
 import Header from 'src/elements/Header/Header'
 import HeaderContent from 'src/elements/Header/HeaderContent'
 import HeaderSubheader from 'src/elements/Header/HeaderSubheader'
@@ -47,7 +49,7 @@ describe('Header', () => {
   describe('content', () => {
     it('adds child text', () => {
       shallow(<Header content='foo' />)
-        .should.have.prop('children', 'foo')
+        .should.contain.text('foo')
     })
     it('adds child text when there is an image', () => {
       shallow(<Header content='foo' image='foo.png' />)
@@ -63,6 +65,30 @@ describe('Header', () => {
 
       wrapper.should.contain.text('Friends')
       wrapper.should.not.have.descendants('HeaderContent')
+    })
+  })
+
+  describe('subheader', () => {
+    it('adds HeaderSubheader as child', () => {
+      const text = faker.hacker.phrase()
+
+      shallow(<Header subheader={text} />)
+        .find('HeaderSubheader')
+        .should.have.prop('content', text)
+    })
+    it('adds HeaderSubheader as child when given a name to icon prop', () => {
+      const text = faker.hacker.phrase()
+
+      shallow(<Header icon='user' subheader={text} />)
+        .find('HeaderSubheader')
+        .should.have.prop('content', text)
+    })
+    it('adds HeaderSubheader as child when there is an image', () => {
+      const text = faker.hacker.phrase()
+
+      shallow(<Header image='foo.png' subheader={text} />)
+        .find('HeaderSubheader')
+        .should.have.prop('content', text)
     })
   })
 })

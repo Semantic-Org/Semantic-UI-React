@@ -22,7 +22,7 @@ import HeaderContent from './HeaderContent'
 function Header(props) {
   const {
     color, content, dividing, block, attached, floated, inverted, disabled, sub, size, textAlign,
-    icon, image, children, className,
+    icon, image, children, className, subheader,
   } = props
 
   const classes = cx(
@@ -47,22 +47,37 @@ function Header(props) {
 
   if (icon && typeof icon !== 'boolean') {
     return (
-      <ElementType className={classes} {...rest}>
+      <ElementType {...rest} className={classes}>
         {createIcon(icon)}
         {content && <HeaderContent>{content}</HeaderContent>}
+        {subheader && <HeaderSubheader content={subheader} />}
       </ElementType>
     )
   }
 
   if (image) {
     return (
-      <ElementType className={classes} {...rest}>
+      <ElementType {...rest} className={classes}>
         {createImage(image)} {content}
+        {subheader && <HeaderSubheader content={subheader} />}
       </ElementType>
     )
   }
 
-  return <ElementType {...rest} className={classes}>{children || content}</ElementType>
+  if (children) {
+    return (
+      <ElementType {...rest} className={classes}>
+        {children}
+      </ElementType>
+    )
+  }
+
+  return (
+    <ElementType {...rest} className={classes}>
+      {content}
+      {subheader && <HeaderSubheader content={subheader} />}
+    </ElementType>
+  )
 }
 
 Header._meta = {
@@ -155,6 +170,12 @@ Header.propTypes = {
 
   /** Content headings are sized with em and are based on the font-size of their container. */
   size: PropTypes.oneOf(Header._meta.props.size),
+
+  /** Shorthand for the Header.Subheader component. Mutually exclusive with children */
+  subheader: customPropTypes.every([
+    customPropTypes.disallow(['children']),
+    PropTypes.string,
+  ]),
 
   /** Align header content */
   textAlign: PropTypes.oneOf(Header._meta.props.textAlign),

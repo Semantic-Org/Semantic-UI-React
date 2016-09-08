@@ -30,6 +30,10 @@ const HeaderContentExamples = () => (
       description='Headers may contain subheaders'
       examplePath='elements/Header/Content/HeaderSubheaderExample'
     />
+    <ComponentExample
+      description='You can pass an Subheader content to the Header subheader prop'
+      examplePath='elements/Header/Content/HeaderSubheaderPropExample'
+    />
   </ExampleSection>
 )
 
