@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Divider } from 'stardust'
+import { Button } from 'stardust'
 
 const ButtonGroupBasicColoredExample = () => (
   <Button.Group>
