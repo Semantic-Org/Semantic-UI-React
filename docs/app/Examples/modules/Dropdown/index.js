@@ -13,6 +13,11 @@ const DropdownExamples = () => (
         examplePath='modules/Dropdown/Types/Dropdown'
       />
       <ComponentExample
+        title='Dropdown'
+        description='A dropdown menu with custom trigger'
+        examplePath='modules/Dropdown/Types/Trigger'
+      />
+      <ComponentExample
         title='Selection'
         description='A dropdown can be used to select between choices in a form'
         examplePath='modules/Dropdown/Types/Selection'
