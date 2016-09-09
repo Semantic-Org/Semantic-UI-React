@@ -1,5 +1,12 @@
 # Change Log
 
+## [v0.43.0](https://github.com/TechnologyAdvice/stardust/tree/v0.43.0) (2016-09-09)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.42.6...v0.43.0)
+
+**Merged pull requests:**
+
+- refactor\(Label\): update props to the latest specs [\#486](https://github.com/TechnologyAdvice/stardust/pull/486) ([jcarbo](https://github.com/jcarbo))
+
 ## [v0.42.6](https://github.com/TechnologyAdvice/stardust/tree/v0.42.6) (2016-09-09)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.42.5...v0.42.6)
 
