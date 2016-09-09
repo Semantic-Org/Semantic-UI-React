@@ -40,30 +40,23 @@ export default class ComponentProps extends Component {
 
   render() {
     const propsDefinition = this.props.props
-    const content = _.map(propsDefinition, (propConfig, propName) => {
-      const name = propName
-      const description = _.get(propConfig, 'docBlock.description')
-
-      const value = _.get(propConfig, 'type.value')
-      let type = _.get(propConfig, 'type.name')
+    const content = _.sortBy(_.map(propsDefinition, (config, name) => {
+      const value = _.get(config, 'type.value')
+      let type = _.get(config, 'type.name')
       if (type === 'union') {
         type = _.map(value, (val) => val.name).join('|')
       }
       type = type && `{${type}}`
 
-      const required = propConfig.required
-      const defaultValue = propConfig.defaultValue
-
       return {
         name,
         type,
         value,
-        required,
-        defaultValue,
-        description,
+        required: config.required,
+        defaultValue: config.defaultValue,
+        description: _.get(config, 'docBlock.description'),
       }
-    })
-
+    }), 'name')
     return (
       <div>
         <Table data={content} className='very basic compact'>
