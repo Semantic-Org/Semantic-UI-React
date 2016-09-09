@@ -125,6 +125,22 @@ describe('Dropdown Component', () => {
         .simulate('click')
         .should.have.prop('selected', true)
     })
+    it('is ignored when clicking a disabled item', () => {
+      // random item, skip the first as its selected by default
+      const randomIndex = 1 + _.random(options.length - 2)
+      const nativeEvent = { nativeEvent: { stopImmediatePropagation: _.noop } }
+
+      options[randomIndex].disabled = true
+
+      wrapperMount(<Dropdown options={options} selection />)
+        .simulate('click', nativeEvent)
+        .find('DropdownItem')
+        .at(randomIndex)
+        .simulate('click', nativeEvent)
+        .should.have.not.prop('selected', true)
+
+      dropdownMenuIsOpen()
+    })
     it('moves down on arrow down when open', () => {
       wrapperMount(<Dropdown options={options} selection />)
 
@@ -174,6 +190,29 @@ describe('Dropdown Component', () => {
       const opts = [
         { text: 'a1', value: 'a1' },
         { text: 'skip this one', value: 'skip this one' },
+        { text: 'a2', value: 'a2' },
+      ]
+      // search for 'a'
+      wrapperMount(<Dropdown options={opts} search selection />)
+        .simulate('click')
+        .find('input.search')
+        .simulate('change', { target: { value: 'a' } })
+
+      wrapper
+        .find('.selected')
+        .should.contain.text('a1')
+
+      // move selection down
+      domEvent.keyDown(document, { key: 'ArrowDown' })
+
+      wrapper
+        .find('.selected')
+        .should.contain.text('a2')
+    })
+    it('skips over disabled items', () => {
+      const opts = [
+        { text: 'a1', value: 'a1' },
+        { text: 'skip this one', value: 'skip this one', disabled: true },
         { text: 'a2', value: 'a2' },
       ]
       // search for 'a'
@@ -259,6 +298,23 @@ describe('Dropdown Component', () => {
       domEvent.keyDown(document, { key: 'Enter' })
 
       item.should.have.prop('active', true)
+    })
+    it('does not become active on enter when disabled', () => {
+      const disabledOptions = _.map(options, (o) => ({ ...o, disabled: true }))
+      const item = wrapperMount(<Dropdown options={disabledOptions} selection />)
+        .simulate('click')
+        .find('DropdownItem')
+        .at(0)
+
+      // initial item props
+      item.should.have.prop('selected', true)
+      item.should.have.prop('active', false)
+
+      // attempt to make active
+      domEvent.keyDown(document, { key: 'Enter' })
+
+      item.should.have.prop('active', false)
+      dropdownMenuIsOpen()
     })
     it('closes the menu', () => {
       wrapperMount(<Dropdown options={options} selection />)

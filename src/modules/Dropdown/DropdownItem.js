@@ -16,6 +16,7 @@ function DropdownItem(props) {
     active,
     children,
     className,
+    disabled,
     description,
     icon,
     onClick,
@@ -30,6 +31,7 @@ function DropdownItem(props) {
 
   const classes = cx(
     useKeyOnly(active, 'active'),
+    useKeyOnly(disabled, 'disabled'),
     useKeyOnly(selected, 'selected'),
     'item',
     className,
@@ -77,6 +79,9 @@ DropdownItem.propTypes = {
 
   /** Additional text with less emphasis. */
   description: PropTypes.string,
+
+  /** A dropdown item can be disabled. */
+  disabled: PropTypes.bool,
 
   /** Add an icon to the item. */
   icon: PropTypes.string,

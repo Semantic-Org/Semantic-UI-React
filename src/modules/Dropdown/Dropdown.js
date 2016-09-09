@@ -385,10 +385,10 @@ export default class Dropdown extends Component {
 
   selectHighlightedItem = (e) => {
     const { multiple, onAddItem, options } = this.props
-    const value = _.get(this.getSelectedItem(), 'value')
+    const { value, disabled } = this.getSelectedItem() || {}
 
-    // prevent selecting null if there was no selected item value
-    if (!value) return
+    // prevent selecting null (if there was no selected item value) or disabled options
+    if (!value || disabled) return
 
     // notify the onAddItem prop if this is a new value
     if (onAddItem && !_.some(options, { text: value })) onAddItem(value)
@@ -458,13 +458,16 @@ export default class Dropdown extends Component {
     debug('handleItemClick()')
     debug(value)
     const { multiple, onAddItem, options } = this.props
+    const item = this.getItemByValue(value) || {}
 
     // prevent toggle() in handleClick()
     e.stopPropagation()
-    // prevent closeOnDocumentClick() if multiple
-    if (multiple) {
+    // prevent closeOnDocumentClick() if multiple or item is disabled
+    if (multiple || item.disabled) {
       e.nativeEvent.stopImmediatePropagation()
     }
+
+    if (item.disabled) return
 
     // notify the onAddItem prop if this is a new value
     if (onAddItem && !_.some(options, { value })) onAddItem(value)
@@ -631,6 +634,9 @@ export default class Dropdown extends Component {
     const options = this.getMenuOptions()
     const lastIndex = options.length - 1
 
+    // Prevent infinite loop
+    if (_.every(options, 'disabled')) return
+
     // next is after last, wrap to beginning
     // next is before first, wrap to end
     let nextIndex = selectedIndex + offset
@@ -638,6 +644,9 @@ export default class Dropdown extends Component {
     else if (nextIndex < 0) nextIndex = lastIndex
 
     this.setState({ selectedIndex: nextIndex })
+
+    if (options[nextIndex].disabled) return this.moveSelectionBy(offset)
+
     this.scrollSelectedItemIntoView()
   }
 
@@ -819,6 +828,7 @@ export default class Dropdown extends Component {
         selected={selectedIndex === i}
         onMouseDown={e => e.preventDefault()} // prevent default to allow item select without closing on blur
         {...opt}
+        style={{ ...opt.style, pointerEvents: 'all' }} // Needed for handling click events on disabled items
       />
     ))
   }
