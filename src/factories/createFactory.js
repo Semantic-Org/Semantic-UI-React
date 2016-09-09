@@ -19,7 +19,7 @@ const mergePropsAndClassName = (props, extraProps) => {
 /**
  * Return a function that produces ReactElements.  Similar to React.createFactory with some extras.
  * If the returned factory is passed a ReactElement it will be cloned.
- * If it passed undefined it will do nothing.
+ * If it passed null or undefined it will do nothing.
  * @param {function|string} Component A ReactClass or string
  * @param {function} mapValueToProps A function that maps a primitive value to the Component props
  * @param {function} [mergeExtraProps=mergePropsAndClassName]
@@ -38,7 +38,7 @@ const createFactory = (Component, mapValueToProps, mergeExtraProps = mergePropsA
     }
 
     // Map values to props and create an ReactElement
-    if (val !== undefined) {
+    if (!_.isNil(val)) {
       return <Component {...mergeExtraProps(mapValueToProps(val), extraProps)} />
     }
   }
