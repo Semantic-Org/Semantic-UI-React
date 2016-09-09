@@ -4,7 +4,7 @@ import * as common from 'test/specs/commonTests'
 describe('ButtonGroup', () => {
   common.isConformant(ButtonGroup)
   common.hasUIClassName(ButtonGroup)
-  common.rendersChildren(ButtonGroup)
+  common.implementsWidthProp(ButtonGroup, { propKey: 'widths', widthClass: 'buttons', canEqual: false })
 
   common.propKeyAndValueToClassName(ButtonGroup, 'attached')
   common.propKeyOnlyToClassName(ButtonGroup, 'basic')
@@ -15,5 +15,5 @@ describe('ButtonGroup', () => {
   common.propValueOnlyToClassName(ButtonGroup, 'color')
   common.propValueOnlyToClassName(ButtonGroup, 'size')
 
-  common.implementsWidthProp(ButtonGroup, { propKey: 'widths', widthClass: 'buttons', canEqual: false })
+  common.rendersChildren(ButtonGroup)
 })

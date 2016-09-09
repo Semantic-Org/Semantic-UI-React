@@ -3,7 +3,7 @@ import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
 import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
 
 const ButtonGroupVariationsExamples = () => (
-  <ExampleSection title='Variations'>
+  <ExampleSection title='Group Variations'>
     <ComponentExample
       title='Vertical Group'
       description='Groups can be formatted to appear vertically'

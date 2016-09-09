@@ -5,34 +5,14 @@ import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
 const ButtonGroupsExamples = () => (
   <ExampleSection title='Groups'>
     <ComponentExample
-      title='Buttons'
+      title='Group'
       description='Buttons can exist together as a group'
-      examplePath='elements/Button/Groups/ButtonButtonsExample'
+      examplePath='elements/Button/Groups/ButtonGroupExample'
     />
     <ComponentExample
-      title='Vertical Buttons'
-      description='Groups can be formatted to appear vertically'
-      examplePath='elements/Button/Groups/ButtonVerticalButtonsExample'
-    />
-    <ComponentExample
-      title='Icon Buttons'
+      title='Icon Group'
       description='Button groups can show groups of icons'
-      examplePath='elements/Button/Groups/ButtonIconButtonsExample'
-    />
-    <ComponentExample
-      title='Labeled Icon Buttons'
-      description='Groups can be formatted as labeled icons'
-      examplePath='elements/Button/Groups/ButtonLabeledIconButtonsExample'
-    />
-    <ComponentExample
-      title='Equal Widths'
-      description='Groups can have their widths divided evenly'
-      examplePath='elements/Button/Groups/ButtonEqualWidthsButtonsExample'
-    />
-    <ComponentExample
-      title='Colored Buttons'
-      description='Groups can have a shared color'
-      examplePath='elements/Button/Groups/ButtonColoredButtonsExample'
+      examplePath='elements/Button/Groups/ButtonGroupIconExample'
     />
   </ExampleSection>
 )

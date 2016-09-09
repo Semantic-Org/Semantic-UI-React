@@ -26,7 +26,7 @@ const debug = makeDebugger('button')
 function Button(props) {
   const {
     active, animated, attached, basic, children, circular, className, color, compact, content, disabled, floated, fluid,
-    icon, inverted, label, labeled, loading, negative, positive, primary, secondary, size, toggle, type,
+    icon, inverted, label, labeled, loading, negative, positive, primary, secondary, size, toggle,
   } = props
 
   const labeledClasses = cx(
@@ -45,7 +45,7 @@ function Button(props) {
     useKeyOnly(disabled, 'disabled'),
     useValueAndKey(floated, 'floated'),
     useKeyOnly(fluid, 'fluid'),
-    useKeyOnly(icon === true || !children && !content && icon, 'icon'),
+    useKeyOnly(icon === true || (labeled || !children && !content) && icon, 'icon'),
     useKeyOnly(inverted, 'inverted'),
     useKeyOnly(loading, 'loading'),
     useKeyOnly(negative, 'negative'),
@@ -57,8 +57,7 @@ function Button(props) {
 
   const rest = getUnhandledProps(Button, props)
   const ElementType = getElementType(Button, props, () => {
-    if (type === 'submit') return 'button'
-    if (labeled || attached) return 'div'
+    if (label || labeled || attached) return 'div'
   })
   const tabIndex = ElementType === 'div' ? 0 : undefined
 
@@ -66,7 +65,7 @@ function Button(props) {
     const classes = cx('ui', baseClasses, labeledClasses, 'button', className)
     debug('render children:', { classes })
     return (
-      <ElementType {...rest} type={type} className={classes} tabIndex={tabIndex}>
+      <ElementType {...rest} className={classes} tabIndex={tabIndex}>
         {children}
       </ElementType>
     )
@@ -76,18 +75,18 @@ function Button(props) {
     const classes = cx('ui', baseClasses, 'button', className)
     const containerClasses = cx('ui', labeledClasses, 'button', className)
     debug('render label:', { classes, containerClasses }, props)
-    const labelJSX = createLabel(label, {
+    const labelElement = createLabel(label, {
       basic: true,
       pointing: labeled === 'left' ? 'right' : 'left',
     })
     return (
-      <div {...rest} className={containerClasses}>
-        {labeled === 'left' && labelJSX}
-        <ElementType {...rest} type={type} className={classes} tabIndex={tabIndex}>
+      <ElementType {...rest} className={containerClasses}>
+        {labeled === 'left' && labelElement}
+        <button className={classes}>
           {createIcon(icon)} {content}
-        </ElementType>
-        {(labeled === 'right' || !labeled) && labelJSX}
-      </div>
+        </button>
+        {(labeled === 'right' || !labeled) && labelElement}
+      </ElementType>
     )
   }
 
@@ -95,7 +94,7 @@ function Button(props) {
     const classes = cx('ui', labeledClasses, baseClasses, 'button', className)
     debug('render icon && !label:', { classes })
     return (
-      <ElementType {...rest} type={type} className={classes} tabIndex={tabIndex}>
+      <ElementType {...rest} className={classes} tabIndex={tabIndex}>
         {createIcon(icon)} {content}
       </ElementType>
     )
@@ -105,7 +104,7 @@ function Button(props) {
   debug('render default:', { classes })
 
   return (
-    <ElementType {...rest} type={type} className={classes} tabIndex={tabIndex}>
+    <ElementType {...rest} className={classes} tabIndex={tabIndex}>
       {content}
     </ElementType>
   )
@@ -191,14 +190,11 @@ Button.propTypes = {
   fluid: PropTypes.bool,
 
   /** Add an Icon by name, props object, or pass an <Icon /> */
-  icon: customPropTypes.every([
+  icon: customPropTypes.some([
+    PropTypes.bool,
     PropTypes.string,
     PropTypes.object,
     PropTypes.element,
-    customPropTypes.givenProps(
-      { icon: PropTypes.bool.isRequired },
-      customPropTypes.disallow(['children']),
-    ),
   ]),
 
   /** A button can be formatted to appear on dark backgrounds */
@@ -211,14 +207,10 @@ Button.propTypes = {
   ]),
 
   /** Add a Label by text, props object, or pass a <Label /> */
-  label: customPropTypes.every([
+  label: customPropTypes.some([
     PropTypes.string,
     PropTypes.object,
     PropTypes.element,
-    customPropTypes.some([
-      PropTypes.bool,
-      PropTypes.oneOf(Button._meta.props.labeled),
-    ]),
   ]),
 
   /** A button can show a loading indicator */
@@ -238,9 +230,6 @@ Button.propTypes = {
 
   /** A button can be formatted to toggle on and off */
   toggle: PropTypes.bool,
-
-  /** The HTML <button> type attribute */
-  type: PropTypes.string,
 
   /** A button can have different sizes */
   size: PropTypes.oneOf(Button._meta.props.size),
