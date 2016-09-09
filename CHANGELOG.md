@@ -1,5 +1,16 @@
 # Change Log
 
+## [v0.42.4](https://github.com/TechnologyAdvice/stardust/tree/v0.42.4) (2016-09-09)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.42.3...v0.42.4)
+
+**Closed issues:**
+
+- fix\(Label\): do not auto apply the `empty` className [\#485](https://github.com/TechnologyAdvice/stardust/issues/485)
+
+**Merged pull requests:**
+
+- feat\(util\): Allow disabling factory via null [\#480](https://github.com/TechnologyAdvice/stardust/pull/480) ([jcarbo](https://github.com/jcarbo))
+
 ## [v0.42.3](https://github.com/TechnologyAdvice/stardust/tree/v0.42.3) (2016-09-09)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.42.2...v0.42.3)
 
