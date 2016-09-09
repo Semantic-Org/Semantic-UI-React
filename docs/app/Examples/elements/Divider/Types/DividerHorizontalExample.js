@@ -5,9 +5,9 @@ export default class DividerHorizontalExample extends Component {
   render() {
     return (
       <Segment padded>
-        <Button className='primary fluid'>Login</Button>
+        <Button primary fluid>Login</Button>
         <Divider horizontal>Or</Divider>
-        <Button className='secondary fluid'>Sign Up Now</Button>
+        <Button secondary fluid>Sign Up Now</Button>
       </Segment>
     )
   }

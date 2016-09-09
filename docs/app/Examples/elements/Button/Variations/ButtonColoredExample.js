@@ -1,24 +1,22 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Button } from 'stardust'
 
-export default class ButtonColoredExample extends Component {
-  render() {
-    return (
-      <div>
-        <Button className='red'>Red</Button>
-        <Button className='orange'>Orange</Button>
-        <Button className='yellow'>Yellow</Button>
-        <Button className='olive'>Olive</Button>
-        <Button className='green'>Green</Button>
-        <Button className='teal'>Teal</Button>
-        <Button className='blue'>Blue</Button>
-        <Button className='violet'>Violet</Button>
-        <Button className='purple'>Purple</Button>
-        <Button className='pink'>Pink</Button>
-        <Button className='brown'>Brown</Button>
-        <Button className='grey'>Grey</Button>
-        <Button className='black'>Black</Button>
-      </div>
-    )
-  }
-}
+const ButtonColoredExample = () => (
+  <div>
+    <Button color='red'>Red</Button>
+    <Button color='orange'>Orange</Button>
+    <Button color='yellow'>Yellow</Button>
+    <Button color='olive'>Olive</Button>
+    <Button color='green'>Green</Button>
+    <Button color='teal'>Teal</Button>
+    <Button color='blue'>Blue</Button>
+    <Button color='violet'>Violet</Button>
+    <Button color='purple'>Purple</Button>
+    <Button color='pink'>Pink</Button>
+    <Button color='brown'>Brown</Button>
+    <Button color='grey'>Grey</Button>
+    <Button color='black'>Black</Button>
+  </div>
+)
+
+export default ButtonColoredExample

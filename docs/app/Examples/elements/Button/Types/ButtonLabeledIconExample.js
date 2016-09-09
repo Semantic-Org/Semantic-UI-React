@@ -1,19 +1,15 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Button, Icon } from 'stardust'
 
-export default class ButtonLabeledIconExample extends Component {
-  render() {
-    return (
-      <div>
-        <Button className='labeled icon'>
-          <Icon name='pause' />
-          Pause
-        </Button>
-        <Button className='right labeled icon'>
-          <Icon name='right arrow' />
-          Next
-        </Button>
-      </div>
-    )
-  }
-}
+const ButtonLabeledIconExample = () => (
+  <div>
+    <Button labeled icon>
+      <Icon name='pause' /> Pause
+    </Button>
+    <Button labeled='right' icon>
+      <Icon name='right arrow' /> Next
+    </Button>
+  </div>
+)
+
+export default ButtonLabeledIconExample

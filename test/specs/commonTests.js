@@ -8,7 +8,7 @@ import { META, numberToWord } from 'src/lib'
 import { consoleUtil, sandbox, syntheticEvent } from 'test/utils'
 import * as stardust from 'stardust'
 
-import { Icon, Image } from 'src/elements'
+import { Icon, Image, Label } from 'src/elements'
 
 const componentCtx = require.context(
   '../../src/',
@@ -530,36 +530,85 @@ export const implementsIconProp = (Component, requiredProps = {}) => {
 
     if (Component.defaultProps && Component.defaultProps.icon) {
       it('has default Icon when not defined', () => {
-        assertValid(<Component />, Component.defaultProps.icon)
+        assertValid(<Component {...requiredProps} />, Component.defaultProps.icon)
       })
     } else {
       it('has no Icon when not defined', () => {
-        shallow(<Component />)
+        shallow(<Component {...requiredProps} />)
           .should.not.have.descendants('Icon')
       })
     }
 
     it('has no Icon when null', () => {
-      shallow(<Component icon={null} />)
+      shallow(<Component {...requiredProps} icon={null} />)
         .should.not.have.descendants('Icon')
     })
 
     it('accepts an Icon instance', () => {
       const icon = <Icon name={iconName} />
-      assertValid(<Component icon={icon} />)
+      assertValid(<Component {...requiredProps} icon={icon} />)
     })
 
     it('accepts an icon name string', () => {
-      assertValid(<Component icon={iconName} />)
+      assertValid(<Component {...requiredProps} icon={iconName} />)
+    })
+
+    it('accepts an icon props object', () => {
+      assertValid(<Component {...requiredProps} icon={{ name: iconName }} />)
+    })
+  })
+}
+
+export const implementsLabelProp = (Component, requiredProps = {}) => {
+  const labelText = faker.hacker.phrase()
+  const assertValid = (element) => {
+    const wrapper = shallow(element)
+    wrapper
+      .should.have.descendants('Label')
+    wrapper
+      .find('Label')
+      .shallow()
+      .should.have.text(labelText)
+  }
+
+  describe('label (common)', () => {
+    if (!Component) throw new Error(`implementsLabelProp requires a Component, got: ${typeof Component}`)
+
+    _noDefaultClassNameFromProp(Component, 'label')
+
+    if (Component.defaultProps && Component.defaultProps.label) {
+      it('has default Label when not defined', () => {
+        assertValid(<Component {...requiredProps} />, Component.defaultProps.label)
+      })
+    } else {
+      it('has no Label when not defined', () => {
+        shallow(<Component {...requiredProps} />)
+          .should.not.have.descendants('Label')
+      })
+    }
+
+    it('accepts an Label instance', () => {
+      const label = <Label>{labelText}</Label>
+      assertValid(<Component {...requiredProps} label={label} />)
+    })
+
+    it('accepts Label text string', () => {
+      assertValid(<Component {...requiredProps} label={labelText} />)
+    })
+    it('accepts a Label props object', () => {
+      assertValid(<Component {...requiredProps} label={{ text: labelText }} />)
     })
   })
 }
 
 export const implementsImageProp = (Component, requiredProps = {}) => {
   const imageSrc = faker.internet.avatar()
-  const assertValid = (wrapper) => {
-    wrapper.should.have.descendants('Image')
-    wrapper.find('Image')
+  const assertValid = (element) => {
+    const wrapper = shallow(element)
+    wrapper
+      .should.have.descendants('Image')
+    wrapper
+      .find('Image')
       .should.have.prop('src', imageSrc)
   }
   describe('image (common)', () => {
@@ -568,28 +617,26 @@ export const implementsImageProp = (Component, requiredProps = {}) => {
     _noDefaultClassNameFromProp(Component, 'image')
 
     it('has no Image when prop is not defined', () => {
-      shallow(<Component />)
+      shallow(<Component {...requiredProps} />)
         .should.not.have.descendants('Image')
     })
 
     it('has no Image when prop is null', () => {
-      shallow(<Component image={null} />)
+      shallow(<Component {...requiredProps} image={null} />)
         .should.not.have.descendants('Image')
-    })
-
-    it('adds a img as first child', () => {
-      shallow(<Component image={imageSrc} />)
-        .childAt(0)
-        .should.match('img')
     })
 
     it('accepts an Image instance', () => {
       const image = <Image src={imageSrc} />
-      assertValid(shallow(<Component image={image} />))
+      assertValid(<Component {...requiredProps} image={image} />)
     })
 
     it('accepts an image src string', () => {
-      assertValid(shallow(<Component image={imageSrc} />))
+      assertValid(<Component {...requiredProps} image={imageSrc} />)
+    })
+
+    it('accepts an image props object', () => {
+      assertValid(<Component {...requiredProps} image={{ src: imageSrc }} />)
     })
   })
 }

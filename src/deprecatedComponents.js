@@ -24,8 +24,8 @@ export const TableColumn = deprecateComponent('TableColumn', 'Use "Table.Column"
 //
 // Elements
 //
-// TODO deprecate Buttons once updated to v1 API
-export Buttons from './elements/Button/Buttons'
+import Button from './elements/Button/Button'
+export const Buttons = deprecateComponent('Buttons', 'Use "Button.Group" instead.', Button.Group)
 import List from './elements/List/List'
 export const ListItem = deprecateComponent('ListItem', 'Use "List.Item" instead.', List.Item)
 

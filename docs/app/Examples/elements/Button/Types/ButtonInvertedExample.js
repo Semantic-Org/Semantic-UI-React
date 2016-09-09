@@ -1,43 +1,41 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Button, Segment } from 'stardust'
 
-export default class ButtonInvertedExample extends Component {
-  render() {
-    return (
-      <div>
-        <Segment inverted>
-          <Button className='inverted'>Standard</Button>
-          <Button className='inverted red'>Red</Button>
-          <Button className='inverted orange'>Orange</Button>
-          <Button className='inverted yellow'>Yellow</Button>
-          <Button className='inverted olive'>Olive</Button>
-          <Button className='inverted green'>Green</Button>
-          <Button className='inverted teal'>Teal</Button>
-          <Button className='inverted blue'>Blue</Button>
-          <Button className='inverted violet'>Violet</Button>
-          <Button className='inverted purple'>Purple</Button>
-          <Button className='inverted pink'>Pink</Button>
-          <Button className='inverted brown'>Brown</Button>
-          <Button className='inverted grey'>Grey</Button>
-          <Button className='inverted black'>Black</Button>
-        </Segment>
-        <Segment inverted>
-          <Button className='inverted basic'>Standard</Button>
-          <Button className='inverted red basic'>Red</Button>
-          <Button className='inverted orange basic'>Orange</Button>
-          <Button className='inverted yellow basic'>Yellow</Button>
-          <Button className='inverted olive basic'>Olive</Button>
-          <Button className='inverted green basic'>Green</Button>
-          <Button className='inverted teal basic'>Teal</Button>
-          <Button className='inverted blue basic'>Blue</Button>
-          <Button className='inverted violet basic'>Violet</Button>
-          <Button className='inverted purple basic'>Purple</Button>
-          <Button className='inverted pink basic'>Pink</Button>
-          <Button className='inverted brown basic'>Brown</Button>
-          <Button className='inverted grey basic'>Grey</Button>
-          <Button className='inverted black basic'>Black</Button>
-        </Segment>
-      </div>
-    )
-  }
-}
+const ButtonInvertedExample = () => (
+  <div>
+    <Segment inverted>
+      <Button inverted>Standard</Button>
+      <Button inverted color='red'>Red</Button>
+      <Button inverted color='orange'>Orange</Button>
+      <Button inverted color='yellow'>Yellow</Button>
+      <Button inverted color='olive'>Olive</Button>
+      <Button inverted color='green'>Green</Button>
+      <Button inverted color='teal'>Teal</Button>
+      <Button inverted color='blue'>Blue</Button>
+      <Button inverted color='violet'>Violet</Button>
+      <Button inverted color='purple'>Purple</Button>
+      <Button inverted color='pink'>Pink</Button>
+      <Button inverted color='brown'>Brown</Button>
+      <Button inverted color='grey'>Grey</Button>
+      <Button inverted color='black'>Black</Button>
+    </Segment>
+    <Segment inverted>
+      <Button basic inverted>Standard</Button>
+      <Button basic inverted color='red'>Red</Button>
+      <Button basic inverted color='orange'>Orange</Button>
+      <Button basic inverted color='yellow'>Yellow</Button>
+      <Button basic inverted color='olive'>Olive</Button>
+      <Button basic inverted color='green'>Green</Button>
+      <Button basic inverted color='teal'>Teal</Button>
+      <Button basic inverted color='blue'>Blue</Button>
+      <Button basic inverted color='violet'>Violet</Button>
+      <Button basic inverted color='purple'>Purple</Button>
+      <Button basic inverted color='pink'>Pink</Button>
+      <Button basic inverted color='brown'>Brown</Button>
+      <Button basic inverted color='grey'>Grey</Button>
+      <Button basic inverted color='black'>Black</Button>
+    </Segment>
+  </div>
+)
+
+export default ButtonInvertedExample

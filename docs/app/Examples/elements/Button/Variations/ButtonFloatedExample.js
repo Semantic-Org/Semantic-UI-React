@@ -1,13 +1,11 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Button } from 'stardust'
 
-export default class ButtonFloatedExample extends Component {
-  render() {
-    return (
-      <div>
-        <Button className='right floated'>Right Floated</Button>
-        <Button className='left floated'>Left Floated</Button>
-      </div>
-    )
-  }
-}
+const ButtonFloatedExample = () => (
+  <div>
+    <Button floated='right'>Right Floated</Button>
+    <Button floated='left'>Left Floated</Button>
+  </div>
+)
+
+export default ButtonFloatedExample

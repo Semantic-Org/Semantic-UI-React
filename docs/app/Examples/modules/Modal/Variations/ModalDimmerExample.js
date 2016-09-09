@@ -28,10 +28,10 @@ class ModalDimmerExample extends Component {
             </Modal.Description>
           </Modal.Content>
           <Modal.Actions>
-            <Button className='black' onClick={this.hide}>
+            <Button color='black' onClick={this.hide}>
               Nope
             </Button>
-            <Button className='positive right labeled icon' onClick={this.hide}>
+            <Button positive icon labeled='right' onClick={this.hide}>
               Yep, that's me <Icon name='checkmark' />
             </Button>
           </Modal.Actions>
