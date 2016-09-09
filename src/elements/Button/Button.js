@@ -14,8 +14,6 @@ import {
 } from '../../lib'
 import { createIcon, createLabel } from '../../factories'
 import ButtonGroup from './ButtonGroup'
-import Icon from '../Icon/Icon'
-import Label from '../Label/Label'
 
 const debug = makeDebugger('button')
 
@@ -194,7 +192,9 @@ Button.propTypes = {
 
   /** Add an Icon by name, props object, or pass an <Icon /> */
   icon: customPropTypes.every([
-    Icon.propTypes.name,
+    PropTypes.string,
+    PropTypes.object,
+    PropTypes.element,
     customPropTypes.givenProps(
       { icon: PropTypes.bool.isRequired },
       customPropTypes.disallow(['children']),
@@ -212,7 +212,9 @@ Button.propTypes = {
 
   /** Add a Label by text, props object, or pass a <Label /> */
   label: customPropTypes.every([
-    Label.propTypes.text,
+    PropTypes.string,
+    PropTypes.object,
+    PropTypes.element,
     customPropTypes.some([
       PropTypes.bool,
       PropTypes.oneOf(Button._meta.props.labeled),
