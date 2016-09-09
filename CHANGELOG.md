@@ -1,15 +1,22 @@
 # Change Log
 
+## [v0.42.5](https://github.com/TechnologyAdvice/stardust/tree/v0.42.5) (2016-09-09)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.42.4...v0.42.5)
+
+**Merged pull requests:**
+
+- feat\(Dropdown\): support custom search function [\#484](https://github.com/TechnologyAdvice/stardust/pull/484) ([dylankiss](https://github.com/dylankiss))
+
 ## [v0.42.4](https://github.com/TechnologyAdvice/stardust/tree/v0.42.4) (2016-09-09)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.42.3...v0.42.4)
+
+**Fixed bugs:**
+
+- fix\(createFactory\): do not create elements from `null` values [\#480](https://github.com/TechnologyAdvice/stardust/pull/480) ([jcarbo](https://github.com/jcarbo))
 
 **Closed issues:**
 
 - fix\(Label\): do not auto apply the `empty` className [\#485](https://github.com/TechnologyAdvice/stardust/issues/485)
-
-**Merged pull requests:**
-
-- feat\(util\): Allow disabling factory via null [\#480](https://github.com/TechnologyAdvice/stardust/pull/480) ([jcarbo](https://github.com/jcarbo))
 
 ## [v0.42.3](https://github.com/TechnologyAdvice/stardust/tree/v0.42.3) (2016-09-09)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.42.2...v0.42.3)
