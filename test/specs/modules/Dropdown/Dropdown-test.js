@@ -1027,6 +1027,23 @@ describe('Dropdown Component', () => {
         .should.have.lengthOf(1, "Searching for an item's text did not yield any results.")
     })
 
+    it('filters the items based on custom search function', () => {
+      const searchFunction = sandbox.stub().returns(options.slice(0, 2))
+      const search = wrapperMount(<Dropdown options={options} selection search={searchFunction} />)
+        .find('input.search')
+      const searchQuery = '__nonExistingSearchQuery__'
+
+      // search for value yields 2 results as per our custom search function
+      search.simulate('change', { target: { value: searchQuery } })
+
+      searchFunction.should.have.been.calledOnce()
+      searchFunction.should.have.been.calledWithMatch(options, searchQuery)
+
+      wrapper
+        .find('DropdownItem')
+        .should.have.lengthOf(2, 'Searching with custom search function did not yield 2 results.')
+    })
+
     it('sets the selected item to the first search result', () => {
       const search = wrapperMount(<Dropdown options={options} selection search />)
         .find('input.search')

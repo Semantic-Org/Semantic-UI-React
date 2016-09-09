@@ -131,8 +131,14 @@ export default class Dropdown extends Component {
     /** Message to display when there are no results. */
     noResultsMessage: PropTypes.string,
 
-    /** Define whether the highlighted item should be selected on blur */
+    /** Define whether the highlighted item should be selected on blur. */
     selectOnBlur: PropTypes.bool,
+
+    /** Make the dropdown options searchable by substring matching (default) or with a custom search function. */
+    search: PropTypes.oneOfType([
+      PropTypes.bool,
+      PropTypes.func,
+    ]),
 
     // ------------------------------------
     // Callbacks
@@ -184,9 +190,6 @@ export default class Dropdown extends Component {
       PropTypes.bool,
       PropTypes.oneOf(_meta.props.pointing),
     ]),
-
-    /** Make the dropdown options searchable. */
-    search: PropTypes.bool,
 
     /** The text displayed in the dropdown, usually for the active item. */
     text: PropTypes.string,
@@ -538,8 +541,12 @@ export default class Dropdown extends Component {
 
     // filter by search query
     if (search && searchQuery) {
-      const re = new RegExp(_.escapeRegExp(searchQuery), 'i')
-      filteredOptions = _.filter(filteredOptions, (opt) => re.test(opt.text))
+      if (_.isFunction(search)) {
+        filteredOptions = search(filteredOptions, searchQuery)
+      } else {
+        const re = new RegExp(_.escapeRegExp(searchQuery), 'i')
+        filteredOptions = _.filter(filteredOptions, (opt) => re.test(opt.text))
+      }
     }
 
     // insert the "add" item
