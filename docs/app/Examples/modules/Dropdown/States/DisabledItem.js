@@ -9,7 +9,7 @@ const options = _.times(10, (i) => {
 })
 
 const DropdownItemDisabledExample = () => (
-  <Dropdown text='Dropdown' options={options} />
+  <Dropdown text='Disabled Item' options={options} />
 )
 
 export default DropdownItemDisabledExample
