@@ -29,7 +29,7 @@ class ModalCloseConfigExample extends Component {
           </Modal.Content>
           <Modal.Actions>
             <Button negative>No</Button>
-            <Button positive className='right labeled' icon>
+            <Button positive labled='right' icon>
               Yes <Icon name='checkmark' />
             </Button>
           </Modal.Actions>

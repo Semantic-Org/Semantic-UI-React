@@ -31,7 +31,7 @@ class ModalDimmerExample extends Component {
             <Button color='black' onClick={this.hide}>
               Nope
             </Button>
-            <Button positive icon className='right labeled' onClick={this.hide}>
+            <Button positive icon labeled='right' onClick={this.hide}>
               Yep, that's me <Icon name='checkmark' />
             </Button>
           </Modal.Actions>

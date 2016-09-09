@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import { Button, Dropdown, Menu } from 'stardust'
 
-// TODO: Update <Button> usage after its update to v1 API
-
 export default class SizeMini extends Component {
   state = { activeItem: 'home' }
 
@@ -26,7 +24,7 @@ export default class SizeMini extends Component {
           </Dropdown>
 
           <Menu.Item>
-            <Button className='primary'>Sign Up</Button>
+            <Button primary>Sign Up</Button>
           </Menu.Item>
         </Menu.Menu>
       </Menu>

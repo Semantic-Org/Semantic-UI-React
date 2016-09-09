@@ -27,7 +27,7 @@ class ModalSizeExample extends Component {
             <Button negative>
               No
             </Button>
-            <Button positive icon className='right labeled'>
+            <Button positive icon labeled='right'>
               Yes <Icon name='checkmark' />
             </Button>
           </Modal.Actions>

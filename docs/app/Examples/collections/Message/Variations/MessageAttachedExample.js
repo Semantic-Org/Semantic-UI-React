@@ -1,8 +1,6 @@
 import React from 'react'
 import { Button, Checkbox, Form, Icon, Message } from 'stardust'
 
-// TODO update Button usage after they're updated to v1 API
-
 const MessageAttachedExample = () => (
   <div>
     <Message
