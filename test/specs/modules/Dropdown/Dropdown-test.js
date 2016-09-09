@@ -115,6 +115,27 @@ describe('Dropdown Component', () => {
         .first()
         .should.have.prop('selected', true)
     })
+    it('defaults to the first non-disabled item', () => {
+      options[0].disabled = true
+      wrapperShallow(<Dropdown options={options} selection />)
+
+      // selection moved to second item
+      wrapper
+        .find('DropdownItem')
+        .first()
+        .should.have.prop('selected', false)
+
+      wrapper
+        .find('DropdownItem')
+        .at(1)
+        .should.have.prop('selected', true)
+    })
+    it('is null when all options disabled', () => {
+      const disabledOptions = options.map((o) => ({ ...o, disabled: true }))
+
+      wrapperRender(<Dropdown options={disabledOptions} selection />)
+        .should.not.have.descendants('.selected')
+    })
     it('is set when clicking an item', () => {
       // random item, skip the first as its selected by default
       const randomIndex = 1 + _.random(options.length - 2)
@@ -137,7 +158,7 @@ describe('Dropdown Component', () => {
         .find('DropdownItem')
         .at(randomIndex)
         .simulate('click', nativeEvent)
-        .should.have.not.prop('selected', true)
+        .should.not.have.prop('selected', true)
 
       dropdownMenuIsOpen()
     })
@@ -298,23 +319,6 @@ describe('Dropdown Component', () => {
       domEvent.keyDown(document, { key: 'Enter' })
 
       item.should.have.prop('active', true)
-    })
-    it('does not become active on enter when disabled', () => {
-      const disabledOptions = _.map(options, (o) => ({ ...o, disabled: true }))
-      const item = wrapperMount(<Dropdown options={disabledOptions} selection />)
-        .simulate('click')
-        .find('DropdownItem')
-        .at(0)
-
-      // initial item props
-      item.should.have.prop('selected', true)
-      item.should.have.prop('active', false)
-
-      // attempt to make active
-      domEvent.keyDown(document, { key: 'Enter' })
-
-      item.should.have.prop('active', false)
-      dropdownMenuIsOpen()
     })
     it('closes the menu', () => {
       wrapperMount(<Dropdown options={options} selection />)
