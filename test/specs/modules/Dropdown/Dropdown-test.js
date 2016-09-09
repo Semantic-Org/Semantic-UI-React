@@ -115,6 +115,27 @@ describe('Dropdown Component', () => {
         .first()
         .should.have.prop('selected', true)
     })
+    it('defaults to the first non-disabled item', () => {
+      options[0].disabled = true
+      wrapperShallow(<Dropdown options={options} selection />)
+
+      // selection moved to second item
+      wrapper
+        .find('DropdownItem')
+        .first()
+        .should.have.prop('selected', false)
+
+      wrapper
+        .find('DropdownItem')
+        .at(1)
+        .should.have.prop('selected', true)
+    })
+    it('is null when all options disabled', () => {
+      const disabledOptions = options.map((o) => ({ ...o, disabled: true }))
+
+      wrapperRender(<Dropdown options={disabledOptions} selection />)
+        .should.not.have.descendants('.selected')
+    })
     it('is set when clicking an item', () => {
       // random item, skip the first as its selected by default
       const randomIndex = 1 + _.random(options.length - 2)
@@ -124,6 +145,22 @@ describe('Dropdown Component', () => {
         .at(randomIndex)
         .simulate('click')
         .should.have.prop('selected', true)
+    })
+    it('is ignored when clicking a disabled item', () => {
+      // random item, skip the first as its selected by default
+      const randomIndex = 1 + _.random(options.length - 2)
+      const nativeEvent = { nativeEvent: { stopImmediatePropagation: _.noop } }
+
+      options[randomIndex].disabled = true
+
+      wrapperMount(<Dropdown options={options} selection />)
+        .simulate('click', nativeEvent)
+        .find('DropdownItem')
+        .at(randomIndex)
+        .simulate('click', nativeEvent)
+        .should.not.have.prop('selected', true)
+
+      dropdownMenuIsOpen()
     })
     it('moves down on arrow down when open', () => {
       wrapperMount(<Dropdown options={options} selection />)
@@ -174,6 +211,29 @@ describe('Dropdown Component', () => {
       const opts = [
         { text: 'a1', value: 'a1' },
         { text: 'skip this one', value: 'skip this one' },
+        { text: 'a2', value: 'a2' },
+      ]
+      // search for 'a'
+      wrapperMount(<Dropdown options={opts} search selection />)
+        .simulate('click')
+        .find('input.search')
+        .simulate('change', { target: { value: 'a' } })
+
+      wrapper
+        .find('.selected')
+        .should.contain.text('a1')
+
+      // move selection down
+      domEvent.keyDown(document, { key: 'ArrowDown' })
+
+      wrapper
+        .find('.selected')
+        .should.contain.text('a2')
+    })
+    it('skips over disabled items', () => {
+      const opts = [
+        { text: 'a1', value: 'a1' },
+        { text: 'skip this one', value: 'skip this one', disabled: true },
         { text: 'a2', value: 'a2' },
       ]
       // search for 'a'

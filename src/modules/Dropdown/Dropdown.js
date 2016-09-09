@@ -461,13 +461,16 @@ export default class Dropdown extends Component {
     debug('handleItemClick()')
     debug(value)
     const { multiple, onAddItem, options } = this.props
+    const item = this.getItemByValue(value) || {}
 
     // prevent toggle() in handleClick()
     e.stopPropagation()
-    // prevent closeOnDocumentClick() if multiple
-    if (multiple) {
+    // prevent closeOnDocumentClick() if multiple or item is disabled
+    if (multiple || item.disabled) {
       e.nativeEvent.stopImmediatePropagation()
     }
+
+    if (item.disabled) return
 
     // notify the onAddItem prop if this is a new value
     if (onAddItem && !_.some(options, { value })) onAddItem(value)
@@ -519,7 +522,7 @@ export default class Dropdown extends Component {
     if (search && newQuery && !open) this.open()
 
     this.setState({
-      selectedIndex: 0,
+      selectedIndex: this.getEnabledIndices()[0],
       searchQuery: newQuery,
     })
   }
@@ -528,9 +531,11 @@ export default class Dropdown extends Component {
   // Getters
   // ----------------------------------------
 
-  getMenuOptions = () => {
+  // There are times when we need to calculate the options based on a value
+  // that hasn't yet been persisted to state.
+  getMenuOptions = (value = this.state.value) => {
     const { multiple, search, allowAdditions, additionPosition, additionLabel, options } = this.props
-    const { searchQuery, value } = this.state
+    const { searchQuery } = this.state
 
     let filteredOptions = options
 
@@ -569,6 +574,15 @@ export default class Dropdown extends Component {
     return _.get(options, `[${selectedIndex}]`)
   }
 
+  getEnabledIndices = (givenOptions) => {
+    const options = givenOptions || this.getMenuOptions()
+
+    return _.reduce(options, (memo, item, index) => {
+      if (!item.disabled) memo.push(index)
+      return memo
+    }, [])
+  }
+
   getItemByValue = (value) => {
     const { options } = this.props
     return _.find(options, { value })
@@ -589,27 +603,34 @@ export default class Dropdown extends Component {
     debug('value', value)
     const { multiple } = this.props
     const { selectedIndex } = this.state
-    const options = this.getMenuOptions()
+    const options = this.getMenuOptions(value)
+    const enabledIndicies = this.getEnabledIndices(options)
     const newState = {
       searchQuery: '',
     }
 
     // update the selected index
     if (!selectedIndex) {
+      const firstIndex = enabledIndicies[0]
+
       // Select the currently active item, if none, use the first item.
       // Multiple selects remove active items from the list,
       // their initial selected index should be 0.
-      newState.selectedIndex = multiple ? 0 : this.getMenuItemIndexByValue(value || _.get(options, '[0].value'))
+      newState.selectedIndex = multiple
+        ? firstIndex
+        : this.getMenuItemIndexByValue(value || _.get(options, `[${firstIndex}].value`))
     } else if (multiple) {
       // multiple selects remove options from the menu as they are made active
       // keep the selected index within range of the remaining items
       if (selectedIndex >= options.length - 1) {
-        newState.selectedIndex = selectedIndex - 1
+        newState.selectedIndex = enabledIndicies[enabledIndicies.length - 1]
       }
     } else {
+      const activeIndex = this.getMenuItemIndexByValue(value)
+
       // regular selects can only have one active item
       // set the selected index to the currently active item
-      newState.selectedIndex = this.getMenuItemIndexByValue(value)
+      newState.selectedIndex = _.includes(enabledIndicies, activeIndex) ? activeIndex : undefined
     }
 
     this.trySetState({ value }, newState)
@@ -630,19 +651,23 @@ export default class Dropdown extends Component {
     this.onChange(e, newValue)
   }
 
-  moveSelectionBy = (offset) => {
+  moveSelectionBy = (offset, startIndex = this.state.selectedIndex) => {
     debug('moveSelectionBy()')
     debug(`offset: ${offset}`)
-    const { selectedIndex } = this.state
 
     const options = this.getMenuOptions()
     const lastIndex = options.length - 1
 
+    // Prevent infinite loop
+    if (_.every(options, 'disabled')) return
+
     // next is after last, wrap to beginning
     // next is before first, wrap to end
-    let nextIndex = selectedIndex + offset
+    let nextIndex = startIndex + offset
     if (nextIndex > lastIndex) nextIndex = 0
     else if (nextIndex < 0) nextIndex = lastIndex
+
+    if (options[nextIndex].disabled) return this.moveSelectionBy(offset, nextIndex)
 
     this.setState({ selectedIndex: nextIndex })
     this.scrollSelectedItemIntoView()
@@ -826,6 +851,7 @@ export default class Dropdown extends Component {
         selected={selectedIndex === i}
         onMouseDown={e => e.preventDefault()} // prevent default to allow item select without closing on blur
         {...opt}
+        style={{ ...opt.style, pointerEvents: 'all' }} // Needed for handling click events on disabled items
       />
     ))
   }

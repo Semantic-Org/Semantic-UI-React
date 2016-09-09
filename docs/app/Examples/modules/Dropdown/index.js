@@ -46,6 +46,9 @@ const DropdownExamples = () => (
         description='A disabled dropdown menu or item does not allow user interaction'
         examplePath='modules/Dropdown/States/Disabled'
       />
+      <ComponentExample
+        examplePath='modules/Dropdown/States/DisabledItem'
+      />
     </ExampleSection>
   </div>
 )
