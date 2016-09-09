@@ -2,6 +2,7 @@ import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
 import {
+  customPropTypes,
   getElementType,
   getUnhandledProps,
   META,
@@ -19,8 +20,8 @@ import { Icon, Image } from '../'
  */
 function Label(props) {
   const {
-    attached, basic, children, color, corner, className, circular, detail, detailLink, floating, horizontal,
-    icon, image, link, onClick, onDetailClick, onRemove, pointing, removable, ribbon, size, tag, text,
+    attached, basic, children, color, corner, className, circular, detail, detailAs, empty, floating, horizontal,
+    icon, image, onClick, onDetailClick, onRemove, pointing, removable, ribbon, size, tag, content,
   } = props
 
   const handleClick = e => onClick && onClick(e, props)
@@ -31,31 +32,30 @@ function Label(props) {
     size,
     color,
     useKeyOnly(basic, 'basic'),
+    useKeyOnly(circular, 'circular'),
     useKeyOnly(floating, 'floating'),
     useKeyOnly(horizontal, 'horizontal'),
+    useKeyOnly(empty, 'empty'),
     useKeyOnly(tag, 'tag'),
     useValueAndKey(attached, 'attached'),
     useKeyOrValueAndKey(corner, 'corner'),
     useKeyOrValueAndKey(pointing, 'pointing'),
     useKeyOrValueAndKey(ribbon, 'ribbon'),
-    circular && (children && 'circular' || 'empty circular'),
     // TODO how to handle image child with no image class? there are two image style labels.
     (image || childrenUtils.someByType(children, Image) || childrenUtils.someByType(children, 'img')) && 'image',
     'label',
     className
   )
 
-  const DetailComponent = (detailLink || onDetailClick) && 'a' || 'div'
-  const ElementType = getElementType(Label, props, () => {
-    if (image || link || onClick) return 'a'
-  })
+  const DetailComponent = detailAs || 'div'
+  const ElementType = getElementType(Label, props)
   const rest = getUnhandledProps(Label, props)
 
   return (
     <ElementType className={classes} onClick={handleClick} {...rest}>
       {createIcon(icon)}
       {createImage(image)}
-      {text}
+      {content}
       {children}
       {detail && (
         <DetailComponent className='detail' onClick={handleDetailClick}>{detail}</DetailComponent>
@@ -93,8 +93,11 @@ Label.propTypes = {
   /** A label can reduce its complexity. */
   basic: PropTypes.bool,
 
-  /** Primary content of the label, same as text. */
-  children: PropTypes.node,
+  /** Primary content of the label, same as content. */
+  children: customPropTypes.every([
+    customPropTypes.disallow(['icon', 'image', 'content']),
+    PropTypes.node,
+  ]),
 
   /** Classes to add to the label className. */
   className: PropTypes.string,
@@ -111,8 +114,17 @@ Label.propTypes = {
   /** Additional text with less emphasis. */
   detail: PropTypes.string,
 
-  /** Format the detail as a link. */
-  detailLink: PropTypes.bool,
+  /** An element type to render the 'detail' as (string or function). */
+  detailAs: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.func,
+  ]),
+
+  /** Formats the label as a dot. */
+  empty: customPropTypes.every([
+    customPropTypes.demand(['circular']),
+    PropTypes.bool,
+  ]),
 
   /** Format a label to align better alongside text. */
   horizontal: PropTypes.bool,
@@ -120,7 +132,7 @@ Label.propTypes = {
   /** Float above another element in the upper right corner. */
   floating: PropTypes.bool,
 
-  /** Make the label circular, or a dot if it is empty. */
+  /** Make the label circular, or a dot when used with 'empty' prop. */
   circular: PropTypes.bool,
 
   /** Add an icon by icon name or pass an <Icon /> */
@@ -134,9 +146,6 @@ Label.propTypes = {
     PropTypes.string,
     PropTypes.element,
   ]),
-
-  /** Format the label as a link on hover. */
-  link: PropTypes.bool,
 
   /** Adds the link style when present, called with (event, props). */
   onClick: PropTypes.func,
@@ -165,8 +174,8 @@ Label.propTypes = {
   /** Format the label like a product tag. */
   tag: PropTypes.bool,
 
-  /** Primary text of the label, same as children. */
-  text: PropTypes.node,
+  /** Primary content of the label, same as children. */
+  content: PropTypes.node,
 }
 
 export default Label

@@ -13,6 +13,7 @@ describe('Label Component', () => {
 
   common.propKeyOnlyToClassName(Label, 'basic')
   common.propKeyOnlyToClassName(Label, 'circular')
+  common.propKeyOnlyToClassName(Label, 'empty')
   common.propKeyOnlyToClassName(Label, 'floating')
   common.propKeyOnlyToClassName(Label, 'horizontal')
   common.propKeyOnlyToClassName(Label, 'tag')
@@ -33,23 +34,17 @@ describe('Label Component', () => {
       .should.have.tagName('div')
   })
 
-  describe('(empty) circular', () => {
-    it('is added to className when there are no children', () => {
-      shallow(<Label circular />)
-        .should.have.className('empty circular')
-    })
-
-    it('is not added to className when there are children', () => {
-      shallow(<Label circular>Child</Label>)
-        .should.not.have.className('empty circular')
-    })
-  })
-
   describe('detail', () => {
     it('renders detail as a div', () => {
       shallow(<Label detail={faker.hacker.noun()} />)
         .find('.detail')
         .should.have.tagName('div')
+    })
+
+    it('renders detail using component from detailAs prop', () => {
+      shallow(<Label detail={faker.hacker.noun()} detailAs='a' />)
+        .find('.detail')
+        .should.have.tagName('a')
     })
 
     it('has no detail when not defined', () => {
@@ -69,19 +64,6 @@ describe('Label Component', () => {
       shallow(<Label detail={detail} />)
         .find('.detail')
         .should.contain.text(detail)
-    })
-  })
-
-  describe('detailLink', () => {
-    it('has no detail when not defined', () => {
-      shallow(<Label />)
-        .should.not.have.descendants('.detail')
-    })
-
-    it('renders detail as an a tag', () => {
-      shallow(<Label detail={faker.hacker.noun()} detailLink />)
-        .find('.detail')
-        .should.have.tagName('a')
     })
   })
 
@@ -129,27 +111,7 @@ describe('Label Component', () => {
     })
   })
 
-  describe('link', () => {
-    it('does not render label as an "a" when not defined', () => {
-      shallow(<Label />)
-        .should.not.have.tagName('a')
-    })
-
-    it('renders label as an "a"', () => {
-      shallow(<Label link />)
-        .should.have.tagName('a')
-    })
-  })
-
   describe('onClick', () => {
-    it('does not render as an "a" when not defined', () => {
-      shallow(<Label />)
-        .should.not.have.tagName('a')
-    })
-    it('renders label as an "a"', () => {
-      shallow(<Label onClick={() => null} />)
-        .should.have.tagName('a')
-    })
     it('is called when label is clicked', () => {
       const props = {
         onClick: sandbox.spy(),
@@ -191,11 +153,6 @@ describe('Label Component', () => {
   })
 
   describe('onDetailClick', () => {
-    it('renders detail as an a tag', () => {
-      shallow(<Label detail={faker.hacker.noun()} onDetailClick={() => null} />)
-        .should.have.descendants('a.detail')
-    })
-
     it('is called when detail is clicked', () => {
       const props = {
         detail: faker.hacker.noun(),
@@ -225,18 +182,18 @@ describe('Label Component', () => {
     })
   })
 
-  describe('text', () => {
-    it('has no text by default', () => {
+  describe('content', () => {
+    it('has no content by default', () => {
       shallow(<Label />)
         .text()
         .should.be.empty()
     })
 
     it('adds the value as children', () => {
-      const text = faker.hacker.phrase()
-      shallow(<Label text={text} />)
+      const content = faker.hacker.phrase()
+      shallow(<Label content={content} />)
         .children()
-        .should.contain.text(text)
+        .should.contain.text(content)
     })
   })
 })
