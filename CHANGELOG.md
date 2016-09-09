@@ -1,5 +1,16 @@
 # Change Log
 
+## [v0.42.6](https://github.com/TechnologyAdvice/stardust/tree/v0.42.6) (2016-09-09)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.42.5...v0.42.6)
+
+**Implemented enhancements:**
+
+- Dropdown: support custom search function [\#469](https://github.com/TechnologyAdvice/stardust/issues/469)
+
+**Merged pull requests:**
+
+- feat\(Dropdown\): support disabled items [\#482](https://github.com/TechnologyAdvice/stardust/pull/482) ([jcarbo](https://github.com/jcarbo))
+
 ## [v0.42.5](https://github.com/TechnologyAdvice/stardust/tree/v0.42.5) (2016-09-09)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.42.4...v0.42.5)
 
