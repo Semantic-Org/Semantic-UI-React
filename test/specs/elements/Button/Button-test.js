@@ -23,7 +23,7 @@ describe('Button', () => {
   common.propKeyOnlyToClassName(Button, 'fluid')
   common.implementsIconProp(Button)
   common.propKeyOnlyToClassName(Button, 'inverted')
-  // common.propKeyOnlyToClassName(Button, 'labeled')
+  common.propKeyOrValueToClassName(Button, 'labeled')
   common.propKeyOnlyToClassName(Button, 'loading')
   common.propKeyOnlyToClassName(Button, 'primary')
   common.propKeyOnlyToClassName(Button, 'negative')
