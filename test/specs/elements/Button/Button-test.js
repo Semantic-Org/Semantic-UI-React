@@ -1,19 +1,21 @@
 import React from 'react'
 
 import Button from 'src/elements/Button/Button'
+import ButtonContent from 'src/elements/Button/ButtonContent'
 import ButtonGroup from 'src/elements/Button/ButtonGroup'
+import ButtonOr from 'src/elements/Button/ButtonOr'
 import * as common from 'test/specs/commonTests'
 import { sandbox } from 'test/utils'
 
 describe('Button', () => {
   common.isConformant(Button)
   common.hasUIClassName(Button)
-  common.hasSubComponents(Button, [ButtonGroup])
+  common.hasSubComponents(Button, [ButtonContent, ButtonGroup, ButtonOr])
   common.implementsIconProp(Button)
   common.implementsLabelProp(Button)
 
   common.propKeyOnlyToClassName(Button, 'active')
-  common.propKeyOnlyToClassName(Button, 'animated')
+  common.propKeyOrValueToClassName(Button, 'animated')
   common.propKeyOrValueToClassName(Button, 'attached')
   common.propKeyOnlyToClassName(Button, 'basic')
   common.propKeyOnlyToClassName(Button, 'circular')

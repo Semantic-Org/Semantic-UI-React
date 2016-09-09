@@ -1,28 +1,28 @@
 import React from 'react'
-import { Button } from 'stardust'
+import { Button, Icon } from 'stardust'
 
 const ButtonSocialExample = () => (
   <div>
-    <Button color='facebook' icon='facebook'>
-      Facebook
+    <Button color='facebook'>
+      <Icon name='facebook' /> Facebook
     </Button>
-    <Button color='twitter' icon='twitter'>
-      Twitter
+    <Button color='twitter'>
+      <Icon name='twitter' /> Twitter
     </Button>
-    <Button color='google plus' icon='google plus'>
-      Google Plus
+    <Button color='google plus'>
+      <Icon name='google plus' /> Google Plus
     </Button>
-    <Button color='vk' icon='vk'>
-      VK
+    <Button color='vk'>
+      <Icon name='vk' /> VK
     </Button>
-    <Button color='linkedin' icon='linkedin'>
-      LinkedIn
+    <Button color='linkedin'>
+      <Icon name='linkedin' /> LinkedIn
     </Button>
-    <Button color='instagram' icon='instagram'>
-      Instagram
+    <Button color='instagram'>
+      <Icon name='instagram' /> Instagram
     </Button>
-    <Button color='youtube' icon='youtube'>
-      YouTube
+    <Button color='youtube'>
+      <Icon name='youtube' /> YouTube
     </Button>
   </div>
 )

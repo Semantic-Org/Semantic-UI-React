@@ -4,7 +4,7 @@ import { Button } from 'stardust'
 const ButtonConditionalsExample = () => (
   <Button.Group>
     <Button>Cancel</Button>
-    <div className='or' />
+    <Button.Or />
     <Button positive>Save</Button>
   </Button.Group>
 )

@@ -13,7 +13,9 @@ import {
   useValueAndKey,
 } from '../../lib'
 import { createIcon, createLabel } from '../../factories'
+import ButtonContent from './ButtonContent'
 import ButtonGroup from './ButtonGroup'
+import ButtonOr from './ButtonOr'
 
 const debug = makeDebugger('button')
 
@@ -37,7 +39,7 @@ function Button(props) {
     color,
     size,
     useKeyOnly(active, 'active'),
-    useKeyOnly(animated, 'animated'),
+    useKeyOrValueAndKey(animated, 'animated'),
     useKeyOrValueAndKey(attached, 'attached'),
     useKeyOnly(basic, 'basic'),
     useKeyOnly(circular, 'circular'),
@@ -110,12 +112,15 @@ function Button(props) {
   )
 }
 
+Button.Content = ButtonContent
 Button.Group = ButtonGroup
+Button.Or = ButtonOr
 
 Button._meta = {
   name: 'Button',
   type: META.TYPES.ELEMENT,
   props: {
+    animated: ['fade', 'vertical'],
     attached: ['left', 'right', 'top', 'bottom'],
     color: [
       ...SUI.COLORS,
@@ -144,7 +149,10 @@ Button.propTypes = {
   active: PropTypes.bool,
 
   /** A button can animate to show hidden content */
-  animated: PropTypes.bool,
+  animated: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.oneOf(Button._meta.props.animated),
+  ]),
 
   /** A button can be attached to the top or bottom of other content */
   attached: PropTypes.oneOf(Button._meta.props.attached),
@@ -157,7 +165,13 @@ Button.propTypes = {
     PropTypes.node,
     customPropTypes.disallow(['label']),
     customPropTypes.givenProps(
-      { icon: PropTypes.bool.isRequired },
+      {
+        icon: PropTypes.oneOfType([
+          PropTypes.string.isRequired,
+          PropTypes.object.isRequired,
+          PropTypes.element.isRequired,
+        ]),
+      },
       customPropTypes.disallow(['icon']),
     ),
   ]),

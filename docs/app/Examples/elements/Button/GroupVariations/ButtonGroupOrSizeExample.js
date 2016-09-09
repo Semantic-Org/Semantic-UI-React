@@ -4,7 +4,7 @@ import { Button } from 'stardust'
 const ButtonGroupOrSizeExample = () => (
   <Button.Group size='large'>
     <Button>One</Button>
-    <div className='or' />
+    <Button.Or />
     <Button>Three</Button>
   </Button.Group>
 )
