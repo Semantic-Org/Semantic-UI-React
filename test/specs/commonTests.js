@@ -514,13 +514,13 @@ export const implementsWidthProp = (Component, options, requiredProps = {}) => {
 
 export const implementsIconProp = (Component, requiredProps = {}) => {
   const iconName = faker.hacker.noun()
-  const assertValid = (element) => {
+  const assertValid = (element, expectedName = iconName) => {
     const wrapper = shallow(element)
     wrapper
       .should.have.descendants('Icon')
     wrapper
       .find('Icon')
-      .should.have.prop('name', iconName)
+      .should.have.prop('name', expectedName)
   }
 
   describe('icon (common)', () => {
@@ -528,9 +528,20 @@ export const implementsIconProp = (Component, requiredProps = {}) => {
 
     _noDefaultClassNameFromProp(Component, 'icon')
 
-    it('has no i when not defined', () => {
-      shallow(<Component />)
-        .should.not.have.descendants('i')
+    if (Component.defaultProps && Component.defaultProps.icon) {
+      it('has default Icon when not defined', () => {
+        assertValid(<Component />, Component.defaultProps.icon)
+      })
+    } else {
+      it('has no Icon when not defined', () => {
+        shallow(<Component />)
+          .should.not.have.descendants('Icon')
+      })
+    }
+
+    it('has no Icon when null', () => {
+      shallow(<Component icon={null} />)
+        .should.not.have.descendants('Icon')
     })
 
     it('accepts an Icon instance', () => {
@@ -556,9 +567,14 @@ export const implementsImageProp = (Component, requiredProps = {}) => {
 
     _noDefaultClassNameFromProp(Component, 'image')
 
-    it('has no img when prop is not defined', () => {
+    it('has no Image when prop is not defined', () => {
       shallow(<Component />)
-        .should.not.have.descendants('img')
+        .should.not.have.descendants('Image')
+    })
+
+    it('has no Image when prop is null', () => {
+      shallow(<Component image={null} />)
+        .should.not.have.descendants('Image')
     })
 
     it('adds a img as first child', () => {

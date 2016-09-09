@@ -106,11 +106,6 @@ describe('Dropdown Component', () => {
       wrapperRender(<Dropdown />)
         .should.contain.descendants('.dropdown.icon')
     })
-    it('allows disabling icon via null', () => {
-      Dropdown.defaultProps.icon.should.equal('dropdown')
-      wrapperRender(<Dropdown icon={null} />)
-        .should.not.contain.descendants('.icon')
-    })
   })
 
   describe('selected item', () => {
