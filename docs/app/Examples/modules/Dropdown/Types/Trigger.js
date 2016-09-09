@@ -8,12 +8,11 @@ const trigger = (
   </span>
 )
 
-const DropdownExample = () => (
+const DropdownTriggerExample = () => (
   <Dropdown trigger={trigger}>
     <Dropdown.Menu>
       <Dropdown.Item disabled>
-        <div>Signed In as Bob Smith</div>
-        <strong>Bob Smith</strong>
+        Signed in as <strong>Bob Smith</strong>
       </Dropdown.Item>
       <Dropdown.Divider />
       <Dropdown.Item>Your Profile</Dropdown.Item>
@@ -28,4 +27,4 @@ const DropdownExample = () => (
   </Dropdown>
 )
 
-export default DropdownExample
+export default DropdownTriggerExample
