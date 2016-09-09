@@ -104,6 +104,12 @@ export default class Dropdown extends Component {
     /** Name of the hidden input which holds the value. */
     name: PropTypes.string,
 
+    /** Custom element to trigger the menu to become visible. Takes place of 'text'. */
+    trigger: customPropTypes.every([
+      customPropTypes.disallow(['selection', 'text']),
+      PropTypes.node,
+    ]),
+
     /**
      * Allow user additions to the list of options (boolean).
      * Requires the use of `selection`, `options` and `search`.
@@ -861,6 +867,7 @@ export default class Dropdown extends Component {
       error,
       disabled,
       scrolling,
+      trigger,
     } = this.props
 
     // Classes
@@ -916,7 +923,7 @@ export default class Dropdown extends Component {
         {this.renderLabels()}
         {this.renderSearchInput()}
         {this.renderSearchSizer()}
-        {this.renderText()}
+        {trigger || this.renderText()}
         {createIcon(icon)}
         {this.renderMenu()}
       </ElementType>

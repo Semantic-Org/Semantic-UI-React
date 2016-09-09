@@ -370,6 +370,24 @@ describe('Dropdown Component', () => {
     })
   })
 
+  describe('trigger', () => {
+    it('displays the trigger', () => {
+      const text = 'Hey there'
+      const trigger = <div className='trigger'>{text}</div>
+
+      wrapperRender(<Dropdown options={options} trigger={trigger} />)
+        .find('.trigger')
+        .should.contain.text(text)
+    })
+    it('ignores the text prop', () => {
+      const text = faker.hacker.phrase()
+      const trigger = <div className='trigger'>{text}</div>
+
+      wrapperRender(<Dropdown options={options} trigger={trigger} text={text} />)
+        .should.not.have.descendants('.text')
+    })
+  })
+
   describe('menu', () => {
     // DO NOT simulate events on 'document', use the 'domEvent` util
     // simulate() only uses React's internal event system
