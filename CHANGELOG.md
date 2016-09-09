@@ -1,5 +1,16 @@
 # Change Log
 
+## [v0.42.3](https://github.com/TechnologyAdvice/stardust/tree/v0.42.3) (2016-09-09)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.42.2...v0.42.3)
+
+**Implemented enhancements:**
+
+- Dropdown: Support arbitrary element for `text` [\#477](https://github.com/TechnologyAdvice/stardust/issues/477)
+
+**Merged pull requests:**
+
+- Dropdown: Custom trigger element [\#479](https://github.com/TechnologyAdvice/stardust/pull/479) ([jcarbo](https://github.com/jcarbo))
+
 ## [v0.42.2](https://github.com/TechnologyAdvice/stardust/tree/v0.42.2) (2016-09-08)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.42.1...v0.42.2)
 
