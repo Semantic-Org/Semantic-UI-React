@@ -38,4 +38,4 @@ export const createImg = createFactory('img', value => ({ src: value }))
  * @param {object} [props = {}] Optional additional props.
  * @returns {ReactElement|undefined}
  */
-export const createLabel = createFactory(Label, value => ({ text: value }))
+export const createLabel = createFactory(Label, value => ({ content: value }))
