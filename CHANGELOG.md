@@ -1,5 +1,24 @@
 # Change Log
 
+## [v0.43.1](https://github.com/TechnologyAdvice/stardust/tree/v0.43.1) (2016-09-10)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.43.0...v0.43.1)
+
+**Implemented enhancements:**
+
+- Dropdown: support `disabled` items [\#478](https://github.com/TechnologyAdvice/stardust/issues/478)
+- refactor\(Label\): update props to the latest specs [\#474](https://github.com/TechnologyAdvice/stardust/issues/474)
+- Rename plural group components \(Fields\) -\> Group [\#203](https://github.com/TechnologyAdvice/stardust/issues/203)
+- feat\(Button\): support all features, update to v1 API [\#295](https://github.com/TechnologyAdvice/stardust/pull/295) ([jamiehill](https://github.com/jamiehill))
+
+**Fixed bugs:**
+
+- Create attached button element [\#46](https://github.com/TechnologyAdvice/stardust/issues/46)
+
+**Merged pull requests:**
+
+- chore\(karma\): clean and format stacktraces [\#490](https://github.com/TechnologyAdvice/stardust/pull/490) ([levithomason](https://github.com/levithomason))
+- feat\(ComponentProps\): sort doc props alphabetically [\#489](https://github.com/TechnologyAdvice/stardust/pull/489) ([levithomason](https://github.com/levithomason))
+
 ## [v0.43.0](https://github.com/TechnologyAdvice/stardust/tree/v0.43.0) (2016-09-09)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.42.6...v0.43.0)
 
