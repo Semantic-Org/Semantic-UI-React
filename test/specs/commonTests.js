@@ -561,14 +561,14 @@ export const implementsIconProp = (Component, requiredProps = {}) => {
 
 export const implementsLabelProp = (Component, requiredProps = {}) => {
   const labelText = faker.hacker.phrase()
-  const assertValid = (element) => {
+  const assertValid = (element, expectedText = labelText) => {
     const wrapper = shallow(element)
     wrapper
       .should.have.descendants('Label')
     wrapper
       .find('Label')
       .shallow()
-      .should.have.text(labelText)
+      .should.have.text(expectedText)
   }
 
   describe('label (common)', () => {
@@ -595,8 +595,9 @@ export const implementsLabelProp = (Component, requiredProps = {}) => {
     it('accepts Label text string', () => {
       assertValid(<Component {...requiredProps} label={labelText} />)
     })
+
     it('accepts a Label props object', () => {
-      assertValid(<Component {...requiredProps} label={{ text: labelText }} />)
+      assertValid(<Component {...requiredProps} label={{ children: labelText }} />)
     })
   })
 }

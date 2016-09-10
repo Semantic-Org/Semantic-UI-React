@@ -7,18 +7,18 @@ const ButtonLabeledExample = () => (
       <Button>
         <Icon name='heart' /> Like
       </Button>
-      <Label basic link>2,048</Label>
+      <Label as='a' basic>2,048</Label>
     </Button>
 
     <Button labeled='left'>
-      <Label basic pointing='right' link>2,048</Label>
+      <Label as='a' basic pointing='right'>2,048</Label>
       <Button>
         <Icon name='heart' /> Like
       </Button>
     </Button>
 
     <Button labeled='left'>
-      <Label basic link>2,048</Label>
+      <Label as='a' basic>2,048</Label>
       <Button icon>
         <Icon name='fork' />
       </Button>

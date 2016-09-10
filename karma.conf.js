@@ -1,3 +1,4 @@
+const _ = require('lodash')
 const { argv } = require('yargs')
 const config = require('./config')
 const webpackConfig = require('./webpack.config')
@@ -11,6 +12,43 @@ module.exports = (karmaConfig) => {
     files: [
       './test/tests.bundle.js',
     ],
+    formatError(msg) {
+      return msg
+        .split('\n')
+        .reduce((list, line) => {
+          // filter out node_modules
+          if (/~/.test(line)) return list
+
+          // indent the error beneath the it() message
+          let newLine = '  ' + line
+
+          if (newLine.includes('webpack:///')) {
+            // remove webpack:///
+            newLine = newLine.replace('webpack:///', '')
+
+            // remove bundle location, showing only the source location
+            newLine = newLine.slice(0, newLine.indexOf(' <- '))
+
+            // indent stacktrace beneath the error message
+            const indent = newLine.slice(0, newLine.search(/\S/)) + '  '
+
+            // rearrange line for better scanning
+            const [location, ln, col] = newLine.split(':').map(s => s.trim())
+            const pathCols = 71
+            const lineCols = 8
+
+            if (location.includes('@')) {
+              const [method, filePath] = location.split('@')
+              newLine = _.padEnd(`${indent}${filePath} @ ${method}()`, pathCols) + _.padStart(ln + ':' + col, lineCols)
+            } else {
+              newLine = _.padEnd(indent + location, pathCols) + _.padStart(ln + ':' + col, lineCols)
+            }
+          }
+
+          return list.concat(newLine)
+        }, [])
+        .join('\n')
+    },
     frameworks: [
       'phantomjs-shim',
       'mocha',
