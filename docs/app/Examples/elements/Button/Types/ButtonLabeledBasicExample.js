@@ -14,7 +14,7 @@ const ButtonLabeledExample = () => (
       <Button basic color='blue'>
         <Icon name='fork' /> Fork
       </Button>
-      <Label basic color='blue' pointing='left' link>1,048</Label>
+      <Label as='a' basic color='blue' pointing='left'>1,048</Label>
     </Button>
   </div>
 )
