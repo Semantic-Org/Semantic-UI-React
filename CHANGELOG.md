@@ -1,5 +1,13 @@
 # Change Log
 
+## [v0.43.3](https://github.com/TechnologyAdvice/stardust/tree/v0.43.3) (2016-09-12)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.43.2...v0.43.3)
+
+**Fixed bugs:**
+
+- Deprecated functional components throw TypeError: Cannot call a class as a function [\#367](https://github.com/TechnologyAdvice/stardust/issues/367)
+- fix\(deprecate\): handle functional components [\#494](https://github.com/TechnologyAdvice/stardust/pull/494) ([levithomason](https://github.com/levithomason))
+
 ## [v0.43.2](https://github.com/TechnologyAdvice/stardust/tree/v0.43.2) (2016-09-10)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.43.1...v0.43.2)
 
