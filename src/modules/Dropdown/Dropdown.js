@@ -821,10 +821,10 @@ export default class Dropdown extends Component {
       return (
         <Label
           key={item.value}
-          text={item.text}
+          as={'a'}
+          content={item.text}
           value={item.value}
           onRemove={this.handleLabelRemove}
-          link
         />
       )
     })

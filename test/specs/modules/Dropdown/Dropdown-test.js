@@ -654,7 +654,7 @@ describe('Dropdown Component', () => {
 
       wrapper
         .find('Label')
-        .should.have.prop('text', activeItem.text)
+        .should.have.prop('content', activeItem.text)
     })
     it('keeps the selection within the range of remaining options', () => {
       // items are removed as they are made active
