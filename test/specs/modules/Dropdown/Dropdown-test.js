@@ -100,7 +100,7 @@ describe('Dropdown Component', () => {
   // })
 
   describe('isMouseDown', () => {
-    it('tracks whhen the mouse is down', () => {
+    it('tracks when the mouse is down', () => {
       wrapperShallow(<Dropdown />)
         .simulate('mousedown')
 
