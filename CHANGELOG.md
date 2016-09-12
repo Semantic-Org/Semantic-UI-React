@@ -1,5 +1,16 @@
 # Change Log
 
+## [v0.43.2](https://github.com/TechnologyAdvice/stardust/tree/v0.43.2) (2016-09-10)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.43.1...v0.43.2)
+
+**Closed issues:**
+
+- Engine requirements in package.json are out of date [\#491](https://github.com/TechnologyAdvice/stardust/issues/491)
+
+**Merged pull requests:**
+
+- fix\(package\): remove bad engines versions [\#492](https://github.com/TechnologyAdvice/stardust/pull/492) ([davezuko](https://github.com/davezuko))
+
 ## [v0.43.1](https://github.com/TechnologyAdvice/stardust/tree/v0.43.1) (2016-09-10)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.43.0...v0.43.1)
 
@@ -437,10 +448,6 @@
 **Fixed bugs:**
 
 - Dropdown \(multiple\) search box does not grow with input [\#370](https://github.com/TechnologyAdvice/stardust/issues/370)
-
-**Closed issues:**
-
-- Transpilation \(?\) causes TypeError: Cannot call a class as a function [\#367](https://github.com/TechnologyAdvice/stardust/issues/367)
 
 **Merged pull requests:**
 
