@@ -1,5 +1,5 @@
-/* eslint-disable no-console */
 import _ from 'lodash'
+import React from 'react'
 
 /**
  * Show a deprecated warning for component props.
@@ -12,7 +12,9 @@ export const deprecateProps = (context, deprecated) => {
   if (process.env.NODE_ENV === 'production') return
   const warnings = _.pick(deprecated, _.keys(context.props))
   _.each(warnings, (val, key) => {
-    console.warn(`Stardust ${context.constructor.name} prop "${key}" is deprecated. ${val}`)
+    console.warn( // eslint-disable-line no-console
+      `Stardust \`${context.constructor.name}\` prop \`${key}\` is deprecated. ${val}`
+    )
   })
 }
 
@@ -24,13 +26,11 @@ export const deprecateProps = (context, deprecated) => {
  * @returns {DeprecatedComponent}
  */
 export const deprecateComponent = (name, warning, Replacement) => {
-  return class DeprecatedComponent extends Replacement {
-    constructor(...args) {
-      super(...args)
-      console.warn(warning
-        ? `Stardust component "${name}" is deprecated. ${warning}`
-        : `"${name}" will be removed in future versions. ${warning}`
-      )
-    }
+  return function DeprecatedComponent(props) {
+    console.warn( // eslint-disable-line no-console
+      `Stardust component \`${name}\` is deprecated and will be removed in future versions. ${warning}`
+    )
+
+    return <Replacement {...props} />
   }
 }
