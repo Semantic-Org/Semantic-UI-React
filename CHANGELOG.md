@@ -1,5 +1,12 @@
 # Change Log
 
+## [v0.44.0](https://github.com/TechnologyAdvice/stardust/tree/v0.44.0) (2016-09-13)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.43.3...v0.44.0)
+
+**Fixed bugs:**
+
+- refactor\(deprecate\): remove all deprecated [\#498](https://github.com/TechnologyAdvice/stardust/pull/498) ([levithomason](https://github.com/levithomason))
+
 ## [v0.43.3](https://github.com/TechnologyAdvice/stardust/tree/v0.43.3) (2016-09-12)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.43.2...v0.43.3)
 
