@@ -102,7 +102,7 @@ export default class Table extends Component {
 
     return Children.map(children, (column) => {
       const { dataKey, headerRenderer } = column.props
-      const content = headerRenderer ? headerRenderer(data[0]) : _.startCase(dataKey)
+      const content = headerRenderer ? headerRenderer(dataKey) : _.startCase(dataKey)
       const isSorted = sort.key === dataKey
       const onClick = () => this._handleSortHeaderChange(
         dataKey, sort.direction === 'ascending' ? 'descending' : 'ascending'
