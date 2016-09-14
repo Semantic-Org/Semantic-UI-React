@@ -98,7 +98,7 @@ export default class Table extends Component {
   }
 
   _getHeaders() {
-    const { children, data, sort } = this.props
+    const { children, sort } = this.props
 
     return Children.map(children, (column) => {
       const { dataKey, headerRenderer } = column.props
