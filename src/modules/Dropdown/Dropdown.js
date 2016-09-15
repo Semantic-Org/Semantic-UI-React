@@ -246,26 +246,24 @@ export default class Dropdown extends Component {
     super.componentWillReceiveProps(nextProps)
     debug('componentWillReceiveProps()')
     // TODO objectDiff still runs in prod, stop it
-    debug('changed props:', objectDiff(nextProps, this.props))
+    debug('to props:', objectDiff(this.props, nextProps))
 
     if (process.env.NODE_ENV !== 'production') {
       // in development, validate value type matches dropdown type
       const isNextValueArray = Array.isArray(nextProps.value)
       const hasValue = _.has(nextProps, 'value')
 
-      /* eslint-disable no-console */
       if (hasValue && nextProps.multiple && !isNextValueArray) {
-        console.error(
+        console.error( // eslint-disable-line no-console
           'Dropdown `value` must be an array when `multiple` is set.' +
           ` Received type: \`${Object.prototype.toString.call(nextProps.value)}\`.`,
         )
       } else if (hasValue && !nextProps.multiple && isNextValueArray) {
-        console.error(
+        console.error( // eslint-disable-line no-console
           'Dropdown `value` must not be an array when `multiple` is not set.' +
           ' Either set `multiple={true}` or use a string or number value.'
         )
       }
-      /* eslint-enable no-console */
     }
 
     if (!_.isEqual(nextProps.value, this.props.value)) {
@@ -277,10 +275,15 @@ export default class Dropdown extends Component {
   componentDidUpdate(prevProps, prevState) { // eslint-disable-line complexity
     debug('componentDidUpdate()')
     // TODO objectDiff still runs in prod, stop it
-    debug('changed state:', objectDiff(this.state, prevState))
+    debug('to state:', objectDiff(prevState, this.state))
 
     // focused / blurred
     if (!prevState.focus && this.state.focus) {
+      debug('dropdown focused')
+      if (!this.isMouseDown) {
+        debug('mouse is not down, opening')
+        this.open()
+      }
       if (!this.state.open) {
         document.addEventListener('keydown', this.openOnArrow)
         document.addEventListener('keydown', this.openOnSpace)
@@ -290,16 +293,21 @@ export default class Dropdown extends Component {
         document.addEventListener('keydown', this.removeItemOnBackspace)
       }
     } else if (prevState.focus && !this.state.focus) {
+      debug('dropdown blurred')
+      if (!this.isMouseDown) {
+        debug('mouse is not down, closing')
+        this.close()
+      }
       document.removeEventListener('keydown', this.openOnArrow)
       document.removeEventListener('keydown', this.openOnSpace)
       document.removeEventListener('keydown', this.moveSelectionOnKeyDown)
       document.removeEventListener('keydown', this.selectItemOnEnter)
       document.removeEventListener('keydown', this.removeItemOnBackspace)
-      this.close()
     }
 
     // opened / closed
     if (!prevState.open && this.state.open) {
+      debug('dropdown opened')
       this.open()
       document.addEventListener('keydown', this.closeOnEscape)
       document.addEventListener('keydown', this.moveSelectionOnKeyDown)
@@ -309,6 +317,7 @@ export default class Dropdown extends Component {
       document.removeEventListener('keydown', this.openOnArrow)
       document.removeEventListener('keydown', this.openOnSpace)
     } else if (prevState.open && !this.state.open) {
+      debug('dropdown closed')
       this.close()
       document.removeEventListener('keydown', this.closeOnEscape)
       document.removeEventListener('keydown', this.moveSelectionOnKeyDown)
@@ -447,9 +456,20 @@ export default class Dropdown extends Component {
   // Component Event Handlers
   // ----------------------------------------
 
+  handleMouseDown = () => {
+    debug('handleMouseDown()')
+    this.isMouseDown = true
+    document.addEventListener('mouseup', this.handleDocumentMouseUp)
+  }
+
+  handleDocumentMouseUp = () => {
+    debug('handleDocumentMouseUp()')
+    this.isMouseDown = false
+    document.removeEventListener('mouseup', this.handleDocumentMouseUp)
+  }
+
   handleClick = (e) => {
-    debug('handleClick()')
-    debug(e)
+    debug('handleClick()', e)
     const { onClick } = this.props
     if (onClick) onClick(e)
     // prevent closeOnDocumentClick()
@@ -492,11 +512,6 @@ export default class Dropdown extends Component {
     const { onFocus } = this.props
     if (onFocus) onFocus(e)
     this.setState({ focus: true })
-    // TODO
-    // handleFocus() is called on mouse down
-    // handleClick() it called on mouse up
-    // open() here is immediately toggled to close() by click
-    // this.open()
   }
 
   handleBlur = (e) => {
@@ -694,8 +709,9 @@ export default class Dropdown extends Component {
   open = () => {
     debug('open()')
     debug(`dropdown is ${this.state.open ? 'already' : 'not yet'} open`)
+    if (this.state.open) return
     const { search } = this.props
-    if (search) this.refs.search.focus()
+    if (search) this._search.focus()
 
     this.trySetState({
       open: true,
@@ -784,15 +800,13 @@ export default class Dropdown extends Component {
     return (
       <input
         value={searchQuery}
-        onBlur={this.handleBlur}
         onChange={this.handleSearchChange}
-        onFocus={this.handleFocus}
         className='search'
         name={[name, 'search'].join('-')}
         autoComplete='off'
         tabIndex='0'
         style={{ width: searchWidth }}
-        ref='search'
+        ref={c => (this._search = c)}
       />
     )
   }
@@ -849,9 +863,11 @@ export default class Dropdown extends Component {
         active={isActive(opt.value)}
         onClick={this.handleItemClick}
         selected={selectedIndex === i}
-        onMouseDown={e => e.preventDefault()} // prevent default to allow item select without closing on blur
+        // prevent default to allow item select without closing on blur
+        onMouseDown={e => e.preventDefault()}
         {...opt}
-        style={{ ...opt.style, pointerEvents: 'all' }} // Needed for handling click events on disabled items
+        // Needed for handling click events on disabled items
+        style={{ ...opt.style, pointerEvents: 'all' }}
       />
     ))
   }
@@ -934,23 +950,20 @@ export default class Dropdown extends Component {
       'dropdown',
     )
 
-    const conditionalProps = search ? null : {
-      onBlur: this.handleBlur,
-      onClick: this.handleClick,
-      onFocus: this.handleFocus,
-      tabIndex: 0,
-    }
-
     const rest = getUnhandledProps(Dropdown, this.props)
     const ElementType = getElementType(Dropdown, this.props)
 
     return (
       <ElementType
         {...rest}
-        {...conditionalProps}
-        onChange={this.onChange}
-        onClick={this.handleClick}
         className={classes}
+        onBlur={this.handleBlur}
+        onClick={this.handleClick}
+        onMouseDown={this.handleMouseDown}
+        onFocus={this.handleFocus}
+        onChange={this.onChange}
+        tabIndex={search ? undefined : 0}
+        ref={c => (this._dropdown = c)}
       >
         {this.renderHiddenInput()}
         {this.renderLabels()}
