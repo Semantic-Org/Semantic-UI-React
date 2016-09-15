@@ -1105,6 +1105,7 @@
 **Merged pull requests:**
 
 - Setup CircleCI [\#124](https://github.com/TechnologyAdvice/stardust/pull/124) ([levithomason](https://github.com/levithomason))
+- Segment Examples [\#113](https://github.com/TechnologyAdvice/stardust/pull/113) ([jhabdas](https://github.com/jhabdas))
 
 ## [v0.8.0](https://github.com/TechnologyAdvice/stardust/tree/v0.8.0) (2015-11-24)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.7.1...v0.8.0)
@@ -1122,6 +1123,7 @@
 
 **Merged pull requests:**
 
+- Add Statistic and Statistics components [\#117](https://github.com/TechnologyAdvice/stardust/pull/117) ([levithomason](https://github.com/levithomason))
 - Organize doc menu into groups [\#110](https://github.com/TechnologyAdvice/stardust/pull/110) ([levithomason](https://github.com/levithomason))
 - Feature/header component [\#109](https://github.com/TechnologyAdvice/stardust/pull/109) ([kyleturco](https://github.com/kyleturco))
 - Update build and deploy [\#108](https://github.com/TechnologyAdvice/stardust/pull/108) ([levithomason](https://github.com/levithomason))
@@ -1179,6 +1181,10 @@
 ## [v0.6.3](https://github.com/TechnologyAdvice/stardust/tree/v0.6.3) (2015-10-22)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.6.2...v0.6.3)
 
+**Merged pull requests:**
+
+- update to react 14 [\#83](https://github.com/TechnologyAdvice/stardust/pull/83) ([levithomason](https://github.com/levithomason))
+
 ## [v0.6.2](https://github.com/TechnologyAdvice/stardust/tree/v0.6.2) (2015-10-22)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.6.1...v0.6.2)
 
@@ -1187,6 +1193,7 @@
 
 **Merged pull requests:**
 
+- Add dist to package [\#82](https://github.com/TechnologyAdvice/stardust/pull/82) ([levithomason](https://github.com/levithomason))
 - Build library and docs on deploy [\#81](https://github.com/TechnologyAdvice/stardust/pull/81) ([levithomason](https://github.com/levithomason))
 
 ## [v0.6.0](https://github.com/TechnologyAdvice/stardust/tree/v0.6.0) (2015-10-22)
@@ -1203,6 +1210,8 @@
 - Add component meta data [\#77](https://github.com/TechnologyAdvice/stardust/pull/77) ([levithomason](https://github.com/levithomason))
 - Feature/add sd image [\#74](https://github.com/TechnologyAdvice/stardust/pull/74) ([athurman](https://github.com/athurman))
 - Feature/add sd list item [\#73](https://github.com/TechnologyAdvice/stardust/pull/73) ([athurman](https://github.com/athurman))
+- Feature/input examples [\#67](https://github.com/TechnologyAdvice/stardust/pull/67) ([kyleturco](https://github.com/kyleturco))
+- Feature/add sd item [\#65](https://github.com/TechnologyAdvice/stardust/pull/65) ([athurman](https://github.com/athurman))
 - Message component [\#62](https://github.com/TechnologyAdvice/stardust/pull/62) ([levithomason](https://github.com/levithomason))
 
 ## [v0.5.1](https://github.com/TechnologyAdvice/stardust/tree/v0.5.1) (2015-10-19)
@@ -1247,6 +1256,7 @@
 - Feature/example section [\#52](https://github.com/TechnologyAdvice/stardust/pull/52) ([levithomason](https://github.com/levithomason))
 - Eslint Ignore [\#47](https://github.com/TechnologyAdvice/stardust/pull/47) ([levithomason](https://github.com/levithomason))
 - Feature/button examples [\#45](https://github.com/TechnologyAdvice/stardust/pull/45) ([kyleturco](https://github.com/kyleturco))
+- Table update [\#44](https://github.com/TechnologyAdvice/stardust/pull/44) ([levithomason](https://github.com/levithomason))
 
 ## [v0.4.0](https://github.com/TechnologyAdvice/stardust/tree/v0.4.0) (2015-10-12)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.3.0...v0.4.0)
@@ -1258,16 +1268,24 @@
 **Merged pull requests:**
 
 - Restructure to Semantic structure [\#40](https://github.com/TechnologyAdvice/stardust/pull/40) ([levithomason](https://github.com/levithomason))
+- Component APIs and Doc Structure [\#39](https://github.com/TechnologyAdvice/stardust/pull/39) ([levithomason](https://github.com/levithomason))
+- Classes & Props: Field [\#37](https://github.com/TechnologyAdvice/stardust/pull/37) ([levithomason](https://github.com/levithomason))
+- Classes & Props: Input [\#35](https://github.com/TechnologyAdvice/stardust/pull/35) ([levithomason](https://github.com/levithomason))
 - Classes & Props: Container/Grid/Row/Column [\#34](https://github.com/TechnologyAdvice/stardust/pull/34) ([levithomason](https://github.com/levithomason))
 - Classes & Props: Checkbox [\#32](https://github.com/TechnologyAdvice/stardust/pull/32) ([levithomason](https://github.com/levithomason))
 - add tests for index.js [\#31](https://github.com/TechnologyAdvice/stardust/pull/31) ([levithomason](https://github.com/levithomason))
 - Doc examples [\#25](https://github.com/TechnologyAdvice/stardust/pull/25) ([levithomason](https://github.com/levithomason))
+- Menu [\#18](https://github.com/TechnologyAdvice/stardust/pull/18) ([levithomason](https://github.com/levithomason))
+- update modal logic [\#11](https://github.com/TechnologyAdvice/stardust/pull/11) ([athurman](https://github.com/athurman))
 
 ## [v0.3.0](https://github.com/TechnologyAdvice/stardust/tree/v0.3.0) (2015-10-05)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.2.1...v0.3.0)
 
 **Merged pull requests:**
 
+- Update stardust components [\#20](https://github.com/TechnologyAdvice/stardust/pull/20) ([athurman](https://github.com/athurman))
+- Watch [\#17](https://github.com/TechnologyAdvice/stardust/pull/17) ([levithomason](https://github.com/levithomason))
+- add container and update docs [\#15](https://github.com/TechnologyAdvice/stardust/pull/15) ([eanplatter](https://github.com/eanplatter))
 - Docs link [\#14](https://github.com/TechnologyAdvice/stardust/pull/14) ([levithomason](https://github.com/levithomason))
 
 ## [v0.2.1](https://github.com/TechnologyAdvice/stardust/tree/v0.2.1) (2015-10-03)
@@ -1279,6 +1297,10 @@
 **Closed issues:**
 
 - new issue [\#12](https://github.com/TechnologyAdvice/stardust/issues/12)
+
+**Merged pull requests:**
+
+- Field options [\#5](https://github.com/TechnologyAdvice/stardust/pull/5) ([levithomason](https://github.com/levithomason))
 
 ## [v0.1.7](https://github.com/TechnologyAdvice/stardust/tree/v0.1.7) (2015-10-03)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.1.6...v0.1.7)
@@ -1303,6 +1325,8 @@
 
 - add wercker.yml [\#8](https://github.com/TechnologyAdvice/stardust/pull/8) ([levithomason](https://github.com/levithomason))
 - use ta-webapp eslint [\#7](https://github.com/TechnologyAdvice/stardust/pull/7) ([levithomason](https://github.com/levithomason))
+- add modal and confirmationmodal components to stardust [\#3](https://github.com/TechnologyAdvice/stardust/pull/3) ([athurman](https://github.com/athurman))
+- Structure [\#1](https://github.com/TechnologyAdvice/stardust/pull/1) ([eanplatter](https://github.com/eanplatter))
 
 
 
