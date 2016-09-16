@@ -77,7 +77,6 @@ describe('Dropdown Component', () => {
 
   it('closes on blur', () => {
     wrapperMount(<Dropdown options={options} />)
-      .simulate('focus')
       .simulate('click')
 
     dropdownMenuIsOpen()
@@ -99,6 +98,23 @@ describe('Dropdown Component', () => {
   //
   //   dropdownMenuIsOpen()
   // })
+
+  describe('isMouseDown', () => {
+    it('tracks whhen the mouse is down', () => {
+      wrapperShallow(<Dropdown />)
+        .simulate('mousedown')
+
+      wrapper.instance()
+        .isMouseDown
+        .should.equal(true)
+
+      domEvent.mouseUp(document)
+
+      wrapper.instance()
+        .isMouseDown
+        .should.equal(false)
+    })
+  })
 
   describe('icon', () => {
     it('defaults to a dropdown icon', () => {
@@ -236,11 +252,9 @@ describe('Dropdown Component', () => {
         { text: 'skip this one', value: 'skip this one', disabled: true },
         { text: 'a2', value: 'a2' },
       ]
-      // search for 'a'
+
       wrapperMount(<Dropdown options={opts} search selection />)
         .simulate('click')
-        .find('input.search')
-        .simulate('change', { target: { value: 'a' } })
 
       wrapper
         .find('.selected')
@@ -252,6 +266,24 @@ describe('Dropdown Component', () => {
       wrapper
         .find('.selected')
         .should.contain.text('a2')
+    })
+    it('does not enter an infinite loop when all items are disabled', () => {
+      const opts = [
+        { text: '1', value: '1', disabled: true },
+        { text: '2', value: '2', disabled: true },
+      ]
+      wrapperMount(<Dropdown options={opts} search selection />)
+        .simulate('click')
+
+      const instance = wrapper.instance()
+      sandbox.spy(instance, 'moveSelectionBy')
+
+      // move selection down
+      domEvent.keyDown(document, { key: 'ArrowDown' })
+
+      instance
+        .moveSelectionBy
+        .should.have.been.calledOnce()
     })
     it('scrolls the selected item into view', () => {
       // get enough options to make the menu scrollable
@@ -449,12 +481,6 @@ describe('Dropdown Component', () => {
   })
 
   describe('menu', () => {
-    // DO NOT simulate events on 'document', use the 'domEvent` util
-    // simulate() only uses React's internal event system
-    // it does not touch the actual DOM at all so it can't use any of the DOM event handlers.
-    // We listen for keydown on the raw DOM, not in a React component.
-    // https://github.com/facebook/react/issues/5043
-
     it('opens on dropdown click', () => {
       wrapperMount(<Dropdown options={options} selection />)
 
@@ -463,20 +489,24 @@ describe('Dropdown Component', () => {
       dropdownMenuIsOpen()
     })
 
-    it('opens on arrow down when focused', () => {
+    it('opens on arrow down when focused and closed', () => {
       wrapperMount(<Dropdown options={options} selection />)
 
-      dropdownMenuIsClosed()
       wrapper.simulate('focus')
+      domEvent.keyDown(document, { key: 'Escape' })
+      dropdownMenuIsClosed()
+
       domEvent.keyDown(document, { key: 'ArrowDown' })
       dropdownMenuIsOpen()
     })
 
-    it('opens on arrow up when focused', () => {
+    it('opens on arrow up when focused and closed', () => {
       wrapperMount(<Dropdown options={options} selection />)
 
-      dropdownMenuIsClosed()
       wrapper.simulate('focus')
+      domEvent.keyDown(document, { key: 'Escape' })
+      dropdownMenuIsClosed()
+
       domEvent.keyDown(document, { key: 'ArrowUp' })
       dropdownMenuIsOpen()
     })
@@ -486,32 +516,9 @@ describe('Dropdown Component', () => {
 
       dropdownMenuIsClosed()
       wrapper.simulate('focus')
+      domEvent.keyDown(document, { key: 'Escape' })
       domEvent.keyDown(document, { key: ' ' })
       dropdownMenuIsOpen()
-    })
-
-    it('does not call open on space if already open', () => {
-      wrapperMount(<Dropdown options={options} selection />)
-
-      const instance = wrapper.instance()
-      sandbox.spy(instance, 'open')
-
-      dropdownMenuIsClosed()
-      instance.open.should.not.have.been.called()
-
-      // first time
-      wrapper.simulate('focus')
-      domEvent.keyDown(document, { key: ' ' })
-
-      dropdownMenuIsOpen()
-      instance.open.should.have.been.calledOnce()
-
-      // second time
-      wrapper.simulate('focus')
-      domEvent.keyDown(document, { key: ' ' })
-
-      dropdownMenuIsOpen()
-      instance.open.should.have.been.calledOnce()
     })
 
     it('does not open on arrow down when not focused', () => {
@@ -527,6 +534,14 @@ describe('Dropdown Component', () => {
 
       dropdownMenuIsClosed()
       domEvent.keyDown(document, { key: ' ' })
+      dropdownMenuIsClosed()
+    })
+
+    it('closes on dropdown click', () => {
+      wrapperMount(<Dropdown options={options} selection defaultOpen />)
+
+      dropdownMenuIsOpen()
+      wrapper.simulate('click')
       dropdownMenuIsClosed()
     })
 
@@ -607,14 +622,14 @@ describe('Dropdown Component', () => {
       dropdownMenuIsClosed()
     })
     it('closes the menu when toggled from true to false', () => {
-      wrapperShallow(<Dropdown options={options} selection open />)
+      wrapperMount(<Dropdown options={options} selection open />)
         .setProps({ open: false })
-      dropdownMenuIsOpen()
+      dropdownMenuIsClosed()
     })
     it('opens the menu when toggled from false to true', () => {
-      wrapperShallow(<Dropdown options={options} selection open={false} />)
+      wrapperMount(<Dropdown options={options} selection open={false} />)
         .setProps({ open: true })
-      dropdownMenuIsClosed()
+      dropdownMenuIsOpen()
     })
   })
 
@@ -1121,10 +1136,8 @@ describe('Dropdown Component', () => {
     it('still allows moving selection after blur/focus', () => {
       // open, first item is selected
       const search = wrapperMount(<Dropdown options={options} selection search />)
-        .find('input.search')
-        .simulate('focus')
+        .simulate('click')
 
-      domEvent.keyDown(document, { key: 'ArrowDown' })
       dropdownMenuIsOpen()
 
       const items = wrapper
@@ -1140,7 +1153,6 @@ describe('Dropdown Component', () => {
         .simulate('focus')
 
       domEvent.keyDown(document, { key: 'ArrowDown' })
-      domEvent.keyDown(document, { key: 'ArrowDown' })
 
       items
         .first()
@@ -1155,7 +1167,6 @@ describe('Dropdown Component', () => {
         .simulate('blur')
         .simulate('focus')
 
-      domEvent.keyDown(document, { key: 'ArrowDown' })
       domEvent.keyDown(document, { key: 'ArrowUp' })
 
       items

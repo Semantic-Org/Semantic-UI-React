@@ -27,6 +27,14 @@ export const fire = (node, eventType, data = {}) => {
 export const keyDown = (node, data) => fire(node, 'keydown', data)
 
 /**
+ * Dispatch a 'mouseup' event on a DOM node.
+ * @param {String|Object} node A querySelector string or DOM node.
+ * @param {Object} [data] Additional event data.
+ * @returns {Object} The event
+ */
+export const mouseUp = (node, data) => fire(node, 'mouseup', data)
+
+/**
  * Dispatch a 'click' event on a DOM node.
  * @param {String|Object} node A querySelector string or DOM node.
  * @param {Object} [data] Additional event data.
@@ -36,6 +44,7 @@ export const click = (node, data) => fire(node, 'click', data)
 
 export default {
   fire,
+  mouseUp,
   keyDown,
   click,
 }
