@@ -13,12 +13,6 @@ const States = () => {
       />
 
       <ComponentExample
-        title='Down'
-        description='A menu item can be pressed in'
-        examplePath='collections/Menu/States/Down'
-      />
-
-      <ComponentExample
         title='Active'
         description='A menu item can be active'
         examplePath='collections/Menu/States/Active'
