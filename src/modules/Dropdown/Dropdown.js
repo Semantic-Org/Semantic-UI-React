@@ -251,23 +251,25 @@ export default class Dropdown extends Component {
     // TODO objectDiff still runs in prod, stop it
     debug('to props:', objectDiff(this.props, nextProps))
 
+    /* eslint-disable no-console */
     if (process.env.NODE_ENV !== 'production') {
       // in development, validate value type matches dropdown type
       const isNextValueArray = Array.isArray(nextProps.value)
       const hasValue = _.has(nextProps, 'value')
 
       if (hasValue && nextProps.multiple && !isNextValueArray) {
-        console.error( // eslint-disable-line no-console
+        console.error(
           'Dropdown `value` must be an array when `multiple` is set.' +
           ` Received type: \`${Object.prototype.toString.call(nextProps.value)}\`.`,
         )
       } else if (hasValue && !nextProps.multiple && isNextValueArray) {
-        console.error( // eslint-disable-line no-console
+        console.error(
           'Dropdown `value` must not be an array when `multiple` is not set.' +
           ' Either set `multiple={true}` or use a string or number value.'
         )
       }
     }
+    /* eslint-enable no-console */
 
     if (!_.isEqual(nextProps.value, this.props.value)) {
       debug('value changed, setting', nextProps.value)
