@@ -99,6 +99,23 @@ describe('Dropdown Component', () => {
   //   dropdownMenuIsOpen()
   // })
 
+  describe('isMouseDown', () => {
+    it('tracks whhen the mouse is down', () => {
+      wrapperShallow(<Dropdown />)
+        .simulate('mousedown')
+
+      wrapper.instance()
+        .isMouseDown
+        .should.equal(true)
+
+      domEvent.mouseUp(document)
+
+      wrapper.instance()
+        .isMouseDown
+        .should.equal(false)
+    })
+  })
+
   describe('icon', () => {
     it('defaults to a dropdown icon', () => {
       Dropdown.defaultProps.icon.should.equal('dropdown')
@@ -235,11 +252,9 @@ describe('Dropdown Component', () => {
         { text: 'skip this one', value: 'skip this one', disabled: true },
         { text: 'a2', value: 'a2' },
       ]
-      // search for 'a'
+
       wrapperMount(<Dropdown options={opts} search selection />)
         .simulate('click')
-        .find('input.search')
-        .simulate('change', { target: { value: 'a' } })
 
       wrapper
         .find('.selected')
@@ -251,6 +266,24 @@ describe('Dropdown Component', () => {
       wrapper
         .find('.selected')
         .should.contain.text('a2')
+    })
+    it('does not enter an infinite loop when all items are disabled', () => {
+      const opts = [
+        { text: '1', value: '1', disabled: true },
+        { text: '2', value: '2', disabled: true },
+      ]
+      wrapperMount(<Dropdown options={opts} search selection />)
+        .simulate('click')
+
+      const instance = wrapper.instance()
+      sandbox.spy(instance, 'moveSelectionBy')
+
+      // move selection down
+      domEvent.keyDown(document, { key: 'ArrowDown' })
+
+      instance
+        .moveSelectionBy
+        .should.have.been.calledOnce()
     })
     it('scrolls the selected item into view', () => {
       // get enough options to make the menu scrollable
