@@ -1,5 +1,12 @@
 # Change Log
 
+## [v0.44.3](https://github.com/TechnologyAdvice/stardust/tree/v0.44.3) (2016-09-16)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.44.2...v0.44.3)
+
+**Fixed bugs:**
+
+- fix\(MenuItem\): remove `down` prop [\#503](https://github.com/TechnologyAdvice/stardust/pull/503) ([layershifter](https://github.com/layershifter))
+
 ## [v0.44.2](https://github.com/TechnologyAdvice/stardust/tree/v0.44.2) (2016-09-16)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.44.1...v0.44.2)
 
