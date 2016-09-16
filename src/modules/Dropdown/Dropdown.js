@@ -385,6 +385,7 @@ export default class Dropdown extends Component {
     debug('openOnSpace()')
     if (keyboardKey.getCode(e) !== keyboardKey.Spacebar) return
     if (this.state.open) return
+    e.preventDefault()
     this.trySetState({ open: true })
   }
 
@@ -393,6 +394,7 @@ export default class Dropdown extends Component {
     debug('openOnArrow()')
     if (!_.includes([keyboardKey.ArrowDown, keyboardKey.ArrowUp], code)) return
     if (this.state.open) return
+    e.preventDefault()
     this.trySetState({ open: true })
   }
 

@@ -448,12 +448,6 @@ describe('Dropdown Component', () => {
   })
 
   describe('menu', () => {
-    // DO NOT simulate events on 'document', use the 'domEvent` util
-    // simulate() only uses React's internal event system
-    // it does not touch the actual DOM at all so it can't use any of the DOM event handlers.
-    // We listen for keydown on the raw DOM, not in a React component.
-    // https://github.com/facebook/react/issues/5043
-
     it('opens on dropdown click', () => {
       wrapperMount(<Dropdown options={options} selection />)
 
@@ -462,20 +456,24 @@ describe('Dropdown Component', () => {
       dropdownMenuIsOpen()
     })
 
-    it('opens on arrow down when focused', () => {
+    it('opens on arrow down when focused and closed', () => {
       wrapperMount(<Dropdown options={options} selection />)
 
-      dropdownMenuIsClosed()
       wrapper.simulate('focus')
+      domEvent.keyDown(document, { key: 'Escape' })
+      dropdownMenuIsClosed()
+
       domEvent.keyDown(document, { key: 'ArrowDown' })
       dropdownMenuIsOpen()
     })
 
-    it('opens on arrow up when focused', () => {
+    it('opens on arrow up when focused and closed', () => {
       wrapperMount(<Dropdown options={options} selection />)
 
-      dropdownMenuIsClosed()
       wrapper.simulate('focus')
+      domEvent.keyDown(document, { key: 'Escape' })
+      dropdownMenuIsClosed()
+
       domEvent.keyDown(document, { key: 'ArrowUp' })
       dropdownMenuIsOpen()
     })
@@ -485,6 +483,7 @@ describe('Dropdown Component', () => {
 
       dropdownMenuIsClosed()
       wrapper.simulate('focus')
+      domEvent.keyDown(document, { key: 'Escape' })
       domEvent.keyDown(document, { key: ' ' })
       dropdownMenuIsOpen()
     })
@@ -502,6 +501,14 @@ describe('Dropdown Component', () => {
 
       dropdownMenuIsClosed()
       domEvent.keyDown(document, { key: ' ' })
+      dropdownMenuIsClosed()
+    })
+
+    it('closes on dropdown click', () => {
+      wrapperMount(<Dropdown options={options} selection defaultOpen />)
+
+      dropdownMenuIsOpen()
+      wrapper.simulate('click')
       dropdownMenuIsClosed()
     })
 
