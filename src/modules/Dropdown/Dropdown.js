@@ -27,7 +27,7 @@ const _meta = {
   name: 'Dropdown',
   type: META.TYPES.MODULE,
   props: {
-    pointing: ['bottom left', 'bottom right'],
+    pointing: ['left', 'right', 'top', 'top left', 'top right', 'bottom', 'bottom left', 'bottom right'],
     additionPosition: ['top', 'bottom'],
   },
 }
@@ -158,6 +158,9 @@ export default class Dropdown extends Component {
 
     /** Called with the React Synthetic Event on Dropdown focus. */
     onFocus: PropTypes.func,
+
+    /** Called with the React Synthetic Event on Dropdown mouse down. */
+    onMouseDown: PropTypes.func,
 
     // ------------------------------------
     // Style
@@ -379,19 +382,17 @@ export default class Dropdown extends Component {
   }
 
   openOnSpace = (e) => {
+    debug('openOnSpace()')
     if (keyboardKey.getCode(e) !== keyboardKey.Spacebar) return
     if (this.state.open) return
-    e.preventDefault()
-    // TODO open/close should only change state, open/closeMenu should be called on did update
     this.trySetState({ open: true })
   }
 
   openOnArrow = (e) => {
     const code = keyboardKey.getCode(e)
+    debug('openOnArrow()')
     if (!_.includes([keyboardKey.ArrowDown, keyboardKey.ArrowUp], code)) return
     if (this.state.open) return
-    e.preventDefault()
-    // TODO open/close should only change state, open/closeMenu should be called on did update
     this.trySetState({ open: true })
   }
 
@@ -456,8 +457,10 @@ export default class Dropdown extends Component {
   // Component Event Handlers
   // ----------------------------------------
 
-  handleMouseDown = () => {
+  handleMouseDown = (e) => {
     debug('handleMouseDown()')
+    const { onMouseDown } = this.props
+    if (onMouseDown) onMouseDown(e)
     this.isMouseDown = true
     document.addEventListener('mouseup', this.handleDocumentMouseUp)
   }
@@ -708,30 +711,15 @@ export default class Dropdown extends Component {
 
   open = () => {
     debug('open()')
-    debug(`dropdown is ${this.state.open ? 'already' : 'not yet'} open`)
-    if (this.state.open) return
     const { search } = this.props
     if (search) this._search.focus()
 
-    this.trySetState({
-      open: true,
-    }, {
-      dropdownClasses: 'active visible',
-      menuClasses: 'visible',
-    })
+    this.trySetState({ open: true })
   }
 
   close = () => {
     debug('close()')
-    debug(`dropdown is ${!this.state.open ? 'already' : 'not yet'} closed`)
-    if (!this.state.open) return
-
-    this.trySetState({
-      open: false,
-    }, {
-      dropdownClasses: '',
-      menuClasses: '',
-    })
+    this.trySetState({ open: false })
   }
 
   toggle = () => this.state.open ? this.close() : this.open()
@@ -874,7 +862,8 @@ export default class Dropdown extends Component {
 
   renderMenu = () => {
     const { children } = this.props
-    const { menuClasses } = this.state
+    const { open } = this.state
+    const menuClasses = open ? 'visible' : ''
 
     // single menu child
     if (children) {
@@ -895,7 +884,7 @@ export default class Dropdown extends Component {
     debug('render()')
     debug('props', this.props)
     debug('state', this.state)
-    const { dropdownClasses } = this.state
+    const { open } = this.state
 
     const {
       button,
@@ -922,7 +911,7 @@ export default class Dropdown extends Component {
     // Classes
     const classes = cx(
       'ui',
-      dropdownClasses,
+      open && 'active visible',
       useKeyOnly(disabled, 'disabled'),
       useKeyOnly(error, 'error'),
       useKeyOnly(loading, 'loading'),

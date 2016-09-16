@@ -77,7 +77,6 @@ describe('Dropdown Component', () => {
 
   it('closes on blur', () => {
     wrapperMount(<Dropdown options={options} />)
-      .simulate('focus')
       .simulate('click')
 
     dropdownMenuIsOpen()
@@ -490,30 +489,6 @@ describe('Dropdown Component', () => {
       dropdownMenuIsOpen()
     })
 
-    it('does not call open on space if already open', () => {
-      wrapperMount(<Dropdown options={options} selection />)
-
-      const instance = wrapper.instance()
-      sandbox.spy(instance, 'open')
-
-      dropdownMenuIsClosed()
-      instance.open.should.not.have.been.called()
-
-      // first time
-      wrapper.simulate('focus')
-      domEvent.keyDown(document, { key: ' ' })
-
-      dropdownMenuIsOpen()
-      instance.open.should.have.been.calledOnce()
-
-      // second time
-      wrapper.simulate('focus')
-      domEvent.keyDown(document, { key: ' ' })
-
-      dropdownMenuIsOpen()
-      instance.open.should.have.been.calledOnce()
-    })
-
     it('does not open on arrow down when not focused', () => {
       wrapperMount(<Dropdown options={options} selection />)
 
@@ -607,12 +582,12 @@ describe('Dropdown Component', () => {
       dropdownMenuIsClosed()
     })
     it('closes the menu when toggled from true to false', () => {
-      wrapperShallow(<Dropdown options={options} selection open />)
+      wrapperMount(<Dropdown options={options} selection open />)
         .setProps({ open: false })
       dropdownMenuIsClosed()
     })
-    it.only('opens the menu when toggled from false to true', () => {
-      wrapperShallow(<Dropdown options={options} selection open={false} />)
+    it('opens the menu when toggled from false to true', () => {
+      wrapperMount(<Dropdown options={options} selection open={false} />)
         .setProps({ open: true })
       dropdownMenuIsOpen()
     })
