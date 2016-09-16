@@ -48,13 +48,16 @@ export default class DropdownSelectionExample extends Component {
     this.setState({ multiple, value: newValue })
   }
 
+  toggle = () => this.setState({ open: !this.state.open })
+
   render() {
-    const { multiple, options, isFetching, search, value } = this.state
+    const { multiple, options, isFetching, open, search, value } = this.state
 
     return (
       <Grid>
         <Grid.Column width={8}>
           <p>
+            <Button onClick={this.toggle}>Toggle</Button>
             <Button onClick={this.fetchOptions}>Fetch</Button>
             <Button onClick={this.selectRandom} disabled={_.isEmpty(options)}>Random</Button>
             <label>
@@ -70,6 +73,7 @@ export default class DropdownSelectionExample extends Component {
             selection
             multiple={multiple}
             search={search}
+            open={open}
             options={options}
             value={value}
             placeholder='Add Users'

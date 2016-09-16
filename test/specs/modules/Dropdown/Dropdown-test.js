@@ -609,12 +609,12 @@ describe('Dropdown Component', () => {
     it('closes the menu when toggled from true to false', () => {
       wrapperShallow(<Dropdown options={options} selection open />)
         .setProps({ open: false })
-      dropdownMenuIsOpen()
+      dropdownMenuIsClosed()
     })
-    it('opens the menu when toggled from false to true', () => {
+    it.only('opens the menu when toggled from false to true', () => {
       wrapperShallow(<Dropdown options={options} selection open={false} />)
         .setProps({ open: true })
-      dropdownMenuIsClosed()
+      dropdownMenuIsOpen()
     })
   })
 
@@ -1121,10 +1121,8 @@ describe('Dropdown Component', () => {
     it('still allows moving selection after blur/focus', () => {
       // open, first item is selected
       const search = wrapperMount(<Dropdown options={options} selection search />)
-        .find('input.search')
-        .simulate('focus')
+        .simulate('click')
 
-      domEvent.keyDown(document, { key: 'ArrowDown' })
       dropdownMenuIsOpen()
 
       const items = wrapper
@@ -1140,7 +1138,6 @@ describe('Dropdown Component', () => {
         .simulate('focus')
 
       domEvent.keyDown(document, { key: 'ArrowDown' })
-      domEvent.keyDown(document, { key: 'ArrowDown' })
 
       items
         .first()
@@ -1155,7 +1152,6 @@ describe('Dropdown Component', () => {
         .simulate('blur')
         .simulate('focus')
 
-      domEvent.keyDown(document, { key: 'ArrowDown' })
       domEvent.keyDown(document, { key: 'ArrowUp' })
 
       items
