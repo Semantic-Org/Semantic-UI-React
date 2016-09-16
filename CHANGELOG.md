@@ -1,5 +1,16 @@
 # Change Log
 
+## [v0.44.2](https://github.com/TechnologyAdvice/stardust/tree/v0.44.2) (2016-09-16)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.44.1...v0.44.2)
+
+**Fixed bugs:**
+
+- Dropdown: \<Dropdown.Item as={'a'} /\> with href does not function appropriately [\#493](https://github.com/TechnologyAdvice/stardust/issues/493)
+
+**Merged pull requests:**
+
+- fix\(Dropdown\): open/close on focus/blur [\#500](https://github.com/TechnologyAdvice/stardust/pull/500) ([levithomason](https://github.com/levithomason))
+
 ## [v0.44.1](https://github.com/TechnologyAdvice/stardust/tree/v0.44.1) (2016-09-15)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.44.0...v0.44.1)
 
