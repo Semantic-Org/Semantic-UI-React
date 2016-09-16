@@ -851,8 +851,6 @@ export default class Dropdown extends Component {
         active={isActive(opt.value)}
         onClick={this.handleItemClick}
         selected={selectedIndex === i}
-        // prevent default to allow item select without closing on blur
-        onMouseDown={e => e.preventDefault()}
         {...opt}
         // Needed for handling click events on disabled items
         style={{ ...opt.style, pointerEvents: 'all' }}
