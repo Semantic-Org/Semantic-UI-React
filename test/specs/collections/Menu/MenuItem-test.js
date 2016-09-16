@@ -9,7 +9,6 @@ describe('MenuItem', () => {
   common.isConformant(MenuItem)
   common.propKeyOnlyToClassName(MenuItem, 'active')
   common.propValueOnlyToClassName(MenuItem, 'color')
-  common.propKeyOnlyToClassName(MenuItem, 'down')
   common.propKeyOrValueToClassName(MenuItem, 'fitted')
   common.propKeyOnlyToClassName(MenuItem, 'header')
   common.propKeyOnlyToClassName(MenuItem, 'link')

@@ -14,11 +14,10 @@ import {
 
 function MenuItem(props) {
   const {
-    active, children, className, color, content, down, fitted, header, index, link, name, onClick, position,
+    active, children, className, color, content, fitted, header, index, link, name, onClick, position,
   } = props
   const classes = cx(
     useKeyOnly(active, 'active'),
-    useKeyOnly(down, 'down'),
     useKeyOrValueAndKey(fitted, 'fitted'),
     useKeyOnly(header, 'header'),
     useKeyOnly(link, 'link'),
@@ -80,9 +79,6 @@ MenuItem.propTypes = {
     customPropTypes.disallow(['children']),
     PropTypes.string,
   ]),
-
-  /** A menu item can be pressed in. */
-  down: PropTypes.bool,
 
   /** A menu item or menu can remove element padding, vertically or horizontally. */
   fitted: PropTypes.oneOfType([
