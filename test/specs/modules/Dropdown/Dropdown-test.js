@@ -848,6 +848,13 @@ describe('Dropdown Component', () => {
       spy.should.have.been.calledOnce()
       spy.firstCall.args[1].should.deep.equal(firstValue)
     })
+    it('is not called on blur when closed', () => {
+      wrapperMount(<Dropdown options={options} selection open={false} onChange={spy} />)
+        .simulate('focus')
+        .simulate('blur')
+
+      spy.should.not.have.been.called()
+    })
     it('is not called on blur when selectOnBlur is false', () => {
       wrapperMount(<Dropdown options={options} selection onChange={spy} selectOnBlur={false} />)
         .simulate('focus')
