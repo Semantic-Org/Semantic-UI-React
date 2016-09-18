@@ -1,5 +1,17 @@
 # Change Log
 
+## [v0.44.4](https://github.com/TechnologyAdvice/stardust/tree/v0.44.4) (2016-09-18)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.44.3...v0.44.4)
+
+**Fixed bugs:**
+
+- Dropdown events triggering twice [\#504](https://github.com/TechnologyAdvice/stardust/issues/504)
+- fix\(MenuItem\): remove `down` prop [\#502](https://github.com/TechnologyAdvice/stardust/issues/502)
+
+**Merged pull requests:**
+
+- fix\(Dropdown\): skip select item on blur when closed [\#508](https://github.com/TechnologyAdvice/stardust/pull/508) ([levithomason](https://github.com/levithomason))
+
 ## [v0.44.3](https://github.com/TechnologyAdvice/stardust/tree/v0.44.3) (2016-09-16)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.44.2...v0.44.3)
 
