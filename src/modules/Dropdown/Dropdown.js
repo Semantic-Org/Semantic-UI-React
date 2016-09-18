@@ -401,11 +401,13 @@ export default class Dropdown extends Component {
   }
 
   selectHighlightedItem = (e) => {
+    const { open } = this.state
     const { multiple, onAddItem, options } = this.props
     const value = _.get(this.getSelectedItem(), 'value')
 
     // prevent selecting null if there was no selected item value
-    if (!value) return
+    // prevent selecting duplicate items when the dropdown is closed
+    if (!value || !open) return
 
     // notify the onAddItem prop if this is a new value
     if (onAddItem && !_.some(options, { text: value })) onAddItem(value)

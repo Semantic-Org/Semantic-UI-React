@@ -840,13 +840,18 @@ describe('Dropdown Component', () => {
     it('is called with event and value when blurring', () => {
       const firstValue = options[0].value
       wrapperMount(<Dropdown options={options} selection onChange={spy} />)
-        .simulate('focus')
-        .simulate('click')
-
-      wrapper.simulate('blur')
+        .simulate('focus')  // open, highlights first item
+        .simulate('blur')   // blur should activate selected item
 
       spy.should.have.been.calledOnce()
       spy.firstCall.args[1].should.deep.equal(firstValue)
+    })
+    it('is not called on blur when closed', () => {
+      wrapperMount(<Dropdown options={options} selection open={false} onChange={spy} />)
+        .simulate('focus')
+        .simulate('blur')
+
+      spy.should.not.have.been.called()
     })
     it('is not called on blur when selectOnBlur is false', () => {
       wrapperMount(<Dropdown options={options} selection onChange={spy} selectOnBlur={false} />)
