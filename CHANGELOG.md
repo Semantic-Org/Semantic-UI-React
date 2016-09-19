@@ -1,5 +1,12 @@
 # Change Log
 
+## [v0.44.6](https://github.com/TechnologyAdvice/stardust/tree/v0.44.6) (2016-09-19)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.44.5...v0.44.6)
+
+**Merged pull requests:**
+
+- Search: add component [\#424](https://github.com/TechnologyAdvice/stardust/pull/424) ([jcarbo](https://github.com/jcarbo))
+
 ## [v0.44.5](https://github.com/TechnologyAdvice/stardust/tree/v0.44.5) (2016-09-19)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.44.4...v0.44.5)
 
