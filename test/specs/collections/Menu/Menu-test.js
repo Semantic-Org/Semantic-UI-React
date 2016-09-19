@@ -37,16 +37,77 @@ describe('Menu', () => {
       .should.have.tagName('div')
   })
 
-  describe('items', () => {
-    it('renders children', () => {
+  describe('activeIndex', () => {
+    it('-1 by default', () => {
       const items = [
         { name: 'home' },
         { name: 'users' },
       ]
-      const children = shallow(<Menu items={items} />).find('MenuItem')
 
+      shallow(<Menu items={items} />).should.have.state('activeIndex', -1)
+    })
+
+    it('can be overridden with "active"', () => {
+      const items = [
+        { name: 'home' },
+        { active: true, name: 'users' },
+      ]
+
+      shallow(<Menu items={items} />).should.have.state('activeIndex', 1)
+    })
+  })
+
+  describe('items', () => {
+    const spy = sandbox.spy()
+    const items = [
+      { name: 'home', onClick: spy },
+      { active: true, name: 'users' },
+    ]
+    const children = mount(<Menu items={items} />).find('MenuItem')
+
+    it('renders children', () => {
       children.first().should.have.prop('name', 'home')
       children.last().should.have.prop('name', 'users')
+    })
+
+    it('onClick can omitted', () => {
+      const click = () => children.last().simulate('click')
+      expect(click).to.not.throw()
+    })
+
+    it('passes onClick handler', () => {
+      const event = { target: null }
+      const props = { name: 'home', index: 0 }
+
+      children.first().simulate('click', event)
+
+      spy.should.have.been.calledOnce()
+      spy.should.have.been.calledWithMatch(event, props)
+    })
+  })
+
+  describe('onItemClick', () => {
+    const items = [
+      { name: 'home' },
+      { name: 'users' },
+    ]
+
+    it('can be omitted', () => {
+      const click = () => mount(<Menu items={items} />).find('MenuItem').first().simulate('click')
+
+      expect(click).to.not.throw()
+    })
+
+    it('is called with (e, { name, index }) when clicked', () => {
+      const spy = sandbox.spy()
+      const event = { target: null }
+      const props = { name: 'home', index: 0 }
+
+      mount(<Menu items={items} onItemClick={spy} />).find('MenuItem').first()
+        .simulate('click', event)
+
+      spy.should.have.been.calledOnce()
+      spy.should.have.been.calledWithMatch(event, props)
     })
   })
 })

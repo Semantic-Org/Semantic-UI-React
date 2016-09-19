@@ -149,7 +149,7 @@ class Menu extends Component {
     super.componentWillMount()
 
     const { items } = this.props
-    if (items) this.trySetState({ activeIndex: _.findIndex(items, ['active', false]) || -1 })
+    if (items) this.trySetState({ activeIndex: _.findIndex(items, ['active', true]) })
   }
 
   handleItemClick(e, { name, index }) {
@@ -168,8 +168,8 @@ class Menu extends Component {
       const finalKey = childKey || [content, name].join('-')
 
       const handleClick = (e, data) => {
-        this.handleItemClick(e, data)
         if (onClick) onClick(e, data)
+        this.handleItemClick(e, data)
       }
 
       return (
