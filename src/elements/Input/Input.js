@@ -96,10 +96,10 @@ function Input(props) {
     'input',
   )
 
-  const unhandledProps = getUnhandledProps(Input, this.props)
+  const unhandledProps = getUnhandledProps(Input, props)
   const inputProps = _.pick(unhandledProps, inputPropNames)
   const rest = _.omit(unhandledProps, inputPropNames)
-  const ElementType = getElementType(Input, this.props)
+  const ElementType = getElementType(Input, props)
   return (
     <ElementType {...rest} className={classes}>
       {isLeftLabeled && labelChildren}
