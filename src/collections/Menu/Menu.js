@@ -152,10 +152,11 @@ class Menu extends Component {
     if (items) this.trySetState({ activeIndex: _.findIndex(items, ['active', true]) })
   }
 
-  handleItemClick(e, { name, index }) {
-    const { onItemClick } = this.props
-
+  handleItemClick = (e, { name, index }, onClick) => {
     this.trySetState({ activeIndex: index })
+    const { items, onItemClick } = this.props
+
+    if (_.get(items[index], 'onClick')) items[index].onClick(e, { name, index })
     if (onItemClick) onItemClick(e, { name, index })
   }
 
@@ -164,13 +165,8 @@ class Menu extends Component {
     const { activeIndex } = this.state
 
     return _.map(items, (item, index) => {
-      const { content, childKey, name, onClick, itemProps } = item
+      const { content, childKey, name, itemProps } = item
       const finalKey = childKey || [content, name].join('-')
-
-      const handleClick = (e, data) => {
-        if (onClick) onClick(e, data)
-        this.handleItemClick(e, data)
-      }
 
       return (
         <MenuItem
@@ -180,7 +176,7 @@ class Menu extends Component {
           index={index}
           key={finalKey}
           name={name}
-          onClick={handleClick}
+          onClick={this.handleItemClick}
         />
       )
     })
