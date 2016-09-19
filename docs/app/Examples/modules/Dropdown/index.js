@@ -40,6 +40,13 @@ const DropdownExamples = () => (
         </Message>
       </ComponentExample>
     </ExampleSection>
+    <ExampleSection title='Content'>
+      <ComponentExample
+        title='Header'
+        description='A dropdown menu can contain a header'
+        examplePath='modules/Dropdown/Content/Header'
+      />
+    </ExampleSection>
     <ExampleSection title='States'>
       <ComponentExample
         title='Disabled'

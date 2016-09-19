@@ -1537,4 +1537,17 @@ describe('Dropdown Component', () => {
       spy.firstCall.args[0].should.equal('boo')
     })
   })
+  describe('header', () => {
+    it('renders a header when present', () => {
+      const text = faker.hacker.phrase()
+
+      wrapperRender(<Dropdown options={options} header={text} />)
+        .find('.menu .header')
+        .should.contain.text(text)
+    })
+    it('does not render a header when not present', () => {
+      wrapperRender(<Dropdown options={options} />)
+        .should.not.have.descendants('.menu .header')
+    })
+  })
 })
