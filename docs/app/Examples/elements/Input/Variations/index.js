@@ -44,7 +44,7 @@ export default class InputVariationsExamples extends Component {
         />
         <ComponentExample
           title='Size'
-          description='An input can vary in sizee'
+          description='An input can vary in size'
           examplePath='elements/Input/Variations/InputSizeExample'
         />
 
