@@ -145,28 +145,37 @@ class Menu extends Component {
   static Item = MenuItem
   static Menu = MenuMenu
 
+  componentWillMount() {
+    super.componentWillMount()
+
+    const { items } = this.props
+    if (items) this.trySetState({ activeIndex: _.findIndex(items, ['active', false]) || -1 })
+  }
+
+  handleItemClick(e, { name, index }) {
+    const { onItemClick } = this.props
+
+    this.trySetState({ activeIndex: index })
+    if (onItemClick) onItemClick(e, { name, index })
+  }
+
   renderItems() {
-    const { items, onItemClick } = this.props
+    const { items } = this.props
+    const { activeIndex } = this.state
 
-    this.trySetState({ activeIndex: _.findIndex(items, ['active', false]) || -1 })
-
-    return _.map(items, (index, item) => {
+    return _.map(items, (item, index) => {
       const { content, childKey, name, onClick, itemProps } = item
-
-      const active = this.state.activeIndex === index
       const finalKey = childKey || [content, name].join('-')
 
-      const handleClick = (e, { itemName, itemIndex }) => {
-        const handler = onItemClick || onClick
-        this.trySetState({ activeIndex: itemIndex })
-
-        if (handler) handler(e, { itemName, itemIndex })
+      const handleClick = (e, data) => {
+        this.handleItemClick(e, data)
+        if (onClick) onClick(e, data)
       }
 
       return (
         <MenuItem
           {...itemProps}
-          active={active}
+          active={activeIndex === index}
           content={content}
           index={index}
           key={finalKey}
@@ -208,11 +217,7 @@ class Menu extends Component {
     const rest = getUnhandledProps(Menu, this.props)
     const ElementType = getElementType(Menu, this.props)
 
-    if (children) {
-      return <ElementType {...rest} className={classes}>{children}</ElementType>
-    }
-
-    return <ElementType {...rest} className={classes}>{this.renderItems()}</ElementType>
+    return <ElementType {...rest} className={classes}>{children || this.renderItems()}</ElementType>
   }
 }
 

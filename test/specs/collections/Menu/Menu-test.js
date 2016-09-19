@@ -5,6 +5,7 @@ import MenuItem from 'src/collections/Menu/MenuItem'
 import MenuHeader from 'src/collections/Menu/MenuHeader'
 import MenuMenu from 'src/collections/Menu/MenuMenu'
 import * as common from 'test/specs/commonTests'
+import { sandbox } from 'test/utils'
 
 describe('Menu', () => {
   common.isConformant(Menu)
@@ -34,5 +35,18 @@ describe('Menu', () => {
   it('renders a `div` by default', () => {
     shallow(<Menu />)
       .should.have.tagName('div')
+  })
+
+  describe('items', () => {
+    it('renders children', () => {
+      const items = [
+        { name: 'home' },
+        { name: 'users' },
+      ]
+      const children = shallow(<Menu items={items} />).find('MenuItem')
+
+      children.first().should.have.prop('name', 'home')
+      children.last().should.have.prop('name', 'users')
+    })
   })
 })
