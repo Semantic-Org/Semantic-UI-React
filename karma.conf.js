@@ -11,7 +11,11 @@ module.exports = (karmaConfig) => {
     reporters: ['mocha', 'coverage'],
     files: [
       './test/tests.bundle.js',
+      { pattern: 'test/images/*', watched: false, included: false, served: true },
     ],
+    proxies: {
+      '/foo.png': '/base/test/images/foo.png',
+    },
     formatError(msg) {
       return msg
         .split('\n')
