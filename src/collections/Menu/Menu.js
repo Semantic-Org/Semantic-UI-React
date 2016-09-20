@@ -4,6 +4,7 @@ import React, { PropTypes } from 'react'
 
 import {
   AutoControlledComponent as Component,
+  customPropTypes,
   getElementType,
   getUnhandledProps,
   META,
@@ -54,7 +55,7 @@ class Menu extends Component {
     /** A menu item or menu can have no borders. */
     borderless: PropTypes.bool,
 
-    /** Primary content of the Menu. */
+    /** Primary content of the Menu. Mutually exclusive with items. */
     children: PropTypes.node,
 
     /** Classes that will be added to the Menu className. */
@@ -84,8 +85,24 @@ class Menu extends Component {
     /** A menu may have its colors inverted to show greater contrast. */
     inverted: PropTypes.bool,
 
-    /** onClick handler for MenuItem. */
-    onItemClick: PropTypes.func,
+    /** Shorthand array of props for Menu. Mutually exclusive with children. */
+    items: customPropTypes.every([
+      customPropTypes.disallow(['children']),
+      PropTypes.arrayOf(PropTypes.shape({
+        childKey: PropTypes.oneOfType([
+          PropTypes.number,
+          PropTypes.string,
+        ]),
+        // this object is spread on the MenuItem
+        // allow it to validate props instead
+      })),
+    ]),
+
+    /** onClick handler for MenuItem. Mutually exclusive with children. */
+    onItemClick: customPropTypes.every([
+      customPropTypes.disallow(['children']),
+      PropTypes.func,
+    ]),
 
     /** A pagination menu is specially formatted to present links to pages of content. */
     pagination: PropTypes.bool,
@@ -128,6 +145,43 @@ class Menu extends Component {
   static Item = MenuItem
   static Menu = MenuMenu
 
+  componentWillMount() {
+    super.componentWillMount()
+
+    const { items } = this.props
+    if (items) this.trySetState({ activeIndex: _.findIndex(items, ['active', true]) })
+  }
+
+  handleItemClick = (e, { name, index }) => {
+    this.trySetState({ activeIndex: index })
+    const { items, onItemClick } = this.props
+
+    if (_.get(items[index], 'onClick')) items[index].onClick(e, { name, index })
+    if (onItemClick) onItemClick(e, { name, index })
+  }
+
+  renderItems() {
+    const { items } = this.props
+    const { activeIndex } = this.state
+
+    return _.map(items, (item, index) => {
+      const { content, childKey, name, itemProps } = item
+      const finalKey = childKey || [content, name].join('-')
+
+      return (
+        <MenuItem
+          {...itemProps}
+          active={activeIndex === index}
+          content={content}
+          index={index}
+          key={finalKey}
+          name={name}
+          onClick={this.handleItemClick}
+        />
+      )
+    })
+  }
+
   render() {
     const {
       attached, borderless, className, children, color, compact, fixed, fluid, icon, inverted, pagination, pointing,
@@ -159,7 +213,7 @@ class Menu extends Component {
     const rest = getUnhandledProps(Menu, this.props)
     const ElementType = getElementType(Menu, this.props)
 
-    return <ElementType {...rest} className={classes}>{children}</ElementType>
+    return <ElementType {...rest} className={classes}>{children || this.renderItems()}</ElementType>
   }
 }
 

@@ -4,7 +4,6 @@ import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
 import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
 
 // TODO: Add example with <Popup> after it will be added
-// TODO: Add example with items shorthand
 
 const Types = () => {
   return (
@@ -13,6 +12,10 @@ const Types = () => {
         title='Menu'
         description='A menu'
         examplePath='collections/Menu/Types/Basic'
+      />
+      <ComponentExample
+        description='Menu can be rendered via shorthand prop'
+        examplePath='collections/Menu/Types/Props'
       />
       <ComponentExample
         description='Menu item text can be defined with the content prop'
