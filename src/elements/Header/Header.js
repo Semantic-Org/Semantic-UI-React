@@ -45,29 +45,24 @@ function Header(props) {
   const ElementType = getElementType(Header, props)
   const rest = getUnhandledProps(Header, props)
 
-  if (icon && typeof icon !== 'boolean') {
-    return (
-      <ElementType {...rest} className={classes}>
-        {createIcon(icon)}
-        {content && <HeaderContent>{content}</HeaderContent>}
-        {subheader && <HeaderSubheader content={subheader} />}
-      </ElementType>
-    )
-  }
-
-  if (image) {
-    return (
-      <ElementType {...rest} className={classes}>
-        {createImage(image)} {content}
-        {subheader && <HeaderSubheader content={subheader} />}
-      </ElementType>
-    )
-  }
-
   if (children) {
     return (
       <ElementType {...rest} className={classes}>
         {children}
+      </ElementType>
+    )
+  }
+
+  if (image || icon && typeof icon !== 'boolean') {
+    return (
+      <ElementType {...rest} className={classes}>
+        {createIcon(icon) || createImage(image)}
+        {(content || subheader) && (
+          <HeaderContent>
+            {content}
+            {subheader && <HeaderSubheader content={subheader} />}
+          </HeaderContent>
+        )}
       </ElementType>
     )
   }
