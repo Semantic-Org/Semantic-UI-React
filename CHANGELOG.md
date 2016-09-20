@@ -1,5 +1,28 @@
 # Change Log
 
+## [v0.44.8](https://github.com/TechnologyAdvice/stardust/tree/v0.44.8) (2016-09-20)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.44.7...v0.44.8)
+
+**Fixed bugs:**
+
+- Selecting an item from a Dropdown menu in search mode \(non multi\) does not work [\#513](https://github.com/TechnologyAdvice/stardust/issues/513)
+- fix\(Dropdown\): abort handleBlur on click inside [\#514](https://github.com/TechnologyAdvice/stardust/pull/514) ([levithomason](https://github.com/levithomason))
+
+## [v0.44.7](https://github.com/TechnologyAdvice/stardust/tree/v0.44.7) (2016-09-20)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.44.6...v0.44.7)
+
+**Implemented enhancements:**
+
+- \<Search /\> Component [\#195](https://github.com/TechnologyAdvice/stardust/issues/195)
+
+**Fixed bugs:**
+
+- fix\(Header\): subheader and image shorthand [\#511](https://github.com/TechnologyAdvice/stardust/issues/511)
+
+**Merged pull requests:**
+
+- fix\(Header\): properly wrap contents in HeaderContent [\#512](https://github.com/TechnologyAdvice/stardust/pull/512) ([levithomason](https://github.com/levithomason))
+
 ## [v0.44.6](https://github.com/TechnologyAdvice/stardust/tree/v0.44.6) (2016-09-19)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.44.5...v0.44.6)
 
