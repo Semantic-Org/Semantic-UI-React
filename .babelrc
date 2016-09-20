@@ -8,6 +8,9 @@
     "lodash"
   ],
   "env": {
+    "browser": {
+      "plugins": ["add-module-exports"]
+    },
     "development": {
       "plugins": [
         ["react-transform", {

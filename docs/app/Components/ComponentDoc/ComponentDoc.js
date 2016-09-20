@@ -9,7 +9,7 @@ import ComponentProps from './ComponentProps'
 import docgenInfo from '../../docgenInfo.json'
 
 import { META } from 'src/lib'
-import * as stardust from 'src'
+import stardust from 'src'
 import { Divider, Grid, Header, Icon, List } from 'src'
 
 const docgenPaths = _.keys(docgenInfo)

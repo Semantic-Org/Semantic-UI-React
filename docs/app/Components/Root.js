@@ -6,7 +6,7 @@ import React, { Component, PropTypes } from 'react'
 import ComponentDoc from '../Components/ComponentDoc/ComponentDoc'
 import PageNotFound from '../Views/PageNotFound'
 import { META } from 'src/lib'
-import * as stardust from 'stardust'
+import stardust from 'stardust'
 
 export default class Root extends Component {
   static propTypes = {

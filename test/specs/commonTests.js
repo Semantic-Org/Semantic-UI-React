@@ -6,7 +6,7 @@ import ReactDOMServer from 'react-dom/server'
 
 import { META, numberToWord } from 'src/lib'
 import { consoleUtil, sandbox, syntheticEvent } from 'test/utils'
-import * as stardust from 'stardust'
+import stardust from 'stardust'
 
 import { Icon, Image, Label } from 'src/elements'
 

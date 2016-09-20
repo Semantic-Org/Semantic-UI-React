@@ -22,6 +22,7 @@ let config = {
   dir_docs_root: 'docs',
   dir_docs_src: 'docs/app',
   dir_docs_dist: 'docs/build',
+  dir_umd_dist: 'dist/umd',
   dir_server: 'server',
   dir_test: 'test',
 }
@@ -37,6 +38,7 @@ const paths = {
   dist: base.bind(null, config.dir_dist),
   test: base.bind(null, config.dir_test),
   docsDist: base.bind(null, config.dir_docs_dist),
+  umdDist: base.bind(null, config.dir_umd_dist),
   docsSrc: base.bind(null, config.dir_docs_src),
 }
 
@@ -52,8 +54,8 @@ config = Object.assign({}, config, {
   // ----------------------------------
   // Compiler Configuration
   // ----------------------------------
-  compiler_devtool: __DEV__ && 'source-map'
-  || __TEST__ && 'source-map'
+  compiler_devtool: __DEV__ && 'cheap-source-map'
+  || __TEST__ && 'cheap-source-map'
   || __STAGING__ && 'source-map',
   compiler_hash_type: __PROD__ ? 'chunkhash' : 'hash',
   compiler_inline_manifest: false,
