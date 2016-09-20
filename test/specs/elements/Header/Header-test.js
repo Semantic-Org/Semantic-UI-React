@@ -51,14 +51,17 @@ describe('Header', () => {
       shallow(<Header content='foo' />)
         .should.contain.text('foo')
     })
-    it('adds child text when there is an image', () => {
-      shallow(<Header content='foo' image='foo.png' />)
-        .should.contain.text('foo')
+    it('is wrapped in HeaderContent when there is an image src', () => {
+      shallow(<Header image='foo.png' content='Bar' />)
+        .find('HeaderContent')
+        .shallow()
+        .should.contain.text('Bar')
     })
     it('is wrapped in HeaderContent when there is an icon name', () => {
       shallow(<Header icon='users' content='Friends' />)
         .find('HeaderContent')
-        .should.have.prop('children', 'Friends')
+        .shallow()
+        .should.contain.text('Friends')
     })
     it('is not wrapped in HeaderContent when icon is true', () => {
       const wrapper = shallow(<Header icon content='Friends' />)

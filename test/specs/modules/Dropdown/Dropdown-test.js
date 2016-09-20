@@ -80,27 +80,85 @@ describe('Dropdown Component', () => {
       .simulate('click')
 
     dropdownMenuIsOpen()
-
-    wrapper
-      .simulate('blur')
-
+    wrapper.simulate('blur')
     dropdownMenuIsClosed()
   })
 
-  // TODO: see Dropdown.handleFocus() todo
-  // it('opens on focus', () => {
-  //   wrapperMount(<Dropdown {...requiredProps} />)
-  //
-  //   dropdownMenuIsClosed()
-  //
-  //   wrapper
-  //     .simulate('focus')
-  //
-  //   dropdownMenuIsOpen()
-  // })
+  it('opens on focus', () => {
+    wrapperMount(<Dropdown options={options} />)
+
+    dropdownMenuIsClosed()
+    wrapper.simulate('focus')
+    dropdownMenuIsOpen()
+  })
+
+  describe('handleBlur', () => {
+    it('passes the event to the onBlur prop', () => {
+      const spy = sandbox.spy()
+      const event = { foo: 'bar' }
+
+      wrapperShallow(<Dropdown onBlur={spy} />)
+        .simulate('blur', event)
+
+      spy.should.have.been.calledOnce()
+      spy.should.have.been.calledWithMatch(event)
+    })
+
+    it('calls selectHighlightedItem', () => {
+      wrapperShallow(<Dropdown selectOnBlur />)
+
+      const instance = wrapper.instance()
+      sandbox.spy(instance, 'selectHighlightedItem')
+
+      wrapper.simulate('blur')
+
+      instance.selectHighlightedItem
+        .should.have.been.calledOnce()
+    })
+
+    it('sets focus state to false', () => {
+      wrapperShallow(<Dropdown selectOnBlur />)
+        .simulate('blur')
+        .should.have.state('focus', false)
+    })
+
+    it('does not call onBlur when the mouse is down', () => {
+      const spy = sandbox.spy()
+
+      wrapperShallow(<Dropdown onBlur={spy} selectOnBlur />)
+        .simulate('mousedown')
+        .simulate('blur')
+
+      spy.should.not.have.been.called()
+    })
+
+    it('does not call selectHighlightedItem when the mouse is down', () => {
+      const spy = sandbox.spy()
+
+      wrapperShallow(<Dropdown onBlur={spy} selectOnBlur />)
+
+      const instance = wrapper.instance()
+      sandbox.spy(instance, 'selectHighlightedItem')
+
+      wrapper
+        .simulate('mousedown')
+        .simulate('blur')
+
+      instance.selectHighlightedItem
+        .should.not.have.been.called()
+    })
+
+    it('does not set focus state when the mouse is down', () => {
+      wrapperShallow(<Dropdown />)
+        .setState({ focus: 'foo' })
+        .simulate('mousedown')
+        .simulate('blur')
+        .should.have.state('focus', 'foo')
+    })
+  })
 
   describe('isMouseDown', () => {
-    it('tracks whhen the mouse is down', () => {
+    it('tracks when the mouse is down', () => {
       wrapperShallow(<Dropdown />)
         .simulate('mousedown')
 
@@ -840,13 +898,18 @@ describe('Dropdown Component', () => {
     it('is called with event and value when blurring', () => {
       const firstValue = options[0].value
       wrapperMount(<Dropdown options={options} selection onChange={spy} />)
-        .simulate('focus')
-        .simulate('click')
-
-      wrapper.simulate('blur')
+        .simulate('focus')  // open, highlights first item
+        .simulate('blur')   // blur should activate selected item
 
       spy.should.have.been.calledOnce()
       spy.firstCall.args[1].should.deep.equal(firstValue)
+    })
+    it('is not called on blur when closed', () => {
+      wrapperMount(<Dropdown options={options} selection open={false} onChange={spy} />)
+        .simulate('focus')
+        .simulate('blur')
+
+      spy.should.not.have.been.called()
     })
     it('is not called on blur when selectOnBlur is false', () => {
       wrapperMount(<Dropdown options={options} selection onChange={spy} selectOnBlur={false} />)
@@ -1530,6 +1593,20 @@ describe('Dropdown Component', () => {
 
       spy.should.have.been.calledOnce()
       spy.firstCall.args[0].should.equal('boo')
+    })
+  })
+
+  describe('header', () => {
+    it('renders a header when present', () => {
+      const text = faker.hacker.phrase()
+
+      wrapperRender(<Dropdown options={options} header={text} />)
+        .find('.menu .header')
+        .should.contain.text(text)
+    })
+    it('does not render a header when not present', () => {
+      wrapperRender(<Dropdown options={options} />)
+        .should.not.have.descendants('.menu .header')
     })
   })
 })

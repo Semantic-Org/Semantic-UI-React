@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, IndexRedirect } from 'react-router'
+import { Route, IndexRedirect, IndexRoute } from 'react-router'
 
 import Root from './Components/Root'
 import Layout from './Components/Layout'
@@ -25,6 +25,7 @@ const routes = (
 
     {/* v1 Routes */}
     <Route path=':type'>
+      <IndexRoute component={PageNotFound} />
       <Route path=':name' component={Root} />
     </Route>
 

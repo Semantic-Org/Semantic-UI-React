@@ -1,5 +1,51 @@
 # Change Log
 
+## [v0.44.8](https://github.com/TechnologyAdvice/stardust/tree/v0.44.8) (2016-09-20)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.44.7...v0.44.8)
+
+**Fixed bugs:**
+
+- Selecting an item from a Dropdown menu in search mode \(non multi\) does not work [\#513](https://github.com/TechnologyAdvice/stardust/issues/513)
+- fix\(Dropdown\): abort handleBlur on click inside [\#514](https://github.com/TechnologyAdvice/stardust/pull/514) ([levithomason](https://github.com/levithomason))
+
+## [v0.44.7](https://github.com/TechnologyAdvice/stardust/tree/v0.44.7) (2016-09-20)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.44.6...v0.44.7)
+
+**Implemented enhancements:**
+
+- \<Search /\> Component [\#195](https://github.com/TechnologyAdvice/stardust/issues/195)
+
+**Fixed bugs:**
+
+- fix\(Header\): subheader and image shorthand [\#511](https://github.com/TechnologyAdvice/stardust/issues/511)
+
+**Merged pull requests:**
+
+- fix\(Header\): properly wrap contents in HeaderContent [\#512](https://github.com/TechnologyAdvice/stardust/pull/512) ([levithomason](https://github.com/levithomason))
+
+## [v0.44.6](https://github.com/TechnologyAdvice/stardust/tree/v0.44.6) (2016-09-19)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.44.5...v0.44.6)
+
+**Merged pull requests:**
+
+- Search: add component [\#424](https://github.com/TechnologyAdvice/stardust/pull/424) ([jcarbo](https://github.com/jcarbo))
+
+## [v0.44.5](https://github.com/TechnologyAdvice/stardust/tree/v0.44.5) (2016-09-19)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.44.4...v0.44.5)
+
+**Merged pull requests:**
+
+- Dropdown: Dropdown.Header via shorthand prop [\#501](https://github.com/TechnologyAdvice/stardust/pull/501) ([jcarbo](https://github.com/jcarbo))
+
+## [v0.44.4](https://github.com/TechnologyAdvice/stardust/tree/v0.44.4) (2016-09-18)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.44.3...v0.44.4)
+
+**Fixed bugs:**
+
+- Dropdown events triggering twice [\#504](https://github.com/TechnologyAdvice/stardust/issues/504)
+- fix\(MenuItem\): remove `down` prop [\#502](https://github.com/TechnologyAdvice/stardust/issues/502)
+- fix\(Dropdown\): skip select item on blur when closed [\#508](https://github.com/TechnologyAdvice/stardust/pull/508) ([levithomason](https://github.com/levithomason))
+
 ## [v0.44.3](https://github.com/TechnologyAdvice/stardust/tree/v0.44.3) (2016-09-16)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.44.2...v0.44.3)
 

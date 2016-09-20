@@ -181,6 +181,9 @@ export default class Dropdown extends Component {
     /** Display the menu as detached from the Dropdown. */
     floating: PropTypes.bool,
 
+    /** A dropdown menu can contain a header. */
+    header: PropTypes.node,
+
     inline: PropTypes.bool,
     labeled: PropTypes.bool,
     linkItem: PropTypes.bool,
@@ -401,11 +404,13 @@ export default class Dropdown extends Component {
   }
 
   selectHighlightedItem = (e) => {
+    const { open } = this.state
     const { multiple, onAddItem, options } = this.props
     const value = _.get(this.getSelectedItem(), 'value')
 
     // prevent selecting null if there was no selected item value
-    if (!value) return
+    // prevent selecting duplicate items when the dropdown is closed
+    if (!value || !open) return
 
     // notify the onAddItem prop if this is a new value
     if (onAddItem && !_.some(options, { text: value })) onAddItem(value)
@@ -524,6 +529,8 @@ export default class Dropdown extends Component {
   handleBlur = (e) => {
     debug('handleBlur()')
     const { multiple, onBlur, selectOnBlur } = this.props
+    // do not "blur" when the mouse is down inside of the Dropdown
+    if (this.isMouseDown) return
     if (onBlur) onBlur(e)
     if (selectOnBlur && !multiple) this.selectHighlightedItem(e)
     this.setState({ focus: false })
@@ -863,7 +870,7 @@ export default class Dropdown extends Component {
   }
 
   renderMenu = () => {
-    const { children } = this.props
+    const { children, header } = this.props
     const { open } = this.state
     const menuClasses = open ? 'visible' : ''
 
@@ -877,6 +884,7 @@ export default class Dropdown extends Component {
 
     return (
       <DropdownMenu className={menuClasses}>
+        {header && <DropdownHeader content={header} />}
         {this.renderOptions()}
       </DropdownMenu>
     )

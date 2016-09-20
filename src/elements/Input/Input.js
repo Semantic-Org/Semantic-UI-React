@@ -54,6 +54,7 @@ export default class Input extends Component {
     children: PropTypes.node,
     className: PropTypes.string,
     icon: PropTypes.string,
+    input: PropTypes.object,
     type: PropTypes.string,
   }
 
@@ -67,7 +68,7 @@ export default class Input extends Component {
   }
 
   render() {
-    const { className, children, icon, type } = this.props
+    const { className, children, icon, input, type } = this.props
     // Semantic supports actions and labels on either side of an input.
     // The element must be on the same side as the indicated class.
     // We first determine the left/right classes for each type of child,
@@ -105,7 +106,7 @@ export default class Input extends Component {
       <ElementType {...rest} className={classes}>
         {isLeftLabeled && labelChildren}
         {isLeftAction && actionChildren}
-        <input {...inputProps} type={type} />
+        <input {...inputProps} {...input} type={type} />
         {icon && <Icon name={icon} />}
         {isRightLabeled && labelChildren}
         {isRightAction && actionChildren}
