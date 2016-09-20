@@ -21,6 +21,19 @@ const DropdownExamples = () => (
         examplePath='modules/Dropdown/Types/ImageTrigger'
       />
       <ComponentExample
+        title='Uncontrolled'
+        description='A dropdown works as an uncontrolled component'
+        examplePath='modules/Dropdown/Types/Uncontrolled'
+      >
+        <Message>
+          See React form docs for an explanation of
+          <a href='https://facebook.github.io/react/docs/forms.html' target='_blank'>
+            &nbsp;controlled and uncontrolled&nbsp;
+          </a>
+          component patterns.
+        </Message>
+      </ComponentExample>
+      <ComponentExample
         title='Selection'
         description='A dropdown can be used to select between choices in a form'
         examplePath='modules/Dropdown/Types/Selection'
