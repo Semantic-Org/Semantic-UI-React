@@ -529,6 +529,8 @@ export default class Dropdown extends Component {
   handleBlur = (e) => {
     debug('handleBlur()')
     const { multiple, onBlur, selectOnBlur } = this.props
+    // do not "blur" when the mouse is down inside of the Dropdown
+    if (this.isMouseDown) return
     if (onBlur) onBlur(e)
     if (selectOnBlur && !multiple) this.selectHighlightedItem(e)
     this.setState({ focus: false })
