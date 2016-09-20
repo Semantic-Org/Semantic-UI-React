@@ -7,11 +7,13 @@ const options = [
   { value: 'products', text: 'Products' },
 ]
 
+const actions = [
+  <Select compact options={options} defaultValue='articles' />,
+  <Button type='submit'>Search</Button>,
+]
+
 const InputAction = () => (
-  <Input className='left icon action' icon='search' placeholder='Search...'>
-    <Select compact options={options} defaultValue='articles' />
-    <Button type='submit'>Search</Button>
-  </Input>
+  <Input actions={actions} actionPosition='left' icon='search' placeholder='Search...' />
 )
 
 export default InputAction

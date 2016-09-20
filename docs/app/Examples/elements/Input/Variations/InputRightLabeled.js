@@ -1,10 +1,8 @@
 import React from 'react'
-import { Input, Label } from 'stardust'
+import { Input } from 'stardust'
 
 const InputRightLabeled = () => (
-  <Input className='right labeled' placeholder='mysite.com'>
-    <Label>http://</Label>
-  </Input>
+  <Input label='http://' labelPosition='right' placeholder='mysite.com' />
 )
 
 export default InputRightLabeled

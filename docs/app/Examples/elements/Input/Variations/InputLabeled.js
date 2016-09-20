@@ -1,10 +1,8 @@
 import React from 'react'
-import { Input, Label } from 'stardust'
+import { Input } from 'stardust'
 
 const InputLabeled = () => (
-  <Input className='labeled' placeholder='mysite.com'>
-    <Label>http://</Label>
-  </Input>
+  <Input label='http://' placeholder='mysite.com' />
 )
 
 export default InputLabeled
