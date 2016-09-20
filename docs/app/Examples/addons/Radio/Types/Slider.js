@@ -2,7 +2,7 @@ import React from 'react'
 import { Radio } from 'stardust'
 
 const RadioSliderExample = () => (
-  <Radio type='slider' />
+  <Radio slider />
 )
 
 export default RadioSliderExample

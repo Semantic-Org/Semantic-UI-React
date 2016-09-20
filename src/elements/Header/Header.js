@@ -14,18 +14,22 @@ import {
 } from '../../lib'
 import { createIcon, createImage } from '../../factories'
 import HeaderSubheader from './HeaderSubheader'
+import HeaderContent from './HeaderContent'
 
+/**
+ * A header provides a short summary of content
+ */
 function Header(props) {
   const {
     color, content, dividing, block, attached, floated, inverted, disabled, sub, size, textAlign,
-    icon, image, children, className,
+    icon, image, children, className, subheader,
   } = props
 
   const classes = cx(
     'ui',
-    icon && 'icon',
     size,
     color,
+    useKeyOnly(icon === true, 'icon'),
     useKeyOnly(sub, 'sub'),
     useKeyOnly(dividing, 'dividing'),
     useKeyOnly(block, 'block'),
@@ -42,13 +46,31 @@ function Header(props) {
   const rest = getUnhandledProps(Header, props)
 
   if (children) {
-    return <ElementType {...rest} className={classes}>{children}</ElementType>
+    return (
+      <ElementType {...rest} className={classes}>
+        {children}
+      </ElementType>
+    )
+  }
+
+  if (image || icon && typeof icon !== 'boolean') {
+    return (
+      <ElementType {...rest} className={classes}>
+        {createIcon(icon) || createImage(image)}
+        {(content || subheader) && (
+          <HeaderContent>
+            {content}
+            {subheader && <HeaderSubheader content={subheader} />}
+          </HeaderContent>
+        )}
+      </ElementType>
+    )
   }
 
   return (
-    <ElementType className={classes} {...rest}>
-      {createIcon(icon) || createImage(image)}
-      <div className='content'>{content}</div>
+    <ElementType {...rest} className={classes}>
+      {content}
+      {subheader && <HeaderSubheader content={subheader} />}
     </ElementType>
   )
 }
@@ -77,8 +99,12 @@ Header.propTypes = {
 
   /** Primary content */
   children: customPropTypes.every([
-    customPropTypes.disallow(['icon', 'image']),
     PropTypes.node,
+    customPropTypes.disallow(['image']),
+    customPropTypes.givenProps(
+      { icon: PropTypes.oneOfType([PropTypes.string, PropTypes.element, PropTypes.object]) },
+      customPropTypes.disallow(['icon']),
+    ),
   ]),
 
   /** Primary content.  Mutually exclusive with children. */
@@ -89,12 +115,15 @@ Header.propTypes = {
 
   /** Add an icon by icon name or pass an <Icon /.> */
   icon: customPropTypes.every([
-    customPropTypes.disallow(['children', 'image']),
-    PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.element,
-      PropTypes.object,
-    ]),
+    customPropTypes.disallow(['image']),
+    customPropTypes.givenProps(
+      { children: PropTypes.node.isRequired },
+      PropTypes.bool,
+    ),
+    customPropTypes.givenProps(
+      { icon: PropTypes.oneOfType([PropTypes.string, PropTypes.element, PropTypes.object]) },
+      customPropTypes.disallow(['children']),
+    ),
   ]),
 
   /** Add an image by img src or pass an <Image />. */
@@ -117,7 +146,10 @@ Header.propTypes = {
   block: PropTypes.bool,
 
   /** Attach header  to other content, like a segment */
-  attached: PropTypes.oneOf(Header._meta.props.attached),
+  attached: PropTypes.oneOfType([
+    PropTypes.oneOf(Header._meta.props.attached),
+    PropTypes.bool,
+  ]),
 
   /** Header can sit to the left or right of other content */
   floated: PropTypes.oneOf(Header._meta.props.floated),
@@ -134,10 +166,17 @@ Header.propTypes = {
   /** Content headings are sized with em and are based on the font-size of their container. */
   size: PropTypes.oneOf(Header._meta.props.size),
 
+  /** Shorthand for the Header.Subheader component. Mutually exclusive with children */
+  subheader: customPropTypes.every([
+    customPropTypes.disallow(['children']),
+    PropTypes.string,
+  ]),
+
   /** Align header content */
   textAlign: PropTypes.oneOf(Header._meta.props.textAlign),
 }
 
+Header.Content = HeaderContent
 Header.Subheader = HeaderSubheader
 
 export default Header

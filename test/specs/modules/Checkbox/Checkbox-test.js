@@ -1,4 +1,3 @@
-import _ from 'lodash'
 import React from 'react'
 
 import Checkbox from 'src/modules/Checkbox/Checkbox'
@@ -8,6 +7,9 @@ import { sandbox } from 'test/utils'
 describe('Checkbox', () => {
   common.isConformant(Checkbox)
   common.hasUIClassName(Checkbox)
+  common.propKeyOnlyToClassName(Checkbox, 'checked')
+  common.propKeyOnlyToClassName(Checkbox, 'slider')
+  common.propKeyOnlyToClassName(Checkbox, 'toggle')
 
   describe('defaultChecked', () => {
     it('sets the initial checked state', () => {
@@ -15,6 +17,23 @@ describe('Checkbox', () => {
       shallow(<Checkbox defaultChecked />)
         .find('input')
         .should.be.checked()
+    })
+  })
+
+  describe('checking', () => {
+    it('can be checked and unchecked', () => {
+      const wrapper = shallow(<Checkbox />)
+
+      wrapper.find('input').should.not.be.checked()
+      wrapper.simulate('click').find('input').should.be.checked()
+      wrapper.simulate('click').find('input').should.not.be.checked()
+    })
+    it('can be checked but not unchecked when radio', () => {
+      const wrapper = shallow(<Checkbox radio />)
+
+      wrapper.find('input').should.not.be.checked()
+      wrapper.simulate('click').find('input').should.be.checked()
+      wrapper.simulate('click').find('input').should.be.checked()
     })
   })
 
@@ -33,52 +52,20 @@ describe('Checkbox', () => {
     })
   })
 
-  describe('inputType', () => {
-    it('overrides type', () => {
-      // for every type, override with each inputType
-      _.each(Checkbox._meta.props.type, (type) => {
-        _.each(Checkbox._meta.props.inputType, (inputType) => {
-          shallow(<Checkbox type={type} inputType={inputType} />)
-            .find('input')
-            .should.have.prop('type', inputType)
-        })
-      })
-    })
-  })
-
   describe('type', () => {
     it('renders an input of type checkbox when not set', () => {
       shallow(<Checkbox />)
         .find('input')
         .should.have.prop('type', 'checkbox')
     })
-    it('renders an input of type checkbox when set to slider', () => {
-      shallow(<Checkbox type='slider' />)
+    it('sets the input type ', () => {
+      shallow(<Checkbox type='checkbox' />)
         .find('input')
         .should.have.prop('type', 'checkbox')
-    })
-    it('renders an input of type checkbox when set to toggle', () => {
-      shallow(<Checkbox type='toggle' />)
-        .find('input')
-        .should.have.prop('type', 'checkbox')
-    })
-    it('renders an input of type radio when set to radio', () => {
+
       shallow(<Checkbox type='radio' />)
         .find('input')
         .should.have.prop('type', 'radio')
-    })
-    it('it adds the prop value to className, except checkbox', () => {
-      const types = _.without(Checkbox._meta.props.type, 'checkbox')
-      _.each(types, (type) => {
-        shallow(<Checkbox type={type} />)
-          .should.have.className(type)
-      })
-    })
-    it('does not add duplicate checkbox classes when set to "checkbox"', () => {
-      shallow(<Checkbox type='checkbox' />)
-        .prop('className')
-        .match(/checkbox/g)
-        .should.have.length(1)
     })
   })
 

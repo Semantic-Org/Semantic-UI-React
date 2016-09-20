@@ -6,19 +6,19 @@ export default class DividerVerticalExample extends Component {
     return (
       <Grid columns={3} relaxed>
         <Grid.Column>
-          <Segment className='basic'>
+          <Segment basic>
             Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio.
           </Segment>
         </Grid.Column>
         <Divider vertical>Or</Divider>
         <Grid.Column>
-          <Segment className='basic'>
+          <Segment basic>
             Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio.
           </Segment>
         </Grid.Column>
         <Divider vertical>And</Divider>
         <Grid.Column>
-          <Segment className='basic'>
+          <Segment basic>
             Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio.
           </Segment>
         </Grid.Column>

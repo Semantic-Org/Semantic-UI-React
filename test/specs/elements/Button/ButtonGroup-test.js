@@ -1,8 +1,19 @@
-import Buttons from 'src/elements/Button/Buttons'
+import ButtonGroup from 'src/elements/Button/ButtonGroup'
 import * as common from 'test/specs/commonTests'
 
-describe('Buttons', () => {
-  common.isConformant(Buttons)
-  common.hasUIClassName(Buttons)
-  common.rendersChildren(Buttons)
+describe('ButtonGroup', () => {
+  common.isConformant(ButtonGroup)
+  common.hasUIClassName(ButtonGroup)
+  common.implementsWidthProp(ButtonGroup, { propKey: 'widths', widthClass: 'buttons', canEqual: false })
+
+  common.propKeyAndValueToClassName(ButtonGroup, 'attached')
+  common.propKeyOnlyToClassName(ButtonGroup, 'basic')
+  common.propKeyOnlyToClassName(ButtonGroup, 'icon')
+  common.propKeyOnlyToClassName(ButtonGroup, 'labeled')
+  common.propKeyOnlyToClassName(ButtonGroup, 'vertical')
+
+  common.propValueOnlyToClassName(ButtonGroup, 'color')
+  common.propValueOnlyToClassName(ButtonGroup, 'size')
+
+  common.rendersChildren(ButtonGroup)
 })

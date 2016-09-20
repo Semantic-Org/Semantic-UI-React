@@ -1,9 +1,7 @@
+const _ = require('lodash')
 const { argv } = require('yargs')
 const config = require('./config')
-const webpack = require('webpack')
 const webpackConfig = require('./webpack.config')
-
-const { paths } = config
 
 module.exports = (karmaConfig) => {
   karmaConfig.set({
@@ -13,7 +11,48 @@ module.exports = (karmaConfig) => {
     reporters: ['mocha', 'coverage'],
     files: [
       './test/tests.bundle.js',
+      { pattern: 'test/images/*', watched: false, included: false, served: true },
     ],
+    proxies: {
+      '/foo.png': '/base/test/images/foo.png',
+    },
+    formatError(msg) {
+      return msg
+        .split('\n')
+        .reduce((list, line) => {
+          // filter out node_modules
+          if (/~/.test(line)) return list
+
+          // indent the error beneath the it() message
+          let newLine = '  ' + line
+
+          if (newLine.includes('webpack:///')) {
+            // remove webpack:///
+            newLine = newLine.replace('webpack:///', '')
+
+            // remove bundle location, showing only the source location
+            newLine = newLine.slice(0, newLine.indexOf(' <- '))
+
+            // indent stacktrace beneath the error message
+            const indent = newLine.slice(0, newLine.search(/\S/)) + '  '
+
+            // rearrange line for better scanning
+            const [location, ln, col] = newLine.split(':').map(s => s.trim())
+            const pathCols = 71
+            const lineCols = 8
+
+            if (location.includes('@')) {
+              const [method, filePath] = location.split('@')
+              newLine = _.padEnd(`${indent}${filePath} @ ${method}()`, pathCols) + _.padStart(ln + ':' + col, lineCols)
+            } else {
+              newLine = _.padEnd(indent + location, pathCols) + _.padStart(ln + ':' + col, lineCols)
+            }
+          }
+
+          return list.concat(newLine)
+        }, [])
+        .join('\n')
+    },
     frameworks: [
       'phantomjs-shim',
       'mocha',
@@ -51,16 +90,9 @@ module.exports = (karmaConfig) => {
           ...webpackConfig.module.loaders,
         ],
       }),
-      plugins: [
-        ...webpackConfig.plugins,
-        // utils/jquery loads real jQuery and semantic-ui-css
-        // we alias jquery and semantic-ui-css to mocks during tests
-        // ignore this module so we can use the mock versions in alias below
-        new webpack.NormalModuleReplacementPlugin(/lib\/jquery/, 'empty'),
-      ],
+      plugins: webpackConfig.plugins,
       resolve: Object.assign({}, webpackConfig.resolve, {
         alias: Object.assign({}, webpackConfig.resolve.alias, {
-          jquery: `${paths.test('mocks')}/SemanticjQuery-mock.js`,
           sinon: 'sinon/pkg/sinon',
           // These are internal deps specific to React 0.13 required() by enzyme
           // They shouldn't be requiring these at all, issues and fix proposed

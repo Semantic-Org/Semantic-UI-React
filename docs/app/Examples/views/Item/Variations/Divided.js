@@ -4,8 +4,6 @@ import { Button, Icon, Image as ImageComponent, Item, Label } from 'stardust'
 const { Content, Description, Extra, Group, Header, Image, Meta } = Item
 const paragraph = <ImageComponent src='http://semantic-ui.com/images/wireframe/short-paragraph.png' />
 
-// TODO: Update <Button> usage after its update to v1 API
-
 const Divided = () => (
   <Group divided>
     <Item>
@@ -34,7 +32,7 @@ const Divided = () => (
         </Meta>
         <Description>{paragraph}</Description>
         <Extra>
-          <Button className='right floated primary'>
+          <Button primary floated='right'>
             Buy tickets
             <Icon name='right chevron' />
           </Button>
@@ -53,7 +51,7 @@ const Divided = () => (
         </Meta>
         <Description>{paragraph}</Description>
         <Extra>
-          <Button className='right floated primary'>
+          <Button primary floated='right'>
             Buy tickets
             <Icon name='right chevron' />
           </Button>

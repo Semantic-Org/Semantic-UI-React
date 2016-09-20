@@ -1,14 +1,12 @@
-import React, { Component } from 'react'
-import { Buttons, Button } from 'stardust'
+import React from 'react'
+import { Button } from 'stardust'
 
-export default class ButtonConditionalsExample extends Component {
-  render() {
-    return (
-      <Buttons>
-        <Button>Cancel</Button>
-        <div className='or' />
-        <Button className='positive'>Save</Button>
-      </Buttons>
-    )
-  }
-}
+const ButtonConditionalsExample = () => (
+  <Button.Group>
+    <Button>Cancel</Button>
+    <Button.Or />
+    <Button positive>Save</Button>
+  </Button.Group>
+)
+
+export default ButtonConditionalsExample

@@ -1,10 +1,14 @@
-import faker from 'faker'
 import _ from 'lodash'
+import faker from 'faker'
 import React from 'react'
 
-import Dropdown from 'src/modules/Dropdown/Dropdown'
 import * as common from 'test/specs/commonTests'
 import { domEvent, sandbox } from 'test/utils'
+import Dropdown from 'src/modules/Dropdown/Dropdown'
+import DropdownDivider from 'src/modules/Dropdown/DropdownDivider'
+import DropdownHeader from 'src/modules/Dropdown/DropdownHeader'
+import DropdownItem from 'src/modules/Dropdown/DropdownItem'
+import DropdownMenu from 'src/modules/Dropdown/DropdownMenu'
 
 let attachTo
 let options
@@ -64,42 +68,111 @@ describe('Dropdown Component', () => {
 
   common.isConformant(Dropdown)
   common.hasUIClassName(Dropdown)
+  common.hasSubComponents(Dropdown, [DropdownDivider, DropdownHeader, DropdownItem, DropdownMenu])
   common.isTabbable(Dropdown)
   common.implementsIconProp(Dropdown)
   common.propKeyOnlyToClassName(Dropdown, 'multiple')
   common.propKeyOnlyToClassName(Dropdown, 'search')
   common.propKeyOnlyToClassName(Dropdown, 'selection')
 
-  it('does not add a hidden input by default', () => {
-    wrapperMount(<Dropdown />)
-      .find('input[type="hidden"]')
-      .should.not.be.present()
+  it('closes on blur', () => {
+    wrapperMount(<Dropdown options={options} />)
+      .simulate('click')
+
+    dropdownMenuIsOpen()
+    wrapper.simulate('blur')
+    dropdownMenuIsClosed()
   })
 
-  // TODO: see Dropdown.handleBlur() todo
-  // it('closes on blur', () => {
-  //   wrapperMount(<Dropdown {...requiredProps} />)
-  //     .simulate('click')
-  //
-  //   dropdownMenuIsOpen()
-  //
-  //   wrapper
-  //     .simulate('blur')
-  //
-  //   dropdownMenuIsClosed()
-  // })
+  it('opens on focus', () => {
+    wrapperMount(<Dropdown options={options} />)
 
-  // TODO: see Dropdown.handleFocus() todo
-  // it('opens on focus', () => {
-  //   wrapperMount(<Dropdown {...requiredProps} />)
-  //
-  //   dropdownMenuIsClosed()
-  //
-  //   wrapper
-  //     .simulate('focus')
-  //
-  //   dropdownMenuIsOpen()
-  // })
+    dropdownMenuIsClosed()
+    wrapper.simulate('focus')
+    dropdownMenuIsOpen()
+  })
+
+  describe('handleBlur', () => {
+    it('passes the event to the onBlur prop', () => {
+      const spy = sandbox.spy()
+      const event = { foo: 'bar' }
+
+      wrapperShallow(<Dropdown onBlur={spy} />)
+        .simulate('blur', event)
+
+      spy.should.have.been.calledOnce()
+      spy.should.have.been.calledWithMatch(event)
+    })
+
+    it('calls selectHighlightedItem', () => {
+      wrapperShallow(<Dropdown selectOnBlur />)
+
+      const instance = wrapper.instance()
+      sandbox.spy(instance, 'selectHighlightedItem')
+
+      wrapper.simulate('blur')
+
+      instance.selectHighlightedItem
+        .should.have.been.calledOnce()
+    })
+
+    it('sets focus state to false', () => {
+      wrapperShallow(<Dropdown selectOnBlur />)
+        .simulate('blur')
+        .should.have.state('focus', false)
+    })
+
+    it('does not call onBlur when the mouse is down', () => {
+      const spy = sandbox.spy()
+
+      wrapperShallow(<Dropdown onBlur={spy} selectOnBlur />)
+        .simulate('mousedown')
+        .simulate('blur')
+
+      spy.should.not.have.been.called()
+    })
+
+    it('does not call selectHighlightedItem when the mouse is down', () => {
+      const spy = sandbox.spy()
+
+      wrapperShallow(<Dropdown onBlur={spy} selectOnBlur />)
+
+      const instance = wrapper.instance()
+      sandbox.spy(instance, 'selectHighlightedItem')
+
+      wrapper
+        .simulate('mousedown')
+        .simulate('blur')
+
+      instance.selectHighlightedItem
+        .should.not.have.been.called()
+    })
+
+    it('does not set focus state when the mouse is down', () => {
+      wrapperShallow(<Dropdown />)
+        .setState({ focus: 'foo' })
+        .simulate('mousedown')
+        .simulate('blur')
+        .should.have.state('focus', 'foo')
+    })
+  })
+
+  describe('isMouseDown', () => {
+    it('tracks when the mouse is down', () => {
+      wrapperShallow(<Dropdown />)
+        .simulate('mousedown')
+
+      wrapper.instance()
+        .isMouseDown
+        .should.equal(true)
+
+      domEvent.mouseUp(document)
+
+      wrapper.instance()
+        .isMouseDown
+        .should.equal(false)
+    })
+  })
 
   describe('icon', () => {
     it('defaults to a dropdown icon', () => {
@@ -116,6 +189,27 @@ describe('Dropdown Component', () => {
         .first()
         .should.have.prop('selected', true)
     })
+    it('defaults to the first non-disabled item', () => {
+      options[0].disabled = true
+      wrapperShallow(<Dropdown options={options} selection />)
+
+      // selection moved to second item
+      wrapper
+        .find('DropdownItem')
+        .first()
+        .should.have.prop('selected', false)
+
+      wrapper
+        .find('DropdownItem')
+        .at(1)
+        .should.have.prop('selected', true)
+    })
+    it('is null when all options disabled', () => {
+      const disabledOptions = options.map((o) => ({ ...o, disabled: true }))
+
+      wrapperRender(<Dropdown options={disabledOptions} selection />)
+        .should.not.have.descendants('.selected')
+    })
     it('is set when clicking an item', () => {
       // random item, skip the first as its selected by default
       const randomIndex = 1 + _.random(options.length - 2)
@@ -125,6 +219,22 @@ describe('Dropdown Component', () => {
         .at(randomIndex)
         .simulate('click')
         .should.have.prop('selected', true)
+    })
+    it('is ignored when clicking a disabled item', () => {
+      // random item, skip the first as its selected by default
+      const randomIndex = 1 + _.random(options.length - 2)
+      const nativeEvent = { nativeEvent: { stopImmediatePropagation: _.noop } }
+
+      options[randomIndex].disabled = true
+
+      wrapperMount(<Dropdown options={options} selection />)
+        .simulate('click', nativeEvent)
+        .find('DropdownItem')
+        .at(randomIndex)
+        .simulate('click', nativeEvent)
+        .should.not.have.prop('selected', true)
+
+      dropdownMenuIsOpen()
     })
     it('moves down on arrow down when open', () => {
       wrapperMount(<Dropdown options={options} selection />)
@@ -193,6 +303,45 @@ describe('Dropdown Component', () => {
       wrapper
         .find('.selected')
         .should.contain.text('a2')
+    })
+    it('skips over disabled items', () => {
+      const opts = [
+        { text: 'a1', value: 'a1' },
+        { text: 'skip this one', value: 'skip this one', disabled: true },
+        { text: 'a2', value: 'a2' },
+      ]
+
+      wrapperMount(<Dropdown options={opts} search selection />)
+        .simulate('click')
+
+      wrapper
+        .find('.selected')
+        .should.contain.text('a1')
+
+      // move selection down
+      domEvent.keyDown(document, { key: 'ArrowDown' })
+
+      wrapper
+        .find('.selected')
+        .should.contain.text('a2')
+    })
+    it('does not enter an infinite loop when all items are disabled', () => {
+      const opts = [
+        { text: '1', value: '1', disabled: true },
+        { text: '2', value: '2', disabled: true },
+      ]
+      wrapperMount(<Dropdown options={opts} search selection />)
+        .simulate('click')
+
+      const instance = wrapper.instance()
+      sandbox.spy(instance, 'moveSelectionBy')
+
+      // move selection down
+      domEvent.keyDown(document, { key: 'ArrowDown' })
+
+      instance
+        .moveSelectionBy
+        .should.have.been.calledOnce()
     })
     it('scrolls the selected item into view', () => {
       // get enough options to make the menu scrollable
@@ -371,13 +520,25 @@ describe('Dropdown Component', () => {
     })
   })
 
-  describe('menu', () => {
-    // DO NOT simulate events on 'document', use the 'domEvent` util
-    // simulate() only uses React's internal event system
-    // it does not touch the actual DOM at all so it can't use any of the DOM event handlers.
-    // We listen for keydown on the raw DOM, not in a React component.
-    // https://github.com/facebook/react/issues/5043
+  describe('trigger', () => {
+    it('displays the trigger', () => {
+      const text = 'Hey there'
+      const trigger = <div className='trigger'>{text}</div>
 
+      wrapperRender(<Dropdown options={options} trigger={trigger} />)
+        .find('.trigger')
+        .should.contain.text(text)
+    })
+    it('ignores the text prop', () => {
+      const text = faker.hacker.phrase()
+      const trigger = <div className='trigger'>{text}</div>
+
+      wrapperRender(<Dropdown options={options} trigger={trigger} text={text} />)
+        .should.not.have.descendants('.text')
+    })
+  })
+
+  describe('menu', () => {
     it('opens on dropdown click', () => {
       wrapperMount(<Dropdown options={options} selection />)
 
@@ -386,20 +547,24 @@ describe('Dropdown Component', () => {
       dropdownMenuIsOpen()
     })
 
-    it('opens on arrow down when focused', () => {
+    it('opens on arrow down when focused and closed', () => {
       wrapperMount(<Dropdown options={options} selection />)
 
-      dropdownMenuIsClosed()
       wrapper.simulate('focus')
+      domEvent.keyDown(document, { key: 'Escape' })
+      dropdownMenuIsClosed()
+
       domEvent.keyDown(document, { key: 'ArrowDown' })
       dropdownMenuIsOpen()
     })
 
-    it('opens on arrow up when focused', () => {
+    it('opens on arrow up when focused and closed', () => {
       wrapperMount(<Dropdown options={options} selection />)
 
-      dropdownMenuIsClosed()
       wrapper.simulate('focus')
+      domEvent.keyDown(document, { key: 'Escape' })
+      dropdownMenuIsClosed()
+
       domEvent.keyDown(document, { key: 'ArrowUp' })
       dropdownMenuIsOpen()
     })
@@ -409,32 +574,9 @@ describe('Dropdown Component', () => {
 
       dropdownMenuIsClosed()
       wrapper.simulate('focus')
+      domEvent.keyDown(document, { key: 'Escape' })
       domEvent.keyDown(document, { key: ' ' })
       dropdownMenuIsOpen()
-    })
-
-    it('does not call open on space if already open', () => {
-      wrapperMount(<Dropdown options={options} selection />)
-
-      const instance = wrapper.instance()
-      sandbox.spy(instance, 'open')
-
-      dropdownMenuIsClosed()
-      instance.open.should.not.have.been.called()
-
-      // first time
-      wrapper.simulate('focus')
-      domEvent.keyDown(document, { key: ' ' })
-
-      dropdownMenuIsOpen()
-      instance.open.should.have.been.calledOnce()
-
-      // second time
-      wrapper.simulate('focus')
-      domEvent.keyDown(document, { key: ' ' })
-
-      dropdownMenuIsOpen()
-      instance.open.should.have.been.calledOnce()
     })
 
     it('does not open on arrow down when not focused', () => {
@@ -453,6 +595,14 @@ describe('Dropdown Component', () => {
       dropdownMenuIsClosed()
     })
 
+    it('closes on dropdown click', () => {
+      wrapperMount(<Dropdown options={options} selection defaultOpen />)
+
+      dropdownMenuIsOpen()
+      wrapper.simulate('click')
+      dropdownMenuIsClosed()
+    })
+
     it('closes on menu item click', () => {
       wrapperMount(<Dropdown options={options} selection />)
       const item = wrapper
@@ -464,6 +614,23 @@ describe('Dropdown Component', () => {
       dropdownMenuIsOpen()
 
       // select item
+      item.simulate('click')
+      dropdownMenuIsClosed()
+    })
+
+    it('blurs after menu item click (mousedown)', () => {
+      wrapperMount(<Dropdown options={options} selection />)
+      const item = wrapper
+        .find('DropdownItem')
+        .at(_.random(options.length - 1))
+
+      // open
+      wrapper.simulate('click')
+      dropdownMenuIsOpen()
+
+      // select item
+      item.simulate('mousedown')
+      dropdownMenuIsOpen()
       item.simulate('click')
       dropdownMenuIsClosed()
     })
@@ -513,14 +680,14 @@ describe('Dropdown Component', () => {
       dropdownMenuIsClosed()
     })
     it('closes the menu when toggled from true to false', () => {
-      wrapperShallow(<Dropdown options={options} selection open />)
+      wrapperMount(<Dropdown options={options} selection open />)
         .setProps({ open: false })
-      dropdownMenuIsOpen()
+      dropdownMenuIsClosed()
     })
     it('opens the menu when toggled from false to true', () => {
-      wrapperShallow(<Dropdown options={options} selection open={false} />)
+      wrapperMount(<Dropdown options={options} selection open={false} />)
         .setProps({ open: true })
-      dropdownMenuIsClosed()
+      dropdownMenuIsOpen()
     })
   })
 
@@ -560,7 +727,7 @@ describe('Dropdown Component', () => {
 
       wrapper
         .find('Label')
-        .should.have.prop('text', activeItem.text)
+        .should.have.prop('content', activeItem.text)
     })
     it('keeps the selection within the range of remaining options', () => {
       // items are removed as they are made active
@@ -728,6 +895,40 @@ describe('Dropdown Component', () => {
       spy.should.have.been.calledOnce()
       spy.firstCall.args[1].should.deep.equal(firstValue)
     })
+    it('is called with event and value when blurring', () => {
+      const firstValue = options[0].value
+      wrapperMount(<Dropdown options={options} selection onChange={spy} />)
+        .simulate('focus')  // open, highlights first item
+        .simulate('blur')   // blur should activate selected item
+
+      spy.should.have.been.calledOnce()
+      spy.firstCall.args[1].should.deep.equal(firstValue)
+    })
+    it('is not called on blur when closed', () => {
+      wrapperMount(<Dropdown options={options} selection open={false} onChange={spy} />)
+        .simulate('focus')
+        .simulate('blur')
+
+      spy.should.not.have.been.called()
+    })
+    it('is not called on blur when selectOnBlur is false', () => {
+      wrapperMount(<Dropdown options={options} selection onChange={spy} selectOnBlur={false} />)
+        .simulate('focus')
+        .simulate('click')
+
+      wrapper.simulate('blur')
+
+      spy.should.not.have.been.called()
+    })
+    it('is not called on blur with multiple select', () => {
+      wrapperMount(<Dropdown options={options} selection onChange={spy} multiple />)
+        .simulate('focus')
+        .simulate('click')
+
+      wrapper.simulate('blur')
+
+      spy.should.not.have.been.called()
+    })
     it('is not called when updating the value prop', () => {
       const value = _.sample(options).value
       const next = _.sample(_.without(options, value)).value
@@ -819,10 +1020,43 @@ describe('Dropdown Component', () => {
   })
 
   describe('selection', () => {
-    it('adds a hidden input', () => {
-      wrapperRender(<Dropdown options={options} selection />)
-        .find('input[type="hidden"]')
-        .should.be.present()
+    it('does not add a hidden select by default', () => {
+      wrapperMount(<Dropdown />)
+        .should.not.have.descendants('select[type="hidden"]')
+    })
+    it('adds a hidden select', () => {
+      wrapperShallow(<Dropdown options={options} selection />)
+        .should.have.exactly(1).descendants('select[type="hidden"]')
+    })
+    it('passes the name prop to the hidden select', () => {
+      wrapperShallow(<Dropdown name='foo' options={options} selection />)
+        .find('select[type="hidden"]').should.have.prop('name', 'foo')
+    })
+    it('passes the value prop to the hidden select', () => {
+      const value = _.values(options)
+
+      wrapperShallow(<Dropdown name='foo' value={value} options={options} selection />)
+        .find('select[type="hidden"][name="foo"]').should.have.prop('value', value)
+    })
+    it('passes the multiple prop to the hidden select', () => {
+      const selector = 'select[type="hidden"][name="foo"]'
+
+      wrapperShallow(<Dropdown name='foo' multiple options={options} selection />)
+        .find(selector).should.have.prop('multiple', true)
+
+      wrapperShallow(<Dropdown name='foo' multiple={false} options={options} selection />)
+        .find(selector).should.have.prop('multiple', false)
+    })
+    it('adds options to the hidden select', () => {
+      wrapperShallow(<Dropdown options={options} selection />)
+        .should.have.exactly(options.length).descendants('option')
+
+      options.forEach((opt, i) => {
+        const optionElement = wrapper.find('option').at(i)
+
+        optionElement.should.have.prop('value', opt.value)
+        optionElement.should.have.text(opt.text)
+      })
     })
   })
 
@@ -833,8 +1067,15 @@ describe('Dropdown Component', () => {
     })
 
     it('adds a search input when present', () => {
-      wrapperRender(<Dropdown options={options} selection search />)
+      wrapperShallow(<Dropdown options={options} selection search />)
+        .should.have.exactly(1).descendants('input.search')
+    })
+
+    it('adds the name prop to the search input', () => {
+      wrapperShallow(<Dropdown name='foo' options={options} selection search />)
         .should.have.descendants('input.search')
+
+      wrapper.find('input.search').should.have.prop('name', 'foo-search')
     })
 
     it('sets focus to the search input on open', () => {
@@ -924,6 +1165,23 @@ describe('Dropdown Component', () => {
         .should.have.lengthOf(1, "Searching for an item's text did not yield any results.")
     })
 
+    it('filters the items based on custom search function', () => {
+      const searchFunction = sandbox.stub().returns(options.slice(0, 2))
+      const search = wrapperMount(<Dropdown options={options} selection search={searchFunction} />)
+        .find('input.search')
+      const searchQuery = '__nonExistingSearchQuery__'
+
+      // search for value yields 2 results as per our custom search function
+      search.simulate('change', { target: { value: searchQuery } })
+
+      searchFunction.should.have.been.calledOnce()
+      searchFunction.should.have.been.calledWithMatch(options, searchQuery)
+
+      wrapper
+        .find('DropdownItem')
+        .should.have.lengthOf(2, 'Searching with custom search function did not yield 2 results.')
+    })
+
     it('sets the selected item to the first search result', () => {
       const search = wrapperMount(<Dropdown options={options} selection search />)
         .find('input.search')
@@ -941,10 +1199,8 @@ describe('Dropdown Component', () => {
     it('still allows moving selection after blur/focus', () => {
       // open, first item is selected
       const search = wrapperMount(<Dropdown options={options} selection search />)
-        .find('input.search')
-        .simulate('focus')
+        .simulate('click')
 
-      domEvent.keyDown(document, { key: 'ArrowDown' })
       dropdownMenuIsOpen()
 
       const items = wrapper
@@ -954,7 +1210,7 @@ describe('Dropdown Component', () => {
         .first()
         .should.have.prop('selected', true)
 
-      // blur, focus, move item selection down
+      // blur, focus, open, move item selection down
       search
         .simulate('blur')
         .simulate('focus')
@@ -969,7 +1225,7 @@ describe('Dropdown Component', () => {
         .at(1)
         .should.have.prop('selected', true)
 
-      // blur, focus, move item selection up
+      // blur, focus, open, move item selection up
       search
         .simulate('blur')
         .simulate('focus')
@@ -1124,6 +1380,35 @@ describe('Dropdown Component', () => {
       dropdownMenuIsClosed()
       wrapper.simulate('click')
       dropdownMenuIsOpen()
+    })
+
+    it('spreads extra menu props', () => {
+      wrapperShallow(
+        <Dropdown text='required prop'>
+          <Dropdown.Menu data-foo-bar />
+        </Dropdown>
+      )
+        .should.contain.descendants('DropdownMenu')
+
+      wrapper
+        .find('DropdownMenu')
+        .should.have.prop('data-foo-bar', true)
+    })
+
+    it("merges the user's menu className", () => {
+      wrapperShallow(
+        <Dropdown text='required prop'>
+          <Dropdown.Menu className='foo-bar' />
+        </Dropdown>
+      )
+        .should.contain.descendants('DropdownMenu')
+
+      const menu = wrapper
+        .find('DropdownMenu')
+        .shallow()
+
+      menu.should.have.className('menu')
+      menu.should.have.className('foo-bar')
     })
   })
 
@@ -1308,6 +1593,20 @@ describe('Dropdown Component', () => {
 
       spy.should.have.been.calledOnce()
       spy.firstCall.args[0].should.equal('boo')
+    })
+  })
+
+  describe('header', () => {
+    it('renders a header when present', () => {
+      const text = faker.hacker.phrase()
+
+      wrapperRender(<Dropdown options={options} header={text} />)
+        .find('.menu .header')
+        .should.contain.text(text)
+    })
+    it('does not render a header when not present', () => {
+      wrapperRender(<Dropdown options={options} />)
+        .should.not.have.descendants('.menu .header')
     })
   })
 })

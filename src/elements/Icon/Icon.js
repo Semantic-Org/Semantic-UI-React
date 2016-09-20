@@ -13,6 +13,7 @@ import IconGroup from './IconGroup'
 
 /**
  * An icon is a glyph used to represent something else
+ * @see Image
  */
 function Icon(props) {
   const {
@@ -54,7 +55,7 @@ Icon._meta = {
   props: {
     color: SUI.COLORS,
     flipped: ['horizontally', 'vertically'],
-    name: SUI.icons,
+    name: SUI.ICONS,
     rotated: ['clockwise', 'counterclockwise'],
     size: SUI.SIZES,
   },

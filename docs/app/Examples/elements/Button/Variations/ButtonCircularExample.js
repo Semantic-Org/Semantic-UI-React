@@ -1,12 +1,8 @@
-import React, { Component } from 'react'
-import { Button, Icon } from 'stardust'
+import React from 'react'
+import { Button } from 'stardust'
 
-export default class ButtonCircularExample extends Component {
-  render() {
-    return (
-      <Button className='circular icon'>
-        <Icon name='heart' />
-      </Button>
-    )
-  }
-}
+const ButtonCircularExample = () => (
+  <Button circular icon='settings' />
+)
+
+export default ButtonCircularExample

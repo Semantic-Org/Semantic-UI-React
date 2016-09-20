@@ -53,7 +53,7 @@ Loader.propTypes = {
   /** Classes that will be added to the Loader className. */
   className: PropTypes.string,
 
-  /** Primary content of the Loader. Mutually exclusive with the text prop. */
+  /** Primary content of the Loader. Mutually exclusive with the text. */
   children: customPropTypes.every([
     customPropTypes.disallow(['text']),
     PropTypes.node,

@@ -11,7 +11,16 @@ describe('Radio', () => {
     const wrapper = shallow(<Radio />)
     wrapper.type().should.equal(Checkbox)
 
-    wrapper.should.have.prop('type', 'radio')
-    wrapper.should.have.prop('inputType', 'radio')
+    wrapper.should.have.prop('radio', true)
+  })
+
+  it('is not a radio when slider', () => {
+    shallow(<Radio slider />)
+      .should.not.have.prop('radio')
+  })
+
+  it('is not a radio when toggle', () => {
+    shallow(<Radio toggle />)
+      .should.not.have.prop('radio')
   })
 })

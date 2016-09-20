@@ -54,7 +54,7 @@ export default class AutoControlledComponent extends Component {
       } else if (prop === 'checked') {
         res[prop] = false
       } else if (prop === 'value') {
-        res[prop] = ''
+        res[prop] = this.props.multiple ? [] : '' // eslint-disable-line react/prop-types
       }
 
       if (process.env.NODE_ENV !== 'production') {

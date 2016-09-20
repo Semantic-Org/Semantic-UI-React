@@ -3,14 +3,14 @@ import { Radio, Segment } from 'stardust'
 
 const RadioFittedExample = () => (
   <div>
-    <Segment className='compact'>
+    <Segment compact>
       <Radio />
     </Segment>
-    <Segment className='compact'>
-      <Radio type='slider' />
+    <Segment compact>
+      <Radio slider />
     </Segment>
-    <Segment className='compact'>
-      <Radio type='toggle' />
+    <Segment compact>
+      <Radio toggle />
     </Segment>
   </div>
 )

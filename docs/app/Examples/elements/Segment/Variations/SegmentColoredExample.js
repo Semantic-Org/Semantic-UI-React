@@ -1,50 +1,22 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Segment } from 'stardust'
 
-export default class SegmentColoredExample extends Component {
-  render() {
-    return (
-      <div>
-        <Segment className='red'>
-          Red
-        </Segment>
-        <Segment className='orange'>
-          Orange
-        </Segment>
-        <Segment className='yellow'>
-          Yellow
-        </Segment>
-        <Segment className='olive'>
-          Olive
-        </Segment>
-        <Segment className='green'>
-          Green
-        </Segment>
-        <Segment className='teal'>
-          Teal
-        </Segment>
-        <Segment className='blue'>
-          Blue
-        </Segment>
-        <Segment className='violet'>
-          Violet
-        </Segment>
-        <Segment className='purple'>
-          Purple
-        </Segment>
-        <Segment className='pink'>
-          Pink
-        </Segment>
-        <Segment className='brown'>
-          Brown
-        </Segment>
-        <Segment className='grey'>
-          Grey
-        </Segment>
-        <Segment className='black'>
-          Black
-        </Segment>
-      </div>
-    )
-  }
-}
+const SegmentColoredExample = () => (
+  <div>
+    <Segment color='red'>Red</Segment>
+    <Segment color='orange'>Orange</Segment>
+    <Segment color='yellow'>Yellow</Segment>
+    <Segment color='olive'>Olive</Segment>
+    <Segment color='green'>Green</Segment>
+    <Segment color='teal'>Teal</Segment>
+    <Segment color='blue'>Blue</Segment>
+    <Segment color='violet'>Violet</Segment>
+    <Segment color='purple'>Purple</Segment>
+    <Segment color='pink'>Pink</Segment>
+    <Segment color='brown'>Brown</Segment>
+    <Segment color='grey'>Grey</Segment>
+    <Segment color='black'>Black</Segment>
+  </div>
+)
+
+export default SegmentColoredExample

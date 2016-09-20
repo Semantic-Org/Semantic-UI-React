@@ -2,7 +2,7 @@ import React from 'react'
 import { Header, Segment } from 'stardust'
 
 const HeaderInvertedExample = () => (
-  <Segment className='inverted'>
+  <Segment inverted>
     <Header as='h4' inverted color='red'>Red</Header>
     <Header as='h4' inverted color='orange'>Orange</Header>
     <Header as='h4' inverted color='yellow'>Yellow</Header>

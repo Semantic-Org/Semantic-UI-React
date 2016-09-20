@@ -4,8 +4,6 @@ import { Button, Image as ImageComponent, Item } from 'stardust'
 const { Content, Description, Extra, Group, Header, Image } = Item
 const paragraph = <ImageComponent src='http://semantic-ui.com/images/wireframe/short-paragraph.png' />
 
-// TODO: Update <Button> usage after its update to v1 API
-
 const Floated = () => (
   <Group relaxed>
     <Item>
@@ -15,7 +13,7 @@ const Floated = () => (
         <Header>Content A</Header>
         <Description>{paragraph}</Description>
         <Extra>
-          <Button className='right floated'>
+          <Button floated='right'>
             Action
           </Button>
         </Extra>
@@ -29,7 +27,7 @@ const Floated = () => (
         <Header>Content B</Header>
         <Description>{paragraph}</Description>
         <Extra>
-          <Button className='right floated'>
+          <Button floated='right'>
             Action
           </Button>
         </Extra>
@@ -43,7 +41,7 @@ const Floated = () => (
         <Header>Content C</Header>
         <Description>{paragraph}</Description>
         <Extra>
-          <Button className='right floated'>
+          <Button floated='right'>
             Action
           </Button>
         </Extra>

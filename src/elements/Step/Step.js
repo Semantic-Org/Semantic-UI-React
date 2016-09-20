@@ -34,8 +34,8 @@ function Step(props) {
   const handleClick = (e) => {
     if (onClick) onClick(e)
   }
-  const ElementType = getElementType(Step, props, {
-    onClick: 'a',
+  const ElementType = getElementType(Step, props, () => {
+    if (onClick) return 'a'
   })
 
   return (

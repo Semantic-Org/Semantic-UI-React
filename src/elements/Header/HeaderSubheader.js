@@ -1,16 +1,22 @@
-import React, { PropTypes } from 'react'
 import cx from 'classnames'
-import { getElementType, getUnhandledProps, META } from '../../lib'
+import React, { PropTypes } from 'react'
+
+import {
+  customPropTypes,
+  getElementType,
+  getUnhandledProps,
+  META,
+} from '../../lib'
 
 function HeaderSubheader(props) {
-  const { children, className } = props
+  const { children, className, content } = props
   const classes = cx('sub header', className)
   const rest = getUnhandledProps(HeaderSubheader, props)
   const ElementType = getElementType(HeaderSubheader, props)
 
   return (
     <ElementType className={classes} {...rest}>
-      {children}
+      {children || content}
     </ElementType>
   )
 }
@@ -28,11 +34,20 @@ HeaderSubheader.propTypes = {
     PropTypes.func,
   ]),
 
-  /** Primary content of the HeaderSubheader */
-  children: PropTypes.node,
+  /** Primary content of the HeaderSubheader. Mutually exclusive with content */
+  children: customPropTypes.every([
+    customPropTypes.disallow(['content']),
+    PropTypes.node,
+  ]),
 
   /** Classes to add to the subheader className. */
   className: PropTypes.string,
+
+  /** Shorthand for primary content. Mutually exclusive with children */
+  content: customPropTypes.every([
+    customPropTypes.disallow(['children']),
+    PropTypes.string,
+  ]),
 }
 
 export default HeaderSubheader

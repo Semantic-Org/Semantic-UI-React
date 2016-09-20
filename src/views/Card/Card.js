@@ -49,8 +49,8 @@ function Card(props) {
   const handleClick = (e) => {
     if (onClick) onClick(e)
   }
-  const ElementType = getElementType(Card, props, {
-    onClick: 'a',
+  const ElementType = getElementType(Card, props, () => {
+    if (onClick) return 'a'
   })
 
   if (children) {

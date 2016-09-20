@@ -8,7 +8,7 @@ import { META, numberToWord } from 'src/lib'
 import { consoleUtil, sandbox, syntheticEvent } from 'test/utils'
 import * as stardust from 'stardust'
 
-import { Icon, Image } from 'src/elements'
+import { Icon, Image, Label } from 'src/elements'
 
 const componentCtx = require.context(
   '../../src/',
@@ -101,7 +101,7 @@ export const isConformant = (Component, requiredProps = {}) => {
 
   // detect sub components like: stardust.Form.Field (ie FormField component)
   // Build a path by following _meta.parents to the root:
-  //   ['Form', 'FormField', 'FormFieldTextArea']
+  //   ['Form', 'FormField', 'FormTextArea']
   let stardustPath = []
   let meta = _meta
   while (meta) {
@@ -159,47 +159,62 @@ export const isConformant = (Component, requiredProps = {}) => {
   })
 
   describe('"as" prop (common)', () => {
-    it('is defined in propTypes', () => {
-      Component.should.have.any.keys('propTypes')
-      Component.propTypes.should.have.any.keys('as')
-    })
-    it('renders the component as HTML tags', () => {
+    it('renders the component as HTML tags or passes "as" to the next component', () => {
       // silence element nesting warnings
       consoleUtil.disableOnce()
 
       const tags = ['a', 'em', 'div', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'i', 'p', 'span', 'strong']
-      tags.forEach((tag) => {
-        shallow(<Component as={tag} />)
-          .should.have.tagName(tag)
-      })
+      try {
+        tags.forEach((tag) => {
+          shallow(<Component as={tag} />)
+            .should.have.tagName(tag)
+        })
+      } catch (err) {
+        tags.forEach((tag) => {
+          const wrapper = shallow(<Component as={tag} />)
+          wrapper.type().should.not.equal(Component)
+          wrapper.should.have.prop('as', tag)
+        })
+      }
     })
 
-    it('renders the component as stateless functional components', () => {
+    it('renders as a functional component or passes "as" to the next component', () => {
       const MyComponent = () => null
 
-      shallow(<Component as={MyComponent} />)
-        .type()
-        .should.equal(MyComponent)
+      try {
+        shallow(<Component as={MyComponent} />)
+          .type()
+          .should.equal(MyComponent)
+      } catch (err) {
+        const wrapper = shallow(<Component as={MyComponent} />)
+        wrapper.type().should.not.equal(Component)
+        wrapper.should.have.prop('as', MyComponent)
+      }
     })
 
-    it('renders the component as React.Component classes', () => {
+    it('renders as a ReactClass or passes "as" to the next component', () => {
       class MyComponent extends React.Component {
         render() {
-          return null
+          return <div data-my-react-class />
         }
       }
 
-      shallow(<Component as={MyComponent} />)
-        .type()
-        .should.equal(MyComponent)
+      try {
+        shallow(<Component as={MyComponent} />)
+          .type()
+          .should.equal(MyComponent)
+      } catch (err) {
+        const wrapper = shallow(<Component as={MyComponent} />)
+        wrapper.type().should.not.equal(Component)
+        wrapper.should.have.prop('as', MyComponent)
+      }
     })
 
     it('passes extra props to the component it is renders as', () => {
       const MyComponent = () => null
 
       shallow(<Component as={MyComponent} data-extra-prop='foo' />)
-        .first()
-        .should.have.prop('data-extra-prop', 'foo')
+        .should.have.descendants('[data-extra-prop="foo"]')
     })
   })
 
@@ -302,18 +317,13 @@ export const isConformant = (Component, requiredProps = {}) => {
   // Handles className
   // ----------------------------------------
   describe('className (common)', () => {
-    const isHeader = /^Header|_Header/.test(componentClassName)
-
-    // TODO: do not exclude headers once their APIs are updated
-    if (!isHeader && !META.isAddon(Component)) {
-      it(`has the Semantic UI className "${componentClassName}"`, () => {
-        const wrapper = render(<Component {...requiredProps} />)
-        // don't test components with no className at all (i.e. MessageItem)
-        if (wrapper.prop('className')) {
-          wrapper.should.have.className(componentClassName)
-        }
-      })
-    }
+    it(`has the Semantic UI className "${componentClassName}"`, () => {
+      const wrapper = render(<Component {...requiredProps} />)
+      // don't test components with no className at all (i.e. MessageItem)
+      if (wrapper.prop('className')) {
+        wrapper.should.have.className(componentClassName)
+      }
+    })
 
     it("applies user's className to root component", () => {
       const classes = faker.hacker.phrase()
@@ -321,26 +331,23 @@ export const isConformant = (Component, requiredProps = {}) => {
         .should.have.className(classes)
     })
 
-    // TODO: do not exclude headers once their APIs are updated
-    if (!isHeader) {
-      it("user's className does not override the default classes", () => {
-        const defaultClasses = shallow(<Component {...requiredProps} />)
-          .prop('className')
+    it("user's className does not override the default classes", () => {
+      const defaultClasses = shallow(<Component {...requiredProps} />)
+        .prop('className')
 
-        if (!defaultClasses) return
+      if (!defaultClasses) return
 
-        const userClasses = faker.hacker.verb()
-        const mixedClasses = shallow(<Component {...requiredProps} className={userClasses} />)
-          .prop('className')
+      const userClasses = faker.hacker.verb()
+      const mixedClasses = shallow(<Component {...requiredProps} className={userClasses} />)
+        .prop('className')
 
-        defaultClasses.split(' ').forEach((defaultClass) => {
-          mixedClasses.should.include(defaultClass, [
-            'Make sure you are using the `getUnhandledProps` util to spread the `rest` props.',
-            'This may also be of help: https://facebook.github.io/react/docs/transferring-props.html.',
-          ].join(' '))
-        })
+      defaultClasses.split(' ').forEach((defaultClass) => {
+        mixedClasses.should.include(defaultClass, [
+          'Make sure you are using the `getUnhandledProps` util to spread the `rest` props.',
+          'This may also be of help: https://facebook.github.io/react/docs/transferring-props.html.',
+        ].join(' '))
       })
-    }
+    })
   })
 }
 
@@ -507,13 +514,13 @@ export const implementsWidthProp = (Component, options, requiredProps = {}) => {
 
 export const implementsIconProp = (Component, requiredProps = {}) => {
   const iconName = faker.hacker.noun()
-  const assertValid = (element) => {
+  const assertValid = (element, expectedName = iconName) => {
     const wrapper = shallow(element)
     wrapper
       .should.have.descendants('Icon')
     wrapper
       .find('Icon')
-      .should.have.prop('name', iconName)
+      .should.have.prop('name', expectedName)
   }
 
   describe('icon (common)', () => {
@@ -521,27 +528,88 @@ export const implementsIconProp = (Component, requiredProps = {}) => {
 
     _noDefaultClassNameFromProp(Component, 'icon')
 
-    it('has no i when not defined', () => {
-      shallow(<Component />)
-        .should.not.have.descendants('i')
+    if (Component.defaultProps && Component.defaultProps.icon) {
+      it('has default Icon when not defined', () => {
+        assertValid(<Component {...requiredProps} />, Component.defaultProps.icon)
+      })
+    } else {
+      it('has no Icon when not defined', () => {
+        shallow(<Component {...requiredProps} />)
+          .should.not.have.descendants('Icon')
+      })
+    }
+
+    it('has no Icon when null', () => {
+      shallow(<Component {...requiredProps} icon={null} />)
+        .should.not.have.descendants('Icon')
     })
 
     it('accepts an Icon instance', () => {
       const icon = <Icon name={iconName} />
-      assertValid(<Component icon={icon} />)
+      assertValid(<Component {...requiredProps} icon={icon} />)
     })
 
     it('accepts an icon name string', () => {
-      assertValid(<Component icon={iconName} />)
+      assertValid(<Component {...requiredProps} icon={iconName} />)
+    })
+
+    it('accepts an icon props object', () => {
+      assertValid(<Component {...requiredProps} icon={{ name: iconName }} />)
+    })
+  })
+}
+
+export const implementsLabelProp = (Component, requiredProps = {}) => {
+  const labelText = faker.hacker.phrase()
+  const assertValid = (element, expectedText = labelText) => {
+    const wrapper = shallow(element)
+    wrapper
+      .should.have.descendants('Label')
+    wrapper
+      .find('Label')
+      .shallow()
+      .should.have.text(expectedText)
+  }
+
+  describe('label (common)', () => {
+    if (!Component) throw new Error(`implementsLabelProp requires a Component, got: ${typeof Component}`)
+
+    _noDefaultClassNameFromProp(Component, 'label')
+
+    if (Component.defaultProps && Component.defaultProps.label) {
+      it('has default Label when not defined', () => {
+        assertValid(<Component {...requiredProps} />, Component.defaultProps.label)
+      })
+    } else {
+      it('has no Label when not defined', () => {
+        shallow(<Component {...requiredProps} />)
+          .should.not.have.descendants('Label')
+      })
+    }
+
+    it('accepts an Label instance', () => {
+      const label = <Label>{labelText}</Label>
+      assertValid(<Component {...requiredProps} label={label} />)
+    })
+
+    it('accepts Label text string', () => {
+      assertValid(<Component {...requiredProps} label={labelText} />)
+    })
+
+    it('accepts a Label props object', () => {
+      assertValid(<Component {...requiredProps} label={{ children: labelText }} />)
     })
   })
 }
 
 export const implementsImageProp = (Component, requiredProps = {}) => {
   const imageSrc = faker.internet.avatar()
-  const assertValid = (wrapper) => {
-    wrapper.should.have.descendants('Image')
-    wrapper.find('Image')
+  const assertValid = (element) => {
+    const wrapper = shallow(element)
+    wrapper
+      .should.have.descendants('Image')
+    wrapper
+      .find('Image')
       .should.have.prop('src', imageSrc)
   }
   describe('image (common)', () => {
@@ -549,24 +617,27 @@ export const implementsImageProp = (Component, requiredProps = {}) => {
 
     _noDefaultClassNameFromProp(Component, 'image')
 
-    it('has no img when prop is not defined', () => {
-      shallow(<Component />)
-        .should.not.have.descendants('img')
+    it('has no Image when prop is not defined', () => {
+      shallow(<Component {...requiredProps} />)
+        .should.not.have.descendants('Image')
     })
 
-    it('adds a img as first child', () => {
-      shallow(<Component image={imageSrc} />)
-        .childAt(0)
-        .should.match('img')
+    it('has no Image when prop is null', () => {
+      shallow(<Component {...requiredProps} image={null} />)
+        .should.not.have.descendants('Image')
     })
 
     it('accepts an Image instance', () => {
       const image = <Image src={imageSrc} />
-      assertValid(shallow(<Component image={image} />))
+      assertValid(<Component {...requiredProps} image={image} />)
     })
 
     it('accepts an image src string', () => {
-      assertValid(shallow(<Component image={imageSrc} />))
+      assertValid(<Component {...requiredProps} image={imageSrc} />)
+    })
+
+    it('accepts an image props object', () => {
+      assertValid(<Component {...requiredProps} image={{ src: imageSrc }} />)
     })
   })
 }

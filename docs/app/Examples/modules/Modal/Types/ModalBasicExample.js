@@ -20,10 +20,10 @@ class ModalBasicExample extends Component {
             <p>Your inbox is getting full, would you like us to enable automatic archiving of old messages?</p>
           </Modal.Content>
           <Modal.Actions>
-            <Button className='red basic inverted' onClick={this.hide}>
+            <Button basic color='red' inverted onClick={this.hide}>
               <Icon name='remove' /> No
             </Button>
-            <Button className='green inverted' onClick={this.hide}>
+            <Button color='green' inverted onClick={this.hide}>
               <Icon name='checkmark' /> Yes
             </Button>
           </Modal.Actions>

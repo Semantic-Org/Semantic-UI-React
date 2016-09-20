@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import faker from 'faker'
 import React, { Component } from 'react'
-import { Table, Segment } from 'stardust'
+import { Header, Table, Segment } from 'stardust'
 
 const data = _.times(5, n => ({
   name: faker.name.findName(),
@@ -28,7 +28,8 @@ export default class TableSelectableExample extends Component {
           <Table.Column dataKey='phone' />
           <Table.Column dataKey='state' />
         </Table>
-        <Segment className='secondary' heading='Selected:'>
+        <Segment secondary>
+          <Header>Selected:</Header>
           <pre>Index: {selectedIndex}{'\n'}Item: {selectedItem}</pre>
         </Segment>
       </div>

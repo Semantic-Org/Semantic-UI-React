@@ -1,35 +1,33 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Button } from 'stardust'
 
-export default class ButtonSizeExample extends Component {
-  render() {
-    return (
-      <div>
-        <Button className='mini'>
-          Mini
-        </Button>
-        <Button className='tiny'>
-          Tiny
-        </Button>
-        <Button className='small'>
-          Small
-        </Button>
-        <Button className='medium'>
-          Medium
-        </Button>
-        <Button className='large'>
-          Large
-        </Button>
-        <Button className='big'>
-          Big
-        </Button>
-        <Button className='huge'>
-          Huge
-        </Button>
-        <Button className='massive'>
-          Massive
-        </Button>
-      </div>
-    )
-  }
-}
+const ButtonSizeExample = () => (
+  <div>
+    <Button size='mini'>
+      Mini
+    </Button>
+    <Button size='tiny'>
+      Tiny
+    </Button>
+    <Button size='small'>
+      Small
+    </Button>
+    <Button size='medium'>
+      Medium
+    </Button>
+    <Button size='large'>
+      Large
+    </Button>
+    <Button size='big'>
+      Big
+    </Button>
+    <Button size='huge'>
+      Huge
+    </Button>
+    <Button size='massive'>
+      Massive
+    </Button>
+  </div>
+)
+
+export default ButtonSizeExample

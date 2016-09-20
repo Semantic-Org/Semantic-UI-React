@@ -1,5 +1,282 @@
 # Change Log
 
+## [v0.44.8](https://github.com/TechnologyAdvice/stardust/tree/v0.44.8) (2016-09-20)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.44.7...v0.44.8)
+
+**Fixed bugs:**
+
+- Selecting an item from a Dropdown menu in search mode \(non multi\) does not work [\#513](https://github.com/TechnologyAdvice/stardust/issues/513)
+- fix\(Dropdown\): abort handleBlur on click inside [\#514](https://github.com/TechnologyAdvice/stardust/pull/514) ([levithomason](https://github.com/levithomason))
+
+## [v0.44.7](https://github.com/TechnologyAdvice/stardust/tree/v0.44.7) (2016-09-20)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.44.6...v0.44.7)
+
+**Implemented enhancements:**
+
+- \<Search /\> Component [\#195](https://github.com/TechnologyAdvice/stardust/issues/195)
+
+**Fixed bugs:**
+
+- fix\(Header\): subheader and image shorthand [\#511](https://github.com/TechnologyAdvice/stardust/issues/511)
+
+**Merged pull requests:**
+
+- fix\(Header\): properly wrap contents in HeaderContent [\#512](https://github.com/TechnologyAdvice/stardust/pull/512) ([levithomason](https://github.com/levithomason))
+
+## [v0.44.6](https://github.com/TechnologyAdvice/stardust/tree/v0.44.6) (2016-09-19)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.44.5...v0.44.6)
+
+**Merged pull requests:**
+
+- Search: add component [\#424](https://github.com/TechnologyAdvice/stardust/pull/424) ([jcarbo](https://github.com/jcarbo))
+
+## [v0.44.5](https://github.com/TechnologyAdvice/stardust/tree/v0.44.5) (2016-09-19)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.44.4...v0.44.5)
+
+**Merged pull requests:**
+
+- Dropdown: Dropdown.Header via shorthand prop [\#501](https://github.com/TechnologyAdvice/stardust/pull/501) ([jcarbo](https://github.com/jcarbo))
+
+## [v0.44.4](https://github.com/TechnologyAdvice/stardust/tree/v0.44.4) (2016-09-18)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.44.3...v0.44.4)
+
+**Fixed bugs:**
+
+- Dropdown events triggering twice [\#504](https://github.com/TechnologyAdvice/stardust/issues/504)
+- fix\(MenuItem\): remove `down` prop [\#502](https://github.com/TechnologyAdvice/stardust/issues/502)
+- fix\(Dropdown\): skip select item on blur when closed [\#508](https://github.com/TechnologyAdvice/stardust/pull/508) ([levithomason](https://github.com/levithomason))
+
+## [v0.44.3](https://github.com/TechnologyAdvice/stardust/tree/v0.44.3) (2016-09-16)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.44.2...v0.44.3)
+
+**Fixed bugs:**
+
+- fix\(MenuItem\): remove `down` prop [\#503](https://github.com/TechnologyAdvice/stardust/pull/503) ([layershifter](https://github.com/layershifter))
+
+## [v0.44.2](https://github.com/TechnologyAdvice/stardust/tree/v0.44.2) (2016-09-16)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.44.1...v0.44.2)
+
+**Fixed bugs:**
+
+- Dropdown: \<Dropdown.Item as={'a'} /\> with href does not function appropriately [\#493](https://github.com/TechnologyAdvice/stardust/issues/493)
+
+**Merged pull requests:**
+
+- fix\(Dropdown\): open/close on focus/blur [\#500](https://github.com/TechnologyAdvice/stardust/pull/500) ([levithomason](https://github.com/levithomason))
+
+## [v0.44.1](https://github.com/TechnologyAdvice/stardust/tree/v0.44.1) (2016-09-15)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.44.0...v0.44.1)
+
+**Fixed bugs:**
+
+- fix\(dropdown\): Label props for multi-select [\#495](https://github.com/TechnologyAdvice/stardust/pull/495) ([jcarbo](https://github.com/jcarbo))
+
+## [v0.44.0](https://github.com/TechnologyAdvice/stardust/tree/v0.44.0) (2016-09-13)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.43.3...v0.44.0)
+
+**Fixed bugs:**
+
+- refactor\(deprecate\): remove all deprecated [\#498](https://github.com/TechnologyAdvice/stardust/pull/498) ([levithomason](https://github.com/levithomason))
+
+## [v0.43.3](https://github.com/TechnologyAdvice/stardust/tree/v0.43.3) (2016-09-12)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.43.2...v0.43.3)
+
+**Fixed bugs:**
+
+- Deprecated functional components throw TypeError: Cannot call a class as a function [\#367](https://github.com/TechnologyAdvice/stardust/issues/367)
+- fix\(deprecate\): handle functional components [\#494](https://github.com/TechnologyAdvice/stardust/pull/494) ([levithomason](https://github.com/levithomason))
+
+## [v0.43.2](https://github.com/TechnologyAdvice/stardust/tree/v0.43.2) (2016-09-10)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.43.1...v0.43.2)
+
+**Closed issues:**
+
+- Engine requirements in package.json are out of date [\#491](https://github.com/TechnologyAdvice/stardust/issues/491)
+
+**Merged pull requests:**
+
+- fix\(package\): remove bad engines versions [\#492](https://github.com/TechnologyAdvice/stardust/pull/492) ([davezuko](https://github.com/davezuko))
+
+## [v0.43.1](https://github.com/TechnologyAdvice/stardust/tree/v0.43.1) (2016-09-10)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.43.0...v0.43.1)
+
+**Implemented enhancements:**
+
+- Dropdown: support `disabled` items [\#478](https://github.com/TechnologyAdvice/stardust/issues/478)
+- refactor\(Label\): update props to the latest specs [\#474](https://github.com/TechnologyAdvice/stardust/issues/474)
+- Rename plural group components \(Fields\) -\> Group [\#203](https://github.com/TechnologyAdvice/stardust/issues/203)
+- feat\(Button\): support all features, update to v1 API [\#295](https://github.com/TechnologyAdvice/stardust/pull/295) ([jamiehill](https://github.com/jamiehill))
+
+**Fixed bugs:**
+
+- Create attached button element [\#46](https://github.com/TechnologyAdvice/stardust/issues/46)
+
+**Merged pull requests:**
+
+- chore\(karma\): clean and format stacktraces [\#490](https://github.com/TechnologyAdvice/stardust/pull/490) ([levithomason](https://github.com/levithomason))
+- feat\(ComponentProps\): sort doc props alphabetically [\#489](https://github.com/TechnologyAdvice/stardust/pull/489) ([levithomason](https://github.com/levithomason))
+
+## [v0.43.0](https://github.com/TechnologyAdvice/stardust/tree/v0.43.0) (2016-09-09)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.42.6...v0.43.0)
+
+**Merged pull requests:**
+
+- refactor\(Label\): update props to the latest specs [\#486](https://github.com/TechnologyAdvice/stardust/pull/486) ([jcarbo](https://github.com/jcarbo))
+
+## [v0.42.6](https://github.com/TechnologyAdvice/stardust/tree/v0.42.6) (2016-09-09)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.42.5...v0.42.6)
+
+**Implemented enhancements:**
+
+- Dropdown: support custom search function [\#469](https://github.com/TechnologyAdvice/stardust/issues/469)
+
+**Merged pull requests:**
+
+- feat\(Dropdown\): support disabled items [\#482](https://github.com/TechnologyAdvice/stardust/pull/482) ([jcarbo](https://github.com/jcarbo))
+
+## [v0.42.5](https://github.com/TechnologyAdvice/stardust/tree/v0.42.5) (2016-09-09)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.42.4...v0.42.5)
+
+**Merged pull requests:**
+
+- feat\(Dropdown\): support custom search function [\#484](https://github.com/TechnologyAdvice/stardust/pull/484) ([dylankiss](https://github.com/dylankiss))
+
+## [v0.42.4](https://github.com/TechnologyAdvice/stardust/tree/v0.42.4) (2016-09-09)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.42.3...v0.42.4)
+
+**Fixed bugs:**
+
+- fix\(createFactory\): do not create elements from `null` values [\#480](https://github.com/TechnologyAdvice/stardust/pull/480) ([jcarbo](https://github.com/jcarbo))
+
+**Closed issues:**
+
+- fix\(Label\): do not auto apply the `empty` className [\#485](https://github.com/TechnologyAdvice/stardust/issues/485)
+
+## [v0.42.3](https://github.com/TechnologyAdvice/stardust/tree/v0.42.3) (2016-09-09)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.42.2...v0.42.3)
+
+**Implemented enhancements:**
+
+- Dropdown: Support arbitrary element for `text` [\#477](https://github.com/TechnologyAdvice/stardust/issues/477)
+
+**Merged pull requests:**
+
+- Dropdown: Custom trigger element [\#479](https://github.com/TechnologyAdvice/stardust/pull/479) ([jcarbo](https://github.com/jcarbo))
+
+## [v0.42.2](https://github.com/TechnologyAdvice/stardust/tree/v0.42.2) (2016-09-08)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.42.1...v0.42.2)
+
+**Implemented enhancements:**
+
+- Header: add subheader shorthand [\#461](https://github.com/TechnologyAdvice/stardust/issues/461)
+- feat\(Header\): Add subheader prop [\#476](https://github.com/TechnologyAdvice/stardust/pull/476) ([layershifter](https://github.com/layershifter))
+
+## [v0.42.1](https://github.com/TechnologyAdvice/stardust/tree/v0.42.1) (2016-09-07)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.42.0...v0.42.1)
+
+**Merged pull requests:**
+
+- fix\(customPropTypes\): show all errors if some\(\) fails [\#473](https://github.com/TechnologyAdvice/stardust/pull/473) ([levithomason](https://github.com/levithomason))
+
+## [v0.42.0](https://github.com/TechnologyAdvice/stardust/tree/v0.42.0) (2016-09-07)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.41.4...v0.42.0)
+
+**Implemented enhancements:**
+
+- feat\(Menu\): Update to v1 API  [\#382](https://github.com/TechnologyAdvice/stardust/pull/382) ([layershifter](https://github.com/layershifter))
+
+## [v0.41.4](https://github.com/TechnologyAdvice/stardust/tree/v0.41.4) (2016-09-06)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.41.3...v0.41.4)
+
+**Merged pull requests:**
+
+- feat\(Dropdown\): Select highlighted item on blur [\#468](https://github.com/TechnologyAdvice/stardust/pull/468) ([dylankiss](https://github.com/dylankiss))
+
+## [v0.41.3](https://github.com/TechnologyAdvice/stardust/tree/v0.41.3) (2016-09-06)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.41.2...v0.41.3)
+
+**Implemented enhancements:**
+
+- feat\(Dropdown\): Add Header sub-component [\#471](https://github.com/TechnologyAdvice/stardust/pull/471) ([layershifter](https://github.com/layershifter))
+
+## [v0.41.2](https://github.com/TechnologyAdvice/stardust/tree/v0.41.2) (2016-09-05)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.41.1...v0.41.2)
+
+**Implemented enhancements:**
+
+- feat\(Dropdown\): close on blur [\#467](https://github.com/TechnologyAdvice/stardust/pull/467) ([dylankiss](https://github.com/dylankiss))
+
+## [v0.41.1](https://github.com/TechnologyAdvice/stardust/tree/v0.41.1) (2016-09-05)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.41.0...v0.41.1)
+
+**Implemented enhancements:**
+
+- feat\(Grid\): add stretched prop [\#466](https://github.com/TechnologyAdvice/stardust/pull/466) ([layershifter](https://github.com/layershifter))
+- docs\(Loader\): update docs [\#463](https://github.com/TechnologyAdvice/stardust/pull/463) ([layershifter](https://github.com/layershifter))
+
+**Closed issues:**
+
+- Adding animation effects to component [\#465](https://github.com/TechnologyAdvice/stardust/issues/465)
+
+**Merged pull requests:**
+
+- feature\(docs\): show sub component descriptions [\#462](https://github.com/TechnologyAdvice/stardust/pull/462) ([levithomason](https://github.com/levithomason))
+
+## [v0.41.0](https://github.com/TechnologyAdvice/stardust/tree/v0.41.0) (2016-09-02)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.40.0...v0.41.0)
+
+**Implemented enhancements:**
+
+- Segment: update to v1 API [\#287](https://github.com/TechnologyAdvice/stardust/pull/287) ([jamiehill](https://github.com/jamiehill))
+
+**Closed issues:**
+
+- MenuItem is rendered as active link with React 15.3.1 [\#460](https://github.com/TechnologyAdvice/stardust/issues/460)
+
+**Merged pull requests:**
+
+- Provide callback for default element type [\#459](https://github.com/TechnologyAdvice/stardust/pull/459) ([levithomason](https://github.com/levithomason))
+
+## [v0.40.0](https://github.com/TechnologyAdvice/stardust/tree/v0.40.0) (2016-09-01)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.39.0...v0.40.0)
+
+**Implemented enhancements:**
+
+- Doc: show sub component props [\#428](https://github.com/TechnologyAdvice/stardust/pull/428) ([levithomason](https://github.com/levithomason))
+- feat\(Form\): update to v1 API [\#400](https://github.com/TechnologyAdvice/stardust/pull/400) ([levithomason](https://github.com/levithomason))
+
+**Fixed bugs:**
+
+- Docs: Fix absolute anchor links [\#455](https://github.com/TechnologyAdvice/stardust/issues/455)
+
+**Closed issues:**
+
+- Hoist propTypes for all wrapper components [\#432](https://github.com/TechnologyAdvice/stardust/issues/432)
+- Remove jQuery dependency [\#247](https://github.com/TechnologyAdvice/stardust/issues/247)
+
+**Merged pull requests:**
+
+- fix\(docs\): anchor links [\#457](https://github.com/TechnologyAdvice/stardust/pull/457) ([levithomason](https://github.com/levithomason))
+
+## [v0.39.0](https://github.com/TechnologyAdvice/stardust/tree/v0.39.0) (2016-08-31)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.38.1...v0.39.0)
+
+**Fixed bugs:**
+
+- Header: update doc usage of shorthand props [\#454](https://github.com/TechnologyAdvice/stardust/issues/454)
+- fix\(Header\): correct shorthand props API [\#456](https://github.com/TechnologyAdvice/stardust/pull/456) ([levithomason](https://github.com/levithomason))
+
+## [v0.38.1](https://github.com/TechnologyAdvice/stardust/tree/v0.38.1) (2016-08-29)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.38.0...v0.38.1)
+
+**Fixed bugs:**
+
+- Dropdown: support Menu classname [\#448](https://github.com/TechnologyAdvice/stardust/issues/448)
+
+**Merged pull requests:**
+
+- fix\(Dropdown\): merge Dropdown.Menu className [\#453](https://github.com/TechnologyAdvice/stardust/pull/453) ([levithomason](https://github.com/levithomason))
+
 ## [v0.38.0](https://github.com/TechnologyAdvice/stardust/tree/v0.38.0) (2016-08-29)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.37.4...v0.38.0)
 
@@ -15,10 +292,6 @@
 - Modal: Support configurable close behaviors [\#437](https://github.com/TechnologyAdvice/stardust/issues/437)
 - React Router `Links` and `MenuItems` [\#142](https://github.com/TechnologyAdvice/stardust/issues/142)
 - feat\(Modal\): add configurable close behaviors \(\#440\) [\#440](https://github.com/TechnologyAdvice/stardust/pull/440) ([brsanthu](https://github.com/brsanthu))
-
-**Closed issues:**
-
-- Dropdown: support Menu classname [\#448](https://github.com/TechnologyAdvice/stardust/issues/448)
 
 ## [v0.37.3](https://github.com/TechnologyAdvice/stardust/tree/v0.37.3) (2016-08-28)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.37.2...v0.37.3)
@@ -261,10 +534,6 @@
 **Fixed bugs:**
 
 - Dropdown \(multiple\) search box does not grow with input [\#370](https://github.com/TechnologyAdvice/stardust/issues/370)
-
-**Closed issues:**
-
-- Transpilation \(?\) causes TypeError: Cannot call a class as a function [\#367](https://github.com/TechnologyAdvice/stardust/issues/367)
 
 **Merged pull requests:**
 

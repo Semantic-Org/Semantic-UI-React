@@ -24,10 +24,10 @@ class ModalSizeExample extends Component {
             <p>Are you sure you want to delete your account</p>
           </Modal.Content>
           <Modal.Actions>
-            <Button className='negative'>
+            <Button negative>
               No
             </Button>
-            <Button className='positive right labeled icon'>
+            <Button positive icon labeled='right'>
               Yes <Icon name='checkmark' />
             </Button>
           </Modal.Actions>

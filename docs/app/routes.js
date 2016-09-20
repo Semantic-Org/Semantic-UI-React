@@ -8,11 +8,9 @@ import PageNotFound from './Views/PageNotFound'
 import Introduction from './Views/Introduction'
 
 // TODO remove these once PRs are merged and docs are updated to use index.js files
-import { Button, Input, List, Segment } from 'stardust'
-const ButtonDoc = () => <ComponentDoc _meta={Button._meta} />
+import { Input, List } from 'stardust'
 const InputDoc = () => <ComponentDoc _meta={Input._meta} />
 const ListDoc = () => <ComponentDoc _meta={List._meta} />
-const SegmentDoc = () => <ComponentDoc _meta={Segment._meta} />
 
 const routes = (
   <Route path='/' component={Layout}>
@@ -21,17 +19,12 @@ const routes = (
     <Route path='introduction' component={Introduction} />
     {/* TODO remove routes once open PRs are merged and docs are updated to use index.js files */}
     <Route path='elements'>
-      <Route path='button' component={ButtonDoc} />
       <Route path='input' component={InputDoc} />
       <Route path='list' component={ListDoc} />
-      <Route path='segment' component={SegmentDoc} />
     </Route>
 
     {/* v1 Routes */}
-    <Route path=':type'>
-      <Route path=':name' component={Root} />
-    </Route>
-
+    <Route path=':type/:name' component={Root} />
     <Route path='*' component={PageNotFound} />
   </Route>
 )

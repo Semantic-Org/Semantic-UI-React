@@ -4,10 +4,10 @@ import { Segment, Button, Divider } from 'stardust'
 export default class DividerHorizontalExample extends Component {
   render() {
     return (
-      <Segment className='padded'>
-        <Button className='primary fluid'>Login</Button>
+      <Segment padded>
+        <Button primary fluid>Login</Button>
         <Divider horizontal>Or</Divider>
-        <Button className='secondary fluid'>Sign Up Now</Button>
+        <Button secondary fluid>Sign Up Now</Button>
       </Segment>
     )
   }
