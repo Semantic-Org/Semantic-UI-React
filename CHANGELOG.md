@@ -1,5 +1,16 @@
 # Change Log
 
+## [v0.44.9](https://github.com/TechnologyAdvice/stardust/tree/v0.44.9) (2016-09-20)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.44.8...v0.44.9)
+
+**Implemented enhancements:**
+
+- feat\(Menu\): Add `items` shorthand [\#506](https://github.com/TechnologyAdvice/stardust/pull/506) ([layershifter](https://github.com/layershifter))
+
+**Merged pull requests:**
+
+- docs\(PageNotFound\): fix layout and embed atari [\#515](https://github.com/TechnologyAdvice/stardust/pull/515) ([levithomason](https://github.com/levithomason))
+
 ## [v0.44.8](https://github.com/TechnologyAdvice/stardust/tree/v0.44.8) (2016-09-20)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.44.7...v0.44.8)
 
