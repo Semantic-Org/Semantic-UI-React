@@ -1,61 +1,49 @@
-import _ from 'lodash'
-import React, { Component } from 'react'
+import React from 'react'
+import { Grid, Segment, Header, Icon } from 'stardust'
 
-import { Button, Header, Loader } from 'stardust'
-
-const containerStyle = {
-  position: 'absolute',
-  top: 0,
-  bottom: 0,
-  left: 0,
-  right: 0,
-  height: '100vh',
-  zIndex: 3000,
-}
-
-const textStyle = {
-  position: 'absolute',
-  padding: '1em',
-  top: 0,
-  left: 0,
-  right: 0,
-  backgroundImage: 'linear-gradient(180deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.2 ))',
-  zIndex: 4000,
-}
-
-const imageStyle = {
-  position: 'absolute',
-  backgroundSize: 'cover',
-  width: '100%',
-  height: '100%',
-  zIndex: 2000,
-}
-
-// we use slightly random image sizes to ensure we get a new image from unsplash.it
-const getImageUrl = () => `url(//unsplash.it/${_.random(1500, 1600)}/${_.random(1100, 1200)}})`
-
-class PageNotFound extends Component {
-  state = { backgroundImage: getImageUrl() }
-
-  getNewImage = () => this.setState({ backgroundImage: getImageUrl() })
-
-  render() {
-    const { backgroundImage } = this.state
-    return (
-      <div style={containerStyle}>
-        <div style={textStyle}>
-          <Header inverted>
-            Couldn't find that, but check this out:
-          </Header>
-          <Button basic inverted size='mini' onClick={this.getNewImage}>
-            See Another
-          </Button>
-        </div>
-        <div style={{ ...imageStyle, backgroundImage }} />
-        <Loader active />
-      </div>
-    )
-  }
-}
+const PageNotFound = () => (
+  <Grid padded textAlign='center' stretched>
+    <Grid.Row columns='equal'>
+      <Grid.Column>
+        <Header as='h1' icon textAlign='center'>
+          <Icon name='game' />
+          404
+          <Header.Subheader>
+            How about some good old Atari?
+          </Header.Subheader>
+        </Header>
+      </Grid.Column>
+    </Grid.Row>
+    <Grid.Row columns='equal'>
+      <Grid.Column>
+        <Segment basic>
+          <embed
+            src='http://www.pizn.com/swf/classic-asteroids.swf'
+            width='425'
+            height='318'
+            align='center'
+            quality='high'
+            pluginspage='http://www.macromedia.com/go/getflashplayer'
+            type='application/x-shockwave-flash'
+            style={{ zoom: '1.13' }}
+          />
+        </Segment>
+      </Grid.Column>
+      <Grid.Column>
+        <Segment basic>
+          <embed
+            src='http://www.pizn.com/swf/1-space-invaders.swf'
+            width='425'
+            height='359'
+            align='center'
+            quality='high'
+            pluginspage='http://www.macromedia.com/go/getflashplayer'
+            type='application/x-shockwave-flash'
+          />
+        </Segment>
+      </Grid.Column>
+    </Grid.Row>
+  </Grid>
+)
 
 export default PageNotFound
