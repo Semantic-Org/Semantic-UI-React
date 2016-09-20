@@ -8,12 +8,12 @@ const options = [
 ]
 
 const actions = [
-  <Select compact options={options} defaultValue='articles' />,
-  <Button type='submit'>Search</Button>,
+  <Select childKey='select' compact options={options} defaultValue='articles' />,
+  <Button childKey='button' type='submit'>Search</Button>,
 ]
 
 const InputAction = () => (
-  <Input actions={actions} actionPosition='left' icon='search' placeholder='Search...' />
+  <Input actions={actions} actionsPosition='left' icon='search' placeholder='Search...' />
 )
 
 export default InputAction

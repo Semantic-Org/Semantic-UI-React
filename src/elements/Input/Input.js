@@ -3,6 +3,7 @@ import React, { PropTypes, Children } from 'react'
 import cx from 'classnames'
 
 import {
+  createHTMLInput,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -10,7 +11,7 @@ import {
   SUI,
   useKeyOnly,
 } from '../../lib'
-import { Icon } from '../../elements'
+import { Icon, Label } from '../../elements'
 
 const inputPropNames = [
   // React
@@ -52,46 +53,36 @@ const inputPropNames = [
  */
 function Input(props) {
   const {
-    disabled, error, fluid, inverted, loading, size, transparent,
-    icon, type, children, className,
+    actions,
+    actionsPosition,
+    className,
+    disabled,
+    error,
+    focus,
+    fluid,
+    icon,
+    iconPosition,
+    inverted,
+    label,
+    labelPosition,
+    loading,
+    size,
+    input,
+    transparent,
   } = props
-
-  // Semantic supports actions and labels on either side of an input.
-  // The element must be on the same side as the indicated class.
-  // We first determine the left/right classes for each type of child,
-  //   then we extract the children and place them on the correct side
-  //   of the input.
-  const isLeftAction = _.includes(className, 'left action')
-  const isRightAction = !isLeftAction && _.includes(className, 'action')
-  const isRightLabeled = _.includes(className, 'right labeled')
-  const isLeftLabeled = !isRightLabeled && _.includes(className, 'labeled')
-
-  const labelChildren = []
-  const actionChildren = []
-
-  Children.forEach(children, child => {
-    const isButton = child.type.name === 'Button'
-    const isDropdown = child.type.name === 'Dropdown'
-    const isLabel = child.type.name === 'Label'
-    const childIsAction = !isLabel && isButton || isDropdown
-
-    if (childIsAction) {
-      actionChildren.push(child)
-    } else if (isLabel) {
-      labelChildren.push(child)
-    }
-  })
 
   const classes = cx(
     'ui',
     size,
     useKeyOnly(disabled, 'disabled'),
     useKeyOnly(error, 'error'),
+    useKeyOnly(focus, 'focus'),
     useKeyOnly(fluid, 'fluid'),
     useKeyOnly(inverted, 'inverted'),
     useKeyOnly(loading, 'loading'),
     useKeyOnly(transparent, 'transparent'),
-    icon && 'icon',
+    iconPosition,
+    useKeyOnly(icon, 'icon'),
     className,
     'input',
   )
@@ -100,14 +91,16 @@ function Input(props) {
   const inputProps = _.pick(unhandledProps, inputPropNames)
   const rest = _.omit(unhandledProps, inputPropNames)
   const ElementType = getElementType(Input, props)
+
   return (
     <ElementType {...rest} className={classes}>
-      {isLeftLabeled && labelChildren}
-      {isLeftAction && actionChildren}
-      <input {...inputProps} type={type} />
-      {Icon.create(icon)}
-      {isRightLabeled && labelChildren}
-      {isRightAction && actionChildren}
+      {labelPosition !== 'right' && Label.create(label)}
+      {actionsPosition === 'left' && actions}
+      {iconPosition !== 'right' && Icon.create(icon)}
+      {createHTMLInput(input, inputProps)}
+      {iconPosition === 'right' && Icon.create(icon)}
+      {labelPosition !== 'left' && Label.create(label)}
+      {actionsPosition === 'right' && actions}
     </ElementType>
   )
 }
@@ -116,8 +109,15 @@ Input._meta = {
   name: 'Input',
   type: META.TYPES.ELEMENT,
   props: {
+    actionsPosition: ['left', 'right'],
+    iconPosition: ['right'],
+    labelPosition: ['left', 'right'],
     size: SUI.SIZES,
   },
+}
+
+Input.defaultProps = {
+  input: 'text',
 }
 
 Input.propTypes = {
@@ -136,14 +136,27 @@ Input.propTypes = {
   /** An input field can show the data contains errors */
   error: PropTypes.bool,
 
+  /** An input field can show a user is currently interacting with it */
+  focus: PropTypes.bool,
+
   /** Take on the size of it's container */
   fluid: PropTypes.bool,
 
   /** Optional icon to display in input */
   icon: PropTypes.string,
 
+  /** An icon can appear inside an input on the left or right */
+  iconPosition: PropTypes.oneOf(Input._meta.props.iconPosition),
+
   /** Format to appear on dark backgrounds */
   inverted: PropTypes.bool,
+
+  /** Shorthand prop for creating the HTML input */
+  input: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.object,
+    PropTypes.element,
+  ]),
 
   /** An icon input field can show that it is currently loading data */
   loading: PropTypes.bool,
@@ -153,13 +166,6 @@ Input.propTypes = {
 
   /** Transparent input has no background */
   transparent: PropTypes.bool,
-
-  /** Specifies the type of <input> element to display */
-  type: PropTypes.string,
-}
-
-Input.defaultProps = {
-  type: 'text',
 }
 
 export default Input

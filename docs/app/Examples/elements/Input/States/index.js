@@ -2,6 +2,8 @@ import React from 'react'
 import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
 import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
 
+import { Message } from 'src'
+
 const InputStates = () => (
   <ExampleSection title='States'>
     <ComponentExample
@@ -12,9 +14,13 @@ const InputStates = () => (
     <ComponentExample
       title='Loading'
       description='An icon input field can show that it is currently loading data'
-      warning='Loading inputs automatically modify the inputs icon on loading state to show loading indication'
       examplePath='elements/Input/States/InputLoading'
-    />
+    >
+      <Message>
+        Loading inputs automatically modify the input's icon on loading state to show loading indication
+      </Message>
+    </ComponentExample>
+    <ComponentExample examplePath='elements/Input/States/InputLeftLoading' />
     <ComponentExample
       title='Disabled'
       description='An input field can show that it is disabled'

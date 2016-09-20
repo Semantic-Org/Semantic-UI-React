@@ -1,14 +1,14 @@
 import React from 'react'
 import { Button, Input } from 'stardust'
 
-const action = (
-  <Button labeled color='teal' icon='cart'>
+const actions = [
+  <Button childKey='button' labeled color='teal' icon='cart'>
     Checkout
-  </Button>
-)
+  </Button>,
+]
 
 const InputActionExtra = () => (
-  <Input action={action} actionPosition='left' placeholder='$23.43' />
+  <Input actions={actions} actionsPosition='left' placeholder='$23.43' />
 )
 
 export default InputActionExtra
