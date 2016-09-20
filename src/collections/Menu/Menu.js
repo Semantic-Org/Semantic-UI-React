@@ -152,7 +152,7 @@ class Menu extends Component {
     if (items) this.trySetState({ activeIndex: _.findIndex(items, ['active', true]) })
   }
 
-  handleItemClick = (e, { name, index }, onClick) => {
+  handleItemClick = (e, { name, index }) => {
     this.trySetState({ activeIndex: index })
     const { items, onItemClick } = this.props
 
