@@ -5,12 +5,10 @@
     "stage-1"
   ],
   "plugins": [
-    "lodash"
+    "lodash",
+    "add-module-exports"
   ],
   "env": {
-    "browser": {
-      "plugins": ["add-module-exports"]
-    },
     "development": {
       "plugins": [
         ["react-transform", {
