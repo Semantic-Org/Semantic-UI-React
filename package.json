@@ -15,7 +15,7 @@
     "prebuild:docs": "npm run build:docs-toc",
     "build:docs": "gulp build:docs",
     "build:umd": "cross-env NODE_ENV=browser gulp umd",
-    "build:docs-toc": "doctoc README.md CONTRIBUTING.md --github --maxlevel 4",
+    "build:docs-toc": "doctoc README.md ./.github/CONTRIBUTING.md --github --maxlevel 4",
     "predeploy:docs": "cross-env NODE_ENV=production npm run build:docs",
     "deploy:docs": "gh-pages -d docs/build -m 'deploy docs [ci skip]'",
     "lint": "eslint .",
