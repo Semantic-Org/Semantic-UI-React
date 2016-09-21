@@ -10,6 +10,17 @@ const InputVariations = () => (
       examplePath='elements/Input/Variations/InputIcon'
     />
     <ComponentExample
+      examplePath='elements/Input/Variations/InputIconPosition'
+    />
+    <ComponentExample
+      description='You can pass an Icon props object'
+      examplePath='elements/Input/Variations/InputIconProps'
+    />
+    <ComponentExample
+      description='You can pass an Icon element'
+      examplePath='elements/Input/Variations/InputIconElement'
+    />
+    <ComponentExample
       title='Labeled'
       description='An input can be formatted with an label'
       examplePath='elements/Input/Variations/InputLabeled'
