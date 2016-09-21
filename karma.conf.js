@@ -1,4 +1,3 @@
-const _ = require('lodash')
 const { argv } = require('yargs')
 const config = require('./config')
 const webpackConfig = require('./webpack.config')
@@ -17,6 +16,7 @@ module.exports = (karmaConfig) => {
       '/foo.png': '/base/test/images/foo.png',
     },
     formatError(msg) {
+      let haveSeenStack = false
       return msg
         .split('\n')
         .reduce((list, line) => {
@@ -27,26 +27,17 @@ module.exports = (karmaConfig) => {
           let newLine = '  ' + line
 
           if (newLine.includes('webpack:///')) {
+            if (haveSeenStack === false) {
+              const indent = newLine.slice(0, newLine.search(/\S/))
+              newLine = `\n${indent}Stack:\n${newLine}`
+              haveSeenStack = true
+            }
+
             // remove webpack:///
             newLine = newLine.replace('webpack:///', '')
 
             // remove bundle location, showing only the source location
             newLine = newLine.slice(0, newLine.indexOf(' <- '))
-
-            // indent stacktrace beneath the error message
-            const indent = newLine.slice(0, newLine.search(/\S/)) + '  '
-
-            // rearrange line for better scanning
-            const [location, ln, col] = newLine.split(':').map(s => s.trim())
-            const pathCols = 71
-            const lineCols = 8
-
-            if (location.includes('@')) {
-              const [method, filePath] = location.split('@')
-              newLine = _.padEnd(`${indent}${filePath} @ ${method}()`, pathCols) + _.padStart(ln + ':' + col, lineCols)
-            } else {
-              newLine = _.padEnd(indent + location, pathCols) + _.padStart(ln + ':' + col, lineCols)
-            }
           }
 
           return list.concat(newLine)

@@ -1,4 +1,5 @@
-import { task } from 'gulp'
+import del from 'del'
+import { task, series } from 'gulp'
 import loadPlugins from 'gulp-load-plugins'
 import webpack from 'webpack'
 
@@ -7,9 +8,22 @@ import config from '../../config'
 const g = loadPlugins()
 const { log, PluginError } = g.util
 
-task('dll', (cb) => {
-  const webpackDLLConfig = require('../../webpack.dll')
-  const compiler = webpack(webpackDLLConfig)
+// ----------------------------------------
+// Clean
+// ----------------------------------------
+
+task('clean:umd', (cb) => {
+  del.sync(config.paths.umdDist())
+  cb()
+})
+
+// ----------------------------------------
+// Build
+// ----------------------------------------
+
+task('build:umd:webpack', (cb) => {
+  const webpackUMDConfig = require('../../webpack.umd.config')
+  const compiler = webpack(webpackUMDConfig)
 
   compiler.run((err, stats) => {
     const { errors, warnings } = stats.toJson()
@@ -31,3 +45,13 @@ task('dll', (cb) => {
     cb(err)
   })
 })
+
+task('build:umd', series(
+  'build:umd:webpack'
+))
+
+// ----------------------------------------
+// Default
+// ----------------------------------------
+
+task('umd', series('clean:umd', 'build:umd'))
