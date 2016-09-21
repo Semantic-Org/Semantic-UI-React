@@ -1,5 +1,19 @@
 # Change Log
 
+## [v0.45.1](https://github.com/TechnologyAdvice/stardust/tree/v0.45.1) (2016-09-21)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.45.0...v0.45.1)
+
+**Fixed bugs:**
+
+- fix\(src/index\): use module exports [\#520](https://github.com/TechnologyAdvice/stardust/pull/520) ([levithomason](https://github.com/levithomason))
+
+## [v0.45.0](https://github.com/TechnologyAdvice/stardust/tree/v0.45.0) (2016-09-21)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.44.9...v0.45.0)
+
+**Merged pull requests:**
+
+- chore\(build\): add browser build [\#518](https://github.com/TechnologyAdvice/stardust/pull/518) ([levithomason](https://github.com/levithomason))
+
 ## [v0.44.9](https://github.com/TechnologyAdvice/stardust/tree/v0.44.9) (2016-09-20)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.44.8...v0.44.9)
 
