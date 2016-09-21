@@ -165,7 +165,7 @@ npm run release:patch
 
 Made with :heart: [@TechnologyAdvice][9], a ridiculous [place to work][16].
 
-[1]: https://github.com/TechnologyAdvice/stardust/blob/master/CONTRIBUTING.md
+[1]: https://github.com/TechnologyAdvice/stardust/blob/master/.github/CONTRIBUTING.md
 [2]: https://technologyadvice.github.io/stardust/
 [3]: https://facebook.github.io/react/
 [4]: https://github.com/TechnologyAdvice/stardust/labels/help%20wanted
