@@ -18,6 +18,7 @@ describe('Menu', () => {
   common.propValueOnlyToClassName(Menu, 'color')
   common.propKeyOnlyToClassName(Menu, 'compact')
   common.propKeyAndValueToClassName(Menu, 'fixed')
+  common.propKeyOrValueToClassName(Menu, 'floated')
   common.propKeyOnlyToClassName(Menu, 'fluid')
   common.propKeyOrValueToClassName(Menu, 'icon')
   common.propKeyOnlyToClassName(Menu, 'inverted')
