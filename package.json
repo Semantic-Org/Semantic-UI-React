@@ -1,6 +1,6 @@
 {
   "name": "stardust",
-  "version": "0.45.2",
+  "version": "0.45.3",
   "description": "The official Semantic-UI-React integration.",
   "main": "dist/commonjs/index.js",
   "files": [
