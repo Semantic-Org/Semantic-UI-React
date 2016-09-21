@@ -5,15 +5,24 @@ import {
   getElementType,
   getUnhandledProps,
   META,
+  useKeyOnly,
 } from '../../lib'
 import TableBody from './TableBody'
-import TableColumn from './TableColumn'
-import TableFoot from './TableFoot'
-import TableHead from './TableHead'
+import TableCell from './TableCell'
+import TableFooter from './TableFooter'
+import TableHeader from './TableHeader'
+import TableRow from './TableRow'
 
 function Table(props) {
-  const { children, className } = props
-  const classes = cx(className)
+  const { celled, children, className, padded } = props
+  const classes = cx(
+    'ui',
+    useKeyOnly(celled, 'celled'),
+    useKeyOnly(padded, 'padded'),
+    className,
+    'table'
+  )
+
   const ElementType = getElementType(Table, props)
   const rest = getUnhandledProps(Table, props)
 
@@ -36,16 +45,22 @@ Table.propTypes = {
     PropTypes.func,
   ]),
 
+  celled: PropTypes.bool,
+
   /** Primary content of the Table. */
   children: PropTypes.node,
 
   /** Classes that will be added to the Table className. */
   className: PropTypes.string,
+
+  /** A table may sometimes need to be more padded for legibility. */
+  padded: PropTypes.bool,
 }
 
 Table.Body = TableBody
-Table.Column = TableColumn
-Table.Foot = TableFoot
-Table.Head = TableHead
+Table.Cell = TableCell
+Table.Footer = TableFooter
+Table.Header = TableHeader
+Table.Row = TableRow
 
 export default Table
