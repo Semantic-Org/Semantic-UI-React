@@ -24,6 +24,7 @@ const _meta = {
   props: {
     attached: ['top', 'bottom'],
     color: SUI.COLORS,
+    floated: ['right'],
     icon: ['labeled'],
     fixed: ['bottom', 'top'],
     size: _.without(SUI.SIZES, 'medium', 'big'),
@@ -72,6 +73,12 @@ class Menu extends Component {
 
     /** A menu can be fixed to a side of its context. */
     fixed: PropTypes.oneOf(_meta.props.fixed),
+
+    /** A menu can be floated. */
+    floated: PropTypes.oneOfType([
+      PropTypes.bool,
+      PropTypes.oneOf(_meta.props.floated),
+    ]),
 
     /** A vertical menu may take the size of its container. */
     fluid: PropTypes.bool,
@@ -184,8 +191,8 @@ class Menu extends Component {
 
   render() {
     const {
-      attached, borderless, className, children, color, compact, fixed, fluid, icon, inverted, pagination, pointing,
-      secondary, stackable, tabular, text, vertical, size, widths,
+      attached, borderless, className, children, color, compact, fixed, floated, fluid, icon, inverted, pagination,
+      pointing, secondary, stackable, tabular, text, vertical, size, widths,
     } = this.props
     const classes = cx(
       'ui',
@@ -196,6 +203,7 @@ class Menu extends Component {
       useKeyOnly(borderless, 'borderless'),
       useKeyOnly(compact, 'compact'),
       useValueAndKey(fixed, 'fixed'),
+      useKeyOrValueAndKey(floated, 'floated'),
       useKeyOnly(fluid, 'fluid'),
       useKeyOrValueAndKey(icon, 'icon'),
       useKeyOnly(inverted, 'inverted'),
