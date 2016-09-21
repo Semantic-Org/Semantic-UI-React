@@ -7,37 +7,37 @@ import {
   META,
 } from '../../lib'
 
-function TableFoot(props) {
+function TableFooter(props) {
   const { children, className } = props
   const classes = cx(className)
-  const ElementType = getElementType(TableFoot, props)
-  const rest = getUnhandledProps(TableFoot, props)
+  const ElementType = getElementType(TableFooter, props)
+  const rest = getUnhandledProps(TableFooter, props)
 
   return <ElementType {...rest} className={classes}>{children}</ElementType>
 }
 
-TableFoot._meta = {
-  name: 'TableFoot',
+TableFooter._meta = {
+  name: 'TableFooter',
   type: META.TYPES.COLLECTION,
   parent: 'Table',
 }
 
-TableFoot.defaultProps = {
+TableFooter.defaultProps = {
   as: 'thead',
 }
 
-TableFoot.propTypes = {
+TableFooter.propTypes = {
   /** An element type to render as (string or function). */
   as: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.func,
   ]),
 
-  /** Primary content of the TableFoot. */
+  /** Primary content of the TableFooter. */
   children: PropTypes.node,
 
-  /** Classes that will be added to the TableFoot className. */
+  /** Classes that will be added to the TableFooter className. */
   className: PropTypes.string,
 }
 
-export default TableFoot
+export default TableFooter
