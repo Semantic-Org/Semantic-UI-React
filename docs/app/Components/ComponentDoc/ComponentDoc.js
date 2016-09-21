@@ -207,7 +207,7 @@ export default class ComponentDoc extends Component {
           {docgen.docBlock.description || (
             <span>
               <a href={getGithubEditUrl(_meta.name)}>Add a description</a>. Instructions are{' '}
-              <a href={'https://github.com/TechnologyAdvice/stardust/blob/master/CONTRIBUTING.md#components'}>
+              <a href={'https://github.com/TechnologyAdvice/stardust/blob/master/.github/CONTRIBUTING.md#components'}>
                 here.
               </a>
               {' '}Description is in the SUI Docs, right there <Icon name='pointing right' />
