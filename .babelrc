@@ -5,8 +5,7 @@
     "stage-1"
   ],
   "plugins": [
-    "lodash",
-    "add-module-exports"
+    "lodash"
   ],
   "env": {
     "development": {

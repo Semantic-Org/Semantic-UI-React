@@ -9,7 +9,7 @@ import * as elements from './elements'
 import * as modules from './modules'
 import * as views from './views'
 
-export default {
+module.exports = {
   ...addons,
   ...collections,
   ...elements,
