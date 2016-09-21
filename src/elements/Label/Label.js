@@ -166,7 +166,10 @@ Label.propTypes = {
   ]),
 
   /** Format the label as a ribbon on another component. */
-  ribbon: PropTypes.oneOf(Label._meta.props.ribbon),
+  ribbon: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.oneOf(Label._meta.props.ribbon),
+  ]),
 
   /** Size of the label. */
   size: PropTypes.oneOf(Label._meta.props.size),
