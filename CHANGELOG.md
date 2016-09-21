@@ -1,5 +1,23 @@
 # Change Log
 
+## [v0.45.3](https://github.com/TechnologyAdvice/stardust/tree/v0.45.3) (2016-09-21)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.45.2...v0.45.3)
+
+**Implemented enhancements:**
+
+- feat\(Menu\): add `floated` and MenuItem `icon` props [\#523](https://github.com/TechnologyAdvice/stardust/pull/523) ([layershifter](https://github.com/layershifter))
+
+## [v0.45.2](https://github.com/TechnologyAdvice/stardust/tree/v0.45.2) (2016-09-21)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.45.1...v0.45.2)
+
+**Fixed bugs:**
+
+- fix\(Label\): Fix `ribbon` propType [\#522](https://github.com/TechnologyAdvice/stardust/pull/522) ([layershifter](https://github.com/layershifter))
+
+**Merged pull requests:**
+
+- docs\(.github\): create ISSUE\_TEMPLATE [\#521](https://github.com/TechnologyAdvice/stardust/pull/521) ([levithomason](https://github.com/levithomason))
+
 ## [v0.45.1](https://github.com/TechnologyAdvice/stardust/tree/v0.45.1) (2016-09-21)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.45.0...v0.45.1)
 
