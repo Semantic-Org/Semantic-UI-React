@@ -20,16 +20,21 @@ import LabelDetail from './LabelDetail'
  */
 function Label(props) {
   const {
-    above, attached, basic, below, children, circular, className, color, content, corner, detail, empty, floating,
-    horizontal, icon, image, onClick, onRemove, pointing, removable, ribbon, size, tag,
+    attached, basic, children, circular, className, color, content, corner, detail, empty, floating, horizontal, icon,
+    image, onClick, onRemove, pointing, removable, ribbon, size, tag,
   } = props
 
   const handleClick = e => onClick && onClick(e, props)
   const handleRemove = e => onRemove && onRemove(e, props)
 
+  const pointingClass = pointing === true && 'pointing'
+      || (pointing === 'left' || pointing === 'right') && `${pointing} pointing`
+      || (pointing === 'above' || pointing === 'below') && `pointing ${pointing}`
+
   const classes = cx('ui',
     size,
     color,
+    pointingClass,
     useKeyOnly(basic, 'basic'),
     useKeyOnly(circular, 'circular'),
     useKeyOnly(floating, 'floating'),
@@ -39,13 +44,9 @@ function Label(props) {
     useKeyOnly(tag, 'tag'),
     useValueAndKey(attached, 'attached'),
     useKeyOrValueAndKey(corner, 'corner'),
-    useKeyOrValueAndKey(pointing, 'pointing'),
-    /* Don't change order of `above` and `below`, they must be after `pointing` */
-    useKeyOnly(above, 'above'),
-    useKeyOnly(below, 'below'),
     useKeyOrValueAndKey(ribbon, 'ribbon'),
+    className,
     'label',
-    className
   )
 
   const ElementType = getElementType(Label, props)
@@ -75,7 +76,7 @@ Label._meta = {
     attached: ['top', 'bottom', 'top right', 'top left', 'bottom left', 'bottom right'],
     size: SUI.SIZES,
     color: SUI.COLORS,
-    pointing: ['bottom', 'left', 'right'],
+    pointing: ['above', 'below', 'left', 'right'],
     corner: ['left', 'right'],
     ribbon: ['right'],
   },
@@ -91,14 +92,8 @@ Label.propTypes = {
   /** Attach to a <Segment />. */
   attached: PropTypes.oneOf(Label._meta.props.attached),
 
-  /** A label can point to content next to it. */
-  above: PropTypes.bool,
-
   /** A label can reduce its complexity. */
   basic: PropTypes.bool,
-
-  /** A label can point to content next to it. */
-  below: PropTypes.bool,
 
   /** Primary content of the label, same as content. */
   children: customPropTypes.every([
@@ -167,7 +162,7 @@ Label.propTypes = {
       PropTypes.bool,
     ),
     customPropTypes.givenProps(
-      { icon: PropTypes.oneOfType([PropTypes.string, PropTypes.element, PropTypes.object]) },
+      { image: PropTypes.oneOfType([PropTypes.string, PropTypes.element, PropTypes.object]) },
       customPropTypes.disallow(['children']),
     ),
   ]),

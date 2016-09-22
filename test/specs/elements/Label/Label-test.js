@@ -12,9 +12,7 @@ describe('Label Component', () => {
   common.hasSubComponents(Label, [LabelDetail])
   common.rendersChildren(Label)
 
-  common.propKeyOnlyToClassName(Label, 'above')
   common.propKeyOnlyToClassName(Label, 'basic')
-  common.propKeyOnlyToClassName(Label, 'below')
   common.propKeyOnlyToClassName(Label, 'circular')
   common.propKeyOnlyToClassName(Label, 'empty')
   common.propKeyOnlyToClassName(Label, 'floating')
@@ -27,14 +25,29 @@ describe('Label Component', () => {
   common.propKeyAndValueToClassName(Label, 'attached')
 
   common.propKeyOrValueToClassName(Label, 'corner')
-  common.propKeyOrValueToClassName(Label, 'pointing')
   common.propKeyOrValueToClassName(Label, 'ribbon')
 
   common.implementsIconProp(Label)
+  common.implementsImageProp(Label)
 
   it('is a div by default', () => {
     shallow(<Label />)
       .should.have.tagName('div')
+  })
+
+  describe('content', () => {
+    it('has no content by default', () => {
+      shallow(<Label />)
+      .text()
+      .should.be.empty()
+    })
+
+    it('adds the value as children', () => {
+      const text = faker.hacker.phrase()
+
+      shallow(<Label content={text} />)
+        .should.contain.text(text)
+    })
   })
 
   describe('detail', () => {
@@ -60,14 +73,6 @@ describe('Label Component', () => {
       shallow(<Label image />)
         .should.not.have.descendants('Image')
     })
-    it('adds an Image when given a name', () => {
-      shallow(<Label image={faker.image.imageUrl()} />)
-        .should.have.descendants('Image')
-    })
-    it('does not add an image class given a name', () => {
-      shallow(<Label image={faker.image.imageUrl()} />)
-        .should.not.have.className('image')
-    })
   })
 
   describe('onClick', () => {
@@ -89,18 +94,36 @@ describe('Label Component', () => {
     })
   })
 
-  describe('content', () => {
-    it('has no content by default', () => {
-      shallow(<Label />)
-        .text()
-        .should.be.empty()
+  describe('pointing', () => {
+    it('adds an poiting class when true', () => {
+      shallow(<Label pointing />)
+        .should.have.className('pointing')
     })
 
-    it('adds the value as children', () => {
-      const text = faker.hacker.phrase()
+    it('does not add any poiting option class when true', () => {
+      const wrapper = shallow(<Label pointing />)
 
-      shallow(<Label content={text} />)
-        .should.contain.text(text)
+      Label._meta.props.pointing.map(className => wrapper.should.have.className('pointing'))
+    })
+
+    it('adds `above` as suffix', () => {
+      shallow(<Label pointing='above' />)
+        .should.have.className('pointing above')
+    })
+
+    it('adds `below` as suffix', () => {
+      shallow(<Label pointing='below' />)
+        .should.have.className('pointing below')
+    })
+
+    it('adds `left` as prefix', () => {
+      shallow(<Label pointing='left' />)
+        .should.have.className('left pointing')
+    })
+
+    it('adds `right` as prefix', () => {
+      shallow(<Label pointing='right' />)
+        .should.have.className('right pointing')
     })
   })
 })
