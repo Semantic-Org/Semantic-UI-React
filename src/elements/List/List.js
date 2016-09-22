@@ -1,16 +1,17 @@
 import React, { Component, PropTypes } from 'react'
 import classNames from 'classnames'
 
-import { getElementType, META } from '../../lib'
+import {
+  customPropTypes,
+  getElementType,
+  META,
+} from '../../lib'
 import ListItem from './ListItem'
 
 export default class List extends Component {
   static propTypes = {
     /** An element type to render as (string or function). */
-    as: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.func,
-    ]),
+    as: customPropTypes.as,
 
     children: PropTypes.node,
     className: PropTypes.string,

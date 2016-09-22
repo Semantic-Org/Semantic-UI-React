@@ -60,10 +60,7 @@ DropdownItem._meta = {
 
 DropdownItem.propTypes = {
   /** An element type to render as (string or function). */
-  as: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.func,
-  ]),
+  as: customPropTypes.as,
 
   /** Style as the currently chosen item. */
   active: PropTypes.bool,

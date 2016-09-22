@@ -32,10 +32,7 @@ FeedLabel._meta = {
 
 FeedLabel.propTypes = {
   /** An element type to render as (string or function). */
-  as: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.func,
-  ]),
+  as: customPropTypes.as,
 
   /** Primary content of the FeedLabel. */
   children: customPropTypes.every([

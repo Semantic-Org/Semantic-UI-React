@@ -38,10 +38,7 @@ FeedContent._meta = {
 
 FeedContent.propTypes = {
   /** An element type to render as (string or function). */
-  as: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.func,
-  ]),
+  as: customPropTypes.as,
 
   /** Primary content of the FeedContent. */
   children: customPropTypes.every([

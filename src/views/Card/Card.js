@@ -82,10 +82,7 @@ Card._meta = {
 
 Card.propTypes = {
   /** An element type to render as (string or function). */
-  as: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.func,
-  ]),
+  as: customPropTypes.as,
 
   /** A Card can center itself inside its container. */
   centered: PropTypes.bool,

@@ -2,9 +2,10 @@ import React, { PropTypes } from 'react'
 import cx from 'classnames'
 
 import {
-  META,
+  customPropTypes,
   getElementType,
   getUnhandledProps,
+  META,
   useKeyOnly,
 } from '../../lib'
 import { createImg } from '../../factories'
@@ -65,10 +66,7 @@ SearchResult._meta = {
 
 SearchResult.propTypes = {
   /** An element type to render as (string or function). */
-  as: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.func,
-  ]),
+  as: customPropTypes.as,
 
   /** The item currently selected by keyboard shortcut. */
   active: PropTypes.bool,

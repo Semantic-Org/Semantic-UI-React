@@ -39,10 +39,7 @@ DropdownHeader._meta = {
 
 DropdownHeader.propTypes = {
   /** An element type to render as (string or function) */
-  as: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.func,
-  ]),
+  as: customPropTypes.as,
 
   /** Primary content of the header, same as content. */
   children: customPropTypes.every([

@@ -1,6 +1,7 @@
 import cx from 'classnames'
 import React, { PropTypes } from 'react'
 import {
+  customPropTypes,
   getElementType,
   getUnhandledProps,
   META,
@@ -37,10 +38,7 @@ SegmentGroup._meta = {
 
 SegmentGroup.propTypes = {
   /** An element type to render as (string or function). */
-  as: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.func,
-  ]),
+  as: customPropTypes.as,
 
   /** Class names for custom styling. */
   className: PropTypes.string,

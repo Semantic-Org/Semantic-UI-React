@@ -76,10 +76,7 @@ Image._meta = {
 
 Image.propTypes = {
   /** An element type to render as (string or function). */
-  as: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.func,
-  ]),
+  as: customPropTypes.as,
 
   /** An image can specify its vertical alignment */
   verticalAlign: PropTypes.oneOf(Image._meta.props.verticalAlign),
