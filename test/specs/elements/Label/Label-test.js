@@ -19,7 +19,6 @@ describe('Label Component', () => {
   common.propKeyOnlyToClassName(Label, 'empty')
   common.propKeyOnlyToClassName(Label, 'floating')
   common.propKeyOnlyToClassName(Label, 'horizontal')
-  common.propKeyOnlyToClassName(Label, 'image')
   common.propKeyOnlyToClassName(Label, 'tag')
 
   common.propValueOnlyToClassName(Label, 'color')
@@ -49,6 +48,25 @@ describe('Label Component', () => {
 
       shallow(<Label detail={text} />)
         .should.contain(<LabelDetail content={text} />)
+    })
+  })
+
+  describe('image', () => {
+    it('adds an image class when true', () => {
+      shallow(<Label image />)
+        .should.have.className('image')
+    })
+    it('does not add an Image when true', () => {
+      shallow(<Label image />)
+        .should.not.have.descendants('Image')
+    })
+    it('adds an Image when given a name', () => {
+      shallow(<Label image={faker.image.imageUrl()} />)
+        .should.have.descendants('Image')
+    })
+    it('does not add an image class given a name', () => {
+      shallow(<Label image={faker.image.imageUrl()} />)
+        .should.not.have.className('image')
     })
   })
 

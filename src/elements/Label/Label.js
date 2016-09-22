@@ -11,7 +11,7 @@ import {
   useKeyOrValueAndKey,
   useValueAndKey,
 } from '../../lib'
-import { createIcon } from '../../factories'
+import { createIcon, createImage } from '../../factories'
 import { Icon } from '../'
 import LabelDetail from './LabelDetail'
 
@@ -34,7 +34,7 @@ function Label(props) {
     useKeyOnly(circular, 'circular'),
     useKeyOnly(floating, 'floating'),
     useKeyOnly(horizontal, 'horizontal'),
-    useKeyOnly(image, 'image'),
+    useKeyOnly(image === true, 'image'),
     useKeyOnly(empty, 'empty'),
     useKeyOnly(tag, 'tag'),
     useValueAndKey(attached, 'attached'),
@@ -58,6 +58,7 @@ function Label(props) {
   return (
     <ElementType className={classes} onClick={handleClick} {...rest}>
       {createIcon(icon)}
+      {typeof image !== 'boolean' && createImage(image)}
       {content}
       {detail && <LabelDetail content={detail} />}
       {(removable || onRemove) && (
@@ -159,8 +160,17 @@ Label.propTypes = {
     ]),
   ]),
 
-  /** A label can be formatted to emphasize an image. */
-  image: PropTypes.bool,
+  /** A label can be formatted to emphasize an image or prop can be used as shorthand for image. */
+  image: customPropTypes.every([
+    customPropTypes.givenProps(
+      { children: PropTypes.node.isRequired },
+      PropTypes.bool,
+    ),
+    customPropTypes.givenProps(
+      { icon: PropTypes.oneOfType([PropTypes.string, PropTypes.element, PropTypes.object]) },
+      customPropTypes.disallow(['children']),
+    ),
+  ]),
 
   /** Adds the link style when present, called with (event, props). */
   onClick: PropTypes.func,
