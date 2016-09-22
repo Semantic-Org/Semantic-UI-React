@@ -6,10 +6,6 @@ import * as common from 'test/specs/commonTests'
 describe.only('Input', () => {
   common.isConformant(Input)
   common.hasUIClassName(Input)
-  // TODO: inputs do not render child text, only child components in special cases
-  // see component and find solution
-  // perhaps splitting rendersChildText() and rendersChildComponents()
-  // common.rendersChildren(Input)
 
   common.propKeyOnlyToClassName(Input, 'disabled')
   common.propKeyOnlyToClassName(Input, 'error')
@@ -17,8 +13,9 @@ describe.only('Input', () => {
   common.propKeyOnlyToClassName(Input, 'inverted')
   common.propKeyOnlyToClassName(Input, 'loading')
   common.propKeyOnlyToClassName(Input, 'transparent')
-
   common.propValueOnlyToClassName(Input, 'size')
+
+  common.implementsLabelProp(Input)
 
   it('has the input type of text by default', () => {
     shallow(<Input />)

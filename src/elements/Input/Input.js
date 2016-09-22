@@ -79,6 +79,8 @@ function Input(props) {
     useKeyOnly(focus, 'focus'),
     useKeyOnly(fluid, 'fluid'),
     useKeyOnly(inverted, 'inverted'),
+    labelPosition,
+    useKeyOnly(label, 'labeled'),
     useKeyOnly(loading, 'loading'),
     useKeyOnly(transparent, 'transparent'),
     iconPosition,
@@ -99,7 +101,7 @@ function Input(props) {
       {iconPosition !== 'right' && Icon.create(icon)}
       {createHTMLInput(input, inputProps)}
       {iconPosition === 'right' && Icon.create(icon)}
-      {labelPosition !== 'left' && Label.create(label)}
+      {labelPosition === 'right' && Label.create(label)}
       {actionsPosition === 'right' && actions}
     </ElementType>
   )
@@ -109,8 +111,8 @@ Input._meta = {
   name: 'Input',
   type: META.TYPES.ELEMENT,
   props: {
-    actionsPosition: ['left', 'right'],
-    iconPosition: ['right'],
+    actionsPosition: ['right'],
+    iconPosition: ['left'],
     labelPosition: ['left', 'right'],
     size: SUI.SIZES,
   },
@@ -130,41 +132,47 @@ Input.propTypes = {
   /** Class names for custom styling. */
   className: PropTypes.string,
 
-  /** An input field can show that it is disabled */
+  /** An Input field can show that it is disabled */
   disabled: PropTypes.bool,
 
-  /** An input field can show the data contains errors */
+  /** An Input field can show the data contains errors */
   error: PropTypes.bool,
 
-  /** An input field can show a user is currently interacting with it */
+  /** An Input field can show a user is currently interacting with it */
   focus: PropTypes.bool,
 
   /** Take on the size of it's container */
   fluid: PropTypes.bool,
 
-  /** Optional icon to display in input */
+  /** Optional Icon to display inside the Input */
   icon: PropTypes.string,
 
-  /** An icon can appear inside an input on the left or right */
+  /** An Icon can appear inside an Input on the left or right */
   iconPosition: PropTypes.oneOf(Input._meta.props.iconPosition),
 
   /** Format to appear on dark backgrounds */
   inverted: PropTypes.bool,
 
-  /** Shorthand prop for creating the HTML input */
-  input: PropTypes.oneOfType([
+  /** Shorthand prop for creating the HTML Input */
+  Input: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.object,
     PropTypes.element,
   ]),
 
-  /** An icon input field can show that it is currently loading data */
+  /** Optional Label to display along side the Input */
+  label: PropTypes.string,
+
+  /** A Label can appear outside an Input on the left or right */
+  labelPosition: PropTypes.oneOf(Input._meta.props.labelPosition),
+
+  /** An Icon Input field can show that it is currently loading data */
   loading: PropTypes.bool,
 
-  /** An input can vary in size */
+  /** An Input can vary in size */
   size: PropTypes.oneOf(Input._meta.props.size),
 
-  /** Transparent input has no background */
+  /** Transparent Input has no background */
   transparent: PropTypes.bool,
 }
 

@@ -22,7 +22,7 @@ const InputVariations = () => (
     />
     <ComponentExample
       title='Labeled'
-      description='An input can be formatted with an label'
+      description='An input can be formatted with a label'
       examplePath='elements/Input/Variations/InputLabeled'
     />
     <ComponentExample
