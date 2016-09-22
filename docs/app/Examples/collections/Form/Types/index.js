@@ -24,6 +24,11 @@ const FormTypesExamples = () => (
       description='A form calls back with the serialized data on submit'
       examplePath='collections/Form/Types/FormOnSubmitExample'
     />
+    <ComponentExample
+      title='Advanced form'
+      description='A form that keeps track of its values in data'
+      examplePath='collections/Form/Types/FormAdvancedExample'
+    />
   </ExampleSection>
 )
 
