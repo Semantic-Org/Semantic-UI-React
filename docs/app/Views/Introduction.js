@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react'
-import Highlight from 'react-highlight'
-
+import Editor from 'docs/app/Components/Editor/Editor'
 import pkg from 'package.json'
 import {
   Container,
@@ -117,9 +116,7 @@ const Comparison = ({ jsx, html }) => (
     <Grid columns='equal' centered textAlign='left'>
       <Grid.Column computer='8' largeScreen='7' widescreen='7' width='16'>
         <Label size='tiny' attached='top left'>JSX</Label>
-        <Highlight className='language-javascript'>
-          {jsx}
-        </Highlight>
+        <Editor id={btoa(jsx)} value={jsx} readOnly />
       </Grid.Column>
       <Grid.Column largeScreen='2' only='large screen' textAlign='center'>
         <Divider vertical>
@@ -128,9 +125,7 @@ const Comparison = ({ jsx, html }) => (
       </Grid.Column>
       <Grid.Column computer='8' largeScreen='7' widescreen='7' width='16'>
         <Label size='tiny' attached='top right'>Rendered HTML</Label>
-        <Highlight className='language-html'>
-          {html}
-        </Highlight>
+        <Editor id={btoa(html)} mode='html' value={html} readOnly />
       </Grid.Column>
     </Grid>
   </Segment>

@@ -65,11 +65,12 @@ config = Object.assign({}, config, {
   compiler_output_path: paths.base(config.dir_docs_dist),
   compiler_public_path: __BASE__ || '/',
   compiler_vendor: [
+    'brace',
     'classnames',
     'faker',
     'react',
+    'react-ace',
     'react-dom',
-    'react-highlight',
   ],
   compiler_stats: {
     hash: false,            // the hash of the compilation

@@ -116,8 +116,6 @@ if (!__TEST__) {
 // No Parse
 // ------------------------------------
 webpackConfig.module.noParse = [
-  // highlight.js dep throws if parsed
-  /autoit/,
   /\.json$/,
 ]
 

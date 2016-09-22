@@ -1,7 +1,7 @@
 import React, { Component, createElement, PropTypes } from 'react'
-import Highlight from 'react-highlight'
 
 import { exampleContext } from 'docs/app/utils'
+import Editor from 'docs/app/Components/Editor/Editor'
 import { getUnhandledProps } from 'src/lib'
 import { Grid, Header, Icon } from 'stardust'
 
@@ -38,24 +38,30 @@ export default class ComponentExample extends Component {
   }
 
   renderCode = () => {
+    const { examplePath } = this.props
     const { showCode } = this.state
     if (!showCode) return
 
     return (
       <Grid.Column>
-        <Highlight className='language-javascript'>
-          {this.fileContents}
-        </Highlight>
+        <Editor id={examplePath} value={this.fileContents} readOnly />
       </Grid.Column>
     )
   }
 
   render() {
     const { children, description, title } = this.props
+    const { showCode } = this.state
     const rest = getUnhandledProps(ComponentExample, this.props)
 
+    const style = { marginBottom: '4em', transition: 'box-shadow 0 ease-out' }
+    if (showCode) {
+      style.transitionDuration = '0.2s'
+      style.boxShadow = '0 0 30px #ccc'
+    }
+
     return (
-      <Grid columns={1} style={{ marginBottom: '4em' }}>
+      <Grid columns={1} style={style}>
         <Grid.Column>
           <Grid>
             <Grid.Column width={12}>
