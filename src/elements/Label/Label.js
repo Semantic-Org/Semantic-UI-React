@@ -58,9 +58,7 @@ function Label(props) {
   return (
     <ElementType className={classes} onClick={handleClick} {...rest}>
       {createIcon(icon)}
-      {createImage(image)}
       {content}
-      {children}
       {detail && <LabelDetail content={detail} />}
       {(removable || onRemove) && (
         <Icon name='delete' onClick={handleRemove} />
@@ -117,9 +115,12 @@ Label.propTypes = {
   color: PropTypes.oneOf(Label._meta.props.color),
 
   /** Primary content of the label, same as children. */
-  content: PropTypes.oneOf([
-    PropTypes.number,
-    PropTypes.string,
+  content: customPropTypes.every([
+    customPropTypes.disallow(['children']),
+    PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
   ]),
 
   /** Place the label in one of the upper corners. */
@@ -128,8 +129,14 @@ Label.propTypes = {
     PropTypes.oneOf(Label._meta.props.corner),
   ]),
 
-  /** Additional text with less emphasis. */
-  detail: PropTypes.string,
+  /** Shorthand for the LabelDetail component. Mutually exclusive with children. */
+  detail: customPropTypes.every([
+    customPropTypes.disallow(['children']),
+    PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
+  ]),
 
   /** Formats the label as a dot. */
   empty: customPropTypes.every([
@@ -144,9 +151,12 @@ Label.propTypes = {
   floating: PropTypes.bool,
 
   /** Add an icon by icon name or pass an <Icon /> */
-  icon: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.element,
+  icon: customPropTypes.every([
+    customPropTypes.disallow(['children']),
+    PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
   ]),
 
   /** A label can be formatted to emphasize an image. */
