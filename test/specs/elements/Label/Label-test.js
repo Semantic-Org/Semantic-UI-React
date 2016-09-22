@@ -101,9 +101,10 @@ describe('Label Component', () => {
     })
 
     it('does not add any poiting option class when true', () => {
+      const options = Label._meta.props.pointing
       const wrapper = shallow(<Label pointing />)
 
-      Label._meta.props.pointing.map(className => wrapper.should.have.className('pointing'))
+      options.map(className => wrapper.should.not.have.className(className))
     })
 
     it('adds `above` as suffix', () => {
