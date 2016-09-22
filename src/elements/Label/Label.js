@@ -11,7 +11,7 @@ import {
   useKeyOrValueAndKey,
   useValueAndKey,
 } from '../../lib'
-import { createIcon, createImage } from '../../factories'
+import { createIcon } from '../../factories'
 import { Icon } from '../'
 import LabelDetail from './LabelDetail'
 
