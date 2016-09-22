@@ -46,10 +46,7 @@ CardContent._meta = {
 
 CardContent.propTypes = {
   /** An element type to render as (string or function). */
-  as: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.func,
-  ]),
+  as: customPropTypes.as,
 
   /** Primary content of the CardContent. Mutually exclusive with all shorthand props. */
   children: customPropTypes.every([

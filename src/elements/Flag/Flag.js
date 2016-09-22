@@ -1,7 +1,12 @@
 import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
-import { getElementType, getUnhandledProps, META } from '../../lib'
+import {
+  customPropTypes,
+  getElementType,
+  getUnhandledProps,
+  META,
+} from '../../lib'
 
 const names = [
   'ad', 'andorra', 'ae', 'united arab emirates', 'uae', 'af', 'afghanistan', 'ag', 'antigua', 'ai', 'anguilla', 'al',
@@ -66,10 +71,7 @@ Flag._meta = {
 
 Flag.propTypes = {
   /** An element type to render as (string or function). */
-  as: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.func,
-  ]),
+  as: customPropTypes.as,
 
   /** Classes that will be added to the Flag className. */
   className: PropTypes.string,

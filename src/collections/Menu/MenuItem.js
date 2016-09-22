@@ -55,10 +55,7 @@ MenuItem._meta = {
 
 MenuItem.propTypes = {
   /** An element type to render as (string or function). */
-  as: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.func,
-  ]),
+  as: customPropTypes.as,
 
   /** A menu item can be active. */
   active: PropTypes.bool,

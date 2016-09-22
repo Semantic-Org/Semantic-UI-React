@@ -16,12 +16,6 @@ const IconCategoryExample = ({ category }) => (
 )
 
 IconCategoryExample.propTypes = {
-  /** An element type to render as (string or function). */
-  as: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.func,
-  ]),
-
   category: PropTypes.shape({
     icons: PropTypes.array.isRequired,
   }),

@@ -37,10 +37,7 @@ FeedEvent._meta = {
 
 FeedEvent.propTypes = {
   /** An element type to render as (string or function). */
-  as: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.func,
-  ]),
+  as: customPropTypes.as,
 
   /** Primary content of the FeedEvent. */
   children: customPropTypes.every([

@@ -23,10 +23,7 @@ export default class Accordion extends Component {
 
   static propTypes = {
     /** An element type to render as (string or function). */
-    as: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.func,
-    ]),
+    as: customPropTypes.as,
 
     /** Index of the currently active panel. */
     activeIndex: PropTypes.number,

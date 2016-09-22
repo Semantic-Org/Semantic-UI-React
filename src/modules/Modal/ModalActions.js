@@ -1,7 +1,12 @@
 import React, { PropTypes } from 'react'
 import classNames from 'classnames'
 
-import { getElementType, getUnhandledProps, META } from '../../lib'
+import {
+  customPropTypes,
+  getElementType,
+  getUnhandledProps,
+  META,
+} from '../../lib'
 
 function ModalActions(props) {
   const { children, className } = props
@@ -29,10 +34,7 @@ ModalActions._meta = {
 
 ModalActions.propTypes = {
   /** An element type to render as (string or function). */
-  as: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.func,
-  ]),
+  as: customPropTypes.as,
 
   /** Primary content of the modal actions */
   children: PropTypes.any,

@@ -36,10 +36,7 @@ StepContent._meta = {
 
 StepContent.propTypes = {
   /** An element type to render as (string or function). */
-  as: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.func,
-  ]),
+  as: customPropTypes.as,
 
   /** Classes that will be added to the StepContent className. */
   className: PropTypes.string,

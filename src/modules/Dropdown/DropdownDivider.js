@@ -1,7 +1,12 @@
 import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
-import { getElementType, getUnhandledProps, META } from '../../lib'
+import {
+  customPropTypes,
+  getElementType,
+  getUnhandledProps,
+  META,
+} from '../../lib'
 
 function DropdownDivider(props) {
   const { className } = props
@@ -20,10 +25,7 @@ DropdownDivider._meta = {
 
 DropdownDivider.propTypes = {
   /** An element type to render as (string or function). */
-  as: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.func,
-  ]),
+  as: customPropTypes.as,
 
   /** Additional classes */
   className: PropTypes.node,

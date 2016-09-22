@@ -6,12 +6,6 @@ import { META } from '../../lib'
 const TableColumn = () => <noscript />
 
 TableColumn.propTypes = {
-  /** An element type to render as (string or function). */
-  as: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.func,
-  ]),
-
   /**
    * A function that returns the cell contents.
    * Receives the row data as its only argument.

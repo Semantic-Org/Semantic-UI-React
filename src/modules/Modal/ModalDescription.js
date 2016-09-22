@@ -1,7 +1,12 @@
 import React, { PropTypes } from 'react'
 import cx from 'classnames'
 
-import { getElementType, getUnhandledProps, META } from '../../lib'
+import {
+  customPropTypes,
+  getElementType,
+  getUnhandledProps,
+  META,
+} from '../../lib'
 
 function ModalDescription(props) {
   const { children, className } = props
@@ -28,10 +33,7 @@ ModalDescription._meta = {
 
 ModalDescription.propTypes = {
   /** An element type to render as (string or function). */
-  as: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.func,
-  ]),
+  as: customPropTypes.as,
 
   /** Primary content */
   children: PropTypes.any,

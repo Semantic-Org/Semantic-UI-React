@@ -4,13 +4,14 @@ import React, { PropTypes } from 'react'
 
 import {
   AutoControlledComponent as Component,
+  customPropTypes,
   getElementType,
   getUnhandledProps,
   keyboardKey,
   makeDebugger,
   META,
-  SUI,
   objectDiff,
+  SUI,
   useKeyOnly,
   useValueAndKey,
 } from '../../lib'
@@ -35,10 +36,7 @@ const _meta = {
 export default class Search extends Component {
   static propTypes = {
     /** An element type to render as (string or function). */
-    as: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.func,
-    ]),
+    as: customPropTypes.as,
 
     // ------------------------------------
     // Behavior
