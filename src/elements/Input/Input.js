@@ -8,7 +8,7 @@ import {
   getUnhandledProps,
   META,
 } from '../../lib'
-import { Icon } from '../../elements'
+import { createIcon } from '../../factories'
 
 const inputPropNames = [
   // React
@@ -109,7 +109,7 @@ export default class Input extends Component {
         {isLeftLabeled && labelChildren}
         {isLeftAction && actionChildren}
         <input {...inputProps} {...input} type={type} />
-        {icon && <Icon name={icon} />}
+        {createIcon(icon)}
         {isRightLabeled && labelChildren}
         {isRightAction && actionChildren}
       </ElementType>

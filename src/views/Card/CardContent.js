@@ -8,6 +8,7 @@ import {
   META,
   useKeyOnly,
 } from '../../lib'
+import { createShorthand } from '../../factories'
 import CardDescription from './CardDescription'
 import CardHeader from './CardHeader'
 import CardMeta from './CardMeta'
@@ -31,9 +32,9 @@ function CardContent(props) {
 
   return (
     <ElementType {...rest} className={classes}>
-      {header && <CardHeader content={header} />}
-      {meta && <CardMeta content={meta} />}
-      {description && <CardDescription content={description} />}
+      {createShorthand(CardHeader, val => ({ content: val }), header)}
+      {createShorthand(CardMeta, val => ({ content: val }), meta)}
+      {createShorthand(CardDescription, val => ({ content: val }), description)}
     </ElementType>
   )
 }

@@ -7,6 +7,7 @@ import {
   getUnhandledProps,
   META,
 } from '../../lib'
+import { createShorthand } from '../../factories'
 import StepDescription from './StepDescription'
 import StepTitle from './StepTitle'
 
@@ -22,8 +23,8 @@ function StepContent(props) {
 
   return (
     <ElementType {...rest} className={classes}>
-      { title && <StepTitle title={title} /> }
-      { description && <StepDescription description={description} /> }
+      {createShorthand(StepTitle, val => ({ title: val }), title)}
+      {createShorthand(StepDescription, val => ({ description: val }), description)}
     </ElementType>
   )
 }

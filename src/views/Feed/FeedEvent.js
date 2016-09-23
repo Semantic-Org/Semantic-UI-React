@@ -7,6 +7,7 @@ import {
   getUnhandledProps,
   META,
 } from '../../lib'
+import { createShorthand } from '../../factories'
 import FeedContent from './FeedContent'
 import FeedLabel from './FeedLabel'
 
@@ -21,8 +22,8 @@ function FeedEvent(props) {
 
   return (
     <ElementType {...rest} className={classes}>
-      {icon && <FeedLabel icon={icon} />}
-      {image && <FeedLabel image={image} />}
+      {createShorthand(FeedLabel, val => ({ icon: val }), icon)}
+      {createShorthand(FeedLabel, val => ({ image: val }), image)}
       {hasContentProp && <FeedContent {...contentProps} />}
       {children}
     </ElementType>

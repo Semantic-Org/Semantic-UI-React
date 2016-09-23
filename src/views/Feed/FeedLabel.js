@@ -7,7 +7,7 @@ import {
   getUnhandledProps,
   META,
 } from '../../lib'
-import { createIcon, createImg } from '../../factories'
+import { createIcon, createHTMLImage } from '../../factories'
 
 function FeedLabel(props) {
   const { children, className, icon, image } = props
@@ -19,7 +19,7 @@ function FeedLabel(props) {
     <ElementType {...rest} className={classes}>
       {children}
       {createIcon(icon)}
-      {createImg(image)}
+      {createHTMLImage(image)}
     </ElementType>
   )
 }
