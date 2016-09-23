@@ -30,6 +30,8 @@ export default class DropdownItem extends Component {
       description,
       icon,
       onClick,
+      onMouseEnter,
+      onMouseLeave,
       selected,
       text,
       value,
@@ -39,11 +41,15 @@ export default class DropdownItem extends Component {
       if (onClick) onClick(e, value)
     }
 
-    const handleMouseEnter = () => {
+    const handleMouseEnter = (e) => {
+      if (onMouseEnter) onMouseEnter(e, value)
+
       this.setState({ hovered: true })
     }
 
-    const handleMouseLeave = () => {
+    const handleMouseLeave = (e) => {
+      if (onMouseLeave) onMouseLeave(e, value)
+
       this.setState({ hovered: false })
     }
 
@@ -75,7 +81,7 @@ export default class DropdownItem extends Component {
       <ElementType {...rest}
         className={classes}
         onClick={handleClick}
-        onMouseOver={handleMouseEnter}
+        onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
         {createShorthand('span', val => ({ className: 'description', children: val }), description)}
