@@ -7,7 +7,7 @@ const Attached = () => {
   return (
     <div>
       <Menu attached='top'>
-        <Menu.Item as={Dropdown} icon='wrench'>
+        <Dropdown as={Menu.Item} icon='wrench'>
           <Dropdown.Menu>
             <Dropdown.Item>
               <Icon name='dropdown icon' />
@@ -25,7 +25,7 @@ const Attached = () => {
             <Dropdown.Header>Export</Dropdown.Header>
             <Dropdown.Item>Share</Dropdown.Item>
           </Dropdown.Menu>
-        </Menu.Item>
+        </Dropdown>
 
         <Menu.Menu position='right'>
           <div className='ui right aligned category search item'>
