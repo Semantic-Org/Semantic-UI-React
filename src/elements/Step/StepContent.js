@@ -57,7 +57,11 @@ StepContent.propTypes = {
   /** Primary content of the StepTitle. Mutually exclusive with children. */
   title: customPropTypes.every([
     customPropTypes.disallow(['children']),
-    PropTypes.node,
+    PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+      PropTypes.object,
+    ]),
   ]),
 }
 

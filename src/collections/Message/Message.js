@@ -77,9 +77,9 @@ function Message(props) {
         {createIcon(icon)}
         {(header || content || list) && (
           <MessageContent>
-            {header && <MessageHeader>{header}</MessageHeader>}
+            {createShorthand(MessageHeader, val => ({ children: val }), header)}
             {createShorthand(MessageList, val => ({ items: val }), list)}
-            {content && <p>{content}</p>}
+            {createShorthand('p', val => ({ children: val }), content)}
           </MessageContent>
         )}
       </ElementType>
