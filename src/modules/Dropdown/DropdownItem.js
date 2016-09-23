@@ -75,6 +75,8 @@ export default class DropdownItem extends Component {
 
         return cloneElement(child, { opened: this.state.hovered })
       })
+    }else if(newChildren && newChildren.type === DropdownMenu){
+      newChildren = cloneElement(newChildren, { opened: this.state.hovered });
     }
 
     return (
