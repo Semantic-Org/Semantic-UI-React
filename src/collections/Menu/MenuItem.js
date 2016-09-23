@@ -11,6 +11,7 @@ import {
   useKeyOnly,
   useKeyOrValueAndKey,
 } from '../../lib'
+import { createIcon } from '../../factories'
 
 function MenuItem(props) {
   const {
@@ -35,9 +36,18 @@ function MenuItem(props) {
   }
   const rest = getUnhandledProps(MenuItem, props)
 
+  if (children) {
+    return (
+      <ElementType {...rest} className={classes} onClick={handleClick}>
+        {children}
+      </ElementType>
+    )
+  }
+
   return (
     <ElementType {...rest} className={classes} onClick={handleClick}>
-      {children || content || _.startCase(name)}
+      {createIcon(icon)}
+      {content || _.startCase(name)}
     </ElementType>
   )
 }
