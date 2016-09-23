@@ -19,6 +19,7 @@ const Types = () => (
       description='A label can point to content next to it'
       examplePath='elements/Label/Types/LabelPointing'
     />
+    <ComponentExample examplePath='elements/Label/Types/LabelPointingColored' />
   </ExampleSection>
 )
 
