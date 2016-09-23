@@ -9,6 +9,7 @@ import { consoleUtil, sandbox, syntheticEvent } from 'test/utils'
 import stardust from 'stardust'
 
 import { Icon, Image, Label } from 'src/elements'
+import { createShorthand } from 'src/factories'
 
 const componentCtx = require.context(
   '../../src/',
@@ -120,22 +121,22 @@ export const isConformant = (Component, requiredProps = {}) => {
   if (META.isPrivate(constructorName)) {
     it('is not exported as a component nor sub component', () => {
       expect(isStardustProp).to.equal(false,
-        `"${constructorName}" is private (starts with  "_").` +
-        ' It cannot be a key on the stardust object'
+                                      `"${constructorName}" is private (starts with  "_").` +
+                                      ' It cannot be a key on the stardust object'
       )
 
       expect(isSubComponent).to.equal(false,
-        `"${constructorName}" is private (starts with "_").` +
-        ' It cannot be a static prop of another component (sub-component)'
+                                      `"${constructorName}" is private (starts with "_").` +
+                                      ' It cannot be a static prop of another component (sub-component)'
       )
     })
   } else {
     it('is exported as a component or sub component', () => {
       expect(isStardustProp || isSubComponent).to.equal(true,
-        `"${constructorName}" must be:` +
-        ' a key on stardust' +
-        ' || key on another component (sub-component)' +
-        ' || private (start with "_")'
+                                                        `"${constructorName}" must be:` +
+                                                        ' a key on stardust' +
+                                                        ' || key on another component (sub-component)' +
+                                                        ' || private (start with "_")'
       )
     })
   }
@@ -261,9 +262,9 @@ export const isConformant = (Component, requiredProps = {}) => {
         const leftPad = ' '.repeat(constructorName.length + listenerName.length + 3)
 
         handlerSpy.called.should.equal(true,
-          `<${constructorName} ${listenerName}={${handlerName}} />\n` +
-          `${leftPad} ^ was not called on "${eventName}".` +
-          'You may need to hoist your event handlers up to the root element.\n'
+                                       `<${constructorName} ${listenerName}={${handlerName}} />\n` +
+                                       `${leftPad} ^ was not called on "${eventName}".` +
+                                       'You may need to hoist your event handlers up to the root element.\n'
         )
 
         // TODO: https://github.com/TechnologyAdvice/stardust/issues/218
@@ -512,134 +513,122 @@ export const implementsWidthProp = (Component, options, requiredProps = {}) => {
   })
 }
 
-export const implementsIconProp = (Component, requiredProps = {}) => {
-  const iconName = faker.hacker.noun()
-  const assertValid = (element, expectedName = iconName) => {
-    const wrapper = shallow(element)
-    wrapper
-      .should.have.descendants('Icon')
-    wrapper
-      .find('Icon')
-      .should.have.prop('name', expectedName)
+/**
+ * Assert that a Component correctly implements a shorthand prop.
+ *
+ * @param {function} Component The component to test.
+ * @param {object} options
+ * @param {string} options.propKey The name of the shorthand prop.
+ * @param {string|function} options.ShorthandComponent The component that should be rendered from the shorthand value.
+ * @param {function} options.mapValueToProps A function that maps a primitive value to the Component props
+ * @param {Object} [options.requiredShorthandProps={}] Props required to render the shorthand component.
+ * @param {Object} [requiredProps={}] Props required to render the component.
+ */
+export const implementsShorthandProp = (Component, options = {}, requiredProps = {}) => {
+  const {
+    propKey,
+    ShorthandComponent,
+    mapValueToProps,
+    requiredShorthandProps = {},
+  } = options
+  const throwError = msg => {
+    throw new Error(`${msg} \n  Component: ${Component.name} \n  Options: ${JSON.stringify(options, null, 2)}`)
   }
+  describe(`${propKey} shorthand prop (common)`, () => {
+    if (!Component) {
+      throwError(`implementsShorthandProp requires a \`Component\`, got: ${typeof Component}.`)
+    }
+    if (!_.isPlainObject(options)) {
+      throwError(`implementsShorthandProp requires an \`options\` object, got: ${typeof options}.`)
+    }
+    if (!propKey) {
+      throwError(`implementsShorthandProp requires a \`propKey\`, got: ${typeof propKey}.`)
+    }
+    if (!ShorthandComponent) {
+      throwError(`implementsShorthandProp requires a \`SubComponent\`, got: ${typeof ShorthandComponent}.`)
+    }
 
-  describe('icon (common)', () => {
-    if (!Component) throw new Error(`implementsIconProp requires a Component, got: ${typeof Component}`)
+    const name = typeof ShorthandComponent === 'string' ? ShorthandComponent : ShorthandComponent.name
 
-    _noDefaultClassNameFromProp(Component, 'icon')
+    const assertValidShorthand = (value) => {
+      const renderedShorthand = createShorthand(ShorthandComponent, mapValueToProps, value, requiredShorthandProps)
+      const element = createElement(Component, { ...requiredProps, [propKey]: value })
 
-    if (Component.defaultProps && Component.defaultProps.icon) {
-      it('has default Icon when not defined', () => {
-        assertValid(<Component {...requiredProps} />, Component.defaultProps.icon)
+      shallow(element).should.contain(renderedShorthand)
+    }
+
+    _noDefaultClassNameFromProp(Component, propKey)
+
+    if (Component.defaultProps && Component.defaultProps[propKey]) {
+      it(`has default ${name} when not defined`, () => {
+        shallow(<Component {...requiredProps} />)
+          .should.have.descendants(name)
       })
     } else {
-      it('has no Icon when not defined', () => {
+      it(`has no ${name} when not defined`, () => {
         shallow(<Component {...requiredProps} />)
-          .should.not.have.descendants('Icon')
+          .should.not.have.descendants(name)
       })
     }
 
-    it('has no Icon when null', () => {
-      shallow(<Component {...requiredProps} icon={null} />)
-        .should.not.have.descendants('Icon')
+    it(`has no ${name} when null`, () => {
+      shallow(createElement(Component, { ...requiredProps, [propKey]: null }))
+        .should.not.have.descendants(ShorthandComponent)
     })
 
-    it('accepts an Icon instance', () => {
-      const icon = <Icon name={iconName} />
-      assertValid(<Component {...requiredProps} icon={icon} />)
+    it(`renders a ${name} from strings`, () => {
+      consoleUtil.disableOnce()
+      assertValidShorthand('string')
     })
 
-    it('accepts an icon name string', () => {
-      assertValid(<Component {...requiredProps} icon={iconName} />)
+    it(`renders a ${name} from numbers`, () => {
+      consoleUtil.disableOnce()
+      assertValidShorthand(123)
     })
 
-    it('accepts an icon props object', () => {
-      assertValid(<Component {...requiredProps} icon={{ name: iconName }} />)
+    it(`renders a ${name} from a props object`, () => {
+      consoleUtil.disableOnce()
+      assertValidShorthand(mapValueToProps('foo'))
+    })
+
+    it(`renders a ${name} from elements`, () => {
+      consoleUtil.disableOnce()
+      assertValidShorthand(<ShorthandComponent {...requiredShorthandProps} />)
     })
   })
 }
 
-export const implementsLabelProp = (Component, requiredProps = {}) => {
-  const labelText = faker.hacker.phrase()
-  const assertValid = (element, expectedText = labelText) => {
-    const wrapper = shallow(element)
-    wrapper
-      .should.have.descendants('Label')
-    wrapper
-      .find('Label')
-      .shallow()
-      .should.have.text(expectedText)
+export const implementsIconProp = (Component, options, requiredProps = {}) => {
+  const opts = {
+    propKey: 'icon',
+    ShorthandComponent: Icon,
+    mapValueToProps: val => ({ name: val }),
+    requiredShorthandProps: {},
+    ...options,
   }
-
-  describe('label (common)', () => {
-    if (!Component) throw new Error(`implementsLabelProp requires a Component, got: ${typeof Component}`)
-
-    _noDefaultClassNameFromProp(Component, 'label')
-
-    if (Component.defaultProps && Component.defaultProps.label) {
-      it('has default Label when not defined', () => {
-        assertValid(<Component {...requiredProps} />, Component.defaultProps.label)
-      })
-    } else {
-      it('has no Label when not defined', () => {
-        shallow(<Component {...requiredProps} />)
-          .should.not.have.descendants('Label')
-      })
-    }
-
-    it('accepts an Label instance', () => {
-      const label = <Label>{labelText}</Label>
-      assertValid(<Component {...requiredProps} label={label} />)
-    })
-
-    it('accepts Label text string', () => {
-      assertValid(<Component {...requiredProps} label={labelText} />)
-    })
-
-    it('accepts a Label props object', () => {
-      assertValid(<Component {...requiredProps} label={{ children: labelText }} />)
-    })
-  })
+  implementsShorthandProp(Component, opts, requiredProps)
 }
 
-export const implementsImageProp = (Component, requiredProps = {}) => {
-  const imageSrc = faker.internet.avatar()
-  const assertValid = (element) => {
-    const wrapper = shallow(element)
-    wrapper
-      .should.have.descendants('Image')
-    wrapper
-      .find('Image')
-      .should.have.prop('src', imageSrc)
+export const implementsLabelProp = (Component, options, requiredProps = {}) => {
+  const opts = {
+    propKey: 'label',
+    ShorthandComponent: Label,
+    mapValueToProps: val => ({ content: val }),
+    requiredShorthandProps: {},
+    ...options,
   }
-  describe('image (common)', () => {
-    if (!Component) throw new Error(`implementsImageProp requires a Component, got: ${typeof Component}`)
+  implementsShorthandProp(Component, opts, requiredProps)
+}
 
-    _noDefaultClassNameFromProp(Component, 'image')
-
-    it('has no Image when prop is not defined', () => {
-      shallow(<Component {...requiredProps} />)
-        .should.not.have.descendants('Image')
-    })
-
-    it('has no Image when prop is null', () => {
-      shallow(<Component {...requiredProps} image={null} />)
-        .should.not.have.descendants('Image')
-    })
-
-    it('accepts an Image instance', () => {
-      const image = <Image src={imageSrc} />
-      assertValid(<Component {...requiredProps} image={image} />)
-    })
-
-    it('accepts an image src string', () => {
-      assertValid(<Component {...requiredProps} image={imageSrc} />)
-    })
-
-    it('accepts an image props object', () => {
-      assertValid(<Component {...requiredProps} image={{ src: imageSrc }} />)
-    })
-  })
+export const implementsImageProp = (Component, options, requiredProps = {}) => {
+  const opts = {
+    propKey: 'image',
+    ShorthandComponent: Image,
+    mapValueToProps: val => ({ src: val }),
+    requiredShorthandProps: {},
+    ...options,
+  }
+  implementsShorthandProp(Component, opts, requiredProps)
 }
 
 /**
