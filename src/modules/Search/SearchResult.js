@@ -8,7 +8,7 @@ import {
   META,
   useKeyOnly,
 } from '../../lib'
-import { createImg } from '../../factories'
+import { createHTMLImage } from '../../factories'
 
 // Note: You technically only need the 'content' wrapper when there's an
 // image. However, optionally wrapping it makes this function a lot more
@@ -18,7 +18,7 @@ import { createImg } from '../../factories'
 // Note: To avoid requiring a wrapping div, we return an array here so to
 // prevent rendering issues each node needs a unique key.
 const defaultRenderer = ({ image, price, title, description }) => [
-  image && <div key='image' className='image'>{createImg(image)}</div>,
+  image && <div key='image' className='image'>{createHTMLImage(image)}</div>,
   <div key='content' className='content'>
     {price && <div className='price'>{price}</div>}
     {title && <div className='title'>{title}</div>}
