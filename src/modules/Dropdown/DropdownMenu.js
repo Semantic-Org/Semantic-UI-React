@@ -9,14 +9,14 @@ import {
 } from '../../lib'
 
 export default class DropdownMenu extends Component {
-  render(){
+  render() {
     const { children, className } = this.props
-    const classes = cx('menu transition', className, {visible: this.props.opened})
+    const classes = cx('menu transition', className, { visible: this.props.opened })
     const rest = getUnhandledProps(DropdownMenu, this.props)
     const ElementType = getElementType(DropdownMenu, this.props)
 
-    return <ElementType {...rest} className={classes}>
-      {children}</ElementType>
+    return (<ElementType {...rest} className={classes}>
+      {children}</ElementType>)
   }
 }
 

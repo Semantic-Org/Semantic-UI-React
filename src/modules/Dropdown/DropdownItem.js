@@ -1,4 +1,4 @@
-import React, {PropTypes, cloneElement, Children, Component} from 'react'
+import React, { PropTypes, cloneElement, Children, Component } from 'react'
 import cx from 'classnames'
 import DropdownMenu from './DropdownMenu'
 
@@ -10,15 +10,15 @@ import {
   getUnhandledProps,
   useKeyOnly,
 } from '../../lib'
-import {createIcon, createShorthand} from '../../factories'
+import { createIcon, createShorthand } from '../../factories'
 
 export default class DropdownItem extends Component {
   constructor() {
-    super();
+    super()
 
     this.state = {
-      hovered: false
-    };
+      hovered: false,
+    }
   }
 
   render() {
@@ -40,12 +40,12 @@ export default class DropdownItem extends Component {
     }
 
     const handleMouseEnter = () => {
-      this.setState({hovered: true});
-    };
+      this.setState({ hovered: true })
+    }
 
     const handleMouseLeave = () => {
-      this.setState({hovered: false});
-    };
+      this.setState({ hovered: false })
+    }
 
     const classes = cx(
       useKeyOnly(active, 'active'),
@@ -59,21 +59,26 @@ export default class DropdownItem extends Component {
     const ElementType = getElementType(DropdownItem, this.props)
     const rest = getUnhandledProps(DropdownItem, this.props)
 
-    var newChildren = children;
+    let newChildren = children
 
     if (Array.isArray(children)) {
       newChildren = Children.map(children, (child) => {
-        if (child.type != DropdownMenu) {
-          return child;
+        if (child.type !== DropdownMenu) {
+          return child
         }
 
-        return cloneElement(child, {opened: this.state.hovered});
-      });
+        return cloneElement(child, { opened: this.state.hovered })
+      })
     }
 
     return (
-      <ElementType {...rest} className={classes} onClick={handleClick} onMouseOver={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-        {createShorthand('span', val => ({className: 'description', children: val}), description)}
+      <ElementType {...rest}
+        className={classes}
+        onClick={handleClick}
+        onMouseOver={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
+        {createShorthand('span', val => ({ className: 'description', children: val }), description)}
         {createIcon(iconName)}
         {text}
         {newChildren}
