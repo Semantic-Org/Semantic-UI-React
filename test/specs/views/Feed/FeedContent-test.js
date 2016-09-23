@@ -1,4 +1,3 @@
-import _ from 'lodash'
 import faker from 'faker'
 import React from 'react'
 
