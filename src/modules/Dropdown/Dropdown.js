@@ -14,7 +14,7 @@ import {
   useKeyOnly,
   useKeyOrValueAndKey,
 } from '../../lib'
-import { createIcon } from '../../factories'
+import { createIcon, createShorthand } from '../../factories'
 import { Label } from '../../elements'
 import DropdownDivider from './DropdownDivider'
 import DropdownItem from './DropdownItem'
@@ -881,7 +881,7 @@ export default class Dropdown extends Component {
 
     return (
       <DropdownMenu className={menuClasses}>
-        {header && <DropdownHeader content={header} />}
+        {createShorthand(DropdownHeader, val => ({ content: val }), header)}
         {this.renderOptions()}
       </DropdownMenu>
     )
