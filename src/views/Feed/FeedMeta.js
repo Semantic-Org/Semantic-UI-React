@@ -7,6 +7,7 @@ import {
   getUnhandledProps,
   META,
 } from '../../lib'
+import { createShorthand } from '../../factories'
 import FeedLike from './FeedLike'
 
 function FeedMeta(props) {
@@ -17,7 +18,7 @@ function FeedMeta(props) {
 
   return (
     <ElementType {...rest} className={classes}>
-      {like && <FeedLike like={like} />}
+      {createShorthand(FeedLike, val => ({ like: val }), like)}
       {children || meta}
     </ElementType>
   )
