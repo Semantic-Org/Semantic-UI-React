@@ -2,12 +2,13 @@ import React, { PropTypes } from 'react'
 import cx from 'classnames'
 
 import {
-  META,
+  customPropTypes,
   getElementType,
   getUnhandledProps,
+  META,
   useKeyOnly,
 } from '../../lib'
-import { createImg } from '../../factories'
+import { createHTMLImage } from '../../factories'
 
 // Note: You technically only need the 'content' wrapper when there's an
 // image. However, optionally wrapping it makes this function a lot more
@@ -17,7 +18,7 @@ import { createImg } from '../../factories'
 // Note: To avoid requiring a wrapping div, we return an array here so to
 // prevent rendering issues each node needs a unique key.
 const defaultRenderer = ({ image, price, title, description }) => [
-  image && <div key='image' className='image'>{createImg(image)}</div>,
+  image && <div key='image' className='image'>{createHTMLImage(image)}</div>,
   <div key='content' className='content'>
     {price && <div className='price'>{price}</div>}
     {title && <div className='title'>{title}</div>}
@@ -65,10 +66,7 @@ SearchResult._meta = {
 
 SearchResult.propTypes = {
   /** An element type to render as (string or function). */
-  as: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.func,
-  ]),
+  as: customPropTypes.as,
 
   /** The item currently selected by keyboard shortcut. */
   active: PropTypes.bool,

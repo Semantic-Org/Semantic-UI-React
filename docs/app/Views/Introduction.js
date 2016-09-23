@@ -132,12 +132,6 @@ const Comparison = ({ jsx, html }) => (
 )
 
 Comparison.propTypes = {
-  /** An element type to render as (string or function). */
-  as: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.func,
-  ]),
-
   jsx: PropTypes.string,
   html: PropTypes.string,
 }

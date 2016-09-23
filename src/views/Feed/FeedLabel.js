@@ -7,7 +7,7 @@ import {
   getUnhandledProps,
   META,
 } from '../../lib'
-import { createIcon, createImg } from '../../factories'
+import { createIcon, createHTMLImage } from '../../factories'
 
 function FeedLabel(props) {
   const { children, className, icon, image } = props
@@ -19,7 +19,7 @@ function FeedLabel(props) {
     <ElementType {...rest} className={classes}>
       {children}
       {createIcon(icon)}
-      {createImg(image)}
+      {createHTMLImage(image)}
     </ElementType>
   )
 }
@@ -32,10 +32,7 @@ FeedLabel._meta = {
 
 FeedLabel.propTypes = {
   /** An element type to render as (string or function). */
-  as: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.func,
-  ]),
+  as: customPropTypes.as,
 
   /** Primary content of the FeedLabel. */
   children: customPropTypes.every([

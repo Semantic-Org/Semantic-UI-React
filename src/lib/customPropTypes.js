@@ -1,7 +1,15 @@
-import { Children } from 'react'
+import { Children, PropTypes } from 'react'
 import _ from 'lodash'
 
 const type = (...args) => Object.prototype.toString.call(...args)
+
+/**
+ * Ensure a component can render as a give prop value.
+ */
+export const as = (...args) => PropTypes.oneOfType([
+  PropTypes.string,
+  PropTypes.func,
+])(...args)
 
 /**
  * Ensures children are of a set of types. Matches are made against the component _meta.name property.

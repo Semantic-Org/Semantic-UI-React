@@ -140,10 +140,7 @@ Button._meta = {
 
 Button.propTypes = {
   /** An element type to render as (string or function). */
-  as: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.func,
-  ]),
+  as: customPropTypes.as,
 
   /** A button can show it is currently the active user selection */
   active: PropTypes.bool,

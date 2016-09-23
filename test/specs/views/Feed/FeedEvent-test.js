@@ -4,19 +4,20 @@ import React from 'react'
 
 import * as common from 'test/specs/commonTests'
 import FeedEvent from 'src/views/Feed/FeedEvent'
+import FeedLabel from 'src/views/Feed/FeedLabel'
 
 describe('FeedEvent', () => {
   common.isConformant(FeedEvent)
   common.rendersChildren(FeedEvent)
-
-  it('renders <FeedLabel> with icon prop', () => {
-    shallow(<FeedEvent icon={faker.hacker.phrase()} />)
-      .should.have.descendants('FeedLabel')
+  common.implementsShorthandProp(FeedEvent, {
+    propKey: 'icon',
+    ShorthandComponent: FeedLabel,
+    mapValueToProps: val => ({ icon: val }),
   })
-
-  it('renders <FeedLabel> with image prop', () => {
-    shallow(<FeedEvent image={faker.image.imageUrl()} />)
-      .should.have.descendants('FeedLabel')
+  common.implementsShorthandProp(FeedEvent, {
+    propKey: 'image',
+    ShorthandComponent: FeedLabel,
+    mapValueToProps: val => ({ image: val }),
   })
 
   describe('content props', () => {

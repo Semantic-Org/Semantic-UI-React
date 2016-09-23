@@ -12,7 +12,12 @@ describe('Button', () => {
   common.hasUIClassName(Button)
   common.hasSubComponents(Button, [ButtonContent, ButtonGroup, ButtonOr])
   common.implementsIconProp(Button)
-  common.implementsLabelProp(Button)
+  common.implementsLabelProp(Button, {
+    requiredShorthandProps: {
+      basic: true,
+      pointing: 'left',
+    },
+  })
 
   common.propKeyOnlyToClassName(Button, 'active')
   common.propKeyOrValueToClassName(Button, 'animated')

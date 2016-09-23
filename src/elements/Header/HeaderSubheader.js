@@ -29,10 +29,7 @@ HeaderSubheader._meta = {
 
 HeaderSubheader.propTypes = {
   /** An element type to render as (string or function). */
-  as: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.func,
-  ]),
+  as: customPropTypes.as,
 
   /** Primary content of the HeaderSubheader. Mutually exclusive with content */
   children: customPropTypes.every([

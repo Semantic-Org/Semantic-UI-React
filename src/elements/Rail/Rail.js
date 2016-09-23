@@ -3,6 +3,7 @@ import React, { PropTypes } from 'react'
 import cx from 'classnames'
 
 import {
+  customPropTypes,
   getElementType,
   getUnhandledProps,
   META,
@@ -45,10 +46,7 @@ Rail._meta = {
 
 Rail.propTypes = {
   /** An element type to render as (string or function). */
-  as: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.func,
-  ]),
+  as: customPropTypes.as,
 
   /** A rail can appear attached to the main viewport. */
   attached: PropTypes.bool,

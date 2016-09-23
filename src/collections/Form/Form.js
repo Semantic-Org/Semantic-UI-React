@@ -3,6 +3,7 @@ import _ from 'lodash'
 import React, { PropTypes } from 'react'
 
 import {
+  customPropTypes,
   getElementType,
   getUnhandledProps,
   makeDebugger,
@@ -220,10 +221,7 @@ Form._meta = {
 
 Form.propTypes = {
   /** An element type to render as (string or function). */
-  as: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.func,
-  ]),
+  as: customPropTypes.as,
 
   /** Primary content */
   children: PropTypes.node,

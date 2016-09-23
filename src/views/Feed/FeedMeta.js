@@ -7,6 +7,7 @@ import {
   getUnhandledProps,
   META,
 } from '../../lib'
+import { createShorthand } from '../../factories'
 import FeedLike from './FeedLike'
 
 function FeedMeta(props) {
@@ -17,7 +18,7 @@ function FeedMeta(props) {
 
   return (
     <ElementType {...rest} className={classes}>
-      {like && <FeedLike like={like} />}
+      {createShorthand(FeedLike, val => ({ like: val }), like)}
       {children || meta}
     </ElementType>
   )
@@ -31,10 +32,7 @@ FeedMeta._meta = {
 
 FeedMeta.propTypes = {
   /** An element type to render as (string or function). */
-  as: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.func,
-  ]),
+  as: customPropTypes.as,
 
   /** Primary content of the FeedMeta. */
   children: customPropTypes.every([

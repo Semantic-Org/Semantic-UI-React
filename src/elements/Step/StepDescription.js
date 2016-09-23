@@ -25,10 +25,7 @@ StepDescription._meta = {
 
 StepDescription.propTypes = {
   /** An element type to render as (string or function). */
-  as: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.func,
-  ]),
+  as: customPropTypes.as,
 
   /** Classes that will be added to the StepDescription className. */
   className: PropTypes.string,

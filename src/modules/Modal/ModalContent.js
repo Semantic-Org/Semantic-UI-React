@@ -1,7 +1,13 @@
 import React, { PropTypes } from 'react'
 import classNames from 'classnames'
 
-import { getElementType, getUnhandledProps, META, useKeyOnly } from '../../lib'
+import {
+  customPropTypes,
+  getElementType,
+  getUnhandledProps,
+  META,
+  useKeyOnly,
+} from '../../lib'
 
 function ModalContent(props) {
   const { children, image, className } = props
@@ -30,10 +36,7 @@ ModalContent._meta = {
 
 ModalContent.propTypes = {
   /** An element type to render as (string or function). */
-  as: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.func,
-  ]),
+  as: customPropTypes.as,
 
   /** Primary content of the modal content */
   children: PropTypes.any,

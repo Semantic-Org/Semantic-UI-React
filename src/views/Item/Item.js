@@ -7,7 +7,7 @@ import {
   getUnhandledProps,
   META,
 } from '../../lib'
-
+import { createShorthand } from '../../factories'
 import ItemContent from './ItemContent'
 import ItemDescription from './ItemDescription'
 import ItemExtra from './ItemExtra'
@@ -31,7 +31,7 @@ function Item(props) {
 
   return (
     <ElementType {...rest} className={classes}>
-      {image && <ItemImage src={image} />}
+      {createShorthand(ItemImage, val => ({ src: val }), image)}
 
       <ItemContent
         content={content}
@@ -59,10 +59,7 @@ Item.Meta = ItemMeta
 
 Item.propTypes = {
   /** An element type to render as (string or function). */
-  as: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.func,
-  ]),
+  as: customPropTypes.as,
 
   /** Primary content of the Item. */
   children: PropTypes.node,

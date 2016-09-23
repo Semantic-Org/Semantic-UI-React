@@ -3,14 +3,15 @@ import React from 'react'
 
 import * as common from 'test/specs/commonTests'
 import FeedSummary from 'src/views/Feed/FeedSummary'
+import FeedDate from 'src/views/Feed/FeedDate'
 
 describe('FeedSummary', () => {
   common.isConformant(FeedSummary)
   common.rendersChildren(FeedSummary)
-
-  it('renders <FeedDate> with date prop', () => {
-    shallow(<FeedSummary date={faker.hacker.phrase()} />)
-      .should.have.descendants('FeedDate')
+  common.implementsShorthandProp(FeedSummary, {
+    propKey: 'date',
+    ShorthandComponent: FeedDate,
+    mapValueToProps: val => ({ date: val }),
   })
 
   it('renders text with summary prop', () => {

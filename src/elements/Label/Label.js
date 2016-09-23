@@ -84,10 +84,7 @@ Label._meta = {
 
 Label.propTypes = {
   /** An element type to render as (string or function). */
-  as: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.func,
-  ]),
+  as: customPropTypes.as,
 
   /** Attach to a <Segment />. */
   attached: PropTypes.oneOf(Label._meta.props.attached),

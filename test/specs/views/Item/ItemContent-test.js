@@ -11,6 +11,26 @@ import ItemMeta from 'src/views/Item/ItemMeta'
 describe('ItemContent', () => {
   common.isConformant(ItemContent)
   common.implementsVerticalAlignProp(ItemContent)
+  common.implementsShorthandProp(ItemContent, {
+    propKey: 'header',
+    ShorthandComponent: ItemHeader,
+    mapValueToProps: val => ({ content: val }),
+  })
+  common.implementsShorthandProp(ItemContent, {
+    propKey: 'meta',
+    ShorthandComponent: ItemMeta,
+    mapValueToProps: val => ({ content: val }),
+  })
+  common.implementsShorthandProp(ItemContent, {
+    propKey: 'description',
+    ShorthandComponent: ItemDescription,
+    mapValueToProps: val => ({ content: val }),
+  })
+  common.implementsShorthandProp(ItemContent, {
+    propKey: 'extra',
+    ShorthandComponent: ItemExtra,
+    mapValueToProps: val => ({ content: val }),
+  })
   common.rendersChildren(ItemContent)
 
   describe('content prop', () => {
@@ -19,42 +39,6 @@ describe('ItemContent', () => {
 
       shallow(<ItemContent content={text} />)
         .should.contain.text(text)
-    })
-  })
-
-  describe('description prop', () => {
-    it('renders ItemDescription component', () => {
-      const text = faker.hacker.phrase()
-
-      shallow(<ItemContent description={text} />)
-        .should.contain(<ItemDescription content={text} />)
-    })
-  })
-
-  describe('extra prop', () => {
-    it('renders ItemExtra component', () => {
-      const text = faker.hacker.phrase()
-
-      shallow(<ItemContent extra={text} />)
-        .should.contain(<ItemExtra content={text} />)
-    })
-  })
-
-  describe('header prop', () => {
-    it('renders ItemHeader component', () => {
-      const text = faker.hacker.phrase()
-
-      shallow(<ItemContent header={text} />)
-        .should.contain(<ItemHeader content={text} />)
-    })
-  })
-
-  describe('meta prop', () => {
-    it('renders ItemMeta component', () => {
-      const text = faker.hacker.phrase()
-
-      shallow(<ItemContent meta={text} />)
-        .should.contain(<ItemMeta content={text} />)
     })
   })
 })
