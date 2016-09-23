@@ -11,7 +11,7 @@ import {
   useKeyOnly,
   useKeyOrValueAndKey,
 } from '../../lib'
-import { createIcon } from '../../factories'
+import { createIcon, createShorthand } from '../../factories'
 import { Icon } from '../../elements'
 import MessageContent from './MessageContent'
 import MessageHeader from './MessageHeader'
@@ -78,7 +78,7 @@ function Message(props) {
         {(header || content || list) && (
           <MessageContent>
             {header && <MessageHeader>{header}</MessageHeader>}
-            {list && <MessageList items={list} />}
+            {createShorthand(MessageList, val => ({ items: val }), list)}
             {content && <p>{content}</p>}
           </MessageContent>
         )}
