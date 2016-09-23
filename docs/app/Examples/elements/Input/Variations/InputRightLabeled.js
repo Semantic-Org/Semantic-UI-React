@@ -1,8 +1,18 @@
 import React from 'react'
-import { Input } from 'stardust'
+import { Dropdown, Input } from 'stardust'
+
+const options = [
+  { text: '.com', value: '.com' },
+  { text: '.net', value: '.net' },
+  { text: '.org', value: '.org' },
+]
 
 const InputRightLabeled = () => (
-  <Input label='http://' labelPosition='right' placeholder='mysite.com' />
+  <Input
+    label={<Dropdown defaultValue='.com' options={options} />}
+    labelPosition='right'
+    placeholder='Find domain'
+  />
 )
 
 export default InputRightLabeled

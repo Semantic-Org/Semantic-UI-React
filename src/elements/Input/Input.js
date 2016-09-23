@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import React, { PropTypes, Children } from 'react'
+import React, { PropTypes } from 'react'
 import cx from 'classnames'
 
 import {
@@ -10,6 +10,7 @@ import {
   META,
   SUI,
   useKeyOnly,
+  useValueAndKey,
 } from '../../lib'
 import { Icon, Label } from '../../elements'
 
@@ -55,6 +56,7 @@ function Input(props) {
   const {
     actions,
     actionsPosition,
+    children,
     className,
     disabled,
     error,
@@ -79,12 +81,10 @@ function Input(props) {
     useKeyOnly(focus, 'focus'),
     useKeyOnly(fluid, 'fluid'),
     useKeyOnly(inverted, 'inverted'),
-    labelPosition,
-    useKeyOnly(label, 'labeled'),
+    useValueAndKey(labelPosition, 'labeled') || useKeyOnly(label, 'labeled'),
     useKeyOnly(loading, 'loading'),
     useKeyOnly(transparent, 'transparent'),
-    iconPosition,
-    useKeyOnly(icon, 'icon'),
+    useValueAndKey(iconPosition, 'icon') || useKeyOnly(icon, 'icon'),
     className,
     'input',
   )
@@ -94,14 +94,26 @@ function Input(props) {
   const rest = _.omit(unhandledProps, inputPropNames)
   const ElementType = getElementType(Input, props)
 
+  if (children) {
+    return <ElementType {...rest} className={classes}>{children}</ElementType>
+  }
+
+  const iconElement = Icon.create(icon)
+  const labelElement = Label.create(label, {
+    // all label components should have the label className
+    className: 'label',
+    // pass corner='left|right'
+    corner: _.includes(labelPosition, 'corner') ? labelPosition.replace(' corner', '') : undefined,
+  })
+
   return (
     <ElementType {...rest} className={classes}>
-      {labelPosition !== 'right' && Label.create(label)}
+      {labelPosition !== 'right' && labelElement}
       {actionsPosition === 'left' && actions}
-      {iconPosition !== 'right' && Icon.create(icon)}
+      {iconPosition !== 'right' && iconElement}
       {createHTMLInput(input, inputProps)}
-      {iconPosition === 'right' && Icon.create(icon)}
-      {labelPosition === 'right' && Label.create(label)}
+      {iconPosition === 'right' && iconElement}
+      {labelPosition === 'right' && labelElement}
       {actionsPosition === 'right' && actions}
     </ElementType>
   )
@@ -126,10 +138,10 @@ Input.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** Body of the component. */
+  /** Primary content.  Used when there are multiple Labels or multiple Actions. */
   children: PropTypes.node,
 
-  /** Class names for custom styling. */
+  /** Additional classes. */
   className: PropTypes.string,
 
   /** An Input field can show that it is disabled */
@@ -154,7 +166,7 @@ Input.propTypes = {
   inverted: PropTypes.bool,
 
   /** Shorthand prop for creating the HTML Input */
-  Input: PropTypes.oneOfType([
+  input: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.object,
     PropTypes.element,

@@ -631,7 +631,7 @@ export const implementsShorthandProp = (Component, options = {}) => {
 }
 
 /**
- * Assert that a Component correctly implements a shorthand prop.
+ * Assert that a Component correctly implements the icon shorthand prop.
  *
  * @param {function} Component The component to test.
  * @param {object} [options={}]
@@ -654,7 +654,7 @@ export const implementsIconProp = (Component, options = {}) => {
 }
 
 /**
- * Assert that a Component correctly implements a shorthand prop.
+ * Assert that a Component correctly implements the label shorthand prop.
  *
  * @param {function} Component The component to test.
  * @param {object} [options={}]
@@ -677,7 +677,7 @@ export const implementsLabelProp = (Component, options = {}) => {
 }
 
 /**
- * Assert that a Component correctly implements a shorthand prop.
+ * Assert that a Component correctly implements the image shorthand prop.
  *
  * @param {function} Component The component to test.
  * @param {object} [options={}]

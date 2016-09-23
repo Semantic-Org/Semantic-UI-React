@@ -2,6 +2,8 @@ import React from 'react'
 import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
 import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
 
+import { Message } from 'src'
+
 const InputVariations = () => (
   <ExampleSection title='Variations'>
     <ComponentExample
@@ -24,10 +26,26 @@ const InputVariations = () => (
       title='Labeled'
       description='An input can be formatted with a label'
       examplePath='elements/Input/Variations/InputLabeled'
-    />
+    >
+      <Message
+        info
+        content='The `label` prop is a shorthand prop.  I can render a string, number, props object or element'
+      />
+    </ComponentExample>
     <ComponentExample
+      description='You can position and augment an Input label'
       examplePath='elements/Input/Variations/InputRightLabeled'
     />
+    <ComponentExample examplePath='elements/Input/Variations/InputRightLabeledBasic' />
+    <ComponentExample examplePath='elements/Input/Variations/InputRightLeftLabeled'>
+      <Message warning>
+        Multiple Labels require `children`.
+        When using `children`, you must add your own `input`.
+      </Message>
+    </ComponentExample>
+    <ComponentExample examplePath='elements/Input/Variations/InputRightLabeledTag' />
+    <ComponentExample examplePath='elements/Input/Variations/InputLeftCornerLabeled' />
+    <ComponentExample examplePath='elements/Input/Variations/InputRightCornerLabeled' />
     <ComponentExample
       title='Action'
       description='An input can be formatted to alert the user to an action they may perform'

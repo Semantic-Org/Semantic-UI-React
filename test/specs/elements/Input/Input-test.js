@@ -7,6 +7,17 @@ describe.only('Input', () => {
   common.isConformant(Input)
   common.hasUIClassName(Input)
 
+  common.implementsLabelProp(Input, {
+    requiredShorthandProps: {
+      className: 'label',
+    },
+  })
+  common.implementsShorthandProp(Input, {
+    propKey: 'input',
+    ShorthandComponent: 'input',
+    mapValueToProps: val => ({ type: 'text' }),
+  })
+
   common.propKeyOnlyToClassName(Input, 'disabled')
   common.propKeyOnlyToClassName(Input, 'error')
   common.propKeyOnlyToClassName(Input, 'fluid')
@@ -15,7 +26,7 @@ describe.only('Input', () => {
   common.propKeyOnlyToClassName(Input, 'transparent')
   common.propValueOnlyToClassName(Input, 'size')
 
-  common.implementsLabelProp(Input)
+  common.rendersChildren(Input)
 
   it('has the input type of text by default', () => {
     shallow(<Input />)
