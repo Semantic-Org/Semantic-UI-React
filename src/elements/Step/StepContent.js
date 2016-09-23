@@ -61,7 +61,7 @@ StepContent.propTypes = {
       PropTypes.string,
       PropTypes.number,
       PropTypes.object,
-    ])
+    ]),
   ]),
 }
 
