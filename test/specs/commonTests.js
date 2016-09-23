@@ -120,23 +120,26 @@ export const isConformant = (Component, requiredProps = {}) => {
 
   if (META.isPrivate(constructorName)) {
     it('is not exported as a component nor sub component', () => {
-      expect(isStardustProp).to.equal(false,
-                                      `"${constructorName}" is private (starts with  "_").` +
-                                      ' It cannot be a key on the stardust object'
+      expect(isStardustProp).to.equal(
+        false,
+        `"${constructorName}" is private (starts with  "_").` +
+        ' It cannot be a key on the stardust object'
       )
 
-      expect(isSubComponent).to.equal(false,
-                                      `"${constructorName}" is private (starts with "_").` +
-                                      ' It cannot be a static prop of another component (sub-component)'
+      expect(isSubComponent).to.equal(
+        false,
+        `"${constructorName}" is private (starts with "_").` +
+        ' It cannot be a static prop of another component (sub-component)'
       )
     })
   } else {
     it('is exported as a component or sub component', () => {
-      expect(isStardustProp || isSubComponent).to.equal(true,
-                                                        `"${constructorName}" must be:` +
-                                                        ' a key on stardust' +
-                                                        ' || key on another component (sub-component)' +
-                                                        ' || private (start with "_")'
+      expect(isStardustProp || isSubComponent).to.equal(
+        true,
+        `"${constructorName}" must be:` +
+        ' a key on stardust' +
+        ' || key on another component (sub-component)' +
+        ' || private (start with "_")'
       )
     })
   }
