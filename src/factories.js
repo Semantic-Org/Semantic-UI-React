@@ -45,11 +45,11 @@ export function createShorthand(Component, mapValueToProps, val, extraProps = {}
   }
 
   // Map values to props and create a ReactElement
-  if (!_.isNil(val)) {
+  if (_.isString(val) || _.isNumber(val)) {
     return <Component {...mergePropsAndClassName(mapValueToProps(val), extraProps)} />
   }
 
-  // React requires ReactElements or null be returned
+  // Otherwise null
   return null
 }
 
