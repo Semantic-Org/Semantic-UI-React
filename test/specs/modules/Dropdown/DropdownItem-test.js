@@ -1,4 +1,3 @@
-import React from 'react'
 import DropdownItem from 'src/modules/Dropdown/DropdownItem'
 import * as common from 'test/specs/commonTests'
 
