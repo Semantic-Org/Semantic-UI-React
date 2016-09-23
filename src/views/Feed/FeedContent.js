@@ -7,6 +7,7 @@ import {
   getUnhandledProps,
   META,
 } from '../../lib'
+import { createShorthand } from '../../factories'
 import FeedDate from './FeedDate'
 import FeedExtra from './FeedExtra'
 import FeedMeta from './FeedMeta'
@@ -20,11 +21,11 @@ function FeedContent(props) {
 
   return (
     <ElementType {...rest} className={classes}>
-      {date && <FeedDate date={date} />}
-      {summary && <FeedSummary summary={summary} />}
-      {extraImages && <FeedExtra images={extraImages} />}
-      {extraText && <FeedExtra text={extraText} />}
-      {meta && <FeedMeta meta={meta} />}
+      {createShorthand(FeedDate, val => ({ date: val }), date)}
+      {createShorthand(FeedSummary, val => ({ summary: val }), summary)}
+      {createShorthand(FeedExtra, val => ({ images: val }), extraImages)}
+      {createShorthand(FeedExtra, val => ({ text: val }), extraText)}
+      {createShorthand(FeedMeta, val => ({ meta: val }), meta)}
       {children || content}
     </ElementType>
   )
