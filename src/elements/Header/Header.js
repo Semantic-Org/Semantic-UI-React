@@ -12,7 +12,7 @@ import {
   useKeyOrValueAndKey,
   useKeyOnly,
 } from '../../lib'
-import { createIcon, createImage } from '../../factories'
+import { createIcon, createImage, createShorthand } from '../../factories'
 import HeaderSubheader from './HeaderSubheader'
 import HeaderContent from './HeaderContent'
 
@@ -60,7 +60,7 @@ function Header(props) {
         {(content || subheader) && (
           <HeaderContent>
             {content}
-            {subheader && <HeaderSubheader content={subheader} />}
+            {createShorthand(HeaderSubheader, val => ({ content: val }), subheader)}
           </HeaderContent>
         )}
       </ElementType>
@@ -70,7 +70,7 @@ function Header(props) {
   return (
     <ElementType {...rest} className={classes}>
       {content}
-      {subheader && <HeaderSubheader content={subheader} />}
+      {createShorthand(HeaderSubheader, val => ({ content: val }), subheader)}
     </ElementType>
   )
 }
