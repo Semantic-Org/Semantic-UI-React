@@ -7,6 +7,7 @@ import { sandbox } from 'test/utils'
 
 describe('MenuItem', () => {
   common.isConformant(MenuItem)
+  common.implementsIconProp(MenuItem)
   common.propKeyOnlyToClassName(MenuItem, 'active')
   common.propValueOnlyToClassName(MenuItem, 'color')
   common.propKeyOrValueToClassName(MenuItem, 'fitted')
