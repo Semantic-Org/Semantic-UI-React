@@ -7,6 +7,7 @@ import {
   getUnhandledProps,
   META,
 } from '../../lib'
+import { createShorthand } from '../../factories'
 import FeedDate from './FeedDate'
 
 function FeedSummary(props) {
@@ -18,7 +19,7 @@ function FeedSummary(props) {
   return (
     <ElementType {...rest} className={classes}>
       {children || summary }
-      {date && <FeedDate date={date} />}
+      {createShorthand(FeedDate, val => ({ date: val }), date)}
     </ElementType>
   )
 }
