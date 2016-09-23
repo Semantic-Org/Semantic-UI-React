@@ -7,7 +7,7 @@ const Attached = () => {
   return (
     <div>
       <Menu attached='top'>
-        <Dropdown as={Menu.Item} icon='wrench'>
+        <Dropdown as={Menu.Item} icon='wrench' simple>
           <Dropdown.Menu>
             <Dropdown.Item>
               <Icon name='dropdown icon' />
