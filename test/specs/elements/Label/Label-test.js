@@ -29,6 +29,11 @@ describe('Label Component', () => {
 
   common.implementsIconProp(Label)
   common.implementsImageProp(Label)
+  common.implementsShorthandProp(Label, {
+    propKey: 'detail',
+    ShorthandComponent: LabelDetail,
+    mapValueToProps: val => ({ content: val }),
+  })
 
   it('is a div by default', () => {
     shallow(<Label />)
@@ -47,20 +52,6 @@ describe('Label Component', () => {
 
       shallow(<Label content={text} />)
         .should.contain.text(text)
-    })
-  })
-
-  describe('detail', () => {
-    it('has no LabelDetail when not defined', () => {
-      shallow(<Label />)
-        .should.not.have.descendants('LabelDetail')
-    })
-
-    it('adds the LabelDetail sub-component', () => {
-      const text = faker.hacker.phrase()
-
-      shallow(<Label detail={text} />)
-        .should.contain(<LabelDetail content={text} />)
     })
   })
 
