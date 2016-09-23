@@ -145,6 +145,12 @@ DropdownItem.propTypes = {
     PropTypes.string,
   ]),
 
-  /** Called on click with (event, value, text). */
+  /** Called on click with (event, value). */
   onClick: PropTypes.func,
+
+  /** Called on click with (event, value). */
+  onMouseEnter: PropTypes.func,
+
+  /** Called on click with (event, value). */
+  onMouseLeave: PropTypes.func,
 }
