@@ -11,6 +11,20 @@ import stardust from 'stardust'
 import { Icon, Image, Label } from 'src/elements'
 import { createShorthand } from 'src/factories'
 
+const commonTestHelpers = (testName, Component) => {
+  const throwError = msg => {
+    throw new Error(`${testName}: ${msg} \n  Component: ${Component && Component.name}`)
+  }
+
+  const assertRequired = (required, description) =>
+    required || throwError(`Required ${description}, got: ${required} (${typeof required})`)
+
+  return {
+    throwError,
+    assertRequired,
+  }
+}
+
 const componentCtx = require.context(
   '../../src/',
   true,
@@ -19,10 +33,12 @@ const componentCtx = require.context(
 
 const componentInfo = componentCtx.keys().map(key => {
   const Component = componentCtx(key).default
-
   const componentType = typeof Component
+
+  const { throwError } = commonTestHelpers('componentInfo', Component)
+
   if (componentType !== 'function') {
-    throw new Error([
+    throwError([
       `${key} is not properly exported.`,
       `Components should export a class or function, got: ${componentType}.`,
     ].join(' '))
@@ -31,7 +47,7 @@ const componentInfo = componentCtx.keys().map(key => {
   const { _meta, prototype } = Component
 
   if (!_meta) {
-    throw new Error([
+    throwError([
       'Component is missing a static _meta object property. This should help identify it:',
       `Rendered:\n${ReactDOMServer.renderToStaticMarkup(<Component />)}`,
     ].join('\n'))
@@ -70,9 +86,11 @@ const componentInfo = componentCtx.keys().map(key => {
  * @param {Object} [requiredProps={}] Props required to render Component without errors or warnings.
  */
 export const isConformant = (Component, requiredProps = {}) => {
+  const { throwError } = commonTestHelpers('isConformant', Component)
+
   // tests depend on Component constructor names, enforce them
   if (!Component.prototype.constructor.name) {
-    throw new Error([
+    throwError([
       'Component is not a named function. This should help identify it:',
       `static _meta = ${JSON.stringify(Component._meta, null, 2)}`,
       `Rendered:\n${ReactDOMServer.renderToStaticMarkup(<Component />)}`,
@@ -361,8 +379,10 @@ export const isConformant = (Component, requiredProps = {}) => {
  * @param {Object} [requiredProps={}] Props required to render the component.
  */
 export const hasUIClassName = (Component, requiredProps = {}) => {
+  const { assertRequired } = commonTestHelpers('hasUIClassName', Component)
+
   it('has the "ui" className', () => {
-    if (!Component) throw new Error(`hasUIClassName requires a Component, got: ${typeof Component}`)
+    assertRequired(Component, 'a `Component`')
 
     shallow(<Component {...requiredProps} />)
       .should.have.className('ui')
@@ -390,8 +410,10 @@ export const hasSubComponents = (Component, subComponents) => {
  * @param {Object} [requiredProps={}] Props required to render the component.
  */
 export const isTabbable = (Component, requiredProps = {}) => {
+  const { assertRequired } = commonTestHelpers('isTabbable', Component)
+
   it('is tabbable', () => {
-    if (!Component) throw new Error(`isTabbable requires a Component, got: ${typeof Component}`)
+    assertRequired(Component, 'a `Component`')
 
     shallow(<Component {...requiredProps} />)
       .should.have.attr('tabindex', '0')
@@ -404,8 +426,10 @@ export const isTabbable = (Component, requiredProps = {}) => {
  * @param {Object} [requiredProps={}] Props required to render the component.
  */
 export const rendersChildren = (Component, requiredProps = {}) => {
+  const { assertRequired } = commonTestHelpers('rendersChildren', Component)
+
   it('renders child text', () => {
-    if (!Component) throw new Error(`rendersChildren requires a Component, got: ${typeof Component}`)
+    assertRequired(Component, 'a `Component`')
 
     const text = faker.hacker.phrase()
     shallow(createElement(Component, requiredProps, text))
@@ -490,9 +514,11 @@ const _classNamePropValueBeforePropName = (Component, propKey, requiredProps) =>
  * @param {Object} [requiredProps={}] Props required to render the component.
  */
 export const implementsWidthProp = (Component, options, requiredProps = {}) => {
+  const { assertRequired } = commonTestHelpers('implementsWidthProp', Component)
+
   const { propKey, widthClass, canEqual = true } = options
   describe(`${propKey} (common)`, () => {
-    if (!Component) throw new Error(`implementsWidthProp requires a Component, got: ${typeof Component}`)
+    assertRequired(Component, 'a `Component`')
 
     _definesPropOptions(Component, propKey)
     _noDefaultClassNameFromProp(Component, propKey, requiredProps)
@@ -528,28 +554,20 @@ export const implementsWidthProp = (Component, options, requiredProps = {}) => {
  * @param {Object} [requiredProps={}] Props required to render the component.
  */
 export const implementsShorthandProp = (Component, options = {}, requiredProps = {}) => {
+  const { assertRequired } = commonTestHelpers('implementsShorthandProp', Component)
+
   const {
     propKey,
     ShorthandComponent,
     mapValueToProps,
     requiredShorthandProps = {},
   } = options
-  const throwError = msg => {
-    throw new Error(`${msg} \n  Component: ${Component.name} \n  Options: ${JSON.stringify(options, null, 2)}`)
-  }
+
   describe(`${propKey} shorthand prop (common)`, () => {
-    if (!Component) {
-      throwError(`implementsShorthandProp requires a \`Component\`, got: ${typeof Component}.`)
-    }
-    if (!_.isPlainObject(options)) {
-      throwError(`implementsShorthandProp requires an \`options\` object, got: ${typeof options}.`)
-    }
-    if (!propKey) {
-      throwError(`implementsShorthandProp requires a \`propKey\`, got: ${typeof propKey}.`)
-    }
-    if (!ShorthandComponent) {
-      throwError(`implementsShorthandProp requires a \`SubComponent\`, got: ${typeof ShorthandComponent}.`)
-    }
+    assertRequired(Component, 'a `Component`')
+    assertRequired(_.isPlainObject(options), 'an `options` object')
+    assertRequired(propKey, 'a `propKey`')
+    assertRequired(ShorthandComponent, 'a `ShorthandComponent`')
 
     const name = typeof ShorthandComponent === 'string' ? ShorthandComponent : ShorthandComponent.name
 
@@ -640,8 +658,10 @@ export const implementsImageProp = (Component, options, requiredProps = {}) => {
  * @param {Object} [requiredProps={}] Props required to render the component.
  */
 export const implementsTextAlignProp = (Component, requiredProps = {}) => {
+  const { assertRequired } = commonTestHelpers('implementsTextAlignProp', Component)
+
   describe('aligned (common)', () => {
-    if (!Component) throw new Error(`implementsTextAlignProp requires a Component, got: ${typeof Component}`)
+    assertRequired(Component, 'a `Component`')
 
     _definesPropOptions(Component, 'textAlign')
     _noDefaultClassNameFromProp(Component, 'textAlign')
@@ -672,8 +692,10 @@ export const implementsTextAlignProp = (Component, requiredProps = {}) => {
  * @param {Object} [requiredProps={}] Props required to render the component.
  */
 export const implementsVerticalAlignProp = (Component, requiredProps = {}) => {
+  const { assertRequired } = commonTestHelpers('implementsVerticalAlignProp', Component)
+
   describe('verticalAlign (common)', () => {
-    if (!Component) throw new Error(`implementsVerticalAlignProp requires a Component, got: ${typeof Component}`)
+    assertRequired(Component, 'a `Component`')
 
     _definesPropOptions(Component, 'verticalAlign')
     _noDefaultClassNameFromProp(Component, 'verticalAlign')
@@ -695,9 +717,11 @@ export const implementsVerticalAlignProp = (Component, requiredProps = {}) => {
  * @param {Object} [requiredProps={}] Props required to render the component.
  */
 export const propKeyOnlyToClassName = (Component, propKey, requiredProps = {}) => {
+  const { assertRequired } = commonTestHelpers('propKeyOnlyToClassName', Component)
+
   describe(`${propKey} (common)`, () => {
-    if (!Component) throw new Error(`propKeyOnlyToClassName requires a Component, got: ${typeof Component}`)
-    if (!propKey) throw new Error(`propKeyOnlyToClassName requires a propKey, got: ${typeof propKey}`)
+    assertRequired(Component, 'a `Component`')
+    assertRequired(propKey, 'a `propKey`')
 
     _noDefaultClassNameFromProp(Component, propKey, requiredProps)
 
@@ -724,9 +748,11 @@ export const propKeyOnlyToClassName = (Component, propKey, requiredProps = {}) =
  * @param {Object} [requiredProps={}] Props required to render the component.
  */
 export const propValueOnlyToClassName = (Component, propKey, requiredProps = {}) => {
+  const { assertRequired } = commonTestHelpers('propValueOnlyToClassName', Component)
+
   describe(`${propKey} (common)`, () => {
-    if (!Component) throw new Error(`propValueOnlyToClassName requires a Component, got: ${typeof Component}`)
-    if (!propKey) throw new Error(`propValueOnlyToClassName requires a propKey, got: ${typeof propKey}`)
+    assertRequired(Component, 'a `Component`')
+    assertRequired(propKey, 'a `propKey`')
 
     _definesPropOptions(Component, propKey)
     _noDefaultClassNameFromProp(Component, propKey, requiredProps)
@@ -756,9 +782,11 @@ export const propValueOnlyToClassName = (Component, propKey, requiredProps = {})
  * @param {Object} [requiredProps={}] Props required to render the component.
  */
 export const propKeyAndValueToClassName = (Component, propKey, requiredProps = {}) => {
+  const { assertRequired } = commonTestHelpers('propKeyAndValueToClassName', Component)
+
   describe(`${propKey} (common)`, () => {
-    if (!Component) throw new Error(`propKeyAndValueToClassName requires a Component, got: ${typeof Component}`)
-    if (!propKey) throw new Error(`propKeyAndValueToClassName requires a propKey, got: ${typeof propKey}`)
+    assertRequired(Component, 'a `Component`')
+    assertRequired(propKey, 'a `propKey`')
 
     _definesPropOptions(Component, propKey)
     _noDefaultClassNameFromProp(Component, propKey)
@@ -774,9 +802,11 @@ export const propKeyAndValueToClassName = (Component, propKey, requiredProps = {
  * @param {Object} [requiredProps={}] Props required to render the component.
  */
 export const propKeyOrValueToClassName = (Component, propKey, requiredProps = {}) => {
+  const { assertRequired } = commonTestHelpers('propKeyOrValueToClassName', Component)
+
   describe(`${propKey} (common)`, () => {
-    if (!Component) throw new Error(`propKeyOrValueToClassName requires a Component, got: ${typeof Component}`)
-    if (!propKey) throw new Error(`propKeyOrValueToClassName requires a propKey, got: ${typeof propKey}`)
+    assertRequired(Component, 'a `Component`')
+    assertRequired(propKey, 'a `propKey`')
 
     _definesPropOptions(Component, propKey)
     _noDefaultClassNameFromProp(Component, propKey, requiredProps)
