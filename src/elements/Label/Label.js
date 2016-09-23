@@ -11,7 +11,7 @@ import {
   useKeyOrValueAndKey,
   useValueAndKey,
 } from '../../lib'
-import { createIcon, createImage } from '../../factories'
+import { createIcon, createImage, createShorthand } from '../../factories'
 import { Icon } from '../'
 import LabelDetail from './LabelDetail'
 
@@ -61,7 +61,7 @@ function Label(props) {
       {createIcon(icon)}
       {typeof image !== 'boolean' && createImage(image)}
       {content}
-      {detail && <LabelDetail content={detail} />}
+      {createShorthand(LabelDetail, val => ({ content: val }), detail)}
       {(removable || onRemove) && (
         <Icon name='delete' onClick={handleRemove} />
       )}
