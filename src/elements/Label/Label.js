@@ -7,59 +7,61 @@ import {
   getUnhandledProps,
   META,
   SUI,
-  childrenUtils,
   useKeyOnly,
   useKeyOrValueAndKey,
   useValueAndKey,
 } from '../../lib'
-import { createIcon, createImage } from '../../factories'
-import { Icon, Image } from '../'
+import { createIcon, createImage, createShorthand } from '../../factories'
+import { Icon } from '../'
+import LabelDetail from './LabelDetail'
 
 /**
  * A label displays content classification
  */
 function Label(props) {
   const {
-    attached, basic, children, color, corner, className, circular, detail, detailAs, empty, floating, horizontal,
-    icon, image, onClick, onDetailClick, onRemove, pointing, removable, ribbon, size, tag, content,
+    attached, basic, children, circular, className, color, content, corner, detail, empty, floating, horizontal, icon,
+    image, onClick, onRemove, pointing, removable, ribbon, size, tag,
   } = props
 
   const handleClick = e => onClick && onClick(e, props)
   const handleRemove = e => onRemove && onRemove(e, props)
-  const handleDetailClick = e => onDetailClick && onDetailClick(e, props)
+
+  const pointingClass = pointing === true && 'pointing'
+      || (pointing === 'left' || pointing === 'right') && `${pointing} pointing`
+      || (pointing === 'above' || pointing === 'below') && `pointing ${pointing}`
 
   const classes = cx('ui',
     size,
     color,
+    pointingClass,
     useKeyOnly(basic, 'basic'),
     useKeyOnly(circular, 'circular'),
     useKeyOnly(floating, 'floating'),
     useKeyOnly(horizontal, 'horizontal'),
+    useKeyOnly(image === true, 'image'),
     useKeyOnly(empty, 'empty'),
     useKeyOnly(tag, 'tag'),
     useValueAndKey(attached, 'attached'),
     useKeyOrValueAndKey(corner, 'corner'),
-    useKeyOrValueAndKey(pointing, 'pointing'),
     useKeyOrValueAndKey(ribbon, 'ribbon'),
-    // TODO how to handle image child with no image class? there are two image style labels.
-    (image || childrenUtils.someByType(children, Image) || childrenUtils.someByType(children, 'img')) && 'image',
+    className,
     'label',
-    className
   )
 
-  const DetailComponent = detailAs || 'div'
   const ElementType = getElementType(Label, props)
   const rest = getUnhandledProps(Label, props)
+
+  if (children) {
+    return <ElementType {...rest} className={classes} onClick={handleClick}>{children}</ElementType>
+  }
 
   return (
     <ElementType className={classes} onClick={handleClick} {...rest}>
       {createIcon(icon)}
-      {createImage(image)}
+      {typeof image !== 'boolean' && createImage(image)}
       {content}
-      {children}
-      {detail && (
-        <DetailComponent className='detail' onClick={handleDetailClick}>{detail}</DetailComponent>
-      )}
+      {createShorthand(LabelDetail, val => ({ content: val }), detail)}
       {(removable || onRemove) && (
         <Icon name='delete' onClick={handleRemove} />
       )}
@@ -74,7 +76,7 @@ Label._meta = {
     attached: ['top', 'bottom', 'top right', 'top left', 'bottom left', 'bottom right'],
     size: SUI.SIZES,
     color: SUI.COLORS,
-    pointing: ['bottom', 'left', 'right'],
+    pointing: ['above', 'below', 'left', 'right'],
     corner: ['left', 'right'],
     ribbon: ['right'],
   },
@@ -92,15 +94,27 @@ Label.propTypes = {
 
   /** Primary content of the label, same as content. */
   children: customPropTypes.every([
-    customPropTypes.disallow(['icon', 'image', 'content']),
+    customPropTypes.disallow(['content', 'detail', 'icon']),
     PropTypes.node,
   ]),
 
   /** Classes to add to the label className. */
   className: PropTypes.string,
 
+  /** Make the label circular, or a dot when used with 'empty' prop. */
+  circular: PropTypes.bool,
+
   /** Color of the label. */
   color: PropTypes.oneOf(Label._meta.props.color),
+
+  /** Primary content of the label, same as children. */
+  content: customPropTypes.every([
+    customPropTypes.disallow(['children']),
+    PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
+  ]),
 
   /** Place the label in one of the upper corners. */
   corner: PropTypes.oneOfType([
@@ -108,13 +122,13 @@ Label.propTypes = {
     PropTypes.oneOf(Label._meta.props.corner),
   ]),
 
-  /** Additional text with less emphasis. */
-  detail: PropTypes.string,
-
-  /** An element type to render the 'detail' as (string or function). */
-  detailAs: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.func,
+  /** Shorthand for the LabelDetail component. Mutually exclusive with children. */
+  detail: customPropTypes.every([
+    customPropTypes.disallow(['children']),
+    PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
   ]),
 
   /** Formats the label as a dot. */
@@ -129,38 +143,41 @@ Label.propTypes = {
   /** Float above another element in the upper right corner. */
   floating: PropTypes.bool,
 
-  /** Make the label circular, or a dot when used with 'empty' prop. */
-  circular: PropTypes.bool,
-
   /** Add an icon by icon name or pass an <Icon /> */
-  icon: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.element,
+  icon: customPropTypes.every([
+    customPropTypes.disallow(['children']),
+    PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
   ]),
 
-  /** Add an image by img src or pass an <Image />. */
-  image: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.element,
+  /** A label can be formatted to emphasize an image or prop can be used as shorthand for image. */
+  image: customPropTypes.every([
+    customPropTypes.givenProps(
+      { children: PropTypes.node.isRequired },
+      PropTypes.bool,
+    ),
+    customPropTypes.givenProps(
+      { image: PropTypes.oneOfType([PropTypes.string, PropTypes.element, PropTypes.object]) },
+      customPropTypes.disallow(['children']),
+    ),
   ]),
 
   /** Adds the link style when present, called with (event, props). */
   onClick: PropTypes.func,
 
-  /** Click callback for detail, called with (event, props). Formats the detail as a link. */
-  onDetailClick: PropTypes.func,
-
   /** Adds an "x" icon, called with (event, props) when "x" is clicked. */
   onRemove: PropTypes.func,
-
-  /** Add an "x" icon that calls onRemove when clicked. */
-  removable: PropTypes.bool,
 
   /** Point to content next to it. */
   pointing: PropTypes.oneOfType([
     PropTypes.bool,
     PropTypes.oneOf(Label._meta.props.pointing),
   ]),
+
+  /** Add an "x" icon that calls onRemove when clicked. */
+  removable: PropTypes.bool,
 
   /** Format the label as a ribbon on another component. */
   ribbon: PropTypes.oneOfType([
@@ -173,9 +190,8 @@ Label.propTypes = {
 
   /** Format the label like a product tag. */
   tag: PropTypes.bool,
-
-  /** Primary content of the label, same as children. */
-  content: PropTypes.node,
 }
+
+Label.Detail = LabelDetail
 
 export default Label
