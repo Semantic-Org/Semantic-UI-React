@@ -1,18 +1,32 @@
 # Change Log
 
+## [v0.46.1](https://github.com/TechnologyAdvice/stardust/tree/v0.46.1) (2016-09-23)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.46.0...v0.46.1)
+
+**Fixed bugs:**
+
+- fix\(Label\): pointing examples are incorrect [\#534](https://github.com/TechnologyAdvice/stardust/issues/534)
+- docs\(Menu\): MenuItem icon and dropdown item example [\#540](https://github.com/TechnologyAdvice/stardust/pull/540) ([levithomason](https://github.com/levithomason))
+- fix\(factories\): explicitly handle each value type [\#539](https://github.com/TechnologyAdvice/stardust/pull/539) ([levithomason](https://github.com/levithomason))
+- docs\(Label\): fix pointing docs [\#537](https://github.com/TechnologyAdvice/stardust/pull/537) ([layershifter](https://github.com/layershifter))
+
+**Merged pull requests:**
+
+- chore\(commonTests\): Standardize the assertions in common tests [\#535](https://github.com/TechnologyAdvice/stardust/pull/535) ([jcarbo](https://github.com/jcarbo))
+
 ## [v0.46.0](https://github.com/TechnologyAdvice/stardust/tree/v0.46.0) (2016-09-23)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.45.3...v0.46.0)
 
 **Implemented enhancements:**
 
 - fix\(Label\): add missing Detail sub component [\#488](https://github.com/TechnologyAdvice/stardust/issues/488)
+- feat\(factories\): add shorthand factory [\#529](https://github.com/TechnologyAdvice/stardust/pull/529) ([levithomason](https://github.com/levithomason))
 - feat\(Label\): Refactor, docs and new props [\#526](https://github.com/TechnologyAdvice/stardust/pull/526) ([layershifter](https://github.com/layershifter))
 - refactor\(docs\): replace react-highlighjs with react-ace [\#525](https://github.com/TechnologyAdvice/stardust/pull/525) ([levithomason](https://github.com/levithomason))
 
 **Merged pull requests:**
 
 - feat\(commonTests\): add implementsShorthandProp [\#530](https://github.com/TechnologyAdvice/stardust/pull/530) ([levithomason](https://github.com/levithomason))
-- feat\(factories\): add shorthand factory [\#529](https://github.com/TechnologyAdvice/stardust/pull/529) ([levithomason](https://github.com/levithomason))
 - feat\(customPropTypes\): add "as" prop type [\#528](https://github.com/TechnologyAdvice/stardust/pull/528) ([levithomason](https://github.com/levithomason))
 
 ## [v0.45.3](https://github.com/TechnologyAdvice/stardust/tree/v0.45.3) (2016-09-21)
