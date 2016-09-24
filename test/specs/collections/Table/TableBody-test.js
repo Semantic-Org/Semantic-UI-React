@@ -3,4 +3,5 @@ import TableBody from 'src/collections/Table/TableBody'
 
 describe('TableBody', () => {
   common.isConformant(TableBody)
+  common.rendersChildren(TableBody)
 })

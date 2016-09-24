@@ -76,7 +76,7 @@ Table._meta = {
   props: {
     basic: ['very'],
     color: SUI.COLORS,
-    column: SUI.WIDTHS,
+    columns: SUI.WIDTHS,
     compact: ['very'],
     padded: ['very'],
     size: _.without(SUI.SIZES, 'mini', 'tiny', 'medium', 'big', 'huge', 'massive'),
@@ -113,7 +113,7 @@ Table.propTypes = {
   color: PropTypes.oneOf(Table._meta.props.color),
 
   /** A table can specify its column count to divide its content evenly. */
-  columns: PropTypes.oneOf(Table._meta.props.column),
+  columns: PropTypes.oneOf(Table._meta.props.columns),
 
   /** A table may sometimes need to be more compact to make more rows visible at a time. */
   compact: PropTypes.oneOfType([
