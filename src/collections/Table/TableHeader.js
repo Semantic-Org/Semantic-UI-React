@@ -42,6 +42,7 @@ TableHeader.propTypes = {
   /** Classes that will be added to the TableHeader className. */
   className: PropTypes.string,
 
+  /** A definition table can have a full width header or footer, filling in the gap left by the first column. */
   fullWidth: PropTypes.bool,
 }
 

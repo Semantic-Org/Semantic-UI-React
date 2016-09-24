@@ -110,6 +110,35 @@ const Variations = () => {
         examplePath='collections/Table/Variations/TableInverted'
       />
       <ComponentExample examplePath='collections/Table/Variations/TableInvertedColors' />
+
+      <ComponentExample
+        title='Full-Width Header / Footer'
+        description={
+          'A definition table can have a full width header or footer, filling in the gap left by the first column'
+        }
+        examplePath='collections/Table/Variations/TableFullWidth'
+      />
+
+      <ComponentExample
+        title='Padded'
+        description='A table may sometimes need to be more padded for legibility'
+        examplePath='collections/Table/Variations/TablePadded'
+      />
+      <ComponentExample examplePath='collections/Table/Variations/TableVeryPadded' />
+
+      <ComponentExample
+        title='Compact'
+        description='A table may sometimes need to be more compact to make more rows visible at a time'
+        examplePath='collections/Table/Variations/TableCompact'
+      />
+      <ComponentExample examplePath='collections/Table/Variations/TableVeryCompact' />
+
+      <ComponentExample
+        title='Size'
+        description='A table can also be small or large'
+        examplePath='collections/Table/Variations/TableSmall'
+      />
+      <ComponentExample examplePath='collections/Table/Variations/TableLarge' />
     </ExampleSection>
   )
 }
