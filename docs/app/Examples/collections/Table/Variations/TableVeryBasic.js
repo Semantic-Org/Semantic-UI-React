@@ -1,7 +1,7 @@
 import React from 'react'
 import { Table } from 'stardust'
 
-const TableBasic = () => {
+const TableVeryBasic = () => {
   return (
     <Table basic='very'>
       <Table.Header>
@@ -33,4 +33,4 @@ const TableBasic = () => {
   )
 }
 
-export default TableBasic
+export default TableVeryBasic

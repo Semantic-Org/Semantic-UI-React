@@ -1,7 +1,7 @@
 import React from 'react'
 import { Icon, Table } from 'stardust'
 
-const TablePositiveNegative = () => {
+const TableWarning = () => {
   return (
     <Table celled>
       <Table.Header>
@@ -44,4 +44,4 @@ const TablePositiveNegative = () => {
   )
 }
 
-export default TablePositiveNegative
+export default TableWarning
