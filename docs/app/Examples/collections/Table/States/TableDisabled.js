@@ -1,7 +1,7 @@
 import React from 'react'
 import { Table } from 'stardust'
 
-const TablePositiveNegative = () => {
+const TableDisabled = () => {
   return (
     <Table celled>
       <Table.Header>
@@ -38,4 +38,4 @@ const TablePositiveNegative = () => {
   )
 }
 
-export default TablePositiveNegative
+export default TableDisabled
