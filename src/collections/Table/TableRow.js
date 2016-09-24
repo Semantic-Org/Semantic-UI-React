@@ -2,14 +2,26 @@ import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
 import {
+  customPropTypes,
   getElementType,
   getUnhandledProps,
   META,
+  useKeyOnly,
 } from '../../lib'
 
 function TableRow(props) {
-  const { children, className } = props
-  const classes = cx(className)
+  const {
+    children,
+    className,
+    negative,
+    positive,
+  } = props
+  const classes = cx(
+    useKeyOnly(negative, 'negative'),
+    useKeyOnly(positive, 'positive'),
+    className,
+  )
+
   const ElementType = getElementType(TableRow, props)
   const rest = getUnhandledProps(TableRow, props)
 
@@ -28,16 +40,19 @@ TableRow.defaultProps = {
 
 TableRow.propTypes = {
   /** An element type to render as (string or function). */
-  as: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.func,
-  ]),
+  as: customPropTypes.as,
 
   /** Primary content of the TableRow. */
   children: PropTypes.node,
 
   /** Classes that will be added to the TableRow className. */
   className: PropTypes.string,
+
+  /** A row may let a user know whether a value is bad. */
+  negative: PropTypes.bool,
+
+  /** A row may let a user know whether a value is good. */
+  positive: PropTypes.bool,
 }
 
 export default TableRow

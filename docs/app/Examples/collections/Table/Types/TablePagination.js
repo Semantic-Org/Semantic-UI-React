@@ -6,9 +6,9 @@ const TablePagination = () => {
     <Table celled>
       <Table.Header>
         <Table.Row>
-          <Table.Cell as='th'>Header</Table.Cell>
-          <Table.Cell as='th'>Header</Table.Cell>
-          <Table.Cell as='th'>Header</Table.Cell>
+          <Table.HeaderCell>Header</Table.HeaderCell>
+          <Table.HeaderCell>Header</Table.HeaderCell>
+          <Table.HeaderCell>Header</Table.HeaderCell>
         </Table.Row>
       </Table.Header>
 
@@ -34,7 +34,7 @@ const TablePagination = () => {
 
       <Table.Footer>
       <Table.Row>
-        <Table.Cell as='th' colSpan='3'>
+        <Table.HeaderCell colSpan='3'>
           <Menu floated='right' pagination>
             <Menu.Item as='a' icon>
               <Icon name='left chevron' />
@@ -47,7 +47,7 @@ const TablePagination = () => {
               <Icon name='right chevron' />
             </Menu.Item>
           </Menu>
-        </Table.Cell>
+        </Table.HeaderCell>
       </Table.Row>
       </Table.Footer>
     </Table>

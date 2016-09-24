@@ -2,14 +2,20 @@ import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
 import {
+  customPropTypes,
   getElementType,
   getUnhandledProps,
   META,
+  useKeyOnly,
 } from '../../lib'
 
 function TableHeader(props) {
-  const { children, className } = props
-  const classes = cx(className)
+  const { children, className, fullWidth } = props
+  const classes = cx(
+    useKeyOnly(fullWidth, 'full-width'),
+    className
+  )
+
   const ElementType = getElementType(TableHeader, props)
   const rest = getUnhandledProps(TableHeader, props)
 
@@ -28,16 +34,15 @@ TableHeader.defaultProps = {
 
 TableHeader.propTypes = {
   /** An element type to render as (string or function). */
-  as: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.func,
-  ]),
+  as: customPropTypes.as,
 
   /** Primary content of the TableHeader. */
   children: PropTypes.node,
 
   /** Classes that will be added to the TableHeader className. */
   className: PropTypes.string,
+
+  fullWidth: PropTypes.bool,
 }
 
 export default TableHeader

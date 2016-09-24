@@ -6,11 +6,11 @@ const TablePadded = () => {
     <Table celled padded>
       <Table.Header>
         <Table.Row>
-          <Table.Cell as='th' singleLine>Evidence Rating</Table.Cell>
-          <Table.Cell as='th'>Effect</Table.Cell>
-          <Table.Cell as='th'>Efficacy</Table.Cell>
-          <Table.Cell as='th'>Consensus</Table.Cell>
-          <Table.Cell as='th'>Comments</Table.Cell>
+          <Table.HeaderCell singleLine>Evidence Rating</Table.HeaderCell>
+          <Table.HeaderCell>Effect</Table.HeaderCell>
+          <Table.HeaderCell>Efficacy</Table.HeaderCell>
+          <Table.HeaderCell>Consensus</Table.HeaderCell>
+          <Table.HeaderCell>Comments</Table.HeaderCell>
         </Table.Row>
       </Table.Header>
 
