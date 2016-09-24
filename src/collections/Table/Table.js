@@ -6,8 +6,10 @@ import {
   getElementType,
   getUnhandledProps,
   META,
+  SUI,
   useKeyOnly,
   useKeyOrValueAndKey,
+  useWidthProp,
 } from '../../lib'
 import TableBody from './TableBody'
 import TableCell from './TableCell'
@@ -20,10 +22,12 @@ function Table(props) {
   const {
     basic,
     celled,
-    collapsing,
-    compact,
     children,
     className,
+    collapsing,
+    color,
+    columns,
+    compact,
     definition,
     fixed,
     inverted,
@@ -37,6 +41,7 @@ function Table(props) {
   } = props
   const classes = cx(
     'ui',
+    color,
     useKeyOrValueAndKey(basic, 'basic'),
     useKeyOnly(celled, 'celled'),
     useKeyOnly(collapsing, 'collapsing'),
@@ -51,6 +56,7 @@ function Table(props) {
     useKeyOnly(striped, 'striped'),
     useKeyOnly(structured, 'structured'),
     useKeyOnly(unstackable, 'unstackable'),
+    useWidthProp(columns, 'column'),
     className,
     'table'
   )
@@ -66,6 +72,8 @@ Table._meta = {
   type: META.TYPES.COLLECTION,
   props: {
     basic: ['very'],
+    colors: SUI.colors,
+    columns: SUI.WIDTHS,
   },
 }
 
@@ -77,14 +85,22 @@ Table.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
+  /** A table can reduce its complexity to increase readability. */
   basic: PropTypes.oneOfType([
     PropTypes.bool,
     PropTypes.oneOf(Table._meta.props.basic),
   ]),
 
+  /** A table may be divided each row into separate cells. */
   celled: PropTypes.bool,
 
+  /** A table can be collapsing, taking up only as much space as its rows. */
   collapsing: PropTypes.bool,
+
+  color: PropTypes.oneOf(Table._meta.props.colors),
+
+  /** A table can specify its column count to divide its content evenly. */
+  columns: PropTypes.oneOf(Table._meta.props.columns),
 
   /** Primary content of the Table. */
   children: PropTypes.node,
@@ -102,6 +118,7 @@ Table.propTypes = {
    * */
   fixed: PropTypes.bool,
 
+  /** A table's colors can be inverted. */
   inverted: PropTypes.bool,
 
   /** A table may sometimes need to be more padded for legibility. */
@@ -116,6 +133,7 @@ Table.propTypes = {
   /** A table can specify how it stacks table content responsively. */
   stackable: PropTypes.bool,
 
+  /** A table can stripe alternate rows of content with a darker color to increase contrast. */
   striped: PropTypes.bool,
 
   /** A table can be formatted to display complex structured data. */
