@@ -1,10 +1,11 @@
 import cx from 'classnames'
 import React, { PropTypes } from 'react'
 import {
-  META,
-  SUI,
+  customPropTypes,
   getElementType,
   getUnhandledProps,
+  META,
+  SUI,
   useKeyOnly,
   useTextAlignProp,
 } from '../../lib'
@@ -38,10 +39,7 @@ Container._meta = {
 
 Container.propTypes = {
   /** An element type to render as (string or function). */
-  as: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.func,
-  ]),
+  as: customPropTypes.as,
 
   /** Primary content of the Container */
   children: PropTypes.node,

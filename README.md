@@ -37,8 +37,9 @@ Help shape this library by weighing in on our [RFC (request for comments)][19] i
 - [Usage](#usage)
 - [Debugger](#debugger)
 - [How Can I Help?](#how-can-i-help)
-  - [v1.0 Migrations](#v10-migrations)
-  - [New Components](#new-components)
+  - [[v1.0 Migrations][15]](#v10-migrations15)
+  - [[Missing Components][17]](#missing-components17)
+  - [[Help Wanted Label][4]](#help-wanted-label4)
 - [Our Principles](#our-principles)
 - [Support](#support)
 - [Releasing](#releasing)
@@ -165,7 +166,7 @@ npm run release:patch
 
 Made with :heart: [@TechnologyAdvice][9], a ridiculous [place to work][16].
 
-[1]: https://github.com/TechnologyAdvice/stardust/blob/master/CONTRIBUTING.md
+[1]: https://github.com/TechnologyAdvice/stardust/blob/master/.github/CONTRIBUTING.md
 [2]: https://technologyadvice.github.io/stardust/
 [3]: https://facebook.github.io/react/
 [4]: https://github.com/TechnologyAdvice/stardust/labels/help%20wanted

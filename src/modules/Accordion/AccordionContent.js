@@ -1,7 +1,13 @@
 import React, { PropTypes } from 'react'
 import cx from 'classnames'
 
-import { getElementType, getUnhandledProps, META, useKeyOnly } from '../../lib'
+import {
+  customPropTypes,
+  getElementType,
+  getUnhandledProps,
+  META,
+  useKeyOnly,
+} from '../../lib'
 
 function AccordionContent(props) {
   const { active, children, className } = props
@@ -23,10 +29,7 @@ AccordionContent.displayName = 'AccordionContent'
 
 AccordionContent.propTypes = {
   /** An element type to render as (string or function). */
-  as: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.func,
-  ]),
+  as: customPropTypes.as,
 
   /** Whether or not the content is visible. */
   active: PropTypes.bool,

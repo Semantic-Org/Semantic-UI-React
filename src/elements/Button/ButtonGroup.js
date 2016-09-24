@@ -2,6 +2,7 @@ import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
 import {
+  customPropTypes,
   getElementType,
   getUnhandledProps,
   META,
@@ -56,10 +57,7 @@ ButtonGroup._meta = {
 
 ButtonGroup.propTypes = {
   /** An element type to render as (string or function). */
-  as: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.func,
-  ]),
+  as: customPropTypes.as,
 
   /** A button can be attached to the top or bottom of other content */
   attached: PropTypes.oneOf(ButtonGroup._meta.props.attached),

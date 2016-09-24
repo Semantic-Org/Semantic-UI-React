@@ -43,10 +43,7 @@ BreadcrumbSection._meta = {
 
 BreadcrumbSection.propTypes = {
   /** An element type to render as (string or function). */
-  as: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.func,
-  ]),
+  as: customPropTypes.as,
 
   /** Style as the currently active section. */
   active: PropTypes.bool,

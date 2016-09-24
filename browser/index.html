@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.14.0/babel.min.js"
+    data-presets="es2015,react,stage1"
+  ></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.2/react.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.2/react-dom.js"></script>
+  <script src="../dist/umd/stardust.min.js"></script>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.2/semantic.min.css"
+  >
+</head>
+<body>
+  <script type="text/babel">
+    const { Container, Divider, Dropdown, Header, Message } = stardust
+
+    const options = [
+      { value: 'all', text: 'All' },
+      { value: 'articles', text: 'Articles' },
+      { value: 'products', text: 'Products' },
+    ]
+
+    const App = () => (
+      <Container>
+        <Divider hidden section />
+        <Header as='h1'>Browser Build</Header>
+        <Message info icon='info' content='This app tests the browser build.' />
+
+        <Dropdown selection options={options} placeholder='Choose one...' />
+      </Container>
+    )
+
+    const mountNode = document.createElement('div')
+    document.body.appendChild(mountNode)
+
+    ReactDOM.render(<App />, mountNode)
+  </script>
+</body>
+</html>

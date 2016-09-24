@@ -7,6 +7,7 @@ import {
   getUnhandledProps,
   META,
 } from '../../lib'
+import { createShorthand } from '../../factories'
 import FeedContent from './FeedContent'
 import FeedLabel from './FeedLabel'
 
@@ -21,8 +22,8 @@ function FeedEvent(props) {
 
   return (
     <ElementType {...rest} className={classes}>
-      {icon && <FeedLabel icon={icon} />}
-      {image && <FeedLabel image={image} />}
+      {createShorthand(FeedLabel, val => ({ icon: val }), icon)}
+      {createShorthand(FeedLabel, val => ({ image: val }), image)}
       {hasContentProp && <FeedContent {...contentProps} />}
       {children}
     </ElementType>
@@ -37,10 +38,7 @@ FeedEvent._meta = {
 
 FeedEvent.propTypes = {
   /** An element type to render as (string or function). */
-  as: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.func,
-  ]),
+  as: customPropTypes.as,
 
   /** Primary content of the FeedEvent. */
   children: customPropTypes.every([

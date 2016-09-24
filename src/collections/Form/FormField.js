@@ -120,10 +120,7 @@ FormField._meta = {
 
 FormField.propTypes = {
   /** An element type to render as (string or function). */
-  as: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.func,
-  ]),
+  as: customPropTypes.as,
 
   /**
    * A form control component (i.e. Dropdown) or HTML tagName (i.e. 'input').

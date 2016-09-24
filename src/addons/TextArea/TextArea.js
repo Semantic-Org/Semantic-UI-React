@@ -1,5 +1,10 @@
-import React, { PropTypes } from 'react'
-import { getElementType, getUnhandledProps, META } from '../../lib'
+import React from 'react'
+import {
+  customPropTypes,
+  getElementType,
+  getUnhandledProps,
+  META,
+} from '../../lib'
 
 /**
  * A simple <textarea> wrapper for use in Form.TextArea.
@@ -19,10 +24,7 @@ TextArea._meta = {
 
 TextArea.propTypes = {
   /** An element type to render as (string or function). */
-  as: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.func,
-  ]),
+  as: customPropTypes.as,
 }
 
 TextArea.defaultProps = {

@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react'
 import cx from 'classnames'
 
 import {
+  customPropTypes,
   getElementType,
   getUnhandledProps,
   META,
@@ -31,10 +32,7 @@ ImageGroup._meta = {
 
 ImageGroup.propTypes = {
   /** An element type to render as (string or function). */
-  as: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.func,
-  ]),
+  as: customPropTypes.as,
 
   /** Class names for custom styling. */
   children: PropTypes.any,

@@ -9,6 +9,7 @@ import ModalDescription from './ModalDescription'
 import Portal from 'react-portal'
 
 import {
+  customPropTypes,
   getElementType,
   getUnhandledProps,
   keyboardKey,
@@ -35,10 +36,7 @@ const _meta = {
 class Modal extends Component {
   static propTypes = {
     /** An element type to render as (string or function). */
-    as: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.func,
-    ]),
+    as: customPropTypes.as,
 
     /** Primary content of the modal. Consider using ModalHeader, ModalContent or ModalActions here */
     children: PropTypes.node,

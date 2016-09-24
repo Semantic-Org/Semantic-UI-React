@@ -485,10 +485,7 @@ A doc block should appear above each prop in `propTypes` to describe them:
 ```js
 Label.propTypes = {
   /** An element type to render as (string or function). */
-  as: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.func,
-  ]),
+  as: customPropTypes.as,
 
   /** A label can reduce its complexity. */
   basic: PropTypes.bool,
@@ -531,7 +528,7 @@ Adding documentation for new components is a bit tedious.  The best way to do th
 [5]: http://semantic-ui.com/elements/header
 [6]: http://semantic-ui.com/views/item
 [7]: https://github.com/TechnologyAdvice/stardust/pull/281#issuecomment-228663527
-[8]: https://github.com/angular/angular.js/blob/master/CONTRIBUTING.md#commit
+[8]: https://github.com/angular/angular.js/blob/master/.github/CONTRIBUTING.md#commit
 [9]: http://semantic-ui.com/introduction/glossary.html
 [10]: http://semantic-ui.com/elements/label.html
 [11]: https://nodejs.org/

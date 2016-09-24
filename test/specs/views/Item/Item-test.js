@@ -15,6 +15,11 @@ describe('Item', () => {
   common.isConformant(Item)
   common.hasSubComponents(Item, [ItemContent, ItemDescription, ItemExtra, ItemGroup, ItemHeader, ItemImage, ItemMeta])
   common.rendersChildren(Item)
+  common.implementsShorthandProp(Item, {
+    propKey: 'image',
+    ShorthandComponent: ItemImage,
+    mapValueToProps: val => ({ src: val }),
+  })
 
   describe('content prop', () => {
     it('renders ItemContent component', () => {

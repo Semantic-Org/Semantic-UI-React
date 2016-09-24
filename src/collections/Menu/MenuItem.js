@@ -11,14 +11,16 @@ import {
   useKeyOnly,
   useKeyOrValueAndKey,
 } from '../../lib'
+import { createIcon } from '../../factories'
 
 function MenuItem(props) {
   const {
-    active, children, className, color, content, fitted, header, index, link, name, onClick, position,
+    active, children, className, color, content, fitted, header, icon, index, link, name, onClick, position,
   } = props
   const classes = cx(
     useKeyOnly(active, 'active'),
     useKeyOrValueAndKey(fitted, 'fitted'),
+    useKeyOnly(icon, 'icon'),
     useKeyOnly(header, 'header'),
     useKeyOnly(link, 'link'),
     color,
@@ -34,9 +36,18 @@ function MenuItem(props) {
   }
   const rest = getUnhandledProps(MenuItem, props)
 
+  if (children) {
+    return (
+      <ElementType {...rest} className={classes} onClick={handleClick}>
+        {children}
+      </ElementType>
+    )
+  }
+
   return (
     <ElementType {...rest} className={classes} onClick={handleClick}>
-      {children || content || _.startCase(name)}
+      {createIcon(icon)}
+      {content || _.startCase(name)}
     </ElementType>
   )
 }
@@ -54,10 +65,7 @@ MenuItem._meta = {
 
 MenuItem.propTypes = {
   /** An element type to render as (string or function). */
-  as: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.func,
-  ]),
+  as: customPropTypes.as,
 
   /** A menu item can be active. */
   active: PropTypes.bool,
@@ -88,6 +96,9 @@ MenuItem.propTypes = {
 
   /** A menu item may include a header or may itself be a header. */
   header: PropTypes.bool,
+
+  /** MenuItem can be only icon. */
+  icon: PropTypes.bool,
 
   /** MenuItem index inside Menu. */
   index: PropTypes.number,

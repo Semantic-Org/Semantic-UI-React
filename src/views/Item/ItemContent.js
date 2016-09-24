@@ -9,6 +9,7 @@ import {
   SUI,
   useVerticalAlignProp,
 } from '../../lib'
+import { createShorthand } from '../../factories'
 import ItemHeader from './ItemHeader'
 import ItemDescription from './ItemDescription'
 import ItemExtra from './ItemExtra'
@@ -30,10 +31,10 @@ function ItemContent(props) {
 
   return (
     <ElementType {...rest} className={classes}>
-      {header && <ItemHeader content={header} />}
-      {meta && <ItemMeta content={meta} />}
-      {description && <ItemDescription content={description} />}
-      {extra && <ItemExtra content={extra} />}
+      {createShorthand(ItemHeader, val => ({ content: val }), header)}
+      {createShorthand(ItemMeta, val => ({ content: val }), meta)}
+      {createShorthand(ItemDescription, val => ({ content: val }), description)}
+      {createShorthand(ItemExtra, val => ({ content: val }), extra)}
       {children || content}
     </ElementType>
   )
@@ -50,10 +51,7 @@ ItemContent._meta = {
 
 ItemContent.propTypes = {
   /** An element type to render as (string or function). */
-  as: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.func,
-  ]),
+  as: customPropTypes.as,
 
   /** Primary content of the ItemContent. */
   children: customPropTypes.every([

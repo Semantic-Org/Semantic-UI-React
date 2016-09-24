@@ -3,14 +3,15 @@ import React from 'react'
 
 import * as common from 'test/specs/commonTests'
 import FeedMeta from 'src/views/Feed/FeedMeta'
+import FeedLike from 'src/views/Feed/FeedLike'
 
 describe('FeedMeta', () => {
   common.isConformant(FeedMeta)
   common.rendersChildren(FeedMeta)
-
-  it('renders <FeedLike> with like prop', () => {
-    shallow(<FeedMeta like={faker.hacker.phrase()} />)
-      .should.have.descendants('FeedLike')
+  common.implementsShorthandProp(FeedMeta, {
+    propKey: 'like',
+    ShorthandComponent: FeedLike,
+    mapValueToProps: val => ({ like: val }),
   })
 
   it('renders text with meta prop', () => {
