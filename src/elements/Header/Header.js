@@ -131,13 +131,13 @@ Header.propTypes = {
   image: customPropTypes.every([
     customPropTypes.disallow(['icon']),
     customPropTypes.givenProps(
-          { children: PropTypes.node.isRequired },
-          PropTypes.bool,
-       ),
+      { children: PropTypes.node.isRequired },
+      PropTypes.bool,
+    ),
     customPropTypes.givenProps(
-        { image: PropTypes.oneOfType([PropTypes.string, PropTypes.element, PropTypes.object]) },
-         customPropTypes.disallow(['children']),
-       ),
+      { image: PropTypes.oneOfType([PropTypes.string, PropTypes.element, PropTypes.object]) },
+      customPropTypes.disallow(['children']),
+    ),
   ]),
 
   /** Color of the header. */
