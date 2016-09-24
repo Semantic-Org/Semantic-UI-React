@@ -11,7 +11,7 @@ import {
   useKeyOnly,
   useKeyOrValueAndKey,
 } from '../../lib'
-import { createIcon } from '../../factories'
+import { createIcon, createShorthand } from '../../factories'
 import { Icon } from '../../elements'
 import MessageContent from './MessageContent'
 import MessageHeader from './MessageHeader'
@@ -77,9 +77,9 @@ function Message(props) {
         {createIcon(icon)}
         {(header || content || list) && (
           <MessageContent>
-            {header && <MessageHeader>{header}</MessageHeader>}
-            {list && <MessageList items={list} />}
-            {content && <p>{content}</p>}
+            {createShorthand(MessageHeader, val => ({ children: val }), header)}
+            {createShorthand(MessageList, val => ({ items: val }), list)}
+            {createShorthand('p', val => ({ children: val }), content)}
           </MessageContent>
         )}
       </ElementType>
@@ -106,10 +106,7 @@ Message._meta = {
 
 Message.propTypes = {
   /** An element type to render as (string or function). */
-  as: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.func,
-  ]),
+  as: customPropTypes.as,
 
   /** Primary content of the message. */
   children: customPropTypes.every([

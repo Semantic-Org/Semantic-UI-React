@@ -58,10 +58,7 @@ Step._meta = {
 
 Step.propTypes = {
   /** An element type to render as (string or function). */
-  as: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.func,
-  ]),
+  as: customPropTypes.as,
 
   /** A step can be highlighted as active. */
   active: PropTypes.bool,

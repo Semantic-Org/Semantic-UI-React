@@ -26,6 +26,11 @@ describe('Header', () => {
   common.implementsIconProp(Header)
   common.implementsImageProp(Header)
   common.implementsTextAlignProp(Header)
+  common.implementsShorthandProp(Header, {
+    propKey: 'subheader',
+    ShorthandComponent: HeaderSubheader,
+    mapValueToProps: val => ({ content: val }),
+  })
 
   describe('icon', () => {
     it('adds an icon class when true', () => {

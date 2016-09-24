@@ -27,10 +27,7 @@ FeedDate._meta = {
 
 FeedDate.propTypes = {
   /** An element type to render as (string or function). */
-  as: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.func,
-  ]),
+  as: customPropTypes.as,
 
   /** Primary content of the FeedDate. Mutually exclusive with the date prop. */
   children: customPropTypes.every([

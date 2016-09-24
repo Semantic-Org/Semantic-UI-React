@@ -1,41 +1,27 @@
-<!--=======================================================
-Thanks for submitting!
+<!---------------------- BUG ----------------------->
+### Steps to Reproduce
 
-Use the appropriate template below, remove the other.
-========================================================-->
+### Expected Behavior
 
-<!--------------------------------------
-              BUG TEMPLATE
---------------------------------------->
-## Steps to Reproduce
+### Actual Behavior
 
-## Expected Behavior
-
-## Actual Behavior
-
-## Version
+### Version
 
 Stardust: `x.y.z`
 Browser:
 OS:
 
-## Test Case
+### Test Case
 
 Fork: http://codepen.io/levithomason/pen/ZpBaJX
 
-<!--------------------------------------
-        FEATURE REQUEST TEMPLATE
---------------------------------------->
-## Description
+<!-------------------- FEATURE --------------------->
+### Description
 
-I'd like...
+### Example Code
 
-This is needed because...
+### Example Result
 
-## Example Code
-
-## Example Result
-
-## Prototype (optional)
+### Prototype (optional)
 
 Fork: http://codepen.io/levithomason/pen/ZpBaJX

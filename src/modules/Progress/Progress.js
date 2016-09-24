@@ -87,10 +87,7 @@ Progress._meta = {
 
 Progress.propTypes = {
   /** An element type to render as (string or function). */
-  as: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.func,
-  ]),
+  as: customPropTypes.as,
 
   /** A progress bar can show activity. */
   active: PropTypes.bool,

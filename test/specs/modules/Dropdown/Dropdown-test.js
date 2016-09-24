@@ -71,6 +71,12 @@ describe('Dropdown Component', () => {
   common.hasSubComponents(Dropdown, [DropdownDivider, DropdownHeader, DropdownItem, DropdownMenu])
   common.isTabbable(Dropdown)
   common.implementsIconProp(Dropdown)
+  common.implementsShorthandProp(Dropdown, {
+    propKey: 'header',
+    ShorthandComponent: DropdownHeader,
+    mapValueToProps: val => ({ content: val }),
+  })
+
   common.propKeyOnlyToClassName(Dropdown, 'multiple')
   common.propKeyOnlyToClassName(Dropdown, 'search')
   common.propKeyOnlyToClassName(Dropdown, 'selection')

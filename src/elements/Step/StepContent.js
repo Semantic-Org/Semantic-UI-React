@@ -7,6 +7,7 @@ import {
   getUnhandledProps,
   META,
 } from '../../lib'
+import { createShorthand } from '../../factories'
 import StepDescription from './StepDescription'
 import StepTitle from './StepTitle'
 
@@ -22,8 +23,8 @@ function StepContent(props) {
 
   return (
     <ElementType {...rest} className={classes}>
-      { title && <StepTitle title={title} /> }
-      { description && <StepDescription description={description} /> }
+      {createShorthand(StepTitle, val => ({ title: val }), title)}
+      {createShorthand(StepDescription, val => ({ description: val }), description)}
     </ElementType>
   )
 }
@@ -36,10 +37,7 @@ StepContent._meta = {
 
 StepContent.propTypes = {
   /** An element type to render as (string or function). */
-  as: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.func,
-  ]),
+  as: customPropTypes.as,
 
   /** Classes that will be added to the StepContent className. */
   className: PropTypes.string,
@@ -59,7 +57,11 @@ StepContent.propTypes = {
   /** Primary content of the StepTitle. Mutually exclusive with children. */
   title: customPropTypes.every([
     customPropTypes.disallow(['children']),
-    PropTypes.node,
+    PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+      PropTypes.object,
+    ]),
   ]),
 }
 

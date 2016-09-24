@@ -11,9 +11,28 @@ import { sandbox } from 'test/utils'
 describe('Message', () => {
   common.isConformant(Message)
   common.hasUIClassName(Message)
-  common.rendersChildren(Message)
   common.hasSubComponents(Message, [MessageContent, MessageHeader, MessageList])
-
+  common.implementsIconProp(Message)
+  common.implementsShorthandProp(Message, {
+    propKey: 'list',
+    ShorthandComponent: MessageList,
+    mapValueToProps: val => ({ items: val }),
+  })
+  common.implementsShorthandProp(Message, {
+    propKey: 'header',
+    ShorthandComponent: MessageHeader,
+    mapValueToProps: val => ({ children: val }),
+  })
+  common.implementsShorthandProp(Message, {
+    propKey: 'list',
+    ShorthandComponent: MessageList,
+    mapValueToProps: val => ({ items: val }),
+  })
+  common.implementsShorthandProp(Message, {
+    propKey: 'content',
+    ShorthandComponent: 'p',
+    mapValueToProps: val => ({ children: val }),
+  })
   common.propValueOnlyToClassName(Message, 'size')
   common.propValueOnlyToClassName(Message, 'color')
 
@@ -31,72 +50,19 @@ describe('Message', () => {
 
   common.propKeyOrValueToClassName(Message, 'attached')
 
-  describe('content', () => {
-    it('does not exist by default', () => {
-      shallow(<Message />)
-        .should.not.have.descendants('MessageContent')
-    })
-    it('adds a MessageContent child when defined', () => {
-      const wrapper = shallow(<Message content='Yo there' />)
-
-      wrapper.should.have.descendants('MessageContent')
-
-      wrapper
-        .find('MessageContent')
-        .shallow()
-        .should.contain.text('Yo there')
-    })
-
-    it('wraps content value in a p tag', () => {
-      const wrapper = shallow(<Message content='This is a paragraph' />)
-
-      wrapper.should.have.descendants('p')
-
-      wrapper
-        .find('p')
-        .shallow()
-        .should.contain.text('This is a paragraph')
-    })
-  })
+  common.rendersChildren(Message)
 
   describe('header', () => {
-    it('does not exist by default', () => {
-      shallow(<Message />)
-        .should.not.have.descendants('MessageHeader')
-    })
-    it('adds a MessageHeader child when defined', () => {
-      const wrapper = shallow(<Message header='Yo there' />)
-
-      wrapper.should.have.descendants('MessageHeader')
-
-      wrapper
-        .find('MessageHeader')
-        .shallow()
-        .should.contain.text('Yo there')
-    })
-    it('adds a "content" wrapper when defined', () => {
+    it('adds MessageContent when defined', () => {
       shallow(<Message header='This is a message' />)
         .should.have.descendants('MessageContent')
     })
   })
 
   describe('icon', () => {
-    it('does not exist by default', () => {
-      shallow(<Message />)
-        .should.not.have.descendants('Icon')
-    })
-    it('does not have a "content" wrapper by default', () => {
+    it('does not have MessageContent by default', () => {
       shallow(<Message />)
         .should.not.have.descendants('.content')
-    })
-    it('adds a Icon child when defined', () => {
-      const wrapper = shallow(<Message icon='user' />)
-
-      wrapper.should.have.descendants('Icon')
-
-      wrapper
-        .find('Icon')
-        .should.have.prop('name', 'user')
     })
     it('renders children when "true"', () => {
       const text = 'child text'
@@ -111,21 +77,7 @@ describe('Message', () => {
   })
 
   describe('list', () => {
-    it('does not exist by default', () => {
-      shallow(<Message />)
-        .should.not.have.descendants('MessageList')
-    })
-    it('adds a MessageList and passes the items prop', () => {
-      const items = ['a', 'b', 'c']
-      const wrapper = shallow(<Message list={items} />)
-
-      wrapper.should.have.descendants('MessageList')
-
-      wrapper
-        .find('MessageList')
-        .should.have.prop('items', items)
-    })
-    it('adds a "content" wrapper when defined', () => {
+    it('adds MessageContent when defined', () => {
       shallow(<Message list={[]} />)
         .should.have.descendants('MessageContent')
     })

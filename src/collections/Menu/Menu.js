@@ -39,10 +39,7 @@ const _meta = {
 class Menu extends Component {
   static propTypes = {
     /** An element type to render as (string or function). */
-    as: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.func,
-    ]),
+    as: customPropTypes.as,
 
     /** Index of the currently active item. */
     activeIndex: PropTypes.number,
