@@ -8,6 +8,9 @@ import {
   META,
   SUI,
   useKeyOnly,
+  useTextAlignProp,
+  useVerticalAlignProp,
+  useWidthProp,
 } from '../../lib'
 
 function TableCell(props) {
@@ -21,7 +24,10 @@ function TableCell(props) {
     negative,
     positive,
     singleLine,
+    textAlign,
+    verticalAlign,
     warning,
+    width,
   } = props
   const classes = cx(
     useKeyOnly(active, 'active'),
@@ -32,6 +38,9 @@ function TableCell(props) {
     useKeyOnly(positive, 'positive'),
     useKeyOnly(singleLine, 'single line'),
     useKeyOnly(warning, 'warning'),
+    useTextAlignProp(textAlign),
+    useVerticalAlignProp(verticalAlign),
+    useWidthProp(width, 'wide'),
     className,
   )
 
@@ -47,6 +56,8 @@ TableCell._meta = {
   parent: 'Table',
   props: {
     textAlign: SUI.TEXT_ALIGNMENTS,
+    verticalAlign: SUI.VERTICAL_ALIGNMENTS,
+    width: SUI.WIDTHS,
   },
 }
 
@@ -67,6 +78,7 @@ TableCell.propTypes = {
   /** Classes that will be added to the TableCell className. */
   className: PropTypes.string,
 
+  /** A cell can be collapsing so that it only uses as much space as required. */
   collapsing: PropTypes.bool,
 
   /** A cell can be disabled. */
@@ -84,11 +96,17 @@ TableCell.propTypes = {
   /** A cell can specify that its contents should remain on a single line and not wrap. */
   singleLine: PropTypes.bool,
 
-  /** A table header, row, or cell can adjust its text alignment. */
+  /** A table cell can adjust its text alignment. */
   textAlign: PropTypes.oneOf(TableCell._meta.props.textAlign),
+
+  /** A table cell can adjust its text alignment. */
+  verticalAlign: PropTypes.oneOf(TableCell._meta.props.verticalAlign),
 
   /** A cell may warn a user. */
   warning: PropTypes.bool,
+
+  /** A table can specify the width of individual columns independently. */
+  width: PropTypes.oneOf(TableCell._meta.props.width),
 }
 
 export default TableCell

@@ -6,7 +6,10 @@ import {
   getElementType,
   getUnhandledProps,
   META,
+  SUI,
   useKeyOnly,
+  useTextAlignProp,
+  useVerticalAlignProp,
 } from '../../lib'
 
 function TableRow(props) {
@@ -18,6 +21,8 @@ function TableRow(props) {
     error,
     negative,
     positive,
+    textAlign,
+    verticalAlign,
     warning,
   } = props
   const classes = cx(
@@ -27,6 +32,8 @@ function TableRow(props) {
     useKeyOnly(negative, 'negative'),
     useKeyOnly(positive, 'positive'),
     useKeyOnly(warning, 'warning'),
+    useTextAlignProp(textAlign),
+    useVerticalAlignProp(verticalAlign),
     className,
   )
 
@@ -40,6 +47,10 @@ TableRow._meta = {
   name: 'TableRow',
   type: META.TYPES.COLLECTION,
   parent: 'Table',
+  props: {
+    textAlign: SUI.TEXT_ALIGNMENTS,
+    verticalAlign: SUI.VERTICAL_ALIGNMENTS,
+  },
 }
 
 TableRow.defaultProps = {
@@ -70,6 +81,12 @@ TableRow.propTypes = {
 
   /** A row may let a user know whether a value is good. */
   positive: PropTypes.bool,
+
+  /** A table row can adjust its text alignment. */
+  textAlign: PropTypes.oneOf(TableRow._meta.props.textAlign),
+
+  /** A table row can adjust its vertical alignment. */
+  verticalAlign: PropTypes.oneOf(TableRow._meta.props.verticalAlign),
 
   /** A row may warn a user. */
   warning: PropTypes.bool,

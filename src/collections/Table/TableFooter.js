@@ -29,7 +29,7 @@ TableFooter._meta = {
 }
 
 TableFooter.defaultProps = {
-  as: 'thead',
+  as: 'tfoot',
 }
 
 TableFooter.propTypes = {
