@@ -1,5 +1,5 @@
 import React from 'react'
-import { Icon, Table } from 'stardust'
+import { Table } from 'stardust'
 
 const TablePositiveNegative = () => {
   return (
@@ -13,30 +13,24 @@ const TablePositiveNegative = () => {
       </Table.Header>
 
       <Table.Body>
-        <Table.Row>
-          <Table.Cell>No Name Specified</Table.Cell>
-          <Table.Cell>Unknown</Table.Cell>
-          <Table.Cell negative>None</Table.Cell>
+        <Table.Row disabled>
+          <Table.Cell>Jamie</Table.Cell>
+          <Table.Cell>Approved</Table.Cell>
+          <Table.Cell>Requires call</Table.Cell>
         </Table.Row>
-        <Table.Row positive>
-          <Table.Cell>Jimmy</Table.Cell>
-          <Table.Cell>
-            <Icon name='checkmark' />
-            Approved
-          </Table.Cell>
+        <Table.Row>
+          <Table.Cell>John</Table.Cell>
+          <Table.Cell>Selected</Table.Cell>
           <Table.Cell>None</Table.Cell>
         </Table.Row>
         <Table.Row>
           <Table.Cell>Jamie</Table.Cell>
-          <Table.Cell>Unknown</Table.Cell>
-          <Table.Cell positive>
-            <Icon name='close' />
-            Requires call
-          </Table.Cell>
+          <Table.Cell>Approved</Table.Cell>
+          <Table.Cell>Requires call</Table.Cell>
         </Table.Row>
-        <Table.Row negative>
-          <Table.Cell>Jill</Table.Cell>
-          <Table.Cell>Unknown</Table.Cell>
+        <Table.Row>
+          <Table.Cell disabled>Jill</Table.Cell>
+          <Table.Cell>Approved</Table.Cell>
           <Table.Cell>None</Table.Cell>
         </Table.Row>
       </Table.Body>

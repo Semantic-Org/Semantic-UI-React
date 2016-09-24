@@ -11,14 +11,22 @@ import {
 
 function TableRow(props) {
   const {
+    active,
     children,
     className,
+    disabled,
+    error,
     negative,
     positive,
+    warning,
   } = props
   const classes = cx(
+    useKeyOnly(active, 'active'),
+    useKeyOnly(disabled, 'disabled'),
+    useKeyOnly(error, 'error'),
     useKeyOnly(negative, 'negative'),
     useKeyOnly(positive, 'positive'),
+    useKeyOnly(warning, 'warning'),
     className,
   )
 
@@ -42,17 +50,29 @@ TableRow.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
+  /** A row can be active or selected by a user. */
+  active: PropTypes.bool,
+
   /** Primary content of the TableRow. */
   children: PropTypes.node,
 
   /** Classes that will be added to the TableRow className. */
   className: PropTypes.string,
 
+  /** A row can be disabled. */
+  disabled: PropTypes.bool,
+
+  /** A row may call attention to an error or a negative value. */
+  error: PropTypes.bool,
+
   /** A row may let a user know whether a value is bad. */
   negative: PropTypes.bool,
 
   /** A row may let a user know whether a value is good. */
   positive: PropTypes.bool,
+
+  /** A row may warn a user. */
+  warning: PropTypes.bool,
 }
 
 export default TableRow

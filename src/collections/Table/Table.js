@@ -28,9 +28,15 @@ function Table(props) {
     children,
     className,
     definition,
+    fixed,
+    inverted,
     padded,
+    selectable,
+    singleLine,
+    stackable,
     striped,
     structured,
+    unstackable,
   } = props
   const classes = cx(
     'ui',
@@ -39,9 +45,15 @@ function Table(props) {
     useKeyOnly(collapsing, 'collapsing'),
     useKeyOnly(compact, 'compact'),
     useKeyOnly(definition, 'definition'),
+    useKeyOnly(fixed, 'fixed'),
+    useKeyOnly(inverted, 'inverted'),
     useKeyOnly(padded, 'padded'),
+    useKeyOnly(selectable, 'selectable'),
+    useKeyOnly(singleLine, 'single line'),
+    useKeyOnly(stackable, 'stackable'),
     useKeyOnly(striped, 'striped'),
     useKeyOnly(structured, 'structured'),
+    useKeyOnly(unstackable, 'unstackable'),
     className,
     'table'
   )
@@ -88,13 +100,32 @@ Table.propTypes = {
   /** A table may be formatted to emphasize a first column that defines a rows content. */
   definition: PropTypes.bool,
 
+  /**
+   * A table can use fixed a special faster form of table rendering that does not resize table cells based on content
+   * */
+  fixed: PropTypes.bool,
+
+  inverted: PropTypes.bool,
+
   /** A table may sometimes need to be more padded for legibility. */
   padded: PropTypes.bool,
+
+  /** A table can have its rows appear selectable. */
+  selectable: PropTypes.bool,
+
+  /** A table can specify that its cell contents should remain on a single line and not wrap. */
+  singleLine: PropTypes.bool,
+
+  /** A table can specify how it stacks table content responsively. */
+  stackable: PropTypes.bool,
 
   striped: PropTypes.bool,
 
   /** A table can be formatted to display complex structured data. */
   structured: PropTypes.bool,
+
+  /** A table can specify how it stacks table content responsively. */
+  unstackable: PropTypes.bool,
 }
 
 Table.Body = TableBody

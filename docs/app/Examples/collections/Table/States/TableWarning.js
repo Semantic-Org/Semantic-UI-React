@@ -16,25 +16,25 @@ const TablePositiveNegative = () => {
         <Table.Row>
           <Table.Cell>No Name Specified</Table.Cell>
           <Table.Cell>Unknown</Table.Cell>
-          <Table.Cell negative>None</Table.Cell>
+          <Table.Cell>None</Table.Cell>
         </Table.Row>
-        <Table.Row positive>
+        <Table.Row warning>
           <Table.Cell>Jimmy</Table.Cell>
           <Table.Cell>
-            <Icon name='checkmark' />
-            Approved
+            <Icon name='attention' />
+            Requires Action
           </Table.Cell>
           <Table.Cell>None</Table.Cell>
         </Table.Row>
         <Table.Row>
           <Table.Cell>Jamie</Table.Cell>
           <Table.Cell>Unknown</Table.Cell>
-          <Table.Cell positive>
-            <Icon name='close' />
-            Requires call
+          <Table.Cell warning>
+            <Icon name='attention' />
+            Hostile
           </Table.Cell>
         </Table.Row>
-        <Table.Row negative>
+        <Table.Row>
           <Table.Cell>Jill</Table.Cell>
           <Table.Cell>Unknown</Table.Cell>
           <Table.Cell>None</Table.Cell>
