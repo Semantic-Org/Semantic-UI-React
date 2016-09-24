@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
@@ -13,9 +14,9 @@ import {
 } from '../../lib'
 import TableBody from './TableBody'
 import TableCell from './TableCell'
-import TableHeaderCell from './TableHeaderCell'
 import TableFooter from './TableFooter'
 import TableHeader from './TableHeader'
+import TableHeaderCell from './TableHeaderCell'
 import TableRow from './TableRow'
 
 /**
@@ -37,6 +38,7 @@ function Table(props) {
     padded,
     selectable,
     singleLine,
+    size,
     stackable,
     striped,
     structured,
@@ -45,14 +47,15 @@ function Table(props) {
   const classes = cx(
     'ui',
     color,
+    size,
     useKeyOrValueAndKey(basic, 'basic'),
     useKeyOnly(celled, 'celled'),
     useKeyOnly(collapsing, 'collapsing'),
-    useKeyOnly(compact, 'compact'),
+    useKeyOrValueAndKey(compact, 'compact'),
     useKeyOnly(definition, 'definition'),
     useKeyOnly(fixed, 'fixed'),
     useKeyOnly(inverted, 'inverted'),
-    useKeyOnly(padded, 'padded'),
+    useKeyOrValueAndKey(padded, 'padded'),
     useKeyOnly(selectable, 'selectable'),
     useKeyOnly(singleLine, 'single line'),
     useKeyOnly(stackable, 'stackable'),
@@ -75,8 +78,11 @@ Table._meta = {
   type: META.TYPES.COLLECTION,
   props: {
     basic: ['very'],
-    colors: SUI.colors,
-    columns: SUI.WIDTHS,
+    color: SUI.COLORS,
+    column: SUI.WIDTHS,
+    compact: ['very'],
+    padded: ['very'],
+    size: _.without(SUI.SIZES, 'mini', 'tiny', 'medium', 'big', 'huge', 'massive'),
   },
 }
 
@@ -97,21 +103,26 @@ Table.propTypes = {
   /** A table may be divided each row into separate cells. */
   celled: PropTypes.bool,
 
-  /** A table can be collapsing, taking up only as much space as its rows. */
-  collapsing: PropTypes.bool,
-
-  color: PropTypes.oneOf(Table._meta.props.colors),
-
-  /** A table can specify its column count to divide its content evenly. */
-  columns: PropTypes.oneOf(Table._meta.props.columns),
-
   /** Primary content of the Table. */
   children: PropTypes.node,
 
   /** Classes that will be added to the Table className. */
   className: PropTypes.string,
 
-  compact: PropTypes.bool,
+  /** A table can be collapsing, taking up only as much space as its rows. */
+  collapsing: PropTypes.bool,
+
+  /** A table can be given a color to distinguish it from other tables. */
+  color: PropTypes.oneOf(Table._meta.props.color),
+
+  /** A table can specify its column count to divide its content evenly. */
+  columns: PropTypes.oneOf(Table._meta.props.column),
+
+  /** A table may sometimes need to be more compact to make more rows visible at a time. */
+  compact: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.oneOf(Table._meta.props.compact),
+  ]),
 
   /** A table may be formatted to emphasize a first column that defines a rows content. */
   definition: PropTypes.bool,
@@ -125,13 +136,19 @@ Table.propTypes = {
   inverted: PropTypes.bool,
 
   /** A table may sometimes need to be more padded for legibility. */
-  padded: PropTypes.bool,
+  padded: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.oneOf(Table._meta.props.padded),
+  ]),
 
   /** A table can have its rows appear selectable. */
   selectable: PropTypes.bool,
 
   /** A table can specify that its cell contents should remain on a single line and not wrap. */
   singleLine: PropTypes.bool,
+
+  /** A table can also be small or large. */
+  size: PropTypes.oneOf(Table._meta.props.size),
 
   /** A table can specify how it stacks table content responsively. */
   stackable: PropTypes.bool,
