@@ -37,9 +37,9 @@ describe('Header', () => {
       shallow(<Header icon />)
         .should.have.className('icon')
     })
-    it('does not add an Icon when true', () => {
-      shallow(<Header icon />)
-        .should.not.have.descendants('Icon')
+    it('does not add an icon class given a name', () => {
+      shallow(<Header icon='user' />)
+        .should.not.have.className('icon')
     })
   })
 
@@ -80,14 +80,7 @@ describe('Header', () => {
   })
 
   describe('subheader', () => {
-    it('adds HeaderSubheader as child', () => {
-      const text = faker.hacker.phrase()
-
-      shallow(<Header subheader={text} />)
-        .find('HeaderSubheader')
-        .should.have.prop('content', text)
-    })
-    it('adds HeaderSubheader as child when given a name to icon prop', () => {
+    it('adds HeaderSubheader as child when there is an icon', () => {
       const text = faker.hacker.phrase()
 
       shallow(<Header icon='user' subheader={text} />)
