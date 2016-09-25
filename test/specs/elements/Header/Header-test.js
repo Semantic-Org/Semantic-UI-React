@@ -43,6 +43,17 @@ describe('Header', () => {
     })
   })
 
+  describe('image', () => {
+    it('adds an image class when true', () => {
+      shallow(<Header image />)
+        .should.have.className('image')
+    })
+    it('does not add an Image when true', () => {
+      shallow(<Header image />)
+        .should.not.have.descendants('Image')
+    })
+  })
+
   describe('content', () => {
     it('adds child text', () => {
       shallow(<Header content='foo' />)
