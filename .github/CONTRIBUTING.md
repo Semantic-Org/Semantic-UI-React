@@ -407,18 +407,18 @@ describe('Menu', () => {
 })
 ```
 
-The last argument to a common test is always `requiredProps`.  If your component requires certain props to render, you can pass those last:
+The last argument to a common test is always `options`.  You can configure the test here.  Example, if your component requires certain props to render, you can pass in `requiredProps`:
 
 ```js
 import * as common from 'test/specs/commonTests'
 import Select from 'src/addons/Select/Select'
 
-const requiredProps = {
-  options: [],
-}
-
 describe('Select', () => {
-  common.isConformant(Select, requiredProps)
+  common.isConformant(Select, {
+    requiredProps: {
+      options: [],
+    },
+  })
 })
 ```
 

@@ -11,7 +11,9 @@ describe('FormField', () => {
   common.propKeyOnlyToClassName(FormField, 'error')
   common.propKeyOnlyToClassName(FormField, 'disabled')
   common.propKeyOnlyToClassName(FormField, 'inline')
-  common.propKeyOnlyToClassName(FormField, 'required', { label: '' })
+  common.propKeyOnlyToClassName(FormField, 'required', {
+    requiredProps: { label: '' },
+  })
   common.rendersChildren(FormField)
 
   describe('html controls', () => {
