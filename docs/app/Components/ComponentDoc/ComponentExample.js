@@ -28,7 +28,7 @@ const titleStyle = {
 
 const headerColumnStyle = {
   // provide room for absolutely positions toggle code icons
-  minHeight: '4em !important',
+  minHeight: '4em',
 }
 
 /**
