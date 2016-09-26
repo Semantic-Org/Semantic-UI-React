@@ -1,5 +1,6 @@
-import React, { PropTypes } from 'react'
+import React, { PropTypes, cloneElement, Children, Component } from 'react'
 import cx from 'classnames'
+import DropdownMenu from './DropdownMenu'
 
 import {
   childrenUtils,
@@ -11,44 +12,87 @@ import {
 } from '../../lib'
 import { createIcon, createShorthand } from '../../factories'
 
-function DropdownItem(props) {
-  const {
-    active,
-    children,
-    className,
-    disabled,
-    description,
-    icon,
-    onClick,
-    selected,
-    text,
-    value,
-  } = props
+export default class DropdownItem extends Component {
+  constructor() {
+    super()
 
-  const handleClick = (e) => {
-    if (onClick) onClick(e, value)
+    this.state = {
+      hovered: false,
+    }
   }
 
-  const classes = cx(
-    useKeyOnly(active, 'active'),
-    useKeyOnly(disabled, 'disabled'),
-    useKeyOnly(selected, 'selected'),
-    'item',
-    className,
-  )
-  // add default dropdown icon if item contains another menu
-  const iconName = icon || childrenUtils.someByType(children, 'DropdownMenu') && 'dropdown'
-  const ElementType = getElementType(DropdownItem, props)
-  const rest = getUnhandledProps(DropdownItem, props)
+  render() {
+    const {
+      active,
+      children,
+      className,
+      disabled,
+      description,
+      icon,
+      onClick,
+      onMouseEnter,
+      onMouseLeave,
+      selected,
+      text,
+      value,
+    } = this.props
 
-  return (
-    <ElementType {...rest} className={classes} onClick={handleClick}>
-      {createShorthand('span', val => ({ className: 'description', children: val }), description)}
-      {createIcon(iconName)}
-      {text}
-      {children}
-    </ElementType>
-  )
+    const handleClick = (e) => {
+      if (onClick) onClick(e, value)
+    }
+
+    const handleMouseEnter = (e) => {
+      if (onMouseEnter) onMouseEnter(e, value)
+
+      this.setState({ hovered: true })
+    }
+
+    const handleMouseLeave = (e) => {
+      if (onMouseLeave) onMouseLeave(e, value)
+
+      this.setState({ hovered: false })
+    }
+
+    const classes = cx(
+      useKeyOnly(active, 'active'),
+      useKeyOnly(disabled, 'disabled'),
+      useKeyOnly(selected, 'selected'),
+      'item',
+      className,
+    )
+    // add default dropdown icon if item contains another menu
+    const iconName = icon || childrenUtils.someByType(children, 'DropdownMenu') && 'dropdown'
+    const ElementType = getElementType(DropdownItem, this.props)
+    const rest = getUnhandledProps(DropdownItem, this.props)
+
+    let newChildren = children
+
+    if (Array.isArray(children)) {
+      newChildren = Children.map(children, (child) => {
+        if (child.type !== DropdownMenu) {
+          return child
+        }
+
+        return cloneElement(child, { opened: this.state.hovered })
+      })
+    }else if(newChildren && newChildren.type === DropdownMenu){
+      newChildren = cloneElement(newChildren, { opened: this.state.hovered });
+    }
+
+    return (
+      <ElementType {...rest}
+        className={classes}
+        onClick={handleClick}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
+        {createShorthand('span', val => ({ className: 'description', children: val }), description)}
+        {createIcon(iconName)}
+        {text}
+        {newChildren}
+      </ElementType>
+    )
+  }
 }
 
 DropdownItem._meta = {
@@ -103,8 +147,12 @@ DropdownItem.propTypes = {
     PropTypes.string,
   ]),
 
-  /** Called on click with (event, value, text). */
+  /** Called on click with (event, value). */
   onClick: PropTypes.func,
-}
 
-export default DropdownItem
+  /** Called on click with (event, value). */
+  onMouseEnter: PropTypes.func,
+
+  /** Called on click with (event, value). */
+  onMouseLeave: PropTypes.func,
+}

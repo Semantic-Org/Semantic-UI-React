@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react'
+import React, { PropTypes, Component } from 'react'
 import cx from 'classnames'
 
 import {
@@ -8,13 +8,16 @@ import {
   META,
 } from '../../lib'
 
-function DropdownMenu(props) {
-  const { children, className } = props
-  const classes = cx('menu transition', className)
-  const rest = getUnhandledProps(DropdownMenu, props)
-  const ElementType = getElementType(DropdownMenu, props)
+export default class DropdownMenu extends Component {
+  render() {
+    const { children, className } = this.props
+    const classes = cx('menu transition', className, { visible: this.props.opened })
+    const rest = getUnhandledProps(DropdownMenu, this.props)
+    const ElementType = getElementType(DropdownMenu, this.props)
 
-  return <ElementType {...rest} className={classes}>{children}</ElementType>
+    return (<ElementType {...rest} className={classes}>
+      {children}</ElementType>)
+  }
 }
 
 DropdownMenu._meta = {
@@ -32,6 +35,7 @@ DropdownMenu.propTypes = {
 
   /** Classes to add to the className. */
   className: PropTypes.string,
-}
 
-export default DropdownMenu
+  /** Will mark the menu as opened when nested in another menu */
+  opened: PropTypes.bool,
+}
