@@ -7,6 +7,10 @@ import {
   getUnhandledProps,
   META,
 } from '../../lib'
+import ListContent from './ListContent'
+import ListHeader from './ListHeader'
+import ListIcon from './ListIcon'
+import ListItem from './ListItem'
 
 function List(props) {
   const { children, className } = props
@@ -27,11 +31,16 @@ List.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** Primary content of the List */
+  /** Primary content of the List. */
   children: PropTypes.node,
 
   /** Classes to add to the List className. */
   className: PropTypes.string,
 }
+
+List.Content = ListContent
+List.Header = ListHeader
+List.Icon = ListIcon
+List.Item = ListItem
 
 export default List

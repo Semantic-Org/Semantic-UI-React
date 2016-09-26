@@ -8,31 +8,31 @@ import {
   META,
 } from '../../lib'
 
-function ListItem(props) {
+function ListContent(props) {
   const { children, className } = props
-  const classes = cx(className, 'item')
+  const classes = cx(className, 'content')
 
-  const ElementType = getElementType(ListItem, props)
-  const rest = getUnhandledProps(ListItem, props)
+  const ElementType = getElementType(ListContent, props)
+  const rest = getUnhandledProps(ListContent, props)
 
   return <ElementType {...rest} className={classes}>{children}</ElementType>
 }
 
-ListItem._meta = {
-  name: 'ListItem',
+ListContent._meta = {
+  name: 'ListContent',
   parent: 'List',
   type: META.TYPES.ELEMENT,
 }
 
-ListItem.propTypes = {
+ListContent.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** Primary content of the ListItem. */
+  /** Primary content of the ListContent. */
   children: PropTypes.node,
 
-  /** Classes to add to the ListItem className. */
+  /** Classes to add to the ListContent className. */
   className: PropTypes.string,
 }
 
-export default ListItem
+export default ListContent
