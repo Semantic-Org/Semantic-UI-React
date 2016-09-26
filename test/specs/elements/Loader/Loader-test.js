@@ -12,7 +12,7 @@ describe('Loader', () => {
   common.propKeyOnlyToClassName(Loader, 'active')
   common.propKeyOnlyToClassName(Loader, 'disabled')
   common.propKeyOnlyToClassName(Loader, 'indeterminate')
-  common.propKeyOrValueToClassName(Loader, 'inline')
+  common.propKeyOrValueAndKeyToClassName(Loader, 'inline')
   common.propKeyOnlyToClassName(Loader, 'inverted')
   common.propKeyOnlyToClassName(Loader, 'text')
   common.propValueOnlyToClassName(Loader, 'size')

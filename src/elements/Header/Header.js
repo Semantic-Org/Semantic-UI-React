@@ -29,14 +29,15 @@ function Header(props) {
     'ui',
     size,
     color,
-    useKeyOnly(icon === true, 'icon'),
-    useKeyOnly(sub, 'sub'),
-    useKeyOnly(dividing, 'dividing'),
-    useKeyOnly(block, 'block'),
     useKeyOrValueAndKey(attached, 'attached'),
-    useValueAndKey(floated, 'floated'),
-    useKeyOnly(inverted, 'inverted'),
+    useKeyOnly(block, 'block'),
     useKeyOnly(disabled, 'disabled'),
+    useKeyOnly(dividing, 'dividing'),
+    useValueAndKey(floated, 'floated'),
+    useKeyOnly(icon === true, 'icon'),
+    useKeyOnly(image === true, 'image'),
+    useKeyOnly(inverted, 'inverted'),
+    useKeyOnly(sub, 'sub'),
     useTextAlignProp(textAlign),
     className,
     'header',
@@ -53,7 +54,7 @@ function Header(props) {
     )
   }
 
-  if (image || icon && typeof icon !== 'boolean') {
+  if ((image && typeof image !== 'boolean') || (icon && typeof icon !== 'boolean')) {
     return (
       <ElementType {...rest} className={classes}>
         {createIcon(icon) || createImage(image)}
@@ -125,12 +126,15 @@ Header.propTypes = {
 
   /** Add an image by img src or pass an <Image />. */
   image: customPropTypes.every([
-    customPropTypes.disallow(['children', 'icon']),
-    PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.element,
-      PropTypes.object,
-    ]),
+    customPropTypes.disallow(['icon']),
+    customPropTypes.givenProps(
+      { children: PropTypes.node.isRequired },
+      PropTypes.bool,
+    ),
+    customPropTypes.givenProps(
+      { image: PropTypes.oneOfType([PropTypes.string, PropTypes.element, PropTypes.object]) },
+      customPropTypes.disallow(['children']),
+    ),
   ]),
 
   /** Color of the header. */

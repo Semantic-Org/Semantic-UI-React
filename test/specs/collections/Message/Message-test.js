@@ -48,7 +48,7 @@ describe('Message', () => {
   common.propKeyOnlyToClassName(Message, 'negative')
   common.propKeyOnlyToClassName(Message, 'error')
 
-  common.propKeyOrValueToClassName(Message, 'attached')
+  common.propKeyOrValueAndKeyToClassName(Message, 'attached')
 
   common.rendersChildren(Message)
 

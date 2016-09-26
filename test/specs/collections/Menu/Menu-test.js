@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import React from 'react'
 
 import Menu from 'src/collections/Menu/Menu'
@@ -13,20 +14,20 @@ describe('Menu', () => {
   common.hasSubComponents(Menu, [MenuHeader, MenuItem, MenuMenu])
 
   common.implementsWidthProp(Menu, { propKey: 'widths', canEqual: false })
-  common.propKeyOrValueToClassName(Menu, 'attached')
+  common.propKeyOrValueAndKeyToClassName(Menu, 'attached')
   common.propKeyOnlyToClassName(Menu, 'borderless')
   common.propValueOnlyToClassName(Menu, 'color')
   common.propKeyOnlyToClassName(Menu, 'compact')
   common.propKeyAndValueToClassName(Menu, 'fixed')
-  common.propKeyOrValueToClassName(Menu, 'floated')
+  common.propKeyOrValueAndKeyToClassName(Menu, 'floated')
   common.propKeyOnlyToClassName(Menu, 'fluid')
-  common.propKeyOrValueToClassName(Menu, 'icon')
+  common.propKeyOrValueAndKeyToClassName(Menu, 'icon')
   common.propKeyOnlyToClassName(Menu, 'inverted')
   common.propKeyOnlyToClassName(Menu, 'pagination')
   common.propKeyOnlyToClassName(Menu, 'pointing')
   common.propKeyOnlyToClassName(Menu, 'secondary')
   common.propKeyOnlyToClassName(Menu, 'stackable')
-  common.propKeyOrValueToClassName(Menu, 'tabular')
+  common.propKeyOrValueAndKeyToClassName(Menu, 'tabular')
   common.propKeyOnlyToClassName(Menu, 'text')
   common.propValueOnlyToClassName(Menu, 'size')
   common.propKeyOnlyToClassName(Menu, 'vertical')
@@ -39,30 +40,33 @@ describe('Menu', () => {
   })
 
   describe('activeIndex', () => {
-    it('-1 by default', () => {
-      const items = [
-        { name: 'home' },
-        { name: 'users' },
-      ]
+    const items = [
+      { name: 'home' },
+      { name: 'users' },
+    ]
 
-      shallow(<Menu items={items} />).should.have.state('activeIndex', -1)
+    it('is null by default', () => {
+      shallow(<Menu items={items} />)
+        .should.not.have.descendants('.active')
     })
 
-    it('can be overridden with "active"', () => {
-      const items = [
-        { name: 'home' },
-        { active: true, name: 'users' },
-      ]
+    it('is set when clicking an item', () => {
+      // random item, skip the first as its selected by default
+      const randomIndex = _.random(items.length - 1)
 
-      shallow(<Menu items={items} />).should.have.state('activeIndex', 1)
+      mount(<Menu items={items} />)
+        .find('MenuItem')
+        .at(randomIndex)
+        .simulate('click')
+        .should.have.prop('active', true)
     })
   })
 
   describe('items', () => {
     const spy = sandbox.spy()
     const items = [
-      { name: 'home', onClick: spy },
-      { active: true, name: 'users' },
+      { name: 'home', onClick: spy, 'data-foo': 'something' },
+      { name: 'users', active: true, 'data-foo': 'something' },
     ]
     const children = mount(<Menu items={items} />).find('MenuItem')
 
@@ -84,6 +88,10 @@ describe('Menu', () => {
 
       spy.should.have.been.calledOnce()
       spy.should.have.been.calledWithMatch(event, props)
+    })
+
+    it('passes arbitraty props', () => {
+      children.everyWhere(item => item.should.have.prop('data-foo', 'something'))
     })
   })
 

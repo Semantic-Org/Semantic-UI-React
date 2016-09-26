@@ -1,5 +1,27 @@
 # Change Log
 
+## [v0.46.3](https://github.com/TechnologyAdvice/stardust/tree/v0.46.3) (2016-09-25)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.46.2...v0.46.3)
+
+**Implemented enhancements:**
+
+- feat\(ComponentExample\): add show html button to docs [\#547](https://github.com/TechnologyAdvice/stardust/pull/547) ([levithomason](https://github.com/levithomason))
+- feat\(common\): Improve shorthand array handling [\#543](https://github.com/TechnologyAdvice/stardust/pull/543) ([jcarbo](https://github.com/jcarbo))
+
+## [v0.46.2](https://github.com/TechnologyAdvice/stardust/tree/v0.46.2) (2016-09-25)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.46.1...v0.46.2)
+
+**Fixed bugs:**
+
+- bug\(Header\): Invalid propTypes validation [\#542](https://github.com/TechnologyAdvice/stardust/issues/542)
+- Nested dropdown/menu does not expand on hover [\#533](https://github.com/TechnologyAdvice/stardust/issues/533)
+- fix\(Header\): Fix `image` prop [\#545](https://github.com/TechnologyAdvice/stardust/pull/545) ([layershifter](https://github.com/layershifter))
+- docs\(Menu\): open nested dropdown item on hover [\#541](https://github.com/TechnologyAdvice/stardust/pull/541) ([levithomason](https://github.com/levithomason))
+
+**Closed issues:**
+
+- RFC: Standardize shorthand prop names for primary content [\#391](https://github.com/TechnologyAdvice/stardust/issues/391)
+
 ## [v0.46.1](https://github.com/TechnologyAdvice/stardust/tree/v0.46.1) (2016-09-23)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.46.0...v0.46.1)
 

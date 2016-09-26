@@ -26,8 +26,8 @@ describe('Segment', () => {
 
   common.propKeyAndValueToClassName(Segment, 'floated')
 
-  common.propKeyOrValueToClassName(Segment, 'attached')
-  common.propKeyOrValueToClassName(Segment, 'padded')
+  common.propKeyOrValueAndKeyToClassName(Segment, 'attached')
+  common.propKeyOrValueAndKeyToClassName(Segment, 'padded')
 
   common.rendersChildren(Segment)
 })

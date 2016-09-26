@@ -20,7 +20,7 @@ describe('Image Component', () => {
   common.propKeyOnlyToClassName(Image, 'inline')
 
   common.propKeyAndValueToClassName(Image, 'floated')
-  common.propKeyOrValueToClassName(Image, 'spaced')
+  common.propKeyOrValueAndKeyToClassName(Image, 'spaced')
 
   common.propValueOnlyToClassName(Image, 'size')
   common.propValueOnlyToClassName(Image, 'shape')

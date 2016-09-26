@@ -14,6 +14,7 @@ import {
   useValueAndKey,
   useWidthProp,
 } from '../../lib'
+import { createShorthand } from '../../factories'
 import MenuHeader from './MenuHeader'
 import MenuItem from './MenuItem'
 import MenuMenu from './MenuMenu'
@@ -92,14 +93,12 @@ class Menu extends Component {
     /** Shorthand array of props for Menu. Mutually exclusive with children. */
     items: customPropTypes.every([
       customPropTypes.disallow(['children']),
-      PropTypes.arrayOf(PropTypes.shape({
-        childKey: PropTypes.oneOfType([
-          PropTypes.number,
-          PropTypes.string,
-        ]),
-        // this object is spread on the MenuItem
-        // allow it to validate props instead
-      })),
+      // Array of shorthands for MenuItem
+      PropTypes.arrayOf(PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.element,
+        PropTypes.object,
+      ])),
     ]),
 
     /** onClick handler for MenuItem. Mutually exclusive with children. */
@@ -149,13 +148,6 @@ class Menu extends Component {
   static Item = MenuItem
   static Menu = MenuMenu
 
-  componentWillMount() {
-    super.componentWillMount()
-
-    const { items } = this.props
-    if (items) this.trySetState({ activeIndex: _.findIndex(items, ['active', true]) })
-  }
-
   handleItemClick = (e, { name, index }) => {
     this.trySetState({ activeIndex: index })
     const { items, onItemClick } = this.props
@@ -169,20 +161,12 @@ class Menu extends Component {
     const { activeIndex } = this.state
 
     return _.map(items, (item, index) => {
-      const { content, childKey, name, itemProps } = item
-      const finalKey = childKey || [content, name].join('-')
-
-      return (
-        <MenuItem
-          {...itemProps}
-          active={activeIndex === index}
-          content={content}
-          index={index}
-          key={finalKey}
-          name={name}
-          onClick={this.handleItemClick}
-        />
-      )
+      return createShorthand(MenuItem, val => ({ content: val }), item, {
+        active: activeIndex === index,
+        childKey: ({ content, name }) => [content, name].join('-'),
+        index,
+        onClick: this.handleItemClick,
+      })
     })
   }
 

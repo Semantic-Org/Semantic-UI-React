@@ -19,6 +19,9 @@ import TableHeader from './TableHeader'
 import TableHeaderCell from './TableHeaderCell'
 import TableRow from './TableRow'
 
+/**
+ * A table displays a collections of data grouped into rows
+ */
 function Table(props) {
   const {
     basic,

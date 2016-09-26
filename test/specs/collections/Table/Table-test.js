@@ -1,5 +1,8 @@
 import React from 'react'
 
+import Table from 'src/collections/Table/Table'
+import TableColumn from 'src/collections/Table/TableColumn'
+import { sandbox } from 'test/utils'
 import * as common from 'test/specs/commonTests'
 import Table from 'src/collections/Table/Table'
 import TableBody from 'src/collections/Table/TableBody'
@@ -28,9 +31,9 @@ describe('Table', () => {
   common.propKeyOnlyToClassName(Table, 'structured')
   common.propKeyOnlyToClassName(Table, 'unstackable')
 
-  common.propKeyOrValueToClassName(Table, 'basic')
-  common.propKeyOrValueToClassName(Table, 'compact')
-  common.propKeyOrValueToClassName(Table, 'padded')
+  common.propKeyOrValueAndKeyToClassName(Table, 'basic')
+  common.propKeyOrValueAndKeyToClassName(Table, 'compact')
+  common.propKeyOrValueAndKeyToClassName(Table, 'padded')
 
   common.propValueOnlyToClassName(Table, 'color')
   common.propValueOnlyToClassName(Table, 'size')

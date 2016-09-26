@@ -6,15 +6,15 @@ import * as common from 'test/specs/commonTests'
 const requiredProps = { position: 'left' }
 
 describe('Rail', () => {
-  common.isConformant(Rail, requiredProps)
-  common.hasUIClassName(Rail, requiredProps)
-  common.propValueOnlyToClassName(Rail, 'position', requiredProps)
-  common.propKeyOnlyToClassName(Rail, 'attached', requiredProps)
-  common.propKeyOrValueToClassName(Rail, 'close', requiredProps)
-  common.propKeyOnlyToClassName(Rail, 'dividing', requiredProps)
-  common.propKeyOnlyToClassName(Rail, 'internal', requiredProps)
-  common.propValueOnlyToClassName(Rail, 'size', requiredProps)
-  common.rendersChildren(Rail, requiredProps)
+  common.isConformant(Rail, { requiredProps })
+  common.hasUIClassName(Rail, { requiredProps })
+  common.propValueOnlyToClassName(Rail, 'position', { requiredProps })
+  common.propKeyOnlyToClassName(Rail, 'attached', { requiredProps })
+  common.propKeyOrValueAndKeyToClassName(Rail, 'close', { requiredProps })
+  common.propKeyOnlyToClassName(Rail, 'dividing', { requiredProps })
+  common.propKeyOnlyToClassName(Rail, 'internal', { requiredProps })
+  common.propValueOnlyToClassName(Rail, 'size', { requiredProps })
+  common.rendersChildren(Rail, { requiredProps })
 
   it('renders an div element', () => {
     shallow(<Rail position='left' />)
