@@ -252,7 +252,7 @@ describe('Segment', () => {
   common.propValueOnlyToClassName(Segment, 'color')
   common.propKeyOnlyToClassName(Segment, 'basic')
   common.propKeyAndValueToClassName(Segment, 'floated')
-  common.propKeyOrValueToClassName(Segment, 'padded')
+  common.propKeyOrValueAndKeyToClassName(Segment, 'padded')
 })
 ````
 
@@ -386,7 +386,7 @@ common.implementsWidthProp()
 common.propKeyOnlyToClassName()
 common.propValueOnlyToClassName()
 common.propKeyAndValueToClassName()
-common.propKeyOrValueToClassName()
+common.propKeyOrValueAndKeyToClassName()
 ````
 
 #### Usage

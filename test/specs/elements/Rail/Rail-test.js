@@ -10,7 +10,7 @@ describe('Rail', () => {
   common.hasUIClassName(Rail, { requiredProps })
   common.propValueOnlyToClassName(Rail, 'position', { requiredProps })
   common.propKeyOnlyToClassName(Rail, 'attached', { requiredProps })
-  common.propKeyOrValueToClassName(Rail, 'close', { requiredProps })
+  common.propKeyOrValueAndKeyToClassName(Rail, 'close', { requiredProps })
   common.propKeyOnlyToClassName(Rail, 'dividing', { requiredProps })
   common.propKeyOnlyToClassName(Rail, 'internal', { requiredProps })
   common.propValueOnlyToClassName(Rail, 'size', { requiredProps })

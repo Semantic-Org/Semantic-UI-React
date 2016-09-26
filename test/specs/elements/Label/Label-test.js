@@ -24,8 +24,8 @@ describe('Label Component', () => {
 
   common.propKeyAndValueToClassName(Label, 'attached')
 
-  common.propKeyOrValueToClassName(Label, 'corner')
-  common.propKeyOrValueToClassName(Label, 'ribbon')
+  common.propKeyOrValueAndKeyToClassName(Label, 'corner')
+  common.propKeyOrValueAndKeyToClassName(Label, 'ribbon')
 
   common.implementsIconProp(Label)
   common.implementsImageProp(Label)

@@ -865,9 +865,9 @@ export const propKeyAndValueToClassName = (Component, propKey, options = {}) => 
  * @param {Object} [options.requiredProps={}] Props required to render the component.
  * @param {Object} [options.className=propKey] Props required to render the component.
  */
-export const propKeyOrValueToClassName = (Component, propKey, options = {}) => {
+export const propKeyOrValueAndKeyToClassName = (Component, propKey, options = {}) => {
   const { className = propKey, requiredProps = {} } = options
-  const { assertRequired } = commonTestHelpers('propKeyOrValueToClassName', Component)
+  const { assertRequired } = commonTestHelpers('propKeyOrValueAndKeyToClassName', Component)
 
   describe(`${propKey} (common)`, () => {
     assertRequired(Component, 'a `Component`')

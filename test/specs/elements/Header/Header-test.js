@@ -18,7 +18,7 @@ describe('Header', () => {
   common.propKeyOnlyToClassName(Header, 'sub')
 
   common.propKeyAndValueToClassName(Header, 'floated')
-  common.propKeyOrValueToClassName(Header, 'attached')
+  common.propKeyOrValueAndKeyToClassName(Header, 'attached')
 
   common.propValueOnlyToClassName(Header, 'color')
   common.propValueOnlyToClassName(Header, 'size')
