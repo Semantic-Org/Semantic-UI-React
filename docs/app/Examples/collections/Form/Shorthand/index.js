@@ -44,29 +44,29 @@ const FormTypesExamples = () => (
   <ExampleSection title='Shorthand'>
     <ComponentExample
       title='Form Sub Components'
+      description={[
+        'Render a Field containing a label and form control.',
+        'All form control components are available.',
+      ].join(' ')}
       examplePath='collections/Form/Shorthand/FormSubComponentControlExample'
     >
-      <p>
-        Render a Field containing a label and form control.
-        All form control components are available.
-      </p>
       <Compare { ...subComponentComparison } />
     </ComponentExample>
     <ComponentExample
       title='Field with Custom Control'
+      description={[
+        'Render a Field containing a label and custom form control.',
+        'Use any component form any library, or your own.',
+      ].join(' ')}
       examplePath='collections/Form/Shorthand/FormFieldControlExample'
     >
-      <p>
-        Render a Field containing a label and custom form control.
-        Use any component form any library, or your own.
-      </p>
       <Compare { ...componentPropComparison } />
     </ComponentExample>
     <ComponentExample
       title='Field with HTML Control'
+      description='The Field control prop also works with HTML tags'
       examplePath='collections/Form/Shorthand/FormFieldControlHTMLExample'
     >
-      <p>The Field control prop also works with HTML tags</p>
       <Compare { ...htmlComparison } />
     </ComponentExample>
   </ExampleSection>
