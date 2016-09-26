@@ -17,7 +17,7 @@ const TableApprove = () => {
       <Table.Body>
         <Table.Row>
           <Table.Cell collapsing>
-            <Checkbox fitted slider />
+            <Checkbox slider />
           </Table.Cell>
           <Table.Cell>John Lilki</Table.Cell>
           <Table.Cell>September 14, 2013</Table.Cell>
@@ -26,7 +26,7 @@ const TableApprove = () => {
         </Table.Row>
         <Table.Row>
           <Table.Cell collapsing>
-            <Checkbox fitted slider />
+            <Checkbox slider />
           </Table.Cell>
           <Table.Cell>Jamie Harington</Table.Cell>
           <Table.Cell>January 11, 2014</Table.Cell>
@@ -35,7 +35,7 @@ const TableApprove = () => {
         </Table.Row>
         <Table.Row>
           <Table.Cell collapsing>
-            <Checkbox fitted slider />
+            <Checkbox slider />
           </Table.Cell>
           <Table.Cell>Jill Lewis</Table.Cell>
           <Table.Cell>May 11, 2014</Table.Cell>

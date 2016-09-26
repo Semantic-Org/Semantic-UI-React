@@ -1,6 +1,6 @@
 import React from 'react'
-import * as common from 'test/specs/commonTests'
 
+import * as common from 'test/specs/commonTests'
 import TableCell from 'src/collections/Table/TableCell'
 
 describe('TableCell', () => {
@@ -17,22 +17,13 @@ describe('TableCell', () => {
   common.propKeyOnlyToClassName(TableCell, 'error')
   common.propKeyOnlyToClassName(TableCell, 'negative')
   common.propKeyOnlyToClassName(TableCell, 'positive')
+  common.propKeyOnlyToClassName(TableCell, 'singleLine', {
+    className: 'single line',
+  })
   common.propKeyOnlyToClassName(TableCell, 'warning')
 
   it('renders as a thead by default', () => {
     shallow(<TableCell />)
       .should.have.tagName('td')
-  })
-
-  describe('singleLine', () => {
-    it('omits by default', () => {
-      shallow(<TableCell />)
-        .should.not.have.className('single line')
-    })
-
-    it('adds className when true', () => {
-      shallow(<TableCell singleLine />)
-        .should.have.className('single line')
-    })
   })
 })

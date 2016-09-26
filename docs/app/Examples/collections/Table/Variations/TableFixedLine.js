@@ -17,9 +17,15 @@ const TableFixedLine = () => {
           <Table.Cell>John</Table.Cell>
           <Table.Cell>Approved</Table.Cell>
           <Table.Cell
-            title="This is much too long to fit I'm sorry about that"
+            title={
+            [
+              'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore',
+              'et dolore magna aliqua.',
+            ].join(' ')
+            }
           >
-            This is much too long to fit I'm sorry about that
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua.
           </Table.Cell>
         </Table.Row>
         <Table.Row>

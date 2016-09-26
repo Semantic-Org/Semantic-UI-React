@@ -1,8 +1,5 @@
 import React from 'react'
 
-import Table from 'src/collections/Table/Table'
-import TableColumn from 'src/collections/Table/TableColumn'
-import { sandbox } from 'test/utils'
 import * as common from 'test/specs/commonTests'
 import Table from 'src/collections/Table/Table'
 import TableBody from 'src/collections/Table/TableBody'
@@ -26,6 +23,9 @@ describe('Table', () => {
   common.propKeyOnlyToClassName(Table, 'fixed')
   common.propKeyOnlyToClassName(Table, 'inverted')
   common.propKeyOnlyToClassName(Table, 'selectable')
+  common.propKeyOnlyToClassName(Table, 'singleLine', {
+    className: 'single line',
+  })
   common.propKeyOnlyToClassName(Table, 'stackable')
   common.propKeyOnlyToClassName(Table, 'striped')
   common.propKeyOnlyToClassName(Table, 'structured')
@@ -41,17 +41,5 @@ describe('Table', () => {
   it('renders as a thead by default', () => {
     shallow(<Table />)
         .should.have.tagName('table')
-  })
-
-  describe('singleLine', () => {
-    it('omits by default', () => {
-      shallow(<Table />)
-        .should.not.have.className('single line')
-    })
-
-    it('adds className when true', () => {
-      shallow(<Table singleLine />)
-        .should.have.className('single line')
-    })
   })
 })

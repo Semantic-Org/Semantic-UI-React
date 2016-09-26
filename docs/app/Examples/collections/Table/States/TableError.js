@@ -14,27 +14,27 @@ const TableError = () => {
 
       <Table.Body>
         <Table.Row>
-          <td>No Name Specified</td>
-          <td>Approved</td>
-          <td>None</td>
+          <Table.Cell>No Name Specified</Table.Cell>
+          <Table.Cell>Approved</Table.Cell>
+          <Table.Cell>None</Table.Cell>
         </Table.Row>
         <Table.Row error>
-          <td>Jimmy</td>
-          <td>Cannot pull data</td>
-          <td>None</td>
+          <Table.Cell>Jimmy</Table.Cell>
+          <Table.Cell>Cannot pull data</Table.Cell>
+          <Table.Cell>None</Table.Cell>
         </Table.Row>
         <Table.Row>
-          <td>Jamie</td>
-          <td>Approved</td>
+          <Table.Cell>Jamie</Table.Cell>
+          <Table.Cell>Approved</Table.Cell>
           <Table.Cell error>
             <Icon name='attention' />
             Classified
           </Table.Cell>
         </Table.Row>
         <Table.Row>
-          <td>Jill</td>
-          <td>Approved</td>
-          <td>None</td>
+          <Table.Cell>Jill</Table.Cell>
+          <Table.Cell>Approved</Table.Cell>
+          <Table.Cell>None</Table.Cell>
         </Table.Row>
       </Table.Body>
     </Table>

@@ -1,6 +1,6 @@
 import React from 'react'
-import * as common from 'test/specs/commonTests'
 
+import * as common from 'test/specs/commonTests'
 import TableHeaderCell from 'src/collections/Table/TableHeaderCell'
 
 describe('TableHeaderCell', () => {

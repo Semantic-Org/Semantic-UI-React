@@ -1,6 +1,6 @@
 import React from 'react'
-import * as common from 'test/specs/commonTests'
 
+import * as common from 'test/specs/commonTests'
 import TableRow from 'src/collections/Table/TableRow'
 
 describe('TableRow', () => {

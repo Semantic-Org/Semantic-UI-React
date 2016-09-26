@@ -14,19 +14,19 @@ const TableLarge = () => {
 
       <Table.Body>
         <Table.Row>
-          <td>John</td>
-          <td>Approved</td>
-          <td>None</td>
+          <Table.Cell>John</Table.Cell>
+          <Table.Cell>Approved</Table.Cell>
+          <Table.Cell>None</Table.Cell>
         </Table.Row>
         <Table.Row>
-          <td>Jamie</td>
-          <td>Approved</td>
-          <td>Requires call</td>
+          <Table.Cell>Jamie</Table.Cell>
+          <Table.Cell>Approved</Table.Cell>
+          <Table.Cell>Requires call</Table.Cell>
         </Table.Row>
         <Table.Row>
-          <td>Jill</td>
-          <td>Denied</td>
-          <td>None</td>
+          <Table.Cell>Jill</Table.Cell>
+          <Table.Cell>Denied</Table.Cell>
+          <Table.Cell>None</Table.Cell>
         </Table.Row>
       </Table.Body>
 
