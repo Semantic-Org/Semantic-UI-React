@@ -9,7 +9,7 @@ import {
   SUI,
   useKeyOnly,
 } from '../../lib'
-import { createImage } from '../../factories'
+import { Image } from '../../elements'
 import CardContent from './CardContent'
 import CardDescription from './CardDescription'
 import CardGroup from './CardGroup'
@@ -63,7 +63,7 @@ function Card(props) {
 
   return (
     <ElementType {...rest} className={classes} href={href} onClick={handleClick}>
-      {createImage(image)}
+      {Image.create(image)}
       {(description || header || meta) && (
         <CardContent description={description} header={header} meta={meta} />
       )}

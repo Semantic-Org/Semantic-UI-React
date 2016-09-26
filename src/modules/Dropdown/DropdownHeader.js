@@ -7,7 +7,7 @@ import {
   getUnhandledProps,
   META,
 } from '../../lib'
-import { createIcon } from '../../factories'
+import { Icon } from '../../elements'
 
 function DropdownHeader(props) {
   const { className, children, content, icon } = props
@@ -25,7 +25,7 @@ function DropdownHeader(props) {
 
   return (
     <ElementType className={classes} {...rest}>
-      {createIcon(icon)}
+      {Icon.create(icon)}
       {content}
     </ElementType>
   )

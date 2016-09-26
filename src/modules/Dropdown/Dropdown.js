@@ -14,7 +14,8 @@ import {
   useKeyOnly,
   useKeyOrValueAndKey,
 } from '../../lib'
-import { createIcon, createShorthand } from '../../factories'
+import { Icon } from '../../elements'
+import { createShorthand } from '../../factories'
 import { Label } from '../../elements'
 import DropdownDivider from './DropdownDivider'
 import DropdownItem from './DropdownItem'
@@ -966,7 +967,7 @@ export default class Dropdown extends Component {
         {this.renderSearchInput()}
         {this.renderSearchSizer()}
         {trigger || this.renderText()}
-        {createIcon(icon)}
+        {Icon.create(icon)}
         {this.renderMenu()}
       </ElementType>
     )

@@ -12,6 +12,7 @@ import {
   useValueAndKey,
   useKeyOnly,
 } from '../../lib'
+import { createShorthandFactory } from '../../factories'
 import ImageGroup from './ImageGroup'
 
 /**
@@ -159,5 +160,7 @@ Image.defaultProps = {
   as: 'img',
   ui: true,
 }
+
+Image.create = createShorthandFactory(Image, value => ({ src: value }))
 
 export default Image

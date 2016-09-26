@@ -10,6 +10,7 @@ import {
   useKeyOnly,
   useValueAndKey,
 } from '../../lib'
+import { createShorthandFactory } from '../../factories'
 import IconGroup from './IconGroup'
 
 /**
@@ -112,5 +113,7 @@ Icon.propTypes = {
 Icon.defaultProps = {
   as: 'i',
 }
+
+Icon.create = createShorthandFactory(Icon, value => ({ name: value }))
 
 export default Icon

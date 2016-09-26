@@ -7,7 +7,7 @@ import {
   getElementType,
   META,
 } from '../../lib'
-import { createIcon } from '../../factories'
+import { Icon } from '../../elements'
 
 /**
  * A divider sub-component for Breadcrumb component.
@@ -18,7 +18,7 @@ function BreadcrumbDivider(props) {
   const classes = cx(className, 'divider')
   const ElementType = getElementType(BreadcrumbDivider, props)
 
-  if (icon) return createIcon(icon, { ...rest, className: classes })
+  if (icon) return Icon.create(icon, { ...rest, className: classes })
 
   return <ElementType {...rest} className={classes}>{children || '/'}</ElementType>
 }

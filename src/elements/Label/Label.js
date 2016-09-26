@@ -11,8 +11,8 @@ import {
   useKeyOrValueAndKey,
   useValueAndKey,
 } from '../../lib'
-import { createIcon, createImage, createShorthand } from '../../factories'
-import { Icon } from '../'
+import { createShorthand, createShorthandFactory } from '../../factories'
+import { Icon, Image } from '../'
 import LabelDetail from './LabelDetail'
 
 /**
@@ -58,8 +58,8 @@ function Label(props) {
 
   return (
     <ElementType className={classes} onClick={handleClick} {...rest}>
-      {createIcon(icon)}
-      {typeof image !== 'boolean' && createImage(image)}
+      {Icon.create(icon)}
+      {typeof image !== 'boolean' && Image.create(image)}
       {content}
       {createShorthand(LabelDetail, val => ({ content: val }), detail)}
       {(removable || onRemove) && (
@@ -193,5 +193,7 @@ Label.propTypes = {
 }
 
 Label.Detail = LabelDetail
+
+Label.create = createShorthandFactory(Label, value => ({ content: value }))
 
 export default Label

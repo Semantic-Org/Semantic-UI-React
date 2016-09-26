@@ -12,7 +12,8 @@ import {
   useKeyOrValueAndKey,
   useKeyOnly,
 } from '../../lib'
-import { createIcon, createImage, createShorthand } from '../../factories'
+import { Icon, Image } from '../../elements'
+import { createShorthand } from '../../factories'
 import HeaderSubheader from './HeaderSubheader'
 import HeaderContent from './HeaderContent'
 
@@ -57,7 +58,7 @@ function Header(props) {
   if ((image && typeof image !== 'boolean') || (icon && typeof icon !== 'boolean')) {
     return (
       <ElementType {...rest} className={classes}>
-        {createIcon(icon) || createImage(image)}
+        {Icon.create(icon) || Image.create(image)}
         {(content || subheader) && (
           <HeaderContent>
             {content}

@@ -9,7 +9,8 @@ import {
   getUnhandledProps,
   useKeyOnly,
 } from '../../lib'
-import { createIcon, createShorthand } from '../../factories'
+import { Icon } from '../../elements'
+import { createShorthand } from '../../factories'
 
 function DropdownItem(props) {
   const {
@@ -44,7 +45,7 @@ function DropdownItem(props) {
   return (
     <ElementType {...rest} className={classes} onClick={handleClick}>
       {createShorthand('span', val => ({ className: 'description', children: val }), description)}
-      {createIcon(iconName)}
+      {Icon.create(iconName)}
       {text}
       {children}
     </ElementType>

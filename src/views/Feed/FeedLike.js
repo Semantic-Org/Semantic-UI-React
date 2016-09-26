@@ -7,7 +7,7 @@ import {
   getUnhandledProps,
   META,
 } from '../../lib'
-import { createIcon } from '../../factories'
+import { Icon } from '../../elements'
 
 function FeedLike(props) {
   const { children, className, icon, like } = props
@@ -17,7 +17,7 @@ function FeedLike(props) {
 
   return (
     <ElementType {...rest} className={classes}>
-      {createIcon(icon)}
+      {Icon.create(icon)}
       {children || like}
     </ElementType>
   )
