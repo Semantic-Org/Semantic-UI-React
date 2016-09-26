@@ -11,7 +11,7 @@ import {
   useKeyOnly,
   useKeyOrValueAndKey,
 } from '../../lib'
-import { createIcon } from '../../factories'
+import { Icon } from '../../elements'
 
 function MenuItem(props) {
   const {
@@ -46,7 +46,7 @@ function MenuItem(props) {
 
   return (
     <ElementType {...rest} className={classes} onClick={handleClick}>
-      {createIcon(icon)}
+      {Icon.create(icon)}
       {content || _.startCase(name)}
     </ElementType>
   )

@@ -2,13 +2,13 @@ import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
 import {
+  createHTMLImage,
   customPropTypes,
   getElementType,
   getUnhandledProps,
   META,
   useKeyOnly,
 } from '../../lib'
-import { createHTMLImage } from '../../factories'
 
 function FeedExtra(props) {
   const { children, className, images, text } = props

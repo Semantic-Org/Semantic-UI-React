@@ -3,6 +3,7 @@ import React, { PropTypes } from 'react'
 
 import {
   getElementType,
+  createShorthandFactory,
   customPropTypes,
   getUnhandledProps,
   META,
@@ -159,5 +160,7 @@ Image.defaultProps = {
   as: 'img',
   ui: true,
 }
+
+Image.create = createShorthandFactory(Image, value => ({ src: value }))
 
 export default Image

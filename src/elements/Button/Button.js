@@ -3,6 +3,7 @@ import React, { PropTypes } from 'react'
 
 import {
   customPropTypes,
+  createShorthandFactory,
   getElementType,
   getUnhandledProps,
   makeDebugger,
@@ -12,7 +13,7 @@ import {
   useKeyOrValueAndKey,
   useValueAndKey,
 } from '../../lib'
-import { createIcon, createLabel } from '../../factories'
+import { Icon, Label } from '../'
 import ButtonContent from './ButtonContent'
 import ButtonGroup from './ButtonGroup'
 import ButtonOr from './ButtonOr'
@@ -77,7 +78,7 @@ function Button(props) {
     const classes = cx('ui', baseClasses, 'button', className)
     const containerClasses = cx('ui', labeledClasses, 'button', className)
     debug('render label:', { classes, containerClasses }, props)
-    const labelElement = createLabel(label, {
+    const labelElement = Label.create(label, {
       basic: true,
       pointing: labeled === 'left' ? 'right' : 'left',
     })
@@ -85,7 +86,7 @@ function Button(props) {
       <ElementType {...rest} className={containerClasses}>
         {labeled === 'left' && labelElement}
         <button className={classes}>
-          {createIcon(icon)} {content}
+          {Icon.create(icon)} {content}
         </button>
         {(labeled === 'right' || !labeled) && labelElement}
       </ElementType>
@@ -97,7 +98,7 @@ function Button(props) {
     debug('render icon && !label:', { classes })
     return (
       <ElementType {...rest} className={classes} tabIndex={tabIndex}>
-        {createIcon(icon)} {content}
+        {Icon.create(icon)} {content}
       </ElementType>
     )
   }
@@ -249,5 +250,7 @@ Button.propTypes = {
 Button.defaultProps = {
   as: 'button',
 }
+
+Button.create = createShorthandFactory(Button, value => ({ content: value }))
 
 export default Button

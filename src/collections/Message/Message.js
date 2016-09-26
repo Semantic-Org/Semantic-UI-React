@@ -3,6 +3,7 @@ import React, { PropTypes } from 'react'
 import cx from 'classnames'
 
 import {
+  createShorthand,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -11,7 +12,6 @@ import {
   useKeyOnly,
   useKeyOrValueAndKey,
 } from '../../lib'
-import { createIcon, createShorthand } from '../../factories'
 import { Icon } from '../../elements'
 import MessageContent from './MessageContent'
 import MessageHeader from './MessageHeader'
@@ -74,7 +74,7 @@ function Message(props) {
     return (
       <ElementType {...rest} className={classes}>
         {dismissIcon}
-        {createIcon(icon)}
+        {Icon.create(icon)}
         {(header || content || list) && (
           <MessageContent>
             {createShorthand(MessageHeader, val => ({ children: val }), header)}

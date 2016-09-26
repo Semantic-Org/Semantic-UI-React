@@ -2,12 +2,13 @@ import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
 import {
+  createHTMLImage,
   customPropTypes,
   getElementType,
   getUnhandledProps,
   META,
 } from '../../lib'
-import { createIcon, createHTMLImage } from '../../factories'
+import { Icon } from '../../elements'
 
 function FeedLabel(props) {
   const { children, className, icon, image } = props
@@ -18,7 +19,7 @@ function FeedLabel(props) {
   return (
     <ElementType {...rest} className={classes}>
       {children}
-      {createIcon(icon)}
+      {Icon.create(icon)}
       {createHTMLImage(image)}
     </ElementType>
   )

@@ -2,6 +2,8 @@ import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
 import {
+  createShorthand,
+  createShorthandFactory,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -11,8 +13,7 @@ import {
   useKeyOrValueAndKey,
   useValueAndKey,
 } from '../../lib'
-import { createIcon, createImage, createShorthand } from '../../factories'
-import { Icon } from '../'
+import { Icon, Image } from '../'
 import LabelDetail from './LabelDetail'
 
 /**
@@ -28,8 +29,8 @@ function Label(props) {
   const handleRemove = e => onRemove && onRemove(e, props)
 
   const pointingClass = pointing === true && 'pointing'
-      || (pointing === 'left' || pointing === 'right') && `${pointing} pointing`
-      || (pointing === 'above' || pointing === 'below') && `pointing ${pointing}`
+    || (pointing === 'left' || pointing === 'right') && `${pointing} pointing`
+    || (pointing === 'above' || pointing === 'below') && `pointing ${pointing}`
 
   const classes = cx('ui',
     size,
@@ -58,8 +59,8 @@ function Label(props) {
 
   return (
     <ElementType className={classes} onClick={handleClick} {...rest}>
-      {createIcon(icon)}
-      {typeof image !== 'boolean' && createImage(image)}
+      {Icon.create(icon)}
+      {typeof image !== 'boolean' && Image.create(image)}
       {content}
       {createShorthand(LabelDetail, val => ({ content: val }), detail)}
       {(removable || onRemove) && (
@@ -193,5 +194,7 @@ Label.propTypes = {
 }
 
 Label.Detail = LabelDetail
+
+Label.create = createShorthandFactory(Label, value => ({ content: value }))
 
 export default Label

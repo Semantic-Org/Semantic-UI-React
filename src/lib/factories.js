@@ -2,10 +2,6 @@ import _ from 'lodash'
 import cx from 'classnames'
 import React, { isValidElement } from 'react'
 
-import Icon from './elements/Icon/Icon'
-import Image from './elements/Image/Image'
-import Label from './elements/Label/Label'
-
 /**
  * Merges props and classNames.
  *
@@ -50,21 +46,18 @@ export function createShorthand(Component, mapValueToProps, val, defaultProps = 
 
   // Map values to props and create a ReactElement
   if (_.isString(val) || _.isNumber(val)) {
-    return <Component {...mergePropsAndClassName(defaultProps, mapValueToProps(val))} />
+    return <Component {...mergePropsAndClassName(mapValueToProps(val), defaultProps)} />
   }
 
   // Otherwise null
   return null
 }
 
-function createShorthandFactory(Component, mapValueToProps) {
+export function createShorthandFactory(Component, mapValueToProps) {
   return _.partial(createShorthand, Component, mapValueToProps)
 }
 
 // ----------------------------------------
-// Factories
+// HTML Factories
 // ----------------------------------------
-export const createIcon = createShorthandFactory(Icon, value => ({ name: value }))
-export const createImage = createShorthandFactory(Image, value => ({ src: value }))
 export const createHTMLImage = createShorthandFactory('img', value => ({ src: value }))
-export const createLabel = createShorthandFactory(Label, value => ({ content: value }))

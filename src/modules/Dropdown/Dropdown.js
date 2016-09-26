@@ -4,6 +4,7 @@ import React, { Children, cloneElement, PropTypes } from 'react'
 
 import {
   AutoControlledComponent as Component,
+  createShorthand,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -14,7 +15,7 @@ import {
   useKeyOnly,
   useKeyOrValueAndKey,
 } from '../../lib'
-import { createIcon, createShorthand } from '../../factories'
+import { Icon } from '../../elements'
 import { Label } from '../../elements'
 import DropdownDivider from './DropdownDivider'
 import DropdownItem from './DropdownItem'
@@ -966,7 +967,7 @@ export default class Dropdown extends Component {
         {this.renderSearchInput()}
         {this.renderSearchSizer()}
         {trigger || this.renderText()}
-        {createIcon(icon)}
+        {Icon.create(icon)}
         {this.renderMenu()}
       </ElementType>
     )

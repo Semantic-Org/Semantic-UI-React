@@ -2,12 +2,12 @@ import React, { PropTypes } from 'react'
 import cx from 'classnames'
 
 import {
+  createShorthand,
   customPropTypes,
   getElementType,
   getUnhandledProps,
   META,
 } from '../../lib'
-import { createShorthand } from '../../factories'
 import StepDescription from './StepDescription'
 import StepTitle from './StepTitle'
 

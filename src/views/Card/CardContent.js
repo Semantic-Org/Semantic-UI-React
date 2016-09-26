@@ -2,13 +2,13 @@ import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
 import {
+  createShorthand,
   customPropTypes,
   getElementType,
   getUnhandledProps,
   META,
   useKeyOnly,
 } from '../../lib'
-import { createShorthand } from '../../factories'
 import CardDescription from './CardDescription'
 import CardHeader from './CardHeader'
 import CardMeta from './CardMeta'

@@ -2,6 +2,7 @@ import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
 import {
+  createShorthand,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -9,7 +10,6 @@ import {
   SUI,
   useVerticalAlignProp,
 } from '../../lib'
-import { createShorthand } from '../../factories'
 import ItemHeader from './ItemHeader'
 import ItemDescription from './ItemDescription'
 import ItemExtra from './ItemExtra'
