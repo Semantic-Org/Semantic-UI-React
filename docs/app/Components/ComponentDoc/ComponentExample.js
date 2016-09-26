@@ -7,6 +7,25 @@ import Editor from 'docs/app/Components/Editor/Editor'
 import { getUnhandledProps } from 'src/lib'
 import { Grid, Header, Icon, Divider } from 'stardust'
 
+const showCodeStyle = {
+  position: 'absolute',
+  textAlign: 'right',
+  top: '1rem',
+  right: '1rem',
+}
+
+const descriptionStyle = {
+  marginRight: '5em',
+}
+
+const codeIconStyle = {
+  fontWeight: 'bold',
+}
+
+const titleStyle = {
+  marginBottom: 0,
+}
+
 /**
  * Renders a `component` and the raw `code` that produced it.
  * Allows toggling the the raw `code` code block.
@@ -22,7 +41,7 @@ export default class ComponentExample extends Component {
 
   constructor(props, context) {
     super(props, context)
-    this.state = { showCode: false }
+    this.state = { showCode: false, showHTML: false }
     this.fileContents = props.exampleSrc || require(`!raw!docs/app/Examples/${props.examplePath}`)
     this.component = exampleContext(`./${props.examplePath}.js`).default
   }
@@ -83,48 +102,34 @@ export default class ComponentExample extends Component {
     }
 
     return (
-      <Grid style={style} divided={active}>
-        <Grid.Row columns={1}>
-          <Grid.Column>
-            <Grid>
-              <Grid.Column width={12}>
-                {title && <Header as='h3' style={{ marginBottom: 0 }}>{title}</Header>}
-                {description ? <p>{description}</p> : children}
-              </Grid.Column>
-              <Grid.Column width={4} textAlign='right'>
-                <Icon
-                  link
-                  bordered
-                  name='code'
-                  color={showCode ? 'green' : 'grey'}
-                  onClick={this.toggleShowCode}
-                  style={{ fontWeight: 'bold' }}
-                />
-                <Icon
-                  link
-                  bordered
-                  name='html5'
-                  color={showHTML ? 'green' : 'grey'}
-                  onClick={this.toggleShowHTML}
-                />
-              </Grid.Column>
-            </Grid>
-          </Grid.Column>
-          {description && children && (
-            <Grid.Column>{children}</Grid.Column>
-          )}
-        </Grid.Row>
-        <Grid.Row>
-          <Grid.Column className={`rendered-example ${this.getKebabExamplePath()}`}>
-            {createElement(this.component, rest)}
-          </Grid.Column>
-        </Grid.Row>
-        {active && (
-          <Grid.Row columns='1'>
-            {this.renderCode()}
-            {this.renderHTML()}
-          </Grid.Row>
-        )}
+      <Grid style={style} divided={active} columns='1'>
+        <Grid.Column>
+          <div style={showCodeStyle}>
+            <Icon
+              link
+              bordered
+              name='code'
+              color={showCode ? 'green' : 'grey'}
+              onClick={this.toggleShowCode}
+              style={codeIconStyle}
+            />
+            <Icon
+              link
+              bordered
+              name='html5'
+              color={showHTML ? 'green' : 'grey'}
+              onClick={this.toggleShowHTML}
+            />
+          </div>
+          {title && <Header as='h3' style={titleStyle}>{title}</Header>}
+          {description && <p style={descriptionStyle}>{description}</p>}
+          {children}
+        </Grid.Column>
+        <Grid.Column className={`rendered-example ${this.getKebabExamplePath()}`}>
+          {createElement(this.component, rest)}
+        </Grid.Column>
+        {showCode && this.renderCode()}
+        {showHTML && this.renderHTML()}
       </Grid>
     )
   }
