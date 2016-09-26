@@ -1,40 +1,37 @@
-import React, { Component, PropTypes } from 'react'
-import classNames from 'classnames'
+import cx from 'classnames'
+import React, { PropTypes } from 'react'
 
 import {
   customPropTypes,
   getElementType,
+  getUnhandledProps,
   META,
 } from '../../lib'
-import ListItem from './ListItem'
 
-export default class List extends Component {
-  static propTypes = {
-    /** An element type to render as (string or function). */
-    as: customPropTypes.as,
+function List(props) {
+  const { children, className } = props
+  const classes = cx('ui', className, 'item')
 
-    children: PropTypes.node,
-    className: PropTypes.string,
-  }
+  const ElementType = getElementType(List, props)
+  const rest = getUnhandledProps(List, props)
 
-  static _meta = {
-    name: 'List',
-    type: META.TYPES.ELEMENT,
-  }
-
-  static Item = ListItem
-
-  render() {
-    const classes = classNames(
-      'ui',
-      this.props.className,
-      'list'
-    )
-    const ElementType = getElementType(List, this.props)
-    return (
-      <ElementType {...this.props} className={classes}>
-        {this.props.children}
-      </ElementType>
-    )
-  }
+  return <ElementType {...rest} className={classes}>{children}</ElementType>
 }
+
+List._meta = {
+  name: 'List',
+  type: META.TYPES.ELEMENT,
+}
+
+List.propTypes = {
+  /** An element type to render as (string or function). */
+  as: customPropTypes.as,
+
+  /** Primary content of the List */
+  children: PropTypes.node,
+
+  /** Classes to add to the List className. */
+  className: PropTypes.string,
+}
+
+export default List
