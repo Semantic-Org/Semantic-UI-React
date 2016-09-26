@@ -26,6 +26,11 @@ const titleStyle = {
   marginBottom: 0,
 }
 
+const headerColumnStyle = {
+  // provide room for absolutely positions toggle code icons
+  minHeight: '4em !important',
+}
+
 /**
  * Renders a `component` and the raw `code` that produced it.
  * Allows toggling the the raw `code` code block.
@@ -103,7 +108,7 @@ export default class ComponentExample extends Component {
 
     return (
       <Grid style={style} divided={active} columns='1'>
-        <Grid.Column>
+        <Grid.Column style={headerColumnStyle}>
           <div style={showCodeStyle}>
             <Icon
               link
