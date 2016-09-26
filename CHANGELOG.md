@@ -1,5 +1,25 @@
 # Change Log
 
+## [v0.47.0](https://github.com/TechnologyAdvice/stardust/tree/v0.47.0) (2016-09-26)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.46.3...v0.47.0)
+
+**Implemented enhancements:**
+
+- fix\(ComponentExample\): title, desc, and icon alignments [\#549](https://github.com/TechnologyAdvice/stardust/pull/549) ([levithomason](https://github.com/levithomason))
+- feat\(Table\): update to v1 API [\#451](https://github.com/TechnologyAdvice/stardust/pull/451) ([levithomason](https://github.com/levithomason))
+
+**Fixed bugs:**
+
+- fix\(factories\): remove circular references [\#550](https://github.com/TechnologyAdvice/stardust/pull/550) ([levithomason](https://github.com/levithomason))
+
+**Closed issues:**
+
+- refactor\(commonTests\): rename for consistency and clarity [\#481](https://github.com/TechnologyAdvice/stardust/issues/481)
+
+**Merged pull requests:**
+
+- feat\(commonTests\): add options and expected className [\#548](https://github.com/TechnologyAdvice/stardust/pull/548) ([levithomason](https://github.com/levithomason))
+
 ## [v0.46.3](https://github.com/TechnologyAdvice/stardust/tree/v0.46.3) (2016-09-25)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.46.2...v0.46.3)
 
