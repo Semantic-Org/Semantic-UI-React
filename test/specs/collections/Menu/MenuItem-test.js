@@ -10,7 +10,7 @@ describe('MenuItem', () => {
   common.implementsIconProp(MenuItem)
   common.propKeyOnlyToClassName(MenuItem, 'active')
   common.propValueOnlyToClassName(MenuItem, 'color')
-  common.propKeyOrValueToClassName(MenuItem, 'fitted')
+  common.propKeyOrValueAndKeyToClassName(MenuItem, 'fitted')
   common.propKeyOnlyToClassName(MenuItem, 'icon')
   common.propKeyOnlyToClassName(MenuItem, 'header')
   common.propKeyOnlyToClassName(MenuItem, 'link')
