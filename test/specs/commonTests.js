@@ -464,7 +464,7 @@ const _definesPropOptions = (Component, propKey) => {
 }
 
 const _noDefaultClassNameFromProp = (Component, propKey, options = {}) => {
-  const { requiredProps = {} } = options
+  const { className = propKey, requiredProps = {} } = options
   // required props may include a prop that creates a className
   // if so, we cannot assert that it doesn't exist by default because it is required to exist
   // skip assertions for required props
@@ -472,20 +472,19 @@ const _noDefaultClassNameFromProp = (Component, propKey, options = {}) => {
 
   it('is not included in className when not defined', () => {
     const wrapper = shallow(<Component {...requiredProps} />)
-    wrapper.should.not.have.className(propKey)
+    wrapper.should.not.have.className(className)
 
     // not all component props define prop options in _meta.props
     // if they do, ensure that none of the prop option values are in className
     // SUI classes ought to be built up using a declarative component API
-    const propOptions = _.get(Component, `_meta.props[${propKey}]`)
-    _.each(propOptions, propVal => {
+    _.each(_.get(Component, `_meta.props[${propKey}]`), propVal => {
       wrapper.should.not.have.className(propVal.toString())
     })
   })
 }
 
 const _noClassNameFromBoolProps = (Component, propKey, options = {}) => {
-  const { requiredProps = {} } = options
+  const { className = propKey, requiredProps = {} } = options
 
   _.each([true, false], bool => it(`does not add any className when ${bool}`, () => {
     // silence propType warnings
@@ -493,23 +492,23 @@ const _noClassNameFromBoolProps = (Component, propKey, options = {}) => {
 
     const wrapper = shallow(createElement(Component, { ...requiredProps, [propKey]: bool }))
 
-    wrapper.should.not.have.className(propKey)
+    wrapper.should.not.have.className(className)
     wrapper.should.not.have.className('true')
     wrapper.should.not.have.className('false')
 
-    _.each(Component._meta.props[propKey], propVal => {
+    _.each(_.get(Component, `_meta.props[${propKey}]`), propVal => {
       wrapper.should.not.have.className(propVal.toString())
     })
   }))
 }
 
 const _classNamePropValueBeforePropName = (Component, propKey, options = {}) => {
-  const { requiredProps = {} } = options
+  const { className = propKey, requiredProps = {} } = options
 
   _.each(_.get(Component, `_meta.props[${propKey}]`), (propVal) => {
     it(`adds "${propVal} ${propKey}" to className`, () => {
       shallow(createElement(Component, { ...requiredProps, [propKey]: propVal }))
-        .should.have.className(`${propVal} ${propKey}`)
+        .should.have.className(`${propVal} ${className}`)
     })
   })
 }
@@ -536,7 +535,7 @@ export const implementsWidthProp = (Component, options = {}) => {
     _noClassNameFromBoolProps(Component, propKey, { requiredProps })
 
     it('adds numberToWord value to className', () => {
-      _.without(Component._meta.props[propKey], 'equal').forEach((width) => {
+      _.without(_.get(Component, `_meta.props[${propKey}]`), 'equal').forEach((width) => {
         const expectClass = widthClass ? `${numberToWord(width)} ${widthClass}` : numberToWord(width)
 
         shallow(createElement(Component, { ...requiredProps, [propKey]: width }))
@@ -768,9 +767,10 @@ export const implementsVerticalAlignProp = (Component, options = {}) => {
  * @param {String} propKey A props key.
  * @param {Object} [options={}]
  * @param {Object} [options.requiredProps={}] Props required to render the component.
+ * @param {Object} [options.className=propKey] Props required to render the component.
  */
 export const propKeyOnlyToClassName = (Component, propKey, options = {}) => {
-  const { requiredProps = {} } = options
+  const { className = propKey, requiredProps = {} } = options
   const { assertRequired } = commonTestHelpers('propKeyOnlyToClassName', Component)
 
   describe(`${propKey} (common)`, () => {
@@ -781,7 +781,7 @@ export const propKeyOnlyToClassName = (Component, propKey, options = {}) => {
 
     it('adds prop name to className', () => {
       shallow(createElement(Component, { ...requiredProps, [propKey]: true }))
-        .should.have.className(propKey)
+        .should.have.className(className)
     })
 
     it('does not add prop value to className', () => {
@@ -801,6 +801,7 @@ export const propKeyOnlyToClassName = (Component, propKey, options = {}) => {
  * @param {String} propKey A props key.
  * @param {Object} [options={}]
  * @param {Object} [options.requiredProps={}] Props required to render the component.
+ * @param {Object} [options.className=propKey] Props required to render the component.
  */
 export const propValueOnlyToClassName = (Component, propKey, options = {}) => {
   const { requiredProps = {} } = options
@@ -815,18 +816,20 @@ export const propValueOnlyToClassName = (Component, propKey, options = {}) => {
     _noClassNameFromBoolProps(Component, propKey, { requiredProps })
 
     it('adds prop value to className', () => {
-      const sample = _.sample(Component._meta.props[propKey])
-      shallow(createElement(Component, { ...requiredProps, [propKey]: sample }))
-        .should.have.className(sample)
+      _.each(_.get(Component, `_meta.props[${propKey}]`), propValue => {
+        shallow(createElement(Component, { ...requiredProps, [propKey]: propValue }))
+          .should.have.className(propValue)
+      })
     })
 
     it('does not add prop name to className', () => {
       // silence propType warnings
       consoleUtil.disableOnce()
 
-      const sample = _.sample(Component._meta.props[propKey])
-      shallow(createElement(Component, { ...requiredProps, [propKey]: sample }))
-        .should.not.have.className(propKey)
+      _.each(_.get(Component, `_meta.props[${propKey}]`), propValue => {
+        shallow(createElement(Component, { ...requiredProps, [propKey]: propValue }))
+          .should.not.have.className(propKey)
+      })
     })
   })
 }
@@ -837,9 +840,10 @@ export const propValueOnlyToClassName = (Component, propKey, options = {}) => {
  * @param {String} propKey A props key.
  * @param {Object} [options={}]
  * @param {Object} [options.requiredProps={}] Props required to render the component.
+ * @param {Object} [options.className=propKey] Props required to render the component.
  */
 export const propKeyAndValueToClassName = (Component, propKey, options = {}) => {
-  const { requiredProps = {} } = options
+  const { className = propKey, requiredProps = {} } = options
   const { assertRequired } = commonTestHelpers('propKeyAndValueToClassName', Component)
 
   describe(`${propKey} (common)`, () => {
@@ -848,8 +852,8 @@ export const propKeyAndValueToClassName = (Component, propKey, options = {}) => 
 
     _definesPropOptions(Component, propKey)
     _noDefaultClassNameFromProp(Component, propKey, { requiredProps })
-    _noClassNameFromBoolProps(Component, propKey, { requiredProps })
-    _classNamePropValueBeforePropName(Component, propKey, { requiredProps })
+    _noClassNameFromBoolProps(Component, propKey, { className, requiredProps })
+    _classNamePropValueBeforePropName(Component, propKey, { className, requiredProps })
   })
 }
 
@@ -859,9 +863,10 @@ export const propKeyAndValueToClassName = (Component, propKey, options = {}) => 
  * @param {String} propKey A props key.
  * @param {Object} [options={}]
  * @param {Object} [options.requiredProps={}] Props required to render the component.
+ * @param {Object} [options.className=propKey] Props required to render the component.
  */
 export const propKeyOrValueToClassName = (Component, propKey, options = {}) => {
-  const { requiredProps = {} } = options
+  const { className = propKey, requiredProps = {} } = options
   const { assertRequired } = commonTestHelpers('propKeyOrValueToClassName', Component)
 
   describe(`${propKey} (common)`, () => {
@@ -878,17 +883,17 @@ export const propKeyOrValueToClassName = (Component, propKey, options = {}) => {
 
     it('adds only the name to className when true', () => {
       shallow(createElement(Component, { ...requiredProps, [propKey]: true }))
-        .should.have.className(propKey)
+        .should.have.className(className)
     })
 
     it('adds no className when false', () => {
       const wrapper = shallow(createElement(Component, { ...requiredProps, [propKey]: false }))
 
-      wrapper.should.not.have.className(propKey)
+      wrapper.should.not.have.className(className)
       wrapper.should.not.have.className('true')
       wrapper.should.not.have.className('false')
 
-      _.each(Component._meta.props[propKey], propVal => {
+      _.each(_.get(Component, `_meta.props[${propKey}]`), propVal => {
         wrapper.should.not.have.className(propVal)
       })
     })
