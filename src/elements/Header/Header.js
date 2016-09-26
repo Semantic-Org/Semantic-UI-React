@@ -97,14 +97,7 @@ Header.propTypes = {
   className: PropTypes.string,
 
   /** Primary content */
-  children: customPropTypes.every([
-    PropTypes.node,
-    customPropTypes.disallow(['image']),
-    customPropTypes.givenProps(
-      { icon: PropTypes.oneOfType([PropTypes.string, PropTypes.element, PropTypes.object]) },
-      customPropTypes.disallow(['icon']),
-    ),
-  ]),
+  children: PropTypes.node,
 
   /** Primary content.  Mutually exclusive with children. */
   content: customPropTypes.every([
@@ -116,11 +109,7 @@ Header.propTypes = {
   icon: customPropTypes.every([
     customPropTypes.disallow(['image']),
     customPropTypes.givenProps(
-      { children: PropTypes.node.isRequired },
-      PropTypes.bool,
-    ),
-    customPropTypes.givenProps(
-      { icon: PropTypes.oneOfType([PropTypes.string, PropTypes.element, PropTypes.object]) },
+      { icon: PropTypes.oneOfType([PropTypes.string, PropTypes.element, PropTypes.object]).isRequired },
       customPropTypes.disallow(['children']),
     ),
   ]),
@@ -129,11 +118,7 @@ Header.propTypes = {
   image: customPropTypes.every([
     customPropTypes.disallow(['icon']),
     customPropTypes.givenProps(
-      { children: PropTypes.node.isRequired },
-      PropTypes.bool,
-    ),
-    customPropTypes.givenProps(
-      { image: PropTypes.oneOfType([PropTypes.string, PropTypes.element, PropTypes.object]) },
+      { image: PropTypes.oneOfType([PropTypes.string, PropTypes.element, PropTypes.object]).isRequired },
       customPropTypes.disallow(['children']),
     ),
   ]),

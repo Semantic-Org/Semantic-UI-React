@@ -1,174 +1,173 @@
 import _ from 'lodash'
-import React, { Children, Component, PropTypes } from 'react'
 import cx from 'classnames'
+import React, { PropTypes } from 'react'
+
 import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
   META,
+  SUI,
+  useKeyOnly,
+  useKeyOrValueAndKey,
+  useWidthProp,
 } from '../../lib'
-import TableColumn from './TableColumn'
+import TableBody from './TableBody'
+import TableCell from './TableCell'
+import TableFooter from './TableFooter'
+import TableHeader from './TableHeader'
+import TableHeaderCell from './TableHeaderCell'
+import TableRow from './TableRow'
 
-export default class Table extends Component {
-  static propTypes = {
-    /** An element type to render as (string or function). */
-    as: customPropTypes.as,
+/**
+ * A table displays a collections of data grouped into rows
+ */
+function Table(props) {
+  const {
+    basic,
+    celled,
+    children,
+    className,
+    collapsing,
+    color,
+    columns,
+    compact,
+    definition,
+    fixed,
+    inverted,
+    padded,
+    selectable,
+    singleLine,
+    size,
+    stackable,
+    striped,
+    structured,
+    unstackable,
+  } = props
+  const classes = cx(
+    'ui',
+    color,
+    size,
+    useKeyOrValueAndKey(basic, 'basic'),
+    useKeyOnly(celled, 'celled'),
+    useKeyOnly(collapsing, 'collapsing'),
+    useKeyOrValueAndKey(compact, 'compact'),
+    useKeyOnly(definition, 'definition'),
+    useKeyOnly(fixed, 'fixed'),
+    useKeyOnly(inverted, 'inverted'),
+    useKeyOrValueAndKey(padded, 'padded'),
+    useKeyOnly(selectable, 'selectable'),
+    useKeyOnly(singleLine, 'single line'),
+    useKeyOnly(stackable, 'stackable'),
+    useKeyOnly(striped, 'striped'),
+    useKeyOnly(structured, 'structured'),
+    useKeyOnly(unstackable, 'unstackable'),
+    useWidthProp(columns, 'column'),
+    className,
+    'table'
+  )
 
-    children: customPropTypes.ofComponentTypes(['TableColumn']),
-    className: PropTypes.string,
-    data: PropTypes.array,
-    defaultSelectedRows: PropTypes.arrayOf(PropTypes.number),
-    onSelectRow: PropTypes.func,
-    onSortChange: PropTypes.func,
-    sort: PropTypes.shape({
-      key: PropTypes.string,
-      direction: PropTypes.oneOf(['descending', 'ascending']),
-    }),
-  }
+  const ElementType = getElementType(Table, props)
+  const rest = getUnhandledProps(Table, props)
 
-  static defaultProps = {
-    as: 'table',
-    sort: {
-      key: null,
-      direction: 'descending',
-    },
-  }
-
-  constructor(props, context) {
-    super(props, context)
-    this.state = {
-      selectedRows: this.props.defaultSelectedRows || [],
-    }
-  }
-
-  static getSafeCellContents(content) {
-    // React cannot render objects, stringify them instead
-    return _.isObject(content) ? JSON.stringify(content) : content
-  }
-
-  static Column = TableColumn
-
-  _isRowSelected(index) {
-    return _.includes(this.state.selectedRows, index)
-  }
-
-  _isSelectable = () => {
-    return _.includes(this.props.className, 'selectable')
-  }
-
-  _unselectRow(index) {
-    if (!this._isSelectable()) return
-    this.setState({
-      selectedRows: _.without(this.state.selectedRows, index),
-    })
-  }
-
-  _selectRow(index) {
-    if (!this._isSelectable()) return
-    this.setState({ selectedRows: [index] })
-  }
-
-  _unselectAllRows() {
-    if (!this._isSelectable()) return
-    this.setState({ selectedRows: [] })
-  }
-
-  _toggleSelectRow(index) {
-    if (this._isRowSelected(index)) {
-      this._unselectRow(index)
-    } else {
-      this._selectRow(index)
-    }
-  }
-
-  _handleSelectRow(rowItem, rowIndex) {
-    this._toggleSelectRow(rowIndex)
-    if (this.props.onSelectRow) this.props.onSelectRow(rowItem, rowIndex)
-  }
-
-  _handleSortHeaderChange(key, direction) {
-    const { onSortChange } = this.props
-    if (onSortChange) {
-      this._unselectAllRows()
-      onSortChange(key, direction)
-    }
-  }
-
-  _getHeaders() {
-    const { children, data, sort } = this.props
-
-    return Children.map(children, (column) => {
-      const { dataKey, headerRenderer } = column.props
-      const content = headerRenderer ? headerRenderer(data[0]) : _.startCase(dataKey)
-      const isSorted = sort.key === dataKey
-      const onClick = () => this._handleSortHeaderChange(
-        dataKey, sort.direction === 'ascending' ? 'descending' : 'ascending'
-      )
-      const classes = cx({
-        sorted: isSorted,
-        ascending: isSorted && sort.direction === 'ascending',
-        descending: isSorted && sort.direction === 'descending',
-      })
-
-      return <th className={classes} key={dataKey} onClick={onClick}>{content}</th>
-    })
-  }
-
-  _getCells(dataItem, rowIndex) {
-    return Children.map(this.props.children, (column) => {
-      let content
-      if (column.props.cellRenderer) {
-        content = column.props.cellRenderer(dataItem)
-      } else {
-        const itemContents = dataItem[column.props.dataKey]
-        content = Table.getSafeCellContents(itemContents)
-      }
-
-      return <td key={rowIndex + column.props.dataKey}>{content}</td>
-    })
-  }
-
-  _getRows() {
-    return _.map(this.props.data, (dataItem, rowIndex) => {
-      const cells = this._getCells(dataItem, rowIndex)
-      const classes = cx({
-        active: this._isRowSelected(rowIndex),
-      })
-      const onClick = () => this._handleSelectRow(dataItem, rowIndex)
-
-      return <tr className={classes} key={rowIndex} onClick={onClick}>{cells}</tr>
-    })
-  }
-
-  static _meta = {
-    name: 'Table',
-    type: META.TYPES.COLLECTION,
-  }
-
-  render() {
-    const { onSelectRow, onSortChange, defaultSelectedRows } = this.props
-    const classes = cx(
-      'ui',
-      { selectable: !!onSelectRow || !!defaultSelectedRows },
-      { sortable: !!onSortChange },
-      this.props.className,
-      'table'
-    )
-
-    const rest = getUnhandledProps(Table, this.props)
-    const ElementType = getElementType(Table, this.props)
-
-    return (
-      <ElementType {...rest} className={classes}>
-        <thead>
-          <tr>
-            {this._getHeaders()}
-          </tr>
-        </thead>
-        <tbody>
-          {this._getRows()}
-        </tbody>
-      </ElementType>
-    )
-  }
+  return <ElementType {...rest} className={classes}>{children}</ElementType>
 }
+
+Table._meta = {
+  name: 'Table',
+  type: META.TYPES.COLLECTION,
+  props: {
+    basic: ['very'],
+    color: SUI.COLORS,
+    columns: SUI.WIDTHS,
+    compact: ['very'],
+    padded: ['very'],
+    size: _.without(SUI.SIZES, 'mini', 'tiny', 'medium', 'big', 'huge', 'massive'),
+  },
+}
+
+Table.defaultProps = {
+  as: 'table',
+}
+
+Table.propTypes = {
+  /** An element type to render as (string or function). */
+  as: customPropTypes.as,
+
+  /** A table can reduce its complexity to increase readability. */
+  basic: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.oneOf(Table._meta.props.basic),
+  ]),
+
+  /** A table may be divided each row into separate cells. */
+  celled: PropTypes.bool,
+
+  /** Primary content of the Table. */
+  children: PropTypes.node,
+
+  /** Classes that will be added to the Table className. */
+  className: PropTypes.string,
+
+  /** A table can be collapsing, taking up only as much space as its rows. */
+  collapsing: PropTypes.bool,
+
+  /** A table can be given a color to distinguish it from other tables. */
+  color: PropTypes.oneOf(Table._meta.props.color),
+
+  /** A table can specify its column count to divide its content evenly. */
+  columns: PropTypes.oneOf(Table._meta.props.columns),
+
+  /** A table may sometimes need to be more compact to make more rows visible at a time. */
+  compact: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.oneOf(Table._meta.props.compact),
+  ]),
+
+  /** A table may be formatted to emphasize a first column that defines a rows content. */
+  definition: PropTypes.bool,
+
+  /**
+   * A table can use fixed a special faster form of table rendering that does not resize table cells based on content
+   * */
+  fixed: PropTypes.bool,
+
+  /** A table's colors can be inverted. */
+  inverted: PropTypes.bool,
+
+  /** A table may sometimes need to be more padded for legibility. */
+  padded: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.oneOf(Table._meta.props.padded),
+  ]),
+
+  /** A table can have its rows appear selectable. */
+  selectable: PropTypes.bool,
+
+  /** A table can specify that its cell contents should remain on a single line and not wrap. */
+  singleLine: PropTypes.bool,
+
+  /** A table can also be small or large. */
+  size: PropTypes.oneOf(Table._meta.props.size),
+
+  /** A table can specify how it stacks table content responsively. */
+  stackable: PropTypes.bool,
+
+  /** A table can stripe alternate rows of content with a darker color to increase contrast. */
+  striped: PropTypes.bool,
+
+  /** A table can be formatted to display complex structured data. */
+  structured: PropTypes.bool,
+
+  /** A table can specify how it stacks table content responsively. */
+  unstackable: PropTypes.bool,
+}
+
+Table.Body = TableBody
+Table.Cell = TableCell
+Table.Footer = TableFooter
+Table.Header = TableHeader
+Table.HeaderCell = TableHeaderCell
+Table.Row = TableRow
+
+export default Table
