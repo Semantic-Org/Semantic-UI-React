@@ -3,6 +3,7 @@ import React, { PropTypes } from 'react'
 
 import {
   customPropTypes,
+  createShorthandFactory,
   getElementType,
   getUnhandledProps,
   makeDebugger,
@@ -12,7 +13,6 @@ import {
   useKeyOrValueAndKey,
   useValueAndKey,
 } from '../../lib'
-import { createShorthandFactory } from '../../factories'
 import { Icon, Label } from '../'
 import ButtonContent from './ButtonContent'
 import ButtonGroup from './ButtonGroup'

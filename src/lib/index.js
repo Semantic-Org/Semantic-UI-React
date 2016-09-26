@@ -17,6 +17,7 @@ export {
   makeDebugger,
 } from './debug'
 
+export * from './factories'
 export { default as getUnhandledProps } from './getUnhandledProps'
 export { default as getElementType } from './getElementType'
 export * as META from './META'

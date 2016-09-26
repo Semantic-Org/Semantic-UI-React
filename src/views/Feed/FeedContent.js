@@ -2,12 +2,12 @@ import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
 import {
+  createShorthand,
   customPropTypes,
   getElementType,
   getUnhandledProps,
   META,
 } from '../../lib'
-import { createShorthand } from '../../factories'
 import FeedDate from './FeedDate'
 import FeedExtra from './FeedExtra'
 import FeedMeta from './FeedMeta'

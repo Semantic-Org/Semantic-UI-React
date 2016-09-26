@@ -2,6 +2,7 @@ import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
 import {
+  createShorthandFactory,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -10,7 +11,6 @@ import {
   useKeyOnly,
   useValueAndKey,
 } from '../../lib'
-import { createShorthandFactory } from '../../factories'
 import IconGroup from './IconGroup'
 
 /**

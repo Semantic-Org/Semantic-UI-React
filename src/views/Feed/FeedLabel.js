@@ -2,13 +2,13 @@ import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
 import {
+  createHTMLImage,
   customPropTypes,
   getElementType,
   getUnhandledProps,
   META,
 } from '../../lib'
 import { Icon } from '../../elements'
-import { createHTMLImage } from '../../factories'
 
 function FeedLabel(props) {
   const { children, className, icon, image } = props

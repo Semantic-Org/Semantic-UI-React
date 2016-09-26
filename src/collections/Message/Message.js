@@ -3,6 +3,7 @@ import React, { PropTypes } from 'react'
 import cx from 'classnames'
 
 import {
+  createShorthand,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -11,7 +12,6 @@ import {
   useKeyOnly,
   useKeyOrValueAndKey,
 } from '../../lib'
-import { createShorthand } from '../../factories'
 import { Icon } from '../../elements'
 import MessageContent from './MessageContent'
 import MessageHeader from './MessageHeader'

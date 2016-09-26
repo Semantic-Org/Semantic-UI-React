@@ -2,6 +2,7 @@ import _ from 'lodash'
 import cx from 'classnames'
 import React, { PropTypes } from 'react'
 import {
+  createShorthand,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -13,7 +14,6 @@ import {
   useKeyOnly,
 } from '../../lib'
 import { Icon, Image } from '../../elements'
-import { createShorthand } from '../../factories'
 import HeaderSubheader from './HeaderSubheader'
 import HeaderContent from './HeaderContent'
 

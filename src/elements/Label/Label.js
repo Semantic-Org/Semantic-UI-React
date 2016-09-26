@@ -2,6 +2,8 @@ import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
 import {
+  createShorthand,
+  createShorthandFactory,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -11,7 +13,6 @@ import {
   useKeyOrValueAndKey,
   useValueAndKey,
 } from '../../lib'
-import { createShorthand, createShorthandFactory } from '../../factories'
 import { Icon, Image } from '../'
 import LabelDetail from './LabelDetail'
 
@@ -28,8 +29,8 @@ function Label(props) {
   const handleRemove = e => onRemove && onRemove(e, props)
 
   const pointingClass = pointing === true && 'pointing'
-      || (pointing === 'left' || pointing === 'right') && `${pointing} pointing`
-      || (pointing === 'above' || pointing === 'below') && `pointing ${pointing}`
+    || (pointing === 'left' || pointing === 'right') && `${pointing} pointing`
+    || (pointing === 'above' || pointing === 'below') && `pointing ${pointing}`
 
   const classes = cx('ui',
     size,

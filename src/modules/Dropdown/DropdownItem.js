@@ -3,6 +3,7 @@ import cx from 'classnames'
 
 import {
   childrenUtils,
+  createShorthand,
   customPropTypes,
   META,
   getElementType,
@@ -10,7 +11,6 @@ import {
   useKeyOnly,
 } from '../../lib'
 import { Icon } from '../../elements'
-import { createShorthand } from '../../factories'
 
 function DropdownItem(props) {
   const {

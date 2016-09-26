@@ -4,6 +4,7 @@ import React, { PropTypes } from 'react'
 
 import {
   AutoControlledComponent as Component,
+  createShorthand,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -14,7 +15,6 @@ import {
   useValueAndKey,
   useWidthProp,
 } from '../../lib'
-import { createShorthand } from '../../factories'
 import MenuHeader from './MenuHeader'
 import MenuItem from './MenuItem'
 import MenuMenu from './MenuMenu'

@@ -4,6 +4,7 @@ import React, { Children, cloneElement, PropTypes } from 'react'
 
 import {
   AutoControlledComponent as Component,
+  createShorthand,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -15,7 +16,6 @@ import {
   useKeyOrValueAndKey,
 } from '../../lib'
 import { Icon } from '../../elements'
-import { createShorthand } from '../../factories'
 import { Label } from '../../elements'
 import DropdownDivider from './DropdownDivider'
 import DropdownItem from './DropdownItem'

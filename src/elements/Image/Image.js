@@ -3,6 +3,7 @@ import React, { PropTypes } from 'react'
 
 import {
   getElementType,
+  createShorthandFactory,
   customPropTypes,
   getUnhandledProps,
   META,
@@ -12,7 +13,6 @@ import {
   useValueAndKey,
   useKeyOnly,
 } from '../../lib'
-import { createShorthandFactory } from '../../factories'
 import ImageGroup from './ImageGroup'
 
 /**

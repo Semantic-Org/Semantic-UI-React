@@ -4,12 +4,11 @@ import path from 'path'
 import React, { createElement } from 'react'
 import ReactDOMServer from 'react-dom/server'
 
-import { META, numberToWord } from 'src/lib'
+import { createShorthand, META, numberToWord } from 'src/lib'
 import { consoleUtil, sandbox, syntheticEvent } from 'test/utils'
 import stardust from 'stardust'
 
 import { Icon, Image, Label } from 'src/elements'
-import { createShorthand } from 'src/factories'
 
 const commonTestHelpers = (testName, Component) => {
   const throwError = msg => {
