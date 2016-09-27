@@ -25,7 +25,7 @@ const InputVariations = () => (
     />
     <ComponentExample
       description='You can pass an Icon child'
-      examplePath='elements/Input/Variations/InputIconPosition'
+      examplePath='elements/Input/Variations/InputIconChild'
     >
       <Message warning>
         When using <code>children</code>, you must add your own <code>{'<input />'}</code>.
