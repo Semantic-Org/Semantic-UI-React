@@ -23,7 +23,7 @@ export const htmlInputPropNames = [
   // Limited HTML props
   'autoFocus',
   'checked',
-  'disabled',
+  // 'disabled', do not pass (duplicates SUI CSS opacity rule)
   'form',
   'max',
   'maxLength',
@@ -40,7 +40,10 @@ export const htmlInputPropNames = [
 
 /**
  * An Input is a field used to elicit a response from a user
+ * @see Button
  * @see Form
+ * @see Icon
+ * @see Label
  */
 function Input(props) {
   const {
@@ -59,6 +62,7 @@ function Input(props) {
     labelPosition,
     loading,
     size,
+    type,
     input,
     transparent,
   } = props
@@ -88,26 +92,28 @@ function Input(props) {
     return <ElementType {...rest} className={classes}>{children}</ElementType>
   }
 
-  const actionElement = Button.create(action, {
-    // all action components should have the button className
-    className: 'button',
-  })
+  const actionElement = Button.create(action, elProps => ({
+    className: cx(
+      // all action components should have the button className
+      !_.includes(elProps.className, 'button') && 'button',
+    ),
+  }))
   const iconElement = Icon.create(icon)
-  const labelElement = Label.create(label, {
+  const labelElement = Label.create(label, elProps => ({
     className: cx(
       // all label components should have the label className
-      'label',
+      !_.includes(elProps.className, 'label') && 'label',
       // add 'left|right corner'
       _.includes(labelPosition, 'corner') && labelPosition,
     ),
-  })
+  }))
 
   return (
     <ElementType {...rest} className={classes}>
       {actionPosition === 'left' && actionElement}
       {iconPosition === 'left' && iconElement}
       {labelPosition !== 'right' && labelElement}
-      {createHTMLInput(input, inputProps)}
+      {createHTMLInput(input || type, inputProps)}
       {actionPosition !== 'left' && actionElement}
       {iconPosition !== 'left' && iconElement}
       {labelPosition === 'right' && labelElement}
@@ -127,7 +133,7 @@ Input._meta = {
 }
 
 Input.defaultProps = {
-  input: 'text',
+  type: 'text',
 }
 
 Input.propTypes = {
@@ -152,7 +158,11 @@ Input.propTypes = {
 
   /** Primary content.  Used when there are multiple Labels or multiple Actions. */
   children: customPropTypes.every([
-    customPropTypes.disallow(['action', 'icon', 'input', 'label']),
+    customPropTypes.disallow(['icon', 'input', 'label']),
+    customPropTypes.givenProps(
+      { action: PropTypes.oneOfType([PropTypes.string, PropTypes.object, PropTypes.element]).isRequired },
+      customPropTypes.disallow(['action']),
+    ),
     PropTypes.node,
   ]),
 
@@ -176,11 +186,7 @@ Input.propTypes = {
     PropTypes.bool,
     customPropTypes.every([
       customPropTypes.disallow(['children']),
-      PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object,
-        PropTypes.element,
-      ]),
+      PropTypes.oneOfType([PropTypes.string, PropTypes.object, PropTypes.element]),
     ]),
   ]),
 
@@ -196,21 +202,13 @@ Input.propTypes = {
   /** Shorthand prop for creating the HTML Input */
   input: customPropTypes.every([
     customPropTypes.disallow(['children']),
-    PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.object,
-      PropTypes.element,
-    ]),
+    PropTypes.oneOfType([PropTypes.string, PropTypes.object, PropTypes.element]),
   ]),
 
   /** Optional Label to display along side the Input */
   label: customPropTypes.every([
     customPropTypes.disallow(['children']),
-    PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.object,
-      PropTypes.element,
-    ]),
+    PropTypes.oneOfType([PropTypes.string, PropTypes.object, PropTypes.element]),
   ]),
 
   /** A Label can appear outside an Input on the left or right */
@@ -224,6 +222,9 @@ Input.propTypes = {
 
   /** Transparent Input has no background */
   transparent: PropTypes.bool,
+
+  /** The HTML input type */
+  type: PropTypes.string,
 }
 
 export default Input

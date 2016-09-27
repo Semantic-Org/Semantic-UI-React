@@ -6,7 +6,6 @@ import * as common from 'test/specs/commonTests'
 describe('Icon', () => {
   common.isConformant(Icon)
   common.hasSubComponents(Icon, [IconGroup])
-  common.implementsIconProp(Icon)
 
   common.propKeyOnlyToClassName(Icon, 'bordered')
   common.propKeyOnlyToClassName(Icon, 'circular')
@@ -15,7 +14,6 @@ describe('Icon', () => {
   common.propKeyOnlyToClassName(Icon, 'disabled')
   common.propKeyOnlyToClassName(Icon, 'fitted')
   common.propKeyAndValueToClassName(Icon, 'flipped')
-  common.propKeyOnlyToClassName(Icon, 'icon')
   common.propKeyOnlyToClassName(Icon, 'inverted')
   common.propValueOnlyToClassName(Icon, 'name')
   common.propKeyOnlyToClassName(Icon, 'link')

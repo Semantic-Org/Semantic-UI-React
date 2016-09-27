@@ -1,24 +1,33 @@
+import cx from 'classnames'
 import _ from 'lodash'
 import React from 'react'
 
 import Input, { htmlInputPropNames } from 'src/elements/Input/Input'
 import * as common from 'test/specs/commonTests'
 
-describe.only('Input', () => {
+describe('Input', () => {
   common.isConformant(Input)
   common.hasUIClassName(Input)
 
   common.implementsLabelProp(Input, {
-    requiredShorthandProps: { className: 'label' },
+    shorthandDefaultProps: elProps => ({
+      className: cx({
+        label: !_.includes(elProps.className, 'label'),
+      }),
+    }),
   })
   common.implementsButtonProp(Input, {
     propKey: 'action',
-    requiredShorthandProps: { className: 'button' },
+    shorthandDefaultProps: elProps => ({
+      className: cx({
+        button: !_.includes(elProps.className, 'button'),
+      }),
+    }),
   })
-  common.implementsShorthandProp(Input, {
-    propKey: 'input',
-    ShorthandComponent: 'input',
-    mapValueToProps: val => ({ type: val }),
+
+  common.implementsHTMLInputProp(Input, {
+    alwaysPresent: true,
+    shorthandDefaultProps: { type: 'text' },
   })
 
   common.propValueOnlyToClassName(Input, 'size')
@@ -38,8 +47,10 @@ describe.only('Input', () => {
 
   common.rendersChildren(Input)
 
-  it('is type text by default', () => {
-    Input.defaultProps.input.should.equal('text')
+  it('renders a text <input> by default', () => {
+    shallow(<Input />)
+      .find('input')
+      .should.have.prop('type', 'text')
   })
 
   describe('input props', () => {

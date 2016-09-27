@@ -1,13 +1,15 @@
+import cx from 'classnames'
 import React from 'react'
-import BreadcrumbDivider from 'src/collections/Breadcrumb/BreadcrumbDivider'
+
 import * as common from 'test/specs/commonTests'
+import BreadcrumbDivider from 'src/collections/Breadcrumb/BreadcrumbDivider'
 
 describe('BreadcrumbDivider', () => {
   common.isConformant(BreadcrumbDivider)
   common.implementsIconProp(BreadcrumbDivider, {
-    requiredShorthandProps: {
-      className: 'divider',
-    },
+    shorthandDefaultProps: elProps => ({
+      className: cx(elProps.className, 'divider'),
+    }),
   })
   common.rendersChildren(BreadcrumbDivider)
 
