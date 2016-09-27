@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Input, Menu } from 'stardust'
+import { Input, Menu } from 'stardust'
 
 const Inputs = () => {
   return (
