@@ -21,6 +21,7 @@ export const htmlInputPropNames = [
   'defaultChecked',
 
   // Limited HTML props
+  'autoComplete',
   'autoFocus',
   'checked',
   // 'disabled', do not pass (duplicates SUI CSS opacity rule)

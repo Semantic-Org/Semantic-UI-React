@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import { Input, Menu, Segment } from 'stardust'
 
-// TODO: Update <Input> usage after its update to v1 API
-
 export default class Pointing extends Component {
   state = { activeItem: 'home' }
 
@@ -19,7 +17,7 @@ export default class Pointing extends Component {
           <Menu.Item name='friends' active={activeItem === 'friends'} onClick={this.handleItemClick} />
           <Menu.Menu position='right'>
             <Menu.Item>
-              <Input className='icon' icon='search' placeholder='Search...' />
+              <Input icon='search' placeholder='Search...' />
             </Menu.Item>
           </Menu.Menu>
         </Menu>

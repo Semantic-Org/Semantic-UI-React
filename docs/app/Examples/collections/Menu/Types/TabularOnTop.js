@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
-import { Menu, Segment } from 'stardust'
-
-// TODO: Update <Input /> usage after its will implemented
+import { Input, Menu, Segment } from 'stardust'
 
 export default class TabularOnTop extends Component {
   state = { activeItem: 'bio' }
@@ -18,10 +16,7 @@ export default class TabularOnTop extends Component {
           <Menu.Item name='photos' active={activeItem === 'photos'} onClick={this.handleItemClick} />
           <Menu.Menu position='right'>
             <Menu.Item>
-              <div className='ui transparent icon input'>
-                <input type='text' placeholder='Search users...' />
-                <i className='search link icon' />
-              </div>
+              <Input transparent icon={{ name: 'search', link: 'true' }} placeholder='Search users...' />
             </Menu.Item>
           </Menu.Menu>
         </Menu>
