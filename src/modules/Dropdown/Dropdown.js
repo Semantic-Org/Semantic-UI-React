@@ -164,6 +164,9 @@ export default class Dropdown extends Component {
     // Style
     // ------------------------------------
 
+    /** A Dropdown can reduce its complexity */
+    basic: PropTypes.bool,
+
     /** Format the Dropdown to appear as a button. */
     button: PropTypes.bool,
 
@@ -184,7 +187,7 @@ export default class Dropdown extends Component {
 
     inline: PropTypes.bool,
     labeled: PropTypes.bool,
-    linkItem: PropTypes.bool,
+    // linkItem: PropTypes.bool,
 
     /** Allow selecting multiple options. */
     multiple: PropTypes.bool,
@@ -895,6 +898,7 @@ export default class Dropdown extends Component {
     const { open } = this.state
 
     const {
+      basic,
       button,
       className,
       compact,
@@ -903,7 +907,7 @@ export default class Dropdown extends Component {
       icon,
       inline,
       labeled,
-      linkItem,
+      // linkItem,
       multiple,
       pointing,
       search,
@@ -919,11 +923,12 @@ export default class Dropdown extends Component {
     // Classes
     const classes = cx(
       'ui',
-      open && 'active visible',
+      useKeyOnly(open, 'active visible'),
       useKeyOnly(disabled, 'disabled'),
       useKeyOnly(error, 'error'),
       useKeyOnly(loading, 'loading'),
 
+      useKeyOnly(basic, 'basic'),
       useKeyOnly(button, 'button'),
       useKeyOnly(compact, 'compact'),
       useKeyOnly(fluid, 'fluid'),
@@ -935,7 +940,7 @@ export default class Dropdown extends Component {
       // useKeyOnly(icon, 'icon'),
       useKeyOnly(labeled, 'labeled'),
       // TODO: linkItem is required only when Menu child, add dynamically
-      useKeyOnly(linkItem, 'link item'),
+      // useKeyOnly(linkItem, 'link item'),
       useKeyOnly(multiple, 'multiple'),
       useKeyOnly(search, 'search'),
       useKeyOnly(selection, 'selection'),
