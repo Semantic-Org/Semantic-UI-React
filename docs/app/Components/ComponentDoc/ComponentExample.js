@@ -14,21 +14,27 @@ const showCodeStyle = {
   right: '1rem',
 }
 
-const descriptionStyle = {
-  marginRight: '5em',
-}
-
 const codeIconStyle = {
   fontWeight: 'bold',
 }
 
 const titleStyle = {
-  marginBottom: 0,
+  margin: 0,
 }
 
 const headerColumnStyle = {
   // provide room for absolutely positions toggle code icons
   minHeight: '4em',
+  paddingRight: '7em',
+}
+
+const childrenStyle = {
+  paddingTop: 0,
+}
+
+const renderedExampleStyle = {
+  paddingTop: 0,
+  paddingBottom: 0,
 }
 
 /**
@@ -109,6 +115,8 @@ export default class ComponentExample extends Component {
     return (
       <Grid style={style} divided={active} columns='1'>
         <Grid.Column style={headerColumnStyle}>
+          {title && <Header as='h3' style={titleStyle}>{title}</Header>}
+          {description && <p>{description}</p>}
           <div style={showCodeStyle}>
             <Icon
               link
@@ -126,10 +134,12 @@ export default class ComponentExample extends Component {
               onClick={this.toggleShowHTML}
             />
           </div>
-          {title && <Header as='h3' style={titleStyle}>{title}</Header>}
-          {description && <p style={descriptionStyle}>{description}</p>}
-          {children}
         </Grid.Column>
+        {children && (
+          <Grid.Column style={childrenStyle}>
+            {children}
+          </Grid.Column>
+        )}
         <Grid.Column className={`rendered-example ${this.getKebabExamplePath()}`}>
           {createElement(this.component, rest)}
         </Grid.Column>
