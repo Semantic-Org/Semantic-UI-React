@@ -51,9 +51,8 @@ const InputVariations = () => (
       description='An input can be formatted to alert the user to an action they may perform'
       examplePath='elements/Input/Variations/InputAction'
     />
-    <ComponentExample
-      examplePath='elements/Input/Variations/InputActionExtra'
-    />
+    <ComponentExample examplePath='elements/Input/Variations/InputLeftActionIconButton' />
+    <ComponentExample examplePath='elements/Input/Variations/InputActions' />
     <ComponentExample
       title='Transparent'
       description='A transparent input has no background'
