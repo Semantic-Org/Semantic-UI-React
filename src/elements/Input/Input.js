@@ -14,38 +14,28 @@ import {
 } from '../../lib'
 import { Button, Icon, Label } from '../../elements'
 
-const inputPropNames = [
+export const htmlInputPropNames = [
   // React
   'selected',
   'defaultValue',
   'defaultChecked',
 
-  // HTML
-  'accept',
-  'alt',
-  'autoComplete',
+  // Limited HTML props
   'autoFocus',
   'checked',
-  'dirname',
   'disabled',
   'form',
-  'height',
-  'list',
   'max',
   'maxLength',
   'min',
-  'multiple',
   'name',
   'pattern',
   'placeholder',
   'readOnly',
   'required',
-  'size',
-  'src',
   'step',
   'type',
   'value',
-  'width',
 ]
 
 /**
@@ -90,10 +80,9 @@ function Input(props) {
     'input',
   )
 
-  const unhandledProps = getUnhandledProps(Input, props)
-  const inputProps = _.pick(unhandledProps, inputPropNames)
-  const rest = _.omit(unhandledProps, inputPropNames)
+  const rest = getUnhandledProps(Input, props)
   const ElementType = getElementType(Input, props)
+  const inputProps = _.pick(props, htmlInputPropNames)
 
   if (children) {
     return <ElementType {...rest} className={classes}>{children}</ElementType>
@@ -116,11 +105,11 @@ function Input(props) {
   return (
     <ElementType {...rest} className={classes}>
       {actionPosition === 'left' && actionElement}
-      {iconPosition !== 'right' && iconElement}
+      {iconPosition === 'left' && iconElement}
       {labelPosition !== 'right' && labelElement}
-      {createHTMLInput(input || 'text', inputProps)}
+      {createHTMLInput(input, inputProps)}
       {actionPosition !== 'left' && actionElement}
-      {iconPosition === 'right' && iconElement}
+      {iconPosition !== 'left' && iconElement}
       {labelPosition === 'right' && labelElement}
     </ElementType>
   )
@@ -135,6 +124,10 @@ Input._meta = {
     labelPosition: ['left', 'right', 'left corner', 'right corner'],
     size: SUI.SIZES,
   },
+}
+
+Input.defaultProps = {
+  input: 'text',
 }
 
 Input.propTypes = {
@@ -179,12 +172,15 @@ Input.propTypes = {
   fluid: PropTypes.bool,
 
   /** Optional Icon to display inside the Input */
-  icon: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.object,
-      PropTypes.element,
+  icon: customPropTypes.some([
+    PropTypes.bool,
+    customPropTypes.every([
+      customPropTypes.disallow(['children']),
+      PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object,
+        PropTypes.element,
+      ]),
     ]),
   ]),
 

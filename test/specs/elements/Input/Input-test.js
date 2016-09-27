@@ -1,6 +1,7 @@
+import _ from 'lodash'
 import React from 'react'
 
-import Input from 'src/elements/Input/Input'
+import Input, { htmlInputPropNames } from 'src/elements/Input/Input'
 import * as common from 'test/specs/commonTests'
 
 describe.only('Input', () => {
@@ -8,52 +9,46 @@ describe.only('Input', () => {
   common.hasUIClassName(Input)
 
   common.implementsLabelProp(Input, {
-    requiredShorthandProps: {
-      className: 'label',
-    },
+    requiredShorthandProps: { className: 'label' },
+  })
+  common.implementsButtonProp(Input, {
+    propKey: 'action',
+    requiredShorthandProps: { className: 'button' },
   })
   common.implementsShorthandProp(Input, {
     propKey: 'input',
     ShorthandComponent: 'input',
-    mapValueToProps: val => ({ type: 'text' }),
+    mapValueToProps: val => ({ type: val }),
   })
 
+  common.propValueOnlyToClassName(Input, 'size')
+  common.propKeyAndValueToClassName(Input, 'actionPosition', { className: 'action' })
+  common.propKeyOnlyToClassName(Input, 'action')
   common.propKeyOnlyToClassName(Input, 'disabled')
   common.propKeyOnlyToClassName(Input, 'error')
+  common.propKeyOnlyToClassName(Input, 'focus')
   common.propKeyOnlyToClassName(Input, 'fluid')
   common.propKeyOnlyToClassName(Input, 'inverted')
+  common.propKeyAndValueToClassName(Input, 'labelPosition', { className: 'labeled' })
+  common.propKeyOnlyToClassName(Input, 'label', { className: 'labeled' })
   common.propKeyOnlyToClassName(Input, 'loading')
   common.propKeyOnlyToClassName(Input, 'transparent')
-  common.propValueOnlyToClassName(Input, 'size')
+  common.propKeyAndValueToClassName(Input, 'iconPosition', { className: 'icon' })
+  common.propKeyOnlyToClassName(Input, 'icon')
 
   common.rendersChildren(Input)
 
-  it('has the input type of text by default', () => {
-    shallow(<Input />)
-      .find('input')
-      .should.have.prop('type', 'text')
+  it('is type text by default', () => {
+    Input.defaultProps.input.should.equal('text')
   })
 
-  it('allows a defaultValue', () => {
-    shallow(<Input defaultValue='John' />)
-      .find('input')
-      .should.have.value('John')
-  })
-
-  it('spreads type on the input element', () => {
-    shallow(<Input type='phone' />)
-      .find('input')
-      .should.have.prop('type', 'phone')
-  })
-
-  it('spreads name on the input element', () => {
-    shallow(<Input name='emailAddress' />)
-      .find('input')
-      .should.have.prop('name', 'emailAddress')
-  })
-
-  it('adds an Icon given prop, but no class', () => {
-    shallow(<Input icon='linkedin' />)
-      .should.have.descendants('Icon')
+  describe('input props', () => {
+    htmlInputPropNames.forEach(propName => {
+      it(`passes \`${propName}\` to the <input>`, () => {
+        shallow(<Input {...{ [propName]: 'foo' }} />)
+          .find('input')
+          .should.have.prop(propName, 'foo')
+      })
+    })
   })
 })

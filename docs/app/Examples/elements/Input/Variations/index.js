@@ -12,6 +12,7 @@ const InputVariations = () => (
       examplePath='elements/Input/Variations/InputIcon'
     />
     <ComponentExample
+      description='You can position the icon'
       examplePath='elements/Input/Variations/InputIconPosition'
     />
     <ComponentExample
@@ -22,6 +23,14 @@ const InputVariations = () => (
       description='You can pass an Icon element'
       examplePath='elements/Input/Variations/InputIconElement'
     />
+    <ComponentExample
+      description='You can pass an Icon child'
+      examplePath='elements/Input/Variations/InputIconPosition'
+    >
+      <Message warning>
+        When using <code>children</code>, you must add your own <code>{'<input />'}</code>.
+      </Message>
+    </ComponentExample>
     <ComponentExample
       title='Labeled'
       description='An input can be formatted with a label'
@@ -35,7 +44,10 @@ const InputVariations = () => (
       description='You can pass a Label props object'
       examplePath='elements/Input/Variations/InputRightLabeledBasic'
     />
-    <ComponentExample examplePath='elements/Input/Variations/InputRightLeftLabeled'>
+    <ComponentExample
+      description='You can pass a Label child'
+      examplePath='elements/Input/Variations/InputRightLeftLabeled'
+    >
       <Message warning>
         Multiple Labels require <code>children</code>.
         When using <code>children</code>, you must add your own <code>{'<input />'}</code>.
