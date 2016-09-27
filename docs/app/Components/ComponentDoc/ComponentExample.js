@@ -140,7 +140,10 @@ export default class ComponentExample extends Component {
             {children}
           </Grid.Column>
         )}
-        <Grid.Column className={`rendered-example ${this.getKebabExamplePath()}`}>
+        <Grid.Column
+          className={`rendered-example ${this.getKebabExamplePath()}`}
+          style={renderedExampleStyle}
+        >
           {createElement(this.component, rest)}
         </Grid.Column>
         {showCode && this.renderCode()}

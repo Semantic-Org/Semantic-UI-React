@@ -26,21 +26,19 @@ const InputVariations = () => (
       title='Labeled'
       description='An input can be formatted with a label'
       examplePath='elements/Input/Variations/InputLabeled'
-    >
-      <Message
-        info
-        content='The `label` prop is a shorthand prop.  I can render a string, number, props object or element'
-      />
-    </ComponentExample>
+    />
     <ComponentExample
-      description='You can position and augment an Input label'
+      description='You can pass any element'
       examplePath='elements/Input/Variations/InputRightLabeled'
     />
-    <ComponentExample examplePath='elements/Input/Variations/InputRightLabeledBasic' />
+    <ComponentExample
+      description='You can pass a Label props object'
+      examplePath='elements/Input/Variations/InputRightLabeledBasic'
+    />
     <ComponentExample examplePath='elements/Input/Variations/InputRightLeftLabeled'>
       <Message warning>
-        Multiple Labels require `children`.
-        When using `children`, you must add your own `input`.
+        Multiple Labels require <code>children</code>.
+        When using <code>children</code>, you must add your own <code>{'<input />'}</code>.
       </Message>
     </ComponentExample>
     <ComponentExample examplePath='elements/Input/Variations/InputRightLabeledTag' />
@@ -51,8 +49,22 @@ const InputVariations = () => (
       description='An input can be formatted to alert the user to an action they may perform'
       examplePath='elements/Input/Variations/InputAction'
     />
-    <ComponentExample examplePath='elements/Input/Variations/InputLeftActionIconButton' />
-    <ComponentExample examplePath='elements/Input/Variations/InputActions' />
+    <ComponentExample
+      description='You can pass a Button props object'
+      examplePath='elements/Input/Variations/InputLeftActionLabeledButton'
+    />
+    <ComponentExample
+      description='You can pass any element'
+      examplePath='elements/Input/Variations/InputActionDropdown'
+    />
+    <ComponentExample examplePath='elements/Input/Variations/InputActions'>
+      <Message warning>
+        Multiple Actions require <code>children</code>.
+        When using <code>children</code>, you must add your own <code>{'<input />'}</code>.
+      </Message>
+    </ComponentExample>
+    <ComponentExample examplePath='elements/Input/Variations/InputActionLabeledButton' />
+    <ComponentExample examplePath='elements/Input/Variations/InputActionIconButton' />
     <ComponentExample
       title='Transparent'
       description='A transparent input has no background'

@@ -76,6 +76,7 @@ function Input(props) {
   const classes = cx(
     'ui',
     size,
+    useValueAndKey(actionPosition, 'action') || useKeyOnly(action, 'action'),
     useKeyOnly(disabled, 'disabled'),
     useKeyOnly(error, 'error'),
     useKeyOnly(focus, 'focus'),
@@ -98,26 +99,29 @@ function Input(props) {
     return <ElementType {...rest} className={classes}>{children}</ElementType>
   }
 
-  const actionElement = Button.create(action)
+  const actionElement = Button.create(action, {
+    // all action components should have the button className
+    className: 'button',
+  })
   const iconElement = Icon.create(icon)
   const labelElement = Label.create(label, {
     className: cx(
       // all label components should have the label className
       'label',
-      // pass corner='left|right'
+      // add 'left|right corner'
       _.includes(labelPosition, 'corner') && labelPosition,
     ),
   })
 
   return (
     <ElementType {...rest} className={classes}>
-      {labelPosition !== 'right' && labelElement}
       {actionPosition === 'left' && actionElement}
       {iconPosition !== 'right' && iconElement}
+      {labelPosition !== 'right' && labelElement}
       {createHTMLInput(input || 'text', inputProps)}
+      {actionPosition !== 'left' && actionElement}
       {iconPosition === 'right' && iconElement}
       {labelPosition === 'right' && labelElement}
-      {actionPosition === 'right' && actionElement}
     </ElementType>
   )
 }
@@ -138,12 +142,15 @@ Input.propTypes = {
   as: customPropTypes.as,
 
   /** An Input can be formatted to alert the user to an action they may perform */
-  action: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.object,
-      PropTypes.element,
+  action: customPropTypes.some([
+    PropTypes.bool,
+    customPropTypes.every([
+      customPropTypes.disallow(['children']),
+      PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object,
+        PropTypes.element,
+      ]),
     ]),
   ]),
 
@@ -211,10 +218,7 @@ Input.propTypes = {
   ]),
 
   /** A Label can appear outside an Input on the left or right */
-  labelPosition: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.oneOf(Input._meta.props.labelPosition),
-  ]),
+  labelPosition: PropTypes.oneOf(Input._meta.props.labelPosition),
 
   /** An Icon Input field can show that it is currently loading data */
   loading: PropTypes.bool,
