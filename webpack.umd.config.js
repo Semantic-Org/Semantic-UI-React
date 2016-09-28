@@ -9,7 +9,7 @@ const exposeName = _.camelCase(pkg.name)
 
 const webpackUMDConfig = {
   target: 'web',
-  devtool: 'inline-source-map',
+  devtool: false,
   entry: {
     [exposeName]: paths.src('umd.js'),
   },

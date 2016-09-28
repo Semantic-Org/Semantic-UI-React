@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "docs": "gulp docs",
-    "build": "npm run build:commonjs && npm run build:browser && npm run build:docs",
+    "build": "npm run build:commonjs && npm run build:umd && npm run build:docs",
     "prebuild:commonjs": "rimraf dist/commonjs",
     "build:commonjs": "babel src -d dist/commonjs",
     "prebuild:docs": "npm run build:docs-toc",
