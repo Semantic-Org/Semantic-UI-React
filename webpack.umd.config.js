@@ -11,7 +11,7 @@ const webpackUMDConfig = {
   target: 'web',
   devtool: 'inline-source-map',
   entry: {
-    [exposeName]: paths.src('index.js'),
+    [exposeName]: paths.src('umd.js'),
   },
   output: {
     filename: '[name].min.js',

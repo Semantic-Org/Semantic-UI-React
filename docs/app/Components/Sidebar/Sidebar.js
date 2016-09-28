@@ -4,7 +4,7 @@ import { findDOMNode } from 'react-dom'
 import { Link, routerShape } from 'react-router'
 
 import pkg from 'package.json'
-import stardust from 'src'
+import * as stardust from 'src'
 import { typeOrder } from 'docs/app/utils'
 import { keyboardKey, META } from 'src/lib'
 import Logo from 'docs/app/Components/Logo/Logo'

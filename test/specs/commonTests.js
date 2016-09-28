@@ -6,7 +6,7 @@ import ReactDOMServer from 'react-dom/server'
 
 import { createShorthand, META, numberToWord } from 'src/lib'
 import { consoleUtil, sandbox, syntheticEvent } from 'test/utils'
-import stardust from 'stardust'
+import * as stardust from 'stardust'
 
 import { Icon, Image, Label } from 'src/elements'
 
@@ -160,6 +160,16 @@ export const isConformant = (Component, options = {}) => {
         ' a key on stardust' +
         ' || key on another component (sub-component)' +
         ' || private (start with "_")'
+      )
+    })
+  }
+
+  if (_meta.parent) {
+    it('is a static component on its parent', () => {
+      expect(isSubComponent).to.equal(
+        true,
+        `\`${constructorName}\` is a child component (has a _meta.parent).` +
+        ` It must be a static prop of its parent \`${_meta.parent}\``
       )
     })
   }
