@@ -2,14 +2,14 @@ import faker from 'faker'
 import _ from 'lodash'
 import React, { Component, PropTypes } from 'react'
 
-import * as stardust from 'stardust'
+import { parentComponents } from 'docs/app/utils'
 import { Button, Divider, Grid, Header, Icon, Select } from 'src'
 import ExperimentBanner from 'docs/app/Components/ExperimentBanner/ExperimentBanner'
 
-const options = _.sortBy(_.map(stardust, (component, name) => ({
+const options = _.map(parentComponents, ({ _meta: { name } }) => ({
   text: _.startCase(name),
   value: name,
-})), 'text')
+}))
 
 const inputStyle = {
   padding: '0.25em 0.5em',
@@ -135,11 +135,12 @@ const initialProps = {
 }
 
 const getInitialProps = name => initialProps[name] || {}
+const findComponent = name => _.find(parentComponents, { _meta: { name } })
 
 export default class ComponentExplorer extends Component {
   state = {
     componentName: initialComponent,
-    SelectedComponent: stardust[initialComponent],
+    SelectedComponent: findComponent(initialComponent),
     props: getInitialProps(initialComponent),
     callbackLog: [],
   }
@@ -147,7 +148,7 @@ export default class ComponentExplorer extends Component {
   handleComponentChange = (e, value) => {
     this.setState({
       componentName: value,
-      SelectedComponent: stardust[value],
+      SelectedComponent: findComponent(value),
       props: getInitialProps(value),
       callbackLog: [],
     })
@@ -244,7 +245,7 @@ export default class ComponentExplorer extends Component {
         {!funcProps.length ? null : (
           <div>
             <Divider hidden />
-            <Header.H4>Callbacks</Header.H4>
+            <Header as='h4'>Callbacks</Header>
             {_.map(funcProps, name => (
               <div key={name}><code>{name}</code></div>
             ))}
@@ -253,7 +254,7 @@ export default class ComponentExplorer extends Component {
         {!unknownProps.length ? null : (
           <div>
             <Divider hidden />
-            <Header.H4>Unknown <Header.Subheader>No controls generated for:</Header.Subheader></Header.H4>
+            <Header as='h4'>Unknown <Header.Subheader>No controls generated for:</Header.Subheader></Header>
             {_.map(unknownProps, name => (
               <div key={name}><code>{name}</code></div>
             ))}
@@ -270,7 +271,7 @@ export default class ComponentExplorer extends Component {
     return (
       <div>
         <ExperimentBanner />
-        <div style={{ display: 'flex' }}>
+        <div style={{ display: 'flex', padding: '1em' }}>
           <div style={{ flex: '0 0 200px', paddingRight: '2em' }}>
             <Select fluid search options={options} value={componentName} onChange={this.handleComponentChange} />
             <Divider hidden />
@@ -283,7 +284,7 @@ export default class ComponentExplorer extends Component {
             <br />
           </div>
           <div style={{ flex: 1 }}>
-            <Header.H3>Rendered:</Header.H3>
+            <Header as='h3'>Rendered:</Header>
             <Grid padded columns={1}>
               <Grid.Column>
                 <SelectedComponent {...props} {...callbacks} />
@@ -292,11 +293,11 @@ export default class ComponentExplorer extends Component {
             <Divider section />
             <Grid padded columns={2}>
               <Grid.Column>
-                <Header.H3>Props:</Header.H3>
+                <Header as='h3'>Props:</Header>
                 <pre style={preStyle}>{JSON.stringify(props, null, 2)}</pre>
               </Grid.Column>
               <Grid.Column>
-                <Header.H3>Callback Log:</Header.H3>
+                <Header as='h3'>Callback Log:</Header>
                 <pre style={preStyle}>{_.map(callbackLog, (item, i) => (
                   <div key={i}>{item}</div>
                 ))}</pre>

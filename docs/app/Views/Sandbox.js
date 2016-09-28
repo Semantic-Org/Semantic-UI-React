@@ -35,7 +35,7 @@ import ace from 'brace'
 import 'brace/ext/language_tools'
 import 'brace/mode/jsx'
 import 'brace/theme/tomorrow'
-import AceEditor from 'react-ace'
+import Editor from 'docs/app/Components/Editor/Editor'
 
 // Set up custom completers by using a ace extension
 // https://github.com/thlorenz/brace/issues/19
@@ -124,24 +124,16 @@ export default class NewDoc extends Component {
     const { error } = this.state
     if (!error) return null
 
-    return <Message className='bottom attached error'>{error}</Message>
+    return <Message error attached='bottom '>{error}</Message>
   }
 
   renderEditor() {
     const { sourceCode } = this.state
     return (
-      <AceEditor
-        mode='jsx'
-        theme='tomorrow'
-        width='100%'
+      <Editor
+        id='sandbox-editor'
         value={sourceCode}
         onChange={this.handleChangeCode}
-        name='ace-editor'
-        enableBasicAutocompletion
-        enableLiveAutocompletion
-        tabSize={2}
-        useSoftTabs
-        editorProps={{ $blockScrolling: Infinity }}
       />
     )
   }
@@ -159,21 +151,21 @@ export default class NewDoc extends Component {
     return (
       <div>
         <ExperimentBanner />
-        <Grid className='padded'>
-          <Grid.Row className='one column'>
+        <Grid padded>
+          <Grid.Row columns='1'>
             <Grid.Column>
-              <Header.H1 className=''>
+              <Header as='h1'>
                 Label
                 <Header.Subheader>
                   {componentInfo.docBlock.description}
                 </Header.Subheader>
-              </Header.H1>
+              </Header>
             </Grid.Column>
           </Grid.Row>
-          <Grid.Row className='vertically divided two column'>
+          <Grid.Row divided='vertically' columns='2'>
             <Grid.Column>
               {this.renderEditor()}
-              <Segment className='bottom attached blue' icon='blue info'>
+              <Segment attached='bottom' color='blue' icon={{ color: 'blue', name: 'info' }}>
                 <b>Globals:</b>{' '}
                 Stardust components plus{' '}
                 <code>React</code>
@@ -187,12 +179,12 @@ export default class NewDoc extends Component {
             </Grid.Column>
           </Grid.Row>
           <Divider />
-          <Grid.Row className='one column'>
+          <Grid.Row columns='1'>
             <Grid.Column>
               <Grid>
                 <Grid.Column>
-                  <Header.H3>Props</Header.H3>
-                  <Grid className='three column'>
+                  <Header as='h3'>Props</Header>
+                  <Grid columns='3'>
                     {propDescriptions}
                   </Grid>
                 </Grid.Column>
