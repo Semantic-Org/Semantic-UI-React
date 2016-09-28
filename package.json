@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "docs": "gulp docs",
-    "build": "npm run build:commonjs && npm run build:docs",
+    "build": "npm run build:commonjs && npm run build:browser && npm run build:docs",
     "prebuild:commonjs": "rimraf dist/commonjs",
     "build:commonjs": "babel src -d dist/commonjs",
     "prebuild:docs": "npm run build:docs-toc",
@@ -21,7 +21,7 @@
     "lint": "eslint .",
     "lint:fix": "npm run lint -- --fix",
     "lint:watch": "watch 'npm run lint --silent' docs gulp src test",
-    "prepublish": "cross-env NODE_ENV=production npm run build:commonjs",
+    "prepublish": "cross-env NODE_ENV=production npm run build",
     "prerelease:major": "npm run lint && npm test",
     "release:major": "ta-script npm/release.sh major",
     "prerelease:minor": "npm run lint && npm test",
