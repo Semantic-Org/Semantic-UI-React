@@ -173,7 +173,7 @@ export default class Sidebar extends Component {
     const { style } = this.props
     const { query } = this.state
     return (
-      <Menu vertical fixed inverted style={{ ...style }}>
+      <Menu vertical fixed='left' inverted style={{ ...style }}>
         <Menu.Item>
           <Logo spaced='right' size='mini' />
           <strong>

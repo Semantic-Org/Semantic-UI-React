@@ -27,7 +27,7 @@ const _meta = {
     color: SUI.COLORS,
     floated: ['right'],
     icon: ['labeled'],
-    fixed: ['bottom', 'top'],
+    fixed: ['left', 'right', 'bottom', 'top'],
     size: _.without(SUI.SIZES, 'medium', 'big'),
     tabular: ['right'],
     widths: SUI.WIDTHS,
