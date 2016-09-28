@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import { Input, Label, Menu } from 'stardust'
 
-// TODO: Update <Input> usage after its update to v1 API
-
 export default class SizeVerticalMini extends Component {
   state = { activeItem: 'inbox' }
 
@@ -28,7 +26,7 @@ export default class SizeVerticalMini extends Component {
           Updates
         </Menu.Item>
         <Menu.Item>
-          <Input className='icon' icon='search' placeholder='Search mail...' />
+          <Input icon='search' placeholder='Search mail...' />
         </Menu.Item>
       </Menu>
     )

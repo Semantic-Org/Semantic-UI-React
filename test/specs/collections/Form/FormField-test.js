@@ -65,20 +65,5 @@ describe('FormField', () => {
         .find('Radio')
         .should.have.prop('label', 'Passed to the Radio')
     })
-    it('is passed to custom control components with a "label" propType', () => {
-      const HandlesLabel = () => null
-      HandlesLabel.propTypes = { label: () => null }
-
-      shallow(<FormField control={HandlesLabel} label='Passed to the HandlesLabel' />)
-        .find('HandlesLabel')
-        .should.have.prop('label', 'Passed to the HandlesLabel')
-    })
-    it('is not passed to custom control components without a "label" propType', () => {
-      const DoesNotHandleLabel = () => null
-
-      shallow(<FormField control={DoesNotHandleLabel} label='Passed to the DoesNotHandleLabel' />)
-        .find('DoesNotHandleLabel')
-        .should.not.have.prop('label', 'Passed to the DoesNotHandleLabel')
-    })
   })
 })

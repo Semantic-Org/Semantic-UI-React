@@ -51,10 +51,19 @@ export default class Sidebar extends Component {
 
   componentDidMount() {
     document.addEventListener('keydown', this.handleDocumentKeyDown)
+    this.setSearchInput()
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    this.setSearchInput()
   }
 
   componentWillUnmount() {
     document.removeEventListener('keydown', this.handleDocumentKeyDown)
+  }
+
+  setSearchInput() {
+    this._searchInput = findDOMNode(this).querySelector('.ui.input input')
   }
 
   handleDocumentKeyDown = (e) => {
@@ -203,9 +212,6 @@ export default class Sidebar extends Component {
             value={query}
             onChange={this.handleSearchChange}
             onKeyDown={this.handleSearchKeyDown}
-            ref={(c) => {
-              if (c !== null) this._searchInput = findDOMNode(c).querySelector('input')
-            }}
           />
         </Menu.Item>
         {query ? this.renderSearchItems() : this.menuItemsByType}

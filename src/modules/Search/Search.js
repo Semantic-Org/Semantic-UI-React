@@ -478,9 +478,6 @@ export default class Search extends Component {
         onChange={this.handleSearchChange}
         onFocus={this.handleFocus}
         onClick={this.handleInputClick}
-        // TODO: Input should probably add this class automatically when an icon
-        // is present. Gonna hold off until the V1 upgrade of the Input component.
-        className={icon ? 'icon' : ''}
         input={{ className: 'prompt', tabIndex: '0', autoComplete: 'off' }}
         icon={icon}
       />

@@ -6,7 +6,6 @@ import * as common from 'test/specs/commonTests'
 describe('Icon', () => {
   common.isConformant(Icon)
   common.hasSubComponents(Icon, [IconGroup])
-  common.rendersChildren(Icon)
 
   common.propKeyOnlyToClassName(Icon, 'bordered')
   common.propKeyOnlyToClassName(Icon, 'circular')
@@ -21,6 +20,8 @@ describe('Icon', () => {
   common.propKeyOnlyToClassName(Icon, 'loading')
   common.propKeyAndValueToClassName(Icon, 'rotated')
   common.propValueOnlyToClassName(Icon, 'size')
+
+  common.rendersChildren(Icon)
 
   it('renders as an <i> by default', () => {
     shallow(<Icon />)

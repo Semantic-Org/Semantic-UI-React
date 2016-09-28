@@ -8,7 +8,7 @@ import { createShorthand, META, numberToWord } from 'src/lib'
 import { consoleUtil, sandbox, syntheticEvent } from 'test/utils'
 import * as stardust from 'stardust'
 
-import { Icon, Image, Label } from 'src/elements'
+import { Button, Icon, Image, Label } from 'src/elements'
 
 const commonTestHelpers = (testName, Component) => {
   const throwError = msg => {
@@ -571,7 +571,8 @@ export const implementsWidthProp = (Component, options = {}) => {
  * @param {string|function} options.ShorthandComponent The component that should be rendered from the shorthand value.
  * @param {function} options.mapValueToProps A function that maps a primitive value to the Component props
  * @param {Object} [options.requiredProps={}] Props required to render the component.
- * @param {Object} [options.requiredShorthandProps={}] Props required to render the shorthand component.
+ * @param {Object|function} [options.shorthandDefaultProps={}] Props required to render the shorthand component.
+ * @param {Object} [options.alwaysPresent] Whether or not the shorthand exists by default
  */
 export const implementsShorthandProp = (Component, options = {}) => {
   const { assertRequired } = commonTestHelpers('implementsShorthandProp', Component)
@@ -581,7 +582,8 @@ export const implementsShorthandProp = (Component, options = {}) => {
     ShorthandComponent,
     mapValueToProps,
     requiredProps = {},
-    requiredShorthandProps = {},
+    shorthandDefaultProps = {},
+    alwaysPresent,
   } = options
 
   describe(`${propKey} shorthand prop (common)`, () => {
@@ -590,33 +592,37 @@ export const implementsShorthandProp = (Component, options = {}) => {
     assertRequired(propKey, 'a `propKey`')
     assertRequired(ShorthandComponent, 'a `ShorthandComponent`')
 
-    const name = typeof ShorthandComponent === 'string' ? ShorthandComponent : ShorthandComponent.name
+    const name = typeof ShorthandComponent === 'string'
+      ? ShorthandComponent
+      : _.get(ShorthandComponent, '_meta.name') || ShorthandComponent.displayName || ShorthandComponent.name
 
     const assertValidShorthand = (value) => {
-      const renderedShorthand = createShorthand(ShorthandComponent, mapValueToProps, value, requiredShorthandProps)
+      const renderedShorthand = createShorthand(ShorthandComponent, mapValueToProps, value, shorthandDefaultProps)
       const element = createElement(Component, { ...requiredProps, [propKey]: value })
 
       shallow(element).should.contain(renderedShorthand)
     }
 
-    _noDefaultClassNameFromProp(Component, propKey, { requiredProps })
-
-    if (Component.defaultProps && Component.defaultProps[propKey]) {
+    if (alwaysPresent || Component.defaultProps && Component.defaultProps[propKey]) {
       it(`has default ${name} when not defined`, () => {
         shallow(<Component {...requiredProps} />)
           .should.have.descendants(name)
       })
     } else {
+      _noDefaultClassNameFromProp(Component, propKey, { requiredProps })
+
       it(`has no ${name} when not defined`, () => {
         shallow(<Component {...requiredProps} />)
           .should.not.have.descendants(name)
       })
     }
 
-    it(`has no ${name} when null`, () => {
-      shallow(createElement(Component, { ...requiredProps, [propKey]: null }))
-        .should.not.have.descendants(ShorthandComponent)
-    })
+    if (!alwaysPresent) {
+      it(`has no ${name} when null`, () => {
+        shallow(createElement(Component, { ...requiredProps, [propKey]: null }))
+          .should.not.have.descendants(ShorthandComponent)
+      })
+    }
 
     it(`renders a ${name} from strings`, () => {
       consoleUtil.disableOnce()
@@ -635,13 +641,36 @@ export const implementsShorthandProp = (Component, options = {}) => {
 
     it(`renders a ${name} from elements`, () => {
       consoleUtil.disableOnce()
-      assertValidShorthand(<ShorthandComponent {...requiredShorthandProps} />)
+      assertValidShorthand(<ShorthandComponent />)
     })
   })
 }
 
 /**
- * Assert that a Component correctly implements a shorthand prop.
+ * Assert that a Component correctly implements a Button shorthand prop.
+ *
+ * @param {function} Component The component to test.
+ * @param {object} [options={}]
+ * @param {string} [options.propKey='button'] The name of the shorthand prop.
+ * @param {string|function} [options.ShorthandComponent] The component that should be rendered from the shorthand value.
+ * @param {function} [options.mapValueToProps] A function that maps a primitive value to the Component props
+ * @param {Object} [options.requiredProps={}] Props required to render the component.
+ * @param {Object|function} [options.shorthandDefaultProps={}] Props required to render the shorthand component.
+ */
+export const implementsButtonProp = (Component, options = {}) => {
+  const opts = {
+    propKey: 'button',
+    ShorthandComponent: Button,
+    mapValueToProps: val => ({ content: val }),
+    requiredProps: {},
+    shorthandDefaultProps: {},
+    ...options,
+  }
+  implementsShorthandProp(Component, opts)
+}
+
+/**
+ * Assert that a Component correctly implements an Icon shorthand prop.
  *
  * @param {function} Component The component to test.
  * @param {object} [options={}]
@@ -649,22 +678,43 @@ export const implementsShorthandProp = (Component, options = {}) => {
  * @param {string|function} [options.ShorthandComponent] The component that should be rendered from the shorthand value.
  * @param {function} [options.mapValueToProps] A function that maps a primitive value to the Component props
  * @param {Object} [options.requiredProps={}] Props required to render the component.
- * @param {Object} [options.requiredShorthandProps={}] Props required to render the shorthand component.
+ * @param {Object|function} [options.shorthandDefaultProps={}] Props required to render the shorthand component.
  */
 export const implementsIconProp = (Component, options = {}) => {
-  const opts = {
+  implementsShorthandProp(Component, {
     propKey: 'icon',
     ShorthandComponent: Icon,
     mapValueToProps: val => ({ name: val }),
     requiredProps: {},
-    requiredShorthandProps: {},
+    shorthandDefaultProps: {},
     ...options,
-  }
-  implementsShorthandProp(Component, opts)
+  })
 }
 
 /**
- * Assert that a Component correctly implements a shorthand prop.
+ * Assert that a Component correctly implements an HTML input shorthand prop.
+ *
+ * @param {function} Component The component to test.
+ * @param {object} [options={}]
+ * @param {string} [options.propKey='icon'] The name of the shorthand prop.
+ * @param {string|function} [options.ShorthandComponent] The component that should be rendered from the shorthand value.
+ * @param {function} [options.mapValueToProps] A function that maps a primitive value to the Component props
+ * @param {Object} [options.requiredProps={}] Props required to render the component.
+ * @param {Object|function} [options.shorthandDefaultProps={}] Props required to render the shorthand component.
+ */
+export const implementsHTMLInputProp = (Component, options = {}) => {
+  implementsShorthandProp(Component, {
+    propKey: 'input',
+    ShorthandComponent: 'input',
+    mapValueToProps: val => ({ type: val }),
+    requiredProps: {},
+    shorthandDefaultProps: {},
+    ...options,
+  })
+}
+
+/**
+ * Assert that a Component correctly implements a Label shorthand prop.
  *
  * @param {function} Component The component to test.
  * @param {object} [options={}]
@@ -672,22 +722,21 @@ export const implementsIconProp = (Component, options = {}) => {
  * @param {string|function} [options.ShorthandComponent] The component that should be rendered from the shorthand value.
  * @param {function} [options.mapValueToProps] A function that maps a primitive value to the Component props
  * @param {Object} [options.requiredProps={}] Props required to render the component.
- * @param {Object} [options.requiredShorthandProps={}] Props required to render the shorthand component.
+ * @param {Object|function} [options.shorthandDefaultProps={}] Props required to render the shorthand component.
  */
 export const implementsLabelProp = (Component, options = {}) => {
-  const opts = {
+  implementsShorthandProp(Component, {
     propKey: 'label',
     ShorthandComponent: Label,
     mapValueToProps: val => ({ content: val }),
     requiredProps: {},
-    requiredShorthandProps: {},
+    shorthandDefaultProps: {},
     ...options,
-  }
-  implementsShorthandProp(Component, opts)
+  })
 }
 
 /**
- * Assert that a Component correctly implements a shorthand prop.
+ * Assert that a Component correctly implements an Image shorthand prop.
  *
  * @param {function} Component The component to test.
  * @param {object} [options={}]
@@ -695,18 +744,17 @@ export const implementsLabelProp = (Component, options = {}) => {
  * @param {string|function} [options.ShorthandComponent] The component that should be rendered from the shorthand value.
  * @param {function} [options.mapValueToProps] A function that maps a primitive value to the Component props
  * @param {Object} [options.requiredProps={}] Props required to render the component.
- * @param {Object} [options.requiredShorthandProps={}] Props required to render the shorthand component.
+ * @param {Object|function} [options.shorthandDefaultProps={}] Props required to render the shorthand component.
  */
 export const implementsImageProp = (Component, options = {}) => {
-  const opts = {
+  implementsShorthandProp(Component, {
     propKey: 'image',
     ShorthandComponent: Image,
     mapValueToProps: val => ({ src: val }),
     requiredProps: {},
-    requiredShorthandProps: {},
+    shorthandDefaultProps: {},
     ...options,
-  }
-  implementsShorthandProp(Component, opts)
+  })
 }
 
 /**
