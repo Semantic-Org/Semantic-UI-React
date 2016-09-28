@@ -1,5 +1,14 @@
 # Change Log
 
+## [v0.48.0](https://github.com/TechnologyAdvice/stardust/tree/v0.48.0) (2016-09-28)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.47.2...v0.48.0)
+
+**Implemented enhancements:**
+
+- Dropdown: Support label prop [\#291](https://github.com/TechnologyAdvice/stardust/issues/291)
+- feat\(ComponentExample\): show code on direct link [\#557](https://github.com/TechnologyAdvice/stardust/pull/557) ([levithomason](https://github.com/levithomason))
+- feat\(Input\): update to v1 API [\#281](https://github.com/TechnologyAdvice/stardust/pull/281) ([jamiehill](https://github.com/jamiehill))
+
 ## [v0.47.2](https://github.com/TechnologyAdvice/stardust/tree/v0.47.2) (2016-09-28)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.47.1...v0.47.2)
 
