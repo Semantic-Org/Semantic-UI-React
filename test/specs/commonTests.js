@@ -28,7 +28,7 @@ const commonTestHelpers = (testName, Component) => {
 const componentCtx = require.context(
   '../../src/',
   true,
-  /(addons|collections|elements|modules|views).(?!index).*\.js/
+  /(addons|collections|elements|modules|views).(?!index|-example).*\.js/
 )
 
 const componentInfo = componentCtx.keys().map(key => {
