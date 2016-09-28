@@ -1,8 +1,11 @@
 # Change Log
 
-## [Unreleased](https://github.com/TechnologyAdvice/stardust/tree/HEAD)
+## [v0.47.2](https://github.com/TechnologyAdvice/stardust/tree/v0.47.2) (2016-09-28)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.47.1...v0.47.2)
 
-[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.47.1...HEAD)
+**Fixed bugs:**
+
+- fix\(Menu\): add left/right `fixed` enums [\#556](https://github.com/TechnologyAdvice/stardust/pull/556) ([levithomason](https://github.com/levithomason))
 
 **Merged pull requests:**
 
