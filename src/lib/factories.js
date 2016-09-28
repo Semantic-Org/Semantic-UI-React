@@ -30,10 +30,10 @@ const mergePropsAndClassName = (defaultProps, props) => {
  * @param {function|string} Component A ReactClass or string
  * @param {function} mapValueToProps A function that maps a primitive value to the Component props
  * @param {string|object|function} val The value to create a ReactElement from
- * @param {object|function} [defaultProps] Default props object or function (called with regular props).
+ * @param {object|function} [defaultProps={}] Default props object or function (called with regular props).
  * @returns {function|null}
  */
-export function createShorthand(Component, mapValueToProps, val, defaultProps) {
+export function createShorthand(Component, mapValueToProps, val, defaultProps = {}) {
   // short circuit for disabling shorthand
   if (val === null) return null
 
@@ -52,7 +52,7 @@ export function createShorthand(Component, mapValueToProps, val, defaultProps) {
   }
 
   defaultProps = _.isFunction(defaultProps) ? defaultProps(usersProps) : defaultProps
-  const props = mergePropsAndClassName({ ...defaultProps }, usersProps)
+  const props = mergePropsAndClassName(defaultProps, usersProps)
 
   // Clone ReactElements
   if (type === 'element') {
