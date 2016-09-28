@@ -1,5 +1,21 @@
 # Change Log
 
+## [Unreleased](https://github.com/TechnologyAdvice/stardust/tree/HEAD)
+
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.47.1...HEAD)
+
+**Merged pull requests:**
+
+- fix\(docs\): update sidebar to use Menu v1 API [\#555](https://github.com/TechnologyAdvice/stardust/pull/555) ([levithomason](https://github.com/levithomason))
+
+## [v0.47.1](https://github.com/TechnologyAdvice/stardust/tree/v0.47.1) (2016-09-28)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.47.0...v0.47.1)
+
+**Implemented enhancements:**
+
+- refactor\(sub components\): export at the top level [\#519](https://github.com/TechnologyAdvice/stardust/issues/519)
+- feat\(index\): export sub components at the top level [\#554](https://github.com/TechnologyAdvice/stardust/pull/554) ([levithomason](https://github.com/levithomason))
+
 ## [v0.47.0](https://github.com/TechnologyAdvice/stardust/tree/v0.47.0) (2016-09-26)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.46.3...v0.47.0)
 
