@@ -1,8 +1,40 @@
+import _ from 'lodash'
 import React, { PropTypes } from 'react'
 import AceEditor from 'react-ace'
+import ace from 'brace'
+import 'brace/ext/language_tools'
 import 'brace/mode/jsx'
 import 'brace/mode/html'
 import 'brace/theme/tomorrow'
+
+import { parentComponents } from 'docs/app/utils'
+
+// Set up custom completers by using a ace extension
+// https://github.com/thlorenz/brace/issues/19
+const languageTools = ace.acequire('ace/ext/language_tools')
+
+const stardustCompleter = {
+  getCompletions(editor, session, pos, prefix, callback) {
+    const completions = []
+
+    _.each(parentComponents, (component) => {
+      const { name } = component._meta
+      // Component
+      completions.push({ caption: name, value: name, meta: 'Stardust Component' })
+
+      // Its props
+      _.each(component.propTypes, (val, propName) => {
+        // don't add duplicate prop completions
+        if (_.find(completions, { value: propName })) return
+
+        completions.push({ caption: propName, value: propName, meta: 'Stardust Prop' })
+      })
+    })
+    callback(null, completions)
+  },
+}
+
+languageTools.addCompleter(stardustCompleter)
 
 function Editor(props) {
   const { id, mode, value, ...rest } = props
@@ -15,8 +47,9 @@ function Editor(props) {
       width='100%'
       height='100px'
       value={value}
-      enable
-      editorProps={{ $blockScrolling: Infinity, displayIndentGuides: false }}
+      enableBasicAutocompletion
+      enableLiveAutocompletion
+      editorProps={{ $blockScrolling: Infinity }}
       highlightActiveLine={false}
       maxLines={Infinity}
       showGutter={false}

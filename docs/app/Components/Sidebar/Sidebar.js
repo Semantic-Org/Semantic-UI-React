@@ -4,8 +4,7 @@ import { findDOMNode } from 'react-dom'
 import { Link, routerShape } from 'react-router'
 
 import pkg from 'package.json'
-import * as stardust from 'src'
-import { typeOrder } from 'docs/app/utils'
+import { typeOrder, parentComponents } from 'docs/app/utils'
 import { keyboardKey, META } from 'src/lib'
 import Logo from 'docs/app/Components/Logo/Logo'
 import {
@@ -13,11 +12,6 @@ import {
   Icon,
   Input,
 } from 'src'
-
-const parentComponents = _.flow(
-  _.filter(META.isParent),
-  _.sortBy('_meta.name')
-)(stardust)
 
 const getRoute = (_meta) => `/${_meta.type}s/${_.kebabCase(_meta.name)}`
 
