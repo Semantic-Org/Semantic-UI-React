@@ -65,6 +65,7 @@ config = Object.assign({}, config, {
   compiler_output_path: paths.base(config.dir_docs_dist),
   compiler_public_path: __BASE__ || '/',
   compiler_vendor: [
+    'babel-standalone',
     'brace',
     'classnames',
     'faker',

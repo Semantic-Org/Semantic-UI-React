@@ -64,6 +64,7 @@
     "babel-preset-react": "^6.5.0",
     "babel-preset-stage-1": "^6.5.0",
     "babel-register": "^6.9.0",
+    "babel-standalone": "^6.15.0",
     "brace": "^0.8.0",
     "chai": "^3.3.0",
     "chai-enzyme": "^0.5.0",
