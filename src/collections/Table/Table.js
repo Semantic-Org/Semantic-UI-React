@@ -25,6 +25,7 @@ import TableRow from './TableRow'
 function Table(props) {
   const {
     basic,
+    bodyRow,
     celled,
     children,
     className,
@@ -34,6 +35,8 @@ function Table(props) {
     compact,
     definition,
     fixed,
+    footerRow,
+    headerRow,
     inverted,
     padded,
     selectable,
@@ -42,6 +45,7 @@ function Table(props) {
     stackable,
     striped,
     structured,
+    tableData,
     unstackable,
   } = props
   const classes = cx(
@@ -70,7 +74,17 @@ function Table(props) {
   const ElementType = getElementType(Table, props)
   const rest = getUnhandledProps(Table, props)
 
-  return <ElementType {...rest} className={classes}>{children}</ElementType>
+  if (children) {
+    return <ElementType {...rest} className={classes}>{children}</ElementType>
+  }
+
+  return (
+    <ElementType {...rest} className={classes}>
+      {headerRow && <TableHeader>{TableRow.create(headerRow, { itemAs: 'th' })}</TableHeader>}
+      {<TableBody>{tableData.map((item, index) => TableRow.create(bodyRow(item, index)))}</TableBody>}
+      {footerRow && <TableFooter>{TableRow.create(footerRow)}</TableFooter>}
+    </ElementType>
+  )
 }
 
 Table._meta = {
@@ -100,11 +114,23 @@ Table.propTypes = {
     PropTypes.oneOf(Table._meta.props.basic),
   ]),
 
+  /**
+   * A function that takes (data, index) and returns shorthand for a TableRow
+   * to be placed within Table.Body.
+   */
+  bodyRow: customPropTypes.every([
+    customPropTypes.demand(['bodyRow']),
+    PropTypes.func,
+  ]),
+
   /** A table may be divided each row into separate cells. */
   celled: PropTypes.bool,
 
   /** Primary content of the Table. */
-  children: PropTypes.node,
+  children: customPropTypes.every([
+    customPropTypes.disallow(['headerRow', 'bodyRow', 'footerRow', 'tableData']),
+    PropTypes.node,
+  ]),
 
   /** Classes that will be added to the Table className. */
   className: PropTypes.string,
@@ -132,6 +158,18 @@ Table.propTypes = {
    * */
   fixed: PropTypes.bool,
 
+  /** Shorthand for a TableRow to be placed within Table.Footer. */
+  footerRow: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.element,
+  ]),
+
+  /** Shorthand for a TableRow to be placed within Table.Header. */
+  headerRow: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.element,
+  ]),
+
   /** A table's colors can be inverted. */
   inverted: PropTypes.bool,
 
@@ -158,6 +196,12 @@ Table.propTypes = {
 
   /** A table can be formatted to display complex structured data. */
   structured: PropTypes.bool,
+
+  /** Data to be passed to the bodyRow function. */
+  tableData: customPropTypes.every([
+    customPropTypes.demand(['bodyRow']),
+    PropTypes.array,
+  ]),
 
   /** A table can specify how it stacks table content responsively. */
   unstackable: PropTypes.bool,

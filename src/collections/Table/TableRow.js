@@ -2,6 +2,7 @@ import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
 import {
+  createShorthandFactory,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -11,6 +12,7 @@ import {
   useTextAlignProp,
   useVerticalAlignProp,
 } from '../../lib'
+import TableCell from './TableCell'
 
 function TableRow(props) {
   const {
@@ -19,6 +21,8 @@ function TableRow(props) {
     className,
     disabled,
     error,
+    itemAs,
+    items,
     negative,
     positive,
     textAlign,
@@ -40,7 +44,15 @@ function TableRow(props) {
   const ElementType = getElementType(TableRow, props)
   const rest = getUnhandledProps(TableRow, props)
 
-  return <ElementType {...rest} className={classes}>{children}</ElementType>
+  if (children) {
+    return <ElementType {...rest} className={classes}>{children}</ElementType>
+  }
+
+  return (
+    <ElementType {...rest} className={classes}>
+      {items.map((item) => TableCell.create(item, { as: itemAs }))}
+    </ElementType>
+  )
 }
 
 TableRow._meta = {
@@ -55,6 +67,7 @@ TableRow._meta = {
 
 TableRow.defaultProps = {
   as: 'tr',
+  itemAs: 'td',
 }
 
 TableRow.propTypes = {
@@ -65,7 +78,10 @@ TableRow.propTypes = {
   active: PropTypes.bool,
 
   /** Primary content of the TableRow. */
-  children: PropTypes.node,
+  children: customPropTypes.every([
+    customPropTypes.disallow(['content', 'icon']),
+    PropTypes.node,
+  ]),
 
   /** Classes that will be added to the TableRow className. */
   className: PropTypes.string,
@@ -75,6 +91,20 @@ TableRow.propTypes = {
 
   /** A row may call attention to an error or a negative value. */
   error: PropTypes.bool,
+
+  /** An element type to render as (string or function). */
+  itemAs: customPropTypes.as,
+
+  /** Shorthand array of props for TableCell. Mutually exclusive with children. */
+  items: customPropTypes.every([
+    customPropTypes.disallow(['children']),
+    // Array of shorthands for MenuItem
+    PropTypes.arrayOf(PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.element,
+      PropTypes.object,
+    ])),
+  ]),
 
   /** A row may let a user know whether a value is bad. */
   negative: PropTypes.bool,
@@ -91,5 +121,7 @@ TableRow.propTypes = {
   /** A row may warn a user. */
   warning: PropTypes.bool,
 }
+
+TableRow.create = createShorthandFactory(TableRow, items => ({ items }))
 
 export default TableRow

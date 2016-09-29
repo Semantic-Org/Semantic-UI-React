@@ -46,7 +46,7 @@ export function createShorthand(Component, mapValueToProps, val, defaultProps = 
   } else if (_.isPlainObject(val)) {
     type = 'props'
     usersProps = val
-  } else if (_.isString(val) || _.isNumber(val)) {
+  } else if (_.isString(val) || _.isNumber(val) || _.isArray(val)) {
     type = 'literal'
     usersProps = mapValueToProps(val)
   }
