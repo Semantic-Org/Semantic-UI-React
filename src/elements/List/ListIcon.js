@@ -1,6 +1,8 @@
+import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
 import {
+  getUnhandledProps,
   META,
   SUI,
   useVerticalAlignProp,
@@ -8,9 +10,14 @@ import {
 import { Icon } from '../'
 
 function ListIcon(props) {
-  const { verticalAlign } = props
+  const { className, verticalAlign } = props
+  const classes = cx(
+    useVerticalAlignProp(verticalAlign),
+    className
+  )
+  const rest = getUnhandledProps(ListIcon, props)
 
-  return <Icon {...props} className={useVerticalAlignProp(verticalAlign)} />
+  return <Icon {...rest} className={classes} />
 }
 
 ListIcon._meta = {
@@ -23,6 +30,9 @@ ListIcon._meta = {
 }
 
 ListIcon.propTypes = {
+  /** Classes to add to the ListIcon className. */
+  className: PropTypes.string,
+
   verticalAlign: PropTypes.oneOf(ListIcon._meta.props.verticalAlign),
 }
 

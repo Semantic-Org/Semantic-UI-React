@@ -8,31 +8,31 @@ import {
   META,
 } from '../../lib'
 
-function ListHeader(props) {
+function ListDescription(props) {
   const { children, className } = props
-  const classes = cx(className, 'header')
+  const classes = cx(className, 'description')
 
-  const ElementType = getElementType(ListHeader, props)
-  const rest = getUnhandledProps(ListHeader, props)
+  const ElementType = getElementType(ListDescription, props)
+  const rest = getUnhandledProps(ListDescription, props)
 
   return <ElementType {...rest} className={classes}>{children}</ElementType>
 }
 
-ListHeader._meta = {
-  name: 'ListHeader',
+ListDescription._meta = {
+  name: 'ListDescription',
   parent: 'List',
   type: META.TYPES.ELEMENT,
 }
 
-ListHeader.propTypes = {
+ListDescription.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** Primary content of the ListHeader. */
+  /** Primary content of the ListDescription. */
   children: PropTypes.node,
 
-  /** Classes to add to the ListHeader className. */
+  /** Classes to add to the ListDescription className. */
   className: PropTypes.string,
 }
 
-export default ListHeader
+export default ListDescription
