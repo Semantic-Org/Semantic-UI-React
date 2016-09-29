@@ -67,6 +67,10 @@ config = Object.assign({}, config, {
   compiler_vendor: [
     'babel-standalone',
     'brace',
+    'brace/ext/language_tools',
+    'brace/mode/jsx',
+    'brace/mode/html',
+    'brace/theme/tomorrow',
     'classnames',
     'faker',
     'react',
