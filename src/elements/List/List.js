@@ -22,6 +22,8 @@ function List(props) {
     className,
     divided,
     horizontal,
+    link,
+    ordered,
     relaxed,
   } = props
   const classes = cx(
@@ -29,6 +31,8 @@ function List(props) {
     useKeyOnly(bulleted, 'bulleted'),
     useKeyOnly(divided, 'divided'),
     useKeyOnly(horizontal, 'horizontal'),
+    useKeyOnly(link, 'link'),
+    useKeyOnly(ordered, 'ordered'),
     useKeyOnly(relaxed, 'relaxed'),
     className,
     'list'
@@ -61,6 +65,12 @@ List.propTypes = {
   divided: PropTypes.bool,
 
   horizontal: PropTypes.bool,
+
+  /** A list can be specially formatted for navigation links. */
+  link: PropTypes.bool,
+
+  /** A list can be ordered numerically. */
+  ordered: PropTypes.bool,
 
   relaxed: PropTypes.bool,
 }

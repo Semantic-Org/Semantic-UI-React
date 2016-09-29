@@ -31,12 +31,19 @@ const Types = () => {
       <ComponentExample
         title='Ordered'
         description='A list can be ordered numerically'
-        examplePath='elements/List/Types/ListOrderedExample'
+        examplePath='elements/List/Types/ListOrdered'
       />
+      <ComponentExample examplePath='elements/List/Types/ListOrderedOl'>
+        <Message info>
+          You can also manually specify a value for an ordered list using <code>value</code>.
+        </Message>
+      </ComponentExample>
+      <ComponentExample examplePath='elements/List/Types/ListOrderedValue' />
+
       <ComponentExample
         title='Link'
         description='A list can be specially formatted for navigation links'
-        examplePath='elements/List/Types/ListLinkExample'
+        examplePath='elements/List/Types/ListLink'
       />
     </ExampleSection>
   )

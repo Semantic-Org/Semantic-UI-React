@@ -6,13 +6,17 @@ import {
   getElementType,
   getUnhandledProps,
   META,
+  useKeyOnly,
 } from '../../lib'
 
 function ListList(props) {
   const { children, className } = props
-  const classes = cx(className, 'list')
 
   const ElementType = getElementType(ListList, props)
+  const classes = cx(
+    className,
+    useKeyOnly(ElementType !== 'ul' && ElementType !== 'ol', 'list'),
+  )
   const rest = getUnhandledProps(ListList, props)
 
   return <ElementType {...rest} className={classes}>{children}</ElementType>
