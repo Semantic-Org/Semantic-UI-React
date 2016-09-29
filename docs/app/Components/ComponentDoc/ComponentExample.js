@@ -44,11 +44,10 @@ const renderedExampleStyle = {
 }
 
 const errorStyle = {
-  background: '#fff2f2',
-  color: '#a33',
-  margin: '0 -1.1em -1.1em -1.1em',
   padding: '1em',
   fontSize: '0.9rem',
+  color: '#a33',
+  background: '#fff2f2',
 }
 
 /**
@@ -60,21 +59,20 @@ export default class ComponentExample extends Component {
     children: PropTypes.node,
     description: PropTypes.node,
     examplePath: PropTypes.string.isRequired,
-    exampleSrc: PropTypes.node,
     title: PropTypes.node,
   }
 
   componentWillMount() {
-    const { examplePath, exampleSrc, title } = this.props
-    const sourceCode = exampleSrc || require(`!raw!docs/app/Examples/${examplePath}`)
+    const { title } = this.props
+    const sourceCode = this.getOriginalSourceCode()
 
     // show code for direct links to examples
     const active = title && _.kebabCase(title) === location.hash.replace('#', '')
-    const component = createElement(exampleContext(`./${examplePath}.js`).default)
-    const staticMarkup = renderToStaticMarkup(component)
+    const exampleElement = this.renderOriginalExample()
+    const staticMarkup = renderToStaticMarkup(exampleElement)
 
     this.setState({
-      component,
+      exampleElement,
       showCode: active,
       showHTML: active,
       sourceCode,
@@ -85,12 +83,12 @@ export default class ComponentExample extends Component {
   resetEditor = () => {
     const sourceCode = this.getOriginalSourceCode()
     this.setState({ sourceCode })
-    this.renderSourceCode(sourceCode)
+    this.renderSourceCode()
   }
 
   getOriginalSourceCode = () => {
-    const { examplePath, exampleSrc } = this.props
-    return exampleSrc || require(`!raw!docs/app/Examples/${examplePath}`)
+    const { examplePath } = this.props
+    return require(`!raw!docs/app/Examples/${examplePath}`)
   }
 
   getKebabExamplePath = () => _.kebabCase(this.props.examplePath)
@@ -103,7 +101,13 @@ export default class ComponentExample extends Component {
     this.setState({ error })
   }, 800)
 
-  renderSourceCode = _.debounce((sourceCode) => {
+  renderOriginalExample = () => {
+    const { examplePath } = this.props
+    return createElement(exampleContext(`./${examplePath}.js`).default)
+  }
+
+  renderSourceCode = _.debounce(() => {
+    const { sourceCode } = this.state
     // Heads Up!
     //
     // These are used in the code editor scope when rewriting imports to const statements
@@ -152,10 +156,10 @@ export default class ComponentExample extends Component {
     try {
       const { code } = Babel.transform(IIFE, babelConfig)
       const Example = eval(code) // eslint-disable-line no-eval
-      const component = _.isFunction(Example) ? <Example /> : Example
+      const exampleElement = _.isFunction(Example) ? <Example /> : Example
 
-      if (!isValidElement(component)) {
-        this.renderError('Default export is not a valid element. Type:' + {}.toString.call(component))
+      if (!isValidElement(exampleElement)) {
+        this.renderError('Default export is not a valid element. Type:' + {}.toString.call(exampleElement))
       } else {
         // immediately render a null error
         // but also ensure the last debounced error call is a null error
@@ -163,8 +167,8 @@ export default class ComponentExample extends Component {
         this.renderError(error)
         this.setState({
           error,
-          component,
-          staticMarkup: renderToStaticMarkup(component),
+          exampleElement,
+          staticMarkup: renderToStaticMarkup(exampleElement),
         })
       }
     } catch (err) {
@@ -174,21 +178,22 @@ export default class ComponentExample extends Component {
 
   handleChangeCode = (sourceCode) => {
     this.setState({ sourceCode })
-    this.renderSourceCode(sourceCode)
+    this.renderSourceCode()
   }
 
   renderCode = () => {
     const { error, showCode, sourceCode } = this.state
     if (!showCode) return
 
+    const style = {}
+    if (error) {
+      style.boxShadow = `inset 0 0 0 1em ${errorStyle.background}`
+    }
+
     return (
-      <Grid.Column>
+      <Grid.Column style={style}>
         <Divider horizontal>
-          {error ? (
-            <Label basic horizontal color='red' icon='attention' content='Error' />
-          ) : (
-            <Label as='a' basic horizontal icon='refresh' content='JSX' onClick={this.resetEditor} />
-          )}
+          <Label as='a' basic horizontal icon='refresh' content='JSX' onClick={this.resetEditor} />
         </Divider>
         <Editor
           id={`${this.getKebabExamplePath()}-jsx`}
@@ -229,7 +234,7 @@ export default class ComponentExample extends Component {
 
   render() {
     const { children, description, title } = this.props
-    const { component, showCode, showHTML } = this.state
+    const { exampleElement, showCode, showHTML } = this.state
     const active = showCode || showHTML
 
     const style = { marginBottom: '4em', transition: 'box-shadow 0 ease-out' }
@@ -270,10 +275,10 @@ export default class ComponentExample extends Component {
           className={`rendered-example ${this.getKebabExamplePath()}`}
           style={renderedExampleStyle}
         >
-          {component}
+          {exampleElement}
         </Grid.Column>
-        {showCode && this.renderCode()}
-        {showHTML && this.renderHTML()}
+        {this.renderCode()}
+        {this.renderHTML()}
       </Grid>
     )
   }
