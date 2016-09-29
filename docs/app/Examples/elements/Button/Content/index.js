@@ -7,10 +7,10 @@ const ButtonContentExamples = () => (
     <ComponentExample
       title='Conditionals'
       description='Button groups can contain conditionals'
-      examplePath='elements/Button/Content/ButtonConditionalsExample'
+      examplePath='elements/Button/Content/ButtonExampleConditionals'
     />
     <ComponentExample
-      examplePath='elements/Button/Content/ButtonMultipleConditionalsExample'
+      examplePath='elements/Button/Content/ButtonExampleMultipleConditionals'
     />
   </ExampleSection>
 )
