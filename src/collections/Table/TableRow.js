@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
@@ -50,7 +51,7 @@ function TableRow(props) {
 
   return (
     <ElementType {...rest} className={classes}>
-      {items.map((item) => TableCell.create(item, { as: itemAs }))}
+      {_.map(items, (item) => TableCell.create(item, { as: itemAs }))}
     </ElementType>
   )
 }

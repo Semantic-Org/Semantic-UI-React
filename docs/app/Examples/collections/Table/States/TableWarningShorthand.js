@@ -1,5 +1,5 @@
 import React from 'react'
-import { Icon, Table } from 'stardust'
+import { Table } from 'stardust'
 
 const headerRow = [
   'Name',
@@ -17,7 +17,7 @@ const bodyRow = ({ name, status, notes }) => ({
     notes
       ? { icon: 'attention', content: notes, warning: true }
       : 'None',
-  ]
+  ],
 })
 
 const tableData = [
