@@ -9,6 +9,7 @@ describe('Segment', () => {
   common.implementsTextAlignProp(Segment)
 
   common.propValueOnlyToClassName(Segment, 'color')
+  common.propValueOnlyToClassName(Segment, 'size')
 
   common.propKeyOnlyToClassName(Segment, 'basic')
   common.propKeyOnlyToClassName(Segment, 'circular')
