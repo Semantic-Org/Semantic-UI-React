@@ -1,14 +1,16 @@
 import * as Babel from 'babel-standalone'
 import _ from 'lodash'
-import React, { Component, PropTypes } from 'react'
+import React, { Component, isValidElement, PropTypes } from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
 import { html } from 'js-beautify'
 
 import { Divider, Grid, Icon, Message, Header } from 'src'
 import Editor from 'docs/app/Components/Editor/Editor'
-import { presets } from '.babelrc'
+import babelrc from '.babelrc'
 
-const babelConfig = { presets }
+const babelConfig = {
+  presets: [...babelrc.presets],
+}
 
 const showCodeStyle = {
   position: 'absolute',
@@ -59,15 +61,14 @@ export default class ComponentExample extends Component {
 
     // show code for direct links to examples
     const active = title && _.kebabCase(title) === location.hash.replace('#', '')
+    const component =
 
     this.setState({
       showCode: active,
       showHTML: active,
       sourceCode,
-      staticMarkup: '',
+      staticMarkup: renderToStaticMarkup(component),
     })
-
-    this.renderExample(sourceCode)
   }
 
   getKebabExamplePath = () => _.kebabCase(this.props.examplePath)
@@ -79,9 +80,9 @@ export default class ComponentExample extends Component {
   renderExample = (sourceCode) => {
     // Heads Up!
     //
+    // These are used in the code editor scope when rewriting imports to const statements
     // We use require() to preserve variable names
-    // Webpack rewrites import variable names
-    // eval() needs to reference them
+    // Webpack rewrites import names
     /* eslint-disable no-unused-vars */
     const FAKER = require('faker')
     const LODASH = require('lodash')
@@ -89,7 +90,11 @@ export default class ComponentExample extends Component {
     const STARDUST = require('stardust')
     /* eslint-enable no-unused-vars */
 
-    // rewrite imports to const statements
+    // Should use an AST transform here... oh well :/
+    // Rewrite the example file into an IIFE that returns a component
+    // which can be rendered in this ComponentExample's render() method
+
+    // rewrite imports to const statements against the UPPERCASE module names
     const imports = _.get(/(import[\s\S]*from[\s\S]*['"]\n)/.exec(sourceCode), '[1]', '')
       .replace(/[\s\n]+/g, ' ')   // normalize spaces and make one line
       .replace(/'\s+/g, "'\n")    // one import per line
@@ -106,18 +111,31 @@ export default class ComponentExample extends Component {
         ]).join('\n')
       })
       .join('\n')
-    const body = _.get(/import[\s\S]*from '\w+'([\s\S]*)export default[\s\S]*/.exec(sourceCode), '[1]')
-    const defaultExport = _.get(/export default (\w+)/.exec(sourceCode), '[1]')
 
-    const IIFE = `(function() {\n${imports}\n${body}\nreturn ${defaultExport}\n}())`
+    // capture the default export so we can return it from the IIFE
+    const defaultExport = _.get(/export\s+default\s+(?:class|function)?(?:\s+)?(\w+)/.exec(sourceCode), '[1]')
+
+    // consider everything after the imports to be the body
+    // remove `export` statements except `export default class|function`
+    const body = _.get(/import[\s\S]*from '\w+'([\s\S]*)/.exec(sourceCode), '[1]', '')
+      .replace(/export\s+(?:default)?\s+(?!class\s+|function\s+).*\n/, '')
+
+    const IIFE = `(function() {\n${imports}${body}return ${defaultExport}\n}())`
 
     try {
-      const Example = eval(Babel.transform(IIFE, babelConfig).code) // eslint-disable-line no-eval
-      const component = <Example />
-      const staticMarkup = renderToStaticMarkup(component)
+      const { code } = Babel.transform(IIFE, babelConfig)
+      const Example = eval(code) // eslint-disable-line no-eval
+      const component = _.isFunction(Example) ? <Example /> : Example
 
-      this.setState({ error: null, component, staticMarkup })
+      if (!isValidElement(component)) {
+        this.setState({
+          error: 'Default export is not a valid element. Type:' + {}.toString.call(component),
+        })
+      } else {
+        this.setState({ error: null, component, staticMarkup: renderToStaticMarkup(component) })
+      }
     } catch (err) {
+      console.error(err) // eslint-disable-line no-console
       this.setState({ error: err.message })
     }
   }

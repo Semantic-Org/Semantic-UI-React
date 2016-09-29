@@ -15,6 +15,7 @@ function Editor(props) {
       width='100%'
       height='100px'
       value={value}
+      enable
       editorProps={{ $blockScrolling: Infinity, displayIndentGuides: false }}
       highlightActiveLine={false}
       maxLines={Infinity}
