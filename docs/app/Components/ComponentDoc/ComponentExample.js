@@ -1,10 +1,11 @@
 import * as Babel from 'babel-standalone'
 import _ from 'lodash'
-import React, { Component, isValidElement, PropTypes } from 'react'
+import React, { Component, createElement, isValidElement, PropTypes } from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
 import { html } from 'js-beautify'
 
-import { Divider, Grid, Icon, Message, Header } from 'src'
+import { exampleContext } from 'docs/app/utils'
+import { Label, Divider, Grid, Icon, Header } from 'src'
 import Editor from 'docs/app/Components/Editor/Editor'
 import babelrc from '.babelrc'
 
@@ -42,6 +43,14 @@ const renderedExampleStyle = {
   paddingBottom: 0,
 }
 
+const errorStyle = {
+  background: '#fff2f2',
+  color: '#a33',
+  margin: '0 -1.1em -1.1em -1.1em',
+  padding: '1em',
+  fontSize: '0.9rem',
+}
+
 /**
  * Renders a `component` and the raw `code` that produced it.
  * Allows toggling the the raw `code` code block.
@@ -61,14 +70,27 @@ export default class ComponentExample extends Component {
 
     // show code for direct links to examples
     const active = title && _.kebabCase(title) === location.hash.replace('#', '')
-    const component =
+    const component = createElement(exampleContext(`./${examplePath}.js`).default)
+    const staticMarkup = renderToStaticMarkup(component)
 
     this.setState({
+      component,
       showCode: active,
       showHTML: active,
       sourceCode,
-      staticMarkup: renderToStaticMarkup(component),
+      staticMarkup,
     })
+  }
+
+  resetEditor = () => {
+    const sourceCode = this.getOriginalSourceCode()
+    this.setState({ sourceCode })
+    this.renderSourceCode(sourceCode)
+  }
+
+  getOriginalSourceCode = () => {
+    const { examplePath, exampleSrc } = this.props
+    return exampleSrc || require(`!raw!docs/app/Examples/${examplePath}`)
   }
 
   getKebabExamplePath = () => _.kebabCase(this.props.examplePath)
@@ -77,7 +99,11 @@ export default class ComponentExample extends Component {
 
   toggleShowHTML = () => this.setState({ showHTML: !this.state.showHTML })
 
-  renderExample = (sourceCode) => {
+  renderError = _.debounce((error) => {
+    this.setState({ error })
+  }, 800)
+
+  renderSourceCode = _.debounce((sourceCode) => {
     // Heads Up!
     //
     // These are used in the code editor scope when rewriting imports to const statements
@@ -118,7 +144,8 @@ export default class ComponentExample extends Component {
     // consider everything after the imports to be the body
     // remove `export` statements except `export default class|function`
     const body = _.get(/import[\s\S]*from '\w+'([\s\S]*)/.exec(sourceCode), '[1]', '')
-      .replace(/export\s+(?:default)?\s+(?!class\s+|function\s+).*\n/, '')
+      .replace(/export\s+default\s+\w+(\s+)?\n/, '')  // remove `export default Foo` statements (lines)
+      .replace(/export\s+default\s+/, '')             // remove `export default`
 
     const IIFE = `(function() {\n${imports}${body}return ${defaultExport}\n}())`
 
@@ -128,21 +155,26 @@ export default class ComponentExample extends Component {
       const component = _.isFunction(Example) ? <Example /> : Example
 
       if (!isValidElement(component)) {
-        this.setState({
-          error: 'Default export is not a valid element. Type:' + {}.toString.call(component),
-        })
+        this.renderError('Default export is not a valid element. Type:' + {}.toString.call(component))
       } else {
-        this.setState({ error: null, component, staticMarkup: renderToStaticMarkup(component) })
+        // immediately render a null error
+        // but also ensure the last debounced error call is a null error
+        const error = null
+        this.renderError(error)
+        this.setState({
+          error,
+          component,
+          staticMarkup: renderToStaticMarkup(component),
+        })
       }
     } catch (err) {
-      console.error(err) // eslint-disable-line no-console
-      this.setState({ error: err.message })
+      this.renderError(err.message)
     }
-  }
+  }, 100)
 
   handleChangeCode = (sourceCode) => {
     this.setState({ sourceCode })
-    this.renderExample(sourceCode)
+    this.renderSourceCode(sourceCode)
   }
 
   renderCode = () => {
@@ -151,16 +183,20 @@ export default class ComponentExample extends Component {
 
     return (
       <Grid.Column>
-        <Divider horizontal>JSX</Divider>
+        <Divider horizontal>
+          {error ? (
+            <Label basic horizontal color='red' icon='attention' content='Error' />
+          ) : (
+            <Label as='a' basic horizontal icon='refresh' content='JSX' onClick={this.resetEditor} />
+          )}
+        </Divider>
         <Editor
           id={`${this.getKebabExamplePath()}-jsx`}
           value={sourceCode}
           onChange={this.handleChangeCode}
         />
         {error && (
-          <Message error size='small'>
-            <pre>{error}</pre>
-          </Message>
+          <pre style={errorStyle}>{error}</pre>
         )}
       </Grid.Column>
     )
