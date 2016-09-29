@@ -1,12 +1,11 @@
 import * as Babel from 'babel-standalone'
 import _ from 'lodash'
-import React, { Component, createElement, PropTypes } from 'react'
+import React, { Component, PropTypes } from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
 import { html } from 'js-beautify'
 
 import { Divider, Grid, Icon, Message, Header } from 'src'
 import Editor from 'docs/app/Components/Editor/Editor'
-import { getUnhandledProps } from 'src/lib'
 import { presets } from '.babelrc'
 
 const babelConfig = { presets }
@@ -176,7 +175,7 @@ export default class ComponentExample extends Component {
 
   render() {
     const { children, description, title } = this.props
-    const { component, error, showCode, showHTML } = this.state
+    const { component, showCode, showHTML } = this.state
     const active = showCode || showHTML
 
     const style = { marginBottom: '4em', transition: 'box-shadow 0 ease-out' }

@@ -5,7 +5,7 @@ import 'brace/mode/html'
 import 'brace/theme/tomorrow'
 
 function Editor(props) {
-  const { id, mode, readOnly, value, ...rest } = props
+  const { id, mode, value, ...rest } = props
 
   return (
     <AceEditor
