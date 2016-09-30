@@ -173,6 +173,24 @@ describe('Portal', () => {
     })
   })
 
+  describe('openOnTriggerMouseOver', () => {
+    it('should not open portal on mouseover when not set', () => {
+      const trigger = <button>button</button>
+      wrapperMount(<Portal trigger={trigger}><p>Hi</p></Portal>)
+
+      wrapper.find('button').simulate('mouseover')
+      document.body.childElementCount.should.equal(0)
+    })
+
+    it('should open portal on mouseover when set', () => {
+      const trigger = <button>button</button>
+      wrapperMount(<Portal trigger={trigger} openOnTriggerMouseOver><p>Hi</p></Portal>)
+
+      wrapper.find('button').simulate('mouseover')
+      document.body.lastElementChild.should.equal(wrapper.instance().node)
+    })
+  })
+
   describe('close actions', () => {
     it('closeOnEscape', () => {
       wrapperMount(<Portal closeOnEscape defaultOpen><p>Hi</p></Portal>)
