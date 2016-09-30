@@ -1,15 +1,15 @@
 import React from 'react'
 
 import Types from './Types'
-// import States from './States'
+import Content from './Content'
 // import Variations from './Variations'
 
-const LoaderExamples = () => (
+const ListExamples = () => (
   <div>
     <Types />
-    {/* <States />*/}
+    <Content />
     {/* <Variations />*/}
   </div>
 )
 
-export default LoaderExamples
+export default ListExamples
