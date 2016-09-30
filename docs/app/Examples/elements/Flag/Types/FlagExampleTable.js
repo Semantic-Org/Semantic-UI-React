@@ -248,9 +248,9 @@ const countries = [
   { name: 'Zimbabwe', countryCode: 'zw' },
 ]
 
-const flagRenderer = (item) => <Flag name={item.countryCode} />
+const flagRenderer = (country) => <Flag name={country.countryCode} />
 
-const FlagTableExample = () => (
+const FlagExampleTable = () => (
   <Table>
     <Table.Header>
       <Table.Row>
@@ -273,4 +273,4 @@ const FlagTableExample = () => (
   </Table>
 )
 
-export default FlagTableExample
+export default FlagExampleTable
