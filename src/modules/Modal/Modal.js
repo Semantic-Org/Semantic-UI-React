@@ -6,13 +6,12 @@ import ModalHeader from './ModalHeader'
 import ModalContent from './ModalContent'
 import ModalActions from './ModalActions'
 import ModalDescription from './ModalDescription'
-import Portal from 'react-portal'
+import { Portal } from './../../addons'
 
 import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  keyboardKey,
   makeDebugger,
   META,
   useKeyOnly,
@@ -44,17 +43,8 @@ class Modal extends Component {
     /** Classes to add to the modal className */
     className: PropTypes.string,
 
-    /** An active modal is visible on the page */
-    active: PropTypes.bool,
-
     /** A modal can reduce its complexity */
     basic: PropTypes.bool,
-
-    /** Closes the modal if Escape is pressed */
-    closeOnEscape: PropTypes.bool,
-
-    /** Closes the modal if user clicks anywhere outside the modal */
-    closeOnClickOutside: PropTypes.bool,
 
     /** A modal can appear in a dimmer */
     dimmer: PropTypes.oneOfType([
@@ -62,17 +52,21 @@ class Modal extends Component {
       PropTypes.oneOf(_meta.props.dimmer),
     ]),
 
+    /** Props to be passed to the Portal */
+    portal: PropTypes.object,
+
     /** A modal can vary in size */
     size: PropTypes.oneOf(_meta.props.size),
 
     /** Called when the modal is hidden */
-    onHide: PropTypes.func,
+    onClose: PropTypes.func,
+
+    /** Called when the modal is opened */
+    onOpen: PropTypes.func,
   }
 
   static defaultProps = {
     dimmer: true,
-    closeOnEscape: true,
-    closeOnClickOutside: true,
   }
 
   static _meta = _meta
@@ -84,52 +78,31 @@ class Modal extends Component {
   state = {}
 
   componentDidMount() {
-    debug('componentWillMount()')
-    const { active } = this.props
-
-    if (active) this.handleShow()
-
+    debug('componentDidMount()')
     this.setPosition()
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    debug('componentDidUpdate()')
-
-    if (!prevProps.active && this.props.active) {
-      debug('modal changed to shown')
-      this.handleShow()
-    } else if (prevProps.active && !this.props.active) {
-      debug('modal changed to hidden')
-      this.handleHide()
-    }
   }
 
   componentWillUnmount() {
     debug('componentWillUnmount()')
-    this.handleHide()
+    this.handleClose()
   }
 
-  onHide = () => {
-    debug('onHide()')
-    const { onHide } = this.props
-    if (onHide) onHide()
-  }
-
-  handleHide = () => {
-    debug('handleHide()')
+  handleClose = () => {
+    debug('handleClose()')
 
     // Always remove all dimmer classes.
     // If the dimmer value changes while the modal is open,
     //   then removing its current value could leave cruft classes previously added.
     document.body.classList.remove('blurring', 'dimmable', 'dimmed', 'scrollable')
 
-    document.removeEventListener('keydown', this.handleDocumentKeyDown)
-    document.removeEventListener('click', this.handleClickOutside)
+    const { onClose } = this.props
+    if (onClose) onClose()
   }
 
-  handleShow = () => {
-    debug('handleShow()')
+  handleOpen = () => {
+    debug('handleOpen()')
     const { dimmer } = this.props
+
     if (dimmer) {
       debug('adding dimmer')
       document.body.classList.add('dimmable', 'dimmed')
@@ -140,36 +113,8 @@ class Modal extends Component {
       }
     }
 
-    document.addEventListener('keydown', this.handleDocumentKeyDown)
-    document.addEventListener('click', this.handleClickOutside)
-  }
-
-  handleClickOutside = (e) => {
-    // do nothing when clicking inside the modal or if clickOnClickOutside is disabled
-    const { closeOnClickOutside } = this.props
-    if (!closeOnClickOutside || this._modalNode.contains(e.target)) return
-
-    debug('handleDimmerClick()')
-
-    e.stopPropagation()
-    this.onHide()
-  }
-
-  handleDocumentKeyDown = (e) => {
-    const { closeOnEscape } = this.props
-    const key = keyboardKey.getCode(e)
-    debug('handleDocumentKeyDown()', key)
-
-    switch (key) {
-      case keyboardKey.Escape:
-        if (closeOnEscape) {
-          this.onHide()
-        }
-
-        break
-      default:
-        break
-    }
+    const { onOpen } = this.props
+    if (onOpen) onOpen()
   }
 
   setPosition = () => {
@@ -198,15 +143,14 @@ class Modal extends Component {
   }
 
   render() {
-    const { active, basic, children, className, dimmer, size } = this.props
+    const { basic, children, className, dimmer, size, portal } = this.props
     const { marginTop, scrolling } = this.state
     const classes = cx(
       'ui',
       size,
       useKeyOnly(basic, 'basic'),
       useKeyOnly(scrolling, 'scrolling'),
-      'modal',
-      useKeyOnly(active, 'transition visible active'),
+      'modal transition visible active',
       className,
     )
     const rest = getUnhandledProps(Modal, this.props)
@@ -222,8 +166,7 @@ class Modal extends Component {
     const dimmerClasses = !dimmer ? null : cx(
       'ui',
       dimmer === 'inverted' && 'inverted',
-      useKeyOnly(active, 'transition visible active'),
-      'page modals dimmer',
+      'page modals dimmer transition visible active',
     )
 
     // Heads up!
@@ -237,7 +180,16 @@ class Modal extends Component {
     //
     // We cannot them wrap the modalJSX in an actual <Dimmer /> instead, we apply the dimmer classes to the <Portal />.
 
-    return <Portal isOpened={active} className={dimmerClasses}>{modalJSX}</Portal>
+    return (
+      <Portal
+        {...portal}
+        className={dimmerClasses}
+        onClose={this.handleClose}
+        onOpen={this.handleOpen}
+      >
+        {modalJSX}
+      </Portal>
+    )
   }
 }
 
