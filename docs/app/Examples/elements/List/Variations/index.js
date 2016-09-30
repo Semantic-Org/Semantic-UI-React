@@ -11,7 +11,7 @@ const ListVariations = () => (
       description='A list can be formatted to have items appear horizontally'
       examplePath='elements/List/Variations/ListExampleHorizontal'
     />
-    <ComponentExample examplePath='elements/List/Variations/ListExampleHorizontalNumbered' />
+    <ComponentExample examplePath='elements/List/Variations/ListExampleHorizontalOrdered' />
     <ComponentExample examplePath='elements/List/Variations/ListExampleHorizontalBulleted' />
 
     <ComponentExample

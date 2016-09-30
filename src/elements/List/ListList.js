@@ -14,8 +14,8 @@ function ListList(props) {
 
   const ElementType = getElementType(ListList, props)
   const classes = cx(
-    className,
     useKeyOnly(ElementType !== 'ul' && ElementType !== 'ol', 'list'),
+    className,
   )
   const rest = getUnhandledProps(ListList, props)
 

@@ -19,6 +19,9 @@ import ListIcon from './ListIcon'
 import ListItem from './ListItem'
 import ListList from './ListList'
 
+/**
+ * A list groups related content
+ * */
 function List(props) {
   const {
     animated,
@@ -52,8 +55,8 @@ function List(props) {
     useKeyOrValueAndKey(relaxed, 'relaxed'),
     useValueAndKey(floated, 'floated'),
     useVerticalAlignProp(verticalAlign),
+    'list',
     className,
-    'list'
   )
 
   const ElementType = getElementType(List, props)
@@ -66,7 +69,7 @@ List._meta = {
   name: 'List',
   type: META.TYPES.ELEMENT,
   props: {
-    floated: ['left', 'right'],
+    floated: SUI.FLOATS,
     relaxed: ['very'],
     size: SUI.SIZES,
     verticalAlign: SUI.VERTICAL_ALIGNMENTS,

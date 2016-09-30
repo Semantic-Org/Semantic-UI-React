@@ -13,7 +13,7 @@ describe('ListItem', () => {
 
   describe('list', () => {
     it('omitted when rendered as `li`', () => {
-      shallow(<ListItem as="li" />)
+      shallow(<ListItem as='li' />)
         .should.not.have.className('item')
     })
   })
@@ -29,7 +29,7 @@ describe('ListItem', () => {
     it('adds attribute when rendered as `li`', () => {
       const value = faker.hacker.phrase()
 
-      shallow(<ListItem as="li" value={value} />)
+      shallow(<ListItem as='li' value={value} />)
         .should.have.attr('value', value)
     })
   })

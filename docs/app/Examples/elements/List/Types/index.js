@@ -20,11 +20,7 @@ const ListTypes = () => (
       description='A list can mark items with a bullet'
       examplePath='elements/List/Types/ListExampleBulleted'
     />
-    <ComponentExample examplePath='elements/List/Types/ListExampleBulletedSimple'>
-      <Message info>
-        For convenience, a simple bulleted list can also use <code>ul</code> tag.
-      </Message>
-    </ComponentExample>
+    <ComponentExample examplePath='elements/List/Types/ListExampleBulletedSimple' />
     <ComponentExample examplePath='elements/List/Types/ListExampleBulletedHorizontal' />
 
     <ComponentExample
@@ -32,12 +28,12 @@ const ListTypes = () => (
       description='A list can be ordered numerically'
       examplePath='elements/List/Types/ListExampleOrdered'
     />
-    <ComponentExample examplePath='elements/List/Types/ListExampleOrderedSimple'>
+    <ComponentExample examplePath='elements/List/Types/ListExampleOrderedSimple' />
+    <ComponentExample examplePath='elements/List/Types/ListExampleOrderedValue'>
       <Message info>
         You can also manually specify a value for an ordered list using <code>value</code>.
       </Message>
     </ComponentExample>
-    <ComponentExample examplePath='elements/List/Types/ListExampleOrderedValue' />
 
     <ComponentExample
       title='Link'

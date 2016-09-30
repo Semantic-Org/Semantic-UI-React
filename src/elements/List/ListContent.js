@@ -21,8 +21,8 @@ function ListContent(props) {
   const classes = cx(
     useValueAndKey(floated, 'floated'),
     useVerticalAlignProp(verticalAlign),
+    'content',
     className,
-    'content'
   )
 
   const ElementType = getElementType(ListContent, props)
@@ -36,7 +36,7 @@ ListContent._meta = {
   parent: 'List',
   type: META.TYPES.ELEMENT,
   props: {
-    floated: ['left', 'right'],
+    floated: SUI.FLOATS,
     verticalAlign: SUI.VERTICAL_ALIGNMENTS,
   },
 }

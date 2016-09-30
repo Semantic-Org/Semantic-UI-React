@@ -22,8 +22,8 @@ function ListItem(props) {
   const classes = cx(
     useKeyOnly(active, 'active'),
     useKeyOnly(disabled, 'disabled'),
-    className,
     useKeyOnly(ElementType !== 'li', 'item'),
+    className,
   )
 
   const rest = getUnhandledProps(ListItem, props)

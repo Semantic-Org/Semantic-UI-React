@@ -1,7 +1,7 @@
 import React from 'react'
 import { Image, List } from 'stardust'
 
-const ListExampleHorizontalNumbered = () => (
+const ListExampleHorizontalOrdered = () => (
   <List horizontal ordered>
     <List.Item>
       <Image avatar src='http://semantic-ui.com/images/avatar/small/tom.jpg' />
@@ -27,4 +27,4 @@ const ListExampleHorizontalNumbered = () => (
   </List>
 )
 
-export default ListExampleHorizontalNumbered
+export default ListExampleHorizontalOrdered
