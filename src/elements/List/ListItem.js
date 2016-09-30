@@ -24,7 +24,7 @@ function ListItem(props) {
 
   const ElementType = getElementType(ListItem, props)
   const rest = getUnhandledProps(ListItem, props)
-  const valueProp = ElementType === 'li' ? { value } : { dataValue: value }
+  const valueProp = ElementType === 'li' ? { value } : { 'data-value': value }
 
   return <ElementType {...rest} {...valueProp} className={classes}>{children}</ElementType>
 }
