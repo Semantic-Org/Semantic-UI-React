@@ -1,5 +1,35 @@
 # Change Log
 
+## [Unreleased](https://github.com/TechnologyAdvice/stardust/tree/HEAD)
+
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.48.3...HEAD)
+
+**Implemented enhancements:**
+
+- feat\(docs\): editable examples [\#566](https://github.com/TechnologyAdvice/stardust/pull/566) ([levithomason](https://github.com/levithomason))
+
+## [v0.48.3](https://github.com/TechnologyAdvice/stardust/tree/v0.48.3) (2016-09-29)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.48.2...v0.48.3)
+
+**Implemented enhancements:**
+
+- feat\(Segment\): add `size` prop [\#568](https://github.com/TechnologyAdvice/stardust/issues/568)
+- feat\(Segment\): add `size` prop [\#569](https://github.com/TechnologyAdvice/stardust/pull/569) ([layershifter](https://github.com/layershifter))
+
+**Fixed bugs:**
+
+- fix\(dll\): fix dll build order [\#563](https://github.com/TechnologyAdvice/stardust/pull/563) ([levithomason](https://github.com/levithomason))
+
+## [v0.48.2](https://github.com/TechnologyAdvice/stardust/tree/v0.48.2) (2016-09-28)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.48.1...v0.48.2)
+
+## [v0.48.1](https://github.com/TechnologyAdvice/stardust/tree/v0.48.1) (2016-09-28)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.48.0...v0.48.1)
+
+**Implemented enhancements:**
+
+- Spread unhandled props on the root element [\#91](https://github.com/TechnologyAdvice/stardust/issues/91)
+
 ## [v0.48.0](https://github.com/TechnologyAdvice/stardust/tree/v0.48.0) (2016-09-28)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.47.2...v0.48.0)
 
