@@ -36,7 +36,10 @@ class Portal extends Component {
     /** Controls whether or not the portal should close when escape is pressed is displayed. */
     closeOnEscape: PropTypes.bool,
 
-    /** Controls whether or not the portal should close when when mousing out of the trigger. */
+    /** Controls whether or not the portal should close on blur of the trigger. */
+    closeOnTriggerBlur: PropTypes.bool,
+
+    /** Controls whether or not the portal should close when mousing out of the trigger. */
     closeOnTriggerMouseLeave: PropTypes.bool,
 
     /** Initial value of open. */
@@ -53,6 +56,9 @@ class Portal extends Component {
 
     /** Controls whether or not the portal should open when the trigger is clicked. */
     openOnTriggerClick: PropTypes.bool,
+
+    /** Controls whether or not the portal should open on focus of the trigger. */
+    openOnTriggerFocus: PropTypes.bool,
 
     /** Controls whether or not the portal should open when mousing over the trigger. */
     openOnTriggerMouseOver: PropTypes.bool,
@@ -133,12 +139,26 @@ class Portal extends Component {
     e.nativeEvent.stopImmediatePropagation()
   }
 
+  handleTriggerBlur = (e) => {
+    if (!this.props.closeOnTriggerBlur) return
+
+    debug('handleTriggerBlur()')
+    this.close()
+  }
+
   handleTriggerClick = (e) => {
     if (!this.props.openOnTriggerClick) return
 
     debug('handleTriggerClick()')
 
     e.stopPropagation()
+    this.open()
+  }
+
+  handleTriggerFocus = (e) => {
+    if (!this.props.openOnTriggerFocus) return
+
+    debug('handleTriggerFocus()')
     this.open()
   }
 
@@ -223,9 +243,11 @@ class Portal extends Component {
     if (!trigger) return null
 
     return React.cloneElement(trigger, {
+      onBlur: this.handleTriggerBlur,
       onClick: this.handleTriggerClick,
+      onFocus: this.handleTriggerFocus,
+      onMouseLeave: this.handleTriggerMouseLeave,
       onMouseOver: this.handleTriggerMouseOver,
-      onMouseLeave: this.handleTriggerMouseLeave
     })
   }
 }

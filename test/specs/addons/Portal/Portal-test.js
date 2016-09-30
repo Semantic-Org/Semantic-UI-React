@@ -209,6 +209,42 @@ describe('Portal', () => {
     })
   })
 
+  describe('openOnTriggerFocus', () => {
+    it('should not open portal on focus when not set', () => {
+      const trigger = <button>button</button>
+      wrapperMount(<Portal trigger={trigger}><p>Hi</p></Portal>)
+
+      wrapper.find('button').simulate('focus')
+      document.body.childElementCount.should.equal(0)
+    })
+
+    it('should open portal on focus when set', () => {
+      const trigger = <button>button</button>
+      wrapperMount(<Portal trigger={trigger} openOnTriggerFocus><p>Hi</p></Portal>)
+
+      wrapper.find('button').simulate('focus')
+      document.body.lastElementChild.should.equal(wrapper.instance().node)
+    })
+  })
+
+  describe('closeOnTriggerBlur', () => {
+    it('should not close portal on blur when not set', () => {
+      const trigger = <button>button</button>
+      wrapperMount(<Portal trigger={trigger} defaultOpen><p>Hi</p></Portal>)
+
+      wrapper.find('button').simulate('blur')
+      document.body.lastElementChild.should.equal(wrapper.instance().node)
+    })
+
+    it('should close portal on blur when set', () => {
+      const trigger = <button>button</button>
+      wrapperMount(<Portal trigger={trigger} defaultOpen closeOnTriggerBlur><p>Hi</p></Portal>)
+
+      wrapper.find('button').simulate('blur')
+      document.body.childElementCount.should.equal(0)
+    })
+  })
+
   describe('close actions', () => {
     it('closeOnEscape', () => {
       wrapperMount(<Portal closeOnEscape defaultOpen><p>Hi</p></Portal>)
