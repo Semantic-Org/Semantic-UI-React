@@ -22,8 +22,23 @@ describe('TableCell', () => {
   })
   common.propKeyOnlyToClassName(TableCell, 'warning')
 
-  it('renders as a thead by default', () => {
+  it('renders as a td by default', () => {
     shallow(<TableCell />)
       .should.have.tagName('td')
+  })
+
+  describe('shorthand', () => {
+    it('renders empty cell with no shorthand', () => {
+      const wrapper = shallow(<TableCell />)
+
+      wrapper.text().should.equal('')
+    })
+
+    it('renders the cell', () => {
+      const content = 'Hey there'
+      const wrapper = shallow(<TableCell content={content} />)
+
+      wrapper.text().should.equal(content)
+    })
   })
 })
