@@ -6,6 +6,8 @@ describe('SegmentGroup', () => {
   common.hasUIClassName(SegmentGroup)
   common.rendersChildren(SegmentGroup)
 
+  common.propValueOnlyToClassName(SegmentGroup, 'size')
+
   common.propKeyOnlyToClassName(SegmentGroup, 'compact')
   common.propKeyOnlyToClassName(SegmentGroup, 'horizontal')
   common.propKeyOnlyToClassName(SegmentGroup, 'piled')
