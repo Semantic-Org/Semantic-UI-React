@@ -2,25 +2,23 @@ import React, { Component } from 'react'
 import { Button, Icon, Modal } from 'stardust'
 
 class ModalCloseConfigExample extends Component {
-  state = { active: false }
+  state = { open: false }
 
-  closeConfigShow = (closeOnEscape, closeOnClickOutside) => () => {
-    this.setState({ closeOnEscape, closeOnClickOutside, active: true })
+  closeConfigShow = (closeOnEscape, closeOnDocumentClick) => () => {
+    this.setState({ closeOnEscape, closeOnDocumentClick, open: true })
   }
 
-  hide = () => this.setState({ active: false })
+  hide = () => this.setState({ open: false })
 
   render() {
-    const { active, closeOnEscape, closeOnClickOutside } = this.state
+    const { open, closeOnEscape, closeOnDocumentClick } = this.state
 
     return (
       <div>
         <Button onClick={this.closeConfigShow(false, true)}>No Close on Escape</Button>
         <Button onClick={this.closeConfigShow(true, false)}>No Close on Click Outside</Button>
 
-        <Modal active={active} onHide={this.hide}
-          closeOnEscape={closeOnEscape} closeOnClickOutside={closeOnClickOutside}
-        >
+        <Modal portal={{ open, closeOnEscape, closeOnDocumentClick }} onHide={this.hide}>
           <Modal.Header>
             Delete Your Account
           </Modal.Header>

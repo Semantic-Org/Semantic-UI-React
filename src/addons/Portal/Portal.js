@@ -1,5 +1,5 @@
 import React, { Children, cloneElement, PropTypes } from 'react'
-import ReactDOM, { findDOMNode } from 'react-dom'
+import ReactDOM from 'react-dom'
 
 import {
   AutoControlledComponent as Component,

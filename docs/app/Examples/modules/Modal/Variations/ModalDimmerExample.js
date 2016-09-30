@@ -2,13 +2,13 @@ import React, { Component } from 'react'
 import { Button, Header, Icon, Image, Modal } from 'stardust'
 
 class ModalDimmerExample extends Component {
-  state = { active: false }
+  state = { open: false }
 
-  show = (dimmer) => () => this.setState({ dimmer, active: true })
-  hide = () => this.setState({ active: false })
+  show = (dimmer) => () => this.setState({ dimmer, open: true })
+  hide = () => this.setState({ open: false })
 
   render() {
-    const { active, dimmer } = this.state
+    const { open, dimmer } = this.state
 
     return (
       <div>
@@ -17,7 +17,7 @@ class ModalDimmerExample extends Component {
         <Button onClick={this.show('blurring')}>Blurring</Button>
         <Button onClick={this.show(false)}>None</Button>
 
-        <Modal dimmer={dimmer} active={active} onHide={this.hide}>
+        <Modal dimmer={dimmer} portal={{ open }} onHide={this.hide}>
           <Modal.Header>Select a Photo</Modal.Header>
           <Modal.Content image>
             <Image wrapped className='medium' src='http://semantic-ui.com/images/avatar2/large/rachel.png' />
