@@ -1,7 +1,7 @@
 import React from 'react'
 import { Header } from 'stardust'
 
-const HeaderContentHeadersExample = () => (
+const HeaderExampleContentHeaders = () => (
   <div>
     <Header size='huge'>Huge Header</Header>
     <Header size='large'>Large Header</Header>
@@ -11,4 +11,4 @@ const HeaderContentHeadersExample = () => (
   </div>
 )
 
-export default HeaderContentHeadersExample
+export default HeaderExampleContentHeaders

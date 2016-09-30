@@ -8,37 +8,37 @@ const HeaderVariationsExamples = () => (
     <ComponentExample
       title='Dividing'
       description='A header can be formatted to divide itself from the content below it'
-      examplePath='elements/Header/Variations/HeaderDividingExample'
+      examplePath='elements/Header/Variations/HeaderExampleDividing'
     />
     <ComponentExample
       title='Block'
       description='A header can be formatted to appear inside a content block'
-      examplePath='elements/Header/Variations/HeaderBlockExample'
+      examplePath='elements/Header/Variations/HeaderExampleBlock'
     />
     <ComponentExample
       title='Attached'
       description='A header can be attached to other content, like a segment'
-      examplePath='elements/Header/Variations/HeaderAttachedExample'
+      examplePath='elements/Header/Variations/HeaderExampleAttached'
     />
     <ComponentExample
       title='Floating'
       description='A header can sit to the left or right of other content'
-      examplePath='elements/Header/Variations/HeaderFloatingExample'
+      examplePath='elements/Header/Variations/HeaderExampleFloating'
     />
     <ComponentExample
       title='Text Alignment'
       description='A header can have its text aligned to a side'
-      examplePath='elements/Header/Variations/HeaderTextAlignmentExample'
+      examplePath='elements/Header/Variations/HeaderExampleTextAlignment'
     />
     <ComponentExample
       title='Colored'
       description='A header can be formatted with different colors'
-      examplePath='elements/Header/Variations/HeaderColoredExample'
+      examplePath='elements/Header/Variations/HeaderExampleColored'
     />
     <ComponentExample
       title='Inverted'
       description='A header can have its colors inverted for contrast'
-      examplePath='elements/Header/Variations/HeaderInvertedExample'
+      examplePath='elements/Header/Variations/HeaderExampleInverted'
     >
       <Message warning>
         Inverted headers use modified light versions of the site color scheme

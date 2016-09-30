@@ -1,7 +1,7 @@
 import React from 'react'
 import { Header, Icon, Image } from 'stardust'
 
-const HeaderIconHeadersExample = () => (
+const HeaderExampleUsersIconHeader = () => (
   <div>
     <Header as='h2' icon textAlign='center'>
       <Icon name='users' circular />
@@ -13,4 +13,4 @@ const HeaderIconHeadersExample = () => (
   </div>
 )
 
-export default HeaderIconHeadersExample
+export default HeaderExampleUsersIconHeader

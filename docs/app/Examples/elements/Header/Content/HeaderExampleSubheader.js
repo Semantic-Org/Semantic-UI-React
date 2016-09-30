@@ -1,7 +1,7 @@
 import React from 'react'
 import { Header } from 'stardust'
 
-const HeaderSubheaderExample = () => (
+const HeaderExampleSubheader = () => (
   <Header as='h2'>
     Account Settings
     <Header.Subheader>
@@ -10,4 +10,4 @@ const HeaderSubheaderExample = () => (
   </Header>
 )
 
-export default HeaderSubheaderExample
+export default HeaderExampleSubheader

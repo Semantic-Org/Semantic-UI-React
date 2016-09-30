@@ -1,7 +1,7 @@
 import React from 'react'
 import { Header, Segment } from 'stardust'
 
-const HeaderAttachedExample = () => (
+const HeaderExampleAttached = () => (
   <div>
     <Header as='h2' attached='top'>
       Attached Header
@@ -14,4 +14,4 @@ const HeaderAttachedExample = () => (
   </div>
 )
 
-export default HeaderAttachedExample
+export default HeaderExampleAttached
