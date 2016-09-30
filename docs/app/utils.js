@@ -1,4 +1,6 @@
-import { META, SUI } from 'src/lib'
+import _ from 'lodash/fp'
+import * as stardust from '../../src'
+import { META, SUI } from '../../src/lib'
 
 export const typeOrder = [
   META.TYPES.ELEMENT,
@@ -7,6 +9,11 @@ export const typeOrder = [
   META.TYPES.MODULE,
   META.TYPES.ADDON,
 ]
+
+export const parentComponents = _.flow(
+  _.filter(META.isParent),
+  _.sortBy('_meta.name')
+)(stardust)
 
 /**
  * Get the Webpack Context for all doc site examples.
@@ -28,7 +35,7 @@ export const iconsByCategory = [{
 }, {
   name: 'User Types',
   description: 'Icons can represent types of people',
-  icons: SUI.USER_TYPE_ICONS,
+  icons: SUI.USER_TYPES_ICONS,
 }, {
   name: 'Gender & Sexuality',
   description: 'Icons can represent genders or types of sexuality',
@@ -36,7 +43,7 @@ export const iconsByCategory = [{
 }, {
   name: 'Layout Adjustment',
   description: 'Icons can alert users to common ways to adjust page layouts',
-  icons: SUI.LAYOUT_ADJUSTMENTS_ICONS,
+  icons: SUI.LAYOUT_ADJUSTMENT_ICONS,
 }, {
   name: 'Objects',
   description: 'Icons can be used to represent common objects',
@@ -76,7 +83,7 @@ export const iconsByCategory = [{
 }, {
   name: 'Rating',
   description: 'Icons can be used to represent users attitude towards content',
-  icons: SUI.RATINGS_ICONS,
+  icons: SUI.RATING_ICONS,
 }, {
   name: 'Audio',
   description: 'Icons can be used to represent common ways to interact with audio',
