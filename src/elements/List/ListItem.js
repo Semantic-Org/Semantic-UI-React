@@ -14,15 +14,18 @@ function ListItem(props) {
     active,
     children,
     className,
+    disabled,
     value,
   } = props
-  const classes = cx(
-    useKeyOnly(active, 'active'),
-    className,
-    'item'
-  )
 
   const ElementType = getElementType(ListItem, props)
+  const classes = cx(
+    useKeyOnly(active, 'active'),
+    useKeyOnly(disabled, 'disabled'),
+    className,
+    useKeyOnly(ElementType !== 'li', 'item'),
+  )
+
   const rest = getUnhandledProps(ListItem, props)
   const valueProp = ElementType === 'li' ? { value } : { 'data-value': value }
 
@@ -39,6 +42,7 @@ ListItem.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
+  /** A list item can active. */
   active: PropTypes.bool,
 
   /** Primary content of the ListItem. */
@@ -46,6 +50,9 @@ ListItem.propTypes = {
 
   /** Classes to add to the ListItem className. */
   className: PropTypes.string,
+
+  /** A list item can disabled. */
+  disabled: PropTypes.bool,
 
   /** A value for an ordered list. */
   value: PropTypes.string,

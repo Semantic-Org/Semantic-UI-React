@@ -6,7 +6,11 @@ import {
   getElementType,
   getUnhandledProps,
   META,
+  SUI,
   useKeyOnly,
+  useKeyOrValueAndKey,
+  useValueAndKey,
+  useVerticalAlignProp,
 } from '../../lib'
 import ListContent from './ListContent'
 import ListDescription from './ListDescription'
@@ -17,23 +21,37 @@ import ListList from './ListList'
 
 function List(props) {
   const {
+    animated,
     bulleted,
+    celled,
     children,
     className,
     divided,
+    floated,
     horizontal,
+    inverted,
     link,
     ordered,
     relaxed,
+    size,
+    selection,
+    verticalAlign,
   } = props
   const classes = cx(
     'ui',
+    size,
+    useKeyOnly(animated, 'animated'),
     useKeyOnly(bulleted, 'bulleted'),
+    useKeyOnly(celled, 'celled'),
     useKeyOnly(divided, 'divided'),
     useKeyOnly(horizontal, 'horizontal'),
+    useKeyOnly(inverted, 'inverted'),
     useKeyOnly(link, 'link'),
     useKeyOnly(ordered, 'ordered'),
-    useKeyOnly(relaxed, 'relaxed'),
+    useKeyOnly(selection, 'selection'),
+    useKeyOrValueAndKey(relaxed, 'relaxed'),
+    useValueAndKey(floated, 'floated'),
+    useVerticalAlignProp(verticalAlign),
     className,
     'list'
   )
@@ -47,14 +65,26 @@ function List(props) {
 List._meta = {
   name: 'List',
   type: META.TYPES.ELEMENT,
+  props: {
+    floated: ['left', 'right'],
+    relaxed: ['very'],
+    size: SUI.SIZES,
+    verticalAlign: SUI.VERTICAL_ALIGNMENTS,
+  },
 }
 
 List.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
+  /** A list can animate to set the current item apart from the list. */
+  animated: PropTypes.bool,
+
   /** A list can mark items with a bullet. */
   bulleted: PropTypes.bool,
+
+  /** A list can divide its items into cells. */
+  celled: PropTypes.bool,
 
   /** Primary content of the List. */
   children: PropTypes.node,
@@ -62,9 +92,17 @@ List.propTypes = {
   /** Classes to add to the List className. */
   className: PropTypes.string,
 
+  /** A list can show divisions between content. */
   divided: PropTypes.bool,
 
+  /** An list can be floated left or right. */
+  floated: PropTypes.oneOf(List._meta.props.floated),
+
+  /** A list can be formatted to have items appear horizontally. */
   horizontal: PropTypes.bool,
+
+  /** A list can be inverted to appear on a dark background. */
+  inverted: PropTypes.bool,
 
   /** A list can be specially formatted for navigation links. */
   link: PropTypes.bool,
@@ -72,7 +110,20 @@ List.propTypes = {
   /** A list can be ordered numerically. */
   ordered: PropTypes.bool,
 
-  relaxed: PropTypes.bool,
+  /** A list can relax its padding to provide more negative space. */
+  relaxed: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.oneOf(List._meta.props.relaxed),
+  ]),
+
+  /** A selection list formats list items as possible choices. */
+  selection: PropTypes.bool,
+
+  /** A list can vary in size. */
+  size: PropTypes.oneOf(List._meta.props.size),
+
+  /** An element inside a list can be vertically aligned. */
+  verticalAlign: PropTypes.oneOf(List._meta.props.verticalAlign),
 }
 
 List.Content = ListContent

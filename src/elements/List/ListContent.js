@@ -6,11 +6,24 @@ import {
   getElementType,
   getUnhandledProps,
   META,
+  SUI,
+  useValueAndKey,
+  useVerticalAlignProp,
 } from '../../lib'
 
 function ListContent(props) {
-  const { children, className } = props
-  const classes = cx(className, 'content')
+  const {
+    children,
+    className,
+    floated,
+    verticalAlign,
+  } = props
+  const classes = cx(
+    useValueAndKey(floated, 'floated'),
+    useVerticalAlignProp(verticalAlign),
+    className,
+    'content'
+  )
 
   const ElementType = getElementType(ListContent, props)
   const rest = getUnhandledProps(ListContent, props)
@@ -22,6 +35,10 @@ ListContent._meta = {
   name: 'ListContent',
   parent: 'List',
   type: META.TYPES.ELEMENT,
+  props: {
+    floated: ['left', 'right'],
+    verticalAlign: SUI.VERTICAL_ALIGNMENTS,
+  },
 }
 
 ListContent.propTypes = {
@@ -33,6 +50,12 @@ ListContent.propTypes = {
 
   /** Classes to add to the ListContent className. */
   className: PropTypes.string,
+
+  /** An list content can be floated left or right. */
+  floated: PropTypes.oneOf(ListContent._meta.props.floated),
+
+  /** An element inside a list can be vertically aligned. */
+  verticalAlign: PropTypes.oneOf(ListContent._meta.props.verticalAlign),
 }
 
 export default ListContent
