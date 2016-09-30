@@ -36,6 +36,9 @@ class Portal extends Component {
     /** Controls whether or not the portal should close when escape is pressed is displayed. */
     closeOnEscape: PropTypes.bool,
 
+    /** Controls whether or not the portal should close when when mousing out of the trigger. */
+    closeOnTriggerMouseLeave: PropTypes.bool,
+
     /** Initial value of open. */
     defaultOpen: PropTypes.bool,
 
@@ -51,7 +54,7 @@ class Portal extends Component {
     /** Controls whether or not the portal should open when the trigger is clicked. */
     openOnTriggerClick: PropTypes.bool,
 
-    /** Controls whether or not the portal should open when the trigger is clicked. */
+    /** Controls whether or not the portal should open when mousing over the trigger. */
     openOnTriggerMouseOver: PropTypes.bool,
 
     /** Element to be rendered in-place where the portal is defined. */
@@ -139,6 +142,13 @@ class Portal extends Component {
     this.open()
   }
 
+  handleTriggerMouseLeave = (e) => {
+    if (!this.props.closeOnTriggerMouseLeave) return
+
+    debug('handleTriggerMouseLeave()')
+    this.close()
+  }
+
   handleTriggerMouseOver = (e) => {
     if (!this.props.openOnTriggerMouseOver) return
 
@@ -215,6 +225,7 @@ class Portal extends Component {
     return React.cloneElement(trigger, {
       onClick: this.handleTriggerClick,
       onMouseOver: this.handleTriggerMouseOver,
+      onMouseLeave: this.handleTriggerMouseLeave
     })
   }
 }

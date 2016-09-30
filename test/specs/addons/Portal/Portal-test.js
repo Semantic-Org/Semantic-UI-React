@@ -191,6 +191,24 @@ describe('Portal', () => {
     })
   })
 
+  describe('closeOnTriggerMouseLeave', () => {
+    it('should not close portal on mouseleave when not set', () => {
+      const trigger = <button>button</button>
+      wrapperMount(<Portal trigger={trigger} defaultOpen><p>Hi</p></Portal>)
+
+      wrapper.find('button').simulate('mouseleave')
+      document.body.lastElementChild.should.equal(wrapper.instance().node)
+    })
+
+    it('should close portal on mouseleave when set', () => {
+      const trigger = <button>button</button>
+      wrapperMount(<Portal trigger={trigger} defaultOpen closeOnTriggerMouseLeave><p>Hi</p></Portal>)
+
+      wrapper.find('button').simulate('mouseleave')
+      document.body.childElementCount.should.equal(0)
+    })
+  })
+
   describe('close actions', () => {
     it('closeOnEscape', () => {
       wrapperMount(<Portal closeOnEscape defaultOpen><p>Hi</p></Portal>)
