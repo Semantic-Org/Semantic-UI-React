@@ -148,7 +148,7 @@ export default class ComponentExample extends Component {
     // consider everything after the imports to be the body
     // remove `export` statements except `export default class|function`
     const body = _.get(/import[\s\S]*from '\w+'([\s\S]*)/.exec(sourceCode), '[1]', '')
-      .replace(/export\s+default\s+\w+(\s+)?\n/, '')  // remove `export default Foo` statements (lines)
+      .replace(/export\s+default\s+\w+([\s\n]+)?/, '')  // remove `export default Foo` statements (lines)
       .replace(/export\s+default\s+/, '')             // remove `export default`
 
     const IIFE = `(function() {\n${imports}${body}return ${defaultExport}\n}())`
@@ -193,7 +193,15 @@ export default class ComponentExample extends Component {
     return (
       <Grid.Column style={style}>
         <Divider horizontal>
-          <Label as='a' basic horizontal icon='refresh' content='JSX' onClick={this.resetEditor} />
+          <Label
+            as='a'
+            basic
+            horizontal
+            color={error ? 'red' : 'green'}
+            icon='refresh'
+            content={error ? 'See Error' : 'JSX'}
+            onClick={this.resetEditor}
+          />
         </Divider>
         <Editor
           id={`${this.getKebabExamplePath()}-jsx`}
