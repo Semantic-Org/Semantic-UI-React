@@ -159,10 +159,14 @@ Input.propTypes = {
 
   /** Primary content.  Used when there are multiple Labels or multiple Actions. */
   children: customPropTypes.every([
-    customPropTypes.disallow(['icon', 'input', 'label']),
+    customPropTypes.disallow(['input', 'label']),
     customPropTypes.givenProps(
       { action: PropTypes.oneOfType([PropTypes.string, PropTypes.object, PropTypes.element]).isRequired },
       customPropTypes.disallow(['action']),
+    ),
+    customPropTypes.givenProps(
+      { icon: PropTypes.oneOfType([PropTypes.string, PropTypes.object, PropTypes.element]).isRequired },
+      customPropTypes.disallow(['icon']),
     ),
     PropTypes.node,
   ]),
@@ -192,10 +196,7 @@ Input.propTypes = {
   ]),
 
   /** An Icon can appear inside an Input on the left or right */
-  iconPosition: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.oneOf(Input._meta.props.iconPosition),
-  ]),
+  iconPosition: PropTypes.oneOf(Input._meta.props.iconPosition),
 
   /** Format to appear on dark backgrounds */
   inverted: PropTypes.bool,

@@ -17,7 +17,7 @@ const Divided = () => (
         <Description>{paragraph}</Description>
         <Extra>
           <Label>IMAX</Label>
-          <Label icon='globe'>Additional Languages</Label>
+          <Label icon='globe' content='Additional Languages' />
         </Extra>
       </Content>
     </Item>
