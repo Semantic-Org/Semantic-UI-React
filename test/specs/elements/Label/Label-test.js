@@ -6,11 +6,13 @@ import { sandbox } from 'test/utils'
 import Label from 'src/elements/Label/Label'
 import LabelDetail from 'src/elements/Label/LabelDetail'
 
-describe('Label Component', () => {
+describe('Label', () => {
   common.isConformant(Label)
   common.hasUIClassName(Label)
   common.hasSubComponents(Label, [LabelDetail])
   common.rendersChildren(Label)
+
+  common.propKeyAndValueToClassName(Label, 'attached')
 
   common.propKeyOnlyToClassName(Label, 'basic')
   common.propKeyOnlyToClassName(Label, 'circular')
@@ -19,13 +21,11 @@ describe('Label Component', () => {
   common.propKeyOnlyToClassName(Label, 'horizontal')
   common.propKeyOnlyToClassName(Label, 'tag')
 
-  common.propValueOnlyToClassName(Label, 'color')
-  common.propValueOnlyToClassName(Label, 'size')
-
-  common.propKeyAndValueToClassName(Label, 'attached')
-
   common.propKeyOrValueAndKeyToClassName(Label, 'corner')
   common.propKeyOrValueAndKeyToClassName(Label, 'ribbon')
+
+  common.propValueOnlyToClassName(Label, 'color')
+  common.propValueOnlyToClassName(Label, 'size')
 
   common.implementsIconProp(Label)
   common.implementsImageProp(Label)
