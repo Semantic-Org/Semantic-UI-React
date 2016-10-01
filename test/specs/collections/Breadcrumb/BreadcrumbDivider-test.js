@@ -5,7 +5,7 @@ import * as common from 'test/specs/commonTests'
 describe('BreadcrumbDivider', () => {
   common.isConformant(BreadcrumbDivider)
   common.implementsIconProp(BreadcrumbDivider, {
-    requiredShorthandProps: {
+    shorthandDefaultProps: {
       className: 'divider',
     },
   })

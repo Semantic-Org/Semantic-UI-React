@@ -76,10 +76,27 @@ describe('Dropdown Component', () => {
     ShorthandComponent: DropdownHeader,
     mapValueToProps: val => ({ content: val }),
   })
-
+  common.propKeyOnlyToClassName(Dropdown, 'disabled')
+  common.propKeyOnlyToClassName(Dropdown, 'error')
+  common.propKeyOnlyToClassName(Dropdown, 'loading')
+  common.propKeyOnlyToClassName(Dropdown, 'basic')
+  common.propKeyOnlyToClassName(Dropdown, 'button')
+  common.propKeyOnlyToClassName(Dropdown, 'compact')
+  common.propKeyOnlyToClassName(Dropdown, 'fluid')
+  common.propKeyOnlyToClassName(Dropdown, 'floating')
+  common.propKeyOnlyToClassName(Dropdown, 'inline')
+  // TODO: See Dropdown cx notes
+  // common.propKeyOnlyToClassName(Dropdown, 'icon')
+  common.propKeyOnlyToClassName(Dropdown, 'labeled')
+  // TODO: See Dropdown cx notes
+  // common.propKeyOnlyToClassName(Dropdown, 'link item')
   common.propKeyOnlyToClassName(Dropdown, 'multiple')
   common.propKeyOnlyToClassName(Dropdown, 'search')
   common.propKeyOnlyToClassName(Dropdown, 'selection')
+  common.propKeyOnlyToClassName(Dropdown, 'simple')
+  common.propKeyOnlyToClassName(Dropdown, 'scrolling')
+
+  common.propKeyOrValueAndKeyToClassName(Dropdown, 'pointing')
 
   it('closes on blur', () => {
     wrapperMount(<Dropdown options={options} />)

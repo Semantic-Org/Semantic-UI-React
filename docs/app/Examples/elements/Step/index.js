@@ -9,8 +9,8 @@ import Variations from './Variations'
 const StepExamples = () => (
   <div>
     <Types />
-    <Content />
     <Groups />
+    <Content />
     <States />
     <Variations />
   </div>

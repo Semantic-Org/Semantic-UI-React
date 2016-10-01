@@ -1,7 +1,5 @@
 import React from 'react'
-import { Button, Input, Menu } from 'stardust'
-
-// TODO: Update <Input> usage after update to v1 API
+import { Input, Menu } from 'stardust'
 
 const Inputs = () => {
   return (
@@ -11,9 +9,7 @@ const Inputs = () => {
       </Menu.Item>
 
       <Menu.Item position='right'>
-        <Input className='action' placeholder='Navigate to...'>
-          <Button type='submit'>Go</Button>
-        </Input>
+        <Input action={{ type: 'submit', content: 'Go' }} placeholder='Navigate to...' />
       </Menu.Item>
     </Menu>
   )

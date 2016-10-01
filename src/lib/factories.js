@@ -30,23 +30,39 @@ const mergePropsAndClassName = (defaultProps, props) => {
  * @param {function|string} Component A ReactClass or string
  * @param {function} mapValueToProps A function that maps a primitive value to the Component props
  * @param {string|object|function} val The value to create a ReactElement from
- * @param {object} defaultProps Default props to add to the final ReactElement
+ * @param {object|function} [defaultProps={}] Default props object or function (called with regular props).
  * @returns {function|null}
  */
 export function createShorthand(Component, mapValueToProps, val, defaultProps = {}) {
-  // Clone ReactElements
+  // short circuit for disabling shorthand
+  if (val === null) return null
+
+  let type
+  let usersProps = {}
+
   if (isValidElement(val)) {
-    return React.cloneElement(val, mergePropsAndClassName(defaultProps, val.props))
+    type = 'element'
+    usersProps = val.props
+  } else if (_.isPlainObject(val)) {
+    type = 'props'
+    usersProps = val
+  } else if (_.isString(val) || _.isNumber(val)) {
+    type = 'literal'
+    usersProps = mapValueToProps(val)
+  }
+
+  defaultProps = _.isFunction(defaultProps) ? defaultProps(usersProps) : defaultProps
+  const props = mergePropsAndClassName(defaultProps, usersProps)
+
+  // Clone ReactElements
+  if (type === 'element') {
+    return React.cloneElement(val, props)
   }
 
   // Create ReactElements from props objects
-  if (_.isPlainObject(val)) {
-    return <Component {...mergePropsAndClassName(defaultProps, val)} />
-  }
-
   // Map values to props and create a ReactElement
-  if (_.isString(val) || _.isNumber(val)) {
-    return <Component {...mergePropsAndClassName(mapValueToProps(val), defaultProps)} />
+  if (type === 'props' || type === 'literal') {
+    return <Component {...props} />
   }
 
   // Otherwise null
@@ -61,3 +77,4 @@ export function createShorthandFactory(Component, mapValueToProps) {
 // HTML Factories
 // ----------------------------------------
 export const createHTMLImage = createShorthandFactory('img', value => ({ src: value }))
+export const createHTMLInput = createShorthandFactory('input', value => ({ type: value }))

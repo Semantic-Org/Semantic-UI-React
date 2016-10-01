@@ -13,7 +13,7 @@ describe('Button', () => {
   common.hasSubComponents(Button, [ButtonContent, ButtonGroup, ButtonOr])
   common.implementsIconProp(Button)
   common.implementsLabelProp(Button, {
-    requiredShorthandProps: {
+    shorthandDefaultProps: {
       basic: true,
       pointing: 'left',
     },

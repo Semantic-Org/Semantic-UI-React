@@ -4,8 +4,7 @@ import { findDOMNode } from 'react-dom'
 import { Link, routerShape } from 'react-router'
 
 import pkg from 'package.json'
-import stardust from 'src'
-import { typeOrder } from 'docs/app/utils'
+import { typeOrder, parentComponents } from 'docs/app/utils'
 import { keyboardKey, META } from 'src/lib'
 import Logo from 'docs/app/Components/Logo/Logo'
 import {
@@ -14,15 +13,10 @@ import {
   Input,
 } from 'src'
 
-const parentComponents = _.flow(
-  _.filter(META.isParent),
-  _.sortBy('_meta.name')
-)(stardust)
-
 const getRoute = (_meta) => `/${_meta.type}s/${_.kebabCase(_meta.name)}`
 
 const MenuItem = ({ meta, children, ...rest }) => (
-  <Link key={meta.name} to={getRoute(meta)} {...rest}>
+  <Link to={getRoute(meta)} {...rest}>
     {children || meta.name}
   </Link>
 )
@@ -51,10 +45,19 @@ export default class Sidebar extends Component {
 
   componentDidMount() {
     document.addEventListener('keydown', this.handleDocumentKeyDown)
+    this.setSearchInput()
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    this.setSearchInput()
   }
 
   componentWillUnmount() {
     document.removeEventListener('keydown', this.handleDocumentKeyDown)
+  }
+
+  setSearchInput() {
+    this._searchInput = findDOMNode(this).querySelector('.ui.input input')
   }
 
   handleDocumentKeyDown = (e) => {
@@ -110,15 +113,21 @@ export default class Sidebar extends Component {
     const items = _.flow(
       _.filter(META.isType(type)),
       _.map(({ _meta }) => (
-        <MenuItem key={_meta.name} meta={_meta} onClick={this.handleItemClick} />
+        <Menu.Item
+          key={_meta.name}
+          name={_meta.name}
+          onClick={this.handleItemClick}
+          as={Link}
+          to={getRoute(_meta)}
+        />
       ))
     )(parentComponents)
 
     return (
-      <div className='item' key={type}>
-        <div className='header'>{_.capitalize(type)}s</div>
-        <div className='menu'>{items}</div>
-      </div>
+      <Menu.Item key={type}>
+        <Menu.Header>{_.capitalize(type)}s</Menu.Header>
+        <Menu.Menu>{items}</Menu.Menu>
+      </Menu.Item>
     )
   }, typeOrder)
 
@@ -146,50 +155,50 @@ export default class Sidebar extends Component {
       if (isSelected) this.selectedRoute = getRoute(_meta)
 
       return (
-        <MenuItem
+        <Menu.Item
           key={_meta.name}
-          meta={_meta}
-          className={isSelected ? 'active item' : 'item'}
-          // don't show the current route as active
-          activeClassName=''
+          name={_meta.name}
           onClick={this.handleItemClick}
+          active={isSelected}
+          as={Link}
+          to={getRoute(_meta)}
         >
           {_meta.name}
           {isSelected && selectedItemLabel}
-        </MenuItem>
+        </Menu.Item>
       )
     }, this.filteredComponents)
 
-    return <div className='menu'>{menuItems}</div>
+    return <Menu.Menu>{menuItems}</Menu.Menu>
   }
 
   render() {
     const { style } = this.props
     const { query } = this.state
     return (
-      <Menu className='vertical fixed inverted' style={{ ...style }}>
-        <div className='item'>
+      <Menu vertical fixed='left' inverted style={{ ...style }}>
+        <Menu.Item>
           <Logo spaced='right' size='mini' />
           <strong>
             Semantic-UI-React &nbsp;
             <small><em>{pkg.version}</em></small>
           </strong>
-        </div>
-        <div className='item'>
-          <div className='header'>Getting Started</div>
-          <div className='menu'>
-            <Link to='/introduction' className='item' activeClassName='active'>
+        </Menu.Item>
+        <Menu.Item>
+          <Menu.Header>Getting Started</Menu.Header>
+          <Menu.Menu>
+            <Menu.Item as={Link} to='/introduction' activeClassName='active'>
               Introduction
-            </Link>
-            <a className='item' href='https://github.com/TechnologyAdvice/stardust'>
+            </Menu.Item>
+            <Menu.Item as='a' href='https://github.com/TechnologyAdvice/stardust'>
               <Icon name='github' /> GitHub
-            </a>
-            <a className='item' href='https://github.com/TechnologyAdvice/stardust/blob/master/CHANGELOG.md'>
+            </Menu.Item>
+            <Menu.Item as='a' href='https://github.com/TechnologyAdvice/stardust/blob/master/CHANGELOG.md'>
               <Icon name='file text outline' /> CHANGELOG
-            </a>
-          </div>
-        </div>
-        <div className='item'>
+            </Menu.Item>
+          </Menu.Menu>
+        </Menu.Item>
+        <Menu.Item>
           <Input
             className='transparent inverted icon'
             icon='search'
@@ -197,11 +206,8 @@ export default class Sidebar extends Component {
             value={query}
             onChange={this.handleSearchChange}
             onKeyDown={this.handleSearchKeyDown}
-            ref={(c) => {
-              if (c !== null) this._searchInput = findDOMNode(c).querySelector('input')
-            }}
           />
-        </div>
+        </Menu.Item>
         {query ? this.renderSearchItems() : this.menuItemsByType}
       </Menu>
     )

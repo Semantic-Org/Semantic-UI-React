@@ -25,6 +25,8 @@
       background: #f7f7f7;
     }
 
+    /* Anchors */
+
     .anchorjs-link {
       position: absolute;
       transition: margin-left .25s, color .25s, opacity 0.25s;
@@ -78,6 +80,39 @@
     code:not(.hljs)::after {
       letter-spacing: -0.2em;
       content: "\00a0";
+    }
+
+    /* Icon Set Examples */
+
+    .icon-set-examples .rendered-example {
+      text-align: center;
+    }
+
+    .icon-set-examples .rendered-example .icon {
+      font-size: 2em;
+      color: #555;
+      transform: scale(1);
+      transition: color 0.2s, transform 0.2s;
+    }
+
+    .icon-set-examples .rendered-example p {
+      display: block;
+      margin: 1em 0;
+      color: transparent;
+      transition: color 0.2s;
+    }
+
+    .icon-set-examples .rendered-example:hover p {
+      color: #777;
+    }
+
+    .icon-set-examples .rendered-example .column:hover > .icon,
+    .icon-set-examples .rendered-example .column:hover > p {
+      color: #000;
+    }
+
+    .icon-set-examples .rendered-example .column:hover > .icon {
+      transform: scale(1.5);
     }
   </style>
 </body>
