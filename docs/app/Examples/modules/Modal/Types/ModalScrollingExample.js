@@ -5,7 +5,7 @@ const ModalScrollingExample = () => (
   <Modal portal={{ trigger: <Button>Long Modal</Button> }}>
     <Modal.Header>Profile Picture</Modal.Header>
     <Modal.Content image>
-      <Image wrapped className='medium' src='http://semantic-ui.com/images/wireframe/image.png' />
+      <Image wrapped size='medium' src='http://semantic-ui.com/images/wireframe/image.png' />
       <Modal.Description>
         <Header>Modal Header</Header>
         <p>This is an example of expanded content that will cause the modal's dimmer to scroll</p>

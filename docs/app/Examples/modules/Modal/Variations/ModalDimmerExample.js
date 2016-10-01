@@ -20,7 +20,7 @@ class ModalDimmerExample extends Component {
         <Modal dimmer={dimmer} portal={{ open }} onHide={this.hide}>
           <Modal.Header>Select a Photo</Modal.Header>
           <Modal.Content image>
-            <Image wrapped className='medium' src='http://semantic-ui.com/images/avatar2/large/rachel.png' />
+            <Image wrapped size='medium' src='http://semantic-ui.com/images/avatar2/large/rachel.png' />
             <Modal.Description>
               <Header>Default Profile Image</Header>
               <p>We've found the following gravatar image associated with your e-mail address.</p>

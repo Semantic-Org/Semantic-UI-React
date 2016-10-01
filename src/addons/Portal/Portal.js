@@ -1,4 +1,5 @@
-import React, { Children, cloneElement, PropTypes } from 'react'
+import _ from 'lodash'
+import React, { Children, PropTypes } from 'react'
 import ReactDOM from 'react-dom'
 
 import {
@@ -85,7 +86,7 @@ class Portal extends Component {
     }
   }
 
-  componentDidUpdate(prevProps, prevState) { // eslint-disable-line complexity
+  componentDidUpdate(prevProps, prevState) {
     // NOTE: Ideally the portal rendering would happen in the render() function
     // but React gives a warning about not being pure and suggests doing it
     // within this method.
@@ -111,6 +112,7 @@ class Portal extends Component {
 
   closeOnDocumentClick = (e) => {
     if (!this.props.closeOnDocumentClick) return
+    if (this.portal.contains(e.target)) return
 
     debug('closeOnDocumentClick()')
 
@@ -132,22 +134,25 @@ class Portal extends Component {
   // Component Event Handlers
   // ----------------------------------------
 
-  handleChildClick = (e) => {
-    debug('handleChildClick()')
-
-    // Prevent closeOnDocumentClick
-    e.nativeEvent.stopImmediatePropagation()
-  }
-
   handleTriggerBlur = (e) => {
-    if (!this.props.closeOnTriggerBlur) return
+    const { trigger, closeOnTriggerBlur } = this.props
+
+    // Call original event handler
+    _.invoke(trigger, 'props.onBlur', e)
+
+    if (!closeOnTriggerBlur) return
 
     debug('handleTriggerBlur()')
     this.close()
   }
 
   handleTriggerClick = (e) => {
-    if (!this.props.openOnTriggerClick) return
+    const { trigger, openOnTriggerClick } = this.props
+
+    // Call original event handler
+    _.invoke(trigger, 'props.onClick', e)
+
+    if (!openOnTriggerClick) return
 
     debug('handleTriggerClick()')
 
@@ -156,21 +161,36 @@ class Portal extends Component {
   }
 
   handleTriggerFocus = (e) => {
-    if (!this.props.openOnTriggerFocus) return
+    const { trigger, openOnTriggerFocus } = this.props
+
+    // Call original event handler
+    _.invoke(trigger, 'props.onFocus', e)
+
+    if (!openOnTriggerFocus) return
 
     debug('handleTriggerFocus()')
     this.open()
   }
 
   handleTriggerMouseLeave = (e) => {
-    if (!this.props.closeOnTriggerMouseLeave) return
+    const { trigger, closeOnTriggerMouseLeave } = this.props
+
+    // Call original event handler
+    _.invoke(trigger, 'props.onMouseLeave', e)
+
+    if (!closeOnTriggerMouseLeave) return
 
     debug('handleTriggerMouseLeave()')
     this.close()
   }
 
   handleTriggerMouseOver = (e) => {
-    if (!this.props.openOnTriggerMouseOver) return
+    const { trigger, openOnTriggerMouseOver } = this.props
+
+    // Call original event handler
+    _.invoke(trigger, 'props.onMouseOver', e)
+
+    if (!openOnTriggerMouseOver) return
 
     debug('handleTriggerMouseOver()')
     this.open()
@@ -182,11 +202,19 @@ class Portal extends Component {
 
   open = () => {
     debug('open()')
+
+    const { onOpen } = this.props
+    if (onOpen) onOpen()
+
     this.trySetState({ open: true })
   }
 
   close = () => {
     debug('close()')
+
+    const { onClose } = this.props
+    if (onClose) onClose()
+
     this.trySetState({ open: false })
   }
 
@@ -197,13 +225,9 @@ class Portal extends Component {
 
     this.node.className = className
 
-    const child = cloneElement(Children.only(children), {
-      onClick: this.handleChildClick,
-    })
-
     this.portal = ReactDOM.unstable_renderSubtreeIntoContainer(
       this,
-      child,
+      Children.only(children),
       this.node
     )
   }
@@ -211,11 +235,10 @@ class Portal extends Component {
   mountPortal = () => {
     if (this.node) return
 
+    this.open()
+
     this.node = document.createElement('div')
     document.body.appendChild(this.node)
-
-    const { onOpen } = this.props
-    if (onOpen) onOpen()
 
     document.addEventListener('keydown', this.closeOnEscape)
     document.addEventListener('click', this.closeOnDocumentClick)
@@ -224,14 +247,13 @@ class Portal extends Component {
   unmountPortal = () => {
     if (!this.node) return
 
+    this.close()
+
     ReactDOM.unmountComponentAtNode(this.node)
     document.body.removeChild(this.node)
 
     this.node = null
     this.portal = null
-
-    const { onClose } = this.props
-    if (onClose) onClose()
 
     document.removeEventListener('keydown', this.closeOnEscape)
     document.removeEventListener('click', this.closeOnDocumentClick)

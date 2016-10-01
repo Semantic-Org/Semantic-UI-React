@@ -143,9 +143,9 @@ describe('Portal', () => {
       const props = { open: true }
       wrapperMount(<Portal {...props}><p>Hi</p></Portal>, { attachTo: div })
 
-      sandbox.spy(wrapper, 'setState')
+      const spy = sandbox.spy(wrapper, 'setState')
       unmountComponentAtNode(div)
-      wrapper.setState.callCount.should.equal(0)
+      spy.should.not.have.been.called()
     })
   })
 
@@ -163,85 +163,125 @@ describe('Portal', () => {
 
       wrapper.text().should.equal(text)
     })
+  })
 
-    it('should open portal when clicking trigger element', () => {
-      const trigger = <button>button</button>
+  describe('openOnTriggerClick', () => {
+    it('should open portal on click by default', () => {
+      const spy = sandbox.spy()
+      const trigger = <button onClick={spy}>button</button>
       wrapperMount(<Portal trigger={trigger}><p>Hi</p></Portal>)
 
       wrapper.find('button').simulate('click')
       document.body.lastElementChild.should.equal(wrapper.instance().node)
+      spy.should.have.been.calledOnce()
+    })
+
+    it('should not open portal on click when false', () => {
+      const spy = sandbox.spy()
+      const trigger = <button onClick={spy}>button</button>
+      wrapperMount(<Portal trigger={trigger} openOnTriggerClick={false}><p>Hi</p></Portal>)
+
+      wrapper.find('button').simulate('click')
+      document.body.childElementCount.should.equal(0)
+      spy.should.have.been.calledOnce()
+    })
+
+    it('should open portal on click when set', () => {
+      const spy = sandbox.spy()
+      const trigger = <button onClick={spy}>button</button>
+      wrapperMount(<Portal trigger={trigger} openOnTriggerClick><p>Hi</p></Portal>)
+
+      wrapper.find('button').simulate('click')
+      document.body.lastElementChild.should.equal(wrapper.instance().node)
+      spy.should.have.been.calledOnce()
     })
   })
 
   describe('openOnTriggerMouseOver', () => {
     it('should not open portal on mouseover when not set', () => {
-      const trigger = <button>button</button>
+      const spy = sandbox.spy()
+      const trigger = <button onMouseOver={spy}>button</button>
       wrapperMount(<Portal trigger={trigger}><p>Hi</p></Portal>)
 
       wrapper.find('button').simulate('mouseover')
       document.body.childElementCount.should.equal(0)
+      spy.should.have.been.calledOnce()
     })
 
     it('should open portal on mouseover when set', () => {
-      const trigger = <button>button</button>
+      const spy = sandbox.spy()
+      const trigger = <button onMouseOver={spy}>button</button>
       wrapperMount(<Portal trigger={trigger} openOnTriggerMouseOver><p>Hi</p></Portal>)
 
       wrapper.find('button').simulate('mouseover')
       document.body.lastElementChild.should.equal(wrapper.instance().node)
+      spy.should.have.been.calledOnce()
     })
   })
 
   describe('closeOnTriggerMouseLeave', () => {
     it('should not close portal on mouseleave when not set', () => {
-      const trigger = <button>button</button>
+      const spy = sandbox.spy()
+      const trigger = <button onMouseLeave={spy}>button</button>
       wrapperMount(<Portal trigger={trigger} defaultOpen><p>Hi</p></Portal>)
 
       wrapper.find('button').simulate('mouseleave')
       document.body.lastElementChild.should.equal(wrapper.instance().node)
+      spy.should.have.been.calledOnce()
     })
 
     it('should close portal on mouseleave when set', () => {
-      const trigger = <button>button</button>
+      const spy = sandbox.spy()
+      const trigger = <button onMouseLeave={spy}>button</button>
       wrapperMount(<Portal trigger={trigger} defaultOpen closeOnTriggerMouseLeave><p>Hi</p></Portal>)
 
       wrapper.find('button').simulate('mouseleave')
       document.body.childElementCount.should.equal(0)
+      spy.should.have.been.calledOnce()
     })
   })
 
   describe('openOnTriggerFocus', () => {
     it('should not open portal on focus when not set', () => {
-      const trigger = <button>button</button>
+      const spy = sandbox.spy()
+      const trigger = <button onFocus={spy}>button</button>
       wrapperMount(<Portal trigger={trigger}><p>Hi</p></Portal>)
 
       wrapper.find('button').simulate('focus')
       document.body.childElementCount.should.equal(0)
+      spy.should.have.been.calledOnce()
     })
 
     it('should open portal on focus when set', () => {
-      const trigger = <button>button</button>
+      const spy = sandbox.spy()
+      const trigger = <button onFocus={spy}>button</button>
       wrapperMount(<Portal trigger={trigger} openOnTriggerFocus><p>Hi</p></Portal>)
 
       wrapper.find('button').simulate('focus')
       document.body.lastElementChild.should.equal(wrapper.instance().node)
+      spy.should.have.been.calledOnce()
     })
   })
 
   describe('closeOnTriggerBlur', () => {
     it('should not close portal on blur when not set', () => {
-      const trigger = <button>button</button>
+      const spy = sandbox.spy()
+      const trigger = <button onBlur={spy}>button</button>
       wrapperMount(<Portal trigger={trigger} defaultOpen><p>Hi</p></Portal>)
 
       wrapper.find('button').simulate('blur')
       document.body.lastElementChild.should.equal(wrapper.instance().node)
+      spy.should.have.been.calledOnce()
     })
 
     it('should close portal on blur when set', () => {
-      const trigger = <button>button</button>
+      const spy = sandbox.spy()
+      const trigger = <button onBlur={spy}>button</button>
       wrapperMount(<Portal trigger={trigger} defaultOpen closeOnTriggerBlur><p>Hi</p></Portal>)
 
       wrapper.find('button').simulate('blur')
       document.body.childElementCount.should.equal(0)
+      spy.should.have.been.calledOnce()
     })
   })
 
