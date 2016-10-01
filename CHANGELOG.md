@@ -1,12 +1,17 @@
 # Change Log
 
-## [Unreleased](https://github.com/TechnologyAdvice/stardust/tree/HEAD)
-
-[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.48.3...HEAD)
+## [v0.49.0](https://github.com/TechnologyAdvice/stardust/tree/v0.49.0) (2016-10-01)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.48.3...v0.49.0)
 
 **Implemented enhancements:**
 
 - feat\(docs\): editable examples [\#566](https://github.com/TechnologyAdvice/stardust/pull/566) ([levithomason](https://github.com/levithomason))
+- fix\(List\): Update to v1 API [\#551](https://github.com/TechnologyAdvice/stardust/pull/551) ([layershifter](https://github.com/layershifter))
+
+**Merged pull requests:**
+
+- fix\(customPropTypes\): fix logic and warning messages [\#579](https://github.com/TechnologyAdvice/stardust/pull/579) ([levithomason](https://github.com/levithomason))
+- test\(commonTests\): ensure top level exports [\#572](https://github.com/TechnologyAdvice/stardust/pull/572) ([levithomason](https://github.com/levithomason))
 
 ## [v0.48.3](https://github.com/TechnologyAdvice/stardust/tree/v0.48.3) (2016-09-29)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.48.2...v0.48.3)
@@ -35,7 +40,7 @@
 
 **Implemented enhancements:**
 
-- Dropdown: Support label prop [\#291](https://github.com/TechnologyAdvice/stardust/issues/291)
+- feat\(Dropdown\): support label prop [\#291](https://github.com/TechnologyAdvice/stardust/issues/291)
 - feat\(ComponentExample\): show code on direct link [\#557](https://github.com/TechnologyAdvice/stardust/pull/557) ([levithomason](https://github.com/levithomason))
 - feat\(Input\): update to v1 API [\#281](https://github.com/TechnologyAdvice/stardust/pull/281) ([jamiehill](https://github.com/jamiehill))
 
