@@ -1,5 +1,5 @@
-import React, { PropTypes } from 'react'
 import cx from 'classnames'
+import React, { PropTypes } from 'react'
 
 import {
   customPropTypes,
@@ -10,7 +10,7 @@ import {
 
 function LabelDetail(props) {
   const { children, className, content } = props
-  const classes = cx(className, 'detail')
+  const classes = cx('detail', className)
   const rest = getUnhandledProps(LabelDetail, props)
   const ElementType = getElementType(LabelDetail, props)
 
