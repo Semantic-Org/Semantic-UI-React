@@ -84,22 +84,10 @@ class Modal extends Component {
 
   componentWillUnmount() {
     debug('componentWillUnmount()')
-    this.handleClose()
+    this.handleUnmount()
   }
 
-  handleClose = () => {
-    debug('handleClose()')
-
-    // Always remove all dimmer classes.
-    // If the dimmer value changes while the modal is open,
-    //   then removing its current value could leave cruft classes previously added.
-    document.body.classList.remove('blurring', 'dimmable', 'dimmed', 'scrollable')
-
-    const { onClose } = this.props
-    if (onClose) onClose()
-  }
-
-  handleOpen = () => {
+  handleMount = () => {
     debug('handleOpen()')
     const { dimmer } = this.props
 
@@ -112,9 +100,15 @@ class Modal extends Component {
         document.body.classList.add('blurring')
       }
     }
+  }
 
-    const { onOpen } = this.props
-    if (onOpen) onOpen()
+  handleUnmount = () => {
+    debug('handleUnmount()')
+
+    // Always remove all dimmer classes.
+    // If the dimmer value changes while the modal is open,
+    //   then removing its current value could leave cruft classes previously added.
+    document.body.classList.remove('blurring', 'dimmable', 'dimmed', 'scrollable')
   }
 
   setPosition = () => {
@@ -143,7 +137,7 @@ class Modal extends Component {
   }
 
   render() {
-    const { basic, children, className, dimmer, size, portal } = this.props
+    const { basic, children, className, dimmer, onClose, onOpen, size, portal } = this.props
     const { marginTop, scrolling } = this.state
     const classes = cx(
       'ui',
@@ -184,8 +178,10 @@ class Modal extends Component {
       <Portal
         {...portal}
         className={dimmerClasses}
-        onClose={this.handleClose}
-        onOpen={this.handleOpen}
+        onClose={onClose}
+        onMount={this.handleMount}
+        onOpen={onOpen}
+        onUnmount={this.handleUnmount}
       >
         {modalJSX}
       </Portal>

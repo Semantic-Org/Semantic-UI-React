@@ -46,11 +46,17 @@ class Portal extends Component {
     /** Initial value of open. */
     defaultOpen: PropTypes.bool,
 
-    /** Called when open changes from true to false */
+    /** Called when a close event happens */
     onClose: PropTypes.func,
 
-    /** Called when open changes from false to true */
+    /** Called when the portal is mounted on the DOM */
+    onMount: PropTypes.func,
+
+    /** Called when an open event happens */
     onOpen: PropTypes.func,
+
+    /** Called when the portal is unmounted from the DOM */
+    onUnmount: PropTypes.func,
 
     /** Controls whether or not the portal is displayed. */
     open: PropTypes.bool,
@@ -240,7 +246,8 @@ class Portal extends Component {
   mountPortal = () => {
     if (this.node) return
 
-    this.open()
+    const { onMount } = this.props
+    if (onMount) onMount()
 
     this.node = document.createElement('div')
     document.body.appendChild(this.node)
@@ -252,7 +259,8 @@ class Portal extends Component {
   unmountPortal = () => {
     if (!this.node) return
 
-    this.close()
+    const { onUnmount } = this.props
+    if (onUnmount) onUnmount()
 
     ReactDOM.unmountComponentAtNode(this.node)
     document.body.removeChild(this.node)

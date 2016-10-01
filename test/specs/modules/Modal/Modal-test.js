@@ -44,6 +44,7 @@ const assertBodyClasses = (...rest) => {
 describe('Modal', () => {
   beforeEach(() => {
     wrapper = undefined
+    document.body.innerHTML = ''
   })
 
   afterEach(() => {
@@ -284,7 +285,7 @@ describe('Modal', () => {
 
     beforeEach(() => {
       spy = sandbox.spy()
-      wrapperMount(<Modal onClose={spy} open closeOnEscape={false} closeOnClickOutside={false} />)
+      wrapperMount(<Modal onClose={spy} portal={{ open: true, closeOnEscape: false, closeOnDocumentClick: false }} />)
     })
 
     it('is not called on dimmer click', () => {
