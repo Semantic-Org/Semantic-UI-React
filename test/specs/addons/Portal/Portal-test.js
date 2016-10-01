@@ -165,6 +165,19 @@ describe('Portal', () => {
     })
   })
 
+  describe('mountNode', () => {
+    it('render portal within mountNode', () => {
+      const mountNode = document.createElement('div')
+      document.body.appendChild(mountNode)
+
+      wrapperMount(<Portal mountNode={mountNode} open><p>Hi</p></Portal>)
+      const instance = wrapper.instance()
+
+      mountNode.lastElementChild.should.equal(instance.node)
+      mountNode.childElementCount.should.equal(1)
+    })
+  })
+
   describe('openOnTriggerClick', () => {
     it('should open portal on click by default', () => {
       const spy = sandbox.spy()

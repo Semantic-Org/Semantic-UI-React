@@ -52,6 +52,9 @@ class Modal extends Component {
       PropTypes.oneOf(_meta.props.dimmer),
     ]),
 
+    /** The node where the modal should mount.. */
+    mountNode: PropTypes.any,
+
     /** Props to be passed to the Portal */
     portal: PropTypes.object,
 
@@ -90,14 +93,15 @@ class Modal extends Component {
   handleMount = () => {
     debug('handleOpen()')
     const { dimmer } = this.props
+    const mountNode = this.getMountNode()
 
     if (dimmer) {
       debug('adding dimmer')
-      document.body.classList.add('dimmable', 'dimmed')
+      mountNode.classList.add('dimmable', 'dimmed')
 
       if (dimmer === 'blurring') {
         debug('adding blurred dimmer')
-        document.body.classList.add('blurring')
+        mountNode.classList.add('blurring')
       }
     }
   }
@@ -105,14 +109,21 @@ class Modal extends Component {
   handleUnmount = () => {
     debug('handleUnmount()')
 
+    const mountNode = this.getMountNode()
+
     // Always remove all dimmer classes.
     // If the dimmer value changes while the modal is open,
     //   then removing its current value could leave cruft classes previously added.
-    document.body.classList.remove('blurring', 'dimmable', 'dimmed', 'scrollable')
+    mountNode.classList.remove('blurring', 'dimmable', 'dimmed', 'scrollable')
+  }
+
+  getMountNode = () => {
+    return this.props.mountNode || document.body
   }
 
   setPosition = () => {
     if (this._modalNode) {
+      const mountNode = this.getMountNode()
       const { height } = this._modalNode.getBoundingClientRect()
       const scrolling = height >= window.innerHeight
 
@@ -123,9 +134,9 @@ class Modal extends Component {
 
       // add/remove scrolling class on body
       if (!this.state.scrolling && scrolling) {
-        document.body.classList.add('scrolling')
+        mountNode.classList.add('scrolling')
       } else if (this.state.scrolling && !scrolling) {
-        document.body.classList.remove('scrolling')
+        mountNode.classList.remove('scrolling')
       }
 
       if (!_.isEqual(newState, this.state)) {
@@ -137,7 +148,7 @@ class Modal extends Component {
   }
 
   render() {
-    const { basic, children, className, dimmer, onClose, onOpen, size, portal } = this.props
+    const { basic, children, className, dimmer, onClose, onOpen, portal, size  } = this.props
     const { marginTop, scrolling } = this.state
     const classes = cx(
       'ui',
@@ -178,6 +189,7 @@ class Modal extends Component {
       <Portal
         {...portal}
         className={dimmerClasses}
+        mountNode={this.getMountNode()}
         onClose={onClose}
         onMount={this.handleMount}
         onOpen={onOpen}

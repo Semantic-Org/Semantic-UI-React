@@ -22,10 +22,12 @@ let wrapper
 const wrapperMount = (...args) => (wrapper = mount(...args))
 const wrapperShallow = (...args) => (wrapper = shallow(...args))
 
-const assertInBody = (selector, isPresent = true) => {
-  const didFind = document.body.querySelector(selector) !== null
-  didFind.should.equal(isPresent, `${didFind ? 'Found' : 'Did not find'} "${selector}" in the document.body.`)
+const assertIn = (node, selector, isPresent = true) => {
+  const didFind = node.querySelector(selector) !== null
+  didFind.should.equal(isPresent, `${didFind ? 'Found' : 'Did not find'} "${selector}" in the ${node}.`)
 }
+
+const assertInBody = (...args) => assertIn(document.body, ...args)
 
 const assertBodyClasses = (...rest) => {
   const hasClasses = typeof rest[rest.length - 1] === 'boolean' ? rest.pop() : true
@@ -326,6 +328,16 @@ describe('Modal', () => {
     it('is not called when the open prop changes to false', () => {
       wrapper.setProps({ open: false })
       spy.should.not.have.been.called()
+    })
+  })
+
+  describe('mountNode', () => {
+    it('render modal within mountNode', () => {
+      const mountNode = document.createElement('div')
+      document.body.appendChild(mountNode)
+
+      wrapperMount(<Modal mountNode={mountNode} portal={{ open: true }}>foo</Modal>)
+      assertIn(mountNode, '.ui.modal')
     })
   })
 

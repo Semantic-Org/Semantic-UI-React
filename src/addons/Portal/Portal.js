@@ -46,6 +46,9 @@ class Portal extends Component {
     /** Initial value of open. */
     defaultOpen: PropTypes.bool,
 
+    /** The node where the portal should mount.. */
+    mountNode: PropTypes.any,
+
     /** Called when a close event happens */
     onClose: PropTypes.func,
 
@@ -249,8 +252,10 @@ class Portal extends Component {
     const { onMount } = this.props
     if (onMount) onMount()
 
+    const { mountNode = document.body } = this.props
+
     this.node = document.createElement('div')
-    document.body.appendChild(this.node)
+    mountNode.appendChild(this.node)
 
     document.addEventListener('keydown', this.closeOnEscape)
     document.addEventListener('click', this.closeOnDocumentClick)
@@ -263,7 +268,7 @@ class Portal extends Component {
     if (onUnmount) onUnmount()
 
     ReactDOM.unmountComponentAtNode(this.node)
-    document.body.removeChild(this.node)
+    this.node.parentNode.removeChild(this.node)
 
     this.node = null
     this.portal = null
