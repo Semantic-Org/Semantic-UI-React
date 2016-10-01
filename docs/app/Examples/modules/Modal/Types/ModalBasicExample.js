@@ -15,7 +15,7 @@ class ModalBasicExample extends Component {
         <Button onClick={this.show}>Basic Modal</Button>
 
         <Modal basic size='small' active={active} onHide={this.hide}>
-          <Header icon='archive'>Archive Old Messages</Header>
+          <Header icon='archive' content='Archive Old Messages' />
           <Modal.Content>
             <p>Your inbox is getting full, would you like us to enable automatic archiving of old messages?</p>
           </Modal.Content>
