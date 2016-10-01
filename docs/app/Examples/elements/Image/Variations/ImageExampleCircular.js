@@ -3,8 +3,8 @@ import { Image } from 'stardust'
 
 const src = 'http://semantic-ui.com/images/wireframe/square-image.png'
 
-const ImageCircularExample = () => (
+const ImageExampleCircular = () => (
   <Image src={src} size='medium' shape='circular' />
 )
 
-export default ImageCircularExample
+export default ImageExampleCircular

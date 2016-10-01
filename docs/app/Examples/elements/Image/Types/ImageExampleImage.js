@@ -3,8 +3,8 @@ import { Image } from 'stardust'
 
 const src = 'http://semantic-ui.com/images/wireframe/image.png'
 
-const ImageHiddenExample = () => (
-  <Image src={src} size='small' hidden />
+const ImageExampleImage = () => (
+  <Image src={src} size='small' />
 )
 
-export default ImageHiddenExample
+export default ImageExampleImage

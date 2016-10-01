@@ -7,12 +7,12 @@ const ImageStatesExamples = () => (
     <ComponentExample
       title='Hidden'
       description='An image can be hidden'
-      examplePath='elements/Image/States/ImageHiddenExample'
+      examplePath='elements/Image/States/ImageExampleHidden'
     />
     <ComponentExample
       title='Disabled'
       description='An image can show that it is disabled and cannot be selected'
-      examplePath='elements/Image/States/ImageDisabledExample'
+      examplePath='elements/Image/States/ImageExampleDisabled'
     />
   </ExampleSection>
 )
