@@ -93,15 +93,15 @@ export default class ComponentDoc extends Component {
       const { type, name } = seeMeta
 
       return (
-        <Link key={description} to={`/${type}s/${_.kebabCase(name)}`} className='item'>
+        <List.Item as={Link} key={description} to={`/${type}s/${_.kebabCase(name)}`}>
           {description}
-        </Link>
+        </List.Item>
       )
     })
 
     // still render empty lists to reserve the whitespace
     return (
-      <List className='small horizontal link' style={{ display: 'block' }}>
+      <List link horizontal size='small' style={{ display: 'block' }}>
         <List.Item>
           <Header size='tiny' color='grey'>
             {seeLinks.length > 0 ? 'See:' : ' '}
@@ -118,10 +118,13 @@ export default class ComponentDoc extends Component {
     if (META.isAddon(_meta)) return null
 
     return (
-      <List.Item icon='book'>
-        <a href={getSemanticUIDocsUrl(_meta)} target='_blank'>
-          Semantic UI {_meta.parent || _meta.name} Docs
-        </a>
+      <List.Item>
+        <List.Icon name='book' />
+        <List.Content>
+          <a href={getSemanticUIDocsUrl(_meta)} target='_blank'>
+            Semantic UI {_meta.parent || _meta.name} Docs
+          </a>
+        </List.Content>
       </List.Item>
     )
   }
@@ -132,10 +135,13 @@ export default class ComponentDoc extends Component {
     // no matter the OS path separator, use '/' since these link to github
     const posixPath = docPath.replace(pathSepRegEx, '/')
     return (
-      <List.Item icon='github'>
-        <code>
-          <a href={getGithubSourceUrl(_meta.name)} target='_blank'>{posixPath}</a>
-        </code>
+      <List.Item>
+        <List.Icon name='github' />
+        <List.Content>
+          <code>
+            <a href={getGithubSourceUrl(_meta.name)} target='_blank'>{posixPath}</a>
+          </code>
+        </List.Content>
       </List.Item>
     )
   }
@@ -228,7 +234,7 @@ export default class ComponentDoc extends Component {
             <Grid.Column>
               {this.renderHeader()}
               {this.renderSee()}
-              <List className='link' style={linkListStyle}>
+              <List link style={linkListStyle}>
                 {this.renderGithubSourceLink()}
                 {this.renderSemanticDocsLink()}
               </List>
