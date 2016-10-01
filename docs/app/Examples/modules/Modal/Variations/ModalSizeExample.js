@@ -5,7 +5,7 @@ class ModalSizeExample extends Component {
   state = { open: false }
 
   show = (size) => () => this.setState({ size, open: true })
-  hide = () => this.setState({ open: false })
+  close = () => this.setState({ open: false })
 
   render() {
     const { open, size } = this.state
@@ -16,7 +16,7 @@ class ModalSizeExample extends Component {
         <Button onClick={this.show('large')}>Large</Button>
         <Button onClick={this.show('fullscreen')}>Fullscreen</Button>
 
-        <Modal size={size} portal={{ open }} onHide={this.hide}>
+        <Modal size={size} open={open} onClose={this.close}>
           <Modal.Header>
             Delete Your Account
           </Modal.Header>

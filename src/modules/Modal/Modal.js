@@ -55,17 +55,13 @@ class Modal extends Component {
     /** The node where the modal should mount.. */
     mountNode: PropTypes.any,
 
-    /** Props to be passed to the Portal */
-    portal: PropTypes.object,
-
     /** A modal can vary in size */
     size: PropTypes.oneOf(_meta.props.size),
 
-    /** Called when the modal is hidden */
-    onClose: PropTypes.func,
-
-    /** Called when the modal is opened */
-    onOpen: PropTypes.func,
+    /**
+     * NOTE: Any unhandled props that are defined in Portal are passed-through
+     * to the wrapping Portal.
+     */
   }
 
   static defaultProps = {
@@ -148,7 +144,7 @@ class Modal extends Component {
   }
 
   render() {
-    const { basic, children, className, dimmer, onClose, onOpen, portal, size } = this.props
+    const { basic, children, className, dimmer, size } = this.props
     const { marginTop, scrolling } = this.state
     const classes = cx(
       'ui',
@@ -160,6 +156,7 @@ class Modal extends Component {
     )
     const rest = getUnhandledProps(Modal, this.props)
     const ElementType = getElementType(Modal, this.props)
+    const portalProps = _.pick(rest, _.keys(Portal.propTypes))
 
     const modalJSX = (
       <ElementType {...rest} className={classes} style={{ marginTop }} ref={c => (this._modalNode = c)}>
@@ -187,12 +184,10 @@ class Modal extends Component {
 
     return (
       <Portal
-        {...portal}
+        {...portalProps}
         className={dimmerClasses}
         mountNode={this.getMountNode()}
-        onClose={onClose}
         onMount={this.handleMount}
-        onOpen={onOpen}
         onUnmount={this.handleUnmount}
       >
         {modalJSX}

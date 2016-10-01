@@ -8,7 +8,7 @@ class ModalCloseConfigExample extends Component {
     this.setState({ closeOnEscape, closeOnDocumentClick, open: true })
   }
 
-  hide = () => this.setState({ open: false })
+  close = () => this.setState({ open: false })
 
   render() {
     const { open, closeOnEscape, closeOnDocumentClick } = this.state
@@ -18,7 +18,12 @@ class ModalCloseConfigExample extends Component {
         <Button onClick={this.closeConfigShow(false, true)}>No Close on Escape</Button>
         <Button onClick={this.closeConfigShow(true, false)}>No Close on Click Outside</Button>
 
-        <Modal portal={{ open, closeOnEscape, closeOnDocumentClick }} onHide={this.hide}>
+        <Modal
+          open={open}
+          closeOnEscape={closeOnEscape}
+          closeOnDocumentClick={closeOnDocumentClick}
+          onClose={this.close}
+        >
           <Modal.Header>
             Delete Your Account
           </Modal.Header>

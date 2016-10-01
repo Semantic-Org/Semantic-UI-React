@@ -2,7 +2,7 @@ import React from 'react'
 import { Button, Header, Icon, Image, Modal } from 'stardust'
 
 const ModalScrollingExample = () => (
-  <Modal portal={{ trigger: <Button>Long Modal</Button> }}>
+  <Modal trigger={<Button>Long Modal</Button>}>
     <Modal.Header>Profile Picture</Modal.Header>
     <Modal.Content image>
       <Image wrapped size='medium' src='http://semantic-ui.com/images/wireframe/image.png' />

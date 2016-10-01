@@ -2,7 +2,7 @@ import React from 'react'
 import { Button, Header, Image, Modal } from 'stardust'
 
 const ModalModalExample = () => (
-  <Modal portal={{ trigger: <Button>Show Modal</Button> }}>
+  <Modal trigger={<Button>Show Modal</Button>}>
     <Modal.Header>Select a Photo</Modal.Header>
     <Modal.Content image>
       <Image wrapped size='medium' src='http://semantic-ui.com/images/avatar2/large/rachel.png' />

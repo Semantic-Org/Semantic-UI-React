@@ -62,18 +62,18 @@ describe('Modal', () => {
   // The Modal is wrapped in a Portal, so we manually test a few things here.
 
   it('renders a Portal', () => {
-    wrapperShallow(<Modal portal={{ open: true }} />)
+    wrapperShallow(<Modal open />)
       .type()
       .should.equal(Portal)
   })
 
   it('renders to the document body', () => {
-    wrapperMount(<Modal portal={{ open: true }} />)
+    wrapperMount(<Modal open />)
     assertInBody('.ui.modal')
   })
 
   it('renders child text', () => {
-    wrapperMount(<Modal portal={{ open: true }}>child text</Modal>)
+    wrapperMount(<Modal open>child text</Modal>)
 
     document.querySelector('.ui.modal')
       .innerText
@@ -82,7 +82,7 @@ describe('Modal', () => {
 
   it('renders child components', () => {
     const child = <div data-child />
-    wrapperMount(<Modal portal={{ open: true }}>{child}</Modal>)
+    wrapperMount(<Modal open>{child}</Modal>)
 
     document
       .querySelector('.ui.modal')
@@ -97,52 +97,52 @@ describe('Modal', () => {
     })
 
     it('is passed to Portal open', () => {
-      shallow(<Modal portal={{ open: true }} />)
+      shallow(<Modal open />)
         .find('Portal')
         .should.have.prop('open', true)
 
-      shallow(<Modal portal={{ open: false }} />)
+      shallow(<Modal open={false} />)
         .find('Portal')
         .should.have.prop('open', false)
     })
 
     it('does not show the modal when false', () => {
-      wrapperMount(<Modal portal={{ open: false }} />)
+      wrapperMount(<Modal open={false} />)
       assertInBody('.ui.modal', false)
     })
 
     it('does not show the dimmer when false', () => {
-      wrapperMount(<Modal portal={{ open: false }} />)
+      wrapperMount(<Modal open={false} />)
       assertInBody('.ui.dimmer', false)
     })
 
     it('shows the dimmer when true', () => {
-      wrapperMount(<Modal portal={{ open: true }} dimmer />)
+      wrapperMount(<Modal open dimmer />)
       assertInBody('.ui.dimmer')
     })
 
     it('shows the modal when true', () => {
-      wrapperMount(<Modal portal={{ open: true }} />)
+      wrapperMount(<Modal open />)
       assertInBody('.ui.modal')
     })
 
     it('shows the modal and dimmer on changing from false to true', () => {
-      wrapperMount(<Modal portal={{ open: false }} />)
+      wrapperMount(<Modal open={false} />)
       assertInBody('.ui.modal', false)
       assertInBody('.ui.dimmer', false)
 
-      wrapper.setProps({ portal: { open: true } })
+      wrapper.setProps({ open: true })
 
       assertInBody('.ui.modal')
       assertInBody('.ui.dimmer')
     })
 
     it('hides the modal and dimmer on changing from true to false', () => {
-      wrapperMount(<Modal portal={{ open: true }} />)
+      wrapperMount(<Modal open />)
       assertInBody('.ui.modal')
       assertInBody('.ui.dimmer')
 
-      wrapper.setProps({ portal: { open: false } })
+      wrapper.setProps({ open: false })
 
       assertInBody('.ui.modal', false)
       assertInBody('.ui.dimmer', false)
@@ -151,7 +151,7 @@ describe('Modal', () => {
 
   describe('basic', () => {
     it('adds basic to the modal className', () => {
-      wrapperMount(<Modal basic portal={{ open: true }} />)
+      wrapperMount(<Modal basic open />)
       assertInBody('.ui.basic.modal')
     })
   })
@@ -164,7 +164,7 @@ describe('Modal', () => {
 
     it('adds the size to the modal className', () => {
       Modal._meta.props.size.forEach(size => {
-        wrapperMount(<Modal size={size} portal={{ open: true }} />)
+        wrapperMount(<Modal size={size} open />)
         assertInBody(`.ui.${size}.modal`)
       })
     })
@@ -178,56 +178,56 @@ describe('Modal', () => {
       })
 
       it('is present by default', () => {
-        wrapperMount(<Modal portal={{ open: true }} />)
+        wrapperMount(<Modal open />)
         assertInBody('.ui.dimmer')
       })
     })
 
     describe('true', () => {
       it('adds classes "dimmable dimmed" to the body', () => {
-        wrapperMount(<Modal portal={{ open: true }} dimmer />)
+        wrapperMount(<Modal open dimmer />)
         assertBodyClasses('dimmable', 'dimmed')
       })
 
       it('adds a dimmer to the body', () => {
-        wrapperMount(<Modal portal={{ open: true }} dimmer />)
+        wrapperMount(<Modal open dimmer />)
         assertInBody('.ui.page.modals.dimmer.transition.visible.active')
       })
     })
 
     describe('false', () => {
       it('does not render a dimmer', () => {
-        wrapperMount(<Modal portal={{ open: true }} dimmer={false} />)
+        wrapperMount(<Modal open dimmer={false} />)
         assertBodyClasses('dimmable', 'dimmed', 'blurring', false)
       })
 
       it('does not add any dimmer classes to the body', () => {
-        wrapperMount(<Modal portal={{ open: true }} dimmer={false} />)
+        wrapperMount(<Modal open dimmer={false} />)
         assertBodyClasses('dimmable', 'dimmed', 'blurring', false)
       })
     })
 
     describe('blurring', () => {
       it('adds class "dimmable dimmed blurring" to the body', () => {
-        wrapperMount(<Modal portal={{ open: true }} dimmer='blurring' />)
+        wrapperMount(<Modal open dimmer='blurring' />)
         assertBodyClasses('dimmable', 'dimmed', 'blurring')
       })
 
       it('adds a dimmer to the body', () => {
-        wrapperMount(<Modal portal={{ open: true }} dimmer='blurring' />)
+        wrapperMount(<Modal open dimmer='blurring' />)
         assertInBody('.ui.page.modals.dimmer.transition.visible.active')
       })
     })
 
     describe('inverted', () => {
       it('adds class "dimmable dimmed" to the body', () => {
-        wrapperMount(<Modal portal={{ open: true }} dimmer='inverted' />)
+        wrapperMount(<Modal open dimmer='inverted' />)
         assertBodyClasses('dimmable', 'dimmed')
         assertBodyClasses('inverted', false)
       })
 
       it('adds an inverted dimmer to the body', () => {
-        wrapperMount(<Modal portal={{ open: true }} dimmer='inverted' />)
+        wrapperMount(<Modal open dimmer='inverted' />)
         assertInBody('.ui.inverted.page.modals.dimmer.transition.visible.active')
       })
     })
@@ -238,7 +238,7 @@ describe('Modal', () => {
 
     beforeEach(() => {
       spy = sandbox.spy()
-      wrapperMount(<Modal onClose={spy} portal={{ defaultOpen: true }} />)
+      wrapperMount(<Modal onClose={spy} defaultOpen />)
     })
 
     it('is called on dimmer click', () => {
@@ -287,7 +287,7 @@ describe('Modal', () => {
 
     beforeEach(() => {
       spy = sandbox.spy()
-      wrapperMount(<Modal onClose={spy} portal={{ open: true, closeOnEscape: false, closeOnDocumentClick: false }} />)
+      wrapperMount(<Modal onClose={spy} open closeOnEscape={false} closeOnDocumentClick={false} />)
     })
 
     it('is not called on dimmer click', () => {
@@ -336,7 +336,7 @@ describe('Modal', () => {
       const mountNode = document.createElement('div')
       document.body.appendChild(mountNode)
 
-      wrapperMount(<Modal mountNode={mountNode} portal={{ open: true }}>foo</Modal>)
+      wrapperMount(<Modal mountNode={mountNode} open>foo</Modal>)
       assertIn(mountNode, '.ui.modal')
     })
   })
@@ -347,12 +347,12 @@ describe('Modal', () => {
     })
 
     it('does not add the scrolling class to the body by default', () => {
-      wrapperMount(<Modal portal={{ open: true }} />)
+      wrapperMount(<Modal open />)
       assertBodyClasses('scrolling', false)
     })
 
     it('adds the scrolling class to the body when taller than the window', (done) => {
-      wrapperMount(<Modal portal={{ open: true }}>foo</Modal>)
+      wrapperMount(<Modal open>foo</Modal>)
 
       window.innerHeight = 10
 
@@ -365,7 +365,7 @@ describe('Modal', () => {
     it('removes the scrolling class from the body when the window grows taller', (done) => {
       assertBodyClasses('scrolling', false)
 
-      wrapperMount(<Modal portal={{ open: true }}>foo</Modal>)
+      wrapperMount(<Modal open>foo</Modal>)
       window.innerHeight = 10
 
       requestAnimationFrame(() => {

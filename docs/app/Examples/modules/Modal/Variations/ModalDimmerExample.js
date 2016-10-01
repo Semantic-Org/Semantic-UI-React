@@ -5,7 +5,7 @@ class ModalDimmerExample extends Component {
   state = { open: false }
 
   show = (dimmer) => () => this.setState({ dimmer, open: true })
-  hide = () => this.setState({ open: false })
+  close = () => this.setState({ open: false })
 
   render() {
     const { open, dimmer } = this.state
@@ -17,7 +17,7 @@ class ModalDimmerExample extends Component {
         <Button onClick={this.show('blurring')}>Blurring</Button>
         <Button onClick={this.show(false)}>None</Button>
 
-        <Modal dimmer={dimmer} portal={{ open }} onHide={this.hide}>
+        <Modal dimmer={dimmer} open={open} onClose={this.close}>
           <Modal.Header>Select a Photo</Modal.Header>
           <Modal.Content image>
             <Image wrapped size='medium' src='http://semantic-ui.com/images/avatar2/large/rachel.png' />
@@ -28,10 +28,10 @@ class ModalDimmerExample extends Component {
             </Modal.Description>
           </Modal.Content>
           <Modal.Actions>
-            <Button color='black' onClick={this.hide}>
+            <Button color='black' onClick={this.close}>
               Nope
             </Button>
-            <Button positive icon labeled='right' onClick={this.hide}>
+            <Button positive icon labeled='right' onClick={this.close}>
               Yep, that's me <Icon name='checkmark' />
             </Button>
           </Modal.Actions>
