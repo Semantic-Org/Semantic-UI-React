@@ -1,7 +1,8 @@
 import React from 'react'
+
 import { Image, Rail, Segment } from 'stardust'
 
-const RailAttachedInternalExample = () => (
+const RailExampleAttachedInternal = () => (
   <Segment>
     <Image src='http://semantic-ui.com/images/wireframe/paragraph.png' />
 
@@ -15,4 +16,4 @@ const RailAttachedInternalExample = () => (
   </Segment>
 )
 
-export default RailAttachedInternalExample
+export default RailExampleAttachedInternal

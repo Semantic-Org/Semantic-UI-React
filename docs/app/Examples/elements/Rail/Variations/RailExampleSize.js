@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react'
+
 import { Image, Grid, Rail, Segment } from 'stardust'
 
 const Wrapper = ({ children }) => (
@@ -16,7 +17,7 @@ Wrapper.propTypes = {
   children: PropTypes.node,
 }
 
-const RailSizeExample = () => (
+const RailExampleSize = () => (
   <div>
     <Wrapper>
       <Rail size='mini' position='left'>Mini Left Rail</Rail>
@@ -36,4 +37,4 @@ const RailSizeExample = () => (
   </div>
 )
 
-export default RailSizeExample
+export default RailExampleSize

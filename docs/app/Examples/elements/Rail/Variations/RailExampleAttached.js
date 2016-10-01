@@ -1,17 +1,18 @@
 import React from 'react'
+
 import { Image, Grid, Rail, Segment } from 'stardust'
 
-const RailDividingExample = () => (
+const RailExampleAttached = () => (
   <Grid columns={3}>
     <Grid.Column>
-      <Segment>
+      <Segment textAlign='center'>
         <Image src='http://semantic-ui.com/images/wireframe/paragraph.png' />
 
-        <Rail dividing position='left'>
+        <Rail attached position='left'>
           <Segment>Left Rail Content</Segment>
         </Rail>
 
-        <Rail dividing position='right'>
+        <Rail attached position='right'>
           <Segment>Right Rail Content</Segment>
         </Rail>
       </Segment>
@@ -19,4 +20,4 @@ const RailDividingExample = () => (
   </Grid>
 )
 
-export default RailDividingExample
+export default RailExampleAttached

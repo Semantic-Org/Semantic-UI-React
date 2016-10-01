@@ -1,7 +1,8 @@
 import React from 'react'
+
 import { Image, Grid, Rail, Segment } from 'stardust'
 
-const RailExample = () => (
+const RailExampleBasic = () => (
   <Grid columns={3}>
     <Grid.Column>
       <Segment>
@@ -19,4 +20,4 @@ const RailExample = () => (
   </Grid>
 )
 
-export default RailExample
+export default RailExampleBasic

@@ -1,17 +1,18 @@
 import React from 'react'
+
 import { Image, Grid, Rail, Segment } from 'stardust'
 
-const RailVeryCloseExample = () => (
+const RailExampleClose = () => (
   <Grid columns={3}>
     <Grid.Column>
       <Segment>
         <Image src='http://semantic-ui.com/images/wireframe/paragraph.png' />
 
-        <Rail close='very' position='left'>
+        <Rail close position='left'>
           <Segment>Left Rail Content</Segment>
         </Rail>
 
-        <Rail close='very' position='right'>
+        <Rail close position='right'>
           <Segment>Right Rail Content</Segment>
         </Rail>
       </Segment>
@@ -19,4 +20,4 @@ const RailVeryCloseExample = () => (
   </Grid>
 )
 
-export default RailVeryCloseExample
+export default RailExampleClose
