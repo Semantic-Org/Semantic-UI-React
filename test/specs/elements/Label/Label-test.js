@@ -5,11 +5,12 @@ import * as common from 'test/specs/commonTests'
 import { sandbox } from 'test/utils'
 import Label from 'src/elements/Label/Label'
 import LabelDetail from 'src/elements/Label/LabelDetail'
+import LabelGroup from 'src/elements/Label/LabelGroup'
 
 describe('Label', () => {
   common.isConformant(Label)
   common.hasUIClassName(Label)
-  common.hasSubComponents(Label, [LabelDetail])
+  common.hasSubComponents(Label, [LabelDetail, LabelGroup])
   common.rendersChildren(Label)
 
   common.propKeyAndValueToClassName(Label, 'attached')

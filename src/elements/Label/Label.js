@@ -15,6 +15,7 @@ import {
 } from '../../lib'
 import { Icon, Image } from '../'
 import LabelDetail from './LabelDetail'
+import LabelGroup from './LabelGroup'
 
 /**
  * A label displays content classification
@@ -122,7 +123,6 @@ Label.propTypes = {
   /** A label can be circular. */
   circular: PropTypes.bool,
 
-
   /** Classes to add to the label className. */
   className: PropTypes.string,
 
@@ -216,5 +216,6 @@ Label.propTypes = {
 
 Label.create = createShorthandFactory(Label, value => ({ content: value }))
 Label.Detail = LabelDetail
+Label.Group = LabelGroup
 
 export default Label
