@@ -47,6 +47,6 @@ const events = [
   },
 ]
 
-const Props = () => <Feed events={events} />
+const FeedExampleShorthand = () => <Feed events={events} />
 
-export default Props
+export default FeedExampleShorthand

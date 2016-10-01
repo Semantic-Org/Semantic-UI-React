@@ -11,6 +11,6 @@ describe('FeedDate', () => {
   it('renders text with date prop', () => {
     const text = faker.hacker.phrase()
 
-    shallow(<FeedDate date={text} />).should.contain.text(text)
+    shallow(<FeedDate content={text} />).should.contain.text(text)
   })
 })

@@ -11,6 +11,6 @@ describe('FeedUser', () => {
   it('renders text with user prop', () => {
     const text = faker.hacker.phrase()
 
-    shallow(<FeedUser user={text} />).should.contain.text(text)
+    shallow(<FeedUser content={text} />).should.contain.text(text)
   })
 })
