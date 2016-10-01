@@ -141,7 +141,7 @@ webpackConfig.module.loaders = [{
   //
   // JSON
   //
-  test: /\.json$/,
+  test: /\.(json|.*rc)$/,
   loader: 'json',
 }]
 

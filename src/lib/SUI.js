@@ -50,11 +50,10 @@ export const USER_ACTIONS_ICONS = [
 ]
 
 export const MESSAGE_ICONS = [
-  'announcement', 'birthday:', 'help circle', 'help', 'info circle', 'info', 'warning circle', 'warning',
-  'warning sign',
+  'announcement', 'birthday', 'help circle', 'help', 'info circle', 'info', 'warning circle', 'warning', 'warning sign',
 ]
 
-export const USER_TYPE_ICONS = [
+export const USER_TYPES_ICONS = [
   'child', 'doctor', 'handicap', 'spy', 'student', 'user', 'users',
 ]
 
@@ -63,7 +62,7 @@ export const GENDER_AND_SEXUALITY_ICONS = [
   'non binary transgender', 'other gender horizontal', 'other gender', 'other gender vertical', 'transgender', 'woman',
 ]
 
-export const LAYOUT_ADJUSTMENTS_ICONS = [
+export const LAYOUT_ADJUSTMENT_ICONS = [
   'block layout', 'crop', 'grid layout', 'list layout', 'maximize', 'resize horizontal', 'resize vertical', 'zoom',
   'zoom out',
 ]
@@ -122,7 +121,7 @@ export const TECHNOLOGIES_ICONS = [
   'rss square', 'server', 'usb',
 ]
 
-export const RATINGS_ICONS = [
+export const RATING_ICONS = [
   'empty heart', 'empty star', 'frown', 'heart', 'meh', 'smile', 'star half empty', 'star half', 'star', 'thumbs down',
   'thumbs outline down', 'thumbs outline up', 'thumbs up',
 ]
@@ -190,9 +189,9 @@ export const ICONS = [
   ...WEB_CONTENT_ICONS,
   ...USER_ACTIONS_ICONS,
   ...MESSAGE_ICONS,
-  ...USER_TYPE_ICONS,
+  ...USER_TYPES_ICONS,
   ...GENDER_AND_SEXUALITY_ICONS,
-  ...LAYOUT_ADJUSTMENTS_ICONS,
+  ...LAYOUT_ADJUSTMENT_ICONS,
   ...OBJECTS_ICONS,
   ...SHAPES_ICONS,
   ...ITEM_SELECTION_ICONS,
@@ -202,7 +201,7 @@ export const ICONS = [
   ...COMPUTER_ICONS,
   ...COMPUTER_AND_FILE_SYSTEM_ICONS,
   ...TECHNOLOGIES_ICONS,
-  ...RATINGS_ICONS,
+  ...RATING_ICONS,
   ...AUDIO_ICONS,
   ...MAP_ICONS,
   ...TABLES_ICONS,

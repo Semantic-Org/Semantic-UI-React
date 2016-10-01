@@ -96,6 +96,15 @@ const SegmentVariationsExamples = () => (
       description='A basic segment has no special formatting.'
       examplePath='elements/Segment/Variations/SegmentBasicExample'
     />
+    <ComponentExample
+      title='Sizes'
+      description='A segment can have different sizes.'
+      examplePath='elements/Segment/Variations/SegmentSizesExample'
+    />
+    <ComponentExample
+      description='A group of segments can have different sizes.'
+      examplePath='elements/Segment/Variations/SegmentGroupSizesExample'
+    />
   </ExampleSection>
 )
 

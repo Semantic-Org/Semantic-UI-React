@@ -262,7 +262,7 @@ const FlagTableExample = () => (
     </Table.Header>
     <Table.Body>
       {countries.map(country => (
-        <Table.Row key={country.name}>
+        <Table.Row key={country.countryCode}>
           <Table.Cell>{flagRenderer(country)}</Table.Cell>
           <Table.Cell>{country.name}</Table.Cell>
           <Table.Cell>{country.countryCode}</Table.Cell>

@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
@@ -35,6 +36,7 @@ function Segment(props) {
     piled,
     raised,
     secondary,
+    size,
     stacked,
     tertiary,
     textAlign,
@@ -44,6 +46,7 @@ function Segment(props) {
   const classes = cx(
     'ui',
     color,
+    size,
     useKeyOrValueAndKey(attached, 'attached'),
     useKeyOnly(basic, 'basic'),
     useKeyOnly(circular, 'circular'),
@@ -78,10 +81,11 @@ Segment._meta = {
   type: META.TYPES.ELEMENT,
   props: {
     attached: ['top', 'bottom'],
-    floated: SUI.FLOATS,
-    textAlign: SUI.TEXT_ALIGNMENTS,
-    padded: ['very'],
     color: SUI.COLORS,
+    floated: SUI.FLOATS,
+    padded: ['very'],
+    size: _.without(SUI.SIZES, 'medium'),
+    textAlign: SUI.TEXT_ALIGNMENTS,
   },
 }
 
@@ -142,6 +146,9 @@ Segment.propTypes = {
 
   /** A segment can be formatted to appear less noticeable */
   secondary: PropTypes.bool,
+
+  /** A segment can have different sizes. */
+  size: PropTypes.oneOf(Segment._meta.props.size),
 
   /** Formatted to show it contains multiple pages. */
   stacked: PropTypes.bool,

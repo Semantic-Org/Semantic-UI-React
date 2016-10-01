@@ -1,10 +1,13 @@
+import _ from 'lodash'
 import cx from 'classnames'
 import React, { PropTypes } from 'react'
+
 import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
   META,
+  SUI,
   useKeyOnly,
 } from '../../lib'
 
@@ -12,9 +15,10 @@ import {
  * A group of segments can be formatted to appear together.
  */
 function SegmentGroup(props) {
-  const { children, className, compact, horizontal, raised, stacked, piled } = props
+  const { children, className, compact, horizontal, piled, raised, size, stacked } = props
   const classes = cx(
     'ui',
+    size,
     useKeyOnly(horizontal, 'horizontal'),
     useKeyOnly(compact, 'compact'),
     useKeyOnly(piled, 'piled'),
@@ -34,6 +38,9 @@ SegmentGroup._meta = {
   name: 'SegmentGroup',
   parent: 'Segment',
   type: META.TYPES.ELEMENT,
+  props: {
+    size: _.without(SUI.SIZES, 'medium'),
+  },
 }
 
 SegmentGroup.propTypes = {
@@ -57,6 +64,9 @@ SegmentGroup.propTypes = {
 
   /** A segment group may be formatted to raise above the page. */
   raised: PropTypes.bool,
+
+  /** A segment group can have different sizes. */
+  size: PropTypes.oneOf(SegmentGroup._meta.props.size),
 
   /** Formatted to show it contains multiple pages. */
   stacked: PropTypes.bool,

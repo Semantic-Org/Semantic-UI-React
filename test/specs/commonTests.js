@@ -153,14 +153,12 @@ export const isConformant = (Component, options = {}) => {
       )
     })
   } else {
-    it('is exported as a component or sub component', () => {
-      expect(isStardustProp || isSubComponent).to.equal(
-        true,
-        `"${constructorName}" must be:` +
-        ' a key on stardust' +
-        ' || key on another component (sub-component)' +
-        ' || private (start with "_")'
-      )
+    // require all components to be exported at the top level
+    it('is exported at the top level', () => {
+      expect(isStardustProp).to.equal(true, [
+        `"${constructorName}" must be exported at top level.`,
+        `According to its \`_meta.type\`, export it in \`${_meta.type}s/index.js\`.`,
+      ].join(' '))
     })
   }
 
