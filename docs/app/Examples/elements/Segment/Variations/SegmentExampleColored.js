@@ -1,7 +1,7 @@
 import React from 'react'
 import { Segment } from 'stardust'
 
-const SegmentColoredExample = () => (
+const SegmentExampleColored = () => (
   <div>
     <Segment color='red'>Red</Segment>
     <Segment color='orange'>Orange</Segment>
@@ -19,4 +19,4 @@ const SegmentColoredExample = () => (
   </div>
 )
 
-export default SegmentColoredExample
+export default SegmentExampleColored

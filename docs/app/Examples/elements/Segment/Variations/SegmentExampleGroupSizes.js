@@ -1,7 +1,7 @@
 import React from 'react'
 import { Segment } from 'stardust'
 
-const SegmentGroupSizesExample = () => {
+const SegmentExampleGroupSizes = () => {
   const sizes = ['mini', 'tiny', 'small', 'large', 'big', 'huge', 'massive']
 
   return (
@@ -20,4 +20,4 @@ const SegmentGroupSizesExample = () => {
   )
 }
 
-export default SegmentGroupSizesExample
+export default SegmentExampleGroupSizes

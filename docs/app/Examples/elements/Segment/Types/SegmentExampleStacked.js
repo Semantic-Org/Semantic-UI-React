@@ -1,10 +1,10 @@
 import React from 'react'
 import { Segment } from 'stardust'
 
-const SegmentStackedExample = () => (
+const SegmentExampleStacked = () => (
   <Segment stacked>
     Pellentesque habitant morbi tristique senectus.
   </Segment>
 )
 
-export default SegmentStackedExample
+export default SegmentExampleStacked

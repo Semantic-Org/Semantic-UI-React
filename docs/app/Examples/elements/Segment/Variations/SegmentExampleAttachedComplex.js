@@ -1,7 +1,7 @@
 import React from 'react'
 import { Header, Icon, Message, Segment } from 'stardust'
 
-const SegmentAttachedComplexExample = () => (
+const SegmentExampleAttachedComplex = () => (
   <div>
     <Header as='h5' attached='top'>
       Dogs
@@ -28,4 +28,4 @@ const SegmentAttachedComplexExample = () => (
   </div>
 )
 
-export default SegmentAttachedComplexExample
+export default SegmentExampleAttachedComplex

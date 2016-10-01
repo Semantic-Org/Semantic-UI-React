@@ -1,7 +1,7 @@
 import React from 'react'
 import { Segment } from 'stardust'
 
-const SegmentEmphasisInvertedExample = () => (
+const SegmentExampleEmphasisColoredInverted = () => (
   <div>
     <Segment inverted color='red'>
       I'm here to tell you something, and you will probably read me first.
@@ -15,4 +15,4 @@ const SegmentEmphasisInvertedExample = () => (
   </div>
 )
 
-export default SegmentEmphasisInvertedExample
+export default SegmentExampleEmphasisColoredInverted

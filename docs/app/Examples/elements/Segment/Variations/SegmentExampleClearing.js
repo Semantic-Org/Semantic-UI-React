@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button, Segment } from 'stardust'
 
-const SegmentClearingExample = () => (
+const SegmentExampleClearing = () => (
   <Segment clearing>
     <Button floated='right'>
       floated
@@ -9,4 +9,4 @@ const SegmentClearingExample = () => (
   </Segment>
 )
 
-export default SegmentClearingExample
+export default SegmentExampleClearing
