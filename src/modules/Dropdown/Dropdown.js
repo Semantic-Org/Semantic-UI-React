@@ -663,8 +663,6 @@ export default class Dropdown extends Component {
       newState.selectedIndex = _.includes(enabledIndicies, activeIndex) ? activeIndex : undefined
     }
 
-    this.trySetState({ value }, { selectedIndex })
-
     this.trySetState({ value }, newState)
   }
 
