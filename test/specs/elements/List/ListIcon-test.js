@@ -9,7 +9,7 @@ describe('ListIcon', () => {
   common.implementsVerticalAlignProp(ListIcon)
 
   it('returns Icon component', () => {
-    shallow(<ListIcon name='github' />)
-      .should.contain(<Icon name='github' />)
+    shallow(<ListIcon />)
+      .should.have.descendants(Icon)
   })
 })
