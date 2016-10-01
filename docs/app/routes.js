@@ -7,7 +7,6 @@ import ComponentDoc from './Components/ComponentDoc/ComponentDoc'
 import Introduction from './Views/Introduction'
 import PageNotFound from './Views/PageNotFound'
 import ComponentExplorer from './Views/ComponentExplorer'
-import Sandbox from './Views/Sandbox'
 
 // TODO remove List once PR is merged and docs are updated to use index.js files
 import { List } from 'stardust'
