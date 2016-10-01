@@ -148,7 +148,7 @@ class Modal extends Component {
   }
 
   render() {
-    const { basic, children, className, dimmer, onClose, onOpen, portal, size  } = this.props
+    const { basic, children, className, dimmer, onClose, onOpen, portal, size } = this.props
     const { marginTop, scrolling } = this.state
     const classes = cx(
       'ui',

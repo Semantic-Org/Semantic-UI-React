@@ -126,7 +126,7 @@ class Portal extends Component {
     debug('closeOnDocumentClick()')
 
     e.stopPropagation()
-    this.close()
+    this.close(e)
   }
 
   closeOnEscape = (e) => {
@@ -136,7 +136,7 @@ class Portal extends Component {
     debug('closeOnEscape()')
 
     e.preventDefault()
-    this.close()
+    this.close(e)
   }
 
   // ----------------------------------------
@@ -152,7 +152,7 @@ class Portal extends Component {
     if (!closeOnTriggerBlur) return
 
     debug('handleTriggerBlur()')
-    this.close()
+    this.close(e)
   }
 
   handleTriggerClick = (e) => {
@@ -171,7 +171,7 @@ class Portal extends Component {
     // openOnTriggerFocus is set. Focus shifts on mousedown so the portal opens
     // before the click finishes so it may actually wind up on the document.
     e.nativeEvent.stopImmediatePropagation()
-    this.open()
+    this.open(e)
   }
 
   handleTriggerFocus = (e) => {
@@ -183,7 +183,7 @@ class Portal extends Component {
     if (!openOnTriggerFocus) return
 
     debug('handleTriggerFocus()')
-    this.open()
+    this.open(e)
   }
 
   handleTriggerMouseLeave = (e) => {
@@ -195,7 +195,7 @@ class Portal extends Component {
     if (!closeOnTriggerMouseLeave) return
 
     debug('handleTriggerMouseLeave()')
-    this.close()
+    this.close(e)
   }
 
   handleTriggerMouseOver = (e) => {
@@ -207,27 +207,27 @@ class Portal extends Component {
     if (!openOnTriggerMouseOver) return
 
     debug('handleTriggerMouseOver()')
-    this.open()
+    this.open(e)
   }
 
   // ----------------------------------------
   // Behavior
   // ----------------------------------------
 
-  open = () => {
+  open = (e) => {
     debug('open()')
 
     const { onOpen } = this.props
-    if (onOpen) onOpen()
+    if (onOpen) onOpen(e)
 
     this.trySetState({ open: true })
   }
 
-  close = () => {
+  close = (e) => {
     debug('close()')
 
     const { onClose } = this.props
-    if (onClose) onClose()
+    if (onClose) onClose(e)
 
     this.trySetState({ open: false })
   }
@@ -249,9 +249,6 @@ class Portal extends Component {
   mountPortal = () => {
     if (this.node) return
 
-    const { onMount } = this.props
-    if (onMount) onMount()
-
     const { mountNode = document.body } = this.props
 
     this.node = document.createElement('div')
@@ -259,13 +256,13 @@ class Portal extends Component {
 
     document.addEventListener('keydown', this.closeOnEscape)
     document.addEventListener('click', this.closeOnDocumentClick)
+
+    const { onMount } = this.props
+    if (onMount) onMount()
   }
 
   unmountPortal = () => {
     if (!this.node) return
-
-    const { onUnmount } = this.props
-    if (onUnmount) onUnmount()
 
     ReactDOM.unmountComponentAtNode(this.node)
     this.node.parentNode.removeChild(this.node)
@@ -275,6 +272,9 @@ class Portal extends Component {
 
     document.removeEventListener('keydown', this.closeOnEscape)
     document.removeEventListener('click', this.closeOnDocumentClick)
+
+    const { onUnmount } = this.props
+    if (onUnmount) onUnmount()
   }
 
   render() {

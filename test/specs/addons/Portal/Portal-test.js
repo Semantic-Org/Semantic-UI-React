@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import React from 'react'
 import { unmountComponentAtNode } from 'react-dom'
 
@@ -11,6 +12,8 @@ const wrapperMount = (node, opts) => {
   wrapper = mount(node, opts)
   return wrapper
 }
+
+const nativeEvent = { nativeEvent: { stopImmediatePropagation: _.noop } }
 
 describe('Portal', () => {
   beforeEach(() => {
@@ -81,61 +84,61 @@ describe('Portal', () => {
   })
 
   describe('callbacks', () => {
-    it('should call props.onOpen() when portal opens', () => {
-      const props = { open: false, onOpen: sandbox.spy() }
+    it('should call props.onMount() when portal opens', () => {
+      const props = { open: false, onMount: sandbox.spy() }
       wrapperMount(<Portal {...props}><p>Hi</p></Portal>)
 
       wrapper.setProps({ open: true, children: <p>Hi</p> })
-      props.onOpen.should.have.been.calledOnce()
+      props.onMount.should.have.been.calledOnce()
     })
 
-    it('should not call props.onOpen() when portal receives props', () => {
-      const props = { open: false, onOpen: sandbox.spy() }
+    it('should not call props.onMount() when portal receives props', () => {
+      const props = { open: false, onMount: sandbox.spy() }
       wrapperMount(<Portal {...props}><p>Hi</p></Portal>)
 
       wrapper.setProps({ open: true, children: <p>Hi</p>, className: 'old' })
-      props.onOpen.should.have.been.calledOnce()
+      props.onMount.should.have.been.calledOnce()
 
       wrapper.setProps({ open: true, children: <p>Hi</p>, className: 'new' })
-      props.onOpen.should.have.been.calledOnce()
+      props.onMount.should.have.been.calledOnce()
     })
 
-    it('should call props.onClose() when portal closes', () => {
-      const props = { open: true, onClose: sandbox.spy() }
+    it('should call props.onUnmount() when portal closes', () => {
+      const props = { open: true, onUnmount: sandbox.spy() }
       wrapperMount(<Portal {...props}><p>Hi</p></Portal>)
 
       wrapper.setProps({ open: false, children: <p>Hi</p> })
-      props.onClose.should.have.been.calledOnce()
+      props.onUnmount.should.have.been.calledOnce()
     })
 
-    it('should not call props.onClose() when portal receives props', () => {
-      const props = { open: true, onClose: sandbox.spy() }
+    it('should not call props.onUnmount() when portal receives props', () => {
+      const props = { open: true, onUnmount: sandbox.spy() }
       wrapperMount(<Portal {...props}><p>Hi</p></Portal>)
 
       wrapper.setProps({ open: false, children: <p>Hi</p>, className: 'old' })
-      props.onClose.should.have.been.calledOnce()
+      props.onUnmount.should.have.been.calledOnce()
 
       wrapper.setProps({ open: false, children: <p>Hi</p>, className: 'new' })
-      props.onClose.should.have.been.calledOnce()
+      props.onUnmount.should.have.been.calledOnce()
     })
 
-    it('should call props.onClose() only once when portal closes and then is unmounted', () => {
+    it('should call props.onUnmount() only once when portal closes and then is unmounted', () => {
       const div = document.createElement('div')
-      const props = { open: true, onClose: sandbox.spy() }
+      const props = { open: true, onUnmount: sandbox.spy() }
       wrapperMount(<Portal {...props}><p>Hi</p></Portal>, { attachTo: div })
 
       wrapper.setProps({ open: false, children: <p>Hi</p> })
       unmountComponentAtNode(div)
-      props.onClose.should.have.been.calledOnce()
+      props.onUnmount.should.have.been.calledOnce()
     })
 
-    it('should call props.onClose() only once when directly unmounting', () => {
+    it('should call props.onUnmount() only once when directly unmounting', () => {
       const div = document.createElement('div')
-      const props = { open: true, onClose: sandbox.spy() }
+      const props = { open: true, onUnmount: sandbox.spy() }
 
       wrapperMount(<Portal {...props}><p>Hi</p></Portal>, { attachTo: div })
       unmountComponentAtNode(div)
-      props.onClose.should.have.been.calledOnce()
+      props.onUnmount.should.have.been.calledOnce()
     })
 
     it('should not call this.setState() if portal is unmounted', () => {
@@ -184,7 +187,7 @@ describe('Portal', () => {
       const trigger = <button onClick={spy}>button</button>
       wrapperMount(<Portal trigger={trigger}><p>Hi</p></Portal>)
 
-      wrapper.find('button').simulate('click')
+      wrapper.find('button').simulate('click', nativeEvent)
       document.body.lastElementChild.should.equal(wrapper.instance().node)
       spy.should.have.been.calledOnce()
     })
@@ -194,7 +197,7 @@ describe('Portal', () => {
       const trigger = <button onClick={spy}>button</button>
       wrapperMount(<Portal trigger={trigger} openOnTriggerClick={false}><p>Hi</p></Portal>)
 
-      wrapper.find('button').simulate('click')
+      wrapper.find('button').simulate('click', nativeEvent)
       document.body.childElementCount.should.equal(0)
       spy.should.have.been.calledOnce()
     })
@@ -204,7 +207,7 @@ describe('Portal', () => {
       const trigger = <button onClick={spy}>button</button>
       wrapperMount(<Portal trigger={trigger} openOnTriggerClick><p>Hi</p></Portal>)
 
-      wrapper.find('button').simulate('click')
+      wrapper.find('button').simulate('click', nativeEvent)
       document.body.lastElementChild.should.equal(wrapper.instance().node)
       spy.should.have.been.calledOnce()
     })
