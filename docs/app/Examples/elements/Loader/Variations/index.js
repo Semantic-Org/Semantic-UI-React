@@ -4,18 +4,18 @@ import { Message } from 'stardust'
 import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
 import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
 
-const LoaderExamples = () => (
+const LoaderVariationsExamples = () => (
   <ExampleSection title='Variations'>
     <ComponentExample
       title='Inline'
       description='Loaders can appear inline with content'
-      examplePath='elements/Loader/Variations/Inline'
+      examplePath='elements/Loader/Variations/LoaderExampleInline'
     />
 
     <ComponentExample
       title='Inline Center'
       description='Loaders can appear inline centered with content'
-      examplePath='elements/Loader/Variations/InlineCentered'
+      examplePath='elements/Loader/Variations/LoaderExampleInlineCentered'
     >
       <Message>
         An active dimmer may not be clearly visible without using a "ui dimmer".
@@ -25,19 +25,19 @@ const LoaderExamples = () => (
     <ComponentExample
       title='Size'
       description='Loaders can have different sizes'
-      examplePath='elements/Loader/Variations/Sizes'
+      examplePath='elements/Loader/Variations/LoaderExampleSizes'
     />
 
     <ComponentExample
       title='Inverted'
       description='Loaders can have their colors inverted.'
-      examplePath='elements/Loader/Variations/Inverted'
+      examplePath='elements/Loader/Variations/LoaderExampleInverted'
     />
 
     <ComponentExample
       title='Inverted'
       description='Loaders can have their colors inverted.'
-      examplePath='elements/Loader/Variations/SizesInverted'
+      examplePath='elements/Loader/Variations/LoaderExampleSizesInverted'
     >
       <Message>
         Loaders will automatically be inverted inside "inverted dimmer".
@@ -46,4 +46,4 @@ const LoaderExamples = () => (
   </ExampleSection>
 )
 
-export default LoaderExamples
+export default LoaderVariationsExamples
