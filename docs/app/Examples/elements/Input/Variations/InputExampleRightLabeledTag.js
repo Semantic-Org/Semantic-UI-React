@@ -1,7 +1,7 @@
 import React from 'react'
 import { Input } from 'stardust'
 
-const InputRightLabeledTag = () => (
+const InputExampleRightLabeledTag = () => (
   <Input
     icon='tags'
     iconPosition='left'
@@ -11,4 +11,4 @@ const InputRightLabeledTag = () => (
   />
 )
 
-export default InputRightLabeledTag
+export default InputExampleRightLabeledTag

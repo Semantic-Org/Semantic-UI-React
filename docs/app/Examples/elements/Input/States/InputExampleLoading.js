@@ -1,8 +1,8 @@
 import React from 'react'
 import { Input } from 'stardust'
 
-const InputLoading = () => (
+const InputExampleLoading = () => (
   <Input loading icon='user' placeholder='Search...' />
 )
 
-export default InputLoading
+export default InputExampleLoading

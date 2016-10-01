@@ -7,7 +7,7 @@ const options = [
   { text: '.org', value: '.org' },
 ]
 
-const InputRightLabeled = () => (
+const InputExampleRightLabeled = () => (
   <Input
     label={<Dropdown defaultValue='.com' options={options} />}
     labelPosition='right'
@@ -15,4 +15,4 @@ const InputRightLabeled = () => (
   />
 )
 
-export default InputRightLabeled
+export default InputExampleRightLabeled

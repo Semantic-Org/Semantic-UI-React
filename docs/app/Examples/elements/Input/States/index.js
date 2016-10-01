@@ -9,27 +9,27 @@ const InputStates = () => (
     <ComponentExample
       title='Focus'
       description='An input field can show a user is currently interacting with it'
-      examplePath='elements/Input/States/InputFocus'
+      examplePath='elements/Input/States/InputExampleFocus'
     />
     <ComponentExample
       title='Loading'
       description='An icon input field can show that it is currently loading data'
-      examplePath='elements/Input/States/InputLoading'
+      examplePath='elements/Input/States/InputExampleLoading'
     >
       <Message>
         Loading inputs automatically modify the input's icon on loading state to show loading indication
       </Message>
     </ComponentExample>
-    <ComponentExample examplePath='elements/Input/States/InputLeftLoading' />
+    <ComponentExample examplePath='elements/Input/States/InputExampleLeftLoading' />
     <ComponentExample
       title='Disabled'
       description='An input field can show that it is disabled'
-      examplePath='elements/Input/States/InputDisabled'
+      examplePath='elements/Input/States/InputExampleDisabled'
     />
     <ComponentExample
       title='Error'
       description='An input field can show that the data contains errors'
-      examplePath='elements/Input/States/InputError'
+      examplePath='elements/Input/States/InputExampleError'
     />
   </ExampleSection>
 )

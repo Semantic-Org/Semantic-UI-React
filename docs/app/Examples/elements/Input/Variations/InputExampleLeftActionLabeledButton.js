@@ -1,7 +1,7 @@
 import React from 'react'
 import { Input } from 'stardust'
 
-const InputLeftActionLabeledButton = () => (
+const InputExampleLeftActionLabeledButton = () => (
   <Input
     action={{ color: 'teal', labeled: true, icon: 'cart', content: 'Checkout' }}
     actionPosition='left'
@@ -10,4 +10,4 @@ const InputLeftActionLabeledButton = () => (
   />
 )
 
-export default InputLeftActionLabeledButton
+export default InputExampleLeftActionLabeledButton

@@ -1,12 +1,12 @@
 import React from 'react'
 import { Input } from 'stardust'
 
-const InputLeftCornerLabeled = () => (
+const InputExampleRightCornerLabeled = () => (
   <Input
     label={{ icon: 'asterisk' }}
-    labelPosition='left corner'
+    labelPosition='right corner'
     placeholder='Search...'
   />
 )
 
-export default InputLeftCornerLabeled
+export default InputExampleRightCornerLabeled

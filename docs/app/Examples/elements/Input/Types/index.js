@@ -7,7 +7,7 @@ const InputTypes = () => (
     <ComponentExample
       title='Input'
       description='A standard input field'
-      examplePath='elements/Input/Types/InputInput'
+      examplePath='elements/Input/Types/InputExampleInput'
     />
   </ExampleSection>
 )

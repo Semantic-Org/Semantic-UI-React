@@ -1,8 +1,8 @@
 import React from 'react'
 import { Input } from 'stardust'
 
-const InputInput = () => (
+const InputExampleInput = () => (
   <Input placeholder='Search...' />
 )
 
-export default InputInput
+export default InputExampleInput

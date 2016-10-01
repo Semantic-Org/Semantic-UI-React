@@ -1,8 +1,8 @@
 import React from 'react'
 import { Input } from 'stardust'
 
-const InputFocus = () => (
+const InputExampleFocus = () => (
   <Input focus placeholder='Search...' />
 )
 
-export default InputFocus
+export default InputExampleFocus

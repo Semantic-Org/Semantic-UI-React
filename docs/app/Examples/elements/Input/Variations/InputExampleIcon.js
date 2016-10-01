@@ -1,8 +1,8 @@
 import React from 'react'
 import { Input } from 'stardust'
 
-const InputIcon = () => (
+const InputExampleIcon = () => (
   <Input icon='search' placeholder='Search...' />
 )
 
-export default InputIcon
+export default InputExampleIcon
