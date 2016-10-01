@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { List } from 'stardust'
 
-export default class ListLinkExample extends Component {
+export default class ListExampleLink extends Component {
   render() {
     const link1 = <a>Home</a>
     const link2 = <a>About</a>

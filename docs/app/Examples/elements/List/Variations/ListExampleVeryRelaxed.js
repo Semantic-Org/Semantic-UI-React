@@ -1,14 +1,14 @@
-import faker from 'faker'
 import React, { Component } from 'react'
 import { List, Image } from 'stardust'
+import faker from 'faker'
 
-export default class ListCelledExample extends Component {
+export default class ListExampleVeryRelaxed extends Component {
   render() {
     const avatar1 = <Image className='avatar' src={faker.image.avatar()} />
     const avatar2 = <Image className='avatar' src={faker.image.avatar()} />
     const avatar3 = <Image className='avatar' src={faker.image.avatar()} />
     return (
-      <List className='celled'>
+      <List className='very relaxed'>
         <List.Item image={avatar1} header='Helen' />
         <List.Item image={avatar2} header='Christian' />
         <List.Item image={avatar3} header='Daniel' />

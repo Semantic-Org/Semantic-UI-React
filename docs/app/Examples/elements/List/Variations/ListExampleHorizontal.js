@@ -2,7 +2,7 @@ import faker from 'faker'
 import React, { Component } from 'react'
 import { List, Image } from 'stardust'
 
-export default class ListHorizontalExample extends Component {
+export default class ListExampleHorizontal extends Component {
   render() {
     const image1 = <Image className='avatar' src={faker.image.city(100, 100)} />
     const image2 = <Image className='avatar' src={faker.image.city(100, 100)} />

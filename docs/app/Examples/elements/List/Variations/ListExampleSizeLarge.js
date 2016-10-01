@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { List, Image } from 'stardust'
 import faker from 'faker'
 
-export default class ListSizeLargeExample extends Component {
+export default class ListExampleSizeLarge extends Component {
   render() {
     const helenAvatar = <Image className='avatar' src={faker.image.avatar()} />
     const christianAvatar = <Image className='avatar' src={faker.image.avatar()} />

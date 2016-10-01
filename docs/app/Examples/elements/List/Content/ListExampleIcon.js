@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Icon, List } from 'stardust'
 
-export default class ListIconExample extends Component {
+export default class ListExampleIcon extends Component {
   render() {
     const helpIcon = <Icon name='help' />
     const triangleIcon = <Icon name='right triangle' />

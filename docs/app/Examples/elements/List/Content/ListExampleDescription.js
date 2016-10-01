@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Icon, List } from 'stardust'
 
-export default class ListDescriptionExample extends Component {
+export default class ListExampleDescription extends Component {
   render() {
     const mapIcon = <Icon name='map marker' />
 
