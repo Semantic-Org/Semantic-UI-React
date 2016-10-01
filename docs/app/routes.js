@@ -19,7 +19,6 @@ const routes = (
 
     <Route path='introduction' component={Introduction} />
     <Route path='component-explorer' component={ComponentExplorer} />
-    <Route path='sandbox' component={Sandbox} />
     {/* TODO remove List route once open PR is merged and docs are updated to use index.js files */}
     <Route path='elements'>
       <Route path='list' component={ListDoc} />
