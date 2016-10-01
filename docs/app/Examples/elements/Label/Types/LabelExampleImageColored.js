@@ -1,7 +1,7 @@
 import React from 'react'
 import { Label } from 'stardust'
 
-const LabelImage = () => (
+const LabelExampleImage = () => (
   <div>
     <Label as='a' color='blue' image>
       <img src='http://semantic-ui.com/images/avatar/small/veronika.jpg' />
@@ -21,4 +21,4 @@ const LabelImage = () => (
   </div>
 )
 
-export default LabelImage
+export default LabelExampleImage
