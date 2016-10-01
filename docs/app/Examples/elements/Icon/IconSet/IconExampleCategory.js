@@ -9,16 +9,16 @@ const columns = (icons) => _.map(icons, icon => (
   </Grid.Column>
 ))
 
-const IconCategoryExample = ({ category }) => (
+const IconExampleCategory = ({ category }) => (
   <Grid doubling columns={5}>
     {columns(category.icons)}
   </Grid>
 )
 
-IconCategoryExample.propTypes = {
+IconExampleCategory.propTypes = {
   category: PropTypes.shape({
     icons: PropTypes.array.isRequired,
   }),
 }
 
-export default IconCategoryExample
+export default IconExampleCategory
