@@ -3,7 +3,7 @@ import { Loader, Image, Segment } from 'stardust'
 
 // TODO: Update <Dimmer> usage after its update to v1 API
 
-const Text = () => (
+const LoaderExampleTextProp = () => (
   <div>
     <Segment>
       <div className='ui active dimmer'>
@@ -23,4 +23,4 @@ const Text = () => (
   </div>
 )
 
-export default Text
+export default LoaderExampleTextProp
