@@ -48,8 +48,7 @@
   "dependencies": {
     "classnames": "^2.1.5",
     "debug": "^2.2.0",
-    "lodash": "^4.6.1",
-    "semantic-ui-css": "^2.2.2"
+    "lodash": "^4.6.1"
   },
   "devDependencies": {
     "babel-cli": "^6.5.1",
