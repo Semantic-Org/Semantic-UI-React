@@ -38,6 +38,21 @@ describe('MenuItem', () => {
     })
   })
 
+  describe('icon', () => {
+    it('does not add `icon` className if there is also `name`', () => {
+      shallow(<MenuItem icon='user' name='users' />)
+        .should.not.have.className('icon')
+    })
+    it('does not add `icon` className if there is also `content`', () => {
+      shallow(<MenuItem icon='user' content='Users' />)
+        .should.not.have.className('icon')
+    })
+    it('adds `icon` className if there is an `icon` without `name` or `content`', () => {
+      shallow(<MenuItem icon='user' />)
+        .should.have.className('icon')
+    })
+  })
+
   describe('onClick', () => {
     it('can be omitted', () => {
       const click = () => mount(<MenuItem />).simulate('click')
