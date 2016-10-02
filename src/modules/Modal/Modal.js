@@ -31,6 +31,7 @@ const _meta = {
 /**
  * A modal displays content that temporarily blocks interactions with the main view of a site
  * @see Confirm
+ * @see Portal
  */
 class Modal extends Component {
   static propTypes = {
