@@ -20,7 +20,7 @@ function MenuItem(props) {
   const classes = cx(
     useKeyOnly(active, 'active'),
     useKeyOrValueAndKey(fitted, 'fitted'),
-    useKeyOnly(icon, 'icon'),
+    useKeyOnly(icon === true || icon && !(name || content), 'icon'),
     useKeyOnly(header, 'header'),
     useKeyOnly(link, 'link'),
     color,
