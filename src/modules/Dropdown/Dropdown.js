@@ -144,7 +144,7 @@ export default class Dropdown extends Component {
     /** Called with the React Synthetic Event on Dropdown blur. */
     onBlur: PropTypes.func,
 
-    /** Called with the React Synthetic Event and current value on change. */
+    /** Called with the React Synthetic Event and { name, value } on change. */
     onChange: PropTypes.func,
 
     /** Called with the React Synthetic Event and current value on search input change. */
@@ -356,11 +356,11 @@ export default class Dropdown extends Component {
 
   // onChange needs to receive a value
   // can't rely on props.value if we are controlled
-  onChange = (e, value) => {
-    debug('onChange()')
+  handleChange = (e, value) => {
+    debug('handleChange()')
     debug(value)
-    const { onChange } = this.props
-    if (onChange) onChange(e, value)
+    const { name, onChange } = this.props
+    if (onChange) onChange(e, { name, value })
   }
 
   closeOnEscape = (e) => {
@@ -420,10 +420,10 @@ export default class Dropdown extends Component {
       // state value may be undefined
       const newValue = _.union(this.state.value, [value])
       this.setValue(newValue)
-      this.onChange(e, newValue)
+      this.handleChange(e, newValue)
     } else {
       this.setValue(value)
-      this.onChange(e, value)
+      this.handleChange(e, value)
       this.close()
     }
   }
@@ -453,7 +453,7 @@ export default class Dropdown extends Component {
     const newValue = _.dropRight(value)
 
     this.setValue(newValue)
-    this.onChange(e, newValue)
+    this.handleChange(e, newValue)
   }
 
   closeOnDocumentClick = (e) => {
@@ -511,10 +511,10 @@ export default class Dropdown extends Component {
     if (multiple) {
       const newValue = _.union(this.state.value, [value])
       this.setValue(newValue)
-      this.onChange(e, newValue)
+      this.handleChange(e, newValue)
     } else {
       this.setValue(value)
-      this.onChange(e, value)
+      this.handleChange(e, value)
       this.close()
     }
   }
@@ -677,7 +677,7 @@ export default class Dropdown extends Component {
     debug('new value:', newValue)
 
     this.setValue(newValue)
-    this.onChange(e, newValue)
+    this.handleChange(e, newValue)
   }
 
   moveSelectionBy = (offset, startIndex = this.state.selectedIndex) => {
@@ -962,7 +962,7 @@ export default class Dropdown extends Component {
         onClick={this.handleClick}
         onMouseDown={this.handleMouseDown}
         onFocus={this.handleFocus}
-        onChange={this.onChange}
+        onChange={this.handleChange}
         tabIndex={search ? undefined : 0}
         ref={c => (this._dropdown = c)}
       >

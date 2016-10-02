@@ -20,7 +20,7 @@ export default class DropdownSelectionExample extends Component {
     })
   }
 
-  handleChange = (e, value) => this.setState({ value })
+  handleChange = (e, { value }) => this.setState({ value })
   handleSearchChange = (e, value) => this.setState({ searchQuery: value })
 
   fetchOptions = () => {
