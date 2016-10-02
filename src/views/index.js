@@ -5,6 +5,9 @@ export { default as CardGroup } from './Card/CardGroup'
 export { default as CardHeader } from './Card/CardHeader'
 export { default as CardMeta } from './Card/CardMeta'
 
+export { default as Comment } from './Comment/Comment'
+// TODO: Add sub component export
+
 export { default as Feed } from './Feed/Feed'
 export { default as FeedContent } from './Feed/FeedContent'
 export { default as FeedDate } from './Feed/FeedDate'
