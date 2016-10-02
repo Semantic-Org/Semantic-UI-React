@@ -10,15 +10,19 @@ import {
 import { Icon } from '../../elements'
 
 function FeedLike(props) {
-  const { children, className, icon, like } = props
+  const { children, className, content, icon } = props
   const classes = cx(className, 'like')
   const rest = getUnhandledProps(FeedLike, props)
   const ElementType = getElementType(FeedLike, props)
 
+  if (children) {
+    return <ElementType {...rest} className={classes}>{children}</ElementType>
+  }
+
   return (
     <ElementType {...rest} className={classes}>
       {Icon.create(icon)}
-      {children || like}
+      {content}
     </ElementType>
   )
 }
@@ -31,29 +35,39 @@ FeedLike._meta = {
 
 FeedLike.defaultProps = {
   as: 'a',
-  icon: 'like',
 }
 
 FeedLike.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** Primary content of the FeedLike. */
+  /** Primary content of the FeedLike. Mutually exclusive with content. */
   children: customPropTypes.every([
-    customPropTypes.disallow(['like']),
+    customPropTypes.disallow(['content', 'icon']),
     PropTypes.node,
   ]),
 
   /** Classes that will be added to the FeedLike className. */
   className: PropTypes.string,
 
-  /** Name of icon for FeedLike. */
-  icon: PropTypes.node,
-
-  /** Primary content of the FeedLike, mutually exclusive with children prop. */
-  like: customPropTypes.every([
+  /** Shorthand for children. Mutually exclusive with children. */
+  content: customPropTypes.every([
     customPropTypes.disallow(['children']),
-    PropTypes.string,
+    PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+    ]),
+  ]),
+
+  /** Shorthand for icon. Mutually exclusive with children. */
+  icon: customPropTypes.every([
+    customPropTypes.disallow(['children']),
+    PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+      PropTypes.object,
+      PropTypes.element,
+    ]),
   ]),
 }
 

@@ -47,11 +47,11 @@ const Content = () => (
       examplePath='views/Item/Content/ExtraContent'
     />
 
-     <ComponentExample
-       title='Rating'
-       description='An item can contain icons signifying a "like" or "favorite" action'
-       examplePath='views/Item/Content/Ratings'
-     />
+    <ComponentExample
+      title='Rating'
+      description='An item can contain icons signifying a "like" or "favorite" action'
+      examplePath='views/Item/Content/Ratings'
+    />
   </ExampleSection>
 )
 
