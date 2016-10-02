@@ -4,9 +4,6 @@ import ReactDOM from 'react-dom'
 
 import {
   AutoControlledComponent as Component,
-  // customPropTypes,
-  // getElementType,
-  // getUnhandledProps,
   keyboardKey,
   makeDebugger,
   META,
