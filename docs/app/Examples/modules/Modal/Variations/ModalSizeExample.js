@@ -2,13 +2,13 @@ import React, { Component } from 'react'
 import { Button, Icon, Modal } from 'stardust'
 
 class ModalSizeExample extends Component {
-  state = { active: false }
+  state = { open: false }
 
-  show = (size) => () => this.setState({ size, active: true })
-  hide = () => this.setState({ active: false })
+  show = (size) => () => this.setState({ size, open: true })
+  close = () => this.setState({ open: false })
 
   render() {
-    const { active, size } = this.state
+    const { open, size } = this.state
 
     return (
       <div>
@@ -16,7 +16,7 @@ class ModalSizeExample extends Component {
         <Button onClick={this.show('large')}>Large</Button>
         <Button onClick={this.show('fullscreen')}>Fullscreen</Button>
 
-        <Modal size={size} active={active} onHide={this.hide}>
+        <Modal size={size} open={open} onClose={this.close}>
           <Modal.Header>
             Delete Your Account
           </Modal.Header>

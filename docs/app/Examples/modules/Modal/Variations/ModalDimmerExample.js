@@ -2,13 +2,13 @@ import React, { Component } from 'react'
 import { Button, Header, Icon, Image, Modal } from 'stardust'
 
 class ModalDimmerExample extends Component {
-  state = { active: false }
+  state = { open: false }
 
-  show = (dimmer) => () => this.setState({ dimmer, active: true })
-  hide = () => this.setState({ active: false })
+  show = (dimmer) => () => this.setState({ dimmer, open: true })
+  close = () => this.setState({ open: false })
 
   render() {
-    const { active, dimmer } = this.state
+    const { open, dimmer } = this.state
 
     return (
       <div>
@@ -17,10 +17,10 @@ class ModalDimmerExample extends Component {
         <Button onClick={this.show('blurring')}>Blurring</Button>
         <Button onClick={this.show(false)}>None</Button>
 
-        <Modal dimmer={dimmer} active={active} onHide={this.hide}>
+        <Modal dimmer={dimmer} open={open} onClose={this.close}>
           <Modal.Header>Select a Photo</Modal.Header>
           <Modal.Content image>
-            <Image wrapped className='medium' src='http://semantic-ui.com/images/avatar2/large/rachel.png' />
+            <Image wrapped size='medium' src='http://semantic-ui.com/images/avatar2/large/rachel.png' />
             <Modal.Description>
               <Header>Default Profile Image</Header>
               <p>We've found the following gravatar image associated with your e-mail address.</p>
@@ -28,10 +28,10 @@ class ModalDimmerExample extends Component {
             </Modal.Description>
           </Modal.Content>
           <Modal.Actions>
-            <Button color='black' onClick={this.hide}>
+            <Button color='black' onClick={this.close}>
               Nope
             </Button>
-            <Button positive icon labeled='right' onClick={this.hide}>
+            <Button positive icon labeled='right' onClick={this.close}>
               Yep, that's me <Icon name='checkmark' />
             </Button>
           </Modal.Actions>
