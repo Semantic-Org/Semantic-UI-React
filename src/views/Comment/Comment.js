@@ -11,10 +11,9 @@ import CommentActions from './CommentActions'
 import CommentAuthor from './CommentAuthor'
 import CommentAvatar from './CommentAvatar'
 import CommentContent from './CommentContent'
-import CommentDate from './CommentDate'
 import CommentGroup from './CommentGroup'
 import CommentMetadata from './CommentMetadata'
-import CommentReply from './CommentReply'
+import CommentReplyForm from './CommentReplyForm'
 import CommentText from './CommentText'
 
 /**
@@ -49,10 +48,9 @@ Comment.Author = CommentAuthor
 Comment.Actions = CommentActions
 Comment.Avatar = CommentAvatar
 Comment.Content = CommentContent
-Comment.Date = CommentDate
 Comment.Group = CommentGroup
 Comment.Metadata = CommentMetadata
-Comment.Reply = CommentReply
+Comment.ReplyForm = CommentReplyForm
 Comment.Text = CommentText
 
 export default Comment

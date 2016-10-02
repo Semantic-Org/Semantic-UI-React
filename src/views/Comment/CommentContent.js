@@ -18,7 +18,7 @@ function CommentGroup(props) {
 }
 
 CommentGroup._meta = {
-  name: 'CommentGroup',
+  name: 'CommentContent',
   parent: 'Comment',
   type: META.TYPES.VIEW,
 }
