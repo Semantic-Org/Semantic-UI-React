@@ -7,9 +7,9 @@ const headerRow = [
   'Notes',
 ]
 
-const bodyRow = ({ name, status, notes }) => ({
+const renderBodyRow = ({ name, status, notes }) => ({
   warning: !!(status && status.match('Requires Action')),
-  items: [
+  cells: [
     name || 'No name specified',
     status
       ? { icon: 'attention', content: status }
@@ -29,7 +29,7 @@ const tableData = [
 
 const TableWarningShorthand = () => {
   return (
-    <Table celled headerRow={headerRow} bodyRow={bodyRow} tableData={tableData} />
+    <Table celled headerRow={headerRow} renderBodyRow={renderBodyRow} tableData={tableData} />
   )
 }
 

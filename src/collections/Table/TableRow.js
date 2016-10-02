@@ -18,12 +18,12 @@ import TableCell from './TableCell'
 function TableRow(props) {
   const {
     active,
+    cellAs,
+    cells,
     children,
     className,
     disabled,
     error,
-    itemAs,
-    items,
     negative,
     positive,
     textAlign,
@@ -51,7 +51,7 @@ function TableRow(props) {
 
   return (
     <ElementType {...rest} className={classes}>
-      {_.map(items, (item) => TableCell.create(item, { as: itemAs }))}
+      {_.map(cells, (cell) => TableCell.create(cell, { as: cellAs }))}
     </ElementType>
   )
 }
@@ -68,7 +68,7 @@ TableRow._meta = {
 
 TableRow.defaultProps = {
   as: 'tr',
-  itemAs: 'td',
+  cellAs: 'td',
 }
 
 TableRow.propTypes = {
@@ -77,6 +77,20 @@ TableRow.propTypes = {
 
   /** A row can be active or selected by a user. */
   active: PropTypes.bool,
+
+  /** An element type to render as (string or function). */
+  cellAs: customPropTypes.as,
+
+  /** Shorthand array of props for TableCell. Mutually exclusive with children. */
+  cells: customPropTypes.every([
+    customPropTypes.disallow(['children']),
+    // Array of shorthands for TableCell
+    PropTypes.arrayOf(PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.element,
+      PropTypes.object,
+    ])),
+  ]),
 
   /** Primary content of the TableRow. */
   children: customPropTypes.every([
@@ -92,20 +106,6 @@ TableRow.propTypes = {
 
   /** A row may call attention to an error or a negative value. */
   error: PropTypes.bool,
-
-  /** An element type to render as (string or function). */
-  itemAs: customPropTypes.as,
-
-  /** Shorthand array of props for TableCell. Mutually exclusive with children. */
-  items: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    // Array of shorthands for MenuItem
-    PropTypes.arrayOf(PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.element,
-      PropTypes.object,
-    ])),
-  ]),
 
   /** A row may let a user know whether a value is bad. */
   negative: PropTypes.bool,
@@ -123,6 +123,6 @@ TableRow.propTypes = {
   warning: PropTypes.bool,
 }
 
-TableRow.create = createShorthandFactory(TableRow, items => ({ items }))
+TableRow.create = createShorthandFactory(TableRow, cells => ({ cells }))
 
 export default TableRow

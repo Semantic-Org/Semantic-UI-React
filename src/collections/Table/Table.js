@@ -25,7 +25,7 @@ import TableRow from './TableRow'
 function Table(props) {
   const {
     basic,
-    bodyRow,
+    renderBodyRow,
     celled,
     children,
     className,
@@ -80,8 +80,8 @@ function Table(props) {
 
   return (
     <ElementType {...rest} className={classes}>
-      {headerRow && <TableHeader>{TableRow.create(headerRow, { itemAs: 'th' })}</TableHeader>}
-      {<TableBody>{_.map(tableData, (item, index) => TableRow.create(bodyRow(item, index)))}</TableBody>}
+      {headerRow && <TableHeader>{TableRow.create(headerRow, { cellAs: 'th' })}</TableHeader>}
+      {<TableBody>{_.map(tableData, (data, index) => TableRow.create(renderBodyRow(data, index)))}</TableBody>}
       {footerRow && <TableFooter>{TableRow.create(footerRow)}</TableFooter>}
     </ElementType>
   )
@@ -114,21 +114,12 @@ Table.propTypes = {
     PropTypes.oneOf(Table._meta.props.basic),
   ]),
 
-  /**
-   * A function that takes (data, index) and returns shorthand for a TableRow
-   * to be placed within Table.Body.
-   */
-  bodyRow: customPropTypes.every([
-    customPropTypes.demand(['bodyRow']),
-    PropTypes.func,
-  ]),
-
   /** A table may be divided each row into separate cells. */
   celled: PropTypes.bool,
 
   /** Primary content of the Table. */
   children: customPropTypes.every([
-    customPropTypes.disallow(['headerRow', 'bodyRow', 'footerRow', 'tableData']),
+    customPropTypes.disallow(['headerRow', 'renderBodyRow', 'footerRow', 'tableData']),
     PropTypes.node,
   ]),
 
@@ -179,6 +170,15 @@ Table.propTypes = {
     PropTypes.oneOf(Table._meta.props.padded),
   ]),
 
+  /**
+   * A function that takes (data, index) and returns shorthand for a TableRow
+   * to be placed within Table.Body.
+   */
+  renderBodyRow: customPropTypes.every([
+    customPropTypes.demand(['tableData']),
+    PropTypes.func,
+  ]),
+
   /** A table can have its rows appear selectable. */
   selectable: PropTypes.bool,
 
@@ -197,9 +197,9 @@ Table.propTypes = {
   /** A table can be formatted to display complex structured data. */
   structured: PropTypes.bool,
 
-  /** Data to be passed to the bodyRow function. */
+  /** Data to be passed to the renderBodyRow function. */
   tableData: customPropTypes.every([
-    customPropTypes.demand(['bodyRow']),
+    customPropTypes.demand(['renderBodyRow']),
     PropTypes.array,
   ]),
 

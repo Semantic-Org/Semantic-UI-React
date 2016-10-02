@@ -23,7 +23,7 @@ describe('TableRow', () => {
   })
 
   describe('shorthand', () => {
-    const items = ['Name', 'Status', 'Notes']
+    const cells = ['Name', 'Status', 'Notes']
 
     it('renders empty tr with no shorthand', () => {
       const wrapper = mount(<TableRow />)
@@ -32,16 +32,16 @@ describe('TableRow', () => {
     })
 
     it('renders the cells', () => {
-      const wrapper = mount(<TableRow items={items} />)
+      const wrapper = mount(<TableRow cells={cells} />)
 
-      wrapper.find('td').should.have.lengthOf(items.length)
+      wrapper.find('td').should.have.lengthOf(cells.length)
     })
 
-    it('renders the cells using itemAs', () => {
-      const itemAs = 'th'
-      const wrapper = mount(<TableRow items={items} itemAs={itemAs} />)
+    it('renders the cells using cellAs', () => {
+      const cellAs = 'th'
+      const wrapper = mount(<TableRow cells={cells} cellAs={cellAs} />)
 
-      wrapper.find(itemAs).should.have.lengthOf(items.length)
+      wrapper.find(cellAs).should.have.lengthOf(cells.length)
     })
   })
 })

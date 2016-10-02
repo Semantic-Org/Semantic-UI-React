@@ -58,7 +58,7 @@ describe('Table', () => {
 
     const headerRow = ['Name', 'Status', 'Notes']
 
-    const bodyRow = ({ name, status, notes }) => [name || '', status || '', notes || '']
+    const renderBodyRow = ({ name, status, notes }) => [name || '', status || '', notes || '']
 
     const footerRow = [{ colSpan: 3, content: 'Total' }]
 
@@ -89,7 +89,7 @@ describe('Table', () => {
     })
 
     it('renders the table', () => {
-      wrapperMount({ headerRow, bodyRow, footerRow, tableData })
+      wrapperMount({ headerRow, renderBodyRow, footerRow, tableData })
 
       thead.should.have.lengthOf(1)
       thead.find('tr').should.have.lengthOf(1)
