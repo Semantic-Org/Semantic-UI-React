@@ -1,5 +1,12 @@
 # Change Log
 
+## [v0.51.0](https://github.com/TechnologyAdvice/stardust/tree/v0.51.0) (2016-10-02)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.50.0...v0.51.0)
+
+**Merged pull requests:**
+
+- fix\(Feed\): update propTypes, shorthand and docs [\#575](https://github.com/TechnologyAdvice/stardust/pull/575) ([levithomason](https://github.com/levithomason))
+
 ## [v0.50.0](https://github.com/TechnologyAdvice/stardust/tree/v0.50.0) (2016-10-02)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.49.0...v0.50.0)
 
