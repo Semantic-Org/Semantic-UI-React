@@ -1,4 +1,3 @@
-import faker from 'faker'
 import React from 'react'
 
 import * as common from 'test/specs/commonTests'
@@ -11,12 +10,11 @@ describe('FeedMeta', () => {
   common.implementsShorthandProp(FeedMeta, {
     propKey: 'like',
     ShorthandComponent: FeedLike,
-    mapValueToProps: val => ({ like: val }),
+    mapValueToProps: val => ({ content: val }),
   })
 
   it('renders text with meta prop', () => {
-    const text = faker.hacker.phrase()
-
-    shallow(<FeedMeta meta={text} />).should.contain.text(text)
+    shallow(<FeedMeta content='foo' />)
+      .should.contain.text('foo')
   })
 })

@@ -1,4 +1,5 @@
 export { default as Confirm } from './Confirm/Confirm'
+export { default as Portal } from './Portal/Portal'
 export { default as Radio } from './Radio/Radio'
 export { default as Select } from './Select/Select'
 export { default as TextArea } from './TextArea/TextArea'

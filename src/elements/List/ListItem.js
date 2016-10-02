@@ -1,54 +1,61 @@
-import React, { Component, PropTypes } from 'react'
 import cx from 'classnames'
+import React, { PropTypes } from 'react'
 
 import {
   customPropTypes,
   getElementType,
+  getUnhandledProps,
   META,
+  useKeyOnly,
 } from '../../lib'
-import { Icon, Image } from '../../elements'
 
-export default class ListItem extends Component {
-  static propTypes = {
-    /** An element type to render as (string or function). */
-    as: customPropTypes.as,
+function ListItem(props) {
+  const {
+    active,
+    children,
+    className,
+    disabled,
+    value,
+  } = props
 
-    children: PropTypes.node,
-    className: PropTypes.string,
-    description: PropTypes.node,
-    header: PropTypes.string,
-    icon: PropTypes.node,
-    image: PropTypes.node,
-  }
+  const ElementType = getElementType(ListItem, props)
+  const classes = cx(
+    useKeyOnly(active, 'active'),
+    useKeyOnly(disabled, 'disabled'),
+    useKeyOnly(ElementType !== 'li', 'item'),
+    className,
+  )
 
-  static _meta = {
-    name: 'ListItem',
-    type: META.TYPES.ELEMENT,
-    parent: 'List',
-  }
+  const rest = getUnhandledProps(ListItem, props)
+  const valueProp = ElementType === 'li' ? { value } : { 'data-value': value }
 
-  render() {
-    const { children, className, description, header, icon, image, ...rest } = this.props
-    const classes = cx(className, 'item')
-
-    const media = Icon.create(icon) || Image.create(image)
-    const _description = description || children
-
-    let content = header ? [
-      header && <div key='header' className='header'>{header}</div>,
-      _description && <div key='description' className='description'>{_description}</div>,
-    ] : (
-      _description
-    )
-
-    // wrap content for icon/image layouts
-    if (media) content = <div className='content'>{content}</div>
-    const ElementType = getElementType(ListItem, this.props)
-    return (
-      <ElementType {...rest} className={classes}>
-        {media}
-        {content}
-      </ElementType>
-    )
-  }
+  return <ElementType {...rest} {...valueProp} className={classes}>{children}</ElementType>
 }
+
+ListItem._meta = {
+  name: 'ListItem',
+  parent: 'List',
+  type: META.TYPES.ELEMENT,
+}
+
+ListItem.propTypes = {
+  /** An element type to render as (string or function). */
+  as: customPropTypes.as,
+
+  /** A list item can active. */
+  active: PropTypes.bool,
+
+  /** Primary content of the ListItem. */
+  children: PropTypes.node,
+
+  /** Classes to add to the ListItem className. */
+  className: PropTypes.string,
+
+  /** A list item can disabled. */
+  disabled: PropTypes.bool,
+
+  /** A value for an ordered list. */
+  value: PropTypes.string,
+}
+
+export default ListItem

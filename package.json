@@ -1,6 +1,6 @@
 {
   "name": "stardust",
-  "version": "0.48.3",
+  "version": "0.51.0",
   "description": "The official Semantic-UI-React integration.",
   "main": "dist/commonjs/index.js",
   "files": [
@@ -49,7 +49,6 @@
     "classnames": "^2.1.5",
     "debug": "^2.2.0",
     "lodash": "^4.6.1",
-    "react-portal": "^2.2.1",
     "semantic-ui-css": "^2.2.2"
   },
   "devDependencies": {
