@@ -1,4 +1,3 @@
-import faker from 'faker'
 import React from 'react'
 
 import * as common from 'test/specs/commonTests'
@@ -14,12 +13,12 @@ describe('FeedContent', () => {
   common.implementsShorthandProp(FeedContent, {
     propKey: 'date',
     ShorthandComponent: FeedDate,
-    mapValueToProps: val => ({ date: val }),
+    mapValueToProps: val => ({ content: val }),
   })
   common.implementsShorthandProp(FeedContent, {
     propKey: 'summary',
     ShorthandComponent: FeedSummary,
-    mapValueToProps: val => ({ summary: val }),
+    mapValueToProps: val => ({ content: val }),
   })
   common.implementsShorthandProp(FeedContent, {
     propKey: 'extraImages',
@@ -29,19 +28,18 @@ describe('FeedContent', () => {
   common.implementsShorthandProp(FeedContent, {
     propKey: 'extraText',
     ShorthandComponent: FeedExtra,
-    mapValueToProps: val => ({ text: val }),
+    mapValueToProps: val => ({ text: true, content: val }),
   })
   common.implementsShorthandProp(FeedContent, {
     propKey: 'meta',
     ShorthandComponent: FeedMeta,
-    mapValueToProps: val => ({ meta: val }),
+    mapValueToProps: val => ({ content: val }),
   })
 
   common.rendersChildren(FeedContent)
 
   it('renders text with content prop', () => {
-    const text = faker.hacker.phrase()
-
-    shallow(<FeedContent content={text} />).should.contain.text(text)
+    shallow(<FeedContent content='foo' />)
+      .should.contain.text('foo')
   })
 })

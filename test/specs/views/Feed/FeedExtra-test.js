@@ -1,5 +1,3 @@
-import _ from 'lodash'
-import faker from 'faker'
 import React from 'react'
 
 import * as common from 'test/specs/commonTests'
@@ -11,15 +9,13 @@ describe('FeedExtra', () => {
   common.propKeyOnlyToClassName(FeedExtra, 'text')
   common.rendersChildren(FeedExtra)
 
-  it('renders text with text prop', () => {
-    const text = faker.hacker.phrase()
-
-    shallow(<FeedExtra text={text} />).should.contain(text)
+  it('renders text with content prop', () => {
+    shallow(<FeedExtra content='foo' />)
+      .should.contain.text('foo')
   })
 
   it('renders <img> with images prop', () => {
-    const images = _.times(3, () => faker.image.imageUrl())
-
-    shallow(<FeedExtra images={images} />).should.have.exactly(3).descendants('img')
+    shallow(<FeedExtra images={['a', 'b', 'c']} />)
+      .should.have.exactly(3).descendants('img')
   })
 })
