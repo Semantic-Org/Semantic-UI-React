@@ -41,6 +41,12 @@ describe('FormField', () => {
         .find('label')
         .should.contain.text('First Name')
     })
+    it('is sibling to text inputs', () => {
+      const wrapper = shallow(<FormField control='input' type='text' label='Text field' />)
+
+      wrapper.childAt(0).should.have.tagName('label')
+      wrapper.childAt(1).should.have.tagName('input')
+    })
     it('wraps checkbox inputs', () => {
       const label = shallow(<FormField control='input' type='checkbox' label='Check this box' />)
         .find('label')

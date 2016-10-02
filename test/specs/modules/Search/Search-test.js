@@ -88,24 +88,17 @@ describe('Search Component', () => {
     openSearchResults()
 
     searchResultsIsOpen()
-
-    wrapper
-      .simulate('blur')
-
+    wrapper.simulate('blur')
     searchResultsIsClosed()
   })
 
-  // TODO: see Search.handleFocus() todo
-  // it('opens on focus', () => {
-  //   wrapperMount(<Search {...requiredProps} />)
-  //
-  //   searchResultsIsClosed()
-  //
-  //   wrapper
-  //     .simulate('focus')
-  //
-  //   searchResultsIsOpen()
-  // })
+  it('opens on focus', () => {
+    wrapperMount(<Search results={options} minCharacters={0} />)
+
+    searchResultsIsClosed()
+    wrapper.simulate('focus')
+    searchResultsIsOpen()
+  })
 
   describe('isMouseDown', () => {
     it('tracks when the mouse is down', () => {
@@ -493,6 +486,11 @@ describe('Search Component', () => {
   describe('open', () => {
     it('defaultOpen opens the menu when true', () => {
       wrapperShallow(<Search results={options} minCharacters={0} defaultOpen />)
+      searchResultsIsOpen()
+    })
+    it('defaultOpen stays open on focus', () => {
+      wrapperShallow(<Search results={options} minCharacters={0} defaultOpen />)
+      wrapper.simulate('focus')
       searchResultsIsOpen()
     })
     it('defaultOpen closes the menu when false', () => {

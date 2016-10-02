@@ -3,7 +3,7 @@ import faker from 'faker'
 import React from 'react'
 
 import * as common from 'test/specs/commonTests'
-import { domEvent, sandbox } from 'test/utils'
+import { consoleUtil, domEvent, sandbox } from 'test/utils'
 import Dropdown from 'src/modules/Dropdown/Dropdown'
 import DropdownDivider from 'src/modules/Dropdown/DropdownDivider'
 import DropdownHeader from 'src/modules/Dropdown/DropdownHeader'
@@ -1630,6 +1630,44 @@ describe('Dropdown Component', () => {
     it('does not render a header when not present', () => {
       wrapperRender(<Dropdown options={options} />)
         .should.not.have.descendants('.menu .header')
+    })
+  })
+
+  describe('value validations', () => {
+    it('logs an error if dropdown is not multiple and value is array', () => {
+      consoleUtil.disableOnce()
+      const spy = sandbox.spy(console, 'error')
+
+      const originalValue = _.pick(options, 'value')[0]
+      const nextValue = _.castArray(_.pick(options, 'value')[1])
+
+      wrapperMount(<Dropdown options={options} value={originalValue} selection />)
+      wrapper.setProps({ value: nextValue })
+
+      const errorMessage =
+        'Dropdown `value` must not be an array when `multiple` is not set.' +
+        ' Either set `multiple={true}` or use a string or number value.'
+
+      spy.should.have.been.calledOnce()
+      spy.should.have.been.calledWithMatch(errorMessage)
+    })
+
+    it('logs an error if dropdown is multiple and value not array', () => {
+      consoleUtil.disableOnce()
+      const spy = sandbox.spy(console, 'error')
+
+      const originalValue = _.castArray(_.pick(options, 'value')[0])
+      const nextValue = _.pick(options, 'value')[1]
+
+      wrapperMount(<Dropdown options={options} value={originalValue} selection multiple />)
+      wrapper.setProps({ value: nextValue })
+
+      const errorMessage =
+        'Dropdown `value` must be an array when `multiple` is set.' +
+        ` Received type: \`${Object.prototype.toString.call(nextValue)}\`.`
+
+      spy.should.have.been.calledOnce()
+      spy.should.have.been.calledWithMatch(errorMessage)
     })
   })
 })
