@@ -3,6 +3,7 @@ import _ from 'lodash'
 import React, { Component, createElement, isValidElement, PropTypes } from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
 import { html } from 'js-beautify'
+import copyToClipboard from 'copy-to-clipboard'
 
 import { exampleContext } from 'docs/app/utils'
 import { Label, Divider, Grid, Icon, Header } from 'src'
@@ -78,6 +79,12 @@ export default class ComponentExample extends Component {
       sourceCode,
       staticMarkup,
     })
+  }
+
+  copyToClipboard = () => {
+    const { sourceCode } = this.state
+    copyToClipboard(sourceCode)
+    alert('Copied to clipboard!')
   }
 
   resetEditor = () => {
@@ -193,6 +200,15 @@ export default class ComponentExample extends Component {
     return (
       <Grid.Column style={style}>
         <Divider horizontal>
+          <Label
+            as='a'
+            basic
+            horizontal
+            color={error ? 'red' : 'green'}
+            icon='copy'
+            content={error ? 'See Error' : 'JSX'}
+            onClick={this.copyToClipboard}
+          />
           <Label
             as='a'
             basic

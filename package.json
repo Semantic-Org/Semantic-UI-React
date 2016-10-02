@@ -67,6 +67,7 @@
     "chai": "^3.3.0",
     "chai-enzyme": "^0.5.0",
     "connect-history-api-fallback": "^1.2.0",
+    "copy-to-clipboard": "^3.0.5",
     "cross-env": "^2.0.0",
     "css-loader": "^0.23.1",
     "del": "^2.2.2",
