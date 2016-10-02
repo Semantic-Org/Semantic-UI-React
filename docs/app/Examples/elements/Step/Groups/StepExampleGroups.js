@@ -1,36 +1,35 @@
 import React from 'react'
 import { Icon, Step } from 'stardust'
 
-const { Content, Description, Group, Title } = Step
 const steps = [
   { icon: 'truck', title: 'Shipping', description: 'Choose your shipping options' },
   { active: true, icon: 'payment', title: 'Billing', description: 'Enter billing information' },
   { disabled: true, icon: 'info', title: 'Confirm Order' },
 ]
 
-const Groups = () => (
+const StepExampleGroups = () => (
   <div>
-    <Group>
+    <Step.Group>
       <Step>
         <Icon name='truck' />
-        <Content>
-          <Title>Shipping</Title>
-          <Description>Choose your shipping options</Description>
-        </Content>
+        <Step.Content>
+          <Step.Title>Shipping</Step.Title>
+          <Step.Description>Choose your shipping options</Step.Description>
+        </Step.Content>
       </Step>
 
       <Step active>
         <Icon name='payment' />
-        <Content title='Billing' description='Enter billing information' />
+        <Step.Content title='Billing' description='Enter billing information' />
       </Step>
 
       <Step disabled icon='info' title='Confirm Order' />
-    </Group>
+    </Step.Group>
 
     <br />
 
-    <Group items={steps} />
+    <Step.Group items={steps} />
   </div>
 )
 
-export default Groups
+export default StepExampleGroups

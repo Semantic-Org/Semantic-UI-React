@@ -11,7 +11,7 @@ class ClickableStep extends Component {
   }
 }
 
-const Links = () => (
+const StepExampleLinks = () => (
   <div>
     <Step.Group>
       <Step active href='http://google.com' icon='truck' title='Shipping' description='Choose your shipping options' />
@@ -34,4 +34,4 @@ const Links = () => (
   </div>
 )
 
-export default Links
+export default StepExampleLinks
