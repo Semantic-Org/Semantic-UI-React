@@ -68,7 +68,7 @@ const SegmentVariationsExamples = () => (
     />
     <ComponentExample
       title='Circular'
-      description='A segment can be circular.'
+      description='A segment can be circular'
       examplePath='elements/Segment/Variations/SegmentExampleCircular'
     >
       <Message info>
@@ -78,31 +78,31 @@ const SegmentVariationsExamples = () => (
     </ComponentExample>
     <ComponentExample
       title='Clearing'
-      description='A segment can clear floated content.'
+      description='A segment can clear floated content'
       examplePath='elements/Segment/Variations/SegmentExampleClearing'
     />
     <ComponentExample
       title='Floated'
-      description='A segment can appear to the left or right of other content.'
+      description='A segment can appear to the left or right of other content'
       examplePath='elements/Segment/Variations/SegmentExampleFloated'
     />
     <ComponentExample
       title='Text Alignment'
-      description='A segment can have its text aligned to a side.'
+      description='A segment can have its text aligned to a side'
       examplePath='elements/Segment/Variations/SegmentExampleTextAlignment'
     />
     <ComponentExample
       title='Basic'
-      description='A basic segment has no special formatting.'
+      description='A basic segment has no special formatting'
       examplePath='elements/Segment/Variations/SegmentExampleBasic'
     />
     <ComponentExample
       title='Sizes'
-      description='A segment can have different sizes.'
+      description='A segment can have different sizes'
       examplePath='elements/Segment/Variations/SegmentExampleSizes'
     />
     <ComponentExample
-      description='A group of segments can have different sizes.'
+      description='A group of segments can have different sizes'
       examplePath='elements/Segment/Variations/SegmentExampleGroupSizes'
     />
   </ExampleSection>

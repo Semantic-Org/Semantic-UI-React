@@ -6,32 +6,32 @@ const SegmentGroupsExamples = () => (
   <ExampleSection title='Groups'>
     <ComponentExample
       title='Segments'
-      description='A group of segments can be formatted to appear together.'
+      description='A group of segments can be formatted to appear together'
       examplePath='elements/Segment/Groups/SegmentSegmentsExample'
     />
     <ComponentExample
       title='Nested Segments'
-      description='A group of segments can be nested in another group of segments.'
+      description='A group of segments can be nested in another group of segments'
       examplePath='elements/Segment/Groups/SegmentNestedSegmentsExample'
     />
     <ComponentExample
       title='Horizontal Segments'
-      description='A segment group can appear horizontally.'
+      description='A segment group can appear horizontally'
       examplePath='elements/Segment/Groups/SegmentHorizontalSegmentsExample'
     />
     <ComponentExample
       title='Raised Segments'
-      description='A segment group can be raised.'
+      description='A segment group can be raised'
       examplePath='elements/Segment/Groups/SegmentRaisedSegmentsExample'
     />
     <ComponentExample
       title='Stacked Segments'
-      description='A segment group can be stacked.'
+      description='A segment group can be stacked'
       examplePath='elements/Segment/Groups/SegmentStackedSegmentsExample'
     />
     <ComponentExample
       title='Piled Segments'
-      description='A segment group can be piled.'
+      description='A segment group can be piled'
       examplePath='elements/Segment/Groups/SegmentPiledSegmentsExample'
     />
   </ExampleSection>
