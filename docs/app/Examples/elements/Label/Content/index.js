@@ -17,7 +17,7 @@ const LabelContent = () => (
       examplePath='elements/Label/Content/LabelExampleIcon'
     />
     <ComponentExample
-      description='You can also insert icon with shorthand'
+      description='You can also configure an label icon via props'
       examplePath='elements/Label/Content/LabelExampleIconShorthand'
     />
 
@@ -27,7 +27,7 @@ const LabelContent = () => (
       examplePath='elements/Label/Content/LabelExampleImage'
     />
     <ComponentExample
-      description='You can also insert image with shorthand'
+      description='You can also configure an label image via props'
       examplePath='elements/Label/Content/LabelExampleImageShorthand'
     />
 
