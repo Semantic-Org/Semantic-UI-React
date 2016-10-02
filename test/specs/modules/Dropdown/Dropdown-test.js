@@ -1596,8 +1596,9 @@ describe('Dropdown Component', () => {
 
     it('calls onAddItem prop when clicking new value', () => {
       const spy = sandbox.spy()
+      const name = 'my-dropdown'
       const search = wrapperMount(
-        <Dropdown options={customOptions} selection search allowAdditions onAddItem={spy} />
+        <Dropdown options={customOptions} selection search allowAdditions onAddItem={spy} name={name} />
       )
         .find('input.search')
 
@@ -1609,13 +1610,14 @@ describe('Dropdown Component', () => {
         .simulate('click')
 
       spy.should.have.been.calledOnce()
-      spy.firstCall.args[0].should.equal('boo')
+      spy.should.have.been.calledWith(sandbox.match.any, { name, value: 'boo' })
     })
 
     it('calls onAddItem prop when pressing enter on new value', () => {
       const spy = sandbox.spy()
+      const name = 'my-dropdown'
       const search = wrapperMount(
-        <Dropdown options={customOptions} selection search allowAdditions onAddItem={spy} />
+        <Dropdown options={customOptions} selection search allowAdditions onAddItem={spy} name={name} />
       )
         .find('input.search')
 
@@ -1623,7 +1625,7 @@ describe('Dropdown Component', () => {
       domEvent.keyDown(document, { key: 'Enter' })
 
       spy.should.have.been.calledOnce()
-      spy.firstCall.args[0].should.equal('boo')
+      spy.should.have.been.calledWith(sandbox.match.any, { name, value: 'boo' })
     })
   })
 
