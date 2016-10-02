@@ -72,6 +72,7 @@ config = Object.assign({}, config, {
     'brace/mode/html',
     'brace/theme/tomorrow',
     'classnames',
+    'copy-to-clipboard',
     'faker',
     'react',
     'react-ace',
