@@ -1,5 +1,12 @@
 # Change Log
 
+## [v0.50.0](https://github.com/TechnologyAdvice/stardust/tree/v0.50.0) (2016-10-02)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.49.0...v0.50.0)
+
+**Merged pull requests:**
+
+- feat\(Modal\): Enable usage without wrapper, add custom Portal [\#571](https://github.com/TechnologyAdvice/stardust/pull/571) ([jcarbo](https://github.com/jcarbo))
+
 ## [v0.49.0](https://github.com/TechnologyAdvice/stardust/tree/v0.49.0) (2016-10-01)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.48.3...v0.49.0)
 
