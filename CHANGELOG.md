@@ -1,5 +1,13 @@
 # Change Log
 
+## [v0.52.2](https://github.com/TechnologyAdvice/stardust/tree/v0.52.2) (2016-10-03)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.52.1...v0.52.2)
+
+**Implemented enhancements:**
+
+- feat\(Table\): add `attached` prop [\#591](https://github.com/TechnologyAdvice/stardust/issues/591)
+- feat\(Table\): add `attached` prop [\#593](https://github.com/TechnologyAdvice/stardust/pull/593) ([yesmin](https://github.com/yesmin))
+
 ## [v0.52.1](https://github.com/TechnologyAdvice/stardust/tree/v0.52.1) (2016-10-03)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.52.0...v0.52.1)
 
