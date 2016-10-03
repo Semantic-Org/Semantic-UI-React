@@ -126,4 +126,13 @@ describe('Button', () => {
       wrapper.children().at(1).should.match('.ui.label')
     })
   })
+
+  describe('labeled', () => {
+    it('is before the button and icon="plus" when labeled="left"', () => {
+      const wrapper = shallow(<Button labeled='left' icon='plus' />)
+      wrapper.should.have.tagName('button')
+      wrapper.should.have.className('labeled')
+      wrapper.should.have.exactly(1).descendants('Icon')
+    })
+  })
 })
