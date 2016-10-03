@@ -11,13 +11,13 @@ const CommentExampleActions = () => (
           This will be great for business reports. I will definitely download this.
         </Comment.Text>
         <Comment.Actions>
-          <a>Reply</a>
-          <a>Save</a>
-          <a>Hide</a>
-          <a>
+          <Comment.Action>Reply</Comment.Action>
+          <Comment.Action>Save</Comment.Action>
+          <Comment.Action>Hide</Comment.Action>
+          <Comment.Action>
             <Icon name='expand' />
             Full-screen
-          </a>
+          </Comment.Action>
         </Comment.Actions>
       </Comment.Content>
     </Comment>

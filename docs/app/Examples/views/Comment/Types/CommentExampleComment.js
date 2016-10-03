@@ -14,7 +14,7 @@ const CommentExampleBasic = () => (
         </Comment.Metadata>
         <Comment.Text>How artistic!</Comment.Text>
         <Comment.Actions>
-          <a>Reply</a>
+          <Comment.Action>Reply</Comment.Action>
         </Comment.Actions>
       </Comment.Content>
     </Comment>
@@ -30,7 +30,7 @@ const CommentExampleBasic = () => (
           <p>This has been very useful for my research. Thanks as well!</p>
         </Comment.Text>
         <Comment.Actions>
-          <a>Reply</a>
+          <Comment.Action>Reply</Comment.Action>
         </Comment.Actions>
       </Comment.Content>
       <Comment.Group>
@@ -45,7 +45,7 @@ const CommentExampleBasic = () => (
               Elliot you are always so right :)
             </Comment.Text>
             <Comment.Actions>
-              <a>Reply</a>
+              <Comment.Action>Reply</Comment.Action>
             </Comment.Actions>
           </Comment.Content>
         </Comment>
@@ -63,7 +63,7 @@ const CommentExampleBasic = () => (
           Dude, this is awesome. Thanks so much
         </Comment.Text>
         <Comment.Actions>
-          <a>Reply</a>
+          <Comment.Action>Reply</Comment.Action>
         </Comment.Actions>
       </Comment.Content>
     </Comment>

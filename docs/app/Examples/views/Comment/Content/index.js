@@ -22,6 +22,13 @@ const CommentTypes = () => (
       description='A comment can contain an list of actions a user may perform related to this comment'
       examplePath='views/Comment/Content/CommentExampleActions'
     />
+
+    <ComponentExample
+      title='Reply Form'
+      description='A comment can contain a form to reply to a comment. This may have arbitrary content'
+      examplePath='views/Comment/Content/CommentExampleReplyForm'
+    />
+    <ComponentExample examplePath='views/Comment/Content/CommentExampleReplyFormOuter' />
   </ExampleSection>
 )
 

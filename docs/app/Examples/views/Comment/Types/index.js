@@ -8,7 +8,7 @@ const CommentTypes = () => (
     <ComponentExample
       title='Comments'
       description='A basic list of comments'
-      examplePath='views/Comment/Types/CommentExampleBasic'
+      examplePath='views/Comment/Types/CommentExampleComment'
     />
   </ExampleSection>
 )

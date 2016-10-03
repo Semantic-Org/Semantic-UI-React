@@ -7,6 +7,7 @@ import {
   getUnhandledProps,
   META,
 } from '../../lib'
+import CommentAction from './CommentAction'
 import CommentActions from './CommentActions'
 import CommentAuthor from './CommentAuthor'
 import CommentAvatar from './CommentAvatar'
@@ -45,6 +46,7 @@ Comment.propTypes = {
 }
 
 Comment.Author = CommentAuthor
+Comment.Action = CommentAction
 Comment.Actions = CommentActions
 Comment.Avatar = CommentAvatar
 Comment.Content = CommentContent
