@@ -128,7 +128,7 @@ export default class ComponentExample extends Component {
     const FAKER = require('faker')
     const LODASH = require('lodash')
     const REACT = require('react')
-    const STARDUST = require('stardust')
+    const SEMANTIC_UI_REACT = require('semantic-ui-react')
     /* eslint-enable no-unused-vars */
 
     // Should use an AST transform here... oh well :/
