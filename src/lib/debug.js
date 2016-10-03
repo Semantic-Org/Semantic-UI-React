@@ -18,7 +18,7 @@ if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'test') {
  * @returns {Function}
  */
 export const makeDebugger = (namespace) => {
-  return _debug(`stardust:${namespace}`)
+  return _debug(`semanticUIReact:${namespace}`)
 }
 
 /**
