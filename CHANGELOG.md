@@ -1,5 +1,22 @@
 # Change Log
 
+## [v0.52.3](https://github.com/TechnologyAdvice/stardust/tree/v0.52.3) (2016-10-03)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.52.2...v0.52.3)
+
+**Implemented enhancements:**
+
+- feat\(Image\): add `label` shorthand [\#538](https://github.com/TechnologyAdvice/stardust/issues/538)
+- feat\(Image\): add `label` shorthand [\#603](https://github.com/TechnologyAdvice/stardust/pull/603) ([layershifter](https://github.com/layershifter))
+
+**Closed issues:**
+
+- docs\(Table\): add `attached` example [\#595](https://github.com/TechnologyAdvice/stardust/issues/595)
+- Notifying of breaking changes in the changelog [\#592](https://github.com/TechnologyAdvice/stardust/issues/592)
+
+**Merged pull requests:**
+
+- docs\(Table\): add `attached` example  [\#598](https://github.com/TechnologyAdvice/stardust/pull/598) ([layershifter](https://github.com/layershifter))
+
 ## [v0.52.2](https://github.com/TechnologyAdvice/stardust/tree/v0.52.2) (2016-10-03)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.52.1...v0.52.2)
 
