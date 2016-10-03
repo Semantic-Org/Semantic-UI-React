@@ -13,7 +13,7 @@ const ContentBlock = () => (
         <Feed.Event>
           <Feed.Label image='http://semantic-ui.com/images/avatar/small/jenny.jpg' />
           <Feed.Content>
-            <Feed.Date date='1 day ago' />
+            <Feed.Date content='1 day ago' />
             <Feed.Summary>
               You added <a>Jenny Hess</a> to your <a>coworker</a> group.
             </Feed.Summary>
@@ -23,7 +23,7 @@ const ContentBlock = () => (
         <Feed.Event>
           <Feed.Label image='http://semantic-ui.com/images/avatar2/small/molly.png' />
           <Feed.Content>
-            <Feed.Date date='3 days ago' />
+            <Feed.Date content='3 days ago' />
             <Feed.Summary>
               You added <a>Molly Malone</a> as a friend.
             </Feed.Summary>
