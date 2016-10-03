@@ -95,6 +95,11 @@ describe('Checkbox', () => {
       spy.firstCall.args[1]
         .should.deep.equal({ ...expectProps, checked: true })
     })
+    it('is not called when the checkbox has the disabled prop set', () => {
+      const spy = sandbox.spy()
+      mount(<Checkbox disabled onChange={spy} />).simulate('click')
+      spy.should.not.have.been.called()
+    })
   })
 
   describe('readOnly', () => {

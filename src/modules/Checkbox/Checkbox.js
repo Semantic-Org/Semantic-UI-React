@@ -110,7 +110,7 @@ export default class Checkbox extends Component {
 
   handleClick = (e) => {
     debug('handleClick()')
-    const { onChange, onClick, name, value } = this.props
+    const { onChange, onClick, disabled, name, value } = this.props
     const { checked } = this.state
     debug(`  name:       ${name}`)
     debug(`  value:      ${value}`)
