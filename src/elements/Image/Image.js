@@ -13,6 +13,7 @@ import {
   useValueAndKey,
   useKeyOnly,
 } from '../../lib'
+import { Label } from '../../elements'
 import ImageGroup from './ImageGroup'
 
 /**
@@ -21,8 +22,27 @@ import ImageGroup from './ImageGroup'
  */
 function Image(props) {
   const {
-    verticalAlign, alt, avatar, bordered, centered, className, disabled, floated, fluid,
-    hidden, height, href, inline, shape, size, spaced, src, width, wrapped, ui,
+    alt,
+    avatar,
+    bordered,
+    centered,
+    className,
+    disabled,
+    floated,
+    fluid,
+    height,
+    hidden,
+    href,
+    inline,
+    label,
+    shape,
+    size,
+    spaced,
+    src,
+    verticalAlign,
+    width,
+    wrapped,
+    ui,
   } = props
 
   const classes = cx(
@@ -47,7 +67,7 @@ function Image(props) {
   const rootProps = { className: classes, ...rest }
   const imgTagProps = { src, alt, width, height }
   const ElementType = getElementType(Image, props, () => {
-    if (wrapped) return 'div'
+    if (label || wrapped) return 'div'
   })
 
   if (ElementType === 'img') {
@@ -56,6 +76,7 @@ function Image(props) {
 
   return (
     <ElementType {...rootProps} href={href}>
+      {Label.create(label)}
       <img {...imgTagProps} />
     </ElementType>
   )
@@ -123,6 +144,14 @@ Image.propTypes = {
 
   /** An image may appear inline */
   inline: PropTypes.bool,
+
+  /** Add a Label by text, props object, or pass a <Label /> */
+  label: customPropTypes.some([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.object,
+    PropTypes.element,
+  ]),
 
   /** An image may appear rounded or circular */
   shape: PropTypes.oneOf(Image._meta.props.shape),
