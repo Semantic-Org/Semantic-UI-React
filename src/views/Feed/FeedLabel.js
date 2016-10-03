@@ -52,10 +52,10 @@ FeedLabel.propTypes = {
   content: customPropTypes.shorthand,
 
   /** An event can contain icon label. Mutually exclusive with children. */
-  icon: customPropTypes.shorthand,
+  icon: customPropTypes.icon,
 
   /** An event can contain image label. Mutually exclusive with children. */
-  image: customPropTypes.shorthand,
+  image: customPropTypes.image,
 }
 
 export default FeedLabel

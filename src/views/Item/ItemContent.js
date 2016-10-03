@@ -53,31 +53,31 @@ ItemContent.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** Primary content of the ItemContent. */
+  /** Primary content of the ItemContent. Mutually exclusive with all shorthand props. */
   children: customPropTypes.every([
-    customPropTypes.disallow(['content']),
+    customPropTypes.disallow(['content', 'description', 'extra', 'header', 'meta']),
     PropTypes.node,
   ]),
 
   /** Classes that will be added to the ItemContent className. */
   className: PropTypes.string,
 
-  /** Primary content of the ItemContent. Mutually exclusive with the children prop. */
+  /** Shorthand for primary content of the ItemContent. Mutually exclusive with the children. */
   content: customPropTypes.shorthand,
 
-  /** Shorthand for of the ItemDescription. Mutually exclusive with the children prop. */
-  description: customPropTypes.shorthand,
+  /** Shorthand for of the ItemDescription. Mutually exclusive with the children. */
+  description: ItemDescription.propTypes.content,
 
-  /** Shorthand for ItemExtra component. Mutually exclusive with the children prop. */
-  extra: customPropTypes.shorthand,
+  /** Shorthand for ItemExtra component. Mutually exclusive with the children. */
+  extra: ItemExtra.propTypes.content,
 
-  /** Shorthand for ItemHeader component. Mutually exclusive with the children prop. */
-  header: customPropTypes.shorthand,
+  /** Shorthand for ItemHeader component. Mutually exclusive with the children. */
+  header: ItemHeader.propTypes.content,
 
-  /** Shorthand for ItemMeta component. Mutually exclusive with the children prop. */
-  meta: customPropTypes.shorthand,
+  /** Shorthand for the ItemMeta component. Mutually exclusive with the children. */
+  meta: ItemMeta.propTypes.content,
 
-  /** Content can specify its vertical alignment */
+  /** Content can specify its vertical alignment. */
   verticalAlign: PropTypes.oneOf(ItemContent._meta.props.verticalAlign),
 }
 

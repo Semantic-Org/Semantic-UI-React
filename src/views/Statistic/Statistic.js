@@ -36,8 +36,8 @@ function Statistic(props) {
 
   return (
     <ElementType {...rest} className={classes}>
-      <StatisticValue text={text} value={value} />
-      <StatisticLabel label={label} />
+      <StatisticValue content={value} text={text} />
+      <StatisticLabel content={label} />
     </ElementType>
   )
 }
@@ -56,7 +56,7 @@ Statistic.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** Primary content of the Statistic. */
+  /** Primary content of the Statistic. Mutually exclusive with all shorthand props. */
   children: customPropTypes.every([
     customPropTypes.disallow(['label', 'value']),
     PropTypes.node,
@@ -77,7 +77,7 @@ Statistic.propTypes = {
   /** A statistic can be formatted to fit on a dark background. */
   inverted: PropTypes.bool,
 
-  /** Label content of the Statistic. Mutually exclusive with the children prop. */
+  /** Shorthand for the StatisticLabel component. Mutually exclusive with the children. */
   label: customPropTypes.shorthand,
 
   /** A statistic can vary in size. */
@@ -86,14 +86,8 @@ Statistic.propTypes = {
   /** Format the StatisticValue with smaller font size to fit nicely beside number values. */
   text: PropTypes.bool,
 
-  /** Value content of the Statistic. Mutually exclusive with the children prop. */
-  value: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number,
-    ]),
-  ]),
+  /** Shorthand for the StatisticValue component. Mutually exclusive with the children. */
+  value: customPropTypes.shorthand,
 }
 
 Statistic.Group = StatisticGroup

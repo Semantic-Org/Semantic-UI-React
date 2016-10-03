@@ -87,7 +87,7 @@ Card.propTypes = {
   /** A Card can center itself inside its container. */
   centered: PropTypes.bool,
 
-  /** Primary content of the Card. */
+  /** Primary content of the Card. Mutually exclusive with all shorthand props. */
   children: customPropTypes.every([
     customPropTypes.disallow(['description', 'header', 'image', 'meta']),
     PropTypes.node,
@@ -99,41 +99,26 @@ Card.propTypes = {
   /** A Card can be formatted to display different colors. */
   color: PropTypes.oneOf(Card._meta.props.color),
 
-  /** Shorthand prop for CardDescription. Mutually exclusive with children. */
-  description: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.node,
-  ]),
+  /** Shorthand prop for the CardDescription component. Mutually exclusive with children. */
+  description: CardContent.propTypes.description,
 
-  /** Shorthand prop for CardContent containing extra prop. Mutually exclusive with children. */
-  extra: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.node,
-  ]),
+  /** Shorthand prop for the CardContent component containing extra prop. Mutually exclusive with children. */
+  extra: PropTypes.shorthand,
 
   /** A Card can be formatted to take up the width of its container. */
   fluid: PropTypes.bool,
 
-  /** Shorthand prop for CardHeader. Mutually exclusive with children. */
-  header: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.node,
-  ]),
+  /** Shorthand prop for the CardHeader component. Mutually exclusive with children. */
+  header: CardContent.propTypes.header,
 
   /** Render as an `a` tag instead of a `div` and adds the href attribute. */
   href: PropTypes.string,
 
-  /** A card can contain an Image component. */
-  image: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.node,
-  ]),
+  /** A card can contain an Image component. Mutually exclusive with children. */
+  image: customPropTypes.image,
 
-  /** Shorthand prop for CardMeta. Mutually exclusive with children. */
-  meta: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.node,
-  ]),
+  /** Shorthand prop for the CardMeta component. Mutually exclusive with children. */
+  meta: CardContent.propTypes.meta,
 
   /** Render as an `a` tag instead of a `div` and called with event on Card click. */
   onClick: PropTypes.func,

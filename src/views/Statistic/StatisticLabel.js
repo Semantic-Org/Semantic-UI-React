@@ -9,12 +9,12 @@ import {
 } from '../../lib'
 
 function StatisticLabel(props) {
-  const { children, className, label } = props
+  const { children, className, content } = props
   const classes = cx(className, 'label')
   const rest = getUnhandledProps(StatisticLabel, props)
   const ElementType = getElementType(StatisticLabel, props)
 
-  return <ElementType {...rest} className={classes}>{children || label}</ElementType>
+  return <ElementType {...rest} className={classes}>{children || content}</ElementType>
 }
 
 StatisticLabel._meta = {
@@ -27,17 +27,17 @@ StatisticLabel.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** Primary content of the StatisticLabel. */
+  /** Primary content of the StatisticLabel. Mutually exclusive with content. */
   children: customPropTypes.every([
     customPropTypes.disallow(['content']),
     PropTypes.node,
   ]),
 
+  /** Shorthand for primary content of the StatisticLabel. Mutually exclusive with the children. */
+  content: customPropTypes.shorthand,
+
   /** Classes that will be added to the StatisticLabel className. */
   className: PropTypes.string,
-
-  /** Primary content of the StatisticLabel. Mutually exclusive with the children prop. */
-  label: customPropTypes.shorthand,
 }
 
 export default StatisticLabel

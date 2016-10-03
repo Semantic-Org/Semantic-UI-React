@@ -187,10 +187,7 @@ export const demand = (requiredProps) => {
  */
 export const deprecate = (help, validator) => {
   return (props, propName, componentName, ...args) => {
-    // do not show deprecation warnings in production
-    if (process.env.NODE_ENV === 'production') return
-
-    if (!_.isString(help)) {
+    if (typeof help !== 'string') {
       throw new Error([
         'Invalid `help` argument supplied to deprecate, expected a string.',
         `See \`${propName}\` prop in \`${componentName}\`.`,
@@ -223,6 +220,10 @@ export const deprecate = (help, validator) => {
   }
 }
 
+// ----------------------------------------
+// Prop specific types
+// ----------------------------------------
+
 /**
  * Ensure a prop conforms to shorthand prop standards.
  */
@@ -235,17 +236,40 @@ export const shorthand = (...args) => every([
  * Ensure a prop conforms to icon prop standards.
  */
 export const icon = (...args) => every([
-  disallow(['children']),
-  PropTypes.node,
+  disallow(['children', 'image']),
+  PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.object,
+    PropTypes.element,
+  ]),
 ])(...args)
 
 /**
  * Ensure a prop conforms to icon prop standards.
  */
 export const image = (...args) => every([
-  disallow(['children']),
-  PropTypes.node,
+  disallow(['children', 'icon']),
+  PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.object,
+    PropTypes.element,
+  ]),
 ])(...args)
+
+/**
+ * Ensure a prop conforms to children prop standards.
+ */
+export const children = (Component) => (props, ...rest) => {
+  const disallowedProps = _.flow(
+    _.pickBy(checker => checker === shorthand || checker === icon || checker === image),
+    _.keys,
+  )(Component.propTypes)
+
+  return every([
+    disallow(disallowedProps),
+    PropTypes.node,
+  ])(props, ...rest)
+}
 
 /**
  * Ensure a prop can be used as a React key in an array of child components.

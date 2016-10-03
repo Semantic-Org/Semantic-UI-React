@@ -54,7 +54,7 @@ FeedLike.propTypes = {
   content: customPropTypes.shorthand,
 
   /** Shorthand for icon. Mutually exclusive with children. */
-  icon: customPropTypes.shorthand,
+  icon: customPropTypes.icon,
 }
 
 export default FeedLike

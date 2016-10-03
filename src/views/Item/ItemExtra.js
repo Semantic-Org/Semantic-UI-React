@@ -30,7 +30,7 @@ ItemExtra.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** Primary content of the ItemExtra. */
+  /** Primary content of the ItemExtra. Mutually exclusive with content. */
   children: customPropTypes.every([
     customPropTypes.disallow(['content']),
     PropTypes.node,
@@ -39,7 +39,7 @@ ItemExtra.propTypes = {
   /** Classes that will be added to the ItemExtra className. */
   className: PropTypes.string,
 
-  /** Primary content of the ItemExtra. Mutually exclusive with the children prop. */
+  /** Shorthand for primary content of the ItemExtra. Mutually exclusive with the children. */
   content: customPropTypes.shorthand,
 }
 

@@ -49,9 +49,9 @@ StatisticGroup.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** Primary content of the StatisticGroup. */
+  /** Primary content of the StatisticGroup. Mutually exclusive with items. */
   children: customPropTypes.every([
-    customPropTypes.disallow(['content']),
+    customPropTypes.disallow(['items']),
     PropTypes.node,
   ]),
 
@@ -61,13 +61,14 @@ StatisticGroup.propTypes = {
   /** A statistic can present its measurement horizontally. */
   horizontal: PropTypes.bool,
 
-  /** Array of props for Statistic. */
+  /** Array of props for Statistic. Mutually exclusive with children. */
   items: customPropTypes.every([
     customPropTypes.disallow(['children']),
     PropTypes.arrayOf(PropTypes.shape({
-      childKey: PropTypes.string,
-      // this object is spread on the Statistic
-      // allow it to validate props instead
+      childKey: customPropTypes.childKey,
+      // do not spread Statistic propTypes here
+      // it will be undefined due to circular imports
+      // allow the Statistic to validate the props it is sent
     })),
   ]),
 

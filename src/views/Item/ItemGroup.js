@@ -56,8 +56,11 @@ ItemGroup.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** Primary content of the ItemGroup. */
-  children: PropTypes.node,
+  /** Primary content of the ItemGroup. Mutually exclusive with items. */
+  children: customPropTypes.every([
+    customPropTypes.disallow(['items']),
+    PropTypes.node,
+  ]),
 
   /** Classes that will be added to the ItemGroup className. */
   className: PropTypes.string,
@@ -65,16 +68,14 @@ ItemGroup.propTypes = {
   /** Items can be divided to better distinguish between grouped content. */
   divided: PropTypes.bool,
 
-  /** Array of props for Item. */
+  /** Array of props for Item. Mutually exclusive with children. */
   items: customPropTypes.every([
     customPropTypes.disallow(['children']),
     PropTypes.arrayOf(PropTypes.shape({
-      childKey: PropTypes.oneOfType([
-        PropTypes.number,
-        PropTypes.string,
-      ]),
-      // this object is spread on the Item
-      // allow it to validate props instead
+      childKey: customPropTypes.childKey,
+      // do not spread Item propTypes here
+      // it will be undefined due to circular imports
+      // allow the Item to validate the props it is sent
     })),
   ]),
 

@@ -41,10 +41,7 @@ FeedSummary.propTypes = {
   as: customPropTypes.as,
 
   /** Primary content of the FeedSummary. */
-  children: customPropTypes.every([
-    customPropTypes.disallow(['content', 'date', 'user']),
-    PropTypes.node,
-  ]),
+  children: customPropTypes.children(FeedSummary),
 
   /** Classes that will be added to the FeedSummary className. */
   className: PropTypes.string,

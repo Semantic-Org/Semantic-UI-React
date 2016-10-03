@@ -28,13 +28,8 @@ function FeedContent(props) {
       {createShorthand(FeedDate, val => ({ content: val }), date)}
       {createShorthand(FeedSummary, val => ({ content: val }), summary)}
       {content}
-<<<<<<< HEAD
       {createShorthand(FeedExtra, val => ({ text: true, content: val }), extraText)}
       {createShorthand(FeedExtra, val => ({ images: val }), extraImages)}
-=======
-      {createShorthand(FeedExtra, val => ({ images: val }), extraImages)}
-      {createShorthand(FeedExtra, val => ({ text: val }), extraText)}
->>>>>>> wip
       {createShorthand(FeedMeta, val => ({ content: val }), meta)}
     </ElementType>
   )
@@ -65,24 +60,12 @@ FeedContent.propTypes = {
   /** Classes that will be added to the FeedContent className. */
   className: PropTypes.string,
 
-<<<<<<< HEAD
   /** Shorthand for children. */
-  content: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number,
-    ]),
-  ]),
-=======
-  /** Deprecated. Use date, extraText, extraImages, meta, and summary instead. */
-  content: customPropTypes.deprecate('Use date, extraText, extraImages, meta, and summary instead.'),
->>>>>>> wip
+  content: customPropTypes.shorthand,
 
   /** An event can contain a date. */
   date: FeedDate.propTypes.content,
 
-<<<<<<< HEAD
   /** Shorthand for the FeedExtra component with images. Mutually exclusive with children. */
   extraImages: FeedExtra.propTypes.images,
 
@@ -92,19 +75,7 @@ FeedContent.propTypes = {
   /** Shorthand for the FeedMeta component. Mutually exclusive with children. */
   meta: FeedMeta.propTypes.content,
 
-  /** Shorthand for the FeedSummary component. Mutually exclusive with children. */
-=======
-  /** Shorthand for FeedExtra with prop images. */
-  extraImages: FeedExtra.propTypes.images,
-
-  /** Shorthand for FeedExtra with prop text. */
-  extraText: FeedExtra.propTypes.text,
-
-  /** Shorthand for FeedMeta. */
-  meta: FeedMeta.propTypes.content,
-
   /** Shorthand for FeedSummary. */
->>>>>>> wip
   summary: FeedSummary.propTypes.content,
 }
 

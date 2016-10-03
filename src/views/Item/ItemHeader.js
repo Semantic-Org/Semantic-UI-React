@@ -30,7 +30,7 @@ ItemHeader.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** Primary content of the ItemHeader. */
+  /** Primary content of the ItemHeader. Mutually exclusive with content. */
   children: customPropTypes.every([
     customPropTypes.disallow(['content']),
     PropTypes.node,
@@ -39,7 +39,7 @@ ItemHeader.propTypes = {
   /** Classes that will be added to the ItemHeader className. */
   className: PropTypes.string,
 
-  /** Primary content of the ItemHeader. Mutually exclusive with the children prop. */
+  /** Shorthand for primary content of the ItemHeader. Mutually exclusive with the children. */
   content: customPropTypes.shorthand,
 }
 
