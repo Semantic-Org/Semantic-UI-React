@@ -9,10 +9,10 @@ describe('GridRow', () => {
   common.propKeyAndValueToClassName(GridRow, 'reversed')
 
   common.propKeyOnlyToClassName(GridRow, 'centered')
-  common.propValueOnlyToClassName(GridRow, 'color')
+  common.propKeyOnlyToClassName(GridRow, 'divided')
   common.propKeyOnlyToClassName(GridRow, 'stretched')
 
-  common.propKeyOrValueAndKeyToClassName(GridRow, 'divided')
+  common.propValueOnlyToClassName(GridRow, 'color')
 
   common.implementsTextAlignProp(GridRow)
   common.implementsVerticalAlignProp(GridRow)

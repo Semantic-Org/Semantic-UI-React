@@ -34,7 +34,7 @@ function GridRow(props) {
     color,
     useKeyOnly(centered, 'centered'),
     useWidthProp(columns, 'column', true),
-    useKeyOrValueAndKey(divided, 'divided'),
+    useKeyOnly(divided, 'divided'),
     useValueAndKey(only, 'only'),
     useValueAndKey(reversed, 'reversed'),
     useKeyOnly(stretched, 'stretched'),
@@ -55,7 +55,6 @@ GridRow._meta = {
   props: {
     color: SUI.COLORS,
     columns: SUI.WIDTHS,
-    divided: ['vertically'],
     only: ['computer', 'large screen', 'mobile', 'tablet mobile', 'tablet', 'widescreen'],
     reversed: ['computer', 'computer vertically', 'mobile', 'mobile vertically', 'tablet', 'tablet vertically'],
     textAlign: SUI.TEXT_ALIGNMENTS,
@@ -83,10 +82,7 @@ GridRow.propTypes = {
   columns: PropTypes.oneOf(GridRow._meta.props.columns),
 
   /** A row can have dividers between its columns. */
-  divided: PropTypes.oneOfType(
-    PropTypes.bool,
-    PropTypes.oneOf(GridRow._meta.props.divided),
-  ),
+  divided: PropTypes.bool,
 
   /** A row can appear only for a specific device, or screen sizes. */
   only: PropTypes.oneOf(GridRow._meta.props.only),
