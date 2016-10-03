@@ -9,7 +9,6 @@ import {
   SUI,
   useWidthProp,
   useKeyOnly,
-  useKeyOrValueAndKey,
   useTextAlignProp,
   useValueAndKey,
   useVerticalAlignProp,
