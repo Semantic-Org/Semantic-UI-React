@@ -1,5 +1,5 @@
 import React from 'react'
-import { List, Image } from 'stardust'
+import { List, Image } from 'semantic-ui-react'
 
 const ListExampleImage = () => (
   <List>

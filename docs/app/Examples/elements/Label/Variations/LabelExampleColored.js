@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import React from 'react'
-import { Label } from 'stardust'
+import { Label } from 'semantic-ui-react'
 
 const colors = [
   'red', 'orange', 'yellow', 'olive', 'green', 'teal',

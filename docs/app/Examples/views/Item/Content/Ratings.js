@@ -1,5 +1,5 @@
 import React from 'react'
-import { Icon, Item } from 'stardust'
+import { Icon, Item } from 'semantic-ui-react'
 
 const { Content, Group, Header, Image } = Item
 

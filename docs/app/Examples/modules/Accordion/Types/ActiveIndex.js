@@ -1,7 +1,7 @@
 import faker from 'faker'
 import _ from 'lodash'
 import React, { Component } from 'react'
-import { Accordion } from 'stardust'
+import { Accordion } from 'semantic-ui-react'
 
 const panels = _.times(3, () => ({
   title: faker.lorem.sentence(),

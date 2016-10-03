@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Message } from 'stardust'
+import { Message } from 'semantic-ui-react'
 
 export default class MessageDismissableBlockExample extends Component {
   state = { visible: true }

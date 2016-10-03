@@ -1,5 +1,5 @@
 import React from 'react'
-import { Header, Icon, Message, Segment } from 'stardust'
+import { Header, Icon, Message, Segment } from 'semantic-ui-react'
 
 const SegmentAttachedComplexExample = () => (
   <div>

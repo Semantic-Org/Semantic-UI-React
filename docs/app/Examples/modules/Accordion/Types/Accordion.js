@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Accordion, Icon } from 'stardust'
+import { Accordion, Icon } from 'semantic-ui-react'
 
 export default class AccordionAccordionExample extends Component {
   render() {

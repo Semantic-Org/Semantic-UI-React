@@ -1,5 +1,5 @@
 import React from 'react'
-import { Breadcrumb } from 'stardust'
+import { Breadcrumb } from 'semantic-ui-react'
 
 const BreadcrumbTinySizeExample = () => (
   <Breadcrumb size='tiny'>

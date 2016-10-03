@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, Icon } from 'stardust'
+import { Card, Icon } from 'semantic-ui-react'
 
 const description = [
   'Amy is a violinist with 2 years experience in the wedding industry.',

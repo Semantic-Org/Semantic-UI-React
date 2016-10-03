@@ -1,5 +1,5 @@
 import React from 'react'
-import { Image, Label } from 'stardust'
+import { Image, Label } from 'semantic-ui-react'
 
 const LabelExampleImage = () => (
   <div>

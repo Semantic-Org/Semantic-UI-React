@@ -1,5 +1,5 @@
 import React from 'react'
-import { Grid, Image, Label, Segment } from 'stardust'
+import { Grid, Image, Label, Segment } from 'semantic-ui-react'
 
 const LabelExampleAttached = () => (
   <Grid columns={3}>

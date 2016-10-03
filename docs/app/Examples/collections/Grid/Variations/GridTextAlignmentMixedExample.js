@@ -1,5 +1,5 @@
 import React from 'react'
-import { Grid, Menu } from 'stardust'
+import { Grid, Menu } from 'semantic-ui-react'
 
 const { Column, Row } = Grid
 

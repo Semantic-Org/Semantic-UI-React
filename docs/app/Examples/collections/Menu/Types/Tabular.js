@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Menu } from 'stardust'
+import { Menu } from 'semantic-ui-react'
 
 export default class Tabular extends Component {
   state = { activeItem: 'bio' }

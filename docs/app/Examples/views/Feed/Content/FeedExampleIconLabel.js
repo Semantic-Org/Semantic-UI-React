@@ -1,5 +1,5 @@
 import React from 'react'
-import { Feed, Icon } from 'stardust'
+import { Feed, Icon } from 'semantic-ui-react'
 
 const FeedExampleIconLabel = () => (
   <Feed>

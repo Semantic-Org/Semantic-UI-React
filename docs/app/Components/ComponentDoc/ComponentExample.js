@@ -128,7 +128,7 @@ export default class ComponentExample extends Component {
     const FAKER = require('faker')
     const LODASH = require('lodash')
     const REACT = require('react')
-    const STARDUST = require('stardust')
+    const SEMANTIC_UI_REACT = require('semantic-ui-react')
     /* eslint-enable no-unused-vars */
 
     // Should use an AST transform here... oh well :/
@@ -137,14 +137,14 @@ export default class ComponentExample extends Component {
 
     // rewrite imports to const statements against the UPPERCASE module names
     const imports = _.get(/(import[\s\S]*from[\s\S]*['"]\n)/.exec(sourceCode), '[1]', '')
-      .replace(/[\s\n]+/g, ' ')   // normalize spaces and make one line
-      .replace(/'\s+/g, "'\n")    // one import per line
-      .replace(/, }/g, ' }')      // remove trailing destructured commas
-      .split('\n')
+      .replace(/[\s\n]+/g, ' ')         // normalize spaces and make one line
+      .replace(/ import/g, '\nimport')  // one import per line
+      .split('\n')                      // split lines
+      .filter(l => l.trim() !== '')     // remove empty lines
       .map(l => {
         const defaultImport = _.get(/import\s+(\w+)/.exec(l), '[1]')
         const destructuredImports = _.get(/import.*({[\s\w,}]+)\s+from/.exec(l), '[1]')
-        const module = _.get(/import.*from.*'(.*)'/.exec(l), '[1]', '').toUpperCase()
+        const module = _.snakeCase(_.get(/import.*from.*'(.*)'/.exec(l), '[1]', '')).toUpperCase()
 
         return _.compact([
           defaultImport && `const ${defaultImport} = ${module}`,
@@ -158,7 +158,7 @@ export default class ComponentExample extends Component {
 
     // consider everything after the imports to be the body
     // remove `export` statements except `export default class|function`
-    const body = _.get(/import[\s\S]*from '\w+'([\s\S]*)/.exec(sourceCode), '[1]', '')
+    const body = _.get(/import[\s\S]*from.*\n([\s\S]*)/.exec(sourceCode), '[1]', '')
       .replace(/export\s+default\s+(?!class|function)\w+([\s\n]+)?/, '')  // remove `export default Foo` statements
       .replace(/export\s+default\s+/, '')                                 // remove `export default ...`
 

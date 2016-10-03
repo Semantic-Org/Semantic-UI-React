@@ -1,5 +1,5 @@
 import React from 'react'
-import { Divider, Form, Label } from 'stardust'
+import { Divider, Form, Label } from 'semantic-ui-react'
 
 const LabelExamplePointing = () => (
   <Form>

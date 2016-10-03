@@ -1,5 +1,5 @@
 import React from 'react'
-import { Feed, Header } from 'stardust'
+import { Feed, Header } from 'semantic-ui-react'
 
 const FeedExampleSizeSmall = () => (
   <Feed size='small'>

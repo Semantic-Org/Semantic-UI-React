@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Rating } from 'stardust'
+import { Rating } from 'semantic-ui-react'
 
 export default class RatingControlledExample extends Component {
   state = { rating: 0 }

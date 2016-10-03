@@ -1,27 +1,10 @@
-<!---------------------- BUG ----------------------->
-### Steps to Reproduce
+### Steps
+1. Do something
+2. Do something else.
 
-### Expected Behavior
+### Expected
 
-### Actual Behavior
+### Result
 
-### Version
-
-Stardust: `x.y.z`
-Browser:
-OS:
-
-### Test Case
-
-Fork: http://codepen.io/levithomason/pen/ZpBaJX
-
-<!-------------------- FEATURE --------------------->
-### Description
-
-### Example Code
-
-### Example Result
-
-### Prototype (optional)
-
+### Testcase
 Fork: http://codepen.io/levithomason/pen/ZpBaJX

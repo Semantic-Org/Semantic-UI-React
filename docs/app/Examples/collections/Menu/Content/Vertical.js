@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Menu } from 'stardust'
+import { Menu } from 'semantic-ui-react'
 
 export default class Vertical extends Component {
   handleItemClick = (name) => this.setState({ activeItem: name })

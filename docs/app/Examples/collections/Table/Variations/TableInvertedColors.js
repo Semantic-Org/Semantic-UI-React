@@ -1,5 +1,5 @@
 import React from 'react'
-import { Table } from 'stardust'
+import { Table } from 'semantic-ui-react'
 
 const colors = [
   'red', 'orange', 'yellow', 'olive', 'green', 'teal', 'blue', 'violet', 'purple', 'pink', 'brown', 'grey', 'black',

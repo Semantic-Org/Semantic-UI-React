@@ -1,6 +1,6 @@
 import _ from 'lodash/fp'
-import * as stardust from '../../src'
-import { META, SUI } from '../../src/lib'
+import * as semanticUIReact from 'src'
+import { META, SUI } from 'src/lib'
 
 export const typeOrder = [
   META.TYPES.ELEMENT,
@@ -13,7 +13,7 @@ export const typeOrder = [
 export const parentComponents = _.flow(
   _.filter(META.isParent),
   _.sortBy('_meta.name')
-)(stardust)
+)(semanticUIReact)
 
 /**
  * Get the Webpack Context for all doc site examples.

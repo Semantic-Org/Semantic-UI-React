@@ -1,5 +1,5 @@
 import React from 'react'
-import { Icon, List } from 'stardust'
+import { Icon, List } from 'semantic-ui-react'
 
 const ListExampleIcon = () => (
   <List>

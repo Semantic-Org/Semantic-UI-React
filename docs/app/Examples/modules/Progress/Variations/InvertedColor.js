@@ -1,5 +1,5 @@
 import React from 'react'
-import { Progress, Segment } from 'stardust'
+import { Progress, Segment } from 'semantic-ui-react'
 
 const ProgressInvertedColorExample = () => (
   <Segment inverted>

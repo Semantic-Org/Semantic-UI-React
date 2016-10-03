@@ -10,7 +10,7 @@
   </p>
 </p>
 
-# [Stardust][2]
+# [Semantic-UI-React (Stardust)][2]
 [![Gitter](https://img.shields.io/badge/gitter-join_chat-1dce73.svg?logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB4PSIwIiB5PSI1IiBmaWxsPSIjZmZmIiB3aWR0aD0iMSIgaGVpZ2h0PSI1Ii8%2BPHJlY3QgeD0iMiIgeT0iNiIgZmlsbD0iI2ZmZiIgd2lkdGg9IjEiIGhlaWdodD0iNyIvPjxyZWN0IHg9IjQiIHk9IjYiIGZpbGw9IiNmZmYiIHdpZHRoPSIxIiBoZWlnaHQ9IjciLz48cmVjdCB4PSI2IiB5PSI2IiBmaWxsPSIjZmZmIiB3aWR0aD0iMSIgaGVpZ2h0PSI0Ii8%2BPC9zdmc%2B&logoWidth=8&style=flat-square&maxAge=2592000)](https://gitter.im/TechnologyAdvice/stardust)
 [![Circle CI](https://img.shields.io/circleci/project/TechnologyAdvice/stardust/master.svg?style=flat-square)](https://circleci.com/gh/TechnologyAdvice/stardust/tree/master)
 [![Codecov](https://img.shields.io/codecov/c/github/TechnologyAdvice/stardust/master.svg?style=flat-square)](https://codecov.io/gh/TechnologyAdvice/stardust)
@@ -55,7 +55,7 @@ Help shape this library by weighing in on our [RFC (request for comments)][19] i
 ## Install
 
 ```sh
-npm i stardust -S
+npm i semantic-ui-react -S
 ```
 
 ## Usage
@@ -63,14 +63,12 @@ npm i stardust -S
 **App.js**
 
 ```js
-import React, { Component } from 'react'
-import { Button } from 'stardust'
+import React from 'react'
+import { Button } from 'semantic-ui-react'
 
-export default class TryStardust extends Component {
-  render() {
-    return <Button>Hello</Button>
-  }
-}
+export default () => (
+  <Button>Hello</Button>
+)
 ```
 
 **index.html**
@@ -80,7 +78,7 @@ export default class TryStardust extends Component {
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Try Stardust</title>
+  <title>Semantic-UI-React</title>
 
   <!-- SUI CSS -->
   <link href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/semantic.css" rel="stylesheet">
@@ -100,9 +98,9 @@ For more complete examples, check out the [Doc Site][2].
 We use the [debug](https://www.npmjs.com/package/debug) module for debugging.  You can turn debugging on and off via the `localStorage.debug` flag from the browser console.  See the [debug docs](https://www.npmjs.com/package/debug) for more.
 
 ```js
-localStorage.debug = 'stardust:*'         // default, debug all components
-localStorage.debug = 'stardust:dropdown'  // debug only the dropdown
-localStorage.debug = null                 // turn debug off
+localStorage.debug = 'semanticUIReact:*'         // default, debug all components
+localStorage.debug = 'semanticUIReact:dropdown'  // debug only the dropdown
+localStorage.debug = null                        // turn debug off
 ```
 
 Once you change the flag, you need to refresh your browser to see the changes in debug output.
@@ -125,7 +123,7 @@ Any other issue labeled [`help wanted`][4] is ready for a PR.
 
 ## Our Principles
 
-[TechnologyAdvice][9] has been [dogfooding][10] Stardust in production since fall of 2015.  This living list is updated as we iterate.  We'll lock it in as our v1.0 constitution soon.
+[TechnologyAdvice][9] has been [dogfooding][10] Semantic-UI-React in production since fall of 2015.  These are the guiding principles that have developed as a result:
 
 - No jQuery dependency
 - No animation dependencies

@@ -13,28 +13,28 @@ import { parentComponents } from 'docs/app/utils'
 // https://github.com/thlorenz/brace/issues/19
 const languageTools = ace.acequire('ace/ext/language_tools')
 
-const stardustCompleter = {
+const semanticUIReactCompleter = {
   getCompletions(editor, session, pos, prefix, callback) {
     const completions = []
 
     _.each(parentComponents, (component) => {
       const { name } = component._meta
       // Component
-      completions.push({ caption: name, value: name, meta: 'Stardust Component' })
+      completions.push({ caption: name, value: name, meta: 'Component' })
 
       // Its props
       _.each(component.propTypes, (val, propName) => {
         // don't add duplicate prop completions
         if (_.find(completions, { value: propName })) return
 
-        completions.push({ caption: propName, value: propName, meta: 'Stardust Prop' })
+        completions.push({ caption: propName, value: propName, meta: 'Component Prop' })
       })
     })
     callback(null, completions)
   },
 }
 
-languageTools.addCompleter(stardustCompleter)
+languageTools.addCompleter(semanticUIReactCompleter)
 
 function Editor(props) {
   const { id, mode, value, ...rest } = props

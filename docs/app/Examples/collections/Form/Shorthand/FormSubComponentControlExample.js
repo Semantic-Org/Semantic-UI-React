@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Form } from 'stardust'
+import { Form } from 'semantic-ui-react'
 
 const options = [
   { text: 'Male', value: 'male' },

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Grid, Step } from 'stardust'
+import { Grid, Step } from 'semantic-ui-react'
 
 const Fluid = () => (
   <Grid columns={2}>

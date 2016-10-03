@@ -14,7 +14,7 @@ const webpackConfig = {
   resolve: {
     root: paths.base(),
     alias: {
-      stardust: paths.src('index.js'),
+      'semantic-ui-react': paths.src('index.js'),
     },
   },
   module: {},
@@ -79,6 +79,7 @@ webpackConfig.plugins = [
       collapseWhitespace: true,
     },
     versions: {
+      babel: require('babel-standalone/package.json').version,
       sui: require('semantic-ui-css/package.json').version,
       faker: require('faker/package.json').version,
       lodash: require('lodash/package.json').version,
@@ -191,6 +192,7 @@ if (__TEST__ || argv.localModules) {
   webpackConfig.externals = {
     faker: 'faker',
     'anchor-js': 'AnchorJS',
+    Babel: 'babel-standalone',
   }
 }
 

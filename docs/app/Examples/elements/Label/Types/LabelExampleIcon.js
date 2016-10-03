@@ -1,5 +1,5 @@
 import React from 'react'
-import { Icon, Label } from 'stardust'
+import { Icon, Label } from 'semantic-ui-react'
 
 const LabelExampleIcon = () => (
   <div>

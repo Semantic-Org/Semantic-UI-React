@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Checkbox } from 'stardust'
+import { Button, Checkbox } from 'semantic-ui-react'
 
 export default class CheckboxRemoteControlExample extends Component {
   state = { checked: false }

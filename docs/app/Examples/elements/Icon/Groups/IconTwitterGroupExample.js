@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Header, Icon } from 'stardust'
+import { Header, Icon } from 'semantic-ui-react'
 
 export default class IconTwitterGroupExample extends Component {
   render() {

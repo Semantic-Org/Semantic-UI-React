@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, Icon, Image } from 'stardust'
+import { Card, Icon, Image } from 'semantic-ui-react'
 
 const IndividualCard = () => (
   <Card>

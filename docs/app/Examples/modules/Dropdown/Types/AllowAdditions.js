@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Dropdown, Grid, Header } from 'stardust'
+import { Dropdown, Grid, Header } from 'semantic-ui-react'
 
 const options = [
   { text: 'English', value: 'English' },

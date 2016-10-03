@@ -6,7 +6,7 @@ import ReactDOMServer from 'react-dom/server'
 
 import { createShorthand, META, numberToWord } from 'src/lib'
 import { consoleUtil, sandbox, syntheticEvent } from 'test/utils'
-import * as stardust from 'stardust'
+import * as semanticUIReact from 'semantic-ui-react'
 
 import { Button, Icon, Image, Label } from 'src/elements'
 
@@ -117,33 +117,33 @@ export const isConformant = (Component, options = {}) => {
   // ----------------------------------------
   // Is exported or private
   // ----------------------------------------
-  // detect components like: stardust.H1
-  const isStardustProp = _.has(stardust, constructorName)
+  // detect components like: semanticUIReact.H1
+  const isTopLevelAPIProp = _.has(semanticUIReact, constructorName)
 
-  // detect sub components like: stardust.Form.Field (ie FormField component)
+  // detect sub components like: semanticUIReact.Form.Field (ie FormField component)
   // Build a path by following _meta.parents to the root:
   //   ['Form', 'FormField', 'FormTextArea']
-  let stardustPath = []
+  let apiPath = []
   let meta = _meta
   while (meta) {
-    stardustPath.unshift(meta.name)
-    meta = _.get(stardust, [meta.parent, '_meta'])
+    apiPath.unshift(meta.name)
+    meta = _.get(semanticUIReact, [meta.parent, '_meta'])
   }
   // Remove parent name from paths:
   //   ['Form', 'Field', 'TextArea']
-  stardustPath = stardustPath.reduce((acc, next) => (
+  apiPath = apiPath.reduce((acc, next) => (
     [...acc, next.replace(acc.join(''), '')]
   ), [])
 
-  // find the stardustPath in the stardust object
-  const isSubComponent = _.isFunction(_.get(stardust, stardustPath))
+  // find the apiPath in the semanticUIReact object
+  const isSubComponent = _.isFunction(_.get(semanticUIReact, apiPath))
 
   if (META.isPrivate(constructorName)) {
     it('is not exported as a component nor sub component', () => {
-      expect(isStardustProp).to.equal(
+      expect(isTopLevelAPIProp).to.equal(
         false,
         `"${constructorName}" is private (starts with  "_").` +
-        ' It cannot be a key on the stardust object'
+        ' It cannot be exposed on the top level API'
       )
 
       expect(isSubComponent).to.equal(
@@ -155,7 +155,7 @@ export const isConformant = (Component, options = {}) => {
   } else {
     // require all components to be exported at the top level
     it('is exported at the top level', () => {
-      expect(isStardustProp).to.equal(true, [
+      expect(isTopLevelAPIProp).to.equal(true, [
         `"${constructorName}" must be exported at top level.`,
         `According to its \`_meta.type\`, export it in \`${_meta.type}s/index.js\`.`,
       ].join(' '))
@@ -254,7 +254,7 @@ export const isConformant = (Component, options = {}) => {
   // Events
   // ----------------------------------------
   it('handles events transparently', () => {
-    // Stardust events should be handled transparently, working just as they would in vanilla React.
+    // Events should be handled transparently, working just as they would in vanilla React.
     // Example, both of these handler()s should be called with the same event:
     //
     //   <Button onClick={handler} />
@@ -328,7 +328,7 @@ export const isConformant = (Component, options = {}) => {
     if (_.has(_meta, 'parent')) {
       describe('parent', () => {
         it('matches some component name', () => {
-          expect(_.map(stardust, c => c.prototype.constructor.name)).to.contain(_meta.parent)
+          expect(_.map(semanticUIReact, c => c.prototype.constructor.name)).to.contain(_meta.parent)
         })
       })
     }

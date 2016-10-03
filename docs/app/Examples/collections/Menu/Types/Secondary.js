@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Input, Menu } from 'stardust'
+import { Input, Menu } from 'semantic-ui-react'
 
 export default class Secondary extends Component {
   state = { activeItem: 'home' }

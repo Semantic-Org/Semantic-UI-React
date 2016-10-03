@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Divider } from 'stardust'
+import { Divider } from 'semantic-ui-react'
 
 export default class DividerDividerExample extends Component {
   render() {

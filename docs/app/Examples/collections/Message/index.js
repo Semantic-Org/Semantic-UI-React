@@ -2,7 +2,7 @@ import React from 'react'
 import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
 import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
 
-import { Icon } from 'stardust'
+import { Icon } from 'semantic-ui-react'
 
 const MessageExamples = () => (
   <div>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { List } from 'stardust'
+import { List } from 'semantic-ui-react'
 
 const ListExampleDivided = () => (
   <List divided relaxed>

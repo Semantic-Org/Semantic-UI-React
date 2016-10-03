@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Icon, Modal } from 'stardust'
+import { Button, Icon, Modal } from 'semantic-ui-react'
 
 class ModalSizeExample extends Component {
   state = { open: false }

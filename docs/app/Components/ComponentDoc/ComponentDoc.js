@@ -9,7 +9,7 @@ import ComponentProps from './ComponentProps'
 import docgenInfo from '../../docgenInfo.json'
 
 import { META } from 'src/lib'
-import * as stardust from 'src'
+import * as semanticUIReact from 'src'
 import { Divider, Grid, Header, Icon, List } from 'src'
 
 const docgenPaths = _.keys(docgenInfo)
@@ -87,7 +87,7 @@ export default class ComponentDoc extends Component {
     const seeTags = _.filter(docgen.docBlock.tags, ['title', 'see'])
 
     const seeLinks = _.map(seeTags, ({ description }) => {
-      const seeMeta = _.get(stardust[description], '_meta')
+      const seeMeta = _.get(semanticUIReact[description], '_meta')
       if (!seeMeta) return
 
       const { type, name } = seeMeta
@@ -154,7 +154,7 @@ export default class ComponentDoc extends Component {
     const selectedDocgen = docgenInfo[getDocgenPath(showPropsFor)]
     const toggleIcon = `toggle ${showPropsFor ? 'on' : 'off'}`
 
-    const subComponents = _.flatMap(stardust, SDComponent => _.filter(SDComponent, staticValue => (
+    const subComponents = _.flatMap(semanticUIReact, SDComponent => _.filter(SDComponent, staticValue => (
       _.get(staticValue, '_meta.parent') === _meta.name
     )))
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Checkbox } from 'stardust'
+import { Checkbox } from 'semantic-ui-react'
 
 export default CheckboxCheckedExample => {
   return (

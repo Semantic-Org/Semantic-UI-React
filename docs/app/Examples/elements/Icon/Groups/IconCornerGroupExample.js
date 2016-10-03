@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Icon } from 'stardust'
+import { Icon } from 'semantic-ui-react'
 
 export default class IconCornerGroupExample extends Component {
   render() {

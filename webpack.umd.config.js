@@ -1,22 +1,20 @@
-const _ = require('lodash')
 const config = require('./config')
 const webpack = require('webpack')
 const webpackConfig = require('./webpack.config')
 const pkg = require('./package.json')
 
 const { paths } = config
-const exposeName = _.camelCase(pkg.name)
 
 const webpackUMDConfig = {
   target: 'web',
   devtool: false,
   entry: {
-    [exposeName]: paths.src('umd.js'),
+    [pkg.name]: paths.src('umd.js'),
   },
   output: {
     filename: '[name].min.js',
     libraryTarget: 'umd',
-    library: exposeName,
+    library: 'semanticUIReact',
     path: paths.dist('umd'),
     publicPath: '/',
     pathinfo: true,
@@ -24,6 +22,7 @@ const webpackUMDConfig = {
   externals: {
     react: 'React',
     'react-dom': 'ReactDOM',
+    Babel: 'babel-standalone',
   },
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),

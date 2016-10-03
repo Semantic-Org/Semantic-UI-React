@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Menu } from 'stardust'
+import { Button, Menu } from 'semantic-ui-react'
 
 const Buttons = () => {
   return (

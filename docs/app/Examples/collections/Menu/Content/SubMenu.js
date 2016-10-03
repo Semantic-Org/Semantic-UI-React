@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Dropdown, Icon, Input, Menu } from 'stardust'
+import { Dropdown, Icon, Input, Menu } from 'semantic-ui-react'
 
 export default class SubMenu extends Component {
   state = {}

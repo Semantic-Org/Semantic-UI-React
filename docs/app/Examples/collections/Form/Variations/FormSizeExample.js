@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Divider, Form } from 'stardust'
+import { Button, Divider, Form } from 'semantic-ui-react'
 
 const sizes = ['mini', 'tiny', 'small', 'large', 'big', 'huge', 'massive']
 

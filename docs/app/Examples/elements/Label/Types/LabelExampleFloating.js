@@ -1,5 +1,5 @@
 import React from 'react'
-import { Icon, Label, Menu } from 'stardust'
+import { Icon, Label, Menu } from 'semantic-ui-react'
 
 const LabelExampleFloating = () => (
   <Menu compact>
