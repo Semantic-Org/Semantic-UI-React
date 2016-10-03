@@ -2,6 +2,7 @@ import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
 import {
+  createShorthandFactory,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -12,6 +13,7 @@ import {
   useVerticalAlignProp,
   useWidthProp,
 } from '../../lib'
+import { Icon } from '../../elements'
 
 function TableCell(props) {
   const {
@@ -19,8 +21,10 @@ function TableCell(props) {
     children,
     className,
     collapsing,
+    content,
     disabled,
     error,
+    icon,
     negative,
     positive,
     singleLine,
@@ -47,7 +51,16 @@ function TableCell(props) {
   const ElementType = getElementType(TableCell, props)
   const rest = getUnhandledProps(TableCell, props)
 
-  return <ElementType {...rest} className={classes}>{children}</ElementType>
+  if (children) {
+    return <ElementType {...rest} className={classes}>{children}</ElementType>
+  }
+
+  return (
+    <ElementType {...rest} className={classes}>
+      {Icon.create(icon)}
+      {content}
+    </ElementType>
+  )
 }
 
 TableCell._meta = {
@@ -73,7 +86,10 @@ TableCell.propTypes = {
   active: PropTypes.bool,
 
   /** Primary content of the TableCell. */
-  children: PropTypes.node,
+  children: customPropTypes.every([
+    customPropTypes.disallow(['content', 'icon']),
+    PropTypes.node,
+  ]),
 
   /** Classes that will be added to the TableCell className. */
   className: PropTypes.string,
@@ -81,11 +97,27 @@ TableCell.propTypes = {
   /** A cell can be collapsing so that it only uses as much space as required. */
   collapsing: PropTypes.bool,
 
+  /** Shorthand for primary content of the TableCell. Mutually exclusive with the children. */
+  content: customPropTypes.every([
+    customPropTypes.disallow(['children']),
+    PropTypes.string,
+  ]),
+
   /** A cell can be disabled. */
   disabled: PropTypes.bool,
 
   /** A cell may call attention to an error or a negative value. */
   error: PropTypes.bool,
+
+  /** Add an Icon by name, props object, or pass an <Icon /> */
+  icon: customPropTypes.every([
+    customPropTypes.disallow(['children']),
+    PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+      PropTypes.element,
+    ]),
+  ]),
 
   /** A cell may let a user know whether a value is bad. */
   negative: PropTypes.bool,
@@ -108,5 +140,7 @@ TableCell.propTypes = {
   /** A table can specify the width of individual columns independently. */
   width: PropTypes.oneOf(TableCell._meta.props.width),
 }
+
+TableCell.create = createShorthandFactory(TableCell, content => ({ content }))
 
 export default TableCell

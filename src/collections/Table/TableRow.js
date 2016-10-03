@@ -1,7 +1,9 @@
+import _ from 'lodash'
 import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
 import {
+  createShorthandFactory,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -11,10 +13,13 @@ import {
   useTextAlignProp,
   useVerticalAlignProp,
 } from '../../lib'
+import TableCell from './TableCell'
 
 function TableRow(props) {
   const {
     active,
+    cellAs,
+    cells,
     children,
     className,
     disabled,
@@ -40,7 +45,15 @@ function TableRow(props) {
   const ElementType = getElementType(TableRow, props)
   const rest = getUnhandledProps(TableRow, props)
 
-  return <ElementType {...rest} className={classes}>{children}</ElementType>
+  if (children) {
+    return <ElementType {...rest} className={classes}>{children}</ElementType>
+  }
+
+  return (
+    <ElementType {...rest} className={classes}>
+      {_.map(cells, (cell) => TableCell.create(cell, { as: cellAs }))}
+    </ElementType>
+  )
 }
 
 TableRow._meta = {
@@ -55,6 +68,7 @@ TableRow._meta = {
 
 TableRow.defaultProps = {
   as: 'tr',
+  cellAs: 'td',
 }
 
 TableRow.propTypes = {
@@ -64,8 +78,25 @@ TableRow.propTypes = {
   /** A row can be active or selected by a user. */
   active: PropTypes.bool,
 
+  /** An element type to render as (string or function). */
+  cellAs: customPropTypes.as,
+
+  /** Shorthand array of props for TableCell. Mutually exclusive with children. */
+  cells: customPropTypes.every([
+    customPropTypes.disallow(['children']),
+    // Array of shorthands for TableCell
+    PropTypes.arrayOf(PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.element,
+      PropTypes.object,
+    ])),
+  ]),
+
   /** Primary content of the TableRow. */
-  children: PropTypes.node,
+  children: customPropTypes.every([
+    customPropTypes.disallow(['content', 'icon']),
+    PropTypes.node,
+  ]),
 
   /** Classes that will be added to the TableRow className. */
   className: PropTypes.string,
@@ -91,5 +122,7 @@ TableRow.propTypes = {
   /** A row may warn a user. */
   warning: PropTypes.bool,
 }
+
+TableRow.create = createShorthandFactory(TableRow, cells => ({ cells }))
 
 export default TableRow

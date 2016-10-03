@@ -38,8 +38,70 @@ describe('Table', () => {
   common.propValueOnlyToClassName(Table, 'color')
   common.propValueOnlyToClassName(Table, 'size')
 
-  it('renders as a thead by default', () => {
+  it('renders as a table by default', () => {
     shallow(<Table />)
         .should.have.tagName('table')
+  })
+
+  describe('shorthand', () => {
+    let wrapper
+    let thead
+    let tbody
+    let tfoot
+
+    beforeEach(() => {
+      wrapper = undefined
+      thead = undefined
+      tbody = undefined
+      tfoot = undefined
+    })
+
+    const headerRow = ['Name', 'Status', 'Notes']
+
+    const renderBodyRow = ({ name, status, notes }) => [name || '', status || '', notes || '']
+
+    const footerRow = [{ colSpan: 3, content: 'Total' }]
+
+    const tableData = [
+      { name: undefined, status: undefined, notes: undefined },
+      { name: 'Jimmy', status: 'Requires Action', notes: undefined },
+      { name: 'Jamie', status: undefined, notes: 'Hostile' },
+      { name: 'Jill', status: undefined, notes: undefined },
+    ]
+
+    const wrapperMount = (props) => {
+      wrapper = mount(<Table {...props} />)
+
+      thead = wrapper.find('thead')
+      tbody = wrapper.find('tbody')
+      tfoot = wrapper.find('tfoot')
+    }
+
+    it('renders empty tbody with no shorthand', () => {
+      wrapperMount()
+
+      thead.should.have.lengthOf(0)
+
+      tbody.should.have.lengthOf(1)
+      tbody.find('tr').should.have.lengthOf(0)
+
+      tfoot.should.have.lengthOf(0)
+    })
+
+    it('renders the table', () => {
+      wrapperMount({ headerRow, renderBodyRow, footerRow, tableData })
+
+      thead.should.have.lengthOf(1)
+      thead.find('tr').should.have.lengthOf(1)
+      thead.find('tr').find('th').should.have.lengthOf(headerRow.length)
+
+      tbody.should.have.lengthOf(1)
+      tbody.find('tr').should.have.lengthOf(tableData.length)
+      tbody.find('tr').first().find('td').should.have.lengthOf(3)
+
+      tfoot.should.have.lengthOf(1)
+      tfoot.find('tr').should.have.lengthOf(1)
+      tfoot.find('tr').find('td').should.have.lengthOf(footerRow.length)
+    })
   })
 })
