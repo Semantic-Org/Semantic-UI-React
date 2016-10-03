@@ -1,7 +1,7 @@
 import React, { Component, createElement, PropTypes } from 'react'
 
 import { exampleContext } from 'docs/app/utils'
-import { Grid, Icon, Message } from 'stardust'
+import { Grid, Icon, Message } from 'src'
 
 export default class ComponentExamples extends Component {
   static propTypes = {

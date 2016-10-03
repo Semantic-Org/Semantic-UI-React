@@ -1,5 +1,5 @@
 import React from 'react'
-import { Grid, Segment, Header, Icon } from 'stardust'
+import { Grid, Segment, Header, Icon } from 'src'
 
 const PageNotFound = () => (
   <Grid padded textAlign='center' stretched>

@@ -1,6 +1,6 @@
 import _ from 'lodash/fp'
-import * as stardust from '../../src'
-import { META, SUI } from '../../src/lib'
+import * as stardust from 'src'
+import { META, SUI } from 'src/lib'
 
 export const typeOrder = [
   META.TYPES.ELEMENT,
