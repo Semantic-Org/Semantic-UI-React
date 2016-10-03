@@ -13,6 +13,12 @@ const Variations = () => {
       />
 
       <ComponentExample
+        title='Attached'
+        description='A table can be attached to other content on a page'
+        examplePath='collections/Table/Variations/TableExampleAttached'
+      />
+
+      <ComponentExample
         title='Fixed'
         description={
         [
