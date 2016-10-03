@@ -1,5 +1,5 @@
 import React from 'react'
-import { Segment, Image } from 'stardust'
+import { Segment, Image } from 'semantic-ui-react'
 
 const src1 = 'http://semantic-ui.com/images/wireframe/image.png'
 const src2 = 'http://semantic-ui.com/images/wireframe/image-text.png'

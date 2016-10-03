@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import { Image, Grid, Rail, Segment } from 'stardust'
+import { Image, Grid, Rail, Segment } from 'semantic-ui-react'
 
 const Wrapper = ({ children }) => (
   <Grid columns={3} textAlign='center'>

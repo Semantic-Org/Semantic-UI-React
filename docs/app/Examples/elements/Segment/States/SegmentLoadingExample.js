@@ -1,5 +1,5 @@
 import React from 'react'
-import { Image, Segment } from 'stardust'
+import { Image, Segment } from 'semantic-ui-react'
 
 const SegmentLoadingExample = () => (
   <Segment loading>

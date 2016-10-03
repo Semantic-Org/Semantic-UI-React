@@ -1,5 +1,5 @@
 import React from 'react'
-import { Image, Rail, Segment } from 'stardust'
+import { Image, Rail, Segment } from 'semantic-ui-react'
 
 const RailAttachedInternalExample = () => (
   <Segment>

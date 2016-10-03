@@ -1,5 +1,5 @@
 import React from 'react'
-import { Rating } from 'stardust'
+import { Rating } from 'semantic-ui-react'
 
 const RatingExample = () => (
   <Rating />

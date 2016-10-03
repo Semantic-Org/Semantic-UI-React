@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Form, Checkbox } from 'stardust'
+import { Form, Checkbox } from 'semantic-ui-react'
 
 export default class CheckboxDisabledExample extends Component {
   render() {

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Grid, Segment } from 'stardust'
+import { Grid, Segment } from 'semantic-ui-react'
 
 const { Column } = Grid
 

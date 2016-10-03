@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Header, Icon, Modal } from 'stardust'
+import { Button, Header, Icon, Modal } from 'semantic-ui-react'
 
 const ModalBasicExample = () => (
   <Modal trigger={<Button>Basic Modal</Button>} basic size='small'>

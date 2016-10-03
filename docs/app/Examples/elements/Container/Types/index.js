@@ -3,7 +3,7 @@
 import React, { Component } from 'react'
 import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
 import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
-import { Message } from 'stardust'
+import { Message } from 'semantic-ui-react'
 
 export default class ContainerTypesExamples extends Component {
   render() {

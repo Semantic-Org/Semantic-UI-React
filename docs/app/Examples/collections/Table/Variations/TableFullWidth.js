@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Checkbox, Icon, Table } from 'stardust'
+import { Button, Checkbox, Icon, Table } from 'semantic-ui-react'
 
 const TableFullWidth = () => {
   return (

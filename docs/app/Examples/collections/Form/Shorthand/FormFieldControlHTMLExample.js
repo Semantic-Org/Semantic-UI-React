@@ -1,5 +1,5 @@
 import React from 'react'
-import { Form } from 'stardust'
+import { Form } from 'semantic-ui-react'
 
 const FormFieldHTMLControlExample = () => (
   <Form>

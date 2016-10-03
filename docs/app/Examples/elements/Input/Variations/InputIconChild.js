@@ -1,5 +1,5 @@
 import React from 'react'
-import { Icon, Input } from 'stardust'
+import { Icon, Input } from 'semantic-ui-react'
 
 const InputIconChild = () => (
   <div>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Checkbox, Form, Icon, Message } from 'stardust'
+import { Button, Checkbox, Form, Icon, Message } from 'semantic-ui-react'
 
 const MessageAttachedExample = () => (
   <div>

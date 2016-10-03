@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Icon, Label } from 'stardust'
+import { Button, Icon, Label } from 'semantic-ui-react'
 
 const ButtonLabeledExample = () => (
   <div>

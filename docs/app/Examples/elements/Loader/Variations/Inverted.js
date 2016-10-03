@@ -1,5 +1,5 @@
 import React from 'react'
-import { Image, Loader, Segment } from 'stardust'
+import { Image, Loader, Segment } from 'semantic-ui-react'
 
 const Inverted = () => (
   <Segment inverted>

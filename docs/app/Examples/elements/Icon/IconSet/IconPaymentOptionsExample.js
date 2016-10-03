@@ -1,5 +1,5 @@
 import React from 'react'
-import { Grid, Icon } from 'stardust'
+import { Grid, Icon } from 'semantic-ui-react'
 
 const IconPaymentOptionsExample = () => (
   <Grid columns='5' doubling>

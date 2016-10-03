@@ -1,5 +1,5 @@
 import React from 'react'
-import { Divider, Statistic } from 'stardust'
+import { Divider, Statistic } from 'semantic-ui-react'
 
 const SizeDivided = () => (
   <div>

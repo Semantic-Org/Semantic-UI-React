@@ -1,5 +1,5 @@
 import React from 'react'
-import { Header, Icon } from 'stardust'
+import { Header, Icon } from 'semantic-ui-react'
 
 const HeaderIconExample = () => (
   <Header as='h2'>

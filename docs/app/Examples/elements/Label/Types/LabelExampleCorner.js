@@ -1,5 +1,5 @@
 import React from 'react'
-import { Grid, Image } from 'stardust'
+import { Grid, Image } from 'semantic-ui-react'
 
 const LabelExampleCorner = () => (
   <Grid columns={2}>

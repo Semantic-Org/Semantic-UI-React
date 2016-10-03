@@ -1,5 +1,5 @@
 import React from 'react'
-import { Label, List } from 'stardust'
+import { Label, List } from 'semantic-ui-react'
 
 const LabelExampleHorizontal = () => (
   <List divided selection>

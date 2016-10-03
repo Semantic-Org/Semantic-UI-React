@@ -1,5 +1,5 @@
 import React from 'react'
-import { Loader, Image, Segment } from 'stardust'
+import { Loader, Image, Segment } from 'semantic-ui-react'
 
 const Disabled = () => (
   <Segment>

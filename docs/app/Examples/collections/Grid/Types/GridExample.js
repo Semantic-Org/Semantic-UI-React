@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import React from 'react'
-import { Image, Grid } from 'stardust'
+import { Image, Grid } from 'semantic-ui-react'
 
 const columns = _.times(16, (i) => (
   <Grid.Column key={i}>

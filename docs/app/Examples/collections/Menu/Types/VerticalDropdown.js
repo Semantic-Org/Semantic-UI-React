@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Dropdown, Menu } from 'stardust'
+import { Dropdown, Menu } from 'semantic-ui-react'
 
 export default class VerticalDropdown extends Component {
   state = { activeItem: 'account' }

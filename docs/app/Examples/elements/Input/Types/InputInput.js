@@ -1,5 +1,5 @@
 import React from 'react'
-import { Input } from 'stardust'
+import { Input } from 'semantic-ui-react'
 
 const InputInput = () => (
   <Input placeholder='Search...' />

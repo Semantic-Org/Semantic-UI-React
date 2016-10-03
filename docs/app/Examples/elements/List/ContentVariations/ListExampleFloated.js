@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Image, List } from 'stardust'
+import { Button, Image, List } from 'semantic-ui-react'
 
 const ListExampleFloated = () => (
   <List divided verticalAlign='middle'>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Step } from 'stardust'
+import { Step } from 'semantic-ui-react'
 
 const steps = [
   { icon: 'truck', title: 'Shipping', description: 'Choose your shipping options' },

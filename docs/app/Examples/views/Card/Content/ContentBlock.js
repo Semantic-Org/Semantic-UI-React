@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, Feed } from 'stardust'
+import { Card, Feed } from 'semantic-ui-react'
 
 const ContentBlock = () => (
   <Card>

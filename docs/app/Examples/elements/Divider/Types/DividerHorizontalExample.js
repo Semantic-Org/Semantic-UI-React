@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Segment, Button, Divider } from 'stardust'
+import { Segment, Button, Divider } from 'semantic-ui-react'
 
 export default class DividerHorizontalExample extends Component {
   render() {

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Header, Image, Table } from 'stardust'
+import { Header, Image, Table } from 'semantic-ui-react'
 
 const TableCollapsing = () => {
   return (
