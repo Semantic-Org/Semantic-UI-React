@@ -25,6 +25,7 @@ import TableRow from './TableRow'
 function Table(props) {
   const {
     basic,
+    attached,
     renderBodyRow,
     celled,
     children,
@@ -52,6 +53,7 @@ function Table(props) {
     'ui',
     color,
     size,
+    useKeyOrValueAndKey(attached, 'attached'),
     useKeyOrValueAndKey(basic, 'basic'),
     useKeyOnly(celled, 'celled'),
     useKeyOnly(collapsing, 'collapsing'),
@@ -91,6 +93,7 @@ Table._meta = {
   name: 'Table',
   type: META.TYPES.COLLECTION,
   props: {
+    attached: ['top', 'bottom'],
     basic: ['very'],
     color: SUI.COLORS,
     columns: SUI.WIDTHS,
@@ -107,6 +110,12 @@ Table.defaultProps = {
 Table.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
+
+  /** Attach table to other content */
+  attached: PropTypes.oneOfType([
+    PropTypes.oneOf(Table._meta.props.attached),
+    PropTypes.bool,
+  ]),
 
   /** A table can reduce its complexity to increase readability. */
   basic: PropTypes.oneOfType([
