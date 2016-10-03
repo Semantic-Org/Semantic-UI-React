@@ -1,5 +1,21 @@
 # Change Log
 
+## [v0.52.4](https://github.com/TechnologyAdvice/stardust/tree/v0.52.4) (2016-10-03)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.52.3...v0.52.4)
+
+**Implemented enhancements:**
+
+- feat\(GridRow\): add missing `divided` prop [\#560](https://github.com/TechnologyAdvice/stardust/issues/560)
+- feat\(GridRow\): add missing `divided` prop [\#602](https://github.com/TechnologyAdvice/stardust/pull/602) ([layershifter](https://github.com/layershifter))
+
+**Closed issues:**
+
+- Question: direct importing vs deconstruction [\#609](https://github.com/TechnologyAdvice/stardust/issues/609)
+
+**Merged pull requests:**
+
+- docs\(readme\): update development warning [\#605](https://github.com/TechnologyAdvice/stardust/pull/605) ([levithomason](https://github.com/levithomason))
+
 ## [v0.52.3](https://github.com/TechnologyAdvice/stardust/tree/v0.52.3) (2016-10-03)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.52.2...v0.52.3)
 
