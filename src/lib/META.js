@@ -14,7 +14,7 @@ const TYPE_VALUES = _.values(TYPES)
  * Determine if an object qualifies as a META object.
  * It must have the required keys and valid values.
  * @private
- * @param {Object} _meta A proposed Stardust _meta object.
+ * @param {Object} _meta A proposed component _meta object.
  * @returns {Boolean}
  */
 export const isMeta = (_meta) => (
@@ -22,7 +22,7 @@ export const isMeta = (_meta) => (
 )
 
 /**
- * Extract the Stardust _meta object and optional key.
+ * Extract a component's _meta object and optional key.
  * Handles literal _meta objects, classes with _meta, objects with _meta
  * @private
  * @param {function|object} metaArg A class, a component instance, or meta object..
