@@ -7,12 +7,12 @@ const ButtonGroupsExamples = () => (
     <ComponentExample
       title='Group'
       description='Buttons can exist together as a group'
-      examplePath='elements/Button/Groups/ButtonGroupExample'
+      examplePath='elements/Button/Groups/ButtonExampleGroup'
     />
     <ComponentExample
       title='Icon Group'
       description='Button groups can show groups of icons'
-      examplePath='elements/Button/Groups/ButtonGroupIconExample'
+      examplePath='elements/Button/Groups/ButtonExampleGroupIcon'
     />
   </ExampleSection>
 )
