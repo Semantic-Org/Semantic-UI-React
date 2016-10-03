@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 
 import { getUnhandledProps, META } from '../../lib'
-import { Checkbox } from '../../modules'
+import Checkbox from '../../modules/Checkbox'
 
 /**
  * A Radio is sugar for <Checkbox radio />.

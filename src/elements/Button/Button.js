@@ -13,7 +13,9 @@ import {
   useKeyOrValueAndKey,
   useValueAndKey,
 } from '../../lib'
-import { Icon, Label } from '../'
+import Icon from '../Icon/Icon'
+import Label from '../Label/Label'
+
 import ButtonContent from './ButtonContent'
 import ButtonGroup from './ButtonGroup'
 import ButtonOr from './ButtonOr'

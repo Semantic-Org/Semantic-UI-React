@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react'
 import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
 import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
 
-import { Message } from 'src/collections'
+import { Message } from 'semantic-ui-react'
 
 const subComponentComparison = {
   shorthand: "<Form.Input label='Enter Password' type='password' />",

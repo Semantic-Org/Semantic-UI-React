@@ -12,7 +12,9 @@ import {
   useKeyOnly,
   useValueAndKey,
 } from '../../lib'
-import { Button, Icon, Label } from '../../elements'
+import Button from '../../elements/Button'
+import Icon from '../../elements/Icon'
+import Label from '../../elements/Label'
 
 export const htmlInputPropNames = [
   // React

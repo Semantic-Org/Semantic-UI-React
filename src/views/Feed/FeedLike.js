@@ -7,7 +7,7 @@ import {
   getUnhandledProps,
   META,
 } from '../../lib'
-import { Icon } from '../../elements'
+import Icon from '../../elements/Icon'
 
 function FeedLike(props) {
   const { children, className, content, icon } = props

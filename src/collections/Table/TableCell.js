@@ -13,7 +13,7 @@ import {
   useVerticalAlignProp,
   useWidthProp,
 } from '../../lib'
-import { Icon } from '../../elements'
+import Icon from '../../elements/Icon'
 
 function TableCell(props) {
   const {

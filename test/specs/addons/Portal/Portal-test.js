@@ -3,7 +3,7 @@ import React from 'react'
 import { unmountComponentAtNode } from 'react-dom'
 
 import { domEvent, sandbox } from 'test/utils'
-import { Portal } from 'src/addons'
+import Portal from 'src/addons/Portal/Portal'
 
 let attachTo
 let wrapper

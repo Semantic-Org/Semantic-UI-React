@@ -8,7 +8,10 @@ import { createShorthand, META, numberToWord } from 'src/lib'
 import { consoleUtil, sandbox, syntheticEvent } from 'test/utils'
 import * as semanticUIReact from 'semantic-ui-react'
 
-import { Button, Icon, Image, Label } from 'src/elements'
+import Button from 'src/elements/Button'
+import Icon from 'src/elements/Icon'
+import Image from 'src/elements/Image'
+import Label from 'src/elements/Label'
 
 const commonTestHelpers = (testName, Component) => {
   const throwError = msg => {
@@ -28,7 +31,7 @@ const commonTestHelpers = (testName, Component) => {
 const componentCtx = require.context(
   '../../src/',
   true,
-  /(addons|collections|elements|modules|views).(?!index).*\.js/
+  /(addons|collections|elements|modules|views).\w+.(?!index)\w+.js/
 )
 
 const componentInfo = componentCtx.keys().map(key => {
@@ -157,7 +160,7 @@ export const isConformant = (Component, options = {}) => {
     it('is exported at the top level', () => {
       expect(isTopLevelAPIProp).to.equal(true, [
         `"${constructorName}" must be exported at top level.`,
-        `According to its \`_meta.type\`, export it in \`${_meta.type}s/index.js\`.`,
+        'Export it in `src/index.js`.',
       ].join(' '))
     })
   }

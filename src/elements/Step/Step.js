@@ -8,7 +8,8 @@ import {
   META,
   useKeyOnly,
 } from '../../lib'
-import { Icon } from '../../elements'
+import Icon from '../../elements/Icon'
+
 import StepContent from './StepContent'
 import StepDescription from './StepDescription'
 import StepGroup from './StepGroup'

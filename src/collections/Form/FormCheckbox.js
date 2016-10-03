@@ -6,8 +6,9 @@ import {
   getUnhandledProps,
   META,
 } from '../../lib'
+import Checkbox from '../../modules/Checkbox'
+
 import FormField from './FormField'
-import { Checkbox } from '../../modules'
 
 /**
  * Sugar for <Form.Field control={Checkbox} />

@@ -6,8 +6,9 @@ import {
   getUnhandledProps,
   META,
 } from '../../lib'
+import Radio from '../../addons/Radio'
+
 import FormField from './FormField'
-import { Radio } from '../../addons'
 
 /**
  * Sugar for <Form.Field control={Radio} />

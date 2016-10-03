@@ -1,7 +1,7 @@
 import React from 'react'
 
-import { Confirm } from 'src/addons'
-import { Modal } from 'src/modules'
+import Confirm from 'src/addons/Confirm/Confirm'
+import Modal from 'src/modules/Modal/Modal'
 import { sandbox } from 'test/utils'
 import * as common from 'test/specs/commonTests'
 

@@ -12,7 +12,8 @@ import {
   useKeyOnly,
   useKeyOrValueAndKey,
 } from '../../lib'
-import { Icon } from '../../elements'
+import Icon from '../../elements/Icon'
+
 import MessageContent from './MessageContent'
 import MessageHeader from './MessageHeader'
 import MessageList from './MessageList'

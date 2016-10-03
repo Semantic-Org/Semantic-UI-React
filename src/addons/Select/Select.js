@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 
 import { getUnhandledProps, META } from '../../lib'
-import { Dropdown } from '../../modules'
+import Dropdown from '../../modules/Dropdown'
 
 /**
  * A Select is sugar for <Dropdown selection />.

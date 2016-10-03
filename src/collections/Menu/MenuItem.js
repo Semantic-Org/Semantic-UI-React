@@ -11,7 +11,7 @@ import {
   useKeyOnly,
   useKeyOrValueAndKey,
 } from '../../lib'
-import { Icon } from '../../elements'
+import Icon from '../../elements/Icon'
 
 function MenuItem(props) {
   const {

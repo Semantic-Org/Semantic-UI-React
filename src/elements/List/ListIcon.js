@@ -7,7 +7,7 @@ import {
   SUI,
   useVerticalAlignProp,
 } from '../../lib'
-import { Icon } from '../'
+import Icon from '../Icon/Icon'
 
 function ListIcon(props) {
   const { className, verticalAlign } = props
