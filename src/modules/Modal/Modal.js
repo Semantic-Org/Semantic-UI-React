@@ -157,7 +157,16 @@ class Modal extends Component {
     )
     const rest = getUnhandledProps(Modal, this.props)
     const ElementType = getElementType(Modal, this.props)
-    const portalProps = _.pick(rest, _.keys(Portal.propTypes))
+
+    // Remove portal-handled props from 'rest' and pass them through to Portal
+    const portalProps = _.reduce(rest, (memo, value, key) => {
+      if (_.has(Portal.propTypes, key)) {
+        memo[key] = value
+        _.unset(rest, key)
+      }
+
+      return memo
+    }, {})
 
     const modalJSX = (
       <ElementType {...rest} className={classes} style={{ marginTop }} ref={c => (this._modalNode = c)}>
