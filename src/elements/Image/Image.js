@@ -148,6 +148,7 @@ Image.propTypes = {
   /** Add a Label by text, props object, or pass a <Label /> */
   label: customPropTypes.some([
     PropTypes.string,
+    PropTypes.number,
     PropTypes.object,
     PropTypes.element,
   ]),
