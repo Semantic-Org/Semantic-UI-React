@@ -1,5 +1,16 @@
 # Change Log
 
+## [v0.52.1](https://github.com/TechnologyAdvice/stardust/tree/v0.52.1) (2016-10-03)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.52.0...v0.52.1)
+
+**Implemented enhancements:**
+
+- feat\(Portal\): More flexible configuration [\#590](https://github.com/TechnologyAdvice/stardust/pull/590) ([jcarbo](https://github.com/jcarbo))
+
+**Merged pull requests:**
+
+- docs\(Card\): fix Feed usage [\#594](https://github.com/TechnologyAdvice/stardust/pull/594) ([levithomason](https://github.com/levithomason))
+
 ## [v0.52.0](https://github.com/TechnologyAdvice/stardust/tree/v0.52.0) (2016-10-03)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.51.1...v0.52.0)
 
