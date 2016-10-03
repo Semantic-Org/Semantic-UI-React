@@ -31,6 +31,7 @@ describe('Table', () => {
   common.propKeyOnlyToClassName(Table, 'structured')
   common.propKeyOnlyToClassName(Table, 'unstackable')
 
+  common.propKeyOrValueAndKeyToClassName(Table, 'attached')
   common.propKeyOrValueAndKeyToClassName(Table, 'basic')
   common.propKeyOrValueAndKeyToClassName(Table, 'compact')
   common.propKeyOrValueAndKeyToClassName(Table, 'padded')
