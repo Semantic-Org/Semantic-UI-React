@@ -116,7 +116,7 @@ Table.propTypes = {
     PropTypes.oneOf(Table._meta.props.attached),
     PropTypes.bool,
   ]),
-  
+
   /** A table can reduce its complexity to increase readability. */
   basic: PropTypes.oneOfType([
     PropTypes.bool,
