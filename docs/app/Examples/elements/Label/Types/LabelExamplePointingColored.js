@@ -1,31 +1,31 @@
 import React from 'react'
 import { Divider, Form, Label } from 'stardust'
 
-const LabelPointing = () => (
+const LabelExamplePointing = () => (
   <Form>
     <Form.Field>
       <input type='text' placeholder='First name' />
-      <Label pointing>Please enter a value</Label>
+      <Label basic color='red' pointing>Please enter a value</Label>
     </Form.Field>
     <Divider />
 
     <Form.Field>
-      <Label pointing='below'>Please enter a value</Label>
+      <Label basic color='red' pointing='below'>Please enter a value</Label>
       <input type='text' placeholder='Last Name' />
     </Form.Field>
     <Divider />
 
     <Form.Field inline>
       <input type='text' placeholder='Username' />
-      <Label pointing='left'>That name is taken!</Label>
+      <Label basic color='red' pointing='left'>That name is taken!</Label>
     </Form.Field>
     <Divider />
 
     <Form.Field inline>
-      <Label pointing='right'>Your password must be 6 characters or more</Label>
+      <Label basic color='red' pointing='right'>Your password must be 6 characters or more</Label>
       <input type='password' placeholder='Password' />
     </Form.Field>
   </Form>
 )
 
-export default LabelPointing
+export default LabelExamplePointing

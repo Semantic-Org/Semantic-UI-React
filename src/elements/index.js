@@ -23,6 +23,7 @@ export { default as Input } from './Input/Input'
 
 export { default as Label } from './Label/Label'
 export { default as LabelDetail } from './Label/LabelDetail'
+export { default as LabelGroup } from './Label/LabelGroup'
 
 export { default as List } from './List/List'
 export { default as ListContent } from './List/ListContent'

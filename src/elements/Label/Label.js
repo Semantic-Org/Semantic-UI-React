@@ -15,14 +15,34 @@ import {
 } from '../../lib'
 import { Icon, Image } from '../'
 import LabelDetail from './LabelDetail'
+import LabelGroup from './LabelGroup'
 
 /**
  * A label displays content classification
  */
 function Label(props) {
   const {
-    attached, basic, children, circular, className, color, content, corner, detail, empty, floating, horizontal, icon,
-    image, onClick, onRemove, pointing, removable, ribbon, size, tag,
+    attached,
+    basic,
+    children,
+    circular,
+    className,
+    color,
+    content,
+    corner,
+    detail,
+    empty,
+    floating,
+    horizontal,
+    icon,
+    image,
+    onClick,
+    onRemove,
+    pointing,
+    removable,
+    ribbon,
+    size,
+    tag,
   } = props
 
   const handleClick = e => onClick && onClick(e, props)
@@ -32,22 +52,23 @@ function Label(props) {
     || (pointing === 'left' || pointing === 'right') && `${pointing} pointing`
     || (pointing === 'above' || pointing === 'below') && `pointing ${pointing}`
 
-  const classes = cx('ui',
-    size,
+  const classes = cx(
+    'ui',
     color,
     pointingClass,
+    size,
     useKeyOnly(basic, 'basic'),
     useKeyOnly(circular, 'circular'),
+    useKeyOnly(empty, 'empty'),
     useKeyOnly(floating, 'floating'),
     useKeyOnly(horizontal, 'horizontal'),
     useKeyOnly(image === true, 'image'),
-    useKeyOnly(empty, 'empty'),
     useKeyOnly(tag, 'tag'),
-    useValueAndKey(attached, 'attached'),
     useKeyOrValueAndKey(corner, 'corner'),
     useKeyOrValueAndKey(ribbon, 'ribbon'),
-    className,
+    useValueAndKey(attached, 'attached'),
     'label',
+    className,
   )
 
   const ElementType = getElementType(Label, props)
@@ -75,11 +96,11 @@ Label._meta = {
   type: META.TYPES.ELEMENT,
   props: {
     attached: ['top', 'bottom', 'top right', 'top left', 'bottom left', 'bottom right'],
-    size: SUI.SIZES,
     color: SUI.COLORS,
-    pointing: ['above', 'below', 'left', 'right'],
     corner: ['left', 'right'],
+    pointing: ['above', 'below', 'left', 'right'],
     ribbon: ['right'],
+    size: SUI.SIZES,
   },
 }
 
@@ -87,7 +108,7 @@ Label.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** Attach to a <Segment />. */
+  /** A label can attach to a content segment. */
   attached: PropTypes.oneOf(Label._meta.props.attached),
 
   /** A label can reduce its complexity. */
@@ -99,16 +120,16 @@ Label.propTypes = {
     PropTypes.node,
   ]),
 
+  /** A label can be circular. */
+  circular: PropTypes.bool,
+
   /** Classes to add to the label className. */
   className: PropTypes.string,
-
-  /** Make the label circular, or a dot when used with 'empty' prop. */
-  circular: PropTypes.bool,
 
   /** Color of the label. */
   color: PropTypes.oneOf(Label._meta.props.color),
 
-  /** Primary content of the label, same as children. */
+  /** Shorthand for primary content of the label. Mutually exclusive with children. */
   content: customPropTypes.every([
     customPropTypes.disallow(['children']),
     PropTypes.oneOfType([
@@ -117,7 +138,7 @@ Label.propTypes = {
     ]),
   ]),
 
-  /** Place the label in one of the upper corners. */
+  /** A label can position itself in the corner of an element. */
   corner: PropTypes.oneOfType([
     PropTypes.bool,
     PropTypes.oneOf(Label._meta.props.corner),
@@ -138,13 +159,13 @@ Label.propTypes = {
     PropTypes.bool,
   ]),
 
-  /** Format a label to align better alongside text. */
-  horizontal: PropTypes.bool,
-
   /** Float above another element in the upper right corner. */
   floating: PropTypes.bool,
 
-  /** Add an icon by icon name or pass an <Icon /> */
+  /** A horizontal label is formatted to label content along-side it horizontally. */
+  horizontal: PropTypes.bool,
+
+  /** A label can be formatted to emphasize an icon or prop can be used as shorthand for Icon. */
   icon: customPropTypes.every([
     customPropTypes.disallow(['children']),
     PropTypes.oneOfType([
@@ -153,7 +174,7 @@ Label.propTypes = {
     ]),
   ]),
 
-  /** A label can be formatted to emphasize an image or prop can be used as shorthand for image. */
+  /** A label can be formatted to emphasize an image or prop can be used as shorthand for Image. */
   image: customPropTypes.every([
     customPropTypes.givenProps(
       { children: PropTypes.node.isRequired },
@@ -165,36 +186,36 @@ Label.propTypes = {
     ),
   ]),
 
+  /** A label can point to content next to it. */
+  pointing: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.oneOf(Label._meta.props.pointing),
+  ]),
+
   /** Adds the link style when present, called with (event, props). */
   onClick: PropTypes.func,
 
   /** Adds an "x" icon, called with (event, props) when "x" is clicked. */
   onRemove: PropTypes.func,
 
-  /** Point to content next to it. */
-  pointing: PropTypes.oneOfType([
-    PropTypes.bool,
-    PropTypes.oneOf(Label._meta.props.pointing),
-  ]),
-
   /** Add an "x" icon that calls onRemove when clicked. */
   removable: PropTypes.bool,
 
-  /** Format the label as a ribbon on another component. */
+  /** A label can appear as a ribbon attaching itself to an element. */
   ribbon: PropTypes.oneOfType([
     PropTypes.bool,
     PropTypes.oneOf(Label._meta.props.ribbon),
   ]),
 
-  /** Size of the label. */
+  /** A label can have different sizes. */
   size: PropTypes.oneOf(Label._meta.props.size),
 
-  /** Format the label like a product tag. */
+  /** A label can appear as a tag. */
   tag: PropTypes.bool,
 }
 
-Label.Detail = LabelDetail
-
 Label.create = createShorthandFactory(Label, value => ({ content: value }))
+Label.Detail = LabelDetail
+Label.Group = LabelGroup
 
 export default Label
