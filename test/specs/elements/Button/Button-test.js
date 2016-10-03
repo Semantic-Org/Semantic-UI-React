@@ -129,7 +129,7 @@ describe('Button', () => {
 
   describe('labeled', () => {
     it('renders as a button', () => {
-      const wrapper = shallow(<Button labeled/>)
+      const wrapper = shallow(<Button labeled />)
       wrapper.should.have.tagName('button')
     })
   })
