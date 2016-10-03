@@ -6,7 +6,7 @@ import { html } from 'js-beautify'
 import copyToClipboard from 'copy-to-clipboard'
 
 import { exampleContext } from 'docs/app/utils'
-import { Button, Divider, Grid, Icon, Header, Menu } from 'src'
+import { Divider, Grid, Icon, Header, Menu } from 'src'
 import Editor from 'docs/app/Components/Editor/Editor'
 import babelrc from '.babelrc'
 
