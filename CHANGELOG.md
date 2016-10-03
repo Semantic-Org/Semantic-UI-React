@@ -1,5 +1,20 @@
 # Change Log
 
+## [Unreleased](https://github.com/TechnologyAdvice/stardust/tree/HEAD)
+
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.52.5...HEAD)
+
+**Fixed bugs:**
+
+- labeled icon \<Button /\> not rendered as \<button\> [\#596](https://github.com/TechnologyAdvice/stardust/issues/596)
+
+## [v0.52.5](https://github.com/TechnologyAdvice/stardust/tree/v0.52.5) (2016-10-03)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.52.4...v0.52.5)
+
+**Merged pull requests:**
+
+- fix\(Button\): render `labeled` as a \<button\> [\#597](https://github.com/TechnologyAdvice/stardust/pull/597) ([yesmin](https://github.com/yesmin))
+
 ## [v0.52.4](https://github.com/TechnologyAdvice/stardust/tree/v0.52.4) (2016-10-03)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.52.3...v0.52.4)
 
