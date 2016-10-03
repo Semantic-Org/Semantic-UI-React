@@ -117,7 +117,7 @@ export default class Checkbox extends Component {
     debug(`  checked:    ${checked}`)
 
     if (onClick) onClick(e, { name, value, checked: !!checked })
-    if (onChange) onChange(e, { name, value, checked: !checked })
+    if (onChange && !disabled) onChange(e, { name, value, checked: !checked })
 
     if (this.canToggle()) {
       this.trySetState({ checked: !checked })
