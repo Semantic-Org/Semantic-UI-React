@@ -213,47 +213,182 @@ describe('Portal', () => {
     })
   })
 
-  describe('openOnTriggerMouseOver', () => {
-    it('should not open portal on mouseover when not set', () => {
+  describe('closeOnTriggerClick', () => {
+    it('should not close portal on click', () => {
       const spy = sandbox.spy()
-      const trigger = <button onMouseOver={spy}>button</button>
-      wrapperMount(<Portal trigger={trigger}><p>Hi</p></Portal>)
+      const trigger = <button onClick={spy}>button</button>
+      wrapperMount(<Portal trigger={trigger} defaultOpen><p>Hi</p></Portal>)
 
-      wrapper.find('button').simulate('mouseover')
-      document.body.childElementCount.should.equal(0)
+      wrapper.find('button').simulate('click', nativeEvent)
+      document.body.lastElementChild.should.equal(wrapper.instance().node)
       spy.should.have.been.calledOnce()
     })
 
-    it('should open portal on mouseover when set', () => {
+    it('should close portal on click when set', () => {
       const spy = sandbox.spy()
-      const trigger = <button onMouseOver={spy}>button</button>
-      wrapperMount(<Portal trigger={trigger} openOnTriggerMouseOver><p>Hi</p></Portal>)
+      const trigger = <button onClick={spy}>button</button>
+      wrapperMount(<Portal trigger={trigger} defaultOpen closeOnTriggerClick><p>Hi</p></Portal>)
 
-      wrapper.find('button').simulate('mouseover')
-      document.body.lastElementChild.should.equal(wrapper.instance().node)
+      wrapper.find('button').simulate('click', nativeEvent)
+      document.body.childElementCount.should.equal(0)
       spy.should.have.been.calledOnce()
     })
   })
 
-  describe('closeOnTriggerMouseLeave', () => {
-    it('should not close portal on mouseleave when not set', () => {
+  describe('openOnTriggerMouseOver', () => {
+    it('should not open portal on mouseover when not set', (done) => {
       const spy = sandbox.spy()
-      const trigger = <button onMouseLeave={spy}>button</button>
-      wrapperMount(<Portal trigger={trigger} defaultOpen><p>Hi</p></Portal>)
+      const trigger = <button onMouseOver={spy}>button</button>
+      const mouseOverDelay = 100
+      wrapperMount(<Portal trigger={trigger} mouseOverDelay={mouseOverDelay}><p>Hi</p></Portal>)
 
-      wrapper.find('button').simulate('mouseleave')
-      document.body.lastElementChild.should.equal(wrapper.instance().node)
-      spy.should.have.been.calledOnce()
-    })
-
-    it('should close portal on mouseleave when set', () => {
-      const spy = sandbox.spy()
-      const trigger = <button onMouseLeave={spy}>button</button>
-      wrapperMount(<Portal trigger={trigger} defaultOpen closeOnTriggerMouseLeave><p>Hi</p></Portal>)
-
-      wrapper.find('button').simulate('mouseleave')
+      wrapper.find('button').simulate('mouseover')
       document.body.childElementCount.should.equal(0)
       spy.should.have.been.calledOnce()
+
+      setTimeout(() => {
+        document.body.childElementCount.should.equal(0)
+        spy.should.have.been.calledOnce()
+        done()
+      }, mouseOverDelay + 1)
+    })
+
+    it('should open portal on mouseover when set', (done) => {
+      const spy = sandbox.spy()
+      const trigger = <button onMouseOver={spy}>button</button>
+      const mouseOverDelay = 100
+      wrapperMount(
+        <Portal trigger={trigger} openOnTriggerMouseOver mouseOverDelay={mouseOverDelay}><p>Hi</p></Portal>
+      )
+
+      wrapper.find('button').simulate('mouseover')
+      setTimeout(() => {
+        document.body.childElementCount.should.equal(0)
+        spy.should.have.been.calledOnce()
+      }, mouseOverDelay - 1)
+
+      setTimeout(() => {
+        document.body.lastElementChild.should.equal(wrapper.instance().node)
+        spy.should.have.been.calledOnce()
+        done()
+      }, mouseOverDelay + 1)
+    })
+  })
+
+  describe('closeOnTriggerMouseLeave', () => {
+    it('should not close portal on mouseleave when not set', (done) => {
+      const spy = sandbox.spy()
+      const trigger = <button onMouseLeave={spy}>button</button>
+      const delay = 100
+      wrapperMount(<Portal trigger={trigger} defaultOpen mouseLeaveDelay={delay}><p>Hi</p></Portal>)
+
+      wrapper.find('button').simulate('mouseleave')
+      setTimeout(() => {
+        document.body.lastElementChild.should.equal(wrapper.instance().node)
+        spy.should.have.been.calledOnce()
+        done()
+      }, delay + 1)
+    })
+
+    it('should close portal on mouseleave when set', (done) => {
+      const spy = sandbox.spy()
+      const trigger = <button onMouseLeave={spy}>button</button>
+      const delay = 100
+      wrapperMount(
+        <Portal trigger={trigger} defaultOpen closeOnTriggerMouseLeave mouseLeaveDelay={delay}><p>Hi</p></Portal>
+      )
+
+      wrapper.find('button').simulate('mouseleave')
+      setTimeout(() => {
+        document.body.lastElementChild.should.equal(wrapper.instance().node)
+        spy.should.have.been.calledOnce()
+      }, delay - 1)
+
+      setTimeout(() => {
+        document.body.childElementCount.should.equal(0)
+        spy.should.have.been.calledOnce()
+        done()
+      }, delay + 1)
+    })
+  })
+
+  describe('closeOnPortalMouseLeave', () => {
+    it('should not close portal on mouseleave of portal when not set', (done) => {
+      const trigger = <button>button</button>
+      const delay = 100
+      wrapperMount(<Portal trigger={trigger} defaultOpen mouseLeaveDelay={delay}><p>Hi</p></Portal>)
+
+      domEvent.mouseLeave(wrapper.instance().node.firstElementChild)
+
+      setTimeout(() => {
+        document.body.lastElementChild.should.equal(wrapper.instance().node)
+        done()
+      }, delay + 1)
+    })
+
+    it('should close portal on mouseleave of portal when set', (done) => {
+      const trigger = <button>button</button>
+      const delay = 100
+      wrapperMount(
+        <Portal trigger={trigger} defaultOpen closeOnPortalMouseLeave mouseLeaveDelay={delay}><p>Hi</p></Portal>
+      )
+
+      domEvent.mouseLeave(wrapper.instance().node.firstElementChild)
+
+      setTimeout(() => {
+        document.body.lastElementChild.should.equal(wrapper.instance().node)
+      }, delay - 1)
+
+      setTimeout(() => {
+        document.body.childElementCount.should.equal(0)
+        done()
+      }, delay + 1)
+    })
+  })
+
+  describe('closeOnTriggerMouseLeave + closeOnPortalMouseLeave', () => {
+    it('should close portal on trigger mouseleave even when portal receives mouseover within limit', (done) => {
+      const trigger = <button>button</button>
+      const delay = 100
+      wrapperMount(
+        <Portal trigger={trigger} defaultOpen closeOnTriggerMouseLeave mouseLeaveDelay={delay}><p>Hi</p></Portal>
+      )
+
+      wrapper.find('button').simulate('mouseleave')
+
+      // Fire a mouseOver on the portal within the time limit
+      setTimeout(() => {
+        domEvent.mouseOver(wrapper.instance().node.firstElementChild)
+      }, delay - 1)
+
+      // The portal should close because closeOnPortalMouseLeave not set
+      setTimeout(() => {
+        document.body.childElementCount.should.equal(0)
+        done()
+      }, delay + 1)
+    })
+
+    it('should not close portal on trigger mouseleave when portal receives mouseover within limit', (done) => {
+      const trigger = <button>button</button>
+      const delay = 100
+      wrapperMount(
+        <Portal trigger={trigger} defaultOpen closeOnTriggerMouseLeave
+          closeOnPortalMouseLeave mouseLeaveDelay={delay}
+        ><p>Hi</p></Portal>
+      )
+
+      wrapper.find('button').simulate('mouseleave')
+
+      // Fire a mouseOver on the portal within the time limit
+      setTimeout(() => {
+        domEvent.mouseOver(wrapper.instance().node.firstElementChild)
+      }, delay - 1)
+
+      // The portal should not have closed
+      setTimeout(() => {
+        document.body.lastElementChild.should.equal(wrapper.instance().node)
+        done()
+      }, delay + 1)
     })
   })
 
