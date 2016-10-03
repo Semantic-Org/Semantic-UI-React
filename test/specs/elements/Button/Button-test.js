@@ -126,4 +126,11 @@ describe('Button', () => {
       wrapper.children().at(1).should.match('.ui.label')
     })
   })
+
+  describe('labeled', () => {
+    it('renders as a button', () => {
+      const wrapper = shallow(<Button labeled />)
+      wrapper.should.have.tagName('button')
+    })
+  })
 })
