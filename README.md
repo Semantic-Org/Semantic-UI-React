@@ -17,7 +17,12 @@
 [![Gemnasium](https://img.shields.io/gemnasium/TechnologyAdvice/stardust.svg?style=flat-square)](https://gemnasium.com/TechnologyAdvice/stardust)
 [![npm](https://img.shields.io/npm/v/stardust.svg?style=flat-square)](https://www.npmjs.com/package/stardust)
 
-Hey, we're in development. Minor versions may introduce **breaking changes until the [v1.0][6] release**.  You should [**read the CHANGELOG**][18] and related issues/PRs to stay up to date.
+Hey, we're in development. Prior to reaching [v1.0.0][6]:
+
+1. **MINOR** versions represent **breaking changes**
+1. **PATCH** versions represent **fixes _and_ features**
+1. There are **no deprecation warnings** between releases
+1. You should consult the [**CHANGELOG**][18] and related issues/PRs for more information
 
 ### [Voice Your Opinion][19] :speech_balloon:
 
