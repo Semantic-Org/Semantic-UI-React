@@ -1,5 +1,39 @@
 # Change Log
 
+## [v0.52.0](https://github.com/TechnologyAdvice/stardust/tree/v0.52.0) (2016-10-03)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.51.1...v0.52.0)
+
+**Implemented enhancements:**
+
+- feat\(Table\): add shorthand for generating tables [\#565](https://github.com/TechnologyAdvice/stardust/issues/565)
+- All event handlers should return the event data first [\#218](https://github.com/TechnologyAdvice/stardust/issues/218)
+- feat\(Dropdown\): Pass object with name to onChange [\#581](https://github.com/TechnologyAdvice/stardust/pull/581) ([jcarbo](https://github.com/jcarbo))
+- feat\(Table\): add table row shorthand [\#567](https://github.com/TechnologyAdvice/stardust/pull/567) ([jcarbo](https://github.com/jcarbo))
+
+## [v0.51.1](https://github.com/TechnologyAdvice/stardust/tree/v0.51.1) (2016-10-03)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.51.0...v0.51.1)
+
+**Implemented enhancements:**
+
+- feat\(ComponentExample\): add copy JSX button  [\#574](https://github.com/TechnologyAdvice/stardust/issues/574)
+- RFC: Could/should the modal rely more heavily on React.Portal? [\#553](https://github.com/TechnologyAdvice/stardust/issues/553)
+- feat\(Label\): add LabelGroup and missing docs [\#576](https://github.com/TechnologyAdvice/stardust/pull/576) ([layershifter](https://github.com/layershifter))
+
+**Fixed bugs:**
+
+- fix\(MenuItem\): do not add `icon` class given `name` or `content` [\#585](https://github.com/TechnologyAdvice/stardust/pull/585) ([levithomason](https://github.com/levithomason))
+
+**Closed issues:**
+
+- Update legacy component APIs to the v1 API [\#269](https://github.com/TechnologyAdvice/stardust/issues/269)
+
+**Merged pull requests:**
+
+- feat\(ComponentExample\): add github links to editor [\#586](https://github.com/TechnologyAdvice/stardust/pull/586) ([levithomason](https://github.com/levithomason))
+- fix\(tests\): Add coverage to missing lines [\#583](https://github.com/TechnologyAdvice/stardust/pull/583) ([jcarbo](https://github.com/jcarbo))
+- feat\(ComponentExample\): add copy JSX button [\#582](https://github.com/TechnologyAdvice/stardust/pull/582) ([jcarbo](https://github.com/jcarbo))
+- fix\(package\): remove semantic-ui-css dependency [\#580](https://github.com/TechnologyAdvice/stardust/pull/580) ([levithomason](https://github.com/levithomason))
+
 ## [v0.51.0](https://github.com/TechnologyAdvice/stardust/tree/v0.51.0) (2016-10-02)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.50.0...v0.51.0)
 
