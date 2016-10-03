@@ -254,7 +254,7 @@ export const isConformant = (Component, options = {}) => {
   // Events
   // ----------------------------------------
   it('handles events transparently', () => {
-    // Stardust events should be handled transparently, working just as they would in vanilla React.
+    // Events should be handled transparently, working just as they would in vanilla React.
     // Example, both of these handler()s should be called with the same event:
     //
     //   <Button onClick={handler} />
