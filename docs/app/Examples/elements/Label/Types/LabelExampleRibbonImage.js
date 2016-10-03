@@ -1,26 +1,22 @@
 import React from 'react'
-import { Grid, Icon, Label } from 'stardust'
-
-// TODO: Update <Image> usage
+import { Grid, Image } from 'stardust'
 
 const LabelExampleRibbonImage = () => (
   <Grid columns={2}>
     <Grid.Column>
-      <div className='ui fluid image'>
-        <Label color='black' ribbon>
-          <Icon name='hotel' /> Hotel
-        </Label>
-        <img src='http://semantic-ui.com/images/wireframe/image.png' />
-      </div>
+      <Image
+        fluid
+        label={{ as: 'a', color: 'black', content: 'Hotel', icon: 'hotel', ribbon: true }}
+        src='http://semantic-ui.com/images/wireframe/image.png'
+      />
     </Grid.Column>
 
     <Grid.Column>
-      <div className='ui fluid image'>
-        <Label color='blue' ribbon>
-          <Icon name='spoon' /> Food
-        </Label>
-        <img src='http://semantic-ui.com/images/wireframe/image.png' />
-      </div>
+      <Image
+        fluid
+        label={{ as: 'a', color: 'blue', content: 'Food', icon: 'spoon', ribbon: true }}
+        src='http://semantic-ui.com/images/wireframe/image.png'
+      />
     </Grid.Column>
   </Grid>
 )

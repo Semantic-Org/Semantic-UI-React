@@ -1,15 +1,17 @@
 import _ from 'lodash'
 import React from 'react'
 
+import * as common from 'test/specs/commonTests'
 import Image from 'src/elements/Image/Image'
 import ImageGroup from 'src/elements/Image/ImageGroup'
-import * as common from 'test/specs/commonTests'
 
 describe('Image Component', () => {
   common.isConformant(Image)
+  common.hasSubComponents(Image, [ImageGroup])
   common.hasUIClassName(Image)
   common.rendersChildren(Image)
-  common.hasSubComponents(Image, [ImageGroup])
+
+  common.propKeyAndValueToClassName(Image, 'floated')
 
   common.propKeyOnlyToClassName(Image, 'avatar')
   common.propKeyOnlyToClassName(Image, 'bordered')
@@ -19,12 +21,12 @@ describe('Image Component', () => {
   common.propKeyOnlyToClassName(Image, 'hidden')
   common.propKeyOnlyToClassName(Image, 'inline')
 
-  common.propKeyAndValueToClassName(Image, 'floated')
-  common.propKeyOrValueAndKeyToClassName(Image, 'spaced')
-
   common.propValueOnlyToClassName(Image, 'size')
   common.propValueOnlyToClassName(Image, 'shape')
 
+  common.propKeyOrValueAndKeyToClassName(Image, 'spaced')
+
+  common.implementsLabelProp(Image)
   common.implementsVerticalAlignProp(Image, 'verticalAlign')
 
   it('renders an img tag', () => {
