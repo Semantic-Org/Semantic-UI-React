@@ -538,7 +538,7 @@ describe('Search Component', () => {
         .simulate('click', nativeEvent)
 
       spy.should.have.been.calledOnce()
-      spy.firstCall.args[1].should.deep.equal(randomResult)
+      spy.should.have.been.calledWith(sandbox.match.any, randomResult)
     })
     it('is called with event and value when pressing enter on a selected item', () => {
       const firstResult = options[0]
@@ -551,7 +551,7 @@ describe('Search Component', () => {
       domEvent.keyDown(document, { key: 'Enter' })
 
       spy.should.have.been.calledOnce()
-      spy.firstCall.args[1].should.deep.equal(firstResult)
+      spy.should.have.been.calledWith(sandbox.match.any, firstResult)
     })
     it('is not called when updating the value prop', () => {
       const value = _.sample(options).title

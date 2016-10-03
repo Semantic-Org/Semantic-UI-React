@@ -798,12 +798,13 @@ describe('Dropdown Component', () => {
 
     describe('removing items', () => {
       it('calls onChange without the clicked value', () => {
+        const name = 'my-dropdown'
         const value = _.map(options, 'value')
         const randomIndex = _.random(options.length - 1)
         const randomValue = value[randomIndex]
         const expected = _.without(value, randomValue)
         const spy = sandbox.spy()
-        wrapperMount(<Dropdown options={options} selection value={value} multiple onChange={spy} />)
+        wrapperMount(<Dropdown options={options} selection name={name} value={value} multiple onChange={spy} />)
 
         wrapper
           .find('.delete.icon')
@@ -811,7 +812,7 @@ describe('Dropdown Component', () => {
           .simulate('click')
 
         spy.should.have.been.calledOnce()
-        spy.firstCall.args[1].should.deep.equal(expected)
+        spy.should.have.been.calledWith(sandbox.match.any, { name, value: expected })
       })
     })
   })
@@ -833,9 +834,10 @@ describe('Dropdown Component', () => {
       spy.should.not.have.been.called()
     })
     it('removes the last item when there is no search query', () => {
+      const name = 'my-dropdown'
       const value = _.map(options, 'value')
       const expected = _.dropRight(value)
-      wrapperMount(<Dropdown options={options} selection value={value} multiple search onChange={spy} />)
+      wrapperMount(<Dropdown options={options} selection name={name} value={value} multiple search onChange={spy} />)
 
       // open
       wrapper.simulate('click')
@@ -843,12 +845,15 @@ describe('Dropdown Component', () => {
       domEvent.keyDown(document, { key: 'Backspace' })
 
       spy.should.have.been.calledOnce()
-      spy.firstCall.args[1].should.deep.equal(expected)
+      spy.should.have.been.calledWith(sandbox.match.any, { name, value: expected })
     })
     it('removes the last item when there is no search query when uncontrolled', () => {
+      const name = 'my-dropdown'
       const value = _.map(options, 'value')
       const expected = _.dropRight(value)
-      wrapperMount(<Dropdown options={options} selection defaultValue={value} multiple search onChange={spy} />)
+      wrapperMount(
+        <Dropdown options={options} selection name={name} defaultValue={value} multiple search onChange={spy} />
+      )
 
       // open
       wrapper.simulate('click')
@@ -856,7 +861,7 @@ describe('Dropdown Component', () => {
       domEvent.keyDown(document, { key: 'Backspace' })
 
       spy.should.have.been.calledOnce()
-      spy.firstCall.args[1].should.deep.equal(expected)
+      spy.should.have.been.calledWith(sandbox.match.any, { name, value: expected })
 
       wrapper
         .state('value')
@@ -897,35 +902,38 @@ describe('Dropdown Component', () => {
     })
 
     it('is called with event and value on item click', () => {
+      const name = 'my-dropdown'
       const randomIndex = _.random(options.length - 1)
       const randomValue = options[randomIndex].value
-      wrapperMount(<Dropdown options={options} selection onChange={spy} />)
+      wrapperMount(<Dropdown options={options} selection onChange={spy} name={name} />)
         .simulate('click')
         .find('DropdownItem')
         .at(randomIndex)
         .simulate('click')
 
       spy.should.have.been.calledOnce()
-      spy.firstCall.args[1].should.deep.equal(randomValue)
+      spy.should.have.been.calledWith(sandbox.match.any, { name, value: randomValue })
     })
     it('is called with event and value when pressing enter on a selected item', () => {
+      const name = 'my-dropdown'
       const firstValue = options[0].value
-      wrapperMount(<Dropdown options={options} selection onChange={spy} />)
+      wrapperMount(<Dropdown options={options} selection onChange={spy} name={name} />)
         .simulate('click')
 
       domEvent.keyDown(document, { key: 'Enter' })
 
       spy.should.have.been.calledOnce()
-      spy.firstCall.args[1].should.deep.equal(firstValue)
+      spy.should.have.been.calledWith(sandbox.match.any, { name, value: firstValue })
     })
     it('is called with event and value when blurring', () => {
+      const name = 'my-dropdown'
       const firstValue = options[0].value
-      wrapperMount(<Dropdown options={options} selection onChange={spy} />)
+      wrapperMount(<Dropdown options={options} selection onChange={spy} name={name} />)
         .simulate('focus')  // open, highlights first item
         .simulate('blur')   // blur should activate selected item
 
       spy.should.have.been.calledOnce()
-      spy.firstCall.args[1].should.deep.equal(firstValue)
+      spy.should.have.been.calledWith(sandbox.match.any, { name, value: firstValue })
     })
     it('is not called on blur when closed', () => {
       wrapperMount(<Dropdown options={options} selection open={false} onChange={spy} />)
@@ -1588,8 +1596,9 @@ describe('Dropdown Component', () => {
 
     it('calls onAddItem prop when clicking new value', () => {
       const spy = sandbox.spy()
+      const name = 'my-dropdown'
       const search = wrapperMount(
-        <Dropdown options={customOptions} selection search allowAdditions onAddItem={spy} />
+        <Dropdown options={customOptions} selection search allowAdditions onAddItem={spy} name={name} />
       )
         .find('input.search')
 
@@ -1601,13 +1610,14 @@ describe('Dropdown Component', () => {
         .simulate('click')
 
       spy.should.have.been.calledOnce()
-      spy.firstCall.args[0].should.equal('boo')
+      spy.should.have.been.calledWith(sandbox.match.any, { name, value: 'boo' })
     })
 
     it('calls onAddItem prop when pressing enter on new value', () => {
       const spy = sandbox.spy()
+      const name = 'my-dropdown'
       const search = wrapperMount(
-        <Dropdown options={customOptions} selection search allowAdditions onAddItem={spy} />
+        <Dropdown options={customOptions} selection search allowAdditions onAddItem={spy} name={name} />
       )
         .find('input.search')
 
@@ -1615,7 +1625,7 @@ describe('Dropdown Component', () => {
       domEvent.keyDown(document, { key: 'Enter' })
 
       spy.should.have.been.calledOnce()
-      spy.firstCall.args[0].should.equal('boo')
+      spy.should.have.been.calledWith(sandbox.match.any, { name, value: 'boo' })
     })
   })
 

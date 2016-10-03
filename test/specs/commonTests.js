@@ -298,16 +298,13 @@ export const isConformant = (Component, options = {}) => {
           'You may need to hoist your event handlers up to the root element.\n'
         )
 
-        // TODO: https://github.com/TechnologyAdvice/stardust/issues/218
-        // some components currently return useful data in the first position
-        // update those to return the event first, then any data, finally uncomment this test
-        //
-        // handlerSpy.calledWithMatch(eventShape).should.equal(true,
-        //   `<${constructorName} ${listenerName}={${handlerName}} />\n` +
-        //   `${leftPad} ^ was not called with an "${listenerName}" event\n` +
-        //   'It was called with args:\n' +
-        //   JSON.stringify(handlerSpy.args, null, 2)
-        // )
+        // Components should return the event first, then any data
+        handlerSpy.calledWithMatch(eventShape).should.equal(true,
+          `<${constructorName} ${listenerName}={${handlerName}} />\n` +
+          `${leftPad} ^ was not called with an "${listenerName}" event\n` +
+          'It was called with args:\n' +
+          JSON.stringify(handlerSpy.args, null, 2)
+        )
       })
     })
   })
