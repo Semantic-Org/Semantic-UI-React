@@ -88,7 +88,13 @@ function Input(props) {
   )
   const rest = getUnhandledProps(Input, props)
   const ElementType = getElementType(Input, props)
-  const inputProps = _.pick(props, htmlInputPropNames)
+  const inputProps = {
+    ..._.pick(props, htmlInputPropNames),
+    // React gives a warning if no onChange is given to a controlled input. We
+    // handle the onChange on the wrapping element, so we don't actually need
+    // onChange on the input itself but let's pass a noop to suppress the warning.
+    onChange: _.noop,
+  }
 
   if (children) {
     return <ElementType {...rest} className={classes}>{children}</ElementType>

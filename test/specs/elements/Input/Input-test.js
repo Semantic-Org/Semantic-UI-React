@@ -4,6 +4,7 @@ import React from 'react'
 
 import Input, { htmlInputPropNames } from 'src/elements/Input/Input'
 import * as common from 'test/specs/commonTests'
+import { sandbox } from 'test/utils'
 
 describe('Input', () => {
   common.isConformant(Input)
@@ -27,7 +28,7 @@ describe('Input', () => {
 
   common.implementsHTMLInputProp(Input, {
     alwaysPresent: true,
-    shorthandDefaultProps: { type: 'text' },
+    shorthandDefaultProps: { type: 'text', onChange: _.noop },
   })
 
   common.propValueOnlyToClassName(Input, 'size')
@@ -60,6 +61,25 @@ describe('Input', () => {
           .find('input')
           .should.have.prop(propName, 'foo')
       })
+    })
+  })
+
+  describe('onChange', () => {
+    it('handles onChange', () => {
+      const onChangeSpy = sandbox.spy()
+      const wrapper = mount(<Input value='val' onChange={onChangeSpy} />)
+
+      wrapper
+        .find('input')
+        .simulate('change')
+
+      onChangeSpy.should.have.been.called()
+    })
+
+    it('supplies noop onChange to suppress controlled warning', () => {
+      shallow(<Input value='val' />)
+        .find('input')
+        .should.have.prop('onChange', _.noop)
     })
   })
 })
