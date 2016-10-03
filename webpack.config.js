@@ -14,7 +14,7 @@ const webpackConfig = {
   resolve: {
     root: paths.base(),
     alias: {
-      stardust: paths.src('index.js'),
+      'semantic-ui-react': paths.src('index.js'),
     },
   },
   module: {},
