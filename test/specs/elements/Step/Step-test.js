@@ -51,8 +51,8 @@ describe('Step', () => {
     })
 
     describe('onClick prop', () => {
-      it('can be omitted', () => {
-        const click = () => mount(<Step>{faker.hacker.phrase()}</Step>).simulate('click')
+      it('omitted when not defined', () => {
+        const click = () => shallow(<Step />).simulate('click')
         expect(click).to.not.throw()
       })
 

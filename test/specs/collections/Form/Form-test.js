@@ -127,6 +127,11 @@ describe('Form', () => {
   })
 
   describe('onSubmit', () => {
+    it('omitted when not defined', () => {
+      const submit = () => shallow(<Form />).simulate('submit')
+      expect(submit).to.not.throw()
+    })
+
     let spy
     const spyFormSubmit = (children) => {
       mount(<Form onSubmit={spy}>{children}</Form>).simulate('submit')

@@ -254,9 +254,9 @@ export default class Form extends Component {
     const classes = cx(
       'ui',
       size,
+      useKeyOnly(error, 'error'),
       useKeyOnly(loading, 'loading'),
       useKeyOnly(success, 'success'),
-      useKeyOnly(error, 'error'),
       useKeyOnly(warning, 'warning'),
       useWidthProp(widths, null, true),
       'form',

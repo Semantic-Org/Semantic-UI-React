@@ -13,14 +13,14 @@ describe('BreadcrumbSection', () => {
       .should.have.tagName('div')
   })
 
-  describe('link prop', () => {
+  describe('link', () => {
     it('is should be `a` when has prop link', () => {
       shallow(<BreadcrumbSection link>Home</BreadcrumbSection>)
         .should.have.tagName('a')
     })
   })
 
-  describe('href prop', () => {
+  describe('href', () => {
     it('is not present by default', () => {
       shallow(<BreadcrumbSection>Home</BreadcrumbSection>)
         .should.not.have.attr('href')
@@ -34,15 +34,15 @@ describe('BreadcrumbSection', () => {
     })
   })
 
-  describe('onClick prop', () => {
-    it('can be omitted', () => {
-      const click = () => mount(<BreadcrumbSection>Home</BreadcrumbSection>).simulate('click')
+  describe('onClick', () => {
+    it('omitted when not defined', () => {
+      const click = () => shallow(<BreadcrumbSection />).simulate('click')
       expect(click).to.not.throw()
     })
 
     it('is called with (event) on click', () => {
       const handleClick = sandbox.spy()
-      const section = mount(<BreadcrumbSection onClick={handleClick}>Home</BreadcrumbSection>)
+      const section = mount(<BreadcrumbSection onClick={handleClick} />)
 
       section.should.have.tagName('a')
       section.simulate('click')
