@@ -7,7 +7,7 @@ import {
   getElementType,
   META,
 } from '../../lib'
-import { Icon } from '../../elements'
+import Icon from '../../elements/Icon'
 
 /**
  * A divider sub-component for Breadcrumb component.

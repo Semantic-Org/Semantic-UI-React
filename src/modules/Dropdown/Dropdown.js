@@ -15,8 +15,9 @@ import {
   useKeyOnly,
   useKeyOrValueAndKey,
 } from '../../lib'
-import { Icon } from '../../elements'
-import { Label } from '../../elements'
+import Icon from '../../elements/Icon'
+import Label from '../../elements/Label'
+
 import DropdownDivider from './DropdownDivider'
 import DropdownItem from './DropdownItem'
 import DropdownHeader from './DropdownHeader'

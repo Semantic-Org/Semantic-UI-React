@@ -6,8 +6,9 @@ import {
   getUnhandledProps,
   META,
 } from '../../lib'
+import Select from '../../addons/Select'
+
 import FormField from './FormField'
-import { Select } from '../../addons'
 
 /**
  * Sugar for <Form.Field control={Select} />

@@ -6,8 +6,9 @@ import {
   getUnhandledProps,
   META,
 } from '../../lib'
+import TextArea from '../../addons/TextArea'
+
 import FormField from './FormField'
-import { TextArea } from '../../addons'
 
 /**
  * Sugar for <Form.Field control={TextArea} />

@@ -13,7 +13,8 @@ import {
   useValueAndKey,
   useKeyOnly,
 } from '../../lib'
-import { Label } from '../../elements'
+import Label from '../Label/Label'
+
 import ImageGroup from './ImageGroup'
 
 /**

@@ -6,8 +6,9 @@ import {
   getUnhandledProps,
   META,
 } from '../../lib'
+import Button from '../../elements/Button'
+
 import FormField from './FormField'
-import { Button } from '../../elements'
 
 /**
  * Sugar for <Form.Field control={Button} />

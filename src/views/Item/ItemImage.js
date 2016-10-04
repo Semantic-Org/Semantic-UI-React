@@ -4,7 +4,7 @@ import {
   getUnhandledProps,
   META,
 } from '../../lib'
-import Image from '../../elements/Image/Image'
+import Image from '../../elements/Image'
 
 /**
  * An item can contain an image

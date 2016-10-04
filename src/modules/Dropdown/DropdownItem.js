@@ -10,7 +10,7 @@ import {
   getUnhandledProps,
   useKeyOnly,
 } from '../../lib'
-import { Icon } from '../../elements'
+import Icon from '../../elements/Icon'
 
 function DropdownItem(props) {
   const {

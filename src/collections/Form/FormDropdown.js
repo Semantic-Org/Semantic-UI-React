@@ -6,8 +6,9 @@ import {
   getUnhandledProps,
   META,
 } from '../../lib'
+import Dropdown from '../../modules/Dropdown'
+
 import FormField from './FormField'
-import { Dropdown } from '../../modules'
 
 /**
  * Sugar for <Form.Field control={Dropdown} />

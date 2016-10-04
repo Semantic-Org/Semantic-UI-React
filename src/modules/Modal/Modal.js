@@ -6,7 +6,7 @@ import ModalHeader from './ModalHeader'
 import ModalContent from './ModalContent'
 import ModalActions from './ModalActions'
 import ModalDescription from './ModalDescription'
-import Portal from './../../addons/Portal/Portal'
+import Portal from '../../addons/Portal'
 
 import {
   customPropTypes,
