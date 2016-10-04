@@ -514,7 +514,7 @@ const _classNamePropValueBeforePropName = (Component, propKey, options = {}) => 
   const { className = propKey, requiredProps = {} } = options
 
   _.each(_.get(Component, `_meta.props[${propKey}]`), (propVal) => {
-    it(`adds "${propVal} ${propKey}" to className`, () => {
+    it(`adds "${propVal} ${className}" to className`, () => {
       shallow(createElement(Component, { ...requiredProps, [propKey]: propVal }))
         .should.have.className(`${propVal} ${className}`)
     })
@@ -539,8 +539,8 @@ export const implementsWidthProp = (Component, options = {}) => {
     assertRequired(Component, 'a `Component`')
 
     _definesPropOptions(Component, propKey)
-    _noDefaultClassNameFromProp(Component, propKey, { requiredProps })
-    _noClassNameFromBoolProps(Component, propKey, { requiredProps })
+    _noDefaultClassNameFromProp(Component, propKey, options)
+    _noClassNameFromBoolProps(Component, propKey, options)
 
     it('adds numberToWord value to className', () => {
       _.without(_.get(Component, `_meta.props[${propKey}]`), 'equal').forEach((width) => {
@@ -607,7 +607,7 @@ export const implementsShorthandProp = (Component, options = {}) => {
           .should.have.descendants(name)
       })
     } else {
-      _noDefaultClassNameFromProp(Component, propKey, { requiredProps })
+      _noDefaultClassNameFromProp(Component, propKey, options)
 
       it(`has no ${name} when not defined`, () => {
         shallow(<Component {...requiredProps} />)
@@ -769,8 +769,8 @@ export const implementsTextAlignProp = (Component, options = {}) => {
     assertRequired(Component, 'a `Component`')
 
     _definesPropOptions(Component, 'textAlign')
-    _noDefaultClassNameFromProp(Component, 'textAlign', { requiredProps })
-    _noClassNameFromBoolProps(Component, 'textAlign', { requiredProps })
+    _noDefaultClassNameFromProp(Component, 'textAlign', options)
+    _noClassNameFromBoolProps(Component, 'textAlign', options)
 
     _.each(Component._meta.props.aligned, (propVal) => {
       if (propVal === 'justified') {
@@ -805,8 +805,8 @@ export const implementsVerticalAlignProp = (Component, options = {}) => {
     assertRequired(Component, 'a `Component`')
 
     _definesPropOptions(Component, 'verticalAlign')
-    _noDefaultClassNameFromProp(Component, 'verticalAlign', { requiredProps })
-    _noClassNameFromBoolProps(Component, 'verticalAlign', { requiredProps })
+    _noDefaultClassNameFromProp(Component, 'verticalAlign', options)
+    _noClassNameFromBoolProps(Component, 'verticalAlign', options)
 
     _.each(Component._meta.props.verticalAlign, (propVal) => {
       it(`adds "${propVal} aligned" to className`, () => {
@@ -823,7 +823,7 @@ export const implementsVerticalAlignProp = (Component, options = {}) => {
  * @param {String} propKey A props key.
  * @param {Object} [options={}]
  * @param {Object} [options.requiredProps={}] Props required to render the component.
- * @param {Object} [options.className=propKey] Props required to render the component.
+ * @param {Object} [options.className=propKey] The className to assert exists.
  */
 export const propKeyOnlyToClassName = (Component, propKey, options = {}) => {
   const { className = propKey, requiredProps = {} } = options
@@ -833,7 +833,7 @@ export const propKeyOnlyToClassName = (Component, propKey, options = {}) => {
     assertRequired(Component, 'a `Component`')
     assertRequired(propKey, 'a `propKey`')
 
-    _noDefaultClassNameFromProp(Component, propKey, { requiredProps })
+    _noDefaultClassNameFromProp(Component, propKey, options)
 
     it('adds prop name to className', () => {
       shallow(createElement(Component, { ...requiredProps, [propKey]: true }))
@@ -857,7 +857,7 @@ export const propKeyOnlyToClassName = (Component, propKey, options = {}) => {
  * @param {String} propKey A props key.
  * @param {Object} [options={}]
  * @param {Object} [options.requiredProps={}] Props required to render the component.
- * @param {Object} [options.className=propKey] Props required to render the component.
+ * @param {Object} [options.className=propKey] The className to assert exists.
  */
 export const propValueOnlyToClassName = (Component, propKey, options = {}) => {
   const { requiredProps = {} } = options
@@ -868,8 +868,8 @@ export const propValueOnlyToClassName = (Component, propKey, options = {}) => {
     assertRequired(propKey, 'a `propKey`')
 
     _definesPropOptions(Component, propKey)
-    _noDefaultClassNameFromProp(Component, propKey, { requiredProps })
-    _noClassNameFromBoolProps(Component, propKey, { requiredProps })
+    _noDefaultClassNameFromProp(Component, propKey, options)
+    _noClassNameFromBoolProps(Component, propKey, options)
 
     it('adds prop value to className', () => {
       _.each(_.get(Component, `_meta.props[${propKey}]`), propValue => {
@@ -896,10 +896,9 @@ export const propValueOnlyToClassName = (Component, propKey, options = {}) => {
  * @param {String} propKey A props key.
  * @param {Object} [options={}]
  * @param {Object} [options.requiredProps={}] Props required to render the component.
- * @param {Object} [options.className=propKey] Props required to render the component.
+ * @param {Object} [options.className=propKey] The className to assert exists.
  */
 export const propKeyAndValueToClassName = (Component, propKey, options = {}) => {
-  const { className = propKey, requiredProps = {} } = options
   const { assertRequired } = commonTestHelpers('propKeyAndValueToClassName', Component)
 
   describe(`${propKey} (common)`, () => {
@@ -907,9 +906,9 @@ export const propKeyAndValueToClassName = (Component, propKey, options = {}) => 
     assertRequired(propKey, 'a `propKey`')
 
     _definesPropOptions(Component, propKey)
-    _noDefaultClassNameFromProp(Component, propKey, { requiredProps })
-    _noClassNameFromBoolProps(Component, propKey, { className, requiredProps })
-    _classNamePropValueBeforePropName(Component, propKey, { className, requiredProps })
+    _noDefaultClassNameFromProp(Component, propKey, options)
+    _noClassNameFromBoolProps(Component, propKey, options)
+    _classNamePropValueBeforePropName(Component, propKey, options)
   })
 }
 
@@ -919,7 +918,7 @@ export const propKeyAndValueToClassName = (Component, propKey, options = {}) => 
  * @param {String} propKey A props key.
  * @param {Object} [options={}]
  * @param {Object} [options.requiredProps={}] Props required to render the component.
- * @param {Object} [options.className=propKey] Props required to render the component.
+ * @param {Object} [options.className=propKey] The className to assert exists.
  */
 export const propKeyOrValueAndKeyToClassName = (Component, propKey, options = {}) => {
   const { className = propKey, requiredProps = {} } = options
@@ -930,8 +929,8 @@ export const propKeyOrValueAndKeyToClassName = (Component, propKey, options = {}
     assertRequired(propKey, 'a `propKey`')
 
     _definesPropOptions(Component, propKey)
-    _noDefaultClassNameFromProp(Component, propKey, { requiredProps })
-    _classNamePropValueBeforePropName(Component, propKey, { requiredProps })
+    _noDefaultClassNameFromProp(Component, propKey, options)
+    _classNamePropValueBeforePropName(Component, propKey, options)
     beforeEach(() => {
       // silence propType warnings
       consoleUtil.disableOnce()
