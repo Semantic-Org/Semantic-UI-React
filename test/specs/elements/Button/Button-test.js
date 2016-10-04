@@ -89,6 +89,10 @@ describe('Button', () => {
   })
 
   describe('label', () => {
+    it('renders as a div', () => {
+      shallow(<Button label='http' />)
+        .should.have.tagName('div')
+    })
     it('renders a div with a button and Label child', () => {
       const wrapper = shallow(<Button label='hi' />)
 
@@ -128,11 +132,11 @@ describe('Button', () => {
   })
 
   describe('labelPosition', () => {
-    it('renders as a div', () => {
-      shallow(<Button labelPosition='left' />)
-        .should.have.tagName('div')
-      shallow(<Button labelPosition='right' />)
-        .should.have.tagName('div')
+    it('renders as a button when given an icon', () => {
+      shallow(<Button labelPosition='left' icon='user' />)
+        .should.have.tagName('button')
+      shallow(<Button labelPosition='right' icon='user' />)
+        .should.have.tagName('button')
     })
   })
 })

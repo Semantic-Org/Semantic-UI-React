@@ -62,7 +62,7 @@ function Button(props) {
 
   const rest = getUnhandledProps(Button, props)
   const ElementType = getElementType(Button, props, () => {
-    if (label || labelPosition || attached) return 'div'
+    if (label || attached) return 'div'
   })
   const tabIndex = ElementType === 'div' ? 0 : undefined
 
