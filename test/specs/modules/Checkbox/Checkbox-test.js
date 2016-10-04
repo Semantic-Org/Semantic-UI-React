@@ -10,6 +10,10 @@ describe('Checkbox', () => {
   common.propKeyOnlyToClassName(Checkbox, 'checked')
   common.propKeyOnlyToClassName(Checkbox, 'slider')
   common.propKeyOnlyToClassName(Checkbox, 'toggle')
+  common.propKeyOnlyToClassName(Checkbox, 'disabled')
+  common.propKeyOnlyToClassName(Checkbox, 'readOnly', {
+    className: 'read-only',
+  })
 
   describe('defaultChecked', () => {
     it('sets the initial checked state', () => {
@@ -81,6 +85,11 @@ describe('Checkbox', () => {
       spy.firstCall.args[1]
         .should.deep.equal(expectProps)
     })
+    it('is not called when the checkbox has the disabled prop set', () => {
+      const spy = sandbox.spy()
+      mount(<Checkbox disabled onClick={spy} />).simulate('click')
+      spy.should.not.have.been.called()
+    })
   })
 
   describe('onChange', () => {
@@ -94,6 +103,11 @@ describe('Checkbox', () => {
       spy.should.have.been.calledWithMatch({}, {})
       spy.firstCall.args[1]
         .should.deep.equal({ ...expectProps, checked: true })
+    })
+    it('is not called when the checkbox has the disabled prop set', () => {
+      const spy = sandbox.spy()
+      mount(<Checkbox disabled onChange={spy} />).simulate('click')
+      spy.should.not.have.been.called()
     })
   })
 
