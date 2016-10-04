@@ -61,13 +61,7 @@ FeedContent.propTypes = {
   className: PropTypes.string,
 
   /** Shorthand for children. */
-  content: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number,
-    ]),
-  ]),
+  content: customPropTypes.shorthand,
 
   /** An event can contain a date. */
   date: FeedDate.propTypes.content,
@@ -81,7 +75,7 @@ FeedContent.propTypes = {
   /** Shorthand for the FeedMeta component. Mutually exclusive with children. */
   meta: FeedMeta.propTypes.content,
 
-  /** Shorthand for the FeedSummary component. Mutually exclusive with children. */
+  /** Shorthand for FeedSummary. */
   summary: FeedSummary.propTypes.content,
 }
 

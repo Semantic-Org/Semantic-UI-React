@@ -30,7 +30,7 @@ ItemMeta.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** Primary content of the ItemMeta. */
+  /** Primary content of the ItemMeta. Mutually exclusive with content. */
   children: customPropTypes.every([
     customPropTypes.disallow(['content']),
     PropTypes.node,
@@ -39,11 +39,8 @@ ItemMeta.propTypes = {
   /** Classes that will be added to the ItemMeta className. */
   className: PropTypes.string,
 
-  /** Primary content of the ItemMeta. Mutually exclusive with the children prop. */
-  content: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.string,
-  ]),
+  /** Shorthand for primary content of the ItemMeta. Mutually exclusive with the children. */
+  content: customPropTypes.shorthand,
 }
 
 export default ItemMeta

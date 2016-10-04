@@ -22,4 +22,6 @@ ItemImage._meta = {
   type: META.TYPES.VIEW,
 }
 
+ItemImage.propTypes = Image.propTypes
+
 export default ItemImage

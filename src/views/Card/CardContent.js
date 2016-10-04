@@ -59,34 +59,16 @@ CardContent.propTypes = {
   className: PropTypes.string,
 
   /** Shorthand prop for CardDescription. Mutually exclusive with children. */
-  description: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number,
-    ]),
-  ]),
+  description: CardDescription.propTypes.content,
 
   /** A card can contain extra content meant to be formatted separately from the main content */
   extra: PropTypes.bool,
 
-  /** Shorthand prop for CardHeader. Mutually exclusive with children. */
-  header: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number,
-    ]),
-  ]),
+  /** Shorthand prop for the CardHeader component. Mutually exclusive with children. */
+  header: CardHeader.propTypes.content,
 
-  /** Shorthand prop for CardMeta. Mutually exclusive with children. */
-  meta: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number,
-    ]),
-  ]),
+  /** Shorthand prop for the CardMeta component. Mutually exclusive with children. */
+  meta: CardMeta.propTypes.content,
 }
 
 export default CardContent

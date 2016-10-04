@@ -49,35 +49,13 @@ FeedLabel.propTypes = {
   className: PropTypes.string,
 
   /** Shorthand for children. Mutually exclusive with children. */
-  content: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number,
-    ]),
-  ]),
+  content: customPropTypes.shorthand,
 
   /** An event can contain icon label. Mutually exclusive with children. */
-  icon: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number,
-      PropTypes.object,
-      PropTypes.element,
-    ]),
-  ]),
+  icon: customPropTypes.icon,
 
   /** An event can contain image label. Mutually exclusive with children. */
-  image: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number,
-      PropTypes.object,
-      PropTypes.element,
-    ]),
-  ]),
+  image: customPropTypes.image,
 }
 
 export default FeedLabel

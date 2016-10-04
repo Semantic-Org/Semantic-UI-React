@@ -38,7 +38,7 @@ FeedMeta.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** Primary content of the FeedMeta. */
+  /** Primary content of the FeedMeta. Mutually exclusive with content. */
   children: customPropTypes.every([
     customPropTypes.disallow(['content', 'like']),
     PropTypes.node,
@@ -48,13 +48,7 @@ FeedMeta.propTypes = {
   className: PropTypes.string,
 
   /** Shorthand for children. Mutually exclusive with children. */
-  content: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number,
-    ]),
-  ]),
+  content: customPropTypes.shorthand,
 
   /** Shorthand for the FeedLike component. Mutually exclusive with children. */
   like: FeedLike.propTypes.content,

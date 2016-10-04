@@ -2,7 +2,12 @@ import React, { PropTypes } from 'react'
 
 import { Button } from '../../elements'
 import { Modal } from '../../modules'
-import { getUnhandledProps, META } from '../../lib'
+import {
+  customPropTypes,
+  getElementType,
+  getUnhandledProps,
+  META,
+} from '../../lib'
 
 /**
  * A Confirm modal gives the user a choice to confirm or cancel an action
@@ -30,6 +35,9 @@ Confirm._meta = {
 }
 
 Confirm.propTypes = {
+  /** An element type to render as (string or function). */
+  as: customPropTypes.as,
+
   /** Whether or not the modal is visible */
   active: PropTypes.bool,
 

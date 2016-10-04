@@ -37,13 +37,7 @@ FeedUser.propTypes = {
   className: PropTypes.string,
 
   /** Shorthand for children. Mutually exclusive with children. */
-  content: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number,
-    ]),
-  ]),
+  content: customPropTypes.shorthand,
 }
 
 FeedUser.defaultProps = {

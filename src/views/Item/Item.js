@@ -61,47 +61,32 @@ Item.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** Primary content of the Item. */
-  children: PropTypes.node,
+  /** Primary content of the Item. Mutually exclusive with all shorthand props. */
+  children: customPropTypes.every([
+    customPropTypes.disallow(['content', 'description', 'extra', 'image', 'header', 'meta']),
+    PropTypes.node,
+  ]),
 
   /** Classes that will be added to the Item className. */
   className: PropTypes.string,
 
-  /** Shorthand for ItemContent component. */
-  content: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.string,
-  ]),
+  /** Shorthand for ItemContent component. Mutually exclusive with content. */
+  content: ItemContent.propTypes.content,
 
-  /** Shorthand for ItemDescription component. */
-  description: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.string,
-  ]),
+  /** Shorthand for ItemDescription component. Mutually exclusive with content. */
+  description: ItemContent.propTypes.description,
 
-  /** Shorthand for ItemExtra component. */
-  extra: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.string,
-  ]),
+  /** Shorthand for ItemExtra component. Mutually exclusive with content. */
+  extra: ItemContent.propTypes.extra,
 
-  /** Shorthand for ItemImage component. */
-  image: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.string,
-  ]),
+  /** Shorthand for ItemImage component. Mutually exclusive with content. */
+  image: customPropTypes.image,
 
-  /** Shorthand for ItemHeader component. */
-  header: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.string,
-  ]),
+  /** Shorthand for ItemHeader component. Mutually exclusive with content. */
+  header: ItemContent.propTypes.header,
 
-  /** Shorthand for ItemMeta component. */
-  meta: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.string,
-  ]),
+  /** Shorthand for ItemMeta component. Mutually exclusive with content. */
+  meta: ItemContent.propTypes.meta,
 }
 
 export default Item

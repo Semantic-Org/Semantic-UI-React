@@ -12,7 +12,7 @@ import FeedContent from './FeedContent'
 import FeedLabel from './FeedLabel'
 
 function FeedEvent(props) {
-  const { content, children, className, date, extraImages, extraText, image, icon, meta, summary } = props
+  const { children, className, date, extraImages, extraText, image, icon, meta, summary } = props
   const classes = cx(className, 'event')
   const rest = getUnhandledProps(FeedEvent, props)
   const ElementType = getElementType(FeedEvent, props)
@@ -41,18 +41,7 @@ FeedEvent.propTypes = {
   as: customPropTypes.as,
 
   /** Primary content of the FeedEvent. Mutually exclusive with all shorthand props. */
-  children: customPropTypes.every([
-    customPropTypes.disallow([
-      'date',
-      'extraImages',
-      'extraText',
-      'icon',
-      'image',
-      'meta',
-      'summary',
-    ]),
-    PropTypes.node,
-  ]),
+  children: customPropTypes.children(FeedEvent),
 
   /** Classes that will be added to the FeedEvent className. */
   className: PropTypes.string,
@@ -70,26 +59,10 @@ FeedEvent.propTypes = {
   extraText: FeedContent.propTypes.extraText,
 
   /** An event can contain icon label. Mutually exclusive with children. */
-  icon: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number,
-      PropTypes.object,
-      PropTypes.element,
-    ]),
-  ]),
+  icon: customPropTypes.icon,
 
   /** An event can contain image label. Mutually exclusive with children. */
-  image: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number,
-      PropTypes.object,
-      PropTypes.element,
-    ]),
-  ]),
+  image: customPropTypes.image,
 
   /** Shorthand for FeedMeta. Mutually exclusive with children. */
   meta: FeedContent.propTypes.meta,

@@ -40,10 +40,7 @@ CardHeader.propTypes = {
   className: PropTypes.string,
 
   /** Primary content of the CardHeader. Mutually exclusive with children. */
-  content: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.node,
-  ]),
+  content: customPropTypes.shorthand,
 }
 
 export default CardHeader
