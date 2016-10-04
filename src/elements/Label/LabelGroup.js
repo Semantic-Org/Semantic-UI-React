@@ -49,16 +49,13 @@ LabelGroup.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** Primary content of the label group. Mutually exclusive with content. */
-  children: customPropTypes.every([
-    customPropTypes.disallow(['content']),
-    PropTypes.node,
-  ]),
+  /** Primary content. */
+  children: PropTypes.node,
 
   /** Labels can share shapes. */
   circular: PropTypes.bool,
 
-  /** Classes to add to the label group className. */
+  /** Additional classes. */
   className: PropTypes.string,
 
   /** Label group can share colors together. */

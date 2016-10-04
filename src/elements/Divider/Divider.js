@@ -45,10 +45,10 @@ Divider.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** Primary content of the Divider */
+  /** Primary content. */
   children: PropTypes.node,
 
-  /** Classes to add to the divider className. */
+  /** Additional classes. */
   className: PropTypes.string,
 
   /** Divider can segment content horizontally */

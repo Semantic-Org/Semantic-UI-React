@@ -20,10 +20,10 @@ export default class BreadcrumbSection extends Component {
     /** Style as the currently active section. */
     active: PropTypes.bool,
 
-    /** Primary content of the Breadcrumb.Section. */
+    /** Primary content. */
     children: PropTypes.node,
 
-    /** Classes that will be added to the BreadcrumbSection className. */
+    /** Additional classes. */
     className: PropTypes.string,
 
     /** Render as an `a` tag instead of a `div`. */

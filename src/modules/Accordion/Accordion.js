@@ -29,13 +29,10 @@ export default class Accordion extends Component {
     /** Index of the currently active panel. */
     activeIndex: PropTypes.number,
 
-    /** Accordion.Title and Accordion.Content components.  Mutually exclusive with the panels prop. */
-    children: customPropTypes.every([
-      customPropTypes.disallow(['panels']),
-      PropTypes.node,
-    ]),
+    /** Primary content. */
+    children: PropTypes.node,
 
-    /** Classes to add to the Accordion className. */
+    /** Additional classes. */
     className: PropTypes.string,
 
     /** Initial activeIndex value. */
@@ -54,6 +51,7 @@ export default class Accordion extends Component {
      * Create simple accordion panels from an array of { text: <string>, content: <string> } objects.
      * Object can optionally define an `active` key to open/close the panel.
      * Mutually exclusive with children.
+     * TODO: AccordionPanel should be a sub-component
      */
     panels: customPropTypes.every([
       customPropTypes.disallow(['children']),

@@ -44,10 +44,10 @@ SearchCategory.propTypes = {
   /** The item currently selected by keyboard shortcut. */
   active: PropTypes.bool,
 
-  /** Should be <Search.Result /> components. */
+  /** Primary content. */
   children: PropTypes.node,
 
-  /** Classes to add to the className. */
+  /** Additional classes. */
   className: PropTypes.string,
 
   /** Display name. */

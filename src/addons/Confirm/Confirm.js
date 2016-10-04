@@ -42,7 +42,7 @@ Confirm.propTypes = {
   /** The ModalHeader text */
   header: PropTypes.string,
 
-  /** The ModalContent text. Mutually exclusive with children. */
+  /** The ModalContent text. */
   content: PropTypes.string,
 
   /** Called when the OK button is clicked */

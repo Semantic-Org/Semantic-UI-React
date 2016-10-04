@@ -64,10 +64,10 @@ GridColumn.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** Primary content of the GridColumn. */
+  /** Primary content. */
   children: PropTypes.node,
 
-  /** Classes that will be added to the GridColumn className. */
+  /** Additional classes. */
   className: PropTypes.string,
 
   /** A column can specify a width for a computer. */

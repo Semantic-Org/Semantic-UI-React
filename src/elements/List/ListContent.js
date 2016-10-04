@@ -45,10 +45,10 @@ ListContent.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** Primary content of the ListContent. */
+  /** Primary content. */
   children: PropTypes.node,
 
-  /** Classes to add to the ListContent className. */
+  /** Additional classes. */
   className: PropTypes.string,
 
   /** An list content can be floated left or right. */

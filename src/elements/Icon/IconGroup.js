@@ -41,11 +41,11 @@ IconGroup.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** Class names for custom styling. */
-  className: PropTypes.string,
+  /** Primary content. */
+  children: PropTypes.node,
 
-  /** Icon children for the Icon group */
-  children: PropTypes.any,
+  /** Additional classes. */
+  className: PropTypes.string,
 
   /** Size of the icon group. */
   size: PropTypes.oneOf(IconGroup._meta.props.size),

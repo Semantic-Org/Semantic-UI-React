@@ -186,10 +186,10 @@ export default class Form extends Component {
     /** An element type to render as (string or function). */
     as: customPropTypes.as,
 
-    /** Primary content */
+    /** Primary content. */
     children: PropTypes.node,
 
-    /** Additional classes */
+    /** Additional classes. */
     className: PropTypes.string,
 
     /** Automatically show any error Message children */

@@ -181,6 +181,49 @@ export const demand = (requiredProps) => {
 }
 
 /**
+ * Ensure a component can render as a node passed as a prop value in place of children.
+ */
+export const content = (...args) => every([
+  disallow(['children']),
+  PropTypes.node,
+])(...args)
+
+/**
+ * Item shorthand is a description of a component that can be a literal,
+ * a props object, or an element.
+ */
+export const item = (...args) => every([
+  disallow(['children']),
+  PropTypes.oneOfType([
+    PropTypes.element,
+    PropTypes.number,
+    PropTypes.object,
+    PropTypes.string,
+  ]),
+])(...args)
+
+/**
+ * ArrayOf shorthand ensures a prop is an array of item shorthand
+ */
+export const items = (...args) => every([
+  disallow(['children']),
+  PropTypes.arrayOf(item),
+])(...args)
+
+/**
+ * Collection shorthand is a description of a component that can be an array of
+ * shorthand for the underlying items, a props object, or an element.
+ */
+export const collection = (...args) => every([
+  disallow(['children']),
+  PropTypes.oneOfType([
+    items,
+    PropTypes.element,
+    PropTypes.object,
+  ]),
+])(...args)
+
+/**
  * Show a deprecated warning for component props with a help message and optional validator.
  * @param {string} help A help message to display with the deprecation warning.
  * @param {function} [validator] A propType function.

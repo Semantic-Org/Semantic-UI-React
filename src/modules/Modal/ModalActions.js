@@ -27,10 +27,10 @@ ModalActions.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** Primary content of the modal actions */
-  children: PropTypes.any,
+  /** Primary content. */
+  children: PropTypes.node,
 
-  /** Classes to add to the modal actions className */
+  /** Additional classes. */
   className: PropTypes.string,
 }
 

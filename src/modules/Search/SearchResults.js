@@ -27,10 +27,10 @@ SearchResults.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** Should be <Search.Result /> components. */
+  /** Primary content. */
   children: PropTypes.node,
 
-  /** Classes to add to the className. */
+  /** Additional classes. */
   className: PropTypes.string,
 }
 

@@ -32,10 +32,10 @@ ModalContent.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** Primary content of the modal content */
-  children: PropTypes.any,
+  /** Primary content. */
+  children: PropTypes.node,
 
-  /** Classes to add to the modal content className */
+  /** Additional classes. */
   className: PropTypes.string,
 
   /** A modal can contain image content */

@@ -34,10 +34,10 @@ ImageGroup.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** Class names for custom styling. */
-  children: PropTypes.any,
+  /** Primary content. */
+  children: PropTypes.node,
 
-  /** Class names for custom styling. */
+  /** Additional classes. */
   className: PropTypes.string,
 
   /** A group of images can be formatted to have the same size. */

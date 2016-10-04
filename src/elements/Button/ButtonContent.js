@@ -36,17 +36,17 @@ ButtonContent.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** Initially visible, hidden on hover */
-  visible: PropTypes.bool,
+  /** Additional classes. */
+  className: PropTypes.string,
+
+  /** Primary content. */
+  children: PropTypes.node,
 
   /** Initially hidden, visible on hover */
   hidden: PropTypes.bool,
 
-  /** Additional classes */
-  className: PropTypes.string,
-
-  /** Primary content, intended to the Button children */
-  children: PropTypes.any,
+  /** Initially visible, hidden on hover */
+  visible: PropTypes.bool,
 }
 
 export default ButtonContent

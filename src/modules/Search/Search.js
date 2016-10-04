@@ -133,7 +133,7 @@ export default class Search extends Component {
     /** A search can display results from remote content ordered by categories. */
     category: PropTypes.bool,
 
-    /** Additional classes added to the root element. */
+    /** Additional classes. */
     className: PropTypes.string,
 
     /** A search can have its results take up the width of its container. */

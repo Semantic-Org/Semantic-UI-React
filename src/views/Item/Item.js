@@ -61,47 +61,29 @@ Item.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** Primary content of the Item. */
+  /** Primary content. */
   children: PropTypes.node,
 
-  /** Classes that will be added to the Item className. */
+  /** Additional classes. */
   className: PropTypes.string,
 
   /** Shorthand for ItemContent component. */
-  content: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.string,
-  ]),
+  content: customPropTypes.content,
 
   /** Shorthand for ItemDescription component. */
-  description: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.string,
-  ]),
+  description: customPropTypes.item,
 
   /** Shorthand for ItemExtra component. */
-  extra: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.string,
-  ]),
+  extra: customPropTypes.item,
 
   /** Shorthand for ItemImage component. */
-  image: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.string,
-  ]),
+  image: customPropTypes.item,
 
   /** Shorthand for ItemHeader component. */
-  header: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.string,
-  ]),
+  header: customPropTypes.item,
 
   /** Shorthand for ItemMeta component. */
-  meta: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.string,
-  ]),
+  meta: customPropTypes.item,
 }
 
 export default Item

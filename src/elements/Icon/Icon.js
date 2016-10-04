@@ -69,7 +69,7 @@ Icon.propTypes = {
   /** Formatted to appear bordered */
   bordered: PropTypes.bool,
 
-  /** Class names for custom styling. */
+  /** Additional classes. */
   className: PropTypes.string,
 
   /** Icon can formatted to appear circular */
