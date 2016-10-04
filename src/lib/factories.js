@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import cx from 'classnames'
-import React, { isValidElement } from 'react'
+import React, { cloneElement, isValidElement } from 'react'
 
 /**
  * Merges props and classNames.
@@ -53,12 +53,10 @@ export function createShorthand(Component, mapValueToProps, val, defaultProps = 
 
   defaultProps = _.isFunction(defaultProps) ? defaultProps(usersProps) : defaultProps
   const props = mergePropsAndClassName(defaultProps, usersProps)
-  console.log('props', props)
-  console.log('defaultProps', defaultProps)
 
   // Clone ReactElements
   if (type === 'element') {
-    return React.cloneElement(val, props)
+    return cloneElement(val, props)
   }
 
   // Create ReactElements from props objects
