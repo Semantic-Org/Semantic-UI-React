@@ -19,6 +19,7 @@ function FormRadio(props) {
   const { control } = props
   const rest = getUnhandledProps(FormRadio, props)
   const ElementType = getElementType(FormRadio, props)
+
   return <ElementType {...rest} control={control} />
 }
 

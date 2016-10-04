@@ -54,11 +54,11 @@ const names = [
 
 function Flag(props) {
   const { className, name } = props
-  const rest = getUnhandledProps(Flag, props)
   const classes = cx(name, className, 'flag')
+  const rest = getUnhandledProps(Flag, props)
   const ElementType = getElementType(Flag, props)
 
-  return <ElementType className={classes} {...rest} />
+  return <ElementType {...rest} className={classes} />
 }
 
 Flag._meta = {

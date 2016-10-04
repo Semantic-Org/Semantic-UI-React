@@ -45,16 +45,11 @@ function Header(props) {
     className,
     'header',
   )
-
-  const ElementType = getElementType(Header, props)
   const rest = getUnhandledProps(Header, props)
+  const ElementType = getElementType(Header, props)
 
   if (children) {
-    return (
-      <ElementType {...rest} className={classes}>
-        {children}
-      </ElementType>
-    )
+    return <ElementType {...rest} className={classes}>{children}</ElementType>
   }
 
   if ((image && typeof image !== 'boolean') || (icon && typeof icon !== 'boolean')) {

@@ -14,8 +14,8 @@ import Icon from '../../elements/Icon'
  */
 function BreadcrumbDivider(props) {
   const { children, icon, className } = props
-  const rest = getUnhandledProps(BreadcrumbDivider, props)
   const classes = cx(className, 'divider')
+  const rest = getUnhandledProps(BreadcrumbDivider, props)
   const ElementType = getElementType(BreadcrumbDivider, props)
 
   if (icon) return Icon.create(icon, { ...rest, className: classes })

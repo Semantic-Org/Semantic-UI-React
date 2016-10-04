@@ -27,11 +27,10 @@ function SegmentGroup(props) {
     className,
     'segments',
   )
-
   const rest = getUnhandledProps(SegmentGroup, props)
   const ElementType = getElementType(SegmentGroup, props)
 
-  return <ElementType className={classes} {...rest}>{children}</ElementType>
+  return <ElementType {...rest} className={classes}>{children}</ElementType>
 }
 
 SegmentGroup._meta = {

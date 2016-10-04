@@ -39,8 +39,8 @@ function DropdownItem(props) {
   )
   // add default dropdown icon if item contains another menu
   const iconName = icon || childrenUtils.someByType(children, 'DropdownMenu') && 'dropdown'
-  const ElementType = getElementType(DropdownItem, props)
   const rest = getUnhandledProps(DropdownItem, props)
+  const ElementType = getElementType(DropdownItem, props)
 
   return (
     <ElementType {...rest} className={classes} onClick={handleClick}>

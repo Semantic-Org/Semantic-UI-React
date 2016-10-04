@@ -86,7 +86,6 @@ function Input(props) {
     className,
     'input',
   )
-
   const rest = getUnhandledProps(Input, props)
   const ElementType = getElementType(Input, props)
   const inputProps = _.pick(props, htmlInputPropNames)

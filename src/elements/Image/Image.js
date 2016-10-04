@@ -63,7 +63,6 @@ function Image(props) {
     className,
     'image'
   )
-
   const rest = getUnhandledProps(Image, props)
   const rootProps = { className: classes, ...rest }
   const imgTagProps = { src, alt, width, height }

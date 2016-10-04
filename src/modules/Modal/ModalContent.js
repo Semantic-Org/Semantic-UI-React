@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import classNames from 'classnames'
+import cx from 'classnames'
 
 import {
   customPropTypes,
@@ -11,21 +11,15 @@ import {
 
 function ModalContent(props) {
   const { children, image, className } = props
-
-  const classes = classNames(
+  const classes = cx(
     className,
     useKeyOnly(image, 'image'),
     'content'
   )
-
   const rest = getUnhandledProps(ModalContent, props)
   const ElementType = getElementType(ModalContent, props)
 
-  return (
-    <ElementType className={classes} {...rest}>
-      {children}
-    </ElementType>
-  )
+  return <ElementType {...rest} className={classes}>{children}</ElementType>
 }
 
 ModalContent._meta = {

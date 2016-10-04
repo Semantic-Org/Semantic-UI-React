@@ -32,15 +32,10 @@ function ButtonGroup(props) {
     'buttons',
     className,
   )
-
   const rest = getUnhandledProps(ButtonGroup, props)
   const ElementType = getElementType(ButtonGroup, props)
 
-  return (
-    <ElementType className={classes} {...rest}>
-      {children}
-    </ElementType>
-  )
+  return <ElementType {...rest} className={classes}>{children}</ElementType>
 }
 
 ButtonGroup._meta = {

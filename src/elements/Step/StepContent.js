@@ -12,13 +12,13 @@ import StepDescription from './StepDescription'
 import StepTitle from './StepTitle'
 
 function StepContent(props) {
-  const { className, children, description, title } = props
+  const { children, className, description, title } = props
   const classes = cx(className, 'content')
   const rest = getUnhandledProps(StepContent, props)
   const ElementType = getElementType(StepContent, props)
 
   if (children) {
-    return <div {...rest} className={classes}>{ children }</div>
+    return <ElementType {...rest} className={classes}>{children}</ElementType>
   }
 
   return (

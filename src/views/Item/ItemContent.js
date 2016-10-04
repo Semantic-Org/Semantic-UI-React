@@ -17,7 +17,7 @@ import ItemMeta from './ItemMeta'
 
 /**
  * An item can contain content
- * */
+ **/
 function ItemContent(props) {
   const { children, className, content, description, extra, header, meta, verticalAlign } = props
   const classes = cx(
@@ -25,7 +25,6 @@ function ItemContent(props) {
     useVerticalAlignProp(verticalAlign),
     'content',
   )
-
   const rest = getUnhandledProps(ItemContent, props)
   const ElementType = getElementType(ItemContent, props)
 

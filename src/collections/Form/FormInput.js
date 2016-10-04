@@ -19,6 +19,7 @@ function FormInput(props) {
   const { control } = props
   const rest = getUnhandledProps(FormInput, props)
   const ElementType = getElementType(FormInput, props)
+
   return <ElementType {...rest} control={control} />
 }
 

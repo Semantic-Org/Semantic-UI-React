@@ -60,7 +60,6 @@ function Progress(props) {
     className,
     'progress'
   )
-
   const rest = getUnhandledProps(Progress, props)
   const ElementType = getElementType(Progress, props)
 

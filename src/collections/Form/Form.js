@@ -168,7 +168,7 @@ function formSerializer(formNode) {
  * @see TextArea
  */
 function Form(props) {
-  const { className, children, error, loading, onSubmit, size, success, warning, widths } = props
+  const { children, className, error, loading, onSubmit, size, success, warning, widths } = props
   const classes = cx(
     'ui',
     size,

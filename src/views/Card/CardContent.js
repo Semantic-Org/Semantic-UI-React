@@ -17,7 +17,7 @@ import CardMeta from './CardMeta'
  * A card can contain blocks of content or extra content meant to be formatted separately from the main content
  */
 function CardContent(props) {
-  const { className, children, description, extra, header, meta } = props
+  const { children, className, description, extra, header, meta } = props
   const classes = cx(
     className,
     useKeyOnly(extra, 'extra'),
@@ -27,7 +27,7 @@ function CardContent(props) {
   const ElementType = getElementType(CardContent, props)
 
   if (children) {
-    return <div {...rest} className={classes}>{children}</div>
+    return <ElementType {...rest} className={classes}>{children}</ElementType>
   }
 
   return (

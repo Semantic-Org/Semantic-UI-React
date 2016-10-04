@@ -607,9 +607,8 @@ export default class Search extends Component {
       className,
       'search',
     )
-
-    const ElementType = getElementType(Search, this.props)
     const rest = getUnhandledProps(Search, this.props)
+    const ElementType = getElementType(Search, this.props)
 
     return (
       <ElementType

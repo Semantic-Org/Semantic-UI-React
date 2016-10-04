@@ -33,6 +33,7 @@ function TableCell(props) {
     warning,
     width,
   } = props
+
   const classes = cx(
     useKeyOnly(active, 'active'),
     useKeyOnly(collapsing, 'collapsing'),
@@ -47,9 +48,8 @@ function TableCell(props) {
     useWidthProp(width, 'wide'),
     className,
   )
-
-  const ElementType = getElementType(TableCell, props)
   const rest = getUnhandledProps(TableCell, props)
+  const ElementType = getElementType(TableCell, props)
 
   if (children) {
     return <ElementType {...rest} className={classes}>{children}</ElementType>

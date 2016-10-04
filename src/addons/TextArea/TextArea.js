@@ -14,6 +14,7 @@ import {
 function TextArea(props) {
   const rest = getUnhandledProps(TextArea, props)
   const ElementType = getElementType(TextArea, props)
+
   return <ElementType {...rest} />
 }
 

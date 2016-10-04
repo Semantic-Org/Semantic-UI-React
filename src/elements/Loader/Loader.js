@@ -28,7 +28,7 @@ function Loader(props) {
   const rest = getUnhandledProps(Loader, props)
   const ElementType = getElementType(Loader, props)
 
-  return <ElementType className={classes} {...rest}>{ children || text }</ElementType>
+  return <ElementType {...rest} className={classes}>{children || text}</ElementType>
 }
 
 Loader._meta = {

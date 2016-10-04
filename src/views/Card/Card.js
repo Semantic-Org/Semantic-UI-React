@@ -55,11 +55,7 @@ function Card(props) {
   })
 
   if (children) {
-    return (
-      <ElementType {...rest} className={classes} href={href} onClick={handleClick}>
-        {children}
-      </ElementType>
-    )
+    return <ElementType {...rest} className={classes} href={href} onClick={handleClick}>{children}</ElementType>
   }
 
   return (

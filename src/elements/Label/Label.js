@@ -72,9 +72,8 @@ function Label(props) {
     'label',
     className,
   )
-
-  const ElementType = getElementType(Label, props)
   const rest = getUnhandledProps(Label, props)
+  const ElementType = getElementType(Label, props)
 
   if (children) {
     return <ElementType {...rest} className={classes} onClick={handleClick}>{children}</ElementType>

@@ -11,9 +11,8 @@ import {
 function ListHeader(props) {
   const { children, className } = props
   const classes = cx(className, 'header')
-
-  const ElementType = getElementType(ListHeader, props)
   const rest = getUnhandledProps(ListHeader, props)
+  const ElementType = getElementType(ListHeader, props)
 
   return <ElementType {...rest} className={classes}>{children}</ElementType>
 }

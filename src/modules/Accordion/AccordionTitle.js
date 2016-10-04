@@ -21,8 +21,8 @@ function AccordionTitle(props) {
     if (onClick) onClick(e)
   }
 
-  const ElementType = getElementType(AccordionTitle, props)
   const rest = getUnhandledProps(AccordionTitle, props)
+  const ElementType = getElementType(AccordionTitle, props)
 
   return (
     <ElementType {...rest} className={classes} onClick={handleClick}>
