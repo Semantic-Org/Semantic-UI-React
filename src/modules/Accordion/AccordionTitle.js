@@ -45,10 +45,15 @@ export default class AccordionTitle extends Component {
   }
 
   render() {
-    const { active, children, className } = this.props
+    const {
+      active,
+      children,
+      className,
+    } = this.props
+
     const classes = cx(
-      'title',
       useKeyOnly(active, 'active'),
+      'title',
       className
     )
     const rest = getUnhandledProps(AccordionTitle, this.props)

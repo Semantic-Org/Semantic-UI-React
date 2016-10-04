@@ -55,7 +55,15 @@ export default class BreadcrumbSection extends Component {
   }
 
   render() {
-    const { active, children, className, href, link, onClick } = this.props
+    const {
+      active,
+      children,
+      className,
+      href,
+      link,
+      onClick,
+    } = this.props
+
     const classes = cx(
       useKeyOnly(active, 'active'),
       'section',
