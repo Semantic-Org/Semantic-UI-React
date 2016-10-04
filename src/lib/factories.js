@@ -16,7 +16,7 @@ const mergePropsAndClassName = (defaultProps, props) => {
     newProps.className = cx(defaultProps.className, props.className) // eslint-disable-line react/prop-types
   }
 
-  if (!newProps.key) {
+  if (!newProps.key && childKey) {
     newProps.key = _.isFunction(childKey) ? childKey(newProps) : childKey
   }
 
@@ -53,6 +53,8 @@ export function createShorthand(Component, mapValueToProps, val, defaultProps = 
 
   defaultProps = _.isFunction(defaultProps) ? defaultProps(usersProps) : defaultProps
   const props = mergePropsAndClassName(defaultProps, usersProps)
+  console.log('props', props)
+  console.log('defaultProps', defaultProps)
 
   // Clone ReactElements
   if (type === 'element') {
