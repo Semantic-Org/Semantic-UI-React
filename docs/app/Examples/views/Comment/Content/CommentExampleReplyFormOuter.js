@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Comment, Form, Icon } from 'stardust'
+import { Button, Comment, Form } from 'semantic-ui-react'
 
 const CommentExampleReplyFormOuter = () => (
   <Comment.Group>
@@ -36,10 +36,7 @@ const CommentExampleReplyFormOuter = () => (
 
     <Comment.ReplyForm>
       <Form.TextArea />
-      <Button labeled icon primary>
-        <Icon name='edit' />
-        Add Comment
-      </Button>
+      <Button content='Add Comment' labelPosition='left' icon='edit' primary />
     </Comment.ReplyForm>
   </Comment.Group>
 )

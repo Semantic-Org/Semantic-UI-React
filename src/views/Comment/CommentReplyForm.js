@@ -2,7 +2,7 @@ import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
 import { getUnhandledProps, META } from '../../lib'
-import { Form } from '../../collections'
+import Form from '../../collections/Form'
 
 function CommentReplyForm(props) {
   const { className } = props

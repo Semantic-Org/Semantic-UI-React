@@ -43,6 +43,9 @@ Comment.propTypes = {
 
   /** Classes to add to the Comment className. */
   className: PropTypes.string,
+
+  /** Comment can be collapsed, or hidden from view. */
+  collapsed: PropTypes.bool,
 }
 
 Comment.Author = CommentAuthor

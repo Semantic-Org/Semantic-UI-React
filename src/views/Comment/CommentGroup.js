@@ -6,12 +6,23 @@ import {
   getElementType,
   getUnhandledProps,
   META,
+  useKeyOnly,
 } from '../../lib'
 
 function CommentGroup(props) {
-  const { className, children } = props
+  const {
+    className,
+    children,
+    collapsed,
+    minimal,
+    threaded,
+  } = props
+
   const classes = cx(
     'ui',
+    useKeyOnly(collapsed, 'collapsed'),
+    useKeyOnly(minimal, 'minimal'),
+    useKeyOnly(threaded, 'threaded'),
     'comments',
     className,
   )
@@ -36,6 +47,15 @@ CommentGroup.propTypes = {
 
   /** Classes to add to the CommentGroup className. */
   className: PropTypes.string,
+
+  /** Comments can be collapsed, or hidden from view. */
+  collapsed: PropTypes.bool,
+
+  /** Comments can hide extra information unless a user shows intent to interact with a comment */
+  minimal: PropTypes.bool,
+
+  /** A comment list can be threaded to showing the relationship between conversations */
+  threaded: PropTypes.bool,
 }
 
 export default CommentGroup

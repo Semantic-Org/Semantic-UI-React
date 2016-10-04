@@ -129,6 +129,10 @@ export { default as CardGroup } from './views/Card/CardGroup'
 export { default as CardHeader } from './views/Card/CardHeader'
 export { default as CardMeta } from './views/Card/CardMeta'
 
+// TODO: Add exports
+
+export { default as Comment } from './views/Comment'
+
 export { default as Feed } from './views/Feed'
 export { default as FeedContent } from './views/Feed/FeedContent'
 export { default as FeedDate } from './views/Feed/FeedDate'

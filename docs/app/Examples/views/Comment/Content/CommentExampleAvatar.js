@@ -1,5 +1,5 @@
 import React from 'react'
-import { Comment } from 'stardust'
+import { Comment } from 'semantic-ui-react'
 
 const CommentExampleAvatar = () => (
   <Comment.Group>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Comment, Icon } from 'stardust'
+import { Comment, Icon } from 'semantic-ui-react'
 
 const CommentExampleActions = () => (
   <Comment.Group>

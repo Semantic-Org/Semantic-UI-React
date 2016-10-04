@@ -1,51 +1,50 @@
 import React from 'react'
 import { Button, Comment, Form, Header } from 'semantic-ui-react'
 
-const CommentExampleComment = () => (
-  <Comment.Group>
+const CommentExampleMinimal = () => (
+  <Comment.Group minimal>
     <Header as='h3' dividing>Comments</Header>
 
     <Comment>
-      <Comment.Avatar src='http://semantic-ui.com/images/avatar/small/matt.jpg' />
+      <Comment.Avatar as='a' src='http://semantic-ui.com/images/avatar/small/matt.jpg' />
       <Comment.Content>
         <Comment.Author as='a'>Matt</Comment.Author>
         <Comment.Metadata>
-          <div>Today at 5:42PM</div>
+          <span>Today at 5:42PM</span>
         </Comment.Metadata>
         <Comment.Text>How artistic!</Comment.Text>
         <Comment.Actions>
-          <Comment.Action>Reply</Comment.Action>
+          <a>Reply</a>
         </Comment.Actions>
       </Comment.Content>
     </Comment>
 
     <Comment>
-      <Comment.Avatar src='http://semantic-ui.com/images/avatar/small/elliot.jpg' />
+      <Comment.Avatar as='a' src='http://semantic-ui.com/images/avatar/small/elliot.jpg' />
       <Comment.Content>
         <Comment.Author as='a'>Elliot Fu</Comment.Author>
         <Comment.Metadata>
-          <div>Yesterday at 12:30AM</div>
+          <span>Yesterday at 12:30AM</span>
         </Comment.Metadata>
         <Comment.Text>
           <p>This has been very useful for my research. Thanks as well!</p>
         </Comment.Text>
         <Comment.Actions>
-          <Comment.Action>Reply</Comment.Action>
+          <a>Reply</a>
         </Comment.Actions>
       </Comment.Content>
+
       <Comment.Group>
         <Comment>
-          <Comment.Avatar src='http://semantic-ui.com/images/avatar/small/jenny.jpg' />
+          <Comment.Avatar as='a' src='http://semantic-ui.com/images/avatar/small/jenny.jpg' />
           <Comment.Content>
             <Comment.Author as='a'>Jenny Hess</Comment.Author>
             <Comment.Metadata>
-              <div>Just now</div>
+              <span>Just now</span>
             </Comment.Metadata>
-            <Comment.Text>
-              Elliot you are always so right :)
-            </Comment.Text>
+            <Comment.Text>Elliot you are always so right :)</Comment.Text>
             <Comment.Actions>
-              <Comment.Action>Reply</Comment.Action>
+              <a>Reply</a>
             </Comment.Actions>
           </Comment.Content>
         </Comment>
@@ -53,17 +52,15 @@ const CommentExampleComment = () => (
     </Comment>
 
     <Comment>
-      <Comment.Avatar src='http://semantic-ui.com/images/avatar/small/joe.jpg' />
+      <Comment.Avatar as='a' src='http://semantic-ui.com/images/avatar/small/joe.jpg' />
       <Comment.Content>
         <Comment.Author as='a'>Joe Henderson</Comment.Author>
         <Comment.Metadata>
-          <div>5 days ago</div>
+          <span>5 days ago</span>
         </Comment.Metadata>
-        <Comment.Text>
-          Dude, this is awesome. Thanks so much
-        </Comment.Text>
+        <Comment.Text>Dude, this is awesome. Thanks so much</Comment.Text>
         <Comment.Actions>
-          <Comment.Action>Reply</Comment.Action>
+          <a>Reply</a>
         </Comment.Actions>
       </Comment.Content>
     </Comment>
@@ -75,4 +72,4 @@ const CommentExampleComment = () => (
   </Comment.Group>
 )
 
-export default CommentExampleComment
+export default CommentExampleMinimal
