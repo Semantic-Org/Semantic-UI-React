@@ -11,10 +11,8 @@ export default class ComponentExamples extends Component {
   renderExample = () => {
     const { name } = this.props
 
-    // TODO only find index.js files once PRs for old components are merged and
-    // the docs are updated to use the new naming scheme
     const examplePath = exampleContext.keys()
-      .find(path => new RegExp(`(${name}Examples|${name}/index).js$`).test(path))
+      .find(path => new RegExp(`${name}/index.js$`).test(path))
 
     return examplePath && createElement(exampleContext(examplePath).default)
   }
