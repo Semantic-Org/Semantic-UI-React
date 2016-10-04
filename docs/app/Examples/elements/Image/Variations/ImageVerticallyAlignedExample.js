@@ -1,5 +1,5 @@
 import React from 'react'
-import { Divider, Image } from 'stardust'
+import { Divider, Image } from 'semantic-ui-react'
 
 const src = 'http://semantic-ui.com/images/wireframe/image.png'
 

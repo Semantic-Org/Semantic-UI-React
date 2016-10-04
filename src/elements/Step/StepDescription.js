@@ -9,7 +9,7 @@ import {
 } from '../../lib'
 
 function StepDescription(props) {
-  const { className, children, description } = props
+  const { children, className, description } = props
   const classes = cx(className, 'description')
   const rest = getUnhandledProps(StepDescription, props)
   const ElementType = getElementType(StepDescription, props)

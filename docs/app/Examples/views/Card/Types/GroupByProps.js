@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card } from 'stardust'
+import { Card } from 'semantic-ui-react'
 
 const items = [
   {

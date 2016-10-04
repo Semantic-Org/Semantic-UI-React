@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Confirm } from 'stardust'
+import { Button, Confirm } from 'semantic-ui-react'
 
 class ConfirmCallbacksExample extends Component {
   state = { active: false, result: 'show the modal to capture a result' }

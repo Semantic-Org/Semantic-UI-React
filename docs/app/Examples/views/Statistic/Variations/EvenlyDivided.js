@@ -1,5 +1,5 @@
 import React from 'react'
-import { Icon, Image, Statistic } from 'stardust'
+import { Icon, Image, Statistic } from 'semantic-ui-react'
 
 const { Group, Label, Value } = Statistic
 

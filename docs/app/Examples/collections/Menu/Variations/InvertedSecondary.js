@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Menu, Segment } from 'stardust'
+import { Menu, Segment } from 'semantic-ui-react'
 
 export default class InvertedSecondary extends Component {
   state = { activeItem: 'home' }

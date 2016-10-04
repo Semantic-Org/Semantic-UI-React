@@ -1,7 +1,7 @@
 import React from 'react'
-import { Icon, Label } from 'stardust'
+import { Icon, Label } from 'semantic-ui-react'
 
-const LabelIcon = () => (
+const LabelExampleIcon = () => (
   <div>
     <Label image>
       <img src='http://semantic-ui.com/images/avatar/small/ade.jpg' />
@@ -21,4 +21,4 @@ const LabelIcon = () => (
   </div>
 )
 
-export default LabelIcon
+export default LabelExampleIcon

@@ -22,6 +22,11 @@ const States = () => {
         examplePath='collections/Table/States/TableWarning'
       />
       <ComponentExample
+        title='Warning Shorthand'
+        description='Same as warning example but configured via shorthand'
+        examplePath='collections/Table/States/TableWarningShorthand'
+      />
+      <ComponentExample
         title='Active'
         description='A cell or row can be active or selected by a user'
         examplePath='collections/Table/States/TableActive'

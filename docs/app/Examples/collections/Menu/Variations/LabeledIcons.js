@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Icon, Menu } from 'stardust'
+import { Icon, Menu } from 'semantic-ui-react'
 
 export default class LabeledIcons extends Component {
   state = { activeItem: 'gamepad' }

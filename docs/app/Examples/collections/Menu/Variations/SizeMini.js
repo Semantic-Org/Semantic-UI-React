@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Dropdown, Menu } from 'stardust'
+import { Button, Dropdown, Menu } from 'semantic-ui-react'
 
 export default class SizeMini extends Component {
   state = { activeItem: 'home' }

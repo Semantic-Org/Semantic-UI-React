@@ -1,5 +1,5 @@
 import React from 'react'
-import { Header } from 'stardust'
+import { Header } from 'semantic-ui-react'
 
 const HeaderPageHeadersExamples = () => (
   <div>

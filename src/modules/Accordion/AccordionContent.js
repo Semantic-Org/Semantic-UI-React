@@ -18,11 +18,8 @@ function AccordionContent(props) {
   )
   const rest = getUnhandledProps(AccordionContent, props)
   const ElementType = getElementType(AccordionContent, props)
-  return (
-    <ElementType {...rest} className={classes}>
-      {children}
-    </ElementType>
-  )
+
+  return <ElementType {...rest} className={classes}>{children}</ElementType>
 }
 
 AccordionContent.displayName = 'AccordionContent'

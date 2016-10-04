@@ -15,8 +15,9 @@ import {
   useKeyOnly,
   useKeyOrValueAndKey,
 } from '../../lib'
-import { Icon } from '../../elements'
-import { Label } from '../../elements'
+import Icon from '../../elements/Icon'
+import Label from '../../elements/Label'
+
 import DropdownDivider from './DropdownDivider'
 import DropdownItem from './DropdownItem'
 import DropdownHeader from './DropdownHeader'
@@ -116,9 +117,6 @@ export default class Dropdown extends Component {
       PropTypes.bool,
     ]),
 
-    /** Called with the new value added by the user. Use this to update the options list. */
-    onAddItem: PropTypes.func,
-
     /** Position of the `Add: ...` option in the dropdown list ('top' or 'bottom'). */
     additionPosition: PropTypes.oneOf(_meta.props.additionPosition),
 
@@ -141,10 +139,13 @@ export default class Dropdown extends Component {
     // Callbacks
     // ------------------------------------
 
+    /** Called with the name and new value added by the user. Use this to update the options list. */
+    onAddItem: PropTypes.func,
+
     /** Called with the React Synthetic Event on Dropdown blur. */
     onBlur: PropTypes.func,
 
-    /** Called with the React Synthetic Event and current value on change. */
+    /** Called with the React Synthetic Event and { name, value } on change. */
     onChange: PropTypes.func,
 
     /** Called with the React Synthetic Event and current value on search input change. */
@@ -356,11 +357,11 @@ export default class Dropdown extends Component {
 
   // onChange needs to receive a value
   // can't rely on props.value if we are controlled
-  onChange = (e, value) => {
-    debug('onChange()')
+  handleChange = (e, value) => {
+    debug('handleChange()')
     debug(value)
-    const { onChange } = this.props
-    if (onChange) onChange(e, value)
+    const { name, onChange } = this.props
+    if (onChange) onChange(e, { name, value })
   }
 
   closeOnEscape = (e) => {
@@ -405,7 +406,7 @@ export default class Dropdown extends Component {
 
   selectHighlightedItem = (e) => {
     const { open } = this.state
-    const { multiple, onAddItem, options } = this.props
+    const { multiple, name, onAddItem, options } = this.props
     const value = _.get(this.getSelectedItem(), 'value')
 
     // prevent selecting null if there was no selected item value
@@ -413,17 +414,19 @@ export default class Dropdown extends Component {
     if (!value || !open) return
 
     // notify the onAddItem prop if this is a new value
-    if (onAddItem && !_.some(options, { text: value })) onAddItem(value)
+    if (onAddItem && !_.some(options, { text: value })) {
+      onAddItem(e, { name, value })
+    }
 
     // notify the onChange prop that the user is trying to change value
     if (multiple) {
       // state value may be undefined
       const newValue = _.union(this.state.value, [value])
       this.setValue(newValue)
-      this.onChange(e, newValue)
+      this.handleChange(e, newValue)
     } else {
       this.setValue(value)
-      this.onChange(e, value)
+      this.handleChange(e, value)
       this.close()
     }
   }
@@ -453,7 +456,7 @@ export default class Dropdown extends Component {
     const newValue = _.dropRight(value)
 
     this.setValue(newValue)
-    this.onChange(e, newValue)
+    this.handleChange(e, newValue)
   }
 
   closeOnDocumentClick = (e) => {
@@ -492,7 +495,7 @@ export default class Dropdown extends Component {
   handleItemClick = (e, value) => {
     debug('handleItemClick()')
     debug(value)
-    const { multiple, onAddItem, options } = this.props
+    const { multiple, name, onAddItem, options } = this.props
     const item = this.getItemByValue(value) || {}
 
     // prevent toggle() in handleClick()
@@ -505,16 +508,18 @@ export default class Dropdown extends Component {
     if (item.disabled) return
 
     // notify the onAddItem prop if this is a new value
-    if (onAddItem && !_.some(options, { value })) onAddItem(value)
+    if (onAddItem && !_.some(options, { text: value })) {
+      onAddItem(e, { name, value })
+    }
 
     // notify the onChange prop that the user is trying to change value
     if (multiple) {
       const newValue = _.union(this.state.value, [value])
       this.setValue(newValue)
-      this.onChange(e, newValue)
+      this.handleChange(e, newValue)
     } else {
       this.setValue(value)
-      this.onChange(e, value)
+      this.handleChange(e, value)
       this.close()
     }
   }
@@ -677,7 +682,7 @@ export default class Dropdown extends Component {
     debug('new value:', newValue)
 
     this.setValue(newValue)
-    this.onChange(e, newValue)
+    this.handleChange(e, newValue)
   }
 
   moveSelectionBy = (offset, startIndex = this.state.selectedIndex) => {
@@ -950,7 +955,6 @@ export default class Dropdown extends Component {
       className,
       'dropdown',
     )
-
     const rest = getUnhandledProps(Dropdown, this.props)
     const ElementType = getElementType(Dropdown, this.props)
 
@@ -962,7 +966,7 @@ export default class Dropdown extends Component {
         onClick={this.handleClick}
         onMouseDown={this.handleMouseDown}
         onFocus={this.handleFocus}
-        onChange={this.onChange}
+        onChange={this.handleChange}
         tabIndex={search ? undefined : 0}
         ref={c => (this._dropdown = c)}
       >

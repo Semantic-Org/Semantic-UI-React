@@ -1,5 +1,5 @@
 import React from 'react'
-import { Radio, Segment } from 'stardust'
+import { Radio, Segment } from 'semantic-ui-react'
 
 const RadioFittedExample = () => (
   <div>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Progress } from 'stardust'
+import { Button, Progress } from 'semantic-ui-react'
 
 export default class ProgressIndicatingExample extends Component {
   state = { percent: 33 }

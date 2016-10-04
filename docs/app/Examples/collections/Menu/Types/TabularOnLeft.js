@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Grid, Menu, Segment } from 'stardust'
+import { Grid, Menu, Segment } from 'semantic-ui-react'
 
 export default class TabularOnLeft extends Component {
   state = { activeItem: 'bio' }

@@ -13,7 +13,9 @@ import {
   useKeyOrValueAndKey,
   useValueAndKey,
 } from '../../lib'
-import { Icon, Label } from '../'
+import Icon from '../Icon/Icon'
+import Label from '../Label/Label'
+
 import ButtonContent from './ButtonContent'
 import ButtonGroup from './ButtonGroup'
 import ButtonOr from './ButtonOr'
@@ -29,11 +31,11 @@ const debug = makeDebugger('button')
 function Button(props) {
   const {
     active, animated, attached, basic, children, circular, className, color, compact, content, disabled, floated, fluid,
-    icon, inverted, label, labeled, loading, negative, positive, primary, secondary, size, toggle,
+    icon, inverted, label, labelPosition, loading, negative, positive, primary, secondary, size, toggle,
   } = props
 
   const labeledClasses = cx(
-    useKeyOrValueAndKey(labeled || !!label, 'labeled'),
+    useKeyOrValueAndKey(labelPosition || !!label, 'labeled'),
   )
 
   const baseClasses = cx(
@@ -48,7 +50,7 @@ function Button(props) {
     useKeyOnly(disabled, 'disabled'),
     useValueAndKey(floated, 'floated'),
     useKeyOnly(fluid, 'fluid'),
-    useKeyOnly(icon === true || (labeled || !children && !content) && icon, 'icon'),
+    useKeyOnly(icon === true || icon && (labelPosition || !children && !content), 'icon'),
     useKeyOnly(inverted, 'inverted'),
     useKeyOnly(loading, 'loading'),
     useKeyOnly(negative, 'negative'),
@@ -57,10 +59,9 @@ function Button(props) {
     useKeyOnly(secondary, 'secondary'),
     useKeyOnly(toggle, 'toggle'),
   )
-
   const rest = getUnhandledProps(Button, props)
   const ElementType = getElementType(Button, props, () => {
-    if (label || labeled || attached) return 'div'
+    if (label || attached) return 'div'
   })
   const tabIndex = ElementType === 'div' ? 0 : undefined
 
@@ -80,15 +81,15 @@ function Button(props) {
     debug('render label:', { classes, containerClasses }, props)
     const labelElement = Label.create(label, {
       basic: true,
-      pointing: labeled === 'left' ? 'right' : 'left',
+      pointing: labelPosition === 'left' ? 'right' : 'left',
     })
     return (
       <ElementType {...rest} className={containerClasses}>
-        {labeled === 'left' && labelElement}
+        {labelPosition === 'left' && labelElement}
         <button className={classes}>
           {Icon.create(icon)} {content}
         </button>
-        {(labeled === 'right' || !labeled) && labelElement}
+        {(labelPosition === 'right' || !labelPosition) && labelElement}
       </ElementType>
     )
   }
@@ -134,7 +135,7 @@ Button._meta = {
       'youtube',
     ],
     floated: SUI.FLOATS,
-    labeled: ['right', 'left'],
+    labelPosition: ['right', 'left'],
     size: SUI.SIZES,
   },
 }
@@ -213,10 +214,7 @@ Button.propTypes = {
   inverted: PropTypes.bool,
 
   /** A labeled button can format a Label or Icon to appear on the left or right */
-  labeled: customPropTypes.some([
-    PropTypes.bool,
-    PropTypes.oneOf(Button._meta.props.labeled),
-  ]),
+  labelPosition: PropTypes.oneOf(Button._meta.props.labelPosition),
 
   /** Add a Label by text, props object, or pass a <Label /> */
   label: customPropTypes.some([

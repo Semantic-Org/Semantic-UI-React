@@ -25,6 +25,8 @@ import TableRow from './TableRow'
 function Table(props) {
   const {
     basic,
+    attached,
+    renderBodyRow,
     celled,
     children,
     className,
@@ -34,6 +36,8 @@ function Table(props) {
     compact,
     definition,
     fixed,
+    footerRow,
+    headerRow,
     inverted,
     padded,
     selectable,
@@ -42,12 +46,15 @@ function Table(props) {
     stackable,
     striped,
     structured,
+    tableData,
     unstackable,
   } = props
+
   const classes = cx(
     'ui',
     color,
     size,
+    useKeyOrValueAndKey(attached, 'attached'),
     useKeyOrValueAndKey(basic, 'basic'),
     useKeyOnly(celled, 'celled'),
     useKeyOnly(collapsing, 'collapsing'),
@@ -66,17 +73,27 @@ function Table(props) {
     className,
     'table'
   )
-
-  const ElementType = getElementType(Table, props)
   const rest = getUnhandledProps(Table, props)
+  const ElementType = getElementType(Table, props)
 
-  return <ElementType {...rest} className={classes}>{children}</ElementType>
+  if (children) {
+    return <ElementType {...rest} className={classes}>{children}</ElementType>
+  }
+
+  return (
+    <ElementType {...rest} className={classes}>
+      {headerRow && <TableHeader>{TableRow.create(headerRow, { cellAs: 'th' })}</TableHeader>}
+      {<TableBody>{_.map(tableData, (data, index) => TableRow.create(renderBodyRow(data, index)))}</TableBody>}
+      {footerRow && <TableFooter>{TableRow.create(footerRow)}</TableFooter>}
+    </ElementType>
+  )
 }
 
 Table._meta = {
   name: 'Table',
   type: META.TYPES.COLLECTION,
   props: {
+    attached: ['top', 'bottom'],
     basic: ['very'],
     color: SUI.COLORS,
     columns: SUI.WIDTHS,
@@ -94,6 +111,12 @@ Table.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
+  /** Attach table to other content */
+  attached: PropTypes.oneOfType([
+    PropTypes.oneOf(Table._meta.props.attached),
+    PropTypes.bool,
+  ]),
+
   /** A table can reduce its complexity to increase readability. */
   basic: PropTypes.oneOfType([
     PropTypes.bool,
@@ -104,7 +127,10 @@ Table.propTypes = {
   celled: PropTypes.bool,
 
   /** Primary content of the Table. */
-  children: PropTypes.node,
+  children: customPropTypes.every([
+    customPropTypes.disallow(['headerRow', 'renderBodyRow', 'footerRow', 'tableData']),
+    PropTypes.node,
+  ]),
 
   /** Classes that will be added to the Table className. */
   className: PropTypes.string,
@@ -129,8 +155,20 @@ Table.propTypes = {
 
   /**
    * A table can use fixed a special faster form of table rendering that does not resize table cells based on content
-   * */
+   **/
   fixed: PropTypes.bool,
+
+  /** Shorthand for a TableRow to be placed within Table.Footer. */
+  footerRow: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.element,
+  ]),
+
+  /** Shorthand for a TableRow to be placed within Table.Header. */
+  headerRow: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.element,
+  ]),
 
   /** A table's colors can be inverted. */
   inverted: PropTypes.bool,
@@ -139,6 +177,15 @@ Table.propTypes = {
   padded: PropTypes.oneOfType([
     PropTypes.bool,
     PropTypes.oneOf(Table._meta.props.padded),
+  ]),
+
+  /**
+   * A function that takes (data, index) and returns shorthand for a TableRow
+   * to be placed within Table.Body.
+   */
+  renderBodyRow: customPropTypes.every([
+    customPropTypes.demand(['tableData']),
+    PropTypes.func,
   ]),
 
   /** A table can have its rows appear selectable. */
@@ -158,6 +205,12 @@ Table.propTypes = {
 
   /** A table can be formatted to display complex structured data. */
   structured: PropTypes.bool,
+
+  /** Data to be passed to the renderBodyRow function. */
+  tableData: customPropTypes.every([
+    customPropTypes.demand(['renderBodyRow']),
+    PropTypes.array,
+  ]),
 
   /** A table can specify how it stacks table content responsively. */
   unstackable: PropTypes.bool,

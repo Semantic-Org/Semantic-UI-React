@@ -1,5 +1,5 @@
 import React from 'react'
-import { Checkbox, Segment } from 'stardust'
+import { Checkbox, Segment } from 'semantic-ui-react'
 
 const CheckboxFittedExample = () => (
   <div>

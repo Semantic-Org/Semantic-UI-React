@@ -1,5 +1,5 @@
 import React from 'react'
-import { Table } from 'stardust'
+import { Table } from 'semantic-ui-react'
 
 const TableVeryCompact = () => {
   return (

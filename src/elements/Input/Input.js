@@ -12,7 +12,9 @@ import {
   useKeyOnly,
   useValueAndKey,
 } from '../../lib'
-import { Button, Icon, Label } from '../../elements'
+import Button from '../../elements/Button'
+import Icon from '../../elements/Icon'
+import Label from '../../elements/Label'
 
 export const htmlInputPropNames = [
   // React
@@ -84,7 +86,6 @@ function Input(props) {
     className,
     'input',
   )
-
   const rest = getUnhandledProps(Input, props)
   const ElementType = getElementType(Input, props)
   const inputProps = _.pick(props, htmlInputPropNames)

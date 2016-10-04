@@ -11,8 +11,8 @@ import {
 function MenuMenu(props) {
   const { children, className, position } = props
   const classes = cx(className, position, 'menu')
-  const ElementType = getElementType(MenuMenu, props)
   const rest = getUnhandledProps(MenuMenu, props)
+  const ElementType = getElementType(MenuMenu, props)
 
   return <ElementType {...rest} className={classes}>{children}</ElementType>
 }

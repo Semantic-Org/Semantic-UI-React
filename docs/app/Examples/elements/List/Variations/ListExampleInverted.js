@@ -1,5 +1,5 @@
 import React from 'react'
-import { List, Segment } from 'stardust'
+import { List, Segment } from 'semantic-ui-react'
 
 const ListExampleInverted = () => (
   <Segment inverted>

@@ -31,7 +31,7 @@ function Rail(props) {
   const rest = getUnhandledProps(Rail, props)
   const ElementType = getElementType(Rail, props)
 
-  return <ElementType className={classes} {...rest}>{ children }</ElementType>
+  return <ElementType {...rest} className={classes}>{children}</ElementType>
 }
 
 Rail._meta = {

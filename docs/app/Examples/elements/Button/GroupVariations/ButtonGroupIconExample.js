@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Icon } from 'stardust'
+import { Button, Icon } from 'semantic-ui-react'
 
 const ButtonGroupIconExample = () => (
   <Button.Group icon>

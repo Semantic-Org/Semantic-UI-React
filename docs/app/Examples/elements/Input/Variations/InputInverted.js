@@ -1,5 +1,5 @@
 import React from 'react'
-import { Segment, Input } from 'stardust'
+import { Segment, Input } from 'semantic-ui-react'
 
 const InputInverted = () => (
   <Segment inverted>

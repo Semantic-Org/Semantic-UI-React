@@ -11,7 +11,7 @@ import {
   useKeyOnly,
   useKeyOrValueAndKey,
 } from '../../lib'
-import { Icon } from '../../elements'
+import Icon from '../../elements/Icon'
 
 function MenuItem(props) {
   const {
@@ -20,7 +20,7 @@ function MenuItem(props) {
   const classes = cx(
     useKeyOnly(active, 'active'),
     useKeyOrValueAndKey(fitted, 'fitted'),
-    useKeyOnly(icon, 'icon'),
+    useKeyOnly(icon === true || icon && !(name || content), 'icon'),
     useKeyOnly(header, 'header'),
     useKeyOnly(link, 'link'),
     color,
@@ -37,11 +37,7 @@ function MenuItem(props) {
   const rest = getUnhandledProps(MenuItem, props)
 
   if (children) {
-    return (
-      <ElementType {...rest} className={classes} onClick={handleClick}>
-        {children}
-      </ElementType>
-    )
+    return <ElementType {...rest} className={classes} onClick={handleClick}>{children}</ElementType>
   }
 
   return (

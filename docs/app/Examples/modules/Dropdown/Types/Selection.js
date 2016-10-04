@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import faker from 'faker'
 import React, { Component } from 'react'
-import { Button, Dropdown, Grid, Header } from 'stardust'
+import { Button, Dropdown, Grid, Header } from 'semantic-ui-react'
 
 const getOptions = () => _.times(3, () => {
   const name = faker.name.findName()
@@ -20,7 +20,7 @@ export default class DropdownSelectionExample extends Component {
     })
   }
 
-  handleChange = (e, value) => this.setState({ value })
+  handleChange = (e, { value }) => this.setState({ value })
   handleSearchChange = (e, value) => this.setState({ searchQuery: value })
 
   fetchOptions = () => {

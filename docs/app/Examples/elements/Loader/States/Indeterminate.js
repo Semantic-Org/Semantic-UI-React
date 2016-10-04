@@ -1,5 +1,5 @@
 import React from 'react'
-import { Loader, Image, Segment } from 'stardust'
+import { Loader, Image, Segment } from 'semantic-ui-react'
 
 // TODO: Update <Dimmer> usage after its update to v1 API
 

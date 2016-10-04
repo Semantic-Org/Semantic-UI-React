@@ -6,8 +6,9 @@ import {
   getUnhandledProps,
   META,
 } from '../../lib'
+import Dropdown from '../../modules/Dropdown'
+
 import FormField from './FormField'
-import { Dropdown } from '../../modules'
 
 /**
  * Sugar for <Form.Field control={Dropdown} />
@@ -18,6 +19,7 @@ function FormDropdown(props) {
   const { control } = props
   const rest = getUnhandledProps(FormDropdown, props)
   const ElementType = getElementType(FormDropdown, props)
+
   return <ElementType {...rest} control={control} />
 }
 

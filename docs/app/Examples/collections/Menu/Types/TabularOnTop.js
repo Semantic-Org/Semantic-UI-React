@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Input, Menu, Segment } from 'stardust'
+import { Input, Menu, Segment } from 'semantic-ui-react'
 
 export default class TabularOnTop extends Component {
   state = { activeItem: 'bio' }

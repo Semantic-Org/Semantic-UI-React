@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Input, Label, Menu } from 'stardust'
+import { Input, Label, Menu } from 'semantic-ui-react'
 
 export default class SizeVerticalSmall extends Component {
   state = { activeItem: 'inbox' }

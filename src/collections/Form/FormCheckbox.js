@@ -6,8 +6,9 @@ import {
   getUnhandledProps,
   META,
 } from '../../lib'
+import Checkbox from '../../modules/Checkbox'
+
 import FormField from './FormField'
-import { Checkbox } from '../../modules'
 
 /**
  * Sugar for <Form.Field control={Checkbox} />
@@ -18,6 +19,7 @@ function FormCheckbox(props) {
   const { control } = props
   const rest = getUnhandledProps(FormCheckbox, props)
   const ElementType = getElementType(FormCheckbox, props)
+
   return <ElementType {...rest} control={control} />
 }
 

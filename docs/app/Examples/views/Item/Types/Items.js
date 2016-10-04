@@ -1,5 +1,5 @@
 import React from 'react'
-import { Image, Item } from 'stardust'
+import { Image, Item } from 'semantic-ui-react'
 
 const Items = () => (
   <Item.Group>

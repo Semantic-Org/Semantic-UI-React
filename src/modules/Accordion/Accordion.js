@@ -9,9 +9,10 @@ import {
   META,
   useKeyOnly,
 } from '../../lib'
-import { Icon } from '../../elements'
-import AccordionContent from '../../modules/Accordion/AccordionContent'
-import AccordionTitle from '../../modules/Accordion/AccordionTitle'
+import Icon from '../../elements/Icon'
+
+import AccordionContent from './AccordionContent'
+import AccordionTitle from './AccordionTitle'
 
 /**
  * An accordion allows users to toggle the display of sections of content
@@ -161,7 +162,6 @@ export default class Accordion extends Component {
       useKeyOnly(styled, 'styled'),
       'accordion'
     )
-
     const rest = _.omit(this.props, _.keys(Accordion.propTypes))
     const ElementType = getElementType(Accordion, this.props)
 

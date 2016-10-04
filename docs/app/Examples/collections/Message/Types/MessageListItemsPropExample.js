@@ -1,5 +1,5 @@
 import React from 'react'
-import { Message } from 'stardust'
+import { Message } from 'semantic-ui-react'
 
 const items = [
   'You can now have cover images on blog pages',

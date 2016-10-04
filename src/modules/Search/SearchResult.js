@@ -44,8 +44,8 @@ function SearchResult(props) {
     'result',
     className,
   )
-  const ElementType = getElementType(SearchResult, props)
   const rest = getUnhandledProps(SearchResult, props)
+  const ElementType = getElementType(SearchResult, props)
 
   // Note: You technically only need the 'content' wrapper when there's an
   // image. However, optionally wrapping it makes this function a lot more

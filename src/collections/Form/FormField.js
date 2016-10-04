@@ -10,8 +10,8 @@ import {
   useKeyOnly,
   useWidthProp,
 } from '../../lib'
-import { Checkbox } from '../../modules'
-import { Radio } from '../../addons'
+import Checkbox from '../../modules/Checkbox'
+import Radio from '../../addons/Radio'
 
 /**
  * A field is a form element containing a label and an input

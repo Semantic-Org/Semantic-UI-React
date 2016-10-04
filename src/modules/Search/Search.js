@@ -15,7 +15,8 @@ import {
   useKeyOnly,
   useValueAndKey,
 } from '../../lib'
-import { Input } from '../../elements'
+import Input from '../../elements/Input'
+
 import SearchCategory from './SearchCategory'
 import SearchResult from './SearchResult'
 import SearchResults from './SearchResults'
@@ -243,8 +244,8 @@ export default class Search extends Component {
 
   // onChange needs to receive a value
   // can't rely on props.value if we are controlled
-  onChange = (e, result) => {
-    debug('onChange()')
+  handleChange = (e, result) => {
+    debug('handleChange()')
     debug(result)
     const { onChange } = this.props
     if (onChange) onChange(e, result)
@@ -286,7 +287,7 @@ export default class Search extends Component {
 
     // notify the onChange prop that the user is trying to change value
     this.setValue(result.title)
-    this.onChange(e, result)
+    this.handleChange(e, result)
     this.close()
   }
 
@@ -333,7 +334,7 @@ export default class Search extends Component {
 
     // notify the onChange prop that the user is trying to change value
     this.setValue(result.title)
-    this.onChange(e, result)
+    this.handleChange(e, result)
     this.close()
   }
 
@@ -606,9 +607,8 @@ export default class Search extends Component {
       className,
       'search',
     )
-
-    const ElementType = getElementType(Search, this.props)
     const rest = getUnhandledProps(Search, this.props)
+    const ElementType = getElementType(Search, this.props)
 
     return (
       <ElementType
@@ -616,7 +616,7 @@ export default class Search extends Component {
         className={classes}
         onBlur={this.handleBlur}
         onFocus={this.handleFocus}
-        onChange={this.onChange}
+        onChange={this.handleChange}
         onMouseDown={this.handleMouseDown}
       >
         {this.renderSearchInput()}

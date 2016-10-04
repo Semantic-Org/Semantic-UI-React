@@ -1,8 +1,8 @@
 import React, { PropTypes } from 'react'
 
-import { Button } from '../../elements'
-import { Modal } from '../../modules'
 import { getUnhandledProps, META } from '../../lib'
+import Button from '../../elements/Button'
+import Modal from '../../modules/Modal'
 
 /**
  * A Confirm modal gives the user a choice to confirm or cancel an action

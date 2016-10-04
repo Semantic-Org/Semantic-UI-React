@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import React, { Component, PropTypes } from 'react'
 
-import { Label, Table } from 'stardust'
+import { Label, Table } from 'src'
 
 /**
  * Displays a table of a Component's PropTypes.

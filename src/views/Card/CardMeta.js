@@ -12,7 +12,7 @@ import {
  * A card can contain content metadata
  */
 function CardMeta(props) {
-  const { className, children, content } = props
+  const { children, className, content } = props
   const classes = cx(className, 'meta')
   const rest = getUnhandledProps(CardMeta, props)
   const ElementType = getElementType(CardMeta, props)

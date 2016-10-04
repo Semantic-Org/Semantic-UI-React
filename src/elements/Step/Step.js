@@ -8,7 +8,8 @@ import {
   META,
   useKeyOnly,
 } from '../../lib'
-import { Icon } from '../../elements'
+import Icon from '../../elements/Icon'
+
 import StepContent from './StepContent'
 import StepDescription from './StepDescription'
 import StepGroup from './StepGroup'
@@ -19,7 +20,7 @@ import StepTitle from './StepTitle'
  */
 function Step(props) {
   const {
-    active, className, children, completed, description, disabled, icon, href, link, onClick, title,
+    active, children, className, completed, description, disabled, icon, href, link, onClick, title,
   } = props
   const classes = cx(
     useKeyOnly(active, 'active'),

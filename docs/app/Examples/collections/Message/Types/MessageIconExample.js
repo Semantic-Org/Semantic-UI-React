@@ -1,5 +1,5 @@
 import React from 'react'
-import { Message, Icon } from 'stardust'
+import { Message, Icon } from 'semantic-ui-react'
 
 const MessageIconExample = () => (
   <Message icon>

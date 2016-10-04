@@ -9,9 +9,9 @@ import {
 } from '../../lib'
 
 function MessageContent(props) {
-  const { className, children } = props
-  const rest = getUnhandledProps(MessageContent, props)
+  const { children, className } = props
   const classes = cx('content', className)
+  const rest = getUnhandledProps(MessageContent, props)
   const ElementType = getElementType(MessageContent, props)
 
   return <ElementType {...rest} className={classes}>{children}</ElementType>

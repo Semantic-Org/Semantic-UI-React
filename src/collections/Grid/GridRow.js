@@ -15,12 +15,25 @@ import {
 } from '../../lib'
 
 function GridRow(props) {
-  const { centered, children, className, color, columns, only, reversed, stretched, textAlign, verticalAlign } = props
+  const {
+    centered,
+    children,
+    className,
+    color,
+    columns,
+    divided,
+    only,
+    reversed,
+    stretched,
+    textAlign,
+    verticalAlign,
+  } = props
   const classes = cx(
     className,
     color,
     useKeyOnly(centered, 'centered'),
     useWidthProp(columns, 'column', true),
+    useKeyOnly(divided, 'divided'),
     useValueAndKey(only, 'only'),
     useValueAndKey(reversed, 'reversed'),
     useKeyOnly(stretched, 'stretched'),
@@ -66,6 +79,9 @@ GridRow.propTypes = {
 
   /** Represents column count per line in Row. */
   columns: PropTypes.oneOf(GridRow._meta.props.columns),
+
+  /** A row can have dividers between its columns. */
+  divided: PropTypes.bool,
 
   /** A row can appear only for a specific device, or screen sizes. */
   only: PropTypes.oneOf(GridRow._meta.props.only),

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Step } from 'stardust'
+import { Step } from 'semantic-ui-react'
 
 class ClickableStep extends Component {
   state = {}

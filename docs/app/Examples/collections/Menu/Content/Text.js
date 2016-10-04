@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Header, Menu } from 'stardust'
+import { Header, Menu } from 'semantic-ui-react'
 
 export default class Text extends Component {
   state = {}

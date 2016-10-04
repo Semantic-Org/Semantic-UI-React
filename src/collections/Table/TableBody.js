@@ -11,8 +11,8 @@ import {
 function TableBody(props) {
   const { children, className } = props
   const classes = cx(className)
-  const ElementType = getElementType(TableBody, props)
   const rest = getUnhandledProps(TableBody, props)
+  const ElementType = getElementType(TableBody, props)
 
   return <ElementType {...rest} className={classes}>{children}</ElementType>
 }

@@ -6,8 +6,9 @@ import {
   getUnhandledProps,
   META,
 } from '../../lib'
+import Input from '../../elements/Input'
+
 import FormField from './FormField'
-import { Input } from '../../elements'
 
 /**
  * Sugar for <Form.Field control={Input} />
@@ -18,6 +19,7 @@ function FormInput(props) {
   const { control } = props
   const rest = getUnhandledProps(FormInput, props)
   const ElementType = getElementType(FormInput, props)
+
   return <ElementType {...rest} control={control} />
 }
 

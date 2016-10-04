@@ -9,7 +9,8 @@ import {
   SUI,
   useKeyOnly,
 } from '../../lib'
-import { Image } from '../../elements'
+import Image from '../../elements/Image'
+
 import CardContent from './CardContent'
 import CardDescription from './CardDescription'
 import CardGroup from './CardGroup'
@@ -54,11 +55,7 @@ function Card(props) {
   })
 
   if (children) {
-    return (
-      <ElementType {...rest} className={classes} href={href} onClick={handleClick}>
-        {children}
-      </ElementType>
-    )
+    return <ElementType {...rest} className={classes} href={href} onClick={handleClick}>{children}</ElementType>
   }
 
   return (

@@ -6,9 +6,12 @@ import ReactDOMServer from 'react-dom/server'
 
 import { createShorthand, META, numberToWord } from 'src/lib'
 import { consoleUtil, sandbox, syntheticEvent } from 'test/utils'
-import * as stardust from 'stardust'
+import * as semanticUIReact from 'semantic-ui-react'
 
-import { Button, Icon, Image, Label } from 'src/elements'
+import Button from 'src/elements/Button'
+import Icon from 'src/elements/Icon'
+import Image from 'src/elements/Image'
+import Label from 'src/elements/Label'
 
 const commonTestHelpers = (testName, Component) => {
   const throwError = msg => {
@@ -28,7 +31,7 @@ const commonTestHelpers = (testName, Component) => {
 const componentCtx = require.context(
   '../../src/',
   true,
-  /(addons|collections|elements|modules|views).(?!index).*\.js/
+  /(addons|collections|elements|modules|views).\w+.(?!index)\w+.js/
 )
 
 const componentInfo = componentCtx.keys().map(key => {
@@ -117,33 +120,33 @@ export const isConformant = (Component, options = {}) => {
   // ----------------------------------------
   // Is exported or private
   // ----------------------------------------
-  // detect components like: stardust.H1
-  const isStardustProp = _.has(stardust, constructorName)
+  // detect components like: semanticUIReact.H1
+  const isTopLevelAPIProp = _.has(semanticUIReact, constructorName)
 
-  // detect sub components like: stardust.Form.Field (ie FormField component)
+  // detect sub components like: semanticUIReact.Form.Field (ie FormField component)
   // Build a path by following _meta.parents to the root:
   //   ['Form', 'FormField', 'FormTextArea']
-  let stardustPath = []
+  let apiPath = []
   let meta = _meta
   while (meta) {
-    stardustPath.unshift(meta.name)
-    meta = _.get(stardust, [meta.parent, '_meta'])
+    apiPath.unshift(meta.name)
+    meta = _.get(semanticUIReact, [meta.parent, '_meta'])
   }
   // Remove parent name from paths:
   //   ['Form', 'Field', 'TextArea']
-  stardustPath = stardustPath.reduce((acc, next) => (
+  apiPath = apiPath.reduce((acc, next) => (
     [...acc, next.replace(acc.join(''), '')]
   ), [])
 
-  // find the stardustPath in the stardust object
-  const isSubComponent = _.isFunction(_.get(stardust, stardustPath))
+  // find the apiPath in the semanticUIReact object
+  const isSubComponent = _.isFunction(_.get(semanticUIReact, apiPath))
 
   if (META.isPrivate(constructorName)) {
     it('is not exported as a component nor sub component', () => {
-      expect(isStardustProp).to.equal(
+      expect(isTopLevelAPIProp).to.equal(
         false,
         `"${constructorName}" is private (starts with  "_").` +
-        ' It cannot be a key on the stardust object'
+        ' It cannot be exposed on the top level API'
       )
 
       expect(isSubComponent).to.equal(
@@ -155,9 +158,9 @@ export const isConformant = (Component, options = {}) => {
   } else {
     // require all components to be exported at the top level
     it('is exported at the top level', () => {
-      expect(isStardustProp).to.equal(true, [
+      expect(isTopLevelAPIProp).to.equal(true, [
         `"${constructorName}" must be exported at top level.`,
-        `According to its \`_meta.type\`, export it in \`${_meta.type}s/index.js\`.`,
+        'Export it in `src/index.js`.',
       ].join(' '))
     })
   }
@@ -254,7 +257,7 @@ export const isConformant = (Component, options = {}) => {
   // Events
   // ----------------------------------------
   it('handles events transparently', () => {
-    // Stardust events should be handled transparently, working just as they would in vanilla React.
+    // Events should be handled transparently, working just as they would in vanilla React.
     // Example, both of these handler()s should be called with the same event:
     //
     //   <Button onClick={handler} />
@@ -298,16 +301,13 @@ export const isConformant = (Component, options = {}) => {
           'You may need to hoist your event handlers up to the root element.\n'
         )
 
-        // TODO: https://github.com/TechnologyAdvice/stardust/issues/218
-        // some components currently return useful data in the first position
-        // update those to return the event first, then any data, finally uncomment this test
-        //
-        // handlerSpy.calledWithMatch(eventShape).should.equal(true,
-        //   `<${constructorName} ${listenerName}={${handlerName}} />\n` +
-        //   `${leftPad} ^ was not called with an "${listenerName}" event\n` +
-        //   'It was called with args:\n' +
-        //   JSON.stringify(handlerSpy.args, null, 2)
-        // )
+        // Components should return the event first, then any data
+        handlerSpy.calledWithMatch(eventShape).should.equal(true,
+          `<${constructorName} ${listenerName}={${handlerName}} />\n` +
+          `${leftPad} ^ was not called with an "${listenerName}" event\n` +
+          'It was called with args:\n' +
+          JSON.stringify(handlerSpy.args, null, 2)
+        )
       })
     })
   })
@@ -331,7 +331,7 @@ export const isConformant = (Component, options = {}) => {
     if (_.has(_meta, 'parent')) {
       describe('parent', () => {
         it('matches some component name', () => {
-          expect(_.map(stardust, c => c.prototype.constructor.name)).to.contain(_meta.parent)
+          expect(_.map(semanticUIReact, c => c.prototype.constructor.name)).to.contain(_meta.parent)
         })
       })
     }
@@ -514,7 +514,7 @@ const _classNamePropValueBeforePropName = (Component, propKey, options = {}) => 
   const { className = propKey, requiredProps = {} } = options
 
   _.each(_.get(Component, `_meta.props[${propKey}]`), (propVal) => {
-    it(`adds "${propVal} ${propKey}" to className`, () => {
+    it(`adds "${propVal} ${className}" to className`, () => {
       shallow(createElement(Component, { ...requiredProps, [propKey]: propVal }))
         .should.have.className(`${propVal} ${className}`)
     })
@@ -539,8 +539,8 @@ export const implementsWidthProp = (Component, options = {}) => {
     assertRequired(Component, 'a `Component`')
 
     _definesPropOptions(Component, propKey)
-    _noDefaultClassNameFromProp(Component, propKey, { requiredProps })
-    _noClassNameFromBoolProps(Component, propKey, { requiredProps })
+    _noDefaultClassNameFromProp(Component, propKey, options)
+    _noClassNameFromBoolProps(Component, propKey, options)
 
     it('adds numberToWord value to className', () => {
       _.without(_.get(Component, `_meta.props[${propKey}]`), 'equal').forEach((width) => {
@@ -607,7 +607,7 @@ export const implementsShorthandProp = (Component, options = {}) => {
           .should.have.descendants(name)
       })
     } else {
-      _noDefaultClassNameFromProp(Component, propKey, { requiredProps })
+      _noDefaultClassNameFromProp(Component, propKey, options)
 
       it(`has no ${name} when not defined`, () => {
         shallow(<Component {...requiredProps} />)
@@ -769,8 +769,8 @@ export const implementsTextAlignProp = (Component, options = {}) => {
     assertRequired(Component, 'a `Component`')
 
     _definesPropOptions(Component, 'textAlign')
-    _noDefaultClassNameFromProp(Component, 'textAlign', { requiredProps })
-    _noClassNameFromBoolProps(Component, 'textAlign', { requiredProps })
+    _noDefaultClassNameFromProp(Component, 'textAlign', options)
+    _noClassNameFromBoolProps(Component, 'textAlign', options)
 
     _.each(Component._meta.props.aligned, (propVal) => {
       if (propVal === 'justified') {
@@ -805,8 +805,8 @@ export const implementsVerticalAlignProp = (Component, options = {}) => {
     assertRequired(Component, 'a `Component`')
 
     _definesPropOptions(Component, 'verticalAlign')
-    _noDefaultClassNameFromProp(Component, 'verticalAlign', { requiredProps })
-    _noClassNameFromBoolProps(Component, 'verticalAlign', { requiredProps })
+    _noDefaultClassNameFromProp(Component, 'verticalAlign', options)
+    _noClassNameFromBoolProps(Component, 'verticalAlign', options)
 
     _.each(Component._meta.props.verticalAlign, (propVal) => {
       it(`adds "${propVal} aligned" to className`, () => {
@@ -823,7 +823,7 @@ export const implementsVerticalAlignProp = (Component, options = {}) => {
  * @param {String} propKey A props key.
  * @param {Object} [options={}]
  * @param {Object} [options.requiredProps={}] Props required to render the component.
- * @param {Object} [options.className=propKey] Props required to render the component.
+ * @param {Object} [options.className=propKey] The className to assert exists.
  */
 export const propKeyOnlyToClassName = (Component, propKey, options = {}) => {
   const { className = propKey, requiredProps = {} } = options
@@ -833,7 +833,7 @@ export const propKeyOnlyToClassName = (Component, propKey, options = {}) => {
     assertRequired(Component, 'a `Component`')
     assertRequired(propKey, 'a `propKey`')
 
-    _noDefaultClassNameFromProp(Component, propKey, { requiredProps })
+    _noDefaultClassNameFromProp(Component, propKey, options)
 
     it('adds prop name to className', () => {
       shallow(createElement(Component, { ...requiredProps, [propKey]: true }))
@@ -857,7 +857,7 @@ export const propKeyOnlyToClassName = (Component, propKey, options = {}) => {
  * @param {String} propKey A props key.
  * @param {Object} [options={}]
  * @param {Object} [options.requiredProps={}] Props required to render the component.
- * @param {Object} [options.className=propKey] Props required to render the component.
+ * @param {Object} [options.className=propKey] The className to assert exists.
  */
 export const propValueOnlyToClassName = (Component, propKey, options = {}) => {
   const { requiredProps = {} } = options
@@ -868,8 +868,8 @@ export const propValueOnlyToClassName = (Component, propKey, options = {}) => {
     assertRequired(propKey, 'a `propKey`')
 
     _definesPropOptions(Component, propKey)
-    _noDefaultClassNameFromProp(Component, propKey, { requiredProps })
-    _noClassNameFromBoolProps(Component, propKey, { requiredProps })
+    _noDefaultClassNameFromProp(Component, propKey, options)
+    _noClassNameFromBoolProps(Component, propKey, options)
 
     it('adds prop value to className', () => {
       _.each(_.get(Component, `_meta.props[${propKey}]`), propValue => {
@@ -896,10 +896,9 @@ export const propValueOnlyToClassName = (Component, propKey, options = {}) => {
  * @param {String} propKey A props key.
  * @param {Object} [options={}]
  * @param {Object} [options.requiredProps={}] Props required to render the component.
- * @param {Object} [options.className=propKey] Props required to render the component.
+ * @param {Object} [options.className=propKey] The className to assert exists.
  */
 export const propKeyAndValueToClassName = (Component, propKey, options = {}) => {
-  const { className = propKey, requiredProps = {} } = options
   const { assertRequired } = commonTestHelpers('propKeyAndValueToClassName', Component)
 
   describe(`${propKey} (common)`, () => {
@@ -907,9 +906,9 @@ export const propKeyAndValueToClassName = (Component, propKey, options = {}) => 
     assertRequired(propKey, 'a `propKey`')
 
     _definesPropOptions(Component, propKey)
-    _noDefaultClassNameFromProp(Component, propKey, { requiredProps })
-    _noClassNameFromBoolProps(Component, propKey, { className, requiredProps })
-    _classNamePropValueBeforePropName(Component, propKey, { className, requiredProps })
+    _noDefaultClassNameFromProp(Component, propKey, options)
+    _noClassNameFromBoolProps(Component, propKey, options)
+    _classNamePropValueBeforePropName(Component, propKey, options)
   })
 }
 
@@ -919,7 +918,7 @@ export const propKeyAndValueToClassName = (Component, propKey, options = {}) => 
  * @param {String} propKey A props key.
  * @param {Object} [options={}]
  * @param {Object} [options.requiredProps={}] Props required to render the component.
- * @param {Object} [options.className=propKey] Props required to render the component.
+ * @param {Object} [options.className=propKey] The className to assert exists.
  */
 export const propKeyOrValueAndKeyToClassName = (Component, propKey, options = {}) => {
   const { className = propKey, requiredProps = {} } = options
@@ -930,8 +929,8 @@ export const propKeyOrValueAndKeyToClassName = (Component, propKey, options = {}
     assertRequired(propKey, 'a `propKey`')
 
     _definesPropOptions(Component, propKey)
-    _noDefaultClassNameFromProp(Component, propKey, { requiredProps })
-    _classNamePropValueBeforePropName(Component, propKey, { requiredProps })
+    _noDefaultClassNameFromProp(Component, propKey, options)
+    _classNamePropValueBeforePropName(Component, propKey, options)
     beforeEach(() => {
       // silence propType warnings
       consoleUtil.disableOnce()

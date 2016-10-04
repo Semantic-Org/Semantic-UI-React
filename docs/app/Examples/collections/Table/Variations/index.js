@@ -1,5 +1,5 @@
 import React from 'react'
-import { Message } from 'stardust'
+import { Message } from 'semantic-ui-react'
 import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
 import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
 
@@ -10,6 +10,12 @@ const Variations = () => {
         title='Single Line'
         description='A table can specify that its cell contents should remain on a single line, and not wrap'
         examplePath='collections/Table/Variations/TableSingleLine'
+      />
+
+      <ComponentExample
+        title='Attached'
+        description='A table can be attached to other content on a page'
+        examplePath='collections/Table/Variations/TableExampleAttached'
       />
 
       <ComponentExample

@@ -1,5 +1,106 @@
 # Change Log
 
+## [Unreleased](https://github.com/TechnologyAdvice/stardust/tree/HEAD)
+
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.52.5...HEAD)
+
+**Fixed bugs:**
+
+- labeled icon \<Button /\> not rendered as \<button\> [\#596](https://github.com/TechnologyAdvice/stardust/issues/596)
+
+## [v0.52.5](https://github.com/TechnologyAdvice/stardust/tree/v0.52.5) (2016-10-03)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.52.4...v0.52.5)
+
+**Merged pull requests:**
+
+- fix\(Button\): render `labeled` as a \<button\> [\#597](https://github.com/TechnologyAdvice/stardust/pull/597) ([yesmin](https://github.com/yesmin))
+
+## [v0.52.4](https://github.com/TechnologyAdvice/stardust/tree/v0.52.4) (2016-10-03)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.52.3...v0.52.4)
+
+**Implemented enhancements:**
+
+- feat\(GridRow\): add missing `divided` prop [\#560](https://github.com/TechnologyAdvice/stardust/issues/560)
+- feat\(GridRow\): add missing `divided` prop [\#602](https://github.com/TechnologyAdvice/stardust/pull/602) ([layershifter](https://github.com/layershifter))
+
+**Closed issues:**
+
+- Question: direct importing vs deconstruction [\#609](https://github.com/TechnologyAdvice/stardust/issues/609)
+
+**Merged pull requests:**
+
+- docs\(readme\): update development warning [\#605](https://github.com/TechnologyAdvice/stardust/pull/605) ([levithomason](https://github.com/levithomason))
+
+## [v0.52.3](https://github.com/TechnologyAdvice/stardust/tree/v0.52.3) (2016-10-03)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.52.2...v0.52.3)
+
+**Implemented enhancements:**
+
+- feat\(Image\): add `label` shorthand [\#538](https://github.com/TechnologyAdvice/stardust/issues/538)
+- feat\(Image\): add `label` shorthand [\#603](https://github.com/TechnologyAdvice/stardust/pull/603) ([layershifter](https://github.com/layershifter))
+
+**Closed issues:**
+
+- docs\(Table\): add `attached` example [\#595](https://github.com/TechnologyAdvice/stardust/issues/595)
+- Notifying of breaking changes in the changelog [\#592](https://github.com/TechnologyAdvice/stardust/issues/592)
+
+**Merged pull requests:**
+
+- docs\(Table\): add `attached` example  [\#598](https://github.com/TechnologyAdvice/stardust/pull/598) ([layershifter](https://github.com/layershifter))
+
+## [v0.52.2](https://github.com/TechnologyAdvice/stardust/tree/v0.52.2) (2016-10-03)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.52.1...v0.52.2)
+
+**Implemented enhancements:**
+
+- feat\(Table\): add `attached` prop [\#591](https://github.com/TechnologyAdvice/stardust/issues/591)
+- feat\(Table\): add `attached` prop [\#593](https://github.com/TechnologyAdvice/stardust/pull/593) ([yesmin](https://github.com/yesmin))
+
+## [v0.52.1](https://github.com/TechnologyAdvice/stardust/tree/v0.52.1) (2016-10-03)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.52.0...v0.52.1)
+
+**Implemented enhancements:**
+
+- feat\(Portal\): More flexible configuration [\#590](https://github.com/TechnologyAdvice/stardust/pull/590) ([jcarbo](https://github.com/jcarbo))
+
+**Merged pull requests:**
+
+- docs\(Card\): fix Feed usage [\#594](https://github.com/TechnologyAdvice/stardust/pull/594) ([levithomason](https://github.com/levithomason))
+
+## [v0.52.0](https://github.com/TechnologyAdvice/stardust/tree/v0.52.0) (2016-10-03)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.51.1...v0.52.0)
+
+**Implemented enhancements:**
+
+- feat\(Table\): add shorthand for generating tables [\#565](https://github.com/TechnologyAdvice/stardust/issues/565)
+- All event handlers should return the event data first [\#218](https://github.com/TechnologyAdvice/stardust/issues/218)
+- feat\(Dropdown\): Pass object with name to onChange [\#581](https://github.com/TechnologyAdvice/stardust/pull/581) ([jcarbo](https://github.com/jcarbo))
+- feat\(Table\): add table row shorthand [\#567](https://github.com/TechnologyAdvice/stardust/pull/567) ([jcarbo](https://github.com/jcarbo))
+
+## [v0.51.1](https://github.com/TechnologyAdvice/stardust/tree/v0.51.1) (2016-10-03)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.51.0...v0.51.1)
+
+**Implemented enhancements:**
+
+- feat\(ComponentExample\): add copy JSX button  [\#574](https://github.com/TechnologyAdvice/stardust/issues/574)
+- RFC: Could/should the modal rely more heavily on React.Portal? [\#553](https://github.com/TechnologyAdvice/stardust/issues/553)
+- feat\(Label\): add LabelGroup and missing docs [\#576](https://github.com/TechnologyAdvice/stardust/pull/576) ([layershifter](https://github.com/layershifter))
+
+**Fixed bugs:**
+
+- fix\(MenuItem\): do not add `icon` class given `name` or `content` [\#585](https://github.com/TechnologyAdvice/stardust/pull/585) ([levithomason](https://github.com/levithomason))
+
+**Closed issues:**
+
+- Update legacy component APIs to the v1 API [\#269](https://github.com/TechnologyAdvice/stardust/issues/269)
+
+**Merged pull requests:**
+
+- feat\(ComponentExample\): add github links to editor [\#586](https://github.com/TechnologyAdvice/stardust/pull/586) ([levithomason](https://github.com/levithomason))
+- fix\(tests\): Add coverage to missing lines [\#583](https://github.com/TechnologyAdvice/stardust/pull/583) ([jcarbo](https://github.com/jcarbo))
+- feat\(ComponentExample\): add copy JSX button [\#582](https://github.com/TechnologyAdvice/stardust/pull/582) ([jcarbo](https://github.com/jcarbo))
+- fix\(package\): remove semantic-ui-css dependency [\#580](https://github.com/TechnologyAdvice/stardust/pull/580) ([levithomason](https://github.com/levithomason))
+
 ## [v0.51.0](https://github.com/TechnologyAdvice/stardust/tree/v0.51.0) (2016-10-02)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.50.0...v0.51.0)
 

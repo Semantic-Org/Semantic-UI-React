@@ -12,7 +12,7 @@ import {
  * A card can contain a header
  */
 function CardHeader(props) {
-  const { className, children, content } = props
+  const { children, className, content } = props
   const classes = cx(className, 'header')
   const rest = getUnhandledProps(CardHeader, props)
   const ElementType = getElementType(CardHeader, props)

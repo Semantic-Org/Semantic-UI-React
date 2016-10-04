@@ -1,5 +1,5 @@
 import React from 'react'
-import { Loader } from 'stardust'
+import { Loader } from 'semantic-ui-react'
 
 const InlineCentered = () => <Loader active inline='centered' />
 

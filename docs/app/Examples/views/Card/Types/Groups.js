@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Card, Image } from 'stardust'
+import { Button, Card, Image } from 'semantic-ui-react'
 
 const Groups = () => (
   <Card.Group>

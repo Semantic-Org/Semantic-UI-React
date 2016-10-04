@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Form, Radio } from 'stardust'
+import { Form, Radio } from 'semantic-ui-react'
 
 export default class RadioGroupExample extends Component {
   state = {}

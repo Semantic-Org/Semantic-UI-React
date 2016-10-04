@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Divider } from 'stardust'
+import { Button, Divider } from 'semantic-ui-react'
 
 const ButtonGroupBasicExample = () => (
   <div>

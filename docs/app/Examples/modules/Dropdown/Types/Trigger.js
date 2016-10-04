@@ -1,5 +1,5 @@
 import React from 'react'
-import { Dropdown, Icon } from 'stardust'
+import { Dropdown, Icon } from 'semantic-ui-react'
 
 const trigger = (
   <span>

@@ -12,12 +12,12 @@ import {
 function ListList(props) {
   const { children, className } = props
 
+  const rest = getUnhandledProps(ListList, props)
   const ElementType = getElementType(ListList, props)
   const classes = cx(
     useKeyOnly(ElementType !== 'ul' && ElementType !== 'ol', 'list'),
     className,
   )
-  const rest = getUnhandledProps(ListList, props)
 
   return <ElementType {...rest} className={classes}>{children}</ElementType>
 }

@@ -34,8 +34,18 @@ class Portal extends Component {
     /** Controls whether or not the portal should close when escape is pressed is displayed. */
     closeOnEscape: PropTypes.bool,
 
+    /**
+     * Controls whether or not the portal should close when mousing out of the portal.
+     * NOTE: This will prevent `closeOnTriggerMouseLeave` when mousing over the
+     * gap from the trigger to the portal.
+     */
+    closeOnPortalMouseLeave: PropTypes.bool,
+
     /** Controls whether or not the portal should close on blur of the trigger. */
     closeOnTriggerBlur: PropTypes.bool,
+
+    /** Controls whether or not the portal should close on click of the trigger. */
+    closeOnTriggerClick: PropTypes.bool,
 
     /** Controls whether or not the portal should close when mousing out of the trigger. */
     closeOnTriggerMouseLeave: PropTypes.bool,
@@ -45,6 +55,12 @@ class Portal extends Component {
 
     /** The node where the portal should mount.. */
     mountNode: PropTypes.any,
+
+    /** Milliseconds to wait before closing on mouse leave */
+    mouseLeaveDelay: PropTypes.number,
+
+    /** Milliseconds to wait before opening on mouse over */
+    mouseOverDelay: PropTypes.number,
 
     /** Called when a close event happens */
     onClose: PropTypes.func,
@@ -110,6 +126,10 @@ class Portal extends Component {
 
   componentWillUnmount() {
     this.unmountPortal()
+
+    // Clean up timers
+    clearTimeout(this.mouseOverTimer)
+    clearTimeout(this.mouseLeaveTimer)
   }
 
   // ----------------------------------------
@@ -118,6 +138,8 @@ class Portal extends Component {
 
   closeOnDocumentClick = (e) => {
     if (!this.props.closeOnDocumentClick) return
+
+    // If event happened in the portal, ignore it
     if (this.portal.contains(e.target)) return
 
     debug('closeOnDocumentClick()')
@@ -140,6 +162,26 @@ class Portal extends Component {
   // Component Event Handlers
   // ----------------------------------------
 
+  handlePortalMouseLeave = (e) => {
+    const { closeOnPortalMouseLeave, mouseLeaveDelay } = this.props
+
+    if (!closeOnPortalMouseLeave) return
+
+    debug('handlePortalMouseLeave()')
+    this.mouseLeaveTimer = this.closeWithTimeout(e, mouseLeaveDelay)
+  }
+
+  handlePortalMouseOver = (e) => {
+    // In order to enable mousing from the trigger to the portal, we need to
+    // clear the mouseleave timer that was set when leaving the trigger.
+    const { closeOnPortalMouseLeave } = this.props
+
+    if (!closeOnPortalMouseLeave) return
+
+    debug('handlePortalMouseOver()')
+    clearTimeout(this.mouseLeaveTimer)
+  }
+
   handleTriggerBlur = (e) => {
     const { trigger, closeOnTriggerBlur } = this.props
 
@@ -153,22 +195,24 @@ class Portal extends Component {
   }
 
   handleTriggerClick = (e) => {
-    const { trigger, openOnTriggerClick } = this.props
+    const { trigger, closeOnTriggerClick, openOnTriggerClick } = this.props
+    const { open } = this.state
 
     // Call original event handler
     _.invoke(trigger, 'props.onClick', e)
 
-    if (!openOnTriggerClick) return
+    if (open && closeOnTriggerClick) {
+      e.stopPropagation()
+      this.close(e)
+    } else if (!open && openOnTriggerClick) {
+      // Prevents closeOnDocumentClick from closing the portal when
+      // openOnTriggerFocus is set. Focus shifts on mousedown so the portal opens
+      // before the click finishes so it may actually wind up on the document.
+      e.nativeEvent.stopImmediatePropagation()
 
-    debug('handleTriggerClick()')
-
-    e.stopPropagation()
-
-    // Prevents closeOnDocumentClick from closing the portal when
-    // openOnTriggerFocus is set. Focus shifts on mousedown so the portal opens
-    // before the click finishes so it may actually wind up on the document.
-    e.nativeEvent.stopImmediatePropagation()
-    this.open(e)
+      e.stopPropagation()
+      this.open(e)
+    }
   }
 
   handleTriggerFocus = (e) => {
@@ -184,7 +228,9 @@ class Portal extends Component {
   }
 
   handleTriggerMouseLeave = (e) => {
-    const { trigger, closeOnTriggerMouseLeave } = this.props
+    clearTimeout(this.mouseOverTimer)
+
+    const { trigger, closeOnTriggerMouseLeave, mouseLeaveDelay } = this.props
 
     // Call original event handler
     _.invoke(trigger, 'props.onMouseLeave', e)
@@ -192,11 +238,13 @@ class Portal extends Component {
     if (!closeOnTriggerMouseLeave) return
 
     debug('handleTriggerMouseLeave()')
-    this.close(e)
+    this.mouseLeaveTimer = this.closeWithTimeout(e, mouseLeaveDelay)
   }
 
   handleTriggerMouseOver = (e) => {
-    const { trigger, openOnTriggerMouseOver } = this.props
+    clearTimeout(this.mouseLeaveTimer)
+
+    const { trigger, mouseOverDelay, openOnTriggerMouseOver } = this.props
 
     // Call original event handler
     _.invoke(trigger, 'props.onMouseOver', e)
@@ -204,7 +252,7 @@ class Portal extends Component {
     if (!openOnTriggerMouseOver) return
 
     debug('handleTriggerMouseOver()')
-    this.open(e)
+    this.mouseOverTimer = this.openWithTimeout(e, mouseOverDelay)
   }
 
   // ----------------------------------------
@@ -220,6 +268,14 @@ class Portal extends Component {
     this.trySetState({ open: true })
   }
 
+  openWithTimeout = (e, delay) => {
+    // React wipes the entire event object and suggests using e.persist() if
+    // you need the event for async access. However, even with e.persist
+    // certain required props (e.g. currentTarget) are null so we're forced to clone.
+    const eventClone = { ...e }
+    return setTimeout(() => this.open(eventClone), delay || 0)
+  }
+
   close = (e) => {
     debug('close()')
 
@@ -227,6 +283,14 @@ class Portal extends Component {
     if (onClose) onClose(e)
 
     this.trySetState({ open: false })
+  }
+
+  closeWithTimeout = (e, delay) => {
+    // React wipes the entire event object and suggests using e.persist() if
+    // you need the event for async access. However, even with e.persist
+    // certain required props (e.g. currentTarget) are null so we're forced to clone.
+    const eventClone = { ...e }
+    return setTimeout(() => this.close(eventClone), delay || 0)
   }
 
   renderPortal() {
@@ -241,6 +305,9 @@ class Portal extends Component {
       Children.only(children),
       this.node
     )
+
+    this.portal.addEventListener('mouseleave', this.handlePortalMouseLeave)
+    this.portal.addEventListener('mouseover', this.handlePortalMouseOver)
   }
 
   mountPortal = () => {
@@ -263,6 +330,9 @@ class Portal extends Component {
 
     ReactDOM.unmountComponentAtNode(this.node)
     this.node.parentNode.removeChild(this.node)
+
+    this.portal.removeEventListener('mouseleave', this.handlePortalMouseLeave)
+    this.portal.removeEventListener('mouseover', this.handlePortalMouseOver)
 
     this.node = null
     this.portal = null

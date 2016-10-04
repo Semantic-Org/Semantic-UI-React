@@ -26,7 +26,7 @@ function Container(props) {
   const rest = getUnhandledProps(Container, props)
   const ElementType = getElementType(Container, props)
 
-  return <ElementType className={classes} {...rest}>{children}</ElementType>
+  return <ElementType {...rest} className={classes}>{children}</ElementType>
 }
 
 Container._meta = {

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Dropdown, Menu } from 'stardust'
+import { Dropdown, Menu } from 'semantic-ui-react'
 
 const DropdownItem = () => {
   return (

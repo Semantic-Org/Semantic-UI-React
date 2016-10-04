@@ -12,7 +12,7 @@ import {
 const defaultRenderer = ({ name }) => name
 
 function SearchCategory(props) {
-  const { active, className, children, renderer } = props
+  const { active, children, className, renderer } = props
   const classes = cx(
     useKeyOnly(active, 'active'),
     'category',

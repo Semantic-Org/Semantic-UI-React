@@ -1,5 +1,5 @@
 import React from 'react'
-import { Header, Segment } from 'stardust'
+import { Header, Segment } from 'semantic-ui-react'
 
 const HeaderAttachedExample = () => (
   <div>

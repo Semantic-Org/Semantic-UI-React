@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Menu, Message } from 'stardust'
+import { Menu, Message } from 'semantic-ui-react'
 
 export default class LinkItem extends Component {
   handleClick = () => this.setState({ message: 'onClick handled' })

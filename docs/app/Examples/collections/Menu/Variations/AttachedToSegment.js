@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Menu, Segment } from 'stardust'
+import { Menu, Segment } from 'semantic-ui-react'
 
 export default class AttachedToSegment extends Component {
   state = { activeItem: 'section1' }

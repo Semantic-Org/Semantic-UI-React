@@ -149,7 +149,6 @@ class Rating extends Component {
       'rating',
       className,
     )
-
     const rest = getUnhandledProps(Rating, this.props)
     const ElementType = getElementType(Rating, this.props)
 

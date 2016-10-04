@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Checkbox } from 'stardust'
+import { Checkbox } from 'semantic-ui-react'
 
 export default class CheckboxSliderExample extends Component {
   render() {

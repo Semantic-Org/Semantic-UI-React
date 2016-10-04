@@ -1,6 +1,6 @@
 {
-  "name": "stardust",
-  "version": "0.51.0",
+  "name": "semantic-ui-react",
+  "version": "0.54.0",
   "description": "The official Semantic-UI-React integration.",
   "main": "dist/commonjs/index.js",
   "files": [
@@ -48,8 +48,7 @@
   "dependencies": {
     "classnames": "^2.1.5",
     "debug": "^2.2.0",
-    "lodash": "^4.6.1",
-    "semantic-ui-css": "^2.2.2"
+    "lodash": "^4.6.1"
   },
   "devDependencies": {
     "babel-cli": "^6.5.1",
@@ -68,6 +67,7 @@
     "chai": "^3.3.0",
     "chai-enzyme": "^0.5.0",
     "connect-history-api-fallback": "^1.2.0",
+    "copy-to-clipboard": "^3.0.5",
     "cross-env": "^2.0.0",
     "css-loader": "^0.23.1",
     "del": "^2.2.2",

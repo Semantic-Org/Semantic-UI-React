@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Header, Icon, Image, Modal } from 'stardust'
+import { Button, Header, Icon, Image, Modal } from 'semantic-ui-react'
 
 const ModalScrollingExample = () => (
   <Modal trigger={<Button>Long Modal</Button>}>

@@ -10,19 +10,11 @@ import {
 
 function ModalDescription(props) {
   const { children, className } = props
-
-  const classes = cx(
-    className,
-    'description'
-  )
-
+  const classes = cx(className, 'description')
   const rest = getUnhandledProps(ModalDescription, props)
   const ElementType = getElementType(ModalDescription, props)
-  return (
-    <ElementType className={classes} {...rest}>
-      {children}
-    </ElementType>
-  )
+
+  return <ElementType {...rest} className={classes}>{children}</ElementType>
 }
 
 ModalDescription._meta = {

@@ -6,8 +6,9 @@ import {
   getUnhandledProps,
   META,
 } from '../../lib'
+import Radio from '../../addons/Radio'
+
 import FormField from './FormField'
-import { Radio } from '../../addons'
 
 /**
  * Sugar for <Form.Field control={Radio} />
@@ -18,6 +19,7 @@ function FormRadio(props) {
   const { control } = props
   const rest = getUnhandledProps(FormRadio, props)
   const ElementType = getElementType(FormRadio, props)
+
   return <ElementType {...rest} control={control} />
 }
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button } from 'stardust'
+import { Button } from 'semantic-ui-react'
 
 class ButtonToggleExample extends Component {
   state = {}

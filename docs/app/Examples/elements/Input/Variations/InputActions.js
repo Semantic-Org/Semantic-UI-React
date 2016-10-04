@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Select, Input } from 'stardust'
+import { Button, Select, Input } from 'semantic-ui-react'
 
 const options = [
   { text: 'All', value: 'all' },

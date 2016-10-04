@@ -3,9 +3,10 @@ import _ from 'lodash'
 import React, { Component, createElement, isValidElement, PropTypes } from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
 import { html } from 'js-beautify'
+import copyToClipboard from 'copy-to-clipboard'
 
 import { exampleContext } from 'docs/app/utils'
-import { Label, Divider, Grid, Icon, Header } from 'src'
+import { Divider, Grid, Icon, Header, Menu } from 'src'
 import Editor from 'docs/app/Components/Editor/Editor'
 import babelrc from '.babelrc'
 
@@ -80,10 +81,20 @@ export default class ComponentExample extends Component {
     })
   }
 
-  resetEditor = () => {
-    const sourceCode = this.getOriginalSourceCode()
-    this.setState({ sourceCode })
-    this.renderSourceCode()
+  copyJSX = () => {
+    const { sourceCode } = this.state
+    copyToClipboard(sourceCode)
+    this.setState({ copied: true })
+    setTimeout(() => this.setState({ copied: false }), 1000)
+  }
+
+  resetJSX = () => {
+    const { sourceCode } = this.state
+    const original = this.getOriginalSourceCode()
+    if (sourceCode !== original && confirm('Loose your changes?')) {
+      this.setState({ sourceCode: original })
+      this.renderSourceCode()
+    }
   }
 
   getOriginalSourceCode = () => {
@@ -117,7 +128,7 @@ export default class ComponentExample extends Component {
     const FAKER = require('faker')
     const LODASH = require('lodash')
     const REACT = require('react')
-    const STARDUST = require('stardust')
+    const SEMANTIC_UI_REACT = require('semantic-ui-react')
     /* eslint-enable no-unused-vars */
 
     // Should use an AST transform here... oh well :/
@@ -126,14 +137,14 @@ export default class ComponentExample extends Component {
 
     // rewrite imports to const statements against the UPPERCASE module names
     const imports = _.get(/(import[\s\S]*from[\s\S]*['"]\n)/.exec(sourceCode), '[1]', '')
-      .replace(/[\s\n]+/g, ' ')   // normalize spaces and make one line
-      .replace(/'\s+/g, "'\n")    // one import per line
-      .replace(/, }/g, ' }')      // remove trailing destructured commas
-      .split('\n')
+      .replace(/[\s\n]+/g, ' ')         // normalize spaces and make one line
+      .replace(/ import/g, '\nimport')  // one import per line
+      .split('\n')                      // split lines
+      .filter(l => l.trim() !== '')     // remove empty lines
       .map(l => {
         const defaultImport = _.get(/import\s+(\w+)/.exec(l), '[1]')
         const destructuredImports = _.get(/import.*({[\s\w,}]+)\s+from/.exec(l), '[1]')
-        const module = _.get(/import.*from.*'(.*)'/.exec(l), '[1]', '').toUpperCase()
+        const module = _.snakeCase(_.get(/import.*from\s+['"]([\w\-_]+)/.exec(l), '[1]', '')).toUpperCase()
 
         return _.compact([
           defaultImport && `const ${defaultImport} = ${module}`,
@@ -147,9 +158,9 @@ export default class ComponentExample extends Component {
 
     // consider everything after the imports to be the body
     // remove `export` statements except `export default class|function`
-    const body = _.get(/import[\s\S]*from '\w+'([\s\S]*)/.exec(sourceCode), '[1]', '')
-      .replace(/export\s+default\s+\w+([\s\n]+)?/, '')  // remove `export default Foo` statements (lines)
-      .replace(/export\s+default\s+/, '')             // remove `export default`
+    const body = _.get(/import[\s\S]*from.*\n([\s\S]*)/.exec(sourceCode), '[1]', '')
+      .replace(/export\s+default\s+(?!class|function)\w+([\s\n]+)?/, '')  // remove `export default Foo` statements
+      .replace(/export\s+default\s+/, '')                                 // remove `export default ...`
 
     const IIFE = `(function() {\n${imports}${body}return ${defaultExport}\n}())`
 
@@ -181,7 +192,77 @@ export default class ComponentExample extends Component {
     this.renderSourceCode()
   }
 
-  renderCode = () => {
+  renderJSXControls = () => {
+    const { examplePath } = this.props
+    const { copied, error } = this.state
+
+    // get component name from file path:
+    // elements/Button/Types/ButtonButtonExample
+    const componentName = examplePath.split(__PATH_SEP__)[1]
+
+    const color = error ? 'red' : 'black'
+    const ghEditHref = `https://github.com/TechnologyAdvice/stardust/edit/master/docs/app/Examples/${examplePath}.js`
+    const ghBugHref = [
+      'https://github.com/TechnologyAdvice/stardust/issues/new?',
+      _.map({
+        title: `fix(${componentName}): your description`,
+        body: [
+          '**Steps to Reproduce**',
+          '1. Do something',
+          '2. Do something else.',
+          '',
+          '**Expected**',
+          `The ${componentName} should do this`,
+          '',
+          '**Result**',
+          `The ${componentName} does not do this`,
+          '',
+          '**Testcase**',
+          `The docs show the issue: ${window.location.href}`,
+          'Fork this to get started: http://codepen.io/levithomason/pen/ZpBaJX',
+        ].join('\n'),
+      }, (val, key) => `${key}=${encodeURIComponent(val)}`).join('&'),
+    ].join('')
+
+    return (
+      <Divider horizontal>
+        <Menu text>
+          <Menu.Item
+            active={copied || error} // to show the color
+            color={copied ? 'green' : color}
+            onClick={this.copyJSX}
+            icon={!copied && 'copy'}
+            content={copied ? 'Copied!' : 'Copy'}
+          />
+          <Menu.Item
+            active={error} // to show the color
+            color={color}
+            icon='refresh'
+            content='Reset'
+            onClick={this.resetJSX}
+          />
+          <Menu.Item
+            active={error} // to show the color
+            color={color}
+            icon='github'
+            content='Edit'
+            href={ghEditHref}
+            target='_blank'
+          />
+          <Menu.Item
+            active={error} // to show the color
+            color={color}
+            icon='bug'
+            content='Issue'
+            href={ghBugHref}
+            target='_blank'
+          />
+        </Menu>
+      </Divider>
+    )
+  }
+
+  renderJSX = () => {
     const { error, showCode, sourceCode } = this.state
     if (!showCode) return
 
@@ -192,17 +273,7 @@ export default class ComponentExample extends Component {
 
     return (
       <Grid.Column style={style}>
-        <Divider horizontal>
-          <Label
-            as='a'
-            basic
-            horizontal
-            color={error ? 'red' : 'green'}
-            icon='refresh'
-            content={error ? 'See Error' : 'JSX'}
-            onClick={this.resetEditor}
-          />
-        </Divider>
+        {this.renderJSXControls()}
         <Editor
           id={`${this.getKebabExamplePath()}-jsx`}
           value={sourceCode}
@@ -285,7 +356,7 @@ export default class ComponentExample extends Component {
         >
           {exampleElement}
         </Grid.Column>
-        {this.renderCode()}
+        {this.renderJSX()}
         {this.renderHTML()}
       </Grid>
     )

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Segment, Icon } from 'stardust'
+import { Segment, Icon } from 'semantic-ui-react'
 
 export default class IconInvertedColoredExample extends Component {
   render() {

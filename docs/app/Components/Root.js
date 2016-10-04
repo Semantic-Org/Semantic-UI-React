@@ -6,7 +6,7 @@ import React, { Component, PropTypes } from 'react'
 import ComponentDoc from '../Components/ComponentDoc/ComponentDoc'
 import PageNotFound from '../Views/PageNotFound'
 import { META } from 'src/lib'
-import * as stardust from 'stardust'
+import * as semanticUIReact from 'src'
 
 export default class Root extends Component {
   static propTypes = {
@@ -19,7 +19,7 @@ export default class Root extends Component {
   render() {
     const { name } = this.props.params
     const componentName = _.startCase(name).replace(/ /g, '')
-    const component = stardust[componentName]
+    const component = semanticUIReact[componentName]
     if (!component || !component._meta || !META.isParent(component)) {
       return <PageNotFound />
     }

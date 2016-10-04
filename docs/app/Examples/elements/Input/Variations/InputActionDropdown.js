@@ -1,5 +1,5 @@
 import React from 'react'
-import { Dropdown, Input } from 'stardust'
+import { Dropdown, Input } from 'semantic-ui-react'
 
 const options = [
   { text: 'This Page', value: 'page' },

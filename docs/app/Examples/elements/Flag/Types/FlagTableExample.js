@@ -1,5 +1,5 @@
 import React from 'react'
-import { Table, Flag } from 'stardust'
+import { Table, Flag } from 'semantic-ui-react'
 
 const countries = [
   { name: 'Afghanistan', countryCode: 'af' },

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Icon, Label, Menu, Table } from 'stardust'
+import { Icon, Label, Menu, Table } from 'semantic-ui-react'
 
 const TablePagination = () => {
   return (

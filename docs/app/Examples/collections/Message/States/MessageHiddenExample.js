@@ -1,5 +1,5 @@
 import React from 'react'
-import { Message } from 'stardust'
+import { Message } from 'semantic-ui-react'
 
 const MessageHiddenExample = () => (
   <Message hidden>
