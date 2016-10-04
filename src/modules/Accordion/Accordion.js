@@ -152,15 +152,21 @@ export default class Accordion extends Component {
   }
 
   render() {
-    const { className, fluid, inverted, panels, styled } = this.props
+    const {
+      className,
+      fluid,
+      inverted,
+      panels,
+      styled,
+    } = this.props
 
     const classes = cx(
-      className,
       'ui',
       useKeyOnly(fluid, 'fluid'),
       useKeyOnly(inverted, 'inverted'),
       useKeyOnly(styled, 'styled'),
-      'accordion'
+      'accordion',
+      className,
     )
     const rest = _.omit(this.props, _.keys(Accordion.propTypes))
     const ElementType = getElementType(Accordion, this.props)

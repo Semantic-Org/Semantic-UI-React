@@ -23,7 +23,7 @@ describe('Card', () => {
     shallow(<Card />).should.have.tagName('div')
   })
 
-  describe('href prop', () => {
+  describe('href', () => {
     it('renders an <a> with an href attr', () => {
       const url = faker.internet.url()
       const wrapper = shallow(<Card href={url} />)
@@ -33,9 +33,9 @@ describe('Card', () => {
     })
   })
 
-  describe('onClick prop', () => {
-    it('can be omitted', () => {
-      const click = () => mount(<Card>{faker.hacker.phrase()}</Card>).simulate('click')
+  describe('onClick', () => {
+    it('omitted when not defined', () => {
+      const click = () => shallow(<Card />).simulate('click')
       expect(click).to.not.throw()
     })
 
@@ -57,7 +57,7 @@ describe('Card', () => {
     })
   })
 
-  describe('extra prop', () => {
+  describe('extra', () => {
     it('renders a CardContent', () => {
       const wrapper = shallow(<Card extra={faker.hacker.phrase()} />)
 

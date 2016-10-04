@@ -68,9 +68,8 @@ describe('Label', () => {
   })
 
   describe('onClick', () => {
-    it('can be omitted', () => {
-      const click = () => mount(<Label />).simulate('click')
-
+    it('omitted when not defined', () => {
+      const click = () => shallow(<Label />).simulate('click')
       expect(click).to.not.throw()
     })
 

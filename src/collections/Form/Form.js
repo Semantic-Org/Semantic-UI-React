@@ -1,6 +1,6 @@
-import cx from 'classnames'
 import _ from 'lodash'
-import React, { PropTypes } from 'react'
+import cx from 'classnames'
+import React, { Component, PropTypes } from 'react'
 
 import {
   customPropTypes,
@@ -156,6 +156,15 @@ function formSerializer(formNode) {
   return json
 }
 
+const _meta = {
+  name: 'Form',
+  type: META.TYPES.COLLECTION,
+  props: {
+    widths: ['equal'],
+    size: _.without(SUI.SIZES, 'medium'),
+  },
+}
+
 /**
  * A Form displays a set of related user input fields in a structured way.
  * @see Button
@@ -167,96 +176,99 @@ function formSerializer(formNode) {
  * @see Select
  * @see TextArea
  */
-function Form(props) {
-  const { children, className, error, loading, onSubmit, size, success, warning, widths } = props
-  const classes = cx(
-    'ui',
-    size,
-    useKeyOnly(loading, 'loading'),
-    useKeyOnly(success, 'success'),
-    useKeyOnly(error, 'error'),
-    useKeyOnly(warning, 'warning'),
-    useWidthProp(widths, null, true),
-    'form',
-    className,
-  )
-  const rest = getUnhandledProps(Form, props)
-  const ElementType = getElementType(Form, props)
-  let _form
-
-  const handleSubmit = (e) => {
-    if (onSubmit) onSubmit(e, props.serializer(_form))
+export default class Form extends Component {
+  static defaultProps = {
+    as: 'form',
+    serializer: formSerializer,
   }
 
-  return (
-    <ElementType
-      {...rest}
-      className={classes}
-      onSubmit={handleSubmit}
-      ref={(c) => (_form = _form || c)}
-    >
-      {children}
-    </ElementType>
-  )
+  static propTypes = {
+    /** An element type to render as (string or function). */
+    as: customPropTypes.as,
+
+    /** Primary content */
+    children: PropTypes.node,
+
+    /** Additional classes */
+    className: PropTypes.string,
+
+    /** Automatically show any error Message children */
+    error: PropTypes.bool,
+
+    /** Automatically show a loading indicator */
+    loading: PropTypes.bool,
+
+    /** Called with (event, jsonSerializedForm) on submit */
+    onSubmit: PropTypes.func,
+
+    /** Called onSubmit with the form node that returns the serialized form object */
+    serializer: PropTypes.func,
+
+    /** A form can vary in size */
+    size: PropTypes.oneOf(_meta.props.size),
+
+    /** Automatically show any success Message children */
+    success: PropTypes.bool,
+
+    /** Automatically show any warning Message children */
+    warning: PropTypes.bool,
+
+    /** Forms can automatically divide fields to be equal width */
+    widths: PropTypes.oneOf(_meta.props.widths),
+  }
+
+  static _meta = _meta
+
+  static Field = FormField
+  static Button = FormButton
+  static Checkbox = FormCheckbox
+  static Dropdown = FormDropdown
+  static Group = FormGroup
+  static Input = FormInput
+  static Radio = FormRadio
+  static Select = FormSelect
+  static TextArea = FormTextArea
+
+  _form = null
+
+  handleRef = (c) => (this._form = this._form || c)
+
+  handleSubmit = (e) => {
+    const { onSubmit, serializer } = this.props
+
+    if (onSubmit) onSubmit(e, serializer(this._form))
+  }
+
+  render() {
+    const {
+      children,
+      className,
+      error,
+      loading,
+      size,
+      success,
+      warning,
+      widths,
+    } = this.props
+
+    const classes = cx(
+      'ui',
+      size,
+      useKeyOnly(error, 'error'),
+      useKeyOnly(loading, 'loading'),
+      useKeyOnly(success, 'success'),
+      useKeyOnly(warning, 'warning'),
+      useWidthProp(widths, null, true),
+      'form',
+      className,
+    )
+    const rest = getUnhandledProps(Form, this.props)
+    const ElementType = getElementType(Form, this.props)
+
+    return (
+      <ElementType {...rest} className={classes} ref={this.handleRef} onSubmit={this.handleSubmit}>
+        {children}
+      </ElementType>
+    )
+  }
 }
-
-Form.Field = FormField
-Form.Button = FormButton
-Form.Checkbox = FormCheckbox
-Form.Dropdown = FormDropdown
-Form.Group = FormGroup
-Form.Input = FormInput
-Form.Radio = FormRadio
-Form.Select = FormSelect
-Form.TextArea = FormTextArea
-
-Form._meta = {
-  name: 'Form',
-  type: META.TYPES.COLLECTION,
-  props: {
-    widths: ['equal'],
-    size: _.without(SUI.SIZES, 'medium'),
-  },
-}
-
-Form.propTypes = {
-  /** An element type to render as (string or function). */
-  as: customPropTypes.as,
-
-  /** Primary content */
-  children: PropTypes.node,
-
-  /** Additional classes */
-  className: PropTypes.string,
-
-  /** Automatically show a loading indicator */
-  loading: PropTypes.bool,
-
-  /** Automatically show any success Message children */
-  success: PropTypes.bool,
-
-  /** Automatically show any error Message children */
-  error: PropTypes.bool,
-
-  /** Automatically show any warning Message children */
-  warning: PropTypes.bool,
-
-  /** A form can vary in size */
-  size: PropTypes.oneOf(Form._meta.props.size),
-
-  /** Forms can automatically divide fields to be equal width */
-  widths: PropTypes.oneOf(Form._meta.props.widths),
-
-  /** Called onSubmit with the form node that returns the serialized form object */
-  serializer: PropTypes.func,
-
-  /** Called with (event, jsonSerializedForm) on submit */
-  onSubmit: PropTypes.func,
-}
-
-Form.defaultProps = {
-  as: 'form',
-  serializer: formSerializer,
-}
-
-export default Form

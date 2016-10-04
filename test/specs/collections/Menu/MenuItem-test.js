@@ -54,9 +54,8 @@ describe('MenuItem', () => {
   })
 
   describe('onClick', () => {
-    it('can be omitted', () => {
-      const click = () => mount(<MenuItem />).simulate('click')
-
+    it('omitted when not defined', () => {
+      const click = () => shallow(<MenuItem />).simulate('click')
       expect(click).to.not.throw()
     })
 

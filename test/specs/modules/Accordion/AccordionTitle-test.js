@@ -11,9 +11,8 @@ describe('AccordionTitle', () => {
   common.propKeyOnlyToClassName(AccordionTitle, 'active')
 
   describe('onClick', () => {
-    it('can be omitted', () => {
-      const wrapper = shallow(<AccordionTitle />)
-      const click = () => wrapper.simulate('click')
+    it('omitted when not defined', () => {
+      const click = () => shallow(<AccordionTitle />).simulate('click')
       expect(click).to.not.throw()
     })
     it('is called with (event, undefined) when not a child of Accordion', () => {
