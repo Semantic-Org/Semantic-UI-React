@@ -144,7 +144,7 @@ export default class ComponentExample extends Component {
       .map(l => {
         const defaultImport = _.get(/import\s+(\w+)/.exec(l), '[1]')
         const destructuredImports = _.get(/import.*({[\s\w,}]+)\s+from/.exec(l), '[1]')
-        const module = _.snakeCase(_.get(/import.*from.*'(.*)'/.exec(l), '[1]', '')).toUpperCase()
+        const module = _.snakeCase(_.get(/import.*from\s+['"]([\w\-_]+)/.exec(l), '[1]', '')).toUpperCase()
 
         return _.compact([
           defaultImport && `const ${defaultImport} = ${module}`,

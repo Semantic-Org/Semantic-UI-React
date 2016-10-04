@@ -1,11 +1,12 @@
 import React from 'react'
-import { Button } from 'semantic-ui-react'
+import { Button, Label } from 'semantic-ui-react'
 
 const ButtonLabeledPropsExample = () => (
   <div>
-    <Button label='2,048' icon='heart' content='Like' />
-    <Button label='2,048' icon='heart' content='Like' labeled='left' />
-    <Button label='1,048' icon='fork' labeled='left' />
+    <Button label={1048} icon='fork' labelPosition='left' />
+    <Button label='1,048' icon='fork' labelPosition='left' />
+    <Button label={{ content: '2,048' }} icon='heart' content='Like' labelPosition='left' />
+    <Button label={<Label>2,048</Label>} icon='heart' content='Like' />
   </div>
 )
 

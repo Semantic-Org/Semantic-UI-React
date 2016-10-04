@@ -1,21 +1,22 @@
 import React from 'react'
-import { Button, Icon, Label } from 'semantic-ui-react'
+import { Button } from 'semantic-ui-react'
 
 const ButtonLabeledExample = () => (
   <div>
-    <Button labeled>
-      <Button color='red'>
-        <Icon name='heart' /> Like
-      </Button>
-      <Label basic color='red' pointing='left'>2,048</Label>
-    </Button>
+    <Button
+      color='red'
+      content='Like'
+      icon='heart'
+      label={{ basic: true, color: 'red', pointing: 'left', content: '2,048' }}
+    />
 
-    <Button labeled>
-      <Button basic color='blue'>
-        <Icon name='fork' /> Fork
-      </Button>
-      <Label as='a' basic color='blue' pointing='left'>1,048</Label>
-    </Button>
+    <Button
+      basic
+      color='blue'
+      content='Fork'
+      icon='fork'
+      label={{ as: 'a', basic: true, color: 'blue', pointing: 'left', content: '1,048' }}
+    />
   </div>
 )
 
