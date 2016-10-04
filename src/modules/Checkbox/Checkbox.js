@@ -141,6 +141,7 @@ export default class Checkbox extends Component {
     )
     const rest = getUnhandledProps(Checkbox, this.props)
     const ElementType = getElementType(Checkbox, this.props)
+
     return (
       <ElementType {...rest} className={classes} onClick={this.handleClick} onChange={this.handleClick}>
         <input

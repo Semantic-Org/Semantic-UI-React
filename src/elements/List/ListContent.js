@@ -18,15 +18,15 @@ function ListContent(props) {
     floated,
     verticalAlign,
   } = props
+
   const classes = cx(
     useValueAndKey(floated, 'floated'),
     useVerticalAlignProp(verticalAlign),
     'content',
     className,
   )
-
-  const ElementType = getElementType(ListContent, props)
   const rest = getUnhandledProps(ListContent, props)
+  const ElementType = getElementType(ListContent, props)
 
   return <ElementType {...rest} className={classes}>{children}</ElementType>
 }

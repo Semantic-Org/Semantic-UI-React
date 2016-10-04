@@ -14,7 +14,7 @@ function DropdownDivider(props) {
   const rest = getUnhandledProps(DropdownDivider, props)
   const ElementType = getElementType(DropdownDivider, props)
 
-  return <ElementType className={classes} {...rest} />
+  return <ElementType {...rest} className={classes} />
 }
 
 DropdownDivider._meta = {

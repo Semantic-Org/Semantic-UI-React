@@ -14,11 +14,7 @@ function HeaderSubheader(props) {
   const rest = getUnhandledProps(HeaderSubheader, props)
   const ElementType = getElementType(HeaderSubheader, props)
 
-  return (
-    <ElementType className={classes} {...rest}>
-      {children || content}
-    </ElementType>
-  )
+  return <ElementType {...rest} className={classes}>{children || content}</ElementType>
 }
 
 HeaderSubheader._meta = {

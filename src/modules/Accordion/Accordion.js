@@ -162,7 +162,6 @@ export default class Accordion extends Component {
       useKeyOnly(styled, 'styled'),
       'accordion'
     )
-
     const rest = _.omit(this.props, _.keys(Accordion.propTypes))
     const ElementType = getElementType(Accordion, this.props)
 

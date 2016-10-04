@@ -18,7 +18,7 @@ import ItemMeta from './ItemMeta'
 
 /**
  * An item view presents large collections of site content for display
- * */
+ **/
 function Item(props) {
   const { children, className, content, description, extra, header, image, meta } = props
   const classes = cx(className, 'item')

@@ -21,7 +21,7 @@ import ListList from './ListList'
 
 /**
  * A list groups related content
- * */
+ **/
 function List(props) {
   const {
     animated,
@@ -40,6 +40,7 @@ function List(props) {
     selection,
     verticalAlign,
   } = props
+
   const classes = cx(
     'ui',
     size,
@@ -58,9 +59,8 @@ function List(props) {
     'list',
     className,
   )
-
-  const ElementType = getElementType(List, props)
   const rest = getUnhandledProps(List, props)
+  const ElementType = getElementType(List, props)
 
   return <ElementType {...rest} className={classes}>{children}</ElementType>
 }

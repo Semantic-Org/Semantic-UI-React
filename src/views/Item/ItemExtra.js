@@ -10,7 +10,7 @@ import {
 
 /**
  * An item can contain extra content meant to be formatted separately from the main content
- * */
+ **/
 function ItemExtra(props) {
   const { children, className, content } = props
   const classes = cx(className, 'extra')

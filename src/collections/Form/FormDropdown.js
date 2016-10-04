@@ -19,6 +19,7 @@ function FormDropdown(props) {
   const { control } = props
   const rest = getUnhandledProps(FormDropdown, props)
   const ElementType = getElementType(FormDropdown, props)
+
   return <ElementType {...rest} control={control} />
 }
 

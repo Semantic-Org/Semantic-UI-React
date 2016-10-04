@@ -14,9 +14,9 @@ import Item from './Item'
 
 /**
  * A group of items
- * */
+ **/
 function ItemGroup(props) {
-  const { className, children, divided, items, link, relaxed } = props
+  const { children, className, divided, items, link, relaxed } = props
   const classes = cx(
     'ui',
     className,
@@ -25,7 +25,6 @@ function ItemGroup(props) {
     useKeyOrValueAndKey(relaxed, 'relaxed'),
     'items'
   )
-
   const rest = getUnhandledProps(ItemGroup, props)
   const ElementType = getElementType(ItemGroup, props)
 

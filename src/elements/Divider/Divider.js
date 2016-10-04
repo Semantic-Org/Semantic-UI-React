@@ -30,15 +30,10 @@ function Divider(props) {
     'divider',
     className
   )
-
-  const ElementType = getElementType(Divider, props)
   const rest = getUnhandledProps(Divider, props)
+  const ElementType = getElementType(Divider, props)
 
-  return (
-    <ElementType className={classes} {...rest}>
-      {children}
-    </ElementType>
-  )
+  return <ElementType {...rest} className={classes}>{children}</ElementType>
 }
 
 Divider._meta = {

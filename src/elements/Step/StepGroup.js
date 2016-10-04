@@ -14,7 +14,7 @@ import {
 import Step from './Step'
 
 function StepGroup(props) {
-  const { className, children, fluid, items, ordered, size, stackable, vertical } = props
+  const { children, className, fluid, items, ordered, size, stackable, vertical } = props
   const classes = cx(
     'ui',
     useKeyOnly(fluid, 'fluid'),

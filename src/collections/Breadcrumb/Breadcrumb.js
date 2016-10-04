@@ -17,8 +17,8 @@ import BreadcrumbSection from './BreadcrumbSection'
  */
 function Breadcrumb(props) {
   const { children, className, divider, icon, size, sections } = props
-  const rest = getUnhandledProps(Breadcrumb, props)
   const classes = cx('ui', className, size, 'breadcrumb')
+  const rest = getUnhandledProps(Breadcrumb, props)
   const ElementType = getElementType(Breadcrumb, props)
 
   if (!sections) return <ElementType {...rest} className={classes}>{children}</ElementType>

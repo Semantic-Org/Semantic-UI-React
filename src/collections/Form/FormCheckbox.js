@@ -19,6 +19,7 @@ function FormCheckbox(props) {
   const { control } = props
   const rest = getUnhandledProps(FormCheckbox, props)
   const ElementType = getElementType(FormCheckbox, props)
+
   return <ElementType {...rest} control={control} />
 }
 

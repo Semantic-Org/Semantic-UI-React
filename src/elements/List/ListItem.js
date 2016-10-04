@@ -25,7 +25,6 @@ function ListItem(props) {
     useKeyOnly(ElementType !== 'li', 'item'),
     className,
   )
-
   const rest = getUnhandledProps(ListItem, props)
   const valueProp = ElementType === 'li' ? { value } : { 'data-value': value }
 

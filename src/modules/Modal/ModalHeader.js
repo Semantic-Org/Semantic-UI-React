@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import classNames from 'classnames'
+import cx from 'classnames'
 
 import {
   customPropTypes,
@@ -10,20 +10,11 @@ import {
 
 function ModalHeader(props) {
   const { children, className } = props
-
-  const classes = classNames(
-    className,
-    'header'
-  )
-
+  const classes = cx(className, 'header')
   const rest = getUnhandledProps(ModalHeader, props)
   const ElementType = getElementType(ModalHeader, props)
 
-  return (
-    <ElementType className={classes} {...rest}>
-      {children}
-    </ElementType>
-  )
+  return <ElementType {...rest} className={classes}>{children}</ElementType>
 }
 
 ModalHeader._meta = {

@@ -20,15 +20,10 @@ function ButtonContent(props) {
     'content',
     className,
   )
-
   const rest = getUnhandledProps(ButtonContent, props)
   const ElementType = getElementType(ButtonContent, props)
 
-  return (
-    <ElementType className={classes} {...rest}>
-      {children}
-    </ElementType>
-  )
+  return <ElementType {...rest} className={classes}>{children}</ElementType>
 }
 
 ButtonContent._meta = {

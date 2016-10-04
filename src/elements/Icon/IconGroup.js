@@ -14,7 +14,7 @@ import {
  */
 function IconGroup(props) {
   const {
-    className, children, size,
+    children, className, size,
   } = props
 
   const classes = cx(
@@ -22,15 +22,10 @@ function IconGroup(props) {
     'icons',
     className
   )
-
   const rest = getUnhandledProps(IconGroup, props)
   const ElementType = getElementType(IconGroup, props)
 
-  return (
-    <ElementType className={classes} {...rest}>
-      {children}
-    </ElementType>
-  )
+  return <ElementType {...rest} className={classes}>{children}</ElementType>
 }
 
 IconGroup._meta = {

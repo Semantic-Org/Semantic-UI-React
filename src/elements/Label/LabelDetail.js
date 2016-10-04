@@ -11,10 +11,10 @@ import {
 function LabelDetail(props) {
   const { children, className, content } = props
   const classes = cx('detail', className)
-  const ElementType = getElementType(LabelDetail, props)
   const rest = getUnhandledProps(LabelDetail, props)
+  const ElementType = getElementType(LabelDetail, props)
 
-  return <ElementType className={classes} {...rest}>{ children || content }</ElementType>
+  return <ElementType {...rest} className={classes}>{children || content}</ElementType>
 }
 
 LabelDetail._meta = {

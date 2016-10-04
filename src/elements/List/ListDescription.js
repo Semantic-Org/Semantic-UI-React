@@ -11,9 +11,8 @@ import {
 function ListDescription(props) {
   const { children, className } = props
   const classes = cx(className, 'description')
-
-  const ElementType = getElementType(ListDescription, props)
   const rest = getUnhandledProps(ListDescription, props)
+  const ElementType = getElementType(ListDescription, props)
 
   return <ElementType {...rest} className={classes}>{children}</ElementType>
 }

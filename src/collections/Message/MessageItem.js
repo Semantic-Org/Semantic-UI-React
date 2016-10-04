@@ -1,3 +1,4 @@
+import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
 import {
@@ -8,11 +9,12 @@ import {
 } from '../../lib'
 
 function MessageItem(props) {
-  const { children } = props
+  const { children, className } = props
+  const classes = cx('content', className)
   const rest = getUnhandledProps(MessageItem, props)
   const ElementType = getElementType(MessageItem, props)
 
-  return <ElementType {...rest}>{children}</ElementType>
+  return <ElementType {...rest} className={classes}>{children}</ElementType>
 }
 
 MessageItem._meta = {
@@ -27,6 +29,9 @@ MessageItem.propTypes = {
 
   /** Primary content. */
   children: PropTypes.node,
+
+  /** Additional classes. */
+  className: PropTypes.node,
 }
 
 MessageItem.defaultProps = {

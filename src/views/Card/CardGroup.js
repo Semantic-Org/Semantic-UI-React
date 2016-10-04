@@ -16,7 +16,7 @@ import Card from './Card'
  * A group of cards.
  */
 function CardGroup(props) {
-  const { className, children, doubling, items, itemsPerRow, stackable } = props
+  const { children, className, doubling, items, itemsPerRow, stackable } = props
   const classes = cx('ui',
     useWidthProp(itemsPerRow),
     useKeyOnly(doubling, 'doubling'),

@@ -36,7 +36,7 @@ const _meta = {
 
 /**
  * A menu displays grouped navigation actions.
- * */
+ **/
 class Menu extends Component {
   static propTypes = {
     /** An element type to render as (string or function). */
@@ -172,7 +172,7 @@ class Menu extends Component {
 
   render() {
     const {
-      attached, borderless, className, children, color, compact, fixed, floated, fluid, icon, inverted, pagination,
+      attached, borderless, children, className, color, compact, fixed, floated, fluid, icon, inverted, pagination,
       pointing, secondary, stackable, tabular, text, vertical, size, widths,
     } = this.props
     const classes = cx(
@@ -198,7 +198,6 @@ class Menu extends Component {
       className,
       'menu'
     )
-
     const rest = getUnhandledProps(Menu, this.props)
     const ElementType = getElementType(Menu, this.props)
 

@@ -955,7 +955,6 @@ export default class Dropdown extends Component {
       className,
       'dropdown',
     )
-
     const rest = getUnhandledProps(Dropdown, this.props)
     const ElementType = getElementType(Dropdown, this.props)
 

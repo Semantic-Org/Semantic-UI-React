@@ -30,6 +30,7 @@ function TableRow(props) {
     verticalAlign,
     warning,
   } = props
+
   const classes = cx(
     useKeyOnly(active, 'active'),
     useKeyOnly(disabled, 'disabled'),
@@ -41,9 +42,8 @@ function TableRow(props) {
     useVerticalAlignProp(verticalAlign),
     className,
   )
-
-  const ElementType = getElementType(TableRow, props)
   const rest = getUnhandledProps(TableRow, props)
+  const ElementType = getElementType(TableRow, props)
 
   if (children) {
     return <ElementType {...rest} className={classes}>{children}</ElementType>

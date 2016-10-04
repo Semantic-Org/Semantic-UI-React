@@ -40,12 +40,11 @@ function Icon(props) {
     className,
     'icon'
   )
-
   const rest = getUnhandledProps(Icon, props)
   const ElementType = getElementType(Icon, props)
 
   return (
-    <ElementType className={classes} {...rest} />
+    <ElementType {...rest} className={classes} />
   )
 }
 

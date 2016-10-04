@@ -11,9 +11,9 @@ import {
 import MessageItem from './MessageItem'
 
 function MessageList(props) {
-  const { className, children, items } = props
-  const rest = getUnhandledProps(MessageList, props)
+  const { children, className, items } = props
   const classes = cx('list', className)
+  const rest = getUnhandledProps(MessageList, props)
   const ElementType = getElementType(MessageList, props)
 
   const itemsJSX = items && items.map(item => <MessageItem key={item}>{item}</MessageItem>)

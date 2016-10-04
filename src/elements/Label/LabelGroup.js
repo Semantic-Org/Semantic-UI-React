@@ -19,6 +19,7 @@ function LabelGroup(props) {
     size,
     tag,
   } = props
+
   const classes = cx(
     'ui',
     color,
@@ -28,11 +29,10 @@ function LabelGroup(props) {
     'labels',
     className
   )
-
-  const ElementType = getElementType(LabelGroup, props)
   const rest = getUnhandledProps(LabelGroup, props)
+  const ElementType = getElementType(LabelGroup, props)
 
-  return <ElementType className={classes} {...rest}>{ children }</ElementType>
+  return <ElementType {...rest} className={classes}>{children}</ElementType>
 }
 
 LabelGroup._meta = {

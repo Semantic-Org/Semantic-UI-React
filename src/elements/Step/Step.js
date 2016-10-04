@@ -20,7 +20,7 @@ import StepTitle from './StepTitle'
  */
 function Step(props) {
   const {
-    active, className, children, completed, description, disabled, icon, href, link, onClick, title,
+    active, children, className, completed, description, disabled, icon, href, link, onClick, title,
   } = props
   const classes = cx(
     useKeyOnly(active, 'active'),

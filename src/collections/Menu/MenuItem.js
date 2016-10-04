@@ -37,11 +37,7 @@ function MenuItem(props) {
   const rest = getUnhandledProps(MenuItem, props)
 
   if (children) {
-    return (
-      <ElementType {...rest} className={classes} onClick={handleClick}>
-        {children}
-      </ElementType>
-    )
+    return <ElementType {...rest} className={classes} onClick={handleClick}>{children}</ElementType>
   }
 
   return (

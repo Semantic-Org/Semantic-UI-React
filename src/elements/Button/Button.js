@@ -59,7 +59,6 @@ function Button(props) {
     useKeyOnly(secondary, 'secondary'),
     useKeyOnly(toggle, 'toggle'),
   )
-
   const rest = getUnhandledProps(Button, props)
   const ElementType = getElementType(Button, props, () => {
     if (label || attached) return 'div'

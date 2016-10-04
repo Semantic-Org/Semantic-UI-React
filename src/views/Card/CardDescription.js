@@ -12,7 +12,7 @@ import {
  * A card can contain a description with one or more paragraphs
  */
 function CardDescription(props) {
-  const { className, children, content } = props
+  const { children, className, content } = props
   const classes = cx(className, 'description')
   const rest = getUnhandledProps(CardDescription, props)
   const ElementType = getElementType(CardDescription, props)

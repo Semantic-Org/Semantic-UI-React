@@ -12,7 +12,7 @@ import {
  * Header content wraps the main content when there is an adjacent Icon or Image.
  */
 function HeaderContent(props) {
-  const { className, children } = props
+  const { children, className } = props
   const classes = cx(className, 'content')
   const rest = getUnhandledProps(HeaderContent, props)
   const ElementType = getElementType(HeaderContent, props)

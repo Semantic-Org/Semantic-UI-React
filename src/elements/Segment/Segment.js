@@ -67,7 +67,6 @@ function Segment(props) {
     className,
     'segment',
   )
-
   const rest = getUnhandledProps(Segment, props)
   const ElementType = getElementType(Segment, props)
 

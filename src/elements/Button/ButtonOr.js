@@ -17,7 +17,7 @@ function ButtonOr(props) {
   const rest = getUnhandledProps(ButtonOr, props)
   const ElementType = getElementType(ButtonOr, props)
 
-  return <ElementType className={classes} {...rest} />
+  return <ElementType {...rest} className={classes} />
 }
 
 ButtonOr._meta = {
