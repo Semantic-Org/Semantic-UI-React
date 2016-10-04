@@ -10,6 +10,10 @@ describe('Checkbox', () => {
   common.propKeyOnlyToClassName(Checkbox, 'checked')
   common.propKeyOnlyToClassName(Checkbox, 'slider')
   common.propKeyOnlyToClassName(Checkbox, 'toggle')
+  common.propKeyOnlyToClassName(Checkbox, 'disabled')
+  common.propKeyOnlyToClassName(Checkbox, 'readOnly', {
+    className: 'read-only',
+  })
 
   describe('defaultChecked', () => {
     it('sets the initial checked state', () => {
