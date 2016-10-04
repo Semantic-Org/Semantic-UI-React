@@ -138,22 +138,22 @@ Any other issue labeled [`help wanted`][4] is ready for a PR.
 
 |    Elements     |   Collections   |      Views      |     Modules     |     Behaviors      |
 |-----------------|-----------------|-----------------|-----------------|--------------------|
-| x Button        | x Breadcrumb    | _ Advertisement | x Accordion     | x Form Validation  |
-| x Container     | x Form          | x Card          | x Checkbox      | *API (NA)*         |
-| x Divider       | x Grid          | _ Comment       | _ Dimmer        | *Visibility (NA)*  |
-| x Flag          | x Menu          | x Feed          | x Dropdown      |                    |
-| x Header        | x Message       | x Item          | _ Embed         |                    |
-| x Icon          | x Table         | x Statistic     | x Modal         |                    |
-| x Image         |                 |                 | _ Nag           |                    |
-| x Input         |                 |                 | _ Popup         |                    |
-| x Label         |                 |                 | x Progress      |                    |
-| x List          |                 |                 | x Rating        |                    |
-| x Loader        |                 |                 | x Search        |                    |
-| x Rail          |                 |                 | _ Shape         |                    |
-| _ Reveal        |                 |                 | _ Sidebar       |                    |
-| x Segment       |                 |                 | _ Sticky        |                    |
-| x Step          |                 |                 | _ Tab           |                    |
-|                 |                 |                 | _ Transition    |                    |
+| ✓ Button        | ✓ Breadcrumb    |   Advertisement | ✓ Accordion     | ✓ Form Validation  |
+| ✓ Container     | ✓ Form          | ✓ Card          | ✓ Checkbox      | *API (NA)*         |
+| ✓ Divider       | ✓ Grid          |   Comment       |   Dimmer        | *Visibility (NA)*  |
+| ✓ Flag          | ✓ Menu          | ✓ Feed          | ✓ Dropdown      |                    |
+| ✓ Header        | ✓ Message       | ✓ Item          |   Embed         |                    |
+| ✓ Icon          | ✓ Table         | ✓ Statistic     | ✓ Modal         |                    |
+| ✓ Image         |                 |                 |   Nag           |                    |
+| ✓ Input         |                 |                 |   Popup         |                    |
+| ✓ Label         |                 |                 | ✓ Progress      |                    |
+| ✓ List          |                 |                 | ✓ Rating        |                    |
+| ✓ Loader        |                 |                 | ✓ Search        |                    |
+| ✓ Rail          |                 |                 |   Shape         |                    |
+|   Reveal        |                 |                 |   Sidebar       |                    |
+| ✓ Segment       |                 |                 |   Sticky        |                    |
+| ✓ Step          |                 |                 |   Tab           |                    |
+|                 |                 |                 |   Transition    |                    |
 
 ## Releasing
 
