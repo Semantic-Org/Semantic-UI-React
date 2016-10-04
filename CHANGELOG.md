@@ -1,12 +1,47 @@
 # Change Log
 
-## [Unreleased](https://github.com/TechnologyAdvice/stardust/tree/HEAD)
+## [v0.54.1](https://github.com/TechnologyAdvice/stardust/tree/v0.54.1) (2016-10-04)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.54.0...v0.54.1)
 
-[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.52.5...HEAD)
+**Fixed bugs:**
+
+- fix\(Checkbox\): prevent onChange and onClick when disabled  [\#600](https://github.com/TechnologyAdvice/stardust/issues/600)
+
+**Merged pull requests:**
+
+- refactor\(Components\): use a class if there are event handlers [\#619](https://github.com/TechnologyAdvice/stardust/pull/619) ([layershifter](https://github.com/layershifter))
+- fix\(Checkbox\): no onChange/onClick when disabled [\#601](https://github.com/TechnologyAdvice/stardust/pull/601) ([sprmn](https://github.com/sprmn))
+
+## [v0.54.0](https://github.com/TechnologyAdvice/stardust/tree/v0.54.0) (2016-10-04)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.53.0...v0.54.0)
+
+**Fixed bugs:**
+
+- fix\(Button\): revert rendering `labeled` buttons as \<button\> [\#612](https://github.com/TechnologyAdvice/stardust/issues/612)
+
+**Closed issues:**
+
+- refactor\(Button\): rework `labeled` for consistency with Input [\#510](https://github.com/TechnologyAdvice/stardust/issues/510)
+- RFC: Standardize Component Parts [\#325](https://github.com/TechnologyAdvice/stardust/issues/325)
+
+**Merged pull requests:**
+
+- BREAKING CHANGE: refactor `labeled` Button API [\#616](https://github.com/TechnologyAdvice/stardust/pull/616) ([levithomason](https://github.com/levithomason))
+- chore\(icon\): cleanup icon doc data [\#615](https://github.com/TechnologyAdvice/stardust/pull/615) ([levithomason](https://github.com/levithomason))
+- chore\(style\): Make some common patterns more consistent [\#614](https://github.com/TechnologyAdvice/stardust/pull/614) ([jcarbo](https://github.com/jcarbo))
+- chore\(ComponentExamples\): example context todo [\#613](https://github.com/TechnologyAdvice/stardust/pull/613) ([levithomason](https://github.com/levithomason))
+- chore\(imports\): Direct internal imports [\#610](https://github.com/TechnologyAdvice/stardust/pull/610) ([jcarbo](https://github.com/jcarbo))
+
+## [v0.53.0](https://github.com/TechnologyAdvice/stardust/tree/v0.53.0) (2016-10-03)
+[Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.52.5...v0.53.0)
 
 **Fixed bugs:**
 
 - labeled icon \<Button /\> not rendered as \<button\> [\#596](https://github.com/TechnologyAdvice/stardust/issues/596)
+
+**Merged pull requests:**
+
+- refactor\(project\): stardust =\> semantic-ui-react [\#608](https://github.com/TechnologyAdvice/stardust/pull/608) ([levithomason](https://github.com/levithomason))
 
 ## [v0.52.5](https://github.com/TechnologyAdvice/stardust/tree/v0.52.5) (2016-10-03)
 [Full Changelog](https://github.com/TechnologyAdvice/stardust/compare/v0.52.4...v0.52.5)
