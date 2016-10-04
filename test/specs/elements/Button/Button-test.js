@@ -30,7 +30,9 @@ describe('Button', () => {
   common.propKeyAndValueToClassName(Button, 'floated')
   common.propKeyOnlyToClassName(Button, 'fluid')
   common.propKeyOnlyToClassName(Button, 'inverted')
-  common.propKeyOrValueAndKeyToClassName(Button, 'labeled')
+  common.propKeyOrValueAndKeyToClassName(Button, 'labelPosition', {
+    className: 'labeled',
+  })
   common.propKeyOnlyToClassName(Button, 'loading')
   common.propKeyOnlyToClassName(Button, 'primary')
   common.propKeyOnlyToClassName(Button, 'negative')
@@ -74,16 +76,14 @@ describe('Button', () => {
       shallow(<Button icon='user' />)
         .should.have.className('icon')
     })
-    it('does not add className icon when there are children', () => {
-      shallow(<Button icon='user'>Yo</Button>)
-        .should.not.have.className('icon')
-    })
     it('does not add className icon when there is content', () => {
       shallow(<Button icon='user' content='Yo' />)
         .should.not.have.className('icon')
     })
-    it('adds className icon when labeled and has content', () => {
-      shallow(<Button labeled icon='user' content='My Account' />)
+    it('adds className icon given labelPosition and content', () => {
+      shallow(<Button labelPosition='left' icon='user' content='My Account' />)
+        .should.have.className('icon')
+      shallow(<Button labelPosition='right' icon='user' content='My Account' />)
         .should.have.className('icon')
     })
   })
@@ -104,15 +104,15 @@ describe('Button', () => {
       shallow(<Button label='foo' />)
         .should.have.exactly(1).descendants('Label[basic][pointing]')
     })
-    it('is before the button and pointing="right" when labeled="left"', () => {
-      const wrapper = shallow(<Button labeled='left' label='foo' />)
+    it('is before the button and pointing="right" when labelPosition="left"', () => {
+      const wrapper = shallow(<Button labelPosition='left' label='foo' />)
       wrapper.should.have.exactly(1).descendants('Label[pointing="right"]')
 
       wrapper.children().at(0).should.match('.ui.label')
       wrapper.children().at(1).should.match('button')
     })
-    it('is after the button and pointing="left" when labeled="right"', () => {
-      const wrapper = shallow(<Button labeled='right' label='foo' />)
+    it('is after the button and pointing="left" when labelPosition="right"', () => {
+      const wrapper = shallow(<Button labelPosition='right' label='foo' />)
       wrapper.should.have.exactly(1).descendants('Label[pointing="left"]')
 
       wrapper.children().at(0).should.match('button')
@@ -127,10 +127,12 @@ describe('Button', () => {
     })
   })
 
-  describe('labeled', () => {
-    it('renders as a button', () => {
-      const wrapper = shallow(<Button labeled />)
-      wrapper.should.have.tagName('button')
+  describe('labelPosition', () => {
+    it('renders as a div', () => {
+      shallow(<Button labelPosition='left' />)
+        .should.have.tagName('div')
+      shallow(<Button labelPosition='right' />)
+        .should.have.tagName('div')
     })
   })
 })
