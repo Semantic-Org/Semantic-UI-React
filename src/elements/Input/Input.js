@@ -32,6 +32,7 @@ export const htmlInputPropNames = [
   'maxLength',
   'min',
   'name',
+  'onChange',
   'pattern',
   'placeholder',
   'readOnly',
@@ -86,9 +87,11 @@ function Input(props) {
     className,
     'input',
   )
-  const rest = getUnhandledProps(Input, props)
+  const unhandled = getUnhandledProps(Input, props)
+
+  const rest = _.omit(unhandled, htmlInputPropNames)
+  const htmlInputProps = _.pick(props, htmlInputPropNames)
   const ElementType = getElementType(Input, props)
-  const inputProps = _.pick(props, htmlInputPropNames)
 
   if (children) {
     return <ElementType {...rest} className={classes}>{children}</ElementType>
@@ -115,7 +118,7 @@ function Input(props) {
       {actionPosition === 'left' && actionElement}
       {iconPosition === 'left' && iconElement}
       {labelPosition !== 'right' && labelElement}
-      {createHTMLInput(input || type, inputProps)}
+      {createHTMLInput(input || type, htmlInputProps)}
       {actionPosition !== 'left' && actionElement}
       {iconPosition !== 'left' && iconElement}
       {labelPosition === 'right' && labelElement}

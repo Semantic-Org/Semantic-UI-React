@@ -106,6 +106,18 @@ describe('Modal', () => {
         .should.have.prop('open', false)
     })
 
+    it('is not passed to Modal', () => {
+      shallow(<Modal open />)
+        .find('Portal')
+        .children()
+        .should.not.have.prop('open')
+
+      shallow(<Modal open={false} />)
+        .find('Portal')
+        .children()
+        .should.not.have.prop('open')
+    })
+
     it('does not show the modal when false', () => {
       wrapperMount(<Modal open={false} />)
       assertInBody('.ui.modal', false)
