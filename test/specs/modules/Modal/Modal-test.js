@@ -104,9 +104,15 @@ describe('Modal', () => {
       shallow(<Modal open={false} />)
         .find('Portal')
         .should.have.prop('open', false)
+    })
 
-      // Does not pass this prop to the portal child
+    it('is not passed to Modal', () => {
       shallow(<Modal open />)
+        .find('Portal')
+        .children()
+        .should.not.have.prop('open')
+
+      shallow(<Modal open={false} />)
         .find('Portal')
         .children()
         .should.not.have.prop('open')

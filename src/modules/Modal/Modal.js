@@ -155,18 +155,12 @@ class Modal extends Component {
       'modal transition visible active',
       className,
     )
-    const rest = getUnhandledProps(Modal, this.props)
+    const unhandled = getUnhandledProps(Modal, this.props)
+    const portalPropNames = _.keys(Portal.propTypes)
+
+    const rest = _.omit(unhandled, portalPropNames)
+    const portalProps = _.pick(unhandled, portalPropNames)
     const ElementType = getElementType(Modal, this.props)
-
-    // Remove portal-handled props from 'rest' and pass them through to Portal
-    const portalProps = _.reduce(rest, (memo, value, key) => {
-      if (_.has(Portal.propTypes, key)) {
-        memo[key] = value
-        _.unset(rest, key)
-      }
-
-      return memo
-    }, {})
 
     const modalJSX = (
       <ElementType {...rest} className={classes} style={{ marginTop }} ref={c => (this._modalNode = c)}>
