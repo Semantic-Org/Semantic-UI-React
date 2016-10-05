@@ -8,7 +8,6 @@ import {
   getUnhandledProps,
   META,
 } from '../../lib'
-import {} from '../../lib/factories'
 
 function CommentAvatar(props) {
   const { className, src } = props
@@ -16,11 +15,7 @@ function CommentAvatar(props) {
   const rest = getUnhandledProps(CommentAvatar, props)
   const ElementType = getElementType(CommentAvatar, props)
 
-  return (
-    <ElementType {...rest} className={classes}>
-      {createHTMLImage(src)}
-    </ElementType>
-  )
+  return <ElementType {...rest} className={classes}>{createHTMLImage(src)}</ElementType>
 }
 
 CommentAvatar._meta = {
@@ -33,9 +28,10 @@ CommentAvatar.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** Classes to add to the CommentAvatar className. */
+  /** Additional classes. */
   className: PropTypes.string,
 
+  /** Specifies the URL of the image. */
   src: PropTypes.string,
 }
 

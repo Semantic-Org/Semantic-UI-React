@@ -27,10 +27,10 @@ CommentActions.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** Primary content of the CommentActions. */
+  /** Primary content. */
   children: PropTypes.node,
 
-  /** Classes to add to the CommentActions className. */
+  /** Additional classes. */
   className: PropTypes.string,
 }
 

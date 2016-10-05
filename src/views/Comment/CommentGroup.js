@@ -42,10 +42,10 @@ CommentGroup.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** Primary content of the CommentGroup. */
+  /** Primary content. */
   children: PropTypes.node,
 
-  /** Classes to add to the CommentGroup className. */
+  /** Additional classes. */
   className: PropTypes.string,
 
   /** Comments can be collapsed, or hidden from view. */

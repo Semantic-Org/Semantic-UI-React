@@ -8,30 +8,30 @@ import {
   META,
 } from '../../lib'
 
-function CommentGroup(props) {
+function CommentContent(props) {
   const { className, children } = props
   const classes = cx('content', className)
-  const rest = getUnhandledProps(CommentGroup, props)
-  const ElementType = getElementType(CommentGroup, props)
+  const rest = getUnhandledProps(CommentContent, props)
+  const ElementType = getElementType(CommentContent, props)
 
   return <ElementType {...rest} className={classes}>{children}</ElementType>
 }
 
-CommentGroup._meta = {
+CommentContent._meta = {
   name: 'CommentContent',
   parent: 'Comment',
   type: META.TYPES.VIEW,
 }
 
-CommentGroup.propTypes = {
+CommentContent.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** Primary content of the CommentContent. */
+  /** Primary content. */
   children: PropTypes.node,
 
-  /** Classes to add to the CommentContent className. */
+  /** Additional classes. */
   className: PropTypes.string,
 }
 
-export default CommentGroup
+export default CommentContent

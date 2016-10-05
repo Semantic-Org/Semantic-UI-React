@@ -10,12 +10,16 @@ import {
 } from '../../lib'
 
 function CommentAction(props) {
-  const { active, className, children } = props
+  const {
+    active,
+    className,
+    children,
+  } = props
+
   const classes = cx(
     useKeyOnly(active, 'active'),
     className
   )
-
   const rest = getUnhandledProps(CommentAction, props)
   const ElementType = getElementType(CommentAction, props)
 
@@ -39,10 +43,10 @@ CommentAction.propTypes = {
   /** Style as the currently active action. */
   active: PropTypes.bool,
 
-  /** Primary content of the CommentAction. */
+  /** Primary content. */
   children: PropTypes.node,
 
-  /** Classes to add to the CommentAction className. */
+  /** Additional classes. */
   className: PropTypes.string,
 }
 

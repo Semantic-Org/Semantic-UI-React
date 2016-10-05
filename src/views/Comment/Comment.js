@@ -6,6 +6,7 @@ import {
   getElementType,
   getUnhandledProps,
   META,
+  useKeyOnly,
 } from '../../lib'
 import CommentAction from './CommentAction'
 import CommentActions from './CommentActions'
@@ -14,15 +15,23 @@ import CommentAvatar from './CommentAvatar'
 import CommentContent from './CommentContent'
 import CommentGroup from './CommentGroup'
 import CommentMetadata from './CommentMetadata'
-import CommentReplyForm from './CommentReplyForm'
 import CommentText from './CommentText'
 
 /**
  * A comment displays user feedback to site content
  * */
 function Comment(props) {
-  const { className, children } = props
-  const classes = cx('comment', className)
+  const {
+    className,
+    children,
+    collapsed,
+  } = props
+
+  const classes = cx(
+    useKeyOnly(collapsed, 'collapsed'),
+    'comment',
+    className
+  )
   const rest = getUnhandledProps(Comment, props)
   const ElementType = getElementType(Comment, props)
 
@@ -38,10 +47,10 @@ Comment.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** Primary content of the Comment. */
+  /** Primary content. */
   children: PropTypes.node,
 
-  /** Classes to add to the Comment className. */
+  /** Additional classes. */
   className: PropTypes.string,
 
   /** Comment can be collapsed, or hidden from view. */
@@ -55,7 +64,6 @@ Comment.Avatar = CommentAvatar
 Comment.Content = CommentContent
 Comment.Group = CommentGroup
 Comment.Metadata = CommentMetadata
-Comment.ReplyForm = CommentReplyForm
 Comment.Text = CommentText
 
 export default Comment
