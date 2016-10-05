@@ -66,7 +66,7 @@ export default class Dropdown extends Component {
     /** Initial value of open. */
     defaultOpen: PropTypes.bool,
 
-    /** A Dropdown can contain a single <Dropdown.Menu /> child. */
+    /** Primary content. */
     children: customPropTypes.every([
       customPropTypes.disallow(['options', 'selection']),
       customPropTypes.demand(['text']),
@@ -170,7 +170,7 @@ export default class Dropdown extends Component {
     /** Format the Dropdown to appear as a button. */
     button: PropTypes.bool,
 
-    /** Additional classes added to the root element. */
+    /** Additional classes. */
     className: PropTypes.string,
 
     /** Format the dropdown to only take up as much width as needed. */

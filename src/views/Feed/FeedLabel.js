@@ -39,45 +39,20 @@ FeedLabel.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** Primary content of the FeedLabel. Mutually exclusive with all shorthand props. */
-  children: customPropTypes.every([
-    customPropTypes.disallow(['content', 'icon', 'image']),
-    PropTypes.node,
-  ]),
+  /** Primary content. */
+  children: PropTypes.node,
 
-  /** Classes that will be added to the FeedLabel className. */
+  /** Additional classes. */
   className: PropTypes.string,
 
-  /** Shorthand for children. Mutually exclusive with children. */
-  content: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number,
-    ]),
-  ]),
+  /** Shorthand for primary content. */
+  content: customPropTypes.contentShorthand,
 
-  /** An event can contain icon label. Mutually exclusive with children. */
-  icon: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number,
-      PropTypes.object,
-      PropTypes.element,
-    ]),
-  ]),
+  /** An event can contain icon label. */
+  icon: customPropTypes.itemShorthand,
 
-  /** An event can contain image label. Mutually exclusive with children. */
-  image: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number,
-      PropTypes.object,
-      PropTypes.element,
-    ]),
-  ]),
+  /** An event can contain image label. */
+  image: customPropTypes.itemShorthand,
 }
 
 export default FeedLabel

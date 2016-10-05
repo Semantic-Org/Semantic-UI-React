@@ -38,10 +38,10 @@ class Modal extends Component {
     /** An element type to render as (string or function). */
     as: customPropTypes.as,
 
-    /** Primary content of the modal. Consider using ModalHeader, ModalContent or ModalActions here */
+    /** Primary content. */
     children: PropTypes.node,
 
-    /** Classes to add to the modal className */
+    /** Additional classes. */
     className: PropTypes.string,
 
     /** A modal can reduce its complexity */

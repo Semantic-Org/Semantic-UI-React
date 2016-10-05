@@ -81,24 +81,13 @@ TableRow.propTypes = {
   /** An element type to render as (string or function). */
   cellAs: customPropTypes.as,
 
-  /** Shorthand array of props for TableCell. Mutually exclusive with children. */
-  cells: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    // Array of shorthands for TableCell
-    PropTypes.arrayOf(PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.element,
-      PropTypes.object,
-    ])),
-  ]),
+  /** Shorthand array of props for TableCell. */
+  cells: customPropTypes.collectionShorthand,
 
-  /** Primary content of the TableRow. */
-  children: customPropTypes.every([
-    customPropTypes.disallow(['content', 'icon']),
-    PropTypes.node,
-  ]),
+  /** Primary content. */
+  children: PropTypes.node,
 
-  /** Classes that will be added to the TableRow className. */
+  /** Additional classes. */
   className: PropTypes.string,
 
   /** A row can be disabled. */

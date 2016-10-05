@@ -85,23 +85,17 @@ TableCell.propTypes = {
   /** A cell can be active or selected by a user. */
   active: PropTypes.bool,
 
-  /** Primary content of the TableCell. */
-  children: customPropTypes.every([
-    customPropTypes.disallow(['content', 'icon']),
-    PropTypes.node,
-  ]),
+  /** Primary content. */
+  children: PropTypes.node,
 
-  /** Classes that will be added to the TableCell className. */
+  /** Additional classes. */
   className: PropTypes.string,
 
   /** A cell can be collapsing so that it only uses as much space as required. */
   collapsing: PropTypes.bool,
 
-  /** Shorthand for primary content of the TableCell. Mutually exclusive with the children. */
-  content: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.string,
-  ]),
+  /** Shorthand for primary content. */
+  content: customPropTypes.contentShorthand,
 
   /** A cell can be disabled. */
   disabled: PropTypes.bool,
@@ -110,14 +104,7 @@ TableCell.propTypes = {
   error: PropTypes.bool,
 
   /** Add an Icon by name, props object, or pass an <Icon /> */
-  icon: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.oneOfType([
-      PropTypes.number,
-      PropTypes.string,
-      PropTypes.element,
-    ]),
-  ]),
+  icon: customPropTypes.itemShorthand,
 
   /** A cell may let a user know whether a value is bad. */
   negative: PropTypes.bool,

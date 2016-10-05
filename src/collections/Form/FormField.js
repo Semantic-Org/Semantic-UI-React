@@ -131,10 +131,10 @@ FormField.propTypes = {
     PropTypes.oneOf(FormField._meta.props.control),
   ]),
 
-  /** Primary content */
+  /** Primary content. */
   children: PropTypes.node,
 
-  /** Additional classes to add */
+  /** Additional classes. */
   className: PropTypes.string,
 
   /** Individual fields may be disabled */

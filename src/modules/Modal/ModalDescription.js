@@ -27,10 +27,10 @@ ModalDescription.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** Primary content */
-  children: PropTypes.any,
+  /** Primary content. */
+  children: PropTypes.node,
 
-  /** Classes to add to the className */
+  /** Additional classes. */
   className: PropTypes.string,
 }
 

@@ -40,61 +40,34 @@ FeedEvent.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** Primary content of the FeedEvent. Mutually exclusive with all shorthand props. */
-  children: customPropTypes.every([
-    customPropTypes.disallow([
-      'date',
-      'extraImages',
-      'extraText',
-      'icon',
-      'image',
-      'meta',
-      'summary',
-    ]),
-    PropTypes.node,
-  ]),
+  /** Primary content. */
+  children: PropTypes.node,
 
-  /** Classes that will be added to the FeedEvent className. */
+  /** Additional classes. */
   className: PropTypes.string,
 
-  /** Shorthand for FeedContent. Mutually exclusive with children. */
+  /** Shorthand for FeedContent. */
   content: FeedContent.propTypes.content,
 
-  /** Shorthand for FeedDate. Mutually exclusive with children. */
+  /** Shorthand for FeedDate. */
   date: FeedContent.propTypes.date,
 
-  /** Shorthand for FeedExtra with images. Mutually exclusive with children. */
+  /** Shorthand for FeedExtra with images. */
   extraImages: FeedContent.propTypes.extraImages,
 
-  /** Shorthand for FeedExtra with content. Mutually exclusive with children. */
+  /** Shorthand for FeedExtra with content. */
   extraText: FeedContent.propTypes.extraText,
 
-  /** An event can contain icon label. Mutually exclusive with children. */
-  icon: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number,
-      PropTypes.object,
-      PropTypes.element,
-    ]),
-  ]),
+  /** An event can contain icon label. */
+  icon: customPropTypes.itemShorthand,
 
-  /** An event can contain image label. Mutually exclusive with children. */
-  image: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number,
-      PropTypes.object,
-      PropTypes.element,
-    ]),
-  ]),
+  /** An event can contain image label. */
+  image: customPropTypes.itemShorthand,
 
-  /** Shorthand for FeedMeta. Mutually exclusive with children. */
+  /** Shorthand for FeedMeta. */
   meta: FeedContent.propTypes.meta,
 
-  /** Shorthand for FeedSummary. Mutually exclusive with children. */
+  /** Shorthand for FeedSummary. */
   summary: FeedContent.propTypes.summary,
 }
 

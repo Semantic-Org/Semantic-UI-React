@@ -24,16 +24,13 @@ export default class DropdownItem extends Component {
     active: PropTypes.bool,
 
     /** Primary content. */
-    children: customPropTypes.every([
-      customPropTypes.disallow(['text']),
-      PropTypes.node,
-    ]),
+    children: PropTypes.node,
 
-    /** Additional className. */
+    /** Additional classes. */
     className: PropTypes.string,
 
     /** Additional text with less emphasis. */
-    description: PropTypes.string,
+    description: customPropTypes.itemShorthand,
 
     /** A dropdown item can be disabled. */
     disabled: PropTypes.bool,
@@ -48,13 +45,7 @@ export default class DropdownItem extends Component {
     selected: PropTypes.bool,
 
     /** Display text. */
-    text: customPropTypes.every([
-      customPropTypes.disallow(['children']),
-      PropTypes.oneOfType([
-        PropTypes.number,
-        PropTypes.string,
-      ]),
-    ]),
+    text: customPropTypes.contentShorthand,
 
     /** Stored value */
     value: PropTypes.oneOfType([
@@ -106,8 +97,7 @@ export default class DropdownItem extends Component {
       <ElementType {...rest} className={classes} onClick={this.handleClick}>
         {createShorthand('span', val => ({ className: 'description', children: val }), description)}
         {Icon.create(iconName)}
-        {text}
-        {children}
+        {children || text}
       </ElementType>
     )
   }

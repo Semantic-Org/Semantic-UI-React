@@ -40,41 +40,20 @@ FeedSummary.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** Primary content of the FeedSummary. */
-  children: customPropTypes.every([
-    customPropTypes.disallow(['content', 'date', 'user']),
-    PropTypes.node,
-  ]),
+  /** Primary content. */
+  children: PropTypes.node,
 
-  /** Classes that will be added to the FeedSummary className. */
+  /** Additional classes. */
   className: PropTypes.string,
 
-  /** Shorthand for children. Mutually exclusive with children. */
-  content: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number,
-    ]),
-  ]),
+  /** Shorthand for primary content. */
+  content: customPropTypes.contentShorthand,
 
-  /** Shorthand for the FeedDate component. Mutually exclusive with children. */
-  date: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number,
-    ]),
-  ]),
+  /** Shorthand for FeedDate. */
+  date: customPropTypes.itemShorthand,
 
-  /** Shorthand for the FeedUser component. Mutually exclusive with children. */
-  user: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number,
-    ]),
-  ]),
+  /** Shorthand for FeedUser. */
+  user: customPropTypes.itemShorthand,
 }
 
 export default FeedSummary

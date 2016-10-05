@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
@@ -16,9 +17,13 @@ function MessageList(props) {
   const rest = getUnhandledProps(MessageList, props)
   const ElementType = getElementType(MessageList, props)
 
-  const itemsJSX = items && items.map(item => <MessageItem key={item}>{item}</MessageItem>)
+  if (children) {
+    return <ElementType {...rest} className={classes}>{children}</ElementType>
+  }
 
-  return <ElementType {...rest} className={classes}>{itemsJSX || children}</ElementType>
+  const content = _.map(items, item => <MessageItem key={item}>{item}</MessageItem>)
+
+  return <ElementType {...rest} className={classes}>{content}</ElementType>
 }
 
 MessageList._meta = {
@@ -35,7 +40,7 @@ MessageList.propTypes = {
   children: PropTypes.node,
 
   /** Additional classes. */
-  className: PropTypes.node,
+  className: PropTypes.string,
 
   /** Strings to use as list items. Mutually exclusive with children. */
   items: PropTypes.arrayOf(PropTypes.string),

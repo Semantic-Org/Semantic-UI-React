@@ -27,10 +27,10 @@ ModalHeader.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** Primary content of the modal header */
-  children: PropTypes.any,
+  /** Primary content. */
+  children: PropTypes.node,
 
-  /** Classes to add to the modal header className */
+  /** Additional classes. */
   className: PropTypes.string,
 }
 

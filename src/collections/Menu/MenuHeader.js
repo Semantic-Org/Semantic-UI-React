@@ -27,17 +27,14 @@ MenuHeader.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** Primary content */
+  /** Primary content. */
   children: PropTypes.node,
 
-  /** Additional classes */
+  /** Additional classes. */
   className: PropTypes.string,
 
-  /** Shorthand for primary content */
-  content: PropTypes.oneOfType([
-    PropTypes.number,
-    PropTypes.string,
-  ]),
+  /** Shorthand for primary content. */
+  content: customPropTypes.contentShorthand,
 }
 
 export default MenuHeader

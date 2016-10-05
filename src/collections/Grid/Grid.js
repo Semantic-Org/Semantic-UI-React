@@ -77,10 +77,10 @@ Grid.propTypes = {
   /** A grid can have its columns centered. */
   centered: PropTypes.bool,
 
-  /** Primary content of the Grid. */
+  /** Primary content. */
   children: PropTypes.node,
 
-  /** Classes that will be added to the Grid className. */
+  /** Additional classes. */
   className: PropTypes.string,
 
   /** Represents column count per row in Grid. */

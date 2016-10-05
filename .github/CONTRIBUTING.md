@@ -490,10 +490,10 @@ Label.propTypes = {
   /** A label can reduce its complexity. */
   basic: PropTypes.bool,
 
-  /** Primary content of the label, same as text. */
+  /** Primary content. */
   children: PropTypes.node,
 
-  /** Classes to add to the label className. */
+  /** Additional classes. */
   className: PropTypes.string,
 
   /** Color of the label. */

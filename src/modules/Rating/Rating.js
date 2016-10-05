@@ -35,7 +35,7 @@ export default class Rating extends Component {
     /** An element type to render as (string or function). */
     as: customPropTypes.as,
 
-    /** Additional className. */
+    /** Additional classes. */
     className: PropTypes.string,
 
     /**

@@ -89,10 +89,10 @@ List.propTypes = {
   /** A list can divide its items into cells. */
   celled: PropTypes.bool,
 
-  /** Primary content of the List. */
+  /** Primary content. */
   children: PropTypes.node,
 
-  /** Classes to add to the List className. */
+  /** Additional classes. */
   className: PropTypes.string,
 
   /** A list can show divisions between content. */

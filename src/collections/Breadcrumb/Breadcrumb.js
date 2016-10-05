@@ -21,12 +21,14 @@ function Breadcrumb(props) {
   const rest = getUnhandledProps(Breadcrumb, props)
   const ElementType = getElementType(Breadcrumb, props)
 
-  if (!sections) return <ElementType {...rest} className={classes}>{children}</ElementType>
+  if (children) {
+    return <ElementType {...rest} className={classes}>{children}</ElementType>
+  }
 
   const dividerJSX = <BreadcrumbDivider icon={icon}>{divider}</BreadcrumbDivider>
   const sectionsJSX = []
 
-  sections.forEach(({ text, key, ...restSection }, index) => {
+  _.each(sections, ({ text, key, ...restSection }, index) => {
     const finalKey = key || text
     const dividerKey = `${finalKey}-divider`
 
@@ -55,33 +57,27 @@ Breadcrumb.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** Primary content of the Breadcrumb */
-  children: customPropTypes.every([
-    customPropTypes.disallow(['sections', 'icon', 'divider']),
-    PropTypes.node,
-  ]),
+  /** Primary content. */
+  children: PropTypes.node,
 
-  /** Classes that will be added to the Breadcrumb className. */
+  /** Additional classes. */
   className: PropTypes.string,
 
-  /** For use with the sections prop. Primary content of the Breadcrumb.Divider. */
+  /** Shorthand for primary content of the Breadcrumb.Divider. */
   divider: customPropTypes.every([
     customPropTypes.disallow(['icon']),
-    PropTypes.string,
+    customPropTypes.contentShorthand,
   ]),
 
   /** For use with the sections prop. Render as an `Icon` component with `divider` class instead of a `div` in
    *  Breadcrumb.Divider. */
   icon: customPropTypes.every([
     customPropTypes.disallow(['divider']),
-    PropTypes.node,
+    customPropTypes.itemShorthand,
   ]),
 
-  /** Array of props for Breadcrumb.Section. */
-  sections: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    React.PropTypes.array,
-  ]),
+  /** Shorthand array of props for Breadcrumb.Section. */
+  sections: customPropTypes.collectionShorthand,
 
   /** Size of Breadcrumb */
   size: PropTypes.oneOf(Breadcrumb._meta.props.size),

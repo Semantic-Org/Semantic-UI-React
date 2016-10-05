@@ -30,7 +30,7 @@ ListIcon._meta = {
 }
 
 ListIcon.propTypes = {
-  /** Classes to add to the ListIcon className. */
+  /** Additional classes. */
   className: PropTypes.string,
 
   /** An element inside a list can be vertically aligned. */

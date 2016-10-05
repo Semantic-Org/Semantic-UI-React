@@ -45,44 +45,29 @@ FeedContent.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** Primary content of the FeedContent. Mutually exclusive with all shorthand props. */
-  children: customPropTypes.every([
-    customPropTypes.disallow([
-      'date',
-      'extraImages',
-      'extraText',
-      'meta',
-      'summary',
-    ]),
-    PropTypes.node,
-  ]),
+  /** Primary content. */
+  children: PropTypes.node,
 
-  /** Classes that will be added to the FeedContent className. */
+  /** Additional classes. */
   className: PropTypes.string,
 
-  /** Shorthand for children. */
-  content: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number,
-    ]),
-  ]),
+  /** Shorthand for primary content. */
+  content: customPropTypes.contentShorthand,
 
   /** An event can contain a date. */
-  date: FeedDate.propTypes.content,
+  date: customPropTypes.itemShorthand,
 
-  /** Shorthand for the FeedExtra component with images. Mutually exclusive with children. */
+  /** Shorthand for FeedExtra with images. */
   extraImages: FeedExtra.propTypes.images,
 
-  /** Shorthand for the FeedExtra component with text. Mutually exclusive with children. */
-  extraText: FeedExtra.propTypes.content,
+  /** Shorthand for FeedExtra with text. */
+  extraText: customPropTypes.itemShorthand,
 
-  /** Shorthand for the FeedMeta component. Mutually exclusive with children. */
-  meta: FeedMeta.propTypes.content,
+  /** Shorthand for FeedMeta. */
+  meta: customPropTypes.itemShorthand,
 
-  /** Shorthand for the FeedSummary component. Mutually exclusive with children. */
-  summary: FeedSummary.propTypes.content,
+  /** Shorthand for FeedSummary. */
+  summary: customPropTypes.itemShorthand,
 }
 
 export default FeedContent

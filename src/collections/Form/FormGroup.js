@@ -43,10 +43,10 @@ FormGroup.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** Primary content.  Intended to be Form Fields. */
+  /** Primary content. */
   children: PropTypes.node,
 
-  /** Additional classes */
+  /** Additional classes. */
   className: PropTypes.string,
 
   /** Fields can show related choices */

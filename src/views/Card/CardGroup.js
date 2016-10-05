@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
@@ -27,7 +28,11 @@ function CardGroup(props) {
   const rest = getUnhandledProps(CardGroup, props)
   const ElementType = getElementType(CardGroup, props)
 
-  const content = !items ? children : items.map(item => {
+  if (children) {
+    return <ElementType {...rest} className={classes}>{children}</ElementType>
+  }
+
+  const content = _.map(items, item => {
     const key = item.key || [item.header, item.description].join('-')
     return <Card key={key} {...item} />
   })
@@ -48,28 +53,17 @@ CardGroup.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** A group of Card components. Mutually exclusive with items. */
-  children: customPropTypes.every([
-    customPropTypes.disallow(['items']),
-    PropTypes.node,
-  ]),
+  /** Primary content. */
+  children: PropTypes.node,
 
-  /** Classes that will be added to the CardGroup className */
+  /** Additional classes. */
   className: PropTypes.string,
 
   /** A group of cards can double its column width for mobile */
   doubling: PropTypes.bool,
 
-  /** Shorthand prop for children. Mutually exclusive with children. */
-  items: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.arrayOf(PropTypes.shape({
-      description: PropTypes.node,
-      meta: PropTypes.node,
-      key: PropTypes.string,
-      header: PropTypes.node,
-    })),
-  ]),
+  /** Shorthand array of props for Card. */
+  items: customPropTypes.collectionShorthand,
 
   /** A group of cards can set how many cards should exist in a row */
   itemsPerRow: PropTypes.oneOf(CardGroup._meta.props.itemsPerRow),

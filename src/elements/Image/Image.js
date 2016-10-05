@@ -115,7 +115,7 @@ Image.propTypes = {
   /** An image can appear centered in a content block */
   centered: PropTypes.bool,
 
-  /** Class names for custom styling. */
+  /** Additional classes. */
   className: PropTypes.string,
 
   /** An image can show that it is disabled and cannot be selected */
@@ -145,13 +145,8 @@ Image.propTypes = {
   /** An image may appear inline */
   inline: PropTypes.bool,
 
-  /** Add a Label by text, props object, or pass a <Label /> */
-  label: customPropTypes.some([
-    PropTypes.string,
-    PropTypes.number,
-    PropTypes.object,
-    PropTypes.element,
-  ]),
+  /** Shorthand for Label. */
+  label: customPropTypes.itemShorthand,
 
   /** An image may appear rounded or circular */
   shape: PropTypes.oneOf(Image._meta.props.shape),

@@ -27,10 +27,10 @@ ListDescription.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** Primary content of the ListDescription. */
+  /** Primary content. */
   children: PropTypes.node,
 
-  /** Classes to add to the ListDescription className. */
+  /** Additional classes. */
   className: PropTypes.string,
 }
 

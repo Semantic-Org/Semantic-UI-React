@@ -50,29 +50,22 @@ FeedExtra.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** Primary content of the FeedExtra. Mutually exclusive with content. */
+  /** Primary content. */
   children: PropTypes.node,
 
-  /** Shorthand for children. Mutually exclusive with children. */
-  content: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.string,
-  ]),
-
-  /** Classes that will be added to the FeedExtra className. */
+  /** Additional classes. */
   className: PropTypes.string,
 
-  /** An event can contain additional information like a set of images. Mutually exclusive with children. */
+  /** Shorthand for primary content. */
+  content: customPropTypes.contentShorthand,
+
+  /** An event can contain additional information like a set of images. */
   images: customPropTypes.every([
     customPropTypes.disallow(['text']),
     PropTypes.oneOfType([
       PropTypes.bool,
-      PropTypes.arrayOf(PropTypes.string),
+      customPropTypes.collectionShorthand,
     ]),
-    customPropTypes.givenProps(
-      { images: PropTypes.arrayOf(PropTypes.string).isRequired },
-      customPropTypes.disallow(['children']),
-    ),
   ]),
 
   /** An event can contain additional text information. */

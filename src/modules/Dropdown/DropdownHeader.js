@@ -37,24 +37,17 @@ DropdownHeader.propTypes = {
   /** An element type to render as (string or function) */
   as: customPropTypes.as,
 
-  /** Primary content of the header, same as content. */
-  children: customPropTypes.every([
-    customPropTypes.disallow(['content', 'icon']),
-    PropTypes.node,
-  ]),
+  /** Primary content. */
+  children: PropTypes.node,
 
-  /** Additional classes */
-  className: PropTypes.node,
+  /** Additional classes. */
+  className: PropTypes.string,
 
-  /** Primary content of the header, same as children. */
-  content: PropTypes.node,
+  /** Shorthand for primary content. */
+  content: customPropTypes.contentShorthand,
 
-  /** Add an icon by icon name or pass an <Icon /> */
-  icon: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.element,
-    PropTypes.object,
-  ]),
+  /** Shorthand for Icon. */
+  icon: customPropTypes.itemShorthand,
 }
 
 export default DropdownHeader

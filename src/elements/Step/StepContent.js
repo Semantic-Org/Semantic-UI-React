@@ -39,30 +39,17 @@ StepContent.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** Classes that will be added to the StepContent className. */
+  /** Additional classes. */
   className: PropTypes.string,
 
-  /** Primary content of StepContent. Mutually exclusive with description and title props. */
-  children: customPropTypes.every([
-    customPropTypes.disallow(['description', 'title']),
-    PropTypes.node,
-  ]),
+  /** Primary content. */
+  children: PropTypes.node,
 
-  /** Primary content of the StepDescription. Mutually exclusive with children. */
-  description: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.node,
-  ]),
+  /** Shorthand for StepDescription. */
+  description: customPropTypes.itemShorthand,
 
-  /** Primary content of the StepTitle. Mutually exclusive with children. */
-  title: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number,
-      PropTypes.object,
-    ]),
-  ]),
+  /** Shorthand for StepTitle. */
+  title: customPropTypes.itemShorthand,
 }
 
 export default StepContent

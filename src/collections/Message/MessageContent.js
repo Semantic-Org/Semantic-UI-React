@@ -31,7 +31,7 @@ MessageContent.propTypes = {
   children: PropTypes.node,
 
   /** Additional classes. */
-  className: PropTypes.node,
+  className: PropTypes.string,
 }
 
 export default MessageContent

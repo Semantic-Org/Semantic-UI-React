@@ -34,7 +34,7 @@ export default class SearchResult extends Component {
     /** The item currently selected by keyboard shortcut. */
     active: PropTypes.bool,
 
-    /** Additional className. */
+    /** Additional classes. */
     className: PropTypes.string,
 
     /** Additional text with less emphasis. */

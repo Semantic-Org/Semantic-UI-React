@@ -14,7 +14,7 @@ function StepTitle(props) {
   const rest = getUnhandledProps(StepTitle, props)
   const ElementType = getElementType(StepTitle, props)
 
-  return <ElementType {...rest} className={classes}>{ children || title }</ElementType>
+  return <ElementType {...rest} className={classes}>{children || title}</ElementType>
 }
 
 StepTitle._meta = {
@@ -27,20 +27,14 @@ StepTitle.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** Classes that will be added to the StepTitle className. */
+  /** Additional classes. */
   className: PropTypes.string,
 
-  /** Primary content of the StepTitle. Mutually exclusive with title prop. */
-  children: customPropTypes.every([
-    customPropTypes.disallow(['title']),
-    PropTypes.node,
-  ]),
+  /** Primary content. */
+  children: PropTypes.node,
 
-  /** Primary content of the StepTitle. Mutually exclusive with children. */
-  title: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.node,
-  ]),
+  /** Shorthand for primary content. */
+  title: customPropTypes.contentShorthand,
 }
 
 export default StepTitle

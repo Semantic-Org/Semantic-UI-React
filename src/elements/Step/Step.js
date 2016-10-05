@@ -26,32 +26,23 @@ export default class Step extends Component {
     /** A step can be highlighted as active. */
     active: PropTypes.bool,
 
-    /** Classes that will be added to the Step className. */
+    /** Additional classes. */
     className: PropTypes.string,
 
-    /** Primary content of the Step. Mutually exclusive with description and title props. */
-    children: customPropTypes.every([
-      customPropTypes.disallow(['description', 'title']),
-      PropTypes.node,
-    ]),
+    /** Primary content. */
+    children: PropTypes.node,
 
     /** A step can show that a user has completed it. */
     completed: PropTypes.bool,
 
-    /** Shorthand prop for StepDescription. Mutually exclusive with children. */
-    description: customPropTypes.every([
-      customPropTypes.disallow(['children']),
-      PropTypes.node,
-    ]),
+    /** Shorthand for StepDescription. */
+    description: customPropTypes.itemShorthand,
 
     /** Show that the Loader is inactive. */
     disabled: PropTypes.bool,
 
-    /** A step can contain an icon. */
-    icon: customPropTypes.every([
-      customPropTypes.disallow(['children']),
-      PropTypes.node,
-    ]),
+    /** Shorthand for Icon. */
+    icon: customPropTypes.itemShorthand,
 
     /** A step can be link. */
     link: PropTypes.bool,
@@ -65,11 +56,8 @@ export default class Step extends Component {
     /** A step can show a ordered sequence of steps. Passed from StepGroup. */
     ordered: PropTypes.bool,
 
-    /** Shorthand prop for StepTitle. Mutually exclusive with children. */
-    title: customPropTypes.every([
-      customPropTypes.disallow(['children']),
-      PropTypes.node,
-    ]),
+    /** Shorthand for StepTitle. */
+    title: customPropTypes.itemShorthand,
   }
 
   static _meta = {

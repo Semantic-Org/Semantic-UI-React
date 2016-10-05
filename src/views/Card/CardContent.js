@@ -49,44 +49,23 @@ CardContent.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** Primary content of the CardContent. Mutually exclusive with all shorthand props. */
-  children: customPropTypes.every([
-    customPropTypes.disallow(['description', 'header', 'meta']),
-    PropTypes.node,
-  ]),
+  /** Primary content. */
+  children: PropTypes.node,
 
-  /** Classes that will be added to the CardContent className */
+  /** Additional classes. */
   className: PropTypes.string,
 
-  /** Shorthand prop for CardDescription. Mutually exclusive with children. */
-  description: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number,
-    ]),
-  ]),
+  /** Shorthand for CardDescription. */
+  description: customPropTypes.itemShorthand,
 
   /** A card can contain extra content meant to be formatted separately from the main content */
   extra: PropTypes.bool,
 
-  /** Shorthand prop for CardHeader. Mutually exclusive with children. */
-  header: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number,
-    ]),
-  ]),
+  /** Shorthand for CardHeader. */
+  header: customPropTypes.itemShorthand,
 
-  /** Shorthand prop for CardMeta. Mutually exclusive with children. */
-  meta: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number,
-    ]),
-  ]),
+  /** Shorthand for CardMeta. */
+  meta: customPropTypes.itemShorthand,
 }
 
 export default CardContent
