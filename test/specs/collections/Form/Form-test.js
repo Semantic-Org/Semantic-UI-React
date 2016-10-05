@@ -29,6 +29,15 @@ describe('Form', () => {
     FormSelect,
   ])
   common.rendersChildren(Form)
+
+  common.propKeyOnlyToClassName(Form, 'loading')
+  common.propKeyOnlyToClassName(Form, 'error')
+  common.propKeyOnlyToClassName(Form, 'reply')
+  common.propKeyOnlyToClassName(Form, 'success')
+  common.propKeyOnlyToClassName(Form, 'warning')
+
+  common.propValueOnlyToClassName(Form, 'size')
+
   common.implementsWidthProp(Form, { propKey: 'widths' })
 
   describe('serializer', () => {

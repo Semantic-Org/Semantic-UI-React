@@ -14,10 +14,10 @@ const CommentExampleReplyForm = () => (
         <Comment.Actions>
           <Comment.Action active>Reply</Comment.Action>
         </Comment.Actions>
-        <Comment.ReplyForm>
+        <Form reply>
           <Form.TextArea />
           <Button content='Add Reply' labelPosition='left' icon='edit' primary />
-        </Comment.ReplyForm>
+        </Form>
       </Comment.Content>
     </Comment>
   </Comment.Group>

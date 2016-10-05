@@ -68,10 +68,10 @@ const CommentExampleComment = () => (
       </Comment.Content>
     </Comment>
 
-    <Comment.ReplyForm>
+    <Form reply>
       <Form.TextArea />
       <Button content='Add Reply' labelPosition='left' icon='edit' primary />
-    </Comment.ReplyForm>
+    </Form>
   </Comment.Group>
 )
 
