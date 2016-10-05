@@ -254,7 +254,7 @@ describe('Segment', () => {
   common.propKeyAndValueToClassName(Segment, 'floated')
   common.propKeyOrValueAndKeyToClassName(Segment, 'padded')
 })
-````
+```
 
 ### SUI HTML Markup
 
@@ -326,7 +326,7 @@ import ListItem from './ListItem'
 class List {
   static Item = ListItem
 }
-````
+```
 
 #### Component Part Props
 
@@ -387,7 +387,7 @@ common.propKeyOnlyToClassName()
 common.propValueOnlyToClassName()
 common.propKeyAndValueToClassName()
 common.propKeyOrValueAndKeyToClassName()
-````
+```
 
 #### Usage
 
@@ -437,7 +437,27 @@ This is the only required test.  It ensures a consistent baseline for the framew
 
 ## State
 
-TODO
+Strive to use stateless functional components when possible:
+
+```js
+function MyComponent(props) {
+  return <div {...props} />
+}
+```
+
+If you're component requires event handlers, it is a stateful class component. Want to know [why][15]?
+
+```js
+class MyComponent extends Component {
+  handleClick = (e) => {
+    console.log('Clicked my component!')
+  }
+
+  render() {
+    return <div onClick={this.handleClick} />
+  }
+}
+```
 
 ### AutoControlledComponent
 
@@ -535,3 +555,4 @@ Adding documentation for new components is a bit tedious.  The best way to do th
 [12]: https://github.com/TechnologyAdvice/stardust#fork-destination-box
 [13]: https://github.com/TechnologyAdvice/stardust/blob/master/src/factories
 [14]: https://github.com/TechnologyAdvice/stardust/pull/335#issuecomment-238960895
+[15]: https://github.com/TechnologyAdvice/stardust/issues/607
