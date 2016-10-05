@@ -59,7 +59,7 @@ StatisticGroup.propTypes = {
   horizontal: PropTypes.bool,
 
   /** Array of props for Statistic. */
-  items: customPropTypes.items,
+  items: customPropTypes.collectionShorthand,
 
   /** A statistic group can have its items divided evenly. */
   widths: PropTypes.oneOf(StatisticGroup._meta.props.widths),

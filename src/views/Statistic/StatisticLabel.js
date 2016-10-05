@@ -34,7 +34,7 @@ StatisticLabel.propTypes = {
   className: PropTypes.string,
 
   /** Shorthand for primary content. */
-  label: customPropTypes.content,
+  label: customPropTypes.contentShorthand,
 }
 
 export default StatisticLabel

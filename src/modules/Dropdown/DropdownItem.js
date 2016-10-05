@@ -30,7 +30,7 @@ export default class DropdownItem extends Component {
     className: PropTypes.string,
 
     /** Additional text with less emphasis. */
-    description: customPropTypes.item,
+    description: customPropTypes.itemShorthand,
 
     /** A dropdown item can be disabled. */
     disabled: PropTypes.bool,
@@ -45,7 +45,7 @@ export default class DropdownItem extends Component {
     selected: PropTypes.bool,
 
     /** Display text. */
-    text: customPropTypes.content,
+    text: customPropTypes.contentShorthand,
 
     /** Stored value */
     value: PropTypes.oneOfType([

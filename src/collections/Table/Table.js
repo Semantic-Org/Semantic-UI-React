@@ -158,10 +158,10 @@ Table.propTypes = {
   fixed: PropTypes.bool,
 
   /** Shorthand for a TableRow to be placed within Table.Footer. */
-  footerRow: customPropTypes.collection,
+  footerRow: customPropTypes.itemShorthand,
 
   /** Shorthand for a TableRow to be placed within Table.Header. */
-  headerRow: customPropTypes.collection,
+  headerRow: customPropTypes.itemShorthand,
 
   /** A table's colors can be inverted. */
   inverted: PropTypes.bool,

@@ -34,7 +34,7 @@ StepTitle.propTypes = {
   children: PropTypes.node,
 
   /** Shorthand for primary content. */
-  title: customPropTypes.content,
+  title: customPropTypes.contentShorthand,
 }
 
 export default StepTitle

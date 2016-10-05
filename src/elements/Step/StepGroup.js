@@ -64,7 +64,7 @@ StepGroup.propTypes = {
   fluid: PropTypes.bool,
 
   /** Shorthand array of props for Step. */
-  items: customPropTypes.items,
+  items: customPropTypes.collectionShorthand,
 
   /** A step can show a ordered sequence of steps. */
   ordered: PropTypes.bool,

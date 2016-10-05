@@ -146,7 +146,7 @@ Image.propTypes = {
   inline: PropTypes.bool,
 
   /** Shorthand for Label. */
-  label: customPropTypes.item,
+  label: customPropTypes.itemShorthand,
 
   /** An image may appear rounded or circular */
   shape: PropTypes.oneOf(Image._meta.props.shape),

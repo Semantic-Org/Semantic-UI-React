@@ -63,7 +63,7 @@ CardGroup.propTypes = {
   doubling: PropTypes.bool,
 
   /** Shorthand array of props for Card. */
-  items: customPropTypes.items,
+  items: customPropTypes.collectionShorthand,
 
   /** A group of cards can set how many cards should exist in a row */
   itemsPerRow: PropTypes.oneOf(CardGroup._meta.props.itemsPerRow),

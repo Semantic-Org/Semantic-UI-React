@@ -38,7 +38,7 @@ StatisticValue.propTypes = {
   text: PropTypes.bool,
 
   /** Primary content of the StatisticValue. Mutually exclusive with the children prop. */
-  value: customPropTypes.content,
+  value: customPropTypes.contentShorthand,
 }
 
 export default StatisticValue

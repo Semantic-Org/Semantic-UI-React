@@ -66,18 +66,18 @@ Breadcrumb.propTypes = {
   /** Shorthand for primary content of the Breadcrumb.Divider. */
   divider: customPropTypes.every([
     customPropTypes.disallow(['icon']),
-    customPropTypes.content,
+    customPropTypes.contentShorthand,
   ]),
 
   /** For use with the sections prop. Render as an `Icon` component with `divider` class instead of a `div` in
    *  Breadcrumb.Divider. */
   icon: customPropTypes.every([
     customPropTypes.disallow(['divider']),
-    customPropTypes.item,
+    customPropTypes.itemShorthand,
   ]),
 
   /** Shorthand array of props for Breadcrumb.Section. */
-  sections: customPropTypes.items,
+  sections: customPropTypes.collectionShorthand,
 
   /** Size of Breadcrumb */
   size: PropTypes.oneOf(Breadcrumb._meta.props.size),

@@ -59,7 +59,7 @@ export default class Label extends Component {
     color: PropTypes.oneOf(_meta.props.color),
 
     /** Shorthand for primary content. */
-    content: customPropTypes.content,
+    content: customPropTypes.contentShorthand,
 
     /** A label can position itself in the corner of an element. */
     corner: PropTypes.oneOfType([
@@ -68,7 +68,7 @@ export default class Label extends Component {
     ]),
 
     /** Shorthand for LabelDetail. */
-    detail: customPropTypes.item,
+    detail: customPropTypes.itemShorthand,
 
     /** Formats the label as a dot. */
     empty: customPropTypes.every([
@@ -83,12 +83,12 @@ export default class Label extends Component {
     horizontal: PropTypes.bool,
 
     /** Shorthand for Icon. */
-    icon: customPropTypes.item,
+    icon: customPropTypes.itemShorthand,
 
     /** A label can be formatted to emphasize an image or prop can be used as shorthand for Image. */
     image: PropTypes.oneOfType([
       PropTypes.bool,
-      customPropTypes.item,
+      customPropTypes.itemShorthand,
     ]),
 
     /** A label can point to content next to it. */

@@ -47,13 +47,13 @@ FeedSummary.propTypes = {
   className: PropTypes.string,
 
   /** Shorthand for primary content. */
-  content: customPropTypes.content,
+  content: customPropTypes.contentShorthand,
 
   /** Shorthand for FeedDate. */
-  date: customPropTypes.item,
+  date: customPropTypes.itemShorthand,
 
   /** Shorthand for FeedUser. */
-  user: customPropTypes.item,
+  user: customPropTypes.itemShorthand,
 }
 
 export default FeedSummary

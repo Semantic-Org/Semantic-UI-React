@@ -42,7 +42,7 @@ export default class MenuItem extends Component {
     color: PropTypes.oneOf(_meta.props.color),
 
     /** Shorthand for primary content. */
-    content: customPropTypes.content,
+    content: customPropTypes.contentShorthand,
 
     /** A menu item or menu can remove element padding, vertically or horizontally. */
     fitted: PropTypes.oneOfType([

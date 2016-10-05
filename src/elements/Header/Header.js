@@ -97,14 +97,14 @@ Header.propTypes = {
   children: PropTypes.node,
 
   /** Shorthand for primary content. */
-  content: customPropTypes.content,
+  content: customPropTypes.contentShorthand,
 
   /** Add an icon by icon name or pass an <Icon /.> */
   icon: customPropTypes.every([
     customPropTypes.disallow(['image']),
     PropTypes.oneOfType([
       PropTypes.bool,
-      customPropTypes.item,
+      customPropTypes.itemShorthand,
     ]),
   ]),
 
@@ -113,7 +113,7 @@ Header.propTypes = {
     customPropTypes.disallow(['icon']),
     PropTypes.oneOfType([
       PropTypes.bool,
-      customPropTypes.item,
+      customPropTypes.itemShorthand,
     ]),
   ]),
 
@@ -148,7 +148,7 @@ Header.propTypes = {
   size: PropTypes.oneOf(Header._meta.props.size),
 
   /** Shorthand for Header.Subheader. */
-  subheader: customPropTypes.item,
+  subheader: customPropTypes.itemShorthand,
 
   /** Align header content */
   textAlign: PropTypes.oneOf(Header._meta.props.textAlign),

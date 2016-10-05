@@ -95,7 +95,7 @@ TableCell.propTypes = {
   collapsing: PropTypes.bool,
 
   /** Shorthand for primary content. */
-  content: customPropTypes.content,
+  content: customPropTypes.contentShorthand,
 
   /** A cell can be disabled. */
   disabled: PropTypes.bool,
@@ -104,7 +104,7 @@ TableCell.propTypes = {
   error: PropTypes.bool,
 
   /** Add an Icon by name, props object, or pass an <Icon /> */
-  icon: customPropTypes.item,
+  icon: customPropTypes.itemShorthand,
 
   /** A cell may let a user know whether a value is bad. */
   negative: PropTypes.bool,

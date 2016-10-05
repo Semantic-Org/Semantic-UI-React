@@ -91,7 +91,7 @@ class Menu extends Component {
     inverted: PropTypes.bool,
 
     /** Shorthand array of props for Menu. */
-    items: customPropTypes.items,
+    items: customPropTypes.collectionShorthand,
 
     /** onClick handler for MenuItem. Mutually exclusive with children. */
     onItemClick: customPropTypes.every([

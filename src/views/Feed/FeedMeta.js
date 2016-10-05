@@ -45,10 +45,10 @@ FeedMeta.propTypes = {
   className: PropTypes.string,
 
   /** Shorthand for primary content. */
-  content: customPropTypes.content,
+  content: customPropTypes.contentShorthand,
 
   /** Shorthand for FeedLike. */
-  like: customPropTypes.item,
+  like: customPropTypes.itemShorthand,
 }
 
 export default FeedMeta

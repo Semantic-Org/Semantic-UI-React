@@ -36,13 +36,13 @@ export default class Step extends Component {
     completed: PropTypes.bool,
 
     /** Shorthand for StepDescription. */
-    description: customPropTypes.item,
+    description: customPropTypes.itemShorthand,
 
     /** Show that the Loader is inactive. */
     disabled: PropTypes.bool,
 
     /** Shorthand for Icon. */
-    icon: customPropTypes.item,
+    icon: customPropTypes.itemShorthand,
 
     /** A step can be link. */
     link: PropTypes.bool,
@@ -57,7 +57,7 @@ export default class Step extends Component {
     ordered: PropTypes.bool,
 
     /** Shorthand for StepTitle. */
-    title: customPropTypes.item,
+    title: customPropTypes.itemShorthand,
   }
 
   static _meta = {

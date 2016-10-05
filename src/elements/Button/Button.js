@@ -182,7 +182,7 @@ Button.propTypes = {
   className: PropTypes.string,
 
   /** Shorthand for primary content. */
-  content: customPropTypes.content,
+  content: customPropTypes.contentShorthand,
 
   /** A button can have different colors */
   color: PropTypes.oneOf(Button._meta.props.color),

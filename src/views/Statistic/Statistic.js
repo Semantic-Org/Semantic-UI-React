@@ -75,7 +75,7 @@ Statistic.propTypes = {
   inverted: PropTypes.bool,
 
   /** Label content of the Statistic. */
-  label: customPropTypes.content,
+  label: customPropTypes.contentShorthand,
 
   /** A statistic can vary in size. */
   size: PropTypes.oneOf(Statistic._meta.props.size),
@@ -84,7 +84,7 @@ Statistic.propTypes = {
   text: PropTypes.bool,
 
   /** Value content of the Statistic. */
-  value: customPropTypes.content,
+  value: customPropTypes.contentShorthand,
 }
 
 Statistic.Group = StatisticGroup

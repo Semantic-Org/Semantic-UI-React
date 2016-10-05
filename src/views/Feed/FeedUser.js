@@ -34,7 +34,7 @@ FeedUser.propTypes = {
   className: PropTypes.string,
 
   /** Shorthand for primary content. */
-  content: customPropTypes.content,
+  content: customPropTypes.contentShorthand,
 }
 
 FeedUser.defaultProps = {

@@ -72,7 +72,7 @@ Loader.propTypes = {
   size: PropTypes.oneOf(Loader._meta.props.size),
 
   /** Shorthand for primary content. */
-  text: customPropTypes.content,
+  text: customPropTypes.contentShorthand,
 }
 
 export default Loader

@@ -57,14 +57,14 @@ FeedExtra.propTypes = {
   className: PropTypes.string,
 
   /** Shorthand for primary content. */
-  content: customPropTypes.content,
+  content: customPropTypes.contentShorthand,
 
   /** An event can contain additional information like a set of images. */
   images: customPropTypes.every([
     customPropTypes.disallow(['text']),
     PropTypes.oneOfType([
       PropTypes.bool,
-      customPropTypes.items,
+      customPropTypes.collectionShorthand,
     ]),
   ]),
 

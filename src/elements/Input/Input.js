@@ -145,7 +145,7 @@ Input.propTypes = {
   /** An Input can be formatted to alert the user to an action they may perform */
   action: PropTypes.oneOfType([
     PropTypes.bool,
-    customPropTypes.item,
+    customPropTypes.itemShorthand,
   ]),
 
   /** An action can appear along side an Input on the left or right */
@@ -172,7 +172,7 @@ Input.propTypes = {
   /** Optional Icon to display inside the Input */
   icon: PropTypes.oneOfType([
     PropTypes.bool,
-    customPropTypes.item,
+    customPropTypes.itemShorthand,
   ]),
 
   /** An Icon can appear inside an Input on the left or right */
@@ -182,10 +182,10 @@ Input.propTypes = {
   inverted: PropTypes.bool,
 
   /** Shorthand for creating the HTML Input */
-  input: customPropTypes.item,
+  input: customPropTypes.itemShorthand,
 
   /** Optional Label to display along side the Input */
-  label: customPropTypes.item,
+  label: customPropTypes.itemShorthand,
 
   /** A Label can appear outside an Input on the left or right */
   labelPosition: PropTypes.oneOf(Input._meta.props.labelPosition),

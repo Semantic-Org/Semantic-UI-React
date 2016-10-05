@@ -40,7 +40,7 @@ BreadcrumbDivider.propTypes = {
   className: PropTypes.string,
 
   /** Render as an `Icon` component with `divider` class instead of a `div`. */
-  icon: customPropTypes.item,
+  icon: customPropTypes.itemShorthand,
 }
 
 export default BreadcrumbDivider

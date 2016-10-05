@@ -66,7 +66,7 @@ Feed.propTypes = {
   className: PropTypes.string,
 
   /** Shorthand array of props for FeedEvent. */
-  events: customPropTypes.items,
+  events: customPropTypes.collectionShorthand,
 
   /** A feed can have different sizes. */
   size: PropTypes.oneOf(Feed._meta.props.size),

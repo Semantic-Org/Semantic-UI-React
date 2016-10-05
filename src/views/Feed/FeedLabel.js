@@ -46,13 +46,13 @@ FeedLabel.propTypes = {
   className: PropTypes.string,
 
   /** Shorthand for primary content. */
-  content: customPropTypes.content,
+  content: customPropTypes.contentShorthand,
 
   /** An event can contain icon label. */
-  icon: customPropTypes.item,
+  icon: customPropTypes.itemShorthand,
 
   /** An event can contain image label. */
-  image: customPropTypes.item,
+  image: customPropTypes.itemShorthand,
 }
 
 export default FeedLabel

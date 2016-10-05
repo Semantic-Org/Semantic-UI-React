@@ -116,19 +116,19 @@ Message.propTypes = {
   className: PropTypes.string,
 
   /** Shorthand for primary content. */
-  content: customPropTypes.content,
+  content: customPropTypes.contentShorthand,
 
   /** Shorthand for MessageHeader. */
-  header: customPropTypes.item,
+  header: customPropTypes.itemShorthand,
 
   /** A message can contain an icon. */
   icon: PropTypes.oneOfType([
     PropTypes.bool,
-    customPropTypes.item,
+    customPropTypes.itemShorthand,
   ]),
 
   /** Array of string items for the MessageList. Mutually exclusive with children. */
-  list: customPropTypes.items,
+  list: customPropTypes.collectionShorthand,
 
   /**
    * A message that the user can choose to hide.

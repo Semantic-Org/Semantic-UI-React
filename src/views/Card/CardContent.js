@@ -56,16 +56,16 @@ CardContent.propTypes = {
   className: PropTypes.string,
 
   /** Shorthand for CardDescription. */
-  description: customPropTypes.item,
+  description: customPropTypes.itemShorthand,
 
   /** A card can contain extra content meant to be formatted separately from the main content */
   extra: PropTypes.bool,
 
   /** Shorthand for CardHeader. */
-  header: customPropTypes.item,
+  header: customPropTypes.itemShorthand,
 
   /** Shorthand for CardMeta. */
-  meta: customPropTypes.item,
+  meta: customPropTypes.itemShorthand,
 }
 
 export default CardContent

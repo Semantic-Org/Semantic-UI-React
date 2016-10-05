@@ -68,22 +68,22 @@ Item.propTypes = {
   className: PropTypes.string,
 
   /** Shorthand for ItemContent component. */
-  content: customPropTypes.content,
+  content: customPropTypes.contentShorthand,
 
   /** Shorthand for ItemDescription component. */
-  description: customPropTypes.item,
+  description: customPropTypes.itemShorthand,
 
   /** Shorthand for ItemExtra component. */
-  extra: customPropTypes.item,
+  extra: customPropTypes.itemShorthand,
 
   /** Shorthand for ItemImage component. */
-  image: customPropTypes.item,
+  image: customPropTypes.itemShorthand,
 
   /** Shorthand for ItemHeader component. */
-  header: customPropTypes.item,
+  header: customPropTypes.itemShorthand,
 
   /** Shorthand for ItemMeta component. */
-  meta: customPropTypes.item,
+  meta: customPropTypes.itemShorthand,
 }
 
 export default Item

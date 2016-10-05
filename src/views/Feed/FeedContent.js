@@ -52,22 +52,22 @@ FeedContent.propTypes = {
   className: PropTypes.string,
 
   /** Shorthand for primary content. */
-  content: customPropTypes.content,
+  content: customPropTypes.contentShorthand,
 
   /** An event can contain a date. */
-  date: customPropTypes.item,
+  date: customPropTypes.itemShorthand,
 
   /** Shorthand for FeedExtra with images. */
   extraImages: FeedExtra.propTypes.images,
 
   /** Shorthand for FeedExtra with text. */
-  extraText: customPropTypes.item,
+  extraText: customPropTypes.itemShorthand,
 
   /** Shorthand for FeedMeta. */
-  meta: customPropTypes.item,
+  meta: customPropTypes.itemShorthand,
 
   /** Shorthand for FeedSummary. */
-  summary: customPropTypes.item,
+  summary: customPropTypes.itemShorthand,
 }
 
 export default FeedContent

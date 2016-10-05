@@ -63,19 +63,19 @@ ItemContent.propTypes = {
   className: PropTypes.string,
 
   /** Shorthand for primary content. */
-  content: customPropTypes.content,
+  content: customPropTypes.contentShorthand,
 
   /** Shorthand for ItemDescription component. */
-  description: customPropTypes.item,
+  description: customPropTypes.itemShorthand,
 
   /** Shorthand for ItemExtra component. */
-  extra: customPropTypes.item,
+  extra: customPropTypes.itemShorthand,
 
   /** Shorthand for ItemHeader component. */
-  header: customPropTypes.item,
+  header: customPropTypes.itemShorthand,
 
   /** Shorthand for ItemMeta component. */
-  meta: customPropTypes.item,
+  meta: customPropTypes.itemShorthand,
 
   /** Content can specify its vertical alignment */
   verticalAlign: PropTypes.oneOf(ItemContent._meta.props.verticalAlign),

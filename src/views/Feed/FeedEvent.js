@@ -59,10 +59,10 @@ FeedEvent.propTypes = {
   extraText: FeedContent.propTypes.extraText,
 
   /** An event can contain icon label. */
-  icon: customPropTypes.item,
+  icon: customPropTypes.itemShorthand,
 
   /** An event can contain image label. */
-  image: customPropTypes.item,
+  image: customPropTypes.itemShorthand,
 
   /** Shorthand for FeedMeta. */
   meta: FeedContent.propTypes.meta,

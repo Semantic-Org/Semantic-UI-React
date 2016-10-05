@@ -46,10 +46,10 @@ StepContent.propTypes = {
   children: PropTypes.node,
 
   /** Shorthand for StepDescription. */
-  description: customPropTypes.item,
+  description: customPropTypes.itemShorthand,
 
   /** Shorthand for StepTitle. */
-  title: customPropTypes.item,
+  title: customPropTypes.itemShorthand,
 }
 
 export default StepContent

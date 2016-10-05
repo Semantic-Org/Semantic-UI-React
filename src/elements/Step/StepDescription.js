@@ -34,7 +34,7 @@ StepDescription.propTypes = {
   children: PropTypes.node,
 
   /** Shorthand for primary content. */
-  description: customPropTypes.content,
+  description: customPropTypes.contentShorthand,
 }
 
 export default StepDescription

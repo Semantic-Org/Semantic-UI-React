@@ -65,7 +65,7 @@ ItemGroup.propTypes = {
   divided: PropTypes.bool,
 
   /** Shorthand array of props for Item. */
-  items: customPropTypes.items,
+  items: customPropTypes.collectionShorthand,
 
   /** An item can be formatted so that the entire contents link to another page. */
   link: PropTypes.bool,

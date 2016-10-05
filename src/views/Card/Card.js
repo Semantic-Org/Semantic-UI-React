@@ -46,25 +46,25 @@ export default class Card extends Component {
     color: PropTypes.oneOf(_meta.props.color),
 
     /** Shorthand for CardDescription. */
-    description: customPropTypes.item,
+    description: customPropTypes.itemShorthand,
 
     /** Shorthand for primary content of CardContent. */
-    extra: customPropTypes.content,
+    extra: customPropTypes.contentShorthand,
 
     /** A Card can be formatted to take up the width of its container. */
     fluid: PropTypes.bool,
 
     /** Shorthand for CardHeader. */
-    header: customPropTypes.item,
+    header: customPropTypes.itemShorthand,
 
     /** Render as an `a` tag instead of a `div` and adds the href attribute. */
     href: PropTypes.string,
 
     /** A card can contain an Image component. */
-    image: customPropTypes.item,
+    image: customPropTypes.itemShorthand,
 
     /** Shorthand for CardMeta. */
-    meta: customPropTypes.item,
+    meta: customPropTypes.itemShorthand,
 
     /** Render as an `a` tag instead of a `div` and called with event on Card click. */
     onClick: PropTypes.func,

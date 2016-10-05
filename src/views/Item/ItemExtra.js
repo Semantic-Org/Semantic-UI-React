@@ -37,7 +37,7 @@ ItemExtra.propTypes = {
   className: PropTypes.string,
 
   /** Shorthand for primary content. */
-  content: customPropTypes.content,
+  content: customPropTypes.contentShorthand,
 }
 
 export default ItemExtra
