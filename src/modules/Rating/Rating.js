@@ -21,7 +21,16 @@ const _meta = {
   },
 }
 
-class Rating extends Component {
+export default class Rating extends Component {
+  static autoControlledProps = [
+    'rating',
+  ]
+
+  static defaultProps = {
+    clearable: 'auto',
+    maxRating: 1,
+  }
+
   static propTypes = {
     /** An element type to render as (string or function). */
     as: customPropTypes.as,
@@ -70,30 +79,7 @@ class Rating extends Component {
     onRate: PropTypes.func,
   }
 
-  static defaultProps = {
-    clearable: 'auto',
-    maxRating: 1,
-  }
-
   static _meta = _meta
-
-  static autoControlledProps = [
-    'rating',
-  ]
-
-  handleMouseLeave = (...args) => {
-    _.invoke(this.props, 'onMouseLeave', ...args)
-
-    if (this.props.disabled) return
-
-    this.setState({ selectedIndex: -1, isSelecting: false })
-  }
-
-  handleIconMouseEnter = (index) => {
-    if (this.props.disabled) return
-
-    this.setState({ selectedIndex: index, isSelecting: true })
-  }
 
   handleIconClick = (e, index) => {
     const { clearable, disabled, maxRating, onRate } = this.props
@@ -113,6 +99,20 @@ class Rating extends Component {
     // set rating
     this.trySetState({ rating: newRating }, { isSelecting: false })
     if (onRate) onRate(e, { rating: newRating, maxRating })
+  }
+
+  handleIconMouseEnter = (index) => {
+    if (this.props.disabled) return
+
+    this.setState({ selectedIndex: index, isSelecting: true })
+  }
+
+  handleMouseLeave = (...args) => {
+    _.invoke(this.props, 'onMouseLeave', ...args)
+
+    if (this.props.disabled) return
+
+    this.setState({ selectedIndex: -1, isSelecting: false })
   }
 
   renderIcons = () => {
@@ -137,15 +137,20 @@ class Rating extends Component {
   }
 
   render() {
-    const { className, disabled, icon, size } = this.props
+    const {
+      className,
+      disabled,
+      icon,
+      size,
+    } = this.props
     const { selectedIndex, isSelecting } = this.state
 
     const classes = cx(
       'ui',
-      size,
-      icon,
       disabled && 'disabled',
+      icon,
       isSelecting && !disabled && selectedIndex >= 0 && 'selected',
+      size,
       'rating',
       className,
     )
@@ -159,5 +164,3 @@ class Rating extends Component {
     )
   }
 }
-
-export default Rating

@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react'
+import React, { Component, PropTypes } from 'react'
 import cx from 'classnames'
 
 import {
@@ -26,77 +26,77 @@ const defaultRenderer = ({ image, price, title, description }) => [
   </div>,
 ]
 
-function SearchResult(props) {
-  const {
-    active,
-    className,
-    id,
-    onClick,
-    renderer,
-  } = props
+export default class SearchResult extends Component {
+  static propTypes = {
+    /** An element type to render as (string or function). */
+    as: customPropTypes.as,
 
-  const handleClick = (e) => {
+    /** The item currently selected by keyboard shortcut. */
+    active: PropTypes.bool,
+
+    /** Additional className. */
+    className: PropTypes.string,
+
+    /** Additional text with less emphasis. */
+    description: PropTypes.string,
+
+    /** A unique identifier. */
+    id: PropTypes.number,
+
+    /** Add an image to the item. */
+    image: PropTypes.string,
+
+    /** Called on click with (event, value, text). */
+    onClick: PropTypes.func,
+
+    /** Customized text for price. */
+    price: PropTypes.string,
+
+    /**
+     * A function that returns the result contents.
+     * Receives all SearchResult props.
+     */
+    renderer: PropTypes.func,
+
+    /** Display title. */
+    title: PropTypes.string,
+  }
+
+  handleClick = (e) => {
+    const { id, onClick } = this.props
+
     if (onClick) onClick(e, id)
   }
 
-  const classes = cx(
-    useKeyOnly(active, 'active'),
-    'result',
-    className,
-  )
-  const rest = getUnhandledProps(SearchResult, props)
-  const ElementType = getElementType(SearchResult, props)
+  static _meta = {
+    name: 'SearchResult',
+    parent: 'Search',
+    type: META.TYPES.MODULE,
+  }
 
-  // Note: You technically only need the 'content' wrapper when there's an
-  // image. However, optionally wrapping it makes this function a lot more
-  // complicated and harder to read. Since always wrapping it doesn't affect
-  // the style in any way let's just do that.
-  return (
-    <ElementType {...rest} className={classes} onClick={handleClick}>
-      {renderer ? renderer(props) : defaultRenderer(props)}
-    </ElementType>
-  )
+  render() {
+    const {
+      active,
+      className,
+      renderer,
+    } = this.props
+
+    const classes = cx(
+      useKeyOnly(active, 'active'),
+      'result',
+      className,
+    )
+    const rest = getUnhandledProps(SearchResult, this.props)
+    const ElementType = getElementType(SearchResult, this.props)
+
+    // Note: You technically only need the 'content' wrapper when there's an
+    // image. However, optionally wrapping it makes this function a lot more
+    // complicated and harder to read. Since always wrapping it doesn't affect
+    // the style in any way let's just do that.
+    return (
+      <ElementType {...rest} className={classes} onClick={this.handleClick}>
+        {renderer ? renderer(this.props) : defaultRenderer(this.props)}
+      </ElementType>
+    )
+  }
 }
-
-SearchResult._meta = {
-  name: 'SearchResult',
-  parent: 'Search',
-  type: META.TYPES.MODULE,
-}
-
-SearchResult.propTypes = {
-  /** An element type to render as (string or function). */
-  as: customPropTypes.as,
-
-  /** The item currently selected by keyboard shortcut. */
-  active: PropTypes.bool,
-
-  /** Additional className. */
-  className: PropTypes.string,
-
-  /** Additional text with less emphasis. */
-  description: PropTypes.string,
-
-  /** A unique identifier. */
-  id: PropTypes.number,
-
-  /** Add an image to the item. */
-  image: PropTypes.string,
-
-  /** Customized text for price. */
-  price: PropTypes.string,
-
-  /**
-   * A function that returns the result contents.
-   * Receives all SearchResult props.
-   */
-  renderer: PropTypes.func,
-
-  /** Display title. */
-  title: PropTypes.string,
-
-  /** Called on click with (event, value, text). */
-  onClick: PropTypes.func,
-}
-
-export default SearchResult

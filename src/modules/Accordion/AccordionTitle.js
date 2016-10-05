@@ -1,5 +1,5 @@
-import React, { PropTypes } from 'react'
 import cx from 'classnames'
+import React, { Component, PropTypes } from 'react'
 
 import {
   customPropTypes,
@@ -9,51 +9,56 @@ import {
   useKeyOnly,
 } from '../../lib'
 
-function AccordionTitle(props) {
-  const { active, children, className, onClick } = props
-  const classes = cx(
-    'title',
-    useKeyOnly(active, 'active'),
-    className
-  )
+/**
+ * A title sub-component for Accordion component
+ */
+export default class AccordionTitle extends Component {
+  static displayName = 'AccordionTitle'
 
-  const handleClick = (e) => {
+  static propTypes = {
+    /** An element type to render as (string or function). */
+    as: customPropTypes.as,
+
+    /** Whether or not the title is in the open state. */
+    active: PropTypes.bool,
+
+    /** Primary content of the Title. */
+    children: PropTypes.node,
+
+    /** Classes to add to the title className. */
+    className: PropTypes.string,
+
+    /** Called with (event, index) on title click. */
+    onClick: PropTypes.func,
+  }
+
+  static _meta = {
+    name: 'AccordionTitle',
+    type: META.TYPES.MODULE,
+    parent: 'Accordion',
+  }
+
+  handleClick = (e) => {
+    const { onClick } = this.props
+
     if (onClick) onClick(e)
   }
 
-  const rest = getUnhandledProps(AccordionTitle, props)
-  const ElementType = getElementType(AccordionTitle, props)
+  render() {
+    const {
+      active,
+      children,
+      className,
+    } = this.props
 
-  return (
-    <ElementType {...rest} className={classes} onClick={handleClick}>
-      {children}
-    </ElementType>
-  )
+    const classes = cx(
+      useKeyOnly(active, 'active'),
+      'title',
+      className
+    )
+    const rest = getUnhandledProps(AccordionTitle, this.props)
+    const ElementType = getElementType(AccordionTitle, this.props)
+
+    return <ElementType {...rest} className={classes} onClick={this.handleClick}>{children}</ElementType>
+  }
 }
-
-AccordionTitle.displayName = 'AccordionTitle'
-
-AccordionTitle.propTypes = {
-  /** An element type to render as (string or function). */
-  as: customPropTypes.as,
-
-  /** Whether or not the title is in the open state. */
-  active: PropTypes.bool,
-
-  /** Primary content of the Title. */
-  children: PropTypes.node,
-
-  /** Classes to add to the title className. */
-  className: PropTypes.string,
-
-  /** Called with (event, index) on title click. */
-  onClick: PropTypes.func,
-}
-
-AccordionTitle._meta = {
-  name: 'AccordionTitle',
-  type: META.TYPES.MODULE,
-  parent: 'Accordion',
-}
-
-export default AccordionTitle
