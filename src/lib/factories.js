@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import cx from 'classnames'
-import React, { isValidElement } from 'react'
+import React, { cloneElement, isValidElement } from 'react'
 
 /**
  * Merges props and classNames.
@@ -16,7 +16,7 @@ const mergePropsAndClassName = (defaultProps, props) => {
     newProps.className = cx(defaultProps.className, props.className) // eslint-disable-line react/prop-types
   }
 
-  if (!newProps.key) {
+  if (!newProps.key && childKey) {
     newProps.key = _.isFunction(childKey) ? childKey(newProps) : childKey
   }
 
@@ -56,7 +56,7 @@ export function createShorthand(Component, mapValueToProps, val, defaultProps = 
 
   // Clone ReactElements
   if (type === 'element') {
-    return React.cloneElement(val, props)
+    return cloneElement(val, props)
   }
 
   // Create ReactElements from props objects
