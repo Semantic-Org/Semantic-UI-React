@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
@@ -33,6 +34,7 @@ function List(props) {
     floated,
     horizontal,
     inverted,
+    items,
     link,
     ordered,
     relaxed,
@@ -62,7 +64,15 @@ function List(props) {
   const rest = getUnhandledProps(List, props)
   const ElementType = getElementType(List, props)
 
-  return <ElementType {...rest} className={classes}>{children}</ElementType>
+  if (children) {
+    return <ElementType {...rest} className={classes}>{children}</ElementType>
+  }
+
+  return (
+    <ElementType {...rest} className={classes}>
+      {_.map(items, (item) => ListItem.create(item))}
+    </ElementType>
+  )
 }
 
 List._meta = {
@@ -106,6 +116,9 @@ List.propTypes = {
 
   /** A list can be inverted to appear on a dark background. */
   inverted: PropTypes.bool,
+
+  /** Shorthand array of props for ListItem. */
+  items: customPropTypes.collectionShorthand,
 
   /** A list can be specially formatted for navigation links. */
   link: PropTypes.bool,

@@ -2,6 +2,7 @@ import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
 import {
+  createShorthandFactory,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -9,12 +10,12 @@ import {
 } from '../../lib'
 
 function ListHeader(props) {
-  const { children, className } = props
+  const { children, className, content } = props
   const classes = cx(className, 'header')
   const rest = getUnhandledProps(ListHeader, props)
   const ElementType = getElementType(ListHeader, props)
 
-  return <ElementType {...rest} className={classes}>{children}</ElementType>
+  return <ElementType {...rest} className={classes}>{children || content}</ElementType>
 }
 
 ListHeader._meta = {
@@ -32,6 +33,11 @@ ListHeader.propTypes = {
 
   /** Additional classes. */
   className: PropTypes.string,
+
+  /** Shorthand for primary content. */
+  content: customPropTypes.contentShorthand,
 }
+
+ListHeader.create = createShorthandFactory(ListHeader, content => ({ content }))
 
 export default ListHeader

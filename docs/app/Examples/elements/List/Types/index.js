@@ -11,7 +11,11 @@ const ListTypes = () => (
       description='A list groups related content'
       examplePath='elements/List/Types/ListExampleBasic'
     />
+    <ComponentExample examplePath='elements/List/Types/ListExampleBasicShorthand' />
+
     <ComponentExample examplePath='elements/List/Types/ListExampleIcon' />
+    <ComponentExample examplePath='elements/List/Types/ListExampleIconShorthand' />
+
     <ComponentExample examplePath='elements/List/Types/ListExampleDivided' />
     <ComponentExample examplePath='elements/List/Types/ListExampleTree' />
 

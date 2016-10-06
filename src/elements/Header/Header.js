@@ -52,10 +52,13 @@ function Header(props) {
     return <ElementType {...rest} className={classes}>{children}</ElementType>
   }
 
-  if ((image && typeof image !== 'boolean') || (icon && typeof icon !== 'boolean')) {
+  const iconNode = Icon.create(icon)
+  const imageNode = Image.create(image)
+
+  if (iconNode || imageNode) {
     return (
       <ElementType {...rest} className={classes}>
-        {Icon.create(icon) || Image.create(image)}
+        {iconNode || imageNode}
         {(content || subheader) && (
           <HeaderContent>
             {content}
