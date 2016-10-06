@@ -25,12 +25,12 @@ const getPosixPath = (componentName) => getDocgenPath(componentName).replace(pat
 
 const getGithubSourceUrl = (componentName) => {
   const posixPath = getPosixPath(componentName)
-  return `https://github.com/TechnologyAdvice/stardust/blob/master/${posixPath}`
+  return `https://github.com/Semantic-Org/Semantic-UI-React/blob/master/${posixPath}`
 }
 
 const getGithubEditUrl = (componentName) => {
   const posixPath = getPosixPath(componentName)
-  return `https://github.com/TechnologyAdvice/stardust/edit/master/${posixPath}`
+  return `https://github.com/Semantic-Org/Semantic-UI-React/edit/master/${posixPath}`
 }
 
 const getSemanticUIDocsUrl = (_meta) => {
@@ -213,7 +213,7 @@ export default class ComponentDoc extends Component {
           {docgen.docBlock.description || (
             <span>
               <a href={getGithubEditUrl(_meta.name)}>Add a description</a>. Instructions are{' '}
-              <a href={'https://github.com/TechnologyAdvice/stardust/blob/master/.github/CONTRIBUTING.md#components'}>
+              <a href={'https://github.com/Semantic-Org/Semantic-UI-React/blob/master/.github/CONTRIBUTING.md#components'}>
                 here.
               </a>
               {' '}Description is in the SUI Docs, right there <Icon name='pointing right' />

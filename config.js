@@ -8,7 +8,7 @@ const __DEV__ = env === 'development'
 const __STAGING__ = env === 'staging'
 const __TEST__ = env === 'test'
 const __PROD__ = env === 'production'
-const __BASE__ = __PROD__ ? '/stardust' : ''
+const __BASE__ = __PROD__ ? '/Semantic-UI-React' : ''
 
 let config = {
   env,

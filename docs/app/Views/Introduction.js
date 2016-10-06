@@ -284,7 +284,7 @@ const Introduction = () => (
       </p>
       <p>
         Take a look at our
-        <a href='https://github.com/TechnologyAdvice/stardust/blob/master/src/lib/AutoControlledComponent.js'>
+        <a href='https://github.com/Semantic-Org/Semantic-UI-React/blob/master/src/lib/AutoControlledComponent.js'>
           &nbsp;<code>AutoControlledComponent</code>&nbsp;
         </a>
         to see how this was done.

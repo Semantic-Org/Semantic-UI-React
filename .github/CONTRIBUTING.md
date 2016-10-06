@@ -54,15 +54,15 @@ v6.2.1
 Start by [forking stardust][12] to your GitHub account.  Then clone your fork and install dependencies:
 
 ```sh
-git clone git@github.com:<your-user>/stardust.git
-cd stardust
+git clone git@github.com:<your-user>/Semantic-UI-React.git
+cd Semantic-UI-React
 npm install
 ```
 
 Add our repo as a git remote so you can pull/rebase your fork with our latest updates:
 
 ```
-git remote add upstream git@github.com:TechnologyAdvice/stardust.git
+git remote add upstream git@github.com:Semantic-Org/Semantic-UI-React.git
 ```
 
 ### Commit Messages
@@ -541,18 +541,18 @@ Usage examples for a component live in `docs/app/Examples`.  The examples follow
 
 Adding documentation for new components is a bit tedious.  The best way to do this (for now) is to copy an existing component's and update them.
 
-[1]: https://github.com/TechnologyAdvice/stardust/blob/master/test/specs/commonTests.js
+[1]: https://github.com/Semantic-Org/Semantic-UI-React/blob/master/test/specs/commonTests.js
 [2]: https://facebook.github.io/react/docs/forms.html#controlled-components
 [3]: https://facebook.github.io/react/docs/forms.html#uncontrolled-components
-[4]: https://github.com/TechnologyAdvice/stardust/blob/master/src/lib/classNameBuilders.js
+[4]: https://github.com/Semantic-Org/Semantic-UI-React/blob/master/src/lib/classNameBuilders.js
 [5]: http://semantic-ui.com/elements/header
 [6]: http://semantic-ui.com/views/item
-[7]: https://github.com/TechnologyAdvice/stardust/pull/281#issuecomment-228663527
+[7]: https://github.com/Semantic-Org/Semantic-UI-React/pull/281#issuecomment-228663527
 [8]: https://github.com/angular/angular/blob/master/CONTRIBUTING.md#commit
 [9]: http://semantic-ui.com/introduction/glossary.html
 [10]: http://semantic-ui.com/elements/label.html
 [11]: https://nodejs.org/
-[12]: https://github.com/TechnologyAdvice/stardust#fork-destination-box
-[13]: https://github.com/TechnologyAdvice/stardust/blob/master/src/factories
-[14]: https://github.com/TechnologyAdvice/stardust/pull/335#issuecomment-238960895
-[15]: https://github.com/TechnologyAdvice/stardust/issues/607
+[12]: https://github.com/Semantic-Org/Semantic-UI-React#fork-destination-box
+[13]: https://github.com/Semantic-Org/Semantic-UI-React/blob/master/src/factories
+[14]: https://github.com/Semantic-Org/Semantic-UI-React/pull/335#issuecomment-238960895
+[15]: https://github.com/Semantic-Org/Semantic-UI-React/issues/607

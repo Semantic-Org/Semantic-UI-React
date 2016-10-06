@@ -201,9 +201,9 @@ export default class ComponentExample extends Component {
     const componentName = examplePath.split(__PATH_SEP__)[1]
 
     const color = error ? 'red' : 'black'
-    const ghEditHref = `https://github.com/TechnologyAdvice/stardust/edit/master/docs/app/Examples/${examplePath}.js`
+    const ghEditHref = `https://github.com/Semantic-Org/Semantic-UI-React/edit/master/docs/app/Examples/${examplePath}.js`
     const ghBugHref = [
-      'https://github.com/TechnologyAdvice/stardust/issues/new?',
+      'https://github.com/Semantic-Org/Semantic-UI-React/issues/new?',
       _.map({
         title: `fix(${componentName}): your description`,
         body: [

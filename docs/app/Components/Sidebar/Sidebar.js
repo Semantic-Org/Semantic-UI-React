@@ -190,10 +190,10 @@ export default class Sidebar extends Component {
             <Menu.Item as={Link} to='/introduction' activeClassName='active'>
               Introduction
             </Menu.Item>
-            <Menu.Item as='a' href='https://github.com/TechnologyAdvice/stardust'>
+            <Menu.Item as='a' href='https://github.com/Semantic-Org/Semantic-UI-React'>
               <Icon name='github' /> GitHub
             </Menu.Item>
-            <Menu.Item as='a' href='https://github.com/TechnologyAdvice/stardust/blob/master/CHANGELOG.md'>
+            <Menu.Item as='a' href='https://github.com/Semantic-Org/Semantic-UI-React/blob/master/CHANGELOG.md'>
               <Icon name='file text outline' /> CHANGELOG
             </Menu.Item>
           </Menu.Menu>
