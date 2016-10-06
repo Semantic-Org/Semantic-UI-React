@@ -24,7 +24,7 @@ We also expect to be done soon.  Thank you for your patience.
 [![Circle CI](https://img.shields.io/circleci/project/Semantic-Org/Semantic-UI-React/master.svg?style=flat-square)](https://circleci.com/gh/Semantic-Org/Semantic-UI-React/tree/master)
 [![Codecov](https://img.shields.io/codecov/c/github/Semantic-Org/Semantic-UI-React/master.svg?style=flat-square)](https://codecov.io/gh/Semantic-Org/Semantic-UI-React)
 [![Gemnasium](https://img.shields.io/gemnasium/Semantic-Org/Semantic-UI-React.svg?style=flat-square)](https://gemnasium.com/Semantic-Org/Semantic-UI-React)
-[![npm](https://img.shields.io/npm/v/Semantic-UI-React.svg?style=flat-square)](https://www.npmjs.com/package/Semantic-UI-React)
+[![npm](https://img.shields.io/npm/v/semantic-ui-react.svg?style=flat-square)](https://www.npmjs.com/package/semantic-ui-react)
 
 Hey, we're in development. Prior to reaching [v1.0.0][6]:
 
