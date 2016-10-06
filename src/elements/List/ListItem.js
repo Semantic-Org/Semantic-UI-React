@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
@@ -46,6 +47,15 @@ function ListItem(props) {
 
   const iconNode = ListIcon.create(icon)
   const imageNode = Image.create(image)
+
+  if (_.isPlainObject(content)) {
+    return (
+      <ElementType {...rest} className={classes} {...valueProp}>
+        {iconNode || imageNode}
+        {ListContent.create(content, { header, description })}
+      </ElementType>
+    )
+  }
 
   const headerNode = ListHeader.create(header)
   const descriptionNode = ListDescription.create(description)
