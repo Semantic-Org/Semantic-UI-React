@@ -9,7 +9,9 @@ import {
   getUnhandledProps,
   META,
   SUI,
+  useKeyOnly,
 } from '../../lib'
+import RatingIcon from './RatingIcon'
 
 const _meta = {
   name: 'Rating',
@@ -21,6 +23,9 @@ const _meta = {
   },
 }
 
+/**
+ * A rating indicates user interest in content
+ * */
 export default class Rating extends Component {
   static autoControlledProps = [
     'rating',
@@ -119,21 +124,16 @@ export default class Rating extends Component {
     const { maxRating } = this.props
     const { rating, selectedIndex, isSelecting } = this.state
 
-    return _.times(maxRating, (i) => {
-      const classes = cx(
-        selectedIndex >= i && isSelecting && 'selected',
-        rating >= i + 1 && 'active',
-        'icon'
-      )
-      return (
-        <i
+    return _.times(maxRating, (i) => (
+        <RatingIcon
+          active={rating >= i + 1}
+          index={i}
           key={i}
-          className={classes}
-          onClick={(e) => this.handleIconClick(e, i)}
-          onMouseEnter={() => this.handleIconMouseEnter(i)}
+          onClick={this.handleIconClick}
+          onMouseEnter={this.handleIconMouseEnter}
+          selected={selectedIndex >= i && isSelecting }
         />
-      )
-    })
+    ))
   }
 
   render() {
@@ -147,10 +147,10 @@ export default class Rating extends Component {
 
     const classes = cx(
       'ui',
-      disabled && 'disabled',
       icon,
-      isSelecting && !disabled && selectedIndex >= 0 && 'selected',
       size,
+      useKeyOnly(disabled, 'disabled'),
+      useKeyOnly(isSelecting && !disabled && selectedIndex >= 0, 'selected'),
       'rating',
       className,
     )

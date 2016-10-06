@@ -1,8 +1,8 @@
 import React from 'react'
 import { Rating } from 'semantic-ui-react'
 
-const RatingDisabledExample = () => (
+const RatingExampleDisabled = () => (
   <Rating defaultRating={3} maxRating={5} disabled />
 )
 
-export default RatingDisabledExample
+export default RatingExampleDisabled
