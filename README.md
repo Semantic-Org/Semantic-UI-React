@@ -1,12 +1,3 @@
-# :warning: WARNING :warning:
-
-If you see this, we're currently migrating this repo to Semantic-Org.
-
-We expect to encounter several issues during the transition.
-We also expect to be done soon.  Thank you for your patience.
-
-***
-
 <p align="center">
   <a href="http://semantic-org.github.io/Semantic-UI-React">
     <img height="128" width="128" src="https://cloud.githubusercontent.com/assets/5067638/17415622/7ac62496-5a3f-11e6-864e-217ad1d9e021.png">
