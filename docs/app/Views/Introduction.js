@@ -12,6 +12,7 @@ import {
   Segment,
 } from 'src'
 import Logo from '../Components/Logo/Logo'
+import { repoURL } from 'docs/app/utils'
 
 const AccordionJSX = `const panels = [{
   title: 'What is a dog?',
@@ -284,7 +285,7 @@ const Introduction = () => (
       </p>
       <p>
         Take a look at our
-        <a href='https://github.com/Semantic-Org/Semantic-UI-React/blob/master/src/lib/AutoControlledComponent.js'>
+        <a href={`${repoURL}/blob/master/src/lib/AutoControlledComponent.js` }>
           &nbsp;<code>AutoControlledComponent</code>&nbsp;
         </a>
         to see how this was done.

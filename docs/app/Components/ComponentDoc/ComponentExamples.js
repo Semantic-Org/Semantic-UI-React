@@ -1,6 +1,6 @@
 import React, { Component, createElement, PropTypes } from 'react'
 
-import { exampleContext } from 'docs/app/utils'
+import { exampleContext, repoURL } from 'docs/app/utils'
 import { Grid, Icon, Message } from 'src'
 
 export default class ComponentExamples extends Component {
@@ -26,9 +26,9 @@ export default class ComponentExamples extends Component {
             <Icon name='search' />
             <Message.Content>
               If there's no
-              <a href='https://github.com/Semantic-Org/Semantic-UI-React/pulls'> pull request </a>
+              <a href={`${repoURL}/pulls` }> pull request </a>
               open for <code>{`<${name} />`}</code> examples, you should{' '}
-              <a href='https://github.com/Semantic-Org/Semantic-UI-React/blob/master/.github/CONTRIBUTING.md'>
+              <a href={`${repoURL}/blob/master/.github/CONTRIBUTING.md` }>
                 contribute
               </a>!
             </Message.Content>

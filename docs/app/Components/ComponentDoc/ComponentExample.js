@@ -5,7 +5,7 @@ import { renderToStaticMarkup } from 'react-dom/server'
 import { html } from 'js-beautify'
 import copyToClipboard from 'copy-to-clipboard'
 
-import { exampleContext } from 'docs/app/utils'
+import { exampleContext, repoURL } from 'docs/app/utils'
 import { Divider, Grid, Icon, Header, Menu } from 'src'
 import Editor from 'docs/app/Components/Editor/Editor'
 import babelrc from '.babelrc'
@@ -201,9 +201,9 @@ export default class ComponentExample extends Component {
     const componentName = examplePath.split(__PATH_SEP__)[1]
 
     const color = error ? 'red' : 'black'
-    const ghEditHref = `https://github.com/Semantic-Org/Semantic-UI-React/edit/master/docs/app/Examples/${examplePath}.js`
+    const ghEditHref = `${repoURL}/edit/master/docs/app/Examples/${examplePath}.js`
     const ghBugHref = [
-      'https://github.com/Semantic-Org/Semantic-UI-React/issues/new?',
+      `${repoURL}/issues/new?`,
       _.map({
         title: `fix(${componentName}): your description`,
         body: [

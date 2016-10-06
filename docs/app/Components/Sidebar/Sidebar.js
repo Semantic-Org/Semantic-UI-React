@@ -4,7 +4,7 @@ import { findDOMNode } from 'react-dom'
 import { Link, routerShape } from 'react-router'
 
 import pkg from 'package.json'
-import { typeOrder, parentComponents } from 'docs/app/utils'
+import { typeOrder, parentComponents, repoURL } from 'docs/app/utils'
 import { keyboardKey, META } from 'src/lib'
 import Logo from 'docs/app/Components/Logo/Logo'
 import {
@@ -190,10 +190,10 @@ export default class Sidebar extends Component {
             <Menu.Item as={Link} to='/introduction' activeClassName='active'>
               Introduction
             </Menu.Item>
-            <Menu.Item as='a' href='https://github.com/Semantic-Org/Semantic-UI-React'>
+            <Menu.Item as='a' href={repoURL}>
               <Icon name='github' /> GitHub
             </Menu.Item>
-            <Menu.Item as='a' href='https://github.com/Semantic-Org/Semantic-UI-React/blob/master/CHANGELOG.md'>
+            <Menu.Item as='a' href={`${repoURL}/blob/master/CHANGELOG.md` }>
               <Icon name='file text outline' /> CHANGELOG
             </Menu.Item>
           </Menu.Menu>

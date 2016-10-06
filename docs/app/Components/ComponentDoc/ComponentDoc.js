@@ -8,6 +8,7 @@ import ComponentExamples from './ComponentExamples'
 import ComponentProps from './ComponentProps'
 import docgenInfo from '../../docgenInfo.json'
 
+import { repoURL } from 'docs/app/utils'
 import { META } from 'src/lib'
 import * as semanticUIReact from 'src'
 import { Divider, Grid, Header, Icon, List } from 'src'
@@ -25,12 +26,12 @@ const getPosixPath = (componentName) => getDocgenPath(componentName).replace(pat
 
 const getGithubSourceUrl = (componentName) => {
   const posixPath = getPosixPath(componentName)
-  return `https://github.com/Semantic-Org/Semantic-UI-React/blob/master/${posixPath}`
+  return `${repoURL}/blob/master/${posixPath}`
 }
 
 const getGithubEditUrl = (componentName) => {
   const posixPath = getPosixPath(componentName)
-  return `https://github.com/Semantic-Org/Semantic-UI-React/edit/master/${posixPath}`
+  return `${repoURL}/edit/master/${posixPath}`
 }
 
 const getSemanticUIDocsUrl = (_meta) => {
@@ -213,7 +214,7 @@ export default class ComponentDoc extends Component {
           {docgen.docBlock.description || (
             <span>
               <a href={getGithubEditUrl(_meta.name)}>Add a description</a>. Instructions are{' '}
-              <a href={'https://github.com/Semantic-Org/Semantic-UI-React/blob/master/.github/CONTRIBUTING.md#components'}>
+              <a href={`${repoURL}/blob/master/.github/CONTRIBUTING.md#components` }>
                 here.
               </a>
               {' '}Description is in the SUI Docs, right there <Icon name='pointing right' />
