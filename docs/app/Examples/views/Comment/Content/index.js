@@ -1,4 +1,5 @@
 import React from 'react'
+import { Message } from 'semantic-ui-react'
 
 import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
 import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
@@ -25,9 +26,14 @@ const CommentTypes = () => (
 
     <ComponentExample
       title='Reply Form'
-      description='A comment can contain a form to reply to a comment. This may have arbitrary content'
+      description='A comment can contain a form to reply to a comment. This may have arbitrary content.'
       examplePath='views/Comment/Content/CommentExampleReplyForm'
-    />
+    >
+      <Message info>
+        If a comment form is located inside a comment it will be formatted as a nested reply form. If the comment form
+        is included after all comments, it will be formatted as a normal reply form.
+      </Message>
+    </ComponentExample>
     <ComponentExample examplePath='views/Comment/Content/CommentExampleReplyFormOuter' />
   </ExampleSection>
 )

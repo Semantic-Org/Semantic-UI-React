@@ -65,7 +65,7 @@ const CommentExampleThreaded = () => (
       </Comment.Content>
     </Comment>
 
-    <Form reply>
+    <Form reply onSubmit={e => e.preventDefault()}>
       <Form.TextArea />
       <Button content='Add Reply' labelPosition='left' icon='edit' primary />
     </Form>
