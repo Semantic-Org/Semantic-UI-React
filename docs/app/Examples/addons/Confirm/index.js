@@ -1,42 +1,12 @@
-import React, { Component } from 'react'
-import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
-import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
+import React from 'react'
+import Types from './Types'
+import Variations from './Variations'
 
-export default class ConfirmExamples extends Component {
-  render() {
-    return (
-      <div>
-        <ExampleSection title='Types'>
-          <ComponentExample
-            title='Confirm'
-            description='A default confirm'
-            examplePath='addons/Confirm/Types/ConfirmConfirmExample'
-          />
-          <ComponentExample
-            title='Callbacks'
-            description='A confirm has callbacks for cancel and confirm actions'
-            examplePath='addons/Confirm/Types/ConfirmCallbacksExample'
-          />
-        </ExampleSection>
+const ConfirmExamples = () => (
+  <div>
+    <Types />
+    <Variations />
+  </div>
+)
 
-        <ExampleSection title='Variations'>
-          <ComponentExample
-            title='Header'
-            description='A confirm can define a header'
-            examplePath='addons/Confirm/Variations/ConfirmHeaderExample'
-          />
-          <ComponentExample
-            title='Content'
-            description='A confirm can define content'
-            examplePath='addons/Confirm/Variations/ConfirmContentExample'
-          />
-          <ComponentExample
-            title='Button Text'
-            description='A confirm can customize button text'
-            examplePath='addons/Confirm/Variations/ConfirmButtonsExample'
-          />
-        </ExampleSection>
-      </div>
-    )
-  }
-}
+export default ConfirmExamples

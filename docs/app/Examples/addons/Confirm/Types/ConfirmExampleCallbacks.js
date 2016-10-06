@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Button, Confirm } from 'semantic-ui-react'
 
-class ConfirmCallbacksExample extends Component {
+class ConfirmExampleCallbacks extends Component {
   state = { active: false, result: 'show the modal to capture a result' }
 
   show = () => this.setState({ active: true })
@@ -26,4 +26,4 @@ class ConfirmCallbacksExample extends Component {
   }
 }
 
-export default ConfirmCallbacksExample
+export default ConfirmExampleCallbacks

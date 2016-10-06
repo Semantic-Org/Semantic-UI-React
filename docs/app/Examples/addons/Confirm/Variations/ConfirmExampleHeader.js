@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Button, Confirm } from 'semantic-ui-react'
 
-class ConfirmHeaderExample extends Component {
+class ConfirmExampleHeader extends Component {
   state = { active: false }
 
   show = () => this.setState({ active: true })
@@ -23,4 +23,4 @@ class ConfirmHeaderExample extends Component {
   }
 }
 
-export default ConfirmHeaderExample
+export default ConfirmExampleHeader
