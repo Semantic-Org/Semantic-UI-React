@@ -1,5 +1,14 @@
+# :warning: WARNING :warning:
+
+If you see this, we're currently migrating this repo to Semantic-Org.
+
+We expect to encounter several issues during the transition.
+We also expect to be done soon.  Thank you for your patience.
+
+***
+
 <p align="center">
-  <a href="http://technologyadvice.github.io/stardust">
+  <a href="http://semantic-org.github.io/Semantic-UI-React">
     <img height="128" width="128" src="https://cloud.githubusercontent.com/assets/5067638/17415622/7ac62496-5a3f-11e6-864e-217ad1d9e021.png">
   </a>
   <p align="center">
@@ -11,11 +20,11 @@
 </p>
 
 # [Semantic-UI-React (Stardust)][2]
-[![Gitter](https://img.shields.io/badge/gitter-join_chat-1dce73.svg?logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB4PSIwIiB5PSI1IiBmaWxsPSIjZmZmIiB3aWR0aD0iMSIgaGVpZ2h0PSI1Ii8%2BPHJlY3QgeD0iMiIgeT0iNiIgZmlsbD0iI2ZmZiIgd2lkdGg9IjEiIGhlaWdodD0iNyIvPjxyZWN0IHg9IjQiIHk9IjYiIGZpbGw9IiNmZmYiIHdpZHRoPSIxIiBoZWlnaHQ9IjciLz48cmVjdCB4PSI2IiB5PSI2IiBmaWxsPSIjZmZmIiB3aWR0aD0iMSIgaGVpZ2h0PSI0Ii8%2BPC9zdmc%2B&logoWidth=8&style=flat-square&maxAge=2592000)](https://gitter.im/TechnologyAdvice/stardust)
-[![Circle CI](https://img.shields.io/circleci/project/TechnologyAdvice/stardust/master.svg?style=flat-square)](https://circleci.com/gh/TechnologyAdvice/stardust/tree/master)
-[![Codecov](https://img.shields.io/codecov/c/github/TechnologyAdvice/stardust/master.svg?style=flat-square)](https://codecov.io/gh/TechnologyAdvice/stardust)
-[![Gemnasium](https://img.shields.io/gemnasium/TechnologyAdvice/stardust.svg?style=flat-square)](https://gemnasium.com/TechnologyAdvice/stardust)
-[![npm](https://img.shields.io/npm/v/stardust.svg?style=flat-square)](https://www.npmjs.com/package/stardust)
+[![Gitter](https://img.shields.io/badge/gitter-join_chat-1dce73.svg?logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB4PSIwIiB5PSI1IiBmaWxsPSIjZmZmIiB3aWR0aD0iMSIgaGVpZ2h0PSI1Ii8%2BPHJlY3QgeD0iMiIgeT0iNiIgZmlsbD0iI2ZmZiIgd2lkdGg9IjEiIGhlaWdodD0iNyIvPjxyZWN0IHg9IjQiIHk9IjYiIGZpbGw9IiNmZmYiIHdpZHRoPSIxIiBoZWlnaHQ9IjciLz48cmVjdCB4PSI2IiB5PSI2IiBmaWxsPSIjZmZmIiB3aWR0aD0iMSIgaGVpZ2h0PSI0Ii8%2BPC9zdmc%2B&logoWidth=8&style=flat-square&maxAge=2592000)](https://gitter.im/Semantic-Org/Semantic-UI-React)
+[![Circle CI](https://img.shields.io/circleci/project/Semantic-Org/Semantic-UI-React/master.svg?style=flat-square)](https://circleci.com/gh/Semantic-Org/Semantic-UI-React/tree/master)
+[![Codecov](https://img.shields.io/codecov/c/github/Semantic-Org/Semantic-UI-React/master.svg?style=flat-square)](https://codecov.io/gh/Semantic-Org/Semantic-UI-React)
+[![Gemnasium](https://img.shields.io/gemnasium/Semantic-Org/Semantic-UI-React.svg?style=flat-square)](https://gemnasium.com/Semantic-Org/Semantic-UI-React)
+[![npm](https://img.shields.io/npm/v/Semantic-UI-React.svg?style=flat-square)](https://www.npmjs.com/package/Semantic-UI-React)
 
 Hey, we're in development. Prior to reaching [v1.0.0][6]:
 
@@ -169,22 +178,22 @@ npm run release:patch
 
 Made with :heart: [@TechnologyAdvice][9], a ridiculous [place to work][16].
 
-[1]: https://github.com/TechnologyAdvice/stardust/blob/master/.github/CONTRIBUTING.md
-[2]: https://technologyadvice.github.io/stardust/
+[1]: https://github.com/Semantic-Org/Semantic-UI-React/blob/master/.github/CONTRIBUTING.md
+[2]: https://semantic-org.github.io/Semantic-UI-React/
 [3]: https://facebook.github.io/react/
-[4]: https://github.com/TechnologyAdvice/stardust/labels/help%20wanted
+[4]: https://github.com/Semantic-Org/Semantic-UI-React/labels/help%20wanted
 [5]: http://semantic-ui.com/
-[6]: https://github.com/TechnologyAdvice/stardust/milestone/1
+[6]: https://github.com/Semantic-Org/Semantic-UI-React/milestone/1
 [7]: https://github.com/webpack/webpack-dev-server/
-[8]: https://github.com/TechnologyAdvice/stardust/issues/243
+[8]: https://github.com/Semantic-Org/Semantic-UI-React/issues/243
 [9]: https://github.com/TechnologyAdvice
 [10]: https://en.wikipedia.org/wiki/Eating_your_own_dog_food
-[11]: https://github.com/TechnologyAdvice/stardust/issues/247
-[12]: https://github.com/TechnologyAdvice/stardust/issues/243
+[11]: https://github.com/Semantic-Org/Semantic-UI-React/issues/247
+[12]: https://github.com/Semantic-Org/Semantic-UI-React/issues/243
 [13]: https://webpack.github.io
-[14]: https://github.com/TechnologyAdvice/stardust/issues
-[15]: https://github.com/TechnologyAdvice/stardust/issues/269
+[14]: https://github.com/Semantic-Org/Semantic-UI-React/issues
+[15]: https://github.com/Semantic-Org/Semantic-UI-React/issues/269
 [16]: http://technologyadvice.com/careers
-[17]: https://github.com/TechnologyAdvice/stardust/issues?q=is%3Aopen+label%3A%22help+wanted%22+label%3Aenhancement
-[18]: https://github.com/TechnologyAdvice/stardust/blob/master/CHANGELOG.md
-[19]: https://github.com/TechnologyAdvice/stardust/issues?q=is%3Aopen+RFC+label%3ARFC
+[17]: https://github.com/Semantic-Org/Semantic-UI-React/issues?q=is%3Aopen+label%3A%22help+wanted%22+label%3Aenhancement
+[18]: https://github.com/Semantic-Org/Semantic-UI-React/blob/master/CHANGELOG.md
+[19]: https://github.com/Semantic-Org/Semantic-UI-React/issues?q=is%3Aopen+RFC+label%3ARFC

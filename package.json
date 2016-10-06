@@ -37,14 +37,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://github.com/TechnologyAdvice/stardust.git"
+    "url": "git+ssh://github.com/Semantic-Org/Semantic-UI-React.git"
   },
   "author": "Technology Advice <devteam@technologyadvice.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/TechnologyAdvice/stardust/issues"
+    "url": "https://github.com/Semantic-Org/Semantic-UI-React/issues"
   },
-  "homepage": "https://github.com/TechnologyAdvice/stardust#readme",
+  "homepage": "https://github.com/Semantic-Org/Semantic-UI-React#readme",
   "dependencies": {
     "classnames": "^2.1.5",
     "debug": "^2.2.0",

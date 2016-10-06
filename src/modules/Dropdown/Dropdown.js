@@ -939,7 +939,7 @@ export default class Dropdown extends Component {
       useKeyOnly(floating, 'floating'),
       useKeyOnly(inline, 'inline'),
       // TODO: consider augmentation to render Dropdowns as Button/Menu, solves icon/link item issues
-      // https://github.com/TechnologyAdvice/stardust/issues/401#issuecomment-240487229
+      // https://github.com/Semantic-Org/Semantic-UI-React/issues/401#issuecomment-240487229
       // TODO: the icon class is only required when a dropdown is a button
       // useKeyOnly(icon, 'icon'),
       useKeyOnly(labeled, 'labeled'),

@@ -26,9 +26,9 @@ export default class ComponentExamples extends Component {
             <Icon name='search' />
             <Message.Content>
               If there's no
-              <a href='https://github.com/TechnologyAdvice/stardust/pulls'> pull request </a>
+              <a href='https://github.com/Semantic-Org/Semantic-UI-React/pulls'> pull request </a>
               open for <code>{`<${name} />`}</code> examples, you should{' '}
-              <a href='https://github.com/TechnologyAdvice/stardust/blob/master/.github/CONTRIBUTING.md'>
+              <a href='https://github.com/Semantic-Org/Semantic-UI-React/blob/master/.github/CONTRIBUTING.md'>
                 contribute
               </a>!
             </Message.Content>
