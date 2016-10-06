@@ -203,7 +203,7 @@ export const itemShorthand = (...args) => every([
 /**
  * Collection shorthand ensures a prop is an array of item shorthand.
  */
-export const itemsShorthand = (...args) => every([
+export const collectionShorthand = (...args) => every([
   disallow(['children']),
   PropTypes.arrayOf(itemShorthand),
 ])(...args)
