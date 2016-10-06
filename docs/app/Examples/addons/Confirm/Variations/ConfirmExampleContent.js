@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Button, Confirm } from 'semantic-ui-react'
 
-class ConfirmConfirmExample extends Component {
+class ConfirmExampleContent extends Component {
   state = { active: false }
 
   show = () => this.setState({ active: true })
@@ -14,6 +14,7 @@ class ConfirmConfirmExample extends Component {
         <Button onClick={this.show}>Show</Button>
         <Confirm
           active={this.state.active}
+          content='This is a custom message'
           onCancel={this.handleCancel}
           onConfirm={this.handleConfirm}
         />
@@ -22,4 +23,4 @@ class ConfirmConfirmExample extends Component {
   }
 }
 
-export default ConfirmConfirmExample
+export default ConfirmExampleContent
