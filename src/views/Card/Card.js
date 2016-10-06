@@ -36,53 +36,35 @@ export default class Card extends Component {
     /** A Card can center itself inside its container. */
     centered: PropTypes.bool,
 
-    /** Primary content of the Card. */
-    children: customPropTypes.every([
-      customPropTypes.disallow(['description', 'header', 'image', 'meta']),
-      PropTypes.node,
-    ]),
+    /** Primary content. */
+    children: PropTypes.node,
 
-    /** Classes that will be added to the Card className. */
+    /** Additional classes. */
     className: PropTypes.string,
 
     /** A Card can be formatted to display different colors. */
     color: PropTypes.oneOf(_meta.props.color),
 
-    /** Shorthand prop for CardDescription. Mutually exclusive with children. */
-    description: customPropTypes.every([
-      customPropTypes.disallow(['children']),
-      PropTypes.node,
-    ]),
+    /** Shorthand for CardDescription. */
+    description: customPropTypes.itemShorthand,
 
-    /** Shorthand prop for CardContent containing extra prop. Mutually exclusive with children. */
-    extra: customPropTypes.every([
-      customPropTypes.disallow(['children']),
-      PropTypes.node,
-    ]),
+    /** Shorthand for primary content of CardContent. */
+    extra: customPropTypes.contentShorthand,
 
     /** A Card can be formatted to take up the width of its container. */
     fluid: PropTypes.bool,
 
-    /** Shorthand prop for CardHeader. Mutually exclusive with children. */
-    header: customPropTypes.every([
-      customPropTypes.disallow(['children']),
-      PropTypes.node,
-    ]),
+    /** Shorthand for CardHeader. */
+    header: customPropTypes.itemShorthand,
 
     /** Render as an `a` tag instead of a `div` and adds the href attribute. */
     href: PropTypes.string,
 
     /** A card can contain an Image component. */
-    image: customPropTypes.every([
-      customPropTypes.disallow(['children']),
-      PropTypes.node,
-    ]),
+    image: customPropTypes.itemShorthand,
 
-    /** Shorthand prop for CardMeta. Mutually exclusive with children. */
-    meta: customPropTypes.every([
-      customPropTypes.disallow(['children']),
-      PropTypes.node,
-    ]),
+    /** Shorthand for CardMeta. */
+    meta: customPropTypes.itemShorthand,
 
     /** Render as an `a` tag instead of a `div` and called with event on Card click. */
     onClick: PropTypes.func,

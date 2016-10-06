@@ -68,10 +68,10 @@ GridRow.propTypes = {
   /** A row can have its columns centered. */
   centered: PropTypes.bool,
 
-  /** Primary content of the GridRow. */
+  /** Primary content. */
   children: PropTypes.node,
 
-  /** Classes that will be added to the GridRow className. */
+  /** Additional classes. */
   className: PropTypes.string,
 
   /** A grid row can be colored. */

@@ -32,23 +32,17 @@ export default class MenuItem extends Component {
     /** A menu item can be active. */
     active: PropTypes.bool,
 
-    /** Primary content of the MenuItem. */
-    children: customPropTypes.every([
-      customPropTypes.disallow(['content']),
-      PropTypes.node,
-    ]),
+    /** Primary content. */
+    children: PropTypes.node,
 
-    /** Classes that will be added to the MenuItem className. */
+    /** Additional classes. */
     className: PropTypes.string,
 
     /** Additional colors can be specified. */
     color: PropTypes.oneOf(_meta.props.color),
 
-    /** Shorthand for primary content of the MenuItem. Mutually exclusive with the children. */
-    content: customPropTypes.every([
-      customPropTypes.disallow(['children']),
-      PropTypes.string,
-    ]),
+    /** Shorthand for primary content. */
+    content: customPropTypes.contentShorthand,
 
     /** A menu item or menu can remove element padding, vertically or horizontally. */
     fitted: PropTypes.oneOfType([

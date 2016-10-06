@@ -159,7 +159,7 @@ Button.propTypes = {
   /** A basic button is less pronounced */
   basic: PropTypes.bool,
 
-  /** Primary content of the button */
+  /** Primary content. */
   children: customPropTypes.every([
     PropTypes.node,
     customPropTypes.disallow(['label']),
@@ -178,14 +178,11 @@ Button.propTypes = {
   /** A button can be circular */
   circular: PropTypes.bool,
 
-  /** Classes to add to the button className. */
+  /** Additional classes. */
   className: PropTypes.string,
 
-  /** Primary content. Mutually exclusive with children. */
-  content: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.string,
-  ]),
+  /** Shorthand for primary content. */
+  content: customPropTypes.contentShorthand,
 
   /** A button can have different colors */
   color: PropTypes.oneOf(Button._meta.props.color),

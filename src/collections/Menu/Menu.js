@@ -54,10 +54,10 @@ class Menu extends Component {
     /** A menu item or menu can have no borders. */
     borderless: PropTypes.bool,
 
-    /** Primary content of the Menu. Mutually exclusive with items. */
+    /** Primary content. */
     children: PropTypes.node,
 
-    /** Classes that will be added to the Menu className. */
+    /** Additional classes. */
     className: PropTypes.string,
 
     /** Additional colors can be specified. */
@@ -90,16 +90,8 @@ class Menu extends Component {
     /** A menu may have its colors inverted to show greater contrast. */
     inverted: PropTypes.bool,
 
-    /** Shorthand array of props for Menu. Mutually exclusive with children. */
-    items: customPropTypes.every([
-      customPropTypes.disallow(['children']),
-      // Array of shorthands for MenuItem
-      PropTypes.arrayOf(PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.element,
-        PropTypes.object,
-      ])),
-    ]),
+    /** Shorthand array of props for Menu. */
+    items: customPropTypes.collectionShorthand,
 
     /** onClick handler for MenuItem. Mutually exclusive with children. */
     onItemClick: customPropTypes.every([

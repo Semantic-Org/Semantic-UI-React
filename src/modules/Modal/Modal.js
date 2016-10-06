@@ -38,10 +38,10 @@ class Modal extends Component {
     /** An element type to render as (string or function). */
     as: customPropTypes.as,
 
-    /** Primary content of the modal. Consider using ModalHeader, ModalContent or ModalActions here */
+    /** Primary content. */
     children: PropTypes.node,
 
-    /** Classes to add to the modal className */
+    /** Additional classes. */
     className: PropTypes.string,
 
     /** A modal can reduce its complexity */
@@ -155,9 +155,12 @@ class Modal extends Component {
       'modal transition visible active',
       className,
     )
-    const rest = getUnhandledProps(Modal, this.props)
+    const unhandled = getUnhandledProps(Modal, this.props)
+    const portalPropNames = _.keys(Portal.propTypes)
+
+    const rest = _.omit(unhandled, portalPropNames)
+    const portalProps = _.pick(unhandled, portalPropNames)
     const ElementType = getElementType(Modal, this.props)
-    const portalProps = _.pick(rest, _.keys(Portal.propTypes))
 
     const modalJSX = (
       <ElementType {...rest} className={classes} style={{ marginTop }} ref={c => (this._modalNode = c)}>

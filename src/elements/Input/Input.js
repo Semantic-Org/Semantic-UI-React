@@ -32,6 +32,7 @@ export const htmlInputPropNames = [
   'maxLength',
   'min',
   'name',
+  'onChange',
   'pattern',
   'placeholder',
   'readOnly',
@@ -86,9 +87,11 @@ function Input(props) {
     className,
     'input',
   )
-  const rest = getUnhandledProps(Input, props)
+  const unhandled = getUnhandledProps(Input, props)
+
+  const rest = _.omit(unhandled, htmlInputPropNames)
+  const htmlInputProps = _.pick(props, htmlInputPropNames)
   const ElementType = getElementType(Input, props)
-  const inputProps = _.pick(props, htmlInputPropNames)
 
   if (children) {
     return <ElementType {...rest} className={classes}>{children}</ElementType>
@@ -115,7 +118,7 @@ function Input(props) {
       {actionPosition === 'left' && actionElement}
       {iconPosition === 'left' && iconElement}
       {labelPosition !== 'right' && labelElement}
-      {createHTMLInput(input || type, inputProps)}
+      {createHTMLInput(input || type, htmlInputProps)}
       {actionPosition !== 'left' && actionElement}
       {iconPosition !== 'left' && iconElement}
       {labelPosition === 'right' && labelElement}
@@ -143,34 +146,16 @@ Input.propTypes = {
   as: customPropTypes.as,
 
   /** An Input can be formatted to alert the user to an action they may perform */
-  action: customPropTypes.some([
+  action: PropTypes.oneOfType([
     PropTypes.bool,
-    customPropTypes.every([
-      customPropTypes.disallow(['children']),
-      PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.object,
-        PropTypes.element,
-      ]),
-    ]),
+    customPropTypes.itemShorthand,
   ]),
 
   /** An action can appear along side an Input on the left or right */
   actionPosition: PropTypes.oneOf(Input._meta.props.actionPosition),
 
-  /** Primary content.  Used when there are multiple Labels or multiple Actions. */
-  children: customPropTypes.every([
-    customPropTypes.disallow(['input', 'label']),
-    customPropTypes.givenProps(
-      { action: PropTypes.oneOfType([PropTypes.string, PropTypes.object, PropTypes.element]).isRequired },
-      customPropTypes.disallow(['action']),
-    ),
-    customPropTypes.givenProps(
-      { icon: PropTypes.oneOfType([PropTypes.string, PropTypes.object, PropTypes.element]).isRequired },
-      customPropTypes.disallow(['icon']),
-    ),
-    PropTypes.node,
-  ]),
+  /** Primary content. */
+  children: PropTypes.node,
 
   /** Additional classes. */
   className: PropTypes.string,
@@ -188,12 +173,9 @@ Input.propTypes = {
   fluid: PropTypes.bool,
 
   /** Optional Icon to display inside the Input */
-  icon: customPropTypes.some([
+  icon: PropTypes.oneOfType([
     PropTypes.bool,
-    customPropTypes.every([
-      customPropTypes.disallow(['children']),
-      PropTypes.oneOfType([PropTypes.string, PropTypes.object, PropTypes.element]),
-    ]),
+    customPropTypes.itemShorthand,
   ]),
 
   /** An Icon can appear inside an Input on the left or right */
@@ -202,17 +184,11 @@ Input.propTypes = {
   /** Format to appear on dark backgrounds */
   inverted: PropTypes.bool,
 
-  /** Shorthand prop for creating the HTML Input */
-  input: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.oneOfType([PropTypes.string, PropTypes.object, PropTypes.element]),
-  ]),
+  /** Shorthand for creating the HTML Input */
+  input: customPropTypes.itemShorthand,
 
   /** Optional Label to display along side the Input */
-  label: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.oneOfType([PropTypes.string, PropTypes.object, PropTypes.element]),
-  ]),
+  label: customPropTypes.itemShorthand,
 
   /** A Label can appear outside an Input on the left or right */
   labelPosition: PropTypes.oneOf(Input._meta.props.labelPosition),

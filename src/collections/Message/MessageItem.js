@@ -31,7 +31,7 @@ MessageItem.propTypes = {
   children: PropTypes.node,
 
   /** Additional classes. */
-  className: PropTypes.node,
+  className: PropTypes.string,
 }
 
 MessageItem.defaultProps = {

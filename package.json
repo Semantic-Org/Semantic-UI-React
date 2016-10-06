@@ -1,6 +1,6 @@
 {
   "name": "semantic-ui-react",
-  "version": "0.54.1",
+  "version": "0.54.2",
   "description": "The official Semantic-UI-React integration.",
   "main": "dist/commonjs/index.js",
   "files": [
@@ -17,7 +17,8 @@
     "build:docs": "gulp build:docs",
     "build:umd": "cross-env NODE_ENV=browser gulp umd",
     "build:docs-toc": "doctoc README.md ./.github/CONTRIBUTING.md --github --maxlevel 4",
-    "predeploy:docs": "cross-env NODE_ENV=production npm run build:docs",
+    "build:docs-cname": "echo react.semantic-ui.com > docs/build/CNAME",
+    "predeploy:docs": "cross-env NODE_ENV=production npm run build:docs && npm run build:docs-cname",
     "deploy:docs": "gh-pages -d docs/build -m 'deploy docs [ci skip]'",
     "lint": "eslint .",
     "lint:fix": "npm run lint -- --fix",
@@ -37,14 +38,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://github.com/TechnologyAdvice/stardust.git"
+    "url": "git+ssh://github.com/Semantic-Org/Semantic-UI-React.git"
   },
   "author": "Technology Advice <devteam@technologyadvice.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/TechnologyAdvice/stardust/issues"
+    "url": "https://github.com/Semantic-Org/Semantic-UI-React/issues"
   },
-  "homepage": "https://github.com/TechnologyAdvice/stardust#readme",
+  "homepage": "https://github.com/Semantic-Org/Semantic-UI-React#readme",
   "dependencies": {
     "classnames": "^2.1.5",
     "debug": "^2.2.0",

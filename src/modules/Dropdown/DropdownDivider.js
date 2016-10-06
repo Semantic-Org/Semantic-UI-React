@@ -27,8 +27,8 @@ DropdownDivider.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** Additional classes */
-  className: PropTypes.node,
+  /** Additional classes. */
+  className: PropTypes.string,
 }
 
 export default DropdownDivider

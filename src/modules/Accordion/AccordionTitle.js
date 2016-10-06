@@ -22,10 +22,10 @@ export default class AccordionTitle extends Component {
     /** Whether or not the title is in the open state. */
     active: PropTypes.bool,
 
-    /** Primary content of the Title. */
+    /** Primary content. */
     children: PropTypes.node,
 
-    /** Classes to add to the title className. */
+    /** Additional classes. */
     className: PropTypes.string,
 
     /** Called with (event, index) on title click. */

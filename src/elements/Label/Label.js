@@ -46,29 +46,20 @@ export default class Label extends Component {
     /** A label can reduce its complexity. */
     basic: PropTypes.bool,
 
-    /** Primary content of the label, same as content. */
-    children: customPropTypes.every([
-      customPropTypes.disallow(['content', 'detail', 'icon']),
-      PropTypes.node,
-    ]),
+    /** Primary content. */
+    children: PropTypes.node,
 
     /** A label can be circular. */
     circular: PropTypes.bool,
 
-    /** Classes to add to the label className. */
+    /** Additional classes. */
     className: PropTypes.string,
 
     /** Color of the label. */
     color: PropTypes.oneOf(_meta.props.color),
 
-    /** Shorthand for primary content of the label. Mutually exclusive with children. */
-    content: customPropTypes.every([
-      customPropTypes.disallow(['children']),
-      PropTypes.oneOfType([
-        PropTypes.number,
-        PropTypes.string,
-      ]),
-    ]),
+    /** Shorthand for primary content. */
+    content: customPropTypes.contentShorthand,
 
     /** A label can position itself in the corner of an element. */
     corner: PropTypes.oneOfType([
@@ -76,14 +67,8 @@ export default class Label extends Component {
       PropTypes.oneOf(_meta.props.corner),
     ]),
 
-    /** Shorthand for the LabelDetail component. Mutually exclusive with children. */
-    detail: customPropTypes.every([
-      customPropTypes.disallow(['children']),
-      PropTypes.oneOfType([
-        PropTypes.number,
-        PropTypes.string,
-      ]),
-    ]),
+    /** Shorthand for LabelDetail. */
+    detail: customPropTypes.itemShorthand,
 
     /** Formats the label as a dot. */
     empty: customPropTypes.every([
@@ -97,25 +82,13 @@ export default class Label extends Component {
     /** A horizontal label is formatted to label content along-side it horizontally. */
     horizontal: PropTypes.bool,
 
-    /** A label can be formatted to emphasize an icon or prop can be used as shorthand for Icon. */
-    icon: customPropTypes.every([
-      customPropTypes.disallow(['children']),
-      PropTypes.oneOfType([
-        PropTypes.number,
-        PropTypes.string,
-      ]),
-    ]),
+    /** Shorthand for Icon. */
+    icon: customPropTypes.itemShorthand,
 
     /** A label can be formatted to emphasize an image or prop can be used as shorthand for Image. */
-    image: customPropTypes.every([
-      customPropTypes.givenProps(
-        { children: PropTypes.node.isRequired },
-        PropTypes.bool,
-      ),
-      customPropTypes.givenProps(
-        { image: PropTypes.oneOfType([PropTypes.string, PropTypes.element, PropTypes.object]) },
-        customPropTypes.disallow(['children']),
-      ),
+    image: PropTypes.oneOfType([
+      PropTypes.bool,
+      customPropTypes.itemShorthand,
     ]),
 
     /** A label can point to content next to it. */

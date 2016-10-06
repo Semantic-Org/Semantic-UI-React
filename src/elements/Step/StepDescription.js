@@ -14,7 +14,7 @@ function StepDescription(props) {
   const rest = getUnhandledProps(StepDescription, props)
   const ElementType = getElementType(StepDescription, props)
 
-  return <ElementType {...rest} className={classes}>{ children || description }</ElementType>
+  return <ElementType {...rest} className={classes}>{children || description}</ElementType>
 }
 
 StepDescription._meta = {
@@ -27,20 +27,14 @@ StepDescription.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** Classes that will be added to the StepDescription className. */
+  /** Additional classes. */
   className: PropTypes.string,
 
-  /** Primary content of the StepDescription. Mutually exclusive with description prop. */
-  children: customPropTypes.every([
-    customPropTypes.disallow(['description']),
-    PropTypes.node,
-  ]),
+  /** Primary content. */
+  children: PropTypes.node,
 
-  /** Primary content of the StepDescription. Mutually exclusive with children. */
-  description: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.node,
-  ]),
+  /** Shorthand for primary content. */
+  description: customPropTypes.contentShorthand,
 }
 
 export default StepDescription

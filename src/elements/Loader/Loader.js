@@ -47,14 +47,11 @@ Loader.propTypes = {
   /** A loader can be active or visible. */
   active: PropTypes.bool,
 
-  /** Classes that will be added to the Loader className. */
+  /** Additional classes. */
   className: PropTypes.string,
 
-  /** Primary content of the Loader. Mutually exclusive with the text. */
-  children: customPropTypes.every([
-    customPropTypes.disallow(['text']),
-    PropTypes.node,
-  ]),
+  /** Primary content. */
+  children: PropTypes.node,
 
   /** A loader can be disabled or hidden. */
   disabled: PropTypes.bool,
@@ -74,11 +71,8 @@ Loader.propTypes = {
   /** Loaders can have different sizes. */
   size: PropTypes.oneOf(Loader._meta.props.size),
 
-  /** Primary content of the Loader. Mutually exclusive with the children prop. */
-  text: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.node,
-  ]),
+  /** Shorthand for primary content. */
+  text: customPropTypes.contentShorthand,
 }
 
 export default Loader

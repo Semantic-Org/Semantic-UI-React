@@ -27,20 +27,14 @@ HeaderSubheader.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** Primary content of the HeaderSubheader. Mutually exclusive with content */
-  children: customPropTypes.every([
-    customPropTypes.disallow(['content']),
-    PropTypes.node,
-  ]),
+  /** Primary content. */
+  children: PropTypes.node,
 
-  /** Classes to add to the subheader className. */
+  /** Additional classes. */
   className: PropTypes.string,
 
-  /** Shorthand for primary content. Mutually exclusive with children */
-  content: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.string,
-  ]),
+  /** Shorthand for primary content. */
+  content: customPropTypes.contentShorthand,
 }
 
 export default HeaderSubheader

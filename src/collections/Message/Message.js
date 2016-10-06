@@ -71,18 +71,11 @@ function Message(props) {
   const rest = getUnhandledProps(Message, props)
   const ElementType = getElementType(Message, props)
 
-  if (content || header || (icon && icon !== true) || list) {
+  if (children) {
     return (
       <ElementType {...rest} className={classes}>
         {dismissIcon}
-        {Icon.create(icon)}
-        {(header || content || list) && (
-          <MessageContent>
-            {createShorthand(MessageHeader, val => ({ children: val }), header)}
-            {createShorthand(MessageList, val => ({ items: val }), list)}
-            {createShorthand('p', val => ({ children: val }), content)}
-          </MessageContent>
-        )}
+        {children}
       </ElementType>
     )
   }
@@ -90,7 +83,14 @@ function Message(props) {
   return (
     <ElementType {...rest} className={classes}>
       {dismissIcon}
-      {children}
+      {Icon.create(icon)}
+      {(header || content || list) && (
+        <MessageContent>
+          {createShorthand(MessageHeader, val => ({ children: val }), header)}
+          {createShorthand(MessageList, val => ({ items: val }), list)}
+          {createShorthand('p', val => ({ children: val }), content)}
+        </MessageContent>
+      )}
     </ElementType>
   )
 }
@@ -109,48 +109,26 @@ Message.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** Primary content of the message. */
-  children: customPropTypes.every([
-    PropTypes.node,
-    customPropTypes.disallow(['header', 'content']),
-    customPropTypes.givenProps(
-      { icon: PropTypes.node.isRequired },
-      customPropTypes.disallow(['icon'])
-    ),
-  ]),
+  /** Primary content. */
+  children: PropTypes.node,
 
   /** Additional classes. */
   className: PropTypes.string,
 
-  /** The body of the message.  Mutually exclusive with children. */
-  content: PropTypes.string,
+  /** Shorthand for primary content. */
+  content: customPropTypes.contentShorthand,
 
-  /** The content of the MessageHeader. Mutually exclusive with children. */
-  header: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.node,
-    ]),
-  ]),
+  /** Shorthand for MessageHeader. */
+  header: customPropTypes.itemShorthand,
 
   /** A message can contain an icon. */
-  icon: customPropTypes.every([
-    customPropTypes.givenProps(
-      { children: PropTypes.node.isRequired },
-      PropTypes.bool
-    ),
-    customPropTypes.givenProps(
-      { icon: PropTypes.string.isRequired },
-      customPropTypes.disallow(['children'])
-    ),
+  icon: PropTypes.oneOfType([
+    PropTypes.bool,
+    customPropTypes.itemShorthand,
   ]),
 
   /** Array of string items for the MessageList. Mutually exclusive with children. */
-  list: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.arrayOf(PropTypes.string),
-  ]),
+  list: customPropTypes.collectionShorthand,
 
   /**
    * A message that the user can choose to hide.

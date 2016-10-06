@@ -44,10 +44,10 @@ ListItem.propTypes = {
   /** A list item can active. */
   active: PropTypes.bool,
 
-  /** Primary content of the ListItem. */
+  /** Primary content. */
   children: PropTypes.node,
 
-  /** Classes to add to the ListItem className. */
+  /** Additional classes. */
   className: PropTypes.string,
 
   /** A list item can disabled. */

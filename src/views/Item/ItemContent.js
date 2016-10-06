@@ -28,13 +28,17 @@ function ItemContent(props) {
   const rest = getUnhandledProps(ItemContent, props)
   const ElementType = getElementType(ItemContent, props)
 
+  if (children) {
+    return <ElementType {...rest} className={classes}>{children}</ElementType>
+  }
+
   return (
     <ElementType {...rest} className={classes}>
       {createShorthand(ItemHeader, val => ({ content: val }), header)}
       {createShorthand(ItemMeta, val => ({ content: val }), meta)}
       {createShorthand(ItemDescription, val => ({ content: val }), description)}
       {createShorthand(ItemExtra, val => ({ content: val }), extra)}
-      {children || content}
+      {content}
     </ElementType>
   )
 }
@@ -52,44 +56,26 @@ ItemContent.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** Primary content of the ItemContent. */
-  children: customPropTypes.every([
-    customPropTypes.disallow(['content']),
-    PropTypes.node,
-  ]),
+  /** Primary content. */
+  children: PropTypes.node,
 
-  /** Classes that will be added to the ItemContent className. */
+  /** Additional classes. */
   className: PropTypes.string,
 
-  /** Primary content of the ItemContent. Mutually exclusive with the children prop. */
-  content: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.string,
-  ]),
+  /** Shorthand for primary content. */
+  content: customPropTypes.contentShorthand,
 
-  /** Shorthand for of the ItemDescription. Mutually exclusive with the children prop. */
-  description: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.string,
-  ]),
+  /** Shorthand for ItemDescription component. */
+  description: customPropTypes.itemShorthand,
 
-  /** Shorthand for ItemExtra component. Mutually exclusive with the children prop. */
-  extra: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.string,
-  ]),
+  /** Shorthand for ItemExtra component. */
+  extra: customPropTypes.itemShorthand,
 
-  /** Shorthand for ItemHeader component. Mutually exclusive with the children prop. */
-  header: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.string,
-  ]),
+  /** Shorthand for ItemHeader component. */
+  header: customPropTypes.itemShorthand,
 
-  /** Shorthand for ItemMeta component. Mutually exclusive with the children prop. */
-  meta: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.string,
-  ]),
+  /** Shorthand for ItemMeta component. */
+  meta: customPropTypes.itemShorthand,
 
   /** Content can specify its vertical alignment */
   verticalAlign: PropTypes.oneOf(ItemContent._meta.props.verticalAlign),

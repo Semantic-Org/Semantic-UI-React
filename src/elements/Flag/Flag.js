@@ -73,7 +73,7 @@ Flag.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** Classes that will be added to the Flag className. */
+  /** Additional classes. */
   className: PropTypes.string,
 
   /** Flag name, can use the two digit country code, the full name, or a common alias */

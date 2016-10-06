@@ -31,10 +31,10 @@ TableBody.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** Primary content of the TableBody. */
+  /** Primary content. */
   children: PropTypes.node,
 
-  /** Classes that will be added to the TableBody className. */
+  /** Additional classes. */
   className: PropTypes.string,
 }
 

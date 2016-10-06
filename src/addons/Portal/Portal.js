@@ -22,10 +22,10 @@ const _meta = {
  */
 class Portal extends Component {
   static propTypes = {
-    /** Primary content */
+    /** Primary content. */
     children: PropTypes.node.isRequired,
 
-    /** Classes to be added to the portal node element. */
+    /** Additional classes. */
     className: PropTypes.string,
 
     /** Controls whether or not the portal should close on a click outside. */

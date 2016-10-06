@@ -28,7 +28,11 @@ function StepGroup(props) {
   const rest = getUnhandledProps(StepGroup, props)
   const ElementType = getElementType(StepGroup, props)
 
-  const content = !items ? children : items.map(item => {
+  if (children) {
+    return <ElementType {...rest} className={classes}>{children}</ElementType>
+  }
+
+  const content = _.map(items, item => {
     const key = item.key || [item.title, item.description].join('-')
     return <Step key={key} {...item} />
   })
@@ -50,28 +54,17 @@ StepGroup.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** Classes that will be added to the StepGroup className. */
+  /** Additional classes. */
   className: PropTypes.string,
 
-  /** Primary content of the StepGroup. Mutually exclusive with items prop. */
-  children: customPropTypes.every([
-    customPropTypes.disallow(['items']),
-    PropTypes.node,
-  ]),
+  /** Primary content. */
+  children: PropTypes.node,
 
   /** A fluid step takes up the width of its container. */
   fluid: PropTypes.bool,
 
-  /** Primary content of the StepGroup. Mutually exclusive with items children. */
-  items: customPropTypes.every([
-    customPropTypes.disallow(['description', 'title']),
-    PropTypes.arrayOf(PropTypes.shape({
-      description: PropTypes.node,
-      icon: PropTypes.node,
-      key: PropTypes.string,
-      title: PropTypes.node,
-    })),
-  ]),
+  /** Shorthand array of props for Step. */
+  items: customPropTypes.collectionShorthand,
 
   /** A step can show a ordered sequence of steps. */
   ordered: PropTypes.bool,

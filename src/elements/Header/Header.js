@@ -90,34 +90,31 @@ Header.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** Additional classes */
+  /** Additional classes. */
   className: PropTypes.string,
 
-  /** Primary content */
+  /** Primary content. */
   children: PropTypes.node,
 
-  /** Primary content.  Mutually exclusive with children. */
-  content: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.string,
-  ]),
+  /** Shorthand for primary content. */
+  content: customPropTypes.contentShorthand,
 
   /** Add an icon by icon name or pass an <Icon /.> */
   icon: customPropTypes.every([
     customPropTypes.disallow(['image']),
-    customPropTypes.givenProps(
-      { icon: PropTypes.oneOfType([PropTypes.string, PropTypes.element, PropTypes.object]).isRequired },
-      customPropTypes.disallow(['children']),
-    ),
+    PropTypes.oneOfType([
+      PropTypes.bool,
+      customPropTypes.itemShorthand,
+    ]),
   ]),
 
   /** Add an image by img src or pass an <Image />. */
   image: customPropTypes.every([
     customPropTypes.disallow(['icon']),
-    customPropTypes.givenProps(
-      { image: PropTypes.oneOfType([PropTypes.string, PropTypes.element, PropTypes.object]).isRequired },
-      customPropTypes.disallow(['children']),
-    ),
+    PropTypes.oneOfType([
+      PropTypes.bool,
+      customPropTypes.itemShorthand,
+    ]),
   ]),
 
   /** Color of the header. */
@@ -150,11 +147,8 @@ Header.propTypes = {
   /** Content headings are sized with em and are based on the font-size of their container. */
   size: PropTypes.oneOf(Header._meta.props.size),
 
-  /** Shorthand for the Header.Subheader component. Mutually exclusive with children */
-  subheader: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.string,
-  ]),
+  /** Shorthand for Header.Subheader. */
+  subheader: customPropTypes.itemShorthand,
 
   /** Align header content */
   textAlign: PropTypes.oneOf(Header._meta.props.textAlign),

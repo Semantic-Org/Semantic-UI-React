@@ -87,10 +87,11 @@ const componentInfo = componentCtx.keys().map(key => {
  * Assert Component conforms to guidelines that are applicable to all components.
  * @param {React.Component|Function} Component A component that should conform.
  * @param {Object} [options={}]
+ * @param {Object} [options.eventTargets={}] Map of events and the child component to target.
  * @param {Object} [options.requiredProps={}] Props required to render Component without errors or warnings.
  */
 export const isConformant = (Component, options = {}) => {
-  const { requiredProps = {} } = options
+  const { eventTargets = {}, requiredProps = {} } = options
   const { throwError } = commonTestHelpers('isConformant', Component)
 
   // tests depend on Component constructor names, enforce them
@@ -282,9 +283,11 @@ export const isConformant = (Component, options = {}) => {
 
         const wrapper = shallow(<Component {...props} />)
 
-        wrapper
-          .find('[data-simulate-event-here]')
-          .simulate(eventName, eventShape)
+        const eventTarget = eventTargets[listenerName]
+          ? wrapper.find(eventTargets[listenerName])
+          : wrapper.find('[data-simulate-event-here]')
+
+        eventTarget.simulate(eventName, eventShape)
 
         // give event listeners opportunity to cleanup
         if (wrapper.instance() && wrapper.instance().componentWillUnmount) {
@@ -292,12 +295,12 @@ export const isConformant = (Component, options = {}) => {
         }
 
         // <Dropdown onBlur={handleBlur} />
-        //                   ^ was not called on "blur"
+        //                   ^ was not called once on "blur"
         const leftPad = ' '.repeat(constructorName.length + listenerName.length + 3)
 
-        handlerSpy.called.should.equal(true,
+        handlerSpy.calledOnce.should.equal(true,
           `<${constructorName} ${listenerName}={${handlerName}} />\n` +
-          `${leftPad} ^ was not called on "${eventName}".` +
+          `${leftPad} ^ was not called once on "${eventName}".` +
           'You may need to hoist your event handlers up to the root element.\n'
         )
 

@@ -6,7 +6,7 @@ import Input, { htmlInputPropNames } from 'src/elements/Input/Input'
 import * as common from 'test/specs/commonTests'
 
 describe('Input', () => {
-  common.isConformant(Input)
+  common.isConformant(Input, { eventTargets: { onChange: 'input' } })
   common.hasUIClassName(Input)
 
   common.implementsLabelProp(Input, {

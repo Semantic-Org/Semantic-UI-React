@@ -31,10 +31,10 @@ AccordionContent.propTypes = {
   /** Whether or not the content is visible. */
   active: PropTypes.bool,
 
-  /** Primary content of the Content. */
+  /** Primary content. */
   children: PropTypes.node,
 
-  /** Classes to add to the content className. */
+  /** Additional classes. */
   className: PropTypes.string,
 }
 

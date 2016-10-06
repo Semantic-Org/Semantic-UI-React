@@ -27,23 +27,14 @@ FeedUser.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** Primary content of the FeedUser. Mutually exclusive with content. */
-  children: customPropTypes.every([
-    customPropTypes.disallow(['content']),
-    PropTypes.node,
-  ]),
+  /** Primary content. */
+  children: PropTypes.node,
 
-  /** Classes that will be added to the FeedUser className. */
+  /** Additional classes. */
   className: PropTypes.string,
 
-  /** Shorthand for children. Mutually exclusive with children. */
-  content: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number,
-    ]),
-  ]),
+  /** Shorthand for primary content. */
+  content: customPropTypes.contentShorthand,
 }
 
 FeedUser.defaultProps = {

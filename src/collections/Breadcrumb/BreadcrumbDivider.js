@@ -33,20 +33,14 @@ BreadcrumbDivider.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** Primary content of the Breadcrumb.Divider. */
-  children: customPropTypes.every([
-    customPropTypes.disallow(['icon']),
-    PropTypes.node,
-  ]),
+  /** Primary content. */
+  children: PropTypes.node,
 
-  /** Classes that will be added to the BreadcrumbDivider className. */
+  /** Additional classes. */
   className: PropTypes.string,
 
   /** Render as an `Icon` component with `divider` class instead of a `div`. */
-  icon: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.node,
-  ]),
+  icon: customPropTypes.itemShorthand,
 }
 
 export default BreadcrumbDivider

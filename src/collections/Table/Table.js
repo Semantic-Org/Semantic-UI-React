@@ -83,7 +83,9 @@ function Table(props) {
   return (
     <ElementType {...rest} className={classes}>
       {headerRow && <TableHeader>{TableRow.create(headerRow, { cellAs: 'th' })}</TableHeader>}
-      {<TableBody>{_.map(tableData, (data, index) => TableRow.create(renderBodyRow(data, index)))}</TableBody>}
+      <TableBody>
+        {renderBodyRow && _.map(tableData, (data, index) => TableRow.create(renderBodyRow(data, index)))}
+      </TableBody>
       {footerRow && <TableFooter>{TableRow.create(footerRow)}</TableFooter>}
     </ElementType>
   )
@@ -126,13 +128,10 @@ Table.propTypes = {
   /** A table may be divided each row into separate cells. */
   celled: PropTypes.bool,
 
-  /** Primary content of the Table. */
-  children: customPropTypes.every([
-    customPropTypes.disallow(['headerRow', 'renderBodyRow', 'footerRow', 'tableData']),
-    PropTypes.node,
-  ]),
+  /** Primary content. */
+  children: PropTypes.node,
 
-  /** Classes that will be added to the Table className. */
+  /** Additional classes. */
   className: PropTypes.string,
 
   /** A table can be collapsing, taking up only as much space as its rows. */
@@ -159,16 +158,10 @@ Table.propTypes = {
   fixed: PropTypes.bool,
 
   /** Shorthand for a TableRow to be placed within Table.Footer. */
-  footerRow: PropTypes.oneOfType([
-    PropTypes.array,
-    PropTypes.element,
-  ]),
+  footerRow: customPropTypes.itemShorthand,
 
   /** Shorthand for a TableRow to be placed within Table.Header. */
-  headerRow: PropTypes.oneOfType([
-    PropTypes.array,
-    PropTypes.element,
-  ]),
+  headerRow: customPropTypes.itemShorthand,
 
   /** A table's colors can be inverted. */
   inverted: PropTypes.bool,
@@ -184,6 +177,7 @@ Table.propTypes = {
    * to be placed within Table.Body.
    */
   renderBodyRow: customPropTypes.every([
+    customPropTypes.disallow(['children']),
     customPropTypes.demand(['tableData']),
     PropTypes.func,
   ]),
@@ -208,6 +202,7 @@ Table.propTypes = {
 
   /** Data to be passed to the renderBodyRow function. */
   tableData: customPropTypes.every([
+    customPropTypes.disallow(['children']),
     customPropTypes.demand(['renderBodyRow']),
     PropTypes.array,
   ]),

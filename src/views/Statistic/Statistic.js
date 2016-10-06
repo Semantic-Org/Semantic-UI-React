@@ -56,13 +56,10 @@ Statistic.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** Primary content of the Statistic. */
-  children: customPropTypes.every([
-    customPropTypes.disallow(['label', 'value']),
-    PropTypes.node,
-  ]),
+  /** Primary content. */
+  children: PropTypes.node,
 
-  /** Classes that will be added to the Statistic className. */
+  /** Additional classes. */
   className: PropTypes.string,
 
   /** A statistic can be formatted to be different colors. */
@@ -77,11 +74,8 @@ Statistic.propTypes = {
   /** A statistic can be formatted to fit on a dark background. */
   inverted: PropTypes.bool,
 
-  /** Label content of the Statistic. Mutually exclusive with the children prop. */
-  label: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.string,
-  ]),
+  /** Label content of the Statistic. */
+  label: customPropTypes.contentShorthand,
 
   /** A statistic can vary in size. */
   size: PropTypes.oneOf(Statistic._meta.props.size),
@@ -89,14 +83,8 @@ Statistic.propTypes = {
   /** Format the StatisticValue with smaller font size to fit nicely beside number values. */
   text: PropTypes.bool,
 
-  /** Value content of the Statistic. Mutually exclusive with the children prop. */
-  value: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number,
-    ]),
-  ]),
+  /** Value content of the Statistic. */
+  value: customPropTypes.contentShorthand,
 }
 
 Statistic.Group = StatisticGroup

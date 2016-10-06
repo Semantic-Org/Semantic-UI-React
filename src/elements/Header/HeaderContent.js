@@ -30,10 +30,10 @@ HeaderContent.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** Primary content */
+  /** Primary content. */
   children: PropTypes.node,
 
-  /** Classes that will be added to the HeaderContent className */
+  /** Additional classes. */
   className: PropTypes.string,
 }
 

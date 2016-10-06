@@ -29,7 +29,7 @@ function StatisticGroup(props) {
     return <ElementType {...rest} className={classes}>{children}</ElementType>
   }
 
-  let itemsJSX = _.map(items, item => (
+  const itemsJSX = _.map(items, item => (
     <Statistic key={item.childKey || [item.label, item.title].join('-')} {...item} />
   ))
 
@@ -49,27 +49,17 @@ StatisticGroup.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** Primary content of the StatisticGroup. */
-  children: customPropTypes.every([
-    customPropTypes.disallow(['content']),
-    PropTypes.node,
-  ]),
+  /** Primary content. */
+  children: PropTypes.node,
 
-  /** Classes that will be added to the StatisticGroup className. */
+  /** Additional classes. */
   className: PropTypes.string,
 
   /** A statistic can present its measurement horizontally. */
   horizontal: PropTypes.bool,
 
   /** Array of props for Statistic. */
-  items: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.arrayOf(PropTypes.shape({
-      childKey: PropTypes.string,
-      // this object is spread on the Statistic
-      // allow it to validate props instead
-    })),
-  ]),
+  items: customPropTypes.collectionShorthand,
 
   /** A statistic group can have its items divided evenly. */
   widths: PropTypes.oneOf(StatisticGroup._meta.props.widths),
