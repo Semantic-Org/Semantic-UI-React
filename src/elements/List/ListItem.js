@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import cx from 'classnames'
-import React, { PropTypes } from 'react'
+import React, { isValidElement, PropTypes } from 'react'
 
 import {
   createShorthandFactory,
@@ -45,29 +45,30 @@ function ListItem(props) {
     return <ElementType {...rest} className={classes} {...valueProp}>{children}</ElementType>
   }
 
-  const iconNode = ListIcon.create(icon)
-  const imageNode = Image.create(image)
+  const iconElement = ListIcon.create(icon)
+  const imageElement = Image.create(image)
 
-  if (_.isPlainObject(content)) {
+  // See description of `content` prop for explanation about why this is necessary.
+  if (!isValidElement(content) && _.isPlainObject(content)) {
     return (
       <ElementType {...rest} className={classes} {...valueProp}>
-        {iconNode || imageNode}
+        {iconElement || imageElement}
         {ListContent.create(content, { header, description })}
       </ElementType>
     )
   }
 
-  const headerNode = ListHeader.create(header)
-  const descriptionNode = ListDescription.create(description)
+  const headerElement = ListHeader.create(header)
+  const descriptionElement = ListDescription.create(description)
 
-  if (iconNode || imageNode) {
+  if (iconElement || imageElement) {
     return (
       <ElementType {...rest} className={classes} {...valueProp}>
-        {iconNode || imageNode}
-        {(content || headerNode || descriptionNode) && (
+        {iconElement || imageElement}
+        {(content || headerElement || descriptionElement) && (
           <ListContent>
-            {headerNode}
-            {descriptionNode}
+            {headerElement}
+            {descriptionElement}
             {content}
           </ListContent>
         )}
@@ -77,8 +78,8 @@ function ListItem(props) {
 
   return (
     <ElementType {...rest} className={classes} {...valueProp}>
-      {headerNode}
-      {descriptionNode}
+      {headerElement}
+      {descriptionElement}
       {content}
     </ElementType>
   )
@@ -103,8 +104,22 @@ ListItem.propTypes = {
   /** Additional classes. */
   className: PropTypes.string,
 
-  /** Shorthand for primary content. */
-  content: customPropTypes.contentShorthand,
+  /**
+   * Shorthand for primary content.
+   *
+   * Heads up!
+   *
+   * This is handled slightly differently than the typical `content` prop since
+   * the wrapping ListContent is not used when there's no icon or image.
+   *
+   * If you pass content as:
+   * - an element/literal, it's treated as the sibling node to
+   * header/description (whether wrapped in Item.Content or not).
+   * - a props object, it forces the presence of Item.Content and passes those
+   * props to it. If you pass a content prop within that props object, it
+   * will be treated as the sibling node to header/description.
+   */
+  content: customPropTypes.itemShorthand,
 
   /** Shorthand for ListDescription. */
   description: customPropTypes.itemShorthand,
