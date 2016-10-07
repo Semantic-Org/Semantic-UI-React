@@ -1,7 +1,10 @@
 import cx from 'classnames'
 import React, { Component, PropTypes } from 'react'
 
-import { useKeyOnly } from '../../lib'
+import {
+  META,
+  useKeyOnly,
+} from '../../lib'
 
 /**
  * An internal icon sub-component for Rating component
@@ -12,7 +15,7 @@ export default class RatingIcon extends Component {
     active: PropTypes.bool,
 
     /** An index of icon inside Rating. */
-    index: PropTypes.bool,
+    index: PropTypes.number,
 
     /** Called with (event, index) after user clicked on an icon. */
     onClick: PropTypes.func,
@@ -22,6 +25,12 @@ export default class RatingIcon extends Component {
 
     /** Indicates selection of an icon. */
     selected: PropTypes.bool,
+  }
+
+  static _meta = {
+    name: 'RatingIcon',
+    parent: 'Rating',
+    type: META.TYPES.MODULE,
   }
 
   handleClick = (e) => {
