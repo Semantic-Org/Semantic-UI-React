@@ -1,5 +1,42 @@
 # Change Log
 
+## [v0.54.3](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.54.3) (2016-10-07)
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.54.2...v0.54.3)
+
+**Fixed bugs:**
+
+- bug\(Docs\): 404 on old docs [\#635](https://github.com/Semantic-Org/Semantic-UI-React/issues/635)
+- Update \<ListItem /\> propType validation [\#111](https://github.com/Semantic-Org/Semantic-UI-React/issues/111)
+
+**Closed issues:**
+
+- Bug: Grid doesn't resize properly when window resizes [\#639](https://github.com/Semantic-Org/Semantic-UI-React/issues/639)
+- fix\(Form\): not render icon in select [\#620](https://github.com/Semantic-Org/Semantic-UI-React/issues/620)
+- Move docs to react.semantic-ui.com [\#611](https://github.com/Semantic-Org/Semantic-UI-React/issues/611)
+- Standardize childKey and shorthand props [\#449](https://github.com/Semantic-Org/Semantic-UI-React/issues/449)
+- Migrating to Semantic-UI-React [\#243](https://github.com/Semantic-Org/Semantic-UI-React/issues/243)
+
+**Merged pull requests:**
+
+- fix\(deploy\): create CNAME pre deploy [\#633](https://github.com/Semantic-Org/Semantic-UI-React/pull/633) ([levithomason](https://github.com/levithomason))
+- fix\(customPropTypes\): itemsShorthand -\> collectionShorthand [\#632](https://github.com/Semantic-Org/Semantic-UI-React/pull/632) ([levithomason](https://github.com/levithomason))
+- refactor\(project\): stardust repo to Semantic-UI-React [\#631](https://github.com/Semantic-Org/Semantic-UI-React/pull/631) ([levithomason](https://github.com/levithomason))
+- docs\(Confirm\): refactor and use index.js [\#630](https://github.com/Semantic-Org/Semantic-UI-React/pull/630) ([dpkwhan](https://github.com/dpkwhan))
+- fix\(CONTRIBUTING\): fix angular contributing link [\#629](https://github.com/Semantic-Org/Semantic-UI-React/pull/629) ([Chris-R3](https://github.com/Chris-R3))
+
+## [v0.54.2](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.54.2) (2016-10-05)
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.54.1...v0.54.2)
+
+**Closed issues:**
+
+- Add key to 'Support' section in README? [\#624](https://github.com/Semantic-Org/Semantic-UI-React/issues/624)
+
+**Merged pull requests:**
+
+- chore\(warnings\): Fix warnings in Form and Modal [\#626](https://github.com/Semantic-Org/Semantic-UI-React/pull/626) ([jcarbo](https://github.com/jcarbo))
+- feat\(shorthand\): Custom shorthand proptypes [\#618](https://github.com/Semantic-Org/Semantic-UI-React/pull/618) ([jcarbo](https://github.com/jcarbo))
+- test\(factories\): add factory tests [\#552](https://github.com/Semantic-Org/Semantic-UI-React/pull/552) ([levithomason](https://github.com/levithomason))
+
 ## [v0.54.1](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.54.1) (2016-10-04)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.54.0...v0.54.1)
 
