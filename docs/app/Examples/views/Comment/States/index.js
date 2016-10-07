@@ -7,7 +7,7 @@ const CommentTypes = () => (
   <ExampleSection title='States'>
     <ComponentExample
       title='Collapsed'
-      description='Comments can be collapsed, or hidden from view'
+      description='Comments can be collapsed, or hidden from view.'
       examplePath='views/Comment/States/CommentExampleCollapsed'
     />
   </ExampleSection>
