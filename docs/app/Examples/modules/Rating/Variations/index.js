@@ -7,7 +7,7 @@ const RatingVariations = () => (
   <ExampleSection title='Variations'>
     <ComponentExample
       title='Size'
-      description='A rating can vary in size'
+      description='A rating can vary in size.'
       examplePath='modules/Rating/Variations/RatingExampleSize'
     />
   </ExampleSection>
