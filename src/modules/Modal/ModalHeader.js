@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react'
 import cx from 'classnames'
 
 import {
+  createShorthandFactory,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -16,6 +17,8 @@ function ModalHeader(props) {
 
   return <ElementType {...rest} className={classes}>{children}</ElementType>
 }
+
+ModalHeader.create = createShorthandFactory(ModalHeader, value => ({ children: value }))
 
 ModalHeader._meta = {
   name: 'ModalHeader',

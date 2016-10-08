@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react'
 import cx from 'classnames'
 
 import {
+  createShorthandFactory,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -21,6 +22,8 @@ function ModalContent(props) {
 
   return <ElementType {...rest} className={classes}>{children}</ElementType>
 }
+
+ModalContent.create = createShorthandFactory(ModalContent, value => ({ children: value }))
 
 ModalContent._meta = {
   name: 'ModalContent',
