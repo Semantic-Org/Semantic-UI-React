@@ -112,6 +112,10 @@ export { default as ModalContent } from './modules/Modal/ModalContent'
 export { default as ModalDescription } from './modules/Modal/ModalDescription'
 export { default as ModalHeader } from './modules/Modal/ModalHeader'
 
+export { default as Popup } from './modules/Popup'
+export { default as PopupContent } from './modules/Popup/PopupContent'
+export { default as PopupHeader } from './modules/Popup/PopupHeader'
+
 export { default as Progress } from './modules/Progress'
 
 export { default as Rating } from './modules/Rating'
