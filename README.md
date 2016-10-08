@@ -145,7 +145,7 @@ Any other issue labeled [`help wanted`][4] is ready for a PR.
 | ✓ Header        | ✓ Message       | ✓ Item          |   Embed         |                    |
 | ✓ Icon          | ✓ Table         | ✓ Statistic     | ✓ Modal         |                    |
 | ✓ Image         |                 |                 |   Nag           |                    |
-| ✓ Input         |                 |                 |   Popup         |                    |
+| ✓ Input         |                 |                 | ✓ Popup         |                    |
 | ✓ Label         |                 |                 | ✓ Progress      |                    |
 | ✓ List          |                 |                 | ✓ Rating        |                    |
 | ✓ Loader        |                 |                 | ✓ Search        |                    |
