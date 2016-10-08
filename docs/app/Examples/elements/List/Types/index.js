@@ -11,10 +11,19 @@ const ListTypes = () => (
       description='A list groups related content'
       examplePath='elements/List/Types/ListExampleBasic'
     />
-    <ComponentExample examplePath='elements/List/Types/ListExampleBasicShorthand' />
+    <ComponentExample
+      description='You can also pass an array of items as props'
+      examplePath='elements/List/Types/ListExampleBasicShorthand'
+    />
 
-    <ComponentExample examplePath='elements/List/Types/ListExampleIcon' />
-    <ComponentExample examplePath='elements/List/Types/ListExampleIconShorthand' />
+    <ComponentExample
+      description='A list item can contain an icon'
+      examplePath='elements/List/Types/ListExampleIcon'
+    />
+    <ComponentExample
+      description='You can also define a list item icon via props'
+      examplePath='elements/List/Types/ListExampleIconShorthand'
+    />
 
     <ComponentExample examplePath='elements/List/Types/ListExampleDivided' />
     <ComponentExample examplePath='elements/List/Types/ListExampleTree' />
