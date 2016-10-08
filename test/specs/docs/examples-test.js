@@ -3,26 +3,21 @@ import { createElement } from 'react'
 import { sandbox } from '../../utils'
 import { exampleContext } from '../../../docs/app/utils'
 
-describe('examples', () => {
-  it('render without errors', () => {
-    const errors = []
-
-    /* eslint-disable no-console */
-    exampleContext.keys().forEach(path => {
-      sandbox.spy(console, 'error')
-
-      shallow(createElement(exampleContext(path).default))
-
-      if (console.error.called) {
-        errors.push({ path, message: console.error.args })
-      }
-
-      console.error.restore()
-    })
-    /* eslint-enable no-console */
-
-    errors.should.be.empty(
-      errors.map(e => `Example File: ${e.path}\nConsole Error: ${e.message}\n\n`).join('')
-    )
+describe.only('examples', () => {
+  /* eslint-disable no-console */
+  beforeEach(() => {
+    sandbox.spy(console, 'error')
   })
+  afterEach(() => {
+    console.error.restore()
+  })
+  exampleContext.keys().forEach(path => {
+    it(`renders without errors: ${path}`, () => {
+      mount(createElement(exampleContext(path).default))
+
+      console.error
+        .should.not.have.been.called(`Console error: ${console.error.args}`)
+    })
+  })
+  /* eslint-enable no-console */
 })
