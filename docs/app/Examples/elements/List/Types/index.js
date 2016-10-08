@@ -33,7 +33,10 @@ const ListTypes = () => (
       description='A list can mark items with a bullet'
       examplePath='elements/List/Types/ListExampleBulleted'
     />
-    <ComponentExample examplePath='elements/List/Types/ListExampleBulletedSimple' />
+    <ComponentExample
+      description='You can also use an `ul` and `li` to render a bulleted list'
+      examplePath='elements/List/Types/ListExampleBulletedSimple'
+    />
     <ComponentExample examplePath='elements/List/Types/ListExampleBulletedHorizontal' />
 
     <ComponentExample

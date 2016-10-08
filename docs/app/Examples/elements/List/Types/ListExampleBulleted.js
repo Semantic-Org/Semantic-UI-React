@@ -6,7 +6,7 @@ const ListExampleBulleted = () => (
     <List.Item>Gaining Access</List.Item>
     <List.Item>Inviting Friends</List.Item>
     <List.Item>
-      <div>Benefits</div>
+      Benefits
 
       <List.List>
         <List.Item href='#'>Link to somewhere</List.Item>
