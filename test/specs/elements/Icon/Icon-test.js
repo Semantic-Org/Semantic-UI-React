@@ -6,6 +6,7 @@ import * as common from 'test/specs/commonTests'
 describe('Icon', () => {
   common.isConformant(Icon)
   common.hasSubComponents(Icon, [IconGroup])
+  common.implementsCreateMethod(Icon)
 
   common.propKeyOnlyToClassName(Icon, 'bordered')
   common.propKeyOnlyToClassName(Icon, 'circular')

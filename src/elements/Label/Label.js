@@ -121,7 +121,6 @@ export default class Label extends Component {
 
   static _meta = _meta
 
-  static create = createShorthandFactory(Label, value => ({ content: value }))
   static Detail = LabelDetail
   static Group = LabelGroup
 
@@ -203,3 +202,7 @@ export default class Label extends Component {
     )
   }
 }
+
+// Label is not yet defined inside the class
+// Do not use a static property initializer
+Label.create = createShorthandFactory(Label, value => ({ content: value }))
