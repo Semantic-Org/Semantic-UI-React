@@ -201,6 +201,9 @@ export default class Form extends Component {
     /** Called with (event, jsonSerializedForm) on submit */
     onSubmit: PropTypes.func,
 
+    /** A comment can contain a form to reply to a comment. This may have arbitrary content. */
+    reply: PropTypes.bool,
+
     /** Called onSubmit with the form node that returns the serialized form object */
     serializer: PropTypes.func,
 
@@ -245,6 +248,7 @@ export default class Form extends Component {
       className,
       error,
       loading,
+      reply,
       size,
       success,
       warning,
@@ -256,6 +260,7 @@ export default class Form extends Component {
       size,
       useKeyOnly(error, 'error'),
       useKeyOnly(loading, 'loading'),
+      useKeyOnly(reply, 'reply'),
       useKeyOnly(success, 'success'),
       useKeyOnly(warning, 'warning'),
       useWidthProp(widths, null, true),
