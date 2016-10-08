@@ -44,7 +44,10 @@ const ListTypes = () => (
       description='A list can be ordered numerically'
       examplePath='elements/List/Types/ListExampleOrdered'
     />
-    <ComponentExample examplePath='elements/List/Types/ListExampleOrderedSimple' />
+    <ComponentExample
+      description='You can also use an `ol` and `li` to render an ordered list'
+      examplePath='elements/List/Types/ListExampleOrderedSimple'
+    />
     <ComponentExample examplePath='elements/List/Types/ListExampleOrderedValue'>
       <Message info>
         You can also manually specify a value for an ordered list using <code>value</code>.
