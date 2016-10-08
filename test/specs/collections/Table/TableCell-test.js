@@ -7,6 +7,7 @@ describe('TableCell', () => {
   common.isConformant(TableCell)
   common.rendersChildren(TableCell)
 
+  common.implementsCreateMethod(TableCell)
   common.implementsTextAlignProp(TableCell)
   common.implementsVerticalAlignProp(TableCell)
   common.implementsWidthProp(TableCell, { propKey: 'width', widthClass: 'wide', canEqual: false })

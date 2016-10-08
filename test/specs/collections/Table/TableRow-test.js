@@ -7,6 +7,7 @@ describe('TableRow', () => {
   common.isConformant(TableRow)
   common.rendersChildren(TableRow)
 
+  common.implementsCreateMethod(TableRow)
   common.implementsTextAlignProp(TableRow)
   common.implementsVerticalAlignProp(TableRow)
 
