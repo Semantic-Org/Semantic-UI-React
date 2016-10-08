@@ -92,12 +92,12 @@ describe('Confirm', () => {
       spy.should.have.been.calledOnce()
     })
 
-    it('is passed to the Modal onHide prop', () => {
+    it('is passed to the Modal onClose prop', () => {
       const func = () => null
 
       shallow(<Confirm onCancel={func} />)
         .find('Modal')
-        .prop('onHide', func)
+        .prop('onClose', func)
     })
   })
 
