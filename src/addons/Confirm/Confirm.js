@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 
-import { getUnhandledProps, META } from '../../lib'
+import { getUnhandledProps, META, customPropTypes } from '../../lib'
 import Button from '../../elements/Button'
 import Modal from '../../modules/Modal'
 
@@ -9,11 +9,11 @@ import Modal from '../../modules/Modal'
  * @see Modal
  */
 function Confirm(props) {
-  const { active, cancelButton, confirmButton, header, content, onConfirm, onCancel } = props
+  const { active, open, cancelButton, confirmButton, header, content, onConfirm, onCancel } = props
   const rest = getUnhandledProps(Confirm, props)
 
   return (
-    <Modal active={active} size='small' onHide={onCancel} {...rest}>
+    <Modal open={active || open} size='small' onClose={onCancel} {...rest}>
       {header && <Modal.Header>{header}</Modal.Header>}
       {content && <Modal.Content>{content}</Modal.Content>}
       <Modal.Actions>
@@ -30,8 +30,11 @@ Confirm._meta = {
 }
 
 Confirm.propTypes = {
-  /** Whether or not the modal is visible */
-  active: PropTypes.bool,
+  /** Deprecated in favor of open */
+  active: customPropTypes.deprecated(
+    PropTypes.bool,
+    'use open prop instead.'
+  ),
 
   /** The cancel button text */
   cancelButton: PropTypes.string,
@@ -50,6 +53,9 @@ Confirm.propTypes = {
 
   /** Called when the Cancel button is clicked */
   onCancel: PropTypes.func,
+
+  /** Whether or not the modal is visible */
+  open: PropTypes.bool,
 }
 
 Confirm.defaultProps = {

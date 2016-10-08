@@ -1,5 +1,6 @@
 import { PropTypes } from 'react'
 import _ from 'lodash/fp'
+import warning from 'warning'
 
 const typeOf = (...args) => Object.prototype.toString.call(...args)
 
@@ -208,42 +209,31 @@ export const collectionShorthand = (...args) => every([
   PropTypes.arrayOf(itemShorthand),
 ])(...args)
 
+const deprecated_warned = {}
 /**
- * Show a deprecated warning for component props with a help message and optional validator.
- * @param {string} help A help message to display with the deprecation warning.
- * @param {function} [validator] A propType function.
+ * Show a deprecated warning for component props with a help message.
+ * @param {PropType} propType A propType function.
+ * @param {string} [explanation] A help message to display with the deprecation warning.
+ *
+ * @example
+ * MyButton.propTypes = {
+ *   hidden: deprecated(
+ *     PropTypes.bool,
+ *     'Use visible prop instead'
+ *   )
+ *   visible: PropTypes.bool,
+ * }
  */
-export const deprecate = (help, validator) => {
-  return (props, propName, componentName, ...args) => {
-    if (typeof help !== 'string') {
-      throw new Error([
-        'Invalid `help` argument supplied to deprecate, expected a string.',
-        `See \`${propName}\` prop in \`${componentName}\`.`,
-      ].join(' '))
-    }
-
-    // skip if prop is undefined
-    if (props[propName] === undefined) return
-
-    // deprecation error and help
-    const error = new Error(`The \`${propName}\` prop in \`${componentName}\` is deprecated.`)
-    if (help) error.message += ` ${help}`
-
-    // add optional validation error message
-    if (validator) {
-      if (typeof validator === 'function') {
-        const validationError = validator(props, propName, componentName, ...args)
-        if (validationError) {
-          error.message = `${error.message} ${validationError.message}`
-        }
-      } else {
-        throw new Error([
-          'Invalid argument supplied to deprecate, expected a function.',
-          `See \`${propName}\` prop in \`${componentName}\`.`,
-        ].join(' '))
+export const deprecated = (propType, explanation) => {
+  return function validate(props, propName, componentName, ...rest) { // Note ...rest here
+    if (props[propName] != null) {
+      const message = `"${propName}" property of "${componentName}" has been deprecated.\n${explanation}`;
+      if (!deprecated_warned[message]) {
+        warning(false, message);
+        deprecated_warned[message] = true;
       }
     }
 
-    return error
-  }
+    return propType(props, propName, componentName, ...rest); // and here
+  };
 }
