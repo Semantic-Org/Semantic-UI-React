@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 
-import { getUnhandledProps, META } from '../../lib'
+import { getUnhandledProps, META, customPropTypes } from '../../lib'
 import Button from '../../elements/Button'
 import Modal from '../../modules/Modal'
 
@@ -9,13 +9,14 @@ import Modal from '../../modules/Modal'
  * @see Modal
  */
 function Confirm(props) {
-  const { active, cancelButton, confirmButton, header, content, onConfirm, onCancel } = props
+  const { cancelButton, children, confirmButton, header, content, onConfirm, onCancel } = props
   const rest = getUnhandledProps(Confirm, props)
 
   return (
-    <Modal active={active} size='small' onHide={onCancel} {...rest}>
-      {header && <Modal.Header>{header}</Modal.Header>}
-      {content && <Modal.Content>{content}</Modal.Content>}
+    <Modal size='small' onClose={onCancel} {...rest}>
+      {children}
+      {!children && Modal.Header.create(header)}
+      {!children && Modal.Content.create(content)}
       <Modal.Actions>
         <Button onClick={onCancel}>{cancelButton}</Button>
         <Button primary onClick={onConfirm}>{confirmButton}</Button>
@@ -30,11 +31,11 @@ Confirm._meta = {
 }
 
 Confirm.propTypes = {
-  /** Whether or not the modal is visible */
-  active: PropTypes.bool,
-
   /** The cancel button text */
   cancelButton: PropTypes.string,
+
+  /** You may pass a content as children */
+  children: PropTypes.node,
 
   /** The OK button text */
   confirmButton: PropTypes.string,

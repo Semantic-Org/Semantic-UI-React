@@ -110,5 +110,19 @@ describe('Confirm', () => {
 
       spy.should.have.been.calledOnce()
     })
+
+    // Ensures that modal onClose is not triggered
+    // when open prop is controlled.
+    it('only calls confirm on Confirm', () => {
+      const cancelSpy = sandbox.spy()
+      const confirmSpy = sandbox.spy()
+
+      shallow(<Confirm onCancel={cancelSpy} onConfirm={confirmSpy} />)
+        .find('Button[primary]')
+        .simulate('click')
+
+      confirmSpy.should.have.been.calledOnce()
+      cancelSpy.should.not.have.been.called()
+    })
   })
 })

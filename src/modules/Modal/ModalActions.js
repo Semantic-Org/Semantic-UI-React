@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react'
 import cx from 'classnames'
 
 import {
+  createShorthandFactory,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -16,6 +17,8 @@ function ModalActions(props) {
 
   return <ElementType {...rest} className={classes}>{children}</ElementType>
 }
+
+ModalActions.create = createShorthandFactory(ModalActions, value => ({ children: value }))
 
 ModalActions._meta = {
   name: 'ModalActions',
