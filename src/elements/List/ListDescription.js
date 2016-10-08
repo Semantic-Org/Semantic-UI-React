@@ -2,6 +2,7 @@ import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
 import {
+  createShorthandFactory,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -9,12 +10,12 @@ import {
 } from '../../lib'
 
 function ListDescription(props) {
-  const { children, className } = props
+  const { children, className, content } = props
   const classes = cx(className, 'description')
   const rest = getUnhandledProps(ListDescription, props)
   const ElementType = getElementType(ListDescription, props)
 
-  return <ElementType {...rest} className={classes}>{children}</ElementType>
+  return <ElementType {...rest} className={classes}>{children || content}</ElementType>
 }
 
 ListDescription._meta = {
@@ -32,6 +33,11 @@ ListDescription.propTypes = {
 
   /** Additional classes. */
   className: PropTypes.string,
+
+  /** Shorthand for primary content. */
+  content: customPropTypes.contentShorthand,
 }
+
+ListDescription.create = createShorthandFactory(ListDescription, content => ({ content }))
 
 export default ListDescription

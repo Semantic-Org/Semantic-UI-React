@@ -2,6 +2,7 @@ import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
 import {
+  createShorthandFactory,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -11,11 +12,17 @@ import {
   useVerticalAlignProp,
 } from '../../lib'
 
+import ListDescription from './ListDescription'
+import ListHeader from './ListHeader'
+
 function ListContent(props) {
   const {
     children,
     className,
+    content,
+    description,
     floated,
+    header,
     verticalAlign,
   } = props
 
@@ -28,7 +35,17 @@ function ListContent(props) {
   const rest = getUnhandledProps(ListContent, props)
   const ElementType = getElementType(ListContent, props)
 
-  return <ElementType {...rest} className={classes}>{children}</ElementType>
+  if (children) {
+    return <ElementType {...rest} className={classes}>{children}</ElementType>
+  }
+
+  return (
+    <ElementType {...rest} className={classes}>
+      {ListHeader.create(header)}
+      {ListDescription.create(description)}
+      {content}
+    </ElementType>
+  )
 }
 
 ListContent._meta = {
@@ -51,11 +68,22 @@ ListContent.propTypes = {
   /** Additional classes. */
   className: PropTypes.string,
 
+  /** Shorthand for primary content. */
+  content: customPropTypes.contentShorthand,
+
+  /** Shorthand for ListDescription. */
+  description: customPropTypes.itemShorthand,
+
   /** An list content can be floated left or right. */
   floated: PropTypes.oneOf(ListContent._meta.props.floated),
+
+  /** Shorthand for ListHeader. */
+  header: customPropTypes.itemShorthand,
 
   /** An element inside a list can be vertically aligned. */
   verticalAlign: PropTypes.oneOf(ListContent._meta.props.verticalAlign),
 }
+
+ListContent.create = createShorthandFactory(ListContent, content => ({ content }))
 
 export default ListContent

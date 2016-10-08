@@ -2,7 +2,7 @@ import React from 'react'
 import { List } from 'semantic-ui-react'
 
 const ListExampleBulletedSimple = () => (
-  <List as='ul' bulleted>
+  <List as='ul'>
     <List.Item as='li'>Gaining Access</List.Item>
     <List.Item as='li'>Inviting Friends</List.Item>
     <List.Item as='li'>
