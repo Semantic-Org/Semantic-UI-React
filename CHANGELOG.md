@@ -1,11 +1,23 @@
 # Change Log
 
+## [v0.55.1](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.55.1) (2016-10-09)
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.55.0...v0.55.1)
+
+**Implemented enhancements:**
+
+- refactor\(Rating\): add rating icon component [\#640](https://github.com/Semantic-Org/Semantic-UI-React/pull/640) ([layershifter](https://github.com/layershifter))
+
+**Fixed bugs:**
+
+- fix\(Dropdown\): reopens after switching back to browser window [\#627](https://github.com/Semantic-Org/Semantic-UI-React/issues/627)
+- fix\(ItemImage\): wrap image to prevent vertical strech [\#646](https://github.com/Semantic-Org/Semantic-UI-React/pull/646) ([debrice](https://github.com/debrice))
+
+**Merged pull requests:**
+
+- fix\(Dropdown\): blur dropdown on close\(\) [\#628](https://github.com/Semantic-Org/Semantic-UI-React/pull/628) ([Chris-R3](https://github.com/Chris-R3))
+
 ## [v0.55.0](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.55.0) (2016-10-09)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.54.5...v0.55.0)
-
-**Closed issues:**
-
-- fix\(Modal\): close on escape not responding [\#652](https://github.com/Semantic-Org/Semantic-UI-React/issues/652)
 
 **Merged pull requests:**
 
@@ -40,7 +52,6 @@
 
 **Closed issues:**
 
-- Bug: Grid doesn't resize properly when window resizes [\#639](https://github.com/Semantic-Org/Semantic-UI-React/issues/639)
 - fix\(Form\): not render icon in select [\#620](https://github.com/Semantic-Org/Semantic-UI-React/issues/620)
 - Move docs to react.semantic-ui.com [\#611](https://github.com/Semantic-Org/Semantic-UI-React/issues/611)
 - Standardize childKey and shorthand props [\#449](https://github.com/Semantic-Org/Semantic-UI-React/issues/449)
