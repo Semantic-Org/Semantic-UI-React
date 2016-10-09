@@ -107,6 +107,20 @@ describe('Dropdown Component', () => {
     dropdownMenuIsClosed()
   })
 
+  it('blurs the Dropdown node on close', () => {
+    wrapperMount(<Dropdown options={options} selection defaultOpen />)
+
+    const instance = wrapper.instance()
+    sandbox.spy(instance._dropdown, 'blur')
+
+    dropdownMenuIsOpen()
+    wrapper.simulate('click')
+    dropdownMenuIsClosed()
+
+    instance._dropdown.blur
+      .should.have.been.calledOnce()
+  })
+
   it('opens on focus', () => {
     wrapperMount(<Dropdown options={options} />)
 

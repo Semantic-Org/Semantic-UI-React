@@ -317,7 +317,6 @@ export default class Dropdown extends Component {
     // opened / closed
     if (!prevState.open && this.state.open) {
       debug('dropdown opened')
-      this.open()
       document.addEventListener('keydown', this.closeOnEscape)
       document.addEventListener('keydown', this.moveSelectionOnKeyDown)
       document.addEventListener('keydown', this.selectItemOnEnter)
@@ -327,7 +326,7 @@ export default class Dropdown extends Component {
       document.removeEventListener('keydown', this.openOnSpace)
     } else if (prevState.open && !this.state.open) {
       debug('dropdown closed')
-      this.close()
+      this.handleClose()
       document.removeEventListener('keydown', this.closeOnEscape)
       document.removeEventListener('keydown', this.moveSelectionOnKeyDown)
       document.removeEventListener('keydown', this.selectItemOnEnter)
@@ -736,6 +735,11 @@ export default class Dropdown extends Component {
   close = () => {
     debug('close()')
     this.trySetState({ open: false })
+  }
+
+  handleClose = () => {
+    debug('handleClose()')
+    this._dropdown.blur()
   }
 
   toggle = () => this.state.open ? this.close() : this.open()
