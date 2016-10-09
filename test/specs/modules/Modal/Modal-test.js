@@ -9,7 +9,7 @@ import ModalDescription from 'src/modules/Modal/ModalDescription'
 import Portal from 'src/addons/Portal/Portal'
 
 import { keyboardKey } from 'src/lib'
-import { domEvent, sandbox } from 'test/utils'
+import { assertNodeContains, assertBodyContains, domEvent, sandbox } from 'test/utils'
 import * as common from 'test/specs/commonTests'
 
 // ----------------------------------------
@@ -21,13 +21,6 @@ let wrapper
 // wrap the render methods to update a global wrapper that is unmounted after each test
 const wrapperMount = (...args) => (wrapper = mount(...args))
 const wrapperShallow = (...args) => (wrapper = shallow(...args))
-
-const assertIn = (node, selector, isPresent = true) => {
-  const didFind = node.querySelector(selector) !== null
-  didFind.should.equal(isPresent, `${didFind ? 'Found' : 'Did not find'} "${selector}" in the ${node}.`)
-}
-
-const assertInBody = (...args) => assertIn(document.body, ...args)
 
 const assertBodyClasses = (...rest) => {
   const hasClasses = typeof rest[rest.length - 1] === 'boolean' ? rest.pop() : true
@@ -69,7 +62,7 @@ describe('Modal', () => {
 
   it('renders to the document body', () => {
     wrapperMount(<Modal open />)
-    assertInBody('.ui.modal')
+    assertBodyContains('.ui.modal')
   })
 
   it('renders child text', () => {
@@ -93,7 +86,7 @@ describe('Modal', () => {
   describe('open', () => {
     it('is not open by default', () => {
       wrapperMount(<Modal />)
-      assertInBody('.ui.modal.open', false)
+      assertBodyContains('.ui.modal.open', false)
     })
 
     it('is passed to Portal open', () => {
@@ -120,51 +113,51 @@ describe('Modal', () => {
 
     it('does not show the modal when false', () => {
       wrapperMount(<Modal open={false} />)
-      assertInBody('.ui.modal', false)
+      assertBodyContains('.ui.modal', false)
     })
 
     it('does not show the dimmer when false', () => {
       wrapperMount(<Modal open={false} />)
-      assertInBody('.ui.dimmer', false)
+      assertBodyContains('.ui.dimmer', false)
     })
 
     it('shows the dimmer when true', () => {
       wrapperMount(<Modal open dimmer />)
-      assertInBody('.ui.dimmer')
+      assertBodyContains('.ui.dimmer')
     })
 
     it('shows the modal when true', () => {
       wrapperMount(<Modal open />)
-      assertInBody('.ui.modal')
+      assertBodyContains('.ui.modal')
     })
 
     it('shows the modal and dimmer on changing from false to true', () => {
       wrapperMount(<Modal open={false} />)
-      assertInBody('.ui.modal', false)
-      assertInBody('.ui.dimmer', false)
+      assertBodyContains('.ui.modal', false)
+      assertBodyContains('.ui.dimmer', false)
 
       wrapper.setProps({ open: true })
 
-      assertInBody('.ui.modal')
-      assertInBody('.ui.dimmer')
+      assertBodyContains('.ui.modal')
+      assertBodyContains('.ui.dimmer')
     })
 
     it('hides the modal and dimmer on changing from true to false', () => {
       wrapperMount(<Modal open />)
-      assertInBody('.ui.modal')
-      assertInBody('.ui.dimmer')
+      assertBodyContains('.ui.modal')
+      assertBodyContains('.ui.dimmer')
 
       wrapper.setProps({ open: false })
 
-      assertInBody('.ui.modal', false)
-      assertInBody('.ui.dimmer', false)
+      assertBodyContains('.ui.modal', false)
+      assertBodyContains('.ui.dimmer', false)
     })
   })
 
   describe('basic', () => {
     it('adds basic to the modal className', () => {
       wrapperMount(<Modal basic open />)
-      assertInBody('.ui.basic.modal')
+      assertBodyContains('.ui.basic.modal')
     })
   })
 
@@ -177,7 +170,7 @@ describe('Modal', () => {
     it('adds the size to the modal className', () => {
       Modal._meta.props.size.forEach(size => {
         wrapperMount(<Modal size={size} open />)
-        assertInBody(`.ui.${size}.modal`)
+        assertBodyContains(`.ui.${size}.modal`)
       })
     })
   })
@@ -191,7 +184,7 @@ describe('Modal', () => {
 
       it('is present by default', () => {
         wrapperMount(<Modal open />)
-        assertInBody('.ui.dimmer')
+        assertBodyContains('.ui.dimmer')
       })
     })
 
@@ -203,7 +196,7 @@ describe('Modal', () => {
 
       it('adds a dimmer to the body', () => {
         wrapperMount(<Modal open dimmer />)
-        assertInBody('.ui.page.modals.dimmer.transition.visible.active')
+        assertBodyContains('.ui.page.modals.dimmer.transition.visible.active')
       })
     })
 
@@ -227,7 +220,7 @@ describe('Modal', () => {
 
       it('adds a dimmer to the body', () => {
         wrapperMount(<Modal open dimmer='blurring' />)
-        assertInBody('.ui.page.modals.dimmer.transition.visible.active')
+        assertBodyContains('.ui.page.modals.dimmer.transition.visible.active')
       })
     })
 
@@ -240,7 +233,7 @@ describe('Modal', () => {
 
       it('adds an inverted dimmer to the body', () => {
         wrapperMount(<Modal open dimmer='inverted' />)
-        assertInBody('.ui.inverted.page.modals.dimmer.transition.visible.active')
+        assertBodyContains('.ui.inverted.page.modals.dimmer.transition.visible.active')
       })
     })
   })
@@ -349,7 +342,7 @@ describe('Modal', () => {
       document.body.appendChild(mountNode)
 
       wrapperMount(<Modal mountNode={mountNode} open>foo</Modal>)
-      assertIn(mountNode, '.ui.modal')
+      assertNodeContains(mountNode, '.ui.modal')
     })
   })
 

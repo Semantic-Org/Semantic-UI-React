@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import React, { PropTypes } from 'react'
 
 import { getUnhandledProps, META } from '../../lib'
@@ -12,8 +13,14 @@ function Confirm(props) {
   const { open, cancelButton, confirmButton, header, content, onConfirm, onCancel } = props
   const rest = getUnhandledProps(Confirm, props)
 
+  // `open` is auto controlled by the Modal
+  // It cannot be present (even undefined) with `defaultOpen`
+  // only apply it if the user provided an open prop
+  const openProp = {}
+  if (_.has(props, 'open')) openProp.open = open
+
   return (
-    <Modal open={open} size='small' onClose={onCancel} {...rest}>
+    <Modal {...openProp} size='small' onClose={onCancel} {...rest}>
       {header && <Modal.Header>{header}</Modal.Header>}
       {content && <Modal.Content>{content}</Modal.Content>}
       <Modal.Actions>
