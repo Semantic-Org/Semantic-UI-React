@@ -2,14 +2,14 @@ import React, { Component } from 'react'
 import { Button, Confirm } from 'semantic-ui-react'
 
 class ConfirmExampleCallbacks extends Component {
-  state = { active: false, result: 'show the modal to capture a result' }
+  state = { open: false, result: 'show the modal to capture a result' }
 
-  show = () => this.setState({ active: true })
-  handleConfirm = () => this.setState({ result: 'confirmed', active: false })
-  handleCancel = () => this.setState({ result: 'cancelled', active: false })
+  show = () => this.setState({ open: true })
+  handleConfirm = () => this.setState({ result: 'confirmed', open: false })
+  handleCancel = () => this.setState({ result: 'cancelled', open: false })
 
   render() {
-    const { active, result } = this.state
+    const { open, result } = this.state
 
     return (
       <div>
@@ -17,7 +17,7 @@ class ConfirmExampleCallbacks extends Component {
 
         <Button onClick={this.show}>Show</Button>
         <Confirm
-          active={active}
+          open={open}
           onCancel={this.handleCancel}
           onConfirm={this.handleConfirm}
         />
