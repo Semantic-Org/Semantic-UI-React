@@ -1,5 +1,16 @@
 # Change Log
 
+## [v0.55.0](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.55.0) (2016-10-09)
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.54.5...v0.55.0)
+
+**Closed issues:**
+
+- fix\(Modal\): close on escape not responding [\#652](https://github.com/Semantic-Org/Semantic-UI-React/issues/652)
+
+**Merged pull requests:**
+
+- BREAKING CHANGE: update Confirm to Modal v1 API [\#634](https://github.com/Semantic-Org/Semantic-UI-React/pull/634) ([levithomason](https://github.com/levithomason))
+
 ## [v0.54.5](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.54.5) (2016-10-08)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.54.4...v0.54.5)
 
