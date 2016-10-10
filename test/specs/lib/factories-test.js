@@ -3,8 +3,8 @@ import React, { isValidElement } from 'react'
 
 import { sandbox } from 'test/utils'
 import {
-  createShorthand,
-  createShorthandFactory,
+  createShorthandItem,
+  createShorthandItemFactory,
 } from 'src/lib'
 
 // ----------------------------------------
@@ -19,7 +19,7 @@ const getShorthand = ({
   mapValueToProps = val => ({}),
   value,
   defaultProps,
-}) => createShorthand(Component, mapValueToProps, value, defaultProps)
+}) => createShorthandItem(Component, mapValueToProps, value, defaultProps)
 
 // ----------------------------------------
 // Common tests
@@ -110,17 +110,17 @@ const itOverridesDefaultPropsWithFalseyProps = (propsSource, shorthandConfig) =>
 // ----------------------------------------
 
 describe('factories', () => {
-  describe('createShorthandFactory', () => {
+  describe('createShorthandItemFactory', () => {
     it('is a function', () => {
-      createShorthandFactory.should.be.a('function')
+      createShorthandItemFactory.should.be.a('function')
     })
     it('does not throw if passed a function Component', () => {
-      const goodUsage = () => createShorthandFactory(() => <div />, () => ({}))
+      const goodUsage = () => createShorthandItemFactory(() => <div />, () => ({}))
 
       expect(goodUsage).not.to.throw()
     })
     it('does not throw if passed a string Component', () => {
-      const goodUsage = () => createShorthandFactory('div', () => ({}))
+      const goodUsage = () => createShorthandItemFactory('div', () => ({}))
 
       expect(goodUsage).not.to.throw()
     })
@@ -128,24 +128,24 @@ describe('factories', () => {
       const badComponents = [undefined, null, true, false, [], {}, 123]
 
       _.each(badComponents, badComponent => {
-        const badUsage = () => createShorthandFactory(badComponent, () => ({}))
+        const badUsage = () => createShorthandItemFactory(badComponent, () => ({}))
 
         expect(badUsage).to.throw()
       })
     })
   })
 
-  describe('createShorthand', () => {
+  describe('createShorthandItem', () => {
     it('is a function', () => {
-      createShorthand.should.be.a('function')
+      createShorthandItem.should.be.a('function')
     })
     it('does not throw if passed a function Component', () => {
-      const goodUsage = () => createShorthand(() => <div />, () => ({}))
+      const goodUsage = () => createShorthandItem(() => <div />, () => ({}))
 
       expect(goodUsage).not.to.throw()
     })
     it('does not throw if passed a string Component', () => {
-      const goodUsage = () => createShorthand('div', () => ({}))
+      const goodUsage = () => createShorthandItem('div', () => ({}))
 
       expect(goodUsage).not.to.throw()
     })
@@ -153,7 +153,7 @@ describe('factories', () => {
       const badComponents = [undefined, null, true, false, [], {}, 123]
 
       _.each(badComponents, badComponent => {
-        const badUsage = () => createShorthand(badComponent, () => ({}))
+        const badUsage = () => createShorthandItem(badComponent, () => ({}))
 
         expect(badUsage).to.throw()
       })

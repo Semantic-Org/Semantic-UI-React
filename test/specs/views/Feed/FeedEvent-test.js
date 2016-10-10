@@ -9,12 +9,12 @@ import FeedLabel from 'src/views/Feed/FeedLabel'
 describe('FeedEvent', () => {
   common.isConformant(FeedEvent)
   common.rendersChildren(FeedEvent)
-  common.implementsShorthandProp(FeedEvent, {
+  common.implementsShorthandItemProp(FeedEvent, {
     propKey: 'icon',
     ShorthandComponent: FeedLabel,
     mapValueToProps: val => ({ icon: val }),
   })
-  common.implementsShorthandProp(FeedEvent, {
+  common.implementsShorthandItemProp(FeedEvent, {
     propKey: 'image',
     ShorthandComponent: FeedLabel,
     mapValueToProps: val => ({ image: val }),

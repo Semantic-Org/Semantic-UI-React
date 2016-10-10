@@ -17,13 +17,13 @@ describe('DropdownItem', () => {
   common.implementsLabelProp(DropdownItem)
   common.implementsImageProp(DropdownItem)
 
-  common.implementsShorthandProp(DropdownItem, {
+  common.implementsShorthandItemProp(DropdownItem, {
     propKey: 'flag',
     ShorthandComponent: Flag,
     mapValueToProps: val => ({ name: val }),
   })
 
-  common.implementsShorthandProp(DropdownItem, {
+  common.implementsShorthandItemProp(DropdownItem, {
     propKey: 'description',
     ShorthandComponent: 'span',
     mapValueToProps: val => ({

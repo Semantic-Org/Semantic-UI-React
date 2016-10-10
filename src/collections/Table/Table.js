@@ -84,7 +84,7 @@ function Table(props) {
     <ElementType {...rest} className={classes}>
       {headerRow && <TableHeader>{TableRow.create(headerRow, { cellAs: 'th' })}</TableHeader>}
       <TableBody>
-        {renderBodyRow && _.map(tableData, (data, index) => TableRow.create(renderBodyRow(data, index)))}
+        {renderBodyRow && TableRow.create(_.map(tableData, (data, index) => renderBodyRow(data, index)))}
       </TableBody>
       {footerRow && <TableFooter>{TableRow.create(footerRow)}</TableFooter>}
     </ElementType>

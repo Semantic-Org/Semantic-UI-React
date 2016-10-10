@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 import cx from 'classnames'
 import {
-  createShorthandFactory,
+  createShorthandItemFactory,
   getElementType,
   getUnhandledProps,
   META,
@@ -19,7 +19,7 @@ export default function PopupContent(props) {
   return <ElementType {...rest} className={classes}>{children}</ElementType>
 }
 
-PopupContent.create = createShorthandFactory(PopupContent, value => ({ children: value }))
+PopupContent.create = createShorthandItemFactory(PopupContent, value => ({ children: value }))
 
 PopupContent.propTypes = {
   /** The content of the Popup */

@@ -3,7 +3,7 @@ import React, { Component, PropTypes } from 'react'
 
 import {
   customPropTypes,
-  createShorthandFactory,
+  createShorthandItemFactory,
   getElementType,
   getUnhandledProps,
   makeDebugger,
@@ -289,6 +289,6 @@ class Button extends Component {
   }
 }
 
-Button.create = createShorthandFactory(Button, value => ({ content: value }))
+Button.create = createShorthandItemFactory(Button, value => ({ content: value }))
 
 export default Button

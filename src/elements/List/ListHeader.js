@@ -2,7 +2,7 @@ import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
 import {
-  createShorthandFactory,
+  createShorthandItemFactory,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -38,6 +38,6 @@ ListHeader.propTypes = {
   content: customPropTypes.contentShorthand,
 }
 
-ListHeader.create = createShorthandFactory(ListHeader, content => ({ content }))
+ListHeader.create = createShorthandItemFactory(ListHeader, content => ({ content }))
 
 export default ListHeader

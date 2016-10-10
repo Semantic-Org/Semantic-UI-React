@@ -2,7 +2,7 @@ import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
 import {
-  createShorthandFactory,
+  createShorthandItemFactory,
   getUnhandledProps,
   META,
   SUI,
@@ -38,6 +38,6 @@ ListIcon.propTypes = {
   verticalAlign: PropTypes.oneOf(ListIcon._meta.props.verticalAlign),
 }
 
-ListIcon.create = createShorthandFactory(ListIcon, name => ({ name }))
+ListIcon.create = createShorthandItemFactory(ListIcon, name => ({ name }))
 
 export default ListIcon

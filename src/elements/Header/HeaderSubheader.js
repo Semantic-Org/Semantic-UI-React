@@ -2,7 +2,7 @@ import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
 import {
-  createShorthandFactory,
+  createShorthandItemFactory,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -38,6 +38,6 @@ HeaderSubheader.propTypes = {
   content: customPropTypes.contentShorthand,
 }
 
-HeaderSubheader.create = createShorthandFactory(HeaderSubheader, content => ({ content }))
+HeaderSubheader.create = createShorthandItemFactory(HeaderSubheader, content => ({ content }))
 
 export default HeaderSubheader

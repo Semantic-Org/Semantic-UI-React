@@ -26,7 +26,7 @@ describe('Header', () => {
   common.implementsIconProp(Header)
   common.implementsImageProp(Header)
   common.implementsTextAlignProp(Header)
-  common.implementsShorthandProp(Header, {
+  common.implementsShorthandItemProp(Header, {
     propKey: 'subheader',
     ShorthandComponent: HeaderSubheader,
     shorthandDefaultProps: { className: 'sub header' },

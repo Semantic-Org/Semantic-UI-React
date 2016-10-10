@@ -7,7 +7,7 @@ import FeedLike from 'src/views/Feed/FeedLike'
 describe('FeedMeta', () => {
   common.isConformant(FeedMeta)
   common.rendersChildren(FeedMeta)
-  common.implementsShorthandProp(FeedMeta, {
+  common.implementsShorthandItemProp(FeedMeta, {
     propKey: 'like',
     ShorthandComponent: FeedLike,
     mapValueToProps: val => ({ content: val }),

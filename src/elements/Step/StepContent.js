@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react'
 import cx from 'classnames'
 
 import {
-  createShorthand,
+  createShorthandItem,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -23,8 +23,8 @@ function StepContent(props) {
 
   return (
     <ElementType {...rest} className={classes}>
-      {createShorthand(StepTitle, val => ({ title: val }), title)}
-      {createShorthand(StepDescription, val => ({ description: val }), description)}
+      {createShorthandItem(StepTitle, val => ({ title: val }), title)}
+      {createShorthandItem(StepDescription, val => ({ description: val }), description)}
     </ElementType>
   )
 }

@@ -2,7 +2,7 @@ import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
 import {
-  createShorthand,
+  createShorthandItem,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -23,9 +23,9 @@ function FeedSummary(props) {
 
   return (
     <ElementType {...rest} className={classes}>
-      {createShorthand(FeedUser, val => ({ content: val }), user)}
+      {createShorthandItem(FeedUser, val => ({ content: val }), user)}
       {content}
-      {createShorthand(FeedDate, val => ({ content: val }), date)}
+      {createShorthandItem(FeedDate, val => ({ content: val }), date)}
     </ElementType>
   )
 }

@@ -4,7 +4,7 @@ import React, { PropTypes } from 'react'
 
 import {
   AutoControlledComponent as Component,
-  createShorthand,
+  createShorthandItem,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -160,9 +160,8 @@ class Menu extends Component {
     const { activeIndex } = this.state
 
     return _.map(items, (item, index) => {
-      return createShorthand(MenuItem, val => ({ content: val, name: val }), item, {
+      return createShorthandItem(MenuItem, val => ({ content: val, name: val }), item, {
         active: activeIndex === index,
-        childKey: ({ content, name }) => [content, name].join('-'),
         index,
         onClick: this.handleItemClick,
       })

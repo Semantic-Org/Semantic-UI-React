@@ -2,7 +2,7 @@ import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
 import {
-  createShorthand,
+  createShorthandItem,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -22,7 +22,7 @@ function FeedMeta(props) {
 
   return (
     <ElementType {...rest} className={classes}>
-      {createShorthand(FeedLike, val => ({ content: val }), like)}
+      {createShorthandItem(FeedLike, val => ({ content: val }), like)}
       {content}
     </ElementType>
   )

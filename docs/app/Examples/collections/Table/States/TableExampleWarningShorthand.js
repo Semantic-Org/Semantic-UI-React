@@ -1,6 +1,13 @@
 import React from 'react'
 import { Table } from 'semantic-ui-react'
 
+const tableData = [
+  { name: undefined, status: undefined, notes: undefined },
+  { name: 'Jimmy', status: 'Requires Action', notes: undefined },
+  { name: 'Jamie', status: undefined, notes: 'Hostile' },
+  { name: 'Jill', status: undefined, notes: undefined },
+]
+
 const headerRow = [
   'Name',
   'Status',
@@ -20,17 +27,13 @@ const renderBodyRow = ({ name, status, notes }) => ({
   ],
 })
 
-const tableData = [
-  { name: undefined, status: undefined, notes: undefined },
-  { name: 'Jimmy', status: 'Requires Action', notes: undefined },
-  { name: 'Jamie', status: undefined, notes: 'Hostile' },
-  { name: 'Jill', status: undefined, notes: undefined },
-]
-
-const TableExampleWarningShorthand = () => {
-  return (
-    <Table celled headerRow={headerRow} renderBodyRow={renderBodyRow} tableData={tableData} />
-  )
-}
+const TableExampleWarningShorthand = () => (
+  <Table
+    celled
+    headerRow={headerRow}
+    renderBodyRow={renderBodyRow}
+    tableData={tableData}
+  />
+)
 
 export default TableExampleWarningShorthand

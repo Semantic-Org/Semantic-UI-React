@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 import cx from 'classnames'
 import {
-  createShorthandFactory,
+  createShorthandItemFactory,
   getElementType,
   getUnhandledProps,
   META,
@@ -19,7 +19,7 @@ export default function PopupHeader(props) {
   return <ElementType {...rest} className={classes}>{children}</ElementType>
 }
 
-PopupHeader.create = createShorthandFactory(PopupHeader, value => ({ children: value }))
+PopupHeader.create = createShorthandItemFactory(PopupHeader, value => ({ children: value }))
 
 PopupHeader.propTypes = {
   /** The header of the Popup */

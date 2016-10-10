@@ -4,7 +4,7 @@ import path from 'path'
 import React, { createElement, isValidElement } from 'react'
 import ReactDOMServer from 'react-dom/server'
 
-import { createShorthand, META, numberToWord } from 'src/lib'
+import { createShorthandItem, META, numberToWord } from 'src/lib'
 import { consoleUtil, sandbox, syntheticEvent } from 'test/utils'
 import * as semanticUIReact from 'semantic-ui-react'
 
@@ -635,8 +635,8 @@ export const implementsWidthProp = (Component, options = {}) => {
  * @param {Object|function} [options.shorthandDefaultProps={}] Props required to render the shorthand component.
  * @param {Object} [options.alwaysPresent] Whether or not the shorthand exists by default
  */
-export const implementsShorthandProp = (Component, options = {}) => {
-  const { assertRequired } = commonTestHelpers('implementsShorthandProp', Component)
+export const implementsShorthandItemProp = (Component, options = {}) => {
+  const { assertRequired } = commonTestHelpers('implementsShorthandItemProp', Component)
 
   const {
     propKey,
@@ -658,7 +658,7 @@ export const implementsShorthandProp = (Component, options = {}) => {
       : _.get(ShorthandComponent, '_meta.name') || ShorthandComponent.displayName || ShorthandComponent.name
 
     const assertValidShorthand = (value) => {
-      const renderedShorthand = createShorthand(ShorthandComponent, mapValueToProps, value, shorthandDefaultProps)
+      const renderedShorthand = createShorthandItem(ShorthandComponent, mapValueToProps, value, shorthandDefaultProps)
       const element = createElement(Component, { ...requiredProps, [propKey]: value })
 
       shallow(element).should.contain(renderedShorthand)
@@ -727,7 +727,7 @@ export const implementsButtonProp = (Component, options = {}) => {
     shorthandDefaultProps: {},
     ...options,
   }
-  implementsShorthandProp(Component, opts)
+  implementsShorthandItemProp(Component, opts)
 }
 
 /**
@@ -742,7 +742,7 @@ export const implementsButtonProp = (Component, options = {}) => {
  * @param {Object|function} [options.shorthandDefaultProps={}] Props required to render the shorthand component.
  */
 export const implementsIconProp = (Component, options = {}) => {
-  implementsShorthandProp(Component, {
+  implementsShorthandItemProp(Component, {
     propKey: 'icon',
     ShorthandComponent: Icon,
     mapValueToProps: val => ({ name: val }),
@@ -764,7 +764,7 @@ export const implementsIconProp = (Component, options = {}) => {
  * @param {Object|function} [options.shorthandDefaultProps={}] Props required to render the shorthand component.
  */
 export const implementsHTMLInputProp = (Component, options = {}) => {
-  implementsShorthandProp(Component, {
+  implementsShorthandItemProp(Component, {
     propKey: 'input',
     ShorthandComponent: 'input',
     mapValueToProps: val => ({ type: val }),
@@ -808,7 +808,7 @@ export const implementsHTMLLabelProp = (Component, options = {}) => {
  * @param {Object|function} [options.shorthandDefaultProps={}] Props required to render the shorthand component.
  */
 export const implementsLabelProp = (Component, options = {}) => {
-  implementsShorthandProp(Component, {
+  implementsShorthandItemProp(Component, {
     propKey: 'label',
     ShorthandComponent: Label,
     mapValueToProps: val => ({ content: val }),
@@ -830,7 +830,7 @@ export const implementsLabelProp = (Component, options = {}) => {
  * @param {Object|function} [options.shorthandDefaultProps={}] Props required to render the shorthand component.
  */
 export const implementsImageProp = (Component, options = {}) => {
-  implementsShorthandProp(Component, {
+  implementsShorthandItemProp(Component, {
     propKey: 'image',
     ShorthandComponent: Image,
     mapValueToProps: val => ({ src: val }),
