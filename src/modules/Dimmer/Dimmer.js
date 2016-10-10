@@ -1,8 +1,8 @@
 import cx from 'classnames'
-import React, { PropTypes } from 'react'
+import React, { Component, PropTypes } from 'react'
 
 import {
-  AutoControlledComponent as Component,
+  customPropTypes,
   getElementType,
   getUnhandledProps,
   META,
@@ -16,22 +16,19 @@ const _meta = {
 
 class Dimmer extends Component {
   static propTypes = {
+    /** An element type to render as (string or function). */
+    as: customPropTypes.as,
+
     /** An active dimmer will dim its parent container. */
     active: PropTypes.bool,
 
     /** A dimmable element can blur its contents. */
     blurring: PropTypes.bool,
 
-    /** An element type to render as (string or function). */
-    as: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.func,
-    ]),
-
-    /** Primary content of the Dimmer. */
+    /** Primary content. */
     children: PropTypes.node,
 
-    /** Additional className. */
+    /** Additional classes. */
     className: PropTypes.string,
 
     /** A disabled dimmer cannot be activated. */
@@ -41,31 +38,27 @@ class Dimmer extends Component {
     inverted: PropTypes.bool,
   }
 
-  static defaultProps = {
-    active: false,
-  }
-
   static _meta = _meta
 
-  static autoControlledProps = [
-    'active',
-  ]
-
   render() {
-    const { blurring, className, children, inverted } = this.props
-    const { active } = this.state
+    const {
+      active,
+      blurring,
+      children,
+      className,
+      inverted
+    } = this.props
 
     const classes = cx(
       'ui',
-      className,
       useKeyOnly(active, 'active'),
       useKeyOnly(blurring, 'blurring'),
       useKeyOnly(inverted, 'inverted'),
-      'dimmer'
+      'dimmer',
+      className,
     )
-
-    const rest = getUnhandledProps(Rating, this.props)
-    const ElementType = getElementType(Rating, this.props)
+    const ElementType = getElementType(Dimmer, this.props)
+    const rest = getUnhandledProps(Dimmer, this.props)
 
     return <ElementType {...rest} className={classes}>{children}</ElementType>
   }
