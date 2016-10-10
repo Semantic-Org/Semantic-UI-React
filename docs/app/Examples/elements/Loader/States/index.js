@@ -18,7 +18,7 @@ const LoaderStatesExamples = () => (
       examplePath='elements/Loader/States/LoaderExampleActive'
     >
       <Message info>
-        An active dimmer may not be clearly visible without using a "ui dimmer"
+        An active loader may not be clearly visible without using a <code>Dimmer</code>.
       </Message>
     </ComponentExample>
 

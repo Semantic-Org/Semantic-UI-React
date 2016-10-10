@@ -1,5 +1,5 @@
-import React, { PropTypes } from 'react'
 import cx from 'classnames'
+import React, { PropTypes } from 'react'
 
 import {
   customPropTypes,
@@ -12,23 +12,34 @@ import {
 } from '../../lib'
 
 function Loader(props) {
-  const { children, className, active, disabled, indeterminate, inline, inverted, size, text } = props
+  const {
+    active,
+    children,
+    className,
+    content,
+    disabled,
+    indeterminate,
+    inline,
+    inverted,
+    size,
+  } = props
+
   const classes = cx(
     'ui',
+    size,
     useKeyOnly(active, 'active'),
     useKeyOnly(disabled, 'disabled'),
     useKeyOnly(indeterminate, 'indeterminate'),
-    useKeyOrValueAndKey(inline, 'inline'),
     useKeyOnly(inverted, 'inverted'),
-    useKeyOnly(text, 'text') || useKeyOnly(children, 'text'),
-    size,
-    className,
+    useKeyOnly(children || content, 'text'),
+    useKeyOrValueAndKey(inline, 'inline'),
     'loader',
+    className,
   )
   const rest = getUnhandledProps(Loader, props)
   const ElementType = getElementType(Loader, props)
 
-  return <ElementType {...rest} className={classes}>{children || text}</ElementType>
+  return <ElementType {...rest} className={classes}>{children || content}</ElementType>
 }
 
 Loader._meta = {
@@ -47,11 +58,14 @@ Loader.propTypes = {
   /** A loader can be active or visible. */
   active: PropTypes.bool,
 
+  /** Primary content. */
+  children: PropTypes.node,
+
   /** Additional classes. */
   className: PropTypes.string,
 
-  /** Primary content. */
-  children: PropTypes.node,
+  /** Shorthand for primary content. */
+  content: customPropTypes.contentShorthand,
 
   /** A loader can be disabled or hidden. */
   disabled: PropTypes.bool,
@@ -59,20 +73,17 @@ Loader.propTypes = {
   /** A loader can show it's unsure of how long a task will take. */
   indeterminate: PropTypes.bool,
 
-  /** Loaders can have their colors inverted. */
-  inverted: PropTypes.bool,
-
   /** Loaders can appear inline with content. */
   inline: PropTypes.oneOfType([
     PropTypes.bool,
     PropTypes.oneOf(Loader._meta.props.inline),
   ]),
 
+  /** Loaders can have their colors inverted. */
+  inverted: PropTypes.bool,
+
   /** Loaders can have different sizes. */
   size: PropTypes.oneOf(Loader._meta.props.size),
-
-  /** Shorthand for primary content. */
-  text: customPropTypes.contentShorthand,
 }
 
 export default Loader

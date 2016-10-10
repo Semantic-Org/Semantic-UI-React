@@ -16,11 +16,7 @@ const LoaderVariationsExamples = () => (
       title='Inline Center'
       description='Loaders can appear inline centered with content.'
       examplePath='elements/Loader/Variations/LoaderExampleInlineCentered'
-    >
-      <Message>
-        An active dimmer may not be clearly visible without using a "ui dimmer".
-      </Message>
-    </ComponentExample>
+    />
 
     <ComponentExample
       title='Size'
@@ -39,8 +35,8 @@ const LoaderVariationsExamples = () => (
       description='Loaders can have their colors inverted.'
       examplePath='elements/Loader/Variations/LoaderExampleSizesInverted'
     >
-      <Message>
-        Loaders will automatically be inverted inside "inverted dimmer".
+      <Message info>
+        Loaders will automatically be inverted inside <code>inverted Dimmer</code>.
       </Message>
     </ComponentExample>
   </ExampleSection>
