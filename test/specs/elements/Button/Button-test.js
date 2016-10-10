@@ -11,6 +11,7 @@ describe('Button', () => {
   common.isConformant(Button)
   common.hasUIClassName(Button)
   common.hasSubComponents(Button, [ButtonContent, ButtonGroup, ButtonOr])
+  common.implementsCreateMethod(Button)
   common.implementsIconProp(Button)
   common.implementsLabelProp(Button, {
     shorthandDefaultProps: {

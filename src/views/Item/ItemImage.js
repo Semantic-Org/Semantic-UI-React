@@ -8,7 +8,7 @@ import Image from '../../elements/Image'
  * An item can contain an image
  **/
 function ItemImage(props) {
-  return <Image {...props} ui={false} />
+  return <Image {...props} ui={false} wrapped />
 }
 
 ItemImage._meta = {

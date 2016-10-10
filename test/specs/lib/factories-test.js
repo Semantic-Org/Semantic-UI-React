@@ -4,6 +4,7 @@ import React, { isValidElement } from 'react'
 import { sandbox } from 'test/utils'
 import {
   createShorthand,
+  createShorthandFactory,
 } from 'src/lib'
 
 // ----------------------------------------
@@ -109,9 +110,53 @@ const itOverridesDefaultPropsWithFalseyProps = (propsSource, shorthandConfig) =>
 // ----------------------------------------
 
 describe('factories', () => {
+  describe('createShorthandFactory', () => {
+    it('is a function', () => {
+      createShorthandFactory.should.be.a('function')
+    })
+    it('does not throw if passed a function Component', () => {
+      const goodUsage = () => createShorthandFactory(() => <div />, () => ({}))
+
+      expect(goodUsage).not.to.throw()
+    })
+    it('does not throw if passed a string Component', () => {
+      const goodUsage = () => createShorthandFactory('div', () => ({}))
+
+      expect(goodUsage).not.to.throw()
+    })
+    it('throw if passed Component that is not a string nor function', () => {
+      const badComponents = [undefined, null, true, false, [], {}, 123]
+
+      _.each(badComponents, badComponent => {
+        const badUsage = () => createShorthandFactory(badComponent, () => ({}))
+
+        expect(badUsage).to.throw()
+      })
+    })
+  })
+
   describe('createShorthand', () => {
     it('is a function', () => {
       createShorthand.should.be.a('function')
+    })
+    it('does not throw if passed a function Component', () => {
+      const goodUsage = () => createShorthand(() => <div />, () => ({}))
+
+      expect(goodUsage).not.to.throw()
+    })
+    it('does not throw if passed a string Component', () => {
+      const goodUsage = () => createShorthand('div', () => ({}))
+
+      expect(goodUsage).not.to.throw()
+    })
+    it('throw if passed Component that is not a string nor function', () => {
+      const badComponents = [undefined, null, true, false, [], {}, 123]
+
+      _.each(badComponents, badComponent => {
+        const badUsage = () => createShorthand(badComponent, () => ({}))
+
+        expect(badUsage).to.throw()
+      })
     })
 
     describe('defaultProps', () => {

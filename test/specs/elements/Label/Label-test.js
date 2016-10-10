@@ -28,6 +28,7 @@ describe('Label', () => {
   common.propValueOnlyToClassName(Label, 'color')
   common.propValueOnlyToClassName(Label, 'size')
 
+  common.implementsCreateMethod(Label)
   common.implementsIconProp(Label)
   common.implementsImageProp(Label)
   common.implementsShorthandProp(Label, {
@@ -44,8 +45,8 @@ describe('Label', () => {
   describe('content', () => {
     it('has no content by default', () => {
       shallow(<Label />)
-      .text()
-      .should.be.empty()
+        .text()
+        .should.be.empty()
     })
 
     it('adds the value as children', () => {

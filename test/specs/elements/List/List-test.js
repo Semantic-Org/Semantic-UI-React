@@ -1,3 +1,5 @@
+import React from 'react'
+
 import * as common from 'test/specs/commonTests'
 import List from 'src/elements/List/List'
 import ListContent from 'src/elements/List/ListContent'
@@ -27,4 +29,20 @@ describe('List', () => {
   common.propKeyOrValueAndKeyToClassName(List, 'relaxed')
   common.propValueOnlyToClassName(List, 'size')
   common.implementsVerticalAlignProp(List)
+
+  describe('shorthand', () => {
+    const items = ['Name', 'Status', 'Notes']
+
+    it('renders empty tr with no shorthand', () => {
+      const wrapper = shallow(<List />)
+
+      wrapper.find('ListItem').should.have.lengthOf(0)
+    })
+
+    it('renders the items', () => {
+      const wrapper = shallow(<List items={items} />)
+
+      wrapper.find('ListItem').should.have.lengthOf(items.length)
+    })
+  })
 })

@@ -205,14 +205,14 @@ class Portal extends Component {
       e.stopPropagation()
       this.close(e)
     } else if (!open && openOnTriggerClick) {
-      // Prevents closeOnDocumentClick from closing the portal when
-      // openOnTriggerFocus is set. Focus shifts on mousedown so the portal opens
-      // before the click finishes so it may actually wind up on the document.
-      e.nativeEvent.stopImmediatePropagation()
-
       e.stopPropagation()
       this.open(e)
     }
+
+    // Prevents closeOnDocumentClick from closing the portal when
+    // openOnTriggerFocus is set. Focus shifts on mousedown so the portal opens
+    // before the click finishes so it may actually wind up on the document.
+    e.nativeEvent.stopImmediatePropagation()
   }
 
   handleTriggerFocus = (e) => {

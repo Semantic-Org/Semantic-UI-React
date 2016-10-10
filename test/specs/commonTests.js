@@ -1,7 +1,7 @@
 import faker from 'faker'
 import _ from 'lodash'
 import path from 'path'
-import React, { createElement } from 'react'
+import React, { createElement, isValidElement } from 'react'
 import ReactDOMServer from 'react-dom/server'
 
 import { createShorthand, META, numberToWord } from 'src/lib'
@@ -520,6 +520,58 @@ const _classNamePropValueBeforePropName = (Component, propKey, options = {}) => 
     it(`adds "${propVal} ${className}" to className`, () => {
       shallow(createElement(Component, { ...requiredProps, [propKey]: propVal }))
         .should.have.className(`${propVal} ${className}`)
+    })
+  })
+}
+/**
+ * Assert a Component correctly implements a shorthand create method.
+ * @param {React.Component|Function} Component The component to test.
+ */
+export const implementsCreateMethod = (Component) => {
+  const name = Component._meta.name
+
+  describe('create shorthand method (common)', () => {
+    it('is a static method', () => {
+      Component.should.have.any.keys('create')
+      Component.create.should.be.a('function')
+    })
+    it(`creates a ${name} from a string`, () => {
+      isValidElement(Component.create('foo'))
+        .should.equal(true)
+    })
+    it(`creates a ${name} from a number`, () => {
+      isValidElement(Component.create(123))
+        .should.equal(true)
+    })
+    it(`creates a ${name} from a props object`, () => {
+      isValidElement(Component.create({ 'data-foo': 'bar' }))
+        .should.equal(true)
+    })
+    it(`creates a ${name} from an array`, () => {
+      // not all components support array shorthand, suppress warnings
+      consoleUtil.disableOnce()
+      isValidElement(Component.create(['foo', 123, { 'data-foo': 'bar' }]))
+        .should.equal(true)
+    })
+    it(`creates a ${name} from an element`, () => {
+      isValidElement(Component.create(<div />))
+        .should.equal(true)
+    })
+    it('returns null when passed null', () => {
+      expect(Component.create(null))
+        .to.equal(null)
+    })
+    it('returns null when passed undefined', () => {
+      expect(Component.create(undefined))
+        .to.equal(null)
+    })
+    it('returns null when passed true', () => {
+      expect(Component.create(true))
+        .to.equal(null)
+    })
+    it('returns null when passed false', () => {
+      expect(Component.create(false))
+        .to.equal(null)
     })
   })
 }

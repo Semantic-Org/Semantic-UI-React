@@ -2,18 +2,18 @@ import React, { Component } from 'react'
 import { Button, Confirm } from 'semantic-ui-react'
 
 class ConfirmExampleHeader extends Component {
-  state = { active: false }
+  state = { open: false }
 
-  show = () => this.setState({ active: true })
-  handleConfirm = () => this.setState({ active: false })
-  handleCancel = () => this.setState({ active: false })
+  show = () => this.setState({ open: true })
+  handleConfirm = () => this.setState({ open: false })
+  handleCancel = () => this.setState({ open: false })
 
   render() {
     return (
       <div>
         <Button onClick={this.show}>Show</Button>
         <Confirm
-          active={this.state.active}
+          open={this.state.open}
           header='This is a custom header'
           onCancel={this.handleCancel}
           onConfirm={this.handleConfirm}

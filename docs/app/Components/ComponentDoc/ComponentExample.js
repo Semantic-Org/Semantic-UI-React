@@ -91,7 +91,7 @@ export default class ComponentExample extends Component {
   resetJSX = () => {
     const { sourceCode } = this.state
     const original = this.getOriginalSourceCode()
-    if (sourceCode !== original && confirm('Loose your changes?')) {
+    if (sourceCode !== original && confirm('Loose your changes?')) { // eslint-disable-line no-alert
       this.setState({ sourceCode: original })
       this.renderSourceCode()
     }

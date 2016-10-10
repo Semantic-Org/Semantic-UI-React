@@ -5,7 +5,7 @@ import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
 export default class AccordionTypesExamples extends Component {
   render() {
     return (
-      <ExampleSection title='Varations'>
+      <ExampleSection title='Variations'>
         <ComponentExample
           title='Fluid'
           description='An accordion can take up the width of its container'

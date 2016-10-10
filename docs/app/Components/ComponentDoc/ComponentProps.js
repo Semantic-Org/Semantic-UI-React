@@ -54,7 +54,9 @@ export default class ComponentProps extends Component {
         value,
         required: config.required,
         defaultValue: config.defaultValue,
-        description: _.get(config, 'docBlock.description'),
+        description: _.get(config, 'docBlock.description', '')
+          .split('\n')
+          .map((l) => ([l, <br key={l} />])),
       }
     }), 'name')
     return (

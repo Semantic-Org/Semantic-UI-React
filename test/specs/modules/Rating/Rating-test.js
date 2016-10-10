@@ -1,190 +1,199 @@
 import _ from 'lodash'
 import React from 'react'
 
-import Rating from 'src/modules/Rating/Rating'
 import * as common from 'test/specs/commonTests'
 import { sandbox } from 'test/utils'
+import Rating from 'src/modules/Rating/Rating'
 
 describe('Rating', () => {
   common.isConformant(Rating)
   common.hasUIClassName(Rating)
 
+  common.propKeyOnlyToClassName(Rating, 'disabled')
+
   common.propValueOnlyToClassName(Rating, 'size')
   common.propValueOnlyToClassName(Rating, 'icon')
-  common.propKeyOnlyToClassName(Rating, 'disabled')
 
   describe('clicking on icons', () => {
     it('makes icons active up to and including the clicked icon', () => {
       const wrapper = mount(<Rating maxRating={3} />)
-      const icons = wrapper.find('.icon')
+      const icons = wrapper.find('RatingIcon')
 
       icons.at(1).simulate('click')
 
-      icons.at(0).should.have.className('active')
-      icons.at(1).should.have.className('active')
-      icons.at(2).should.not.have.className('active')
+      icons.at(0).should.have.prop('active', true)
+      icons.at(1).should.have.prop('active', true)
+      icons.at(2).should.have.prop('active', false)
     })
 
-    it('removes the "selected" class', () => {
+    it('removes the "selected" prop', () => {
       const wrapper = mount(<Rating maxRating={3} />)
-      const icons = wrapper.find('.icon')
+      const icons = wrapper.find('RatingIcon')
 
-      icons
-        .last()
+      icons.last()
         .simulate('mouseEnter')
         .simulate('click')
 
-      icons.every('.icon.selected')
-        .should.equal(false, 'Some icon did not remove its "selected" class')
-
       wrapper.should.not.have.className('selected')
+
+      icons.findWhere((i) => i.prop('selected', true))
+        .should.have.length(0, 'Some RatingIcons did not remove its "selected" prop')
     })
   })
 
   describe('hovering on icons', () => {
     it('adds the "selected" className to the Rating', () => {
-      const wrapper = shallow(<Rating maxRating={3} />)
+      const wrapper = mount(<Rating maxRating={3} />)
 
-      wrapper
-        .find('.icon')
-        .first()
+      wrapper.find('RatingIcon').first()
         .simulate('mouseEnter')
 
       wrapper.should.have.className('selected')
     })
+
     it('selects icons up to and including the hovered icon', () => {
       const wrapper = mount(<Rating maxRating={3} />)
-      const icons = wrapper.find('.icon')
+      const icons = wrapper.find('RatingIcon')
 
       icons.at(1).simulate('mouseEnter')
 
-      icons.at(0).should.have.className('selected')
-      icons.at(1).should.have.className('selected')
-      icons.at(2).should.not.have.className('selected')
+      icons.at(0).should.have.prop('selected', true)
+      icons.at(1).should.have.prop('selected', true)
+      icons.at(2).should.have.prop('selected', false)
     })
+
     it('unselects icons on mouse leave', () => {
       const wrapper = mount(<Rating maxRating={3} />)
-      const icons = wrapper.find('.icon')
+      const icons = wrapper.find('RatingIcon')
 
       icons.last().simulate('mouseEnter')
       wrapper.simulate('mouseLeave')
 
-      icons.every('.icon.selected')
-        .should.equal(false, 'Some icon did not remove its "selected" class')
+      icons.findWhere(i => i.prop('selected', true))
+        .should.have.length(0, 'Some RatingIcons did not remove its "selected" prop')
     })
   })
 
   describe('clearable', () => {
     it('prevents clearing by default with multiple icons', () => {
       const icons = mount(<Rating defaultRating={5} maxRating={5} />)
-        .find('.icon')
+        .find('RatingIcon')
 
-      icons.find('.active').last().simulate('click')
+      icons.last().simulate('click')
 
-      icons.every('.icon.active')
-        .should.equal(true, 'Some icon did not retain its "active" class')
+      icons.findWhere((i) => i.prop('active', true))
+        .should.have.length(5, 'Some RatingIcons did not retain its "active" prop')
     })
+
     it('allows toggling when set to "auto" with a single icon', () => {
       const icon = mount(<Rating maxRating={1} clearable='auto' />)
-        .find('.icon')
+        .find('RatingIcon')
         .at(0)
 
       icon
         .simulate('click')
-        .should.have.className('active')
+        .should.have.prop('active', true)
 
       icon
         .simulate('click')
-        .should.not.have.className('active')
+        .should.have.prop('active', false)
     })
+
     it('allows clearing when true with a single icon', () => {
       mount(<Rating defaultRating={1} maxRating={1} clearable />)
-        .find('.icon')
+        .find('RatingIcon')
         .at(0)
         .simulate('click')
-        .should.not.have.className('active')
+        .should.have.prop('active', false)
     })
+
     it('allows clearing when true with multiple icons', () => {
       const icons = mount(<Rating defaultRating={4} maxRating={5} clearable />)
-        .find('.icon')
+        .find('RatingIcon')
 
-      icons.find('.active').last().simulate('click')
+      icons.at(3).simulate('click')
 
-      icons.every('.icon.active')
-        .should.equal(false, 'Some icon did not remove its "active" class')
+      icons.findWhere((i) => i.prop('active', true))
+        .should.have.length(0, 'Some RatingIcons did not remove its "active" prop')
     })
+
     it('prevents clearing when false with a single icon', () => {
       mount(<Rating defaultRating={1} maxRating={1} clearable={false} />)
-        .find('.icon')
+        .find('RatingIcon')
         .at(0)
         .simulate('click')
-        .should.have.className('active')
+        .should.have.prop('active', true)
     })
+
     it('prevents clearing when false with multiple icons', () => {
       const icons = mount(<Rating defaultRating={5} maxRating={5} clearable={false} />)
-        .find('.icon')
+        .find('RatingIcon')
 
-      icons.find('.active').last().simulate('click')
+      icons.last().simulate('click')
 
-      icons.every('.icon.active')
-        .should.equal(true, 'Some icon did not retain its "active" class')
+      icons.findWhere((i) => i.prop('active', true))
+        .should.have.length(5, 'Some RatingIcons did not retain its "active" prop')
     })
   })
 
   describe('disabled', () => {
     it('prevents the rating from being toggled', () => {
       mount(<Rating rating={1} maxRating={1} clearable='auto' disabled />)
-        .find('.icon')
+        .find('RatingIcon')
         .at(0)
         .simulate('click')
-        .should.have.className('active')
+        .should.have.prop('active', true)
 
       mount(<Rating rating={0} maxRating={1} clearable='auto' disabled />)
-        .find('.icon')
+        .find('RatingIcon')
         .at(0)
         .simulate('click')
-        .should.not.have.className('active')
+        .should.have.prop('active', false)
     })
+
     it('prevents the rating from being cleared', () => {
-      const wrapper = mount(<Rating rating={3} maxRating={3} clearable disabled />)
-      const icons = wrapper.find('.icon')
+      const wrapper = mount(<Rating rating={3} maxRating={3} disabled />)
+      const icons = wrapper.find('RatingIcon')
 
-      icons.find('.active').last().simulate('click')
+      icons.last().simulate('click')
 
-      icons.every('.icon.active')
-        .should.equal(true, 'Some icon lost its "active" class')
+      icons.findWhere((i) => i.prop('active', true))
+        .should.have.length(3, 'Some RatingIcons lost its "active" prop')
     })
+
     it('prevents icons from becoming selected on mouse enter', () => {
       const wrapper = mount(<Rating maxRating={3} disabled />)
-      const icons = wrapper.find('.icon')
+      const icons = wrapper.find('RatingIcon')
 
       icons.last().simulate('mouseEnter')
 
-      icons.every('.icon.selected')
-        .should.equal(false, 'Some icon became "selected"')
+      icons.findWhere((i) => i.prop('selected', true))
+        .should.have.length(0, 'Some RatingIcons became "selected"')
     })
+
     it('prevents icons from becoming unselected on mouse leave', () => {
       const wrapper = mount(<Rating maxRating={3} />)
-      const icons = wrapper.find('.icon')
+      const icons = wrapper.find('RatingIcon')
 
       icons.last().simulate('mouseEnter')
-      icons.every('.icon.selected')
-        .should.equal(true, 'Not every icon was selected on mouseEnter')
+      icons.findWhere((i) => i.prop('selected', true))
+        .should.have.length(3, 'Not every RatingIcon was selected on mouseEnter')
 
       wrapper.setProps({ disabled: true })
       wrapper.simulate('mouseLeave')
 
-      icons.every('.icon.selected')
-        .should.equal(true, 'Some icon lost its "selected" class')
+      icons.findWhere((i) => i.prop('selected', true))
+        .should.have.length(3, 'Some RatingIcons lost its "selected" prop')
     })
+
     it('prevents icons from becoming active on click', () => {
       const wrapper = mount(<Rating maxRating={3} disabled />)
-      const icons = wrapper.find('.icon')
+      const icons = wrapper.find('RatingIcon')
 
       icons.last().simulate('click')
 
-      icons.every('.icon.active')
-        .should.equal(false, 'Some icon became "active"')
+      icons.findWhere((i) => i.prop('active', true))
+        .should.have.length(0, 'Some RatingIcons became "active"')
     })
   })
 
@@ -193,7 +202,7 @@ describe('Rating', () => {
       _.times(10, (i) => {
         const maxRating = i + 1
         shallow(<Rating maxRating={maxRating} />)
-          .should.have.exactly(maxRating).descendants('.icon')
+          .should.have.exactly(maxRating).descendants('RatingIcon')
       })
     })
   })
@@ -203,8 +212,8 @@ describe('Rating', () => {
       const spy = sandbox.spy()
       const event = { fake: 'event data' }
 
-      shallow(<Rating maxRating={3} onRate={spy} />)
-        .find('.icon')
+      mount(<Rating maxRating={3} onRate={spy} />)
+        .find('RatingIcon')
         .last()
         .simulate('click', event)
 
@@ -215,18 +224,21 @@ describe('Rating', () => {
 
   describe('rating', () => {
     it('controls how many icons are active', () => {
-      const wrapper = shallow(<Rating rating={0} maxRating={10} />)
+      const wrapper = mount(<Rating rating={0} maxRating={10} />)
+      const icons = wrapper.find('RatingIcon')
 
       // rating 0
-      wrapper.should.not.have.descendants('.icon.active')
+
+      icons.findWhere((i) => i.prop('active', true))
+        .should.have.length(0, 'Some RatingIcons have "active" prop')
 
       // rating 1 - 10
       _.times(10, (i) => {
         const rating = i + 1
 
-        wrapper
-          .setProps({ rating })
-          .should.have.exactly(rating).descendants('.icon.active')
+        wrapper.setProps({ rating })
+        icons.findWhere((icon) => icon.prop('active', true))
+          .should.have.length(rating, 'Some RatingIcons did not have "active" prop')
       })
     })
   })

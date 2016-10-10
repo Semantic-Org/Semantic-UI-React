@@ -1,7 +1,7 @@
 import React from 'react'
 import { Rating } from 'semantic-ui-react'
 
-const RatingSizeExample = () => (
+const RatingExampleSize = () => (
   <div>
     <Rating maxRating={5} defaultRating={3} icon='star' size='mini' />
     <br />
@@ -32,4 +32,4 @@ const RatingSizeExample = () => (
     <br />
   </div>
 )
-export default RatingSizeExample
+export default RatingExampleSize

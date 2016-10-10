@@ -1,8 +1,8 @@
 import React from 'react'
 import { Rating } from 'semantic-ui-react'
 
-const RatingExample = () => (
+const RatingExampleRating = () => (
   <Rating />
 )
 
-export default RatingExample
+export default RatingExampleRating

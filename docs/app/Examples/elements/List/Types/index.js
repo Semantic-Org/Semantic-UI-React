@@ -11,7 +11,20 @@ const ListTypes = () => (
       description='A list groups related content'
       examplePath='elements/List/Types/ListExampleBasic'
     />
-    <ComponentExample examplePath='elements/List/Types/ListExampleIcon' />
+    <ComponentExample
+      description='You can also pass an array of items as props'
+      examplePath='elements/List/Types/ListExampleBasicShorthand'
+    />
+
+    <ComponentExample
+      description='A list item can contain an icon'
+      examplePath='elements/List/Types/ListExampleIcon'
+    />
+    <ComponentExample
+      description='You can also define a list item icon via props'
+      examplePath='elements/List/Types/ListExampleIconShorthand'
+    />
+
     <ComponentExample examplePath='elements/List/Types/ListExampleDivided' />
     <ComponentExample examplePath='elements/List/Types/ListExampleTree' />
 
@@ -20,7 +33,10 @@ const ListTypes = () => (
       description='A list can mark items with a bullet'
       examplePath='elements/List/Types/ListExampleBulleted'
     />
-    <ComponentExample examplePath='elements/List/Types/ListExampleBulletedSimple' />
+    <ComponentExample
+      description='You can also use an `ul` and `li` to render a bulleted list'
+      examplePath='elements/List/Types/ListExampleBulletedSimple'
+    />
     <ComponentExample examplePath='elements/List/Types/ListExampleBulletedHorizontal' />
 
     <ComponentExample
@@ -28,7 +44,10 @@ const ListTypes = () => (
       description='A list can be ordered numerically'
       examplePath='elements/List/Types/ListExampleOrdered'
     />
-    <ComponentExample examplePath='elements/List/Types/ListExampleOrderedSimple' />
+    <ComponentExample
+      description='You can also use an `ol` and `li` to render an ordered list'
+      examplePath='elements/List/Types/ListExampleOrderedSimple'
+    />
     <ComponentExample examplePath='elements/List/Types/ListExampleOrderedValue'>
       <Message info>
         You can also manually specify a value for an ordered list using <code>value</code>.

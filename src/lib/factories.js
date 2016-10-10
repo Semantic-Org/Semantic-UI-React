@@ -34,6 +34,9 @@ const mergePropsAndClassName = (defaultProps, props) => {
  * @returns {function|null}
  */
 export function createShorthand(Component, mapValueToProps, val, defaultProps = {}) {
+  if (typeof Component !== 'function' && typeof Component !== 'string') {
+    throw new Error('createShorthandFactory() Component must be a string or function.')
+  }
   // short circuit for disabling shorthand
   if (val === null) return null
 
@@ -70,6 +73,9 @@ export function createShorthand(Component, mapValueToProps, val, defaultProps = 
 }
 
 export function createShorthandFactory(Component, mapValueToProps) {
+  if (typeof Component !== 'function' && typeof Component !== 'string') {
+    throw new Error('createShorthandFactory() Component must be a string or function.')
+  }
   return _.partial(createShorthand, Component, mapValueToProps)
 }
 

@@ -112,6 +112,10 @@ export { default as ModalContent } from './modules/Modal/ModalContent'
 export { default as ModalDescription } from './modules/Modal/ModalDescription'
 export { default as ModalHeader } from './modules/Modal/ModalHeader'
 
+export { default as Popup } from './modules/Popup'
+export { default as PopupContent } from './modules/Popup/PopupContent'
+export { default as PopupHeader } from './modules/Popup/PopupHeader'
+
 export { default as Progress } from './modules/Progress'
 
 export { default as Rating } from './modules/Rating'
@@ -128,6 +132,16 @@ export { default as CardDescription } from './views/Card/CardDescription'
 export { default as CardGroup } from './views/Card/CardGroup'
 export { default as CardHeader } from './views/Card/CardHeader'
 export { default as CardMeta } from './views/Card/CardMeta'
+
+export { default as Comment } from './views/Comment'
+export { default as CommentAction } from './views/Comment/CommentAction'
+export { default as CommentActions } from './views/Comment/CommentActions'
+export { default as CommentAuthor } from './views/Comment/CommentAuthor'
+export { default as CommentAvatar } from './views/Comment/CommentAvatar'
+export { default as CommentContent } from './views/Comment/CommentContent'
+export { default as CommentGroup } from './views/Comment/CommentGroup'
+export { default as CommentMetadata } from './views/Comment/CommentMetadata'
+export { default as CommentText } from './views/Comment/CommentText'
 
 export { default as Feed } from './views/Feed'
 export { default as FeedContent } from './views/Feed/FeedContent'

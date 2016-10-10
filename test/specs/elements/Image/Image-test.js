@@ -26,6 +26,7 @@ describe('Image Component', () => {
 
   common.propKeyOrValueAndKeyToClassName(Image, 'spaced')
 
+  common.implementsCreateMethod(Image)
   common.implementsLabelProp(Image)
   common.implementsVerticalAlignProp(Image, 'verticalAlign')
 
