@@ -88,7 +88,7 @@ class Modal extends Component {
   }
 
   handleMount = () => {
-    debug('handleOpen()')
+    debug('handleMount()')
     const { dimmer } = this.props
     const mountNode = this.getMountNode()
 
