@@ -3,7 +3,7 @@ import { Loader, Image, Segment } from 'semantic-ui-react'
 
 // TODO: Update <Dimmer> usage after its update to v1 API
 
-const Sizes = () => (
+const LoaderExampleSizes = () => (
   <div>
     <Segment>
       <div className='ui active dimmer'>
@@ -80,4 +80,4 @@ const Sizes = () => (
   </div>
 )
 
-export default Sizes
+export default LoaderExampleSizes

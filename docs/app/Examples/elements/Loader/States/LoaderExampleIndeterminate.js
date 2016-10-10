@@ -3,7 +3,7 @@ import { Loader, Image, Segment } from 'semantic-ui-react'
 
 // TODO: Update <Dimmer> usage after its update to v1 API
 
-const Indeterminate = () => (
+const LoaderExampleIndeterminate = () => (
   <div>
     <Segment>
       <div className='ui active dimmer'>
@@ -15,4 +15,4 @@ const Indeterminate = () => (
   </div>
 )
 
-export default Indeterminate
+export default LoaderExampleIndeterminate
