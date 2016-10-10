@@ -1,5 +1,5 @@
 import React from 'react'
-import { Image } from 'stardust'
+import { Image } from 'semantic-ui-react'
 
 const src = 'http://semantic-ui.com/images/wireframe/image-text.png'
 

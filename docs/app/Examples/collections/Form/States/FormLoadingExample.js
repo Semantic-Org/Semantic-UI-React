@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Form, Input } from 'stardust'
+import { Button, Form, Input } from 'semantic-ui-react'
 
 const FormLoadingExample = () => (
   <Form loading>

@@ -7,25 +7,21 @@ import {
   getUnhandledProps,
   META,
 } from '../../lib'
-import { createIcon } from '../../factories'
+import Icon from '../../elements/Icon'
 
 function DropdownHeader(props) {
-  const { className, children, content, icon } = props
+  const { children, className, content, icon } = props
   const classes = cx('header', className)
   const rest = getUnhandledProps(DropdownHeader, props)
   const ElementType = getElementType(DropdownHeader, props)
 
   if (children) {
-    return (
-      <ElementType className={classes} {...rest}>
-        {children}
-      </ElementType>
-    )
+    return <ElementType {...rest} className={classes}>{children}</ElementType>
   }
 
   return (
-    <ElementType className={classes} {...rest}>
-      {createIcon(icon)}
+    <ElementType {...rest} className={classes}>
+      {Icon.create(icon)}
       {content}
     </ElementType>
   )
@@ -41,24 +37,17 @@ DropdownHeader.propTypes = {
   /** An element type to render as (string or function) */
   as: customPropTypes.as,
 
-  /** Primary content of the header, same as content. */
-  children: customPropTypes.every([
-    customPropTypes.disallow(['content', 'icon']),
-    PropTypes.node,
-  ]),
+  /** Primary content. */
+  children: PropTypes.node,
 
-  /** Additional classes */
-  className: PropTypes.node,
+  /** Additional classes. */
+  className: PropTypes.string,
 
-  /** Primary content of the header, same as children. */
-  content: PropTypes.node,
+  /** Shorthand for primary content. */
+  content: customPropTypes.contentShorthand,
 
-  /** Add an icon by icon name or pass an <Icon /> */
-  icon: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.element,
-    PropTypes.object,
-  ]),
+  /** Shorthand for Icon. */
+  icon: customPropTypes.itemShorthand,
 }
 
 export default DropdownHeader

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Progress } from 'stardust'
+import { Progress } from 'semantic-ui-react'
 
 const ProgressLabelExample = () => (
   <Progress percent={55}>Label</Progress>

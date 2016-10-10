@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Image as ImageComponent, Item } from 'stardust'
+import { Button, Image as ImageComponent, Item } from 'semantic-ui-react'
 
 const { Content, Description, Extra, Group, Header, Image } = Item
 const paragraph = <ImageComponent src='http://semantic-ui.com/images/wireframe/short-paragraph.png' />

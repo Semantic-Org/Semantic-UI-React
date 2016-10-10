@@ -1,5 +1,5 @@
 import React from 'react'
-import { Form, Input } from 'stardust'
+import { Form, Input } from 'semantic-ui-react'
 
 const FormFieldInlineExample = () => (
   <Form>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Loader } from 'stardust'
+import { Loader } from 'semantic-ui-react'
 
 const Inline = () => <Loader active inline />
 

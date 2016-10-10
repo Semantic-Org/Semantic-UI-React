@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import { Button, Checkbox, Form, Input, Message, Radio, Select, TextArea } from 'stardust'
+import { Button, Checkbox, Form, Input, Message, Radio, Select, TextArea } from 'semantic-ui-react'
 
 const genders = [
   { text: 'Male', value: 'male' },

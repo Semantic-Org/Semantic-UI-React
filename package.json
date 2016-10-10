@@ -1,6 +1,6 @@
 {
-  "name": "stardust",
-  "version": "0.46.1",
+  "name": "semantic-ui-react",
+  "version": "0.55.1",
   "description": "The official Semantic-UI-React integration.",
   "main": "dist/commonjs/index.js",
   "files": [
@@ -9,19 +9,21 @@
   ],
   "scripts": {
     "docs": "gulp docs",
-    "build": "npm run build:commonjs && npm run build:docs",
-    "prebuild:commonjs": "rimraf dist/commonjs",
+    "build": "npm run build:commonjs && npm run build:umd && npm run build:docs",
+    "prebuild:commonjs": "rimraf dist/commonjs && npm run build:dll",
     "build:commonjs": "babel src -d dist/commonjs",
     "prebuild:docs": "npm run build:docs-toc",
+    "build:dll": "gulp dll",
     "build:docs": "gulp build:docs",
     "build:umd": "cross-env NODE_ENV=browser gulp umd",
     "build:docs-toc": "doctoc README.md ./.github/CONTRIBUTING.md --github --maxlevel 4",
-    "predeploy:docs": "cross-env NODE_ENV=production npm run build:docs",
+    "build:docs-cname": "echo react.semantic-ui.com > docs/build/CNAME",
+    "predeploy:docs": "cross-env NODE_ENV=production npm run build:docs && npm run build:docs-cname",
     "deploy:docs": "gh-pages -d docs/build -m 'deploy docs [ci skip]'",
     "lint": "eslint .",
     "lint:fix": "npm run lint -- --fix",
     "lint:watch": "watch 'npm run lint --silent' docs gulp src test",
-    "prepublish": "cross-env NODE_ENV=production npm run build:commonjs",
+    "prepublish": "cross-env NODE_ENV=production npm run build",
     "prerelease:major": "npm run lint && npm test",
     "release:major": "ta-script npm/release.sh major",
     "prerelease:minor": "npm run lint && npm test",
@@ -30,26 +32,24 @@
     "release:patch": "ta-script npm/release.sh patch",
     "start": "npm run docs",
     "start:local-modules": "npm run docs -- --local-modules",
-    "pretest": "gulp build:docs:dll",
+    "pretest": "npm run build:dll",
     "test": "cross-env NODE_ENV=test karma start",
     "test:watch": "npm run test --silent -- --watch"
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://github.com/TechnologyAdvice/stardust.git"
+    "url": "git+ssh://github.com/Semantic-Org/Semantic-UI-React.git"
   },
   "author": "Technology Advice <devteam@technologyadvice.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/TechnologyAdvice/stardust/issues"
+    "url": "https://github.com/Semantic-Org/Semantic-UI-React/issues"
   },
-  "homepage": "https://github.com/TechnologyAdvice/stardust#readme",
+  "homepage": "https://github.com/Semantic-Org/Semantic-UI-React#readme",
   "dependencies": {
     "classnames": "^2.1.5",
     "debug": "^2.2.0",
-    "lodash": "^4.6.1",
-    "react-portal": "^2.2.1",
-    "semantic-ui-css": "^2.2.2"
+    "lodash": "^4.6.1"
   },
   "devDependencies": {
     "babel-cli": "^6.5.1",
@@ -63,10 +63,12 @@
     "babel-preset-react": "^6.5.0",
     "babel-preset-stage-1": "^6.5.0",
     "babel-register": "^6.9.0",
+    "babel-standalone": "^6.15.0",
     "brace": "^0.8.0",
     "chai": "^3.3.0",
     "chai-enzyme": "^0.5.0",
     "connect-history-api-fallback": "^1.2.0",
+    "copy-to-clipboard": "^3.0.5",
     "cross-env": "^2.0.0",
     "css-loader": "^0.23.1",
     "del": "^2.2.2",
@@ -88,6 +90,7 @@
     "history": "^2.1.2",
     "html-webpack-plugin": "^2.17.0",
     "imports-loader": "^0.6.4",
+    "js-beautify": "^1.6.4",
     "json-loader": "^0.5.3",
     "karma": "^1.3.0",
     "karma-cli": "^1.0.0",

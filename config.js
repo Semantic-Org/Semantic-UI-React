@@ -8,7 +8,7 @@ const __DEV__ = env === 'development'
 const __STAGING__ = env === 'staging'
 const __TEST__ = env === 'test'
 const __PROD__ = env === 'production'
-const __BASE__ = __PROD__ ? '/stardust' : ''
+const __BASE__ = '/'
 
 let config = {
   env,
@@ -63,10 +63,16 @@ config = Object.assign({}, config, {
   compiler_lint: argv.lint !== false,
   compiler_quiet: false,
   compiler_output_path: paths.base(config.dir_docs_dist),
-  compiler_public_path: __BASE__ || '/',
+  compiler_public_path: __BASE__,
   compiler_vendor: [
+    'babel-standalone',
     'brace',
+    'brace/ext/language_tools',
+    'brace/mode/jsx',
+    'brace/mode/html',
+    'brace/theme/tomorrow',
     'classnames',
+    'copy-to-clipboard',
     'faker',
     'react',
     'react-ace',

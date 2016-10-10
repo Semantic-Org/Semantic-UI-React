@@ -1,7 +1,0 @@
-export { default as Accordion } from './Accordion/Accordion'
-export { default as Checkbox } from './Checkbox/Checkbox'
-export { default as Dropdown } from './Dropdown/Dropdown'
-export { default as Modal } from './Modal/Modal'
-export { default as Progress } from './Progress/Progress'
-export { default as Rating } from './Rating/Rating'
-export { default as Search } from './Search/Search'

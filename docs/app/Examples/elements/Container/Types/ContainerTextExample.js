@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 
 import React, { Component } from 'react'
-import { Container, Header } from 'stardust'
+import { Container, Header } from 'semantic-ui-react'
 
 export default class ContainerTextExample extends Component {
   render() {

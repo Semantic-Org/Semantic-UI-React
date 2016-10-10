@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Checkbox, Form } from 'stardust'
+import { Button, Checkbox, Form } from 'semantic-ui-react'
 
 const FormFormExample = () => (
   <Form>

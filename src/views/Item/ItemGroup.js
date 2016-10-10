@@ -14,9 +14,9 @@ import Item from './Item'
 
 /**
  * A group of items
- * */
+ **/
 function ItemGroup(props) {
-  const { className, children, divided, items, link, relaxed } = props
+  const { children, className, divided, items, link, relaxed } = props
   const classes = cx(
     'ui',
     className,
@@ -25,11 +25,10 @@ function ItemGroup(props) {
     useKeyOrValueAndKey(relaxed, 'relaxed'),
     'items'
   )
-
   const rest = getUnhandledProps(ItemGroup, props)
   const ElementType = getElementType(ItemGroup, props)
 
-  if (!items) {
+  if (children) {
     return <ElementType {...rest} className={classes}>{children}</ElementType>
   }
 
@@ -56,27 +55,17 @@ ItemGroup.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** Primary content of the ItemGroup. */
+  /** Primary content. */
   children: PropTypes.node,
 
-  /** Classes that will be added to the ItemGroup className. */
+  /** Additional classes. */
   className: PropTypes.string,
 
   /** Items can be divided to better distinguish between grouped content. */
   divided: PropTypes.bool,
 
-  /** Array of props for Item. */
-  items: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.arrayOf(PropTypes.shape({
-      childKey: PropTypes.oneOfType([
-        PropTypes.number,
-        PropTypes.string,
-      ]),
-      // this object is spread on the Item
-      // allow it to validate props instead
-    })),
-  ]),
+  /** Shorthand array of props for Item. */
+  items: customPropTypes.collectionShorthand,
 
   /** An item can be formatted so that the entire contents link to another page. */
   link: PropTypes.bool,

@@ -1,5 +1,5 @@
-import React, { PropTypes } from 'react'
 import cx from 'classnames'
+import React, { PropTypes } from 'react'
 
 import {
   customPropTypes,
@@ -10,11 +10,11 @@ import {
 
 function LabelDetail(props) {
   const { children, className, content } = props
-  const classes = cx(className, 'detail')
+  const classes = cx('detail', className)
   const rest = getUnhandledProps(LabelDetail, props)
   const ElementType = getElementType(LabelDetail, props)
 
-  return <ElementType className={classes} {...rest}>{ children || content }</ElementType>
+  return <ElementType {...rest} className={classes}>{children || content}</ElementType>
 }
 
 LabelDetail._meta = {
@@ -25,25 +25,16 @@ LabelDetail._meta = {
 
 LabelDetail.propTypes = {
   /** An element type to render as (string or function). */
-  as: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.func,
-  ]),
+  as: customPropTypes.as,
 
-  /** Primary content of the label. Mutually exclusive with content. */
-  children: customPropTypes.every([
-    customPropTypes.disallow(['content']),
-    PropTypes.node,
-  ]),
+  /** Primary content. */
+  children: PropTypes.node,
 
-  /** Classes to add to the label className. */
+  /** Additional classes. */
   className: PropTypes.string,
 
-  /** Shorthand for primary content of the label. Mutually exclusive with children. */
-  content: customPropTypes.every([
-    customPropTypes.disallow(['content']),
-    PropTypes.string,
-  ]),
+  /** Shorthand for primary content. */
+  content: customPropTypes.contentShorthand,
 }
 
 export default LabelDetail

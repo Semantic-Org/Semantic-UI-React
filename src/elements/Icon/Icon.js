@@ -2,6 +2,7 @@ import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
 import {
+  createShorthandFactory,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -39,12 +40,11 @@ function Icon(props) {
     className,
     'icon'
   )
-
   const rest = getUnhandledProps(Icon, props)
   const ElementType = getElementType(Icon, props)
 
   return (
-    <ElementType className={classes} {...rest} />
+    <ElementType {...rest} className={classes} />
   )
 }
 
@@ -69,7 +69,7 @@ Icon.propTypes = {
   /** Formatted to appear bordered */
   bordered: PropTypes.bool,
 
-  /** Class names for custom styling. */
+  /** Additional classes. */
   className: PropTypes.string,
 
   /** Icon can formatted to appear circular */
@@ -112,5 +112,7 @@ Icon.propTypes = {
 Icon.defaultProps = {
   as: 'i',
 }
+
+Icon.create = createShorthandFactory(Icon, value => ({ name: value }))
 
 export default Icon

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Radio } from 'stardust'
+import { Radio } from 'semantic-ui-react'
 
 const RadioReadOnlyExample = () => (
   <Radio label='This radio is read-only' readOnly />

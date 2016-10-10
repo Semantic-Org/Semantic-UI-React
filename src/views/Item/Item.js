@@ -2,12 +2,12 @@ import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
 import {
+  createShorthand,
   customPropTypes,
   getElementType,
   getUnhandledProps,
   META,
 } from '../../lib'
-import { createShorthand } from '../../factories'
 import ItemContent from './ItemContent'
 import ItemDescription from './ItemDescription'
 import ItemExtra from './ItemExtra'
@@ -18,7 +18,7 @@ import ItemMeta from './ItemMeta'
 
 /**
  * An item view presents large collections of site content for display
- * */
+ **/
 function Item(props) {
   const { children, className, content, description, extra, header, image, meta } = props
   const classes = cx(className, 'item')
@@ -61,47 +61,29 @@ Item.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** Primary content of the Item. */
+  /** Primary content. */
   children: PropTypes.node,
 
-  /** Classes that will be added to the Item className. */
+  /** Additional classes. */
   className: PropTypes.string,
 
   /** Shorthand for ItemContent component. */
-  content: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.string,
-  ]),
+  content: customPropTypes.contentShorthand,
 
   /** Shorthand for ItemDescription component. */
-  description: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.string,
-  ]),
+  description: customPropTypes.itemShorthand,
 
   /** Shorthand for ItemExtra component. */
-  extra: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.string,
-  ]),
+  extra: customPropTypes.itemShorthand,
 
   /** Shorthand for ItemImage component. */
-  image: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.string,
-  ]),
+  image: customPropTypes.itemShorthand,
 
   /** Shorthand for ItemHeader component. */
-  header: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.string,
-  ]),
+  header: customPropTypes.itemShorthand,
 
   /** Shorthand for ItemMeta component. */
-  meta: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.string,
-  ]),
+  meta: customPropTypes.itemShorthand,
 }
 
 export default Item

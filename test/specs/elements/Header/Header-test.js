@@ -18,7 +18,7 @@ describe('Header', () => {
   common.propKeyOnlyToClassName(Header, 'sub')
 
   common.propKeyAndValueToClassName(Header, 'floated')
-  common.propKeyOrValueToClassName(Header, 'attached')
+  common.propKeyOrValueAndKeyToClassName(Header, 'attached')
 
   common.propValueOnlyToClassName(Header, 'color')
   common.propValueOnlyToClassName(Header, 'size')
@@ -40,6 +40,17 @@ describe('Header', () => {
     it('does not add an icon class given a name', () => {
       shallow(<Header icon='user' />)
         .should.not.have.className('icon')
+    })
+  })
+
+  describe('image', () => {
+    it('adds an image class when true', () => {
+      shallow(<Header image />)
+        .should.have.className('image')
+    })
+    it('does not add an Image when true', () => {
+      shallow(<Header image />)
+        .should.not.have.descendants('Image')
     })
   })
 

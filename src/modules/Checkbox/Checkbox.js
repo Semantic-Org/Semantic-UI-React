@@ -116,16 +116,16 @@ export default class Checkbox extends Component {
     debug(`  value:      ${value}`)
     debug(`  checked:    ${checked}`)
 
-    if (onClick) onClick(e, { name, value, checked: !!checked })
-    if (onChange) onChange(e, { name, value, checked: !checked })
-
     if (this.canToggle()) {
+      if (onClick) onClick(e, { name, value, checked: !!checked })
+      if (onChange) onChange(e, { name, value, checked: !checked })
+
       this.trySetState({ checked: !checked })
     }
   }
 
   render() {
-    const { className, label, name, radio, slider, toggle, type, value } = this.props
+    const { className, label, name, radio, slider, toggle, type, value, disabled, readOnly } = this.props
     const { checked } = this.state
     const classes = cx(
       'ui',
@@ -136,11 +136,14 @@ export default class Checkbox extends Component {
       useKeyOnly(radio, 'radio'),
       useKeyOnly(slider, 'slider'),
       useKeyOnly(toggle, 'toggle'),
+      useKeyOnly(disabled, 'disabled'),
+      useKeyOnly(readOnly, 'read-only'),
       'checkbox',
       className
     )
     const rest = getUnhandledProps(Checkbox, this.props)
     const ElementType = getElementType(Checkbox, this.props)
+
     return (
       <ElementType {...rest} className={classes} onClick={this.handleClick} onChange={this.handleClick}>
         <input

@@ -20,15 +20,10 @@ function ButtonContent(props) {
     'content',
     className,
   )
-
   const rest = getUnhandledProps(ButtonContent, props)
   const ElementType = getElementType(ButtonContent, props)
 
-  return (
-    <ElementType className={classes} {...rest}>
-      {children}
-    </ElementType>
-  )
+  return <ElementType {...rest} className={classes}>{children}</ElementType>
 }
 
 ButtonContent._meta = {
@@ -41,17 +36,17 @@ ButtonContent.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** Initially visible, hidden on hover */
-  visible: PropTypes.bool,
+  /** Additional classes. */
+  className: PropTypes.string,
+
+  /** Primary content. */
+  children: PropTypes.node,
 
   /** Initially hidden, visible on hover */
   hidden: PropTypes.bool,
 
-  /** Additional classes */
-  className: PropTypes.string,
-
-  /** Primary content, intended to the Button children */
-  children: PropTypes.any,
+  /** Initially visible, hidden on hover */
+  visible: PropTypes.bool,
 }
 
 export default ButtonContent

@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import { Label } from 'stardust'
+import { Label } from 'semantic-ui-react'
 
 import BaseStandardExample from './Standard'
 

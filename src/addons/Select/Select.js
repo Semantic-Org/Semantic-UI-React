@@ -1,7 +1,7 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
 
-import { getUnhandledProps, META } from '../../lib'
-import { Dropdown } from '../../modules'
+import { META } from '../../lib'
+import Dropdown from '../../modules/Dropdown'
 
 /**
  * A Select is sugar for <Dropdown selection />.
@@ -9,23 +9,12 @@ import { Dropdown } from '../../modules'
  * @see Form
  */
 function Select(props) {
-  const { selection } = props
-  const rest = getUnhandledProps(Select, props)
-  return <Dropdown {...rest} selection={selection} />
+  return <Dropdown {...props} selection />
 }
 
 Select._meta = {
   name: 'Select',
   type: META.TYPES.ADDON,
-}
-
-Select.propTypes = {
-  /** selection value */
-  selection: PropTypes.bool,
-}
-
-Select.defaultProps = {
-  selection: true,
 }
 
 export default Select

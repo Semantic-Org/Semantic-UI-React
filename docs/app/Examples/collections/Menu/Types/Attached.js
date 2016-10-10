@@ -1,5 +1,5 @@
 import React from 'react'
-import { Dropdown, Icon, Menu, Segment } from 'stardust'
+import { Dropdown, Icon, Menu, Segment } from 'semantic-ui-react'
 
 // TODO: Update <Search> usage after its will be implemented
 

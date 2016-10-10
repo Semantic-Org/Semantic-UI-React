@@ -1,5 +1,5 @@
 import del from 'del'
-import { task, series } from 'gulp'
+import { task, parallel, series } from 'gulp'
 import loadPlugins from 'gulp-load-plugins'
 import webpack from 'webpack'
 
@@ -47,6 +47,10 @@ task('build:umd:webpack', (cb) => {
 })
 
 task('build:umd', series(
+  parallel(
+    'dll',
+    'clean:umd'
+  ),
   'build:umd:webpack'
 ))
 
@@ -54,4 +58,6 @@ task('build:umd', series(
 // Default
 // ----------------------------------------
 
-task('umd', series('clean:umd', 'build:umd'))
+task('umd', series(
+  'build:umd'
+))

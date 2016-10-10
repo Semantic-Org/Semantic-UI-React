@@ -27,20 +27,14 @@ StatisticLabel.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** Primary content of the StatisticLabel. */
-  children: customPropTypes.every([
-    customPropTypes.disallow(['content']),
-    PropTypes.node,
-  ]),
+  /** Primary content. */
+  children: PropTypes.node,
 
-  /** Classes that will be added to the StatisticLabel className. */
+  /** Additional classes. */
   className: PropTypes.string,
 
-  /** Primary content of the StatisticLabel. Mutually exclusive with the children prop. */
-  label: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.string,
-  ]),
+  /** Shorthand for primary content. */
+  label: customPropTypes.contentShorthand,
 }
 
 export default StatisticLabel

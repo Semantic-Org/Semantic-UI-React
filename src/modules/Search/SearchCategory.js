@@ -12,7 +12,7 @@ import {
 const defaultRenderer = ({ name }) => name
 
 function SearchCategory(props) {
-  const { active, className, children, renderer } = props
+  const { active, children, className, renderer } = props
   const classes = cx(
     useKeyOnly(active, 'active'),
     'category',
@@ -44,10 +44,10 @@ SearchCategory.propTypes = {
   /** The item currently selected by keyboard shortcut. */
   active: PropTypes.bool,
 
-  /** Should be <Search.Result /> components. */
+  /** Primary content. */
   children: PropTypes.node,
 
-  /** Classes to add to the className. */
+  /** Additional classes. */
   className: PropTypes.string,
 
   /** Display name. */

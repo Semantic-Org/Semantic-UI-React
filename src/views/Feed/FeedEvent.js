@@ -2,12 +2,12 @@ import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
 import {
+  createShorthand,
   customPropTypes,
   getElementType,
   getUnhandledProps,
   META,
 } from '../../lib'
-import { createShorthand } from '../../factories'
 import FeedContent from './FeedContent'
 import FeedLabel from './FeedLabel'
 
@@ -17,7 +17,7 @@ function FeedEvent(props) {
   const rest = getUnhandledProps(FeedEvent, props)
   const ElementType = getElementType(FeedEvent, props)
 
-  const hasContentProp = (content || date || extraImages || extraText || meta || summary)
+  const hasContentProp = content || date || extraImages || extraText || meta || summary
   const contentProps = { content, date, extraImages, extraText, meta, summary }
 
   return (
@@ -40,56 +40,35 @@ FeedEvent.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** Primary content of the FeedEvent. */
-  children: customPropTypes.every([
-    customPropTypes.disallow(['content', 'date', 'extraImages', 'extraText', 'meta', 'summary']),
-    PropTypes.node,
-  ]),
+  /** Primary content. */
+  children: PropTypes.node,
 
-  /** Classes that will be added to the FeedEvent className. */
+  /** Additional classes. */
   className: PropTypes.string,
 
   /** Shorthand for FeedContent. */
-  content: customPropTypes.every([
-    customPropTypes.disallow(['children', 'date', 'extraImages', 'extraText', 'meta', 'summary']),
-    PropTypes.string,
-  ]),
+  content: FeedContent.propTypes.content,
 
   /** Shorthand for FeedDate. */
-  date: customPropTypes.every([
-    customPropTypes.disallow(['children', 'content']),
-    PropTypes.string,
-  ]),
+  date: FeedContent.propTypes.date,
 
-  /** Shorthand for FeedExtra with prop images. */
-  extraImages: customPropTypes.every([
-    customPropTypes.disallow(['children', 'content']),
-    PropTypes.arrayOf(PropTypes.node),
-  ]),
+  /** Shorthand for FeedExtra with images. */
+  extraImages: FeedContent.propTypes.extraImages,
 
-  /** Shorthand for FeedExtra with prop text. */
-  extraText: customPropTypes.every([
-    customPropTypes.disallow(['children', 'content']),
-    PropTypes.string,
-  ]),
+  /** Shorthand for FeedExtra with content. */
+  extraText: FeedContent.propTypes.extraText,
 
   /** An event can contain icon label. */
-  icon: PropTypes.node,
+  icon: customPropTypes.itemShorthand,
 
   /** An event can contain image label. */
-  image: PropTypes.node,
+  image: customPropTypes.itemShorthand,
 
   /** Shorthand for FeedMeta. */
-  meta: customPropTypes.every([
-    customPropTypes.disallow(['children', 'content']),
-    PropTypes.string,
-  ]),
+  meta: FeedContent.propTypes.meta,
 
   /** Shorthand for FeedSummary. */
-  summary: customPropTypes.every([
-    customPropTypes.disallow(['children', 'content']),
-    PropTypes.string,
-  ]),
+  summary: FeedContent.propTypes.summary,
 }
 
 export default FeedEvent

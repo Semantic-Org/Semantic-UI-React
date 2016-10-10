@@ -30,15 +30,10 @@ function Divider(props) {
     'divider',
     className
   )
-
-  const ElementType = getElementType(Divider, props)
   const rest = getUnhandledProps(Divider, props)
+  const ElementType = getElementType(Divider, props)
 
-  return (
-    <ElementType className={classes} {...rest}>
-      {children}
-    </ElementType>
-  )
+  return <ElementType {...rest} className={classes}>{children}</ElementType>
 }
 
 Divider._meta = {
@@ -50,10 +45,10 @@ Divider.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** Primary content of the Divider */
+  /** Primary content. */
   children: PropTypes.node,
 
-  /** Classes to add to the divider className. */
+  /** Additional classes. */
   className: PropTypes.string,
 
   /** Divider can segment content horizontally */

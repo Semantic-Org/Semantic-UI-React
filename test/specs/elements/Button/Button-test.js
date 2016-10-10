@@ -11,17 +11,18 @@ describe('Button', () => {
   common.isConformant(Button)
   common.hasUIClassName(Button)
   common.hasSubComponents(Button, [ButtonContent, ButtonGroup, ButtonOr])
+  common.implementsCreateMethod(Button)
   common.implementsIconProp(Button)
   common.implementsLabelProp(Button, {
-    requiredShorthandProps: {
+    shorthandDefaultProps: {
       basic: true,
       pointing: 'left',
     },
   })
 
   common.propKeyOnlyToClassName(Button, 'active')
-  common.propKeyOrValueToClassName(Button, 'animated')
-  common.propKeyOrValueToClassName(Button, 'attached')
+  common.propKeyOrValueAndKeyToClassName(Button, 'animated')
+  common.propKeyOrValueAndKeyToClassName(Button, 'attached')
   common.propKeyOnlyToClassName(Button, 'basic')
   common.propKeyOnlyToClassName(Button, 'circular')
   common.propValueOnlyToClassName(Button, 'color')
@@ -30,7 +31,9 @@ describe('Button', () => {
   common.propKeyAndValueToClassName(Button, 'floated')
   common.propKeyOnlyToClassName(Button, 'fluid')
   common.propKeyOnlyToClassName(Button, 'inverted')
-  common.propKeyOrValueToClassName(Button, 'labeled')
+  common.propKeyOrValueAndKeyToClassName(Button, 'labelPosition', {
+    className: 'labeled',
+  })
   common.propKeyOnlyToClassName(Button, 'loading')
   common.propKeyOnlyToClassName(Button, 'primary')
   common.propKeyOnlyToClassName(Button, 'negative')
@@ -74,21 +77,23 @@ describe('Button', () => {
       shallow(<Button icon='user' />)
         .should.have.className('icon')
     })
-    it('does not add className icon when there are children', () => {
-      shallow(<Button icon='user'>Yo</Button>)
-        .should.not.have.className('icon')
-    })
     it('does not add className icon when there is content', () => {
       shallow(<Button icon='user' content='Yo' />)
         .should.not.have.className('icon')
     })
-    it('adds className icon when labeled and has content', () => {
-      shallow(<Button labeled icon='user' content='My Account' />)
+    it('adds className icon given labelPosition and content', () => {
+      shallow(<Button labelPosition='left' icon='user' content='My Account' />)
+        .should.have.className('icon')
+      shallow(<Button labelPosition='right' icon='user' content='My Account' />)
         .should.have.className('icon')
     })
   })
 
   describe('label', () => {
+    it('renders as a div', () => {
+      shallow(<Button label='http' />)
+        .should.have.tagName('div')
+    })
     it('renders a div with a button and Label child', () => {
       const wrapper = shallow(<Button label='hi' />)
 
@@ -104,15 +109,15 @@ describe('Button', () => {
       shallow(<Button label='foo' />)
         .should.have.exactly(1).descendants('Label[basic][pointing]')
     })
-    it('is before the button and pointing="right" when labeled="left"', () => {
-      const wrapper = shallow(<Button labeled='left' label='foo' />)
+    it('is before the button and pointing="right" when labelPosition="left"', () => {
+      const wrapper = shallow(<Button labelPosition='left' label='foo' />)
       wrapper.should.have.exactly(1).descendants('Label[pointing="right"]')
 
       wrapper.children().at(0).should.match('.ui.label')
       wrapper.children().at(1).should.match('button')
     })
-    it('is after the button and pointing="left" when labeled="right"', () => {
-      const wrapper = shallow(<Button labeled='right' label='foo' />)
+    it('is after the button and pointing="left" when labelPosition="right"', () => {
+      const wrapper = shallow(<Button labelPosition='right' label='foo' />)
       wrapper.should.have.exactly(1).descendants('Label[pointing="left"]')
 
       wrapper.children().at(0).should.match('button')
@@ -124,6 +129,15 @@ describe('Button', () => {
 
       wrapper.children().at(0).should.match('button')
       wrapper.children().at(1).should.match('.ui.label')
+    })
+  })
+
+  describe('labelPosition', () => {
+    it('renders as a button when given an icon', () => {
+      shallow(<Button labelPosition='left' icon='user' />)
+        .should.have.tagName('button')
+      shallow(<Button labelPosition='right' icon='user' />)
+        .should.have.tagName('button')
     })
   })
 })

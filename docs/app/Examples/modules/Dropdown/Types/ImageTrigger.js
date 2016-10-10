@@ -1,6 +1,6 @@
 import faker from 'faker'
 import React from 'react'
-import { Dropdown, Image } from 'stardust'
+import { Dropdown, Image } from 'semantic-ui-react'
 
 const trigger = (
   <span>

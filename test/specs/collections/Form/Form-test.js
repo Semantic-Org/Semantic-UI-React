@@ -29,6 +29,15 @@ describe('Form', () => {
     FormSelect,
   ])
   common.rendersChildren(Form)
+
+  common.propKeyOnlyToClassName(Form, 'loading')
+  common.propKeyOnlyToClassName(Form, 'error')
+  common.propKeyOnlyToClassName(Form, 'reply')
+  common.propKeyOnlyToClassName(Form, 'success')
+  common.propKeyOnlyToClassName(Form, 'warning')
+
+  common.propValueOnlyToClassName(Form, 'size')
+
   common.implementsWidthProp(Form, { propKey: 'widths' })
 
   describe('serializer', () => {
@@ -49,6 +58,30 @@ describe('Form', () => {
       const serializer = wrapper.instance().props.serializer
       serializer.should.have.been.calledOnce()
       serializer.should.have.been.calledWithMatch(formNode)
+    })
+
+    it('logs an error if an input is missing a name', () => {
+      consoleUtil.disableOnce()
+      const spy = sandbox.spy(console, 'error')
+
+      const wrapper = mount(
+        <Form onSubmit={() => null}>
+          <input type='checkbox' data-has-no-name />
+        </Form>
+      )
+        .simulate('submit')
+
+      const errorMessage = [
+        'Encountered a form control node without a name attribute.',
+        'Each node in a group should have a name.',
+        'Otherwise, the node will serialize as { "undefined": <value> }.',
+      ].join(' ')
+
+      const formNode = findDOMNode(wrapper.instance())
+      const badInput = findDOMNode(formNode.querySelector('[data-has-no-name]'))
+
+      spy.should.have.been.calledOnce()
+      spy.should.have.been.calledWithMatch(errorMessage, badInput)
     })
 
     it('logs an error if a checkbox in a group is missing a value', () => {
@@ -103,6 +136,11 @@ describe('Form', () => {
   })
 
   describe('onSubmit', () => {
+    it('omitted when not defined', () => {
+      const submit = () => shallow(<Form />).simulate('submit')
+      expect(submit).to.not.throw()
+    })
+
     let spy
     const spyFormSubmit = (children) => {
       mount(<Form onSubmit={spy}>{children}</Form>).simulate('submit')

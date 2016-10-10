@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import classNames from 'classnames'
+import cx from 'classnames'
 
 import {
   customPropTypes,
@@ -10,20 +10,11 @@ import {
 
 function ModalActions(props) {
   const { children, className } = props
-
-  const classes = classNames(
-    className,
-    'actions'
-  )
-
+  const classes = cx(className, 'actions')
   const rest = getUnhandledProps(ModalActions, props)
   const ElementType = getElementType(ModalActions, props)
 
-  return (
-    <ElementType className={classes} {...rest}>
-      {children}
-    </ElementType>
-  )
+  return <ElementType {...rest} className={classes}>{children}</ElementType>
 }
 
 ModalActions._meta = {
@@ -36,10 +27,10 @@ ModalActions.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** Primary content of the modal actions */
-  children: PropTypes.any,
+  /** Primary content. */
+  children: PropTypes.node,
 
-  /** Classes to add to the modal actions className */
+  /** Additional classes. */
   className: PropTypes.string,
 }
 

@@ -60,7 +60,6 @@ function Progress(props) {
     className,
     'progress'
   )
-
   const rest = getUnhandledProps(Progress, props)
   const ElementType = getElementType(Progress, props)
 
@@ -101,10 +100,10 @@ Progress.propTypes = {
   /** A progress bar can have different colors. */
   color: PropTypes.oneOf(Progress._meta.props.color),
 
-  /** Displayed as a label immediately below the progress bar. */
+  /** Primary content. */
   children: PropTypes.node,
 
-  /** Additional className. */
+  /** Additional classes. */
   className: PropTypes.string,
 
   /** A progress bar be disabled. */

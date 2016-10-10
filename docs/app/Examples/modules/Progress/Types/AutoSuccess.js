@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Progress } from 'stardust'
+import { Button, Progress } from 'semantic-ui-react'
 
 export default class ProgressAutoSuccessExample extends Component {
   state = { percent: 0 }

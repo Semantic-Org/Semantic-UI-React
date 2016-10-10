@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Icon, Image as ImageComponent, Item, Label } from 'stardust'
+import { Button, Icon, Image as ImageComponent, Item, Label } from 'semantic-ui-react'
 
 const { Content, Description, Extra, Group, Header, Image, Meta } = Item
 const paragraph = <ImageComponent src='http://semantic-ui.com/images/wireframe/short-paragraph.png' />
@@ -17,7 +17,7 @@ const Divided = () => (
         <Description>{paragraph}</Description>
         <Extra>
           <Label>IMAX</Label>
-          <Label icon='globe'>Additional Languages</Label>
+          <Label icon='globe' content='Additional Languages' />
         </Extra>
       </Content>
     </Item>

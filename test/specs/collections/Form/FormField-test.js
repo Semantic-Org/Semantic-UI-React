@@ -11,7 +11,9 @@ describe('FormField', () => {
   common.propKeyOnlyToClassName(FormField, 'error')
   common.propKeyOnlyToClassName(FormField, 'disabled')
   common.propKeyOnlyToClassName(FormField, 'inline')
-  common.propKeyOnlyToClassName(FormField, 'required', { label: '' })
+  common.propKeyOnlyToClassName(FormField, 'required', {
+    requiredProps: { label: '' },
+  })
   common.rendersChildren(FormField)
 
   describe('html controls', () => {
@@ -39,6 +41,12 @@ describe('FormField', () => {
         .find('label')
         .should.contain.text('First Name')
     })
+    it('is sibling to text inputs', () => {
+      const wrapper = shallow(<FormField control='input' type='text' label='Text field' />)
+
+      wrapper.childAt(0).should.have.tagName('label')
+      wrapper.childAt(1).should.have.tagName('input')
+    })
     it('wraps checkbox inputs', () => {
       const label = shallow(<FormField control='input' type='checkbox' label='Check this box' />)
         .find('label')
@@ -62,21 +70,6 @@ describe('FormField', () => {
       shallow(<FormField control={Radio} label='Passed to the Radio' />)
         .find('Radio')
         .should.have.prop('label', 'Passed to the Radio')
-    })
-    it('is passed to custom control components with a "label" propType', () => {
-      const HandlesLabel = () => null
-      HandlesLabel.propTypes = { label: () => null }
-
-      shallow(<FormField control={HandlesLabel} label='Passed to the HandlesLabel' />)
-        .find('HandlesLabel')
-        .should.have.prop('label', 'Passed to the HandlesLabel')
-    })
-    it('is not passed to custom control components without a "label" propType', () => {
-      const DoesNotHandleLabel = () => null
-
-      shallow(<FormField control={DoesNotHandleLabel} label='Passed to the DoesNotHandleLabel' />)
-        .find('DoesNotHandleLabel')
-        .should.not.have.prop('label', 'Passed to the DoesNotHandleLabel')
     })
   })
 })

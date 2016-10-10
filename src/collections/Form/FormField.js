@@ -1,5 +1,4 @@
 import cx from 'classnames'
-import _ from 'lodash'
 import React, { PropTypes, createElement } from 'react'
 
 import {
@@ -11,8 +10,8 @@ import {
   useKeyOnly,
   useWidthProp,
 } from '../../lib'
-import { Checkbox } from '../../modules'
-import { Radio } from '../../addons'
+import Checkbox from '../../modules/Checkbox'
+import Radio from '../../addons/Radio'
 
 /**
  * A field is a form element containing a label and an input
@@ -71,7 +70,7 @@ function FormField(props) {
   }
 
   // pass label prop to controls that support it
-  if (control === Checkbox || control === Radio || _.has(control, 'propTypes.label')) {
+  if (control === Checkbox || control === Radio) {
     return (
       <ElementType className={classes}>
         {createElement(control, { ...controlProps, label })}
@@ -132,10 +131,10 @@ FormField.propTypes = {
     PropTypes.oneOf(FormField._meta.props.control),
   ]),
 
-  /** Primary content */
+  /** Primary content. */
   children: PropTypes.node,
 
-  /** Additional classes to add */
+  /** Additional classes. */
   className: PropTypes.string,
 
   /** Individual fields may be disabled */

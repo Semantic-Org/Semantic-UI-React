@@ -4,6 +4,7 @@ import React, { Children, cloneElement, PropTypes } from 'react'
 
 import {
   AutoControlledComponent as Component,
+  createShorthand,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -14,8 +15,9 @@ import {
   useKeyOnly,
   useKeyOrValueAndKey,
 } from '../../lib'
-import { createIcon, createShorthand } from '../../factories'
-import { Label } from '../../elements'
+import Icon from '../../elements/Icon'
+import Label from '../../elements/Label'
+
 import DropdownDivider from './DropdownDivider'
 import DropdownItem from './DropdownItem'
 import DropdownHeader from './DropdownHeader'
@@ -64,7 +66,7 @@ export default class Dropdown extends Component {
     /** Initial value of open. */
     defaultOpen: PropTypes.bool,
 
-    /** A Dropdown can contain a single <Dropdown.Menu /> child. */
+    /** Primary content. */
     children: customPropTypes.every([
       customPropTypes.disallow(['options', 'selection']),
       customPropTypes.demand(['text']),
@@ -72,7 +74,6 @@ export default class Dropdown extends Component {
         { children: PropTypes.any.isRequired },
         React.PropTypes.element.isRequired,
       ),
-      customPropTypes.ofComponentTypes(['DropdownMenu']),
     ]),
 
     /** Current value or value array if multiple. Creates a controlled component. */
@@ -116,9 +117,6 @@ export default class Dropdown extends Component {
       PropTypes.bool,
     ]),
 
-    /** Called with the new value added by the user. Use this to update the options list. */
-    onAddItem: PropTypes.func,
-
     /** Position of the `Add: ...` option in the dropdown list ('top' or 'bottom'). */
     additionPosition: PropTypes.oneOf(_meta.props.additionPosition),
 
@@ -141,10 +139,13 @@ export default class Dropdown extends Component {
     // Callbacks
     // ------------------------------------
 
+    /** Called with the name and new value added by the user. Use this to update the options list. */
+    onAddItem: PropTypes.func,
+
     /** Called with the React Synthetic Event on Dropdown blur. */
     onBlur: PropTypes.func,
 
-    /** Called with the React Synthetic Event and current value on change. */
+    /** Called with the React Synthetic Event and { name, value } on change. */
     onChange: PropTypes.func,
 
     /** Called with the React Synthetic Event and current value on search input change. */
@@ -163,10 +164,13 @@ export default class Dropdown extends Component {
     // Style
     // ------------------------------------
 
+    /** A Dropdown can reduce its complexity */
+    basic: PropTypes.bool,
+
     /** Format the Dropdown to appear as a button. */
     button: PropTypes.bool,
 
-    /** Additional classes added to the root element. */
+    /** Additional classes. */
     className: PropTypes.string,
 
     /** Format the dropdown to only take up as much width as needed. */
@@ -183,7 +187,7 @@ export default class Dropdown extends Component {
 
     inline: PropTypes.bool,
     labeled: PropTypes.bool,
-    linkItem: PropTypes.bool,
+    // linkItem: PropTypes.bool,
 
     /** Allow selecting multiple options. */
     multiple: PropTypes.bool,
@@ -313,7 +317,6 @@ export default class Dropdown extends Component {
     // opened / closed
     if (!prevState.open && this.state.open) {
       debug('dropdown opened')
-      this.open()
       document.addEventListener('keydown', this.closeOnEscape)
       document.addEventListener('keydown', this.moveSelectionOnKeyDown)
       document.addEventListener('keydown', this.selectItemOnEnter)
@@ -323,7 +326,7 @@ export default class Dropdown extends Component {
       document.removeEventListener('keydown', this.openOnSpace)
     } else if (prevState.open && !this.state.open) {
       debug('dropdown closed')
-      this.close()
+      this.handleClose()
       document.removeEventListener('keydown', this.closeOnEscape)
       document.removeEventListener('keydown', this.moveSelectionOnKeyDown)
       document.removeEventListener('keydown', this.selectItemOnEnter)
@@ -353,11 +356,11 @@ export default class Dropdown extends Component {
 
   // onChange needs to receive a value
   // can't rely on props.value if we are controlled
-  onChange = (e, value) => {
-    debug('onChange()')
+  handleChange = (e, value) => {
+    debug('handleChange()')
     debug(value)
-    const { onChange } = this.props
-    if (onChange) onChange(e, value)
+    const { name, onChange } = this.props
+    if (onChange) onChange(e, { name, value })
   }
 
   closeOnEscape = (e) => {
@@ -402,7 +405,7 @@ export default class Dropdown extends Component {
 
   selectHighlightedItem = (e) => {
     const { open } = this.state
-    const { multiple, onAddItem, options } = this.props
+    const { multiple, name, onAddItem, options } = this.props
     const value = _.get(this.getSelectedItem(), 'value')
 
     // prevent selecting null if there was no selected item value
@@ -410,17 +413,19 @@ export default class Dropdown extends Component {
     if (!value || !open) return
 
     // notify the onAddItem prop if this is a new value
-    if (onAddItem && !_.some(options, { text: value })) onAddItem(value)
+    if (onAddItem && !_.some(options, { text: value })) {
+      onAddItem(e, { name, value })
+    }
 
     // notify the onChange prop that the user is trying to change value
     if (multiple) {
       // state value may be undefined
       const newValue = _.union(this.state.value, [value])
       this.setValue(newValue)
-      this.onChange(e, newValue)
+      this.handleChange(e, newValue)
     } else {
       this.setValue(value)
-      this.onChange(e, value)
+      this.handleChange(e, value)
       this.close()
     }
   }
@@ -450,7 +455,7 @@ export default class Dropdown extends Component {
     const newValue = _.dropRight(value)
 
     this.setValue(newValue)
-    this.onChange(e, newValue)
+    this.handleChange(e, newValue)
   }
 
   closeOnDocumentClick = (e) => {
@@ -489,7 +494,7 @@ export default class Dropdown extends Component {
   handleItemClick = (e, value) => {
     debug('handleItemClick()')
     debug(value)
-    const { multiple, onAddItem, options } = this.props
+    const { multiple, name, onAddItem, options } = this.props
     const item = this.getItemByValue(value) || {}
 
     // prevent toggle() in handleClick()
@@ -502,16 +507,18 @@ export default class Dropdown extends Component {
     if (item.disabled) return
 
     // notify the onAddItem prop if this is a new value
-    if (onAddItem && !_.some(options, { value })) onAddItem(value)
+    if (onAddItem && !_.some(options, { text: value })) {
+      onAddItem(e, { name, value })
+    }
 
     // notify the onChange prop that the user is trying to change value
     if (multiple) {
       const newValue = _.union(this.state.value, [value])
       this.setValue(newValue)
-      this.onChange(e, newValue)
+      this.handleChange(e, newValue)
     } else {
       this.setValue(value)
-      this.onChange(e, value)
+      this.handleChange(e, value)
       this.close()
     }
   }
@@ -674,7 +681,7 @@ export default class Dropdown extends Component {
     debug('new value:', newValue)
 
     this.setValue(newValue)
-    this.onChange(e, newValue)
+    this.handleChange(e, newValue)
   }
 
   moveSelectionBy = (offset, startIndex = this.state.selectedIndex) => {
@@ -728,6 +735,11 @@ export default class Dropdown extends Component {
   close = () => {
     debug('close()')
     this.trySetState({ open: false })
+  }
+
+  handleClose = () => {
+    debug('handleClose()')
+    this._dropdown.blur()
   }
 
   toggle = () => this.state.open ? this.close() : this.open()
@@ -894,6 +906,7 @@ export default class Dropdown extends Component {
     const { open } = this.state
 
     const {
+      basic,
       button,
       className,
       compact,
@@ -902,7 +915,7 @@ export default class Dropdown extends Component {
       icon,
       inline,
       labeled,
-      linkItem,
+      // linkItem,
       multiple,
       pointing,
       search,
@@ -918,23 +931,24 @@ export default class Dropdown extends Component {
     // Classes
     const classes = cx(
       'ui',
-      open && 'active visible',
+      useKeyOnly(open, 'active visible'),
       useKeyOnly(disabled, 'disabled'),
       useKeyOnly(error, 'error'),
       useKeyOnly(loading, 'loading'),
 
+      useKeyOnly(basic, 'basic'),
       useKeyOnly(button, 'button'),
       useKeyOnly(compact, 'compact'),
       useKeyOnly(fluid, 'fluid'),
       useKeyOnly(floating, 'floating'),
       useKeyOnly(inline, 'inline'),
       // TODO: consider augmentation to render Dropdowns as Button/Menu, solves icon/link item issues
-      // https://github.com/TechnologyAdvice/stardust/issues/401#issuecomment-240487229
+      // https://github.com/Semantic-Org/Semantic-UI-React/issues/401#issuecomment-240487229
       // TODO: the icon class is only required when a dropdown is a button
       // useKeyOnly(icon, 'icon'),
       useKeyOnly(labeled, 'labeled'),
       // TODO: linkItem is required only when Menu child, add dynamically
-      useKeyOnly(linkItem, 'link item'),
+      // useKeyOnly(linkItem, 'link item'),
       useKeyOnly(multiple, 'multiple'),
       useKeyOnly(search, 'search'),
       useKeyOnly(selection, 'selection'),
@@ -945,7 +959,6 @@ export default class Dropdown extends Component {
       className,
       'dropdown',
     )
-
     const rest = getUnhandledProps(Dropdown, this.props)
     const ElementType = getElementType(Dropdown, this.props)
 
@@ -957,7 +970,7 @@ export default class Dropdown extends Component {
         onClick={this.handleClick}
         onMouseDown={this.handleMouseDown}
         onFocus={this.handleFocus}
-        onChange={this.onChange}
+        onChange={this.handleChange}
         tabIndex={search ? undefined : 0}
         ref={c => (this._dropdown = c)}
       >
@@ -966,7 +979,7 @@ export default class Dropdown extends Component {
         {this.renderSearchInput()}
         {this.renderSearchSizer()}
         {trigger || this.renderText()}
-        {createIcon(icon)}
+        {Icon.create(icon)}
         {this.renderMenu()}
       </ElementType>
     )

@@ -50,10 +50,6 @@ const ButtonTypesExamples = () => (
       examplePath='elements/Button/Types/ButtonLabeledIconExample'
     />
     <ComponentExample
-      description='You can also define a labeled icon button with props'
-      examplePath='elements/Button/Types/ButtonLabeledIconPropsExample'
-    />
-    <ComponentExample
       title='Basic'
       description='The basic button has a subtle appearance'
       examplePath='elements/Button/Types/ButtonBasicExample'

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Form, Input, Message } from 'stardust'
+import { Button, Form, Input, Message } from 'semantic-ui-react'
 
 const FormSuccessExample = () => (
   <Form success>

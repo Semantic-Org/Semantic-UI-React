@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Accordion } from 'stardust'
+import { Accordion } from 'semantic-ui-react'
 import faker from 'faker'
 import _ from 'lodash'
 

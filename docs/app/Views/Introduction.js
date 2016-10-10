@@ -12,6 +12,7 @@ import {
   Segment,
 } from 'src'
 import Logo from '../Components/Logo/Logo'
+import { repoURL } from 'docs/app/utils'
 
 const AccordionJSX = `const panels = [{
   title: 'What is a dog?',
@@ -58,8 +59,8 @@ const RatingHTML = `<div
   data-max-rating="3"
 ></div>`
 
-const MessageIconJSX = `<Message 
-  success 
+const MessageIconJSX = `<Message
+  success
   icon='thumbs up'
   header='Nice job!'
   content='Your profile is complete.'
@@ -154,12 +155,12 @@ const Introduction = () => (
         <pre>$ npm install {pkg.name}</pre>
       </Segment>
       <List>
-        <List.Item icon='check mark'>jQuery Free</List.Item>
-        <List.Item icon='check mark'>Declarative API</List.Item>
-        <List.Item icon='check mark'>Augmentation</List.Item>
-        <List.Item icon='check mark'>Shorthand Props</List.Item>
-        <List.Item icon='check mark'>Sub Components</List.Item>
-        <List.Item icon='check mark'>Auto Controlled State</List.Item>
+        <List.Item icon='check mark' content='jQuery Free' />
+        <List.Item icon='check mark' content='Declarative API' />
+        <List.Item icon='check mark' content='Augmentation' />
+        <List.Item icon='check mark' content='Shorthand Props' />
+        <List.Item icon='check mark' content='Sub Components' />
+        <List.Item icon='check mark' content='Auto Controlled State' />
       </List>
     </Segment>
 
@@ -284,7 +285,7 @@ const Introduction = () => (
       </p>
       <p>
         Take a look at our
-        <a href='https://github.com/TechnologyAdvice/stardust/blob/master/src/lib/AutoControlledComponent.js'>
+        <a href={`${repoURL}/blob/master/src/lib/AutoControlledComponent.js` }>
           &nbsp;<code>AutoControlledComponent</code>&nbsp;
         </a>
         to see how this was done.

@@ -31,7 +31,7 @@ function Rail(props) {
   const rest = getUnhandledProps(Rail, props)
   const ElementType = getElementType(Rail, props)
 
-  return <ElementType className={classes} {...rest}>{ children }</ElementType>
+  return <ElementType {...rest} className={classes}>{children}</ElementType>
 }
 
 Rail._meta = {
@@ -51,7 +51,7 @@ Rail.propTypes = {
   /** A rail can appear attached to the main viewport. */
   attached: PropTypes.bool,
 
-  /** Classes that will be added to the Rail className. */
+  /** Additional classes. */
   className: PropTypes.string,
 
   /** A rail can appear closer to the main viewport. */
@@ -60,7 +60,7 @@ Rail.propTypes = {
     PropTypes.oneOf(Rail._meta.props.close),
   ]),
 
-  /** Primary content of the Rail. */
+  /** Primary content. */
   children: PropTypes.node,
 
   /** A rail can create a division between itself and a container. */

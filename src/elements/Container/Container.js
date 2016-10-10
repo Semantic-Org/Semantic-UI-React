@@ -26,7 +26,7 @@ function Container(props) {
   const rest = getUnhandledProps(Container, props)
   const ElementType = getElementType(Container, props)
 
-  return <ElementType className={classes} {...rest}>{children}</ElementType>
+  return <ElementType {...rest} className={classes}>{children}</ElementType>
 }
 
 Container._meta = {
@@ -41,10 +41,10 @@ Container.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** Primary content of the Container */
+  /** Primary content. */
   children: PropTypes.node,
 
-  /** Classes to add to the container className. */
+  /** Additional classes. */
   className: PropTypes.string,
 
   /** Reduce maximum width to more naturally accommodate text */

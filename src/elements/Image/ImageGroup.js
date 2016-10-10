@@ -13,12 +13,12 @@ import {
  * A group of images
  */
 function ImageGroup(props) {
-  const { className, children, size } = props
+  const { children, className, size } = props
   const classes = cx('ui', size, className, 'images')
   const rest = getUnhandledProps(ImageGroup, props)
   const ElementType = getElementType(ImageGroup, props)
 
-  return <ElementType className={classes} {...rest}>{children}</ElementType>
+  return <ElementType {...rest} className={classes}>{children}</ElementType>
 }
 
 ImageGroup._meta = {
@@ -34,10 +34,10 @@ ImageGroup.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** Class names for custom styling. */
-  children: PropTypes.any,
+  /** Primary content. */
+  children: PropTypes.node,
 
-  /** Class names for custom styling. */
+  /** Additional classes. */
   className: PropTypes.string,
 
   /** A group of images can be formatted to have the same size. */

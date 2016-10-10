@@ -18,11 +18,8 @@ function AccordionContent(props) {
   )
   const rest = getUnhandledProps(AccordionContent, props)
   const ElementType = getElementType(AccordionContent, props)
-  return (
-    <ElementType {...rest} className={classes}>
-      {children}
-    </ElementType>
-  )
+
+  return <ElementType {...rest} className={classes}>{children}</ElementType>
 }
 
 AccordionContent.displayName = 'AccordionContent'
@@ -34,10 +31,10 @@ AccordionContent.propTypes = {
   /** Whether or not the content is visible. */
   active: PropTypes.bool,
 
-  /** Primary content of the Content. */
+  /** Primary content. */
   children: PropTypes.node,
 
-  /** Classes to add to the content className. */
+  /** Additional classes. */
   className: PropTypes.string,
 }
 

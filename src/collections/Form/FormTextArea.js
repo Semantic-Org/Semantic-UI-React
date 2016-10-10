@@ -6,8 +6,9 @@ import {
   getUnhandledProps,
   META,
 } from '../../lib'
+import TextArea from '../../addons/TextArea'
+
 import FormField from './FormField'
-import { TextArea } from '../../addons'
 
 /**
  * Sugar for <Form.Field control={TextArea} />
@@ -18,6 +19,7 @@ function FormTextArea(props) {
   const { control } = props
   const rest = getUnhandledProps(FormTextArea, props)
   const ElementType = getElementType(FormTextArea, props)
+
   return <ElementType {...rest} control={control} />
 }
 

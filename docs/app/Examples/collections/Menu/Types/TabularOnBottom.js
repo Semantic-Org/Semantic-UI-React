@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Icon, Menu, Segment } from 'stardust'
+import { Icon, Menu, Segment } from 'semantic-ui-react'
 
 export default class TabularOnBottom extends Component {
   state = { activeItem: 'active' }

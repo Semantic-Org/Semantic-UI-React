@@ -14,11 +14,7 @@ function HeaderSubheader(props) {
   const rest = getUnhandledProps(HeaderSubheader, props)
   const ElementType = getElementType(HeaderSubheader, props)
 
-  return (
-    <ElementType className={classes} {...rest}>
-      {children || content}
-    </ElementType>
-  )
+  return <ElementType {...rest} className={classes}>{children || content}</ElementType>
 }
 
 HeaderSubheader._meta = {
@@ -31,20 +27,14 @@ HeaderSubheader.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** Primary content of the HeaderSubheader. Mutually exclusive with content */
-  children: customPropTypes.every([
-    customPropTypes.disallow(['content']),
-    PropTypes.node,
-  ]),
+  /** Primary content. */
+  children: PropTypes.node,
 
-  /** Classes to add to the subheader className. */
+  /** Additional classes. */
   className: PropTypes.string,
 
-  /** Shorthand for primary content. Mutually exclusive with children */
-  content: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.string,
-  ]),
+  /** Shorthand for primary content. */
+  content: customPropTypes.contentShorthand,
 }
 
 export default HeaderSubheader

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Dropdown, Grid, Header } from 'stardust'
+import { Dropdown, Grid, Header } from 'semantic-ui-react'
 
 const options = [
   { text: 'English', value: 'English' },
@@ -12,23 +12,23 @@ const options = [
 export default class AllowAdditionsExample extends Component {
   state = { optionsSingle: options, optionsMultiple: options }
 
-  handleAdditionSingle = value => {
+  handleAdditionSingle = (e, { value }) => {
     // validate, save to server, show a message to the user ...
     this.setState({
       optionsSingle: [{ text: value, value }, ...this.state.optionsSingle],
     })
   }
 
-  handleAdditionMultiple = value => {
+  handleAdditionMultiple = (e, { value }) => {
     // validate, save to server, show a message to the user ...
     this.setState({
       optionsMultiple: [{ text: value, value }, ...this.state.optionsMultiple],
     })
   }
 
-  handleChangeSingle = (e, value) => this.setState({ currentValue: value })
+  handleChangeSingle = (e, { value }) => this.setState({ currentValue: value })
 
-  handleChangeMultiple = (e, values) => this.setState({ currentValues: values })
+  handleChangeMultiple = (e, { value }) => this.setState({ currentValues: value })
 
   render() {
     const { currentValue, currentValues } = this.state

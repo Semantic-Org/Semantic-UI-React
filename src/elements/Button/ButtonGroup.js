@@ -32,15 +32,10 @@ function ButtonGroup(props) {
     'buttons',
     className,
   )
-
   const rest = getUnhandledProps(ButtonGroup, props)
   const ElementType = getElementType(ButtonGroup, props)
 
-  return (
-    <ElementType className={classes} {...rest}>
-      {children}
-    </ElementType>
-  )
+  return <ElementType {...rest} className={classes}>{children}</ElementType>
 }
 
 ButtonGroup._meta = {
@@ -65,11 +60,11 @@ ButtonGroup.propTypes = {
   /** Groups can be less pronounced */
   basic: PropTypes.bool,
 
-  /** Additional classes */
+  /** Additional classes. */
   className: PropTypes.string,
 
-  /** Primary content, intended to be Button elements */
-  children: PropTypes.any,
+  /** Primary content. */
+  children: PropTypes.node,
 
   /** Groups can have a shared color */
   color: PropTypes.oneOf(ButtonGroup._meta.props.color),

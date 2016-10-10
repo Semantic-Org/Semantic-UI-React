@@ -1,5 +1,5 @@
 import React from 'react'
-import { Menu } from 'stardust'
+import { Menu } from 'semantic-ui-react'
 
 const Active = () => {
   return (

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Segment, Statistic } from 'stardust'
+import { Segment, Statistic } from 'semantic-ui-react'
 
 const Floated = () => (
   <Segment>

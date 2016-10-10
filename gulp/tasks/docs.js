@@ -48,31 +48,6 @@ task('build:docs:docgen', () => {
     .pipe(dest(config.paths.docsSrc()))
 })
 
-task('build:docs:dll', (cb) => {
-  const webpackDLLConfig = require('../../webpack.dll')
-  const compiler = webpack(webpackDLLConfig)
-
-  compiler.run((err, stats) => {
-    const { errors, warnings } = stats.toJson()
-
-    log(stats.toString(config.compiler_stats))
-
-    if (err) {
-      log('Webpack compiler encountered a fatal error.')
-      throw new PluginError('webpack', err.toString())
-    }
-    if (errors.length > 0) {
-      log('Webpack compiler encountered errors.')
-      throw new PluginError('webpack', errors.toString())
-    }
-    if (warnings.length > 0 && config.compiler_fail_on_warning) {
-      throw new PluginError('webpack', warnings.toString())
-    }
-
-    cb(err)
-  })
-})
-
 task('build:docs:html', () => {
   return src(config.paths.docsSrc('404.html'))
     .pipe(dest(config.paths.docsDist()))
@@ -110,10 +85,15 @@ task('build:docs:webpack', (cb) => {
 
 task('build:docs', series(
   parallel(
-    'build:docs:docgen',
-    'build:docs:dll',
-    'build:docs:html',
-    'build:docs:images'
+    'dll',
+    series(
+      'clean:docs',
+      parallel(
+        'build:docs:docgen',
+        'build:docs:html',
+        'build:docs:images'
+      )
+    )
   ),
   'build:docs:webpack',
 ))
@@ -172,7 +152,6 @@ task('watch:docs', (cb) => {
 // ----------------------------------------
 
 task('docs', series(
-  'clean:docs',
   'build:docs',
   'serve:docs'
 ))

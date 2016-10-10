@@ -1,5 +1,5 @@
 import React from 'react'
-import { Statistic } from 'stardust'
+import { Statistic } from 'semantic-ui-react'
 
 const TopLabel = () => (
   <div>

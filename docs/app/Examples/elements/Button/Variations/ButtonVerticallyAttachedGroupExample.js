@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Segment } from 'stardust'
+import { Button, Segment } from 'semantic-ui-react'
 
 const ButtonVerticallyAttachedExample = () => (
   <div>

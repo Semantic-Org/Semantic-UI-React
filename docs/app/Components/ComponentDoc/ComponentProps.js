@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import React, { Component, PropTypes } from 'react'
 
-import { Label, Table } from 'stardust'
+import { Label, Table } from 'src'
 
 /**
  * Displays a table of a Component's PropTypes.
@@ -54,19 +54,34 @@ export default class ComponentProps extends Component {
         value,
         required: config.required,
         defaultValue: config.defaultValue,
-        description: _.get(config, 'docBlock.description'),
+        description: _.get(config, 'docBlock.description', '')
+          .split('\n')
+          .map((l) => ([l, <br key={l} />])),
       }
     }), 'name')
     return (
-      <div>
-        <Table data={content} className='very basic compact'>
-          <Table.Column dataKey='Prop' cellRenderer={this.nameRenderer} />
-          <Table.Column cellRenderer={this.requiredRenderer} />
-          <Table.Column dataKey='type' />
-          <Table.Column dataKey='defaultValue' cellRenderer={this.defaultValueRenderer} />
-          <Table.Column dataKey='description' />
-        </Table>
-      </div>
+      <Table data={content} className='very basic compact'>
+        <Table.Header>
+          <Table.Row>
+            <Table.HeaderCell>Name</Table.HeaderCell>
+            <Table.HeaderCell />
+            <Table.HeaderCell>Type</Table.HeaderCell>
+            <Table.HeaderCell>Default</Table.HeaderCell>
+            <Table.HeaderCell>Description</Table.HeaderCell>
+          </Table.Row>
+        </Table.Header>
+        <Table.Body>
+          {_.map(content, item => (
+            <Table.Row key={item.name}>
+              <Table.Cell>{this.nameRenderer(item)}</Table.Cell>
+              <Table.Cell>{this.requiredRenderer(item)}</Table.Cell>
+              <Table.Cell>{item.type}</Table.Cell>
+              <Table.Cell>{this.defaultValueRenderer(item.defaultValue)}</Table.Cell>
+              <Table.Cell>{item.description}</Table.Cell>
+            </Table.Row>
+          ))}
+        </Table.Body>
+      </Table>
     )
   }
 }

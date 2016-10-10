@@ -9,7 +9,9 @@ import {
   getUnhandledProps,
   META,
   SUI,
+  useKeyOnly,
 } from '../../lib'
+import RatingIcon from './RatingIcon'
 
 const _meta = {
   name: 'Rating',
@@ -21,12 +23,24 @@ const _meta = {
   },
 }
 
-class Rating extends Component {
+/**
+ * A rating indicates user interest in content
+ */
+export default class Rating extends Component {
+  static autoControlledProps = [
+    'rating',
+  ]
+
+  static defaultProps = {
+    clearable: 'auto',
+    maxRating: 1,
+  }
+
   static propTypes = {
     /** An element type to render as (string or function). */
     as: customPropTypes.as,
 
-    /** Additional className. */
+    /** Additional classes. */
     className: PropTypes.string,
 
     /**
@@ -39,6 +53,15 @@ class Rating extends Component {
       PropTypes.bool,
     ]),
 
+    /** The initial rating value. */
+    defaultRating: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+    ]),
+
+    /** You can disable or enable interactive rating.  Makes a read-only rating. */
+    disabled: PropTypes.bool,
+
     /** A rating can use a set of star or heart icons. */
     icon: PropTypes.oneOf(_meta.props.icon),
 
@@ -48,52 +71,20 @@ class Rating extends Component {
       PropTypes.number,
     ]),
 
+    /** Called with (event, { rating, maxRating }) after user selects a new rating. */
+    onRate: PropTypes.func,
+
     /** The current number of active icons. */
     rating: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.number,
     ]),
 
-    /** The initial rating value. */
-    defaultRating: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number,
-    ]),
-
     /** A progress bar can vary in size. */
     size: PropTypes.oneOf(_meta.props.size),
-
-    /** You can disable or enable interactive rating.  Makes a read-only rating. */
-    disabled: PropTypes.bool,
-
-    /** Called with (event, { rating, maxRating }) after user selects a new rating. */
-    onRate: PropTypes.func,
-  }
-
-  static defaultProps = {
-    clearable: 'auto',
-    maxRating: 1,
   }
 
   static _meta = _meta
-
-  static autoControlledProps = [
-    'rating',
-  ]
-
-  handleMouseLeave = (...args) => {
-    _.invoke(this.props, 'onMouseLeave', ...args)
-
-    if (this.props.disabled) return
-
-    this.setState({ selectedIndex: -1, isSelecting: false })
-  }
-
-  handleIconMouseEnter = (index) => {
-    if (this.props.disabled) return
-
-    this.setState({ selectedIndex: index, isSelecting: true })
-  }
 
   handleIconClick = (e, index) => {
     const { clearable, disabled, maxRating, onRate } = this.props
@@ -115,50 +106,55 @@ class Rating extends Component {
     if (onRate) onRate(e, { rating: newRating, maxRating })
   }
 
-  renderIcons = () => {
-    const { maxRating } = this.props
-    const { rating, selectedIndex, isSelecting } = this.state
+  handleIconMouseEnter = (index) => {
+    if (this.props.disabled) return
 
-    return _.times(maxRating, (i) => {
-      const classes = cx(
-        selectedIndex >= i && isSelecting && 'selected',
-        rating >= i + 1 && 'active',
-        'icon'
-      )
-      return (
-        <i
-          key={i}
-          className={classes}
-          onClick={(e) => this.handleIconClick(e, i)}
-          onMouseEnter={() => this.handleIconMouseEnter(i)}
-        />
-      )
-    })
+    this.setState({ selectedIndex: index, isSelecting: true })
+  }
+
+  handleMouseLeave = (...args) => {
+    _.invoke(this.props, 'onMouseLeave', ...args)
+
+    if (this.props.disabled) return
+
+    this.setState({ selectedIndex: -1, isSelecting: false })
   }
 
   render() {
-    const { className, disabled, icon, size } = this.props
-    const { selectedIndex, isSelecting } = this.state
+    const {
+      className,
+      disabled,
+      icon,
+      maxRating,
+      size,
+    } = this.props
+    const { rating, selectedIndex, isSelecting } = this.state
 
     const classes = cx(
       'ui',
-      size,
       icon,
-      disabled && 'disabled',
-      isSelecting && !disabled && selectedIndex >= 0 && 'selected',
+      size,
+      useKeyOnly(disabled, 'disabled'),
+      useKeyOnly(isSelecting && !disabled && selectedIndex >= 0, 'selected'),
       'rating',
       className,
     )
-
     const rest = getUnhandledProps(Rating, this.props)
     const ElementType = getElementType(Rating, this.props)
 
     return (
       <ElementType {...rest} className={classes} onMouseLeave={this.handleMouseLeave}>
-        {this.renderIcons()}
+        {_.times(maxRating, (i) => (
+          <RatingIcon
+            active={rating >= i + 1}
+            index={i}
+            key={i}
+            onClick={this.handleIconClick}
+            onMouseEnter={this.handleIconMouseEnter}
+            selected={selectedIndex >= i && isSelecting }
+          />
+        ))}
       </ElementType>
     )
   }
 }
-
-export default Rating

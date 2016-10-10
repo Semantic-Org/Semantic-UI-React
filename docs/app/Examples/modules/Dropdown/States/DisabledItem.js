@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import faker from 'faker'
 import React from 'react'
-import { Dropdown } from 'stardust'
+import { Dropdown } from 'semantic-ui-react'
 
 const options = _.times(10, (i) => {
   const name = faker.name.findName()

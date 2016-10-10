@@ -1,54 +1,151 @@
-import React, { Component, PropTypes } from 'react'
+import _ from 'lodash'
 import cx from 'classnames'
+import React, { isValidElement, PropTypes } from 'react'
 
 import {
+  createShorthandFactory,
   customPropTypes,
   getElementType,
+  getUnhandledProps,
   META,
+  useKeyOnly,
 } from '../../lib'
-import { createIcon, createImage } from '../../factories'
+import Image from '../../elements/Image'
 
-export default class ListItem extends Component {
-  static propTypes = {
-    /** An element type to render as (string or function). */
-    as: customPropTypes.as,
+import ListContent from './ListContent'
+import ListDescription from './ListDescription'
+import ListHeader from './ListHeader'
+import ListIcon from './ListIcon'
 
-    children: PropTypes.node,
-    className: PropTypes.string,
-    description: PropTypes.node,
-    header: PropTypes.string,
-    icon: PropTypes.node,
-    image: PropTypes.node,
+function ListItem(props) {
+  const {
+    active,
+    children,
+    className,
+    content,
+    description,
+    disabled,
+    header,
+    icon,
+    image,
+    value,
+  } = props
+
+  const ElementType = getElementType(ListItem, props)
+  const classes = cx(
+    useKeyOnly(active, 'active'),
+    useKeyOnly(disabled, 'disabled'),
+    useKeyOnly(ElementType !== 'li', 'item'),
+    className,
+  )
+  const rest = getUnhandledProps(ListItem, props)
+  const valueProp = ElementType === 'li' ? { value } : { 'data-value': value }
+
+  if (children) {
+    return <ElementType {...rest} className={classes} {...valueProp}>{children}</ElementType>
   }
 
-  static _meta = {
-    name: 'ListItem',
-    type: META.TYPES.ELEMENT,
-    parent: 'List',
-  }
+  const iconElement = ListIcon.create(icon)
+  const imageElement = Image.create(image)
 
-  render() {
-    const { children, className, description, header, icon, image, ...rest } = this.props
-    const classes = cx(className, 'item')
-
-    const media = createIcon(icon) || createImage(image)
-    const _description = description || children
-
-    let content = header ? [
-      header && <div key='header' className='header'>{header}</div>,
-      _description && <div key='description' className='description'>{_description}</div>,
-    ] : (
-      _description
-    )
-
-    // wrap content for icon/image layouts
-    if (media) content = <div className='content'>{content}</div>
-    const ElementType = getElementType(ListItem, this.props)
+  // See description of `content` prop for explanation about why this is necessary.
+  if (!isValidElement(content) && _.isPlainObject(content)) {
     return (
-      <ElementType {...rest} className={classes}>
-        {media}
-        {content}
+      <ElementType {...rest} className={classes} {...valueProp}>
+        {iconElement || imageElement}
+        {ListContent.create(content, { header, description })}
       </ElementType>
     )
   }
+
+  const headerElement = ListHeader.create(header)
+  const descriptionElement = ListDescription.create(description)
+
+  if (iconElement || imageElement) {
+    return (
+      <ElementType {...rest} className={classes} {...valueProp}>
+        {iconElement || imageElement}
+        {(content || headerElement || descriptionElement) && (
+          <ListContent>
+            {headerElement}
+            {descriptionElement}
+            {content}
+          </ListContent>
+        )}
+      </ElementType>
+    )
+  }
+
+  return (
+    <ElementType {...rest} className={classes} {...valueProp}>
+      {headerElement}
+      {descriptionElement}
+      {content}
+    </ElementType>
+  )
 }
+
+ListItem._meta = {
+  name: 'ListItem',
+  parent: 'List',
+  type: META.TYPES.ELEMENT,
+}
+
+ListItem.propTypes = {
+  /** An element type to render as (string or function). */
+  as: customPropTypes.as,
+
+  /** A list item can active. */
+  active: PropTypes.bool,
+
+  /** Primary content. */
+  children: PropTypes.node,
+
+  /** Additional classes. */
+  className: PropTypes.string,
+
+  /**
+   * Shorthand for primary content.
+   *
+   * Heads up!
+   *
+   * This is handled slightly differently than the typical `content` prop since
+   * the wrapping ListContent is not used when there's no icon or image.
+   *
+   * If you pass content as:
+   * - an element/literal, it's treated as the sibling node to
+   * header/description (whether wrapped in Item.Content or not).
+   * - a props object, it forces the presence of Item.Content and passes those
+   * props to it. If you pass a content prop within that props object, it
+   * will be treated as the sibling node to header/description.
+   */
+  content: customPropTypes.itemShorthand,
+
+  /** Shorthand for ListDescription. */
+  description: customPropTypes.itemShorthand,
+
+  /** A list item can disabled. */
+  disabled: PropTypes.bool,
+
+  /** Shorthand for ListHeader. */
+  header: customPropTypes.itemShorthand,
+
+  /** Shorthand for ListIcon. */
+  icon: customPropTypes.every([
+    customPropTypes.disallow(['image']),
+    customPropTypes.itemShorthand,
+  ]),
+
+  /** Shorthand for Image. */
+  image: customPropTypes.every([
+    customPropTypes.disallow(['icon']),
+    customPropTypes.itemShorthand,
+  ]),
+
+  /** A value for an ordered list. */
+  value: PropTypes.string,
+}
+
+ListItem.create = createShorthandFactory(ListItem, content => ({ content }))
+
+export default ListItem

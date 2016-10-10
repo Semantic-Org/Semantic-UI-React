@@ -2,31 +2,35 @@ import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
 import {
+  createShorthand,
   customPropTypes,
   getElementType,
   getUnhandledProps,
   META,
 } from '../../lib'
-import { createShorthand } from '../../factories'
 import FeedDate from './FeedDate'
 import FeedExtra from './FeedExtra'
 import FeedMeta from './FeedMeta'
 import FeedSummary from './FeedSummary'
 
 function FeedContent(props) {
-  const { children, content, className, extraImages, extraText, date, meta, summary } = props
+  const { children, className, content, extraImages, extraText, date, meta, summary } = props
   const classes = cx(className, 'content')
   const rest = getUnhandledProps(FeedContent, props)
   const ElementType = getElementType(FeedContent, props)
 
+  if (children) {
+    return <ElementType {...rest} className={classes}>{children}</ElementType>
+  }
+
   return (
     <ElementType {...rest} className={classes}>
-      {createShorthand(FeedDate, val => ({ date: val }), date)}
-      {createShorthand(FeedSummary, val => ({ summary: val }), summary)}
+      {createShorthand(FeedDate, val => ({ content: val }), date)}
+      {createShorthand(FeedSummary, val => ({ content: val }), summary)}
+      {content}
+      {createShorthand(FeedExtra, val => ({ text: true, content: val }), extraText)}
       {createShorthand(FeedExtra, val => ({ images: val }), extraImages)}
-      {createShorthand(FeedExtra, val => ({ text: val }), extraText)}
-      {createShorthand(FeedMeta, val => ({ meta: val }), meta)}
-      {children || content}
+      {createShorthand(FeedMeta, val => ({ content: val }), meta)}
     </ElementType>
   )
 }
@@ -41,41 +45,29 @@ FeedContent.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** Primary content of the FeedContent. */
-  children: customPropTypes.every([
-    customPropTypes.disallow(['content']),
-    PropTypes.node,
-  ]),
+  /** Primary content. */
+  children: PropTypes.node,
 
-  /** Classes that will be added to the FeedContent className. */
+  /** Additional classes. */
   className: PropTypes.string,
 
-  /** Primary content of the FeedContent. Mutually exclusive with children. */
-  content: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.string,
-  ]),
+  /** Shorthand for primary content. */
+  content: customPropTypes.contentShorthand,
 
   /** An event can contain a date. */
-  date: PropTypes.string,
+  date: customPropTypes.itemShorthand,
 
-  /** Shorthand for FeedExtra with prop images. */
-  extraImages: customPropTypes.every([
-    customPropTypes.disallow(['children', 'content']),
-    PropTypes.arrayOf(PropTypes.string),
-  ]),
+  /** Shorthand for FeedExtra with images. */
+  extraImages: FeedExtra.propTypes.images,
 
-  /** Shorthand for FeedExtra with prop text. */
-  extraText: customPropTypes.every([
-    customPropTypes.disallow(['children', 'content']),
-    PropTypes.string,
-  ]),
+  /** Shorthand for FeedExtra with text. */
+  extraText: customPropTypes.itemShorthand,
 
-  /** A shorthand for FeedMeta. */
-  meta: PropTypes.string,
+  /** Shorthand for FeedMeta. */
+  meta: customPropTypes.itemShorthand,
 
-  /** A shorthand for FeedSummary. */
-  summary: PropTypes.string,
+  /** Shorthand for FeedSummary. */
+  summary: customPropTypes.itemShorthand,
 }
 
 export default FeedContent

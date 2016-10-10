@@ -4,6 +4,7 @@ import React, { PropTypes } from 'react'
 
 import {
   AutoControlledComponent as Component,
+  createShorthand,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -26,7 +27,7 @@ const _meta = {
     color: SUI.COLORS,
     floated: ['right'],
     icon: ['labeled'],
-    fixed: ['bottom', 'top'],
+    fixed: ['left', 'right', 'bottom', 'top'],
     size: _.without(SUI.SIZES, 'medium', 'big'),
     tabular: ['right'],
     widths: SUI.WIDTHS,
@@ -35,7 +36,7 @@ const _meta = {
 
 /**
  * A menu displays grouped navigation actions.
- * */
+ **/
 class Menu extends Component {
   static propTypes = {
     /** An element type to render as (string or function). */
@@ -53,10 +54,10 @@ class Menu extends Component {
     /** A menu item or menu can have no borders. */
     borderless: PropTypes.bool,
 
-    /** Primary content of the Menu. Mutually exclusive with items. */
+    /** Primary content. */
     children: PropTypes.node,
 
-    /** Classes that will be added to the Menu className. */
+    /** Additional classes. */
     className: PropTypes.string,
 
     /** Additional colors can be specified. */
@@ -89,18 +90,8 @@ class Menu extends Component {
     /** A menu may have its colors inverted to show greater contrast. */
     inverted: PropTypes.bool,
 
-    /** Shorthand array of props for Menu. Mutually exclusive with children. */
-    items: customPropTypes.every([
-      customPropTypes.disallow(['children']),
-      PropTypes.arrayOf(PropTypes.shape({
-        childKey: PropTypes.oneOfType([
-          PropTypes.number,
-          PropTypes.string,
-        ]),
-        // this object is spread on the MenuItem
-        // allow it to validate props instead
-      })),
-    ]),
+    /** Shorthand array of props for Menu. */
+    items: customPropTypes.collectionShorthand,
 
     /** onClick handler for MenuItem. Mutually exclusive with children. */
     onItemClick: customPropTypes.every([
@@ -149,13 +140,6 @@ class Menu extends Component {
   static Item = MenuItem
   static Menu = MenuMenu
 
-  componentWillMount() {
-    super.componentWillMount()
-
-    const { items } = this.props
-    if (items) this.trySetState({ activeIndex: _.findIndex(items, ['active', true]) })
-  }
-
   handleItemClick = (e, { name, index }) => {
     this.trySetState({ activeIndex: index })
     const { items, onItemClick } = this.props
@@ -169,26 +153,18 @@ class Menu extends Component {
     const { activeIndex } = this.state
 
     return _.map(items, (item, index) => {
-      const { content, childKey, name, itemProps } = item
-      const finalKey = childKey || [content, name].join('-')
-
-      return (
-        <MenuItem
-          {...itemProps}
-          active={activeIndex === index}
-          content={content}
-          index={index}
-          key={finalKey}
-          name={name}
-          onClick={this.handleItemClick}
-        />
-      )
+      return createShorthand(MenuItem, val => ({ content: val }), item, {
+        active: activeIndex === index,
+        childKey: ({ content, name }) => [content, name].join('-'),
+        index,
+        onClick: this.handleItemClick,
+      })
     })
   }
 
   render() {
     const {
-      attached, borderless, className, children, color, compact, fixed, floated, fluid, icon, inverted, pagination,
+      attached, borderless, children, className, color, compact, fixed, floated, fluid, icon, inverted, pagination,
       pointing, secondary, stackable, tabular, text, vertical, size, widths,
     } = this.props
     const classes = cx(
@@ -214,7 +190,6 @@ class Menu extends Component {
       className,
       'menu'
     )
-
     const rest = getUnhandledProps(Menu, this.props)
     const ElementType = getElementType(Menu, this.props)
 

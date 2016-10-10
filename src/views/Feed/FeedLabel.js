@@ -2,23 +2,28 @@ import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
 import {
+  createHTMLImage,
   customPropTypes,
   getElementType,
   getUnhandledProps,
   META,
 } from '../../lib'
-import { createIcon, createHTMLImage } from '../../factories'
+import Icon from '../../elements/Icon'
 
 function FeedLabel(props) {
-  const { children, className, icon, image } = props
+  const { children, className, content, icon, image } = props
   const classes = cx(className, 'label')
   const rest = getUnhandledProps(FeedLabel, props)
   const ElementType = getElementType(FeedLabel, props)
 
+  if (children) {
+    return <ElementType {...rest} className={classes}>{children}</ElementType>
+  }
+
   return (
     <ElementType {...rest} className={classes}>
-      {children}
-      {createIcon(icon)}
+      {content}
+      {Icon.create(icon)}
       {createHTMLImage(image)}
     </ElementType>
   )
@@ -34,26 +39,20 @@ FeedLabel.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** Primary content of the FeedLabel. */
-  children: customPropTypes.every([
-    customPropTypes.disallow(['icon', 'image']),
-    PropTypes.node,
-  ]),
+  /** Primary content. */
+  children: PropTypes.node,
 
-  /** Classes that will be added to the FeedLabel className. */
+  /** Additional classes. */
   className: PropTypes.string,
 
+  /** Shorthand for primary content. */
+  content: customPropTypes.contentShorthand,
+
   /** An event can contain icon label. */
-  icon: customPropTypes.every([
-    customPropTypes.disallow(['children', 'image']),
-    PropTypes.node,
-  ]),
+  icon: customPropTypes.itemShorthand,
 
   /** An event can contain image label. */
-  image: customPropTypes.every([
-    customPropTypes.disallow(['children', 'icon']),
-    PropTypes.node,
-  ]),
+  image: customPropTypes.itemShorthand,
 }
 
 export default FeedLabel

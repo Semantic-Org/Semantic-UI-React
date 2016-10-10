@@ -3,6 +3,7 @@ import React, { PropTypes } from 'react'
 
 import {
   getElementType,
+  createShorthandFactory,
   customPropTypes,
   getUnhandledProps,
   META,
@@ -12,6 +13,8 @@ import {
   useValueAndKey,
   useKeyOnly,
 } from '../../lib'
+import Label from '../Label/Label'
+
 import ImageGroup from './ImageGroup'
 
 /**
@@ -20,8 +23,27 @@ import ImageGroup from './ImageGroup'
  */
 function Image(props) {
   const {
-    verticalAlign, alt, avatar, bordered, centered, className, disabled, floated, fluid,
-    hidden, height, href, inline, shape, size, spaced, src, width, wrapped, ui,
+    alt,
+    avatar,
+    bordered,
+    centered,
+    className,
+    disabled,
+    floated,
+    fluid,
+    height,
+    hidden,
+    href,
+    inline,
+    label,
+    shape,
+    size,
+    spaced,
+    src,
+    verticalAlign,
+    width,
+    wrapped,
+    ui,
   } = props
 
   const classes = cx(
@@ -41,12 +63,11 @@ function Image(props) {
     className,
     'image'
   )
-
   const rest = getUnhandledProps(Image, props)
   const rootProps = { className: classes, ...rest }
   const imgTagProps = { src, alt, width, height }
   const ElementType = getElementType(Image, props, () => {
-    if (wrapped) return 'div'
+    if (label || wrapped) return 'div'
   })
 
   if (ElementType === 'img') {
@@ -55,6 +76,7 @@ function Image(props) {
 
   return (
     <ElementType {...rootProps} href={href}>
+      {Label.create(label)}
       <img {...imgTagProps} />
     </ElementType>
   )
@@ -93,7 +115,7 @@ Image.propTypes = {
   /** An image can appear centered in a content block */
   centered: PropTypes.bool,
 
-  /** Class names for custom styling. */
+  /** Additional classes. */
   className: PropTypes.string,
 
   /** An image can show that it is disabled and cannot be selected */
@@ -122,6 +144,9 @@ Image.propTypes = {
 
   /** An image may appear inline */
   inline: PropTypes.bool,
+
+  /** Shorthand for Label. */
+  label: customPropTypes.itemShorthand,
 
   /** An image may appear rounded or circular */
   shape: PropTypes.oneOf(Image._meta.props.shape),
@@ -159,5 +184,7 @@ Image.defaultProps = {
   as: 'img',
   ui: true,
 }
+
+Image.create = createShorthandFactory(Image, value => ({ src: value }))
 
 export default Image

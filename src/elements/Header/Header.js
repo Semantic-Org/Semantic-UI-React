@@ -2,6 +2,7 @@ import _ from 'lodash'
 import cx from 'classnames'
 import React, { PropTypes } from 'react'
 import {
+  createShorthand,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -12,7 +13,9 @@ import {
   useKeyOrValueAndKey,
   useKeyOnly,
 } from '../../lib'
-import { createIcon, createImage, createShorthand } from '../../factories'
+import Icon from '../../elements/Icon'
+import Image from '../../elements/Image'
+
 import HeaderSubheader from './HeaderSubheader'
 import HeaderContent from './HeaderContent'
 
@@ -29,34 +32,33 @@ function Header(props) {
     'ui',
     size,
     color,
-    useKeyOnly(icon === true, 'icon'),
-    useKeyOnly(sub, 'sub'),
-    useKeyOnly(dividing, 'dividing'),
-    useKeyOnly(block, 'block'),
     useKeyOrValueAndKey(attached, 'attached'),
-    useValueAndKey(floated, 'floated'),
-    useKeyOnly(inverted, 'inverted'),
+    useKeyOnly(block, 'block'),
     useKeyOnly(disabled, 'disabled'),
+    useKeyOnly(dividing, 'dividing'),
+    useValueAndKey(floated, 'floated'),
+    useKeyOnly(icon === true, 'icon'),
+    useKeyOnly(image === true, 'image'),
+    useKeyOnly(inverted, 'inverted'),
+    useKeyOnly(sub, 'sub'),
     useTextAlignProp(textAlign),
     className,
     'header',
   )
-
-  const ElementType = getElementType(Header, props)
   const rest = getUnhandledProps(Header, props)
+  const ElementType = getElementType(Header, props)
 
   if (children) {
-    return (
-      <ElementType {...rest} className={classes}>
-        {children}
-      </ElementType>
-    )
+    return <ElementType {...rest} className={classes}>{children}</ElementType>
   }
 
-  if (image || icon && typeof icon !== 'boolean') {
+  const iconElement = Icon.create(icon)
+  const imageElement = Image.create(image)
+
+  if (iconElement || imageElement) {
     return (
       <ElementType {...rest} className={classes}>
-        {createIcon(icon) || createImage(image)}
+        {iconElement || imageElement}
         {(content || subheader) && (
           <HeaderContent>
             {content}
@@ -91,45 +93,30 @@ Header.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** Additional classes */
+  /** Additional classes. */
   className: PropTypes.string,
 
-  /** Primary content */
-  children: customPropTypes.every([
-    PropTypes.node,
-    customPropTypes.disallow(['image']),
-    customPropTypes.givenProps(
-      { icon: PropTypes.oneOfType([PropTypes.string, PropTypes.element, PropTypes.object]) },
-      customPropTypes.disallow(['icon']),
-    ),
-  ]),
+  /** Primary content. */
+  children: PropTypes.node,
 
-  /** Primary content.  Mutually exclusive with children. */
-  content: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.string,
-  ]),
+  /** Shorthand for primary content. */
+  content: customPropTypes.contentShorthand,
 
   /** Add an icon by icon name or pass an <Icon /.> */
   icon: customPropTypes.every([
     customPropTypes.disallow(['image']),
-    customPropTypes.givenProps(
-      { children: PropTypes.node.isRequired },
+    PropTypes.oneOfType([
       PropTypes.bool,
-    ),
-    customPropTypes.givenProps(
-      { icon: PropTypes.oneOfType([PropTypes.string, PropTypes.element, PropTypes.object]) },
-      customPropTypes.disallow(['children']),
-    ),
+      customPropTypes.itemShorthand,
+    ]),
   ]),
 
   /** Add an image by img src or pass an <Image />. */
   image: customPropTypes.every([
-    customPropTypes.disallow(['children', 'icon']),
+    customPropTypes.disallow(['icon']),
     PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.element,
-      PropTypes.object,
+      PropTypes.bool,
+      customPropTypes.itemShorthand,
     ]),
   ]),
 
@@ -163,11 +150,8 @@ Header.propTypes = {
   /** Content headings are sized with em and are based on the font-size of their container. */
   size: PropTypes.oneOf(Header._meta.props.size),
 
-  /** Shorthand for the Header.Subheader component. Mutually exclusive with children */
-  subheader: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.string,
-  ]),
+  /** Shorthand for Header.Subheader. */
+  subheader: customPropTypes.itemShorthand,
 
   /** Align header content */
   textAlign: PropTypes.oneOf(Header._meta.props.textAlign),

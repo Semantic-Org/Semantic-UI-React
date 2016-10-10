@@ -1,5 +1,5 @@
 import React from 'react'
-import { Image, Grid, Rail, Segment } from 'stardust'
+import { Image, Grid, Rail, Segment } from 'semantic-ui-react'
 
 const RailDividingExample = () => (
   <Grid columns={3}>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Menu } from 'stardust'
+import { Menu } from 'semantic-ui-react'
 
 const colorsA = ['red', 'orange', 'yellow', 'olive', 'green', 'teal']
 const colorsB = ['blue', 'violet', 'purple', 'pink', 'brown', 'grey']

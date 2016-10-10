@@ -1,19 +1,26 @@
+import _ from 'lodash'
 import React, { PropTypes } from 'react'
 
-import { Button } from '../../elements'
-import { Modal } from '../../modules'
 import { getUnhandledProps, META } from '../../lib'
+import Button from '../../elements/Button'
+import Modal from '../../modules/Modal'
 
 /**
  * A Confirm modal gives the user a choice to confirm or cancel an action
  * @see Modal
  */
 function Confirm(props) {
-  const { active, cancelButton, confirmButton, header, content, onConfirm, onCancel } = props
+  const { open, cancelButton, confirmButton, header, content, onConfirm, onCancel } = props
   const rest = getUnhandledProps(Confirm, props)
 
+  // `open` is auto controlled by the Modal
+  // It cannot be present (even undefined) with `defaultOpen`
+  // only apply it if the user provided an open prop
+  const openProp = {}
+  if (_.has(props, 'open')) openProp.open = open
+
   return (
-    <Modal active={active} size='small' onHide={onCancel} {...rest}>
+    <Modal {...openProp} size='small' onClose={onCancel} {...rest}>
       {header && <Modal.Header>{header}</Modal.Header>}
       {content && <Modal.Content>{content}</Modal.Content>}
       <Modal.Actions>
@@ -31,7 +38,7 @@ Confirm._meta = {
 
 Confirm.propTypes = {
   /** Whether or not the modal is visible */
-  active: PropTypes.bool,
+  open: PropTypes.bool,
 
   /** The cancel button text */
   cancelButton: PropTypes.string,
@@ -42,7 +49,7 @@ Confirm.propTypes = {
   /** The ModalHeader text */
   header: PropTypes.string,
 
-  /** The ModalContent text. Mutually exclusive with children. */
+  /** The ModalContent text. */
   content: PropTypes.string,
 
   /** Called when the OK button is clicked */

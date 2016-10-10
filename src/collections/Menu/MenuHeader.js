@@ -11,8 +11,8 @@ import {
 function MenuHeader(props) {
   const { children, className, content } = props
   const classes = cx(className, 'header')
-  const ElementType = getElementType(MenuHeader, props)
   const rest = getUnhandledProps(MenuHeader, props)
+  const ElementType = getElementType(MenuHeader, props)
 
   return <ElementType {...rest} className={classes}>{children || content}</ElementType>
 }
@@ -27,17 +27,14 @@ MenuHeader.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** Primary content */
+  /** Primary content. */
   children: PropTypes.node,
 
-  /** Additional classes */
+  /** Additional classes. */
   className: PropTypes.string,
 
-  /** Shorthand for primary content */
-  content: PropTypes.oneOfType([
-    PropTypes.number,
-    PropTypes.string,
-  ]),
+  /** Shorthand for primary content. */
+  content: customPropTypes.contentShorthand,
 }
 
 export default MenuHeader

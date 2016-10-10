@@ -2,24 +2,30 @@ import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
 import {
+  createShorthand,
   customPropTypes,
   getElementType,
   getUnhandledProps,
   META,
 } from '../../lib'
-import { createShorthand } from '../../factories'
 import FeedDate from './FeedDate'
+import FeedUser from './FeedUser'
 
 function FeedSummary(props) {
-  const { children, className, date, summary } = props
+  const { children, className, content, date, user } = props
   const classes = cx(className, 'summary')
   const rest = getUnhandledProps(FeedSummary, props)
   const ElementType = getElementType(FeedSummary, props)
 
+  if (children) {
+    return <ElementType {...rest} className={classes}>{children}</ElementType>
+  }
+
   return (
     <ElementType {...rest} className={classes}>
-      {children || summary }
-      {createShorthand(FeedDate, val => ({ date: val }), date)}
+      {createShorthand(FeedUser, val => ({ content: val }), user)}
+      {content}
+      {createShorthand(FeedDate, val => ({ content: val }), date)}
     </ElementType>
   )
 }
@@ -34,22 +40,20 @@ FeedSummary.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** Primary content of the FeedSummary. */
-  children: customPropTypes.every([
-    customPropTypes.disallow(['summary']),
-    PropTypes.node,
-  ]),
+  /** Primary content. */
+  children: PropTypes.node,
 
-  /** Classes that will be added to the FeedSummary className. */
+  /** Additional classes. */
   className: PropTypes.string,
 
-  /** An event summary can contain a date. */
-  date: PropTypes.string,
+  /** Shorthand for primary content. */
+  content: customPropTypes.contentShorthand,
 
-  summary: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.string,
-  ]),
+  /** Shorthand for FeedDate. */
+  date: customPropTypes.itemShorthand,
+
+  /** Shorthand for FeedUser. */
+  user: customPropTypes.itemShorthand,
 }
 
 export default FeedSummary

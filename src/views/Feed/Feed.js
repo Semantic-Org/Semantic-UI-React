@@ -29,7 +29,7 @@ function Feed(props) {
     return <ElementType {...rest} className={classes}>{children}</ElementType>
   }
 
-  const eventsJSX = _.map(events, eventProps => {
+  const eventElements = _.map(events, eventProps => {
     const { childKey, date, meta, summary, ...eventData } = eventProps
     const finalKey = childKey || [date, meta, summary].join('-')
 
@@ -44,7 +44,7 @@ function Feed(props) {
     )
   })
 
-  return <ElementType {...rest} className={classes}>{eventsJSX}</ElementType>
+  return <ElementType {...rest} className={classes}>{eventElements}</ElementType>
 }
 
 Feed._meta = {
@@ -59,29 +59,14 @@ Feed.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** Primary content of the Feed. */
-  children: customPropTypes.every([
-    customPropTypes.disallow(['events']),
-    PropTypes.node,
-  ]),
+  /** Primary content. */
+  children: PropTypes.node,
 
-  /** Classes that will be added to the Feed className. */
+  /** Additional classes. */
   className: PropTypes.string,
 
-  /** Array of props for FeedEvent. */
-  events: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.arrayOf(PropTypes.shape({
-      childKey: PropTypes.string,
-      date: PropTypes.string,
-      image: PropTypes.node,
-      icon: PropTypes.node,
-      meta: PropTypes.string,
-      summary: PropTypes.string,
-      extraText: PropTypes.string,
-      extraImages: PropTypes.arrayOf(PropTypes.node),
-    })),
-  ]),
+  /** Shorthand array of props for FeedEvent. */
+  events: customPropTypes.collectionShorthand,
 
   /** A feed can have different sizes. */
   size: PropTypes.oneOf(Feed._meta.props.size),

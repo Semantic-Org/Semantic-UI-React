@@ -1,5 +1,5 @@
 import React from 'react'
-import { Segment } from 'stardust'
+import { Segment } from 'semantic-ui-react'
 
 const SegmentRaisedSegmentsExample = () => (
   <Segment.Group raised>

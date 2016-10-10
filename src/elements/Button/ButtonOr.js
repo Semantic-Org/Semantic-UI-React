@@ -17,7 +17,7 @@ function ButtonOr(props) {
   const rest = getUnhandledProps(ButtonOr, props)
   const ElementType = getElementType(ButtonOr, props)
 
-  return <ElementType className={classes} {...rest} />
+  return <ElementType {...rest} className={classes} />
 }
 
 ButtonOr._meta = {
@@ -30,7 +30,7 @@ ButtonOr.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** Additional classes */
+  /** Additional classes. */
   className: PropTypes.string,
 }
 

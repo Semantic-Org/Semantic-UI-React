@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import classNames from 'classnames'
+import cx from 'classnames'
 
 import {
   getElementType,
@@ -17,8 +17,7 @@ import {
  */
 function FormGroup(props) {
   const { children, className, grouped, inline, widths } = props
-
-  const classes = classNames(
+  const classes = cx(
     useWidthProp(widths, null, true),
     useKeyOnly(inline, 'inline'),
     useKeyOnly(grouped, 'grouped'),
@@ -27,11 +26,8 @@ function FormGroup(props) {
   )
   const rest = getUnhandledProps(FormGroup, props)
   const ElementType = getElementType(FormGroup, props)
-  return (
-    <ElementType {...rest} className={classes}>
-      {children}
-    </ElementType>
-  )
+
+  return <ElementType {...rest} className={classes}>{children}</ElementType>
 }
 
 FormGroup._meta = {
@@ -47,10 +43,10 @@ FormGroup.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** Primary content.  Intended to be Form Fields. */
+  /** Primary content. */
   children: PropTypes.node,
 
-  /** Additional classes */
+  /** Additional classes. */
   className: PropTypes.string,
 
   /** Fields can show related choices */

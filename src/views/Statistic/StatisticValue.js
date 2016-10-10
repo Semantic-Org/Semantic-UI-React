@@ -28,23 +28,17 @@ StatisticValue.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** Primary content of the StatisticValue. */
-  children: customPropTypes.every([
-    customPropTypes.disallow(['content']),
-    PropTypes.node,
-  ]),
+  /** Primary content. */
+  children: PropTypes.node,
 
-  /** Classes that will be added to the StatisticValue className. */
+  /** Additional classes. */
   className: PropTypes.string,
 
   /** Format the value with smaller font size to fit nicely beside number values. */
   text: PropTypes.bool,
 
   /** Primary content of the StatisticValue. Mutually exclusive with the children prop. */
-  value: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.string,
-  ]),
+  value: customPropTypes.contentShorthand,
 }
 
 export default StatisticValue

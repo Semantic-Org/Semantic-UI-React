@@ -11,7 +11,7 @@ describe('ItemGroup', () => {
 
   common.propKeyOnlyToClassName(ItemGroup, 'divided')
   common.propKeyOnlyToClassName(ItemGroup, 'link')
-  common.propKeyOrValueToClassName(ItemGroup, 'relaxed')
+  common.propKeyOrValueAndKeyToClassName(ItemGroup, 'relaxed')
 
   describe('items prop', () => {
     it('renders children', () => {

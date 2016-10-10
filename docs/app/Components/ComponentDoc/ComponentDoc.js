@@ -8,8 +8,9 @@ import ComponentExamples from './ComponentExamples'
 import ComponentProps from './ComponentProps'
 import docgenInfo from '../../docgenInfo.json'
 
+import { repoURL } from 'docs/app/utils'
 import { META } from 'src/lib'
-import stardust from 'src'
+import * as semanticUIReact from 'src'
 import { Divider, Grid, Header, Icon, List } from 'src'
 
 const docgenPaths = _.keys(docgenInfo)
@@ -25,12 +26,12 @@ const getPosixPath = (componentName) => getDocgenPath(componentName).replace(pat
 
 const getGithubSourceUrl = (componentName) => {
   const posixPath = getPosixPath(componentName)
-  return `https://github.com/TechnologyAdvice/stardust/blob/master/${posixPath}`
+  return `${repoURL}/blob/master/${posixPath}`
 }
 
 const getGithubEditUrl = (componentName) => {
   const posixPath = getPosixPath(componentName)
-  return `https://github.com/TechnologyAdvice/stardust/edit/master/${posixPath}`
+  return `${repoURL}/edit/master/${posixPath}`
 }
 
 const getSemanticUIDocsUrl = (_meta) => {
@@ -87,21 +88,21 @@ export default class ComponentDoc extends Component {
     const seeTags = _.filter(docgen.docBlock.tags, ['title', 'see'])
 
     const seeLinks = _.map(seeTags, ({ description }) => {
-      const seeMeta = _.get(stardust[description], '_meta')
+      const seeMeta = _.get(semanticUIReact[description], '_meta')
       if (!seeMeta) return
 
       const { type, name } = seeMeta
 
       return (
-        <Link key={description} to={`/${type}s/${_.kebabCase(name)}`} className='item'>
+        <List.Item as={Link} key={description} to={`/${type}s/${_.kebabCase(name)}`}>
           {description}
-        </Link>
+        </List.Item>
       )
     })
 
     // still render empty lists to reserve the whitespace
     return (
-      <List className='small horizontal link' style={{ display: 'block' }}>
+      <List link horizontal size='small' style={{ display: 'block' }}>
         <List.Item>
           <Header size='tiny' color='grey'>
             {seeLinks.length > 0 ? 'See:' : ' '}
@@ -118,10 +119,13 @@ export default class ComponentDoc extends Component {
     if (META.isAddon(_meta)) return null
 
     return (
-      <List.Item icon='book'>
-        <a href={getSemanticUIDocsUrl(_meta)} target='_blank'>
-          Semantic UI {_meta.parent || _meta.name} Docs
-        </a>
+      <List.Item>
+        <List.Icon name='book' />
+        <List.Content>
+          <a href={getSemanticUIDocsUrl(_meta)} target='_blank'>
+            Semantic UI {_meta.parent || _meta.name} Docs
+          </a>
+        </List.Content>
       </List.Item>
     )
   }
@@ -132,10 +136,13 @@ export default class ComponentDoc extends Component {
     // no matter the OS path separator, use '/' since these link to github
     const posixPath = docPath.replace(pathSepRegEx, '/')
     return (
-      <List.Item icon='github'>
-        <code>
-          <a href={getGithubSourceUrl(_meta.name)} target='_blank'>{posixPath}</a>
-        </code>
+      <List.Item>
+        <List.Icon name='github' />
+        <List.Content>
+          <code>
+            <a href={getGithubSourceUrl(_meta.name)} target='_blank'>{posixPath}</a>
+          </code>
+        </List.Content>
       </List.Item>
     )
   }
@@ -148,7 +155,7 @@ export default class ComponentDoc extends Component {
     const selectedDocgen = docgenInfo[getDocgenPath(showPropsFor)]
     const toggleIcon = `toggle ${showPropsFor ? 'on' : 'off'}`
 
-    const subComponents = _.flatMap(stardust, SDComponent => _.filter(SDComponent, staticValue => (
+    const subComponents = _.flatMap(semanticUIReact, SDComponent => _.filter(SDComponent, staticValue => (
       _.get(staticValue, '_meta.parent') === _meta.name
     )))
 
@@ -207,7 +214,7 @@ export default class ComponentDoc extends Component {
           {docgen.docBlock.description || (
             <span>
               <a href={getGithubEditUrl(_meta.name)}>Add a description</a>. Instructions are{' '}
-              <a href={'https://github.com/TechnologyAdvice/stardust/blob/master/.github/CONTRIBUTING.md#components'}>
+              <a href={`${repoURL}/blob/master/.github/CONTRIBUTING.md#components` }>
                 here.
               </a>
               {' '}Description is in the SUI Docs, right there <Icon name='pointing right' />
@@ -228,7 +235,7 @@ export default class ComponentDoc extends Component {
             <Grid.Column>
               {this.renderHeader()}
               {this.renderSee()}
-              <List className='link' style={linkListStyle}>
+              <List link style={linkListStyle}>
                 {this.renderGithubSourceLink()}
                 {this.renderSemanticDocsLink()}
               </List>
