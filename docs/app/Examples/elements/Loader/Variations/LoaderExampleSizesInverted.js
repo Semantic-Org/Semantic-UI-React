@@ -3,7 +3,7 @@ import { Loader, Image, Segment } from 'semantic-ui-react'
 
 // TODO: Update <Dimmer> usage after its update to v1 API
 
-const SizesInverted = () => (
+const LoaderExampleSizesInverted = () => (
   <div>
     <Segment>
       <div className='ui active inverted dimmer'>
@@ -39,4 +39,4 @@ const SizesInverted = () => (
   </div>
 )
 
-export default SizesInverted
+export default LoaderExampleSizesInverted

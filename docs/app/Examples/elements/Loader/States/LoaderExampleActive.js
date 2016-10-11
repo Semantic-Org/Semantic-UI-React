@@ -1,7 +1,7 @@
 import React from 'react'
 import { Loader, Image, Segment } from 'semantic-ui-react'
 
-const Active = () => (
+const LoaderExampleActive = () => (
   <Segment>
     <Loader active />
 
@@ -9,4 +9,4 @@ const Active = () => (
   </Segment>
 )
 
-export default Active
+export default LoaderExampleActive

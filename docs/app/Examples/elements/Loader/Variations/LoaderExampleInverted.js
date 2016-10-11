@@ -1,7 +1,7 @@
 import React from 'react'
 import { Image, Loader, Segment } from 'semantic-ui-react'
 
-const Inverted = () => (
+const LoaderExampleInverted = () => (
   <Segment inverted>
     <Loader active inverted />
 
@@ -9,4 +9,4 @@ const Inverted = () => (
   </Segment>
 )
 
-export default Inverted
+export default LoaderExampleInverted
