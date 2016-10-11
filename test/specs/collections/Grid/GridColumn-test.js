@@ -3,8 +3,18 @@ import GridColumn from 'src/collections/Grid/GridColumn'
 
 describe('GridColumn', () => {
   common.isConformant(GridColumn)
+  common.rendersChildren(GridColumn)
+
+  common.propKeyAndValueToClassName(GridColumn, 'floated')
+  common.propKeyAndValueToClassName(GridColumn, 'only')
+
+  common.propKeyOnlyToClassName(GridColumn, 'stretched')
+
+  common.propValueOnlyToClassName(GridColumn, 'color')
+
   common.implementsTextAlignProp(GridColumn)
   common.implementsVerticalAlignProp(GridColumn)
+
   common.implementsWidthProp(GridColumn, {
     propKey: 'computer', widthClass: 'wide computer', canEqual: false,
   })
@@ -23,9 +33,4 @@ describe('GridColumn', () => {
   common.implementsWidthProp(GridColumn, {
     propKey: 'width', widthClass: 'wide', canEqual: false,
   })
-  common.propValueOnlyToClassName(GridColumn, 'color')
-  common.propKeyAndValueToClassName(GridColumn, 'floated')
-  common.propKeyAndValueToClassName(GridColumn, 'only')
-  common.propKeyOnlyToClassName(GridColumn, 'stretched')
-  common.rendersChildren(GridColumn)
 })

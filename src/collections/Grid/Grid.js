@@ -7,38 +7,53 @@ import {
   getUnhandledProps,
   META,
   SUI,
-  useWidthProp,
   useKeyOnly,
   useKeyOrValueAndKey,
   useTextAlignProp,
   useValueAndKey,
   useVerticalAlignProp,
+  useWidthProp,
 } from '../../lib'
 import GridColumn from './GridColumn'
 import GridRow from './GridRow'
 
-/** A grid is used to harmonize negative space in a layout. */
+/**
+ * A grid is used to harmonize negative space in a layout.
+ */
 function Grid(props) {
   const {
-    children, className, celled, centered, columns, divided, doubling, padded, relaxed, reversed, stackable, stretched,
-    textAlign, verticalAlign,
+    celled,
+    centered,
+    children,
+    className,
+    columns,
+    divided,
+    doubling,
+    padded,
+    relaxed,
+    reversed,
+    stackable,
+    stretched,
+    textAlign,
+    verticalAlign,
   } = props
+
   const classes = cx(
     'ui',
-    className,
-    useWidthProp(columns, 'column', true),
-    useKeyOrValueAndKey(celled, 'celled'),
     useKeyOnly(centered, 'centered'),
-    useKeyOrValueAndKey(divided, 'divided'),
     useKeyOnly(doubling, 'doubling'),
-    useKeyOrValueAndKey(padded, 'padded'),
-    useKeyOrValueAndKey(relaxed, 'relaxed'),
-    useValueAndKey(reversed, 'reversed'),
     useKeyOnly(stackable, 'stackable'),
     useKeyOnly(stretched, 'stretched'),
+    useKeyOrValueAndKey(celled, 'celled'),
+    useKeyOrValueAndKey(divided, 'divided'),
+    useKeyOrValueAndKey(padded, 'padded'),
+    useKeyOrValueAndKey(relaxed, 'relaxed'),
     useTextAlignProp(textAlign),
+    useValueAndKey(reversed, 'reversed'),
     useVerticalAlignProp(verticalAlign),
-    'grid'
+    useWidthProp(columns, 'column', true),
+    'grid',
+    className,
   )
   const rest = getUnhandledProps(Grid, props)
   const ElementType = getElementType(Grid, props)

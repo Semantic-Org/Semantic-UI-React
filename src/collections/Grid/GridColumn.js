@@ -14,26 +14,42 @@ import {
   useWidthProp,
 } from '../../lib'
 
+/**
+ * A column sub-component for Grid.
+ */
 function GridColumn(props) {
   const {
-    children, computer, className, color, floated, largeScreen, mobile, only, stretched, tablet, textAlign,
-    verticalAlign, widescreen, width,
-  } = props
-  const classes = cx(
+    children,
     className,
+    computer,
     color,
-    useWidthProp(computer, 'wide computer'),
+    floated,
+    largeScreen,
+    mobile,
+    only,
+    stretched,
+    tablet,
+    textAlign,
+    verticalAlign,
+    widescreen,
+    width,
+  } = props
+
+  const classes = cx(
+    color,
+    useKeyOnly(stretched, 'stretched'),
+    useTextAlignProp(textAlign),
     useValueAndKey(floated, 'floated'),
+    useValueAndKey(only, 'only'),
+    useVerticalAlignProp(verticalAlign),
+    useWidthProp(computer, 'wide computer'),
     useWidthProp(largeScreen, 'wide large screen'),
     useWidthProp(mobile, 'wide mobile'),
-    useValueAndKey(only, 'only'),
-    useKeyOnly(stretched, 'stretched'),
     useWidthProp(tablet, 'wide tablet'),
-    useTextAlignProp(textAlign),
-    useVerticalAlignProp(verticalAlign),
     useWidthProp(widescreen, 'wide widescreen'),
     useWidthProp(width, 'wide'),
-    'column'
+    'column',
+    className,
   )
   const rest = getUnhandledProps(GridColumn, props)
   const ElementType = getElementType(GridColumn, props)
