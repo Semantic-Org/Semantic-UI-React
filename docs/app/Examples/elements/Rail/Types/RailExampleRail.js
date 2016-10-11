@@ -1,17 +1,17 @@
 import React from 'react'
-import { Image, Grid, Rail, Segment } from 'semantic-ui-react'
+import { Grid, Image, Rail, Segment } from 'semantic-ui-react'
 
-const RailDividingExample = () => (
-  <Grid columns={3}>
+const RailExampleRail = () => (
+  <Grid centered columns={3}>
     <Grid.Column>
       <Segment>
         <Image src='http://semantic-ui.com/images/wireframe/paragraph.png' />
 
-        <Rail dividing position='left'>
+        <Rail position='left'>
           <Segment>Left Rail Content</Segment>
         </Rail>
 
-        <Rail dividing position='right'>
+        <Rail position='right'>
           <Segment>Right Rail Content</Segment>
         </Rail>
       </Segment>
@@ -19,4 +19,4 @@ const RailDividingExample = () => (
   </Grid>
 )
 
-export default RailDividingExample
+export default RailExampleRail

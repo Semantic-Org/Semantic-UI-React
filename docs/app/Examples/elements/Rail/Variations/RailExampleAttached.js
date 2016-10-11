@@ -1,8 +1,8 @@
 import React from 'react'
-import { Image, Grid, Rail, Segment } from 'semantic-ui-react'
+import { Grid, Image, Rail, Segment } from 'semantic-ui-react'
 
-const RailAttachedExample = () => (
-  <Grid columns={3}>
+const RailExampleAttached = () => (
+  <Grid centered columns={3}>
     <Grid.Column>
       <Segment textAlign='center'>
         <Image src='http://semantic-ui.com/images/wireframe/paragraph.png' />
@@ -19,4 +19,4 @@ const RailAttachedExample = () => (
   </Grid>
 )
 
-export default RailAttachedExample
+export default RailExampleAttached

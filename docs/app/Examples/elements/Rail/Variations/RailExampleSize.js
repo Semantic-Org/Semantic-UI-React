@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import { Image, Grid, Rail, Segment } from 'semantic-ui-react'
+import { Grid, Image, Rail, Segment } from 'semantic-ui-react'
 
 const Wrapper = ({ children }) => (
   <Grid columns={3} textAlign='center'>
@@ -16,7 +16,7 @@ Wrapper.propTypes = {
   children: PropTypes.node,
 }
 
-const RailSizeExample = () => (
+const RailExampleSize = () => (
   <div>
     <Wrapper>
       <Rail size='mini' position='left'>Mini Left Rail</Rail>
@@ -36,4 +36,4 @@ const RailSizeExample = () => (
   </div>
 )
 
-export default RailSizeExample
+export default RailExampleSize
