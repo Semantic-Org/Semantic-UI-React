@@ -1,6 +1,6 @@
 import _ from 'lodash'
-import React, { PropTypes } from 'react'
 import cx from 'classnames'
+import React, { PropTypes } from 'react'
 
 import {
   customPropTypes,
@@ -16,17 +16,27 @@ import {
  * A rail is used to show accompanying content outside the boundaries of the main view of a site.
  */
 function Rail(props) {
-  const { attached, className, close, children, dividing, internal, position, size } = props
+  const {
+    attached,
+    children,
+    className,
+    close,
+    dividing,
+    internal,
+    position,
+    size,
+  } = props
+
   const classes = cx(
     'ui',
     position,
+    size,
     useKeyOnly(attached, 'attached'),
-    useKeyOrValueAndKey(close, 'close'),
     useKeyOnly(dividing, 'dividing'),
     useKeyOnly(internal, 'internal'),
-    size,
-    className,
+    useKeyOrValueAndKey(close, 'close'),
     'rail',
+    className,
   )
   const rest = getUnhandledProps(Rail, props)
   const ElementType = getElementType(Rail, props)
@@ -36,12 +46,12 @@ function Rail(props) {
 
 Rail._meta = {
   name: 'Rail',
+  type: META.TYPES.ELEMENT,
   props: {
     close: ['very'],
     position: SUI.FLOATS,
     size: _.without(SUI.SIZES, 'medium'),
   },
-  type: META.TYPES.ELEMENT,
 }
 
 Rail.propTypes = {
@@ -51,6 +61,9 @@ Rail.propTypes = {
   /** A rail can appear attached to the main viewport. */
   attached: PropTypes.bool,
 
+  /** Primary content. */
+  children: PropTypes.node,
+
   /** Additional classes. */
   className: PropTypes.string,
 
@@ -59,9 +72,6 @@ Rail.propTypes = {
     PropTypes.bool,
     PropTypes.oneOf(Rail._meta.props.close),
   ]),
-
-  /** Primary content. */
-  children: PropTypes.node,
 
   /** A rail can create a division between itself and a container. */
   dividing: PropTypes.bool,
