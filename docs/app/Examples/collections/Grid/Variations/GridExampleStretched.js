@@ -1,25 +1,23 @@
 import React from 'react'
 import { Grid, Segment } from 'semantic-ui-react'
 
-const { Column, Row } = Grid
-
-const GridStretchedExample = () => (
+const GridExampleStretched = () => (
   <Grid columns={3} divided>
-    <Row stretched>
-      <Column>
+    <Grid.Row stretched>
+      <Grid.Column>
         <Segment>1</Segment>
-      </Column>
-      <Column>
+      </Grid.Column>
+      <Grid.Column>
         <Segment>1</Segment>
         <Segment>2</Segment>
-      </Column>
-      <Column>
+      </Grid.Column>
+      <Grid.Column>
         <Segment>1</Segment>
         <Segment>2</Segment>
         <Segment>3</Segment>
-      </Column>
-    </Row>
+      </Grid.Column>
+    </Grid.Row>
   </Grid>
 )
 
-export default GridStretchedExample
+export default GridExampleStretched

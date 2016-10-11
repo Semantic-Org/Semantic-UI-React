@@ -1,31 +1,29 @@
 import React from 'react'
 import { Grid, Menu } from 'semantic-ui-react'
 
-const { Column, Row } = Grid
-
-const GridTextAlignmentJustifiedExample = () => (
+const GridExampleTextAlignmentJustified = () => (
   <Grid>
-    <Row columns={3}>
-      <Column>
+    <Grid.Row columns={3}>
+      <Grid.Column>
         <Menu fluid vertical>
           <Menu.Item className='header'>Cats</Menu.Item>
         </Menu>
-      </Column>
-      <Column textAlign='center'>
+      </Grid.Column>
+      <Grid.Column textAlign='center'>
         <Menu fluid vertical>
           <Menu.Item className='header'>Dogs</Menu.Item>
           <Menu.Item>Poodle</Menu.Item>
           <Menu.Item>Cockerspaniel</Menu.Item>
         </Menu>
-      </Column>
-      <Column>
+      </Grid.Column>
+      <Grid.Column>
         <Menu fluid vertical>
           <Menu.Item className='header'>Monkeys</Menu.Item>
         </Menu>
-      </Column>
-    </Row>
-    <Row textAlign='justified'>
-      <Column>
+      </Grid.Column>
+    </Grid.Row>
+    <Grid.Row textAlign='justified'>
+      <Grid.Column>
         <p>
           Justified content fits exactly inside the grid column, taking up the entire width from one side to the
           other. Justified content fits exactly inside the grid column, taking up the entire width from one side to
@@ -34,9 +32,9 @@ const GridTextAlignmentJustifiedExample = () => (
           side to the other. Justified content fits exactly inside the grid column, taking up the entire width from
           one side to the other.
         </p>
-      </Column>
-    </Row>
+      </Grid.Column>
+    </Grid.Row>
   </Grid>
 )
 
-export default GridTextAlignmentJustifiedExample
+export default GridExampleTextAlignmentJustified

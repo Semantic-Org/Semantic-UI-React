@@ -1,7 +1,7 @@
 import React from 'react'
-import { Image, Grid } from 'semantic-ui-react'
+import { Grid, Image } from 'semantic-ui-react'
 
-const GridColumnWidthExample = () => (
+const GridExampleColumnWidth = () => (
   <Grid>
     <Grid.Column width={4}>
       <Image src='http://semantic-ui.com/images/wireframe/image.png' />
@@ -15,4 +15,4 @@ const GridColumnWidthExample = () => (
   </Grid>
 )
 
-export default GridColumnWidthExample
+export default GridExampleColumnWidth

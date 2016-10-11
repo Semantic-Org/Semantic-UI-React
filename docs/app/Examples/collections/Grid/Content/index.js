@@ -13,8 +13,8 @@ const GridContentExamples = () => (
 
     <ComponentExample
       title='Columns'
-      description='Columns each contain gutters giving them equal spacing from other columns'
-      examplePath='collections/Grid/Content/GridExampleColumns.'
+      description='Columns each contain gutters giving them equal spacing from other columns.'
+      examplePath='collections/Grid/Content/GridExampleColumns'
     />
   </ExampleSection>
 )
