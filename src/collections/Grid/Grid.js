@@ -19,7 +19,7 @@ import GridRow from './GridRow'
 
 /**
  * A grid is used to harmonize negative space in a layout.
- * */
+ */
 function Grid(props) {
   const {
     celled,

@@ -14,6 +14,9 @@ import {
   useWidthProp,
 } from '../../lib'
 
+/**
+ * A row sub-component for Grid.
+ */
 function GridRow(props) {
   const {
     centered,

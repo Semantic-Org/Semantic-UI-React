@@ -14,6 +14,9 @@ import {
   useWidthProp,
 } from '../../lib'
 
+/**
+ * A column sub-component for Grid.
+ */
 function GridColumn(props) {
   const {
     children,
