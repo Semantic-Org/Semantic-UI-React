@@ -1,10 +1,10 @@
 import React from 'react'
 import { Progress } from 'semantic-ui-react'
 
-const ProgressWarningExample = () => (
+const ProgressExampleWarning = () => (
   <Progress percent={100} warning>
     I am warning you
   </Progress>
 )
 
-export default ProgressWarningExample
+export default ProgressExampleWarning

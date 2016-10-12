@@ -1,7 +1,7 @@
 import React from 'react'
 import { Progress, Segment } from 'semantic-ui-react'
 
-const ProgressInvertedColorExample = () => (
+const ProgressExampleInvertedColor = () => (
   <Segment inverted>
     <Progress percent={32} inverted color='red' label />
     <Progress percent={59} inverted color='orange' label />
@@ -19,4 +19,4 @@ const ProgressInvertedColorExample = () => (
   </Segment>
 )
 
-export default ProgressInvertedColorExample
+export default ProgressExampleInvertedColor

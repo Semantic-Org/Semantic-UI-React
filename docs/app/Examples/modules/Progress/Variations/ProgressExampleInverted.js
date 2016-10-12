@@ -1,7 +1,7 @@
 import React from 'react'
 import { Progress, Segment } from 'semantic-ui-react'
 
-const ProgressInvertedExample = () => (
+const ProgressExampleInverted = () => (
   <Segment inverted>
     <Progress percent={21} inverted label>
       Uploading Files
@@ -17,4 +17,4 @@ const ProgressInvertedExample = () => (
     </Progress>
   </Segment>
 )
-export default ProgressInvertedExample
+export default ProgressExampleInverted

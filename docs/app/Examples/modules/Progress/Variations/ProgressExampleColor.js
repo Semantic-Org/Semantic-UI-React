@@ -1,7 +1,7 @@
 import React from 'react'
 import { Progress } from 'semantic-ui-react'
 
-const ProgressColorExample = () => (
+const ProgressExampleColor = () => (
   <div>
     <Progress percent={32} color='red' />
     <Progress percent={59} color='orange' />
@@ -19,4 +19,4 @@ const ProgressColorExample = () => (
   </div>
 )
 
-export default ProgressColorExample
+export default ProgressExampleColor

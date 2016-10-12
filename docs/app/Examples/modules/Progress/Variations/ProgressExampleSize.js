@@ -1,7 +1,7 @@
 import React from 'react'
 import { Progress } from 'semantic-ui-react'
 
-const ProgressSizeExample = () => (
+const ProgressExampleSize = () => (
   <div>
     <Progress percent={10} size='tiny'>
       tiny
@@ -20,4 +20,4 @@ const ProgressSizeExample = () => (
     </Progress>
   </div>
 )
-export default ProgressSizeExample
+export default ProgressExampleSize

@@ -1,10 +1,10 @@
 import React from 'react'
 import { Progress } from 'semantic-ui-react'
 
-const ProgressDisabledExample = () => (
+const ProgressExampleDisabled = () => (
   <Progress percent={60} disabled>
     Disabled
   </Progress>
 )
 
-export default ProgressDisabledExample
+export default ProgressExampleDisabled

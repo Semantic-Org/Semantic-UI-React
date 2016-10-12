@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Button, Progress } from 'semantic-ui-react'
 
-export default class ProgressIndicatingExample extends Component {
+export default class ProgressExampleIndicating extends Component {
   state = { percent: 33 }
 
   increment = () => this.setState({
