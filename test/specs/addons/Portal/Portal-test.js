@@ -152,6 +152,20 @@ describe('Portal', () => {
     })
   })
 
+  describe('portal ref', () => {
+    it('maintains ref to DOM node with host element', () => {
+      wrapperMount(<Portal open><p>Hi</p></Portal>)
+      wrapper.instance().portal.tagName.should.equal('P')
+    })
+
+    it('maintains ref to DOM node with React component', () => {
+      const Component = (props) => <p>Hi</p>
+
+      wrapperMount(<Portal open><Component /></Portal>)
+      wrapper.instance().portal.tagName.should.equal('P')
+    })
+  })
+
   describe('trigger', () => {
     it('render should return null if no props.trigger', () => {
       wrapperMount(<Portal><p>Hi</p></Portal>)
@@ -449,11 +463,27 @@ describe('Portal', () => {
       wrapperMount(<Portal closeOnDocumentClick defaultOpen><p>Hi</p></Portal>)
       document.body.childElementCount.should.equal(1)
 
-      // Should not close when inside
+      // Should not close when click inside
       domEvent.click(wrapper.instance().node.firstElementChild)
       document.body.childElementCount.should.equal(1)
 
       domEvent.click(document)
+      document.body.childElementCount.should.equal(0)
+    })
+
+    it('closeOnBackgroundClick', () => {
+      wrapperMount(<Portal closeOnDocumentClick={false} closeOnBackgroundClick defaultOpen><p>Hi</p></Portal>)
+      document.body.childElementCount.should.equal(1)
+
+      // Should not close when click inside
+      domEvent.click(wrapper.instance().node.firstElementChild)
+      document.body.childElementCount.should.equal(1)
+
+      // Should not close when click on body
+      domEvent.click(document.body)
+      document.body.childElementCount.should.equal(1)
+
+      domEvent.click(wrapper.instance().node.firstElementChild.parentNode)
       document.body.childElementCount.should.equal(0)
     })
   })
