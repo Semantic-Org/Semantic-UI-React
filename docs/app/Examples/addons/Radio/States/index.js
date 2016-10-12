@@ -7,7 +7,7 @@ const RadioStatesExamples = () => (
   <ExampleSection title='States'>
     <ComponentExample
       title='Checked'
-      description='A radio can come pre-checked'
+      description='A radio can come pre-checked.'
       examplePath='addons/Radio/States/RadioExampleChecked'
     >
       <Message>
@@ -20,12 +20,12 @@ const RadioStatesExamples = () => (
     </ComponentExample>
     <ComponentExample
       title='Disabled'
-      description='Radioes can be disabled'
+      description='Radios can be disabled.'
       examplePath='addons/Radio/States/RadioExampleDisabled'
     />
     <ComponentExample
       title='Read Only'
-      description='Make the radio unable to be edited by the user'
+      description='Make the radio unable to be edited by the user.'
       examplePath='addons/Radio/States/RadioExampleReadOnly'
     />
     <ComponentExample
