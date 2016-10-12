@@ -8,23 +8,23 @@ const RadioTypesExamples = () => (
   <ExampleSection title='Types'>
     <ComponentExample
       title='Radio'
-      description='A radio for checking'
-      examplePath='addons/Radio/Types/RadioExampleRadio'
+      description='A radio for checking.'
+      examplePath='addons/Radio/Types/Radio'
     />
     <ComponentExample
       title='Toggle'
-      description='A radio can toggle'
-      examplePath='addons/Radio/Types/RadioExampleToggle'
+      description='A radio can toggle.'
+      examplePath='addons/Radio/Types/Toggle'
     />
     <ComponentExample
       title='Slider'
-      description='A radio can look like a slider'
-      examplePath='addons/Radio/Types/RadioExampleSlider'
+      description='A radio can look like a slider.'
+      examplePath='addons/Radio/Types/Slider'
     />
     <ComponentExample
       title='Radio Group'
-      description='Radios can be part of a group'
-      examplePath='addons/Radio/Types/RadioExampleRadioGroup'
+      description='Radios can be part of a group.'
+      examplePath='addons/Radio/Types/RadioGroup'
     >
       <Message warning>
         Radios in a group must be

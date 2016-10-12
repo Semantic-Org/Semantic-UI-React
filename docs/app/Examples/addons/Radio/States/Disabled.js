@@ -1,7 +1,7 @@
 import React from 'react'
 import { Form, Radio } from 'semantic-ui-react'
 
-const RadioExampleDisabled = () => (
+const RadioDisabledExample = () => (
   <Form>
     <Form.Field>
       <Radio label='Disabled' disabled />
@@ -12,4 +12,4 @@ const RadioExampleDisabled = () => (
   </Form>
 )
 
-export default RadioExampleDisabled
+export default RadioDisabledExample

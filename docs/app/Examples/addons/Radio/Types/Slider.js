@@ -1,8 +1,8 @@
 import React from 'react'
 import { Radio } from 'semantic-ui-react'
 
-const RadioExampleSlider = () => (
+const RadioSliderExample = () => (
   <Radio slider />
 )
 
-export default RadioExampleSlider
+export default RadioSliderExample
