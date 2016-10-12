@@ -1,7 +1,7 @@
 import React from 'react'
 import { Radio, Segment } from 'semantic-ui-react'
 
-const RadioFittedExample = () => (
+const RadioExampleFitted = () => (
   <div>
     <Segment compact>
       <Radio />
@@ -15,4 +15,4 @@ const RadioFittedExample = () => (
   </div>
 )
 
-export default RadioFittedExample
+export default RadioExampleFitted
