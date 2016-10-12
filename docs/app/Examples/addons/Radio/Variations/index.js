@@ -8,7 +8,7 @@ const RadioVariationsExamples = () => (
     <ComponentExample
       title='Fitted'
       description='A fitted radio does not leave padding for a label'
-      examplePath='addons/Radio/Variations/Fitted'
+      examplePath='addons/Radio/Variations/RadioExampleFitted'
     >
       <Message>
         The{' '}

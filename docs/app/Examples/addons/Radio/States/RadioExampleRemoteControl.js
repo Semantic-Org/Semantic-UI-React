@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Button, Radio } from 'semantic-ui-react'
 
-export default class RadioRemoteControlExample extends Component {
+export default class RadioExampleRemoteControl extends Component {
   state = { checked: false }
   toggle = () => this.setState({ checked: !this.state.checked })
 
