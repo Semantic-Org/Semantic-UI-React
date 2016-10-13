@@ -1,10 +1,10 @@
 import React from 'react'
 import { Step } from 'semantic-ui-react'
 
-const Basic = () => (
+const StepExampleBasic = () => (
   <Step.Group>
     <Step>Shipping</Step>
   </Step.Group>
 )
 
-export default Basic
+export default StepExampleBasic

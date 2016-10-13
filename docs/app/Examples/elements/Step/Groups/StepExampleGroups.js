@@ -8,7 +8,7 @@ const steps = [
   { disabled: true, icon: 'info', title: 'Confirm Order' },
 ]
 
-const Groups = () => (
+const StepExampleGroups = () => (
   <div>
     <Group>
       <Step>
@@ -33,4 +33,4 @@ const Groups = () => (
   </div>
 )
 
-export default Groups
+export default StepExampleGroups

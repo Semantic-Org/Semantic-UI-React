@@ -8,7 +8,7 @@ const steps = [
   { active: true, icon: 'info', title: 'Confirm Order', description: 'Verify order details' },
 ]
 
-const Vertical = () => (
+const StepExampleVertical = () => (
   <div>
     <Group vertical>
       <Step completed>
@@ -33,4 +33,4 @@ const Vertical = () => (
   </div>
 )
 
-export default Vertical
+export default StepExampleVertical

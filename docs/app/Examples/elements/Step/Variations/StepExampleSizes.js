@@ -11,7 +11,7 @@ const simpleSteps = [
   { active: true, icon: 'payment', title: 'Billing' },
 ]
 
-const Sizes = () => (
+const StepExampleSizes = () => (
   <div>
     <Step.Group size='mini' items={steps} />
     <br />
@@ -35,4 +35,4 @@ const Sizes = () => (
   </div>
 )
 
-export default Sizes
+export default StepExampleSizes
