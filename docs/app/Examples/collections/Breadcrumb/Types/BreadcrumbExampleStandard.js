@@ -1,14 +1,14 @@
 import React from 'react'
 import { Breadcrumb } from 'semantic-ui-react'
 
-const BreadcrumbLinkExample = () => (
+const BreadcrumbExampleStandard = () => (
   <Breadcrumb>
     <Breadcrumb.Section link>Home</Breadcrumb.Section>
     <Breadcrumb.Divider />
     <Breadcrumb.Section link>Store</Breadcrumb.Section>
-    <Breadcrumb.Divider icon='right angle' />
-    <Breadcrumb.Section active>Search for: <a href='#'>paper towels</a></Breadcrumb.Section>
+    <Breadcrumb.Divider />
+    <Breadcrumb.Section active>T-Shirt</Breadcrumb.Section>
   </Breadcrumb>
 )
 
-export default BreadcrumbLinkExample
+export default BreadcrumbExampleStandard

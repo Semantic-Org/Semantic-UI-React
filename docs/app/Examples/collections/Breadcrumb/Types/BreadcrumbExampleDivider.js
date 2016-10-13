@@ -1,7 +1,7 @@
 import React from 'react'
 import { Breadcrumb } from 'semantic-ui-react'
 
-const BreadcrumbDividerExample = () => (
+const BreadcrumbExampleDivider = () => (
   <Breadcrumb>
     <Breadcrumb.Section link>Home</Breadcrumb.Section>
     <Breadcrumb.Divider icon='right angle' />
@@ -11,4 +11,4 @@ const BreadcrumbDividerExample = () => (
   </Breadcrumb>
 )
 
-export default BreadcrumbDividerExample
+export default BreadcrumbExampleDivider

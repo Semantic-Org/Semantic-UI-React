@@ -7,8 +7,8 @@ const sections = [
   { text: 'Personal Information', active: true },
 ]
 
-const BreadcrumbDividerPropExample = () => (
+const BreadcrumbExampleIconDividerProps = () => (
   <Breadcrumb divider='/' sections={sections} />
 )
 
-export default BreadcrumbDividerPropExample
+export default BreadcrumbExampleIconDividerProps

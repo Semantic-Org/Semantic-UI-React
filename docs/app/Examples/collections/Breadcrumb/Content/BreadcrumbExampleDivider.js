@@ -1,14 +1,14 @@
 import React from 'react'
 import { Breadcrumb } from 'semantic-ui-react'
 
-const BreadcrumbMassiveSizeExample = () => (
-  <Breadcrumb size='massive'>
+const BreadcrumbExampleDivider = () => (
+  <Breadcrumb>
     <Breadcrumb.Section link>Home</Breadcrumb.Section>
-    <Breadcrumb.Divider icon='right chevron' />
+    <Breadcrumb.Divider>/</Breadcrumb.Divider>
     <Breadcrumb.Section link>Registration</Breadcrumb.Section>
-    <Breadcrumb.Divider icon='right chevron' />
+    <Breadcrumb.Divider>/</Breadcrumb.Divider>
     <Breadcrumb.Section active>Personal Information</Breadcrumb.Section>
   </Breadcrumb>
 )
 
-export default BreadcrumbMassiveSizeExample
+export default BreadcrumbExampleDivider
