@@ -1,7 +1,7 @@
 import React from 'react'
 import { Card, Icon, Image } from 'semantic-ui-react'
 
-const ImageCard = () => (
+const CardExampleImageCard = () => (
   <Card>
     <Image src='http://semantic-ui.com/images/avatar/large/daniel.jpg' />
     <Card.Content>
@@ -18,4 +18,4 @@ const ImageCard = () => (
   </Card>
 )
 
-export default ImageCard
+export default CardExampleImageCard

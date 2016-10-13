@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button, Card, Image } from 'semantic-ui-react'
 
-const Groups = () => (
+const CardExampleGroups = () => (
   <Card.Group>
     <Card>
       <Card.Content>
@@ -66,4 +66,4 @@ const Groups = () => (
   </Card.Group>
 )
 
-export default Groups
+export default CardExampleGroups

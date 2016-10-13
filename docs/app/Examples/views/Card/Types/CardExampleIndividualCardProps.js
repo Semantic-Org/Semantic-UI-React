@@ -8,7 +8,7 @@ const extra = (
   </a>
 )
 
-const IndividualCardByProps = () => (
+const CardExampleIndividualCardProps = () => (
   <Card
     image='http://semantic-ui.com/images/avatar/large/elliot.jpg'
     header='Elliot Baker'
@@ -18,4 +18,4 @@ const IndividualCardByProps = () => (
   />
 )
 
-export default IndividualCardByProps
+export default CardExampleIndividualCardProps

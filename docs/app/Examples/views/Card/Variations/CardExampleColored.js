@@ -3,7 +3,7 @@ import { Card } from 'semantic-ui-react'
 
 const src = 'http://semantic-ui.com/images/wireframe/white-image.png'
 
-const ColoredCards = () => (
+const CardExampleColored = () => (
   <Card.Group itemsPerRow={4}>
     <Card color='red' image={src} />
     <Card color='orange' image={src} />
@@ -20,4 +20,4 @@ const ColoredCards = () => (
   </Card.Group>
 )
 
-export default ColoredCards
+export default CardExampleColored

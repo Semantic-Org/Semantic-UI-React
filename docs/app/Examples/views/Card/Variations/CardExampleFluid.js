@@ -1,7 +1,7 @@
 import React from 'react'
 import { Card } from 'semantic-ui-react'
 
-const FluidCards = () => (
+const CardExampleFluid = () => (
   <Card.Group>
     <Card fluid color='red' header='Option 1' />
     <Card fluid color='orange' header='Option 2' />
@@ -9,4 +9,4 @@ const FluidCards = () => (
   </Card.Group>
 )
 
-export default FluidCards
+export default CardExampleFluid
