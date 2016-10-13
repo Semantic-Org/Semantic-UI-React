@@ -81,6 +81,15 @@ const DropdownExamples = () => (
         description='A dropdown menu'
         examplePath='modules/Dropdown/Types/Dropdown'
       />
+      <ComponentExample
+        title='Selection'
+        description='A dropdown can be used to select between choices in a form'
+        examplePath='modules/Dropdown/Types/Selection'
+      >
+        <Message info>
+          Selection dropdowns must use the <code>options</code> prop, instead of sub component markup.
+        </Message>
+      </ComponentExample>
     </ExampleSection>
   </div>
 )

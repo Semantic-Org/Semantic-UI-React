@@ -28,7 +28,6 @@ const _meta = {
   type: META.TYPES.MODULE,
   props: {
     pointing: ['left', 'right', 'top', 'top left', 'top right', 'bottom', 'bottom left', 'bottom right'],
-    additionPosition: ['top', 'bottom'],
   },
 }
 
@@ -425,14 +424,15 @@ export default class Dropdown extends Component {
     )
 
     return (
-      <ElementType {...rest}
+      <ElementType
+        tabIndex={0}
+        {...rest}
         className={classes}
         onBlur={this.handleBlur}
         onClick={this.handleClick}
         onFocus={this.handleFocus}
         onMouseDown={this.handleMouseDown}
         ref={this.handleRef}
-        tabIndex={0}
       >
         {trigger || DropdownText.create(text)}
         {Icon.create(icon)}
