@@ -20,6 +20,8 @@ declare module 'semantic-ui-react' {
     'grey' |
     'black';
 
+  type ButtonColors = Colors | 'facebook' | 'twitter' | 'google plus' | 'vk' | 'linkedin' |'instagram' | 'youtube';
+
   type Widths = 'one' | 'two' | 'three' | 'four' | 'five' | 'six' | 'seven' | 'eight' |
     'nine' | 'ten' | 'eleven' | 'twelve' | 'thirteen' | 'fourteen' | 'fifteen' | 'sixteen' | 'equal';
 
@@ -241,7 +243,7 @@ declare module 'semantic-ui-react' {
     basic?: boolean;
     children?: any;
     circular?: boolean;
-    color?: Colors;
+    color?: ButtonColors;
     compact?: boolean;
     content?: any;
     disabled?: boolean;
