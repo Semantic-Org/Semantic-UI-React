@@ -7,8 +7,8 @@ const sections = [
   { text: 'T-Shirt', active: true },
 ]
 
-const BreadcrumbPropExample = () => (
+const BreadcrumbExampleProps = () => (
   <Breadcrumb icon='right angle' sections={sections} />
 )
 
-export default BreadcrumbPropExample
+export default BreadcrumbExampleProps
