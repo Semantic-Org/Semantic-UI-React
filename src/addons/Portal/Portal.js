@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom'
 
 import {
   AutoControlledComponent as Component,
+  customPropTypes,
   keyboardKey,
   makeDebugger,
   META,
@@ -34,10 +35,16 @@ class Portal extends Component {
      * - DocumentClick - any click not within the portal
      * - BackgroundClick - a click not within the portal but within the portal's wrapper
      */
-    closeOnBackgroundClick: PropTypes.bool,
+    closeOnBackgroundClick: customPropTypes.every([
+      customPropTypes.disallow(['closeOnDocumentClick']),
+      PropTypes.bool,
+    ]),
 
     /** Controls whether or not the portal should close on a click outside. */
-    closeOnDocumentClick: PropTypes.bool,
+    closeOnDocumentClick: customPropTypes.every([
+      customPropTypes.disallow(['closeOnBackgroundClick']),
+      PropTypes.bool,
+    ]),
 
     /** Controls whether or not the portal should close when escape is pressed is displayed. */
     closeOnEscape: PropTypes.bool,
@@ -93,6 +100,9 @@ class Portal extends Component {
 
     /** Controls whether or not the portal should open when mousing over the trigger. */
     openOnTriggerMouseOver: PropTypes.bool,
+
+    /** Controls whether the portal should be prepended to the mountNode instead of appended. */
+    prepend: PropTypes.bool,
 
     /** Element to be rendered in-place where the portal is defined. */
     trigger: PropTypes.node,
@@ -331,10 +341,15 @@ class Portal extends Component {
 
     debug('mountPortal()')
 
-    const { mountNode = document.body } = this.props
+    const { mountNode = document.body, prepend } = this.props
 
     this.node = document.createElement('div')
-    mountNode.appendChild(this.node)
+
+    if (prepend) {
+      mountNode.insertBefore(this.node, mountNode.firstElementChild)
+    } else {
+      mountNode.appendChild(this.node)
+    }
 
     document.addEventListener('click', this.handleDocumentClick)
     document.addEventListener('keydown', this.handleEscape)

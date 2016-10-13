@@ -83,6 +83,28 @@ describe('Portal', () => {
     document.body.lastElementChild.className.should.equal('some-other-class')
   })
 
+  describe('prepend', () => {
+    beforeEach(() => {
+      document.body.innerHTML = '<div></div>'
+    })
+
+    it('appends portal by default', () => {
+      wrapperMount(<Portal open><p>Hi</p></Portal>)
+      const instance = wrapper.instance()
+
+      document.body.childElementCount.should.equal(2)
+      document.body.lastElementChild.should.equal(instance.node)
+    })
+
+    it('prepends portal by when passed', () => {
+      wrapperMount(<Portal open prepend><p>Hi</p></Portal>)
+      const instance = wrapper.instance()
+
+      document.body.childElementCount.should.equal(2)
+      document.body.firstElementChild.should.equal(instance.node)
+    })
+  })
+
   describe('callbacks', () => {
     it('should call props.onMount() when portal opens', () => {
       const props = { open: false, onMount: sandbox.spy() }
