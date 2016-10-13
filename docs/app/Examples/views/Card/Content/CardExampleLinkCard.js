@@ -1,7 +1,7 @@
 import React from 'react'
 import { Card } from 'semantic-ui-react'
 
-const LinkCard = () => (
+const CardExampleLinkCard = () => (
   <Card
     href='#link'
     header='Elliot Baker'
@@ -10,4 +10,4 @@ const LinkCard = () => (
   />
 )
 
-export default LinkCard
+export default CardExampleLinkCard

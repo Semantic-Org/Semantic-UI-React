@@ -1,7 +1,7 @@
 import React from 'react'
 import { Card, Feed } from 'semantic-ui-react'
 
-const ContentBlock = () => (
+const CardExampleContentBlock = () => (
   <Card>
     <Card.Content>
       <Card.Header>
@@ -43,4 +43,4 @@ const ContentBlock = () => (
   </Card>
 )
 
-export default ContentBlock
+export default CardExampleContentBlock

@@ -6,7 +6,7 @@ const description = [
   'She enjoys the outdoors and currently resides in upstate New York.',
 ].join(' ')
 
-const ExtraContent = () => (
+const CardExampleExtraContent = () => (
   <Card>
     <Card.Content header='About Amy' />
     <Card.Content description={description} />
@@ -17,4 +17,4 @@ const ExtraContent = () => (
   </Card>
 )
 
-export default ExtraContent
+export default CardExampleExtraContent

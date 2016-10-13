@@ -3,7 +3,7 @@ import { Card } from 'semantic-ui-react'
 
 const src = 'http://semantic-ui.com/images/wireframe/image.png'
 
-const ColumnCountCards = () => (
+const CardExampleColumnCount = () => (
   <Card.Group itemsPerRow={6}>
     <Card raised image={src} />
     <Card raised image={src} />
@@ -20,4 +20,4 @@ const ColumnCountCards = () => (
   </Card.Group>
 )
 
-export default ColumnCountCards
+export default CardExampleColumnCount

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Card } from 'semantic-ui-react'
 
-const HeaderCards = () => (
+const CardExampleHeaderCard = () => (
   <Card.Group>
     <Card>
       <Card.Content>
@@ -35,4 +35,4 @@ const HeaderCards = () => (
   </Card.Group>
 )
 
-export default HeaderCards
+export default CardExampleHeaderCard

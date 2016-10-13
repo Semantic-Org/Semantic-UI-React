@@ -19,8 +19,8 @@ const items = [
   },
 ]
 
-const GroupByProps = () => (
+const CardExampleGroupProps = () => (
   <Card.Group items={items} />
 )
 
-export default GroupByProps
+export default CardExampleGroupProps
