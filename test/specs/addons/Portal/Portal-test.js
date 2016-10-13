@@ -493,8 +493,8 @@ describe('Portal', () => {
       document.body.childElementCount.should.equal(0)
     })
 
-    it('closeOnBackgroundClick', () => {
-      wrapperMount(<Portal closeOnDocumentClick={false} closeOnBackgroundClick defaultOpen><p>Hi</p></Portal>)
+    it('closeOnRootNodeClick', () => {
+      wrapperMount(<Portal closeOnDocumentClick={false} closeOnRootNodeClick defaultOpen><p>Hi</p></Portal>)
       document.body.childElementCount.should.equal(1)
 
       // Should not close when click inside

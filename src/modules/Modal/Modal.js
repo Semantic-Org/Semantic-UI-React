@@ -188,7 +188,7 @@ class Modal extends Component {
 
     return (
       <Portal
-        closeOnBackgroundClick
+        closeOnRootNodeClick
         closeOnDocumentClick={false}
         {...portalProps}
         className={dimmerClasses}

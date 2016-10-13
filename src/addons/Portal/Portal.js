@@ -33,16 +33,16 @@ class Portal extends Component {
      * Controls whether or not the portal should close on a click on the portal background.
      * NOTE: This differs from closeOnDocumentClick:
      * - DocumentClick - any click not within the portal
-     * - BackgroundClick - a click not within the portal but within the portal's wrapper
+     * - RootNodeClick - a click not within the portal but within the portal's wrapper
      */
-    closeOnBackgroundClick: customPropTypes.every([
+    closeOnRootNodeClick: customPropTypes.every([
       customPropTypes.disallow(['closeOnDocumentClick']),
       PropTypes.bool,
     ]),
 
     /** Controls whether or not the portal should close on a click outside. */
     closeOnDocumentClick: customPropTypes.every([
-      customPropTypes.disallow(['closeOnBackgroundClick']),
+      customPropTypes.disallow(['closeOnRootNodeClick']),
       PropTypes.bool,
     ]),
 
@@ -155,12 +155,12 @@ class Portal extends Component {
   // ----------------------------------------
 
   handleDocumentClick = (e) => {
-    const { closeOnDocumentClick, closeOnBackgroundClick } = this.props
+    const { closeOnDocumentClick, closeOnRootNodeClick } = this.props
 
     // If event happened in the portal, ignore it
     if (this.portal.contains(e.target)) return
 
-    if (closeOnDocumentClick || (closeOnBackgroundClick && this.node.contains(e.target))) {
+    if (closeOnDocumentClick || (closeOnRootNodeClick && this.node.contains(e.target))) {
       debug('handleDocumentClick()')
 
       e.stopPropagation()
@@ -318,11 +318,11 @@ class Portal extends Component {
   }
 
   renderPortal() {
-    const { children, className = '' } = this.props
+    const { children, className } = this.props
 
     this.mountPortal()
 
-    this.node.className = className
+    this.node.className = className || ''
 
     ReactDOM.unstable_renderSubtreeIntoContainer(
       this,
