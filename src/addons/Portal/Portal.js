@@ -1,9 +1,12 @@
 import _ from 'lodash'
-import React, { Children, PropTypes } from 'react'
+import React, { Children, cloneElement, PropTypes } from 'react'
 import ReactDOM from 'react-dom'
 
 import {
   AutoControlledComponent as Component,
+  customPropTypes,
+  getElementType,
+  getUnhandledProps,
   keyboardKey,
   makeDebugger,
   META,
@@ -22,6 +25,12 @@ const _meta = {
  */
 class Portal extends Component {
   static propTypes = {
+    /** An element type to render as (string or function). */
+    as: customPropTypes.every([
+      customPropTypes.demand(['inline']),
+      customPropTypes.as,
+    ]),
+
     /** Primary content. */
     children: PropTypes.node.isRequired,
 
@@ -52,6 +61,12 @@ class Portal extends Component {
 
     /** Initial value of open. */
     defaultOpen: PropTypes.bool,
+
+    /** A Portal can render inline using a wrapping element. */
+    inline: customPropTypes.every([
+      customPropTypes.demand(['trigger']),
+      PropTypes.bool,
+    ]),
 
     /** The node where the portal should mount.. */
     mountNode: PropTypes.any,
@@ -106,6 +121,8 @@ class Portal extends Component {
     if (this.state.open) {
       this.renderPortal()
     }
+
+    this.attachDocumentListeners()
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -126,6 +143,7 @@ class Portal extends Component {
 
   componentWillUnmount() {
     this.unmountPortal()
+    this.detachDocumentListeners()
 
     // Clean up timers
     clearTimeout(this.mouseOverTimer)
@@ -136,7 +154,18 @@ class Portal extends Component {
   // Document Event Handlers
   // ----------------------------------------
 
+  attachDocumentListeners = () => {
+    document.addEventListener('click', this.closeOnDocumentClick)
+    document.addEventListener('keydown', this.closeOnEscape)
+  }
+
+  detachDocumentListeners = () => {
+    document.removeEventListener('click', this.closeOnDocumentClick)
+    document.removeEventListener('keydown', this.closeOnEscape)
+  }
+
   closeOnDocumentClick = (e) => {
+    if (!this.state.open) return
     if (!this.props.closeOnDocumentClick) return
 
     // If event happened in the portal, ignore it
@@ -149,6 +178,7 @@ class Portal extends Component {
   }
 
   closeOnEscape = (e) => {
+    if (!this.state.open) return
     if (!this.props.closeOnEscape) return
     if (keyboardKey.getCode(e) !== keyboardKey.Escape) return
 
@@ -161,6 +191,8 @@ class Portal extends Component {
   // ----------------------------------------
   // Component Event Handlers
   // ----------------------------------------
+
+  handlePortalRef = c => (this.portal = c)
 
   handlePortalMouseLeave = (e) => {
     const { closeOnPortalMouseLeave, mouseLeaveDelay } = this.props
@@ -294,6 +326,8 @@ class Portal extends Component {
   }
 
   renderPortal() {
+    if (this.props.inline) return
+
     const { children, className } = this.props
 
     this.mountPortal()
@@ -311,6 +345,7 @@ class Portal extends Component {
   }
 
   mountPortal = () => {
+    if (this.props.inline) return
     if (this.node) return
 
     const { mountNode = document.body } = this.props
@@ -318,14 +353,12 @@ class Portal extends Component {
     this.node = document.createElement('div')
     mountNode.appendChild(this.node)
 
-    document.addEventListener('keydown', this.closeOnEscape)
-    document.addEventListener('click', this.closeOnDocumentClick)
-
     const { onMount } = this.props
     if (onMount) onMount()
   }
 
   unmountPortal = () => {
+    if (this.props.inline) return
     if (!this.node) return
 
     ReactDOM.unmountComponentAtNode(this.node)
@@ -337,25 +370,35 @@ class Portal extends Component {
     this.node = null
     this.portal = null
 
-    document.removeEventListener('keydown', this.closeOnEscape)
-    document.removeEventListener('click', this.closeOnDocumentClick)
-
     const { onUnmount } = this.props
     if (onUnmount) onUnmount()
   }
 
   render() {
-    const { trigger } = this.props
+    const { open } = this.state
+    const { children, className, inline, trigger } = this.props
 
     if (!trigger) return null
 
-    return React.cloneElement(trigger, {
+    const handlers = {
       onBlur: this.handleTriggerBlur,
       onClick: this.handleTriggerClick,
       onFocus: this.handleTriggerFocus,
       onMouseLeave: this.handleTriggerMouseLeave,
       onMouseOver: this.handleTriggerMouseOver,
-    })
+    }
+
+    if (!inline) return cloneElement(trigger, handlers)
+
+    const rest = getUnhandledProps(Portal, this.props)
+    const ElementType = getElementType(Portal, this.props)
+
+    return (
+      <ElementType {...rest} {...handlers} className={className} ref={this.handlePortalRef}>
+        {trigger}
+        {open && Children.only(children)}
+      </ElementType>
+    )
   }
 }
 
