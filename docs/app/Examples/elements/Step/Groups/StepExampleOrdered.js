@@ -8,7 +8,7 @@ const steps = [
   { active: true, title: 'Confirm Order', description: 'Verify order details' },
 ]
 
-const Ordered = () => (
+const StepExampleOrdered = () => (
   <div>
     <Group ordered>
       <Step completed>
@@ -29,4 +29,4 @@ const Ordered = () => (
   </div>
 )
 
-export default Ordered
+export default StepExampleOrdered

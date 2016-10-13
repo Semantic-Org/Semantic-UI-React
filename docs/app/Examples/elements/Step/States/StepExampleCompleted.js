@@ -3,7 +3,7 @@ import { Step } from 'semantic-ui-react'
 
 const { Group } = Step
 
-const Completed = () => (
+const StepExampleCompleted = () => (
   <div>
     <Group>
       <Step completed icon='payment' title='Billing' description='Enter billing information' />
@@ -17,4 +17,4 @@ const Completed = () => (
   </div>
 )
 
-export default Completed
+export default StepExampleCompleted

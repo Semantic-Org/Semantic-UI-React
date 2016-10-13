@@ -3,7 +3,7 @@ import { Icon, Step } from 'semantic-ui-react'
 
 const { Content, Description, Group, Title } = Step
 
-const Icons = () => (
+const StepExampleIcons = () => (
   <Group>
     <Step>
       <Icon name='truck' />
@@ -22,4 +22,4 @@ const Icons = () => (
   </Group>
 )
 
-export default Icons
+export default StepExampleIcons

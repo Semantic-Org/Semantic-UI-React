@@ -3,7 +3,7 @@ import { Step } from 'semantic-ui-react'
 
 const { Description, Group, Title } = Step
 
-const Descriptions = () => (
+const StepExampleDescriptions = () => (
   <div>
     <Group>
       <Step>
@@ -29,4 +29,4 @@ const Descriptions = () => (
   </div>
 )
 
-export default Descriptions
+export default StepExampleDescriptions

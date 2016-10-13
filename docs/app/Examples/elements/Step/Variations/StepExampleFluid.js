@@ -1,7 +1,7 @@
 import React from 'react'
 import { Grid, Step } from 'semantic-ui-react'
 
-const Fluid = () => (
+const StepExampleFluid = () => (
   <Grid columns={2}>
     <Grid.Column>
       <Step.Group fluid vertical>
@@ -16,4 +16,4 @@ const Fluid = () => (
   </Grid>
 )
 
-export default Fluid
+export default StepExampleFluid

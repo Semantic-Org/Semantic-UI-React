@@ -1,7 +1,7 @@
 import React from 'react'
 import { Step } from 'semantic-ui-react'
 
-const Stackable = () => (
+const StepExampleStackable = () => (
   <Step.Group stackable='tablet'>
     <Step icon='plane' title='Shipping' description='Choose your shipping options' />
     <Step active icon='dollar' title='Billing' description='Enter billing information' />
@@ -9,4 +9,4 @@ const Stackable = () => (
   </Step.Group>
 )
 
-export default Stackable
+export default StepExampleStackable
