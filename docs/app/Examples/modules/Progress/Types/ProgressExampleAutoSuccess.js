@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Button, Progress } from 'semantic-ui-react'
 
-export default class ProgressAutoSuccessExample extends Component {
+export default class ProgressExampleAutoSuccess extends Component {
   state = { percent: 0 }
 
   toggle = () => this.setState({ percent: this.state.percent === 0 ? 100 : 0 })

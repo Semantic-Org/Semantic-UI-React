@@ -1,7 +1,7 @@
 import React from 'react'
 import { Progress, Segment } from 'semantic-ui-react'
 
-const ProgressAttachedExample = () => (
+const ProgressExampleAttached = () => (
   <Segment>
     <Progress percent={50} attached='top' />
     La la la la
@@ -9,4 +9,4 @@ const ProgressAttachedExample = () => (
   </Segment>
 )
 
-export default ProgressAttachedExample
+export default ProgressExampleAttached

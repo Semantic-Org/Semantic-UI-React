@@ -1,8 +1,8 @@
 import React from 'react'
 import { Progress } from 'semantic-ui-react'
 
-const ProgressStandardExample = () => (
+const ProgressExampleStandard = () => (
   <Progress percent={11} />
 )
 
-export default ProgressStandardExample
+export default ProgressExampleStandard
