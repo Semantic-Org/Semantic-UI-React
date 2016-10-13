@@ -1,5 +1,3 @@
-import config from './config';
-
 /**
  * Returns a createElement() type based on the props of the Component.
  * Useful for calculating what type a component should render as.
