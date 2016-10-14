@@ -231,32 +231,32 @@ export default class ComponentExample extends Component {
             active={copied || error} // to show the color
             color={copied ? 'green' : color}
             onClick={this.copyJSX}
-            icon={!copied && 'copy'}
-            content={copied ? 'Copied!' : 'Copy'}
-          />
+          >
+            <Icon name={!copied && 'copy'} /> {copied ? 'Copied!' : 'Copy'}
+          </Menu.Item>
           <Menu.Item
             active={error} // to show the color
             color={color}
-            icon='refresh'
-            content='Reset'
             onClick={this.resetJSX}
-          />
+          >
+            <Icon name='refresh' /> Reset
+          </Menu.Item>
           <Menu.Item
             active={error} // to show the color
             color={color}
-            icon='github'
-            content='Edit'
             href={ghEditHref}
             target='_blank'
-          />
+          >
+            <Icon name='github' /> Edit
+          </Menu.Item>
           <Menu.Item
             active={error} // to show the color
             color={color}
-            icon='bug'
-            content='Issue'
             href={ghBugHref}
             target='_blank'
-          />
+          >
+            <Icon name='bug' /> Issue
+          </Menu.Item>
         </Menu>
       </Divider>
     )
