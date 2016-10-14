@@ -7,13 +7,16 @@ import {
   getUnhandledProps,
   META,
   SUI,
-  useWidthProp,
   useKeyOnly,
   useTextAlignProp,
   useValueAndKey,
   useVerticalAlignProp,
+  useWidthProp,
 } from '../../lib'
 
+/**
+ * A row sub-component for Grid.
+ */
 function GridRow(props) {
   const {
     centered,
@@ -28,18 +31,19 @@ function GridRow(props) {
     textAlign,
     verticalAlign,
   } = props
+
   const classes = cx(
-    className,
     color,
     useKeyOnly(centered, 'centered'),
-    useWidthProp(columns, 'column', true),
     useKeyOnly(divided, 'divided'),
-    useValueAndKey(only, 'only'),
-    useValueAndKey(reversed, 'reversed'),
     useKeyOnly(stretched, 'stretched'),
     useTextAlignProp(textAlign),
+    useValueAndKey(only, 'only'),
+    useValueAndKey(reversed, 'reversed'),
     useVerticalAlignProp(verticalAlign),
-    'row'
+    useWidthProp(columns, 'column', true),
+    'row',
+    className,
   )
   const rest = getUnhandledProps(GridRow, props)
   const ElementType = getElementType(GridRow, props)
@@ -53,7 +57,7 @@ GridRow._meta = {
   type: META.TYPES.COLLECTION,
   props: {
     color: SUI.COLORS,
-    columns: SUI.WIDTHS,
+    columns: [...SUI.WIDTHS, 'equal'],
     only: ['computer', 'large screen', 'mobile', 'tablet mobile', 'tablet', 'widescreen'],
     reversed: ['computer', 'computer vertically', 'mobile', 'mobile vertically', 'tablet', 'tablet vertically'],
     textAlign: SUI.TEXT_ALIGNMENTS,

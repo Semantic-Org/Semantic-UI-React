@@ -1,27 +1,25 @@
-import React, { Component } from 'react'
+import React from 'react'
 import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
 import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
 
-export default class ProgressTypesExamples extends Component {
-  render() {
-    return (
-      <ExampleSection title='Types'>
-        <ComponentExample
-          title='Standard'
-          description='A standard progress bar.'
-          examplePath='modules/Progress/Types/Standard'
-        />
-        <ComponentExample
-          title='Indicating'
-          description='An indicating progress bar visually indicates the current level of progress of a task.'
-          examplePath='modules/Progress/Types/Indicating'
-        />
-        <ComponentExample
-          title='Auto Success'
-          description='A progress bar can automatically trigger the success state when progress completes.'
-          examplePath='modules/Progress/Types/AutoSuccess'
-        />
-      </ExampleSection>
-    )
-  }
-}
+const ProgressTypesExamples = () => (
+  <ExampleSection title='Types'>
+    <ComponentExample
+      title='Standard'
+      description='A standard progress bar.'
+      examplePath='modules/Progress/Types/ProgressExampleStandard'
+    />
+    <ComponentExample
+      title='Indicating'
+      description='An indicating progress bar visually indicates the current level of progress of a task.'
+      examplePath='modules/Progress/Types/ProgressExampleIndicating'
+    />
+    <ComponentExample
+      title='Auto Success'
+      description='A progress bar can automatically trigger the success state when progress completes.'
+      examplePath='modules/Progress/Types/ProgressExampleAutoSuccess'
+    />
+  </ExampleSection>
+)
+
+export default ProgressTypesExamples

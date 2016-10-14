@@ -1,5 +1,24 @@
 # Change Log
 
+## [v0.56.0](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.56.0) (2016-10-11)
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.55.2...v0.56.0)
+
+**Implemented enhancements:**
+
+- BREAKING CHANGE: Loader component refactor [\#654](https://github.com/Semantic-Org/Semantic-UI-React/pull/654) ([layershifter](https://github.com/layershifter))
+
+## [v0.55.2](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.55.2) (2016-10-11)
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.55.1...v0.55.2)
+
+**Implemented enhancements:**
+
+- refactor\(Rail\): update component [\#658](https://github.com/Semantic-Org/Semantic-UI-React/pull/658) ([layershifter](https://github.com/layershifter))
+- refactor\(Grid\): update Component [\#656](https://github.com/Semantic-Org/Semantic-UI-React/pull/656) ([layershifter](https://github.com/layershifter))
+
+**Fixed bugs:**
+
+- refactor\\(Rail\\): update component [\#658](https://github.com/Semantic-Org/Semantic-UI-React/pull/658) ([layershifter](https://github.com/layershifter))
+
 ## [v0.55.1](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.55.1) (2016-10-09)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.55.0...v0.55.1)
 

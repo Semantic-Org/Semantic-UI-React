@@ -4,12 +4,12 @@ import { Icon, Message } from 'semantic-ui-react'
 import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
 import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
 
-const Groups = () => (
+const StepGroupsExamples = () => (
   <ExampleSection title='Groups'>
     <ComponentExample
       title='Steps'
       description='A set of steps.'
-      examplePath='elements/Step/Groups/Groups'
+      examplePath='elements/Step/Groups/StepExampleGroups'
     >
       <Message positive icon>
         <Icon name='mobile' />
@@ -24,15 +24,15 @@ const Groups = () => (
     <ComponentExample
       title='Ordered'
       description='A step can show a ordered sequence of steps.'
-      examplePath='elements/Step/Groups/Ordered'
+      examplePath='elements/Step/Groups/StepExampleOrdered'
     />
 
     <ComponentExample
       title='Vertical'
       description='A step can be displayed stacked vertically.'
-      examplePath='elements/Step/Groups/Vertical'
+      examplePath='elements/Step/Groups/StepExampleVertical'
     />
   </ExampleSection>
 )
 
-export default Groups
+export default StepGroupsExamples
