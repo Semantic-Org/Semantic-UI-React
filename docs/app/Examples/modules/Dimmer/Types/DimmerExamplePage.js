@@ -21,7 +21,6 @@ export default class DimmerExamplePage extends Component {
 
         <Dimmer
           active={active}
-          closeOnOutsideClick
           onClose={this.handleClose}
           page
         >

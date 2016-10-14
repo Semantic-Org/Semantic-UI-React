@@ -53,20 +53,28 @@ class Dimmer extends Component {
     page: PropTypes.bool,
   }
 
-  static _meta = _meta
-
-  handleMount = () => {
-    debug('handleMount()')
+  static defaultProps = {
+    closeOnOutsideClick: true,
   }
 
-  handleUnmount = () => {
+  static _meta = _meta
+
+  handlePageMount = () => {
+    debug('handleMount()')
+
+    document.body.classList.add('dimmed', 'dimmable')
+  }
+
+  handlePageUnmount = () => {
     debug('handleUnmount()')
+
+    document.body.classList.remove('dimmed', 'dimmable')
   }
 
   handleOutsideClick = (e) => {
+    debug('handleOutsideClick()')
     const { closeOnOutsideClick, onClose } = this.props
 
-    debug('handleOutsideClick()')
     if (closeOnOutsideClick && onClose) onClose(e, this.props)
   }
 
@@ -128,8 +136,8 @@ class Dimmer extends Component {
         <Portal
           {...portalProps}
           onClose={onClose}
-          onMount={this.handleMount}
-          onUnmount={this.handleUnmount}
+          onMount={this.handlePageMount}
+          onUnmount={this.handlePageUnmount}
           open={active}
         >
           {dimmerJSX}
