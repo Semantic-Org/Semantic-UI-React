@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import cx from 'classnames'
 import React, { Component, PropTypes } from 'react'
 
@@ -5,10 +6,13 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
+  makeDebugger,
   META,
   useKeyOnly,
 } from '../../lib'
 import Portal from '../../addons/Portal'
+
+const debug = makeDebugger('dimmer')
 
 const _meta = {
   name: 'Dimmer',
@@ -35,28 +39,48 @@ class Dimmer extends Component {
     /** Additional classes. */
     className: PropTypes.string,
 
+    closeOnOutsideClick: PropTypes.bool,
+
     /** A disabled dimmer cannot be activated. */
     disabled: PropTypes.bool,
 
     /** A dimmer can be formatted to have its colors inverted. */
     inverted: PropTypes.bool,
 
+    /** Called when a close event happens */
+    onClose: PropTypes.func,
+
     page: PropTypes.bool,
   }
 
   static _meta = _meta
+
+  handleMount = () => {
+    debug('handleMount()')
+  }
+
+  handleUnmount = () => {
+    debug('handleUnmount()')
+  }
+
+  handleOutsideClick = (e) => {
+    const { closeOnOutsideClick, onClose } = this.props
+
+    debug('handleOutsideClick()')
+    if (closeOnOutsideClick && onClose) onClose(e, this.props)
+  }
 
   renderChildren() {
     const { children } = this.props
 
     if (children) {
       return (
-  <div className='content'>
-    <div className='center'>
-      {children}
-    </div>
-  </div>
-)
+        <div className='content'>
+          <div className='center'>
+            {children}
+          </div>
+        </div>
+      )
     }
 
     return null
@@ -68,6 +92,7 @@ class Dimmer extends Component {
       blurring,
       className,
       inverted,
+      onClose,
       page,
     } = this.props
 
@@ -81,13 +106,35 @@ class Dimmer extends Component {
       className,
     )
     const ElementType = getElementType(Dimmer, this.props)
-    const rest = getUnhandledProps(Dimmer, this.props)
 
-    const dimmerJSX = <ElementType {...rest} className={classes}>{this.renderChildren()}</ElementType>
+    const unhandled = getUnhandledProps(Dimmer, this.props)
+    const portalPropNames = _.keys(Portal.propTypes)
+
+    const rest = _.omit(unhandled, portalPropNames)
+    const portalProps = _.pick(unhandled, portalPropNames)
+
+    const dimmerJSX = (
+      <ElementType
+        {...rest}
+        className={classes}
+        onClick={this.handleOutsideClick}
+      >
+        {this.renderChildren()}
+      </ElementType>
+    )
 
     if (page) {
-      console.log(11, dimmerJSX)
-      return <Portal open={active}>{dimmerJSX}</Portal>
+      return (
+        <Portal
+          {...portalProps}
+          onClose={onClose}
+          onMount={this.handleMount}
+          onUnmount={this.handleUnmount}
+          open={active}
+        >
+          {dimmerJSX}
+        </Portal>
+      )
     }
 
     return dimmerJSX
