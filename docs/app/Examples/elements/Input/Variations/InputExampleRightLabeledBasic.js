@@ -1,7 +1,7 @@
 import React from 'react'
 import { Input } from 'semantic-ui-react'
 
-const InputRightLabeledBasic = () => (
+const InputExampleRightLabeledBasic = () => (
   <Input
     label={{ basic: true, content: 'kg' }}
     labelPosition='right'
@@ -9,4 +9,4 @@ const InputRightLabeledBasic = () => (
   />
 )
 
-export default InputRightLabeledBasic
+export default InputExampleRightLabeledBasic

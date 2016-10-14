@@ -7,7 +7,7 @@ const options = [
   { text: 'Products', value: 'products' },
 ]
 
-const InputActions = () => (
+const InputExampleActions = () => (
   <Input action>
     <input type='text' placeholder='Search...' />
     <Select compact options={options} defaultValue='articles' />
@@ -15,4 +15,4 @@ const InputActions = () => (
   </Input>
 )
 
-export default InputActions
+export default InputExampleActions

@@ -1,12 +1,12 @@
 import React from 'react'
 import { Input } from 'semantic-ui-react'
 
-const InputLeftCornerLabeled = () => (
+const InputExampleLeftCornerLabeled = () => (
   <Input
     label={{ icon: 'asterisk' }}
-    labelPosition='left corner'
+    labelPosition='right corner'
     placeholder='Search...'
   />
 )
 
-export default InputLeftCornerLabeled
+export default InputExampleLeftCornerLabeled

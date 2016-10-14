@@ -1,7 +1,7 @@
 import React from 'react'
 import { Icon, Input } from 'semantic-ui-react'
 
-const InputIconChild = () => (
+const InputExampleIconChild = () => (
   <div>
     <Input icon>
       <input placeholder='Search...' />
@@ -16,4 +16,4 @@ const InputIconChild = () => (
   </div>
 )
 
-export default InputIconChild
+export default InputExampleIconChild

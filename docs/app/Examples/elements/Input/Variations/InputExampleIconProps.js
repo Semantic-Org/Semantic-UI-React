@@ -1,11 +1,11 @@
 import React from 'react'
 import { Input } from 'semantic-ui-react'
 
-const InputIconProps = () => (
+const InputExampleIconProps = () => (
   <Input
     icon={{ name: 'search', circular: true, link: true }}
     placeholder='Search...'
   />
 )
 
-export default InputIconProps
+export default InputExampleIconProps

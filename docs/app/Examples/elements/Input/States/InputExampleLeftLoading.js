@@ -1,8 +1,8 @@
 import React from 'react'
 import { Input } from 'semantic-ui-react'
 
-const InputLeftLoading = () => (
+const InputExampleLeftLoading = () => (
   <Input loading icon='user' iconPosition='left' placeholder='Search...' />
 )
 
-export default InputLeftLoading
+export default InputExampleLeftLoading
