@@ -1,5 +1,26 @@
 # Change Log
 
+## [v0.56.1](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.56.1) (2016-10-14)
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.56.0...v0.56.1)
+
+**Fixed bugs:**
+
+- Menu.Item allows icon to be set as boolean [\#681](https://github.com/Semantic-Org/Semantic-UI-React/issues/681)
+
+**Closed issues:**
+
+- How to conditional hide/show an element/component ? [\#675](https://github.com/Semantic-Org/Semantic-UI-React/issues/675)
+
+**Merged pull requests:**
+
+- fix\(MenuItem\): allow bool/string icon proptype [\#683](https://github.com/Semantic-Org/Semantic-UI-React/pull/683) ([levithomason](https://github.com/levithomason))
+- docs\(Breadcrumb\): refactor and use index.js [\#671](https://github.com/Semantic-Org/Semantic-UI-React/pull/671) ([dpkwhan](https://github.com/dpkwhan))
+- docs\(Step\): refactor and fix an issue [\#668](https://github.com/Semantic-Org/Semantic-UI-React/pull/668) ([dpkwhan](https://github.com/dpkwhan))
+- docs\(Card\): refactor, add trailing . in description and fix typo [\#667](https://github.com/Semantic-Org/Semantic-UI-React/pull/667) ([dpkwhan](https://github.com/dpkwhan))
+- docs\(progress\): refactor, add trailing . to description and use stateless functional expression [\#664](https://github.com/Semantic-Org/Semantic-UI-React/pull/664) ([dpkwhan](https://github.com/dpkwhan))
+- docs\(confirm\): add trailing . to description [\#663](https://github.com/Semantic-Org/Semantic-UI-React/pull/663) ([dpkwhan](https://github.com/dpkwhan))
+- docs\(Radio\): refactor, use stateless functional expression and fix a typo [\#662](https://github.com/Semantic-Org/Semantic-UI-React/pull/662) ([dpkwhan](https://github.com/dpkwhan))
+
 ## [v0.56.0](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.56.0) (2016-10-11)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.55.2...v0.56.0)
 
