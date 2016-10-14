@@ -1,4 +1,5 @@
 import _ from 'lodash'
+
 /**
  * Returns an object consisting of props beyond the scope of the Component.
  * Useful for getting and spreading unknown props from the user.
@@ -6,14 +7,6 @@ import _ from 'lodash'
  * @param {object} props A ReactElement props object
  * @returns {{}} A shallow copy of the prop object
  */
-const getUnhandledProps = (Component, props) => {
-  const handledProps = _.union(
-    Component.autoControlledProps,
-    _.keys(Component.defaultProps),
-    _.keys(Component.propTypes),
-  )
-
-  return _.omit(props, handledProps)
-}
+const getUnhandledProps = (Component, props) => _.omit(props, Component._meta.props)
 
 export default getUnhandledProps

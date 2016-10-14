@@ -45,7 +45,19 @@ function Loader(props) {
 Loader._meta = {
   name: 'Loader',
   type: META.TYPES.ELEMENT,
-  props: {
+  props: [
+    'as',
+    'active',
+    'children',
+    'className',
+    'content',
+    'disabled',
+    'indeterminate',
+    'inline',
+    'inverted',
+    'size',
+  ],
+  values: {
     inline: ['centered'],
     size: SUI.SIZES,
   },
@@ -76,14 +88,14 @@ Loader.propTypes = {
   /** Loaders can appear inline with content. */
   inline: PropTypes.oneOfType([
     PropTypes.bool,
-    PropTypes.oneOf(Loader._meta.props.inline),
+    PropTypes.oneOf(Loader._meta.values.inline),
   ]),
 
   /** Loaders can have their colors inverted. */
   inverted: PropTypes.bool,
 
   /** Loaders can have different sizes. */
-  size: PropTypes.oneOf(Loader._meta.props.size),
+  size: PropTypes.oneOf(Loader._meta.values.size),
 }
 
 export default Loader
