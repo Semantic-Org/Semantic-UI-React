@@ -1,7 +1,7 @@
 import React from 'react'
 import { Input } from 'semantic-ui-react'
 
-const InputExampleSize = () => (
+const InputSize = () => (
   <div>
     <Input size='mini' icon='search' placeholder='Search...' />
     <br />
@@ -22,4 +22,4 @@ const InputExampleSize = () => (
   </div>
 )
 
-export default InputExampleSize
+export default InputSize

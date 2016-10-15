@@ -1,7 +1,7 @@
 import React from 'react'
 import { Input } from 'semantic-ui-react'
 
-const InputExampleRightLabeledTag = () => (
+const InputRightLabeledTag = () => (
   <Input
     icon='tags'
     iconPosition='left'
@@ -11,4 +11,4 @@ const InputExampleRightLabeledTag = () => (
   />
 )
 
-export default InputExampleRightLabeledTag
+export default InputRightLabeledTag

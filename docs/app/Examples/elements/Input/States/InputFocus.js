@@ -1,8 +1,8 @@
 import React from 'react'
 import { Input } from 'semantic-ui-react'
 
-const InputExampleFocus = () => (
+const InputFocus = () => (
   <Input focus placeholder='Search...' />
 )
 
-export default InputExampleFocus
+export default InputFocus

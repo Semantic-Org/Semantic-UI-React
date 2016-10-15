@@ -1,8 +1,8 @@
 import React from 'react'
 import { Input } from 'semantic-ui-react'
 
-const InputExampleError = () => (
+const InputError = () => (
   <Input error placeholder='Search...' />
 )
 
-export default InputExampleError
+export default InputError

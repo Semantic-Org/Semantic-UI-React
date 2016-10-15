@@ -1,8 +1,8 @@
 import React from 'react'
 import { Input } from 'semantic-ui-react'
 
-const InputExampleIconPosition = () => (
+const InputIconPosition = () => (
   <Input icon='users' iconPosition='left' placeholder='Search users...' />
 )
 
-export default InputExampleIconPosition
+export default InputIconPosition

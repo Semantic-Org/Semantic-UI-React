@@ -1,10 +1,10 @@
 import React from 'react'
 import { Segment, Input } from 'semantic-ui-react'
 
-const InputExampleInverted = () => (
+const InputInverted = () => (
   <Segment inverted>
     <Input inverted placeholder='Search...' />
   </Segment>
 )
 
-export default InputExampleInverted
+export default InputInverted

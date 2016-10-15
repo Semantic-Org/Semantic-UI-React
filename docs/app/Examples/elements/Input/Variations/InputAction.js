@@ -1,8 +1,8 @@
 import React from 'react'
 import { Input } from 'semantic-ui-react'
 
-const InputExampleAction = () => (
+const InputAction = () => (
   <Input action='Search' placeholder='Search...' />
 )
 
-export default InputExampleAction
+export default InputAction

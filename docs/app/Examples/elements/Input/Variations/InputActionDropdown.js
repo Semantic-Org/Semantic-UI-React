@@ -7,13 +7,13 @@ const options = [
   { text: 'Entire Site', value: 'site' },
 ]
 
-const InputExampleActionDropdown = () => (
+const InputActionDropdown = () => (
   <Input
-    action={<Dropdown selection basic floating options={options} defaultValue='page' />}
+    action={<Dropdown basic floating options={options} defaultValue='page' />}
     icon='search'
     iconPosition='left'
     placeholder='Search...'
   />
 )
 
-export default InputExampleActionDropdown
+export default InputActionDropdown

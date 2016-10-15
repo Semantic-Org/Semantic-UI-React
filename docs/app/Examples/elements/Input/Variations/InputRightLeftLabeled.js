@@ -1,7 +1,7 @@
 import React from 'react'
 import { Input, Label } from 'semantic-ui-react'
 
-const InputExampleRightLeftLabeled = () => (
+const InputRightLeftLabeled = () => (
   <Input labelPosition='right' placeholder='mysite.com'>
     <Label basic>$</Label>
     <input type='text' placeholder='Amount' />
@@ -9,4 +9,4 @@ const InputExampleRightLeftLabeled = () => (
   </Input>
 )
 
-export default InputExampleRightLeftLabeled
+export default InputRightLeftLabeled
