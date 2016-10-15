@@ -9,7 +9,7 @@ const options = [
 
 const InputExampleRightLabeled = () => (
   <Input
-    label={<Dropdown selection defaultValue='.com' options={options} />}
+    label={<Dropdown defaultValue='.com' options={options} />}
     labelPosition='right'
     placeholder='Find domain'
   />
