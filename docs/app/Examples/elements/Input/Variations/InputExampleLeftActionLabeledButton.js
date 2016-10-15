@@ -3,7 +3,7 @@ import { Input } from 'semantic-ui-react'
 
 const InputExampleLeftActionLabeledButton = () => (
   <Input
-    action={{ color: 'teal', label: true, icon: 'cart', content: 'Checkout' }}
+    action={{ color: 'teal', labelPosition: 'left', icon: 'cart', content: 'Checkout' }}
     actionPosition='left'
     placeholder='Search...'
     defaultValue='52.03'
