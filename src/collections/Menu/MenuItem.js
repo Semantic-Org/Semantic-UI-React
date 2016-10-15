@@ -54,7 +54,10 @@ export default class MenuItem extends Component {
     header: PropTypes.bool,
 
     /** MenuItem can be only icon. */
-    icon: PropTypes.bool,
+    icon: PropTypes.oneOfType([
+      PropTypes.bool,
+      customPropTypes.itemShorthand,
+    ]),
 
     /** MenuItem index inside Menu. */
     index: PropTypes.number,
