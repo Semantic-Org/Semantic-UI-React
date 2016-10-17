@@ -1,8 +1,8 @@
 import React from 'react'
 import { Input } from 'semantic-ui-react'
 
-const InputTransparent = () => (
+const InputExampleTransparent = () => (
   <Input transparent placeholder='Search...' />
 )
 
-export default InputTransparent
+export default InputExampleTransparent

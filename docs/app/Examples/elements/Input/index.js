@@ -3,7 +3,7 @@ import Types from './Types'
 import States from './States'
 import Variations from './Variations'
 
-const Inputs = () => (
+const InputExamples = () => (
   <div>
     <Types />
     <States />
@@ -11,4 +11,4 @@ const Inputs = () => (
   </div>
 )
 
-export default Inputs
+export default InputExamples

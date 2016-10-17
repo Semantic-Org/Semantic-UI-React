@@ -1,8 +1,8 @@
 import React from 'react'
 import { Input } from 'semantic-ui-react'
 
-const InputActionIconButton = () => (
+const InputExampleActionIconButton = () => (
   <Input action={{ icon: 'search' }} placeholder='Search...' />
 )
 
-export default InputActionIconButton
+export default InputExampleActionIconButton

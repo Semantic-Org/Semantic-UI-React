@@ -1,31 +1,30 @@
 import React from 'react'
 import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
 import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
+import { Message } from 'semantic-ui-react'
 
-import { Message } from 'src'
-
-const InputVariations = () => (
+const InputVariationsExamples = () => (
   <ExampleSection title='Variations'>
     <ComponentExample
       title='Icon'
-      description='An input can be formatted with an icon'
-      examplePath='elements/Input/Variations/InputIcon'
+      description='An input can be formatted with an icon.'
+      examplePath='elements/Input/Variations/InputExampleIcon'
     />
     <ComponentExample
-      description='You can position the icon'
-      examplePath='elements/Input/Variations/InputIconPosition'
+      description='You can position the icon.'
+      examplePath='elements/Input/Variations/InputExampleIconPosition'
     />
     <ComponentExample
-      description='You can pass an Icon props object'
-      examplePath='elements/Input/Variations/InputIconProps'
+      description='You can pass an Icon props object.'
+      examplePath='elements/Input/Variations/InputExampleIconProps'
     />
     <ComponentExample
-      description='You can pass an Icon element'
-      examplePath='elements/Input/Variations/InputIconElement'
+      description='You can pass an Icon element.'
+      examplePath='elements/Input/Variations/InputExampleIconElement'
     />
     <ComponentExample
-      description='You can pass an Icon child'
-      examplePath='elements/Input/Variations/InputIconChild'
+      description='You can pass an Icon child.'
+      examplePath='elements/Input/Variations/InputExampleIconChild'
     >
       <Message warning>
         When using <code>children</code>, you must add your own <code>{'<input />'}</code>.
@@ -33,72 +32,71 @@ const InputVariations = () => (
     </ComponentExample>
     <ComponentExample
       title='Labeled'
-      description='An input can be formatted with a label'
-      examplePath='elements/Input/Variations/InputLabeled'
+      description='An input can be formatted with a label.'
+      examplePath='elements/Input/Variations/InputExampleLabeled'
     />
     <ComponentExample
-      description='You can pass any element'
-      examplePath='elements/Input/Variations/InputRightLabeled'
+      description='You can pass any element.'
+      examplePath='elements/Input/Variations/InputExampleRightLabeled'
     />
     <ComponentExample
-      description='You can pass a Label props object'
-      examplePath='elements/Input/Variations/InputRightLabeledBasic'
+      description='You can pass a Label props object.'
+      examplePath='elements/Input/Variations/InputExampleRightLabeledBasic'
     />
     <ComponentExample
-      description='You can pass a Label child'
-      examplePath='elements/Input/Variations/InputRightLeftLabeled'
+      description='You can pass a Label child.'
+      examplePath='elements/Input/Variations/InputExampleRightLeftLabeled'
     >
       <Message warning>
         Multiple Labels require <code>children</code>.
         When using <code>children</code>, you must add your own <code>{'<input />'}</code>.
       </Message>
     </ComponentExample>
-    <ComponentExample examplePath='elements/Input/Variations/InputRightLabeledTag' />
-    <ComponentExample examplePath='elements/Input/Variations/InputLeftCornerLabeled' />
-    <ComponentExample examplePath='elements/Input/Variations/InputRightCornerLabeled' />
+    <ComponentExample examplePath='elements/Input/Variations/InputExampleRightLabeledTag' />
+    <ComponentExample examplePath='elements/Input/Variations/InputExampleLeftCornerLabeled' />
+    <ComponentExample examplePath='elements/Input/Variations/InputExampleRightCornerLabeled' />
     <ComponentExample
       title='Action'
-      description='An input can be formatted to alert the user to an action they may perform'
-      examplePath='elements/Input/Variations/InputAction'
+      description='An input can be formatted to alert the user to an action they may perform.'
+      examplePath='elements/Input/Variations/InputExampleAction'
     />
     <ComponentExample
-      description='You can pass a Button props object'
-      examplePath='elements/Input/Variations/InputLeftActionLabeledButton'
+      description='You can pass a Button props object.'
+      examplePath='elements/Input/Variations/InputExampleLeftActionLabeledButton'
     />
     <ComponentExample
-      description='You can pass any element'
-      examplePath='elements/Input/Variations/InputActionDropdown'
+      description='You can pass any element.'
+      examplePath='elements/Input/Variations/InputExampleActionDropdown'
     />
-    <ComponentExample examplePath='elements/Input/Variations/InputActions'>
+    <ComponentExample examplePath='elements/Input/Variations/InputExampleActions'>
       <Message warning>
         Multiple Actions require <code>children</code>.
         When using <code>children</code>, you must add your own <code>{'<input />'}</code>.
       </Message>
     </ComponentExample>
-    <ComponentExample examplePath='elements/Input/Variations/InputActionLabeledButton' />
-    <ComponentExample examplePath='elements/Input/Variations/InputActionIconButton' />
+    <ComponentExample examplePath='elements/Input/Variations/InputExampleActionLabeledButton' />
+    <ComponentExample examplePath='elements/Input/Variations/InputExampleActionIconButton' />
     <ComponentExample
       title='Transparent'
-      description='A transparent input has no background'
-      examplePath='elements/Input/Variations/InputTransparent'
+      description='A transparent input has no background.'
+      examplePath='elements/Input/Variations/InputExampleTransparent'
     />
     <ComponentExample
       title='Inverted'
-      description='An input can be formatted to appear on dark backgrounds'
-      examplePath='elements/Input/Variations/InputInverted'
+      description='An input can be formatted to appear on dark backgrounds.'
+      examplePath='elements/Input/Variations/InputExampleInverted'
     />
     <ComponentExample
       title='Fluid'
-      description='An input can take on the size of its container'
-      examplePath='elements/Input/Variations/InputFluid'
+      description='An input can take on the size of its container.'
+      examplePath='elements/Input/Variations/InputExampleFluid'
     />
     <ComponentExample
       title='Size'
-      description='An input can vary in size'
-      examplePath='elements/Input/Variations/InputSize'
+      description='An input can vary in size.'
+      examplePath='elements/Input/Variations/InputExampleSize'
     />
-
   </ExampleSection>
 )
 
-export default InputVariations
+export default InputVariationsExamples

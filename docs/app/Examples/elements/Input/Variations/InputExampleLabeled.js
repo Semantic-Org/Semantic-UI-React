@@ -1,8 +1,8 @@
 import React from 'react'
 import { Input } from 'semantic-ui-react'
 
-const InputLabeled = () => (
+const InputExampleLabeled = () => (
   <Input label='http://' placeholder='mysite.com' />
 )
 
-export default InputLabeled
+export default InputExampleLabeled
