@@ -1,15 +1,33 @@
 # Change Log
 
+## [v0.56.2](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.56.2) (2016-10-17)
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.56.1...v0.56.2)
+
+**Implemented enhancements:**
+
+- feat\(Modal\): support opening/closing multiple modals [\#636](https://github.com/Semantic-Org/Semantic-UI-React/issues/636)
+- feat\(Portal\): Improve rendering [\#666](https://github.com/Semantic-Org/Semantic-UI-React/pull/666) ([jcarbo](https://github.com/jcarbo))
+
+**Fixed bugs:**
+
+- feat\\(Portal\\): Improve rendering [\#666](https://github.com/Semantic-Org/Semantic-UI-React/pull/666) ([jcarbo](https://github.com/jcarbo))
+
+**Closed issues:**
+
+- fix\(Menu\): SyntaxError:Unexpected token\(6:8\) [\#691](https://github.com/Semantic-Org/Semantic-UI-React/issues/691)
+
+**Merged pull requests:**
+
+- feat\(ButtonGroup\): Add missing props [\#687](https://github.com/Semantic-Org/Semantic-UI-React/pull/687) ([jcarbo](https://github.com/jcarbo))
+- docs\(Icon\): refactor naming and descriptions, use function components [\#685](https://github.com/Semantic-Org/Semantic-UI-React/pull/685) ([dpkwhan](https://github.com/dpkwhan))
+- docs\(Input\): refactor, add trailing . in description, fix imports [\#679](https://github.com/Semantic-Org/Semantic-UI-React/pull/679) ([dpkwhan](https://github.com/dpkwhan))
+
 ## [v0.56.1](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.56.1) (2016-10-14)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.56.0...v0.56.1)
 
 **Fixed bugs:**
 
 - Menu.Item allows icon to be set as boolean [\#681](https://github.com/Semantic-Org/Semantic-UI-React/issues/681)
-
-**Closed issues:**
-
-- How to conditional hide/show an element/component ? [\#675](https://github.com/Semantic-Org/Semantic-UI-React/issues/675)
 
 **Merged pull requests:**
 
