@@ -56,7 +56,6 @@ export default class Dropdown extends Component {
     /** Array of Dropdown.Item props e.g. `{ text: '', value: '' }` */
     options: customPropTypes.every([
       customPropTypes.disallow(['children']),
-      customPropTypes.demand(['selection']),
       PropTypes.arrayOf(PropTypes.shape(DropdownItem.propTypes)),
     ]),
 
@@ -69,7 +68,6 @@ export default class Dropdown extends Component {
     /** Primary content. */
     children: customPropTypes.every([
       customPropTypes.disallow(['options', 'selection']),
-      customPropTypes.demand(['text']),
       customPropTypes.givenProps(
         { children: PropTypes.any.isRequired },
         React.PropTypes.element.isRequired,
