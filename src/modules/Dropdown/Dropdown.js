@@ -332,10 +332,6 @@ export default class Dropdown extends Component {
       document.removeEventListener('keydown', this.selectItemOnEnter)
       document.removeEventListener('keydown', this.removeItemOnBackspace)
       document.removeEventListener('click', this.closeOnDocumentClick)
-      if (prevState.focus && this.state.focus) {
-        document.addEventListener('keydown', this.openOnArrow)
-        document.addEventListener('keydown', this.openOnSpace)
-      }
     }
   }
 
@@ -739,7 +735,14 @@ export default class Dropdown extends Component {
 
   handleClose = () => {
     debug('handleClose()')
+    // https://github.com/Semantic-Org/Semantic-UI-React/issues/627
+    // Blur the Dropdown on close so it is blurred after selecting an item.
+    // This is to prevent it from re-opening when switching tabs after selecting an item.
     this._dropdown.blur()
+
+    // We need to keep the virtual model in sync with the browser focus change
+    // https://github.com/Semantic-Org/Semantic-UI-React/issues/692
+    this.setState({ focus: false })
   }
 
   toggle = () => this.state.open ? this.close() : this.open()
