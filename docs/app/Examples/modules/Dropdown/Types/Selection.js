@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import faker from 'faker'
 import React, { Component } from 'react'
-import { Button, Dropdown, Grid, Header } from 'semantic-ui-react'
+import { Button, Select, Grid, Header } from 'semantic-ui-react'
 
 const getOptions = () => _.times(3, () => {
   const name = faker.name.findName()
@@ -65,7 +65,7 @@ export default class DropdownSelectionExample extends Component {
               <input type='checkbox' checked={multiple} onChange={this.toggleMultiple} /> Multiple
             </label>
           </p>
-          <Dropdown
+          <Select
             fluid
             selection
             multiple={multiple}
