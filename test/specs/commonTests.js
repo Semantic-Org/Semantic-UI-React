@@ -254,6 +254,27 @@ export const isConformant = (Component, options = {}) => {
     })
   })
 
+  describe('handles props', () => {
+    it('defines handled props in Component._meta.props', () => {
+      Component.should.have.any.keys('_meta')
+      Component._meta.should.have.any.keys('props')
+      Component._meta.props.should.be.an('array')
+    })
+
+    it('handles all props', () => {
+      const computedProps = _.union(
+        Component.autoControlledProps,
+        _.keys(Component.defaultProps),
+        _.keys(Component.propTypes),
+      )
+
+      Component._meta.props.should.to.deep.equal(computedProps,
+        'It seems that not all props were defined in Component._meta.props, you need to check that they equal to ' +
+        'union of Component.autoControlledProps and keys of Component.defaultProps and Component.propTypes'
+      )
+    })
+  })
+
   // ----------------------------------------
   // Events
   // ----------------------------------------
@@ -466,11 +487,11 @@ export const rendersChildren = (Component, options = {}) => {
 // className from prop
 // ----------------------------------------
 const _definesPropOptions = (Component, propKey) => {
-  it(`defines ${propKey} options in Component._meta.props`, () => {
+  it(`defines ${propKey} options in Component._meta.values`, () => {
     Component.should.have.any.keys('_meta')
-    Component._meta.should.have.any.keys('props')
-    Component._meta.props.should.have.any.keys(propKey)
-    Component._meta.props[propKey].should.be.an('array')
+    Component._meta.should.have.any.keys('values')
+    Component._meta.values.should.have.any.keys(propKey)
+    Component._meta.values[propKey].should.be.an('array')
   })
 }
 
@@ -485,10 +506,10 @@ const _noDefaultClassNameFromProp = (Component, propKey, options = {}) => {
     const wrapper = shallow(<Component {...requiredProps} />)
     wrapper.should.not.have.className(className)
 
-    // not all component props define prop options in _meta.props
+    // not all component props define prop options in _meta.values
     // if they do, ensure that none of the prop option values are in className
     // SUI classes ought to be built up using a declarative component API
-    _.each(_.get(Component, `_meta.props[${propKey}]`), propVal => {
+    _.each(_.get(Component, `_meta.values[${propKey}]`), propVal => {
       wrapper.should.not.have.className(propVal.toString())
     })
   })
@@ -507,7 +528,7 @@ const _noClassNameFromBoolProps = (Component, propKey, options = {}) => {
     wrapper.should.not.have.className('true')
     wrapper.should.not.have.className('false')
 
-    _.each(_.get(Component, `_meta.props[${propKey}]`), propVal => {
+    _.each(_.get(Component, `_meta.values[${propKey}]`), propVal => {
       wrapper.should.not.have.className(propVal.toString())
     })
   }))
@@ -516,7 +537,7 @@ const _noClassNameFromBoolProps = (Component, propKey, options = {}) => {
 const _classNamePropValueBeforePropName = (Component, propKey, options = {}) => {
   const { className = propKey, requiredProps = {} } = options
 
-  _.each(_.get(Component, `_meta.props[${propKey}]`), (propVal) => {
+  _.each(_.get(Component, `_meta.values[${propKey}]`), (propVal) => {
     it(`adds "${propVal} ${className}" to className`, () => {
       shallow(createElement(Component, { ...requiredProps, [propKey]: propVal }))
         .should.have.className(`${propVal} ${className}`)
@@ -598,7 +619,7 @@ export const implementsWidthProp = (Component, options = {}) => {
     _noClassNameFromBoolProps(Component, propKey, options)
 
     it('adds numberToWord value to className', () => {
-      _.without(_.get(Component, `_meta.props[${propKey}]`), 'equal').forEach((width) => {
+      _.without(_.get(Component, `_meta.values[${propKey}]`), 'equal').forEach((width) => {
         const expectClass = widthClass ? `${numberToWord(width)} ${widthClass}` : numberToWord(width)
 
         shallow(createElement(Component, { ...requiredProps, [propKey]: width }))
@@ -927,7 +948,7 @@ export const propValueOnlyToClassName = (Component, propKey, options = {}) => {
     _noClassNameFromBoolProps(Component, propKey, options)
 
     it('adds prop value to className', () => {
-      _.each(_.get(Component, `_meta.props[${propKey}]`), propValue => {
+      _.each(_.get(Component, `_meta.values[${propKey}]`), propValue => {
         shallow(createElement(Component, { ...requiredProps, [propKey]: propValue }))
           .should.have.className(propValue)
       })
@@ -937,7 +958,7 @@ export const propValueOnlyToClassName = (Component, propKey, options = {}) => {
       // silence propType warnings
       consoleUtil.disableOnce()
 
-      _.each(_.get(Component, `_meta.props[${propKey}]`), propValue => {
+      _.each(_.get(Component, `_meta.values[${propKey}]`), propValue => {
         shallow(createElement(Component, { ...requiredProps, [propKey]: propValue }))
           .should.not.have.className(propKey)
       })
@@ -1003,7 +1024,7 @@ export const propKeyOrValueAndKeyToClassName = (Component, propKey, options = {}
       wrapper.should.not.have.className('true')
       wrapper.should.not.have.className('false')
 
-      _.each(_.get(Component, `_meta.props[${propKey}]`), propVal => {
+      _.each(_.get(Component, `_meta.values[${propKey}]`), propVal => {
         wrapper.should.not.have.className(propVal)
       })
     })
