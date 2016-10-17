@@ -17,7 +17,7 @@ import {
  */
 function ButtonGroup(props) {
   const {
-    attached, basic, children, className, color, compact, disabled,
+    attached, basic, children, className, color, compact,
     fluid, icon, inverted, labeled, negative, positive, primary,
     secondary, size, toggle, vertical, widths,
   } = props
@@ -28,7 +28,6 @@ function ButtonGroup(props) {
     useValueAndKey(attached, 'attached'),
     useKeyOnly(basic, 'basic'),
     useKeyOnly(compact, 'compact'),
-    useKeyOnly(disabled, 'disabled'),
     useKeyOnly(fluid, 'fluid'),
     useKeyOnly(icon, 'icon'),
     useKeyOnly(inverted, 'inverted'),
@@ -83,9 +82,6 @@ ButtonGroup.propTypes = {
 
   /** Groups can reduce their padding to fit into tighter spaces */
   compact: PropTypes.bool,
-
-  /** Groups can show they are currently unable to be interacted with. */
-  disabled: PropTypes.bool,
 
   /** Groups can take the width of their container */
   fluid: PropTypes.bool,
