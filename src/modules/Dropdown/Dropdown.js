@@ -332,10 +332,6 @@ export default class Dropdown extends Component {
       document.removeEventListener('keydown', this.selectItemOnEnter)
       document.removeEventListener('keydown', this.removeItemOnBackspace)
       document.removeEventListener('click', this.closeOnDocumentClick)
-      if (prevState.focus && this.state.focus) {
-        document.addEventListener('keydown', this.openOnArrow)
-        document.addEventListener('keydown', this.openOnSpace)
-      }
     }
   }
 
