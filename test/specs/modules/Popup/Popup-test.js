@@ -289,7 +289,7 @@ describe('Popup', () => {
       wrapperMount(<Popup onClose={spy} defaultOpen />)
     })
 
-    it('is called on body click', () => {
+    it('is called on background click', () => {
       domEvent.click(document.querySelector('.ui.popup').parentNode)
       spy.should.have.been.calledOnce()
     })

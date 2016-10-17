@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom'
 
 import {
   AutoControlledComponent as Component,
+  customPropTypes,
   keyboardKey,
   makeDebugger,
   META,
@@ -28,8 +29,22 @@ class Portal extends Component {
     /** Additional classes. */
     className: PropTypes.string,
 
+    /**
+     * Controls whether or not the portal should close on a click on the portal background.
+     * NOTE: This differs from closeOnDocumentClick:
+     * - DocumentClick - any click not within the portal
+     * - RootNodeClick - a click not within the portal but within the portal's wrapper
+     */
+    closeOnRootNodeClick: customPropTypes.every([
+      customPropTypes.disallow(['closeOnDocumentClick']),
+      PropTypes.bool,
+    ]),
+
     /** Controls whether or not the portal should close on a click outside. */
-    closeOnDocumentClick: PropTypes.bool,
+    closeOnDocumentClick: customPropTypes.every([
+      customPropTypes.disallow(['closeOnRootNodeClick']),
+      PropTypes.bool,
+    ]),
 
     /** Controls whether or not the portal should close when escape is pressed is displayed. */
     closeOnEscape: PropTypes.bool,
@@ -53,7 +68,7 @@ class Portal extends Component {
     /** Initial value of open. */
     defaultOpen: PropTypes.bool,
 
-    /** The node where the portal should mount.. */
+    /** The node where the portal should mount. */
     mountNode: PropTypes.any,
 
     /** Milliseconds to wait before closing on mouse leave */
@@ -86,13 +101,16 @@ class Portal extends Component {
     /** Controls whether or not the portal should open when mousing over the trigger. */
     openOnTriggerMouseOver: PropTypes.bool,
 
+    /** Controls whether the portal should be prepended to the mountNode instead of appended. */
+    prepend: PropTypes.bool,
+
     /** Element to be rendered in-place where the portal is defined. */
     trigger: PropTypes.node,
   }
 
   static defaultProps = {
-    closeOnEscape: true,
     closeOnDocumentClick: true,
+    closeOnEscape: true,
     openOnTriggerClick: true,
   }
 
@@ -136,23 +154,25 @@ class Portal extends Component {
   // Document Event Handlers
   // ----------------------------------------
 
-  closeOnDocumentClick = (e) => {
-    if (!this.props.closeOnDocumentClick) return
+  handleDocumentClick = (e) => {
+    const { closeOnDocumentClick, closeOnRootNodeClick } = this.props
 
     // If event happened in the portal, ignore it
     if (this.portal.contains(e.target)) return
 
-    debug('closeOnDocumentClick()')
+    if (closeOnDocumentClick || (closeOnRootNodeClick && this.node.contains(e.target))) {
+      debug('handleDocumentClick()')
 
-    e.stopPropagation()
-    this.close(e)
+      e.stopPropagation()
+      this.close(e)
+    }
   }
 
-  closeOnEscape = (e) => {
+  handleEscape = (e) => {
     if (!this.props.closeOnEscape) return
     if (keyboardKey.getCode(e) !== keyboardKey.Escape) return
 
-    debug('closeOnEscape()')
+    debug('handleEscape()')
 
     e.preventDefault()
     this.close(e)
@@ -202,14 +222,18 @@ class Portal extends Component {
     _.invoke(trigger, 'props.onClick', e)
 
     if (open && closeOnTriggerClick) {
+      debug('handleTriggerClick() - close')
+
       e.stopPropagation()
       this.close(e)
     } else if (!open && openOnTriggerClick) {
+      debug('handleTriggerClick() - open')
+
       e.stopPropagation()
       this.open(e)
     }
 
-    // Prevents closeOnDocumentClick from closing the portal when
+    // Prevents handleDocumentClick from closing the portal when
     // openOnTriggerFocus is set. Focus shifts on mousedown so the portal opens
     // before the click finishes so it may actually wind up on the document.
     e.nativeEvent.stopImmediatePropagation()
@@ -298,13 +322,15 @@ class Portal extends Component {
 
     this.mountPortal()
 
-    this.node.className = className
+    this.node.className = className || ''
 
-    this.portal = ReactDOM.unstable_renderSubtreeIntoContainer(
+    ReactDOM.unstable_renderSubtreeIntoContainer(
       this,
       Children.only(children),
       this.node
     )
+
+    this.portal = this.node.firstElementChild
 
     this.portal.addEventListener('mouseleave', this.handlePortalMouseLeave)
     this.portal.addEventListener('mouseover', this.handlePortalMouseOver)
@@ -313,13 +339,20 @@ class Portal extends Component {
   mountPortal = () => {
     if (this.node) return
 
-    const { mountNode = document.body } = this.props
+    debug('mountPortal()')
+
+    const { mountNode = document.body, prepend } = this.props
 
     this.node = document.createElement('div')
-    mountNode.appendChild(this.node)
 
-    document.addEventListener('keydown', this.closeOnEscape)
-    document.addEventListener('click', this.closeOnDocumentClick)
+    if (prepend) {
+      mountNode.insertBefore(this.node, mountNode.firstElementChild)
+    } else {
+      mountNode.appendChild(this.node)
+    }
+
+    document.addEventListener('click', this.handleDocumentClick)
+    document.addEventListener('keydown', this.handleEscape)
 
     const { onMount } = this.props
     if (onMount) onMount()
@@ -327,6 +360,8 @@ class Portal extends Component {
 
   unmountPortal = () => {
     if (!this.node) return
+
+    debug('unmountPortal()')
 
     ReactDOM.unmountComponentAtNode(this.node)
     this.node.parentNode.removeChild(this.node)
@@ -337,8 +372,8 @@ class Portal extends Component {
     this.node = null
     this.portal = null
 
-    document.removeEventListener('keydown', this.closeOnEscape)
-    document.removeEventListener('click', this.closeOnDocumentClick)
+    document.removeEventListener('click', this.handleDocumentClick)
+    document.removeEventListener('keydown', this.handleEscape)
 
     const { onUnmount } = this.props
     if (onUnmount) onUnmount()

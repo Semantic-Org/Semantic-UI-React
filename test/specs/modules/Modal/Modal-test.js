@@ -261,9 +261,9 @@ describe('Modal', () => {
       spy.should.not.have.been.calledOnce()
     })
 
-    it('is called on body click', () => {
+    it('is not called on body click', () => {
       domEvent.click('body')
-      spy.should.have.been.calledOnce()
+      spy.should.not.have.been.calledOnce()
     })
 
     it('is called when pressing escape', () => {
@@ -292,7 +292,7 @@ describe('Modal', () => {
 
     beforeEach(() => {
       spy = sandbox.spy()
-      wrapperMount(<Modal onClose={spy} open closeOnEscape={false} closeOnDocumentClick={false} />)
+      wrapperMount(<Modal onClose={spy} open closeOnEscape={false} closeOnRootNodeClick={false} />)
     })
 
     it('is not called on dimmer click', () => {

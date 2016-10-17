@@ -4,24 +4,24 @@ import { Button, Icon, Modal } from 'semantic-ui-react'
 class ModalCloseConfigExample extends Component {
   state = { open: false }
 
-  closeConfigShow = (closeOnEscape, closeOnDocumentClick) => () => {
-    this.setState({ closeOnEscape, closeOnDocumentClick, open: true })
+  closeConfigShow = (closeOnEscape, closeOnRootNodeClick) => () => {
+    this.setState({ closeOnEscape, closeOnRootNodeClick, open: true })
   }
 
   close = () => this.setState({ open: false })
 
   render() {
-    const { open, closeOnEscape, closeOnDocumentClick } = this.state
+    const { open, closeOnEscape, closeOnRootNodeClick } = this.state
 
     return (
       <div>
         <Button onClick={this.closeConfigShow(false, true)}>No Close on Escape</Button>
-        <Button onClick={this.closeConfigShow(true, false)}>No Close on Click Outside</Button>
+        <Button onClick={this.closeConfigShow(true, false)}>No Close on Dimmer Click</Button>
 
         <Modal
           open={open}
           closeOnEscape={closeOnEscape}
-          closeOnDocumentClick={closeOnDocumentClick}
+          closeOnRootNodeClick={closeOnRootNodeClick}
           onClose={this.close}
         >
           <Modal.Header>

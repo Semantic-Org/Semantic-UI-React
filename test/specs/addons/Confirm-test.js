@@ -139,9 +139,9 @@ describe('Confirm', () => {
       spy.should.not.have.been.calledOnce()
     })
 
-    it('is called on body click', () => {
+    it('is not called on body click', () => {
       domEvent.click('body')
-      spy.should.have.been.calledOnce()
+      spy.should.not.have.been.calledOnce()
     })
 
     it('is called when pressing escape', () => {
