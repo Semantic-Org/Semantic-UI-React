@@ -194,6 +194,48 @@ describe('Dropdown Component', () => {
     })
   })
 
+  describe('handleClose', () => {
+    it('is called when open changes to false', () => {
+      wrapperMount(<Dropdown options={options} selection />)
+      wrapper.simulate('click')
+      dropdownMenuIsOpen()
+
+      const instance = wrapper.instance()
+      sandbox.spy(instance, 'handleClose')
+
+      wrapper.simulate('click')
+      dropdownMenuIsClosed()
+
+      instance
+        .handleClose
+        .should.have.been.calledOnce()
+    })
+
+    it('prevents Space from opening a search Dropdown after selecting an item', () => {
+      // Prevent a bug where pressing space in another control opens the Dropdown
+      // https://github.com/Semantic-Org/Semantic-UI-React/issues/692
+      wrapperMount(<Dropdown options={options} search selection />)
+
+      // open, click an item, assert it is active and in the value
+      wrapper.simulate('click')
+      dropdownMenuIsOpen()
+
+      wrapper
+        .find('DropdownItem')
+        .first()
+        .simulate('click')
+        .should.have.prop('active', true)
+
+      wrapper.should.have.state('value', options[0].value)
+
+      dropdownMenuIsClosed()
+
+      // doesn't open on space
+      domEvent.keyDown(document, { key: ' ' })
+      dropdownMenuIsClosed()
+    })
+  })
+
   describe('isMouseDown', () => {
     it('tracks when the mouse is down', () => {
       wrapperShallow(<Dropdown />)
