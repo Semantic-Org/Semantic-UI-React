@@ -1,5 +1,13 @@
 # Change Log
 
+## [v0.56.3](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.56.3) (2016-10-17)
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.56.2...v0.56.3)
+
+**Fixed bugs:**
+
+- Dropdown 'openOnSpace' triggered through TextArea [\#692](https://github.com/Semantic-Org/Semantic-UI-React/issues/692)
+- fix\(Dropdown\): blur virtual DOM with real DOM [\#693](https://github.com/Semantic-Org/Semantic-UI-React/pull/693) ([levithomason](https://github.com/levithomason))
+
 ## [v0.56.2](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.56.2) (2016-10-17)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.56.1...v0.56.2)
 
