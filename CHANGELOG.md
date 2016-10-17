@@ -1,5 +1,12 @@
 # Change Log
 
+## [v0.56.4](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.56.4) (2016-10-17)
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.56.3...v0.56.4)
+
+**Merged pull requests:**
+
+- fix\(Dropdown\): over zealous propType warnings [\#694](https://github.com/Semantic-Org/Semantic-UI-React/pull/694) ([levithomason](https://github.com/levithomason))
+
 ## [v0.56.3](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.56.3) (2016-10-17)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.56.2...v0.56.3)
 
