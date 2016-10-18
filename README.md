@@ -81,7 +81,7 @@ export default () => (
   <title>Semantic-UI-React</title>
 
   <!-- SUI CSS -->
-  <link href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/semantic.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.x.x/semantic.css" rel="stylesheet">
 </head>
 <body>
   <script src="bundle.js"></script>
