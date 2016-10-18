@@ -804,6 +804,7 @@ export default class Dropdown extends Component {
       this._sizer.textContent = searchQuery
       searchWidth = Math.ceil(this._sizer.getBoundingClientRect().width)
       this._sizer.style.removeProperty('display')
+      this._sizer.textContent = null
     }
 
     return (
