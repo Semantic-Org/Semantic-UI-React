@@ -432,6 +432,10 @@ describe('Dropdown Component', () => {
       dropdownMenuIsOpen()
       const menu = document.querySelector('.ui.dropdown .menu.visible')
 
+      // Limit the menu's height and set an overflow so it's scrollable
+      menu.style.height = '100px'
+      menu.style.overflow = 'auto'
+
       //
       // Scrolls to bottom
       //
@@ -467,8 +471,10 @@ describe('Dropdown Component', () => {
         .find('.selected')
         .should.contain.text(opts[0].text)
 
-      // menu should be completely scrolled to the bottom
-      const isMenuScrolledToTop = menu.scrollTop === 0
+      // Note: For some reason the first item's offsetTop is not 0 so we need
+      // to find the item's offsetTop and ensure it's at the top.
+      const selectedItem = document.querySelector('.ui.dropdown .menu.visible .item.selected')
+      const isMenuScrolledToTop = menu.scrollTop === selectedItem.offsetTop
       isMenuScrolledToTop.should.be.true(
         'When the first item in the list was selected, DropdownMenu did not scroll to top.'
       )
