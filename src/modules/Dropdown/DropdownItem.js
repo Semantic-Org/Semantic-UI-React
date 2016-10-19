@@ -116,15 +116,20 @@ export default class DropdownItem extends Component {
     const iconElement = Icon.create(iconName)
     const imageElement = Image.create(image)
     const labelElement = Label.create(label)
+    const descriptionElement = createShorthand(
+      'span',
+      val => ({ className: 'description', children: val }),
+      description,
+    )
 
-    if (description) {
+    if (descriptionElement) {
       return (
         <ElementType {...rest} className={classes} onClick={this.handleClick}>
           {imageElement}
           {iconElement}
           {flagElement}
           {labelElement}
-          {createShorthand('span', val => ({ className: 'description', children: val }), description)}
+          {descriptionElement}
           {createShorthand('span', val => ({ className: 'text', children: val }), text)}
         </ElementType>
       )
