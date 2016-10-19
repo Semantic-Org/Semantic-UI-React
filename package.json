@@ -3,6 +3,7 @@
   "version": "0.56.5",
   "description": "The official Semantic-UI-React integration.",
   "main": "dist/commonjs/index.js",
+  "browser": "dist/umd/semantic-ui-react.min.js",
   "files": [
     "src",
     "dist"
