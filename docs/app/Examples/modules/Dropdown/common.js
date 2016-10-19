@@ -358,5 +358,5 @@ export const languageOptions = [
 
 export const getOptions = (number, prefix = 'Choice ') => _.times(number, (index) => ({
   text: `${prefix}${index}`,
-  value: `${index}`
+  value: `${index}`,
 }))
