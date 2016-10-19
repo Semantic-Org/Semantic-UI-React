@@ -2,6 +2,8 @@ import React from 'react'
 import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
 import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
 
+import { Message } from 'semantic-ui-react'
+
 const DropdownTypesExamples = () => (
   <ExampleSection title='Types'>
     <ComponentExample
@@ -34,6 +36,7 @@ const DropdownTypesExamples = () => (
       examplePath='modules/Dropdown/Types/DropdownExampleMultipleSearchSelection'
     />
     <ComponentExample
+      description='Dropdowns can support content that may not be allowed inside option tags.'
       examplePath='modules/Dropdown/Types/DropdownExampleMultipleSearchSelectionTwo'
     />
     <ComponentExample
@@ -45,11 +48,21 @@ const DropdownTypesExamples = () => (
       title='Search In-Menu'
       description='A dropdown can include a search prompt inside its menu.'
       examplePath='modules/Dropdown/Types/DropdownExampleSearchInMenu'
-    />
+    >
+      <Message warning>
+        The example below shows the desired markup but is not functional.
+        Needs to be defined via shorthand, which is not yet possible.
+      </Message>
+    </ComponentExample>
     <ComponentExample
       description='A dropdown with multiple selections can include a search prompt inside its menu.'
       examplePath='modules/Dropdown/Types/DropdownExampleMultipleSearchInMenu'
-    />
+    >
+      <Message warning>
+        The example below shows the desired markup but is not functional.
+        Needs to be defined via shorthand, which is not yet possible.
+      </Message>
+    </ComponentExample>
     <ComponentExample
       title='Inline'
       description='A dropdown can be formatted to appear inline in other content.'
@@ -62,7 +75,12 @@ const DropdownTypesExamples = () => (
       title='Pointing'
       description='A dropdown can be formatted so that its menu is pointing.'
       examplePath='modules/Dropdown/Types/DropdownExamplePointing'
-    />
+    >
+      <Message warning>
+        The example below shows (roughly) the desired markup but is not functional
+        since we don't currently support nested dropdowns.
+      </Message>
+    </ComponentExample>
     <ComponentExample
       examplePath='modules/Dropdown/Types/DropdownExamplePointingTwo'
     />

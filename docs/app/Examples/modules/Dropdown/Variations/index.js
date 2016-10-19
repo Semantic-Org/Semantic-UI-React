@@ -2,6 +2,8 @@ import React from 'react'
 import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
 import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
 
+import { Message } from 'semantic-ui-react'
+
 const DropdownVariationsExamples = () => (
   <ExampleSection title='Variations'>
     <ComponentExample
@@ -11,7 +13,12 @@ const DropdownVariationsExamples = () => (
     />
     <ComponentExample
       examplePath='modules/Dropdown/Variations/DropdownExampleSearchInMenuScrolling'
-    />
+    >
+      <Message warning>
+        The example below shows the desired markup but is not functional.
+        Needs to be defined via shorthand, which is not yet possible.
+      </Message>
+    </ComponentExample>
     <ComponentExample
       title='Compact'
       description='A compact dropdown has no minimum width.'
