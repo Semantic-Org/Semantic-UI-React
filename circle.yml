@@ -9,6 +9,7 @@ machine:
 
 test:
   pre:
+    - echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
     - npm run lint
   post:
     - bash <(curl -s https://codecov.io/bash)
