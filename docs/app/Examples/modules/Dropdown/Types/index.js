@@ -1,8 +1,7 @@
 import React from 'react'
 import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
+import ContributionPrompt from 'docs/app/Components/ComponentDoc/ContributionPrompt'
 import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
-
-import { Message } from 'semantic-ui-react'
 
 const DropdownTypesExamples = () => (
   <ExampleSection title='Types'>
@@ -49,19 +48,19 @@ const DropdownTypesExamples = () => (
       description='A dropdown can include a search prompt inside its menu.'
       examplePath='modules/Dropdown/Types/DropdownExampleSearchInMenu'
     >
-      <Message warning>
+      <ContributionPrompt>
         The example below shows the desired markup but is not functional.
         Needs to be defined via shorthand, which is not yet possible.
-      </Message>
+      </ContributionPrompt>
     </ComponentExample>
     <ComponentExample
       description='A dropdown with multiple selections can include a search prompt inside its menu.'
       examplePath='modules/Dropdown/Types/DropdownExampleMultipleSearchInMenu'
     >
-      <Message warning>
+      <ContributionPrompt>
         The example below shows the desired markup but is not functional.
         Needs to be defined via shorthand, which is not yet possible.
-      </Message>
+      </ContributionPrompt>
     </ComponentExample>
     <ComponentExample
       title='Inline'
@@ -76,10 +75,10 @@ const DropdownTypesExamples = () => (
       description='A dropdown can be formatted so that its menu is pointing.'
       examplePath='modules/Dropdown/Types/DropdownExamplePointing'
     >
-      <Message warning>
+      <ContributionPrompt>
         The example below shows (roughly) the desired markup but is not functional
         since we don't currently support nested dropdowns.
-      </Message>
+      </ContributionPrompt>
     </ComponentExample>
     <ComponentExample
       examplePath='modules/Dropdown/Types/DropdownExamplePointingTwo'

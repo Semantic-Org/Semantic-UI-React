@@ -1,8 +1,8 @@
 import React from 'react'
-import { ButtonGroup, Button, Dropdown } from 'semantic-ui-react'
+import { Button, Dropdown } from 'semantic-ui-react'
 
 const DropdownExampleFloating = () => (
-  <ButtonGroup color='teal'>
+  <Button.Group color='teal'>
     <Button>Save</Button>
     <Dropdown floating button className='icon'>
       <Dropdown.Menu>
@@ -11,7 +11,7 @@ const DropdownExampleFloating = () => (
         <Dropdown.Item icon='hide' text='Hide Post' />
       </Dropdown.Menu>
     </Dropdown>
-  </ButtonGroup>
+  </Button.Group>
 )
 
 export default DropdownExampleFloating

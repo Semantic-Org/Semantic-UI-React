@@ -122,7 +122,6 @@ export const countryOptions = [
   { value: 'bn', flag: 'bn', text: 'Brunei' },
   { value: 'bg', flag: 'bg', text: 'Bulgaria' },
   { value: 'bf', flag: 'bf', text: 'Burkina Faso' },
-  { value: 'ar', flag: 'ar', text: 'Burma' },
   { value: 'bi', flag: 'bi', text: 'Burundi' },
   { value: 'tc', flag: 'tc', text: 'Caicos Islands' },
   { value: 'kh', flag: 'kh', text: 'Cambodia' },
@@ -354,6 +353,54 @@ export const languageOptions = [
   { text: 'Swedish', value: 'Swedish' },
   { text: 'Turkish', value: 'Turkish' },
   { text: 'Vietnamese', value: 'Vietnamese' },
+]
+
+export const tagOptions = [
+  {
+    text: 'Important',
+    value: 'Important',
+    label: { color: 'red', empty: true, circular: true },
+  },
+  {
+    text: 'Announcement',
+    value: 'Announcement',
+    label: { color: 'blue', empty: true, circular: true },
+  },
+  {
+    text: 'Cannot Fix',
+    value: 'Cannot Fix',
+    label: { color: 'black', empty: true, circular: true },
+  },
+  {
+    text: 'News',
+    value: 'News',
+    label: { color: 'purple', empty: true, circular: true },
+  },
+  {
+    text: 'Enhancement',
+    value: 'Enhancement',
+    label: { color: 'orange', empty: true, circular: true },
+  },
+  {
+    text: 'Change Declined',
+    value: 'Change Declined',
+    label: { empty: true, circular: true },
+  },
+  {
+    text: 'Off Topic',
+    value: 'Off Topic',
+    label: { color: 'yellow', empty: true, circular: true },
+  },
+  {
+    text: 'Interesting',
+    value: 'Interesting',
+    label: { color: 'pink', empty: true, circular: true },
+  },
+  {
+    text: 'Discussion',
+    value: 'Discussion',
+    label: { color: 'green', empty: true, circular: true },
+  },
 ]
 
 export const getOptions = (number, prefix = 'Choice ') => _.times(number, (index) => ({

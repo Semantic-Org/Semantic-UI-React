@@ -1,8 +1,8 @@
 import React from 'react'
 import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
+import ContributionPrompt from 'docs/app/Components/ComponentDoc/ContributionPrompt'
 import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
 
-import { Message } from 'semantic-ui-react'
 
 const DropdownVariationsExamples = () => (
   <ExampleSection title='Variations'>
@@ -14,10 +14,10 @@ const DropdownVariationsExamples = () => (
     <ComponentExample
       examplePath='modules/Dropdown/Variations/DropdownExampleSearchInMenuScrolling'
     >
-      <Message warning>
+      <ContributionPrompt>
         The example below shows the desired markup but is not functional.
         Needs to be defined via shorthand, which is not yet possible.
-      </Message>
+      </ContributionPrompt>
     </ComponentExample>
     <ComponentExample
       title='Compact'
@@ -34,18 +34,18 @@ const DropdownVariationsExamples = () => (
       description='A dropdown menu or sub-menu can specify the direction it should open.'
       examplePath='modules/Dropdown/Variations/DropdownExampleMenuDirection'
     >
-      <Message warning>
+      <ContributionPrompt>
         The example below shows (roughly) the desired markup but is not functional
         since we don't currently support nested dropdowns.
-      </Message>
+      </ContributionPrompt>
     </ComponentExample>
     <ComponentExample
       examplePath='modules/Dropdown/Variations/DropdownExampleMenuDirectionLeft'
     >
-      <Message warning>
+      <ContributionPrompt>
         The example below shows (roughly) the desired markup but is not functional
         since we don't currently support nested dropdowns.
-      </Message>
+      </ContributionPrompt>
     </ComponentExample>
   </ExampleSection>
 )

@@ -1,7 +1,8 @@
 import React, { Component, createElement, PropTypes } from 'react'
 
-import { exampleContext, repoURL } from 'docs/app/utils'
-import { Grid, Icon, Message } from 'src'
+import { exampleContext } from 'docs/app/utils'
+import { Grid } from 'src'
+import ContributionPrompt from './ContributionPrompt'
 
 export default class ComponentExamples extends Component {
   static propTypes = {
@@ -22,17 +23,9 @@ export default class ComponentExamples extends Component {
     return (
       <Grid padded>
         <Grid.Column>
-          <Message info icon>
-            <Icon name='search' />
-            <Message.Content>
-              If there's no
-              <a href={`${repoURL}/pulls` }> pull request </a>
-              open for <code>{`<${name} />`}</code> examples, you should{' '}
-              <a href={`${repoURL}/blob/master/.github/CONTRIBUTING.md` }>
-                contribute
-              </a>!
-            </Message.Content>
-          </Message>
+          <ContributionPrompt>
+            Looks like we're missing <code>{`<${name} />`}</code> examples.
+          </ContributionPrompt>
         </Grid.Column>
       </Grid>
     )
