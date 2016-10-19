@@ -7,7 +7,7 @@ const options = [
   { text: 'Three', value: 3 },
 ]
 
-const DropdownUncontrolledExample = () => (
+const DropdownExampleUncontrolled = () => (
   <Dropdown
     selection
     options={options}
@@ -15,4 +15,4 @@ const DropdownUncontrolledExample = () => (
   />
 )
 
-export default DropdownUncontrolledExample
+export default DropdownExampleUncontrolled
