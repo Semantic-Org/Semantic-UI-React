@@ -11,6 +11,7 @@ import {
   useKeyOnly,
 } from '../../lib'
 import Portal from '../../addons/Portal'
+import DimmerDimmable from './DimmerDimmable'
 
 const debug = makeDebugger('dimmer')
 
@@ -28,10 +29,16 @@ class Dimmer extends Component {
     as: customPropTypes.as,
 
     /** An active dimmer will dim its parent container. */
-    active: PropTypes.bool,
+    active: customPropTypes.every([
+      PropTypes.bool,
+      customPropTypes.disallow(['disabled']),
+    ]),
 
     /** A dimmable element can blur its contents. */
-    blurring: PropTypes.bool,
+    blurring: customPropTypes.every([
+      PropTypes.bool,
+      customPropTypes.demand(['dimmable']),
+    ]),
 
     /** Primary content. */
     children: PropTypes.node,
@@ -41,8 +48,18 @@ class Dimmer extends Component {
 
     closeOnOutsideClick: PropTypes.bool,
 
+    dimmable: customPropTypes.as,
+
+    dimmed: customPropTypes.every([
+      PropTypes.bool,
+      customPropTypes.demand(['dimmable']),
+    ]),
+
     /** A disabled dimmer cannot be activated. */
-    disabled: PropTypes.bool,
+    disabled: customPropTypes.every([
+      PropTypes.bool,
+      customPropTypes.disallow(['active']),
+    ]),
 
     /** A dimmer can be formatted to have its colors inverted. */
     inverted: PropTypes.bool,
@@ -94,11 +111,27 @@ class Dimmer extends Component {
     return null
   }
 
+  renderDimmable() {
+    const { blurring, children, className, dimmable, dimmed } = this.props
+
+    return (
+      <DimmerDimmable
+        blurring={blurring}
+        className={className}
+        Component={dimmable}
+        dimmed={dimmed}
+      >
+        {children}
+      </DimmerDimmable>
+    )
+  }
+
   render() {
     const {
       active,
       blurring,
       className,
+      dimmable,
       inverted,
       onClose,
       page,
@@ -114,6 +147,8 @@ class Dimmer extends Component {
       className,
     )
     const ElementType = getElementType(Dimmer, this.props)
+
+    if (dimmable) return this.renderDimmable()
 
     const unhandled = getUnhandledProps(Dimmer, this.props)
     const portalPropNames = _.keys(Portal.propTypes)

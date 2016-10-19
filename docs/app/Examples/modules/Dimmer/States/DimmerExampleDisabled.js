@@ -1,9 +1,9 @@
 import React from 'react'
 import { Dimmer, Segment } from 'semantic-ui-react'
 
-const DimmerExampleActive = () => (
+const DimmerExampleDisabled = () => (
   <Segment>
-    <Dimmer active />
+    <Dimmer disabled />
 
     <p>
       <img src='http://semantic-ui.com/images/wireframe/short-paragraph.png' />
@@ -14,4 +14,4 @@ const DimmerExampleActive = () => (
   </Segment>
 )
 
-export default DimmerExampleActive
+export default DimmerExampleDisabled

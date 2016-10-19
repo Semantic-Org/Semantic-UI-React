@@ -10,6 +10,11 @@ const DimmerStatesExamples = () => (
       description='An active dimmer will dim its parent container'
       examplePath='modules/Dimmer/States/DimmerExampleActive'
     />
+    <ComponentExample
+      title='Disabled'
+      description='A disabled dimmer cannot be activated'
+      examplePath='modules/Dimmer/States/DimmerExampleDisabled'
+    />
   </ExampleSection>
 )
 
