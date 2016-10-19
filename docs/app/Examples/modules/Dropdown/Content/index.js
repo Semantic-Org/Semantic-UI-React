@@ -2,6 +2,8 @@ import React from 'react'
 import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
 import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
 
+import { Message } from 'semantic-ui-react'
+
 const DropdownContentExamples = () => (
   <ExampleSection title='Content'>
     <ComponentExample
@@ -43,7 +45,12 @@ const DropdownContentExamples = () => (
       title='Input'
       description='A dropdown menu can contain an input.'
       examplePath='modules/Dropdown/Content/DropdownExampleInput'
-    />
+    >
+      <Message warning>
+        The example below shows the desired markup but is not functional.
+        Needs to be defined via shorthand, which is not yet possible.
+      </Message>
+    </ComponentExample>
     <ComponentExample
       title='Image'
       description='A dropdown menu can contain an image.'

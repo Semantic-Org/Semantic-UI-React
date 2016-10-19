@@ -1,14 +1,10 @@
 import React from 'react'
 import { Dropdown } from 'semantic-ui-react'
 
+import { getOptions } from '../common'
+
 const DropdownExampleCompact = () => (
-  <Dropdown text='Compact' compact selection>
-    <Dropdown.Menu>
-      <Dropdown.Item>A</Dropdown.Item>
-      <Dropdown.Item>B</Dropdown.Item>
-      <Dropdown.Item>C</Dropdown.Item>
-    </Dropdown.Menu>
-  </Dropdown>
+  <Dropdown placeholder='Compact' compact selection options={getOptions(3, '')} />
 )
 
 export default DropdownExampleCompact

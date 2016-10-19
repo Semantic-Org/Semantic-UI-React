@@ -33,10 +33,20 @@ const DropdownVariationsExamples = () => (
       title='Menu Direction'
       description='A dropdown menu or sub-menu can specify the direction it should open.'
       examplePath='modules/Dropdown/Variations/DropdownExampleMenuDirection'
-    />
+    >
+      <Message warning>
+        The example below shows (roughly) the desired markup but is not functional
+        since we don't currently support nested dropdowns.
+      </Message>
+    </ComponentExample>
     <ComponentExample
       examplePath='modules/Dropdown/Variations/DropdownExampleMenuDirectionLeft'
-    />
+    >
+      <Message warning>
+        The example below shows (roughly) the desired markup but is not functional
+        since we don't currently support nested dropdowns.
+      </Message>
+    </ComponentExample>
   </ExampleSection>
 )
 

@@ -1,3 +1,5 @@
+import _ from 'lodash'
+
 export const stateOptions = [
   { value: 'AL', text: 'Alabama' },
   { value: 'AK', text: 'Alaska' },
@@ -353,3 +355,8 @@ export const languageOptions = [
   { text: 'Turkish', value: 'Turkish' },
   { text: 'Vietnamese', value: 'Vietnamese' },
 ]
+
+export const getOptions = (number, prefix = 'Choice ') => _.times(number, (index) => ({
+  text: `${prefix}${index}`,
+  value: `${index}`
+}))
