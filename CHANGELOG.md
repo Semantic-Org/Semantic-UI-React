@@ -1,5 +1,25 @@
 # Change Log
 
+## [v0.56.6](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.56.6) (2016-10-19)
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.56.5...v0.56.6)
+
+**Merged pull requests:**
+
+- chore\(package\): define browser field [\#702](https://github.com/Semantic-Org/Semantic-UI-React/pull/702) ([levithomason](https://github.com/levithomason))
+
+## [v0.56.5](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.56.5) (2016-10-18)
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.56.4...v0.56.5)
+
+**Closed issues:**
+
+- Props warning with modals [\#699](https://github.com/Semantic-Org/Semantic-UI-React/issues/699)
+- fix\(Menu\): There is a flaw while using image in the menu. [\#698](https://github.com/Semantic-Org/Semantic-UI-React/issues/698)
+
+**Merged pull requests:**
+
+- fix\(customPropTypes\): ignore nil and false in disallow\(\) [\#700](https://github.com/Semantic-Org/Semantic-UI-React/pull/700) ([levithomason](https://github.com/levithomason))
+- Update all dependencies 🌴 [\#696](https://github.com/Semantic-Org/Semantic-UI-React/pull/696) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+
 ## [v0.56.4](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.56.4) (2016-10-17)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.56.3...v0.56.4)
 
