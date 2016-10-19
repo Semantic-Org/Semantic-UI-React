@@ -19,6 +19,7 @@ deployment:
     commands:
       - git config --global user.email "devteam+deweybot@technologyadvice.com"
       - git config --global user.name "deweybot"
+      - node scripts/auto-release.js
       # changelog generator is crashing, skipping for manual updates for now
       # - $(npm bin)/ta-script circle_ci/create_changelog
       - NODE_ENV=production npm run deploy:docs
