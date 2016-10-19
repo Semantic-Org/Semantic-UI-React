@@ -713,8 +713,10 @@ export default class Dropdown extends Component {
     const isOutOfUpperView = item.offsetTop < menu.scrollTop
     const isOutOfLowerView = (item.offsetTop + item.clientHeight) > menu.scrollTop + menu.clientHeight
 
-    if (isOutOfUpperView || isOutOfLowerView) {
+    if (isOutOfUpperView) {
       menu.scrollTop = item.offsetTop
+    } else if (isOutOfLowerView) {
+      menu.scrollTop = item.offsetTop + item.clientHeight - menu.clientHeight
     }
   }
 
