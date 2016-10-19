@@ -1,5 +1,20 @@
 # Change Log
 
+## [Unreleased](https://github.com/Semantic-Org/Semantic-UI-React/tree/HEAD)
+
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.56.7...HEAD)
+
+**Fixed bugs:**
+
+- \(0.56.6\) semantic-ui-react unable to find React or ReactDOM module [\#703](https://github.com/Semantic-Org/Semantic-UI-React/issues/703)
+
+## [v0.56.7](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.56.7) (2016-10-19)
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.56.6...v0.56.7)
+
+**Merged pull requests:**
+
+- fix\(package\): revert define browser field \(\#702\) [\#704](https://github.com/Semantic-Org/Semantic-UI-React/pull/704) ([levithomason](https://github.com/levithomason))
+
 ## [v0.56.6](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.56.6) (2016-10-19)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.56.5...v0.56.6)
 
