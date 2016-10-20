@@ -1,7 +1,7 @@
 import React from 'react'
 import { Dropdown } from 'semantic-ui-react'
 
-import { friendOptions, renderOptions } from '../common'
+import { friendOptions } from '../common'
 
 const DropdownExampleImage = () => (
   <Dropdown text='Add user' floating labeled button className='icon'>
