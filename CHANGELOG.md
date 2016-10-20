@@ -4,10 +4,15 @@
 
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.56.9...HEAD)
 
+**Closed issues:**
+
+- docs\(Dropdown\): add missing examples [\#562](https://github.com/Semantic-Org/Semantic-UI-React/issues/562)
+
 **Merged pull requests:**
 
 - chore\(circleci\): use ta-scripts auto-release and changelog [\#707](https://github.com/Semantic-Org/Semantic-UI-React/pull/707) ([levithomason](https://github.com/levithomason))
 - chore\(auto-release\): skip non-consequential and unknown commits [\#706](https://github.com/Semantic-Org/Semantic-UI-React/pull/706) ([levithomason](https://github.com/levithomason))
+- feat\(Dropdown\): Add missing examples and begin feature support [\#682](https://github.com/Semantic-Org/Semantic-UI-React/pull/682) ([jcarbo](https://github.com/jcarbo))
 
 ## [v0.56.9](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.56.9) (2016-10-19)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.56.8...v0.56.9)
