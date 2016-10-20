@@ -20,6 +20,6 @@ deployment:
     commands:
       - git config --global user.email "devteam+deweybot@technologyadvice.com"
       - git config --global user.name "deweybot"
-      - $(npm bin)/ta-script circle_ci/create_changelog
       - $(npm bin)/ta-script npm/auto-release
+      - $(npm bin)/ta-script circle_ci/create_changelog
       - NODE_ENV=production npm run deploy:docs
