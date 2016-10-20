@@ -41,71 +41,6 @@ const _meta = {
  */
 export default class Dropdown extends Component {
   static propTypes = {
-    /** An element type to render as (string or function). */
-    as: customPropTypes.as,
-
-    // ------------------------------------
-    // Behavior
-    // ------------------------------------
-    /** Add an icon by name or as a component. */
-    icon: PropTypes.oneOfType([
-      PropTypes.element,
-      PropTypes.string,
-    ]),
-
-    /** Array of Dropdown.Item props e.g. `{ text: '', value: '' }` */
-    options: customPropTypes.every([
-      customPropTypes.disallow(['children']),
-      PropTypes.arrayOf(PropTypes.shape(DropdownItem.propTypes)),
-    ]),
-
-    /** Controls whether or not the dropdown menu is displayed. */
-    open: PropTypes.bool,
-
-    /** Initial value of open. */
-    defaultOpen: PropTypes.bool,
-
-    /** Primary content. */
-    children: customPropTypes.every([
-      customPropTypes.disallow(['options', 'selection']),
-      customPropTypes.givenProps(
-        { children: PropTypes.any.isRequired },
-        React.PropTypes.element.isRequired,
-      ),
-    ]),
-
-    /** Current value or value array if multiple. Creates a controlled component. */
-    value: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number,
-      PropTypes.arrayOf(PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.number,
-      ])),
-    ]),
-
-    /** Initial value or value array if multiple. */
-    defaultValue: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number,
-      PropTypes.arrayOf(PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.number,
-      ])),
-    ]),
-
-    /** Placeholder text. */
-    placeholder: PropTypes.string,
-
-    /** Name of the hidden input which holds the value. */
-    name: PropTypes.string,
-
-    /** Custom element to trigger the menu to become visible. Takes place of 'text'. */
-    trigger: customPropTypes.every([
-      customPropTypes.disallow(['selection', 'text']),
-      PropTypes.node,
-    ]),
-
     /**
      * Allow user additions to the list of options (boolean).
      * Requires the use of `selection`, `options` and `search`.
@@ -121,21 +56,83 @@ export default class Dropdown extends Component {
     /** Label prefixed to an option added by a user. */
     additionLabel: PropTypes.string,
 
-    /** Message to display when there are no results. */
-    noResultsMessage: PropTypes.string,
+    /** An element type to render as (string or function). */
+    as: customPropTypes.as,
 
-    /** Define whether the highlighted item should be selected on blur. */
-    selectOnBlur: PropTypes.bool,
+    /** A Dropdown can reduce its complexity */
+    basic: PropTypes.bool,
 
-    /** Make the dropdown options searchable by substring matching (default) or with a custom search function. */
-    search: PropTypes.oneOfType([
-      PropTypes.bool,
-      PropTypes.func,
+    /** Format the Dropdown to appear as a button. */
+    button: PropTypes.bool,
+
+    /** Primary content. */
+    children: customPropTypes.every([
+      customPropTypes.disallow(['options', 'selection']),
+      customPropTypes.givenProps(
+        { children: PropTypes.any.isRequired },
+        React.PropTypes.element.isRequired,
+      ),
     ]),
 
-    // ------------------------------------
-    // Callbacks
-    // ------------------------------------
+    /** Additional classes. */
+    className: PropTypes.string,
+
+    /** A compact dropdown has no minimum width. */
+    compact: PropTypes.bool,
+
+    /** Initial value of open. */
+    defaultOpen: PropTypes.bool,
+
+    /** Initial value or value array if multiple. */
+    defaultValue: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+      PropTypes.arrayOf(PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number,
+      ])),
+    ]),
+
+    /** A disabled dropdown menu or item does not allow user interaction. */
+    disabled: PropTypes.bool,
+
+    /** An errored dropdown can alert a user to a problem. */
+    error: PropTypes.bool,
+
+    /** A dropdown menu can contain floated content. */
+    floating: PropTypes.bool,
+
+    /** A dropdown can take the full width of its parent */
+    fluid: PropTypes.bool,
+
+    /** A dropdown menu can contain a header. */
+    header: PropTypes.node,
+
+    /** Add an icon by name or as a component. */
+    icon: PropTypes.oneOfType([
+      PropTypes.element,
+      PropTypes.string,
+    ]),
+
+    /** A dropdown can be formatted to appear inline in other content. */
+    inline: PropTypes.bool,
+
+    /** A dropdown can be labeled. */
+    labeled: PropTypes.bool,
+
+    // linkItem: PropTypes.bool,
+
+    /** A dropdown can show that it is currently loading data. */
+    loading: PropTypes.bool,
+
+    /** A selection dropdown can allow multiple selections. */
+    multiple: PropTypes.bool,
+
+    /** Name of the hidden input which holds the value. */
+    name: PropTypes.string,
+
+    /** Message to display when there are no results. */
+    noResultsMessage: PropTypes.string,
 
     /** Called with the name and new value added by the user. Use this to update the options list. */
     onAddItem: PropTypes.func,
@@ -158,62 +155,69 @@ export default class Dropdown extends Component {
     /** Called with the React Synthetic Event on Dropdown mouse down. */
     onMouseDown: PropTypes.func,
 
-    // ------------------------------------
-    // Style
-    // ------------------------------------
+    /** Controls whether or not the dropdown menu is displayed. */
+    open: PropTypes.bool,
 
-    /** A Dropdown can reduce its complexity */
-    basic: PropTypes.bool,
+    /** Array of Dropdown.Item props e.g. `{ text: '', value: '' }` */
+    options: customPropTypes.every([
+      customPropTypes.disallow(['children']),
+      PropTypes.arrayOf(PropTypes.shape(DropdownItem.propTypes)),
+    ]),
 
-    /** Format the Dropdown to appear as a button. */
-    button: PropTypes.bool,
+    /** Placeholder text. */
+    placeholder: PropTypes.string,
 
-    /** Additional classes. */
-    className: PropTypes.string,
-
-    /** Format the dropdown to only take up as much width as needed. */
-    compact: PropTypes.bool,
-
-    /** Format the dropdown to only take up as much width as possible. */
-    fluid: PropTypes.bool,
-
-    /** Display the menu as detached from the Dropdown. */
-    floating: PropTypes.bool,
-
-    /** A dropdown menu can contain a header. */
-    header: PropTypes.node,
-
-    inline: PropTypes.bool,
-    labeled: PropTypes.bool,
-    // linkItem: PropTypes.bool,
-
-    /** Allow selecting multiple options. */
-    multiple: PropTypes.bool,
-
-    /** Use a detached menu that is pointing to the Dropdown. */
+    /** A dropdown can be formatted so that its menu is pointing. */
     pointing: PropTypes.oneOfType([
       PropTypes.bool,
       PropTypes.oneOf(_meta.props.pointing),
     ]),
 
-    /** The text displayed in the dropdown, usually for the active item. */
-    text: PropTypes.string,
+    /** A dropdown can have its menu scroll. */
+    scrolling: PropTypes.bool,
+
+    /**
+     * A selection dropdown can allow a user to search through a large list of choices.
+     * Pass a function here to replace the default search.
+     */
+    search: PropTypes.oneOfType([
+      PropTypes.bool,
+      PropTypes.func,
+    ]),
 
     // TODO 'searchInMenu' or 'search='in menu' or ???  How to handle this markup and functionality?
 
-    /** Behave as an html select. */
+    /** A dropdown can be used to select between choices in a form. */
     selection: customPropTypes.every([
       customPropTypes.disallow(['children']),
       customPropTypes.demand(['options']),
       PropTypes.bool,
     ]),
+
+    /** Define whether the highlighted item should be selected on blur. */
+    selectOnBlur: PropTypes.bool,
+
+    /** A simple dropdown can open without Javascript. */
     simple: PropTypes.bool,
 
-    loading: PropTypes.bool,
-    error: PropTypes.bool,
-    disabled: PropTypes.bool,
+    /** The text displayed in the dropdown, usually for the active item. */
+    text: PropTypes.string,
 
-    scrolling: PropTypes.bool,
+    /** Custom element to trigger the menu to become visible. Takes place of 'text'. */
+    trigger: customPropTypes.every([
+      customPropTypes.disallow(['selection', 'text']),
+      PropTypes.node,
+    ]),
+
+    /** Current value or value array if multiple. Creates a controlled component. */
+    value: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+      PropTypes.arrayOf(PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number,
+      ])),
+    ]),
   }
 
   static defaultProps = {

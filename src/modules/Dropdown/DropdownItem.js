@@ -10,7 +10,10 @@ import {
   getUnhandledProps,
   useKeyOnly,
 } from '../../lib'
+import Flag from '../../elements/Flag'
 import Icon from '../../elements/Icon'
+import Image from '../../elements/Image'
+import Label from '../../elements/Label'
 
 /**
  * An item sub-component for Dropdown component
@@ -35,8 +38,17 @@ export default class DropdownItem extends Component {
     /** A dropdown item can be disabled. */
     disabled: PropTypes.bool,
 
-    /** Add an icon to the item. */
-    icon: PropTypes.string,
+    /** Shorthand for Flag. */
+    flag: customPropTypes.itemShorthand,
+
+    /** Shorthand for Icon. */
+    icon: customPropTypes.itemShorthand,
+
+    /** Shorthand for Image. */
+    image: customPropTypes.itemShorthand,
+
+    /** Shorthand for Label. */
+    label: customPropTypes.itemShorthand,
 
     /**
      * The item currently selected by keyboard shortcut.
@@ -76,7 +88,10 @@ export default class DropdownItem extends Component {
       className,
       disabled,
       description,
+      flag,
       icon,
+      image,
+      label,
       selected,
       text,
     } = this.props
@@ -93,11 +108,40 @@ export default class DropdownItem extends Component {
     const rest = getUnhandledProps(DropdownItem, this.props)
     const ElementType = getElementType(DropdownItem, this.props)
 
+    if (children) {
+      return <ElementType {...rest} className={classes} onClick={this.handleClick}>{children}</ElementType>
+    }
+
+    const flagElement = Flag.create(flag)
+    const iconElement = Icon.create(iconName)
+    const imageElement = Image.create(image)
+    const labelElement = Label.create(label)
+    const descriptionElement = createShorthand(
+      'span',
+      val => ({ className: 'description', children: val }),
+      description,
+    )
+
+    if (descriptionElement) {
+      return (
+        <ElementType {...rest} className={classes} onClick={this.handleClick}>
+          {imageElement}
+          {iconElement}
+          {flagElement}
+          {labelElement}
+          {descriptionElement}
+          {createShorthand('span', val => ({ className: 'text', children: val }), text)}
+        </ElementType>
+      )
+    }
+
     return (
       <ElementType {...rest} className={classes} onClick={this.handleClick}>
-        {createShorthand('span', val => ({ className: 'description', children: val }), description)}
-        {Icon.create(iconName)}
-        {children || text}
+        {imageElement}
+        {iconElement}
+        {flagElement}
+        {labelElement}
+        {text}
       </ElementType>
     )
   }

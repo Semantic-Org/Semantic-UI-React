@@ -1,7 +1,10 @@
 import React from 'react'
 import { Dropdown } from 'semantic-ui-react'
 
-const DropdownExample = () => (
+// TODO: This is missing functionality for sub-menu here from SUI core examples.
+// The "Publish To Web" item should contain a sub-menu.
+
+const DropdownExampleDropdown = () => (
   <Dropdown text='File'>
     <Dropdown.Menu>
       <Dropdown.Item text='New' />
@@ -9,6 +12,7 @@ const DropdownExample = () => (
       <Dropdown.Item text='Save as...' description='ctrl + s' />
       <Dropdown.Item text='Rename' description='ctrl + r' />
       <Dropdown.Item text='Make a copy' />
+      <Dropdown.Item icon='folder' text='Move to folder' />
       <Dropdown.Item icon='trash' text='Move to trash' />
       <Dropdown.Divider />
       <Dropdown.Item text='Download As...' />
@@ -19,4 +23,4 @@ const DropdownExample = () => (
   </Dropdown>
 )
 
-export default DropdownExample
+export default DropdownExampleDropdown

@@ -8,7 +8,7 @@ const getOptions = () => _.times(3, () => {
   return { text: name, value: _.snakeCase(name) }
 })
 
-export default class DropdownSelectionExample extends Component {
+class DropdownExampleRemote extends Component {
   componentWillMount() {
     this.setState({
       isFetching: false,
@@ -87,3 +87,5 @@ export default class DropdownSelectionExample extends Component {
     )
   }
 }
+
+export default DropdownExampleRemote

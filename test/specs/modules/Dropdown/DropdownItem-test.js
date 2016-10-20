@@ -1,9 +1,10 @@
 import faker from 'faker'
 import React from 'react'
 
-import DropdownItem from 'src/modules/Dropdown/DropdownItem'
 import * as common from 'test/specs/commonTests'
 import { sandbox } from 'test/utils'
+import DropdownItem from 'src/modules/Dropdown/DropdownItem'
+import Flag from 'src/elements/Flag'
 
 describe('DropdownItem', () => {
   common.isConformant(DropdownItem)
@@ -12,6 +13,16 @@ describe('DropdownItem', () => {
   common.propKeyOnlyToClassName(DropdownItem, 'selected')
   common.propKeyOnlyToClassName(DropdownItem, 'active')
 
+  common.implementsIconProp(DropdownItem)
+  common.implementsLabelProp(DropdownItem)
+  common.implementsImageProp(DropdownItem)
+
+  common.implementsShorthandProp(DropdownItem, {
+    propKey: 'flag',
+    ShorthandComponent: Flag,
+    mapValueToProps: val => ({ name: val }),
+  })
+
   common.implementsShorthandProp(DropdownItem, {
     propKey: 'description',
     ShorthandComponent: 'span',
@@ -19,6 +30,22 @@ describe('DropdownItem', () => {
       className: 'description',
       children: val,
     }),
+  })
+
+  describe('text', () => {
+    it('renders with wrapping span when description', () => {
+      const wrapper = shallow(<DropdownItem text='hey' description='description' />)
+
+      wrapper.should.have.descendants('span.text')
+      wrapper.text().should.include('hey')
+    })
+
+    it('renders without wrapping span when no description', () => {
+      const wrapper = shallow(<DropdownItem text='hey' />)
+
+      wrapper.should.not.have.descendants('span.text')
+      wrapper.text().should.equal('hey')
+    })
   })
 
   describe('onClick', () => {
