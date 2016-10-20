@@ -1,8 +1,7 @@
 # Change Log
 
-## [Unreleased](https://github.com/Semantic-Org/Semantic-UI-React/tree/HEAD)
-
-[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.56.9...HEAD)
+## [v0.56.10](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.56.10) (2016-10-20)
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.56.9...v0.56.10)
 
 **Closed issues:**
 
