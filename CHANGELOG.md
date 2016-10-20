@@ -1,5 +1,13 @@
 # Change Log
 
+## [Unreleased](https://github.com/Semantic-Org/Semantic-UI-React/tree/HEAD)
+
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.56.10...HEAD)
+
+**Closed issues:**
+
+- fix\(Dropdown\) Call Modal onClose handler when clicking on dropdown item cross icon [\#708](https://github.com/Semantic-Org/Semantic-UI-React/issues/708)
+
 ## [v0.56.10](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.56.10) (2016-10-20)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.56.9...v0.56.10)
 
