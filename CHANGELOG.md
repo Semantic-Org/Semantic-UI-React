@@ -2,11 +2,30 @@
 
 ## [Unreleased](https://github.com/Semantic-Org/Semantic-UI-React/tree/HEAD)
 
-[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.56.7...HEAD)
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.56.9...HEAD)
+
+**Merged pull requests:**
+
+- chore\(circleci\): use ta-scripts auto-release and changelog [\#707](https://github.com/Semantic-Org/Semantic-UI-React/pull/707) ([levithomason](https://github.com/levithomason))
+- chore\(auto-release\): skip non-consequential and unknown commits [\#706](https://github.com/Semantic-Org/Semantic-UI-React/pull/706) ([levithomason](https://github.com/levithomason))
+
+## [v0.56.9](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.56.9) (2016-10-19)
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.56.8...v0.56.9)
+
+**Merged pull requests:**
+
+- chore\(scripts\): setup auto release [\#705](https://github.com/Semantic-Org/Semantic-UI-React/pull/705) ([levithomason](https://github.com/levithomason))
+
+## [v0.56.8](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.56.8) (2016-10-19)
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.56.7...v0.56.8)
 
 **Fixed bugs:**
 
 - \(0.56.6\) semantic-ui-react unable to find React or ReactDOM module [\#703](https://github.com/Semantic-Org/Semantic-UI-React/issues/703)
+
+**Merged pull requests:**
+
+- feat\(Search|Dropdown\): Improve arrow navigation [\#701](https://github.com/Semantic-Org/Semantic-UI-React/pull/701) ([jcarbo](https://github.com/jcarbo))
 
 ## [v0.56.7](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.56.7) (2016-10-19)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.56.6...v0.56.7)
