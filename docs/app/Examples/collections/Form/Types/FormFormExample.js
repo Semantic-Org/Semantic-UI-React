@@ -12,7 +12,7 @@ const FormFormExample = () => (
       <input placeholder='Last Name' />
     </Form.Field>
     <Form.Field>
-      <label>I agree to the Terms and Conditions</label>
+      <label>Terms and Conditions</label>
       <Checkbox label='I agree to the Terms and Conditions' />
     </Form.Field>
     <Button type='submit'>Submit</Button>
