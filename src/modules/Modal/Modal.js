@@ -77,18 +77,13 @@ class Modal extends Component {
 
   state = {}
 
-  componentDidMount() {
-    debug('componentDidMount()')
-    this.setPosition()
-  }
-
   componentWillUnmount() {
     debug('componentWillUnmount()')
-    this.handleUnmount()
+    this.handlePortalUnmount()
   }
 
-  handleMount = () => {
-    debug('handleOpen()')
+  handlePortalMount = () => {
+    debug('handlePortalMount()')
     const { dimmer } = this.props
     const mountNode = this.getMountNode()
 
@@ -101,10 +96,12 @@ class Modal extends Component {
         mountNode.classList.add('blurring')
       }
     }
+
+    this.setPosition()
   }
 
-  handleUnmount = () => {
-    debug('handleUnmount()')
+  handlePortalUnmount = () => {
+    debug('handlePortalUnmount()')
 
     const mountNode = this.getMountNode()
 
@@ -112,6 +109,8 @@ class Modal extends Component {
     // If the dimmer value changes while the modal is open,
     //   then removing its current value could leave cruft classes previously added.
     mountNode.classList.remove('blurring', 'dimmable', 'dimmed', 'scrollable')
+
+    cancelAnimationFrame(this.animationRequestId)
   }
 
   getMountNode = () => {
@@ -141,7 +140,7 @@ class Modal extends Component {
       }
     }
 
-    requestAnimationFrame(this.setPosition)
+    this.animationRequestId = requestAnimationFrame(this.setPosition)
   }
 
   render() {
@@ -193,8 +192,8 @@ class Modal extends Component {
         {...portalProps}
         className={dimmerClasses}
         mountNode={this.getMountNode()}
-        onMount={this.handleMount}
-        onUnmount={this.handleUnmount}
+        onMount={this.handlePortalMount}
+        onUnmount={this.handlePortalUnmount}
       >
         {modalJSX}
       </Portal>
