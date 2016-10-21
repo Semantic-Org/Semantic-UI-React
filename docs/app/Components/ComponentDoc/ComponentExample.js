@@ -198,10 +198,15 @@ export default class ComponentExample extends Component {
 
     // get component name from file path:
     // elements/Button/Types/ButtonButtonExample
-    const componentName = examplePath.split(__PATH_SEP__)[1]
+    const pathParts = examplePath.split(__PATH_SEP__)
+    const componentName = pathParts[1]
+    const filename = pathParts[pathParts.length - 1]
 
     const color = error ? 'red' : 'black'
-    const ghEditHref = `${repoURL}/edit/master/docs/app/Examples/${examplePath}.js`
+    const ghEditHref = [
+      `${repoURL}/edit/master/docs/app/Examples/${examplePath}.js`,
+      `?message=docs(${filename}): your description`,
+    ].join('')
     const ghBugHref = [
       `${repoURL}/issues/new?`,
       _.map({
@@ -218,8 +223,8 @@ export default class ComponentExample extends Component {
           `The ${componentName} does not do this`,
           '',
           '**Testcase**',
-          `The docs show the issue: ${window.location.href}`,
-          'Fork this to get started: http://codepen.io/levithomason/pen/ZpBaJX',
+          `If the docs show the issue, use: ${window.location.href}`,
+          'Otherwise, fork this to get started: http://codepen.io/levithomason/pen/ZpBaJX',
         ].join('\n'),
       }, (val, key) => `${key}=${encodeURIComponent(val)}`).join('&'),
     ].join('')
