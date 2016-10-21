@@ -10,6 +10,7 @@
 
 **Merged pull requests:**
 
+- yargs@6.3.0 untested ⚠️ [\#714](https://github.com/Semantic-Org/Semantic-UI-React/pull/714) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
 - react-docgen@2.12.0 untested ⚠️ [\#710](https://github.com/Semantic-Org/Semantic-UI-React/pull/710) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
 
 ## [v0.56.10](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.56.10) (2016-10-20)
