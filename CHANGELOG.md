@@ -11,6 +11,7 @@
 
 **Merged pull requests:**
 
+- html-webpack-plugin@2.24.0 untested ⚠️ [\#719](https://github.com/Semantic-Org/Semantic-UI-React/pull/719) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
 - docs\(ComponentExample\): default commit message on edit [\#718](https://github.com/Semantic-Org/Semantic-UI-React/pull/718) ([levithomason](https://github.com/levithomason))
 - docs\(FormFormExample\): remove extra checkbox label [\#717](https://github.com/Semantic-Org/Semantic-UI-React/pull/717) ([server-monitor](https://github.com/server-monitor))
 - docs\(Divider\): refactor, use functional components, add trailing period [\#715](https://github.com/Semantic-Org/Semantic-UI-React/pull/715) ([dpkwhan](https://github.com/dpkwhan))
