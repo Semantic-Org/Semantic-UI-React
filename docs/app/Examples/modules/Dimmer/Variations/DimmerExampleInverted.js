@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Button, Dimmer, Segment } from 'semantic-ui-react'
 
-export default class DimmerExampleBlurringInverted extends Component {
+export default class DimmerExampleInverted extends Component {
   state = {}
 
   handleShow = () => this.setState({ active: true })
@@ -12,14 +12,14 @@ export default class DimmerExampleBlurringInverted extends Component {
 
     return (
       <div>
-        <Dimmer.Dimmable as={Segment} blurring dimmed={active}>
+        <Dimmer.Dimmable as={Segment} dimmed={active}>
           <Dimmer active={active} inverted onClickOutside={this.handleHide} />
 
           <p>
-            <img src='http://semantic-ui.com/images/wireframe/short-paragraph.png' />
+            <img src='http://semantic-ui.com/images/wireframe/paragraph.png' />
           </p>
           <p>
-            <img src='http://semantic-ui.com/images/wireframe/short-paragraph.png' />
+            <img src='http://semantic-ui.com/images/wireframe/paragraph.png' />
           </p>
         </Dimmer.Dimmable>
 

@@ -1,19 +1,16 @@
 import _ from 'lodash'
 import cx from 'classnames'
-import React, { Component, PropTypes } from 'react'
+import React, { cloneElement, Component, PropTypes } from 'react'
 
 import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  makeDebugger,
   META,
   useKeyOnly,
 } from '../../lib'
 import Portal from '../../addons/Portal'
 import DimmerDimmable from './DimmerDimmable'
-
-const debug = makeDebugger('dimmer')
 
 const _meta = {
   name: 'Dimmer',
@@ -29,16 +26,7 @@ class Dimmer extends Component {
     as: customPropTypes.as,
 
     /** An active dimmer will dim its parent container. */
-    active: customPropTypes.every([
-      PropTypes.bool,
-      customPropTypes.disallow(['disabled']),
-    ]),
-
-    /** A dimmable element can blur its contents. */
-    blurring: customPropTypes.every([
-      PropTypes.bool,
-      customPropTypes.demand(['dimmable']),
-    ]),
+    active: PropTypes.bool,
 
     /** Primary content. */
     children: PropTypes.node,
@@ -46,141 +34,84 @@ class Dimmer extends Component {
     /** Additional classes. */
     className: PropTypes.string,
 
-    closeOnOutsideClick: PropTypes.bool,
-
-    dimmable: customPropTypes.as,
-
-    dimmed: customPropTypes.every([
-      PropTypes.bool,
-      customPropTypes.demand(['dimmable']),
-    ]),
-
-    /** A disabled dimmer cannot be activated. */
-    disabled: customPropTypes.every([
-      PropTypes.bool,
-      customPropTypes.disallow(['active']),
-    ]),
+    /** Handles click outside Dimmer's content, but inside Dimmer area. */
+    onClickOutside: PropTypes.func,
 
     /** A dimmer can be formatted to have its colors inverted. */
     inverted: PropTypes.bool,
 
-    /** Called when a close event happens */
-    onClose: PropTypes.func,
-
+    /** A dimmer can be formatted to be fixed to the page. */
     page: PropTypes.bool,
-  }
 
-  static defaultProps = {
-    closeOnOutsideClick: true,
+    /** A dimmer can be controlled with simple prop. */
+    simple: PropTypes.bool,
   }
 
   static _meta = _meta
 
-  handlePageMount = () => {
-    debug('handleMount()')
+  static Dimmable = DimmerDimmable
 
-    document.body.classList.add('dimmed', 'dimmable')
+  handlePortalMount = () => document.body.classList.add('dimmed', 'dimmable')
+
+  handlePortalUnmount = () => document.body.classList.remove('dimmed', 'dimmable')
+
+  handleClickOutside = (e) => {
+    const { onClickOutside } = this.props
+
+    if (onClickOutside) onClickOutside(e, this.props)
   }
 
-  handlePageUnmount = () => {
-    debug('handleUnmount()')
-
-    document.body.classList.remove('dimmed', 'dimmable')
-  }
-
-  handleOutsideClick = (e) => {
-    debug('handleOutsideClick()')
-    const { closeOnOutsideClick, onClose } = this.props
-
-    if (closeOnOutsideClick && onClose) onClose(e, this.props)
-  }
-
-  renderChildren() {
+  handleClickChildren = (e) => {
     const { children } = this.props
 
-    if (children) {
-      return (
-        <div className='content'>
-          <div className='center'>
-            {children}
-          </div>
-        </div>
-      )
-    }
-
-    return null
-  }
-
-  renderDimmable() {
-    const { blurring, children, className, dimmable, dimmed } = this.props
-
-    return (
-      <DimmerDimmable
-        blurring={blurring}
-        className={className}
-        Component={dimmable}
-        dimmed={dimmed}
-      >
-        {children}
-      </DimmerDimmable>
-    )
+    _.invoke(children, 'props.onClick', e)
+    e.stopPropagation()
   }
 
   render() {
     const {
       active,
-      blurring,
+      children,
       className,
-      dimmable,
       inverted,
-      onClose,
       page,
     } = this.props
 
     const classes = cx(
       'ui',
       useKeyOnly(active, 'active'),
-      useKeyOnly(blurring, 'blurring'),
       useKeyOnly(inverted, 'inverted'),
       useKeyOnly(page, 'page'),
       'dimmer transition visible',
       className,
     )
+    const rest = getUnhandledProps(Dimmer, this.props)
     const ElementType = getElementType(Dimmer, this.props)
 
-    if (dimmable) return this.renderDimmable()
-
-    const unhandled = getUnhandledProps(Dimmer, this.props)
-    const portalPropNames = _.keys(Portal.propTypes)
-
-    const rest = _.omit(unhandled, portalPropNames)
-    const portalProps = _.pick(unhandled, portalPropNames)
-
-    const dimmerJSX = (
-      <ElementType
-        {...rest}
-        className={classes}
-        onClick={this.handleOutsideClick}
-      >
-        {this.renderChildren()}
-      </ElementType>
-    )
+    const childrenJSX = children && (
+        <div className='content'>
+          <div className='center' onClick={this.handleClickOutside}>
+            {cloneElement(children, { onClick: this.handleClickChildren })}
+          </div>
+        </div>
+      )
 
     if (page) {
       return (
         <Portal
-          {...portalProps}
-          onClose={onClose}
-          onMount={this.handlePageMount}
-          onUnmount={this.handlePageUnmount}
+          closeOnEscape={false}
+          closeOnDocumentClick={false}
+          onMount={this.handlePortalMount}
+          onUnmount={this.handlePortalUnmount}
           open={active}
+          openOnTriggerClick={false}
         >
-          {dimmerJSX}
+          <ElementType{...rest} className={classes}>{childrenJSX}</ElementType>
         </Portal>
       )
     }
 
-    return dimmerJSX
+    return <ElementType{...rest} className={classes}>{childrenJSX}</ElementType>
   }
 }
 

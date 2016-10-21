@@ -12,8 +12,8 @@ export default class DimmerExampleBlurring extends Component {
 
     return (
       <div>
-        <Dimmer blurring dimmable={Segment} dimmed={active}>
-          <Dimmer active={active} />
+        <Dimmer.Dimmable as={Segment} blurring dimmed={active}>
+          <Dimmer active={active} onClickOutside={this.handleHide} />
 
           <p>
             <img src='http://semantic-ui.com/images/wireframe/short-paragraph.png' />
@@ -21,7 +21,7 @@ export default class DimmerExampleBlurring extends Component {
           <p>
             <img src='http://semantic-ui.com/images/wireframe/short-paragraph.png' />
           </p>
-        </Dimmer>
+        </Dimmer.Dimmable>
 
         <Button.Group>
           <Button icon='plus' onClick={this.handleShow} />

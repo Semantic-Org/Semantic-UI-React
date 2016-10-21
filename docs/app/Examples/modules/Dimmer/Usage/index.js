@@ -4,11 +4,11 @@ import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
 import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
 
 const DimmerStatesExamples = () => (
-  <ExampleSection title='States'>
+  <ExampleSection title='Usage'>
     <ComponentExample
-      title='Active'
-      description='An active dimmer will dim its parent container.'
-      examplePath='modules/Dimmer/States/DimmerExampleActive'
+      title='Loaders inside Dimmers'
+      description='Any loader inside a dimmer will automatically use an appropriate color to match.'
+      examplePath='modules/Dimmer/Usage/DimmerExampleLoader'
     />
   </ExampleSection>
 )

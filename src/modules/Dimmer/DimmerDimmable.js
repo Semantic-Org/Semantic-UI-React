@@ -3,17 +3,20 @@ import React, { PropTypes } from 'react'
 
 import {
   customPropTypes,
+  getElementType,
   getUnhandledProps,
   META,
   useKeyOnly,
 } from '../../lib'
 
+/**
+ * A dimmable sub-component for Dimmer.
+ */
 function DimmerDimmable(props) {
   const {
     blurring,
     className,
     children,
-    Component,
     dimmed,
   } = props
 
@@ -24,8 +27,9 @@ function DimmerDimmable(props) {
     className,
   )
   const rest = getUnhandledProps(DimmerDimmable, props)
+  const ElementType = getElementType(DimmerDimmable, props)
 
-  return <Component {...rest} className={classes}>{children}</Component>
+  return <ElementType {...rest} className={classes}>{children}</ElementType>
 }
 
 DimmerDimmable._meta = {
@@ -35,18 +39,19 @@ DimmerDimmable._meta = {
 }
 
 DimmerDimmable.propTypes = {
-  /** Primary content. */
-  children: PropTypes.node,
+  /** An element type to render as (string or function). */
+  as: customPropTypes.as,
 
   /** A dimmable element can blur its contents. */
   blurring: PropTypes.bool,
 
+  /** Primary content. */
+  children: PropTypes.node,
+
   /** Additional classes. */
   className: PropTypes.string,
 
-  /** An element type to render as (string or function). */
-  Component: customPropTypes.as,
-
+  /** Controls whether or not the dim is displayed. */
   dimmed: PropTypes.bool,
 }
 

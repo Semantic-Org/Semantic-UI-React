@@ -4,7 +4,7 @@ import { Button, Dimmer, Header, Icon } from 'semantic-ui-react'
 export default class DimmerExamplePage extends Component {
   state = {}
 
-  handleClick = () => this.setState({ active: true })
+  handleOpen = () => this.setState({ active: true })
   handleClose = () => this.setState({ active: false })
 
   render() {
@@ -16,12 +16,12 @@ export default class DimmerExamplePage extends Component {
           content='Show'
           icon='plus'
           labelPosition='left'
-          onClick={this.handleClick}
+          onClick={this.handleOpen}
         />
 
         <Dimmer
           active={active}
-          onClose={this.handleClose}
+          onClickOutside={this.handleClose}
           page
         >
           <Header as='h2' icon inverted>
