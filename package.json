@@ -126,7 +126,7 @@
     "webpack": "^1.12.14",
     "webpack-dev-middleware": "^1.5.1",
     "webpack-hot-middleware": "^2.10.0",
-    "yargs": "^6.2.0"
+    "yargs": "^6.3.0"
   },
   "peerDependencies": {
     "react": ">=0.14.0 <= 15",
