@@ -1,7 +1,7 @@
 import React from 'react'
 import { Header } from 'semantic-ui-react'
 
-const HeaderPageHeadersExamples = () => (
+const HeaderExamplePage = () => (
   <div>
     <Header as='h1'>First Header</Header>
     <Header as='h2'>Second Header</Header>
@@ -12,4 +12,4 @@ const HeaderPageHeadersExamples = () => (
   </div>
 )
 
-export default HeaderPageHeadersExamples
+export default HeaderExamplePage

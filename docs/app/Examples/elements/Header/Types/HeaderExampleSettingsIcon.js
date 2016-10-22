@@ -1,7 +1,7 @@
 import React from 'react'
 import { Header, Icon } from 'semantic-ui-react'
 
-const HeaderIconHeadersExample = () => (
+const HeaderExampleSettingsIcon = () => (
   <Header as='h2' icon>
     <Icon name='settings' />
     Account Settings
@@ -11,4 +11,4 @@ const HeaderIconHeadersExample = () => (
   </Header>
 )
 
-export default HeaderIconHeadersExample
+export default HeaderExampleSettingsIcon
