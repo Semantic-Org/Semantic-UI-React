@@ -6,6 +6,7 @@
 
 **Merged pull requests:**
 
+- style\(Header\): update docs to the latest standards [\#725](https://github.com/Semantic-Org/Semantic-UI-React/pull/725) ([dpkwhan](https://github.com/dpkwhan))
 - style\(Flag\): refactor docs to latest standards [\#722](https://github.com/Semantic-Org/Semantic-UI-React/pull/722) ([dpkwhan](https://github.com/dpkwhan))
 
 ## [v0.56.11](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.56.11) (2016-10-22)
