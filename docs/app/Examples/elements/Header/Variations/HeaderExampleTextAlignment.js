@@ -1,7 +1,7 @@
 import React from 'react'
 import { Header, Segment } from 'semantic-ui-react'
 
-const HeaderTextAlignmentExample = () => (
+const HeaderExampleTextAlignment = () => (
   <Segment>
     <Header as='h3' textAlign='right'>
       Float Right
@@ -18,4 +18,4 @@ const HeaderTextAlignmentExample = () => (
   </Segment>
 )
 
-export default HeaderTextAlignmentExample
+export default HeaderExampleTextAlignment

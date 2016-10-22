@@ -6,8 +6,8 @@ const HeaderStatesExamples = () => (
   <ExampleSection title='States'>
     <ComponentExample
       title='Disabled'
-      description='A header can show that it is inactive'
-      examplePath='elements/Header/States/HeaderDisabledExample'
+      description='A header can show that it is inactive.'
+      examplePath='elements/Header/States/HeaderExampleDisabled'
     />
   </ExampleSection>
 )

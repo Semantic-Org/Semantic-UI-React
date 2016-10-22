@@ -1,7 +1,7 @@
 import React from 'react'
 import { Header } from 'semantic-ui-react'
 
-const HeaderColoredExample = () => (
+const HeaderExampleColored = () => (
   <div>
     <Header as='h4' color='red'>Red</Header>
     <Header as='h4' color='orange'>Orange</Header>
@@ -18,4 +18,4 @@ const HeaderColoredExample = () => (
   </div>
 )
 
-export default HeaderColoredExample
+export default HeaderExampleColored

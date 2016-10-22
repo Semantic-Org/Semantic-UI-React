@@ -1,7 +1,7 @@
 import React from 'react'
 import { Header, Segment } from 'semantic-ui-react'
 
-const HeaderInvertedExample = () => (
+const HeaderExampleInverted = () => (
   <Segment inverted>
     <Header as='h4' inverted color='red'>Red</Header>
     <Header as='h4' inverted color='orange'>Orange</Header>
@@ -18,4 +18,4 @@ const HeaderInvertedExample = () => (
   </Segment>
 )
 
-export default HeaderInvertedExample
+export default HeaderExampleInverted

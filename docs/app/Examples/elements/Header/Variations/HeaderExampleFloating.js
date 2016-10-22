@@ -1,7 +1,7 @@
 import React from 'react'
 import { Header, Segment } from 'semantic-ui-react'
 
-const HeaderFloatingExample = () => (
+const HeaderExampleFloating = () => (
   <Segment clearing>
     <Header as='h2' floated='right'>
       Float Right
@@ -12,4 +12,4 @@ const HeaderFloatingExample = () => (
   </Segment>
 )
 
-export default HeaderFloatingExample
+export default HeaderExampleFloating

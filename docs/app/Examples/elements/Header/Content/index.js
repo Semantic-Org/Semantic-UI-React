@@ -6,33 +6,33 @@ const HeaderContentExamples = () => (
   <ExampleSection title='Content'>
     <ComponentExample
       title='Image'
-      description='A header may contain an image'
-      examplePath='elements/Header/Content/HeaderImageExample'
+      description='A header may contain an image.'
+      examplePath='elements/Header/Content/HeaderExampleImage'
     />
     <ComponentExample
-      description='You can also define an image with props'
-      examplePath='elements/Header/Content/HeaderImagePropExample'
+      description='You can also define an image with props.'
+      examplePath='elements/Header/Content/HeaderExampleImageProp'
     />
     <ComponentExample
       title='Icon'
-      description='A header may contain an icon'
-      examplePath='elements/Header/Content/HeaderPlugIconExample'
+      description='A header may contain an icon.'
+      examplePath='elements/Header/Content/HeaderExamplePlugIcon'
     />
     <ComponentExample
-      examplePath='elements/Header/Content/HeaderSettingsIconExample'
+      examplePath='elements/Header/Content/HeaderExampleSettingsIcon'
     />
     <ComponentExample
-      description='You can also define an icon with props'
-      examplePath='elements/Header/Content/HeaderIconPropExample'
+      description='You can also define an icon with props.'
+      examplePath='elements/Header/Content/HeaderExampleIconProp'
     />
     <ComponentExample
       title='Subheader'
-      description='Headers may contain subheaders'
-      examplePath='elements/Header/Content/HeaderSubheaderExample'
+      description='Headers may contain subheaders.'
+      examplePath='elements/Header/Content/HeaderExampleSubheader'
     />
     <ComponentExample
-      description='You can pass an Subheader content to the Header subheader prop'
-      examplePath='elements/Header/Content/HeaderSubheaderPropExample'
+      description='You can pass an Subheader content to the Header subheader prop.'
+      examplePath='elements/Header/Content/HeaderExampleSubheaderProp'
     />
   </ExampleSection>
 )

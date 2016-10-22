@@ -1,7 +1,7 @@
 import React from 'react'
 import { Header, Icon } from 'semantic-ui-react'
 
-const HeaderIconExample = () => (
+const HeaderExampleSettingsIcon = () => (
   <Header as='h2'>
     <Icon name='settings' />
     <Header.Content>
@@ -13,4 +13,4 @@ const HeaderIconExample = () => (
   </Header>
 )
 
-export default HeaderIconExample
+export default HeaderExampleSettingsIcon
