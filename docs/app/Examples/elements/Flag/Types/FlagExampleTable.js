@@ -250,7 +250,7 @@ const countries = [
 
 const flagRenderer = (item) => <Flag name={item.countryCode} />
 
-const FlagTableExample = () => (
+const FlagExampleTable = () => (
   <Table>
     <Table.Header>
       <Table.Row>
@@ -273,4 +273,4 @@ const FlagTableExample = () => (
   </Table>
 )
 
-export default FlagTableExample
+export default FlagExampleTable
