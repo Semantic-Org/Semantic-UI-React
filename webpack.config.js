@@ -185,7 +185,6 @@ if (__TEST__ || argv.localModules) {
   // alias imports to empty
   webpackConfig.resolve.alias = Object.assign({}, webpackConfig.resolve.alias, {
     'semantic-ui-css/semantic.css': 'empty',
-    'highlight.js/styles/github.css': 'empty',
   })
 
   // find them on the window
