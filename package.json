@@ -9,6 +9,8 @@
   ],
   "scripts": {
     "docs": "gulp docs",
+    "preauto-release": "npm run build",
+    "auto-release": "ta-script npm/auto-release",
     "build": "npm run build:commonjs && npm run build:umd && npm run build:docs",
     "prebuild:commonjs": "rimraf dist/commonjs && npm run build:dll",
     "build:commonjs": "babel src -d dist/commonjs",
