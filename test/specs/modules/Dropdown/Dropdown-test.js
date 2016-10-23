@@ -791,9 +791,11 @@ describe('Dropdown Component', () => {
       wrapper.simulate('click')
       dropdownMenuIsOpen()
 
-      // activate the last item
+      // activate the last item, removing it from the list
       domEvent.keyDown(document, { key: 'ArrowUp' })
 
+      wrapper
+        .should.have.exactly(options.length).descendants('DropdownItem')
       wrapper
         .find('DropdownItem')
         .last()
@@ -801,18 +803,12 @@ describe('Dropdown Component', () => {
 
       domEvent.keyDown(document, { key: 'Enter' })
 
-      // expect selection to have moved from last, to one from last
-      // activating items in multiple selects removes them from the list
-      // we use at() to ensure we're targeting the exact indexes we expect
-      // (ie the last() item will vary)
+      // one item should be gone, and the _new_ last item should be selected
+      wrapper
+        .should.have.exactly(options.length - 1).descendants('DropdownItem')
       wrapper
         .find('DropdownItem')
-        .at(options.length - 1)
-        .should.not.have.prop('selected', true)
-
-      wrapper
-        .find('DropdownItem')
-        .at(options.length - 2)
+        .last()
         .should.have.prop('selected', true)
     })
     it('has labels with delete icons', () => {
