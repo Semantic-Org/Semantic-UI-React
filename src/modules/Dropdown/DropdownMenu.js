@@ -6,11 +6,16 @@ import {
   getElementType,
   getUnhandledProps,
   META,
+  useKeyOnly,
 } from '../../lib'
 
 function DropdownMenu(props) {
-  const { children, className } = props
-  const classes = cx('menu transition', className)
+  const { children, className, scrolling } = props
+  const classes = cx(
+    useKeyOnly(scrolling, 'scrolling'),
+    'menu transition',
+    className,
+  )
   const rest = getUnhandledProps(DropdownMenu, props)
   const ElementType = getElementType(DropdownMenu, props)
 
@@ -32,6 +37,9 @@ DropdownMenu.propTypes = {
 
   /** Additional classes. */
   className: PropTypes.string,
+
+  /** A dropdown menu can scroll. */
+  scrolling: PropTypes.bool,
 }
 
 export default DropdownMenu

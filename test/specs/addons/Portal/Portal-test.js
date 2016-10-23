@@ -83,6 +83,28 @@ describe('Portal', () => {
     document.body.lastElementChild.className.should.equal('some-other-class')
   })
 
+  describe('prepend', () => {
+    beforeEach(() => {
+      document.body.innerHTML = '<div></div>'
+    })
+
+    it('appends portal by default', () => {
+      wrapperMount(<Portal open><p>Hi</p></Portal>)
+      const instance = wrapper.instance()
+
+      document.body.childElementCount.should.equal(2)
+      document.body.lastElementChild.should.equal(instance.node)
+    })
+
+    it('prepends portal by when passed', () => {
+      wrapperMount(<Portal open prepend><p>Hi</p></Portal>)
+      const instance = wrapper.instance()
+
+      document.body.childElementCount.should.equal(2)
+      document.body.firstElementChild.should.equal(instance.node)
+    })
+  })
+
   describe('callbacks', () => {
     it('should call props.onMount() when portal opens', () => {
       const props = { open: false, onMount: sandbox.spy() }
@@ -149,6 +171,20 @@ describe('Portal', () => {
       const spy = sandbox.spy(wrapper, 'setState')
       unmountComponentAtNode(div)
       spy.should.not.have.been.called()
+    })
+  })
+
+  describe('portal ref', () => {
+    it('maintains ref to DOM node with host element', () => {
+      wrapperMount(<Portal open><p>Hi</p></Portal>)
+      wrapper.instance().portal.tagName.should.equal('P')
+    })
+
+    it('maintains ref to DOM node with React component', () => {
+      const Component = (props) => <p>Hi</p>
+
+      wrapperMount(<Portal open><Component /></Portal>)
+      wrapper.instance().portal.tagName.should.equal('P')
     })
   })
 
@@ -449,11 +485,27 @@ describe('Portal', () => {
       wrapperMount(<Portal closeOnDocumentClick defaultOpen><p>Hi</p></Portal>)
       document.body.childElementCount.should.equal(1)
 
-      // Should not close when inside
+      // Should not close when click inside
       domEvent.click(wrapper.instance().node.firstElementChild)
       document.body.childElementCount.should.equal(1)
 
       domEvent.click(document)
+      document.body.childElementCount.should.equal(0)
+    })
+
+    it('closeOnRootNodeClick', () => {
+      wrapperMount(<Portal closeOnDocumentClick={false} closeOnRootNodeClick defaultOpen><p>Hi</p></Portal>)
+      document.body.childElementCount.should.equal(1)
+
+      // Should not close when click inside
+      domEvent.click(wrapper.instance().node.firstElementChild)
+      document.body.childElementCount.should.equal(1)
+
+      // Should not close when click on body
+      domEvent.click(document.body)
+      document.body.childElementCount.should.equal(1)
+
+      domEvent.click(wrapper.instance().node.firstElementChild.parentNode)
       document.body.childElementCount.should.equal(0)
     })
   })

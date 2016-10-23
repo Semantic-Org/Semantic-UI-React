@@ -25,11 +25,11 @@ export const disallow = disallowedProps => {
     }
 
     // skip if prop is undefined
-    if (props[propName] === undefined) return
+    if (_.isNil(props[propName]) || props[propName] === false) return
 
     // find disallowed props with values
     const disallowed = disallowedProps.reduce((acc, disallowedProp) => {
-      if (props[disallowedProp] !== undefined) {
+      if (!_.isNil(props[disallowedProp]) && props[disallowedProp] !== false) {
         return [...acc, disallowedProp]
       }
       return acc

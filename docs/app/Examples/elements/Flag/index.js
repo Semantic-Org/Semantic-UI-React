@@ -1,12 +1,10 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Types from './Types'
 
-export default class FlagExamples extends Component {
-  render() {
-    return (
-      <div>
-        <Types />
-      </div>
-    )
-  }
-}
+const FlagExamples = () => (
+  <div>
+    <Types />
+  </div>
+)
+
+export default FlagExamples

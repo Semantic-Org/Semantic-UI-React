@@ -10,43 +10,48 @@ const ModalExamples = () => (
       <ComponentExample
         title='Modal'
         description='A standard modal'
-        examplePath='modules/Modal/Types/ModalModalExample'
+        examplePath='modules/Modal/Types/ModalExampleModal'
       />
       <ComponentExample
         title='Basic'
         description='A modal can reduce its complexity'
-        examplePath='modules/Modal/Types/ModalBasicExample'
+        examplePath='modules/Modal/Types/ModalExampleBasic'
       />
       <ComponentExample
-        title='Scrolling'
+        title='Scrolling Modal'
         description={[
           'When your modal content exceeds the height of the browser the scrollable area will automatically',
           'expand to include just enough space for scrolling, without scrolling the page below.',
         ].join(' ')}
-        examplePath='modules/Modal/Types/ModalScrollingExample'
+        examplePath='modules/Modal/Types/ModalExampleScrolling'
       >
         <Message warning>
           <code>&lt;Modal.Content image /&gt;</code> requires an image
           with wrapped markup: <code>&lt;Image wrapped /&gt; </code>
         </Message>
       </ComponentExample>
+      <ComponentExample
+        title='Multiple Modals'
+        description='Multiple modals can be displayed on top of one another'
+        examplePath='modules/Modal/Types/ModalExampleMultiple'
+      />
     </ExampleSection>
 
     <ExampleSection title='Variations'>
       <ComponentExample
         title='Size'
         description='A modal can vary in size'
-        examplePath='modules/Modal/Variations/ModalSizeExample'
+        examplePath='modules/Modal/Variations/ModalExampleSize'
       />
       <ComponentExample
         title='Dimmer Variations'
         description='A modal can specify dimmer variations'
-        examplePath='modules/Modal/Variations/ModalDimmerExample'
+        examplePath='modules/Modal/Variations/ModalExampleDimmer'
       />
       <ComponentExample
         title='Close Config'
-        description='Modal can config not to close by escape or click outside'
-        examplePath='modules/Modal/Variations/ModalCloseConfigExample'
+        description='Modal can config not to close by escape or dimmer click'
+        examplePath='modules/Modal/Variations/ModalExampleCloseConfig'
       />
     </ExampleSection>
   </div>
