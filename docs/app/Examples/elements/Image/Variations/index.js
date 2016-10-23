@@ -7,53 +7,53 @@ const ImageVariationsExamples = () => (
   <ExampleSection title='Variations'>
     <ComponentExample
       title='Avatar'
-      description='An image can appear as an Avatar'
-      examplePath='elements/Image/Variations/ImageAvatarExample'
+      description='An image can appear as an Avatar.'
+      examplePath='elements/Image/Variations/ImageExampleAvatar'
     />
     <ComponentExample
       title='Bordered'
-      description='An image can be bordered'
-      examplePath='elements/Image/Variations/ImageBorderedExample'
+      description='An image can be bordered.'
+      examplePath='elements/Image/Variations/ImageExampleBordered'
     />
     <ComponentExample
       title='Fluid'
-      description='A fluid image has no maximum width'
-      examplePath='elements/Image/Variations/ImageFluidExample'
+      description='A fluid image has no maximum width.'
+      examplePath='elements/Image/Variations/ImageExampleFluid'
     />
     <ComponentExample
       title='Shapes'
-      description='An image can have different shapes'
-      examplePath='elements/Image/Variations/ImageRoundedExample'
+      description='An image can have different shapes.'
+      examplePath='elements/Image/Variations/ImageExampleRounded'
     />
-    <ComponentExample examplePath='elements/Image/Variations/ImageCircularExample'>
+    <ComponentExample examplePath='elements/Image/Variations/ImageExampleCircular'>
       <Message warning>
         Perfectly circular images require a perfectly square image file.
       </Message>
     </ComponentExample>
     <ComponentExample
       title='Vertically Aligned'
-      description='An image can specify its vertical alignment'
-      examplePath='elements/Image/Variations/ImageVerticallyAlignedExample'
+      description='An image can specify its vertical alignment.'
+      examplePath='elements/Image/Variations/ImageExampleVerticallyAligned'
     />
     <ComponentExample
       title='Centered'
-      description='An image can be centrally aligned'
-      examplePath='elements/Image/Variations/ImageCenteredExample'
+      description='An image can be centrally aligned.'
+      examplePath='elements/Image/Variations/ImageExampleCentered'
     />
     <ComponentExample
       title='Spaced'
-      description='An image can specify that it needs an additional spacing to separate it from nearby content'
-      examplePath='elements/Image/Variations/ImageSpacedExample'
+      description='An image can specify that it needs an additional spacing to separate it from nearby content.'
+      examplePath='elements/Image/Variations/ImageExampleSpaced'
     />
     <ComponentExample
       title='Floated'
       description='An image can appear to the left or right of other content.'
-      examplePath='elements/Image/Variations/ImageFloatedExample'
+      examplePath='elements/Image/Variations/ImageExampleFloated'
     />
     <ComponentExample
       title='Size'
-      description='An image may appear at different sizes'
-      examplePath='elements/Image/Variations/ImageSizeExample'
+      description='An image may appear at different sizes.'
+      examplePath='elements/Image/Variations/ImageExampleSize'
     />
   </ExampleSection>
 )

@@ -6,8 +6,8 @@ const ImageTypesExamples = () => (
   <ExampleSection title='Groups'>
     <ComponentExample
       title='Size'
-      description='A group of images can be formatted to have the same size'
-      examplePath='elements/Image/Groups/ImageGroupSizeExample'
+      description='A group of images can be formatted to have the same size.'
+      examplePath='elements/Image/Groups/ImageExampleGroupSize'
     />
   </ExampleSection>
 )
