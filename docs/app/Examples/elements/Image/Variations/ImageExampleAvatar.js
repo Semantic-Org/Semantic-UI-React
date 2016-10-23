@@ -3,8 +3,11 @@ import { Image } from 'semantic-ui-react'
 
 const src = 'http://semantic-ui.com/images/wireframe/square-image.png'
 
-const ImageCircularExample = () => (
-  <Image src={src} size='medium' shape='circular' />
+const ImageExampleAvatar = () => (
+  <div>
+    <Image src={src} avatar />
+    <span>Username</span>
+  </div>
 )
 
-export default ImageCircularExample
+export default ImageExampleAvatar

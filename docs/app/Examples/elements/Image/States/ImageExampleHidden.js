@@ -3,8 +3,8 @@ import { Image } from 'semantic-ui-react'
 
 const src = 'http://semantic-ui.com/images/wireframe/image.png'
 
-const ImageHiddenExample = () => (
+const ImageExampleHidden = () => (
   <Image src={src} size='small' hidden />
 )
 
-export default ImageHiddenExample
+export default ImageExampleHidden

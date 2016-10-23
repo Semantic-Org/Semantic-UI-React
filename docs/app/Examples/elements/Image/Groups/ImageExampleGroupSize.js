@@ -3,7 +3,7 @@ import { Image } from 'semantic-ui-react'
 
 const src = 'http://semantic-ui.com/images/wireframe/image.png'
 
-const ImageImageExample = () => (
+const ImageExampleGroupSize = () => (
   <div>
     <Image.Group size='tiny'>
       <Image src={src} />
@@ -21,4 +21,4 @@ const ImageImageExample = () => (
   </div>
 )
 
-export default ImageImageExample
+export default ImageExampleGroupSize
