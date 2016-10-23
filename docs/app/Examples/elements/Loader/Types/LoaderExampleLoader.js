@@ -1,13 +1,11 @@
 import React from 'react'
-import { Loader, Image, Segment } from 'semantic-ui-react'
-
-// TODO: Update <Dimmer> usage after its update to v1 API
+import { Dimmer, Loader, Image, Segment } from 'semantic-ui-react'
 
 const LoaderExampleLoader = () => (
   <Segment>
-    <div className='ui active dimmer'>
+    <Dimmer active>
       <Loader />
-    </div>
+    </Dimmer>
 
     <Image src='http://semantic-ui.com/images/wireframe/short-paragraph.png' />
   </Segment>

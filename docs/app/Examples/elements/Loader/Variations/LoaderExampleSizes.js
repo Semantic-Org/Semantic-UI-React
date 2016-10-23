@@ -1,47 +1,45 @@
 import React from 'react'
-import { Loader, Image, Segment } from 'semantic-ui-react'
-
-// TODO: Update <Dimmer> usage after its update to v1 API
+import { Dimmer, Loader, Image, Segment } from 'semantic-ui-react'
 
 const LoaderExampleSizes = () => (
   <div>
     <Segment>
-      <div className='ui active dimmer'>
+      <Dimmer active>
         <Loader size='mini'>Loading</Loader>
-      </div>
+      </Dimmer>
 
       <Image src='http://semantic-ui.com/images/wireframe/short-paragraph.png' />
     </Segment>
 
     <Segment>
-      <div className='ui active dimmer'>
+      <Dimmer active>
         <Loader size='tiny'>Loading</Loader>
-      </div>
+      </Dimmer>
 
       <Image src='http://semantic-ui.com/images/wireframe/short-paragraph.png' />
     </Segment>
 
     <Segment>
-      <div className='ui active dimmer'>
+      <Dimmer active>
         <Loader size='small'>Loading</Loader>
-      </div>
+      </Dimmer>
 
       <Image src='http://semantic-ui.com/images/wireframe/short-paragraph.png' />
     </Segment>
 
     <Segment>
-      <div className='ui active dimmer'>
+      <Dimmer active>
         <Loader size='medium'>Loading</Loader>
-      </div>
+      </Dimmer>
 
       <Image src='http://semantic-ui.com/images/wireframe/short-paragraph.png' />
       <Image src='http://semantic-ui.com/images/wireframe/short-paragraph.png' />
     </Segment>
 
     <Segment>
-      <div className='ui active dimmer'>
+      <Dimmer active>
         <Loader size='large'>Loading</Loader>
-      </div>
+      </Dimmer>
 
       <Image src='http://semantic-ui.com/images/wireframe/short-paragraph.png' />
       <Image src='http://semantic-ui.com/images/wireframe/short-paragraph.png' />
@@ -49,9 +47,9 @@ const LoaderExampleSizes = () => (
     </Segment>
 
     <Segment>
-      <div className='ui active dimmer'>
+      <Dimmer active>
         <Loader size='big'>Loading</Loader>
-      </div>
+      </Dimmer>
 
       <Image src='http://semantic-ui.com/images/wireframe/short-paragraph.png' />
       <Image src='http://semantic-ui.com/images/wireframe/short-paragraph.png' />
@@ -59,9 +57,9 @@ const LoaderExampleSizes = () => (
     </Segment>
 
     <Segment>
-      <div className='ui active dimmer'>
+      <Dimmer active>
         <Loader size='huge'>Loading</Loader>
-      </div>
+      </Dimmer>
 
       <Image src='http://semantic-ui.com/images/wireframe/short-paragraph.png' />
       <Image src='http://semantic-ui.com/images/wireframe/short-paragraph.png' />
@@ -69,9 +67,9 @@ const LoaderExampleSizes = () => (
     </Segment>
 
     <Segment>
-      <div className='ui active dimmer'>
+      <Dimmer active>
         <Loader size='massive'>Loading</Loader>
-      </div>
+      </Dimmer>
 
       <Image src='http://semantic-ui.com/images/wireframe/short-paragraph.png' />
       <Image src='http://semantic-ui.com/images/wireframe/short-paragraph.png' />

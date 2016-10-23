@@ -12,7 +12,7 @@ const LoaderTypesExamples = () => (
       examplePath='elements/Loader/Types/LoaderExampleLoader'
     >
       <Message info>
-        Loaders are hidden unless has prop "active" or inside an "active dimmer".
+        Loaders are hidden unless has prop <code>active</code> or inside an <code>Dimmer active</code>.
       </Message>
     </ComponentExample>
 
