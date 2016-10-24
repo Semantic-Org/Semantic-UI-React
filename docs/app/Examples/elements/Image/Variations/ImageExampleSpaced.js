@@ -3,7 +3,7 @@ import { Segment, Image } from 'semantic-ui-react'
 
 const src = 'http://semantic-ui.com/images/wireframe/image.png'
 
-const ImageSpacedExample = () => (
+const ImageExampleSpaced = () => (
   <div>
     <Segment>
       <p>
@@ -27,4 +27,4 @@ const ImageSpacedExample = () => (
   </div>
 )
 
-export default ImageSpacedExample
+export default ImageExampleSpaced

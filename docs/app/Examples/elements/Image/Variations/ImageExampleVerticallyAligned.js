@@ -3,7 +3,7 @@ import { Divider, Image } from 'semantic-ui-react'
 
 const src = 'http://semantic-ui.com/images/wireframe/image.png'
 
-const ImageVerticallyAlignedExample = () => (
+const ImageExampleVerticallyAligned = () => (
   <div>
     <Image src={src} size='tiny' verticalAlign='top' /> <span>Top Aligned</span>
 
@@ -17,4 +17,4 @@ const ImageVerticallyAlignedExample = () => (
   </div>
 )
 
-export default ImageVerticallyAlignedExample
+export default ImageExampleVerticallyAligned

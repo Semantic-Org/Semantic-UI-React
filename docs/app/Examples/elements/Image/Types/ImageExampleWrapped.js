@@ -3,8 +3,8 @@ import { Image } from 'semantic-ui-react'
 
 const src = 'http://semantic-ui.com/images/wireframe/image.png'
 
-const ImageFluidExample = () => (
-  <Image src={src} fluid />
+const ImageExampleWrapped = () => (
+  <Image src={src} size='small' wrapped />
 )
 
-export default ImageFluidExample
+export default ImageExampleWrapped

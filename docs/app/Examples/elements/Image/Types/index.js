@@ -1,15 +1,14 @@
 import React from 'react'
 import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
 import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
-
 import { Message } from 'semantic-ui-react'
 
 const ImageTypesExamples = () => (
   <ExampleSection title='Types'>
     <ComponentExample
       title='Image'
-      description='A standard image'
-      examplePath='elements/Image/Types/ImageImageExample'
+      description='A standard image.'
+      examplePath='elements/Image/Types/ImageExampleImage'
     >
       <Message>
         Unless a size is specified,
@@ -17,16 +16,16 @@ const ImageTypesExamples = () => (
       </Message>
     </ComponentExample>
     <ComponentExample
-      description='An image can render wrapped in a div.ui.image as alternative HTML markup'
-      examplePath='elements/Image/Types/ImageWrappedExample'
+      description='An image can render wrapped in a div.ui.image as alternative HTML markup.'
+      examplePath='elements/Image/Types/ImageExampleWrapped'
     />
     <ComponentExample
       title='Link'
-      description='An image can be formatted to link to other content'
-      examplePath='elements/Image/Types/ImageHrefExample'
+      description='An image can be formatted to link to other content.'
+      examplePath='elements/Image/Types/ImageExampleHref'
     >
       <Message info>
-        An Image automatically renders as a <code>{'<a />'}</code> if it has an <code>href</code>
+        An Image automatically renders as a <code>{'<a />'}</code> if it has an <code>href</code>.
       </Message>
     </ComponentExample>
   </ExampleSection>

@@ -3,7 +3,7 @@ import { Image } from 'semantic-ui-react'
 
 const src = 'http://semantic-ui.com/images/wireframe/image.png'
 
-const ImageSizeExample = () => (
+const ImageExampleSize = () => (
   <div>
     <Image src={src} size='mini' />
     <br />
@@ -23,4 +23,4 @@ const ImageSizeExample = () => (
   </div>
 )
 
-export default ImageSizeExample
+export default ImageExampleSize

@@ -1,23 +1,22 @@
 import React from 'react'
 import { Segment, Image } from 'semantic-ui-react'
 
-const src1 = 'http://semantic-ui.com/images/wireframe/image.png'
-const src2 = 'http://semantic-ui.com/images/wireframe/image-text.png'
+const src = 'http://semantic-ui.com/images/wireframe/image-text.png'
 
-const ImageCenteredExample = () => (
+const ImageExampleFloated = () => (
   <Segment>
-    <Image src={src1} size='medium' centered />
+    <Image src={src} size='small' floated='left' />
     <p>
       Te eum doming eirmod, nominati pertinacia argumentum ad his. Ex eam alia facete scriptorem, est autem aliquip
       detraxit at. Usu ocurreret referrentur at, cu epicurei appellantur vix. Cum ea laoreet recteque electram, eos
       choro alterum definiebas in. Vim dolorum definiebas an. Mei ex natum rebum iisque.
     </p>
+    <Image src={src} size='small' floated='right' />
     <p>
       Audiam quaerendum eu sea, pro omittam definiebas ex. Te est latine definitiones. Quot wisi nulla ex duo. Vis sint
       solet expetenda ne, his te phaedrum referrentur consectetuer. Id vix fabulas oporteat, ei quo vide phaedrum, vim
       vivendum maiestatis in.
     </p>
-    <Image src={src2} size='small' centered />
     <p>
       Eu quo homero blandit intellegebat. Incorrupte consequuntur mei id. Mei ut facer dolores adolescens, no illum
       aperiri quo, usu odio brute at. Qui te porro electram, ea dico facete utroque quo. Populo quodsi te eam, wisi
@@ -26,4 +25,4 @@ const ImageCenteredExample = () => (
   </Segment>
 )
 
-export default ImageCenteredExample
+export default ImageExampleFloated
