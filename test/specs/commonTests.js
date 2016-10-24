@@ -254,6 +254,27 @@ export const isConformant = (Component, options = {}) => {
     })
   })
 
+  describe('handles props', () => {
+    it('defines handled props in Component._meta.props', () => {
+      Component.should.have.any.keys('_meta')
+      Component._meta.should.have.any.keys('props')
+      Component._meta.props.should.be.an('array')
+    })
+
+    it('Component._meta.props includes all handled props', () => {
+      const computedProps = _.union(
+        Component.autoControlledProps,
+        _.keys(Component.defaultProps),
+        _.keys(Component.propTypes),
+      )
+
+      Component._meta.props.should.to.deep.equal(computedProps,
+        'It seems that not all props were defined in Component._meta.props, you need to check that they equal to ' +
+        'union of Component.autoControlledProps and keys of Component.defaultProps and Component.propTypes'
+      )
+    })
+  })
+
   // ----------------------------------------
   // Events
   // ----------------------------------------
@@ -466,11 +487,11 @@ export const rendersChildren = (Component, options = {}) => {
 // className from prop
 // ----------------------------------------
 const _definesPropOptions = (Component, propKey) => {
-  it(`defines ${propKey} options in Component._meta.props`, () => {
-    Component.should.have.any.keys('_meta')
-    Component._meta.should.have.any.keys('props')
-    Component._meta.props.should.have.any.keys(propKey)
-    Component._meta.props[propKey].should.be.an('array')
+  it(`defines ${propKey} options in Component.props`, () => {
+    Component.should.have.any.keys('props')
+    Component.props.should.have.any.keys(propKey)
+    Component.props[propKey].should.have.any.keys('values')
+    Component.props[propKey].values.should.be.an('array')
   })
 }
 

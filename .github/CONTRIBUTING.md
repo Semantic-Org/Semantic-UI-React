@@ -126,7 +126,7 @@ class Dropdown extends Component {
 
 ### Define _meta
 
-Every component has a static property called `_meta`.  This object defines the component.  The values here are used in `propTypes`, generated documentation, generated test cases, and some utilities.
+Every component has a static property called `_meta`. This object defines the component. The values here are used for handling props, generated documentation, generated test cases and some utilities.
 
 Here's an example `_meta` object:
 
@@ -136,9 +136,7 @@ import { META } from '../../lib'
 const _meta = {
   name: 'MyComponent',
   type: META.TYPES.MODULE,
-  props: {
-    pointing: ['bottom left', 'bottom right'],
-  },
+  props: ['as', 'children', 'className'],
 }
 ```
 
@@ -161,6 +159,27 @@ class MyComponent {
   }
 }
 ```
+
+### Using propTypes
+
+Every component must have fully described `propTypes`, values for them are defined in `props`.
+ 
+ ```js
+ import React, { PropTypes } from 'react'
+ 
+ function MyComponent(props) {
+   return <div className={props.position}>{props.children}</div>
+ }
+ 
+ MyComponent.props = {
+   position: ['left', 'right'],
+ }
+ 
+ MyComponent.propTypes = {
+   children: PropTypes.node,
+   position: PropTypes.oneOf(MyComponent.props),
+ }
+ ```
 
 ### Conformance Test
 

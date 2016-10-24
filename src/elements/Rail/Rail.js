@@ -47,43 +47,55 @@ function Rail(props) {
 Rail._meta = {
   name: 'Rail',
   type: META.TYPES.ELEMENT,
-  props: {
-    close: ['very'],
-    position: SUI.FLOATS,
-    size: _.without(SUI.SIZES, 'medium'),
-  },
+  props: [
+    'as', 'attached', 'children', 'className', 'close', 'dividing', 'internal', 'position', 'size',
+  ],
 }
 
-Rail.propTypes = {
-  /** An element type to render as (string or function). */
-  as: customPropTypes.as,
+if (process.env.NODE_ENV !== 'production') {
+  Rail.props = {
+    close: {
+      values: ['very'],
+    },
+    position: {
+      values: SUI.FLOATS,
+    },
+    size: {
+      values: _.without(SUI.SIZES, 'medium'),
+    },
+  }
 
-  /** A rail can appear attached to the main viewport. */
-  attached: PropTypes.bool,
+  Rail.propTypes = {
+    /** An element type to render as (string or function). */
+    as: customPropTypes.as,
 
-  /** Primary content. */
-  children: PropTypes.node,
+    /** A rail can appear attached to the main viewport. */
+    attached: PropTypes.bool,
 
-  /** Additional classes. */
-  className: PropTypes.string,
+    /** Primary content. */
+    children: PropTypes.node,
 
-  /** A rail can appear closer to the main viewport. */
-  close: PropTypes.oneOfType([
-    PropTypes.bool,
-    PropTypes.oneOf(Rail._meta.props.close),
-  ]),
+    /** Additional classes. */
+    className: PropTypes.string,
 
-  /** A rail can create a division between itself and a container. */
-  dividing: PropTypes.bool,
+    /** A rail can appear closer to the main viewport. */
+    close: PropTypes.oneOfType([
+      PropTypes.bool,
+      PropTypes.oneOf(Rail.props.close),
+    ]),
 
-  /** A rail can attach itself to the inside of a container. */
-  internal: PropTypes.bool,
+    /** A rail can create a division between itself and a container. */
+    dividing: PropTypes.bool,
 
-  /** A rail can be presented on the left or right side of a container. */
-  position: PropTypes.oneOf(Rail._meta.props.position).isRequired,
+    /** A rail can attach itself to the inside of a container. */
+    internal: PropTypes.bool,
 
-  /** A rail can have different sizes. */
-  size: PropTypes.oneOf(Rail._meta.props.size),
+    /** A rail can be presented on the left or right side of a container. */
+    position: PropTypes.oneOf(Rail.props.position).isRequired,
+
+    /** A rail can have different sizes. */
+    size: PropTypes.oneOf(Rail.props.size),
+  }
 }
 
 export default Rail
