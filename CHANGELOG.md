@@ -1,5 +1,17 @@
 # Change Log
 
+## [Unreleased](https://github.com/Semantic-Org/Semantic-UI-React/tree/HEAD)
+
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.56.12...HEAD)
+
+**Closed issues:**
+
+- \<Sidebar/\> component [\#730](https://github.com/Semantic-Org/Semantic-UI-React/issues/730)
+
+**Merged pull requests:**
+
+- style\(Image\): update docs to the latest standards [\#726](https://github.com/Semantic-Org/Semantic-UI-React/pull/726) ([dpkwhan](https://github.com/dpkwhan))
+
 ## [v0.56.12](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.56.12) (2016-10-23)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.56.11...v0.56.12)
 
