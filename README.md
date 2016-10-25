@@ -138,7 +138,7 @@ Any other issue labeled [`help wanted`][4] is ready for a PR.
 
 |    Elements     |   Collections   |      Views      |     Modules     |     Behaviors      |
 |-----------------|-----------------|-----------------|-----------------|--------------------|
-| ✓ Button        | ✓ Breadcrumb    |   Advertisement | ✓ Accordion     | ✓ Form Validation  |
+| ✓ Button        | ✓ Breadcrumb    |   Advertisement | ✓ Accordion     |   Form Validation  |
 | ✓ Container     | ✓ Form          | ✓ Card          | ✓ Checkbox      | *API (NA)*         |
 | ✓ Divider       | ✓ Grid          | ✓ Comment       |   Dimmer        | *Visibility (NA)*  |
 | ✓ Flag          | ✓ Menu          | ✓ Feed          | ✓ Dropdown      |                    |
