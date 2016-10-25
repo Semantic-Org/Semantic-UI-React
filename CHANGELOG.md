@@ -1,8 +1,11 @@
 # Change Log
 
-## [Unreleased](https://github.com/Semantic-Org/Semantic-UI-React/tree/HEAD)
+## [v0.56.13](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.56.13) (2016-10-25)
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.56.12...v0.56.13)
 
-[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.56.12...HEAD)
+**Fixed bugs:**
+
+- IE support? [\#733](https://github.com/Semantic-Org/Semantic-UI-React/issues/733)
 
 **Closed issues:**
 
@@ -10,6 +13,13 @@
 
 **Merged pull requests:**
 
+- fix\(AutoControlledComponent\): replace startsWith call [\#745](https://github.com/Semantic-Org/Semantic-UI-React/pull/745) ([levithomason](https://github.com/levithomason))
+- babel-standalone@6.18.0 untested ⚠️ [\#744](https://github.com/Semantic-Org/Semantic-UI-React/pull/744) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+- chai@3.5.0 untested ⚠️ [\#742](https://github.com/Semantic-Org/Semantic-UI-React/pull/742) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+- babel-register@6.18.0 untested ⚠️ [\#741](https://github.com/Semantic-Org/Semantic-UI-React/pull/741) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+- babel-preset-es2015@6.18.0 untested ⚠️ [\#740](https://github.com/Semantic-Org/Semantic-UI-React/pull/740) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+- babel-cli@6.18.0 untested ⚠️ [\#739](https://github.com/Semantic-Org/Semantic-UI-React/pull/739) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+- babel-core@6.17.0 untested ⚠️ [\#736](https://github.com/Semantic-Org/Semantic-UI-React/pull/736) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
 - style\(Image\): update docs to the latest standards [\#726](https://github.com/Semantic-Org/Semantic-UI-React/pull/726) ([dpkwhan](https://github.com/dpkwhan))
 
 ## [v0.56.12](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.56.12) (2016-10-23)
