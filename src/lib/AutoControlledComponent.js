@@ -107,7 +107,7 @@ export default class AutoControlledComponent extends Component {
       //
       // Default props are automatically handled.
       // Listing defaults in autoControlledProps would result in allowing defaultDefaultValue props.
-      const illegalAutoControlled = _.filter(autoControlledProps, prop => prop.startsWith('default'))
+      const illegalAutoControlled = _.filter(autoControlledProps, prop => _.startsWith(prop, 'default'))
       if (!_.isEmpty(illegalAutoControlled)) {
         console.error([
           'Do not add default props to autoControlledProps.',
