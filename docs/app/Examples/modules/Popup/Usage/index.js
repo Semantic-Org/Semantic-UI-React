@@ -6,17 +6,17 @@ const PopupUsageExamples = () => (
   <ExampleSection title='Usage'>
     <ComponentExample
       title='Hover'
-      description='A popup can be triggered on hover'
+      description='A popup can be triggered on hover.'
       examplePath='modules/Popup/Usage/PopupExampleHover'
     />
     <ComponentExample
       title='Click'
-      description='A popup can be triggered on click'
+      description='A popup can be triggered on click.'
       examplePath='modules/Popup/Usage/PopupExampleClick'
     />
     <ComponentExample
       title='Focus'
-      description='A popup can be triggered on focus'
+      description='A popup can be triggered on focus.'
       examplePath='modules/Popup/Usage/PopupExampleFocus'
     />
     <ComponentExample
