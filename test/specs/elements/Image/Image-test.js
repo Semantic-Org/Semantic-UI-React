@@ -4,6 +4,7 @@ import React from 'react'
 import * as common from 'test/specs/commonTests'
 import Image from 'src/elements/Image/Image'
 import ImageGroup from 'src/elements/Image/ImageGroup'
+import Dimmer from 'src/modules/Dimmer/Dimmer'
 
 describe('Image Component', () => {
   common.isConformant(Image)
@@ -28,6 +29,11 @@ describe('Image Component', () => {
 
   common.implementsCreateMethod(Image)
   common.implementsLabelProp(Image)
+  common.implementsShorthandProp(Image, {
+    propKey: 'dimmer',
+    ShorthandComponent: Dimmer,
+    mapValueToProps: val => ({ content: val }),
+  })
   common.implementsVerticalAlignProp(Image, 'verticalAlign')
 
   it('renders an img tag', () => {

@@ -13,11 +13,13 @@ describe('Dimmer', () => {
   common.hasSubComponents(Dimmer[DimmerDimmable])
   common.hasUIClassName(Dimmer)
 
-  // TODO: Renders children
+  // TODO: Renders children / content
   // common.rendersChildren()
 
   common.propKeyOnlyToClassName(Dimmer, 'active')
   common.propKeyOnlyToClassName(Dimmer, 'inverted')
+
+  common.implementsCreateMethod(Dimmer)
 
   describe('onClickOutside', () => {
     it('omitted when not defined', () => {

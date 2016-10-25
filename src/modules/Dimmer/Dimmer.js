@@ -3,6 +3,7 @@ import cx from 'classnames'
 import React, { cloneElement, Component, PropTypes } from 'react'
 
 import {
+  createShorthandFactory,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -20,7 +21,7 @@ const _meta = {
 /**
  * A dimmer hides distractions to focus attention on particular content.
  */
-class Dimmer extends Component {
+export default class Dimmer extends Component {
   static propTypes = {
     /** An element type to render as (string or function). */
     as: customPropTypes.as,
@@ -33,6 +34,9 @@ class Dimmer extends Component {
 
     /** Additional classes. */
     className: PropTypes.string,
+
+    /** Shorthand for primary content. */
+    content: customPropTypes.contentShorthand,
 
     /** Handles click outside Dimmer's content, but inside Dimmer area. */
     onClickOutside: PropTypes.func,
@@ -73,6 +77,7 @@ class Dimmer extends Component {
       active,
       children,
       className,
+      content,
       inverted,
       page,
     } = this.props
@@ -88,10 +93,10 @@ class Dimmer extends Component {
     const rest = getUnhandledProps(Dimmer, this.props)
     const ElementType = getElementType(Dimmer, this.props)
 
-    const childrenJSX = children && (
+    const childrenJSX = (children || content) && (
         <div className='content'>
           <div className='center' onClick={this.handleClickOutside}>
-            {cloneElement(children, { onClick: this.handleClickChildren })}
+            {cloneElement((children || content), { onClick: this.handleClickChildren })}
           </div>
         </div>
       )
@@ -115,4 +120,6 @@ class Dimmer extends Component {
   }
 }
 
-export default Dimmer
+// Dimmer is not yet defined inside the class
+// Do not use a static property initializer
+Dimmer.create = createShorthandFactory(Dimmer, value => ({ content: value }))
