@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button, Popup } from 'semantic-ui-react'
 
-const PopupHoverExample = () => (
+const PopupExampleHover = () => (
   <Popup
     trigger={<Button icon='add' content='Add a friend' />}
     content='Sends an email invite to a friend.'
@@ -9,4 +9,4 @@ const PopupHoverExample = () => (
   />
 )
 
-export default PopupHoverExample
+export default PopupExampleHover

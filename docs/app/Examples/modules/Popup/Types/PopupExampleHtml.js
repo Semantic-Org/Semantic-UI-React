@@ -17,7 +17,7 @@ const IndividualCard = (
   </Card>
 )
 
-const PopupHtmlExample = () => (
+const PopupExampleHtml = () => (
   <Popup trigger={IndividualCard}>
     <Popup.Header>User Rating</Popup.Header>
     <Popup.Content>
@@ -26,4 +26,4 @@ const PopupHtmlExample = () => (
   </Popup>
 )
 
-export default PopupHtmlExample
+export default PopupExampleHtml

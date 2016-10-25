@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button, Icon, Popup } from 'semantic-ui-react'
 
-const PopupInvertedExample = () => (
+const PopupExampleInverted = () => (
   <div>
     <Popup
       trigger={<Button icon='add' />}
@@ -16,4 +16,4 @@ const PopupInvertedExample = () => (
   </div>
 )
 
-export default PopupInvertedExample
+export default PopupExampleInverted

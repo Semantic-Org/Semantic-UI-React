@@ -1,7 +1,7 @@
 import React from 'react'
 import { Header, Button, Popup, Grid } from 'semantic-ui-react'
 
-const PopupFlowingExample = () => (
+const PopupExampleFlowing = () => (
   <Popup
     trigger={<Button>Show flowing popup</Button>}
     flowing
@@ -27,4 +27,4 @@ const PopupFlowingExample = () => (
   </Popup>
 )
 
-export default PopupFlowingExample
+export default PopupExampleFlowing

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Icon, Popup, Grid } from 'semantic-ui-react'
 
-const PopupPositionExample = () => (
+const PopupExamplePosition = () => (
   <Grid columns={3} style={{ width: '600px' }}>
     <Grid.Row>
       <Grid.Column>
@@ -68,4 +68,4 @@ const PopupPositionExample = () => (
   </Grid>
 )
 
-export default PopupPositionExample
+export default PopupExamplePosition

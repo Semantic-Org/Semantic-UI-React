@@ -2,24 +2,29 @@ import React from 'react'
 import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
 import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
 
-const PopupTriggersExamples = () => (
-  <ExampleSection title='Triggers'>
+const PopupUsageExamples = () => (
+  <ExampleSection title='Usage'>
     <ComponentExample
       title='Hover'
       description='A popup can be triggered on hover'
-      examplePath='modules/Popup/Triggers/PopupHoverExample'
+      examplePath='modules/Popup/Usage/PopupExampleHover'
     />
     <ComponentExample
       title='Click'
       description='A popup can be triggered on click'
-      examplePath='modules/Popup/Triggers/PopupClickExample'
+      examplePath='modules/Popup/Usage/PopupExampleClick'
     />
     <ComponentExample
       title='Focus'
       description='A popup can be triggered on focus'
-      examplePath='modules/Popup/Triggers/PopupFocusExample'
+      examplePath='modules/Popup/Usage/PopupExampleFocus'
+    />
+    <ComponentExample
+      title='Controlled'
+      description='A popup can have its visibility controlled from outside.'
+      examplePath='modules/Popup/Usage/PopupExampleControlled'
     />
   </ExampleSection>
 )
 
-export default PopupTriggersExamples
+export default PopupUsageExamples

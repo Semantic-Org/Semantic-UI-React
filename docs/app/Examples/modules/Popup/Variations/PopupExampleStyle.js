@@ -7,7 +7,7 @@ const style = {
   padding: '2em',
 }
 
-const PopupStyleExample = () => (
+const PopupExampleStyle = () => (
   <Popup
     trigger={<Button icon='eye' />}
     content='Popup with a custom style prop'
@@ -16,4 +16,4 @@ const PopupStyleExample = () => (
   />
 )
 
-export default PopupStyleExample
+export default PopupExampleStyle

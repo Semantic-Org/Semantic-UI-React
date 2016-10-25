@@ -1,7 +1,7 @@
 import React from 'react'
 import { Icon, Popup } from 'semantic-ui-react'
 
-const PopupOffsetExample = () => (
+const PopupExampleOffset = () => (
   <div>
     <Popup
       trigger={<Icon size='large' name='heart' circular />}
@@ -18,4 +18,4 @@ const PopupOffsetExample = () => (
   </div>
 )
 
-export default PopupOffsetExample
+export default PopupExampleOffset
