@@ -22,9 +22,9 @@ const webpackUMDConfig = {
   externals: {
     react: 'React',
     'react-dom': 'ReactDOM',
-    Babel: 'babel-standalone',
   },
   plugins: [
+    new webpack.DefinePlugin(config.compiler_globals),
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin({
