@@ -21,7 +21,7 @@ export default class DimmerExampleEvents extends Component {
     return (
       <Dimmer.Dimmable
         as={Image}
-        active={active}
+        dimmed={active}
         dimmer={{ active, content }}
         onMouseEnter={this.handleShow}
         onMouseLeave={this.handleHide}

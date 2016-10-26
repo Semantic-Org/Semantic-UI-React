@@ -1,4 +1,3 @@
-import _ from 'lodash'
 import faker from 'faker'
 import React from 'react'
 
@@ -12,14 +11,22 @@ describe('Dimmer', () => {
   common.isConformant(Dimmer)
   common.hasSubComponents(Dimmer[DimmerDimmable])
   common.hasUIClassName(Dimmer)
-
-  // TODO: Renders children / content
-  // common.rendersChildren()
+  common.rendersChildren(Dimmer)
 
   common.propKeyOnlyToClassName(Dimmer, 'active')
   common.propKeyOnlyToClassName(Dimmer, 'inverted')
+  common.propKeyOnlyToClassName(Dimmer, 'simple')
 
   common.implementsCreateMethod(Dimmer)
+
+  describe('content', () => {
+    it('renders text', () => {
+      const text = faker.hacker.phrase()
+
+      shallow(<Dimmer content={text} />)
+        .should.contain.text(text)
+    })
+  })
 
   describe('onClickOutside', () => {
     it('omitted when not defined', () => {
@@ -29,44 +36,35 @@ describe('Dimmer', () => {
       expect(click).to.not.throw()
     })
 
-    it('omitted when Dimmer has not children', () => {
+    it('called when Dimmer has not children', () => {
       const spy = sandbox.spy()
       shallow(<Dimmer onClickOutside={spy} />)
         .simulate('click')
 
-      spy.should.have.been.callCount(0)
+      spy.should.have.been.calledOnce()
     })
 
     it('omitted when click on children', () => {
       const spy = sandbox.spy()
+      const wrapper = mount(<Dimmer onClickOutside={spy}><div>{faker.hacker.phrase()}</div></Dimmer>)
 
-      shallow(<Dimmer onClickOutside={spy}>{faker.hacker.phrase()}</Dimmer>)
-        .find('div.center')
-        .children().first()
-        .simulate('click', { stopPropagation: _.noop })
-
+      wrapper.find('div.center').childAt(0).simulate('click')
       spy.should.have.been.callCount(0)
+    })
+
+    it('called when click on Dimmer', () => {
+      const spy = sandbox.spy()
+
+      mount(<Dimmer onClickOutside={spy}>{faker.hacker.phrase()}</Dimmer>)
+        .simulate('click')
+      spy.should.have.been.calledOnce()
     })
 
     it('called when click on center', () => {
       const spy = sandbox.spy()
-      const wrapper = shallow(<Dimmer onClickOutside={spy}>{faker.hacker.phrase()}</Dimmer>)
+      const wrapper = mount(<Dimmer onClickOutside={spy}>{faker.hacker.phrase()}</Dimmer>)
 
       wrapper.find('div.center').simulate('click')
-      spy.should.have.been.calledOnce()
-    })
-
-    it('passes children onClick', () => {
-      const spy = sandbox.spy()
-      const wrapper = mount(
-        <Dimmer onClickOutside={() => {}}>
-          <div id='children' onClick={spy}>{faker.hacker.phrase()}</div>
-        </Dimmer>
-      )
-
-      wrapper.find('#children')
-        .simulate('click', { stopPropagation: _.noop })
-
       spy.should.have.been.calledOnce()
     })
   })

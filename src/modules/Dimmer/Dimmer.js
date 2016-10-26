@@ -1,6 +1,5 @@
-import _ from 'lodash'
 import cx from 'classnames'
-import React, { cloneElement, Component, PropTypes } from 'react'
+import React, { Component, PropTypes } from 'react'
 
 import {
   createShorthandFactory,
@@ -38,6 +37,9 @@ export default class Dimmer extends Component {
     /** Shorthand for primary content. */
     content: customPropTypes.contentShorthand,
 
+    /** Called with (event, props) after user's click. */
+    onClick: PropTypes.func,
+
     /** Handles click outside Dimmer's content, but inside Dimmer area. */
     onClickOutside: PropTypes.func,
 
@@ -59,17 +61,12 @@ export default class Dimmer extends Component {
 
   handlePortalUnmount = () => document.body.classList.remove('dimmed', 'dimmable')
 
-  handleClickOutside = (e) => {
-    const { onClickOutside } = this.props
+  handleClick = (e) => {
+    const { onClick, onClickOutside } = this.props
 
+    if (onClick) onClick(e, this.props)
+    if (this.center && (this.center !== e.target && this.center.contains(e.target))) return
     if (onClickOutside) onClickOutside(e, this.props)
-  }
-
-  handleClickChildren = (e) => {
-    const { children } = this.props
-
-    _.invoke(children, 'props.onClick', e)
-    e.stopPropagation()
   }
 
   render() {
@@ -80,6 +77,7 @@ export default class Dimmer extends Component {
       content,
       inverted,
       page,
+      simple,
     } = this.props
 
     const classes = cx(
@@ -87,6 +85,7 @@ export default class Dimmer extends Component {
       useKeyOnly(active, 'active'),
       useKeyOnly(inverted, 'inverted'),
       useKeyOnly(page, 'page'),
+      useKeyOnly(simple, 'simple'),
       'dimmer transition visible',
       className,
     )
@@ -95,8 +94,8 @@ export default class Dimmer extends Component {
 
     const childrenJSX = (children || content) && (
         <div className='content'>
-          <div className='center' onClick={this.handleClickOutside}>
-            {cloneElement((children || content), { onClick: this.handleClickChildren })}
+          <div className='center' ref={center => (this.center = center)}>
+            { children || content }
           </div>
         </div>
       )
@@ -111,12 +110,12 @@ export default class Dimmer extends Component {
           open={active}
           openOnTriggerClick={false}
         >
-          <ElementType{...rest} className={classes}>{childrenJSX}</ElementType>
+          <ElementType{...rest} className={classes} onClick={this.handleClick}>{childrenJSX}</ElementType>
         </Portal>
       )
     }
 
-    return <ElementType{...rest} className={classes}>{childrenJSX}</ElementType>
+    return <ElementType{...rest} className={classes} onClick={this.handleClick}>{childrenJSX}</ElementType>
   }
 }
 

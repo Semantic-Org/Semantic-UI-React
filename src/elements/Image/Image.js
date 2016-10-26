@@ -13,9 +13,10 @@ import {
   useValueAndKey,
   useVerticalAlignProp,
 } from '../../lib'
-import ImageGroup from './ImageGroup'
-import Dimmer from '../../modules/Dimmer/Dimmer'
+import Dimmer from '../../modules/Dimmer'
 import Label from '../Label/Label'
+
+import ImageGroup from './ImageGroup'
 
 /**
  * An image is a graphic representation of something.
