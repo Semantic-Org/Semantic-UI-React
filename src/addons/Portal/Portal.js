@@ -355,7 +355,7 @@ class Portal extends Component {
     document.addEventListener('keydown', this.handleEscape)
 
     const { onMount } = this.props
-    if (onMount) onMount(undefined, this.props)
+    if (onMount) onMount(null, this.props)
   }
 
   unmountPortal = () => {
@@ -376,7 +376,7 @@ class Portal extends Component {
     document.removeEventListener('keydown', this.handleEscape)
 
     const { onUnmount } = this.props
-    if (onUnmount) onUnmount(undefined, this.props)
+    if (onUnmount) onUnmount(null, this.props)
   }
 
   render() {

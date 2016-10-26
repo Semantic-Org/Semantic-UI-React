@@ -36,6 +36,8 @@ const assertBodyClasses = (...rest) => {
   })
 }
 
+const nativeEvent = { nativeEvent: { stopImmediatePropagation: _.noop } }
+
 describe('Modal', () => {
   beforeEach(() => {
     wrapper = undefined
@@ -235,6 +237,25 @@ describe('Modal', () => {
         wrapperMount(<Modal open dimmer='inverted' />)
         assertBodyContains('.ui.inverted.page.modals.dimmer.transition.visible.active')
       })
+    })
+  })
+
+  describe('onOpen', () => {
+    let spy
+
+    beforeEach(() => {
+      spy = sandbox.spy()
+      wrapperMount(<Modal onOpen={spy} trigger={<div id='trigger' />} />)
+    })
+
+    it('is called on trigger click', () => {
+      wrapper.find('#trigger').simulate('click', nativeEvent)
+      spy.should.have.been.calledOnce()
+    })
+
+    it('is not called on body click', () => {
+      domEvent.click('body')
+      spy.should.not.have.been.calledOnce()
     })
   })
 
