@@ -169,6 +169,12 @@ npm run release:patch
 
 Made with :heart: [@TechnologyAdvice][9], a ridiculous [place to work][16].
 
+Big thanks to our [contributors][20], especially:
+
+- @jamiehill for early engineering and support
+- @jcarbo for thoughtful engineering and continual support
+- @layershifter for bringing momentum and continual support
+
 [1]: https://github.com/Semantic-Org/Semantic-UI-React/blob/master/.github/CONTRIBUTING.md
 [2]: https://semantic-org.github.io/Semantic-UI-React/
 [3]: https://facebook.github.io/react/
@@ -188,3 +194,4 @@ Made with :heart: [@TechnologyAdvice][9], a ridiculous [place to work][16].
 [17]: https://github.com/Semantic-Org/Semantic-UI-React/issues?q=is%3Aopen+label%3A%22help+wanted%22+label%3Aenhancement
 [18]: https://github.com/Semantic-Org/Semantic-UI-React/blob/master/CHANGELOG.md
 [19]: https://github.com/Semantic-Org/Semantic-UI-React/issues?q=is%3Aopen+RFC+label%3ARFC
+[20]: https://github.com/Semantic-Org/Semantic-UI-React/graphs/contributors
