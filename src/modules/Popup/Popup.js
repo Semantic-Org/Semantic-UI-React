@@ -79,8 +79,14 @@ export default class Popup extends Component {
     /** Called when a close event happens */
     onClose: PropTypes.func,
 
+    /** Called when the portal is mounted on the DOM */
+    onMount: PropTypes.func,
+
     /** Called when an open event happens */
     onOpen: PropTypes.func,
+
+    /** Called when the portal is unmounted from the DOM */
+    onUnmount: PropTypes.func,
 
     /** Positioning for the popover */
     positioning: PropTypes.oneOf(_meta.props.positioning),
@@ -246,24 +252,30 @@ export default class Popup extends Component {
     setTimeout(() => this.setState({ closed: false }), 50)
   }
 
-  handlePortalMount = (e) => {
-    if (this.props.hideOnScroll) {
-      window.addEventListener('scroll', this.hideOnScroll)
-    }
-  }
-
-  // Note: We can just pass this through but since we need a custom onOpen
-  // handler it's more clear to define the onClose handler in the same way
   handleClose = (e) => {
     const { onClose } = this.props
-    if (onClose) onClose(e)
+    if (onClose) onClose(e, this.props)
   }
 
   handleOpen = (e) => {
     this.coords = e.currentTarget.getBoundingClientRect()
 
     const { onOpen } = this.props
-    if (onOpen) onOpen(e)
+    if (onOpen) onOpen(e, this.props)
+  }
+
+  handlePortalMount = (e) => {
+    if (this.props.hideOnScroll) {
+      window.addEventListener('scroll', this.hideOnScroll)
+    }
+
+    const { onMount } = this.props
+    if (onMount) onMount(e, this.props)
+  }
+
+  handlePortalUnmount = (e) => {
+    const { onUnmount } = this.props
+    if (onUnmount) onUnmount(e, this.props)
   }
 
   popupMounted = (ref) => {
@@ -324,6 +336,7 @@ export default class Popup extends Component {
         onClose={this.handleClose}
         onMount={this.handlePortalMount}
         onOpen={this.handleOpen}
+        onUnmount={this.handlePortalUnmount}
       >
         {popupJSX}
       </Portal>

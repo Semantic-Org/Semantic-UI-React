@@ -56,6 +56,18 @@ class Modal extends Component {
     /** The node where the modal should mount.. */
     mountNode: PropTypes.any,
 
+    /** Called when a close event happens */
+    onClose: PropTypes.func,
+
+    /** Called when the portal is mounted on the DOM */
+    onMount: PropTypes.func,
+
+    /** Called when an open event happens */
+    onOpen: PropTypes.func,
+
+    /** Called when the portal is unmounted from the DOM */
+    onUnmount: PropTypes.func,
+
     /** A modal can vary in size */
     size: PropTypes.oneOf(_meta.props.size),
 
@@ -82,7 +94,17 @@ class Modal extends Component {
     this.handlePortalUnmount()
   }
 
-  handlePortalMount = () => {
+  handleClose = (e) => {
+    const { onClose } = this.props
+    if (onClose) onClose(e, this.props)
+  }
+
+  handleOpen = (e) => {
+    const { onOpen } = this.props
+    if (onOpen) onOpen(e, this.props)
+  }
+
+  handlePortalMount = (e) => {
     debug('handlePortalMount()')
     const { dimmer } = this.props
     const mountNode = this.getMountNode()
@@ -98,19 +120,24 @@ class Modal extends Component {
     }
 
     this.setPosition()
+
+    const { onMount } = this.props
+    if (onMount) onMount(e, this.props)
   }
 
-  handlePortalUnmount = () => {
+  handlePortalUnmount = (e) => {
     debug('handlePortalUnmount()')
 
-    const mountNode = this.getMountNode()
-
     // Always remove all dimmer classes.
-    // If the dimmer value changes while the modal is open,
-    //   then removing its current value could leave cruft classes previously added.
+    // If the dimmer value changes while the modal is open, then removing its
+    // current value could leave cruft classes previously added.
+    const mountNode = this.getMountNode()
     mountNode.classList.remove('blurring', 'dimmable', 'dimmed', 'scrollable')
 
     cancelAnimationFrame(this.animationRequestId)
+
+    const { onUnmount } = this.props
+    if (onUnmount) onUnmount(e, this.props)
   }
 
   getMountNode = () => {
@@ -192,7 +219,9 @@ class Modal extends Component {
         {...portalProps}
         className={dimmerClasses}
         mountNode={this.getMountNode()}
+        onClose={this.handleClose}
         onMount={this.handlePortalMount}
+        onOpen={this.handleOpen}
         onUnmount={this.handlePortalUnmount}
       >
         {modalJSX}
