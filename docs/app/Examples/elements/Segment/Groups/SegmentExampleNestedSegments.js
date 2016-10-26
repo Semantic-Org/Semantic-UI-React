@@ -1,7 +1,7 @@
 import React from 'react'
 import { Segment } from 'semantic-ui-react'
 
-const SegmentNestedSegmentsExample = () => (
+const SegmentExampleNestedSegments = () => (
   <Segment.Group>
     <Segment>Top</Segment>
     <Segment.Group>
@@ -18,4 +18,4 @@ const SegmentNestedSegmentsExample = () => (
   </Segment.Group>
 )
 
-export default SegmentNestedSegmentsExample
+export default SegmentExampleNestedSegments

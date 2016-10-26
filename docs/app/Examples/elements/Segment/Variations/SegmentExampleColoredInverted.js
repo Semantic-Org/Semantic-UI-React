@@ -1,7 +1,7 @@
 import React from 'react'
 import { Segment } from 'semantic-ui-react'
 
-const SegmentColoredInvertedExample = () => (
+const SegmentExampleColoredInverted = () => (
   <div>
     <Segment inverted color='red'>Red</Segment>
     <Segment inverted color='orange'>Orange</Segment>
@@ -19,4 +19,4 @@ const SegmentColoredInvertedExample = () => (
   </div>
 )
 
-export default SegmentColoredInvertedExample
+export default SegmentExampleColoredInverted

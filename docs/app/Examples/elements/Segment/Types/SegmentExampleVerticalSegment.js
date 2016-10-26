@@ -1,7 +1,7 @@
 import React from 'react'
 import { Segment } from 'semantic-ui-react'
 
-const SegmentVerticalSegmentExample = () => (
+const SegmentExampleVerticalSegment = () => (
   <div>
     <Segment vertical>Te eum doming eirmod, nominati pertinacia argumentum ad his.</Segment>
     <Segment vertical>Pellentesque habitant morbi tristique senectus.</Segment>
@@ -9,4 +9,4 @@ const SegmentVerticalSegmentExample = () => (
   </div>
 )
 
-export default SegmentVerticalSegmentExample
+export default SegmentExampleVerticalSegment

@@ -3,7 +3,7 @@ import { Header, Segment } from 'semantic-ui-react'
 
 const square = { width: 175, height: 175 }
 
-const SegmentCircularExample = () => (
+const SegmentExampleCircular = () => (
   <div>
     <Segment circular style={square}>
       <Header as='h2'>
@@ -24,4 +24,4 @@ const SegmentCircularExample = () => (
   </div>
 )
 
-export default SegmentCircularExample
+export default SegmentExampleCircular

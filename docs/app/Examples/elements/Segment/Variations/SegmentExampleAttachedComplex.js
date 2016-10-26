@@ -1,13 +1,13 @@
 import React from 'react'
 import { Header, Icon, Message, Segment } from 'semantic-ui-react'
 
-const SegmentAttachedComplexExample = () => (
+const SegmentExampleAttachedComplex = () => (
   <div>
     <Header as='h5' attached='top'>
       Dogs
     </Header>
     <Segment attached>
-      Dogs are one type of animal
+      Dogs are one type of animal.
     </Segment>
     <Header as='h5' attached>
       Cats
@@ -28,4 +28,4 @@ const SegmentAttachedComplexExample = () => (
   </div>
 )
 
-export default SegmentAttachedComplexExample
+export default SegmentExampleAttachedComplex

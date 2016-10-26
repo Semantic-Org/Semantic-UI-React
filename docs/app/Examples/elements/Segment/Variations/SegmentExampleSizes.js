@@ -1,7 +1,7 @@
 import React from 'react'
 import { Segment } from 'semantic-ui-react'
 
-const SegmentSizesExample = () => {
+const SegmentExampleSizes = () => {
   const sizes = ['mini', 'tiny', 'small', 'large', 'big', 'huge', 'massive']
 
   return (
@@ -15,4 +15,4 @@ const SegmentSizesExample = () => {
   )
 }
 
-export default SegmentSizesExample
+export default SegmentExampleSizes
