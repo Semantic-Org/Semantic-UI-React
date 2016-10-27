@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button, Popup } from 'semantic-ui-react'
 
-const PopupHideOnScrollExample = () => (
+const PopupExampleHideOnScroll = () => (
   <div>
     <Popup
       trigger={<Button icon>Click me</Button>}
@@ -17,4 +17,4 @@ const PopupHideOnScrollExample = () => (
   </div>
 )
 
-export default PopupHideOnScrollExample
+export default PopupExampleHideOnScroll

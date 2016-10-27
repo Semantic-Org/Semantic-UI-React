@@ -287,7 +287,7 @@ class Portal extends Component {
     debug('open()')
 
     const { onOpen } = this.props
-    if (onOpen) onOpen(e)
+    if (onOpen) onOpen(e, this.props)
 
     this.trySetState({ open: true })
   }
@@ -304,7 +304,7 @@ class Portal extends Component {
     debug('close()')
 
     const { onClose } = this.props
-    if (onClose) onClose(e)
+    if (onClose) onClose(e, this.props)
 
     this.trySetState({ open: false })
   }
@@ -355,7 +355,7 @@ class Portal extends Component {
     document.addEventListener('keydown', this.handleEscape)
 
     const { onMount } = this.props
-    if (onMount) onMount()
+    if (onMount) onMount(null, this.props)
   }
 
   unmountPortal = () => {
@@ -376,7 +376,7 @@ class Portal extends Component {
     document.removeEventListener('keydown', this.handleEscape)
 
     const { onUnmount } = this.props
-    if (onUnmount) onUnmount()
+    if (onUnmount) onUnmount(null, this.props)
   }
 
   render() {

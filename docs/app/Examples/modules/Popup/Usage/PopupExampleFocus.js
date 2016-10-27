@@ -1,7 +1,7 @@
 import React from 'react'
 import { Input, Popup } from 'semantic-ui-react'
 
-const PopupFocusExample = () => (
+const PopupExampleFocus = () => (
   <Popup
     trigger={<Input icon='search' placeholder='Search...' />}
     header='Movie Search'
@@ -10,4 +10,4 @@ const PopupFocusExample = () => (
   />
 )
 
-export default PopupFocusExample
+export default PopupExampleFocus

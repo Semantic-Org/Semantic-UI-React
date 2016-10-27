@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button, Popup } from 'semantic-ui-react'
 
-const PopupBasicExample = () => (
+const PopupExampleBasic = () => (
   <Popup
     trigger={<Button icon='add' />}
     content="The default theme's basic popup removes the pointing arrow."
@@ -9,4 +9,4 @@ const PopupBasicExample = () => (
   />
 )
 
-export default PopupBasicExample
+export default PopupExampleBasic

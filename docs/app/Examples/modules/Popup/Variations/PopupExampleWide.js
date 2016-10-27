@@ -1,7 +1,7 @@
 import React from 'react'
 import { Icon, Popup } from 'semantic-ui-react'
 
-const PopupWideExample = () => (
+const PopupExampleWide = () => (
   <div>
     <Popup trigger={<Icon circular name='heart' />} >
       Hello. This is a regular pop-up which does not allow for lots
@@ -27,4 +27,4 @@ const PopupWideExample = () => (
   </div>
 )
 
-export default PopupWideExample
+export default PopupExampleWide

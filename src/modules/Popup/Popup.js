@@ -76,6 +76,18 @@ export default class Popup extends Component {
     /** Event triggering the popup */
     on: PropTypes.oneOf(_meta.props.on),
 
+    /** Called when a close event happens */
+    onClose: PropTypes.func,
+
+    /** Called when the portal is mounted on the DOM */
+    onMount: PropTypes.func,
+
+    /** Called when an open event happens */
+    onOpen: PropTypes.func,
+
+    /** Called when the portal is unmounted from the DOM */
+    onUnmount: PropTypes.func,
+
     /** Positioning for the popover */
     positioning: PropTypes.oneOf(_meta.props.positioning),
 
@@ -201,7 +213,8 @@ export default class Popup extends Component {
   }
 
   getPortalProps() {
-    const portalProps = { onOpen: this.onOpen }
+    const portalProps = {}
+
     const { on, hoverable } = this.props
 
     switch (on) {
@@ -233,17 +246,36 @@ export default class Popup extends Component {
     return portalProps
   }
 
-  hideOnScroll = (event) => {
+  hideOnScroll = (e) => {
     this.setState({ closed: true })
     window.removeEventListener('scroll', this.hideOnScroll)
     setTimeout(() => this.setState({ closed: false }), 50)
   }
 
-  onOpen = (event) => {
-    this.coords = event.currentTarget.getBoundingClientRect()
+  handleClose = (e) => {
+    const { onClose } = this.props
+    if (onClose) onClose(e, this.props)
+  }
+
+  handleOpen = (e) => {
+    this.coords = e.currentTarget.getBoundingClientRect()
+
+    const { onOpen } = this.props
+    if (onOpen) onOpen(e, this.props)
+  }
+
+  handlePortalMount = (e) => {
     if (this.props.hideOnScroll) {
       window.addEventListener('scroll', this.hideOnScroll)
     }
+
+    const { onMount } = this.props
+    if (onMount) onMount(e, this.props)
+  }
+
+  handlePortalUnmount = (e) => {
+    const { onUnmount } = this.props
+    if (onUnmount) onUnmount(e, this.props)
   }
 
   popupMounted = (ref) => {
@@ -281,9 +313,12 @@ export default class Popup extends Component {
 
     if (closed) return trigger
 
-    const rest = getUnhandledProps(Popup, this.props)
+    const unhandled = getUnhandledProps(Popup, this.props)
+    const portalPropNames = _.keys(Portal.propTypes)
+
+    const rest = _.omit(unhandled, portalPropNames)
+    const portalProps = _.pick(unhandled, portalPropNames)
     const ElementType = getElementType(Popup, this.props)
-    const portalProps = _.pick(rest, _.keys(Portal.propTypes))
 
     const popupJSX = (
       <ElementType {...rest} className={classes} style={style} ref={this.popupMounted}>
@@ -295,9 +330,13 @@ export default class Popup extends Component {
 
     return (
       <Portal
+        {...this.getPortalProps()}
         {...portalProps}
         trigger={trigger}
-        {...this.getPortalProps()}
+        onClose={this.handleClose}
+        onMount={this.handlePortalMount}
+        onOpen={this.handleOpen}
+        onUnmount={this.handlePortalUnmount}
       >
         {popupJSX}
       </Portal>

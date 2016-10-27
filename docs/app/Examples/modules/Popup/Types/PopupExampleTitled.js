@@ -19,7 +19,7 @@ const users = [
   },
 ]
 
-export default function PopupTitledExample() {
+export default function PopupExampleTitled() {
   const avatars = users.map((user, index) =>
     <Popup
       key={user.name}

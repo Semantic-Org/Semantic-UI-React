@@ -1,7 +1,7 @@
 import React from 'react'
 import { Icon, Popup } from 'semantic-ui-react'
 
-const PopupSizeExample = () => (
+const PopupExampleSize = () => (
   <div>
     <Popup
       trigger={<Icon circular name='heart' />}
@@ -31,4 +31,4 @@ const PopupSizeExample = () => (
   </div>
 )
 
-export default PopupSizeExample
+export default PopupExampleSize
