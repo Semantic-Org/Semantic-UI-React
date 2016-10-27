@@ -26,6 +26,9 @@ export default class BreadcrumbSection extends Component {
     /** Additional classes. */
     className: PropTypes.string,
 
+    /** Shorthand for primary content. */
+    content: customPropTypes.contentShorthand,
+
     /** Render as an `a` tag instead of a `div`. */
     link: customPropTypes.every([
       customPropTypes.disallow(['href']),
@@ -59,6 +62,7 @@ export default class BreadcrumbSection extends Component {
       active,
       children,
       className,
+      content,
       href,
       link,
       onClick,
@@ -74,6 +78,10 @@ export default class BreadcrumbSection extends Component {
       if (link || onClick) return 'a'
     })
 
-    return <ElementType {...rest} className={classes} href={href} onClick={this.handleClick}>{children}</ElementType>
+    return (
+      <ElementType {...rest} className={classes} href={href} onClick={this.handleClick}>
+        {children || content}
+      </ElementType>
+    )
   }
 }

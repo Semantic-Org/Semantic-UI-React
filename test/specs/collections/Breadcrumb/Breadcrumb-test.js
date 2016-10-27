@@ -13,8 +13,8 @@ describe('Breadcrumb', () => {
   })
 
   const sections = [
-    { text: 'Home', link: true },
-    { text: 'T-Shirt', href: 'google.com' },
+    { content: 'Home', link: true },
+    { content: 'T-Shirt', href: 'google.com' },
   ]
 
   it('renders children with `sections` prop', () => {

@@ -13,14 +13,14 @@ import Icon from '../../elements/Icon'
  * A divider sub-component for Breadcrumb component.
  */
 function BreadcrumbDivider(props) {
-  const { children, icon, className } = props
+  const { children, content, icon, className } = props
   const classes = cx(className, 'divider')
   const rest = getUnhandledProps(BreadcrumbDivider, props)
   const ElementType = getElementType(BreadcrumbDivider, props)
 
   if (icon) return Icon.create(icon, { ...rest, className: classes })
 
-  return <ElementType {...rest} className={classes}>{children || '/'}</ElementType>
+  return <ElementType {...rest} className={classes}>{content || children || '/'}</ElementType>
 }
 
 BreadcrumbDivider._meta = {
@@ -38,6 +38,9 @@ BreadcrumbDivider.propTypes = {
 
   /** Additional classes. */
   className: PropTypes.string,
+
+  /** Shorthand for primary content. */
+  content: customPropTypes.contentShorthand,
 
   /** Render as an `Icon` component with `divider` class instead of a `div`. */
   icon: customPropTypes.itemShorthand,
