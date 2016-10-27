@@ -150,7 +150,7 @@ Any other issue labeled [`help wanted`][4] is ready for a PR.
 | ✓ List          |                 |                 | ✓ Rating        |                    |
 | ✓ Loader        |                 |                 | ✓ Search        |                    |
 | ✓ Rail          |                 |                 |   Shape         |                    |
-|   Reveal        |                 |                 |   Sidebar       |                    |
+| ✓ Reveal        |                 |                 |   Sidebar       |                    |
 | ✓ Segment       |                 |                 |   Sticky        |                    |
 | ✓ Step          |                 |                 |   Tab           |                    |
 |                 |                 |                 |   Transition    |                    |
