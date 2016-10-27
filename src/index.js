@@ -84,6 +84,9 @@ export { default as Loader } from './elements/Loader'
 
 export { default as Rail } from './elements/Rail'
 
+export { default as Reveal } from './elements/Reveal'
+export { default as RevealContent } from './elements/Reveal/RevealContent'
+
 export { default as Segment } from './elements/Segment'
 export { default as SegmentGroup } from './elements/Segment/SegmentGroup'
 
