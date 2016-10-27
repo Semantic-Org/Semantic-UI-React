@@ -1,12 +1,18 @@
 # Change Log
 
-## [Unreleased](https://github.com/Semantic-Org/Semantic-UI-React/tree/HEAD)
+## [v0.56.14](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.56.14) (2016-10-27)
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.56.13...v0.56.14)
 
-[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.56.13...HEAD)
+**Implemented enhancements:**
+
+- \<Reveal /\> Component [\#182](https://github.com/Semantic-Org/Semantic-UI-React/issues/182)
+- feat\(Popup\): Enabled controlled usage [\#749](https://github.com/Semantic-Org/Semantic-UI-React/pull/749) ([jcarbo](https://github.com/jcarbo))
+- feat\(Reveal\): Add component [\#748](https://github.com/Semantic-Org/Semantic-UI-React/pull/748) ([layershifter](https://github.com/layershifter))
 
 **Closed issues:**
 
 - Grid centered not rendered properly [\#752](https://github.com/Semantic-Org/Semantic-UI-React/issues/752)
+- Does the \<Popup/\> Component have 'manual' behavior as the normal popup does? [\#727](https://github.com/Semantic-Org/Semantic-UI-React/issues/727)
 
 **Merged pull requests:**
 
