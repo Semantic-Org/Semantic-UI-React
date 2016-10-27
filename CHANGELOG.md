@@ -1,5 +1,17 @@
 # Change Log
 
+## [Unreleased](https://github.com/Semantic-Org/Semantic-UI-React/tree/HEAD)
+
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.56.13...HEAD)
+
+**Closed issues:**
+
+- Grid centered not rendered properly [\#752](https://github.com/Semantic-Org/Semantic-UI-React/issues/752)
+
+**Merged pull requests:**
+
+- style\(Segment\): update docs to latest standards [\#751](https://github.com/Semantic-Org/Semantic-UI-React/pull/751) ([dpkwhan](https://github.com/dpkwhan))
+
 ## [v0.56.13](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.56.13) (2016-10-25)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.56.12...v0.56.13)
 
