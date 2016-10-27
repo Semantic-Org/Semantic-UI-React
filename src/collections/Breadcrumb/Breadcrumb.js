@@ -25,24 +25,35 @@ function Breadcrumb(props) {
     return <ElementType {...rest} className={classes}>{children}</ElementType>
   }
 
-  const dividerJSX = <BreadcrumbDivider icon={icon}>{divider}</BreadcrumbDivider>
-  const sectionsJSX = []
+  const childElements = []
 
-  _.each(sections, ({ text, key, ...restSection }, index) => {
-    const finalKey = key || text
-    const dividerKey = `${finalKey}-divider`
+  _.each(sections, (section, index) => {
+    // section
+    const breadcrumbSection = BreadcrumbSection.create(section)
+    childElements.push(breadcrumbSection)
 
-    sectionsJSX.push(
-      <BreadcrumbSection {...restSection} key={finalKey}>{text}</BreadcrumbSection>
-    )
-
+    // divider
     if (index !== sections.length - 1) {
-      sectionsJSX.push(React.cloneElement(dividerJSX, { key: dividerKey }))
+      // TODO generate a key from breadcrumbSection.props once this is merged:
+      // https://github.com/Semantic-Org/Semantic-UI-React/pull/645
+      //
+      // Stringify the props of the section as the divider key.
+      //
+      // Section:     { content: 'Home', link: true, onClick: handleClick }
+      // Divider key: content=Home|link=true|onClick=handleClick
+      let key
+      if (section.key) {
+        key = `${section.key}_divider`
+      } else {
+        key = _.map(breadcrumbSection.props, (v, k) => {
+          return `${k}=${typeof v === 'function' ? v.name || 'func' : v}`
+        }).join('|')
+      }
+      childElements.push(BreadcrumbDivider.create({ content: divider, icon, key }))
     }
   })
 
-
-  return <ElementType {...rest} className={classes}>{sectionsJSX}</ElementType>
+  return <ElementType {...rest} className={classes}>{childElements}</ElementType>
 }
 
 Breadcrumb._meta = {

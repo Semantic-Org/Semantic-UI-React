@@ -2,6 +2,7 @@ import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
 import {
+  createShorthandFactory,
   customPropTypes,
   getUnhandledProps,
   getElementType,
@@ -45,5 +46,7 @@ BreadcrumbDivider.propTypes = {
   /** Render as an `Icon` component with `divider` class instead of a `div`. */
   icon: customPropTypes.itemShorthand,
 }
+
+BreadcrumbDivider.create = createShorthandFactory(BreadcrumbDivider, icon => ({ icon }))
 
 export default BreadcrumbDivider
