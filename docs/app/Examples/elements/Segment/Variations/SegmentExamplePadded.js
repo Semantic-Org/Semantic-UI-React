@@ -1,10 +1,10 @@
 import React from 'react'
 import { Segment } from 'semantic-ui-react'
 
-const SegmentPaddedExample = () => (
+const SegmentExamplePadded = () => (
   <Segment padded>
     Padded content.
   </Segment>
 )
 
-export default SegmentPaddedExample
+export default SegmentExamplePadded

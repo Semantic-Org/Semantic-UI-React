@@ -1,7 +1,7 @@
 import React from 'react'
 import { Segment } from 'semantic-ui-react'
 
-const SegmentTextAlignmentExample = () => (
+const SegmentExampleTextAlignment = () => (
   <div>
     <Segment textAlign='right'>
       Right aligned content.
@@ -15,4 +15,4 @@ const SegmentTextAlignmentExample = () => (
   </div>
 )
 
-export default SegmentTextAlignmentExample
+export default SegmentExampleTextAlignment

@@ -1,10 +1,10 @@
 import React from 'react'
 import { Segment } from 'semantic-ui-react'
 
-const SegmentDisabledExample = () => (
+const SegmentExampleDisabled = () => (
   <Segment disabled>
     Disabled content
   </Segment>
 )
 
-export default SegmentDisabledExample
+export default SegmentExampleDisabled

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Segment } from 'semantic-ui-react'
 
-const SegmentFloatedExample = () => (
+const SegmentExampleFloated = () => (
   <div>
     <Segment floated='left'>
       This segment will appear to the left
@@ -12,4 +12,4 @@ const SegmentFloatedExample = () => (
   </div>
 )
 
-export default SegmentFloatedExample
+export default SegmentExampleFloated

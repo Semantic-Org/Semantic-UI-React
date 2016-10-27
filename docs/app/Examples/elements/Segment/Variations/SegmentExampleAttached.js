@@ -1,7 +1,7 @@
 import React from 'react'
 import { Segment } from 'semantic-ui-react'
 
-const SegmentAttachedExample = () => (
+const SegmentExampleAttached = () => (
   <div>
     <Segment attached='top'>
       This segment is on top
@@ -15,4 +15,4 @@ const SegmentAttachedExample = () => (
   </div>
 )
 
-export default SegmentAttachedExample
+export default SegmentExampleAttached

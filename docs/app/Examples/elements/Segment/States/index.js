@@ -7,12 +7,12 @@ const SegmentStatesExamples = () => (
     <ComponentExample
       title='Disabled'
       description='A segment may show its content is disabled.'
-      examplePath='elements/Segment/States/SegmentDisabledExample'
+      examplePath='elements/Segment/States/SegmentExampleDisabled'
     />
     <ComponentExample
       title='Loading'
       description='A segment may show its content is being loaded.'
-      examplePath='elements/Segment/States/SegmentLoadingExample'
+      examplePath='elements/Segment/States/SegmentExampleLoading'
     />
   </ExampleSection>
 )
