@@ -1,5 +1,16 @@
 # Change Log
 
+## [v0.57.1](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.57.1) (2016-10-28)
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.57.0...v0.57.1)
+
+**Implemented enhancements:**
+
+- feat\(Item.Image\): Add size prop [\#747](https://github.com/Semantic-Org/Semantic-UI-React/pull/747) ([clemensw](https://github.com/clemensw))
+
+**Fixed bugs:**
+
+- Item.Image doesn't honor size prop [\#746](https://github.com/Semantic-Org/Semantic-UI-React/issues/746)
+
 ## [v0.57.0](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.57.0) (2016-10-28)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.56.14...v0.57.0)
 
