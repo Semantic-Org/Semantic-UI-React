@@ -1,5 +1,12 @@
 # Change Log
 
+## [v0.57.0](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.57.0) (2016-10-28)
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.56.14...v0.57.0)
+
+**Merged pull requests:**
+
+- breaking\(BreadcrumbSection\): change `text` prop to `content` [\#755](https://github.com/Semantic-Org/Semantic-UI-React/pull/755) ([levithomason](https://github.com/levithomason))
+
 ## [v0.56.14](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.56.14) (2016-10-27)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.56.13...v0.56.14)
 
