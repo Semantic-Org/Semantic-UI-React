@@ -24,6 +24,14 @@ const DropdownUsageExamples = () => (
       examplePath='modules/Dropdown/Usage/DropdownExampleMultipleAllowAdditions'
     />
     <ComponentExample
+      description='You can provide a custom additionLabel as a string.'
+      examplePath='modules/Dropdown/Usage/DropdownExampleAdditionLabelString'
+    />
+    <ComponentExample
+      description='Or provide additionLabel as a component.'
+      examplePath='modules/Dropdown/Usage/DropdownExampleAdditionLabelComponent'
+    />
+    <ComponentExample
       title='Trigger'
       description='A dropdown can render a node in place of the text.'
       examplePath='modules/Dropdown/Usage/DropdownExampleTrigger'

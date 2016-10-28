@@ -54,7 +54,10 @@ export default class Dropdown extends Component {
     additionPosition: PropTypes.oneOf(_meta.props.additionPosition),
 
     /** Label prefixed to an option added by a user. */
-    additionLabel: PropTypes.string,
+    additionLabel: PropTypes.oneOfType([
+      PropTypes.element,
+      PropTypes.string,
+    ]),
 
     /** An element type to render as (string or function). */
     as: customPropTypes.as,
@@ -222,7 +225,8 @@ export default class Dropdown extends Component {
 
   static defaultProps = {
     icon: 'dropdown',
-    additionLabel: 'Add:',
+    additionLabel: 'Add ',
+    additionPosition: 'top',
     noResultsMessage: 'No results found.',
     selectOnBlur: true,
   }
@@ -587,9 +591,19 @@ export default class Dropdown extends Component {
 
     // insert the "add" item
     if (allowAdditions && search && searchQuery && !_.some(filteredOptions, { text: searchQuery })) {
+      const additionLabelElement = React.isValidElement(additionLabel)
+        ? React.cloneElement(additionLabel, { key: 'label' })
+        : additionLabel || ''
+
       const addItem = {
-        text: additionLabel ? `${additionLabel} ${searchQuery}` : searchQuery,
+        // by using an array, we can pass multiple elements, but when doing so
+        // we must specify a `key` for React to know which one is which
+        text: [
+          additionLabelElement,
+          <b key='addition'>{searchQuery}</b>,
+        ],
         value: searchQuery,
+        className: 'addition',
       }
       if (additionPosition === 'top') filteredOptions.unshift(addItem)
       else filteredOptions.push(addItem)

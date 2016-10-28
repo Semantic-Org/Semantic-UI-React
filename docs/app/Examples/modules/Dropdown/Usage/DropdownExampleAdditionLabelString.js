@@ -9,7 +9,7 @@ const options = [
   { text: 'Chinese', value: 'Chinese' },
 ]
 
-class DropdownExampleAllowAdditions extends Component {
+class DropdownExampleAdditionLabelString extends Component {
   state = { options }
 
   handleAddition = (e, { value }) => {
@@ -18,21 +18,21 @@ class DropdownExampleAllowAdditions extends Component {
     })
   }
 
-  handleChange = (e, { value }) => this.setState({ currentValues: value })
+  handleChange = (e, { value }) => this.setState({ currentValue: value })
 
   render() {
-    const { currentValues } = this.state
+    const { currentValue } = this.state
 
     return (
       <Dropdown
         options={this.state.options}
-        placeholder='Choose Languages'
+        placeholder='Choose Language'
         search
         selection
         fluid
-        multiple
         allowAdditions
-        value={currentValues}
+        additionLabel='Custom Language: '
+        value={currentValue}
         onAddItem={this.handleAddition}
         onChange={this.handleChange}
       />
@@ -40,4 +40,4 @@ class DropdownExampleAllowAdditions extends Component {
   }
 }
 
-export default DropdownExampleAllowAdditions
+export default DropdownExampleAdditionLabelString
