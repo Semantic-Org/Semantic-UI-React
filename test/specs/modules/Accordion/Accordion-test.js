@@ -17,6 +17,10 @@ describe('Accordion', () => {
   common.propKeyOnlyToClassName(Accordion, 'styled')
 
   describe('activeIndex', () => {
+    it('defaults to -1', () => {
+      shallow(<Accordion />)
+        .should.have.state('activeIndex', -1)
+    })
     it('can be overridden with "active" on Title/Content', () => {
       const wrapper = mount(
         <Accordion activeIndex={0}>
@@ -72,6 +76,13 @@ describe('Accordion', () => {
         .should.not.have.className('active')
       wrapper
         .should.have.state('activeIndex', -1)
+    })
+  })
+
+  describe('defaultActiveIndex', () => {
+    it('sets the initial activeIndex state', () => {
+      shallow(<Accordion defaultActiveIndex={123} />)
+        .should.have.state('activeIndex', 123)
     })
   })
 

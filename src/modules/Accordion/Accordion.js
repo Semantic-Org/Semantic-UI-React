@@ -79,7 +79,13 @@ export default class Accordion extends Component {
 
   componentWillMount() {
     super.componentWillMount()
-    this.trySetState({ activeIndex: -1 })
+    // TODO AutoControlledComponent should consider default prop values when trySetState is called before mount.
+    // Otherwise, on first render we're allowed to set state for a prop that might have a default.
+    // The default prop should always win on first render.
+    // This default check should then be removed.
+    if (!this.props.defaultActiveIndex) {
+      this.trySetState({ activeIndex: -1 })
+    }
   }
 
   handleTitleClick = (e, index) => {
