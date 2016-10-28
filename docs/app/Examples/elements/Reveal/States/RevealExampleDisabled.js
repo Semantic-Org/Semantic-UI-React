@@ -2,7 +2,7 @@ import React from 'react'
 import { Image, Reveal } from 'semantic-ui-react'
 
 const RevealExampleDisabled = () => (
-  <Reveal disabled effect='move'>
+  <Reveal animated='move' disabled>
     <Reveal.Content visible>
       <Image src='http://semantic-ui.com/images/wireframe/square-image.png' size='small' />
     </Reveal.Content>
