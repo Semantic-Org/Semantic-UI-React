@@ -20,8 +20,9 @@ deployment:
     commands:
       - git config --global user.email "devteam+deweybot@technologyadvice.com"
       - git config --global user.name "deweybot"
-      - NODE_ENV=production npm run build:commonjs
-      - NODE_ENV=production npm run build:umd
-      - $(npm bin)/ta-script npm/auto-release
-      - $(npm bin)/ta-script circle_ci/create_changelog
+      # TODO: release and changelog scripts need to handle a remote that may have changed since they started to run
+      # - NODE_ENV=production npm run build:commonjs
+      # - NODE_ENV=production npm run build:umd
+      # - ta-script npm/auto-release
+      # - ta-script circle_ci/create_changelog
       - NODE_ENV=production npm run deploy:docs
