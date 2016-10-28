@@ -758,7 +758,9 @@ export default class Dropdown extends Component {
   renderText = () => {
     const { multiple, placeholder, search, text } = this.props
     const { searchQuery, value, open } = this.state
-    const hasValue = multiple ? !_.isEmpty(value) : !!value
+    const hasValue = multiple
+      ? !_.isEmpty(value)
+      : !_.isNil(value) && value !== ''
 
     const classes = cx(
       placeholder && !hasValue && 'default',

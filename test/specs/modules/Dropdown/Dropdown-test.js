@@ -603,6 +603,60 @@ describe('Dropdown Component', () => {
         .find('.text')
         .should.contain.text(item.text())
     })
+    it('displays if value is 0', () => {
+      const text = faker.hacker.noun()
+
+      wrapperMount(<Dropdown options={[{ value: 0, text }]} selection />)
+
+      // open
+      wrapper.simulate('click')
+
+      // click item
+      const item = wrapper
+        .find('DropdownItem')
+        .simulate('click')
+
+      // text updated
+      wrapper
+        .find('.text')
+        .should.contain.text(item.text())
+    })
+    it('does not display if value is \'\'', () => {
+      const text = faker.hacker.noun()
+
+      wrapperMount(<Dropdown options={[{ value: '', text }]} selection />)
+        .simulate('click')
+        .find('DropdownItem')
+        .simulate('click')
+
+      wrapper
+        .find('.text')
+        .should.contain.text('')
+    })
+    it('does not display if value is null', () => {
+      const text = faker.hacker.noun()
+
+      wrapperMount(<Dropdown options={[{ value: null, text }]} selection />)
+        .simulate('click')
+        .find('DropdownItem')
+        .simulate('click')
+
+      wrapper
+        .find('.text')
+        .should.contain.text('')
+    })
+    it('does not display if value is undefined', () => {
+      const text = faker.hacker.noun()
+
+      wrapperMount(<Dropdown options={[{ value: undefined, text }]} selection />)
+        .simulate('click')
+        .find('DropdownItem')
+        .simulate('click')
+
+      wrapper
+        .find('.text')
+        .should.contain.text('')
+    })
   })
 
   describe('trigger', () => {
