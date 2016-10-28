@@ -65,8 +65,10 @@ export default class ComponentDoc extends Component {
     _meta: PropTypes.object,
   }
 
-  state = {
-    showPropsFor: null,
+  componentWillMount() {
+    this.setState({
+      showPropsFor: this.props._meta.name,
+    })
   }
 
   componentWillReceiveProps(nextProps) {
