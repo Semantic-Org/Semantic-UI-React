@@ -6,7 +6,7 @@ CONTRIBUTING
 
 
 - [Getting Started](#getting-started)
-  - [Fork, Clone & Install](#fork-clone-&-install)
+  - [Fork, Clone & Install](#fork-clone--install)
   - [Commit Messages](#commit-messages)
   - [Commands](#commands)
 - [Workflow](#workflow)
@@ -22,7 +22,7 @@ CONTRIBUTING
     - [Testing className](#testing-classname)
   - [SUI HTML Markup](#sui-html-markup)
     - [SUI Components vs Component Parts](#sui-components-vs-component-parts)
-    - [React Components & Sub Components](#react-components-&-sub-components)
+    - [React Components & Sub Components](#react-components--sub-components)
     - [Component Part Props](#component-part-props)
 - [Testing](#testing)
   - [Coverage](#coverage)
