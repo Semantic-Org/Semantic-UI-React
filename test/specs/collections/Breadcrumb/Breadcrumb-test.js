@@ -1,6 +1,7 @@
 import React from 'react'
 import Breadcrumb from 'src/collections/Breadcrumb/Breadcrumb'
 import * as common from 'test/specs/commonTests'
+import { sandbox } from 'test/utils'
 
 describe('Breadcrumb', () => {
   common.isConformant(Breadcrumb)
@@ -29,5 +30,31 @@ describe('Breadcrumb', () => {
     const divider = wrapper.find('BreadcrumbDivider').first()
 
     divider.should.contain.text('>')
+  })
+
+  it('generates a divider key from section props', () => {
+    sandbox.spy(Breadcrumb.Divider, 'create')
+    shallow(<Breadcrumb sections={sections} />)
+
+    Breadcrumb.Divider.create.should.have.been.calledWithMatch({
+      content: undefined,
+      icon: undefined,
+      key: 'content=Home|link=true',
+    })
+
+    Breadcrumb.Divider.create.restore()
+  })
+
+  it('generates a divider key from section key', () => {
+    sandbox.spy(Breadcrumb.Divider, 'create')
+    shallow(<Breadcrumb sections={[{ key: 'sectionA' }, { key: 'sectionB' }]} />)
+
+    Breadcrumb.Divider.create.should.have.been.calledWithMatch({
+      content: undefined,
+      icon: undefined,
+      key: 'sectionA_divider',
+    })
+
+    Breadcrumb.Divider.create.restore()
   })
 })
