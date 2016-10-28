@@ -13,4 +13,9 @@ describe('ItemImage', () => {
     wrapper.should.have.prop('wrapped', true)
     wrapper.should.have.prop('ui', false)
   })
+
+  it('has ui with size prop', () => {
+    shallow(<ItemImage size='small' />)
+      .should.have.prop('ui', true)
+  })
 })
