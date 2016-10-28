@@ -12,5 +12,5 @@ describe('Reveal', () => {
   common.propKeyOnlyToClassName(Reveal, 'disabled')
   common.propKeyOnlyToClassName(Reveal, 'instant')
 
-  common.propValueOnlyToClassName(Reveal, 'effect')
+  common.propValueOnlyToClassName(Reveal, 'animated')
 })

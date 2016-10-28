@@ -2,7 +2,7 @@ import React from 'react'
 import { Image, Reveal } from 'semantic-ui-react'
 
 const RevealExampleInstant = () => (
-  <Reveal effect='move' instant>
+  <Reveal animated='move' instant>
     <Reveal.Content visible>
       <Image src='http://semantic-ui.com/images/wireframe/square-image.png' size='small' />
     </Reveal.Content>

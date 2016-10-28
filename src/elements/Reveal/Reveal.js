@@ -16,16 +16,16 @@ import RevealContent from './RevealContent'
 function Reveal(props) {
   const {
     active,
+    animated,
     children,
     className,
     disabled,
-    effect,
     instant,
   } = props
 
   const classes = cx(
     'ui',
-    effect,
+    animated,
     useKeyOnly(active, 'active'),
     useKeyOnly(disabled, 'disabled'),
     useKeyOnly(instant, 'instant'),
@@ -42,7 +42,7 @@ Reveal._meta = {
   name: 'Reveal',
   type: META.TYPES.ELEMENT,
   props: {
-    effect: [
+    animated: [
       'fade', 'small fade',
       'move', 'move right', 'move up', 'move down',
       'rotate', 'rotate left',
@@ -66,8 +66,8 @@ Reveal.propTypes = {
   /** A disabled reveal will not animate when hovered. */
   disabled: PropTypes.bool,
 
-  /** An effect's name that will be applied to Reveal. */
-  effect: PropTypes.oneOf(Reveal._meta.props.effect),
+  /** An animation name that will be applied to Reveal. */
+  animated: PropTypes.oneOf(Reveal._meta.props.animated),
 
   /** An element can show its content without delay. */
   instant: PropTypes.bool,
