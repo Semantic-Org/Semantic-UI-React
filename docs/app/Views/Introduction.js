@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react'
+import { Link } from 'react-router'
 import Editor from 'docs/app/Components/Editor/Editor'
 import pkg from 'package.json'
 import {
@@ -12,7 +13,7 @@ import {
   Segment,
 } from 'src'
 import Logo from '../Components/Logo/Logo'
-import { repoURL } from 'docs/app/utils'
+import { semanticUIDocsURL, repoURL } from 'docs/app/utils'
 
 const AccordionJSX = `const panels = [{
   title: 'What is a dog?',
@@ -150,10 +151,10 @@ const Introduction = () => (
     </Segment>
 
     <Segment basic padded>
-      <Header as='h2' dividing>Install</Header>
-      <Segment>
-        <pre>$ npm install {pkg.name}</pre>
-      </Segment>
+      <Header as='h2' dividing>Introduction</Header>
+      <p>
+        Semantic-UI-React is the official React integration for <a href={semanticUIDocsURL}>Semantic UI</a> .
+      </p>
       <List>
         <List.Item icon='check mark' content='jQuery Free' />
         <List.Item icon='check mark' content='Declarative API' />
@@ -162,6 +163,9 @@ const Introduction = () => (
         <List.Item icon='check mark' content='Sub Components' />
         <List.Item icon='check mark' content='Auto Controlled State' />
       </List>
+      <p>
+        Installation instructions are provided in the <Link to='/usage'>Usage</Link> section.
+      </p>
     </Segment>
 
     {/* ----------------------------------------
