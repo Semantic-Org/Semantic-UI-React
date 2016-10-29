@@ -34,6 +34,11 @@ const ModalExamples = () => (
       description='Multiple modals can be displayed on top of one another.'
       examplePath='modules/Modal/Types/ModalExampleMultiple'
     />
+    <ComponentExample
+      title='Controlled'
+      description='A modal can be a controlled component'
+      examplePath='modules/Modal/Types/ModalExampleControlled'
+    />
   </ExampleSection>
 )
 
