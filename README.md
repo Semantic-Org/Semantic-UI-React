@@ -38,8 +38,7 @@ Help shape this library by weighing in on our [RFC (request for comments)][19] i
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 
-- [Install](#install)
-- [Usage](#usage)
+- [Installation & Usage](#installation--usage)
 - [Debugger](#debugger)
 - [How Can I Help?](#how-can-i-help)
   - [[v1.0 Migrations][15]](#v10-migrations15)
@@ -52,46 +51,9 @@ Help shape this library by weighing in on our [RFC (request for comments)][19] i
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-## Install
+## Installation & Usage
 
-```sh
-npm i semantic-ui-react -S
-```
-
-## Usage
-
-**App.js**
-
-```js
-import React from 'react'
-import { Button } from 'semantic-ui-react'
-
-export default () => (
-  <Button>Hello</Button>
-)
-```
-
-**index.html**
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Semantic-UI-React</title>
-
-  <!-- SUI CSS -->
-  <link href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.x.x/semantic.css" rel="stylesheet">
-</head>
-<body>
-  <script src="bundle.js"></script>
-</body>
-</html>
-```
-
-We then use [Webpack][13] to create `bundle.js` from `App.js` and include it in `index.html`.
-
-For more complete examples, check out the [Doc Site][2].
+See the [Documentation][2] for an introduction, usage information, and extensive examples.
 
 ## Debugger
 
