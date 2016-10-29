@@ -102,7 +102,7 @@
     "phantomjs-prebuilt": "^2.1.7",
     "raw-loader": "^0.5.1",
     "react": "^15.3.1",
-    "react-ace": "^3.5.0",
+    "react-ace": "^3.7.0",
     "react-addons-test-utils": "^15.3.1",
     "react-docgen": "^2.12.0",
     "react-document-title": "^2.0.2",
