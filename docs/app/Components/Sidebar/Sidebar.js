@@ -190,7 +190,7 @@ export default class Sidebar extends Component {
             <Menu.Item as={Link} to='/introduction' activeClassName='active'>
               Introduction
             </Menu.Item>
-            <Menu.Item as={Link} to='/usage'>
+            <Menu.Item as={Link} to='/usage' activeClassName='active'>
               Usage
             </Menu.Item>
             <Menu.Item as='a' href={repoURL}>
