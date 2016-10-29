@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button, Form, Input, Message } from 'semantic-ui-react'
 
-const FormErrorExample = () => (
+const FormExampleError = () => (
   <Form error>
     <Form.Input label='Email' placeholder='joe@schmoe.com' />
     <Message
@@ -13,4 +13,4 @@ const FormErrorExample = () => (
   </Form>
 )
 
-export default FormErrorExample
+export default FormExampleError

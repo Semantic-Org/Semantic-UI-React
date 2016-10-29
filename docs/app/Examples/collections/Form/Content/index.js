@@ -7,7 +7,7 @@ const FormTypesExamples = () => (
     <ComponentExample
       title='Field'
       description='A field is a form element containing a label and an input.'
-      examplePath='collections/Form/Content/FormFieldExample'
+      examplePath='collections/Form/Content/FormExampleField'
     />
   </ExampleSection>
 )

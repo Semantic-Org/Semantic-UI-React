@@ -7,7 +7,7 @@ const FormFieldVariationsExamples = () => (
     <ComponentExample
       title='Inline'
       description='A field can have its label next to instead of above it.'
-      examplePath='collections/Form/FieldVariations/FormFieldInlineExample'
+      examplePath='collections/Form/FieldVariations/FormExampleInlineField'
     />
   </ExampleSection>
 )
