@@ -7,7 +7,7 @@ const FormFormVariationsExamples = () => (
     <ComponentExample
       title='Size'
       description='A form can vary in size'
-      examplePath='collections/Form/Variations/FormSizeExample'
+      examplePath='collections/Form/Variations/FormExampleSize'
     />
   </ExampleSection>
 )

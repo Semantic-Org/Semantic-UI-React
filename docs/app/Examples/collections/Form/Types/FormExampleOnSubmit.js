@@ -20,7 +20,7 @@ const products = [
   { text: 'Socks', value: 'socks' },
 ]
 
-class FormOnSubmitExample extends Component {
+class FormExampleOnSubmit extends Component {
   state = { serializedForm: {} }
 
   handleChange = (e, { value }) => this.setState({ value })
@@ -69,4 +69,4 @@ class FormOnSubmitExample extends Component {
   }
 }
 
-export default FormOnSubmitExample
+export default FormExampleOnSubmit

@@ -3,7 +3,7 @@ import { Button, Divider, Form } from 'semantic-ui-react'
 
 const sizes = ['mini', 'tiny', 'small', 'large', 'big', 'huge', 'massive']
 
-const FormSizeExample = () => (
+const FormExampleSize = () => (
   <div>
     {sizes.map(size => (
       <Form size={size} key={size}>
@@ -17,4 +17,4 @@ const FormSizeExample = () => (
     ))}
   </div>
 )
-export default FormSizeExample
+export default FormExampleSize
