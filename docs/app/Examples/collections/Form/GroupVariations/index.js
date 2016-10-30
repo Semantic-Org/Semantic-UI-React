@@ -6,13 +6,8 @@ const FormGroupVariationsExamples = () => (
   <ExampleSection title='Group Variations'>
     <ComponentExample
       title='Evenly Divided'
-      description='Fields can have their widths divided evenly.'
-      examplePath='collections/Form/GroupVariations/FormExampleEvenlyDividedGroup'
-    />
-    <ComponentExample
-      title='Inline'
-      description='Multiple fields may be inline in a row.'
-      examplePath='collections/Form/GroupVariations/FormExampleInlineGroupedFields'
+      description='Groups can have their Field widths divided evenly.'
+      examplePath='collections/Form/GroupVariations/FormGroupEvenlyDividedExample'
     />
   </ExampleSection>
 )

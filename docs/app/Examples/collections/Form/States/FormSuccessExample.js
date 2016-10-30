@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button, Form, Input, Message } from 'semantic-ui-react'
 
-const FormExampleSuccess = () => (
+const FormSuccessExample = () => (
   <Form success>
     <Form.Input label='Email' placeholder='joe@schmoe.com' />
     <Message
@@ -13,4 +13,4 @@ const FormExampleSuccess = () => (
   </Form>
 )
 
-export default FormExampleSuccess
+export default FormSuccessExample

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Form, Input } from 'semantic-ui-react'
 
-const FormExampleInlineField = () => (
+const FormFieldInlineExample = () => (
   <Form>
     <Form.Field inline>
       <label>First name</label>
@@ -10,4 +10,4 @@ const FormExampleInlineField = () => (
   </Form>
 )
 
-export default FormExampleInlineField
+export default FormFieldInlineExample

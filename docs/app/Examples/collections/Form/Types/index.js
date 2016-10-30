@@ -9,7 +9,7 @@ const FormTypesExamples = () => (
     <ComponentExample
       title='Form'
       description='A form.'
-      examplePath='collections/Form/Types/FormExampleForm'
+      examplePath='collections/Form/Types/FormFormExample'
     >
       <Message info icon>
         <Icon name='pointing right' />
@@ -21,8 +21,8 @@ const FormTypesExamples = () => (
     </ComponentExample>
     <ComponentExample
       title='onSubmit'
-      description='A form calls back with the serialized data on submit.'
-      examplePath='collections/Form/Types/FormExampleOnSubmit'
+      description='A form calls back with the serialized data on submit'
+      examplePath='collections/Form/Types/FormOnSubmitExample'
     />
   </ExampleSection>
 )

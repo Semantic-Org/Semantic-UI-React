@@ -6,7 +6,7 @@ const options = [
   { text: 'Female', value: 'female' },
 ]
 
-class FormExampleFieldControl extends Component {
+class FormFieldControlExample extends Component {
   state = {}
 
   handleChange = (e, { value }) => this.setState({ value })
@@ -34,4 +34,4 @@ class FormExampleFieldControl extends Component {
   }
 }
 
-export default FormExampleFieldControl
+export default FormFieldControlExample

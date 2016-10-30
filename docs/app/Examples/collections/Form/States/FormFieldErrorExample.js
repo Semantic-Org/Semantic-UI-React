@@ -6,7 +6,7 @@ const options = [
   { text: 'Female', value: 'female' },
 ]
 
-const FormExampleFieldError = () => (
+const FormFieldErrorExample = () => (
   <Form>
     <Form.Group widths='equal'>
       <Form.Input label='First name' placeholder='First name' error />
@@ -17,4 +17,4 @@ const FormExampleFieldError = () => (
   </Form>
 )
 
-export default FormExampleFieldError
+export default FormFieldErrorExample

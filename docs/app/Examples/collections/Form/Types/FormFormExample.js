@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button, Checkbox, Form } from 'semantic-ui-react'
 
-const FormExampleForm = () => (
+const FormFormExample = () => (
   <Form>
     <Form.Field>
       <label>First Name</label>
@@ -18,4 +18,4 @@ const FormExampleForm = () => (
   </Form>
 )
 
-export default FormExampleForm
+export default FormFormExample

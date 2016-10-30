@@ -1,7 +1,7 @@
 import React from 'react'
 import { Form } from 'semantic-ui-react'
 
-const FormExampleFieldControlHTML = () => (
+const FormFieldHTMLControlExample = () => (
   <Form>
     <Form.Group widths='equal'>
       <Form.Field label='An HTML <input>' control='input' />
@@ -27,4 +27,4 @@ const FormExampleFieldControlHTML = () => (
   </Form>
 )
 
-export default FormExampleFieldControlHTML
+export default FormFieldHTMLControlExample

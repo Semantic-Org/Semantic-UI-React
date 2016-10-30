@@ -1,7 +1,7 @@
 import React from 'react'
 import { Form } from 'semantic-ui-react'
 
-const FormExampleField = () => (
+const FormFieldExample = () => (
   <Form>
     <Form.Field>
       <label>User Input</label>
@@ -10,4 +10,4 @@ const FormExampleField = () => (
   </Form>
 )
 
-export default FormExampleField
+export default FormFieldExample

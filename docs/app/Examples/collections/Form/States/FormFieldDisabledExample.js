@@ -1,7 +1,7 @@
 import React from 'react'
 import { Form, Input } from 'semantic-ui-react'
 
-const FormExampleFieldDisabled = () => (
+const FormFieldDisabledExample = () => (
   <Form>
     <Form.Group widths='equal'>
       <Form.Input label='First name' placeholder='Disabled' disabled />
@@ -10,4 +10,4 @@ const FormExampleFieldDisabled = () => (
   </Form>
 )
 
-export default FormExampleFieldDisabled
+export default FormFieldDisabledExample
