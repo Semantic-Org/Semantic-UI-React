@@ -1,4 +1,3 @@
-import _ from 'lodash'
 import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
@@ -15,8 +14,8 @@ const _meta = {
   type: META.TYPES.MODULE,
   props: {
     direction: ['top', 'right', 'bottom', 'left'],
-    animation: ['overlay', 'push', 'scaleDown', 'uncover', 'slideOut', 'slideAlong']
-  }
+    animation: ['overlay', 'push', 'scaleDown', 'uncover', 'slideOut', 'slideAlong'],
+  },
 }
 
 class Sidebar extends Component {
@@ -27,8 +26,12 @@ class Sidebar extends Component {
     as: customPropTypes.as,
 
     /** Additional classes. */
-    className: PropTypes.string
+    className: PropTypes.string,
   }
+
+  static autoControlledProps = [
+    'visable',
+  ]
 
   render() {
     const { className } = this.props
@@ -36,7 +39,7 @@ class Sidebar extends Component {
     const classes = cx(
       'ui',
       className
-    );
+    )
 
     const rest = getUnhandledProps(Sidebar, this.props)
     const ElementType = getElementType(Sidebar, this.props)
