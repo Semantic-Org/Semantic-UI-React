@@ -6,7 +6,7 @@ import {
   META,
   customPropTypes,
   getUnhandledProps,
-  getElementType
+  getElementType,
 } from '../../lib'
 
 const _meta = {
