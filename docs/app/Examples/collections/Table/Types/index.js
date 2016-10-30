@@ -8,24 +8,24 @@ const Types = () => {
     <ExampleSection title='Types'>
       <ComponentExample
         title='Types'
-        description='A standard table'
-        examplePath='collections/Table/Types/TablePagination'
+        description='A standard table.'
+        examplePath='collections/Table/Types/TableExamplePagination'
       />
-      <ComponentExample examplePath='collections/Table/Types/TablePadded' />
-      <ComponentExample examplePath='collections/Table/Types/TableCollapsing' />
-      <ComponentExample examplePath='collections/Table/Types/TableStriped' />
+      <ComponentExample examplePath='collections/Table/Types/TableExamplePadded' />
+      <ComponentExample examplePath='collections/Table/Types/TableExampleCollapsing' />
+      <ComponentExample examplePath='collections/Table/Types/TableExampleStriped' />
 
       <ComponentExample
         title='Definition'
-        description='A table may be formatted to emphasize a first column that defines a rows content'
-        examplePath='collections/Table/Types/TableDefinition'
+        description='A table may be formatted to emphasize a first column that defines a row content.'
+        examplePath='collections/Table/Types/TableExampleDefinition'
       />
-      <ComponentExample examplePath='collections/Table/Types/TableApprove' />
+      <ComponentExample examplePath='collections/Table/Types/TableExampleApprove' />
 
       <ComponentExample
         title='Structured'
-        description='A table can be formatted to display complex structured data'
-        examplePath='collections/Table/Types/TableStructured'
+        description='A table can be formatted to display complex structured data.'
+        examplePath='collections/Table/Types/TableExampleStructured'
       />
     </ExampleSection>
   )
