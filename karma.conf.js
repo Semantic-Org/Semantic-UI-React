@@ -10,11 +10,7 @@ module.exports = (karmaConfig) => {
     reporters: ['mocha', 'coverage'],
     files: [
       './test/tests.bundle.js',
-      { pattern: 'test/images/*', watched: false, included: false, served: true },
     ],
-    proxies: {
-      '/foo.png': '/base/test/images/foo.png',
-    },
     formatError(msg) {
       let haveSeenStack = false
       return msg
@@ -48,10 +44,6 @@ module.exports = (karmaConfig) => {
       'phantomjs-shim',
       'mocha',
     ],
-    phantomjsLauncher: {
-      // exit on ResourceError, useful if karma exits without killing phantom
-      exitOnResourceError: true,
-    },
     coverageReporter: {
       reporters: [
         { type: 'lcov', dir: 'coverage', subdir: '.' },
