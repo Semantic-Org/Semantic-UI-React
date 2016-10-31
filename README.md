@@ -102,7 +102,7 @@ Any other issue labeled [`help wanted`][4] is ready for a PR.
 |-----------------|-----------------|-----------------|-----------------|--------------------|
 | ✓ Button        | ✓ Breadcrumb    |   Advertisement | ✓ Accordion     |   Form Validation  |
 | ✓ Container     | ✓ Form          | ✓ Card          | ✓ Checkbox      | *API (NA)*         |
-| ✓ Divider       | ✓ Grid          | ✓ Comment       |   Dimmer        | *Visibility (NA)*  |
+| ✓ Divider       | ✓ Grid          | ✓ Comment       | ✓ Dimmer        | *Visibility (NA)*  |
 | ✓ Flag          | ✓ Menu          | ✓ Feed          | ✓ Dropdown      |                    |
 | ✓ Header        | ✓ Message       | ✓ Item          |   Embed         |                    |
 | ✓ Icon          | ✓ Table         | ✓ Statistic     | ✓ Modal         |                    |

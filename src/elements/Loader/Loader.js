@@ -11,6 +11,10 @@ import {
   useKeyOrValueAndKey,
 } from '../../lib'
 
+/**
+ * A loader alerts a user to wait for an activity to complete.
+ * @see Dimmer
+ */
 function Loader(props) {
   const {
     active,

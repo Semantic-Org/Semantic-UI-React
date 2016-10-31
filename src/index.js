@@ -103,6 +103,9 @@ export { default as AccordionTitle } from './modules/Accordion/AccordionTitle'
 
 export { default as Checkbox } from './modules/Checkbox'
 
+export { default as Dimmer } from './modules/Dimmer'
+export { default as DimmerDimmable } from './modules/Dimmer/DimmerDimmable'
+
 export { default as Dropdown } from './modules/Dropdown'
 export { default as DropdownDivider } from './modules/Dropdown/DropdownDivider'
 export { default as DropdownHeader } from './modules/Dropdown/DropdownHeader'

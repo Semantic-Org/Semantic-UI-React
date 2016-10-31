@@ -2,23 +2,24 @@ import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
 import {
-  getElementType,
   createShorthandFactory,
   customPropTypes,
+  getElementType,
   getUnhandledProps,
   META,
   SUI,
-  useVerticalAlignProp,
+  useKeyOnly,
   useKeyOrValueAndKey,
   useValueAndKey,
-  useKeyOnly,
+  useVerticalAlignProp,
 } from '../../lib'
+import Dimmer from '../../modules/Dimmer'
 import Label from '../Label/Label'
 
 import ImageGroup from './ImageGroup'
 
 /**
- * An image is a graphic representation of something
+ * An image is a graphic representation of something.
  * @see Icon
  */
 function Image(props) {
@@ -28,6 +29,7 @@ function Image(props) {
     bordered,
     centered,
     className,
+    dimmer,
     disabled,
     floated,
     fluid,
@@ -49,33 +51,33 @@ function Image(props) {
   const classes = cx(
     useKeyOnly(ui, 'ui'),
     size,
-    useVerticalAlignProp(verticalAlign, 'aligned'),
+    shape,
     useKeyOnly(avatar, 'avatar'),
     useKeyOnly(bordered, 'bordered'),
     useKeyOnly(centered, 'centered'),
     useKeyOnly(disabled, 'disabled'),
-    useValueAndKey(floated, 'floated'),
     useKeyOnly(fluid, 'fluid'),
     useKeyOnly(hidden, 'hidden'),
     useKeyOnly(inline, 'inline'),
     useKeyOrValueAndKey(spaced, 'spaced'),
-    shape,
+    useValueAndKey(floated, 'floated'),
+    useVerticalAlignProp(verticalAlign, 'aligned'),
+    'image',
     className,
-    'image'
   )
   const rest = getUnhandledProps(Image, props)
-  const rootProps = { className: classes, ...rest }
-  const imgTagProps = { src, alt, width, height }
   const ElementType = getElementType(Image, props, () => {
-    if (label || wrapped) return 'div'
+    if (dimmer || label || wrapped) return 'div'
   })
 
-  if (ElementType === 'img') {
-    return <ElementType {...rootProps} {...imgTagProps} />
-  }
+  const rootProps = { className: classes, ...rest }
+  const imgTagProps = { alt, src, height, width }
+
+  if (ElementType === 'img') return <ElementType {...rootProps} {...imgTagProps} />
 
   return (
     <ElementType {...rootProps} href={href}>
+      {Dimmer.create(dimmer)}
       {Label.create(label)}
       <img {...imgTagProps} />
     </ElementType>
@@ -100,71 +102,74 @@ Image.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** An image can specify its vertical alignment */
-  verticalAlign: PropTypes.oneOf(Image._meta.props.verticalAlign),
-
-  /** Alternate text for the image specified */
+  /** Alternate text for the image specified. */
   alt: PropTypes.string,
 
-  /** An image may be formatted to appear inline with text as an avatar */
+  /** An image may be formatted to appear inline with text as an avatar. */
   avatar: PropTypes.bool,
 
-  /** An image may include a border to emphasize the edges of white or transparent content */
+  /** An image may include a border to emphasize the edges of white or transparent content. */
   bordered: PropTypes.bool,
 
-  /** An image can appear centered in a content block */
+  /** An image can appear centered in a content block. */
   centered: PropTypes.bool,
 
   /** Additional classes. */
   className: PropTypes.string,
 
-  /** An image can show that it is disabled and cannot be selected */
+  /** An image can show that it is disabled and cannot be selected. */
   disabled: PropTypes.bool,
 
-  /** An image can sit to the left or right of other content */
+  /** Shorthand for Dimmer. */
+  dimmer: customPropTypes.itemShorthand,
+
+  /** An image can sit to the left or right of other content. */
   floated: PropTypes.oneOf(Image._meta.props.floated),
 
-  /** An image can take up the width of its container */
+  /** An image can take up the width of its container. */
   fluid: customPropTypes.every([
     PropTypes.bool,
     customPropTypes.disallow(['size']),
   ]),
 
-  /** An image can be hidden */
-  hidden: PropTypes.bool,
-
-  /** The img element height attribute */
+  /** The img element height attribute. */
   height: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,
   ]),
 
-  /** Renders the Image as an <a> tag with this href */
+  /** An image can be hidden. */
+  hidden: PropTypes.bool,
+
+  /** Renders the Image as an <a> tag with this href. */
   href: PropTypes.string,
 
-  /** An image may appear inline */
+  /** An image may appear inline. */
   inline: PropTypes.bool,
 
   /** Shorthand for Label. */
   label: customPropTypes.itemShorthand,
 
-  /** An image may appear rounded or circular */
+  /** An image may appear rounded or circular. */
   shape: PropTypes.oneOf(Image._meta.props.shape),
 
-  /** An image may appear at different sizes */
+  /** An image may appear at different sizes. */
   size: PropTypes.oneOf(Image._meta.props.size),
 
-  /** An image can specify that it needs an additional spacing to separate it from nearby content */
+  /** An image can specify that it needs an additional spacing to separate it from nearby content. */
   spaced: PropTypes.oneOfType([
     PropTypes.bool,
     PropTypes.oneOf(Image._meta.props.spaced),
   ]),
 
-  /** Specifies the URL of the image */
+  /** Specifies the URL of the image. */
   src: PropTypes.string,
 
-  /** Whether or not to add the ui className */
+  /** Whether or not to add the ui className. */
   ui: PropTypes.bool,
+
+  /** An image can specify its vertical alignment */
+  verticalAlign: PropTypes.oneOf(Image._meta.props.verticalAlign),
 
   /** The img element width attribute */
   width: PropTypes.oneOfType([
