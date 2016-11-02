@@ -27,11 +27,16 @@ describe('Dimmer', () => {
         .should.contain.text(text)
     })
 
-    it('renders clickable buttons', () => {
-      const spy = sandbox.spy()
-      const wrapper = mount(<Dimmer><a onClick={spy} href='#'>{faker.hacker.phrase()}</a></Dimmer>)
-      wrapper.find('a').simulate('click')
-      spy.should.have.been.callCount(1)
+  })
+
+  describe('active', () => {
+    it('removes the `disabled` className when true', () => {
+      shallow(<Dimmer active />)
+        .should.not.have.className('disabled')
+    })
+    it('adds the `disabled` className when false', () => {
+      shallow(<Dimmer active={false} />)
+        .should.have.className('disabled')
     })
   })
 
