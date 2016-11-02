@@ -83,6 +83,7 @@ export default class Dimmer extends Component {
     const classes = cx(
       'ui',
       useKeyOnly(active, 'active'),
+      useKeyOnly(!active, 'disabled'),
       useKeyOnly(inverted, 'inverted'),
       useKeyOnly(page, 'page'),
       useKeyOnly(simple, 'simple'),

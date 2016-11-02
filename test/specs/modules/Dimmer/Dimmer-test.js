@@ -28,6 +28,17 @@ describe('Dimmer', () => {
     })
   })
 
+  describe('active', () => {
+    it('removes the `disabled` className when true', () => {
+      shallow(<Dimmer active />)
+        .should.not.have.className('disabled')
+    })
+    it('adds the `disabled` className when false', () => {
+      shallow(<Dimmer active={false} />)
+        .should.have.className('disabled')
+    })
+  })
+
   describe('onClickOutside', () => {
     it('omitted when not defined', () => {
       const wrapper = shallow(<Dimmer>{faker.hacker.phrase()}</Dimmer>)
