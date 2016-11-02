@@ -96,7 +96,7 @@ Icon.propTypes = {
   /** Name of the icon */
   name: PropTypes.string,
 
-  /** Icon can be formatter as a link */
+  /** Icon can be formatted as a link */
   link: PropTypes.bool,
 
   /** Icon can be used as a simple loader */
