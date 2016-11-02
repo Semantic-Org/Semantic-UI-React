@@ -26,7 +26,6 @@ describe('Dimmer', () => {
       shallow(<Dimmer content={text} />)
         .should.contain.text(text)
     })
-
   })
 
   describe('active', () => {
