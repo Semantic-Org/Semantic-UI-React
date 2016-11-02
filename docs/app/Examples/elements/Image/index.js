@@ -1,8 +1,10 @@
 import React from 'react'
-import Types from './Types'
-import States from './States'
-import Variations from './Variations'
+
 import Groups from './Groups'
+import States from './States'
+import Types from './Types'
+import Usage from './Usage'
+import Variations from './Variations'
 
 const ImageExamples = () => (
   <div>
@@ -10,6 +12,7 @@ const ImageExamples = () => (
     <States />
     <Variations />
     <Groups />
+    <Usage />
   </div>
 )
 
