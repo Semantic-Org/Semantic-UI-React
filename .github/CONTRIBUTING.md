@@ -126,7 +126,7 @@ class Dropdown extends Component {
 
 ### Define _meta
 
-Every component has a static property called `_meta`. This object defines the component. The values here are used for handling props, generated documentation, generated test cases and some utilities.
+Every component has a static property called `_meta`. This object defines the component. The values here are used for generated documentation, generated test cases and some utilities.
 
 Here's an example `_meta` object:
 
@@ -136,7 +136,6 @@ import { META } from '../../lib'
 const _meta = {
   name: 'MyComponent',
   type: META.TYPES.MODULE,
-  props: ['as', 'children', 'className'],
 }
 ```
 
@@ -162,7 +161,7 @@ class MyComponent {
 
 ### Using propTypes
 
-Every component must have fully described `propTypes`, values for them are defined in `props`.
+Every component must have fully described `propTypes`.
  
  ```js
  import React, { PropTypes } from 'react'
@@ -171,13 +170,9 @@ Every component must have fully described `propTypes`, values for them are defin
    return <div className={props.position}>{props.children}</div>
  }
  
- MyComponent.props = {
-   position: ['left', 'right'],
- }
- 
  MyComponent.propTypes = {
    children: PropTypes.node,
-   position: PropTypes.oneOf(MyComponent.props),
+   position: PropTypes.oneOf(['left', 'right']),
  }
  ```
 
@@ -195,7 +190,7 @@ This will also help with getting early feedback and smaller faster iterations on
 
 Review the SUI documentation for the component. Spec out the component's proposed API. The spec should demonstrate how your component's API will support all the native SUI features. You can reference this [API proposal][7] for the Input.
 
-Once we have solidified the component spec, it's time to write some code.  The following sections cover everything you'll need to spec and build your awesome component.
+Once we have solidified the component spec, it's time to write some code. The following sections cover everything you'll need to spec and build your awesome component.
 
 ## API
 

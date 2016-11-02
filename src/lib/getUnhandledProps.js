@@ -7,10 +7,6 @@ import _ from 'lodash'
  * @param {object} props A ReactElement props object
  * @returns {{}} A shallow copy of the prop object
  */
-const getUnhandledProps = (Component, props) => {
-  const handledProps = Component._meta ? Component._meta.props || [] : []
-
-  return _.omit(props, handledProps)
-}
+const getUnhandledProps = (Component, props) => _.omit(props, Component.handledProps || [])
 
 export default getUnhandledProps

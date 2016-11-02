@@ -255,21 +255,20 @@ export const isConformant = (Component, options = {}) => {
   })
 
   describe('handles props', () => {
-    it('defines handled props in Component._meta.props', () => {
-      Component.should.have.any.keys('_meta')
-      Component._meta.should.have.any.keys('props')
-      Component._meta.props.should.be.an('array')
+    it('defines handled props in Component.handledProps', () => {
+      Component.should.have.any.keys('handledProps')
+      Component.handledProps.should.be.an('array')
     })
 
-    it('Component._meta.props includes all handled props', () => {
+    it('Component.handledProps includes all handled props', () => {
       const computedProps = _.union(
         Component.autoControlledProps,
         _.keys(Component.defaultProps),
         _.keys(Component.propTypes),
       )
 
-      Component._meta.props.should.to.deep.equal(computedProps,
-        'It seems that not all props were defined in Component._meta.props, you need to check that they equal to ' +
+      Component.handledProps.should.to.deep.equal(computedProps,
+        'It seems that not all props were defined in Component.handledProps, you need to check that they equal to ' +
         'union of Component.autoControlledProps and keys of Component.defaultProps and Component.propTypes'
       )
     })
@@ -486,15 +485,6 @@ export const rendersChildren = (Component, options = {}) => {
 // ----------------------------------------
 // className from prop
 // ----------------------------------------
-const _definesPropOptions = (Component, propKey) => {
-  it(`defines ${propKey} options in Component.props`, () => {
-    Component.should.have.any.keys('props')
-    Component.props.should.have.any.keys(propKey)
-    Component.props[propKey].should.have.any.keys('values')
-    Component.props[propKey].values.should.be.an('array')
-  })
-}
-
 const _noDefaultClassNameFromProp = (Component, propKey, options = {}) => {
   const { className = propKey, requiredProps = {} } = options
   // required props may include a prop that creates a className
@@ -614,7 +604,6 @@ export const implementsWidthProp = (Component, options = {}) => {
   describe(`${propKey} (common)`, () => {
     assertRequired(Component, 'a `Component`')
 
-    _definesPropOptions(Component, propKey)
     _noDefaultClassNameFromProp(Component, propKey, options)
     _noClassNameFromBoolProps(Component, propKey, options)
 
@@ -844,7 +833,6 @@ export const implementsTextAlignProp = (Component, options = {}) => {
   describe('aligned (common)', () => {
     assertRequired(Component, 'a `Component`')
 
-    _definesPropOptions(Component, 'textAlign')
     _noDefaultClassNameFromProp(Component, 'textAlign', options)
     _noClassNameFromBoolProps(Component, 'textAlign', options)
 
@@ -880,7 +868,6 @@ export const implementsVerticalAlignProp = (Component, options = {}) => {
   describe('verticalAlign (common)', () => {
     assertRequired(Component, 'a `Component`')
 
-    _definesPropOptions(Component, 'verticalAlign')
     _noDefaultClassNameFromProp(Component, 'verticalAlign', options)
     _noClassNameFromBoolProps(Component, 'verticalAlign', options)
 
@@ -943,7 +930,6 @@ export const propValueOnlyToClassName = (Component, propKey, options = {}) => {
     assertRequired(Component, 'a `Component`')
     assertRequired(propKey, 'a `propKey`')
 
-    _definesPropOptions(Component, propKey)
     _noDefaultClassNameFromProp(Component, propKey, options)
     _noClassNameFromBoolProps(Component, propKey, options)
 
@@ -981,7 +967,6 @@ export const propKeyAndValueToClassName = (Component, propKey, options = {}) => 
     assertRequired(Component, 'a `Component`')
     assertRequired(propKey, 'a `propKey`')
 
-    _definesPropOptions(Component, propKey)
     _noDefaultClassNameFromProp(Component, propKey, options)
     _noClassNameFromBoolProps(Component, propKey, options)
     _classNamePropValueBeforePropName(Component, propKey, options)
@@ -1004,7 +989,6 @@ export const propKeyOrValueAndKeyToClassName = (Component, propKey, options = {}
     assertRequired(Component, 'a `Component`')
     assertRequired(propKey, 'a `propKey`')
 
-    _definesPropOptions(Component, propKey)
     _noDefaultClassNameFromProp(Component, propKey, options)
     _classNamePropValueBeforePropName(Component, propKey, options)
     beforeEach(() => {

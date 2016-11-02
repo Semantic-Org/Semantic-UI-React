@@ -9,20 +9,22 @@ function TestComponent(props) {
 }
 
 beforeEach(() => {
-  delete TestComponent._meta
+  delete TestComponent.handledProps
 })
 
 describe('getUnhandledProps', () => {
-  it('removes props defined in _meta.props', () => {
-    TestComponent._meta = { props: ['data-remove-me'] }
+  it('removes props defined in handledProps', () => {
+    TestComponent.handledProps = ['data-remove-me']
     shallow(<TestComponent />)
       .should.not.have.prop('data-remove-me', 'thanks')
   })
-  it('leaves props that are not defined _meta.props', () => {
-    TestComponent._meta = {}
+
+  it('leaves props that are not defined handledProps', () => {
+    TestComponent.handledProps = []
     shallow(<TestComponent data-leave-this='it is unhandled' />)
       .should.have.prop('data-leave-this')
   })
+
   it('leaves props that are not defined _meta.props', () => {
     shallow(<TestComponent data-leave-this='it is unhandled' />)
       .should.have.prop('data-leave-this')

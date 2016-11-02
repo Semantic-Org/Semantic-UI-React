@@ -47,55 +47,38 @@ function Rail(props) {
 Rail._meta = {
   name: 'Rail',
   type: META.TYPES.ELEMENT,
-  props: [
-    'as', 'attached', 'children', 'className', 'close', 'dividing', 'internal', 'position', 'size',
-  ],
 }
 
-if (process.env.NODE_ENV !== 'production') {
-  Rail.props = {
-    close: {
-      values: ['very'],
-    },
-    position: {
-      values: SUI.FLOATS,
-    },
-    size: {
-      values: _.without(SUI.SIZES, 'medium'),
-    },
-  }
+Rail.propTypes = {
+  /** An element type to render as (string or function). */
+  as: customPropTypes.as,
 
-  Rail.propTypes = {
-    /** An element type to render as (string or function). */
-    as: customPropTypes.as,
+  /** A rail can appear attached to the main viewport. */
+  attached: PropTypes.bool,
 
-    /** A rail can appear attached to the main viewport. */
-    attached: PropTypes.bool,
+  /** Primary content. */
+  children: PropTypes.node,
 
-    /** Primary content. */
-    children: PropTypes.node,
+  /** Additional classes. */
+  className: PropTypes.string,
 
-    /** Additional classes. */
-    className: PropTypes.string,
+  /** A rail can appear closer to the main viewport. */
+  close: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.oneOf(['very']),
+  ]),
 
-    /** A rail can appear closer to the main viewport. */
-    close: PropTypes.oneOfType([
-      PropTypes.bool,
-      PropTypes.oneOf(Rail.props.close),
-    ]),
+  /** A rail can create a division between itself and a container. */
+  dividing: PropTypes.bool,
 
-    /** A rail can create a division between itself and a container. */
-    dividing: PropTypes.bool,
+  /** A rail can attach itself to the inside of a container. */
+  internal: PropTypes.bool,
 
-    /** A rail can attach itself to the inside of a container. */
-    internal: PropTypes.bool,
+  /** A rail can be presented on the left or right side of a container. */
+  position: PropTypes.oneOf(SUI.FLOATS).isRequired,
 
-    /** A rail can be presented on the left or right side of a container. */
-    position: PropTypes.oneOf(Rail.props.position).isRequired,
-
-    /** A rail can have different sizes. */
-    size: PropTypes.oneOf(Rail.props.size),
-  }
+  /** A rail can have different sizes. */
+  size: PropTypes.oneOf(_.without(SUI.SIZES, 'medium')),
 }
 
 export default Rail
