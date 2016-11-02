@@ -26,6 +26,13 @@ describe('Dimmer', () => {
       shallow(<Dimmer content={text} />)
         .should.contain.text(text)
     })
+
+    it('renders clickable buttons', () => {
+      const spy = sandbox.spy()
+      const wrapper = mount(<Dimmer><a onClick={spy} href='#'>{faker.hacker.phrase()}</a></Dimmer>)
+      wrapper.find('a').simulate('click')
+      spy.should.have.been.callCount(1)
+    })
   })
 
   describe('onClickOutside', () => {
