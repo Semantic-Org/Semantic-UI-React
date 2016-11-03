@@ -63,7 +63,7 @@ config = Object.assign({}, config, {
   compiler_lint: argv.lint !== false,
   compiler_quiet: false,
   compiler_output_path: paths.base(config.dir_docs_dist),
-  compiler_public_path: __BASE__,
+  compiler_public_path: __PROD__ ? '//cdn.rawgit.com/Semantic-Org/Semantic-UI-React/gh-pages/' : __BASE__,
   compiler_vendor: [
     'babel-standalone',
     'brace',
