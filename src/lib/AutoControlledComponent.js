@@ -121,8 +121,13 @@ export default class AutoControlledComponent extends Component {
   componentWillReceiveProps(nextProps) {
     if (super.componentWillReceiveProps) super.componentWillReceiveProps(nextProps)
 
-    // props always win, update state with all auto controlled prop
-    const newState = _.pick(nextProps, this.constructor.autoControlledProps)
+    // Props always win, update state with all auto controlled prop that were
+    // defined by the parent.
+    const newState = _.pick(
+      _.omitBy(nextProps, _.isUndefined),
+      this.constructor.autoControlledProps
+    )
+
     if (!_.isEmpty(newState)) this.setState(newState)
   }
 
@@ -147,9 +152,10 @@ export default class AutoControlledComponent extends Component {
       }
     }
 
-    // pick auto controlled props
-    // omit props from parent
-    let newState = _.omit(_.pick(maybeState, autoControlledProps), _.keys(this.props))
+    const parentDefinedProps = _.omitBy(this.props, _.isUndefined)
+
+    // Pick auto controlled props, omitting props defined by the parent.
+    let newState = _.omit(_.pick(maybeState, autoControlledProps), _.keys(parentDefinedProps))
 
     if (state) newState = { ...newState, ...state }
 
