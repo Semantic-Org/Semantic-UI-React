@@ -1,7 +1,7 @@
 import React from 'react'
 import { Message } from 'semantic-ui-react'
 
-const MessageColorExample = () => (
+const MessageExampleSize = () => (
   <div>
     <Message size='mini'>This is a mini message.</Message>
     <Message size='tiny'>This is a tiny message.</Message>
@@ -13,4 +13,4 @@ const MessageColorExample = () => (
   </div>
 )
 
-export default MessageColorExample
+export default MessageExampleSize

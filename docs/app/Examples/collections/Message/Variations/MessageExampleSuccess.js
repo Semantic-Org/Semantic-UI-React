@@ -1,7 +1,7 @@
 import React from 'react'
 import { Message } from 'semantic-ui-react'
 
-const MessageSuccessExample = () => (
+const MessageExampleSuccess = () => (
   <Message
     success
     header='Your user registration was successful'
@@ -9,4 +9,4 @@ const MessageSuccessExample = () => (
   />
 )
 
-export default MessageSuccessExample
+export default MessageExampleSuccess

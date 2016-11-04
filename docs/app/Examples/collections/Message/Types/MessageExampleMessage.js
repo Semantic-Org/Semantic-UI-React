@@ -1,7 +1,7 @@
 import React from 'react'
 import { Message } from 'semantic-ui-react'
 
-const MessageMessageExample = () => (
+const MessageExampleMessage = () => (
   <Message>
     <Message.Header>
       Changes in Service
@@ -12,4 +12,4 @@ const MessageMessageExample = () => (
   </Message>
 )
 
-export default MessageMessageExample
+export default MessageExampleMessage

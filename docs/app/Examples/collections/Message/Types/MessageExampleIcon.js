@@ -1,7 +1,7 @@
 import React from 'react'
 import { Message, Icon } from 'semantic-ui-react'
 
-const MessageIconExample = () => (
+const MessageExampleIcon = () => (
   <Message icon>
     <Icon name='circle notched' loading />
     <Message.Content>
@@ -11,4 +11,4 @@ const MessageIconExample = () => (
   </Message>
 )
 
-export default MessageIconExample
+export default MessageExampleIcon

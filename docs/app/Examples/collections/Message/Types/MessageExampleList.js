@@ -1,7 +1,7 @@
 import React from 'react'
 import { Message } from 'semantic-ui-react'
 
-const MessageListExample = () => (
+const MessageExampleList = () => (
   <Message>
     <Message.Header>New Site Features</Message.Header>
     <Message.List>
@@ -11,4 +11,4 @@ const MessageListExample = () => (
   </Message>
 )
 
-export default MessageListExample
+export default MessageExampleList

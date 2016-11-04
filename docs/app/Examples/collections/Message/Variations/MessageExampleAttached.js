@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button, Checkbox, Form, Icon, Message } from 'semantic-ui-react'
 
-const MessageAttachedExample = () => (
+const MessageExampleAttached = () => (
   <div>
     <Message
       attached
@@ -25,4 +25,4 @@ const MessageAttachedExample = () => (
   </div>
 )
 
-export default MessageAttachedExample
+export default MessageExampleAttached

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Message } from 'semantic-ui-react'
 
-const MessageWarningPropsExample = () => (
+const MessageExampleWarningProps = () => (
   <Message
     warning
     header='You must register before you can do that!'
@@ -9,4 +9,4 @@ const MessageWarningPropsExample = () => (
   />
 )
 
-export default MessageWarningPropsExample
+export default MessageExampleWarningProps

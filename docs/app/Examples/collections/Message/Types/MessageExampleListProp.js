@@ -6,11 +6,11 @@ const list = [
   'Drafts will now auto-save while writing',
 ]
 
-const MessageListPropExample = () => (
+const MessageExampleListProp = () => (
   <Message
     header='New Site Features'
     list={list}
   />
 )
 
-export default MessageListPropExample
+export default MessageExampleListProp

@@ -1,11 +1,11 @@
 import React from 'react'
 import { Message } from 'semantic-ui-react'
 
-const MessageFloatingPropsExample = () => (
+const MessageExampleFloatingProps = () => (
   <Message
     floating
     content='Way to go!'
   />
 )
 
-export default MessageFloatingPropsExample
+export default MessageExampleFloatingProps
