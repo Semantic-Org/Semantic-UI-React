@@ -726,6 +726,30 @@ describe('Dropdown Component', () => {
       dropdownMenuIsOpen()
     })
 
+    it('opens on arrow down when focused', () => {
+      wrapperMount(<Dropdown options={options} selection />)
+        // Note: This mousedown is necessary to get the Dropdown focused
+        // without it being open.
+        .simulate('mousedown')
+        .simulate('focus')
+
+      dropdownMenuIsClosed()
+      domEvent.keyDown(document, { key: 'ArrowDown' })
+      dropdownMenuIsOpen()
+    })
+
+    it('opens on space when focused', () => {
+      wrapperMount(<Dropdown options={options} selection />)
+        // Note: This mousedown is necessary to get the Dropdown focused
+        // without it being open.
+        .simulate('mousedown')
+        .simulate('focus')
+
+      dropdownMenuIsClosed()
+      domEvent.keyDown(document, { key: ' ' })
+      dropdownMenuIsOpen()
+    })
+
     it('does not open on arrow down when not focused', () => {
       wrapperMount(<Dropdown options={options} selection />)
 
