@@ -37,6 +37,9 @@ export default class Dimmer extends Component {
     /** Shorthand for primary content. */
     content: customPropTypes.contentShorthand,
 
+    /** A disabled dimmer cannot be activated */
+    disabled: PropTypes.bool,
+
     /** Called with (event, props) after user's click. */
     onClick: PropTypes.func,
 
@@ -75,6 +78,7 @@ export default class Dimmer extends Component {
       children,
       className,
       content,
+      disabled,
       inverted,
       page,
       simple,
@@ -82,24 +86,24 @@ export default class Dimmer extends Component {
 
     const classes = cx(
       'ui',
-      useKeyOnly(active, 'active'),
-      useKeyOnly(!active, 'disabled'),
+      useKeyOnly(active, 'active transition visible'),
+      useKeyOnly(disabled, 'disabled'),
       useKeyOnly(inverted, 'inverted'),
       useKeyOnly(page, 'page'),
       useKeyOnly(simple, 'simple'),
-      'dimmer transition visible',
+      'dimmer',
       className,
     )
     const rest = getUnhandledProps(Dimmer, this.props)
     const ElementType = getElementType(Dimmer, this.props)
 
     const childrenJSX = (children || content) && (
-        <div className='content'>
-          <div className='center' ref={center => (this.center = center)}>
-            { children || content }
-          </div>
+      <div className='content'>
+        <div className='center' ref={center => (this.center = center)}>
+          { children || content }
         </div>
-      )
+      </div>
+    )
 
     if (page) {
       return (

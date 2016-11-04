@@ -29,13 +29,13 @@ describe('Dimmer', () => {
   })
 
   describe('active', () => {
-    it('removes the `disabled` className when true', () => {
+    it('adds the `transition visible` className when true', () => {
       shallow(<Dimmer active />)
-        .should.not.have.className('disabled')
+        .should.have.className('transition visible')
     })
-    it('adds the `disabled` className when false', () => {
+    it('removes the `transition visible` className when false', () => {
       shallow(<Dimmer active={false} />)
-        .should.have.className('disabled')
+        .should.not.have.className('transition visible')
     })
   })
 
