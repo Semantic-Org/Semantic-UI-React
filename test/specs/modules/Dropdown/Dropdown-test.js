@@ -309,6 +309,20 @@ describe('Dropdown Component', () => {
         .at(1)
         .should.have.prop('selected', true)
     })
+    it('defaults to selected item when options are initially empty', () => {
+      const randomIndex = 1 + _.random(options.length - 2)
+      const value = options[randomIndex].value
+
+      wrapperShallow(<Dropdown options={[]} selection value={value} />)
+
+      wrapper
+        .setProps({ options, value })
+
+      wrapper
+        .find('DropdownItem')
+        .at(randomIndex)
+        .should.have.prop('selected', true)
+    })
     it('is null when all options disabled', () => {
       const disabledOptions = options.map((o) => ({ ...o, disabled: true }))
 

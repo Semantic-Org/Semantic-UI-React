@@ -295,6 +295,10 @@ export default class Dropdown extends Component {
       debug('value changed, setting', nextProps.value)
       this.setValue(nextProps.value)
     }
+
+    if (!_.isEqual(nextProps.options, this.props.options)) {
+      this.setSelectedIndex(undefined, nextProps.options)
+    }
   }
 
   componentDidUpdate(prevProps, prevState) { // eslint-disable-line complexity
@@ -584,8 +588,8 @@ export default class Dropdown extends Component {
 
   // There are times when we need to calculate the options based on a value
   // that hasn't yet been persisted to state.
-  getMenuOptions = (value = this.state.value) => {
-    const { multiple, search, allowAdditions, additionPosition, additionLabel, options } = this.props
+  getMenuOptions = (value = this.state.value, options = this.props.options) => {
+    const { multiple, search, allowAdditions, additionPosition, additionLabel } = this.props
     const { searchQuery } = this.state
 
     let filteredOptions = options
@@ -646,11 +650,12 @@ export default class Dropdown extends Component {
 
   getItemByValue = (value) => {
     const { options } = this.props
+
     return _.find(options, { value })
   }
 
-  getMenuItemIndexByValue = (value) => {
-    const options = this.getMenuOptions()
+  getMenuItemIndexByValue = (value, givenOptions) => {
+    const options = givenOptions || this.getMenuOptions()
 
     return _.findIndex(options, ['value', value])
   }
@@ -662,39 +667,51 @@ export default class Dropdown extends Component {
   setValue = (value) => {
     debug('setValue()')
     debug('value', value)
-    const { multiple } = this.props
-    const { selectedIndex } = this.state
-    const options = this.getMenuOptions(value)
-    const enabledIndicies = this.getEnabledIndices(options)
     const newState = {
       searchQuery: '',
     }
 
+    this.trySetState({ value }, newState)
+    this.setSelectedIndex(value)
+  }
+
+  setSelectedIndex = (value = this.state.value, optionsProps = this.props.options) => {
+    const { multiple } = this.props
+    const { selectedIndex } = this.state
+    const options = this.getMenuOptions(value, optionsProps)
+    const enabledIndicies = this.getEnabledIndices(options)
+
+    let newSelectedIndex
+
     // update the selected index
-    if (!selectedIndex) {
+    if (!selectedIndex || selectedIndex < 0) {
       const firstIndex = enabledIndicies[0]
 
       // Select the currently active item, if none, use the first item.
       // Multiple selects remove active items from the list,
       // their initial selected index should be 0.
-      newState.selectedIndex = multiple
+      newSelectedIndex = multiple
         ? firstIndex
-        : this.getMenuItemIndexByValue(value || _.get(options, `[${firstIndex}].value`))
+        : this.getMenuItemIndexByValue(value, options) || enabledIndicies[0]
     } else if (multiple) {
       // multiple selects remove options from the menu as they are made active
       // keep the selected index within range of the remaining items
       if (selectedIndex >= options.length - 1) {
-        newState.selectedIndex = enabledIndicies[enabledIndicies.length - 1]
+        newSelectedIndex = enabledIndicies[enabledIndicies.length - 1]
       }
     } else {
-      const activeIndex = this.getMenuItemIndexByValue(value)
+      const activeIndex = this.getMenuItemIndexByValue(value, options)
 
       // regular selects can only have one active item
       // set the selected index to the currently active item
-      newState.selectedIndex = _.includes(enabledIndicies, activeIndex) ? activeIndex : undefined
+      newSelectedIndex = _.includes(enabledIndicies, activeIndex) ? activeIndex : undefined
     }
 
-    this.trySetState({ value }, newState)
+    if (!newSelectedIndex || newSelectedIndex < 0) {
+      newSelectedIndex = enabledIndicies[0]
+    }
+
+    this.setState({ selectedIndex: newSelectedIndex })
   }
 
   handleLabelRemove = (e, labelProps) => {
