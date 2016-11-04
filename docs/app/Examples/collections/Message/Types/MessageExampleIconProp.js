@@ -1,7 +1,7 @@
 import React from 'react'
 import { Message } from 'semantic-ui-react'
 
-const MessageIconPropExample = () => (
+const MessageExampleIconProp = () => (
   <Message
     icon='inbox'
     header='Have you heard about our mailing list?'
@@ -9,4 +9,4 @@ const MessageIconPropExample = () => (
   />
 )
 
-export default MessageIconPropExample
+export default MessageExampleIconProp

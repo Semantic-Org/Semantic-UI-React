@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Message } from 'semantic-ui-react'
 
-export default class MessageDismissableBlockExample extends Component {
+class MessageExampleDismissibleBlock extends Component {
   state = { visible: true }
 
   handleDismiss = () => {
@@ -33,3 +33,5 @@ export default class MessageDismissableBlockExample extends Component {
     )
   }
 }
+
+export default MessageExampleDismissibleBlock

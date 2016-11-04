@@ -1,7 +1,7 @@
 import React from 'react'
 import { Message } from 'semantic-ui-react'
 
-const MessageInfoPropsExample = () => (
+const MessageExampleInfoProps = () => (
   <Message
     info
     header='Was this what you wanted?'
@@ -9,4 +9,4 @@ const MessageInfoPropsExample = () => (
   />
 )
 
-export default MessageInfoPropsExample
+export default MessageExampleInfoProps

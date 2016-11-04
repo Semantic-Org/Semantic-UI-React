@@ -1,10 +1,10 @@
 import React from 'react'
 import { Message } from 'semantic-ui-react'
 
-const MessageHiddenExample = () => (
+const MessageExampleHidden = () => (
   <Message hidden>
-    You can always see me
+    You can't see me
   </Message>
 )
 
-export default MessageHiddenExample
+export default MessageExampleHidden

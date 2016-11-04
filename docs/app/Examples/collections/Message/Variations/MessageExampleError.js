@@ -1,7 +1,7 @@
 import React from 'react'
 import { Message } from 'semantic-ui-react'
 
-const MessageErrorExample = () => (
+const MessageExampleError = () => (
   <Message
     error
     header='There was some errors with your submission'
@@ -12,4 +12,4 @@ const MessageErrorExample = () => (
   />
 )
 
-export default MessageErrorExample
+export default MessageExampleError
