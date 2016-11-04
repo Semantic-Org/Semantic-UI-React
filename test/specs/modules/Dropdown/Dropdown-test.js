@@ -129,6 +129,32 @@ describe('Dropdown Component', () => {
     dropdownMenuIsOpen()
   })
 
+  describe('disabled', () => {
+    it('does not open on click', () => {
+      wrapperMount(<Dropdown options={options} disabled />)
+
+      dropdownMenuIsClosed()
+      wrapper.simulate('click')
+      dropdownMenuIsClosed()
+    })
+
+    it('does not open on click with pointer events enabled', () => {
+      wrapperMount(<Dropdown options={options} disabled style={{ pointerEvents: 'all' }} />)
+
+      dropdownMenuIsClosed()
+      wrapper.simulate('click')
+      dropdownMenuIsClosed()
+    })
+
+    it('does not open on focus', () => {
+      wrapperMount(<Dropdown options={options} disabled />)
+
+      dropdownMenuIsClosed()
+      wrapper.simulate('focus')
+      dropdownMenuIsClosed()
+    })
+  })
+
   describe('handleBlur', () => {
     it('passes the event to the onBlur prop', () => {
       const spy = sandbox.spy()
@@ -769,6 +795,34 @@ describe('Dropdown Component', () => {
     })
   })
 
+  describe('onOpen', () => {
+    it('called when dropdown would open', () => {
+      const onOpen = sandbox.spy()
+      wrapperMount(<Dropdown options={options} selection onOpen={onOpen} />)
+
+      wrapper.simulate('click')
+      onOpen.should.have.been.calledOnce()
+    })
+
+    it('not called when dropdown would not open', () => {
+      const onOpen = sandbox.spy()
+      wrapperMount(<Dropdown options={options} selection onOpen={onOpen} />)
+
+      domEvent.keyDown(document, { key: 'ArrowDown' })
+      onOpen.should.not.have.been.calledOnce()
+    })
+  })
+
+  describe('onClose', () => {
+    it('called when dropdown would close', () => {
+      const onClose = sandbox.spy()
+      wrapperMount(<Dropdown options={options} selection defaultOpen onClose={onClose} />)
+
+      wrapper.simulate('click')
+      onClose.should.have.been.calledOnce()
+    })
+  })
+
   describe('open', () => {
     it('defaultOpen opens the menu when true', () => {
       wrapperShallow(<Dropdown options={options} selection defaultOpen />)
@@ -1209,6 +1263,12 @@ describe('Dropdown Component', () => {
       wrapperShallow(<Dropdown options={options} selection search />)
         .find('input.search')
         .should.have.prop('tabIndex', '0')
+    })
+
+    it('has a search input props-defined tabIndex', () => {
+      wrapperShallow(<Dropdown options={options} selection search tabIndex='123' />)
+        .find('input.search')
+        .should.have.prop('tabIndex', '123')
     })
 
     it('clears the search query when an item is selected', () => {

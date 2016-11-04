@@ -146,6 +146,12 @@ export default class Dropdown extends Component {
     /** Called with the React Synthetic Event and { name, value } on change. */
     onChange: PropTypes.func,
 
+    /** Called when a close event happens */
+    onClose: PropTypes.func,
+
+     /** Called when an open event happens */
+    onOpen: PropTypes.func,
+
     /** Called with the React Synthetic Event and current value on search input change. */
     onSearchChange: PropTypes.func,
 
@@ -203,6 +209,9 @@ export default class Dropdown extends Component {
     /** A simple dropdown can open without Javascript. */
     simple: PropTypes.bool,
 
+    /** A dropdown can receive focus. */
+    tabIndex: PropTypes.string,
+
     /** The text displayed in the dropdown, usually for the active item. */
     text: PropTypes.string,
 
@@ -229,6 +238,7 @@ export default class Dropdown extends Component {
     additionPosition: 'top',
     noResultsMessage: 'No results found.',
     selectOnBlur: true,
+    tabIndex: '0',
   }
 
   static autoControlledProps = [
@@ -390,19 +400,25 @@ export default class Dropdown extends Component {
 
   openOnSpace = (e) => {
     debug('openOnSpace()')
+
     if (keyboardKey.getCode(e) !== keyboardKey.Spacebar) return
     if (this.state.open) return
+
     e.preventDefault()
-    this.trySetState({ open: true })
+
+    this.open(e)
   }
 
   openOnArrow = (e) => {
-    const code = keyboardKey.getCode(e)
     debug('openOnArrow()')
+
+    const code = keyboardKey.getCode(e)
     if (!_.includes([keyboardKey.ArrowDown, keyboardKey.ArrowUp], code)) return
     if (this.state.open) return
+
     e.preventDefault()
-    this.trySetState({ open: true })
+
+    this.open(e)
   }
 
   selectHighlightedItem = (e) => {
@@ -490,7 +506,7 @@ export default class Dropdown extends Component {
     if (onClick) onClick(e)
     // prevent closeOnDocumentClick()
     e.stopPropagation()
-    this.toggle()
+    this.toggle(e)
   }
 
   handleItemClick = (e, value) => {
@@ -738,16 +754,23 @@ export default class Dropdown extends Component {
     }
   }
 
-  open = () => {
+  open = (e) => {
     debug('open()')
-    const { search } = this.props
+
+    const { disabled, onOpen, search } = this.props
+    if (disabled) return
     if (search) this._search.focus()
+    if (onOpen) onOpen(e, this.props)
 
     this.trySetState({ open: true })
   }
 
-  close = () => {
+  close = (e) => {
     debug('close()')
+
+    const { onClose } = this.props
+    if (onClose) onClose(e, this.props)
+
     this.trySetState({ open: false })
   }
 
@@ -763,7 +786,7 @@ export default class Dropdown extends Component {
     this.setState({ focus: false })
   }
 
-  toggle = () => this.state.open ? this.close() : this.open()
+  toggle = (e) => this.state.open ? this.close(e) : this.open(e)
 
   // ----------------------------------------
   // Render
@@ -814,7 +837,7 @@ export default class Dropdown extends Component {
   }
 
   renderSearchInput = () => {
-    const { search, name } = this.props
+    const { search, name, tabIndex } = this.props
     const { searchQuery } = this.state
 
     if (!search) return null
@@ -835,7 +858,7 @@ export default class Dropdown extends Component {
         className='search'
         name={[name, 'search'].join('-')}
         autoComplete='off'
-        tabIndex='0'
+        tabIndex={tabIndex}
         style={{ width: searchWidth }}
         ref={c => (this._search = c)}
       />
@@ -948,6 +971,7 @@ export default class Dropdown extends Component {
       error,
       disabled,
       scrolling,
+      tabIndex,
       trigger,
     } = this.props
 
@@ -994,7 +1018,7 @@ export default class Dropdown extends Component {
         onMouseDown={this.handleMouseDown}
         onFocus={this.handleFocus}
         onChange={this.handleChange}
-        tabIndex={search ? undefined : 0}
+        tabIndex={(disabled || search) ? undefined : tabIndex}
         ref={c => (this._dropdown = c)}
       >
         {this.renderHiddenInput()}
