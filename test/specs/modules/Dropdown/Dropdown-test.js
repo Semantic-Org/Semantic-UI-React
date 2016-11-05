@@ -129,6 +129,32 @@ describe('Dropdown Component', () => {
     dropdownMenuIsOpen()
   })
 
+  describe('disabled', () => {
+    it('does not open on click', () => {
+      wrapperMount(<Dropdown options={options} disabled />)
+
+      dropdownMenuIsClosed()
+      wrapper.simulate('click')
+      dropdownMenuIsClosed()
+    })
+
+    it('does not open on click with pointer events enabled', () => {
+      wrapperMount(<Dropdown options={options} disabled style={{ pointerEvents: 'all' }} />)
+
+      dropdownMenuIsClosed()
+      wrapper.simulate('click')
+      dropdownMenuIsClosed()
+    })
+
+    it('does not open on focus', () => {
+      wrapperMount(<Dropdown options={options} disabled />)
+
+      dropdownMenuIsClosed()
+      wrapper.simulate('focus')
+      dropdownMenuIsClosed()
+    })
+  })
+
   describe('handleBlur', () => {
     it('passes the event to the onBlur prop', () => {
       const spy = sandbox.spy()
@@ -281,6 +307,20 @@ describe('Dropdown Component', () => {
       wrapper
         .find('DropdownItem')
         .at(1)
+        .should.have.prop('selected', true)
+    })
+    it('defaults to selected item when options are initially empty', () => {
+      const randomIndex = 1 + _.random(options.length - 2)
+      const value = options[randomIndex].value
+
+      wrapperShallow(<Dropdown options={[]} selection value={value} />)
+
+      wrapper
+        .setProps({ options, value })
+
+      wrapper
+        .find('DropdownItem')
+        .at(randomIndex)
         .should.have.prop('selected', true)
     })
     it('is null when all options disabled', () => {
@@ -686,6 +726,30 @@ describe('Dropdown Component', () => {
       dropdownMenuIsOpen()
     })
 
+    it('opens on arrow down when focused', () => {
+      wrapperMount(<Dropdown options={options} selection />)
+        // Note: This mousedown is necessary to get the Dropdown focused
+        // without it being open.
+        .simulate('mousedown')
+        .simulate('focus')
+
+      dropdownMenuIsClosed()
+      domEvent.keyDown(document, { key: 'ArrowDown' })
+      dropdownMenuIsOpen()
+    })
+
+    it('opens on space when focused', () => {
+      wrapperMount(<Dropdown options={options} selection />)
+        // Note: This mousedown is necessary to get the Dropdown focused
+        // without it being open.
+        .simulate('mousedown')
+        .simulate('focus')
+
+      dropdownMenuIsClosed()
+      domEvent.keyDown(document, { key: ' ' })
+      dropdownMenuIsOpen()
+    })
+
     it('does not open on arrow down when not focused', () => {
       wrapperMount(<Dropdown options={options} selection />)
 
@@ -766,6 +830,34 @@ describe('Dropdown Component', () => {
       // esc
       domEvent.keyDown(document, { key: 'Escape' })
       dropdownMenuIsClosed()
+    })
+  })
+
+  describe('onOpen', () => {
+    it('called when dropdown would open', () => {
+      const onOpen = sandbox.spy()
+      wrapperMount(<Dropdown options={options} selection onOpen={onOpen} />)
+
+      wrapper.simulate('click')
+      onOpen.should.have.been.calledOnce()
+    })
+
+    it('not called when dropdown would not open', () => {
+      const onOpen = sandbox.spy()
+      wrapperMount(<Dropdown options={options} selection onOpen={onOpen} />)
+
+      domEvent.keyDown(document, { key: 'ArrowDown' })
+      onOpen.should.not.have.been.calledOnce()
+    })
+  })
+
+  describe('onClose', () => {
+    it('called when dropdown would close', () => {
+      const onClose = sandbox.spy()
+      wrapperMount(<Dropdown options={options} selection defaultOpen onClose={onClose} />)
+
+      wrapper.simulate('click')
+      onClose.should.have.been.calledOnce()
     })
   })
 
@@ -1209,6 +1301,12 @@ describe('Dropdown Component', () => {
       wrapperShallow(<Dropdown options={options} selection search />)
         .find('input.search')
         .should.have.prop('tabIndex', '0')
+    })
+
+    it('has a search input props-defined tabIndex', () => {
+      wrapperShallow(<Dropdown options={options} selection search tabIndex='123' />)
+        .find('input.search')
+        .should.have.prop('tabIndex', '123')
     })
 
     it('clears the search query when an item is selected', () => {
