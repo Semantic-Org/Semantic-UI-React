@@ -1,5 +1,57 @@
 # Change Log
 
+## [v0.58.3](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.58.3) (2016-11-05)
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.58.2...v0.58.3)
+
+**Fixed bugs:**
+
+- Prevent dropdown from opening when disabled [\#791](https://github.com/Semantic-Org/Semantic-UI-React/issues/791)
+- Docs site is down [\#786](https://github.com/Semantic-Org/Semantic-UI-React/issues/786)
+
+**Closed issues:**
+
+- \(question\) how to open modal programmatically? [\#793](https://github.com/Semantic-Org/Semantic-UI-React/issues/793)
+
+**Merged pull requests:**
+
+- feat\(Dropdown\): Prevent open when disabled [\#792](https://github.com/Semantic-Org/Semantic-UI-React/pull/792) ([jcarbo](https://github.com/jcarbo))
+- style\(Message\):  update docs to the latest standards [\#789](https://github.com/Semantic-Org/Semantic-UI-React/pull/789) ([dpkwhan](https://github.com/dpkwhan))
+- feat\(Image\): Render children appropriately [\#784](https://github.com/Semantic-Org/Semantic-UI-React/pull/784) ([jcarbo](https://github.com/jcarbo))
+
+## [v0.58.2](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.58.2) (2016-11-02)
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.58.1...v0.58.2)
+
+**Fixed bugs:**
+
+- Dimmer - Inactive dimmer still overlays segment contents, making them unclickable [\#780](https://github.com/Semantic-Org/Semantic-UI-React/issues/780)
+
+**Merged pull requests:**
+
+- docs\(Icon\): correct `link` propType description typo [\#785](https://github.com/Semantic-Org/Semantic-UI-React/pull/785) ([Kamps-Duac](https://github.com/Kamps-Duac))
+- fix\(Dimmer\): allow children to be clicked [\#782](https://github.com/Semantic-Org/Semantic-UI-React/pull/782) ([ben174](https://github.com/ben174))
+
+## [v0.58.1](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.58.1) (2016-10-31)
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.58.0...v0.58.1)
+
+**Implemented enhancements:**
+
+- Dropdown enhancements: Better remote API support, item customization [\#416](https://github.com/Semantic-Org/Semantic-UI-React/issues/416)
+- \<Dimmer /\> Component [\#190](https://github.com/Semantic-Org/Semantic-UI-React/issues/190)
+- feat\(Dimmer\): Add component [\#447](https://github.com/Semantic-Org/Semantic-UI-React/pull/447) ([layershifter](https://github.com/layershifter))
+
+**Closed issues:**
+
+- class !important issue [\#777](https://github.com/Semantic-Org/Semantic-UI-React/issues/777)
+
+**Merged pull requests:**
+
+- docs\(Table\): update docs to the latest standards [\#771](https://github.com/Semantic-Org/Semantic-UI-React/pull/771) ([dpkwhan](https://github.com/dpkwhan))
+- babel-standalone@6.18.1 untested ⚠️ [\#768](https://github.com/Semantic-Org/Semantic-UI-React/pull/768) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+- docs\(Form\): update to latest standards and make minor fixes  [\#767](https://github.com/Semantic-Org/Semantic-UI-React/pull/767) ([dpkwhan](https://github.com/dpkwhan))
+- react-ace@3.7.0 untested ⚠️ [\#766](https://github.com/Semantic-Org/Semantic-UI-React/pull/766) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+- docs\(usage\): Add usage section to docs [\#759](https://github.com/Semantic-Org/Semantic-UI-React/pull/759) ([lewisblackwood](https://github.com/lewisblackwood))
+- feat\(Dropdown\): support additionLabel components [\#757](https://github.com/Semantic-Org/Semantic-UI-React/pull/757) ([jayphelps](https://github.com/jayphelps))
+
 ## [v0.58.0](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.58.0) (2016-10-28)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.57.1...v0.58.0)
 
