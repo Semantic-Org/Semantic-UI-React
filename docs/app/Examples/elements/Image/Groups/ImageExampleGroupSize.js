@@ -1,7 +1,7 @@
 import React from 'react'
-import { Image } from 'semantic-ui-react'
+import { Divider, Image } from 'semantic-ui-react'
 
-const src = 'http://semantic-ui.com/images/wireframe/image.png'
+const src = '/assets/images/wireframe/image.png'
 
 const ImageExampleGroupSize = () => (
   <div>
@@ -11,7 +11,7 @@ const ImageExampleGroupSize = () => (
       <Image src={src} />
       <Image src={src} />
     </Image.Group>
-    <br />
+    <Divider hidden />
     <Image.Group size='small'>
       <Image src={src} />
       <Image src={src} />

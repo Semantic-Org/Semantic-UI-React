@@ -1,24 +1,24 @@
 import React from 'react'
-import { Image } from 'semantic-ui-react'
+import { Divider, Image } from 'semantic-ui-react'
 
-const src = 'http://semantic-ui.com/images/wireframe/image.png'
+const src = '/assets/images/wireframe/image.png'
 
 const ImageExampleSize = () => (
   <div>
     <Image src={src} size='mini' />
-    <br />
+    <Divider hidden />
     <Image src={src} size='tiny' />
-    <br />
+    <Divider hidden />
     <Image src={src} size='small' />
-    <br />
+    <Divider hidden />
     <Image src={src} size='medium' />
-    <br />
+    <Divider hidden />
     <Image src={src} size='large' />
-    <br />
+    <Divider hidden />
     <Image src={src} size='big' />
-    <br />
+    <Divider hidden />
     <Image src={src} size='huge' />
-    <br />
+    <Divider hidden />
     <Image src={src} size='massive' />
   </div>
 )

@@ -28,6 +28,7 @@ function Image(props) {
     avatar,
     bordered,
     centered,
+    children,
     className,
     dimmer,
     disabled,
@@ -67,10 +68,14 @@ function Image(props) {
   )
   const rest = getUnhandledProps(Image, props)
   const ElementType = getElementType(Image, props, () => {
-    if (dimmer || label || wrapped) return 'div'
+    if (dimmer || label || wrapped || children) return 'div'
   })
 
-  const rootProps = { className: classes, ...rest }
+  if (children) {
+    return <ElementType {...rest} className={classes}>{children}</ElementType>
+  }
+
+  const rootProps = { ...rest, className: classes }
   const imgTagProps = { alt, src, height, width }
 
   if (ElementType === 'img') return <ElementType {...rootProps} {...imgTagProps} />
@@ -113,6 +118,9 @@ Image.propTypes = {
 
   /** An image can appear centered in a content block. */
   centered: PropTypes.bool,
+
+  /** Primary content. */
+  children: PropTypes.node,
 
   /** Additional classes. */
   className: PropTypes.string,

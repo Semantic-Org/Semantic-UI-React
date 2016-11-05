@@ -1,8 +1,8 @@
 import React from 'react'
 import { Segment, Image } from 'semantic-ui-react'
 
-const src1 = 'http://semantic-ui.com/images/wireframe/image.png'
-const src2 = 'http://semantic-ui.com/images/wireframe/image-text.png'
+const src1 = '/assets/images/wireframe/image.png'
+const src2 = '/assets/images/wireframe/image-text.png'
 
 const ImageExampleCentered = () => (
   <Segment>

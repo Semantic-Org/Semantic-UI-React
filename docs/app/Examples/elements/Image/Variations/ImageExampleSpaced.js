@@ -1,7 +1,7 @@
 import React from 'react'
 import { Segment, Image } from 'semantic-ui-react'
 
-const src = 'http://semantic-ui.com/images/wireframe/image.png'
+const src = '/assets/images/wireframe/image.png'
 
 const ImageExampleSpaced = () => (
   <div>

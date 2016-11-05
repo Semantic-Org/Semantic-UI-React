@@ -58,32 +58,32 @@ export const friendOptions = [
   {
     text: 'Jenny Hess',
     value: 'Jenny Hess',
-    image: { avatar: true, src: `${__BASE__}assets/images/avatar/small/jenny.jpg` },
+    image: { avatar: true, src: '/assets/images/avatar/small/jenny.jpg' },
   },
   {
     text: 'Elliot Fu',
     value: 'Elliot Fu',
-    image: { avatar: true, src: `${__BASE__}assets/images/avatar/small/elliot.jpg` },
+    image: { avatar: true, src: '/assets/images/avatar/small/elliot.jpg' },
   },
   {
     text: 'Stevie Feliciano',
     value: 'Stevie Feliciano',
-    image: { avatar: true, src: `${__BASE__}assets/images/avatar/small/stevie.jpg` },
+    image: { avatar: true, src: '/assets/images/avatar/small/stevie.jpg' },
   },
   {
     text: 'Christian',
     value: 'Christian',
-    image: { avatar: true, src: `${__BASE__}assets/images/avatar/small/christian.jpg` },
+    image: { avatar: true, src: '/assets/images/avatar/small/christian.jpg' },
   },
   {
     text: 'Matt',
     value: 'Matt',
-    image: { avatar: true, src: `${__BASE__}assets/images/avatar/small/matt.jpg` },
+    image: { avatar: true, src: '/assets/images/avatar/small/matt.jpg' },
   },
   {
     text: 'Justen Kitsune',
     value: 'Justen Kitsune',
-    image: { avatar: true, src: `${__BASE__}assets/images/avatar/small/justen.jpg` },
+    image: { avatar: true, src: '/assets/images/avatar/small/justen.jpg' },
   },
 ]
 
