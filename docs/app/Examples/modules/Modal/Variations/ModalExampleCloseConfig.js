@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Icon, Modal } from 'semantic-ui-react'
+import { Button, Modal } from 'semantic-ui-react'
 
 class ModalCloseConfigExample extends Component {
   state = { open: false }
@@ -32,9 +32,7 @@ class ModalCloseConfigExample extends Component {
           </Modal.Content>
           <Modal.Actions>
             <Button negative>No</Button>
-            <Button positive labelPosition='right' icon>
-              Yes <Icon name='checkmark' />
-            </Button>
+            <Button positive labelPosition='right' icon='checkmark' content='Yes' />
           </Modal.Actions>
         </Modal>
       </div>

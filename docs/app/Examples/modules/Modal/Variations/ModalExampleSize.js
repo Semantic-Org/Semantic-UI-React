@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Icon, Modal } from 'semantic-ui-react'
+import { Button, Modal } from 'semantic-ui-react'
 
 class ModalSizeExample extends Component {
   state = { open: false }
@@ -27,9 +27,7 @@ class ModalSizeExample extends Component {
             <Button negative>
               No
             </Button>
-            <Button positive icon labeled='right'>
-              Yes <Icon name='checkmark' />
-            </Button>
+            <Button positive icon='checkmark' labelPosition='right' content='Yes' />
           </Modal.Actions>
         </Modal>
       </div>
