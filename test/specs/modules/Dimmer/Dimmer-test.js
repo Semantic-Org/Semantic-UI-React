@@ -13,7 +13,10 @@ describe('Dimmer', () => {
   common.hasUIClassName(Dimmer)
   common.rendersChildren(Dimmer)
 
-  common.propKeyOnlyToClassName(Dimmer, 'active')
+  common.propKeyOnlyToClassName(Dimmer, 'active', {
+    className: 'active transition visible',
+  })
+  common.propKeyOnlyToClassName(Dimmer, 'disabled')
   common.propKeyOnlyToClassName(Dimmer, 'inverted')
   common.propKeyOnlyToClassName(Dimmer, 'simple')
 
@@ -25,17 +28,6 @@ describe('Dimmer', () => {
 
       shallow(<Dimmer content={text} />)
         .should.contain.text(text)
-    })
-  })
-
-  describe('active', () => {
-    it('adds the `transition visible` className when true', () => {
-      shallow(<Dimmer active />)
-        .should.have.className('transition visible')
-    })
-    it('removes the `transition visible` className when false', () => {
-      shallow(<Dimmer active={false} />)
-        .should.not.have.className('transition visible')
     })
   })
 
