@@ -39,9 +39,7 @@ class ModalDimmerExample extends Component {
             <Button color='black' onClick={this.close}>
               Nope
             </Button>
-            <Button positive icon labelPosition='right' onClick={this.close}>
-              Yep, that's me <Icon name='checkmark' />
-            </Button>
+            <Button positive icon='checkmark' labelPosition='right' content="Yep, that's me" onClick={this.close} />
           </Modal.Actions>
         </Modal>
       </div>
