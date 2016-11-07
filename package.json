@@ -1,6 +1,6 @@
 {
   "name": "semantic-ui-react",
-  "version": "0.58.3",
+  "version": "0.59.0",
   "description": "The official Semantic-UI-React integration.",
   "main": "dist/commonjs/index.js",
   "files": [
