@@ -149,7 +149,7 @@ export default class Dropdown extends Component {
     /** Called when a close event happens */
     onClose: PropTypes.func,
 
-     /** Called when an open event happens */
+    /** Called when an open event happens */
     onOpen: PropTypes.func,
 
     /** Called with the React Synthetic Event and current value on search input change. */
@@ -513,7 +513,7 @@ export default class Dropdown extends Component {
     this.toggle(e)
   }
 
-  handleItemClick = (e, value) => {
+  handleItemClick = (e, { value }) => {
     debug('handleItemClick()')
     debug(value)
     const { multiple, name, onAddItem, options } = this.props
