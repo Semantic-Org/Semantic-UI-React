@@ -1,5 +1,23 @@
 # Change Log
 
+## [v0.59.0](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.59.0) (2016-11-07)
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.58.3...v0.59.0)
+
+**Fixed bugs:**
+
+- docs for DropdownItem incorrectly list `text` as a onClick param [\#804](https://github.com/Semantic-Org/Semantic-UI-React/issues/804)
+
+**Closed issues:**
+
+- Search Results Not Visible With Default Example [\#803](https://github.com/Semantic-Org/Semantic-UI-React/issues/803)
+- Library request in cdnjs. [\#778](https://github.com/Semantic-Org/Semantic-UI-React/issues/778)
+
+**Merged pull requests:**
+
+- breaking\(DropdownItem\): callback with \(e, props\) onClick [\#805](https://github.com/Semantic-Org/Semantic-UI-React/pull/805) ([levithomason](https://github.com/levithomason))
+- docs\(Modal\): fix icon prop in Button, fix labeled prop, add index.js and trailing . in description [\#800](https://github.com/Semantic-Org/Semantic-UI-React/pull/800) ([dpkwhan](https://github.com/dpkwhan))
+- fix\(Dimmer\): Fix "simple" usage, add disabled prop [\#795](https://github.com/Semantic-Org/Semantic-UI-React/pull/795) ([jcarbo](https://github.com/jcarbo))
+
 ## [v0.58.3](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.58.3) (2016-11-05)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.58.2...v0.58.3)
 
@@ -148,7 +166,6 @@
 **Closed issues:**
 
 - Segment does not support "middle" attachment [\#716](https://github.com/Semantic-Org/Semantic-UI-React/issues/716)
-- Modal relies on document as default renderNode, breaks SSR [\#712](https://github.com/Semantic-Org/Semantic-UI-React/issues/712)
 - fix\(Dropdown\) Call Modal onClose handler when clicking on dropdown item cross icon [\#708](https://github.com/Semantic-Org/Semantic-UI-React/issues/708)
 
 **Merged pull requests:**
