@@ -54,18 +54,18 @@ describe('DropdownItem', () => {
       expect(click).to.not.throw()
     })
 
-    it('is called with (e, value) when clicked', () => {
+    it('is called with (e, props) when clicked', () => {
       const spy = sandbox.spy()
 
       const value = faker.hacker.phrase()
       const event = { target: null }
-      const props = { value }
+      const props = { value, foo: 'bar' }
 
       shallow(<DropdownItem onClick={spy} {...props} />)
         .simulate('click', event)
 
       spy.should.have.been.calledOnce()
-      spy.should.have.been.calledWithMatch(event, value)
+      spy.should.have.been.calledWithMatch(event, props)
     })
   })
 })
