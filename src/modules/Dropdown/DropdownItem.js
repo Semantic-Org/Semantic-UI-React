@@ -65,7 +65,7 @@ export default class DropdownItem extends Component {
       PropTypes.string,
     ]),
 
-    /** Called on click with (event, value, text). */
+    /** Called on click with (event, props). */
     onClick: PropTypes.func,
   }
 
@@ -76,9 +76,9 @@ export default class DropdownItem extends Component {
   }
 
   handleClick = (e) => {
-    const { onClick, value } = this.props
+    const { onClick } = this.props
 
-    if (onClick) onClick(e, value)
+    if (onClick) onClick(e, this.props)
   }
 
   render() {
