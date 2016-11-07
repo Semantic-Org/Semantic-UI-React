@@ -6,6 +6,7 @@ import {
   AutoControlledComponent as Component,
   customPropTypes,
   keyboardKey,
+  isBrowser,
   makeDebugger,
   META,
 } from '../../lib'
@@ -112,6 +113,7 @@ class Portal extends Component {
     closeOnDocumentClick: true,
     closeOnEscape: true,
     openOnTriggerClick: true,
+    mountNode: isBrowser ? document.body : null,
   }
 
   static autoControlledProps = [
@@ -322,6 +324,9 @@ class Portal extends Component {
 
     this.mountPortal()
 
+    // Server side rendering
+    if (!isBrowser) return null
+
     this.node.className = className || ''
 
     ReactDOM.unstable_renderSubtreeIntoContainer(
@@ -337,11 +342,11 @@ class Portal extends Component {
   }
 
   mountPortal = () => {
-    if (this.node) return
+    if (!isBrowser || this.node) return
 
     debug('mountPortal()')
 
-    const { mountNode = document.body, prepend } = this.props
+    const { mountNode, prepend } = this.props
 
     this.node = document.createElement('div')
 
@@ -359,7 +364,7 @@ class Portal extends Component {
   }
 
   unmountPortal = () => {
-    if (!this.node) return
+    if (!isBrowser || !this.node) return
 
     debug('unmountPortal()')
 
