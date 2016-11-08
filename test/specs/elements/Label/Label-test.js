@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import faker from 'faker'
 import React from 'react'
 
@@ -36,6 +37,11 @@ describe('Label', () => {
     propKey: 'detail',
     ShorthandComponent: LabelDetail,
     mapValueToProps: val => ({ content: val }),
+  })
+
+  common.implementsIconProp(Label, {
+    propKey: 'removeIcon',
+    requiredProps: { onRemove: _.noop },
   })
 
   it('is a div by default', () => {

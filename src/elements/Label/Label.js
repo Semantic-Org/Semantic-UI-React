@@ -106,8 +106,8 @@ export default class Label extends Component {
     /** Adds an "x" icon, called with (event, props) when "x" is clicked. */
     onRemove: PropTypes.func,
 
-    /** Add an "x" icon that calls onRemove when clicked. */
-    removable: PropTypes.bool,
+    /** Props for remove icon. */
+    removeIcon: customPropTypes.itemShorthand,
 
     /** A label can appear as a ribbon attaching itself to an element. */
     ribbon: PropTypes.oneOfType([
@@ -120,6 +120,10 @@ export default class Label extends Component {
 
     /** A label can appear as a tag. */
     tag: PropTypes.bool,
+  }
+
+  static defaultProps = {
+    removeIcon: 'delete',
   }
 
   static _meta = _meta
@@ -158,7 +162,7 @@ export default class Label extends Component {
       image,
       onRemove,
       pointing,
-      removable,
+      removeIcon,
       ribbon,
       size,
       tag,
@@ -200,9 +204,7 @@ export default class Label extends Component {
         {typeof image !== 'boolean' && Image.create(image)}
         {content}
         {createShorthand(LabelDetail, val => ({ content: val }), detail)}
-        {(removable || onRemove) && (
-          <Icon name='delete' onClick={this.handleRemove} />
-        )}
+        {onRemove && Icon.create(removeIcon, { onClick: this.handleRemove })}
       </ElementType>
     )
   }
