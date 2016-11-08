@@ -39,6 +39,11 @@ const DropdownUsageExamples = () => (
     <ComponentExample
       examplePath='modules/Dropdown/Usage/DropdownExampleTriggerImage'
     />
+    <ComponentExample
+      title='Multiple Custom Label'
+      description='A "multiple" dropdown can render customized label for selected items.'
+      examplePath='modules/Dropdown/Usage/DropdownExampleMultipleCustomLabel'
+    />
 
   </ExampleSection>
 )

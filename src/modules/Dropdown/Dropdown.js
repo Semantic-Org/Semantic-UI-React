@@ -86,6 +86,15 @@ export default class Dropdown extends Component {
     /** Initial value of open. */
     defaultOpen: PropTypes.bool,
 
+    /** Currently selected label in multi-select. */
+    defaultSelectedLabel: customPropTypes.every([
+      customPropTypes.demand(['multiple']),
+      PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number,
+      ]),
+    ]),
+
     /** Initial value or value array if multiple. */
     defaultValue: PropTypes.oneOfType([
       PropTypes.string,
@@ -146,10 +155,13 @@ export default class Dropdown extends Component {
     /** Called with the React Synthetic Event and { name, value } on change. */
     onChange: PropTypes.func,
 
-    /** Called when a close event happens */
+    /** Called when a close event happens. */
     onClose: PropTypes.func,
 
-    /** Called when an open event happens */
+    /** Called when a multi-select label is clicked.. */
+    onLabelClick: PropTypes.func,
+
+    /** Called when an open event happens. */
     onOpen: PropTypes.func,
 
     /** Called with the React Synthetic Event and current value on search input change. */
@@ -182,6 +194,15 @@ export default class Dropdown extends Component {
       PropTypes.oneOf(_meta.props.pointing),
     ]),
 
+    /**
+     * A function that takes (data, index, defaultLabelProps) and returns
+     * shorthand for Label .
+     */
+    renderLabel: customPropTypes.every([
+      customPropTypes.demand(['multiple']),
+      PropTypes.func,
+    ]),
+
     /** A dropdown can have its menu scroll. */
     scrolling: PropTypes.bool,
 
@@ -195,6 +216,15 @@ export default class Dropdown extends Component {
     ]),
 
     // TODO 'searchInMenu' or 'search='in menu' or ???  How to handle this markup and functionality?
+
+    /** Currently selected label in multi-select. */
+    selectedLabel: customPropTypes.every([
+      customPropTypes.demand(['multiple']),
+      PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number,
+      ]),
+    ]),
 
     /** A dropdown can be used to select between choices in a form. */
     selection: customPropTypes.every([
@@ -244,6 +274,7 @@ export default class Dropdown extends Component {
   static autoControlledProps = [
     'open',
     'value',
+    'selectedLabel',
   ]
 
   static _meta = _meta
@@ -483,6 +514,9 @@ export default class Dropdown extends Component {
   closeOnDocumentClick = (e) => {
     debug('closeOnDocumentClick()')
     debug(e)
+
+    if (this._dropdown && this._dropdown.contains(e.target)) return
+
     this.close()
   }
 
@@ -714,6 +748,17 @@ export default class Dropdown extends Component {
     this.setState({ selectedIndex: newSelectedIndex })
   }
 
+  handleLabelClick = (e, labelProps) => {
+    debug('handleLabelClick()')
+    // prevent focusing search input on click
+    e.stopPropagation()
+
+    this.setState({ selectedLabel: labelProps.value })
+
+    const { onLabelClick } = this.props
+    if (onLabelClick) onLabelClick(e, labelProps)
+  }
+
   handleLabelRemove = (e, labelProps) => {
     debug('handleLabelRemove()')
     // prevent focusing search input on click
@@ -892,8 +937,8 @@ export default class Dropdown extends Component {
 
   renderLabels = () => {
     debug('renderLabels()')
-    const { multiple } = this.props
-    const { value } = this.state
+    const { multiple, renderLabel } = this.props
+    const { selectedLabel, value } = this.state
     if (!multiple || _.isEmpty(value)) {
       return
     }
@@ -902,16 +947,21 @@ export default class Dropdown extends Component {
 
     // if no item could be found for a given state value the selected item will be undefined
     // compact the selectedItems so we only have actual objects left
-    return _.map(_.compact(selectedItems), (item) => {
-      return (
-        <Label
-          key={item.value}
-          as={'a'}
-          content={item.text}
-          value={item.value}
-          onRemove={this.handleLabelRemove}
-        />
-      )
+    return _.map(_.compact(selectedItems), (item, index) => {
+      const defaultLabelProps = {
+        active: item.value === selectedLabel,
+        as: 'a',
+        key: item.value,
+        onClick: this.handleLabelClick,
+        onRemove: this.handleLabelRemove,
+        value: item.value,
+      }
+
+      const labelShorthand = renderLabel
+        ? renderLabel(item, index, defaultLabelProps)
+        : item.text
+
+      return Label.create(labelShorthand, defaultLabelProps)
     })
   }
 
