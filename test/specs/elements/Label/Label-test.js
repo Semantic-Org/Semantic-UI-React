@@ -15,6 +15,7 @@ describe('Label', () => {
 
   common.propKeyAndValueToClassName(Label, 'attached')
 
+  common.propKeyOnlyToClassName(Label, 'active')
   common.propKeyOnlyToClassName(Label, 'basic')
   common.propKeyOnlyToClassName(Label, 'circular')
   common.propKeyOnlyToClassName(Label, 'empty')

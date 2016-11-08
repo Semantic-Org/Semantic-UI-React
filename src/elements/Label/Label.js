@@ -40,6 +40,9 @@ export default class Label extends Component {
     /** An element type to render as (string or function). */
     as: customPropTypes.as,
 
+    /** An active can be active. */
+    active: PropTypes.bool,
+
     /** A label can attach to a content segment. */
     attached: PropTypes.oneOf(_meta.props.attached),
 
@@ -138,6 +141,7 @@ export default class Label extends Component {
 
   render() {
     const {
+      active,
       attached,
       basic,
       children,
@@ -169,6 +173,7 @@ export default class Label extends Component {
       color,
       pointingClass,
       size,
+      useKeyOnly(active, 'active'),
       useKeyOnly(basic, 'basic'),
       useKeyOnly(circular, 'circular'),
       useKeyOnly(empty, 'empty'),
