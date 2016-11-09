@@ -131,6 +131,8 @@ export { default as SearchCategory } from './modules/Search/SearchCategory'
 export { default as SearchResult } from './modules/Search/SearchResult'
 export { default as SearchResults } from './modules/Search/SearchResults'
 
+export { default as Transition } from './modules/Transition'
+
 // Views
 export { default as Card } from './views/Card/Card'
 export { default as CardContent } from './views/Card/CardContent'
