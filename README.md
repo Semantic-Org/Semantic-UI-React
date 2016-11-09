@@ -153,7 +153,7 @@ Any other issue labeled [`help wanted`][4] is ready for a PR.
 | ✓ Reveal        |                 |                 |   Sidebar       |                    |
 | ✓ Segment       |                 |                 |   Sticky        |                    |
 | ✓ Step          |                 |                 |   Tab           |                    |
-|                 |                 |                 |   Transition    |                    |
+|                 |                 |                 | ✓ Transition    |                    |
 
 ## Releasing
 
