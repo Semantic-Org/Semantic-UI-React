@@ -1,5 +1,20 @@
 # Change Log
 
+## [v0.60.0](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.60.0) (2016-11-09)
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.59.0...v0.60.0)
+
+**Implemented enhancements:**
+
+- breaking\(Dropdown\): Multi-select customization [\#809](https://github.com/Semantic-Org/Semantic-UI-React/pull/809) ([jcarbo](https://github.com/jcarbo))
+
+**Closed issues:**
+
+- Docs about webpack + custom css [\#802](https://github.com/Semantic-Org/Semantic-UI-React/issues/802)
+
+**Merged pull requests:**
+
+- docs\(IconExampleLoadingGroup\): typo use to user [\#815](https://github.com/Semantic-Org/Semantic-UI-React/pull/815) ([UnbrandedTech](https://github.com/UnbrandedTech))
+
 ## [v0.59.0](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.59.0) (2016-11-07)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.58.3...v0.59.0)
 
