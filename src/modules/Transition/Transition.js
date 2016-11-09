@@ -14,7 +14,46 @@ const _meta = {
   name: 'Transition',
   type: META.TYPES.MODULE,
   props: {
-    animation: ['fade', 'scale'],
+    animation: [
+      'scale',
+
+      'fade',
+      'fade up',
+      'fade down',
+      'fade left',
+      'fade right',
+
+      'vertical flip',
+      'horizontal flip',
+
+      'drop',
+
+      'fly up',
+      'fly down',
+      'fly left',
+      'fly right',
+
+      'swing up',
+      'swing down',
+      'swing left',
+      'swing right',
+
+      'browse left',
+      'browse right',
+
+      'slide up',
+      'slide down',
+      'slide left',
+      'slide right',
+
+      // static animations
+      'jiggle',
+      'flash',
+      'shake',
+      'pulse',
+      'tada',
+      'bounce',
+    ],
   },
 }
 
@@ -34,7 +73,7 @@ export default class Transition extends Component {
 
   static propTypes = {
     /** An element type to render as (string or function). */
-    as: customPropTypes.as.isRequired,
+    as: customPropTypes.as,
 
     active: PropTypes.bool,
 
@@ -49,7 +88,10 @@ export default class Transition extends Component {
     defaultVisible: PropTypes.bool,
 
     /** Duration of the CSS transition animation. */
-    duration: PropTypes.number,
+    duration: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
 
     visible: PropTypes.bool,
   }
