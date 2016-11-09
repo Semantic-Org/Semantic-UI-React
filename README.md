@@ -41,6 +41,7 @@ Help shape this library by weighing in on our [RFC (request for comments)][19] i
 - [Installation & Usage](#installation--usage)
 - [Debugger](#debugger)
 - [How Can I Help?](#how-can-i-help)
+  - [[Good First Contribution][21]](#good-first-contribution21)
   - [[v1.0 Migrations][15]](#v10-migrations15)
   - [[Missing Components][17]](#missing-components17)
   - [[Help Wanted Label][4]](#help-wanted-label4)
