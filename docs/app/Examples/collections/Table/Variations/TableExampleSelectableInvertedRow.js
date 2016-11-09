@@ -1,7 +1,7 @@
 import React from 'react'
 import { Table } from 'semantic-ui-react'
 
-const TableExampleSelectableInverted = () => {
+const TableExampleSelectableInvertedRow = () => {
   return (
     <Table celled inverted selectable>
       <Table.Header>
@@ -33,4 +33,4 @@ const TableExampleSelectableInverted = () => {
   )
 }
 
-export default TableExampleSelectableInverted
+export default TableExampleSelectableInvertedRow
