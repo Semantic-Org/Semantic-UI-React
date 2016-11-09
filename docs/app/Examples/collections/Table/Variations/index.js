@@ -45,9 +45,20 @@ const Variations = () => {
       <ComponentExample
         title='Selectable Row'
         description='A table can have its rows appear selectable.'
-        examplePath='collections/Table/Variations/TableExampleSelectable'
+        examplePath='collections/Table/Variations/TableExampleSelectableRow'
       />
-      <ComponentExample examplePath='collections/Table/Variations/TableExampleSelectableInverted' />
+      <ComponentExample examplePath='collections/Table/Variations/TableExampleSelectableInvertedRow' />
+
+      <ComponentExample
+        title='Selectable Cell'
+        description='A table cell can be selectable.'
+        examplePath='collections/Table/Variations/TableExampleSelectableCell'
+      >
+        <Message info>
+          Using an "a" link inside a selectable cell will automatically make the hit box the entire cell area.
+          By default links will inherit their cell color.
+        </Message>
+      </ComponentExample>
 
       <ComponentExample
         title='Vertical Alignment'
