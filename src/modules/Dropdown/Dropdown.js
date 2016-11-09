@@ -158,7 +158,7 @@ export default class Dropdown extends Component {
     /** Called when a close event happens. */
     onClose: PropTypes.func,
 
-    /** Called when a multi-select label is clicked.. */
+    /** Called when a multi-select label is clicked. */
     onLabelClick: PropTypes.func,
 
     /** Called when an open event happens. */
@@ -263,10 +263,11 @@ export default class Dropdown extends Component {
   }
 
   static defaultProps = {
-    icon: 'dropdown',
     additionLabel: 'Add ',
     additionPosition: 'top',
+    icon: 'dropdown',
     noResultsMessage: 'No results found.',
+    renderLabel: ({ text }) => text,
     selectOnBlur: true,
     tabIndex: '0',
   }
@@ -957,11 +958,10 @@ export default class Dropdown extends Component {
         value: item.value,
       }
 
-      const labelShorthand = renderLabel
-        ? renderLabel(item, index, defaultLabelProps)
-        : item.text
-
-      return Label.create(labelShorthand, defaultLabelProps)
+      return Label.create(
+        renderLabel(item, index, defaultLabelProps),
+        defaultLabelProps,
+      )
     })
   }
 

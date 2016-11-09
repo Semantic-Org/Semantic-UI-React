@@ -40,7 +40,7 @@ export default class Label extends Component {
     /** An element type to render as (string or function). */
     as: customPropTypes.as,
 
-    /** An active can be active. */
+    /** A label can be active. */
     active: PropTypes.bool,
 
     /** A label can attach to a content segment. */
@@ -106,8 +106,11 @@ export default class Label extends Component {
     /** Adds an "x" icon, called with (event, props) when "x" is clicked. */
     onRemove: PropTypes.func,
 
-    /** Props for remove icon. */
-    removeIcon: customPropTypes.itemShorthand,
+    /** Shorthand for Icon to appear as the last child and trigger onRemove. */
+    removeIcon: customPropTypes.every([
+      customPropTypes.demand(['onRemove']),
+      customPropTypes.itemShorthand,
+    ]),
 
     /** A label can appear as a ribbon attaching itself to an element. */
     ribbon: PropTypes.oneOfType([
