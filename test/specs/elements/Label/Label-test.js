@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import faker from 'faker'
 import React from 'react'
 
@@ -15,6 +16,7 @@ describe('Label', () => {
 
   common.propKeyAndValueToClassName(Label, 'attached')
 
+  common.propKeyOnlyToClassName(Label, 'active')
   common.propKeyOnlyToClassName(Label, 'basic')
   common.propKeyOnlyToClassName(Label, 'circular')
   common.propKeyOnlyToClassName(Label, 'empty')
@@ -40,6 +42,31 @@ describe('Label', () => {
   it('is a div by default', () => {
     shallow(<Label />)
       .should.have.tagName('div')
+  })
+
+  describe('removeIcon', () => {
+    it('has no icon without onRemove', () => {
+      shallow(<Label />)
+        .should.not.have.descendants('Icon')
+    })
+
+    it('has delete icon by default', () => {
+      shallow(<Label onRemove={_.noop} />)
+        .find('Icon')
+        .should.have.prop('name', 'delete')
+    })
+
+    it('uses passed removeIcon string', () => {
+      shallow(<Label onRemove={_.noop} removeIcon='foo' />)
+        .find('Icon')
+        .should.have.prop('name', 'foo')
+    })
+
+    it('uses passed removeIcon props', () => {
+      shallow(<Label onRemove={_.noop} removeIcon={{ 'data-foo': true }} />)
+        .find('Icon')
+        .should.have.prop('data-foo', true)
+    })
   })
 
   describe('content', () => {
