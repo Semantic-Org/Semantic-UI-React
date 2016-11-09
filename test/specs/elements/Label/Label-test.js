@@ -39,14 +39,34 @@ describe('Label', () => {
     mapValueToProps: val => ({ content: val }),
   })
 
-  common.implementsIconProp(Label, {
-    propKey: 'removeIcon',
-    requiredProps: { onRemove: _.noop },
-  })
-
   it('is a div by default', () => {
     shallow(<Label />)
       .should.have.tagName('div')
+  })
+
+  describe('removeIcon', () => {
+    it('has no icon without onRemove', () => {
+      shallow(<Label />)
+        .should.not.have.descendants('Icon')
+    })
+
+    it('has delete icon by default', () => {
+      shallow(<Label onRemove={_.noop} />)
+        .find('Icon')
+        .should.have.prop('name', 'delete')
+    })
+
+    it('uses passed removeIcon string', () => {
+      shallow(<Label onRemove={_.noop} removeIcon='foo' />)
+        .find('Icon')
+        .should.have.prop('name', 'foo')
+    })
+
+    it('uses passed removeIcon props', () => {
+      shallow(<Label onRemove={_.noop} removeIcon={{ 'data-foo': true }} />)
+        .find('Icon')
+        .should.have.prop('data-foo', true)
+    })
   })
 
   describe('content', () => {
