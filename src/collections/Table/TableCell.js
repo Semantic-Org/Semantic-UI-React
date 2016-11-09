@@ -27,6 +27,7 @@ function TableCell(props) {
     icon,
     negative,
     positive,
+    selectable,
     singleLine,
     textAlign,
     verticalAlign,
@@ -41,6 +42,7 @@ function TableCell(props) {
     useKeyOnly(error, 'error'),
     useKeyOnly(negative, 'negative'),
     useKeyOnly(positive, 'positive'),
+    useKeyOnly(selectable, 'selectable'),
     useKeyOnly(singleLine, 'single line'),
     useKeyOnly(warning, 'warning'),
     useTextAlignProp(textAlign),
@@ -111,6 +113,9 @@ TableCell.propTypes = {
 
   /** A cell may let a user know whether a value is good. */
   positive: PropTypes.bool,
+
+  /** A cell can be selectable. */
+  selectable: PropTypes.bool,
 
   /** A cell can specify that its contents should remain on a single line and not wrap. */
   singleLine: PropTypes.bool,
