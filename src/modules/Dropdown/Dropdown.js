@@ -516,7 +516,8 @@ export default class Dropdown extends Component {
     debug('closeOnDocumentClick()')
     debug(e)
 
-    if (this._dropdown && this._dropdown.contains(e.target)) return
+    // If event happened in the dropdown, ignore it
+    if (this._dropdown && _.isFunction(this._dropdown.contains) && this._dropdown.contains(e.target)) return
 
     this.close()
   }
