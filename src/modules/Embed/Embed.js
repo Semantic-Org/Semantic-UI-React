@@ -177,7 +177,8 @@ export default class Embed extends Component {
   }
 
   renderEmbed() {
-    const { active, children } = this.props
+    const { children } = this.props
+    const { active } = this.state
 
     if (!active) return null
     if (children) return <div className='embed'>{children}</div>
