@@ -18,6 +18,7 @@ describe('TableCell', () => {
   common.propKeyOnlyToClassName(TableCell, 'error')
   common.propKeyOnlyToClassName(TableCell, 'negative')
   common.propKeyOnlyToClassName(TableCell, 'positive')
+  common.propKeyOnlyToClassName(TableCell, 'selectable')
   common.propKeyOnlyToClassName(TableCell, 'singleLine', {
     className: 'single line',
   })
