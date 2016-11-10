@@ -330,6 +330,12 @@ class Portal extends Component {
 
     this.node.className = className || ''
 
+    // when re-rendering, first remove listeners before re-adding them to the new node
+    if (this.portal) {
+      this.portal.removeEventListener('mouseleave', this.handlePortalMouseLeave)
+      this.portal.removeEventListener('mouseover', this.handlePortalMouseOver)
+    }
+
     ReactDOM.unstable_renderSubtreeIntoContainer(
       this,
       Children.only(children),
