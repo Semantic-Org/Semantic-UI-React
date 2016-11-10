@@ -122,10 +122,10 @@ class Portal extends Component {
 
   static _meta = _meta
 
+  state = {}
+
   componentDidMount() {
-    if (this.state.open) {
-      this.renderPortal()
-    }
+    this.renderPortal()
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -134,9 +134,7 @@ class Portal extends Component {
     // within this method.
 
     // If the portal is open, render (or re-render) the portal and child.
-    if (this.state.open) {
-      this.renderPortal()
-    }
+    this.renderPortal()
 
     if (prevState.open && !this.state.open) {
       debug('portal closed')
@@ -320,6 +318,9 @@ class Portal extends Component {
   }
 
   renderPortal() {
+    if (!this.state.open) return
+    debug('renderPortal()')
+
     const { children, className } = this.props
 
     this.mountPortal()
