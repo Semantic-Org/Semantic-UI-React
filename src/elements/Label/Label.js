@@ -106,10 +106,16 @@ export default class Label extends Component {
     /** Adds an "x" icon, called with (event, props) when "x" is clicked. */
     onRemove: PropTypes.func,
 
-    /** Shorthand for Icon to appear as the last child and trigger onRemove. */
-    removeIcon: customPropTypes.every([
-      customPropTypes.demand(['onRemove']),
-      customPropTypes.itemShorthand,
+    /**
+     * Shorthand for Icon to appear as the last child and trigger onRemove.
+     *
+     * TODO: This should use customPropTypes.itemShorthand. However, it has a
+     * default value so it's always set, which causes the `disallow([children])`
+     * prop validation to fail.
+     */
+    removeIcon: PropTypes.oneOfType([
+      PropTypes.node,
+      PropTypes.object,
     ]),
 
     /** A label can appear as a ribbon attaching itself to an element. */

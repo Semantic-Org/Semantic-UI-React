@@ -43,10 +43,11 @@ export default class Search extends Component {
     // ------------------------------------
     // Behavior
     // ------------------------------------
-    /** Add an icon by name or as a component. */
+
+    /** Shorthand for Icon. */
     icon: PropTypes.oneOfType([
-      PropTypes.element,
-      PropTypes.string,
+      PropTypes.node,
+      PropTypes.object,
     ]),
 
     /**
