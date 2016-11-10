@@ -45,7 +45,7 @@
   "homepage": "https://github.com/Semantic-Org/Semantic-UI-React#readme",
   "dependencies": {
     "classnames": "^2.1.5",
-    "debug": "^2.3.1",
+    "debug": "^2.3.2",
     "lodash": "^4.6.1"
   },
   "devDependencies": {
