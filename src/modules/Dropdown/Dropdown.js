@@ -8,6 +8,7 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
+  isBrowser,
   keyboardKey,
   makeDebugger,
   META,
@@ -338,6 +339,9 @@ export default class Dropdown extends Component {
     // TODO objectDiff still runs in prod, stop it
     debug('to state:', objectDiff(prevState, this.state))
 
+    // Do not access document when server side rendering
+    if (!isBrowser) return
+
     // focused / blurred
     if (!prevState.focus && this.state.focus) {
       debug('dropdown focused')
@@ -389,6 +393,10 @@ export default class Dropdown extends Component {
 
   componentWillUnmount() {
     debug('componentWillUnmount()')
+
+    // Do not access document when server side rendering
+    if (!isBrowser) return
+
     document.removeEventListener('keydown', this.openOnArrow)
     document.removeEventListener('keydown', this.openOnSpace)
     document.removeEventListener('keydown', this.moveSelectionOnKeyDown)
@@ -531,12 +539,16 @@ export default class Dropdown extends Component {
     const { onMouseDown } = this.props
     if (onMouseDown) onMouseDown(e)
     this.isMouseDown = true
+    // Do not access document when server side rendering
+    if (!isBrowser) return
     document.addEventListener('mouseup', this.handleDocumentMouseUp)
   }
 
   handleDocumentMouseUp = () => {
     debug('handleDocumentMouseUp()')
     this.isMouseDown = false
+    // Do not access document when server side rendering
+    if (!isBrowser) return
     document.removeEventListener('mouseup', this.handleDocumentMouseUp)
   }
 
@@ -804,6 +816,8 @@ export default class Dropdown extends Component {
 
   scrollSelectedItemIntoView = () => {
     debug('scrollSelectedItemIntoView()')
+    // Do not access document when server side rendering
+    if (!isBrowser) return
     const menu = document.querySelector('.ui.dropdown.active.visible .menu.visible')
     const item = menu.querySelector('.item.selected')
     debug(`menu: ${menu}`)

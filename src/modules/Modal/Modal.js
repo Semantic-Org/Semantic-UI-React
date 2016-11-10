@@ -12,6 +12,7 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
+  isBrowser,
   makeDebugger,
   META,
   useKeyOnly,
@@ -79,6 +80,8 @@ class Modal extends Component {
 
   static defaultProps = {
     dimmer: true,
+    // Do not access document when server side rendering
+    mountNode: isBrowser ? document.body : null,
   }
 
   static _meta = _meta
@@ -106,8 +109,7 @@ class Modal extends Component {
 
   handlePortalMount = (e) => {
     debug('handlePortalMount()')
-    const { dimmer } = this.props
-    const mountNode = this.getMountNode()
+    const { dimmer, mountNode } = this.props
 
     if (dimmer) {
       debug('adding dimmer')
@@ -131,7 +133,7 @@ class Modal extends Component {
     // Always remove all dimmer classes.
     // If the dimmer value changes while the modal is open, then removing its
     // current value could leave cruft classes previously added.
-    const mountNode = this.getMountNode()
+    const { mountNode } = this.props
     mountNode.classList.remove('blurring', 'dimmable', 'dimmed', 'scrollable')
 
     cancelAnimationFrame(this.animationRequestId)
@@ -140,13 +142,9 @@ class Modal extends Component {
     if (onUnmount) onUnmount(e, this.props)
   }
 
-  getMountNode = () => {
-    return this.props.mountNode || document.body
-  }
-
   setPosition = () => {
     if (this._modalNode) {
-      const mountNode = this.getMountNode()
+      const { mountNode } = this.props
       const { height } = this._modalNode.getBoundingClientRect()
       const scrolling = height >= window.innerHeight
 
@@ -171,7 +169,11 @@ class Modal extends Component {
   }
 
   render() {
-    const { basic, children, className, dimmer, size } = this.props
+    const { basic, children, className, dimmer, mountNode, size } = this.props
+
+    // Short circuit when server side rendering
+    if (!isBrowser) return null
+
     const { marginTop, scrolling } = this.state
     const classes = cx(
       'ui',
@@ -218,7 +220,7 @@ class Modal extends Component {
         closeOnDocumentClick={false}
         {...portalProps}
         className={dimmerClasses}
-        mountNode={this.getMountNode()}
+        mountNode={mountNode}
         onClose={this.handleClose}
         onMount={this.handlePortalMount}
         onOpen={this.handleOpen}
