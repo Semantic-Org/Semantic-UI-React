@@ -122,10 +122,10 @@ class Portal extends Component {
 
   static _meta = _meta
 
+  state = {}
+
   componentDidMount() {
-    if (this.state.open) {
-      this.renderPortal()
-    }
+    this.renderPortal()
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -134,9 +134,7 @@ class Portal extends Component {
     // within this method.
 
     // If the portal is open, render (or re-render) the portal and child.
-    if (this.state.open) {
-      this.renderPortal()
-    }
+    this.renderPortal()
 
     if (prevState.open && !this.state.open) {
       debug('portal closed')
@@ -159,8 +157,8 @@ class Portal extends Component {
   handleDocumentClick = (e) => {
     const { closeOnDocumentClick, closeOnRootNodeClick } = this.props
 
-    // If event happened in the portal, ignore it
-    if (this.portal.contains(e.target)) return
+    // If not mounted, no portal, or event happened in the portal, ignore it
+    if (!this.node || !this.portal || this.portal.contains(e.target)) return
 
     if (closeOnDocumentClick || (closeOnRootNodeClick && this.node.contains(e.target))) {
       debug('handleDocumentClick()')
@@ -320,6 +318,9 @@ class Portal extends Component {
   }
 
   renderPortal() {
+    if (!this.state.open) return
+    debug('renderPortal()')
+
     const { children, className } = this.props
 
     this.mountPortal()
@@ -328,6 +329,12 @@ class Portal extends Component {
     if (!isBrowser) return null
 
     this.node.className = className || ''
+
+    // when re-rendering, first remove listeners before re-adding them to the new node
+    if (this.portal) {
+      this.portal.removeEventListener('mouseleave', this.handlePortalMouseLeave)
+      this.portal.removeEventListener('mouseover', this.handlePortalMouseOver)
+    }
 
     ReactDOM.unstable_renderSubtreeIntoContainer(
       this,
