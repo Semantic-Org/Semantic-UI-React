@@ -5,7 +5,7 @@ const EmbedExampleCustom = () => (
   <Embed
     icon='right circle arrow'
     placeholder='http://semantic-ui.com/images/image-16by9.png'
-    sourceUrl='http://www.myfav.es/jack'
+    url='http://www.myfav.es/jack'
   />
 )
 
