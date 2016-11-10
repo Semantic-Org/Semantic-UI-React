@@ -157,8 +157,8 @@ class Portal extends Component {
   handleDocumentClick = (e) => {
     const { closeOnDocumentClick, closeOnRootNodeClick } = this.props
 
-    // If event happened in the portal, ignore it
-    if (this.portal.contains(e.target)) return
+    // If not mounted, no portal, or event happened in the portal, ignore it
+    if (!this.node || !this.portal || this.portal.contains(e.target)) return
 
     if (closeOnDocumentClick || (closeOnRootNodeClick && this.node.contains(e.target))) {
       debug('handleDocumentClick()')
