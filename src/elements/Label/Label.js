@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import cx from 'classnames'
 import React, { Component, PropTypes } from 'react'
 
@@ -107,10 +108,7 @@ export default class Label extends Component {
     onRemove: PropTypes.func,
 
     /** Shorthand for Icon to appear as the last child and trigger onRemove. */
-    removeIcon: customPropTypes.every([
-      customPropTypes.demand(['onRemove']),
-      customPropTypes.itemShorthand,
-    ]),
+    removeIcon: customPropTypes.itemShorthand,
 
     /** A label can appear as a ribbon attaching itself to an element. */
     ribbon: PropTypes.oneOfType([
@@ -123,10 +121,6 @@ export default class Label extends Component {
 
     /** A label can appear as a tag. */
     tag: PropTypes.bool,
-  }
-
-  static defaultProps = {
-    removeIcon: 'delete',
   }
 
   static _meta = _meta
@@ -201,13 +195,15 @@ export default class Label extends Component {
       return <ElementType {...rest} className={classes} onClick={this.handleClick}>{children}</ElementType>
     }
 
+    const removeIconShorthand = _.isUndefined(removeIcon) ? 'delete' : removeIcon
+
     return (
       <ElementType className={classes} onClick={this.handleClick} {...rest}>
         {Icon.create(icon)}
         {typeof image !== 'boolean' && Image.create(image)}
         {content}
         {createShorthand(LabelDetail, val => ({ content: val }), detail)}
-        {onRemove && Icon.create(removeIcon, { onClick: this.handleRemove })}
+        {onRemove && Icon.create(removeIconShorthand, { onClick: this.handleRemove })}
       </ElementType>
     )
   }

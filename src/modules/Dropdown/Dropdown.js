@@ -121,10 +121,10 @@ export default class Dropdown extends Component {
     /** A dropdown menu can contain a header. */
     header: PropTypes.node,
 
-    /** Add an icon by name or as a component. */
+    /** Shorthand for Icon. */
     icon: PropTypes.oneOfType([
-      PropTypes.element,
-      PropTypes.string,
+      PropTypes.node,
+      PropTypes.object,
     ]),
 
     /** A dropdown can be formatted to appear inline in other content. */
@@ -199,10 +199,7 @@ export default class Dropdown extends Component {
      * A function that takes (data, index, defaultLabelProps) and returns
      * shorthand for Label .
      */
-    renderLabel: customPropTypes.every([
-      customPropTypes.demand(['multiple']),
-      PropTypes.func,
-    ]),
+    renderLabel: PropTypes.func,
 
     /** A dropdown can have its menu scroll. */
     scrolling: PropTypes.bool,
