@@ -77,6 +77,29 @@ describe('Accordion', () => {
       wrapper
         .should.have.state('activeIndex', -1)
     })
+    it('is called with (event, index) on AccordionTitle click', () => {
+      const spy = sandbox.spy()
+      const titles = mount(
+        <Accordion>
+          <Accordion.Title onClick={spy} />
+          <Accordion.Content />
+          <Accordion.Title onClick={spy} />
+          <Accordion.Content />
+          <Accordion.Title onClick={spy} />
+          <Accordion.Content />
+        </Accordion>
+      )
+        .find('AccordionTitle')
+
+      titles.at(0).simulate('click')
+      spy.should.have.been.calledWithMatch({}, 0)
+
+      titles.at(1).simulate('click')
+      spy.should.have.been.calledWithMatch({}, 1)
+
+      titles.at(2).simulate('click')
+      spy.should.have.been.calledWithMatch({}, 2)
+    })
   })
 
   describe('defaultActiveIndex', () => {
