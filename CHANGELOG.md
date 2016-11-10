@@ -1,11 +1,27 @@
 # Change Log
 
+## [v0.60.1](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.60.1) (2016-11-10)
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.60.0...v0.60.1)
+
+**Closed issues:**
+
+- Modal relies on document as default renderNode, breaks SSR [\#712](https://github.com/Semantic-Org/Semantic-UI-React/issues/712)
+
+**Merged pull requests:**
+
+- chore\(build\): simplify and fix hmr [\#821](https://github.com/Semantic-Org/Semantic-UI-React/pull/821) ([levithomason](https://github.com/levithomason))
+- debug@2.3.1 untested ⚠️ [\#820](https://github.com/Semantic-Org/Semantic-UI-React/pull/820) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+- enzyme@2.6.0 untested ⚠️ [\#818](https://github.com/Semantic-Org/Semantic-UI-React/pull/818) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+- karma-mocha@1.3.0 untested ⚠️ [\#817](https://github.com/Semantic-Org/Semantic-UI-React/pull/817) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+- webpack-hot-middleware@2.13.2 untested ⚠️ [\#808](https://github.com/Semantic-Org/Semantic-UI-React/pull/808) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+- fix\(package\): do not access window/document in ssr [\#806](https://github.com/Semantic-Org/Semantic-UI-React/pull/806) ([levithomason](https://github.com/levithomason))
+
 ## [v0.60.0](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.60.0) (2016-11-09)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.59.0...v0.60.0)
 
 **Implemented enhancements:**
 
-- breaking\(Dropdown\): Multi-select customization [\#809](https://github.com/Semantic-Org/Semantic-UI-React/pull/809) ([jcarbo](https://github.com/jcarbo))
+- breaking\(Dropdown|Label\): Multi-select customization [\#809](https://github.com/Semantic-Org/Semantic-UI-React/pull/809) ([jcarbo](https://github.com/jcarbo))
 
 **Closed issues:**
 
