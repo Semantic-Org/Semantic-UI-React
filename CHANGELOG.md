@@ -1,5 +1,18 @@
 # Change Log
 
+## [v0.60.2](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.60.2) (2016-11-10)
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.60.1...v0.60.2)
+
+**Closed issues:**
+
+- Make text property of dropdown accept React.Node not only text [\#825](https://github.com/Semantic-Org/Semantic-UI-React/issues/825)
+
+**Merged pull requests:**
+
+- test\(isBrowser\): add tests [\#826](https://github.com/Semantic-Org/Semantic-UI-React/pull/826) ([levithomason](https://github.com/levithomason))
+- fix\(isBrowser\): replace OR with AND operator [\#824](https://github.com/Semantic-Org/Semantic-UI-React/pull/824) ([dcurletti](https://github.com/dcurletti))
+- debug@2.3.2 untested ⚠️ [\#822](https://github.com/Semantic-Org/Semantic-UI-React/pull/822) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+
 ## [v0.60.1](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.60.1) (2016-11-10)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.60.0...v0.60.1)
 
