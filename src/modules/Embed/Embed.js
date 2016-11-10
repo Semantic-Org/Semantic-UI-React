@@ -41,8 +41,20 @@ export default class Embed extends Component {
     /** An embed can be active. */
     active: PropTypes.bool,
 
+    /** Setting to true or false will force autoplay. */
+    autoplay: customPropTypes.every([
+      customPropTypes.demand(['source']),
+      PropTypes.bool,
+    ]),
+
     /** An embed can specify an alternative aspect ratio. */
     aspectRatio: PropTypes.oneOf(_meta.props.aspectRatio),
+
+    /** Whether to show networks branded UI like title cards, or after video calls to action. */
+    brandedUI: customPropTypes.every([
+      customPropTypes.demand(['source']),
+      PropTypes.bool,
+    ]),
 
     /** Primary content. */
     children: PropTypes.node,
@@ -50,8 +62,26 @@ export default class Embed extends Component {
     /** Additional classes. */
     className: PropTypes.string,
 
+    /** Specifies a default chrome color with Vimeo or YouTube. */
+    color: customPropTypes.every([
+      customPropTypes.demand(['source']),
+      PropTypes.string,
+    ]),
+
     /** Initial value of active. */
     defaultActive: PropTypes.bool,
+
+    /** Whether to show networks branded UI like title cards, or after video calls to action. */
+    hd: customPropTypes.every([
+      customPropTypes.demand(['source']),
+      PropTypes.bool,
+    ]),
+
+    /** Specifies an id for source. */
+    id: customPropTypes.every([
+      customPropTypes.demand(['source']),
+      PropTypes.string,
+    ]),
 
     /** Specifies an icon to use with placeholder content. */
     icon: customPropTypes.itemShorthand,
@@ -68,38 +98,8 @@ export default class Embed extends Component {
       PropTypes.oneOf(_meta.props.source),
     ]),
 
-    /** Setting to true or false will force autoplay. */
-    sourceAutoPlay: customPropTypes.every([
-      customPropTypes.demand(['source']),
-      PropTypes.bool,
-    ]),
-
-    /** Whether to show networks branded UI like title cards, or after video calls to action. */
-    sourceBrandedUI: customPropTypes.every([
-      customPropTypes.demand(['source']),
-      PropTypes.bool,
-    ]),
-
-    /** Specifies a default chrome color with Vimeo or YouTube. */
-    sourceColor: customPropTypes.every([
-      customPropTypes.demand(['source']),
-      PropTypes.string,
-    ]),
-
-    /** Whether to show networks branded UI like title cards, or after video calls to action. */
-    sourceHd: customPropTypes.every([
-      customPropTypes.demand(['source']),
-      PropTypes.bool,
-    ]),
-
-    /** Specifies an id for source. */
-    sourceId: customPropTypes.every([
-      customPropTypes.demand(['source']),
-      PropTypes.string,
-    ]),
-
     /** Specifies a url to use for embed. */
-    sourceUrl: customPropTypes.every([
+    url: customPropTypes.every([
       customPropTypes.disallow(['source']),
       PropTypes.string,
     ]),
@@ -107,50 +107,50 @@ export default class Embed extends Component {
 
   state = {}
 
+  getSrc() {
+    const {
+      autoplay = true,
+      brandedUI = false,
+      color = '#444444',
+      hd = true,
+      id,
+      source,
+      url,
+    } = this.props
+
+    if (source === 'youtube') {
+      return [
+        `//www.youtube.com/embed/${id}`,
+        '?autohide=true',
+        `&amp;autoplay=${autoplay}`,
+        `&amp;color=${encodeURIComponent(color)}`,
+        `&amp;hq=${hd}`,
+        '&amp;jsapi=false',
+        `&amp;modestbranding=${brandedUI}`,
+      ].join('')
+    }
+
+    if (source === 'vimeo') {
+      return [
+        `//player.vimeo.com/video/${id}`,
+        '?api=false',
+        `&amp;autoplay=${autoplay}`,
+        '&amp;byline=false',
+        `&amp;color=${encodeURIComponent(color)}`,
+        '&amp;portrait=false',
+        '&amp;title=false',
+      ].join('')
+    }
+
+    return url
+  }
+
   handleClick = (e) => {
     const { onClick } = this.props
     const { active } = this.state
 
     if (onClick) onClick(e, this.props)
     if (!active) this.trySetState({ active: true })
-  }
-
-  getSource() {
-    const {
-      source,
-      sourceAutoPlay = true,
-      sourceBrandedUI = false,
-      sourceColor = '#444444',
-      sourceHd = true,
-      sourceId,
-      sourceUrl,
-    } = this.props
-
-    if (source === 'youtube') {
-      return [
-        `//www.youtube.com/embed/${sourceId}`,
-        '?autohide=true',
-        `&amp;autoplay=${sourceAutoPlay}`,
-        `&amp;color=${encodeURIComponent(sourceColor)}`,
-        `&amp;hq=${sourceHd}`,
-        '&amp;jsapi=false',
-        `&amp;modestbranding=${sourceBrandedUI}`,
-      ].join('')
-    }
-
-    if (source === 'vimeo') {
-      return [
-        `//player.vimeo.com/video/${sourceId}`,
-        '?api=false',
-        `&amp;autoplay=${sourceAutoPlay}`,
-        '&amp;byline=false',
-        `&amp;color=${encodeURIComponent(sourceColor)}`,
-        '&amp;portrait=false',
-        '&amp;title=false',
-      ].join('')
-    }
-
-    return sourceUrl
   }
 
   render() {
@@ -189,7 +189,7 @@ export default class Embed extends Component {
           frameBorder='0'
           height='100%'
           scrolling='no'
-          src={this.getSource()}
+          src={this.getSrc()}
           width='100%'
         />
       </div>

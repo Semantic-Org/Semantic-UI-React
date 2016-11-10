@@ -7,12 +7,12 @@ import { sandbox } from 'test/utils'
 
 const assertIframeSrc = (props, srcPart) => {
   const {
+    id = faker.random.word(),
     source = 'youtube',
-    sourceId = faker.random.word(),
     ...rest,
   } = props
 
-  shallow(<Embed active source={source} sourceId={sourceId} {...rest} />)
+  shallow(<Embed active id={id} source={source} {...rest} />)
     .find('iframe')
     .should.have.attr('src')
     .contain(srcPart)
@@ -49,12 +49,55 @@ describe('Embed', () => {
     })
   })
 
+  describe('autoplay', () => {
+    it('generates url part for source', () => {
+      assertIframeSrc({ autoplay: true }, '&amp;autoplay=true')
+      assertIframeSrc({ autoplay: false }, '&amp;autoplay=false')
+    })
+  })
+
+  describe('brandedUI', () => {
+    it('generates url part for source', () => {
+      assertIframeSrc({ brandedUI: true }, '&amp;modestbranding=true')
+      assertIframeSrc({ brandedUI: false }, '&amp;modestbranding=false')
+    })
+  })
+
+  describe('color', () => {
+    it('generates url part for source', () => {
+      const color = faker.internet.color()
+      assertIframeSrc({ color }, `&amp;color=${encodeURIComponent(color)}`)
+    })
+  })
+
   describe('defaultActive', () => {
     it('sets the initial active state', () => {
       const value = faker.random.boolean()
 
       shallow(<Embed defaultActive={value} />)
         .should.have.state('active', value)
+    })
+  })
+
+  describe('hd', () => {
+    it('generates url part for source', () => {
+      assertIframeSrc({ hd: true }, '&amp;hq=true')
+      assertIframeSrc({ hd: false }, '&amp;hq=false')
+    })
+  })
+
+  describe('placeholder', () => {
+    it('omitted by default', () => {
+      shallow(<Embed />)
+        .find('img.placeholder')
+        .should.have.length(0)
+    })
+
+    it('renders img when defined', () => {
+      const url = faker.image.imageUrl()
+
+      shallow(<Embed placeholder={url} />)
+        .should.contain(<img className='placeholder' src={url} />)
     })
   })
 
@@ -91,71 +134,28 @@ describe('Embed', () => {
     })
   })
 
-  describe('placeholder', () => {
-    it('omitted by default', () => {
-      shallow(<Embed />)
-        .find('img.placeholder')
-        .should.have.length(0)
-    })
-
-    it('renders img when defined', () => {
-      const url = faker.image.imageUrl()
-
-      shallow(<Embed placeholder={url} />)
-        .should.contain(<img className='placeholder' src={url} />)
-    })
-  })
-
   describe('source', () => {
     it('generates url for YouTube', () => {
-      const sourceId = faker.random.word()
+      const id = faker.random.word()
 
-      assertIframeSrc({ sourceId }, `//www.youtube.com/embed/${sourceId}`)
+      assertIframeSrc({ id }, `//www.youtube.com/embed/${id}`)
     })
 
     it('generates url for Vimeo', () => {
-      const sourceId = faker.random.word()
+      const id = faker.random.word()
 
       assertIframeSrc(
-        { source: 'vimeo', sourceId },
-        `//player.vimeo.com/video/${sourceId}`
+        { source: 'vimeo', id },
+        `//player.vimeo.com/video/${id}`
       )
     })
   })
 
-  describe('sourceAutoPlay', () => {
-    it('generates url part for source', () => {
-      assertIframeSrc({ sourceAutoPlay: true }, '&amp;autoplay=true')
-      assertIframeSrc({ sourceAutoPlay: false }, '&amp;autoplay=false')
-    })
-  })
-
-  describe('sourceBrandedUI', () => {
-    it('generates url part for source', () => {
-      assertIframeSrc({ sourceBrandedUI: true }, '&amp;modestbranding=true')
-      assertIframeSrc({ sourceBrandedUI: false }, '&amp;modestbranding=false')
-    })
-  })
-
-  describe('sourceColor', () => {
-    it('generates url part for source', () => {
-      const color = faker.internet.color()
-      assertIframeSrc({ sourceColor: color }, `&amp;color=${encodeURIComponent(color)}`)
-    })
-  })
-
-  describe('sourceHd', () => {
-    it('generates url part for source', () => {
-      assertIframeSrc({ sourceHd: true }, '&amp;hq=true')
-      assertIframeSrc({ sourceHd: false }, '&amp;hq=false')
-    })
-  })
-
-  describe('sourceUrl', () => {
+  describe('url', () => {
     it('passes url to iframe', () => {
       const url = faker.internet.url()
 
-      shallow(<Embed active sourceUrl={url} />)
+      shallow(<Embed active url={url} />)
         .find('iframe')
         .should.have.attr('src', url)
     })
