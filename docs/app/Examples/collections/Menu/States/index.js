@@ -8,14 +8,14 @@ const States = () => {
     <ExampleSection title='States'>
       <ComponentExample
         title='Hover'
-        description='A menu item can be hovered'
-        examplePath='collections/Menu/States/Hover'
+        description='A menu item can be hovered.'
+        examplePath='collections/Menu/States/MenuExampleHover'
       />
 
       <ComponentExample
         title='Active'
-        description='A menu item can be active'
-        examplePath='collections/Menu/States/Active'
+        description='A menu item can be active.'
+        examplePath='collections/Menu/States/MenuExampleActive'
       />
     </ExampleSection>
   )

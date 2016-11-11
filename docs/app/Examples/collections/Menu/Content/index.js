@@ -11,39 +11,39 @@ const Content = () => {
     <ExampleSection title='Content'>
       <ComponentExample
         title='Header'
-        description='A menu item may include a header or may itself be a header'
-        examplePath='collections/Menu/Content/Header'
+        description='A menu item may include a header or may itself be a header.'
+        examplePath='collections/Menu/Content/MenuExampleHeader'
       />
-      <ComponentExample examplePath='collections/Menu/Content/Vertical' />
+      <ComponentExample examplePath='collections/Menu/Content/MenuExampleHeaderVertical' />
 
       <ComponentExample
         title='Text'
-        description='A vertical menu item can include any type of text content'
-        examplePath='collections/Menu/Content/Text'
+        description='A vertical menu item can include any type of text content.'
+        examplePath='collections/Menu/Content/MenuExampleText'
       />
 
       <ComponentExample
         title='Input'
-        description='A menu item can contain an input inside of it'
-        examplePath='collections/Menu/Content/Inputs'
+        description='A menu item can contain an input inside of it.'
+        examplePath='collections/Menu/Content/MenuExampleInputs'
       />
 
       <ComponentExample
         title='Button'
-        description='A menu item can contain a button inside of it'
-        examplePath='collections/Menu/Content/Buttons'
+        description='A menu item can contain a button inside of it.'
+        examplePath='collections/Menu/Content/MenuExampleButtons'
       />
 
       <ComponentExample
         title='Link Item'
-        description='A menu may contain a link item, or an item formatted as if it is a link'
-        examplePath='collections/Menu/Content/LinkItem'
+        description='A menu may contain a link item, or an item formatted as if it is a link.'
+        examplePath='collections/Menu/Content/MenuExampleLinkItem'
       />
 
        <ComponentExample
          title='Dropdown Item'
-         description='An item may contain a nested menu in a dropdown'
-         examplePath='collections/Menu/Content/DropdownItem'
+         description='An item may contain a nested menu in a dropdown.'
+         examplePath='collections/Menu/Content/MenuExampleDropdownItem'
        />
 
       {/* <ComponentExample*/}
@@ -60,14 +60,14 @@ const Content = () => {
 
        <ComponentExample
          title='Menu'
-         description='A menu may contain another menu group in the same level as menu items'
-         examplePath='collections/Menu/Content/Menus'
+         description='A menu may contain another menu group in the same level as menu items.'
+         examplePath='collections/Menu/Content/MenuExampleMenus'
        />
 
       <ComponentExample
         title='Sub Menu'
-        description='A menu item may contain another menu nested inside that acts as a grouped sub-menu'
-        examplePath='collections/Menu/Content/SubMenu'
+        description='A menu item may contain another menu nested inside that acts as a grouped sub-menu.'
+        examplePath='collections/Menu/Content/MenuExampleSubMenu'
       />
     </ExampleSection>
   )
