@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 import { Label } from 'semantic-ui-react'
 
-import BaseCategoryExample from './Category'
+import SearchExampleCategory from './SearchExampleCategory'
 
 const categoryRenderer = ({ name }) =>
   <Label as={'span'} content={name} />
@@ -19,11 +19,11 @@ resultRenderer.propTypes = {
   description: PropTypes.string,
 }
 
-const SearchCategoryCustomExample = () => (
-  <BaseCategoryExample
+const SearchExampleCategoryCustom = () => (
+  <SearchExampleCategory
     categoryRenderer={categoryRenderer}
     resultRenderer={resultRenderer}
   />
 )
 
-export default SearchCategoryCustomExample
+export default SearchExampleCategoryCustom

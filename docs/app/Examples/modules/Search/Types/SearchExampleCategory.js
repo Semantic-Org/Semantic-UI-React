@@ -3,14 +3,25 @@ import faker from 'faker'
 import React, { Component } from 'react'
 import { Search, Grid, Header } from 'semantic-ui-react'
 
-const source = _.times(5, () => ({
+const getResults = () => _.times(5, () => ({
   title: faker.company.companyName(),
   description: faker.company.catchPhrase(),
   image: faker.internet.avatar(),
   price: faker.finance.amount(0, 100, 2, '$'),
 }))
 
-export default class SearchStandardExample extends Component {
+const source = _.range(0, 3).reduce((memo, index) => {
+  const name = faker.hacker.noun()
+
+  memo[name] = {
+    name,
+    results: getResults(),
+  }
+
+  return memo
+}, {})
+
+export default class SearchExampleCategory extends Component {
   componentWillMount() {
     this.resetComponent()
   }
@@ -28,9 +39,19 @@ export default class SearchStandardExample extends Component {
       const re = new RegExp(_.escapeRegExp(this.state.value), 'i')
       const isMatch = (result) => re.test(result.title)
 
+      const filteredResults = _.reduce(source, (memo, data, name) => {
+        const results = _.filter(data.results, isMatch)
+
+        if (results.length) {
+          memo[name] = { name, results }
+        }
+
+        return memo
+      }, {})
+
       this.setState({
         isLoading: false,
-        results: _.filter(source, isMatch),
+        results: filteredResults,
       })
     }, 500)
   }
@@ -42,6 +63,7 @@ export default class SearchStandardExample extends Component {
       <Grid>
         <Grid.Column width={8}>
           <Search
+            category
             loading={isLoading}
             onChange={this.handleChange}
             onSearchChange={this.handleSearchChange}

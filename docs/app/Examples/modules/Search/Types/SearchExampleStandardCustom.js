@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 import { Label } from 'semantic-ui-react'
 
-import BaseStandardExample from './Standard'
+import SearchExampleStandard from './SearchExampleStandard'
 
 const resultRenderer = ({ title, description }) => (
   <Label content={title} />
@@ -12,10 +12,8 @@ resultRenderer.propTypes = {
   description: PropTypes.string,
 }
 
-const SearchStandardCustomExample = () => (
-  <BaseStandardExample
-    resultRenderer={resultRenderer}
-  />
+const SearchExampleStandardCustom = () => (
+  <SearchExampleStandard resultRenderer={resultRenderer} />
 )
 
-export default SearchStandardCustomExample
+export default SearchExampleStandardCustom
