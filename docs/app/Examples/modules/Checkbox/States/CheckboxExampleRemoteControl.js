@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Button, Checkbox } from 'semantic-ui-react'
 
-export default class CheckboxRemoteControlExample extends Component {
+export default class CheckboxExampleRemoteControl extends Component {
   state = { checked: false }
   toggle = () => this.setState({ checked: !this.state.checked })
 
