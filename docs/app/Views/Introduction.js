@@ -103,9 +103,9 @@ const HeaderAugmentationHTML = `<h3 class="ui header">
 const MenuItemLinkAugmentationJSX = `import { Link } from 'react-router'
 
 <Menu>
-  <MenuItem as={Link} to='/home'>
+  <Menu.Item as={Link} to='/home'>
     Home
-  </MenuItem>
+  </Menu.Item>
 </Menu>`
 const MenuItemLinkAugmentationHTML = `<div class="ui menu">
   <a class="item">
