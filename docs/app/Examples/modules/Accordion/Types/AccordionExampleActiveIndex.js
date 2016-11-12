@@ -8,7 +8,7 @@ const panels = _.times(3, () => ({
   content: faker.lorem.paragraphs(),
 }))
 
-export default class AccordionActiveIndexExample extends Component {
+class AccordionExampleActiveIndex extends Component {
   state = { activeIndex: 0 }
 
   handleSliderChange = (e) => this.setState({
@@ -40,3 +40,5 @@ export default class AccordionActiveIndexExample extends Component {
     )
   }
 }
+
+export default AccordionExampleActiveIndex
