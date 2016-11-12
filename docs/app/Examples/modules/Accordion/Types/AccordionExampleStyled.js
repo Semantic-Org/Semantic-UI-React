@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import faker from 'faker'
-import React, { Component } from 'react'
+import React from 'react'
 import { Accordion } from 'semantic-ui-react'
 
 const panels = _.times(3, () => ({
@@ -8,10 +8,8 @@ const panels = _.times(3, () => ({
   content: faker.lorem.paragraphs(),
 }))
 
-export default class AccordionStyledExample extends Component {
-  render() {
-    return (
-      <Accordion panels={panels} styled />
-    )
-  }
-}
+const AccordionExampleStyled = () => (
+  <Accordion panels={panels} styled />
+)
+
+export default AccordionExampleStyled
