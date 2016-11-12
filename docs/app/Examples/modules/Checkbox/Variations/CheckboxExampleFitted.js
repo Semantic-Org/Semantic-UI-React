@@ -1,7 +1,7 @@
 import React from 'react'
 import { Checkbox, Segment } from 'semantic-ui-react'
 
-const CheckboxFittedExample = () => (
+const CheckboxExampleFitted = () => (
   <div>
     <Segment compact>
       <Checkbox />
@@ -15,4 +15,4 @@ const CheckboxFittedExample = () => (
   </div>
 )
 
-export default CheckboxFittedExample
+export default CheckboxExampleFitted

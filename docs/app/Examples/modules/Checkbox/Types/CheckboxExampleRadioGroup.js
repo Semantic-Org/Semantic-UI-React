@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Form, Checkbox } from 'semantic-ui-react'
 
-export default class CheckboxRadioGroupExample extends Component {
+export default class CheckboxExampleRadioGroup extends Component {
   state = {}
   handleChange = (e, { value }) => this.setState({ value })
 
