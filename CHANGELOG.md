@@ -1,5 +1,31 @@
 # Change Log
 
+## [v0.60.5](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.60.5) (2016-11-13)
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.60.4...v0.60.5)
+
+**Implemented enhancements:**
+
+- Consistent Input change API  [\#842](https://github.com/Semantic-Org/Semantic-UI-React/issues/842)
+- Better handling of boolean props with related callback props [\#384](https://github.com/Semantic-Org/Semantic-UI-React/issues/384)
+
+**Fixed bugs:**
+
+- fix\(Docs\): fix find\(\) usage for IE [\#844](https://github.com/Semantic-Org/Semantic-UI-React/pull/844) ([layershifter](https://github.com/layershifter))
+
+**Closed issues:**
+
+- Knob dial component  [\#843](https://github.com/Semantic-Org/Semantic-UI-React/issues/843)
+
+**Merged pull requests:**
+
+- feat\(Input\): add onChange\(e, props\) [\#846](https://github.com/Semantic-Org/Semantic-UI-React/pull/846) ([levithomason](https://github.com/levithomason))
+- fix\(debug\): add bug work around [\#845](https://github.com/Semantic-Org/Semantic-UI-React/pull/845) ([levithomason](https://github.com/levithomason))
+- style\(Rating\): update docs to the latest standards [\#841](https://github.com/Semantic-Org/Semantic-UI-React/pull/841) ([dpkwhan](https://github.com/dpkwhan))
+- style\(Search\): update docs to the latest standards [\#840](https://github.com/Semantic-Org/Semantic-UI-React/pull/840) ([dpkwhan](https://github.com/dpkwhan))
+- style\(Checkbox\): update docs to the latest standards [\#839](https://github.com/Semantic-Org/Semantic-UI-React/pull/839) ([dpkwhan](https://github.com/dpkwhan))
+- style\(Accordion\): update docs to the latest standards [\#838](https://github.com/Semantic-Org/Semantic-UI-React/pull/838) ([dpkwhan](https://github.com/dpkwhan))
+- style\(Menu\): update docs to the latest standards [\#835](https://github.com/Semantic-Org/Semantic-UI-React/pull/835) ([dpkwhan](https://github.com/dpkwhan))
+
 ## [v0.60.4](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.60.4) (2016-11-10)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.60.3...v0.60.4)
 
