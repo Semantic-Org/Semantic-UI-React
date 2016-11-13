@@ -11,6 +11,21 @@ const TransitionTransitionsExamples = () => (
         description='An element can scale into or out of view.'
         examplePath='modules/Transition/Transitions/TransitionExampleScale'
       />
+      <ComponentExample
+        title='Fade'
+        description='An element can fade into or out of view descending and ascending.'
+        examplePath='modules/Transition/Transitions/TransitionExampleFade'
+      />
+      <ComponentExample
+        title='Flip'
+        description='An element can flip into or out of view vertically or horizontally.'
+        examplePath='modules/Transition/Transitions/TransitionExampleFlip'
+      />
+      <ComponentExample
+        title='Drop'
+        description='An element can drop into view from above.'
+        examplePath='modules/Transition/Transitions/TransitionExampleDrop'
+      />
     </ExampleSection>
     <ExampleSection title='Usage'>
       <ComponentExample
