@@ -54,6 +54,8 @@ const dropdownMenuIsOpen = () => {
   menu.should.have.className('visible')
 }
 
+const nativeEvent = { nativeEvent: { stopImmediatePropagation: _.noop } }
+
 describe('Dropdown Component', () => {
   beforeEach(() => {
     attachTo = undefined
@@ -342,7 +344,6 @@ describe('Dropdown Component', () => {
     it('is ignored when clicking a disabled item', () => {
       // random item, skip the first as its selected by default
       const randomIndex = 1 + _.random(options.length - 2)
-      const nativeEvent = { nativeEvent: { stopImmediatePropagation: _.noop } }
 
       options[randomIndex].disabled = true
 
@@ -903,7 +904,6 @@ describe('Dropdown Component', () => {
       dropdownMenuIsOpen()
     })
     it('does not close the menu on clicking on an item', () => {
-      const nativeEvent = { nativeEvent: { stopImmediatePropagation: _.noop } }
       wrapperMount(<Dropdown options={options} selection multiple />)
         .simulate('click', nativeEvent)
         .find('DropdownItem')
@@ -967,7 +967,68 @@ describe('Dropdown Component', () => {
         .find('.label')
         .should.have.descendants('.delete.icon')
     })
+    it('enables custom rendering', () => {
+      const value = [_.head(options).value]
+      const renderLabel = () => ({ content: 'My custom text!', as: 'div' })
 
+      wrapperRender(<Dropdown options={options} selection value={value} multiple renderLabel={renderLabel} />)
+        .should.have.descendants('.label')
+
+      const label = wrapper.find('.label')
+
+      label.should.have.text('My custom text!')
+      label.should.have.tagName('div')
+    })
+
+    describe('selecting items', () => {
+      let spy
+      beforeEach(() => {
+        spy = sandbox.spy()
+      })
+
+      it('does not close the menu on clicking on a label', () => {
+        const value = _.map(options, 'value')
+        const randomIndex = _.random(options.length - 1)
+
+        wrapperMount(<Dropdown options={options} selection multiple value={value} />)
+          .simulate('click', nativeEvent)
+          .find('Label')
+          .at(randomIndex)
+          .simulate('click', nativeEvent)
+
+        dropdownMenuIsOpen()
+      })
+
+      it('sets label to active', () => {
+        const value = _.map(options, 'value')
+        const randomIndex = _.random(options.length - 1)
+
+        wrapperMount(<Dropdown options={options} selection multiple value={value} />)
+          .simulate('click', nativeEvent)
+          .find('Label')
+          .at(randomIndex)
+          .simulate('click', nativeEvent)
+
+        wrapper
+          .find('Label')
+          .at(randomIndex)
+          .should.have.prop('active', true)
+      })
+
+      it('calls onLabelClick', () => {
+        const value = _.map(options, 'value')
+        const randomIndex = _.random(options.length - 1)
+        const randomValue = value[randomIndex]
+
+        wrapperMount(<Dropdown options={options} selection multiple value={value} onLabelClick={spy} />)
+          .simulate('click', nativeEvent)
+          .find('Label')
+          .at(randomIndex)
+          .simulate('click', nativeEvent)
+
+        spy.should.have.been.calledWith(sandbox.match.any, sandbox.match({ value: randomValue }))
+      })
+    })
     describe('removing items', () => {
       it('calls onChange without the clicked value', () => {
         const name = 'my-dropdown'

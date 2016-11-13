@@ -7,6 +7,7 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
+  isBrowser,
   keyboardKey,
   makeDebugger,
   META,
@@ -42,10 +43,11 @@ export default class Search extends Component {
     // ------------------------------------
     // Behavior
     // ------------------------------------
-    /** Add an icon by name or as a component. */
+
+    /** Shorthand for Icon. */
     icon: PropTypes.oneOfType([
-      PropTypes.element,
-      PropTypes.string,
+      PropTypes.node,
+      PropTypes.object,
     ]),
 
     /**
@@ -191,6 +193,9 @@ export default class Search extends Component {
     // TODO objectDiff still runs in prod, stop it
     debug('to state:', objectDiff(prevState, this.state))
 
+    // Do not access document when server side rendering
+    if (!isBrowser) return
+
     // focused / blurred
     if (!prevState.focus && this.state.focus) {
       debug('search focused')
@@ -232,6 +237,10 @@ export default class Search extends Component {
 
   componentWillUnmount() {
     debug('componentWillUnmount()')
+
+    // Do not access document when server side rendering
+    if (!isBrowser) return
+
     document.removeEventListener('keydown', this.moveSelectionOnKeyDown)
     document.removeEventListener('keydown', this.selectItemOnEnter)
     document.removeEventListener('keydown', this.closeOnEscape)
@@ -306,12 +315,16 @@ export default class Search extends Component {
     const { onMouseDown } = this.props
     if (onMouseDown) onMouseDown(e)
     this.isMouseDown = true
+    // Do not access document when server side rendering
+    if (!isBrowser) return
     document.addEventListener('mouseup', this.handleDocumentMouseUp)
   }
 
   handleDocumentMouseUp = () => {
     debug('handleDocumentMouseUp()')
     this.isMouseDown = false
+    // Do not access document when server side rendering
+    if (!isBrowser) return
     document.removeEventListener('mouseup', this.handleDocumentMouseUp)
   }
 
@@ -431,6 +444,8 @@ export default class Search extends Component {
 
   scrollSelectedItemIntoView = () => {
     debug('scrollSelectedItemIntoView()')
+    // Do not access document when server side rendering
+    if (!isBrowser) return
     const menu = document.querySelector('.ui.search.active.visible .results.visible')
     const item = menu.querySelector('.result.active')
     debug(`menu (results): ${menu}`)
@@ -493,9 +508,9 @@ export default class Search extends Component {
     return (
       <div className='message empty'>
         <div className='header'>{noResultsMessage}</div>
-        {noResultsDescription &&
+        {noResultsDescription && (
           <div className='description'>{noResultsDescription}</div>
-        }
+        )}
       </div>
     )
   }

@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import cx from 'classnames'
 import React, { Component, PropTypes } from 'react'
 
@@ -39,6 +40,9 @@ export default class Label extends Component {
   static propTypes = {
     /** An element type to render as (string or function). */
     as: customPropTypes.as,
+
+    /** A label can be active. */
+    active: PropTypes.bool,
 
     /** A label can attach to a content segment. */
     attached: PropTypes.oneOf(_meta.props.attached),
@@ -103,8 +107,8 @@ export default class Label extends Component {
     /** Adds an "x" icon, called with (event, props) when "x" is clicked. */
     onRemove: PropTypes.func,
 
-    /** Add an "x" icon that calls onRemove when clicked. */
-    removable: PropTypes.bool,
+    /** Shorthand for Icon to appear as the last child and trigger onRemove. */
+    removeIcon: customPropTypes.itemShorthand,
 
     /** A label can appear as a ribbon attaching itself to an element. */
     ribbon: PropTypes.oneOfType([
@@ -138,6 +142,7 @@ export default class Label extends Component {
 
   render() {
     const {
+      active,
       attached,
       basic,
       children,
@@ -154,7 +159,7 @@ export default class Label extends Component {
       image,
       onRemove,
       pointing,
-      removable,
+      removeIcon,
       ribbon,
       size,
       tag,
@@ -169,6 +174,7 @@ export default class Label extends Component {
       color,
       pointingClass,
       size,
+      useKeyOnly(active, 'active'),
       useKeyOnly(basic, 'basic'),
       useKeyOnly(circular, 'circular'),
       useKeyOnly(empty, 'empty'),
@@ -189,15 +195,15 @@ export default class Label extends Component {
       return <ElementType {...rest} className={classes} onClick={this.handleClick}>{children}</ElementType>
     }
 
+    const removeIconShorthand = _.isUndefined(removeIcon) ? 'delete' : removeIcon
+
     return (
       <ElementType className={classes} onClick={this.handleClick} {...rest}>
         {Icon.create(icon)}
         {typeof image !== 'boolean' && Image.create(image)}
         {content}
         {createShorthand(LabelDetail, val => ({ content: val }), detail)}
-        {(removable || onRemove) && (
-          <Icon name='delete' onClick={this.handleRemove} />
-        )}
+        {onRemove && Icon.create(removeIconShorthand, { onClick: this.handleRemove })}
       </ElementType>
     )
   }

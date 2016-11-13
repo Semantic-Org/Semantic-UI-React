@@ -8,6 +8,7 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
+  isBrowser,
   keyboardKey,
   makeDebugger,
   META,
@@ -86,6 +87,15 @@ export default class Dropdown extends Component {
     /** Initial value of open. */
     defaultOpen: PropTypes.bool,
 
+    /** Currently selected label in multi-select. */
+    defaultSelectedLabel: customPropTypes.every([
+      customPropTypes.demand(['multiple']),
+      PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number,
+      ]),
+    ]),
+
     /** Initial value or value array if multiple. */
     defaultValue: PropTypes.oneOfType([
       PropTypes.string,
@@ -111,10 +121,10 @@ export default class Dropdown extends Component {
     /** A dropdown menu can contain a header. */
     header: PropTypes.node,
 
-    /** Add an icon by name or as a component. */
+    /** Shorthand for Icon. */
     icon: PropTypes.oneOfType([
-      PropTypes.element,
-      PropTypes.string,
+      PropTypes.node,
+      PropTypes.object,
     ]),
 
     /** A dropdown can be formatted to appear inline in other content. */
@@ -146,10 +156,13 @@ export default class Dropdown extends Component {
     /** Called with the React Synthetic Event and { name, value } on change. */
     onChange: PropTypes.func,
 
-    /** Called when a close event happens */
+    /** Called when a close event happens. */
     onClose: PropTypes.func,
 
-    /** Called when an open event happens */
+    /** Called when a multi-select label is clicked. */
+    onLabelClick: PropTypes.func,
+
+    /** Called when an open event happens. */
     onOpen: PropTypes.func,
 
     /** Called with the React Synthetic Event and current value on search input change. */
@@ -182,6 +195,12 @@ export default class Dropdown extends Component {
       PropTypes.oneOf(_meta.props.pointing),
     ]),
 
+    /**
+     * A function that takes (data, index, defaultLabelProps) and returns
+     * shorthand for Label .
+     */
+    renderLabel: PropTypes.func,
+
     /** A dropdown can have its menu scroll. */
     scrolling: PropTypes.bool,
 
@@ -195,6 +214,15 @@ export default class Dropdown extends Component {
     ]),
 
     // TODO 'searchInMenu' or 'search='in menu' or ???  How to handle this markup and functionality?
+
+    /** Currently selected label in multi-select. */
+    selectedLabel: customPropTypes.every([
+      customPropTypes.demand(['multiple']),
+      PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number,
+      ]),
+    ]),
 
     /** A dropdown can be used to select between choices in a form. */
     selection: customPropTypes.every([
@@ -233,10 +261,11 @@ export default class Dropdown extends Component {
   }
 
   static defaultProps = {
-    icon: 'dropdown',
     additionLabel: 'Add ',
     additionPosition: 'top',
+    icon: 'dropdown',
     noResultsMessage: 'No results found.',
+    renderLabel: ({ text }) => text,
     selectOnBlur: true,
     tabIndex: '0',
   }
@@ -244,6 +273,7 @@ export default class Dropdown extends Component {
   static autoControlledProps = [
     'open',
     'value',
+    'selectedLabel',
   ]
 
   static _meta = _meta
@@ -306,6 +336,9 @@ export default class Dropdown extends Component {
     // TODO objectDiff still runs in prod, stop it
     debug('to state:', objectDiff(prevState, this.state))
 
+    // Do not access document when server side rendering
+    if (!isBrowser) return
+
     // focused / blurred
     if (!prevState.focus && this.state.focus) {
       debug('dropdown focused')
@@ -357,6 +390,10 @@ export default class Dropdown extends Component {
 
   componentWillUnmount() {
     debug('componentWillUnmount()')
+
+    // Do not access document when server side rendering
+    if (!isBrowser) return
+
     document.removeEventListener('keydown', this.openOnArrow)
     document.removeEventListener('keydown', this.openOnSpace)
     document.removeEventListener('keydown', this.moveSelectionOnKeyDown)
@@ -483,6 +520,10 @@ export default class Dropdown extends Component {
   closeOnDocumentClick = (e) => {
     debug('closeOnDocumentClick()')
     debug(e)
+
+    // If event happened in the dropdown, ignore it
+    if (this._dropdown && _.isFunction(this._dropdown.contains) && this._dropdown.contains(e.target)) return
+
     this.close()
   }
 
@@ -495,12 +536,16 @@ export default class Dropdown extends Component {
     const { onMouseDown } = this.props
     if (onMouseDown) onMouseDown(e)
     this.isMouseDown = true
+    // Do not access document when server side rendering
+    if (!isBrowser) return
     document.addEventListener('mouseup', this.handleDocumentMouseUp)
   }
 
   handleDocumentMouseUp = () => {
     debug('handleDocumentMouseUp()')
     this.isMouseDown = false
+    // Do not access document when server side rendering
+    if (!isBrowser) return
     document.removeEventListener('mouseup', this.handleDocumentMouseUp)
   }
 
@@ -714,6 +759,17 @@ export default class Dropdown extends Component {
     this.setState({ selectedIndex: newSelectedIndex })
   }
 
+  handleLabelClick = (e, labelProps) => {
+    debug('handleLabelClick()')
+    // prevent focusing search input on click
+    e.stopPropagation()
+
+    this.setState({ selectedLabel: labelProps.value })
+
+    const { onLabelClick } = this.props
+    if (onLabelClick) onLabelClick(e, labelProps)
+  }
+
   handleLabelRemove = (e, labelProps) => {
     debug('handleLabelRemove()')
     // prevent focusing search input on click
@@ -757,6 +813,8 @@ export default class Dropdown extends Component {
 
   scrollSelectedItemIntoView = () => {
     debug('scrollSelectedItemIntoView()')
+    // Do not access document when server side rendering
+    if (!isBrowser) return
     const menu = document.querySelector('.ui.dropdown.active.visible .menu.visible')
     const item = menu.querySelector('.item.selected')
     debug(`menu: ${menu}`)
@@ -892,8 +950,8 @@ export default class Dropdown extends Component {
 
   renderLabels = () => {
     debug('renderLabels()')
-    const { multiple } = this.props
-    const { value } = this.state
+    const { multiple, renderLabel } = this.props
+    const { selectedLabel, value } = this.state
     if (!multiple || _.isEmpty(value)) {
       return
     }
@@ -902,15 +960,19 @@ export default class Dropdown extends Component {
 
     // if no item could be found for a given state value the selected item will be undefined
     // compact the selectedItems so we only have actual objects left
-    return _.map(_.compact(selectedItems), (item) => {
-      return (
-        <Label
-          key={item.value}
-          as={'a'}
-          content={item.text}
-          value={item.value}
-          onRemove={this.handleLabelRemove}
-        />
+    return _.map(_.compact(selectedItems), (item, index) => {
+      const defaultLabelProps = {
+        active: item.value === selectedLabel,
+        as: 'a',
+        key: item.value,
+        onClick: this.handleLabelClick,
+        onRemove: this.handleLabelRemove,
+        value: item.value,
+      }
+
+      return Label.create(
+        renderLabel(item, index, defaultLabelProps),
+        defaultLabelProps,
       )
     })
   }

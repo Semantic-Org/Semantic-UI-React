@@ -1,9 +1,9 @@
-import del from 'del'
-import { task, parallel, series } from 'gulp'
-import loadPlugins from 'gulp-load-plugins'
-import webpack from 'webpack'
+const del = require('del')
+const { task, parallel, series } = require('gulp')
+const loadPlugins = require('gulp-load-plugins')
+const webpack = require('webpack')
 
-import config from '../../config'
+const config = require('../../config')
 
 const g = loadPlugins()
 const { log, PluginError } = g.util

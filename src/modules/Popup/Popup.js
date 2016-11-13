@@ -4,6 +4,7 @@ import _ from 'lodash'
 import {
   getElementType,
   getUnhandledProps,
+  isBrowser,
   META,
   SUI,
   useKeyOnly,
@@ -117,6 +118,10 @@ export default class Popup extends Component {
 
   computePopupStyle(positions) {
     const style = { position: 'absolute' }
+
+    // Do not access window/document when server side rendering
+    if (!isBrowser) return style
+
     const { offset } = this.props
     const { pageYOffset, pageXOffset } = window
     const { clientWidth, clientHeight } = document.documentElement

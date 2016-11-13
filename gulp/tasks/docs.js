@@ -1,13 +1,13 @@
-import historyApiFallback from 'connect-history-api-fallback'
-import del from 'del'
-import express from 'express'
-import { task, src, dest, parallel, series, watch } from 'gulp'
-import loadPlugins from 'gulp-load-plugins'
-import webpack from 'webpack'
-import WebpackDevMiddleware from 'webpack-dev-middleware'
-import WebpackHotMiddleware from 'webpack-hot-middleware'
+const historyApiFallback = require('connect-history-api-fallback')
+const del = require('del')
+const express = require('express')
+const { task, src, dest, parallel, series, watch } = require('gulp')
+const loadPlugins = require('gulp-load-plugins')
+const webpack = require('webpack')
+const WebpackDevMiddleware = require('webpack-dev-middleware')
+const WebpackHotMiddleware = require('webpack-hot-middleware')
 
-import config from '../../config'
+const config = require('../../config')
 
 const g = loadPlugins()
 const { colors, log, PluginError } = g.util
@@ -95,7 +95,7 @@ task('build:docs', series(
       )
     )
   ),
-  'build:docs:webpack',
+  'build:docs:webpack'
 ))
 
 // ----------------------------------------

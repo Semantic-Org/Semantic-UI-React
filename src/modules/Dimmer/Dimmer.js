@@ -6,6 +6,7 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
+  isBrowser,
   META,
   useKeyOnly,
 } from '../../lib'
@@ -60,9 +61,13 @@ export default class Dimmer extends Component {
 
   static Dimmable = DimmerDimmable
 
-  handlePortalMount = () => document.body.classList.add('dimmed', 'dimmable')
+  handlePortalMount = () => {
+    if (isBrowser) document.body.classList.add('dimmed', 'dimmable')
+  }
 
-  handlePortalUnmount = () => document.body.classList.remove('dimmed', 'dimmable')
+  handlePortalUnmount = () => {
+    if (isBrowser) document.body.classList.remove('dimmed', 'dimmable')
+  }
 
   handleClick = (e) => {
     const { onClick, onClickOutside } = this.props
@@ -98,12 +103,12 @@ export default class Dimmer extends Component {
     const ElementType = getElementType(Dimmer, this.props)
 
     const childrenJSX = (children || content) && (
-      <div className='content'>
-        <div className='center' ref={center => (this.center = center)}>
-          { children || content }
+        <div className='content'>
+          <div className='center' ref={center => (this.center = center)}>
+            { children || content }
+          </div>
         </div>
-      </div>
-    )
+      )
 
     if (page) {
       return (
