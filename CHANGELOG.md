@@ -1,5 +1,12 @@
 # Change Log
 
+## [v0.60.6](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.60.6) (2016-11-13)
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.60.5...v0.60.6)
+
+**Closed issues:**
+
+- Server side rendering failing  [\#848](https://github.com/Semantic-Org/Semantic-UI-React/issues/848)
+
 ## [v0.60.5](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.60.5) (2016-11-13)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.60.4...v0.60.5)
 
