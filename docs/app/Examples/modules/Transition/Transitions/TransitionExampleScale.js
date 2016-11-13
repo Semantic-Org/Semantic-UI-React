@@ -26,6 +26,7 @@ export default class TransitionExampleScale extends Component {
         <Divider hidden />
 
         <Button onClick={this.handleClick}>Run</Button>
+        <pre>state = {JSON.stringify(this.state, null, 2)}</pre>
       </div>
     )
   }

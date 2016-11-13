@@ -32,6 +32,7 @@ export default class TransitionExampleFade extends Component {
           <Button onClick={this.handleClick('fade left')}>Fade Left</Button>
           <Button onClick={this.handleClick('fade right')}>Fade Right</Button>
         </Button.Group>
+        <pre>state = {JSON.stringify(this.state, null, 2)}</pre>
       </div>
     )
   }

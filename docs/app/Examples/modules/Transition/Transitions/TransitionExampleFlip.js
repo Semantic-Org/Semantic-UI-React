@@ -29,6 +29,7 @@ export default class TransitionExampleFlip extends Component {
           <Button onClick={this.handleClick('horizontal flip')}>Horizontal Flip</Button>
           <Button onClick={this.handleClick('vertical flip')}>Vertical Flip</Button>
         </Button.Group>
+        <pre>state = {JSON.stringify(this.state, null, 2)}</pre>
       </div>
     )
   }

@@ -27,12 +27,6 @@ const TransitionTransitionsExamples = () => (
         examplePath='modules/Transition/Transitions/TransitionExampleDrop'
       />
     </ExampleSection>
-    <ExampleSection title='Usage'>
-      <ComponentExample
-        title='Explorer'
-        examplePath='modules/Transition/Transitions/TransitionExampleExplorer'
-      />
-    </ExampleSection>
   </div>
 )
 
