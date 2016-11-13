@@ -2,7 +2,25 @@ let _debug
 const noop = () => undefined
 
 if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'test') {
+  // Heads Up!
+  // https://github.com/visionmedia/debug/pull/331
+  //
+  // debug now clears storage on load, grab the debug settings before require('debug').
+  // We try/catch here as Safari throws on localStorage access in private mode or with cookies disabled.
+  let DEBUG
+  try {
+    DEBUG = window.localStorage.debug
+  } catch (e) {
+    /* eslint-disable no-console */
+    console.warning('Semantic-UI-React could not enable debug.')
+    console.error(e)
+   /* eslint-enable no-console */
+  }
+
   _debug = require('debug')
+
+  // enable what ever settings we got from storage
+  _debug.enable(DEBUG)
 } else {
   _debug = () => noop
 }
