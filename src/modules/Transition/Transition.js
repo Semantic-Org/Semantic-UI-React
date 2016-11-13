@@ -9,6 +9,7 @@ import {
   makeDebugger,
   META,
   useKeyOnly,
+  useValueAndKey,
 } from '../../lib'
 
 const debug = makeDebugger('transition')
@@ -112,37 +113,35 @@ export default class Transition extends Component {
 
   handleAnimationAdd = (props) => {
     const { active, animation, duration } = props
-    const type = active ? 'out' : 'in'
 
-    this.animationQueue.push([animation, type, duration])
-    debug('handleAnimationAdd()', { animation, type, duration })
+    debug('handleAnimationAdd()', { active, animation, duration })
 
+    this.animationQueue.push([ active, animation, duration])
     if (!this.animationHandler) this.handleAnimationStart()
   }
 
   handleAnimationEnd = () => {
-    const { type } = this.state
-    const visible = type === 'in'
-
-    debug('handleAnimationEnd()', { visible })
-
     if (this.animationQueue.length > 0) {
-      this.setState({ visible })
+      this.setState({ visible: false })
       this.handleAnimationStart()
 
       return
     }
 
+    const { active } = this.state
+
+    debug('handleAnimationEnd()', { active })
+
     this.animationHandler = null
-    this.setState({ animation: null, duration: null, type: null, visible })
+    this.setState({ animation: null, duration: null, type: null, visible: active })
   }
 
   handleAnimationStart = () => {
-    const [animation, type, duration] = this.animationQueue.pop()
+    const [active, animation, duration] = this.animationQueue.pop()
 
-    debug('handleAnimationStart()', { animation, type, duration })
+    debug('handleAnimationStart()', { active, animation, duration })
 
-    this.setState({ animation, type, duration })
+    this.setState({ active, animation, duration })
     this.animationHandler = setTimeout(this.handleAnimationEnd, duration)
   }
 
@@ -152,22 +151,34 @@ export default class Transition extends Component {
 
   render() {
     const { className } = this.props
-    const { animation, duration, type, visible } = this.state
+    const {
+      active,
+      animation,
+      duration,
+      type,
+      visible,
+    } = this.state
 
-    debug('render()', { animation, type, duration })
+    debug('render()', { active, animation, type, duration })
+
+    const animationIn = active && animation;
+    const animationOut = !active && animation;
 
     const classes = cx(
-      animation,
       type,
       useKeyOnly(animation, 'animating'),
       useKeyOnly(!animation && !visible, 'hidden'),
-      useKeyOnly(type === 'in' || visible, 'visible'),
+      useKeyOnly(animationIn, 'in'),
+      useKeyOnly(animationOut || visible, 'visible'),
+      useKeyOnly(animationOut, 'out'),
+      useValueAndKey(animation, 'animating'),
       'transition',
       className,
     )
     const style = duration && {
       animationDuration: `${duration}ms`,
     }
+
     const rest = getUnhandledProps(Transition, this.props)
     const ElementType = getElementType(Transition, this.props)
 
