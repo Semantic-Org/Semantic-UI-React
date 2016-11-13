@@ -1,6 +1,7 @@
 import cx from 'classnames'
 import _ from 'lodash'
 import React from 'react'
+import { sandbox } from 'test/utils'
 
 import Input, { htmlInputPropNames } from 'src/elements/Input/Input'
 import * as common from 'test/specs/commonTests'
@@ -56,10 +57,33 @@ describe('Input', () => {
   describe('input props', () => {
     htmlInputPropNames.forEach(propName => {
       it(`passes \`${propName}\` to the <input>`, () => {
-        shallow(<Input {...{ [propName]: 'foo' }} />)
+        const propValue = propName === 'onChange' ? () => null : 'foo'
+        const wrapper = shallow(<Input {...{ [propName]: propValue }} />)
+
+        // account for overloading the onChange prop
+        const expectedValue = propName === 'onChange'
+          ? wrapper.instance().handleChange
+          : propValue
+
+        wrapper
           .find('input')
-          .should.have.prop(propName, 'foo')
+          .should.have.prop(propName, expectedValue)
       })
+    })
+  })
+
+  describe('onChange', () => {
+    it('is called with (event, props) on change', () => {
+      const spy = sandbox.spy()
+      const event = { fake: 'event' }
+      const props = { 'data-foo': 'bar', onChange: spy }
+
+      const wrapper = shallow(<Input {...props} />)
+
+      wrapper.find('input').simulate('change', event)
+
+      spy.should.have.been.calledOnce()
+      spy.should.have.been.calledWithMatch(event, props)
     })
   })
 })
