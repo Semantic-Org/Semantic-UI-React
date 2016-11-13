@@ -11,8 +11,10 @@ if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'test') {
   try {
     DEBUG = window.localStorage.debug
   } catch (e) {
+    /* eslint-disable no-console */
     console.warning('Semantic-UI-React could not enable debug.')
     console.error(e)
+   /* eslint-enable no-console */
   }
 
   _debug = require('debug')
