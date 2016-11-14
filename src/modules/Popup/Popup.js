@@ -225,33 +225,24 @@ export default class Popup extends Component {
 
     const { on, hoverable } = this.props
 
-    switch (on) {
-      case 'click':
-        portalProps.openOnTriggerClick = true
-        portalProps.closeOnTriggerClick = true
-        portalProps.closeOnDocumentClick = true
-        break
-
-      case 'focus':
-        portalProps.openOnTriggerFocus = true
-        portalProps.closeOnTriggerBlur = true
-        break
-
-      case 'hover':
-        portalProps.openOnTriggerMouseOver = true
-        portalProps.closeOnTriggerMouseLeave = true
-        // Taken from SUI: https://git.io/vPmCm
-        portalProps.mouseLeaveDelay = 70
-        portalProps.mouseOverDelay = 50
-        break
-
-      default:
-        break
-    }
-
     if (hoverable) {
       portalProps.closeOnPortalMouseLeave = true
       portalProps.mouseLeaveDelay = 300
+    }
+
+    if (on === 'click') {
+      portalProps.openOnTriggerClick = true
+      portalProps.closeOnTriggerClick = true
+      portalProps.closeOnDocumentClick = true
+    } else if (on === 'focus') {
+      portalProps.openOnTriggerFocus = true
+      portalProps.closeOnTriggerBlur = true
+    } else if (on === 'hover') {
+      portalProps.openOnTriggerMouseOver = true
+      portalProps.closeOnTriggerMouseLeave = true
+      // Taken from SUI: https://git.io/vPmCm
+      portalProps.mouseLeaveDelay = 70
+      portalProps.mouseOverDelay = 50
     }
 
     return portalProps
