@@ -116,7 +116,7 @@ class Input extends Component {
     /** An Icon Input field can show that it is currently loading data */
     loading: PropTypes.bool,
 
-    /** Called with (e, props) on change. */
+    /** Called with (e, data) on change. */
     onChange: PropTypes.func,
 
     /** An Input can vary in size */
@@ -137,7 +137,12 @@ class Input extends Component {
 
   handleChange = (e) => {
     const { onChange } = this.props
-    if (onChange) onChange(e, this.props)
+    if (onChange) {
+      onChange(e, {
+        ...this.props,
+        value: _.get(e, 'target.value'),
+      })
+    }
   }
 
   render() {
