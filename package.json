@@ -94,7 +94,7 @@
     "karma-phantomjs-shim": "^1.4.0",
     "karma-webpack-with-fast-source-maps": "^1.9.2",
     "mocha": "^3.1.2",
-    "node-sass": "^3.4.2",
+    "node-sass": "^3.12.1",
     "phantomjs-prebuilt": "^2.1.7",
     "raw-loader": "^0.5.1",
     "react": "^15.3.1",
