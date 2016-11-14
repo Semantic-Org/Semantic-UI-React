@@ -1,5 +1,17 @@
 # Change Log
 
+## [v0.60.9](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.60.9) (2016-11-14)
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.60.8...v0.60.9)
+
+**Closed issues:**
+
+- Dropdown: Customize selected label for single-select [\#852](https://github.com/Semantic-Org/Semantic-UI-React/issues/852)
+
+**Merged pull requests:**
+
+- yargs@6.4.0 untested ⚠️ [\#855](https://github.com/Semantic-Org/Semantic-UI-React/pull/855) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+- feat\(Dropdown\): Enable custom DropdownItem render [\#854](https://github.com/Semantic-Org/Semantic-UI-React/pull/854) ([jcarbo](https://github.com/jcarbo))
+
 ## [v0.60.8](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.60.8) (2016-11-14)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.60.7...v0.60.8)
 
