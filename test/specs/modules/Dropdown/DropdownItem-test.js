@@ -48,6 +48,21 @@ describe('DropdownItem', () => {
     })
   })
 
+  describe('content', () => {
+    it('renders text if no content', () => {
+      const wrapper = shallow(<DropdownItem text='hey' />)
+
+      wrapper.text().should.include('hey')
+    })
+
+    it('renders content if present', () => {
+      const wrapper = shallow(<DropdownItem text='hey' content='you' />)
+
+      wrapper.text().should.not.include('hey')
+      wrapper.text().should.include('you')
+    })
+  })
+
   describe('onClick', () => {
     it('omitted when not defined', () => {
       const click = () => shallow(<DropdownItem />).simulate('click')
@@ -59,7 +74,7 @@ describe('DropdownItem', () => {
 
       const value = faker.hacker.phrase()
       const event = { target: null }
-      const props = { value, foo: 'bar' }
+      const props = { value, 'data-foo': 'bar' }
 
       shallow(<DropdownItem onClick={spy} {...props} />)
         .simulate('click', event)

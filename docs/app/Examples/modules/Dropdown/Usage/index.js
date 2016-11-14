@@ -44,6 +44,11 @@ const DropdownUsageExamples = () => (
       description='A "multiple" dropdown can render customized label for selected items.'
       examplePath='modules/Dropdown/Usage/DropdownExampleMultipleCustomLabel'
     />
+    <ComponentExample
+      title='Item Content'
+      description='A dropdown item can be rendered differently inside the menu.'
+      examplePath='modules/Dropdown/Usage/DropdownExampleItemContent'
+    />
 
   </ExampleSection>
 )
