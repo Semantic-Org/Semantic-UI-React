@@ -114,7 +114,6 @@ describe('extending AutoControlledComponent', () => {
         .instance()
         .trySetState({ [randomProp]: randomValue })
 
-      // not updated
       wrapper
         .should.have.state(randomProp, randomValue)
     })
@@ -295,9 +294,8 @@ describe('extending AutoControlledComponent', () => {
         .should.not.have.state(randomDefaultProp, randomValue)
     })
 
-    it('sets state for props passed as undefined by the parent', () => {
+    it('sets state to undefined for props passed as undefined by the parent', () => {
       consoleUtil.disableOnce()
-
       const props = makeProps()
       const autoControlledProps = _.keys(props)
 
@@ -306,11 +304,16 @@ describe('extending AutoControlledComponent', () => {
       TestClass = createTestClass({ autoControlledProps, state: {} })
       const wrapper = shallow(<TestClass {...props} />)
 
+      // state exists initially
+      wrapper
+        .should.have.state(randomProp)
+
       wrapper
         .setProps({ [randomProp]: undefined })
 
+      // use "should not have" to assert undefined state
       wrapper
-        .should.have.state(randomProp, props[randomProp])
+        .should.not.have.state(randomProp)
     })
 
     it('does not set state for props passed as null by the parent', () => {
