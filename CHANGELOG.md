@@ -1,5 +1,17 @@
 # Change Log
 
+## [v0.60.7](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.60.7) (2016-11-14)
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.60.6...v0.60.7)
+
+**Fixed bugs:**
+
+- Accordion indexes [\#773](https://github.com/Semantic-Org/Semantic-UI-React/issues/773)
+
+**Merged pull requests:**
+
+- node-sass@3.12.1 untested ⚠️ [\#849](https://github.com/Semantic-Org/Semantic-UI-React/pull/849) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+- fix\(Accordion\) fix wrong indexes when using Accordion.Title and Accordion.Content [\#832](https://github.com/Semantic-Org/Semantic-UI-React/pull/832) ([saitonakamura](https://github.com/saitonakamura))
+
 ## [v0.60.6](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.60.6) (2016-11-13)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.60.5...v0.60.6)
 
