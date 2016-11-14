@@ -1,5 +1,12 @@
 # Change Log
 
+## [v0.60.8](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.60.8) (2016-11-14)
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.60.7...v0.60.8)
+
+**Merged pull requests:**
+
+- fix\(Input\): use e.target.value in onChange data.value [\#853](https://github.com/Semantic-Org/Semantic-UI-React/pull/853) ([levithomason](https://github.com/levithomason))
+
 ## [v0.60.7](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.60.7) (2016-11-14)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.60.6...v0.60.7)
 
