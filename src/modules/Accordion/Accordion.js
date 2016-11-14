@@ -101,24 +101,28 @@ export default class Accordion extends Component {
   renderChildren = () => {
     const { children } = this.props
     const { activeIndex } = this.state
+    let titleIndex = 0
+    let contentIndex = 0
 
-    return Children.map(children, (child, i) => {
+    return Children.map(children, (child) => {
       const isTitle = child.type === AccordionTitle
       const isContent = child.type === AccordionContent
 
       if (isTitle) {
-        const isActive = _.has(child, 'props.active') ? child.props.active : activeIndex === i
+        const currentIndex = titleIndex
+        const isActive = _.has(child, 'props.active') ? child.props.active : activeIndex === currentIndex
         const onClick = (e) => {
-          this.handleTitleClick(e, i)
-          if (child.props.onClick) child.props.onClick(e, i)
+          this.handleTitleClick(e, currentIndex)
+          if (child.props.onClick) child.props.onClick(e, currentIndex)
         }
+        titleIndex++
         return cloneElement(child, { ...child.props, active: isActive, onClick })
       }
 
       if (isContent) {
-        // content must be the a sibling too title
-        // it is active if the active title index that precedes it is active
-        const isActive = _.has(child, 'props.active') ? child.props.active : activeIndex === i - 1
+        const currentIndex = contentIndex
+        const isActive = _.has(child, 'props.active') ? child.props.active : activeIndex === currentIndex
+        contentIndex++
         return cloneElement(child, { ...child.props, active: isActive })
       }
 
