@@ -77,28 +77,28 @@ describe('Accordion', () => {
       wrapper
         .should.have.state('activeIndex', -1)
     })
-    it('is called with (event, index) on AccordionTitle click', () => {
-      const spy = sandbox.spy()
-      const titles = mount(
+    it('sets the correct pair of title/content active', () => {
+      const wrapper = shallow(
         <Accordion>
-          <Accordion.Title onClick={spy} />
+          <Accordion.Title />
           <Accordion.Content />
-          <Accordion.Title onClick={spy} />
+          <Accordion.Title />
           <Accordion.Content />
-          <Accordion.Title onClick={spy} />
+          <Accordion.Title />
           <Accordion.Content />
         </Accordion>
       )
-        .find('AccordionTitle')
+      wrapper.setProps({ activeIndex: 0 })
+      wrapper.childAt(0).should.have.prop('active', true)
+      wrapper.childAt(1).should.have.prop('active', true)
 
-      titles.at(0).simulate('click')
-      spy.should.have.been.calledWithMatch({}, 0)
+      wrapper.setProps({ activeIndex: 1 })
+      wrapper.childAt(2).should.have.prop('active', true)
+      wrapper.childAt(3).should.have.prop('active', true)
 
-      titles.at(1).simulate('click')
-      spy.should.have.been.calledWithMatch({}, 1)
-
-      titles.at(2).simulate('click')
-      spy.should.have.been.calledWithMatch({}, 2)
+      wrapper.setProps({ activeIndex: 2 })
+      wrapper.childAt(4).should.have.prop('active', true)
+      wrapper.childAt(5).should.have.prop('active', true)
     })
   })
 
@@ -112,6 +112,7 @@ describe('Accordion', () => {
   describe('onTitleClick', () => {
     it('is called with (event, index)', () => {
       const spy = sandbox.spy()
+      const event = { foo: 'bar' }
       const titles = mount(
         <Accordion onTitleClick={spy}>
           <Accordion.Title />
@@ -120,11 +121,11 @@ describe('Accordion', () => {
       )
         .find('AccordionTitle')
 
-      titles.at(0).simulate('click')
-      spy.should.have.been.calledWithMatch({}, 0)
+      titles.at(0).simulate('click', event)
+      spy.should.have.been.calledWithMatch(event, 0)
 
-      titles.at(1).simulate('click')
-      spy.should.have.been.calledWithMatch({}, 1)
+      titles.at(1).simulate('click', event)
+      spy.should.have.been.calledWithMatch(event, 1)
     })
   })
 
@@ -207,6 +208,7 @@ describe('Accordion', () => {
 
       it('is called with (event, index) on AccordionTitle click', () => {
         const spy = sandbox.spy()
+        const event = { foo: 'bar' }
         const panels = [{
           onClick: spy,
           title: 'First panel',
@@ -215,15 +217,22 @@ describe('Accordion', () => {
           onClick: spy,
           title: 'Second panel',
           content: 'second panel content',
+        }, {
+          onClick: spy,
+          title: 'Third panel',
+          content: 'third panel content',
         }]
         const titles = mount(<Accordion panels={panels} />)
           .find('AccordionTitle')
 
-        titles.at(0).simulate('click')
-        spy.should.have.been.calledWithMatch({}, 0)
+        titles.at(0).simulate('click', event)
+        spy.should.have.been.calledWithMatch(event, 0)
 
-        titles.at(1).simulate('click')
-        spy.should.have.been.calledWithMatch({}, 1)
+        titles.at(1).simulate('click', event)
+        spy.should.have.been.calledWithMatch(event, 1)
+
+        titles.at(2).simulate('click', event)
+        spy.should.have.been.calledWithMatch(event, 2)
       })
     })
   })
