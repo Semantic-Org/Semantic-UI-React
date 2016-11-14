@@ -73,17 +73,17 @@ describe('Input', () => {
   })
 
   describe('onChange', () => {
-    it('is called with (event, props) on change', () => {
+    it('is called with (e, data) on change', () => {
       const spy = sandbox.spy()
-      const event = { fake: 'event' }
+      const e = { target: { value: 'name' } }
       const props = { 'data-foo': 'bar', onChange: spy }
 
       const wrapper = shallow(<Input {...props} />)
 
-      wrapper.find('input').simulate('change', event)
+      wrapper.find('input').simulate('change', e)
 
       spy.should.have.been.calledOnce()
-      spy.should.have.been.calledWithMatch(event, props)
+      spy.should.have.been.calledWithMatch(e, { ...props, value: e.target.value })
     })
   })
 })
