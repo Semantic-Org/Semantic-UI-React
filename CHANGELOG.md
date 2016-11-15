@@ -1,5 +1,17 @@
 # Change Log
 
+## [v0.60.10](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.60.10) (2016-11-15)
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.60.9...v0.60.10)
+
+**Closed issues:**
+
+- Very low performance caused by `getUnhandledProps` [\#859](https://github.com/Semantic-Org/Semantic-UI-React/issues/859)
+
+**Merged pull requests:**
+
+- perf\(getUnhandledProps\): replace lodash with vanilla js [\#860](https://github.com/Semantic-Org/Semantic-UI-React/pull/860) ([levithomason](https://github.com/levithomason))
+- node-sass@3.12.5 untested ⚠️ [\#858](https://github.com/Semantic-Org/Semantic-UI-React/pull/858) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+
 ## [v0.60.9](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.60.9) (2016-11-14)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.60.8...v0.60.9)
 
