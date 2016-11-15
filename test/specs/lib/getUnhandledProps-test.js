@@ -8,6 +8,7 @@ import { getUnhandledProps } from 'src/lib'
 function TestComponent(props) {
   return <div {...getUnhandledProps(TestComponent, props)} />
 }
+TestComponent._meta = { name: 'TestComponent' }
 
 beforeEach(() => {
   delete TestComponent.propTypes
