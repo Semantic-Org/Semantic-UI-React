@@ -6,6 +6,7 @@ import {
   getUnhandledProps,
   makeDebugger,
   META,
+  SUI,
   useKeyOnly,
   useValueAndKey,
 } from '../../lib'
@@ -16,46 +17,8 @@ const _meta = {
   name: 'Transition',
   type: META.TYPES.MODULE,
   props: {
-    animation: [
-      'scale',
-
-      'fade',
-      'fade up',
-      'fade down',
-      'fade left',
-      'fade right',
-
-      'vertical flip',
-      'horizontal flip',
-
-      'drop',
-
-      'fly up',
-      'fly down',
-      'fly left',
-      'fly right',
-
-      'swing up',
-      'swing down',
-      'swing left',
-      'swing right',
-
-      'browse left',
-      'browse right',
-
-      'slide up',
-      'slide down',
-      'slide left',
-      'slide right',
-
-      // static animations
-      'jiggle',
-      'flash',
-      'shake',
-      'pulse',
-      'tada',
-      'bounce',
-    ],
+    animation: SUI.TRANSITIONS,
+    direction: ['in', 'out'],
   },
 }
 
@@ -63,11 +26,6 @@ const _meta = {
  * A transition is an animation usually used to move content in or out of view.
  * */
 export default class Transition extends Component {
-  static defaultProps = {
-    animation: 'fade',
-    duration: 500,
-  }
-
   static propTypes = {
     active: PropTypes.bool,
 
@@ -80,71 +38,88 @@ export default class Transition extends Component {
     /** Additional classes. */
     className: PropTypes.string,
 
+    direction: PropTypes.oneOf(_meta.props.direction),
+
     /** Duration of the CSS transition animation. */
     duration: PropTypes.oneOfType([
       PropTypes.number,
       PropTypes.string,
     ]),
+
+    /** Callback on each transition complete. */
+    onComplete: PropTypes.func,
+
+    /** Callback on each transition that changes visibility to hidden. */
+    onHide: PropTypes.func,
+
+    /** Callback on animation start, useful for queued animations. */
+    onShow: PropTypes.func,
+
+    /** Callback on animation start, useful for queued animations. */
+    onStart: PropTypes.func,
+  }
+
+  static defaultProps = {
+    animation: 'fade',
+    duration: 500,
   }
 
   static _meta = _meta
 
-  animationHandler
-
-  animationQueue = []
-
   state = {}
+
+  queue = []
 
   constructor(props) {
     super(props)
 
-    const { active } = props
-    this.state = { visible: active }
+    const { active: visible } = props
+    this.state = { visible }
   }
 
   componentWillReceiveProps(nextProps) {
-    const current = this.props.active
-    const next = nextProps.active
+    const { active: current } = this.props
+    const { active: next } = nextProps
 
     if (current !== next) this.handleAnimationAdd(nextProps)
   }
 
-  handleAnimationAdd = (props) => {
-    const { active, animation, duration } = props
+  shouldComponentUpdate(nextProps, nextState) {
+    return !_.isEqual(nextState, this.state)
+  }
 
-    debug('handleAnimationAdd()', { active, animation, duration })
+  handleAnimationAdd = ({ active, animation, direction, duration }) => {
+    const { animation: animating } = this.state
+    const full = _.includes(SUI.FULL_TRANSITIONS, animation)
+    const transition = { active, animation, direction, duration, full }
 
-    this.animationQueue.push([active, animation, duration])
-    if (!this.animationHandler) this.handleAnimationStart()
+    if (animating) {
+      this.queue.push(transition)
+      return
+    }
+
+    this.handleAnimationStart(transition)
   }
 
   handleAnimationEnd = () => {
-    if (this.animationQueue.length > 0) {
+    const transition = this.queue.shift()
+
+    if (transition) {
       this.setState({ visible: false })
-      this.handleAnimationStart()
+      this.handleAnimationStart(transition)
 
       return
     }
 
-    const { active } = this.state
-
-    debug('handleAnimationEnd()', { active })
-
-    this.animationHandler = null
-    this.setState({ animation: null, duration: null, type: null, visible: active })
+    const { active: visible } = this.state
+    this.setState({ animation: null, visible })
   }
 
-  handleAnimationStart = () => {
-    const [active, animation, duration] = this.animationQueue.pop()
+  handleAnimationStart = (transition) => {
+    const { duration } = transition
 
-    debug('handleAnimationStart()', { active, animation, duration })
-
-    this.setState({ active, animation, duration })
-    this.animationHandler = setTimeout(this.handleAnimationEnd, duration)
-  }
-
-  shouldComponentUpdate(nextProps, nextState) {
-    return !_.isEqual(nextState, this.state)
+    this.setState({ ...transition })
+    setTimeout(this.handleAnimationEnd, duration)
   }
 
   render() {
@@ -153,38 +128,32 @@ export default class Transition extends Component {
       active,
       animation,
       duration,
-      type,
+      direction,
+      full,
       visible,
     } = this.state
 
-    debug('render()', { active, animation, type, duration })
+    debug('render()', { active, animation, duration })
 
-    const animationIn = active && animation
-    const animationOut = !active && animation
-    const childClassName = children.props.className || ''
+    const animationIn = active && animation && full
+    const animationOut = !active && animation && full
+    const childClasses = children.props.className || ''
+    const childStyle = children.props.style || {}
 
     const classes = cx(
-      childClassName,
-      type,
+      childClasses,
       useKeyOnly(animation, 'animating'),
       useKeyOnly(!animation && !visible, 'hidden'),
-      useKeyOnly(animationIn, 'in'),
+      useKeyOnly(animationIn || direction === 'in', 'in'),
       useKeyOnly(animationOut || visible, 'visible'),
-      useKeyOnly(animationOut, 'out'),
+      useKeyOnly(animationOut || direction === 'out', 'out'),
       useValueAndKey(animation, 'animating'),
       'transition',
       className,
     )
-    const style = duration && {
-      animationDuration: `${duration}ms`,
-    }
-
+    const style = { ...childStyle, animationDuration: animation && `${duration}ms` }
     const rest = getUnhandledProps(Transition, this.props)
 
-    return React.cloneElement(children, {
-      ...rest,
-      className: classes,
-      style,
-    })
+    return React.cloneElement(children, { ...rest, className: classes, style })
   }
 }
