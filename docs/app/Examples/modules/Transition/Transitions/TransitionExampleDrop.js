@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Button, Divider, Image, Transition } from 'semantic-ui-react'
 
-export default class TransitionExampleScale extends Component {
+export default class TransitionExampleDrop extends Component {
   state = { active: true }
 
   handleClick = () => {
@@ -17,7 +17,7 @@ export default class TransitionExampleScale extends Component {
       <div>
         <Transition
           active={active}
-          animation='scale'
+          animation='drop'
           as={Image}
           size='small'
           src='http://semantic-ui.com/images/leaves/1.png'
