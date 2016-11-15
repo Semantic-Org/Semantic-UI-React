@@ -68,7 +68,7 @@
     "del": "^2.2.2",
     "dirty-chai": "^1.2.2",
     "doctoc": "^1.2.0",
-    "doctrine": "^1.3.0",
+    "doctrine": "^2.0.0",
     "empty": "^0.10.1",
     "enzyme": "^2.6.0",
     "eslint-config-ta": "^5.2.0",
