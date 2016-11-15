@@ -3,8 +3,6 @@ import cx from 'classnames'
 import React, { Component, PropTypes } from 'react'
 
 import {
-  customPropTypes,
-  getElementType,
   getUnhandledProps,
   makeDebugger,
   META,
@@ -71,13 +69,13 @@ export default class Transition extends Component {
   }
 
   static propTypes = {
-    /** An element type to render as (string or function). */
-    as: customPropTypes.as,
-
     active: PropTypes.bool,
 
     /** Named animation event to used. */
     animation: PropTypes.oneOf(_meta.props.animation),
+
+    /** Primary content. */
+    children: PropTypes.element.isRequired,
 
     /** Additional classes. */
     className: PropTypes.string,
@@ -116,7 +114,7 @@ export default class Transition extends Component {
 
     debug('handleAnimationAdd()', { active, animation, duration })
 
-    this.animationQueue.push([ active, animation, duration])
+    this.animationQueue.push([active, animation, duration])
     if (!this.animationHandler) this.handleAnimationStart()
   }
 
@@ -150,7 +148,7 @@ export default class Transition extends Component {
   }
 
   render() {
-    const { className } = this.props
+    const { children, className } = this.props
     const {
       active,
       animation,
@@ -161,10 +159,12 @@ export default class Transition extends Component {
 
     debug('render()', { active, animation, type, duration })
 
-    const animationIn = active && animation;
-    const animationOut = !active && animation;
+    const animationIn = active && animation
+    const animationOut = !active && animation
+    const childClassName = children.props.className || ''
 
     const classes = cx(
+      childClassName,
       type,
       useKeyOnly(animation, 'animating'),
       useKeyOnly(!animation && !visible, 'hidden'),
@@ -180,8 +180,11 @@ export default class Transition extends Component {
     }
 
     const rest = getUnhandledProps(Transition, this.props)
-    const ElementType = getElementType(Transition, this.props)
 
-    return <ElementType {...rest} className={classes} style={style} />
+    return React.cloneElement(children, {
+      ...rest,
+      className: classes,
+      style,
+    })
   }
 }

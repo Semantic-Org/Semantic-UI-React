@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Divider, Image, Transition } from 'semantic-ui-react'
+import { Button, Divider, Image, Message, Transition } from 'semantic-ui-react'
 
 export default class TransitionExampleFlip extends Component {
   state = { active: true }
@@ -15,13 +15,9 @@ export default class TransitionExampleFlip extends Component {
 
     return (
       <div>
-        <Transition
-          active={active}
-          animation={animation}
-          as={Image}
-          size='small'
-          src='http://semantic-ui.com/images/leaves/1.png'
-        />
+        <Transition active={active} animation={animation}>
+          <Image size='small' src='http://semantic-ui.com/images/leaves/1.png' />
+        </Transition>
 
         <Divider hidden />
 
@@ -29,7 +25,10 @@ export default class TransitionExampleFlip extends Component {
           <Button onClick={this.handleClick('horizontal flip')}>Horizontal Flip</Button>
           <Button onClick={this.handleClick('vertical flip')}>Vertical Flip</Button>
         </Button.Group>
-        <pre>state = {JSON.stringify(this.state, null, 2)}</pre>
+
+        <Message>
+          <pre>state = {JSON.stringify(this.state, null, 2)}</pre>
+        </Message>
       </div>
     )
   }
