@@ -1,5 +1,3 @@
-const handledPropsCache = {}
-
 /**
  * Push all `source` array elements to the `target` array if they don't already exist in `target`.
  *
@@ -19,9 +17,8 @@ const pushUnique = (source, target) => source.forEach(x => {
  * @returns {{}} A shallow copy of the prop object
  */
 const getUnhandledProps = (Component, props) => {
-  const { _meta: { name }, autoControlledProps, defaultProps, propTypes } = Component
-
-  let handledProps = handledPropsCache[name]
+  const { autoControlledProps, defaultProps, propTypes } = Component
+  let { handledProps } = Component
 
   // ----------------------------------------
   // Calculate handledProps once and cache
@@ -33,9 +30,12 @@ const getUnhandledProps = (Component, props) => {
     if (defaultProps) pushUnique(Object.keys(defaultProps), handledProps)
     if (propTypes) pushUnique(Object.keys(propTypes), handledProps)
 
-    handledPropsCache[name] = handledProps
+    Component.handledProps = handledProps
   }
 
+  // ----------------------------------------
+  // Return _unhandled_ props
+  // ----------------------------------------
   return Object.keys(props).reduce((acc, prop) => {
     if (handledProps.indexOf(prop) === -1) acc[prop] = props[prop]
     return acc
