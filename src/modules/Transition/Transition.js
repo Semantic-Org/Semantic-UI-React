@@ -101,8 +101,13 @@ export default class Transition extends Component {
     this.handleAnimationStart(transition)
   }
 
-  handleAnimationEnd = () => {
+  handleAnimationComplete = () => {
+    const { onComplete } = this.props
     const transition = this.queue.shift()
+
+    debug('handleAnimationComplete()')
+
+    if (onComplete) onComplete(this.props, this.state)
 
     if (transition) {
       this.setState({ visible: false })
@@ -116,10 +121,25 @@ export default class Transition extends Component {
   }
 
   handleAnimationStart = (transition) => {
-    const { duration } = transition
+    const { onHide, onShow, onStart } = this.props
+    const { active, duration } = transition
+
+    debug('handleAnimationStart()', transition)
+
+    if (onStart) onStart(this.props, this.state)
+
+    if (active) {
+      debug('handleAnimationStart(show)')
+      if (onHide) onHide(this.props, this.state)
+    }
+
+    if (!active) {
+      debug('handleAnimationStart(hide)')
+      if (onShow) onShow(this.props, this.state)
+    }
 
     this.setState({ ...transition })
-    setTimeout(this.handleAnimationEnd, duration)
+    setTimeout(this.handleAnimationComplete, duration)
   }
 
   render() {
