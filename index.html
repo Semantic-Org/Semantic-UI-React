@@ -17,10 +17,9 @@
 
         setTimeout(() => {
           var dimmer = document.querySelector('#docs-loading-dimmer')
-          var bodyClassName = document.body.getAttribute("class").replace(/dimmed\s+dimmable\s+/, '')
 
           document.body.removeChild(dimmer)
-          document.body.setAttribute("class", bodyClassName)
+          document.body.setAttribute("class", "")
           window.removeEventListener('load', removeDimmer)
         }, delay)
       }
@@ -118,4 +117,4 @@
 
     .icon-set-examples .rendered-example .column:hover > .icon {
       transform: scale(1.5);
-    }</style><script type="text/javascript" src="//cdn.rawgit.com/Semantic-Org/Semantic-UI-React/gh-pages/vendor.0de90e0f4ce35e687687.js"></script><script type="text/javascript" src="//cdn.rawgit.com/Semantic-Org/Semantic-UI-React/gh-pages/app.5415c3ec5d9e41b0db3e.js"></script></body></html>
+    }</style><script type="text/javascript" src="//cdn.rawgit.com/Semantic-Org/Semantic-UI-React/gh-pages/vendor.59e968d7595e124ba2a7.js"></script><script type="text/javascript" src="//cdn.rawgit.com/Semantic-Org/Semantic-UI-React/gh-pages/app.e8bf3b6d8e24bac77cfc.js"></script></body></html>
