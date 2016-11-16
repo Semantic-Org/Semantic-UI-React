@@ -46,7 +46,7 @@
   "dependencies": {
     "classnames": "^2.1.5",
     "debug": "^2.3.2",
-    "lodash": "^4.6.1"
+    "lodash": "^4.17.2"
   },
   "devDependencies": {
     "babel-core": "^6.17.0",
