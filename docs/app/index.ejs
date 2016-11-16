@@ -3,17 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <link rel="shortcut icon" type="image/x-icon" href=<%= __BASE__ + 'logo.png' %> />
-  <script
-    src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/<%= htmlWebpackPlugin.options.versions.babel %>/babel.min.js"
-    data-presets="es2015,react,stage1"
-  ></script>
   <link rel="stylesheet"
         href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/<%= htmlWebpackPlugin.options.versions.sui %>/semantic.min.css">
-  <script src="//cdnjs.cloudflare.com/ajax/libs/Faker/<%= htmlWebpackPlugin.options.versions.faker %>/faker.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.1/anchor.min.js"></script>
   <title>Semantic UI React</title>
   <script>
     // Apply gh-pages SPA redirect that was applied in 404.html
+    // ----------------------------------------
     (function() {
       var redirect = sessionStorage.redirect
       delete sessionStorage.redirect
@@ -23,7 +18,54 @@
     })()
   </script>
 </head>
-<body>
+<body class="dimmed dimmable">
+  <div id="docs-loading-dimmer" class="ui active page dimmer">
+    <div class="content">
+      <div class="center">
+        <div class="ui large text loader">
+          <div class="ui inverted teal header">
+            Loading docs...
+            <div class="sub header">
+              Semantic-UI-React
+              v<%= htmlWebpackPlugin.options.versions.suir %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function() {
+      var delay = 500
+      var dimmer = document.querySelector('#docs-loading-dimmer')
+      dimmer.style.pointerEvents = 'none'
+      dimmer.style.transition = 'opacity ' + delay + 'ms linear'
+
+      function removeDimmer() {
+        dimmer.style.opacity = '0'
+
+        setTimeout(() => {
+          var dimmer = document.querySelector('#docs-loading-dimmer')
+
+          document.body.removeChild(dimmer)
+          document.body.setAttribute("class", "")
+          window.removeEventListener('load', removeDimmer)
+        }, delay)
+      }
+
+      window.addEventListener('load', removeDimmer)
+    }())
+  </script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.1/anchor.min.js"></script>
+  <script
+    src="//cdnjs.cloudflare.com/ajax/libs/babel-standalone/<%= htmlWebpackPlugin.options.versions.babel %>/babel.min.js"
+    data-presets="es2015,react,stage1"
+  ></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/Faker/<%= htmlWebpackPlugin.options.versions.faker %>/faker.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/js-beautify/<%= htmlWebpackPlugin.options.versions.jsBeautify %>/beautify-html.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/react/<%= htmlWebpackPlugin.options.versions.react %>/react.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/react/<%= htmlWebpackPlugin.options.versions.reactDOM %>/react-dom.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/react/<%= htmlWebpackPlugin.options.versions.reactDOM %>/react-dom-server.min.js"></script>
   <style>
     html, body {
       background: #f7f7f7;
