@@ -1,5 +1,21 @@
 # Change Log
 
+## [v0.61.0](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.61.0) (2016-11-16)
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.60.10...v0.61.0)
+
+**Closed issues:**
+
+- Docs site down [\#863](https://github.com/Semantic-Org/Semantic-UI-React/issues/863)
+- Improve doc build time and load time performance [\#765](https://github.com/Semantic-Org/Semantic-UI-React/issues/765)
+
+**Merged pull requests:**
+
+- Docs/item [\#868](https://github.com/Semantic-Org/Semantic-UI-React/pull/868) ([dpkwhan](https://github.com/dpkwhan))
+- style\(Statistic\): update docs to the latest standards [\#866](https://github.com/Semantic-Org/Semantic-UI-React/pull/866) ([dpkwhan](https://github.com/dpkwhan))
+- perf\(docs\): improve doc bundle and load experience [\#865](https://github.com/Semantic-Org/Semantic-UI-React/pull/865) ([levithomason](https://github.com/levithomason))
+- Update doctrine to version 2.0.0 🚀 [\#861](https://github.com/Semantic-Org/Semantic-UI-React/pull/861) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+- fix\(AutoControlledProps\): Ignore undefined [\#788](https://github.com/Semantic-Org/Semantic-UI-React/pull/788) ([jcarbo](https://github.com/jcarbo))
+
 ## [v0.60.10](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.60.10) (2016-11-15)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.60.9...v0.60.10)
 
