@@ -65,25 +65,6 @@ export default class AutoControlledComponent extends Component {
     if (super.componentWillMount) super.componentWillMount()
     const { autoControlledProps } = this.constructor
 
-    // Auto controlled props are copied to state.
-    // Set initial state by copying auto controlled props to state.
-    // Also look for the default prop for any auto controlled props (foo => defaultFoo)
-    // so we can set initial values from defaults.
-    this.state = _.transform(autoControlledProps, (res, prop) => {
-      res[prop] = getAutoControlledStateValue(this.props, prop, true)
-
-      if (process.env.NODE_ENV !== 'production') {
-        const defaultPropName = getDefaultPropName(prop)
-        const { name } = this.constructor
-        // prevent defaultFoo={} along side foo={}
-        if (defaultPropName in this.props && prop in this.props) {
-          console.error(
-            `${name} prop "${prop}" is auto controlled. Specify either ${defaultPropName} or ${prop}, but not both.`
-          )
-        }
-      }
-    }, {})
-
     if (process.env.NODE_ENV !== 'production') {
       const { defaultProps, name, propTypes } = this.constructor
       // require static autoControlledProps
@@ -132,6 +113,27 @@ export default class AutoControlledComponent extends Component {
         ].join(' '))
       }
     }
+
+    // Auto controlled props are copied to state.
+    // Set initial state by copying auto controlled props to state.
+    // Also look for the default prop for any auto controlled props (foo => defaultFoo)
+    // so we can set initial values from defaults.
+    this.state = autoControlledProps.reduce((acc, prop) => {
+      acc[prop] = getAutoControlledStateValue(this.props, prop, true)
+
+      if (process.env.NODE_ENV !== 'production') {
+        const defaultPropName = getDefaultPropName(prop)
+        const { name } = this.constructor
+        // prevent defaultFoo={} along side foo={}
+        if (defaultPropName in this.props && prop in this.props) {
+          console.error(
+            `${name} prop "${prop}" is auto controlled. Specify either ${defaultPropName} or ${prop}, but not both.`
+          )
+        }
+      }
+
+      return acc
+    }, {})
   }
 
   componentWillReceiveProps(nextProps) {
@@ -139,7 +141,7 @@ export default class AutoControlledComponent extends Component {
     const { autoControlledProps } = this.constructor
 
     // Solve the next state for autoControlledProps
-    const newState = _.transform(autoControlledProps, (acc, prop) => {
+    const newState = autoControlledProps.reduce((acc, prop) => {
       const isNextUndefined = _.isUndefined(nextProps[prop])
       const propWasRemoved = !_.isUndefined(this.props[prop]) && isNextUndefined
 
@@ -148,6 +150,8 @@ export default class AutoControlledComponent extends Component {
 
       // reinitialize state for props just removed / set undefined
       else if (propWasRemoved) acc[prop] = getAutoControlledStateValue(nextProps, prop)
+
+      return acc
     }, {})
 
     if (Object.keys(newState).length > 0) this.setState(newState)

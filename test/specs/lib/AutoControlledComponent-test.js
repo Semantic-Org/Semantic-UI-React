@@ -288,7 +288,7 @@ describe('extending AutoControlledComponent', () => {
       const randomProp = _.sample(_.keys(props))
       const randomValue = faker.hacker.phrase()
 
-      TestClass = createTestClass({ state: {} })
+      TestClass = createTestClass({ autoControlledProps: [], state: {} })
       const wrapper = shallow(<TestClass {...props} />)
 
       wrapper
