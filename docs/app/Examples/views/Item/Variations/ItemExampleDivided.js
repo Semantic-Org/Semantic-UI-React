@@ -6,7 +6,7 @@ const paragraph = <ImageComponent src='http://semantic-ui.com/images/wireframe/s
 const ItemExampleDivided = () => (
   <Item.Group divided>
     <Item>
-      <Image src='http://semantic-ui.com/images/wireframe/image.png' />
+      <Item.Image src='http://semantic-ui.com/images/wireframe/image.png' />
 
       <Item.Content>
         <Item.Header as='a'>12 Years a Slave</Item.Header>
@@ -22,7 +22,7 @@ const ItemExampleDivided = () => (
     </Item>
 
     <Item>
-      <Image src='http://semantic-ui.com/images/wireframe/image.png' />
+      <Item.Image src='http://semantic-ui.com/images/wireframe/image.png' />
 
       <Item.Content>
         <Item.Header as='a'>My Neighbor Totoro</Item.Header>
@@ -41,7 +41,7 @@ const ItemExampleDivided = () => (
     </Item>
 
     <Item>
-      <Image src='http://semantic-ui.com/images/wireframe/image.png' />
+      <Item.Image src='http://semantic-ui.com/images/wireframe/image.png' />
 
       <Item.Content>
         <Item.Header as='a'>Watchmen</Item.Header>

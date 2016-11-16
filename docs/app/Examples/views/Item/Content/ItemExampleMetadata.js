@@ -6,7 +6,7 @@ const paragraph = <ImageComponent src='http://semantic-ui.com/images/wireframe/s
 const ItemExampleMetadata = () => (
   <Item.Group>
     <Item>
-      <Image size='tiny' src='http://semantic-ui.com/images/wireframe/image.png' />
+      <Item.Image size='tiny' src='http://semantic-ui.com/images/wireframe/image.png' />
 
       <Item.Content>
         <Item.Header>Arrowhead Valley Camp</Item.Header>
@@ -19,7 +19,7 @@ const ItemExampleMetadata = () => (
     </Item>
 
     <Item>
-      <Image size='tiny' src='http://semantic-ui.com/images/wireframe/image.png' />
+      <Item.Image size='tiny' src='http://semantic-ui.com/images/wireframe/image.png' />
 
       <Item.Content>
         <Item.Header>Buck's Homebrew Stayaway</Item.Header>
@@ -29,7 +29,7 @@ const ItemExampleMetadata = () => (
     </Item>
 
     <Item>
-      <Image size='tiny' src='http://semantic-ui.com/images/wireframe/image.png' />
+      <Item.Image size='tiny' src='http://semantic-ui.com/images/wireframe/image.png' />
       <Item.Content header='Arrowhead Valley Camp' meta='$1200 1 Month' />
     </Item>
   </Item.Group>
