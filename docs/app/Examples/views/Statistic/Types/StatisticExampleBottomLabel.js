@@ -1,7 +1,7 @@
 import React from 'react'
 import { Statistic } from 'semantic-ui-react'
 
-const BottomLabel = () => (
+const StatisticExampleBottomLabel = () => (
   <div>
     <Statistic>
       <Statistic.Value>5,550</Statistic.Value>
@@ -12,4 +12,4 @@ const BottomLabel = () => (
   </div>
 )
 
-export default BottomLabel
+export default StatisticExampleBottomLabel

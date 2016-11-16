@@ -8,7 +8,7 @@ const items = [
   { label: 'Team Members', value: '42' },
 ]
 
-const Props = () => (
+const StatisticExampleProps = () => (
   <div>
     <Statistic.Group>
       <Statistic label='Saves' value='22' />
@@ -21,4 +21,4 @@ const Props = () => (
   </div>
 )
 
-export default Props
+export default StatisticExampleProps

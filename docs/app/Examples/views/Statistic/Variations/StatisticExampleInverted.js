@@ -1,7 +1,7 @@
 import React from 'react'
 import { Segment, Statistic } from 'semantic-ui-react'
 
-const Inverted = () => (
+const StatisticExampleInverted = () => (
   <Segment inverted>
     <Statistic inverted value='54' label='inverted' />
     <Statistic inverted color='red' value='27' label='red' />
@@ -19,4 +19,4 @@ const Inverted = () => (
   </Segment>
 )
 
-export default Inverted
+export default StatisticExampleInverted
