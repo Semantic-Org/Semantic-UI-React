@@ -1,7 +1,7 @@
 import React from 'react'
 import { Image, Item } from 'semantic-ui-react'
 
-const Items = () => (
+const ItemExampleItems = () => (
   <Item.Group>
     <Item>
       <Item.Image size='tiny' src='http://semantic-ui.com/images/wireframe/image.png' />
@@ -31,4 +31,4 @@ const Items = () => (
   </Item.Group>
 )
 
-export default Items
+export default ItemExampleItems

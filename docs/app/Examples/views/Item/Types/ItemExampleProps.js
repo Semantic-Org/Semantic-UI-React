@@ -20,8 +20,8 @@ const items = [
   },
 ]
 
-const Props = () => (
+const ItemExampleProps = () => (
   <Item.Group items={items} />
 )
 
-export default Props
+export default ItemExampleProps
