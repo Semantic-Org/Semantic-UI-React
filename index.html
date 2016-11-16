@@ -1,11 +1,32 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><link rel="shortcut icon" type="image/x-icon" href="/logo.png"><script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.18.1/babel.min.js" data-presets="es2015,react,stage1"></script><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.4/semantic.min.css"><script src="//cdnjs.cloudflare.com/ajax/libs/Faker/3.1.0/faker.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.1/anchor.min.js"></script><title>Semantic UI React</title><script>// Apply gh-pages SPA redirect that was applied in 404.html
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><link rel="shortcut icon" type="image/x-icon" href="/logo.png"><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.4/semantic.min.css"><title>Semantic UI React</title><script>// Apply gh-pages SPA redirect that was applied in 404.html
+    // ----------------------------------------
     (function() {
       var redirect = sessionStorage.redirect
       delete sessionStorage.redirect
       if (redirect && redirect !== location.href) {
         history.replaceState(null, null, redirect)
       }
-    })()</script></head><body><style>html, body {
+    })()</script></head><body class="dimmed dimmable"><div id="docs-loading-dimmer" class="ui active page dimmer"><div class="content"><div class="center"><div class="ui large text loader"><div class="ui inverted teal header">Loading docs...<div class="sub header">Semantic-UI-React v0.60.10</div></div></div></div></div></div><script>(function() {
+      var delay = 500
+      var dimmer = document.querySelector('#docs-loading-dimmer')
+      dimmer.style.pointerEvents = 'none'
+      dimmer.style.transition = 'opacity ' + delay + 'ms linear'
+
+      function removeDimmer() {
+        dimmer.style.opacity = '0'
+
+        setTimeout(() => {
+          var dimmer = document.querySelector('#docs-loading-dimmer')
+          var bodyClassName = document.body.getAttribute("class").replace(/dimmed\s+dimmable\s+/, '')
+
+          document.body.removeChild(dimmer)
+          document.body.setAttribute("class", bodyClassName)
+          window.removeEventListener('load', removeDimmer)
+        }, delay)
+      }
+
+      window.addEventListener('load', removeDimmer)
+    }())</script><script src="//cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.1/anchor.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.18.2/babel.min.js" data-presets="es2015,react,stage1"></script><script src="//cdnjs.cloudflare.com/ajax/libs/Faker/3.1.0/faker.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/js-beautify/1.6.4/beautify-html.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/react/15.3.2/react.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/react/15.3.2/react-dom.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/react/15.3.2/react-dom-server.min.js"></script><style>html, body {
       background: #f7f7f7;
     }
 
@@ -97,4 +118,4 @@
 
     .icon-set-examples .rendered-example .column:hover > .icon {
       transform: scale(1.5);
-    }</style><script type="text/javascript" src="//cdn.rawgit.com/Semantic-Org/Semantic-UI-React/gh-pages/vendor.57dd3202cddb1944fe82.js"></script><script type="text/javascript" src="//cdn.rawgit.com/Semantic-Org/Semantic-UI-React/gh-pages/app.574570a6faf2399a4138.js"></script></body></html>
+    }</style><script type="text/javascript" src="//cdn.rawgit.com/Semantic-Org/Semantic-UI-React/gh-pages/vendor.0de90e0f4ce35e687687.js"></script><script type="text/javascript" src="//cdn.rawgit.com/Semantic-Org/Semantic-UI-React/gh-pages/app.5415c3ec5d9e41b0db3e.js"></script></body></html>
