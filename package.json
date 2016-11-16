@@ -121,7 +121,7 @@
     "yargs": "^6.4.0"
   },
   "peerDependencies": {
-    "react": ">=0.14.0 <= 15",
+    "react": ">=15.3.2",
     "react-dom": ">=0.14.0 <= 15"
   }
 }
