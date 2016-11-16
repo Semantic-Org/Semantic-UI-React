@@ -69,7 +69,7 @@ class Modal extends Component {
     /** Called when the portal is unmounted from the DOM */
     onUnmount: PropTypes.func,
 
-    /** Controls whether or not the dropdown menu is displayed. */
+    /** Controls whether or not the Modal is displayed. */
     open: PropTypes.bool,
 
     /** A modal can vary in size */
