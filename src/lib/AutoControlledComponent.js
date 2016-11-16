@@ -148,12 +148,9 @@ export default class AutoControlledComponent extends Component {
 
       // reinitialize state for props just removed / set undefined
       else if (propWasRemoved) acc[prop] = getAutoControlledStateValue(nextProps, prop)
-
-      // otherwise, continue persisting the auto controlled state value
-      else acc[prop] = this.state[prop]
     }, {})
 
-    this.setState(newState)
+    if (Object.keys(newState).length > 0) this.setState(newState)
   }
 
   /**
@@ -177,13 +174,19 @@ export default class AutoControlledComponent extends Component {
       }
     }
 
-    const parentDefinedProps = _.omitBy(this.props, _.isUndefined)
+    let newState = Object.keys(maybeState).reduce((acc, prop) => {
+      // ignore props defined by the parent
+      if (this.props[prop] !== undefined) return acc
 
-    // Pick auto controlled props, omitting props defined by the parent.
-    let newState = _.omit(_.pick(maybeState, autoControlledProps), _.keys(parentDefinedProps))
+      // ignore props not listed in auto controlled props
+      if (autoControlledProps.indexOf(prop) === -1) return acc
+
+      acc[prop] = maybeState[prop]
+      return acc
+    }, {})
 
     if (state) newState = { ...newState, ...state }
 
-    if (!_.isEmpty(newState)) this.setState(newState)
+    if (Object.keys(newState).length > 0) this.setState(newState)
   }
 }

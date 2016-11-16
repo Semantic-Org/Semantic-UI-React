@@ -60,7 +60,7 @@ describe('extending AutoControlledComponent', () => {
     it('does not set state for non autoControlledProps', () => {
       consoleUtil.disableOnce()
 
-      TestClass = createTestClass({ state: {} })
+      TestClass = createTestClass({ autoControlledProps: [], state: {} })
       const wrapper = shallow(<TestClass />)
 
       wrapper
