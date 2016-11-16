@@ -1,7 +1,7 @@
 import React from 'react'
 import { Statistic } from 'semantic-ui-react'
 
-const Size = () => (
+const StatisticExampleSize = () => (
   <div>
     <Statistic size='mini' label='Views' value='2,204' />
     <Statistic size='tiny' label='Views' value='2,204' />
@@ -12,4 +12,4 @@ const Size = () => (
   </div>
 )
 
-export default Size
+export default StatisticExampleSize

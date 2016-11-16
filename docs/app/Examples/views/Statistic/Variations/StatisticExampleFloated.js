@@ -1,7 +1,7 @@
 import React from 'react'
 import { Segment, Statistic } from 'semantic-ui-react'
 
-const Floated = () => (
+const StatisticExampleFloated = () => (
   <Segment>
     <Statistic floated='right' label='Views' value='2,204' />
 
@@ -32,4 +32,4 @@ const Floated = () => (
   </Segment>
 )
 
-export default Floated
+export default StatisticExampleFloated

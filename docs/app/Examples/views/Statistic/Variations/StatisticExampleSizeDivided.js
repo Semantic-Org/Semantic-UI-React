@@ -1,7 +1,7 @@
 import React from 'react'
 import { Divider, Statistic } from 'semantic-ui-react'
 
-const SizeDivided = () => (
+const StatisticExampleSizeDivided = () => (
   <div>
     <Statistic size='mini' label='Views' value='2,204' />
     <Divider />
@@ -22,4 +22,4 @@ const SizeDivided = () => (
   </div>
 )
 
-export default SizeDivided
+export default StatisticExampleSizeDivided

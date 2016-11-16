@@ -7,15 +7,15 @@ const Content = () => (
   <ExampleSection title='Content'>
     <ComponentExample
       title='Value'
-      description='A statistic can contain a numeric, icon, image, or text value'
-      examplePath='views/Statistic/Content/Values'
+      description='A statistic can contain a numeric, icon, image, or text value.'
+      examplePath='views/Statistic/Content/StatisticExampleValues'
     />
-    <ComponentExample examplePath='views/Statistic/Content/Props' />
+    <ComponentExample examplePath='views/Statistic/Content/StatisticExampleProps' />
 
     <ComponentExample
       title='Label'
-      description='A statistic can contain a label to help provide context for the presented value'
-      examplePath='views/Statistic/Content/Labels'
+      description='A statistic can contain a label to help provide context for the presented value.'
+      examplePath='views/Statistic/Content/StatisticExampleLabels'
     />
   </ExampleSection>
 )

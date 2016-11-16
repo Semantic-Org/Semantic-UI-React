@@ -1,7 +1,7 @@
 import React from 'react'
 import { Statistic } from 'semantic-ui-react'
 
-const Colored = () => (
+const StatisticExampleColored = () => (
   <Statistic.Group>
     <Statistic color='red' value='27' label='red' />
     <Statistic color='orange' value='8' label='orange' />
@@ -18,4 +18,4 @@ const Colored = () => (
   </Statistic.Group>
 )
 
-export default Colored
+export default StatisticExampleColored
