@@ -11,6 +11,7 @@ let TestClass
 /* eslint-disable */
 const createTestClass = (options = {}) => class Test extends AutoControlledComponent {
   static autoControlledProps = options.autoControlledProps
+  static defaultProps = options.defaultProps
   state = options.state
   render = () => <div />
 }
@@ -59,7 +60,7 @@ describe('extending AutoControlledComponent', () => {
     it('does not set state for non autoControlledProps', () => {
       consoleUtil.disableOnce()
 
-      TestClass = createTestClass({ state: {} })
+      TestClass = createTestClass({ autoControlledProps: [], state: {} })
       const wrapper = shallow(<TestClass />)
 
       wrapper
@@ -95,6 +96,55 @@ describe('extending AutoControlledComponent', () => {
       wrapper
         .should.have.state(randomProp, props[randomProp])
     })
+
+    it('sets state for props passed as undefined by the parent', () => {
+      consoleUtil.disableOnce()
+
+      const props = makeProps()
+      const autoControlledProps = _.keys(props)
+
+      const randomProp = _.sample(autoControlledProps)
+      const randomValue = faker.hacker.phrase()
+
+      props[randomProp] = undefined
+
+      TestClass = createTestClass({ autoControlledProps, state: {} })
+      const wrapper = shallow(<TestClass {...props } />)
+
+      wrapper
+        .instance()
+        .trySetState({ [randomProp]: randomValue })
+
+      wrapper
+        .should.have.state(randomProp, randomValue)
+    })
+
+    it('does not set state for props passed as null by the parent', () => {
+      consoleUtil.disableOnce()
+
+      const props = makeProps()
+      const autoControlledProps = _.keys(props)
+
+      const randomProp = _.sample(autoControlledProps)
+      const randomValue = faker.hacker.phrase()
+
+      props[randomProp] = null
+
+      TestClass = createTestClass({ autoControlledProps, state: {} })
+      const wrapper = shallow(<TestClass {...props } />)
+
+      wrapper
+        .instance()
+        .trySetState({ [randomProp]: randomValue })
+
+      // not updated
+      wrapper
+        .should.not.have.state(randomProp, randomValue)
+
+      // is original value
+      wrapper
+        .should.have.state(randomProp, props[randomProp])
+    })
   })
 
   describe('initial state', () => {
@@ -115,6 +165,30 @@ describe('extending AutoControlledComponent', () => {
       const wrapper = shallow(<TestClass {...props} />)
 
       _.each(props, (val, key) => wrapper.should.not.have.state(key, val))
+    })
+
+    it('uses the default prop is the regular prop is undefined', () => {
+      consoleUtil.disableOnce()
+
+      const defaultProps = { defaultFoo: 'default' }
+      const autoControlledProps = ['foo']
+
+      TestClass = createTestClass({ autoControlledProps, defaultProps, state: {} })
+
+      shallow(<TestClass foo={undefined} />)
+        .should.have.state('foo', 'default')
+    })
+
+    it('uses the regular prop when a default is also defined', () => {
+      consoleUtil.disableOnce()
+
+      const defaultProps = { defaultFoo: 'default' }
+      const autoControlledProps = ['foo']
+
+      TestClass = createTestClass({ autoControlledProps, defaultProps, state: {} })
+
+      shallow(<TestClass foo='initial' />)
+        .should.have.state('foo', 'initial')
     })
 
     it('defaults "checked" to false if not present', () => {
@@ -214,7 +288,7 @@ describe('extending AutoControlledComponent', () => {
       const randomProp = _.sample(_.keys(props))
       const randomValue = faker.hacker.phrase()
 
-      TestClass = createTestClass({ state: {} })
+      TestClass = createTestClass({ autoControlledProps: [], state: {} })
       const wrapper = shallow(<TestClass {...props} />)
 
       wrapper
@@ -231,8 +305,7 @@ describe('extending AutoControlledComponent', () => {
       const autoControlledProps = _.keys(props)
       const defaultProps = makeDefaultProps(props)
 
-      const randomPropIndex = _.random(0, autoControlledProps.length)
-      const randomDefaultProp = _.keys(defaultProps)[randomPropIndex]
+      const randomDefaultProp = _.sample(defaultProps)
       const randomValue = faker.hacker.phrase()
 
       TestClass = createTestClass({ autoControlledProps, state: {} })
@@ -243,6 +316,66 @@ describe('extending AutoControlledComponent', () => {
 
       wrapper
         .should.not.have.state(randomDefaultProp, randomValue)
+    })
+
+    it('does not return state to default props when setting props undefined', () => {
+      consoleUtil.disableOnce()
+
+      const autoControlledProps = ['foo']
+      const defaultProps = { defaultFoo: 'default' }
+
+      TestClass = createTestClass({ autoControlledProps, defaultProps, state: {} })
+      const wrapper = shallow(<TestClass foo='initial' />)
+
+      // default value
+      wrapper
+        .should.have.state('foo', 'initial')
+
+      wrapper
+        .setProps({ foo: undefined })
+
+      wrapper
+        .should.not.have.state('foo', 'foo')
+    })
+
+    it('sets state to undefined for props passed as undefined by the parent', () => {
+      consoleUtil.disableOnce()
+      const props = makeProps()
+      const autoControlledProps = _.keys(props)
+
+      const randomProp = _.sample(autoControlledProps)
+
+      TestClass = createTestClass({ autoControlledProps, state: {} })
+      const wrapper = shallow(<TestClass {...props} />)
+
+      // state exists initially
+      wrapper
+        .should.have.state(randomProp)
+
+      wrapper
+        .setProps({ [randomProp]: undefined })
+
+      // use "should not have" to assert undefined state
+      wrapper
+        .should.not.have.state(randomProp)
+    })
+
+    it('does not set state for props passed as null by the parent', () => {
+      consoleUtil.disableOnce()
+
+      const props = makeProps()
+      const autoControlledProps = _.keys(props)
+
+      const randomProp = _.sample(autoControlledProps)
+
+      TestClass = createTestClass({ autoControlledProps, state: {} })
+      const wrapper = shallow(<TestClass {...props} />)
+
+      wrapper
+        .setProps({ [randomProp]: null })
+
+      wrapper
+        .should.have.state(randomProp, null)
     })
   })
 })

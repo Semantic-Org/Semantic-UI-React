@@ -5,6 +5,7 @@ import {
   getElementType,
   getUnhandledProps,
   isBrowser,
+  makeDebugger,
   META,
   SUI,
   useKeyOnly,
@@ -13,6 +14,8 @@ import {
 import Portal from '../../addons/Portal'
 import PopupContent from './PopupContent'
 import PopupHeader from './PopupHeader'
+
+const debug = makeDebugger('popup')
 
 const _meta = {
   name: 'Popup',
@@ -222,30 +225,24 @@ export default class Popup extends Component {
 
     const { on, hoverable } = this.props
 
-    switch (on) {
-      case 'click':
-        portalProps.openOnTriggerClick = true
-        portalProps.closeOnTriggerClick = true
-        portalProps.closeOnDocumentClick = true
-        break
-
-      case 'focus':
-        portalProps.openOnTriggerFocus = true
-        portalProps.closeOnTriggerBlur = true
-        break
-
-      default:  // default to hover
-        portalProps.openOnTriggerMouseOver = true
-        portalProps.closeOnTriggerMouseLeave = true
-        // Taken from SUI: https://git.io/vPmCm
-        portalProps.mouseLeaveDelay = 70
-        portalProps.mouseOverDelay = 50
-        break
-    }
-
     if (hoverable) {
       portalProps.closeOnPortalMouseLeave = true
       portalProps.mouseLeaveDelay = 300
+    }
+
+    if (on === 'click') {
+      portalProps.openOnTriggerClick = true
+      portalProps.closeOnTriggerClick = true
+      portalProps.closeOnDocumentClick = true
+    } else if (on === 'focus') {
+      portalProps.openOnTriggerFocus = true
+      portalProps.closeOnTriggerBlur = true
+    } else if (on === 'hover') {
+      portalProps.openOnTriggerMouseOver = true
+      portalProps.closeOnTriggerMouseLeave = true
+      // Taken from SUI: https://git.io/vPmCm
+      portalProps.mouseLeaveDelay = 70
+      portalProps.mouseOverDelay = 50
     }
 
     return portalProps
@@ -258,11 +255,13 @@ export default class Popup extends Component {
   }
 
   handleClose = (e) => {
+    debug('handleClose()')
     const { onClose } = this.props
     if (onClose) onClose(e, this.props)
   }
 
   handleOpen = (e) => {
+    debug('handleOpen()')
     this.coords = e.currentTarget.getBoundingClientRect()
 
     const { onOpen } = this.props
@@ -270,6 +269,7 @@ export default class Popup extends Component {
   }
 
   handlePortalMount = (e) => {
+    debug('handlePortalMount()')
     if (this.props.hideOnScroll) {
       window.addEventListener('scroll', this.hideOnScroll)
     }
@@ -279,11 +279,13 @@ export default class Popup extends Component {
   }
 
   handlePortalUnmount = (e) => {
+    debug('handlePortalUnmount()')
     const { onUnmount } = this.props
     if (onUnmount) onUnmount(e, this.props)
   }
 
   popupMounted = (ref) => {
+    debug('popupMounted()')
     this.popupCoords = ref ? ref.getBoundingClientRect() : null
     this.setPopupStyle()
   }
@@ -333,10 +335,12 @@ export default class Popup extends Component {
       </ElementType>
     )
 
+    const mergedPortalProps = { ...this.getPortalProps(), ...portalProps }
+    debug('portal props:', mergedPortalProps)
+
     return (
       <Portal
-        {...this.getPortalProps()}
-        {...portalProps}
+        {...mergedPortalProps}
         trigger={trigger}
         onClose={this.handleClose}
         onMount={this.handlePortalMount}
