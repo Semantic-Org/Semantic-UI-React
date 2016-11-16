@@ -22,7 +22,6 @@ const webpackUMDConfig = {
   externals: {
     react: 'React',
     'react-dom': 'ReactDOM',
-    Babel: 'babel-standalone',
   },
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),

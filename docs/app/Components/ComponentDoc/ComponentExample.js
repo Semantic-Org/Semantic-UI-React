@@ -2,7 +2,7 @@ import * as Babel from 'babel-standalone'
 import _ from 'lodash'
 import React, { Component, createElement, isValidElement, PropTypes } from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
-import { html } from 'js-beautify'
+import html from 'html-beautify'
 import copyToClipboard from 'copy-to-clipboard'
 
 import { exampleContext, repoURL } from 'docs/app/utils'
