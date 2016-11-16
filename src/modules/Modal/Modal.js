@@ -69,6 +69,9 @@ class Modal extends Component {
     /** Called when the portal is unmounted from the DOM */
     onUnmount: PropTypes.func,
 
+    /** Controls whether or not the Modal is displayed. */
+    open: PropTypes.bool,
+
     /** A modal can vary in size */
     size: PropTypes.oneOf(_meta.props.size),
 
@@ -169,7 +172,7 @@ class Modal extends Component {
   }
 
   render() {
-    const { basic, children, className, dimmer, mountNode, size } = this.props
+    const { basic, children, className, dimmer, mountNode, open, size } = this.props
 
     // Short circuit when server side rendering
     if (!isBrowser) return null
@@ -225,6 +228,7 @@ class Modal extends Component {
         onMount={this.handlePortalMount}
         onOpen={this.handleOpen}
         onUnmount={this.handlePortalUnmount}
+        open={open}
       >
         {modalJSX}
       </Portal>
