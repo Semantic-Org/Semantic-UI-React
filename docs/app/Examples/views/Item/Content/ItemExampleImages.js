@@ -1,10 +1,8 @@
 import React from 'react'
 import { Item } from 'semantic-ui-react'
 
-const { Group, Image } = Item
-
-const Images = () => (
-  <Group divided>
+const ItemExampleImages = () => (
+  <Item.Group divided>
     <Item>
       <Image src='http://semantic-ui.com/images/wireframe/image.png' />
     </Item>
@@ -14,7 +12,7 @@ const Images = () => (
     </Item>
 
     <Item image='http://semantic-ui.com/images/wireframe/image.png' />
-  </Group>
+  </Item.Group>
 )
 
-export default Images
+export default ItemExampleImages

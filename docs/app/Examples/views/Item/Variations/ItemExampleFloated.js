@@ -1,53 +1,52 @@
 import React from 'react'
 import { Button, Image as ImageComponent, Item } from 'semantic-ui-react'
 
-const { Content, Description, Extra, Group, Header, Image } = Item
 const paragraph = <ImageComponent src='http://semantic-ui.com/images/wireframe/short-paragraph.png' />
 
-const Floated = () => (
-  <Group relaxed>
+const ItemExampleFloated = () => (
+  <Item.Group relaxed>
     <Item>
       <Image size='small' src='http://semantic-ui.com/images/wireframe/image.png' />
 
-      <Content verticalAlign='middle'>
-        <Header>Content A</Header>
-        <Description>{paragraph}</Description>
-        <Extra>
+      <Item.Content verticalAlign='middle'>
+        <Item.Header>Content A</Item.Header>
+        <Item.Description>{paragraph}</Item.Description>
+        <Item.Extra>
           <Button floated='right'>
             Action
           </Button>
-        </Extra>
-      </Content>
+        </Item.Extra>
+      </Item.Content>
     </Item>
 
     <Item>
       <Image size='small' src='http://semantic-ui.com/images/wireframe/image.png' />
 
-      <Content verticalAlign='middle'>
-        <Header>Content B</Header>
-        <Description>{paragraph}</Description>
-        <Extra>
+      <Item.Content verticalAlign='middle'>
+        <Item.Header>Content B</Item.Header>
+        <Item.Description>{paragraph}</Item.Description>
+        <Item.Extra>
           <Button floated='right'>
             Action
           </Button>
-        </Extra>
-      </Content>
+        </Item.Extra>
+      </Item.Content>
     </Item>
 
     <Item>
       <Image size='small' src='http://semantic-ui.com/images/wireframe/image.png' />
 
-      <Content verticalAlign='middle'>
-        <Header>Content C</Header>
-        <Description>{paragraph}</Description>
-        <Extra>
+      <Item.Content verticalAlign='middle'>
+        <Item.Header>Content C</Item.Header>
+        <Item.Description>{paragraph}</Item.Description>
+        <Item.Extra>
           <Button floated='right'>
             Action
           </Button>
-        </Extra>
-      </Content>
+        </Item.Extra>
+      </Item.Content>
     </Item>
-  </Group>
+  </Item.Group>
 )
 
-export default Floated
+export default ItemExampleFloated

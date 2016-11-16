@@ -7,50 +7,50 @@ const Content = () => (
   <ExampleSection title='Content'>
     <ComponentExample
       title='Image'
-      description='An item can contain an image'
-      examplePath='views/Item/Content/Images'
+      description='An item can contain an image.'
+      examplePath='views/Item/Content/ItemExampleImages'
     />
 
     <ComponentExample
       title='Content'
-      description='An item can contain content'
-      examplePath='views/Item/Content/Contents'
+      description='An item can contain content.'
+      examplePath='views/Item/Content/ItemExampleContents'
     />
 
     <ComponentExample
       title='Header'
-      description='An item can contain a header'
-      examplePath='views/Item/Content/Headers'
+      description='An item can contain a header.'
+      examplePath='views/Item/Content/ItemExampleHeaders'
     />
 
     <ComponentExample
       title='Metadata'
-      description='An item can contain a header'
-      examplePath='views/Item/Content/Metadata'
+      description='An item can contain a header.'
+      examplePath='views/Item/Content/ItemExampleMetadata'
     />
 
     <ComponentExample
       title='Link'
-      description='An item can contain contain links as images, headers, or inside content'
-      examplePath='views/Item/Content/Link'
+      description='An item can contain contain links as images, headers, or inside content.'
+      examplePath='views/Item/Content/ItemExampleLink'
     />
 
     <ComponentExample
       title='Description'
-      description='An item can contain contain links as images, headers, or inside content'
-      examplePath='views/Item/Content/Descriptions'
+      description='An item can contain contain links as images, headers, or inside content.'
+      examplePath='views/Item/Content/ItemExampleDescriptions'
     />
 
     <ComponentExample
       title='Extra Content'
-      description='An item can contain contain links as images, headers, or inside content'
-      examplePath='views/Item/Content/ExtraContent'
+      description='An item can contain contain links as images, headers, or inside content.'
+      examplePath='views/Item/Content/ItemExampleExtraContent'
     />
 
     <ComponentExample
       title='Rating'
-      description='An item can contain icons signifying a "like" or "favorite" action'
-      examplePath='views/Item/Content/Ratings'
+      description='An item can contain icons signifying a "like" or "favorite" action.'
+      examplePath='views/Item/Content/ItemExampleRatings'
     />
   </ExampleSection>
 )
