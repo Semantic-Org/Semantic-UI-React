@@ -7,10 +7,10 @@ const Types = () => (
   <ExampleSection title='Types'>
     <ComponentExample
       title='Items'
-      description='A group of items'
-      examplePath='views/Item/Types/Items'
+      description='A group of items.'
+      examplePath='views/Item/Types/ItemExampleItems'
     />
-    <ComponentExample examplePath='views/Item/Types/Props' />
+    <ComponentExample examplePath='views/Item/Types/ItemExampleProps' />
   </ExampleSection>
 )
 
