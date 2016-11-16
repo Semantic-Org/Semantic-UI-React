@@ -42,10 +42,15 @@ const getDefaultPropName = (prop) => `default${prop[0].toUpperCase() + prop.slic
  */
 export const getAutoControlledStateValue = (props, propName, includeDefaultProps = false) => {
   const defaultPropName = getDefaultPropName(propName)
+  const prop = props[propName]
+  const defaultProp = props[defaultPropName]
+
+  const hasProp = prop !== undefined
+  const hasDefaultProp = defaultProp !== undefined
 
   // defaultProps & props
-  if (includeDefaultProps && _.has(props, defaultPropName)) return props[defaultPropName]
-  if (props[propName] !== undefined) return props[propName]
+  if (includeDefaultProps && !hasProp && hasDefaultProp) return defaultProp
+  if (hasProp) return prop
 
   // React doesn't allow changing from uncontrolled to controlled components,
   // default checked/value if they were not present.
@@ -136,7 +141,7 @@ export default class AutoControlledComponent extends Component {
     // Solve the next state for autoControlledProps
     const newState = _.transform(autoControlledProps, (acc, prop) => {
       const isNextUndefined = _.isUndefined(nextProps[prop])
-      const propWasRemoved = _.has(this.props, prop) && isNextUndefined
+      const propWasRemoved = !_.isUndefined(this.props[prop]) && isNextUndefined
 
       // if next is defined then use its value
       if (!isNextUndefined) acc[prop] = nextProps[prop]

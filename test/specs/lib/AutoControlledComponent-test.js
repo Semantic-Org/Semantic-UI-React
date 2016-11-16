@@ -11,6 +11,7 @@ let TestClass
 /* eslint-disable */
 const createTestClass = (options = {}) => class Test extends AutoControlledComponent {
   static autoControlledProps = options.autoControlledProps
+  static defaultProps = options.defaultProps
   state = options.state
   render = () => <div />
 }
@@ -166,6 +167,30 @@ describe('extending AutoControlledComponent', () => {
       _.each(props, (val, key) => wrapper.should.not.have.state(key, val))
     })
 
+    it('uses the default prop is the regular prop is undefined', () => {
+      consoleUtil.disableOnce()
+
+      const defaultProps = { defaultFoo: 'default' }
+      const autoControlledProps = ['foo']
+
+      TestClass = createTestClass({ autoControlledProps, defaultProps, state: {} })
+
+      shallow(<TestClass foo={undefined} />)
+        .should.have.state('foo', 'default')
+    })
+
+    it('uses the regular prop when a default is also defined', () => {
+      consoleUtil.disableOnce()
+
+      const defaultProps = { defaultFoo: 'default' }
+      const autoControlledProps = ['foo']
+
+      TestClass = createTestClass({ autoControlledProps, defaultProps, state: {} })
+
+      shallow(<TestClass foo='initial' />)
+        .should.have.state('foo', 'initial')
+    })
+
     it('defaults "checked" to false if not present', () => {
       consoleUtil.disableOnce()
       TestClass.autoControlledProps.push('checked')
@@ -280,8 +305,7 @@ describe('extending AutoControlledComponent', () => {
       const autoControlledProps = _.keys(props)
       const defaultProps = makeDefaultProps(props)
 
-      const randomPropIndex = _.random(0, autoControlledProps.length)
-      const randomDefaultProp = _.keys(defaultProps)[randomPropIndex]
+      const randomDefaultProp = _.sample(defaultProps)
       const randomValue = faker.hacker.phrase()
 
       TestClass = createTestClass({ autoControlledProps, state: {} })
@@ -292,6 +316,26 @@ describe('extending AutoControlledComponent', () => {
 
       wrapper
         .should.not.have.state(randomDefaultProp, randomValue)
+    })
+
+    it('does not return state to default props when setting props undefined', () => {
+      consoleUtil.disableOnce()
+
+      const autoControlledProps = ['foo']
+      const defaultProps = { defaultFoo: 'default' }
+
+      TestClass = createTestClass({ autoControlledProps, defaultProps, state: {} })
+      const wrapper = shallow(<TestClass foo='initial' />)
+
+      // default value
+      wrapper
+        .should.have.state('foo', 'initial')
+
+      wrapper
+        .setProps({ foo: undefined })
+
+      wrapper
+        .should.not.have.state('foo', 'foo')
     })
 
     it('sets state to undefined for props passed as undefined by the parent', () => {
