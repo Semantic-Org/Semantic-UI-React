@@ -81,6 +81,7 @@ webpackConfig.plugins = [
     versions: {
       babel: require('babel-standalone/package.json').version,
       sui: require('semantic-ui-css/package.json').version,
+      suir: require('./package.json').version,
       faker: require('faker/package.json').version,
       lodash: require('lodash/package.json').version,
       react: require('react/package.json').version,
