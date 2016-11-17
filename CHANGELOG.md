@@ -1,5 +1,26 @@
 # Change Log
 
+## [v0.61.1](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.61.1) (2016-11-17)
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.61.0...v0.61.1)
+
+**Fixed bugs:**
+
+- Support onKeyDown in Input [\#884](https://github.com/Semantic-Org/Semantic-UI-React/issues/884)
+
+**Closed issues:**
+
+- Modal is missing "open" in the documentation of props. [\#690](https://github.com/Semantic-Org/Semantic-UI-React/issues/690)
+
+**Merged pull requests:**
+
+- fix\(Input\): pass all handlers to the html input [\#886](https://github.com/Semantic-Org/Semantic-UI-React/pull/886) ([levithomason](https://github.com/levithomason))
+- Update css-loader to version 0.26.0 🚀 [\#883](https://github.com/Semantic-Org/Semantic-UI-React/pull/883) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+- style\(Item\): update docs to the latest standards  [\#881](https://github.com/Semantic-Org/Semantic-UI-React/pull/881) ([dpkwhan](https://github.com/dpkwhan))
+- Update gh-pages to version 0.12.0 🚀 [\#880](https://github.com/Semantic-Org/Semantic-UI-React/pull/880) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+- react-dom@15.4.0 untested ⚠️ [\#874](https://github.com/Semantic-Org/Semantic-UI-React/pull/874) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+- lodash@4.17.2 untested ⚠️ [\#869](https://github.com/Semantic-Org/Semantic-UI-React/pull/869) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+- docs\(Modal\): Add controlled modal example [\#769](https://github.com/Semantic-Org/Semantic-UI-React/pull/769) ([lewisblackwood](https://github.com/lewisblackwood))
+
 ## [v0.61.0](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.61.0) (2016-11-16)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.60.10...v0.61.0)
 
