@@ -74,7 +74,7 @@
     "express": "^4.13.4",
     "faker": "^3.0.1",
     "file-loader": "^0.9.0",
-    "gh-pages": "^0.11.0",
+    "gh-pages": "^0.12.0",
     "gulp": "github:gulpjs/gulp#4.0",
     "gulp-html-replace": "^1.5.4",
     "gulp-load-plugins": "^1.2.2",
