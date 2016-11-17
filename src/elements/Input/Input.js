@@ -17,29 +17,37 @@ import Icon from '../../elements/Icon'
 import Label from '../../elements/Label'
 
 export const htmlInputPropNames = [
-  // React
-  'selected',
-  'defaultValue',
-  'defaultChecked',
+  // REACT
+  'selected', 'defaultValue', 'defaultChecked',
 
-  // Limited HTML props
-  'autoComplete',
-  'autoFocus',
-  'checked',
-  // 'disabled', do not pass (duplicates SUI CSS opacity rule)
-  'form',
-  'max',
-  'maxLength',
-  'min',
-  'name',
-  'onChange',
-  'pattern',
-  'placeholder',
-  'readOnly',
-  'required',
-  'step',
-  'type',
-  'value',
+  // LIMITED HTML PROPS
+  'autoComplete', 'autoFocus', 'checked', 'form', 'max', 'maxLength', 'min',
+  'name', 'pattern', 'placeholder', 'readOnly', 'required', 'step', 'type', 'value',
+
+  // Heads Up!
+  // Do not pass disabled, it duplicates the SUI CSS opacity rule.
+  // 'disabled',
+
+  // EVENTS
+  // keyboard
+  'onKeyDown', 'onKeyPress', 'onKeyUp',
+
+  // focus
+  'onFocus', 'onBlur',
+
+  // form
+  'onChange', 'onInput',
+
+  // mouse
+  'onClick', 'onContextMenu',
+  'onDrag', 'onDragEnd', 'onDragEnter', 'onDragExit', 'onDragLeave', 'onDragOver', 'onDragStart', 'onDrop',
+  'onMouseDown', 'onMouseEnter', 'onMouseLeave', 'onMouseMove', 'onMouseOut', 'onMouseOver', 'onMouseUp',
+
+  // selection
+  'onSelect',
+
+  // touch
+  'onTouchCancel', 'onTouchEnd', 'onTouchMove', 'onTouchStart',
 ]
 
 const _meta = {
