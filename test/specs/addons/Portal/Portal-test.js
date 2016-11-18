@@ -272,10 +272,21 @@ describe('Portal', () => {
   })
 
   describe('closeOnCloseClick', () => {
-    it('should not close portal on click', () => {
+    it('should close portal on click by default', () => {
       const spy = sandbox.spy()
       const closeButton = <button onClick={spy} data-close>button</button>
       wrapperMount(<Portal defaultOpen>{closeButton}</Portal>)
+
+      domEvent.click('[data-close]')
+
+      document.body.childElementCount.should.equal(0)
+      spy.should.have.been.calledOnce()
+    })
+
+    it('should not close portal on click when false', () => {
+      const spy = sandbox.spy()
+      const closeButton = <button onClick={spy} data-close>button</button>
+      wrapperMount(<Portal defaultOpen closeOnCloseClick={false}>{closeButton}</Portal>)
 
       domEvent.click('[data-close]')
 

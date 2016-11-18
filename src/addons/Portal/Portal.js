@@ -42,7 +42,10 @@ class Portal extends Component {
       PropTypes.bool,
     ]),
 
-    /** Controls whether or not the portal should close on click of the trigger. */
+    /**
+     * Controls whether or not the portal should close on click of an element
+     * with the [data-close] attribute.
+     */
     closeOnCloseClick: PropTypes.bool,
 
     /** Controls whether or not the portal should close on a click outside. */
@@ -116,6 +119,7 @@ class Portal extends Component {
   static defaultProps = {
     closeOnDocumentClick: true,
     closeOnEscape: true,
+    closeOnCloseClick: true,
     openOnTriggerClick: true,
     mountNode: isBrowser ? document.body : null,
   }

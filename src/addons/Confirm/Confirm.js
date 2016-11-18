@@ -86,7 +86,7 @@ class Confirm extends Component {
     const rest = getUnhandledProps(Confirm, this.props)
 
     return (
-      <Modal open={open} size='small' onOpen={this.handleOpen} onClose={this.handleClose} closeOnCloseClick {...rest}>
+      <Modal open={open} size='small' onOpen={this.handleOpen} onClose={this.handleClose} {...rest}>
         {header && <Modal.Header>{header}</Modal.Header>}
         {content && <Modal.Content>{content}</Modal.Content>}
         <Modal.Actions>
