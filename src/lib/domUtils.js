@@ -1,7 +1,9 @@
+import isBrowser from './isBrowser'
+
 /* eslint-disable */
 // Polyfill taken from:
 // https://developer.mozilla.org/en-US/docs/Web/API/Element/matches#Polyfill
-if (!Element.prototype.matches) {
+if (isBrowser && !Element.prototype.matches) {
   Element.prototype.matches =
     Element.prototype.matchesSelector ||
     Element.prototype.mozMatchesSelector ||

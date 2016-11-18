@@ -17,6 +17,8 @@ let wrapper
 const wrapperMount = (...args) => (wrapper = mount(...args))
 const wrapperShallow = (...args) => (wrapper = shallow(...args))
 
+const nativeEvent = { nativeEvent: { stopImmediatePropagation: _.noop } }
+
 describe('Confirm', () => {
   beforeEach(() => {
     wrapper = undefined
@@ -96,6 +98,17 @@ describe('Confirm', () => {
         .find('ModalContent')
         .shallow()
         .should.have.text('foo')
+    })
+  })
+
+  describe('opOpen', () => {
+    it('is called whtn the trigger is clicked', () => {
+      const spy = sandbox.spy()
+      wrapperMount(<Confirm trigger={<button />} onOpen={spy} />)
+        .find('button')
+        .simulate('click', nativeEvent)
+
+      spy.should.have.been.calledOnce()
     })
   })
 
