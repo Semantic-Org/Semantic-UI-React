@@ -26,6 +26,48 @@ describe('Rating', () => {
       icons.at(2).should.have.prop('active', false)
     })
 
+    it('if no rating selected no icon should have aria-checked', () => {
+      const wrapper = mount(<Rating maxRating={3} />)
+      const icons = wrapper.find('RatingIcon')
+
+      icons.at(0).should.have.prop('aria-checked', false)
+      icons.at(1).should.have.prop('aria-checked', false)
+      icons.at(2).should.have.prop('aria-checked', false)
+    })
+
+    it('makes the clicked icon aria-checked', () => {
+      const wrapper = mount(<Rating maxRating={3} />)
+      const icons = wrapper.find('RatingIcon')
+
+      icons.at(1).simulate('click')
+
+      icons.at(0).should.have.prop('aria-checked', false)
+      icons.at(1).should.have.prop('aria-checked', true)
+      icons.at(2).should.have.prop('aria-checked', false)
+    })
+
+    it('set aria-setsize on each rating icon', () => {
+      const wrapper = mount(<Rating maxRating={3} />)
+      const icons = wrapper.find('RatingIcon')
+
+      icons.at(1).simulate('click')
+
+      icons.at(0).should.have.prop('aria-setsize', 3)
+      icons.at(1).should.have.prop('aria-setsize', 3)
+      icons.at(2).should.have.prop('aria-setsize', 3)
+    })
+
+    it('sets aria-posinset on each rating icon', () => {
+      const wrapper = mount(<Rating maxRating={3} />)
+      const icons = wrapper.find('RatingIcon')
+
+      icons.at(1).simulate('click')
+
+      icons.at(0).should.have.prop('aria-posinset', 1)
+      icons.at(1).should.have.prop('aria-posinset', 2)
+      icons.at(2).should.have.prop('aria-posinset', 3)
+    })
+
     it('removes the "selected" prop', () => {
       const wrapper = mount(<Rating maxRating={3} />)
       const icons = wrapper.find('RatingIcon')

@@ -143,12 +143,15 @@ export default class Rating extends Component {
     const ElementType = getElementType(Rating, this.props)
 
     return (
-      <ElementType {...rest} className={classes} onMouseLeave={this.handleMouseLeave}>
+      <ElementType {...rest} className={classes} role='radiogroup' onMouseLeave={this.handleMouseLeave}>
         {_.times(maxRating, (i) => (
           <RatingIcon
             active={rating >= i + 1}
             index={i}
             key={i}
+            aria-checked={rating === i + 1}
+            aria-posinset={i + 1}
+            aria-setsize={maxRating}
             onClick={this.handleIconClick}
             onMouseEnter={this.handleIconMouseEnter}
             selected={selectedIndex >= i && isSelecting }
