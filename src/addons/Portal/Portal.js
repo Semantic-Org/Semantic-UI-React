@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom'
 import {
   AutoControlledComponent as Component,
   customPropTypes,
+  domUtils,
   keyboardKey,
   isBrowser,
   makeDebugger,
@@ -197,7 +198,7 @@ class Portal extends Component {
 
   handlePortalClick = (e) => {
     if (!this.props.closeOnCloseClick) return
-    if (!e.target || !e.target.hasAttribute('data-close')) return
+    if (!domUtils.closest(e.target, '[data-close]')) return
 
     debug('handlePortalClick()')
 
