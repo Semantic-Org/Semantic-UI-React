@@ -271,6 +271,30 @@ describe('Portal', () => {
     })
   })
 
+  describe('closeOnCloseClick', () => {
+    it('should not close portal on click', () => {
+      const spy = sandbox.spy()
+      const closeButton = <button onClick={spy} data-close>button</button>
+      wrapperMount(<Portal defaultOpen>{closeButton}</Portal>)
+
+      domEvent.click('[data-close]')
+
+      document.body.lastElementChild.should.equal(wrapper.instance().node)
+      spy.should.have.been.calledOnce()
+    })
+
+    it('should close portal on click when set', () => {
+      const spy = sandbox.spy()
+      const closeButton = <button onClick={spy} data-close>button</button>
+      wrapperMount(<Portal defaultOpen closeOnCloseClick>{closeButton}</Portal>)
+
+      domEvent.click('[data-close]')
+
+      document.body.childElementCount.should.equal(0)
+      spy.should.have.been.calledOnce()
+    })
+  })
+
   describe('openOnTriggerMouseOver', () => {
     it('should not open portal on mouseover when not set', (done) => {
       const spy = sandbox.spy()
