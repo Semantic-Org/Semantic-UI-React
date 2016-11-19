@@ -59,7 +59,7 @@
     "babel-preset-stage-1": "^6.5.0",
     "babel-standalone": "^6.18.1",
     "chai": "^3.5.0",
-    "chai-enzyme": "^0.6.0",
+    "chai-enzyme": "^0.6.1",
     "connect-history-api-fallback": "^1.2.0",
     "copy-to-clipboard": "^3.0.5",
     "cross-env": "^3.1.3",
