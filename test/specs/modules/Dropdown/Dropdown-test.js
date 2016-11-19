@@ -1313,10 +1313,11 @@ describe('Dropdown Component', () => {
     })
     it('adds options to the hidden select', () => {
       wrapperShallow(<Dropdown options={options} selection />)
-        .should.have.exactly(options.length).descendants('option')
+        .should.have.exactly(options.length + 1).descendants('option')
 
       options.forEach((opt, i) => {
-        const optionElement = wrapper.find('option').at(i)
+        // index is incremented to exclude the empty option value
+        const optionElement = wrapper.find('option').at(i + 1)
 
         optionElement.should.have.prop('value', opt.value)
         optionElement.should.have.text(opt.text)
