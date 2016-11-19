@@ -902,7 +902,7 @@ export default class Dropdown extends Component {
     debug(`value:     ${value}`)
     if (!selection) return null
 
-    // unselected dropdown will have an empty string value
+    // a dropdown without an active item will have an empty string value
     return (
       <select type='hidden' name={name} value={value} multiple={multiple}>
         <option key='empty' value=''></option>
