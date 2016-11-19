@@ -76,7 +76,7 @@
     "file-loader": "^0.9.0",
     "gh-pages": "^0.12.0",
     "gulp": "github:gulpjs/gulp#4.0",
-    "gulp-html-replace": "^1.5.4",
+    "gulp-html-replace": "^1.6.2",
     "gulp-load-plugins": "^1.2.2",
     "gulp-plumber": "^1.0.1",
     "gulp-util": "^3.0.6",
