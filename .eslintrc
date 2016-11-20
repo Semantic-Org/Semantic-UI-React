@@ -1,5 +1,9 @@
 {
+  "plugins": [
+    "jsx-a11y"
+  ],
   "extends": [
+    "plugin:jsx-a11y/recommended",
     "ta",
     "ta/frontend"
   ],
@@ -10,6 +14,12 @@
     "react/sort-comp": 0,
     "valid-jsdoc": 0,
     "react/jsx-curly-spacing": 0,
+    "jsx-a11y/click-events-have-key-events": 1,
+    "jsx-a11y/href-no-hash": 1,
+    "jsx-a11y/img-has-alt": 1,
+    "jsx-a11y/label-has-for": 1,
+    "jsx-a11y/onclick-has-focus": 1,
+    "jsx-a11y/onclick-has-role": 1,
     "padded-blocks": [2, {
       "blocks": "never",
       "switches": "never",
