@@ -2,6 +2,7 @@ import _ from 'lodash'
 import React, { Component, PropTypes } from 'react'
 
 import { Label, Table } from 'src'
+import EnumPopup from './EnumPopup'
 
 /**
  * Displays a table of a Component's PropTypes.
@@ -13,6 +14,11 @@ export default class ComponentProps extends Component {
      * @type {object} Props info object where keys are prop names and values are prop definitions.
      */
     props: PropTypes.object,
+    /**
+     * A single Component's meta info.
+     * @type {object} Meta info object where enum prop values are defined.
+     */
+    meta: PropTypes.object,
   }
 
   nameRenderer = (item) => <code>{item.name}</code>
@@ -39,7 +45,7 @@ export default class ComponentProps extends Component {
   }
 
   render() {
-    const propsDefinition = this.props.props
+    const { props: propsDefinition, meta } = this.props
     const content = _.sortBy(_.map(propsDefinition, (config, name) => {
       const value = _.get(config, 'type.value')
       let type = _.get(config, 'type.name')
@@ -75,7 +81,9 @@ export default class ComponentProps extends Component {
             <Table.Row key={item.name}>
               <Table.Cell>{this.nameRenderer(item)}</Table.Cell>
               <Table.Cell>{this.requiredRenderer(item)}</Table.Cell>
-              <Table.Cell>{item.type}</Table.Cell>
+              <Table.Cell>
+                {item.type === '{enum}' ? (<EnumPopup values={meta.props[item.name]} />) : item.type}
+                </Table.Cell>
               <Table.Cell>{this.defaultValueRenderer(item.defaultValue)}</Table.Cell>
               <Table.Cell>{item.description}</Table.Cell>
             </Table.Row>
