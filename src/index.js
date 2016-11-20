@@ -36,6 +36,8 @@ export { default as MessageHeader } from './collections/Message/MessageHeader'
 export { default as MessageItem } from './collections/Message/MessageItem'
 export { default as MessageList } from './collections/Message/MessageList'
 
+export { default as Sidebar } from './collections/Sidebar'
+
 export { default as Table } from './collections/Table'
 export { default as TableBody } from './collections/Table/TableBody'
 export { default as TableCell } from './collections/Table/TableCell'
