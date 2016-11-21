@@ -1,5 +1,27 @@
 # Change Log
 
+## [v0.61.2](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.61.2) (2016-11-20)
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.61.1...v0.61.2)
+
+**Implemented enhancements:**
+
+- refactor\(docs\): rename file name to be the same as class name, etc [\#564](https://github.com/Semantic-Org/Semantic-UI-React/issues/564)
+
+**Fixed bugs:**
+
+- Dropdown selection auto select first option [\#811](https://github.com/Semantic-Org/Semantic-UI-React/issues/811)
+
+**Merged pull requests:**
+
+- Update react-ace to version 4.1.0 🚀 [\#904](https://github.com/Semantic-Org/Semantic-UI-React/pull/904) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+- babel-loader@6.2.8 untested ⚠️ [\#900](https://github.com/Semantic-Org/Semantic-UI-React/pull/900) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+- fix\(Dropdown\): unselected dropdown to have empty value [\#898](https://github.com/Semantic-Org/Semantic-UI-React/pull/898) ([Arthelon](https://github.com/Arthelon))
+- gulp-html-replace@1.6.2 untested ⚠️ [\#897](https://github.com/Semantic-Org/Semantic-UI-React/pull/897) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+- chai-enzyme@0.6.1 untested ⚠️ [\#896](https://github.com/Semantic-Org/Semantic-UI-React/pull/896) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+- karma-mocha-reporter@2.2.1 untested ⚠️ [\#894](https://github.com/Semantic-Org/Semantic-UI-React/pull/894) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+- test\(lint\): Added eslint-plugin-jsx-a11y plugin in warning mode [\#890](https://github.com/Semantic-Org/Semantic-UI-React/pull/890) ([fracmak](https://github.com/fracmak))
+- babel-standalone@6.19.0 untested ⚠️ [\#887](https://github.com/Semantic-Org/Semantic-UI-React/pull/887) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+
 ## [v0.61.1](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.61.1) (2016-11-17)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.61.0...v0.61.1)
 
