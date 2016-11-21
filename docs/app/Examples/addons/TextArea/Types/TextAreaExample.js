@@ -6,10 +6,10 @@ class TextAreaExample extends Component {
     return (
       <Form>
         <Form.Field>
-          <Form.TextArea name='TextArea' label='TextArea' placeholder='TextArea placeholder text' rows='3'/>
+          <Form.TextArea name='TextArea' label='TextArea' placeholder='TextArea placeholder text' rows='3' />
         </Form.Field>
       </Form>
-    ) 
+    )
   }
 }
 
