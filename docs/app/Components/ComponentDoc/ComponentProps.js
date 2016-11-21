@@ -82,7 +82,11 @@ export default class ComponentProps extends Component {
               <Table.Cell>{this.nameRenderer(item)}</Table.Cell>
               <Table.Cell>{this.requiredRenderer(item)}</Table.Cell>
               <Table.Cell>
-                {item.type === '{enum}' ? (<EnumPopup values={meta.props[item.name]} />) : item.type}
+                {
+                  item.type.indexOf('enum') !== -1 ?
+                  (<EnumPopup trigger={<span>{item.type}</span>} values={meta.props[item.name]} />) :
+                  item.type
+                }
                 </Table.Cell>
               <Table.Cell>{this.defaultValueRenderer(item.defaultValue)}</Table.Cell>
               <Table.Cell>{item.description}</Table.Cell>

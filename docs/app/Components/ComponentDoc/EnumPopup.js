@@ -1,9 +1,9 @@
 import React, { PropTypes } from 'react'
 
-import { Popup, Icon, List } from 'src'
+import { Popup, List } from 'src'
 
-const EnumPopup = ({ values }) => (
-  <Popup trigger={<Icon name='list' />}>
+const EnumPopup = ({ values, trigger }) => (
+  <Popup trigger={trigger}>
     <List>
       {values.map(value => (
         <List.Item>{value}</List.Item>
@@ -14,6 +14,7 @@ const EnumPopup = ({ values }) => (
 
 EnumPopup.propTypes = {
   values: PropTypes.array,
+  trigger: PropTypes.node,
 }
 
 export default EnumPopup
