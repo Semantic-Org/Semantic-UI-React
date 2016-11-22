@@ -8,8 +8,8 @@ const options = [
 ]
 
 const InputExampleActions = () => (
-  <Input action>
-    <input type='text' placeholder='Search...' />
+  <Input type='text' placeholder='Search...' action>
+    <input />
     <Select compact options={options} defaultValue='articles' />
     <Button type='submit'>Search</Button>
   </Input>

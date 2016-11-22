@@ -112,6 +112,24 @@ describe('Input', () => {
           .find('input')
           .should.have.prop(propName, expectedValue)
       })
+
+      it(`passes \`${propName}\` to the <input> when using children`, () => {
+        const propValue = propName === 'onChange' ? () => null : 'foo'
+        const wrapper = shallow(
+          <Input {...{ [propName]: propValue }}>
+            <input />
+          </Input>
+        )
+
+        // account for overloading the onChange prop
+        const expectedValue = propName === 'onChange'
+          ? wrapper.instance().handleChange
+          : propValue
+
+        wrapper
+          .find('input')
+          .should.have.prop(propName, expectedValue)
+      })
     })
   })
 
@@ -122,6 +140,23 @@ describe('Input', () => {
       const props = { 'data-foo': 'bar', onChange: spy }
 
       const wrapper = shallow(<Input {...props} />)
+
+      wrapper.find('input').simulate('change', e)
+
+      spy.should.have.been.calledOnce()
+      spy.should.have.been.calledWithMatch(e, { ...props, value: e.target.value })
+    })
+
+    it('is called with (e, data) on change when using children', () => {
+      const spy = sandbox.spy()
+      const e = { target: { value: 'name' } }
+      const props = { 'data-foo': 'bar', onChange: spy }
+
+      const wrapper = shallow(
+        <Input {...props}>
+          <input />
+        </Input>
+      )
 
       wrapper.find('input').simulate('change', e)
 
