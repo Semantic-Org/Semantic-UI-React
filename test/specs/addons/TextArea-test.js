@@ -1,29 +1,28 @@
 import React from 'react'
 
 import TextArea from 'src/addons/TextArea/TextArea'
+import { sandbox } from 'test/utils'
 import * as common from '../commonTests'
 
 describe('TextArea', () => {
-  common.isConformant(TextArea)
-
-  it('accepts a default value', () => {
-    const wrapper = mount(<TextArea defaultValue='Hello World' />)
-
-    wrapper
-      .should.have.have.exactly(1).descendants('textarea')
-
-    wrapper
-      .should.have.value('Hello World')
+  common.isConformant(TextArea, {
+    eventTargets: {
+      onChange: 'textarea',
+    },
   })
 
-  it('has a name assigned', () => {
-    shallow(<TextArea name='sample-post' />)
-      .should.have.prop('name', 'sample-post')
-  })
+  describe('onChange', () => {
+    it('is called with (e, data) on change', () => {
+      const spy = sandbox.spy()
+      const e = { target: { value: 'name' } }
+      const props = { 'data-foo': 'bar', onChange: spy }
 
-  it('has assigned amount of rows', () => {
-    shallow(<TextArea rows='6' />)
-      .should.have.tagName('textarea')
-      .with.attr('rows', '6')
+      const wrapper = shallow(<TextArea {...props} />)
+
+      wrapper.find('textarea').simulate('change', e)
+
+      spy.should.have.been.calledOnce()
+      spy.should.have.been.calledWithMatch(e, { ...props, value: e.target.value })
+    })
   })
 })

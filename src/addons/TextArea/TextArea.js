@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component, PropTypes } from 'react'
 import {
   customPropTypes,
   getElementType,
@@ -11,25 +11,41 @@ import {
  * We may add more features to the TextArea in the future.
  * @see Form
  */
-function TextArea(props) {
-  const rest = getUnhandledProps(TextArea, props)
-  const ElementType = getElementType(TextArea, props)
+class TextArea extends Component {
+  static _meta = {
+    name: 'TextArea',
+    type: META.TYPES.ADDON,
+  }
 
-  return <ElementType {...rest} />
-}
+  static propTypes = {
+    /** An element type to render as (string or function). */
+    as: customPropTypes.as,
 
-TextArea._meta = {
-  name: 'TextArea',
-  type: META.TYPES.ADDON,
-}
+    /**
+     * Called on change.
+     * @param {SyntheticEvent} event - The React SyntheticEvent object
+     * @param {object} data - All props and the event value.
+     */
+    onChange: PropTypes.func,
+  }
 
-TextArea.propTypes = {
-  /** An element type to render as (string or function). */
-  as: customPropTypes.as,
-}
+  static defaultProps = {
+    as: 'textarea',
+  }
 
-TextArea.defaultProps = {
-  as: 'textarea',
+  handleChange = (e) => {
+    const { onChange } = this.props
+    if (onChange) {
+      onChange(e, { ...this.props, value: e.target && e.target.value })
+    }
+  }
+
+  render() {
+    const rest = getUnhandledProps(TextArea, this.props)
+    const ElementType = getElementType(TextArea, this.props)
+
+    return <ElementType {...rest} onChange={this.handleChange} />
+  }
 }
 
 export default TextArea
