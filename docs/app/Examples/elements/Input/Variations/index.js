@@ -27,7 +27,7 @@ const InputVariationsExamples = () => (
       examplePath='elements/Input/Variations/InputExampleIconChild'
     >
       <Message warning>
-        When using <code>children</code>, you must add your own <code>{'<input />'}</code>.
+        When using <code>children</code>, you must add a placeholder <code>{'<input />'}</code>.
       </Message>
     </ComponentExample>
     <ComponentExample
@@ -49,7 +49,7 @@ const InputVariationsExamples = () => (
     >
       <Message warning>
         Multiple Labels require <code>children</code>.
-        When using <code>children</code>, you must add your own <code>{'<input />'}</code>.
+        When using <code>children</code>, you must add a placeholder <code>{'<input />'}</code>.
       </Message>
     </ComponentExample>
     <ComponentExample examplePath='elements/Input/Variations/InputExampleRightLabeledTag' />
@@ -71,7 +71,7 @@ const InputVariationsExamples = () => (
     <ComponentExample examplePath='elements/Input/Variations/InputExampleActions'>
       <Message warning>
         Multiple Actions require <code>children</code>.
-        When using <code>children</code>, you must add your own <code>{'<input />'}</code>.
+        When using <code>children</code>, you must add a placeholder <code>{'<input />'}</code>.
       </Message>
     </ComponentExample>
     <ComponentExample examplePath='elements/Input/Variations/InputExampleActionLabeledButton' />

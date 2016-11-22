@@ -3,15 +3,15 @@ import { Icon, Input } from 'semantic-ui-react'
 
 const InputExampleIconChild = () => (
   <div>
-    <Input icon>
-      <input placeholder='Search...' />
+    <Input icon placeholder='Search...'>
+      <input />
       <Icon name='search' />
     </Input>
     <br />
     <br />
-    <Input iconPosition='left'>
+    <Input iconPosition='left' placeholder='Email'>
       <Icon name='at' />
-      <input placeholder='Email' />
+      <input />
     </Input>
   </div>
 )
