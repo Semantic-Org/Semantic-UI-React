@@ -1,5 +1,35 @@
 # Change Log
 
+## [v0.61.3](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.61.3) (2016-11-22)
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.61.2...v0.61.3)
+
+**Implemented enhancements:**
+
+- FormField: `required` prop not passed to control [\#911](https://github.com/Semantic-Org/Semantic-UI-React/issues/911)
+
+**Fixed bugs:**
+
+- fix\(Input\): onChange callback does not pass the value of the input when using Input with children [\#909](https://github.com/Semantic-Org/Semantic-UI-React/issues/909)
+- TextArea onChange callback does not pass the Input object [\#907](https://github.com/Semantic-Org/Semantic-UI-React/issues/907)
+- Header `subheader` shorthand element missing `className='sub header'` [\#902](https://github.com/Semantic-Org/Semantic-UI-React/issues/902)
+
+**Closed issues:**
+
+- Unable to access documentation [\#915](https://github.com/Semantic-Org/Semantic-UI-React/issues/915)
+- react.semantic-ui.com is down [\#914](https://github.com/Semantic-Org/Semantic-UI-React/issues/914)
+- DISCUSSION: Use of react-form \(problem with prop validations\) [\#856](https://github.com/Semantic-Org/Semantic-UI-React/issues/856)
+- RFC: Formally document prop function signatures [\#487](https://github.com/Semantic-Org/Semantic-UI-React/issues/487)
+
+**Merged pull requests:**
+
+- feat\(TextArea\): add onChange\(e, data\) callback signature [\#920](https://github.com/Semantic-Org/Semantic-UI-React/pull/920) ([levithomason](https://github.com/levithomason))
+- fix\(Header\): add `sub header` className to subheader shorthand [\#919](https://github.com/Semantic-Org/Semantic-UI-React/pull/919) ([levithomason](https://github.com/levithomason))
+- feat\(FormField\): pass `required` to the control [\#917](https://github.com/Semantic-Org/Semantic-UI-React/pull/917) ([levithomason](https://github.com/levithomason))
+- fix\(Input\): spread input props on the input child [\#916](https://github.com/Semantic-Org/Semantic-UI-React/pull/916) ([levithomason](https://github.com/levithomason))
+- babel-plugin-lodash@3.2.10 untested ⚠️ [\#913](https://github.com/Semantic-Org/Semantic-UI-React/pull/913) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+- Added TextArea Example [\#910](https://github.com/Semantic-Org/Semantic-UI-React/pull/910) ([iamcaleberic](https://github.com/iamcaleberic))
+- feat\(docs\): show enum values [\#906](https://github.com/Semantic-Org/Semantic-UI-React/pull/906) ([fracmak](https://github.com/fracmak))
+
 ## [v0.61.2](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.61.2) (2016-11-20)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.61.1...v0.61.2)
 
