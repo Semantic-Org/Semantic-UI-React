@@ -29,7 +29,7 @@ describe('Image Component', () => {
 
   common.implementsCreateMethod(Image)
   common.implementsLabelProp(Image)
-  common.implementsShorthandProp(Image, {
+  common.implementsShorthandItemProp(Image, {
     propKey: 'dimmer',
     ShorthandComponent: Dimmer,
     mapValueToProps: val => ({ content: val }),
