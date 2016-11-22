@@ -94,7 +94,7 @@ Icon.propTypes = {
   inverted: PropTypes.bool,
 
   /** Name of the icon */
-  name: PropTypes.string,
+  name: PropTypes.oneOf(Icon._meta.props.name),
 
   /** Icon can be formatted as a link */
   link: PropTypes.bool,

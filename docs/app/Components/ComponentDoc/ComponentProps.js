@@ -3,6 +3,11 @@ import React, { Component, PropTypes } from 'react'
 
 import { Label, Table } from 'src'
 
+const descriptionExtraStyle = {
+  fontSize: '0.95em',
+  color: '#777',
+}
+
 /**
  * Displays a table of a Component's PropTypes.
  */
@@ -13,16 +18,35 @@ export default class ComponentProps extends Component {
      * @type {object} Props info object where keys are prop names and values are prop definitions.
      */
     props: PropTypes.object,
+    /**
+     * A single Component's meta info.
+     * @type {object} Meta info object where enum prop values are defined.
+     */
+    meta: PropTypes.object,
   }
 
-  nameRenderer = (item) => <code>{item.name}</code>
+  state = {
+    showEnumsFor: {},
+  }
+
+  toggleEnumsFor = (prop) => () => {
+    this.setState({
+      showEnumsFor: {
+        ...this.state.showEnumsFor,
+        [prop]: !this.state.showEnumsFor[prop],
+      },
+    })
+  }
+
+  renderName = (item) => <code>{item.name}</code>
 
   requiredRenderer = (item) => {
-    if (item.required) {
-      return <Label size='mini' color='red' circular>required</Label>
-    }
+    if (!item.required) return null
+
+    return <Label size='mini' color='red' circular>required</Label>
   }
-  defaultValueRenderer = (item) => {
+
+  renderDefaultValue = (item) => {
     let defaultValue = _.get(item, 'defaultValue.value')
 
     if (_.startsWith(defaultValue, 'function ')) {
@@ -38,8 +62,54 @@ export default class ComponentProps extends Component {
     )
   }
 
+  renderEnums = (item) => {
+    const { showEnumsFor } = this.state
+    const { meta } = this.props
+
+    if (item.type.indexOf('enum') === -1) return null
+
+    const values = meta.props[item.name]
+    const truncateAt = 30
+
+    if (!values) return null
+
+    // show all if there are few
+    if (values.length < truncateAt) {
+      return (
+        <p style={descriptionExtraStyle}>
+          <strong>Enums: </strong>
+          {values.join(', ')}
+        </p>
+      )
+    }
+
+    // add button to show more when there are many values and it is not toggled
+    if (!showEnumsFor[item.name]) {
+      return (
+        <p style={descriptionExtraStyle}>
+          <strong>Enums: </strong>
+          <a style={{ cursor: 'pointer' }} onClick={this.toggleEnumsFor(item.name)}>
+            Show all {values.length}
+          </a>
+          <div>{values.slice(0, truncateAt - 1).join(', ')}...</div>
+        </p>
+      )
+    }
+
+    // add "show more" button when there are many
+    return (
+      <p style={descriptionExtraStyle}>
+        <strong>Enums: </strong>
+        <a style={{ cursor: 'pointer' }} onClick={this.toggleEnumsFor(item.name)}>
+          Show less
+        </a>
+        <div>{values.join(', ')}</div>
+      </p>
+    )
+  }
+
   render() {
-    const propsDefinition = this.props.props
+    const { props: propsDefinition } = this.props
     const content = _.sortBy(_.map(propsDefinition, (config, name) => {
       const value = _.get(config, 'type.value')
       let type = _.get(config, 'type.name')
@@ -48,15 +118,15 @@ export default class ComponentProps extends Component {
       }
       type = type && `{${type}}`
 
+      const description = _.get(config, 'docBlock.description', '')
+
       return {
         name,
         type,
         value,
         required: config.required,
         defaultValue: config.defaultValue,
-        description: _.get(config, 'docBlock.description', '')
-          .split('\n')
-          .map((l) => ([l, <br key={l} />])),
+        description: description && description.split('\n').map(l => ([l, <br key={l} />])),
       }
     }), 'name')
     return (
@@ -73,11 +143,16 @@ export default class ComponentProps extends Component {
         <Table.Body>
           {_.map(content, item => (
             <Table.Row key={item.name}>
-              <Table.Cell>{this.nameRenderer(item)}</Table.Cell>
+              <Table.Cell>{this.renderName(item)}</Table.Cell>
               <Table.Cell>{this.requiredRenderer(item)}</Table.Cell>
-              <Table.Cell>{item.type}</Table.Cell>
-              <Table.Cell>{this.defaultValueRenderer(item.defaultValue)}</Table.Cell>
-              <Table.Cell>{item.description}</Table.Cell>
+              <Table.Cell>
+                {item.type}
+              </Table.Cell>
+              <Table.Cell>{this.renderDefaultValue(item.defaultValue)}</Table.Cell>
+              <Table.Cell>
+                {item.description && <p>{item.description}</p>}
+                {this.renderEnums(item)}
+              </Table.Cell>
             </Table.Row>
           ))}
         </Table.Body>
