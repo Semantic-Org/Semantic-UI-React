@@ -27,6 +27,18 @@ describe('FormField', () => {
     })
   })
 
+  describe('required', () => {
+    it('is passed to the control', () => {
+      const wrapper = shallow(<FormField control='input' required />)
+
+      wrapper.should.have.exactly(1).descendants('input')
+
+      wrapper
+        .find('input')
+        .should.have.prop('required', true)
+    })
+  })
+
   describe('label', () => {
     it('is not added as a child by default', () => {
       shallow(<FormField />)
