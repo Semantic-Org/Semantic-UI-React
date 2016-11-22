@@ -2,7 +2,6 @@ import _ from 'lodash'
 import cx from 'classnames'
 import React, { PropTypes } from 'react'
 import {
-  createShorthand,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -54,15 +53,16 @@ function Header(props) {
 
   const iconElement = Icon.create(icon)
   const imageElement = Image.create(image)
+  const subheaderElement = HeaderSubheader.create(subheader, { className: 'sub header' })
 
   if (iconElement || imageElement) {
     return (
       <ElementType {...rest} className={classes}>
         {iconElement || imageElement}
-        {(content || subheader) && (
+        {(content || subheaderElement) && (
           <HeaderContent>
             {content}
-            {createShorthand(HeaderSubheader, val => ({ content: val }), subheader)}
+            {subheaderElement}
           </HeaderContent>
         )}
       </ElementType>
@@ -72,7 +72,7 @@ function Header(props) {
   return (
     <ElementType {...rest} className={classes}>
       {content}
-      {createShorthand(HeaderSubheader, val => ({ content: val }), subheader)}
+      {subheaderElement}
     </ElementType>
   )
 }
