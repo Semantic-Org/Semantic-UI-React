@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import React, { Component, PropTypes } from 'react'
+import React, { Children, cloneElement, Component, PropTypes } from 'react'
 import cx from 'classnames'
 
 import {
@@ -202,7 +202,14 @@ class Input extends Component {
     const ElementType = getElementType(Input, this.props)
 
     if (children) {
-      return <ElementType {...rest} className={classes}>{children}</ElementType>
+      // add htmlInputProps to the `<input />` child
+      const childElements = Children.map(children, (child) => {
+        if (child.type !== 'input') return child
+
+        return cloneElement(child, { ...htmlInputProps, ...child.props })
+      })
+
+      return <ElementType {...rest} className={classes}>{childElements}</ElementType>
     }
 
     const actionElement = Button.create(action, elProps => ({
