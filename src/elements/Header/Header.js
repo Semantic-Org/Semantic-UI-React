@@ -2,7 +2,6 @@ import _ from 'lodash'
 import cx from 'classnames'
 import React, { PropTypes } from 'react'
 import {
-  createShorthandItem,
   customPropTypes,
   getElementType,
   getUnhandledProps,
