@@ -104,7 +104,6 @@ export function createShorthandItem(Component, mapValueToProps, val, defaultProp
   // Create Element
   // ----------------------------------------
 
-
   // Clone ReactElements
   if (isReactElement) return cloneElement(val, props)
 
@@ -142,14 +141,14 @@ export function createShorthandCollectionFactory(Component, mapValueToProps) {
   if (typeof Component !== 'function' && typeof Component !== 'string') {
     throw new Error('createCollectionFactory() Component must be a string or function.')
   }
-  return _.partial(createShorthandItem, Component, mapValueToProps)
+  return (...args) => createShorthandItem(Component, mapValueToProps, ...args)
 }
 
 export function createShorthandItemFactory(Component, mapValueToProps) {
   if (typeof Component !== 'function' && typeof Component !== 'string') {
     throw new Error('createShorthandItemFactory() Component must be a string or function.')
   }
-  return _.partial(createShorthandItem, Component, mapValueToProps)
+  return (...args) => createShorthandItem(Component, mapValueToProps, ...args)
 }
 
 // ============================================================
