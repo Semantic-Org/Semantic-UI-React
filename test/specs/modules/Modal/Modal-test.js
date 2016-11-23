@@ -370,7 +370,12 @@ describe('Modal', () => {
   describe('closeIcon', () => {
     it('is not present by default', () => {
       wrapperMount(<Modal open>foo</Modal>)
-      assertBodyContains('.ui.modal .icon.bullseye', false)
+      assertBodyContains('.ui.modal .icon', false)
+    })
+
+    it('defaults to `close` when boolean', () => {
+      wrapperMount(<Modal open closeIcon>foo</Modal>)
+      assertBodyContains('.ui.modal .icon.close')
     })
 
     it('is present when passed', () => {

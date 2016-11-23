@@ -51,6 +51,7 @@ class Modal extends Component {
     closeIcon: PropTypes.oneOfType([
       PropTypes.node,
       PropTypes.object,
+      PropTypes.bool,
     ]),
 
     /** A modal can reduce its complexity */
@@ -217,9 +218,11 @@ class Modal extends Component {
     const portalProps = _.pick(unhandled, portalPropNames)
     const ElementType = getElementType(Modal, this.props)
 
+    const closeIconName = closeIcon === true ? 'close' : closeIcon
+
     const modalJSX = (
       <ElementType {...rest} className={classes} style={{ marginTop }} ref={c => (this._modalNode = c)}>
-        {Icon.create(closeIcon, { onClick: this.handleClose })}
+        {Icon.create(closeIconName, { onClick: this.handleClose })}
         {children}
       </ElementType>
     )
