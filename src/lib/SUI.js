@@ -87,7 +87,7 @@ export const ICONS = [
   'arrow circle outline left', 'arrow circle outline right', 'arrow circle outline up', 'arrow circle right',
   'arrow circle up', 'arrow down', 'arrow left', 'arrow right', 'arrow up', 'caret down', 'caret left', 'caret right',
   'caret up', 'chevron circle down', 'chevron circle left', 'chevron circle right', 'chevron circle up', 'chevron down',
-  'chevron left', 'chevron right', 'chevron up', 'long arrow down', 'long arrow left', 'long arrow right',
+  'chevron left', 'chevron right', 'chevron up', 'dropdown', 'long arrow down', 'long arrow left', 'long arrow right',
   'long arrow up', 'pointing down', 'pointing left', 'pointing right', 'pointing up', 'toggle down', 'toggle left',
   'toggle right', 'toggle up',
 
