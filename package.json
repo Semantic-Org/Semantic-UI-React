@@ -97,7 +97,7 @@
     "node-sass": "^3.12.5",
     "phantomjs-prebuilt": "^2.1.7",
     "raw-loader": "^0.5.1",
-    "react": "^15.4.0",
+    "react": "^15.4.1",
     "react-ace": "^4.1.0",
     "react-addons-test-utils": "^15.4.0",
     "react-docgen": "^2.12.0",
