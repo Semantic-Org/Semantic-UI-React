@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Button, Modal } from 'semantic-ui-react'
 
-class ModalCloseConfigExample extends Component {
+class ModalExampleCloseConfig extends Component {
   state = { open: false }
 
   closeConfigShow = (closeOnEscape, closeOnRootNodeClick) => () => {
@@ -40,4 +40,4 @@ class ModalCloseConfigExample extends Component {
   }
 }
 
-export default ModalCloseConfigExample
+export default ModalExampleCloseConfig
