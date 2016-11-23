@@ -7,6 +7,8 @@ import ButtonOr from 'src/elements/Button/ButtonOr'
 import * as common from 'test/specs/commonTests'
 import { sandbox } from 'test/utils'
 
+const syntheticEvent = { preventDefault: () => undefined }
+
 describe('Button', () => {
   common.isConformant(Button)
   common.hasUIClassName(Button)
@@ -58,10 +60,24 @@ describe('Button', () => {
     it('is called when clicked', () => {
       const handleClick = sandbox.spy()
 
-      shallow(<Button type='submit' onClick={handleClick} />)
-        .simulate('click')
+      shallow(<Button type='submit' data-foo='bar' onClick={handleClick} />)
+        .simulate('click', syntheticEvent)
 
       handleClick.should.have.been.calledOnce()
+      handleClick.should.have.been.calledWith(
+        sandbox.match.any,
+        // Ensure the second argument includes arbitrary button props
+        sandbox.match({ 'data-foo': 'bar' })
+      )
+    })
+
+    it('is not called when button is disabled', () => {
+      const handleClick = sandbox.spy()
+
+      shallow(<Button type='submit' disabled onClick={handleClick} />)
+        .simulate('click', syntheticEvent)
+
+      handleClick.should.not.have.been.calledOnce()
     })
   })
 
