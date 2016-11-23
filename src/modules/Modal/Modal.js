@@ -1,14 +1,16 @@
 import _ from 'lodash'
-import React, { PropTypes, Component } from 'react'
+import React, { PropTypes } from 'react'
 import cx from 'classnames'
 
 import ModalHeader from './ModalHeader'
 import ModalContent from './ModalContent'
 import ModalActions from './ModalActions'
 import ModalDescription from './ModalDescription'
+import Icon from '../../elements/Icon'
 import Portal from '../../addons/Portal'
 
 import {
+  AutoControlledComponent as Component,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -45,8 +47,17 @@ class Modal extends Component {
     /** Additional classes. */
     className: PropTypes.string,
 
+    /** Icon */
+    closeIcon: PropTypes.oneOfType([
+      PropTypes.node,
+      PropTypes.object,
+    ]),
+
     /** A modal can reduce its complexity */
     basic: PropTypes.bool,
+
+    /** Initial value of open. */
+    defaultOpen: PropTypes.bool,
 
     /** A modal can appear in a dimmer */
     dimmer: PropTypes.oneOfType([
@@ -87,6 +98,10 @@ class Modal extends Component {
     mountNode: isBrowser ? document.body : null,
   }
 
+  static autoControlledProps = [
+    'open',
+  ]
+
   static _meta = _meta
   static Header = ModalHeader
   static Content = ModalContent
@@ -101,13 +116,21 @@ class Modal extends Component {
   }
 
   handleClose = (e) => {
+    debug('close()')
+
     const { onClose } = this.props
     if (onClose) onClose(e, this.props)
+
+    this.trySetState({ open: false })
   }
 
   handleOpen = (e) => {
+    debug('open()')
+
     const { onOpen } = this.props
     if (onOpen) onOpen(e, this.props)
+
+    this.trySetState({ open: true })
   }
 
   handlePortalMount = (e) => {
@@ -172,7 +195,8 @@ class Modal extends Component {
   }
 
   render() {
-    const { basic, children, className, dimmer, mountNode, open, size } = this.props
+    const { open } = this.state
+    const { basic, children, className, closeIcon, dimmer, mountNode, size } = this.props
 
     // Short circuit when server side rendering
     if (!isBrowser) return null
@@ -195,6 +219,7 @@ class Modal extends Component {
 
     const modalJSX = (
       <ElementType {...rest} className={classes} style={{ marginTop }} ref={c => (this._modalNode = c)}>
+        {Icon.create(closeIcon, { onClick: this.handleClose })}
         {children}
       </ElementType>
     )
