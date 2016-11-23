@@ -3,7 +3,7 @@ import { Select } from 'semantic-ui-react'
 
 import { countryOptions } from '../common'
 
-const SelectExample= () => (
+const SelectExample = () => (
   <Select placeholder='Select your country' options={ countryOptions } />
 )
 
