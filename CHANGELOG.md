@@ -1,5 +1,31 @@
 # Change Log
 
+## [v0.61.4](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.61.4) (2016-11-23)
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.61.3...v0.61.4)
+
+**Implemented enhancements:**
+
+- Modal: Support showing Close \(X\) Icon [\#436](https://github.com/Semantic-Org/Semantic-UI-React/issues/436)
+- feat\(Modal\): Add closeIcon [\#932](https://github.com/Semantic-Org/Semantic-UI-React/pull/932) ([jcarbo](https://github.com/jcarbo))
+- feat\(Button\): Prevent click on disabled button [\#930](https://github.com/Semantic-Org/Semantic-UI-React/pull/930) ([jcarbo](https://github.com/jcarbo))
+
+**Fixed bugs:**
+
+- dropdown icon [\#927](https://github.com/Semantic-Org/Semantic-UI-React/issues/927)
+- fix\(sui\): add "dropdown" to icons [\#933](https://github.com/Semantic-Org/Semantic-UI-React/pull/933) ([levithomason](https://github.com/levithomason))
+
+**Closed issues:**
+
+- Docs site down due to react version not on cloudflare [\#934](https://github.com/Semantic-Org/Semantic-UI-React/issues/934)
+- Better handle `\<Button disabled /\>` [\#929](https://github.com/Semantic-Org/Semantic-UI-React/issues/929)
+
+**Merged pull requests:**
+
+- Added Select example [\#925](https://github.com/Semantic-Org/Semantic-UI-React/pull/925) ([iamcaleberic](https://github.com/iamcaleberic))
+- react@15.4.1 untested ⚠️ [\#923](https://github.com/Semantic-Org/Semantic-UI-React/pull/923) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+- react-dom@15.4.1 untested ⚠️ [\#922](https://github.com/Semantic-Org/Semantic-UI-React/pull/922) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+- react-addons-test-utils@15.4.1 untested ⚠️ [\#921](https://github.com/Semantic-Org/Semantic-UI-React/pull/921) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+
 ## [v0.61.3](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.61.3) (2016-11-22)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.61.2...v0.61.3)
 
