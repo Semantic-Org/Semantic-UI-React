@@ -86,7 +86,6 @@ export default class Accordion extends Component {
     if (typeof this.props.defaultActiveIndex === 'undefined') {
       this.trySetState({ activeIndex: -1 })
     }
-
   }
 
   handleTitleClick = (e, index) => {
