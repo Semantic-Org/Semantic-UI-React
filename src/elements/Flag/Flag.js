@@ -2,7 +2,7 @@ import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
 import {
-  createShorthandItemFactory,
+  createShorthandFactory,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -85,7 +85,7 @@ Flag.defaultProps = {
   as: 'i',
 }
 
-Flag.create = createShorthandItemFactory(Flag, value => ({ name: value }))
+Flag.create = createShorthandFactory(Flag, value => ({ name: value }))
 
 export default Flag
 

@@ -2,7 +2,7 @@ import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
 import {
-  createShorthandItem,
+  createShorthand,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -31,7 +31,7 @@ function Item(props) {
 
   return (
     <ElementType {...rest} className={classes}>
-      {createShorthandItem(ItemImage, val => ({ src: val }), image)}
+      {createShorthand(ItemImage, val => ({ src: val }), image)}
 
       <ItemContent
         content={content}

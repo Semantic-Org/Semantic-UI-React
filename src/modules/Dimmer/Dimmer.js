@@ -2,7 +2,7 @@ import cx from 'classnames'
 import React, { Component, PropTypes } from 'react'
 
 import {
-  createShorthandItemFactory,
+  createShorthandFactory,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -141,4 +141,4 @@ export default class Dimmer extends Component {
 
 // Dimmer is not yet defined inside the class
 // Do not use a static property initializer
-Dimmer.create = createShorthandItemFactory(Dimmer, value => ({ content: value }))
+Dimmer.create = createShorthandFactory(Dimmer, value => ({ content: value }))

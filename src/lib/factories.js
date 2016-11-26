@@ -35,19 +35,33 @@ export const getChildKey = (props) => {
   if (key) return key
 
   // defines a childKey function or value
-  if (childKey) return _.isFunction(childKey) ? childKey(props) : childKey
+  if (childKey) return typeof childKey === 'function' ? childKey(props) : childKey
 
   // 1. Stringify props to a short as possible run on string of key/values.
   // 2. Don't stringify entire functions, use the function name || 'f'.
   // 3. Generate a short hash number from the string.
   //     props  : { color: 'red', onClick: handleClick }
-  //     string : 'colorredonClickhandleClick
+  //     string : 'color:red,onClick:handleClick
   //     hash   : 110042245
-  const propsString = _.map(props, (v, k) => {
-    return `${k}${typeof v === 'function' ? v.name || 'f' : v}`
-  }).join('')
+  const propsString = Object.keys(props).map(name => {
+    const val = props[name]
+    const type = typeof val
 
-  return getHashCode(propsString)
+    const valueString = type === 'string' && val
+      || type === 'number' && val
+      || type === 'boolean' && (val ? 'true' : 'false')
+      || type === 'function' && (val.name || 'function')
+      || Array.isArray(val) && ['[', val.join(','), ']'].join('')
+      || val === null && 'null'
+      || type === 'object' && ['{', Object.keys(val).map(k => [k, ':', val[k]].join('')), '}'].join('')
+      || val === undefined && 'undefined'
+
+    return [name, ':', valueString].join('')
+  }).join(',')
+
+  const hashCode = getHashCode(propsString)
+  console.log(propsString)
+  return hashCode
 }
 
 // ============================================================
@@ -64,9 +78,9 @@ export const getChildKey = (props) => {
  * @param {boolean} generateKey Whether or not to generate a child key, useful for collections.
  * @returns {object|null}
  */
-export function createShorthandItem(Component, mapValueToProps, val, defaultProps = {}, generateKey = false) {
+export function createShorthand(Component, mapValueToProps, val, defaultProps = {}, generateKey = false) {
   if (typeof Component !== 'function' && typeof Component !== 'string') {
-    throw new Error('createShorthandItemFactory() Component must be a string or function.')
+    throw new Error('createShorthandFactory() Component must be a string or function.')
   }
   // short circuit for disabling shorthand
   if (val === null) return null
@@ -96,8 +110,9 @@ export function createShorthandItem(Component, mapValueToProps, val, defaultProp
 
   // Generate child key
   if (generateKey) {
+    console.log('--------------------------------')
     props.key = getChildKey(props) // eslint-disable-line react/prop-types
-    throw new Error('generated key')
+    console.log(props.key, props, val)
   }
 
   // ----------------------------------------
@@ -114,46 +129,23 @@ export function createShorthandItem(Component, mapValueToProps, val, defaultProp
   return null
 }
 
-/**
- * Creates an array of elements using createShorthandItem and generates missing child keys.
- *
- * @param {function|string} Component A ReactClass or string
- * @param {function} mapValueToProps A function that maps a primitive value to the Component props
- * @param {Array} collection An array of strings or functions to create elements from.
- * @param {object|function} [defaultProps={}] Default props object or function (called with regular props).
- * @returns {function|null}
- */
-export function createShorthandCollection(Component, mapValueToProps, collection, defaultProps = {}) {
-  if (!Array.isArray(collection)) {
-    throw new Error('createShorthandCollection() collection must be an array.')
-  }
-
-  return _.map(collection, val => {
-    return createShorthandItem(Component, mapValueToProps, val, defaultProps, true)
-  })
-}
-
 // ============================================================
 // Factories Creators
 // ============================================================
 
-export function createShorthandCollectionFactory(Component, mapValueToProps) {
+export function createShorthandFactory(Component, mapValueToProps, generateKey) {
   if (typeof Component !== 'function' && typeof Component !== 'string') {
-    throw new Error('createCollectionFactory() Component must be a string or function.')
+    throw new Error('createShorthandFactory() Component must be a string or function.')
   }
-  return (...args) => createShorthandItem(Component, mapValueToProps, ...args)
-}
 
-export function createShorthandItemFactory(Component, mapValueToProps) {
-  if (typeof Component !== 'function' && typeof Component !== 'string') {
-    throw new Error('createShorthandItemFactory() Component must be a string or function.')
+  return (val, defaultProps) => {
+    return createShorthand(Component, mapValueToProps, val, defaultProps, generateKey)
   }
-  return (...args) => createShorthandItem(Component, mapValueToProps, ...args)
 }
 
 // ============================================================
 // HTML Factories
 // ============================================================
-export const createHTMLImage = createShorthandItemFactory('img', value => ({ src: value }))
-export const createHTMLInput = createShorthandItemFactory('input', value => ({ type: value }))
-export const createHTMLLabel = createShorthandItemFactory('label', value => ({ children: value }))
+export const createHTMLImage = createShorthandFactory('img', value => ({ src: value }))
+export const createHTMLInput = createShorthandFactory('input', value => ({ type: value }))
+export const createHTMLLabel = createShorthandFactory('label', value => ({ children: value }))

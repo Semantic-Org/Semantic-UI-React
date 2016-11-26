@@ -3,7 +3,7 @@ import cx from 'classnames'
 import React, { isValidElement, PropTypes } from 'react'
 
 import {
-  createShorthandItemFactory,
+  createShorthandFactory,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -146,6 +146,6 @@ ListItem.propTypes = {
   value: PropTypes.string,
 }
 
-ListItem.create = createShorthandItemFactory(ListItem, content => ({ content }))
+ListItem.create = createShorthandFactory(ListItem, content => ({ content }))
 
 export default ListItem

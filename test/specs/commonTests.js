@@ -4,7 +4,7 @@ import path from 'path'
 import React, { createElement, isValidElement } from 'react'
 import ReactDOMServer from 'react-dom/server'
 
-import { createShorthandItem, META, numberToWord } from 'src/lib'
+import { createShorthand, META, numberToWord } from 'src/lib'
 import { consoleUtil, sandbox, syntheticEvent } from 'test/utils'
 import * as semanticUIReact from 'semantic-ui-react'
 
@@ -658,7 +658,7 @@ export const implementsShorthandItemProp = (Component, options = {}) => {
       : _.get(ShorthandComponent, '_meta.name') || ShorthandComponent.displayName || ShorthandComponent.name
 
     const assertValidShorthand = (value) => {
-      const renderedShorthand = createShorthandItem(ShorthandComponent, mapValueToProps, value, shorthandDefaultProps)
+      const renderedShorthand = createShorthand(ShorthandComponent, mapValueToProps, value, shorthandDefaultProps)
       const element = createElement(Component, { ...requiredProps, [propKey]: value })
 
       shallow(element).should.contain(renderedShorthand)

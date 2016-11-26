@@ -3,7 +3,7 @@ import React, { Component, PropTypes } from 'react'
 
 import {
   childrenUtils,
-  createShorthandItem,
+  createShorthand,
   customPropTypes,
   META,
   getElementType,
@@ -125,7 +125,7 @@ export default class DropdownItem extends Component {
     const iconElement = Icon.create(iconName)
     const imageElement = Image.create(image)
     const labelElement = Label.create(label)
-    const descriptionElement = createShorthandItem(
+    const descriptionElement = createShorthand(
       'span',
       val => ({ className: 'description', children: val }),
       description,
@@ -139,7 +139,7 @@ export default class DropdownItem extends Component {
           {flagElement}
           {labelElement}
           {descriptionElement}
-          {createShorthandItem('span', val => ({ className: 'text', children: val }), content || text)}
+          {createShorthand('span', val => ({ className: 'text', children: val }), content || text)}
         </ElementType>
       )
     }

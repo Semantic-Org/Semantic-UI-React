@@ -3,7 +3,7 @@ import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
 import {
-  createShorthandCollectionFactory,
+  createShorthandFactory,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -112,8 +112,6 @@ TableRow.propTypes = {
   warning: PropTypes.bool,
 }
 
-// TODO the value for this factory is an array
-// Collection factories should also take in the component that they map their values to
-TableRow.create = createShorthandCollectionFactory(TableRow, cells => ({ cells }))
+TableRow.create = createShorthandFactory(TableRow, cells => ({ cells }), true)
 
 export default TableRow

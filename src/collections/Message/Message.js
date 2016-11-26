@@ -3,7 +3,7 @@ import React, { PropTypes } from 'react'
 import cx from 'classnames'
 
 import {
-  createShorthandItem,
+  createShorthand,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -86,9 +86,9 @@ function Message(props) {
       {Icon.create(icon)}
       {(header || content || list) && (
         <MessageContent>
-          {createShorthandItem(MessageHeader, val => ({ children: val }), header)}
-          {createShorthandItem(MessageList, val => ({ items: val }), list)}
-          {createShorthandItem('p', val => ({ children: val }), content)}
+          {createShorthand(MessageHeader, val => ({ children: val }), header)}
+          {createShorthand(MessageList, val => ({ items: val }), list)}
+          {createShorthand('p', val => ({ children: val }), content)}
         </MessageContent>
       )}
     </ElementType>

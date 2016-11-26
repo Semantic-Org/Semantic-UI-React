@@ -2,7 +2,7 @@ import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
 import {
-  createShorthandItem,
+  createShorthand,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -34,10 +34,10 @@ function ItemContent(props) {
 
   return (
     <ElementType {...rest} className={classes}>
-      {createShorthandItem(ItemHeader, val => ({ content: val }), header)}
-      {createShorthandItem(ItemMeta, val => ({ content: val }), meta)}
-      {createShorthandItem(ItemDescription, val => ({ content: val }), description)}
-      {createShorthandItem(ItemExtra, val => ({ content: val }), extra)}
+      {createShorthand(ItemHeader, val => ({ content: val }), header)}
+      {createShorthand(ItemMeta, val => ({ content: val }), meta)}
+      {createShorthand(ItemDescription, val => ({ content: val }), description)}
+      {createShorthand(ItemExtra, val => ({ content: val }), extra)}
       {content}
     </ElementType>
   )

@@ -2,7 +2,7 @@ import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
 import {
-  createShorthandItem,
+  createShorthand,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -25,12 +25,12 @@ function FeedContent(props) {
 
   return (
     <ElementType {...rest} className={classes}>
-      {createShorthandItem(FeedDate, val => ({ content: val }), date)}
-      {createShorthandItem(FeedSummary, val => ({ content: val }), summary)}
+      {createShorthand(FeedDate, val => ({ content: val }), date)}
+      {createShorthand(FeedSummary, val => ({ content: val }), summary)}
       {content}
-      {createShorthandItem(FeedExtra, val => ({ text: true, content: val }), extraText)}
-      {createShorthandItem(FeedExtra, val => ({ images: val }), extraImages)}
-      {createShorthandItem(FeedMeta, val => ({ content: val }), meta)}
+      {createShorthand(FeedExtra, val => ({ text: true, content: val }), extraText)}
+      {createShorthand(FeedExtra, val => ({ images: val }), extraImages)}
+      {createShorthand(FeedMeta, val => ({ content: val }), meta)}
     </ElementType>
   )
 }

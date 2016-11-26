@@ -2,7 +2,7 @@ import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
 import {
-  createShorthandItem,
+  createShorthand,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -32,9 +32,9 @@ function CardContent(props) {
 
   return (
     <ElementType {...rest} className={classes}>
-      {createShorthandItem(CardHeader, val => ({ content: val }), header)}
-      {createShorthandItem(CardMeta, val => ({ content: val }), meta)}
-      {createShorthandItem(CardDescription, val => ({ content: val }), description)}
+      {createShorthand(CardHeader, val => ({ content: val }), header)}
+      {createShorthand(CardMeta, val => ({ content: val }), meta)}
+      {createShorthand(CardDescription, val => ({ content: val }), description)}
     </ElementType>
   )
 }

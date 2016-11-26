@@ -2,7 +2,7 @@ import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
 import {
-  createShorthandItemFactory,
+  createShorthandFactory,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -133,6 +133,6 @@ TableCell.propTypes = {
   width: PropTypes.oneOf(TableCell._meta.props.width),
 }
 
-TableCell.create = createShorthandItemFactory(TableCell, content => ({ content }))
+TableCell.create = createShorthandFactory(TableCell, content => ({ content }), true)
 
 export default TableCell
