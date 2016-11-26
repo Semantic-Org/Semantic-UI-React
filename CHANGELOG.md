@@ -1,5 +1,17 @@
 # Change Log
 
+## [v0.61.5](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.61.5) (2016-11-26)
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.61.4...v0.61.5)
+
+**Fixed bugs:**
+
+- Accordion does not work properly when defaultActiveIndex is 0 [\#772](https://github.com/Semantic-Org/Semantic-UI-React/issues/772)
+
+**Merged pull requests:**
+
+- mocha@3.2.0 untested ⚠️ [\#940](https://github.com/Semantic-Org/Semantic-UI-React/pull/940) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+- fix\(Accordion\): Fixed incorrect defaultActiveIndex check [\#928](https://github.com/Semantic-Org/Semantic-UI-React/pull/928) ([Arthelon](https://github.com/Arthelon))
+
 ## [v0.61.4](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.61.4) (2016-11-23)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.61.3...v0.61.4)
 
