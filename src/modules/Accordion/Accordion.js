@@ -83,7 +83,7 @@ export default class Accordion extends Component {
     // Otherwise, on first render we're allowed to set state for a prop that might have a default.
     // The default prop should always win on first render.
     // This default check should then be removed.
-    if (!this.props.defaultActiveIndex) {
+    if (typeof this.props.defaultActiveIndex === 'undefined') {
       this.trySetState({ activeIndex: -1 })
     }
   }
