@@ -37,6 +37,7 @@ export const suggest = suggestions => {
     // find best suggestions
     const propValueWords = propValue.split(' ')
 
+    /* eslint-disable max-nested-callbacks */
     const bestMatches = _.flow(
       _.map(suggestion => {
         const suggestionWords = suggestion.split(' ')
@@ -58,6 +59,7 @@ export const suggest = suggestions => {
       _.sortBy(['score', 'suggestion']),
       _.take(3)
     )(suggestions)
+    /* eslint-enable max-nested-callbacks */
 
     // skip if a match scored 0
     // since we're matching on words (classNames) this allows any word order to pass validation

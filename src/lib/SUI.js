@@ -82,8 +82,8 @@ export const ICONS = [
 
   // Item Selection
   'checkmark', 'remove', 'checkmark box', 'move', 'add circle', 'minus circle', 'remove circle', 'check circle',
-  'remove circle outline', 'check circle outline', 'plus', 'minus', 'add square', 'radio', 'minus square', 'minus square outline',
-  'check square', 'selected radio', 'plus square outline', 'toggle off', 'toggle on',
+  'remove circle outline', 'check circle outline', 'plus', 'minus', 'add square', 'radio', 'minus square',
+  'minus square outline', 'check square', 'selected radio', 'plus square outline', 'toggle off', 'toggle on',
 
   // Media
   'film', 'sound', 'photo', 'bar chart', 'camera retro', 'newspaper', 'area chart', 'pie chart', 'line chart',
