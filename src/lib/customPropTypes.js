@@ -29,10 +29,7 @@ export const suggest = suggestions => {
     const propValue = props[propName]
 
     // skip if prop is undefined or is included in the suggestions
-    const nil = _.isNil(propValue)
-    const fal = propValue === false
-    const includes = _.includes(propValue, suggestions)
-    if (nil || fal || includes) return
+    if (_.isNil(propValue) || propValue === false || _.includes(propValue, suggestions)) return
 
     // find best suggestions
     const propValueWords = propValue.split(' ')
