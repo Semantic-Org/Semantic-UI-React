@@ -1,5 +1,6 @@
 import { PropTypes } from 'react'
 import _ from 'lodash/fp'
+import leven from './leven'
 
 const typeOf = (...args) => Object.prototype.toString.call(...args)
 
@@ -10,6 +11,67 @@ export const as = (...args) => PropTypes.oneOfType([
   PropTypes.string,
   PropTypes.func,
 ])(...args)
+
+/**
+ * Similar to PropTypes.oneOf but shows closest matches.
+ * Word order is ignored allowing `left chevron` to match `chevron left`.
+ * Useful for very large lists of options (e.g. Icon name, Flag name, etc.)
+ * @param {string[]} suggestions An array of props that cannot be used with this prop.
+ */
+export const suggest = suggestions => {
+  return (props, propName, componentName) => {
+    if (!Array.isArray(suggestions)) {
+      throw new Error([
+        'Invalid argument supplied to suggest, expected an instance of array.',
+        ` See \`${propName}\` prop in \`${componentName}\`.`,
+      ].join(''))
+    }
+    const propValue = props[propName]
+
+    // skip if prop is undefined or is included in the suggestions
+    const nil = _.isNil(propValue)
+    const fal = propValue === false
+    const includes = _.includes(propValue, suggestions)
+    if (nil || fal || includes) return
+
+    // find best suggestions
+    const propValueWords = propValue.split(' ')
+
+    const bestMatches = _.flow(
+      _.map(suggestion => {
+        const suggestionWords = suggestion.split(' ')
+
+        const propValueScore = _.flow(
+          _.map(x => _.map(y => leven(x, y), suggestionWords)),
+          _.map(_.min),
+          _.sum
+        )(propValueWords)
+
+        const suggestionScore = _.flow(
+          _.map(x => _.map(y => leven(x, y), propValueWords)),
+          _.map(_.min),
+          _.sum
+        )(suggestionWords)
+
+        return { suggestion, score: propValueScore + suggestionScore }
+      }),
+      _.sortBy(['score', 'suggestion']),
+      _.take(3)
+    )(suggestions)
+
+    // skip if a match scored 0
+    // since we're matching on words (classNames) this allows any word order to pass validation
+    // e.g. `left chevron` vs `chevron left`
+    if (bestMatches.some(x => x.score === 0)) return
+
+    return new Error([
+      `Invalid prop \`${propName}\` of value \`${propValue}\` supplied to \`${componentName}\`.`,
+      `\n\nInstead of \`${propValue}\`, did you mean:`,
+      bestMatches.map(x => `\n  - ${x.suggestion}`).join(''),
+      '\n',
+    ].join(''))
+  }
+}
 
 /**
  * Disallow other props form being defined with this prop.
