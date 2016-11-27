@@ -19,8 +19,8 @@ export const disallow = disallowedProps => {
   return (props, propName, componentName) => {
     if (!Array.isArray(disallowedProps)) {
       throw new Error([
-        'Invalid argument supplied to disallow, expected an instance of array.'
-          ` See \`${propName}\` prop in \`${componentName}\`.`,
+        'Invalid argument supplied to disallow, expected an instance of array.',
+        ` See \`${propName}\` prop in \`${componentName}\`.`,
       ].join(''))
     }
 
@@ -34,7 +34,6 @@ export const disallow = disallowedProps => {
       }
       return acc
     }, [])
-
 
     if (disallowed.length > 0) {
       return new Error([
@@ -61,9 +60,7 @@ export const every = (validators) => {
     const errors = _.flow(
       _.map(validator => {
         if (typeof validator !== 'function') {
-          throw new Error(
-            `every() argument "validators" should contain functions, found: ${typeOf(validator)}.`
-          )
+          throw new Error(`every() argument "validators" should contain functions, found: ${typeOf(validator)}.`)
         }
         return validator(props, propName, componentName, ...rest)
       }),
@@ -90,9 +87,7 @@ export const some = (validators) => {
 
     const errors = _.compact(_.map(validators, validator => {
       if (!_.isFunction(validator)) {
-        throw new Error(
-          `some() argument "validators" should contain functions, found: ${typeOf(validator)}.`
-        )
+        throw new Error(`some() argument "validators" should contain functions, found: ${typeOf(validator)}.`)
       }
       return validator(props, propName, componentName, ...rest)
     }))
@@ -163,8 +158,8 @@ export const demand = (requiredProps) => {
   return (props, propName, componentName) => {
     if (!Array.isArray(requiredProps)) {
       throw new Error([
-        'Invalid `requiredProps` argument supplied to require, expected an instance of array.'
-          ` See \`${propName}\` prop in \`${componentName}\`.`,
+        'Invalid `requiredProps` argument supplied to require, expected an instance of array.',
+        ` See \`${propName}\` prop in \`${componentName}\`.`,
       ].join(''))
     }
 
@@ -174,7 +169,7 @@ export const demand = (requiredProps) => {
     const missingRequired = requiredProps.filter(requiredProp => props[requiredProp] === undefined)
     if (missingRequired.length > 0) {
       return new Error(
-        `\`${propName}\` prop in \`${componentName}\` requires props: \`${missingRequired.join('`, `')}\`.`,
+        `\`${propName}\` prop in \`${componentName}\` requires props: \`${missingRequired.join('`, `')}\`.`
       )
     }
   }
