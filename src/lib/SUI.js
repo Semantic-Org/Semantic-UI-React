@@ -76,7 +76,7 @@ export const ICONS = [
   // Item Selection Icons
   'add circle', 'add square', 'check circle', 'check circle outline', 'check square', 'checkmark box', 'checkmark',
   'minus circle', 'minus', 'minus square', 'minus square outline', 'move', 'plus', 'plus square outline', 'radio',
-  'remove circle', 'remove circle outline', 'remove', 'selected radio', 'toggle off', 'toggle on',
+  'remove circle', 'remove circle outline', 'remove', 'selected radio', 'toggle off', 'toggle on', 'close', 'delete',
 
   // Media Icons
   'area chart', 'bar chart', 'camera retro', 'film', 'line chart', 'newspaper', 'photo', 'pie chart', 'sound',
