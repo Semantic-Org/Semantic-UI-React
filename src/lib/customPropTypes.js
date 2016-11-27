@@ -16,7 +16,7 @@ export const as = (...args) => PropTypes.oneOfType([
  * Similar to PropTypes.oneOf but shows closest matches.
  * Word order is ignored allowing `left chevron` to match `chevron left`.
  * Useful for very large lists of options (e.g. Icon name, Flag name, etc.)
- * @param {string[]} suggestions An array of props that cannot be used with this prop.
+ * @param {string[]} suggestions An array of allowed values.
  */
 export const suggest = suggestions => {
   return (props, propName, componentName) => {
