@@ -27,6 +27,51 @@ export const WIDTHS = [
   ..._.values(numberToWordMap),
 ]
 
+export const FULL_TRANSITIONS = [
+  'browse left',
+  'browse right',
+
+  'drop',
+
+  'fade',
+  'fade up',
+  'fade down',
+  'fade left',
+  'fade right',
+
+  'vertical flip',
+  'horizontal flip',
+
+  'fly up',
+  'fly down',
+  'fly left',
+  'fly right',
+
+  'scale',
+
+  'slide up',
+  'slide down',
+  'slide left',
+  'slide right',
+
+  'swing up',
+  'swing down',
+  'swing left',
+  'swing right',
+]
+export const STATIC_TRANSITIONS = [
+  'bounce',
+  'flash',
+  'jiggle',
+  'pulse',
+  'shake',
+  'tada',
+]
+export const TRANSITIONS = [
+  ...FULL_TRANSITIONS,
+  ...STATIC_TRANSITIONS,
+]
+
 export const ICONS = [
   // Web Content Icons
   'add to calendar', 'alarm outline', 'alarm mute outline', 'alarm mute', 'alarm', 'at', 'browser', 'bug',
