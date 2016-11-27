@@ -63,7 +63,8 @@
   ></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/Faker/<%= htmlWebpackPlugin.options.versions.faker %>/faker.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/js-beautify/<%= htmlWebpackPlugin.options.versions.jsBeautify %>/beautify-html.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/react/<%= htmlWebpackPlugin.options.versions.react %>/react.min.js"></script>
+  <!-- Use unminified React when not in production so we get errors and warnings -->
+  <script src="//cdnjs.cloudflare.com/ajax/libs/react/<%= htmlWebpackPlugin.options.versions.react %>/react<%= __PROD__ ? '.min' : '' %>.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/react/<%= htmlWebpackPlugin.options.versions.reactDOM %>/react-dom.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/react/<%= htmlWebpackPlugin.options.versions.reactDOM %>/react-dom-server.min.js"></script>
   <style>
