@@ -1,5 +1,16 @@
 # Change Log
 
+## [v0.61.6](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.61.6) (2016-11-27)
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.61.5...v0.61.6)
+
+**Fixed bugs:**
+
+- Message Component Warning [\#936](https://github.com/Semantic-Org/Semantic-UI-React/issues/936)
+
+**Merged pull requests:**
+
+- feat\(Flag\): use suggest prop type checker [\#944](https://github.com/Semantic-Org/Semantic-UI-React/pull/944) ([levithomason](https://github.com/levithomason))
+
 ## [v0.61.5](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.61.5) (2016-11-26)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.61.4...v0.61.5)
 
