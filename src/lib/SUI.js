@@ -27,138 +27,173 @@ export const WIDTHS = [
   ..._.values(numberToWordMap),
 ]
 
+// Generated from:
+// https://github.com/Semantic-Org/Semantic-UI/blob/master/dist/components/icon.css
 export const ICONS = [
-  // Web Content Icons
-  'add to calendar', 'alarm outline', 'alarm mute outline', 'alarm mute', 'alarm', 'at', 'browser', 'bug',
-  'calendar outline', 'calendar', 'checked calendar', 'cloud', 'code', 'comment outline', 'comment', 'comments outline',
-  'comments', 'copyright', 'creative commons', 'dashboard', 'delete calendar', 'external square', 'external',
-  'eyedropper', 'feed', 'find', 'hand pointer', 'hashtag', 'heartbeat', 'history', 'home', 'hourglass empty',
-  'hourglass end', 'hourglass full', 'hourglass half', 'hourglass start', 'idea', 'image', 'inbox', 'industry', 'lab',
-  'mail outline', 'mail square', 'mail', 'mouse pointer', 'options', 'paint brush', 'payment', 'percent', 'privacy',
-  'protect', 'registered', 'remove from calendar', 'search', 'setting', 'settings', 'shop', 'shopping bag',
-  'shopping basket', 'signal', 'sitemap', 'tag', 'tags', 'tasks', 'terminal', 'text telephone', 'ticket', 'trademark',
-  'trophy', 'wifi',
+  // Web Content
+  'search', 'mail outline', 'signal', 'setting', 'home', 'inbox', 'browser', 'tag', 'tags', 'image', 'calendar',
+  'comment', 'shop', 'comments', 'external', 'privacy', 'settings', 'comments', 'external', 'trophy', 'payment', 'feed',
+  'alarm outline', 'tasks', 'cloud', 'lab', 'mail', 'dashboard', 'comment outline', 'comments outline', 'sitemap',
+  'idea', 'alarm', 'terminal', 'code', 'protect', 'calendar outline', 'ticket', 'external square', 'bug', 'mail square',
+  'history', 'options', 'text telephone', 'find', 'wifi', 'alarm mute', 'alarm mute outline', 'copyright', 'at',
+  'eyedropper', 'paint brush', 'heartbeat', 'mouse pointer', 'hourglass empty', 'hourglass start', 'hourglass half',
+  'hourglass end', 'hourglass full', 'hand pointer', 'trademark', 'registered', 'creative commons', 'add to calendar',
+  'remove from calendar', 'delete calendar', 'checked calendar', 'industry', 'shopping bag', 'shopping basket',
+  'hashtag', 'percent',
 
-  // User Actions Icons
-  'add to cart', 'add user', 'adjust', 'archive', 'ban', 'bookmark', 'call', 'call square', 'clone', 'cloud download',
-  'cloud upload', 'talk', 'talk outline', 'compress', 'configure', 'download', 'edit', 'erase', 'exchange', 'expand',
-  'external share', 'filter', 'hide', 'in cart', 'lock', 'mail forward', 'object group', 'object ungroup', 'pin',
-  'print', 'random', 'recycle', 'refresh', 'remove bookmark', 'remove user', 'repeat', 'reply all', 'reply', 'retweet',
-  'send', 'send outline', 'share alternate', 'share alternate square', 'share', 'share square', 'sign in', 'sign out',
-  'theme', 'translate', 'undo', 'unhide', 'unlock alternate', 'unlock', 'upload', 'wait', 'wizard', 'write',
-  'write square',
+  // User Actions
+  'wait', 'download', 'repeat', 'refresh', 'lock', 'bookmark', 'print', 'write', 'adjust', 'theme', 'edit',
+  'external share', 'ban', 'mail forward', 'share', 'expand', 'compress', 'unhide', 'hide', 'random', 'retweet',
+  'sign out', 'pin', 'sign in', 'upload', 'call', 'remove bookmark', 'call square', 'unlock', 'configure', 'filter',
+  'wizard', 'undo', 'exchange', 'cloud download', 'cloud upload', 'reply', 'reply all', 'erase', 'unlock alternate',
+  'write square', 'share square', 'archive', 'translate', 'recycle', 'send', 'send outline', 'share alternate',
+  'share alternate square', 'add to cart', 'in cart', 'add user', 'remove user', 'object group', 'object ungroup',
+  'clone', 'talk', 'talk outline',
 
-  // Message Icons
-  'announcement', 'birthday', 'help circle', 'help', 'info circle', 'info', 'warning circle', 'warning', 'warning sign',
+  // Messages
+  'help circle', 'info circle', 'warning circle', 'warning sign', 'announcement', 'help', 'info', 'warning', 'birthday',
+  'help circle outline',
 
-  // User Types Icons
-  'child', 'doctor', 'handicap', 'spy', 'student', 'user', 'users',
+  // Users
+  'user', 'users', 'doctor', 'handicap', 'student', 'child', 'spy',
 
-  // Gender And Sexuality Icons
-  'female', 'gay', 'genderless', 'heterosexual', 'intergender', 'lesbian', 'male', 'man', 'neuter',
-  'non binary transgender', 'other gender horizontal', 'other gender', 'other gender vertical', 'transgender', 'woman',
+  // Gender & Sexuality
+  'female', 'male', 'woman', 'man', 'non binary transgender', 'intergender', 'transgender', 'lesbian', 'gay',
+  'heterosexual', 'other gender', 'other gender vertical', 'other gender horizontal', 'neuter', 'genderless',
 
-  // Layout Adjustment Icons
-  'block layout', 'crop', 'grid layout', 'list layout', 'maximize', 'resize horizontal', 'resize vertical', 'zoom',
-  'zoom out',
+  // Accessibility
+  'universal access', 'wheelchair', 'blind', 'audio description', 'volume control phone', 'braille', 'asl',
+  'assistive listening systems', 'deafness', 'sign language', 'low vision',
 
-  // Objects Icons
-  'anchor', 'bar', 'bomb', 'book', 'bullseye', 'calculator', 'cocktail', 'diamond', 'fax', 'fire extinguisher', 'fire',
-  'flag checkered', 'flag', 'flag outline', 'gift', 'hand lizard', 'hand peace', 'hand paper', 'hand rock',
-  'hand scissors', 'hand spock', 'law', 'leaf', 'legal', 'lemon', 'life ring', 'lightning', 'magnet', 'money', 'moon',
-  'plane', 'puzzle', 'road', 'rocket', 'shipping', 'soccer', 'sticky note', 'sticky note outline', 'suitcase', 'sun',
-  'travel', 'treatment', 'umbrella', 'world',
+  // View Adjustment
+  'block layout', 'grid layout', 'list layout', 'zoom', 'zoom out', 'resize vertical', 'resize horizontal', 'maximize',
+  'crop',
 
-  // Shapes Icons
-  'asterisk', 'certificate', 'circle', 'circle notched', 'circle thin', 'crosshairs', 'cube', 'cubes',
-  'ellipsis horizontal', 'ellipsis vertical', 'quote left', 'quote right', 'spinner', 'square', 'square outline',
+  // Literal Objects
+  'cocktail', 'road', 'flag', 'book', 'gift', 'leaf', 'fire', 'plane', 'magnet', 'lemon', 'world', 'travel', 'shipping',
+  'money', 'legal', 'lightning', 'umbrella', 'treatment', 'suitcase', 'bar', 'flag outline', 'flag checkered', 'puzzle',
+  'fire extinguisher', 'rocket', 'anchor', 'bullseye', 'sun', 'moon', 'fax', 'life ring', 'bomb', 'soccer',
+  'calculator', 'diamond', 'sticky note', 'sticky note outline', 'law', 'hand peace', 'hand rock', 'hand paper',
+  'hand scissors', 'hand lizard', 'hand spock', 'tv',
 
-  // Item Selection Icons
-  'add circle', 'add square', 'check circle', 'check circle outline', 'check square', 'checkmark box', 'checkmark',
-  'minus circle', 'minus', 'minus square', 'minus square outline', 'move', 'plus', 'plus square outline', 'radio',
-  'remove circle', 'remove circle outline', 'remove', 'selected radio', 'toggle off', 'toggle on',
+  // Shapes
+  'crosshairs', 'asterisk', 'square outline', 'certificate', 'square', 'quote left', 'quote right', 'spinner', 'circle',
+  'ellipsis horizontal', 'ellipsis vertical', 'cube', 'cubes', 'circle notched', 'circle thin',
 
-  // Media Icons
-  'area chart', 'bar chart', 'camera retro', 'film', 'line chart', 'newspaper', 'photo', 'pie chart', 'sound',
+  // Item Selection
+  'checkmark', 'remove', 'checkmark box', 'move', 'add circle', 'minus circle', 'remove circle', 'check circle',
+  'remove circle outline', 'check circle outline', 'plus', 'minus', 'add square', 'radio', 'minus square',
+  'minus square outline', 'check square', 'selected radio', 'plus square outline', 'toggle off', 'toggle on',
 
-  // Pointers Icons
-  'angle double down', 'angle double left', 'angle double right', 'angle double up', 'angle down', 'angle left',
-  'angle right', 'angle up', 'arrow circle down', 'arrow circle left', 'arrow circle outline down',
-  'arrow circle outline left', 'arrow circle outline right', 'arrow circle outline up', 'arrow circle right',
-  'arrow circle up', 'arrow down', 'arrow left', 'arrow right', 'arrow up', 'caret down', 'caret left', 'caret right',
-  'caret up', 'chevron circle down', 'chevron circle left', 'chevron circle right', 'chevron circle up', 'chevron down',
-  'chevron left', 'chevron right', 'chevron up', 'dropdown', 'long arrow down', 'long arrow left', 'long arrow right',
-  'long arrow up', 'pointing down', 'pointing left', 'pointing right', 'pointing up', 'toggle down', 'toggle left',
-  'toggle right', 'toggle up',
+  // Media
+  'film', 'sound', 'photo', 'bar chart', 'camera retro', 'newspaper', 'area chart', 'pie chart', 'line chart',
 
-  // Mobile Icons
-  'mobile', 'tablet', 'battery empty', 'battery full', 'battery low', 'battery medium',
+  // Pointers
+  'arrow circle outline down', 'arrow circle outline up', 'chevron left', 'chevron right', 'arrow left', 'arrow right',
+  'arrow up', 'arrow down', 'chevron up', 'chevron down', 'pointing right', 'pointing left', 'pointing up',
+  'pointing down', 'arrow circle left', 'arrow circle right', 'arrow circle up', 'arrow circle down', 'caret down',
+  'caret up', 'caret left', 'caret right', 'angle double left', 'angle double right', 'angle double up',
+  'angle double down', 'angle left', 'angle right', 'angle up', 'angle down', 'chevron circle left',
+  'chevron circle right', 'chevron circle up', 'chevron circle down', 'toggle down', 'toggle up', 'toggle right',
+  'long arrow down', 'long arrow up', 'long arrow left', 'long arrow right', 'arrow circle outline right',
+  'arrow circle outline left', 'toggle left',
 
-  // Computer Icons
-  'desktop', 'disk outline', 'game', 'high battery', 'keyboard', 'laptop', 'plug', 'power',
+  // Mobile
+  'tablet', 'mobile', 'battery full', 'battery high', 'battery medium', 'battery low', 'battery empty',
 
-  // Computer And File System Icons
-  'file archive outline', 'file audio outline', 'file code outline', 'file excel outline', 'file', 'file image outline',
-  'file outline', 'file pdf outline', 'file powerpoint outline', 'file text', 'file text outline', 'file video outline',
-  'file word outline', 'folder', 'folder open', 'folder open outline', 'folder outline', 'level down', 'level up',
-  'trash', 'trash outline',
+  // Computer
+  'power', 'trash outline', 'disk outline', 'desktop', 'laptop', 'game', 'keyboard', 'plug',
 
-  // Technologies Icons
-  'barcode', 'bluetooth alternative', 'bluetooth', 'css3', 'database', 'fork', 'html5', 'openid', 'qrcode', 'rss',
-  'rss square', 'server', 'usb',
+  // File System
+  'trash', 'file outline', 'folder', 'folder open', 'file text outline', 'folder outline', 'folder open outline',
+  'level up', 'level down', 'file', 'file text', 'file pdf outline', 'file word outline', 'file excel outline',
+  'file powerpoint outline', 'file image outline', 'file archive outline', 'file audio outline', 'file video outline',
+  'file code outline',
 
-  // Rating Icons
-  'empty heart', 'empty star', 'frown', 'heart', 'meh', 'smile', 'star half empty', 'star half', 'star', 'thumbs down',
-  'thumbs outline down', 'thumbs outline up', 'thumbs up',
+  // Technologies
+  'qrcode', 'barcode', 'rss', 'fork', 'html5', 'css3', 'rss square', 'openid', 'database', 'server', 'usb', 'bluetooth',
+  'bluetooth alternative',
 
-  // Audio Icons
-  'backward', 'closed captioning', 'eject', 'fast backward', 'fast forward', 'forward', 'music', 'mute', 'pause circle',
-  'pause circle outline', 'pause', 'play', 'record', 'step backward', 'step forward', 'stop circle',
-  'stop circle outline', 'stop', 'unmute', 'video play', 'video play outline', 'volume down', 'volume off', 'volume up',
+  // Rating
+  'heart', 'star', 'empty star', 'thumbs outline up', 'thumbs outline down', 'star half', 'empty heart', 'smile',
+  'frown', 'meh', 'star half empty', 'thumbs up', 'thumbs down',
 
-  // Map Icons
-  'bicycle', 'building', 'building outline', 'bus', 'car', 'coffee', 'compass', 'emergency', 'first aid', 'food', 'h',
-  'hospital', 'hotel', 'location arrow', 'map', 'map outline', 'map pin', 'map signs', 'marker', 'military',
-  'motorcycle', 'paw', 'ship', 'space shuttle', 'spoon', 'street view', 'subway', 'taxi', 'train', 'television', 'tree',
-  'university',
+  // Audio
+  'music', 'video play outline', 'volume off', 'volume down', 'volume up', 'record', 'step backward', 'fast backward',
+  'backward', 'play', 'pause', 'stop', 'forward', 'fast forward', 'step forward', 'eject', 'unmute', 'mute',
+  'video play', 'closed captioning', 'pause circle', 'pause circle outline', 'stop circle', 'stop circle outline',
 
-  // Tables Icons
-  'columns', 'sort alphabet ascending', 'sort alphabet descending', 'sort ascending', 'sort content ascending',
-  'sort content descending', 'sort descending', 'sort', 'sort numeric ascending', 'sort numeric descending', 'table',
+  // Map, Locations, & Transportation
+  'marker', 'coffee', 'food', 'building outline', 'hospital', 'emergency', 'first aid', 'military', 'h',
+  'location arrow', 'compass', 'space shuttle', 'university', 'building', 'paw', 'spoon', 'car', 'taxi', 'tree',
+  'bicycle', 'bus', 'ship', 'motorcycle', 'street view', 'hotel', 'train', 'subway', 'map pin', 'map signs',
+  'map outline', 'map',
 
-  // Text Editor Icons
-  'align center', 'align justify', 'align left', 'align right', 'attach', 'bold', 'content', 'copy', 'cut', 'font',
-  'header', 'indent', 'italic', 'linkify', 'list', 'ordered list', 'outdent', 'paragraph', 'paste', 'save',
-  'strikethrough', 'subscript', 'superscript', 'text cursor', 'text height', 'text width', 'underline', 'unlinkify',
-  'unordered list',
+  // Tables
+  'table', 'columns', 'sort', 'sort descending', 'sort ascending', 'sort alphabet ascending',
+  'sort alphabet descending', 'sort content ascending', 'sort content descending', 'sort numeric ascending',
+  'sort numeric descending',
 
-  // Currency Icons
-  'bitcoin', 'dollar', 'euro', 'lira', 'pound', 'ruble', 'rupee', 'shekel', 'won', 'yen',
+  // Text Editor
+  'font', 'bold', 'italic', 'text height', 'text width', 'align left', 'align center', 'align right', 'align justify',
+  'list', 'outdent', 'indent', 'linkify', 'cut', 'copy', 'attach', 'save', 'content', 'unordered list', 'ordered list',
+  'strikethrough', 'underline', 'paste', 'unlinkify', 'superscript', 'subscript', 'header', 'paragraph', 'text cursor',
 
-  // Payment Options Icons
-  'american express', 'credit card alternative', 'diners club', 'discover', 'google wallet', 'japan credit bureau',
-  'mastercard', 'paypal card', 'paypal', 'stripe', 'visa',
+  // Currency
+  'euro', 'pound', 'dollar', 'rupee', 'yen', 'ruble', 'won', 'bitcoin', 'lira', 'shekel',
 
-  // Accessibility Icons
-  'wheelchair', 'asl interpreting', 'assistive listening systems', 'audio description', 'blind', 'braille', 'deafness',
-  'low vision', 'sign language', 'universal access', 'volume control phone',
+  // Payment Options
+  'paypal', 'google wallet', 'visa', 'mastercard', 'discover', 'american express', 'paypal card', 'stripe',
+  'japan credit bureau', 'diners club', 'credit card alternative',
 
-  // Brands Icons
-  '500px', 'adn', 'amazon', 'android', 'angellist', 'apple', 'behance', 'behance square', 'bitbucket',
-  'bitbucket square', 'black tie', 'buysellads', 'chrome', 'codepen', 'codiepie', 'connectdevelop', 'contao',
-  'dashcube', 'delicious', 'deviantart', 'digg', 'dribbble', 'dropbox', 'drupal', 'empire', 'envira gallery',
-  'expeditedssl', 'facebook', 'facebook f', 'facebook square', 'firefox', 'first order', 'flickr', 'font awesome',
-  'fonticons', 'fort awesome', 'forumbee', 'foursquare', 'gg', 'gg circle', 'git', 'git square', 'github',
-  'github alternate', 'github square', 'gitlab', 'gittip', 'glide', 'glide g', 'google', 'google plus',
-  'google plus circle', 'google plus square', 'hacker news', 'houzz', 'instagram', 'internet explorer', 'ioxhost',
-  'joomla', 'jsfiddle', 'lastfm', 'lastfm square', 'leanpub', 'linkedin', 'linkedin square', 'linux', 'maxcdn',
-  'meanpath', 'medium', 'microsoft edge', 'mixcloud', 'modx', 'odnoklassniki', 'odnoklassniki square', 'opencart',
-  'opera', 'optinmonster', 'pagelines', 'pied piper', 'pied piper alternate', 'pied piper hat', 'pinterest',
-  'pinterest square', 'pocket', 'product hunt', 'qq', 'rebel', 'reddit', 'reddit alien', 'reddit square', 'renren',
-  'safari', 'scribd', 'sellsy', 'shirtsinbulk', 'simplybuilt', 'skyatlas', 'skype', 'slack', 'slideshare', 'snapchat',
-  'snapchat ghost', 'snapchat square', 'soundcloud', 'spotify', 'stack exchange', 'stack overflow', 'steam',
-  'steam square', 'stumbleupon', 'stumbleupon circle', 'tencent weibo', 'themeisle', 'trello', 'tripadvisor', 'tumblr',
-  'tumblr square', 'twitch', 'twitter', 'twitter square', 'viacoin', 'viadeo', 'viadeo square', 'vimeo', 'vimeo square',
-  'vine', 'vk', 'wechat', 'weibo', 'whatsapp', 'wikipedia', 'windows', 'wordpress', 'wpbeginner', 'wpforms', 'xing',
-  'xing square', 'y combinator', 'yahoo', 'yelp', 'yoast', 'youtube', 'youtube play', 'youtube square',
+  // Networks and Website
+  'twitter square', 'facebook square', 'linkedin square', 'github square', 'twitter', 'facebook f', 'github',
+  'pinterest', 'pinterest square', 'google plus square', 'google plus', 'linkedin', 'github alternate', 'maxcdn',
+  'youtube square', 'youtube', 'xing', 'xing square', 'youtube play', 'dropbox', 'stack overflow', 'instagram',
+  'flickr', 'adn', 'bitbucket', 'bitbucket square', 'tumblr', 'tumblr square', 'apple', 'windows', 'android', 'linux',
+  'dribble', 'skype', 'foursquare', 'trello', 'gittip', 'vk', 'weibo', 'renren', 'pagelines', 'stack exchange',
+  'vimeo square', 'slack', 'wordpress', 'yahoo', 'google', 'reddit', 'reddit square', 'stumbleupon circle',
+  'stumbleupon', 'delicious', 'digg', 'pied piper', 'pied piper alternate', 'drupal', 'joomla', 'behance',
+  'behance square', 'steam', 'steam square', 'spotify', 'deviantart', 'soundcloud', 'vine', 'codepen', 'jsfiddle',
+  'rebel', 'empire', 'git square', 'git', 'hacker news', 'tencent weibo', 'qq', 'wechat', 'slideshare', 'twitch',
+  'yelp', 'lastfm', 'lastfm square', 'ioxhost', 'angellist', 'meanpath', 'buysellads', 'connectdevelop', 'dashcube',
+  'forumbee', 'leanpub', 'sellsy', 'shirtsinbulk', 'simplybuilt', 'skyatlas', 'facebook', 'pinterest', 'whatsapp',
+  'viacoin', 'medium', 'y combinator', 'optinmonster', 'opencart', 'expeditedssl', 'gg', 'gg circle', 'tripadvisor',
+  'odnoklassniki', 'odnoklassniki square', 'pocket', 'wikipedia', 'safari', 'chrome', 'firefox', 'opera',
+  'internet explorer', 'contao', '500px', 'amazon', 'houzz', 'vimeo', 'black tie', 'fonticons', 'reddit alien',
+  'microsoft edge', 'codiepie', 'modx', 'fort awesome', 'product hunt', 'mixcloud', 'scribd', 'gitlab', 'wpbeginner',
+  'wpforms', 'envira gallery', 'glide', 'glide g', 'viadeo', 'viadeo square', 'snapchat', 'snapchat ghost',
+  'snapchat square', 'pied piper hat', 'first order', 'yoast', 'themeisle', 'google plus circle', 'font awesome',
+
+  // ----------------------------------------
+  // Aliases
+  // ----------------------------------------
+
+  'like', 'favorite', 'video', 'check', 'close', 'cancel', 'delete', 'x', 'zoom in', 'magnify', 'shutdown', 'clock',
+  'time', 'play circle outline', 'headphone', 'camera', 'video camera', 'picture', 'pencil', 'compose', 'point', 'tint',
+  'signup', 'plus circle', 'question circle', 'dont', 'minimize', 'add', 'exclamation circle', 'attention', 'eye',
+  'exclamation triangle', 'shuffle', 'chat', 'cart', 'shopping cart', 'bar graph', 'key', 'cogs', 'discussions',
+  'like outline', 'dislike outline', 'heart outline', 'log out', 'thumb tack', 'winner', 'phone', 'bookmark outline',
+  'phone square', 'credit card', 'hdd outline', 'bullhorn', 'bell outline', 'hand outline right', 'hand outline left',
+  'hand outline up', 'hand outline down', 'globe', 'wrench', 'briefcase', 'group', 'linkify', 'chain', 'flask',
+  'sidebar', 'bars', 'list ul', 'list ol', 'numbered list', 'magic', 'truck', 'currency', 'triangle down', 'dropdown',
+  'triangle up', 'triangle left', 'triangle right', 'envelope', 'conversation', 'rain', 'clipboard', 'lightbulb',
+  'bell', 'ambulance', 'medkit', 'fighter jet', 'beer', 'plus square', 'computer', 'circle outline', 'gamepad',
+  'star half full', 'broken chain', 'question', 'exclamation', 'eraser', 'microphone', 'microphone slash', 'shield',
+  'target', 'play circle', 'pencil square', 'eur', 'gbp', 'usd', 'inr', 'cny', 'rmb', 'jpy', 'rouble', 'rub', 'krw',
+  'btc', 'gratipay', 'zip', 'dot circle outline', 'try', 'graduation', 'circle outline', 'sliders', 'weixin', 'tty',
+  'teletype', 'binoculars', 'power cord', 'wifi', 'visa card', 'mastercard card', 'discover card', 'amex',
+  'american express card', 'stripe card', 'bell slash', 'bell slash outline', 'area graph', 'pie graph', 'line graph',
+  'cc', 'sheqel', 'ils', 'plus cart', 'arrow down cart', 'detective', 'venus', 'mars', 'mercury', 'intersex',
+  'venus double', 'female homosexual', 'mars double', 'male homosexual', 'venus mars', 'mars stroke', 'mars alternate',
+  'mars vertical', 'mars stroke vertical', 'mars horizontal', 'mars stroke horizontal', 'asexual', 'facebook official',
+  'user plus', 'user times', 'user close', 'user cancel', 'user delete', 'user x', 'bed', 'yc', 'ycombinator',
+  'battery four', 'battery three', 'battery three quarters', 'battery two', 'battery half', 'battery one',
+  'battery quarter', 'battery zero', 'i cursor', 'jcb', 'japan credit bureau card', 'diners club card', 'balance',
+  'hourglass outline', 'hourglass zero', 'hourglass one', 'hourglass two', 'hourglass three', 'hourglass four', 'grab',
+  'hand victory', 'tm', 'r circle', 'television', 'five hundred pixels', 'calendar plus', 'calendar minus',
+  'calendar times', 'calendar check', 'factory', 'commenting', 'commenting outline', 'edge', 'ms edge',
+  'wordpress beginner', 'wordpress forms', 'envira', 'question circle outline', 'assistive listening devices', 'als',
+  'ald', 'asl interpreting', 'deaf', 'american sign language interpreting', 'hard of hearing', 'signing',
+  'new pied piper', 'theme isle', 'google plus official', 'fa',
 ]

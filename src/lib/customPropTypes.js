@@ -1,5 +1,6 @@
 import { PropTypes } from 'react'
 import _ from 'lodash/fp'
+import leven from './leven'
 
 const typeOf = (...args) => Object.prototype.toString.call(...args)
 
@@ -12,6 +13,66 @@ export const as = (...args) => PropTypes.oneOfType([
 ])(...args)
 
 /**
+ * Similar to PropTypes.oneOf but shows closest matches.
+ * Word order is ignored allowing `left chevron` to match `chevron left`.
+ * Useful for very large lists of options (e.g. Icon name, Flag name, etc.)
+ * @param {string[]} suggestions An array of allowed values.
+ */
+export const suggest = suggestions => {
+  return (props, propName, componentName) => {
+    if (!Array.isArray(suggestions)) {
+      throw new Error([
+        'Invalid argument supplied to suggest, expected an instance of array.',
+        ` See \`${propName}\` prop in \`${componentName}\`.`,
+      ].join(''))
+    }
+    const propValue = props[propName]
+
+    // skip if prop is undefined or is included in the suggestions
+    if (_.isNil(propValue) || propValue === false || _.includes(propValue, suggestions)) return
+
+    // find best suggestions
+    const propValueWords = propValue.split(' ')
+
+    /* eslint-disable max-nested-callbacks */
+    const bestMatches = _.flow(
+      _.map(suggestion => {
+        const suggestionWords = suggestion.split(' ')
+
+        const propValueScore = _.flow(
+          _.map(x => _.map(y => leven(x, y), suggestionWords)),
+          _.map(_.min),
+          _.sum
+        )(propValueWords)
+
+        const suggestionScore = _.flow(
+          _.map(x => _.map(y => leven(x, y), propValueWords)),
+          _.map(_.min),
+          _.sum
+        )(suggestionWords)
+
+        return { suggestion, score: propValueScore + suggestionScore }
+      }),
+      _.sortBy(['score', 'suggestion']),
+      _.take(3)
+    )(suggestions)
+    /* eslint-enable max-nested-callbacks */
+
+    // skip if a match scored 0
+    // since we're matching on words (classNames) this allows any word order to pass validation
+    // e.g. `left chevron` vs `chevron left`
+    if (bestMatches.some(x => x.score === 0)) return
+
+    return new Error([
+      `Invalid prop \`${propName}\` of value \`${propValue}\` supplied to \`${componentName}\`.`,
+      `\n\nInstead of \`${propValue}\`, did you mean:`,
+      bestMatches.map(x => `\n  - ${x.suggestion}`).join(''),
+      '\n',
+    ].join(''))
+  }
+}
+
+/**
  * Disallow other props form being defined with this prop.
  * @param {string[]} disallowedProps An array of props that cannot be used with this prop.
  */
@@ -19,8 +80,8 @@ export const disallow = disallowedProps => {
   return (props, propName, componentName) => {
     if (!Array.isArray(disallowedProps)) {
       throw new Error([
-        'Invalid argument supplied to disallow, expected an instance of array.'
-          ` See \`${propName}\` prop in \`${componentName}\`.`,
+        'Invalid argument supplied to disallow, expected an instance of array.',
+        ` See \`${propName}\` prop in \`${componentName}\`.`,
       ].join(''))
     }
 
@@ -34,7 +95,6 @@ export const disallow = disallowedProps => {
       }
       return acc
     }, [])
-
 
     if (disallowed.length > 0) {
       return new Error([
@@ -61,9 +121,7 @@ export const every = (validators) => {
     const errors = _.flow(
       _.map(validator => {
         if (typeof validator !== 'function') {
-          throw new Error(
-            `every() argument "validators" should contain functions, found: ${typeOf(validator)}.`
-          )
+          throw new Error(`every() argument "validators" should contain functions, found: ${typeOf(validator)}.`)
         }
         return validator(props, propName, componentName, ...rest)
       }),
@@ -90,9 +148,7 @@ export const some = (validators) => {
 
     const errors = _.compact(_.map(validators, validator => {
       if (!_.isFunction(validator)) {
-        throw new Error(
-          `some() argument "validators" should contain functions, found: ${typeOf(validator)}.`
-        )
+        throw new Error(`some() argument "validators" should contain functions, found: ${typeOf(validator)}.`)
       }
       return validator(props, propName, componentName, ...rest)
     }))
@@ -163,8 +219,8 @@ export const demand = (requiredProps) => {
   return (props, propName, componentName) => {
     if (!Array.isArray(requiredProps)) {
       throw new Error([
-        'Invalid `requiredProps` argument supplied to require, expected an instance of array.'
-          ` See \`${propName}\` prop in \`${componentName}\`.`,
+        'Invalid `requiredProps` argument supplied to require, expected an instance of array.',
+        ` See \`${propName}\` prop in \`${componentName}\`.`,
       ].join(''))
     }
 
@@ -174,7 +230,7 @@ export const demand = (requiredProps) => {
     const missingRequired = requiredProps.filter(requiredProp => props[requiredProp] === undefined)
     if (missingRequired.length > 0) {
       return new Error(
-        `\`${propName}\` prop in \`${componentName}\` requires props: \`${missingRequired.join('`, `')}\`.`,
+        `\`${propName}\` prop in \`${componentName}\` requires props: \`${missingRequired.join('`, `')}\`.`
       )
     }
   }

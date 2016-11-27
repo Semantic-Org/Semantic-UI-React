@@ -78,7 +78,7 @@ Flag.propTypes = {
   className: PropTypes.string,
 
   /** Flag name, can use the two digit country code, the full name, or a common alias */
-  name: PropTypes.oneOf(Flag._meta.props.name).isRequired,
+  name: customPropTypes.suggest(Flag._meta.props.name),
 }
 
 Flag.defaultProps = {
