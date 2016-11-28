@@ -37,6 +37,8 @@ export { default as MessageItem } from './collections/Message/MessageItem'
 export { default as MessageList } from './collections/Message/MessageList'
 
 export { default as Sidebar } from './collections/Sidebar'
+export { default as SidebarPushable } from './collections/Sidebar/SidebarPushable'
+export { default as SidebarPusher } from './collections/Sidebar/SidebarPusher'
 
 export { default as Table } from './collections/Table'
 export { default as TableBody } from './collections/Table/TableBody'

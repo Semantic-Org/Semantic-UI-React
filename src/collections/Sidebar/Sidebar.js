@@ -9,6 +9,8 @@ import {
   getElementType,
   useKeyOnly,
 } from '../../lib'
+import SidebarPushable from './SidebarPushable'
+import SidebarPusher from './SidebarPusher'
 
 const _meta = {
   name: 'Sidebar',
@@ -51,6 +53,10 @@ class Sidebar extends Component {
     /** Sidebar width */
     width: PropTypes.oneOf(Sidebar._meta.props.width),
   }
+
+  static Pushable = SidebarPushable
+
+  static Pusher = SidebarPusher
 
   static defaultProps = {
     direction: 'left',

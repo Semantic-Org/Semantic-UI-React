@@ -11,7 +11,7 @@ class SidebarLeftScaleDown extends Component {
     return (
       <div>
         <Button onClick={this.toggleVisibility}>Toggle Visibility</Button>
-        <div className='pushable'>
+        <Sidebar.Pushable>
           <Sidebar as={Menu} animation='scale down' width='thin' visible={visible} icon='labeled' vertical inverted>
             <Menu.Item name='home'>
               <Icon name='home' />
@@ -26,11 +26,11 @@ class SidebarLeftScaleDown extends Component {
               Channels
             </Menu.Item>
           </Sidebar>
-          <div className='pusher'>
+          <Sidebar.Pusher>
             <Header as='h3'>Application Content</Header>
             <Image src='http://semantic-ui.com/images/wireframe/paragraph.png' />
-          </div>
-        </div>
+          </Sidebar.Pusher>
+        </Sidebar.Pushable>
       </div>
     )
   }

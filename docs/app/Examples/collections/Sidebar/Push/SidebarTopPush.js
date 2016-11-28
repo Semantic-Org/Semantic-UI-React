@@ -11,8 +11,8 @@ class SidebarTopPush extends Component {
     return (
       <div>
         <Button onClick={this.toggleVisibility}>Toggle Visibility</Button>
-        <div className='pushable' style={{ position: 'relative', overflow: 'hidden' }}>
-          <Sidebar as={Menu} animation='push' direction='top' visible={visible} icon='labeled' inverted>
+        <Sidebar.Pushable style={{ position: 'relative', overflow: 'hidden' }}>
+          <Sidebar as={Menu} animation='push' direction='top' visible={visible} inverted>
             <Menu.Item name='home'>
               <Icon name='home' />
               Home
@@ -26,11 +26,11 @@ class SidebarTopPush extends Component {
               Channels
             </Menu.Item>
           </Sidebar>
-          <div className='pusher'>
+          <Sidebar.Pusher>
             <Header as='h3'>Application Content</Header>
             <Image src='http://semantic-ui.com/images/wireframe/paragraph.png' />
-          </div>
-        </div>
+          </Sidebar.Pusher>
+        </Sidebar.Pushable>
       </div>
     )
   }
