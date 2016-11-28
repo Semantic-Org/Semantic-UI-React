@@ -1,9 +1,11 @@
+import _ from 'lodash'
 import cx from 'classnames'
 import React, { Component, PropTypes } from 'react'
 
 import {
   META,
   useKeyOnly,
+  keyboardKey,
 } from '../../lib'
 
 /**
@@ -39,6 +41,22 @@ export default class RatingIcon extends Component {
     if (onClick) onClick(e, index)
   }
 
+  handleKeyUp = (e) => {
+    const { onClick, index } = this.props
+
+    if (onClick) {
+      switch (keyboardKey.getCode(e)) {
+        case keyboardKey.Enter:
+        case keyboardKey.Spacebar:
+          e.preventDefault()
+          onClick(e, index)
+          break
+        default:
+          return
+      }
+    }
+  }
+
   handleMouseEnter = () => {
     const { onMouseEnter, index } = this.props
 
@@ -52,7 +70,16 @@ export default class RatingIcon extends Component {
       useKeyOnly(selected, 'selected'),
       'icon'
     )
+    const rest = _.omit(this.props, _.keys(RatingIcon.propTypes))
 
-    return <i className={classes} onClick={this.handleClick} onMouseEnter={this.handleMouseEnter} />
+    return (
+      <i role='radio' tabIndex={0}
+        {...rest}
+        className={classes}
+        onKeyUp={this.handleKeyUp}
+        onClick={this.handleClick}
+        onMouseEnter={this.handleMouseEnter}
+      />
+    )
   }
 }
