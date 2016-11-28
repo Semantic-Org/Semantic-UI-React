@@ -27,10 +27,10 @@ describe('RatingIcon', () => {
     })
   })
 
-  describe('onKeyPress', () => {
+  describe('onKeyUp', () => {
     it('omitted when not defined', () => {
       const event = { keyCode: keyboardKey.Enter, preventDefault: sandbox.spy() }
-      const keypress = () => shallow(<RatingIcon />).simulate('keypress', event)
+      const keypress = () => shallow(<RatingIcon />).simulate('keyup', event)
 
       expect(keypress).to.not.throw()
       event.preventDefault.should.not.have.been.called()
@@ -41,7 +41,7 @@ describe('RatingIcon', () => {
       const event = { keyCode: keyboardKey.Spacebar, preventDefault: sandbox.spy() }
 
       mount(<RatingIcon index={0} onClick={spy} />)
-        .simulate('keypress', event)
+        .simulate('keyup', event)
 
       spy.should.have.been.calledOnce()
       spy.should.have.been.calledWithMatch(event, 0)
@@ -53,7 +53,7 @@ describe('RatingIcon', () => {
       const event = { keyCode: keyboardKey.Enter, preventDefault: sandbox.spy() }
 
       mount(<RatingIcon index={0} onClick={spy} />)
-        .simulate('keypress', event)
+        .simulate('keyup', event)
 
       spy.should.have.been.calledOnce()
       spy.should.have.been.calledWithMatch(event, 0)
@@ -64,9 +64,9 @@ describe('RatingIcon', () => {
       const spy = sandbox.spy()
       const event = { keyCode: keyboardKey.A, preventDefault: sandbox.spy() }
 
-      const keypress = () => shallow(<RatingIcon onClick={spy} />).simulate('keypress', event)
+      const keyup = () => shallow(<RatingIcon onClick={spy} />).simulate('keyup', event)
 
-      expect(keypress).to.not.throw()
+      expect(keyup).to.not.throw()
       spy.should.not.have.been.called()
       event.preventDefault.should.not.have.been.called()
     })

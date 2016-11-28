@@ -41,7 +41,7 @@ export default class RatingIcon extends Component {
     if (onClick) onClick(e, index)
   }
 
-  handleKeyPress = (e) => {
+  handleKeyUp = (e) => {
     const { onClick, index } = this.props
 
     if (onClick) {
@@ -76,7 +76,7 @@ export default class RatingIcon extends Component {
       <i role='radio' tabIndex={0}
         {...rest}
         className={classes}
-        onKeyPress={this.handleKeyPress}
+        onKeyUp={this.handleKeyUp}
         onClick={this.handleClick}
         onMouseEnter={this.handleMouseEnter}
       />
