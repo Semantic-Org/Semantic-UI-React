@@ -34,30 +34,11 @@ describe('Card', () => {
   })
 
   describe('onClick', () => {
-    it('omitted when not defined', () => {
-      const click = () => shallow(<Card />).simulate('click')
-      expect(click).to.not.throw()
-    })
-
     it('renders <a> instead of <div>', () => {
       const handleClick = sandbox.spy()
       const wrapper = shallow(<Card onClick={handleClick} />)
 
       wrapper.should.have.tagName('a')
-    })
-
-    it('is called with (event, props) on click', () => {
-      const handleClick = sandbox.spy()
-      const event = { fake: 'event' }
-      const data = { 'data-foo': 'bar' }
-
-      const wrapper = mount(<Card onClick={handleClick} {...data} />)
-
-      wrapper.simulate('click', event)
-
-      handleClick.should.have.been.calledOnce()
-      // Ensure the second argument includes arbitrary props
-      handleClick.should.have.been.calledWithMatch(event, data)
     })
   })
 

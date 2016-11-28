@@ -19,10 +19,20 @@ export default class RatingIcon extends Component {
     /** An index of icon inside Rating. */
     index: PropTypes.number,
 
-    /** Called with (event, index) after user clicked on an icon. */
+    /**
+     * Called with (event, index) after user clicked on an icon.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props.
+     */
     onClick: PropTypes.func,
 
-    /** Called with (index) after user move cursor to an icon. */
+    /**
+     * Called with (index) after user move cursor to an icon.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props.
+     */
     onMouseEnter: PropTypes.func,
 
     /** Indicates selection of an icon. */
@@ -36,20 +46,20 @@ export default class RatingIcon extends Component {
   }
 
   handleClick = (e) => {
-    const { onClick, index } = this.props
+    const { onClick } = this.props
 
-    if (onClick) onClick(e, index)
+    if (onClick) onClick(e, this.props)
   }
 
   handleKeyUp = (e) => {
-    const { onClick, index } = this.props
+    const { onClick } = this.props
 
     if (onClick) {
       switch (keyboardKey.getCode(e)) {
         case keyboardKey.Enter:
         case keyboardKey.Spacebar:
           e.preventDefault()
-          onClick(e, index)
+          onClick(e, this.props)
           break
         default:
           return
@@ -57,10 +67,10 @@ export default class RatingIcon extends Component {
     }
   }
 
-  handleMouseEnter = () => {
-    const { onMouseEnter, index } = this.props
+  handleMouseEnter = (e) => {
+    const { onMouseEnter } = this.props
 
-    if (onMouseEnter) onMouseEnter(index)
+    if (onMouseEnter) onMouseEnter(e, this.props)
   }
 
   render() {

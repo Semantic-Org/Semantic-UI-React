@@ -80,16 +80,36 @@ export default class Popup extends Component {
     /** Event triggering the popup */
     on: PropTypes.oneOf(_meta.props.on),
 
-    /** Called when a close event happens */
+    /**
+     * Called when a close event happens
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props.
+     */
     onClose: PropTypes.func,
 
-    /** Called when the portal is mounted on the DOM */
+    /**
+     * Called when the portal is mounted on the DOM
+     *
+     * @param {null}
+     * @param {object} data - All props.
+     */
     onMount: PropTypes.func,
 
-    /** Called when an open event happens */
+    /**
+     * Called when an open event happens
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props.
+     */
     onOpen: PropTypes.func,
 
-    /** Called when the portal is unmounted from the DOM */
+    /**
+     * Called when the portal is unmounted from the DOM
+     *
+     * @param {null}
+     * @param {object} data - All props.
+     */
     onUnmount: PropTypes.func,
 
     /** Positioning for the popover */

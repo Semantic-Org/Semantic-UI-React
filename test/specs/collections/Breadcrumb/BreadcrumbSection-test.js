@@ -1,7 +1,6 @@
 import React from 'react'
 import BreadcrumbSection from 'src/collections/Breadcrumb/BreadcrumbSection'
 import * as common from 'test/specs/commonTests'
-import { sandbox } from 'test/utils'
 
 describe('BreadcrumbSection', () => {
   common.isConformant(BreadcrumbSection)
@@ -31,24 +30,6 @@ describe('BreadcrumbSection', () => {
 
       section.should.have.tagName('a')
       section.should.have.attr('href').and.equal('http://google.com')
-    })
-  })
-
-  describe('onClick', () => {
-    it('omitted when not defined', () => {
-      const click = () => shallow(<BreadcrumbSection />).simulate('click')
-      expect(click).to.not.throw()
-    })
-
-    it('is called with (event) on click', () => {
-      const handleClick = sandbox.spy()
-      const section = mount(<BreadcrumbSection onClick={handleClick} />)
-
-      section.should.have.tagName('a')
-      section.simulate('click')
-
-      handleClick.should.have.been.calledOnce()
-      handleClick.should.have.been.calledWithMatch({})
     })
   })
 })

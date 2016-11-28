@@ -93,7 +93,12 @@ class Menu extends Component {
     /** Shorthand array of props for Menu. */
     items: customPropTypes.collectionShorthand,
 
-    /** onClick handler for MenuItem. Mutually exclusive with children. */
+    /**
+     * onClick handler for MenuItem. Mutually exclusive with children.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All item props.
+     */
     onItemClick: customPropTypes.every([
       customPropTypes.disallow(['children']),
       PropTypes.func,
@@ -140,12 +145,14 @@ class Menu extends Component {
   static Item = MenuItem
   static Menu = MenuMenu
 
-  handleItemClick = (e, { name, index }) => {
+  handleItemClick = (e, itemProps) => {
+    const { index } = itemProps
+
     this.trySetState({ activeIndex: index })
     const { items, onItemClick } = this.props
 
-    if (_.get(items[index], 'onClick')) items[index].onClick(e, { name, index })
-    if (onItemClick) onItemClick(e, { name, index })
+    if (_.get(items[index], 'onClick')) items[index].onClick(e, itemProps)
+    if (onItemClick) onItemClick(e, itemProps)
   }
 
   renderItems() {

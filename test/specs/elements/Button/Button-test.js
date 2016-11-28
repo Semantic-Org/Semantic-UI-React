@@ -60,15 +60,10 @@ describe('Button', () => {
     it('is called when clicked', () => {
       const handleClick = sandbox.spy()
 
-      shallow(<Button type='submit' data-foo='bar' onClick={handleClick} />)
+      shallow(<Button type='submit' onClick={handleClick} />)
         .simulate('click', syntheticEvent)
 
       handleClick.should.have.been.calledOnce()
-      handleClick.should.have.been.calledWith(
-        sandbox.match.any,
-        // Ensure the second argument includes arbitrary props
-        sandbox.match({ 'data-foo': 'bar' })
-      )
     })
 
     it('is not called when button is disabled', () => {

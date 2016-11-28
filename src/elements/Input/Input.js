@@ -124,7 +124,12 @@ class Input extends Component {
     /** An Icon Input field can show that it is currently loading data */
     loading: PropTypes.bool,
 
-    /** Called with (e, data) on change. */
+    /**
+     * Called on change.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props and proposed value.
+     */
     onChange: PropTypes.func,
 
     /** An Input can vary in size */
@@ -144,13 +149,10 @@ class Input extends Component {
   static _meta = _meta
 
   handleChange = (e) => {
+    const value = _.get(e, 'target.value')
+
     const { onChange } = this.props
-    if (onChange) {
-      onChange(e, {
-        ...this.props,
-        value: _.get(e, 'target.value'),
-      })
-    }
+    if (onChange) onChange(e, { ...this.props, value })
   }
 
   render() {
