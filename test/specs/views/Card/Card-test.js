@@ -48,16 +48,16 @@ describe('Card', () => {
 
     it('is called with (event, props) on click', () => {
       const handleClick = sandbox.spy()
-      const wrapper = mount(<Card onClick={handleClick} data-foo='bar' />)
+      const event = { fake: 'event' }
+      const data = { 'data-foo': 'bar' }
 
-      wrapper.simulate('click')
+      const wrapper = mount(<Card onClick={handleClick} {...data} />)
+
+      wrapper.simulate('click', event)
 
       handleClick.should.have.been.calledOnce()
-      handleClick.should.have.been.calledWithMatch(
-        sandbox.match.any,
-        // Ensure the second argument includes arbitrary props
-        sandbox.match({ 'data-foo': 'bar' })
-      )
+      // Ensure the second argument includes arbitrary props
+      handleClick.should.have.been.calledWithMatch(event, data)
     })
   })
 
