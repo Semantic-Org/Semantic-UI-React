@@ -106,16 +106,16 @@ Any other issue labeled [`help wanted`][4] is ready for a PR.
 | ✓ Flag          | ✓ Menu          | ✓ Feed          | ✓ Dropdown      |                    |
 | ✓ Header        | ✓ Message       | ✓ Item          | ✓ Embed         |                    |
 | ✓ Icon          | ✓ Table         | ✓ Statistic     | ✓ Modal         |                    |
-| ✓ Image         |                 |                 |   Nag           |                    |
-| ✓ Input         |                 |                 | ✓ Popup         |                    |
-| ✓ Label         |                 |                 | ✓ Progress      |                    |
-| ✓ List          |                 |                 | ✓ Rating        |                    |
-| ✓ Loader        |                 |                 | ✓ Search        |                    |
-| ✓ Rail          |                 |                 |   Shape         |                    |
-| ✓ Reveal        |                 |                 |   Sidebar       |                    |
-| ✓ Segment       |                 |                 |   Sticky        |                    |
-| ✓ Step          |                 |                 |   Tab           |                    |
-|                 |                 |                 |   Transition    |                    |
+| ✓ Image         |                 |                 | ✓ Popup         |                    |
+| ✓ Input         |                 |                 | ✓ Progress      |                    |
+| ✓ Label         |                 |                 | ✓ Rating        |                    |
+| ✓ List          |                 |                 | ✓ Search        |                    |
+| ✓ Loader        |                 |                 |   Shape         |                    |
+| ✓ Rail          |                 |                 |   Sidebar       |                    |
+| ✓ Reveal        |                 |                 |   Sticky        |                    |
+| ✓ Segment       |                 |                 |   Tab           |                    |
+| ✓ Step          |                 |                 |   Transition    |                    |
+|                 |                 |                 |                 |                    |
 
 ## Releasing
 
