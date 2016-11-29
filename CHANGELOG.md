@@ -1,5 +1,20 @@
 # Change Log
 
+## [v0.61.7](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.61.7) (2016-11-29)
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.61.6...v0.61.7)
+
+**Closed issues:**
+
+- Card  onClick\(\) callback function signature. [\#949](https://github.com/Semantic-Org/Semantic-UI-React/issues/949)
+- Wrappin the search results in a scrollable container [\#946](https://github.com/Semantic-Org/Semantic-UI-React/issues/946)
+- feat\(search\): allow multiple search terms [\#558](https://github.com/Semantic-Org/Semantic-UI-React/issues/558)
+
+**Merged pull requests:**
+
+- feat\(Card\): pass props to onClick [\#950](https://github.com/Semantic-Org/Semantic-UI-React/pull/950) ([jcarbo](https://github.com/jcarbo))
+- through2@2.0.2 untested ⚠️ [\#945](https://github.com/Semantic-Org/Semantic-UI-React/pull/945) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+- feat\(Rating\): Rating now keyboard navigable and visually impaired accessible [\#892](https://github.com/Semantic-Org/Semantic-UI-React/pull/892) ([fracmak](https://github.com/fracmak))
+
 ## [v0.61.6](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.61.6) (2016-11-27)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.61.5...v0.61.6)
 
@@ -9,7 +24,7 @@
 
 **Merged pull requests:**
 
-- feat\(Flag\): use suggest prop type checker [\#944](https://github.com/Semantic-Org/Semantic-UI-React/pull/944) ([levithomason](https://github.com/levithomason))
+- feat\(customPropTypes\): add suggest prop type checker [\#944](https://github.com/Semantic-Org/Semantic-UI-React/pull/944) ([levithomason](https://github.com/levithomason))
 
 ## [v0.61.5](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.61.5) (2016-11-26)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.61.4...v0.61.5)
