@@ -66,7 +66,7 @@ describe('Button', () => {
       handleClick.should.have.been.calledOnce()
       handleClick.should.have.been.calledWith(
         sandbox.match.any,
-        // Ensure the second argument includes arbitrary button props
+        // Ensure the second argument includes arbitrary props
         sandbox.match({ 'data-foo': 'bar' })
       )
     })

@@ -66,7 +66,13 @@ export default class Card extends Component {
     /** Shorthand for CardMeta. */
     meta: customPropTypes.itemShorthand,
 
-    /** Render as an `a` tag instead of a `div` and called with event on Card click. */
+    /**
+     * Called after user's click. When passed, the component render as an `a`
+     * tag by default instead of a `div`.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - Card props.
+     */
     onClick: PropTypes.func,
 
     /** A Card can be formatted to raise above the page. */
@@ -84,7 +90,7 @@ export default class Card extends Component {
   handleClick = (e) => {
     const { onClick } = this.props
 
-    if (onClick) onClick(e)
+    if (onClick) onClick(e, this.props)
   }
 
   render() {
