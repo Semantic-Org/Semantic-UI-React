@@ -1,5 +1,17 @@
 # Change Log
 
+## [v0.61.8](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.61.8) (2016-11-30)
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.61.7...v0.61.8)
+
+**Fixed bugs:**
+
+- bug\(Icon\): Redundant size value [\#962](https://github.com/Semantic-Org/Semantic-UI-React/issues/962)
+
+**Closed issues:**
+
+- fix\(Dropdown\): your description [\#956](https://github.com/Semantic-Org/Semantic-UI-React/issues/956)
+- \<button\> does not get emphasis on hover [\#952](https://github.com/Semantic-Org/Semantic-UI-React/issues/952)
+
 ## [v0.61.7](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.61.7) (2016-11-29)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.61.6...v0.61.7)
 
@@ -358,7 +370,6 @@
 **Implemented enhancements:**
 
 - Dropdown enhancements: Better remote API support, item customization [\#416](https://github.com/Semantic-Org/Semantic-UI-React/issues/416)
-- \<Dimmer /\> Component [\#190](https://github.com/Semantic-Org/Semantic-UI-React/issues/190)
 - feat\(Dimmer\): Add component [\#447](https://github.com/Semantic-Org/Semantic-UI-React/pull/447) ([layershifter](https://github.com/layershifter))
 
 **Closed issues:**
