@@ -58,7 +58,7 @@ Icon._meta = {
     flipped: ['horizontally', 'vertically'],
     name: SUI.ICONS,
     rotated: ['clockwise', 'counterclockwise'],
-    size: SUI.SIZES,
+    size: _.without(SUI.SIZES, 'medium'),
   },
 }
 
