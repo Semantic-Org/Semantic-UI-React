@@ -1,8 +1,10 @@
-import _ from 'lodash'
 import cx from 'classnames'
 import React, { Component, PropTypes } from 'react'
 
 import {
+  customPropTypes,
+  getElementType,
+  getUnhandledProps,
   META,
   useKeyOnly,
   keyboardKey,
@@ -16,11 +18,17 @@ export default class RatingIcon extends Component {
     /** Indicates activity of an icon. */
     active: PropTypes.bool,
 
+    /** An element type to render as (string or function). */
+    as: customPropTypes.as,
+
+    /** Additional classes. */
+    className: PropTypes.string,
+
     /** An index of icon inside Rating. */
     index: PropTypes.number,
 
     /**
-     * Called with (event, index) after user clicked on an icon.
+     * Called on click.
      *
      * @param {SyntheticEvent} event - React's original SyntheticEvent.
      * @param {object} data - All props.
@@ -28,7 +36,15 @@ export default class RatingIcon extends Component {
     onClick: PropTypes.func,
 
     /**
-     * Called with (index) after user move cursor to an icon.
+     * Called on keyup.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props.
+     */
+    onKeyUp: PropTypes.func,
+
+    /**
+     * Called on mouseenter.
      *
      * @param {SyntheticEvent} event - React's original SyntheticEvent.
      * @param {object} data - All props.
@@ -37,6 +53,10 @@ export default class RatingIcon extends Component {
 
     /** Indicates selection of an icon. */
     selected: PropTypes.bool,
+  }
+
+  defaultProps = {
+    as: 'i',
   }
 
   static _meta = {
@@ -52,7 +72,9 @@ export default class RatingIcon extends Component {
   }
 
   handleKeyUp = (e) => {
-    const { onClick } = this.props
+    const { onClick, onKeyUp } = this.props
+
+    if (onKeyUp) onKeyUp(e, this.props)
 
     if (onClick) {
       switch (keyboardKey.getCode(e)) {
@@ -74,16 +96,20 @@ export default class RatingIcon extends Component {
   }
 
   render() {
-    const { active, selected } = this.props
+    const { active, className, selected } = this.props
     const classes = cx(
       useKeyOnly(active, 'active'),
       useKeyOnly(selected, 'selected'),
-      'icon'
+      'icon',
+      className,
     )
-    const rest = _.omit(this.props, _.keys(RatingIcon.propTypes))
+    const rest = getUnhandledProps(RatingIcon, this.props)
+    const ElementType = getElementType(RatingIcon, this.props)
 
     return (
-      <i role='radio' tabIndex={0}
+      <ElementType
+        role='radio'
+        tabIndex={0}
         {...rest}
         className={classes}
         onKeyUp={this.handleKeyUp}

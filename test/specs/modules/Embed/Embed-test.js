@@ -3,7 +3,6 @@ import React from 'react'
 
 import Embed from 'src/modules/Embed/Embed'
 import * as common from 'test/specs/commonTests'
-import { sandbox } from 'test/utils'
 
 const assertIframeSrc = (props, srcPart) => {
   const {
@@ -105,18 +104,6 @@ describe('Embed', () => {
     it('omitted when not defined', () => {
       const click = () => shallow(<Embed />).simulate('click')
       expect(click).to.not.throw()
-    })
-
-    it('is called with (event, props) on click', () => {
-      const spy = sandbox.spy()
-      const event = { target: null }
-      const props = { active: faker.random.boolean() }
-
-      mount(<Embed onClick={spy} {...props} />)
-        .simulate('click', event)
-
-      spy.should.have.been.calledOnce()
-      spy.should.have.been.calledWithMatch(event, props)
     })
 
     it('updates state', () => {

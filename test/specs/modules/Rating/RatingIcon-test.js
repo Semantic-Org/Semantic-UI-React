@@ -2,9 +2,12 @@ import React from 'react'
 
 import * as common from 'test/specs/commonTests'
 import RatingIcon from 'src/modules/Rating/RatingIcon'
-import { keyboardKey, sandbox } from 'src/lib'
+import { keyboardKey } from 'src/lib'
+import { sandbox } from 'test/utils'
 
 describe('RatingIcon', () => {
+  common.isConformant(RatingIcon)
+
   common.propKeyOnlyToClassName(RatingIcon, 'active')
   common.propKeyOnlyToClassName(RatingIcon, 'selected')
 
@@ -25,7 +28,7 @@ describe('RatingIcon', () => {
         .simulate('keyup', event)
 
       spy.should.have.been.calledOnce()
-      spy.should.have.been.calledWithMatch(event, 0)
+      spy.should.have.been.calledWithMatch(event, { index: 0 })
       event.preventDefault.should.have.been.calledOnce()
     })
 
@@ -37,7 +40,7 @@ describe('RatingIcon', () => {
         .simulate('keyup', event)
 
       spy.should.have.been.calledOnce()
-      spy.should.have.been.calledWithMatch(event, 0)
+      spy.should.have.been.calledWithMatch(event, { index: 0 })
       event.preventDefault.should.have.been.calledOnce()
     })
 

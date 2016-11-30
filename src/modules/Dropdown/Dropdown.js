@@ -151,7 +151,7 @@ export default class Dropdown extends Component {
      * Called with the name and new value added by the user. Use this to update the options list.
      *
      * @param {SyntheticEvent} event - React's original SyntheticEvent.
-     * @param {object} data - All props.
+     * @param {object} data - All item props.
      */
     onAddItem: PropTypes.func,
 
