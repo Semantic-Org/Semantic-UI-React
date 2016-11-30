@@ -17,4 +17,9 @@ Select._meta = {
   type: META.TYPES.ADDON,
 }
 
+Select.Divider = Dropdown.Divider
+Select.Header = Dropdown.Header
+Select.Item = Dropdown.Item
+Select.Menu = Dropdown.Menu
+
 export default Select
