@@ -1,3 +1,4 @@
+import faker from 'faker'
 import React from 'react'
 
 import Checkbox from 'src/modules/Checkbox/Checkbox'
@@ -7,81 +8,84 @@ import * as common from 'test/specs/commonTests'
 
 describe('FormField', () => {
   common.isConformant(FormField)
-  common.implementsWidthProp(FormField, { propKey: 'width', canEqual: false })
-  common.propKeyOnlyToClassName(FormField, 'error')
+  common.rendersChildren(FormField)
+
   common.propKeyOnlyToClassName(FormField, 'disabled')
+  common.propKeyOnlyToClassName(FormField, 'error')
   common.propKeyOnlyToClassName(FormField, 'inline')
   common.propKeyOnlyToClassName(FormField, 'required', {
     requiredProps: { label: '' },
   })
-  common.rendersChildren(FormField)
 
-  describe('html controls', () => {
+  common.implementsHTMLLabelProp(FormField)
+  common.implementsWidthProp(FormField, {
+    propKey: 'width',
+    canEqual: false,
+  })
+
+  describe('control', () => {
     it('adds an HTML element child of the same type', () => {
       const controls = ['button', 'input', 'select', 'textarea']
 
-      controls.forEach((control) => {
+      controls.forEach(control => {
         shallow(<FormField control={control} />)
           .should.have.descendants(control)
       })
     })
   })
 
-  describe('required', () => {
-    it('is passed to the control', () => {
-      const wrapper = shallow(<FormField control='input' required />)
+  describe('label', () => {
+    it('wraps html checkbox inputs', () => {
+      const text = faker.hacker.phrase()
+      const label = shallow(<FormField control='input' label={text} type='checkbox' />)
+        .find('label')
 
-      wrapper.should.have.exactly(1).descendants('input')
+      label.childAt(0).should.have.tagName('input')
+      label.should.contain.text(text)
+    })
 
-      wrapper
-        .find('input')
-        .should.have.prop('required', true)
+    it('wraps html radio inputs', () => {
+      const text = faker.hacker.phrase()
+      const label = shallow(<FormField control='input' label={text} type='radio' />)
+        .find('label')
+
+      label.childAt(0).should.have.tagName('input')
+      label.should.contain.text(text)
+    })
+
+    it('is passed to Checkbox controls', () => {
+      const text = faker.hacker.phrase()
+
+      shallow(<FormField control={Checkbox} label={text} />)
+        .find('Checkbox')
+        .should.have.prop('label', text)
+    })
+
+    it('is passed to Radio controls', () => {
+      const text = faker.hacker.phrase()
+
+      shallow(<FormField control={Radio} label={text} />)
+        .find('Radio')
+        .should.have.prop('label', text)
+    })
+
+    it('is sibling to text inputs', () => {
+      const text = faker.hacker.phrase()
+      const wrapper = shallow(<FormField control='input' label={text} type='text' />)
+
+      wrapper.childAt(0).should.have.tagName('label')
+      wrapper.childAt(0).should.contain.text(text)
+      wrapper.childAt(1).should.have.tagName('input')
     })
   })
 
-  describe('label', () => {
-    it('is not added as a child by default', () => {
-      shallow(<FormField />)
-        .should.not.have.descendants('label')
-    })
-    it('is added as a child', () => {
-      const wrapper = shallow(<FormField label='First Name' />)
-      wrapper
-        .should.have.descendants('label')
+  describe('required', () => {
+    it('is passed to the control', () => {
+      const wrapper = shallow(<FormField control='input' required />)
+      const input = wrapper.find('input')
 
-      wrapper
-        .find('label')
-        .should.contain.text('First Name')
-    })
-    it('is sibling to text inputs', () => {
-      const wrapper = shallow(<FormField control='input' type='text' label='Text field' />)
-
-      wrapper.childAt(0).should.have.tagName('label')
-      wrapper.childAt(1).should.have.tagName('input')
-    })
-    it('wraps checkbox inputs', () => {
-      const label = shallow(<FormField control='input' type='checkbox' label='Check this box' />)
-        .find('label')
-
-      label.childAt(0).should.have.tagName('input')
-      label.should.contain.text('Check this box')
-    })
-    it('wraps radio inputs', () => {
-      const label = shallow(<FormField control='input' type='radio' label='Check this box' />)
-        .find('label')
-
-      label.childAt(0).should.have.tagName('input')
-      label.should.contain.text('Check this box')
-    })
-    it('is passed to Checkbox controls', () => {
-      shallow(<FormField control={Checkbox} label='Passed to the Checkbox' />)
-        .find('Checkbox')
-        .should.have.prop('label', 'Passed to the Checkbox')
-    })
-    it('is passed to Radio controls', () => {
-      shallow(<FormField control={Radio} label='Passed to the Radio' />)
-        .find('Radio')
-        .should.have.prop('label', 'Passed to the Radio')
+      wrapper.should.have.exactly(1).descendants('input')
+      input.should.have.prop('required', true)
     })
   })
 })
