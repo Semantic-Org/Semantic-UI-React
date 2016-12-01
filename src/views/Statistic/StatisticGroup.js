@@ -14,11 +14,14 @@ import {
 import Statistic from './Statistic'
 
 function StatisticGroup(props) {
-  const { children, className, horizontal, items, widths } = props
+  const { children, className, color, horizontal, inverted, items, size, widths } = props
   const classes = cx(
     'ui',
+    color,
     useKeyOnly(horizontal, 'horizontal'),
+    useKeyOnly(inverted, 'inverted'),
     useWidthProp(widths),
+    size,
     'statistics',
     className,
   )
@@ -41,6 +44,8 @@ StatisticGroup._meta = {
   type: META.TYPES.VIEW,
   parent: 'Statistic',
   props: {
+    color: SUI.COLORS,
+    size: _.without(SUI.SIZES, 'big', 'massive', 'medium'),
     widths: SUI.WIDTHS,
   },
 }
@@ -55,11 +60,20 @@ StatisticGroup.propTypes = {
   /** Additional classes. */
   className: PropTypes.string,
 
-  /** A statistic can present its measurement horizontally. */
+  /** A statistic group can be formatted to be different colors. */
+  color: PropTypes.oneOf(StatisticGroup._meta.props.color),
+
+  /** A statistic group can present its measurement horizontally. */
   horizontal: PropTypes.bool,
+
+  /** A statistic group can be formatted to fit on a dark background. */
+  inverted: PropTypes.bool,
 
   /** Array of props for Statistic. */
   items: customPropTypes.collectionShorthand,
+
+  /** A statistic group can vary in size. */
+  size: PropTypes.oneOf(StatisticGroup._meta.props.size),
 
   /** A statistic group can have its items divided evenly. */
   widths: PropTypes.oneOf(StatisticGroup._meta.props.widths),
