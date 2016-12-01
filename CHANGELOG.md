@@ -1,5 +1,21 @@
 # Change Log
 
+## [v0.61.9](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.61.9) (2016-12-01)
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.61.8...v0.61.9)
+
+**Closed issues:**
+
+- Delete icon for multiselect dropdown generates warning [\#971](https://github.com/Semantic-Org/Semantic-UI-React/issues/971)
+- Statistic size Prop doesn't work inside Statistic.Group [\#970](https://github.com/Semantic-Org/Semantic-UI-React/issues/970)
+- Modal continuously updating [\#969](https://github.com/Semantic-Org/Semantic-UI-React/issues/969)
+- Preact? [\#965](https://github.com/Semantic-Org/Semantic-UI-React/issues/965)
+
+**Merged pull requests:**
+
+- fix\(Modal\): prevent unnecessary renders [\#973](https://github.com/Semantic-Org/Semantic-UI-React/pull/973) ([jcarbo](https://github.com/jcarbo))
+- feat\(StatisticGroup\): Add missing props [\#972](https://github.com/Semantic-Org/Semantic-UI-React/pull/972) ([jcarbo](https://github.com/jcarbo))
+- fix\(Select\): add missing subcomponents [\#964](https://github.com/Semantic-Org/Semantic-UI-React/pull/964) ([levithomason](https://github.com/levithomason))
+
 ## [v0.61.8](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.61.8) (2016-11-30)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.61.7...v0.61.8)
 
@@ -370,6 +386,7 @@
 **Implemented enhancements:**
 
 - Dropdown enhancements: Better remote API support, item customization [\#416](https://github.com/Semantic-Org/Semantic-UI-React/issues/416)
+- \<Dimmer /\> Component [\#190](https://github.com/Semantic-Org/Semantic-UI-React/issues/190)
 - feat\(Dimmer\): Add component [\#447](https://github.com/Semantic-Org/Semantic-UI-React/pull/447) ([layershifter](https://github.com/layershifter))
 
 **Closed issues:**
