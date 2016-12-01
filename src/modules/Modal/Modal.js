@@ -173,23 +173,27 @@ class Modal extends Component {
     if (this._modalNode) {
       const { mountNode } = this.props
       const { height } = this._modalNode.getBoundingClientRect()
+
+      const marginTop = -Math.round(height / 2)
       const scrolling = height >= window.innerHeight
 
-      const newState = {
-        marginTop: -Math.round(height / 2),
-        scrolling,
+      const newState = {}
+
+      if (this.state.marginTop !== marginTop) {
+        newState.marginTop = marginTop
       }
 
-      // add/remove scrolling class on body
-      if (!this.state.scrolling && scrolling) {
-        mountNode.classList.add('scrolling')
-      } else if (this.state.scrolling && !scrolling) {
-        mountNode.classList.remove('scrolling')
+      if (this.state.scrolling !== scrolling) {
+        newState.scrolling = scrolling
+
+        if (scrolling) {
+          mountNode.classList.add('scrolling')
+        } else {
+          mountNode.classList.remove('scrolling')
+        }
       }
 
-      if (!_.isEqual(newState, this.state)) {
-        this.setState(newState)
-      }
+      if (Object.keys(newState).length > 0) this.setState(newState)
     }
 
     this.animationRequestId = requestAnimationFrame(this.setPosition)
