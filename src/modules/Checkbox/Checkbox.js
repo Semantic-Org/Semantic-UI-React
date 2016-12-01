@@ -1,13 +1,14 @@
-import React, { PropTypes } from 'react'
 import cx from 'classnames'
+import React, { PropTypes } from 'react'
 
 import {
   AutoControlledComponent as Component,
+  createHTMLLabel,
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  META,
   makeDebugger,
+  META,
   useKeyOnly,
 } from '../../lib'
 
@@ -34,32 +35,14 @@ export default class Checkbox extends Component {
     /** An element type to render as (string or function). */
     as: customPropTypes.as,
 
-    /** Additional classes. */
-    className: PropTypes.string,
-
     /** Whether or not checkbox is checked. */
     checked: PropTypes.bool,
 
+    /** Additional classes. */
+    className: PropTypes.string,
+
     /** The initial value of checked. */
     defaultChecked: PropTypes.bool,
-
-    /** Format to emphasize the current selection state */
-    slider: customPropTypes.every([
-      PropTypes.bool,
-      customPropTypes.disallow(['radio', 'toggle']),
-    ]),
-
-    /** Format as a radio element. This means it is an exclusive option.*/
-    radio: customPropTypes.every([
-      PropTypes.bool,
-      customPropTypes.disallow(['slider', 'toggle']),
-    ]),
-
-    /** Format to show an on or off choice */
-    toggle: customPropTypes.every([
-      PropTypes.bool,
-      customPropTypes.disallow(['radio', 'slider']),
-    ]),
 
     /** A checkbox can appear disabled and be unable to change states */
     disabled: PropTypes.bool,
@@ -68,10 +51,7 @@ export default class Checkbox extends Component {
     fitted: PropTypes.bool,
 
     /** The text of the associated label element. */
-    label: PropTypes.string,
-
-    /** HTML input type, either checkbox or radio. */
-    type: PropTypes.oneOf(_meta.props.type),
+    label: customPropTypes.itemShorthand,
 
     /** The HTML input name. */
     name: PropTypes.string,
@@ -82,8 +62,29 @@ export default class Checkbox extends Component {
     /** Called with (event, { name, value, checked }) when the checkbox or label is clicked. */
     onClick: PropTypes.func,
 
+    /** Format as a radio element. This means it is an exclusive option.*/
+    radio: customPropTypes.every([
+      PropTypes.bool,
+      customPropTypes.disallow(['slider', 'toggle']),
+    ]),
+
     /** A checkbox can be read-only and unable to change states */
     readOnly: PropTypes.bool,
+
+    /** Format to emphasize the current selection state */
+    slider: customPropTypes.every([
+      PropTypes.bool,
+      customPropTypes.disallow(['radio', 'toggle']),
+    ]),
+
+    /** Format to show an on or off choice */
+    toggle: customPropTypes.every([
+      PropTypes.bool,
+      customPropTypes.disallow(['radio', 'slider']),
+    ]),
+
+    /** HTML input type, either checkbox or radio. */
+    type: PropTypes.oneOf(_meta.props.type),
 
     /** The HTML input value. */
     value: PropTypes.string,
@@ -110,7 +111,7 @@ export default class Checkbox extends Component {
 
   handleClick = (e) => {
     debug('handleClick()')
-    const { onChange, onClick, name, value } = this.props
+    const { name, onChange, onClick, value } = this.props
     const { checked } = this.state
     debug(`  name:       ${name}`)
     debug(`  value:      ${value}`)
@@ -125,19 +126,31 @@ export default class Checkbox extends Component {
   }
 
   render() {
-    const { className, label, name, radio, slider, toggle, type, value, disabled, readOnly } = this.props
+    const {
+      className,
+      disabled,
+      label,
+      name,
+      radio,
+      readOnly,
+      slider,
+      toggle,
+      type,
+      value,
+    } = this.props
     const { checked } = this.state
+
     const classes = cx(
       'ui',
       useKeyOnly(checked, 'checked'),
+      useKeyOnly(disabled, 'disabled'),
       // auto apply fitted class to compact white space when there is no label
       // http://semantic-ui.com/modules/checkbox.html#fitted
       useKeyOnly(!label, 'fitted'),
       useKeyOnly(radio, 'radio'),
+      useKeyOnly(readOnly, 'read-only'),
       useKeyOnly(slider, 'slider'),
       useKeyOnly(toggle, 'toggle'),
-      useKeyOnly(disabled, 'disabled'),
-      useKeyOnly(readOnly, 'read-only'),
       'checkbox',
       className
     )
@@ -147,19 +160,19 @@ export default class Checkbox extends Component {
     return (
       <ElementType {...rest} className={classes} onClick={this.handleClick} onChange={this.handleClick}>
         <input
-          type={type}
-          name={name}
           checked={checked}
           className='hidden'
+          name={name}
           readOnly
           tabIndex={0}
+          type={type}
           value={value}
         />
         {/*
          Heads Up!
          Do not remove empty labels, they are required by SUI CSS
          */}
-        <label>{label}</label>
+        {createHTMLLabel(label) || <label />}
       </ElementType>
     )
   }

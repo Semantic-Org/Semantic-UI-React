@@ -1,7 +1,8 @@
 import cx from 'classnames'
-import React, { PropTypes, createElement } from 'react'
+import React, { createElement, PropTypes } from 'react'
 
 import {
+  createHTMLLabel,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -25,10 +26,22 @@ import Radio from '../../addons/Radio'
  * @see TextArea
  */
 function FormField(props) {
-  const { control, children, className, disabled, error, inline, label, required, type, width } = props
+  const {
+    children,
+    className,
+    control,
+    disabled,
+    error,
+    inline,
+    label,
+    required,
+    type,
+    width,
+  } = props
+
   const classes = cx(
-    useKeyOnly(error, 'error'),
     useKeyOnly(disabled, 'disabled'),
+    useKeyOnly(error, 'error'),
     useKeyOnly(inline, 'inline'),
     useKeyOnly(required, 'required'),
     useWidthProp(width, 'wide'),
@@ -43,14 +56,9 @@ function FormField(props) {
   // ----------------------------------------
 
   if (!control) {
-    // TODO add test for label/no label when no control
     if (!label) return <ElementType {...rest} className={classes}>{children}</ElementType>
 
-    return (
-      <ElementType {...rest} className={classes}>
-        <label>{label}</label>
-      </ElementType>
-    )
+    return <ElementType {...rest} className={classes}>{createHTMLLabel(label)}</ElementType>
   }
 
   // ----------------------------------------
@@ -82,24 +90,12 @@ function FormField(props) {
   // Other Control
   // ----------------------------------------
 
-  // control with a label
-  if (control && label) {
-    return (
-      <ElementType className={classes}>
-        <label>{label}</label>
-        {createElement(control, controlProps)}
-      </ElementType>
-    )
-  }
-
-  // control without a label
-  if (control && !label) {
-    return (
-      <ElementType className={classes}>
-        {createElement(control, controlProps)}
-      </ElementType>
-    )
-  }
+  return (
+    <ElementType className={classes}>
+      {createHTMLLabel(label)}
+      {createElement(control, controlProps)}
+    </ElementType>
+  )
 }
 
 FormField._meta = {
@@ -121,6 +117,12 @@ FormField.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
+  /** Primary content. */
+  children: PropTypes.node,
+
+  /** Additional classes. */
+  className: PropTypes.string,
+
   /**
    * A form control component (i.e. Dropdown) or HTML tagName (i.e. 'input').
    * Extra FormField props are passed to the control component.
@@ -130,12 +132,6 @@ FormField.propTypes = {
     PropTypes.func,
     PropTypes.oneOf(FormField._meta.props.control),
   ]),
-
-  /** Primary content. */
-  children: PropTypes.node,
-
-  /** Additional classes. */
-  className: PropTypes.string,
 
   /** Individual fields may be disabled */
   disabled: PropTypes.bool,
@@ -150,7 +146,10 @@ FormField.propTypes = {
   // Do not disallow children with `label` shorthand
   // The `control` might accept a `label` prop and `children`
   /** Mutually exclusive with children. */
-  label: PropTypes.string,
+  label: PropTypes.oneOfType([
+    PropTypes.node,
+    PropTypes.object,
+  ]),
 
   /** A field can show that input is mandatory.  Requires a label. */
   required: customPropTypes.every([

@@ -767,6 +767,28 @@ export const implementsHTMLInputProp = (Component, options = {}) => {
 }
 
 /**
+ * Assert that a Component correctly implements an HTML label shorthand prop.
+ *
+ * @param {function} Component The component to test.
+ * @param {object} [options={}]
+ * @param {string} [options.propKey='icon'] The name of the shorthand prop.
+ * @param {string|function} [options.ShorthandComponent] The component that should be rendered from the shorthand value.
+ * @param {function} [options.mapValueToProps] A function that maps a primitive value to the Component props
+ * @param {Object} [options.requiredProps={}] Props required to render the component.
+ * @param {Object|function} [options.shorthandDefaultProps={}] Props required to render the shorthand component.
+ */
+export const implementsHTMLLabelProp = (Component, options = {}) => {
+  implementsShorthandProp(Component, {
+    propKey: 'label',
+    ShorthandComponent: 'label',
+    mapValueToProps: val => ({ children: val }),
+    requiredProps: {},
+    shorthandDefaultProps: {},
+    ...options,
+  })
+}
+
+/**
  * Assert that a Component correctly implements a Label shorthand prop.
  *
  * @param {function} Component The component to test.
