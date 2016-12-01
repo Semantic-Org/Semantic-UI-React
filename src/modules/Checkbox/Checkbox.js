@@ -139,6 +139,7 @@ export default class Checkbox extends Component {
       value,
     } = this.props
     const { checked } = this.state
+
     const classes = cx(
       'ui',
       useKeyOnly(checked, 'checked'),

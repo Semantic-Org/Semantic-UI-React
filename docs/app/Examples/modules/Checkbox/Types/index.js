@@ -18,8 +18,12 @@ const CheckboxTypesExamples = () => (
       examplePath='modules/Checkbox/Types/CheckboxExampleCheckbox'
     />
     <ComponentExample
-      description='A label can be also rendered via shorthand.'
-      examplePath='modules/Checkbox/Types/CheckboxExampleShorthand'
+      description='You can define a label with a props object.'
+      examplePath='modules/Checkbox/Types/CheckboxExampleShorthandObject'
+    />
+    <ComponentExample
+      description='You can define a label by passing your own element.'
+      examplePath='modules/Checkbox/Types/CheckboxExampleShorthandElement'
     />
 
     <ComponentExample

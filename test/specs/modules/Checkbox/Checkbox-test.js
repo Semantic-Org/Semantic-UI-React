@@ -39,7 +39,6 @@ describe('Checkbox', () => {
 
   describe('defaultChecked', () => {
     it('sets the initial checked state', () => {
-      // consoleUtil.disableOnce()
       shallow(<Checkbox defaultChecked />)
         .find('input')
         .should.be.checked()
