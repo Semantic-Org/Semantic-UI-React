@@ -11,26 +11,35 @@ const CheckboxTypesExamples = () => (
       {' '}Use <code>inputType</code> if you'd like to mix and match style and behavior.
       {' '}For instance, type <code>slider</code> with <code>inputType</code> radio for exclusive sliders.
     </Message>
+
     <ComponentExample
       title='Checkbox'
       description='A box for checking.'
       examplePath='modules/Checkbox/Types/CheckboxExampleCheckbox'
     />
     <ComponentExample
+      description='A label can be also rendered via shorthand.'
+      examplePath='modules/Checkbox/Types/CheckboxExampleShorthand'
+    />
+
+    <ComponentExample
       title='Toggle'
       description='A checkbox can toggle.'
       examplePath='modules/Checkbox/Types/CheckboxExampleToggle'
     />
+
     <ComponentExample
       title='Slider'
       description='A checkbox can look like a slider.'
       examplePath='modules/Checkbox/Types/CheckboxExampleSlider'
     />
+
     <ComponentExample
       title='Radio'
       description='A checkbox can be formatted as a radio element. This means it is an exclusive option.'
       examplePath='modules/Checkbox/Types/CheckboxExampleRadio'
     />
+
     <ComponentExample
       title='Radio Group'
       examplePath='modules/Checkbox/Types/CheckboxExampleRadioGroup'

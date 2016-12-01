@@ -84,3 +84,4 @@ export function createShorthandFactory(Component, mapValueToProps) {
 // ----------------------------------------
 export const createHTMLImage = createShorthandFactory('img', value => ({ src: value }))
 export const createHTMLInput = createShorthandFactory('input', value => ({ type: value }))
+export const createHTMLLabel = createShorthandFactory('label', value => ({ children: value }))
