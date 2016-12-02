@@ -30,16 +30,36 @@ class Confirm extends Component {
     /** The ModalContent text. */
     content: PropTypes.string,
 
-    /** Called when the Cancel button is clicked */
+    /**
+     * Called when the cancel button is clicked.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props.
+     */
     onCancel: PropTypes.func,
 
-    /** Called when a close event happens */
+    /**
+     * Called when a close event happens.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props.
+     */
     onClose: PropTypes.func,
 
-    /** Called when the OK button is clicked */
+    /**
+     * Called when the confirm button is clicked.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props.
+     */
     onConfirm: PropTypes.func,
 
-    /** Called when an open event happens */
+    /**
+     * Called when an open event happens.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props.
+     */
     onOpen: PropTypes.func,
   }
 
