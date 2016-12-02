@@ -100,6 +100,64 @@ describe('Accordion', () => {
       wrapper.childAt(4).should.have.prop('active', true)
       wrapper.childAt(5).should.have.prop('active', true)
     })
+
+    it('can be an array', () => {
+      const wrapper = shallow(
+        <Accordion exclusive={false}>
+          <Accordion.Title />
+          <Accordion.Content />
+          <Accordion.Title />
+          <Accordion.Content />
+          <Accordion.Title />
+          <Accordion.Content />
+        </Accordion>
+      )
+      wrapper.setProps({ activeIndex: [0, 1] })
+      wrapper.childAt(0).should.have.prop('active', true)
+      wrapper.childAt(1).should.have.prop('active', true)
+      wrapper.childAt(2).should.have.prop('active', true)
+      wrapper.childAt(3).should.have.prop('active', true)
+
+      wrapper.setProps({ activeIndex: [1, 2] })
+      wrapper.childAt(2).should.have.prop('active', true)
+      wrapper.childAt(3).should.have.prop('active', true)
+      wrapper.childAt(4).should.have.prop('active', true)
+      wrapper.childAt(5).should.have.prop('active', true)
+    })
+
+    it('can be inclusive and makes Accordion.Content at activeIndex - 1 "active"', () => {
+      const contents = shallow(
+        <Accordion exclusive={false} activeIndex={0}>
+          <Accordion.Title />
+          <Accordion.Content />
+          <Accordion.Title />
+          <Accordion.Content />
+        </Accordion>
+      )
+        .find('AccordionContent')
+
+      contents.at(0).should.have.prop('active', true)
+      contents.at(1).should.have.prop('active', false)
+    })
+
+    it('can be inclusive and can be overridden with "active"', () => {
+      const wrapper = mount(
+        <Accordion exclusive={false} activeIndex={0}>
+          <Accordion.Title active={false} />
+          <Accordion.Content active={false} />
+          <Accordion.Title active />
+          <Accordion.Content active />
+        </Accordion>
+      )
+      const titles = wrapper.find('AccordionTitle')
+      const contents = wrapper.find('AccordionContent')
+
+      titles.at(0).should.not.have.className('active')
+      contents.at(0).should.not.have.className('active')
+
+      titles.at(1).should.have.className('active')
+      contents.at(1).should.have.className('active')
+    })
   })
 
   describe('defaultActiveIndex', () => {
