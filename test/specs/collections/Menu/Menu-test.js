@@ -90,7 +90,7 @@ describe('Menu', () => {
       spy.should.have.been.calledWithMatch(event, props)
     })
 
-    it('passes arbitraty props', () => {
+    it('passes arbitrary props', () => {
       children.everyWhere(item => item.should.have.prop('data-foo', 'something'))
     })
   })
