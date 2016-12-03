@@ -66,13 +66,30 @@ class Sidebar extends Component {
     'visible',
   ]
 
+  state = {}
+
+  startAnimating = (duration = 500) => {
+    clearTimeout(this.stopAnimatingTimer)
+
+    this.setState({ animating: true })
+
+    this.stopAnimatingTimer = setTimeout(() => this.setState({ animating: false }), duration)
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.visible !== this.props.visible) {
+      this.startAnimating()
+    }
+  }
+
   render() {
+    const { animating } = this.state
     const { animation, className, children, direction, visible, width } = this.props
 
     const classes = cx(
       'ui',
       'sidebar',
-      'animating', // should be dynamically set only when animating
+      useKeyOnly(animating, 'animating'),
       direction,
       width,
       animation,
