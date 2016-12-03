@@ -111,7 +111,7 @@ Any other issue labeled [`help wanted`][4] is ready for a PR.
 | ✓ Label         |                 |                 | ✓ Rating        |                    |
 | ✓ List          |                 |                 | ✓ Search        |                    |
 | ✓ Loader        |                 |                 |   Shape         |                    |
-| ✓ Rail          |                 |                 |   Sidebar       |                    |
+| ✓ Rail          |                 |                 | ✓ Sidebar       |                    |
 | ✓ Reveal        |                 |                 |   Sticky        |                    |
 | ✓ Segment       |                 |                 |   Tab           |                    |
 | ✓ Step          |                 |                 |   Transition    |                    |
