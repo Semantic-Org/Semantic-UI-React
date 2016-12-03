@@ -102,7 +102,7 @@ export default class Label extends Component {
     ]),
 
     /**
-     * Adds the link style when present, called with (event, props).
+     * Called on click.
      *
      * @param {SyntheticEvent} event - React's original SyntheticEvent.
      * @param {object} data - All props.
@@ -110,7 +110,7 @@ export default class Label extends Component {
     onClick: PropTypes.func,
 
     /**
-     * Adds an "x" icon, called with (event, props) when "x" is clicked.
+     * Adds an "x" icon, called when "x" is clicked.
      *
      * @param {SyntheticEvent} event - React's original SyntheticEvent.
      * @param {object} data - All props.

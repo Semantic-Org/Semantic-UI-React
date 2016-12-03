@@ -87,7 +87,7 @@ export default class Embed extends Component {
     icon: customPropTypes.itemShorthand,
 
     /**
-     * Сalled with event on Embed click with (event, props).
+     * Сalled on click.
      *
      * @param {SyntheticEvent} event - React's original SyntheticEvent.
      * @param {object} data - All props and proposed value.

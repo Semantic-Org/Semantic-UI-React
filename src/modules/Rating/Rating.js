@@ -72,7 +72,7 @@ export default class Rating extends Component {
     ]),
 
     /**
-     * Called with (event, { rating, maxRating }) after user selects a new rating.
+     * Called after user selects a new rating.
      *
      * @param {SyntheticEvent} event - React's original SyntheticEvent.
      * @param {object} data - All props and proposed rating.

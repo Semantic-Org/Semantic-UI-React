@@ -148,10 +148,10 @@ export default class Dropdown extends Component {
     noResultsMessage: PropTypes.string,
 
     /**
-     * Called with the name and new value added by the user. Use this to update the options list.
+     * Called when a user adds a new item. Use this to update the options list.
      *
      * @param {SyntheticEvent} event - React's original SyntheticEvent.
-     * @param {object} data - All item props.
+     * @param {object} data - All props and the new item's value.
      */
     onAddItem: PropTypes.func,
 
@@ -196,10 +196,10 @@ export default class Dropdown extends Component {
     onOpen: PropTypes.func,
 
     /**
-     * Called with the React Synthetic Event and current value on search input change.
+     * Called on search input change.
      *
      * @param {SyntheticEvent} event - React's original SyntheticEvent.
-     * @param {object} data - All props.
+     * @param {string} value - Current value of search input.
      */
     onSearchChange: PropTypes.func,
 
@@ -514,7 +514,7 @@ export default class Dropdown extends Component {
 
   selectHighlightedItem = (e) => {
     const { open } = this.state
-    const { multiple, name, onAddItem, options } = this.props
+    const { multiple, onAddItem, options } = this.props
     const value = _.get(this.getSelectedItem(), 'value')
 
     // prevent selecting null if there was no selected item value
@@ -523,7 +523,7 @@ export default class Dropdown extends Component {
 
     // notify the onAddItem prop if this is a new value
     if (onAddItem && !_.some(options, { text: value })) {
-      onAddItem(e, { name, value })
+      onAddItem(e, { ...this.props, value })
     }
 
     // notify the onChange prop that the user is trying to change value
@@ -608,11 +608,11 @@ export default class Dropdown extends Component {
     this.toggle(e)
   }
 
-  handleItemClick = (e, { value }) => {
+  handleItemClick = (e, item) => {
     debug('handleItemClick()')
-    debug(value)
-    const { multiple, name, onAddItem, options } = this.props
-    const item = this.getItemByValue(value) || {}
+    debug(item)
+    const { multiple, onAddItem, options } = this.props
+    const { value } = item
 
     // prevent toggle() in handleClick()
     e.stopPropagation()
@@ -625,7 +625,7 @@ export default class Dropdown extends Component {
 
     // notify the onAddItem prop if this is a new value
     if (onAddItem && !_.some(options, { text: value })) {
-      onAddItem(e, { name, value })
+      onAddItem(e, { ...this.props, value })
     }
 
     // notify the onChange prop that the user is trying to change value

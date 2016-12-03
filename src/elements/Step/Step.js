@@ -51,7 +51,7 @@ export default class Step extends Component {
     href: PropTypes.string,
 
     /**
-     * Called on click. When passed, the component render as an `a`
+     * Called on click. When passed, the component will render as an `a`
      * tag by default instead of a `div`.
      *
      * @param {SyntheticEvent} event - React's original SyntheticEvent.

@@ -199,7 +199,7 @@ export default class Form extends Component {
     loading: PropTypes.bool,
 
     /**
-     * Called with (event, jsonSerializedForm) on submit
+     * Called on submit
      *
      * @param {SyntheticEvent} event - React's original SyntheticEvent.
      * @param {object} data - All props and the form's serialized values.

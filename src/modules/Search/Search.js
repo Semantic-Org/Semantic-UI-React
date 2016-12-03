@@ -127,10 +127,10 @@ export default class Search extends Component {
     onResultSelect: PropTypes.func,
 
     /**
-     * Called with the React Synthetic Event and current value on search input change.
+     * Called on search input change.
      *
      * @param {SyntheticEvent} event - React's original SyntheticEvent.
-     * @param {object} data - All props.
+     * @param {string} value - Current value of search input.
      */
     onSearchChange: PropTypes.func,
 

@@ -75,7 +75,10 @@ describe('Checkbox', () => {
         .simulate('click')
 
       spy.should.have.been.calledOnce()
-      spy.should.have.been.calledWithMatch({}, expectProps)
+      spy.should.have.been.calledWithMatch({}, {
+        ...expectProps,
+        checked: !expectProps.checked,
+      })
     })
     it('is not called when the checkbox has the disabled prop set', () => {
       const spy = sandbox.spy()
@@ -92,7 +95,10 @@ describe('Checkbox', () => {
         .simulate('click')
 
       spy.should.have.been.calledOnce()
-      spy.should.have.been.calledWithMatch({}, { ...expectProps, checked: true })
+      spy.should.have.been.calledWithMatch({}, {
+        ...expectProps,
+        checked: expectProps.checked,
+      })
     })
     it('is not called when the checkbox has the disabled prop set', () => {
       const spy = sandbox.spy()

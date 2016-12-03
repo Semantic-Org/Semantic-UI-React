@@ -42,7 +42,7 @@ export default class Dimmer extends Component {
     disabled: PropTypes.bool,
 
     /**
-     * Called with (event, props) after user's click.
+     * Called on click.
      *
      * @param {SyntheticEvent} event - React's original SyntheticEvent.
      * @param {object} data - All props.
