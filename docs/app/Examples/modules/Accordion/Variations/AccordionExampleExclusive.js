@@ -8,8 +8,8 @@ const panels = _.times(3, () => ({
   content: faker.lorem.paragraphs(),
 }))
 
-const AccordionExampleFluid = () => (
+const AccordionExampleExclusive = () => (
   <Accordion panels={panels} exclusive={false} fluid />
 )
 
-export default AccordionExampleFluid
+export default AccordionExampleExclusive

@@ -33,7 +33,7 @@ export default class Accordion extends Component {
     /** Index of the currently active panel. */
     activeIndex: PropTypes.oneOfType([
       PropTypes.number,
-      PropTypes.array,
+      PropTypes.arrayOf(PropTypes.number),
     ]),
 
     /** Primary content. */
@@ -43,9 +43,12 @@ export default class Accordion extends Component {
     className: PropTypes.string,
 
     /** Initial activeIndex value. */
-    defaultActiveIndex: PropTypes.number,
+    defaultActiveIndex: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.arrayOf(PropTypes.number),
+    ]),
 
-    /** Allow only one index */
+    /** Only allow one panel open at a time */
     exclusive: PropTypes.bool,
 
     /** Format to take up the width of it's container. */
@@ -94,32 +97,40 @@ export default class Accordion extends Component {
     // The default prop should always win on first render.
     // This default check should then be removed.
     if (typeof this.props.defaultActiveIndex === 'undefined') {
-      this.props.exclusive ? this.trySetState({ activeIndex: -1 }) : this.trySetState({ activeIndex: [-1] })
+      if (this.props.exclusive) {
+        this.trySetState({ activeIndex: -1 })
+      } else {
+        this.trySetState({ activeIndex: [-1] })
+      }
+    } else if (!this.props.exclusive) {
+      let activeIndex = this.props.defaultActiveIndex
+      if (_.isNumber(this.props.defaultActiveIndex)) {
+        activeIndex = [activeIndex]
+      }
+      this.trySetState({
+        activeIndex,
+      })
     }
-
-    //TODO: Can not accept an activeIndex and be inclusive at the same time
-    // if(this.props.exclusive == false && _.isNumber(this.props.activeIndex)){
-    //   this.trySetState({ activeIndex: [ this.props.activeIndex ] })
-    // }
   }
 
   handleTitleClick = (e, index) => {
     const { onTitleClick, exclusive } = this.props
     const { activeIndex } = this.state
 
-    if(exclusive){ // Check if exclusive
+    // Check if exclusive
+    if (exclusive) {
       this.trySetState({
         activeIndex: index === activeIndex ? -1 : index,
       })
-    }else{
-      let newIndex = activeIndex.slice(0);
-      if(_.includes(activeIndex, index)){ //check to see if index is in array, and remove it
-        newIndex = newIndex.filter(idx => idx != index);
-      }else{ // if not then add it
-        newIndex.push(index);
+    } else {
+      let newIndex = activeIndex.slice(0)
+      if (_.includes(activeIndex, index)) { // check to see if index is in array, and remove it
+        newIndex = newIndex.filter(idx => idx !== index)
+      } else { // if not then add it
+        newIndex.push(index)
       }
       this.trySetState({
-        activeIndex: newIndex
+        activeIndex: newIndex,
       })
     }
     if (onTitleClick) onTitleClick(e, index)
@@ -137,7 +148,8 @@ export default class Accordion extends Component {
 
       if (isTitle) {
         const currentIndex = titleIndex
-        const isActive = _.has(child, 'props.active') ? child.props.active : (exclusive ? activeIndex === currentIndex : _.includes(activeIndex, currentIndex))
+        const indexCheck = exclusive ? activeIndex === currentIndex : _.includes(activeIndex, currentIndex)
+        const isActive = _.has(child, 'props.active') ? child.props.active : indexCheck
         const onClick = (e) => {
           this.handleTitleClick(e, currentIndex)
           if (child.props.onClick) child.props.onClick(e, currentIndex)
@@ -148,7 +160,8 @@ export default class Accordion extends Component {
 
       if (isContent) {
         const currentIndex = contentIndex
-        const isActive = _.has(child, 'props.active') ? child.props.active : (exclusive ? activeIndex === currentIndex : _.includes(activeIndex, currentIndex))
+        const indexCheck = exclusive ? activeIndex === currentIndex : _.includes(activeIndex, currentIndex)
+        const isActive = _.has(child, 'props.active') ? child.props.active : indexCheck
         contentIndex++
         return cloneElement(child, { ...child.props, active: isActive })
       }
@@ -163,7 +176,8 @@ export default class Accordion extends Component {
     const children = []
 
     _.each(panels, (panel, i) => {
-      const isActive = _.has(panel, 'active') ? panel.active : (exclusive ? activeIndex === i : _.includes(activeIndex, i))
+      const indexCheck = (exclusive ? activeIndex === i : _.includes(activeIndex, i))
+      const isActive = _.has(panel, 'active') ? panel.active : indexCheck
       const onClick = (e) => {
         this.handleTitleClick(e, i)
         if (panel.onClick) panel.onClick(e, i)

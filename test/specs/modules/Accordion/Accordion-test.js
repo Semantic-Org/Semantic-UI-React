@@ -127,36 +127,32 @@ describe('Accordion', () => {
 
     it('can be inclusive and makes Accordion.Content at activeIndex - 1 "active"', () => {
       const contents = shallow(
-        <Accordion exclusive={false} activeIndex={0}>
+        <Accordion exclusive={false} defaultActiveIndex={0}>
           <Accordion.Title />
           <Accordion.Content />
           <Accordion.Title />
           <Accordion.Content />
         </Accordion>
       )
-        .find('AccordionContent')
+        .find('AccordionTitle')
 
       contents.at(0).should.have.prop('active', true)
       contents.at(1).should.have.prop('active', false)
     })
 
-    it('can be inclusive and can be overridden with "active"', () => {
-      const wrapper = mount(
-        <Accordion exclusive={false} activeIndex={0}>
-          <Accordion.Title active={false} />
-          <Accordion.Content active={false} />
-          <Accordion.Title active />
-          <Accordion.Content active />
+    it('can be inclusive and allows multiple open', () => {
+      const contents = shallow(
+        <Accordion exclusive={false} defaultActiveIndex={[0, 1]}>
+          <Accordion.Title />
+          <Accordion.Content />
+          <Accordion.Title />
+          <Accordion.Content />
         </Accordion>
       )
-      const titles = wrapper.find('AccordionTitle')
-      const contents = wrapper.find('AccordionContent')
+        .find('AccordionTitle')
 
-      titles.at(0).should.not.have.className('active')
-      contents.at(0).should.not.have.className('active')
-
-      titles.at(1).should.have.className('active')
-      contents.at(1).should.have.className('active')
+      contents.at(0).should.have.prop('active', true)
+      contents.at(1).should.have.prop('active', true)
     })
   })
 
