@@ -1,5 +1,19 @@
 # Change Log
 
+## [v0.61.10](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.61.10) (2016-12-03)
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.61.9...v0.61.10)
+
+**Implemented enhancements:**
+
+- FormField support `label` shorthand [\#939](https://github.com/Semantic-Org/Semantic-UI-React/issues/939)
+- \<Sidebar /\> Component [\#197](https://github.com/Semantic-Org/Semantic-UI-React/issues/197)
+- feat\(Checkbox|FormField\) support `label` shorthand [\#967](https://github.com/Semantic-Org/Semantic-UI-React/pull/967) ([layershifter](https://github.com/layershifter))
+
+**Merged pull requests:**
+
+- docs\(Icon\): add icon search [\#977](https://github.com/Semantic-Org/Semantic-UI-React/pull/977) ([levithomason](https://github.com/levithomason))
+- feat\(Sidebar\): add component [\#905](https://github.com/Semantic-Org/Semantic-UI-React/pull/905) ([fracmak](https://github.com/fracmak))
+
 ## [v0.61.9](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.61.9) (2016-12-01)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.61.8...v0.61.9)
 
