@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Sidebar, Button, Menu, Image, Icon, Header } from 'semantic-ui-react'
+import { Sidebar, Segment, Button, Menu, Image, Icon, Header } from 'semantic-ui-react'
 
 class SidebarRightOverlay extends Component {
   state = { visible: false }
@@ -11,7 +11,7 @@ class SidebarRightOverlay extends Component {
     return (
       <div>
         <Button onClick={this.toggleVisibility}>Toggle Visibility</Button>
-        <Sidebar.Pushable>
+        <Sidebar.Pushable as={Segment}>
           <Sidebar
             as={Menu}
             animation='overlay'
@@ -36,8 +36,10 @@ class SidebarRightOverlay extends Component {
             </Menu.Item>
           </Sidebar>
           <Sidebar.Pusher>
-            <Header as='h3'>Application Content</Header>
-            <Image src='http://semantic-ui.com/images/wireframe/paragraph.png' />
+            <Segment basic>
+              <Header as='h3'>Application Content</Header>
+              <Image src='http://semantic-ui.com/images/wireframe/paragraph.png' />
+            </Segment>
           </Sidebar.Pusher>
         </Sidebar.Pushable>
       </div>

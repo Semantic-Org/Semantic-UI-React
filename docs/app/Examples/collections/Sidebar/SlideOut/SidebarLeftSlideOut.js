@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Sidebar, Button, Menu, Image, Icon, Header } from 'semantic-ui-react'
+import { Sidebar, Segment, Button, Menu, Image, Icon, Header } from 'semantic-ui-react'
 
 class SidebarLeftSlideOut extends Component {
   state = { visible: false }
@@ -11,7 +11,7 @@ class SidebarLeftSlideOut extends Component {
     return (
       <div>
         <Button onClick={this.toggleVisibility}>Toggle Visibility</Button>
-        <Sidebar.Pushable>
+        <Sidebar.Pushable as={Segment}>
           <Sidebar as={Menu} animation='slide out' width='thin' visible={visible} icon='labeled' vertical inverted>
             <Menu.Item name='home'>
               <Icon name='home' />
@@ -26,9 +26,11 @@ class SidebarLeftSlideOut extends Component {
               Channels
             </Menu.Item>
           </Sidebar>
-          <Sidebar.Pusher style={{ background: '#fff' }}>
-            <Header as='h3'>Application Content</Header>
-            <Image src='http://semantic-ui.com/images/wireframe/paragraph.png' />
+          <Sidebar.Pusher>
+            <Segment basic>
+              <Header as='h3'>Application Content</Header>
+              <Image src='http://semantic-ui.com/images/wireframe/paragraph.png' />
+            </Segment>
           </Sidebar.Pusher>
         </Sidebar.Pushable>
       </div>
