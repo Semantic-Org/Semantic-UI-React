@@ -11,3 +11,4 @@ dll/
 .idea/
 
 *.iml
+.vscode
