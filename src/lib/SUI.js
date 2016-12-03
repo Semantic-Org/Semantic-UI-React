@@ -29,8 +29,7 @@ export const WIDTHS = [
 
 // Generated from:
 // https://github.com/Semantic-Org/Semantic-UI/blob/master/dist/components/icon.css
-export const ICONS = [
-  // Web Content
+export const WEB_CONTENT_ICONS = [
   'search', 'mail outline', 'signal', 'setting', 'home', 'inbox', 'browser', 'tag', 'tags', 'image', 'calendar',
   'comment', 'shop', 'comments', 'external', 'privacy', 'settings', 'comments', 'external', 'trophy', 'payment', 'feed',
   'alarm outline', 'tasks', 'cloud', 'lab', 'mail', 'dashboard', 'comment outline', 'comments outline', 'sitemap',
@@ -40,8 +39,8 @@ export const ICONS = [
   'hourglass end', 'hourglass full', 'hand pointer', 'trademark', 'registered', 'creative commons', 'add to calendar',
   'remove from calendar', 'delete calendar', 'checked calendar', 'industry', 'shopping bag', 'shopping basket',
   'hashtag', 'percent',
-
-  // User Actions
+]
+export const USER_ACTIONS_ICONS = [
   'wait', 'download', 'repeat', 'refresh', 'lock', 'bookmark', 'print', 'write', 'adjust', 'theme', 'edit',
   'external share', 'ban', 'mail forward', 'share', 'expand', 'compress', 'unhide', 'hide', 'random', 'retweet',
   'sign out', 'pin', 'sign in', 'upload', 'call', 'remove bookmark', 'call square', 'unlock', 'configure', 'filter',
@@ -49,46 +48,46 @@ export const ICONS = [
   'write square', 'share square', 'archive', 'translate', 'recycle', 'send', 'send outline', 'share alternate',
   'share alternate square', 'add to cart', 'in cart', 'add user', 'remove user', 'object group', 'object ungroup',
   'clone', 'talk', 'talk outline',
-
-  // Messages
+]
+export const MESSAGES_ICONS = [
   'help circle', 'info circle', 'warning circle', 'warning sign', 'announcement', 'help', 'info', 'warning', 'birthday',
   'help circle outline',
-
-  // Users
+]
+export const USERS_ICONS = [
   'user', 'users', 'doctor', 'handicap', 'student', 'child', 'spy',
-
-  // Gender & Sexuality
+]
+export const GENDER_SEXUALITY_ICONS = [
   'female', 'male', 'woman', 'man', 'non binary transgender', 'intergender', 'transgender', 'lesbian', 'gay',
   'heterosexual', 'other gender', 'other gender vertical', 'other gender horizontal', 'neuter', 'genderless',
-
-  // Accessibility
+]
+export const ACCESSIBILITY_ICONS = [
   'universal access', 'wheelchair', 'blind', 'audio description', 'volume control phone', 'braille', 'asl',
   'assistive listening systems', 'deafness', 'sign language', 'low vision',
-
-  // View Adjustment
+]
+export const VIEW_ADJUSTMENT_ICONS = [
   'block layout', 'grid layout', 'list layout', 'zoom', 'zoom out', 'resize vertical', 'resize horizontal', 'maximize',
   'crop',
-
-  // Literal Objects
+]
+export const LITERAL_OBJECTS_ICONS = [
   'cocktail', 'road', 'flag', 'book', 'gift', 'leaf', 'fire', 'plane', 'magnet', 'lemon', 'world', 'travel', 'shipping',
   'money', 'legal', 'lightning', 'umbrella', 'treatment', 'suitcase', 'bar', 'flag outline', 'flag checkered', 'puzzle',
   'fire extinguisher', 'rocket', 'anchor', 'bullseye', 'sun', 'moon', 'fax', 'life ring', 'bomb', 'soccer',
   'calculator', 'diamond', 'sticky note', 'sticky note outline', 'law', 'hand peace', 'hand rock', 'hand paper',
   'hand scissors', 'hand lizard', 'hand spock', 'tv',
-
-  // Shapes
+]
+export const SHAPES_ICONS = [
   'crosshairs', 'asterisk', 'square outline', 'certificate', 'square', 'quote left', 'quote right', 'spinner', 'circle',
   'ellipsis horizontal', 'ellipsis vertical', 'cube', 'cubes', 'circle notched', 'circle thin',
-
-  // Item Selection
+]
+export const ITEM_SELECTION_ICONS = [
   'checkmark', 'remove', 'checkmark box', 'move', 'add circle', 'minus circle', 'remove circle', 'check circle',
   'remove circle outline', 'check circle outline', 'plus', 'minus', 'add square', 'radio', 'minus square',
   'minus square outline', 'check square', 'selected radio', 'plus square outline', 'toggle off', 'toggle on',
-
-  // Media
+]
+export const MEDIA_ICONS = [
   'film', 'sound', 'photo', 'bar chart', 'camera retro', 'newspaper', 'area chart', 'pie chart', 'line chart',
-
-  // Pointers
+]
+export const POINTERS_ICONS = [
   'arrow circle outline down', 'arrow circle outline up', 'chevron left', 'chevron right', 'arrow left', 'arrow right',
   'arrow up', 'arrow down', 'chevron up', 'chevron down', 'pointing right', 'pointing left', 'pointing up',
   'pointing down', 'arrow circle left', 'arrow circle right', 'arrow circle up', 'arrow circle down', 'caret down',
@@ -97,56 +96,56 @@ export const ICONS = [
   'chevron circle right', 'chevron circle up', 'chevron circle down', 'toggle down', 'toggle up', 'toggle right',
   'long arrow down', 'long arrow up', 'long arrow left', 'long arrow right', 'arrow circle outline right',
   'arrow circle outline left', 'toggle left',
-
-  // Mobile
+]
+export const MOBILE_ICONS = [
   'tablet', 'mobile', 'battery full', 'battery high', 'battery medium', 'battery low', 'battery empty',
-
-  // Computer
+]
+export const COMPUTER_ICONS = [
   'power', 'trash outline', 'disk outline', 'desktop', 'laptop', 'game', 'keyboard', 'plug',
-
-  // File System
+]
+export const FILE_SYSTEM_ICONS = [
   'trash', 'file outline', 'folder', 'folder open', 'file text outline', 'folder outline', 'folder open outline',
   'level up', 'level down', 'file', 'file text', 'file pdf outline', 'file word outline', 'file excel outline',
   'file powerpoint outline', 'file image outline', 'file archive outline', 'file audio outline', 'file video outline',
   'file code outline',
-
-  // Technologies
+]
+export const TECHNOLOGIES_ICONS = [
   'qrcode', 'barcode', 'rss', 'fork', 'html5', 'css3', 'rss square', 'openid', 'database', 'server', 'usb', 'bluetooth',
   'bluetooth alternative',
-
-  // Rating
+]
+export const RATING_ICONS = [
   'heart', 'star', 'empty star', 'thumbs outline up', 'thumbs outline down', 'star half', 'empty heart', 'smile',
   'frown', 'meh', 'star half empty', 'thumbs up', 'thumbs down',
-
-  // Audio
+]
+export const AUDIO_ICONS = [
   'music', 'video play outline', 'volume off', 'volume down', 'volume up', 'record', 'step backward', 'fast backward',
   'backward', 'play', 'pause', 'stop', 'forward', 'fast forward', 'step forward', 'eject', 'unmute', 'mute',
   'video play', 'closed captioning', 'pause circle', 'pause circle outline', 'stop circle', 'stop circle outline',
-
-  // Map, Locations, & Transportation
+]
+export const MAP_LOCATIONS_TRANSPORTATION_ICONS = [
   'marker', 'coffee', 'food', 'building outline', 'hospital', 'emergency', 'first aid', 'military', 'h',
   'location arrow', 'compass', 'space shuttle', 'university', 'building', 'paw', 'spoon', 'car', 'taxi', 'tree',
   'bicycle', 'bus', 'ship', 'motorcycle', 'street view', 'hotel', 'train', 'subway', 'map pin', 'map signs',
   'map outline', 'map',
-
-  // Tables
+]
+export const TABLES_ICONS = [
   'table', 'columns', 'sort', 'sort descending', 'sort ascending', 'sort alphabet ascending',
   'sort alphabet descending', 'sort content ascending', 'sort content descending', 'sort numeric ascending',
   'sort numeric descending',
-
-  // Text Editor
+]
+export const TEXT_EDITOR_ICONS = [
   'font', 'bold', 'italic', 'text height', 'text width', 'align left', 'align center', 'align right', 'align justify',
   'list', 'outdent', 'indent', 'linkify', 'cut', 'copy', 'attach', 'save', 'content', 'unordered list', 'ordered list',
   'strikethrough', 'underline', 'paste', 'unlinkify', 'superscript', 'subscript', 'header', 'paragraph', 'text cursor',
-
-  // Currency
+]
+export const CURRENCY_ICONS = [
   'euro', 'pound', 'dollar', 'rupee', 'yen', 'ruble', 'won', 'bitcoin', 'lira', 'shekel',
-
-  // Payment Options
+]
+export const PAYMENT_OPTIONS_ICONS = [
   'paypal', 'google wallet', 'visa', 'mastercard', 'discover', 'american express', 'paypal card', 'stripe',
   'japan credit bureau', 'diners club', 'credit card alternative',
-
-  // Networks and Website
+]
+export const NETWORKS_AND_WEBSITE_ICONS = [
   'twitter square', 'facebook square', 'linkedin square', 'github square', 'twitter', 'facebook f', 'github',
   'pinterest', 'pinterest square', 'google plus square', 'google plus', 'linkedin', 'github alternate', 'maxcdn',
   'youtube square', 'youtube', 'xing', 'xing square', 'youtube play', 'dropbox', 'stack overflow', 'instagram',
@@ -164,11 +163,34 @@ export const ICONS = [
   'microsoft edge', 'codiepie', 'modx', 'fort awesome', 'product hunt', 'mixcloud', 'scribd', 'gitlab', 'wpbeginner',
   'wpforms', 'envira gallery', 'glide', 'glide g', 'viadeo', 'viadeo square', 'snapchat', 'snapchat ghost',
   'snapchat square', 'pied piper hat', 'first order', 'yoast', 'themeisle', 'google plus circle', 'font awesome',
-
-  // ----------------------------------------
-  // Aliases
-  // ----------------------------------------
-
+]
+export const ICONS = [
+  ...WEB_CONTENT_ICONS,
+  ...USER_ACTIONS_ICONS,
+  ...MESSAGES_ICONS,
+  ...USERS_ICONS,
+  ...GENDER_SEXUALITY_ICONS,
+  ...ACCESSIBILITY_ICONS,
+  ...VIEW_ADJUSTMENT_ICONS,
+  ...LITERAL_OBJECTS_ICONS,
+  ...SHAPES_ICONS,
+  ...ITEM_SELECTION_ICONS,
+  ...MEDIA_ICONS,
+  ...POINTERS_ICONS,
+  ...MOBILE_ICONS,
+  ...COMPUTER_ICONS,
+  ...FILE_SYSTEM_ICONS,
+  ...TECHNOLOGIES_ICONS,
+  ...RATING_ICONS,
+  ...AUDIO_ICONS,
+  ...MAP_LOCATIONS_TRANSPORTATION_ICONS,
+  ...TABLES_ICONS,
+  ...TEXT_EDITOR_ICONS,
+  ...CURRENCY_ICONS,
+  ...PAYMENT_OPTIONS_ICONS,
+  ...NETWORKS_AND_WEBSITE_ICONS,
+]
+export const ICON_ALIASES = [
   'like', 'favorite', 'video', 'check', 'close', 'cancel', 'delete', 'x', 'zoom in', 'magnify', 'shutdown', 'clock',
   'time', 'play circle outline', 'headphone', 'camera', 'video camera', 'picture', 'pencil', 'compose', 'point', 'tint',
   'signup', 'plus circle', 'question circle', 'dont', 'minimize', 'add', 'exclamation circle', 'attention', 'eye',
@@ -196,4 +218,8 @@ export const ICONS = [
   'wordpress beginner', 'wordpress forms', 'envira', 'question circle outline', 'assistive listening devices', 'als',
   'ald', 'asl interpreting', 'deaf', 'american sign language interpreting', 'hard of hearing', 'signing',
   'new pied piper', 'theme isle', 'google plus official', 'fa',
+]
+export const ICONS_AND_ALIASES = [
+  ...ICONS,
+  ...ICON_ALIASES,
 ]
