@@ -1,4 +1,4 @@
-import SidebarPusher from 'src/collections/Sidebar/SidebarPusher'
+import SidebarPusher from 'src/modules/Sidebar/SidebarPusher'
 import * as common from 'test/specs/commonTests'
 
 describe('SidebarPusher', () => {

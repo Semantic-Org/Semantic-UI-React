@@ -1,4 +1,4 @@
-import SidebarPushable from 'src/collections/Sidebar/SidebarPushable'
+import SidebarPushable from 'src/modules/Sidebar/SidebarPushable'
 import * as common from 'test/specs/commonTests'
 
 describe('SidebarPushable', () => {
