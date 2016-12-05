@@ -285,6 +285,7 @@ export default class Dropdown extends Component {
   componentWillMount() {
     if (super.componentWillMount) super.componentWillMount()
     debug('componentWillMount()')
+    this.state.options = this.props.options
     const { open, value } = this.state
 
     this.setValue(value)
@@ -296,6 +297,8 @@ export default class Dropdown extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    this.setState({options: this.props.options});
+    
     super.componentWillReceiveProps(nextProps)
     debug('componentWillReceiveProps()')
     // TODO objectDiff still runs in prod, stop it
@@ -326,7 +329,7 @@ export default class Dropdown extends Component {
       this.setValue(nextProps.value)
     }
 
-    if (!_.isEqual(nextProps.options, this.props.options)) {
+    if (!_.isEqual(nextProps.options, this.state.options)) {
       this.setSelectedIndex(undefined, nextProps.options)
     }
   }
@@ -463,8 +466,8 @@ export default class Dropdown extends Component {
   }
 
   selectHighlightedItem = (e) => {
-    const { open } = this.state
-    const { multiple, name, onAddItem, options } = this.props
+    const { open, options } = this.state
+    const { multiple, name, onAddItem } = this.props
     const value = _.get(this.getSelectedItem(), 'value')
 
     // prevent selecting null if there was no selected item value
@@ -561,7 +564,8 @@ export default class Dropdown extends Component {
   handleItemClick = (e, { value }) => {
     debug('handleItemClick()')
     debug(value)
-    const { multiple, name, onAddItem, options } = this.props
+    const { multiple, name, onAddItem } = this.props
+    const { options } = this.state
     const item = this.getItemByValue(value) || {}
 
     // prevent toggle() in handleClick()
@@ -633,7 +637,7 @@ export default class Dropdown extends Component {
 
   // There are times when we need to calculate the options based on a value
   // that hasn't yet been persisted to state.
-  getMenuOptions = (value = this.state.value, options = this.props.options) => {
+  getMenuOptions = (value = this.state.value, options = this.state.options) => {
     const { multiple, search, allowAdditions, additionPosition, additionLabel } = this.props
     const { searchQuery } = this.state
 
@@ -694,7 +698,7 @@ export default class Dropdown extends Component {
   }
 
   getItemByValue = (value) => {
-    const { options } = this.props
+    const { options } = this.state
 
     return _.find(options, { value })
   }
@@ -720,7 +724,7 @@ export default class Dropdown extends Component {
     this.setSelectedIndex(value)
   }
 
-  setSelectedIndex = (value = this.state.value, optionsProps = this.props.options) => {
+  setSelectedIndex = (value = this.state.value, optionsProps = this.state.options) => {
     const { multiple } = this.props
     const { selectedIndex } = this.state
     const options = this.getMenuOptions(value, optionsProps)
@@ -895,8 +899,8 @@ export default class Dropdown extends Component {
 
   renderHiddenInput = () => {
     debug('renderHiddenInput()')
-    const { value } = this.state
-    const { multiple, name, options, selection } = this.props
+    const { value, options } = this.state
+    const { multiple, name, selection } = this.props
     debug(`name:      ${name}`)
     debug(`selection: ${selection}`)
     debug(`value:     ${value}`)
