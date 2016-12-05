@@ -127,7 +127,7 @@ describe('Accordion', () => {
 
     it('can be inclusive and makes Accordion.Content at activeIndex - 1 "active"', () => {
       const contents = shallow(
-        <Accordion exclusive={false} defaultActiveIndex={0}>
+        <Accordion exclusive={false} defaultActiveIndex={[0]}>
           <Accordion.Title />
           <Accordion.Content />
           <Accordion.Title />
