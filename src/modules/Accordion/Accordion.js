@@ -97,19 +97,7 @@ export default class Accordion extends Component {
     // The default prop should always win on first render.
     // This default check should then be removed.
     if (typeof this.props.defaultActiveIndex === 'undefined') {
-      if (this.props.exclusive) {
-        this.trySetState({ activeIndex: -1 })
-      } else {
-        this.trySetState({ activeIndex: [-1] })
-      }
-    } else if (!this.props.exclusive) {
-      let activeIndex = this.props.defaultActiveIndex
-      if (_.isNumber(this.props.defaultActiveIndex)) {
-        activeIndex = [activeIndex]
-      }
-      this.trySetState({
-        activeIndex,
-      })
+      this.trySetState({ activeIndex: this.props.exclusive ? -1 : [-1] })
     }
   }
 
