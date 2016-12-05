@@ -42,7 +42,13 @@ export default class BreadcrumbSection extends Component {
       PropTypes.string,
     ]),
 
-    /** Render as an `a` tag instead of a `div` and called with event on Section click. */
+    /**
+     * Called on click. When passed, the component will render as an `a`
+     * tag by default instead of a `div`.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props.
+     */
     onClick: PropTypes.func,
   }
 
@@ -55,7 +61,7 @@ export default class BreadcrumbSection extends Component {
   handleClick = (e) => {
     const { onClick } = this.props
 
-    if (onClick) onClick(e)
+    if (onClick) onClick(e, this.props)
   }
 
   render() {

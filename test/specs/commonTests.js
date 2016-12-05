@@ -304,10 +304,18 @@ export const isConformant = (Component, options = {}) => {
           'You may need to hoist your event handlers up to the root element.\n'
         )
 
+        let expectedArgs = [eventShape]
+        let errorMessage = 'was not called with (event)'
+
+        if (_.has(Component.propTypes, listenerName)) {
+          expectedArgs = [eventShape, props]
+          errorMessage = 'was not called with (event, data)'
+        }
+
         // Components should return the event first, then any data
-        handlerSpy.calledWithMatch(eventShape).should.equal(true,
+        handlerSpy.calledWithMatch(...expectedArgs).should.equal(true,
           `<${constructorName} ${listenerName}={${handlerName}} />\n` +
-          `${leftPad} ^ was not called with an "${listenerName}" event\n` +
+          `${leftPad} ^ ${errorMessage}\n` +
           'It was called with args:\n' +
           JSON.stringify(handlerSpy.args, null, 2)
         )

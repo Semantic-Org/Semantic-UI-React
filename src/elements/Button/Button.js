@@ -140,7 +140,7 @@ class Button extends Component {
     /**
      * Called after user's click.
      * @param {SyntheticEvent} event - React's original SyntheticEvent.
-     * @param {object} data - Button props.
+     * @param {object} data - All props.
      */
     onClick: PropTypes.func,
 

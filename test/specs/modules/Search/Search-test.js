@@ -523,7 +523,7 @@ describe('Search Component', () => {
     })
   })
 
-  describe('onChange', () => {
+  describe('onResultSelect', () => {
     let spy
     beforeEach(() => {
       spy = sandbox.spy()
@@ -532,7 +532,7 @@ describe('Search Component', () => {
     it('is called with event and value on item click', () => {
       const randomIndex = _.random(options.length - 1)
       const randomResult = options[randomIndex]
-      wrapperMount(<Search results={options} minCharacters={0} onChange={spy} />)
+      wrapperMount(<Search results={options} minCharacters={0} onResultSelect={spy} />)
 
       // open
       openSearchResults()
@@ -544,11 +544,11 @@ describe('Search Component', () => {
         .simulate('click', nativeEvent)
 
       spy.should.have.been.calledOnce()
-      spy.should.have.been.calledWith(sandbox.match.any, randomResult)
+      spy.should.have.been.calledWithMatch({}, randomResult)
     })
     it('is called with event and value when pressing enter on a selected item', () => {
       const firstResult = options[0]
-      wrapperMount(<Search results={options} minCharacters={0} onChange={spy} selectFirstResult />)
+      wrapperMount(<Search results={options} minCharacters={0} onResultSelect={spy} selectFirstResult />)
 
       // open
       openSearchResults()
@@ -557,27 +557,27 @@ describe('Search Component', () => {
       domEvent.keyDown(document, { key: 'Enter' })
 
       spy.should.have.been.calledOnce()
-      spy.should.have.been.calledWith(sandbox.match.any, firstResult)
+      spy.should.have.been.calledWithMatch({}, firstResult)
     })
     it('is not called when updating the value prop', () => {
       const value = _.sample(options).title
       const next = _.sample(_.without(options, value)).title
 
-      wrapperMount(<Search results={options} minCharacters={0} value={value} onChange={spy} />)
+      wrapperMount(<Search results={options} minCharacters={0} value={value} onResultSelect={spy} />)
         .setProps({ value: next })
 
       spy.should.not.have.been.called()
     })
-    it('does not call onChange on query change', () => {
-      const onChangeSpy = sandbox.spy()
-      wrapperMount(<Search results={options} minCharacters={0} onChange={onChangeSpy} />)
+    it('does not call onResultSelect on query change', () => {
+      const onResultSelectSpy = sandbox.spy()
+      wrapperMount(<Search results={options} minCharacters={0} onResultSelect={onResultSelectSpy} />)
 
       // simulate search
       wrapper
         .find('input.prompt')
         .simulate('change', { target: { value: faker.hacker.noun() } })
 
-      onChangeSpy.should.not.have.been.called()
+      onResultSelectSpy.should.not.have.been.called()
     })
   })
 

@@ -56,10 +56,20 @@ export default class Checkbox extends Component {
     /** The HTML input name. */
     name: PropTypes.string,
 
-    /** Called with (event, { name, value, checked }) when the user attempts to change the value. */
+    /**
+     * Called when the user attempts to change the checked state.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props and proposed checked state.
+     */
     onChange: PropTypes.func,
 
-    /** Called with (event, { name, value, checked }) when the checkbox or label is clicked. */
+    /**
+     * Called when the checkbox or label is clicked.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props and current checked state.
+     */
     onClick: PropTypes.func,
 
     /** Format as a radio element. This means it is an exclusive option.*/
@@ -111,15 +121,12 @@ export default class Checkbox extends Component {
 
   handleClick = (e) => {
     debug('handleClick()')
-    const { name, onChange, onClick, value } = this.props
+    const { onChange, onClick } = this.props
     const { checked } = this.state
-    debug(`  name:       ${name}`)
-    debug(`  value:      ${value}`)
-    debug(`  checked:    ${checked}`)
 
     if (this.canToggle()) {
-      if (onClick) onClick(e, { name, value, checked: !!checked })
-      if (onChange) onChange(e, { name, value, checked: !checked })
+      if (onClick) onClick(e, { ...this.props, checked: !!checked })
+      if (onChange) onChange(e, { ...this.props, checked: !checked })
 
       this.trySetState({ checked: !checked })
     }

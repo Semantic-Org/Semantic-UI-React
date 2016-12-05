@@ -101,10 +101,20 @@ export default class Label extends Component {
       PropTypes.oneOf(_meta.props.pointing),
     ]),
 
-    /** Adds the link style when present, called with (event, props). */
+    /**
+     * Called on click.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props.
+     */
     onClick: PropTypes.func,
 
-    /** Adds an "x" icon, called with (event, props) when "x" is clicked. */
+    /**
+     * Adds an "x" icon, called when "x" is clicked.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props.
+     */
     onRemove: PropTypes.func,
 
     /** Shorthand for Icon to appear as the last child and trigger onRemove. */

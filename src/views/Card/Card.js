@@ -67,11 +67,11 @@ export default class Card extends Component {
     meta: customPropTypes.itemShorthand,
 
     /**
-     * Called after user's click. When passed, the component render as an `a`
+     * Called on click. When passed, the component renders as an `a`
      * tag by default instead of a `div`.
      *
      * @param {SyntheticEvent} event - React's original SyntheticEvent.
-     * @param {object} data - Card props.
+     * @param {object} data - All props.
      */
     onClick: PropTypes.func,
 

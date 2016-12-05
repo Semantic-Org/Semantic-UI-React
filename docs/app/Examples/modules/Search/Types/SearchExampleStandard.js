@@ -17,7 +17,7 @@ export default class SearchExampleStandard extends Component {
 
   resetComponent = () => this.setState({ isLoading: false, results: [], value: '' })
 
-  handleChange = (e, result) => this.setState({ value: result.title })
+  handleResultSelect = (e, result) => this.setState({ value: result.title })
 
   handleSearchChange = (e, value) => {
     this.setState({ isLoading: true, value })
@@ -43,7 +43,7 @@ export default class SearchExampleStandard extends Component {
         <Grid.Column width={8}>
           <Search
             loading={isLoading}
-            onChange={this.handleChange}
+            onResultSelect={this.handleResultSelect}
             onSearchChange={this.handleSearchChange}
             results={results}
             value={value}

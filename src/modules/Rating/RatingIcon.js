@@ -1,8 +1,10 @@
-import _ from 'lodash'
 import cx from 'classnames'
 import React, { Component, PropTypes } from 'react'
 
 import {
+  customPropTypes,
+  getElementType,
+  getUnhandledProps,
   META,
   useKeyOnly,
   keyboardKey,
@@ -16,17 +18,45 @@ export default class RatingIcon extends Component {
     /** Indicates activity of an icon. */
     active: PropTypes.bool,
 
+    /** An element type to render as (string or function). */
+    as: customPropTypes.as,
+
+    /** Additional classes. */
+    className: PropTypes.string,
+
     /** An index of icon inside Rating. */
     index: PropTypes.number,
 
-    /** Called with (event, index) after user clicked on an icon. */
+    /**
+     * Called on click.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props.
+     */
     onClick: PropTypes.func,
 
-    /** Called with (index) after user move cursor to an icon. */
+    /**
+     * Called on keyup.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props.
+     */
+    onKeyUp: PropTypes.func,
+
+    /**
+     * Called on mouseenter.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props.
+     */
     onMouseEnter: PropTypes.func,
 
     /** Indicates selection of an icon. */
     selected: PropTypes.bool,
+  }
+
+  defaultProps = {
+    as: 'i',
   }
 
   static _meta = {
@@ -36,20 +66,22 @@ export default class RatingIcon extends Component {
   }
 
   handleClick = (e) => {
-    const { onClick, index } = this.props
+    const { onClick } = this.props
 
-    if (onClick) onClick(e, index)
+    if (onClick) onClick(e, this.props)
   }
 
   handleKeyUp = (e) => {
-    const { onClick, index } = this.props
+    const { onClick, onKeyUp } = this.props
+
+    if (onKeyUp) onKeyUp(e, this.props)
 
     if (onClick) {
       switch (keyboardKey.getCode(e)) {
         case keyboardKey.Enter:
         case keyboardKey.Spacebar:
           e.preventDefault()
-          onClick(e, index)
+          onClick(e, this.props)
           break
         default:
           return
@@ -57,23 +89,27 @@ export default class RatingIcon extends Component {
     }
   }
 
-  handleMouseEnter = () => {
-    const { onMouseEnter, index } = this.props
+  handleMouseEnter = (e) => {
+    const { onMouseEnter } = this.props
 
-    if (onMouseEnter) onMouseEnter(index)
+    if (onMouseEnter) onMouseEnter(e, this.props)
   }
 
   render() {
-    const { active, selected } = this.props
+    const { active, className, selected } = this.props
     const classes = cx(
       useKeyOnly(active, 'active'),
       useKeyOnly(selected, 'selected'),
-      'icon'
+      'icon',
+      className,
     )
-    const rest = _.omit(this.props, _.keys(RatingIcon.propTypes))
+    const rest = getUnhandledProps(RatingIcon, this.props)
+    const ElementType = getElementType(RatingIcon, this.props)
 
     return (
-      <i role='radio' tabIndex={0}
+      <ElementType
+        role='radio'
+        tabIndex={0}
         {...rest}
         className={classes}
         onKeyUp={this.handleKeyUp}

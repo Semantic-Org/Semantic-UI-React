@@ -68,7 +68,12 @@ export default class DropdownItem extends Component {
       PropTypes.string,
     ]),
 
-    /** Called on click with (event, props). */
+    /**
+     * Called on click.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props.
+     */
     onClick: PropTypes.func,
   }
 

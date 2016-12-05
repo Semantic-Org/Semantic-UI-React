@@ -110,19 +110,44 @@ export default class Search extends Component {
     // Callbacks
     // ------------------------------------
 
-    /** Called with the React Synthetic Event on Search blur. */
+    /**
+     * Called on blur.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props.
+     */
     onBlur: PropTypes.func,
 
-    /** Called with the React Synthetic Event, the selected result. */
-    onChange: PropTypes.func,
+    /**
+     * Called when a result is selected.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props.
+     */
+    onResultSelect: PropTypes.func,
 
-    /** Called with the React Synthetic Event and current value on search input change. */
+    /**
+     * Called on search input change.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {string} value - Current value of search input.
+     */
     onSearchChange: PropTypes.func,
 
-    /** Called with the React Synthetic Event on Search focus. */
+    /**
+     * Called on focus.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props.
+     */
     onFocus: PropTypes.func,
 
-    /** Called with the React Synthetic Event on Dropdown mouse down. */
+    /**
+     * Called on mousedown.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props.
+     */
     onMouseDown: PropTypes.func,
 
     // ------------------------------------
@@ -251,13 +276,11 @@ export default class Search extends Component {
   // Document Event Handlers
   // ----------------------------------------
 
-  // onChange needs to receive a value
-  // can't rely on props.value if we are controlled
-  handleChange = (e, result) => {
-    debug('handleChange()')
+  handleResultSelect = (e, result) => {
+    debug('handleResultSelect()')
     debug(result)
-    const { onChange } = this.props
-    if (onChange) onChange(e, result)
+    const { onResultSelect } = this.props
+    if (onResultSelect) onResultSelect(e, result)
   }
 
   closeOnEscape = (e) => {
@@ -294,9 +317,9 @@ export default class Search extends Component {
     // prevent selecting null if there was no selected item value
     if (!result) return
 
-    // notify the onChange prop that the user is trying to change value
+    // notify the onResultSelect prop that the user is trying to change value
     this.setValue(result.title)
-    this.handleChange(e, result)
+    this.handleResultSelect(e, result)
     this.close()
   }
 
@@ -313,7 +336,7 @@ export default class Search extends Component {
   handleMouseDown = (e) => {
     debug('handleMouseDown()')
     const { onMouseDown } = this.props
-    if (onMouseDown) onMouseDown(e)
+    if (onMouseDown) onMouseDown(e, this.props)
     this.isMouseDown = true
     // Do not access document when server side rendering
     if (!isBrowser) return
@@ -337,7 +360,7 @@ export default class Search extends Component {
     this.tryOpen()
   }
 
-  handleItemClick = (e, id) => {
+  handleItemClick = (e, { id }) => {
     debug('handleItemClick()')
     debug(id)
     const result = this.getSelectedResult(id)
@@ -345,23 +368,23 @@ export default class Search extends Component {
     // prevent closeOnDocumentClick()
     e.nativeEvent.stopImmediatePropagation()
 
-    // notify the onChange prop that the user is trying to change value
+    // notify the onResultSelect prop that the user is trying to change value
     this.setValue(result.title)
-    this.handleChange(e, result)
+    this.handleResultSelect(e, result)
     this.close()
   }
 
   handleFocus = (e) => {
     debug('handleFocus()')
     const { onFocus } = this.props
-    if (onFocus) onFocus(e)
+    if (onFocus) onFocus(e, this.props)
     this.setState({ focus: true })
   }
 
   handleBlur = (e) => {
     debug('handleBlur()')
     const { onBlur } = this.props
-    if (onBlur) onBlur(e)
+    if (onBlur) onBlur(e, this.props)
     this.setState({ focus: false })
   }
 
@@ -530,7 +553,6 @@ export default class Search extends Component {
         key={childKey || result.title}
         active={selectedIndex === offsetIndex}
         onClick={this.handleItemClick}
-        onMouseDown={e => e.preventDefault()} // prevent default to allow item select without closing on blur
         renderer={resultRenderer}
         {...result}
         id={offsetIndex} // Used to lookup the result on item click
@@ -633,7 +655,6 @@ export default class Search extends Component {
         className={classes}
         onBlur={this.handleBlur}
         onFocus={this.handleFocus}
-        onChange={this.handleChange}
         onMouseDown={this.handleMouseDown}
       >
         {this.renderSearchInput()}

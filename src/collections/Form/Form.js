@@ -198,7 +198,12 @@ export default class Form extends Component {
     /** Automatically show a loading indicator */
     loading: PropTypes.bool,
 
-    /** Called with (event, jsonSerializedForm) on submit */
+    /**
+     * Called on submit
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props and the form's serialized values.
+     */
     onSubmit: PropTypes.func,
 
     /** A comment can contain a form to reply to a comment. This may have arbitrary content. */
@@ -239,7 +244,7 @@ export default class Form extends Component {
   handleSubmit = (e) => {
     const { onSubmit, serializer } = this.props
 
-    if (onSubmit) onSubmit(e, serializer(this._form))
+    if (onSubmit) onSubmit(e, { ...this.props, formData: serializer(this._form) })
   }
 
   render() {

@@ -28,7 +28,12 @@ export default class AccordionTitle extends Component {
     /** Additional classes. */
     className: PropTypes.string,
 
-    /** Called with (event, index) on title click. */
+    /**
+     * Called on blur.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props.
+     */
     onClick: PropTypes.func,
   }
 
@@ -41,7 +46,7 @@ export default class AccordionTitle extends Component {
   handleClick = (e) => {
     const { onClick } = this.props
 
-    if (onClick) onClick(e)
+    if (onClick) onClick(e, this.props)
   }
 
   render() {

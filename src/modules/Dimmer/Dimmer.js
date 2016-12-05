@@ -41,10 +41,20 @@ export default class Dimmer extends Component {
     /** A disabled dimmer cannot be activated */
     disabled: PropTypes.bool,
 
-    /** Called with (event, props) after user's click. */
+    /**
+     * Called on click.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props.
+     */
     onClick: PropTypes.func,
 
-    /** Handles click outside Dimmer's content, but inside Dimmer area. */
+    /**
+     * Handles click outside Dimmer's content, but inside Dimmer area.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props.
+     */
     onClickOutside: PropTypes.func,
 
     /** A dimmer can be formatted to have its colors inverted. */

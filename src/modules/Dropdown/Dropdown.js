@@ -147,34 +147,84 @@ export default class Dropdown extends Component {
     /** Message to display when there are no results. */
     noResultsMessage: PropTypes.string,
 
-    /** Called with the name and new value added by the user. Use this to update the options list. */
+    /**
+     * Called when a user adds a new item. Use this to update the options list.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props and the new item's value.
+     */
     onAddItem: PropTypes.func,
 
-    /** Called with the React Synthetic Event on Dropdown blur. */
+    /**
+     * Called on blur.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props.
+     */
     onBlur: PropTypes.func,
 
-    /** Called with the React Synthetic Event and { name, value } on change. */
+    /**
+     * Called when the user attempts to change the value.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props and proposed value.
+     */
     onChange: PropTypes.func,
 
-    /** Called when a close event happens. */
+    /**
+     * Called when a close event happens.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props.
+     */
     onClose: PropTypes.func,
 
-    /** Called when a multi-select label is clicked. */
+    /**
+     * Called when a multi-select label is clicked.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All label props.
+     */
     onLabelClick: PropTypes.func,
 
-    /** Called when an open event happens. */
+    /**
+     * Called when an open event happens.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props.
+     */
     onOpen: PropTypes.func,
 
-    /** Called with the React Synthetic Event and current value on search input change. */
+    /**
+     * Called on search input change.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {string} value - Current value of search input.
+     */
     onSearchChange: PropTypes.func,
 
-    /** Called with the React Synthetic Event on Dropdown click. */
+    /**
+     * Called on click.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props.
+     */
     onClick: PropTypes.func,
 
-    /** Called with the React Synthetic Event on Dropdown focus. */
+    /**
+     * Called on focus.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props.
+     */
     onFocus: PropTypes.func,
 
-    /** Called with the React Synthetic Event on Dropdown mouse down. */
+    /**
+     * Called on mousedown.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props.
+     */
     onMouseDown: PropTypes.func,
 
     /** Controls whether or not the dropdown menu is displayed. */
@@ -412,8 +462,8 @@ export default class Dropdown extends Component {
   handleChange = (e, value) => {
     debug('handleChange()')
     debug(value)
-    const { name, onChange } = this.props
-    if (onChange) onChange(e, { name, value })
+    const { onChange } = this.props
+    if (onChange) onChange(e, { ...this.props, value })
   }
 
   closeOnEscape = (e) => {
@@ -464,7 +514,7 @@ export default class Dropdown extends Component {
 
   selectHighlightedItem = (e) => {
     const { open } = this.state
-    const { multiple, name, onAddItem, options } = this.props
+    const { multiple, onAddItem, options } = this.props
     const value = _.get(this.getSelectedItem(), 'value')
 
     // prevent selecting null if there was no selected item value
@@ -473,7 +523,7 @@ export default class Dropdown extends Component {
 
     // notify the onAddItem prop if this is a new value
     if (onAddItem && !_.some(options, { text: value })) {
-      onAddItem(e, { name, value })
+      onAddItem(e, { ...this.props, value })
     }
 
     // notify the onChange prop that the user is trying to change value
@@ -534,7 +584,7 @@ export default class Dropdown extends Component {
   handleMouseDown = (e) => {
     debug('handleMouseDown()')
     const { onMouseDown } = this.props
-    if (onMouseDown) onMouseDown(e)
+    if (onMouseDown) onMouseDown(e, this.props)
     this.isMouseDown = true
     // Do not access document when server side rendering
     if (!isBrowser) return
@@ -552,17 +602,17 @@ export default class Dropdown extends Component {
   handleClick = (e) => {
     debug('handleClick()', e)
     const { onClick } = this.props
-    if (onClick) onClick(e)
+    if (onClick) onClick(e, this.props)
     // prevent closeOnDocumentClick()
     e.stopPropagation()
     this.toggle(e)
   }
 
-  handleItemClick = (e, { value }) => {
+  handleItemClick = (e, item) => {
     debug('handleItemClick()')
-    debug(value)
-    const { multiple, name, onAddItem, options } = this.props
-    const item = this.getItemByValue(value) || {}
+    debug(item)
+    const { multiple, onAddItem, options } = this.props
+    const { value } = item
 
     // prevent toggle() in handleClick()
     e.stopPropagation()
@@ -575,7 +625,7 @@ export default class Dropdown extends Component {
 
     // notify the onAddItem prop if this is a new value
     if (onAddItem && !_.some(options, { text: value })) {
-      onAddItem(e, { name, value })
+      onAddItem(e, { ...this.props, value })
     }
 
     // notify the onChange prop that the user is trying to change value
@@ -593,7 +643,7 @@ export default class Dropdown extends Component {
   handleFocus = (e) => {
     debug('handleFocus()')
     const { onFocus } = this.props
-    if (onFocus) onFocus(e)
+    if (onFocus) onFocus(e, this.props)
     this.setState({ focus: true })
   }
 
@@ -602,7 +652,7 @@ export default class Dropdown extends Component {
     const { multiple, onBlur, selectOnBlur } = this.props
     // do not "blur" when the mouse is down inside of the Dropdown
     if (this.isMouseDown) return
-    if (onBlur) onBlur(e)
+    if (onBlur) onBlur(e, this.props)
     if (selectOnBlur && !multiple) this.selectHighlightedItem(e)
     this.setState({ focus: false })
   }
