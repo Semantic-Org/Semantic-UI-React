@@ -16,7 +16,7 @@ const AccordionTypesExamples = () => (
     />
     <ComponentExample
       title='Exclusive'
-      description='An accordion can have multiple panels open at the same time'
+      description='An accordion can have multiple panels open at the same time.'
       examplePath='modules/Accordion/Variations/AccordionExampleExclusive'
     />
   </ExampleSection>
