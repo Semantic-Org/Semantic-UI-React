@@ -36,10 +36,6 @@ export { default as MessageHeader } from './collections/Message/MessageHeader'
 export { default as MessageItem } from './collections/Message/MessageItem'
 export { default as MessageList } from './collections/Message/MessageList'
 
-export { default as Sidebar } from './collections/Sidebar'
-export { default as SidebarPushable } from './collections/Sidebar/SidebarPushable'
-export { default as SidebarPusher } from './collections/Sidebar/SidebarPusher'
-
 export { default as Table } from './collections/Table'
 export { default as TableBody } from './collections/Table/TableBody'
 export { default as TableCell } from './collections/Table/TableCell'
@@ -136,6 +132,10 @@ export { default as Search } from './modules/Search'
 export { default as SearchCategory } from './modules/Search/SearchCategory'
 export { default as SearchResult } from './modules/Search/SearchResult'
 export { default as SearchResults } from './modules/Search/SearchResults'
+
+export { default as Sidebar } from './modules/Sidebar'
+export { default as SidebarPushable } from './modules/Sidebar/SidebarPushable'
+export { default as SidebarPusher } from './modules/Sidebar/SidebarPusher'
 
 // Views
 export { default as Card } from './views/Card/Card'

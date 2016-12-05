@@ -8,22 +8,22 @@ const SidebarVariationsExamples = () => (
     <ComponentExample
       title='Left Scale Down'
       description='Sidebar attached to the left of the pushable container scaling down the pusher.'
-      examplePath='collections/Sidebar/ScaleDown/SidebarLeftScaleDown'
+      examplePath='modules/Sidebar/ScaleDown/SidebarLeftScaleDown'
     />
     <ComponentExample
       title='Right Scale Down'
       description='Sidebar attached to the right of the pushable container scaling down the pusher.'
-      examplePath='collections/Sidebar/ScaleDown/SidebarRightScaleDown'
+      examplePath='modules/Sidebar/ScaleDown/SidebarRightScaleDown'
     />
     <ComponentExample
       title='Top Scale Down'
       description='Sidebar attached to the top of the pushable container scaling down the pusher.'
-      examplePath='collections/Sidebar/ScaleDown/SidebarTopScaleDown'
+      examplePath='modules/Sidebar/ScaleDown/SidebarTopScaleDown'
     />
     <ComponentExample
       title='Bottom Scale Down'
       description='Sidebar attached to the bottom of the pushable container scaling down the pusher.'
-      examplePath='collections/Sidebar/ScaleDown/SidebarBottomScaleDown'
+      examplePath='modules/Sidebar/ScaleDown/SidebarBottomScaleDown'
     />
   </ExampleSection>
 )
