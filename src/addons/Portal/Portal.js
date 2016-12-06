@@ -76,7 +76,7 @@ class Portal extends Component {
     mouseLeaveDelay: PropTypes.number,
 
     /** Milliseconds to wait before opening on mouse over */
-    mouseOverDelay: PropTypes.number,
+    mouseEnterDelay: PropTypes.number,
 
     /**
      * Called when a close event happens
@@ -120,7 +120,7 @@ class Portal extends Component {
     openOnTriggerFocus: PropTypes.bool,
 
     /** Controls whether or not the portal should open when mousing over the trigger. */
-    openOnTriggerMouseOver: PropTypes.bool,
+    openOnTriggerMouseEnter: PropTypes.bool,
 
     /** Controls whether the portal should be prepended to the mountNode instead of appended. */
     prepend: PropTypes.bool,
@@ -166,7 +166,7 @@ class Portal extends Component {
     this.unmountPortal()
 
     // Clean up timers
-    clearTimeout(this.mouseOverTimer)
+    clearTimeout(this.mouseEnterTimer)
     clearTimeout(this.mouseLeaveTimer)
   }
 
@@ -211,14 +211,14 @@ class Portal extends Component {
     this.mouseLeaveTimer = this.closeWithTimeout(e, mouseLeaveDelay)
   }
 
-  handlePortalMouseOver = (e) => {
+  handlePortalMouseEnter = (e) => {
     // In order to enable mousing from the trigger to the portal, we need to
     // clear the mouseleave timer that was set when leaving the trigger.
     const { closeOnPortalMouseLeave } = this.props
 
     if (!closeOnPortalMouseLeave) return
 
-    debug('handlePortalMouseOver()')
+    debug('handlePortalMouseEnter()')
     clearTimeout(this.mouseLeaveTimer)
   }
 
@@ -272,7 +272,7 @@ class Portal extends Component {
   }
 
   handleTriggerMouseLeave = (e) => {
-    clearTimeout(this.mouseOverTimer)
+    clearTimeout(this.mouseEnterTimer)
 
     const { trigger, closeOnTriggerMouseLeave, mouseLeaveDelay } = this.props
 
@@ -285,18 +285,18 @@ class Portal extends Component {
     this.mouseLeaveTimer = this.closeWithTimeout(e, mouseLeaveDelay)
   }
 
-  handleTriggerMouseOver = (e) => {
+  handleTriggerMouseEnter = (e) => {
     clearTimeout(this.mouseLeaveTimer)
 
-    const { trigger, mouseOverDelay, openOnTriggerMouseOver } = this.props
+    const { trigger, mouseEnterDelay, openOnTriggerMouseEnter } = this.props
 
     // Call original event handler
-    _.invoke(trigger, 'props.onMouseOver', e)
+    _.invoke(trigger, 'props.onMouseEnter', this.handleTriggerMouseEnter)
 
-    if (!openOnTriggerMouseOver) return
+    if (!openOnTriggerMouseEnter) return
 
-    debug('handleTriggerMouseOver()')
-    this.mouseOverTimer = this.openWithTimeout(e, mouseOverDelay)
+    debug('handleTriggerMouseEnter()')
+    this.mouseEnterTimer = this.openWithTimeout(e, mouseEnterDelay)
   }
 
   // ----------------------------------------
@@ -353,7 +353,7 @@ class Portal extends Component {
     // when re-rendering, first remove listeners before re-adding them to the new node
     if (this.portal) {
       this.portal.removeEventListener('mouseleave', this.handlePortalMouseLeave)
-      this.portal.removeEventListener('mouseover', this.handlePortalMouseOver)
+      this.portal.removeEventListener('mouseenter', this.handlePortalMouseEnter)
     }
 
     ReactDOM.unstable_renderSubtreeIntoContainer(
@@ -365,7 +365,7 @@ class Portal extends Component {
     this.portal = this.node.firstElementChild
 
     this.portal.addEventListener('mouseleave', this.handlePortalMouseLeave)
-    this.portal.addEventListener('mouseover', this.handlePortalMouseOver)
+    this.portal.addEventListener('mouseenter', this.handlePortalMouseEnter)
   }
 
   mountPortal = () => {
@@ -399,7 +399,7 @@ class Portal extends Component {
     this.node.parentNode.removeChild(this.node)
 
     this.portal.removeEventListener('mouseleave', this.handlePortalMouseLeave)
-    this.portal.removeEventListener('mouseover', this.handlePortalMouseOver)
+    this.portal.removeEventListener('mouseenter', this.handlePortalMouseEnter)
 
     this.node = null
     this.portal = null
@@ -421,7 +421,7 @@ class Portal extends Component {
       onClick: this.handleTriggerClick,
       onFocus: this.handleTriggerFocus,
       onMouseLeave: this.handleTriggerMouseLeave,
-      onMouseOver: this.handleTriggerMouseOver,
+      onMouseEnter: this.handleTriggerMouseEnter,
     })
   }
 }

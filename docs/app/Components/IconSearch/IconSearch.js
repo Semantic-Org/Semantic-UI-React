@@ -75,7 +75,7 @@ export default class IconSearch extends Component {
   renderIconColumn = (name) => (
     <Popup
       key={name}
-      mouseOverDelay={500}
+      mouseEnterDelay={500}
       inverted
       hoverable={false}
       size='mini'
