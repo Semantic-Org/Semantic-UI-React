@@ -107,9 +107,7 @@ export function createShorthand(Component, mapValueToProps, val, defaultProps = 
   }
 
   // Generate child key
-  if (generateKey) {
-    props.key = getChildKey(props) // eslint-disable-line react/prop-types
-  }
+  if (generateKey) props.key = getChildKey(props) // eslint-disable-line react/prop-types
 
   // ----------------------------------------
   // Create Element
