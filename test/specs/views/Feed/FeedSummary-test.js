@@ -8,12 +8,12 @@ import FeedUser from 'src/views/Feed/FeedUser'
 describe('FeedSummary', () => {
   common.isConformant(FeedSummary)
   common.rendersChildren(FeedSummary)
-  common.implementsShorthandItemProp(FeedSummary, {
+  common.implementsShorthandProp(FeedSummary, {
     propKey: 'date',
     ShorthandComponent: FeedDate,
     mapValueToProps: val => ({ content: val }),
   })
-  common.implementsShorthandItemProp(FeedSummary, {
+  common.implementsShorthandProp(FeedSummary, {
     propKey: 'user',
     ShorthandComponent: FeedUser,
     mapValueToProps: val => ({ content: val }),

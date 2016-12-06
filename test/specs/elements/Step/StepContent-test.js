@@ -6,12 +6,12 @@ import StepTitle from 'src/elements/Step/StepTitle'
 describe('StepContent', () => {
   common.isConformant(StepContent)
   common.rendersChildren(StepContent)
-  common.implementsShorthandItemProp(StepContent, {
+  common.implementsShorthandProp(StepContent, {
     propKey: 'title',
     ShorthandComponent: StepTitle,
     mapValueToProps: val => ({ title: val }),
   })
-  common.implementsShorthandItemProp(StepContent, {
+  common.implementsShorthandProp(StepContent, {
     propKey: 'description',
     ShorthandComponent: StepDescription,
     mapValueToProps: val => ({ description: val }),

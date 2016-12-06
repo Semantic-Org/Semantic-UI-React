@@ -33,7 +33,7 @@ describe('Label', () => {
   common.implementsCreateMethod(Label)
   common.implementsIconProp(Label)
   common.implementsImageProp(Label)
-  common.implementsShorthandItemProp(Label, {
+  common.implementsShorthandProp(Label, {
     propKey: 'detail',
     ShorthandComponent: LabelDetail,
     mapValueToProps: val => ({ content: val }),

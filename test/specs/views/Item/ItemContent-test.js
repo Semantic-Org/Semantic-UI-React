@@ -11,22 +11,22 @@ import ItemMeta from 'src/views/Item/ItemMeta'
 describe('ItemContent', () => {
   common.isConformant(ItemContent)
   common.implementsVerticalAlignProp(ItemContent)
-  common.implementsShorthandItemProp(ItemContent, {
+  common.implementsShorthandProp(ItemContent, {
     propKey: 'header',
     ShorthandComponent: ItemHeader,
     mapValueToProps: val => ({ content: val }),
   })
-  common.implementsShorthandItemProp(ItemContent, {
+  common.implementsShorthandProp(ItemContent, {
     propKey: 'meta',
     ShorthandComponent: ItemMeta,
     mapValueToProps: val => ({ content: val }),
   })
-  common.implementsShorthandItemProp(ItemContent, {
+  common.implementsShorthandProp(ItemContent, {
     propKey: 'description',
     ShorthandComponent: ItemDescription,
     mapValueToProps: val => ({ content: val }),
   })
-  common.implementsShorthandItemProp(ItemContent, {
+  common.implementsShorthandProp(ItemContent, {
     propKey: 'extra',
     ShorthandComponent: ItemExtra,
     mapValueToProps: val => ({ content: val }),

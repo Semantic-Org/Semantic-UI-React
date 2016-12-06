@@ -10,27 +10,27 @@ import FeedMeta from 'src/views/Feed/FeedMeta'
 describe('FeedContent', () => {
   common.isConformant(FeedContent)
 
-  common.implementsShorthandItemProp(FeedContent, {
+  common.implementsShorthandProp(FeedContent, {
     propKey: 'date',
     ShorthandComponent: FeedDate,
     mapValueToProps: val => ({ content: val }),
   })
-  common.implementsShorthandItemProp(FeedContent, {
+  common.implementsShorthandProp(FeedContent, {
     propKey: 'summary',
     ShorthandComponent: FeedSummary,
     mapValueToProps: val => ({ content: val }),
   })
-  common.implementsShorthandItemProp(FeedContent, {
+  common.implementsShorthandProp(FeedContent, {
     propKey: 'extraImages',
     ShorthandComponent: FeedExtra,
     mapValueToProps: val => ({ images: val }),
   })
-  common.implementsShorthandItemProp(FeedContent, {
+  common.implementsShorthandProp(FeedContent, {
     propKey: 'extraText',
     ShorthandComponent: FeedExtra,
     mapValueToProps: val => ({ text: true, content: val }),
   })
-  common.implementsShorthandItemProp(FeedContent, {
+  common.implementsShorthandProp(FeedContent, {
     propKey: 'meta',
     ShorthandComponent: FeedMeta,
     mapValueToProps: val => ({ content: val }),

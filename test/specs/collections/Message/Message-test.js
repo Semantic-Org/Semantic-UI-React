@@ -13,22 +13,22 @@ describe('Message', () => {
   common.hasUIClassName(Message)
   common.hasSubComponents(Message, [MessageContent, MessageHeader, MessageList])
   common.implementsIconProp(Message)
-  common.implementsShorthandItemProp(Message, {
+  common.implementsShorthandProp(Message, {
     propKey: 'list',
     ShorthandComponent: MessageList,
     mapValueToProps: val => ({ items: val }),
   })
-  common.implementsShorthandItemProp(Message, {
+  common.implementsShorthandProp(Message, {
     propKey: 'header',
     ShorthandComponent: MessageHeader,
     mapValueToProps: val => ({ children: val }),
   })
-  common.implementsShorthandItemProp(Message, {
+  common.implementsShorthandProp(Message, {
     propKey: 'list',
     ShorthandComponent: MessageList,
     mapValueToProps: val => ({ items: val }),
   })
-  common.implementsShorthandItemProp(Message, {
+  common.implementsShorthandProp(Message, {
     propKey: 'content',
     ShorthandComponent: 'p',
     mapValueToProps: val => ({ children: val }),
