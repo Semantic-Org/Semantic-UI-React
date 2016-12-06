@@ -21,7 +21,6 @@ const _meta = {
   name: 'Popup',
   type: META.TYPES.MODULE,
   props: {
-    content: [PropTypes.string, PropTypes.node],
     on: ['hover', 'click', 'focus'],
     positioning: [
       'top left',
@@ -53,7 +52,7 @@ export default class Popup extends Component {
     className: PropTypes.string,
 
     /** Simple text content for the popover */
-    content: PropTypes.oneOfType(_meta.props.content),
+    content: PropTypes.node,
 
     /** A Flowing popup have no maximum width and continue to flow to fit its content */
     flowing: PropTypes.bool,
