@@ -156,12 +156,12 @@ const Introduction = () => (
         Semantic-UI-React is the official React integration for <a href={semanticUIDocsURL}>Semantic UI</a> .
       </p>
       <List>
-        <List.Item icon='check mark' content='jQuery Free' />
-        <List.Item icon='check mark' content='Declarative API' />
-        <List.Item icon='check mark' content='Augmentation' />
-        <List.Item icon='check mark' content='Shorthand Props' />
-        <List.Item icon='check mark' content='Sub Components' />
-        <List.Item icon='check mark' content='Auto Controlled State' />
+        <List.Item icon='mark' content='jQuery Free' />
+        <List.Item icon='mark' content='Declarative API' />
+        <List.Item icon='mark' content='Augmentation' />
+        <List.Item icon='mark' content='Shorthand Props' />
+        <List.Item icon='mark' content='Sub Components' />
+        <List.Item icon='mark' content='Auto Controlled State' />
       </List>
       <p>
         Installation instructions are provided in the <Link to='/usage'>Usage</Link> section.
