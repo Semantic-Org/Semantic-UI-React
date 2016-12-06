@@ -86,8 +86,8 @@ function Message(props) {
       {Icon.create(icon)}
       {(header || content || list) && (
         <MessageContent>
-          {createShorthand(MessageHeader, val => ({ children: val }), header)}
-          {createShorthand(MessageList, val => ({ items: val }), list)}
+          {MessageHeader.create(header)}
+          {MessageList.create(list)}
           {createShorthand('p', val => ({ children: val }), content)}
         </MessageContent>
       )}
@@ -127,7 +127,7 @@ Message.propTypes = {
     customPropTypes.itemShorthand,
   ]),
 
-  /** Array of string items for the MessageList. Mutually exclusive with children. */
+  /** Array shorthand items for the MessageList. Mutually exclusive with children. */
   list: customPropTypes.collectionShorthand,
 
   /**

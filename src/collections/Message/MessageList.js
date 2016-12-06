@@ -3,6 +3,7 @@ import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
 import {
+  createShorthandFactory,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -40,12 +41,14 @@ MessageList.propTypes = {
   /** Additional classes. */
   className: PropTypes.string,
 
-  /** Strings to use as list items. Mutually exclusive with children. */
-  items: PropTypes.arrayOf(PropTypes.string),
+  /** Shorthand Message.Items. */
+  items: customPropTypes.collectionShorthand,
 }
 
 MessageList.defaultProps = {
   as: 'ul',
 }
+
+MessageList.create = createShorthandFactory(MessageList, val => ({ items: val }))
 
 export default MessageList
