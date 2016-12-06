@@ -41,7 +41,7 @@ export const getChildKey = (props) => {
   // 2. Don't stringify entire functions, use the function name || 'f'.
   // 3. Generate a short hash number from the string.
   //     props  : { color: 'red', onClick: handleClick }
-  //     string : 'color:red,onClick:handleClick
+  //     string : 'color:"red",onClick:handleClick'
   //     hash   : 110042245
   const propsString = Object.keys(props).map(name => {
     const val = props[name]
@@ -59,9 +59,7 @@ export const getChildKey = (props) => {
     return [name, ':', valueString].join('')
   }).join(',')
 
-  const hashCode = getHashCode(propsString)
-  console.log(propsString)
-  return hashCode
+  return getHashCode(propsString)
 }
 
 // ============================================================
@@ -110,9 +108,7 @@ export function createShorthand(Component, mapValueToProps, val, defaultProps = 
 
   // Generate child key
   if (generateKey) {
-    console.log('--------------------------------')
     props.key = getChildKey(props) // eslint-disable-line react/prop-types
-    console.log(props.key, props, val)
   }
 
   // ----------------------------------------
