@@ -3,6 +3,7 @@ import cx from 'classnames'
 import React, { Component, PropTypes } from 'react'
 
 import {
+  createShorthandFactory,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -133,3 +134,5 @@ export default class MenuItem extends Component {
     )
   }
 }
+
+MenuItem.create = createShorthandFactory(MenuItem, val => ({ content: val, name: val }), true)

@@ -159,13 +159,11 @@ class Menu extends Component {
     const { items } = this.props
     const { activeIndex } = this.state
 
-    return _.map(items, (item, index) => {
-      return createShorthand(MenuItem, val => ({ content: val, name: val }), item, {
-        active: activeIndex === index,
-        index,
-        onClick: this.handleItemClick,
-      })
-    })
+    return _.map(items, (item, index) => MenuItem.create(item, {
+      active: activeIndex === index,
+      index,
+      onClick: this.handleItemClick,
+    }))
   }
 
   render() {
