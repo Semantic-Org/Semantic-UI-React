@@ -1,4 +1,4 @@
-import _ from 'lodash'
+import _ from 'lodash/fp'
 import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
@@ -17,13 +17,11 @@ function MessageList(props) {
   const rest = getUnhandledProps(MessageList, props)
   const ElementType = getElementType(MessageList, props)
 
-  if (children) {
-    return <ElementType {...rest} className={classes}>{children}</ElementType>
-  }
-
-  const content = _.map(items, item => <MessageItem key={item}>{item}</MessageItem>)
-
-  return <ElementType {...rest} className={classes}>{content}</ElementType>
+  return (
+    <ElementType {...rest} className={classes}>
+      {children || _.map(MessageItem.create, items)}
+    </ElementType>
+  )
 }
 
 MessageList._meta = {
