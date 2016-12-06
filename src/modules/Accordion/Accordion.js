@@ -48,7 +48,7 @@ export default class Accordion extends Component {
     onTitleClick: PropTypes.func,
 
     /**
-     * Create simple accordion panels from an array of { text: <string>, content: <string> } objects.
+     * Create simple accordion panels from an array of { text: <string>, content: <custom> } objects.
      * Object can optionally define an `active` key to open/close the panel.
      * Mutually exclusive with children.
      * TODO: AccordionPanel should be a sub-component
@@ -58,7 +58,7 @@ export default class Accordion extends Component {
       PropTypes.arrayOf(PropTypes.shape({
         active: PropTypes.bool,
         title: PropTypes.string,
-        content: PropTypes.string,
+        content: customPropTypes.contentShorthand,
         onClick: PropTypes.func,
       })),
     ]),
