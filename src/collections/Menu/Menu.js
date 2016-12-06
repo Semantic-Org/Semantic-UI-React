@@ -4,7 +4,6 @@ import React, { PropTypes } from 'react'
 
 import {
   AutoControlledComponent as Component,
-  createShorthand,
   customPropTypes,
   getElementType,
   getUnhandledProps,
