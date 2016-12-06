@@ -48,6 +48,7 @@
     "debug": "^2.3.2",
     "lodash": "^4.17.2"
   },
+  "types": "./config/typings.d.ts",
   "devDependencies": {
     "babel-core": "^6.17.0",
     "babel-eslint": "^7.0.0",
