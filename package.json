@@ -3,6 +3,7 @@
   "version": "0.55.1",
   "description": "The official Semantic-UI-React integration.",
   "main": "dist/commonjs/index.js",
+  "typings": "./typings/index.d.ts",
   "files": [
     "src",
     "dist"
@@ -51,8 +52,9 @@
     "debug": "^2.2.0",
     "lodash": "^4.6.1"
   },
-  "types": "./config/typings.d.ts",
   "devDependencies": {
+    "@types/react": "^0.14.54",
+    "@types/react-dom": "^0.14.19",
     "babel-cli": "^6.5.1",
     "babel-core": "^6.5.2",
     "babel-eslint": "^6.0.4",
