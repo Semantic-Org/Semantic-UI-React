@@ -42,7 +42,7 @@ function ListItem(props) {
   const valueProp = ElementType === 'li' ? { value } : { 'data-value': value }
 
   if (children) {
-    return <ElementType {...rest} className={classes} {...valueProp}>{children}</ElementType>
+    return <ElementType {...rest} role='listitem' className={classes} {...valueProp}>{children}</ElementType>
   }
 
   const iconElement = ListIcon.create(icon)
@@ -51,7 +51,7 @@ function ListItem(props) {
   // See description of `content` prop for explanation about why this is necessary.
   if (!isValidElement(content) && _.isPlainObject(content)) {
     return (
-      <ElementType {...rest} className={classes} {...valueProp}>
+      <ElementType {...rest} role='listitem' className={classes} {...valueProp}>
         {iconElement || imageElement}
         {ListContent.create(content, { header, description })}
       </ElementType>
@@ -63,7 +63,7 @@ function ListItem(props) {
 
   if (iconElement || imageElement) {
     return (
-      <ElementType {...rest} className={classes} {...valueProp}>
+      <ElementType {...rest} role='listitem' className={classes} {...valueProp}>
         {iconElement || imageElement}
         {(content || headerElement || descriptionElement) && (
           <ListContent>
@@ -77,7 +77,7 @@ function ListItem(props) {
   }
 
   return (
-    <ElementType {...rest} className={classes} {...valueProp}>
+    <ElementType {...rest} role='listitem' className={classes} {...valueProp}>
       {headerElement}
       {descriptionElement}
       {content}
