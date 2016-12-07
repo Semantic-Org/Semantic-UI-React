@@ -1,5 +1,23 @@
 # Change Log
 
+## [v0.62.0](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.62.0) (2016-12-07)
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.61.10...v0.62.0)
+
+**Closed issues:**
+
+- Reveal alignment  \(feature request\) [\#994](https://github.com/Semantic-Org/Semantic-UI-React/issues/994)
+- Modal close icon color [\#986](https://github.com/Semantic-Org/Semantic-UI-React/issues/986)
+- Draggable List item? [\#984](https://github.com/Semantic-Org/Semantic-UI-React/issues/984)
+- Form.Select onChange is not working as it should [\#981](https://github.com/Semantic-Org/Semantic-UI-React/issues/981)
+
+**Merged pull requests:**
+
+- feat\(typings\): add first draft typings [\#995](https://github.com/Semantic-Org/Semantic-UI-React/pull/995) ([levithomason](https://github.com/levithomason))
+- fix\(Accordion\): allow contentShorthand for panel prop [\#991](https://github.com/Semantic-Org/Semantic-UI-React/pull/991) ([wassname](https://github.com/wassname))
+- docs\(Popup\): make allowed content types statically analyzable [\#990](https://github.com/Semantic-Org/Semantic-UI-React/pull/990) ([davezuko](https://github.com/davezuko))
+- fix\(Sidebar\) sidebar is a module, not a collection [\#987](https://github.com/Semantic-Org/Semantic-UI-React/pull/987) ([fracmak](https://github.com/fracmak))
+- breaking\(Form|RatingIcon|Search|SearchResult\): Pass data to event handlers [\#951](https://github.com/Semantic-Org/Semantic-UI-React/pull/951) ([jcarbo](https://github.com/jcarbo))
+
 ## [v0.61.10](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.61.10) (2016-12-03)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.61.9...v0.61.10)
 
