@@ -45,7 +45,7 @@ function Icon(props) {
   const ElementType = getElementType(Icon, props)
 
   return (
-    <ElementType {...rest} className={classes} />
+    <ElementType {...rest} aria-hidden='true' className={classes} />
   )
 }
 
