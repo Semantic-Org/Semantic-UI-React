@@ -3,9 +3,11 @@
   "version": "0.61.10",
   "description": "The official Semantic-UI-React integration.",
   "main": "dist/commonjs/index.js",
+  "types": "./typings/index.d.ts",
   "files": [
     "src",
-    "dist"
+    "dist",
+    "typings"
   ],
   "scripts": {
     "docs": "gulp docs",
@@ -49,6 +51,7 @@
     "lodash": "^4.17.2"
   },
   "devDependencies": {
+    "@types/react": "^0.14.54",
     "babel-core": "^6.17.0",
     "babel-eslint": "^7.0.0",
     "babel-loader": "^6.2.8",
