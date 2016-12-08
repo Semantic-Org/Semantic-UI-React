@@ -884,7 +884,7 @@ export default class Dropdown extends Component {
 
     const { disabled, onOpen, search } = this.props
     if (disabled) return
-    if (search) this._search.focus()
+    if (search && this._search) this._search.focus()
     if (onOpen) onOpen(e, this.props)
 
     this.trySetState({ open: true })

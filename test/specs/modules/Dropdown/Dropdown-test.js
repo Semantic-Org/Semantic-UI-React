@@ -867,6 +867,10 @@ describe('Dropdown Component', () => {
       wrapperShallow(<Dropdown options={options} selection defaultOpen />)
       dropdownMenuIsOpen()
     })
+    it('defaultOpen opens the menu on search dropdowns', () => {
+      wrapperShallow(<Dropdown search options={options} selection defaultOpen />)
+      dropdownMenuIsOpen()
+    })
     it('defaultOpen closes the menu when false', () => {
       wrapperShallow(<Dropdown options={options} selection defaultOpen={false} />)
       dropdownMenuIsClosed()
