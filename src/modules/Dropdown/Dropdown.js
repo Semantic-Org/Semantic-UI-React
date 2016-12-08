@@ -18,6 +18,7 @@ import {
 } from '../../lib'
 import Icon from '../../elements/Icon'
 import Label from '../../elements/Label'
+import Menu from '../../collections/Menu'
 
 import DropdownDivider from './DropdownDivider'
 import DropdownItem from './DropdownItem'
@@ -755,6 +756,38 @@ export default class Dropdown extends Component {
     return _.findIndex(options, ['value', value])
   }
 
+  getDropdownAriaOptions = (ElementType) => {
+    const { loading, disabled, search, multiple } = this.props
+    const { open } = this.state
+    const ariaOptions = {
+      role: 'listbox',
+      'aria-busy': loading,
+      'aria-disabled': disabled,
+      'aria-expanded': !!open,
+    }
+    if (search) {
+      ariaOptions.role = 'combobox'
+    } else if (ElementType === Menu.Item) {
+      ariaOptions.role = 'menuitem'
+    } else {
+      ariaOptions['aria-multiselectable'] = multiple
+    }
+    return ariaOptions
+  }
+
+  getDropdownMenuAriaOptions() {
+    const { search, multiple } = this.props
+    const ariaOptions = {}
+
+    if (search) {
+      ariaOptions['aria-multiselectable'] = multiple
+      ariaOptions.role = 'listbox'
+    } else if (getElementType(Dropdown, this.props) === Menu.Item) {
+      ariaOptions.role = 'menu'
+    }
+    return ariaOptions
+  }
+
   // ----------------------------------------
   // Setters
   // ----------------------------------------
@@ -1058,15 +1091,10 @@ export default class Dropdown extends Component {
   }
 
   renderMenu = () => {
-    const { children, header, search, multiple } = this.props
+    const { children, header } = this.props
     const { open } = this.state
     const menuClasses = open ? 'visible' : ''
-    const ariaOptions = {}
-
-    if (search) {
-      ariaOptions['aria-multiselectable'] = multiple
-      ariaOptions.role = 'listbox'
-    }
+    const ariaOptions = this.getDropdownMenuAriaOptions()
 
     // single menu child
     if (children) {
@@ -1147,17 +1175,7 @@ export default class Dropdown extends Component {
     )
     const rest = getUnhandledProps(Dropdown, this.props)
     const ElementType = getElementType(Dropdown, this.props)
-    const ariaOptions = {
-      role: 'listbox',
-      'aria-busy': loading,
-      'aria-disabled': disabled,
-      'aria-expanded': !!open,
-    }
-    if (search) {
-      ariaOptions.role = 'combobox'
-    } else {
-      ariaOptions['aria-multiselectable'] = multiple
-    }
+    const ariaOptions = this.getDropdownAriaOptions(ElementType, this.props)
 
     return (
       <ElementType
