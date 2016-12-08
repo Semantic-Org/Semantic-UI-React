@@ -981,6 +981,8 @@ export default class Dropdown extends Component {
     return (
       <input
         value={searchQuery}
+        type='text'
+        aria-autocomplete='list'
         onChange={this.handleSearchChange}
         className='search'
         name={[name, 'search'].join('-')}
@@ -1056,20 +1058,26 @@ export default class Dropdown extends Component {
   }
 
   renderMenu = () => {
-    const { children, header } = this.props
+    const { children, header, search, multiple } = this.props
     const { open } = this.state
     const menuClasses = open ? 'visible' : ''
+    const ariaOptions = {}
+
+    if (search) {
+      ariaOptions['aria-multiselectable'] = multiple
+      ariaOptions.role = 'listbox'
+    }
 
     // single menu child
     if (children) {
       const menuChild = Children.only(children)
       const className = cx(menuClasses, menuChild.props.className)
 
-      return cloneElement(menuChild, { className })
+      return cloneElement(menuChild, { className, ...ariaOptions })
     }
 
     return (
-      <DropdownMenu className={menuClasses}>
+      <DropdownMenu {...ariaOptions} className={menuClasses}>
         {createShorthand(DropdownHeader, val => ({ content: val }), header)}
         {this.renderOptions()}
       </DropdownMenu>
@@ -1139,10 +1147,22 @@ export default class Dropdown extends Component {
     )
     const rest = getUnhandledProps(Dropdown, this.props)
     const ElementType = getElementType(Dropdown, this.props)
+    const ariaOptions = {
+      role: 'listbox',
+      'aria-busy': loading,
+      'aria-disabled': disabled,
+      'aria-expanded': !!open,
+    }
+    if (search) {
+      ariaOptions.role = 'combobox'
+    } else {
+      ariaOptions['aria-multiselectable'] = multiple
+    }
 
     return (
       <ElementType
         {...rest}
+        {...ariaOptions}
         className={classes}
         onBlur={this.handleBlur}
         onClick={this.handleClick}

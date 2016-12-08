@@ -116,9 +116,19 @@ export default class DropdownItem extends Component {
     const iconName = icon || childrenUtils.someByType(children, 'DropdownMenu') && 'dropdown'
     const rest = getUnhandledProps(DropdownItem, this.props)
     const ElementType = getElementType(DropdownItem, this.props)
+    const ariaOptions = {
+      role: 'option',
+      'aria-disabled': disabled,
+      'aria-checked': active,
+      'aria-selected': selected,
+    }
 
     if (children) {
-      return <ElementType {...rest} className={classes} onClick={this.handleClick}>{children}</ElementType>
+      return (
+        <ElementType {...rest} {...ariaOptions} className={classes} onClick={this.handleClick}>
+          {children}
+        </ElementType>
+      )
     }
 
     const flagElement = Flag.create(flag)
@@ -133,7 +143,7 @@ export default class DropdownItem extends Component {
 
     if (descriptionElement) {
       return (
-        <ElementType {...rest} className={classes} onClick={this.handleClick}>
+        <ElementType {...rest} {...ariaOptions} className={classes} onClick={this.handleClick}>
           {imageElement}
           {iconElement}
           {flagElement}
@@ -145,7 +155,7 @@ export default class DropdownItem extends Component {
     }
 
     return (
-      <ElementType {...rest} className={classes} onClick={this.handleClick}>
+      <ElementType {...rest} {...ariaOptions} className={classes} onClick={this.handleClick}>
         {imageElement}
         {iconElement}
         {flagElement}
