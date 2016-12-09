@@ -93,7 +93,7 @@ describe('ListItem', () => {
       shallow(<ListItem content={<div />} />)
         .should.have.prop('role', 'listitem')
     })
-    it('adds role=listitem with  icon', () => {
+    it('adds role=listitem with icon', () => {
       shallow(<ListItem icon='user' />)
         .should.have.prop('role', 'listitem')
     })
