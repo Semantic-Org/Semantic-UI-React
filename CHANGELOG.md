@@ -1,5 +1,23 @@
 # Change Log
 
+## [v0.62.1](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.62.1) (2016-12-10)
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.62.0...v0.62.1)
+
+**Closed issues:**
+
+- Checkbox does not toggle [\#1014](https://github.com/Semantic-Org/Semantic-UI-React/issues/1014)
+- Add typescript definitions for Intellisense support [\#655](https://github.com/Semantic-Org/Semantic-UI-React/issues/655)
+
+**Merged pull requests:**
+
+- docs\(Usage\): fix import path to minified stylesheet [\#1013](https://github.com/Semantic-Org/Semantic-UI-React/pull/1013) ([aaronang](https://github.com/aaronang))
+- docs\(Step\): remove object destructuring for Step subcomponents [\#1008](https://github.com/Semantic-Org/Semantic-UI-React/pull/1008) ([tomjnsn](https://github.com/tomjnsn))
+- docs\(StepExampleGroups\): remove object destructuring [\#1007](https://github.com/Semantic-Org/Semantic-UI-React/pull/1007) ([tomjnsn](https://github.com/tomjnsn))
+- fix\(Dropdown\): fix crash when setting defaultOpen on a search dropdown [\#1005](https://github.com/Semantic-Org/Semantic-UI-React/pull/1005) ([fracmak](https://github.com/fracmak))
+- Update imports-loader to version 0.7.0 🚀 [\#1004](https://github.com/Semantic-Org/Semantic-UI-React/pull/1004) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+- fix\(Icon\): added aria-hidden attribute to icon [\#1002](https://github.com/Semantic-Org/Semantic-UI-React/pull/1002) ([fracmak](https://github.com/fracmak))
+- fix\(List\): Added aria roles for list/list-item [\#1001](https://github.com/Semantic-Org/Semantic-UI-React/pull/1001) ([fracmak](https://github.com/fracmak))
+
 ## [v0.62.0](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.62.0) (2016-12-07)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.61.10...v0.62.0)
 
