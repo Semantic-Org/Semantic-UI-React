@@ -13,7 +13,7 @@ export default class MenuExampleVerticalDropdown extends Component {
       <Menu secondary vertical>
         <Menu.Item name='account' active={activeItem === 'account'} onClick={this.handleItemClick} />
         <Menu.Item name='settings' active={activeItem === 'settings'} onClick={this.handleItemClick} />
-        <Dropdown as={Menu.Item} text='Display Options'>
+        <Dropdown text='Display Options' pointing='left' className='link item'>
           <Dropdown.Menu>
             <Dropdown.Header>Text Size</Dropdown.Header>
             <Dropdown.Item>Small</Dropdown.Item>
