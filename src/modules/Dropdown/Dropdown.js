@@ -760,16 +760,12 @@ export default class Dropdown extends Component {
     const { loading, disabled, search, multiple } = this.props
     const { open } = this.state
     const ariaOptions = {
-      role: 'listbox',
+      role: search ? 'combobox' : 'listbox',
       'aria-busy': loading,
       'aria-disabled': disabled,
       'aria-expanded': !!open,
     }
-    if (search) {
-      ariaOptions.role = 'combobox'
-    } else if (ElementType === Menu.Item) {
-      ariaOptions.role = 'menuitem'
-    } else {
+    if (ariaOptions.role === 'listbox') {
       ariaOptions['aria-multiselectable'] = multiple
     }
     return ariaOptions
