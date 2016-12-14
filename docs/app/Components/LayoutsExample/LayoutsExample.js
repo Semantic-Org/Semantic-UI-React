@@ -11,8 +11,8 @@ const LayoutsExample = () => (
         <Divider hidden></Divider>
       </Container>
     </Segment>
-    <Container as='div' className="ui main intro container">
-      <Header dividing as='h2' className="ui dividing header">Starter</Header>
+    <Container as='div' className="main intro">
+      <Header dividing as='h2'>Starter</Header>
         <p>Examples to introduce components and their function</p>
       <Card.Group doubling itemsPerRow='3'>
         <Card
@@ -48,6 +48,38 @@ const LayoutsExample = () => (
             header='Bootstrap Migration'
             description=' Examples of replacements for components found in Bootstrap'
             image='http://semantic-ui.com/images/examples/bootstrap.png'
+            >
+        </Card>
+      </Card.Group>
+      <Header as='h2' dividing>Pages</Header>
+      <p>Starter page templates</p>
+      <Card.Group doubling itemsPerRow='3'>
+        <Card
+            href='#link'
+            header='Homepage'
+            description='A simple, responsive homepage design with sidebar.'
+            image='http://semantic-ui.com/images/examples/homepage.png'
+            >
+        </Card>
+        <Card
+            href='#link'
+            header='Sticky'
+            description='Using visibility APIs to fix content after passing position in page.'
+            image='http://semantic-ui.com/images/examples/sticky.png'
+            >
+        </Card>
+        <Card
+            href='#link'
+            header='Fixed Menu'
+            description='Using a fixed menu with page content.'
+            image='http://semantic-ui.com/images/examples/fixed.png'
+            >
+        </Card>
+        <Card
+            href='#link'
+            header='Login Form'
+            description='A full-screen login form.'
+            image='http://semantic-ui.com/images/examples/login.png'
             >
         </Card>
       </Card.Group>
