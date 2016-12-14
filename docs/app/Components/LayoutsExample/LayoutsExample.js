@@ -14,7 +14,7 @@ const LayoutsExample = () => (
     <Container as='div' className="main intro">
       <Header dividing as='h2'>Starter</Header>
         <p>Examples to introduce components and their function</p>
-      <Card.Group  itemsPerRow='3'>
+      <Card.Group stackable itemsPerRow='3'>
         <Card
             href='#link'
             header='Theming'
@@ -53,7 +53,7 @@ const LayoutsExample = () => (
       </Card.Group>
       <Header as='h2' dividing>Pages</Header>
       <p>Starter page templates</p>
-      <Card.Group itemsPerRow='3'>
+      <Card.Group stackable itemsPerRow='3'>
         <Card
             href='#link'
             header='Homepage'
