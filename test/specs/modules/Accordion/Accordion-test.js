@@ -100,6 +100,60 @@ describe('Accordion', () => {
       wrapper.childAt(4).should.have.prop('active', true)
       wrapper.childAt(5).should.have.prop('active', true)
     })
+
+    it('can be an array', () => {
+      const wrapper = shallow(
+        <Accordion exclusive={false}>
+          <Accordion.Title />
+          <Accordion.Content />
+          <Accordion.Title />
+          <Accordion.Content />
+          <Accordion.Title />
+          <Accordion.Content />
+        </Accordion>
+      )
+      wrapper.setProps({ activeIndex: [0, 1] })
+      wrapper.childAt(0).should.have.prop('active', true)
+      wrapper.childAt(1).should.have.prop('active', true)
+      wrapper.childAt(2).should.have.prop('active', true)
+      wrapper.childAt(3).should.have.prop('active', true)
+
+      wrapper.setProps({ activeIndex: [1, 2] })
+      wrapper.childAt(2).should.have.prop('active', true)
+      wrapper.childAt(3).should.have.prop('active', true)
+      wrapper.childAt(4).should.have.prop('active', true)
+      wrapper.childAt(5).should.have.prop('active', true)
+    })
+
+    it('can be inclusive and makes Accordion.Content at activeIndex - 1 "active"', () => {
+      const contents = shallow(
+        <Accordion exclusive={false} defaultActiveIndex={0}>
+          <Accordion.Title />
+          <Accordion.Content />
+          <Accordion.Title />
+          <Accordion.Content />
+        </Accordion>
+      )
+        .find('AccordionTitle')
+
+      contents.at(0).should.have.prop('active', true)
+      contents.at(1).should.have.prop('active', false)
+    })
+
+    it('can be inclusive and allows multiple open', () => {
+      const contents = shallow(
+        <Accordion exclusive={false} defaultActiveIndex={[0, 1]}>
+          <Accordion.Title />
+          <Accordion.Content />
+          <Accordion.Title />
+          <Accordion.Content />
+        </Accordion>
+      )
+        .find('AccordionTitle')
+
+      contents.at(0).should.have.prop('active', true)
+      contents.at(1).should.have.prop('active', true)
+    })
   })
 
   describe('defaultActiveIndex', () => {
