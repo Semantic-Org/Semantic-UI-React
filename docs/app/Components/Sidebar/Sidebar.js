@@ -119,6 +119,7 @@ export default class Sidebar extends Component {
           onClick={this.handleItemClick}
           as={Link}
           to={getRoute(_meta)}
+          activeClassName='active'
         />
       ))
     )(parentComponents)
