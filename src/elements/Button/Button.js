@@ -254,7 +254,7 @@ class Button extends Component {
     })
     if (labelElement) {
       const classes = cx('ui', baseClasses, 'button', className)
-      const containerClasses = cx('ui', labeledClasses, 'button', className)
+      const containerClasses = cx('ui', labeledClasses, 'button', className, useKeyOnly(disabled, 'disabled'))
       debug('render label:', { classes, containerClasses }, this.props)
 
       return (
