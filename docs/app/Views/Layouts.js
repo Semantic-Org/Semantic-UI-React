@@ -2,7 +2,7 @@ import React from 'react'
 import { Header, Segment, Container, Divider, Card } from 'semantic-ui-react'
 
 const LayoutsExample = () => (
-  <div >
+  <Container as='div'>
     <Segment masthead vertical>
       <Container as='div'>
         <Header as='h1'> Layouts
@@ -76,7 +76,7 @@ const LayoutsExample = () => (
             >
         </Card>
         <Card
-            href='#link'
+            href='/layouts/login'
             header='Login Form'
             description='A full-screen login form.'
             image='http://semantic-ui.com/images/examples/login.png'
@@ -84,7 +84,7 @@ const LayoutsExample = () => (
         </Card>
       </Card.Group>
     </Container>
-  </div>
+  </Container>
 )
 
 
