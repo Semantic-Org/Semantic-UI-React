@@ -5,7 +5,7 @@ import Accordion from 'src/modules/Accordion/Accordion'
 import AccordionContent from 'src/modules/Accordion/AccordionContent'
 import AccordionTitle from 'src/modules/Accordion/AccordionTitle'
 import * as common from 'test/specs/commonTests'
-import { sandbox } from 'test/utils'
+import { consoleUtil, sandbox } from 'test/utils'
 
 describe('Accordion', () => {
   common.isConformant(Accordion)
@@ -100,6 +100,108 @@ describe('Accordion', () => {
       wrapper.childAt(4).should.have.prop('active', true)
       wrapper.childAt(5).should.have.prop('active', true)
     })
+
+    it('can be an array', () => {
+      const wrapper = shallow(
+        <Accordion exclusive={false}>
+          <Accordion.Title />
+          <Accordion.Content />
+          <Accordion.Title />
+          <Accordion.Content />
+          <Accordion.Title />
+          <Accordion.Content />
+        </Accordion>
+      )
+      wrapper.setProps({ activeIndex: [0, 1] })
+      wrapper.childAt(0).should.have.prop('active', true)
+      wrapper.childAt(1).should.have.prop('active', true)
+      wrapper.childAt(2).should.have.prop('active', true)
+      wrapper.childAt(3).should.have.prop('active', true)
+
+      wrapper.setProps({ activeIndex: [1, 2] })
+      wrapper.childAt(2).should.have.prop('active', true)
+      wrapper.childAt(3).should.have.prop('active', true)
+      wrapper.childAt(4).should.have.prop('active', true)
+      wrapper.childAt(5).should.have.prop('active', true)
+    })
+
+    it('can be inclusive and makes Accordion.Content at activeIndex - 1 "active"', () => {
+      const contents = shallow(
+        <Accordion exclusive={false} defaultActiveIndex={[0]}>
+          <Accordion.Title />
+          <Accordion.Content />
+          <Accordion.Title />
+          <Accordion.Content />
+        </Accordion>
+      )
+        .find('AccordionTitle')
+
+      contents.at(0).should.have.prop('active', true)
+      contents.at(1).should.have.prop('active', false)
+    })
+
+    it('can be inclusive and allows multiple open', () => {
+      const contents = shallow(
+        <Accordion exclusive={false} defaultActiveIndex={[0, 1]}>
+          <Accordion.Title />
+          <Accordion.Content />
+          <Accordion.Title />
+          <Accordion.Content />
+        </Accordion>
+      )
+        .find('AccordionTitle')
+
+      contents.at(0).should.have.prop('active', true)
+      contents.at(1).should.have.prop('active', true)
+    })
+
+    it('can be inclusive and can open multiple panels by clicking', () => {
+      const wrapper = mount(
+        <Accordion exclusive={false}>
+          <Accordion.Title />
+          <Accordion.Content />
+          <Accordion.Title />
+          <Accordion.Content />
+        </Accordion>
+      )
+      const titles = wrapper.find('AccordionTitle')
+      const contents = wrapper.find('AccordionContent')
+
+      titles
+        .at(0)
+        .simulate('click')
+        .should.have.prop('active', true)
+      titles
+        .at(1)
+        .simulate('click')
+        .should.have.prop('active', true)
+      contents.at(0).should.have.prop('active', true)
+      contents.at(1).should.have.prop('active', true)
+    })
+
+    it('can be inclusive and close multiple panels by clicking', () => {
+      const wrapper = mount(
+        <Accordion exclusive={false} defaultActiveIndex={[0, 1]}>
+          <Accordion.Title />
+          <Accordion.Content />
+          <Accordion.Title />
+          <Accordion.Content />
+        </Accordion>
+      )
+      const titles = wrapper.find('AccordionTitle')
+      const contents = wrapper.find('AccordionContent')
+
+      titles
+        .at(0)
+        .simulate('click')
+        .should.have.prop('active', false)
+      titles
+        .at(1)
+        .simulate('click')
+        .should.have.prop('active', false)
+      contents.at(0).should.have.prop('active', false)
+      contents.at(1).should.have.prop('active', false)
+    })
   })
 
   describe('defaultActiveIndex', () => {
@@ -131,6 +233,7 @@ describe('Accordion', () => {
 
   describe('panels', () => {
     it('does not render children', () => {
+      consoleUtil.disableOnce()
       shallow(
         <Accordion panels={[]}>
           <div id='do-not-find-me' />
