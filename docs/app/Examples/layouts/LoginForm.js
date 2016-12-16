@@ -1,7 +1,7 @@
 import React from 'react'
 import { Container, Segment, Input, Button, Header, Image, Form, Message } from 'semantic-ui-react'
 
-const LoginForm = () =>
+const LoginForm = () => (
     <Container as='div'>
       <Header as='h2' color='teal' textAlign='center'>
         <Image src='http://react.semantic-ui.com/logo.png' />
@@ -22,4 +22,5 @@ const LoginForm = () =>
         </Message>
       </Form>
     </Container>
+)
 export default LoginForm
