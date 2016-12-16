@@ -6,23 +6,6 @@ import React, { cloneElement, isValidElement } from 'react'
 // Factory Utilities
 // ============================================================
 /**
- * Generate a short hash code from a string.  Simplified and faster version of:
- * http://stackoverflow.com/questions/7616461/generate-a-hash-from-string-in-javascript-jquery
- *
- * @param {string} str Any string
- * @returns {number}
- */
-const getHashCode = function hashCode(str) {
-  const { length } = str
-  if (!str || length === 0) return 0
-  let hash = 0
-  for (let i = 0; i < length; i++) {
-    hash = hash * 31 + str.charCodeAt(i) | 0
-  }
-  return hash
-}
-
-/**
  * A pure function that generates a unique child key hash code from an element's props.
  *
  * @param {object} props A ReactElement's props object.
@@ -43,7 +26,7 @@ export const getChildKey = (props) => {
   //     props  : { color: 'red', onClick: handleClick }
   //     string : 'color:"red",onClick:handleClick'
   //     hash   : 110042245
-  const propsString = Object.keys(props).map(name => {
+  return Object.keys(props).map(name => {
     const val = props[name]
     const type = typeof val
 
@@ -58,8 +41,6 @@ export const getChildKey = (props) => {
 
     return [name, ':', valueString].join('')
   }).join(',')
-
-  return getHashCode(propsString)
 }
 
 // ============================================================
