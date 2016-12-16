@@ -187,15 +187,14 @@ if (__TEST__ || argv.localModules) {
   })
 
   // find them on the window
-  webpackConfig.externals = {
+  webpackConfig.externals = Object.assign({}, webpackConfig.externals, {
     faker: 'faker',
     'anchor-js': 'AnchorJS',
     'babel-standalone': 'Babel',
     react: 'React',
     'react-dom': 'ReactDOM',
     'react-dom/server': 'ReactDOMServer',
-    'html-beautify': 'html_beautify',
-  }
+  })
 }
 
 module.exports = webpackConfig
