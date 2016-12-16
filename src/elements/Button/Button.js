@@ -256,7 +256,7 @@ class Button extends Component {
     if (labelElement) {
       let classes = cx('ui', baseClasses, 'button', className)
       if (className && className.indexOf('disabled') !== -1) {
-        classes = cxd(classes, {disabled: false})
+        classes = cxd(classes, { disabled: false })
       }
       const containerClasses = cx('ui', labeledClasses, 'button', className, wrapperClasses)
       debug('render label:', { classes, containerClasses }, this.props)
