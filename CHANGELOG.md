@@ -1,5 +1,38 @@
 # Change Log
 
+## [v0.62.2](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.62.2) (2016-12-16)
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.62.1...v0.62.2)
+
+**Implemented enhancements:**
+
+- feat\(Accordion\): ability to open multiple items [\#499](https://github.com/Semantic-Org/Semantic-UI-React/issues/499)
+- Config: support i18n [\#378](https://github.com/Semantic-Org/Semantic-UI-React/issues/378)
+
+**Fixed bugs:**
+
+- docs\(Example\): Fix warnings [\#599](https://github.com/Semantic-Org/Semantic-UI-React/issues/599)
+
+**Closed issues:**
+
+- fix\(Table\): Keys warning when using renderBodyRow [\#1030](https://github.com/Semantic-Org/Semantic-UI-React/issues/1030)
+- Importing single module bundles entire library [\#1025](https://github.com/Semantic-Org/Semantic-UI-React/issues/1025)
+- RFC: Use PureComponent [\#1020](https://github.com/Semantic-Org/Semantic-UI-React/issues/1020)
+- how to render Header when defined as a const like your docs [\#1017](https://github.com/Semantic-Org/Semantic-UI-React/issues/1017)
+- Form Within Modal - formData submitted returns undefined [\#1016](https://github.com/Semantic-Org/Semantic-UI-React/issues/1016)
+- Search Module can't be made a11y compliant [\#885](https://github.com/Semantic-Org/Semantic-UI-React/issues/885)
+- RFC: Open questions around "Collection Shorthand" [\#604](https://github.com/Semantic-Org/Semantic-UI-React/issues/604)
+- Remove or update use of refs [\#405](https://github.com/Semantic-Org/Semantic-UI-React/issues/405)
+
+**Merged pull requests:**
+
+- fix\(Header\): Remove duplicate class [\#1040](https://github.com/Semantic-Org/Semantic-UI-React/pull/1040) ([jcarbo](https://github.com/jcarbo))
+- feat\(docs\): Active className on Sidebar item [\#1031](https://github.com/Semantic-Org/Semantic-UI-React/pull/1031) ([pradel](https://github.com/pradel))
+- debug@2.4.1 untested ⚠️ [\#1028](https://github.com/Semantic-Org/Semantic-UI-React/pull/1028) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+- test\(Accordion\): add inclusive tests for opening and closing panels [\#1023](https://github.com/Semantic-Org/Semantic-UI-React/pull/1023) ([koenvg](https://github.com/koenvg))
+- Update node-sass to version 4.0.0 🚀 [\#1015](https://github.com/Semantic-Org/Semantic-UI-React/pull/1015) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+- feat\(Accordion\): ability to open multiple items [\#988](https://github.com/Semantic-Org/Semantic-UI-React/pull/988) ([levithomason](https://github.com/levithomason))
+- test\(Examples\): assert no console errors [\#645](https://github.com/Semantic-Org/Semantic-UI-React/pull/645) ([levithomason](https://github.com/levithomason))
+
 ## [v0.62.1](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.62.1) (2016-12-10)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.62.0...v0.62.1)
 
