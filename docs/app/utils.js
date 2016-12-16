@@ -18,7 +18,7 @@ export const parentComponents = _.flow(
 /**
  * Get the Webpack Context for all doc site examples.
  */
-export const exampleContext = require.context('docs/app/Examples/', true, /\.js$/)
+export const exampleContext = require.context('docs/app/Examples/', true, /(\w+Example\w+|index)\.js$/)
 
 export const repoURL = 'https://github.com/Semantic-Org/Semantic-UI-React'
 export const semanticUIDocsURL = 'http://semantic-ui.com/'

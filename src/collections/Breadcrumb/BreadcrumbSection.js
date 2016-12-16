@@ -93,4 +93,4 @@ export default class BreadcrumbSection extends Component {
   }
 }
 
-BreadcrumbSection.create = createShorthandFactory(BreadcrumbSection, content => ({ content, link: true }))
+BreadcrumbSection.create = createShorthandFactory(BreadcrumbSection, content => ({ content, link: true }), true)

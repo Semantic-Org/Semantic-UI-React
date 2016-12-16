@@ -133,6 +133,6 @@ TableCell.propTypes = {
   width: PropTypes.oneOf(TableCell._meta.props.width),
 }
 
-TableCell.create = createShorthandFactory(TableCell, content => ({ content }))
+TableCell.create = createShorthandFactory(TableCell, content => ({ content }), true)
 
 export default TableCell

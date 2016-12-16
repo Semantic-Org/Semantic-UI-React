@@ -32,7 +32,8 @@ const CardExampleContentBlock = () => (
 
         <Feed.Event>
           <Feed.Label image='http://semantic-ui.com/images/avatar/small/elliot.jpg' />
-          <Feed.Content date='4 days ago'>
+          <Feed.Content>
+            <Feed.Date content='4 days ago' />
             <Feed.Summary>
               You added <a>Elliot Baker</a> to your <a>musicians</a> group.
             </Feed.Summary>

@@ -12,7 +12,7 @@ const ItemExampleExtraContent = () => (
         <Item.Header as='a'>Cute Dog</Item.Header>
         <Item.Description>{paragraph}</Item.Description>
         <Item.Extra>
-          <Icon name='green check' /> 121 Votes
+          <Icon color='green' name='check' /> 121 Votes
         </Item.Extra>
       </Item.Content>
     </Item>

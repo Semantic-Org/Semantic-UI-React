@@ -22,6 +22,10 @@ describe('getUnhandledProps', () => {
     shallow(<TestComponent />)
       .should.not.have.prop('data-remove-me', 'thanks')
   })
+  it('removes the proprietary childKey prop', () => {
+    shallow(<TestComponent childKey={1} />)
+      .should.not.have.prop('childKey')
+  })
   it('removes props defined in defaultProps', () => {
     TestComponent.defaultProps = { 'data-remove-me': 'thanks' }
     shallow(<TestComponent />)

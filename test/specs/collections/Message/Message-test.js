@@ -21,7 +21,7 @@ describe('Message', () => {
   common.implementsShorthandProp(Message, {
     propKey: 'header',
     ShorthandComponent: MessageHeader,
-    mapValueToProps: val => ({ children: val }),
+    mapValueToProps: val => ({ content: val }),
   })
   common.implementsShorthandProp(Message, {
     propKey: 'list',

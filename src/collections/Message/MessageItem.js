@@ -2,6 +2,7 @@ import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
 import {
+  createShorthandFactory,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -9,12 +10,12 @@ import {
 } from '../../lib'
 
 function MessageItem(props) {
-  const { children, className } = props
+  const { children, className, content } = props
   const classes = cx('content', className)
   const rest = getUnhandledProps(MessageItem, props)
   const ElementType = getElementType(MessageItem, props)
 
-  return <ElementType {...rest} className={classes}>{children}</ElementType>
+  return <ElementType {...rest} className={classes}>{content || children}</ElementType>
 }
 
 MessageItem._meta = {
@@ -30,6 +31,9 @@ MessageItem.propTypes = {
   /** Primary content. */
   children: PropTypes.node,
 
+  /** Shorthand for primary content. */
+  content: customPropTypes.itemShorthand,
+
   /** Additional classes. */
   className: PropTypes.string,
 }
@@ -37,5 +41,7 @@ MessageItem.propTypes = {
 MessageItem.defaultProps = {
   as: 'li',
 }
+
+MessageItem.create = createShorthandFactory(MessageItem, content => ({ content }), true)
 
 export default MessageItem

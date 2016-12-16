@@ -1,4 +1,3 @@
-import _ from 'lodash'
 import React from 'react'
 
 import Menu from 'src/collections/Menu/Menu'
@@ -51,13 +50,17 @@ describe('Menu', () => {
     })
 
     it('is set when clicking an item', () => {
-      // random item, skip the first as its selected by default
-      const randomIndex = _.random(items.length - 1)
+      const wrapper = mount(<Menu items={items} />)
 
-      mount(<Menu items={items} />)
+      wrapper
         .find('MenuItem')
-        .at(randomIndex)
+        .at(1)
         .simulate('click')
+
+      // must re-query for the menu items or we get a cached copy
+      wrapper
+        .find('MenuItem')
+        .at(1)
         .should.have.prop('active', true)
     })
   })

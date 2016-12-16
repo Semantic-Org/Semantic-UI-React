@@ -2,6 +2,7 @@ import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
 import {
+  createShorthandFactory,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -9,12 +10,12 @@ import {
 } from '../../lib'
 
 function MessageHeader(props) {
-  const { children, className } = props
+  const { children, className, content } = props
   const classes = cx('header', className)
   const rest = getUnhandledProps(MessageHeader, props)
   const ElementType = getElementType(MessageHeader, props)
 
-  return <ElementType {...rest} className={classes}>{children}</ElementType>
+  return <ElementType {...rest} className={classes}>{children || content}</ElementType>
 }
 
 MessageHeader._meta = {
@@ -30,8 +31,13 @@ MessageHeader.propTypes = {
   /** Primary content. */
   children: PropTypes.node,
 
+  /** Shorthand for primary content. */
+  content: customPropTypes.itemShorthand,
+
   /** Additional classes. */
   className: PropTypes.string,
 }
+
+MessageHeader.create = createShorthandFactory(MessageHeader, val => ({ content: val }))
 
 export default MessageHeader
