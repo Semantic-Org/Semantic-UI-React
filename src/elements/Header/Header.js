@@ -53,7 +53,7 @@ function Header(props) {
 
   const iconElement = Icon.create(icon)
   const imageElement = Image.create(image)
-  const subheaderElement = HeaderSubheader.create(subheader, { className: 'sub header' })
+  const subheaderElement = HeaderSubheader.create(subheader)
 
   if (iconElement || imageElement) {
     return (
