@@ -29,7 +29,6 @@ describe('Header', () => {
   common.implementsShorthandProp(Header, {
     propKey: 'subheader',
     ShorthandComponent: HeaderSubheader,
-    shorthandDefaultProps: { className: 'sub header' },
     mapValueToProps: val => ({ content: val }),
   })
 
