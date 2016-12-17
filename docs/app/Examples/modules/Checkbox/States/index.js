@@ -6,8 +6,13 @@ import { Message } from 'semantic-ui-react'
 const CheckboxStatesExamples = () => (
   <ExampleSection title='States'>
     <ComponentExample
+      title='Read Only'
+      description='A checkbox can be read-only and unable to change states.'
+      examplePath='modules/Checkbox/States/CheckboxExampleReadOnly'
+    />
+    <ComponentExample
       title='Checked'
-      description='A checkbox can come pre-checked.'
+      description='A checkbox can be checked.'
       examplePath='modules/Checkbox/States/CheckboxExampleChecked'
     >
       <Message>
@@ -19,14 +24,14 @@ const CheckboxStatesExamples = () => (
       </Message>
     </ComponentExample>
     <ComponentExample
-      title='Disabled'
-      description='Checkboxes can be disabled.'
-      examplePath='modules/Checkbox/States/CheckboxExampleDisabled'
+      title='Indeterminate'
+      description='A checkbox can be indeterminate.'
+      examplePath='modules/Checkbox/States/CheckboxExampleIndeterminate'
     />
     <ComponentExample
-      title='Read Only'
-      description='Make the checkbox unable to be edited by the user.'
-      examplePath='modules/Checkbox/States/CheckboxExampleReadOnly'
+      title='Disabled'
+      description='A checkbox can be read-only and unable to change states.'
+      examplePath='modules/Checkbox/States/CheckboxExampleDisabled'
     />
     <ComponentExample
       title='Remote Control'
