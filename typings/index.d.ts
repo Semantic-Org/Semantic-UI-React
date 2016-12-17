@@ -1146,12 +1146,13 @@ export const TableRow: React.ComponentClass<TableRowProps>;
 
 // Accordion
 // ----------------------------------
-interface AccordianProps {
-  activeIndex?: number;
+interface AccordionProps {
+  activeIndex?: number | number[];
   as?: any;
   children?: React.ReactNode;
   className?: string;
-  defaultActiveIndex?: number;
+  defaultActiveIndex?: number | number[];
+  exclusive?: boolean;
   fluid?: boolean;
   inverted?: string;
   onTitleClick?: React.MouseEventHandler<HTMLDivElement>;
@@ -1159,30 +1160,30 @@ interface AccordianProps {
   styled?: boolean;
 }
 
-interface AccordianClass extends React.ComponentClass<AccordianProps> {
-  Content: typeof AccordianContent;
-  Title: typeof AccordianTitle;
+interface AccordionClass extends React.ComponentClass<AccordionProps> {
+  Content: typeof AccordionContent;
+  Title: typeof AccordionTitle;
 }
 
-export const Accordian: AccordianClass;
+export const Accordion: AccordionClass;
 
-interface AccordianContentProps {
+interface AccordionContentProps {
   active?: boolean;
   as?: any;
   children?: React.ReactNode;
   className?: string;
 }
 
-export const AccordianContent: React.ComponentClass<AccordianContentProps>;
+export const AccordionContent: React.ComponentClass<AccordionContentProps>;
 
-interface AccordianTitleProps extends ReactMouseEvents<HTMLElement> {
+interface AccordionTitleProps extends ReactMouseEvents<HTMLElement> {
   active?: boolean;
   as?: any;
   children?: React.ReactNode;
   className?: string;
 }
 
-export const AccordianTitle: React.ComponentClass<AccordianTitleProps>;
+export const AccordionTitle: React.ComponentClass<AccordionTitleProps>;
 
 // Checkbox
 // ----------------------------------
