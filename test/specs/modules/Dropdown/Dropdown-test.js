@@ -187,6 +187,13 @@ describe('Dropdown Component', () => {
         .should.have.state('focus', false)
     })
 
+    it('sets searchQuery state to empty', () => {
+      wrapperShallow(<Dropdown />)
+        .setState({ searchQuery: 'foo' })
+        .simulate('blur')
+        .should.have.state('searchQuery', '')
+    })
+
     it('does not call onBlur when the mouse is down', () => {
       const spy = sandbox.spy()
 

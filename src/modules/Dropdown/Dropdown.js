@@ -654,7 +654,7 @@ export default class Dropdown extends Component {
     if (this.isMouseDown) return
     if (onBlur) onBlur(e, this.props)
     if (selectOnBlur && !multiple) this.selectHighlightedItem(e)
-    this.setState({ focus: false })
+    this.setState({ focus: false, searchQuery: '' })
   }
 
   handleSearchChange = (e) => {
