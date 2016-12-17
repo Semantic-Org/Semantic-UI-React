@@ -1,5 +1,21 @@
 # Change Log
 
+## [v0.62.3](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.62.3) (2016-12-17)
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.62.2...v0.62.3)
+
+**Implemented enhancements:**
+
+- Dropdown not resetting value when blurred [\#1019](https://github.com/Semantic-Org/Semantic-UI-React/issues/1019)
+
+**Merged pull requests:**
+
+- Feat\(typings\): Added typings for Radio, Confirm, Select and Textarea [\#1047](https://github.com/Semantic-Org/Semantic-UI-React/pull/1047) ([koenvg](https://github.com/koenvg))
+- fix\(dropdown\): clear value when dropdown is blurred [\#1046](https://github.com/Semantic-Org/Semantic-UI-React/pull/1046) ([vageeshb](https://github.com/vageeshb))
+- babel-core@6.21.0 untested ⚠️ [\#1045](https://github.com/Semantic-Org/Semantic-UI-React/pull/1045) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+- fix\(typings\): fix typings spelling on `Accordion` [\#1044](https://github.com/Semantic-Org/Semantic-UI-React/pull/1044) ([ericl85](https://github.com/ericl85))
+- feat\(Checkbox\): Indeterminate state [\#1043](https://github.com/Semantic-Org/Semantic-UI-React/pull/1043) ([jcarbo](https://github.com/jcarbo))
+- fix\(docs\): Fix check icon [\#1042](https://github.com/Semantic-Org/Semantic-UI-React/pull/1042) ([jcarbo](https://github.com/jcarbo))
+
 ## [v0.62.2](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.62.2) (2016-12-16)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.62.1...v0.62.2)
 
