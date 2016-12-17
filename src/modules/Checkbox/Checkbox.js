@@ -119,19 +119,19 @@ export default class Checkbox extends Component {
 
   state = {}
 
+  componentDidMount() {
+    this.setIndeterminate()
+  }
+
+  componentDidUpdate() {
+    this.setIndeterminate()
+  }
+
   canToggle = () => {
     const { disabled, radio, readOnly } = this.props
     const { checked } = this.state
 
     return !disabled && !readOnly && !(radio && checked)
-  }
-
-  componentDidMount = (e) => {
-    this.setIndeterminate()
-  }
-
-  componentDidUpdate = (e) => {
-    this.setIndeterminate()
   }
 
   handleRef = (c) => {
