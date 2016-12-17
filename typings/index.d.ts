@@ -1147,11 +1147,12 @@ export const TableRow: React.ComponentClass<TableRowProps>;
 // Accordion
 // ----------------------------------
 interface AccordionProps {
-  activeIndex?: number;
+  activeIndex?: number | number[];
   as?: any;
   children?: React.ReactNode;
   className?: string;
-  defaultActiveIndex?: number;
+  defaultActiveIndex?: number | number[];
+  exclusive?: boolean;
   fluid?: boolean;
   inverted?: string;
   onTitleClick?: React.MouseEventHandler<HTMLDivElement>;
@@ -1981,7 +1982,45 @@ export const StatisticValue: React.ComponentClass<StatisticValueProps>;
 // NOTE(zuko): This category breaks alphabetical ordering because it relies
 // on components defined in other categories
 // ======================================================
-// TODO(zuko): Confirm
-// TODO(zuko): Radio
-// TODO(zuko): Select
-// TODO(zuko): Textarea
+
+// Confirm
+// ----------------------------------
+interface ConfirmProps {
+  cancelButton?: string;
+  confirmButton?: string;
+  content?: string;
+  header?: string;
+  onCancel?: () => void;
+  onConfirm?: () => void;
+  open?: boolean;
+}
+
+export const Confirm: React.ComponentClass<ConfirmProps>
+
+// Radio
+// ----------------------------------
+export const Radio: React.ComponentClass<CheckboxProps>;
+
+// Select
+// ----------------------------------
+interface SelectProps extends DropdownProps {
+  selection: true;
+}
+
+interface SelectClass extends React.ComponentClass<SelectProps> {
+  Divider: typeof DropdownDivider;
+  Header: typeof DropdownHeader;
+  Item: typeof DropdownItem;
+  Menu: typeof DropdownMenu;
+}
+
+export const Select: SelectClass;
+
+// Textarea
+// ----------------------------------
+export interface TextareaProps extends FormTextAreaProps{
+  as?: any;
+  onChange?: (event: React.FormEvent<HTMLTextAreaElement>, { value: string }) => void;
+}
+
+export const Textarea: React.ComponentClass<TextareaProps>;
