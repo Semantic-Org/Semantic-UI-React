@@ -8,12 +8,12 @@ const SidebarVariationsExamples = () => (
     <ComponentExample
       title='Left Slide Along'
       description='Sidebar attached to the left of the pushable container sliding along the pusher.'
-      examplePath='modules/Sidebar/SlideAlong/SidebarLeftSlideAlong'
+      examplePath='modules/Sidebar/SlideAlong/SidebarExampleLeftSlideAlong'
     />
     <ComponentExample
       title='Right Slide Along'
       description='Sidebar attached to the right of the pushable container sliding along the pusher.'
-      examplePath='modules/Sidebar/SlideAlong/SidebarRightSlideAlong'
+      examplePath='modules/Sidebar/SlideAlong/SidebarExampleRightSlideAlong'
     />
   </ExampleSection>
 )

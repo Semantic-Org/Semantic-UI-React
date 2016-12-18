@@ -8,12 +8,12 @@ const SidebarVariationsExamples = () => (
     <ComponentExample
       title='Left Uncover'
       description='Sidebar attached to the left of the pushable container uncovering by the pusher.'
-      examplePath='modules/Sidebar/Uncover/SidebarLeftUncover'
+      examplePath='modules/Sidebar/Uncover/SidebarExampleLeftUncover'
     />
     <ComponentExample
       title='Right Uncover'
       description='Sidebar attached to the right of the pushable container uncovered by the pusher.'
-      examplePath='modules/Sidebar/Uncover/SidebarRightUncover'
+      examplePath='modules/Sidebar/Uncover/SidebarExampleRightUncover'
     />
   </ExampleSection>
 )

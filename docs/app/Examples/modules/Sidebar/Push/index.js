@@ -8,22 +8,22 @@ const SidebarVariationsExamples = () => (
     <ComponentExample
       title='Left Push'
       description='Sidebar attached to the left of the pushable container pushing the pusher.'
-      examplePath='modules/Sidebar/Push/SidebarLeftPush'
+      examplePath='modules/Sidebar/Push/SidebarExampleLeftPush'
     />
     <ComponentExample
       title='Right Push'
       description='Sidebar attached to the right of the pushable container pushing the pusher.'
-      examplePath='modules/Sidebar/Push/SidebarRightPush'
+      examplePath='modules/Sidebar/Push/SidebarExampleRightPush'
     />
     <ComponentExample
       title='Top Push'
       description='Sidebar attached to the top of the pushable container pushing the pusher.'
-      examplePath='modules/Sidebar/Push/SidebarTopPush'
+      examplePath='modules/Sidebar/Push/SidebarExampleTopPush'
     />
     <ComponentExample
       title='Bottom Push'
       description='Sidebar attached to the bottom of the pushable container pushing the pusher.'
-      examplePath='modules/Sidebar/Push/SidebarBottomPush'
+      examplePath='modules/Sidebar/Push/SidebarExampleBottomPush'
     />
   </ExampleSection>
 )
