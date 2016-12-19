@@ -1,5 +1,21 @@
 # Change Log
 
+## [v0.62.4](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.62.4) (2016-12-19)
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.62.3...v0.62.4)
+
+**Closed issues:**
+
+- Popup documentation page is broken [\#1055](https://github.com/Semantic-Org/Semantic-UI-React/issues/1055)
+- Modal doesn't support animations [\#1054](https://github.com/Semantic-Org/Semantic-UI-React/issues/1054)
+- Dropdown selection sets value on blur [\#1052](https://github.com/Semantic-Org/Semantic-UI-React/issues/1052)
+- react.semantic-ui.com doesn't work ! [\#1051](https://github.com/Semantic-Org/Semantic-UI-React/issues/1051)
+- Sidebar docs's broken [\#1048](https://github.com/Semantic-Org/Semantic-UI-React/issues/1048)
+
+**Merged pull requests:**
+
+- fix\(docs\): more permissive exampleContext regex [\#1056](https://github.com/Semantic-Org/Semantic-UI-React/pull/1056) ([levithomason](https://github.com/levithomason))
+- feat\(typings\): Added sidebar, Update to Search and Textarea [\#1053](https://github.com/Semantic-Org/Semantic-UI-React/pull/1053) ([koenvg](https://github.com/koenvg))
+
 ## [v0.62.3](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.62.3) (2016-12-17)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.62.2...v0.62.3)
 
