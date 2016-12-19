@@ -1244,7 +1244,7 @@ interface DropdownProps extends ReactMouseEvents<HTMLElement>, ReactFocusEvents<
   placeholder?: string;
   pointing?: boolean | DropdownPropPointing;
   scrolling?: boolean;
-  search?: boolean // TODO -add search function;
+  search?: boolean|((filteredOptions:Array<DropdownItemProps>, searchQuery:string) => Array<DropdownItemProps>);
   selectOnBlur?: boolean;
   selection?: any;
   simple?: boolean;
