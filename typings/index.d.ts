@@ -1474,6 +1474,7 @@ interface SearchProps extends ReactMouseEvents<HTMLInputElement>, ReactFocusEven
   minCharacters?: number;
   noResultsDescription?: string;
   noResultsMessage?: string;
+  onResultSelect: (e: React.FormEvent<HTMLInputElement>, result: Array<any>|Object ) => void;
   onSearchChange?: React.FormEventHandler<HTMLInputElement>;
   open?: boolean;
   placeholder?: string;
@@ -1527,6 +1528,41 @@ interface SearchCategoryProps {
 }
 
 export const SearchCategory: React.ComponentClass<SearchCategoryProps>;
+
+// Sidebar
+// ----------------------------------
+
+interface SidebarPushableProps { 
+  as?: any;
+  className?: string;
+}
+
+export const SidebarPushable: React.ComponentClass<SidebarPushableProps>;
+
+interface SidebarPusherProps {
+  as?: any;
+  className?: string;
+  dimmed?: boolean;
+}
+
+export const SidebarPusher: React.ComponentClass<SidebarPusherProps>;
+
+interface SidebarProps {
+  animation?: 'overlay' | 'push' | 'scale down' | 'uncover' | 'slide out' | 'slide along';
+  as?: any;
+  className?: string;
+  defaultVisible?: boolean;
+  direction?: 'top' | 'right' | 'bottom' | 'left';
+  visible?: boolean;
+  width?: 'very thin' | 'thin' | 'wide' | 'very wide';
+}
+
+interface SidebarClass extends React.ComponentClass<SidebarProps>{
+  Pushable: typeof SidebarPushable;
+  Pusher: typeof SidebarPusher;
+}
+
+export const Sidebar: SidebarClass;
 
 // ======================================================
 // Views
@@ -2020,7 +2056,11 @@ export const Select: SelectClass;
 // ----------------------------------
 export interface TextareaProps extends FormTextAreaProps{
   as?: any;
-  onChange?: (event: React.FormEvent<HTMLTextAreaElement>, { value: string }) => void;
+  onChange?: (event: React.FormEvent<HTMLTextAreaElement>, value: TextareaOnChangeValue  ) => void;
+}
+
+interface TextareaOnChangeValue extends TextareaProps{
+  value: any;
 }
 
 export const Textarea: React.ComponentClass<TextareaProps>;
