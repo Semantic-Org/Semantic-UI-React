@@ -1474,6 +1474,7 @@ interface SearchProps extends ReactMouseEvents<HTMLInputElement>, ReactFocusEven
   minCharacters?: number;
   noResultsDescription?: string;
   noResultsMessage?: string;
+  onResultSelect: (e: React.FormEvent<HTMLInputElement>, result: Array<any>|Object ) => void;
   onSearchChange?: React.FormEventHandler<HTMLInputElement>;
   open?: boolean;
   placeholder?: string;
