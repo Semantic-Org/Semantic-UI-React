@@ -22,10 +22,6 @@ const StatisticExampleGroups = () => (
     </Statistic.Group>
 
     <Statistic.Group items={items} />
-
-    {/* <Segment inverted> */}
-      {/* <Statistic.Group items={items} inverted /> */}
-    {/* </Segment> */}
   </div>
 )
 
