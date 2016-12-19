@@ -9,7 +9,7 @@ const items = [
 
 const StatisticExampleGroupColored = () => (
   <div>
-    <Statistic.Group items={items} color='blue'/>
+    <Statistic.Group items={items} color='blue' />
   </div>
 )
 

@@ -2,17 +2,17 @@ import React from 'react'
 import { Segment, Statistic } from 'semantic-ui-react'
 
 const items = [
-  { label: 'Faves', value: '22'},
+  { label: 'Faves', value: '22' },
   { label: 'Views', value: '31,200' },
   { label: 'Members', value: '22' },
   { label: 'Downloads', value: '3,200' },
-  { label: 'Likes', value: '10,000' }
+  { label: 'Likes', value: '10,000' },
 ]
 
 const StatisticExampleGroupInverted = () => (
   <div>
     <Segment inverted>
-      <Statistic.Group items={items} inverted color='green'/>
+      <Statistic.Group items={items} inverted color='green' />
     </Segment>
   </div>
 )
