@@ -1528,6 +1528,41 @@ interface SearchCategoryProps {
 
 export const SearchCategory: React.ComponentClass<SearchCategoryProps>;
 
+// Sidebar
+// ----------------------------------
+
+interface SidebarPushableProps { 
+  as?: any;
+  className?: string;
+}
+
+export const SidebarPushable: React.ComponentClass<SidebarPushableProps>;
+
+interface SidebarPusherProps {
+  as?: any;
+  className?: string;
+  dimmed?: boolean;
+}
+
+export const SidebarPusher: React.ComponentClass<SidebarPusherProps>;
+
+interface SidebarProps {
+  animation?: 'overlay' | 'push' | 'scale down' | 'uncover' | 'slide out' | 'slide along';
+  as?: any;
+  className?: string;
+  defaultVisible?: boolean;
+  direction?: 'top' | 'right' | 'bottom' | 'left';
+  visible?: boolean;
+  width?: 'very thin' | 'thin' | 'wide' | 'very wide';
+}
+
+interface SidebarClass extends React.ComponentClass<SidebarProps>{
+  Pushable: typeof SidebarPushable;
+  Pusher: typeof SidebarPusher;
+}
+
+export const Sidebar: SidebarClass;
+
 // ======================================================
 // Views
 // ======================================================
