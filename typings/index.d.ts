@@ -2055,7 +2055,11 @@ export const Select: SelectClass;
 // ----------------------------------
 export interface TextareaProps extends FormTextAreaProps{
   as?: any;
-  onChange?: (event: React.FormEvent<HTMLTextAreaElement>, { value: string }) => void;
+  onChange?: (event: React.FormEvent<HTMLTextAreaElement>, value: TextareaOnChangeValue  ) => void;
+}
+
+interface TextareaOnChangeValue extends TextareaProps{
+  value: any;
 }
 
 export const Textarea: React.ComponentClass<TextareaProps>;
