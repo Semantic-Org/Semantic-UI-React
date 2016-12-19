@@ -1,6 +1,6 @@
 <p align="center">
   <a href="http://semantic-org.github.io/Semantic-UI-React">
-    <img height="128" width="128" src="https://cloud.githubusercontent.com/assets/5067638/17415622/7ac62496-5a3f-11e6-864e-217ad1d9e021.png">
+    <img height="128" width="128" src="https://github.com/Semantic-Org/Semantic-UI-React/raw/master/docs/app/logo.png">
   </a>
   <p align="center">
     The official <a href="http://semantic-ui.com">Semantic UI</a>
