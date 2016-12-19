@@ -23,13 +23,9 @@ const StatisticExampleGroups = () => (
 
     <Statistic.Group items={items} />
 
-    <Statistic.Group items={items} color='blue' />
-
-    <Statistic.Group items={items} size='huge' />
-
-    <Segment inverted>
-      <Statistic.Group items={items} inverted />
-    </Segment>
+    {/* <Segment inverted> */}
+      {/* <Statistic.Group items={items} inverted /> */}
+    {/* </Segment> */}
   </div>
 )
 
