@@ -1,5 +1,5 @@
 import React from 'react'
-import { Segment, Statistic } from 'semantic-ui-react'
+import { Statistic } from 'semantic-ui-react'
 
 const items = [
   { label: 'Faves', value: '22' },
