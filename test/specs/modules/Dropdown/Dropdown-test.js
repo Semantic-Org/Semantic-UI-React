@@ -4,7 +4,6 @@ import React from 'react'
 
 import * as common from 'test/specs/commonTests'
 import { consoleUtil, domEvent, sandbox } from 'test/utils'
-import Menu from 'src/collections/Menu'
 import Dropdown from 'src/modules/Dropdown/Dropdown'
 import DropdownDivider from 'src/modules/Dropdown/DropdownDivider'
 import DropdownHeader from 'src/modules/Dropdown/DropdownHeader'
@@ -163,17 +162,13 @@ describe('Dropdown Component', () => {
       wrapperMount(<Dropdown />)
       wrapper.find('div').at(0).should.have.prop('role', 'listbox')
     })
+    it('should label selection dropdown with aria-hidden=true', () => {
+      wrapperMount(<Dropdown selection />)
+      wrapper.find('select').at(0).should.have.prop('aria-hidden', 'true')
+    })
     it('should label search dropdown as a combobox', () => {
       wrapperMount(<Dropdown search />)
       wrapper.find('div').at(0).should.have.prop('role', 'combobox')
-    })
-    it.skip('should label menu dropdown as a menuitem', () => {
-      wrapperMount(<Dropdown as={Menu.Item} />)
-      wrapper.find('MenuItem').at(0).should.have.prop('role', 'menuitem')
-    })
-    it('should label menu dropdownMenu as a menu', () => {
-      wrapperMount(<Dropdown as={Menu.Item} />)
-      wrapper.find('DropdownMenu').at(0).should.have.prop('role', 'menu')
     })
     it('should label search dropdownMenu as a listbox', () => {
       wrapperMount(<Dropdown search />)

@@ -18,7 +18,6 @@ import {
 } from '../../lib'
 import Icon from '../../elements/Icon'
 import Label from '../../elements/Label'
-import Menu from '../../collections/Menu'
 
 import DropdownDivider from './DropdownDivider'
 import DropdownItem from './DropdownItem'
@@ -778,8 +777,6 @@ export default class Dropdown extends Component {
     if (search) {
       ariaOptions['aria-multiselectable'] = multiple
       ariaOptions.role = 'listbox'
-    } else if (getElementType(Dropdown, this.props) === Menu.Item) {
-      ariaOptions.role = 'menu'
     }
     return ariaOptions
   }
@@ -983,7 +980,7 @@ export default class Dropdown extends Component {
 
     // a dropdown without an active item will have an empty string value
     return (
-      <select type='hidden' name={name} value={value} multiple={multiple}>
+      <select type='hidden' aria-hidden='true' name={name} value={value} multiple={multiple}>
         <option key='empty' value=''></option>
         {_.map(options, option => (
           <option key={option.value} value={option.value}>{option.text}</option>
