@@ -1,5 +1,18 @@
 # Change Log
 
+## [v0.63.0](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.63.0) (2016-12-20)
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.62.4...v0.63.0)
+
+**Fixed bugs:**
+
+- Portal `mouseOver` should be `mouseEnter` [\#978](https://github.com/Semantic-Org/Semantic-UI-React/issues/978)
+
+**Merged pull requests:**
+
+- docs\(Statistic\): add description [\#1060](https://github.com/Semantic-Org/Semantic-UI-React/pull/1060) ([levithomason](https://github.com/levithomason))
+- docs\(StatisticGroup\): add color, size, and inverted examples [\#1058](https://github.com/Semantic-Org/Semantic-UI-React/pull/1058) ([tarang9211](https://github.com/tarang9211))
+- breaking\(Portal|Popup\): replace mouseOver event listener with mouseEnter [\#989](https://github.com/Semantic-Org/Semantic-UI-React/pull/989) ([davezuko](https://github.com/davezuko))
+
 ## [v0.62.4](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.62.4) (2016-12-19)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.62.3...v0.62.4)
 
