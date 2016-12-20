@@ -257,11 +257,11 @@ export default class Popup extends Component {
       portalProps.openOnTriggerFocus = true
       portalProps.closeOnTriggerBlur = true
     } else if (on === 'hover') {
-      portalProps.openOnTriggerMouseOver = true
+      portalProps.openOnTriggerMouseEnter = true
       portalProps.closeOnTriggerMouseLeave = true
       // Taken from SUI: https://git.io/vPmCm
       portalProps.mouseLeaveDelay = 70
-      portalProps.mouseOverDelay = 50
+      portalProps.mouseEnterDelay = 50
     }
 
     return portalProps
