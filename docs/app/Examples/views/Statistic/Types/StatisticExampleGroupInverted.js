@@ -10,11 +10,9 @@ const items = [
 ]
 
 const StatisticExampleGroupInverted = () => (
-  <div>
-    <Segment inverted>
-      <Statistic.Group items={items} inverted color='green' />
-    </Segment>
-  </div>
+  <Segment inverted>
+    <Statistic.Group items={items} inverted color='green' />
+  </Segment>
 )
 
 export default StatisticExampleGroupInverted
