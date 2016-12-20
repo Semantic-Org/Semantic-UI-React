@@ -17,6 +17,25 @@ const Types = () => (
       description='A group of statistics.'
       examplePath='views/Statistic/Types/StatisticExampleGroups'
     />
+
+    <ComponentExample
+      title='Statistic Group Colored'
+      description='A group of colored statistics.'
+      examplePath='views/Statistic/Types/StatisticExampleGroupColored'
+    />
+
+    <ComponentExample
+      title='Statistic Group Size'
+      description='A group of statistics can vary in size.'
+      examplePath='views/Statistic/Types/StatisticExampleGroupSize'
+    />
+
+    <ComponentExample
+      title='Statistic Group Inverted'
+      description='A group of statistics can be formatted to fit on a dark background.'
+      examplePath='views/Statistic/Types/StatisticExampleGroupInverted'
+    />
+
   </ExampleSection>
 )
 
