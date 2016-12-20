@@ -15,6 +15,9 @@ import StatisticGroup from './StatisticGroup'
 import StatisticLabel from './StatisticLabel'
 import StatisticValue from './StatisticValue'
 
+/**
+ * A statistic emphasizes the current value of an attribute
+ */
 function Statistic(props) {
   const { children, className, color, floated, horizontal, inverted, label, size, text, value } = props
   const classes = cx(
