@@ -91,11 +91,16 @@ export default class AutoControlledComponent extends Component {
       // It is not reasonable to decipher the difference between props from the parent and defaultProps.
       // Allowing defaultProps results in trySetState always deferring to the defaultProp value.
       // Auto controlled props also listed in defaultProps can never be updated.
+      //
+      // To set defaults for an AutoControlled prop, you can set the initial state in the
+      // constructor or by using an ES7 property initializer:
+      // https://babeljs.io/blog/2015/06/07/react-on-es6-plus#property-initializers
       const illegalDefaults = _.intersection(autoControlledProps, _.keys(defaultProps))
       if (!_.isEmpty(illegalDefaults)) {
         console.error([
-          'Do not set defaultProps for autoControlledProps,',
-          'use trySetState() in constructor() or componentWillMount() instead.',
+          'Do not set defaultProps for autoControlledProps. You can set defaults by',
+          'setting state in the constructor or using an ES7 property initializer',
+          '(https://babeljs.io/blog/2015/06/07/react-on-es6-plus#property-initializers)',
           `See ${name} props: "${illegalDefaults}".`,
         ].join(' '))
       }
@@ -114,12 +119,25 @@ export default class AutoControlledComponent extends Component {
       }
     }
 
+    // To set defaults for autoControlledProps, use initial state. This can
+    // done by:
+    // - setting state in the constructor
+    // - using ES7 property initializers, see:
+    //   https://babeljs.io/blog/2015/06/07/react-on-es6-plus#property-initializers
+    const defaultAutoControlledProps = this.state && _.pick(this.state, autoControlledProps)
+
     // Auto controlled props are copied to state.
     // Set initial state by copying auto controlled props to state.
     // Also look for the default prop for any auto controlled props (foo => defaultFoo)
     // so we can set initial values from defaults.
-    this.state = autoControlledProps.reduce((acc, prop) => {
+    const stateFromProps = autoControlledProps.reduce((acc, prop) => {
       acc[prop] = getAutoControlledStateValue(this.props, prop, true)
+
+      // If the value couldn't be determined from the props, use the
+      // defaultAutoControlledProps which are derived from the initial state.
+      if (acc[prop] === undefined && defaultAutoControlledProps) {
+        acc[prop] = defaultAutoControlledProps[prop]
+      }
 
       if (process.env.NODE_ENV !== 'production') {
         const defaultPropName = getDefaultPropName(prop)
@@ -134,6 +152,10 @@ export default class AutoControlledComponent extends Component {
 
       return acc
     }, {})
+
+    this.state = this.state
+      ? { ...this.state, ...stateFromProps }
+      : stateFromProps
   }
 
   componentWillReceiveProps(nextProps) {
