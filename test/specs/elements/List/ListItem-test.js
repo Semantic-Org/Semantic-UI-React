@@ -79,4 +79,23 @@ describe('ListItem', () => {
       })
     })
   })
+
+  describe('role', () => {
+    it('adds role=listitem', () => {
+      shallow(<ListItem />)
+        .should.have.prop('role', 'listitem')
+    })
+    it('adds role=listitem with children', () => {
+      shallow(<ListItem><div>Test</div></ListItem>)
+        .should.have.prop('role', 'listitem')
+    })
+    it('adds role=listitem with content', () => {
+      shallow(<ListItem content={<div />} />)
+        .should.have.prop('role', 'listitem')
+    })
+    it('adds role=listitem with icon', () => {
+      shallow(<ListItem icon='user' />)
+        .should.have.prop('role', 'listitem')
+    })
+  })
 })

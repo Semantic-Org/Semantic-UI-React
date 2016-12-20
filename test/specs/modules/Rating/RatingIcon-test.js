@@ -1,45 +1,58 @@
 import React from 'react'
 
 import * as common from 'test/specs/commonTests'
-import { sandbox } from 'test/utils'
 import RatingIcon from 'src/modules/Rating/RatingIcon'
+import { keyboardKey } from 'src/lib'
+import { sandbox } from 'test/utils'
 
 describe('RatingIcon', () => {
+  common.isConformant(RatingIcon)
+
   common.propKeyOnlyToClassName(RatingIcon, 'active')
   common.propKeyOnlyToClassName(RatingIcon, 'selected')
 
-  describe('onClick', () => {
+  describe('onKeyUp', () => {
     it('omitted when not defined', () => {
-      const click = () => shallow(<RatingIcon />).simulate('click')
-      expect(click).to.not.throw()
+      const event = { keyCode: keyboardKey.Enter, preventDefault: sandbox.spy() }
+      const keypress = () => shallow(<RatingIcon />).simulate('keyup', event)
+
+      expect(keypress).to.not.throw()
+      event.preventDefault.should.not.have.been.called()
     })
 
-    it('is called with (e, index) when clicked', () => {
+    it('calls onClick with (e, index) when space key is pressed', () => {
       const spy = sandbox.spy()
-      const event = { target: null }
+      const event = { keyCode: keyboardKey.Spacebar, preventDefault: sandbox.spy() }
 
-      shallow(<RatingIcon index={0} onClick={spy} />)
-        .simulate('click', event)
+      mount(<RatingIcon index={0} onClick={spy} />)
+        .simulate('keyup', event)
 
       spy.should.have.been.calledOnce()
-      spy.should.have.been.calledWithMatch(event, 0)
-    })
-  })
-
-  describe('onMouseEnter', () => {
-    it('omitted when not defined', () => {
-      const click = () => shallow(<RatingIcon />).simulate('mouseEnter')
-      expect(click).to.not.throw()
+      spy.should.have.been.calledWithMatch(event, { index: 0 })
+      event.preventDefault.should.have.been.calledOnce()
     })
 
-    it('is called with (index) when clicked', () => {
+    it('calls onClick with (e, index) when enter key is pressed', () => {
       const spy = sandbox.spy()
+      const event = { keyCode: keyboardKey.Enter, preventDefault: sandbox.spy() }
 
-      shallow(<RatingIcon index={0} onMouseEnter={spy} />)
-        .simulate('mouseEnter')
+      mount(<RatingIcon index={0} onClick={spy} />)
+        .simulate('keyup', event)
 
       spy.should.have.been.calledOnce()
-      spy.should.have.been.calledWithMatch(0)
+      spy.should.have.been.calledWithMatch(event, { index: 0 })
+      event.preventDefault.should.have.been.calledOnce()
+    })
+
+    it('does not call onClick when non space/enter key is pressed', () => {
+      const spy = sandbox.spy()
+      const event = { keyCode: keyboardKey.A, preventDefault: sandbox.spy() }
+
+      const keyup = () => shallow(<RatingIcon onClick={spy} />).simulate('keyup', event)
+
+      expect(keyup).to.not.throw()
+      spy.should.not.have.been.called()
+      event.preventDefault.should.not.have.been.called()
     })
   })
 })

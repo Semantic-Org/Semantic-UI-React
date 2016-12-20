@@ -324,10 +324,18 @@ export const isConformant = (Component, options = {}) => {
           'You may need to hoist your event handlers up to the root element.\n'
         )
 
+        let expectedArgs = [eventShape]
+        let errorMessage = 'was not called with (event)'
+
+        if (_.has(Component.propTypes, listenerName)) {
+          expectedArgs = [eventShape, props]
+          errorMessage = 'was not called with (event, data)'
+        }
+
         // Components should return the event first, then any data
-        handlerSpy.calledWithMatch(eventShape).should.equal(true,
+        handlerSpy.calledWithMatch(...expectedArgs).should.equal(true,
           `<${constructorName} ${listenerName}={${handlerName}} />\n` +
-          `${leftPad} ^ was not called with an "${listenerName}" event\n` +
+          `${leftPad} ^ ${errorMessage}\n` +
           'It was called with args:\n' +
           JSON.stringify(handlerSpy.args, null, 2)
         )
@@ -770,6 +778,28 @@ export const implementsHTMLInputProp = (Component, options = {}) => {
     propKey: 'input',
     ShorthandComponent: 'input',
     mapValueToProps: val => ({ type: val }),
+    requiredProps: {},
+    shorthandDefaultProps: {},
+    ...options,
+  })
+}
+
+/**
+ * Assert that a Component correctly implements an HTML label shorthand prop.
+ *
+ * @param {function} Component The component to test.
+ * @param {object} [options={}]
+ * @param {string} [options.propKey='icon'] The name of the shorthand prop.
+ * @param {string|function} [options.ShorthandComponent] The component that should be rendered from the shorthand value.
+ * @param {function} [options.mapValueToProps] A function that maps a primitive value to the Component props
+ * @param {Object} [options.requiredProps={}] Props required to render the component.
+ * @param {Object|function} [options.shorthandDefaultProps={}] Props required to render the shorthand component.
+ */
+export const implementsHTMLLabelProp = (Component, options = {}) => {
+  implementsShorthandProp(Component, {
+    propKey: 'label',
+    ShorthandComponent: 'label',
+    mapValueToProps: val => ({ children: val }),
     requiredProps: {},
     shorthandDefaultProps: {},
     ...options,

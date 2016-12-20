@@ -103,9 +103,9 @@ const HeaderAugmentationHTML = `<h3 class="ui header">
 const MenuItemLinkAugmentationJSX = `import { Link } from 'react-router'
 
 <Menu>
-  <MenuItem as={Link} to='/home'>
+  <Menu.Item as={Link} to='/home'>
     Home
-  </MenuItem>
+  </Menu.Item>
 </Menu>`
 const MenuItemLinkAugmentationHTML = `<div class="ui menu">
   <a class="item">
@@ -156,12 +156,12 @@ const Introduction = () => (
         Semantic-UI-React is the official React integration for <a href={semanticUIDocsURL}>Semantic UI</a> .
       </p>
       <List>
-        <List.Item icon='check mark' content='jQuery Free' />
-        <List.Item icon='check mark' content='Declarative API' />
-        <List.Item icon='check mark' content='Augmentation' />
-        <List.Item icon='check mark' content='Shorthand Props' />
-        <List.Item icon='check mark' content='Sub Components' />
-        <List.Item icon='check mark' content='Auto Controlled State' />
+        <List.Item icon='check' content='jQuery Free' />
+        <List.Item icon='check' content='Declarative API' />
+        <List.Item icon='check' content='Augmentation' />
+        <List.Item icon='check' content='Shorthand Props' />
+        <List.Item icon='check' content='Sub Components' />
+        <List.Item icon='check' content='Auto Controlled State' />
       </List>
       <p>
         Installation instructions are provided in the <Link to='/usage'>Usage</Link> section.

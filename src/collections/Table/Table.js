@@ -154,7 +154,7 @@ Table.propTypes = {
 
   /**
    * A table can use fixed a special faster form of table rendering that does not resize table cells based on content
-   **/
+   */
   fixed: PropTypes.bool,
 
   /** Shorthand for a TableRow to be placed within Table.Footer. */

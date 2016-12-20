@@ -1,14 +1,16 @@
 import _ from 'lodash'
-import React, { PropTypes, Component } from 'react'
+import React, { PropTypes } from 'react'
 import cx from 'classnames'
 
 import ModalHeader from './ModalHeader'
 import ModalContent from './ModalContent'
 import ModalActions from './ModalActions'
 import ModalDescription from './ModalDescription'
+import Icon from '../../elements/Icon'
 import Portal from '../../addons/Portal'
 
 import {
+  AutoControlledComponent as Component,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -45,8 +47,18 @@ class Modal extends Component {
     /** Additional classes. */
     className: PropTypes.string,
 
+    /** Icon */
+    closeIcon: PropTypes.oneOfType([
+      PropTypes.node,
+      PropTypes.object,
+      PropTypes.bool,
+    ]),
+
     /** A modal can reduce its complexity */
     basic: PropTypes.bool,
+
+    /** Initial value of open. */
+    defaultOpen: PropTypes.bool,
 
     /** A modal can appear in a dimmer */
     dimmer: PropTypes.oneOfType([
@@ -57,17 +69,40 @@ class Modal extends Component {
     /** The node where the modal should mount.. */
     mountNode: PropTypes.any,
 
-    /** Called when a close event happens */
+    /**
+     * Called when a close event happens
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props.
+     */
     onClose: PropTypes.func,
 
-    /** Called when the portal is mounted on the DOM */
+    /**
+     * Called when the portal is mounted on the DOM
+     *
+     * @param {null}
+     * @param {object} data - All props.
+     */
     onMount: PropTypes.func,
 
-    /** Called when an open event happens */
+    /**
+     * Called when an open event happens
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props.
+     */
     onOpen: PropTypes.func,
 
-    /** Called when the portal is unmounted from the DOM */
+    /**
+     * Called when the portal is unmounted from the DOM
+     *
+     * @param {null}
+     * @param {object} data - All props.
+     */
     onUnmount: PropTypes.func,
+
+    /** Controls whether or not the Modal is displayed. */
+    open: PropTypes.bool,
 
     /** A modal can vary in size */
     size: PropTypes.oneOf(_meta.props.size),
@@ -84,6 +119,10 @@ class Modal extends Component {
     mountNode: isBrowser ? document.body : null,
   }
 
+  static autoControlledProps = [
+    'open',
+  ]
+
   static _meta = _meta
   static Header = ModalHeader
   static Content = ModalContent
@@ -98,13 +137,21 @@ class Modal extends Component {
   }
 
   handleClose = (e) => {
+    debug('close()')
+
     const { onClose } = this.props
     if (onClose) onClose(e, this.props)
+
+    this.trySetState({ open: false })
   }
 
   handleOpen = (e) => {
+    debug('open()')
+
     const { onOpen } = this.props
     if (onOpen) onOpen(e, this.props)
+
+    this.trySetState({ open: true })
   }
 
   handlePortalMount = (e) => {
@@ -146,30 +193,35 @@ class Modal extends Component {
     if (this._modalNode) {
       const { mountNode } = this.props
       const { height } = this._modalNode.getBoundingClientRect()
+
+      const marginTop = -Math.round(height / 2)
       const scrolling = height >= window.innerHeight
 
-      const newState = {
-        marginTop: -Math.round(height / 2),
-        scrolling,
+      const newState = {}
+
+      if (this.state.marginTop !== marginTop) {
+        newState.marginTop = marginTop
       }
 
-      // add/remove scrolling class on body
-      if (!this.state.scrolling && scrolling) {
-        mountNode.classList.add('scrolling')
-      } else if (this.state.scrolling && !scrolling) {
-        mountNode.classList.remove('scrolling')
+      if (this.state.scrolling !== scrolling) {
+        newState.scrolling = scrolling
+
+        if (scrolling) {
+          mountNode.classList.add('scrolling')
+        } else {
+          mountNode.classList.remove('scrolling')
+        }
       }
 
-      if (!_.isEqual(newState, this.state)) {
-        this.setState(newState)
-      }
+      if (Object.keys(newState).length > 0) this.setState(newState)
     }
 
     this.animationRequestId = requestAnimationFrame(this.setPosition)
   }
 
   render() {
-    const { basic, children, className, dimmer, mountNode, size } = this.props
+    const { open } = this.state
+    const { basic, children, className, closeIcon, dimmer, mountNode, size } = this.props
 
     // Short circuit when server side rendering
     if (!isBrowser) return null
@@ -190,8 +242,11 @@ class Modal extends Component {
     const portalProps = _.pick(unhandled, portalPropNames)
     const ElementType = getElementType(Modal, this.props)
 
+    const closeIconName = closeIcon === true ? 'close' : closeIcon
+
     const modalJSX = (
       <ElementType {...rest} className={classes} style={{ marginTop }} ref={c => (this._modalNode = c)}>
+        {Icon.create(closeIconName, { onClick: this.handleClose })}
         {children}
       </ElementType>
     )
@@ -225,6 +280,7 @@ class Modal extends Component {
         onMount={this.handlePortalMount}
         onOpen={this.handleOpen}
         onUnmount={this.handlePortalUnmount}
+        open={open}
       >
         {modalJSX}
       </Portal>

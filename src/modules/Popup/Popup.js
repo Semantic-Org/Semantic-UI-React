@@ -5,6 +5,7 @@ import {
   getElementType,
   getUnhandledProps,
   isBrowser,
+  makeDebugger,
   META,
   SUI,
   useKeyOnly,
@@ -14,11 +15,12 @@ import Portal from '../../addons/Portal'
 import PopupContent from './PopupContent'
 import PopupHeader from './PopupHeader'
 
+const debug = makeDebugger('popup')
+
 const _meta = {
   name: 'Popup',
   type: META.TYPES.MODULE,
   props: {
-    content: [PropTypes.string, PropTypes.node],
     on: ['hover', 'click', 'focus'],
     positioning: [
       'top left',
@@ -50,7 +52,7 @@ export default class Popup extends Component {
     className: PropTypes.string,
 
     /** Simple text content for the popover */
-    content: PropTypes.oneOfType(_meta.props.content),
+    content: PropTypes.node,
 
     /** A Flowing popup have no maximum width and continue to flow to fit its content */
     flowing: PropTypes.bool,
@@ -77,16 +79,36 @@ export default class Popup extends Component {
     /** Event triggering the popup */
     on: PropTypes.oneOf(_meta.props.on),
 
-    /** Called when a close event happens */
+    /**
+     * Called when a close event happens
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props.
+     */
     onClose: PropTypes.func,
 
-    /** Called when the portal is mounted on the DOM */
+    /**
+     * Called when the portal is mounted on the DOM
+     *
+     * @param {null}
+     * @param {object} data - All props.
+     */
     onMount: PropTypes.func,
 
-    /** Called when an open event happens */
+    /**
+     * Called when an open event happens
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props.
+     */
     onOpen: PropTypes.func,
 
-    /** Called when the portal is unmounted from the DOM */
+    /**
+     * Called when the portal is unmounted from the DOM
+     *
+     * @param {null}
+     * @param {object} data - All props.
+     */
     onUnmount: PropTypes.func,
 
     /** Positioning for the popover */
@@ -222,30 +244,24 @@ export default class Popup extends Component {
 
     const { on, hoverable } = this.props
 
-    switch (on) {
-      case 'click':
-        portalProps.openOnTriggerClick = true
-        portalProps.closeOnTriggerClick = true
-        portalProps.closeOnDocumentClick = true
-        break
-
-      case 'focus':
-        portalProps.openOnTriggerFocus = true
-        portalProps.closeOnTriggerBlur = true
-        break
-
-      default:  // default to hover
-        portalProps.openOnTriggerMouseOver = true
-        portalProps.closeOnTriggerMouseLeave = true
-        // Taken from SUI: https://git.io/vPmCm
-        portalProps.mouseLeaveDelay = 70
-        portalProps.mouseOverDelay = 50
-        break
-    }
-
     if (hoverable) {
       portalProps.closeOnPortalMouseLeave = true
       portalProps.mouseLeaveDelay = 300
+    }
+
+    if (on === 'click') {
+      portalProps.openOnTriggerClick = true
+      portalProps.closeOnTriggerClick = true
+      portalProps.closeOnDocumentClick = true
+    } else if (on === 'focus') {
+      portalProps.openOnTriggerFocus = true
+      portalProps.closeOnTriggerBlur = true
+    } else if (on === 'hover') {
+      portalProps.openOnTriggerMouseEnter = true
+      portalProps.closeOnTriggerMouseLeave = true
+      // Taken from SUI: https://git.io/vPmCm
+      portalProps.mouseLeaveDelay = 70
+      portalProps.mouseEnterDelay = 50
     }
 
     return portalProps
@@ -258,11 +274,13 @@ export default class Popup extends Component {
   }
 
   handleClose = (e) => {
+    debug('handleClose()')
     const { onClose } = this.props
     if (onClose) onClose(e, this.props)
   }
 
   handleOpen = (e) => {
+    debug('handleOpen()')
     this.coords = e.currentTarget.getBoundingClientRect()
 
     const { onOpen } = this.props
@@ -270,6 +288,7 @@ export default class Popup extends Component {
   }
 
   handlePortalMount = (e) => {
+    debug('handlePortalMount()')
     if (this.props.hideOnScroll) {
       window.addEventListener('scroll', this.hideOnScroll)
     }
@@ -279,11 +298,13 @@ export default class Popup extends Component {
   }
 
   handlePortalUnmount = (e) => {
+    debug('handlePortalUnmount()')
     const { onUnmount } = this.props
     if (onUnmount) onUnmount(e, this.props)
   }
 
   popupMounted = (ref) => {
+    debug('popupMounted()')
     this.popupCoords = ref ? ref.getBoundingClientRect() : null
     this.setPopupStyle()
   }
@@ -333,10 +354,12 @@ export default class Popup extends Component {
       </ElementType>
     )
 
+    const mergedPortalProps = { ...this.getPortalProps(), ...portalProps }
+    debug('portal props:', mergedPortalProps)
+
     return (
       <Portal
-        {...this.getPortalProps()}
-        {...portalProps}
+        {...mergedPortalProps}
         trigger={trigger}
         onClose={this.handleClose}
         onMount={this.handlePortalMount}

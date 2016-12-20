@@ -21,17 +21,17 @@ const products = [
 ]
 
 class FormExampleOnSubmit extends Component {
-  state = { serializedForm: {} }
+  state = { formData: {} }
 
   handleChange = (e, { value }) => this.setState({ value })
 
-  handleSubmit = (e, serializedForm) => {
+  handleSubmit = (e, { formData }) => {
     e.preventDefault()
-    this.setState({ serializedForm })
+    this.setState({ formData })
   }
 
   render() {
-    const { serializedForm, value } = this.state
+    const { formData, value } = this.state
     return (
       <Form onSubmit={this.handleSubmit}>
         <Form.Group widths='equal'>
@@ -62,7 +62,7 @@ class FormExampleOnSubmit extends Component {
         <Button primary type='submit'>Submit</Button>
 
         <Message>
-          <pre>serializedForm: {JSON.stringify(serializedForm, null, 2)}</pre>
+          <pre>formData: {JSON.stringify(formData, null, 2)}</pre>
         </Message>
       </Form>
     )

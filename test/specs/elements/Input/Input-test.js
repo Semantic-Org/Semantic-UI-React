@@ -1,12 +1,56 @@
 import cx from 'classnames'
 import _ from 'lodash'
 import React from 'react'
+import { sandbox } from 'test/utils'
 
 import Input, { htmlInputPropNames } from 'src/elements/Input/Input'
 import * as common from 'test/specs/commonTests'
 
 describe('Input', () => {
-  common.isConformant(Input, { eventTargets: { onChange: 'input' } })
+  common.isConformant(Input, {
+    eventTargets: {
+      // keyboard
+      onKeyDown: 'input',
+      onKeyPress: 'input',
+      onKeyUp: 'input',
+
+      // focus
+      onFocus: 'input',
+      onBlur: 'input',
+
+      // form
+      onChange: 'input',
+      onInput: 'input',
+
+      // mouse
+      onClick: 'input',
+      onContextMenu: 'input',
+      onDrag: 'input',
+      onDragEnd: 'input',
+      onDragEnter: 'input',
+      onDragExit: 'input',
+      onDragLeave: 'input',
+      onDragOver: 'input',
+      onDragStart: 'input',
+      onDrop: 'input',
+      onMouseDown: 'input',
+      onMouseEnter: 'input',
+      onMouseLeave: 'input',
+      onMouseMove: 'input',
+      onMouseOut: 'input',
+      onMouseOver: 'input',
+      onMouseUp: 'input',
+
+      // selection
+      onSelect: 'input',
+
+      // touch
+      onTouchCancel: 'input',
+      onTouchEnd: 'input',
+      onTouchMove: 'input',
+      onTouchStart: 'input',
+    },
+  })
   common.hasUIClassName(Input)
 
   common.implementsLabelProp(Input, {
@@ -56,10 +100,68 @@ describe('Input', () => {
   describe('input props', () => {
     htmlInputPropNames.forEach(propName => {
       it(`passes \`${propName}\` to the <input>`, () => {
-        shallow(<Input {...{ [propName]: 'foo' }} />)
+        const propValue = propName === 'onChange' ? () => null : 'foo'
+        const wrapper = shallow(<Input {...{ [propName]: propValue }} />)
+
+        // account for overloading the onChange prop
+        const expectedValue = propName === 'onChange'
+          ? wrapper.instance().handleChange
+          : propValue
+
+        wrapper
           .find('input')
-          .should.have.prop(propName, 'foo')
+          .should.have.prop(propName, expectedValue)
       })
+
+      it(`passes \`${propName}\` to the <input> when using children`, () => {
+        const propValue = propName === 'onChange' ? () => null : 'foo'
+        const wrapper = shallow(
+          <Input {...{ [propName]: propValue }}>
+            <input />
+          </Input>
+        )
+
+        // account for overloading the onChange prop
+        const expectedValue = propName === 'onChange'
+          ? wrapper.instance().handleChange
+          : propValue
+
+        wrapper
+          .find('input')
+          .should.have.prop(propName, expectedValue)
+      })
+    })
+  })
+
+  describe('onChange', () => {
+    it('is called with (e, data) on change', () => {
+      const spy = sandbox.spy()
+      const e = { target: { value: 'name' } }
+      const props = { 'data-foo': 'bar', onChange: spy }
+
+      const wrapper = shallow(<Input {...props} />)
+
+      wrapper.find('input').simulate('change', e)
+
+      spy.should.have.been.calledOnce()
+      spy.should.have.been.calledWithMatch(e, { ...props, value: e.target.value })
+    })
+
+    it('is called with (e, data) on change when using children', () => {
+      const spy = sandbox.spy()
+      const e = { target: { value: 'name' } }
+      const props = { 'data-foo': 'bar', onChange: spy }
+
+      const wrapper = shallow(
+        <Input {...props}>
+          <input />
+        </Input>
+      )
+
+      wrapper.find('input').simulate('change', e)
+
+      spy.should.have.been.calledOnce()
+      spy.should.have.been.calledWithMatch(e, { ...props, value: e.target.value })
     })
   })
 })

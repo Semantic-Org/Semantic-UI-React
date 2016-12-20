@@ -18,6 +18,10 @@ import AccordionTitle from './AccordionTitle'
  * An accordion allows users to toggle the display of sections of content
  */
 export default class Accordion extends Component {
+  static defaultProps = {
+    exclusive: true,
+  }
+
   static autoControlledProps = [
     'activeIndex',
   ]
@@ -27,7 +31,10 @@ export default class Accordion extends Component {
     as: customPropTypes.as,
 
     /** Index of the currently active panel. */
-    activeIndex: PropTypes.number,
+    activeIndex: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.arrayOf(PropTypes.number),
+    ]),
 
     /** Primary content. */
     children: PropTypes.node,
@@ -36,7 +43,13 @@ export default class Accordion extends Component {
     className: PropTypes.string,
 
     /** Initial activeIndex value. */
-    defaultActiveIndex: PropTypes.number,
+    defaultActiveIndex: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.arrayOf(PropTypes.number),
+    ]),
+
+    /** Only allow one panel open at a time */
+    exclusive: PropTypes.bool,
 
     /** Format to take up the width of it's container. */
     fluid: PropTypes.bool,
@@ -48,7 +61,7 @@ export default class Accordion extends Component {
     onTitleClick: PropTypes.func,
 
     /**
-     * Create simple accordion panels from an array of { text: <string>, content: <string> } objects.
+     * Create simple accordion panels from an array of { text: <string>, content: <custom> } objects.
      * Object can optionally define an `active` key to open/close the panel.
      * Mutually exclusive with children.
      * TODO: AccordionPanel should be a sub-component
@@ -58,7 +71,7 @@ export default class Accordion extends Component {
       PropTypes.arrayOf(PropTypes.shape({
         active: PropTypes.bool,
         title: PropTypes.string,
-        content: PropTypes.string,
+        content: customPropTypes.contentShorthand,
         onClick: PropTypes.func,
       })),
     ]),
@@ -83,42 +96,55 @@ export default class Accordion extends Component {
     // Otherwise, on first render we're allowed to set state for a prop that might have a default.
     // The default prop should always win on first render.
     // This default check should then be removed.
-    if (!this.props.defaultActiveIndex) {
-      this.trySetState({ activeIndex: -1 })
+    if (typeof this.props.defaultActiveIndex === 'undefined') {
+      this.trySetState({ activeIndex: this.props.exclusive ? -1 : [-1] })
     }
   }
 
   handleTitleClick = (e, index) => {
-    const { onTitleClick } = this.props
+    const { onTitleClick, exclusive } = this.props
     const { activeIndex } = this.state
 
-    this.trySetState({
-      activeIndex: index === activeIndex ? -1 : index,
-    })
+    let newIndex
+    if (exclusive) {
+      newIndex = index === activeIndex ? -1 : index
+    } else {
+      // check to see if index is in array, and remove it, if not then add it
+      newIndex = _.includes(activeIndex, index) ? _.without(activeIndex, index) : [...activeIndex, index]
+    }
+    this.trySetState({ activeIndex: newIndex })
     if (onTitleClick) onTitleClick(e, index)
+  }
+
+  isIndexActive = (index) => {
+    const { exclusive } = this.props
+    const { activeIndex } = this.state
+    return exclusive ? activeIndex === index : _.includes(activeIndex, index)
   }
 
   renderChildren = () => {
     const { children } = this.props
-    const { activeIndex } = this.state
+    let titleIndex = 0
+    let contentIndex = 0
 
-    return Children.map(children, (child, i) => {
+    return Children.map(children, (child) => {
       const isTitle = child.type === AccordionTitle
       const isContent = child.type === AccordionContent
 
       if (isTitle) {
-        const isActive = _.has(child, 'props.active') ? child.props.active : activeIndex === i
+        const currentIndex = titleIndex
+        const isActive = _.has(child, 'props.active') ? child.props.active : this.isIndexActive(titleIndex)
         const onClick = (e) => {
-          this.handleTitleClick(e, i)
-          if (child.props.onClick) child.props.onClick(e, i)
+          this.handleTitleClick(e, currentIndex)
+          if (child.props.onClick) child.props.onClick(e, currentIndex)
         }
+        titleIndex++
         return cloneElement(child, { ...child.props, active: isActive, onClick })
       }
 
       if (isContent) {
-        // content must be the a sibling too title
-        // it is active if the active title index that precedes it is active
-        const isActive = _.has(child, 'props.active') ? child.props.active : activeIndex === i - 1
+        const isActive = _.has(child, 'props.active') ? child.props.active : this.isIndexActive(contentIndex)
+        contentIndex++
         return cloneElement(child, { ...child.props, active: isActive })
       }
 
@@ -128,12 +154,10 @@ export default class Accordion extends Component {
 
   renderPanels = () => {
     const { panels } = this.props
-    const { activeIndex } = this.state
     const children = []
 
     _.each(panels, (panel, i) => {
-      const isActive = _.has(panel, 'active') ? panel.active : activeIndex === i
-
+      const isActive = _.has(panel, 'active') ? panel.active : this.isIndexActive(i)
       const onClick = (e) => {
         this.handleTitleClick(e, i)
         if (panel.onClick) panel.onClick(e, i)

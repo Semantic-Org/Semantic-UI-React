@@ -30,6 +30,22 @@ describe('List', () => {
   common.propValueOnlyToClassName(List, 'size')
   common.implementsVerticalAlignProp(List)
 
+  describe('role', () => {
+    const items = ['Name', 'Status', 'Notes']
+
+    it('is accessibile with no items', () => {
+      const wrapper = shallow(<List />)
+
+      wrapper.should.have.prop('role', 'list')
+    })
+
+    it('is accessibile with items', () => {
+      const wrapper = shallow(<List items={items} />)
+
+      wrapper.should.have.prop('role', 'list')
+    })
+  })
+
   describe('shorthand', () => {
     const items = ['Name', 'Status', 'Notes']
 

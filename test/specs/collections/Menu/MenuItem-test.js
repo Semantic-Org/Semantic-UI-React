@@ -8,6 +8,7 @@ import { sandbox } from 'test/utils'
 describe('MenuItem', () => {
   common.isConformant(MenuItem)
   common.implementsIconProp(MenuItem)
+  common.implementsCreateMethod(MenuItem)
   common.propKeyOnlyToClassName(MenuItem, 'active')
   common.propValueOnlyToClassName(MenuItem, 'color')
   common.propKeyOrValueAndKeyToClassName(MenuItem, 'fitted')

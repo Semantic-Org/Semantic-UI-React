@@ -1,4 +1,5 @@
 import React from 'react'
+import { findDOMNode } from 'react-dom'
 
 import Checkbox from 'src/modules/Checkbox/Checkbox'
 import * as common from 'test/specs/commonTests'
@@ -7,21 +8,17 @@ import { sandbox } from 'test/utils'
 describe('Checkbox', () => {
   common.isConformant(Checkbox)
   common.hasUIClassName(Checkbox)
+
   common.propKeyOnlyToClassName(Checkbox, 'checked')
-  common.propKeyOnlyToClassName(Checkbox, 'slider')
-  common.propKeyOnlyToClassName(Checkbox, 'toggle')
   common.propKeyOnlyToClassName(Checkbox, 'disabled')
   common.propKeyOnlyToClassName(Checkbox, 'readOnly', {
     className: 'read-only',
   })
+  common.propKeyOnlyToClassName(Checkbox, 'slider')
+  common.propKeyOnlyToClassName(Checkbox, 'toggle')
 
-  describe('defaultChecked', () => {
-    it('sets the initial checked state', () => {
-      // consoleUtil.disableOnce()
-      shallow(<Checkbox defaultChecked />)
-        .find('input')
-        .should.be.checked()
-    })
+  common.implementsHTMLLabelProp(Checkbox, {
+    alwaysPresent: true,
   })
 
   describe('checking', () => {
@@ -41,6 +38,65 @@ describe('Checkbox', () => {
     })
   })
 
+  describe('defaultChecked', () => {
+    it('sets the initial checked state', () => {
+      shallow(<Checkbox defaultChecked />)
+        .find('input')
+        .should.be.checked()
+    })
+  })
+
+  describe('indeterminate', () => {
+    it('can be indeterminate', () => {
+      const wrapper = mount(<Checkbox indeterminate />)
+
+      const checkboxNode = findDOMNode(wrapper.instance())
+      const input = checkboxNode.querySelector('input')
+
+      input.indeterminate.should.be.true()
+
+      wrapper.simulate('click').find('input')
+      input.indeterminate.should.be.true()
+    })
+    it('can not be indeterminate', () => {
+      const wrapper = mount(<Checkbox indeterminate={false} />)
+
+      const checkboxNode = findDOMNode(wrapper.instance())
+      const input = checkboxNode.querySelector('input')
+
+      input.indeterminate.should.be.false()
+
+      wrapper.simulate('click').find('input')
+      input.indeterminate.should.be.false()
+    })
+  })
+
+  describe('defaultIndeterminate', () => {
+    it('sets the initial indeterminate state', () => {
+      const wrapper = mount(<Checkbox defaultIndeterminate />)
+
+      const checkboxNode = findDOMNode(wrapper.instance())
+      const input = checkboxNode.querySelector('input')
+
+      input.indeterminate.should.be.true()
+    })
+
+    it('unsets indeterminate state on any click', () => {
+      const wrapper = mount(<Checkbox defaultIndeterminate />)
+
+      const checkboxNode = findDOMNode(wrapper.instance())
+      const input = findDOMNode(checkboxNode.querySelector('input'))
+
+      input.indeterminate.should.be.true()
+
+      wrapper.simulate('click').find('input')
+      input.indeterminate.should.be.false()
+
+      wrapper.simulate('click').find('input')
+      input.indeterminate.should.be.false()
+    })
+  })
+
   describe('disabled', () => {
     it('cannot be checked', () => {
       shallow(<Checkbox disabled />)
@@ -50,6 +106,70 @@ describe('Checkbox', () => {
     })
     it('cannot be unchecked', () => {
       shallow(<Checkbox disabled defaultChecked />)
+        .simulate('click')
+        .find('input')
+        .should.be.checked()
+    })
+  })
+
+  describe('label', () => {
+    it('adds the "fitted" class when not present', () => {
+      shallow(<Checkbox name='firstName' />)
+        .should.have.className('fitted')
+    })
+  })
+
+  describe('onChange', () => {
+    it('is called with (event { name, value, !checked }) on click', () => {
+      const spy = sandbox.spy()
+      const expectProps = { name: 'foo', value: 'bar', checked: false, indeterminate: true }
+      mount(<Checkbox onChange={spy} {...expectProps} />)
+        .simulate('click')
+
+      spy.should.have.been.calledOnce()
+      spy.should.have.been.calledWithMatch({}, {
+        ...expectProps,
+        checked: !expectProps.checked,
+        indeterminate: false,
+      })
+    })
+    it('is not called when the checkbox has the disabled prop set', () => {
+      const spy = sandbox.spy()
+      mount(<Checkbox disabled onChange={spy} />).simulate('click')
+      spy.should.not.have.been.called()
+    })
+  })
+
+  describe('onClick', () => {
+    it('is called with (event { name, value, checked }) on label click', () => {
+      const spy = sandbox.spy()
+      const expectProps = { name: 'foo', value: 'bar', checked: false, indeterminate: true }
+      mount(<Checkbox onClick={spy} {...expectProps} />)
+        .simulate('click')
+
+      spy.should.have.been.calledOnce()
+      spy.should.have.been.calledWithMatch({}, {
+        ...expectProps,
+        checked: expectProps.checked,
+        indeterminate: expectProps.indeterminate,
+      })
+    })
+    it('is not called when the checkbox has the disabled prop set', () => {
+      const spy = sandbox.spy()
+      mount(<Checkbox disabled onClick={spy} />).simulate('click')
+      spy.should.not.have.been.called()
+    })
+  })
+
+  describe('readOnly', () => {
+    it('cannot be checked', () => {
+      shallow(<Checkbox readOnly />)
+        .simulate('click')
+        .find('input')
+        .should.not.be.checked()
+    })
+    it('cannot be unchecked', () => {
+      shallow(<Checkbox readOnly defaultChecked />)
         .simulate('click')
         .find('input')
         .should.be.checked()
@@ -70,85 +190,6 @@ describe('Checkbox', () => {
       shallow(<Checkbox type='radio' />)
         .find('input')
         .should.have.prop('type', 'radio')
-    })
-  })
-
-  describe('onClick', () => {
-    it('is called with (event { name, value, checked }) on label click', () => {
-      const spy = sandbox.spy()
-      const expectProps = { name: 'foo', value: 'bar', checked: false }
-      mount(<Checkbox onClick={spy} {...expectProps} />)
-        .simulate('click')
-
-      spy.should.have.been.calledOnce()
-      spy.should.have.been.calledWithMatch({}, {})
-      spy.firstCall.args[1]
-        .should.deep.equal(expectProps)
-    })
-    it('is not called when the checkbox has the disabled prop set', () => {
-      const spy = sandbox.spy()
-      mount(<Checkbox disabled onClick={spy} />).simulate('click')
-      spy.should.not.have.been.called()
-    })
-  })
-
-  describe('onChange', () => {
-    it('is called with (event { name, value, !checked }) on click', () => {
-      const spy = sandbox.spy()
-      const expectProps = { name: 'foo', value: 'bar', checked: false }
-      mount(<Checkbox onChange={spy} {...expectProps} />)
-        .simulate('click')
-
-      spy.should.have.been.calledOnce()
-      spy.should.have.been.calledWithMatch({}, {})
-      spy.firstCall.args[1]
-        .should.deep.equal({ ...expectProps, checked: true })
-    })
-    it('is not called when the checkbox has the disabled prop set', () => {
-      const spy = sandbox.spy()
-      mount(<Checkbox disabled onChange={spy} />).simulate('click')
-      spy.should.not.have.been.called()
-    })
-  })
-
-  describe('readOnly', () => {
-    it('cannot be checked', () => {
-      shallow(<Checkbox readOnly />)
-        .simulate('click')
-        .find('input')
-        .should.not.be.checked()
-    })
-    it('cannot be unchecked', () => {
-      shallow(<Checkbox readOnly defaultChecked />)
-        .simulate('click')
-        .find('input')
-        .should.be.checked()
-    })
-  })
-
-  describe('label', () => {
-    // Heads Up!
-    // This is required for SUI CSS
-    it('is present when not defined', () => {
-      shallow(<Checkbox />)
-        .should.have.descendants('label')
-        .and.have.text('')
-    })
-
-    it('adds the "fitted" class when not present', () => {
-      shallow(<Checkbox name='firstName' />)
-        .should.have.className('fitted')
-    })
-
-    it('adds a <label> with the value as text', () => {
-      const wrapper = shallow(<Checkbox label='a label' />)
-
-      wrapper
-        .should.have.descendants('label')
-
-      wrapper
-        .find('label')
-        .should.have.text('a label')
     })
   })
 })

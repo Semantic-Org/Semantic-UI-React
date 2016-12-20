@@ -7,7 +7,11 @@ describe('StatisticGroup', () => {
   common.implementsWidthProp(StatisticGroup, { propKey: 'widths', canEqual: false })
   common.hasUIClassName(StatisticGroup)
   common.rendersChildren(StatisticGroup)
+
+  common.propValueOnlyToClassName(StatisticGroup, 'color')
   common.propKeyOnlyToClassName(StatisticGroup, 'horizontal')
+  common.propKeyOnlyToClassName(StatisticGroup, 'inverted')
+  common.propValueOnlyToClassName(StatisticGroup, 'size')
 
   it('renders an div element', () => {
     shallow(<StatisticGroup />)

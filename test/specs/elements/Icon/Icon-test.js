@@ -28,4 +28,12 @@ describe('Icon', () => {
     shallow(<Icon />)
       .should.have.tagName('i')
   })
+
+  describe('aria', () => {
+    it('should add aria-hidden to icon', () => {
+      const wrapper = shallow(<Icon />)
+
+      wrapper.should.have.prop('aria-hidden', 'true')
+    })
+  })
 })

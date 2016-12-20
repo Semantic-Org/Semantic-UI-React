@@ -32,6 +32,9 @@ export default class DropdownItem extends Component {
     /** Additional classes. */
     className: PropTypes.string,
 
+    /** Shorthand for primary content. */
+    content: customPropTypes.contentShorthand,
+
     /** Additional text with less emphasis. */
     description: customPropTypes.itemShorthand,
 
@@ -65,7 +68,12 @@ export default class DropdownItem extends Component {
       PropTypes.string,
     ]),
 
-    /** Called on click with (event, props). */
+    /**
+     * Called on click.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props.
+     */
     onClick: PropTypes.func,
   }
 
@@ -86,6 +94,7 @@ export default class DropdownItem extends Component {
       active,
       children,
       className,
+      content,
       disabled,
       description,
       flag,
@@ -130,7 +139,7 @@ export default class DropdownItem extends Component {
           {flagElement}
           {labelElement}
           {descriptionElement}
-          {createShorthand('span', val => ({ className: 'text', children: val }), text)}
+          {createShorthand('span', val => ({ className: 'text', children: val }), content || text)}
         </ElementType>
       )
     }
@@ -141,7 +150,7 @@ export default class DropdownItem extends Component {
         {iconElement}
         {flagElement}
         {labelElement}
-        {text}
+        {content || text}
       </ElementType>
     )
   }

@@ -1,4 +1,5 @@
 import cx from 'classnames'
+import _ from 'lodash'
 import React, { PropTypes } from 'react'
 
 import {
@@ -44,7 +45,7 @@ function Icon(props) {
   const ElementType = getElementType(Icon, props)
 
   return (
-    <ElementType {...rest} className={classes} />
+    <ElementType {...rest} aria-hidden='true' className={classes} />
   )
 }
 
@@ -56,9 +57,9 @@ Icon._meta = {
   props: {
     color: SUI.COLORS,
     flipped: ['horizontally', 'vertically'],
-    name: SUI.ICONS,
+    name: SUI.ICONS_AND_ALIASES,
     rotated: ['clockwise', 'counterclockwise'],
-    size: SUI.SIZES,
+    size: _.without(SUI.SIZES, 'medium'),
   },
 }
 
@@ -94,7 +95,7 @@ Icon.propTypes = {
   inverted: PropTypes.bool,
 
   /** Name of the icon */
-  name: PropTypes.string,
+  name: customPropTypes.suggest(Icon._meta.props.name),
 
   /** Icon can be formatted as a link */
   link: PropTypes.bool,

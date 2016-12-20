@@ -1,31 +1,29 @@
 import React from 'react'
 import { Step } from 'semantic-ui-react'
 
-const { Description, Group, Title } = Step
-
 const StepExampleDescriptions = () => (
   <div>
-    <Group>
+    <Step.Group>
       <Step>
-        <Title>Shipping</Title>
-        <Description>Choose your shipping options</Description>
+        <Step.Title>Shipping</Step.Title>
+        <Step.Description>Choose your shipping options</Step.Description>
       </Step>
-    </Group>
+    </Step.Group>
 
     <br />
 
-    <Group>
+    <Step.Group>
       <Step>
-        <Title title='Shipping' />
-        <Description description='Choose your shipping options' />
+        <Step.Title title='Shipping' />
+        <Step.Description description='Choose your shipping options' />
       </Step>
-    </Group>
+    </Step.Group>
 
     <br />
 
-    <Group>
+    <Step.Group>
       <Step title='Shipping' description='Choose your shipping options' />
-    </Group>
+    </Step.Group>
   </div>
 )
 

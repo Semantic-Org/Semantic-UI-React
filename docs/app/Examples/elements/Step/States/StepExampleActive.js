@@ -1,20 +1,18 @@
 import React from 'react'
 import { Icon, Step } from 'semantic-ui-react'
 
-const { Content, Description, Group, Title } = Step
-
 const StepExampleActive = () => (
-  <Group>
+  <Step.Group>
     <Step active>
       <Icon name='credit card' />
-      <Content>
-        <Title>Billing</Title>
-        <Description>Enter billing information</Description>
-      </Content>
+      <Step.Content>
+        <Step.Title>Billing</Step.Title>
+        <Step.Description>Enter billing information</Step.Description>
+      </Step.Content>
     </Step>
 
     <Step active icon='credit card' title='Billing' description='Enter billing information' />
-  </Group>
+  </Step.Group>
 )
 
 export default StepExampleActive

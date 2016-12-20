@@ -3,6 +3,7 @@ import cx from 'classnames'
 import React, { Component, PropTypes } from 'react'
 
 import {
+  createShorthandFactory,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -68,7 +69,13 @@ export default class MenuItem extends Component {
     /** Internal name of the MenuItem. */
     name: PropTypes.string,
 
-    /** Render as an `a` tag instead of a `div` and called with event on MenuItem click. */
+    /**
+     * Called on click. When passed, the component will render as an `a`
+     * tag by default instead of a `div`.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props.
+     */
     onClick: PropTypes.func,
 
     /** A menu item can take right position. */
@@ -78,9 +85,9 @@ export default class MenuItem extends Component {
   static _meta = _meta
 
   handleClick = (e) => {
-    const { index, name, onClick } = this.props
+    const { onClick } = this.props
 
-    if (onClick) onClick(e, { name, index })
+    if (onClick) onClick(e, this.props)
   }
 
   render() {
@@ -127,3 +134,5 @@ export default class MenuItem extends Component {
     )
   }
 }
+
+MenuItem.create = createShorthandFactory(MenuItem, val => ({ content: val, name: val }), true)

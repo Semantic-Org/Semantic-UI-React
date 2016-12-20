@@ -28,45 +28,42 @@ import { Component } from 'react'
 
 const getDefaultPropName = (prop) => `default${prop[0].toUpperCase() + prop.slice(1)}`
 
+/**
+ * Return the auto controlled state value for a give prop. The initial value is chosen in this order:
+ *  - default props
+ *  - then, regular props
+ *  - then, `checked` defaults to false
+ *  - then, `value` defaults to '' or [] if props.multiple
+ *  - else, undefined
+ *
+ *  @param {object} props A props object
+ *  @param {string} propName A prop name
+ *  @param {boolean} [includeDefaultProps=false] Whether or not to heed the default prop value
+ */
+export const getAutoControlledStateValue = (props, propName, includeDefaultProps = false) => {
+  const defaultPropName = getDefaultPropName(propName)
+  const prop = props[propName]
+  const defaultProp = props[defaultPropName]
+
+  const hasProp = prop !== undefined
+  const hasDefaultProp = defaultProp !== undefined
+
+  // defaultProps & props
+  if (includeDefaultProps && !hasProp && hasDefaultProp) return defaultProp
+  if (hasProp) return prop
+
+  // React doesn't allow changing from uncontrolled to controlled components,
+  // default checked/value if they were not present.
+  if (propName === 'checked') return false
+  if (propName === 'value') return props.multiple ? [] : ''
+
+  // otherwise, undefined
+}
+
 export default class AutoControlledComponent extends Component {
   componentWillMount() {
     if (super.componentWillMount) super.componentWillMount()
     const { autoControlledProps } = this.constructor
-
-    // Auto controlled props are copied to state.
-    // Set initial state by copying auto controlled props to state.
-    // Also look for the default prop for any auto controlled props (foo => defaultFoo)
-    // so we can set initial values from defaults.
-    this.state = _.transform(autoControlledProps, (res, prop) => {
-      const defaultPropName = getDefaultPropName(prop)
-
-      // try to set initial state in this order:
-      //  - default props
-      //  - then, regular props
-      //  - then, `checked` defaults to false
-      //  - then, `value` defaults to null
-      // React doesn't allow changing from uncontrolled to controlled components
-      // this is why we default checked/value if they are not present.
-      if (_.has(this.props, defaultPropName)) {
-        res[prop] = this.props[defaultPropName]
-      } else if (_.has(this.props, prop)) {
-        res[prop] = this.props[prop]
-      } else if (prop === 'checked') {
-        res[prop] = false
-      } else if (prop === 'value') {
-        res[prop] = this.props.multiple ? [] : '' // eslint-disable-line react/prop-types
-      }
-
-      if (process.env.NODE_ENV !== 'production') {
-        const { name } = this.constructor
-        // prevent defaultFoo={} along side foo={}
-        if (defaultPropName in this.props && prop in this.props) {
-          console.error(
-            `${name} prop "${prop}" is auto controlled. Specify either ${defaultPropName} or ${prop}, but not both.`
-          )
-        }
-      }
-    }, {})
 
     if (process.env.NODE_ENV !== 'production') {
       const { defaultProps, name, propTypes } = this.constructor
@@ -116,14 +113,48 @@ export default class AutoControlledComponent extends Component {
         ].join(' '))
       }
     }
+
+    // Auto controlled props are copied to state.
+    // Set initial state by copying auto controlled props to state.
+    // Also look for the default prop for any auto controlled props (foo => defaultFoo)
+    // so we can set initial values from defaults.
+    this.state = autoControlledProps.reduce((acc, prop) => {
+      acc[prop] = getAutoControlledStateValue(this.props, prop, true)
+
+      if (process.env.NODE_ENV !== 'production') {
+        const defaultPropName = getDefaultPropName(prop)
+        const { name } = this.constructor
+        // prevent defaultFoo={} along side foo={}
+        if (defaultPropName in this.props && prop in this.props) {
+          console.error(
+            `${name} prop "${prop}" is auto controlled. Specify either ${defaultPropName} or ${prop}, but not both.`
+          )
+        }
+      }
+
+      return acc
+    }, {})
   }
 
   componentWillReceiveProps(nextProps) {
     if (super.componentWillReceiveProps) super.componentWillReceiveProps(nextProps)
+    const { autoControlledProps } = this.constructor
 
-    // props always win, update state with all auto controlled prop
-    const newState = _.pick(nextProps, this.constructor.autoControlledProps)
-    if (!_.isEmpty(newState)) this.setState(newState)
+    // Solve the next state for autoControlledProps
+    const newState = autoControlledProps.reduce((acc, prop) => {
+      const isNextUndefined = _.isUndefined(nextProps[prop])
+      const propWasRemoved = !_.isUndefined(this.props[prop]) && isNextUndefined
+
+      // if next is defined then use its value
+      if (!isNextUndefined) acc[prop] = nextProps[prop]
+
+      // reinitialize state for props just removed / set undefined
+      else if (propWasRemoved) acc[prop] = getAutoControlledStateValue(nextProps, prop)
+
+      return acc
+    }, {})
+
+    if (Object.keys(newState).length > 0) this.setState(newState)
   }
 
   /**
@@ -147,12 +178,19 @@ export default class AutoControlledComponent extends Component {
       }
     }
 
-    // pick auto controlled props
-    // omit props from parent
-    let newState = _.omit(_.pick(maybeState, autoControlledProps), _.keys(this.props))
+    let newState = Object.keys(maybeState).reduce((acc, prop) => {
+      // ignore props defined by the parent
+      if (this.props[prop] !== undefined) return acc
+
+      // ignore props not listed in auto controlled props
+      if (autoControlledProps.indexOf(prop) === -1) return acc
+
+      acc[prop] = maybeState[prop]
+      return acc
+    }, {})
 
     if (state) newState = { ...newState, ...state }
 
-    if (!_.isEmpty(newState)) this.setState(newState)
+    if (Object.keys(newState).length > 0) this.setState(newState)
   }
 }

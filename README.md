@@ -1,6 +1,6 @@
 <p align="center">
   <a href="http://semantic-org.github.io/Semantic-UI-React">
-    <img height="128" width="128" src="https://cloud.githubusercontent.com/assets/5067638/17415622/7ac62496-5a3f-11e6-864e-217ad1d9e021.png">
+    <img height="128" width="128" src="https://github.com/Semantic-Org/Semantic-UI-React/raw/master/docs/app/logo.png">
   </a>
   <p align="center">
     The official <a href="http://semantic-ui.com">Semantic UI</a>
@@ -42,7 +42,6 @@ Help shape this library by weighing in on our [RFC (request for comments)][19] i
 - [Debugger](#debugger)
 - [How Can I Help?](#how-can-i-help)
   - [[Good First Contribution][21]](#good-first-contribution21)
-  - [[v1.0 Migrations][15]](#v10-migrations15)
   - [[Missing Components][17]](#missing-components17)
   - [[Help Wanted Label][4]](#help-wanted-label4)
 - [Our Principles](#our-principles)
@@ -76,10 +75,6 @@ Our [CONTRIBUTING.md][1] is a step-by-step setup and development guide. It is me
 
 Issues labeled [`good first contribution`][21] are a great way to ease into development on this project. 
 
-### [v1.0 Migrations][15]
-
-Have a look at the task list on the issue to see where you can jump in.
-
 ### [Missing Components][17]
 
 We're seeking component parity with Semantic UI, plus some addons.  There is an issue for every missing component, labeled [`enhancement` `help wanted`][17].  Just comment on the issue you'd like to take.
@@ -95,11 +90,11 @@ Any other issue labeled [`help wanted`][4] is ready for a PR.
 - No jQuery dependency
 - No animation dependencies
 - Reuse SUI CSS transitions
+- Simple declarative component APIs vs intricate HTML markup
 - Complete keyboard support
 - Complete SUI component definition support
 - Completely documented
 - Completely tested
-- Abstract away HTML markup intricacies
 
 ## Support
 
@@ -109,18 +104,18 @@ Any other issue labeled [`help wanted`][4] is ready for a PR.
 | ✓ Container     | ✓ Form          | ✓ Card          | ✓ Checkbox      | *API (NA)*         |
 | ✓ Divider       | ✓ Grid          | ✓ Comment       | ✓ Dimmer        | *Visibility (NA)*  |
 | ✓ Flag          | ✓ Menu          | ✓ Feed          | ✓ Dropdown      |                    |
-| ✓ Header        | ✓ Message       | ✓ Item          |   Embed         |                    |
+| ✓ Header        | ✓ Message       | ✓ Item          | ✓ Embed         |                    |
 | ✓ Icon          | ✓ Table         | ✓ Statistic     | ✓ Modal         |                    |
-| ✓ Image         |                 |                 |   Nag           |                    |
-| ✓ Input         |                 |                 | ✓ Popup         |                    |
-| ✓ Label         |                 |                 | ✓ Progress      |                    |
-| ✓ List          |                 |                 | ✓ Rating        |                    |
-| ✓ Loader        |                 |                 | ✓ Search        |                    |
-| ✓ Rail          |                 |                 |   Shape         |                    |
-| ✓ Reveal        |                 |                 |   Sidebar       |                    |
-| ✓ Segment       |                 |                 |   Sticky        |                    |
-| ✓ Step          |                 |                 |   Tab           |                    |
-|                 |                 |                 |   Transition    |                    |
+| ✓ Image         |                 |                 | ✓ Popup         |                    |
+| ✓ Input         |                 |                 | ✓ Progress      |                    |
+| ✓ Label         |                 |                 | ✓ Rating        |                    |
+| ✓ List          |                 |                 | ✓ Search        |                    |
+| ✓ Loader        |                 |                 |   Shape         |                    |
+| ✓ Rail          |                 |                 | ✓ Sidebar       |                    |
+| ✓ Reveal        |                 |                 |   Sticky        |                    |
+| ✓ Segment       |                 |                 |   Tab           |                    |
+| ✓ Step          |                 |                 |   Transition    |                    |
+|                 |                 |                 |                 |                    |
 
 ## Releasing
 
@@ -156,7 +151,7 @@ Big thanks to our [contributors][20], especially:
 [12]: https://github.com/Semantic-Org/Semantic-UI-React/issues/243
 [13]: https://webpack.github.io
 [14]: https://github.com/Semantic-Org/Semantic-UI-React/issues
-[15]: https://github.com/Semantic-Org/Semantic-UI-React/issues/269
+[15]: #
 [16]: http://technologyadvice.com/careers
 [17]: https://github.com/Semantic-Org/Semantic-UI-React/issues?q=is%3Aopen+label%3A%22help+wanted%22+label%3Aenhancement
 [18]: https://github.com/Semantic-Org/Semantic-UI-React/blob/master/CHANGELOG.md

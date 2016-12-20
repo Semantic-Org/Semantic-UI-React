@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Button, Modal } from 'semantic-ui-react'
 
-class ModalSizeExample extends Component {
+class ModalExampleSize extends Component {
   state = { open: false }
 
   show = (size) => () => this.setState({ size, open: true })
@@ -35,4 +35,4 @@ class ModalSizeExample extends Component {
   }
 }
 
-export default ModalSizeExample
+export default ModalExampleSize

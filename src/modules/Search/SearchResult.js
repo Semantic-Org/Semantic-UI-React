@@ -46,7 +46,12 @@ export default class SearchResult extends Component {
     /** Add an image to the item. */
     image: PropTypes.string,
 
-    /** Called on click with (event, value, text). */
+    /**
+     * Called on click.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props.
+     */
     onClick: PropTypes.func,
 
     /** Customized text for price. */
@@ -63,9 +68,9 @@ export default class SearchResult extends Component {
   }
 
   handleClick = (e) => {
-    const { id, onClick } = this.props
+    const { onClick } = this.props
 
-    if (onClick) onClick(e, id)
+    if (onClick) onClick(e, this.props)
   }
 
   static _meta = {

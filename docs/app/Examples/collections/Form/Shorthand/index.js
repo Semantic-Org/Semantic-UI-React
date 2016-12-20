@@ -52,6 +52,7 @@ const FormTypesExamples = () => (
     >
       <Compare { ...subComponentComparison } />
     </ComponentExample>
+
     <ComponentExample
       title='Field with Custom Control'
       description={[
@@ -62,6 +63,17 @@ const FormTypesExamples = () => (
     >
       <Compare { ...componentPropComparison } />
     </ComponentExample>
+
+    <ComponentExample
+      title='Field with Custom Label'
+      description='You can define a label with props object.'
+      examplePath='collections/Form/Shorthand/FormExampleFieldLabelObject'
+    />
+    <ComponentExample
+      description='You can define a label by passing your own element.'
+      examplePath='collections/Form/Shorthand/FormExampleFieldLabelElement'
+    />
+
     <ComponentExample
       title='Field with HTML Control'
       description='The field control prop also works with HTML tags.'

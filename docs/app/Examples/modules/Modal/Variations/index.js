@@ -19,6 +19,10 @@ const ModalExamples = () => (
       description='Modal can config not to close by escape or dimmer click.'
       examplePath='modules/Modal/Variations/ModalExampleCloseConfig'
     />
+    <ComponentExample
+      description='A Modal can have a close icon.'
+      examplePath='modules/Modal/Variations/ModalExampleCloseIcon'
+    />
   </ExampleSection>
 )
 

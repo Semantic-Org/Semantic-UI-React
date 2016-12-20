@@ -162,6 +162,7 @@ describe('Form', () => {
       it('an empty object by default', () => {
         spyFormSubmit()
           .firstCall.args[1]
+          .formData
           .should.be.deep.equal({})
       })
 
@@ -170,10 +171,10 @@ describe('Form', () => {
       //
       it('text inputs as { name: value }', () => {
         spyFormSubmit(<input type='text' name='foo' defaultValue='bar' />)
-          .should.have.been.calledWithMatch({}, { foo: 'bar' })
+          .should.have.been.calledWithMatch({}, { formData: { foo: 'bar' } })
 
         spyFormSubmit(<input type='text' name='foo' />)
-          .should.have.been.calledWithMatch({}, { foo: '' })
+          .should.have.been.calledWithMatch({}, { formData: { foo: '' } })
       })
 
       //
@@ -181,18 +182,18 @@ describe('Form', () => {
       //
       it('single checkboxes without a value as { name: checked }', () => {
         spyFormSubmit(<input type='checkbox' name='foo' defaultChecked />)
-          .should.have.been.calledWithMatch({}, { foo: true })
+          .should.have.been.calledWithMatch({}, { formData: { foo: true } })
 
         spyFormSubmit(<input type='checkbox' name='foo' />)
-          .should.have.been.calledWithMatch({}, { foo: false })
+          .should.have.been.calledWithMatch({}, { formData: { foo: false } })
       })
 
       it('single checkboxes with a value as { name: (value|false) }', () => {
         spyFormSubmit(<input type='checkbox' name='foo' value='bar' defaultChecked />)
-          .should.have.been.calledWithMatch({}, { foo: 'bar' })
+          .should.have.been.calledWithMatch({}, { formData: { foo: 'bar' } })
 
         spyFormSubmit(<input type='checkbox' name='foo' value='bar' />)
-          .should.have.been.calledWithMatch({}, { foo: false })
+          .should.have.been.calledWithMatch({}, { formData: { foo: false } })
       })
 
       it('multiple checkboxes with some checked as { name: [value, ...] }', () => {
@@ -203,7 +204,7 @@ describe('Form', () => {
             <input type='checkbox' name='foo' value='qux' defaultChecked />
           </Form.Field>
         )
-          .should.have.been.calledWithMatch({}, { foo: ['bar', 'qux'] })
+          .should.have.been.calledWithMatch({}, { formData: { foo: ['bar', 'qux'] } })
       })
 
       it('multiple checkboxes with none checked as { name: [] }', () => {
@@ -214,7 +215,7 @@ describe('Form', () => {
             <input type='checkbox' name='foo' value='qux' />
           </Form.Field>
         )
-          .should.have.been.calledWithMatch({}, { foo: [] })
+          .should.have.been.calledWithMatch({}, { formData: { foo: [] } })
       })
 
       //
@@ -228,7 +229,7 @@ describe('Form', () => {
             <input type='radio' name='foo' value='qux' />
           </Form.Field>
         )
-          .should.have.been.calledWithMatch({}, { foo: 'bar' })
+          .should.have.been.calledWithMatch({}, { formData: { foo: 'bar' } })
       })
 
       it('radios with none checked as { name: null }', () => {
@@ -239,7 +240,7 @@ describe('Form', () => {
             <input type='radio' name='foo' value='qux' />
           </Form.Field>
         )
-          .should.have.been.calledWithMatch({}, { foo: null })
+          .should.have.been.calledWithMatch({}, { formData: { foo: null } })
       })
 
       //
@@ -247,10 +248,10 @@ describe('Form', () => {
       //
       it('text areas as { name: value }', () => {
         spyFormSubmit(<textarea name='foo' defaultValue='bar' />)
-          .should.have.been.calledWithMatch({}, { foo: 'bar' })
+          .should.have.been.calledWithMatch({}, { formData: { foo: 'bar' } })
 
         spyFormSubmit(<textarea name='foo' />)
-          .should.have.been.calledWithMatch({}, { foo: '' })
+          .should.have.been.calledWithMatch({}, { formData: { foo: '' } })
       })
 
       //
@@ -263,7 +264,7 @@ describe('Form', () => {
             <option value='2'>Two</option>
           </select>
         )
-          .should.have.been.calledWithMatch({}, { foo: '2' })
+          .should.have.been.calledWithMatch({}, { formData: { foo: '2' } })
 
         spyFormSubmit(
           <select name='foo'>
@@ -272,7 +273,7 @@ describe('Form', () => {
             <option value='2'>Two</option>
           </select>
         )
-          .should.have.been.calledWithMatch({}, { foo: '' })
+          .should.have.been.calledWithMatch({}, { formData: { foo: '' } })
       })
 
       it('multiple selects with some selected as { name: [value, ...] }', () => {
@@ -283,7 +284,7 @@ describe('Form', () => {
             <option value='3'>Three</option>
           </select>
         )
-          .should.have.been.calledWithMatch({}, { foo: ['1', '3'] })
+          .should.have.been.calledWithMatch({}, { formData: { foo: ['1', '3'] } })
       })
 
       it('multiple selects with none selected as { name: [] }', () => {
@@ -294,7 +295,7 @@ describe('Form', () => {
             <option value='3'>Three</option>
           </select>
         )
-          .should.have.been.calledWithMatch({}, { foo: [] })
+          .should.have.been.calledWithMatch({}, { formData: { foo: [] } })
       })
     })
   })

@@ -81,8 +81,12 @@ webpackConfig.plugins = [
     versions: {
       babel: require('babel-standalone/package.json').version,
       sui: require('semantic-ui-css/package.json').version,
+      suir: require('./package.json').version,
       faker: require('faker/package.json').version,
       lodash: require('lodash/package.json').version,
+      react: require('react/package.json').version,
+      reactDOM: require('react-dom/package.json').version,
+      jsBeautify: require('js-beautify/package.json').version,
     },
   }),
 ]
@@ -170,11 +174,6 @@ if (__TEST__ || argv.localModules) {
     },
   ]
 } else {
-  // we're not using local modules, we're loading deps via CDNs
-  webpackConfig.entry.vendor = _.without(webpackConfig.entry.vendor, [
-    'faker',
-  ])
-
   // these are browser ready modules or aliased to empty
   // do not parse their source for faster builds
   webpackConfig.module.noParse = [
@@ -188,11 +187,14 @@ if (__TEST__ || argv.localModules) {
   })
 
   // find them on the window
-  webpackConfig.externals = {
+  webpackConfig.externals = Object.assign({}, webpackConfig.externals, {
     faker: 'faker',
     'anchor-js': 'AnchorJS',
-    Babel: 'babel-standalone',
-  }
+    'babel-standalone': 'Babel',
+    react: 'React',
+    'react-dom': 'ReactDOM',
+    'react-dom/server': 'ReactDOMServer',
+  })
 }
 
 module.exports = webpackConfig

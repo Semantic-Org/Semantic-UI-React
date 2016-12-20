@@ -197,7 +197,7 @@ export default class ComponentDoc extends Component {
                 <Divider />
               </div>
             )}
-            <ComponentProps props={selectedDocgen.props} />
+            <ComponentProps props={selectedDocgen.props} meta={semanticUIReact[showPropsFor]._meta} />
           </div>
         )}
       </div>

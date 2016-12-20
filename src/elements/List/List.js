@@ -65,11 +65,11 @@ function List(props) {
   const ElementType = getElementType(List, props)
 
   if (children) {
-    return <ElementType {...rest} className={classes}>{children}</ElementType>
+    return <ElementType {...rest} role='list' className={classes}>{children}</ElementType>
   }
 
   return (
-    <ElementType {...rest} className={classes}>
+    <ElementType {...rest} role='list' className={classes}>
       {_.map(items, (item) => ListItem.create(item))}
     </ElementType>
   )

@@ -1,7 +1,6 @@
 import React from 'react'
 import { Step } from 'semantic-ui-react'
 
-const { Content, Description, Group, Title } = Step
 const steps = [
   { completed: true, title: 'Shipping', description: 'Choose your shipping options' },
   { completed: true, title: 'Billing', description: 'Enter billing information' },
@@ -10,22 +9,22 @@ const steps = [
 
 const StepExampleOrdered = () => (
   <div>
-    <Group ordered>
+    <Step.Group ordered>
       <Step completed>
-        <Content>
-          <Title>Shipping</Title>
-          <Description>Choose your shipping options</Description>
-        </Content>
+        <Step.Content>
+          <Step.Title>Shipping</Step.Title>
+          <Step.Description>Choose your shipping options</Step.Description>
+        </Step.Content>
       </Step>
 
       <Step completed title='Billing' description='Enter billing information' />
 
       <Step active title='Confirm Order' description='Verify order details' />
-    </Group>
+    </Step.Group>
 
     <br />
 
-    <Group ordered items={steps} />
+    <Step.Group ordered items={steps} />
   </div>
 )
 

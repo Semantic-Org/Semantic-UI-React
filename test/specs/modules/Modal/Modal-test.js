@@ -367,6 +367,31 @@ describe('Modal', () => {
     })
   })
 
+  describe('closeIcon', () => {
+    it('is not present by default', () => {
+      wrapperMount(<Modal open>foo</Modal>)
+      assertBodyContains('.ui.modal .icon', false)
+    })
+
+    it('defaults to `close` when boolean', () => {
+      wrapperMount(<Modal open closeIcon>foo</Modal>)
+      assertBodyContains('.ui.modal .icon.close')
+    })
+
+    it('is present when passed', () => {
+      wrapperMount(<Modal open closeIcon='bullseye'>foo</Modal>)
+      assertBodyContains('.ui.modal .icon.bullseye')
+    })
+
+    it('triggers onClose when clicked', () => {
+      const spy = sandbox.spy()
+
+      wrapperMount(<Modal onClose={spy} open closeIcon='bullseye'>foo</Modal>)
+      domEvent.click('.ui.modal .icon.bullseye')
+      spy.should.have.been.calledOnce()
+    })
+  })
+
   describe('scrolling', () => {
     afterEach(() => {
       document.body.classList.remove('scrolling')

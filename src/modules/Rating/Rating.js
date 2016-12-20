@@ -71,7 +71,12 @@ export default class Rating extends Component {
       PropTypes.number,
     ]),
 
-    /** Called with (event, { rating, maxRating }) after user selects a new rating. */
+    /**
+     * Called after user selects a new rating.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props and proposed rating.
+     */
     onRate: PropTypes.func,
 
     /** The current number of active icons. */
@@ -85,8 +90,9 @@ export default class Rating extends Component {
   }
 
   static _meta = _meta
+  static Icon = RatingIcon
 
-  handleIconClick = (e, index) => {
+  handleIconClick = (e, { index }) => {
     const { clearable, disabled, maxRating, onRate } = this.props
     const { rating } = this.state
     if (disabled) return
@@ -103,10 +109,10 @@ export default class Rating extends Component {
 
     // set rating
     this.trySetState({ rating: newRating }, { isSelecting: false })
-    if (onRate) onRate(e, { rating: newRating, maxRating })
+    if (onRate) onRate(e, { ...this.props, rating: newRating })
   }
 
-  handleIconMouseEnter = (index) => {
+  handleIconMouseEnter = (e, { index }) => {
     if (this.props.disabled) return
 
     this.setState({ selectedIndex: index, isSelecting: true })
@@ -143,12 +149,15 @@ export default class Rating extends Component {
     const ElementType = getElementType(Rating, this.props)
 
     return (
-      <ElementType {...rest} className={classes} onMouseLeave={this.handleMouseLeave}>
+      <ElementType {...rest} className={classes} role='radiogroup' onMouseLeave={this.handleMouseLeave}>
         {_.times(maxRating, (i) => (
           <RatingIcon
             active={rating >= i + 1}
             index={i}
             key={i}
+            aria-checked={rating === i + 1}
+            aria-posinset={i + 1}
+            aria-setsize={maxRating}
             onClick={this.handleIconClick}
             onMouseEnter={this.handleIconMouseEnter}
             selected={selectedIndex >= i && isSelecting }

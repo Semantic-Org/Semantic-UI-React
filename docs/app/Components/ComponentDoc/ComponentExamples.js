@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import React, { Component, createElement, PropTypes } from 'react'
 
 import { exampleContext } from 'docs/app/utils'
@@ -12,8 +13,7 @@ export default class ComponentExamples extends Component {
   renderExample = () => {
     const { name } = this.props
 
-    const examplePath = exampleContext.keys()
-      .find(path => new RegExp(`${name}/index.js$`).test(path))
+    const examplePath = _.find(exampleContext.keys(), path => new RegExp(`${name}/index.js$`).test(path))
 
     return examplePath && createElement(exampleContext(examplePath).default)
   }

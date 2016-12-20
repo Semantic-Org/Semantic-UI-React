@@ -8,6 +8,7 @@ class ButtonExampleToggle extends Component {
 
   render() {
     const { active } = this.state
+
     return (
       <Button toggle active={active} onClick={this.handleClick}>
         Toggle

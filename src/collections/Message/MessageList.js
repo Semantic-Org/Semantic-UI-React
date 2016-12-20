@@ -1,8 +1,9 @@
-import _ from 'lodash'
+import _ from 'lodash/fp'
 import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
 import {
+  createShorthandFactory,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -17,13 +18,11 @@ function MessageList(props) {
   const rest = getUnhandledProps(MessageList, props)
   const ElementType = getElementType(MessageList, props)
 
-  if (children) {
-    return <ElementType {...rest} className={classes}>{children}</ElementType>
-  }
-
-  const content = _.map(items, item => <MessageItem key={item}>{item}</MessageItem>)
-
-  return <ElementType {...rest} className={classes}>{content}</ElementType>
+  return (
+    <ElementType {...rest} className={classes}>
+      {children || _.map(MessageItem.create, items)}
+    </ElementType>
+  )
 }
 
 MessageList._meta = {
@@ -42,12 +41,14 @@ MessageList.propTypes = {
   /** Additional classes. */
   className: PropTypes.string,
 
-  /** Strings to use as list items. Mutually exclusive with children. */
-  items: PropTypes.arrayOf(PropTypes.string),
+  /** Shorthand Message.Items. */
+  items: customPropTypes.collectionShorthand,
 }
 
 MessageList.defaultProps = {
   as: 'ul',
 }
+
+MessageList.create = createShorthandFactory(MessageList, val => ({ items: val }))
 
 export default MessageList

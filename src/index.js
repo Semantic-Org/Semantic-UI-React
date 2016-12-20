@@ -112,6 +112,8 @@ export { default as DropdownHeader } from './modules/Dropdown/DropdownHeader'
 export { default as DropdownItem } from './modules/Dropdown/DropdownItem'
 export { default as DropdownMenu } from './modules/Dropdown/DropdownMenu'
 
+export { default as Embed } from './modules/Embed'
+
 export { default as Modal } from './modules/Modal'
 export { default as ModalActions } from './modules/Modal/ModalActions'
 export { default as ModalContent } from './modules/Modal/ModalContent'
@@ -125,11 +127,16 @@ export { default as PopupHeader } from './modules/Popup/PopupHeader'
 export { default as Progress } from './modules/Progress'
 
 export { default as Rating } from './modules/Rating'
+export { default as RatingIcon } from './modules/Rating/RatingIcon'
 
 export { default as Search } from './modules/Search'
 export { default as SearchCategory } from './modules/Search/SearchCategory'
 export { default as SearchResult } from './modules/Search/SearchResult'
 export { default as SearchResults } from './modules/Search/SearchResults'
+
+export { default as Sidebar } from './modules/Sidebar'
+export { default as SidebarPushable } from './modules/Sidebar/SidebarPushable'
+export { default as SidebarPusher } from './modules/Sidebar/SidebarPusher'
 
 // Views
 export { default as Card } from './views/Card/Card'
