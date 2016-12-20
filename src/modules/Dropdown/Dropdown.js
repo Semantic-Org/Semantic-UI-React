@@ -930,17 +930,23 @@ export default class Dropdown extends Component {
       search && searchQuery && 'filtered'
     )
     let _text = placeholder
+    let _icon = null
+    let _icon_name = null
     if (searchQuery) {
       _text = null
     } else if (text) {
       _text = text
     } else if (open && !multiple) {
       _text = _.get(this.getSelectedItem(), 'text')
+      _icon_name = _.get(this.getSelectedItem(), 'icon')
     } else if (hasValue) {
       _text = _.get(this.getItemByValue(value), 'text')
+      _icon_name = _.get(value2, 'icon')
     }
-
-    return <div className={classes}>{_text}</div>
+    if(_icon_name){
+      _icon = <Icon name={_icon_name} />
+    }
+    return <div className={classes}>{_icon}{_text}</div>
   }
 
   renderHiddenInput = () => {
