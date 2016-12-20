@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom'
 import {
   AutoControlledComponent as Component,
   customPropTypes,
+  domUtils,
   keyboardKey,
   isBrowser,
   makeDebugger,
@@ -40,6 +41,12 @@ class Portal extends Component {
       customPropTypes.disallow(['closeOnDocumentClick']),
       PropTypes.bool,
     ]),
+
+    /**
+     * Controls whether or not the portal should close on click of an element
+     * with the [data-close] attribute.
+     */
+    closeOnCloseClick: PropTypes.bool,
 
     /** Controls whether or not the portal should close on a click outside. */
     closeOnDocumentClick: customPropTypes.every([
@@ -132,6 +139,7 @@ class Portal extends Component {
   static defaultProps = {
     closeOnDocumentClick: true,
     closeOnEscape: true,
+    closeOnCloseClick: true,
     openOnTriggerClick: true,
     mountNode: isBrowser ? document.body : null,
   }
@@ -177,8 +185,18 @@ class Portal extends Component {
   handleDocumentClick = (e) => {
     const { closeOnDocumentClick, closeOnRootNodeClick } = this.props
 
-    // If not mounted, no portal, or event happened in the portal, ignore it
-    if (!this.node || !this.portal || this.portal.contains(e.target)) return
+    // If not mounted or no portal, ignore it
+    if (!this.node || !this.portal) return
+
+    // If event happened in the portal, ignore it
+    if (this.portal.contains(e.target)) {
+      // NOTE: Ideally we could attach `handlePortalClick` directly to
+      // this.portal. However, if it were to close the modal then the click
+      // event would never be fired on the target. Calling it here ensures
+      // the target receives the click event.
+      this.handlePortalClick(e)
+      return
+    }
 
     if (closeOnDocumentClick || (closeOnRootNodeClick && this.node.contains(e.target))) {
       debug('handleDocumentClick()')
@@ -201,6 +219,15 @@ class Portal extends Component {
   // ----------------------------------------
   // Component Event Handlers
   // ----------------------------------------
+
+  handlePortalClick = (e) => {
+    if (!this.props.closeOnCloseClick) return
+    if (!domUtils.closest(e.target, '[data-close]')) return
+
+    debug('handlePortalClick()')
+
+    this.close(e)
+  }
 
   handlePortalMouseLeave = (e) => {
     const { closeOnPortalMouseLeave, mouseLeaveDelay } = this.props
