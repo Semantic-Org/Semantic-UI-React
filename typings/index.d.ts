@@ -553,7 +553,7 @@ interface SegmentProps {
   stacked?: boolean;
   tertiary?: boolean;
   textAlign?: SemanticTEXTALIGNMENTS;
-  vertical?: SemanticVERTICALALIGNMENTS;
+  vertical?: boolean;
 }
 
 interface SegmentClass extends React.ComponentClass<SegmentProps> {
@@ -1532,7 +1532,7 @@ export const SearchCategory: React.ComponentClass<SearchCategoryProps>;
 // Sidebar
 // ----------------------------------
 
-interface SidebarPushableProps { 
+interface SidebarPushableProps {
   as?: any;
   className?: string;
 }
