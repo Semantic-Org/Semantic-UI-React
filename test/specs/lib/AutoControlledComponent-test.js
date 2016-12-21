@@ -32,6 +32,11 @@ describe('extending AutoControlledComponent', () => {
     TestClass = createTestClass({ autoControlledProps: [], state: {} })
   })
 
+  it('does not throw with a `null` state', () => {
+    TestClass = createTestClass({ autoControlledProps: [], state: null })
+    shallow(<TestClass />)
+  })
+
   describe('trySetState', () => {
     it('is an instance method', () => {
       shallow(<TestClass />)
@@ -167,7 +172,27 @@ describe('extending AutoControlledComponent', () => {
       _.each(props, (val, key) => wrapper.should.not.have.state(key, val))
     })
 
-    it('uses the default prop is the regular prop is undefined', () => {
+    it('includes non autoControlled state', () => {
+      const props = makeProps()
+
+      TestClass = createTestClass({ autoControlledProps: [], state: { foo: 'bar' } })
+      shallow(<TestClass {...props} />)
+        .should.have.state('foo', 'bar')
+    })
+
+    it('uses the initial state if default and regular props are undefined', () => {
+      consoleUtil.disableOnce()
+
+      const defaultProps = { defaultFoo: undefined }
+      const autoControlledProps = ['foo']
+
+      TestClass = createTestClass({ autoControlledProps, defaultProps, state: { foo: 'bar' } })
+
+      shallow(<TestClass foo={undefined} />)
+        .should.have.state('foo', 'bar')
+    })
+
+    it('uses the default prop if the regular prop is undefined', () => {
       consoleUtil.disableOnce()
 
       const defaultProps = { defaultFoo: 'default' }
