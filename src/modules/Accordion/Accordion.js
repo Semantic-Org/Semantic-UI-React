@@ -90,14 +90,10 @@ export default class Accordion extends Component {
 
   state = {}
 
-  componentWillMount() {
-    super.componentWillMount()
-    // TODO AutoControlledComponent should consider default prop values when trySetState is called before mount.
-    // Otherwise, on first render we're allowed to set state for a prop that might have a default.
-    // The default prop should always win on first render.
-    // This default check should then be removed.
-    if (typeof this.props.defaultActiveIndex === 'undefined') {
-      this.trySetState({ activeIndex: this.props.exclusive ? -1 : [-1] })
+  constructor(...args) {
+    super(...args)
+    this.state = {
+      activeIndex: this.props.exclusive ? -1 : [-1],
     }
   }
 
