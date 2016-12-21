@@ -52,10 +52,11 @@ export const getAutoControlledStateValue = (propName, props, state, includeDefau
     const defaultProp = props[getDefaultPropName(propName)]
     if (defaultProp !== undefined) return defaultProp
 
-    // initial state
-    // check for an object as React initializes state as `null` if it is `undefined`
-    const initialState = ({}).toString.call(state) === '[object Object]' && state[propName]
-    if (initialState) return initialState
+    // initial state - state may be null or undefined
+    if (state) {
+      const initialState = state[propName]
+      if (initialState !== undefined) return initialState
+    }
   }
 
   // React doesn't allow changing from uncontrolled to controlled components,
