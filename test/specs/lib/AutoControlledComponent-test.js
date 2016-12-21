@@ -32,6 +32,11 @@ describe('extending AutoControlledComponent', () => {
     TestClass = createTestClass({ autoControlledProps: [], state: {} })
   })
 
+  it('does not throw with a `null` state', () => {
+    TestClass = createTestClass({ autoControlledProps: [], state: null })
+    shallow(<TestClass />)
+  })
+
   describe('trySetState', () => {
     it('is an instance method', () => {
       shallow(<TestClass />)
