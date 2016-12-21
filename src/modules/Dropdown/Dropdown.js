@@ -522,7 +522,7 @@ export default class Dropdown extends Component {
     if (!value || !open) return
 
     // notify the onAddItem prop if this is a new value
-    if (onAddItem && !_.some(options, { text: value })) {
+    if (onAddItem && !_.some(options, { value })) {
       onAddItem(e, { ...this.props, value })
     }
 
@@ -624,7 +624,7 @@ export default class Dropdown extends Component {
     if (item.disabled) return
 
     // notify the onAddItem prop if this is a new value
-    if (onAddItem && !_.some(options, { text: value })) {
+    if (onAddItem && !_.some(options, { value })) {
       onAddItem(e, { ...this.props, value })
     }
 
