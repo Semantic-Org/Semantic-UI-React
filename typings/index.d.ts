@@ -15,6 +15,7 @@ type SemanticSOCIAL = 'facebook' | 'google plus' | 'vk' | 'twitter' | 'linkedin'
 type SemanticROTATION = 'clockwise' | 'counterclockwise'
 type SemanticFLOATS = 'left' | 'right'
 type SemanticSIZES = 'mini' | 'tiny' | 'small' | 'medium' | 'large' | 'big' | 'huge' | 'massive'
+type SemanticMODALSIZES = 'small' | 'large' | 'fullscreen'
 type SemanticTEXTALIGNMENTS = 'left' | 'center' |'right' | 'justified'
 type SemanticVERTICALALIGNMENTS = 'top' | 'middle' |'bottom'
 type SemanticWIDTHSNUMBER = '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | '11' | '12' | '13' | '14' | '15' | '16'
@@ -1243,7 +1244,7 @@ interface DropdownProps extends ReactMouseEvents<HTMLElement>, ReactFocusEvents<
   placeholder?: string;
   pointing?: boolean | DropdownPropPointing;
   scrolling?: boolean;
-  search?: boolean // TODO -add search function;
+  search?: boolean|((filteredOptions:Array<DropdownItemProps>, searchQuery:string) => Array<DropdownItemProps>);
   selectOnBlur?: boolean;
   selection?: any;
   simple?: boolean;
@@ -1309,7 +1310,7 @@ interface ModalProps {
   className?: string;
   dimmer?: boolean | 'blurring' | 'inverted';
   mountnode?: any;
-  size?: SemanticSIZES;
+  size?: SemanticMODALSIZES;
   trigger?: React.ReactNode;
   open?: boolean;
   onClose: Function;
