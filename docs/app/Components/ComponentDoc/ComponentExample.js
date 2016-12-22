@@ -118,6 +118,7 @@ export default class ComponentExample extends Component {
   }
 
   renderSourceCode = _.debounce(() => {
+    const { examplePath } = this.props
     const { sourceCode } = this.state
     // Heads Up!
     //
@@ -130,7 +131,6 @@ export default class ComponentExample extends Component {
     const REACT = require('react')
     const SEMANTIC_UI_REACT = require('semantic-ui-react')
     let COMMON
-
     /* eslint-enable no-unused-vars */
 
     // Should use an AST transform here... oh well :/
@@ -138,25 +138,31 @@ export default class ComponentExample extends Component {
     // which can be rendered in this ComponentExample's render() method
 
     // rewrite imports to const statements against the UPPERCASE module names
-    const imports = _.get(/(import[\s\S]*from[\s\S]*['"]\n)/.exec(sourceCode), '[1]', '')
+    const imports = _.get(/(^import[\s\S]*from[\s\S]*['"]\n)/.exec(sourceCode), '[1]', '')
       .replace(/[\s\n]+/g, ' ')         // normalize spaces and make one line
       .replace(/ import/g, '\nimport')  // one import per line
       .split('\n')                      // split lines
-      .filter(l => l.trim() !== '')     // remove empty lines
-      .map(l => {
-        const defaultImport = _.get(/import\s+(\w+)/.exec(l), '[1]')
-        const destructuredImports = _.get(/import.*({[\s\w,}]+)\s+from/.exec(l), '[1]')
-        const module = _.snakeCase(_.get(/import.*from\s+['"](\.*\/)?([\w\-_]+)/.exec(l), '[2]', '')).toUpperCase()
+      .filter(Boolean)                  // remove empty lines
+      .map(l => {                       // rewrite imports to const statements
+        const [
+          defaultImport,
+          destructuredImports,
+          _module,
+        ] = _.tail(/import\s+([\w]+)?(?:\s*,\s*)?({[\s\w,]+})?\s+from\s+['"](?:.*\/)?([\w\-_]+)['"]/.exec(l))
+
+        const module = _.snakeCase(_module).toUpperCase()
 
         if (module === 'COMMON') {
-          const componentPath = this.props.examplePath.split(__PATH_SEP__).splice(0, 2).join('/');
-          COMMON = require(`docs/app/Examples/${componentPath}/common`);
+          const componentPath = examplePath.split(__PATH_SEP__).splice(0, 2).join(__PATH_SEP__)
+          COMMON = require(`docs/app/Examples/${componentPath}/common`)
         }
 
-        return _.compact([
-          defaultImport && `const ${defaultImport} = ${module}`,
-          destructuredImports && `const ${destructuredImports} = ${module}`,
-        ]).join('\n')
+        const constStatements = []
+        if (defaultImport) constStatements.push(`const ${defaultImport} = ${module}`)
+        if (destructuredImports) constStatements.push(`const ${destructuredImports} = ${module}`)
+        constStatements.push('\n')
+
+        return constStatements.join('\n')
       })
       .join('\n')
 
@@ -240,21 +246,21 @@ export default class ComponentExample extends Component {
       <Divider horizontal>
         <Menu text>
           <Menu.Item
-            active={copied || error} // to show the color
+            active={copied || !!error} // to show the color
             color={copied ? 'green' : color}
             onClick={this.copyJSX}
             icon={!copied && 'copy'}
             content={copied ? 'Copied!' : 'Copy'}
           />
           <Menu.Item
-            active={error} // to show the color
+            active={!!error} // to show the color
             color={color}
             icon='refresh'
             content='Reset'
             onClick={this.resetJSX}
           />
           <Menu.Item
-            active={error} // to show the color
+            active={!!error} // to show the color
             color={color}
             icon='github'
             content='Edit'
@@ -262,7 +268,7 @@ export default class ComponentExample extends Component {
             target='_blank'
           />
           <Menu.Item
-            active={error} // to show the color
+            active={!!error} // to show the color
             color={color}
             icon='bug'
             content='Issue'
