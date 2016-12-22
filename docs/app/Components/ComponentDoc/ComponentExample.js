@@ -129,6 +129,8 @@ export default class ComponentExample extends Component {
     const LODASH = require('lodash')
     const REACT = require('react')
     const SEMANTIC_UI_REACT = require('semantic-ui-react')
+    let COMMON
+
     /* eslint-enable no-unused-vars */
 
     // Should use an AST transform here... oh well :/
@@ -144,7 +146,12 @@ export default class ComponentExample extends Component {
       .map(l => {
         const defaultImport = _.get(/import\s+(\w+)/.exec(l), '[1]')
         const destructuredImports = _.get(/import.*({[\s\w,}]+)\s+from/.exec(l), '[1]')
-        const module = _.snakeCase(_.get(/import.*from\s+['"]([\w\-_]+)/.exec(l), '[1]', '')).toUpperCase()
+        const module = _.snakeCase(_.get(/import.*from\s+['"](\.*\/)?([\w\-_]+)/.exec(l), '[2]', '')).toUpperCase()
+
+        if (module === 'COMMON') {
+          const componentPath = this.props.examplePath.split(__PATH_SEP__).splice(0, 2).join('/');
+          COMMON = require(`docs/app/Examples/${componentPath}/common`);
+        }
 
         return _.compact([
           defaultImport && `const ${defaultImport} = ${module}`,
