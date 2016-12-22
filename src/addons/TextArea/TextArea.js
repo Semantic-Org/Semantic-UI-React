@@ -21,6 +21,15 @@ class TextArea extends Component {
     /** An element type to render as (string or function). */
     as: customPropTypes.as,
 
+    /** Indicates whether height of the textarea fits the content or not */
+    autoHeight: PropTypes.bool,
+
+    /** Handles input event */
+    onInput: PropTypes.function,
+
+    /** Handles blur event */
+    onBlur: PropTypes.function,
+
     /**
      * Called on change.
      * @param {SyntheticEvent} event - The React SyntheticEvent object
@@ -31,6 +40,7 @@ class TextArea extends Component {
 
   static defaultProps = {
     as: 'textarea',
+    autoHeight: true,
   }
 
   handleChange = (e) => {
@@ -40,11 +50,53 @@ class TextArea extends Component {
     }
   }
 
+  handleBlur = (e) => {
+    const { onBlur } = this.props
+    if (onBlur) {
+      onBlur(e, { ...this.props, value: e.target && e.target.value })
+    }
+    if (e.target) { // PhantomJS puts here null during tests
+      this.updateHeight(e.target)
+    }
+  }
+
+  handleInput = (e) => {
+    const { onInput } = this.props
+    if (onInput) {
+      onInput(e, { ...this.props, value: e.target && e.target.value })
+    }
+    if (e.target) { // PhantomJS puts here null during tests
+      this.updateHeight(e.target)
+    }
+  }
+
+  updateHeight = (textarea) => {
+    if (!this.props.autoHeight) {
+      return
+    }
+
+    const computedStyle = window.getComputedStyle(textarea)
+    const borderTopWidth = parseInt(computedStyle.borderTopWidth, 10)
+    const borderBottomWidth = parseInt(computedStyle.borderBottomWidth, 10)
+    if (!textarea.style) {
+      textarea.style = {}
+    }
+    textarea.style.height = 'auto'
+    textarea.style.height = (textarea.scrollHeight + borderTopWidth + borderBottomWidth) + 'px'
+  }
+
   render() {
     const rest = getUnhandledProps(TextArea, this.props)
     const ElementType = getElementType(TextArea, this.props)
 
-    return <ElementType {...rest} onChange={this.handleChange} />
+    return (
+      <ElementType
+        {...rest}
+        onChange={this.handleChange}
+        onInput={this.handleInput}
+        onBlur={this.handleBlur}
+      />
+    )
   }
 }
 
