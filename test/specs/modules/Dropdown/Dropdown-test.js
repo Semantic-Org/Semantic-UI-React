@@ -157,6 +157,69 @@ describe('Dropdown Component', () => {
     })
   })
 
+  describe('aria', () => {
+    it('should label normal dropdown as a listbox', () => {
+      wrapperMount(<Dropdown />)
+      wrapper.find('div').at(0).should.have.prop('role', 'listbox')
+    })
+    it('should label selection dropdown with aria-hidden=true', () => {
+      wrapperMount(<Dropdown selection />)
+      wrapper.find('select').at(0).should.have.prop('aria-hidden', 'true')
+    })
+    it('should label search dropdown as a combobox', () => {
+      wrapperMount(<Dropdown search />)
+      wrapper.find('div').at(0).should.have.prop('role', 'combobox')
+    })
+    it('should label search dropdownMenu as a listbox', () => {
+      wrapperMount(<Dropdown search />)
+      wrapper.find('DropdownMenu').should.have.prop('role', 'listbox')
+    })
+    it('should label search multiple dropdownMenu as aria-multiselectable', () => {
+      wrapperMount(<Dropdown search multiple />)
+      wrapper.find('DropdownMenu').should.have.prop('aria-multiselectable', true)
+    })
+    it('should not label normal dropdownMenu with a role', () => {
+      wrapperMount(<Dropdown />)
+      wrapper.find('DropdownMenu').should.not.have.prop('role')
+    })
+    it('should label disabled dropdown as aria-disabled', () => {
+      wrapperMount(<Dropdown disabled />)
+      wrapper.find('div').at(0).should.have.prop('aria-disabled', true)
+    })
+    it('should label normal dropdown without aria-disabled', () => {
+      wrapperMount(<Dropdown />)
+      wrapper.find('div').at(0).should.not.have.prop('aria-disabled')
+    })
+    it('should label multiple dropdown as aria-multiselectable', () => {
+      wrapperMount(<Dropdown multiple />)
+      wrapper.find('div').at(0).should.have.prop('aria-multiselectable', true)
+    })
+    it('should not label multiple search dropdown as aria-multiselectable', () => {
+      wrapperMount(<Dropdown search multiple />)
+      wrapper.find('div').at(0).should.not.have.prop('aria-multiselectable')
+    })
+    it('should label normal dropdown without aria-multiselectable', () => {
+      wrapperMount(<Dropdown />)
+      wrapper.find('div').at(0).should.not.have.prop('aria-multiselectable')
+    })
+    it('should label loading dropdown as aria-busy', () => {
+      wrapperMount(<Dropdown loading />)
+      wrapper.find('div').at(0).should.have.prop('aria-busy', true)
+    })
+    it('should label normal dropdown without aria-busy', () => {
+      wrapperMount(<Dropdown />)
+      wrapper.find('div').at(0).should.not.have.prop('aria-busy')
+    })
+    it('should label search dropdown input aria-autocomplete=list', () => {
+      wrapperMount(<Dropdown search />)
+      wrapper.find('input').should.have.prop('aria-autocomplete', 'list')
+    })
+    it('should label search dropdown input type=text', () => {
+      wrapperMount(<Dropdown search />)
+      wrapper.find('input').should.have.prop('type', 'text')
+    })
+  })
+
   describe('handleBlur', () => {
     it('passes the event to the onBlur prop', () => {
       const spy = sandbox.spy()

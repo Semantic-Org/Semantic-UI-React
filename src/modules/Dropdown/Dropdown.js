@@ -755,6 +755,32 @@ export default class Dropdown extends Component {
     return _.findIndex(options, ['value', value])
   }
 
+  getDropdownAriaOptions = (ElementType) => {
+    const { loading, disabled, search, multiple } = this.props
+    const { open } = this.state
+    const ariaOptions = {
+      role: search ? 'combobox' : 'listbox',
+      'aria-busy': loading,
+      'aria-disabled': disabled,
+      'aria-expanded': !!open,
+    }
+    if (ariaOptions.role === 'listbox') {
+      ariaOptions['aria-multiselectable'] = multiple
+    }
+    return ariaOptions
+  }
+
+  getDropdownMenuAriaOptions() {
+    const { search, multiple } = this.props
+    const ariaOptions = {}
+
+    if (search) {
+      ariaOptions['aria-multiselectable'] = multiple
+      ariaOptions.role = 'listbox'
+    }
+    return ariaOptions
+  }
+
   // ----------------------------------------
   // Setters
   // ----------------------------------------
@@ -954,7 +980,7 @@ export default class Dropdown extends Component {
 
     // a dropdown without an active item will have an empty string value
     return (
-      <select type='hidden' name={name} value={value} multiple={multiple}>
+      <select type='hidden' aria-hidden='true' name={name} value={value} multiple={multiple}>
         <option key='empty' value=''></option>
         {_.map(options, option => (
           <option key={option.value} value={option.value}>{option.text}</option>
@@ -981,6 +1007,8 @@ export default class Dropdown extends Component {
     return (
       <input
         value={searchQuery}
+        type='text'
+        aria-autocomplete='list'
         onChange={this.handleSearchChange}
         className='search'
         name={[name, 'search'].join('-')}
@@ -1059,17 +1087,18 @@ export default class Dropdown extends Component {
     const { children, header } = this.props
     const { open } = this.state
     const menuClasses = open ? 'visible' : ''
+    const ariaOptions = this.getDropdownMenuAriaOptions()
 
     // single menu child
     if (children) {
       const menuChild = Children.only(children)
       const className = cx(menuClasses, menuChild.props.className)
 
-      return cloneElement(menuChild, { className })
+      return cloneElement(menuChild, { className, ...ariaOptions })
     }
 
     return (
-      <DropdownMenu className={menuClasses}>
+      <DropdownMenu {...ariaOptions} className={menuClasses}>
         {createShorthand(DropdownHeader, val => ({ content: val }), header)}
         {this.renderOptions()}
       </DropdownMenu>
@@ -1139,10 +1168,12 @@ export default class Dropdown extends Component {
     )
     const rest = getUnhandledProps(Dropdown, this.props)
     const ElementType = getElementType(Dropdown, this.props)
+    const ariaOptions = this.getDropdownAriaOptions(ElementType, this.props)
 
     return (
       <ElementType
         {...rest}
+        {...ariaOptions}
         className={classes}
         onBlur={this.handleBlur}
         onClick={this.handleClick}
