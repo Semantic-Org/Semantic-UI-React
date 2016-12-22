@@ -71,7 +71,7 @@ function Message(props) {
   const rest = getUnhandledProps(Message, props)
   const ElementType = getElementType(Message, props)
 
-  if (children) {
+  if (!_.isNil(children)) {
     return (
       <ElementType {...rest} className={classes}>
         {dismissIcon}

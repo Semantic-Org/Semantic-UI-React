@@ -22,7 +22,7 @@ function FeedExtra(props) {
   const rest = getUnhandledProps(FeedExtra, props)
   const ElementType = getElementType(FeedExtra, props)
 
-  if (children) {
+  if (!_.isNil(children)) {
     return <ElementType {...rest} className={classes}>{children}</ElementType>
   }
 

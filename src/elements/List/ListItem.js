@@ -41,7 +41,7 @@ function ListItem(props) {
   const rest = getUnhandledProps(ListItem, props)
   const valueProp = ElementType === 'li' ? { value } : { 'data-value': value }
 
-  if (children) {
+  if (!_.isNil(children)) {
     return <ElementType {...rest} role='listitem' className={classes} {...valueProp}>{children}</ElementType>
   }
 

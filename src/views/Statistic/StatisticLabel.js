@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
@@ -14,7 +15,7 @@ function StatisticLabel(props) {
   const rest = getUnhandledProps(StatisticLabel, props)
   const ElementType = getElementType(StatisticLabel, props)
 
-  return <ElementType {...rest} className={classes}>{children || label}</ElementType>
+  return <ElementType {...rest} className={classes}>{_.isNil(children) ? label : children}</ElementType>
 }
 
 StatisticLabel._meta = {

@@ -28,7 +28,7 @@ function StatisticGroup(props) {
   const rest = getUnhandledProps(StatisticGroup, props)
   const ElementType = getElementType(StatisticGroup, props)
 
-  if (children) {
+  if (!_.isNil(children)) {
     return <ElementType {...rest} className={classes}>{children}</ElementType>
   }
 

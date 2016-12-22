@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
@@ -15,7 +16,7 @@ function StatisticValue(props) {
   const rest = getUnhandledProps(StatisticValue, props)
   const ElementType = getElementType(StatisticValue, props)
 
-  return <ElementType {...rest} className={classes}>{children || value}</ElementType>
+  return <ElementType {...rest} className={classes}>{_.isNil(children) ? value : children}</ElementType>
 }
 
 StatisticValue._meta = {

@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
@@ -35,7 +36,7 @@ function ListContent(props) {
   const rest = getUnhandledProps(ListContent, props)
   const ElementType = getElementType(ListContent, props)
 
-  if (children) {
+  if (!_.isNil(children)) {
     return <ElementType {...rest} className={classes}>{children}</ElementType>
   }
 

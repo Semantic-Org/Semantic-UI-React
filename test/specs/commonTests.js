@@ -468,6 +468,11 @@ export const rendersChildren = (Component, options = {}) => {
     shallow(createElement(Component, requiredProps, child))
       .should.contain(child)
   })
+
+  it('renders child number with 0 value', () => {
+    shallow(createElement(Component, requiredProps, 0))
+      .should.contain.text('0')
+  })
 }
 
 // ----------------------------------------

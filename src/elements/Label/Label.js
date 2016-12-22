@@ -201,7 +201,7 @@ export default class Label extends Component {
     const rest = getUnhandledProps(Label, this.props)
     const ElementType = getElementType(Label, this.props)
 
-    if (children) {
+    if (!_.isNil(children)) {
       return <ElementType {...rest} className={classes} onClick={this.handleClick}>{children}</ElementType>
     }
 

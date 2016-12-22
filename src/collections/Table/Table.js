@@ -76,7 +76,7 @@ function Table(props) {
   const rest = getUnhandledProps(Table, props)
   const ElementType = getElementType(Table, props)
 
-  if (children) {
+  if (!_.isNil(children)) {
     return <ElementType {...rest} className={classes}>{children}</ElementType>
   }
 

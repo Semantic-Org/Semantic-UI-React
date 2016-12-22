@@ -196,7 +196,7 @@ class Menu extends Component {
     const rest = getUnhandledProps(Menu, this.props)
     const ElementType = getElementType(Menu, this.props)
 
-    return <ElementType {...rest} className={classes}>{children || this.renderItems()}</ElementType>
+    return <ElementType {...rest} className={classes}>{_.isNil(children) ? this.renderItems() : children}</ElementType>
   }
 }
 

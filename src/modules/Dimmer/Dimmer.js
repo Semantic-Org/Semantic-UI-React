@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import cx from 'classnames'
 import React, { Component, PropTypes } from 'react'
 
@@ -112,10 +113,10 @@ export default class Dimmer extends Component {
     const rest = getUnhandledProps(Dimmer, this.props)
     const ElementType = getElementType(Dimmer, this.props)
 
-    const childrenJSX = (children || content) && (
+    const childrenJSX = (_.isNil(children) ? content : children) && (
         <div className='content'>
           <div className='center' ref={center => (this.center = center)}>
-            { children || content }
+            { _.isNil(children) ? content : children }
           </div>
         </div>
       )

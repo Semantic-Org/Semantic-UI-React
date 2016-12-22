@@ -203,7 +203,7 @@ class Input extends Component {
 
     const ElementType = getElementType(Input, this.props)
 
-    if (children) {
+    if (!_.isNil(children)) {
       // add htmlInputProps to the `<input />` child
       const childElements = Children.map(children, (child) => {
         if (child.type !== 'input') return child

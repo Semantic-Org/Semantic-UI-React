@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import cx from 'classnames'
 import React, { Component, PropTypes } from 'react'
 
@@ -235,11 +236,11 @@ class Button extends Component {
     )
     const rest = getUnhandledProps(Button, this.props)
     const ElementType = getElementType(Button, this.props, () => {
-      if (label || attached) return 'div'
+      if (!_.isNil(label) || !_.isNil(attached)) return 'div'
     })
     const tabIndex = ElementType === 'div' ? 0 : undefined
 
-    if (children) {
+    if (!_.isNil(children)) {
       const classes = cx('ui', baseClasses, labeledClasses, 'button', className)
       debug('render children:', { classes })
       return (
@@ -249,7 +250,7 @@ class Button extends Component {
       )
     }
 
-    if (label) {
+    if (!_.isNil(label)) {
       const classes = cx('ui', baseClasses, 'button', className)
       const containerClasses = cx('ui', labeledClasses, 'button', className)
       debug('render label:', { classes, containerClasses }, this.props)
@@ -268,7 +269,7 @@ class Button extends Component {
       )
     }
 
-    if (icon && !label) {
+    if (!_.isNil(icon) && _.isNil(label)) {
       const classes = cx('ui', labeledClasses, baseClasses, 'button', className)
       debug('render icon && !label:', { classes })
       return (

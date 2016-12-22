@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
@@ -186,7 +187,7 @@ export default class Embed extends Component {
     const { active } = this.state
 
     if (!active) return null
-    if (children) return <div className='embed'>{children}</div>
+    if (!_.isNil(children)) return <div className='embed'>{children}</div>
 
     return (
       <div className='embed'>
