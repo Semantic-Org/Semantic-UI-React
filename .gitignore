@@ -2,7 +2,6 @@ npm-debug.log*
 node_modules/
 bower_components/
 coverage/
-dist/
 docs/build/
 docs/app/docgenInfo.json
 dll/
