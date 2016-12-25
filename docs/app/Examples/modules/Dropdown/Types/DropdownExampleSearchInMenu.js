@@ -2,6 +2,14 @@ import React from 'react'
 import { Dropdown, Input } from 'semantic-ui-react'
 
 import { tagOptions } from '../common'
+// tagOptions = [
+//   {
+//     text: 'Important',
+//     value: 'Important',
+//     label: { color: 'red', empty: true, circular: true },
+//   },
+//   ...
+// ]
 
 const DropdownExampleSearchInMenu = () => (
   <Dropdown text='Filter Posts' floating labeled button className='icon'>
