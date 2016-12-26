@@ -85,6 +85,12 @@ class TextArea extends Component {
     textarea.style.height = (textarea.scrollHeight + borderTopWidth + borderBottomWidth) + 'px'
   }
 
+  componentDidMount = () => {
+    if (this.props.autoHeight) {
+      this.updateHeight(this.refs.root)
+    }
+  }
+
   render() {
     const rest = getUnhandledProps(TextArea, this.props)
     const ElementType = getElementType(TextArea, this.props)
@@ -95,6 +101,7 @@ class TextArea extends Component {
         onChange={this.handleChange}
         onInput={this.handleInput}
         onBlur={this.handleBlur}
+        ref='root'
       />
     )
   }
