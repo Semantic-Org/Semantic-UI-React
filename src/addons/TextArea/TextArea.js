@@ -76,6 +76,9 @@ class TextArea extends Component {
     }
 
     const computedStyle = window.getComputedStyle(textarea)
+    if (!computedStyle) { // it's null during testing
+      return
+    }
     const borderTopWidth = parseInt(computedStyle.borderTopWidth, 10)
     const borderBottomWidth = parseInt(computedStyle.borderBottomWidth, 10)
     if (!textarea.style) {

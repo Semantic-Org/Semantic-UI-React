@@ -25,4 +25,34 @@ describe('TextArea', () => {
       spy.should.have.been.calledWithMatch(e, { ...props, value: e.target.value })
     })
   })
+
+  describe('onBlur', () => {
+    it('is called with (e, data) on change', () => {
+      const spy = sandbox.spy()
+      const e = { target: { value: 'name' } }
+      const props = { onBlur: spy }
+
+      const wrapper = shallow(<TextArea {...props} />)
+
+      wrapper.find('textarea').simulate('blur', e)
+
+      spy.should.have.been.calledOnce()
+      spy.should.have.been.calledWithMatch(e, { ...props, value: e.target.value })
+    })
+  })
+
+  describe('onInput', () => {
+    it('is called with (e, data) on change', () => {
+      const spy = sandbox.spy()
+      const e = { target: { value: 'name' } }
+      const props = { onInput: spy }
+
+      const wrapper = shallow(<TextArea {...props} />)
+
+      wrapper.find('textarea').simulate('input', e)
+
+      spy.should.have.been.calledOnce()
+      spy.should.have.been.calledWithMatch(e, { ...props, value: e.target.value })
+    })
+  })
 })
