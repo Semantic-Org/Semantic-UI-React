@@ -57,7 +57,7 @@ describe('TextArea', () => {
 
   describe('autoHeight', () => {
     // simplify styles to make height assertions easier
-    const style = { padding: 0, fontSize: '14px', lineHeight: 1, border: 'none' }
+    const style = { padding: 0, fontSize: '10px', lineHeight: 1, border: 'none' }
 
     const assertHeight = (height) => {
       const element = document.querySelector('textarea')
@@ -80,50 +80,44 @@ describe('TextArea', () => {
     it('sets styles when true', () => {
       wrapperMount(<TextArea style={style} autoHeight />)
 
-      // 1 line
-      assertHeight('14px')
+      assertHeight('10px') // 1 line
     })
     it('sets styles when there is a multiline value', () => {
-      wrapperMount(<TextArea style={style} autoHeight value={'line1\nline2\nline3'} />)
+      wrapperMount(<TextArea style={style} autoHeight value={'line1\nline2'} />)
 
-      // 3 lines
-      assertHeight('42px')
+      assertHeight('20px') // 2 lines
     })
     it('does not set styles when not set', () => {
       wrapperMount(<TextArea style={style} />)
 
-      // no height
-      assertHeight('')
+      assertHeight('') // no height
     })
     it('updates the height on change', () => {
       wrapperMount(<TextArea style={style} autoHeight />)
 
       // initial height
       const element = document.querySelector('textarea')
-      element.style.height.should.equal('14px')
+      element.style.height.should.equal('10px')
 
       // update the value and fire a change event
-      element.value = 'line1\nline2\nline3'
+      element.value = 'line1\nline2'
       wrapper.simulate('change')
 
-      // 3 lines
-      assertHeight('42px')
+      assertHeight('20px') // 2 lines
     })
     it('adds styles when toggled to true', () => {
       wrapperMount(<TextArea style={style} />)
 
       wrapper.setProps({ autoHeight: true })
 
-      // 1 line
-      assertHeight('14px')
+      assertHeight('10px') // 1 line
     })
     it('removes styles when toggled to false', () => {
       wrapperMount(<TextArea style={style} autoHeight />)
 
       wrapper.setProps({ autoHeight: false })
 
-      // no height
-      assertHeight('')
+      assertHeight('') // no height
     })
   })
 })
