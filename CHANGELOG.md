@@ -1,5 +1,28 @@
 # Change Log
 
+## [v0.63.2](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.63.2) (2016-12-27)
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.63.1...v0.63.2)
+
+**Implemented enhancements:**
+
+- Textarea does not auto height [\#982](https://github.com/Semantic-Org/Semantic-UI-React/issues/982)
+
+**Closed issues:**
+
+- Allow including only used LODASH functions in app bundle [\#1082](https://github.com/Semantic-Org/Semantic-UI-React/issues/1082)
+- Dropdown onAddItem gets called on value change when text and value aren't equal [\#1064](https://github.com/Semantic-Org/Semantic-UI-React/issues/1064)
+- Examples importing `../common` cannot be edited [\#1037](https://github.com/Semantic-Org/Semantic-UI-React/issues/1037)
+
+**Merged pull requests:**
+
+- docs\(Dropdown\): added comments for shape of options [\#1086](https://github.com/Semantic-Org/Semantic-UI-React/pull/1086) ([fobbyal](https://github.com/fobbyal))
+- fix\(typings\): Add comments from source and fix minor inconsistencies [\#1084](https://github.com/Semantic-Org/Semantic-UI-React/pull/1084) ([sagax85](https://github.com/sagax85))
+- feat\(TextArea\): add `autoHeight` prop [\#1083](https://github.com/Semantic-Org/Semantic-UI-React/pull/1083) ([luski](https://github.com/luski))
+- fix\(docs\): importing `../common` on doc site can be edited [\#1078](https://github.com/Semantic-Org/Semantic-UI-React/pull/1078) ([lusarz](https://github.com/lusarz))
+- react-docgen@2.13.0 untested ⚠️ [\#1074](https://github.com/Semantic-Org/Semantic-UI-React/pull/1074) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+- fix\(Dropdown\): prevent overzealous onAddItem calls [\#1071](https://github.com/Semantic-Org/Semantic-UI-React/pull/1071) ([keeslinp](https://github.com/keeslinp))
+- fix\(Dropdown\): added role/aria attributes to Dropdown and DropdownItem [\#1006](https://github.com/Semantic-Org/Semantic-UI-React/pull/1006) ([fracmak](https://github.com/fracmak))
+
 ## [v0.63.1](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.63.1) (2016-12-21)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.63.0...v0.63.1)
 
