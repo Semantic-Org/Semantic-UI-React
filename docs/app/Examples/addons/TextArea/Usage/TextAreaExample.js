@@ -3,7 +3,7 @@ import { Form, TextArea } from 'semantic-ui-react'
 
 const TextAreaExample = () => (
   <Form>
-    <TextArea placeholder='Tell us more' rows='4' />
+    <TextArea placeholder='Tell us more' />
   </Form>
 )
 
