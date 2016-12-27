@@ -7,7 +7,12 @@ const TextAreaTypesExamples = () => (
     <ComponentExample
       title='TextArea'
       description='A default TextArea.'
-      examplePath='addons/TextArea/Types/TextAreaExample'
+      examplePath='addons/TextArea/Usage/TextAreaExample'
+    />
+    <ComponentExample
+      title='Auto Height'
+      description='A TextArea can adjust its height to fit its contents.'
+      examplePath='addons/TextArea/Usage/TextAreaExampleAutoHeight'
     />
   </ExampleSection>
 )
