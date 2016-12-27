@@ -7,8 +7,7 @@ import {
 } from '../../lib'
 
 /**
- * A simple <textarea> wrapper for use in Form.TextArea.
- * We may add more features to the TextArea in the future.
+ * A TextArea can be used to allow for extended user input.
  * @see Form
  */
 class TextArea extends Component {
@@ -24,87 +23,78 @@ class TextArea extends Component {
     /** Indicates whether height of the textarea fits the content or not */
     autoHeight: PropTypes.bool,
 
-    /** Handles input event */
-    onInput: PropTypes.function,
-
-    /** Handles blur event */
-    onBlur: PropTypes.function,
-
     /**
      * Called on change.
      * @param {SyntheticEvent} event - The React SyntheticEvent object
      * @param {object} data - All props and the event value.
      */
     onChange: PropTypes.func,
+
+    /** The value of the textarea. */
+    value: PropTypes.string,
   }
 
   static defaultProps = {
     as: 'textarea',
-    autoHeight: true,
+  }
+
+  componentDidMount() {
+    this.updateHeight()
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    // removed autoHeight
+    if (!this.props.autoHeight && prevProps.autoHeight) {
+      this.removeAutoHeightStyles()
+    }
+    // added autoHeight or value changed
+    if (this.props.autoHeight && !prevProps.autoHeight || prevProps.value !== this.props.value) {
+      this.updateHeight()
+    }
   }
 
   handleChange = (e) => {
     const { onChange } = this.props
-    if (onChange) {
-      onChange(e, { ...this.props, value: e.target && e.target.value })
-    }
+    if (onChange) onChange(e, { ...this.props, value: e.target && e.target.value })
+
+    this.updateHeight(e.target)
   }
 
-  handleBlur = (e) => {
-    const { onBlur } = this.props
-    if (onBlur) {
-      onBlur(e, { ...this.props, value: e.target && e.target.value })
-    }
-    if (e.target) { // PhantomJS puts here null during tests
-      this.updateHeight(e.target)
-    }
+  removeAutoHeightStyles = () => {
+    this.rootNode.removeAttribute('rows')
+    this.rootNode.style.height = null
+    this.rootNode.style.minHeight = null
+    this.rootNode.style.resize = null
   }
 
-  handleInput = (e) => {
-    const { onInput } = this.props
-    if (onInput) {
-      onInput(e, { ...this.props, value: e.target && e.target.value })
-    }
-    if (e.target) { // PhantomJS puts here null during tests
-      this.updateHeight(e.target)
-    }
-  }
+  updateHeight = () => {
+    if (!this.rootNode) return
 
-  updateHeight = (textarea) => {
-    if (!this.props.autoHeight) {
-      return
-    }
+    const { autoHeight } = this.props
+    if (!autoHeight) return
 
-    const computedStyle = window.getComputedStyle(textarea)
-    if (!computedStyle) { // it's null during testing
-      return
-    }
-    const borderTopWidth = parseInt(computedStyle.borderTopWidth, 10)
-    const borderBottomWidth = parseInt(computedStyle.borderBottomWidth, 10)
-    if (!textarea.style) {
-      textarea.style = {}
-    }
-    textarea.style.height = 'auto'
-    textarea.style.height = (textarea.scrollHeight + borderTopWidth + borderBottomWidth) + 'px'
-  }
+    let { borderTopWidth, borderBottomWidth } = window.getComputedStyle(this.rootNode)
+    borderTopWidth = parseInt(borderTopWidth, 10)
+    borderBottomWidth = parseInt(borderBottomWidth, 10)
 
-  componentDidMount = () => {
-    if (this.props.autoHeight) {
-      this.updateHeight(this.refs.root)
-    }
+    this.rootNode.rows = '1'
+    this.rootNode.style.minHeight = '0'
+    this.rootNode.style.resize = 'none'
+    this.rootNode.style.height = 'auto'
+    this.rootNode.style.height = (this.rootNode.scrollHeight + borderTopWidth + borderBottomWidth) + 'px'
   }
 
   render() {
+    const { value } = this.props
     const rest = getUnhandledProps(TextArea, this.props)
     const ElementType = getElementType(TextArea, this.props)
 
     return (
       <ElementType
         {...rest}
+        value={value}
         onChange={this.handleChange}
-        onInput={this.handleInput}
-        onBlur={this.handleBlur}
-        ref='root'
+        ref={c => (this.rootNode = c)}
       />
     )
   }
