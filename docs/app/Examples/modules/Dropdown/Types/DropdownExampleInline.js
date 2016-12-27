@@ -2,7 +2,6 @@ import React from 'react'
 import { Dropdown } from 'semantic-ui-react'
 
 import { friendOptions } from '../common'
-
 // friendOptions = [
 //   {
 //     text: 'Jenny Hess',
@@ -11,6 +10,7 @@ import { friendOptions } from '../common'
 //   },
 //   ...
 // ]
+
 const DropdownExampleInline = () => (
   <span>
     Show me posts by
