@@ -514,18 +514,18 @@ export default class Dropdown extends Component {
 
   selectHighlightedItem = (e) => {
     const { open } = this.state
-    const { multiple, onAddItem, options } = this.props
-    const value = _.get(this.getSelectedItem(), 'value')
+    const { multiple, onAddItem } = this.props
+    const item = this.getSelectedItem()
+    const value = _.get(item, 'value')
 
     // prevent selecting null if there was no selected item value
     // prevent selecting duplicate items when the dropdown is closed
     if (!value || !open) return
 
     // notify the onAddItem prop if this is a new value
-    if (onAddItem && !_.some(options, { text: value })) {
+    if (onAddItem && item.additional) {
       onAddItem(e, { ...this.props, value })
     }
-
     // notify the onChange prop that the user is trying to change value
     if (multiple) {
       // state value may be undefined
@@ -611,7 +611,7 @@ export default class Dropdown extends Component {
   handleItemClick = (e, item) => {
     debug('handleItemClick()')
     debug(item)
-    const { multiple, onAddItem, options } = this.props
+    const { multiple, onAddItem } = this.props
     const { value } = item
 
     // prevent toggle() in handleClick()
@@ -624,7 +624,7 @@ export default class Dropdown extends Component {
     if (item.disabled) return
 
     // notify the onAddItem prop if this is a new value
-    if (onAddItem && !_.some(options, { text: value })) {
+    if (onAddItem && item.additional) {
       onAddItem(e, { ...this.props, value })
     }
 
@@ -719,6 +719,7 @@ export default class Dropdown extends Component {
         ],
         value: searchQuery,
         className: 'addition',
+        additional: true,
       }
       if (additionPosition === 'top') filteredOptions.unshift(addItem)
       else filteredOptions.push(addItem)
