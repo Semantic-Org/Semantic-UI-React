@@ -62,19 +62,22 @@ describe('TextArea', () => {
     const assertHeight = (height) => {
       const element = document.querySelector('textarea')
 
-      if (height) {
-        element.should.have.property('rows', 1)
-
-        element.style.should.have.property('minHeight', '0px')
-        element.style.should.have.property('resize', 'none')
-        element.style.should.have.property('height', height)
-      } else {
+      if (!height) {
         element.should.not.have.property('rows', 1)
-
         element.style.should.have.property('minHeight', '')
         element.style.should.have.property('resize', '')
         element.style.should.have.property('height', '')
+        return
       }
+
+      element.should.have.property('rows', 1)
+      element.style.should.have.property('minHeight', '0px')
+      element.style.should.have.property('resize', 'none')
+
+      // CI renders textareas with an extra pixel
+      // assert height with a margin of error of one pixel
+      const parsedHeight = parseInt(height, 10)
+      parseInt(element.style.height, 10).should.be.within(parsedHeight - 1, parsedHeight + 1)
     }
 
     it('sets styles when true', () => {
@@ -83,9 +86,9 @@ describe('TextArea', () => {
       assertHeight('10px') // 1 line
     })
     it('sets styles when there is a multiline value', () => {
-      wrapperMount(<TextArea style={style} autoHeight value={'line1\nline2'} />)
+      wrapperMount(<TextArea style={style} autoHeight value={'line1\nline2\nline3'} />)
 
-      assertHeight('20px') // 2 lines
+      assertHeight('30px') // 3 lines
     })
     it('does not set styles when not set', () => {
       wrapperMount(<TextArea style={style} />)
@@ -100,10 +103,10 @@ describe('TextArea', () => {
       element.style.height.should.equal('10px')
 
       // update the value and fire a change event
-      element.value = 'line1\nline2'
+      element.value = 'line1\nline2\nline3'
       wrapper.simulate('change')
 
-      assertHeight('20px') // 2 lines
+      assertHeight('30px') // 3 lines
     })
     it('adds styles when toggled to true', () => {
       wrapperMount(<TextArea style={style} />)
