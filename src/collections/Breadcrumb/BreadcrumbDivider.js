@@ -22,7 +22,13 @@ function BreadcrumbDivider(props) {
 
   if (!_.isNil(icon)) return Icon.create(icon, { ...rest, className: classes })
 
-  return <ElementType {...rest} className={classes}>{content || (_.isNil(children) ? '/' : children)}</ElementType>
+  let breadcrumbContent
+  if (_.isNil(content)) {
+    breadcrumbContent = _.isNil(children) ? '/' : children
+  } else {
+    breadcrumbContent = content
+  }
+  return <ElementType {...rest} className={classes}>{breadcrumbContent}</ElementType>
 }
 
 BreadcrumbDivider._meta = {
