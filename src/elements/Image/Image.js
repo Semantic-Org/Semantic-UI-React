@@ -69,7 +69,7 @@ function Image(props) {
   )
   const rest = getUnhandledProps(Image, props)
   const ElementType = getElementType(Image, props, () => {
-    if (dimmer || label || wrapped || children) return 'div'
+    if (!_.isNil(dimmer) || !_.isNil(label) || !_.isNil(wrapped) || !_.isNil(children)) return 'div'
   })
 
   if (!_.isNil(children)) {

@@ -556,6 +556,10 @@ export const implementsCreateMethod = (Component) => {
       isValidElement(Component.create(123))
         .should.equal(true)
     })
+    it(`creates a ${name} from a number 0`, () => {
+      isValidElement(Component.create(0))
+        .should.equal(true)
+    })
     it(`creates a ${name} from a props object`, () => {
       isValidElement(Component.create({ 'data-foo': 'bar' }))
         .should.equal(true)
@@ -699,6 +703,13 @@ export const implementsShorthandProp = (Component, options = {}) => {
       consoleUtil.disableOnce()
       assertValidShorthand(123)
     })
+
+    if (propKey !== 'input') {
+      it(`renders a ${name} from number 0`, () => {
+        consoleUtil.disableOnce()
+        assertValidShorthand(0)
+      })
+    }
 
     it(`renders a ${name} from a props object`, () => {
       consoleUtil.disableOnce()
