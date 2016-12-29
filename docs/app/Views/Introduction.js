@@ -109,7 +109,7 @@ const MenuItemLinkAugmentationJSX = `import { Link } from 'react-router'
 </Menu>`
 const MenuItemLinkAugmentationHTML = `<div class="ui menu">
   <a class="item">
-    Learn More
+    Home
   </a>
 </div>`
 
