@@ -250,14 +250,15 @@ class Button extends Component {
       )
     }
 
-    if (!_.isNil(label)) {
+    const labelElement = Label.create(label, {
+      basic: true,
+      pointing: labelPosition === 'left' ? 'right' : 'left',
+    })
+    if (labelElement) {
       const classes = cx('ui', baseClasses, 'button', className)
       const containerClasses = cx('ui', labeledClasses, 'button', className)
       debug('render label:', { classes, containerClasses }, this.props)
-      const labelElement = Label.create(label, {
-        basic: true,
-        pointing: labelPosition === 'left' ? 'right' : 'left',
-      })
+
       return (
         <ElementType {...rest} className={containerClasses} onClick={this.handleClick}>
           {labelPosition === 'left' && labelElement}
