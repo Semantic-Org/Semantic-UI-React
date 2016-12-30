@@ -6,6 +6,15 @@ import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
 const GridResponsiveVariationsExamples = () => (
   <ExampleSection title='Responsive Variations'>
     <ComponentExample
+      title='Containers'
+      description={[
+        'A container can be used alongside a grid to provide a',
+        ' responsive, fixed width container for wrapping the contents of a page.',
+      ].join('')}
+      examplePath='collections/Grid/ResponsiveVariations/GridExampleContainer'
+    />
+
+    <ComponentExample
       title='Doubling'
       description='A grid can double its column width on tablet and mobile sizes.'
       examplePath='collections/Grid/ResponsiveVariations/GridExampleDoubling'
