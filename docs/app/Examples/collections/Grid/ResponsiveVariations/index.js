@@ -7,8 +7,10 @@ const GridResponsiveVariationsExamples = () => (
   <ExampleSection title='Responsive Variations'>
     <ComponentExample
       title='Containers'
-      description='A container can be used alongside a grid to provide a
-      responsive, fixed width container for wrapping the contents of a page.'
+      description={[
+        'A container can be used alongside a grid to provide a',
+        ' responsive, fixed width container for wrapping the contents of a page.',
+      ].join('')}
       examplePath='collections/Grid/ResponsiveVariations/GridExampleContainer'
     />
 
