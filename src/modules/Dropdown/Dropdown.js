@@ -1091,7 +1091,7 @@ export default class Dropdown extends Component {
     const ariaOptions = this.getDropdownMenuAriaOptions()
 
     // single menu child
-    if (children) {
+    if (!_.isNil(children)) {
       const menuChild = Children.only(children)
       const className = cx(menuClasses, menuChild.props.className)
 

@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
@@ -14,7 +15,7 @@ function StepTitle(props) {
   const rest = getUnhandledProps(StepTitle, props)
   const ElementType = getElementType(StepTitle, props)
 
-  return <ElementType {...rest} className={classes}>{children || title}</ElementType>
+  return <ElementType {...rest} className={classes}>{_.isNil(children) ? title : children}</ElementType>
 }
 
 StepTitle._meta = {

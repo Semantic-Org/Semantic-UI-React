@@ -20,7 +20,7 @@ function MessageList(props) {
 
   return (
     <ElementType {...rest} className={classes}>
-      {children || _.map(MessageItem.create, items)}
+      {_.isNil(children) ? _.map(MessageItem.create, items) : children}
     </ElementType>
   )
 }

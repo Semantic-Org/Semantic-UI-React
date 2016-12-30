@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import cx from 'classnames'
 import React, { Component, PropTypes } from 'react'
 
@@ -124,7 +125,7 @@ export default class Card extends Component {
       if (onClick) return 'a'
     })
 
-    if (children) {
+    if (!_.isNil(children)) {
       return <ElementType {...rest} className={classes} href={href} onClick={this.handleClick}>{children}</ElementType>
     }
 

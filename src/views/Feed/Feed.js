@@ -25,7 +25,7 @@ function Feed(props) {
   const rest = getUnhandledProps(Feed, props)
   const ElementType = getElementType(Feed, props)
 
-  if (children) {
+  if (!_.isNil(children)) {
     return <ElementType {...rest} className={classes}>{children}</ElementType>
   }
 

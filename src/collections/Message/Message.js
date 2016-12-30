@@ -71,7 +71,7 @@ function Message(props) {
   const rest = getUnhandledProps(Message, props)
   const ElementType = getElementType(Message, props)
 
-  if (children) {
+  if (!_.isNil(children)) {
     return (
       <ElementType {...rest} className={classes}>
         {dismissIcon}
@@ -84,7 +84,7 @@ function Message(props) {
     <ElementType {...rest} className={classes}>
       {dismissIcon}
       {Icon.create(icon)}
-      {(header || content || list) && (
+      {(!_.isNil(header) || !_.isNil(content) || !_.isNil(list)) && (
         <MessageContent>
           {MessageHeader.create(header)}
           {MessageList.create(list)}

@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
@@ -14,7 +15,7 @@ function FeedUser(props) {
   const rest = getUnhandledProps(FeedUser, props)
   const ElementType = getElementType(FeedUser, props)
 
-  return <ElementType {...rest} className={classes}>{children || content}</ElementType>
+  return <ElementType {...rest} className={classes}>{_.isNil(children) ? content : children}</ElementType>
 }
 
 FeedUser._meta = {

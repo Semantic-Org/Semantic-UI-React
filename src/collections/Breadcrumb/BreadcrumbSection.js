@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import cx from 'classnames'
 import React, { Component, PropTypes } from 'react'
 
@@ -87,7 +88,7 @@ export default class BreadcrumbSection extends Component {
 
     return (
       <ElementType {...rest} className={classes} href={href} onClick={this.handleClick}>
-        {children || content}
+        {_.isNil(children) ? content : children}
       </ElementType>
     )
   }

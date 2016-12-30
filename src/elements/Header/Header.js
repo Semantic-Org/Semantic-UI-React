@@ -47,7 +47,7 @@ function Header(props) {
   const rest = getUnhandledProps(Header, props)
   const ElementType = getElementType(Header, props)
 
-  if (children) {
+  if (!_.isNil(children)) {
     return <ElementType {...rest} className={classes}>{children}</ElementType>
   }
 

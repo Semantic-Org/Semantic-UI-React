@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import cx from 'classnames'
 import React, { createElement, PropTypes } from 'react'
 
@@ -55,8 +56,8 @@ function FormField(props) {
   // No Control
   // ----------------------------------------
 
-  if (!control) {
-    if (!label) return <ElementType {...rest} className={classes}>{children}</ElementType>
+  if (_.isNil(control)) {
+    if (_.isNil(label)) return <ElementType {...rest} className={classes}>{children}</ElementType>
 
     return <ElementType {...rest} className={classes}>{createHTMLLabel(label)}</ElementType>
   }

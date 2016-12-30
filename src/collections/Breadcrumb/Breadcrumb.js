@@ -21,7 +21,7 @@ function Breadcrumb(props) {
   const rest = getUnhandledProps(Breadcrumb, props)
   const ElementType = getElementType(Breadcrumb, props)
 
-  if (children) {
+  if (!_.isNil(children)) {
     return <ElementType {...rest} className={classes}>{children}</ElementType>
   }
 
