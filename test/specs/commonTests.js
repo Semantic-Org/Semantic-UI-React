@@ -704,6 +704,8 @@ export const implementsShorthandProp = (Component, options = {}) => {
       assertValidShorthand(123)
     })
 
+    // the Input maps shorthand to `type`
+    // React uses the default prop ('text') in place of type={0}
     if (propKey !== 'input') {
       it(`renders a ${name} from number 0`, () => {
         consoleUtil.disableOnce()
