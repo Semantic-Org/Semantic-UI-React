@@ -115,7 +115,6 @@ Any other issue labeled [`help wanted`][4] is ready for a PR.
 | ✓ Reveal        |                 |                 |   Sticky        |                    |
 | ✓ Segment       |                 |                 |   Tab           |                    |
 | ✓ Step          |                 |                 |   Transition    |                    |
-|                 |                 |                 |                 |                    |
 
 ## Releasing
 
