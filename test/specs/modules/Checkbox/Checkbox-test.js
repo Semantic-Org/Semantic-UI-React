@@ -176,6 +176,29 @@ describe('Checkbox', () => {
     })
   })
 
+  describe('tabIndex', () => {
+    it('defaults to 0', () => {
+      shallow(<Checkbox />)
+        .find('input')
+        .should.have.prop('tabIndex', 0)
+    })
+    it('defaults to -1 when disabled', () => {
+      shallow(<Checkbox disabled />)
+        .find('input')
+        .should.have.prop('tabIndex', -1)
+    })
+    it('can be set explicitly', () => {
+      shallow(<Checkbox tabIndex={123} />)
+        .find('input')
+        .should.have.prop('tabIndex', 123)
+    })
+    it('can be set explicitly when disabled', () => {
+      shallow(<Checkbox tabIndex={123} disabled />)
+        .find('input')
+        .should.have.prop('tabIndex', 123)
+    })
+  })
+
   describe('type', () => {
     it('renders an input of type checkbox when not set', () => {
       shallow(<Checkbox />)
