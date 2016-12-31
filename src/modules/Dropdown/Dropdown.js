@@ -288,7 +288,10 @@ export default class Dropdown extends Component {
     simple: PropTypes.bool,
 
     /** A dropdown can receive focus. */
-    tabIndex: PropTypes.string,
+    tabIndex: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
 
     /** The text displayed in the dropdown, usually for the active item. */
     text: PropTypes.string,
@@ -317,7 +320,6 @@ export default class Dropdown extends Component {
     noResultsMessage: 'No results found.',
     renderLabel: ({ text }) => text,
     selectOnBlur: true,
-    tabIndex: '0',
   }
 
   static autoControlledProps = [
@@ -523,7 +525,7 @@ export default class Dropdown extends Component {
     if (!value || !open) return
 
     // notify the onAddItem prop if this is a new value
-    if (onAddItem && item.additional) {
+    if (onAddItem && item['data-additional']) {
       onAddItem(e, { ...this.props, value })
     }
     // notify the onChange prop that the user is trying to change value
@@ -624,7 +626,7 @@ export default class Dropdown extends Component {
     if (item.disabled) return
 
     // notify the onAddItem prop if this is a new value
-    if (onAddItem && item.additional) {
+    if (onAddItem && item['data-additional']) {
       onAddItem(e, { ...this.props, value })
     }
 
@@ -719,7 +721,7 @@ export default class Dropdown extends Component {
         ],
         value: searchQuery,
         className: 'addition',
-        additional: true,
+        'data-additional': true,
       }
       if (additionPosition === 'top') filteredOptions.unshift(addItem)
       else filteredOptions.push(addItem)
@@ -982,7 +984,7 @@ export default class Dropdown extends Component {
     // a dropdown without an active item will have an empty string value
     return (
       <select type='hidden' aria-hidden='true' name={name} value={value} multiple={multiple}>
-        <option key='empty' value=''></option>
+        <option value='' />
         {_.map(options, option => (
           <option key={option.value} value={option.value}>{option.text}</option>
         ))}
@@ -991,10 +993,15 @@ export default class Dropdown extends Component {
   }
 
   renderSearchInput = () => {
-    const { search, name, tabIndex } = this.props
+    const { disabled, search, name, tabIndex } = this.props
     const { searchQuery } = this.state
 
     if (!search) return null
+
+    // tabIndex
+    let computedTabIndex
+    if (!_.isNil(tabIndex)) computedTabIndex = tabIndex
+    else computedTabIndex = disabled ? -1 : 0
 
     // resize the search input, temporarily show the sizer so we can measure it
     let searchWidth
@@ -1014,7 +1021,7 @@ export default class Dropdown extends Component {
         className='search'
         name={[name, 'search'].join('-')}
         autoComplete='off'
-        tabIndex={tabIndex}
+        tabIndex={computedTabIndex}
         style={{ width: searchWidth }}
         ref={c => (this._search = c)}
       />
@@ -1171,6 +1178,14 @@ export default class Dropdown extends Component {
     const ElementType = getElementType(Dropdown, this.props)
     const ariaOptions = this.getDropdownAriaOptions(ElementType, this.props)
 
+    let computedTabIndex
+    if (!_.isNil(tabIndex)) {
+      computedTabIndex = tabIndex
+    } else if (!search) {
+      // don't set a root node tabIndex as the search input has its own tabIndex
+      computedTabIndex = disabled ? -1 : 0
+    }
+
     return (
       <ElementType
         {...rest}
@@ -1181,7 +1196,7 @@ export default class Dropdown extends Component {
         onMouseDown={this.handleMouseDown}
         onFocus={this.handleFocus}
         onChange={this.handleChange}
-        tabIndex={(disabled || search) ? undefined : tabIndex}
+        tabIndex={computedTabIndex}
         ref={c => (this._dropdown = c)}
       >
         {this.renderHiddenInput()}

@@ -71,7 +71,6 @@ describe('Dropdown Component', () => {
   common.isConformant(Dropdown)
   common.hasUIClassName(Dropdown)
   common.hasSubComponents(Dropdown, [DropdownDivider, DropdownHeader, DropdownItem, DropdownMenu])
-  common.isTabbable(Dropdown)
   common.implementsIconProp(Dropdown)
   common.implementsShorthandProp(Dropdown, {
     propKey: 'header',
@@ -154,6 +153,43 @@ describe('Dropdown Component', () => {
       dropdownMenuIsClosed()
       wrapper.simulate('focus')
       dropdownMenuIsClosed()
+    })
+  })
+
+  describe('tabIndex', () => {
+    it('defaults to 0', () => {
+      wrapperShallow(<Dropdown options={options} />)
+
+      wrapper.should.have.prop('tabIndex', 0)
+    })
+    it('defaults to -1 when disabled', () => {
+      wrapperShallow(<Dropdown options={options} disabled />)
+
+      wrapper.should.have.prop('tabIndex', -1)
+    })
+    it('is not present on the root when `search`', () => {
+      wrapperShallow(<Dropdown options={options} selection search />)
+        .should.not.have.prop('tabIndex')
+    })
+    it('defaults the search input to 0', () => {
+      wrapperShallow(<Dropdown options={options} selection search />)
+        .find('input.search')
+        .should.have.prop('tabIndex', 0)
+    })
+    it('defaults the disabled search input to -1', () => {
+      wrapperShallow(<Dropdown options={options} selection search disabled />)
+        .find('input.search')
+        .should.have.prop('tabIndex', -1)
+    })
+    it('allows explicitly setting the search input value', () => {
+      wrapperShallow(<Dropdown options={options} selection search tabIndex={123} />)
+        .find('input.search')
+        .should.have.prop('tabIndex', 123)
+    })
+    it('allows explicitly setting the search input value when disabled', () => {
+      wrapperShallow(<Dropdown options={options} selection search tabIndex={123} disabled />)
+        .find('input.search')
+        .should.have.prop('tabIndex', 123)
     })
   })
 
@@ -799,8 +835,8 @@ describe('Dropdown Component', () => {
 
     it('opens on arrow down when focused', () => {
       wrapperMount(<Dropdown options={options} selection />)
-        // Note: This mousedown is necessary to get the Dropdown focused
-        // without it being open.
+      // Note: This mousedown is necessary to get the Dropdown focused
+      // without it being open.
         .simulate('mousedown')
         .simulate('focus')
 
@@ -811,8 +847,8 @@ describe('Dropdown Component', () => {
 
     it('opens on space when focused', () => {
       wrapperMount(<Dropdown options={options} selection />)
-        // Note: This mousedown is necessary to get the Dropdown focused
-        // without it being open.
+      // Note: This mousedown is necessary to get the Dropdown focused
+      // without it being open.
         .simulate('mousedown')
         .simulate('focus')
 
@@ -1426,23 +1462,6 @@ describe('Dropdown Component', () => {
       searchIsFocused.should.be.true(
         `Expected "input.search" to be the active element but found ${activeElement} instead.`
       )
-    })
-
-    it('removes Dropdown tabIndex', () => {
-      wrapperShallow(<Dropdown options={options} selection search />)
-        .should.not.have.prop('tabIndex')
-    })
-
-    it('has a search input with a tabIndex of 0', () => {
-      wrapperShallow(<Dropdown options={options} selection search />)
-        .find('input.search')
-        .should.have.prop('tabIndex', '0')
-    })
-
-    it('has a search input props-defined tabIndex', () => {
-      wrapperShallow(<Dropdown options={options} selection search tabIndex='123' />)
-        .find('input.search')
-        .should.have.prop('tabIndex', '123')
     })
 
     it('clears the search query when an item is selected', () => {

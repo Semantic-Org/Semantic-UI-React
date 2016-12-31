@@ -135,6 +135,12 @@ class Input extends Component {
     /** An Input can vary in size */
     size: PropTypes.oneOf(_meta.props.size),
 
+    /** An Input can receive focus. */
+    tabIndex: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+    ]),
+
     /** Transparent Input has no background */
     transparent: PropTypes.bool,
 
@@ -173,6 +179,7 @@ class Input extends Component {
       loading,
       onChange,
       size,
+      tabIndex,
       type,
       input,
       transparent,
@@ -203,6 +210,12 @@ class Input extends Component {
 
     const ElementType = getElementType(Input, this.props)
 
+    // tabIndex
+    if (!_.isNil(tabIndex)) htmlInputProps.tabIndex = tabIndex
+    else if (disabled) htmlInputProps.tabIndex = -1
+
+    // Render with children
+    // ----------------------------------------
     if (!_.isNil(children)) {
       // add htmlInputProps to the `<input />` child
       const childElements = Children.map(children, (child) => {
@@ -214,6 +227,8 @@ class Input extends Component {
       return <ElementType {...rest} className={classes}>{childElements}</ElementType>
     }
 
+    // Render Shorthand
+    // ----------------------------------------
     const actionElement = Button.create(action, elProps => ({
       className: cx(
         // all action components should have the button className
