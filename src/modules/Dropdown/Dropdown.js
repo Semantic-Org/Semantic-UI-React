@@ -525,7 +525,7 @@ export default class Dropdown extends Component {
     if (!value || !open) return
 
     // notify the onAddItem prop if this is a new value
-    if (onAddItem && item.additional) {
+    if (onAddItem && item['data-additional']) {
       onAddItem(e, { ...this.props, value })
     }
     // notify the onChange prop that the user is trying to change value
@@ -626,7 +626,7 @@ export default class Dropdown extends Component {
     if (item.disabled) return
 
     // notify the onAddItem prop if this is a new value
-    if (onAddItem && item.additional) {
+    if (onAddItem && item['data-additional']) {
       onAddItem(e, { ...this.props, value })
     }
 
@@ -721,7 +721,7 @@ export default class Dropdown extends Component {
         ],
         value: searchQuery,
         className: 'addition',
-        additional: true,
+        'data-additional': true,
       }
       if (additionPosition === 'top') filteredOptions.unshift(addItem)
       else filteredOptions.push(addItem)
