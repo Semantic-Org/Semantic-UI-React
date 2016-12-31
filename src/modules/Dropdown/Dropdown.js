@@ -296,6 +296,10 @@ export default class Dropdown extends Component {
     /** The text displayed in the dropdown, usually for the active item. */
     text: PropTypes.string,
 
+    openOnFocus: PropTypes.bool,
+
+    closeOnBlur: PropTypes.bool,
+
     /** Custom element to trigger the menu to become visible. Takes place of 'text'. */
     trigger: customPropTypes.every([
       customPropTypes.disallow(['selection', 'text']),
