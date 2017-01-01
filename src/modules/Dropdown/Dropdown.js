@@ -919,8 +919,9 @@ export default class Dropdown extends Component {
   open = (e) => {
     debug('open()')
 
-    const { disabled, onOpen, search } = this.props
+    const { disabled, onOpen, search, openOnFocus } = this.props
     if (disabled) return
+    if (!openOnFocus) return
     if (search && this._search) this._search.focus()
     if (onOpen) onOpen(e, this.props)
 
@@ -930,7 +931,8 @@ export default class Dropdown extends Component {
   close = (e) => {
     debug('close()')
 
-    const { onClose } = this.props
+    const { onClose, closeOnBlur } = this.props
+    if (!closeOnBlur) return
     if (onClose) onClose(e, this.props)
 
     this.trySetState({ open: false })
