@@ -296,8 +296,10 @@ export default class Dropdown extends Component {
     /** The text displayed in the dropdown, usually for the active item. */
     text: PropTypes.string,
 
+    /** Whether or not the menu should open when the dropdown is focused. */
     openOnFocus: PropTypes.bool,
 
+    /** Whether or not the menu should close when the dropdown is blurred. */
     closeOnBlur: PropTypes.bool,
 
     /** Custom element to trigger the menu to become visible. Takes place of 'text'. */
