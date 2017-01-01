@@ -326,6 +326,8 @@ export default class Dropdown extends Component {
     noResultsMessage: 'No results found.',
     renderLabel: ({ text }) => text,
     selectOnBlur: true,
+    openOnFocus: true,
+    closeOnBlur: true
   }
 
   static autoControlledProps = [
