@@ -327,7 +327,7 @@ export default class Dropdown extends Component {
     renderLabel: ({ text }) => text,
     selectOnBlur: true,
     openOnFocus: true,
-    closeOnBlur: true
+    closeOnBlur: true,
   }
 
   static autoControlledProps = [
