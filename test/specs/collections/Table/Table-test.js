@@ -27,6 +27,7 @@ describe('Table', () => {
     className: 'single line',
   })
   common.propKeyOnlyToClassName(Table, 'stackable')
+  common.propKeyOnlyToClassName(Table, 'sortable')
   common.propKeyOnlyToClassName(Table, 'striped')
   common.propKeyOnlyToClassName(Table, 'structured')
   common.propKeyOnlyToClassName(Table, 'unstackable')

@@ -43,6 +43,7 @@ function Table(props) {
     selectable,
     singleLine,
     size,
+    sortable,
     stackable,
     striped,
     structured,
@@ -65,6 +66,7 @@ function Table(props) {
     useKeyOrValueAndKey(padded, 'padded'),
     useKeyOnly(selectable, 'selectable'),
     useKeyOnly(singleLine, 'single line'),
+    useKeyOnly(sortable, 'sortable'),
     useKeyOnly(stackable, 'stackable'),
     useKeyOnly(striped, 'striped'),
     useKeyOnly(structured, 'structured'),
@@ -190,6 +192,9 @@ Table.propTypes = {
 
   /** A table can also be small or large. */
   size: PropTypes.oneOf(Table._meta.props.size),
+
+  /** A table may allow a user to sort contents by clicking on a table header. */
+  sortable: PropTypes.bool,
 
   /** A table can specify how it stacks table content responsively. */
   stackable: PropTypes.bool,
