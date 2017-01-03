@@ -508,7 +508,7 @@ interface ImageProps extends ReactMouseEvents<any> {
   disabled?: boolean;
 
   /** Shorthand for Dimmer. */
-  dimmer:any;
+  dimmer?: any;
 
   /** An image can sit to the left or right of other content. */
   floated?: SemanticFLOATS;
