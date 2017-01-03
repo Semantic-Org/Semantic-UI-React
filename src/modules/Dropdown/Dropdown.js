@@ -1070,7 +1070,7 @@ export default class Dropdown extends Component {
     const { selectedIndex, value } = this.state
     const options = this.getMenuOptions()
 
-    if (search && _.isEmpty(options)) {
+    if (noResultsMessage !== null && search && _.isEmpty(options)) {
       return <div className='message'>{noResultsMessage}</div>
     }
 

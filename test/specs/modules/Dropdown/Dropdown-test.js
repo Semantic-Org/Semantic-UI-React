@@ -1677,6 +1677,15 @@ describe('Dropdown Component', () => {
         .find('.message')
         .should.have.text('')
     })
+    it('is not shown when set to `null`', () => {
+      const search = wrapperMount(<Dropdown options={options} selection search noResultsMessage={null} />)
+        .find('input.search')
+
+      // search for something we know will not exist
+      search.simulate('change', { target: { value: '_________________' } })
+
+      wrapper.should.not.have.descendants('.message')
+    })
   })
 
   describe('placeholder', () => {
