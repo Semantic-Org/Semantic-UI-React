@@ -1,5 +1,22 @@
 # Change Log
 
+## [v0.63.5](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.63.5) (2017-01-03)
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.63.4...v0.63.5)
+
+**Closed issues:**
+
+- Steps overflow container when cummulative step width exceeds container width [\#1114](https://github.com/Semantic-Org/Semantic-UI-React/issues/1114)
+- Pagination Support for Table Component [\#1110](https://github.com/Semantic-Org/Semantic-UI-React/issues/1110)
+- Typings: dimmer property in ImageProps is not optional. [\#1102](https://github.com/Semantic-Org/Semantic-UI-React/issues/1102)
+
+**Merged pull requests:**
+
+- feat\(Dropdown\): remove noResultsMessage when null [\#1113](https://github.com/Semantic-Org/Semantic-UI-React/pull/1113) ([levithomason](https://github.com/levithomason))
+- cross-env@3.1.4 untested ⚠️ [\#1112](https://github.com/Semantic-Org/Semantic-UI-React/pull/1112) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+- babel-standalone@6.21.1 untested ⚠️ [\#1111](https://github.com/Semantic-Org/Semantic-UI-React/pull/1111) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+- js-beautify@1.6.8 untested ⚠️ [\#1107](https://github.com/Semantic-Org/Semantic-UI-React/pull/1107) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+- fix\(typings\): make dimmer in ImageProps optional [\#1103](https://github.com/Semantic-Org/Semantic-UI-React/pull/1103) ([rokoroku](https://github.com/rokoroku))
+
 ## [v0.63.4](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.63.4) (2016-12-31)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.63.3...v0.63.4)
 
