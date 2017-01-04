@@ -122,7 +122,7 @@
     "watch": "^1.0.1",
     "webpack": "^1.12.14",
     "webpack-dev-middleware": "^1.5.1",
-    "webpack-hot-middleware": "^2.13.2",
+    "webpack-hot-middleware": "^2.15.0",
     "yargs": "^6.6.0"
   },
   "peerDependencies": {
