@@ -428,24 +428,6 @@ export const hasSubComponents = (Component, subComponents) => {
 }
 
 /**
- * Assert a component can be receive focus via the tab key.
- * @param {React.Component|Function} Component The Component.
- * @param {Object} [options={}]
- * @param {Object} [options.requiredProps={}] Props required to render the component.
- */
-export const isTabbable = (Component, options = {}) => {
-  const { requiredProps = {} } = options
-  const { assertRequired } = commonTestHelpers('isTabbable', Component)
-
-  it('is tabbable', () => {
-    assertRequired(Component, 'a `Component`')
-
-    shallow(<Component {...requiredProps} />)
-      .should.have.attr('tabindex', '0')
-  })
-}
-
-/**
  * Assert a component renders children somewhere in the tree.
  * @param {React.Component|Function} Component A component that should render children.
  * @param {Object} [options={}]

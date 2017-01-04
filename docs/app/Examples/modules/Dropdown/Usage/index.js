@@ -10,6 +10,15 @@ const DropdownUsageExamples = () => (
       examplePath='modules/Dropdown/Usage/DropdownExampleUncontrolled'
     />
     <ComponentExample
+      title='No Results Message'
+      description='You can change the no results message.'
+      examplePath='modules/Dropdown/Usage/DropdownExampleCustomNoResultsMessage'
+    />
+    <ComponentExample
+      description='You can remove the no results message.'
+      examplePath='modules/Dropdown/Usage/DropdownExampleRemoveNoResultsMessage'
+    />
+    <ComponentExample
       title='Remote'
       description="A dropdown's options can be controlled from outside based on search change."
       examplePath='modules/Dropdown/Usage/DropdownExampleRemote'
