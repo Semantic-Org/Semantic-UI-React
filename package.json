@@ -3,17 +3,16 @@
   "version": "0.63.5",
   "description": "The official Semantic-UI-React integration.",
   "main": "dist/commonjs/index.js",
-  "types": "./typings/index.d.ts",
   "files": [
     "src",
     "dist",
-    "typings"
+    "index.d.ts"
   ],
   "scripts": {
     "docs": "gulp docs",
     "build": "npm run build:commonjs && npm run build:umd && npm run build:docs",
     "prebuild:commonjs": "rimraf dist/commonjs",
-    "build:commonjs": "babel src -d dist/commonjs",
+    "build:commonjs": "babel src -d dist/commonjs && npm run tsd",
     "prebuild:docs": "npm run build:docs-toc",
     "build:dll": "gulp dll",
     "build:docs": "gulp build:docs",
@@ -34,7 +33,8 @@
     "start:local-modules": "npm run docs -- --local-modules",
     "pretest": "npm run build:dll",
     "test": "cross-env NODE_ENV=test karma start",
-    "test:watch": "npm run test --silent -- --watch"
+    "test:watch": "npm run test --silent -- --watch",
+    "tsd": "cpx './src/**/*.d.ts' dist/commonjs"
   },
   "repository": {
     "type": "git",
@@ -68,6 +68,7 @@
     "connect-history-api-fallback": "^1.2.0",
     "copy-to-clipboard": "^3.0.5",
     "cross-env": "^3.1.4",
+    "cpx": "^1.5.0",
     "css-loader": "^0.26.0",
     "del": "^2.2.2",
     "dirty-chai": "^1.2.2",
