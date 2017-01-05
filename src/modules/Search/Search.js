@@ -166,11 +166,6 @@ export default class Search extends Component {
     /** A search can have its results take up the width of its container. */
     fluid: PropTypes.bool,
 
-    /** A search input can take up the width of its container . */
-    input: PropTypes.shape({
-      fluid: PropTypes.bool,
-    }),
-
     size: PropTypes.oneOf(_meta.props.size),
 
     loading: PropTypes.bool,
@@ -181,9 +176,6 @@ export default class Search extends Component {
     minCharacters: 1,
     noResultsMessage: 'No results found.',
     showNoResults: true,
-    input: {
-      fluid: false,
-    },
   }
 
   static autoControlledProps = [
@@ -516,12 +508,11 @@ export default class Search extends Component {
   // ----------------------------------------
 
   renderSearchInput = () => {
-    const { icon, placeholder, input } = this.props
+    const { icon, placeholder } = this.props
     const { value } = this.state
 
     return (
       <Input
-        fluid={input.fluid}
         value={value}
         placeholder={placeholder}
         onBlur={this.handleBlur}
