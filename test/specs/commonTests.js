@@ -448,24 +448,6 @@ export const hasSubComponents = (Component, subComponents) => {
 }
 
 /**
- * Assert a component can be receive focus via the tab key.
- * @param {React.Component|Function} Component The Component.
- * @param {Object} [options={}]
- * @param {Object} [options.requiredProps={}] Props required to render the component.
- */
-export const isTabbable = (Component, options = {}) => {
-  const { requiredProps = {} } = options
-  const { assertRequired } = commonTestHelpers('isTabbable', Component)
-
-  it('is tabbable', () => {
-    assertRequired(Component, 'a `Component`')
-
-    shallow(<Component {...requiredProps} />)
-      .should.have.attr('tabindex', '0')
-  })
-}
-
-/**
  * Assert a component renders children somewhere in the tree.
  * @param {React.Component|Function} Component A component that should render children.
  * @param {Object} [options={}]
@@ -487,6 +469,11 @@ export const rendersChildren = (Component, options = {}) => {
     const child = <div data-child={faker.hacker.noun()} />
     shallow(createElement(Component, requiredProps, child))
       .should.contain(child)
+  })
+
+  it('renders child number with 0 value', () => {
+    shallow(createElement(Component, requiredProps, 0))
+      .should.contain.text('0')
   })
 }
 
@@ -560,6 +547,10 @@ export const implementsCreateMethod = (Component) => {
     })
     it(`creates a ${name} from a number`, () => {
       isValidElement(Component.create(123))
+        .should.equal(true)
+    })
+    it(`creates a ${name} from a number 0`, () => {
+      isValidElement(Component.create(0))
         .should.equal(true)
     })
     it(`creates a ${name} from a props object`, () => {
@@ -704,6 +695,15 @@ export const implementsShorthandProp = (Component, options = {}) => {
       consoleUtil.disableOnce()
       assertValidShorthand(123)
     })
+
+    // the Input maps shorthand to `type`
+    // React uses the default prop ('text') in place of type={0}
+    if (propKey !== 'input') {
+      it(`renders a ${name} from number 0`, () => {
+        consoleUtil.disableOnce()
+        assertValidShorthand(0)
+      })
+    }
 
     it(`renders a ${name} from a props object`, () => {
       consoleUtil.disableOnce()

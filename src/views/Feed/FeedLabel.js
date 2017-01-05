@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
@@ -16,7 +17,7 @@ function FeedLabel(props) {
   const rest = getUnhandledProps(FeedLabel, props)
   const ElementType = getElementType(FeedLabel, props)
 
-  if (children) {
+  if (!_.isNil(children)) {
     return <ElementType {...rest} className={classes}>{children}</ElementType>
   }
 

@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
@@ -17,7 +18,7 @@ function CardHeader(props) {
   const rest = getUnhandledProps(CardHeader, props)
   const ElementType = getElementType(CardHeader, props)
 
-  return <ElementType {...rest} className={classes}>{children || content}</ElementType>
+  return <ElementType {...rest} className={classes}>{_.isNil(children) ? content : children}</ElementType>
 }
 
 CardHeader._meta = {

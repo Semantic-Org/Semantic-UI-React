@@ -164,4 +164,27 @@ describe('Input', () => {
       spy.should.have.been.calledWithMatch(e, { ...props, value: e.target.value })
     })
   })
+
+  describe('tabIndex', () => {
+    it('is not set by default', () => {
+      shallow(<Input />)
+        .find('input')
+        .should.not.have.prop('tabIndex')
+    })
+    it('defaults to -1 when disabled', () => {
+      shallow(<Input disabled />)
+        .find('input')
+        .should.have.prop('tabIndex', -1)
+    })
+    it('can be set explicitly', () => {
+      shallow(<Input tabIndex={123} />)
+        .find('input')
+        .should.have.prop('tabIndex', 123)
+    })
+    it('can be set explicitly when disabled', () => {
+      shallow(<Input tabIndex={123} disabled />)
+        .find('input')
+        .should.have.prop('tabIndex', 123)
+    })
+  })
 })

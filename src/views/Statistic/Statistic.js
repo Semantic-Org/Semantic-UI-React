@@ -33,7 +33,7 @@ function Statistic(props) {
   const rest = getUnhandledProps(Statistic, props)
   const ElementType = getElementType(Statistic, props)
 
-  if (children) {
+  if (!_.isNil(children)) {
     return <ElementType {...rest} className={classes}>{children}</ElementType>
   }
 

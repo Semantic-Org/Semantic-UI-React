@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
@@ -15,7 +16,7 @@ function MessageHeader(props) {
   const rest = getUnhandledProps(MessageHeader, props)
   const ElementType = getElementType(MessageHeader, props)
 
-  return <ElementType {...rest} className={classes}>{children || content}</ElementType>
+  return <ElementType {...rest} className={classes}>{_.isNil(children) ? content : children}</ElementType>
 }
 
 MessageHeader._meta = {

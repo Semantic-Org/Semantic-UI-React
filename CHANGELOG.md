@@ -1,5 +1,100 @@
 # Change Log
 
+## [v0.63.5](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.63.5) (2017-01-03)
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.63.4...v0.63.5)
+
+**Closed issues:**
+
+- Steps overflow container when cummulative step width exceeds container width [\#1114](https://github.com/Semantic-Org/Semantic-UI-React/issues/1114)
+- Pagination Support for Table Component [\#1110](https://github.com/Semantic-Org/Semantic-UI-React/issues/1110)
+- Typings: dimmer property in ImageProps is not optional. [\#1102](https://github.com/Semantic-Org/Semantic-UI-React/issues/1102)
+
+**Merged pull requests:**
+
+- feat\(Dropdown\): remove noResultsMessage when null [\#1113](https://github.com/Semantic-Org/Semantic-UI-React/pull/1113) ([levithomason](https://github.com/levithomason))
+- cross-env@3.1.4 untested ⚠️ [\#1112](https://github.com/Semantic-Org/Semantic-UI-React/pull/1112) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+- babel-standalone@6.21.1 untested ⚠️ [\#1111](https://github.com/Semantic-Org/Semantic-UI-React/pull/1111) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+- js-beautify@1.6.8 untested ⚠️ [\#1107](https://github.com/Semantic-Org/Semantic-UI-React/pull/1107) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+- fix\(typings\): make dimmer in ImageProps optional [\#1103](https://github.com/Semantic-Org/Semantic-UI-React/pull/1103) ([rokoroku](https://github.com/rokoroku))
+
+## [v0.63.4](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.63.4) (2016-12-31)
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.63.3...v0.63.4)
+
+**Implemented enhancements:**
+
+- Typings: Add Comments from Source Files [\#1075](https://github.com/Semantic-Org/Semantic-UI-React/issues/1075)
+- Consider Adding "container" prop to Grid.js [\#983](https://github.com/Semantic-Org/Semantic-UI-React/issues/983)
+
+**Fixed bugs:**
+
+- Input/Dropdown/Button should not have tab stops when disabled [\#966](https://github.com/Semantic-Org/Semantic-UI-React/issues/966)
+
+**Merged pull requests:**
+
+- fix\(tabIndex\): use -1 when disabled, allow override [\#1100](https://github.com/Semantic-Org/Semantic-UI-React/pull/1100) ([levithomason](https://github.com/levithomason))
+- yargs@6.6.0 untested ⚠️ [\#1097](https://github.com/Semantic-Org/Semantic-UI-React/pull/1097) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+
+## [v0.63.3](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.63.3) (2016-12-30)
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.63.2...v0.63.3)
+
+**Implemented enhancements:**
+
+- Typescript: Dimmer component doesn't exist. [\#1091](https://github.com/Semantic-Org/Semantic-UI-React/issues/1091)
+- feat\(typings\): Add declarations for Dimmer [\#1092](https://github.com/Semantic-Org/Semantic-UI-React/pull/1092) ([wcatron](https://github.com/wcatron))
+- feat\(Grid\): add `container` prop [\#1085](https://github.com/Semantic-Org/Semantic-UI-React/pull/1085) ([tarang9211](https://github.com/tarang9211))
+
+**Fixed bugs:**
+
+- Table.Cell with child {0} doesn't render [\#1069](https://github.com/Semantic-Org/Semantic-UI-React/issues/1069)
+
+**Merged pull requests:**
+
+- docs\(Introduction\): Fix augmentation example [\#1094](https://github.com/Semantic-Org/Semantic-UI-React/pull/1094) ([radekmie](https://github.com/radekmie))
+- fix\(Components\): render with children or shorthand of `0` [\#1077](https://github.com/Semantic-Org/Semantic-UI-React/pull/1077) ([lusarz](https://github.com/lusarz))
+
+## [v0.63.2](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.63.2) (2016-12-27)
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.63.1...v0.63.2)
+
+**Implemented enhancements:**
+
+- Textarea does not auto height [\#982](https://github.com/Semantic-Org/Semantic-UI-React/issues/982)
+
+**Closed issues:**
+
+- Allow including only used LODASH functions in app bundle [\#1082](https://github.com/Semantic-Org/Semantic-UI-React/issues/1082)
+- Dropdown onAddItem gets called on value change when text and value aren't equal [\#1064](https://github.com/Semantic-Org/Semantic-UI-React/issues/1064)
+- Examples importing `../common` cannot be edited [\#1037](https://github.com/Semantic-Org/Semantic-UI-React/issues/1037)
+
+**Merged pull requests:**
+
+- docs\(Dropdown\): added comments for shape of options [\#1086](https://github.com/Semantic-Org/Semantic-UI-React/pull/1086) ([fobbyal](https://github.com/fobbyal))
+- fix\(typings\): Add comments from source and fix minor inconsistencies [\#1084](https://github.com/Semantic-Org/Semantic-UI-React/pull/1084) ([sagax85](https://github.com/sagax85))
+- feat\(TextArea\): add `autoHeight` prop [\#1083](https://github.com/Semantic-Org/Semantic-UI-React/pull/1083) ([luski](https://github.com/luski))
+- fix\(docs\): importing `../common` on doc site can be edited [\#1078](https://github.com/Semantic-Org/Semantic-UI-React/pull/1078) ([lusarz](https://github.com/lusarz))
+- react-docgen@2.13.0 untested ⚠️ [\#1074](https://github.com/Semantic-Org/Semantic-UI-React/pull/1074) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+- fix\(Dropdown\): prevent overzealous onAddItem calls [\#1071](https://github.com/Semantic-Org/Semantic-UI-React/pull/1071) ([keeslinp](https://github.com/keeslinp))
+- fix\(Dropdown\): added role/aria attributes to Dropdown and DropdownItem [\#1006](https://github.com/Semantic-Org/Semantic-UI-React/pull/1006) ([fracmak](https://github.com/fracmak))
+
+## [v0.63.1](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.63.1) (2016-12-21)
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.63.0...v0.63.1)
+
+**Fixed bugs:**
+
+- Support defaultProps in AutoControlledComponent [\#764](https://github.com/Semantic-Org/Semantic-UI-React/issues/764)
+
+**Closed issues:**
+
+- \[Question\]   Form.Field control={Checkbox}   vs   Form.Checkbox [\#1070](https://github.com/Semantic-Org/Semantic-UI-React/issues/1070)
+- manage the popup appearance and BG click to close [\#1067](https://github.com/Semantic-Org/Semantic-UI-React/issues/1067)
+- Add doc examples for color, size, and inverted Statistic Groups [\#974](https://github.com/Semantic-Org/Semantic-UI-React/issues/974)
+
+**Merged pull requests:**
+
+- fix\(typings\): use boolean `vertical` Segment attribute [\#1073](https://github.com/Semantic-Org/Semantic-UI-React/pull/1073) ([dennari](https://github.com/dennari))
+- feat\(AutoControlledComponent\): Default values [\#1066](https://github.com/Semantic-Org/Semantic-UI-React/pull/1066) ([jcarbo](https://github.com/jcarbo))
+- node-sass@4.1.1 untested ⚠️ [\#1063](https://github.com/Semantic-Org/Semantic-UI-React/pull/1063) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+- debug@2.4.5 untested ⚠️ [\#1049](https://github.com/Semantic-Org/Semantic-UI-React/pull/1049) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+
 ## [v0.63.0](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.63.0) (2016-12-20)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.62.4...v0.63.0)
 

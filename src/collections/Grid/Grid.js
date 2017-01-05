@@ -24,6 +24,7 @@ function Grid(props) {
   const {
     celled,
     centered,
+    container,
     children,
     className,
     columns,
@@ -41,6 +42,7 @@ function Grid(props) {
   const classes = cx(
     'ui',
     useKeyOnly(centered, 'centered'),
+    useKeyOnly(container, 'container'),
     useKeyOnly(doubling, 'doubling'),
     useKeyOnly(stackable, 'stackable'),
     useKeyOnly(stretched, 'stretched'),
@@ -91,6 +93,9 @@ Grid.propTypes = {
 
   /** A grid can have its columns centered. */
   centered: PropTypes.bool,
+
+  /** A grid can be combined with a container to use avaiable layout and alignment */
+  container: PropTypes.bool,
 
   /** Primary content. */
   children: PropTypes.node,

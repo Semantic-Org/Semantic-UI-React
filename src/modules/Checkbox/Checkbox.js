@@ -1,3 +1,4 @@
+import _ from 'lodash/fp'
 import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
@@ -11,7 +12,6 @@ import {
   META,
   useKeyOnly,
 } from '../../lib'
-
 const debug = makeDebugger('checkbox')
 
 const _meta = {
@@ -104,6 +104,12 @@ export default class Checkbox extends Component {
 
     /** The HTML input value. */
     value: PropTypes.string,
+
+    /** A checkbox can receive focus. */
+    tabIndex: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
   }
 
   static defaultProps = {
@@ -168,6 +174,7 @@ export default class Checkbox extends Component {
       radio,
       readOnly,
       slider,
+      tabIndex,
       toggle,
       type,
       value,
@@ -192,6 +199,10 @@ export default class Checkbox extends Component {
     const rest = getUnhandledProps(Checkbox, this.props)
     const ElementType = getElementType(Checkbox, this.props)
 
+    let computedTabIndex
+    if (!_.isNil(tabIndex)) computedTabIndex = tabIndex
+    else computedTabIndex = disabled ? -1 : 0
+
     return (
       <ElementType {...rest} className={classes} onClick={this.handleClick} onChange={this.handleClick}>
         <input
@@ -200,7 +211,7 @@ export default class Checkbox extends Component {
           name={name}
           readOnly
           ref={this.handleRef}
-          tabIndex={0}
+          tabIndex={computedTabIndex}
           type={type}
           value={value}
         />

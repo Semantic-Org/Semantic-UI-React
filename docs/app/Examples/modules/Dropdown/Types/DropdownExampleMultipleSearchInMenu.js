@@ -2,6 +2,15 @@ import React from 'react'
 import { Dropdown, Input } from 'semantic-ui-react'
 
 import { tagOptions } from '../common'
+// tagOptions = [
+//   {
+//     text: 'Important',
+//     value: 'Important',
+//     label: { color: 'red', empty: true, circular: true },
+//   },
+//   ...
+// ]
+
 
 const DropdownExampleMultipleSearchInMenu = () => (
   <Dropdown text='Filter Posts' multiple>

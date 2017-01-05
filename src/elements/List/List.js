@@ -64,7 +64,7 @@ function List(props) {
   const rest = getUnhandledProps(List, props)
   const ElementType = getElementType(List, props)
 
-  if (children) {
+  if (!_.isNil(children)) {
     return <ElementType {...rest} role='list' className={classes}>{children}</ElementType>
   }
 

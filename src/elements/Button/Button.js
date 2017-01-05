@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import cx from 'classnames'
 import React, { Component, PropTypes } from 'react'
 
@@ -153,11 +154,17 @@ class Button extends Component {
     /** A button can be formatted to show different levels of emphasis */
     secondary: PropTypes.bool,
 
-    /** A button can be formatted to toggle on and off */
-    toggle: PropTypes.bool,
-
     /** A button can have different sizes */
     size: PropTypes.oneOf(_meta.props.size),
+
+    /** A button can receive focus. */
+    tabIndex: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+    ]),
+
+    /** A button can be formatted to toggle on and off */
+    toggle: PropTypes.bool,
   }
 
   static defaultProps = {
@@ -205,6 +212,7 @@ class Button extends Component {
       primary,
       secondary,
       size,
+      tabIndex,
       toggle,
     } = this.props
 
@@ -235,28 +243,33 @@ class Button extends Component {
     )
     const rest = getUnhandledProps(Button, this.props)
     const ElementType = getElementType(Button, this.props, () => {
-      if (label || attached) return 'div'
+      if (!_.isNil(label) || !_.isNil(attached)) return 'div'
     })
-    const tabIndex = ElementType === 'div' ? 0 : undefined
 
-    if (children) {
+    let computedTabIndex
+    if (!_.isNil(tabIndex)) computedTabIndex = tabIndex
+    else if (disabled) computedTabIndex = -1
+    else if (ElementType === 'div') computedTabIndex = 0
+
+    if (!_.isNil(children)) {
       const classes = cx('ui', baseClasses, labeledClasses, 'button', className)
       debug('render children:', { classes })
       return (
-        <ElementType {...rest} className={classes} tabIndex={tabIndex} onClick={this.handleClick}>
+        <ElementType {...rest} className={classes} tabIndex={computedTabIndex} onClick={this.handleClick}>
           {children}
         </ElementType>
       )
     }
 
-    if (label) {
+    const labelElement = Label.create(label, {
+      basic: true,
+      pointing: labelPosition === 'left' ? 'right' : 'left',
+    })
+    if (labelElement) {
       const classes = cx('ui', baseClasses, 'button', className)
       const containerClasses = cx('ui', labeledClasses, 'button', className)
       debug('render label:', { classes, containerClasses }, this.props)
-      const labelElement = Label.create(label, {
-        basic: true,
-        pointing: labelPosition === 'left' ? 'right' : 'left',
-      })
+
       return (
         <ElementType {...rest} className={containerClasses} onClick={this.handleClick}>
           {labelPosition === 'left' && labelElement}
@@ -268,11 +281,11 @@ class Button extends Component {
       )
     }
 
-    if (icon && !label) {
+    if (!_.isNil(icon) && _.isNil(label)) {
       const classes = cx('ui', labeledClasses, baseClasses, 'button', className)
       debug('render icon && !label:', { classes })
       return (
-        <ElementType {...rest} className={classes} tabIndex={tabIndex} onClick={this.handleClick}>
+        <ElementType {...rest} className={classes} tabIndex={computedTabIndex} onClick={this.handleClick}>
           {Icon.create(icon)} {content}
         </ElementType>
       )
@@ -282,7 +295,7 @@ class Button extends Component {
     debug('render default:', { classes })
 
     return (
-      <ElementType {...rest} className={classes} tabIndex={tabIndex} onClick={this.handleClick}>
+      <ElementType {...rest} className={classes} tabIndex={computedTabIndex} onClick={this.handleClick}>
         {content}
       </ElementType>
     )

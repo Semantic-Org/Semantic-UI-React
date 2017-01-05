@@ -2,6 +2,7 @@ import React from 'react'
 import { Dropdown } from 'semantic-ui-react'
 
 import { languageOptions } from '../common'
+// languageOptions = [ { text: 'Arabic', value: 'Arabic' }, ...  ]
 
 /**
  * NOTE: In this example, the dropdown should contain a label on the

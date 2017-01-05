@@ -71,7 +71,6 @@ describe('Dropdown Component', () => {
   common.isConformant(Dropdown)
   common.hasUIClassName(Dropdown)
   common.hasSubComponents(Dropdown, [DropdownDivider, DropdownHeader, DropdownItem, DropdownMenu])
-  common.isTabbable(Dropdown)
   common.implementsIconProp(Dropdown)
   common.implementsShorthandProp(Dropdown, {
     propKey: 'header',
@@ -154,6 +153,106 @@ describe('Dropdown Component', () => {
       dropdownMenuIsClosed()
       wrapper.simulate('focus')
       dropdownMenuIsClosed()
+    })
+  })
+
+  describe('tabIndex', () => {
+    it('defaults to 0', () => {
+      wrapperShallow(<Dropdown options={options} />)
+
+      wrapper.should.have.prop('tabIndex', 0)
+    })
+    it('defaults to -1 when disabled', () => {
+      wrapperShallow(<Dropdown options={options} disabled />)
+
+      wrapper.should.have.prop('tabIndex', -1)
+    })
+    it('is not present on the root when `search`', () => {
+      wrapperShallow(<Dropdown options={options} selection search />)
+        .should.not.have.prop('tabIndex')
+    })
+    it('defaults the search input to 0', () => {
+      wrapperShallow(<Dropdown options={options} selection search />)
+        .find('input.search')
+        .should.have.prop('tabIndex', 0)
+    })
+    it('defaults the disabled search input to -1', () => {
+      wrapperShallow(<Dropdown options={options} selection search disabled />)
+        .find('input.search')
+        .should.have.prop('tabIndex', -1)
+    })
+    it('allows explicitly setting the search input value', () => {
+      wrapperShallow(<Dropdown options={options} selection search tabIndex={123} />)
+        .find('input.search')
+        .should.have.prop('tabIndex', 123)
+    })
+    it('allows explicitly setting the search input value when disabled', () => {
+      wrapperShallow(<Dropdown options={options} selection search tabIndex={123} disabled />)
+        .find('input.search')
+        .should.have.prop('tabIndex', 123)
+    })
+  })
+
+  describe('aria', () => {
+    it('should label normal dropdown as a listbox', () => {
+      wrapperMount(<Dropdown />)
+      wrapper.find('div').at(0).should.have.prop('role', 'listbox')
+    })
+    it('should label selection dropdown with aria-hidden=true', () => {
+      wrapperMount(<Dropdown selection />)
+      wrapper.find('select').at(0).should.have.prop('aria-hidden', 'true')
+    })
+    it('should label search dropdown as a combobox', () => {
+      wrapperMount(<Dropdown search />)
+      wrapper.find('div').at(0).should.have.prop('role', 'combobox')
+    })
+    it('should label search dropdownMenu as a listbox', () => {
+      wrapperMount(<Dropdown search />)
+      wrapper.find('DropdownMenu').should.have.prop('role', 'listbox')
+    })
+    it('should label search multiple dropdownMenu as aria-multiselectable', () => {
+      wrapperMount(<Dropdown search multiple />)
+      wrapper.find('DropdownMenu').should.have.prop('aria-multiselectable', true)
+    })
+    it('should not label normal dropdownMenu with a role', () => {
+      wrapperMount(<Dropdown />)
+      wrapper.find('DropdownMenu').should.not.have.prop('role')
+    })
+    it('should label disabled dropdown as aria-disabled', () => {
+      wrapperMount(<Dropdown disabled />)
+      wrapper.find('div').at(0).should.have.prop('aria-disabled', true)
+    })
+    it('should label normal dropdown without aria-disabled', () => {
+      wrapperMount(<Dropdown />)
+      wrapper.find('div').at(0).should.not.have.prop('aria-disabled')
+    })
+    it('should label multiple dropdown as aria-multiselectable', () => {
+      wrapperMount(<Dropdown multiple />)
+      wrapper.find('div').at(0).should.have.prop('aria-multiselectable', true)
+    })
+    it('should not label multiple search dropdown as aria-multiselectable', () => {
+      wrapperMount(<Dropdown search multiple />)
+      wrapper.find('div').at(0).should.not.have.prop('aria-multiselectable')
+    })
+    it('should label normal dropdown without aria-multiselectable', () => {
+      wrapperMount(<Dropdown />)
+      wrapper.find('div').at(0).should.not.have.prop('aria-multiselectable')
+    })
+    it('should label loading dropdown as aria-busy', () => {
+      wrapperMount(<Dropdown loading />)
+      wrapper.find('div').at(0).should.have.prop('aria-busy', true)
+    })
+    it('should label normal dropdown without aria-busy', () => {
+      wrapperMount(<Dropdown />)
+      wrapper.find('div').at(0).should.not.have.prop('aria-busy')
+    })
+    it('should label search dropdown input aria-autocomplete=list', () => {
+      wrapperMount(<Dropdown search />)
+      wrapper.find('input').should.have.prop('aria-autocomplete', 'list')
+    })
+    it('should label search dropdown input type=text', () => {
+      wrapperMount(<Dropdown search />)
+      wrapper.find('input').should.have.prop('type', 'text')
     })
   })
 
@@ -736,8 +835,8 @@ describe('Dropdown Component', () => {
 
     it('opens on arrow down when focused', () => {
       wrapperMount(<Dropdown options={options} selection />)
-        // Note: This mousedown is necessary to get the Dropdown focused
-        // without it being open.
+      // Note: This mousedown is necessary to get the Dropdown focused
+      // without it being open.
         .simulate('mousedown')
         .simulate('focus')
 
@@ -748,8 +847,8 @@ describe('Dropdown Component', () => {
 
     it('opens on space when focused', () => {
       wrapperMount(<Dropdown options={options} selection />)
-        // Note: This mousedown is necessary to get the Dropdown focused
-        // without it being open.
+      // Note: This mousedown is necessary to get the Dropdown focused
+      // without it being open.
         .simulate('mousedown')
         .simulate('focus')
 
@@ -1365,23 +1464,6 @@ describe('Dropdown Component', () => {
       )
     })
 
-    it('removes Dropdown tabIndex', () => {
-      wrapperShallow(<Dropdown options={options} selection search />)
-        .should.not.have.prop('tabIndex')
-    })
-
-    it('has a search input with a tabIndex of 0', () => {
-      wrapperShallow(<Dropdown options={options} selection search />)
-        .find('input.search')
-        .should.have.prop('tabIndex', '0')
-    })
-
-    it('has a search input props-defined tabIndex', () => {
-      wrapperShallow(<Dropdown options={options} selection search tabIndex='123' />)
-        .find('input.search')
-        .should.have.prop('tabIndex', '123')
-    })
-
     it('clears the search query when an item is selected', () => {
       // search for random item
       const searchQuery = _.sample(options).text
@@ -1594,6 +1676,15 @@ describe('Dropdown Component', () => {
       wrapper
         .find('.message')
         .should.have.text('')
+    })
+    it('is not shown when set to `null`', () => {
+      const search = wrapperMount(<Dropdown options={options} selection search noResultsMessage={null} />)
+        .find('input.search')
+
+      // search for something we know will not exist
+      search.simulate('change', { target: { value: '_________________' } })
+
+      wrapper.should.not.have.descendants('.message')
     })
   })
 

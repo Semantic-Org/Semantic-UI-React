@@ -37,6 +37,7 @@
     "jsx-a11y/tabindex-no-positive": 1,
     "react/jsx-curly-spacing": 0,
     "react/sort-comp": 0,
+    "semi": [2, "never"],
     "padded-blocks": [2, {
       "blocks": "never",
       "switches": "never",
