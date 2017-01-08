@@ -403,7 +403,9 @@ export default class Dropdown extends Component {
     if (!prevState.focus && this.state.focus) {
       debug('dropdown focused')
       if (!this.isMouseDown) {
+        const { openOnFocus } = this.props
         debug('mouse is not down, opening')
+        if (!openOnFocus) return
         this.open()
       }
       if (!this.state.open) {
@@ -417,7 +419,9 @@ export default class Dropdown extends Component {
     } else if (prevState.focus && !this.state.focus) {
       debug('dropdown blurred')
       if (!this.isMouseDown) {
+        const { closeOnBlur } = this.props
         debug('mouse is not down, closing')
+        if (!closeOnBlur) return
         this.close()
       }
       document.removeEventListener('keydown', this.openOnArrow)
@@ -919,9 +923,8 @@ export default class Dropdown extends Component {
   open = (e) => {
     debug('open()')
 
-    const { disabled, onOpen, search, openOnFocus } = this.props
+    const { disabled, onOpen, search } = this.props
     if (disabled) return
-    if (!openOnFocus) return
     if (search && this._search) this._search.focus()
     if (onOpen) onOpen(e, this.props)
 
@@ -931,8 +934,7 @@ export default class Dropdown extends Component {
   close = (e) => {
     debug('close()')
 
-    const { onClose, closeOnBlur } = this.props
-    if (!closeOnBlur) return
+    const { onClose } = this.props
     if (onClose) onClose(e, this.props)
 
     this.trySetState({ open: false })
