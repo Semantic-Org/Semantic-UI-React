@@ -108,7 +108,7 @@
     "react-addons-test-utils": "15.4.0",
     "react-docgen": "^2.13.0",
     "react-document-title": "^2.0.2",
-    "react-dom": "15.4.0",
+    "react-dom": "15.4.2",
     "react-router": "^3.0.0",
     "require-dir": "^0.3.0",
     "rimraf": "^2.5.2",
