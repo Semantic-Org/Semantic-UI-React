@@ -9,6 +9,13 @@ const DropdownUsageExamples = () => (
       description='A dropdown that opens when it is focussed on.'
       examplePath='modules/Dropdown/Usage/DropdownExampleOpenOnFocus'
     />
+
+    <ComponentExample
+      title='Close On Blur'
+      description='A dropdown that closes when it blurs'
+      examplePath='modules/Dropdown/Usage/DropdownExampleCloseOnBlur'
+    />
+
     <ComponentExample
       title='Uncontrolled'
       description='A dropdown can behave like an uncontrolled input.'
