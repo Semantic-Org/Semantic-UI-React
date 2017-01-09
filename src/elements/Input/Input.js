@@ -3,6 +3,7 @@ import React, { Children, cloneElement, Component, PropTypes } from 'react'
 import cx from 'classnames'
 
 import {
+  createShorthandFactory,
   createHTMLInput,
   customPropTypes,
   getElementType,
@@ -258,5 +259,7 @@ class Input extends Component {
     )
   }
 }
+
+Input.create = createShorthandFactory(Input, type => ({ type }))
 
 export default Input

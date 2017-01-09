@@ -52,7 +52,7 @@ describe('Input', () => {
     },
   })
   common.hasUIClassName(Input)
-
+  common.implementsCreateMethod(Input)
   common.implementsLabelProp(Input, {
     shorthandDefaultProps: elProps => ({
       className: cx({
@@ -68,7 +68,6 @@ describe('Input', () => {
       }),
     }),
   })
-
   common.implementsHTMLInputProp(Input, {
     alwaysPresent: true,
     shorthandDefaultProps: { type: 'text' },
