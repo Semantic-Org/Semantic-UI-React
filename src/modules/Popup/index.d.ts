@@ -1,17 +1,15 @@
 import { SemanticPOSITIONING, SemanticSIZES } from '../..';
+import { PortalProps } from '../../addons/Portal';
 
-export type PopupPropOn = 'hover'|'click'|'focus';
+export type PopupPropOn = 'hover' | 'click' | 'focus';
 
-interface PopupProps {
+interface PopupProps extends PortalProps {
 
   /** Display the popup without the pointing arrow */
   basic?: boolean;
 
   /** Primary content. */
   children?: React.ReactNode;
-
-  /** Additional classes. */
-  className?: string;
 
   /** Shorthand for primary content. */
   content?: any;
@@ -37,39 +35,6 @@ interface PopupProps {
   /** Event triggering the popup */
   on?: PopupPropOn;
 
-  /**
-   * Called when a close event happens
-   *
-   * @param {SyntheticEvent} event - React's original SyntheticEvent.
-   * @param {object} data - All props.
-   */
-  onClose?: Function;
-
-  /**
-   * Called when the popup is mounted on the DOM
-   *
-   * @param {null}
-   * @param {object} data - All props.
-   */
-  onMount?: Function;
-
-  /**
-   * Called when an open event happens
-   *
-   * @param {SyntheticEvent} event - React's original SyntheticEvent.
-   * @param {object} data - All props.
-   */
-  onOpen?:Function;
-
-  /**
-   * Called when the popup is unmounted from the DOM
-   *
-   * @param {null}
-   * @param {object} data - All props.
-   */
-  onUnmount?: Function;
-
-
   /** Positioning for the popover */
   positioning?: SemanticPOSITIONING;
 
@@ -78,9 +43,6 @@ interface PopupProps {
 
   /** custom popup style */
   style?: Object;
-
-  /** Element to be rendered in-place where the popup is defined. */
-  trigger?: React.ReactNode;
 
   /** Popup width */
   wide?: boolean | 'very';
@@ -94,7 +56,7 @@ interface PopupClass extends React.ComponentClass<PopupProps> {
 export const Popup: PopupClass;
 
 interface PopupContentProps {
-  
+
   /** Primary content. */
   children?: React.ReactNode;
 
@@ -105,7 +67,7 @@ interface PopupContentProps {
 export const PopupContent: React.ComponentClass<PopupContentProps>;
 
 interface PopupHeaderProps {
-  
+
   /** Primary content. */
   children?: React.ReactNode;
 

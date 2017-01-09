@@ -1,7 +1,6 @@
 import * as React from "react";
 import { ReactMouseEvents } from '../..';
 
-
 // Accordion
 // ----------------------------------
 interface AccordionProps {
@@ -32,7 +31,7 @@ interface AccordionProps {
 
   /** Called with (event, index) when a panel title is clicked. */
   onTitleClick?: React.MouseEventHandler<HTMLDivElement>;
-  
+
   /**
    * Create simple accordion panels from an array of { text: <string>, content: <custom> } objects.
    * Object can optionally define an `active` key to open/close the panel.
@@ -45,16 +44,18 @@ interface AccordionProps {
   styled?: boolean;
 }
 
-export class Accordion extends React.Component<AccordionProps,{}> {
+interface AccordionClass extends React.ComponentClass<AccordionProps> {
   Content: typeof AccordionContent;
   Title: typeof AccordionTitle;
 }
+
+export const Accordion: AccordionClass;
 
 
 interface AccordionContentProps {
   /** Whether or not the content is visible. */
   active?: boolean;
-  
+
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -68,10 +69,10 @@ interface AccordionContentProps {
 export const AccordionContent: React.ComponentClass<AccordionContentProps>;
 
 interface AccordionTitleProps extends ReactMouseEvents<HTMLElement> {
-  
+
   /** Whether or not the title is in the open state. */
   active?: boolean;
-  
+
   /** An element type to render as (string or function). */
   as?: any;
 

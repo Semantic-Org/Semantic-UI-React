@@ -5,6 +5,7 @@ export * from './dist/commonjs/addons/Confirm';
 export * from './dist/commonjs/addons/Radio';
 export * from './dist/commonjs/addons/Select';
 export * from './dist/commonjs/addons/TextArea';
+export * from './dist/commonjs/addons/Portal';
 
 /**
  * Collections
@@ -31,7 +32,7 @@ export * from './dist/commonjs/elements/Label';
 export * from './dist/commonjs/elements/List';
 export * from './dist/commonjs/elements/Loader';
 export * from './dist/commonjs/elements/Rail';
-// export * from './dist/commonjs/elements/Reveal';
+export * from './dist/commonjs/elements/Reveal';
 export * from './dist/commonjs/elements/Segment';
 export * from './dist/commonjs/elements/Step';
 
@@ -42,7 +43,7 @@ export * from './dist/commonjs/modules/Accordion';
 export * from './dist/commonjs/modules/Checkbox';
 export * from './dist/commonjs/modules/Dimmer';
 export * from './dist/commonjs/modules/Dropdown';
-//export * from './dist/commonjs/modules/Embed';
+export * from './dist/commonjs/modules/Embed';
 export * from './dist/commonjs/modules/Modal';
 export * from './dist/commonjs/modules/Popup';
 export * from './dist/commonjs/modules/Progress';
