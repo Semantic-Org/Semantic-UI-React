@@ -91,6 +91,17 @@ describe('Input', () => {
 
   common.rendersChildren(Input)
 
+  it('renders with conditional children', () => {
+    shallow(
+      <Input>
+        {true && <span></span>}
+        {false && <div></div>}
+      </Input>
+    )
+      .should.contain(<span></span>)
+      .should.not.contain(<div></div>)
+  })
+
   it('renders a text <input> by default', () => {
     shallow(<Input />)
       .find('input')

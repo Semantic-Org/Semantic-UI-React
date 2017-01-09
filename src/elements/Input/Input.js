@@ -218,7 +218,7 @@ class Input extends Component {
     // ----------------------------------------
     if (!_.isNil(children)) {
       // add htmlInputProps to the `<input />` child
-      const childElements = Children.map(children, (child) => {
+      const childElements = _.map(Children.toArray(children), (child) => {
         if (child.type !== 'input') return child
 
         return cloneElement(child, { ...htmlInputProps, ...child.props })
