@@ -93,9 +93,9 @@ describe('Input', () => {
 
   it('renders with conditional children', () => {
     shallow(
-      <Input >
-        { true && <span></span> }
-        { false && <div></div> }
+      <Input>
+        {true && <span></span>}
+        {false && <div></div>}
       </Input>
     )
       .should.contain(<span></span>)
