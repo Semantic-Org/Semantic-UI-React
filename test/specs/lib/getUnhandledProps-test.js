@@ -20,7 +20,7 @@ describe('getUnhandledProps', () => {
   })
 
   it('removes props defined in handledProps', () => {
-    TestComponent.handledProps = [ 'data-remove-me' ]
+    TestComponent.handledProps = ['data-remove-me']
     shallow(<TestComponent data-remove-me='it is handled' />)
       .should.not.have.prop('data-remove-me', 'thanks')
   })

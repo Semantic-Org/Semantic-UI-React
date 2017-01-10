@@ -6,7 +6,7 @@
  * @returns {{}} A shallow copy of the prop object
  */
 const getUnhandledProps = (Component, props) => {
-  const {handledProps = []} = Component
+  const { handledProps = [] } = Component
 
   return Object.keys(props).reduce((acc, prop) => {
     if (prop === 'childKey') return acc

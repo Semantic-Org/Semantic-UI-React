@@ -3,11 +3,6 @@ import React, { Component, PropTypes } from 'react'
 
 import { Label, Table } from 'src'
 
-const descriptionExtraStyle = {
-  fontSize: '0.95em',
-  color: '#777',
-}
-
 /**
  * Displays a table of a Component's PropTypes.
  */
@@ -25,26 +20,9 @@ export default class ComponentProps extends Component {
     meta: PropTypes.object,
   }
 
-  state = {
-    showEnumsFor: {},
-  }
+  renderName = item => <code>{item.name}</code>
 
-  toggleEnumsFor = (prop) => () => {
-    this.setState({
-      showEnumsFor: {
-        ...this.state.showEnumsFor,
-        [prop]: !this.state.showEnumsFor[prop],
-      },
-    })
-  }
-
-  renderName = (item) => <code>{item.name}</code>
-
-  requiredRenderer = (item) => {
-    if (!item.required) return null
-
-    return <Label size='mini' color='red' circular>required</Label>
-  }
+  requiredRenderer = item => item.required && <Label size='mini' color='red' circular>required</Label>
 
   renderDefaultValue = (item) => {
     let defaultValue = _.get(item, 'defaultValue.value')
@@ -59,52 +37,6 @@ export default class ComponentProps extends Component {
       <div>
         {defaultValue} {_.get(item, 'defaultValue.computed') && defaultIsComputed}
       </div>
-    )
-  }
-
-  renderEnums = (item) => {
-    const { showEnumsFor } = this.state
-    const { meta } = this.props
-
-    if (item.type.indexOf('enum') === -1) return null
-
-    const values = meta.props[item.name]
-    const truncateAt = 30
-
-    if (!values) return null
-
-    // show all if there are few
-    if (values.length < truncateAt) {
-      return (
-        <p style={descriptionExtraStyle}>
-          <strong>Enums: </strong>
-          {values.join(', ')}
-        </p>
-      )
-    }
-
-    // add button to show more when there are many values and it is not toggled
-    if (!showEnumsFor[item.name]) {
-      return (
-        <p style={descriptionExtraStyle}>
-          <strong>Enums: </strong>
-          <a style={{ cursor: 'pointer' }} onClick={this.toggleEnumsFor(item.name)}>
-            Show all {values.length}
-          </a>
-          <div>{values.slice(0, truncateAt - 1).join(', ')}...</div>
-        </p>
-      )
-    }
-
-    // add "show more" button when there are many
-    return (
-      <p style={descriptionExtraStyle}>
-        <strong>Enums: </strong>
-        <a style={{ cursor: 'pointer' }} onClick={this.toggleEnumsFor(item.name)}>
-          Show less
-        </a>
-        <div>{values.join(', ')}</div>
-      </p>
     )
   }
 
@@ -129,6 +61,7 @@ export default class ComponentProps extends Component {
         description: description && description.split('\n').map(l => ([l, <br key={l} />])),
       }
     }), 'name')
+
     return (
       <Table data={content} className='very basic compact'>
         <Table.Header>
@@ -145,14 +78,9 @@ export default class ComponentProps extends Component {
             <Table.Row key={item.name}>
               <Table.Cell>{this.renderName(item)}</Table.Cell>
               <Table.Cell>{this.requiredRenderer(item)}</Table.Cell>
-              <Table.Cell>
-                {item.type}
-              </Table.Cell>
+              <Table.Cell>{item.type}</Table.Cell>
               <Table.Cell>{this.renderDefaultValue(item.defaultValue)}</Table.Cell>
-              <Table.Cell>
-                {item.description && <p>{item.description}</p>}
-                {this.renderEnums(item)}
-              </Table.Cell>
+              <Table.Cell>{item.description && <p>{item.description}</p>}</Table.Cell>
             </Table.Row>
           ))}
         </Table.Body>
