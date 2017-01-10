@@ -167,9 +167,7 @@ export default class Search extends Component {
     fluid: PropTypes.bool,
 
     /** A search input can take up the width of its container . */
-    input: PropTypes.shape({
-      fluid: PropTypes.bool,
-    }),
+    input: customPropTypes.itemShorthand,
 
     size: PropTypes.oneOf(_meta.props.size),
 
@@ -520,17 +518,16 @@ export default class Search extends Component {
     const { value } = this.state
 
     return (
-      <Input
-        fluid={input.fluid}
-        value={value}
-        placeholder={placeholder}
-        onBlur={this.handleBlur}
-        onChange={this.handleSearchChange}
-        onFocus={this.handleFocus}
-        onClick={this.handleInputClick}
-        input={{ className: 'prompt', tabIndex: '0', autoComplete: 'off' }}
-        icon={icon}
-      />
+      Input.create(input, {
+        value,
+        placeholder,
+        onBlur: this.handleBlur,
+        onChange: this.handleSearchChange,
+        onFocus: this.handleFocus,
+        onClick: this.handleInputClick,
+        input: { className: 'prompt', tabIndex: '0', autoComplete: 'off' },
+        icon,
+      })
     )
   }
 
