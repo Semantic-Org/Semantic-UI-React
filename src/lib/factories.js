@@ -54,7 +54,7 @@ export const getChildKey = (props) => {
  * @param {function} mapValueToProps A function that maps a primitive value to the Component props
  * @param {string|object|function} val The value to create a ReactElement from
  * @param {object|function} [defaultProps={}] Default props object or function (called with regular props).
- * @param {boolean} generateKey Whether or not to generate a child key, useful for collections.
+ * @param {boolean} [generateKey=false] Whether or not to generate a child key, useful for collections.
  * @returns {object|null}
  */
 export function createShorthand(Component, mapValueToProps, val, defaultProps = {}, generateKey = false) {
@@ -108,6 +108,14 @@ export function createShorthand(Component, mapValueToProps, val, defaultProps = 
 // Factories Creators
 // ============================================================
 
+/**
+ * Creates a `createShorthand` function that is waiting for a value and defaultProps.
+ *
+ * @param {function|string} Component A ReactClass or string
+ * @param {function} mapValueToProps A function that maps a primitive value to the Component props
+ * @param {boolean} [generateKey] Whether or not to generate a child key, useful for collections.
+ * @return {function} A shorthand factory function waiting for `val` and `defaultProps`.
+ */
 export function createShorthandFactory(Component, mapValueToProps, generateKey) {
   if (typeof Component !== 'function' && typeof Component !== 'string') {
     throw new Error('createShorthandFactory() Component must be a string or function.')

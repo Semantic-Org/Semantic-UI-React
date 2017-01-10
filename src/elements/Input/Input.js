@@ -3,6 +3,7 @@ import React, { Children, cloneElement, Component, PropTypes } from 'react'
 import cx from 'classnames'
 
 import {
+  createShorthandFactory,
   createHTMLInput,
   customPropTypes,
   getElementType,
@@ -218,7 +219,7 @@ class Input extends Component {
     // ----------------------------------------
     if (!_.isNil(children)) {
       // add htmlInputProps to the `<input />` child
-      const childElements = Children.map(children, (child) => {
+      const childElements = _.map(Children.toArray(children), (child) => {
         if (child.type !== 'input') return child
 
         return cloneElement(child, { ...htmlInputProps, ...child.props })
@@ -258,5 +259,7 @@ class Input extends Component {
     )
   }
 }
+
+Input.create = createShorthandFactory(Input, type => ({ type }))
 
 export default Input

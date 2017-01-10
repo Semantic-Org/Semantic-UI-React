@@ -52,7 +52,7 @@ describe('Input', () => {
     },
   })
   common.hasUIClassName(Input)
-
+  common.implementsCreateMethod(Input)
   common.implementsLabelProp(Input, {
     shorthandDefaultProps: elProps => ({
       className: cx({
@@ -68,7 +68,6 @@ describe('Input', () => {
       }),
     }),
   })
-
   common.implementsHTMLInputProp(Input, {
     alwaysPresent: true,
     shorthandDefaultProps: { type: 'text' },
@@ -90,6 +89,17 @@ describe('Input', () => {
   common.propKeyOnlyToClassName(Input, 'icon')
 
   common.rendersChildren(Input)
+
+  it('renders with conditional children', () => {
+    shallow(
+      <Input>
+        {true && <span></span>}
+        {false && <div></div>}
+      </Input>
+    )
+      .should.contain(<span></span>)
+      .should.not.contain(<div></div>)
+  })
 
   it('renders a text <input> by default', () => {
     shallow(<Input />)
