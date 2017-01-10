@@ -266,8 +266,9 @@ export const isConformant = (Component, options = {}) => {
         _.keys(Component.defaultProps),
         _.keys(Component.propTypes),
       )
+      const expectedProps = _.uniq(computedProps).sort()
 
-      Component.handledProps.should.to.deep.equal(computedProps,
+      Component.handledProps.should.to.deep.equal(expectedProps,
         'It seems that not all props were defined in Component.handledProps, you need to check that they equal to ' +
         'union of Component.autoControlledProps and keys of Component.defaultProps and Component.propTypes'
       )
