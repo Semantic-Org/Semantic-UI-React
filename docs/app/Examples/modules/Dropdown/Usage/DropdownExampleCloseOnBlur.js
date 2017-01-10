@@ -3,7 +3,11 @@ import { Dropdown } from 'semantic-ui-react'
 import { friendOptions } from '../common'
 
 const DropdownExampleCloseOnBlur = () => (
-  <Dropdown placeholder='Select Friend' closeOnBlur fluid selection options={friendOptions} />
+  <div>
+    <Dropdown placeholder='I close on blur' closeOnBlur fluid selection options={friendOptions} />
+    <br />
+    <Dropdown placeholder='I stay open on blur' closeOnBlur={false} fluid selection options={friendOptions} />
+  </div>
 )
 
 export default DropdownExampleCloseOnBlur

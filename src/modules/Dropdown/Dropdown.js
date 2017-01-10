@@ -405,8 +405,7 @@ export default class Dropdown extends Component {
       if (!this.isMouseDown) {
         const { openOnFocus } = this.props
         debug('mouse is not down, opening')
-        if (!openOnFocus) return
-        this.open()
+        if (openOnFocus) this.open()
       }
       if (!this.state.open) {
         document.addEventListener('keydown', this.openOnArrow)
@@ -421,8 +420,7 @@ export default class Dropdown extends Component {
       if (!this.isMouseDown) {
         const { closeOnBlur } = this.props
         debug('mouse is not down, closing')
-        if (!closeOnBlur) return
-        this.close()
+        if (closeOnBlur) this.close()
       }
       document.removeEventListener('keydown', this.openOnArrow)
       document.removeEventListener('keydown', this.openOnSpace)
