@@ -179,9 +179,7 @@ export default class Search extends Component {
     minCharacters: 1,
     noResultsMessage: 'No results found.',
     showNoResults: true,
-    input: {
-      fluid: false,
-    },
+    input: 'text',
   }
 
   static autoControlledProps = [
