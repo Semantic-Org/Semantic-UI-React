@@ -5,6 +5,18 @@ import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
 const DropdownUsageExamples = () => (
   <ExampleSection title='Usage'>
     <ComponentExample
+      title='Open On Focus'
+      description='A dropdown that opens when it is focussed on.'
+      examplePath='modules/Dropdown/Usage/DropdownExampleOpenOnFocus'
+    />
+
+    <ComponentExample
+      title='Close On Blur'
+      description='A dropdown that closes when it blurs'
+      examplePath='modules/Dropdown/Usage/DropdownExampleCloseOnBlur'
+    />
+
+    <ComponentExample
       title='Uncontrolled'
       description='A dropdown can behave like an uncontrolled input.'
       examplePath='modules/Dropdown/Usage/DropdownExampleUncontrolled'

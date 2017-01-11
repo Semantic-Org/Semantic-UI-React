@@ -296,6 +296,12 @@ export default class Dropdown extends Component {
     /** The text displayed in the dropdown, usually for the active item. */
     text: PropTypes.string,
 
+    /** Whether or not the menu should open when the dropdown is focused. */
+    openOnFocus: PropTypes.bool,
+
+    /** Whether or not the menu should close when the dropdown is blurred. */
+    closeOnBlur: PropTypes.bool,
+
     /** Custom element to trigger the menu to become visible. Takes place of 'text'. */
     trigger: customPropTypes.every([
       customPropTypes.disallow(['selection', 'text']),
@@ -320,6 +326,8 @@ export default class Dropdown extends Component {
     noResultsMessage: 'No results found.',
     renderLabel: ({ text }) => text,
     selectOnBlur: true,
+    openOnFocus: true,
+    closeOnBlur: true,
   }
 
   static autoControlledProps = [
@@ -395,8 +403,9 @@ export default class Dropdown extends Component {
     if (!prevState.focus && this.state.focus) {
       debug('dropdown focused')
       if (!this.isMouseDown) {
+        const { openOnFocus } = this.props
         debug('mouse is not down, opening')
-        this.open()
+        if (openOnFocus) this.open()
       }
       if (!this.state.open) {
         document.addEventListener('keydown', this.openOnArrow)
@@ -409,8 +418,9 @@ export default class Dropdown extends Component {
     } else if (prevState.focus && !this.state.focus) {
       debug('dropdown blurred')
       if (!this.isMouseDown) {
+        const { closeOnBlur } = this.props
         debug('mouse is not down, closing')
-        this.close()
+        if (closeOnBlur) this.close()
       }
       document.removeEventListener('keydown', this.openOnArrow)
       document.removeEventListener('keydown', this.openOnSpace)
