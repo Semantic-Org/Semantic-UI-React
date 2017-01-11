@@ -76,6 +76,9 @@ export default class Popup extends Component {
     /** Horizontal offset in pixels to be applied to the popup */
     offset: PropTypes.number,
 
+    /** Vertical offset in pixels to be applied to the popup */
+    verticalOffset: PropTypes.number,
+
     /** Event triggering the popup */
     on: PropTypes.oneOf(_meta.props.on),
 
@@ -144,7 +147,7 @@ export default class Popup extends Component {
     // Do not access window/document when server side rendering
     if (!isBrowser) return style
 
-    const { offset } = this.props
+    const { offset, verticalOffset } = this.props
     const { pageYOffset, pageXOffset } = window
     const { clientWidth, clientHeight } = document.documentElement
 
@@ -184,6 +187,14 @@ export default class Popup extends Component {
         style.right -= offset
       } else {
         style.left -= offset
+      }
+    }
+
+    if (verticalOffset) {
+      if (_.isNumber(style.top)) {
+        style.top -= verticalOffset
+      } else {
+        style.bottom -= verticalOffset
       }
     }
 
