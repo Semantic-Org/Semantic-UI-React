@@ -4,9 +4,9 @@ import { friendOptions } from '../common'
 
 const DropdownExampleOpenOnFocus = () => (
   <div>
-    <Dropdown placeholder='I stay open on focus' openOnFocus fluid selection options={friendOptions} />
-    <br />
-    <Dropdown placeholder='I close when not focussed' openOnFocus={false} fluid selection options={friendOptions} />
+    <Dropdown placeholder='I open on focus' openOnFocus selection options={friendOptions} />
+    {' '}
+    <Dropdown placeholder='I do not open on focussed' openOnFocus={false} selection options={friendOptions} />
   </div>
 )
 
