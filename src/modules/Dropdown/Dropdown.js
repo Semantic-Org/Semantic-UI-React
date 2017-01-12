@@ -420,7 +420,11 @@ export default class Dropdown extends Component {
       if (!this.isMouseDown) {
         const { closeOnBlur } = this.props
         debug('mouse is not down, closing')
-        if (closeOnBlur) this.close()
+        if (closeOnBlur) {
+          this.close()
+        } else {
+          this.open()
+        }
       }
       document.removeEventListener('keydown', this.openOnArrow)
       document.removeEventListener('keydown', this.openOnSpace)
