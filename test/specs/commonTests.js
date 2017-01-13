@@ -893,7 +893,6 @@ export const implementsTextAlignProp = (Component, options = {}) => {
  * @param {Object} [options.requiredProps={}] Props required to render the component.
  */
 export const implementsVerticalAlignProp = (Component, options = {}) => {
-  const { requiredProps = {} } = options
   const { assertRequired } = commonTestHelpers('implementsVerticalAlignProp', Component)
 
   describe('verticalAlign (common)', () => {
@@ -901,13 +900,6 @@ export const implementsVerticalAlignProp = (Component, options = {}) => {
 
     _noDefaultClassNameFromProp(Component, 'verticalAlign', options)
     _noClassNameFromBoolProps(Component, 'verticalAlign', options)
-
-    _.each(Component._meta.props.verticalAlign, (propVal) => {
-      it(`adds "${propVal} aligned" to className`, () => {
-        shallow(<Component { ...requiredProps } verticalAlign={propVal} />)
-          .should.have.className(`${propVal} ${'aligned'}`)
-      })
-    })
   })
 }
 
@@ -1038,10 +1030,6 @@ export const propKeyOrValueAndKeyToClassName = (Component, propKey, options = {}
       wrapper.should.not.have.className(className)
       wrapper.should.not.have.className('true')
       wrapper.should.not.have.className('false')
-
-      _.each(_.get(Component, `_meta.props[${propKey}]`), propVal => {
-        wrapper.should.not.have.className(propVal)
-      })
     })
   })
 }
