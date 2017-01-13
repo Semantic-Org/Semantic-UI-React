@@ -1,5 +1,23 @@
 # Change Log
 
+## [v0.64.0](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.64.0) (2017-01-13)
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.63.6...v0.64.0)
+
+**Implemented enhancements:**
+
+- perf\(props\): Remove propTypes from production build [\#731](https://github.com/Semantic-Org/Semantic-UI-React/pull/731) ([layershifter](https://github.com/layershifter))
+
+**Fixed bugs:**
+
+- Typings: Modal [\#1152](https://github.com/Semantic-Org/Semantic-UI-React/issues/1152)
+- fix\(Table\): Cannot convert a Symbol value to a string [\#1057](https://github.com/Semantic-Org/Semantic-UI-React/issues/1057)
+
+**Merged pull requests:**
+
+- fix\(typings\): fix Modal mountnode -\> mountNode [\#1153](https://github.com/Semantic-Org/Semantic-UI-React/pull/1153) ([levithomason](https://github.com/levithomason))
+- feat\(typings\): add closeOnBlur and openOnFocus [\#1151](https://github.com/Semantic-Org/Semantic-UI-React/pull/1151) ([levithomason](https://github.com/levithomason))
+- breaking\(shorthand\): only generate keys from strings and numbers [\#1062](https://github.com/Semantic-Org/Semantic-UI-React/pull/1062) ([levithomason](https://github.com/levithomason))
+
 ## [v0.63.6](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.63.6) (2017-01-11)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.63.5...v0.63.6)
 
