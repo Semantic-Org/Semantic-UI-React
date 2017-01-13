@@ -40,8 +40,8 @@ describe('Menu', () => {
 
   describe('activeIndex', () => {
     const items = [
-      { name: 'home' },
-      { name: 'users' },
+      { key: 'home', name: 'home' },
+      { key: 'users', name: 'users' },
     ]
 
     it('is null by default', () => {
@@ -68,8 +68,8 @@ describe('Menu', () => {
   describe('items', () => {
     const spy = sandbox.spy()
     const items = [
-      { name: 'home', onClick: spy, 'data-foo': 'something' },
-      { name: 'users', active: true, 'data-foo': 'something' },
+      { key: 'home', name: 'home', onClick: spy, 'data-foo': 'something' },
+      { key: 'users', name: 'users', active: true, 'data-foo': 'something' },
     ]
     const children = mount(<Menu items={items} />).find('MenuItem')
 
@@ -100,8 +100,8 @@ describe('Menu', () => {
 
   describe('onItemClick', () => {
     const items = [
-      { name: 'home' },
-      { name: 'users' },
+      { key: 'home', name: 'home' },
+      { key: 'users', name: 'users' },
     ]
 
     it('can be omitted', () => {

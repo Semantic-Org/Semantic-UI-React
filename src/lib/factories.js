@@ -3,47 +3,6 @@ import cx from 'classnames'
 import React, { cloneElement, isValidElement } from 'react'
 
 // ============================================================
-// Factory Utilities
-// ============================================================
-/**
- * A pure function that generates a unique child key hash code from an element's props.
- *
- * @param {object} props A ReactElement's props object.
- * @returns {number}
- */
-export const getChildKey = (props) => {
-  const { key, childKey } = props
-
-  // already defines a key
-  if (key) return key
-
-  // defines a childKey function or value
-  if (childKey) return typeof childKey === 'function' ? childKey(props) : childKey
-
-  // 1. Stringify props to a short as possible run on string of key/values.
-  // 2. Don't stringify entire functions, use the function name || 'f'.
-  // 3. Generate a short hash number from the string.
-  //     props  : { color: 'red', onClick: handleClick }
-  //     string : 'color:"red",onClick:handleClick'
-  //     hash   : 110042245
-  return Object.keys(props).map(name => {
-    const val = props[name]
-    const type = typeof val
-
-    const valueString = type === 'string' && val
-      || type === 'number' && val
-      || type === 'boolean' && (val ? 'true' : 'false')
-      || type === 'function' && (val.name || 'function')
-      || Array.isArray(val) && ['[', val.join(','), ']'].join('')
-      || val === null && 'null'
-      || type === 'object' && ['{', Object.keys(val).map(k => [k, ':', val[k]].join('')), '}'].join('')
-      || val === undefined && 'undefined'
-
-    return [name, ':', valueString].join('')
-  }).join(',')
-}
-
-// ============================================================
 // Factories
 // ============================================================
 
@@ -63,10 +22,12 @@ export function createShorthand(Component, mapValueToProps, val, defaultProps = 
   }
   // short circuit for disabling shorthand
   if (val === null) return null
+  const valIsString = _.isString(val)
+  const valIsNumber = _.isNumber(val)
 
   const isReactElement = isValidElement(val)
   const isPropsObject = _.isPlainObject(val)
-  const isPrimitiveValue = _.isString(val) || _.isNumber(val) || _.isArray(val)
+  const isPrimitiveValue = valIsString || valIsNumber || _.isArray(val)
 
   // ----------------------------------------
   // Build up props
@@ -80,15 +41,38 @@ export function createShorthand(Component, mapValueToProps, val, defaultProps = 
   // Default props
   defaultProps = _.isFunction(defaultProps) ? defaultProps(usersProps) : defaultProps
 
-  // Merge props and className
+  // Merge props
+  /* eslint-disable react/prop-types */
   const props = { ...defaultProps, ...usersProps }
 
-  if (_.has(usersProps, 'className') || _.has(defaultProps.className)) {
-    props.className = cx(defaultProps.className, usersProps.className) // eslint-disable-line react/prop-types
+  // Merge className
+  if (usersProps.className && defaultProps.className) {
+    props.className = cx(defaultProps.className, usersProps.className)
   }
 
-  // Generate child key
-  if (generateKey) props.key = getChildKey(props) // eslint-disable-line react/prop-types
+  // Merge style
+  if (usersProps.style && defaultProps.style) {
+    props.style = { ...defaultProps.style, ...usersProps.style }
+  }
+
+  // ----------------------------------------
+  // Get key
+  // ----------------------------------------
+
+  // Use key, childKey, or generate key
+  if (!props.key) {
+    const { childKey } = props
+
+    if (childKey) {
+      // apply and consume the childKey
+      props.key = typeof childKey === 'function' ? childKey(props) : childKey
+      delete props.childKey
+    } else if (generateKey && (valIsString || valIsNumber)) {
+      // use string/number shorthand values as the key
+      props.key = val
+    }
+  }
+  /* eslint-enable react/prop-types */
 
   // ----------------------------------------
   // Create Element
@@ -105,7 +89,7 @@ export function createShorthand(Component, mapValueToProps, val, defaultProps = 
 }
 
 // ============================================================
-// Factories Creators
+// Factory Creators
 // ============================================================
 
 /**
