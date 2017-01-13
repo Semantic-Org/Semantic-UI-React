@@ -10,13 +10,10 @@ import {
 } from '../../lib'
 
 /**
- * Several icons can be used together as a group
+ * Several icons can be used together as a group.
  */
 function IconGroup(props) {
-  const {
-    children, className, size,
-  } = props
-
+  const { children, className, size } = props
   const classes = cx(
     size,
     'icons',
@@ -32,9 +29,6 @@ IconGroup._meta = {
   name: 'IconGroup',
   parent: 'Icon',
   type: META.TYPES.ELEMENT,
-  props: {
-    size: SUI.SIZES,
-  },
 }
 
 IconGroup.propTypes = {
@@ -48,7 +42,7 @@ IconGroup.propTypes = {
   className: PropTypes.string,
 
   /** Size of the icon group. */
-  size: PropTypes.oneOf(IconGroup._meta.props.size),
+  size: PropTypes.oneOf(SUI.SIZES),
 }
 
 IconGroup.defaultProps = {
