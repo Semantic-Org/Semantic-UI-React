@@ -1,16 +1,14 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Menu } from 'semantic-ui-react'
 
-export default class MenuExampleProps extends Component {
-  state = {}
+const items = [
+  { key: 'editorials', active: true, name: 'Editorials' },
+  { key: 'review', name: 'Reviews' },
+  { key: 'events', name: 'Upcoming Events' },
+]
 
-  render() {
-    const items = [
-      { active: true, name: 'Editorials' },
-      { name: 'Reviews' },
-      { name: 'Upcoming Events' },
-    ]
+const MenuExampleProps = () => (
+  <Menu items={items} />
+)
 
-    return <Menu items={items} />
-  }
-}
+export default MenuExampleProps
