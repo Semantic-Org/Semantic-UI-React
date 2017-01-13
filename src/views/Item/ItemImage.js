@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
+
 import {
   META,
   getUnhandledProps,
@@ -23,7 +24,7 @@ ItemImage._meta = {
 
 ItemImage.propTypes = {
   /** An image may appear at different sizes */
-  size: PropTypes.oneOf(Image._meta.props.size),
+  size: Image.propTypes.size,
 }
 
 export default ItemImage
