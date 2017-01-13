@@ -12,6 +12,7 @@ CONTRIBUTING
 - [Workflow](#workflow)
   - [Create a Component](#create-a-component)
   - [Define _meta](#define-_meta)
+  - [Using propTypes](#using-proptypes)
   - [Conformance Test](#conformance-test)
   - [Open A PR](#open-a-pr)
   - [Spec out the API](#spec-out-the-api)
