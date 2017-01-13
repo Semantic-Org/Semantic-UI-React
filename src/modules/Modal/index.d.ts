@@ -2,7 +2,7 @@ import { SemanticSIZES } from '../..';
 import * as React from 'react';
 
 interface ModalProps {
-  
+
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -59,7 +59,7 @@ interface ModalProps {
   open?: boolean;
 
   /** The node where the modal should mount.. */
-  mountnode?: any;
+  mountNode?: any;
 
   /** A modal can vary in size */
   size?: SemanticSIZES;
@@ -76,7 +76,7 @@ interface ModalClass extends React.ComponentClass<ModalProps> {
 export const Modal: ModalClass;
 
 interface ModalHeaderProps {
-  
+
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -90,7 +90,7 @@ interface ModalHeaderProps {
 export const ModalHeader: React.ComponentClass<ModalHeaderProps>;
 
 interface ModalContentProps {
-  
+
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -107,7 +107,7 @@ interface ModalContentProps {
 export const ModalContent: React.ComponentClass<ModalContentProps>;
 
 interface ModalDescriptionProps {
-  
+
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -121,7 +121,7 @@ interface ModalDescriptionProps {
 export const ModalDescription: React.ComponentClass<ModalDescriptionProps>;
 
 interface ModalActionsProps {
-  
+
   /** An element type to render as (string or function). */
   as?: any;
 
