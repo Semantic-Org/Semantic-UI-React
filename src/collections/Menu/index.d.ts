@@ -1,10 +1,10 @@
 import {
-    ReactMouseEvents,
-    SemanticCOLORS,
-    SemanticFLOATS,
-    SemanticSIZES,
-    SemanticWIDTHSNUMBER,
-    SemanticWIDTHSSTRING
+  ReactMouseEvents,
+  SemanticCOLORS,
+  SemanticFLOATS,
+  SemanticSIZES,
+  SemanticWIDTHSNUMBER,
+  SemanticWIDTHSSTRING
 } from '../..';
 import * as React from 'react';
 
@@ -15,7 +15,7 @@ export type MenuPropsAttached = 'bottom' | 'top';
 
 export interface MenuProps {
   activeIndex?: number;
-  
+
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -65,7 +65,7 @@ export interface MenuProps {
    * @param {object} data - All item props.
    */
   onItemClick?: React.MouseEventHandler<HTMLDivElement>;
-  
+
   /** A pagination menu is specially formatted to present links to pages of content. */
   pagination?: boolean;
 
@@ -77,7 +77,7 @@ export interface MenuProps {
 
   /** A menu can vary in size. */
   size?: SemanticSIZES;  // TODO - remove medium and big.
-  
+
   /** A menu can stack at mobile resolutions. */
   stackable?: boolean;
 
@@ -103,9 +103,9 @@ interface MenuClass extends React.ComponentClass<MenuProps> {
 export const Menu: MenuClass;
 
 interface MenuHeaderProps {
-  
+
   /** An element type to render as (string or function). */
-  as?: any;
+    as?: any;
 
   /** Primary content. */
   children?: React.ReactNode;
@@ -123,7 +123,7 @@ interface MenuItemProps extends ReactMouseEvents<HTMLElement> {
   active?: boolean;
 
   /** An element type to render as (string or function). */
-  as?: any;
+    as?: any;
 
   /** Primary content. */
   children?: React.ReactNode;
@@ -161,9 +161,8 @@ interface MenuItemProps extends ReactMouseEvents<HTMLElement> {
 export const MenuItem: React.ComponentClass<MenuItemProps>;
 
 interface MenuMenuProps {
-  
   /** An element type to render as (string or function). */
-  as?: any;
+    as?: any;
 
   /** Primary content. */
   children?: React.ReactNode;

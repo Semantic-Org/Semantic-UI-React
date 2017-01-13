@@ -9,7 +9,6 @@ import {
 import * as React from 'react';
 
 interface TableProps {
-  
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -33,13 +32,13 @@ interface TableProps {
 
   /** A table can be given a color to distinguish it from other tables. */
   color?: SemanticCOLORS;
-  
+
   /** A table can specify its column count to divide its content evenly. */
   columns?: SemanticWIDTHSNUMBER | SemanticWIDTHSSTRING | number;
-  
+
   /** A table may sometimes need to be more compact to make more rows visible at a time. */
   compact?: boolean | 'very';
-  
+
   /** A table may be formatted to emphasize a first column that defines a rows content. */
   definition?: boolean;
 
@@ -65,22 +64,22 @@ interface TableProps {
    * to be placed within Table.Body.
    */
   renderBodyRow?: ()=>void;  // TODO - check;
-  
+
   /** A table can have its rows appear selectable. */
   selectable?: boolean;
-  
+
   /** A table can specify that its cell contents should remain on a single line and not wrap. */
   singleLine?: boolean;
-  
+
   /** A table can also be small or large. */
   size?: SemanticSIZES;
-  
+
   /** A table can specify how it stacks table content responsively. */
   stackable?: boolean;
 
   /** A table can stripe alternate rows of content with a darker color to increase contrast. */
   striped?: boolean;
-  
+
   /** A table can be formatted to display complex structured data. */
   structured?: boolean;
 
@@ -103,7 +102,6 @@ interface TableClass extends React.ComponentClass<TableProps> {
 export const Table: TableClass;
 
 interface TableBodyProps {
-  
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -150,10 +148,10 @@ interface TableCellProps {
 
   /** A cell may let a user know whether a value is good. */
   positive ?: boolean;
-  
+
   /** A cell can be selectable. */
   selectable?: boolean;
-  
+
   /** A cell can specify that its contents should remain on a single line and not wrap. */
   singleLine ?: boolean;
 
@@ -173,7 +171,6 @@ interface TableCellProps {
 export const TableCell: React.ComponentClass<TableCellProps>;
 
 interface TableFooterProps {
-  
   /** An element type to render as (string or function). */
   as?: any;
 }
@@ -181,7 +178,6 @@ interface TableFooterProps {
 export const TableFooter: React.ComponentClass<TableFooterProps>;
 
 interface TableHeaderProps {
-  
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -198,7 +194,6 @@ interface TableHeaderProps {
 export const TableHeader: React.ComponentClass<TableHeaderProps>;
 
 interface TableHeaderCellProps {
-  
   /** An element type to render as (string or function). */
   as?: any;
 }

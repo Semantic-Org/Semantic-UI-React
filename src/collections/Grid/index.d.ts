@@ -8,9 +8,8 @@ import {
 } from '../..';
 import * as React from 'react';
 
-export type GridPropReversed = 'computer' | 'computer vertically' | 'mobile' | 'mobile vertically' | 'tablet' | 'tablet vertically'
+export type GridPropReversed = 'computer' | 'computer vertically' | 'mobile' | 'mobile vertically' | 'tablet' | 'tablet vertically';
 export interface GridProps {
-  
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -43,7 +42,7 @@ export interface GridProps {
 
   /** A grid can specify that its columns should reverse order at different device sizes. */
   reversed?: GridPropReversed;
-  
+
   /** A grid can have its columns stack on-top of each other after reaching mobile breakpoints. */
   stackable?: boolean;
 
@@ -64,9 +63,8 @@ interface GridClass extends React.ComponentClass<GridProps> {
 
 export const Grid: GridClass;
 
-type GridPropOnly = 'computer' | 'large screen' | 'mobile' | 'tablet mobile' | 'tablet' | 'widescreen'
+type GridPropOnly = 'computer' | 'large screen' | 'mobile' | 'tablet mobile' | 'tablet' | 'widescreen';
 interface GridColumnProps {
-  
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -99,7 +97,7 @@ interface GridColumnProps {
 
   /** A column can specify a width for a tablet device. */
   tablet?: SemanticWIDTHSNUMBER | SemanticWIDTHSSTRING| number;
-  
+
   /** A row can specify its text alignment. */
   textAlign?: SemanticTEXTALIGNMENTS;
 
@@ -113,10 +111,9 @@ interface GridColumnProps {
   width?: SemanticWIDTHSNUMBER | SemanticWIDTHSSTRING| number;
 }
 
-export const GridColumn: React.ComponentClass<GridColumnProps>
+export const GridColumn: React.ComponentClass<GridColumnProps>;
 
 interface GridRowProps {
-  
   /** An element type to render as (string or function). */
   as?: any;
 

@@ -3,36 +3,36 @@ import * as React from 'react';
 // Divider
 // ----------------------------------
 interface DividerProps {
-  
   /** An element type to render as (string or function). */
   as?: any;
 
-  /** Primary content. */   
-  children?: React.ReactNode,
+  /** Primary content. */
+  children?: React.ReactNode;
 
   /** Additional classes. */
   className?: string;
 
   /** Divider can clear the content above it */
-  clearing?: boolean,
+  clearing?: boolean;
 
   /** Divider can be fitted without any space above or below it */
-  fitted?: boolean,
+  fitted?: boolean;
 
   /** Divider can divide content without creating a dividing line */
-  hidden?: boolean,
+  hidden?: boolean;
 
   /** Divider can segment content horizontally */
-  horizontal?: boolean,
+  horizontal?: boolean;
 
   /** Divider can have it's colours inverted */
-  inverted?: boolean,
-  
+  inverted?: boolean;
+
   /** Divider can provide greater margins to divide sections of content */
-  section?: boolean,
+  section?: boolean;
 
   /** Divider can segment content vertically */
-  vertical?: boolean,
+  vertical?: boolean;
 }
+
 export class Divider extends React.Component<DividerProps, void> {
 }

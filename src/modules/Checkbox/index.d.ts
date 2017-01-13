@@ -48,7 +48,7 @@ export interface CheckboxProps {
    */
   onClick?: (e: React.MouseEvent<HTMLInputElement>, data: this) => void;
 
-  /** Format as a radio element. This means it is an exclusive option.*/
+  /** Format as a radio element. This means it is an exclusive option. */
   radio?: any;
 
   /** A checkbox can be read-only and unable to change states */

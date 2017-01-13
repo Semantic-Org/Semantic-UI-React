@@ -44,7 +44,6 @@ interface DimmerProps {
 
   /** A dimmer can be controlled with simple prop. */
   simple?: boolean;
-  
 }
 
 interface DimmerClass extends React.ComponentClass<DimmerProps> {
@@ -54,7 +53,6 @@ interface DimmerClass extends React.ComponentClass<DimmerProps> {
 export const Dimmer: DimmerClass;
 
 interface DimmerDimmableProps {
-  
   /** An element type to render as (string or function). */
   as?: any;
 

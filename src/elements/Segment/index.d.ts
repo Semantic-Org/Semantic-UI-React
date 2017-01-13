@@ -2,7 +2,6 @@ import { SemanticCOLORS, SemanticFLOATS, SemanticSIZES, SemanticSOCIAL, Semantic
 import * as React from 'react';
 
 interface SegmentProps {
-  
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -77,7 +76,6 @@ interface SegmentClass extends React.ComponentClass<SegmentProps> {
 export const Segment: SegmentClass;
 
 interface SegmentGroupProps {
-  
   /** An element type to render as (string or function). */
   as?: any;
 

@@ -4,51 +4,50 @@ import * as React from 'react';
 // Icon
 // ----------------------------------
 interface IconProps extends ReactMouseEvents<any> {
-  
   /** An element type to render as (string or function). */
   as?: any;
 
   /** Formatted to appear bordered */
-  bordered?: boolean,
+  bordered?: boolean;
 
   /** Icon can formatted to appear circular */
-  circular?: boolean,
+  circular?: boolean;
 
   /** Additional classes. */
   className?: string;
 
   /** Color of the icon. */
-  color?: SemanticCOLORS,
+  color?: SemanticCOLORS;
 
   /** Icons can display a smaller corner icon */
-  corner?: boolean,
+  corner?: boolean;
 
   /** Show that the icon is inactive */
   disabled?: boolean;
 
   /** Fitted, without space to left or right of Icon. */
-  fitted?: boolean,
+  fitted?: boolean;
 
   /** Icon can flipped */
-  flipped?: 'horizontally' | 'vertically'
+  flipped?: 'horizontally' | 'vertically';
 
   /** Formatted to have its colors inverted for contrast */
-  inverted?: boolean,
+  inverted?: boolean;
 
   /** Icon can be formatted as a link */
-  link?: boolean,
+  link?: boolean;
 
   /** Icon can be used as a simple loader */
-  loading?: boolean,
+  loading?: boolean;
 
   /** Name of the icon */
-  name?: string,
+  name?: string;
 
   /** Icon can rotated */
-  rotated?: SemanticROTATION,
+  rotated?: SemanticROTATION;
 
   /** Size of the icon. */
-  size?: SemanticSIZES,
+  size?: SemanticSIZES;
 }
 
 interface IconClass extends React.ComponentClass<IconProps> {
@@ -57,7 +56,6 @@ interface IconClass extends React.ComponentClass<IconProps> {
 export const Icon: IconClass;
 
 interface IconGroupProps {
-  
   /** An element type to render as (string or function). */
   as?: any;
 

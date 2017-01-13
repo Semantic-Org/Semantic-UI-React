@@ -4,7 +4,6 @@ import * as React from 'react';
 // Flag
 // ----------------------------------
 interface FlagProps extends ReactMouseEvents<any> {
-
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -12,7 +11,7 @@ interface FlagProps extends ReactMouseEvents<any> {
   className?: string;
 
   /** Flag name, can use the two digit country code, the full name, or a common alias */
-  name: SemanticCOUNTRY,
+  name: SemanticCOUNTRY;
 }
 
 export class Flag extends React.Component<FlagProps, void> {

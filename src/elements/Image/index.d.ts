@@ -9,11 +9,9 @@ import {
 } from '../..';
 import * as React from 'react';
 
-
 // Image
 // ----------------------------------
 export interface ImageProps extends ReactMouseEvents<any> {
-
   /** Alternate text for the image specified. */
   alt?: string;
 
@@ -46,7 +44,7 @@ export interface ImageProps extends ReactMouseEvents<any> {
 
   /** The img element height attribute. */
   height?: string|number;
-  
+
   /** Renders the Image as an <a> tag with this href. */
   href?: string;
 
@@ -64,7 +62,7 @@ export interface ImageProps extends ReactMouseEvents<any> {
 
   /** An image can specify that it needs an additional spacing to separate it from nearby content. */
   spaced?: boolean|'left'|'right';
-  
+
   /** Specifies the URL of the image. */
   src?: string;
 
@@ -73,10 +71,10 @@ export interface ImageProps extends ReactMouseEvents<any> {
 
   /** An image can specify its vertical alignment */
   verticalAlign?: SemanticVERTICALALIGNMENTS;
-  
+
   /** The img element width attribute */
   width?: number|SemanticWIDTHSSTRING| SemanticWIDTHSNUMBER;
-  
+
   /** An image can render wrapped in a `div.ui.image` as alternative HTML markup */
   wrapped?: any;
 }
@@ -88,7 +86,6 @@ interface ImageClass extends React.ComponentClass<ImageProps> {
 export const Image: ImageClass;
 
 interface ImageGroupProps {
-  
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -101,4 +98,5 @@ interface ImageGroupProps {
   /** A group of images can be formatted to have the same size. */
   size?: SemanticSIZES;
 }
+
 export const ImageGroup: React.ComponentClass<ImageGroupProps>;

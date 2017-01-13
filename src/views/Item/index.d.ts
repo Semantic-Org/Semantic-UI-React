@@ -1,10 +1,8 @@
-import { Header } from '../../elements/Header';
-import { Image, ImageProps } from '../../elements/Image';
-import { SemanticVERTICALALIGNMENTS } from '../..';
 import * as React from 'react';
+import { ImageProps } from '../../elements/Image';
+import { SemanticVERTICALALIGNMENTS } from '../..';
 
 interface ItemProps {
-  
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -46,7 +44,6 @@ interface ItemClass extends React.ComponentClass<ItemProps> {
 export const Item: ItemClass;
 
 interface ItemContentProps {
-  
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -78,7 +75,6 @@ interface ItemContentProps {
 export const ItemContent: React.ComponentClass<ItemContentProps>;
 
 interface ItemDescriptionProps {
-  
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -95,7 +91,6 @@ interface ItemDescriptionProps {
 export const ItemDescription: React.ComponentClass<ItemDescriptionProps>;
 
 interface ItemExtraProps {
-  
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -112,7 +107,6 @@ interface ItemExtraProps {
 export const ItemExtra: React.ComponentClass<ItemExtraProps>;
 
 interface ItemGroupProps {
-  
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -138,7 +132,6 @@ interface ItemGroupProps {
 export const ItemGroup: React.ComponentClass<ItemGroupProps>;
 
 interface ItemHeaderProps {
-  
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -160,7 +153,6 @@ interface ItemImageProps extends ImageProps {
 export const ItemImage: React.ComponentClass<ItemImageProps>;
 
 interface ItemMetaProps {
-  
   /** An element type to render as (string or function). */
   as?: any;
 

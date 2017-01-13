@@ -7,7 +7,6 @@ export type LabelPropPointing = 'above' | 'below' | 'left' | 'right';
 export type LabelPropCorner = 'left' | 'right';
 
 export interface LabelProps {
-  
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -96,7 +95,6 @@ interface LabelClass extends React.ComponentClass<LabelProps> {
 export const Label: LabelClass;
 
 interface LabelDetailProps {
-  
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -113,7 +111,6 @@ interface LabelDetailProps {
 export const LabelDetail: React.ComponentClass<LabelDetailProps>;
 
 interface LabelGroupProps {
-  
   /** An element type to render as (string or function). */
   as?: any;
 

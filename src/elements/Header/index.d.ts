@@ -4,7 +4,6 @@ import * as React from 'react';
 // Header
 // ----------------------------------
 interface HeaderProps {
-  
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -38,7 +37,7 @@ interface HeaderProps {
   /** Add an icon by icon name or pass an <Icon /.> */
   icon?: any;
 
-  //** Add an image by img src or pass an <Image />. */
+  /** Add an image by img src or pass an <Image />. */
   image?: any;
 
   /** Inverts the color of the header for dark backgrounds */
@@ -79,7 +78,6 @@ interface HeaderContentProps {
 export const HeaderContent: React.ComponentClass<HeaderContentProps>;
 
 interface HeaderSubHeaderProps {
-  
   /** An element type to render as (string or function). */
   as?: any;
 

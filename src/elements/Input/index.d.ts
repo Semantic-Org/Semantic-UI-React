@@ -4,12 +4,11 @@ import { SemanticButtonLABELPOSITIONS } from '../Button';
 
 
 export interface InputProps extends ReactFocusEvents<HTMLInputElement>, ReactFormEvents<HTMLInputElement> {
-  
   /** An Input can be formatted to alert the user to an action they may perform */
   action?: any;
 
   /** An action can appear along side an Input on the left or right */
-  actionPosition?: 'left'
+  actionPosition?: 'left';
 
   /** An element type to render as (string or function). */
   as?: any;
@@ -70,5 +69,6 @@ export interface InputProps extends ReactFocusEvents<HTMLInputElement>, ReactFor
   value?: string | number;
   width?: number;
 }
+
 export class Input extends React.Component<InputProps, void> {
 }

@@ -2,7 +2,6 @@ import { SemanticFLOATS, SemanticSIZES } from '../..';
 import * as React from 'react';
 
 interface RailProps {
-  
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -29,7 +28,7 @@ interface RailProps {
 
   // TODO(zuko): this should not support 'medium' from SemanticSize
   /** A rail can have different sizes. */
-  size?: SemanticSIZES,
+  size?: SemanticSIZES;
 }
 export class Rail extends React.Component<RailProps, void> {
 }

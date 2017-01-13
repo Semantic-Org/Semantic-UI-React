@@ -2,7 +2,6 @@ import { ReactMouseEvents, SemanticSIZES } from '../..';
 import * as React from 'react';
 
 interface BreadcrumbProps extends ReactMouseEvents<HTMLElement> {
-  
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -16,7 +15,8 @@ interface BreadcrumbProps extends ReactMouseEvents<HTMLElement> {
   divider?: any;
 
   /** For use with the sections prop. Render as an `Icon` component with `divider` class instead of a `div` in
-   *  Breadcrumb.Divider. */
+   *  Breadcrumb.Divider.
+   */
   icon?: any;
 
   /** Shorthand array of props for Breadcrumb.Section. */
@@ -34,7 +34,6 @@ interface BreadcrumbClass extends React.ComponentClass<BreadcrumbProps> {
 export const Breadcrumb: BreadcrumbClass;
 
 interface BreadcrumbDividerProps {
-  
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -51,7 +50,6 @@ interface BreadcrumbDividerProps {
 export const BreadcrumbDivider: React.ComponentClass<BreadcrumbDividerProps>;
 
 interface BreadcrumbSectionProps {
-  
   /** Style as the currently active section. */
   active?: boolean;
 
