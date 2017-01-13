@@ -203,20 +203,24 @@ describe('factories', () => {
     })
 
     describe('child key', () => {
+      it('uses the `key` prop from an element', () => {
+        getShorthand({ value: <div key='foo' /> })
+          .should.have.property('key', 'foo')
+      })
       it('uses the `key` prop as a string', () => {
-        getShorthand({ value: { key: 'foo' }, generateKey: true })
+        getShorthand({ value: { key: 'foo' } })
           .should.have.property('key', 'foo')
       })
       it('uses the `key` prop as a number', () => {
-        getShorthand({ value: { key: 123 }, generateKey: true })
+        getShorthand({ value: { key: 123 } })
           .should.have.property('key', '123')
       })
       it('uses the `childKey` prop as a string', () => {
-        getShorthand({ value: { childKey: 'foo' }, generateKey: true })
+        getShorthand({ value: { childKey: 'foo' } })
           .should.have.property('key', 'foo')
       })
       it('uses the `childKey` prop as a number', () => {
-        getShorthand({ value: { childKey: 123 }, generateKey: true })
+        getShorthand({ value: { childKey: 123 } })
           .should.have.property('key', '123')
       })
       it('calls `childKey` with the final `props` if it is a function', () => {
@@ -230,7 +234,7 @@ describe('factories', () => {
         element.key.should.equal('foo')
       })
       it('consumes the childKey prop', () => {
-        getShorthand({ value: { childKey: 123 }, generateKey: true })
+        getShorthand({ value: { childKey: 123 } })
           .props.should.not.have.property('childKey')
       })
       it('is generated from shorthand string values', () => {
