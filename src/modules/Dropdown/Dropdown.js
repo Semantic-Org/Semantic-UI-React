@@ -81,6 +81,9 @@ export default class Dropdown extends Component {
     /** Additional classes. */
     className: PropTypes.string,
 
+    /** Whether or not the menu should close when the dropdown is blurred. */
+    closeOnBlur: PropTypes.bool,
+
     /** A compact dropdown has no minimum width. */
     compact: PropTypes.bool,
 
@@ -230,6 +233,9 @@ export default class Dropdown extends Component {
     /** Controls whether or not the dropdown menu is displayed. */
     open: PropTypes.bool,
 
+    /** Whether or not the menu should open when the dropdown is focused. */
+    openOnFocus: PropTypes.bool,
+
     /** Array of Dropdown.Item props e.g. `{ text: '', value: '' }` */
     options: customPropTypes.every([
       customPropTypes.disallow(['children']),
@@ -295,12 +301,6 @@ export default class Dropdown extends Component {
 
     /** The text displayed in the dropdown, usually for the active item. */
     text: PropTypes.string,
-
-    /** Whether or not the menu should open when the dropdown is focused. */
-    openOnFocus: PropTypes.bool,
-
-    /** Whether or not the menu should close when the dropdown is blurred. */
-    closeOnBlur: PropTypes.bool,
 
     /** Custom element to trigger the menu to become visible. Takes place of 'text'. */
     trigger: customPropTypes.every([
