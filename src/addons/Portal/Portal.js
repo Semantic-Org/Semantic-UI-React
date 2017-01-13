@@ -341,7 +341,7 @@ class Portal extends Component {
     if (!this.state.open) return
     debug('renderPortal()')
 
-    const { children, className } = this.props
+    const { children, className, closeOnTriggerBlur } = this.props
 
     this.mountPortal()
 
@@ -363,6 +363,14 @@ class Portal extends Component {
     )
 
     this.portal = this.node.firstElementChild
+    // don't take focus away from portals that close on blur
+    if (!closeOnTriggerBlur) {
+      this.previousActiveElement = document.activeElement
+      this.portal.setAttribute('tabindex', '-1')
+      this.portal.style.outline = 'none'
+      // wait a tick for things like popups which need to calculate where the popup shows up
+      setTimeout(() => this.portal && this.portal.focus())
+    }
 
     this.portal.addEventListener('mouseleave', this.handlePortalMouseLeave)
     this.portal.addEventListener('mouseenter', this.handlePortalMouseEnter)
@@ -397,6 +405,7 @@ class Portal extends Component {
 
     ReactDOM.unmountComponentAtNode(this.node)
     this.node.parentNode.removeChild(this.node)
+    if (this.previousActiveElement) this.previousActiveElement.focus()
 
     this.portal.removeEventListener('mouseleave', this.handlePortalMouseLeave)
     this.portal.removeEventListener('mouseenter', this.handlePortalMouseEnter)
