@@ -10,23 +10,30 @@ import {
 } from '../../lib'
 
 /**
- * A divider visually segments content into groups
+ * A divider visually segments content into groups.
  */
 function Divider(props) {
   const {
-    horizontal, vertical, inverted, fitted, hidden, section, clearing,
-    children, className,
+    children,
+    className,
+    clearing,
+    fitted,
+    hidden,
+    horizontal,
+    inverted,
+    section,
+    vertical,
   } = props
 
   const classes = cx(
     'ui',
-    useKeyOnly(horizontal, 'horizontal'),
-    useKeyOnly(vertical, 'vertical'),
-    useKeyOnly(inverted, 'inverted'),
+    useKeyOnly(clearing, 'clearing'),
     useKeyOnly(fitted, 'fitted'),
     useKeyOnly(hidden, 'hidden'),
+    useKeyOnly(horizontal, 'horizontal'),
+    useKeyOnly(inverted, 'inverted'),
     useKeyOnly(section, 'section'),
-    useKeyOnly(clearing, 'clearing'),
+    useKeyOnly(vertical, 'vertical'),
     'divider',
     className
   )
@@ -51,26 +58,26 @@ Divider.propTypes = {
   /** Additional classes. */
   className: PropTypes.string,
 
-  /** Divider can segment content horizontally */
-  horizontal: PropTypes.bool,
+  /** Divider can clear the content above it. */
+  clearing: PropTypes.bool,
 
-  /** Divider can segment content vertically */
-  vertical: PropTypes.bool,
-
-  /** Divider can have it's colours inverted */
-  inverted: PropTypes.bool,
-
-  /** Divider can be fitted without any space above or below it */
+  /** Divider can be fitted without any space above or below it. */
   fitted: PropTypes.bool,
 
-  /** Divider can divide content without creating a dividing line */
+  /** Divider can divide content without creating a dividing line. */
   hidden: PropTypes.bool,
 
-  /** Divider can provide greater margins to divide sections of content */
+  /** Divider can segment content horizontally. */
+  horizontal: PropTypes.bool,
+
+  /** Divider can have it's colours inverted. */
+  inverted: PropTypes.bool,
+
+  /** Divider can provide greater margins to divide sections of content. */
   section: PropTypes.bool,
 
-  /** Divider can clear the content above it */
-  clearing: PropTypes.bool,
+  /** Divider can segment content vertically. */
+  vertical: PropTypes.bool,
 }
 
 export default Divider
