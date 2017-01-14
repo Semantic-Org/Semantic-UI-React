@@ -63,6 +63,8 @@ interface IconComponent extends React.StatelessComponent<IconProps> {
 export const Icon: IconComponent;
 
 interface IconGroupProps {
+  [key: string]: any;
+
   /** An element type to render as (string or function). */
   as?: any;
 
