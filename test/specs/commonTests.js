@@ -858,7 +858,6 @@ export const implementsImageProp = (Component, options = {}) => {
  * @param {Object} [options.requiredProps={}] Props required to render the component.
  */
 export const implementsTextAlignProp = (Component, options = {}) => {
-  const { requiredProps = {} } = options
   const { assertRequired } = commonTestHelpers('implementsTextAlignProp', Component)
 
   describe('aligned (common)', () => {
@@ -866,23 +865,6 @@ export const implementsTextAlignProp = (Component, options = {}) => {
 
     _noDefaultClassNameFromProp(Component, 'textAlign', options)
     _noClassNameFromBoolProps(Component, 'textAlign', options)
-
-    _.each(Component._meta.props.aligned, (propVal) => {
-      if (propVal === 'justified') {
-        it('adds "justified" without "aligned" to className', () => {
-          shallow(<Component { ...requiredProps } aligned='justified' />)
-            .should.have.className('justified')
-
-          shallow(<Component { ...requiredProps } aligned='justified' />)
-            .should.not.have.className('aligned')
-        })
-      } else {
-        it(`adds "${propVal} aligned" to className`, () => {
-          shallow(<Component { ...requiredProps } aligned={propVal} />)
-            .should.have.className(`${propVal} ${'aligned'}`)
-        })
-      }
-    })
   })
 }
 

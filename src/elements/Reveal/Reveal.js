@@ -41,13 +41,6 @@ function Reveal(props) {
 Reveal._meta = {
   name: 'Reveal',
   type: META.TYPES.ELEMENT,
-  props: {
-    animated: [
-      'fade', 'small fade',
-      'move', 'move right', 'move up', 'move down',
-      'rotate', 'rotate left',
-    ],
-  },
 }
 
 Reveal.propTypes = {
@@ -57,6 +50,13 @@ Reveal.propTypes = {
   /** An active reveal displays its hidden content. */
   active: PropTypes.bool,
 
+  /** An animation name that will be applied to Reveal. */
+  animated: PropTypes.oneOf([
+    'fade', 'small fade',
+    'move', 'move right', 'move up', 'move down',
+    'rotate', 'rotate left',
+  ]),
+
   /** Primary content. */
   children: PropTypes.node,
 
@@ -65,9 +65,6 @@ Reveal.propTypes = {
 
   /** A disabled reveal will not animate when hovered. */
   disabled: PropTypes.bool,
-
-  /** An animation name that will be applied to Reveal. */
-  animated: PropTypes.oneOf(Reveal._meta.props.animated),
 
   /** An element can show its content without delay. */
   instant: PropTypes.bool,

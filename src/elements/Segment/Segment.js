@@ -47,25 +47,25 @@ function Segment(props) {
     'ui',
     color,
     size,
-    useKeyOrValueAndKey(attached, 'attached'),
     useKeyOnly(basic, 'basic'),
     useKeyOnly(circular, 'circular'),
     useKeyOnly(clearing, 'clearing'),
     useKeyOnly(compact, 'compact'),
     useKeyOnly(disabled, 'disabled'),
-    useValueAndKey(floated, 'floated'),
     useKeyOnly(inverted, 'inverted'),
     useKeyOnly(loading, 'loading'),
-    useKeyOrValueAndKey(padded, 'padded'),
     useKeyOnly(piled, 'piled'),
     useKeyOnly(raised, 'raised'),
     useKeyOnly(secondary, 'secondary'),
     useKeyOnly(stacked, 'stacked'),
     useKeyOnly(tertiary, 'tertiary'),
-    useTextAlignProp(textAlign),
     useKeyOnly(vertical, 'vertical'),
-    className,
+    useKeyOrValueAndKey(attached, 'attached'),
+    useKeyOrValueAndKey(padded, 'padded'),
+    useTextAlignProp(textAlign),
+    useValueAndKey(floated, 'floated'),
     'segment',
+    className,
   )
   const rest = getUnhandledProps(Segment, props)
   const ElementType = getElementType(Segment, props)
@@ -78,63 +78,55 @@ Segment.Group = SegmentGroup
 Segment._meta = {
   name: 'Segment',
   type: META.TYPES.ELEMENT,
-  props: {
-    attached: ['top', 'bottom'],
-    color: SUI.COLORS,
-    floated: SUI.FLOATS,
-    padded: ['very'],
-    size: _.without(SUI.SIZES, 'medium'),
-    textAlign: SUI.TEXT_ALIGNMENTS,
-  },
 }
 
 Segment.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** Attach segment to other content, like a header */
+  /** Attach segment to other content, like a header. */
   attached: PropTypes.oneOfType([
-    PropTypes.oneOf(Segment._meta.props.attached),
     PropTypes.bool,
+    PropTypes.oneOf('top', 'bottom'),
   ]),
 
-  /** A basic segment has no special formatting */
+  /** A basic segment has no special formatting. */
   basic: PropTypes.bool,
 
   /** Primary content. */
   children: PropTypes.node,
 
-  /** A segment can be circular */
+  /** A segment can be circular. */
   circular: PropTypes.bool,
 
   /** Additional classes. */
   className: PropTypes.string,
 
-  /** A segment can clear floated content */
+  /** A segment can clear floated content. */
   clearing: PropTypes.bool,
 
-  /** Segment can be colored */
-  color: PropTypes.oneOf(Segment._meta.props.color),
+  /** Segment can be colored. */
+  color: PropTypes.oneOf(SUI.COLORS),
 
-  /** A segment may take up only as much space as is necessary */
+  /** A segment may take up only as much space as is necessary. */
   compact: PropTypes.bool,
 
-  /** A segment may show its content is disabled */
+  /** A segment may show its content is disabled. */
   disabled: PropTypes.bool,
 
-  /** Segment content can be floated to the left or right */
-  floated: PropTypes.oneOf(Segment._meta.props.floated),
+  /** Segment content can be floated to the left or right. */
+  floated: PropTypes.oneOf(SUI.FLOATS),
 
-  /** A segment can have its colors inverted for contrast */
+  /** A segment can have its colors inverted for contrast. */
   inverted: PropTypes.bool,
 
-  /** A segment may show its content is being loaded */
+  /** A segment may show its content is being loaded. */
   loading: PropTypes.bool,
 
-  /** A segment can increase its padding */
+  /** A segment can increase its padding. */
   padded: PropTypes.oneOfType([
     PropTypes.bool,
-    PropTypes.oneOf(Segment._meta.props.padded),
+    PropTypes.oneOf(['very']),
   ]),
 
   /** Formatted to look like a pile of pages. */
@@ -143,22 +135,22 @@ Segment.propTypes = {
   /** A segment may be formatted to raise above the page. */
   raised: PropTypes.bool,
 
-  /** A segment can be formatted to appear less noticeable */
+  /** A segment can be formatted to appear less noticeable. */
   secondary: PropTypes.bool,
 
   /** A segment can have different sizes. */
-  size: PropTypes.oneOf(Segment._meta.props.size),
+  size: PropTypes.oneOf(_.without(SUI.SIZES, 'medium')),
 
   /** Formatted to show it contains multiple pages. */
   stacked: PropTypes.bool,
 
-  /** A segment can be formatted to appear even less noticeable */
+  /** A segment can be formatted to appear even less noticeable. */
   tertiary: PropTypes.bool,
 
   /** Formats content to be aligned as part of a vertical group. */
-  textAlign: PropTypes.oneOf(Segment._meta.props.textAlign),
+  textAlign: PropTypes.oneOf(SUI.TEXT_ALIGNMENTS),
 
-  /** Formats content to be aligned vertically */
+  /** Formats content to be aligned vertically. */
   vertical: PropTypes.bool,
 }
 
