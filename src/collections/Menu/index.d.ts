@@ -135,7 +135,7 @@ interface MenuItemProps extends ReactMouseEvents<HTMLElement> {
   color?: SemanticCOLORS;
 
   /** Shorthand for primary content. */
-  content?: any;
+  content?: React.ReactNode;
 
   /** A menu item or menu can remove element padding, vertically or horizontally. */
   fitted?: boolean | 'horizontally' | 'vertically';
