@@ -4,7 +4,12 @@ import path from 'path'
 import React, { createElement, isValidElement } from 'react'
 import ReactDOMServer from 'react-dom/server'
 
-import { createShorthand, META, numberToWord } from 'src/lib'
+import {
+  createShorthand,
+  META,
+  numberToWord,
+  SUI,
+} from 'src/lib'
 import { consoleUtil, sandbox, syntheticEvent } from 'test/utils'
 import * as semanticUIReact from 'semantic-ui-react'
 
@@ -854,10 +859,12 @@ export const implementsImageProp = (Component, options = {}) => {
 /**
  * Assert that a Component correctly implements the "textAlign" prop.
  * @param {React.Component|Function} Component The component to test.
+ * @param {array} alignments Array of possible alignment positions.
  * @param {Object} [options={}]
  * @param {Object} [options.requiredProps={}] Props required to render the component.
  */
-export const implementsTextAlignProp = (Component, options = {}) => {
+export const implementsTextAlignProp = (Component, alignments = SUI.TEXT_ALIGNMENTS, options = {}) => {
+  const { requiredProps = {} } = options
   const { assertRequired } = commonTestHelpers('implementsTextAlignProp', Component)
 
   describe('aligned (common)', () => {
@@ -865,6 +872,23 @@ export const implementsTextAlignProp = (Component, options = {}) => {
 
     _noDefaultClassNameFromProp(Component, 'textAlign', options)
     _noClassNameFromBoolProps(Component, 'textAlign', options)
+
+    _.each(alignments, propVal => {
+      if (propVal === 'justified') {
+        it('adds "justified" without "aligned" to className', () => {
+          shallow(<Component { ...requiredProps } textAlign='justified' />)
+            .should.have.className('justified')
+
+          shallow(<Component { ...requiredProps } textAlign='justified' />)
+            .should.not.have.className('aligned')
+        })
+      } else {
+        it(`adds "${propVal} aligned" to className`, () => {
+          shallow(<Component { ...requiredProps } textAlign={propVal} />)
+            .should.have.className(`${propVal} ${'aligned'}`)
+        })
+      }
+    })
   })
 }
 
