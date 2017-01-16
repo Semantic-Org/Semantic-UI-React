@@ -1,9 +1,5 @@
 import * as React from 'react';
 
-type REVEAL_ANIMATED = 'fade' | 'small fade'
-  | 'move' | 'move right' | 'move up' | 'move down'
-  | 'rotate' | 'rotate left';
-
 interface RevealProps {
   [key: string]: any;
 
@@ -14,7 +10,9 @@ interface RevealProps {
   active?: boolean;
 
   /** An animation name that will be applied to Reveal. */
-  animated?: REVEAL_ANIMATED;
+  animated?: 'fade' | 'small fade'
+    | 'move' | 'move right' | 'move up' | 'move down'
+    | 'rotate' | 'rotate left';
 
   /** Additional classes. */
   className?: string;
