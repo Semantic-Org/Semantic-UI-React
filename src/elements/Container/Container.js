@@ -1,5 +1,6 @@
 import cx from 'classnames'
 import React, { PropTypes } from 'react'
+
 import {
   customPropTypes,
   getElementType,
@@ -11,10 +12,16 @@ import {
 } from '../../lib'
 
 /**
- * A container limits content to a maximum width
+ * A container limits content to a maximum width.
  */
 function Container(props) {
-  const { text, textAlign, fluid, children, className } = props
+  const {
+    children,
+    className,
+    fluid,
+    text,
+    textAlign,
+  } = props
   const classes = cx(
     'ui',
     useKeyOnly(text, 'text'),
@@ -32,9 +39,6 @@ function Container(props) {
 Container._meta = {
   name: 'Container',
   type: META.TYPES.ELEMENT,
-  props: {
-    textAlign: SUI.TEXT_ALIGNMENTS,
-  },
 }
 
 Container.propTypes = {
@@ -47,14 +51,14 @@ Container.propTypes = {
   /** Additional classes. */
   className: PropTypes.string,
 
-  /** Reduce maximum width to more naturally accommodate text */
-  text: PropTypes.bool,
-
-  /** Container has no maximum with */
+  /** Container has no maximum with. */
   fluid: PropTypes.bool,
 
-  /** Align container text */
-  textAlign: PropTypes.oneOf(Container._meta.props.textAlign),
+  /** Reduce maximum width to more naturally accommodate text. */
+  text: PropTypes.bool,
+
+  /** Align container text. */
+  textAlign: PropTypes.oneOf(SUI.TEXT_ALIGNMENTS),
 }
 
 export default Container
