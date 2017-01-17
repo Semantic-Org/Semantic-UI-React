@@ -10,13 +10,20 @@ import {
   META,
 } from '../../lib'
 
+/**
+ * Headers may contain subheaders.
+ */
 function HeaderSubheader(props) {
   const { children, className, content } = props
   const classes = cx('sub header', className)
   const rest = getUnhandledProps(HeaderSubheader, props)
   const ElementType = getElementType(HeaderSubheader, props)
 
-  return <ElementType {...rest} className={classes}>{_.isNil(children) ? content : children}</ElementType>
+  return (
+    <ElementType {...rest} className={classes}>
+      {_.isNil(children) ? content : children}
+    </ElementType>
+  )
 }
 
 HeaderSubheader._meta = {

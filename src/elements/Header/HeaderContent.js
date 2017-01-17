@@ -13,7 +13,7 @@ import {
  */
 function HeaderContent(props) {
   const { children, className } = props
-  const classes = cx(className, 'content')
+  const classes = cx('content', className)
   const rest = getUnhandledProps(HeaderContent, props)
   const ElementType = getElementType(HeaderContent, props)
 
