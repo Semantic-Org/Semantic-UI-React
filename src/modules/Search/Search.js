@@ -24,14 +24,6 @@ import SearchResults from './SearchResults'
 
 const debug = makeDebugger('search')
 
-const _meta = {
-  name: 'Search',
-  type: META.TYPES.MODULE,
-  props: {
-    size: _.without(SUI.SIZES, 'medium'),
-  },
-}
-
 /**
  * A search module allows a user to query for results from a selection of data
  */
@@ -44,11 +36,23 @@ export default class Search extends Component {
     // Behavior
     // ------------------------------------
 
+    /** Initial value of open. */
+    defaultOpen: PropTypes.bool,
+
+    /** Initial value. */
+    defaultValue: PropTypes.string,
+
     /** Shorthand for Icon. */
     icon: PropTypes.oneOfType([
       PropTypes.node,
       PropTypes.object,
     ]),
+
+    /** Controls whether or not the results menu is displayed. */
+    open: PropTypes.bool,
+
+    /** Placeholder of the search input. */
+    placeholder: PropTypes.string,
 
     /**
      * One of:
@@ -60,35 +64,23 @@ export default class Search extends Component {
       PropTypes.object,
     ]),
 
-    /** Controls whether or not the results menu is displayed. */
-    open: PropTypes.bool,
-
-    /** Initial value of open. */
-    defaultOpen: PropTypes.bool,
-
-    /** Current value of the search input. Creates a controlled component. */
-    value: PropTypes.string,
-
-    /** Initial value. */
-    defaultValue: PropTypes.string,
-
-    /** Placeholder of the search input. */
-    placeholder: PropTypes.string,
-
     /** Minimum characters to query for results */
     minCharacters: PropTypes.number,
 
-    /** Message to display when there are no results. */
-    noResultsMessage: PropTypes.string,
-
     /** Additional text for "No Results" message with less emphasis. */
     noResultsDescription: PropTypes.string,
+
+    /** Message to display when there are no results. */
+    noResultsMessage: PropTypes.string,
 
     /** Whether the search should automatically select the first result after searching */
     selectFirstResult: PropTypes.bool,
 
     /** Whether a "no results" message should be shown if no results are found. */
     showNoResults: PropTypes.bool,
+
+    /** Current value of the search input. Creates a controlled component. */
+    value: PropTypes.string,
 
     // ------------------------------------
     // Rendering
@@ -119,22 +111,6 @@ export default class Search extends Component {
     onBlur: PropTypes.func,
 
     /**
-     * Called when a result is selected.
-     *
-     * @param {SyntheticEvent} event - React's original SyntheticEvent.
-     * @param {object} data - All props.
-     */
-    onResultSelect: PropTypes.func,
-
-    /**
-     * Called on search input change.
-     *
-     * @param {SyntheticEvent} event - React's original SyntheticEvent.
-     * @param {string} value - Current value of search input.
-     */
-    onSearchChange: PropTypes.func,
-
-    /**
      * Called on focus.
      *
      * @param {SyntheticEvent} event - React's original SyntheticEvent.
@@ -149,6 +125,22 @@ export default class Search extends Component {
      * @param {object} data - All props.
      */
     onMouseDown: PropTypes.func,
+
+    /**
+     * Called when a result is selected.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props.
+     */
+    onResultSelect: PropTypes.func,
+
+    /**
+     * Called on search input change.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {string} value - Current value of search input.
+     */
+    onSearchChange: PropTypes.func,
 
     // ------------------------------------
     // Style
@@ -169,17 +161,19 @@ export default class Search extends Component {
     /** A search input can take up the width of its container. */
     input: customPropTypes.itemShorthand,
 
-    size: PropTypes.oneOf(_meta.props.size),
-
+    /** A search can show a loading indicator. */
     loading: PropTypes.bool,
+
+    /** A search can have different sizes. */
+    size: PropTypes.oneOf(_.without(SUI.SIZES, 'medium')),
   }
 
   static defaultProps = {
     icon: 'search',
+    input: 'text',
     minCharacters: 1,
     noResultsMessage: 'No results found.',
     showNoResults: true,
-    input: 'text',
   }
 
   static autoControlledProps = [
@@ -187,10 +181,16 @@ export default class Search extends Component {
     'value',
   ]
 
-  static _meta = _meta
-  static Result = SearchResult
-  static Results = SearchResults
+  static _meta = {
+    name: 'Search',
+    type: META.TYPES.MODULE,
+  }
+
   static Category = SearchCategory
+
+  static Result = SearchResult
+
+  static Results = SearchResults
 
   componentWillMount() {
     if (super.componentWillMount) super.componentWillMount()
@@ -512,25 +512,23 @@ export default class Search extends Component {
   // ----------------------------------------
 
   renderSearchInput = () => {
-    const { icon, placeholder, input } = this.props
+    const { icon, input, placeholder } = this.props
     const { value } = this.state
 
-    return (
-      Input.create(input, {
-        value,
-        placeholder,
-        onBlur: this.handleBlur,
-        onChange: this.handleSearchChange,
-        onFocus: this.handleFocus,
-        onClick: this.handleInputClick,
-        input: { className: 'prompt', tabIndex: '0', autoComplete: 'off' },
-        icon,
-      })
-    )
+    return Input.create(input, {
+      value,
+      placeholder,
+      onBlur: this.handleBlur,
+      onChange: this.handleSearchChange,
+      onFocus: this.handleFocus,
+      onClick: this.handleInputClick,
+      input: { className: 'prompt', tabIndex: '0', autoComplete: 'off' },
+      icon,
+    })
   }
 
   renderNoResults = () => {
-    const { noResultsMessage, noResultsDescription } = this.props
+    const { noResultsDescription, noResultsMessage } = this.props
 
     return (
       <div className='message empty'>
@@ -612,11 +610,7 @@ export default class Search extends Component {
 
     if (!menuContent) return
 
-    return (
-      <SearchResults className={resultsClasses}>
-        {menuContent}
-      </SearchResults>
-    )
+    return <SearchResults className={resultsClasses}>{menuContent}</SearchResults>
   }
 
   render() {
@@ -640,15 +634,13 @@ export default class Search extends Component {
       open && 'active visible',
       size,
       searchClasses,
-      useKeyOnly(loading, 'loading'),
-
-      useValueAndKey(aligned, 'aligned'),
       useKeyOnly(category, 'category'),
       useKeyOnly(focus, 'focus'),
       useKeyOnly(fluid, 'fluid'),
-
-      className,
+      useKeyOnly(loading, 'loading'),
+      useValueAndKey(aligned, 'aligned'),
       'search',
+      className,
     )
     const rest = getUnhandledProps(Search, this.props)
     const ElementType = getElementType(Search, this.props)

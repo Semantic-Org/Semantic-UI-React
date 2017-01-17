@@ -105,7 +105,7 @@ export const Menu: MenuClass;
 interface MenuHeaderProps {
 
   /** An element type to render as (string or function). */
-    as?: any;
+  as?: any;
 
   /** Primary content. */
   children?: React.ReactNode;
@@ -123,7 +123,7 @@ interface MenuItemProps extends ReactMouseEvents<HTMLElement> {
   active?: boolean;
 
   /** An element type to render as (string or function). */
-    as?: any;
+  as?: any;
 
   /** Primary content. */
   children?: React.ReactNode;
@@ -135,7 +135,7 @@ interface MenuItemProps extends ReactMouseEvents<HTMLElement> {
   color?: SemanticCOLORS;
 
   /** Shorthand for primary content. */
-  content?: string;
+  content?: React.ReactNode;
 
   /** A menu item or menu can remove element padding, vertically or horizontally. */
   fitted?: boolean | 'horizontally' | 'vertically';
@@ -162,7 +162,7 @@ export const MenuItem: React.ComponentClass<MenuItemProps>;
 
 interface MenuMenuProps {
   /** An element type to render as (string or function). */
-    as?: any;
+  as?: any;
 
   /** Primary content. */
   children?: React.ReactNode;
