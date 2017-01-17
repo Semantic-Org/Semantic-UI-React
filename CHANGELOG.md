@@ -1,5 +1,29 @@
 # Change Log
 
+## [v0.64.1](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.64.1) (2017-01-17)
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.64.0...v0.64.1)
+
+**Closed issues:**
+
+- Dropdown defaultValue with fetched options [\#1149](https://github.com/Semantic-Org/Semantic-UI-React/issues/1149)
+- Search Component: Unknown props error [\#1141](https://github.com/Semantic-Org/Semantic-UI-React/issues/1141)
+- Feat\(Dropdown\): Optionally return new text value pair from onAddItem [\#1132](https://github.com/Semantic-Org/Semantic-UI-React/issues/1132)
+
+**Merged pull requests:**
+
+- style\(Rail|Select|TextArea\): cleanup typings [\#1171](https://github.com/Semantic-Org/Semantic-UI-React/pull/1171) ([layershifter](https://github.com/layershifter))
+- style\(Input\): propTypes cleanups and typings update [\#1167](https://github.com/Semantic-Org/Semantic-UI-React/pull/1167) ([layershifter](https://github.com/layershifter))
+- babel-plugin-transform-react-handled-props@0.2.2 untested ⚠️ [\#1166](https://github.com/Semantic-Org/Semantic-UI-React/pull/1166) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+- style\(Loader|Reveal|Segment\): propTypes cleanups and typings update [\#1165](https://github.com/Semantic-Org/Semantic-UI-React/pull/1165) ([layershifter](https://github.com/layershifter))
+- typings\(Popup, Menu\): Fixed Popup inverted and MenuItem content types [\#1164](https://github.com/Semantic-Org/Semantic-UI-React/pull/1164) ([dstpierre](https://github.com/dstpierre))
+- karma@1.4.0 untested ⚠️ [\#1161](https://github.com/Semantic-Org/Semantic-UI-React/pull/1161) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+- chore\(package\): remove transform-react-constant-elements [\#1160](https://github.com/Semantic-Org/Semantic-UI-React/pull/1160) ([layershifter](https://github.com/layershifter))
+- style\(Container|Divider|Header|Icon\): propTypes cleanups and typings update [\#1159](https://github.com/Semantic-Org/Semantic-UI-React/pull/1159) ([layershifter](https://github.com/layershifter))
+- chore\(package\): Add ts-lint for typings [\#1156](https://github.com/Semantic-Org/Semantic-UI-React/pull/1156) ([layershifter](https://github.com/layershifter))
+- style\(Checkbox|Flag|Image|Radio\): propTypes cleanups and typings update [\#1155](https://github.com/Semantic-Org/Semantic-UI-React/pull/1155) ([layershifter](https://github.com/layershifter))
+- fix\(Portal\): take focus on  mount and restore on unmount [\#1154](https://github.com/Semantic-Org/Semantic-UI-React/pull/1154) ([fracmak](https://github.com/fracmak))
+- style\(Search\): several cleanups [\#1150](https://github.com/Semantic-Org/Semantic-UI-React/pull/1150) ([layershifter](https://github.com/layershifter))
+
 ## [v0.64.0](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.64.0) (2017-01-13)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.63.6...v0.64.0)
 
