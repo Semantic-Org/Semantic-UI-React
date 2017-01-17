@@ -2,7 +2,7 @@ import * as React from 'react';
 
 interface SidebarPushableProps {
   /** An element type to render as (string or function). */
-    as?: any;
+  as?: any;
 
   /** Primary content. */
   children?: React.ReactNode;
@@ -16,7 +16,7 @@ export const SidebarPushable: React.ComponentClass<SidebarPushableProps>;
 
 interface SidebarPusherProps {
   /** An element type to render as (string or function). */
-    as?: any;
+  as?: any;
 
   /** Primary content. */
   children?: React.ReactNode;

@@ -2,9 +2,8 @@ import {SemanticSIZES} from '../..';
 import * as React from 'react';
 
 interface FeedProps {
-
   /** An element type to render as (string or function). */
-    as?: any;
+  as?: any;
 
   /** Primary content. */
   children?: React.ReactNode;
@@ -36,7 +35,7 @@ export const Feed: FeedClass;
 
 interface FeedContentProps {
   /** An element type to render as (string or function). */
-    as?: any;
+  as?: any;
 
   /** Primary content. */
   children?: React.ReactNode;
@@ -66,9 +65,8 @@ interface FeedContentProps {
 export const FeedContent: React.ComponentClass<FeedContentProps>;
 
 interface FeedDateProps {
-
   /** An element type to render as (string or function). */
-    as?: any;
+  as?: any;
 
   /** Primary content. */
   children?: React.ReactNode;
@@ -83,9 +81,8 @@ interface FeedDateProps {
 export const FeedDate: React.ComponentClass<FeedDateProps>;
 
 interface FeedEventProps {
-
   /** An element type to render as (string or function). */
-    as?: any;
+  as?: any;
 
   /** Primary content. */
   children?: React.ReactNode;
@@ -121,9 +118,8 @@ interface FeedEventProps {
 export const FeedEvent: React.ComponentClass<FeedEventProps>;
 
 interface FeedExtraProps {
-
   /** An element type to render as (string or function). */
-    as?: any;
+  as?: any;
 
   /** Primary content. */
   children?: React.ReactNode;
@@ -145,7 +141,7 @@ export const FeedExtra: React.ComponentClass<FeedExtraProps>;
 
 interface FeedLabelProps {
   /** An element type to render as (string or function). */
-    as?: any;
+  as?: any;
 
   /** Primary content. */
   children?: React.ReactNode;
@@ -166,7 +162,6 @@ interface FeedLabelProps {
 export const FeedLabel: React.ComponentClass<FeedLabelProps>;
 
 interface FeedLikeProps {
-
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -186,9 +181,8 @@ interface FeedLikeProps {
 export const FeedLike: React.ComponentClass<FeedLikeProps>;
 
 interface FeedMetaProps {
-
   /** An element type to render as (string or function). */
-    as?: any;
+  as?: any;
 
   /** Primary content. */
   children?: React.ReactNode;
@@ -207,7 +201,7 @@ export const FeedMeta: React.ComponentClass<FeedMetaProps>;
 
 interface FeedSummaryProps {
   /** An element type to render as (string or function). */
-    as?: any;
+  as?: any;
 
   /** Primary content. */
   children?: React.ReactNode;
@@ -228,9 +222,8 @@ interface FeedSummaryProps {
 export const FeedSummary: React.ComponentClass<FeedSummaryProps>;
 
 interface FeedUserProps {
-
   /** An element type to render as (string or function). */
-    as?: any;
+  as?: any;
 
   /** Primary content. */
   children?: React.ReactNode;

@@ -12,15 +12,14 @@ import {
 export type SemanticButtonLABELPOSITIONS = 'right' | 'left';
 
 export interface ButtonProps extends ReactMouseEvents<HTMLButtonElement> {
+  /** An element type to render as (string or function). */
+  as?: any;
 
   /** A button can show it is currently the active user selection */
   active?: boolean;
 
   /** A button can animate to show hidden content */
   animated?: 'fade' | 'vertical';
-
-  /** An element type to render as (string or function). */
-    as?: any;
 
   /** A button can be attached to the top or bottom of other content */
   attached?: 'left' | 'right' | 'top' | 'bottom';
@@ -121,7 +120,7 @@ export const ButtonContent: React.ComponentClass<ContentProps>;
 
 interface GroupProps {
   /** An element type to render as (string or function). */
-    as?: any;
+  as?: any;
 
   /** A button can be attached to the top or bottom of other content */
   attached?: string;
@@ -155,7 +154,7 @@ export const ButtonGroup: React.ComponentClass<GroupProps>;
 
 interface OrProps {
   /** An element type to render as (string or function). */
-    as?: any;
+  as?: any;
 
   /** Additional classes. */
   className?: string;
