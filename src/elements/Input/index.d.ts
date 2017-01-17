@@ -1,20 +1,17 @@
-import { ReactFocusEvents, ReactFormEvents, SemanticSIZES } from '../..';
 import * as React from 'react';
-import { SemanticButtonLABELPOSITIONS } from '../Button';
+import { SemanticSIZES } from '../..';
 
-
-export interface InputProps extends ReactFocusEvents<HTMLInputElement>, ReactFormEvents<HTMLInputElement> {
-  
-  /** An Input can be formatted to alert the user to an action they may perform */
-  action?: any;
-
-  /** An action can appear along side an Input on the left or right */
-  actionPosition?: 'left'
+export interface InputProps {
+  [key: string]: any;
 
   /** An element type to render as (string or function). */
   as?: any;
 
-  autocomplete?: string; // Used by chrome https://developers.google.com/web/updates/2015/06/checkout-faster-with-autofill
+  /** An Input can be formatted to alert the user to an action they may perform. */
+  action?: any | boolean;
+
+  /** An action can appear along side an Input on the left or right. */
+  actionPosition?: 'left'
 
   /** Primary content. */
   children?: React.ReactNode;
@@ -22,53 +19,58 @@ export interface InputProps extends ReactFocusEvents<HTMLInputElement>, ReactFor
   /** Additional classes. */
   className?: string;
 
-  defaultValue?: string;
-
-  /** An Input field can show that it is disabled */
+  /** An Input field can show that it is disabled. */
   disabled?: boolean;
 
-  /** An Input field can show the data contains errors */
+  /** An Input field can show the data contains errors. */
   error?: boolean;
+
+  /** Take on the size of it's container. */
   fluid?: boolean;
+
+  /** An Input field can show a user is currently interacting with it. */
   focus?: boolean;
 
-  /** Optional Icon to display inside the Input */
-  icon?: any;
+  /** Optional Icon to display inside the Input. */
+  icon?: any | boolean;
 
-  /** An Icon can appear inside an Input on the left */
+  /** An Icon can appear inside an Input on the left. */
   iconPosition?: 'left';
 
-  /** Shorthand for creating the HTML Input */
+  /** Shorthand for creating the HTML Input. */
   input?: any;
 
-  /** Format to appear on dark backgrounds */
+  /** Format to appear on dark backgrounds. */
   inverted?: boolean;
 
-  /** Optional Label to display along side the Input */
+  /** Optional Label to display along side the Input. */
   label?: any;
 
-  /** A Label can appear outside an Input on the left or right */
-  labelPosition?: SemanticButtonLABELPOSITIONS;
+  /** A Label can appear outside an Input on the left or right. */
+  labelPosition?: 'left', 'right', 'left corner', 'right corner';
 
-  /** An Icon Input field can show that it is currently loading data */
+  /** An Icon Input field can show that it is currently loading data. */
   loading?: boolean;
 
-  name?: string;
-  placeholder?: string;
-  readOnly?: boolean;
-  step?: number;
+  /**
+   * Called on change.
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props and proposed value.
+   */
+  onChange?: (e: React.SyntheticEvent<HTMLInputElement>, {...InputProps, value: string}) => void;
 
-  /** An Input can vary in size */
+  /** An Input can vary in size. */
   size?: SemanticSIZES;
 
-  /** Transparent Input has no background */
+  /** An Input can receive focus. */
+  tabIndex?: number | string;
+
+  /** Transparent Input has no background. */
   transparent?: boolean;
 
-  /** The HTML input type */
+  /** The HTML input type. */
   type?: string;
+}
 
-  value?: string | number;
-  width?: number;
-}
-export class Input extends React.Component<InputProps, void> {
-}
+export const Input: React.StatelessComponent<InputProps>;

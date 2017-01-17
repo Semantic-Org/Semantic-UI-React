@@ -15,17 +15,27 @@ import {
  * A group of segments can be formatted to appear together.
  */
 function SegmentGroup(props) {
-  const { children, className, compact, horizontal, piled, raised, size, stacked } = props
+  const {
+    children,
+    className,
+    compact,
+    horizontal,
+    piled,
+    raised,
+    size,
+    stacked,
+  } = props
+
   const classes = cx(
     'ui',
     size,
-    useKeyOnly(horizontal, 'horizontal'),
     useKeyOnly(compact, 'compact'),
+    useKeyOnly(horizontal, 'horizontal'),
     useKeyOnly(piled, 'piled'),
     useKeyOnly(raised, 'raised'),
     useKeyOnly(stacked, 'stacked'),
-    className,
     'segments',
+    className,
   )
   const rest = getUnhandledProps(SegmentGroup, props)
   const ElementType = getElementType(SegmentGroup, props)
@@ -37,25 +47,22 @@ SegmentGroup._meta = {
   name: 'SegmentGroup',
   parent: 'Segment',
   type: META.TYPES.ELEMENT,
-  props: {
-    size: _.without(SUI.SIZES, 'medium'),
-  },
 }
 
 SegmentGroup.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** Additional classes. */
-  className: PropTypes.string,
-
   /** Primary content. */
   children: PropTypes.node,
 
-  /** A segment may take up only as much space as is necessary */
+  /** Additional classes. */
+  className: PropTypes.string,
+
+  /** A segment may take up only as much space as is necessary. */
   compact: PropTypes.bool,
 
-  /** Formats content to be aligned horizontally */
+  /** Formats content to be aligned horizontally. */
   horizontal: PropTypes.bool,
 
   /** Formatted to look like a pile of pages. */
@@ -65,7 +72,7 @@ SegmentGroup.propTypes = {
   raised: PropTypes.bool,
 
   /** A segment group can have different sizes. */
-  size: PropTypes.oneOf(SegmentGroup._meta.props.size),
+  size: PropTypes.oneOf(_.without(SUI.SIZES, 'medium')),
 
   /** Formatted to show it contains multiple pages. */
   stacked: PropTypes.bool,

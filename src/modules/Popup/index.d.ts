@@ -27,7 +27,7 @@ interface PopupProps extends PortalProps {
   hoverable?: boolean;
 
   /** Invert the colors of the popup */
-  inverted?: string;
+  inverted?: boolean;
 
   /** Horizontal offset in pixels to be applied to the popup */
   offset?: number;

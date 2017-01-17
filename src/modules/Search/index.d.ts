@@ -34,6 +34,7 @@ interface SearchProps extends ReactMouseEvents<HTMLInputElement>, ReactFocusEven
     /** Shorthand for Icon. */
     icon?: any;
 
+    /** A search can show a loading indicator. */
     loading?: boolean;
 
     /** Minimum characters to query for results */
@@ -86,7 +87,7 @@ interface SearchProps extends ReactMouseEvents<HTMLInputElement>, ReactFocusEven
     /** Whether a "no results" message should be shown if no results are found. */
     showNoResults?: boolean;
 
-    /** Search size */
+    /** A search can have different sizes. */
     size?: SemanticSIZES;
 
     /** Current value of the search input. Creates a controlled component. */

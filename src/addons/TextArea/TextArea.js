@@ -20,7 +20,7 @@ class TextArea extends Component {
     /** An element type to render as (string or function). */
     as: customPropTypes.as,
 
-    /** Indicates whether height of the textarea fits the content or not */
+    /** Indicates whether height of the textarea fits the content or not. */
     autoHeight: PropTypes.bool,
 
     /**
