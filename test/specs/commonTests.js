@@ -859,7 +859,7 @@ export const implementsImageProp = (Component, options = {}) => {
 /**
  * Assert that a Component correctly implements the "textAlign" prop.
  * @param {React.Component|Function} Component The component to test.
- * @param {array} alignments Array of possible alignment positions.
+ * @param {array} [alignments] Array of possible alignment positions.
  * @param {Object} [options={}]
  * @param {Object} [options.requiredProps={}] Props required to render the component.
  */
