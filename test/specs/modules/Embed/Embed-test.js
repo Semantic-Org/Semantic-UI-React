@@ -8,7 +8,7 @@ const assertIframeSrc = (props, srcPart) => {
   const {
     id = faker.random.word(),
     source = 'youtube',
-    ...rest
+    ...rest,
   } = props
 
   shallow(<Embed active id={id} source={source} {...rest} />)
