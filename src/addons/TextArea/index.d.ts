@@ -1,7 +1,6 @@
 import * as React from 'react';
-import { FormTextAreaProps } from '../../collections/Form/index';
 
-export interface TextAreaProps extends FormTextAreaProps {
+export interface TextAreaProps {
   [key: string]: any;
 
   /** An element type to render as (string or function). */
@@ -15,14 +14,14 @@ export interface TextAreaProps extends FormTextAreaProps {
    * @param {SyntheticEvent} event - The React SyntheticEvent object
    * @param {object} data - All props and the event value.
    */
-  onChange?: (event: React.FormEvent<HTMLTextAreaElement>, data: TextAreaOnChangeValue) => void;
+  onChange?: (event: React.FormEvent<HTMLTextAreaElement>, data: TextAreaOnChangeData) => void;
 
   /** The value of the textarea. */
   value?: string;
 }
 
-interface TextAreaOnChangeValue extends TextAreaProps {
-  value: any;
+interface TextAreaOnChangeData extends TextAreaProps {
+  value?: string;
 }
 
 export const TextArea: React.ComponentClass<TextAreaProps>;
