@@ -509,4 +509,47 @@ describe('Portal', () => {
       document.body.childElementCount.should.equal(0)
     })
   })
+
+  describe('focus', () => {
+    it('should take focus when mounted', (done) => {
+      attachTo = document.createElement('div')
+      document.body.appendChild(attachTo)
+      const opts = { attachTo }
+      const portal = wrapperMount(<Portal defaultOpen><p>Hi</p></Portal>, opts)
+      setTimeout(() => {
+        const portalNode = portal.node.node.firstElementChild
+        expect(document.activeElement).to.equal(portalNode)
+        expect(portalNode.getAttribute('tabindex')).to.equal('-1')
+        expect(portalNode.style.outline).to.equal('none')
+        done()
+      })
+    })
+    it('should not take focus when mounted on portals that closeOnTriggerBlur', (done) => {
+      attachTo = document.createElement('div')
+      document.body.appendChild(attachTo)
+      const opts = { attachTo }
+      const portal = wrapperMount(<Portal defaultOpen closeOnTriggerBlur><p>Hi</p></Portal>, opts)
+      setTimeout(() => {
+        const portalNode = portal.node.node.firstElementChild
+        expect(document.activeElement).to.not.equal(portalNode)
+        expect(portalNode.getAttribute('tabindex')).to.not.equal('-1')
+        expect(portalNode.style.outline).to.not.equal('none')
+        done()
+      })
+    })
+    it('should restore focus when unmounted', (done) => {
+      const activeElement = document.activeElement
+      attachTo = document.createElement('div')
+      document.body.appendChild(attachTo)
+      const opts = { attachTo }
+      const portal = wrapperMount(<Portal open><p>Hi</p></Portal>, opts)
+      setTimeout(() => {
+        portal.setProps({
+          open: false,
+        })
+        expect(document.activeElement).to.equal(activeElement)
+        done()
+      })
+    })
+  })
 })
