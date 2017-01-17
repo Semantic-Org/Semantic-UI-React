@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { SemanticSIZES } from '../..';
+import {SemanticSIZES} from '../..';
 
 export interface InputProps {
   [key: string]: any;
@@ -58,7 +58,7 @@ export interface InputProps {
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
    * @param {object} data - All props and proposed value.
    */
-  onChange?: (event: React.SyntheticEvent<HTMLInputElement>, data: {InputProps, value: string}) => void;
+  onChange?: (event: React.SyntheticEvent<HTMLInputElement>, data: onChangeData) => void;
 
   /** An Input can vary in size. */
   size?: SemanticSIZES;
@@ -71,6 +71,10 @@ export interface InputProps {
 
   /** The HTML input type. */
   type?: string;
+}
+
+interface onChangeData extends InputProps {
+  value: string;
 }
 
 export const Input: React.StatelessComponent<InputProps>;
