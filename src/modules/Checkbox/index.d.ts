@@ -48,7 +48,7 @@ export interface CheckboxProps {
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
    * @param {object} data - All props and current checked/indeterminate state.
    */
-  onClick?: (e: React.MouseEvent<HTMLInputElement>, data: this) => void;
+  onClick?: (event: React.MouseEvent<HTMLInputElement>, data: this) => void;
 
   /** Format as a radio element. This means it is an exclusive option. */
   radio?: boolean;

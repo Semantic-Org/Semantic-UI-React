@@ -11,7 +11,7 @@ interface FlagProps {
   className?: string;
 
   /** Flag name, can use the two digit country code, the full name, or a common alias. */
-  name: SemanticCOUNTRY,
+  name: SemanticCOUNTRY;
 }
 
 export const Flag : React.StatelessComponent<FlagProps>;
