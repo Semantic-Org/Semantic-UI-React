@@ -58,7 +58,7 @@ export interface InputProps {
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
    * @param {object} data - All props and proposed value.
    */
-  onChange?: (event: React.SyntheticEvent<HTMLInputElement>, data: onChangeData) => void;
+  onChange?: (event: React.SyntheticEvent<HTMLInputElement>, data: InputOnChangeData) => void;
 
   /** An Input can vary in size. */
   size?: SemanticSIZES;
@@ -73,7 +73,7 @@ export interface InputProps {
   type?: string;
 }
 
-interface onChangeData extends InputProps {
+interface InputOnChangeData extends InputProps {
   value: string;
 }
 
