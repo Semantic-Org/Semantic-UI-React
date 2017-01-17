@@ -13,7 +13,7 @@ import { DropdownProps } from '../../modules/Dropdown/index';
 
 
 interface FormProps {
-  method?: 'get' | 'post'
+  method?: 'get' | 'post';
 
   /** An element type to render as (string or function). */
   as?: any;
@@ -72,7 +72,6 @@ interface FormClass extends React.ComponentClass<FormProps> {
 export const Form: FormClass;
 
 interface FormFieldProps {
-  
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -128,7 +127,6 @@ interface FormButtonProps extends ButtonProps {
 export const FormButton: React.ComponentClass<FormButtonProps>;
 
 interface FormCheckboxProps {
-  
   /** An element type to render as (string or function). */
   as?: any;
   control?: any;
@@ -141,7 +139,6 @@ interface FormCheckboxProps {
 export const FormCheckbox: React.ComponentClass<FormCheckboxProps>;
 
 interface FormDropdownProps extends DropdownProps {
-  
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -155,7 +152,6 @@ interface FormDropdownProps extends DropdownProps {
 export const FormDropdown: React.ComponentClass<FormDropdownProps>;
 
 interface FormGroupProps {
-  
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -183,7 +179,6 @@ interface FormInputProps extends InputProps, ReactFormEvents<HTMLInputElement>, 
 export const FormInput: React.ComponentClass<FormInputProps>;
 
 interface FormRadioProps {
-  
   /** An element type to render as (string or function). */
   as?: any;
   checked?: boolean;
@@ -200,7 +195,6 @@ interface FormRadioProps {
 export const FormRadio: React.ComponentClass<FormRadioProps>;
 
 interface FormSelectProps extends ReactFormEvents<HTMLSelectElement>, ReactFocusEvents<HTMLSelectElement> {
-  
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -219,7 +213,6 @@ interface FormSelectProps extends ReactFormEvents<HTMLSelectElement>, ReactFocus
 export const FormSelect: React.ComponentClass<FormSelectProps>;
 
 export interface FormTextAreaProps extends ReactFormEvents<HTMLTextAreaElement>, ReactFocusEvents<HTMLTextAreaElement> {
-  
   /** An element type to render as (string or function). */
   as?: any;
 

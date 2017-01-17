@@ -1,7 +1,5 @@
-import { Header } from '../../elements/Header';
 import { ReactMouseEvents, SemanticCOLORS, SemanticWIDTHSNUMBER, SemanticWIDTHSSTRING } from '../..';
 import * as React from 'react';
-
 
 interface CardProps extends ReactMouseEvents<HTMLElement> {
 
@@ -65,7 +63,6 @@ interface CardClass extends React.ComponentClass<CardProps> {
 export const Card: CardClass;
 
 interface CardContentProps {
-  
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -80,7 +77,7 @@ interface CardContentProps {
 
   /** A card can contain extra content meant to be formatted separately from the main content */
   extra?: boolean;
-  
+
   /** Shorthand for CardHeader. */
   header?: any;
 
@@ -91,7 +88,6 @@ interface CardContentProps {
 export const CardContent: React.ComponentClass<CardContentProps>;
 
 interface CardDescriptionProps {
-  
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -108,7 +104,6 @@ interface CardDescriptionProps {
 export const CardDescription: React.ComponentClass<CardDescriptionProps>;
 
 interface CardGroupProps {
-  
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -126,7 +121,7 @@ interface CardGroupProps {
 
   /** A group of cards can set how many cards should exist in a row */
   itemsPerRow?: SemanticWIDTHSNUMBER | SemanticWIDTHSSTRING | number;
-  
+
   /** A group of cards can automatically stack rows to a single columns on mobile devices */
   stackable?: boolean;
 }
@@ -134,7 +129,6 @@ interface CardGroupProps {
 export const CardGroup: React.ComponentClass<CardGroupProps>;
 
 interface CardHeaderProps {
-  
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -151,7 +145,6 @@ interface CardHeaderProps {
 export const CardHeader: React.ComponentClass<CardHeaderProps>;
 
 interface CardMetaProps {
-  
   /** An element type to render as (string or function). */
   as?: any;
 

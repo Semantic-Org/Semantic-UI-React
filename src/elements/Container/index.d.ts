@@ -8,19 +8,19 @@ interface ContainerProps {
   as?: any;
 
   /** Primary content. */
-  children?: React.ReactNode,
+  children?: React.ReactNode;
 
   /** Additional classes. */
   className?: string;
 
-  /** Container has no maximum with. */
-  fluid?: boolean,
+  /** Container has no maximum width. */
+  fluid?: boolean;
 
   /** Reduce maximum width to more naturally accommodate text. */
-  text?: boolean,
+  text?: boolean;
 
   /** Describes how the text inside this component should be aligned. */
-  textAlign?: SemanticTEXTALIGNMENTS,
+  textAlign?: SemanticTEXTALIGNMENTS;
 }
 
 export const Container: React.StatelessComponent<ContainerProps>;

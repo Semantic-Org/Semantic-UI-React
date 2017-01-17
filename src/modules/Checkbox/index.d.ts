@@ -40,7 +40,7 @@ export interface CheckboxProps {
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
    * @param {object} data - All props and proposed checked/indeterminate state.
    */
-  onChange?: (e: React.FormEvent<HTMLInputElement>, data: this) => void;
+  onChange?: (event: React.FormEvent<HTMLInputElement>, data: this) => void;
 
   /**
    * Called when the checkbox or label is clicked.
@@ -48,7 +48,7 @@ export interface CheckboxProps {
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
    * @param {object} data - All props and current checked/indeterminate state.
    */
-  onClick?: (e: React.MouseEvent<HTMLInputElement>, data: this) => void;
+  onClick?: (event: React.MouseEvent<HTMLInputElement>, data: this) => void;
 
   /** Format as a radio element. This means it is an exclusive option. */
   radio?: boolean;

@@ -2,7 +2,6 @@ import { ReactMouseEvents, SemanticSIZES } from '../..';
 import * as React from 'react';
 
 interface RatingProps {
-  
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -50,7 +49,6 @@ interface RatingClass extends React.ComponentClass<RatingProps> {
 export const Rating: RatingClass;
 
 interface RatingIconProps extends ReactMouseEvents<HTMLElement> {
-  
   /** Indicates activity of an icon. */
   active?: boolean;
 

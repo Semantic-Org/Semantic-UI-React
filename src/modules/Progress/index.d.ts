@@ -2,7 +2,6 @@ import { SemanticCOLORS, SemanticSIZES } from '../..';
 import * as React from 'react';
 
 interface ProgressProps {
-  
   /** A progress bar can show activity. */
   active?: boolean;
 

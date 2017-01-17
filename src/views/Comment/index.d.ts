@@ -1,8 +1,6 @@
 import * as React from 'react';
 
-
 interface CommentProps {
-  
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -30,7 +28,6 @@ interface CommentClass extends React.ComponentClass<CommentProps> {
 export const Comment: CommentClass;
 
 interface CommentAuthorProps {
-  
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -44,7 +41,6 @@ interface CommentAuthorProps {
 export const CommentAuthor: React.ComponentClass<CommentAuthorProps>;
 
 interface CommentActionProps {
-  
   /** Style as the currently active action. */
   active?: boolean;
 
@@ -61,7 +57,6 @@ interface CommentActionProps {
 export const CommentAction: React.ComponentClass<CommentActionProps>;
 
 interface CommentActionsProps {
-  
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -75,7 +70,6 @@ interface CommentActionsProps {
 export const CommentActions: React.ComponentClass<CommentActionsProps>;
 
 interface CommentAvatarProps {
-  
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -89,7 +83,6 @@ interface CommentAvatarProps {
 export const CommentAvatar: React.ComponentClass<CommentAvatarProps>;
 
 interface CommentContentProps {
-  
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -103,7 +96,6 @@ interface CommentContentProps {
 export const CommentContent: React.ComponentClass<CommentContentProps>;
 
 interface CommentGroupProps {
-  
   /** An element type to render as (string or function). */
   as?: any;
 

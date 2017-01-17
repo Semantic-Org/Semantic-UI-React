@@ -60,12 +60,12 @@ interface HeaderProps {
   textAlign?: SemanticTEXTALIGNMENTS;
 }
 
-interface HeaderClass extends React.StatelessComponent<HeaderProps> {
+interface HeaderComponent extends React.StatelessComponent<HeaderProps> {
   Content: typeof HeaderContent;
   Subheader: typeof HeaderSubHeader;
 }
 
-export const Header: HeaderClass;
+export const Header: HeaderComponent;
 
 interface HeaderContentProps {
   [key: string]: any;

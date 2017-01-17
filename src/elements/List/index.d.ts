@@ -3,7 +3,7 @@ import * as React from 'react';
 
 interface ListProps extends ReactMouseEvents<any> {
   animated?: boolean;
-  
+
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -65,7 +65,6 @@ interface ListClass extends React.ComponentClass<ListProps> {
 export const List: ListClass;
 
 interface ListContentProps {
-  
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -94,7 +93,6 @@ interface ListContentProps {
 export const ListContent: React.ComponentClass<ListContentProps>;
 
 interface ListDescriptionProps {
-  
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -111,7 +109,6 @@ interface ListDescriptionProps {
 export const ListDescription: React.ComponentClass<ListDescriptionProps>;
 
 interface ListHeaderProps {
-  
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -128,7 +125,6 @@ interface ListHeaderProps {
 export const ListHeader: React.ComponentClass<ListHeaderProps>;
 
 interface ListIconProps extends ReactMouseEvents<any> {
-  
   /** Additional classes. */
   className?: string;
 
@@ -141,10 +137,10 @@ export const ListIcon: React.ComponentClass<ListIconProps>;
 
 interface ListItemProps extends ReactMouseEvents<any> {
   active?: boolean;
-  
+
   /** An element type to render as (string or function). */
   as?: any;
-  
+
   /** Primary content. */
   children?: React.ReactNode;
 
@@ -176,7 +172,6 @@ interface ListItemProps extends ReactMouseEvents<any> {
 export const ListItem: React.ComponentClass<ListItemProps>;
 
 interface ListListProps {
-  
   /** An element type to render as (string or function). */
   as?: any;
 

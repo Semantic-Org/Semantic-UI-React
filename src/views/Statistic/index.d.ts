@@ -4,7 +4,6 @@ import * as React from 'react';
 
 
 interface StatisticProps {
-  
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -48,7 +47,6 @@ interface StatisticClass extends React.ComponentClass<StatisticProps> {
 export const Statistic: StatisticClass;
 
 interface StatisticGroupProps {
-  
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -80,7 +78,6 @@ interface StatisticGroupProps {
 export const StatisticGroup: React.ComponentClass<StatisticGroupProps>;
 
 interface StatisticLabelProps {
-  
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -97,7 +94,6 @@ interface StatisticLabelProps {
 export const StatisticLabel: React.ComponentClass<StatisticLabelProps>;
 
 interface StatisticValueProps {
-  
   /** An element type to render as (string or function). */
   as?: any;
 

@@ -43,7 +43,7 @@ export interface ImageProps {
 
   /** The img element height attribute. */
   height?: string|number;
-  
+
   /** Renders the Image as an <a> tag with this href. */
   href?: string;
 
@@ -61,7 +61,7 @@ export interface ImageProps {
 
   /** An image can specify that it needs an additional spacing to separate it from nearby content. */
   spaced?: boolean|'left'|'right';
-  
+
   /** Specifies the URL of the image. */
   src?: string;
 
@@ -70,10 +70,10 @@ export interface ImageProps {
 
   /** An image can specify its vertical alignment. */
   verticalAlign?: SemanticVERTICALALIGNMENTS;
-  
+
   /** The img element width attribute. */
   width?: number|SemanticWIDTHSSTRING| SemanticWIDTHSNUMBER;
-  
+
   /** An image can render wrapped in a `div.ui.image` as alternative HTML markup. */
   wrapped?: boolean;
 }

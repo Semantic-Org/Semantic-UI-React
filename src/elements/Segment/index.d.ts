@@ -5,7 +5,7 @@ import {
   SemanticTEXTALIGNMENTS
 } from '../..';
 
-type SEGMENT_SIZES = 'mini' | 'tiny' | 'small' | 'large' | 'big' | 'huge' | 'massive'
+type SEGMENT_SIZES = 'mini' | 'tiny' | 'small' | 'large' | 'big' | 'huge' | 'massive';
 
 interface SegmentProps {
   [key: string]: any;
@@ -77,11 +77,11 @@ interface SegmentProps {
   vertical?: boolean;
 }
 
-interface SegmentClass extends React.StatelessComponent<SegmentProps> {
+interface SegmentComponent extends React.StatelessComponent<SegmentProps> {
   Group: typeof SegmentGroup;
 }
 
-export const Segment: SegmentClass;
+export const Segment: SegmentComponent;
 
 interface SegmentGroupProps {
   [key: string]: any;

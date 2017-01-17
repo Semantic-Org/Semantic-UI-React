@@ -24,4 +24,4 @@ interface ConfirmProps {
   open?: boolean;
 }
 
-export const Confirm: React.ComponentClass<ConfirmProps>
+export const Confirm: React.ComponentClass<ConfirmProps>;

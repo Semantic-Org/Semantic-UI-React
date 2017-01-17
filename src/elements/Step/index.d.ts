@@ -3,7 +3,6 @@ import * as React from 'react';
 
 
 interface StepProps extends ReactMouseEvents<any> {
-  
   /** A step can be highlighted as active. */
   active?: boolean;
 
@@ -60,7 +59,6 @@ interface StepClass extends React.ComponentClass<StepProps> {
 export const Step: StepClass;
 
 interface StepContentProps {
-  
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -80,7 +78,6 @@ interface StepContentProps {
 export const StepContent: React.ComponentClass<StepContentProps>;
 
 interface StepDescriptionProps {
-  
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -97,7 +94,6 @@ interface StepDescriptionProps {
 export const StepDescription: React.ComponentClass<StepDescriptionProps>;
 
 interface StepGroupProps {
-  
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -129,7 +125,6 @@ interface StepGroupProps {
 export const StepGroup: React.ComponentClass<StepGroupProps>;
 
 interface StepTitleProps {
-  
   /** An element type to render as (string or function). */
   as?: any;
 

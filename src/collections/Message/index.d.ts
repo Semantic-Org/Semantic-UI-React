@@ -2,7 +2,6 @@ import { SemanticCOLORS, SemanticSIZES } from '../..';
 import * as React from 'react';
 
 interface MessageProps {
-  
 	/** An element type to render as (string or function). */
   as?: any;
 
@@ -53,7 +52,7 @@ interface MessageProps {
    * Called when the user clicks the "x" icon. This also adds the "x" icon.
    */
   onDismiss?: React.MouseEventHandler<HTMLDivElement>;
-  
+
   /** A message may be formatted to display a positive message.  Same as `success`. */
   positive?: boolean;
 
@@ -80,7 +79,6 @@ interface MessageClass extends React.ComponentClass<MessageProps> {
 export const Message: MessageClass;
 
 interface MessageContentProps {
-  
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -94,7 +92,6 @@ interface MessageContentProps {
 export const MessageContent: React.ComponentClass<MessageContentProps>;
 
 interface MessageHeaderProps {
-  
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -108,7 +105,6 @@ interface MessageHeaderProps {
 export const MessageHeader: React.ComponentClass<MessageHeaderProps>;
 
 interface MessageListProps {
-  
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -125,7 +121,6 @@ interface MessageListProps {
 export const MessageList: React.ComponentClass<MessageListProps>;
 
 interface MessageItemProps {
-  
   /** An element type to render as (string or function). */
   as?: any;
 

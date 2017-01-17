@@ -1,10 +1,10 @@
 import {
-    ReactMouseEvents,
-    SemanticCOLORS,
-    SemanticFLOATS,
-    SemanticSIZES,
-    SemanticWIDTHSNUMBER,
-    SemanticWIDTHSSTRING
+  ReactMouseEvents,
+  SemanticCOLORS,
+  SemanticFLOATS,
+  SemanticSIZES,
+  SemanticWIDTHSNUMBER,
+  SemanticWIDTHSSTRING
 } from '../..';
 import * as React from 'react';
 
@@ -161,7 +161,6 @@ interface MenuItemProps extends ReactMouseEvents<HTMLElement> {
 export const MenuItem: React.ComponentClass<MenuItemProps>;
 
 interface MenuMenuProps {
-
   /** An element type to render as (string or function). */
   as?: any;
 

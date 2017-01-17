@@ -34,7 +34,9 @@
     "pretest": "npm run build:dll",
     "test": "cross-env NODE_ENV=test karma start",
     "test:watch": "npm run test --silent -- --watch",
-    "tsd": "cpx './src/**/*.d.ts' dist/commonjs"
+    "tsd": "cpx './src/**/*.d.ts' dist/commonjs",
+    "tsd:lint": "tslint './src/**/*.d.ts'",
+    "tsd:lint:fix": "npm run -s tsd:lint -- --fix"
   },
   "repository": {
     "type": "git",
@@ -71,8 +73,8 @@
     "chai-enzyme": "^0.6.1",
     "connect-history-api-fallback": "^1.2.0",
     "copy-to-clipboard": "^3.0.5",
-    "cross-env": "^3.1.4",
     "cpx": "^1.5.0",
+    "cross-env": "^3.1.4",
     "css-loader": "^0.26.0",
     "del": "^2.2.2",
     "dirty-chai": "^1.2.2",
@@ -124,6 +126,9 @@
     "style-loader": "^0.13.1",
     "ta-scripts": "^2.5.2",
     "through2": "^2.0.2",
+    "tslint": "^4.3.1",
+    "tslint-config-typings": "^0.3.1",
+    "typescript": "^2.1.5",
     "watch": "^1.0.1",
     "webpack": "^1.12.14",
     "webpack-dev-middleware": "^1.5.1",

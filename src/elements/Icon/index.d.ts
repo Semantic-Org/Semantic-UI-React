@@ -19,7 +19,7 @@ interface IconProps {
   className?: string;
 
   /** Color of the icon. */
-  color?: SemanticCOLORS,
+  color?: SemanticCOLORS;
 
   /** Icons can display a smaller corner icon. */
   corner?: boolean;

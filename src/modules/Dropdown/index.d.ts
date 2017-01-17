@@ -1,7 +1,7 @@
 import {ReactFocusEvents, ReactFormEvents, ReactMouseEvents} from '../..';
 import * as React from 'react';
 
-export type DropdownPropPointing = 'left' | 'right' | 'top' | 'top left' | 'top right' | 'bottom' | 'bottom left' | 'bottom right'
+export type DropdownPropPointing = 'left' | 'right' | 'top' | 'top left' | 'top right' | 'bottom' | 'bottom left' | 'bottom right';
 export type DropdownPropAdditionPosition = 'top' | 'bottom';
 
 export interface DropdownProps extends ReactMouseEvents<HTMLElement>, ReactFocusEvents<HTMLElement>, ReactFormEvents<HTMLElement> {
@@ -33,7 +33,7 @@ export interface DropdownProps extends ReactMouseEvents<HTMLElement>, ReactFocus
   className?: string;
 
   /** Whether or not the menu should close when the dropdown is blurred. */
-  closeOnBlur?: boolean,
+  closeOnBlur?: boolean;
 
   /** A compact dropdown has no minimum width. */
   compact?: boolean;
@@ -103,7 +103,7 @@ export interface DropdownProps extends ReactMouseEvents<HTMLElement>, ReactFocus
   open?: boolean;
 
   /** Whether or not the menu should open when the dropdown is focused. */
-  openOnFocus?: boolean,
+  openOnFocus?: boolean;
 
   /** Array of Dropdown.Item props e.g. `{ text: '', value: '' }` */
   options?: Array<DropdownItemProps>;
