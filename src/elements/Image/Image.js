@@ -95,13 +95,6 @@ Image.Group = ImageGroup
 Image._meta = {
   name: 'Image',
   type: META.TYPES.ELEMENT,
-  props: {
-    verticalAlign: SUI.VERTICAL_ALIGNMENTS,
-    floated: SUI.FLOATS,
-    shape: ['rounded', 'circular'],
-    size: SUI.SIZES,
-    spaced: ['left', 'right'],
-  },
 }
 
 Image.propTypes = {
@@ -133,7 +126,7 @@ Image.propTypes = {
   dimmer: customPropTypes.itemShorthand,
 
   /** An image can sit to the left or right of other content. */
-  floated: PropTypes.oneOf(Image._meta.props.floated),
+  floated: PropTypes.oneOf(SUI.FLOATS),
 
   /** An image can take up the width of its container. */
   fluid: customPropTypes.every([
@@ -160,15 +153,15 @@ Image.propTypes = {
   label: customPropTypes.itemShorthand,
 
   /** An image may appear rounded or circular. */
-  shape: PropTypes.oneOf(Image._meta.props.shape),
+  shape: PropTypes.oneOf(['rounded', 'circular']),
 
   /** An image may appear at different sizes. */
-  size: PropTypes.oneOf(Image._meta.props.size),
+  size: PropTypes.oneOf(SUI.SIZES),
 
   /** An image can specify that it needs an additional spacing to separate it from nearby content. */
   spaced: PropTypes.oneOfType([
     PropTypes.bool,
-    PropTypes.oneOf(Image._meta.props.spaced),
+    PropTypes.oneOf(['left', 'right']),
   ]),
 
   /** Specifies the URL of the image. */
@@ -177,16 +170,16 @@ Image.propTypes = {
   /** Whether or not to add the ui className. */
   ui: PropTypes.bool,
 
-  /** An image can specify its vertical alignment */
-  verticalAlign: PropTypes.oneOf(Image._meta.props.verticalAlign),
+  /** An image can specify its vertical alignment. */
+  verticalAlign: PropTypes.oneOf(SUI.VERTICAL_ALIGNMENTS),
 
-  /** The img element width attribute */
+  /** The img element width attribute. */
   width: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,
   ]),
 
-  /** An image can render wrapped in a `div.ui.image` as alternative HTML markup */
+  /** An image can render wrapped in a `div.ui.image` as alternative HTML markup. */
   wrapped: customPropTypes.every([
     PropTypes.bool,
     // these props wrap the image in an a tag already

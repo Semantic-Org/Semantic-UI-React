@@ -7,16 +7,20 @@ import { sandbox } from 'test/utils'
 
 describe('MenuItem', () => {
   common.isConformant(MenuItem)
-  common.implementsIconProp(MenuItem)
-  common.implementsCreateMethod(MenuItem)
-  common.propKeyOnlyToClassName(MenuItem, 'active')
-  common.propValueOnlyToClassName(MenuItem, 'color')
-  common.propKeyOrValueAndKeyToClassName(MenuItem, 'fitted')
-  common.propKeyOnlyToClassName(MenuItem, 'icon')
-  common.propKeyOnlyToClassName(MenuItem, 'header')
-  common.propKeyOnlyToClassName(MenuItem, 'link')
-  common.propValueOnlyToClassName(MenuItem, 'position')
   common.rendersChildren(MenuItem)
+
+  common.implementsCreateMethod(MenuItem)
+  common.implementsIconProp(MenuItem)
+
+  common.propKeyOnlyToClassName(MenuItem, 'active')
+  common.propKeyOnlyToClassName(MenuItem, 'header')
+  common.propKeyOnlyToClassName(MenuItem, 'icon')
+  common.propKeyOnlyToClassName(MenuItem, 'link')
+
+  common.propKeyOrValueAndKeyToClassName(MenuItem, 'fitted', ['horizontally', 'vertically'])
+
+  common.propValueOnlyToClassName(MenuItem, 'color')
+  common.propValueOnlyToClassName(MenuItem, 'position')
 
   it('renders a `div` by default', () => {
     shallow(<MenuItem />)

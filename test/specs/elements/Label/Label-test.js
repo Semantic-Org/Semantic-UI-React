@@ -10,9 +10,18 @@ import LabelGroup from 'src/elements/Label/LabelGroup'
 
 describe('Label', () => {
   common.isConformant(Label)
-  common.hasUIClassName(Label)
   common.hasSubComponents(Label, [LabelDetail, LabelGroup])
+  common.hasUIClassName(Label)
   common.rendersChildren(Label)
+
+  common.implementsCreateMethod(Label)
+  common.implementsIconProp(Label)
+  common.implementsImageProp(Label)
+  common.implementsShorthandProp(Label, {
+    propKey: 'detail',
+    ShorthandComponent: LabelDetail,
+    mapValueToProps: val => ({ content: val }),
+  })
 
   common.propKeyAndValueToClassName(Label, 'attached')
 
@@ -24,20 +33,11 @@ describe('Label', () => {
   common.propKeyOnlyToClassName(Label, 'horizontal')
   common.propKeyOnlyToClassName(Label, 'tag')
 
-  common.propKeyOrValueAndKeyToClassName(Label, 'corner')
-  common.propKeyOrValueAndKeyToClassName(Label, 'ribbon')
+  common.propKeyOrValueAndKeyToClassName(Label, 'corner', ['left', 'right'])
+  common.propKeyOrValueAndKeyToClassName(Label, 'ribbon', ['right'])
 
   common.propValueOnlyToClassName(Label, 'color')
   common.propValueOnlyToClassName(Label, 'size')
-
-  common.implementsCreateMethod(Label)
-  common.implementsIconProp(Label)
-  common.implementsImageProp(Label)
-  common.implementsShorthandProp(Label, {
-    propKey: 'detail',
-    ShorthandComponent: LabelDetail,
-    mapValueToProps: val => ({ content: val }),
-  })
 
   it('is a div by default', () => {
     shallow(<Label />)

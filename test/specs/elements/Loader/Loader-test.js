@@ -14,7 +14,7 @@ describe('Loader', () => {
   common.propKeyOnlyToClassName(Loader, 'indeterminate')
   common.propKeyOnlyToClassName(Loader, 'inverted')
 
-  common.propKeyOrValueAndKeyToClassName(Loader, 'inline')
+  common.propKeyOrValueAndKeyToClassName(Loader, 'inline', ['centered'])
 
   common.propValueOnlyToClassName(Loader, 'size')
 

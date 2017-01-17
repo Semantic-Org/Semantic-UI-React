@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
+
 import {
   META,
   getUnhandledProps,
@@ -7,7 +8,7 @@ import Image from '../../elements/Image'
 
 /**
  * An item can contain an image
- **/
+ */
 function ItemImage(props) {
   const { size } = props
   const rest = getUnhandledProps(ItemImage, props)
@@ -23,7 +24,7 @@ ItemImage._meta = {
 
 ItemImage.propTypes = {
   /** An image may appear at different sizes */
-  size: PropTypes.oneOf(Image._meta.props.size),
+  size: Image.propTypes.size,
 }
 
 export default ItemImage

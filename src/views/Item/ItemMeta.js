@@ -11,7 +11,7 @@ import {
 
 /**
  * An item can contain content metadata.
- **/
+ */
 function ItemMeta(props) {
   const { children, className, content } = props
   const classes = cx(className, 'meta')

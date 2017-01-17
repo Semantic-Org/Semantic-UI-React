@@ -11,7 +11,7 @@ import {
 
 /**
  * An item can contain a header
- **/
+ */
 function ItemHeader(props) {
   const { children, className, content } = props
   const classes = cx(className, 'header')

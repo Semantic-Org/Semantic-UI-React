@@ -11,9 +11,13 @@ import ListList from 'src/elements/List/ListList'
 
 describe('List', () => {
   common.isConformant(List)
-  common.hasUIClassName(List)
   common.hasSubComponents(List, [ListContent, ListDescription, ListHeader, ListIcon, ListItem, ListList])
+  common.hasUIClassName(List)
   common.rendersChildren(List)
+
+  common.implementsVerticalAlignProp(List)
+
+  common.propKeyAndValueToClassName(List, 'floated')
 
   common.propKeyOnlyToClassName(List, 'animated')
   common.propKeyOnlyToClassName(List, 'bulleted')
@@ -25,10 +29,9 @@ describe('List', () => {
   common.propKeyOnlyToClassName(List, 'ordered')
   common.propKeyOnlyToClassName(List, 'selection')
 
-  common.propKeyAndValueToClassName(List, 'floated')
-  common.propKeyOrValueAndKeyToClassName(List, 'relaxed')
+  common.propKeyOrValueAndKeyToClassName(List, 'relaxed', ['very'])
+
   common.propValueOnlyToClassName(List, 'size')
-  common.implementsVerticalAlignProp(List)
 
   describe('role', () => {
     const items = ['Name', 'Status', 'Notes']
