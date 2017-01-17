@@ -14,10 +14,10 @@ interface ContainerProps {
   className?: string;
 
   /** Container has no maximum width. */
-  fluid?: boolean,
+  fluid?: boolean;
 
   /** Reduce maximum width to more naturally accommodate text. */
-  text?: boolean,
+  text?: boolean;
 
   /** Describes how the text inside this component should be aligned. */
   textAlign?: SemanticTEXTALIGNMENTS;
