@@ -97,7 +97,9 @@ describe('Dropdown Component', () => {
   common.propKeyOnlyToClassName(Dropdown, 'simple')
   common.propKeyOnlyToClassName(Dropdown, 'scrolling')
 
-  common.propKeyOrValueAndKeyToClassName(Dropdown, 'pointing')
+  common.propKeyOrValueAndKeyToClassName(Dropdown, 'pointing', [
+    'left', 'right', 'top', 'top left', 'top right', 'bottom', 'bottom left', 'bottom right',
+  ])
 
   it('closes on blur', () => {
     wrapperMount(<Dropdown options={options} />)

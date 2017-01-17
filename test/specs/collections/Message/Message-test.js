@@ -12,11 +12,13 @@ describe('Message', () => {
   common.isConformant(Message)
   common.hasUIClassName(Message)
   common.hasSubComponents(Message, [MessageContent, MessageHeader, MessageList])
+  common.rendersChildren(Message)
+
   common.implementsIconProp(Message)
   common.implementsShorthandProp(Message, {
-    propKey: 'list',
-    ShorthandComponent: MessageList,
-    mapValueToProps: val => ({ items: val }),
+    propKey: 'content',
+    ShorthandComponent: 'p',
+    mapValueToProps: val => ({ children: val }),
   })
   common.implementsShorthandProp(Message, {
     propKey: 'header',
@@ -28,29 +30,23 @@ describe('Message', () => {
     ShorthandComponent: MessageList,
     mapValueToProps: val => ({ items: val }),
   })
-  common.implementsShorthandProp(Message, {
-    propKey: 'content',
-    ShorthandComponent: 'p',
-    mapValueToProps: val => ({ children: val }),
-  })
-  common.propValueOnlyToClassName(Message, 'size')
-  common.propValueOnlyToClassName(Message, 'color')
 
-  common.propKeyOnlyToClassName(Message, 'icon')
-  common.propKeyOnlyToClassName(Message, 'hidden')
-  common.propKeyOnlyToClassName(Message, 'visible')
-  common.propKeyOnlyToClassName(Message, 'floating')
   common.propKeyOnlyToClassName(Message, 'compact')
-  common.propKeyOnlyToClassName(Message, 'warning')
+  common.propKeyOnlyToClassName(Message, 'error')
+  common.propKeyOnlyToClassName(Message, 'floating')
+  common.propKeyOnlyToClassName(Message, 'hidden')
+  common.propKeyOnlyToClassName(Message, 'icon')
   common.propKeyOnlyToClassName(Message, 'info')
+  common.propKeyOnlyToClassName(Message, 'negative')
   common.propKeyOnlyToClassName(Message, 'positive')
   common.propKeyOnlyToClassName(Message, 'success')
-  common.propKeyOnlyToClassName(Message, 'negative')
-  common.propKeyOnlyToClassName(Message, 'error')
+  common.propKeyOnlyToClassName(Message, 'visible')
+  common.propKeyOnlyToClassName(Message, 'warning')
 
-  common.propKeyOrValueAndKeyToClassName(Message, 'attached')
+  common.propKeyOrValueAndKeyToClassName(Message, 'attached', ['bottom'])
 
-  common.rendersChildren(Message)
+  common.propValueOnlyToClassName(Message, 'size')
+  common.propValueOnlyToClassName(Message, 'color')
 
   describe('header', () => {
     it('adds MessageContent when defined', () => {

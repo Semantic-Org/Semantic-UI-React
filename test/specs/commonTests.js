@@ -4,7 +4,12 @@ import path from 'path'
 import React, { createElement, isValidElement } from 'react'
 import ReactDOMServer from 'react-dom/server'
 
-import { createShorthand, META, numberToWord } from 'src/lib'
+import {
+  createShorthand,
+  META,
+  numberToWord,
+  SUI,
+} from 'src/lib'
 import { consoleUtil, sandbox, syntheticEvent } from 'test/utils'
 import * as semanticUIReact from 'semantic-ui-react'
 
@@ -889,10 +894,12 @@ export const implementsTextAlignProp = (Component, options = {}) => {
 /**
  * Assert that a Component correctly implements the "verticalAlign" prop.
  * @param {React.Component|Function} Component The component to test.
+ * @param {array} [alignments] Array of possible alignment positions.
  * @param {Object} [options={}]
  * @param {Object} [options.requiredProps={}] Props required to render the component.
  */
-export const implementsVerticalAlignProp = (Component, options = {}) => {
+export const implementsVerticalAlignProp = (Component, alignments = SUI.VERTICAL_ALIGNMENTS, options = {}) => {
+  const { requiredProps = {} } = options
   const { assertRequired } = commonTestHelpers('implementsVerticalAlignProp', Component)
 
   describe('verticalAlign (common)', () => {
@@ -900,6 +907,13 @@ export const implementsVerticalAlignProp = (Component, options = {}) => {
 
     _noDefaultClassNameFromProp(Component, 'verticalAlign', options)
     _noClassNameFromBoolProps(Component, 'verticalAlign', options)
+
+    _.each(alignments, propVal => {
+      it(`adds "${propVal} aligned" to className`, () => {
+        shallow(<Component { ...requiredProps } verticalAlign={propVal} />)
+          .should.have.className(`${propVal} ${'aligned'}`)
+      })
+    })
   })
 }
 
@@ -1000,11 +1014,12 @@ export const propKeyAndValueToClassName = (Component, propKey, options = {}) => 
  * Assert that a Component prop name or value convert to a className.
  * @param {React.Component|Function} Component The component to test.
  * @param {String} propKey A props key.
+ * @param {array} propValues Array of possible values of prop.
  * @param {Object} [options={}]
  * @param {Object} [options.requiredProps={}] Props required to render the component.
  * @param {Object} [options.className=propKey] The className to assert exists.
  */
-export const propKeyOrValueAndKeyToClassName = (Component, propKey, options = {}) => {
+export const propKeyOrValueAndKeyToClassName = (Component, propKey, propValues, options = {}) => {
   const { className = propKey, requiredProps = {} } = options
   const { assertRequired } = commonTestHelpers('propKeyOrValueAndKeyToClassName', Component)
 
@@ -1030,6 +1045,10 @@ export const propKeyOrValueAndKeyToClassName = (Component, propKey, options = {}
       wrapper.should.not.have.className(className)
       wrapper.should.not.have.className('true')
       wrapper.should.not.have.className('false')
+
+      _.each(propValues, propVal => {
+        wrapper.should.not.have.className(propVal)
+      })
     })
   })
 }

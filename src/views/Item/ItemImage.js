@@ -8,7 +8,7 @@ import Image from '../../elements/Image'
 
 /**
  * An item can contain an image
- **/
+ */
 function ItemImage(props) {
   const { size } = props
   const rest = getUnhandledProps(ItemImage, props)

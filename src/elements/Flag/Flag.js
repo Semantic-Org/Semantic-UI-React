@@ -55,7 +55,7 @@ const names = [
 
 /**
  * A flag is is used to represent a political state.
- **/
+ */
 function Flag(props) {
   const { className, name } = props
   const classes = cx(name, 'flag', className)

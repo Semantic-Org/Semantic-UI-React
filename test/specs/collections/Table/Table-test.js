@@ -15,7 +15,11 @@ describe('Table', () => {
   common.hasSubComponents(Table, [TableBody, TableCell, TableFooter, TableHeader, TableHeaderCell, TableRow])
   common.rendersChildren(Table)
 
-  common.implementsWidthProp(Table, { propKey: 'columns', widthClass: 'column', canEqual: false })
+  common.implementsWidthProp(Table, {
+    canEqual: false,
+    propKey: 'columns',
+    widthClass: 'column',
+  })
 
   common.propKeyOnlyToClassName(Table, 'celled')
   common.propKeyOnlyToClassName(Table, 'collapsing')
@@ -31,10 +35,10 @@ describe('Table', () => {
   common.propKeyOnlyToClassName(Table, 'structured')
   common.propKeyOnlyToClassName(Table, 'unstackable')
 
-  common.propKeyOrValueAndKeyToClassName(Table, 'attached')
-  common.propKeyOrValueAndKeyToClassName(Table, 'basic')
-  common.propKeyOrValueAndKeyToClassName(Table, 'compact')
-  common.propKeyOrValueAndKeyToClassName(Table, 'padded')
+  common.propKeyOrValueAndKeyToClassName(Table, 'attached', ['top', 'bottom'])
+  common.propKeyOrValueAndKeyToClassName(Table, 'basic', ['very'])
+  common.propKeyOrValueAndKeyToClassName(Table, 'compact', ['very'])
+  common.propKeyOrValueAndKeyToClassName(Table, 'padded', ['very'])
 
   common.propValueOnlyToClassName(Table, 'color')
   common.propValueOnlyToClassName(Table, 'size')

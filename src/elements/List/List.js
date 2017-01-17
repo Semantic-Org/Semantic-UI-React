@@ -22,7 +22,7 @@ import ListList from './ListList'
 
 /**
  * A list groups related content
- **/
+ */
 function List(props) {
   const {
     animated,

@@ -11,26 +11,27 @@ describe('Header', () => {
   common.hasSubComponents(Header, [HeaderContent, HeaderSubheader])
   common.rendersChildren(Header)
 
-  common.propKeyOnlyToClassName(Header, 'dividing')
-  common.propKeyOnlyToClassName(Header, 'block')
-  common.propKeyOnlyToClassName(Header, 'inverted')
-  common.propKeyOnlyToClassName(Header, 'disabled')
-  common.propKeyOnlyToClassName(Header, 'sub')
-
-  common.propKeyAndValueToClassName(Header, 'floated')
-  common.propKeyOrValueAndKeyToClassName(Header, 'attached')
-
-  common.propValueOnlyToClassName(Header, 'color')
-  common.propValueOnlyToClassName(Header, 'size')
-
   common.implementsIconProp(Header)
   common.implementsImageProp(Header)
-  common.implementsTextAlignProp(Header)
   common.implementsShorthandProp(Header, {
     propKey: 'subheader',
     ShorthandComponent: HeaderSubheader,
     mapValueToProps: val => ({ content: val }),
   })
+  common.implementsTextAlignProp(Header)
+
+  common.propKeyAndValueToClassName(Header, 'floated')
+
+  common.propKeyOnlyToClassName(Header, 'block')
+  common.propKeyOnlyToClassName(Header, 'disabled')
+  common.propKeyOnlyToClassName(Header, 'dividing')
+  common.propKeyOnlyToClassName(Header, 'inverted')
+  common.propKeyOnlyToClassName(Header, 'sub')
+
+  common.propKeyOrValueAndKeyToClassName(Header, 'attached', ['top', 'bottom'])
+
+  common.propValueOnlyToClassName(Header, 'color')
+  common.propValueOnlyToClassName(Header, 'size')
 
   describe('icon', () => {
     it('adds an icon class when true', () => {
