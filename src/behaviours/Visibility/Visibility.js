@@ -10,7 +10,7 @@ class Visibility extends Component {
   static _meta = _meta;
 
   render() {
-    return <div></div>
+    return <div>{this.props.children}</div>
   }
 }
 
