@@ -1,8 +1,9 @@
-import { SemanticFLOATS, SemanticSIZES } from '../..';
 import * as React from 'react';
+import {SemanticFLOATS} from '../..';
 
 interface RailProps {
-  
+  [key: string]: any;
+
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -27,9 +28,8 @@ interface RailProps {
   /** A rail can be presented on the left or right side of a container. */
   position: SemanticFLOATS;
 
-  // TODO(zuko): this should not support 'medium' from SemanticSize
   /** A rail can have different sizes. */
-  size?: SemanticSIZES,
+  size?: 'mini' | 'tiny' | 'small' | 'large' | 'big' | 'huge' | 'massive';
 }
-export class Rail extends React.Component<RailProps, void> {
-}
+
+export const Rail: React.StatelessComponent<RailProps>;
