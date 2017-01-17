@@ -44,16 +44,16 @@ function Loader(props) {
   const rest = getUnhandledProps(Loader, props)
   const ElementType = getElementType(Loader, props)
 
-  return <ElementType {...rest} className={classes}>{_.isNil(children) ? content : children}</ElementType>
+  return (
+    <ElementType {...rest} className={classes}>
+      {_.isNil(children) ? content : children}
+    </ElementType>
+  )
 }
 
 Loader._meta = {
   name: 'Loader',
   type: META.TYPES.ELEMENT,
-  props: {
-    inline: ['centered'],
-    size: SUI.SIZES,
-  },
 }
 
 Loader.propTypes = {
@@ -81,14 +81,14 @@ Loader.propTypes = {
   /** Loaders can appear inline with content. */
   inline: PropTypes.oneOfType([
     PropTypes.bool,
-    PropTypes.oneOf(Loader._meta.props.inline),
+    PropTypes.oneOf(['centered']),
   ]),
 
   /** Loaders can have their colors inverted. */
   inverted: PropTypes.bool,
 
   /** Loaders can have different sizes. */
-  size: PropTypes.oneOf(Loader._meta.props.size),
+  size: PropTypes.oneOf(SUI.SIZES),
 }
 
 export default Loader
