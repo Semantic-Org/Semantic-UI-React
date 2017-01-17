@@ -12,6 +12,15 @@ describe('Image Component', () => {
   common.hasUIClassName(Image)
   common.rendersChildren(Image)
 
+  common.implementsCreateMethod(Image)
+  common.implementsLabelProp(Image)
+  common.implementsShorthandProp(Image, {
+    propKey: 'dimmer',
+    ShorthandComponent: Dimmer,
+    mapValueToProps: val => ({ content: val }),
+  })
+  common.implementsVerticalAlignProp(Image, 'verticalAlign')
+
   common.propKeyAndValueToClassName(Image, 'floated')
 
   common.propKeyOnlyToClassName(Image, 'avatar')
@@ -25,16 +34,7 @@ describe('Image Component', () => {
   common.propValueOnlyToClassName(Image, 'size')
   common.propValueOnlyToClassName(Image, 'shape')
 
-  common.propKeyOrValueAndKeyToClassName(Image, 'spaced')
-
-  common.implementsCreateMethod(Image)
-  common.implementsLabelProp(Image)
-  common.implementsShorthandProp(Image, {
-    propKey: 'dimmer',
-    ShorthandComponent: Dimmer,
-    mapValueToProps: val => ({ content: val }),
-  })
-  common.implementsVerticalAlignProp(Image, 'verticalAlign')
+  common.propKeyOrValueAndKeyToClassName(Image, 'spaced', ['left', 'right'])
 
   it('renders an img tag', () => {
     shallow(<Image />)

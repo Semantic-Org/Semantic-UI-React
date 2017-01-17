@@ -14,7 +14,7 @@ import Item from './Item'
 
 /**
  * A group of items
- **/
+ */
 function ItemGroup(props) {
   const { children, className, divided, items, link, relaxed } = props
   const classes = cx(

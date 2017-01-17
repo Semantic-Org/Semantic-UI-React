@@ -14,13 +14,13 @@ describe('Rail', () => {
   common.propKeyOnlyToClassName(Rail, 'dividing', { requiredProps })
   common.propKeyOnlyToClassName(Rail, 'internal', { requiredProps })
 
-  common.propKeyOrValueAndKeyToClassName(Rail, 'close', { requiredProps })
+  common.propKeyOrValueAndKeyToClassName(Rail, 'close', ['very'], { requiredProps })
 
   common.propValueOnlyToClassName(Rail, 'position', { requiredProps })
   common.propValueOnlyToClassName(Rail, 'size', { requiredProps })
 
   it('renders an div element', () => {
-    shallow(<Rail position='left' />)
+    shallow(<Rail {...requiredProps} />)
       .should.have.tagName('div')
   })
 })

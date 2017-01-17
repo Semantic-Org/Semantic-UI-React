@@ -1,6 +1,5 @@
 import { LabelProps } from '../Label';
 import {
-    ReactMouseEvents,
     SemanticFLOATS,
     SemanticSIZES,
     SemanticVERTICALALIGNMENTS,
@@ -9,10 +8,8 @@ import {
 } from '../..';
 import * as React from 'react';
 
-
-// Image
-// ----------------------------------
-export interface ImageProps extends ReactMouseEvents<any> {
+export interface ImageProps {
+  [key: string]: any;
 
   /** Alternate text for the image specified. */
   alt?: string;
@@ -36,7 +33,7 @@ export interface ImageProps extends ReactMouseEvents<any> {
   disabled?: boolean;
 
   /** Shorthand for Dimmer. */
-  dimmer?:any;
+  dimmer?: any;
 
   /** An image can sit to the left or right of other content. */
   floated?: SemanticFLOATS;
@@ -54,10 +51,10 @@ export interface ImageProps extends ReactMouseEvents<any> {
   inline?: boolean;
 
   /** Shorthand for Label. */
-  label?: LabelProps;
+  label?: any | LabelProps;
 
   /** An image may appear rounded or circular. */
-  shape?: boolean |'rounded'|'circular';
+  shape?: 'rounded'|'circular';
 
   /** An image may appear at different sizes. */
   size?: SemanticSIZES;
@@ -71,24 +68,25 @@ export interface ImageProps extends ReactMouseEvents<any> {
   /** Whether or not to add the ui className. */
   ui?: boolean;
 
-  /** An image can specify its vertical alignment */
+  /** An image can specify its vertical alignment. */
   verticalAlign?: SemanticVERTICALALIGNMENTS;
   
-  /** The img element width attribute */
+  /** The img element width attribute. */
   width?: number|SemanticWIDTHSSTRING| SemanticWIDTHSNUMBER;
   
-  /** An image can render wrapped in a `div.ui.image` as alternative HTML markup */
-  wrapped?: any;
+  /** An image can render wrapped in a `div.ui.image` as alternative HTML markup. */
+  wrapped?: boolean;
 }
 
-interface ImageClass extends React.ComponentClass<ImageProps> {
+interface ImageComponent extends React.StatelessComponent<ImageProps> {
   Group: typeof ImageGroup;
 }
 
-export const Image: ImageClass;
+export const Image: ImageComponent;
 
 interface ImageGroupProps {
-  
+  [key: string]: any;
+
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -101,4 +99,4 @@ interface ImageGroupProps {
   /** A group of images can be formatted to have the same size. */
   size?: SemanticSIZES;
 }
-export const ImageGroup: React.ComponentClass<ImageGroupProps>;
+export const ImageGroup: React.StatelessComponent<ImageGroupProps>;

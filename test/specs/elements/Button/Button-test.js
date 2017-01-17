@@ -13,6 +13,8 @@ describe('Button', () => {
   common.isConformant(Button)
   common.hasUIClassName(Button)
   common.hasSubComponents(Button, [ButtonContent, ButtonGroup, ButtonOr])
+  common.rendersChildren(Button)
+
   common.implementsCreateMethod(Button)
   common.implementsIconProp(Button)
   common.implementsLabelProp(Button, {
@@ -22,28 +24,29 @@ describe('Button', () => {
     },
   })
 
+  common.propKeyAndValueToClassName(Button, 'floated')
+
   common.propKeyOnlyToClassName(Button, 'active')
-  common.propKeyOrValueAndKeyToClassName(Button, 'animated')
-  common.propKeyOrValueAndKeyToClassName(Button, 'attached')
   common.propKeyOnlyToClassName(Button, 'basic')
   common.propKeyOnlyToClassName(Button, 'circular')
-  common.propValueOnlyToClassName(Button, 'color')
   common.propKeyOnlyToClassName(Button, 'compact')
   common.propKeyOnlyToClassName(Button, 'disabled')
-  common.propKeyAndValueToClassName(Button, 'floated')
   common.propKeyOnlyToClassName(Button, 'fluid')
   common.propKeyOnlyToClassName(Button, 'inverted')
-  common.propKeyOrValueAndKeyToClassName(Button, 'labelPosition', {
-    className: 'labeled',
-  })
   common.propKeyOnlyToClassName(Button, 'loading')
   common.propKeyOnlyToClassName(Button, 'primary')
   common.propKeyOnlyToClassName(Button, 'negative')
   common.propKeyOnlyToClassName(Button, 'positive')
   common.propKeyOnlyToClassName(Button, 'secondary')
-  common.propValueOnlyToClassName(Button, 'size')
 
-  common.rendersChildren(Button)
+  common.propKeyOrValueAndKeyToClassName(Button, 'animated', ['fade', 'vertical'])
+  common.propKeyOrValueAndKeyToClassName(Button, 'attached', ['left', 'right', 'top', 'bottom'])
+  common.propKeyOrValueAndKeyToClassName(Button, 'labelPosition', ['right', 'left'], {
+    className: 'labeled',
+  })
+
+  common.propValueOnlyToClassName(Button, 'color')
+  common.propValueOnlyToClassName(Button, 'size')
 
   it('renders a button by default', () => {
     shallow(<Button />)

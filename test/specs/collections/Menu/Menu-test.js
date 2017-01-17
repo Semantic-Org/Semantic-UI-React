@@ -11,27 +11,30 @@ describe('Menu', () => {
   common.isConformant(Menu)
   common.hasUIClassName(Menu)
   common.hasSubComponents(Menu, [MenuHeader, MenuItem, MenuMenu])
+  common.rendersChildren(Menu)
 
   common.implementsWidthProp(Menu, { propKey: 'widths', canEqual: false })
-  common.propKeyOrValueAndKeyToClassName(Menu, 'attached')
-  common.propKeyOnlyToClassName(Menu, 'borderless')
-  common.propValueOnlyToClassName(Menu, 'color')
-  common.propKeyOnlyToClassName(Menu, 'compact')
+
   common.propKeyAndValueToClassName(Menu, 'fixed')
-  common.propKeyOrValueAndKeyToClassName(Menu, 'floated')
+
+  common.propKeyOnlyToClassName(Menu, 'borderless')
+  common.propKeyOnlyToClassName(Menu, 'compact')
   common.propKeyOnlyToClassName(Menu, 'fluid')
-  common.propKeyOrValueAndKeyToClassName(Menu, 'icon')
   common.propKeyOnlyToClassName(Menu, 'inverted')
   common.propKeyOnlyToClassName(Menu, 'pagination')
   common.propKeyOnlyToClassName(Menu, 'pointing')
   common.propKeyOnlyToClassName(Menu, 'secondary')
   common.propKeyOnlyToClassName(Menu, 'stackable')
-  common.propKeyOrValueAndKeyToClassName(Menu, 'tabular')
   common.propKeyOnlyToClassName(Menu, 'text')
-  common.propValueOnlyToClassName(Menu, 'size')
   common.propKeyOnlyToClassName(Menu, 'vertical')
 
-  common.rendersChildren(Menu)
+  common.propKeyOrValueAndKeyToClassName(Menu, 'attached', ['top', 'bottom'])
+  common.propKeyOrValueAndKeyToClassName(Menu, 'floated', ['right'])
+  common.propKeyOrValueAndKeyToClassName(Menu, 'icon', ['labeled'])
+  common.propKeyOrValueAndKeyToClassName(Menu, 'tabular', ['right'])
+
+  common.propValueOnlyToClassName(Menu, 'color')
+  common.propValueOnlyToClassName(Menu, 'size')
 
   it('renders a `div` by default', () => {
     shallow(<Menu />)
