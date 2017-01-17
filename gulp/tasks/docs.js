@@ -32,6 +32,7 @@ task('build:docs:docgen', () => {
 
   return src([
     `${config.paths.src()}/addons/**/*.js`,
+    `${config.paths.src()}/behaviours/**/*.js`,
     `${config.paths.src()}/elements/**/*.js`,
     `${config.paths.src()}/collections/**/*.js`,
     `${config.paths.src()}/modules/**/*.js`,

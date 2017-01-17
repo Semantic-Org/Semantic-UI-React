@@ -5,6 +5,9 @@ export { default as Radio } from './addons/Radio'
 export { default as Select } from './addons/Select'
 export { default as TextArea } from './addons/TextArea'
 
+// Behaviours
+export { default as Visibility } from './behaviours/Visibility'
+
 // Collections
 export { default as Breadcrumb } from './collections/Breadcrumb'
 export { default as BreadcrumbDivider } from './collections/Breadcrumb/BreadcrumbDivider'
