@@ -5,8 +5,6 @@ import {
   SemanticTEXTALIGNMENTS
 } from '../..';
 
-type HEADER_SIZES = 'mini' | 'tiny' | 'small' | 'medium' | 'large' | 'huge'
-
 interface HeaderProps {
   [key: string]: any;
 
@@ -29,7 +27,7 @@ interface HeaderProps {
   color?: SemanticCOLORS;
 
   /** Shorthand for primary content. */
-  content?: any;
+  content?: React.ReactNode;
 
   /** Show that the header is inactive. */
   disabled?: boolean;
@@ -50,7 +48,7 @@ interface HeaderProps {
   inverted?: boolean;
 
   /** Content headings are sized with em and are based on the font-size of their container. */
-  size?: HEADER_SIZES;
+  size?: 'mini' | 'tiny' | 'small' | 'medium' | 'large' | 'huge';
 
   /** Headers may be formatted to label smaller or de-emphasized content. */
   sub?: boolean;
@@ -97,7 +95,7 @@ interface HeaderSubHeaderProps {
   className?: string;
 
   /** Shorthand for primary content. */
-  content?: any;
+  content?: React.ReactNode;
 }
 
 export const HeaderSubHeader: React.StatelessComponent<HeaderSubHeaderProps>;

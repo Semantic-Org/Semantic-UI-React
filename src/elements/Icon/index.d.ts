@@ -1,9 +1,5 @@
 import * as React from 'react';
-import {
-  SemanticCOLORS,
-  SemanticROTATION,
-  SemanticSIZES
-} from '../..';
+import {SemanticCOLORS, SemanticROTATION} from '../..';
 
 type ICON_SIZES = 'mini' | 'tiny' | 'small' | 'large' | 'big' | 'huge' | 'massive';
 
@@ -14,10 +10,10 @@ interface IconProps {
   as?: any;
 
   /** Formatted to appear bordered */
-  bordered?: boolean,
+  bordered?: boolean;
 
   /** Icon can formatted to appear circular. */
-  circular?: boolean,
+  circular?: boolean;
 
   /** Additional classes. */
   className?: string;
@@ -26,34 +22,34 @@ interface IconProps {
   color?: SemanticCOLORS,
 
   /** Icons can display a smaller corner icon. */
-  corner?: boolean,
+  corner?: boolean;
 
   /** Show that the icon is inactive. */
   disabled?: boolean;
 
   /** Fitted, without space to left or right of Icon. */
-  fitted?: boolean,
+  fitted?: boolean;
 
   /** Icon can flipped. */
-  flipped?: 'horizontally' | 'vertically'
+  flipped?: 'horizontally' | 'vertically';
 
   /** Formatted to have its colors inverted for contrast. */
-  inverted?: boolean,
+  inverted?: boolean;
 
   /** Icon can be formatted as a link. */
-  link?: boolean,
+  link?: boolean;
 
   /** Icon can be used as a simple loader. */
-  loading?: boolean,
+  loading?: boolean;
 
   /** Name of the icon. */
-  name?: string,
+  name?: string;
 
   /** Icon can rotated. */
-  rotated?: SemanticROTATION,
+  rotated?: SemanticROTATION;
 
   /** Size of the icon. */
-  size?: ICON_SIZES,
+  size?: ICON_SIZES;
 }
 
 interface IconComponent extends React.StatelessComponent<IconProps> {
@@ -75,7 +71,7 @@ interface IconGroupProps {
   className?: string;
 
   /** Size of the icon group. */
-  size?: SemanticSIZES;
+  size?: ICON_SIZES;
 }
 
 export const IconGroup: React.StatelessComponent<IconGroupProps>;

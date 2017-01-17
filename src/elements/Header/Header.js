@@ -104,7 +104,7 @@ Header.propTypes = {
   /** Attach header  to other content, like a segment. */
   attached: PropTypes.oneOfType([
     PropTypes.bool,
-    PropTypes.oneOf('top', 'bottom'),
+    PropTypes.oneOf(['top', 'bottom']),
   ]),
 
   /** Format header to appear inside a content block. */

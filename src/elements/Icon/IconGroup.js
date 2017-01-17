@@ -1,4 +1,5 @@
 import cx from 'classnames'
+import _ from 'lodash'
 import React, { PropTypes } from 'react'
 
 import {
@@ -42,7 +43,7 @@ IconGroup.propTypes = {
   className: PropTypes.string,
 
   /** Size of the icon group. */
-  size: PropTypes.oneOf(SUI.SIZES),
+  size: PropTypes.oneOf(_.without(SUI.SIZES, 'medium')),
 }
 
 IconGroup.defaultProps = {
