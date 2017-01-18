@@ -14,6 +14,9 @@ class Visibility extends Component {
     children: PropTypes.node,
 
     /** Element's top edge has passed bottom of screen **/
+    onUpdate: PropTypes.func,
+
+    /** Element's top edge has passed bottom of screen **/
     onTopVisible: PropTypes.func,
 
     /** Element's top edge has passed top of the screen	**/
@@ -40,6 +43,15 @@ class Visibility extends Component {
   isTopVisible() {}
 
   handleScroll(event) {
+    const {
+      onUpdate,
+      onTopVisible,
+      onBottomVisible,
+      onTopPassed,
+      onBottomPassed,
+      onPassing,
+    } = this.props
+
     const node = ReactDOM.findDOMNode(this)
     const nodeRect = node.getBoundingClientRect()
 
@@ -64,11 +76,35 @@ class Visibility extends Component {
     calculations.onScreen = (calculations.topVisible || calculations.topPassed) && !calculations.bottomPassed
     calculations.offScreen = !calculations.onScreen
 
-    console.log(JSON.stringify(calculations, null, 2));
+    /** Events **/
+    if (onUpdate) {
+      onUpdate(calculations)
+    }
+
+    /** Standard events **/
+    if (calculations.topVisible && onTopVisible) {
+      onTopVisible(calculations)
+    }
+
+    if (calculations.bottomVisible && onBottomVisible) {
+      onBottomVisible(calculations)
+    }
+
+    if (calculations.topPassed && onTopPassed) {
+      onTopPassed(calculations)
+    }
+
+    if (calculations.bottomPassed && onBottomPassed) {
+      onBottomPassed(calculations)
+    }
+
+    if (calculations.passing && onPassing) {
+      onPassing(calculations)
+    }
   }
 
   render() {
-    return this.props.children
+    return <div>{this.props.children}</div>
   }
 }
 
