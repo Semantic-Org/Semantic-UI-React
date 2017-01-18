@@ -87,7 +87,7 @@ Segment.propTypes = {
   /** Attach segment to other content, like a header. */
   attached: PropTypes.oneOfType([
     PropTypes.bool,
-    PropTypes.oneOf('top', 'bottom'),
+    PropTypes.oneOf(['top', 'bottom']),
   ]),
 
   /** A basic segment has no special formatting. */

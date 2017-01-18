@@ -236,7 +236,7 @@ class Modal extends Component {
       className,
     )
     const unhandled = getUnhandledProps(Modal, this.props)
-    const portalPropNames = _.keys(Portal.propTypes)
+    const portalPropNames = Portal.handledProps
 
     const rest = _.omit(unhandled, portalPropNames)
     const portalProps = _.pick(unhandled, portalPropNames)
