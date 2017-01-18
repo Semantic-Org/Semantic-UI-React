@@ -1,6 +1,11 @@
 import React, { Component, PropTypes } from 'react'
 import ReactDOM from 'react-dom'
-import { META } from '../../lib'
+import {
+  getElementType,
+  getUnhandledProps,
+  META,
+} from '../../lib'
+
 
 const _meta = {
   name: 'Visibility',
@@ -104,7 +109,10 @@ class Visibility extends Component {
   }
 
   render() {
-    return <div>{this.props.children}</div>
+    const ElementType = getElementType(Visibility, this.props)
+    const unhandledProps = getUnhandledProps(Visibility, this.props)
+
+    return <ElementType {...unhandledProps}>{this.props.children}</ElementType>
   }
 }
 
