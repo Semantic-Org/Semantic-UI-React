@@ -1,6 +1,6 @@
 import Visibility from 'src/behaviours/Visibility'
 import * as common from 'test/specs/commonTests'
 
-describe('Breadcrumb', () => {
+describe('Visibility', () => {
   common.isConformant(Visibility)
 })
