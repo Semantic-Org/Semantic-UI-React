@@ -340,7 +340,7 @@ export default class Popup extends Component {
     if (closed) return trigger
 
     const unhandled = getUnhandledProps(Popup, this.props)
-    const portalPropNames = _.keys(Portal.propTypes)
+    const portalPropNames = Portal.handledProps
 
     const rest = _.omit(unhandled, portalPropNames)
     const portalProps = _.pick(unhandled, portalPropNames)
