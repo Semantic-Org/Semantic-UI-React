@@ -1,5 +1,14 @@
 # Change Log
 
+## [v0.64.2](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.64.2) (2017-01-18)
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.64.1...v0.64.2)
+
+**Fixed bugs:**
+
+- Invalid argument to oneOf [\#1177](https://github.com/Semantic-Org/Semantic-UI-React/issues/1177)
+- bug\(Modal\): "trigger" component prop disappears on production build [\#1175](https://github.com/Semantic-Org/Semantic-UI-React/issues/1175)
+- fix\(Modal|Popup\): fix propTypes usage [\#1176](https://github.com/Semantic-Org/Semantic-UI-React/pull/1176) ([layershifter](https://github.com/layershifter))
+
 ## [v0.64.1](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.64.1) (2017-01-17)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.64.0...v0.64.1)
 
