@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "sourceMap": true,
+    "pretty": true,
+    "strictNullChecks": true,
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitThis": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "commonjs",
+    "target": "es5",
+    "jsx": "react",
+    "lib": ["dom", "es5"],
+    "importHelpers": false,
+    "noEmit": true
+  }
+}
