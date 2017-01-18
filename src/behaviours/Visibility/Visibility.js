@@ -45,8 +45,6 @@ class Visibility extends Component {
     window.removeEventListener('scroll', this.handleScroll.bind(this))
   }
 
-  isTopVisible() {}
-
   handleScroll(event) {
     const {
       onUpdate,
