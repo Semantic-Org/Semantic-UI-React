@@ -230,6 +230,11 @@ describe('Popup', () => {
 
       assertInBody('.ui.popup.visible', false)
     })
+
+    it('sets position styling when true', () => {
+      wrapperMount(<Popup open trigger={<button>foo</button>} />)
+      assertInBody('.popup.ui[style]')
+    })
   })
 
   describe('basic', () => {
