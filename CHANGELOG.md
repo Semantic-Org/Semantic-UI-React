@@ -1,5 +1,22 @@
 # Change Log
 
+## [v0.64.3](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.64.3) (2017-01-20)
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.64.2...v0.64.3)
+
+**Closed issues:**
+
+- docs\(Popup\): Props description of "hideOnScroll" [\#1192](https://github.com/Semantic-Org/Semantic-UI-React/issues/1192)
+- Dropdown.Item ignores 'value' property [\#1191](https://github.com/Semantic-Org/Semantic-UI-React/issues/1191)
+- Scroll and fixed column in table ? [\#1185](https://github.com/Semantic-Org/Semantic-UI-React/issues/1185)
+- Typescript: TS2307/TS2688 \(Cannot Find Module/Cannot Find Type Definition\) Errors [\#1183](https://github.com/Semantic-Org/Semantic-UI-React/issues/1183)
+
+**Merged pull requests:**
+
+- docs\(ComponentProps\): show func signatures [\#1194](https://github.com/Semantic-Org/Semantic-UI-React/pull/1194) ([levithomason](https://github.com/levithomason))
+- docs\(Popup\): Changed description of "hideOnScroll" prop [\#1193](https://github.com/Semantic-Org/Semantic-UI-React/pull/1193) ([jos0003](https://github.com/jos0003))
+- react-router@3.0.2 untested ⚠️ [\#1178](https://github.com/Semantic-Org/Semantic-UI-React/pull/1178) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+- feat\(Table\): add `sortable` and `sorted` props [\#1109](https://github.com/Semantic-Org/Semantic-UI-React/pull/1109) ([svrcekmichal](https://github.com/svrcekmichal))
+
 ## [v0.64.2](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.64.2) (2017-01-18)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.64.1...v0.64.2)
 
