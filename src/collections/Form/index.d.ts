@@ -8,7 +8,7 @@ import {
     SemanticWIDTHSSTRING
 } from '../..';
 import * as React from 'react';
-import { InputBaseProps } from '../../elements/Input/index';
+import { InputProps } from '../../elements/Input/index';
 import { DropdownProps } from '../../modules/Dropdown/index';
 
 
@@ -173,7 +173,7 @@ interface FormGroupProps {
 
 export const FormGroup: React.ComponentClass<FormGroupProps>;
 
-interface FormInputProps extends InputBaseProps, ReactFormEvents<HTMLInputElement>, ReactFocusEvents<HTMLInputElement> {
+interface FormInputProps extends InputProps {
 }
 
 export const FormInput: React.ComponentClass<FormInputProps>;

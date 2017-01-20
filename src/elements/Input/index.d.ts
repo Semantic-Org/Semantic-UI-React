@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {SemanticSIZES} from '../..';
 
-export interface InputBaseProps {
+export interface InputProps {
   [key: string]: any;
 
   /** An element type to render as (string or function). */
@@ -64,17 +64,6 @@ export interface InputBaseProps {
   /** The HTML input type. */
   type?: string;
 }
-
-export interface InputProps extends InputBaseProps {
-  /**
-   * Called on change.
-   *
-   * @param {SyntheticEvent} event - React's original SyntheticEvent.
-   * @param {object} data - All props and proposed value.
-   */
-  onChange?: (event: React.SyntheticEvent<HTMLInputElement>, data: InputOnChangeData) => void;
-}
-
 
 interface InputOnChangeData extends InputProps {
   value: string;
