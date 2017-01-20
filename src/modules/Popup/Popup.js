@@ -42,10 +42,10 @@ const _meta = {
  */
 export default class Popup extends Component {
   static propTypes = {
-    /** Display the popup without the pointing arrow */
+    /** Display the popup without the pointing arrow. */
     basic: PropTypes.bool,
 
-    /** You may pass a content as children of the Popup */
+    /** You may pass a content as children of the Popup. */
     children: PropTypes.node,
 
     /** Classes to add to the Popup className. */
@@ -54,33 +54,33 @@ export default class Popup extends Component {
     /** Simple text content for the popover */
     content: PropTypes.node,
 
-    /** A Flowing popup have no maximum width and continue to flow to fit its content */
+    /** A flowing Popup has no maximum width and continues to flow to fit its content. */
     flowing: PropTypes.bool,
 
-    /** Takes up the entire width of its offset container */
+    /** Takes up the entire width of its offset container. */
     // TODO: implement the Popup fluid layout
     // fluid: PropTypes.bool,
 
-    /** Header displayed above the content in bold */
+    /** Header displayed above the content in bold. */
     header: PropTypes.string,
 
-    /** Whether the popup should not close on hover */
+    /** Whether the popup should not close on hover. */
     hoverable: PropTypes.bool,
 
-    /** Invert the colors of the popup */
+    /** Invert the colors of the Popup. */
     inverted: PropTypes.bool,
 
-    /** The node where the popup should mount.. */
+    /** Hide the Popup when scrolling the window. */
     hideOnScroll: PropTypes.bool,
 
-    /** Horizontal offset in pixels to be applied to the popup */
+    /** Horizontal offset in pixels to be applied to the Popup. */
     offset: PropTypes.number,
 
     /** Event triggering the popup */
     on: PropTypes.oneOf(_meta.props.on),
 
     /**
-     * Called when a close event happens
+     * Called when a close event happens.
      *
      * @param {SyntheticEvent} event - React's original SyntheticEvent.
      * @param {object} data - All props.
@@ -88,7 +88,7 @@ export default class Popup extends Component {
     onClose: PropTypes.func,
 
     /**
-     * Called when the portal is mounted on the DOM
+     * Called when the portal is mounted on the DOM.
      *
      * @param {null}
      * @param {object} data - All props.
@@ -96,7 +96,7 @@ export default class Popup extends Component {
     onMount: PropTypes.func,
 
     /**
-     * Called when an open event happens
+     * Called when an open event happens.
      *
      * @param {SyntheticEvent} event - React's original SyntheticEvent.
      * @param {object} data - All props.
@@ -104,7 +104,7 @@ export default class Popup extends Component {
     onOpen: PropTypes.func,
 
     /**
-     * Called when the portal is unmounted from the DOM
+     * Called when the portal is unmounted from the DOM.
      *
      * @param {null}
      * @param {object} data - All props.
@@ -114,16 +114,16 @@ export default class Popup extends Component {
     /** Positioning for the popover */
     positioning: PropTypes.oneOf(_meta.props.positioning),
 
-    /** Popup size */
+    /** Popup size. */
     size: PropTypes.oneOf(_meta.props.size),
 
-    /** custom popup style */
+    /** Custom Popup style. */
     style: PropTypes.object,
 
     /** Element to be rendered in-place where the popup is defined. */
     trigger: PropTypes.node,
 
-    /** Popup width */
+    /** Popup width. */
     wide: PropTypes.oneOf(_meta.props.wide),
   }
 
