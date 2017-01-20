@@ -40,6 +40,31 @@ export default class ComponentProps extends Component {
     )
   }
 
+  renderFunctionSignature = (item) => {
+    if (item.type !== '{func}') return
+
+    const params = _.filter(item.tags, { title: 'param' })
+    const paramSignature = params
+      .map(param => `${param.name}: ${param.type.name}`)
+      .join(', ')
+
+    const paramDescriptions = params.map(param => (
+      <div style={{ color: '#888' }}>
+        <strong>{param.name}</strong> - {param.description}
+      </div>
+    ))
+
+    const signature = <pre><code>{item.name}({paramSignature})</code></pre>
+
+    return (
+      <div>
+        <strong>Signature:</strong>
+        {signature}
+        {paramDescriptions}
+      </div>
+    )
+  }
+
   render() {
     const { props: propsDefinition } = this.props
     const content = _.sortBy(_.map(propsDefinition, (config, name) => {
@@ -56,6 +81,7 @@ export default class ComponentProps extends Component {
         name,
         type,
         value,
+        tags: _.get(config, 'docBlock.tags'),
         required: config.required,
         defaultValue: config.defaultValue,
         description: description && description.split('\n').map(l => ([l, <br key={l} />])),
@@ -80,7 +106,10 @@ export default class ComponentProps extends Component {
               <Table.Cell>{this.requiredRenderer(item)}</Table.Cell>
               <Table.Cell>{item.type}</Table.Cell>
               <Table.Cell>{this.renderDefaultValue(item.defaultValue)}</Table.Cell>
-              <Table.Cell>{item.description && <p>{item.description}</p>}</Table.Cell>
+              <Table.Cell>
+                {item.description && <p>{item.description}</p>}
+                {this.renderFunctionSignature(item)}
+              </Table.Cell>
             </Table.Row>
           ))}
         </Table.Body>
