@@ -70,7 +70,7 @@ export default class Popup extends Component {
     /** Invert the colors of the popup */
     inverted: PropTypes.bool,
 
-    /** The node where the popup should mount.. */
+    /** Hide popup when scrolling the window */
     hideOnScroll: PropTypes.bool,
 
     /** Horizontal offset in pixels to be applied to the popup */
