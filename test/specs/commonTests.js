@@ -873,7 +873,7 @@ export const implementsTextAlignProp = (Component, alignments = SUI.TEXT_ALIGNME
     _noDefaultClassNameFromProp(Component, 'textAlign', options)
     _noClassNameFromBoolProps(Component, 'textAlign', options)
 
-    _.each(alignments, propVal => {
+    alignments.forEach(propVal => {
       if (propVal === 'justified') {
         it('adds "justified" without "aligned" to className', () => {
           shallow(<Component { ...requiredProps } textAlign='justified' />)
@@ -909,7 +909,7 @@ export const implementsVerticalAlignProp = (Component, alignments = SUI.VERTICAL
     _noDefaultClassNameFromProp(Component, 'verticalAlign', options)
     _noClassNameFromBoolProps(Component, 'verticalAlign', options)
 
-    _.each(alignments, propVal => {
+    alignments.forEach(propVal => {
       it(`adds "${propVal} aligned" to className`, () => {
         shallow(<Component { ...requiredProps } verticalAlign={propVal} />)
           .should.have.className(`${propVal} ${'aligned'}`)
@@ -956,11 +956,12 @@ export const propKeyOnlyToClassName = (Component, propKey, options = {}) => {
  * Assert that only a Component prop's value is converted to className.
  * @param {React.Component|Function} Component The component to test.
  * @param {String} propKey A props key.
+ * @param {array} propValues Array of possible props values.
  * @param {Object} [options={}]
  * @param {Object} [options.requiredProps={}] Props required to render the component.
  * @param {Object} [options.className=propKey] The className to assert exists.
  */
-export const propValueOnlyToClassName = (Component, propKey, options = {}) => {
+export const propValueOnlyToClassName = (Component, propKey, propValues, options = {}) => {
   const { requiredProps = {} } = options
   const { assertRequired } = commonTestHelpers('propValueOnlyToClassName', Component)
 
@@ -972,7 +973,7 @@ export const propValueOnlyToClassName = (Component, propKey, options = {}) => {
     _noClassNameFromBoolProps(Component, propKey, options)
 
     it('adds prop value to className', () => {
-      _.each(_.get(Component, `_meta.props[${propKey}]`), propValue => {
+      propValues.forEach(propValue => {
         shallow(createElement(Component, { ...requiredProps, [propKey]: propValue }))
           .should.have.className(propValue)
       })
@@ -982,7 +983,7 @@ export const propValueOnlyToClassName = (Component, propKey, options = {}) => {
       // silence propType warnings
       consoleUtil.disableOnce()
 
-      _.each(_.get(Component, `_meta.props[${propKey}]`), propValue => {
+      propValues.forEach(propValue => {
         shallow(createElement(Component, { ...requiredProps, [propKey]: propValue }))
           .should.not.have.className(propKey)
       })

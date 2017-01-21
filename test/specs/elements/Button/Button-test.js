@@ -4,6 +4,7 @@ import Button from 'src/elements/Button/Button'
 import ButtonContent from 'src/elements/Button/ButtonContent'
 import ButtonGroup from 'src/elements/Button/ButtonGroup'
 import ButtonOr from 'src/elements/Button/ButtonOr'
+import { SUI } from 'src/lib'
 import * as common from 'test/specs/commonTests'
 import { sandbox } from 'test/utils'
 
@@ -45,8 +46,17 @@ describe('Button', () => {
     className: 'labeled',
   })
 
-  common.propValueOnlyToClassName(Button, 'color')
-  common.propValueOnlyToClassName(Button, 'size')
+  common.propValueOnlyToClassName(Button, 'color', [
+    ...SUI.COLORS,
+    'facebook',
+    'twitter',
+    'google plus',
+    'vk',
+    'linkedin',
+    'instagram',
+    'youtube',
+  ])
+  common.propValueOnlyToClassName(Button, 'size', SUI.SIZES)
 
   it('renders a button by default', () => {
     shallow(<Button />)

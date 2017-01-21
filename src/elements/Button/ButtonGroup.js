@@ -22,7 +22,8 @@ function ButtonGroup(props) {
     secondary, size, toggle, vertical, widths,
   } = props
 
-  const classes = cx('ui',
+  const classes = cx(
+    'ui',
     size,
     color,
     useValueAndKey(attached, 'attached'),

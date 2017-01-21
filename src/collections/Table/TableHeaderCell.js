@@ -1,5 +1,6 @@
 import cx from 'classnames'
 import React, { PropTypes } from 'react'
+
 import {
   customPropTypes,
   getUnhandledProps,
@@ -8,6 +9,9 @@ import {
 } from '../../lib'
 import TableCell from './TableCell'
 
+/**
+ * A table can have a header cell.
+ */
 function TableHeaderCell(props) {
   const { as, className, sorted } = props
   const classes = cx(
@@ -15,16 +19,14 @@ function TableHeaderCell(props) {
     className
   )
   const rest = getUnhandledProps(TableHeaderCell, props)
-  return <TableCell as={as} {...rest} className={classes} />
+
+  return <TableCell {...rest} as={as} className={classes} />
 }
 
 TableHeaderCell._meta = {
   name: 'TableHeaderCell',
   type: META.TYPES.COLLECTION,
   parent: 'Table',
-  props: {
-    sorted: ['ascending', 'descending'],
-  },
 }
 
 TableHeaderCell.propTypes = {
@@ -35,7 +37,7 @@ TableHeaderCell.propTypes = {
   className: PropTypes.string,
 
   /** A header cell can be sorted in ascending or descending order. */
-  sorted: PropTypes.oneOf(TableHeaderCell._meta.props.sorted),
+  sorted: PropTypes.oneOf(['ascending', 'descending']),
 }
 
 TableHeaderCell.defaultProps = {

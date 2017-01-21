@@ -9,6 +9,9 @@ import {
   useKeyOnly,
 } from '../../lib'
 
+/**
+ * A table can have a header.
+ */
 function TableHeader(props) {
   const { children, className, fullWidth } = props
   const classes = cx(

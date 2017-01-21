@@ -1,5 +1,8 @@
+import _ from 'lodash'
+
 import Segment from 'src/elements/Segment/Segment'
 import SegmentGroup from 'src/elements/Segment/SegmentGroup'
+import { SUI } from 'src/lib'
 import * as common from 'test/specs/commonTests'
 
 describe('Segment', () => {
@@ -8,7 +11,7 @@ describe('Segment', () => {
   common.hasUIClassName(Segment)
   common.rendersChildren(Segment)
 
-  common.implementsTextAlignProp(Segment)
+  common.implementsTextAlignProp(Segment, ['left', 'center', 'right'])
 
   common.propKeyAndValueToClassName(Segment, 'floated')
 
@@ -29,6 +32,6 @@ describe('Segment', () => {
   common.propKeyOrValueAndKeyToClassName(Segment, 'attached', ['top', 'bottom'])
   common.propKeyOrValueAndKeyToClassName(Segment, 'padded', ['very'])
 
-  common.propValueOnlyToClassName(Segment, 'color')
-  common.propValueOnlyToClassName(Segment, 'size')
+  common.propValueOnlyToClassName(Segment, 'color', SUI.COLORS)
+  common.propValueOnlyToClassName(Segment, 'size', _.without(SUI.SIZES, 'medium'))
 })

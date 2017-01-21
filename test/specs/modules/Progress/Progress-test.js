@@ -1,4 +1,7 @@
+import _ from 'lodash'
 import React from 'react'
+
+import { SUI } from 'src/lib'
 import Progress from 'src/modules/Progress/Progress'
 import * as common from 'test/specs/commonTests'
 
@@ -7,18 +10,18 @@ describe('Progress', () => {
   common.hasUIClassName(Progress)
   common.rendersChildren(Progress)
 
-  common.propValueOnlyToClassName(Progress, 'size')
-  common.propValueOnlyToClassName(Progress, 'color')
+  common.propKeyAndValueToClassName(Progress, 'attached')
+
+  common.propValueOnlyToClassName(Progress, 'color', SUI.COLORS)
+  common.propValueOnlyToClassName(Progress, 'size', _.without(SUI.SIZES, 'mini', 'huge', 'massive'))
 
   common.propKeyOnlyToClassName(Progress, 'active')
-  common.propKeyOnlyToClassName(Progress, 'success')
-  common.propKeyOnlyToClassName(Progress, 'warning')
-  common.propKeyOnlyToClassName(Progress, 'error')
   common.propKeyOnlyToClassName(Progress, 'disabled')
+  common.propKeyOnlyToClassName(Progress, 'error')
   common.propKeyOnlyToClassName(Progress, 'indicating')
   common.propKeyOnlyToClassName(Progress, 'inverted')
-
-  common.propKeyAndValueToClassName(Progress, 'attached')
+  common.propKeyOnlyToClassName(Progress, 'success')
+  common.propKeyOnlyToClassName(Progress, 'warning')
 
   it('contains div with className bar', () => {
     shallow(<Progress />)

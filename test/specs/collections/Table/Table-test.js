@@ -1,6 +1,6 @@
+import _ from 'lodash'
 import React from 'react'
 
-import * as common from 'test/specs/commonTests'
 import Table from 'src/collections/Table/Table'
 import TableBody from 'src/collections/Table/TableBody'
 import TableCell from 'src/collections/Table/TableCell'
@@ -8,11 +8,13 @@ import TableFooter from 'src/collections/Table/TableFooter'
 import TableHeader from 'src/collections/Table/TableHeader'
 import TableHeaderCell from 'src/collections/Table/TableHeaderCell'
 import TableRow from 'src/collections/Table/TableRow'
+import { SUI } from 'src/lib'
+import * as common from 'test/specs/commonTests'
 
 describe('Table', () => {
   common.isConformant(Table)
-  common.hasUIClassName(Table)
   common.hasSubComponents(Table, [TableBody, TableCell, TableFooter, TableHeader, TableHeaderCell, TableRow])
+  common.hasUIClassName(Table)
   common.rendersChildren(Table)
 
   common.implementsWidthProp(Table, {
@@ -41,8 +43,10 @@ describe('Table', () => {
   common.propKeyOrValueAndKeyToClassName(Table, 'compact', ['very'])
   common.propKeyOrValueAndKeyToClassName(Table, 'padded', ['very'])
 
-  common.propValueOnlyToClassName(Table, 'color')
-  common.propValueOnlyToClassName(Table, 'size')
+  common.propValueOnlyToClassName(Table, 'color', SUI.COLORS)
+  common.propValueOnlyToClassName(Table, 'size',
+    _.without(SUI.SIZES, 'mini', 'tiny', 'medium', 'big', 'huge', 'massive')
+  )
 
   it('renders as a table by default', () => {
     shallow(<Table />)

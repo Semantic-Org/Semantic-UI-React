@@ -20,13 +20,12 @@ import TableHeaderCell from './TableHeaderCell'
 import TableRow from './TableRow'
 
 /**
- * A table displays a collections of data grouped into rows
+ * A table displays a collections of data grouped into rows.
  */
 function Table(props) {
   const {
-    basic,
     attached,
-    renderBodyRow,
+    basic,
     celled,
     children,
     className,
@@ -40,6 +39,7 @@ function Table(props) {
     headerRow,
     inverted,
     padded,
+    renderBodyRow,
     selectable,
     singleLine,
     size,
@@ -55,15 +55,11 @@ function Table(props) {
     'ui',
     color,
     size,
-    useKeyOrValueAndKey(attached, 'attached'),
-    useKeyOrValueAndKey(basic, 'basic'),
     useKeyOnly(celled, 'celled'),
     useKeyOnly(collapsing, 'collapsing'),
-    useKeyOrValueAndKey(compact, 'compact'),
     useKeyOnly(definition, 'definition'),
     useKeyOnly(fixed, 'fixed'),
     useKeyOnly(inverted, 'inverted'),
-    useKeyOrValueAndKey(padded, 'padded'),
     useKeyOnly(selectable, 'selectable'),
     useKeyOnly(singleLine, 'single line'),
     useKeyOnly(sortable, 'sortable'),
@@ -71,9 +67,13 @@ function Table(props) {
     useKeyOnly(striped, 'striped'),
     useKeyOnly(structured, 'structured'),
     useKeyOnly(unstackable, 'unstackable'),
+    useKeyOrValueAndKey(attached, 'attached'),
+    useKeyOrValueAndKey(basic, 'basic'),
+    useKeyOrValueAndKey(compact, 'compact'),
+    useKeyOrValueAndKey(padded, 'padded'),
     useWidthProp(columns, 'column'),
+    'table',
     className,
-    'table'
   )
   const rest = getUnhandledProps(Table, props)
   const ElementType = getElementType(Table, props)
@@ -96,15 +96,6 @@ function Table(props) {
 Table._meta = {
   name: 'Table',
   type: META.TYPES.COLLECTION,
-  props: {
-    attached: ['top', 'bottom'],
-    basic: ['very'],
-    color: SUI.COLORS,
-    columns: SUI.WIDTHS,
-    compact: ['very'],
-    padded: ['very'],
-    size: _.without(SUI.SIZES, 'mini', 'tiny', 'medium', 'big', 'huge', 'massive'),
-  },
 }
 
 Table.defaultProps = {
@@ -117,14 +108,14 @@ Table.propTypes = {
 
   /** Attach table to other content */
   attached: PropTypes.oneOfType([
-    PropTypes.oneOf(Table._meta.props.attached),
     PropTypes.bool,
+    PropTypes.oneOf(['top', 'bottom']),
   ]),
 
   /** A table can reduce its complexity to increase readability. */
   basic: PropTypes.oneOfType([
+    PropTypes.oneOf(['very']),
     PropTypes.bool,
-    PropTypes.oneOf(Table._meta.props.basic),
   ]),
 
   /** A table may be divided each row into separate cells. */
@@ -140,15 +131,15 @@ Table.propTypes = {
   collapsing: PropTypes.bool,
 
   /** A table can be given a color to distinguish it from other tables. */
-  color: PropTypes.oneOf(Table._meta.props.color),
+  color: PropTypes.oneOf(SUI.COLORS),
 
   /** A table can specify its column count to divide its content evenly. */
-  columns: PropTypes.oneOf(Table._meta.props.columns),
+  columns: PropTypes.oneOf(SUI.WIDTHS),
 
   /** A table may sometimes need to be more compact to make more rows visible at a time. */
   compact: PropTypes.oneOfType([
     PropTypes.bool,
-    PropTypes.oneOf(Table._meta.props.compact),
+    PropTypes.oneOf(['very']),
   ]),
 
   /** A table may be formatted to emphasize a first column that defines a rows content. */
@@ -171,7 +162,7 @@ Table.propTypes = {
   /** A table may sometimes need to be more padded for legibility. */
   padded: PropTypes.oneOfType([
     PropTypes.bool,
-    PropTypes.oneOf(Table._meta.props.padded),
+    PropTypes.oneOf(['very']),
   ]),
 
   /**
@@ -191,7 +182,7 @@ Table.propTypes = {
   singleLine: PropTypes.bool,
 
   /** A table can also be small or large. */
-  size: PropTypes.oneOf(Table._meta.props.size),
+  size: PropTypes.oneOf(_.without(SUI.SIZES, 'mini', 'tiny', 'medium', 'big', 'huge', 'massive')),
 
   /** A table may allow a user to sort contents by clicking on a table header. */
   sortable: PropTypes.bool,

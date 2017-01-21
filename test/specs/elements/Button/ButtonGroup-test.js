@@ -1,12 +1,16 @@
 import ButtonGroup from 'src/elements/Button/ButtonGroup'
+import { SUI } from 'src/lib'
 import * as common from 'test/specs/commonTests'
 
 describe('ButtonGroup', () => {
   common.isConformant(ButtonGroup)
   common.hasUIClassName(ButtonGroup)
+  common.rendersChildren(ButtonGroup)
+
   common.implementsWidthProp(ButtonGroup, { propKey: 'widths', widthClass: 'buttons', canEqual: false })
 
   common.propKeyAndValueToClassName(ButtonGroup, 'attached')
+
   common.propKeyOnlyToClassName(ButtonGroup, 'basic')
   common.propKeyOnlyToClassName(ButtonGroup, 'compact')
   common.propKeyOnlyToClassName(ButtonGroup, 'fluid')
@@ -22,8 +26,6 @@ describe('ButtonGroup', () => {
   common.propKeyOnlyToClassName(ButtonGroup, 'toggle')
   common.propKeyOnlyToClassName(ButtonGroup, 'vertical')
 
-  common.propValueOnlyToClassName(ButtonGroup, 'color')
-  common.propValueOnlyToClassName(ButtonGroup, 'size')
-
-  common.rendersChildren(ButtonGroup)
+  common.propValueOnlyToClassName(ButtonGroup, 'color', SUI.COLORS)
+  common.propValueOnlyToClassName(ButtonGroup, 'size', SUI.SIZES)
 })

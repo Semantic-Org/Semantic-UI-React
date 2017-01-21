@@ -1,5 +1,5 @@
 import { Label } from '../../elements/Label';
-import { SemanticCOLORS, SemanticFLOATS, SemanticSIZES, SemanticWIDTHSNUMBER, SemanticWIDTHSSTRING } from '../..';
+import { SemanticCOLORS, SemanticFLOATS, SemanticSIZES, SemanticWIDTHS } from '../..';
 import * as React from 'react';
 
 
@@ -72,7 +72,7 @@ interface StatisticGroupProps {
   size?: SemanticSIZES;
 
   /** A statistic group can have its items divided evenly. */
-  widths?: SemanticWIDTHSSTRING | SemanticWIDTHSNUMBER | number;
+  widths?: SemanticWIDTHS;
 }
 
 export const StatisticGroup: React.ComponentClass<StatisticGroupProps>;

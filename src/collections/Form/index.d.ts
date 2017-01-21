@@ -4,8 +4,7 @@ import {
     ReactFormEvents,
     SemanticFormOnClick,
     SemanticGenericOnClick,
-    SemanticWIDTHSNUMBER,
-    SemanticWIDTHSSTRING
+    SemanticWIDTHS
 } from '../..';
 import * as React from 'react';
 import { InputProps } from '../../elements/Input/index';
@@ -54,7 +53,7 @@ interface FormProps {
   warning?: boolean;
 
   /** Forms can automatically divide fields to be equal width */
-  widths?: SemanticWIDTHSSTRING | SemanticWIDTHSNUMBER | number | 'equal';
+  widths?: SemanticWIDTHS | 'equal';
 }
 
 interface FormClass extends React.ComponentClass<FormProps> {
@@ -110,7 +109,7 @@ interface FormFieldProps {
   type?: string;
 
   /** A field can specify its width in grid columns */
-  width?: SemanticWIDTHSSTRING | SemanticWIDTHSNUMBER | number;
+  width?: SemanticWIDTHS;
 }
 
 export const FormField: React.ComponentClass<FormFieldProps>;
@@ -168,7 +167,7 @@ interface FormGroupProps {
   inline?: boolean;
 
   /** Fields Groups can specify their width in grid columns or automatically divide fields to be equal width */
-  widths?: SemanticWIDTHSSTRING | SemanticWIDTHSNUMBER | number | 'equal';
+  widths?: SemanticWIDTHS | 'equal';
 }
 
 export const FormGroup: React.ComponentClass<FormGroupProps>;

@@ -1,7 +1,9 @@
+import _ from 'lodash'
 import React from 'react'
 
-import * as common from 'test/specs/commonTests'
 import Rail from 'src/elements/Rail/Rail'
+import { SUI } from 'src/lib'
+import * as common from 'test/specs/commonTests'
 
 const requiredProps = { position: 'left' }
 
@@ -16,8 +18,8 @@ describe('Rail', () => {
 
   common.propKeyOrValueAndKeyToClassName(Rail, 'close', ['very'], { requiredProps })
 
-  common.propValueOnlyToClassName(Rail, 'position', { requiredProps })
-  common.propValueOnlyToClassName(Rail, 'size', { requiredProps })
+  common.propValueOnlyToClassName(Rail, 'position', SUI.FLOATS, { requiredProps })
+  common.propValueOnlyToClassName(Rail, 'size', _.without(SUI.SIZES, 'medium'), { requiredProps })
 
   it('renders an div element', () => {
     shallow(<Rail {...requiredProps} />)

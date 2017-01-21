@@ -1,9 +1,11 @@
+import _ from 'lodash'
 import React from 'react'
 
 import Menu from 'src/collections/Menu/Menu'
 import MenuItem from 'src/collections/Menu/MenuItem'
 import MenuHeader from 'src/collections/Menu/MenuHeader'
 import MenuMenu from 'src/collections/Menu/MenuMenu'
+import { SUI } from 'src/lib'
 import * as common from 'test/specs/commonTests'
 import { sandbox } from 'test/utils'
 
@@ -33,8 +35,8 @@ describe('Menu', () => {
   common.propKeyOrValueAndKeyToClassName(Menu, 'icon', ['labeled'])
   common.propKeyOrValueAndKeyToClassName(Menu, 'tabular', ['right'])
 
-  common.propValueOnlyToClassName(Menu, 'color')
-  common.propValueOnlyToClassName(Menu, 'size')
+  common.propValueOnlyToClassName(Menu, 'color', SUI.COLORS)
+  common.propValueOnlyToClassName(Menu, 'size', _.without(SUI.SIZES, 'medium', 'big'))
 
   it('renders a `div` by default', () => {
     shallow(<Menu />)

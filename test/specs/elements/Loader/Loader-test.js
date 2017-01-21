@@ -1,8 +1,9 @@
 import faker from 'faker'
 import React from 'react'
 
-import * as common from 'test/specs/commonTests'
 import Loader from 'src/elements/Loader/Loader'
+import { SUI } from 'src/lib'
+import * as common from 'test/specs/commonTests'
 
 describe('Loader', () => {
   common.isConformant(Loader)
@@ -16,7 +17,7 @@ describe('Loader', () => {
 
   common.propKeyOrValueAndKeyToClassName(Loader, 'inline', ['centered'])
 
-  common.propValueOnlyToClassName(Loader, 'size')
+  common.propValueOnlyToClassName(Loader, 'size', SUI.SIZES)
 
   describe('content', () => {
     it('renders text', () => {

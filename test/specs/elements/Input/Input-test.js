@@ -1,10 +1,11 @@
 import cx from 'classnames'
 import _ from 'lodash'
 import React from 'react'
-import { sandbox } from 'test/utils'
 
 import Input, { htmlInputPropNames } from 'src/elements/Input/Input'
+import { SUI } from 'src/lib'
 import * as common from 'test/specs/commonTests'
+import { sandbox } from 'test/utils'
 
 describe('Input', () => {
   common.isConformant(Input, {
@@ -52,7 +53,8 @@ describe('Input', () => {
     },
   })
   common.hasUIClassName(Input)
-  common.implementsCreateMethod(Input)
+  common.rendersChildren(Input)
+
   common.implementsLabelProp(Input, {
     shorthandDefaultProps: elProps => ({
       className: cx({
@@ -68,27 +70,28 @@ describe('Input', () => {
       }),
     }),
   })
+  common.implementsCreateMethod(Input)
   common.implementsHTMLInputProp(Input, {
     alwaysPresent: true,
     shorthandDefaultProps: { type: 'text' },
   })
 
-  common.propValueOnlyToClassName(Input, 'size')
   common.propKeyAndValueToClassName(Input, 'actionPosition', { className: 'action' })
+  common.propKeyAndValueToClassName(Input, 'iconPosition', { className: 'icon' })
+  common.propKeyAndValueToClassName(Input, 'labelPosition', { className: 'labeled' })
+
   common.propKeyOnlyToClassName(Input, 'action')
   common.propKeyOnlyToClassName(Input, 'disabled')
   common.propKeyOnlyToClassName(Input, 'error')
-  common.propKeyOnlyToClassName(Input, 'focus')
   common.propKeyOnlyToClassName(Input, 'fluid')
+  common.propKeyOnlyToClassName(Input, 'focus')
   common.propKeyOnlyToClassName(Input, 'inverted')
-  common.propKeyAndValueToClassName(Input, 'labelPosition', { className: 'labeled' })
   common.propKeyOnlyToClassName(Input, 'label', { className: 'labeled' })
   common.propKeyOnlyToClassName(Input, 'loading')
   common.propKeyOnlyToClassName(Input, 'transparent')
-  common.propKeyAndValueToClassName(Input, 'iconPosition', { className: 'icon' })
   common.propKeyOnlyToClassName(Input, 'icon')
 
-  common.rendersChildren(Input)
+  common.propValueOnlyToClassName(Input, 'size', SUI.SIZES)
 
   it('renders with conditional children', () => {
     shallow(

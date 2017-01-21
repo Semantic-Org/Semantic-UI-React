@@ -24,10 +24,11 @@ describe('Embed', () => {
     requiredProps: { active: true },
   })
 
-  common.propKeyOnlyToClassName(Embed, 'active')
-  common.propValueOnlyToClassName(Embed, 'aspectRatio')
-
   common.implementsIconProp(Embed)
+
+  common.propKeyOnlyToClassName(Embed, 'active')
+
+  common.propValueOnlyToClassName(Embed, 'aspectRatio', ['4:3', '16:9', '21:9'])
 
   describe('active', () => {
     it('defaults to false', () => {

@@ -3,8 +3,7 @@ import {
   SemanticCOLORS,
   SemanticFLOATS,
   SemanticSIZES,
-  SemanticWIDTHSNUMBER,
-  SemanticWIDTHSSTRING
+  SemanticWIDTHS
 } from '../..';
 import * as React from 'react';
 
@@ -91,7 +90,7 @@ export interface MenuProps {
   vertical?: boolean;
 
   /** A menu can have its items divided evenly. */
-  widths?: number|SemanticWIDTHSSTRING | SemanticWIDTHSNUMBER| number;
+  widths?: SemanticWIDTHS;
 }
 
 interface MenuClass extends React.ComponentClass<MenuProps> {

@@ -1,23 +1,27 @@
 import faker from 'faker'
+import _ from 'lodash'
 import React from 'react'
-import * as common from 'test/specs/commonTests'
 
+import { SUI } from 'src/lib'
 import Statistic from 'src/views/Statistic/Statistic'
 import StatisticGroup from 'src/views/Statistic/StatisticGroup'
 import StatisticLabel from 'src/views/Statistic/StatisticLabel'
 import StatisticValue from 'src/views/Statistic/StatisticValue'
+import * as common from 'test/specs/commonTests'
 
 describe('Statistic', () => {
   common.isConformant(Statistic)
-  common.hasUIClassName(Statistic)
   common.hasSubComponents(Statistic, [StatisticGroup, StatisticLabel, StatisticValue])
+  common.hasUIClassName(Statistic)
   common.rendersChildren(Statistic)
 
-  common.propValueOnlyToClassName(Statistic, 'color')
   common.propKeyAndValueToClassName(Statistic, 'floated')
+
   common.propKeyOnlyToClassName(Statistic, 'horizontal')
   common.propKeyOnlyToClassName(Statistic, 'inverted')
-  common.propValueOnlyToClassName(Statistic, 'size')
+
+  common.propValueOnlyToClassName(Statistic, 'color', SUI.COLORS)
+  common.propValueOnlyToClassName(Statistic, 'size', _.without(SUI.SIZES, 'big', 'massive', 'medium'))
 
   it('renders an div element', () => {
     shallow(<Statistic />)
