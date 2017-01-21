@@ -6,6 +6,7 @@ import {
   getElementType,
   getUnhandledProps,
   META,
+  only as onlyEnum,
   SUI,
   useKeyOnly,
   useTextAlignProp,
@@ -58,7 +59,7 @@ GridRow._meta = {
   props: {
     color: SUI.COLORS,
     columns: [...SUI.WIDTHS, 'equal'],
-    only: ['computer', 'large screen', 'mobile', 'tablet mobile', 'tablet', 'widescreen'],
+    only: onlyEnum,
     reversed: ['computer', 'computer vertically', 'mobile', 'mobile vertically', 'tablet', 'tablet vertically'],
     textAlign: SUI.TEXT_ALIGNMENTS,
     verticalAlign: SUI.VERTICAL_ALIGNMENTS,

@@ -12,6 +12,8 @@ export {
 
 export * as customPropTypes from './customPropTypes'
 
+export only from './only'
+
 export {
   debug,
   makeDebugger,
