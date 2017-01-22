@@ -1,5 +1,5 @@
-import _ from 'lodash'
 import cx from 'classnames'
+import _ from 'lodash'
 import React, { PropTypes } from 'react'
 
 import {
@@ -13,17 +13,29 @@ import {
 } from '../../lib'
 import Step from './Step'
 
+/**
+ * A set of steps.
+ */
 function StepGroup(props) {
-  const { children, className, fluid, items, ordered, size, stackable, vertical } = props
+  const {
+    children,
+    className,
+    fluid,
+    items,
+    ordered,
+    size,
+    stackable,
+    vertical,
+  } = props
   const classes = cx(
     'ui',
+    size,
     useKeyOnly(fluid, 'fluid'),
     useKeyOnly(ordered, 'ordered'),
-    useValueAndKey(stackable, 'stackable'),
     useKeyOnly(vertical, 'vertical'),
-    size,
-    className,
+    useValueAndKey(stackable, 'stackable'),
     'steps',
+    className,
   )
   const rest = getUnhandledProps(StepGroup, props)
   const ElementType = getElementType(StepGroup, props)
@@ -43,10 +55,6 @@ function StepGroup(props) {
 StepGroup._meta = {
   name: 'StepGroup',
   parent: 'Step',
-  props: {
-    sizes: _.without(SUI.SIZES, 'medium'),
-    stackable: ['tablet'],
-  },
   type: META.TYPES.ELEMENT,
 }
 
@@ -54,11 +62,11 @@ StepGroup.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** Additional classes. */
-  className: PropTypes.string,
-
   /** Primary content. */
   children: PropTypes.node,
+
+  /** Additional classes. */
+  className: PropTypes.string,
 
   /** A fluid step takes up the width of its container. */
   fluid: PropTypes.bool,
@@ -70,10 +78,10 @@ StepGroup.propTypes = {
   ordered: PropTypes.bool,
 
   /** Steps can have different sizes. */
-  size: PropTypes.oneOf(StepGroup._meta.props.sizes),
+  size: PropTypes.oneOf(_.without(SUI.SIZES, 'medium')),
 
   /** A step can stack vertically only on smaller screens. */
-  stackable: PropTypes.oneOf(StepGroup._meta.props.stackable),
+  stackable: PropTypes.oneOf(['tablet']),
 
   /** A step can be displayed stacked vertically. */
   vertical: PropTypes.bool,

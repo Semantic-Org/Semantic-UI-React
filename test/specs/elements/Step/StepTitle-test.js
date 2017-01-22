@@ -1,8 +1,8 @@
 import faker from 'faker'
 import React from 'react'
 
-import * as common from 'test/specs/commonTests'
 import StepTitle from 'src/elements/Step/StepTitle'
+import * as common from 'test/specs/commonTests'
 
 describe('StepTitle', () => {
   common.isConformant(StepTitle)

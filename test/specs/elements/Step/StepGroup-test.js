@@ -1,15 +1,18 @@
 import faker from 'faker'
 import React from 'react'
-import * as common from 'test/specs/commonTests'
+
 import Step from 'src/elements/Step/Step'
 import StepGroup from 'src/elements/Step/StepGroup'
+import * as common from 'test/specs/commonTests'
 
 describe('StepGroup', () => {
   common.isConformant(StepGroup)
   common.hasUIClassName(StepGroup)
+
+  common.propKeyAndValueToClassName(StepGroup, 'stackable')
+
   common.propKeyOnlyToClassName(StepGroup, 'fluid')
   common.propKeyOnlyToClassName(StepGroup, 'ordered')
-  common.propKeyAndValueToClassName(StepGroup, 'stackable')
   common.propKeyOnlyToClassName(StepGroup, 'vertical')
 
   describe('renders children', () => {
