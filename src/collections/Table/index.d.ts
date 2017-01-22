@@ -73,6 +73,9 @@ interface TableProps {
   /** A table can also be small or large. */
   size?: 'small' | 'large';
 
+  /** A table may allow a user to sort contents by clicking on a table header. */
+  sortable?: boolean;
+
   /** A table can specify how it stacks table content responsively. */
   stackable?: boolean;
 
