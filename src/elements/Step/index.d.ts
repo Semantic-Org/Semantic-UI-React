@@ -40,7 +40,7 @@ interface StepProps {
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
    * @param {object} data - All props.
    */
-  onClick?: (event: React.MouseEvent<HTMLInputElement>, data: StepProps) => void;
+  onClick?: (event: React.MouseEvent<HTMLAnchorElement>, data: StepProps) => void;
 
   /** A step can show a ordered sequence of steps. Passed from StepGroup. */
   ordered?: boolean;
