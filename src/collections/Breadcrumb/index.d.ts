@@ -1,7 +1,8 @@
-import { ReactMouseEvents, SemanticSIZES } from '../..';
 import * as React from 'react';
 
-interface BreadcrumbProps extends ReactMouseEvents<HTMLElement> {
+interface BreadcrumbProps {
+  [key: string]: any;
+
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -12,7 +13,7 @@ interface BreadcrumbProps extends ReactMouseEvents<HTMLElement> {
   className?: string;
 
   /** Shorthand for primary content of the Breadcrumb.Divider. */
-  divider?: any;
+  divider?: React.ReactNode;
 
   /** For use with the sections prop. Render as an `Icon` component with `divider` class instead of a `div` in
    *  Breadcrumb.Divider.
@@ -23,7 +24,7 @@ interface BreadcrumbProps extends ReactMouseEvents<HTMLElement> {
   sections?: Array<any>;
 
   /** Size of Breadcrumb */
-  size?: SemanticSIZES;
+  size?:  'mini' | 'tiny' | 'small' | 'large' | 'big' | 'huge' | 'massive';
 }
 
 interface BreadcrumbClass extends React.ComponentClass<BreadcrumbProps> {
@@ -34,6 +35,8 @@ interface BreadcrumbClass extends React.ComponentClass<BreadcrumbProps> {
 export const Breadcrumb: BreadcrumbClass;
 
 interface BreadcrumbDividerProps {
+  [key: string]: any;
+
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -43,18 +46,23 @@ interface BreadcrumbDividerProps {
   /** Additional classes. */
   className?: string;
 
+  /** Shorthand for primary content. */
+  content?: React.ReactNode;
+
   /** Render as an `Icon` component with `divider` class instead of a `div`. */
   icon?: any;
 }
 
-export const BreadcrumbDivider: React.ComponentClass<BreadcrumbDividerProps>;
+export const BreadcrumbDivider: React.StatelessComponent<BreadcrumbDividerProps>;
 
 interface BreadcrumbSectionProps {
-  /** Style as the currently active section. */
-  active?: boolean;
+  [key: string]: any;
 
   /** An element type to render as (string or function). */
   as?: any;
+
+  /** Style as the currently active section. */
+  active?: boolean;
 
   /** Primary content. */
   children?: React.ReactNode;
@@ -75,7 +83,7 @@ interface BreadcrumbSectionProps {
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
    * @param {object} data - All props.
    */
-  onClick?: React.MouseEventHandler<HTMLAnchorElement>;
+  onClick?: (event: React.MouseEvent<HTMLAnchorElement>, data: BreadcrumbSectionProps) => void;
 }
 
 export const BreadcrumbSection: React.ComponentClass<BreadcrumbSectionProps>;
