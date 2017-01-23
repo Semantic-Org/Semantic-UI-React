@@ -27,7 +27,7 @@ interface DimmerProps {
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
    * @param {object} data - All props.
    */
-  onClick?: (event: React.MouseEvent<HTMLInputElement>, data: DimmerProps) => void;
+  onClick?: (event: React.MouseEvent<HTMLDivElement>, data: DimmerProps) => void;
 
   /**
    * Handles click outside Dimmer's content, but inside Dimmer area.
@@ -35,7 +35,7 @@ interface DimmerProps {
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
    * @param {object} data - All props.
    */
-  onClickOutside?: (event: React.MouseEvent<HTMLInputElement>, data: DimmerProps) => void;
+  onClickOutside?: (event: React.MouseEvent<HTMLDivElement>, data: DimmerProps) => void;
 
   /** A dimmer can be formatted to have its colors inverted. */
   inverted?: boolean;
