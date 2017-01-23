@@ -2,7 +2,9 @@
   "name": "semantic-ui-react",
   "version": "0.64.3",
   "description": "The official Semantic-UI-React integration.",
+  "jsnext:main": "dist/es/index.js",
   "main": "dist/commonjs/index.js",
+  "module": "dist/es/index.js",
   "files": [
     "src",
     "dist",
@@ -10,9 +12,11 @@
   ],
   "scripts": {
     "docs": "gulp docs",
-    "build": "npm run build:commonjs && npm run build:umd && npm run build:docs",
+    "build": "npm run build:commonjs && npm run build:es && npm run build:umd && npm run build:docs",
     "prebuild:commonjs": "rimraf dist/commonjs",
     "build:commonjs": "babel src -d dist/commonjs && npm run tsd",
+    "prebuild:es": "rimraf dist/es",
+    "build:es": "cross-env BABEL_ENV=es babel src -d dist/es",
     "prebuild:docs": "npm run build:docs-toc",
     "build:dll": "gulp dll",
     "build:docs": "gulp build:docs",
