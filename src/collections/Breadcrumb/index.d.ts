@@ -83,7 +83,7 @@ interface BreadcrumbSectionProps {
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
    * @param {object} data - All props.
    */
-  onClick?: (event: React.MouseEvent<HTMLInputElement>, data: BreadcrumbSectionProps) => void;
+  onClick?: (event: React.MouseEvent<HTMLAnchorElement>, data: BreadcrumbSectionProps) => void;
 }
 
 export const BreadcrumbSection: React.ComponentClass<BreadcrumbSectionProps>;
