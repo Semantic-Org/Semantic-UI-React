@@ -34,4 +34,4 @@ interface DividerProps {
   vertical?: boolean;
 }
 
-export const Container: React.StatelessComponent<DividerProps>;
+export const Divider: React.StatelessComponent<DividerProps>;

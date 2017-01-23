@@ -173,7 +173,7 @@ interface FormGroupProps {
 
 export const FormGroup: React.ComponentClass<FormGroupProps>;
 
-interface FormInputProps extends InputProps, ReactFormEvents<HTMLInputElement>, ReactFocusEvents<HTMLInputElement> {
+interface FormInputProps extends InputProps {
 }
 
 export const FormInput: React.ComponentClass<FormInputProps>;
