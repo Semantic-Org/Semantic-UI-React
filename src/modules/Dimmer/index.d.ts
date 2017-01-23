@@ -1,12 +1,13 @@
 import * as React from 'react';
 
 interface DimmerProps {
-
-  /** An active dimmer will dim its parent container. */
-  active?: boolean;
+  [key: string]: any;
 
   /** An element type to render as (string or function). */
   as?: any;
+
+  /** An active dimmer will dim its parent container. */
+  active?: boolean;
 
   /** Primary content. */
   children?: React.ReactNode;
@@ -15,7 +16,7 @@ interface DimmerProps {
   className?: string;
 
   /** Shorthand for primary content. */
-  content?: any;
+  content?: React.ReactNode;
 
   /** A disabled dimmer cannot be activated */
   disabled?: boolean;
@@ -26,7 +27,7 @@ interface DimmerProps {
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
    * @param {object} data - All props.
    */
-  onClick?: React.MouseEventHandler<HTMLDivElement>;
+  onClick?: (event: React.MouseEvent<HTMLDivElement>, data: DimmerProps) => void;
 
   /**
    * Handles click outside Dimmer's content, but inside Dimmer area.
@@ -34,7 +35,7 @@ interface DimmerProps {
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
    * @param {object} data - All props.
    */
-  onClickOutside?: React.MouseEventHandler<HTMLDivElement>;
+  onClickOutside?: (event: React.MouseEvent<HTMLDivElement>, data: DimmerProps) => void;
 
   /** A dimmer can be formatted to have its colors inverted. */
   inverted?: boolean;
@@ -46,13 +47,15 @@ interface DimmerProps {
   simple?: boolean;
 }
 
-interface DimmerClass extends React.ComponentClass<DimmerProps> {
+interface DimmerComponent extends React.ComponentClass<DimmerProps> {
   Dimmable: typeof DimmerDimmable;
 }
 
-export const Dimmer: DimmerClass;
+export const Dimmer: DimmerComponent;
 
 interface DimmerDimmableProps {
+  [key: string]: any;
+
   /** An element type to render as (string or function). */
   as?: any;
 

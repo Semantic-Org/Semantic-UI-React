@@ -1,5 +1,5 @@
-import _ from 'lodash'
 import cx from 'classnames'
+import _ from 'lodash'
 import React, { Component, PropTypes } from 'react'
 
 import {
@@ -13,11 +13,6 @@ import {
 } from '../../lib'
 import Portal from '../../addons/Portal'
 import DimmerDimmable from './DimmerDimmable'
-
-const _meta = {
-  name: 'Dimmer',
-  type: META.TYPES.MODULE,
-}
 
 /**
  * A dimmer hides distractions to focus attention on particular content.
@@ -68,7 +63,10 @@ export default class Dimmer extends Component {
     simple: PropTypes.bool,
   }
 
-  static _meta = _meta
+  static _meta = {
+    name: 'Dimmer',
+    type: META.TYPES.MODULE,
+  }
 
   static Dimmable = DimmerDimmable
 
@@ -113,10 +111,11 @@ export default class Dimmer extends Component {
     const rest = getUnhandledProps(Dimmer, this.props)
     const ElementType = getElementType(Dimmer, this.props)
 
-    const childrenJSX = (_.isNil(children) ? content : children) && (
+    const childrenContent = _.isNil(children) ? content : children
+    const childrenJSX = childrenContent && (
         <div className='content'>
           <div className='center' ref={center => (this.center = center)}>
-            { _.isNil(children) ? content : children }
+            { childrenContent }
           </div>
         </div>
       )
