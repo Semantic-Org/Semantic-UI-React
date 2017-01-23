@@ -120,6 +120,9 @@ export interface DropdownProps extends ReactMouseEvents<HTMLElement>, ReactFocus
    */
   renderLabel?: any;
 
+  /** Pass required prop onto input element */
+  required?: boolean,
+
   /** A dropdown can have its menu scroll. */
   scrolling?: boolean;
 

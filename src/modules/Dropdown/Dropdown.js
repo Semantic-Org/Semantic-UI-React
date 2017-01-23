@@ -257,6 +257,9 @@ export default class Dropdown extends Component {
      */
     renderLabel: PropTypes.func,
 
+    /** Pass required prop onto input element */
+    required: PropTypes.bool,
+
     /** A dropdown can have its menu scroll. */
     scrolling: PropTypes.bool,
 
@@ -1003,7 +1006,7 @@ export default class Dropdown extends Component {
   }
 
   renderSearchInput = () => {
-    const { disabled, search, name, tabIndex } = this.props
+    const { disabled, search, name, tabIndex, required } = this.props
     const { searchQuery } = this.state
 
     if (!search) return null
@@ -1034,6 +1037,7 @@ export default class Dropdown extends Component {
         tabIndex={computedTabIndex}
         style={{ width: searchWidth }}
         ref={c => (this._search = c)}
+        required={required}
       />
     )
   }
