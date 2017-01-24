@@ -89,8 +89,7 @@ describe('Dropdown Component', () => {
   // TODO: See Dropdown cx notes
   // common.propKeyOnlyToClassName(Dropdown, 'icon')
   common.propKeyOnlyToClassName(Dropdown, 'labeled')
-  // TODO: See Dropdown cx notes
-  // common.propKeyOnlyToClassName(Dropdown, 'link item')
+  common.propKeyOnlyToClassName(Dropdown, 'item')
   common.propKeyOnlyToClassName(Dropdown, 'multiple')
   common.propKeyOnlyToClassName(Dropdown, 'search')
   common.propKeyOnlyToClassName(Dropdown, 'selection')

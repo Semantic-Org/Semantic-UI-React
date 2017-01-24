@@ -39,6 +39,7 @@ const _meta = {
  * A dropdown allows a user to select a value from a series of options.
  * @see Form
  * @see Select
+ * @see Menu
  */
 export default class Dropdown extends Component {
   static propTypes = {
@@ -136,7 +137,8 @@ export default class Dropdown extends Component {
     /** A dropdown can be labeled. */
     labeled: PropTypes.bool,
 
-    // linkItem: PropTypes.bool,
+    /** A dropdown can be formatted as a Menu item. */
+    item: PropTypes.bool,
 
     /** A dropdown can show that it is currently loading data. */
     loading: PropTypes.bool,
@@ -1140,8 +1142,8 @@ export default class Dropdown extends Component {
       floating,
       icon,
       inline,
+      item,
       labeled,
-      // linkItem,
       multiple,
       pointing,
       search,
@@ -1174,8 +1176,7 @@ export default class Dropdown extends Component {
       // TODO: the icon class is only required when a dropdown is a button
       // useKeyOnly(icon, 'icon'),
       useKeyOnly(labeled, 'labeled'),
-      // TODO: linkItem is required only when Menu child, add dynamically
-      // useKeyOnly(linkItem, 'link item'),
+      useKeyOnly(item, 'item'),
       useKeyOnly(multiple, 'multiple'),
       useKeyOnly(search, 'search'),
       useKeyOnly(selection, 'selection'),
