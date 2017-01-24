@@ -1,13 +1,13 @@
-import { ReactMouseEvents, SemanticSIZES, SemanticVERTICALALIGNMENTS } from '../..';
 import * as React from 'react';
 
-
-interface StepProps extends ReactMouseEvents<any> {
-  /** A step can be highlighted as active. */
-  active?: boolean;
+interface StepProps {
+  [key: string]: any;
 
   /** An element type to render as (string or function). */
   as?: any;
+
+  /** A step can be highlighted as active. */
+  active?: boolean;
 
   /** Primary content. */
   children?: React.ReactNode;
@@ -34,13 +34,13 @@ interface StepProps extends ReactMouseEvents<any> {
   link?: boolean;
 
   /**
-   * Called on click. When passed, the component will render as an `a`
+   * Called on click. When passed, the component will render as an `a`.
    * tag by default instead of a `div`.
    *
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
    * @param {object} data - All props.
    */
-  onClick?: React.MouseEventHandler<HTMLDivElement>;
+  onClick?: (event: React.MouseEvent<HTMLAnchorElement>, data: StepProps) => void;
 
   /** A step can show a ordered sequence of steps. Passed from StepGroup. */
   ordered?: boolean;
@@ -49,16 +49,18 @@ interface StepProps extends ReactMouseEvents<any> {
   title?: any;
 }
 
-interface StepClass extends React.ComponentClass<StepProps> {
+interface StepComponent extends React.ComponentClass<StepProps> {
   Content: typeof StepContent;
   Description: typeof StepDescription;
   Group: typeof StepGroup;
   Title: typeof StepTitle;
 }
 
-export const Step: StepClass;
+export const Step: StepComponent;
 
 interface StepContentProps {
+  [key: string]: any;
+
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -69,15 +71,17 @@ interface StepContentProps {
   className?: string;
 
   /** Shorthand for StepDescription. */
-  description?: any;
+  description?: React.ReactNode;
 
   /** Shorthand for StepTitle. */
   title?: any;
 }
 
-export const StepContent: React.ComponentClass<StepContentProps>;
+export const StepContent: React.StatelessComponent<StepContentProps>;
 
 interface StepDescriptionProps {
+  [key: string]: any;
+
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -88,12 +92,14 @@ interface StepDescriptionProps {
   className?: string;
 
   /** Shorthand for primary content. */
-  description?: any;
+  description?: React.ReactNode;
 }
 
-export const StepDescription: React.ComponentClass<StepDescriptionProps>;
+export const StepDescription: React.StatelessComponent<StepDescriptionProps>;
 
 interface StepGroupProps {
+  [key: string]: any;
+
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -113,18 +119,20 @@ interface StepGroupProps {
   ordered?: boolean;
 
   /** Steps can have different sizes. */
-  size?: SemanticSIZES;
+  size?: 'mini' | 'tiny' | 'small' | 'large' | 'big' | 'huge' | 'massive';
 
   /** A step can stack vertically only on smaller screens. */
-  stackable?: boolean;
+  stackable?: 'tablet';
 
   /** A step can be displayed stacked vertically. */
-  vertical?: SemanticVERTICALALIGNMENTS;
+  vertical?: boolean;
 }
 
-export const StepGroup: React.ComponentClass<StepGroupProps>;
+export const StepGroup: React.StatelessComponent<StepGroupProps>;
 
 interface StepTitleProps {
+  [key: string]: any;
+
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -135,7 +143,7 @@ interface StepTitleProps {
   className?: string;
 
   /** Shorthand for primary content. */
-  title?: any;
+  title?: React.ReactNode;
 }
 
-export const StepTitle: React.ComponentClass<StepTitleProps>;
+export const StepTitle: React.StatelessComponent<StepTitleProps>;
