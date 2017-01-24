@@ -49,7 +49,7 @@ export default class ComponentProps extends Component {
       .join(', ')
 
     const paramDescriptions = params.map(param => (
-      <div style={{ color: '#888' }}>
+      <div style={{ color: '#888' }} key={param.name}>
         <strong>{param.name}</strong> - {param.description}
       </div>
     ))

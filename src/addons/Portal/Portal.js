@@ -145,10 +145,12 @@ class Portal extends Component {
   state = {}
 
   componentDidMount() {
+    debug('componentDidMount()')
     this.renderPortal()
   }
 
   componentDidUpdate(prevProps, prevState) {
+    debug('componentDidUpdate()')
     // NOTE: Ideally the portal rendering would happen in the render() function
     // but React gives a warning about not being pure and suggests doing it
     // within this method.
@@ -363,13 +365,22 @@ class Portal extends Component {
     )
 
     this.portal = this.node.firstElementChild
+
     // don't take focus away from portals that close on blur
-    if (!closeOnTriggerBlur) {
+    if (!this.didInitialRender && !closeOnTriggerBlur) {
+      this.didInitialRender = true
       this.previousActiveElement = document.activeElement
-      this.portal.setAttribute('tabindex', '-1')
+
+      // add a tabIndex so we can focus it, remove outline
+      this.portal.tabIndex = -1
       this.portal.style.outline = 'none'
-      // wait a tick for things like popups which need to calculate where the popup shows up
-      setTimeout(() => this.portal && this.portal.focus())
+
+      // Wait a tick for things like popups which need to calculate where the popup shows up.
+      // Otherwise, the element is focused at its initial position, scrolling the browser, then
+      // it is immediately repositioned at the proper location.
+      setTimeout(() => {
+        if (this.portal) this.portal.focus()
+      })
     }
 
     this.portal.addEventListener('mouseleave', this.handlePortalMouseLeave)
@@ -400,6 +411,7 @@ class Portal extends Component {
 
   unmountPortal = () => {
     if (!isBrowser || !this.node) return
+    this.didInitialRender = false
 
     debug('unmountPortal()')
 
