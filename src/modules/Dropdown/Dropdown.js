@@ -417,10 +417,10 @@ export default class Dropdown extends Component {
       }
     } else if (prevState.focus && !this.state.focus) {
       debug('dropdown blurred')
-      if (!this.isMouseDown) {
-        const { closeOnBlur } = this.props
-        debug('mouse is not down, closing')
-        if (closeOnBlur) this.close()
+      const { closeOnBlur } = this.props
+      if (!this.isMouseDown && closeOnBlur) {
+        debug('mouse is not down and closeOnBlur=true, closing')
+        this.close()
       }
       document.removeEventListener('keydown', this.openOnArrow)
       document.removeEventListener('keydown', this.openOnSpace)
@@ -524,7 +524,7 @@ export default class Dropdown extends Component {
     this.open(e)
   }
 
-  selectHighlightedItem = (e) => {
+  makeSelectedItemActive = (e) => {
     const { open } = this.state
     const { multiple, onAddItem } = this.props
     const item = this.getSelectedItem()
@@ -547,7 +547,6 @@ export default class Dropdown extends Component {
     } else {
       this.setValue(value)
       this.handleChange(e, value)
-      this.close()
     }
   }
 
@@ -556,8 +555,10 @@ export default class Dropdown extends Component {
     debug(keyboardKey.getName(e))
     if (keyboardKey.getCode(e) !== keyboardKey.Enter) return
     e.preventDefault()
+    const { multiple } = this.props
 
-    this.selectHighlightedItem(e)
+    this.makeSelectedItemActive(e)
+    if (!multiple) this.close()
   }
 
   removeItemOnBackspace = (e) => {
@@ -661,11 +662,14 @@ export default class Dropdown extends Component {
 
   handleBlur = (e) => {
     debug('handleBlur()')
-    const { multiple, onBlur, selectOnBlur } = this.props
+    const { closeOnBlur, multiple, onBlur, selectOnBlur } = this.props
     // do not "blur" when the mouse is down inside of the Dropdown
     if (this.isMouseDown) return
     if (onBlur) onBlur(e, this.props)
-    if (selectOnBlur && !multiple) this.selectHighlightedItem(e)
+    if (selectOnBlur && !multiple) {
+      this.makeSelectedItemActive(e)
+      if (closeOnBlur) this.close()
+    }
     this.setState({ focus: false, searchQuery: '' })
   }
 
@@ -902,9 +906,7 @@ export default class Dropdown extends Component {
 
   scrollSelectedItemIntoView = () => {
     debug('scrollSelectedItemIntoView()')
-    // Do not access document when server side rendering
-    if (!isBrowser) return
-    const menu = document.querySelector('.ui.dropdown.active.visible .menu.visible')
+    const menu = this._dropdown.querySelector('.menu.visible')
     const item = menu.querySelector('.item.selected')
     debug(`menu: ${menu}`)
     debug(`item: ${item}`)
