@@ -1,5 +1,4 @@
 import cx from 'classnames'
-import cxd from 'classnames/dedupe'
 import _ from 'lodash'
 import React, { Component, PropTypes } from 'react'
 
@@ -254,10 +253,7 @@ class Button extends Component {
       pointing: labelPosition === 'left' ? 'right' : 'left',
     })
     if (labelElement) {
-      let classes = cx('ui', baseClasses, 'button', className)
-      if (className && className.indexOf('disabled') !== -1) {
-        classes = cxd(classes, { disabled: false })
-      }
+      const classes = cx('ui', baseClasses, 'button', className)
       const containerClasses = cx('ui', labeledClasses, 'button', className, wrapperClasses)
       debug('render label:', { classes, containerClasses }, this.props)
 

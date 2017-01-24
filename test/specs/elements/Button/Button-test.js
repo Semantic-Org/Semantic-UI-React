@@ -104,15 +104,10 @@ describe('Button', () => {
       shallow(<Button label='hi' />)
         .should.have.className('labeled')
     })
-    it('adds the disabled className to the root element only when the disabled attribute is set', () => {
-      const wrapper = shallow(<Button label='foo' disabled />)
-      wrapper.should.have.className('disabled')
-      wrapper.children().forEach(child => child.should.not.have.className('disabled'))
-    })
-    it('adds the disabled className to the root element only when the disabled className is set', () => {
-      const wrapper = shallow(<Button label='foo' className='disabled' />)
-      wrapper.should.have.className('disabled')
-      wrapper.children().forEach(child => child.should.not.have.className('disabled'))
+    it('contains children without disabled class when disabled attribute is set', () => {
+      const wrapper = shallow(<Button label='hi' disabled />)
+      wrapper.find('Label').should.not.have.className('disabled')
+      wrapper.find('button').should.not.have.className('disabled')
     })
     it('creates a basic pointing label', () => {
       shallow(<Button label='foo' />)
