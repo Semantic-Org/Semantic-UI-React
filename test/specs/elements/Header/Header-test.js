@@ -1,9 +1,11 @@
 import faker from 'faker'
+import _ from 'lodash'
 import React from 'react'
 
 import Header from 'src/elements/Header/Header'
 import HeaderContent from 'src/elements/Header/HeaderContent'
 import HeaderSubheader from 'src/elements/Header/HeaderSubheader'
+import { SUI } from 'src/lib'
 import * as common from 'test/specs/commonTests'
 
 describe('Header', () => {
@@ -30,8 +32,8 @@ describe('Header', () => {
 
   common.propKeyOrValueAndKeyToClassName(Header, 'attached', ['top', 'bottom'])
 
-  common.propValueOnlyToClassName(Header, 'color')
-  common.propValueOnlyToClassName(Header, 'size')
+  common.propValueOnlyToClassName(Header, 'color', SUI.COLORS)
+  common.propValueOnlyToClassName(Header, 'size', _.without(SUI.SIZES, 'big', 'massive'))
 
   describe('icon', () => {
     it('adds an icon class when true', () => {

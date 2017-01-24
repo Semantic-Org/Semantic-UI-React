@@ -148,7 +148,7 @@ Segment.propTypes = {
   tertiary: PropTypes.bool,
 
   /** Formats content to be aligned as part of a vertical group. */
-  textAlign: PropTypes.oneOf(SUI.TEXT_ALIGNMENTS),
+  textAlign: PropTypes.oneOf(_.without(SUI.TEXT_ALIGNMENTS, 'justified')),
 
   /** Formats content to be aligned vertically. */
   vertical: PropTypes.bool,

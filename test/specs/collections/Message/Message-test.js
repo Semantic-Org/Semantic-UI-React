@@ -1,10 +1,11 @@
+import _ from 'lodash'
 import React from 'react'
 
 import Message from 'src/collections/Message/Message'
 import MessageContent from 'src/collections/Message/MessageContent'
 import MessageHeader from 'src/collections/Message/MessageHeader'
 import MessageList from 'src/collections/Message/MessageList'
-
+import { SUI } from 'src/lib'
 import * as common from 'test/specs/commonTests'
 import { sandbox } from 'test/utils'
 
@@ -45,8 +46,8 @@ describe('Message', () => {
 
   common.propKeyOrValueAndKeyToClassName(Message, 'attached', ['bottom'])
 
-  common.propValueOnlyToClassName(Message, 'size')
-  common.propValueOnlyToClassName(Message, 'color')
+  common.propValueOnlyToClassName(Message, 'color', SUI.COLORS)
+  common.propValueOnlyToClassName(Message, 'size', _.without(SUI.SIZES, 'medium'))
 
   describe('header', () => {
     it('adds MessageContent when defined', () => {

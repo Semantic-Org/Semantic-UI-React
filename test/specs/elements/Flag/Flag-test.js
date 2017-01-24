@@ -7,8 +7,10 @@ const requiredProps = { name: 'us' }
 
 describe('Flag', () => {
   common.isConformant(Flag, { requiredProps })
+
   common.implementsCreateMethod(Flag)
-  common.propValueOnlyToClassName(Flag, 'name', { requiredProps })
+
+  common.propValueOnlyToClassName(Flag, 'name', [], { requiredProps })
 
   it('renders an <i /> element', () => {
     shallow(<Flag {...requiredProps} />)

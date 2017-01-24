@@ -1,17 +1,22 @@
+import _ from 'lodash'
 import React from 'react'
-import * as common from 'test/specs/commonTests'
+
+import { SUI } from 'src/lib'
 import StatisticGroup from 'src/views/Statistic/StatisticGroup'
+import * as common from 'test/specs/commonTests'
 
 describe('StatisticGroup', () => {
   common.isConformant(StatisticGroup)
-  common.implementsWidthProp(StatisticGroup, { propKey: 'widths', canEqual: false })
   common.hasUIClassName(StatisticGroup)
   common.rendersChildren(StatisticGroup)
 
-  common.propValueOnlyToClassName(StatisticGroup, 'color')
+  common.implementsWidthProp(StatisticGroup, { propKey: 'widths', canEqual: false })
+
   common.propKeyOnlyToClassName(StatisticGroup, 'horizontal')
   common.propKeyOnlyToClassName(StatisticGroup, 'inverted')
-  common.propValueOnlyToClassName(StatisticGroup, 'size')
+
+  common.propValueOnlyToClassName(StatisticGroup, 'color', SUI.COLORS)
+  common.propValueOnlyToClassName(StatisticGroup, 'size', _.without(SUI.SIZES, 'big', 'massive', 'medium'))
 
   it('renders an div element', () => {
     shallow(<StatisticGroup />)

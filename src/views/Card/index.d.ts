@@ -1,4 +1,4 @@
-import { ReactMouseEvents, SemanticCOLORS, SemanticWIDTHSNUMBER, SemanticWIDTHSSTRING } from '../..';
+import { ReactMouseEvents, SemanticCOLORS, SemanticWIDTHS } from '../..';
 import * as React from 'react';
 
 interface CardProps extends ReactMouseEvents<HTMLElement> {
@@ -120,7 +120,7 @@ interface CardGroupProps {
   items?: Array<any>;
 
   /** A group of cards can set how many cards should exist in a row */
-  itemsPerRow?: SemanticWIDTHSNUMBER | SemanticWIDTHSSTRING | number;
+  itemsPerRow?: SemanticWIDTHS;
 
   /** A group of cards can automatically stack rows to a single columns on mobile devices */
   stackable?: boolean;

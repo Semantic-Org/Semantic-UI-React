@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import React from 'react'
 import { findDOMNode } from 'react-dom'
 
@@ -11,6 +12,7 @@ import FormInput from 'src/collections/Form/FormInput'
 import FormRadio from 'src/collections/Form/FormRadio'
 import FormSelect from 'src/collections/Form/FormSelect'
 import FormTextArea from 'src/collections/Form/FormTextArea'
+import { SUI } from 'src/lib'
 import * as common from 'test/specs/commonTests'
 import { consoleUtil, sandbox } from 'test/utils'
 
@@ -36,7 +38,7 @@ describe('Form', () => {
   common.propKeyOnlyToClassName(Form, 'success')
   common.propKeyOnlyToClassName(Form, 'warning')
 
-  common.propValueOnlyToClassName(Form, 'size')
+  common.propValueOnlyToClassName(Form, 'size', _.without(SUI.SIZES, 'medium'))
 
   common.implementsWidthProp(Form, { propKey: 'widths' })
 

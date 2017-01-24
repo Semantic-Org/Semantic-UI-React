@@ -1,10 +1,9 @@
 import { LabelProps } from '../Label';
 import {
-    SemanticFLOATS,
-    SemanticSIZES,
-    SemanticVERTICALALIGNMENTS,
-    SemanticWIDTHSNUMBER,
-    SemanticWIDTHSSTRING
+  SemanticFLOATS,
+  SemanticSIZES,
+  SemanticVERTICALALIGNMENTS,
+  SemanticWIDTHS
 } from '../..';
 import * as React from 'react';
 
@@ -72,7 +71,7 @@ export interface ImageProps {
   verticalAlign?: SemanticVERTICALALIGNMENTS;
 
   /** The img element width attribute. */
-  width?: number|SemanticWIDTHSSTRING| SemanticWIDTHSNUMBER;
+  width?: SemanticWIDTHS;
 
   /** An image can render wrapped in a `div.ui.image` as alternative HTML markup. */
   wrapped?: boolean;

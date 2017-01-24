@@ -5,8 +5,7 @@ import {
   SemanticSOCIAL,
   SemanticFLOATS,
   SemanticSIZES,
-  SemanticWIDTHSSTRING,
-  SemanticWIDTHSNUMBER
+  SemanticWIDTHS
 } from '../../index';
 
 export type SemanticButtonLABELPOSITIONS = 'right' | 'left';
@@ -147,7 +146,7 @@ interface GroupProps {
   size?: SemanticSIZES;
 
   /** Groups can have their widths divided evenly */
-  widths?: number | SemanticWIDTHSSTRING | SemanticWIDTHSNUMBER;
+  widths?: SemanticWIDTHS;
 }
 
 export const ButtonGroup: React.ComponentClass<GroupProps>;

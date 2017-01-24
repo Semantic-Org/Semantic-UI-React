@@ -1,4 +1,5 @@
 import ImageGroup from 'src/elements/Image/ImageGroup'
+import { SUI } from 'src/lib'
 import * as common from 'test/specs/commonTests'
 
 describe('ImageGroup', () => {
@@ -6,5 +7,5 @@ describe('ImageGroup', () => {
   common.hasUIClassName(ImageGroup)
   common.rendersChildren(ImageGroup)
 
-  common.propValueOnlyToClassName(ImageGroup, 'size')
+  common.propValueOnlyToClassName(ImageGroup, 'size', SUI.SIZES)
 })

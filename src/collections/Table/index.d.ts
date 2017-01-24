@@ -1,14 +1,13 @@
-import {
-    SemanticCOLORS,
-    SemanticSIZES,
-    SemanticTEXTALIGNMENTS,
-    SemanticVERTICALALIGNMENTS,
-    SemanticWIDTHSNUMBER,
-    SemanticWIDTHSSTRING
-} from '../..';
 import * as React from 'react';
+import {
+  SemanticCOLORS,
+  SemanticVERTICALALIGNMENTS,
+  SemanticWIDTHS
+} from '../..';
 
 interface TableProps {
+  [key: string]: any;
+
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -19,7 +18,7 @@ interface TableProps {
   basic?: boolean | 'very';
 
   /** A table may be divided each row into separate cells. */
-  celled?: boolean|'internally';
+  celled?: boolean | 'internally';
 
   /** Primary content. */
   children?: React.ReactNode;
@@ -34,7 +33,7 @@ interface TableProps {
   color?: SemanticCOLORS;
 
   /** A table can specify its column count to divide its content evenly. */
-  columns?: SemanticWIDTHSNUMBER | SemanticWIDTHSSTRING | number;
+  columns?: SemanticWIDTHS;
 
   /** A table may sometimes need to be more compact to make more rows visible at a time. */
   compact?: boolean | 'very';
@@ -43,7 +42,7 @@ interface TableProps {
   definition?: boolean;
 
   /**
-   * A table can use fixed a special faster form of table rendering that does not resize table cells based on content
+   * A table can use fixed a special faster form of table rendering that does not resize table cells based on content.
    */
   fixed?: boolean;
 
@@ -63,7 +62,7 @@ interface TableProps {
    * A function that takes (data, index) and returns shorthand for a TableRow
    * to be placed within Table.Body.
    */
-  renderBodyRow?: ()=>void;  // TODO - check;
+  renderBodyRow?: (data: any, index: number) => any;
 
   /** A table can have its rows appear selectable. */
   selectable?: boolean;
@@ -72,7 +71,10 @@ interface TableProps {
   singleLine?: boolean;
 
   /** A table can also be small or large. */
-  size?: SemanticSIZES;
+  size?: 'small' | 'large';
+
+  /** A table may allow a user to sort contents by clicking on a table header. */
+  sortable?: boolean;
 
   /** A table can specify how it stacks table content responsively. */
   stackable?: boolean;
@@ -84,13 +86,13 @@ interface TableProps {
   structured?: boolean;
 
   /** Data to be passed to the renderBodyRow function. */
-  tableData?: any;
+  tableData?: Array<any>;
 
   /** A table can specify how it stacks table content responsively. */
   unstackable?: boolean;
 }
 
-interface TableClass extends React.ComponentClass<TableProps> {
+interface TableComponent extends React.StatelessComponent<TableProps> {
   Body: typeof TableBody;
   Cell: typeof TableCell;
   Footer: typeof TableFooter;
@@ -99,9 +101,11 @@ interface TableClass extends React.ComponentClass<TableProps> {
   Row: typeof TableRow;
 }
 
-export const Table: TableClass;
+export const Table: TableComponent;
 
 interface TableBodyProps {
+  [key: string]: any;
+
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -112,51 +116,52 @@ interface TableBodyProps {
   className?: string;
 }
 
-export const TableBody: React.ComponentClass<TableBodyProps>;
+export const TableBody: React.StatelessComponent<TableBodyProps>;
 
 interface TableCellProps {
+  [key: string]: any;
+
+  /** An element type to render as (string or function). */
+  as?: any;
 
   /** A cell can be active or selected by a user. */
   active?: boolean;
 
-  /** An element type to render as (string or function). */
-  as ?: any;
-
   /** Primary content. */
-  children ?: React.ReactNode;
+  children?: React.ReactNode;
 
   /** Additional classes. */
   className?: string;
 
   /** A table can be collapsing, taking up only as much space as its rows. */
-  collapsing ?: boolean;
+  collapsing?: boolean;
 
   /** Shorthand for primary content. */
-  content ?: any;
+  content?: React.ReactNode;
 
   /** A cell can be disabled. */
-  disabled ?: boolean;
+  disabled?: boolean;
 
   /** A cell may call attention to an error or a negative value. */
-  error ?: boolean;
+  error?: boolean;
 
   /** Add an Icon by name, props object, or pass an <Icon /> */
-  icon ?: any;
+  icon?: any;
 
   /** A cell may let a user know whether a value is bad. */
-  negative ?: boolean;
+  negative?: boolean;
 
   /** A cell may let a user know whether a value is good. */
-  positive ?: boolean;
+  positive?: boolean;
 
   /** A cell can be selectable. */
   selectable?: boolean;
 
   /** A cell can specify that its contents should remain on a single line and not wrap. */
-  singleLine ?: boolean;
+  singleLine?: boolean;
 
   /** A table cell can adjust its text alignment. */
-  textAlign?: SemanticTEXTALIGNMENTS;
+  textAlign?: 'center' | 'left' | 'right';
 
   /** A table cell can adjust its text alignment. */
   verticalAlign?: SemanticVERTICALALIGNMENTS;
@@ -165,19 +170,19 @@ interface TableCellProps {
   warning?: boolean;
 
   /** A table can specify the width of individual columns independently. */
-  width?: number | SemanticWIDTHSSTRING | SemanticWIDTHSNUMBER;
+  width?: SemanticWIDTHS;
 }
 
-export const TableCell: React.ComponentClass<TableCellProps>;
+export const TableCell: React.StatelessComponent<TableCellProps>;
 
-interface TableFooterProps {
-  /** An element type to render as (string or function). */
-  as?: any;
+interface TableFooterProps extends TableHeaderProps {
 }
 
-export const TableFooter: React.ComponentClass<TableFooterProps>;
+export const TableFooter: React.StatelessComponent<TableFooterProps>;
 
 interface TableHeaderProps {
+  [key: string]: any;
+
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -191,22 +196,22 @@ interface TableHeaderProps {
   fullWidth?: boolean;
 }
 
-export const TableHeader: React.ComponentClass<TableHeaderProps>;
+export const TableHeader: React.StatelessComponent<TableHeaderProps>;
 
-interface TableHeaderCellProps {
-  /** An element type to render as (string or function). */
-  as?: any;
+interface TableHeaderCellProps extends TableCellProps {
+  sorted: 'ascending' | 'descending';
 }
 
-export const TableHeaderCell: React.ComponentClass<TableHeaderCellProps>;
+export const TableHeaderCell: React.StatelessComponent<TableHeaderCellProps>;
 
 interface TableRowProps {
+  [key: string]: any;
+
+  /** An element type to render as (string or function). */
+  as?: any;
 
   /** A row can be active or selected by a user. */
   active?: boolean;
-
-  /** An element type to render as (string or function). */
-  as ?: any;
 
   /** An element type to render as (string or function). */
   cellAs?: any;
@@ -215,25 +220,25 @@ interface TableRowProps {
   cells?: any;
 
   /** Primary content. */
-  children ?: React.ReactNode;
+  children?: React.ReactNode;
 
   /** Additional classes. */
   className?: string;
 
   /** A row can be disabled. */
-  disabled ?: boolean;
+  disabled?: boolean;
 
   /** A row may call attention to an error or a negative value. */
-  error ?: boolean;
+  error?: boolean;
 
   /** A row may let a user know whether a value is bad. */
-  negative ?: boolean;
+  negative?: boolean;
 
   /** A row may let a user know whether a value is good. */
-  positive ?: boolean;
+  positive?: boolean;
 
   /** A table row can adjust its text alignment. */
-  textAlign?: SemanticTEXTALIGNMENTS;
+  textAlign?: 'center' | 'left' | 'right';
 
   /** A table row can adjust its vertical alignment. */
   verticalAlign?: SemanticVERTICALALIGNMENTS;
@@ -242,4 +247,4 @@ interface TableRowProps {
   warning?: boolean;
 }
 
-export const TableRow: React.ComponentClass<TableRowProps>;
+export const TableRow: React.StatelessComponent<TableRowProps>;

@@ -1,5 +1,6 @@
-import * as common from 'test/specs/commonTests'
 import GridRow from 'src/collections/Grid/GridRow'
+import { SUI } from 'src/lib'
+import * as common from 'test/specs/commonTests'
 
 describe('GridRow', () => {
   common.isConformant(GridRow)
@@ -12,7 +13,7 @@ describe('GridRow', () => {
   common.propKeyOnlyToClassName(GridRow, 'divided')
   common.propKeyOnlyToClassName(GridRow, 'stretched')
 
-  common.propValueOnlyToClassName(GridRow, 'color')
+  common.propValueOnlyToClassName(GridRow, 'color', SUI.COLORS)
 
   common.implementsTextAlignProp(GridRow)
   common.implementsVerticalAlignProp(GridRow)
