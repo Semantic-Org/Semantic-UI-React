@@ -1,8 +1,7 @@
 export type InputType = 'color' | 'date' | 'datetime' | 'datetime-local' | 'email' | 'number' | 'range' | 'search' | 'select' | 'password' | 'tel' | 'text' | 'time' | 'url' | 'week';
 
-export type SemanticCOLORS = 'red' | 'orange' | 'yellow' | 'olive' | 'green' | 'teal' | 'blue' | 'violet' | 'purple' | 'pink' | 'brown' | 'grey' | 'black' | 'twitter' | 'google plus' | 'facebook';
-
-export type SemanticSOCIAL = 'facebook' | 'google plus' | 'vk' | 'twitter' | 'linkedin' | 'instagram' | 'youtube';
+export type SemanticCOLORS = 'red' | 'orange' | 'yellow' | 'olive' |'green' | 'teal' | 'blue' | 'violet' | 'purple' |
+  'pink' | 'brown' | 'grey' | 'black';
 
 export type SemanticROTATION = 'clockwise' | 'counterclockwise';
 
