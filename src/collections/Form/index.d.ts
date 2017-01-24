@@ -26,6 +26,9 @@ interface FormProps {
   /** Automatically show any error Message children */
   error?: boolean;
 
+  /** A form can have its color inverted for contrast */
+  inverted?: boolean;
+
   /** Automatically show a loading indicator */
   loading?: boolean;
 
