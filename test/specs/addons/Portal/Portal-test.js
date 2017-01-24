@@ -408,9 +408,9 @@ describe('Portal', () => {
       const trigger = <button>button</button>
       const delay = 100
       wrapperMount(
-        <Portal trigger={trigger} defaultOpen closeOnTriggerMouseLeave
-          closeOnPortalMouseLeave mouseLeaveDelay={delay}
-        ><p>Hi</p></Portal>
+        <Portal trigger={trigger} defaultOpen closeOnTriggerMouseLeave closeOnPortalMouseLeave mouseLeaveDelay={delay}>
+          <p>Hi</p>
+        </Portal>
       )
 
       wrapper.find('button').simulate('mouseleave')
@@ -511,7 +511,7 @@ describe('Portal', () => {
   })
 
   describe('focus', () => {
-    it('should take focus when mounted', (done) => {
+    it('should take focus on first render', (done) => {
       attachTo = document.createElement('div')
       document.body.appendChild(attachTo)
       const opts = { attachTo }
@@ -534,6 +534,26 @@ describe('Portal', () => {
         expect(document.activeElement).to.not.equal(portalNode)
         expect(portalNode.getAttribute('tabindex')).to.not.equal('-1')
         expect(portalNode.style.outline).to.not.equal('none')
+        done()
+      })
+    })
+    it('should not take focus on subsequent renders', (done) => {
+      attachTo = document.createElement('div')
+      document.body.appendChild(attachTo)
+      const opts = { attachTo }
+      const portal = wrapperMount(<Portal defaultOpen><input data-focus-me /></Portal>, opts)
+
+      setTimeout(() => {
+        const portalNode = portal.node.node.firstElementChild
+        expect(document.activeElement).to.equal(portalNode)
+
+        const input = document.querySelector('input[data-focus-me]')
+        input.focus()
+        expect(document.activeElement).to.equal(input)
+
+        portal.render()
+        expect(document.activeElement).to.equal(input)
+
         done()
       })
     })
