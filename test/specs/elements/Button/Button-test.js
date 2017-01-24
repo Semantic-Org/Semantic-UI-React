@@ -12,8 +12,8 @@ const syntheticEvent = { preventDefault: () => undefined }
 
 describe('Button', () => {
   common.isConformant(Button)
-  common.hasUIClassName(Button)
   common.hasSubComponents(Button, [ButtonContent, ButtonGroup, ButtonOr])
+  common.hasUIClassName(Button)
   common.rendersChildren(Button)
 
   common.implementsCreateMethod(Button)
