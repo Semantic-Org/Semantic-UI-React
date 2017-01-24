@@ -1,8 +1,19 @@
 import React from 'react'
-import { Container, Segment, Input, Button, Header, Image, Form, Message } from 'semantic-ui-react'
+import {
+  Button,
+  Container,
+  Divider,
+  Form,
+  Header,
+  Image,
+  Input,
+  Message,
+  Segment,
+} from 'semantic-ui-react'
 
 const LoginForm = () => (
-    <Container as='div'>
+    <Container text>
+      <Divider hidden section />
       <Header as='h2' color='teal' textAlign='center'>
         <Image src='http://react.semantic-ui.com/logo.png' />
         {' '}Log-in to your account
