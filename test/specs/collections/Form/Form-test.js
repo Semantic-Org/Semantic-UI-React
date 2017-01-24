@@ -32,8 +32,9 @@ describe('Form', () => {
   ])
   common.rendersChildren(Form)
 
-  common.propKeyOnlyToClassName(Form, 'loading')
   common.propKeyOnlyToClassName(Form, 'error')
+  common.propKeyOnlyToClassName(Form, 'inverted')
+  common.propKeyOnlyToClassName(Form, 'loading')
   common.propKeyOnlyToClassName(Form, 'reply')
   common.propKeyOnlyToClassName(Form, 'success')
   common.propKeyOnlyToClassName(Form, 'warning')

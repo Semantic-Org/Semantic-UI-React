@@ -195,6 +195,9 @@ export default class Form extends Component {
     /** Automatically show any error Message children */
     error: PropTypes.bool,
 
+    /** A form can have its color inverted for contrast */
+    inverted: PropTypes.bool,
+
     /** Automatically show a loading indicator */
     loading: PropTypes.bool,
 
@@ -252,6 +255,7 @@ export default class Form extends Component {
       children,
       className,
       error,
+      inverted,
       loading,
       reply,
       size,
@@ -264,6 +268,7 @@ export default class Form extends Component {
       'ui',
       size,
       useKeyOnly(error, 'error'),
+      useKeyOnly(inverted, 'inverted'),
       useKeyOnly(loading, 'loading'),
       useKeyOnly(reply, 'reply'),
       useKeyOnly(success, 'success'),

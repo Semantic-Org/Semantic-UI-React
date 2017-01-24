@@ -6,8 +6,13 @@ const FormFormVariationsExamples = () => (
   <ExampleSection title='Form Variations'>
     <ComponentExample
       title='Size'
-      description='A form can vary in size'
+      description='A form can vary in size.'
       examplePath='collections/Form/Variations/FormExampleSize'
+    />
+    <ComponentExample
+      title='Inverted'
+      description='A form on a dark background may have to invert its color scheme.'
+      examplePath='collections/Form/Variations/FormExampleInverted'
     />
   </ExampleSection>
 )
