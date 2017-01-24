@@ -35,6 +35,7 @@ const _meta = {
 
 /**
  * A menu displays grouped navigation actions.
+ * @see Dropdown
  */
 class Menu extends Component {
   static propTypes = {
