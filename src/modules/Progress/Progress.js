@@ -10,7 +10,7 @@ import {
   SUI,
   useKeyOnly,
   useValueAndKey,
-} from '../../lib'
+} from '../../lib/index'
 
 function Progress(props) {
   const {

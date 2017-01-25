@@ -116,7 +116,7 @@ function Button(props) {
 Stateful components should be classes:
 
 ```js
-import { AutoControlledComponent as Component } from '../../lib'
+import { AutoControlledComponent as Component } from '../../lib/index'
 
 class Dropdown extends Component {
   // ...
@@ -132,7 +132,7 @@ Every component has a static property called `_meta`. This object defines the co
 Here's an example `_meta` object:
 
 ```js
-import { META } from '../../lib'
+import { META } from '../../lib/index'
 
 const _meta = {
   name: 'MyComponent',
@@ -237,7 +237,7 @@ Use [`classNameBuilders`][4] to extract the prop values and build up the `classN
 
 ```js
 import cx from 'classnames'
-import { useKeyOnly, useValueAndKey, useKeyOrValueAndKey } from '../../lib'
+import { useKeyOnly, useValueAndKey, useKeyOrValueAndKey } from '../../lib/index'
 
 function Segment({ size, color, basic, floated, padded }) {
   const classes = cx(

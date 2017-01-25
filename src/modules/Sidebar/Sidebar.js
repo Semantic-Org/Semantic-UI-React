@@ -8,7 +8,7 @@ import {
   getUnhandledProps,
   getElementType,
   useKeyOnly,
-} from '../../lib'
+} from '../../lib/index'
 import SidebarPushable from './SidebarPushable'
 import SidebarPusher from './SidebarPusher'
 

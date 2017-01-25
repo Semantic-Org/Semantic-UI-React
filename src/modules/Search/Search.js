@@ -15,8 +15,8 @@ import {
   SUI,
   useKeyOnly,
   useValueAndKey,
-} from '../../lib'
-import Input from '../../elements/Input'
+} from '../../lib/index'
+import Input from '../../elements/Input/Input'
 
 import SearchCategory from './SearchCategory'
 import SearchResult from './SearchResult'

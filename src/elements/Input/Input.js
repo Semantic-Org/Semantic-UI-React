@@ -12,10 +12,10 @@ import {
   SUI,
   useKeyOnly,
   useValueAndKey,
-} from '../../lib'
-import Button from '../../elements/Button'
-import Icon from '../../elements/Icon'
-import Label from '../../elements/Label'
+} from '../../lib/index'
+import Button from '../../elements/Button/Button'
+import Icon from '../../elements/Icon/Icon'
+import Label from '../../elements/Label/Label'
 
 export const htmlInputPropNames = [
   // REACT

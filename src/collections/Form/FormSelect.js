@@ -5,8 +5,8 @@ import {
   getElementType,
   getUnhandledProps,
   META,
-} from '../../lib'
-import Select from '../../addons/Select'
+} from '../../lib/index'
+import Select from '../../addons/Select/Select'
 
 import FormField from './FormField'
 

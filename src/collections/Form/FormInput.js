@@ -5,8 +5,8 @@ import {
   getElementType,
   getUnhandledProps,
   META,
-} from '../../lib'
-import Input from '../../elements/Input'
+} from '../../lib/index'
+import Input from '../../elements/Input/Input'
 
 import FormField from './FormField'
 

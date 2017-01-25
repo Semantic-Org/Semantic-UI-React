@@ -9,7 +9,7 @@ import {
   META,
   useKeyOnly,
   useKeyOrValueAndKey,
-} from '../../lib'
+} from '../../lib/index'
 import Item from './Item'
 
 /**

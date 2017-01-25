@@ -1,5 +1,5 @@
 import { SemanticPOSITIONING, SemanticSIZES } from '../..';
-import { PortalProps } from '../../addons/Portal';
+import { PortalProps } from '../../addons/Portal/Portal';
 
 export type PopupPropOn = 'hover' | 'click' | 'focus';
 

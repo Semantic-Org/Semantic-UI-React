@@ -10,8 +10,8 @@ import {
   SUI,
   useKeyOnly,
   useKeyOrValueAndKey,
-} from '../../lib'
-import Portal from '../../addons/Portal'
+} from '../../lib/index'
+import Portal from '../../addons/Portal/Portal'
 import PopupContent from './PopupContent'
 import PopupHeader from './PopupHeader'
 

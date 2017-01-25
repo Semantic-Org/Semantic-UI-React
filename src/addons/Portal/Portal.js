@@ -9,7 +9,7 @@ import {
   isBrowser,
   makeDebugger,
   META,
-} from '../../lib'
+} from '../../lib/index'
 
 const debug = makeDebugger('portal')
 

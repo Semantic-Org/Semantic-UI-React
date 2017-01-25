@@ -8,7 +8,7 @@ import {
   getElementType,
   getUnhandledProps,
   META,
-} from '../../lib'
+} from '../../lib/index'
 
 function MessageHeader(props) {
   const { children, className, content } = props

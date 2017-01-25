@@ -9,7 +9,7 @@ import {
   SUI,
   useKeyOnly,
   useTextAlignProp,
-} from '../../lib'
+} from '../../lib/index'
 
 /**
  * A container limits content to a maximum width.

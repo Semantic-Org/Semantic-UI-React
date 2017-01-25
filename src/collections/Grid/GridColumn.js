@@ -12,7 +12,7 @@ import {
   useValueAndKey,
   useVerticalAlignProp,
   useWidthProp,
-} from '../../lib'
+} from '../../lib/index'
 
 /**
  * A column sub-component for Grid.

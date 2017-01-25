@@ -10,7 +10,7 @@ import {
   SUI,
   useKeyOnly,
   useKeyOrValueAndKey,
-} from '../../lib'
+} from '../../lib/index'
 
 /**
  * A loader alerts a user to wait for an activity to complete.

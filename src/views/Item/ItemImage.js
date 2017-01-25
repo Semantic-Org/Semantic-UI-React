@@ -3,8 +3,8 @@ import React from 'react'
 import {
   META,
   getUnhandledProps,
-} from '../../lib'
-import Image from '../../elements/Image'
+} from '../../lib/index'
+import Image from '../../elements/Image/Image'
 
 /**
  * An item can contain an image

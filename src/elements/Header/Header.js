@@ -12,9 +12,9 @@ import {
   useTextAlignProp,
   useKeyOrValueAndKey,
   useKeyOnly,
-} from '../../lib'
-import Icon from '../../elements/Icon'
-import Image from '../../elements/Image'
+} from '../../lib/index'
+import Icon from '../../elements/Icon/Icon'
+import Image from '../../elements/Image/Image'
 
 import HeaderSubheader from './HeaderSubheader'
 import HeaderContent from './HeaderContent'

@@ -1,4 +1,4 @@
-import { ButtonProps } from '../../elements/Button';
+import { ButtonProps } from '../../elements/Button/Button';
 import {
     ReactFocusEvents,
     ReactFormEvents,

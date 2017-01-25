@@ -11,7 +11,7 @@ import {
   makeDebugger,
   META,
   useKeyOnly,
-} from '../../lib'
+} from '../../lib/index'
 const debug = makeDebugger('checkbox')
 
 /**

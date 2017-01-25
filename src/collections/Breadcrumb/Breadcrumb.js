@@ -8,7 +8,7 @@ import {
   getElementType,
   META,
   SUI,
-} from '../../lib'
+} from '../../lib/index'
 import BreadcrumbDivider from './BreadcrumbDivider'
 import BreadcrumbSection from './BreadcrumbSection'
 

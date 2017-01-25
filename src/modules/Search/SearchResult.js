@@ -8,7 +8,7 @@ import {
   getUnhandledProps,
   META,
   useKeyOnly,
-} from '../../lib'
+} from '../../lib/index'
 
 // Note: You technically only need the 'content' wrapper when there's an
 // image. However, optionally wrapping it makes this function a lot more

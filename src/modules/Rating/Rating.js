@@ -10,7 +10,7 @@ import {
   META,
   SUI,
   useKeyOnly,
-} from '../../lib'
+} from '../../lib/index'
 import RatingIcon from './RatingIcon'
 
 const _meta = {

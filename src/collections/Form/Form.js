@@ -11,7 +11,7 @@ import {
   SUI,
   useKeyOnly,
   useWidthProp,
-} from '../../lib'
+} from '../../lib/index'
 import FormButton from './FormButton'
 import FormCheckbox from './FormCheckbox'
 import FormDropdown from './FormDropdown'

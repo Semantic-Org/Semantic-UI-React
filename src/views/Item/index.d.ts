@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ImageProps } from '../../elements/Image';
+import { ImageProps } from '../../elements/Image/Image';
 import { SemanticVERTICALALIGNMENTS } from '../..';
 
 interface ItemProps {

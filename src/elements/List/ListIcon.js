@@ -7,7 +7,7 @@ import {
   META,
   SUI,
   useVerticalAlignProp,
-} from '../../lib'
+} from '../../lib/index'
 import Icon from '../Icon/Icon'
 
 function ListIcon(props) {

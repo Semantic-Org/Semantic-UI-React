@@ -13,7 +13,7 @@ import {
   useKeyOnly,
   useKeyOrValueAndKey,
   useValueAndKey,
-} from '../../lib'
+} from '../../lib/index'
 import Icon from '../Icon/Icon'
 import Label from '../Label/Label'
 import ButtonContent from './ButtonContent'

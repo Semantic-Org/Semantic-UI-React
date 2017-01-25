@@ -9,7 +9,7 @@ import {
   useWidthProp,
   useKeyOnly,
   customPropTypes,
-} from '../../lib'
+} from '../../lib/index'
 
 /**
  * A set of fields can appear grouped together

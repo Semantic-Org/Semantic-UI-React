@@ -8,7 +8,7 @@ import {
   getUnhandledProps,
   META,
   useKeyOnly,
-} from '../../lib'
+} from '../../lib/index'
 
 function StatisticValue(props) {
   const { children, className, text, value } = props

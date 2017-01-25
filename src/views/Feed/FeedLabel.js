@@ -8,8 +8,8 @@ import {
   getElementType,
   getUnhandledProps,
   META,
-} from '../../lib'
-import Icon from '../../elements/Icon'
+} from '../../lib/index'
+import Icon from '../../elements/Icon/Icon'
 
 function FeedLabel(props) {
   const { children, className, content, icon, image } = props

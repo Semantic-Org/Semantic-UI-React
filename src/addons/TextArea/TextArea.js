@@ -4,7 +4,7 @@ import {
   getElementType,
   getUnhandledProps,
   META,
-} from '../../lib'
+} from '../../lib/index'
 
 /**
  * A TextArea can be used to allow for extended user input.

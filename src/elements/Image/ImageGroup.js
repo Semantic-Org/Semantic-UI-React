@@ -7,7 +7,7 @@ import {
   getUnhandledProps,
   META,
   SUI,
-} from '../../lib'
+} from '../../lib/index'
 
 /**
  * A group of images.

@@ -12,7 +12,7 @@ import {
   useKeyOrValueAndKey,
   useTextAlignProp,
   useValueAndKey,
-} from '../../lib'
+} from '../../lib/index'
 import SegmentGroup from './SegmentGroup'
 
 /**

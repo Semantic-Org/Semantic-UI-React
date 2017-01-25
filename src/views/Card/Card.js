@@ -9,8 +9,8 @@ import {
   META,
   SUI,
   useKeyOnly,
-} from '../../lib'
-import Image from '../../elements/Image'
+} from '../../lib/index'
+import Image from '../../elements/Image/Image'
 
 import CardContent from './CardContent'
 import CardDescription from './CardDescription'

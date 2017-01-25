@@ -12,7 +12,7 @@ import {
   useKeyOrValueAndKey,
   useValueAndKey,
   useVerticalAlignProp,
-} from '../../lib'
+} from '../../lib/index'
 import ListContent from './ListContent'
 import ListDescription from './ListDescription'
 import ListHeader from './ListHeader'

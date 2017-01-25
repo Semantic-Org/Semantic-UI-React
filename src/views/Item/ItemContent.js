@@ -10,7 +10,7 @@ import {
   META,
   SUI,
   useVerticalAlignProp,
-} from '../../lib'
+} from '../../lib/index'
 import ItemHeader from './ItemHeader'
 import ItemDescription from './ItemDescription'
 import ItemExtra from './ItemExtra'

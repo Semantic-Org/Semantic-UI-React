@@ -8,8 +8,8 @@ import {
   getElementType,
   META,
   useKeyOnly,
-} from '../../lib'
-import Icon from '../../elements/Icon'
+} from '../../lib/index'
+import Icon from '../../elements/Icon/Icon'
 
 import AccordionContent from './AccordionContent'
 import AccordionTitle from './AccordionTitle'

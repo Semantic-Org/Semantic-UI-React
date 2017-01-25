@@ -8,7 +8,7 @@ import {
   getUnhandledProps,
   META,
   SUI,
-} from '../../lib'
+} from '../../lib/index'
 
 /**
  * Several icons can be used together as a group.

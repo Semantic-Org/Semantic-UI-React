@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { META } from '../../lib'
+import { META } from '../../lib/index'
 import TableHeader from './TableHeader'
 
 /**

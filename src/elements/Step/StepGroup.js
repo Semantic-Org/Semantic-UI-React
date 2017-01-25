@@ -10,7 +10,7 @@ import {
   SUI,
   useValueAndKey,
   useKeyOnly,
-} from '../../lib'
+} from '../../lib/index'
 import Step from './Step'
 
 /**

@@ -1,1 +1,1 @@
-export default from './Flag'
+export default from './Flag/Flag'

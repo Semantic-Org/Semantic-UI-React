@@ -13,7 +13,7 @@ import {
   useKeyOrValueAndKey,
   useValueAndKey,
   useWidthProp,
-} from '../../lib'
+} from '../../lib/index'
 import MenuHeader from './MenuHeader'
 import MenuItem from './MenuItem'
 import MenuMenu from './MenuMenu'

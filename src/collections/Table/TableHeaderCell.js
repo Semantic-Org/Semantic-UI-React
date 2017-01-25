@@ -6,7 +6,7 @@ import {
   getUnhandledProps,
   META,
   useValueAndKey,
-} from '../../lib'
+} from '../../lib/index'
 import TableCell from './TableCell'
 
 /**

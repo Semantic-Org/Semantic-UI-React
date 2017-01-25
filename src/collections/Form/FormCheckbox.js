@@ -5,8 +5,8 @@ import {
   getElementType,
   getUnhandledProps,
   META,
-} from '../../lib'
-import Checkbox from '../../modules/Checkbox'
+} from '../../lib/index'
+import Checkbox from '../../modules/Checkbox/Checkbox'
 
 import FormField from './FormField'
 
