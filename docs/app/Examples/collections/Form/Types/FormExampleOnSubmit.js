@@ -3,21 +3,21 @@ import React, { Component } from 'react'
 import { Button, Checkbox, Form, Input, Message, Radio, Select, TextArea } from 'semantic-ui-react'
 
 const genders = [
-  { text: 'Male', value: 'male' },
-  { text: 'Female', value: 'female' },
+  { key: 'm', text: 'Male', value: 'male' },
+  { key: 'f', text: 'Female', value: 'female' },
 ]
 
 const products = [
-  { text: 'Hat', value: 'hat' },
-  { text: 'Scarf', value: 'scarf' },
-  { text: 'Jacket', value: 'jacket' },
-  { text: 'T-Shirt', value: 't_shirt' },
-  { text: 'Gloves', value: 'gloves' },
-  { text: 'Watch', value: 'watch' },
-  { text: 'Belt', value: 'belt' },
-  { text: 'Pants', value: 'pants' },
-  { text: 'Shoes', value: 'shoes' },
-  { text: 'Socks', value: 'socks' },
+  { key: 'hat', text: 'Hat', value: 'hat' },
+  { key: 'scarf', text: 'Scarf', value: 'scarf' },
+  { key: 'jacket', text: 'Jacket', value: 'jacket' },
+  { key: 't_shirt', text: 'T-Shirt', value: 't_shirt' },
+  { key: 'gloves', text: 'Gloves', value: 'gloves' },
+  { key: 'watch', text: 'Watch', value: 'watch' },
+  { key: 'belt', text: 'Belt', value: 'belt' },
+  { key: 'pants', text: 'Pants', value: 'pants' },
+  { key: 'shoes', text: 'Shoes', value: 'shoes' },
+  { key: 'socks', text: 'Socks', value: 'socks' },
 ]
 
 class FormExampleOnSubmit extends Component {

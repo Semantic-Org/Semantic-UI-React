@@ -2,9 +2,9 @@ import React from 'react'
 import { Dropdown, Input } from 'semantic-ui-react'
 
 const options = [
-  { text: 'This Page', value: 'page' },
-  { text: 'This Organization', value: 'org' },
-  { text: 'Entire Site', value: 'site' },
+  { key: 'page', text: 'This Page', value: 'page' },
+  { key: 'org', text: 'This Organization', value: 'org' },
+  { key: 'site', text: 'Entire Site', value: 'site' },
 ]
 
 const InputExampleActionDropdown = () => (

@@ -5,7 +5,7 @@ import { Button, Dropdown, Grid, Header } from 'semantic-ui-react'
 
 const getOptions = () => _.times(3, () => {
   const name = faker.name.findName()
-  return { text: name, value: _.snakeCase(name) }
+  return { key: name, text: name, value: _.snakeCase(name) }
 })
 
 class DropdownExampleRemote extends Component {
