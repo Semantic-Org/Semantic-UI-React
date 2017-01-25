@@ -9,7 +9,7 @@ import {
   getElementType,
   META,
   useKeyOnly,
-} from '../../lib'
+} from '../../lib/index'
 
 /**
  * A section sub-component for Breadcrumb component.

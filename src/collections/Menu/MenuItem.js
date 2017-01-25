@@ -11,8 +11,8 @@ import {
   SUI,
   useKeyOnly,
   useKeyOrValueAndKey,
-} from '../../lib'
-import Icon from '../../elements/Icon'
+} from '../../lib/index'
+import Icon from '../../elements/Icon/index'
 
 const _meta = {
   name: 'MenuItem',

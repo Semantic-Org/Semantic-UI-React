@@ -5,8 +5,8 @@ import {
   getElementType,
   getUnhandledProps,
   META,
-} from '../../lib'
-import Radio from '../../addons/Radio'
+} from '../../lib/index'
+import Radio from '../../addons/Radio/index'
 
 import FormField from './FormField'
 

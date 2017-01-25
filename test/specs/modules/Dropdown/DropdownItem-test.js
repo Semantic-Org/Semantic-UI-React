@@ -4,7 +4,7 @@ import React from 'react'
 import * as common from 'test/specs/commonTests'
 import { sandbox } from 'test/utils'
 import DropdownItem from 'src/modules/Dropdown/DropdownItem'
-import Flag from 'src/elements/Flag'
+import Flag from 'src/elements/Flag/index'
 
 describe('DropdownItem', () => {
   common.isConformant(DropdownItem)

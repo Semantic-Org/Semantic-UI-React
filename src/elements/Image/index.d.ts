@@ -1,4 +1,4 @@
-import { LabelProps } from '../Label';
+import { LabelProps } from '../Label/Label';
 import {
   SemanticFLOATS,
   SemanticSIZES,

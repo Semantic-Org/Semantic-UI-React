@@ -13,9 +13,9 @@ import {
   useKeyOrValueAndKey,
   useValueAndKey,
   useVerticalAlignProp,
-} from '../../lib'
-import Dimmer from '../../modules/Dimmer'
-import Label from '../Label/Label'
+} from '../../lib/index'
+import Dimmer from '../../modules/Dimmer/index'
+import Label from '../Label/index'
 
 import ImageGroup from './ImageGroup'
 

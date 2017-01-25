@@ -8,7 +8,7 @@ import {
   getUnhandledProps,
   META,
   SUI,
-} from '../../lib'
+} from '../../lib/index'
 import FeedContent from './FeedContent'
 import FeedDate from './FeedDate'
 import FeedEvent from './FeedEvent'

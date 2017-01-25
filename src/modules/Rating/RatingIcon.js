@@ -8,7 +8,7 @@ import {
   META,
   useKeyOnly,
   keyboardKey,
-} from '../../lib'
+} from '../../lib/index'
 
 /**
  * An internal icon sub-component for Rating component

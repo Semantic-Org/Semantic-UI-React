@@ -8,7 +8,7 @@ import {
   getElementType,
   getUnhandledProps,
   META,
-} from '../../lib'
+} from '../../lib/index'
 import StepDescription from './StepDescription'
 import StepTitle from './StepTitle'
 

@@ -7,7 +7,7 @@ import {
   getElementType,
   getUnhandledProps,
   META,
-} from '../../lib'
+} from '../../lib/index'
 import FeedContent from './FeedContent'
 import FeedLabel from './FeedLabel'
 

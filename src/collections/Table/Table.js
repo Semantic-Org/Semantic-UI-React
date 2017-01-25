@@ -11,7 +11,7 @@ import {
   useKeyOnly,
   useKeyOrValueAndKey,
   useWidthProp,
-} from '../../lib'
+} from '../../lib/index'
 import TableBody from './TableBody'
 import TableCell from './TableCell'
 import TableFooter from './TableFooter'

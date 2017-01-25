@@ -5,8 +5,8 @@ import {
   getElementType,
   getUnhandledProps,
   META,
-} from '../../lib'
-import TextArea from '../../addons/TextArea'
+} from '../../lib/index'
+import TextArea from '../../addons/TextArea/index'
 
 import FormField from './FormField'
 

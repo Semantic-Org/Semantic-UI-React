@@ -7,7 +7,7 @@ import {
   getUnhandledProps,
   META,
   useKeyOnly,
-} from '../../lib'
+} from '../../lib/index'
 
 function DropdownMenu(props) {
   const { children, className, scrolling } = props

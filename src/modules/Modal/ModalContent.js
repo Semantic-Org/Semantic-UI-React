@@ -7,7 +7,7 @@ import {
   getUnhandledProps,
   META,
   useKeyOnly,
-} from '../../lib'
+} from '../../lib/index'
 
 function ModalContent(props) {
   const { children, image, className } = props

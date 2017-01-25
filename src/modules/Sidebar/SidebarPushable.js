@@ -6,7 +6,7 @@ import {
   getElementType,
   getUnhandledProps,
   META,
-} from '../../lib'
+} from '../../lib/index'
 
 /**
  * A pushable sub-component for Sidebar.

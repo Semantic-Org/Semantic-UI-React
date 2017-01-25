@@ -9,8 +9,8 @@ import {
   getUnhandledProps,
   META,
   useKeyOnly,
-} from '../../lib'
-import Icon from '../../elements/Icon'
+} from '../../lib/index'
+import Icon from '../../elements/Icon/index'
 
 /**
  * An embed displays content from other websites like YouTube videos or Google Maps.

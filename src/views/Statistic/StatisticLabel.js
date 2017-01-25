@@ -7,7 +7,7 @@ import {
   getElementType,
   getUnhandledProps,
   META,
-} from '../../lib'
+} from '../../lib/index'
 
 function StatisticLabel(props) {
   const { children, className, label } = props

@@ -9,7 +9,7 @@ import {
   getUnhandledProps,
   META,
   useKeyOnly,
-} from '../../lib'
+} from '../../lib/index'
 
 function FeedExtra(props) {
   const { children, className, content, images, text } = props

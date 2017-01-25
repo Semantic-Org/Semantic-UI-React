@@ -7,7 +7,7 @@ import {
   getUnhandledProps,
   META,
   useKeyOnly,
-} from '../../lib'
+} from '../../lib/index'
 import CommentAction from './CommentAction'
 import CommentActions from './CommentActions'
 import CommentAuthor from './CommentAuthor'

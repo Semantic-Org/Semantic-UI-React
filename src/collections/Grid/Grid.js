@@ -13,7 +13,7 @@ import {
   useValueAndKey,
   useVerticalAlignProp,
   useWidthProp,
-} from '../../lib'
+} from '../../lib/index'
 import GridColumn from './GridColumn'
 import GridRow from './GridRow'
 

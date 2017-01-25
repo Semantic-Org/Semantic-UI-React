@@ -1,7 +1,7 @@
 import React from 'react'
 
-import { META } from '../../lib'
-import Dropdown from '../../modules/Dropdown'
+import { META } from '../../lib/index'
+import Dropdown from '../../modules/Dropdown/index'
 
 /**
  * A Select is sugar for <Dropdown selection />.

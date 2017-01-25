@@ -8,7 +8,7 @@ import {
   getElementType,
   getUnhandledProps,
   META,
-} from '../../lib'
+} from '../../lib/index'
 import FeedLike from './FeedLike'
 
 function FeedMeta(props) {

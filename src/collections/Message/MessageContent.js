@@ -6,7 +6,7 @@ import {
   getElementType,
   getUnhandledProps,
   META,
-} from '../../lib'
+} from '../../lib/index'
 
 function MessageContent(props) {
   const { children, className } = props

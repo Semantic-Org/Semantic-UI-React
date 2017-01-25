@@ -5,8 +5,8 @@ import {
   getElementType,
   getUnhandledProps,
   META,
-} from '../../lib'
-import Dropdown from '../../modules/Dropdown'
+} from '../../lib/index'
+import Dropdown from '../../modules/Dropdown/index'
 
 import FormField from './FormField'
 

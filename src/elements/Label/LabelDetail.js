@@ -7,7 +7,7 @@ import {
   getElementType,
   getUnhandledProps,
   META,
-} from '../../lib'
+} from '../../lib/index'
 
 function LabelDetail(props) {
   const { children, className, content } = props

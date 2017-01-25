@@ -7,7 +7,7 @@ import {
   getUnhandledProps,
   META,
   useKeyOnly,
-} from '../../lib'
+} from '../../lib/index'
 
 /**
  * A dimmable sub-component for Dimmer.

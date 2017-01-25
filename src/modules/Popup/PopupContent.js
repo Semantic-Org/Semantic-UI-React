@@ -5,7 +5,7 @@ import {
   getElementType,
   getUnhandledProps,
   META,
-} from '../../lib'
+} from '../../lib/index'
 
 /**
  * A PopupContent displays the content body of a Popover.

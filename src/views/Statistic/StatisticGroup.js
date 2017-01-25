@@ -10,7 +10,7 @@ import {
   SUI,
   useKeyOnly,
   useWidthProp,
-} from '../../lib'
+} from '../../lib/index'
 import Statistic from './Statistic'
 
 function StatisticGroup(props) {

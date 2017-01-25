@@ -13,8 +13,8 @@ import {
   useTextAlignProp,
   useVerticalAlignProp,
   useWidthProp,
-} from '../../lib'
-import Icon from '../../elements/Icon'
+} from '../../lib/index'
+import Icon from '../../elements/Icon/Icon'
 
 /**
  * A table row can have cells.

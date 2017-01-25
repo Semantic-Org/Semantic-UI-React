@@ -7,7 +7,7 @@ import {
   getUnhandledProps,
   META,
   useKeyOnly,
-} from '../../lib'
+} from '../../lib/index'
 
 function ListList(props) {
   const { children, className } = props

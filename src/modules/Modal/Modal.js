@@ -6,8 +6,8 @@ import ModalHeader from './ModalHeader'
 import ModalContent from './ModalContent'
 import ModalActions from './ModalActions'
 import ModalDescription from './ModalDescription'
-import Icon from '../../elements/Icon'
-import Portal from '../../addons/Portal'
+import Icon from '../../elements/Icon/index'
+import Portal from '../../addons/Portal/index'
 
 import {
   AutoControlledComponent as Component,
@@ -18,7 +18,7 @@ import {
   makeDebugger,
   META,
   useKeyOnly,
-} from '../../lib'
+} from '../../lib/index'
 
 const debug = makeDebugger('modal')
 

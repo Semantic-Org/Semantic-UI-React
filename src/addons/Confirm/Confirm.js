@@ -1,9 +1,9 @@
 import _ from 'lodash'
 import React, { PropTypes } from 'react'
 
-import { getUnhandledProps, META } from '../../lib'
-import Button from '../../elements/Button'
-import Modal from '../../modules/Modal'
+import { getUnhandledProps, META } from '../../lib/index'
+import Button from '../../elements/Button/index'
+import Modal from '../../modules/Modal/index'
 
 /**
  * A Confirm modal gives the user a choice to confirm or cancel an action

@@ -6,7 +6,7 @@ import {
   getElementType,
   getUnhandledProps,
   META,
-} from '../../lib'
+} from '../../lib/index'
 
 /**
  * Header content wraps the main content when there is an adjacent Icon or Image.

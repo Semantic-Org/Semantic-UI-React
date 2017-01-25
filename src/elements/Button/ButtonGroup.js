@@ -10,7 +10,7 @@ import {
   useKeyOnly,
   useValueAndKey,
   useWidthProp,
-} from '../../lib'
+} from '../../lib/index'
 
 /**
  * Buttons can be grouped.

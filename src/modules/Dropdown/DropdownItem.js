@@ -10,11 +10,11 @@ import {
   getElementType,
   getUnhandledProps,
   useKeyOnly,
-} from '../../lib'
-import Flag from '../../elements/Flag'
-import Icon from '../../elements/Icon'
-import Image from '../../elements/Image'
-import Label from '../../elements/Label'
+} from '../../lib/index'
+import Flag from '../../elements/Flag/index'
+import Icon from '../../elements/Icon/index'
+import Image from '../../elements/Image/index'
+import Label from '../../elements/Label/index'
 
 /**
  * An item sub-component for Dropdown component

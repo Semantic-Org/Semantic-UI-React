@@ -1,4 +1,4 @@
-import { Label } from '../../elements/Label';
+import { Label } from '../../elements/Label/Label';
 import { SemanticCOLORS, SemanticFLOATS, SemanticSIZES, SemanticWIDTHS } from '../..';
 import * as React from 'react';
 

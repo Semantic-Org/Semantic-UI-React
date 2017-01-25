@@ -7,7 +7,7 @@ import {
   getElementType,
   getUnhandledProps,
   META,
-} from '../../lib'
+} from '../../lib/index'
 
 function MenuHeader(props) {
   const { children, className, content } = props

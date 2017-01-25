@@ -10,8 +10,8 @@ import {
   isBrowser,
   META,
   useKeyOnly,
-} from '../../lib'
-import Portal from '../../addons/Portal'
+} from '../../lib/index'
+import Portal from '../../addons/Portal/index'
 import DimmerDimmable from './DimmerDimmable'
 
 /**

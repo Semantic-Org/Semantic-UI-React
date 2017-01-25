@@ -8,7 +8,7 @@ import {
   META,
   SUI,
   useKeyOnly,
-} from '../../lib'
+} from '../../lib/index'
 
 function LabelGroup(props) {
   const {

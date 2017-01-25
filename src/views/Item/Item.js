@@ -8,7 +8,7 @@ import {
   getElementType,
   getUnhandledProps,
   META,
-} from '../../lib'
+} from '../../lib/index'
 import ItemContent from './ItemContent'
 import ItemDescription from './ItemDescription'
 import ItemExtra from './ItemExtra'

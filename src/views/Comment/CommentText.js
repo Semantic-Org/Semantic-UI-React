@@ -6,7 +6,7 @@ import {
   getElementType,
   getUnhandledProps,
   META,
-} from '../../lib'
+} from '../../lib/index'
 
 function CommentText(props) {
   const { className, children } = props

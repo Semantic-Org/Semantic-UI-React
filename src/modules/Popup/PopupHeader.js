@@ -5,7 +5,7 @@ import {
   getElementType,
   getUnhandledProps,
   META,
-} from '../../lib'
+} from '../../lib/index'
 
 /**
  * A PopupHeader displays a header in a Popover.

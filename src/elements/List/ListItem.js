@@ -9,8 +9,8 @@ import {
   getUnhandledProps,
   META,
   useKeyOnly,
-} from '../../lib'
-import Image from '../../elements/Image'
+} from '../../lib/index'
+import Image from '../../elements/Image/index'
 
 import ListContent from './ListContent'
 import ListDescription from './ListDescription'

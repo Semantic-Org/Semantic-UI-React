@@ -15,9 +15,9 @@ import {
   objectDiff,
   useKeyOnly,
   useKeyOrValueAndKey,
-} from '../../lib'
-import Icon from '../../elements/Icon'
-import Label from '../../elements/Label'
+} from '../../lib/index'
+import Icon from '../../elements/Icon/index'
+import Label from '../../elements/Label/index'
 
 import DropdownDivider from './DropdownDivider'
 import DropdownItem from './DropdownItem'

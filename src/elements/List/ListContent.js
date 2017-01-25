@@ -11,7 +11,7 @@ import {
   SUI,
   useValueAndKey,
   useVerticalAlignProp,
-} from '../../lib'
+} from '../../lib/index'
 
 import ListDescription from './ListDescription'
 import ListHeader from './ListHeader'

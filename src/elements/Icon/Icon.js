@@ -11,7 +11,7 @@ import {
   SUI,
   useKeyOnly,
   useValueAndKey,
-} from '../../lib'
+} from '../../lib/index'
 import IconGroup from './IconGroup'
 
 /**

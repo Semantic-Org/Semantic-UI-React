@@ -12,7 +12,7 @@ import {
   useKeyOnly,
   useTextAlignProp,
   useVerticalAlignProp,
-} from '../../lib'
+} from '../../lib/index'
 import TableCell from './TableCell'
 
 /**

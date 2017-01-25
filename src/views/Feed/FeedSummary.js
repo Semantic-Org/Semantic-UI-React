@@ -8,7 +8,7 @@ import {
   getElementType,
   getUnhandledProps,
   META,
-} from '../../lib'
+} from '../../lib/index'
 import FeedDate from './FeedDate'
 import FeedUser from './FeedUser'
 

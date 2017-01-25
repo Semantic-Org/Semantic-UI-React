@@ -10,7 +10,7 @@ import {
   SUI,
   useKeyOnly,
   useValueAndKey,
-} from '../../lib'
+} from '../../lib/index'
 import StatisticGroup from './StatisticGroup'
 import StatisticLabel from './StatisticLabel'
 import StatisticValue from './StatisticValue'

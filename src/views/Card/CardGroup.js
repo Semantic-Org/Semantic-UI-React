@@ -10,7 +10,7 @@ import {
   SUI,
   useKeyOnly,
   useWidthProp,
-} from '../../lib'
+} from '../../lib/index'
 import Card from './Card'
 
 /**

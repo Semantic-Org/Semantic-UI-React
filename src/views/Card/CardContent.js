@@ -9,7 +9,7 @@ import {
   getUnhandledProps,
   META,
   useKeyOnly,
-} from '../../lib'
+} from '../../lib/index'
 import CardDescription from './CardDescription'
 import CardHeader from './CardHeader'
 import CardMeta from './CardMeta'

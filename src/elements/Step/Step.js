@@ -8,8 +8,8 @@ import {
   getUnhandledProps,
   META,
   useKeyOnly,
-} from '../../lib'
-import Icon from '../../elements/Icon'
+} from '../../lib/index'
+import Icon from '../../elements/Icon/index'
 
 import StepContent from './StepContent'
 import StepDescription from './StepDescription'
