@@ -1,1 +1,1 @@
-export default from './Portal/Portal'
+export default from './Portal'

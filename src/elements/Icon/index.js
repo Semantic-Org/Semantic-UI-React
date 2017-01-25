@@ -1,1 +1,1 @@
-export default from './Icon/Icon'
+export default from './Icon'

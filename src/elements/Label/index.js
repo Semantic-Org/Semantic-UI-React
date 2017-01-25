@@ -1,1 +1,1 @@
-export default from './Label/Label'
+export default from './Label'

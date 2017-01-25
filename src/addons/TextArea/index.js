@@ -1,1 +1,1 @@
-export default from './TextArea/TextArea'
+export default from './TextArea'

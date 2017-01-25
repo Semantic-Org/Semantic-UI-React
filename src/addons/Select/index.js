@@ -1,1 +1,1 @@
-export default from './Select/Select'
+export default from './Select'
