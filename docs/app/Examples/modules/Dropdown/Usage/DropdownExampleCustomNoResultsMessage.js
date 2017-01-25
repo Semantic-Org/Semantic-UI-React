@@ -3,7 +3,7 @@ import { Dropdown } from 'semantic-ui-react'
 
 const DropdownExampleCustomNoResultsMessage = () => (
   <Dropdown
-    options={[]}
+    items={[]}
     search
     selection
     placeholder='A custom message...'

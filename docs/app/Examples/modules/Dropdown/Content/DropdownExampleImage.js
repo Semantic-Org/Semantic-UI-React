@@ -1,14 +1,13 @@
 import React from 'react'
 import { Dropdown } from 'semantic-ui-react'
 
-import { friendOptions } from '../common'
+import { friendItems } from '../common'
 
 const DropdownExampleImage = () => (
-  <Dropdown text='Add user' floating labeled button className='icon'>
-    {/* <i class="add user icon"></i> */}
+  <Dropdown icon='add user' text='Add user' floating labeled button className='icon'>
     <Dropdown.Menu>
       <Dropdown.Header content='People You Might Know' />
-      {friendOptions.map((option) => <Dropdown.Item key={option.value} {...option} />)}
+      {friendItems.map((item) => <Dropdown.Item key={item.value} {...item} />)}
     </Dropdown.Menu>
   </Dropdown>
 )

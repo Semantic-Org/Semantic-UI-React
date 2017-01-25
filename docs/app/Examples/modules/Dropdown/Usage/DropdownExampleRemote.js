@@ -3,7 +3,7 @@ import faker from 'faker'
 import React, { Component } from 'react'
 import { Button, Dropdown, Grid, Header } from 'semantic-ui-react'
 
-const getOptions = () => _.times(3, () => {
+const getItems = () => _.times(3, () => {
   const name = faker.name.findName()
   return { key: name, text: name, value: _.snakeCase(name) }
 })
@@ -16,25 +16,25 @@ class DropdownExampleRemote extends Component {
       search: true,
       searchQuery: null,
       value: [],
-      options: getOptions(),
+      items: getItems(),
     })
   }
 
   handleChange = (e, { value }) => this.setState({ value })
   handleSearchChange = (e, value) => this.setState({ searchQuery: value })
 
-  fetchOptions = () => {
+  fetchItems = () => {
     this.setState({ isFetching: true })
 
     setTimeout(() => {
-      this.setState({ isFetching: false, options: getOptions() })
+      this.setState({ isFetching: false, items: getItems() })
       this.selectRandom()
     }, 500)
   }
 
   selectRandom = () => {
-    const { multiple, options } = this.state
-    const value = _.sample(options).value
+    const { multiple, items } = this.state
+    const value = _.sample(items).value
     this.setState({ value: multiple ? [value] : value })
   }
 
@@ -49,14 +49,14 @@ class DropdownExampleRemote extends Component {
   }
 
   render() {
-    const { multiple, options, isFetching, search, value } = this.state
+    const { multiple, items, isFetching, search, value } = this.state
 
     return (
       <Grid>
         <Grid.Column width={8}>
           <p>
-            <Button onClick={this.fetchOptions}>Fetch</Button>
-            <Button onClick={this.selectRandom} disabled={_.isEmpty(options)}>Random</Button>
+            <Button onClick={this.fetchItems}>Fetch</Button>
+            <Button onClick={this.selectRandom} disabled={_.isEmpty(items)}>Random</Button>
             <label>
               <input type='checkbox' checked={search} onChange={this.toggleSearch} /> Search
             </label>
@@ -70,7 +70,7 @@ class DropdownExampleRemote extends Component {
             selection
             multiple={multiple}
             search={search}
-            options={options}
+            items={items}
             value={value}
             placeholder='Add Users'
             onChange={this.handleChange}

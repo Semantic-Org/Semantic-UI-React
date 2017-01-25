@@ -3,7 +3,7 @@ import { Dropdown } from 'semantic-ui-react'
 
 const DropdownExampleRemoveNoResultsMessage = () => (
   <Dropdown
-    options={[]}
+    items={[]}
     search
     selection
     placeholder='No message...'

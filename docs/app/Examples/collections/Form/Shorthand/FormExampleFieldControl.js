@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Button, Checkbox, Form, Input, Radio, Select, TextArea } from 'semantic-ui-react'
 
-const options = [
+const items = [
   { key: 'm', text: 'Male', value: 'male' },
   { key: 'f', text: 'Female', value: 'female' },
 ]
@@ -18,7 +18,7 @@ class FormExampleFieldControl extends Component {
         <Form.Group widths='equal'>
           <Form.Field control={Input} label='First name' placeholder='First name' />
           <Form.Field control={Input} label='Last name' placeholder='Last name' />
-          <Form.Field control={Select} label='Gender' options={options} placeholder='Gender' />
+          <Form.Field control={Select} label='Gender' items={items} placeholder='Gender' />
         </Form.Group>
         <Form.Group inline>
           <label>Quantity</label>

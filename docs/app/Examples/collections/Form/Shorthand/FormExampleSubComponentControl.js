@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Form } from 'semantic-ui-react'
 
-const options = [
+const items = [
   { key: 'm', text: 'Male', value: 'male' },
   { key: 'f', text: 'Female', value: 'female' },
 ]
@@ -18,7 +18,7 @@ class FormExampleSubComponentControl extends Component {
         <Form.Group widths='equal'>
           <Form.Input label='First name' placeholder='First name' />
           <Form.Input label='Last name' placeholder='Last name' />
-          <Form.Select label='Gender' options={options} placeholder='Gender' />
+          <Form.Select label='Gender' items={items} placeholder='Gender' />
         </Form.Group>
         <Form.Group inline>
           <label>Size</label>

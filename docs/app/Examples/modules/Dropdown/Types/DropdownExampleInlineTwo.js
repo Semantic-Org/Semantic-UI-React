@@ -1,7 +1,7 @@
 import React from 'react'
 import { Dropdown, Header, Icon } from 'semantic-ui-react'
 
-const options = [
+const items = [
   {
     key: 'today',
     text: 'today',
@@ -28,7 +28,7 @@ const DropdownExampleInlineTwo = () => (
     <Header.Content>
       Trending repos
       {' '}
-      <Dropdown inline header='Adjust time span' options={options} defaultValue={options[0].value} />
+      <Dropdown inline header='Adjust time span' items={items} defaultValue={items[0].value} />
     </Header.Content>
   </Header>
 )

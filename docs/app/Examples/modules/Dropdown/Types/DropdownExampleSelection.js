@@ -1,8 +1,8 @@
 import React from 'react'
 import { Dropdown } from 'semantic-ui-react'
 
-import { friendOptions } from '../common'
-// friendOptions = [
+import { friendItems } from '../common'
+// friendItems = [
 //   {
 //     text: 'Jenny Hess',
 //     value: 'Jenny Hess',
@@ -11,9 +11,8 @@ import { friendOptions } from '../common'
 //  ...
 // ]
 
-
 const DropdownExampleSelection = () => (
-  <Dropdown placeholder='Select Friend' fluid selection options={friendOptions} />
+  <Dropdown placeholder='Select Friend' fluid selection items={friendItems} />
 )
 
 export default DropdownExampleSelection
