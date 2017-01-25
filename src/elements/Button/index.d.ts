@@ -89,7 +89,7 @@ export interface ButtonProps {
   size?: SemanticSIZES;
 
   /** A button can receive focus. */
-  tabIndex: number | string;
+  tabIndex?: number | string;
 
   /** A button can be formatted to toggle on and off. */
   toggle?: boolean;
