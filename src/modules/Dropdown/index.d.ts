@@ -179,7 +179,7 @@ export interface DropdownProps {
   openOnFocus?: boolean;
 
   /** Array of Dropdown.Item props e.g. `{ text: '', value: '' }` */
-  options?: Array<DropdownItemProps>;
+  options?: React.ReactNode;
 
   /** Placeholder text. */
   placeholder?: string;
