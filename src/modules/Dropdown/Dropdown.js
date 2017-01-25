@@ -36,21 +36,21 @@ export default class Dropdown extends Component {
     /** An element type to render as (string or function). */
     as: customPropTypes.as,
 
-    /** Label prefixed to an option added by a user. */
+    /** Label prefixed to an item added by a user. */
     additionLabel: PropTypes.oneOfType([
       PropTypes.element,
       PropTypes.string,
     ]),
 
-    /** Position of the `Add: ...` option in the dropdown list ('top' or 'bottom'). */
+    /** Position of the `Add: ...` item in the dropdown list ('top' or 'bottom'). */
     additionPosition: PropTypes.oneOf(['top', 'bottom']),
 
     /**
-     * Allow user additions to the list of options (boolean).
-     * Requires the use of `selection`, `options` and `search`.
+     * Allow user additions to the list of items (boolean).
+     * Requires the use of `selection`, `items` and `search`.
      */
     allowAdditions: customPropTypes.every([
-      customPropTypes.demand(['options', 'selection', 'search']),
+      customPropTypes.demand(['items', 'selection', 'search']),
       PropTypes.bool,
     ]),
 
@@ -62,7 +62,7 @@ export default class Dropdown extends Component {
 
     /** Primary content. */
     children: customPropTypes.every([
-      customPropTypes.disallow(['options', 'selection']),
+      customPropTypes.disallow(['items', 'selection']),
       customPropTypes.givenProps(
         { children: PropTypes.any.isRequired },
         React.PropTypes.element.isRequired,
@@ -150,7 +150,7 @@ export default class Dropdown extends Component {
     noResultsMessage: PropTypes.string,
 
     /**
-     * Called when a user adds a new item. Use this to update the options list.
+     * Called when a user adds a new item. Use this to update the items list.
      *
      * @param {SyntheticEvent} event - React's original SyntheticEvent.
      * @param {object} data - All props and the new item's value.
@@ -235,8 +235,8 @@ export default class Dropdown extends Component {
     /** Whether or not the menu should open when the dropdown is focused. */
     openOnFocus: PropTypes.bool,
 
-    /** Array of Dropdown.Item props e.g. `{ text: '', value: '' }` */
-    options: customPropTypes.itemShorthand,
+    /** Shorthand array of Dropdown.Items. */
+    items: customPropTypes.itemShorthand,
 
     /** Placeholder text. */
     placeholder: PropTypes.string,
@@ -279,7 +279,7 @@ export default class Dropdown extends Component {
     /** A dropdown can be used to select between choices in a form. */
     selection: customPropTypes.every([
       customPropTypes.disallow(['children']),
-      customPropTypes.demand(['options']),
+      customPropTypes.demand(['items']),
       PropTypes.bool,
     ]),
 
@@ -317,7 +317,7 @@ export default class Dropdown extends Component {
     additionPosition: 'top',
     icon: 'dropdown',
     noResultsMessage: 'No results found.',
-    renderLabel: ({ text }) => text,
+    renderLabel: item => item.props.text,
     selectOnBlur: true,
     openOnFocus: true,
     closeOnBlur: true,
@@ -383,8 +383,8 @@ export default class Dropdown extends Component {
       this.setValue(nextProps.value)
     }
 
-    if (!_.isEqual(nextProps.options, this.props.options)) {
-      this.setSelectedIndex(undefined, nextProps.options)
+    if (!_.isEqual(nextProps.items, this.props.items)) {
+      this.setSelectedIndex(undefined, nextProps.items)
     }
   }
 
@@ -536,7 +536,7 @@ export default class Dropdown extends Component {
     const { open } = this.state
     const { multiple, onAddItem } = this.props
     const item = this.getSelectedItem()
-    const value = _.get(item, 'value')
+    const value = _.get(item, 'props.value')
 
     // prevent selecting null if there was no selected item value
     // prevent selecting duplicate items when the dropdown is closed
@@ -628,23 +628,23 @@ export default class Dropdown extends Component {
     this.toggle(e)
   }
 
-  handleItemClick = (e, item) => {
+  handleItemClick = (e, itemProps) => {
     debug('handleItemClick()')
-    debug(item)
+    debug(itemProps)
     const { multiple, onAddItem } = this.props
-    const { value } = item
+    const { value } = itemProps
 
     // prevent toggle() in handleClick()
     e.stopPropagation()
     // prevent closeOnDocumentClick() if multiple or item is disabled
-    if (multiple || item.disabled) {
+    if (multiple || itemProps.disabled) {
       e.nativeEvent.stopImmediatePropagation()
     }
 
-    if (item.disabled) return
+    if (itemProps.disabled) return
 
     // notify the onAddItem prop if this is a new value
-    if (onAddItem && item['data-additional']) {
+    if (onAddItem && itemProps['data-additional']) {
       onAddItem(e, { ...this.props, value })
     }
 
@@ -706,36 +706,40 @@ export default class Dropdown extends Component {
   // Getters
   // ----------------------------------------
 
+  getDropdownItemElements = (givenItems = this.props.items) => {
+    return _.map(givenItems, item => DropdownItem.create(item))
+  }
+
   // There are times when we need to calculate the items based on a value
   // that hasn't yet been persisted to state.
-  getDropdownItems = (value = this.state.value, options = this.props.options) => {
+  getDropdownItemsForMenu = (value = this.state.value, givenItems = this.props.items) => {
     const { multiple, search, allowAdditions, additionPosition, additionLabel } = this.props
     const { searchQuery } = this.state
 
-    let filteredOptions = options
+    let filteredItems = this.getDropdownItemElements(givenItems)
 
-    // filter out active options
+    // filter out active items
     if (multiple) {
-      filteredOptions = _.filter(filteredOptions, opt => !_.includes(value, opt.value))
+      filteredItems = _.filter(filteredItems, item => !_.includes(value, item.props.value))
     }
 
     // filter by search query
     if (search && searchQuery) {
       if (_.isFunction(search)) {
-        filteredOptions = search(filteredOptions, searchQuery)
+        filteredItems = search(filteredItems, searchQuery)
       } else {
         const re = new RegExp(_.escapeRegExp(searchQuery), 'i')
-        filteredOptions = _.filter(filteredOptions, (opt) => re.test(opt.text))
+        filteredItems = _.filter(filteredItems, (item) => re.test(item.props.text))
       }
     }
 
     // insert the "add" item
-    if (allowAdditions && search && searchQuery && !_.some(filteredOptions, { text: searchQuery })) {
+    if (allowAdditions && search && searchQuery && !_.some(filteredItems, { props: { text: searchQuery } })) {
       const additionLabelElement = React.isValidElement(additionLabel)
         ? React.cloneElement(additionLabel, { key: 'label' })
         : additionLabel || ''
 
-      const addItem = {
+      const addItem = DropdownItem.create({
         // by using an array, we can pass multiple elements, but when doing so
         // we must specify a `key` for React to know which one is which
         text: [
@@ -745,66 +749,64 @@ export default class Dropdown extends Component {
         value: searchQuery,
         className: 'addition',
         'data-additional': true,
-      }
-      if (additionPosition === 'top') filteredOptions.unshift(addItem)
-      else filteredOptions.push(addItem)
+      })
+      if (additionPosition === 'top') filteredItems.unshift(addItem)
+      else filteredItems.push(addItem)
     }
 
-    return filteredOptions
+    return filteredItems
   }
 
   getSelectedItem = () => {
     const { selectedIndex } = this.state
-    const options = this.getDropdownItems()
+    const items = this.getDropdownItemsForMenu()
 
-    return _.get(options, `[${selectedIndex}]`)
+    return _.get(items, `[${selectedIndex}]`)
   }
 
-  getEnabledIndices = (givenOptions) => {
-    const options = givenOptions || this.getDropdownItems()
+  getEnabledIndices = (givenItems) => {
+    const items = givenItems || this.getDropdownItemsForMenu()
 
-    return _.reduce(options, (memo, item, index) => {
-      if (!item.disabled) memo.push(index)
+    return _.reduce(items, (memo, item, index) => {
+      if (!item.props.disabled) memo.push(index)
       return memo
     }, [])
   }
 
   getItemByValue = (value) => {
-    const { options } = this.props
-
-    return _.find(options, { value })
+    return _.find(this.getDropdownItemElements(), { props: { value } })
   }
 
-  getMenuItemIndexByValue = (value, givenOptions) => {
-    const options = givenOptions || this.getDropdownItems()
+  getMenuItemIndexByValue = (value, givenItems) => {
+    const items = givenItems || this.getDropdownItemsForMenu()
 
-    return _.findIndex(options, ['value', value])
+    return _.findIndex(items, ['props.value', value])
   }
 
-  getDropdownAriaOptions = (ElementType) => {
+  getDropdownAriaProps = () => {
     const { loading, disabled, search, multiple } = this.props
     const { open } = this.state
-    const ariaOptions = {
+    const ariaProps = {
       role: search ? 'combobox' : 'listbox',
       'aria-busy': loading,
       'aria-disabled': disabled,
       'aria-expanded': !!open,
     }
-    if (ariaOptions.role === 'listbox') {
-      ariaOptions['aria-multiselectable'] = multiple
+    if (ariaProps.role === 'listbox') {
+      ariaProps['aria-multiselectable'] = multiple
     }
-    return ariaOptions
+    return ariaProps
   }
 
-  getDropdownMenuAriaOptions() {
+  getDropdownMenuAriaProps() {
     const { search, multiple } = this.props
-    const ariaOptions = {}
+    const ariaProps = {}
 
     if (search) {
-      ariaOptions['aria-multiselectable'] = multiple
-      ariaOptions.role = 'listbox'
+      ariaProps['aria-multiselectable'] = multiple
+      ariaProps.role = 'listbox'
     }
-    return ariaOptions
+    return ariaProps
   }
 
   // ----------------------------------------
@@ -825,11 +827,11 @@ export default class Dropdown extends Component {
     this.setSelectedIndex(value)
   }
 
-  setSelectedIndex = (value = this.state.value, optionsProps = this.props.options) => {
+  setSelectedIndex = (value = this.state.value, givenItems = this.props.items) => {
     const { multiple } = this.props
     const { selectedIndex } = this.state
-    const options = this.getDropdownItems(value, optionsProps)
-    const enabledIndicies = this.getEnabledIndices(options)
+    const items = this.getDropdownItemsForMenu(value, givenItems)
+    const enabledIndicies = this.getEnabledIndices(items)
 
     let newSelectedIndex
 
@@ -842,15 +844,15 @@ export default class Dropdown extends Component {
       // their initial selected index should be 0.
       newSelectedIndex = multiple
         ? firstIndex
-        : this.getMenuItemIndexByValue(value, options) || enabledIndicies[0]
+        : this.getMenuItemIndexByValue(value, items) || enabledIndicies[0]
     } else if (multiple) {
-      // multiple selects remove options from the menu as they are made active
+      // multiple selects remove items from the menu as they are made active
       // keep the selected index within range of the remaining items
-      if (selectedIndex >= options.length - 1) {
+      if (selectedIndex >= items.length - 1) {
         newSelectedIndex = enabledIndicies[enabledIndicies.length - 1]
       }
     } else {
-      const activeIndex = this.getMenuItemIndexByValue(value, options)
+      const activeIndex = this.getMenuItemIndexByValue(value, items)
 
       // regular selects can only have one active item
       // set the selected index to the currently active item
@@ -894,11 +896,11 @@ export default class Dropdown extends Component {
     debug('moveSelectionBy()')
     debug(`offset: ${offset}`)
 
-    const options = this.getDropdownItems()
-    const lastIndex = options.length - 1
+    const items = this.getDropdownItemsForMenu()
+    const lastIndex = items.length - 1
 
     // Prevent infinite loop
-    if (_.every(options, 'disabled')) return
+    if (_.every(items, 'props.disabled')) return
 
     // next is after last, wrap to beginning
     // next is before first, wrap to end
@@ -906,7 +908,7 @@ export default class Dropdown extends Component {
     if (nextIndex > lastIndex) nextIndex = 0
     else if (nextIndex < 0) nextIndex = lastIndex
 
-    if (options[nextIndex].disabled) return this.moveSelectionBy(offset, nextIndex)
+    if (items[nextIndex].props.disabled) return this.moveSelectionBy(offset, nextIndex)
 
     this.setState({ selectedIndex: nextIndex })
     this.scrollSelectedItemIntoView()
@@ -993,9 +995,9 @@ export default class Dropdown extends Component {
     } else if (text) {
       _text = text
     } else if (open && !multiple) {
-      _text = _.get(this.getSelectedItem(), 'text')
+      _text = _.get(this.getSelectedItem(), 'props.text')
     } else if (hasValue) {
-      _text = _.get(this.getItemByValue(value), 'text')
+      _text = _.get(this.getItemByValue(value), 'props.text')
     }
 
     return <div className={classes}>{_text}</div>
@@ -1004,7 +1006,8 @@ export default class Dropdown extends Component {
   renderHiddenInput = () => {
     debug('renderHiddenInput()')
     const { value } = this.state
-    const { multiple, name, options, selection } = this.props
+    const { multiple, name, selection } = this.props
+    const items = this.getDropdownItemElements()
     debug(`name:      ${name}`)
     debug(`selection: ${selection}`)
     debug(`value:     ${value}`)
@@ -1014,9 +1017,9 @@ export default class Dropdown extends Component {
     return (
       <select type='hidden' aria-hidden='true' name={name} value={value} multiple={multiple}>
         <option value='' />
-        {_.map(options, option => (
-          <option key={option.value} value={option.value}>{option.text}</option>
-        ))}
+        {_.map(items, item => {
+          return createShorthand('option', val => ({ key: val, children: val, value: val }), item.props.value)
+        })}
       </select>
     )
   }
@@ -1069,22 +1072,21 @@ export default class Dropdown extends Component {
     debug('renderLabels()')
     const { multiple, renderLabel } = this.props
     const { selectedLabel, value } = this.state
-    if (!multiple || _.isEmpty(value)) {
-      return
-    }
-    const selectedItems = _.map(value, this.getItemByValue)
-    debug('selectedItems', selectedItems)
+    if (!multiple || _.isEmpty(value)) return
 
     // if no item could be found for a given state value the selected item will be undefined
-    // compact the selectedItems so we only have actual objects left
-    return _.map(_.compact(selectedItems), (item, index) => {
+    // compact the activeItems so we only have actual items left
+    const activeItems = _.compact(_.map(value, this.getItemByValue))
+    debug('selectedItems', activeItems)
+
+    return _.map(activeItems, (item, index) => {
       const defaultLabelProps = {
-        active: item.value === selectedLabel,
+        active: item.props.value === selectedLabel,
         as: 'a',
-        key: item.value,
+        key: item.props.value,
         onClick: this.handleLabelClick,
         onRemove: this.handleLabelRemove,
-        value: item.value,
+        value: item.props.value,
       }
 
       return Label.create(
@@ -1097,19 +1099,19 @@ export default class Dropdown extends Component {
   renderDropdownItems = () => {
     const { multiple, search, noResultsMessage } = this.props
     const { selectedIndex, value } = this.state
-    const options = this.getDropdownItems()
+    const items = this.getDropdownItemsForMenu()
 
-    if (noResultsMessage !== null && search && _.isEmpty(options)) {
+    if (noResultsMessage !== null && search && _.isEmpty(items)) {
       return <div className='message'>{noResultsMessage}</div>
     }
 
     const isActive = multiple
-      ? optValue => _.includes(value, optValue)
-      : optValue => optValue === value
+      ? itemValue => _.includes(value, itemValue)
+      : itemValue => itemValue === value
 
-    return _.map(options, (opt, i) => {
-      return DropdownItem.create(opt, {
-        active: isActive(opt.value),
+    return _.map(items, (item, i) => {
+      return DropdownItem.create(item, {
+        active: isActive(item.value),
         onClick: this.handleItemClick,
         selected: selectedIndex === i,
         // Needed for handling click events on disabled items
@@ -1122,19 +1124,19 @@ export default class Dropdown extends Component {
     const { children, header } = this.props
     const { open } = this.state
     const menuClasses = open ? 'visible' : ''
-    const ariaOptions = this.getDropdownMenuAriaOptions()
+    const ariaProps = this.getDropdownMenuAriaProps()
 
     // single menu child
     if (!_.isNil(children)) {
       const menuChild = Children.only(children)
       const className = cx(menuClasses, menuChild.props.className)
 
-      return cloneElement(menuChild, { className, ...ariaOptions })
+      return cloneElement(menuChild, { className, ...ariaProps })
     }
 
     return (
-      <DropdownMenu {...ariaOptions} className={menuClasses}>
-        {createShorthand(DropdownHeader, val => ({ content: val }), header)}
+      <DropdownMenu {...ariaProps} className={menuClasses}>
+        {DropdownHeader.create(header)}
         {this.renderDropdownItems()}
       </DropdownMenu>
     )
@@ -1202,7 +1204,7 @@ export default class Dropdown extends Component {
     )
     const rest = getUnhandledProps(Dropdown, this.props)
     const ElementType = getElementType(Dropdown, this.props)
-    const ariaOptions = this.getDropdownAriaOptions(ElementType, this.props)
+    const ariaProps = this.getDropdownAriaProps(ElementType, this.props)
 
     let computedTabIndex
     if (!_.isNil(tabIndex)) {
@@ -1215,7 +1217,7 @@ export default class Dropdown extends Component {
     return (
       <ElementType
         {...rest}
-        {...ariaOptions}
+        {...ariaProps}
         className={classes}
         onBlur={this.handleBlur}
         onClick={this.handleClick}
