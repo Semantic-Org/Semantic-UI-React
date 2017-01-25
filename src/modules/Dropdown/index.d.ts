@@ -65,6 +65,9 @@ export interface DropdownProps extends ReactMouseEvents<HTMLElement>, ReactFocus
   /** Shorthand for Icon. */
   icon?: any;
 
+  /** A dropdown can be formatted as a Menu item. */
+  item?: boolean;
+
   /** A dropdown can be formatted to appear inline in other content. */
   inline?: boolean;
 
@@ -163,7 +166,7 @@ export const Dropdown: DropdownClass;
 interface DropdownDividerProps {
 
   /** An element type to render as (string or function). */
-    as?: any;
+  as?: any;
 
   /** Additional classes. */
   className?: string;
@@ -174,7 +177,7 @@ export const DropdownDivider: React.ComponentClass<DropdownDividerProps>;
 interface DropdownHeaderProps {
 
   /** An element type to render as (string or function). */
-    as?: any;
+  as?: any;
 
   /** Primary content. */
   children?: React.ReactNode;
@@ -197,7 +200,7 @@ interface DropdownItemProps extends ReactMouseEvents<HTMLElement>, ReactFocusEve
   active?: boolean;
 
   /** An element type to render as (string or function). */
-    as?: any;
+  as?: any;
 
   /** Primary content. */
   children?: React.ReactNode;
@@ -241,7 +244,7 @@ export const DropdownItem: React.ComponentClass<DropdownItemProps>;
 interface DropdownMenuProps {
 
   /** An element type to render as (string or function). */
-    as?: any;
+  as?: any;
 
   /** Primary content. */
   children?: React.ReactNode;
