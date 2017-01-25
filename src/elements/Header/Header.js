@@ -13,8 +13,8 @@ import {
   useKeyOrValueAndKey,
   useKeyOnly,
 } from '../../lib/index'
-import Icon from '../../elements/Icon/Icon'
-import Image from '../../elements/Image/Image'
+import Icon from '../../elements/Icon/index'
+import Image from '../../elements/Image/index'
 
 import HeaderSubheader from './HeaderSubheader'
 import HeaderContent from './HeaderContent'

@@ -6,7 +6,7 @@ import {
   getUnhandledProps,
   META,
 } from '../../lib/index'
-import Dropdown from '../../modules/Dropdown/Dropdown'
+import Dropdown from '../../modules/Dropdown/index'
 
 import FormField from './FormField'
 

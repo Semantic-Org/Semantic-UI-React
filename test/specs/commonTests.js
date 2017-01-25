@@ -13,10 +13,10 @@ import {
 import { consoleUtil, sandbox, syntheticEvent } from 'test/utils'
 import * as semanticUIReact from 'semantic-ui-react'
 
-import Button from 'src/elements/Button/Button'
-import Icon from 'src/elements/Icon/Icon'
-import Image from 'src/elements/Image/Image'
-import Label from 'src/elements/Label/Label'
+import Button from 'src/elements/Button/index'
+import Icon from 'src/elements/Icon/index'
+import Image from 'src/elements/Image/index'
+import Label from 'src/elements/Label/index'
 
 const commonTestHelpers = (testName, Component) => {
   const throwError = msg => {

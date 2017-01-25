@@ -16,7 +16,7 @@ import {
   useKeyOnly,
   useValueAndKey,
 } from '../../lib/index'
-import Input from '../../elements/Input/Input'
+import Input from '../../elements/Input/index'
 
 import SearchCategory from './SearchCategory'
 import SearchResult from './SearchResult'

@@ -11,7 +11,7 @@ import {
   META,
   useKeyOnly,
 } from '../../lib/index'
-import Portal from '../../addons/Portal/Portal'
+import Portal from '../../addons/Portal/index'
 import DimmerDimmable from './DimmerDimmable'
 
 /**

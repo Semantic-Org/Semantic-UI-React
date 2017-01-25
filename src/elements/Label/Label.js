@@ -14,8 +14,8 @@ import {
   useKeyOrValueAndKey,
   useValueAndKey,
 } from '../../lib/index'
-import Icon from '../Icon/Icon'
-import Image from '../Image/Image'
+import Icon from '../Icon/index'
+import Image from '../Image/index'
 
 import LabelDetail from './LabelDetail'
 import LabelGroup from './LabelGroup'

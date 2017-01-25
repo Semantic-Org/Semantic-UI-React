@@ -10,7 +10,7 @@ import {
   SUI,
   useKeyOnly,
 } from '../../lib/index'
-import Image from '../../elements/Image/Image'
+import Image from '../../elements/Image/index'
 
 import CardContent from './CardContent'
 import CardDescription from './CardDescription'

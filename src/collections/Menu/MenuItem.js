@@ -12,7 +12,7 @@ import {
   useKeyOnly,
   useKeyOrValueAndKey,
 } from '../../lib/index'
-import Icon from '../../elements/Icon/Icon'
+import Icon from '../../elements/Icon/index'
 
 const _meta = {
   name: 'MenuItem',

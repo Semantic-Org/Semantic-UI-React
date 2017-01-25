@@ -6,7 +6,7 @@ import {
   getUnhandledProps,
   META,
 } from '../../lib/index'
-import Radio from '../../addons/Radio/Radio'
+import Radio from '../../addons/Radio/index'
 
 import FormField from './FormField'
 

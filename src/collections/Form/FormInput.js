@@ -6,7 +6,7 @@ import {
   getUnhandledProps,
   META,
 } from '../../lib/index'
-import Input from '../../elements/Input/Input'
+import Input from '../../elements/Input/index'
 
 import FormField from './FormField'
 

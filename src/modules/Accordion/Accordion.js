@@ -9,7 +9,7 @@ import {
   META,
   useKeyOnly,
 } from '../../lib/index'
-import Icon from '../../elements/Icon/Icon'
+import Icon from '../../elements/Icon/index'
 
 import AccordionContent from './AccordionContent'
 import AccordionTitle from './AccordionTitle'

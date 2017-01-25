@@ -10,7 +10,7 @@ import {
   META,
   useKeyOnly,
 } from '../../lib/index'
-import Image from '../../elements/Image/Image'
+import Image from '../../elements/Image/index'
 
 import ListContent from './ListContent'
 import ListDescription from './ListDescription'

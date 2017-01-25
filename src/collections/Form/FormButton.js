@@ -6,7 +6,7 @@ import {
   getUnhandledProps,
   META,
 } from '../../lib/index'
-import Button from '../../elements/Button/Button'
+import Button from '../../elements/Button/index'
 
 import FormField from './FormField'
 

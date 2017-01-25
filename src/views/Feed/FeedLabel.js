@@ -9,7 +9,7 @@ import {
   getUnhandledProps,
   META,
 } from '../../lib/index'
-import Icon from '../../elements/Icon/Icon'
+import Icon from '../../elements/Icon/index'
 
 function FeedLabel(props) {
   const { children, className, content, icon, image } = props

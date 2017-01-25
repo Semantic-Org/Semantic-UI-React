@@ -6,8 +6,8 @@ import ModalHeader from './ModalHeader'
 import ModalContent from './ModalContent'
 import ModalActions from './ModalActions'
 import ModalDescription from './ModalDescription'
-import Icon from '../../elements/Icon/Icon'
-import Portal from '../../addons/Portal/Portal'
+import Icon from '../../elements/Icon/index'
+import Portal from '../../addons/Portal/index'
 
 import {
   AutoControlledComponent as Component,

@@ -13,9 +13,9 @@ import {
   useKeyOnly,
   useValueAndKey,
 } from '../../lib/index'
-import Button from '../../elements/Button/Button'
-import Icon from '../../elements/Icon/Icon'
-import Label from '../../elements/Label/Label'
+import Button from '../../elements/Button/index'
+import Icon from '../../elements/Icon/index'
+import Label from '../../elements/Label/index'
 
 export const htmlInputPropNames = [
   // REACT

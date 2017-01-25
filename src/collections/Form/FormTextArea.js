@@ -6,7 +6,7 @@ import {
   getUnhandledProps,
   META,
 } from '../../lib/index'
-import TextArea from '../../addons/TextArea/TextArea'
+import TextArea from '../../addons/TextArea/index'
 
 import FormField from './FormField'
 

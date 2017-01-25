@@ -10,7 +10,7 @@ import {
   META,
   useKeyOnly,
 } from '../../lib/index'
-import Icon from '../../elements/Icon/Icon'
+import Icon from '../../elements/Icon/index'
 
 /**
  * An embed displays content from other websites like YouTube videos or Google Maps.

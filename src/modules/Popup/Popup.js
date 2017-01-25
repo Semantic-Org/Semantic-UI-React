@@ -11,7 +11,7 @@ import {
   useKeyOnly,
   useKeyOrValueAndKey,
 } from '../../lib/index'
-import Portal from '../../addons/Portal/Portal'
+import Portal from '../../addons/Portal/index'
 import PopupContent from './PopupContent'
 import PopupHeader from './PopupHeader'
 

@@ -14,8 +14,8 @@ import {
   useKeyOrValueAndKey,
   useValueAndKey,
 } from '../../lib/index'
-import Icon from '../Icon/Icon'
-import Label from '../Label/Label'
+import Icon from '../Icon/index'
+import Label from '../Label/index'
 import ButtonContent from './ButtonContent'
 import ButtonGroup from './ButtonGroup'
 import ButtonOr from './ButtonOr'

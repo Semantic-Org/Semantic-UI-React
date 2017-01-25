@@ -6,7 +6,7 @@ import {
   getUnhandledProps,
   META,
 } from '../../lib/index'
-import Select from '../../addons/Select/Select'
+import Select from '../../addons/Select/index'
 
 import FormField from './FormField'
 

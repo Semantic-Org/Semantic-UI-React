@@ -9,7 +9,7 @@ import {
   META,
   useKeyOnly,
 } from '../../lib/index'
-import Icon from '../../elements/Icon/Icon'
+import Icon from '../../elements/Icon/index'
 
 import StepContent from './StepContent'
 import StepDescription from './StepDescription'
