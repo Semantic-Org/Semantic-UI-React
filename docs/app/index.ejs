@@ -44,7 +44,7 @@
       function removeDimmer() {
         dimmer.style.opacity = '0'
 
-        setTimeout(() => {
+        setTimeout(function() {
           var dimmer = document.querySelector('#docs-loading-dimmer')
 
           document.body.removeChild(dimmer)
