@@ -2,11 +2,11 @@ import React, { Component } from 'react'
 import { Dropdown } from 'semantic-ui-react'
 
 const options = [
-  { text: 'English', value: 'English' },
-  { text: 'French', value: 'French' },
-  { text: 'Spanish', value: 'Spanish' },
-  { text: 'German', value: 'German' },
-  { text: 'Chinese', value: 'Chinese' },
+  { key: 'English', text: 'English', value: 'English' },
+  { key: 'French', text: 'French', value: 'French' },
+  { key: 'Spanish', text: 'Spanish', value: 'Spanish' },
+  { key: 'German', text: 'German', value: 'German' },
+  { key: 'Chinese', text: 'Chinese', value: 'Chinese' },
 ]
 
 class DropdownExampleAdditionLabelComponent extends Component {
