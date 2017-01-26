@@ -62,7 +62,7 @@ export interface GridProps {
   verticalAlign?: SemanticVERTICALALIGNMENTS;
 }
 
-interface GridComponent extends React.ComponentClass<GridProps> {
+interface GridComponent extends React.StatelessComponent<GridProps> {
   Column: typeof GridColumn;
   Row: typeof GridRow;
 }
@@ -118,7 +118,7 @@ interface GridColumnProps {
   width?: SemanticWIDTHS;
 }
 
-export const GridColumn: React.ComponentClass<GridColumnProps>;
+export const GridColumn: React.StatelessComponent<GridColumnProps>;
 
 interface GridRowProps {
   [key: string]: any;
