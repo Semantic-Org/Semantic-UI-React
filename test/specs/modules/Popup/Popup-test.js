@@ -176,7 +176,7 @@ describe('Popup', () => {
       const trigger = <button>foo</button>
       wrapperMount(<Popup content='foo' trigger={trigger} />)
 
-      wrapper.find('button').simulate('mouseenter', nativeEvent)
+      wrapper.find('button').parent().simulate('mouseenter', nativeEvent)
       setTimeout(() => {
         assertInBody('.ui.popup.visible')
         done()

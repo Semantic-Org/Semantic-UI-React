@@ -340,7 +340,9 @@ export default class Popup extends Component {
     )
 
     let refTrigger
-    if (!!trigger) refTrigger = React.cloneElement(trigger, { ref: (ref) => {this.myTrigger = ref} })
+    if (!!trigger) {
+      refTrigger = React.cloneElement(<span>{trigger}</span>, { ref: (ref) => { this.myTrigger = ref } })
+    }
     if (closed) return refTrigger
 
     const unhandled = getUnhandledProps(Popup, this.props)
