@@ -1,9 +1,15 @@
-import { Label } from '../../elements/Label';
-import { SemanticCOLORS, SemanticFLOATS, SemanticSIZES, SemanticWIDTHS } from '../..';
 import * as React from 'react';
+import {
+  SemanticCOLORS,
+  SemanticFLOATS,
+  SemanticWIDTHS
+} from '../..';
 
+type StatisticSizeProp = 'mini' | 'tiny' | 'small' | 'large' | 'huge';
 
 interface StatisticProps {
+  [key: string]: any;
+
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -29,7 +35,7 @@ interface StatisticProps {
   label?: any;
 
   /** A statistic can vary in size. */
-  size?: SemanticSIZES;
+  size?: StatisticSizeProp;
 
   /** Format the StatisticValue with smaller font size to fit nicely beside number values. */
   text?: boolean;
@@ -38,15 +44,17 @@ interface StatisticProps {
   value?: any;
 }
 
-interface StatisticClass extends React.ComponentClass<StatisticProps> {
+interface StatisticComponent extends React.StatelessComponent<StatisticProps> {
   Group: typeof StatisticGroup;
   Label: typeof StatisticLabel;
   Value: typeof StatisticValue;
 }
 
-export const Statistic: StatisticClass;
+export const Statistic: StatisticComponent;
 
 interface StatisticGroupProps {
+  [key: string]: any;
+
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -69,15 +77,17 @@ interface StatisticGroupProps {
   items?: any;
 
   /** A statistic group can vary in size. */
-  size?: SemanticSIZES;
+  size?: StatisticSizeProp;
 
   /** A statistic group can have its items divided evenly. */
   widths?: SemanticWIDTHS;
 }
 
-export const StatisticGroup: React.ComponentClass<StatisticGroupProps>;
+export const StatisticGroup: React.StatelessComponent<StatisticGroupProps>;
 
 interface StatisticLabelProps {
+  [key: string]: any;
+
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -88,12 +98,14 @@ interface StatisticLabelProps {
   className?: string;
 
   /** Shorthand for primary content. */
-  label?: any;
+  label?: React.ReactNode;
 }
 
-export const StatisticLabel: React.ComponentClass<StatisticLabelProps>;
+export const StatisticLabel: React.StatelessComponent<StatisticLabelProps>;
 
 interface StatisticValueProps {
+  [key: string]: any;
+
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -107,7 +119,7 @@ interface StatisticValueProps {
   text?: boolean;
 
   /** Primary content of the StatisticValue. Mutually exclusive with the children prop. */
-  value?: any;
+  value?: React.ReactNode;
 }
 
-export const StatisticValue: React.ComponentClass<StatisticValueProps>;
+export const StatisticValue: React.StatelessComponent<StatisticValueProps>;

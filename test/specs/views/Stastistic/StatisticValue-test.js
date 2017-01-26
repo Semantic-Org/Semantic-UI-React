@@ -1,12 +1,13 @@
 import faker from 'faker'
 import React from 'react'
 
-import * as common from 'test/specs/commonTests'
 import StatisticValue from 'src/views/Statistic/StatisticValue'
+import * as common from 'test/specs/commonTests'
 
 describe('StatisticValue', () => {
   common.isConformant(StatisticValue)
   common.rendersChildren(StatisticValue)
+
   common.propKeyOnlyToClassName(StatisticValue, 'text')
 
   it('renders text with label prop', () => {
