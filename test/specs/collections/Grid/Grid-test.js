@@ -6,8 +6,8 @@ import GridRow from 'src/collections/Grid/GridRow'
 
 describe('Grid', () => {
   common.isConformant(Grid)
-  common.hasUIClassName(Grid)
   common.hasSubComponents(Grid, [GridRow, GridColumn])
+  common.hasUIClassName(Grid)
   common.rendersChildren(Grid)
 
   common.implementsTextAlignProp(Grid)
