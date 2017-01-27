@@ -42,7 +42,7 @@ describe('GridColumn', () => {
 
   common.propKeyAndValueToClassName(GridColumn, 'floated', SUI.FLOATS)
   common.propKeyAndValueToClassName(GridColumn, 'only', [
-    'computer', 'large screen', 'mobile', 'tablet mobile', 'tablet', 'widescreen'
+    'computer', 'large screen', 'mobile', 'tablet mobile', 'tablet', 'widescreen',
   ])
 
   common.propKeyOnlyToClassName(GridColumn, 'stretched')

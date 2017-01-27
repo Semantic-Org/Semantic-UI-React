@@ -1,5 +1,4 @@
 import React from 'react'
-import _ from 'lodash'
 
 import Sidebar from 'src/modules/Sidebar/Sidebar'
 import * as common from 'test/specs/commonTests'
@@ -31,7 +30,7 @@ describe('Sidebar', () => {
       const directions = ['top', 'right', 'bottom', 'left']
 
       directions.forEach(direction => {
-        shallow(<Sidebar direction={direction}/>)
+        shallow(<Sidebar direction={direction} />)
           .should.have.className(direction)
       })
     })

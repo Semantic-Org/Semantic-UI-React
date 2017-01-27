@@ -25,7 +25,7 @@ describe('Label', () => {
   })
 
   common.propKeyAndValueToClassName(Label, 'attached', [
-    'top', 'bottom', 'top right', 'top left', 'bottom left', 'bottom right'
+    'top', 'bottom', 'top right', 'top left', 'bottom left', 'bottom right',
   ])
 
   common.propKeyOnlyToClassName(Label, 'active')

@@ -134,7 +134,7 @@ describe('Popup', () => {
         wrapper.find('button').simulate('click', nativeEvent)
 
         const rect = document.querySelector('.popup.ui').getBoundingClientRect()
-        const { top, right, bottom, left} = rect
+        const { top, right, bottom, left } = rect
 
         expect(top).to.be.at.least(0)
         expect(left).to.be.at.least(0)
