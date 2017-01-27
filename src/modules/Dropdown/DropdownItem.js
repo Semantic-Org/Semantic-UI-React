@@ -1,9 +1,8 @@
 import _ from 'lodash'
 import cx from 'classnames'
-import React, { Component, PropTypes } from 'react'
+import React, { Children, Component, PropTypes } from 'react'
 
 import {
-  childrenUtils,
   createShorthand,
   customPropTypes,
   META,
@@ -114,7 +113,7 @@ export default class DropdownItem extends Component {
       className,
     )
     // add default dropdown icon if item contains another menu
-    const iconName = _.isNil(icon) ? childrenUtils.someByType(children, 'DropdownMenu') && 'dropdown' : icon
+    const iconName = _.isNil(icon) ? _.some(Children.toArray(children), { type: 'DropdownMenu' }) && 'dropdown' : icon
     const rest = getUnhandledProps(DropdownItem, this.props)
     const ElementType = getElementType(DropdownItem, this.props)
     const ariaOptions = {
