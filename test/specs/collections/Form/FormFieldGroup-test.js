@@ -6,7 +6,7 @@ describe('FormGroup', () => {
   common.isConformant(FormGroup)
   common.rendersChildren(FormGroup)
 
-  common.implementsWidthProp(FormGroup, [...SUI.WIDTHS, 'equal'], {
+  common.implementsWidthProp(FormGroup, SUI.WIDTHS, {
     canEqual: true,
     propKey: 'widths',
   })

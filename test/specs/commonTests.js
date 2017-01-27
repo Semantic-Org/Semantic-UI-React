@@ -499,7 +499,7 @@ const _noDefaultClassNameFromProp = (Component, propKey, propValues, options = {
 
     // ensure that none of the prop option values are in className
     // SUI classes ought to be built up using a declarative component API
-    propValues.forEach(propValue => wrapper.should.not.have.className(propValue))
+    propValues.forEach(propValue => wrapper.should.not.have.className(propValue.toString()))
   })
 }
 
@@ -516,7 +516,7 @@ const _noClassNameFromBoolProps = (Component, propKey, propValues, options = {})
     wrapper.should.not.have.className('true')
     wrapper.should.not.have.className('false')
 
-    propValues.forEach(propVal => wrapper.should.not.have.className(propVal))
+    propValues.forEach(propVal => wrapper.should.not.have.className(propVal.toString()))
   }))
 }
 
