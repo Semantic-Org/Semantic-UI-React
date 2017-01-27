@@ -6,6 +6,13 @@ describe('GridRow', () => {
   common.isConformant(GridRow)
   common.rendersChildren(GridRow)
 
+  common.implementsTextAlignProp(GridRow)
+  common.implementsVerticalAlignProp(GridRow)
+  common.implementsWidthProp(GridRow, [...SUI.WIDTHS, 'equal'], {
+    propKey: 'columns',
+    widthClass: 'column',
+  })
+
   common.propKeyAndValueToClassName(GridRow, 'only', [
     'computer', 'large screen', 'mobile', 'tablet mobile', 'tablet', 'widescreen'
   ])
@@ -18,11 +25,4 @@ describe('GridRow', () => {
   common.propKeyOnlyToClassName(GridRow, 'stretched')
 
   common.propValueOnlyToClassName(GridRow, 'color', SUI.COLORS)
-
-  common.implementsTextAlignProp(GridRow)
-  common.implementsVerticalAlignProp(GridRow)
-  common.implementsWidthProp(GridRow, [...SUI.WIDTHS, 'equal'], {
-    propKey: 'columns',
-    widthClass: 'column',
-  })
 })

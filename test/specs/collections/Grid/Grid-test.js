@@ -7,8 +7,8 @@ import { SUI } from 'src/lib'
 
 describe('Grid', () => {
   common.isConformant(Grid)
-  common.hasUIClassName(Grid)
   common.hasSubComponents(Grid, [GridRow, GridColumn])
+  common.hasUIClassName(Grid)
   common.rendersChildren(Grid)
 
   common.implementsTextAlignProp(Grid)
