@@ -199,7 +199,7 @@ interface TableHeaderProps {
 export const TableHeader: React.StatelessComponent<TableHeaderProps>;
 
 interface TableHeaderCellProps extends TableCellProps {
-  sorted: 'ascending' | 'descending';
+  sorted?: 'ascending' | 'descending';
 }
 
 export const TableHeaderCell: React.StatelessComponent<TableHeaderCellProps>;
