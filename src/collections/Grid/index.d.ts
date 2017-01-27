@@ -1,3 +1,4 @@
+import * as React from 'react';
 import {
   SemanticCOLORS,
   SemanticFLOATS,
@@ -5,15 +6,18 @@ import {
   SemanticVERTICALALIGNMENTS,
   SemanticWIDTHS
 } from '../..';
-import * as React from 'react';
 
-export type GridPropReversed = 'computer' | 'computer vertically' | 'mobile' | 'mobile vertically' | 'tablet' | 'tablet vertically';
+type GridPropOnly = 'computer' | 'large screen' | 'mobile' | 'tablet mobile' | 'tablet' | 'widescreen';
+type GridPropReversed = 'computer' | 'computer vertically' | 'mobile' | 'mobile vertically' | 'tablet' | 'tablet vertically';
+
 export interface GridProps {
+  [key: string]: any;
+
   /** An element type to render as (string or function). */
   as?: any;
 
   /** A grid can have rows divided into cells. */
-  celled?: boolean|'internally';
+  celled?: boolean | 'internally';
 
   /** A grid can have its columns centered. */
   centered?: boolean;
@@ -26,6 +30,9 @@ export interface GridProps {
 
   /** Represents column count per row in Grid. */
   columns?: SemanticWIDTHS | 'equal';
+
+  /** A grid can be combined with a container to use avaiable layout and alignment. */
+  container?: boolean;
 
   /** A grid can have dividers between its columns. */
   divided?: boolean | 'vertically';
@@ -55,15 +62,16 @@ export interface GridProps {
   verticalAlign?: SemanticVERTICALALIGNMENTS;
 }
 
-interface GridClass extends React.ComponentClass<GridProps> {
+interface GridComponent extends React.StatelessComponent<GridProps> {
   Column: typeof GridColumn;
   Row: typeof GridRow;
 }
 
-export const Grid: GridClass;
+export const Grid: GridComponent;
 
-type GridPropOnly = 'computer' | 'large screen' | 'mobile' | 'tablet mobile' | 'tablet' | 'widescreen';
 interface GridColumnProps {
+  [key: string]: any;
+
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -110,9 +118,11 @@ interface GridColumnProps {
   width?: SemanticWIDTHS;
 }
 
-export const GridColumn: React.ComponentClass<GridColumnProps>;
+export const GridColumn: React.StatelessComponent<GridColumnProps>;
 
 interface GridRowProps {
+  [key: string]: any;
+
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -150,4 +160,4 @@ interface GridRowProps {
   verticalAlign?: SemanticVERTICALALIGNMENTS;
 }
 
-export const GridRow: React.ComponentClass<GridRowProps>;
+export const GridRow: React.StatelessComponent<GridRowProps>;

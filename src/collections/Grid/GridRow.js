@@ -55,14 +55,6 @@ GridRow._meta = {
   name: 'GridRow',
   parent: 'Grid',
   type: META.TYPES.COLLECTION,
-  props: {
-    color: SUI.COLORS,
-    columns: [...SUI.WIDTHS, 'equal'],
-    only: ['computer', 'large screen', 'mobile', 'tablet mobile', 'tablet', 'widescreen'],
-    reversed: ['computer', 'computer vertically', 'mobile', 'mobile vertically', 'tablet', 'tablet vertically'],
-    textAlign: SUI.TEXT_ALIGNMENTS,
-    verticalAlign: SUI.VERTICAL_ALIGNMENTS,
-  },
 }
 
 GridRow.propTypes = {
@@ -79,28 +71,30 @@ GridRow.propTypes = {
   className: PropTypes.string,
 
   /** A grid row can be colored. */
-  color: PropTypes.oneOf(GridRow._meta.props.color),
+  color: PropTypes.oneOf(SUI.COLORS),
 
   /** Represents column count per line in Row. */
-  columns: PropTypes.oneOf(GridRow._meta.props.columns),
+  columns: PropTypes.oneOf([...SUI.WIDTHS, 'equal']),
 
   /** A row can have dividers between its columns. */
   divided: PropTypes.bool,
 
   /** A row can appear only for a specific device, or screen sizes. */
-  only: PropTypes.oneOf(GridRow._meta.props.only),
+  only: PropTypes.oneOf(['computer', 'large screen', 'mobile', 'tablet mobile', 'tablet', 'widescreen']),
 
   /** A  row can specify that its columns should reverse order at different device sizes. */
-  reversed: PropTypes.oneOf(GridRow._meta.props.reversed),
+  reversed: PropTypes.oneOf([
+    'computer', 'computer vertically', 'mobile', 'mobile vertically', 'tablet', 'tablet vertically',
+  ]),
 
   /** An can stretch its contents to take up the entire column height. */
   stretched: PropTypes.bool,
 
   /** A row can specify its text alignment. */
-  textAlign: PropTypes.oneOf(GridRow._meta.props.textAlign),
+  textAlign: PropTypes.oneOf(SUI.TEXT_ALIGNMENTS),
 
   /** A row can specify its vertical alignment to have all its columns vertically centered. */
-  verticalAlign: PropTypes.oneOf(GridRow._meta.props.verticalAlign),
+  verticalAlign: PropTypes.oneOf(SUI.VERTICAL_ALIGNMENTS),
 }
 
 export default GridRow
