@@ -5,14 +5,12 @@ const webpackDllConfig = { module: {} }
 
 const { paths } = config
 
-// ------------------------------------
 // Entry Points
 // ------------------------------------
 webpackDllConfig.entry = {
   vendor: config.compiler_vendor,
 }
 
-// ------------------------------------
 // Bundle Output
 // ------------------------------------
 webpackDllConfig.output = Object.assign({}, webpackDllConfig.output, {
@@ -21,7 +19,6 @@ webpackDllConfig.output = Object.assign({}, webpackDllConfig.output, {
   library: '[name]_[hash]',
 })
 
-// ------------------------------------
 // Plugins
 // ------------------------------------
 webpackDllConfig.plugins = [
@@ -31,30 +28,19 @@ webpackDllConfig.plugins = [
   }),
 ]
 
-// ------------------------------------
 // Pre-Loaders
 // ------------------------------------
 webpackDllConfig.module.preLoaders = []
 
-// ------------------------------------
 // Loaders
 // ------------------------------------
 webpackDllConfig.module.loaders = [{
-  //
-  // JSON
-  //
   test: /\.json$/,
   loader: 'json',
 }, {
-  //
-  // SASS
-  //
   test: /\.s?css$/,
   loaders: ['style', 'css', 'sass'],
 }, {
-  //
-  // Files
-  //
   test: /\.(eot|ttf|woff|woff2|svg|png)$/,
   loader: 'file',
 }]

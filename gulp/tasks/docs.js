@@ -59,7 +59,7 @@ task('build:docs:images', () => {
 })
 
 task('build:docs:webpack', (cb) => {
-  const webpackConfig = require('../../webpack.config')
+  const webpackConfig = require('../../webpack.docs')
   const compiler = webpack(webpackConfig)
 
   compiler.run((err, stats) => {
@@ -103,7 +103,7 @@ task('build:docs', series(
 // ----------------------------------------
 
 task('serve:docs', (cb) => {
-  const webpackConfig = require('../../webpack.config')
+  const webpackConfig = require('../../webpack.docs')
   const app = express()
   const compiler = webpack(webpackConfig)
 
