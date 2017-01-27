@@ -9,7 +9,7 @@ describe('StepGroup', () => {
   common.isConformant(StepGroup)
   common.hasUIClassName(StepGroup)
 
-  common.propKeyAndValueToClassName(StepGroup, 'stackable')
+  common.propKeyAndValueToClassName(StepGroup, 'stackable', ['tablet'])
 
   common.propKeyOnlyToClassName(StepGroup, 'fluid')
   common.propKeyOnlyToClassName(StepGroup, 'ordered')

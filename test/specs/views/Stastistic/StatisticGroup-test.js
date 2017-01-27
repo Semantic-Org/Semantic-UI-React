@@ -10,7 +10,10 @@ describe('StatisticGroup', () => {
   common.hasUIClassName(StatisticGroup)
   common.rendersChildren(StatisticGroup)
 
-  common.implementsWidthProp(StatisticGroup, { propKey: 'widths', canEqual: false })
+  common.implementsWidthProp(StatisticGroup, _.without(SUI.SIZES, 'big', 'massive', 'medium'), {
+    canEqual: false,
+    propKey: 'widths',
+  })
 
   common.propKeyOnlyToClassName(StatisticGroup, 'horizontal')
   common.propKeyOnlyToClassName(StatisticGroup, 'inverted')

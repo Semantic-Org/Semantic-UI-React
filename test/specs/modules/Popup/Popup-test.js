@@ -6,7 +6,7 @@ import PopupHeader from 'src/modules/Popup/PopupHeader'
 import PopupContent from 'src/modules/Popup/PopupContent'
 import Portal from 'src/addons/Portal/Portal'
 
-import { keyboardKey } from 'src/lib'
+import { keyboardKey, SUI } from 'src/lib'
 import { domEvent, sandbox } from 'test/utils'
 import * as common from 'test/specs/commonTests'
 
@@ -111,7 +111,18 @@ describe('Popup', () => {
 
   describe('positioning', () => {
     it('is always within the viewport', () => {
-      _.each(Popup._meta.props.positions, position => {
+      const positions = [
+        'top left',
+        'top right',
+        'bottom right',
+        'bottom left',
+        'right center',
+        'left center',
+        'top center',
+        'bottom center',
+      ]
+
+      positions.forEach(position => {
         wrapperMount(
           <Popup
             positioning={position}
@@ -121,12 +132,9 @@ describe('Popup', () => {
           />
         )
         wrapper.find('button').simulate('click', nativeEvent)
-        const {
-          top,
-          right,
-          bottom,
-          left,
-        } = document.querySelector('.popup.ui').getBoundingClientRect()
+
+        const rect = document.querySelector('.popup.ui').getBoundingClientRect()
+        const { top, right, bottom, left} = rect
 
         expect(top).to.be.at.least(0)
         expect(left).to.be.at.least(0)
@@ -268,13 +276,10 @@ describe('Popup', () => {
   })
 
   describe('size', () => {
-    it('defines prop options in _meta', () => {
-      Popup._meta.props.should.have.any.keys('size')
-      Popup._meta.props.size.should.be.an('array')
-    })
-
     it('adds the size to the popup className', () => {
-      Popup._meta.props.size.forEach(size => {
+      const sizes = _.without(SUI.SIZES, 'medium', 'big', 'massive')
+
+      sizes.forEach(size => {
         wrapperMount(<Popup size={size} open />)
         assertInBody(`.ui.${size}.popup`)
       })

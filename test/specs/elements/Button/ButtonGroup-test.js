@@ -7,9 +7,13 @@ describe('ButtonGroup', () => {
   common.hasUIClassName(ButtonGroup)
   common.rendersChildren(ButtonGroup)
 
-  common.implementsWidthProp(ButtonGroup, { propKey: 'widths', widthClass: 'buttons', canEqual: false })
+  common.implementsWidthProp(ButtonGroup, SUI.WIDTHS, {
+    canEqual: false,
+    propKey: 'widths',
+    widthClass: 'buttons',
+  })
 
-  common.propKeyAndValueToClassName(ButtonGroup, 'attached')
+  common.propKeyAndValueToClassName(ButtonGroup, 'attached', ['left', 'right', 'top', 'bottom'])
 
   common.propKeyOnlyToClassName(ButtonGroup, 'basic')
   common.propKeyOnlyToClassName(ButtonGroup, 'compact')

@@ -22,7 +22,7 @@ describe('Header', () => {
   })
   common.implementsTextAlignProp(Header)
 
-  common.propKeyAndValueToClassName(Header, 'floated')
+  common.propKeyAndValueToClassName(Header, 'floated', SUI.FLOATS)
 
   common.propKeyOnlyToClassName(Header, 'block')
   common.propKeyOnlyToClassName(Header, 'disabled')

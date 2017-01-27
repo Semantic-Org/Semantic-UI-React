@@ -26,9 +26,14 @@ describe('Sidebar', () => {
     wrapper.children().at(0).should.have.tagName('span')
   })
 
-  it('adds direction value to className', () => {
-    _.each(_.get(Sidebar, '_meta.props.direction'), propValue => {
-      shallow(<Sidebar direction={propValue} />).should.have.className(propValue)
+  describe('direction', () => {
+    it('adds value to className', () => {
+      const directions = ['top', 'right', 'bottom', 'left']
+
+      directions.forEach(direction => {
+        shallow(<Sidebar direction={direction}/>)
+          .should.have.className(direction)
+      })
     })
   })
 })

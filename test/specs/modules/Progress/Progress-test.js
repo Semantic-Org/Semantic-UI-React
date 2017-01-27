@@ -10,7 +10,7 @@ describe('Progress', () => {
   common.hasUIClassName(Progress)
   common.rendersChildren(Progress)
 
-  common.propKeyAndValueToClassName(Progress, 'attached')
+  common.propKeyAndValueToClassName(Progress, 'attached', ['top', 'bottom'])
 
   common.propValueOnlyToClassName(Progress, 'color', SUI.COLORS)
   common.propValueOnlyToClassName(Progress, 'size', _.without(SUI.SIZES, 'mini', 'huge', 'massive'))

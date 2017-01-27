@@ -24,7 +24,9 @@ describe('Label', () => {
     mapValueToProps: val => ({ content: val }),
   })
 
-  common.propKeyAndValueToClassName(Label, 'attached')
+  common.propKeyAndValueToClassName(Label, 'attached', [
+    'top', 'bottom', 'top right', 'top left', 'bottom left', 'bottom right'
+  ])
 
   common.propKeyOnlyToClassName(Label, 'active')
   common.propKeyOnlyToClassName(Label, 'basic')
@@ -121,7 +123,7 @@ describe('Label', () => {
     })
 
     it('does not add any poiting option class when true', () => {
-      const options = Label._meta.props.pointing
+      const options = ['above', 'below', 'left', 'right']
       const wrapper = shallow(<Label pointing />)
 
       options.map(className => wrapper.should.not.have.className(className))

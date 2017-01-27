@@ -32,6 +32,8 @@ describe('Form', () => {
   ])
   common.rendersChildren(Form)
 
+  common.implementsWidthProp(Form, _.without(SUI.SIZES, 'medium'), { propKey: 'widths' })
+
   common.propKeyOnlyToClassName(Form, 'error')
   common.propKeyOnlyToClassName(Form, 'inverted')
   common.propKeyOnlyToClassName(Form, 'loading')
@@ -40,8 +42,6 @@ describe('Form', () => {
   common.propKeyOnlyToClassName(Form, 'warning')
 
   common.propValueOnlyToClassName(Form, 'size', _.without(SUI.SIZES, 'medium'))
-
-  common.implementsWidthProp(Form, { propKey: 'widths' })
 
   describe('serializer', () => {
     it('defaults to a function', () => {
