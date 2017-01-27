@@ -318,7 +318,7 @@ const getWebpackConfig = (options) => { // eslint-disable-line complexity
         // filename accepts paths relative to the output directory only
         filename: path.join(path.relative(outputPath, paths.base()), `stats-${buildTarget}.md`),
         fields: null,
-        transform(data) {
+        transform(stats) {
           //
           // Markdown helpers
           //
@@ -349,7 +349,7 @@ const getWebpackConfig = (options) => { // eslint-disable-line complexity
           //
 
           // fs.writeFileSync(__dirname + '/stats.js', 'const stats = ' + JSON.stringify(data, null, 2))
-          const { assets } = data
+          const { assets } = stats
 
           let assetCount = 0
           let assetsSize = 0
