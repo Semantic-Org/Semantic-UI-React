@@ -62,7 +62,6 @@ config = Object.assign({}, config, {
   compiler_fail_on_warning: __TEST__ || __PROD__,
   compiler_lint: argv.lint !== false,
   compiler_quiet: false,
-  compiler_output_path: paths.base(config.dir_docs_dist),
   compiler_public_path: __PROD__ ? '//cdn.rawgit.com/Semantic-Org/Semantic-UI-React/gh-pages/' : __BASE__,
   compiler_vendor: [
     'babel-standalone',
