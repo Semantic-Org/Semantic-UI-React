@@ -13,7 +13,7 @@ describe('Grid', () => {
 
   common.implementsTextAlignProp(Grid)
   common.implementsVerticalAlignProp(Grid)
-  common.implementsWidthProp(Grid, [...SUI.WIDTHS, 'equal'], {
+  common.implementsWidthProp(Grid, SUI.WIDTHS, {
     propKey: 'columns',
     widthClass: 'column',
   })
