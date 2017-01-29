@@ -947,7 +947,7 @@ export default class Dropdown extends Component {
     // https://github.com/Semantic-Org/Semantic-UI-React/issues/627
     // Blur the Dropdown on close so it is blurred after selecting an item.
     // This is to prevent it from re-opening when switching tabs after selecting an item.
-    this._dropdown.blur()
+    if (this._dropdown.blur) this._dropdown.blur()
 
     // We need to keep the virtual model in sync with the browser focus change
     // https://github.com/Semantic-Org/Semantic-UI-React/issues/692
