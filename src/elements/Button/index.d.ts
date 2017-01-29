@@ -148,6 +148,9 @@ interface GroupProps {
   /** Groups can reduce their padding to fit into tighter spaces. */
   compact?: boolean;
 
+  /** Groups can be aligned to the left or right of its container. */
+  floated?: SemanticFLOATS;
+
   /** Groups can take the width of their container. */
   fluid?: boolean;
 
