@@ -16,7 +16,7 @@ const FixedMenuLayout = () =>
     <Menu fixed inverted>
       <Container>
         <Menu.Item>
-          <Image src='http://semantic-ui.com/images/logo.png' size='mini'/>
+          <Image src='http://react.semantic-ui.com/logo.png' size='mini'/>
         </Menu.Item>
         <Menu.Item>
           <Menu.Header>Project Name</Menu.Header>
@@ -79,7 +79,7 @@ const FixedMenuLayout = () =>
             </Grid.Column>
             <Grid.Column>
               <Header inverted as='h4' content='Group 3' />
-              <List link inverted>
+              <List link inverted >
               <List.Item as='a'>Link One</List.Item>
               <List.Item as='a'>Link Two</List.Item>
               <List.Item as='a'>Link Three</List.Item>
@@ -95,7 +95,7 @@ const FixedMenuLayout = () =>
           </Grid.Row>
         </Grid>
          <Divider inverted section />
-         <Image src="http://semantic-ui.com/assets/images/logo.png" centered  size='mini' />
+         <Image src="http://react.semantic-ui.com/logo.png" centered  size='mini' />
          <List horizontal inverted divided link>
            <List.Item as='a' href="#">Site Map</List.Item>
            <List.Item as='a' href="#">Contact Us</List.Item>
