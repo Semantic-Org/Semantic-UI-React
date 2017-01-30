@@ -14,7 +14,7 @@ describe('ButtonGroup', () => {
   })
 
   common.propKeyAndValueToClassName(ButtonGroup, 'attached', ['left', 'right', 'top', 'bottom'])
-  common.propKeyAndValueToClassName(ButtonGroup, 'floated')
+  common.propKeyAndValueToClassName(ButtonGroup, 'floated', SUI.FLOATS)
 
   common.propKeyOnlyToClassName(ButtonGroup, 'basic')
   common.propKeyOnlyToClassName(ButtonGroup, 'compact')
