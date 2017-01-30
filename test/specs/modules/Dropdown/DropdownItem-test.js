@@ -27,8 +27,21 @@ describe('DropdownItem', () => {
     propKey: 'description',
     ShorthandComponent: 'span',
     mapValueToProps: val => ({
-      className: 'description',
       children: val,
+    }),
+    shorthandDefaultProps: props => ({
+      className: 'description',
+    }),
+  })
+
+  common.implementsShorthandProp(DropdownItem, {
+    propKey: 'text',
+    ShorthandComponent: 'span',
+    mapValueToProps: val => ({
+      children: val,
+    }),
+    shorthandDefaultProps: props => ({
+      className: 'description',
     }),
   })
 
@@ -71,6 +84,13 @@ describe('DropdownItem', () => {
     })
   })
 
+  describe('description', () => {
+    it('adds className="description" to element shorthand', () => {
+      shallow(<DropdownItem description={<strong />} />)
+        .should.not.have.descendants('strong.description')
+    })
+  })
+
   describe('text', () => {
     it('renders with wrapping span when description', () => {
       const wrapper = shallow(<DropdownItem text='hey' description='description' />)
@@ -84,6 +104,11 @@ describe('DropdownItem', () => {
 
       wrapper.should.not.have.descendants('span.text')
       wrapper.text().should.equal('hey')
+    })
+
+    it('adds className="text" to element shorthand', () => {
+      shallow(<DropdownItem text={<strong />} />)
+        .should.not.have.descendants('strong.text')
     })
   })
 
