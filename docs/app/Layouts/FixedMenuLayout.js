@@ -7,8 +7,9 @@ const FixedMenuLayout = () =>
       <Container>
         <Menu.Item>
           <Image src='http://semantic-ui.com/images/logo.png' size='mini'/>
-          {'   '}
-          Project Name
+        </Menu.Item>
+        <Menu.Item>
+          <Menu.Header>Project Name</Menu.Header>
         </Menu.Item>
         <Menu.Item name='Home' />
 
