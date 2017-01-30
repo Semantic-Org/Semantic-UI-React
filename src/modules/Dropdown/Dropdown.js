@@ -85,6 +85,13 @@ export default class Dropdown extends Component {
     /** Whether or not the menu should close when the dropdown is blurred. */
     closeOnBlur: PropTypes.bool,
 
+    /**
+     * Whether or not the menu should close when a value is selected from the dropdown.
+     * By default, multiple selection dropdowns will remain open on change, while single
+     * selection dropdowns will close on change.
+     */
+    closeOnChange: PropTypes.bool,
+
     /** A compact dropdown has no minimum width. */
     compact: PropTypes.bool,
 
@@ -480,6 +487,15 @@ export default class Dropdown extends Component {
     if (onChange) onChange(e, { ...this.props, value })
   }
 
+  closeOnChange = (e) => {
+    const { closeOnChange, multiple } = this.props
+    const shouldClose = _.isUndefined(closeOnChange)
+      ? !multiple
+      : closeOnChange
+
+    if (shouldClose) this.close(e)
+  }
+
   closeOnEscape = (e) => {
     if (keyboardKey.getCode(e) !== keyboardKey.Escape) return
     e.preventDefault()
@@ -557,10 +573,9 @@ export default class Dropdown extends Component {
     debug(keyboardKey.getName(e))
     if (keyboardKey.getCode(e) !== keyboardKey.Enter) return
     e.preventDefault()
-    const { multiple } = this.props
 
     this.makeSelectedItemActive(e)
-    if (!multiple) this.close()
+    this.closeOnChange(e)
   }
 
   removeItemOnBackspace = (e) => {
@@ -651,8 +666,8 @@ export default class Dropdown extends Component {
     } else {
       this.setValue(value)
       this.handleChange(e, value)
-      this.close()
     }
+    this.closeOnChange(e)
   }
 
   handleFocus = (e) => {

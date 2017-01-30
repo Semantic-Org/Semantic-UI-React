@@ -17,6 +17,12 @@ const DropdownUsageExamples = () => (
     />
 
     <ComponentExample
+      title='Close On Change'
+      description='A multiple selection dropdown can close when the user changes its value.'
+      examplePath='modules/Dropdown/Usage/DropdownExampleCloseOnChange'
+    />
+
+    <ComponentExample
       title='Uncontrolled'
       description='A dropdown can behave like an uncontrolled input.'
       examplePath='modules/Dropdown/Usage/DropdownExampleUncontrolled'
