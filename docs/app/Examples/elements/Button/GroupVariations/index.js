@@ -5,6 +5,11 @@ import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
 const ButtonGroupVariationsExamples = () => (
   <ExampleSection title='Group Variations'>
     <ComponentExample
+      title='Floated Group'
+      description='Groups can be aligned to the left or right of its container.'
+      examplePath='elements/Button/GroupVariations/ButtonExampleGroupFloated'
+    />
+    <ComponentExample
       title='Vertical Group'
       description='Groups can be formatted to appear vertically.'
       examplePath='elements/Button/GroupVariations/ButtonExampleGroupVertical'

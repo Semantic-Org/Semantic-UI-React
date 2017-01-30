@@ -154,6 +154,13 @@ interface MenuItemProps extends ReactMouseEvents<HTMLElement> {
   /** Internal name of the MenuItem. */
   name?: string;
 
+  /**
+   * Called after user's click.
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props.
+   */
+  onClick?: (event: React.MouseEvent<HTMLElement>, data: MenuItemProps) => void;
+
   /** A menu item can take right position. */
   position?: 'right';
 }
