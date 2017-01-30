@@ -34,7 +34,7 @@ CalendarMonth.propTypes = {
   children: PropTypes.node,
 
   /** Additional classes. */
-  className: PropTypes.string
+  className: PropTypes.string,
 }
 
 export default CalendarMonth

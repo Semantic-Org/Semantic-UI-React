@@ -1,4 +1,4 @@
-mport {ReactFocusEvents, ReactFormEvents, ReactMouseEvents} from '../..';
+import {ReactFocusEvents, ReactFormEvents, ReactMouseEvents} from '../..';
 import * as React from 'react';
 
 export interface DatetimeProps extends ReactMouseEvents<HTMLElement>, ReactFocusEvents<HTMLElement>, ReactFormEvents<HTMLElement> {

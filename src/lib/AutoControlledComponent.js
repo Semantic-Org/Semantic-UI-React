@@ -79,11 +79,9 @@ export default class AutoControlledComponent extends Component {
       }
 
       // require propTypes
-      console.log(propTypes)
       _.each(autoControlledProps, (prop) => {
         const defaultProp = getDefaultPropName(prop)
         // regular prop
-        console.log(prop, defaultProp)
         if (!_.has(propTypes, defaultProp)) {
           console.error(`${name} is missing "${defaultProp}" propTypes validation for auto controlled prop "${prop}".`)
         }
