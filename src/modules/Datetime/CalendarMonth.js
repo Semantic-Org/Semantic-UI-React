@@ -20,13 +20,13 @@ function CalendarMonth(props) {
   return <ElementType {...rest} className={classes}>{children}</ElementType>
 }
 
-DropdownMenu._meta = {
+CalendarMonth._meta = {
   name: 'CalendarMonth',
   parent: 'Datetime',
   type: META.TYPES.MODULE,
 }
 
-DropdownMenu.propTypes = {
+CalendarMonth.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
