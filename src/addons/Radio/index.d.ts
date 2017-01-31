@@ -1,6 +1,7 @@
 import * as React from 'react';
+import { CheckboxProps } from '../../modules/Checkbox';
 
-interface RadioProps {
+interface RadioProps extends CheckboxProps {
   [key: string]: any;
 
   /** Format to emphasize the current selection state. */

@@ -23,6 +23,7 @@ function ButtonGroup(props) {
     className,
     color,
     compact,
+    floated,
     fluid,
     icon,
     inverted,
@@ -54,6 +55,7 @@ function ButtonGroup(props) {
     useKeyOnly(toggle, 'toggle'),
     useKeyOnly(vertical, 'vertical'),
     useValueAndKey(attached, 'attached'),
+    useValueAndKey(floated, 'floated'),
     useWidthProp(widths),
     'buttons',
     className,
@@ -91,6 +93,9 @@ ButtonGroup.propTypes = {
 
   /** Groups can reduce their padding to fit into tighter spaces. */
   compact: PropTypes.bool,
+
+  /** Groups can be aligned to the left or right of its container. */
+  floated: PropTypes.oneOf(SUI.FLOATS),
 
   /** Groups can take the width of their container. */
   fluid: PropTypes.bool,

@@ -10,6 +10,7 @@ describe('ButtonGroup', () => {
   common.implementsWidthProp(ButtonGroup, { propKey: 'widths', widthClass: 'buttons', canEqual: false })
 
   common.propKeyAndValueToClassName(ButtonGroup, 'attached')
+  common.propKeyAndValueToClassName(ButtonGroup, 'floated')
 
   common.propKeyOnlyToClassName(ButtonGroup, 'basic')
   common.propKeyOnlyToClassName(ButtonGroup, 'compact')

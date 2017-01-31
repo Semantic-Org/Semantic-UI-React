@@ -61,19 +61,6 @@ GridColumn._meta = {
   name: 'GridColumn',
   parent: 'Grid',
   type: META.TYPES.COLLECTION,
-  props: {
-    color: SUI.COLORS,
-    computer: SUI.WIDTHS,
-    floated: SUI.FLOATS,
-    largeScreen: SUI.WIDTHS,
-    mobile: SUI.WIDTHS,
-    only: ['computer', 'large screen', 'mobile', 'tablet mobile', 'tablet', 'widescreen'],
-    tablet: SUI.WIDTHS,
-    textAlign: SUI.TEXT_ALIGNMENTS,
-    verticalAlign: SUI.VERTICAL_ALIGNMENTS,
-    widescreen: SUI.WIDTHS,
-    width: SUI.WIDTHS,
-  },
 }
 
 GridColumn.propTypes = {
@@ -86,41 +73,41 @@ GridColumn.propTypes = {
   /** Additional classes. */
   className: PropTypes.string,
 
-  /** A column can specify a width for a computer. */
-  computer: PropTypes.oneOf(GridColumn._meta.props.width),
-
   /** A grid column can be colored. */
-  color: PropTypes.oneOf(GridColumn._meta.props.color),
+  color: PropTypes.oneOf(SUI.COLORS),
+
+  /** A column can specify a width for a computer. */
+  computer: PropTypes.oneOf(SUI.WIDTHS),
 
   /** A column can sit flush against the left or right edge of a row. */
-  floated: PropTypes.oneOf(GridColumn._meta.props.floated),
+  floated: PropTypes.oneOf(SUI.FLOATS),
 
   /** A column can specify a width for a large screen device. */
-  largeScreen: PropTypes.oneOf(GridColumn._meta.props.width),
+  largeScreen: PropTypes.oneOf(SUI.WIDTHS),
 
   /** A column can specify a width for a mobile device. */
-  mobile: PropTypes.oneOf(GridColumn._meta.props.width),
+  mobile: PropTypes.oneOf(SUI.WIDTHS),
 
   /** A column can appear only for a specific device, or screen sizes. */
-  only: PropTypes.oneOf(GridColumn._meta.props.only),
+  only: PropTypes.oneOf(['computer', 'large screen', 'mobile', 'tablet mobile', 'tablet', 'widescreen']),
 
   /** An can stretch its contents to take up the entire grid or row height. */
   stretched: PropTypes.bool,
 
   /** A column can specify a width for a tablet device. */
-  tablet: PropTypes.oneOf(GridColumn._meta.props.width),
+  tablet: PropTypes.oneOf(SUI.WIDTHS),
 
   /** A row can specify its text alignment. */
-  textAlign: PropTypes.oneOf(GridColumn._meta.props.textAlign),
+  textAlign: PropTypes.oneOf(SUI.TEXT_ALIGNMENTS),
 
   /** A column can specify its vertical alignment to have all its columns vertically centered. */
-  verticalAlign: PropTypes.oneOf(GridColumn._meta.props.verticalAlign),
+  verticalAlign: PropTypes.oneOf(SUI.VERTICAL_ALIGNMENTS),
 
   /** A column can specify a width for a wide screen device. */
-  widescreen: PropTypes.oneOf(GridColumn._meta.props.width),
+  widescreen: PropTypes.oneOf(SUI.WIDTHS),
 
   /** Represents width of column. */
-  width: PropTypes.oneOf(GridColumn._meta.props.width),
+  width: PropTypes.oneOf(SUI.WIDTHS),
 }
 
 export default GridColumn
