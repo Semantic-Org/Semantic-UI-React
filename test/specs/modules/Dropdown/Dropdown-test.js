@@ -1167,6 +1167,19 @@ describe('Dropdown Component', () => {
 
         spy.should.have.been.calledWithMatch({}, { value: randomValue })
       })
+
+      it('refocuses search on select', () => {
+        const randomIndex = _.random(options.length - 1)
+
+        wrapperMount(<Dropdown options={options} search selection multiple />)
+          .simulate('click', nativeEvent)
+          .find('DropdownItem')
+          .at(randomIndex)
+          .simulate('click', nativeEvent)
+
+        wrapper.instance()
+          ._search.should.eq(document.activeElement)
+      })
     })
     describe('removing items', () => {
       it('calls onChange without the clicked value', () => {
