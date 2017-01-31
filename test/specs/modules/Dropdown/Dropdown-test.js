@@ -371,6 +371,34 @@ describe('Dropdown Component', () => {
     })
   })
 
+  describe('closeOnChange', () => {
+    it('will close when defined and dropdown is multiple', () => {
+      wrapperMount(<Dropdown selection multiple search closeOnChange options={options} />)
+        .simulate('click')
+
+      dropdownMenuIsOpen()
+
+      wrapper.find('DropdownItem')
+        .first()
+        .simulate('click', nativeEvent)
+
+      dropdownMenuIsClosed()
+    })
+
+    it('will remain open when undefined and dropdown is multiple', () => {
+      wrapperMount(<Dropdown selection multiple search options={options} />)
+        .simulate('click')
+
+      dropdownMenuIsOpen()
+
+      wrapper.find('DropdownItem')
+        .first()
+        .simulate('click', nativeEvent)
+
+      dropdownMenuIsOpen()
+    })
+  })
+
   describe('isMouseDown', () => {
     it('tracks when the mouse is down', () => {
       wrapperShallow(<Dropdown />)
