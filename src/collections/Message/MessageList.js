@@ -1,5 +1,5 @@
-import _ from 'lodash/fp'
 import cx from 'classnames'
+import _ from 'lodash'
 import React, { PropTypes } from 'react'
 
 import {
@@ -9,9 +9,11 @@ import {
   getUnhandledProps,
   META,
 } from '../../lib'
-
 import MessageItem from './MessageItem'
 
+/**
+ * A message can contain a list of items.
+ */
 function MessageList(props) {
   const { children, className, items } = props
   const classes = cx('list', className)
@@ -20,7 +22,7 @@ function MessageList(props) {
 
   return (
     <ElementType {...rest} className={classes}>
-      {_.isNil(children) ? _.map(MessageItem.create, items) : children}
+      {_.isNil(children) ? _.map(items, MessageItem.create) : children}
     </ElementType>
   )
 }
