@@ -121,7 +121,7 @@ describe('Label', () => {
     })
 
     it('does not add any poiting option class when true', () => {
-      const options = Label._meta.props.pointing
+      const options = ['above', 'below', 'left', 'right']
       const wrapper = shallow(<Label pointing />)
 
       options.map(className => wrapper.should.not.have.className(className))

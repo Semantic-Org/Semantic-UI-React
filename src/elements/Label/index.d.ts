@@ -1,20 +1,17 @@
-import { SemanticCOLORS, SemanticSIZES } from '../..';
 import * as React from 'react';
-
-
-export type LabelPropAttached = 'top' | 'bottom' | 'top right' | 'top left' | 'bottom left' | 'bottom right';
-export type LabelPropPointing = 'above' | 'below' | 'left' | 'right';
-export type LabelPropCorner = 'left' | 'right';
+import { SemanticCOLORS, SemanticSIZES } from '../..';
 
 export interface LabelProps {
+  [key: string]: any;
+
   /** An element type to render as (string or function). */
   as?: any;
 
   /** A label can be active. */
-  active?:boolean;
+  active?: boolean;
 
   /** A label can attach to a content segment. */
-  attached?: LabelPropAttached;
+  attached?: 'top' | 'bottom' | 'top right' | 'top left' | 'bottom left' | 'bottom right';
 
   /** A label can reduce its complexity. */
   basic?: boolean;
@@ -32,10 +29,10 @@ export interface LabelProps {
   color?: SemanticCOLORS;
 
   /** Shorthand for primary content. */
-  content?: any;
+  content?: React.ReactNode;
 
   /** A label can position itself in the corner of an element. */
-  corner?: boolean | LabelPropCorner;
+  corner?: boolean | 'left' | 'right';
 
   /** Shorthand for LabelDetail. */
   detail?: any;
@@ -61,7 +58,7 @@ export interface LabelProps {
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
    * @param {object} data - All props.
    */
-  onClick?: React.MouseEventHandler<HTMLDivElement>;
+  onClick?: (event: React.MouseEvent<HTMLElement>, data: LabelProps) => void;
 
   /**
    * Adds an "x" icon, called when "x" is clicked.
@@ -69,13 +66,13 @@ export interface LabelProps {
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
    * @param {object} data - All props.
    */
-  onRemove?: React.FormEventHandler<HTMLDivElement>;
+  onRemove?: (event: React.MouseEvent<HTMLElement>, data: LabelProps) => void;
 
   /** A label can point to content next to it. */
-  pointing?: boolean | LabelPropPointing;
+  pointing?: boolean | 'above' | 'below' | 'left' | 'right';
 
   /** Shorthand for Icon to appear as the last child and trigger onRemove. */
-  removeIcon?:any;
+  removeIcon?: any;
 
   /** A label can appear as a ribbon attaching itself to an element. */
   ribbon?: boolean | 'right';
@@ -87,14 +84,16 @@ export interface LabelProps {
   tag?: boolean;
 }
 
-interface LabelClass extends React.ComponentClass<LabelProps> {
+interface LabelComponent extends React.ComponentClass<LabelProps> {
   Detail: typeof LabelDetail;
   Group: typeof LabelGroup;
 }
 
-export const Label: LabelClass;
+export const Label: LabelComponent;
 
 interface LabelDetailProps {
+  [key: string]: any;
+
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -105,12 +104,14 @@ interface LabelDetailProps {
   className?: string;
 
   /** Shorthand for primary content. */
-  content?: any;
+  content?: React.ReactNode;
 }
 
-export const LabelDetail: React.ComponentClass<LabelDetailProps>;
+export const LabelDetail: React.StatelessComponent<LabelDetailProps>;
 
 interface LabelGroupProps {
+  [key: string]: any;
+
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -133,4 +134,4 @@ interface LabelGroupProps {
   tag?: boolean;
 }
 
-export const LabelGroup: React.ComponentClass<LabelGroupProps>;
+export const LabelGroup: React.StatelessComponent<LabelGroupProps>;
