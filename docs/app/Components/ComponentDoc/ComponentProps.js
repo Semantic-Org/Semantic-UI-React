@@ -2,6 +2,12 @@ import _ from 'lodash'
 import React, { Component, PropTypes } from 'react'
 
 import { Label, Table } from 'src'
+import { SUI } from 'src/lib'
+
+const descriptionExtraStyle = {
+  fontSize: '0.95em',
+  color: '#777',
+}
 
 /**
  * Displays a table of a Component's PropTypes.
@@ -18,6 +24,19 @@ export default class ComponentProps extends Component {
      * @type {object} Meta info object where enum prop values are defined.
      */
     meta: PropTypes.object,
+  }
+
+  state = {
+    showEnumsFor: {},
+  }
+
+  toggleEnumsFor = (prop) => () => {
+    this.setState({
+      showEnumsFor: {
+        ...this.state.showEnumsFor,
+        [prop]: !this.state.showEnumsFor[prop],
+      },
+    })
   }
 
   renderName = item => <code>{item.name}</code>
@@ -65,6 +84,61 @@ export default class ComponentProps extends Component {
     )
   }
 
+  expandEnums = (value) => {
+    const parts = value.split('.')
+    if (parts[0] === 'SUI') {
+      return SUI[parts[1]]
+    }
+    return value
+  }
+
+  renderEnums = (item) => {
+    if (item.type !== '{enum}') return
+
+    const { showEnumsFor } = this.state
+    const truncateAt = 30
+
+    if (!item.value) return null
+
+    const values = [].concat(item.value).reduce((accumulator, v) =>
+        accumulator.concat(this.expandEnums(_.trim(v.value || v, '.\''))),
+    [])
+
+    // show all if there are few
+    if (values.length < truncateAt) {
+      return (
+        <p style={descriptionExtraStyle}>
+          <strong>Enums: </strong>
+          {values.join(', ')}
+        </p>
+      )
+    }
+
+    // add button to show more when there are many values and it is not toggled
+    if (!showEnumsFor[item.name]) {
+      return (
+        <p style={descriptionExtraStyle}>
+          <strong>Enums: </strong>
+          <a style={{ cursor: 'pointer' }} onClick={this.toggleEnumsFor(item.name)}>
+            Show all {values.length}
+          </a>
+          <div>{values.slice(0, truncateAt - 1).join(', ')}...</div>
+        </p>
+      )
+    }
+
+    // add "show more" button when there are many
+    return (
+      <p style={descriptionExtraStyle}>
+        <strong>Enums: </strong>
+        <a style={{ cursor: 'pointer' }} onClick={this.toggleEnumsFor(item.name)}>
+          Show less
+        </a>
+        <div>{values.join(', ')}</div>
+      </p>
+    )
+  }
+
   render() {
     const { props: propsDefinition } = this.props
     const content = _.sortBy(_.map(propsDefinition, (config, name) => {
@@ -109,6 +183,7 @@ export default class ComponentProps extends Component {
               <Table.Cell>
                 {item.description && <p>{item.description}</p>}
                 {this.renderFunctionSignature(item)}
+                {this.renderEnums(item)}
               </Table.Cell>
             </Table.Row>
           ))}
