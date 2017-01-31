@@ -11,7 +11,7 @@ import {
 } from '../../lib'
 
 /**
- * A message can contain an item.
+ * A message list can contain an item.
  */
 function MessageItem(props) {
   const { children, className, content } = props
