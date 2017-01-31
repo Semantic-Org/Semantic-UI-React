@@ -1,7 +1,8 @@
-import { ReactMouseEvents, SemanticSIZES } from '../..';
 import * as React from 'react';
 
 interface RatingProps {
+  [key: string]: any;
+
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -16,16 +17,16 @@ interface RatingProps {
   clearable?: boolean | 'auto';
 
   /** The initial rating value. */
-  defaultRating?: string|number;
+  defaultRating?: number | string;
 
   /** You can disable or enable interactive rating.  Makes a read-only rating. */
-  disabled?:boolean;
+  disabled?: boolean;
 
   /** A rating can use a set of star or heart icons. */
-  icon?: 'star'|'heart';
+  icon?: 'star' | 'heart';
 
   /** The total number of icons. */
-  maxRating?: string|number;
+  maxRating?: number | string;
 
   /**
    * Called after user selects a new rating.
@@ -33,33 +34,59 @@ interface RatingProps {
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
    * @param {object} data - All props and proposed rating.
    */
-  onRate?: React.MouseEventHandler<HTMLDivElement>;
+  onRate?: (event: React.MouseEvent<HTMLDivElement>, data: RatingProps) => void;
 
   /** The current number of active icons. */
-  rating?: string|number;
+  rating?: number | string;
 
   /** A progress bar can vary in size. */
-  size?: SemanticSIZES;
+  size?: 'mini' | 'tiny' | 'small' | 'large' | 'huge' | 'massive';
 }
 
-interface RatingClass extends React.ComponentClass<RatingProps> {
+interface RatingComponent extends React.ComponentClass<RatingProps> {
   Icon: typeof RatingIcon;
 }
 
-export const Rating: RatingClass;
+export const Rating: RatingComponent;
 
-interface RatingIconProps extends ReactMouseEvents<HTMLElement> {
-  /** Indicates activity of an icon. */
-  active?: boolean;
+interface RatingIconProps {
+  [key: string]: any;
 
   /** An element type to render as (string or function). */
   as?:any;
+
+  /** Indicates activity of an icon. */
+  active?: boolean;
 
   /** Additional classes. */
   className?: string;
 
   /** An index of icon inside Rating. */
   index?: number;
+
+  /**
+   * Called on click.
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props and proposed rating.
+   */
+  onClick?: (event: React.MouseEvent<HTMLElement>, data: RatingIconProps) => void;
+
+  /**
+   * Called on keyup.
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props and proposed rating.
+   */
+  onKeyUp?: (event: React.MouseEvent<HTMLElement>, data: RatingIconProps) => void;
+
+  /**
+   * Called on mouseenter.
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props and proposed rating.
+   */
+  onMouseEnter?: (event: React.MouseEvent<HTMLElement>, data: RatingIconProps) => void;
 
   /** Indicates selection of an icon. */
   selected?: boolean;

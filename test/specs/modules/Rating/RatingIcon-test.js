@@ -1,8 +1,8 @@
 import React from 'react'
 
-import * as common from 'test/specs/commonTests'
-import RatingIcon from 'src/modules/Rating/RatingIcon'
 import { keyboardKey } from 'src/lib'
+import RatingIcon from 'src/modules/Rating/RatingIcon'
+import * as common from 'test/specs/commonTests'
 import { sandbox } from 'test/utils'
 
 describe('RatingIcon', () => {

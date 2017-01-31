@@ -1,5 +1,5 @@
-import _ from 'lodash'
 import cx from 'classnames'
+import _ from 'lodash'
 import React, { PropTypes } from 'react'
 
 import {
@@ -13,29 +13,10 @@ import {
 } from '../../lib'
 import RatingIcon from './RatingIcon'
 
-const _meta = {
-  name: 'Rating',
-  type: META.TYPES.MODULE,
-  props: {
-    clearable: ['auto'],
-    icon: ['star', 'heart'],
-    size: _.without(SUI.SIZES, 'medium', 'big'),
-  },
-}
-
 /**
- * A rating indicates user interest in content
+ * A rating indicates user interest in content.
  */
 export default class Rating extends Component {
-  static autoControlledProps = [
-    'rating',
-  ]
-
-  static defaultProps = {
-    clearable: 'auto',
-    maxRating: 1,
-  }
-
   static propTypes = {
     /** An element type to render as (string or function). */
     as: customPropTypes.as,
@@ -49,26 +30,26 @@ export default class Rating extends Component {
      * Setting to `true`/`false` will allow or disallow a user to clear their rating.
      */
     clearable: PropTypes.oneOfType([
-      PropTypes.oneOf(_meta.props.clearable),
       PropTypes.bool,
+      PropTypes.oneOf(['auto']),
     ]),
 
     /** The initial rating value. */
     defaultRating: PropTypes.oneOfType([
-      PropTypes.string,
       PropTypes.number,
+      PropTypes.string,
     ]),
 
     /** You can disable or enable interactive rating.  Makes a read-only rating. */
     disabled: PropTypes.bool,
 
     /** A rating can use a set of star or heart icons. */
-    icon: PropTypes.oneOf(_meta.props.icon),
+    icon: PropTypes.oneOf(['star', 'heart']),
 
     /** The total number of icons. */
     maxRating: PropTypes.oneOfType([
-      PropTypes.string,
       PropTypes.number,
+      PropTypes.string,
     ]),
 
     /**
@@ -81,15 +62,28 @@ export default class Rating extends Component {
 
     /** The current number of active icons. */
     rating: PropTypes.oneOfType([
-      PropTypes.string,
       PropTypes.number,
+      PropTypes.string,
     ]),
 
     /** A progress bar can vary in size. */
-    size: PropTypes.oneOf(_meta.props.size),
+    size: PropTypes.oneOf(_.without(SUI.SIZES, 'medium', 'big')),
   }
 
-  static _meta = _meta
+  static autoControlledProps = [
+    'rating',
+  ]
+
+  static defaultProps = {
+    clearable: 'auto',
+    maxRating: 1,
+  }
+
+  static _meta = {
+    name: 'Rating',
+    type: META.TYPES.MODULE,
+  }
+
   static Icon = RatingIcon
 
   handleIconClick = (e, { index }) => {
@@ -153,11 +147,11 @@ export default class Rating extends Component {
         {_.times(maxRating, (i) => (
           <RatingIcon
             active={rating >= i + 1}
-            index={i}
-            key={i}
             aria-checked={rating === i + 1}
             aria-posinset={i + 1}
             aria-setsize={maxRating}
+            index={i}
+            key={i}
             onClick={this.handleIconClick}
             onMouseEnter={this.handleIconMouseEnter}
             selected={selectedIndex >= i && isSelecting }
