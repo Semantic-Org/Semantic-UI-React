@@ -1,25 +1,17 @@
-import {
-  ReactMouseEvents,
-  SemanticCOLORS,
-  SemanticFLOATS,
-  SemanticSIZES,
-  SemanticWIDTHS
-} from '../..';
 import * as React from 'react';
-
-export type MenuPropsIcon = 'labeled';
-export type MenuPropsTabular = 'right';
-export type MenuPropsFixed = 'left'| 'right'| 'bottom'| 'top';
-export type MenuPropsAttached = 'bottom' | 'top';
+import { SemanticCOLORS, SemanticWIDTHS } from '../..';
 
 export interface MenuProps {
-  activeIndex?: number;
+  [key: string]: any;
 
   /** An element type to render as (string or function). */
   as?: any;
 
+  /** Index of the currently active item. */
+  activeIndex?: number;
+
   /** A menu may be attached to other content segments. */
-  attached?: boolean | MenuPropsAttached;
+  attached?: boolean | 'bottom' | 'top';
 
   /** A menu item or menu can have no borders. */
   borderless?: boolean;
@@ -40,22 +32,22 @@ export interface MenuProps {
   defaultActiveIndex?: number;
 
   /** A menu can be fixed to a side of its context. */
-  fixed?: MenuPropsFixed;
+  fixed?: 'left'| 'right'| 'bottom'| 'top';
 
   /** A menu can be floated. */
-  floated?: boolean | SemanticFLOATS;
+  floated?: boolean | 'right';
 
   /** A vertical menu may take the size of its container. */
   fluid?: boolean;
 
   /** A menu may have labeled icons. */
-  icon?: boolean | MenuPropsIcon;
+  icon?: boolean | 'labeled';
 
   /** A menu may have its colors inverted to show greater contrast. */
   inverted?: boolean;
 
   /** Shorthand array of props for Menu. */
-  items?: any;  // TODO - check type;
+  items?: Array<any>;
 
   /**
    * onClick handler for MenuItem. Mutually exclusive with children.
@@ -63,7 +55,7 @@ export interface MenuProps {
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
    * @param {object} data - All item props.
    */
-  onItemClick?: React.MouseEventHandler<HTMLDivElement>;
+  onItemClick?: (event: React.MouseEvent<HTMLAnchorElement>, data: MenuItemProps) => void;
 
   /** A pagination menu is specially formatted to present links to pages of content. */
   pagination?: boolean;
@@ -75,13 +67,13 @@ export interface MenuProps {
   secondary?: boolean;
 
   /** A menu can vary in size. */
-  size?: SemanticSIZES;  // TODO - remove medium and big.
+  size?: 'mini' | 'tiny' | 'small' | 'large' | 'huge' | 'massive';
 
   /** A menu can stack at mobile resolutions. */
   stackable?: boolean;
 
   /** A menu can be formatted to show tabs of information. */
-  tabular?: boolean | MenuPropsTabular;
+  tabular?: boolean | 'right';
 
   /** A menu can be formatted for text content. */
   text?: boolean;
@@ -93,15 +85,16 @@ export interface MenuProps {
   widths?: SemanticWIDTHS;
 }
 
-interface MenuClass extends React.ComponentClass<MenuProps> {
+interface MenuComponent extends React.ComponentClass<MenuProps> {
   Header: typeof MenuHeader;
   Item: typeof MenuItem;
-  Menu: typeof MenuMenuItem;
+  Menu: typeof MenuMenu;
 }
 
-export const Menu: MenuClass;
+export const Menu: MenuComponent;
 
 interface MenuHeaderProps {
+  [key: string]: any;
 
   /** An element type to render as (string or function). */
   as?: any;
@@ -113,16 +106,18 @@ interface MenuHeaderProps {
   className?: string;
 
   /** Shorthand for primary content. */
-  content?: any;
+  content?: React.ReactNode;
 }
 export const MenuHeader: React.ComponentClass<MenuHeaderProps>;
 
-interface MenuItemProps extends ReactMouseEvents<HTMLElement> {
-  /** A menu item can be active. */
-  active?: boolean;
+interface MenuItemProps {
+  [key: string]: any;
 
   /** An element type to render as (string or function). */
   as?: any;
+
+  /** A menu item can be active. */
+  active?: boolean;
 
   /** Primary content. */
   children?: React.ReactNode;
@@ -142,8 +137,8 @@ interface MenuItemProps extends ReactMouseEvents<HTMLElement> {
   /** A menu item may include a header or may itself be a header. */
   header?: boolean;
 
-  /** Add an icon by icon name or pass an <Icon /.> */
-  icon?: any; // TODO - check type.
+  /** MenuItem can be only icon. */
+  icon?: any | boolean;
 
   /** MenuItem index inside Menu. */
   index?: number;
@@ -154,12 +149,24 @@ interface MenuItemProps extends ReactMouseEvents<HTMLElement> {
   /** Internal name of the MenuItem. */
   name?: string;
 
+  /**
+   * Called on click. When passed, the component will render as an `a`
+   * tag by default instead of a `div`.
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props.
+   */
+  onClick?: (event: React.MouseEvent<HTMLAnchorElement>, data: MenuItemProps) => void;
+
   /** A menu item can take right position. */
   position?: 'right';
 }
+
 export const MenuItem: React.ComponentClass<MenuItemProps>;
 
 interface MenuMenuProps {
+  [key: string]: any;
+
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -172,4 +179,5 @@ interface MenuMenuProps {
   /** A sub menu can take right position. */
   position?: 'right';
 }
-export const MenuMenuItem: React.ComponentClass<MenuMenuProps>;
+
+export const MenuMenu: React.StatelessComponent<MenuMenuProps>;

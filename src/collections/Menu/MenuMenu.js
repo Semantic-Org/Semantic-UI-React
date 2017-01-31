@@ -8,9 +8,17 @@ import {
   META,
 } from '../../lib'
 
+/**
+ * A menu can contain a sub menu.
+ */
 function MenuMenu(props) {
   const { children, className, position } = props
-  const classes = cx(className, position, 'menu')
+
+  const classes = cx(
+    position,
+    'menu',
+    className,
+  )
   const rest = getUnhandledProps(MenuMenu, props)
   const ElementType = getElementType(MenuMenu, props)
 
@@ -21,9 +29,6 @@ MenuMenu._meta = {
   name: 'MenuMenu',
   type: META.TYPES.COLLECTION,
   parent: 'Menu',
-  props: {
-    position: ['right'],
-  },
 }
 
 MenuMenu.propTypes = {
@@ -37,7 +42,7 @@ MenuMenu.propTypes = {
   className: PropTypes.string,
 
   /** A sub menu can take right position. */
-  position: PropTypes.oneOf(MenuMenu._meta.props.position),
+  position: PropTypes.oneOf(['right']),
 }
 
 export default MenuMenu

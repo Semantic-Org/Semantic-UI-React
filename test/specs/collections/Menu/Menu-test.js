@@ -11,8 +11,8 @@ import { sandbox } from 'test/utils'
 
 describe('Menu', () => {
   common.isConformant(Menu)
-  common.hasUIClassName(Menu)
   common.hasSubComponents(Menu, [MenuHeader, MenuItem, MenuMenu])
+  common.hasUIClassName(Menu)
   common.rendersChildren(Menu)
 
   common.implementsWidthProp(Menu, { propKey: 'widths', canEqual: false })
