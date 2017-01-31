@@ -11,7 +11,7 @@ import {
    Divider,
 } from 'semantic-ui-react'
 
-const media_src = 'http://semantic-ui.com/examples/assets/images/wireframe/media-paragraph.png'
+const mediaSrc = 'http://semantic-ui.com/examples/assets/images/wireframe/media-paragraph.png'
 const src = 'http://semantic-ui.com/examples/assets/images/wireframe/paragraph.png'
 
 const FixedMenuLayout = () =>
@@ -49,7 +49,7 @@ const FixedMenuLayout = () =>
         <Header as='h1' content='Semantic UI React Fixed Template' />
         <p>This is a basic fixed menu template using fixed size containers.</p>
         <p>A text container is used for the main container, which is useful for single column layouts</p>
-        <Image alt='' className='wireframe' src={media_src} />
+        <Image alt='' className='wireframe' src={mediaSrc} />
         <Image alt='' className='wireframe' src={src} />
         <Image alt='' className='wireframe' src={src} />
         <Image alt='' className='wireframe' src={src} />
