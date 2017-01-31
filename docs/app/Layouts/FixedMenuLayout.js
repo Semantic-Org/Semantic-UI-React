@@ -8,15 +8,18 @@ import {
    Segment,
    Grid,
    List,
-   Divider
+   Divider,
 } from 'semantic-ui-react'
+
+const media_src = 'http://semantic-ui.com/examples/assets/images/wireframe/media-paragraph.png'
+const src = 'http://semantic-ui.com/examples/assets/images/wireframe/paragraph.png'
 
 const FixedMenuLayout = () =>
     <div>
       <Menu fixed inverted>
         <Container>
           <Menu.Item>
-            <Image src='http://react.semantic-ui.com/logo.png' size='mini'/>
+            <Image alt='' src='http://react.semantic-ui.com/logo.png' size='mini' />
           </Menu.Item>
           <Menu.Item header>
             Project Name
@@ -46,13 +49,13 @@ const FixedMenuLayout = () =>
         <Header as='h1' content='Semantic UI React Fixed Template' />
         <p>This is a basic fixed menu template using fixed size containers.</p>
         <p>A text container is used for the main container, which is useful for single column layouts</p>
-        <Image className='wireframe' src='http://semantic-ui.com/examples/assets/images/wireframe/media-paragraph.png' />
-        <Image className='wireframe' src='http://semantic-ui.com/examples/assets/images/wireframe/paragraph.png' />
-        <Image className='wireframe' src='http://semantic-ui.com/examples/assets/images/wireframe/paragraph.png' />
-        <Image className='wireframe' src='http://semantic-ui.com/examples/assets/images/wireframe/paragraph.png' />
-        <Image className='wireframe' src='http://semantic-ui.com/examples/assets/images/wireframe/paragraph.png' />
-        <Image className='wireframe' src='http://semantic-ui.com/examples/assets/images/wireframe/paragraph.png' />
-        <Image className='wireframe' src='http://semantic-ui.com/examples/assets/images/wireframe/paragraph.png' />
+        <Image alt='' className='wireframe' src={media_src} />
+        <Image alt='' className='wireframe' src={src} />
+        <Image alt='' className='wireframe' src={src} />
+        <Image alt='' className='wireframe' src={src} />
+        <Image alt='' className='wireframe' src={src} />
+        <Image alt='' className='wireframe' src={src} />
+        <Image alt='' className='wireframe' src={src} />
       </Container>
 
       <Segment inverted vertical>
@@ -60,7 +63,7 @@ const FixedMenuLayout = () =>
           <Grid columns={4} divided stackable inverted>
             <Grid.Row>
               <Grid.Column>
-                <Header inverted  as='h4' content='Group 1' />
+                <Header inverted as='h4' content='Group 1' />
                 <List link inverted>
                   <List.Item as='a'>Link One</List.Item>
                   <List.Item as='a'>Link Two</List.Item>
@@ -93,7 +96,7 @@ const FixedMenuLayout = () =>
             </Grid.Row>
           </Grid>
            <Divider inverted section />
-           <Image src='http://react.semantic-ui.com/logo.png' centered  size='mini' />
+           <Image alt='' src='http://react.semantic-ui.com/logo.png' centered size='mini' />
            <List horizontal inverted divided link>
              <List.Item as='a' href='#'>Site Map</List.Item>
              <List.Item as='a' href='#'>Contact Us</List.Item>
