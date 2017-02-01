@@ -133,7 +133,6 @@ class Portal extends Component {
     closeOnDocumentClick: true,
     closeOnEscape: true,
     openOnTriggerClick: true,
-    mountNode: null,
   }
 
   static autoControlledProps = [
