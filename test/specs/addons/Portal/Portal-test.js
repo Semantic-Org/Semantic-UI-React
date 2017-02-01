@@ -557,19 +557,5 @@ describe('Portal', () => {
         done()
       })
     })
-    it('should restore focus when unmounted', (done) => {
-      const activeElement = document.activeElement
-      attachTo = document.createElement('div')
-      document.body.appendChild(attachTo)
-      const opts = { attachTo }
-      const portal = wrapperMount(<Portal open><p>Hi</p></Portal>, opts)
-      setTimeout(() => {
-        portal.setProps({
-          open: false,
-        })
-        expect(document.activeElement).to.equal(activeElement)
-        done()
-      })
-    })
   })
 })

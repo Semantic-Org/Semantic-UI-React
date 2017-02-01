@@ -368,7 +368,6 @@ class Portal extends Component {
     // don't take focus away from portals that close on blur
     if (!this.didInitialRender && !closeOnTriggerBlur) {
       this.didInitialRender = true
-      this.previousActiveElement = document.activeElement
 
       // add a tabIndex so we can focus it, remove outline
       this.portal.tabIndex = -1
@@ -416,7 +415,6 @@ class Portal extends Component {
 
     ReactDOM.unmountComponentAtNode(this.node)
     this.node.parentNode.removeChild(this.node)
-    if (this.previousActiveElement) this.previousActiveElement.focus()
 
     this.portal.removeEventListener('mouseleave', this.handlePortalMouseLeave)
     this.portal.removeEventListener('mouseenter', this.handlePortalMouseEnter)
