@@ -1,12 +1,14 @@
-import { SemanticCOLORS, SemanticSIZES } from '../..';
 import * as React from 'react';
+import { SemanticCOLORS } from '../..';
 
 interface ProgressProps {
-  /** A progress bar can show activity. */
-  active?: boolean;
+  [key: string]: any;
 
   /** An element type to render as (string or function). */
   as?: any;
+
+  /** A progress bar can show activity. */
+  active?: boolean;
 
   /** A progress bar can attach to and show the progress of an element (i.e. Card or Segment). */
   attached?: 'top' | 'bottom';
@@ -36,10 +38,10 @@ interface ProgressProps {
   inverted?: string;
 
   /** Can be set to either to display progress as percent or ratio. */
-  label?: any;
+  label?: boolean | 'ratio' | 'percent';
 
   /** Current percent complete. */
-  percent?: any;
+  percent?: number | string;
 
   /** Decimal point precision for calculated progress. */
   precision?: number;
@@ -48,7 +50,7 @@ interface ProgressProps {
   progress?: boolean;
 
   /** A progress bar can vary in size. */
-  size?: SemanticSIZES;
+  size?: 'tiny' | 'small' | 'medium' | 'large' | 'big';
 
   /** A progress bar can show a success state. */
   success?: boolean;
@@ -58,16 +60,15 @@ interface ProgressProps {
    * Together, these will calculate the percent.
    * Mutually excludes percent.
    */
-  total?: any;
+  total?: number | string;
 
   /**
    * For use with total. Together, these will calculate the percent. Mutually excludes percent.
    */
-  value?: any;
+  value?: number | string;
 
   /** A progress bar can show a warning state. */
   warning?: boolean;
 }
 
-export class Progress extends React.Component<ProgressProps, void> {
-}
+export const Progress: React.ComponentClass<ProgressProps>;
