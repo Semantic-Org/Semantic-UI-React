@@ -133,7 +133,6 @@ class Portal extends Component {
     closeOnDocumentClick: true,
     closeOnEscape: true,
     openOnTriggerClick: true,
-    mountNode: isBrowser ? document.body : null,
   }
 
   static autoControlledProps = [
@@ -392,7 +391,7 @@ class Portal extends Component {
 
     debug('mountPortal()')
 
-    const { mountNode, prepend } = this.props
+    const { mountNode = (isBrowser ? document.body : null), prepend } = this.props
 
     this.node = document.createElement('div')
 
