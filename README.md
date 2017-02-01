@@ -7,7 +7,7 @@
 
 <!-- Name -->
 <h1 align="center">
-  <a href="https://react.semantic-ui.com/">Semantic UI React</a>
+  <a href="http://react.semantic-ui.com/">Semantic UI React</a>
 </h1>
 
 <!-- Badges -->
@@ -149,7 +149,7 @@ Big thanks to our [contributors][20], especially:
 - @layershifter for bringing momentum and continual support
 
 [1]: https://github.com/Semantic-Org/Semantic-UI-React/blob/master/.github/CONTRIBUTING.md
-[2]: https://react.semantic-ui.com/
+[2]: http://react.semantic-ui.com/
 [3]: https://facebook.github.io/react/
 [4]: https://github.com/Semantic-Org/Semantic-UI-React/labels/help%20wanted
 [5]: http://semantic-ui.com/
