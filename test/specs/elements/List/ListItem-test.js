@@ -1,11 +1,11 @@
-import _ from 'lodash'
 import faker from 'faker'
+import _ from 'lodash'
 import React from 'react'
-import * as common from 'test/specs/commonTests'
-import { sandbox } from 'test/utils'
 
 import ListItem from 'src/elements/List/ListItem'
 import ListContent from 'src/elements/List/ListContent'
+import * as common from 'test/specs/commonTests'
+import { sandbox } from 'test/utils'
 
 describe('ListItem', () => {
   common.isConformant(ListItem)

@@ -10,6 +10,9 @@ import {
 } from '../../lib'
 import Icon from '../Icon/Icon'
 
+/**
+ * A list item can contain an icon.
+ */
 function ListIcon(props) {
   const { className, verticalAlign } = props
   const classes = cx(
@@ -25,9 +28,6 @@ ListIcon._meta = {
   name: 'ListIcon',
   parent: 'List',
   type: META.TYPES.ELEMENT,
-  props: {
-    verticalAlign: SUI.VERTICAL_ALIGNMENTS,
-  },
 }
 
 ListIcon.propTypes = {
@@ -35,7 +35,7 @@ ListIcon.propTypes = {
   className: PropTypes.string,
 
   /** An element inside a list can be vertically aligned. */
-  verticalAlign: PropTypes.oneOf(ListIcon._meta.props.verticalAlign),
+  verticalAlign: PropTypes.oneOf(SUI.VERTICAL_ALIGNMENTS),
 }
 
 ListIcon.create = createShorthandFactory(ListIcon, name => ({ name }))

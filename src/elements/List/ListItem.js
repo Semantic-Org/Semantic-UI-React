@@ -1,5 +1,5 @@
-import _ from 'lodash'
 import cx from 'classnames'
+import _ from 'lodash'
 import React, { isValidElement, PropTypes } from 'react'
 
 import {
@@ -17,6 +17,9 @@ import ListDescription from './ListDescription'
 import ListHeader from './ListHeader'
 import ListIcon from './ListIcon'
 
+/**
+ * A list item can contain a set of items.
+ */
 function ListItem(props) {
   const {
     active,
@@ -42,7 +45,7 @@ function ListItem(props) {
   const valueProp = ElementType === 'li' ? { value } : { 'data-value': value }
 
   if (!_.isNil(children)) {
-    return <ElementType {...rest} role='listitem' className={classes} {...valueProp}>{children}</ElementType>
+    return <ElementType {...rest} {...valueProp} role='listitem' className={classes}>{children}</ElementType>
   }
 
   const iconElement = ListIcon.create(icon)
@@ -51,7 +54,7 @@ function ListItem(props) {
   // See description of `content` prop for explanation about why this is necessary.
   if (!isValidElement(content) && _.isPlainObject(content)) {
     return (
-      <ElementType {...rest} role='listitem' className={classes} {...valueProp}>
+      <ElementType {...rest} {...valueProp} role='listitem' className={classes}>
         {iconElement || imageElement}
         {ListContent.create(content, { header, description })}
       </ElementType>
@@ -63,7 +66,7 @@ function ListItem(props) {
 
   if (iconElement || imageElement) {
     return (
-      <ElementType {...rest} role='listitem' className={classes} {...valueProp}>
+      <ElementType {...rest} {...valueProp} role='listitem' className={classes}>
         {iconElement || imageElement}
         {(content || headerElement || descriptionElement) && (
           <ListContent>
@@ -77,7 +80,7 @@ function ListItem(props) {
   }
 
   return (
-    <ElementType {...rest} role='listitem' className={classes} {...valueProp}>
+    <ElementType {...rest} {...valueProp} role='listitem' className={classes}>
       {headerElement}
       {descriptionElement}
       {content}

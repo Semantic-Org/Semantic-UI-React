@@ -1,5 +1,5 @@
-import _ from 'lodash'
 import cx from 'classnames'
+import _ from 'lodash'
 import React, { PropTypes } from 'react'
 
 import {
@@ -21,7 +21,7 @@ import ListItem from './ListItem'
 import ListList from './ListList'
 
 /**
- * A list groups related content
+ * A list groups related content.
  */
 function List(props) {
   const {
@@ -38,8 +38,8 @@ function List(props) {
     link,
     ordered,
     relaxed,
-    size,
     selection,
+    size,
     verticalAlign,
   } = props
 
@@ -78,12 +78,6 @@ function List(props) {
 List._meta = {
   name: 'List',
   type: META.TYPES.ELEMENT,
-  props: {
-    floated: SUI.FLOATS,
-    relaxed: ['very'],
-    size: SUI.SIZES,
-    verticalAlign: SUI.VERTICAL_ALIGNMENTS,
-  },
 }
 
 List.propTypes = {
@@ -109,7 +103,7 @@ List.propTypes = {
   divided: PropTypes.bool,
 
   /** An list can be floated left or right. */
-  floated: PropTypes.oneOf(List._meta.props.floated),
+  floated: PropTypes.oneOf(SUI.FLOATS),
 
   /** A list can be formatted to have items appear horizontally. */
   horizontal: PropTypes.bool,
@@ -129,17 +123,17 @@ List.propTypes = {
   /** A list can relax its padding to provide more negative space. */
   relaxed: PropTypes.oneOfType([
     PropTypes.bool,
-    PropTypes.oneOf(List._meta.props.relaxed),
+    PropTypes.oneOf(['very']),
   ]),
 
   /** A selection list formats list items as possible choices. */
   selection: PropTypes.bool,
 
   /** A list can vary in size. */
-  size: PropTypes.oneOf(List._meta.props.size),
+  size: PropTypes.oneOf(SUI.SIZES),
 
   /** An element inside a list can be vertically aligned. */
-  verticalAlign: PropTypes.oneOf(List._meta.props.verticalAlign),
+  verticalAlign: PropTypes.oneOf(SUI.VERTICAL_ALIGNMENTS),
 }
 
 List.Content = ListContent

@@ -1,8 +1,8 @@
 import React from 'react'
-import * as common from 'test/specs/commonTests'
 
 import Icon from 'src/elements/Icon/Icon'
 import ListIcon from 'src/elements/List/ListIcon'
+import * as common from 'test/specs/commonTests'
 
 describe('ListIcon', () => {
   common.isConformant(ListIcon)
