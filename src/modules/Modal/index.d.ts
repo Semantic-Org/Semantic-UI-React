@@ -21,10 +21,10 @@ interface ModalProps {
   /**
    * Whether or not the Modal should close when the dimmer is clicked.
    */
-  closeOnDimmerClick?: boolean,
+  closeOnDimmerClick?: boolean;
 
   /** Whether or not the Modal should close when the document is clicked. */
-  closeOnDocumentClick?: boolean,
+  closeOnDocumentClick?: boolean;
 
   /** Initial value of open. */
   defaultOpen?:boolean;
