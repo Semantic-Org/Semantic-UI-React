@@ -9,6 +9,9 @@ import {
   useKeyOnly,
 } from '../../lib'
 
+/**
+ * A list can contain a sub list.
+ */
 function ListList(props) {
   const { children, className } = props
 

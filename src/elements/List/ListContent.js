@@ -1,5 +1,5 @@
-import _ from 'lodash'
 import cx from 'classnames'
+import _ from 'lodash'
 import React, { PropTypes } from 'react'
 
 import {
@@ -12,10 +12,12 @@ import {
   useValueAndKey,
   useVerticalAlignProp,
 } from '../../lib'
-
 import ListDescription from './ListDescription'
 import ListHeader from './ListHeader'
 
+/**
+ * A list item can contain a content.
+ */
 function ListContent(props) {
   const {
     children,
@@ -53,10 +55,6 @@ ListContent._meta = {
   name: 'ListContent',
   parent: 'List',
   type: META.TYPES.ELEMENT,
-  props: {
-    floated: SUI.FLOATS,
-    verticalAlign: SUI.VERTICAL_ALIGNMENTS,
-  },
 }
 
 ListContent.propTypes = {
@@ -76,13 +74,13 @@ ListContent.propTypes = {
   description: customPropTypes.itemShorthand,
 
   /** An list content can be floated left or right. */
-  floated: PropTypes.oneOf(ListContent._meta.props.floated),
+  floated: PropTypes.oneOf(SUI.FLOATS),
 
   /** Shorthand for ListHeader. */
   header: customPropTypes.itemShorthand,
 
   /** An element inside a list can be vertically aligned. */
-  verticalAlign: PropTypes.oneOf(ListContent._meta.props.verticalAlign),
+  verticalAlign: PropTypes.oneOf(SUI.VERTICAL_ALIGNMENTS),
 }
 
 ListContent.create = createShorthandFactory(ListContent, content => ({ content }))
