@@ -41,6 +41,9 @@ class Modal extends Component {
     /** An element type to render as (string or function). */
     as: customPropTypes.as,
 
+    /** A modal can reduce its complexity */
+    basic: PropTypes.bool,
+
     /** Primary content. */
     children: PropTypes.node,
 
@@ -61,9 +64,6 @@ class Modal extends Component {
 
     /** Whether or not the Modal should close when the document is clicked. */
     closeOnDocumentClick: PropTypes.bool,
-
-    /** A modal can reduce its complexity */
-    basic: PropTypes.bool,
 
     /** Initial value of open. */
     defaultOpen: PropTypes.bool,
