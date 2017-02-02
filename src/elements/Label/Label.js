@@ -208,6 +208,4 @@ export default class Label extends Component {
   }
 }
 
-// Label is not yet defined inside the class
-// Do not use a static property initializer
 Label.create = createShorthandFactory(Label, value => ({ content: value }))
