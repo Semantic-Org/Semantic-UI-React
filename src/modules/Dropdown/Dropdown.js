@@ -85,6 +85,13 @@ export default class Dropdown extends Component {
     /** Whether or not the menu should close when the dropdown is blurred. */
     closeOnBlur: PropTypes.bool,
 
+    /**
+     * Whether or not the menu should close when a value is selected from the dropdown.
+     * By default, multiple selection dropdowns will remain open on change, while single
+     * selection dropdowns will close on change.
+     */
+    closeOnChange: PropTypes.bool,
+
     /** A compact dropdown has no minimum width. */
     compact: PropTypes.bool,
 
@@ -415,8 +422,8 @@ export default class Dropdown extends Component {
       } else {
         document.addEventListener('keydown', this.moveSelectionOnKeyDown)
         document.addEventListener('keydown', this.selectItemOnEnter)
-        document.addEventListener('keydown', this.removeItemOnBackspace)
       }
+      document.addEventListener('keydown', this.removeItemOnBackspace)
     } else if (prevState.focus && !this.state.focus) {
       debug('dropdown blurred')
       const { closeOnBlur } = this.props
@@ -447,8 +454,10 @@ export default class Dropdown extends Component {
       document.removeEventListener('keydown', this.closeOnEscape)
       document.removeEventListener('keydown', this.moveSelectionOnKeyDown)
       document.removeEventListener('keydown', this.selectItemOnEnter)
-      document.removeEventListener('keydown', this.removeItemOnBackspace)
       document.removeEventListener('click', this.closeOnDocumentClick)
+      if (!this.state.focus) {
+        document.removeEventListener('keydown', this.removeItemOnBackspace)
+      }
     }
   }
 
@@ -478,6 +487,15 @@ export default class Dropdown extends Component {
     debug(value)
     const { onChange } = this.props
     if (onChange) onChange(e, { ...this.props, value })
+  }
+
+  closeOnChange = (e) => {
+    const { closeOnChange, multiple } = this.props
+    const shouldClose = _.isUndefined(closeOnChange)
+      ? !multiple
+      : closeOnChange
+
+    if (shouldClose) this.close(e)
   }
 
   closeOnEscape = (e) => {
@@ -557,10 +575,9 @@ export default class Dropdown extends Component {
     debug(keyboardKey.getName(e))
     if (keyboardKey.getCode(e) !== keyboardKey.Enter) return
     e.preventDefault()
-    const { multiple } = this.props
 
     this.makeSelectedItemActive(e)
-    if (!multiple) this.close()
+    this.closeOnChange(e)
   }
 
   removeItemOnBackspace = (e) => {
@@ -651,13 +668,15 @@ export default class Dropdown extends Component {
     } else {
       this.setValue(value)
       this.handleChange(e, value)
-      this.close()
     }
+    this.closeOnChange(e)
   }
 
   handleFocus = (e) => {
     debug('handleFocus()')
     const { onFocus } = this.props
+    const { focus } = this.state
+    if (focus) return
     if (onFocus) onFocus(e, this.props)
     this.setState({ focus: true })
   }
@@ -811,6 +830,9 @@ export default class Dropdown extends Component {
       searchQuery: '',
     }
 
+    const { multiple, search } = this.props
+    if (multiple && search && this._search) this._search.focus()
+
     this.trySetState({ value }, newState)
     this.setSelectedIndex(value)
   }
@@ -944,14 +966,19 @@ export default class Dropdown extends Component {
 
   handleClose = () => {
     debug('handleClose()')
+    const hasSearchFocus = document.activeElement === this._search
+    const hasDropdownFocus = document.activeElement === this._dropdown
+    const hasFocus = hasSearchFocus || hasDropdownFocus
     // https://github.com/Semantic-Org/Semantic-UI-React/issues/627
     // Blur the Dropdown on close so it is blurred after selecting an item.
     // This is to prevent it from re-opening when switching tabs after selecting an item.
-    this._dropdown.blur()
+    if (!hasSearchFocus) {
+      this._dropdown.blur()
+    }
 
     // We need to keep the virtual model in sync with the browser focus change
     // https://github.com/Semantic-Org/Semantic-UI-React/issues/692
-    this.setState({ focus: false })
+    this.setState({ focus: hasFocus })
   }
 
   toggle = (e) => this.state.open ? this.close(e) : this.open(e)

@@ -1,5 +1,5 @@
-import _ from 'lodash'
 import cx from 'classnames'
+import _ from 'lodash'
 import React, { PropTypes } from 'react'
 
 import {
@@ -18,21 +18,6 @@ import MenuHeader from './MenuHeader'
 import MenuItem from './MenuItem'
 import MenuMenu from './MenuMenu'
 
-const _meta = {
-  name: 'Menu',
-  type: META.TYPES.COLLECTION,
-  props: {
-    attached: ['top', 'bottom'],
-    color: SUI.COLORS,
-    floated: ['right'],
-    icon: ['labeled'],
-    fixed: ['left', 'right', 'bottom', 'top'],
-    size: _.without(SUI.SIZES, 'medium', 'big'),
-    tabular: ['right'],
-    widths: SUI.WIDTHS,
-  },
-}
-
 /**
  * A menu displays grouped navigation actions.
  * @see Dropdown
@@ -48,7 +33,7 @@ class Menu extends Component {
     /** A menu may be attached to other content segments. */
     attached: PropTypes.oneOfType([
       PropTypes.bool,
-      PropTypes.oneOf(_meta.props.attached),
+      PropTypes.oneOf(['top', 'bottom']),
     ]),
 
     /** A menu item or menu can have no borders. */
@@ -61,7 +46,7 @@ class Menu extends Component {
     className: PropTypes.string,
 
     /** Additional colors can be specified. */
-    color: PropTypes.oneOf(_meta.props.color),
+    color: PropTypes.oneOf(SUI.COLORS),
 
     /** A menu can take up only the space necessary to fit its content. */
     compact: PropTypes.bool,
@@ -70,12 +55,12 @@ class Menu extends Component {
     defaultActiveIndex: PropTypes.number,
 
     /** A menu can be fixed to a side of its context. */
-    fixed: PropTypes.oneOf(_meta.props.fixed),
+    fixed: PropTypes.oneOf(['left', 'right', 'bottom', 'top']),
 
     /** A menu can be floated. */
     floated: PropTypes.oneOfType([
       PropTypes.bool,
-      PropTypes.oneOf(_meta.props.floated),
+      PropTypes.oneOf(['right']),
     ]),
 
     /** A vertical menu may take the size of its container. */
@@ -84,7 +69,7 @@ class Menu extends Component {
     /** A menu may have labeled icons. */
     icon: PropTypes.oneOfType([
       PropTypes.bool,
-      PropTypes.oneOf(_meta.props.icon),
+      PropTypes.oneOf(['labeled']),
     ]),
 
     /** A menu may have its colors inverted to show greater contrast. */
@@ -113,13 +98,16 @@ class Menu extends Component {
     /** A menu can adjust its appearance to de-emphasize its contents. */
     secondary: PropTypes.bool,
 
+    /** A menu can vary in size. */
+    size: PropTypes.oneOf(_.without(SUI.SIZES, 'medium', 'big')),
+
     /** A menu can stack at mobile resolutions. */
     stackable: PropTypes.bool,
 
     /** A menu can be formatted to show tabs of information. */
     tabular: PropTypes.oneOfType([
       PropTypes.bool,
-      PropTypes.oneOf(_meta.props.tabular),
+      PropTypes.oneOf(['right']),
     ]),
 
     /** A menu can be formatted for text content. */
@@ -128,14 +116,14 @@ class Menu extends Component {
     /** A vertical menu displays elements vertically. */
     vertical: PropTypes.bool,
 
-    /** A menu can vary in size. */
-    size: PropTypes.oneOf(_meta.props.size),
-
     /** A menu can have its items divided evenly. */
-    widths: PropTypes.oneOf(_meta.props.widths),
+    widths: PropTypes.oneOf(SUI.WIDTHS),
   }
 
-  static _meta = _meta
+  static _meta = {
+    name: 'Menu',
+    type: META.TYPES.COLLECTION,
+  }
 
   static autoControlledProps = [
     'activeIndex',
@@ -147,9 +135,9 @@ class Menu extends Component {
 
   handleItemClick = (e, itemProps) => {
     const { index } = itemProps
+    const { items, onItemClick } = this.props
 
     this.trySetState({ activeIndex: index })
-    const { items, onItemClick } = this.props
 
     if (_.get(items[index], 'onClick')) items[index].onClick(e, itemProps)
     if (onItemClick) onItemClick(e, itemProps)
@@ -168,36 +156,58 @@ class Menu extends Component {
 
   render() {
     const {
-      attached, borderless, children, className, color, compact, fixed, floated, fluid, icon, inverted, pagination,
-      pointing, secondary, stackable, tabular, text, vertical, size, widths,
+      attached,
+      borderless,
+      children,
+      className,
+      color,
+      compact,
+      fixed,
+      floated,
+      fluid,
+      icon,
+      inverted,
+      pagination,
+      pointing,
+      secondary,
+      size,
+      stackable,
+      tabular,
+      text,
+      vertical,
+      widths,
     } = this.props
     const classes = cx(
       'ui',
       color,
       size,
-      useWidthProp(widths, 'item'),
-      useKeyOrValueAndKey(attached, 'attached'),
       useKeyOnly(borderless, 'borderless'),
       useKeyOnly(compact, 'compact'),
-      useValueAndKey(fixed, 'fixed'),
-      useKeyOrValueAndKey(floated, 'floated'),
       useKeyOnly(fluid, 'fluid'),
-      useKeyOrValueAndKey(icon, 'icon'),
       useKeyOnly(inverted, 'inverted'),
       useKeyOnly(pagination, 'pagination'),
       useKeyOnly(pointing, 'pointing'),
       useKeyOnly(secondary, 'secondary'),
       useKeyOnly(stackable, 'stackable'),
-      useKeyOrValueAndKey(tabular, 'tabular'),
       useKeyOnly(text, 'text'),
       useKeyOnly(vertical, 'vertical'),
+      useKeyOrValueAndKey(attached, 'attached'),
+      useKeyOrValueAndKey(floated, 'floated'),
+      useKeyOrValueAndKey(icon, 'icon'),
+      useKeyOrValueAndKey(tabular, 'tabular'),
+      useValueAndKey(fixed, 'fixed'),
+      useWidthProp(widths, 'item'),
       className,
       'menu'
     )
     const rest = getUnhandledProps(Menu, this.props)
     const ElementType = getElementType(Menu, this.props)
 
-    return <ElementType {...rest} className={classes}>{_.isNil(children) ? this.renderItems() : children}</ElementType>
+    return (
+      <ElementType {...rest} className={classes}>
+        {_.isNil(children) ? this.renderItems() : children}
+      </ElementType>
+    )
   }
 }
 

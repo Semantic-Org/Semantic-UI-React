@@ -8,6 +8,9 @@ import {
   META,
 } from '../../lib'
 
+/**
+ * A message can contain a content.
+ */
 function MessageContent(props) {
   const { children, className } = props
   const classes = cx('content', className)

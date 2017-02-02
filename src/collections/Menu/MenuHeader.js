@@ -1,5 +1,5 @@
-import _ from 'lodash'
 import cx from 'classnames'
+import _ from 'lodash'
 import React, { PropTypes } from 'react'
 
 import {
@@ -9,13 +9,20 @@ import {
   META,
 } from '../../lib'
 
+/**
+ * A menu item may include a header or may itself be a header.
+ */
 function MenuHeader(props) {
   const { children, className, content } = props
-  const classes = cx(className, 'header')
+  const classes = cx('header', className)
   const rest = getUnhandledProps(MenuHeader, props)
   const ElementType = getElementType(MenuHeader, props)
 
-  return <ElementType {...rest} className={classes}>{_.isNil(children) ? content : children}</ElementType>
+  return (
+    <ElementType {...rest} className={classes}>
+      {_.isNil(children) ? content : children}
+    </ElementType>
+  )
 }
 
 MenuHeader._meta = {

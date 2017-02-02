@@ -6,7 +6,7 @@ import PopupHeader from 'src/modules/Popup/PopupHeader'
 import PopupContent from 'src/modules/Popup/PopupContent'
 import Portal from 'src/addons/Portal/Portal'
 
-import { keyboardKey, SUI } from 'src/lib'
+import { SUI } from 'src/lib'
 import { domEvent, sandbox } from 'test/utils'
 import * as common from 'test/specs/commonTests'
 
@@ -25,8 +25,6 @@ const assertIn = (node, selector, isPresent = true) => {
   didFind.should.equal(isPresent, `${didFind ? 'Found' : 'Did not find'} "${selector}" in the ${node}.`)
 }
 const assertInBody = (...args) => assertIn(document.body, ...args)
-
-const nativeEvent = { nativeEvent: { stopImmediatePropagation: _.noop } }
 
 describe('Popup', () => {
   beforeEach(() => {
@@ -91,7 +89,7 @@ describe('Popup', () => {
         />
       )
 
-      wrapper.find('button').simulate('click', nativeEvent)
+      wrapper.find('button').simulate('click')
       assertInBody('.ui.popup.visible')
     })
     it('accepts an offest to the right', () => {
@@ -104,7 +102,7 @@ describe('Popup', () => {
         />
       )
 
-      wrapper.find('button').simulate('click', nativeEvent)
+      wrapper.find('button').simulate('click')
       assertInBody('.ui.popup.visible')
     })
   })
@@ -131,7 +129,7 @@ describe('Popup', () => {
             on='click'
           />
         )
-        wrapper.find('button').simulate('click', nativeEvent)
+        wrapper.find('button').simulate('click')
 
         const rect = document.querySelector('.popup.ui').getBoundingClientRect()
         const { top, right, bottom, left } = rect
@@ -157,7 +155,7 @@ describe('Popup', () => {
       const trigger = <button>foo</button>
       wrapperMount(<Popup hideOnScroll content='foo' trigger={trigger} />)
 
-      wrapper.find('button').simulate('click', nativeEvent)
+      wrapper.find('button').simulate('click')
       assertInBody('.ui.popup.visible')
 
       document.body.scrollTop = 100
@@ -176,7 +174,7 @@ describe('Popup', () => {
       const trigger = <button>foo</button>
       wrapperMount(<Popup on='click' content='foo' header='bar' trigger={trigger} />)
 
-      wrapper.find('button').simulate('click', nativeEvent)
+      wrapper.find('button').simulate('click')
       assertInBody('.ui.popup.visible')
     })
 
@@ -184,7 +182,7 @@ describe('Popup', () => {
       const trigger = <button>foo</button>
       wrapperMount(<Popup content='foo' trigger={trigger} />)
 
-      wrapper.find('button').simulate('mouseenter', nativeEvent)
+      wrapper.find('button').simulate('mouseenter')
       setTimeout(() => {
         assertInBody('.ui.popup.visible')
         done()
@@ -195,7 +193,7 @@ describe('Popup', () => {
       const trigger = <input type='text' />
       wrapperMount(<Popup on='focus' content='foo' trigger={trigger} />)
 
-      wrapper.find('input').simulate('focus', nativeEvent)
+      wrapper.find('input').simulate('focus')
       assertInBody('.ui.popup.visible')
     })
   })
@@ -294,11 +292,6 @@ describe('Popup', () => {
       wrapperMount(<Popup onClose={spy} defaultOpen />)
     })
 
-    it('is called on background click', () => {
-      domEvent.click(document.querySelector('.ui.popup').parentNode)
-      spy.should.have.been.calledOnce()
-    })
-
     it('is not called on click inside of the popup', () => {
       domEvent.click(document.querySelector('.ui.popup'))
       spy.should.not.have.been.calledOnce()
@@ -312,16 +305,6 @@ describe('Popup', () => {
     it('is called when pressing escape', () => {
       domEvent.keyDown(document, { key: 'Escape' })
       spy.should.have.been.calledOnce()
-    })
-
-    it('is not called when pressing a key other than "Escape"', () => {
-      _.each(keyboardKey, (val, key) => {
-        // skip Escape key
-        if (val === keyboardKey.Escape) return
-
-        domEvent.keyDown(document, { key })
-        spy.should.not.have.been.called(`onClose was called when pressing "${key}"`)
-      })
     })
 
     it('is not called when the open prop changes to false', () => {

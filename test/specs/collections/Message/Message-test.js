@@ -11,8 +11,8 @@ import { sandbox } from 'test/utils'
 
 describe('Message', () => {
   common.isConformant(Message)
-  common.hasUIClassName(Message)
   common.hasSubComponents(Message, [MessageContent, MessageHeader, MessageList])
+  common.hasUIClassName(Message)
   common.rendersChildren(Message)
 
   common.implementsIconProp(Message)
@@ -85,22 +85,25 @@ describe('Message', () => {
       shallow(<Message />)
         .should.not.have.descendants('.close.icon')
     })
+
     it('adds a close icon when defined', () => {
       render(<Message onDismiss={() => undefined} />)
         .should.have.descendants('.close.icon')
     })
+
     it('is called with (event) on close icon click', () => {
+      const event = { fake: 'event data' }
+      const props = { icon: true }
+
       const spy = sandbox.spy()
-      const wrapper = mount(<Message onDismiss={spy} />)
+      const wrapper = mount(<Message {...props} onDismiss={spy} />)
 
       wrapper.should.have.descendants('.close.icon')
-
-      wrapper
-        .find('.close.icon')
-        .simulate('click')
+      wrapper.find('.close.icon')
+        .simulate('click', event)
 
       spy.should.have.been.calledOnce()
-      spy.should.have.been.calledWithMatch({})
+      spy.should.have.been.calledWithMatch(event, props)
     })
   })
 })

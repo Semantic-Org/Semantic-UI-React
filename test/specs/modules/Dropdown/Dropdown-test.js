@@ -371,6 +371,34 @@ describe('Dropdown Component', () => {
     })
   })
 
+  describe('closeOnChange', () => {
+    it('will close when defined and dropdown is multiple', () => {
+      wrapperMount(<Dropdown selection multiple search closeOnChange options={options} />)
+        .simulate('click')
+
+      dropdownMenuIsOpen()
+
+      wrapper.find('DropdownItem')
+        .first()
+        .simulate('click', nativeEvent)
+
+      dropdownMenuIsClosed()
+    })
+
+    it('will remain open when undefined and dropdown is multiple', () => {
+      wrapperMount(<Dropdown selection multiple search options={options} />)
+        .simulate('click')
+
+      dropdownMenuIsOpen()
+
+      wrapper.find('DropdownItem')
+        .first()
+        .simulate('click', nativeEvent)
+
+      dropdownMenuIsOpen()
+    })
+  })
+
   describe('isMouseDown', () => {
     it('tracks when the mouse is down', () => {
       wrapperShallow(<Dropdown />)
@@ -1138,6 +1166,19 @@ describe('Dropdown Component', () => {
           .simulate('click', nativeEvent)
 
         spy.should.have.been.calledWithMatch({}, { value: randomValue })
+      })
+
+      it('refocuses search on select', () => {
+        const randomIndex = _.random(options.length - 1)
+
+        wrapperMount(<Dropdown options={options} search selection multiple />)
+          .simulate('click', nativeEvent)
+          .find('DropdownItem')
+          .at(randomIndex)
+          .simulate('click', nativeEvent)
+
+        wrapper.instance()
+          ._search.should.eq(document.activeElement)
       })
     })
     describe('removing items', () => {

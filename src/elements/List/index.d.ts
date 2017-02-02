@@ -1,11 +1,20 @@
-import { ReactMouseEvents, SemanticFLOATS, SemanticSIZES, SemanticVERTICALALIGNMENTS } from '../..';
 import * as React from 'react';
 
-interface ListProps extends ReactMouseEvents<any> {
-  animated?: boolean;
+import {
+  SemanticFLOATS,
+  SemanticSIZES,
+  SemanticVERTICALALIGNMENTS
+} from '../..';
+import { IconProps } from '../Icon';
+
+interface ListProps {
+  [key: string]: any;
 
   /** An element type to render as (string or function). */
   as?: any;
+
+  /** A list can animate to set the current item apart from the list. */
+  animated?: boolean;
 
   /** A list can mark items with a bullet. */
   bulleted?: boolean;
@@ -32,7 +41,7 @@ interface ListProps extends ReactMouseEvents<any> {
   inverted?: boolean;
 
   /** Shorthand array of props for ListItem. */
-  items?: any;
+  items?: Array<any>;
 
   /** A list can be specially formatted for navigation links. */
   link?: boolean;
@@ -53,7 +62,7 @@ interface ListProps extends ReactMouseEvents<any> {
   verticalAlign?: SemanticVERTICALALIGNMENTS;
 }
 
-interface ListClass extends React.ComponentClass<ListProps> {
+interface ListComponent extends React.StatelessComponent<ListProps> {
   Content: typeof ListContent;
   Description: typeof ListDescription;
   Header: typeof ListHeader;
@@ -62,9 +71,11 @@ interface ListClass extends React.ComponentClass<ListProps> {
   List: typeof ListList;
 }
 
-export const List: ListClass;
+export const List: ListComponent;
 
 interface ListContentProps {
+  [key: string]: any;
+
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -90,9 +101,11 @@ interface ListContentProps {
   verticalAlign?: SemanticVERTICALALIGNMENTS;
 }
 
-export const ListContent: React.ComponentClass<ListContentProps>;
+export const ListContent: React.StatelessComponent<ListContentProps>;
 
 interface ListDescriptionProps {
+  [key: string]: any;
+
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -103,12 +116,14 @@ interface ListDescriptionProps {
   className?: string;
 
   /** Shorthand for primary content. */
-  content?: any;
+  content?: React.ReactNode;
 }
 
-export const ListDescription: React.ComponentClass<ListDescriptionProps>;
+export const ListDescription: React.StatelessComponent<ListDescriptionProps>;
 
 interface ListHeaderProps {
+  [key: string]: any;
+
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -119,27 +134,25 @@ interface ListHeaderProps {
   className?: string;
 
   /** Shorthand for primary content. */
-  content?: any;
+  content?: React.ReactNode;
 }
 
-export const ListHeader: React.ComponentClass<ListHeaderProps>;
+export const ListHeader: React.StatelessComponent<ListHeaderProps>;
 
-interface ListIconProps extends ReactMouseEvents<any> {
-  /** Additional classes. */
-  className?: string;
-
-  /** An element inside a list can be vertically aligned. */
-  name?: string;
+interface ListIconProps extends IconProps {
   verticalAlign?: SemanticVERTICALALIGNMENTS;
 }
 
-export const ListIcon: React.ComponentClass<ListIconProps>;
+export const ListIcon: React.StatelessComponent<ListIconProps>;
 
-interface ListItemProps extends ReactMouseEvents<any> {
-  active?: boolean;
+interface ListItemProps {
+  [key: string]: any;
 
   /** An element type to render as (string or function). */
   as?: any;
+
+  /** A list item can active. */
+  active?: boolean;
 
   /** Primary content. */
   children?: React.ReactNode;
@@ -169,9 +182,11 @@ interface ListItemProps extends ReactMouseEvents<any> {
   value?: string;
 }
 
-export const ListItem: React.ComponentClass<ListItemProps>;
+export const ListItem: React.StatelessComponent<ListItemProps>;
 
 interface ListListProps {
+  [key: string]: any;
+
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -182,4 +197,4 @@ interface ListListProps {
   className?: string;
 }
 
-export const ListList: React.ComponentClass<ListListProps>;
+export const ListList: React.StatelessComponent<ListListProps>;
