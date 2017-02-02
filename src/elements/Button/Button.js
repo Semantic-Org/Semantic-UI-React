@@ -260,7 +260,7 @@ class Button extends Component {
       return (
         <ElementType {...rest} className={containerClasses} onClick={this.handleClick}>
           {labelPosition === 'left' && labelElement}
-          <button className={classes}>
+          <button className={classes} tabIndex={tabIndex}>
             {Icon.create(icon)} {content}
           </button>
           {(labelPosition === 'right' || !labelPosition) && labelElement}
