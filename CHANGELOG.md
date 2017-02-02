@@ -1,17 +1,42 @@
 # Change Log
 
-## [Unreleased](https://github.com/Semantic-Org/Semantic-UI-React/tree/HEAD)
+## [v0.64.7](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.64.7) (2017-02-02)
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.64.6...v0.64.7)
 
-[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.64.5...HEAD)
+## [v0.64.6](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.64.6) (2017-02-02)
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.64.5...v0.64.6)
 
 **Implemented enhancements:**
 
 - feat\(Dropdown\): add `closeOnChange` prop [\#1244](https://github.com/Semantic-Org/Semantic-UI-React/issues/1244)
 - bug\(Dropdown\): `multiple search` dropdown should refocus the `input` element on select of an option [\#1243](https://github.com/Semantic-Org/Semantic-UI-React/issues/1243)
 
+**Fixed bugs:**
+
+- fix\(Portal\): focus is stolen when clicking away to close [\#1271](https://github.com/Semantic-Org/Semantic-UI-React/issues/1271)
+- bug\(Menu\): incorrect inheritance in MenuItemProps typings [\#1262](https://github.com/Semantic-Org/Semantic-UI-React/issues/1262)
+- Bug\(Popup\): Clicking on another Popup's trigger doesn't close open Popups. [\#1251](https://github.com/Semantic-Org/Semantic-UI-React/issues/1251)
+- Popup doesn't work with modal [\#1076](https://github.com/Semantic-Org/Semantic-UI-React/issues/1076)
+
+**Closed issues:**
+
+- Dropdown laggy if there are more than 1000 elements [\#1268](https://github.com/Semantic-Org/Semantic-UI-React/issues/1268)
+- Popup not working [\#1255](https://github.com/Semantic-Org/Semantic-UI-React/issues/1255)
+
 **Merged pull requests:**
 
+- fix\(Modal\): add missing typings [\#1274](https://github.com/Semantic-Org/Semantic-UI-React/pull/1274) ([levithomason](https://github.com/levithomason))
+- fix\(Portal\): fix several event related behaviors [\#1273](https://github.com/Semantic-Org/Semantic-UI-React/pull/1273) ([levithomason](https://github.com/levithomason))
+- style\(List\): update typings and remove propTypes [\#1270](https://github.com/Semantic-Org/Semantic-UI-React/pull/1270) ([layershifter](https://github.com/layershifter))
+- style\(Progress\): refactor, update typings and remove propTypes [\#1269](https://github.com/Semantic-Org/Semantic-UI-React/pull/1269) ([layershifter](https://github.com/layershifter))
+- fix\(Portal\): evaulate mountNode at runtime in Portal component [\#1267](https://github.com/Semantic-Org/Semantic-UI-React/pull/1267) ([SirWaddles](https://github.com/SirWaddles))
+- feat\(docs\): restore enum expansion on docs page [\#1266](https://github.com/Semantic-Org/Semantic-UI-React/pull/1266) ([fracmak](https://github.com/fracmak))
+- style\(Label\): update typings and remove propTypes [\#1265](https://github.com/Semantic-Org/Semantic-UI-React/pull/1265) ([layershifter](https://github.com/layershifter))
+- style\(Menu\): update typings and remove propTypes [\#1264](https://github.com/Semantic-Org/Semantic-UI-React/pull/1264) ([layershifter](https://github.com/layershifter))
+- fix\(docs\): fix checkbox inputType docs to use correct props [\#1263](https://github.com/Semantic-Org/Semantic-UI-React/pull/1263) ([fracmak](https://github.com/fracmak))
 - feat\(Dropdown\): multiple search dropdown should refocus the search on select of an option [\#1257](https://github.com/Semantic-Org/Semantic-UI-React/pull/1257) ([apiv](https://github.com/apiv))
+- style\(Rating\): update typings and propTypes usage [\#1253](https://github.com/Semantic-Org/Semantic-UI-React/pull/1253) ([layershifter](https://github.com/layershifter))
+- fix\(typings\): inherit Radio props from Checkbox [\#1250](https://github.com/Semantic-Org/Semantic-UI-React/pull/1250) ([wcatron](https://github.com/wcatron))
 
 ## [v0.64.5](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.64.5) (2017-01-31)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.64.4...v0.64.5)
@@ -29,7 +54,6 @@
 
 **Closed issues:**
 
-- fix\(Header\): Failed to Construct Image error [\#1249](https://github.com/Semantic-Org/Semantic-UI-React/issues/1249)
 - Checkbox onClick and onChange fire too late [\#1247](https://github.com/Semantic-Org/Semantic-UI-React/issues/1247)
 - Dropdown options update triggered by onSearchChange [\#1242](https://github.com/Semantic-Org/Semantic-UI-React/issues/1242)
 - Date Picker Component [\#1230](https://github.com/Semantic-Org/Semantic-UI-React/issues/1230)
