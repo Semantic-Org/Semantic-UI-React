@@ -12,9 +12,6 @@ describe('Progress', () => {
 
   common.propKeyAndValueToClassName(Progress, 'attached')
 
-  common.propValueOnlyToClassName(Progress, 'color', SUI.COLORS)
-  common.propValueOnlyToClassName(Progress, 'size', _.without(SUI.SIZES, 'mini', 'huge', 'massive'))
-
   common.propKeyOnlyToClassName(Progress, 'active')
   common.propKeyOnlyToClassName(Progress, 'disabled')
   common.propKeyOnlyToClassName(Progress, 'error')
@@ -22,6 +19,9 @@ describe('Progress', () => {
   common.propKeyOnlyToClassName(Progress, 'inverted')
   common.propKeyOnlyToClassName(Progress, 'success')
   common.propKeyOnlyToClassName(Progress, 'warning')
+
+  common.propValueOnlyToClassName(Progress, 'color', SUI.COLORS)
+  common.propValueOnlyToClassName(Progress, 'size', _.without(SUI.SIZES, 'mini', 'huge', 'massive'))
 
   it('contains div with className bar', () => {
     shallow(<Progress />)
