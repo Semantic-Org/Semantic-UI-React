@@ -28,7 +28,7 @@
     "lint": "cross-env NODE_ENV=production eslint .",
     "lint:fix": "npm run lint -- --fix",
     "lint:watch": "watch 'npm run lint --silent' docs gulp src test",
-    "prerelease": "npm run lint && npm test && cross-env NODE_ENV=production npm run build",
+    "prerelease": "npm run lint && npm run tsd:lint && npm test && cross-env NODE_ENV=production npm run build",
     "postrelease": "NODE_ENV=production npm run deploy:docs",
     "release:major": "npm run prerelease && ta-script npm/release.sh major && npm run prerelease",
     "release:minor": "npm run prerelease && ta-script npm/release.sh minor && npm run prerelease",
