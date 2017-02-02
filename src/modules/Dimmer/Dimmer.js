@@ -86,6 +86,8 @@ export default class Dimmer extends Component {
     if (onClickOutside) onClickOutside(e, this.props)
   }
 
+  handleCenterRef = c => (this.center = c)
+
   render() {
     const {
       active,
@@ -112,13 +114,18 @@ export default class Dimmer extends Component {
     const ElementType = getElementType(Dimmer, this.props)
 
     const childrenContent = _.isNil(children) ? content : children
-    const childrenJSX = childrenContent && (
-        <div className='content'>
-          <div className='center' ref={center => (this.center = center)}>
-            { childrenContent }
+
+    const dimmerElement = (
+      <ElementType{...rest} className={classes} onClick={this.handleClick}>
+        {childrenContent && (
+          <div className='content'>
+            <div className='center' ref={this.handleCenterRef}>
+              {childrenContent}
+            </div>
           </div>
-        </div>
-      )
+        )}
+      </ElementType>
+    )
 
     if (page) {
       return (
@@ -130,15 +137,13 @@ export default class Dimmer extends Component {
           open={active}
           openOnTriggerClick={false}
         >
-          <ElementType{...rest} className={classes} onClick={this.handleClick}>{childrenJSX}</ElementType>
+          {dimmerElement}
         </Portal>
       )
     }
 
-    return <ElementType{...rest} className={classes} onClick={this.handleClick}>{childrenJSX}</ElementType>
+    return dimmerElement
   }
 }
 
-// Dimmer is not yet defined inside the class
-// Do not use a static property initializer
 Dimmer.create = createShorthandFactory(Dimmer, value => ({ content: value }))
