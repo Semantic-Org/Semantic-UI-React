@@ -709,7 +709,7 @@ export default class Dropdown extends Component {
     if (search && newQuery && !open) this.open()
 
     this.setState({
-      selectedIndex: this.getEnabledIndices()[0],
+      selectedIndex: 0,
       searchQuery: newQuery,
     })
   }
