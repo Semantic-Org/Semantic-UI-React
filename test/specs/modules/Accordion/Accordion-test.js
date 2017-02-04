@@ -1,5 +1,5 @@
 import faker from 'faker'
-import React, { cloneElement } from 'react'
+import React from 'react'
 
 import Accordion from 'src/modules/Accordion/Accordion'
 import AccordionContent from 'src/modules/Accordion/AccordionContent'
