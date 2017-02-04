@@ -1,5 +1,5 @@
 import faker from 'faker'
-import React from 'react'
+import React, { cloneElement } from 'react'
 
 import Accordion from 'src/modules/Accordion/Accordion'
 import AccordionContent from 'src/modules/Accordion/AccordionContent'
@@ -272,22 +272,22 @@ describe('Accordion', () => {
       }]
       const wrapper = mount(<Accordion panels={panels} />)
 
-      expect(wrapper.childAt(0).containsMatchingElement(panels[0].title)).to.equal(true)
+      wrapper
+        .childAt(0)
+        .should.have.className('title')
+        .and.contain(panels[0].title)
+
       expect(wrapper.childAt(0).key()).to.equal('panel-1-title')
-      expect(wrapper.childAt(1).containsMatchingElement(panels[0].content)).to.equal(true)
+
+      wrapper
+        .childAt(1)
+        .should.have.className('content')
+        .and.contain(panels[0].content)
+
       expect(wrapper.childAt(1).key()).to.equal('panel-1-content')
     })
 
-    it('allows setting the active prop', () => {
-      const panels = [{
-        active: true,
-        title: faker.lorem.sentence(),
-        content: faker.lorem.paragraph(),
-      }, {
-        active: false,
-        title: faker.lorem.sentence(),
-        content: faker.lorem.paragraph(),
-      }]
+    const checkIfAllowsSettingTheActiveProp = panels => {
       const wrapper = shallow(<Accordion panels={panels} />)
 
       // first panel (active)
@@ -313,6 +313,34 @@ describe('Accordion', () => {
         .find('AccordionContent')
         .at(1)
         .should.have.prop('active', false)
+    }
+
+    it('allows setting the active prop', () => {
+      const panels = [{
+        active: true,
+        title: faker.lorem.sentence(),
+        content: faker.lorem.paragraph(),
+      }, {
+        active: false,
+        title: faker.lorem.sentence(),
+        content: faker.lorem.paragraph(),
+      }]
+
+      checkIfAllowsSettingTheActiveProp(panels)
+    })
+
+    it('allows setting the active prop for custom title and content', () => {
+      const panels = [{
+        active: true,
+        title: (<div>faker.lorem.sentence()</div>),
+        content: (<p>faker.lorem.paragraph()</p>),
+      }, {
+        active: false,
+        title: (<h1>faker.lorem.sentence()</h1>),
+        content: (<h3>faker.lorem.paragraph()</h3>),
+      }]
+
+      checkIfAllowsSettingTheActiveProp(panels)
     })
 
     describe('onClick', () => {

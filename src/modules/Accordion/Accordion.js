@@ -162,8 +162,8 @@ export default class Accordion extends Component {
 
       const key = _.isNil(panel.key) ? panel.title : panel.key
 
-      children.push(AccordionTitle.create(panel.title, { active: isActive, onClick, key: `${key}-title` }))
-      children.push(AccordionContent.create(panel.content, { active: isActive, key: `${key}-content` }))
+      children.push(AccordionTitle.create({ active: isActive, onClick, key: `${key}-title`, content: panel.title }))
+      children.push(AccordionContent.create({ active: isActive, key: `${key}-content`, content: panel.content }))
     })
 
     return children
