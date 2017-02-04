@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import cx from 'classnames'
 import React, { Component, PropTypes } from 'react'
 
@@ -7,7 +8,10 @@ import {
   getUnhandledProps,
   META,
   useKeyOnly,
+  createShorthandFactory,
 } from '../../lib'
+
+import Icon from '../../elements/Icon'
 
 /**
  * A title sub-component for Accordion component.
@@ -26,6 +30,9 @@ export default class AccordionTitle extends Component {
     /** Additional classes. */
     className: PropTypes.string,
 
+    /** Shorthand for primary content. */
+    content: customPropTypes.contentShorthand,
+
     /**
      * Called on click.
      *
@@ -41,10 +48,21 @@ export default class AccordionTitle extends Component {
     parent: 'Accordion',
   }
 
+  static create = createShorthandFactory(AccordionTitle, content => ({ content }))
+
   handleClick = (e) => {
     const { onClick } = this.props
 
     if (onClick) onClick(e, this.props)
+  }
+
+  renderContent(content) {
+    return (
+      <div style={({ display: 'inline-block' })}>
+        <Icon name='dropdown' />
+        {content}
+      </div>
+    )
   }
 
   render() {
@@ -52,6 +70,7 @@ export default class AccordionTitle extends Component {
       active,
       children,
       className,
+      content,
     } = this.props
 
     const classes = cx(
@@ -62,6 +81,10 @@ export default class AccordionTitle extends Component {
     const rest = getUnhandledProps(AccordionTitle, this.props)
     const ElementType = getElementType(AccordionTitle, this.props)
 
-    return <ElementType {...rest} className={classes} onClick={this.handleClick}>{children}</ElementType>
+    return (
+      <ElementType {...rest} className={classes} onClick={this.handleClick}>
+        {_.isNil(content) ? children : this.renderContent(content)}
+      </ElementType>
+    )
   }
 }

@@ -267,23 +267,14 @@ describe('Accordion', () => {
     it('adds custom element title and custom element content sibling children', () => {
       const panels = [{
         key: 'panel-1',
-        title: (<h1>Title</h1>),
-        content: (<h2>Content</h2>),
+        title: (<h1>{faker.lorem.sentence()}</h1>),
+        content: (<h2>{faker.lorem.paragraph()}</h2>),
       }]
       const wrapper = mount(<Accordion panels={panels} />)
 
-      wrapper
-        .childAt(0)
-        .should.have.className('title')
-        .and.contain(panels[0].title)
-
+      expect(wrapper.childAt(0).containsMatchingElement(panels[0].title)).to.equal(true)
       expect(wrapper.childAt(0).key()).to.equal('panel-1-title')
-
-      wrapper
-        .childAt(1)
-        .should.have.className('content')
-        .and.contain(panels[0].content)
-
+      expect(wrapper.childAt(1).containsMatchingElement(panels[0].content)).to.equal(true)
       expect(wrapper.childAt(1).key()).to.equal('panel-1-content')
     })
 
@@ -327,7 +318,7 @@ describe('Accordion', () => {
     describe('onClick', () => {
       it('can be omitted', () => {
         const panels = [{
-          text: faker.lorem.sentence(),
+          title: faker.lorem.sentence(),
           content: faker.lorem.paragraph(),
         }]
         const wrapper = mount(<Accordion panels={panels} />)

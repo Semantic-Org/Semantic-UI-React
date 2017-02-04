@@ -1,5 +1,5 @@
-import cx from 'classnames'
 import _ from 'lodash'
+import cx from 'classnames'
 import React, { Children, cloneElement, PropTypes } from 'react'
 
 import {
@@ -9,7 +9,7 @@ import {
   META,
   useKeyOnly,
 } from '../../lib'
-import Icon from '../../elements/Icon'
+
 import AccordionContent from './AccordionContent'
 import AccordionTitle from './AccordionTitle'
 
@@ -160,19 +160,10 @@ export default class Accordion extends Component {
         if (panel.onClick) panel.onClick(e, i)
       }
 
-      const key = (panel.key === null || panel.key === undefined) ? panel.title : panel.key
+      const key = _.isNil(panel.key) ? panel.title : panel.key
 
-      children.push(
-        <AccordionTitle key={`${key}-title`} active={isActive} onClick={onClick}>
-          <Icon name='dropdown' />
-          {panel.title}
-        </AccordionTitle>
-      )
-      children.push(
-        <AccordionContent key={`${key}-content`} active={isActive}>
-          {panel.content}
-        </AccordionContent>
-      )
+      children.push(AccordionTitle.create(panel.title, { active: isActive, onClick, key: `${key}-title` }))
+      children.push(AccordionContent.create(panel.content, { active: isActive, key: `${key}-content` }))
     })
 
     return children
