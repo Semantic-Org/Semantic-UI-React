@@ -54,14 +54,16 @@ export default class Accordion extends Component {
     /**
      * Create simple accordion panels from an array of { text: <string>, content: <custom> } objects.
      * Object can optionally define an `active` key to open/close the panel.
+     * Object can opitonally define a `key` key used for title and content nodes' keys.
      * Mutually exclusive with children.
      * TODO: AccordionPanel should be a sub-component
      */
     panels: customPropTypes.every([
       customPropTypes.disallow(['children']),
       PropTypes.arrayOf(PropTypes.shape({
+        key: PropTypes.string,
         active: PropTypes.bool,
-        title: PropTypes.string,
+        title: customPropTypes.contentShorthand,
         content: customPropTypes.contentShorthand,
         onClick: PropTypes.func,
       })),
@@ -158,14 +160,16 @@ export default class Accordion extends Component {
         if (panel.onClick) panel.onClick(e, i)
       }
 
+      const key = (panel.key === null || panel.key === undefined) ? panel.title : panel.key
+
       children.push(
-        <AccordionTitle key={`${panel.title}-title`} active={isActive} onClick={onClick}>
+        <AccordionTitle key={`${key}-title`} active={isActive} onClick={onClick}>
           <Icon name='dropdown' />
           {panel.title}
         </AccordionTitle>
       )
       children.push(
-        <AccordionContent key={`${panel.title}-content`} active={isActive}>
+        <AccordionContent key={`${key}-content`} active={isActive}>
           {panel.content}
         </AccordionContent>
       )

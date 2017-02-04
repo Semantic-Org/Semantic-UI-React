@@ -242,9 +242,9 @@ describe('Accordion', () => {
         .should.not.have.descendants('#do-not-find-me')
     })
 
-    it('adds text and content sibling children', () => {
+    it('adds text title and text content sibling children', () => {
       const panels = [{
-        text: faker.lorem.sentence(),
+        title: faker.lorem.sentence(),
         content: faker.lorem.paragraph(),
       }]
       const wrapper = mount(<Accordion panels={panels} />)
@@ -254,10 +254,37 @@ describe('Accordion', () => {
         .should.have.className('title')
         .and.contain.text(panels[0].title)
 
+      expect(wrapper.childAt(0).key()).to.equal(`${panels[0].title}-title`)
+
       wrapper
         .childAt(1)
         .should.have.className('content')
         .and.contain.text(panels[0].content)
+
+      expect(wrapper.childAt(1).key()).to.equal(`${panels[0].title}-content`)
+    })
+
+    it('adds custom element title and custom element content sibling children', () => {
+      const panels = [{
+        key: 'panel-1',
+        title: (<h1>Title</h1>),
+        content: (<h2>Content</h2>),
+      }]
+      const wrapper = mount(<Accordion panels={panels} />)
+
+      wrapper
+        .childAt(0)
+        .should.have.className('title')
+        .and.contain(panels[0].title)
+
+      expect(wrapper.childAt(0).key()).to.equal('panel-1-title')
+
+      wrapper
+        .childAt(1)
+        .should.have.className('content')
+        .and.contain(panels[0].content)
+
+      expect(wrapper.childAt(1).key()).to.equal('panel-1-content')
     })
 
     it('allows setting the active prop', () => {
