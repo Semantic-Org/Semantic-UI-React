@@ -1,5 +1,5 @@
-import _ from 'lodash'
 import cx from 'classnames'
+import _ from 'lodash'
 import React, { PropTypes } from 'react'
 
 import {
@@ -10,7 +10,7 @@ import {
 } from '../../lib'
 
 /**
- * A card can contain a description with one or more paragraphs
+ * A card can contain a description with one or more paragraphs.
  */
 function CardDescription(props) {
   const { children, className, content } = props
@@ -18,7 +18,11 @@ function CardDescription(props) {
   const rest = getUnhandledProps(CardDescription, props)
   const ElementType = getElementType(CardDescription, props)
 
-  return <ElementType {...rest} className={classes}>{_.isNil(children) ? content : children}</ElementType>
+  return (
+    <ElementType {...rest} className={classes}>
+      {_.isNil(children) ? content : children}
+    </ElementType>
+  )
 }
 
 CardDescription._meta = {
