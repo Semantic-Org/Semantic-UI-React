@@ -82,7 +82,7 @@ describe('Popup', () => {
       wrapperMount(
         <Popup
           offset={50}
-          positioning='bottom right'
+          position='bottom right'
           content='foo'
           trigger={<button>foo</button>}
         />
@@ -95,7 +95,7 @@ describe('Popup', () => {
       wrapperMount(
         <Popup
           offset={50}
-          positioning='bottom left'
+          position='bottom left'
           content='foo'
           trigger={<button>foo</button>}
         />
@@ -106,12 +106,12 @@ describe('Popup', () => {
     })
   })
 
-  describe('positioning', () => {
+  describe('position', () => {
     it('is always within the viewport', () => {
       _.each(Popup._meta.props.positions, position => {
         wrapperMount(
           <Popup
-            positioning={position}
+            position={position}
             content='_'
             trigger={<button>foo</button>}
             on='click'

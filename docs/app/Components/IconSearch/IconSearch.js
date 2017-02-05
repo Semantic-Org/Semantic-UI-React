@@ -79,7 +79,7 @@ export default class IconSearch extends Component {
       inverted
       hoverable={false}
       size='mini'
-      positioning='top center'
+      position='top center'
       content={this.state.copied ? 'Copied!' : 'Click to copy'}
       trigger={(
         <Grid.Column className='docs-icon-set-column' onClick={this.copy(name)}>
