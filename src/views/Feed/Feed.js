@@ -1,5 +1,5 @@
-import _ from 'lodash'
 import cx from 'classnames'
+import _ from 'lodash'
 import React, { PropTypes } from 'react'
 
 import {
@@ -20,8 +20,19 @@ import FeedSummary from './FeedSummary'
 import FeedUser from './FeedUser'
 
 function Feed(props) {
-  const { children, className, events, size } = props
-  const classes = cx('ui', className, size, 'feed')
+  const {
+    children,
+    className,
+    events,
+    size,
+  } = props
+
+  const classes = cx(
+    'ui',
+    size,
+    'feed',
+    className,
+  )
   const rest = getUnhandledProps(Feed, props)
   const ElementType = getElementType(Feed, props)
 
@@ -50,9 +61,6 @@ function Feed(props) {
 Feed._meta = {
   name: 'Feed',
   type: META.TYPES.VIEW,
-  props: {
-    size: _.without(SUI.SIZES, 'mini', 'tiny', 'medium', 'big', 'huge', 'massive'),
-  },
 }
 
 Feed.propTypes = {
@@ -69,7 +77,7 @@ Feed.propTypes = {
   events: customPropTypes.collectionShorthand,
 
   /** A feed can have different sizes. */
-  size: PropTypes.oneOf(Feed._meta.props.size),
+  size: PropTypes.oneOf(_.without(SUI.SIZES, 'mini', 'tiny', 'medium', 'big', 'huge', 'massive')),
 }
 
 Feed.Content = FeedContent

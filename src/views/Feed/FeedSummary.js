@@ -1,5 +1,5 @@
-import _ from 'lodash'
 import cx from 'classnames'
+import _ from 'lodash'
 import React, { PropTypes } from 'react'
 
 import {
@@ -12,9 +12,19 @@ import {
 import FeedDate from './FeedDate'
 import FeedUser from './FeedUser'
 
+/**
+ * A feed can contain a summary.
+ */
 function FeedSummary(props) {
-  const { children, className, content, date, user } = props
-  const classes = cx(className, 'summary')
+  const {
+    children,
+    className,
+    content,
+    date,
+    user,
+  } = props
+
+  const classes = cx('summary', className)
   const rest = getUnhandledProps(FeedSummary, props)
   const ElementType = getElementType(FeedSummary, props)
 

@@ -1,14 +1,15 @@
-import _ from 'lodash'
 import faker from 'faker'
+import _ from 'lodash'
 import React from 'react'
 
-import * as common from 'test/specs/commonTests'
 import FeedEvent from 'src/views/Feed/FeedEvent'
 import FeedLabel from 'src/views/Feed/FeedLabel'
+import * as common from 'test/specs/commonTests'
 
 describe('FeedEvent', () => {
   common.isConformant(FeedEvent)
   common.rendersChildren(FeedEvent)
+
   common.implementsShorthandProp(FeedEvent, {
     propKey: 'icon',
     ShorthandComponent: FeedLabel,
