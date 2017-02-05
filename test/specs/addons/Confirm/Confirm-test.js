@@ -4,7 +4,7 @@ import React from 'react'
 import Confirm from 'src/addons/Confirm/Confirm'
 import Modal from 'src/modules/Modal/Modal'
 import { keyboardKey } from 'src/lib'
-import { sandbox, domEvent, assertBodyContains } from 'test/utils'
+import { assertBodyContains, domEvent, sandbox } from 'test/utils'
 import * as common from 'test/specs/commonTests'
 
 // ----------------------------------------
@@ -28,6 +28,17 @@ describe('Confirm', () => {
   })
 
   common.isConformant(Confirm)
+
+  common.implementsShorthandProp(Confirm, {
+    propKey: 'header',
+    ShorthandComponent: Modal.Header,
+    mapValueToProps: content => ({ content }),
+  })
+  common.implementsShorthandProp(Confirm, {
+    propKey: 'content',
+    ShorthandComponent: Modal.Content,
+    mapValueToProps: content => ({ content }),
+  })
 
   it('renders a small Modal', () => {
     wrapperShallow(<Confirm />)
@@ -65,46 +76,21 @@ describe('Confirm', () => {
     })
   })
 
-  describe('header', () => {
-    it('is not present by default', () => {
-      shallow(<Confirm />)
-        .should.not.have.descendants('ModalHeader')
-    })
-    it('sets the header text', () => {
-      wrapperShallow(<Confirm header='foo' />)
-        .should.have.descendants('ModalHeader')
-      wrapper
-        .find('ModalHeader')
-        .shallow()
-        .should.have.text('foo')
-    })
-  })
-
-  describe('content', () => {
-    it('is "Are you sure?" by default', () => {
-      wrapperShallow(<Confirm />)
-        .should.have.descendants('ModalContent')
-      wrapper
-        .find('ModalContent')
-        .shallow()
-        .should.have.text('Are you sure?')
-    })
-    it('sets the content text', () => {
-      wrapperShallow(<Confirm content='foo' />)
-        .should.have.descendants('ModalContent')
-      wrapper
-        .find('ModalContent')
-        .shallow()
-        .should.have.text('foo')
-    })
-  })
-
   describe('onCancel', () => {
     let spy
 
     beforeEach(() => {
       spy = sandbox.spy()
       wrapperMount(<Confirm onCancel={spy} defaultOpen />)
+    })
+
+    it('omitted when not defined', () => {
+      const click = () => shallow(<Confirm />)
+        .find('Button')
+        .first()
+        .simulate('click')
+
+      expect(click).to.not.throw()
     })
 
     it('is called on Cancel button click', () => {
@@ -166,6 +152,14 @@ describe('Confirm', () => {
   })
 
   describe('onConfirm', () => {
+    it('omitted when not defined', () => {
+      const click = () => shallow(<Confirm />)
+        .find('Button[primary]')
+        .simulate('click')
+
+      expect(click).to.not.throw()
+    })
+
     it('is called on OK button click', () => {
       const spy = sandbox.spy()
       shallow(<Confirm onConfirm={spy} />)
@@ -197,7 +191,6 @@ describe('Confirm', () => {
       assertBodyContains('.ui.modal', false)
 
       wrapper.setProps({ open: true })
-
       assertBodyContains('.ui.modal')
     })
 
@@ -206,7 +199,6 @@ describe('Confirm', () => {
       assertBodyContains('.ui.modal')
 
       wrapper.setProps({ open: false })
-
       assertBodyContains('.ui.modal', false)
     })
   })
