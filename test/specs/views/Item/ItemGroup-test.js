@@ -1,8 +1,8 @@
 import faker from 'faker'
 import React from 'react'
 
-import * as common from 'test/specs/commonTests'
 import ItemGroup from 'src/views/Item/ItemGroup'
+import * as common from 'test/specs/commonTests'
 
 describe('ItemGroup', () => {
   common.hasUIClassName(ItemGroup)
