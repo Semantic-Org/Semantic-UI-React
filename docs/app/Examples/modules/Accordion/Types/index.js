@@ -13,7 +13,7 @@ const AccordionTypesExamples = () => (
     />
     <ComponentExample
       title='Panels Prop'
-      description='Accordion panels can be define using the `panels` prop.'
+      description='Accordion panels can be defined using the `panels` prop.'
       examplePath='modules/Accordion/Types/AccordionExamplePanelsProp'
     >
       <Message info>
@@ -21,6 +21,10 @@ const AccordionTypesExamples = () => (
         {' '}They can also define an <code>onClick</code> key to be applied to the <code>Accordion.Title</code>.
       </Message>
     </ComponentExample>
+    <ComponentExample
+      title='Panels Prop with custom title and content'
+      examplePath='modules/Accordion/Types/AccordionExamplePanelsPropWithCustomTitleAndContent'
+    />
     <ComponentExample
       title='Active Index'
       description='The `activeIndex` prop controls which panel is open.'
