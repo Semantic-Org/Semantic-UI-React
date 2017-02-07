@@ -1,17 +1,20 @@
-import React, { PropTypes } from 'react'
 import cx from 'classnames'
+import _ from 'lodash'
+import React, { PropTypes } from 'react'
 import {
   customPropTypes,
   getElementType,
+  getUnhandledProps,
   META,
 } from '../../lib'
 
 /**
-*An ad displays third-party promotional content
-*/
+ * An ad displays third-party promotional content
+ */
 function Advertisement(props) {
   const {
     className,
+    children,
   } = props
 
   const classes = cx(
@@ -19,9 +22,10 @@ function Advertisement(props) {
     'ad',
     className
   )
+  const rest = getUnhandledProps(Advertisement, props)
   const ElementType = getElementType(Advertisement, props)
 
-  return <ElementType className={classes} />
+  return <ElementType {...rest} className={classes}>{children}</ElementType>
 }
 
 Advertisement._meta = {
@@ -35,6 +39,9 @@ Advertisement.propTypes = {
 
   /** Additional classes. */
   className: PropTypes.string,
+
+  /** Primary content. */
+  children: PropTypes.node,
 }
 
 export default Advertisement
