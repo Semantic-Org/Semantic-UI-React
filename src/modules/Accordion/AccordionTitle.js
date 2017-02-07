@@ -48,21 +48,10 @@ export default class AccordionTitle extends Component {
     parent: 'Accordion',
   }
 
-  static create = createShorthandFactory(AccordionTitle, content => ({ content }))
-
   handleClick = (e) => {
     const { onClick } = this.props
 
     if (onClick) onClick(e, this.props)
-  }
-
-  renderContent(content) {
-    return isValidElement ? content : (
-      <div style={({ display: 'inline-block' })}>
-        <Icon name='dropdown' />
-        {content}
-      </div>
-    )
   }
 
   render() {
@@ -80,11 +69,27 @@ export default class AccordionTitle extends Component {
     )
     const rest = getUnhandledProps(AccordionTitle, this.props)
     const ElementType = getElementType(AccordionTitle, this.props)
+    const renderContents = contents => (
+        <ElementType {...rest} className={classes} onClick={this.handleClick}>
+          {contents}
+        </ElementType>
+    )
+
+    if (_.isNil(content)) {
+      return renderContents(children)
+    }
+
+    if (isValidElement(content)) {
+      return renderContents(content)
+    }
 
     return (
       <ElementType {...rest} className={classes} onClick={this.handleClick}>
-        { _.isNil(content) ? children : this.renderContent(content) }
+        <Icon name='dropdown' />
+        {content}
       </ElementType>
     )
   }
 }
+
+AccordionTitle.create = createShorthandFactory(AccordionTitle, content => ({ content }))
