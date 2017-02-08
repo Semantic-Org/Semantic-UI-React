@@ -4,6 +4,7 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
+  useKeyOnly,
   META,
 } from '../../lib'
 
@@ -14,11 +15,16 @@ function Advertisement(props) {
   const {
     className,
     children,
+    medium,
+    rectangle,
   } = props
 
   const classes = cx(
     'ui',
     'ad',
+    'test',
+    useKeyOnly(medium, 'medium'),
+    useKeyOnly(rectangle, 'rectangle'),
     className
   )
   const rest = getUnhandledProps(Advertisement, props)
@@ -41,6 +47,11 @@ Advertisement.propTypes = {
 
   /** Primary content. */
   children: PropTypes.node,
+
+
+  medium: PropTypes.bool,
+
+  rectangle: PropTypes.bool,
 }
 
 export default Advertisement
