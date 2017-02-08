@@ -29,7 +29,7 @@ function Advertisement(props) {
   const rest = getUnhandledProps(Advertisement, props)
   const ElementType = getElementType(Advertisement, props)
 
-  return <ElementType {...rest} className={classes}>{children}</ElementType>
+  return <ElementType {...rest} className={classes} data-text={test}>{children}</ElementType>
 }
 
 Advertisement._meta = {
@@ -60,6 +60,7 @@ Advertisement.propTypes = {
     'square', 'small square',
   ]).isRequired,
 
+  /** Text to be displayed on the advertisement*/
   test: PropTypes.oneOfType([
     PropTypes.bool,
     PropTypes.number,
