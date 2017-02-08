@@ -8,6 +8,9 @@ describe('Advertisement', () => {
   common.hasUIClassName(Advertisement)
   common.rendersChildren(Advertisement)
 
+  common.propKeyOnlyToClassName(Advertisement, 'centered')
+  common.propKeyOnlyToClassName(Advertisement, 'test')
+
   it('renders a <div> by default', () => {
     shallow(<Advertisement />).should.have.tagName('div')
   })
