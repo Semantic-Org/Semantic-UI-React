@@ -17,6 +17,7 @@ function Advertisement(props) {
     children,
     unit,
     test,
+    centered,
   } = props
 
   const classes = cx(
@@ -24,6 +25,7 @@ function Advertisement(props) {
     'ad',
     unit,
     useKeyOnly(test, 'test'),
+    useKeyOnly(centered, 'centered'),
     className
   )
   const rest = getUnhandledProps(Advertisement, props)
@@ -47,7 +49,7 @@ Advertisement.propTypes = {
   /** Primary content. */
   children: PropTypes.node,
 
-  /** Varies the size of the advertisement*/
+  /** Varies the size of the advertisement. */
   unit: PropTypes.oneOf([
     'medium rectangle', 'large rectangle', 'vertical rectangle', 'small rectangle',
     'mobile banner', 'banner', 'vertical banner', 'top banner', 'half banner',
@@ -60,12 +62,15 @@ Advertisement.propTypes = {
     'square', 'small square',
   ]).isRequired,
 
-  /** Text to be displayed on the advertisement*/
+  /** Text to be displayed on the advertisement. */
   test: PropTypes.oneOfType([
     PropTypes.bool,
     PropTypes.number,
     PropTypes.string,
   ]),
+
+  /** Center the advertisement. */
+  centered: PropTypes.bool,
 }
 
 export default Advertisement
