@@ -3,8 +3,8 @@ import React, { PropTypes } from 'react'
 import {
   customPropTypes,
   getElementType,
-  getUnhandledProps,
   useKeyOnly,
+  getUnhandledProps,
   META,
 } from '../../lib'
 
@@ -15,16 +15,15 @@ function Advertisement(props) {
   const {
     className,
     children,
-    medium,
-    rectangle,
+    unit,
+    test,
   } = props
 
   const classes = cx(
     'ui',
     'ad',
-    'test',
-    useKeyOnly(medium, 'medium'),
-    useKeyOnly(rectangle, 'rectangle'),
+    unit,
+    useKeyOnly(test, 'test'),
     className
   )
   const rest = getUnhandledProps(Advertisement, props)
@@ -48,10 +47,24 @@ Advertisement.propTypes = {
   /** Primary content. */
   children: PropTypes.node,
 
+  /** Varies the size of the advertisement*/
+  unit: PropTypes.oneOf([
+    'medium rectangle', 'large rectangle', 'vertical rectangle', 'small rectangle',
+    'mobile banner', 'banner', 'vertical banner', 'top banner', 'half banner',
+    'button', 'square button', 'small button',
+    'skyscraper', 'wide skyscraper',
+    'leaderboard', 'large leaderboard', 'mobile leaderboard', 'billboard',
+    'panorama',
+    'netboard',
+    'half page',
+    'square', 'small square',
+  ]).isRequired,
 
-  medium: PropTypes.bool,
-
-  rectangle: PropTypes.bool,
+  test: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.number,
+    PropTypes.string,
+  ]),
 }
 
 export default Advertisement
