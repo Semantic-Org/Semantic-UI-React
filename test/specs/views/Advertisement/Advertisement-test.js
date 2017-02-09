@@ -10,12 +10,19 @@ describe('Advertisement', () => {
 
   common.propKeyOnlyToClassName(Advertisement, 'centered')
   common.propKeyOnlyToClassName(Advertisement, 'test')
+  common.propValueOnlyToClassName(Advertisement, 'unit', [
+    'medium rectangle', 'large rectangle', 'vertical rectangle', 'small    rectangle',
+    'mobile banner', 'banner', 'vertical banner', 'top banner', 'half banner',
+    'button', 'square button', 'small button',
+    'skyscraper', 'wide skyscraper',
+    'leaderboard', 'large leaderboard', 'mobile leaderboard', 'billboard',
+    'panorama',
+    'netboard',
+    'half page',
+    'square', 'small square',
+  ])
 
   it('renders a <div> by default', () => {
     shallow(<Advertisement />).should.have.tagName('div')
-  })
-
-  it('should have appropriate classes for unit prop', () => {
-    shallow(<Advertisement unit='medium rectangle' />).should.have.className('medium rectangle')
   })
 })

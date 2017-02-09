@@ -14,20 +14,20 @@ import {
  */
 function Advertisement(props) {
   const {
-    className,
-    children,
-    unit,
-    test,
     centered,
+    children,
+    className,
+    test,
+    unit,
   } = props
 
   const classes = cx(
-    'ui',
     'ad',
+    className,
+    'ui',
     unit,
-    useKeyOnly(test, 'test'),
     useKeyOnly(centered, 'centered'),
-    className
+    useKeyOnly(test, 'test'),
   )
   const rest = getUnhandledProps(Advertisement, props)
   const ElementType = getElementType(Advertisement, props)
@@ -44,11 +44,21 @@ Advertisement.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** Additional classes. */
-  className: PropTypes.string,
+  /** Center the advertisement. */
+  centered: PropTypes.bool,
 
   /** Primary content. */
   children: PropTypes.node,
+
+  /** Additional classes. */
+  className: PropTypes.string,
+
+  /** Text to be displayed on the advertisement. */
+  test: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.number,
+    PropTypes.string,
+  ]),
 
   /** Varies the size of the advertisement. */
   unit: PropTypes.oneOf([
@@ -63,15 +73,6 @@ Advertisement.propTypes = {
     'square', 'small square',
   ]).isRequired,
 
-  /** Text to be displayed on the advertisement. */
-  test: PropTypes.oneOfType([
-    PropTypes.bool,
-    PropTypes.number,
-    PropTypes.string,
-  ]),
-
-  /** Center the advertisement. */
-  centered: PropTypes.bool,
 }
 
 export default Advertisement
