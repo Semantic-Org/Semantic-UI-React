@@ -14,4 +14,8 @@ describe('Advertisement', () => {
   it('renders a <div> by default', () => {
     shallow(<Advertisement />).should.have.tagName('div')
   })
+
+  it('should have appropriate classes for unit prop', () => {
+    shallow(<Advertisement unit='medium rectangle' />).should.have.className('medium rectangle')
+  })
 })
