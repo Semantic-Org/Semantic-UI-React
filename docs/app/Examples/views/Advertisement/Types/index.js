@@ -8,7 +8,7 @@ const Types = () => (
     <ComponentExample
       title='Common Units'
       description='An advertisement can appear in common ad unit sizes'
-      examplePath='views/Advertisement/Types/AdvertisementExampleMediumRectangle'
+      examplePath='views/Advertisement/Types/AdvertisementExampleCommonUnits'
     />
   </ExampleSection>
 )
