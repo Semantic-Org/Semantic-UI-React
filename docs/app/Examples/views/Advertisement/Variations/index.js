@@ -7,12 +7,12 @@ const Variations = () => (
   <ExampleSection title='Variations'>
     <ComponentExample
       title='Centered'
-      description='An advertisement can appear centered'
+      description='An advertisement can appear centered.'
       examplePath='views/Advertisement/Variations/AdvertisementExampleCentered'
     />
     <ComponentExample
       title='Test'
-      description='A advertisement can be formatted to help verify placement'
+      description='A advertisement can be formatted to help verify placement.'
       examplePath='views/Advertisement/Variations/AdvertisementExampleTest'
     />
   </ExampleSection>
