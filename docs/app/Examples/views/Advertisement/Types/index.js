@@ -3,7 +3,7 @@ import React from 'react'
 import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
 import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
 
-const Types = () => ( 
+const Types = () => (
   <ExampleSection title='Types'>
     <ComponentExample
       title='Common Units'
@@ -53,7 +53,7 @@ const Types = () => (
     <ComponentExample examplePath='views/Advertisement/Types/AdvertisementExampleBannerVertical' />
     <ComponentExample examplePath='views/Advertisement/Types/AdvertisementExampleBannerTop' />
     <ComponentExample examplePath='views/Advertisement/Types/AdvertisementExampleBannerHalf' />
-  
+
     <ComponentExample
       title='Square'
       description='An ad can use square ad unit size.'
