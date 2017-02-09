@@ -22,12 +22,12 @@ function Advertisement(props) {
   } = props
 
   const classes = cx(
-    'ad',
-    className,
     'ui',
+    className,
     unit,
     useKeyOnly(centered, 'centered'),
     useKeyOnly(test, 'test'),
+    'ad',
   )
   const rest = getUnhandledProps(Advertisement, props)
   const ElementType = getElementType(Advertisement, props)
