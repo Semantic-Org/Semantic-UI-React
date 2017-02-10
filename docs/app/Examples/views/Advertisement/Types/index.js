@@ -83,6 +83,9 @@ const Types = () => (
       description='An ad can use square ad unit size.'
       examplePath='views/Advertisement/Types/AdvertisementExampleSquare'
     />
+    <ComponentExample
+      examplePath='views/Advertisement/Types/AdvertisementExampleSmallSquare'
+    />
   </ExampleSection>
 )
 
