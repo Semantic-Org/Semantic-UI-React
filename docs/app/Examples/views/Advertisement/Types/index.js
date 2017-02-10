@@ -46,6 +46,9 @@ const Types = () => (
       examplePath='views/Advertisement/Types/AdvertisementExampleSkyscraper'
     />
     <ComponentExample
+      examplePath='views/Advertisement/Types/AdvertisementExampleWideSkyscraper'
+    />
+    <ComponentExample
       title='Leaderboard'
       description='An ad can use leaderboard ad unit size.'
       examplePath='views/Advertisement/Types/AdvertisementExampleLeaderboard'
