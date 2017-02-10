@@ -11,6 +11,11 @@ const Types = () => (
       examplePath='views/Advertisement/Types/AdvertisementExampleCommonUnits'
     />
     <ComponentExample
+      title='Mobile'
+      description='An ad can use mobile ad unit size.'
+      examplePath='views/Advertisement/Types/AdvertisementExampleMobile'
+    />
+    <ComponentExample
       title='Rectangle'
       description='An ad can use a common rectangle ad unit size.'
       examplePath='views/Advertisement/Types/AdvertisementExampleRectangle'
@@ -36,11 +41,6 @@ const Types = () => (
       examplePath='views/Advertisement/Types/AdvertisementExampleSquareButton'
     />
     <ComponentExample
-      title='Mobile'
-      description='An ad can use mobile ad unit size.'
-      examplePath='views/Advertisement/Types/AdvertisementExampleMobile'
-    />
-    <ComponentExample
       title='Skyscraper'
       description='An ad can use skyscraper ad unit size.'
       examplePath='views/Advertisement/Types/AdvertisementExampleSkyscraper'
@@ -49,7 +49,15 @@ const Types = () => (
       examplePath='views/Advertisement/Types/AdvertisementExampleWideSkyscraper'
     />
     <ComponentExample
-      title='Leaderboard'
+      title='Banner'
+      description='An ad can use banner ad unit size.'
+      examplePath='views/Advertisement/Types/AdvertisementExampleBanner'
+    />
+    <ComponentExample examplePath='views/Advertisement/Types/AdvertisementExampleBannerVertical' />
+    <ComponentExample examplePath='views/Advertisement/Types/AdvertisementExampleBannerTop' />
+    <ComponentExample examplePath='views/Advertisement/Types/AdvertisementExampleBannerHalf' />
+    <ComponentExample
+      title='Leaderboards'
       description='An ad can use leaderboard ad unit size.'
       examplePath='views/Advertisement/Types/AdvertisementExampleLeaderboard'
     />
@@ -69,15 +77,6 @@ const Types = () => (
       description='An ad can use netboard ad unit size.'
       examplePath='views/Advertisement/Types/AdvertisementExampleNetboard'
     />
-    <ComponentExample
-      title='Banner'
-      description='An ad can use banner ad unit size.'
-      examplePath='views/Advertisement/Types/AdvertisementExampleBanner'
-    />
-    <ComponentExample examplePath='views/Advertisement/Types/AdvertisementExampleBannerVertical' />
-    <ComponentExample examplePath='views/Advertisement/Types/AdvertisementExampleBannerTop' />
-    <ComponentExample examplePath='views/Advertisement/Types/AdvertisementExampleBannerHalf' />
-
     <ComponentExample
       title='Square'
       description='An ad can use square ad unit size.'
