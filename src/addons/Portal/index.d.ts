@@ -1,6 +1,11 @@
 import * as React from 'react';
 
 export interface PortalProps {
+  [key: string]: any;
+
+  /** Primary content. */
+  children?: React.ReactNode;
+
   /** Additional classes. */
   className?: string;
 
@@ -52,7 +57,7 @@ export interface PortalProps {
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
    * @param {object} data - All props.
    */
-  onClose?: React.MouseEventHandler<HTMLDivElement>;
+  onClose?: (event: React.MouseEvent<HTMLElement>, data: PortalProps) => void;
 
   /**
    * Called when the portal is mounted on the DOM
@@ -60,7 +65,7 @@ export interface PortalProps {
    * @param {null}
    * @param {object} data - All props.
    */
-  onMount?: (nothing: null, props: PortalProps) => void;
+  onMount?: (nothing: null, data: PortalProps) => void;
 
   /**
    * Called when an open event happens
@@ -68,7 +73,7 @@ export interface PortalProps {
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
    * @param {object} data - All props.
    */
-  onOpen?: React.MouseEventHandler<HTMLDivElement>;
+  onOpen?: (event: React.MouseEvent<HTMLElement>, data: PortalProps) => void;
 
   /**
    * Called when the portal is unmounted from the DOM
@@ -76,7 +81,7 @@ export interface PortalProps {
    * @param {null}
    * @param {object} data - All props.
    */
-  onUnmount?: (nothing: null, props: PortalProps) => void;
+  onUnmount?: (nothing: null, data: PortalProps) => void;
 
   /** Controls whether or not the portal is displayed. */
   open?: boolean;
