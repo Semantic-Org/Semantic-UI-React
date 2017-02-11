@@ -1,5 +1,5 @@
-import * as common from 'test/specs/commonTests'
 import CommentGroup from 'src/views/Comment/CommentGroup'
+import * as common from 'test/specs/commonTests'
 
 describe('CommentGroup', () => {
   common.isConformant(CommentGroup)

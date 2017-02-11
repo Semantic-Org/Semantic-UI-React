@@ -9,6 +9,9 @@ import {
   META,
 } from '../../lib'
 
+/**
+ * A comment can contain an image or avatar.
+ */
 function CommentAvatar(props) {
   const { className, src } = props
   const classes = cx('avatar', className)

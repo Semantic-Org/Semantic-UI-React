@@ -9,6 +9,9 @@ import {
   useKeyOnly,
 } from '../../lib'
 
+/**
+ * Comments can be grouped.
+ */
 function CommentGroup(props) {
   const {
     className,
@@ -51,10 +54,10 @@ CommentGroup.propTypes = {
   /** Comments can be collapsed, or hidden from view. */
   collapsed: PropTypes.bool,
 
-  /** Comments can hide extra information unless a user shows intent to interact with a comment */
+  /** Comments can hide extra information unless a user shows intent to interact with a comment. */
   minimal: PropTypes.bool,
 
-  /** A comment list can be threaded to showing the relationship between conversations */
+  /** A comment list can be threaded to showing the relationship between conversations. */
   threaded: PropTypes.bool,
 }
 
