@@ -22,10 +22,6 @@ const AccordionTypesExamples = () => (
       </Message>
     </ComponentExample>
     <ComponentExample
-      title='Panels Prop with custom title and content'
-      examplePath='modules/Accordion/Types/AccordionExamplePanelsPropWithCustomTitleAndContent'
-    />
-    <ComponentExample
       title='Active Index'
       description='The `activeIndex` prop controls which panel is open.'
       examplePath='modules/Accordion/Types/AccordionExampleActiveIndex'
