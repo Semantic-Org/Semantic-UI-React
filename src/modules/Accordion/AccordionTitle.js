@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import cx from 'classnames'
-import React, { Component, PropTypes, isValidElement } from 'react'
+import React, { Component, PropTypes } from 'react'
 
 import {
   customPropTypes,
@@ -69,18 +69,13 @@ export default class AccordionTitle extends Component {
     )
     const rest = getUnhandledProps(AccordionTitle, this.props)
     const ElementType = getElementType(AccordionTitle, this.props)
-    const renderContents = contents => (
-        <ElementType {...rest} className={classes} onClick={this.handleClick}>
-          {contents}
-        </ElementType>
-    )
 
     if (_.isNil(content)) {
-      return renderContents(children)
-    }
-
-    if (isValidElement(content)) {
-      return renderContents(content)
+      return (
+        <ElementType {...rest} className={classes} onClick={this.handleClick}>
+          {children}
+        </ElementType>
+      )
     }
 
     return (
