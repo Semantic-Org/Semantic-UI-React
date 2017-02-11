@@ -1,7 +1,6 @@
 import faker from 'faker'
 import React from 'react'
 
-import * as common from 'test/specs/commonTests'
 import Item from 'src/views/Item/Item'
 import ItemContent from 'src/views/Item/ItemContent'
 import ItemDescription from 'src/views/Item/ItemDescription'
@@ -10,11 +9,13 @@ import ItemGroup from 'src/views/Item/ItemGroup'
 import ItemHeader from 'src/views/Item/ItemHeader'
 import ItemImage from 'src/views/Item/ItemImage'
 import ItemMeta from 'src/views/Item/ItemMeta'
+import * as common from 'test/specs/commonTests'
 
 describe('Item', () => {
   common.isConformant(Item)
   common.hasSubComponents(Item, [ItemContent, ItemDescription, ItemExtra, ItemGroup, ItemHeader, ItemImage, ItemMeta])
   common.rendersChildren(Item)
+
   common.implementsShorthandProp(Item, {
     propKey: 'image',
     ShorthandComponent: ItemImage,
