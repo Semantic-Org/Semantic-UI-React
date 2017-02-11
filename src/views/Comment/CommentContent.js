@@ -9,7 +9,7 @@ import {
 } from '../../lib'
 
 /**
- * A comment can contain a content.
+ * A comment can contain content.
  */
 function CommentContent(props) {
   const { className, children } = props
