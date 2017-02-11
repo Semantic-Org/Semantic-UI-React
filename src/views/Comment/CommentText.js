@@ -9,7 +9,7 @@ import {
 } from '../../lib'
 
 /**
- * A comment can contain a text.
+ * A comment can contain text.
  */
 function CommentText(props) {
   const { className, children } = props
