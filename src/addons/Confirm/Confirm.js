@@ -1,68 +1,105 @@
 import _ from 'lodash'
-import React, { PropTypes } from 'react'
+import React, { Component, PropTypes } from 'react'
 
-import { getUnhandledProps, META } from '../../lib'
+import {
+  customPropTypes,
+  getUnhandledProps,
+  META,
+} from '../../lib'
 import Button from '../../elements/Button'
 import Modal from '../../modules/Modal'
 
 /**
- * A Confirm modal gives the user a choice to confirm or cancel an action
+ * A Confirm modal gives the user a choice to confirm or cancel an action/
  * @see Modal
  */
-function Confirm(props) {
-  const { open, cancelButton, confirmButton, header, content, onConfirm, onCancel } = props
-  const rest = getUnhandledProps(Confirm, props)
+class Confirm extends Component {
+  static propTypes = {
+    /** The cancel button text. */
+    cancelButton: customPropTypes.itemShorthand,
 
-  // `open` is auto controlled by the Modal
-  // It cannot be present (even undefined) with `defaultOpen`
-  // only apply it if the user provided an open prop
-  const openProp = {}
-  if (_.has(props, 'open')) openProp.open = open
+    /** The OK button text. */
+    confirmButton: customPropTypes.itemShorthand,
 
-  return (
-    <Modal {...openProp} size='small' onClose={onCancel} {...rest}>
-      {header && <Modal.Header>{header}</Modal.Header>}
-      {content && <Modal.Content>{content}</Modal.Content>}
-      <Modal.Actions>
-        <Button onClick={onCancel}>{cancelButton}</Button>
-        <Button primary onClick={onConfirm}>{confirmButton}</Button>
-      </Modal.Actions>
-    </Modal>
-  )
-}
+    /** The ModalContent text. */
+    content: customPropTypes.itemShorthand,
 
-Confirm._meta = {
-  name: 'Confirm',
-  type: META.TYPES.ADDON,
-}
+    /** The ModalHeader text. */
+    header: customPropTypes.itemShorthand,
 
-Confirm.propTypes = {
-  /** Whether or not the modal is visible */
-  open: PropTypes.bool,
+    /**
+     * Called when the Modal is closed without clicking confirm.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props.
+     */
+    onCancel: PropTypes.func,
 
-  /** The cancel button text */
-  cancelButton: PropTypes.string,
+    /**
+     * Called when the OK button is clicked.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props.
+     */
+    onConfirm: PropTypes.func,
 
-  /** The OK button text */
-  confirmButton: PropTypes.string,
+    /** Whether or not the modal is visible. */
+    open: PropTypes.bool,
+  }
 
-  /** The ModalHeader text */
-  header: PropTypes.string,
+  static defaultProps = {
+    cancelButton: 'Cancel',
+    confirmButton: 'OK',
+    content: 'Are you sure?',
+  }
 
-  /** The ModalContent text. */
-  content: PropTypes.string,
+  static _meta = {
+    name: 'Confirm',
+    type: META.TYPES.ADDON,
+  }
 
-  /** Called when the OK button is clicked */
-  onConfirm: PropTypes.func,
+  handleCancel = e => {
+    const { onCancel } = this.props
 
-  /** Called when the Cancel button is clicked */
-  onCancel: PropTypes.func,
-}
+    if (onCancel) onCancel(e, this.props)
+  }
 
-Confirm.defaultProps = {
-  cancelButton: 'Cancel',
-  confirmButton: 'OK',
-  content: 'Are you sure?',
+  handleConfirm = e => {
+    const { onConfirm } = this.props
+
+    if (onConfirm) onConfirm(e, this.props)
+  }
+
+  render() {
+    const {
+      cancelButton,
+      confirmButton,
+      content,
+      header,
+      open,
+    } = this.props
+    const rest = getUnhandledProps(Confirm, this.props)
+
+    // `open` is auto controlled by the Modal
+    // It cannot be present (even undefined) with `defaultOpen`
+    // only apply it if the user provided an open prop
+    const openProp = {}
+    if (_.has(this.props, 'open')) openProp.open = open
+
+    return (
+      <Modal {...rest} {...openProp} size='small' onClose={this.handleCancel}>
+        {Modal.Header.create(header)}
+        {Modal.Content.create(content)}
+        <Modal.Actions>
+          {Button.create(cancelButton, { onClick: this.handleCancel })}
+          {Button.create(confirmButton, {
+            onClick: this.handleConfirm,
+            primary: true,
+          })}
+        </Modal.Actions>
+      </Modal>
+    )
+  }
 }
 
 export default Confirm
