@@ -1,13 +1,14 @@
 import React from 'react'
 
-import * as common from 'test/specs/commonTests'
 import FeedExtra from 'src/views/Feed/FeedExtra'
+import * as common from 'test/specs/commonTests'
 
 describe('FeedExtra', () => {
   common.isConformant(FeedExtra)
+  common.rendersChildren(FeedExtra)
+
   common.propKeyOnlyToClassName(FeedExtra, 'images')
   common.propKeyOnlyToClassName(FeedExtra, 'text')
-  common.rendersChildren(FeedExtra)
 
   it('renders text with content prop', () => {
     shallow(<FeedExtra content='foo' />)

@@ -1,5 +1,5 @@
-import _ from 'lodash'
 import cx from 'classnames'
+import _ from 'lodash'
 import React, { PropTypes } from 'react'
 
 import {
@@ -8,16 +8,21 @@ import {
   getUnhandledProps,
   META,
 } from '../../lib'
+
 /**
- * Show a feed date
+ * An event or an event summary can contain a date.
  */
 function FeedDate(props) {
   const { children, className, content } = props
-  const classes = cx(className, 'date')
+  const classes = cx('date', className)
   const rest = getUnhandledProps(FeedDate, props)
   const ElementType = getElementType(FeedDate, props)
 
-  return <ElementType {...rest} className={classes}>{_.isNil(children) ? content : children}</ElementType>
+  return (
+    <ElementType {...rest} className={classes}>
+      {_.isNil(children) ? content : children}
+    </ElementType>
+  )
 }
 
 FeedDate._meta = {
