@@ -104,6 +104,11 @@ describe('Button', () => {
       shallow(<Button label='hi' />)
         .should.have.className('labeled')
     })
+    it('contains children without disabled class when disabled attribute is set', () => {
+      const wrapper = shallow(<Button label='hi' disabled />)
+      wrapper.find('Label').should.not.have.className('disabled')
+      wrapper.find('button').should.not.have.className('disabled')
+    })
     it('creates a basic pointing label', () => {
       shallow(<Button label='foo' />)
         .should.have.exactly(1).descendants('Label[basic][pointing]')
