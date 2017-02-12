@@ -1530,7 +1530,7 @@ describe('Dropdown Component', () => {
       wrapperShallow(<Dropdown name='foo' options={options} selection search />)
         .should.have.descendants('input.search')
 
-      wrapper.find('input.search').should.have.prop('name', 'foo-search')
+      wrapper.find('input.search').should.have.prop('name', 'search-foo')
     })
 
     it('sets focus to the search input on open', () => {
