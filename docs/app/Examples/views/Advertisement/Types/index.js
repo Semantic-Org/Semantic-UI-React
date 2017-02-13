@@ -17,7 +17,7 @@ const Types = () => (
       examplePath='views/Advertisement/Types/AdvertisementExampleCommonUnits'
     >
       <Message info>
-        These additional examples use the test
+        These additional examples use the <code>test</code>
         variation to appear on the page. The Ad component is best
         used as a wrapper for third party ad network content
         like <a href='http://www.google.com/adsense/start/'>AdSense </a>

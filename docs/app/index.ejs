@@ -68,6 +68,14 @@
   <script src="//cdnjs.cloudflare.com/ajax/libs/react/<%= htmlWebpackPlugin.options.versions.reactDOM %>/react-dom.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/react/<%= htmlWebpackPlugin.options.versions.reactDOM %>/react-dom-server.min.js"></script>
   <script src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    var pushGoogleAd = (function() {
+      setTimeout(function () {
+        if (window.adsbygoogle && window.adsbygoogle.loaded) window.adsbygoogle.push({})
+        else pushGoogleAd()
+      }, 1000)
+    }())
+  </script>
   <style>
     html, body {
       background: #f7f7f7;
