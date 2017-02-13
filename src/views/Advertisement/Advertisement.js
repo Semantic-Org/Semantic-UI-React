@@ -75,4 +75,8 @@ Advertisement.propTypes = {
 
 }
 
+setTimeout(() => {
+  (window.adsbygoogle = window.adsbygoogle || []).push({})
+}, 100)
+
 export default Advertisement
