@@ -66,8 +66,7 @@ export default class IconSearch extends Component {
   handleIncludeSimilarChange = (e, { checked }) => this.setState({ includeSimilar: checked })
 
   copy = (text) => () => {
-    const { sourceCode } = this.state
-    copyToClipboard(sourceCode)
+    copyToClipboard(text)
     this.setState({ copied: true })
     setTimeout(() => this.setState({ copied: false }), 1000)
   }
@@ -75,9 +74,12 @@ export default class IconSearch extends Component {
   renderIconColumn = (name) => (
     <Popup
       key={name}
-      mouseEnterDelay={500}
+      mouseEnterDelay={1000}
       inverted
-      hoverable={false}
+      closeOnTriggerClick={false}
+      closeOnRootNodeClick={false}
+      closeOnDocumentClick={false}
+      style={{ width: '8em', textAlign: 'center' }}
       size='mini'
       positioning='top center'
       content={this.state.copied ? 'Copied!' : 'Click to copy'}
