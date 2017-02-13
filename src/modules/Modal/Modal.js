@@ -170,6 +170,8 @@ class Modal extends Component {
     const { dimmer } = this.props
     const mountNode = this.getMountNode()
 
+    this.setState({mountNodeOriginalClassList: mountNode.className})
+
     if (dimmer) {
       debug('adding dimmer')
       mountNode.classList.add('dimmable', 'dimmed')
@@ -193,7 +195,8 @@ class Modal extends Component {
     // If the dimmer value changes while the modal is open, then removing its
     // current value could leave cruft classes previously added.
     const mountNode = this.getMountNode()
-    mountNode.classList.remove('blurring', 'dimmable', 'dimmed', 'scrollable')
+    //mountNode.classList.remove('blurring', 'dimmable', 'dimmed', 'scrollable')
+    mountNode.classname = this.state.mountNodeOriginalClassList
 
     cancelAnimationFrame(this.animationRequestId)
 
