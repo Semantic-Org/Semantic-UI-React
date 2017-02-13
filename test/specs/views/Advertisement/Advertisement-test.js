@@ -3,16 +3,18 @@ import React from 'react'
 import Advertisement from 'src/views/Advertisement/Advertisement'
 import * as common from 'test/specs/commonTests'
 
-describe('Advertisement', () => {
-  common.isConformant(Advertisement)
-  common.hasUIClassName(Advertisement)
-  common.rendersChildren(Advertisement)
+const requiredProps = { unit: 'banner' }
 
-  common.propKeyOnlyToClassName(Advertisement, 'centered')
-  common.propKeyOnlyToClassName(Advertisement, 'test')
+describe('Advertisement', () => {
+  common.isConformant(Advertisement, { requiredProps })
+  common.hasUIClassName(Advertisement, { requiredProps })
+  common.rendersChildren(Advertisement, { requiredProps })
+
+  common.propKeyOnlyToClassName(Advertisement, 'centered', { requiredProps })
+  common.propKeyOnlyToClassName(Advertisement, 'test', { requiredProps })
 
   common.propValueOnlyToClassName(Advertisement, 'unit', [
-    'medium rectangle', 'large rectangle', 'vertical rectangle', 'small    rectangle',
+    'medium rectangle', 'large rectangle', 'vertical rectangle', 'small rectangle',
     'mobile banner', 'banner', 'vertical banner', 'top banner', 'half banner',
     'button', 'square button', 'small button',
     'skyscraper', 'wide skyscraper',
@@ -24,6 +26,7 @@ describe('Advertisement', () => {
   ])
 
   it('renders a <div> by default', () => {
-    shallow(<Advertisement />).should.have.tagName('div')
+    shallow(<Advertisement { ...requiredProps } />)
+      .should.have.tagName('div')
   })
 })

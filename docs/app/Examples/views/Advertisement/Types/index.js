@@ -7,7 +7,7 @@ const Types = () => (
   <ExampleSection title='Types'>
     <ComponentExample
       title='Ad'
-      description='A standard ad'
+      description='A standard ad.'
       examplePath='views/Advertisement/Types/AdvertisementExampleStandard'
     />
     <ComponentExample

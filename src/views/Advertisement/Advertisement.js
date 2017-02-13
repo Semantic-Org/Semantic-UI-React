@@ -13,10 +13,6 @@ import {
  * An ad displays third-party promotional content.
  */
 function Advertisement(props) {
-  window.onload = () => {
-    (window.adsbygoogle = window.adsbygoogle || []).push({})
-  }
-
   const {
     centered,
     children,

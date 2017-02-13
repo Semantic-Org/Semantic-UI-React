@@ -1,15 +1,23 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { Advertisement } from 'semantic-ui-react'
 
-const AdvertisementExampleStandardMediumRectangle = () => (
-  <Advertisement unit='medium rectangle'>
-      <ins className='adsbygoogle'
-        style={{ display: 'inline-block', width: '300px', height: '250px' }}
-        data-ad-client='ca-pub-4591861188995436'
-        data-ad-slot='4640466102'
-      >
-      </ins>
-  </Advertisement>
-)
+export default class AdvertisementExampleStandard extends Component {
+  componentDidMount() {
+    (window.adsbygoogle = window.adsbygoogle || []).push({})
+  }
 
-export default AdvertisementExampleStandardMediumRectangle
+  render() {
+    return (
+      <Advertisement unit='medium rectangle'>
+        <ins
+          className='adsbygoogle'
+          data-ad-client='ca-pub-4591861188995436'
+          data-ad-format='auto'
+          data-ad-slot='4640466102'
+          style={{ display: 'block' }}
+        >
+        </ins>
+      </Advertisement>
+    )
+  }
+}
