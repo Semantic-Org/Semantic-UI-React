@@ -70,8 +70,8 @@ export default class Popup extends Component {
     /** Invert the colors of the Popup. */
     inverted: PropTypes.bool,
 
-    /** Hide the Popup when scrolling the window. */
-    hideOnScroll: PropTypes.bool,
+    /** Hide the Popup when scrolling the window. By default set to empty, which defaults to window. Node id to watch for scrolling can be passed as prop */
+    hideOnScroll: PropTypes.string,
 
     /** Horizontal offset in pixels to be applied to the Popup. */
     offset: PropTypes.number,
@@ -269,7 +269,16 @@ export default class Popup extends Component {
 
   hideOnScroll = (e) => {
     this.setState({ closed: true })
-    window.removeEventListener('scroll', this.hideOnScroll)
+    // set to node passed
+    let node = this.props.hideOnScroll;
+    if (node && node.length > 0) {
+      // if set and specified -> assign to specified ID
+      node = document.getElementById(node);
+    } else if (node) {
+      // if set and not specified -> assign to window (backwards compatibility)
+      node = window;
+    }
+    node.removeEventListener('scroll', this.hideOnScroll)
     setTimeout(() => this.setState({ closed: false }), 50)
   }
 
@@ -290,7 +299,16 @@ export default class Popup extends Component {
   handlePortalMount = (e) => {
     debug('handlePortalMount()')
     if (this.props.hideOnScroll) {
-      window.addEventListener('scroll', this.hideOnScroll)
+      // set to node passed
+      let node = this.props.hideOnScroll;
+      if (node.length > 0) {
+        // if set and specified -> assign to specified ID
+        node = document.getElementById(node);
+      } else {
+        // if set and not specified -> assign to window (backwards compatibility)
+        node = window;
+      }
+      node.addEventListener('scroll', this.hideOnScroll)
     }
 
     const { onMount } = this.props
