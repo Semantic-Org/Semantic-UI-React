@@ -1,5 +1,3 @@
-export type InputType = 'color' | 'date' | 'datetime' | 'datetime-local' | 'email' | 'number' | 'range' | 'search' | 'select' | 'password' | 'tel' | 'text' | 'time' | 'url' | 'week';
-
 export type SemanticCOLORS = 'red' | 'orange' | 'yellow' | 'olive' |'green' | 'teal' | 'blue' | 'violet' | 'purple' |
   'pink' | 'brown' | 'grey' | 'black';
 
@@ -25,8 +23,6 @@ type SemanticWIDTHSSTRING = '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' |
 
 export type SemanticWIDTHS = SemanticWIDTHSNUMBER | SemanticWIDTHSSTRING;
 
-export type SemanticGenericOnClick = (event: any, value: any) => void;
-export type SemanticFormOnClick = (event: any, object: Object) => void;
 export type SemanticSearchOnClick = (event: any, value: any, text: string) => void;  // TODO - not sure if this is correct.
 
 // ======================================================

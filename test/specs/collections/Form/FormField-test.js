@@ -1,9 +1,9 @@
 import faker from 'faker'
 import React from 'react'
 
-import Checkbox from 'src/modules/Checkbox/Checkbox'
-import FormField from 'src/collections/Form/FormField'
 import Radio from 'src/addons/Radio/Radio'
+import FormField from 'src/collections/Form/FormField'
+import Checkbox from 'src/modules/Checkbox/Checkbox'
 import * as common from 'test/specs/commonTests'
 
 describe('FormField', () => {

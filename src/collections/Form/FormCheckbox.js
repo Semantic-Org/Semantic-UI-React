@@ -7,11 +7,10 @@ import {
   META,
 } from '../../lib'
 import Checkbox from '../../modules/Checkbox'
-
 import FormField from './FormField'
 
 /**
- * Sugar for <Form.Field control={Checkbox} />
+ * Sugar for <Form.Field control={Checkbox} />.
  * @see Checkbox
  * @see Form
  */
@@ -33,7 +32,7 @@ FormCheckbox.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** A FormField control prop */
+  /** A FormField control prop. */
   control: FormField.propTypes.control,
 }
 

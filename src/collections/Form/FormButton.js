@@ -7,11 +7,10 @@ import {
   META,
 } from '../../lib'
 import Button from '../../elements/Button'
-
 import FormField from './FormField'
 
 /**
- * Sugar for <Form.Field control={Button} />
+ * Sugar for <Form.Field control={Button} />.
  * @see Button
  * @see Form
  */
@@ -33,7 +32,7 @@ FormButton.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** A FormField control prop */
+  /** A FormField control prop. */
   control: FormField.propTypes.control,
 }
 

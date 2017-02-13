@@ -18,7 +18,6 @@ import { consoleUtil, sandbox } from 'test/utils'
 
 describe('Form', () => {
   common.isConformant(Form)
-  common.hasUIClassName(Form)
   common.hasSubComponents(Form, [
     FormButton,
     FormCheckbox,
@@ -30,7 +29,10 @@ describe('Form', () => {
     FormRadio,
     FormSelect,
   ])
+  common.hasUIClassName(Form)
   common.rendersChildren(Form)
+
+  common.implementsWidthProp(Form, { propKey: 'widths' })
 
   common.propKeyOnlyToClassName(Form, 'error')
   common.propKeyOnlyToClassName(Form, 'inverted')
@@ -40,8 +42,6 @@ describe('Form', () => {
   common.propKeyOnlyToClassName(Form, 'warning')
 
   common.propValueOnlyToClassName(Form, 'size', _.without(SUI.SIZES, 'medium'))
-
-  common.implementsWidthProp(Form, { propKey: 'widths' })
 
   describe('serializer', () => {
     it('defaults to a function', () => {
