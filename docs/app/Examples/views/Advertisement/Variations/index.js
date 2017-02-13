@@ -1,4 +1,5 @@
 import React from 'react'
+import { Message } from 'semantic-ui-react'
 
 import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
 import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
@@ -14,7 +15,11 @@ const Variations = () => (
       title='Test'
       description='A advertisement can be formatted to help verify placement.'
       examplePath='views/Advertisement/Variations/AdvertisementExampleTest'
-    />
+    >
+      <Message info>
+        You can adjust the text displayed for your test ad placement by changing the value of <code>test</code> prop.
+      </Message>
+    </ComponentExample>
   </ExampleSection>
 )
 

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Message } from 'semantic-ui-react'
 
 import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
 import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
@@ -14,12 +15,24 @@ const Types = () => (
       title='Common Units'
       description='An advertisement can appear in common ad unit sizes.'
       examplePath='views/Advertisement/Types/AdvertisementExampleCommonUnits'
-    />
+    >
+      <Message info>
+        These additional examples use the test
+        variation to appear on the page. The Ad component is best
+        used as a wrapper for third party ad network content
+        like <a href='http://www.google.com/adsense/start/'>AdSense </a>
+        or <a href='http://www.google.com/doubleclick/publishers/welcome/'>
+        DoubleClick</a>.
+      </Message>
+    </ComponentExample>
     <ComponentExample
       title='Mobile'
       description='An ad can use mobile ad unit size.'
       examplePath='views/Advertisement/Types/AdvertisementExampleMobile'
-    />
+    >
+      <Message info>Mobile ads will automatically only appear on mobile browser viewports.
+      </Message>
+    </ComponentExample>
     <ComponentExample
       title='Rectangle'
       description='An ad can use a common rectangle ad unit size.'
