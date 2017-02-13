@@ -1,7 +1,9 @@
-import React, { Component, PropTypes } from 'react'
 import cx from 'classnames'
 import _ from 'lodash'
+import React, { Component, PropTypes } from 'react'
+
 import {
+  customPropTypes,
   getElementType,
   getUnhandledProps,
   isBrowser,
@@ -17,25 +19,16 @@ import PopupHeader from './PopupHeader'
 
 const debug = makeDebugger('popup')
 
-const _meta = {
-  name: 'Popup',
-  type: META.TYPES.MODULE,
-  props: {
-    on: ['hover', 'click', 'focus'],
-    positioning: [
-      'top left',
-      'top right',
-      'bottom right',
-      'bottom left',
-      'right center',
-      'left center',
-      'top center',
-      'bottom center',
-    ],
-    size: _.without(SUI.SIZES, 'medium', 'big', 'massive'),
-    wide: [true, false, 'very'],
-  },
-}
+export const POSITIONS = [
+  'top left',
+  'top right',
+  'bottom right',
+  'bottom left',
+  'right center',
+  'left center',
+  'top center',
+  'bottom center',
+]
 
 /**
  * A Popup displays additional information on top of a page.
@@ -45,14 +38,14 @@ export default class Popup extends Component {
     /** Display the popup without the pointing arrow. */
     basic: PropTypes.bool,
 
-    /** You may pass a content as children of the Popup. */
+    /** Primary content. */
     children: PropTypes.node,
 
-    /** Classes to add to the Popup className. */
+    /** Additional classes. */
     className: PropTypes.string,
 
-    /** Simple text content for the popover */
-    content: PropTypes.node,
+    /** Simple text content for the popover. */
+    content: customPropTypes.itemShorthand,
 
     /** A flowing Popup has no maximum width and continues to flow to fit its content. */
     flowing: PropTypes.bool,
@@ -62,7 +55,10 @@ export default class Popup extends Component {
     // fluid: PropTypes.bool,
 
     /** Header displayed above the content in bold. */
-    header: PropTypes.string,
+    header: customPropTypes.itemShorthand,
+
+    /** Hide the Popup when scrolling the window. */
+    hideOnScroll: PropTypes.bool,
 
     /** Whether the popup should not close on hover. */
     hoverable: PropTypes.bool,
@@ -70,14 +66,11 @@ export default class Popup extends Component {
     /** Invert the colors of the Popup. */
     inverted: PropTypes.bool,
 
-    /** Hide the Popup when scrolling the window. */
-    hideOnScroll: PropTypes.bool,
-
     /** Horizontal offset in pixels to be applied to the Popup. */
     offset: PropTypes.number,
 
-    /** Event triggering the popup */
-    on: PropTypes.oneOf(_meta.props.on),
+    /** Event triggering the popup. */
+    on: PropTypes.oneOf(['hover', 'click', 'focus']),
 
     /**
      * Called when a close event happens.
@@ -111,11 +104,11 @@ export default class Popup extends Component {
      */
     onUnmount: PropTypes.func,
 
-    /** Positioning for the popover */
-    positioning: PropTypes.oneOf(_meta.props.positioning),
+    /** Positioning for the popover. */
+    positioning: PropTypes.oneOf(POSITIONS),
 
     /** Popup size. */
-    size: PropTypes.oneOf(_meta.props.size),
+    size: PropTypes.oneOf(_.without(SUI.SIZES, 'medium', 'big', 'massive')),
 
     /** Custom Popup style. */
     style: PropTypes.object,
@@ -124,7 +117,10 @@ export default class Popup extends Component {
     trigger: PropTypes.node,
 
     /** Popup width. */
-    wide: PropTypes.oneOf(_meta.props.wide),
+    wide: PropTypes.oneOfType(
+      PropTypes.bool,
+      PropTypes.oneOf(['very']),
+    ),
   }
 
   static defaultProps = {
@@ -132,7 +128,11 @@ export default class Popup extends Component {
     on: 'hover',
   }
 
-  static _meta = _meta
+  static _meta = {
+    name: 'Popup',
+    type: META.TYPES.MODULE,
+  }
+
   static Content = PopupContent
   static Header = PopupHeader
 
@@ -228,7 +228,7 @@ export default class Popup extends Component {
 
     // Lets detect if the popup is out of the viewport and adjust
     // the position accordingly
-    const positions = _.without(_meta.props.positioning, positioning)
+    const positions = _.without(POSITIONS, positioning)
     for (let i = 0; !this.isStyleInViewport(style) && i < positions.length; i++) {
       style = this.computePopupStyle(positions[i])
       positioning = positions[i]
@@ -349,8 +349,8 @@ export default class Popup extends Component {
     const popupJSX = (
       <ElementType {...rest} className={classes} style={style} ref={this.popupMounted}>
         {children}
-        {!children && PopupHeader.create(header)}
-        {!children && PopupContent.create(content)}
+        {_.isNil(children) && PopupHeader.create(header)}
+        {_.isNil(children) && PopupContent.create(content)}
       </ElementType>
     )
 
