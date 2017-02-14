@@ -57,6 +57,9 @@ CommentGroup.propTypes = {
   /** Comments can hide extra information unless a user shows intent to interact with a comment. */
   minimal: PropTypes.bool,
 
+  /** Comments can have different sizes*/
+  size: PropTypes.oneOf(['mini', 'tiny', 'small', 'large', 'big', 'huge', 'massive']),
+
   /** A comment list can be threaded to showing the relationship between conversations. */
   threaded: PropTypes.bool,
 }
