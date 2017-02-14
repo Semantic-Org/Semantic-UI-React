@@ -43,9 +43,6 @@ interface CommentActionProps {
 
   /** Additional classes. */
   className?: string;
-
-  /** Comments can have different sizes. */
-  size?: 'mini' | 'tiny' | 'small' | 'large' | 'big' | 'huge' | 'massive';
 }
 
 export const CommentAction: React.ComponentClass<CommentActionProps>;
@@ -127,6 +124,9 @@ interface CommentGroupProps {
 
   /** Comments can hide extra information unless a user shows intent to interact with a comment */
   minimal?: boolean;
+
+  /** Comments can have different sizes. */
+  size?: 'mini' | 'tiny' | 'small' | 'large' | 'big' | 'huge' | 'massive';
 
   /** A comment list can be threaded to showing the relationship between conversations */
   threaded?: boolean;
