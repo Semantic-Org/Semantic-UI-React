@@ -81,6 +81,7 @@ interface FormButtonProps extends FormFieldProps, ButtonProps {
 export const FormButton: React.StatelessComponent<FormButtonProps>;
 
 interface FormCheckboxProps extends FormFieldProps, CheckboxProps {
+  type?: 'checkbox' | 'radio';
 }
 
 export const FormCheckbox: React.StatelessComponent<FormCheckboxProps>;
@@ -110,7 +111,7 @@ interface FormFieldProps {
   control?: any;
 
   /** Individual fields may be disabled. */
-  disabled?: any;
+  disabled?: boolean;
 
   /** Individual fields may display an error state. */
   error?: boolean;
@@ -163,6 +164,7 @@ interface FormInputProps extends FormFieldProps, InputProps {
 export const FormInput: React.StatelessComponent<FormInputProps>;
 
 interface FormRadioProps extends FormFieldProps, RadioProps {
+  type?: 'checkbox' | 'radio';
 }
 
 export const FormRadio: React.StatelessComponent<FormRadioProps>;
