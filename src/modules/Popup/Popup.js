@@ -73,6 +73,9 @@ export default class Popup extends Component {
     /** Hide the Popup when scrolling the window. */
     hideOnScroll: PropTypes.bool,
 
+    /** Should portal focus on itself on render. Usefull if portal content sets it's own focus */
+    focusOnRender: PropTypes.bool,
+
     /** Horizontal offset in pixels to be applied to the Popup. */
     offset: PropTypes.number,
 
@@ -242,7 +245,7 @@ export default class Popup extends Component {
   getPortalProps() {
     const portalProps = {}
 
-    const { on, hoverable } = this.props
+    const { on, hoverable, focusOnRender } = this.props
 
     if (hoverable) {
       portalProps.closeOnPortalMouseLeave = true
@@ -263,6 +266,8 @@ export default class Popup extends Component {
       portalProps.mouseLeaveDelay = 70
       portalProps.mouseEnterDelay = 50
     }
+
+    portalProps.focusOnRender = focusOnRender
 
     return portalProps
   }

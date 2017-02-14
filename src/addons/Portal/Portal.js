@@ -57,6 +57,9 @@ class Portal extends Component {
     /** Initial value of open. */
     defaultOpen: PropTypes.bool,
 
+    /** Should portal focus on itself on render. Usefull if portal content sets it's own focus */
+    focusOnRender: PropTypes.bool,
+
     /** The node where the portal should mount. */
     mountNode: PropTypes.any,
 
@@ -121,6 +124,7 @@ class Portal extends Component {
     closeOnDocumentClick: true,
     closeOnEscape: true,
     openOnTriggerClick: true,
+    focusOnRender: true
   }
 
   static autoControlledProps = [
@@ -335,7 +339,7 @@ class Portal extends Component {
     if (!this.state.open) return
     debug('renderPortal()')
 
-    const { children, className, closeOnTriggerBlur, openOnTriggerFocus } = this.props
+    const { children, className, closeOnTriggerBlur, openOnTriggerFocus, focusOnRender } = this.props
 
     this.mountPortal()
 
@@ -369,9 +373,10 @@ class Portal extends Component {
       // Wait a tick for things like popups which need to calculate where the popup shows up.
       // Otherwise, the element is focused at its initial position, scrolling the browser, then
       // it is immediately repositioned at the proper location.
-      setTimeout(() => {
-        if (this.portalNode) this.portalNode.focus()
-      })
+      if(focusOnRender)
+        setTimeout(() => {
+          if (this.portalNode) this.portalNode.focus()
+        })
     }
 
     this.portalNode.addEventListener('mouseleave', this.handlePortalMouseLeave)

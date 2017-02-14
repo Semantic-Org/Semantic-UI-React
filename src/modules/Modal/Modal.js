@@ -151,9 +151,13 @@ class Modal extends Component {
     debug('close()')
 
     const { onClose } = this.props
-    if (onClose) onClose(e, this.props)
-
-    this.trySetState({ open: false })
+    if (onClose) {
+      const result = onClose(e, this.props)
+      if (result !== false)
+        this.trySetState({ open: false })
+    }
+    else
+      this.trySetState({ open: false })
   }
 
   handleOpen = (e) => {
