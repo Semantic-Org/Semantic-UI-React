@@ -9,12 +9,11 @@ import {
   useKeyOnly,
 } from '../../lib'
 
+/**
+ * A comment can contain an action.
+ */
 function CommentAction(props) {
-  const {
-    active,
-    className,
-    children,
-  } = props
+  const { active, className, children } = props
 
   const classes = cx(
     useKeyOnly(active, 'active'),

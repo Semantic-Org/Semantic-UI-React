@@ -2,7 +2,7 @@ import React from 'react'
 
 import TextArea from 'src/addons/TextArea/TextArea'
 import { sandbox } from 'test/utils'
-import * as common from '../commonTests'
+import * as common from 'test/specs/commonTests'
 
 // ----------------------------------------
 // Wrapper

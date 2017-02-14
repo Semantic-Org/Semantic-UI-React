@@ -1,7 +1,7 @@
 import React from 'react'
 
-import * as common from 'test/specs/commonTests'
 import CommentAction from 'src/views/Comment/CommentAction'
+import * as common from 'test/specs/commonTests'
 
 describe('CommentAction', () => {
   common.isConformant(CommentAction)

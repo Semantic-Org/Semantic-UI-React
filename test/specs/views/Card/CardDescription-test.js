@@ -1,8 +1,8 @@
 import faker from 'faker'
 import React from 'react'
 
-import * as common from 'test/specs/commonTests'
 import CardDescription from 'src/views/Card/CardDescription'
+import * as common from 'test/specs/commonTests'
 
 describe('CardDescription', () => {
   common.isConformant(CardDescription)

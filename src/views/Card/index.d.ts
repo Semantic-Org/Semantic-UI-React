@@ -1,7 +1,8 @@
-import { ReactMouseEvents, SemanticCOLORS, SemanticWIDTHS } from '../..';
 import * as React from 'react';
+import { SemanticCOLORS, SemanticWIDTHS } from '../..';
 
-interface CardProps extends ReactMouseEvents<HTMLElement> {
+interface CardProps {
+  [key: string]: any;
 
   /** An element type to render as (string or function). */
   as?: any;
@@ -46,13 +47,13 @@ interface CardProps extends ReactMouseEvents<HTMLElement> {
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
    * @param {object} data - All props.
    */
-  onClick?: React.MouseEventHandler<any>;
+  onClick?: (event: React.MouseEvent<HTMLAnchorElement>, data: CardProps) => void;
 
   /** A Card can be formatted to raise above the page. */
   raised?: boolean;
 }
 
-interface CardClass extends React.ComponentClass<CardProps> {
+interface CardComponent extends React.ComponentClass<CardProps> {
   Content: typeof CardContent;
   Description: typeof CardDescription;
   Group: typeof CardGroup;
@@ -60,9 +61,11 @@ interface CardClass extends React.ComponentClass<CardProps> {
   Meta: typeof CardMeta;
 }
 
-export const Card: CardClass;
+export const Card: CardComponent;
 
 interface CardContentProps {
+  [key: string]: any;
+
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -75,7 +78,7 @@ interface CardContentProps {
   /** Shorthand for CardDescription. */
   description?: string;
 
-  /** A card can contain extra content meant to be formatted separately from the main content */
+  /** A card can contain extra content meant to be formatted separately from the main content. */
   extra?: boolean;
 
   /** Shorthand for CardHeader. */
@@ -85,9 +88,11 @@ interface CardContentProps {
   meta?: any;
 }
 
-export const CardContent: React.ComponentClass<CardContentProps>;
+export const CardContent: React.StatelessComponent<CardContentProps>;
 
 interface CardDescriptionProps {
+  [key: string]: any;
+
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -98,12 +103,14 @@ interface CardDescriptionProps {
   className?: string;
 
   /** Shorthand for primary content. */
-  content?: any;
+  content?: React.ReactNode;
 }
 
-export const CardDescription: React.ComponentClass<CardDescriptionProps>;
+export const CardDescription: React.StatelessComponent<CardDescriptionProps>;
 
 interface CardGroupProps {
+  [key: string]: any;
+
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -113,22 +120,24 @@ interface CardGroupProps {
   /** Additional classes. */
   className?: string;
 
-  /** A group of cards can double its column width for mobile */
+  /** A group of cards can double its column width for mobile. */
   doubling?: boolean;
 
   /** Shorthand array of props for Card. */
   items?: Array<any>;
 
-  /** A group of cards can set how many cards should exist in a row */
+  /** A group of cards can set how many cards should exist in a row. */
   itemsPerRow?: SemanticWIDTHS;
 
-  /** A group of cards can automatically stack rows to a single columns on mobile devices */
+  /** A group of cards can automatically stack rows to a single columns on mobile devices. */
   stackable?: boolean;
 }
 
-export const CardGroup: React.ComponentClass<CardGroupProps>;
+export const CardGroup: React.StatelessComponent<CardGroupProps>;
 
 interface CardHeaderProps {
+  [key: string]: any;
+
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -139,12 +148,14 @@ interface CardHeaderProps {
   className?: string;
 
   /** Shorthand for primary content. */
-  content?: any;
+  content?: React.ReactNode;
 }
 
-export const CardHeader: React.ComponentClass<CardHeaderProps>;
+export const CardHeader: React.StatelessComponent<CardHeaderProps>;
 
 interface CardMetaProps {
+  [key: string]: any;
+
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -155,7 +166,7 @@ interface CardMetaProps {
   className?: string;
 
   /** Shorthand for primary content. */
-  content?: any;
+  content?: React.ReactNode;
 }
 
-export const CardMeta: React.ComponentClass<CardMetaProps>;
+export const CardMeta: React.StatelessComponent<CardMetaProps>;

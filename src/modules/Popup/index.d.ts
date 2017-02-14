@@ -1,9 +1,8 @@
-import { SemanticPOSITIONING, SemanticSIZES } from '../..';
+import * as React from 'react';
 import { PortalProps } from '../../addons/Portal';
 
-export type PopupPropOn = 'hover' | 'click' | 'focus';
-
 interface PopupProps extends PortalProps {
+  [key: string]: any;
 
   /** Display the popup without the pointing arrow */
   basic?: boolean;
@@ -11,40 +10,46 @@ interface PopupProps extends PortalProps {
   /** Primary content. */
   children?: React.ReactNode;
 
-  /** Shorthand for primary content. */
-  content?: any;
+  /** Additional classes. */
+  className?: string;
 
-  /** A Flowing popup have no maximum width and continue to flow to fit its content */
+  /** Simple text content for the popover. */
+  content?: React.ReactNode;
+
+  /** A Flowing popup have no maximum width and continue to flow to fit its content. */
   flowing?: boolean;
 
-  /** Header displayed above the content in bold */
-  header?: string;
+  /** Header displayed above the content in bold. */
+  header?: any;
 
-  /** The node where the popup should mount.. */
+  /** The node where the popup should mount. */
   hideOnScroll?: boolean;
 
-  /** Whether the popup should not close on hover */
+  /** Whether the popup should not close on hover. */
   hoverable?: boolean;
 
   /** Invert the colors of the popup */
   inverted?: boolean;
 
-  /** Horizontal offset in pixels to be applied to the popup */
+  /** Horizontal offset in pixels to be applied to the popup. */
   offset?: number;
 
-  /** Event triggering the popup */
-  on?: PopupPropOn;
+  /** Event triggering the popup. */
+  on?: 'hover' | 'click' | 'focus';
 
-  /** Positioning for the popover */
-  positioning?: SemanticPOSITIONING;
+  /** Positioning for the popover. */
+  positioning?: 'top left' | 'top right' |
+    'bottom right' | 'bottom left' |
+    'right center' | 'left center' |
+    'top center' | 'bottom center';
 
-  /** Popup size */
-  size?: SemanticSIZES;
+  /** Popup size. */
+  size?: 'mini' | 'tiny' | 'small' | 'large' | 'huge';
 
-  /** custom popup style */
+  /** Custom Popup style. */
   style?: Object;
 
-  /** Popup width */
+  /** Popup width. */
   wide?: boolean | 'very';
 }
 
@@ -56,6 +61,10 @@ interface PopupClass extends React.ComponentClass<PopupProps> {
 export const Popup: PopupClass;
 
 interface PopupContentProps {
+  [key: string]: any;
+
+  /** An element type to render as (string or function). */
+  as?: any;
 
   /** Primary content. */
   children?: React.ReactNode;
@@ -64,9 +73,13 @@ interface PopupContentProps {
   className?: string;
 }
 
-export const PopupContent: React.ComponentClass<PopupContentProps>;
+export const PopupContent: React.StatelessComponent<PopupContentProps>;
 
 interface PopupHeaderProps {
+  [key: string]: any;
+
+  /** An element type to render as (string or function). */
+  as?: any;
 
   /** Primary content. */
   children?: React.ReactNode;
@@ -75,4 +88,4 @@ interface PopupHeaderProps {
   className?: string;
 }
 
-export const PopupHeader: React.ComponentClass<PopupHeaderProps>;
+export const PopupHeader: React.StatelessComponent<PopupHeaderProps>;

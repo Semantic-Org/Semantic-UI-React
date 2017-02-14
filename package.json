@@ -1,6 +1,6 @@
 {
   "name": "semantic-ui-react",
-  "version": "0.64.7",
+  "version": "0.64.8",
   "description": "The official Semantic-UI-React integration.",
   "jsnext:main": "dist/es/index.js",
   "main": "dist/commonjs/index.js",
@@ -53,6 +53,7 @@
   },
   "homepage": "https://github.com/Semantic-Org/Semantic-UI-React#readme",
   "dependencies": {
+    "babel-runtime": "^6.22.0",
     "classnames": "^2.1.5",
     "debug": "^2.4.5",
     "lodash": "^4.17.2"

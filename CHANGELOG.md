@@ -1,5 +1,51 @@
 # Change Log
 
+## [Unreleased](https://github.com/Semantic-Org/Semantic-UI-React/tree/HEAD)
+
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.64.8...HEAD)
+
+**Closed issues:**
+
+- Modals aren't displaying in Internet Explorer  [\#1227](https://github.com/Semantic-Org/Semantic-UI-React/issues/1227)
+
+## [v0.64.8](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.64.8) (2017-02-11)
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.64.7...v0.64.8)
+
+**Implemented enhancements:**
+
+- feat\(Confirm\): use shorthands for content and buttons definition [\#1290](https://github.com/Semantic-Org/Semantic-UI-React/issues/1290)
+- style\(Confirm\): refactor, update typings and propTypes usage [\#1282](https://github.com/Semantic-Org/Semantic-UI-React/pull/1282) ([layershifter](https://github.com/layershifter))
+
+**Fixed bugs:**
+
+- bug\(Dropdown\): Arrow keys are not working after `No results found.` [\#1275](https://github.com/Semantic-Org/Semantic-UI-React/issues/1275)
+- Uncaught Error: Cannot find module 'babel-runtime/helpers/get' from 'semantic-ui-react/dist/commonjs/modules/Dropdown/Dropdown.js' [\#1260](https://github.com/Semantic-Org/Semantic-UI-React/issues/1260)
+
+**Closed issues:**
+
+- Feature Request: AllowAdditions in dropdown to retain text on focus [\#1305](https://github.com/Semantic-Org/Semantic-UI-React/issues/1305)
+- Programatically set value for Dropdown? [\#1302](https://github.com/Semantic-Org/Semantic-UI-React/issues/1302)
+- Dropdown with multiple selection renders sizer wrong? [\#1298](https://github.com/Semantic-Org/Semantic-UI-React/issues/1298)
+- Dropping Component on runtime  [\#1295](https://github.com/Semantic-Org/Semantic-UI-React/issues/1295)
+- fix\(Label\): Label not appearing as it is shown in the example [\#1291](https://github.com/Semantic-Org/Semantic-UI-React/issues/1291)
+- fix\(Form\): your description [\#1288](https://github.com/Semantic-Org/Semantic-UI-React/issues/1288)
+- Menu onClick reloads page with react-router [\#1286](https://github.com/Semantic-Org/Semantic-UI-React/issues/1286)
+- Dropdown performance [\#1278](https://github.com/Semantic-Org/Semantic-UI-React/issues/1278)
+- label is not changing style if field is inline [\#1277](https://github.com/Semantic-Org/Semantic-UI-React/issues/1277)
+
+**Merged pull requests:**
+
+- fix\(package\): add babel-runtime for commonjs builds [\#1306](https://github.com/Semantic-Org/Semantic-UI-React/pull/1306) ([levithomason](https://github.com/levithomason))
+- style\(Portal\): update typings and propTypes usage [\#1300](https://github.com/Semantic-Org/Semantic-UI-React/pull/1300) ([layershifter](https://github.com/layershifter))
+- chore\(eslint\): disable aria rules for docs [\#1297](https://github.com/Semantic-Org/Semantic-UI-React/pull/1297) ([layershifter](https://github.com/layershifter))
+- style\(Sidebar\): update typings and propTypes usage [\#1296](https://github.com/Semantic-Org/Semantic-UI-React/pull/1296) ([layershifter](https://github.com/layershifter))
+- style\(Item\): update typings and propTypes usage [\#1294](https://github.com/Semantic-Org/Semantic-UI-React/pull/1294) ([layershifter](https://github.com/layershifter))
+- style\(Comment\): update typings and propTypes usage [\#1293](https://github.com/Semantic-Org/Semantic-UI-React/pull/1293) ([layershifter](https://github.com/layershifter))
+- style\(Feed\): update typings and propTypes usage [\#1285](https://github.com/Semantic-Org/Semantic-UI-React/pull/1285) ([layershifter](https://github.com/layershifter))
+- style\(Card\): update typings and propTypes usage [\#1284](https://github.com/Semantic-Org/Semantic-UI-React/pull/1284) ([layershifter](https://github.com/layershifter))
+- chore\(coverage\): remove docs from coverage reports [\#1283](https://github.com/Semantic-Org/Semantic-UI-React/pull/1283) ([layershifter](https://github.com/layershifter))
+- fix\(Dropdown\): fix arrow keys after no results [\#1279](https://github.com/Semantic-Org/Semantic-UI-React/pull/1279) ([levithomason](https://github.com/levithomason))
+
 ## [v0.64.7](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.64.7) (2017-02-02)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.64.6...v0.64.7)
 
@@ -62,7 +108,6 @@
 - Modal Cannot read property 'appendChild' of null [\#1213](https://github.com/Semantic-Org/Semantic-UI-React/issues/1213)
 - Dropdown's options can cause key warnings [\#1211](https://github.com/Semantic-Org/Semantic-UI-React/issues/1211)
 - Dropdown keyboard arrows don't work when rendering with children dropdown menu [\#993](https://github.com/Semantic-Org/Semantic-UI-React/issues/993)
-- Label click for input element \(accessibility\)  [\#980](https://github.com/Semantic-Org/Semantic-UI-React/issues/980)
 - docs\(ComponentExample\): perma links for all examples [\#578](https://github.com/Semantic-Org/Semantic-UI-React/issues/578)
 
 **Merged pull requests:**
@@ -148,7 +193,6 @@
 **Closed issues:**
 
 - Dropdown defaultValue with fetched options [\#1149](https://github.com/Semantic-Org/Semantic-UI-React/issues/1149)
-- Search Component: Unknown props error [\#1141](https://github.com/Semantic-Org/Semantic-UI-React/issues/1141)
 - Feat\(Dropdown\): Optionally return new text value pair from onAddItem [\#1132](https://github.com/Semantic-Org/Semantic-UI-React/issues/1132)
 
 **Merged pull requests:**

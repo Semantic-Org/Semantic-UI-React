@@ -1,8 +1,9 @@
-import _ from 'lodash'
 import cx from 'classnames'
+import _ from 'lodash'
 import React, { PropTypes } from 'react'
 
 import {
+  createShorthandFactory,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -14,11 +15,15 @@ import {
  */
 function ItemMeta(props) {
   const { children, className, content } = props
-  const classes = cx(className, 'meta')
+  const classes = cx('meta', className)
   const rest = getUnhandledProps(ItemMeta, props)
   const ElementType = getElementType(ItemMeta, props)
 
-  return <ElementType {...rest} className={classes}>{_.isNil(children) ? content : children}</ElementType>
+  return (
+    <ElementType {...rest} className={classes}>
+      {_.isNil(children) ? content : children}
+    </ElementType>
+  )
 }
 
 ItemMeta._meta = {
@@ -40,5 +45,7 @@ ItemMeta.propTypes = {
   /** Shorthand for primary content. */
   content: customPropTypes.contentShorthand,
 }
+
+ItemMeta.create = createShorthandFactory(ItemMeta, content => ({ content }))
 
 export default ItemMeta

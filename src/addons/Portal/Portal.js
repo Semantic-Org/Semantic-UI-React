@@ -4,18 +4,13 @@ import ReactDOM from 'react-dom'
 
 import {
   AutoControlledComponent as Component,
-  keyboardKey,
   isBrowser,
+  keyboardKey,
   makeDebugger,
   META,
 } from '../../lib'
 
 const debug = makeDebugger('portal')
-
-const _meta = {
-  name: 'Portal',
-  type: META.TYPES.ADDON,
-}
 
 /**
  * A component that allows you to render children outside their parent.
@@ -29,14 +24,6 @@ class Portal extends Component {
     /** Additional classes. */
     className: PropTypes.string,
 
-    /**
-     * Controls whether or not the portal should close on a click on the portal background.
-     * NOTE: This differs from closeOnDocumentClick:
-     * - DocumentClick - any click not within the portal
-     * - RootNodeClick - a click not within the portal but within the portal's wrapper
-     */
-    closeOnRootNodeClick: PropTypes.bool,
-
     /** Controls whether or not the portal should close when the document is clicked. */
     closeOnDocumentClick: PropTypes.bool,
 
@@ -49,6 +36,14 @@ class Portal extends Component {
      * gap from the trigger to the portal.
      */
     closeOnPortalMouseLeave: PropTypes.bool,
+
+    /**
+     * Controls whether or not the portal should close on a click on the portal background.
+     * NOTE: This differs from closeOnDocumentClick:
+     * - DocumentClick - any click not within the portal
+     * - RootNodeClick - a click not within the portal but within the portal's wrapper
+     */
+    closeOnRootNodeClick: PropTypes.bool,
 
     /** Controls whether or not the portal should close on blur of the trigger. */
     closeOnTriggerBlur: PropTypes.bool,
@@ -132,7 +127,10 @@ class Portal extends Component {
     'open',
   ]
 
-  static _meta = _meta
+  static _meta = {
+    name: 'Portal',
+    type: META.TYPES.ADDON,
+  }
 
   state = {}
 

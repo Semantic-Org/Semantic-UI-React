@@ -1,14 +1,13 @@
 import _ from 'lodash'
 import React from 'react'
 
-import Popup from 'src/modules/Popup/Popup'
+import Portal from 'src/addons/Portal/Portal'
+import { SUI } from 'src/lib'
+import Popup, { POSITIONS } from 'src/modules/Popup/Popup'
 import PopupHeader from 'src/modules/Popup/PopupHeader'
 import PopupContent from 'src/modules/Popup/PopupContent'
-import Portal from 'src/addons/Portal/Portal'
-
-import { SUI } from 'src/lib'
-import { domEvent, sandbox } from 'test/utils'
 import * as common from 'test/specs/commonTests'
+import { domEvent, sandbox } from 'test/utils'
 
 // ----------------------------------------
 // Wrapper
@@ -108,23 +107,12 @@ describe('Popup', () => {
   })
 
   describe('positioning', () => {
-    it('is always within the viewport', () => {
-      const positions = [
-        'top left',
-        'top right',
-        'bottom right',
-        'bottom left',
-        'right center',
-        'left center',
-        'top center',
-        'bottom center',
-      ]
-
-      positions.forEach(position => {
+    POSITIONS.forEach(position => {
+      it('is always within the viewport', () => {
         wrapperMount(
           <Popup
-            positioning={position}
             content='_'
+            positioning={position}
             trigger={<button>foo</button>}
             on='click'
           />
@@ -274,10 +262,10 @@ describe('Popup', () => {
   })
 
   describe('size', () => {
-    it('adds the size to the popup className', () => {
-      const sizes = _.without(SUI.SIZES, 'medium', 'big', 'massive')
+    const sizes = _.without(SUI.SIZES, 'medium', 'big', 'massive')
 
-      sizes.forEach(size => {
+    sizes.forEach(size => {
+      it(`adds the ${size} to the popup className`, () => {
         wrapperMount(<Popup size={size} open />)
         assertInBody(`.ui.${size}.popup`)
       })

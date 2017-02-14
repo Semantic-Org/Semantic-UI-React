@@ -93,7 +93,7 @@ Grid.propTypes = {
   /** Represents column count per row in Grid. */
   columns: PropTypes.oneOf([...SUI.WIDTHS, 'equal']),
 
-  /** A grid can be combined with a container to use avaiable layout and alignment. */
+  /** A grid can be combined with a container to use the available layout and alignment. */
   container: PropTypes.bool,
 
   /** A grid can have dividers between its columns. */

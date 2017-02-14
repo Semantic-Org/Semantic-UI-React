@@ -559,6 +559,44 @@ describe('Dropdown Component', () => {
         .find('.selected')
         .should.contain.text('a2')
     })
+    it('still works after encountering "no results"', () => {
+      const opts = [
+        { text: 'a1', value: 'a1' },
+        { text: 'a2', value: 'a2' },
+        { text: 'a3', value: 'a3' },
+      ]
+      wrapperMount(<Dropdown options={opts} search selection />)
+
+      // search for 'a4'
+      // no results appears
+      wrapper
+        .simulate('click')
+        .find('input.search')
+        .simulate('change', { target: { value: 'a4' } })
+
+      wrapper.should.have.exactly(1).descendants('.message')
+
+      // search for 'a' (simulated backspace)
+      // no results is removed
+      // first item is selected
+      // down arrow moves selection
+      wrapper
+        .find('input.search')
+        .simulate('change', { target: { value: 'a' } })
+
+      wrapper.should.not.have.descendants('.message')
+
+      wrapper
+        .should.have.exactly(1).descendants('.selected')
+        .which.contain.text('a1')
+
+      // move selection down
+      domEvent.keyDown(document, { key: 'ArrowDown' })
+
+      wrapper
+        .should.have.exactly(1).descendants('.selected')
+        .which.contain.text('a2')
+    })
     it('skips over disabled items', () => {
       const opts = [
         { text: 'a1', value: 'a1' },
