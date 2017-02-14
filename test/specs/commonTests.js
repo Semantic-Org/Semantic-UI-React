@@ -487,10 +487,12 @@ export const rendersChildren = (Component, options = {}) => {
 // className from prop
 // ----------------------------------------
 const _noDefaultClassNameFromProp = (Component, propKey, propValues, options = {}) => {
+  const { defaultProps = {} } = Component
   const { className = propKey, requiredProps = {} } = options
   // required props may include a prop that creates a className
   // if so, we cannot assert that it doesn't exist by default because it is required to exist
   // skip assertions for required props
+  if (propKey in defaultProps) return
   if (propKey in requiredProps) return
 
   it('is not included in className when not defined', () => {
