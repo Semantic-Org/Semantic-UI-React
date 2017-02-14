@@ -119,7 +119,7 @@ interface FormFieldProps {
   inline?: boolean;
 
   /** Mutually exclusive with children. */
-  label?: any | Object;
+  label?: any;
 
   /** A field can show that input is mandatory.  Requires a label. */
   required?: any;
