@@ -8,4 +8,7 @@ describe('CommentGroup', () => {
   common.propKeyOnlyToClassName(CommentGroup, 'collapsed')
   common.propKeyOnlyToClassName(CommentGroup, 'minimal')
   common.propKeyOnlyToClassName(CommentGroup, 'threaded')
+  common.propValueOnlyToClassName(CommentGroup, 'size', [
+    'mini', 'tiny', 'small', 'large', 'big', 'huge', 'massive',
+  ])
 })

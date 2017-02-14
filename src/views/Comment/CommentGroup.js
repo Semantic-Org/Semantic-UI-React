@@ -18,6 +18,7 @@ function CommentGroup(props) {
     children,
     collapsed,
     minimal,
+    size,
     threaded,
   } = props
 
@@ -27,6 +28,7 @@ function CommentGroup(props) {
     useKeyOnly(minimal, 'minimal'),
     useKeyOnly(threaded, 'threaded'),
     'comments',
+    size,
     className,
   )
   const rest = getUnhandledProps(CommentGroup, props)
