@@ -43,6 +43,9 @@ interface CommentActionProps {
 
   /** Additional classes. */
   className?: string;
+
+  /** Comments can have different sizes */
+  size?: 'mini' | 'tiny' | 'small' | 'large' | 'big' | 'huge' | 'massive';
 }
 
 export const CommentAction: React.ComponentClass<CommentActionProps>;
