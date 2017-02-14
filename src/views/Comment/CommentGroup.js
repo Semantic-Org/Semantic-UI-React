@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
@@ -6,6 +7,7 @@ import {
   getElementType,
   getUnhandledProps,
   META,
+  SUI,
   useKeyOnly,
 } from '../../lib'
 
@@ -59,8 +61,8 @@ CommentGroup.propTypes = {
   /** Comments can hide extra information unless a user shows intent to interact with a comment. */
   minimal: PropTypes.bool,
 
-  /** Comments can have different sizes*/
-  size: PropTypes.oneOf(['mini', 'tiny', 'small', 'large', 'big', 'huge', 'massive']),
+  /** Comments can have different sizes. */
+  size: PropTypes.oneOf(_.without(SUI.SIZES, 'medium')),
 
   /** A comment list can be threaded to showing the relationship between conversations. */
   threaded: PropTypes.bool,
