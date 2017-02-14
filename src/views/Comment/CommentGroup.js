@@ -1,5 +1,5 @@
-import _ from 'lodash'
 import cx from 'classnames'
+import _ from 'lodash'
 import React, { PropTypes } from 'react'
 
 import {
@@ -26,11 +26,11 @@ function CommentGroup(props) {
 
   const classes = cx(
     'ui',
+    size,
     useKeyOnly(collapsed, 'collapsed'),
     useKeyOnly(minimal, 'minimal'),
     useKeyOnly(threaded, 'threaded'),
     'comments',
-    size,
     className,
   )
   const rest = getUnhandledProps(CommentGroup, props)
