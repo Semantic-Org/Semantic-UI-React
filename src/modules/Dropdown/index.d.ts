@@ -1,26 +1,25 @@
-import {ReactFocusEvents, ReactFormEvents, ReactMouseEvents} from '../..';
 import * as React from 'react';
+import { LabelProps } from '../../elements/Label';
 
-export type DropdownPropPointing = 'left' | 'right' | 'top' | 'top left' | 'top right' | 'bottom' | 'bottom left' | 'bottom right';
-export type DropdownPropAdditionPosition = 'top' | 'bottom';
+export interface DropdownProps {
+  [key: string]: any;
 
-export interface DropdownProps extends ReactMouseEvents<HTMLElement>, ReactFocusEvents<HTMLElement>, ReactFormEvents<HTMLElement> {
+  /** An element type to render as (string or function). */
+  as?: any;
+
   /** Label prefixed to an option added by a user. */
-  additionLabel?: string;
+  additionLabel?: number | string;
 
   /** Position of the `Add: ...` option in the dropdown list ('top' or 'bottom'). */
-  additionPosition?: DropdownPropAdditionPosition;
+  additionPosition?: 'top' | 'bottom';
 
   /**
    * Allow user additions to the list of options (boolean).
    * Requires the use of `selection`, `options` and `search`.
    */
-  allowAdditions?: any;
+  allowAdditions?: boolean;
 
-  /** An element type to render as (string or function). */
-  as?: any;
-
-  /** A Dropdown can reduce its complexity */
+  /** A Dropdown can reduce its complexity. */
   basic?: boolean;
 
   /** Format the Dropdown to appear as a button. */
@@ -35,6 +34,13 @@ export interface DropdownProps extends ReactMouseEvents<HTMLElement>, ReactFocus
   /** Whether or not the menu should close when the dropdown is blurred. */
   closeOnBlur?: boolean;
 
+  /**
+   * Whether or not the menu should close when a value is selected from the dropdown.
+   * By default, multiple selection dropdowns will remain open on change, while single
+   * selection dropdowns will close on change.
+   */
+  closeOnChange?: boolean;
+
   /** A compact dropdown has no minimum width. */
   compact?: boolean;
 
@@ -42,10 +48,10 @@ export interface DropdownProps extends ReactMouseEvents<HTMLElement>, ReactFocus
   defaultOpen?: boolean;
 
   /** Currently selected label in multi-select. */
-  defaultSelectedLabel?: any;
+  defaultSelectedLabel?: number | string;
 
   /** Initial value or value array if multiple. */
-  defaultValue?: string|number|Array<string>|Array<number>;
+  defaultValue?: string | number | Array<number | string >;
 
   /** A disabled dropdown menu or item does not allow user interaction. */
   disabled?: boolean;
@@ -65,11 +71,11 @@ export interface DropdownProps extends ReactMouseEvents<HTMLElement>, ReactFocus
   /** Shorthand for Icon. */
   icon?: any;
 
-  /** A dropdown can be formatted as a Menu item. */
-  item?: boolean;
-
   /** A dropdown can be formatted to appear inline in other content. */
   inline?: boolean;
+
+  /** A dropdown can be formatted as a Menu item. */
+  item?: boolean;
 
   /** A dropdown can be labeled. */
   labeled?: boolean;
@@ -92,7 +98,71 @@ export interface DropdownProps extends ReactMouseEvents<HTMLElement>, ReactFocus
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
    * @param {object} data - All props and the new item's value.
    */
-  onAddItem?: React.MouseEventHandler<HTMLSelectElement>;
+  onAddItem?: (event: React.KeyboardEvent<HTMLElement>, data: DropdownProps) => void;
+
+  /**
+   * Called on blur.
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props.
+   */
+  onBlur: (event: React.KeyboardEvent<HTMLElement>, data: DropdownProps) => void;
+
+  /**
+   * Called when the user attempts to change the value.
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props and proposed value.
+   */
+  onChange: (event: React.SyntheticEvent<HTMLElement>, data: DropdownProps) => void;
+
+  /**
+   * Called on click.
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props.
+   */
+  onClick: (event: React.KeyboardEvent<HTMLElement>, data: DropdownProps) => void;
+
+  /**
+   * Called when a close event happens.
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props.
+   */
+  onClose: (event: React.SyntheticEvent<HTMLElement>, data: DropdownProps) => void;
+
+  /**
+   * Called on focus.
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props.
+   */
+  onFocus: (event: React.SyntheticEvent<HTMLElement>, data: DropdownProps) => void;
+
+  /**
+   * Called when a multi-select label is clicked.
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All label props.
+   */
+  onLabelClick: (event: React.MouseEvent<HTMLElement>, data: LabelProps) => void;
+
+  /**
+   * Called on mousedown.
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props.
+   */
+  onMouseDown: (event: React.MouseEvent<HTMLElement>, data: DropdownProps) => void;
+
+  /**
+   * Called when an open event happens.
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props.
+   */
+  onOpen: (event: React.SyntheticEvent<HTMLElement>, data: DropdownProps) => void;
 
   /**
    * Called on search input change.
@@ -100,7 +170,7 @@ export interface DropdownProps extends ReactMouseEvents<HTMLElement>, ReactFocus
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
    * @param {string} value - Current value of search input.
    */
-  onSearchChange?: React.FormEventHandler<HTMLSelectElement>;
+  onSearchChange: (event: React.SyntheticEvent<HTMLElement>, value: string) => void;
 
   /** Controls whether or not the dropdown menu is displayed. */
   open?: boolean;
@@ -115,13 +185,10 @@ export interface DropdownProps extends ReactMouseEvents<HTMLElement>, ReactFocus
   placeholder?: string;
 
   /** A dropdown can be formatted so that its menu is pointing. */
-  pointing?: boolean | DropdownPropPointing;
+  pointing?: boolean | 'left' | 'right' | 'top' | 'top left' | 'top right' | 'bottom' | 'bottom left' | 'bottom right';
 
-  /**
-   * A function that takes (data, index, defaultLabelProps) and returns
-   * shorthand for Label .
-   */
-  renderLabel?: any;
+  /** A function that takes (data, index, defaultLabelProps) and returns shorthand for Label. */
+  renderLabel?: (item: DropdownItemProps, index: number, defaultProps: LabelProps) => React.ReactElement<any>;
 
   /** A dropdown can have its menu scroll. */
   scrolling?: boolean;
@@ -130,7 +197,7 @@ export interface DropdownProps extends ReactMouseEvents<HTMLElement>, ReactFocus
    * A selection dropdown can allow a user to search through a large list of choices.
    * Pass a function here to replace the default search.
    */
-  search?: ((filteredOptions: any, searchQuery: any) => void) | boolean; // TODO -add search function;
+  search?: boolean | ((options: Array<DropdownItemProps>, value: string) => Array<DropdownItemProps>);
 
   /** Define whether the highlighted item should be selected on blur. */
   selectOnBlur?: boolean;
@@ -142,16 +209,16 @@ export interface DropdownProps extends ReactMouseEvents<HTMLElement>, ReactFocus
   simple?: boolean;
 
   /** A dropdown can receive focus. */
-  tabIndex?: string;
+  tabIndex?: number | string;
 
   /** The text displayed in the dropdown, usually for the active item. */
   text?: string|React.ReactNode;
 
   /** Custom element to trigger the menu to become visible. Takes place of 'text'. */
-  trigger?: any;
+  trigger?: React.ReactNode;
 
   /** Current value or value array if multiple. Creates a controlled component. */
-  value?: string|number|Array<string>|Array<number>;
+  value?: number | string | Array<number | string>;
 }
 
 interface DropdownClass extends React.ComponentClass<DropdownProps> {
@@ -164,6 +231,7 @@ interface DropdownClass extends React.ComponentClass<DropdownProps> {
 export const Dropdown: DropdownClass;
 
 interface DropdownDividerProps {
+  [key: string]: any;
 
   /** An element type to render as (string or function). */
   as?: any;
@@ -175,6 +243,7 @@ interface DropdownDividerProps {
 export const DropdownDivider: React.ComponentClass<DropdownDividerProps>;
 
 interface DropdownHeaderProps {
+  [key: string]: any;
 
   /** An element type to render as (string or function). */
   as?: any;
@@ -186,7 +255,7 @@ interface DropdownHeaderProps {
   className?: string;
 
   /** Shorthand for primary content. */
-  content?: any;
+  content?: React.ReactNode;
 
   /** Shorthand for Icon. */
   icon?: any;
@@ -194,19 +263,23 @@ interface DropdownHeaderProps {
 
 export const DropdownHeader: React.ComponentClass<DropdownHeaderProps>;
 
-interface DropdownItemProps extends ReactMouseEvents<HTMLElement>, ReactFocusEvents<HTMLElement>, ReactFormEvents<HTMLElement> {
-
-  /** Style as the currently chosen item. */
-  active?: boolean;
+interface DropdownItemProps {
+  [key: string]: any;
 
   /** An element type to render as (string or function). */
   as?: any;
+
+  /** Style as the currently chosen item. */
+  active?: boolean;
 
   /** Primary content. */
   children?: React.ReactNode;
 
   /** Additional classes. */
   className?: string;
+
+  /** Shorthand for primary content. */
+  content?: React.ReactNode;
 
   /** Additional text with less emphasis. */
   description?: any;
@@ -227,21 +300,30 @@ interface DropdownItemProps extends ReactMouseEvents<HTMLElement>, ReactFocusEve
   label?: any;
 
   /**
+   * Called on click.
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props.
+   */
+  onClick: (event: React.MouseEvent<HTMLDivElement>, data: DropdownItemProps) => void;
+
+  /**
    * The item currently selected by keyboard shortcut.
    * This is not the active item.
    */
   selected?: boolean;
 
   /** Display text. */
-  text?: any;
+  text?: React.ReactNode;
 
-  /** Stored value */
-  value?: number|string;
+  /** Stored value. */
+  value?: number | string;
 }
 
 export const DropdownItem: React.ComponentClass<DropdownItemProps>;
 
 interface DropdownMenuProps {
+  [key: string]: any;
 
   /** An element type to render as (string or function). */
   as?: any;
@@ -256,4 +338,4 @@ interface DropdownMenuProps {
   scrolling?: boolean;
 }
 
-export const DropdownMenu: React.ComponentClass<DropdownMenuProps>;
+export const DropdownMenu: React.StatelessComponent<DropdownMenuProps>;
