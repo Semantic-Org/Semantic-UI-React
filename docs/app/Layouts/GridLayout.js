@@ -21,24 +21,24 @@ const GridLayout = () =>
        </p>
     </Container>
     <Container>
-      <Grid columns={15}>
-        <Grid.Row>
-         <Grid.Column></Grid.Column>
-         <Grid.Column></Grid.Column>
-         <Grid.Column></Grid.Column>
-         <Grid.Column></Grid.Column>
-         <Grid.Column></Grid.Column>
-         <Grid.Column></Grid.Column>
-         <Grid.Column></Grid.Column>
-         <Grid.Column></Grid.Column>
-         <Grid.Column></Grid.Column>
-         <Grid.Column></Grid.Column>
-         <Grid.Column></Grid.Column>
-         <Grid.Column></Grid.Column>
-         <Grid.Column></Grid.Column>
-         <Grid.Column></Grid.Column>
-         <Grid.Column></Grid.Column>
-         <Grid.Column></Grid.Column>
+      <Grid>
+        <Grid.Row columns={15}>
+         <Grid.Column />
+         <Grid.Column />
+         <Grid.Column />
+         <Grid.Column />
+         <Grid.Column />
+         <Grid.Column />
+         <Grid.Column />
+         <Grid.Column />
+         <Grid.Column />
+         <Grid.Column />
+         <Grid.Column />
+         <Grid.Column />
+         <Grid.Column />
+         <Grid.Column />
+         <Grid.Column />
+         <Grid.Column />
         </Grid.Row>
       </Grid>
     </Container>
@@ -50,9 +50,44 @@ const GridLayout = () =>
     </Container>
 
      <Container text>
-       <Grid columns={1}>
-         <Grid.Column />
+       <Grid>
+        <Grid.Row columns={1}>
+          <Grid.Column />
+        </Grid.Row>
        </Grid>
+    </Container>
+    <Container>
+
+      <Header as='h1' dividing>Grid Content</Header>
+
+      <h3 style={style.first}>Column Flow</h3>
+      <p>A grid does not necessarily need to specify rows. If you include <code>columns</code> as direct child of <code>ui grid</code> content will automatically flow to the next row when all the grid columns are taken in the current row.</p>
+
+      <Grid>
+        <Grid.Row columns={7}>
+          <Grid.Column />
+          <Grid.Column />
+          <Grid.Column />
+          <Grid.Column />
+          <Grid.Column />
+          <Grid.Column />
+          <Grid.Column />
+          <Grid.Column />
+        </Grid.Row>
+      </Grid>
+
+     <h3>Clearing Rows</h3>
+     <p>Adding row wrappers allow you to manually specify you want a new row to begin.</p>
+
+     <Grid >
+       <Grid.Column />
+       <Grid.Row columns={3}>
+         <Grid.Column />
+         <Grid.Column />
+         <Grid.Column />
+       </Grid.Row>
+     </Grid>
+
     </Container>
   </div>
 
