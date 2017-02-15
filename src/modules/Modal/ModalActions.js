@@ -1,5 +1,5 @@
-import React, { PropTypes } from 'react'
 import cx from 'classnames'
+import React, { PropTypes } from 'react'
 
 import {
   customPropTypes,
@@ -8,9 +8,12 @@ import {
   META,
 } from '../../lib'
 
+/**
+ * A modal can contain a row of actions.
+ */
 function ModalActions(props) {
   const { children, className } = props
-  const classes = cx(className, 'actions')
+  const classes = cx('actions', className)
   const rest = getUnhandledProps(ModalActions, props)
   const ElementType = getElementType(ModalActions, props)
 
