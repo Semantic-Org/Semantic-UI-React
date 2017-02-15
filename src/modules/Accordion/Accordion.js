@@ -1,5 +1,5 @@
-import _ from 'lodash'
 import cx from 'classnames'
+import _ from 'lodash'
 import React, { Children, cloneElement, PropTypes } from 'react'
 
 import {
@@ -10,30 +10,21 @@ import {
   useKeyOnly,
 } from '../../lib'
 import Icon from '../../elements/Icon'
-
 import AccordionContent from './AccordionContent'
 import AccordionTitle from './AccordionTitle'
 
 /**
- * An accordion allows users to toggle the display of sections of content
+ * An accordion allows users to toggle the display of sections of content.
  */
 export default class Accordion extends Component {
-  static defaultProps = {
-    exclusive: true,
-  }
-
-  static autoControlledProps = [
-    'activeIndex',
-  ]
-
   static propTypes = {
     /** An element type to render as (string or function). */
     as: customPropTypes.as,
 
     /** Index of the currently active panel. */
     activeIndex: PropTypes.oneOfType([
-      PropTypes.number,
       PropTypes.arrayOf(PropTypes.number),
+      PropTypes.number,
     ]),
 
     /** Primary content. */
@@ -44,11 +35,11 @@ export default class Accordion extends Component {
 
     /** Initial activeIndex value. */
     defaultActiveIndex: PropTypes.oneOfType([
-      PropTypes.number,
       PropTypes.arrayOf(PropTypes.number),
+      PropTypes.number,
     ]),
 
-    /** Only allow one panel open at a time */
+    /** Only allow one panel open at a time. */
     exclusive: PropTypes.bool,
 
     /** Format to take up the width of it's container. */
@@ -79,6 +70,14 @@ export default class Accordion extends Component {
     /** Adds some basic styling to accordion panels. */
     styled: PropTypes.bool,
   }
+
+  static defaultProps = {
+    exclusive: true,
+  }
+
+  static autoControlledProps = [
+    'activeIndex',
+  ]
 
   static _meta = {
     name: 'Accordion',
