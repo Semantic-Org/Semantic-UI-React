@@ -1,189 +1,234 @@
-import { ReactFocusEvents, ReactFormEvents, ReactMouseEvents, SemanticSearchOnClick, SemanticSIZES } from '../..';
 import * as React from 'react';
 
+interface SearchProps {
+  [key: string]: any;
 
-interface SearchProps extends ReactMouseEvents<HTMLInputElement>, ReactFocusEvents<HTMLInputElement>, ReactFormEvents<HTMLInputElement> {
+  /** An element type to render as (string or function). */
+  as?: any;
 
-    /** A search can have its results aligned to its left or right container edge. */
-    aligned?: string;
+  // ------------------------------------
+  // Behavior
+  // ------------------------------------
 
-    /** An element type to render as (string or function). */
-    as?: any;
+  /** Initial value of open. */
+  defaultOpen?: boolean;
 
-    /** A search can display results from remote content ordered by categories. */
-    category?: boolean;
+  /** Initial value. */
+  defaultValue?: string;
 
-    /**
-     * A function that returns the category contents.
-     * Receives all SearchCategory props.
-     */
-    categoryRenderer?: () => void;  // TODO : fix;
+  /** Shorthand for Icon. */
+  icon?: any;
 
-    /** Additional classes. */
-    className?: string;
+  /** Minimum characters to query for results. */
+  minCharacters?: number;
 
-    /** Initial value of open. */
-    defaultOpen?: boolean;
+  /** Additional text for "No Results" message with less emphasis. */
+  noResultsDescription?: string;
 
-    /** Initial value. */
-    defaultValue?: string;
+  /** Message to display when there are no results. */
+  noResultsMessage?: string;
 
-    /** A search can have its results take up the width of its container. */
-    fluid?: boolean;
+  /** Controls whether or not the results menu is displayed. */
+  open?: boolean;
 
-    /** Shorthand for Icon. */
-    icon?: any;
+  /** Placeholder of the search input. */
+  placeholder?: string;
 
-    /** A search can show a loading indicator. */
-    loading?: boolean;
+  /**
+   * One of:
+   * - array of Search.Result props e.g. `{ title: '', description: '' }` or
+   * - object of categories e.g. `{ name: '', results: [{ title: '', description: '' }]`
+   */
+  results?: Array<any> | Object;
 
-    /** Minimum characters to query for results */
-    minCharacters?: number;
+  /** Whether the search should automatically select the first result after searching. */
+  selectFirstResult?: boolean;
 
-    /** Additional text for "No Results" message with less emphasis. */
-    noResultsDescription?: string;
+  /** Whether a "no results" message should be shown if no results are found. */
+  showNoResults?: boolean;
 
-    /** Message to display when there are no results. */
-    noResultsMessage?: string;
+  /** Current value of the search input. Creates a controlled component. */
+  value?: string;
 
-    /**
-     * Called when a result is selected.
-     *
-     * @param {SyntheticEvent} event - React's original SyntheticEvent.
-     * @param {object} data - All props.
-     */
-    onResultSelect: (e: React.FormEvent<HTMLInputElement>, result: Array<any> | Object) => void;
+  // ------------------------------------
+  // Rendering
+  // ------------------------------------
 
-    /**
-     * Called on search input change.
-     *
-     * @param {SyntheticEvent} event - React's original SyntheticEvent.
-     * @param {string} value - Current value of search input.
-     */
-    onSearchChange?: React.FormEventHandler<HTMLInputElement>;
+  /**
+   * A function that returns the category contents.
+   * Receives all SearchCategory props.
+   */
+  categoryRenderer?: (props: SearchCategoryProps) => React.ReactElement<any>;
 
-    /** Controls whether or not the results menu is displayed. */
-    open?: boolean;
+  /**
+   * A function that returns the result contents.
+   * Receives all SearchResult props.
+   */
+  resultRenderer?: (props: SearchResultProps) => Array<React.ReactElement<any>>;
 
-    /** Placeholder of the search input. */
-    placeholder?: string;
+  // ------------------------------------
+  // Callbacks
+  // ------------------------------------
 
-    /**
-     * A function that returns the result contents.
-     * Receives all SearchResult props.
-     */
-    resultRenderer?: () => void;   // TODO: fix.
+  /**
+   * Called on blur.
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props.
+   */
+  onBlur: (event: React.MouseEvent<HTMLElement>, data: SearchProps) => void;
 
-    /**
-     * One of:
-     * - array of Search.Result props e.g. `{ title: '', description: '' }` or
-     * - object of categories e.g. `{ name: '', results: [{ title: '', description: '' }]`
-     */
-    results?: Array<any> | Object;
+  /**
+   * Called on focus.
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props.
+   */
+  onFocus: (event: React.MouseEvent<HTMLElement>, data: SearchProps) => void;
 
-    /** Whether the search should automatically select the first result after searching */
-    selectFirstResult?: boolean;
+  /**
+   * Called on mousedown.
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props.
+   */
+  onMouseDown: (event: React.MouseEvent<HTMLElement>, data: SearchProps) => void;
 
-    /** Whether a "no results" message should be shown if no results are found. */
-    showNoResults?: boolean;
+  /**
+   * Called when a result is selected.
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props.
+   */
+  onResultSelect: (event: React.MouseEvent<HTMLDivElement>, data: SearchResultProps) => void;
 
-    /** A search can have different sizes. */
-    size?: SemanticSIZES;
+  /**
+   * Called on search input change.
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {string} value - Current value of search input.
+   */
+  onSearchChange: (event: React.MouseEvent<HTMLElement>, value: string) => void;
 
-    /** Current value of the search input. Creates a controlled component. */
-    value?: string;
+  // ------------------------------------
+  // Style
+  // ------------------------------------
+
+  /** A search can have its results aligned to its left or right container edge. */
+  aligned?: string;
+
+  /** A search can display results from remote content ordered by categories. */
+  category?: boolean;
+
+  /** Additional classes. */
+  className?: string;
+
+  /** A search can have its results take up the width of its container. */
+  fluid?: boolean;
+
+  /** A search input can take up the width of its container. */
+  input: any;
+
+  /** A search can show a loading indicator. */
+  loading?: boolean;
+
+  /** A search can have different sizes. */
+  size?: 'mini' | 'tiny' | 'small' | 'large' | 'big' | 'huge' | 'massive';
 }
 
-interface SearchClass extends React.ComponentClass<SearchProps> {
-    SearchResult: typeof SearchResult;
-    SearchResults: typeof SearchResults;
-
+interface SearchComponent extends React.ComponentClass<SearchProps> {
+  Category: typeof SearchCategory;
+  Result: typeof SearchResult;
+  Results: typeof SearchResults;
 }
 
-export const Search: SearchClass;
+export const Search: SearchComponent;
+
+interface SearchCategoryProps {
+  [key: string]: any;
+
+  /** An element type to render as (string or function). */
+  as?: any;
+
+  /** The item currently selected by keyboard shortcut. */
+  active?: boolean;
+
+  /** Primary content. */
+  children?: React.ReactNode;
+
+  /** Additional classes. */
+  className?: string;
+
+  /** Display name. */
+  name?: string;
+
+  /**
+   * A function that returns the category contents.
+   * Receives all SearchCategory props.
+   */
+  renderer?: (props: SearchCategoryProps) => React.ReactElement<any>;
+
+  /** Array of Search.Result props. */
+  results?: Array<typeof SearchResult>;
+}
+
+export const SearchCategory: React.StatelessComponent<SearchCategoryProps>;
 
 interface SearchResultProps {
+  [key: string]: any;
 
-    /** The item currently selected by keyboard shortcut. */
-    active?: boolean;
+  /** An element type to render as (string or function). */
+  as?: any;
 
-    /** An element type to render as (string or function). */
-    as?: any;
+  /** The item currently selected by keyboard shortcut. */
+  active?: boolean;
 
-    /** Additional classes. */
-    className?: string;
+  /** Additional classes. */
+  className?: string;
 
-    /** Additional text with less emphasis. */
-    description?: string;
+  /** Additional text with less emphasis. */
+  description?: string;
 
-    /** A unique identifier. */
-    id?: number;
+  /** A unique identifier. */
+  id?: number;
 
-    /** Add an image to the item. */
-    image?: string;
+  /** Add an image to the item. */
+  image?: string;
 
-    /**
-     * Called on click.
-     *
-     * @param {SyntheticEvent} event - React's original SyntheticEvent.
-     * @param {object} data - All props.
-     */
-    onClick?: SemanticSearchOnClick;
+  /**
+   * Called on click.
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props.
+   */
+  onClick?: (event: React.MouseEvent<HTMLDivElement>, data: SearchResultProps) => void;
 
-    /** Customized text for price. */
-    price?: string;
+  /** Customized text for price. */
+  price?: string;
 
-    /**
-     * A function that returns the result contents.
-     * Receives all SearchResult props.
-     */
-    renderer?: () => void; // TODO - fix;
+  /**
+   * A function that returns the result contents.
+   * Receives all SearchResult props.
+   */
+  renderer?: (props: SearchResultProps) => Array<React.ReactElement<any>>;
 
-    /** Display title. */
-    title?: string;
+  /** Display title. */
+  title?: string;
 }
 
 export const SearchResult: React.ComponentClass<SearchResultProps>;
 
 interface SearchResultsProps {
+  [key: string]: any;
 
-    /** An element type to render as (string or function). */
-    as?: any;
+  /** An element type to render as (string or function). */
+  as?: any;
 
-    /** Primary content. */
-    children?: React.ReactNode;
+  /** Primary content. */
+  children?: React.ReactNode;
 
-    /** Additional classes. */
-    className?: string;
+  /** Additional classes. */
+  className?: string;
 }
 
-export const SearchResults: React.ComponentClass<SearchResultsProps>;
-
-interface SearchCategoryProps {
-
-    /** The item currently selected by keyboard shortcut. */
-    active?: boolean;
-
-    /** An element type to render as (string or function). */
-    as?: any;
-
-    /** Primary content. */
-    children?: React.ReactNode;
-
-    /** Additional classes. */
-    className?: string;
-
-    /** Display name. */
-    name?: string;
-
-    /**
-     * A function that returns the category contents.
-     * Receives all SearchCategory props.
-     */
-    renderer?: () => void; // TODO - fix;
-
-    /** Array of Search.Result props */
-    results?: Array<typeof SearchResult>;
-}
-
-export const SearchCategory: React.ComponentClass<SearchCategoryProps>;
+export const SearchResults: React.StatelessComponent<SearchResultsProps>;
