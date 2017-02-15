@@ -9,6 +9,9 @@ import {
   META,
 } from '../../lib'
 
+/**
+* A shape is a three dimensional object displayed on a two dimensional plane.
+*/
 export default class Shape extends Component {
   static propTypes = {
     /** An element type to render as (string or function). */
@@ -28,14 +31,14 @@ export default class Shape extends Component {
 
   render() {
     const {
-      className,
       children,
+      className,
     } = this.props
 
     const classes = cx(
       'ui',
+      'shape',
       className,
-      'shape'
     )
 
     const rest = getUnhandledProps(Shape, this.props)

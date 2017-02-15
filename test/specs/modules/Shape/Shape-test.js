@@ -3,4 +3,6 @@ import Shape from 'src/modules/Shape/Shape'
 
 describe('Shape', () => {
   common.isConformant(Shape)
+  common.hasUIClassName(Shape)
+  common.rendersChildren(Shape)
 })
