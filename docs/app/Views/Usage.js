@@ -39,6 +39,50 @@ const Usage = () => (
         The method you choose to include the stylesheet in your project will depend on the level
         of customisation you require.
       </p>
+      <p>
+          To import a Semantic UI React component (a Button, for example) into your application, use the following syntax:
+      </p>
+      <Segment>
+          <pre>
+            {`import { Button } from 'semantic-ui-react';`}
+          </pre>
+      </Segment>
+      <p>An example usage would be as follows:</p>
+      <Segment>
+          <pre>
+{`import React, { Component } from 'react';
+import { Button, Icon, Grid } from 'semantic-ui-react';
+
+class ExampleComponent extends Component {
+
+    render() {
+        return (
+            <Grid>
+                <Grid.Column width={15}>
+                    <p>
+                        Lorem ipsum...
+                        <Icon name='user' />
+                    </p>
+                </Grid.Column>
+                <Grid.Column width={1}>
+                    <Button basic circular icon='photo' floated='right' />
+                    <Button basic circular icon='video' floated='right' style={{marginTop: 5}}/>
+                </Grid.Column>
+            </Grid>
+        )
+    }
+
+}
+
+export default ExampleComponent;`}
+          </pre>
+      </Segment>
+      <p>If you are using ES5, the import syntax is:</p>
+      <Segment>
+          <pre>
+            {`var Button = require('semantic-ui-react').Button;`}
+          </pre>
+      </Segment>
     </Segment>
 
     <Segment basic padded>
