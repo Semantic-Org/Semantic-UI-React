@@ -10,7 +10,7 @@ import {
    List,
    Divider,
 } from 'semantic-ui-react'
-import style from '../Style'
+import style from './LayoutStyle'
 
 const src = 'http://semantic-ui.com/examples/assets/images/wireframe/image.png'
 
