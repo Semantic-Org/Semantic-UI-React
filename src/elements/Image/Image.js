@@ -72,7 +72,7 @@ function Image(props) {
     if (!_.isNil(dimmer) || !_.isNil(label) || !_.isNil(wrapped) || !_.isNil(children)) return 'div'
   })
 
-  if (!_.isNil(children)) {
+  if (!_.isEmpty(children)) {
     return <ElementType {...rest} className={classes}>{children}</ElementType>
   }
 
