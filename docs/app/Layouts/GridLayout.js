@@ -20,7 +20,7 @@ const GridLayout = () =>
        <p>A container is a fixed width element that wraps your site's content. It remains a constant size and uses <b>margin</b> to center. Containers are the simplest way to center page content inside a grid.
        </p>
     </Container>
-    <Container>
+    <Container text>
       <Grid>
         <Grid.Row columns={15}>
          <Grid.Column />
@@ -56,8 +56,8 @@ const GridLayout = () =>
         </Grid.Row>
        </Grid>
     </Container>
-    <Container>
 
+    <Container text>
       <Header as='h1' dividing>Grid Content</Header>
 
       <h3 style={style.first}>Column Flow</h3>
@@ -87,6 +87,44 @@ const GridLayout = () =>
          <Grid.Column />
        </Grid.Row>
      </Grid>
+
+      <h3>Specifying Row Width</h3>
+      <p>Specifying a grid column count will divide columns into rows of predetermined column count. Additional columns will automatically flow to the next row.</p>
+      <Grid columns={3}>
+        <Grid.Column>column</Grid.Column>
+        <Grid.Column>column</Grid.Column>
+        <Grid.Column>column</Grid.Column>
+        <Grid.Column>column</Grid.Column>
+        <Grid.Column>column</Grid.Column>
+        <Grid.Column>column</Grid.Column>
+      </Grid>
+
+      <h3>Specifying Column Width</h3>
+      <p>You can also specify column widths for each column individually</p>
+      <Grid>
+        <Grid.Column width={4}>four wide column</Grid.Column>
+        <Grid.Column width={8}>eight wide column</Grid.Column>
+        <Grid.Column width={4}>four wide column</Grid.Column>
+      </Grid>
+
+      <h3>Special Variations</h3>
+      <p>Some special variations that format grids like tables require you to specify rows. For example a <code>divided grid</code> or a <code>celled grid</code> requires row wrappers.</p>
+
+      <Divider section horizontal>Celled Grid</Divider>
+      <Grid celled>
+        <Grid.Row>
+          <Grid.Column width={4}></Grid.Column>
+          <Grid.Column width={4}></Grid.Column>
+          <Grid.Column width={4}></Grid.Column>
+          <Grid.Column width={4}></Grid.Column>
+        </Grid.Row>
+        <Grid.Row>
+          <Grid.Column width={4}></Grid.Column>
+          <Grid.Column width={4}></Grid.Column>
+          <Grid.Column width={4}></Grid.Column>
+          <Grid.Column width={4}></Grid.Column>
+        </Grid.Row>
+      </Grid>
 
     </Container>
   </div>
