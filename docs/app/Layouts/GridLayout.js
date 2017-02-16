@@ -126,6 +126,58 @@ const GridLayout = () =>
         </Grid.Row>
       </Grid>
 
+      <Divider section horizontal>Internally Celled Grid</Divider>
+
+     <Grid celled>
+       <Grid.Row>
+         <Grid.Column width={4}></Grid.Column>
+         <Grid.Column width={4}></Grid.Column>
+         <Grid.Column width={4}></Grid.Column>
+         <Grid.Column width={4}></Grid.Column>
+       </Grid.Row>
+       <Grid.Row>
+         <Grid.Column width={4}></Grid.Column>
+         <Grid.Column width={4}></Grid.Column>
+         <Grid.Column width={4}></Grid.Column>
+         <Grid.Column width={4}></Grid.Column>
+       </Grid.Row>
+     </Grid>
+
+
+     <Divider section horizontal>Divided Grid</Divider>
+
+     <Grid divided>
+       <Grid.Row>
+         <Grid.Column width={4}></Grid.Column>
+         <Grid.Column width={4}></Grid.Column>
+         <Grid.Column width={4}></Grid.Column>
+         <Grid.Column width={4}></Grid.Column>
+       </Grid.Row>
+       <Grid.Row>
+         <Grid.Column width={4}></Grid.Column>
+         <Grid.Column width={4}></Grid.Column>
+         <Grid.Column width={4}></Grid.Column>
+         <Grid.Column width={4}></Grid.Column>
+       </Grid.Row>
+     </Grid>
+
+     <Divider section horizontal>Vertically Divided Grid</Divider>
+
+     <Grid divided vertical>
+       <Grid.Row>
+         <Grid.Column width={4}></Grid.Column>
+         <Grid.Column width={4}></Grid.Column>
+         <Grid.Column width={4}></Grid.Column>
+         <Grid.Column width={4}></Grid.Column>
+       </Grid.Row>
+       <Grid.Row>
+         <Grid.Column width={4}></Grid.Column>
+         <Grid.Column width={4}></Grid.Column>
+         <Grid.Column width={4}></Grid.Column>
+         <Grid.Column width={4}></Grid.Column>
+       </Grid.Row>
+     </Grid>
+
     </Container>
   </div>
 
