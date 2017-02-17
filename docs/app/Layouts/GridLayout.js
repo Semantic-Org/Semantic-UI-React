@@ -1,7 +1,5 @@
 import React from 'react'
 import {
-   Menu,
-   Dropdown,
    Container,
    Header,
    Image,
@@ -19,9 +17,12 @@ const GridLayout = () =>
     <Container text>
        <Header dividing as='h1' dividing>Using Grids</Header>
        <h3 style={style.first}>Container</h3>
-       <p>A container is a fixed width element that wraps your site's content. It remains a constant size and uses <b>margin</b> to center. Containers are the simplest way to center page content inside a grid.
+       <p>A container is a fixed width element that wraps your site's content.
+          It remains a constant size and uses <b>margin</b> to center.
+          Containers are the simplest way to center page content inside a grid.
        </p>
-    </Container>
+    </Container>  322:15  error  Unknown property 'class' found, use 'className' instead  react/no-unknown-property
+
     <Container text>
       <Grid style={style.grid}>
         <Grid.Row columns={15}>
@@ -46,7 +47,10 @@ const GridLayout = () =>
     </Container>
     <Container text>
        <h3 style={style.first}>Text Container</h3>
-       <p>Sometimes you just need to put a single column of centered text on a page. A <code>text container</code> is a special type of container optimized for a single flowing column of text, like this instructions on this page.
+       <p>Sometimes you just need to put a single column of centered text on a page.
+        A <code>text container</code>
+        is a special type of container optimized for a single flowing column of text,
+        like this instructions on this page.
        </p>
        <p>Text containers <b>do not need to use grids</b> and help simplify basic page layouts.</p>
     </Container>
@@ -63,8 +67,9 @@ const GridLayout = () =>
       <Header as='h1' dividing>Grid Content</Header>
 
       <h3 style={style.first}>Column Flow</h3>
-      <p>A grid does not necessarily need to specify rows. If you include <code>columns</code> as direct child of <code>ui grid</code> content will automatically flow to the next row when all the grid columns are taken in the current row.</p>
-
+      <p>A grid does not necessarily need to specify rows. If you include
+        <code>columns</code> as direct child of <code>ui grid</code>
+        content will automatically flow to the next row when all the grid columns are taken in the current row.</p>
       <Grid style={style.grid}>
         <Grid.Row columns={7}>
           <Grid.Column />
@@ -91,7 +96,8 @@ const GridLayout = () =>
      </Grid>
 
       <h3>Specifying Row Width</h3>
-      <p>Specifying a grid column count will divide columns into rows of predetermined column count. Additional columns will automatically flow to the next row.</p>
+      <p>Specifying a grid column count will divide columns into rows of predetermined column count.
+        Additional columns will automatically flow to the next row.</p>
       <Grid columns={3}>
         <Grid.Column>column</Grid.Column>
         <Grid.Column>column</Grid.Column>
@@ -110,7 +116,9 @@ const GridLayout = () =>
       </Grid>
 
       <h3>Special Variations</h3>
-      <p>Some special variations that format grids like tables require you to specify rows. For example a <code>divided grid</code> or a <code>celled grid</code> requires row wrappers.</p>
+      <p>Some special variations that format grids like tables require you to specify rows.
+        For example a <code>divided grid</code> or a <code>celled grid</code> requires row wrappers.
+      </p>
 
       <Divider section horizontal>Celled Grid</Divider>
       <Grid celled>
@@ -181,10 +189,9 @@ const GridLayout = () =>
      </Grid>
 
      <Header dividing>Adjusting Grids</Header>
-
-
      <Header as='h3' style={style.first}>Centering Content</Header>
-     <p>If a row does not take up all sixteen grid columns, you can use a <code>ui centered grid</code>, <code>centered row</code>, or <code>centered column</code> to center the column contents inside the grid.
+     <p>If a row does not take up all sixteen grid columns, you can use a <code>ui centered grid</code>,
+      <code>centered row</code>, or <code>centered column</code> to center the column contents inside the grid.
      </p>
      <Grid columns={2} centered>
        <Grid.Column></Grid.Column>
@@ -195,7 +202,8 @@ const GridLayout = () =>
      </Grid>
 
      <h3>Floating Rows</h3>
-     <p>Since Semantic UI's grid is based on flex box, a <code>left floated</code> item should come first, and a <code>right floated</code> item last in its row.</p>
+     <p>Since Semantic UI's grid is based on flex box, a <code>left floated</code>
+      item should come first, and a <code>right floated</code> item last in its row.</p>
 
      <Grid style={style.grid}>
        <Grid.Column width={6} floated='left'>
@@ -209,7 +217,6 @@ const GridLayout = () =>
          </Segment>
        </Grid.Column>
      </Grid>
-
 
      <h3>Text Alignment</h3>
      <p>You can specify text alignment using alignment variations on a grid, row, or column level.</p>
@@ -253,7 +260,7 @@ const GridLayout = () =>
 
      <h3>Equal Width Columns</h3>
      <p>Specifying an <code>equal width grid</code> will automatically determine column sizes to fit evenly inside one row</p>
-     <Grid className="ui equal width grid">
+     <Grid>
        <Grid.Row>
          <Grid.Column>column</Grid.Column>
          <Grid.Column>column</Grid.Column>
@@ -319,8 +326,8 @@ const GridLayout = () =>
          <Grid.Column>computer only row</Grid.Column>
        </Grid.Row>
        <Grid.Row columns={2} only='mobile'>
-         <div class="column">mobile only column</div>
-         <div class="column">mobile only column</div>
+         <Grid.Column>mobile only column</Grid.Column>
+         <Grid.Column>mobile only column</Grid.Column>
        </Grid.Row>
        <Grid.Row columns={2}>
          <Grid.Column>column</Grid.Column>
