@@ -87,7 +87,7 @@ interface AccordionTitleProps {
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
    * @param {object} data - All props.
    */
-  onClick: (event: React.MouseEvent<HTMLDivElement>, data: AccordionTitleProps) => void;
+  onClick?: (event: React.MouseEvent<HTMLDivElement>, data: AccordionTitleProps) => void;
 }
 
 export const AccordionTitle: React.ComponentClass<AccordionTitleProps>;
