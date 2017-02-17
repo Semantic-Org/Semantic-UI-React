@@ -22,7 +22,7 @@ describe('Image Component', () => {
   })
   common.implementsVerticalAlignProp(Image)
 
-  common.propKeyAndValueToClassName(Image, 'floated')
+  common.propKeyAndValueToClassName(Image, 'floated', SUI.FLOATS)
 
   common.propKeyOnlyToClassName(Image, 'avatar')
   common.propKeyOnlyToClassName(Image, 'bordered')

@@ -12,8 +12,8 @@ describe('Icon', () => {
 
   common.implementsCreateMethod(Icon)
 
-  common.propKeyAndValueToClassName(Icon, 'flipped')
-  common.propKeyAndValueToClassName(Icon, 'rotated')
+  common.propKeyAndValueToClassName(Icon, 'flipped', ['horizontally', 'vertically'])
+  common.propKeyAndValueToClassName(Icon, 'rotated', ['clockwise', 'counterclockwise'])
 
   common.propKeyOnlyToClassName(Icon, 'bordered')
   common.propKeyOnlyToClassName(Icon, 'circular')

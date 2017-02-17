@@ -18,7 +18,7 @@ describe('List', () => {
 
   common.implementsVerticalAlignProp(List)
 
-  common.propKeyAndValueToClassName(List, 'floated')
+  common.propKeyAndValueToClassName(List, 'floated', SUI.FLOATS)
 
   common.propKeyOnlyToClassName(List, 'animated')
   common.propKeyOnlyToClassName(List, 'bulleted')

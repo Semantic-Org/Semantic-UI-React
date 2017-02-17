@@ -24,7 +24,9 @@ describe('Label', () => {
     mapValueToProps: val => ({ content: val }),
   })
 
-  common.propKeyAndValueToClassName(Label, 'attached')
+  common.propKeyAndValueToClassName(Label, 'attached', [
+    'top', 'bottom', 'top right', 'top left', 'bottom left', 'bottom right',
+  ])
 
   common.propKeyOnlyToClassName(Label, 'active')
   common.propKeyOnlyToClassName(Label, 'basic')

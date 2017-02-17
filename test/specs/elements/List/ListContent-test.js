@@ -2,6 +2,7 @@ import faker from 'faker'
 import React from 'react'
 
 import ListContent from 'src/elements/List/ListContent'
+import { SUI } from 'src/lib'
 import * as common from 'test/specs/commonTests'
 
 describe('ListContent', () => {
@@ -10,7 +11,7 @@ describe('ListContent', () => {
 
   common.implementsVerticalAlignProp(ListContent)
 
-  common.propKeyAndValueToClassName(ListContent, 'floated')
+  common.propKeyAndValueToClassName(ListContent, 'floated', SUI.FLOATS)
 
   describe('shorthand', () => {
     const baseProps = {
