@@ -17,13 +17,13 @@ const src = 'http://semantic-ui.com/examples/assets/images/wireframe/image.png'
 const GridLayout = () =>
   <div>
     <Container text>
-       <Header as='h1' dividing>Using Grids</Header>
+       <Header dividing as='h1' dividing>Using Grids</Header>
        <h3 style={style.first}>Container</h3>
        <p>A container is a fixed width element that wraps your site's content. It remains a constant size and uses <b>margin</b> to center. Containers are the simplest way to center page content inside a grid.
        </p>
     </Container>
     <Container text>
-      <Grid>
+      <Grid style={style.grid}>
         <Grid.Row columns={15}>
          <Grid.Column />
          <Grid.Column />
@@ -52,7 +52,7 @@ const GridLayout = () =>
     </Container>
 
      <Container text>
-       <Grid>
+       <Grid style={style.grid}>
         <Grid.Row columns={1}>
           <Grid.Column />
         </Grid.Row>
@@ -65,7 +65,7 @@ const GridLayout = () =>
       <h3 style={style.first}>Column Flow</h3>
       <p>A grid does not necessarily need to specify rows. If you include <code>columns</code> as direct child of <code>ui grid</code> content will automatically flow to the next row when all the grid columns are taken in the current row.</p>
 
-      <Grid>
+      <Grid style={style.grid}>
         <Grid.Row columns={7}>
           <Grid.Column />
           <Grid.Column />
@@ -103,7 +103,7 @@ const GridLayout = () =>
 
       <h3>Specifying Column Width</h3>
       <p>You can also specify column widths for each column individually</p>
-      <Grid>
+      <Grid style={style.grid}>
         <Grid.Column width={4}>four wide column</Grid.Column>
         <Grid.Column width={8}>eight wide column</Grid.Column>
         <Grid.Column width={4}>four wide column</Grid.Column>
@@ -197,7 +197,7 @@ const GridLayout = () =>
      <h3>Floating Rows</h3>
      <p>Since Semantic UI's grid is based on flex box, a <code>left floated</code> item should come first, and a <code>right floated</code> item last in its row.</p>
 
-     <Grid>
+     <Grid style={style.grid}>
        <Grid.Column width={6} floated='left'>
          <Segment>
            Left floated
@@ -214,7 +214,7 @@ const GridLayout = () =>
      <h3>Text Alignment</h3>
      <p>You can specify text alignment using alignment variations on a grid, row, or column level.</p>
 
-     <Grid>
+     <Grid style={style.grid}>
        <Grid.Column verticalAllign='left' width={8}>
          right aligned column
        </Grid.Column>
@@ -291,14 +291,14 @@ const GridLayout = () =>
      <h3>Responsive Width Adjustments</h3>
      <p>You can specify columns to appear at different widths on different screens</p>
 
-     <Grid>
+     <Grid style={style.grid}>
        <Grid.Column mobile={8} tablet={6} computer={4}></Grid.Column>
        <Grid.Column mobile={8} tablet={6} computer={4}></Grid.Column>
        <Grid.Column mobile={8} tablet={6} computer={4}></Grid.Column>
        <Grid.Column mobile={8} tablet={6} computer={4}></Grid.Column>
        <Grid.Column mobile={8} tablet={6} computer={4}></Grid.Column>
      </Grid>
-     <Grid>
+     <Grid style={style.grid}>
        <Grid.Column width={4} largescreen={2} widescreen={1}></Grid.Column>
        <Grid.Column width={4} largescreen={2} widescreen={1}></Grid.Column>
        <Grid.Column width={4} largescreen={2} widescreen={1}></Grid.Column>
@@ -307,7 +307,7 @@ const GridLayout = () =>
 
      <h3>Specifying Device Visibility</h3>
      <p>You can specify columns to appear only a particular screen</p>
-     <Grid>
+     <Grid style={style.grid}>
        <Grid.Row columns={2} only='computer'>
          <Grid.Column width={10}>ten wide column computer only</Grid.Column>
          <Grid.Column width={6}>six wide column computer only</Grid.Column>
