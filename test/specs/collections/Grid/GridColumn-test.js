@@ -9,27 +9,41 @@ describe('GridColumn', () => {
   common.implementsTextAlignProp(GridColumn)
   common.implementsVerticalAlignProp(GridColumn)
 
-  common.implementsWidthProp(GridColumn, {
-    propKey: 'computer', widthClass: 'wide computer', canEqual: false,
+  common.implementsWidthProp(GridColumn, SUI.WIDTHS, {
+    canEqual: false,
+    propKey: 'computer',
+    widthClass: 'wide computer',
   })
-  common.implementsWidthProp(GridColumn, {
-    propKey: 'largeScreen', widthClass: 'wide large screen', canEqual: false,
+  common.implementsWidthProp(GridColumn, SUI.WIDTHS, {
+    canEqual: false,
+    propKey: 'largeScreen',
+    widthClass: 'wide large screen',
   })
-  common.implementsWidthProp(GridColumn, {
-    propKey: 'mobile', widthClass: 'wide mobile', canEqual: false,
+  common.implementsWidthProp(GridColumn, SUI.WIDTHS, {
+    canEqual: false,
+    propKey: 'mobile',
+    widthClass: 'wide mobile',
   })
-  common.implementsWidthProp(GridColumn, {
-    propKey: 'tablet', widthClass: 'wide tablet', canEqual: false,
+  common.implementsWidthProp(GridColumn, SUI.WIDTHS, {
+    canEqual: false,
+    propKey: 'tablet',
+    widthClass: 'wide tablet',
   })
-  common.implementsWidthProp(GridColumn, {
-    propKey: 'widescreen', widthClass: 'wide widescreen', canEqual: false,
+  common.implementsWidthProp(GridColumn, SUI.WIDTHS, {
+    canEqual: false,
+    propKey: 'widescreen',
+    widthClass: 'wide widescreen',
   })
-  common.implementsWidthProp(GridColumn, {
-    propKey: 'width', widthClass: 'wide', canEqual: false,
+  common.implementsWidthProp(GridColumn, SUI.WIDTHS, {
+    canEqual: false,
+    propKey: 'width',
+    widthClass: 'wide',
   })
 
-  common.propKeyAndValueToClassName(GridColumn, 'floated')
-  common.propKeyAndValueToClassName(GridColumn, 'only')
+  common.propKeyAndValueToClassName(GridColumn, 'floated', SUI.FLOATS)
+  common.propKeyAndValueToClassName(GridColumn, 'only', [
+    'computer', 'large screen', 'mobile', 'tablet mobile', 'tablet', 'widescreen',
+  ])
 
   common.propKeyOnlyToClassName(GridColumn, 'stretched')
 

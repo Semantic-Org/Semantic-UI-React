@@ -15,9 +15,12 @@ describe('Menu', () => {
   common.hasUIClassName(Menu)
   common.rendersChildren(Menu)
 
-  common.implementsWidthProp(Menu, { propKey: 'widths', canEqual: false })
+  common.implementsWidthProp(Menu, SUI.WIDTHS, {
+    canEqual: false,
+    propKey: 'widths',
+  })
 
-  common.propKeyAndValueToClassName(Menu, 'fixed')
+  common.propKeyAndValueToClassName(Menu, 'fixed', ['left', 'right', 'bottom', 'top'])
 
   common.propKeyOnlyToClassName(Menu, 'borderless')
   common.propKeyOnlyToClassName(Menu, 'compact')

@@ -160,10 +160,10 @@ describe('Modal', () => {
   })
 
   describe('size', () => {
-    const sizes = ['fullscreen', 'large', 'small']
+    it('adds the size to the modal className', () => {
+      const sizes = ['fullscreen', 'large', 'small']
 
-    sizes.forEach(size => {
-      it(`adds the ${size} to the modal className`, () => {
+      sizes.forEach(size => {
         wrapperMount(<Modal size={size} open />)
         assertBodyContains(`.ui.${size}.modal`)
       })

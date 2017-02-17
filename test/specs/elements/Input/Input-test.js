@@ -76,9 +76,11 @@ describe('Input', () => {
     shorthandDefaultProps: { type: 'text' },
   })
 
-  common.propKeyAndValueToClassName(Input, 'actionPosition', { className: 'action' })
-  common.propKeyAndValueToClassName(Input, 'iconPosition', { className: 'icon' })
-  common.propKeyAndValueToClassName(Input, 'labelPosition', { className: 'labeled' })
+  common.propKeyAndValueToClassName(Input, 'actionPosition', ['left'], { className: 'action' })
+  common.propKeyAndValueToClassName(Input, 'iconPosition', ['left'], { className: 'icon' })
+  common.propKeyAndValueToClassName(Input, 'labelPosition', ['left', 'right', 'left corner', 'right corner'], {
+    className: 'labeled',
+  })
 
   common.propKeyOnlyToClassName(Input, 'action')
   common.propKeyOnlyToClassName(Input, 'disabled')
