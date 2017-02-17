@@ -11,6 +11,9 @@ import {
   useKeyOnly,
 } from '../../lib'
 
+/**
+ * A modal can contain content.
+ */
 function ModalContent(props) {
   const {
     children,
@@ -53,7 +56,7 @@ ModalContent.propTypes = {
   /** Shorthand for primary content. */
   content: customPropTypes.contentShorthand,
 
-  /** A modal can contain image content */
+  /** A modal can contain image content. */
   image: PropTypes.bool,
 }
 

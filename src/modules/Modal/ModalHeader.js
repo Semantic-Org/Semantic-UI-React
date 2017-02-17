@@ -10,6 +10,9 @@ import {
   META,
 } from '../../lib'
 
+/**
+ * A modal can have a header.
+ */
 function ModalHeader(props) {
   const { children, className, content } = props
   const classes = cx(className, 'header')
