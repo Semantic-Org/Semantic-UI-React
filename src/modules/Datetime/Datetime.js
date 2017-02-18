@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import cx from 'classnames'
 import React, { Children, cloneElement, PropTypes } from 'react'
-
+import CalendarMonth from './CalendarMonth'
 import {
   AutoControlledComponent as Component,
   createShorthand,
@@ -312,6 +312,7 @@ export default class Datetime extends Component {
     debug('handleClick()', e)
     const { onClick } = this.props
     if (onClick) onClick(e, this.props)
+
     // prevent closeOnDocumentClick()
     e.stopPropagation()
     this.toggle(e)
@@ -327,7 +328,12 @@ export default class Datetime extends Component {
 
     const ElementType = getElementType(Datetime, this.props)
     const rest = getUnhandledProps(Datetime, this.props)
-
+    const monthDisplay = (
+        <div>
+            <CalendarMonth
+                content={this.props.content}/>
+        </div>
+    )
     return (
       <ElementType {...rest} className={classes}>
         <div
@@ -335,7 +341,8 @@ export default class Datetime extends Component {
           onClick={this.handleClick}
         >
           <i className='calendar icon' />
-          <input type='text' /> {open}
+          <input type='text' />
+          {this.state.open ? monthDisplay : false}
         </div>
       </ElementType>
     )

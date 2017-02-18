@@ -23,6 +23,9 @@ export default class DayCell extends Component {
     /** Style as the currently chosen item. */
     active: PropTypes.bool,
 
+    /** Style as the currently hovered item. */
+    hovered: PropTypes.bool,
+
     /** Primary content. */
     children: PropTypes.node,
 
@@ -83,7 +86,6 @@ export default class DayCell extends Component {
       className,
     )
     const rest = getUnhandledProps(DayCell, this.props)
-    const ElementType = getElementType(DayCell, this.props)
     const ariaOptions = {
       role: 'option',
       'aria-disabled': disabled,
@@ -91,18 +93,10 @@ export default class DayCell extends Component {
       'aria-selected': selected,
     }
 
-    if (!_.isNil(children)) {
-      return (
-        <ElementType {...rest} {...ariaOptions} className={classes} onClick={this.handleClick}>
-          {children}
-        </ElementType>
-      )
-    }
-
     return (
-      <ElementType {...rest} {...ariaOptions} className={classes} onClick={this.handleClick}>
-        {content || text}
-      </ElementType>
+      <td {...rest} {...ariaOptions} className={classes} onClick={this.handleClick}>
+        {this.props.day}
+      </td>
     )
   }
 }
