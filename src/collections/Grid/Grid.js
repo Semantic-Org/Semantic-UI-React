@@ -125,7 +125,7 @@ Grid.propTypes = {
   /** A grid can have its columns stack on-top of each other after reaching mobile breakpoints. */
   stackable: PropTypes.bool,
 
-  /** An can stretch its contents to take up the entire grid height. */
+  /** A grid can stretch its contents to take up the entire grid height. */
   stretched: PropTypes.bool,
 
   /** A grid can specify its text alignment. */

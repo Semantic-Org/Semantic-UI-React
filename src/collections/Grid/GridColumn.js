@@ -91,13 +91,13 @@ GridColumn.propTypes = {
   /** A column can appear only for a specific device, or screen sizes. */
   only: PropTypes.oneOf(['computer', 'large screen', 'mobile', 'tablet mobile', 'tablet', 'widescreen']),
 
-  /** An can stretch its contents to take up the entire grid or row height. */
+  /** A column can stretch its contents to take up the entire grid or row height. */
   stretched: PropTypes.bool,
 
   /** A column can specify a width for a tablet device. */
   tablet: PropTypes.oneOf(SUI.WIDTHS),
 
-  /** A row can specify its text alignment. */
+  /** A column can specify its text alignment. */
   textAlign: PropTypes.oneOf(SUI.TEXT_ALIGNMENTS),
 
   /** A column can specify its vertical alignment to have all its columns vertically centered. */
