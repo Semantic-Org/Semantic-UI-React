@@ -237,6 +237,34 @@ export const demand = (requiredProps) => {
 }
 
 /**
+ * Ensure a prop adherers to at least one of the given prop type validators.
+ * @param {string[]} possible An array of possible values to prop.
+ */
+export const multipleOf = possible => {
+  return (props, propName, componentName) => {
+    if (!Array.isArray(possible)) {
+      throw new Error([
+        'Invalid argument supplied to some, expected an instance of array.',
+        `See \`${propName}\` prop in \`${componentName}\`.`,
+      ].join(' '))
+    }
+
+    // skip if prop is undefined
+    if (_.isNil(props[propName]) || props[propName] === false) return
+
+    const values = props[propName].split(' ').map(_.trim)
+    const invalid = _.difference(values, possible)
+
+    // fail only if there are invalid values
+    if (invalid.length > 0) {
+      return new Error(
+        `\`${propName}\` prop in \`${componentName}\` has invalid values: \`${invalid.join('`, `')}\`.`
+      )
+    }
+  }
+}
+
+/**
  * Ensure a component can render as a node passed as a prop value in place of children.
  */
 export const contentShorthand = (...args) => every([

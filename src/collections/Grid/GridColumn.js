@@ -89,7 +89,7 @@ GridColumn.propTypes = {
   mobile: PropTypes.oneOf(SUI.WIDTHS),
 
   /** A column can appear only for a specific device, or screen sizes. */
-  only: PropTypes.oneOf(['computer', 'large screen', 'mobile', 'tablet mobile', 'tablet', 'widescreen']),
+  only: customPropTypes.multipleOf(['computer', 'large screen', 'mobile', 'tablet mobile', 'tablet', 'widescreen']),
 
   /** A column can stretch its contents to take up the entire grid or row height. */
   stretched: PropTypes.bool,
