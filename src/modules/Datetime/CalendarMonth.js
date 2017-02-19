@@ -1,8 +1,9 @@
-import React, { Component, PropTypes } from 'react'
+import React, { PropTypes } from 'react'
 import cx from 'classnames'
 import DayCell from './DayCell'
 import Popup from '../Popup/Popup'
 import {
+  AutoControlledComponent as Component,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -52,6 +53,9 @@ export default class CalendarMonth extends Component {
     /** Month **/
     date: PropTypes.any,
 
+    /** Initial value of date. */
+    defaultDate: PropTypes.any,
+
     /**
      * First Day of the Week.
      * Sunday = 0
@@ -61,8 +65,19 @@ export default class CalendarMonth extends Component {
   }
 
   static defaultProps = {
-      date: new Date(),
+      // date: new Date(),
       firstDayOfWeek: 1
+  }
+
+  static autoControlledProps = [
+    'date'
+  ]
+
+  constructor() {
+    super()
+    this.state = {
+        date: new Date()
+    }
   }
 
   /**
@@ -94,15 +109,15 @@ export default class CalendarMonth extends Component {
   }
 
   getMonth() {
-    return this.props.date.getMonth()
+    return this.state.date.getMonth()
   }
 
   getDayOfWeek() {
-    return this.props.date.getDay()
+    return this.state.date.getDay()
   }
 
   getYear() {
-      return this.props.date.getFullYear()
+      return this.state.date.getFullYear()
   }
 
   /**
@@ -127,9 +142,17 @@ export default class CalendarMonth extends Component {
    * Return a date from the last month
    */
   lastMonth(date) {
-    date = !!date ? date : new Date(this.props.date)
+    date = !!date ? date : new Date(this.state.date)
     date.setMonth(date.getMonth()-1)
     return date
+  }
+
+  toggleMonth(direction) {
+    let date = new Date(this.state.date)
+    date.setMonth(date.getMonth() + direction)
+    this.setState({
+        date: date
+    })
   }
 
   /**
@@ -180,14 +203,44 @@ export default class CalendarMonth extends Component {
     return cells
   }
 
+  changeMonth = (direction, e) => {
+      console.log(arguments)
+      e.stopPropagation()
+      this.toggleMonth(direction)
+  }
+
+  handleClick = (e) => {
+    console.log(arguments)
+    e.stopPropagation()
+  }
+
   render() {
     const dayCells = this.getDays()
     const cells = this.getMonthDays()
     return (
-        <table className="ui table">
-            <tr>{this.getDayHeaders()}</tr>
-            {cells}
-        </table>
+      <table className="ui table">
+        <thead>
+          <tr>
+            <td colSpan="7">
+              <div className="ui compact menu">
+                <a className="item" onClick={this.changeMonth.bind(null, -1)}>
+                  <i className="angle double left icon"></i>
+                </a>
+                <a className="item" onClick={this.changeMonth.bind(null, 1)}>
+                  <i className="angle double right icon"></i>
+                </a>
+              </div>
+            </td>
+          </tr>
+          <tr><td colSpan="7">
+            {this.props.content.months[this.getMonth()]}
+          </td></tr>
+          <tr>{this.getDayHeaders()}</tr>
+        </thead>
+        <tbody>
+          {cells}
+        </tbody>
+      </table>
     )
   }
 }
