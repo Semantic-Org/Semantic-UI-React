@@ -106,6 +106,20 @@ export default class Datetime extends Component {
      */
     content: PropTypes.object,
 
+    /**
+     * A function that will return a Date object as a formatted string in the
+     * current locale. By default the Date will formatted as YYYY-MM-DD
+     * @type {function}
+     */
+    dateFormatter: PropTypes.func,
+
+    /**
+     * A function that will return the time image of a Date object as a formatted
+     * string in the current locale. By default the time will be formatted as HH:MM
+     * @type {function}
+     */
+    timeFormatter: PropTypes.func,
+
     /** Initial value of open. */
     defaultOpen: PropTypes.bool,
 
@@ -284,6 +298,12 @@ export default class Datetime extends Component {
 
   static defaultProps = {
     content: _content,
+    dateFormatter: (date) => {
+        return !!date ? `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}` : ''
+    },
+    timeFormatter: (date) => {
+        return !!date ? `${date.getHours()}:${date.getMinutes()}` : ''
+    }
   }
 
   open = (e) => {
@@ -318,20 +338,34 @@ export default class Datetime extends Component {
     this.toggle(e)
   }
 
+  handleDateSelection = (date, e) => {
+    e.stopPropagation()
+    const selectedDate = new Date(date)
+    console.log(selectedDate, "SELECTED")
+    this.trySetState({
+        value: selectedDate
+    })
+  }
+
   render() {
-    const { className } = this.props
+    const {
+        className,
+        dateFormatter,
+        timeFormatter
+    } = this.props
     const { open } = this.state
 
     const classes = cx(
       className
     )
-
+    const formattedValue = dateFormatter(this.state.value)
     const ElementType = getElementType(Datetime, this.props)
     const rest = getUnhandledProps(Datetime, this.props)
     const monthDisplay = (
         <div>
             <CalendarMonth
-                content={this.props.content}/>
+              content={this.props.content}
+              onDateSelect={this.handleDateSelection}/>
         </div>
     )
     return (
@@ -341,7 +375,7 @@ export default class Datetime extends Component {
           onClick={this.handleClick}
         >
           <i className='calendar icon' />
-          <input type='text' />
+          <input type='text' value={formattedValue} />
           {this.state.open ? monthDisplay : false}
         </div>
       </ElementType>

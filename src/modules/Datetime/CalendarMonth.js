@@ -62,7 +62,12 @@ export default class CalendarMonth extends Component {
      * Sunday = 0
      * Monday = 1
      */
-    firstDayOfWeek: PropTypes.number
+    firstDayOfWeek: PropTypes.number,
+    /**
+     * Handler fired when a date is selected
+     * @type {[type]}
+     */
+    onDateSelect: PropTypes.func
   }
 
   static defaultProps = {
@@ -149,6 +154,10 @@ export default class CalendarMonth extends Component {
     return date
   }
 
+  /**
+   * Toggle the current month forwards or backwards based on a given direction indicator
+   *  @param  {number} direction Eitehr 1 or -1 to indicate the next/prev month
+   */
   toggleMonth(direction) {
     let date = new Date(this.state.date)
     date.setMonth(date.getMonth() + direction)
@@ -180,17 +189,15 @@ export default class CalendarMonth extends Component {
           onMouseOut: this.handleHover.bind(this, cell, false)
       }
       if (cell >= realFirstWeekDay && day < daysInMonth) {
-        day += 1
-        dayParams.day = day
+        dayParams.day = day += 1
       } else if (cell < realFirstWeekDay) {
-        let prevDay = prevDaysInMonth - realFirstWeekDay + cell + 1;
-        dayParams.day = prevDay
+        dayParams.day = prevDaysInMonth - realFirstWeekDay + cell + 1
         dayParams.disabled = true
       } else if (cell > daysInMonth) {
-        nextDay += 1
-        dayParams.day = nextDay
+        dayParams.day = nextDay += 1
         dayParams.disabled = true
       }
+      dayParams.onClick = this.handleClick.bind(this, dayParams.day)
       return (<DayCell {...dayParams}/>)
     })
   }
@@ -238,9 +245,12 @@ export default class CalendarMonth extends Component {
    * Handle click
    * @param  {event} e
    */
-  handleClick = (e) => {
-    console.log(arguments)
+  handleClick(day, e) {
     e.stopPropagation()
+    const date = new Date(this.state.date).setDate(day);
+    console.log(day, this.state.date, date)
+    const { onDateSelect } = this.props
+    if (onDateSelect) onDateSelect(date, e)
   }
 
   render() {
@@ -255,15 +265,15 @@ export default class CalendarMonth extends Component {
                 <a className="item" onClick={this.changeMonth.bind(null, -1)}>
                   <i className="angle double left icon"></i>
                 </a>
+                <a className="item">
+                  {this.props.content.months[this.getMonth()]}
+                </a>
                 <a className="item" onClick={this.changeMonth.bind(null, 1)}>
                   <i className="angle double right icon"></i>
                 </a>
               </div>
             </td>
           </tr>
-          <tr><td colSpan="7">
-            {this.props.content.months[this.getMonth()]}
-          </td></tr>
           <tr>{this.getDayHeaders()}</tr>
         </thead>
         <tbody>
