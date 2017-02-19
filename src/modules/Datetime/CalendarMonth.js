@@ -56,6 +56,7 @@ export default class CalendarMonth extends Component {
     /** Initial value of date. */
     defaultDate: PropTypes.any,
 
+
     /**
      * First Day of the Week.
      * Sunday = 0
@@ -76,7 +77,8 @@ export default class CalendarMonth extends Component {
   constructor() {
     super()
     this.state = {
-        date: new Date()
+        date: new Date(),
+        hovering: null
     }
   }
 
@@ -170,19 +172,38 @@ export default class CalendarMonth extends Component {
     const realFirstWeekDay = firstWeekDay - this.props.firstDayOfWeek
     let day = 0, nextDay = 0
     return monthCells.map((cell, index) => {
+      const dayParams = {
+          key: index,
+          index: cell,
+          active: this.state.hovering == cell,
+          onMouseOver: this.handleHover.bind(this, cell, true),
+          onMouseOut: this.handleHover.bind(this, cell, false)
+      }
       if (cell >= realFirstWeekDay && day < daysInMonth) {
         day += 1
-        return (<DayCell day={day} key={index}/>)
+        dayParams.day = day
       } else if (cell < realFirstWeekDay) {
         let prevDay = prevDaysInMonth - realFirstWeekDay + cell + 1;
-        return (<DayCell day={prevDay} key={index} disabled={true}/>)
+        dayParams.day = prevDay
+        dayParams.disabled = true
       } else if (cell > daysInMonth) {
         nextDay += 1
-        return (<DayCell day={nextDay} key={index} disabled={true}/>)
+        dayParams.day = nextDay
+        dayParams.disabled = true
       }
+      return (<DayCell {...dayParams}/>)
     })
   }
 
+  /**
+   * Handler for day cell hover events.
+   * Sets state for currently un/hovered cell index
+   */
+  handleHover(cellIndex, isOver, e) {
+      this.setState({
+          hovering: isOver ? cellIndex : null
+      })
+  }
   /**
    * Return the calendar month day structure wrapped in rows
    */
@@ -203,12 +224,20 @@ export default class CalendarMonth extends Component {
     return cells
   }
 
+  /**
+   * Event handler called when paging months
+   * @param  {number} direction Eitehr 1 or -1 to indicate the next/prev month
+   * @param  {event} e
+   */
   changeMonth = (direction, e) => {
-      console.log(arguments)
       e.stopPropagation()
       this.toggleMonth(direction)
   }
 
+  /**
+   * Handle click
+   * @param  {event} e
+   */
   handleClick = (e) => {
     console.log(arguments)
     e.stopPropagation()

@@ -47,6 +47,9 @@ export default class DayCell extends Component {
     /** Stored value */
     day: PropTypes.number,
 
+    /** The index of this day cell in the calendar month (0-42) */
+    index: PropTypes.number,
+
     /**
      * Called on click.
      *
@@ -66,6 +69,7 @@ export default class DayCell extends Component {
     const { onClick } = this.props
 
     if (onClick) onClick(e, this.props)
+    e.stopPropagation()
   }
 
   render() {
