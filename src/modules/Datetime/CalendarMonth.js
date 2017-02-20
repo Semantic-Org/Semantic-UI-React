@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react'
 import cx from 'classnames'
 import DayCell from './DayCell'
 import Popup from '../Popup/Popup'
+import DropDown from '../Dropdown/Dropdown'
 import {
   AutoControlledComponent as Component,
   customPropTypes,
@@ -154,13 +155,26 @@ export default class CalendarMonth extends Component {
     return date
   }
 
-  /**
+  /** MERGE WITH SET MONTH BELOW
    * Toggle the current month forwards or backwards based on a given direction indicator
    *  @param  {number} direction Eitehr 1 or -1 to indicate the next/prev month
    */
   toggleMonth(direction) {
     let date = new Date(this.state.date)
     date.setMonth(date.getMonth() + direction)
+    this.setState({
+        date: date
+    })
+  }
+
+  /** MERGE WITH TOGGLEMONTH ABOVE...
+   * Toggle the current month forwards or backwards based on a given direction indicator
+   *  @param  {number} direction Eitehr 1 or -1 to indicate the next/prev month
+   */
+  setMonth = (e, props) => {
+    const month = props.value
+    let date = new Date(this.state.date)
+    date.setMonth(month)
     this.setState({
         date: date
     })
@@ -253,6 +267,12 @@ export default class CalendarMonth extends Component {
     if (onDateSelect) onDateSelect(date, e)
   }
 
+  getMonthOptions() {
+    return this.props.content.months.map((month, index)=>{
+        return {value: index, text:month}
+    })
+  }
+
   render() {
     const dayCells = this.getDays()
     const cells = this.getMonthDays()
@@ -266,7 +286,11 @@ export default class CalendarMonth extends Component {
                   <i className="angle double left icon"></i>
                 </a>
                 <a className="item">
-                  {this.props.content.months[this.getMonth()]}
+                  <DropDown
+                    compact selection
+                    options={this.getMonthOptions()}
+                    value={this.getMonth()}
+                    onChange={this.setMonth}/>
                 </a>
                 <a className="item" onClick={this.changeMonth.bind(null, 1)}>
                   <i className="angle double right icon"></i>
