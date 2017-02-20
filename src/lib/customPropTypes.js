@@ -237,7 +237,7 @@ export const demand = (requiredProps) => {
 }
 
 /**
- * Ensure a prop adherers to at least one of the given prop type validators.
+ * Ensure a prop contains a string with only possible values.
  * @param {string[]} possible An array of possible values to prop.
  */
 export const multipleOf = possible => {
