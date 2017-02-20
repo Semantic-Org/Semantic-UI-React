@@ -299,7 +299,7 @@ export default class Datetime extends Component {
   static defaultProps = {
     content: _content,
     dateFormatter: (date) => {
-        return !!date ? `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}` : ''
+        return !!date ? `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}` : ''
     },
     timeFormatter: (date) => {
         return !!date ? `${date.getHours()}:${date.getMinutes()}` : ''

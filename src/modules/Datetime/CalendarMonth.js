@@ -155,31 +155,6 @@ export default class CalendarMonth extends Component {
     return date
   }
 
-  /** MERGE WITH SET MONTH BELOW
-   * Toggle the current month forwards or backwards based on a given direction indicator
-   *  @param  {number} direction Eitehr 1 or -1 to indicate the next/prev month
-   */
-  toggleMonth(direction) {
-    let date = new Date(this.state.date)
-    date.setMonth(date.getMonth() + direction)
-    this.setState({
-        date: date
-    })
-  }
-
-  /** MERGE WITH TOGGLEMONTH ABOVE...
-   * Toggle the current month forwards or backwards based on a given direction indicator
-   *  @param  {number} direction Eitehr 1 or -1 to indicate the next/prev month
-   */
-  setMonth = (e, props) => {
-    const month = props.value
-    let date = new Date(this.state.date)
-    date.setMonth(month)
-    this.setState({
-        date: date
-    })
-  }
-
   /**
    * Return a 42 element array (number of cells in the calendar month),
    * populated with DayCell instances of either days of the current month,
@@ -225,6 +200,7 @@ export default class CalendarMonth extends Component {
           hovering: isOver ? cellIndex : null
       })
   }
+
   /**
    * Return the calendar month day structure wrapped in rows
    */
@@ -246,13 +222,32 @@ export default class CalendarMonth extends Component {
   }
 
   /**
+   * Set the current month
+   *  @param  {Object} object containing one of:
+   *  'value' key with the selected month number,
+   *  'page' key with value of either 1 or -1 to page to the next/prev month
+   */
+  setMonth = (e, props) => {
+    let {value, page} = props
+    let date = new Date(this.state.date)
+    if (!value && page) {
+      value = date.getMonth() + page
+    }
+    date.setMonth(value)
+    this.setState({
+      date: date
+    })
+  }
+
+
+  /**
    * Event handler called when paging months
    * @param  {number} direction Eitehr 1 or -1 to indicate the next/prev month
    * @param  {event} e
    */
   changeMonth = (direction, e) => {
       e.stopPropagation()
-      this.toggleMonth(direction)
+      this.setMonth(e, {page: direction})
   }
 
   /**
@@ -261,10 +256,10 @@ export default class CalendarMonth extends Component {
    */
   handleClick(day, e) {
     e.stopPropagation()
-    const date = new Date(this.state.date).setDate(day);
-    console.log(day, this.state.date, date)
+    const date = new Date(this.state.date);
+    date.setDate(day)
     const { onDateSelect } = this.props
-    if (onDateSelect) onDateSelect(date, e)
+    if (onDateSelect) onDateSelect(new Date(date), e)
   }
 
   getMonthOptions() {
