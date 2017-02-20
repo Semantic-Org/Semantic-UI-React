@@ -17,7 +17,10 @@ const ProgressContentExamples = () => (
     <ComponentExample
       title='Label'
       description='A progress element can contain a label.'
-      examplePath='modules/Progress/Content/ProgressExampleLabel'
+      examplePath='modules/Progress/Content/ProgressExampleLabelPercent'
+    />
+    <ComponentExample
+      examplePath='modules/Progress/Content/ProgressExampleLabelRatio'
     />
   </ExampleSection>
 )
