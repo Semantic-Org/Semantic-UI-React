@@ -16,15 +16,15 @@ const ProgressContentExamples = () => (
     />
     <ComponentExample
       title='Label'
-      description='A progress element can contain a label'
+      description='A progress element can contain a label.'
       examplePath='modules/Progress/Content/ProgressExampleLabel'
     />
     <ComponentExample
-      description='A progress element can contain a percent label'
+      description='A progress element can contain a percent label.'
       examplePath='modules/Progress/Content/ProgressExampleLabelPercent'
     />
     <ComponentExample
-      description='A progress element can contain a ratio label'
+      description='A progress element can contain a ratio label.'
       examplePath='modules/Progress/Content/ProgressExampleLabelRatio'
     />
   </ExampleSection>
