@@ -342,8 +342,9 @@ export default class Datetime extends Component {
     e.stopPropagation()
     const selectedDate = new Date(date)
     this.trySetState({
-        value: selectedDate
+        value: selectedDate,
     })
+    this.close()
   }
 
   render() {

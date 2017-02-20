@@ -1,8 +1,10 @@
 import React, { PropTypes } from 'react'
 import cx from 'classnames'
 import DayCell from './DayCell'
-import Popup from '../Popup/Popup'
+import CalendarHeader from './CalendarHeader'
 import DropDown from '../Dropdown/Dropdown'
+import Button from '../../elements/Button'
+
 import {
   AutoControlledComponent as Component,
   customPropTypes,
@@ -228,6 +230,7 @@ export default class CalendarMonth extends Component {
    *  'page' key with value of either 1 or -1 to page to the next/prev month
    */
   setMonth = (e, props) => {
+      console.log(arguments)
     let {value, page} = props
     let date = new Date(this.state.date)
     if (!value && page) {
@@ -262,6 +265,11 @@ export default class CalendarMonth extends Component {
     if (onDateSelect) onDateSelect(new Date(date), e)
   }
 
+  getMonthName() {
+      const {content} = this.props
+      return content.months[this.getMonth()]
+  }
+
   getMonthOptions() {
     return this.props.content.months.map((month, index)=>{
         return {value: index, text:month}
@@ -271,22 +279,39 @@ export default class CalendarMonth extends Component {
   render() {
     const dayCells = this.getDays()
     const cells = this.getMonthDays()
+    const thisMonth = this.getMonth()
     return (
       <table className="ui table">
         <thead>
           <tr>
             <td colSpan="7">
-              <div className="ui compact menu">
+              <div className="ui fluid four item compact text menu">
                 <a className="item" onClick={this.changeMonth.bind(null, -1)}>
                   <i className="angle double left icon"></i>
                 </a>
                 <a className="item">
-                  <DropDown
-                    compact selection
-                    options={this.getMonthOptions()}
-                    value={this.getMonth()}
-                    onChange={this.setMonth}/>
+                  {this.getMonthName()}
                 </a>
+                <a className="item">
+                  {this.getYear()}
+                </a>
+                  {/* <Button.Group className='basic'>
+                    <Button>{this.getMonthName()}</Button>
+                      <DropDown floating button className='icon' onChange={this.setMonth}>
+                        <DropDown.Menu>
+                          {this.getMonthOptions().map((item, index)=>{
+                            return (
+                                <DropDown.Item
+                                  value={item.value}
+                                  text={item.text}
+                                  onClick={this.setMonth}
+                                  active={thisMonth==item.value}/>
+                            )
+                          })}
+                        </DropDown.Menu>
+                    </DropDown>
+                  </Button.Group> */}
+
                 <a className="item" onClick={this.changeMonth.bind(null, 1)}>
                   <i className="angle double right icon"></i>
                 </a>
