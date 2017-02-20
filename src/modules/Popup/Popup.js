@@ -117,10 +117,10 @@ export default class Popup extends Component {
     trigger: PropTypes.node,
 
     /** Popup width. */
-    wide: PropTypes.oneOfType(
+    wide: PropTypes.oneOfType([
       PropTypes.bool,
       PropTypes.oneOf(['very']),
-    ),
+    ]),
   }
 
   static defaultProps = {
