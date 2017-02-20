@@ -986,7 +986,7 @@ export default class Dropdown extends Component {
   }
 
   renderComplexeText = (value) => {
-    const { content, children, ...rest } = this.getSelectedItem() // eslint-disable-line
+    const { content, children, ...rest } = this.getSelectedItem() // eslint-disable-line no-unused-vars
     const elem = DropdownItem.create(rest).props.children // children is undefined at this point !!
     return elem
   }

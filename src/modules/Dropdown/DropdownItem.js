@@ -168,4 +168,4 @@ export default class DropdownItem extends Component {
   }
 }
 
-DropdownItem.create = createShorthandFactory(DropdownItem, value => value)
+DropdownItem.create = createShorthandFactory(DropdownItem, children => ({ children }))
