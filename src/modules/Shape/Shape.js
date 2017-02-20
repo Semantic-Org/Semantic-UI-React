@@ -1,8 +1,7 @@
 import cx from 'classnames'
-import React, { PropTypes } from 'react'
+import React, { Component, PropTypes } from 'react'
 
 import {
-  AutoControlledComponent as Component,
   customPropTypes,
   getElementType,
   getUnhandledProps,
