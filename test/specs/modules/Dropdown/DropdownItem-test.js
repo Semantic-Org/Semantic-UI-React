@@ -20,29 +20,21 @@ describe('DropdownItem', () => {
   common.implementsShorthandProp(DropdownItem, {
     propKey: 'flag',
     ShorthandComponent: Flag,
-    mapValueToProps: val => ({ name: val }),
+    mapValueToProps: name => ({ name }),
   })
 
   common.implementsShorthandProp(DropdownItem, {
     propKey: 'description',
     ShorthandComponent: 'span',
-    mapValueToProps: val => ({
-      children: val,
-    }),
-    shorthandDefaultProps: props => ({
-      className: 'description',
-    }),
+    mapValueToProps: children => ({ children }),
+    shorthandDefaultProps: props => ({ className: 'description' }),
   })
 
   common.implementsShorthandProp(DropdownItem, {
     propKey: 'text',
     ShorthandComponent: 'span',
-    mapValueToProps: val => ({
-      children: val,
-    }),
-    shorthandDefaultProps: props => ({
-      className: 'description',
-    }),
+    mapValueToProps: children => ({ children }),
+    shorthandDefaultProps: props => ({ className: 'text' }),
   })
 
   describe('aria', () => {
@@ -87,28 +79,14 @@ describe('DropdownItem', () => {
   describe('description', () => {
     it('adds className="description" to element shorthand', () => {
       shallow(<DropdownItem description={<strong />} />)
-        .should.not.have.descendants('strong.description')
+        .should.have.descendants('strong.description')
     })
   })
 
   describe('text', () => {
-    it('renders with wrapping span when description', () => {
-      const wrapper = shallow(<DropdownItem text='hey' description='description' />)
-
-      wrapper.should.have.descendants('span.text')
-      wrapper.text().should.include('hey')
-    })
-
-    it('renders without wrapping span when no description', () => {
-      const wrapper = shallow(<DropdownItem text='hey' />)
-
-      wrapper.should.not.have.descendants('span.text')
-      wrapper.text().should.equal('hey')
-    })
-
     it('adds className="text" to element shorthand', () => {
       shallow(<DropdownItem text={<strong />} />)
-        .should.not.have.descendants('strong.text')
+        .should.have.descendants('strong.text')
     })
   })
 
