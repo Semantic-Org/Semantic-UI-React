@@ -32,6 +32,8 @@ export default class CalendarHeader extends Component {
 		/** Year **/
 		year: PropTypes.number,
 
+		/** Current calendar mode **/
+		mode: PropTypes.string,
     /**
      * Called when a mode switch is performed (like switching from month view to
      * month or year selection)
@@ -44,7 +46,8 @@ export default class CalendarHeader extends Component {
      * @param {SyntheticEvent} event - React's original SyntheticEvent.
      * @param {object} data - All props.
      */
-    onChangeMonth: PropTypes.func,
+    onPrevious: PropTypes.func,
+		onNext: PropTypes.func,
   }
 
   static _meta = {
@@ -63,26 +66,37 @@ export default class CalendarHeader extends Component {
       className,
 			monthName,
 			month,
-			year
+			year,
+			onPrevious,
+			onNext,
+			onChangeMode,
+			mode
     } = this.props
 
     const classes = cx(
-      'ui fluid four item compact text menu',
+      'ui four item compact text menu',
       className,
     )
 
     return (
 			<div className={classes}>
-				<a className="item" onClick={this.onChangeMonth.bind(null, -1)}>
+				<a className="item" onClick={onPrevious}>
 					<i className="angle double left icon"></i>
 				</a>
-				<a className="item">
-					{monthName}
-				</a>
-				<a className="item">
-					{year}
-				</a>
-				<a className="item" onClick={this.onChangeMonth.bind(null, 1)}>
+				{mode == 'DAY' ?
+					<a className="item" onClick={onChangeMode.bind(null, 'MONTH')}>
+						{monthName}
+					</a> : false }
+				{ ['DAY', 'MONTH'].indexOf(mode) > -1 ?
+					<a className="item" onClick={onChangeMode.bind(null, 'YEAR')}>
+						{year}
+					</a> : false }
+				{ mode == 'YEAR' ?
+					<a className="item" onClick={onChangeMode.bind(null, 'YEAR')}>
+						{year-8}-{year + 7}
+					</a>
+				: false}
+				<a className="item" onClick={onNext}>
 					<i className="angle double right icon"></i>
 				</a>
 			</div>

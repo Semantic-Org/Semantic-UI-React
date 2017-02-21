@@ -26,6 +26,34 @@ function CalendarMonthWeek(props) {
   return <tr className={classes}>{children}</tr>
 }
 
+/**
+ * A row within a calenar month when in MONTH mode
+ * @param {Object} props containing children
+ */
+function RowWrapper(props) {
+  const { children, className, scrolling } = props
+  const classes = cx(
+    className
+  )
+  return <tr className={classes}>{children}</tr>
+}
+
+/**
+ * A cell within a calendar when in MONTH or YEAR mode
+ * @param {Object} props containing onClick, name and value
+ */
+function ItemCell(props) {
+  const {onClick, name, value} = props
+  return (
+    <td>
+      <a onClick={(e)=>{onClick(e, {value: value, nextMode: 'DAY'})}}>
+        {name}
+      </a>
+    </td>
+  )
+}
+
+
 const _meta = {
   name: 'CalendarMonth',
   parent: 'Datetime',
@@ -59,7 +87,11 @@ export default class CalendarMonth extends Component {
     /** Initial value of date. */
     defaultDate: PropTypes.any,
 
+    /** Current Month Mode (DAY, MONTH or YEAR selection) **/
+    mode: PropTypes.string,
 
+    /** default mode (DAY) **/
+    defaultMode: PropTypes.string,
     /**
      * First Day of the Week.
      * Sunday = 0
@@ -74,19 +106,20 @@ export default class CalendarMonth extends Component {
   }
 
   static defaultProps = {
-      // date: new Date(),
       firstDayOfWeek: 1
   }
 
   static autoControlledProps = [
-    'date'
+    'date',
+    'mode'
   ]
 
   constructor() {
     super()
     this.state = {
         date: new Date(),
-        hovering: null
+        hovering: null,
+        mode: 'DAY'
     }
   }
 
@@ -118,14 +151,23 @@ export default class CalendarMonth extends Component {
     return headers
   }
 
+  /**
+   * Return the current month
+   */
   getMonth() {
     return this.state.date.getMonth()
   }
 
+  /**
+   * Return the current day of the week
+   */
   getDayOfWeek() {
     return this.state.date.getDay()
   }
 
+  /**
+   * Return the current year
+   */
   getYear() {
       return this.state.date.getFullYear()
   }
@@ -188,7 +230,7 @@ export default class CalendarMonth extends Component {
         dayParams.day = nextDay += 1
         dayParams.disabled = true
       }
-      dayParams.onClick = this.handleClick.bind(this, dayParams.day)
+      dayParams.onClick = this.handleDayClick.bind(this, dayParams.day)
       return (<DayCell {...dayParams}/>)
     })
   }
@@ -223,6 +265,57 @@ export default class CalendarMonth extends Component {
     return cells
   }
 
+  getMonths() {
+    const row = [...Array(4).keys()]
+    const col = [...Array(3).keys()]
+    const cells = []
+    let i = 0
+    row.map((monthRow, rowIndex) => {
+      let children = []
+      col.map((month, monthIndex) => {
+        let thisMonth = i
+        children.push((
+          <ItemCell
+            key={i}
+            value={i}
+            name={this.props.content.months[i]}
+            onClick={(e)=>this.setMonth(e, {value: thisMonth, nextMode: 'DAY'})}
+          />
+        ))
+        i += 1
+      })
+      cells.push(RowWrapper({children}))
+    })
+    return cells
+  }
+
+  getYears() {
+    const row = [...Array(4).keys()]
+    const col = [...Array(4).keys()]
+    const yearIter = [...Array(12).keys()]
+    const cells = []
+    const currentYear = this.getYear()
+    const startYear = currentYear - 8
+    let i = startYear
+    let children = []
+    row.map((yearRow, rowIndex) => {
+      let children = []
+      col.map((year, yearIndex) => {
+        let thisYear = i
+        children.push((
+          <ItemCell
+                key={thisYear}
+                value={thisYear}
+                name={thisYear}
+                onClick={(e)=>{this.setYear(e, thisYear)}}/>
+        ))
+        i += 1
+      })
+      cells.push(RowWrapper({children}))
+    })
+    return cells
+  }
+
   /**
    * Set the current month
    *  @param  {Object} object containing one of:
@@ -230,34 +323,69 @@ export default class CalendarMonth extends Component {
    *  'page' key with value of either 1 or -1 to page to the next/prev month
    */
   setMonth = (e, props) => {
-      console.log(arguments)
-    let {value, page} = props
+    e.stopPropagation()
+    let {value, page, nextMode} = props
+    if (!nextMode) nextMode = this.state.mode
     let date = new Date(this.state.date)
     if (!value && page) {
       value = date.getMonth() + page
     }
     date.setMonth(value)
-    this.setState({
-      date: date
+    this.trySetState({
+      date: date,
+      mode: nextMode
     })
   }
 
+  /**
+   * Sets the current year and progresses to the next calendar mode
+   * @type {String}
+   */
+  setYear(e, year, nextMode='DAY') {
+    e.stopPropagation()
+    let date = new Date(this.state.date)
+    date.setYear(year)
+    this.trySetState({
+      date: date,
+      mode: nextMode
+    })
+  }
 
   /**
-   * Event handler called when paging months
-   * @param  {number} direction Eitehr 1 or -1 to indicate the next/prev month
+   * Event handler called when paginating month, years or year groups
+   * @param  {number} direction Either 1 or -1 to indicate the next/prev item
    * @param  {event} e
    */
-  changeMonth = (direction, e) => {
-      e.stopPropagation()
+  page = (direction, e) => {
+    e.stopPropagation()
+    const {mode} = this.state
+    if (mode == 'DAY') {
       this.setMonth(e, {page: direction})
+    } else if (mode == 'MONTH') {
+      this.setYear(e, this.getYear() + direction, mode)
+    } else if (mode == 'YEAR') {
+      this.setYear(e, this.getYear() + (direction*16), mode)
+    }
+  }
+
+  /**
+   * Change the calendar mode from DAY to MONTH or YEAR selection
+   * @param  {string} mode One of DAY, MONTH or YEAR
+   * @param  {[type]} e    [description]
+   * @return {[type]}      [description]
+   */
+  changeMode = (mode, e) => {
+    e.stopPropagation()
+    this.trySetState({
+      mode: mode
+    })
   }
 
   /**
    * Handle click
    * @param  {event} e
    */
-  handleClick(day, e) {
+  handleDayClick(day, e) {
     e.stopPropagation()
     const date = new Date(this.state.date);
     date.setDate(day)
@@ -265,63 +393,57 @@ export default class CalendarMonth extends Component {
     if (onDateSelect) onDateSelect(new Date(date), e)
   }
 
+  /**
+   * Return the current month's name as provided in the content prop
+   */
   getMonthName() {
       const {content} = this.props
       return content.months[this.getMonth()]
   }
 
-  getMonthOptions() {
-    return this.props.content.months.map((month, index)=>{
-        return {value: index, text:month}
-    })
+  /**
+   * Returns the calendar body content
+   */
+  getBodyContent() {
+    const {mode} = this.state
+    if (mode == 'DAY') {
+      return this.getMonthDays()
+    } else if (mode == 'MONTH') {
+      return this.getMonths()
+    } else if (mode == 'YEAR') {
+      return this.getYears()
+    }
+    return false
   }
 
   render() {
     const dayCells = this.getDays()
     const cells = this.getMonthDays()
     const thisMonth = this.getMonth()
+    const {mode} = this.state
+    const colSpan = {
+      'DAY': 7,
+      'MONTH': 3,
+      'YEAR': 4
+    }
     return (
       <table className="ui table">
         <thead>
           <tr>
-            <td colSpan="7">
-              <div className="ui fluid four item compact text menu">
-                <a className="item" onClick={this.changeMonth.bind(null, -1)}>
-                  <i className="angle double left icon"></i>
-                </a>
-                <a className="item">
-                  {this.getMonthName()}
-                </a>
-                <a className="item">
-                  {this.getYear()}
-                </a>
-                  {/* <Button.Group className='basic'>
-                    <Button>{this.getMonthName()}</Button>
-                      <DropDown floating button className='icon' onChange={this.setMonth}>
-                        <DropDown.Menu>
-                          {this.getMonthOptions().map((item, index)=>{
-                            return (
-                                <DropDown.Item
-                                  value={item.value}
-                                  text={item.text}
-                                  onClick={this.setMonth}
-                                  active={thisMonth==item.value}/>
-                            )
-                          })}
-                        </DropDown.Menu>
-                    </DropDown>
-                  </Button.Group> */}
-
-                <a className="item" onClick={this.changeMonth.bind(null, 1)}>
-                  <i className="angle double right icon"></i>
-                </a>
-              </div>
+            <td colSpan={colSpan[mode]}>
+              <CalendarHeader
+                monthName={this.getMonthName()}
+                year={this.getYear()}
+                mode={mode}
+                onPrevious={this.page.bind(this, -1)}
+                onNext={this.page.bind(this, 1)}
+                onChangeMode={this.changeMode}/>
             </td>
           </tr>
-          <tr>{this.getDayHeaders()}</tr>
+          {mode == 'DAY' ? this.getDayHeaders() : false}
         </thead>
         <tbody>
-          {cells}
+          {this.getBodyContent()}
         </tbody>
       </table>
     )
