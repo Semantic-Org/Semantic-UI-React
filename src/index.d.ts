@@ -26,7 +26,6 @@ export type SemanticWIDTHS = SemanticWIDTHSNUMBER | SemanticWIDTHSSTRING;
 
 export type SemanticGenericOnClick = (event: any, value: any) => void;
 export type SemanticFormOnClick = (event: any, object: Object) => void;
-export type SemanticSearchOnClick = (event: any, value: any, text: string) => void;  // TODO - not sure if this is correct.
 
 // ======================================================
 // Events

@@ -59,7 +59,7 @@ SearchCategory.propTypes = {
    */
   renderer: PropTypes.func,
 
-  /** Array of Search.Result props */
+  /** Array of Search.Result props. */
   results: PropTypes.array,
 }
 
