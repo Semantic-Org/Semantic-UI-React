@@ -1,5 +1,5 @@
-import _ from 'lodash'
 import cx from 'classnames'
+import _ from 'lodash'
 import React, { Children, cloneElement, PropTypes } from 'react'
 
 import {
@@ -18,22 +18,12 @@ import {
 } from '../../lib'
 import Icon from '../../elements/Icon'
 import Label from '../../elements/Label'
-
 import DropdownDivider from './DropdownDivider'
 import DropdownItem from './DropdownItem'
 import DropdownHeader from './DropdownHeader'
 import DropdownMenu from './DropdownMenu'
 
 const debug = makeDebugger('dropdown')
-
-const _meta = {
-  name: 'Dropdown',
-  type: META.TYPES.MODULE,
-  props: {
-    pointing: ['left', 'right', 'top', 'top left', 'top right', 'bottom', 'bottom left', 'bottom right'],
-    additionPosition: ['top', 'bottom'],
-  },
-}
 
 /**
  * A dropdown allows a user to select a value from a series of options.
@@ -43,6 +33,18 @@ const _meta = {
  */
 export default class Dropdown extends Component {
   static propTypes = {
+    /** An element type to render as (string or function). */
+    as: customPropTypes.as,
+
+    /** Label prefixed to an option added by a user. */
+    additionLabel: PropTypes.oneOfType([
+      PropTypes.element,
+      PropTypes.string,
+    ]),
+
+    /** Position of the `Add: ...` option in the dropdown list ('top' or 'bottom'). */
+    additionPosition: PropTypes.oneOf(['top', 'bottom']),
+
     /**
      * Allow user additions to the list of options (boolean).
      * Requires the use of `selection`, `options` and `search`.
@@ -52,19 +54,7 @@ export default class Dropdown extends Component {
       PropTypes.bool,
     ]),
 
-    /** Position of the `Add: ...` option in the dropdown list ('top' or 'bottom'). */
-    additionPosition: PropTypes.oneOf(_meta.props.additionPosition),
-
-    /** Label prefixed to an option added by a user. */
-    additionLabel: PropTypes.oneOfType([
-      PropTypes.element,
-      PropTypes.string,
-    ]),
-
-    /** An element type to render as (string or function). */
-    as: customPropTypes.as,
-
-    /** A Dropdown can reduce its complexity */
+    /** A Dropdown can reduce its complexity. */
     basic: PropTypes.bool,
 
     /** Format the Dropdown to appear as a button. */
@@ -102,15 +92,15 @@ export default class Dropdown extends Component {
     defaultSelectedLabel: customPropTypes.every([
       customPropTypes.demand(['multiple']),
       PropTypes.oneOfType([
-        PropTypes.string,
         PropTypes.number,
+        PropTypes.string,
       ]),
     ]),
 
     /** Initial value or value array if multiple. */
     defaultValue: PropTypes.oneOfType([
-      PropTypes.string,
       PropTypes.number,
+      PropTypes.string,
       PropTypes.arrayOf(PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.number,
@@ -141,11 +131,11 @@ export default class Dropdown extends Component {
     /** A dropdown can be formatted to appear inline in other content. */
     inline: PropTypes.bool,
 
-    /** A dropdown can be labeled. */
-    labeled: PropTypes.bool,
-
     /** A dropdown can be formatted as a Menu item. */
     item: PropTypes.bool,
+
+    /** A dropdown can be labeled. */
+    labeled: PropTypes.bool,
 
     /** A dropdown can show that it is currently loading data. */
     loading: PropTypes.bool,
@@ -184,6 +174,14 @@ export default class Dropdown extends Component {
     onChange: PropTypes.func,
 
     /**
+     * Called on click.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props.
+     */
+    onClick: PropTypes.func,
+
+    /**
      * Called when a close event happens.
      *
      * @param {SyntheticEvent} event - React's original SyntheticEvent.
@@ -192,12 +190,28 @@ export default class Dropdown extends Component {
     onClose: PropTypes.func,
 
     /**
+     * Called on focus.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props.
+     */
+    onFocus: PropTypes.func,
+
+    /**
      * Called when a multi-select label is clicked.
      *
      * @param {SyntheticEvent} event - React's original SyntheticEvent.
      * @param {object} data - All label props.
      */
     onLabelClick: PropTypes.func,
+
+    /**
+     * Called on mousedown.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props.
+     */
+    onMouseDown: PropTypes.func,
 
     /**
      * Called when an open event happens.
@@ -214,30 +228,6 @@ export default class Dropdown extends Component {
      * @param {string} value - Current value of search input.
      */
     onSearchChange: PropTypes.func,
-
-    /**
-     * Called on click.
-     *
-     * @param {SyntheticEvent} event - React's original SyntheticEvent.
-     * @param {object} data - All props.
-     */
-    onClick: PropTypes.func,
-
-    /**
-     * Called on focus.
-     *
-     * @param {SyntheticEvent} event - React's original SyntheticEvent.
-     * @param {object} data - All props.
-     */
-    onFocus: PropTypes.func,
-
-    /**
-     * Called on mousedown.
-     *
-     * @param {SyntheticEvent} event - React's original SyntheticEvent.
-     * @param {object} data - All props.
-     */
-    onMouseDown: PropTypes.func,
 
     /** Controls whether or not the dropdown menu is displayed. */
     open: PropTypes.bool,
@@ -257,13 +247,10 @@ export default class Dropdown extends Component {
     /** A dropdown can be formatted so that its menu is pointing. */
     pointing: PropTypes.oneOfType([
       PropTypes.bool,
-      PropTypes.oneOf(_meta.props.pointing),
+      PropTypes.oneOf(['left', 'right', 'top', 'top left', 'top right', 'bottom', 'bottom left', 'bottom right']),
     ]),
 
-    /**
-     * A function that takes (data, index, defaultLabelProps) and returns
-     * shorthand for Label .
-     */
+    /** A function that takes (data, index, defaultLabelProps) and returns shorthand for Label. */
     renderLabel: PropTypes.func,
 
     /** A dropdown can have its menu scroll. */
@@ -280,6 +267,9 @@ export default class Dropdown extends Component {
 
     // TODO 'searchInMenu' or 'search='in menu' or ???  How to handle this markup and functionality?
 
+    /** Define whether the highlighted item should be selected on blur. */
+    selectOnBlur: PropTypes.bool,
+
     /** Currently selected label in multi-select. */
     selectedLabel: customPropTypes.every([
       customPropTypes.demand(['multiple']),
@@ -295,9 +285,6 @@ export default class Dropdown extends Component {
       customPropTypes.demand(['options']),
       PropTypes.bool,
     ]),
-
-    /** Define whether the highlighted item should be selected on blur. */
-    selectOnBlur: PropTypes.bool,
 
     /** A simple dropdown can open without Javascript. */
     simple: PropTypes.bool,
@@ -345,7 +332,11 @@ export default class Dropdown extends Component {
     'selectedLabel',
   ]
 
-  static _meta = _meta
+  static _meta = {
+    name: 'Dropdown',
+    type: META.TYPES.MODULE,
+  }
+
   static Divider = DropdownDivider
   static Header = DropdownHeader
   static Item = DropdownItem
