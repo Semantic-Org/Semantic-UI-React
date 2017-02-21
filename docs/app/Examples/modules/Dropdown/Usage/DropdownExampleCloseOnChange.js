@@ -1,13 +1,13 @@
 import React from 'react'
 import { Dropdown } from 'semantic-ui-react'
 
-import { getOptions } from '../common'
+import { getItems } from '../common'
 
 const DropdownExampleCloseOnChange = () => (
   <div>
-    <Dropdown multiple search selection closeOnChange options={getOptions(5)} placeholder='I close on change' />
+    <Dropdown multiple search selection closeOnChange items={getItems(5)} placeholder='I close on change' />
     {' '}
-    <Dropdown multiple search selection options={getOptions(5)} placeholder='I stay open on change' />
+    <Dropdown multiple search selection items={getItems(5)} placeholder='I stay open on change' />
   </div>
 )
 
