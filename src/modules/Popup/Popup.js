@@ -104,8 +104,8 @@ export default class Popup extends Component {
      */
     onUnmount: PropTypes.func,
 
-    /** Positioning for the popover. */
-    positioning: PropTypes.oneOf(POSITIONS),
+    /** Position for the popover. */
+    position: PropTypes.oneOf(POSITIONS),
 
     /** Popup size. */
     size: PropTypes.oneOf(_.without(SUI.SIZES, 'medium', 'big', 'massive')),
@@ -124,7 +124,7 @@ export default class Popup extends Component {
   }
 
   static defaultProps = {
-    positioning: 'top left',
+    position: 'top left',
     on: 'hover',
   }
 
@@ -223,20 +223,20 @@ export default class Popup extends Component {
 
   setPopupStyle() {
     if (!this.coords || !this.popupCoords) return
-    let positioning = this.props.positioning
-    let style = this.computePopupStyle(positioning)
+    let position = this.props.position
+    let style = this.computePopupStyle(position)
 
     // Lets detect if the popup is out of the viewport and adjust
     // the position accordingly
-    const positions = _.without(POSITIONS, positioning)
+    const positions = _.without(POSITIONS, position)
     for (let i = 0; !this.isStyleInViewport(style) && i < positions.length; i++) {
       style = this.computePopupStyle(positions[i])
-      positioning = positions[i]
+      position = positions[i]
     }
 
     // Append 'px' to every numerical values in the style
     style = _.mapValues(style, value => _.isNumber(value) ? value + 'px' : value)
-    this.setState({ style, positioning })
+    this.setState({ style, position })
   }
 
   getPortalProps() {
@@ -323,11 +323,11 @@ export default class Popup extends Component {
       wide,
     } = this.props
 
-    const { positioning, closed } = this.state
+    const { position, closed } = this.state
     const style = _.assign({}, this.state.style, this.props.style)
     const classes = cx(
       'ui',
-      positioning,
+      position,
       size,
       useKeyOrValueAndKey(wide, 'wide'),
       useKeyOnly(basic, 'basic'),

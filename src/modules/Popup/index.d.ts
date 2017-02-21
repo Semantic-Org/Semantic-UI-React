@@ -37,8 +37,8 @@ interface PopupProps extends PortalProps {
   /** Event triggering the popup. */
   on?: 'hover' | 'click' | 'focus';
 
-  /** Positioning for the popover. */
-  positioning?: 'top left' | 'top right' |
+  /** Position for the popover. */
+  position?: 'top left' | 'top right' |
     'bottom right' | 'bottom left' |
     'right center' | 'left center' |
     'top center' | 'bottom center';

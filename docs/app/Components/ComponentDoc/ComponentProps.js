@@ -43,7 +43,7 @@ export default class ComponentProps extends Component {
 
   renderRequired = item => item.required && (
     <Popup
-      positioning='right center'
+      position='right center'
       style={{ padding: '0.5em' }}
       trigger={<Icon size='small' color='red' name='asterisk' />}
       content='Required'
