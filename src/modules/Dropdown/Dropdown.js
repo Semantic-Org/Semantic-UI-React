@@ -317,7 +317,7 @@ export default class Dropdown extends Component {
     additionPosition: 'top',
     icon: 'dropdown',
     noResultsMessage: 'No results found.',
-    renderLabel: item => item.props.text,
+    renderLabel: item => item.text,
     selectOnBlur: true,
     openOnFocus: true,
     closeOnBlur: true,
@@ -536,7 +536,7 @@ export default class Dropdown extends Component {
     const { open } = this.state
     const { multiple, onAddItem } = this.props
     const item = this.getSelectedItem()
-    const value = _.get(item, 'props.value')
+    const value = _.get(item, 'value')
 
     // prevent selecting null if there was no selected item value
     // prevent selecting duplicate items when the dropdown is closed
@@ -706,8 +706,8 @@ export default class Dropdown extends Component {
   // Getters
   // ----------------------------------------
 
-  getDropdownItemElements = (givenItems = this.props.items) => {
-    return _.map(givenItems, item => DropdownItem.create(item))
+  getDropdownItemObjects = (givenItems = this.props.items) => {
+    return _.map(givenItems, item => DropdownItem.create(item).props)
   }
 
   // There are times when we need to calculate the items based on a value
@@ -716,11 +716,11 @@ export default class Dropdown extends Component {
     const { multiple, search, allowAdditions, additionPosition, additionLabel } = this.props
     const { searchQuery } = this.state
 
-    let filteredItems = this.getDropdownItemElements(givenItems)
+    let filteredItems = this.getDropdownItemObjects(givenItems)
 
     // filter out active items
     if (multiple) {
-      filteredItems = _.filter(filteredItems, item => !_.includes(value, item.props.value))
+      filteredItems = _.filter(filteredItems, item => !_.includes(value, item.value))
     }
 
     // filter by search query
@@ -729,12 +729,12 @@ export default class Dropdown extends Component {
         filteredItems = search(filteredItems, searchQuery)
       } else {
         const re = new RegExp(_.escapeRegExp(searchQuery), 'i')
-        filteredItems = _.filter(filteredItems, (item) => re.test(item.props.text))
+        filteredItems = _.filter(filteredItems, (item) => re.test(item.text))
       }
     }
 
     // insert the "add" item
-    if (allowAdditions && search && searchQuery && !_.some(filteredItems, { props: { text: searchQuery } })) {
+    if (allowAdditions && search && searchQuery && !_.some(filteredItems, { text: searchQuery })) {
       const additionLabelElement = React.isValidElement(additionLabel)
         ? React.cloneElement(additionLabel, { key: 'label' })
         : additionLabel || ''
@@ -768,19 +768,19 @@ export default class Dropdown extends Component {
     const items = givenItems || this.getDropdownItemsForMenu()
 
     return _.reduce(items, (memo, item, index) => {
-      if (!item.props.disabled) memo.push(index)
+      if (!item.disabled) memo.push(index)
       return memo
     }, [])
   }
 
   getItemByValue = (value) => {
-    return _.find(this.getDropdownItemElements(), { props: { value } })
+    return _.find(this.getDropdownItemObjects(), { value })
   }
 
   getMenuItemIndexByValue = (value, givenItems) => {
     const items = givenItems || this.getDropdownItemsForMenu()
 
-    return _.findIndex(items, ['props.value', value])
+    return _.findIndex(items, ['value', value])
   }
 
   getDropdownAriaProps = () => {
@@ -900,7 +900,7 @@ export default class Dropdown extends Component {
     const lastIndex = items.length - 1
 
     // Prevent infinite loop
-    if (_.every(items, 'props.disabled')) return
+    if (_.every(items, 'disabled')) return
 
     // next is after last, wrap to beginning
     // next is before first, wrap to end
@@ -908,7 +908,7 @@ export default class Dropdown extends Component {
     if (nextIndex > lastIndex) nextIndex = 0
     else if (nextIndex < 0) nextIndex = lastIndex
 
-    if (items[nextIndex].props.disabled) return this.moveSelectionBy(offset, nextIndex)
+    if (items[nextIndex].disabled) return this.moveSelectionBy(offset, nextIndex)
 
     this.setState({ selectedIndex: nextIndex })
     this.scrollSelectedItemIntoView()
@@ -995,9 +995,9 @@ export default class Dropdown extends Component {
     } else if (text) {
       _text = text
     } else if (open && !multiple) {
-      _text = _.get(this.getSelectedItem(), 'props.text')
+      _text = _.get(this.getSelectedItem(), 'text')
     } else if (hasValue) {
-      _text = _.get(this.getItemByValue(value), 'props.text')
+      _text = _.get(this.getItemByValue(value), 'text')
     }
 
     return <div className={classes}>{_text}</div>
@@ -1007,7 +1007,7 @@ export default class Dropdown extends Component {
     debug('renderHiddenInput()')
     const { value } = this.state
     const { multiple, name, selection } = this.props
-    const items = this.getDropdownItemElements()
+    const items = this.getDropdownItemObjects()
     debug(`name:      ${name}`)
     debug(`selection: ${selection}`)
     debug(`value:     ${value}`)
@@ -1017,9 +1017,11 @@ export default class Dropdown extends Component {
     return (
       <select type='hidden' aria-hidden='true' name={name} value={value} multiple={multiple}>
         <option value='' />
-        {_.map(items, item => {
-          return createShorthand('option', val => ({ key: val, children: val, value: val }), item.props.value)
-        })}
+        {_.map(items, item => createShorthand(
+          'option',
+          val => ({ key: val, children: val, value: val }),
+          item.value
+        ))}
       </select>
     )
   }
@@ -1081,12 +1083,12 @@ export default class Dropdown extends Component {
 
     return _.map(activeItems, (item, index) => {
       const defaultLabelProps = {
-        active: item.props.value === selectedLabel,
+        active: item.value === selectedLabel,
         as: 'a',
-        key: item.props.value,
+        key: item.value,
         onClick: this.handleLabelClick,
         onRemove: this.handleLabelRemove,
-        value: item.props.value,
+        value: item.value,
       }
 
       return Label.create(
