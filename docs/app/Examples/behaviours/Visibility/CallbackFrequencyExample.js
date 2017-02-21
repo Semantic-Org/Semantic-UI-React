@@ -54,6 +54,8 @@ class VisibilityExample extends Component {
       <Grid columns={2}>
         <Grid.Column>
           <Visibility
+            continuous={continuous}
+            once={once}
             onTopVisible={() => this.updateLog('onTopVisible')}
             onTopPassed={() => this.updateLog('onTopPassed')}
             onBottomVisible={() => this.updateLog('onBottomVisible')}
@@ -81,9 +83,9 @@ class VisibilityExample extends Component {
               Event Log
             </Segment>
             <Segment>
-              <div style={{ height: 300, overflowY: 'scroll' }}>
-                {log.map(e => <p>{e}</p>)}
-              </div>
+              <pre style={{ height: 300, overflowY: 'scroll' }}>
+                {log.map((e, i) => <p key={i}>{e}</p>)}
+              </pre>
             </Segment>
           </Segment.Group>
         </Grid.Column>
