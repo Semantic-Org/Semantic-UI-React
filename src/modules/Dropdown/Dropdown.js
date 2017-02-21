@@ -1019,8 +1019,9 @@ export default class Dropdown extends Component {
         <option value='' />
         {_.map(items, item => createShorthand(
           'option',
-          val => ({ key: val, children: val, value: val }),
-          item.value
+          // we know mapValueToProps here is never used since we're always passing props
+          () => null,
+          { key: item.value, text: item.text, value: item.value }
         ))}
       </select>
     )
