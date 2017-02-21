@@ -37,6 +37,9 @@ export default class MenuItem extends Component {
     /** Shorthand for primary content. */
     content: customPropTypes.contentShorthand,
 
+    /** A menu item can be disabled. */
+    disabled: PropTypes.bool,
+
     /** A menu item or menu can remove element padding, vertically or horizontally. */
     fitted: PropTypes.oneOfType([
       PropTypes.bool,
@@ -93,6 +96,7 @@ export default class MenuItem extends Component {
       className,
       color,
       content,
+      disabled,
       fitted,
       header,
       icon,
@@ -106,6 +110,7 @@ export default class MenuItem extends Component {
       color,
       position,
       useKeyOnly(active, 'active'),
+      useKeyOnly(disabled, 'disabled'),
       useKeyOnly(icon === true || icon && !(name || content), 'icon'),
       useKeyOnly(header, 'header'),
       useKeyOnly(link, 'link'),
