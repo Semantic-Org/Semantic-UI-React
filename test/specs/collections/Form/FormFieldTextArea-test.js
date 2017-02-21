@@ -1,7 +1,7 @@
 import React from 'react'
 
-import FormTextArea from 'src/collections/Form/FormTextArea'
 import TextArea from 'src/addons/TextArea/TextArea'
+import FormTextArea from 'src/collections/Form/FormTextArea'
 import * as common from 'test/specs/commonTests'
 
 describe('FormTextArea', () => {

@@ -1,5 +1,5 @@
-import _ from 'lodash'
 import cx from 'classnames'
+import _ from 'lodash'
 import React, { Component, PropTypes } from 'react'
 
 import {
@@ -156,15 +156,6 @@ function formSerializer(formNode) {
   return json
 }
 
-const _meta = {
-  name: 'Form',
-  type: META.TYPES.COLLECTION,
-  props: {
-    widths: ['equal'],
-    size: _.without(SUI.SIZES, 'medium'),
-  },
-}
-
 /**
  * A Form displays a set of related user input fields in a structured way.
  * @see Button
@@ -177,11 +168,6 @@ const _meta = {
  * @see TextArea
  */
 export default class Form extends Component {
-  static defaultProps = {
-    as: 'form',
-    serializer: formSerializer,
-  }
-
   static propTypes = {
     /** An element type to render as (string or function). */
     as: customPropTypes.as,
@@ -192,13 +178,13 @@ export default class Form extends Component {
     /** Additional classes. */
     className: PropTypes.string,
 
-    /** Automatically show any error Message children */
+    /** Automatically show any error Message children. */
     error: PropTypes.bool,
 
-    /** A form can have its color inverted for contrast */
+    /** A form can have its color inverted for contrast. */
     inverted: PropTypes.bool,
 
-    /** Automatically show a loading indicator */
+    /** Automatically show a loading indicator. */
     loading: PropTypes.bool,
 
     /**
@@ -212,23 +198,31 @@ export default class Form extends Component {
     /** A comment can contain a form to reply to a comment. This may have arbitrary content. */
     reply: PropTypes.bool,
 
-    /** Called onSubmit with the form node that returns the serialized form object */
+    /** Called onSubmit with the form node that returns the serialized form object. */
     serializer: PropTypes.func,
 
-    /** A form can vary in size */
-    size: PropTypes.oneOf(_meta.props.size),
+    /** A form can vary in size. */
+    size: PropTypes.oneOf(_.without(SUI.SIZES, 'medium')),
 
-    /** Automatically show any success Message children */
+    /** Automatically show any success Message children. */
     success: PropTypes.bool,
 
-    /** Automatically show any warning Message children */
+    /** Automatically show any warning Message children .*/
     warning: PropTypes.bool,
 
-    /** Forms can automatically divide fields to be equal width */
-    widths: PropTypes.oneOf(_meta.props.widths),
+    /** Forms can automatically divide fields to be equal width. */
+    widths: PropTypes.oneOf(['equal']),
   }
 
-  static _meta = _meta
+  static defaultProps = {
+    as: 'form',
+    serializer: formSerializer,
+  }
+
+  static _meta = {
+    name: 'Form',
+    type: META.TYPES.COLLECTION,
+  }
 
   static Field = FormField
   static Button = FormButton

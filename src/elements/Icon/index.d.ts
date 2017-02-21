@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {SemanticCOLORS, SemanticROTATION} from '../..';
+import {SemanticCOLORS} from '../..';
 
 type ICON_SIZES = 'mini' | 'tiny' | 'small' | 'large' | 'big' | 'huge' | 'massive';
 
@@ -46,7 +46,7 @@ export interface IconProps {
   name?: string;
 
   /** Icon can rotated. */
-  rotated?: SemanticROTATION;
+  rotated?: 'clockwise' | 'counterclockwise';
 
   /** Size of the icon. */
   size?: ICON_SIZES;

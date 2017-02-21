@@ -1,18 +1,16 @@
-import { ButtonProps } from '../../elements/Button';
-import {
-    ReactFocusEvents,
-    ReactFormEvents,
-    SemanticFormOnClick,
-    SemanticGenericOnClick,
-    SemanticWIDTHS
-} from '../..';
 import * as React from 'react';
-import { InputProps } from '../../elements/Input/index';
-import { DropdownProps } from '../../modules/Dropdown/index';
 
+import { SemanticWIDTHS } from '../..';
+import { RadioProps } from '../../addons/Radio';
+import { SelectProps } from '../../addons/Select';
+import { TextAreaProps } from '../../addons/TextArea';
+import { ButtonProps } from '../../elements/Button';
+import { InputProps } from '../../elements/Input';
+import { CheckboxProps } from '../../modules/Checkbox';
+import { DropdownProps } from '../../modules/Dropdown';
 
 interface FormProps {
-  method?: 'get' | 'post';
+  [key: string]: any;
 
   /** An element type to render as (string or function). */
   as?: any;
@@ -23,13 +21,13 @@ interface FormProps {
   /** Additional classes. */
   className?: string;
 
-  /** Automatically show any error Message children */
+  /** Automatically show any error Message children. */
   error?: boolean;
 
-  /** A form can have its color inverted for contrast */
+  /** A form can have its color inverted for contrast. */
   inverted?: boolean;
 
-  /** Automatically show a loading indicator */
+  /** Automatically show a loading indicator. */
   loading?: boolean;
 
   /**
@@ -38,25 +36,29 @@ interface FormProps {
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
    * @param {object} data - All props and the form's serialized values.
    */
-  onSubmit?: SemanticFormOnClick;
+  onSubmit?: (event: React.MouseEvent<HTMLAnchorElement>, data: FormOnSubmitData) => void;
 
   /** A comment can contain a form to reply to a comment. This may have arbitrary content. */
   reply?: boolean;
 
   /** Called onSubmit with the form node that returns the serialized form object */
-  serializer?: ()=>void;  // TODO, check;
+  serializer?: (form: HTMLFormElement) => {[key: string]: any};
 
-  /** A form can vary in size */
+  /** A form can vary in size. */
   size?: string;
 
-  /** Automatically show any success Message children */
+  /** Automatically show any success Message children. */
   success?: boolean;
 
-  /** Automatically show any warning Message children */
+  /** Automatically show any warning Message children. */
   warning?: boolean;
 
-  /** Forms can automatically divide fields to be equal width */
-  widths?: SemanticWIDTHS | 'equal';
+  /** Forms can automatically divide fields to be equal width. */
+  widths?: 'equal';
+}
+
+interface FormOnSubmitData extends FormProps {
+  formData: {[key: string]: any};
 }
 
 interface FormClass extends React.ComponentClass<FormProps> {
@@ -73,7 +75,25 @@ interface FormClass extends React.ComponentClass<FormProps> {
 
 export const Form: FormClass;
 
+interface FormButtonProps extends FormFieldProps, ButtonProps {
+}
+
+export const FormButton: React.StatelessComponent<FormButtonProps>;
+
+interface FormCheckboxProps extends FormFieldProps, CheckboxProps {
+  type?: 'checkbox' | 'radio';
+}
+
+export const FormCheckbox: React.StatelessComponent<FormCheckboxProps>;
+
+interface FormDropdownProps extends FormFieldProps, DropdownProps {
+}
+
+export const FormDropdown: React.StatelessComponent<FormDropdownProps>;
+
 interface FormFieldProps {
+  [key: string]: any;
+
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -90,20 +110,17 @@ interface FormFieldProps {
    */
   control?: any;
 
-  /** Individual fields may be disabled */
-  disabled?: any;
+  /** Individual fields may be disabled. */
+  disabled?: boolean;
 
-  /** Individual fields may display an error state */
+  /** Individual fields may display an error state. */
   error?: boolean;
 
-  /** A field can have its label next to instead of above it */
+  /** A field can have its label next to instead of above it. */
   inline?: boolean;
 
-  // Heads Up!
-  // Do not disallow children with `label` shorthand
-  // The `control` might accept a `label` prop and `children`
   /** Mutually exclusive with children. */
-  label?: string;
+  label?: any;
 
   /** A field can show that input is mandatory.  Requires a label. */
   required?: any;
@@ -115,45 +132,11 @@ interface FormFieldProps {
   width?: SemanticWIDTHS;
 }
 
-export const FormField: React.ComponentClass<FormFieldProps>;
-
-interface FormButtonProps extends ButtonProps {
-
-  /** An element type to render as (string or function). */
-  as?: any;
-
-  control?: any;
-  width?: number;
-}
-
-export const FormButton: React.ComponentClass<FormButtonProps>;
-
-interface FormCheckboxProps {
-  /** An element type to render as (string or function). */
-  as?: any;
-  control?: any;
-  label?: string;
-  name?: string;
-  placeholder?: string;
-  value?: string|number|Array<string>|Array<number>;
-}
-
-export const FormCheckbox: React.ComponentClass<FormCheckboxProps>;
-
-interface FormDropdownProps extends DropdownProps {
-  /** An element type to render as (string or function). */
-  as?: any;
-
-  /** A FormField control prop */
-  control?: any;
-  label?: string;
-  name?: string;
-  placeholder?: string;
-}
-
-export const FormDropdown: React.ComponentClass<FormDropdownProps>;
+export const FormField: React.StatelessComponent<FormFieldProps>;
 
 interface FormGroupProps {
+  [key: string]: any;
+
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -163,69 +146,35 @@ interface FormGroupProps {
   /** Additional classes. */
   className?: string;
 
-  /** Fields can show related choices */
+  /** Fields can show related choices. */
   grouped?: boolean;
 
-  /** Multiple fields may be inline in a row */
+  /** Multiple fields may be inline in a row. */
   inline?: boolean;
 
-  /** Fields Groups can specify their width in grid columns or automatically divide fields to be equal width */
+  /** Fields Groups can specify their width in grid columns or automatically divide fields to be equal width. */
   widths?: SemanticWIDTHS | 'equal';
 }
 
-export const FormGroup: React.ComponentClass<FormGroupProps>;
+export const FormGroup: React.StatelessComponent<FormGroupProps>;
 
-interface FormInputProps extends InputProps {
+interface FormInputProps extends FormFieldProps, InputProps {
 }
 
-export const FormInput: React.ComponentClass<FormInputProps>;
+export const FormInput: React.StatelessComponent<FormInputProps>;
 
-interface FormRadioProps {
-  /** An element type to render as (string or function). */
-  as?: any;
-  checked?: boolean;
-
-  /** A FormField control prop */
-  control?: any;
-  label?: string;
-  name?: string;
-  onChange?: SemanticGenericOnClick;
-  placeholder?: string;
-  value?: string|number|Array<string>|Array<number>;
+interface FormRadioProps extends FormFieldProps, RadioProps {
+  type?: 'checkbox' | 'radio';
 }
 
-export const FormRadio: React.ComponentClass<FormRadioProps>;
+export const FormRadio: React.StatelessComponent<FormRadioProps>;
 
-interface FormSelectProps extends ReactFormEvents<HTMLSelectElement>, ReactFocusEvents<HTMLSelectElement> {
-  /** An element type to render as (string or function). */
-  as?: any;
-
-  /** A FormField control prop */
-  control?: any;
-  label?: string;
-  multiple?: boolean;
-  name?: string;
-  options?: any;
-  placeholder?: string;
-  search?: boolean;
-  width?: number;
-  compact?: boolean;
+interface FormSelectProps extends FormFieldProps, SelectProps {
 }
 
-export const FormSelect: React.ComponentClass<FormSelectProps>;
+export const FormSelect: React.StatelessComponent<FormSelectProps>;
 
-export interface FormTextAreaProps extends ReactFormEvents<HTMLTextAreaElement>, ReactFocusEvents<HTMLTextAreaElement> {
-  /** An element type to render as (string or function). */
-  as?: any;
-
-  /** A FormField control prop */
-  control?: any;
-  label?: string;
-  name?: string;
-  options?: any;
-  placeholder?: string;
-  rows?: string|number;
-  width?: number;
+interface FormTextAreaProps extends FormFieldProps, TextAreaProps {
 }
 
-export const FormTextArea: React.ComponentClass<FormTextAreaProps>;
+export const FormTextArea: React.StatelessComponent<FormTextAreaProps>;

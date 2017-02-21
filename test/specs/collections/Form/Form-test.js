@@ -18,7 +18,6 @@ import { consoleUtil, sandbox } from 'test/utils'
 
 describe('Form', () => {
   common.isConformant(Form)
-  common.hasUIClassName(Form)
   common.hasSubComponents(Form, [
     FormButton,
     FormCheckbox,
@@ -30,6 +29,7 @@ describe('Form', () => {
     FormRadio,
     FormSelect,
   ])
+  common.hasUIClassName(Form)
   common.rendersChildren(Form)
 
   common.implementsWidthProp(Form, _.without(SUI.SIZES, 'medium'), { propKey: 'widths' })

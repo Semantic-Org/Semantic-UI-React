@@ -7,7 +7,7 @@ import {
   DropdownProps
 } from '../../modules/Dropdown';
 
-interface SelectProps extends DropdownProps {
+export interface SelectProps extends DropdownProps {
   selection: true;
 }
 
