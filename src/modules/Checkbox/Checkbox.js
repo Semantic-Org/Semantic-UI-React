@@ -67,8 +67,6 @@ export default class Checkbox extends Component {
      */
     onClick: PropTypes.func,
 
-    onFocus: PropTypes.func,
-
     /** Format as a radio element. This means it is an exclusive option. */
     radio: customPropTypes.every([
       PropTypes.bool,
@@ -151,8 +149,8 @@ export default class Checkbox extends Component {
     }
   }
 
-  handleFocus = (e) => {
-
+  handleMouseDown = (e) => {
+    _.invoke('focus', this.checkboxRef)
   }
 
   // Note: You can't directly set the indeterminate prop on the input, so we
@@ -204,7 +202,7 @@ export default class Checkbox extends Component {
     return (
       <ElementType {...rest} className={classes}
         onClick={this.handleClick} onChange={this.handleClick}
-        onFocus={this.handleFocus}
+        onMouseDown={this.handleMouseDown}
       >
         <input
           checked={checked}
