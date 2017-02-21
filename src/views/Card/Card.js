@@ -55,6 +55,9 @@ export default class Card extends Component {
     /** A card can contain an Image component. */
     image: customPropTypes.itemShorthand,
 
+    /** A card can be formatted to link to other content. */
+    link: PropTypes.bool,
+
     /** Shorthand for CardMeta. */
     meta: customPropTypes.itemShorthand,
 
@@ -100,6 +103,7 @@ export default class Card extends Component {
       header,
       href,
       image,
+      link,
       meta,
       onClick,
       raised,
@@ -110,6 +114,7 @@ export default class Card extends Component {
       color,
       useKeyOnly(centered, 'centered'),
       useKeyOnly(fluid, 'fluid'),
+      useKeyOnly(link, 'link'),
       useKeyOnly(raised, 'raised'),
       'card',
       className,
