@@ -1,7 +1,9 @@
-import React, { PropTypes } from 'react'
 import cx from 'classnames'
+import React, { PropTypes } from 'react'
+
 import {
   createShorthandFactory,
+  customPropTypes,
   getElementType,
   getUnhandledProps,
   META,
@@ -19,9 +21,10 @@ export default function PopupContent(props) {
   return <ElementType {...rest} className={classes}>{children}</ElementType>
 }
 
-PopupContent.create = createShorthandFactory(PopupContent, value => ({ children: value }))
-
 PopupContent.propTypes = {
+  /** An element type to render as (string or function). */
+  as: customPropTypes.as,
+
   /** The content of the Popup */
   children: PropTypes.node,
 
@@ -34,3 +37,5 @@ PopupContent._meta = {
   type: META.TYPES.MODULE,
   parent: 'Popup',
 }
+
+PopupContent.create = createShorthandFactory(PopupContent, children => ({ children }))

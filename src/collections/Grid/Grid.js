@@ -93,7 +93,7 @@ Grid.propTypes = {
   /** Represents column count per row in Grid. */
   columns: PropTypes.oneOf([...SUI.WIDTHS, 'equal']),
 
-  /** A grid can be combined with a container to use avaiable layout and alignment. */
+  /** A grid can be combined with a container to use the available layout and alignment. */
   container: PropTypes.bool,
 
   /** A grid can have dividers between its columns. */
@@ -125,7 +125,7 @@ Grid.propTypes = {
   /** A grid can have its columns stack on-top of each other after reaching mobile breakpoints. */
   stackable: PropTypes.bool,
 
-  /** An can stretch its contents to take up the entire grid height. */
+  /** A grid can stretch its contents to take up the entire grid height. */
   stretched: PropTypes.bool,
 
   /** A grid can specify its text alignment. */

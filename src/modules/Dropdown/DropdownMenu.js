@@ -1,5 +1,5 @@
-import React, { PropTypes } from 'react'
 import cx from 'classnames'
+import React, { PropTypes } from 'react'
 
 import {
   customPropTypes,
@@ -9,6 +9,9 @@ import {
   useKeyOnly,
 } from '../../lib'
 
+/**
+ * A dropdown menu can contain a menu.
+ */
 function DropdownMenu(props) {
   const { children, className, scrolling } = props
   const classes = cx(

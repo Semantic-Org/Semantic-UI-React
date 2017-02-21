@@ -32,7 +32,7 @@ describe('Form', () => {
   common.hasUIClassName(Form)
   common.rendersChildren(Form)
 
-  common.implementsWidthProp(Form, { propKey: 'widths' })
+  common.implementsWidthProp(Form, _.without(SUI.SIZES, 'medium'), { propKey: 'widths' })
 
   common.propKeyOnlyToClassName(Form, 'error')
   common.propKeyOnlyToClassName(Form, 'inverted')

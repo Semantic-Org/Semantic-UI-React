@@ -1,7 +1,9 @@
-import React, { PropTypes } from 'react'
 import cx from 'classnames'
+import React, { PropTypes } from 'react'
+
 import {
   createShorthandFactory,
+  customPropTypes,
   getElementType,
   getUnhandledProps,
   META,
@@ -19,13 +21,14 @@ export default function PopupHeader(props) {
   return <ElementType {...rest} className={classes}>{children}</ElementType>
 }
 
-PopupHeader.create = createShorthandFactory(PopupHeader, value => ({ children: value }))
-
 PopupHeader.propTypes = {
-  /** The header of the Popup */
+  /** An element type to render as (string or function). */
+  as: customPropTypes.as,
+
+  /** Primary content. */
   children: PropTypes.node,
 
-  /** Classes to add to the Popup header className. */
+  /** Additional classes. */
   className: PropTypes.string,
 }
 
@@ -34,3 +37,5 @@ PopupHeader._meta = {
   type: META.TYPES.MODULE,
   parent: 'Popup',
 }
+
+PopupHeader.create = createShorthandFactory(PopupHeader, children => ({ children }))

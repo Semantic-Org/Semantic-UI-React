@@ -1,5 +1,5 @@
-import _ from 'lodash'
 import cx from 'classnames'
+import _ from 'lodash'
 import React, { Component, PropTypes } from 'react'
 
 import {
@@ -17,7 +17,7 @@ import Image from '../../elements/Image'
 import Label from '../../elements/Label'
 
 /**
- * An item sub-component for Dropdown component
+ * An item sub-component for Dropdown component.
  */
 export default class DropdownItem extends Component {
   static propTypes = {
@@ -55,6 +55,14 @@ export default class DropdownItem extends Component {
     label: customPropTypes.itemShorthand,
 
     /**
+     * Called on click.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props.
+     */
+    onClick: PropTypes.func,
+
+    /**
      * The item currently selected by keyboard shortcut.
      * This is not the active item.
      */
@@ -63,19 +71,11 @@ export default class DropdownItem extends Component {
     /** Display text. */
     text: customPropTypes.contentShorthand,
 
-    /** Stored value */
+    /** Stored value. */
     value: PropTypes.oneOfType([
       PropTypes.number,
       PropTypes.string,
     ]),
-
-    /**
-     * Called on click.
-     *
-     * @param {SyntheticEvent} event - React's original SyntheticEvent.
-     * @param {object} data - All props.
-     */
-    onClick: PropTypes.func,
   }
 
   static _meta = {

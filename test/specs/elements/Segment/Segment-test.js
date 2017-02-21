@@ -13,7 +13,7 @@ describe('Segment', () => {
 
   common.implementsTextAlignProp(Segment, ['left', 'center', 'right'])
 
-  common.propKeyAndValueToClassName(Segment, 'floated')
+  common.propKeyAndValueToClassName(Segment, 'floated', SUI.FLOATS)
 
   common.propKeyOnlyToClassName(Segment, 'basic')
   common.propKeyOnlyToClassName(Segment, 'circular')

@@ -335,7 +335,7 @@ class Portal extends Component {
     if (!this.state.open) return
     debug('renderPortal()')
 
-    const { children, className, closeOnTriggerBlur, openOnTriggerFocus } = this.props
+    const { children, className } = this.props
 
     this.mountPortal()
 
@@ -357,22 +357,6 @@ class Portal extends Component {
     )
 
     this.portalNode = this.rootNode.firstElementChild
-
-    // don't take focus away from for focus based portal triggers
-    if (!this.didInitialRender && !(openOnTriggerFocus || closeOnTriggerBlur)) {
-      this.didInitialRender = true
-
-      // add a tabIndex so we can focus it, remove outline
-      this.portalNode.tabIndex = -1
-      this.portalNode.style.outline = 'none'
-
-      // Wait a tick for things like popups which need to calculate where the popup shows up.
-      // Otherwise, the element is focused at its initial position, scrolling the browser, then
-      // it is immediately repositioned at the proper location.
-      setTimeout(() => {
-        if (this.portalNode) this.portalNode.focus()
-      })
-    }
 
     this.portalNode.addEventListener('mouseleave', this.handlePortalMouseLeave)
     this.portalNode.addEventListener('mouseenter', this.handlePortalMouseEnter)
@@ -405,7 +389,6 @@ class Portal extends Component {
 
   unmountPortal = () => {
     if (!isBrowser || !this.rootNode) return
-    this.didInitialRender = false
 
     debug('unmountPortal()')
 

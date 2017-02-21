@@ -25,7 +25,7 @@ describe('Button', () => {
     },
   })
 
-  common.propKeyAndValueToClassName(Button, 'floated')
+  common.propKeyAndValueToClassName(Button, 'floated', SUI.FLOATS)
 
   common.propKeyOnlyToClassName(Button, 'active')
   common.propKeyOnlyToClassName(Button, 'basic')

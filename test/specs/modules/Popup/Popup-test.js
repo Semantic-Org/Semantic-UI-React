@@ -1,13 +1,13 @@
 import _ from 'lodash'
 import React from 'react'
 
-import Popup from 'src/modules/Popup/Popup'
+import Portal from 'src/addons/Portal/Portal'
+import { SUI } from 'src/lib'
+import Popup, { POSITIONS } from 'src/modules/Popup/Popup'
 import PopupHeader from 'src/modules/Popup/PopupHeader'
 import PopupContent from 'src/modules/Popup/PopupContent'
-import Portal from 'src/addons/Portal/Portal'
-
-import { domEvent, sandbox } from 'test/utils'
 import * as common from 'test/specs/commonTests'
+import { domEvent, sandbox } from 'test/utils'
 
 // ----------------------------------------
 // Wrapper
@@ -82,7 +82,7 @@ describe('Popup', () => {
       wrapperMount(
         <Popup
           offset={50}
-          positioning='bottom right'
+          position='bottom right'
           content='foo'
           trigger={<button>foo</button>}
         />
@@ -95,7 +95,7 @@ describe('Popup', () => {
       wrapperMount(
         <Popup
           offset={50}
-          positioning='bottom left'
+          position='bottom left'
           content='foo'
           trigger={<button>foo</button>}
         />
@@ -106,24 +106,21 @@ describe('Popup', () => {
     })
   })
 
-  describe('positioning', () => {
-    it('is always within the viewport', () => {
-      _.each(Popup._meta.props.positions, position => {
+  describe('position', () => {
+    POSITIONS.forEach(position => {
+      it('is always within the viewport', () => {
         wrapperMount(
           <Popup
-            positioning={position}
             content='_'
+            position={position}
             trigger={<button>foo</button>}
             on='click'
           />
         )
         wrapper.find('button').simulate('click')
-        const {
-          top,
-          right,
-          bottom,
-          left,
-        } = document.querySelector('.popup.ui').getBoundingClientRect()
+
+        const rect = document.querySelector('.popup.ui').getBoundingClientRect()
+        const { top, right, bottom, left } = rect
 
         expect(top).to.be.at.least(0)
         expect(left).to.be.at.least(0)
@@ -265,13 +262,10 @@ describe('Popup', () => {
   })
 
   describe('size', () => {
-    it('defines prop options in _meta', () => {
-      Popup._meta.props.should.have.any.keys('size')
-      Popup._meta.props.size.should.be.an('array')
-    })
+    const sizes = _.without(SUI.SIZES, 'medium', 'big', 'massive')
 
-    it('adds the size to the popup className', () => {
-      Popup._meta.props.size.forEach(size => {
+    sizes.forEach(size => {
+      it(`adds the ${size} to the popup className`, () => {
         wrapperMount(<Popup size={size} open />)
         assertInBody(`.ui.${size}.popup`)
       })
