@@ -193,6 +193,8 @@ class Modal extends Component {
     if (onUnmount) onUnmount(e, this.props)
   }
 
+  handleRef = c => (this._modalNode = c)
+
   setPosition = () => {
     if (this._modalNode) {
       const mountNode = this.getMountNode()
@@ -260,7 +262,7 @@ class Modal extends Component {
     const closeIconName = closeIcon === true ? 'close' : closeIcon
 
     const modalJSX = (
-      <ElementType {...rest} className={classes} style={{ marginTop }} ref={c => (this._modalNode = c)}>
+      <ElementType {...rest} className={classes} style={{ marginTop }} ref={this.handleRef}>
         {Icon.create(closeIconName, { onClick: this.handleClose })}
         {children}
       </ElementType>

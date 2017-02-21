@@ -60,6 +60,8 @@ class TextArea extends Component {
     this.updateHeight(e.target)
   }
 
+  handleRef = c => (this.rootNode = c)
+
   removeAutoHeightStyles = () => {
     this.rootNode.removeAttribute('rows')
     this.rootNode.style.height = null
@@ -89,14 +91,7 @@ class TextArea extends Component {
     const rest = getUnhandledProps(TextArea, this.props)
     const ElementType = getElementType(TextArea, this.props)
 
-    return (
-      <ElementType
-        {...rest}
-        value={value}
-        onChange={this.handleChange}
-        ref={c => (this.rootNode = c)}
-      />
-    )
+    return <ElementType{...rest} onChange={this.handleChange} ref={this.handleRef} value={value} />
   }
 }
 

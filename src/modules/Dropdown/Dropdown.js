@@ -916,6 +916,16 @@ export default class Dropdown extends Component {
   }
 
   // ----------------------------------------
+  // Refs
+  // ----------------------------------------
+
+  handleSearchRef = c => (this._search = c)
+
+  handleSizerRef = c => (this._sizer = c)
+
+  handleRef = c => (this._dropdown = c)
+
+  // ----------------------------------------
   // Behavior
   // ----------------------------------------
 
@@ -1055,7 +1065,7 @@ export default class Dropdown extends Component {
         autoComplete='off'
         tabIndex={computedTabIndex}
         style={{ width: searchWidth }}
-        ref={c => (this._search = c)}
+        ref={this.handleSearchRef}
       />
     )
   }
@@ -1064,8 +1074,7 @@ export default class Dropdown extends Component {
     const { search, multiple } = this.props
 
     if (!(search && multiple)) return null
-
-    return <span className='sizer' ref={c => (this._sizer = c)} />
+    return <span className='sizer' ref={this.handleSizerRef} />
   }
 
   renderLabels = () => {
@@ -1228,7 +1237,7 @@ export default class Dropdown extends Component {
         onFocus={this.handleFocus}
         onChange={this.handleChange}
         tabIndex={computedTabIndex}
-        ref={c => (this._dropdown = c)}
+        ref={this.handleRef}
       >
         {this.renderHiddenInput()}
         {this.renderLabels()}
