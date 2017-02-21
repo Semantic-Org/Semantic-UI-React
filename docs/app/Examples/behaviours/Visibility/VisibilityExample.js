@@ -1,12 +1,10 @@
 import React, { Component } from 'react'
 import {
-  Divider,
   Grid,
-  Image,
-  Segment,
   Table,
   Visibility,
 } from 'semantic-ui-react'
+import Wireframe from './Wireframe'
 
 class VisibilityExample extends Component {
   constructor(props, context) {
@@ -41,35 +39,7 @@ class VisibilityExample extends Component {
       <Grid columns={2}>
         <Grid.Column>
           <Visibility onUpdate={this.handleUpdate}>
-            <Segment>
-              <Image src='http://semantic-ui.com/images/wireframe/centered-paragraph.png' />
-              <Divider />
-              <Image src='http://semantic-ui.com/images/wireframe/short-paragraph.png' />
-              <Divider />
-              <Image src='http://semantic-ui.com/images/wireframe/media-paragraph.png' />
-              <Divider />
-              <Image src='http://semantic-ui.com/images/wireframe/paragraph.png' />
-              <Divider />
-              <Image src='http://semantic-ui.com/images/wireframe/centered-paragraph.png' />
-              <Divider />
-              <Image src='http://semantic-ui.com/images/wireframe/short-paragraph.png' />
-              <Divider />
-              <Image src='http://semantic-ui.com/images/wireframe/media-paragraph.png' />
-              <Divider />
-              <Image src='http://semantic-ui.com/images/wireframe/paragraph.png' />
-              <Divider />
-              <Image src='http://semantic-ui.com/images/wireframe/short-paragraph.png' />
-              <Divider />
-              <Image src='http://semantic-ui.com/images/wireframe/centered-paragraph.png' />
-              <Divider />
-              <Image src='http://semantic-ui.com/images/wireframe/short-paragraph.png' />
-              <Divider />
-              <Image src='http://semantic-ui.com/images/wireframe/media-paragraph.png' />
-              <Divider />
-              <Image src='http://semantic-ui.com/images/wireframe/paragraph.png' />
-              <Divider />
-              <Image src='http://semantic-ui.com/images/wireframe/short-paragraph.png' />
-            </Segment>
+            <Wireframe />
           </Visibility>
         </Grid.Column>
 
