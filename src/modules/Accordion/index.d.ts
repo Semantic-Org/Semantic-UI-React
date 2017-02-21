@@ -1,15 +1,13 @@
 import * as React from 'react';
-import { ReactMouseEvents } from '../..';
 
-// Accordion
-// ----------------------------------
 interface AccordionProps {
-
-  /** Index of the currently active panel. */
-  activeIndex?: number | number[];
+  [key: string]: any;
 
   /** An element type to render as (string or function). */
   as?: any;
+
+  /** Index of the currently active panel. */
+  activeIndex?: number | number[];
 
   /** Primary content. */
   children?: React.ReactNode;
@@ -20,7 +18,7 @@ interface AccordionProps {
   /** Initial activeIndex value. */
   defaultActiveIndex?: number | number[];
 
-  /** Only allow one panel open at a time */
+  /** Only allow one panel open at a time. */
   exclusive?: boolean;
 
   /** Format to take up the width of it's container. */
@@ -30,15 +28,14 @@ interface AccordionProps {
   inverted?: string;
 
   /** Called with (event, index) when a panel title is clicked. */
-  onTitleClick?: React.MouseEventHandler<HTMLDivElement>;
+  onTitleClick?: (event: React.MouseEvent<HTMLDivElement>, index: number | number[]) => void;
 
   /**
    * Create simple accordion panels from an array of { text: <string>, content: <custom> } objects.
    * Object can optionally define an `active` key to open/close the panel.
    * Mutually exclusive with children.
-   * TODO: AccordionPanel should be a sub-component
    */
-  panels?: any;
+  panels?: Array<any>;
 
   /** Adds some basic styling to accordion panels. */
   styled?: boolean;
@@ -51,13 +48,14 @@ interface AccordionClass extends React.ComponentClass<AccordionProps> {
 
 export const Accordion: AccordionClass;
 
-
 interface AccordionContentProps {
-  /** Whether or not the content is visible. */
-  active?: boolean;
+  [key: string]: any;
 
   /** An element type to render as (string or function). */
   as?: any;
+
+  /** Whether or not the content is visible. */
+  active?: boolean;
 
   /** Primary content. */
   children?: React.ReactNode;
@@ -66,9 +64,10 @@ interface AccordionContentProps {
   className?: string;
 }
 
-export const AccordionContent: React.ComponentClass<AccordionContentProps>;
+export const AccordionContent: React.StatelessComponent<AccordionContentProps>;
 
-interface AccordionTitleProps extends ReactMouseEvents<HTMLElement> {
+interface AccordionTitleProps {
+  [key: string]: any;
 
   /** Whether or not the title is in the open state. */
   active?: boolean;
@@ -81,6 +80,14 @@ interface AccordionTitleProps extends ReactMouseEvents<HTMLElement> {
 
   /** Additional classes. */
   className?: string;
+
+  /**
+   * Called on click.
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props.
+   */
+  onClick?: (event: React.MouseEvent<HTMLDivElement>, data: AccordionTitleProps) => void;
 }
 
 export const AccordionTitle: React.ComponentClass<AccordionTitleProps>;

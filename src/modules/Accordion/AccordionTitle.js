@@ -10,11 +10,9 @@ import {
 } from '../../lib'
 
 /**
- * A title sub-component for Accordion component
+ * A title sub-component for Accordion component.
  */
 export default class AccordionTitle extends Component {
-  static displayName = 'AccordionTitle'
-
   static propTypes = {
     /** An element type to render as (string or function). */
     as: customPropTypes.as,
@@ -29,7 +27,7 @@ export default class AccordionTitle extends Component {
     className: PropTypes.string,
 
     /**
-     * Called on blur.
+     * Called on click.
      *
      * @param {SyntheticEvent} event - React's original SyntheticEvent.
      * @param {object} data - All props.
