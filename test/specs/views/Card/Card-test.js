@@ -19,6 +19,7 @@ describe('Card', () => {
 
   common.propKeyOnlyToClassName(Card, 'centered')
   common.propKeyOnlyToClassName(Card, 'fluid')
+  common.propKeyOnlyToClassName(Card, 'link')
   common.propKeyOnlyToClassName(Card, 'raised')
 
   common.propValueOnlyToClassName(Card, 'color', SUI.COLORS)
