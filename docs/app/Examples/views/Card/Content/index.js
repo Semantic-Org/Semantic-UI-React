@@ -30,6 +30,9 @@ const Content = () => (
       description='A card can be formatted to link to other content.'
       examplePath='views/Card/Content/CardExampleLinkCard'
     />
+    <ComponentExample
+      examplePath='views/Card/Content/CardExampleLinkCardProp'
+    />
   </ExampleSection>
 )
 
