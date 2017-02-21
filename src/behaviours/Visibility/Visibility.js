@@ -18,6 +18,12 @@ class Visibility extends Component {
   static defaultProps = {
     continuous: false,
     once: true,
+    onUpdate: () => {},
+    onTopVisible: () => {},
+    onTopPassed: () => {},
+    onBottomVisible: () => {},
+    onPassing: () => {},
+    onBottomPassed: () => {},
   }
 
   static propTypes = {
@@ -85,14 +91,7 @@ class Visibility extends Component {
   }
 
   handleScroll(event) {
-    const {
-      onUpdate,
-      onTopVisible,
-      onBottomVisible,
-      onTopPassed,
-      onBottomPassed,
-      onPassing,
-    } = this.props
+    const { onUpdate } = this.props
 
     const node = ReactDOM.findDOMNode(this)
     const nodeRect = node.getBoundingClientRect()
@@ -119,28 +118,26 @@ class Visibility extends Component {
     calculations.offScreen = !calculations.onScreen
 
     /** Events **/
-    if (onUpdate) {
-      onUpdate(calculations)
-    }
+    onUpdate(calculations)
 
     /** Standard events **/
-    if (calculations.topVisible && onTopVisible) {
+    if (calculations.topVisible) {
       this.fire('onTopVisible', calculations)
     }
 
-    if (calculations.bottomVisible && onBottomVisible) {
+    if (calculations.bottomVisible) {
       this.fire('onBottomVisible', calculations)
     }
 
-    if (calculations.topPassed && onTopPassed) {
+    if (calculations.topPassed) {
       this.fire('onTopPassed', calculations)
     }
 
-    if (calculations.bottomPassed && onBottomPassed) {
+    if (calculations.bottomPassed) {
       this.fire('onBottomPassed', calculations)
     }
 
-    if (calculations.passing && onPassing) {
+    if (calculations.passing) {
       this.fire('onPassing', calculations)
     }
   }
