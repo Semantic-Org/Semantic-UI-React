@@ -63,14 +63,16 @@ class Visibility extends Component {
     this.state = {
       firedCallbacks: [],
     }
+
+    this.handleScroll = this.handleScroll.bind(this)
   }
 
   componentDidMount() {
-    window.addEventListener('scroll', this.handleScroll.bind(this))
+    window.addEventListener('scroll', this.handleScroll)
   }
 
   componentWillUnmount() {
-    window.removeEventListener('scroll', this.handleScroll.bind(this))
+    window.removeEventListener('scroll', this.handleScroll)
   }
 
   fire(callbackName, ...args) {
