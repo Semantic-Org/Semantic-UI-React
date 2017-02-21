@@ -14,9 +14,24 @@ const _meta = {
 
 class Visibility extends Component {
   static _meta = _meta
+
+  static defaultProps = {
+    continuous: false,
+    once: true,
+  }
+
   static propTypes = {
     /** Primary content. */
     children: PropTypes.node,
+
+    /**
+     * When set to true a callback will occur anytime an element passes a
+     * condition not just immediately after the threshold is met.
+     **/
+    continuous: PropTypes.bool,
+
+    /** When set to false a callback will occur each time an element passes the threshold for a condition. **/
+    once: PropTypes.bool,
 
     /** Element's top edge has passed bottom of screen **/
     onUpdate: PropTypes.func,
@@ -37,12 +52,36 @@ class Visibility extends Component {
     onBottomPassed: PropTypes.func,
   }
 
+  constructor(...args) {
+    super(...args)
+    this.state = {
+      firedCallbacks: [],
+    }
+  }
+
   componentDidMount() {
     window.addEventListener('scroll', this.handleScroll.bind(this))
   }
 
   componentWillUnmount() {
     window.removeEventListener('scroll', this.handleScroll.bind(this))
+  }
+
+  fire(callbackName, ...args) {
+    const { continuous, [callbackName]: callback } = this.props
+    const { firedCallbacks } = this.state
+
+    if (continuous) {
+      callback(...args)
+    } else {
+      if (!firedCallbacks.includes(callbackName)) {
+        this.state = {
+          firedCallbacks: [...firedCallbacks, callbackName],
+        }
+
+        callback(...args)
+      }
+    }
   }
 
   handleScroll(event) {
@@ -86,23 +125,23 @@ class Visibility extends Component {
 
     /** Standard events **/
     if (calculations.topVisible && onTopVisible) {
-      onTopVisible(calculations)
+      this.fire('onTopVisible', calculations)
     }
 
     if (calculations.bottomVisible && onBottomVisible) {
-      onBottomVisible(calculations)
+      this.fire('onBottomVisible', calculations)
     }
 
     if (calculations.topPassed && onTopPassed) {
-      onTopPassed(calculations)
+      this.fire('onTopPassed', calculations)
     }
 
     if (calculations.bottomPassed && onBottomPassed) {
-      onBottomPassed(calculations)
+      this.fire('onBottomPassed', calculations)
     }
 
     if (calculations.passing && onPassing) {
-      onPassing(calculations)
+      this.fire('onPassing', calculations)
     }
   }
 
