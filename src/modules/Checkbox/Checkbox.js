@@ -67,6 +67,8 @@ export default class Checkbox extends Component {
      */
     onClick: PropTypes.func,
 
+    onFocus: PropTypes.func,
+
     /** Format as a radio element. This means it is an exclusive option. */
     radio: customPropTypes.every([
       PropTypes.bool,
@@ -149,6 +151,10 @@ export default class Checkbox extends Component {
     }
   }
 
+  handleFocus = (e) => {
+    
+  }
+
   // Note: You can't directly set the indeterminate prop on the input, so we
   // need to maintain a ref to the input and set it manually whenever the
   // component updates.
@@ -196,7 +202,9 @@ export default class Checkbox extends Component {
     else computedTabIndex = disabled ? -1 : 0
 
     return (
-      <ElementType {...rest} className={classes} onClick={this.handleClick} onChange={this.handleClick}>
+      <ElementType {...rest} className={classes}
+        onClick={this.handleClick} onChange={this.handleClick}
+      >
         <input
           checked={checked}
           className='hidden'
