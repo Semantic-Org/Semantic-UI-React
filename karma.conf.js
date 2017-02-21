@@ -1,6 +1,6 @@
 const { argv } = require('yargs')
 const config = require('./config')
-const webpackConfig = require('./webpack.config')
+const webpackConfig = require('./webpack.docs')
 
 module.exports = (karmaConfig) => {
   karmaConfig.set({

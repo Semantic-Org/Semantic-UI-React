@@ -22,7 +22,7 @@ task('clean:umd', (cb) => {
 // ----------------------------------------
 
 task('build:umd:webpack', (cb) => {
-  const webpackUMDConfig = require('../../webpack.umd.config')
+  const webpackUMDConfig = require('../../webpack.umd')
   const compiler = webpack(webpackUMDConfig)
 
   compiler.run((err, stats) => {

@@ -59,7 +59,7 @@ task('build:docs:images', () => {
 })
 
 task('build:docs:webpack', (cb) => {
-  const webpackConfig = require('../../webpack.config')
+  const webpackConfig = require('../../webpack.docs')
   const compiler = webpack(webpackConfig)
 
   compiler.run((err, stats) => {
@@ -103,33 +103,34 @@ task('build:docs', series(
 // ----------------------------------------
 
 task('serve:docs', (cb) => {
-  const webpackConfig = require('../../webpack.config')
+  const webpackConfig = require('../../webpack.docs')
   const app = express()
   const compiler = webpack(webpackConfig)
+
+  const webpackDevMiddleware = WebpackDevMiddleware(compiler, {
+    publicPath: webpackConfig.output.publicPath,
+    contentBase: config.paths.docsSrc(),
+    hot: true,
+    quiet: false,
+    noInfo: true, // must be quiet for hot middleware to show overlay
+    lazy: false,
+    stats: config.compiler_stats,
+  })
 
   app
     .use(historyApiFallback({
       verbose: false,
     }))
-
-    .use(WebpackDevMiddleware(compiler, {
-      publicPath: webpackConfig.output.publicPath,
-      contentBase: config.paths.docsSrc(),
-      hot: true,
-      quiet: false,
-      noInfo: true, // must be quiet for hot middleware to show overlay
-      lazy: false,
-      stats: config.compiler_stats,
-    }))
-
+    .use(webpackDevMiddleware)
     .use(WebpackHotMiddleware(compiler))
-
     .use(express.static(config.paths.docsDist()))
 
-    .listen(config.server_port, config.server_host, () => {
-      log(colors.yellow('Server running at http://%s:%d'), config.server_host, config.server_port)
-      cb()
-    })
+  const listen = () => app.listen(config.server_port, config.server_host, () => {
+    log(colors.yellow('Server running at http://%s:%d'), config.server_host, config.server_port)
+    cb()
+  })
+
+  webpackDevMiddleware.waitUntilValid(listen)
 })
 
 // ----------------------------------------

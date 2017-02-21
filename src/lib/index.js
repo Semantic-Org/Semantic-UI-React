@@ -1,5 +1,4 @@
 export { default as AutoControlledComponent } from './AutoControlledComponent'
-export * as childrenUtils from './childrenUtils'
 
 export {
   useKeyOnly,
