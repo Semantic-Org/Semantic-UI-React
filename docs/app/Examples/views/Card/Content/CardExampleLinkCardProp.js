@@ -6,8 +6,10 @@ const CardExampleLinkCardProp = () => (
     link
     header='Rick Sanchez'
     meta='Scientist'
-    description='Rick is a genius scientist whose alcoholism and reckless,
-    nihilistic behavior are a source of concern for his family'
+    description={[
+      'Rick is a genius scientist whose alcoholism and reckless,',
+      ' nihilistic behavior are a source of concern for his family',
+    ].join('')}
   />
 )
 
