@@ -17,7 +17,7 @@ class Visibility extends Component {
 
   static defaultProps = {
     continuous: false,
-    once: true,
+    once: false,
     onUpdate: () => {},
     onTopVisible: () => {},
     onTopPassed: () => {},
@@ -60,88 +60,107 @@ class Visibility extends Component {
 
   constructor(...args) {
     super(...args)
-    this.state = {
-      firedCallbacks: [],
-    }
-
+    this.firedCallbacks = []
     this.handleScroll = this.handleScroll.bind(this)
   }
 
-  componentDidMount() {
-    window.addEventListener('scroll', this.handleScroll)
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('scroll', this.handleScroll)
-  }
-
-  fire(callbackName, ...args) {
-    const { continuous, [callbackName]: callback } = this.props
-    const { firedCallbacks } = this.state
-
-    if (continuous) {
-      callback(...args)
-    } else {
-      if (!firedCallbacks.includes(callbackName)) {
-        this.state = {
-          firedCallbacks: [...firedCallbacks, callbackName],
-        }
-
-        callback(...args)
-      }
+  componentWillReceiveProps({ continuous, once }) {
+    if (
+      (continuous !== this.props.continuous) ||
+      (once !== this.props.once)
+    ) {
+      this.firedCallbacks = []
     }
   }
 
-  handleScroll(event) {
-    const { onUpdate } = this.props
+  fireCallbacks() {
+    const {
+      continuous,
+      once,
+      onUpdate,
+      onTopVisible,
+      onTopPassed,
+      onBottomVisible,
+      onPassing,
+      onBottomPassed,
+    } = this.props
 
+    onUpdate(this.calculations)
+
+    const callbacks = {
+      topPassed: onTopPassed,
+      bottomPassed: onBottomPassed,
+      topVisible: onTopVisible,
+      bottomVisible: onBottomVisible,
+      passing: onPassing,
+    }
+
+    Object.entries(callbacks).forEach(([name, callback]) => {
+      if (this.calculations[name]) {
+        if (continuous) {
+          // Always fire callback if continuous = true
+          callback(this.calculations)
+        } else if (once) {
+          // If once = true, fire callback only if it wasn't fired before
+          if (!this.firedCallbacks.includes(name)) {
+            this.firedCallbacks.push(name)
+            callback(this.calculations)
+          }
+        } else {
+          // Fire callback only if the value changed
+          if (this.calculations[name] !== this.oldCalculations[name]) {
+            callback(this.calculations)
+          }
+        }
+      }
+    })
+  }
+
+  handleScroll(event) {
     const node = ReactDOM.findDOMNode(this)
     const nodeRect = node.getBoundingClientRect()
 
     /** Generate calculations **/
-    const calculations = {}
-    calculations.height = nodeRect.height
-    calculations.width = nodeRect.width
+    const height = nodeRect.height
+    const width = nodeRect.width
 
-    calculations.topPassed = nodeRect.top < 0
-    calculations.bottomPassed = nodeRect.bottom < 0
+    const topPassed = nodeRect.top < 0
+    const bottomPassed = nodeRect.bottom < 0
 
-    calculations.pixelsPassed = calculations.bottomPassed ? 0 : Math.max(nodeRect.top * -1, 0)
-    calculations.percentagePassed = calculations.pixelsPassed / calculations.height
+    const pixelsPassed = bottomPassed ? 0 : Math.max(nodeRect.top * -1, 0)
+    const percentagePassed = pixelsPassed / height
 
-    calculations.topVisible = nodeRect.top >= 0 && nodeRect.top <= window.innerHeight
-    calculations.bottomVisible = nodeRect.bottom >= 0 && nodeRect.bottom <= window.innerHeight
+    const topVisible = nodeRect.top >= 0 && nodeRect.top <= window.innerHeight
+    const bottomVisible = nodeRect.bottom >= 0 && nodeRect.bottom <= window.innerHeight
 
-    calculations.fits = calculations.topVisible && calculations.bottomVisible
+    const fits = topVisible && bottomVisible
 
-    calculations.passing = calculations.topPassed && !calculations.bottomPassed
+    const passing = topPassed && !bottomPassed
 
-    calculations.onScreen = (calculations.topVisible || calculations.topPassed) && !calculations.bottomPassed
-    calculations.offScreen = !calculations.onScreen
+    const onScreen = (topVisible || topPassed) && !bottomPassed
+    const offScreen = !onScreen
 
-    /** Events **/
-    onUpdate(calculations)
-
-    /** Standard events **/
-    if (calculations.topVisible) {
-      this.fire('onTopVisible', calculations)
+    this.oldCalculations = this.calculations
+    this.calculations = {
+      height,
+      width,
+      topPassed,
+      bottomPassed,
+      pixelsPassed,
+      percentagePassed,
+      topVisible,
+      bottomVisible,
+      fits,
+      passing,
+      onScreen,
+      offScreen,
     }
 
-    if (calculations.bottomVisible) {
-      this.fire('onBottomVisible', calculations)
-    }
+    this.fireCallbacks()
+  }
 
-    if (calculations.topPassed) {
-      this.fire('onTopPassed', calculations)
-    }
-
-    if (calculations.bottomPassed) {
-      this.fire('onBottomPassed', calculations)
-    }
-
-    if (calculations.passing) {
-      this.fire('onPassing', calculations)
-    }
+  componentDidMount() {
+    window.addEventListener('scroll', this.handleScroll)
   }
 
   render() {
