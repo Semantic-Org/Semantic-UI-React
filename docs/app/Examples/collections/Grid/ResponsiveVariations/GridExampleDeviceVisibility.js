@@ -55,7 +55,7 @@ const GridExampleDeviceVisibility = () => (
         <Segment>Computer</Segment>
       </Grid.Column>
     </Grid.Row>
-    <Grid.Row only='tablet'>
+    <Grid.Row columns={3} only='tablet'>
       <Grid.Column>
         <Segment>Tablet</Segment>
       </Grid.Column>

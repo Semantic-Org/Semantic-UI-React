@@ -8,6 +8,8 @@ import {
   META,
   SUI,
   useKeyOnly,
+  useLargerProp,
+  useSmallerProp,
   useTextAlignProp,
   useValueAndKey,
   useVerticalAlignProp,
@@ -27,6 +29,8 @@ function GridColumn(props) {
     largeScreen,
     mobile,
     only,
+    onlyLarger,
+    onlySmaller,
     stretched,
     tablet,
     textAlign,
@@ -38,6 +42,8 @@ function GridColumn(props) {
   const classes = cx(
     color,
     useKeyOnly(stretched, 'stretched'),
+    useLargerProp(onlyLarger, SUI.VISIBILITY, 'only'),
+    useSmallerProp(onlySmaller, SUI.VISIBILITY, 'only'),
     useTextAlignProp(textAlign),
     useValueAndKey(floated, 'floated'),
     useValueAndKey(only, 'only'),
@@ -88,8 +94,23 @@ GridColumn.propTypes = {
   /** A column can specify a width for a mobile device. */
   mobile: PropTypes.oneOf(SUI.WIDTHS),
 
-  /** A column can appear only for a specific device, or screen sizes. */
-  only: customPropTypes.multipleOf(['computer', 'large screen', 'mobile', 'tablet mobile', 'tablet', 'widescreen']),
+  /** A row can appear only for a specific device, or screen sizes. */
+  only: customPropTypes.every([
+    customPropTypes.disallow(['onlyLarger', 'onlySmaller']),
+    customPropTypes.multipleOf(SUI.VISIBILITY),
+  ]),
+
+  /** A row can appear only for a specific device, or screen sizes. */
+  onlyLarger: customPropTypes.every([
+    customPropTypes.disallow(['only', 'onlySmaller']),
+    PropTypes.oneOf(SUI.VISIBILITY),
+  ]),
+
+  /** A row can appear only for a specific device, or screen sizes. */
+  onlySmaller: customPropTypes.every([
+    customPropTypes.disallow(['only', 'onlyLarger']),
+    PropTypes.oneOf(SUI.VISIBILITY),
+  ]),
 
   /** A column can stretch its contents to take up the entire grid or row height. */
   stretched: PropTypes.bool,

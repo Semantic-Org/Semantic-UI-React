@@ -257,9 +257,7 @@ export const multipleOf = possible => {
 
     // fail only if there are invalid values
     if (invalid.length > 0) {
-      return new Error(
-        `\`${propName}\` prop in \`${componentName}\` has invalid values: \`${invalid.join('`, `')}\`.`
-      )
+      return new Error(`\`${propName}\` prop in \`${componentName}\` has invalid values: \`${invalid.join('`, `')}\`.`)
     }
   }
 }

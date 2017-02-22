@@ -1,5 +1,8 @@
+import _ from 'lodash'
+import { numberToWord } from './numberToWord'
+
 /*
- * There are 4 prop patterns used to build up the className for a component.
+ * There are 3 prop patterns used to build up the className for a component.
  * Each utility here is meant for use in a classnames() argument.
  *
  * There is no util for valueOnly() because it would simply return val.
@@ -7,7 +10,6 @@
  *   <Label size='big' />
  *   <div class="ui big label"></div>
  */
-import { numberToWord } from './numberToWord'
 
 /**
  * Props where only the prop key is used in the className.
@@ -51,6 +53,68 @@ export const useKeyOrValueAndKey = (val, key) => val && (val === true ? key : `$
 //
 
 /**
+ * The "larger" prop.
+ *
+ * @param {*} value The value of the "larger" prop
+ * @param {array} values The possible values of the "larger" prop
+ * @param {string} key A props key
+ *
+ * @example
+ * <Grid.Row onlyLarger='computer' />
+ * <div class="computer large screen widescreen only row"></div>
+ */
+export const useLargerProp = (value, values, key) => {
+  const index = values.indexOf(value)
+
+  if(index === -1) return
+  return `${values.slice(index).map(_.lowerCase).join(' ')} ${key}`
+}
+
+/**
+ * The "smaller" prop.
+ *
+ * @param {*} value The value of the "smaller" prop
+ * @param {array} values The possible values of the "smaller" prop
+ * @param {string} key A props key
+ *
+ * @example
+ * <Grid.Row onlySmaller='computer' />
+ * <div class="mobile tablet computer only row"></div>
+ */
+export const useSmallerProp = (value, values, key) => {
+  const index = values.indexOf(value)
+
+  if(index === -1) return
+  return `${values.slice(0, index).map(_.lowerCase).join(' ')} ${key}`
+}
+
+/**
+ * The "textAlign" prop follows the useValueAndKey except when the value is "justified'.
+ * In this case, only the class "justified" is used, ignoring the "aligned" class.
+ * @param {*} val The value of the "textAlign" prop
+ *
+ * @example
+ * <Container textAlign='justified' />
+ * <div class="ui justified container"></div>
+ *
+ * @example
+ * <Container textAlign='left' />
+ * <div class="ui left aligned container"></div>
+ */
+export const useTextAlignProp = val => val === 'justified' ? 'justified' : useValueAndKey(val, 'aligned')
+
+/**
+ * The "verticalAlign" prop follows the useValueAndKey.
+ *
+ * @param {*} val The value of the "verticalAlign" prop
+ *
+ * @example
+ * <Grid verticalAlign='middle' />
+ * <div class="ui middle aligned grid"></div>
+ */
+export const useVerticalAlignProp = val => useValueAndKey(val, 'aligned')
+
+/**
  * Create "X", "X wide" and "equal width" classNames.
  * "X" is a numberToWord value and "wide" is configurable.
  * @param {*} val The prop value
@@ -81,28 +145,3 @@ export const useWidthProp = (val, widthClass = '', canEqual = false) => {
   }
   return numberToWord(val)
 }
-/**
- * The "textAlign" prop follows the useValueAndKey except when the value is "justified'.
- * In this case, only the class "justified" is used, ignoring the "aligned" class.
- * @param {*} val The value of the "textAlign" prop
- *
- * @example
- * <Container textAlign='justified' />
- * <div class="ui justified container"></div>
- *
- * @example
- * <Container textAlign='left' />
- * <div class="ui left aligned container"></div>
- */
-export const useTextAlignProp = val => val === 'justified' ? 'justified' : useValueAndKey(val, 'aligned')
-
-/**
- * The "verticalAlign" prop follows the useValueAndKey.
- *
- * @param {*} val The value of the "verticalAlign" prop
- *
- * @example
- * <Grid verticalAlign='middle' />
- * <div class="ui middle aligned grid"></div>
- */
-export const useVerticalAlignProp = val => useValueAndKey(val, 'aligned')

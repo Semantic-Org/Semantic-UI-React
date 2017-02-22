@@ -8,6 +8,8 @@ import {
   META,
   SUI,
   useKeyOnly,
+  useLargerProp,
+  useSmallerProp,
   useTextAlignProp,
   useValueAndKey,
   useVerticalAlignProp,
@@ -26,6 +28,8 @@ function GridRow(props) {
     columns,
     divided,
     only,
+    onlyLarger,
+    onlySmaller,
     reversed,
     stretched,
     textAlign,
@@ -37,6 +41,8 @@ function GridRow(props) {
     useKeyOnly(centered, 'centered'),
     useKeyOnly(divided, 'divided'),
     useKeyOnly(stretched, 'stretched'),
+    useLargerProp(onlyLarger, SUI.VISIBILITY, 'only'),
+    useSmallerProp(onlySmaller, SUI.VISIBILITY, 'only'),
     useTextAlignProp(textAlign),
     useValueAndKey(only, 'only'),
     useValueAndKey(reversed, 'reversed'),
@@ -80,7 +86,22 @@ GridRow.propTypes = {
   divided: PropTypes.bool,
 
   /** A row can appear only for a specific device, or screen sizes. */
-  only: customPropTypes.multipleOf(['computer', 'large screen', 'mobile', 'tablet mobile', 'tablet', 'widescreen']),
+  only: customPropTypes.every([
+    customPropTypes.disallow(['onlyLarger', 'onlySmaller']),
+    customPropTypes.multipleOf(SUI.VISIBILITY),
+  ]),
+
+  /** A row can appear only for a specific device, or screen sizes. */
+  onlyLarger: customPropTypes.every([
+    customPropTypes.disallow(['only', 'onlySmaller']),
+    PropTypes.oneOf(SUI.VISIBILITY),
+  ]),
+
+  /** A row can appear only for a specific device, or screen sizes. */
+  onlySmaller: customPropTypes.every([
+    customPropTypes.disallow(['only', 'onlyLarger']),
+    PropTypes.oneOf(SUI.VISIBILITY),
+  ]),
 
   /** A row can specify that its columns should reverse order at different device sizes. */
   reversed: PropTypes.oneOf([
