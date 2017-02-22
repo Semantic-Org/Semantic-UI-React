@@ -55,37 +55,43 @@ export const useKeyOrValueAndKey = (val, key) => val && (val === true ? key : `$
 /**
  * The "larger" prop.
  *
- * @param {*} value The value of the "larger" prop
- * @param {array} values The possible values of the "larger" prop
+ * @param {*} val The value of the "larger" prop
  * @param {string} key A props key
  *
  * @example
- * <Grid.Row onlyLarger='computer' />
- * <div class="computer large screen widescreen only row"></div>
+ * <Grid.Row onlyLarger='mobile' />
+ * <div class="tablet computer only row"></div>
  */
-export const useLargerProp = (value, values, key) => {
-  const index = values.indexOf(value)
+export const useLargerProp = (val, key) => {
+  if(!val) return
+  let values = []
 
-  if(index === -1) return
-  return `${values.slice(index).map(_.lowerCase).join(' ')} ${key}`
+  if(val === 'mobile') values = ['tablet', 'computer']
+  if(val === 'tablet') values = ['computer']
+  if(val === 'computer') values = ['large screen', 'widescreen']
+  if(val === 'largeScreen') values = ['widescreen']
+
+  return `${values.join(' ')} ${key}`
 }
 
 /**
  * The "smaller" prop.
  *
- * @param {*} value The value of the "smaller" prop
- * @param {array} values The possible values of the "smaller" prop
+ * @param {*} val The value of the "smaller" prop
  * @param {string} key A props key
  *
  * @example
  * <Grid.Row onlySmaller='computer' />
- * <div class="mobile tablet computer only row"></div>
+ * <div class="mobile tablet only row"></div>
  */
-export const useSmallerProp = (value, values, key) => {
-  const index = values.indexOf(value)
+export const useSmallerProp = (val, key) => {
+  if(!val) return
+  let values = []
 
-  if(index === -1) return
-  return `${values.slice(0, index).map(_.lowerCase).join(' ')} ${key}`
+  if(val === 'tablet') values = ['mobile']
+  if(val === 'computer') values = ['mobile', 'tablet']
+
+  return `${values.join(' ')} ${key}`
 }
 
 /**

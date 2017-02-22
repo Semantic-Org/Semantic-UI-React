@@ -40,8 +40,10 @@ const GridResponsiveVariationsExamples = () => (
     <ComponentExample
       title='Device Visibility'
       description='A columns or row can appear only for a specific device, or screen sizes.'
-      examplePath='collections/Grid/ResponsiveVariations/GridExampleDeviceVisibility'
+      examplePath='collections/Grid/ResponsiveVariations/GridExampleOnly'
     />
+    <ComponentExample examplePath='collections/Grid/ResponsiveVariations/GridExampleOnlyLarger' />
+    <ComponentExample examplePath='collections/Grid/ResponsiveVariations/GridExampleOnlySmaller' />
 
     <ComponentExample
       title='Responsive Width'

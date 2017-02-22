@@ -99,6 +99,12 @@ interface GridColumnProps {
   /** A column can appear only for a specific device, or screen sizes. */
   only?: GridPropOnly;
 
+  /** A column can appear only for a specific device, or screen sizes. */
+  onlyLarger?: string;
+
+  /** A column can appear only for a specific device, or screen sizes. */
+  onlySmaller?: string;
+
   /** An can stretch its contents to take up the entire grid or row height. */
   stretched?: boolean;
 
@@ -146,6 +152,12 @@ interface GridRowProps {
 
   /** A row can appear only for a specific device, or screen sizes. */
   only?: GridPropOnly;
+
+  /** A column can appear only for a specific device, or screen sizes. */
+  onlyLarger?: string;
+
+  /** A column can appear only for a specific device, or screen sizes. */
+  onlySmaller?: string;
 
   /** A  row can specify that its columns should reverse order at different device sizes. */
   reversed?: GridPropReversed;

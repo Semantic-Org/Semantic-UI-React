@@ -1,4 +1,5 @@
 import cx from 'classnames'
+import _ from 'lodash'
 import React, { PropTypes } from 'react'
 
 import {
@@ -42,8 +43,8 @@ function GridColumn(props) {
   const classes = cx(
     color,
     useKeyOnly(stretched, 'stretched'),
-    useLargerProp(onlyLarger, SUI.VISIBILITY, 'only'),
-    useSmallerProp(onlySmaller, SUI.VISIBILITY, 'only'),
+    useLargerProp(onlyLarger, 'only'),
+    useSmallerProp(onlySmaller, 'only'),
     useTextAlignProp(textAlign),
     useValueAndKey(floated, 'floated'),
     useValueAndKey(only, 'only'),
@@ -103,7 +104,7 @@ GridColumn.propTypes = {
   /** A row can appear only for a specific device, or screen sizes. */
   onlyLarger: customPropTypes.every([
     customPropTypes.disallow(['only', 'onlySmaller']),
-    PropTypes.oneOf(SUI.VISIBILITY),
+    PropTypes.oneOf(_.without(SUI.VISIBILITY, 'widescreen')),
   ]),
 
   /** A row can appear only for a specific device, or screen sizes. */
