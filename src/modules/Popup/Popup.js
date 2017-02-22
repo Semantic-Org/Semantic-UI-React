@@ -303,9 +303,9 @@ export default class Popup extends Component {
     if (onUnmount) onUnmount(e, this.props)
   }
 
-  popupMounted = (ref) => {
+  handlePopupRef = (popupRef) => {
     debug('popupMounted()')
-    this.popupCoords = ref ? ref.getBoundingClientRect() : null
+    this.popupCoords = popupRef ? popupRef.getBoundingClientRect() : null
     this.setPopupStyle()
   }
 
@@ -347,7 +347,7 @@ export default class Popup extends Component {
     const ElementType = getElementType(Popup, this.props)
 
     const popupJSX = (
-      <ElementType {...rest} className={classes} style={style} ref={this.popupMounted}>
+      <ElementType {...rest} className={classes} style={style} ref={this.handlePopupRef}>
         {children}
         {_.isNil(children) && PopupHeader.create(header)}
         {_.isNil(children) && PopupContent.create(content)}
