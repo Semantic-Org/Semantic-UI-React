@@ -5,4 +5,5 @@ describe('AccordionContent', () => {
   common.isConformant(AccordionContent)
   common.rendersChildren(AccordionContent)
   common.propKeyOnlyToClassName(AccordionContent, 'active')
+  common.implementsCreateMethod(AccordionContent)
 })
