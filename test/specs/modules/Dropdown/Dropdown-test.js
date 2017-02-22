@@ -56,7 +56,7 @@ const dropdownMenuIsOpen = () => {
 
 const nativeEvent = { nativeEvent: { stopImmediatePropagation: _.noop } }
 
-describe('Dropdown Component', () => {
+describe('Dropdown', () => {
   beforeEach(() => {
     attachTo = undefined
     wrapper = undefined
@@ -769,12 +769,12 @@ describe('Dropdown Component', () => {
       const nextItem = _.sample(_.without(options, initialItem))
 
       wrapperMount(<Dropdown options={options} selection value={initialItem.value} />)
-        .find('.text')
+        .find('div.text')
         .should.contain.text(initialItem.text)
 
       wrapper
         .setProps({ value: nextItem.value })
-        .find('.text')
+        .find('div.text')
         .should.contain.text(nextItem.text)
     })
   })
@@ -784,7 +784,7 @@ describe('Dropdown Component', () => {
       const text = faker.hacker.phrase()
 
       wrapperRender(<Dropdown options={options} selection text={text} />)
-        .find('.text')
+        .find('div.text')
         .should.contain.text(text)
     })
     it('prevents updates on item click if defined', () => {
@@ -797,7 +797,7 @@ describe('Dropdown Component', () => {
         .simulate('click')
 
       wrapper
-        .find('.text')
+        .find('div.text')
         .should.contain.text(text)
     })
     it('is updated on item click if not already defined', () => {
@@ -814,7 +814,7 @@ describe('Dropdown Component', () => {
 
       // text updated
       wrapper
-        .find('.text')
+        .find('div.text')
         .should.contain.text(item.text())
     })
     it('displays if value is 0', () => {
@@ -832,10 +832,10 @@ describe('Dropdown Component', () => {
 
       // text updated
       wrapper
-        .find('.text')
+        .find('div.text')
         .should.contain.text(item.text())
     })
-    it('does not display if value is \'\'', () => {
+    it("does not display if value is ''", () => {
       const text = faker.hacker.noun()
 
       wrapperMount(<Dropdown options={[{ value: '', text }]} selection />)
@@ -844,7 +844,7 @@ describe('Dropdown Component', () => {
         .simulate('click')
 
       wrapper
-        .find('.text')
+        .find('div.text')
         .should.contain.text('')
     })
     it('does not display if value is null', () => {
@@ -856,7 +856,7 @@ describe('Dropdown Component', () => {
         .simulate('click')
 
       wrapper
-        .find('.text')
+        .find('div.text')
         .should.contain.text('')
     })
     it('does not display if value is undefined', () => {
@@ -868,7 +868,7 @@ describe('Dropdown Component', () => {
         .simulate('click')
 
       wrapper
-        .find('.text')
+        .find('div.text')
         .should.contain.text('')
     })
   })
@@ -887,7 +887,7 @@ describe('Dropdown Component', () => {
       const trigger = <div className='trigger'>{text}</div>
 
       wrapperRender(<Dropdown options={options} trigger={trigger} text={text} />)
-        .should.not.have.descendants('.text')
+        .should.not.have.descendants('div.text')
     })
   })
 
