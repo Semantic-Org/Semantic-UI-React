@@ -37,6 +37,9 @@ interface CardProps {
   /** A card can contain an Image component. */
   image?: any;
 
+  /** A card can be formatted to link to other content. */
+  link?: boolean;
+
   /** Shorthand for CardMeta. */
   meta?: any;
 
