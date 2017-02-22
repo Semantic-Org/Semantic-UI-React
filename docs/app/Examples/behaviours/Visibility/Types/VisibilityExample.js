@@ -4,7 +4,7 @@ import {
   Table,
   Visibility,
 } from 'semantic-ui-react'
-import Wireframe from './Wireframe'
+import Wireframe from '../Wireframe'
 
 class VisibilityExample extends Component {
   constructor(props, context) {

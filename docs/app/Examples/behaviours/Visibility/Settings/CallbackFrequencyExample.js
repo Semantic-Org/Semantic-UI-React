@@ -7,7 +7,7 @@ import {
   Segment,
   Visibility,
 } from 'semantic-ui-react'
-import Wireframe from './Wireframe'
+import Wireframe from '../Wireframe'
 
 class VisibilityExample extends Component {
   constructor(props, context) {
@@ -15,7 +15,7 @@ class VisibilityExample extends Component {
     this.state = {
       continuous: false,
       log: [],
-      once: false,
+      once: true,
     }
 
     this.clearLog = this.clearLog.bind(this)

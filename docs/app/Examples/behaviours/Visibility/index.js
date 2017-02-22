@@ -1,20 +1,12 @@
 import React from 'react'
-import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
-import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
+import Types from './Types'
+import Settings from './Settings'
 
-const VisibilityExample = () => (
-  <ExampleSection>
-    <ComponentExample
-      title='How To Use'
-      description='An example of Visibility'
-      examplePath='behaviours/Visibility/VisibilityExample'
-    />
-    <ComponentExample
-      title='How To Use'
-      description='You can change callback frequency by changing `once` and `continuous`'
-      examplePath='behaviours/Visibility/CallbackFrequencyExample'
-    />
-  </ExampleSection>
+const VisibilityExamples = () => (
+  <div>
+    <Types />
+    <Settings />
+  </div>
 )
 
-export default VisibilityExample
+export default VisibilityExamples
