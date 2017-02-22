@@ -29,6 +29,8 @@ class Visibility extends Component {
     onBottomVisibleReverse: () => {},
     onPassingReverse: () => {},
     onBottomPassedReverse: () => {},
+    onOnScreen: () => {},
+    onOffScreen: () => {},
   }
 
   static propTypes = {
@@ -76,6 +78,12 @@ class Visibility extends Component {
 
     /** Element's bottom edge has not passed top of screen **/
     onBottomPassedReverse: PropTypes.func,
+
+    /** Element is partially visible on the screen **/
+    onOnScreen: PropTypes.func,
+
+    /** Element is not visible on the screen **/
+    onOffScreen: PropTypes.func,
   }
 
   constructor(...args) {
@@ -140,6 +148,8 @@ class Visibility extends Component {
       onBottomVisibleReverse,
       onPassingReverse,
       onBottomPassedReverse,
+      onOnScreen,
+      onOffScreen,
     } = this.props
 
     onUpdate(this.calculations)
@@ -150,6 +160,8 @@ class Visibility extends Component {
       topVisible: onTopVisible,
       bottomVisible: onBottomVisible,
       passing: onPassing,
+      onScreen: onOnScreen,
+      offScreen: onOffScreen,
     }
 
     const reverseCallbacks = {

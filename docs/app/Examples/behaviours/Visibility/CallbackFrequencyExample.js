@@ -66,6 +66,8 @@ class VisibilityExample extends Component {
             onBottomPassedReverse={() => this.updateLog('onBottomPassedReverse')}
             onPassing={() => this.updateLog('onPassing')}
             onPassingReverse={() => this.updateLog('onPassingReverse')}
+            onOnScreen={() => this.updateLog('onOnScreen')}
+            onOffScreen={() => this.updateLog('onOffScreen')}
           >
             <Wireframe />
           </Visibility>
