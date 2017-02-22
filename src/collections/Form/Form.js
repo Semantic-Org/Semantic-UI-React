@@ -240,14 +240,14 @@ export default class Form extends Component {
   static Select = FormSelect
   static TextArea = FormTextArea
 
-  _form = null
+  ref = null
 
-  handleRef = (c) => (this._form = this._form || c)
+  handleRef = (c) => (this.ref = this.ref || c)
 
   handleSubmit = (e) => {
     const { onSubmit, serializer } = this.props
 
-    if (onSubmit) onSubmit(e, { ...this.props, formData: serializer(this._form) })
+    if (onSubmit) onSubmit(e, { ...this.props, formData: serializer(this.ref) })
   }
 
   render() {
