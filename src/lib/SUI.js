@@ -38,7 +38,11 @@ export const WEB_CONTENT_ICONS = [
   'eyedropper', 'paint brush', 'heartbeat', 'mouse pointer', 'hourglass empty', 'hourglass start', 'hourglass half',
   'hourglass end', 'hourglass full', 'hand pointer', 'trademark', 'registered', 'creative commons', 'add to calendar',
   'remove from calendar', 'delete calendar', 'checked calendar', 'industry', 'shopping bag', 'shopping basket',
-  'hashtag', 'percent',
+  'hashtag', 'percent', 'address book', 'address book outline', 'address card', 'address card outline', 'bath',
+  'envelope open', 'envelope open outline', 'handshake outline', 'id badge', 'id card', 'id card outline', 'microchip',
+  'podcast', 'shower', 'snowflake outline', 'thermometer empty', 'thermometer full', 'thermometer half',
+  'thermometer quarter', 'thermometer three quarters', 'user circle', 'user circle outline', 'user outline',
+  'window close', 'window close outline', 'window maximize', 'window minimize', 'window restore',
 ]
 export const USER_ACTIONS_ICONS = [
   'wait', 'download', 'repeat', 'refresh', 'lock', 'bookmark', 'print', 'write', 'adjust', 'theme', 'edit',
@@ -163,6 +167,8 @@ export const NETWORKS_AND_WEBSITE_ICONS = [
   'microsoft edge', 'codiepie', 'modx', 'fort awesome', 'product hunt', 'mixcloud', 'scribd', 'gitlab', 'wpbeginner',
   'wpforms', 'envira gallery', 'glide', 'glide g', 'viadeo', 'viadeo square', 'snapchat', 'snapchat ghost',
   'snapchat square', 'pied piper hat', 'first order', 'yoast', 'themeisle', 'google plus circle', 'font awesome',
+  'bandcamp', 'eercast', 'etsy', 'free code camp', 'grav', 'imdb', 'linode', 'meetup', 'quora', 'ravelry',
+  'superpowers', 'telegram', 'wpexplorer',
 ]
 export const ICONS = [
   ...WEB_CONTENT_ICONS,
@@ -217,7 +223,9 @@ export const ICON_ALIASES = [
   'calendar times', 'calendar check', 'factory', 'commenting', 'commenting outline', 'edge', 'ms edge',
   'wordpress beginner', 'wordpress forms', 'envira', 'question circle outline', 'assistive listening devices', 'als',
   'ald', 'asl interpreting', 'deaf', 'american sign language interpreting', 'hard of hearing', 'signing',
-  'new pied piper', 'theme isle', 'google plus official', 'fa',
+  'new pied piper', 'theme isle', 'google plus official', 'fa', 'bathtub', 'drivers license', 'drivers license outline',
+  's15', 'thermometer', 'thermometer 0', 'thermometer 1', 'thermometer 2', 'thermometer 3', 'thermometer 4', 'times rectangle',
+  'times rectangle outline', 'vcard', 'vcard outline',
 ]
 export const ICONS_AND_ALIASES = [
   ...ICONS,
