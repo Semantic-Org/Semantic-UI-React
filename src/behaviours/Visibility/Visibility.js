@@ -17,7 +17,7 @@ class Visibility extends Component {
 
   static defaultProps = {
     continuous: false,
-    once: false,
+    once: true,
     onUpdate: () => {},
     onTopVisible: () => {},
     onTopPassed: () => {},
