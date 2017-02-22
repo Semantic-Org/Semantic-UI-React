@@ -14,6 +14,7 @@ describe('MenuItem', () => {
   common.implementsIconProp(MenuItem)
 
   common.propKeyOnlyToClassName(MenuItem, 'active')
+  common.propKeyOnlyToClassName(MenuItem, 'disabled')
   common.propKeyOnlyToClassName(MenuItem, 'header')
   common.propKeyOnlyToClassName(MenuItem, 'icon')
   common.propKeyOnlyToClassName(MenuItem, 'link')
