@@ -13,14 +13,14 @@ describe('Dimmer', () => {
   common.hasUIClassName(Dimmer)
   common.rendersChildren(Dimmer)
 
+  common.implementsCreateMethod(Dimmer)
+
   common.propKeyOnlyToClassName(Dimmer, 'active', {
     className: 'active transition visible',
   })
   common.propKeyOnlyToClassName(Dimmer, 'disabled')
   common.propKeyOnlyToClassName(Dimmer, 'inverted')
   common.propKeyOnlyToClassName(Dimmer, 'simple')
-
-  common.implementsCreateMethod(Dimmer)
 
   describe('content', () => {
     it('renders text', () => {

@@ -1,8 +1,8 @@
 import * as React from 'react';
 
-
 interface CommentProps {
-  
+  [key: string]: any;
+
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -16,10 +16,10 @@ interface CommentProps {
   collapsed?: boolean;
 }
 
-interface CommentClass extends React.ComponentClass<CommentProps> {
-  Author: typeof CommentAuthor;
+interface CommentComponent extends React.StatelessComponent<CommentProps> {
   Action: typeof CommentAction;
   Actions: typeof CommentActions;
+  Author: typeof CommentAuthor;
   Avatar: typeof CommentAvatar;
   Content: typeof CommentContent;
   Group: typeof CommentGroup;
@@ -27,29 +27,16 @@ interface CommentClass extends React.ComponentClass<CommentProps> {
   Text: typeof CommentText;
 }
 
-export const Comment: CommentClass;
-
-interface CommentAuthorProps {
-  
-  /** An element type to render as (string or function). */
-  as?: any;
-
-  /** Primary content. */
-  children?: React.ReactNode;
-
-  /** Additional classes. */
-  className?: string;
-}
-
-export const CommentAuthor: React.ComponentClass<CommentAuthorProps>;
+export const Comment: CommentComponent;
 
 interface CommentActionProps {
-  
-  /** Style as the currently active action. */
-  active?: boolean;
+  [key: string]: any;
 
   /** An element type to render as (string or function). */
   as?: any;
+
+  /** Style as the currently active action. */
+  active?: boolean;
 
   /** Primary content. */
   children?: React.ReactNode;
@@ -61,7 +48,8 @@ interface CommentActionProps {
 export const CommentAction: React.ComponentClass<CommentActionProps>;
 
 interface CommentActionsProps {
-  
+  [key: string]: any;
+
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -72,10 +60,26 @@ interface CommentActionsProps {
   className?: string;
 }
 
-export const CommentActions: React.ComponentClass<CommentActionsProps>;
+export const CommentActions: React.StatelessComponent<CommentActionsProps>;
+
+interface CommentAuthorProps {
+  [key: string]: any;
+
+  /** An element type to render as (string or function). */
+    as?: any;
+
+  /** Primary content. */
+  children?: React.ReactNode;
+
+  /** Additional classes. */
+  className?: string;
+}
+
+export const CommentAuthor: React.StatelessComponent<CommentAuthorProps>;
 
 interface CommentAvatarProps {
-  
+  [key: string]: any;
+
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -86,10 +90,11 @@ interface CommentAvatarProps {
   src?: string;
 }
 
-export const CommentAvatar: React.ComponentClass<CommentAvatarProps>;
+export const CommentAvatar: React.StatelessComponent<CommentAvatarProps>;
 
 interface CommentContentProps {
-  
+  [key: string]: any;
+
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -100,10 +105,11 @@ interface CommentContentProps {
   className?: string;
 }
 
-export const CommentContent: React.ComponentClass<CommentContentProps>;
+export const CommentContent: React.StatelessComponent<CommentContentProps>;
 
 interface CommentGroupProps {
-  
+  [key: string]: any;
+
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -119,13 +125,17 @@ interface CommentGroupProps {
   /** Comments can hide extra information unless a user shows intent to interact with a comment */
   minimal?: boolean;
 
+  /** Comments can have different sizes. */
+  size?: 'mini' | 'tiny' | 'small' | 'large' | 'big' | 'huge' | 'massive';
+
   /** A comment list can be threaded to showing the relationship between conversations */
   threaded?: boolean;
 }
 
-export const CommentGroup: React.ComponentClass<CommentGroupProps>;
+export const CommentGroup: React.StatelessComponent<CommentGroupProps>;
 
 interface CommentMetadataProps {
+  [key: string]: any;
 
   /** An element type to render as (string or function). */
   as?: any;
@@ -137,9 +147,10 @@ interface CommentMetadataProps {
   className?: string;
 }
 
-export const CommentMetadata: React.ComponentClass<CommentMetadataProps>;
+export const CommentMetadata: React.StatelessComponent<CommentMetadataProps>;
 
 interface CommentTextProps {
+  [key: string]: any;
 
   /** An element type to render as (string or function). */
   as?: any;
@@ -151,4 +162,4 @@ interface CommentTextProps {
   className?: string;
 }
 
-export const CommentText: React.ComponentClass<CommentTextProps>;
+export const CommentText: React.StatelessComponent<CommentTextProps>;

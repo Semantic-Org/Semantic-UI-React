@@ -1,21 +1,23 @@
-import {
-    SemanticCOLORS,
-    SemanticFLOATS,
-    SemanticTEXTALIGNMENTS,
-    SemanticVERTICALALIGNMENTS,
-    SemanticWIDTHSNUMBER,
-    SemanticWIDTHSSTRING
-} from '../..';
 import * as React from 'react';
+import {
+  SemanticCOLORS,
+  SemanticFLOATS,
+  SemanticTEXTALIGNMENTS,
+  SemanticVERTICALALIGNMENTS,
+  SemanticWIDTHS
+} from '../..';
 
-export type GridPropReversed = 'computer' | 'computer vertically' | 'mobile' | 'mobile vertically' | 'tablet' | 'tablet vertically'
+type GridPropOnly = 'computer' | 'large screen' | 'mobile' | 'tablet mobile' | 'tablet' | 'widescreen';
+type GridPropReversed = 'computer' | 'computer vertically' | 'mobile' | 'mobile vertically' | 'tablet' | 'tablet vertically';
+
 export interface GridProps {
-  
+  [key: string]: any;
+
   /** An element type to render as (string or function). */
   as?: any;
 
   /** A grid can have rows divided into cells. */
-  celled?: boolean|'internally';
+  celled?: boolean | 'internally';
 
   /** A grid can have its columns centered. */
   centered?: boolean;
@@ -27,7 +29,10 @@ export interface GridProps {
   className?: string;
 
   /** Represents column count per row in Grid. */
-  columns?: number | SemanticWIDTHSNUMBER | SemanticWIDTHSSTRING | number | 'equal';
+  columns?: SemanticWIDTHS | 'equal';
+
+  /** A grid can be combined with a container to use avaiable layout and alignment. */
+  container?: boolean;
 
   /** A grid can have dividers between its columns. */
   divided?: boolean | 'vertically';
@@ -43,7 +48,7 @@ export interface GridProps {
 
   /** A grid can specify that its columns should reverse order at different device sizes. */
   reversed?: GridPropReversed;
-  
+
   /** A grid can have its columns stack on-top of each other after reaching mobile breakpoints. */
   stackable?: boolean;
 
@@ -57,16 +62,16 @@ export interface GridProps {
   verticalAlign?: SemanticVERTICALALIGNMENTS;
 }
 
-interface GridClass extends React.ComponentClass<GridProps> {
+interface GridComponent extends React.StatelessComponent<GridProps> {
   Column: typeof GridColumn;
   Row: typeof GridRow;
 }
 
-export const Grid: GridClass;
+export const Grid: GridComponent;
 
-type GridPropOnly = 'computer' | 'large screen' | 'mobile' | 'tablet mobile' | 'tablet' | 'widescreen'
 interface GridColumnProps {
-  
+  [key: string]: any;
+
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -80,16 +85,16 @@ interface GridColumnProps {
   color?: SemanticCOLORS;
 
   /** A column can specify a width for a computer. */
-  computer?: SemanticWIDTHSNUMBER | SemanticWIDTHSSTRING | number;
+  computer?: SemanticWIDTHS;
 
   /** A column can sit flush against the left or right edge of a row. */
   floated?: SemanticFLOATS;
 
   /** A column can specify a width for a large screen device. */
-  largeScreen?: SemanticWIDTHSNUMBER | SemanticWIDTHSSTRING| number;
+  largeScreen?: SemanticWIDTHS;
 
   /** A column can specify a width for a mobile device. */
-  mobile?: SemanticWIDTHSNUMBER | SemanticWIDTHSSTRING| number;
+  mobile?: SemanticWIDTHS;
 
   /** A column can appear only for a specific device, or screen sizes. */
   only?: GridPropOnly;
@@ -98,8 +103,8 @@ interface GridColumnProps {
   stretched?: boolean;
 
   /** A column can specify a width for a tablet device. */
-  tablet?: SemanticWIDTHSNUMBER | SemanticWIDTHSSTRING| number;
-  
+  tablet?: SemanticWIDTHS;
+
   /** A row can specify its text alignment. */
   textAlign?: SemanticTEXTALIGNMENTS;
 
@@ -107,16 +112,17 @@ interface GridColumnProps {
   verticalAlign?: SemanticVERTICALALIGNMENTS;
 
   /** A column can specify a width for a wide screen device. */
-  widescreen?: number | SemanticWIDTHSSTRING| number;
+  widescreen?: SemanticWIDTHS;
 
   /** Represents width of column. */
-  width?: SemanticWIDTHSNUMBER | SemanticWIDTHSSTRING| number;
+  width?: SemanticWIDTHS;
 }
 
-export const GridColumn: React.ComponentClass<GridColumnProps>
+export const GridColumn: React.StatelessComponent<GridColumnProps>;
 
 interface GridRowProps {
-  
+  [key: string]: any;
+
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -133,7 +139,7 @@ interface GridRowProps {
   color?: SemanticCOLORS;
 
   /** Represents column count per line in Row. */
-  columns?: SemanticWIDTHSNUMBER | SemanticWIDTHSSTRING| number | 'equal';
+  columns?: SemanticWIDTHS | 'equal';
 
   /** A row can have dividers between its columns. */
   divided?: boolean;
@@ -154,4 +160,4 @@ interface GridRowProps {
   verticalAlign?: SemanticVERTICALALIGNMENTS;
 }
 
-export const GridRow: React.ComponentClass<GridRowProps>;
+export const GridRow: React.StatelessComponent<GridRowProps>;

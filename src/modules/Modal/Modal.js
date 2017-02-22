@@ -1,13 +1,6 @@
+import cx from 'classnames'
 import _ from 'lodash'
 import React, { PropTypes } from 'react'
-import cx from 'classnames'
-
-import ModalHeader from './ModalHeader'
-import ModalContent from './ModalContent'
-import ModalActions from './ModalActions'
-import ModalDescription from './ModalDescription'
-import Icon from '../../elements/Icon'
-import Portal from '../../addons/Portal'
 
 import {
   AutoControlledComponent as Component,
@@ -19,20 +12,17 @@ import {
   META,
   useKeyOnly,
 } from '../../lib'
+import Icon from '../../elements/Icon'
+import Portal from '../../addons/Portal'
+import ModalHeader from './ModalHeader'
+import ModalContent from './ModalContent'
+import ModalActions from './ModalActions'
+import ModalDescription from './ModalDescription'
 
 const debug = makeDebugger('modal')
 
-const _meta = {
-  name: 'Modal',
-  type: META.TYPES.MODULE,
-  props: {
-    size: ['fullscreen', 'large', 'small'],
-    dimmer: ['inverted', 'blurring'],
-  },
-}
-
 /**
- * A modal displays content that temporarily blocks interactions with the main view of a site
+ * A modal displays content that temporarily blocks interactions with the main view of a site.
  * @see Confirm
  * @see Portal
  */
@@ -41,36 +31,42 @@ class Modal extends Component {
     /** An element type to render as (string or function). */
     as: customPropTypes.as,
 
+    /** A modal can reduce its complexity */
+    basic: PropTypes.bool,
+
     /** Primary content. */
     children: PropTypes.node,
 
     /** Additional classes. */
     className: PropTypes.string,
 
-    /** Icon */
+    /** Icon. */
     closeIcon: PropTypes.oneOfType([
       PropTypes.node,
       PropTypes.object,
       PropTypes.bool,
     ]),
 
-    /** A modal can reduce its complexity */
-    basic: PropTypes.bool,
+    /** Whether or not the Modal should close when the dimmer is clicked. */
+    closeOnDimmerClick: PropTypes.bool,
+
+    /** Whether or not the Modal should close when the document is clicked. */
+    closeOnDocumentClick: PropTypes.bool,
 
     /** Initial value of open. */
     defaultOpen: PropTypes.bool,
 
-    /** A modal can appear in a dimmer */
+    /** A modal can appear in a dimmer. */
     dimmer: PropTypes.oneOfType([
       PropTypes.bool,
-      PropTypes.oneOf(_meta.props.dimmer),
+      PropTypes.oneOf(['inverted', 'blurring']),
     ]),
 
-    /** The node where the modal should mount.. */
+    /** The node where the modal should mount. Defaults to document.body. */
     mountNode: PropTypes.any,
 
     /**
-     * Called when a close event happens
+     * Called when a close event happens.
      *
      * @param {SyntheticEvent} event - React's original SyntheticEvent.
      * @param {object} data - All props.
@@ -78,7 +74,7 @@ class Modal extends Component {
     onClose: PropTypes.func,
 
     /**
-     * Called when the portal is mounted on the DOM
+     * Called when the portal is mounted on the DOM.
      *
      * @param {null}
      * @param {object} data - All props.
@@ -86,7 +82,7 @@ class Modal extends Component {
     onMount: PropTypes.func,
 
     /**
-     * Called when an open event happens
+     * Called when an open event happens.
      *
      * @param {SyntheticEvent} event - React's original SyntheticEvent.
      * @param {object} data - All props.
@@ -94,7 +90,7 @@ class Modal extends Component {
     onOpen: PropTypes.func,
 
     /**
-     * Called when the portal is unmounted from the DOM
+     * Called when the portal is unmounted from the DOM.
      *
      * @param {null}
      * @param {object} data - All props.
@@ -105,7 +101,7 @@ class Modal extends Component {
     open: PropTypes.bool,
 
     /** A modal can vary in size */
-    size: PropTypes.oneOf(_meta.props.size),
+    size: PropTypes.oneOf(['fullscreen', 'large', 'small']),
 
     /**
      * NOTE: Any unhandled props that are defined in Portal are passed-through
@@ -115,15 +111,19 @@ class Modal extends Component {
 
   static defaultProps = {
     dimmer: true,
-    // Do not access document when server side rendering
-    mountNode: isBrowser ? document.body : null,
+    closeOnDimmerClick: true,
+    closeOnDocumentClick: false,
   }
 
   static autoControlledProps = [
     'open',
   ]
 
-  static _meta = _meta
+  static _meta = {
+    name: 'Modal',
+    type: META.TYPES.MODULE,
+  }
+
   static Header = ModalHeader
   static Content = ModalContent
   static Description = ModalDescription
@@ -135,6 +135,9 @@ class Modal extends Component {
     debug('componentWillUnmount()')
     this.handlePortalUnmount()
   }
+
+  // Do not access document when server side rendering
+  getMountNode = () => isBrowser ? this.props.mountNode || document.body : null
 
   handleClose = (e) => {
     debug('close()')
@@ -156,7 +159,8 @@ class Modal extends Component {
 
   handlePortalMount = (e) => {
     debug('handlePortalMount()')
-    const { dimmer, mountNode } = this.props
+    const { dimmer } = this.props
+    const mountNode = this.getMountNode()
 
     if (dimmer) {
       debug('adding dimmer')
@@ -180,7 +184,7 @@ class Modal extends Component {
     // Always remove all dimmer classes.
     // If the dimmer value changes while the modal is open, then removing its
     // current value could leave cruft classes previously added.
-    const { mountNode } = this.props
+    const mountNode = this.getMountNode()
     mountNode.classList.remove('blurring', 'dimmable', 'dimmed', 'scrollable')
 
     cancelAnimationFrame(this.animationRequestId)
@@ -191,7 +195,7 @@ class Modal extends Component {
 
   setPosition = () => {
     if (this._modalNode) {
-      const { mountNode } = this.props
+      const mountNode = this.getMountNode()
       const { height } = this._modalNode.getBoundingClientRect()
 
       const marginTop = -Math.round(height / 2)
@@ -221,7 +225,18 @@ class Modal extends Component {
 
   render() {
     const { open } = this.state
-    const { basic, children, className, closeIcon, dimmer, mountNode, size } = this.props
+    const {
+      basic,
+      children,
+      className,
+      closeIcon,
+      closeOnDimmerClick,
+      closeOnDocumentClick,
+      dimmer,
+      size,
+    } = this.props
+
+    const mountNode = this.getMountNode()
 
     // Short circuit when server side rendering
     if (!isBrowser) return null
@@ -236,7 +251,7 @@ class Modal extends Component {
       className,
     )
     const unhandled = getUnhandledProps(Modal, this.props)
-    const portalPropNames = _.keys(Portal.propTypes)
+    const portalPropNames = Portal.handledProps
 
     const rest = _.omit(unhandled, portalPropNames)
     const portalProps = _.pick(unhandled, portalPropNames)
@@ -252,11 +267,13 @@ class Modal extends Component {
     )
 
     // wrap dimmer modals
-    const dimmerClasses = !dimmer ? null : cx(
-      'ui',
-      dimmer === 'inverted' && 'inverted',
-      'page modals dimmer transition visible active',
-    )
+    const dimmerClasses = !dimmer
+      ? null
+      : cx(
+        'ui',
+        dimmer === 'inverted' && 'inverted',
+        'page modals dimmer transition visible active',
+      )
 
     // Heads up!
     //
@@ -271,8 +288,8 @@ class Modal extends Component {
 
     return (
       <Portal
-        closeOnRootNodeClick
-        closeOnDocumentClick={false}
+        closeOnRootNodeClick={closeOnDimmerClick}
+        closeOnDocumentClick={closeOnDocumentClick}
         {...portalProps}
         className={dimmerClasses}
         mountNode={mountNode}

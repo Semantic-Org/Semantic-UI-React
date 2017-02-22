@@ -1,15 +1,19 @@
+import _ from 'lodash'
+
 import Segment from 'src/elements/Segment/Segment'
 import SegmentGroup from 'src/elements/Segment/SegmentGroup'
+import { SUI } from 'src/lib'
 import * as common from 'test/specs/commonTests'
 
 describe('Segment', () => {
   common.isConformant(Segment)
-  common.hasUIClassName(SegmentGroup)
   common.hasSubComponents(Segment, [SegmentGroup])
-  common.implementsTextAlignProp(Segment)
+  common.hasUIClassName(Segment)
+  common.rendersChildren(Segment)
 
-  common.propValueOnlyToClassName(Segment, 'color')
-  common.propValueOnlyToClassName(Segment, 'size')
+  common.implementsTextAlignProp(Segment, ['left', 'center', 'right'])
+
+  common.propKeyAndValueToClassName(Segment, 'floated', SUI.FLOATS)
 
   common.propKeyOnlyToClassName(Segment, 'basic')
   common.propKeyOnlyToClassName(Segment, 'circular')
@@ -25,10 +29,9 @@ describe('Segment', () => {
   common.propKeyOnlyToClassName(Segment, 'tertiary')
   common.propKeyOnlyToClassName(Segment, 'vertical')
 
-  common.propKeyAndValueToClassName(Segment, 'floated')
+  common.propKeyOrValueAndKeyToClassName(Segment, 'attached', ['top', 'bottom'])
+  common.propKeyOrValueAndKeyToClassName(Segment, 'padded', ['very'])
 
-  common.propKeyOrValueAndKeyToClassName(Segment, 'attached')
-  common.propKeyOrValueAndKeyToClassName(Segment, 'padded')
-
-  common.rendersChildren(Segment)
+  common.propValueOnlyToClassName(Segment, 'color', SUI.COLORS)
+  common.propValueOnlyToClassName(Segment, 'size', _.without(SUI.SIZES, 'medium'))
 })

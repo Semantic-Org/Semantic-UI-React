@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { SemanticSIZES } from '../..';
+import {SemanticSIZES} from '../..';
 
 export interface InputProps {
   [key: string]: any;
@@ -11,7 +11,7 @@ export interface InputProps {
   action?: any | boolean;
 
   /** An action can appear along side an Input on the left or right. */
-  actionPosition?: 'left'
+  actionPosition?: 'left';
 
   /** Primary content. */
   children?: React.ReactNode;
@@ -47,7 +47,7 @@ export interface InputProps {
   label?: any;
 
   /** A Label can appear outside an Input on the left or right. */
-  labelPosition?: 'left', 'right', 'left corner', 'right corner';
+  labelPosition?: 'left' | 'right' | 'left corner' | 'right corner';
 
   /** An Icon Input field can show that it is currently loading data. */
   loading?: boolean;
@@ -58,7 +58,7 @@ export interface InputProps {
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
    * @param {object} data - All props and proposed value.
    */
-  onChange?: (e: React.SyntheticEvent<HTMLInputElement>, {...InputProps, value: string}) => void;
+  onChange?: (event: React.SyntheticEvent<HTMLInputElement>, data: InputOnChangeData) => void;
 
   /** An Input can vary in size. */
   size?: SemanticSIZES;
@@ -71,6 +71,10 @@ export interface InputProps {
 
   /** The HTML input type. */
   type?: string;
+}
+
+interface InputOnChangeData extends InputProps {
+  value: string;
 }
 
 export const Input: React.StatelessComponent<InputProps>;

@@ -1,9 +1,9 @@
-import { SemanticSIZES } from '../..';
 import * as React from 'react';
-
+import { SemanticSIZES } from '../..';
 
 interface LoaderProps {
-  
+  [key: string]: any;
+
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -34,5 +34,5 @@ interface LoaderProps {
   /** Loaders can have different sizes. */
   size?: SemanticSIZES;
 }
-export class Loader extends React.Component<LoaderProps, void> {
-}
+
+export const Loader: React.StatelessComponent<LoaderProps>;

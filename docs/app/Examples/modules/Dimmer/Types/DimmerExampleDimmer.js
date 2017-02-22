@@ -18,12 +18,12 @@ export default class DimmerExampleDimmer extends Component {
           <Header as='h3'>Overlayable Section</Header>
 
           <Image.Group size='small' className='ui small images'>
-            <Image src='http://semantic-ui.com/images/wireframe/image.png' />
-            <Image src='http://semantic-ui.com/images/wireframe/image.png' />
-            <Image src='http://semantic-ui.com/images/wireframe/image.png' />
+            <Image src='/assets/images/wireframe/image.png' />
+            <Image src='/assets/images/wireframe/image.png' />
+            <Image src='/assets/images/wireframe/image.png' />
           </Image.Group>
 
-          <Image size='medium' src='http://semantic-ui.com/images/wireframe/media-paragraph.png' />
+          <Image size='medium' src='/assets/images/wireframe/media-paragraph.png' />
         </Dimmer.Dimmable>
 
         <Button.Group>

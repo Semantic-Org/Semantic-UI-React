@@ -10,6 +10,9 @@ import {
   useKeyOnly,
 } from '../../lib'
 
+/**
+ * A label can be grouped.
+ */
 function LabelGroup(props) {
   const {
     children,
@@ -39,10 +42,6 @@ LabelGroup._meta = {
   name: 'LabelGroup',
   parent: 'Label',
   type: META.TYPES.ELEMENT,
-  props: {
-    color: SUI.COLORS,
-    size: SUI.SIZES,
-  },
 }
 
 LabelGroup.propTypes = {
@@ -59,10 +58,10 @@ LabelGroup.propTypes = {
   className: PropTypes.string,
 
   /** Label group can share colors together. */
-  color: PropTypes.oneOf(LabelGroup._meta.props.color),
+  color: PropTypes.oneOf(SUI.COLORS),
 
   /** Label group can share sizes together. */
-  size: PropTypes.oneOf(LabelGroup._meta.props.size),
+  size: PropTypes.oneOf(SUI.SIZES),
 
   /** Label group can share tag formatting. */
   tag: PropTypes.bool,

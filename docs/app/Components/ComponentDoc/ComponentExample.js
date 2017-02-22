@@ -8,10 +8,9 @@ import copyToClipboard from 'copy-to-clipboard'
 import { exampleContext, repoURL } from 'docs/app/utils'
 import { Divider, Grid, Icon, Header, Menu } from 'src'
 import Editor from 'docs/app/Components/Editor/Editor'
-import babelrc from '.babelrc'
 
 const babelConfig = {
-  presets: [...babelrc.presets],
+  presets: ['es2015', 'react', 'stage-1'],
 }
 
 const showCodeStyle = {

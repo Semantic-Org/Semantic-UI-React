@@ -1,5 +1,5 @@
-import _ from 'lodash'
 import cx from 'classnames'
+import _ from 'lodash'
 import React, { PropTypes } from 'react'
 
 import {
@@ -10,13 +10,20 @@ import {
   META,
 } from '../../lib'
 
+/**
+ * A list item can contain a header.
+ */
 function ListHeader(props) {
   const { children, className, content } = props
-  const classes = cx(className, 'header')
+  const classes = cx('header', className)
   const rest = getUnhandledProps(ListHeader, props)
   const ElementType = getElementType(ListHeader, props)
 
-  return <ElementType {...rest} className={classes}>{_.isNil(children) ? content : children}</ElementType>
+  return (
+    <ElementType {...rest} className={classes}>
+      {_.isNil(children) ? content : children}
+    </ElementType>
+  )
 }
 
 ListHeader._meta = {

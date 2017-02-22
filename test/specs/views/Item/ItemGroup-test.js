@@ -1,8 +1,8 @@
 import faker from 'faker'
 import React from 'react'
 
-import * as common from 'test/specs/commonTests'
 import ItemGroup from 'src/views/Item/ItemGroup'
+import * as common from 'test/specs/commonTests'
 
 describe('ItemGroup', () => {
   common.hasUIClassName(ItemGroup)
@@ -11,7 +11,8 @@ describe('ItemGroup', () => {
 
   common.propKeyOnlyToClassName(ItemGroup, 'divided')
   common.propKeyOnlyToClassName(ItemGroup, 'link')
-  common.propKeyOrValueAndKeyToClassName(ItemGroup, 'relaxed')
+
+  common.propKeyOrValueAndKeyToClassName(ItemGroup, 'relaxed', ['very'])
 
   describe('items prop', () => {
     it('renders children', () => {

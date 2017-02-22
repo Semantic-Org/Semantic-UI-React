@@ -1,5 +1,5 @@
-import _ from 'lodash'
 import cx from 'classnames'
+import _ from 'lodash'
 import React, { Component, PropTypes } from 'react'
 
 import {
@@ -14,17 +14,9 @@ import {
 } from '../../lib'
 import Icon from '../../elements/Icon'
 
-const _meta = {
-  name: 'MenuItem',
-  type: META.TYPES.COLLECTION,
-  parent: 'Menu',
-  props: {
-    color: SUI.COLORS,
-    fitted: ['horizontally', 'vertically'],
-    position: ['right'],
-  },
-}
-
+/**
+ * A menu can contain an item.
+ */
 export default class MenuItem extends Component {
   static propTypes = {
     /** An element type to render as (string or function). */
@@ -40,7 +32,7 @@ export default class MenuItem extends Component {
     className: PropTypes.string,
 
     /** Additional colors can be specified. */
-    color: PropTypes.oneOf(_meta.props.color),
+    color: PropTypes.oneOf(SUI.COLORS),
 
     /** Shorthand for primary content. */
     content: customPropTypes.contentShorthand,
@@ -48,7 +40,7 @@ export default class MenuItem extends Component {
     /** A menu item or menu can remove element padding, vertically or horizontally. */
     fitted: PropTypes.oneOfType([
       PropTypes.bool,
-      PropTypes.oneOf(_meta.props.fitted),
+      PropTypes.oneOf(['horizontally', 'vertically']),
     ]),
 
     /** A menu item may include a header or may itself be a header. */
@@ -79,10 +71,14 @@ export default class MenuItem extends Component {
     onClick: PropTypes.func,
 
     /** A menu item can take right position. */
-    position: PropTypes.oneOf(_meta.props.position),
+    position: PropTypes.oneOf(['right']),
   }
 
-  static _meta = _meta
+  static _meta = {
+    name: 'MenuItem',
+    type: META.TYPES.COLLECTION,
+    parent: 'Menu',
+  }
 
   handleClick = (e) => {
     const { onClick } = this.props

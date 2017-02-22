@@ -1,12 +1,14 @@
 import faker from 'faker'
 import React from 'react'
 
-import * as common from 'test/specs/commonTests'
 import ItemDescription from 'src/views/Item/ItemDescription'
+import * as common from 'test/specs/commonTests'
 
 describe('ItemDescription', () => {
   common.isConformant(ItemDescription)
   common.rendersChildren(ItemDescription)
+
+  common.implementsCreateMethod(ItemDescription)
 
   describe('content prop', () => {
     it('renders text', () => {

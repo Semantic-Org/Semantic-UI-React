@@ -13,24 +13,35 @@ import {
 } from '../../lib'
 import Statistic from './Statistic'
 
+/**
+ * A group of statistics.
+ */
 function StatisticGroup(props) {
-  const { children, className, color, horizontal, inverted, items, size, widths } = props
+  const {
+    children,
+    className,
+    color,
+    horizontal,
+    inverted,
+    items,
+    size,
+    widths,
+  } = props
+
   const classes = cx(
     'ui',
     color,
+    size,
     useKeyOnly(horizontal, 'horizontal'),
     useKeyOnly(inverted, 'inverted'),
     useWidthProp(widths),
-    size,
     'statistics',
     className,
   )
   const rest = getUnhandledProps(StatisticGroup, props)
   const ElementType = getElementType(StatisticGroup, props)
 
-  if (!_.isNil(children)) {
-    return <ElementType {...rest} className={classes}>{children}</ElementType>
-  }
+  if (!_.isNil(children)) return <ElementType {...rest} className={classes}>{children}</ElementType>
 
   const itemsJSX = _.map(items, item => (
     <Statistic key={item.childKey || [item.label, item.title].join('-')} {...item} />
@@ -43,11 +54,6 @@ StatisticGroup._meta = {
   name: 'StatisticGroup',
   type: META.TYPES.VIEW,
   parent: 'Statistic',
-  props: {
-    color: SUI.COLORS,
-    size: _.without(SUI.SIZES, 'big', 'massive', 'medium'),
-    widths: SUI.WIDTHS,
-  },
 }
 
 StatisticGroup.propTypes = {
@@ -61,7 +67,7 @@ StatisticGroup.propTypes = {
   className: PropTypes.string,
 
   /** A statistic group can be formatted to be different colors. */
-  color: PropTypes.oneOf(StatisticGroup._meta.props.color),
+  color: PropTypes.oneOf(SUI.COLORS),
 
   /** A statistic group can present its measurement horizontally. */
   horizontal: PropTypes.bool,
@@ -73,10 +79,10 @@ StatisticGroup.propTypes = {
   items: customPropTypes.collectionShorthand,
 
   /** A statistic group can vary in size. */
-  size: PropTypes.oneOf(StatisticGroup._meta.props.size),
+  size: PropTypes.oneOf(_.without(SUI.SIZES, 'big', 'massive', 'medium')),
 
   /** A statistic group can have its items divided evenly. */
-  widths: PropTypes.oneOf(StatisticGroup._meta.props.widths),
+  widths: PropTypes.oneOf(SUI.WIDTHS),
 }
 
 export default StatisticGroup

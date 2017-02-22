@@ -1,7 +1,7 @@
 import React from 'react'
 
-import FormSelect from 'src/collections/Form/FormSelect'
 import Select from 'src/addons/Select/Select'
+import FormSelect from 'src/collections/Form/FormSelect'
 import * as common from 'test/specs/commonTests'
 
 describe('FormSelect', () => {

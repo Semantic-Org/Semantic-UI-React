@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import React from 'react'
 import { findDOMNode } from 'react-dom'
 
@@ -11,12 +12,12 @@ import FormInput from 'src/collections/Form/FormInput'
 import FormRadio from 'src/collections/Form/FormRadio'
 import FormSelect from 'src/collections/Form/FormSelect'
 import FormTextArea from 'src/collections/Form/FormTextArea'
+import { SUI } from 'src/lib'
 import * as common from 'test/specs/commonTests'
 import { consoleUtil, sandbox } from 'test/utils'
 
 describe('Form', () => {
   common.isConformant(Form)
-  common.hasUIClassName(Form)
   common.hasSubComponents(Form, [
     FormButton,
     FormCheckbox,
@@ -28,17 +29,19 @@ describe('Form', () => {
     FormRadio,
     FormSelect,
   ])
+  common.hasUIClassName(Form)
   common.rendersChildren(Form)
 
-  common.propKeyOnlyToClassName(Form, 'loading')
+  common.implementsWidthProp(Form, _.without(SUI.SIZES, 'medium'), { propKey: 'widths' })
+
   common.propKeyOnlyToClassName(Form, 'error')
+  common.propKeyOnlyToClassName(Form, 'inverted')
+  common.propKeyOnlyToClassName(Form, 'loading')
   common.propKeyOnlyToClassName(Form, 'reply')
   common.propKeyOnlyToClassName(Form, 'success')
   common.propKeyOnlyToClassName(Form, 'warning')
 
-  common.propValueOnlyToClassName(Form, 'size')
-
-  common.implementsWidthProp(Form, { propKey: 'widths' })
+  common.propValueOnlyToClassName(Form, 'size', _.without(SUI.SIZES, 'medium'))
 
   describe('serializer', () => {
     it('defaults to a function', () => {

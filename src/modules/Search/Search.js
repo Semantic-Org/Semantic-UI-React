@@ -17,7 +17,6 @@ import {
   useValueAndKey,
 } from '../../lib'
 import Input from '../../elements/Input'
-
 import SearchCategory from './SearchCategory'
 import SearchResult from './SearchResult'
 import SearchResults from './SearchResults'
@@ -48,6 +47,15 @@ export default class Search extends Component {
       PropTypes.object,
     ]),
 
+    /** Minimum characters to query for results */
+    minCharacters: PropTypes.number,
+
+    /** Additional text for "No Results" message with less emphasis. */
+    noResultsDescription: PropTypes.string,
+
+    /** Message to display when there are no results. */
+    noResultsMessage: PropTypes.string,
+
     /** Controls whether or not the results menu is displayed. */
     open: PropTypes.bool,
 
@@ -64,16 +72,7 @@ export default class Search extends Component {
       PropTypes.object,
     ]),
 
-    /** Minimum characters to query for results */
-    minCharacters: PropTypes.number,
-
-    /** Additional text for "No Results" message with less emphasis. */
-    noResultsDescription: PropTypes.string,
-
-    /** Message to display when there are no results. */
-    noResultsMessage: PropTypes.string,
-
-    /** Whether the search should automatically select the first result after searching */
+    /** Whether the search should automatically select the first result after searching. */
     selectFirstResult: PropTypes.bool,
 
     /** Whether a "no results" message should be shown if no results are found. */

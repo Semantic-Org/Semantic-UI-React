@@ -1,8 +1,9 @@
-import { SemanticCOLORS, SemanticSIZES } from '../..';
 import * as React from 'react';
+import { SemanticCOLORS } from '../..';
 
 interface MessageProps {
-  
+  [key: string]: any;
+
 	/** An element type to render as (string or function). */
   as?: any;
 
@@ -22,7 +23,7 @@ interface MessageProps {
   compact?: boolean;
 
   /** Shorthand for primary content. */
-  content?: any;
+  content?: React.ReactNode;
 
   /** A message may be formatted to display a negative message. Same as `negative`. */
   error?: boolean;
@@ -37,7 +38,7 @@ interface MessageProps {
   hidden?: boolean;
 
   /** Add an icon by icon name or pass an <Icon /.> */
-  icon?: any;
+  icon?: any | boolean;
 
   /** A message may be formatted to display information. */
   info?: boolean;
@@ -51,14 +52,17 @@ interface MessageProps {
   /**
    * A message that the user can choose to hide.
    * Called when the user clicks the "x" icon. This also adds the "x" icon.
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props.
    */
-  onDismiss?: React.MouseEventHandler<HTMLDivElement>;
-  
+  onDismiss?: (event: React.MouseEvent<HTMLElement>, data: MessageProps) => void;
+
   /** A message may be formatted to display a positive message.  Same as `success`. */
   positive?: boolean;
 
   /** A message can have different sizes. */
-  size?: SemanticSIZES;
+  size?: 'mini' | 'tiny' | 'small' | 'large' | 'big' | 'huge' | 'massive';
 
   /** A message may be formatted to display a positive message.  Same as `positive`. */
   success?: boolean;
@@ -70,17 +74,18 @@ interface MessageProps {
   warning?: boolean;
 }
 
-interface MessageClass extends React.ComponentClass<MessageProps> {
+interface MessageComponent extends React.ComponentClass<MessageProps> {
   Content: typeof MessageContent;
   Header: typeof MessageHeader;
   List: typeof MessageList;
   Item: typeof MessageItem;
 }
 
-export const Message: MessageClass;
+export const Message: MessageComponent;
 
 interface MessageContentProps {
-  
+  [key: string]: any;
+
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -91,10 +96,11 @@ interface MessageContentProps {
   className?: string;
 }
 
-export const MessageContent: React.ComponentClass<MessageContentProps>;
+export const MessageContent: React.StatelessComponent<MessageContentProps>;
 
 interface MessageHeaderProps {
-  
+  [key: string]: any;
+
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -103,12 +109,34 @@ interface MessageHeaderProps {
 
   /** Additional classes. */
   className?: string;
+
+  /** Shorthand for primary content. */
+  content?: React.ReactNode;
 }
 
-export const MessageHeader: React.ComponentClass<MessageHeaderProps>;
+export const MessageHeader: React.StatelessComponent<MessageHeaderProps>;
+
+interface MessageItemProps {
+  [key: string]: any;
+
+  /** An element type to render as (string or function). */
+  as?: any;
+
+  /** Primary content. */
+  children?: React.ReactNode;
+
+  /** Additional classes. */
+  className?: string;
+
+  /** Shorthand for primary content. */
+  content?: React.ReactNode;
+}
+
+export const MessageItem: React.StatelessComponent<MessageItemProps>;
 
 interface MessageListProps {
-  
+  [key: string]: any;
+
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -122,18 +150,4 @@ interface MessageListProps {
   items?: Array<any>;
 }
 
-export const MessageList: React.ComponentClass<MessageListProps>;
-
-interface MessageItemProps {
-  
-  /** An element type to render as (string or function). */
-  as?: any;
-
-  /** Primary content. */
-  children?: React.ReactNode;
-
-  /** Additional classes. */
-  className?: string;
-}
-
-export const MessageItem: React.ComponentClass<MessageItemProps>;
+export const MessageList: React.StatelessComponent<MessageListProps>;

@@ -11,23 +11,14 @@ import {
   useKeyOnly,
 } from '../../lib'
 import Image from '../../elements/Image'
-
 import CardContent from './CardContent'
 import CardDescription from './CardDescription'
 import CardGroup from './CardGroup'
 import CardHeader from './CardHeader'
 import CardMeta from './CardMeta'
 
-const _meta = {
-  name: 'Card',
-  type: META.TYPES.VIEW,
-  props: {
-    color: SUI.COLORS,
-  },
-}
-
 /**
- * A card displays site content in a manner similar to a playing card
+ * A card displays site content in a manner similar to a playing card.
  */
 export default class Card extends Component {
   static propTypes = {
@@ -44,7 +35,7 @@ export default class Card extends Component {
     className: PropTypes.string,
 
     /** A Card can be formatted to display different colors. */
-    color: PropTypes.oneOf(_meta.props.color),
+    color: PropTypes.oneOf(SUI.COLORS),
 
     /** Shorthand for CardDescription. */
     description: customPropTypes.itemShorthand,
@@ -64,6 +55,9 @@ export default class Card extends Component {
     /** A card can contain an Image component. */
     image: customPropTypes.itemShorthand,
 
+    /** A card can be formatted to link to other content. */
+    link: PropTypes.bool,
+
     /** Shorthand for CardMeta. */
     meta: customPropTypes.itemShorthand,
 
@@ -80,7 +74,10 @@ export default class Card extends Component {
     raised: PropTypes.bool,
   }
 
-  static _meta = _meta
+  static _meta = {
+    name: 'Card',
+    type: META.TYPES.VIEW,
+  }
 
   static Content = CardContent
   static Description = CardDescription
@@ -106,6 +103,7 @@ export default class Card extends Component {
       header,
       href,
       image,
+      link,
       meta,
       onClick,
       raised,
@@ -116,6 +114,7 @@ export default class Card extends Component {
       color,
       useKeyOnly(centered, 'centered'),
       useKeyOnly(fluid, 'fluid'),
+      useKeyOnly(link, 'link'),
       useKeyOnly(raised, 'raised'),
       'card',
       className,

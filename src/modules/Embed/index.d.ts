@@ -1,11 +1,13 @@
 import * as React from 'react';
 
 interface EmbedProps {
-  /** An embed can be active. */
-  active?: boolean;
+  [key: string]: any;
 
   /** An element type to render as (string or function). */
   as?: any;
+
+  /** An embed can be active. */
+  active?: boolean;
 
   /** An embed can specify an alternative aspect ratio. */
   aspectRatio?: '4:3' | '16:9' | '21:9';
@@ -15,6 +17,9 @@ interface EmbedProps {
 
   /** Whether to show networks branded UI like title cards, or after video calls to action. */
   brandedUI?: boolean;
+
+  /** Primary content. */
+  children?: React.ReactNode;
 
   /** Additional classes. */
   className?: string;
@@ -40,7 +45,7 @@ interface EmbedProps {
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
    * @param {object} data - All props and proposed value.
    */
-  onClick?: (e: React.FormEvent<HTMLVideoElement>, data: this) => void;
+  onClick?: (event: React.MouseEvent<HTMLDivElement>, data: EmbedProps) => void;
 
   /** A placeholder image for embed. */
   placeholder?: string;

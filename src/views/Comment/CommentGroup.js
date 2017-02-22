@@ -1,4 +1,5 @@
 import cx from 'classnames'
+import _ from 'lodash'
 import React, { PropTypes } from 'react'
 
 import {
@@ -6,20 +7,26 @@ import {
   getElementType,
   getUnhandledProps,
   META,
+  SUI,
   useKeyOnly,
 } from '../../lib'
 
+/**
+ * Comments can be grouped.
+ */
 function CommentGroup(props) {
   const {
     className,
     children,
     collapsed,
     minimal,
+    size,
     threaded,
   } = props
 
   const classes = cx(
     'ui',
+    size,
     useKeyOnly(collapsed, 'collapsed'),
     useKeyOnly(minimal, 'minimal'),
     useKeyOnly(threaded, 'threaded'),
@@ -51,10 +58,13 @@ CommentGroup.propTypes = {
   /** Comments can be collapsed, or hidden from view. */
   collapsed: PropTypes.bool,
 
-  /** Comments can hide extra information unless a user shows intent to interact with a comment */
+  /** Comments can hide extra information unless a user shows intent to interact with a comment. */
   minimal: PropTypes.bool,
 
-  /** A comment list can be threaded to showing the relationship between conversations */
+  /** Comments can have different sizes. */
+  size: PropTypes.oneOf(_.without(SUI.SIZES, 'medium')),
+
+  /** A comment list can be threaded to showing the relationship between conversations. */
   threaded: PropTypes.bool,
 }
 

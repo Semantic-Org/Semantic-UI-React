@@ -1,34 +1,19 @@
-import _ from 'lodash'
 import faker from 'faker'
+import _ from 'lodash'
 import React from 'react'
 
-import * as common from 'test/specs/commonTests'
-import { sandbox } from 'test/utils'
 import Label from 'src/elements/Label/Label'
 import LabelDetail from 'src/elements/Label/LabelDetail'
 import LabelGroup from 'src/elements/Label/LabelGroup'
+import * as common from 'test/specs/commonTests'
+import { SUI } from 'src/lib'
+import { sandbox } from 'test/utils'
 
 describe('Label', () => {
   common.isConformant(Label)
-  common.hasUIClassName(Label)
   common.hasSubComponents(Label, [LabelDetail, LabelGroup])
+  common.hasUIClassName(Label)
   common.rendersChildren(Label)
-
-  common.propKeyAndValueToClassName(Label, 'attached')
-
-  common.propKeyOnlyToClassName(Label, 'active')
-  common.propKeyOnlyToClassName(Label, 'basic')
-  common.propKeyOnlyToClassName(Label, 'circular')
-  common.propKeyOnlyToClassName(Label, 'empty')
-  common.propKeyOnlyToClassName(Label, 'floating')
-  common.propKeyOnlyToClassName(Label, 'horizontal')
-  common.propKeyOnlyToClassName(Label, 'tag')
-
-  common.propKeyOrValueAndKeyToClassName(Label, 'corner')
-  common.propKeyOrValueAndKeyToClassName(Label, 'ribbon')
-
-  common.propValueOnlyToClassName(Label, 'color')
-  common.propValueOnlyToClassName(Label, 'size')
 
   common.implementsCreateMethod(Label)
   common.implementsIconProp(Label)
@@ -38,6 +23,24 @@ describe('Label', () => {
     ShorthandComponent: LabelDetail,
     mapValueToProps: val => ({ content: val }),
   })
+
+  common.propKeyAndValueToClassName(Label, 'attached', [
+    'top', 'bottom', 'top right', 'top left', 'bottom left', 'bottom right',
+  ])
+
+  common.propKeyOnlyToClassName(Label, 'active')
+  common.propKeyOnlyToClassName(Label, 'basic')
+  common.propKeyOnlyToClassName(Label, 'circular')
+  common.propKeyOnlyToClassName(Label, 'empty')
+  common.propKeyOnlyToClassName(Label, 'floating')
+  common.propKeyOnlyToClassName(Label, 'horizontal')
+  common.propKeyOnlyToClassName(Label, 'tag')
+
+  common.propKeyOrValueAndKeyToClassName(Label, 'corner', ['left', 'right'])
+  common.propKeyOrValueAndKeyToClassName(Label, 'ribbon', ['right'])
+
+  common.propValueOnlyToClassName(Label, 'color', SUI.COLORS)
+  common.propValueOnlyToClassName(Label, 'size', SUI.SIZES)
 
   it('is a div by default', () => {
     shallow(<Label />)
@@ -120,7 +123,7 @@ describe('Label', () => {
     })
 
     it('does not add any poiting option class when true', () => {
-      const options = Label._meta.props.pointing
+      const options = ['above', 'below', 'left', 'right']
       const wrapper = shallow(<Label pointing />)
 
       options.map(className => wrapper.should.not.have.className(className))

@@ -1,6 +1,8 @@
 import * as React from 'react';
+import {LabelProps} from '../../elements/Label';
 
 export interface CheckboxProps {
+  [key: string]: any;
 
   /** An element type to render as (string or function). */
   as?: any;
@@ -27,7 +29,7 @@ export interface CheckboxProps {
   indeterminate?: boolean;
 
   /** The text of the associated label element. */
-  label?: string;
+  label?: any | LabelProps;
 
   /** The HTML input name. */
   name?: string;
@@ -38,7 +40,7 @@ export interface CheckboxProps {
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
    * @param {object} data - All props and proposed checked/indeterminate state.
    */
-  onChange?: (e: React.FormEvent<HTMLInputElement>, data: this) => void;
+  onChange?: (event: React.FormEvent<HTMLInputElement>, data: this) => void;
 
   /**
    * Called when the checkbox or label is clicked.
@@ -46,26 +48,25 @@ export interface CheckboxProps {
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
    * @param {object} data - All props and current checked/indeterminate state.
    */
-  onClick?: (e: React.MouseEvent<HTMLInputElement>, data: this) => void;
+  onClick?: (event: React.MouseEvent<HTMLInputElement>, data: this) => void;
 
-  /** Format as a radio element. This means it is an exclusive option.*/
-  radio?: any;
+  /** Format as a radio element. This means it is an exclusive option. */
+  radio?: boolean;
 
-  /** A checkbox can be read-only and unable to change states */
+  /** A checkbox can be read-only and unable to change states. */
   readOnly?: boolean;
 
-  /** Format to emphasize the current selection state */
-  slider?: any;
+  /** Format to emphasize the current selection state. */
+  slider?: boolean;
 
-  /** Format to show an on or off choice */
-  toggle?: any;
+  /** Format to show an on or off choice. */
+  toggle?: boolean;
 
   /** HTML input type, either checkbox or radio. */
   type?: 'checkbox' | 'radio';
 
   /** The HTML input value. */
-  value?: string;
+  value?: number|string;
 }
 
-export class Checkbox extends React.Component<CheckboxProps, {}> {
-}
+export const Checkbox: React.ComponentClass<CheckboxProps>;

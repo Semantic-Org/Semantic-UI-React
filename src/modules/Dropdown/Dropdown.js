@@ -1,5 +1,5 @@
-import _ from 'lodash'
 import cx from 'classnames'
+import _ from 'lodash'
 import React, { Children, cloneElement, PropTypes } from 'react'
 
 import {
@@ -18,7 +18,6 @@ import {
 } from '../../lib'
 import Icon from '../../elements/Icon'
 import Label from '../../elements/Label'
-
 import DropdownDivider from './DropdownDivider'
 import DropdownItem from './DropdownItem'
 import DropdownHeader from './DropdownHeader'
@@ -26,22 +25,26 @@ import DropdownMenu from './DropdownMenu'
 
 const debug = makeDebugger('dropdown')
 
-const _meta = {
-  name: 'Dropdown',
-  type: META.TYPES.MODULE,
-  props: {
-    pointing: ['left', 'right', 'top', 'top left', 'top right', 'bottom', 'bottom left', 'bottom right'],
-    additionPosition: ['top', 'bottom'],
-  },
-}
-
 /**
  * A dropdown allows a user to select a value from a series of options.
  * @see Form
  * @see Select
+ * @see Menu
  */
 export default class Dropdown extends Component {
   static propTypes = {
+    /** An element type to render as (string or function). */
+    as: customPropTypes.as,
+
+    /** Label prefixed to an option added by a user. */
+    additionLabel: PropTypes.oneOfType([
+      PropTypes.element,
+      PropTypes.string,
+    ]),
+
+    /** Position of the `Add: ...` option in the dropdown list ('top' or 'bottom'). */
+    additionPosition: PropTypes.oneOf(['top', 'bottom']),
+
     /**
      * Allow user additions to the list of options (boolean).
      * Requires the use of `selection`, `options` and `search`.
@@ -51,19 +54,7 @@ export default class Dropdown extends Component {
       PropTypes.bool,
     ]),
 
-    /** Position of the `Add: ...` option in the dropdown list ('top' or 'bottom'). */
-    additionPosition: PropTypes.oneOf(_meta.props.additionPosition),
-
-    /** Label prefixed to an option added by a user. */
-    additionLabel: PropTypes.oneOfType([
-      PropTypes.element,
-      PropTypes.string,
-    ]),
-
-    /** An element type to render as (string or function). */
-    as: customPropTypes.as,
-
-    /** A Dropdown can reduce its complexity */
+    /** A Dropdown can reduce its complexity. */
     basic: PropTypes.bool,
 
     /** Format the Dropdown to appear as a button. */
@@ -84,6 +75,13 @@ export default class Dropdown extends Component {
     /** Whether or not the menu should close when the dropdown is blurred. */
     closeOnBlur: PropTypes.bool,
 
+    /**
+     * Whether or not the menu should close when a value is selected from the dropdown.
+     * By default, multiple selection dropdowns will remain open on change, while single
+     * selection dropdowns will close on change.
+     */
+    closeOnChange: PropTypes.bool,
+
     /** A compact dropdown has no minimum width. */
     compact: PropTypes.bool,
 
@@ -94,15 +92,15 @@ export default class Dropdown extends Component {
     defaultSelectedLabel: customPropTypes.every([
       customPropTypes.demand(['multiple']),
       PropTypes.oneOfType([
-        PropTypes.string,
         PropTypes.number,
+        PropTypes.string,
       ]),
     ]),
 
     /** Initial value or value array if multiple. */
     defaultValue: PropTypes.oneOfType([
-      PropTypes.string,
       PropTypes.number,
+      PropTypes.string,
       PropTypes.arrayOf(PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.number,
@@ -133,10 +131,11 @@ export default class Dropdown extends Component {
     /** A dropdown can be formatted to appear inline in other content. */
     inline: PropTypes.bool,
 
+    /** A dropdown can be formatted as a Menu item. */
+    item: PropTypes.bool,
+
     /** A dropdown can be labeled. */
     labeled: PropTypes.bool,
-
-    // linkItem: PropTypes.bool,
 
     /** A dropdown can show that it is currently loading data. */
     loading: PropTypes.bool,
@@ -175,6 +174,14 @@ export default class Dropdown extends Component {
     onChange: PropTypes.func,
 
     /**
+     * Called on click.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props.
+     */
+    onClick: PropTypes.func,
+
+    /**
      * Called when a close event happens.
      *
      * @param {SyntheticEvent} event - React's original SyntheticEvent.
@@ -183,12 +190,28 @@ export default class Dropdown extends Component {
     onClose: PropTypes.func,
 
     /**
+     * Called on focus.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props.
+     */
+    onFocus: PropTypes.func,
+
+    /**
      * Called when a multi-select label is clicked.
      *
      * @param {SyntheticEvent} event - React's original SyntheticEvent.
      * @param {object} data - All label props.
      */
     onLabelClick: PropTypes.func,
+
+    /**
+     * Called on mousedown.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props.
+     */
+    onMouseDown: PropTypes.func,
 
     /**
      * Called when an open event happens.
@@ -205,30 +228,6 @@ export default class Dropdown extends Component {
      * @param {string} value - Current value of search input.
      */
     onSearchChange: PropTypes.func,
-
-    /**
-     * Called on click.
-     *
-     * @param {SyntheticEvent} event - React's original SyntheticEvent.
-     * @param {object} data - All props.
-     */
-    onClick: PropTypes.func,
-
-    /**
-     * Called on focus.
-     *
-     * @param {SyntheticEvent} event - React's original SyntheticEvent.
-     * @param {object} data - All props.
-     */
-    onFocus: PropTypes.func,
-
-    /**
-     * Called on mousedown.
-     *
-     * @param {SyntheticEvent} event - React's original SyntheticEvent.
-     * @param {object} data - All props.
-     */
-    onMouseDown: PropTypes.func,
 
     /** Controls whether or not the dropdown menu is displayed. */
     open: PropTypes.bool,
@@ -248,13 +247,10 @@ export default class Dropdown extends Component {
     /** A dropdown can be formatted so that its menu is pointing. */
     pointing: PropTypes.oneOfType([
       PropTypes.bool,
-      PropTypes.oneOf(_meta.props.pointing),
+      PropTypes.oneOf(['left', 'right', 'top', 'top left', 'top right', 'bottom', 'bottom left', 'bottom right']),
     ]),
 
-    /**
-     * A function that takes (data, index, defaultLabelProps) and returns
-     * shorthand for Label .
-     */
+    /** A function that takes (data, index, defaultLabelProps) and returns shorthand for Label. */
     renderLabel: PropTypes.func,
 
     /** A dropdown can have its menu scroll. */
@@ -271,6 +267,9 @@ export default class Dropdown extends Component {
 
     // TODO 'searchInMenu' or 'search='in menu' or ???  How to handle this markup and functionality?
 
+    /** Define whether the highlighted item should be selected on blur. */
+    selectOnBlur: PropTypes.bool,
+
     /** Currently selected label in multi-select. */
     selectedLabel: customPropTypes.every([
       customPropTypes.demand(['multiple']),
@@ -286,9 +285,6 @@ export default class Dropdown extends Component {
       customPropTypes.demand(['options']),
       PropTypes.bool,
     ]),
-
-    /** Define whether the highlighted item should be selected on blur. */
-    selectOnBlur: PropTypes.bool,
 
     /** A simple dropdown can open without Javascript. */
     simple: PropTypes.bool,
@@ -336,7 +332,11 @@ export default class Dropdown extends Component {
     'selectedLabel',
   ]
 
-  static _meta = _meta
+  static _meta = {
+    name: 'Dropdown',
+    type: META.TYPES.MODULE,
+  }
+
   static Divider = DropdownDivider
   static Header = DropdownHeader
   static Item = DropdownItem
@@ -413,14 +413,14 @@ export default class Dropdown extends Component {
       } else {
         document.addEventListener('keydown', this.moveSelectionOnKeyDown)
         document.addEventListener('keydown', this.selectItemOnEnter)
-        document.addEventListener('keydown', this.removeItemOnBackspace)
       }
+      document.addEventListener('keydown', this.removeItemOnBackspace)
     } else if (prevState.focus && !this.state.focus) {
       debug('dropdown blurred')
-      if (!this.isMouseDown) {
-        const { closeOnBlur } = this.props
-        debug('mouse is not down, closing')
-        if (closeOnBlur) this.close()
+      const { closeOnBlur } = this.props
+      if (!this.isMouseDown && closeOnBlur) {
+        debug('mouse is not down and closeOnBlur=true, closing')
+        this.close()
       }
       document.removeEventListener('keydown', this.openOnArrow)
       document.removeEventListener('keydown', this.openOnSpace)
@@ -445,8 +445,10 @@ export default class Dropdown extends Component {
       document.removeEventListener('keydown', this.closeOnEscape)
       document.removeEventListener('keydown', this.moveSelectionOnKeyDown)
       document.removeEventListener('keydown', this.selectItemOnEnter)
-      document.removeEventListener('keydown', this.removeItemOnBackspace)
       document.removeEventListener('click', this.closeOnDocumentClick)
+      if (!this.state.focus) {
+        document.removeEventListener('keydown', this.removeItemOnBackspace)
+      }
     }
   }
 
@@ -476,6 +478,15 @@ export default class Dropdown extends Component {
     debug(value)
     const { onChange } = this.props
     if (onChange) onChange(e, { ...this.props, value })
+  }
+
+  closeOnChange = (e) => {
+    const { closeOnChange, multiple } = this.props
+    const shouldClose = _.isUndefined(closeOnChange)
+      ? !multiple
+      : closeOnChange
+
+    if (shouldClose) this.close(e)
   }
 
   closeOnEscape = (e) => {
@@ -524,7 +535,7 @@ export default class Dropdown extends Component {
     this.open(e)
   }
 
-  selectHighlightedItem = (e) => {
+  makeSelectedItemActive = (e) => {
     const { open } = this.state
     const { multiple, onAddItem } = this.props
     const item = this.getSelectedItem()
@@ -547,7 +558,6 @@ export default class Dropdown extends Component {
     } else {
       this.setValue(value)
       this.handleChange(e, value)
-      this.close()
     }
   }
 
@@ -557,7 +567,8 @@ export default class Dropdown extends Component {
     if (keyboardKey.getCode(e) !== keyboardKey.Enter) return
     e.preventDefault()
 
-    this.selectHighlightedItem(e)
+    this.makeSelectedItemActive(e)
+    this.closeOnChange(e)
   }
 
   removeItemOnBackspace = (e) => {
@@ -648,24 +659,29 @@ export default class Dropdown extends Component {
     } else {
       this.setValue(value)
       this.handleChange(e, value)
-      this.close()
     }
+    this.closeOnChange(e)
   }
 
   handleFocus = (e) => {
     debug('handleFocus()')
     const { onFocus } = this.props
+    const { focus } = this.state
+    if (focus) return
     if (onFocus) onFocus(e, this.props)
     this.setState({ focus: true })
   }
 
   handleBlur = (e) => {
     debug('handleBlur()')
-    const { multiple, onBlur, selectOnBlur } = this.props
+    const { closeOnBlur, multiple, onBlur, selectOnBlur } = this.props
     // do not "blur" when the mouse is down inside of the Dropdown
     if (this.isMouseDown) return
     if (onBlur) onBlur(e, this.props)
-    if (selectOnBlur && !multiple) this.selectHighlightedItem(e)
+    if (selectOnBlur && !multiple) {
+      this.makeSelectedItemActive(e)
+      if (closeOnBlur) this.close()
+    }
     this.setState({ focus: false, searchQuery: '' })
   }
 
@@ -684,7 +700,7 @@ export default class Dropdown extends Component {
     if (search && newQuery && !open) this.open()
 
     this.setState({
-      selectedIndex: this.getEnabledIndices()[0],
+      selectedIndex: 0,
       searchQuery: newQuery,
     })
   }
@@ -805,6 +821,9 @@ export default class Dropdown extends Component {
       searchQuery: '',
     }
 
+    const { multiple, search } = this.props
+    if (multiple && search && this._search) this._search.focus()
+
     this.trySetState({ value }, newState)
     this.setSelectedIndex(value)
   }
@@ -902,9 +921,7 @@ export default class Dropdown extends Component {
 
   scrollSelectedItemIntoView = () => {
     debug('scrollSelectedItemIntoView()')
-    // Do not access document when server side rendering
-    if (!isBrowser) return
-    const menu = document.querySelector('.ui.dropdown.active.visible .menu.visible')
+    const menu = this._dropdown.querySelector('.menu.visible')
     const item = menu.querySelector('.item.selected')
     debug(`menu: ${menu}`)
     debug(`item: ${item}`)
@@ -940,14 +957,19 @@ export default class Dropdown extends Component {
 
   handleClose = () => {
     debug('handleClose()')
+    const hasSearchFocus = document.activeElement === this._search
+    const hasDropdownFocus = document.activeElement === this._dropdown
+    const hasFocus = hasSearchFocus || hasDropdownFocus
     // https://github.com/Semantic-Org/Semantic-UI-React/issues/627
     // Blur the Dropdown on close so it is blurred after selecting an item.
     // This is to prevent it from re-opening when switching tabs after selecting an item.
-    this._dropdown.blur()
+    if (!hasSearchFocus) {
+      this._dropdown.blur()
+    }
 
     // We need to keep the virtual model in sync with the browser focus change
     // https://github.com/Semantic-Org/Semantic-UI-React/issues/692
-    this.setState({ focus: false })
+    this.setState({ focus: hasFocus })
   }
 
   toggle = (e) => this.state.open ? this.close(e) : this.open(e)
@@ -1138,8 +1160,8 @@ export default class Dropdown extends Component {
       floating,
       icon,
       inline,
+      item,
       labeled,
-      // linkItem,
       multiple,
       pointing,
       search,
@@ -1172,8 +1194,7 @@ export default class Dropdown extends Component {
       // TODO: the icon class is only required when a dropdown is a button
       // useKeyOnly(icon, 'icon'),
       useKeyOnly(labeled, 'labeled'),
-      // TODO: linkItem is required only when Menu child, add dynamically
-      // useKeyOnly(linkItem, 'link item'),
+      useKeyOnly(item, 'item'),
       useKeyOnly(multiple, 'multiple'),
       useKeyOnly(search, 'search'),
       useKeyOnly(selection, 'selection'),

@@ -22,8 +22,8 @@ const semanticUIReactCompleter = {
       // Component
       completions.push({ caption: name, value: name, meta: 'Component' })
 
-      // Its props
-      _.each(component.propTypes, (val, propName) => {
+      // Its props (propTypes do not exist in prod, use handledProps added by babel)
+      _.each(component.handledProps, (propName) => {
         // don't add duplicate prop completions
         if (_.find(completions, { value: propName })) return
 

@@ -2,22 +2,18 @@ import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
 import {
-  useKeyOnly,
   customPropTypes,
   getElementType,
   getUnhandledProps,
   META,
+  useKeyOnly,
 } from '../../lib'
 
 /**
  * A pushable sub-component for Sidebar.
  */
 function SidebarPusher(props) {
-  const {
-    className,
-    dimmed,
-    children,
-  } = props
+  const { className, dimmed, children } = props
 
   const classes = cx(
     'pusher',

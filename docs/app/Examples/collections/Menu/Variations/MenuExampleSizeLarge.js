@@ -15,7 +15,7 @@ export default class MenuExampleSizeLarge extends Component {
         <Menu.Item name='messages' active={activeItem === 'messages'} onClick={this.handleItemClick} />
 
         <Menu.Menu position='right'>
-          <Dropdown as={Menu.Item} text='Language'>
+          <Dropdown item text='Language'>
             <Dropdown.Menu>
               <Dropdown.Item>English</Dropdown.Item>
               <Dropdown.Item>Russian</Dropdown.Item>

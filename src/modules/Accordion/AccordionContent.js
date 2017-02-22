@@ -1,5 +1,5 @@
-import React, { PropTypes } from 'react'
 import cx from 'classnames'
+import React, { PropTypes } from 'react'
 
 import {
   customPropTypes,
@@ -9,6 +9,9 @@ import {
   useKeyOnly,
 } from '../../lib'
 
+/**
+ * A content sub-component for Accordion component.
+ */
 function AccordionContent(props) {
   const { active, children, className } = props
   const classes = cx(
@@ -21,8 +24,6 @@ function AccordionContent(props) {
 
   return <ElementType {...rest} className={classes}>{children}</ElementType>
 }
-
-AccordionContent.displayName = 'AccordionContent'
 
 AccordionContent.propTypes = {
   /** An element type to render as (string or function). */

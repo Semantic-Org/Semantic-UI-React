@@ -1,5 +1,5 @@
-import * as common from 'test/specs/commonTests'
 import ListHeader from 'src/elements/List/ListHeader'
+import * as common from 'test/specs/commonTests'
 
 describe('ListHeader', () => {
   common.isConformant(ListHeader)

@@ -1,9 +1,8 @@
-import { SemanticSIZES } from '../..';
-import { Label } from '../../elements/Label';
 import * as React from 'react';
 
 interface FeedProps {
-  
+  [key: string]: any;
+
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -17,10 +16,10 @@ interface FeedProps {
   events?: Array<any>;
 
   /** A feed can have different sizes. */
-  size?: SemanticSIZES;
+  size?: 'small' | 'large';
 }
 
-interface FeedClass extends React.ComponentClass<FeedProps> {
+interface FeedComponent extends React.StatelessComponent<FeedProps> {
   Content: typeof FeedContent;
   Date: typeof FeedDate;
   Event: typeof FeedEvent;
@@ -30,13 +29,13 @@ interface FeedClass extends React.ComponentClass<FeedProps> {
   Like: typeof FeedLike;
   Summary: typeof FeedSummary;
   User: typeof FeedUser;
-
 }
 
-export const Feed: FeedClass;
+export const Feed: FeedComponent;
 
 interface FeedContentProps {
-  
+  [key: string]: any;
+
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -47,7 +46,7 @@ interface FeedContentProps {
   className?: string;
 
   /** Shorthand for primary content. */
-  content?: any;
+  content?: React.ReactNode;
 
   /** An event can contain a date. */
   date?: any;
@@ -65,10 +64,11 @@ interface FeedContentProps {
   summary?: any;
 }
 
-export const FeedContent: React.ComponentClass<FeedContentProps>;
+export const FeedContent: React.StatelessComponent<FeedContentProps>;
 
 interface FeedDateProps {
-  
+  [key: string]: any;
+
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -82,10 +82,11 @@ interface FeedDateProps {
   content?: any;
 }
 
-export const FeedDate: React.ComponentClass<FeedDateProps>;
+export const FeedDate: React.StatelessComponent<FeedDateProps>;
 
 interface FeedEventProps {
-  
+  [key: string]: any;
+
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -95,7 +96,7 @@ interface FeedEventProps {
   /** Additional classes. */
   className?: string;
 
-  /** Shorthand for primary content. */
+  /** Shorthand for FeedContent. */
   content?: any;
 
   /** Shorthand for FeedDate. */
@@ -120,10 +121,11 @@ interface FeedEventProps {
   summary?: any;
 }
 
-export const FeedEvent: React.ComponentClass<FeedEventProps>;
+export const FeedEvent: React.StatelessComponent<FeedEventProps>;
 
 interface FeedExtraProps {
-  
+  [key: string]: any;
+
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -134,41 +136,19 @@ interface FeedExtraProps {
   className?: string;
 
   /** Shorthand for primary content. */
-  content?: any;
+  content?: React.ReactNode;
 
   /** An event can contain additional information like a set of images. */
-  images?: any;
+  images?: boolean | Array<any>;
 
   /** An event can contain additional text information. */
   text?: boolean;
 }
 
-export const FeedExtra: React.ComponentClass<FeedExtraProps>;
+export const FeedExtra: React.StatelessComponent<FeedExtraProps>;
 
 interface FeedLabelProps {
-  
-	/** An element type to render as (string or function). */
-	as?: any;
-  
-	/** Primary content. */
-	children?: React.ReactNode;
-  
-	/** Additional classes. */
-	className?: string;
-  
-	/** Shorthand for primary content. */
-	content?: any;
-  
-	/** An event can contain icon label. */
-	icon?: any;
-  
-	/** An event can contain image label. */
-	image?: any;
-}
-
-export const FeedLabel: React.ComponentClass<FeedLabelProps>;
-
-interface FeedLikeProps {
+  [key: string]: any;
 
   /** An element type to render as (string or function). */
   as?: any;
@@ -180,16 +160,41 @@ interface FeedLikeProps {
   className?: string;
 
   /** Shorthand for primary content. */
-  content?: any;
+  content?: React.ReactNode;
+
+  /** An event can contain icon label. */
+  icon?: any;
+
+  /** An event can contain image label. */
+  image?: any;
+}
+
+export const FeedLabel: React.StatelessComponent<FeedLabelProps>;
+
+interface FeedLikeProps {
+  [key: string]: any;
+
+  /** An element type to render as (string or function). */
+  as?: any;
+
+  /** Primary content. */
+  children?: React.ReactNode;
+
+  /** Additional classes. */
+  className?: string;
+
+  /** Shorthand for primary content. */
+  content?: React.ReactNode;
 
   /** Shorthand for icon. Mutually exclusive with children. */
   icon?: any;
 }
 
-export const FeedLike: React.ComponentClass<FeedLikeProps>;
+export const FeedLike: React.StatelessComponent<FeedLikeProps>;
 
 interface FeedMetaProps {
-  
+  [key: string]: any;
+
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -200,16 +205,17 @@ interface FeedMetaProps {
   className?: string;
 
   /** Shorthand for primary content. */
-  content?: any;
+  content?: React.ReactNode;
 
   /** Shorthand for FeedLike. */
   like?: any;
 }
 
-export const FeedMeta: React.ComponentClass<FeedMetaProps>;
+export const FeedMeta: React.StatelessComponent<FeedMetaProps>;
 
 interface FeedSummaryProps {
-  
+  [key: string]: any;
+
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -220,7 +226,7 @@ interface FeedSummaryProps {
   className?: string;
 
   /** Shorthand for primary content. */
-  content?: any;
+  content?: React.ReactNode;
 
   /** Shorthand for FeedDate. */
   date?: any;
@@ -229,10 +235,11 @@ interface FeedSummaryProps {
   user?: any;
 }
 
-export const FeedSummary: React.ComponentClass<FeedSummaryProps>;
+export const FeedSummary: React.StatelessComponent<FeedSummaryProps>;
 
 interface FeedUserProps {
-  
+  [key: string]: any;
+
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -243,7 +250,7 @@ interface FeedUserProps {
   className?: string;
 
   /** Shorthand for primary content. */
-  content?: any;
+  content?: React.ReactNode;
 }
 
-export const FeedUser: React.ComponentClass<FeedUserProps>;
+export const FeedUser: React.StatelessComponent<FeedUserProps>;

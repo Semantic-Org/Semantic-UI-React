@@ -11,11 +11,15 @@ import {
 
 function StepDescription(props) {
   const { children, className, description } = props
-  const classes = cx(className, 'description')
+  const classes = cx('description', className)
   const rest = getUnhandledProps(StepDescription, props)
   const ElementType = getElementType(StepDescription, props)
 
-  return <ElementType {...rest} className={classes}>{_.isNil(children) ? description : children}</ElementType>
+  return (
+    <ElementType {...rest} className={classes}>
+      {_.isNil(children) ? description : children}
+    </ElementType>
+  )
 }
 
 StepDescription._meta = {

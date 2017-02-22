@@ -1,5 +1,5 @@
-import _ from 'lodash'
 import cx from 'classnames'
+import _ from 'lodash'
 import React, { PropTypes } from 'react'
 
 import {
@@ -11,9 +11,19 @@ import {
 } from '../../lib'
 import Icon from '../../elements/Icon'
 
+/**
+ * An event can contain an image or icon label.
+ */
 function FeedLabel(props) {
-  const { children, className, content, icon, image } = props
-  const classes = cx(className, 'label')
+  const {
+    children,
+    className,
+    content,
+    icon,
+    image,
+  } = props
+
+  const classes = cx('label', className)
   const rest = getUnhandledProps(FeedLabel, props)
   const ElementType = getElementType(FeedLabel, props)
 

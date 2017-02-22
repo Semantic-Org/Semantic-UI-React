@@ -1,21 +1,33 @@
+<!-- Logo -->
 <p align="center">
-  <a href="http://semantic-org.github.io/Semantic-UI-React">
+  <a href="http://react.semantic-ui.com">
     <img height="128" width="128" src="https://github.com/Semantic-Org/Semantic-UI-React/raw/master/docs/app/logo.png">
   </a>
-  <p align="center">
-    The official <a href="http://semantic-ui.com">Semantic UI</a>
-    +
-    <a href="https://facebook.github.io/react">React</a>
-    integration.
-  </p>
 </p>
 
-# [Semantic-UI-React (Stardust)][2]
-[![Gitter](https://img.shields.io/badge/gitter-join_chat-1dce73.svg?logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB4PSIwIiB5PSI1IiBmaWxsPSIjZmZmIiB3aWR0aD0iMSIgaGVpZ2h0PSI1Ii8%2BPHJlY3QgeD0iMiIgeT0iNiIgZmlsbD0iI2ZmZiIgd2lkdGg9IjEiIGhlaWdodD0iNyIvPjxyZWN0IHg9IjQiIHk9IjYiIGZpbGw9IiNmZmYiIHdpZHRoPSIxIiBoZWlnaHQ9IjciLz48cmVjdCB4PSI2IiB5PSI2IiBmaWxsPSIjZmZmIiB3aWR0aD0iMSIgaGVpZ2h0PSI0Ii8%2BPC9zdmc%2B&logoWidth=8&style=flat-square&maxAge=2592000)](https://gitter.im/Semantic-Org/Semantic-UI-React)
-[![Circle CI](https://img.shields.io/circleci/project/Semantic-Org/Semantic-UI-React/master.svg?style=flat-square)](https://circleci.com/gh/Semantic-Org/Semantic-UI-React/tree/master)
-[![Codecov](https://img.shields.io/codecov/c/github/Semantic-Org/Semantic-UI-React/master.svg?style=flat-square)](https://codecov.io/gh/Semantic-Org/Semantic-UI-React)
-[![Gemnasium](https://img.shields.io/gemnasium/Semantic-Org/Semantic-UI-React.svg?style=flat-square)](https://gemnasium.com/Semantic-Org/Semantic-UI-React)
-[![npm](https://img.shields.io/npm/v/semantic-ui-react.svg?style=flat-square)](https://www.npmjs.com/package/semantic-ui-react)
+<!-- Name -->
+<h1 align="center">
+  <a href="http://react.semantic-ui.com/">Semantic UI React</a>
+</h1>
+
+<!-- Badges -->
+<p align="center">
+  <a href="https://gitter.im/Semantic-Org/Semantic-UI-React">
+    <img alt="Gitter" src="https://img.shields.io/badge/gitter-join_chat-1dce73.svg?logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB4PSIwIiB5PSI1IiBmaWxsPSIjZmZmIiB3aWR0aD0iMSIgaGVpZ2h0PSI1Ii8%2BPHJlY3QgeD0iMiIgeT0iNiIgZmlsbD0iI2ZmZiIgd2lkdGg9IjEiIGhlaWdodD0iNyIvPjxyZWN0IHg9IjQiIHk9IjYiIGZpbGw9IiNmZmYiIHdpZHRoPSIxIiBoZWlnaHQ9IjciLz48cmVjdCB4PSI2IiB5PSI2IiBmaWxsPSIjZmZmIiB3aWR0aD0iMSIgaGVpZ2h0PSI0Ii8%2BPC9zdmc%2B&logoWidth=8&style=flat-square&maxAge=2592000" />
+  </a>
+  <a href="ttps://circleci.com/gh/Semantic-Org/Semantic-UI-React/tree/master">
+    <img alt="Circle" src="https://img.shields.io/circleci/project/Semantic-Org/Semantic-UI-React/master.svg?style=flat-square" />
+  </a>
+  <a href="https://codecov.io/gh/Semantic-Org/Semantic-UI-React">
+    <img alt="Codecov" src="https://img.shields.io/codecov/c/github/Semantic-Org/Semantic-UI-React/master.svg?style=flat-square" />
+  </a>
+  <a href="https://gemnasium.com/Semantic-Org/Semantic-UI-React">
+    <img alt="Gemnasium" src="https://img.shields.io/gemnasium/Semantic-Org/Semantic-UI-React.svg?style=flat-square" />
+  </a>
+  <a href="https://www.npmjs.com/package/semantic-ui-react">
+    <img alt="npm" src="https://img.shields.io/npm/v/semantic-ui-react.svg?style=flat-square" />
+  </a>
+</p>
 
 Hey, we're in development. Prior to reaching [v1.0.0][6]:
 
@@ -137,7 +149,7 @@ Big thanks to our [contributors][20], especially:
 - @layershifter for bringing momentum and continual support
 
 [1]: https://github.com/Semantic-Org/Semantic-UI-React/blob/master/.github/CONTRIBUTING.md
-[2]: https://semantic-org.github.io/Semantic-UI-React/
+[2]: http://react.semantic-ui.com/
 [3]: https://facebook.github.io/react/
 [4]: https://github.com/Semantic-Org/Semantic-UI-React/labels/help%20wanted
 [5]: http://semantic-ui.com/

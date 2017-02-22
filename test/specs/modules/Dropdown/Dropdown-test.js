@@ -56,7 +56,7 @@ const dropdownMenuIsOpen = () => {
 
 const nativeEvent = { nativeEvent: { stopImmediatePropagation: _.noop } }
 
-describe('Dropdown Component', () => {
+describe('Dropdown', () => {
   beforeEach(() => {
     attachTo = undefined
     wrapper = undefined
@@ -89,15 +89,16 @@ describe('Dropdown Component', () => {
   // TODO: See Dropdown cx notes
   // common.propKeyOnlyToClassName(Dropdown, 'icon')
   common.propKeyOnlyToClassName(Dropdown, 'labeled')
-  // TODO: See Dropdown cx notes
-  // common.propKeyOnlyToClassName(Dropdown, 'link item')
+  common.propKeyOnlyToClassName(Dropdown, 'item')
   common.propKeyOnlyToClassName(Dropdown, 'multiple')
   common.propKeyOnlyToClassName(Dropdown, 'search')
   common.propKeyOnlyToClassName(Dropdown, 'selection')
   common.propKeyOnlyToClassName(Dropdown, 'simple')
   common.propKeyOnlyToClassName(Dropdown, 'scrolling')
 
-  common.propKeyOrValueAndKeyToClassName(Dropdown, 'pointing')
+  common.propKeyOrValueAndKeyToClassName(Dropdown, 'pointing', [
+    'left', 'right', 'top', 'top left', 'top right', 'bottom', 'bottom left', 'bottom right',
+  ])
 
   it('closes on blur', () => {
     wrapperMount(<Dropdown options={options} />)
@@ -268,15 +269,15 @@ describe('Dropdown Component', () => {
       spy.should.have.been.calledWithMatch(event)
     })
 
-    it('calls selectHighlightedItem', () => {
+    it('calls makeSelectedItemActive', () => {
       wrapperShallow(<Dropdown selectOnBlur />)
 
       const instance = wrapper.instance()
-      sandbox.spy(instance, 'selectHighlightedItem')
+      sandbox.spy(instance, 'makeSelectedItemActive')
 
       wrapper.simulate('blur')
 
-      instance.selectHighlightedItem
+      instance.makeSelectedItemActive
         .should.have.been.calledOnce()
     })
 
@@ -303,19 +304,19 @@ describe('Dropdown Component', () => {
       spy.should.not.have.been.called()
     })
 
-    it('does not call selectHighlightedItem when the mouse is down', () => {
+    it('does not call makeSelectedItemActive when the mouse is down', () => {
       const spy = sandbox.spy()
 
       wrapperShallow(<Dropdown onBlur={spy} selectOnBlur />)
 
       const instance = wrapper.instance()
-      sandbox.spy(instance, 'selectHighlightedItem')
+      sandbox.spy(instance, 'makeSelectedItemActive')
 
       wrapper
         .simulate('mousedown')
         .simulate('blur')
 
-      instance.selectHighlightedItem
+      instance.makeSelectedItemActive
         .should.not.have.been.called()
     })
 
@@ -367,6 +368,34 @@ describe('Dropdown Component', () => {
       // doesn't open on space
       domEvent.keyDown(document, { key: ' ' })
       dropdownMenuIsClosed()
+    })
+  })
+
+  describe('closeOnChange', () => {
+    it('will close when defined and dropdown is multiple', () => {
+      wrapperMount(<Dropdown selection multiple search closeOnChange options={options} />)
+        .simulate('click')
+
+      dropdownMenuIsOpen()
+
+      wrapper.find('DropdownItem')
+        .first()
+        .simulate('click', nativeEvent)
+
+      dropdownMenuIsClosed()
+    })
+
+    it('will remain open when undefined and dropdown is multiple', () => {
+      wrapperMount(<Dropdown selection multiple search options={options} />)
+        .simulate('click')
+
+      dropdownMenuIsOpen()
+
+      wrapper.find('DropdownItem')
+        .first()
+        .simulate('click', nativeEvent)
+
+      dropdownMenuIsOpen()
     })
   })
 
@@ -529,6 +558,44 @@ describe('Dropdown Component', () => {
       wrapper
         .find('.selected')
         .should.contain.text('a2')
+    })
+    it('still works after encountering "no results"', () => {
+      const opts = [
+        { text: 'a1', value: 'a1' },
+        { text: 'a2', value: 'a2' },
+        { text: 'a3', value: 'a3' },
+      ]
+      wrapperMount(<Dropdown options={opts} search selection />)
+
+      // search for 'a4'
+      // no results appears
+      wrapper
+        .simulate('click')
+        .find('input.search')
+        .simulate('change', { target: { value: 'a4' } })
+
+      wrapper.should.have.exactly(1).descendants('.message')
+
+      // search for 'a' (simulated backspace)
+      // no results is removed
+      // first item is selected
+      // down arrow moves selection
+      wrapper
+        .find('input.search')
+        .simulate('change', { target: { value: 'a' } })
+
+      wrapper.should.not.have.descendants('.message')
+
+      wrapper
+        .should.have.exactly(1).descendants('.selected')
+        .which.contain.text('a1')
+
+      // move selection down
+      domEvent.keyDown(document, { key: 'ArrowDown' })
+
+      wrapper
+        .should.have.exactly(1).descendants('.selected')
+        .which.contain.text('a2')
     })
     it('skips over disabled items', () => {
       const opts = [
@@ -702,12 +769,12 @@ describe('Dropdown Component', () => {
       const nextItem = _.sample(_.without(options, initialItem))
 
       wrapperMount(<Dropdown options={options} selection value={initialItem.value} />)
-        .find('.text')
+        .find('div.text')
         .should.contain.text(initialItem.text)
 
       wrapper
         .setProps({ value: nextItem.value })
-        .find('.text')
+        .find('div.text')
         .should.contain.text(nextItem.text)
     })
   })
@@ -717,7 +784,7 @@ describe('Dropdown Component', () => {
       const text = faker.hacker.phrase()
 
       wrapperRender(<Dropdown options={options} selection text={text} />)
-        .find('.text')
+        .find('div.text')
         .should.contain.text(text)
     })
     it('prevents updates on item click if defined', () => {
@@ -730,7 +797,7 @@ describe('Dropdown Component', () => {
         .simulate('click')
 
       wrapper
-        .find('.text')
+        .find('div.text')
         .should.contain.text(text)
     })
     it('is updated on item click if not already defined', () => {
@@ -747,7 +814,7 @@ describe('Dropdown Component', () => {
 
       // text updated
       wrapper
-        .find('.text')
+        .find('div.text')
         .should.contain.text(item.text())
     })
     it('displays if value is 0', () => {
@@ -765,10 +832,10 @@ describe('Dropdown Component', () => {
 
       // text updated
       wrapper
-        .find('.text')
+        .find('div.text')
         .should.contain.text(item.text())
     })
-    it('does not display if value is \'\'', () => {
+    it("does not display if value is ''", () => {
       const text = faker.hacker.noun()
 
       wrapperMount(<Dropdown options={[{ value: '', text }]} selection />)
@@ -777,7 +844,7 @@ describe('Dropdown Component', () => {
         .simulate('click')
 
       wrapper
-        .find('.text')
+        .find('div.text')
         .should.contain.text('')
     })
     it('does not display if value is null', () => {
@@ -789,7 +856,7 @@ describe('Dropdown Component', () => {
         .simulate('click')
 
       wrapper
-        .find('.text')
+        .find('div.text')
         .should.contain.text('')
     })
     it('does not display if value is undefined', () => {
@@ -801,7 +868,7 @@ describe('Dropdown Component', () => {
         .simulate('click')
 
       wrapper
-        .find('.text')
+        .find('div.text')
         .should.contain.text('')
     })
   })
@@ -820,7 +887,7 @@ describe('Dropdown Component', () => {
       const trigger = <div className='trigger'>{text}</div>
 
       wrapperRender(<Dropdown options={options} trigger={trigger} text={text} />)
-        .should.not.have.descendants('.text')
+        .should.not.have.descendants('div.text')
     })
   })
 
@@ -1137,6 +1204,19 @@ describe('Dropdown Component', () => {
           .simulate('click', nativeEvent)
 
         spy.should.have.been.calledWithMatch({}, { value: randomValue })
+      })
+
+      it('refocuses search on select', () => {
+        const randomIndex = _.random(options.length - 1)
+
+        wrapperMount(<Dropdown options={options} search selection multiple />)
+          .simulate('click', nativeEvent)
+          .find('DropdownItem')
+          .at(randomIndex)
+          .simulate('click', nativeEvent)
+
+        wrapper.instance()
+          ._search.should.eq(document.activeElement)
       })
     })
     describe('removing items', () => {

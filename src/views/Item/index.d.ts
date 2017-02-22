@@ -1,10 +1,11 @@
-import { Header } from '../../elements/Header';
-import { Image, ImageProps } from '../../elements/Image';
-import { SemanticVERTICALALIGNMENTS } from '../..';
 import * as React from 'react';
 
+import { SemanticVERTICALALIGNMENTS } from '../..';
+import { ImageProps } from '../../elements/Image';
+
 interface ItemProps {
-  
+  [key: string]: any;
+
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -33,7 +34,7 @@ interface ItemProps {
   meta?: any;
 }
 
-interface ItemClass extends React.ComponentClass<ItemProps> {
+interface ItemComponent extends React.StatelessComponent<ItemProps> {
   Content: typeof ItemContent;
   Description: typeof ItemDescription;
   Extra: typeof ItemExtra;
@@ -43,10 +44,11 @@ interface ItemClass extends React.ComponentClass<ItemProps> {
   Meta: typeof ItemMeta;
 }
 
-export const Item: ItemClass;
+export const Item: ItemComponent;
 
 interface ItemContentProps {
-  
+  [key: string]: any;
+
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -71,14 +73,15 @@ interface ItemContentProps {
   /** Shorthand for ItemMeta component. */
   meta?: any;
 
-  /** Content can specify its vertical alignment */
+  /** Content can specify its vertical alignment. */
   verticalAlign?: SemanticVERTICALALIGNMENTS;
 }
 
 export const ItemContent: React.ComponentClass<ItemContentProps>;
 
 interface ItemDescriptionProps {
-  
+  [key: string]: any;
+
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -89,13 +92,14 @@ interface ItemDescriptionProps {
   className?: string;
 
   /** Shorthand for primary content. */
-  content?: any;
+  content?: React.ReactNode;
 }
 
-export const ItemDescription: React.ComponentClass<ItemDescriptionProps>;
+export const ItemDescription: React.StatelessComponent<ItemDescriptionProps>;
 
 interface ItemExtraProps {
-  
+  [key: string]: any;
+
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -106,13 +110,14 @@ interface ItemExtraProps {
   className?: string;
 
   /** Shorthand for primary content. */
-  content?: any;
+  content?: React.ReactNode;
 }
 
-export const ItemExtra: React.ComponentClass<ItemExtraProps>;
+export const ItemExtra: React.StatelessComponent<ItemExtraProps>;
 
 interface ItemGroupProps {
-  
+  [key: string]: any;
+
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -126,19 +131,20 @@ interface ItemGroupProps {
   divided?: boolean;
 
   /** Shorthand array of props for Item. */
-  items?: any;
+  items?: Array<any>;
 
   /** An item can be formatted so that the entire contents link to another page. */
   link?: boolean;
 
   /** A group of items can relax its padding to provide more negative space. */
-  relaxed?: boolean|'very';
+  relaxed?: boolean | 'very';
 }
 
-export const ItemGroup: React.ComponentClass<ItemGroupProps>;
+export const ItemGroup: React.StatelessComponent<ItemGroupProps>;
 
 interface ItemHeaderProps {
-  
+  [key: string]: any;
+
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -149,18 +155,19 @@ interface ItemHeaderProps {
   className?: string;
 
   /** Shorthand for primary content. */
-  content?: any;
+  content?: React.ReactNode;
 }
 
-export const ItemHeader: React.ComponentClass<ItemHeaderProps>;
+export const ItemHeader: React.StatelessComponent<ItemHeaderProps>;
 
 interface ItemImageProps extends ImageProps {
 }
 
-export const ItemImage: React.ComponentClass<ItemImageProps>;
+export const ItemImage: React.StatelessComponent<ItemImageProps>;
 
 interface ItemMetaProps {
-  
+  [key: string]: any;
+
   /** An element type to render as (string or function). */
   as?: any;
 
@@ -171,7 +178,7 @@ interface ItemMetaProps {
   className?: string;
 
   /** Shorthand for primary content. */
-  content?: any;
+  content?: React.ReactNode;
 }
 
-export const ItemMeta: React.ComponentClass<ItemMetaProps>;
+export const ItemMeta: React.StatelessComponent<ItemMetaProps>;

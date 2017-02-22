@@ -9,7 +9,7 @@ import {
 } from '../../lib'
 
 /**
- * Used in some Button types, such as `animated`
+ * Used in some Button types, such as `animated`.
  */
 function ButtonOr(props) {
   const { className } = props

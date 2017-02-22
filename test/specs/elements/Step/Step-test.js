@@ -1,22 +1,24 @@
 import faker from 'faker'
 import React from 'react'
 
-import * as common from 'test/specs/commonTests'
-import { sandbox } from 'test/utils'
 import Step from 'src/elements/Step/Step'
 import StepContent from 'src/elements/Step/StepContent'
 import StepDescription from 'src/elements/Step/StepDescription'
 import StepTitle from 'src/elements/Step/StepTitle'
+import * as common from 'test/specs/commonTests'
+import { sandbox } from 'test/utils'
 
 describe('Step', () => {
   common.isConformant(Step)
-  common.implementsIconProp(Step)
   common.hasSubComponents(Step, [StepContent, StepDescription, StepTitle])
+  common.rendersChildren(Step)
+
+  common.implementsIconProp(Step)
+
   common.propKeyOnlyToClassName(Step, 'active')
   common.propKeyOnlyToClassName(Step, 'completed')
   common.propKeyOnlyToClassName(Step, 'disabled')
   common.propKeyOnlyToClassName(Step, 'link')
-  common.rendersChildren(Step)
 
   it('renders only children by default', () => {
     shallow(<Step>{faker.hacker.phrase()}</Step>)
