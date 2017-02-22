@@ -132,9 +132,7 @@ export default class Checkbox extends Component {
     return !disabled && !readOnly && !(radio && checked)
   }
 
-  handleInputRef = (c) => {
-    this.inputRef = c
-  }
+  handleInputRef = c => (this.inputRef = c)
 
   handleClick = (e) => {
     debug('handleClick()')
