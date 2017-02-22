@@ -595,7 +595,7 @@ export default class Dropdown extends Component {
     debug(e)
 
     // If event happened in the dropdown, ignore it
-    if (this._dropdown && _.isFunction(this._dropdown.contains) && this._dropdown.contains(e.target)) return
+    if (this.ref && _.isFunction(this.ref.contains) && this.ref.contains(e.target)) return
 
     this.close()
   }
@@ -822,7 +822,7 @@ export default class Dropdown extends Component {
     }
 
     const { multiple, search } = this.props
-    if (multiple && search && this._search) this._search.focus()
+    if (multiple && search && this.searchRef) this.searchRef.focus()
 
     this.trySetState({ value }, newState)
     this.setSelectedIndex(value)
@@ -919,11 +919,11 @@ export default class Dropdown extends Component {
   // Refs
   // ----------------------------------------
 
-  handleSearchRef = c => (this._search = c)
+  handleSearchRef = c => (this.searchRef = c)
 
-  handleSizerRef = c => (this._sizer = c)
+  handleSizerRef = c => (this.sizerRef = c)
 
-  handleRef = c => (this._dropdown = c)
+  handleRef = c => (this.ref = c)
 
   // ----------------------------------------
   // Behavior
@@ -931,7 +931,7 @@ export default class Dropdown extends Component {
 
   scrollSelectedItemIntoView = () => {
     debug('scrollSelectedItemIntoView()')
-    const menu = this._dropdown.querySelector('.menu.visible')
+    const menu = this.ref.querySelector('.menu.visible')
     const item = menu.querySelector('.item.selected')
     debug(`menu: ${menu}`)
     debug(`item: ${item}`)
@@ -950,7 +950,7 @@ export default class Dropdown extends Component {
 
     const { disabled, onOpen, search } = this.props
     if (disabled) return
-    if (search && this._search) this._search.focus()
+    if (search && this.searchRef) this.searchRef.focus()
     if (onOpen) onOpen(e, this.props)
 
     this.trySetState({ open: true })
@@ -967,14 +967,14 @@ export default class Dropdown extends Component {
 
   handleClose = () => {
     debug('handleClose()')
-    const hasSearchFocus = document.activeElement === this._search
-    const hasDropdownFocus = document.activeElement === this._dropdown
+    const hasSearchFocus = document.activeElement === this.searchRef
+    const hasDropdownFocus = document.activeElement === this.ref
     const hasFocus = hasSearchFocus || hasDropdownFocus
     // https://github.com/Semantic-Org/Semantic-UI-React/issues/627
     // Blur the Dropdown on close so it is blurred after selecting an item.
     // This is to prevent it from re-opening when switching tabs after selecting an item.
     if (!hasSearchFocus) {
-      this._dropdown.blur()
+      this.ref.blur()
     }
 
     // We need to keep the virtual model in sync with the browser focus change
@@ -1047,11 +1047,11 @@ export default class Dropdown extends Component {
 
     // resize the search input, temporarily show the sizer so we can measure it
     let searchWidth
-    if (this._sizer && searchQuery) {
-      this._sizer.style.display = 'inline'
-      this._sizer.textContent = searchQuery
-      searchWidth = Math.ceil(this._sizer.getBoundingClientRect().width)
-      this._sizer.style.removeProperty('display')
+    if (this.sizerRef && searchQuery) {
+      this.sizerRef.style.display = 'inline'
+      this.sizerRef.textContent = searchQuery
+      searchWidth = Math.ceil(this.sizerRef.getBoundingClientRect().width)
+      this.sizerRef.style.removeProperty('display')
     }
 
     return (
