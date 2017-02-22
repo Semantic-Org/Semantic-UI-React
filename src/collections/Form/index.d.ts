@@ -30,19 +30,8 @@ interface FormProps {
   /** Automatically show a loading indicator. */
   loading?: boolean;
 
-  /**
-   * Called on submit
-   *
-   * @param {SyntheticEvent} event - React's original SyntheticEvent.
-   * @param {object} data - All props and the form's serialized values.
-   */
-  onSubmit?: (event: React.MouseEvent<HTMLAnchorElement>, data: FormOnSubmitData) => void;
-
   /** A comment can contain a form to reply to a comment. This may have arbitrary content. */
   reply?: boolean;
-
-  /** Called onSubmit with the form node that returns the serialized form object */
-  serializer?: (form: HTMLFormElement) => {[key: string]: any};
 
   /** A form can vary in size. */
   size?: string;
