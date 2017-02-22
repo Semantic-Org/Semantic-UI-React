@@ -193,12 +193,12 @@ class Modal extends Component {
     if (onUnmount) onUnmount(e, this.props)
   }
 
-  handleRef = c => (this._modalNode = c)
+  handleRef = c => (this.ref = c)
 
   setPosition = () => {
-    if (this._modalNode) {
+    if (this.ref) {
       const mountNode = this.getMountNode()
-      const { height } = this._modalNode.getBoundingClientRect()
+      const { height } = this.ref.getBoundingClientRect()
 
       const marginTop = -Math.round(height / 2)
       const scrolling = height >= window.innerHeight
