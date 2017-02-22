@@ -15,7 +15,7 @@ class VisibilityExample extends Component {
     this.state = {
       continuous: false,
       log: [],
-      once: true,
+      once: false,
     }
 
     this.clearLog = this.clearLog.bind(this)
@@ -84,7 +84,7 @@ class VisibilityExample extends Component {
             </Segment>
             <Segment>
               <pre style={{ height: 300, overflowY: 'scroll' }}>
-                {log.map((e, i) => <p key={i}>{e}</p>)}
+                {log.map((e, i) => <p key={i}>{e} fired</p>)}
               </pre>
             </Segment>
           </Segment.Group>
