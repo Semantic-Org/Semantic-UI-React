@@ -1,5 +1,5 @@
-import cx from 'classnames'
 import _ from 'lodash'
+import cx from 'classnames'
 import React, { Children, cloneElement, PropTypes } from 'react'
 
 import {
@@ -9,7 +9,7 @@ import {
   META,
   useKeyOnly,
 } from '../../lib'
-import Icon from '../../elements/Icon'
+
 import AccordionContent from './AccordionContent'
 import AccordionTitle from './AccordionTitle'
 
@@ -54,14 +54,16 @@ export default class Accordion extends Component {
     /**
      * Create simple accordion panels from an array of { text: <string>, content: <custom> } objects.
      * Object can optionally define an `active` key to open/close the panel.
+     * Object can opitonally define a `key` key used for title and content nodes' keys.
      * Mutually exclusive with children.
      * TODO: AccordionPanel should be a sub-component
      */
     panels: customPropTypes.every([
       customPropTypes.disallow(['children']),
       PropTypes.arrayOf(PropTypes.shape({
+        key: PropTypes.string,
         active: PropTypes.bool,
-        title: PropTypes.string,
+        title: customPropTypes.contentShorthand,
         content: customPropTypes.contentShorthand,
         onClick: PropTypes.func,
       })),
@@ -158,17 +160,14 @@ export default class Accordion extends Component {
         if (panel.onClick) panel.onClick(e, i)
       }
 
-      children.push(
-        <AccordionTitle key={`${panel.title}-title`} active={isActive} onClick={onClick}>
-          <Icon name='dropdown' />
-          {panel.title}
-        </AccordionTitle>
-      )
-      children.push(
-        <AccordionContent key={`${panel.title}-content`} active={isActive}>
-          {panel.content}
-        </AccordionContent>
-      )
+      // implement all methods of creating a key that are supported in factories
+      const key = panel.key
+        || _.isFunction(panel.childKey) && panel.childKey(panel)
+        || panel.childKey && panel.childKey
+        || panel.title
+
+      children.push(AccordionTitle.create({ active: isActive, onClick, key: `${key}-title`, content: panel.title }))
+      children.push(AccordionContent.create({ active: isActive, key: `${key}-content`, content: panel.content }))
     })
 
     return children

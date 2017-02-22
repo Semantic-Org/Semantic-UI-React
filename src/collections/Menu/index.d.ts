@@ -131,6 +131,9 @@ interface MenuItemProps {
   /** Shorthand for primary content. */
   content?: React.ReactNode;
 
+  /** A menu item can be disabled. */
+  disabled?: boolean;
+
   /** A menu item or menu can remove element padding, vertically or horizontally. */
   fitted?: boolean | 'horizontally' | 'vertically';
 
