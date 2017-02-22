@@ -79,7 +79,7 @@ class Visibility extends Component {
     /** Element's bottom edge has not passed top of screen **/
     onBottomPassedReverse: PropTypes.func,
 
-    /** Element is partially visible on the screen **/
+    /** Element is visible on the screen **/
     onOnScreen: PropTypes.func,
 
     /** Element is not visible on the screen **/
@@ -122,7 +122,7 @@ class Visibility extends Component {
         callback(this.calculations)
       } else if (once) {
         // If once = true, fire callback only if it wasn't fired before
-        if (!this.firedCallbacks.includes(name)) {
+        if (this.firedCallbacks.indexOf(name) === -1) {
           this.firedCallbacks.push(name)
           callback(this.calculations)
         }
@@ -172,13 +172,8 @@ class Visibility extends Component {
       passing: onPassingReverse,
     }
 
-    Object.entries(callbacks).forEach(
-      ([name, callback]) => this.execute(name, callback),
-    )
-
-    Object.entries(reverseCallbacks).forEach(
-      ([name, callback]) => this.execute(name, callback, true),
-    )
+    Object.keys(callbacks).forEach(name => this.execute(name, callbacks[name]))
+    Object.keys(reverseCallbacks).forEach(name => this.execute(name, reverseCallbacks[name]))
   }
 
   handleScroll(event) {
