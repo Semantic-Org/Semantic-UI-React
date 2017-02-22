@@ -19,6 +19,9 @@ import FeedMeta from './FeedMeta'
 import FeedSummary from './FeedSummary'
 import FeedUser from './FeedUser'
 
+/**
+ * A feed presents user activity chronologically.
+ */
 function Feed(props) {
   const {
     children,
