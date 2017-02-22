@@ -76,7 +76,7 @@ export const LITERAL_OBJECTS_ICONS = [
   'fire extinguisher', 'rocket', 'anchor', 'bullseye', 'sun', 'moon', 'fax', 'life ring', 'bomb', 'soccer',
   'calculator', 'diamond', 'sticky note', 'sticky note outline', 'law', 'hand peace', 'hand rock', 'hand paper',
   'hand scissors', 'hand lizard', 'hand spock', 'tv', 'thermometer empty', 'thermometer full', 'thermometer half',
-  'thermometer quarter', 'thermometer three quarters', 'bath', 'snowflake', 'snowflake outline',
+  'thermometer quarter', 'thermometer three quarters', 'bath', 'snowflake outline',
 ]
 export const SHAPES_ICONS = [
   'crosshairs', 'asterisk', 'square outline', 'certificate', 'square', 'quote left', 'quote right', 'spinner', 'circle',
