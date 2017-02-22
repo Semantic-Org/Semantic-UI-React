@@ -132,9 +132,7 @@ export default class Checkbox extends Component {
     return !disabled && !readOnly && !(radio && checked)
   }
 
-  handleRef = (c) => {
-    this.checkboxRef = c
-  }
+  handleInputRef = c => (this.inputRef = c)
 
   handleClick = (e) => {
     debug('handleClick()')
@@ -154,7 +152,7 @@ export default class Checkbox extends Component {
   // component updates.
   setIndeterminate = () => {
     const { indeterminate } = this.state
-    if (this.checkboxRef) this.checkboxRef.indeterminate = !!indeterminate
+    if (this.inputRef) this.inputRef.indeterminate = !!indeterminate
   }
 
   render() {
@@ -202,7 +200,7 @@ export default class Checkbox extends Component {
           className='hidden'
           name={name}
           readOnly
-          ref={this.handleRef}
+          ref={this.handleInputRef}
           tabIndex={computedTabIndex}
           type={type}
           value={value}

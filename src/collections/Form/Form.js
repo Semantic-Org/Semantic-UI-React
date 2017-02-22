@@ -87,10 +87,6 @@ export default class Form extends Component {
   static Select = FormSelect
   static TextArea = FormTextArea
 
-  _form = null
-
-  handleRef = (c) => (this._form = this._form || c)
-
   render() {
     const {
       children,
@@ -122,7 +118,7 @@ export default class Form extends Component {
     const ElementType = getElementType(Form, this.props)
 
     return (
-      <ElementType {...rest} className={classes} ref={this.handleRef}>
+      <ElementType {...rest} className={classes}>
         {children}
       </ElementType>
     )

@@ -113,13 +113,13 @@ describe('Dropdown', () => {
     wrapperMount(<Dropdown options={options} selection defaultOpen />)
 
     const instance = wrapper.instance()
-    sandbox.spy(instance._dropdown, 'blur')
+    sandbox.spy(instance.ref, 'blur')
 
     dropdownMenuIsOpen()
     wrapper.simulate('click')
     dropdownMenuIsClosed()
 
-    instance._dropdown.blur
+    instance.ref.blur
       .should.have.been.calledOnce()
   })
 
@@ -1216,7 +1216,7 @@ describe('Dropdown', () => {
           .simulate('click', nativeEvent)
 
         wrapper.instance()
-          ._search.should.eq(document.activeElement)
+          .searchRef.should.eq(document.activeElement)
       })
     })
     describe('removing items', () => {
