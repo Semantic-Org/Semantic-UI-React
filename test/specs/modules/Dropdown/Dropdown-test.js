@@ -157,6 +157,14 @@ describe('Dropdown', () => {
     })
   })
 
+  describe('required', () => {
+    it('passes required prop to input', () => {
+      wrapperShallow(<Dropdown required />)
+        .find('input.search')
+        .should.have.prop('required', true)
+    })
+  })
+
   describe('tabIndex', () => {
     it('defaults to 0', () => {
       wrapperShallow(<Dropdown options={options} />)

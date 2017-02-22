@@ -190,6 +190,9 @@ export interface DropdownProps {
   /** A function that takes (data, index, defaultLabelProps) and returns shorthand for Label. */
   renderLabel?: (item: DropdownItemProps, index: number, defaultProps: LabelProps) => React.ReactElement<any>;
 
+  /** Pass required prop onto input element */
+  required?: boolean,
+
   /** A dropdown can have its menu scroll. */
   scrolling?: boolean;
 
