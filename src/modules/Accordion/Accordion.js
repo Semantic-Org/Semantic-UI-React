@@ -160,7 +160,11 @@ export default class Accordion extends Component {
         if (panel.onClick) panel.onClick(e, i)
       }
 
-      const key = _.isNil(panel.key) ? panel.title : panel.key
+      // implement all methods of creating a key that are supported in factories
+      const key = panel.key
+        || _.isFunction(panel.childKey) && panel.childKey(panel)
+        || panel.childKey && panel.childKey
+        || panel.title
 
       children.push(AccordionTitle.create({ active: isActive, onClick, key: `${key}-title`, content: panel.title }))
       children.push(AccordionContent.create({ active: isActive, key: `${key}-content`, content: panel.content }))
