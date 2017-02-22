@@ -24,6 +24,11 @@ class Visibility extends Component {
     onBottomVisible: () => {},
     onPassing: () => {},
     onBottomPassed: () => {},
+    onTopVisibleReverse: () => {},
+    onTopPassedReverse: () => {},
+    onBottomVisibleReverse: () => {},
+    onPassingReverse: () => {},
+    onBottomPassedReverse: () => {},
   }
 
   static propTypes = {
@@ -56,11 +61,37 @@ class Visibility extends Component {
 
     /** Element's bottom edge has passed top of screen **/
     onBottomPassed: PropTypes.func,
+
+    /** Element's top edge has not passed bottom of screen **/
+    onTopVisibleReverse: PropTypes.func,
+
+    /** Element's top edge has not passed top of the screen	**/
+    onTopPassedReverse: PropTypes.func,
+
+    /** Element's bottom edge has not passed bottom of screen **/
+    onBottomVisibleReverse: PropTypes.func,
+
+    /** Element's top has not passed top of screen but bottom has	**/
+    onPassingReverse: PropTypes.func,
+
+    /** Element's bottom edge has not passed top of screen **/
+    onBottomPassedReverse: PropTypes.func,
   }
 
   constructor(...args) {
     super(...args)
     this.firedCallbacks = []
+    this.calculations = {
+      topPassed: false,
+      bottomPassed: false,
+      topVisible: false,
+      bottomVisible: false,
+      fits: false,
+      passing: false,
+      onScreen: false,
+      offScreen: false,
+    }
+
     this.handleScroll = this.handleScroll.bind(this)
   }
 
@@ -73,16 +104,42 @@ class Visibility extends Component {
     }
   }
 
+  execute(name, callback, reverse = false) {
+    const { continuous, once } = this.props
+
+    if (this.calculations[name] !== reverse) {
+      // Reverse callbacks aren't fired continuously
+      if (continuous && !reverse) {
+        // Always fire callback if continuous = true
+        callback(this.calculations)
+      } else if (once) {
+        // If once = true, fire callback only if it wasn't fired before
+        if (!this.firedCallbacks.includes(name)) {
+          this.firedCallbacks.push(name)
+          callback(this.calculations)
+        }
+      } else {
+        // Fire callback only if the value changed
+        if (this.calculations[name] !== this.oldCalculations[name]) {
+          callback(this.calculations)
+        }
+      }
+    }
+  }
+
   fireCallbacks() {
     const {
-      continuous,
-      once,
       onUpdate,
       onTopVisible,
       onTopPassed,
       onBottomVisible,
       onPassing,
       onBottomPassed,
+      onTopVisibleReverse,
+      onTopPassedReverse,
+      onBottomVisibleReverse,
+      onPassingReverse,
+      onBottomPassedReverse,
     } = this.props
 
     onUpdate(this.calculations)
@@ -95,25 +152,21 @@ class Visibility extends Component {
       passing: onPassing,
     }
 
-    Object.entries(callbacks).forEach(([name, callback]) => {
-      if (this.calculations[name]) {
-        if (continuous) {
-          // Always fire callback if continuous = true
-          callback(this.calculations)
-        } else if (once) {
-          // If once = true, fire callback only if it wasn't fired before
-          if (!this.firedCallbacks.includes(name)) {
-            this.firedCallbacks.push(name)
-            callback(this.calculations)
-          }
-        } else {
-          // Fire callback only if the value changed
-          if (this.calculations[name] !== this.oldCalculations[name]) {
-            callback(this.calculations)
-          }
-        }
-      }
-    })
+    const reverseCallbacks = {
+      topPassed: onTopPassedReverse,
+      bottomPassed: onBottomPassedReverse,
+      topVisible: onTopVisibleReverse,
+      bottomVisible: onBottomVisibleReverse,
+      passing: onPassingReverse,
+    }
+
+    Object.entries(callbacks).forEach(
+      ([name, callback]) => this.execute(name, callback),
+    )
+
+    Object.entries(reverseCallbacks).forEach(
+      ([name, callback]) => this.execute(name, callback, true),
+    )
   }
 
   handleScroll(event) {
