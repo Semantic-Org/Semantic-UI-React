@@ -4,8 +4,7 @@ import { Dropdown, Input } from 'semantic-ui-react'
 import { tagOptions } from '../common'
 
 const DropdownExampleSearchInMenuScrolling = () => (
-  <Dropdown text='Filter Posts'>
-    {/* <i class="filter icon"></i> */}
+  <Dropdown text='Filter Posts' icon='filter'>
     <Dropdown.Menu>
       <Input icon='search' iconPosition='left' className='search' />
       <Dropdown.Divider />

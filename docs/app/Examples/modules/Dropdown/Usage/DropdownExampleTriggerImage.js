@@ -4,19 +4,18 @@ import { Dropdown, Image } from 'semantic-ui-react'
 
 const trigger = (
   <span>
-    <Image avatar src={faker.internet.avatar()} />
-    {faker.name.findName()}
+    <Image avatar src={faker.internet.avatar()} /> {faker.name.findName()}
   </span>
 )
 
+const options = [
+  { key: 'user', text: 'Account', icon: 'user' },
+  { key: 'settings', text: 'Settings', icon: 'settings' },
+  { key: 'sign-out', text: 'Sign Out', icon: 'sign out' },
+]
+
 const DropdownImageTriggerExample = () => (
-  <Dropdown trigger={trigger} pointing='top left' icon={null}>
-    <Dropdown.Menu>
-      <Dropdown.Item text='Account' icon='user' />
-      <Dropdown.Item text='Settings' icon='settings' />
-      <Dropdown.Item text='Sign Out' icon='sign out' />
-    </Dropdown.Menu>
-  </Dropdown>
+  <Dropdown trigger={trigger} options={options} pointing='top left' icon={null} />
 )
 
 export default DropdownImageTriggerExample
