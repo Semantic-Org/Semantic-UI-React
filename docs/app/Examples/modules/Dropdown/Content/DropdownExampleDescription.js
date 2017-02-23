@@ -2,7 +2,7 @@ import React from 'react'
 import { Dropdown } from 'semantic-ui-react'
 
 const DropdownExampleDescription = () => (
-  <Dropdown text='Filter Tags' floating labeled button icon='filter' className='icon'>
+  <Dropdown icon='filter' text='Filter Tags' floating labeled button className='icon'>
     <Dropdown.Menu>
       <Dropdown.Header icon='tags' content='Filter by tag' />
       <Dropdown.Divider />

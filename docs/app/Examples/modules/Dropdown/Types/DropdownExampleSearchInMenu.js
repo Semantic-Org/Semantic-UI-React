@@ -1,8 +1,8 @@
 import React from 'react'
 import { Dropdown, Input } from 'semantic-ui-react'
 
-import { tagOptions } from '../common'
-// tagOptions = [
+import { tagItems } from '../common'
+// tagItems = [
 //   {
 //     text: 'Important',
 //     value: 'Important',
@@ -12,14 +12,13 @@ import { tagOptions } from '../common'
 // ]
 
 const DropdownExampleSearchInMenu = () => (
-  <Dropdown text='Filter Posts' floating labeled button className='icon'>
-    {/* <i class="filter icon"></i> */}
+  <Dropdown icon='filter' text='Filter Posts' floating labeled button className='icon'>
     <Dropdown.Menu>
       <Input icon='search' iconPosition='left' className='search' />
       <Dropdown.Divider />
       <Dropdown.Header icon='tags' content='Tag Label' />
       <Dropdown.Menu scrolling>
-        {tagOptions.map((option) => <Dropdown.Item key={option.value} {...option} />)}
+        {tagItems.map((item) => <Dropdown.Item key={item.value} {...item} />)}
       </Dropdown.Menu>
     </Dropdown.Menu>
   </Dropdown>

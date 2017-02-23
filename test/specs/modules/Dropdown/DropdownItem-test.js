@@ -14,6 +14,7 @@ describe('DropdownItem', () => {
   common.propKeyOnlyToClassName(DropdownItem, 'active')
 
   common.implementsIconProp(DropdownItem)
+  common.implementsCreateMethod(DropdownItem)
   common.implementsLabelProp(DropdownItem)
   common.implementsImageProp(DropdownItem)
 

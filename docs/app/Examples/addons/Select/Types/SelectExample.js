@@ -1,11 +1,11 @@
 import React from 'react'
 import { Select } from 'semantic-ui-react'
 
-import { countryOptions } from '../common'
+import { countryItems } from '../common'
 // [{ key: 'af', value: 'af', flag: 'af', text: 'Afghanistan' }, ...{}]
 
 const SelectExample = () => (
-  <Select placeholder='Select your country' options={countryOptions} />
+  <Select placeholder='Select your country' items={countryItems} />
 )
 
 export default SelectExample

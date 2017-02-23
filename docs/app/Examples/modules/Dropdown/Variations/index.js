@@ -3,7 +3,6 @@ import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
 import ContributionPrompt from 'docs/app/Components/ComponentDoc/ContributionPrompt'
 import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
 
-
 const DropdownVariationsExamples = () => (
   <ExampleSection title='Variations'>
     <ComponentExample

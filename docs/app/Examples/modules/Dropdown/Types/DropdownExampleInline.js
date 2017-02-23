@@ -1,8 +1,8 @@
 import React from 'react'
 import { Dropdown } from 'semantic-ui-react'
 
-import { friendOptions } from '../common'
-// friendOptions = [
+import { friendItems } from '../common'
+// friendItems = [
 //   {
 //     text: 'Jenny Hess',
 //     value: 'Jenny Hess',
@@ -15,7 +15,7 @@ const DropdownExampleInline = () => (
   <span>
     Show me posts by
     {' '}
-    <Dropdown inline options={friendOptions} defaultValue={friendOptions[0].value} />
+    <Dropdown inline items={friendItems} defaultValue={friendItems[0].value} />
   </span>
 )
 

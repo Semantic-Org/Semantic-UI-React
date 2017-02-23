@@ -1,11 +1,11 @@
 import React from 'react'
 import { Dropdown } from 'semantic-ui-react'
 
-import { countryOptions } from '../common'
-// countryOptions = [ { key: 'af', value: 'af', flag: 'af', text: 'Afghanistan' }, ...  ]
+import { countryItems } from '../common'
+// countryItems = [ { key: 'af', value: 'af', flag: 'af', text: 'Afghanistan' }, ...  ]
 
 const DropdownExampleMultipleSearchSelectionTwo = () => (
-  <Dropdown placeholder='Select Country' fluid multiple search selection options={countryOptions} />
+  <Dropdown placeholder='Select Country' fluid multiple search selection items={countryItems} />
 )
 
 export default DropdownExampleMultipleSearchSelectionTwo

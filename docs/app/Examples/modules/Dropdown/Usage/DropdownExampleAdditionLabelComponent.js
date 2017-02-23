@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Dropdown } from 'semantic-ui-react'
 
-const options = [
+const items = [
   { key: 'English', text: 'English', value: 'English' },
   { key: 'French', text: 'French', value: 'French' },
   { key: 'Spanish', text: 'Spanish', value: 'Spanish' },
@@ -10,11 +10,11 @@ const options = [
 ]
 
 class DropdownExampleAdditionLabelComponent extends Component {
-  state = { options }
+  state = { items }
 
   handleAddition = (e, { value }) => {
     this.setState({
-      options: [{ text: value, value }, ...this.state.options],
+      items: [{ key: value, text: value, value }, ...this.state.items],
     })
   }
 
@@ -25,7 +25,7 @@ class DropdownExampleAdditionLabelComponent extends Component {
 
     return (
       <Dropdown
-        options={this.state.options}
+        items={this.state.items}
         placeholder='Choose Language'
         search
         selection

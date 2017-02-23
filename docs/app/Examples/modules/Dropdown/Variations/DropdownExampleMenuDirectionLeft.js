@@ -1,16 +1,15 @@
 import React from 'react'
-import { Dropdown } from 'semantic-ui-react'
+import { Icon, Dropdown } from 'semantic-ui-react'
 
 const DropdownExampleMenuDirectionLeft = () => (
   <Dropdown text='Menu' floating labeled button className='icon'>
-    {/* <i class="dropdown icon"></i> */}
     <Dropdown.Menu className='left'>
       <Dropdown.Item>
-        <i className='dropdown icon'></i>
+        <Icon name='dropdown' />
         <span className='text'>Left</span>
         <div className='menu'>
           <Dropdown.Item>
-            <i className='dropdown icon'></i>
+            <Icon name='dropdown' />
             <span className='text'>Still Left</span>
             <div className='menu'>
               <Dropdown.Item>1</Dropdown.Item>
@@ -23,7 +22,7 @@ const DropdownExampleMenuDirectionLeft = () => (
         </div>
       </Dropdown.Item>
       <Dropdown.Item>
-        <i className='left dropdown icon'></i>
+        <Icon name='left dropdown' />
         <span className='text'>Left</span>
         <div className='menu'>
           <Dropdown.Item>1</Dropdown.Item>

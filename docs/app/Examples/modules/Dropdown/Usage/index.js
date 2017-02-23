@@ -38,12 +38,12 @@ const DropdownUsageExamples = () => (
     />
     <ComponentExample
       title='Remote'
-      description="A dropdown's options can be controlled from outside based on search change."
+      description="A dropdown's items can be controlled from outside based on search change."
       examplePath='modules/Dropdown/Usage/DropdownExampleRemote'
     />
     <ComponentExample
       title='Allow Additions'
-      description='Using allowAdditions gives users the ability to add their own options.'
+      description='Using allowAdditions gives users the ability to add their own items.'
       examplePath='modules/Dropdown/Usage/DropdownExampleAllowAdditions'
     />
     <ComponentExample

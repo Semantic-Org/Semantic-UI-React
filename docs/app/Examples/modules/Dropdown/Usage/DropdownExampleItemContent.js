@@ -1,7 +1,7 @@
 import React from 'react'
 import { Dropdown, Header } from 'semantic-ui-react'
 
-const options = [
+const items = [
   {
     key: 1,
     text: 'Mobile',
@@ -26,7 +26,7 @@ const DropdownExampleItemContent = () => (
   <Dropdown
     selection
     fluid
-    options={options}
+    items={items}
     placeholder='Choose an option'
   />
 )

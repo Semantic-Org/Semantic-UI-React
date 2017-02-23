@@ -5,6 +5,7 @@ import React, { Component, PropTypes } from 'react'
 import {
   childrenUtils,
   createShorthand,
+  createShorthandFactory,
   customPropTypes,
   META,
   getElementType,
@@ -161,3 +162,5 @@ export default class DropdownItem extends Component {
     )
   }
 }
+
+DropdownItem.create = createShorthandFactory(DropdownItem, val => ({ text: val, value: val }), true)

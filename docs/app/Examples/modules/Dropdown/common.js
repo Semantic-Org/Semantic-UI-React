@@ -1,6 +1,6 @@
 import _ from 'lodash'
 
-export const stateOptions = [
+export const stateItems = [
   { key: 'AL', value: 'AL', text: 'Alabama' },
   { key: 'AK', value: 'AK', text: 'Alaska' },
   { key: 'AZ', value: 'AZ', text: 'Arizona' },
@@ -54,7 +54,7 @@ export const stateOptions = [
   { key: 'WY', value: 'WY', text: 'Wyoming' },
 ]
 
-export const friendOptions = [
+export const friendItems = [
   {
     key: 'Jenny Hess',
     text: 'Jenny Hess',
@@ -93,7 +93,7 @@ export const friendOptions = [
   },
 ]
 
-export const countryOptions = [
+export const countryItems = [
   { key: 'af', value: 'af', flag: 'af', text: 'Afghanistan' },
   { key: 'ax', value: 'ax', flag: 'ax', text: 'Aland Islands' },
   { key: 'al', value: 'al', flag: 'al', text: 'Albania' },
@@ -337,7 +337,7 @@ export const countryOptions = [
   { key: 'zw', value: 'zw', flag: 'zw', text: 'Zimbabwe' },
 ]
 
-export const languageOptions = [
+export const languageItems = [
   { key: 'Arabic', text: 'Arabic', value: 'Arabic' },
   { key: 'Chinese', text: 'Chinese', value: 'Chinese' },
   { key: 'Danish', text: 'Danish', value: 'Danish' },
@@ -361,7 +361,7 @@ export const languageOptions = [
   { key: 'Vietnamese', text: 'Vietnamese', value: 'Vietnamese' },
 ]
 
-export const tagOptions = [
+export const tagItems = [
   {
     key: 'Important',
     text: 'Important',
@@ -418,7 +418,7 @@ export const tagOptions = [
   },
 ]
 
-export const getOptions = (number, prefix = 'Choice ') => _.times(number, (index) => ({
+export const getItems = (number, prefix = 'Choice ') => _.times(number, (index) => ({
   key: index,
   text: `${prefix}${index}`,
   value: index,
