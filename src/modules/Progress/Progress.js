@@ -69,7 +69,7 @@ class Progress extends Component {
     /** A progress bar can contain a text value indicating current progress. */
     progress: PropTypes.oneOfType([
       PropTypes.bool,
-      PropTypes.oneOf(['ratio', 'percent']),
+      PropTypes.oneOf(['percent', 'ratio']),
     ]),
 
     /** A progress bar can vary in size. */
@@ -134,26 +134,26 @@ class Progress extends Component {
     return autoSuccess && (percent >= 100 || value >= total)
   }
 
-  renderProgress = (percent) => {
-    const { precision, progress, value, total } = this.props
+  renderLabel = () => {
+    const { children, label } = this.props
+
+    if (!_.isNil(children)) return <div className='label'>{children}</div>
+    return createShorthand('div', val => ({ children: val }), label, { className: 'label' })
+  }
+
+  renderProgress = percent => {
+    const { 
+      precision,
+      progress,
+      total,
+      value,
+    } = this.props
 
     if (!progress && _.isUndefined(precision)) return
     return (
       <div className='progress'>
         { progress !== 'ratio' ? `${percent}%` : `${value}/${total}` }
       </div>
-    )
-  }
-
-  renderLabel = () => {
-    const { children, label } = this.props
-
-    if (!_.isNil(children)) return <div className='label'>{children}</div>
-    return createShorthand(
-      'div',
-      val => ({ children: val }),
-      label,
-      { className: 'label' }
     )
   }
 
@@ -189,7 +189,6 @@ class Progress extends Component {
     )
     const rest = getUnhandledProps(Progress, this.props)
     const ElementType = getElementType(Progress, this.props)
-
     const percent = this.getPercent()
 
     return (
