@@ -13,8 +13,7 @@ import { tagOptions } from '../common'
 
 
 const DropdownExampleMultipleSearchInMenu = () => (
-  <Dropdown text='Filter Posts' multiple>
-    {/* <i class="filter icon"></i> */}
+  <Dropdown text='Filter Posts' multiple icon='filter'>
     <Dropdown.Menu>
       <Input icon='search' iconPosition='left' className='search' />
       <Dropdown.Divider />

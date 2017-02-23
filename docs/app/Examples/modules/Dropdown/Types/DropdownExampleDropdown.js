@@ -17,8 +17,7 @@ const DropdownExampleDropdown = () => (
       <Dropdown.Divider />
       <Dropdown.Item text='Download As...' />
       <Dropdown.Item text='Publish To Web' />
-      {/* item text can also be defined as children */}
-      <Dropdown.Item>E-mail Collaborators</Dropdown.Item>
+      <Dropdown.Item text='E-mail Collaborators' />
     </Dropdown.Menu>
   </Dropdown>
 )
