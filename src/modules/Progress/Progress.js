@@ -142,7 +142,7 @@ class Progress extends Component {
   }
 
   renderProgress = percent => {
-    const { 
+    const {
       precision,
       progress,
       total,
