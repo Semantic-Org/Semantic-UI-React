@@ -73,23 +73,65 @@ describe('Visibility', () => {
     wrapper.unmount()
   })
 
-  it('fires when topVisible', () => {
+  it('shows passed pixels and percentage', () => {
     let calculations
     const onUpdate = c => (calculations = c)
-    const onTopVisible = sandbox.spy()
-    const wrapper = mount(<Visibility onUpdate={onUpdate} onTopVisible={onTopVisible} />)
+    const wrapper = mount(<Visibility onUpdate={onUpdate} />)
 
-    mockScroll(window.innerHeight + 100, window.innerHeight + 500)
-    calculations.topVisible.should.equal(false)
-    onTopVisible.should.not.have.been.called()
+    mockScroll(0, 100)
+    calculations.percentagePassed.should.equal(0)
+    calculations.pixelsPassed.should.equal(0)
 
-    mockScroll(window.innerHeight, window.innerHeight + 500)
-    calculations.topVisible.should.equal(true)
-    onTopVisible.should.have.been.calledOnce()
+    mockScroll(-1, 99)
+    calculations.percentagePassed.should.equal(0.01)
+    calculations.pixelsPassed.should.equal(1)
 
-    mockScroll(-100, window.innerHeight + 500)
-    calculations.topVisible.should.equal(false)
-    onTopVisible.should.have.been.calledOnce()
+    mockScroll(-2, 198)
+    calculations.percentagePassed.should.equal(0.01)
+    calculations.pixelsPassed.should.equal(2)
+
+    mockScroll(-10, 0)
+    calculations.percentagePassed.should.equal(1)
+    calculations.pixelsPassed.should.equal(10)
+
+    wrapper.unmount()
+  })
+
+  it('fires callback when pixels passed', () => {
+    const onPassed = {
+      20: sandbox.stub(),
+      '20%': sandbox.stub(),
+      50: sandbox.stub(),
+      '50%': sandbox.stub(),
+      100: sandbox.stub(),
+      '100%': sandbox.stub(),
+    }
+    const wrapper = mount(<Visibility onPassed={onPassed} continuous />)
+
+    mockScroll(100, 200)
+    onPassed[20].should.not.have.been.called('20px')
+
+    mockScroll(-20, 180)
+    onPassed[20].should.have.been.called('20px')
+    onPassed['20%'].should.not.have.been.called('20%')
+
+    mockScroll(-40, 160)
+    onPassed['20%'].should.have.been.called('20%')
+    onPassed[50].should.not.have.been.called('50px')
+
+    mockScroll(-50, 150)
+    onPassed[50].should.have.been.called('50px')
+    onPassed['50%'].should.not.have.been.called('50%')
+    onPassed[100].should.not.have.been.called('100px')
+
+    mockScroll(-100, 100)
+    onPassed['50%'].should.have.been.called('50%')
+    onPassed[100].should.have.been.called('100px')
+    onPassed['100%'].should.not.have.been.called('100%')
+
+    mockScroll(-200, 0)
+    onPassed['100%'].should.have.been.called('100%')
+
     wrapper.unmount()
   })
 

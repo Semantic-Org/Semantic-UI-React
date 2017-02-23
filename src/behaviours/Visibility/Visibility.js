@@ -31,6 +31,7 @@ class Visibility extends Component {
     onBottomPassedReverse: () => {},
     onOnScreen: () => {},
     onOffScreen: () => {},
+    onPassed: {},
   }
 
   static propTypes = {
@@ -84,6 +85,9 @@ class Visibility extends Component {
 
     /** Element is not visible on the screen **/
     onOffScreen: PropTypes.func,
+
+    /** Element is not visible on the screen **/
+    onPassed: PropTypes.object,
   }
 
   constructor(...args) {
@@ -150,9 +154,31 @@ class Visibility extends Component {
       onBottomPassedReverse,
       onOnScreen,
       onOffScreen,
+      onPassed,
     } = this.props
 
     onUpdate(this.calculations)
+
+    const { percentagePassed, pixelsPassed } = this.calculations
+
+    Object.keys(onPassed).forEach((passed) => {
+      const pixelsValue = Number(passed)
+
+      if (pixelsValue) {
+        if (pixelsPassed >= pixelsValue) {
+          this.execute(passed, onPassed[passed])
+        }
+      } else {
+        const matchPercentage = `${passed}`.match(/^(\d+)%$/)
+        if (matchPercentage) {
+          const percentageValue = Number(matchPercentage[1]) / 100
+
+          if (percentagePassed >= percentageValue) {
+            this.execute(passed, onPassed[passed])
+          }
+        }
+      }
+    })
 
     const callbacks = {
       topPassed: onTopPassed,
