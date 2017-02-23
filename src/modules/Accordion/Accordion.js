@@ -1,15 +1,15 @@
-import _ from 'lodash'
 import cx from 'classnames'
+import _ from 'lodash'
 import React, { Children, cloneElement, PropTypes } from 'react'
 
 import {
   AutoControlledComponent as Component,
   customPropTypes,
   getElementType,
+  getUnhandledProps,
   META,
   useKeyOnly,
 } from '../../lib'
-
 import AccordionContent from './AccordionContent'
 import AccordionTitle from './AccordionTitle'
 
@@ -119,36 +119,6 @@ export default class Accordion extends Component {
     return exclusive ? activeIndex === index : _.includes(activeIndex, index)
   }
 
-  renderChildren = () => {
-    const { children } = this.props
-    let titleIndex = 0
-    let contentIndex = 0
-
-    return Children.map(children, (child) => {
-      const isTitle = child.type === AccordionTitle
-      const isContent = child.type === AccordionContent
-
-      if (isTitle) {
-        const currentIndex = titleIndex
-        const isActive = _.has(child, 'props.active') ? child.props.active : this.isIndexActive(titleIndex)
-        const onClick = (e) => {
-          this.handleTitleClick(e, currentIndex)
-          if (child.props.onClick) child.props.onClick(e, currentIndex)
-        }
-        titleIndex++
-        return cloneElement(child, { ...child.props, active: isActive, onClick })
-      }
-
-      if (isContent) {
-        const isActive = _.has(child, 'props.active') ? child.props.active : this.isIndexActive(contentIndex)
-        contentIndex++
-        return cloneElement(child, { ...child.props, active: isActive })
-      }
-
-      return child
-    })
-  }
-
   renderPanels = () => {
     const { panels } = this.props
     const children = []
@@ -176,9 +146,9 @@ export default class Accordion extends Component {
   render() {
     const {
       className,
+      children,
       fluid,
       inverted,
-      panels,
       styled,
     } = this.props
 
@@ -190,12 +160,12 @@ export default class Accordion extends Component {
       'accordion',
       className,
     )
-    const rest = _.omit(this.props, _.keys(Accordion.propTypes))
+    const rest = getUnhandledProps(Accordion, this.props)
     const ElementType = getElementType(Accordion, this.props)
 
     return (
       <ElementType {...rest} className={classes}>
-        {panels ? this.renderPanels() : this.renderChildren()}
+        {_.isNil(children) ? this.renderPanels() : children}
       </ElementType>
     )
   }
