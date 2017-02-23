@@ -38,7 +38,7 @@ interface ProgressProps {
   inverted?: string;
 
   /** Can be set to either to display progress as percent or ratio. */
-  label?: boolean | 'ratio' | 'percent';
+  label?: any;
 
   /** Current percent complete. */
   percent?: number | string;
@@ -47,7 +47,7 @@ interface ProgressProps {
   precision?: number;
 
   /** A progress bar can contain a text value indicating current progress. */
-  progress?: boolean;
+  progress?: boolean | 'percent' | 'ratio';
 
   /** A progress bar can vary in size. */
   size?: 'tiny' | 'small' | 'medium' | 'large' | 'big';
