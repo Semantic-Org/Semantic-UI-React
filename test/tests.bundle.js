@@ -1,6 +1,6 @@
 import './setup'
 
-const testsContext = require.context('./specs/behaviours', true, /-test\.js$/)
+const testsContext = require.context('./', true, /-test\.js$/)
 
 // only re-run changed tests, or all if none changed
 // https://www.npmjs.com/package/karma-webpack-with-fast-source-maps
