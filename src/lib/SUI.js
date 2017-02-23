@@ -56,7 +56,8 @@ export const MESSAGES_ICONS = [
   'help circle outline',
 ]
 export const USERS_ICONS = [
-  'user', 'users', 'doctor', 'handicap', 'student', 'child', 'spy', 'user circle', 'user circle outline', 'user outline',
+  'user', 'users', 'doctor', 'handicap', 'student', 'child', 'spy', 'user circle', 'user circle outline', 
+  'user outline',
 ]
 export const GENDER_SEXUALITY_ICONS = [
   'female', 'male', 'woman', 'man', 'non binary transgender', 'intergender', 'transgender', 'lesbian', 'gay',
