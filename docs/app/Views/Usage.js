@@ -46,16 +46,16 @@ const Usage = () => (
       </p>
       <ul>
           <li>
-              <a href="http://react.semantic-ui.com/elements/button#button">Button</a>
+              <a href='http://react.semantic-ui.com/elements/button#button'>Button</a>
           </li>
           <li>
-              <a href="http://react.semantic-ui.com/elements/list#list">List</a>
+              <a href='http://react.semantic-ui.com/elements/list#list'>List</a>
           </li>
           <li>
-              <a href="http://react.semantic-ui.com/views/card#card">Card</a>
+              <a href='http://react.semantic-ui.com/views/card#card'>Card</a>
           </li>
           <li>
-              <a href="http://react.semantic-ui.com/modules/modal#modal">Modal</a>
+              <a href='http://react.semantic-ui.com/modules/modal#modal'>Modal</a>
           </li>
       </ul>
     </Segment>
