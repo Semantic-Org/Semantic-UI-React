@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import cx from 'classnames'
 import React, { Component, PropTypes } from 'react'
-import * as utils from './utils'
+import * as utils from '../../lib/dateUtils'
 
 import {
   childrenUtils,

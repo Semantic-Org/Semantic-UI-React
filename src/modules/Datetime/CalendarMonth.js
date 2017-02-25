@@ -10,7 +10,7 @@ import Minutes from './Minutes'
 import Time from './Time'
 import DropDown from '../Dropdown/Dropdown'
 import Button from '../../elements/Button'
-import * as utils from './utils'
+import * as utils from '../../lib/dateUtils'
 
 import {
   AutoControlledComponent as Component,

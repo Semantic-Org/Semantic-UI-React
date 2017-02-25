@@ -1,5 +1,5 @@
 import cx from 'classnames'
-import {getUnhandledProps} from '../../lib'
+import getUnhandledProps from './getUnhandledProps'
 
 /**
  * Utility functions used by the calendar
