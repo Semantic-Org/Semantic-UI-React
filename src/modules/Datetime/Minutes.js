@@ -16,14 +16,18 @@ import {
 /**
  * A day cell within a calendar month
  */
-export default class Hours extends Component {
+export default class Minutes extends Component {
   static propTypes = {
     /** An element type to render as (string or function). */
     as: customPropTypes.as,
 
     /** Primary content. */
     children: PropTypes.node,
-
+		/** Current hour */
+    hour: PropTypes.number,
+		/** Minutes interval between each item. */
+    interval: PropTypes.number,
+		/** Click handler */
 		onClick: PropTypes.func,
 		/**
      * A function that will return the time image of a Date object as a formatted
@@ -34,15 +38,14 @@ export default class Hours extends Component {
   }
 
   static _meta = {
-    name: 'Hours',
+    name: 'Minutes',
     parent: 'Datetime',
     type: META.TYPES.MODULE,
   }
 
 	static defaultProps = {
 		timeFormatter: utils.timeFormatter,
-		firstHourOfDay: 0,
-		LastHourOfDay: 23
+		interval: 5
 	}
 
 	constructor() {
@@ -66,38 +69,36 @@ export default class Hours extends Component {
    * Return the ordered labels for days of the week,
    * accounting for the locale's first day of the week
    */
-  getHourLabels() {
-		const {timeFormatter} = this.props
+  getMinuteLabels() {
+		const {timeFormatter, interval, hour} = this.props
+		const count = parseInt(60 / interval)
 		const date = new Date()
-    return [...Array(24).keys()].map((hour) => {
-			date.setHours(hour)
-			date.setMinutes(0)
+		date.setHours(hour)
+    return [...Array(count).keys()].map((minute) => {
+			date.setMinutes(minute * interval)
       return timeFormatter(date)
     })
   }
 
-	getHours() {
+	getMinutes() {
 		const {onClick} = this.props
-		const {firstHourOfDay, LastHourOfDay} = this.props
-		const labels = this.getHourLabels()
-		const hours = labels.slice(firstHourOfDay, LastHourOfDay)
-		const rows = [...Array(6).keys()]
+		const labels = this.getMinuteLabels()
+		const rows = [...Array(3).keys()]
 		const cols = [...Array(4).keys()]
 		const cells = []
 		let i = 0
 		rows.map((row) => {
 			let children = []
 			cols.map((col) => {
-				let thisHour = i
 				children.push((
 					<utils.ItemCell
 						key={i}
 						name={labels[i]}
 						value={labels[i]}
 						active={i == this.state.hovering}
-						onMouseOver={this.onHover.bind(this, thisHour, true)}
-						onMouseOut={this.onHover.bind(this, thisHour, false)}
-						onClick={(e)=>{onClick(e, thisHour)}}/>
+						onMouseOver={this.onHover.bind(this, i, true)}
+						onMouseOut={this.onHover.bind(this, i, false)}
+						onClick={(e)=>{onClick(e, i)}}/>
 				))
 				i += 1
 			})
@@ -111,7 +112,7 @@ export default class Hours extends Component {
 			<table className="ui table">
 				<thead></thead>
 				<tbody>
-					{this.getHours()}
+					{this.getMinutes()}
 				</tbody>
 			</table>
     )

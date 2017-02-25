@@ -96,11 +96,11 @@ export default class CalendarHeader extends Component {
 						{year-8}-{year + 7}
 					</a>
 				: false}
-				{ mode == 'HOUR' ?
+				{ ['HOUR', 'MINUTE'].indexOf(mode) > -1 ?
 					<a className="item" onClick={onChangeMode.bind(null, 'MONTH')}>
 						{monthName}&nbsp;{date.getDate()}
 					</a> : false }
-				{ ['DAY', 'MONTH', 'HOUR'].indexOf(mode) > -1 ?
+				{ ['DAY', 'MONTH', 'HOUR', 'MINUTE'].indexOf(mode) > -1 ?
 					<a className="item" onClick={onChangeMode.bind(null, 'YEAR')}>
 						{year}
 					</a> : false }

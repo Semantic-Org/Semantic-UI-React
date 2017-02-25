@@ -6,6 +6,7 @@ import Month from './Month'
 import Months from './Months'
 import Years from './Years'
 import Hours from './Hours'
+import Minutes from './Minutes'
 import Time from './Time'
 import DropDown from '../Dropdown/Dropdown'
 import Button from '../../elements/Button'
@@ -117,7 +118,11 @@ export default class CalendarMonth extends Component {
    * Return the current year
    */
   getYear() {
-      return this.state.date.getFullYear()
+    return this.state.date.getFullYear()
+  }
+
+  getHour() {
+    return this.state.date.getHours()
   }
 
   /**
@@ -163,10 +168,20 @@ export default class CalendarMonth extends Component {
     })
   }
 
-  setHour(e, hour, nextMode='DAY') {
+  setHour(e, hour, nextMode='MINUTE') {
     e.stopPropagation()
     const date = new Date(this.state.date)
     date.setHours(hour)
+    this.trySetState({
+      date: date,
+      mode: nextMode
+    })
+  }
+
+  setMinute(e, minute, nextMode='DAY') {
+    e.stopPropagation()
+    const date = new Date(this.state.date)
+    date.setMinutes(minute)
     this.trySetState({
       date: date,
       mode: nextMode
@@ -246,12 +261,18 @@ export default class CalendarMonth extends Component {
         <Hours
           onClick={this.setHour.bind(this)}/>
       )
+    } else if (mode == 'MINUTE') {
+      return (
+        <Minutes
+          onClick={this.setMinute.bind(this)}
+          hour={this.getHour()}/>
+      )
     }
     return false
   }
 
   render() {
-    const {mode, date} = this.state 
+    const {mode, date} = this.state
     return (
       <div className="ui one column compact grid" style={{width:300}}>
           <div className="column" style={{height:39}}>
