@@ -41,8 +41,8 @@ const Usage = () => (
       </p>
       <Header as='h3'>Examples</Header>
       <p>
-          For examples on how to import and use Semantic UI React components, see the following
-          components:
+          For examples on how to import and use Semantic UI React components,
+          click the code icon next to any example. Here are a few direct links:
       </p>
       <ul>
           <li>
