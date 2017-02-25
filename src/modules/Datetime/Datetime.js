@@ -16,6 +16,7 @@ import {
   useKeyOnly,
   useKeyOrValueAndKey,
 } from '../../lib'
+import {dateFormatter, timeFormatter} from '../../lib/dateUtils'
 
 const debug = makeDebugger('datetime')
 
@@ -298,15 +299,8 @@ export default class Datetime extends Component {
 
   static defaultProps = {
     content: _content,
-    dateFormatter: (date) => {
-        return !!date ? `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}` : ''
-    },
-    timeFormatter: (date) => {
-        const zeroPad = function(n) {
-          return (n < 10 ? '0' : '') + n;
-        }
-        return !!date ? `${zeroPad(date.getHours())}:${zeroPad(date.getMinutes())}` : ''
-    }
+    dateFormatter: dateFormatter,
+    timeFormatter: timeFormatter
   }
 
   open = (e) => {
@@ -350,10 +344,23 @@ export default class Datetime extends Component {
     this.close()
   }
 
+  getFormattedDate(date) {
+    const {
+      time,
+      dateFormatter,
+      timeFormatter
+    } = this.props
+    if (time) {
+      return `${dateFormatter(this.state.value)} ${timeFormatter(this.state.value)}`
+    } else {
+      return dateFormatter(this.state.value)
+    }
+  }
+
   render() {
     const {
         className,
-        dateFormatter,
+        time,
         timeFormatter
     } = this.props
     const { open } = this.state
@@ -361,7 +368,7 @@ export default class Datetime extends Component {
     const classes = cx(
       className
     )
-    const formattedValue = dateFormatter(this.state.value)
+    const formattedValue = this.getFormattedDate(this.state.value)
     const ElementType = getElementType(Datetime, this.props)
     const rest = getUnhandledProps(Datetime, this.props)
     const monthDisplay = (
@@ -369,7 +376,8 @@ export default class Datetime extends Component {
             <CalendarMonth
               content={this.props.content}
               onDateSelect={this.handleDateSelection}
-              timeFormatter={timeFormatter}/>
+              timeFormatter={timeFormatter}
+              time={time}/>
         </div>
     )
     return (

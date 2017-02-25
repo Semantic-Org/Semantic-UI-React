@@ -81,7 +81,7 @@ export default class Minutes extends Component {
   }
 
 	getMinutes() {
-		const {onClick} = this.props
+		const {onClick, interval} = this.props
 		const labels = this.getMinuteLabels()
 		const rows = [...Array(3).keys()]
 		const cols = [...Array(4).keys()]
@@ -90,6 +90,7 @@ export default class Minutes extends Component {
 		rows.map((row) => {
 			let children = []
 			cols.map((col) => {
+				let thisMinute = i * interval
 				children.push((
 					<utils.ItemCell
 						key={i}
@@ -98,7 +99,7 @@ export default class Minutes extends Component {
 						active={i == this.state.hovering}
 						onMouseOver={this.onHover.bind(this, i, true)}
 						onMouseOut={this.onHover.bind(this, i, false)}
-						onClick={(e)=>{onClick(e, i)}}/>
+						onClick={(e)=>{onClick(e, thisMinute)}}/>
 				))
 				i += 1
 			})

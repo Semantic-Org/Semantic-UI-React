@@ -8,8 +8,15 @@ const DatetimeTypesExamples = () => (
   <ExampleSection title='Types'>
       <Datetime
           defaultOpen={false}
+          time={true}
+      />
+      <Datetime
+          defaultOpen={false}
+          time={false}
       />
   </ExampleSection>
+
+
 )
 
 export default DatetimeTypesExamples;

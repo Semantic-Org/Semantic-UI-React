@@ -130,7 +130,7 @@ export default class Month extends Component {
         dayParams.day = nextDay += 1
         dayParams.disabled = true
       }
-      dayParams.onClick = (e) => { onClick(dayParams.day, e) }
+      dayParams.onClick = (e) => { onClick(e, dayParams.day) }
       return (<DayCell {...dayParams}/>)
     })
   }

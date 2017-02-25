@@ -54,7 +54,12 @@ export default class CalendarMonth extends Component {
 
     /** Current Month Mode (DAY, MONTH or YEAR selection) **/
     mode: PropTypes.string,
-
+    /**
+     * Allows time selection. This will cause the component to offer a
+     * time selection as well as the calendar date.
+     * @type {bool}
+     */
+    time: PropTypes.bool,
     /** default mode (DAY) **/
     defaultMode: PropTypes.string,
     /**
@@ -141,8 +146,8 @@ export default class CalendarMonth extends Component {
    */
   setMonth = (e, props) => {
     e.stopPropagation()
-    let {value, page, nextMode} = props
-    if (!nextMode) nextMode = this.state.mode
+    let {value, page} = props
+    const nextMode = 'DAY'
     const date = new Date(this.state.date)
     if (!value && page) {
       value = date.getMonth() + page
@@ -178,14 +183,39 @@ export default class CalendarMonth extends Component {
     })
   }
 
-  setMinute(e, minute, nextMode='DAY') {
+  setMinute(e, minute) {
     e.stopPropagation()
+    const { onDateSelect, time } = this.props
     const date = new Date(this.state.date)
+    console.log(minute)
     date.setMinutes(minute)
+    console.log(date)
+    this.trySetState({
+      date: date
+    })
+    if (onDateSelect) {
+      onDateSelect(new Date(date), e)
+    }
+  }
+
+  /**
+   * Sets the day to the current date
+   * @param  {number} Selected day
+   * @param  {event} e
+   */
+  setDay(e, day) {
+    e.stopPropagation()
+    const date = new Date(this.state.date);
+    date.setDate(day)
+    const { onDateSelect, time } = this.props
+    const nextMode = time ? 'HOUR' : this.state.mode
     this.trySetState({
       date: date,
       mode: nextMode
     })
+    if (!time && onDateSelect) {
+      onDateSelect(new Date(date), e)
+    }
   }
 
   /**
@@ -218,18 +248,7 @@ export default class CalendarMonth extends Component {
     })
   }
 
-  /**
-   * Handle click
-   * @param  {event} e
-   */
-  handleDayClick(day, e) {
-    e.stopPropagation()
-    const date = new Date(this.state.date);
-    date.setDate(day)
-    const { onDateSelect } = this.props
-    // if (onDateSelect) onDateSelect(new Date(date), e)
-    this.changeMode('HOUR', e)
-  }
+
 
   /**
    * Returns the calendar body content
@@ -241,7 +260,7 @@ export default class CalendarMonth extends Component {
         <Month
           firstDayOfWeek={this.props.firstDayOfWeek}
           content={this.props.content}
-          onClick={this.handleDayClick.bind(this)}
+          onClick={this.setDay.bind(this)}
           date={date}/>
       )
     } else if (mode == 'MONTH') {

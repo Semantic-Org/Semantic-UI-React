@@ -41,9 +41,6 @@ export default class DayCell extends Component {
      */
     selected: PropTypes.bool,
 
-    /** Display text. */
-    text: customPropTypes.contentShorthand,
-
     /** Stored value */
     day: PropTypes.number,
 
@@ -79,7 +76,6 @@ export default class DayCell extends Component {
       className,
       disabled,
       selected,
-      text,
     } = this.props
 
     const classes = cx(
