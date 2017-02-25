@@ -26,9 +26,9 @@ import {
  * as handle date ranges.
  * @see Form
  */
-export default class CalendarMonth extends Component {
+export default class Calendar extends Component {
   static _meta = {
-    name: 'CalendarMonth',
+    name: 'Calendar',
     parent: 'Datetime',
     type: META.TYPES.MODULE,
   }

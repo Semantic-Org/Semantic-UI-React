@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import cx from 'classnames'
 import React, { Children, cloneElement, PropTypes } from 'react'
-import CalendarMonth from './CalendarMonth'
+import Calendar from './Calendar'
 import {
   AutoControlledComponent as Component,
   createShorthand,
@@ -373,7 +373,7 @@ export default class Datetime extends Component {
     const rest = getUnhandledProps(Datetime, this.props)
     const monthDisplay = (
         <div >
-            <CalendarMonth
+            <Calendar
               content={this.props.content}
               onDateSelect={this.handleDateSelection}
               timeFormatter={timeFormatter}
