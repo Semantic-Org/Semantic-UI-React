@@ -2,8 +2,14 @@ import React, { PropTypes } from 'react'
 import cx from 'classnames'
 import DayCell from './DayCell'
 import CalendarHeader from './CalendarHeader'
+import Month from './Month'
+import Months from './Months'
+import Years from './Years'
+import Hours from './Hours'
+import Time from './Time'
 import DropDown from '../Dropdown/Dropdown'
 import Button from '../../elements/Button'
+import * as utils from './utils'
 
 import {
   AutoControlledComponent as Component,
@@ -15,58 +21,16 @@ import {
 } from '../../lib'
 
 /**
- * A row within a calenar month (a week)
- * @param {Object} props containing children
- */
-function CalendarMonthWeek(props) {
-  const { children, className, scrolling } = props
-  const classes = cx(
-    className
-  )
-  return <tr className={classes}>{children}</tr>
-}
-
-/**
- * A row within a calenar month when in MONTH mode
- * @param {Object} props containing children
- */
-function RowWrapper(props) {
-  const { children, className, scrolling } = props
-  const classes = cx(
-    className
-  )
-  return <tr className={classes}>{children}</tr>
-}
-
-/**
- * A cell within a calendar when in MONTH or YEAR mode
- * @param {Object} props containing onClick, name and value
- */
-function ItemCell(props) {
-  const {onClick, name, value} = props
-  return (
-    <td>
-      <a onClick={(e)=>{onClick(e, {value: value, nextMode: 'DAY'})}}>
-        {name}
-      </a>
-    </td>
-  )
-}
-
-
-const _meta = {
-  name: 'CalendarMonth',
-  parent: 'Datetime',
-  type: META.TYPES.MODULE,
-}
-
-/**
  * A <Datetime/> allows a user to select a calendar date and/or time as well
  * as handle date ranges.
  * @see Form
  */
 export default class CalendarMonth extends Component {
-  static _meta = _meta
+  static _meta = {
+    name: 'CalendarMonth',
+    parent: 'Datetime',
+    type: META.TYPES.MODULE,
+  }
 
   static propTypes = {
     /** An element type to render as (string or function). */
@@ -84,7 +48,7 @@ export default class CalendarMonth extends Component {
     /** Month **/
     date: PropTypes.any,
 
-    /** Initial value of date. */
+    /** Initial value of date. **/
     defaultDate: PropTypes.any,
 
     /** Current Month Mode (DAY, MONTH or YEAR selection) **/
@@ -102,7 +66,19 @@ export default class CalendarMonth extends Component {
      * Handler fired when a date is selected
      * @type {[type]}
      */
-    onDateSelect: PropTypes.func
+    onDateSelect: PropTypes.func,
+    /**
+     * A function that will return a Date object as a formatted string in the
+     * current locale. By default the Date will formatted as YYYY-MM-DD
+     * @type {function}
+     */
+    dateFormatter: PropTypes.func,
+    /**
+     * A function that will return the time image of a Date object as a formatted
+     * string in the current locale. By default the time will be formatted as HH:MM
+     * @type {function}
+     */
+    timeFormatter: PropTypes.func
   }
 
   static defaultProps = {
@@ -121,34 +97,6 @@ export default class CalendarMonth extends Component {
         hovering: null,
         mode: 'DAY'
     }
-  }
-
-  /**
-   * Return the ordered labels for days of the week,
-   * accounting for the locale's first day of the week
-   */
-  getDayLabels() {
-    let realDay;
-    return [...Array(7).keys()].map((day) => {
-      realDay = day + this.props.firstDayOfWeek
-      if (realDay >= 7) {
-          realDay = 0
-      }
-      return this.props.content.daysShort[realDay]
-    })
-  }
-
-  /**
-   * Return the header cells for days of the week
-   */
-  getDayHeaders() {
-    const labels = this.getDayLabels()
-    const headers = labels.map((day, index) => {
-        return (
-            <th key={index}>{day}</th>
-        )
-    })
-    return headers
   }
 
   /**
@@ -173,147 +121,11 @@ export default class CalendarMonth extends Component {
   }
 
   /**
-   * Return the first date of the month out of a given date or current date
+   * Return the current month's name as provided in the content prop
    */
-  getFirstOfMonth(month, year) {
-    month = !!month ? month : this.getMonth()
-    year = year || this.getYear()
-    return new Date(this.getYear(), this.getMonth(), 1)
-  }
-
-  /**
-   * Number of days in a month
-   */
-  daysInMonth(month, year) {
-    month = !!month ? month : this.getMonth() + 1
-    year = year || this.getYear()
-    return new Date(year, month, 0).getDate();
-  }
-
-  /**
-   * Return a date from the last month
-   */
-  lastMonth(date) {
-    date = !!date ? date : new Date(this.state.date)
-    date.setMonth(date.getMonth()-1)
-    return date
-  }
-
-  /**
-   * Return a 42 element array (number of cells in the calendar month),
-   * populated with DayCell instances of either days of the current month,
-   * or those of the boundry months around it.
-   */
-  getDays() {
-    const firstDay = this.getFirstOfMonth()
-    const firstWeekDay = firstDay.getDay()
-    const daysInMonth = this.daysInMonth()
-    const lastMonth = this.lastMonth()
-    const prevDaysInMonth = this.daysInMonth(lastMonth.getMonth()+1  , lastMonth.getFullYear())
-    const monthCells = [...Array(42).keys()]
-    const realFirstWeekDay = firstWeekDay - this.props.firstDayOfWeek
-    let day = 0, nextDay = 0
-    return monthCells.map((cell, index) => {
-      const dayParams = {
-          key: index,
-          index: cell,
-          active: this.state.hovering == cell,
-          onMouseOver: this.handleHover.bind(this, cell, true),
-          onMouseOut: this.handleHover.bind(this, cell, false)
-      }
-      if (cell >= realFirstWeekDay && day < daysInMonth) {
-        dayParams.day = day += 1
-      } else if (cell < realFirstWeekDay) {
-        dayParams.day = prevDaysInMonth - realFirstWeekDay + cell + 1
-        dayParams.disabled = true
-      } else if (cell > daysInMonth) {
-        dayParams.day = nextDay += 1
-        dayParams.disabled = true
-      }
-      dayParams.onClick = this.handleDayClick.bind(this, dayParams.day)
-      return (<DayCell {...dayParams}/>)
-    })
-  }
-
-  /**
-   * Handler for day cell hover events.
-   * Sets state for currently un/hovered cell index
-   */
-  handleHover(cellIndex, isOver, e) {
-      this.setState({
-          hovering: isOver ? cellIndex : null
-      })
-  }
-
-  /**
-   * Return the calendar month day structure wrapped in rows
-   */
-  getMonthDays() {
-    const dayCells = this.getDays()
-    const cells = []
-    const weeks = [...Array(6).keys()]
-    const oneWeek = [...Array(7).keys()]
-    let i=0
-    weeks.map((weeks, weekIndex) => {
-        let children = []
-        oneWeek.map((day, dayIndex) => {
-            children.push((dayCells[i]))
-            i+=1
-        })
-        cells.push(CalendarMonthWeek({children}))
-    })
-    return cells
-  }
-
-  getMonths() {
-    const row = [...Array(4).keys()]
-    const col = [...Array(3).keys()]
-    const cells = []
-    let i = 0
-    row.map((monthRow, rowIndex) => {
-      let children = []
-      col.map((month, monthIndex) => {
-        let thisMonth = i
-        children.push((
-          <ItemCell
-            key={i}
-            value={i}
-            name={this.props.content.months[i]}
-            onClick={(e)=>this.setMonth(e, {value: thisMonth, nextMode: 'DAY'})}
-          />
-        ))
-        i += 1
-      })
-      cells.push(RowWrapper({children}))
-    })
-    return cells
-  }
-
-  getYears() {
-    const row = [...Array(4).keys()]
-    const col = [...Array(4).keys()]
-    const yearIter = [...Array(12).keys()]
-    const cells = []
-    const currentYear = this.getYear()
-    const startYear = currentYear - 8
-    let i = startYear
-    let children = []
-    row.map((yearRow, rowIndex) => {
-      let children = []
-      col.map((year, yearIndex) => {
-        let thisYear = i
-        children.push((
-          <ItemCell
-                key={thisYear}
-                value={thisYear}
-                name={thisYear}
-                onClick={(e)=>{this.setYear(e, thisYear)}}/>
-        ))
-        i += 1
-      })
-      cells.push(RowWrapper({children}))
-    })
-    return cells
+  getMonthName() {
+      const {content} = this.props
+      return content.months[this.getMonth()]
   }
 
   /**
@@ -326,7 +138,7 @@ export default class CalendarMonth extends Component {
     e.stopPropagation()
     let {value, page, nextMode} = props
     if (!nextMode) nextMode = this.state.mode
-    let date = new Date(this.state.date)
+    const date = new Date(this.state.date)
     if (!value && page) {
       value = date.getMonth() + page
     }
@@ -343,8 +155,18 @@ export default class CalendarMonth extends Component {
    */
   setYear(e, year, nextMode='DAY') {
     e.stopPropagation()
-    let date = new Date(this.state.date)
+    const date = new Date(this.state.date)
     date.setYear(year)
+    this.trySetState({
+      date: date,
+      mode: nextMode
+    })
+  }
+
+  setHour(e, hour, nextMode='DAY') {
+    e.stopPropagation()
+    const date = new Date(this.state.date)
+    date.setHours(hour)
     this.trySetState({
       date: date,
       mode: nextMode
@@ -390,62 +212,63 @@ export default class CalendarMonth extends Component {
     const date = new Date(this.state.date);
     date.setDate(day)
     const { onDateSelect } = this.props
-    if (onDateSelect) onDateSelect(new Date(date), e)
-  }
-
-  /**
-   * Return the current month's name as provided in the content prop
-   */
-  getMonthName() {
-      const {content} = this.props
-      return content.months[this.getMonth()]
+    // if (onDateSelect) onDateSelect(new Date(date), e)
+    this.changeMode('HOUR', e)
   }
 
   /**
    * Returns the calendar body content
    */
   getBodyContent() {
-    const {mode} = this.state
+    const {mode, date} = this.state
     if (mode == 'DAY') {
-      return this.getMonthDays()
+      return (
+        <Month
+          firstDayOfWeek={this.props.firstDayOfWeek}
+          content={this.props.content}
+          onClick={this.handleDayClick.bind(this)}
+          date={date}/>
+      )
     } else if (mode == 'MONTH') {
-      return this.getMonths()
+      return (
+        <Months
+          content={this.props.content}
+          onClick={this.setMonth.bind(this)}/>
+      )
     } else if (mode == 'YEAR') {
-      return this.getYears()
+      return (
+        <Years
+          year={this.getYear()}
+          onClick={this.setYear.bind(this)}/>
+      )
+    } else if (mode == 'HOUR') {
+      return (
+        <Hours
+          onClick={this.setHour.bind(this)}/>
+      )
     }
     return false
   }
 
   render() {
-    const dayCells = this.getDays()
-    const cells = this.getMonthDays()
-    const thisMonth = this.getMonth()
-    const {mode} = this.state
-    const colSpan = {
-      'DAY': 7,
-      'MONTH': 3,
-      'YEAR': 4
-    }
+    const {mode, date} = this.state 
     return (
-      <table className="ui table">
-        <thead>
-          <tr>
-            <td colSpan={colSpan[mode]}>
-              <CalendarHeader
-                monthName={this.getMonthName()}
-                year={this.getYear()}
-                mode={mode}
-                onPrevious={this.page.bind(this, -1)}
-                onNext={this.page.bind(this, 1)}
-                onChangeMode={this.changeMode}/>
-            </td>
-          </tr>
-          {mode == 'DAY' ? this.getDayHeaders() : false}
-        </thead>
-        <tbody>
-          {this.getBodyContent()}
-        </tbody>
-      </table>
+      <div className="ui one column compact grid" style={{width:300}}>
+          <div className="column" style={{height:39}}>
+            <CalendarHeader
+              date={date}
+              monthName={this.getMonthName()}
+              year={this.getYear()}
+              mode={mode}
+              onPrevious={this.page.bind(this, -1)}
+              onNext={this.page.bind(this, 1)}
+              onChangeMode={this.changeMode}/>
+          </div>
+          <div className="column">
+            {this.getBodyContent()}
+          </div>
+      </div>
+
     )
   }
 }

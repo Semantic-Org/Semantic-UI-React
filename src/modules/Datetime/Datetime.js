@@ -302,7 +302,10 @@ export default class Datetime extends Component {
         return !!date ? `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}` : ''
     },
     timeFormatter: (date) => {
-        return !!date ? `${date.getHours()}:${date.getMinutes()}` : ''
+        const zeroPad = function(n) {
+          return (n < 10 ? '0' : '') + n;
+        }
+        return !!date ? `${zeroPad(date.getHours())}:${zeroPad(date.getMinutes())}` : ''
     }
   }
 
@@ -362,10 +365,11 @@ export default class Datetime extends Component {
     const ElementType = getElementType(Datetime, this.props)
     const rest = getUnhandledProps(Datetime, this.props)
     const monthDisplay = (
-        <div>
+        <div >
             <CalendarMonth
               content={this.props.content}
-              onDateSelect={this.handleDateSelection}/>
+              onDateSelect={this.handleDateSelection}
+              timeFormatter={timeFormatter}/>
         </div>
     )
     return (

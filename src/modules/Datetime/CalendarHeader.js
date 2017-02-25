@@ -32,6 +32,9 @@ export default class CalendarHeader extends Component {
 		/** Year **/
 		year: PropTypes.number,
 
+		/** Current date **/
+		date: PropTypes.any,
+
 		/** Current calendar mode **/
 		mode: PropTypes.string,
     /**
@@ -70,11 +73,12 @@ export default class CalendarHeader extends Component {
 			onPrevious,
 			onNext,
 			onChangeMode,
-			mode
+			mode,
+			date
     } = this.props
 
     const classes = cx(
-      'ui four item compact text menu',
+      'ui four item compact top attached text menu',
       className,
     )
 
@@ -87,15 +91,19 @@ export default class CalendarHeader extends Component {
 					<a className="item" onClick={onChangeMode.bind(null, 'MONTH')}>
 						{monthName}
 					</a> : false }
-				{ ['DAY', 'MONTH'].indexOf(mode) > -1 ?
-					<a className="item" onClick={onChangeMode.bind(null, 'YEAR')}>
-						{year}
-					</a> : false }
 				{ mode == 'YEAR' ?
 					<a className="item" onClick={onChangeMode.bind(null, 'YEAR')}>
 						{year-8}-{year + 7}
 					</a>
 				: false}
+				{ mode == 'HOUR' ?
+					<a className="item" onClick={onChangeMode.bind(null, 'MONTH')}>
+						{monthName}&nbsp;{date.getDate()}
+					</a> : false }
+				{ ['DAY', 'MONTH', 'HOUR'].indexOf(mode) > -1 ?
+					<a className="item" onClick={onChangeMode.bind(null, 'YEAR')}>
+						{year}
+					</a> : false }
 				<a className="item" onClick={onNext}>
 					<i className="angle double right icon"></i>
 				</a>
