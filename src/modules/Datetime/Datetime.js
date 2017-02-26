@@ -2,6 +2,7 @@ import _ from 'lodash'
 import cx from 'classnames'
 import React, { Children, cloneElement, PropTypes } from 'react'
 import Calendar from './Calendar'
+import Popup from '../Popup/Popup'
 import {
   AutoControlledComponent as Component,
   createShorthand,
@@ -286,6 +287,7 @@ export default class Datetime extends Component {
 
   handleDateSelection = (date, e) => {
     debug('handleDateSelection()', date, e)
+    console.log("SLEECTION", date)
     e.stopPropagation()
     const selectedDate = new Date(date)
     this.trySetState({
@@ -341,15 +343,21 @@ export default class Datetime extends Component {
       </div>
     )
     let _text = placeholder || ''
-    return (
+    const element = (
       <div
         className={classes}
         onClick={this.handleClick}
       >
         <i className={iconClasses}/>
         <input name={name} type='text' value={formattedValue} placeholder={_text}/>
-        {this.state.open ? monthDisplay : false}
       </div>
+    )
+    return (
+      <Popup
+        trigger={element}
+        on='click'
+        position='bottom left'
+        open={open}>{monthDisplay}</Popup>
     )
   }
 }
