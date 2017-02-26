@@ -102,7 +102,9 @@ export default class Minutes extends Component {
   render() {
     return (
       <Table fixed unstackable attached='bottom' size='small' compact='very' className='center aligned'>
-        <Table.Header></Table.Header>
+        <Table.Header>
+          <Table.HeaderCell colSpan='4'>Minute</Table.HeaderCell>
+        </Table.Header>
         <Table.Body>
           {this.getMinutes()}
         </Table.Body>

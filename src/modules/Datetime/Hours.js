@@ -100,7 +100,9 @@ export default class Hours extends Component {
   render() {
     return (
       <Table fixed unstackable attached='bottom' size='small' compact='very' className='center aligned'>
-        <Table.Header></Table.Header>
+        <Table.Header>
+          <Table.HeaderCell colSpan='4'>Hour</Table.HeaderCell>
+        </Table.Header>
         <Table.Body>
           {this.getHours()}
         </Table.Body>
