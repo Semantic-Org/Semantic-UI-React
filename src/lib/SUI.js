@@ -38,7 +38,9 @@ export const WEB_CONTENT_ICONS = [
   'eyedropper', 'paint brush', 'heartbeat', 'mouse pointer', 'hourglass empty', 'hourglass start', 'hourglass half',
   'hourglass end', 'hourglass full', 'hand pointer', 'trademark', 'registered', 'creative commons', 'add to calendar',
   'remove from calendar', 'delete calendar', 'checked calendar', 'industry', 'shopping bag', 'shopping basket',
-  'hashtag', 'percent',
+  'hashtag', 'percent', 'address book', 'address book outline', 'address card', 'address card outline', 'id badge',
+  'id card', 'id card outline', 'podcast', 'window close', 'window close outline', 'window maximize', 'window minimize',
+  'window restore',
 ]
 export const USER_ACTIONS_ICONS = [
   'wait', 'download', 'repeat', 'refresh', 'lock', 'bookmark', 'print', 'write', 'adjust', 'theme', 'edit',
@@ -54,7 +56,8 @@ export const MESSAGES_ICONS = [
   'help circle outline',
 ]
 export const USERS_ICONS = [
-  'user', 'users', 'doctor', 'handicap', 'student', 'child', 'spy',
+  'user', 'users', 'doctor', 'handicap', 'student', 'child', 'spy', 'user circle', 'user circle outline',
+  'user outline',
 ]
 export const GENDER_SEXUALITY_ICONS = [
   'female', 'male', 'woman', 'man', 'non binary transgender', 'intergender', 'transgender', 'lesbian', 'gay',
@@ -73,7 +76,8 @@ export const LITERAL_OBJECTS_ICONS = [
   'money', 'legal', 'lightning', 'umbrella', 'treatment', 'suitcase', 'bar', 'flag outline', 'flag checkered', 'puzzle',
   'fire extinguisher', 'rocket', 'anchor', 'bullseye', 'sun', 'moon', 'fax', 'life ring', 'bomb', 'soccer',
   'calculator', 'diamond', 'sticky note', 'sticky note outline', 'law', 'hand peace', 'hand rock', 'hand paper',
-  'hand scissors', 'hand lizard', 'hand spock', 'tv',
+  'hand scissors', 'hand lizard', 'hand spock', 'tv', 'thermometer empty', 'thermometer full', 'thermometer half',
+  'thermometer quarter', 'thermometer three quarters', 'bath', 'snowflake outline',
 ]
 export const SHAPES_ICONS = [
   'crosshairs', 'asterisk', 'square outline', 'certificate', 'square', 'quote left', 'quote right', 'spinner', 'circle',
@@ -111,7 +115,7 @@ export const FILE_SYSTEM_ICONS = [
 ]
 export const TECHNOLOGIES_ICONS = [
   'qrcode', 'barcode', 'rss', 'fork', 'html5', 'css3', 'rss square', 'openid', 'database', 'server', 'usb', 'bluetooth',
-  'bluetooth alternative',
+  'bluetooth alternative', 'microchip',
 ]
 export const RATING_ICONS = [
   'heart', 'star', 'empty star', 'thumbs outline up', 'thumbs outline down', 'star half', 'empty heart', 'smile',
@@ -163,6 +167,8 @@ export const NETWORKS_AND_WEBSITE_ICONS = [
   'microsoft edge', 'codiepie', 'modx', 'fort awesome', 'product hunt', 'mixcloud', 'scribd', 'gitlab', 'wpbeginner',
   'wpforms', 'envira gallery', 'glide', 'glide g', 'viadeo', 'viadeo square', 'snapchat', 'snapchat ghost',
   'snapchat square', 'pied piper hat', 'first order', 'yoast', 'themeisle', 'google plus circle', 'font awesome',
+  'bandcamp', 'eercast', 'etsy', 'free code camp', 'grav', 'imdb', 'linode', 'meetup', 'quora', 'ravelry',
+  'superpowers', 'telegram', 'wpexplorer',
 ]
 export const ICONS = [
   ...WEB_CONTENT_ICONS,
@@ -217,7 +223,8 @@ export const ICON_ALIASES = [
   'calendar times', 'calendar check', 'factory', 'commenting', 'commenting outline', 'edge', 'ms edge',
   'wordpress beginner', 'wordpress forms', 'envira', 'question circle outline', 'assistive listening devices', 'als',
   'ald', 'asl interpreting', 'deaf', 'american sign language interpreting', 'hard of hearing', 'signing',
-  'new pied piper', 'theme isle', 'google plus official', 'fa',
+  'new pied piper', 'theme isle', 'google plus official', 'fa', 'bathtub', 'drivers license', 'drivers license outline',
+  's15', 'thermometer', 'times rectangle', 'times rectangle outline', 'vcard', 'vcard outline',
 ]
 export const ICONS_AND_ALIASES = [
   ...ICONS,
