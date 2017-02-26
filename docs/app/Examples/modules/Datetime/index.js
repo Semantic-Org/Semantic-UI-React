@@ -10,6 +10,7 @@ const DatetimeExamples = () => (
   <div>
     <Types />
     <States />
+    <Content />
   </div>
 )
 

@@ -287,7 +287,6 @@ export default class Datetime extends Component {
 
   handleDateSelection = (date, e) => {
     debug('handleDateSelection()', date, e)
-    console.log("SLEECTION", date)
     e.stopPropagation()
     const selectedDate = new Date(date)
     this.trySetState({

@@ -187,9 +187,7 @@ export default class Calendar extends Component {
     e.stopPropagation()
     const { onDateSelect, time } = this.props
     const date = new Date(this.state.date)
-    console.log(minute)
     date.setMinutes(minute)
-    console.log(date)
     this.trySetState({
       date: date
     })
