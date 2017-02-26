@@ -314,12 +314,13 @@ export default class Datetime extends Component {
     debug('render state', this.state)
     const {
       disabled,
-      time,
-      timeFormatter,
+      error,
       firstDayOfWeek,
-      placeholder,
       icon,
       name,
+      placeholder,
+      time,
+      timeFormatter,
     } = this.props
     const { open, value } = this.state
 
@@ -329,6 +330,7 @@ export default class Datetime extends Component {
         name={name}
         icon={icon}
         disabled={disabled}
+        error={error}
         iconPosition='left'
         placeholder={placeholder}
         value={this.getFormattedDate(value)}
