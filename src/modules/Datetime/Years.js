@@ -75,7 +75,7 @@ export default class Years extends Component {
 
   render() {
     return (
-      <Table fixed attached='bottom' size='small' compact='very' className='center aligned'>
+      <Table fixed unstackable attached='bottom' size='small' compact='very' className='center aligned'>
         <Table.Header></Table.Header>
         <Table.Body>
           {this.getYears()}
