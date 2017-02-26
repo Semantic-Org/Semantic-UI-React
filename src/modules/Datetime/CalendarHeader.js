@@ -12,6 +12,8 @@ import {
   useKeyOnly,
 } from '../../lib'
 
+import Menu from '../../collections/Menu/Menu'
+
 /**
  * A day cell within a calendar month
  */
@@ -23,20 +25,20 @@ export default class CalendarHeader extends Component {
     /** Additional classes. */
     className: PropTypes.string,
 
-		/** Month name **/
-		monthName: PropTypes.string,
+    /** Month name **/
+    monthName: PropTypes.string,
 
-		/** Month number **/
-		month: PropTypes.number,
+    /** Month number **/
+    month: PropTypes.number,
 
-		/** Year **/
-		year: PropTypes.number,
+    /** Year **/
+    year: PropTypes.number,
 
-		/** Current date **/
-		date: PropTypes.any,
+    /** Current date **/
+    date: PropTypes.any,
 
-		/** Current calendar mode **/
-		mode: PropTypes.string,
+    /** Current calendar mode **/
+    mode: PropTypes.string,
     /**
      * Called when a mode switch is performed (like switching from month view to
      * month or year selection)
@@ -44,13 +46,13 @@ export default class CalendarHeader extends Component {
      * @param {object} data - All props.
      */
     onChangeMode: PropTypes.func,
-		/**
+    /**
      * Called when paginating across months
      * @param {SyntheticEvent} event - React's original SyntheticEvent.
      * @param {object} data - All props.
      */
     onPrevious: PropTypes.func,
-		onNext: PropTypes.func,
+    onNext: PropTypes.func,
   }
 
   static _meta = {
@@ -67,47 +69,53 @@ export default class CalendarHeader extends Component {
   render() {
     const {
       className,
-			monthName,
-			month,
-			year,
-			onPrevious,
-			onNext,
-			onChangeMode,
-			mode,
-			date
+      monthName,
+      month,
+      year,
+      onPrevious,
+      onNext,
+      onChangeMode,
+      mode,
+      date
     } = this.props
 
-    const classes = cx(
-      'ui four item compact top attached text menu',
-      className,
-    )
+    const items = _.compact([
+      mode === 'DAY' && (
+        <Menu.Item key='month' onClick={onChangeMode.bind(null, 'MONTH')}>
+          {monthName}
+        </Menu.Item>
+      ),
+      mode === 'YEAR' && (
+        <Menu.Item key='year' onClick={onChangeMode.bind(null, 'YEAR')}>
+          {year - 8}-{year + 7}
+        </Menu.Item>
+      ),
+      ['HOUR', 'MINUTE'].indexOf(mode) > -1 && (
+        <Menu.Item key='month' onClick={onChangeMode.bind(null, 'MONTH')}>
+          {monthName}&nbsp;{date.getDate()}
+        </Menu.Item>
+      ),
+      ['DAY', 'MONTH', 'HOUR', 'MINUTE'].indexOf(mode) > -1 && (
+        <Menu.Item key='year' onClick={onChangeMode.bind(null, 'YEAR')}>
+          {year}
+        </Menu.Item>
+      ),
+    ])
+
+    // allow the popup to define the borders
+    // keep the bottom border between the calendar and the menu
+    const style = {
+      borderLeft: 'none',
+      borderRight: 'none',
+      borderTop: 'none',
+    }
 
     return (
-			<div className={classes}>
-				<a className="item" onClick={onPrevious}>
-					<i className="angle double left icon"></i>
-				</a>
-				{mode == 'DAY' ?
-					<a className="item" onClick={onChangeMode.bind(null, 'MONTH')}>
-						{monthName}
-					</a> : false }
-				{ mode == 'YEAR' ?
-					<a className="item" onClick={onChangeMode.bind(null, 'YEAR')}>
-						{year-8}-{year + 7}
-					</a>
-				: false}
-				{ ['HOUR', 'MINUTE'].indexOf(mode) > -1 ?
-					<a className="item" onClick={onChangeMode.bind(null, 'MONTH')}>
-						{monthName}&nbsp;{date.getDate()}
-					</a> : false }
-				{ ['DAY', 'MONTH', 'HOUR', 'MINUTE'].indexOf(mode) > -1 ?
-					<a className="item" onClick={onChangeMode.bind(null, 'YEAR')}>
-						{year}
-					</a> : false }
-				<a className="item" onClick={onNext}>
-					<i className="angle double right icon"></i>
-				</a>
-			</div>
+      <Menu attached='top' fluid secondary widths={items.length + 2} style={style}>
+        <Menu.Item icon='angle double left' onClick={onPrevious} />
+        {items}
+        <Menu.Item icon='angle double right' onClick={onNext} />
+      </Menu>
     )
   }
 }

@@ -13,6 +13,8 @@ import {
   useKeyOnly,
 } from '../../lib'
 
+import Table from '../../collections/Table/Table'
+
 /**
  * A day cell within a calendar month
  */
@@ -21,13 +23,13 @@ export default class Years extends Component {
     /** An element type to render as (string or function). */
     as: customPropTypes.as,
 
-		/** Current year **/
-		year: PropTypes.number,
+    /** Current year **/
+    year: PropTypes.number,
 
     /** Primary content. */
     children: PropTypes.node,
 
-		onClick: PropTypes.func
+    onClick: PropTypes.func
   }
 
   static _meta = {
@@ -36,25 +38,15 @@ export default class Years extends Component {
     type: META.TYPES.MODULE,
   }
 
-	constructor() {
+  constructor() {
     super()
     this.state = {
-        hovering: null
+      hovering: null
     }
   }
 
-	/**
-   * Handler for cell hover events.
-   * Sets state for currently un/hovered cell index
-   */
-  onHover(cellIndex, isOver, e) {
-      this.setState({
-          hovering: isOver ? cellIndex : null
-      })
-  }
-
-	getYears() {
-		const {onClick} = this.props
+  getYears() {
+    const { onClick } = this.props
     const row = [...Array(4).keys()]
     const col = [...Array(4).keys()]
     const cells = []
@@ -67,29 +59,28 @@ export default class Years extends Component {
         let thisYear = i
         children.push((
           <utils.ItemCell
-                key={thisYear}
-                value={thisYear}
-                name={thisYear}
-								active={thisYear == this.state.hovering}
-								onMouseOver={this.onHover.bind(this, thisYear, true)}
-			          onMouseOut={this.onHover.bind(this, thisYear, false)}
-                onClick={(e)=>{onClick(e, thisYear)}}/>
+            key={thisYear}
+            value={thisYear}
+            name={thisYear}
+            onClick={(e) => {
+              onClick(e, thisYear)
+            }} />
         ))
         i += 1
       })
-      cells.push(<utils.RowWrapper children={children} key={rowIndex}/>)
+      cells.push(<utils.RowWrapper children={children} key={rowIndex} />)
     })
     return cells
   }
 
   render() {
     return (
-			<table className="ui table">
-				<thead></thead>
-				<tbody>
-					{this.getYears()}
-				</tbody>
-			</table>
+      <Table fixed attached='bottom' size='small' compact='very' className='center aligned'>
+        <Table.Header></Table.Header>
+        <Table.Body>
+          {this.getYears()}
+        </Table.Body>
+      </Table>
     )
   }
 }

@@ -172,14 +172,22 @@ class Portal extends Component {
   handleDocumentClick = (e) => {
     const { closeOnDocumentClick, closeOnRootNodeClick } = this.props
 
+    const didClickInTrigger = _.invoke(this, 'triggerNode.contains', e.target)
+    const didClickInPortal = _.invoke(this, 'portalNode.contains', e.target)
+    const didClickInRootNode = this.rootNode.contains(e.target)
+
+    console.log(this.portalNode, e.target, {
+      didClickInTrigger,
+      didClickInPortal,
+      didClickInRootNode,
+    })
+
     if (
       !this.rootNode                                      // not mounted
       || !this.portalNode                                 // no portal
-      || _.invoke(this, 'triggerNode.contains', e.target) // event happened in trigger (delegate to trigger handlers)
-      || _.invoke(this, 'portalNode.contains', e.target)  // event happened in the portal
+      || didClickInTrigger                                // event happened in trigger (delegate to trigger handlers)
+      || didClickInPortal                                 // event happened in the portal
     ) return                                              // ignore the click
-
-    const didClickInRootNode = this.rootNode.contains(e.target)
 
     if (closeOnDocumentClick && !didClickInRootNode || closeOnRootNodeClick && didClickInRootNode) {
       debug('handleDocumentClick()')

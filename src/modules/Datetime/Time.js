@@ -14,6 +14,8 @@ import {
   useKeyOnly,
 } from '../../lib'
 
+import Table from '../../collections/Table/Table'
+
 /**
  * A row within a calenar month when in MONTH mode
  * @param {Object} props containing children
@@ -23,24 +25,28 @@ function RowWrapper(props) {
   const classes = cx(
     className
   )
-  return <tr className={classes}>{children}</tr>
+  return <Table.Row className={classes}>{children}</Table.Row>
 }
 
 /**
  * A cell within a calendar when in MONTH or YEAR mode
  * @param {Object} props containing onClick, name and value
  */
-function ItemCell(props) {
-  const {onClick, name, value} = props
-  return (
-    <td>
-      <a onClick={(e)=>{onClick(e, {value: value, nextMode: 'DAY'})}}>
-        {name}
-      </a>
-    </td>
-  )
-}
+class ItemCell extends Component {
+  handleClick = (e) => {
+    const { onClick, value } = this.props
+    onClick(e, { value, nextMode: 'DAY' })
+  }
 
+  render() {
+    const { name } = this.props
+    return (
+      <Table.Cell>
+        <a onClick={this.handleClick}>{name}</a>
+      </Table.Cell>
+    )
+  }
+}
 
 const _meta = {
   name: 'CalendarMonth',
@@ -84,7 +90,7 @@ export default class Time extends Component {
      * First Hour of the day (24H)
      */
     firstHourOfDay: PropTypes.number,
-		/**
+    /**
      * Last Hour of the day (24H)
      */
     LastHourOfDay: PropTypes.number,
@@ -93,7 +99,7 @@ export default class Time extends Component {
      * @type {[type]}
      */
     onTimeSelect: PropTypes.func,
-		/**
+    /**
      * A function that will return the time image of a Date object as a formatted
      * string in the current locale. By default the time will be formatted as HH:MM
      * @type {function}
@@ -102,11 +108,11 @@ export default class Time extends Component {
   }
 
   static defaultProps = {
-      firstHourOfDay: 0,
-			LastHourOfDay: 23,
-			timeFormatter: (date) => {
-	        return !!date ? `${date.getHours()}:${date.getMinutes()}` : ''
-	    }
+    firstHourOfDay: 0,
+    LastHourOfDay: 23,
+    timeFormatter: (date) => {
+      return !!date ? `${date.getHours()}:${date.getMinutes()}` : ''
+    }
   }
 
   static autoControlledProps = [
@@ -117,9 +123,9 @@ export default class Time extends Component {
   constructor() {
     super()
     this.state = {
-        date: new Date(),
-        hovering: null,
-        mode: 'HOUR'
+      date: new Date(),
+      hovering: null,
+      mode: 'HOUR'
     }
   }
 
@@ -128,44 +134,44 @@ export default class Time extends Component {
    * accounting for the locale's first day of the week
    */
   getHourLabels() {
-		const {timeFormatter} = this.props
-		const date = new Date()
+    const { timeFormatter } = this.props
+    const date = new Date()
     return [...Array(24).keys()].map((hour) => {
-			date.setHours(hour)
-			date.setMinutes(0)
+      date.setHours(hour)
+      date.setMinutes(0)
       return timeFormatter(date)
     })
   }
 
-	getHours() {
-		const {firstHourOfDay, LastHourOfDay} = this.props
-		const labels = this.getHourLabels()
-		const hours = labels.slice(firstHourOfDay, LastHourOfDay)
-		const rows = [...Array(6).keys()]
-		const cols = [...Array(4).keys()]
-		const cells = []
-		let i = 0
-		rows.map((row) => {
-			let children = []
-			cols.map((col) => {
-				children.push((
-					<ItemCell key={i} name={labels[i]} value={labels[i]}/>
-				))
-				i += 1
-			})
-			cells.push(RowWrapper(children))
-		})
-		return cells
-	}
+  getHours() {
+    const { firstHourOfDay, LastHourOfDay } = this.props
+    const labels = this.getHourLabels()
+    const hours = labels.slice(firstHourOfDay, LastHourOfDay)
+    const rows = [...Array(6).keys()]
+    const cols = [...Array(4).keys()]
+    const cells = []
+    let i = 0
+    rows.map((row) => {
+      let children = []
+      cols.map((col) => {
+        children.push((
+          <ItemCell key={i} name={labels[i]} value={labels[i]} />
+        ))
+        i += 1
+      })
+      cells.push(RowWrapper(children))
+    })
+    return cells
+  }
 
   /**
    * Handler for day cell hover events.
    * Sets state for currently un/hovered cell index
    */
   handleHover(cellIndex, isOver, e) {
-      this.setState({
-          hovering: isOver ? cellIndex : null
-      })
+    this.setState({
+      hovering: isOver ? cellIndex : null
+    })
   }
 
   /**
@@ -176,7 +182,7 @@ export default class Time extends Component {
    */
   setHour = (e, props) => {
     e.stopPropagation()
-    let {value, page, nextMode} = props
+    let { value, page, nextMode } = props
     if (!nextMode) nextMode = this.state.mode
     const date = new Date(this.state.date)
     if (!value && page) {
@@ -193,7 +199,7 @@ export default class Time extends Component {
    * Sets the current year and progresses to the next calendar mode
    * @type {String}
    */
-  setMinute(e, minutes, nextMode='DAY') {
+  setMinute(e, minutes, nextMode = 'DAY') {
     e.stopPropagation()
     const date = new Date(this.state.date)
     date.setMinutes(minutes)
@@ -232,35 +238,35 @@ export default class Time extends Component {
    * Returns the calendar body content
    */
   getBodyContent() {
-    const {mode, date} = this.state
-    if (mode == 'HOUR') {
+    const { mode, date } = this.state
+    if (mode === 'HOUR') {
       return this.getHours()
-    } else if (mode == 'MINUTE') {
+    } else if (mode === 'MINUTE') {
       return this.getMinutes()
     }
     return false
   }
 
   render() {
-    const {mode, date} = this.state
+    const { mode, date } = this.state
     const colSpan = {
-      'DAY': 7,
-      'MONTH': 3,
-      'YEAR': 4
+      DAY: 7,
+      MONTH: 3,
+      YEAR: 4,
     }
     return (
-      <table className="ui compact table">
-        <thead>
-          <tr>
-            <td colSpan={colSpan[mode]}>
+      <Table compact>
+        <Table.Header>
+          <Table.Row>
+            <Table.Cell colSpan={colSpan[mode]}>
               {mode} {date}
-            </td>
-          </tr>
-        </thead>
-        <tbody>
+            </Table.Cell>
+          </Table.Row>
+        </Table.Header>
+        <Table.Body>
           {this.getBodyContent()}
-        </tbody>
-      </table>
+        </Table.Body>
+      </Table>
     )
   }
 }

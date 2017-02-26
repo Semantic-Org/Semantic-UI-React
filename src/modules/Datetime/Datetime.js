@@ -1,50 +1,23 @@
-import _ from 'lodash'
-import cx from 'classnames'
-import React, { Children, cloneElement, PropTypes } from 'react'
-import Calendar from './Calendar'
-import Popup from '../Popup/Popup'
+import React, { PropTypes } from 'react'
+import { findDOMNode } from 'react-dom'
+
 import {
   AutoControlledComponent as Component,
-  createShorthand,
   customPropTypes,
-  isBrowser,
-  keyboardKey,
   makeDebugger,
   META,
-  useKeyOnly,
-  useKeyOrValueAndKey,
 } from '../../lib'
-import {dateFormatter, timeFormatter} from '../../lib/dateUtils'
+
+import { defaultDateFormatter, defaultTimeFormatter } from '../../lib/dateUtils'
+import Calendar from './Calendar'
+import Input from '../../elements/Input/Input'
+import Popup from '../Popup/Popup'
 
 const debug = makeDebugger('datetime')
 
-const _meta = {
-  name: 'Datetime',
-  type: META.TYPES.MODULE,
-}
-
-const _content = {
-  daysShort: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
-  daysFull: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-  months: [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
-  ],
-  monthsShort: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-  today: 'Today',
-  now: 'Now',
-  am: 'AM',
-  pm: 'PM',
+const popupStyle = {
+  // allow the table and menu to define the whitespace within the calendar
+  padding: 0,
 }
 
 /**
@@ -53,7 +26,10 @@ const _content = {
  * @see Form
  */
 export default class Datetime extends Component {
-  static _meta = _meta
+  static _meta = {
+    name: 'Datetime',
+    type: META.TYPES.MODULE,
+  }
 
   static propTypes = {
     /** An element type to render as (string or function). */
@@ -249,17 +225,37 @@ export default class Datetime extends Component {
 
   static defaultProps = {
     icon: 'calendar',
-    content: _content,
-    dateFormatter: dateFormatter,
-    timeFormatter: timeFormatter
+    content: {
+      daysShort: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
+      daysFull: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+      months: [
+        'January',
+        'February',
+        'March',
+        'April',
+        'May',
+        'June',
+        'July',
+        'August',
+        'September',
+        'October',
+        'November',
+        'December',
+      ],
+      monthsShort: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+      today: 'Today',
+      now: 'Now',
+      am: 'AM',
+      pm: 'PM',
+    },
+    dateFormatter: defaultDateFormatter,
+    timeFormatter: defaultTimeFormatter,
   }
 
   open = (e) => {
     debug('open()')
 
-    const { disabled, onOpen, search } = this.props
-    if (disabled) return
-    if (search && this._search) this._search.focus()
+    const { onOpen } = this.props
     if (onOpen) onOpen(e, this.props)
 
     this.trySetState({ open: true })
@@ -276,21 +272,29 @@ export default class Datetime extends Component {
 
   toggle = (e) => this.state.open ? this.close(e) : this.open(e)
 
-  handleClick = (e) => {
-    debug('handleClick()', e)
-    const { onClick } = this.props
-    if (onClick) onClick(e, this.props)
-    // prevent closeOnDocumentClick()
-    e.stopPropagation()
-    this.toggle(e)
+  handleOpen = (e) => {
+    debug('handleOpen()', e)
+    const { onOpen } = this.props
+    if (onOpen) onOpen(e, this.props)
+
+    this.open(e)
+  }
+
+  handleClose = (e) => {
+    debug('handleClose()', e)
+    const { onClose } = this.props
+    if (onClose) onClose(e, this.props)
+
+    this.close(e)
   }
 
   handleDateSelection = (date, e) => {
     debug('handleDateSelection()', date, e)
     e.stopPropagation()
+    e.nativeEvent.stopImmediatePropagation()
     const selectedDate = new Date(date)
     this.trySetState({
-        value: selectedDate,
+      value: selectedDate,
     })
     this.close()
   }
@@ -299,64 +303,62 @@ export default class Datetime extends Component {
    * Return a formatted date or date/time string
    */
   getFormattedDate(date) {
-    const {
-      time,
-      dateFormatter,
-      timeFormatter
-    } = this.props
-    if (time) {
-      return `${dateFormatter(this.state.value)} ${timeFormatter(this.state.value)}`
-    } else {
-      return dateFormatter(this.state.value)
-    }
+    const { time, dateFormatter, timeFormatter } = this.props
+
+    if (time) return `${dateFormatter(this.state.value)} ${timeFormatter(this.state.value)}`
+
+    return dateFormatter(this.state.value)
   }
 
   render() {
+    debug('render state', this.state)
     const {
-        className,
-        time,
-        timeFormatter,
-        firstDayOfWeek,
-        placeholder,
-        fluid,
-        icon,
-        name,
-        error
+      disabled,
+      time,
+      timeFormatter,
+      firstDayOfWeek,
+      placeholder,
+      icon,
+      name,
     } = this.props
     const { open, value } = this.state
-    const classes = cx(
-      'ui input left icon',
-      {error, fluid},
-      className
+
+    const inputElement = (
+      <Input
+        type='text'
+        name={name}
+        icon={icon}
+        disabled={disabled}
+        iconPosition='left'
+        placeholder={placeholder}
+        value={this.getFormattedDate(value)}
+      />
     )
-    const iconClasses = cx(icon, 'icon')
-    const formattedValue = this.getFormattedDate(value)
-    const monthDisplay = (
-      <div >
-          <Calendar
-            content={this.props.content}
-            onDateSelect={this.handleDateSelection}
-            timeFormatter={timeFormatter}
-            firstDayOfWeek={firstDayOfWeek}
-            time={time}/>
-      </div>
-    )
-    let _text = placeholder || ''
-    const element = (
-      <div
-        className={classes}
-        onClick={this.handleClick}
-      >
-        <i className={iconClasses}/>
-        <input name={name} type='text' value={formattedValue} placeholder={_text}/>
-      </div>
-    )
+
     return (
       <Popup
-        trigger={element}
         on='click'
+        trigger={inputElement}
         position='bottom left'
-        open={open}>{monthDisplay}</Popup>
+        open={open}
+        onOpen={this.handleOpen}
+        onClose={this.handleClose}
+        // TODO: Calendar contents are changed on click so the Popup cannot find the clicked node within calendar.
+        // The Popup then considers the click to be "outside" of the calendar and closes it.
+        // Enable close on document click after this is fixed.
+        // The user should be able to click outside and have it close.
+        // Portal should be updated to detect clicks inside/outside even with no e.target, perhaps using x y coords.
+        closeOnDocumentClick={false}
+        style={popupStyle}
+      >
+        <Calendar
+          content={this.props.content}
+          onDateSelect={this.handleDateSelection}
+          timeFormatter={timeFormatter}
+          firstDayOfWeek={firstDayOfWeek}
+          time={time}
+        />
+      </Popup>
     )
   }
 }

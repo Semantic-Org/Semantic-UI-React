@@ -383,7 +383,7 @@ export default class Dropdown extends Component {
       } else if (hasValue && !nextProps.multiple && isNextValueArray) {
         console.error(
           'Dropdown `value` must not be an array when `multiple` is not set.' +
-          ' Either set `multiple={true}` or use a string or number value.'
+          ' Either set `multiple` or use a string or number value.'
         )
       }
     }

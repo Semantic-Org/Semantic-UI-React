@@ -13,6 +13,8 @@ import {
   useKeyOnly,
 } from '../../lib'
 
+import Table from '../../collections/Table/Table'
+
 /**
  * A day cell within a calendar month
  */
@@ -21,13 +23,13 @@ export default class Months extends Component {
     /** An element type to render as (string or function). */
     as: customPropTypes.as,
 
-		/** Textual context constants **/
+    /** Textual context constants **/
     content: PropTypes.object,
 
     /** Primary content. */
     children: PropTypes.node,
 
-		onClick: PropTypes.func
+    onClick: PropTypes.func
   }
 
   static _meta = {
@@ -36,25 +38,15 @@ export default class Months extends Component {
     type: META.TYPES.MODULE,
   }
 
-	constructor() {
+  constructor() {
     super()
     this.state = {
-        hovering: null
+      hovering: null
     }
   }
 
-	/**
-   * Handler for day cell hover events.
-   * Sets state for currently un/hovered cell index
-   */
-  onHover(cellIndex, isOver, e) {
-      this.setState({
-          hovering: isOver ? cellIndex : null
-      })
-  }
-
-	getMonths() {
-		const {onClick} = this.props
+  getMonths() {
+    const { onClick } = this.props
     const row = [...Array(4).keys()]
     const col = [...Array(3).keys()]
     const cells = []
@@ -67,28 +59,25 @@ export default class Months extends Component {
           <utils.ItemCell
             key={i}
             value={i}
-						active={this.state.hovering==thisMonth}
             name={this.props.content.months[i]}
-						onMouseOver={this.onHover.bind(this, thisMonth, true)}
-	          onMouseOut={this.onHover.bind(this, thisMonth, false)}
-            onClick={(e)=>onClick(e, {value: thisMonth, nextMode: 'DAY'})}
+            onClick={(e) => onClick(e, { value: thisMonth, nextMode: 'DAY' })}
           />
         ))
         i += 1
       })
-      cells.push(<utils.RowWrapper children={children} key={rowIndex}/>)
+      cells.push(<utils.RowWrapper children={children} key={rowIndex} />)
     })
     return cells
   }
 
   render() {
     return (
-			<table className="ui table">
-				<thead></thead>
-				<tbody>
-					{this.getMonths()}
-				</tbody>
-			</table>
+      <Table fixed attached='bottom' size='small' compact='very' className='center aligned'>
+        <Table.Header></Table.Header>
+        <Table.Body>
+          {this.getMonths()}
+        </Table.Body>
+      </Table>
     )
   }
 }

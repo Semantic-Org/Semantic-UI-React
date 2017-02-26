@@ -12,6 +12,8 @@ import {
   useKeyOnly,
 } from '../../lib'
 
+import Table from '../../collections/Table/Table'
+
 /**
  * A day cell within a calendar month
  */
@@ -94,9 +96,16 @@ export default class DayCell extends Component {
     }
 
     return (
-      <td {...rest} {...ariaOptions} className={classes} onClick={this.handleClick}>
-        {this.props.day}
-      </td>
+      <Table.Cell
+        {...rest}
+        {...ariaOptions}
+        className={classes}
+        onClick={this.handleClick}
+        selectable
+        style={{ cursor: 'pointer' }}
+      >
+        <a>{this.props.day}</a>
+      </Table.Cell>
     )
   }
 }

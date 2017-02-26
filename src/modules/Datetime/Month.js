@@ -14,6 +14,8 @@ import {
   useKeyOnly,
 } from '../../lib'
 
+import Table from '../../collections/Table/Table'
+
 /**
  * A day cell within a calendar month
  */
@@ -22,23 +24,23 @@ export default class Month extends Component {
     /** An element type to render as (string or function). */
     as: customPropTypes.as,
 
-		/** Month **/
+    /** Month **/
     date: PropTypes.any,
 
-		/**
+    /**
      * First Day of the Week.
      * Sunday = 0
      * Monday = 1
      */
     firstDayOfWeek: PropTypes.number,
 
-		/** Textual context constants **/
+    /** Textual context constants **/
     content: PropTypes.object,
 
     /** Primary content. */
     children: PropTypes.node,
 
-		onClick: PropTypes.func
+    onClick: PropTypes.func,
   }
 
   static _meta = {
@@ -47,24 +49,14 @@ export default class Month extends Component {
     type: META.TYPES.MODULE,
   }
 
-	constructor() {
+  constructor() {
     super()
     this.state = {
-        hovering: null
+      hovering: null,
     }
   }
 
-	/**
-   * Handler for day cell hover events.
-   * Sets state for currently un/hovered cell index
-   */
-  onHover(cellIndex, isOver, e) {
-      this.setState({
-          hovering: isOver ? cellIndex : null
-      })
-  }
-
-	/**
+  /**
    * Return the ordered labels for days of the week,
    * accounting for the locale's first day of the week
    */
@@ -73,7 +65,7 @@ export default class Month extends Component {
     return [...Array(7).keys()].map((day) => {
       realDay = day + this.props.firstDayOfWeek
       if (realDay >= 7) {
-          realDay = 0
+        realDay = 0
       }
       return this.props.content.daysShort[realDay]
     })
@@ -84,21 +76,16 @@ export default class Month extends Component {
    */
   getDayHeaders() {
     const labels = this.getDayLabels()
-    const headers = labels.map((day, index) => {
-        return (
-            <th key={index}>{day}</th>
-        )
-    })
-    return headers
+    return labels.map((day, index) => <Table.HeaderCell key={index}>{day}</Table.HeaderCell>)
   }
 
-	/**
+  /**
    * Return a 42 element array (number of cells in the calendar month),
    * populated with DayCell instances of either days of the current month,
    * or those of the boundry months around it.
    */
   getDays() {
-		const {date, onClick} = this.props
+    const { date, onClick } = this.props
     const firstDay = utils.getFirstOfMonth(date)
     const firstWeekDay = firstDay.getDay()
     const daysInMonth = utils.daysInMonth(date)
@@ -115,11 +102,8 @@ export default class Month extends Component {
     let day = 0, nextDay = 0
     return monthCells.map((cell, index) => {
       const dayParams = {
-          key: index,
-          index: cell,
-          active: this.state.hovering == cell,
-          onMouseOver: this.onHover.bind(this, cell, true),
-          onMouseOut: this.onHover.bind(this, cell, false)
+        key: index,
+        index: cell,
       }
       if (cell >= realFirstWeekDay && day < daysInMonth) {
         dayParams.day = day += 1
@@ -130,12 +114,14 @@ export default class Month extends Component {
         dayParams.day = nextDay += 1
         dayParams.disabled = true
       }
-      dayParams.onClick = (e) => { onClick(e, dayParams.day) }
-      return (<DayCell {...dayParams}/>)
+      dayParams.onClick = (e) => {
+        onClick(e, dayParams.day)
+      }
+      return (<DayCell {...dayParams} />)
     })
   }
 
-	/**
+  /**
    * Return the calendar month day structure wrapped in rows
    */
   getMonthDays() {
@@ -143,28 +129,28 @@ export default class Month extends Component {
     const cells = []
     const weeks = [...Array(6).keys()]
     const oneWeek = [...Array(7).keys()]
-    let key=0
+    let key = 0
     weeks.map((weeks, weekIndex) => {
-        let children = []
-        oneWeek.map((day, dayIndex) => {
-            children.push((dayCells[key]))
-            key+=1
-        })
-        cells.push(<utils.RowWrapper children={children} key={key}/>)
+      let children = []
+      oneWeek.map((day, dayIndex) => {
+        children.push((dayCells[key]))
+        key += 1
+      })
+      cells.push(<utils.RowWrapper children={children} key={key} />)
     })
     return cells
   }
 
   render() {
     return (
-			<table className="ui table">
-				<thead>
-					{this.getDayHeaders()}
-				</thead>
-				<tbody>
-					{this.getMonthDays()}
-				</tbody>
-			</table>
+      <Table fixed attached='bottom' size='small' compact='very' className='center aligned'>
+        <Table.Header>
+          {this.getDayHeaders()}
+        </Table.Header>
+        <Table.Body>
+          {this.getMonthDays()}
+        </Table.Body>
+      </Table>
     )
   }
 }
