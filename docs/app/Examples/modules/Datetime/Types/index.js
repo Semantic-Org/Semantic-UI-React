@@ -6,14 +6,17 @@ import Datetime from 'src/modules/Datetime/Datetime'
 
 const DatetimeTypesExamples = () => (
   <ExampleSection title='Types'>
-      <Datetime
-          defaultOpen={false}
-          time={true}
-      />
-      <Datetime
-          defaultOpen={false}
-          time={false}
-      />
+    <ComponentExample
+      title='Date and Time'
+      description='A full Date and Time selector'
+      examplePath='modules/Datetime/Types/DateTimeExampleFull'
+    />
+    <ComponentExample
+      title='Date'
+      description='A date only Date selector'
+      examplePath='modules/Datetime/Types/DateTimeExampleDateOnly'
+    />
+    
   </ExampleSection>
 
 

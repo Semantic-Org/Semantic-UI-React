@@ -329,13 +329,13 @@ export default class Datetime extends Component {
     debug('handleClick()', e)
     const { onClick } = this.props
     if (onClick) onClick(e, this.props)
-
     // prevent closeOnDocumentClick()
     e.stopPropagation()
     this.toggle(e)
   }
 
   handleDateSelection = (date, e) => {
+    debug('handleDateSelection()', date, e)
     e.stopPropagation()
     const selectedDate = new Date(date)
     this.trySetState({
@@ -344,6 +344,9 @@ export default class Datetime extends Component {
     this.close()
   }
 
+  /**
+   * Return a formatted date or date/time string
+   */
   getFormattedDate(date) {
     const {
       time,
@@ -363,12 +366,11 @@ export default class Datetime extends Component {
         time,
         timeFormatter
     } = this.props
-    const { open } = this.state
-
+    const { open, value } = this.state
     const classes = cx(
       className
     )
-    const formattedValue = this.getFormattedDate(this.state.value)
+    const formattedValue = this.getFormattedDate(value)
     const ElementType = getElementType(Datetime, this.props)
     const rest = getUnhandledProps(Datetime, this.props)
     const monthDisplay = (
