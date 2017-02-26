@@ -6,13 +6,10 @@ import {
   AutoControlledComponent as Component,
   createShorthand,
   customPropTypes,
-  getElementType,
-  getUnhandledProps,
   isBrowser,
   keyboardKey,
   makeDebugger,
   META,
-  objectDiff,
   useKeyOnly,
   useKeyOrValueAndKey,
 } from '../../lib'
@@ -61,22 +58,11 @@ export default class Datetime extends Component {
     /** An element type to render as (string or function). */
     as: customPropTypes.as,
 
-    /** Primary content. */
-    children: customPropTypes.every([
-      customPropTypes.givenProps(
-        { children: PropTypes.any.isRequired },
-        React.PropTypes.element.isRequired,
-      ),
-    ]),
-
     /** Additional classes. */
     className: PropTypes.string,
 
     /** Whether or not the menu should close when the dropdown is blurred. */
     closeOnBlur: PropTypes.bool,
-
-    /** A compact dropdown has no minimum width. */
-    compact: PropTypes.bool,
 
     /**
      * Textual content for the various text element of the calendar.
@@ -124,15 +110,13 @@ export default class Datetime extends Component {
     /** Initial value of open. */
     defaultOpen: PropTypes.bool,
 
-    /** Initial value or value array if multiple. */
-    defaultValue: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number,
-      PropTypes.arrayOf(PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.number,
-      ])),
-    ]),
+    /** Current value as a Date object or a string that can be parsed into one.
+     * Creates a controlled component.
+     */
+    value: customPropTypes.DateValue,
+
+    /** Initial value as a Date object or a string that can be parsed into one */
+    defaultValue: customPropTypes.DateValue,
 
     /** A disabled dropdown menu or item does not allow user interaction. */
     disabled: PropTypes.bool,
@@ -142,9 +126,6 @@ export default class Datetime extends Component {
 
     /** First day of the week. Can be either 0 (Sunday), 1 (Monday) **/
     firstDayOfWeek: PropTypes.number,
-
-    /** A dropdown menu can contain floated content. */
-    floating: PropTypes.bool,
 
     /** A dropdown can take the full width of its parent */
     fluid: PropTypes.bool,
@@ -161,18 +142,7 @@ export default class Datetime extends Component {
     /** A dropdown can be formatted to appear inline in other content. */
     inline: PropTypes.bool,
 
-    /** A dropdown can be labeled. */
-    labeled: PropTypes.bool,
-
-    // linkItem: PropTypes.bool,
-
-    /** A dropdown can show that it is currently loading data. */
-    loading: PropTypes.bool,
-
-    /** A selection dropdown can allow multiple selections. */
-    multiple: PropTypes.bool,
-
-    /** Name of the hidden input which holds the value. */
+    /** Name of the input field which holds the date value */
     name: PropTypes.string,
 
     /**
@@ -198,14 +168,6 @@ export default class Datetime extends Component {
      * @param {object} data - All props.
      */
     onClose: PropTypes.func,
-
-    /**
-     * Called when a multi-select label is clicked.
-     *
-     * @param {SyntheticEvent} event - React's original SyntheticEvent.
-     * @param {object} data - All label props.
-     */
-    onLabelClick: PropTypes.func,
 
     /**
      * Called when an open event happens.
@@ -265,9 +227,6 @@ export default class Datetime extends Component {
     /** Define whether the highlighted item should be selected on blur. */
     selectOnBlur: PropTypes.bool,
 
-    /** A simple dropdown can open without Javascript. */
-    simple: PropTypes.bool,
-
     /** A dropdown can receive focus. */
     tabIndex: PropTypes.oneOfType([
       PropTypes.number,
@@ -280,16 +239,6 @@ export default class Datetime extends Component {
      * @type {bool}
      */
     time: PropTypes.bool,
-
-    /** Current value or value array if multiple. Creates a controlled component. */
-    value: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number,
-      PropTypes.arrayOf(PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.number,
-      ])),
-    ]),
   }
 
   static autoControlledProps = [
@@ -298,6 +247,7 @@ export default class Datetime extends Component {
   ]
 
   static defaultProps = {
+    icon: 'calendar',
     content: _content,
     dateFormatter: dateFormatter,
     timeFormatter: timeFormatter
@@ -364,35 +314,42 @@ export default class Datetime extends Component {
     const {
         className,
         time,
-        timeFormatter
+        timeFormatter,
+        firstDayOfWeek,
+        placeholder,
+        fluid,
+        icon,
+        name,
+        error
     } = this.props
     const { open, value } = this.state
     const classes = cx(
+      'ui input left icon',
+      {error, fluid},
       className
     )
+    const iconClasses = cx(icon, 'icon')
     const formattedValue = this.getFormattedDate(value)
-    const ElementType = getElementType(Datetime, this.props)
-    const rest = getUnhandledProps(Datetime, this.props)
     const monthDisplay = (
-        <div >
-            <Calendar
-              content={this.props.content}
-              onDateSelect={this.handleDateSelection}
-              timeFormatter={timeFormatter}
-              time={time}/>
-        </div>
+      <div >
+          <Calendar
+            content={this.props.content}
+            onDateSelect={this.handleDateSelection}
+            timeFormatter={timeFormatter}
+            firstDayOfWeek={firstDayOfWeek}
+            time={time}/>
+      </div>
     )
+    let _text = placeholder || ''
     return (
-      <ElementType {...rest} className={classes}>
-        <div
-          className='ui input left icon'
-          onClick={this.handleClick}
-        >
-          <i className='calendar icon' />
-          <input type='text' value={formattedValue} />
-          {this.state.open ? monthDisplay : false}
-        </div>
-      </ElementType>
+      <div
+        className={classes}
+        onClick={this.handleClick}
+      >
+        <i className={iconClasses}/>
+        <input name={name} type='text' value={formattedValue} placeholder={_text}/>
+        {this.state.open ? monthDisplay : false}
+      </div>
     )
   }
 }

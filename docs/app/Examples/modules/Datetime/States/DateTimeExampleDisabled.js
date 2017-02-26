@@ -1,12 +1,13 @@
 import React from 'react'
 import { Datetime } from 'semantic-ui-react'
 
-const DateTimeExampleDateOnly = () => (
+const DateTimeExampleDisabled = () => (
 	<Datetime
 			defaultOpen={false}
 			time={false}
-			placeholder='Select Date'
+			placeholder='Disabled Date'
+			disabled={true}
 	/>
 )
 
-export default DateTimeExampleDateOnly
+export default DateTimeExampleDisabled

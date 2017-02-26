@@ -5,7 +5,7 @@ const DateTimeExampleFull = () => (
 	<Datetime
 			defaultOpen={false}
 			time={true}
-			defaultValue={new Date()}
+			defaultValue={new Date()} 
 	/>
 )
 

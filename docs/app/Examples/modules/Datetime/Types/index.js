@@ -8,7 +8,7 @@ const DatetimeTypesExamples = () => (
   <ExampleSection title='Types'>
     <ComponentExample
       title='Date and Time'
-      description='A full Date and Time selector'
+      description='A full Date and Time selector, with initial value of the current date and time'
       examplePath='modules/Datetime/Types/DateTimeExampleFull'
     />
     <ComponentExample
@@ -16,7 +16,11 @@ const DatetimeTypesExamples = () => (
       description='A date only Date selector'
       examplePath='modules/Datetime/Types/DateTimeExampleDateOnly'
     />
-    
+    <ComponentExample
+      title='Week starts Sunday'
+      description='A date only Date where the week start on Sunday'
+      examplePath='modules/Datetime/Types/DateTimeExampleStartSunday'
+    />
   </ExampleSection>
 
 

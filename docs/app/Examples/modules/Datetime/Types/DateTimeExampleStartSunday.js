@@ -1,12 +1,13 @@
 import React from 'react'
 import { Datetime } from 'semantic-ui-react'
 
-const DateTimeExampleDateOnly = () => (
+const DateTimeExampleStartSunday = () => (
 	<Datetime
 			defaultOpen={false}
 			time={false}
 			placeholder='Select Date'
+			firstDayOfWeek={0}
 	/>
 )
 
-export default DateTimeExampleDateOnly
+export default DateTimeExampleStartSunday

@@ -9,6 +9,7 @@ import Variations from './Variations'
 const DatetimeExamples = () => (
   <div>
     <Types />
+    <States />
   </div>
 )
 

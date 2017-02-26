@@ -335,3 +335,19 @@ export const deprecate = (help, validator) => {
     return error
   }
 }
+
+export const DateValue = (props, propName, componentName) => {
+  if (props[propName]) {
+    let value = props[propName];
+    if (typeof value === 'string') {
+      return new Date(value) != 'Invalid Date' && !isNaN(new Date(value)) ? null :
+        new Error(propName + ' in ' + componentName + " cannot be parsed as a date");
+    } else if (typeof value === 'object') {
+      return value.getDate != undefined ? null :
+        new Error(propName + ' in ' + componentName + " is not a Date or a string parsable date");
+    }
+  }
+
+  // assume all ok
+  return null;
+}
