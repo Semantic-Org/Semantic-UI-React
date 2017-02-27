@@ -1,6 +1,6 @@
 import cx from 'classnames'
 import _ from 'lodash'
-import React, { Children, PropTypes } from 'react'
+import React, { PropTypes } from 'react'
 
 import {
   AutoControlledComponent as Component,
@@ -46,10 +46,7 @@ export default class Accordion extends Component {
     ]),
 
     /** Only allow one panel open at a time. */
-    exclusive: customPropTypes.every([
-      customPropTypes.disallow(['children']),
-      PropTypes.bool,
-    ]),
+    exclusive: PropTypes.bool,
 
     /** Format to take up the width of it's container. */
     fluid: PropTypes.bool,
@@ -109,19 +106,14 @@ export default class Accordion extends Component {
     }
   }
 
-  handleTitleClick = (e, index) => {
-    const { onTitleClick, exclusive } = this.props
-    const { activeIndex } = this.state
+  handleTitleClick = (e, titleProps) => {
+    const { index } = titleProps
+    const { onTitleClick, panels } = this.props
 
-    let newIndex
-    if (exclusive) {
-      newIndex = index === activeIndex ? -1 : index
-    } else {
-      // check to see if index is in array, and remove it, if not then add it
-      newIndex = _.includes(activeIndex, index) ? _.without(activeIndex, index) : [...activeIndex, index]
-    }
-    this.trySetState({ activeIndex: newIndex })
-    if (onTitleClick) onTitleClick(e, index)
+    this.trySetState({ activeIndex: index })
+
+    if (_.get(panels[index], 'onClick')) panels[index].onClick(e, titleProps)
+    if (onTitleClick) onTitleClick(e, titleProps)
   }
 
   isIndexActive = (index) => {
@@ -132,24 +124,24 @@ export default class Accordion extends Component {
   }
 
   renderPanels = () => {
-    const { panels } = this.props
     const children = []
+    const { panels } = this.props
 
-    _.each(panels, (panel, i) => {
-      const isActive = _.has(panel, 'active') ? panel.active : this.isIndexActive(i)
-      const onClick = (e) => {
-        this.handleTitleClick(e, i)
-        if (panel.onClick) panel.onClick(e, i)
-      }
+    _.each(panels, (panel, index) => {
+      const { content, key, title } = panel
+      const active = this.isIndexActive(index)
 
-      // implement all methods of creating a key that are supported in factories
-      const key = panel.key
-        || _.isFunction(panel.childKey) && panel.childKey(panel)
-        || panel.childKey && panel.childKey
-        || panel.title
-
-      children.push(AccordionTitle.create({ active: isActive, onClick, key: `${key}-title`, content: panel.title }))
-      children.push(AccordionContent.create({ active: isActive, key: `${key}-content`, content: panel.content }))
+      children.push(AccordionTitle.create(title, {
+        active,
+        index,
+        key: `${key}-title`,
+        onClick: this.handleTitleClick,
+      }))
+      children.push(AccordionContent.create(content, {
+        active,
+        index,
+        key: `${key}-content`,
+      }))
     })
 
     return children

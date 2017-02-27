@@ -1,15 +1,16 @@
-import _ from 'lodash'
 import faker from 'faker'
+import _ from 'lodash'
 import React from 'react'
 import { Accordion } from 'semantic-ui-react'
 
-const panels = _.times(3, () => ({
+const panels = _.times(3, i => ({
+  key: i,
   title: faker.lorem.sentence(),
   content: faker.lorem.paragraphs(),
 }))
 
 const AccordionExampleExclusive = () => (
-  <Accordion panels={panels} exclusive={false} fluid />
+  <Accordion activeIndex={[0, 2]} panels={panels} exclusive={false} fluid />
 )
 
 export default AccordionExampleExclusive

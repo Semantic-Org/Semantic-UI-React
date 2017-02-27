@@ -1,9 +1,8 @@
 import React from 'react'
+import { Message } from 'semantic-ui-react'
 
 import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
 import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
-
-import { Message } from 'semantic-ui-react'
 
 const AccordionUsageExamples = () => (
   <ExampleSection title='Usage'>
@@ -11,13 +10,12 @@ const AccordionUsageExamples = () => (
       title='Active Index'
       description='The `activeIndex` prop controls which panel is open.'
       examplePath='modules/Accordion/Usage/AccordionExampleActiveIndex'
-    >
-      <Message info>
-        An <code>active</code> prop on an
-        {' '}<code>&lt;Accordion.Title&gt;</code> or <code>&lt;Accordion.Content&gt;</code>
-        {' '}will override the <code>&lt;Accordion&gt;</code> <code>&lt;activeIndex&gt;</code> prop.
-      </Message>
-    </ComponentExample>
+    />
+    <ComponentExample
+      title='Exclusive'
+      description='An accordion can have multiple panels open at the same time.'
+      examplePath='modules/Accordion/Usage/AccordionExampleExclusive'
+    />
     <ComponentExample
       title='Panels Prop with custom title and content'
       examplePath='modules/Accordion/Usage/AccordionExamplePanelsPropWithCustomTitleAndContent'
