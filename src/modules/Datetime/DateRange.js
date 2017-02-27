@@ -10,7 +10,6 @@ import {
 
 import { defaultDateFormatter, defaultTimeFormatter } from '../../lib/dateUtils'
 import Calendar from './Calendar'
-import DateRange from './DateRange'
 import Input from '../../elements/Input/Input'
 import Popup from '../Popup/Popup'
 
@@ -26,13 +25,12 @@ const popupStyle = {
  * as handle date ranges.
  * @see Form
  */
-export default class Datetime extends Component {
+export default class DateRange extends Component {
   static _meta = {
-    name: 'Datetime',
+    name: 'DateRange',
     type: META.TYPES.MODULE,
   }
-  static Range = DateRange
-  
+
   static propTypes = {
     /** An element type to render as (string or function). */
     as: customPropTypes.as,
@@ -92,10 +90,10 @@ export default class Datetime extends Component {
     /** Current value as a Date object or a string that can be parsed into one.
      * Creates a controlled component.
      */
-    value: customPropTypes.DateValue,
+    value: React.PropTypes.arrayOf(customPropTypes.DateValue),
 
     /** Initial value as a Date object or a string that can be parsed into one */
-    defaultValue: customPropTypes.DateValue,
+    defaultValue: React.PropTypes.arrayOf(customPropTypes.DateValue),
 
     /** A disabled dropdown menu or item does not allow user interaction. */
     disabled: PropTypes.bool,
@@ -223,12 +221,15 @@ export default class Datetime extends Component {
      * date selection as well as the time.
      * @type {bool}
      */
-    date: PropTypes.bool
+    date: PropTypes.bool,
+		rangeFocus: PropTypes.number,
+		defaultRangeFocus: PropTypes.number,
   }
 
   static autoControlledProps = [
     'open',
     'value',
+		'rangeFocus'
   ]
 
   static defaultProps = {
@@ -355,6 +356,7 @@ export default class Datetime extends Component {
 
     return (
       <Popup
+				flowing
         on='click'
         trigger={inputElement}
         position='bottom left'
@@ -369,14 +371,28 @@ export default class Datetime extends Component {
         closeOnDocumentClick={false}
         style={popupStyle}
       >
-        <Calendar
-          content={this.props.content}
-          onDateSelect={this.handleDateSelection}
-          timeFormatter={timeFormatter}
-          firstDayOfWeek={firstDayOfWeek}
-          time={time}
-          date={date}
-        />
+				<div className="ui two column grid">
+					<div className="column">
+		        <Calendar
+		          content={this.props.content}
+		          onDateSelect={this.handleDateSelection}
+		          timeFormatter={timeFormatter}
+		          firstDayOfWeek={firstDayOfWeek}
+		          time={time}
+		          date={date}
+		        />
+					</div>
+					<div className="column">
+						<Calendar
+		          content={this.props.content}
+		          onDateSelect={this.handleDateSelection}
+		          timeFormatter={timeFormatter}
+		          firstDayOfWeek={firstDayOfWeek}
+		          time={time}
+		          date={date}
+		        />
+					</div>
+				</div>
       </Popup>
     )
   }

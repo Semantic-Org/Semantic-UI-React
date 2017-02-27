@@ -26,6 +26,11 @@ const DatetimeTypesExamples = () => (
       description='A full Time selector, with initial value of the current time'
       examplePath='modules/Datetime/Types/TimeExampleFull'
     />
+    <ComponentExample
+      title='Range'
+      description='A date range selector'
+      examplePath='modules/Datetime/Types/DateRangeExample'
+    />
   </ExampleSection>
 
 
