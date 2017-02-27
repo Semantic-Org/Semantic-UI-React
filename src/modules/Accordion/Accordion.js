@@ -1,6 +1,6 @@
 import cx from 'classnames'
 import _ from 'lodash'
-import React, { Children, cloneElement, PropTypes } from 'react'
+import React, { Children, PropTypes } from 'react'
 
 import {
   AutoControlledComponent as Component,
@@ -22,9 +22,12 @@ export default class Accordion extends Component {
     as: customPropTypes.as,
 
     /** Index of the currently active panel. */
-    activeIndex: PropTypes.oneOfType([
-      PropTypes.arrayOf(PropTypes.number),
-      PropTypes.number,
+    activeIndex: customPropTypes.every([
+      customPropTypes.disallow(['children']),
+      PropTypes.oneOfType([
+        PropTypes.arrayOf(PropTypes.number),
+        PropTypes.number,
+      ]),
     ]),
 
     /** Primary content. */
@@ -34,13 +37,19 @@ export default class Accordion extends Component {
     className: PropTypes.string,
 
     /** Initial activeIndex value. */
-    defaultActiveIndex: PropTypes.oneOfType([
-      PropTypes.arrayOf(PropTypes.number),
-      PropTypes.number,
+    defaultActiveIndex: customPropTypes.every([
+      customPropTypes.disallow(['children']),
+      PropTypes.oneOfType([
+        PropTypes.arrayOf(PropTypes.number),
+        PropTypes.number,
+      ]),
     ]),
 
     /** Only allow one panel open at a time. */
-    exclusive: PropTypes.bool,
+    exclusive: customPropTypes.every([
+      customPropTypes.disallow(['children']),
+      PropTypes.bool,
+    ]),
 
     /** Format to take up the width of it's container. */
     fluid: PropTypes.bool,
@@ -48,25 +57,26 @@ export default class Accordion extends Component {
     /** Format for dark backgrounds. */
     inverted: PropTypes.bool,
 
-    /** Called with (event, index) when a panel title is clicked. */
-    onTitleClick: PropTypes.func,
-
     /**
-     * Create simple accordion panels from an array of { text: <string>, content: <custom> } objects.
-     * Object can optionally define an `active` key to open/close the panel.
-     * Object can opitonally define a `key` key used for title and content nodes' keys.
-     * Mutually exclusive with children.
-     * TODO: AccordionPanel should be a sub-component
+     * onClick handler for AccordionTitle. Mutually exclusive with children.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All item props.
      */
+    onTitleClick: customPropTypes.every([
+      customPropTypes.disallow(['children']),
+      PropTypes.func,
+    ]),
+
+    /** Shorthand array of props for Accordion. */
     panels: customPropTypes.every([
       customPropTypes.disallow(['children']),
-      PropTypes.arrayOf(PropTypes.shape({
-        key: PropTypes.string,
-        active: PropTypes.bool,
-        title: customPropTypes.contentShorthand,
-        content: customPropTypes.contentShorthand,
-        onClick: PropTypes.func,
-      })),
+      PropTypes.arrayOf(
+        PropTypes.shape({
+          content: customPropTypes.itemShorthand,
+          title: customPropTypes.itemShorthand,
+        })
+      ),
     ]),
 
     /** Adds some basic styling to accordion panels. */
@@ -93,6 +103,7 @@ export default class Accordion extends Component {
 
   constructor(...args) {
     super(...args)
+
     this.state = {
       activeIndex: this.props.exclusive ? -1 : [-1],
     }
@@ -116,6 +127,7 @@ export default class Accordion extends Component {
   isIndexActive = (index) => {
     const { exclusive } = this.props
     const { activeIndex } = this.state
+
     return exclusive ? activeIndex === index : _.includes(activeIndex, index)
   }
 

@@ -1,16 +1,15 @@
-import _ from 'lodash'
 import cx from 'classnames'
+import _ from 'lodash'
 import React, { Component, PropTypes } from 'react'
 
 import {
+  createShorthandFactory,
   customPropTypes,
   getElementType,
   getUnhandledProps,
   META,
   useKeyOnly,
-  createShorthandFactory,
 } from '../../lib'
-
 import Icon from '../../elements/Icon'
 
 /**
@@ -71,11 +70,7 @@ export default class AccordionTitle extends Component {
     const ElementType = getElementType(AccordionTitle, this.props)
 
     if (_.isNil(content)) {
-      return (
-        <ElementType {...rest} className={classes} onClick={this.handleClick}>
-          {children}
-        </ElementType>
-      )
+      return <ElementType {...rest} className={classes} onClick={this.handleClick}>{children}</ElementType>
     }
 
     return (
