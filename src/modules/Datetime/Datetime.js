@@ -216,6 +216,12 @@ export default class Datetime extends Component {
      * @type {bool}
      */
     time: PropTypes.bool,
+    /**
+     * Allows date selection. This will cause the component to offer a
+     * date selection as well as the time.
+     * @type {bool}
+     */
+    date: PropTypes.bool
   }
 
   static autoControlledProps = [
@@ -250,6 +256,8 @@ export default class Datetime extends Component {
     },
     dateFormatter: defaultDateFormatter,
     timeFormatter: defaultTimeFormatter,
+    date: true,
+    time: true
   }
 
   open = (e) => {
@@ -302,10 +310,15 @@ export default class Datetime extends Component {
   /**
    * Return a formatted date or date/time string
    */
-  getFormattedDate(date) {
-    const { time, dateFormatter, timeFormatter } = this.props
+  getFormattedDate(value) {
+    value = value || this.state.value
+    const { date, time, dateFormatter, timeFormatter } = this.props
 
-    if (time) return `${dateFormatter(this.state.value)} ${timeFormatter(this.state.value)}`
+    if (date && time) {
+      return `${dateFormatter(value)} ${timeFormatter(value)}`
+    } else if (!date && time) {
+      return timeFormatter(value)
+    }
 
     return dateFormatter(this.state.value)
   }
@@ -320,6 +333,7 @@ export default class Datetime extends Component {
       name,
       placeholder,
       time,
+      date,
       timeFormatter,
     } = this.props
     const { open, value } = this.state
@@ -353,12 +367,13 @@ export default class Datetime extends Component {
         closeOnDocumentClick={false}
         style={popupStyle}
       >
-        <Calendar
+        <Calendar 
           content={this.props.content}
           onDateSelect={this.handleDateSelection}
           timeFormatter={timeFormatter}
           firstDayOfWeek={firstDayOfWeek}
           time={time}
+          date={date}
         />
       </Popup>
     )

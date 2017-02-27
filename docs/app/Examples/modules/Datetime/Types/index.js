@@ -21,6 +21,11 @@ const DatetimeTypesExamples = () => (
       description='A date only Date where the week start on Sunday'
       examplePath='modules/Datetime/Types/DateTimeExampleStartSunday'
     />
+    <ComponentExample
+      title='Time'
+      description='A full Time selector, with initial value of the current time'
+      examplePath='modules/Datetime/Types/TimeExampleFull'
+    />
   </ExampleSection>
 
 
