@@ -39,6 +39,25 @@ const Usage = () => (
         The method you choose to include the stylesheet in your project will depend on the level
         of customisation you require.
       </p>
+      <Header as='h3'>Examples</Header>
+      <p>
+          For examples on how to import and use Semantic UI React components,
+          click the code icon next to any example. Here are a few direct links:
+      </p>
+      <ul>
+          <li>
+              <a href='http://react.semantic-ui.com/elements/button#button'>Button</a>
+          </li>
+          <li>
+              <a href='http://react.semantic-ui.com/elements/list#list'>List</a>
+          </li>
+          <li>
+              <a href='http://react.semantic-ui.com/views/card#card'>Card</a>
+          </li>
+          <li>
+              <a href='http://react.semantic-ui.com/modules/modal#modal'>Modal</a>
+          </li>
+      </ul>
     </Segment>
 
     <Segment basic padded>

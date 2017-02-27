@@ -3,6 +3,7 @@ import _ from 'lodash'
 import React, { Component, PropTypes } from 'react'
 
 import {
+  createShorthand,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -51,16 +52,7 @@ class Progress extends Component {
     inverted: PropTypes.bool,
 
     /** Can be set to either to display progress as percent or ratio. */
-    label: customPropTypes.every([
-      customPropTypes.some([
-        customPropTypes.demand(['percent']),
-        customPropTypes.demand(['total', 'value']),
-      ]),
-      PropTypes.oneOfType([
-        PropTypes.bool,
-        PropTypes.oneOf(['ratio', 'percent']),
-      ]),
-    ]),
+    label: customPropTypes.itemShorthand,
 
     /** Current percent complete. */
     percent: customPropTypes.every([
@@ -75,7 +67,10 @@ class Progress extends Component {
     precision: PropTypes.number,
 
     /** A progress bar can contain a text value indicating current progress. */
-    progress: PropTypes.bool,
+    progress: PropTypes.oneOfType([
+      PropTypes.bool,
+      PropTypes.oneOf(['percent', 'ratio']),
+    ]),
 
     /** A progress bar can vary in size. */
     size: PropTypes.oneOf(_.without(SUI.SIZES, 'mini', 'huge', 'massive')),
@@ -139,29 +134,41 @@ class Progress extends Component {
     return autoSuccess && (percent >= 100 || value >= total)
   }
 
-  showProgress = () => {
-    const { label, precision, progress, total, value } = this.props
+  renderLabel = () => {
+    const { children, label } = this.props
 
-    if (label || progress || !_.isUndefined(precision)) return true
-    return !(_.every([total, value], _.isUndefined))
+    if (!_.isNil(children)) return <div className='label'>{children}</div>
+    return createShorthand('div', val => ({ children: val }), label, { className: 'label' })
+  }
+
+  renderProgress = percent => {
+    const {
+      precision,
+      progress,
+      total,
+      value,
+    } = this.props
+
+    if (!progress && _.isUndefined(precision)) return
+    return (
+      <div className='progress'>
+        { progress !== 'ratio' ? `${percent}%` : `${value}/${total}` }
+      </div>
+    )
   }
 
   render() {
     const {
       active,
       attached,
-      children,
       className,
       color,
       disabled,
       error,
       indicating,
       inverted,
-      label,
       size,
       success,
-      total,
-      value,
       warning,
     } = this.props
 
@@ -182,19 +189,14 @@ class Progress extends Component {
     )
     const rest = getUnhandledProps(Progress, this.props)
     const ElementType = getElementType(Progress, this.props)
-
     const percent = this.getPercent()
 
     return (
       <ElementType {...rest} className={classes}>
         <div className='bar' style={{ width: `${percent}%` }}>
-          {this.showProgress() && (
-            <div className='progress'>
-              { label !== 'ratio' ? `${percent}%` : `${value}/${total}` }
-            </div>
-          )}
+          {this.renderProgress(percent)}
         </div>
-        {children && <div className='label'>{children}</div>}
+        {this.renderLabel()}
       </ElementType>
     )
   }
