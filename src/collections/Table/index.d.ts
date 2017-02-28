@@ -200,6 +200,9 @@ export const TableHeader: React.StatelessComponent<TableHeaderProps>;
 
 interface TableHeaderCellProps extends TableCellProps {
   sorted?: 'ascending' | 'descending';
+
+  /** A table can be collapsing, taking up only as much space as its rows. */
+  collapsing?: boolean;
 }
 
 export const TableHeaderCell: React.StatelessComponent<TableHeaderCellProps>;
