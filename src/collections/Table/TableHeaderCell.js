@@ -13,9 +13,10 @@ import TableCell from './TableCell'
  * A table can have a header cell.
  */
 function TableHeaderCell(props) {
-  const { as, className, sorted } = props
+  const { as, className, sorted, collapsing } = props
   const classes = cx(
     useValueAndKey(sorted, 'sorted'),
+    useKeyOnly(collapsing, 'collapsing'),
     className
   )
   const rest = getUnhandledProps(TableHeaderCell, props)
@@ -38,6 +39,9 @@ TableHeaderCell.propTypes = {
 
   /** A header cell can be sorted in ascending or descending order. */
   sorted: PropTypes.oneOf(['ascending', 'descending']),
+  
+  /** A header cell can be collapsing so that it only uses as much space as required. */
+  collapsing: PropTypes.bool,
 }
 
 TableHeaderCell.defaultProps = {
