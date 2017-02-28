@@ -5,7 +5,6 @@ import {
    Image,
    Segment,
    Grid,
-   List,
    Divider,
 } from 'semantic-ui-react'
 import style from './LayoutStyle'
@@ -15,13 +14,13 @@ const src = 'http://semantic-ui.com/examples/assets/images/wireframe/image.png'
 const GridLayout = () =>
   <div>
     <Container text>
-       <Header dividing as='h1' dividing>Using Grids</Header>
+       <Header dividing as='h1'>Using Grids</Header>
        <h3 style={style.first}>Container</h3>
        <p>A container is a fixed width element that wraps your site's content.
           It remains a constant size and uses <b>margin</b> to center.
           Containers are the simplest way to center page content inside a grid.
        </p>
-    </Container>  322:15  error  Unknown property 'class' found, use 'className' instead  react/no-unknown-property
+    </Container>
 
     <Container text>
       <Grid style={style.grid}>
@@ -259,7 +258,8 @@ const GridLayout = () =>
      </Grid>
 
      <h3>Equal Width Columns</h3>
-     <p>Specifying an <code>equal width grid</code> will automatically determine column sizes to fit evenly inside one row</p>
+     <p>Specifying an <code>equal width grid</code>
+        will automatically determine column sizes to fit evenly inside one row</p>
      <Grid>
        <Grid.Row>
          <Grid.Column>column</Grid.Column>
