@@ -5,8 +5,9 @@ import TableHeaderCell from 'src/collections/Table/TableHeaderCell'
 
 describe('TableHeaderCell', () => {
   common.isConformant(TableHeaderCell)
-  common.propKeyOnlyToClassName(TableCell, 'collapsing')
+
   common.propKeyAndValueToClassName(TableHeaderCell, 'sorted', ['ascending', 'descending'])
+  common.propKeyOnlyToClassName(TableHeaderCell, 'collapsing')
 
   it('renders as a th by default', () => {
     shallow(<TableHeaderCell />)
