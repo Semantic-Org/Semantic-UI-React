@@ -50,6 +50,7 @@ These great products are built on Semantic-UI-React. Add yours [here][22].
 - https://roadmap.space
 - https://edabit.com
 - https://blackship.com
+- http://www.brewhousesolutions.com
 
 ## Voice Your Opinion :speech_balloon:
 
