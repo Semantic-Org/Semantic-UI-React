@@ -135,7 +135,6 @@ npm run deploy:docs
 Update the changelog (requires [github_changelog_generator][15]):
 
 ```sh
-npm run deploy:docs
 github_changelog_generator
 git add CHANGELOG.md
 git commit -m 'docs(changelog): update changelog [ci skip]'
