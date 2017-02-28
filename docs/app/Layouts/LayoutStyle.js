@@ -1,5 +1,4 @@
 const style = {}
-const sidebarWidth = 250
 
 style.grid = {
   position: 'absolute',
@@ -13,7 +12,7 @@ style.grid = {
 }
 
 style.first = {
-  marginTop: '5em'
+  marginTop: '5em',
 }
 
 export default style
