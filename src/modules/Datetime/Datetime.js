@@ -32,7 +32,7 @@ export default class Datetime extends Component {
     type: META.TYPES.MODULE,
   }
   static Range = DateRange
-  
+
   static propTypes = {
     /** An element type to render as (string or function). */
     as: customPropTypes.as,
@@ -322,7 +322,7 @@ export default class Datetime extends Component {
       return timeFormatter(value)
     }
 
-    return dateFormatter(this.state.value)
+    return dateFormatter(value)
   }
 
   render() {

@@ -87,12 +87,12 @@ export default class DateRange extends Component {
     /** Initial value of open. */
     defaultOpen: PropTypes.bool,
 
-    /** Current value as a Date object or a string that can be parsed into one.
-     * Creates a controlled component.
+    /** Current value as an array of Date object or a string that can be parsed
+     * into one. Creates a controlled component.
      */
     value: React.PropTypes.arrayOf(customPropTypes.DateValue),
 
-    /** Initial value as a Date object or a string that can be parsed into one */
+    /** Initial value as an array of Date object or a string that can be parsed into one */
     defaultValue: React.PropTypes.arrayOf(customPropTypes.DateValue),
 
     /** A disabled dropdown menu or item does not allow user interaction. */
@@ -299,31 +299,45 @@ export default class DateRange extends Component {
     this.close(e)
   }
 
-  handleDateSelection = (date, e) => {
+  handleDateSelection = (rangeItem, date, e) => {
     debug('handleDateSelection()', date, e)
     e.stopPropagation()
+		console.log('range item and date', rangeItem, date)
     e.nativeEvent.stopImmediatePropagation()
     const selectedDate = new Date(date)
+		const currentRange = this.state.value
+		console.log('current range value', currentRange)
+		currentRange[rangeItem] = selectedDate
     this.trySetState({
-      value: selectedDate,
+      value: currentRange,
     })
-    this.close()
+		if (rangeItem == 1) {
+			this.close()
+		}
   }
 
   /**
    * Return a formatted date or date/time string
    */
   getFormattedDate(value) {
+		const formatted = []
     value = value || this.state.value
+		if (!value) {
+			return ''
+		}
+		console.log(value)
     const { date, time, dateFormatter, timeFormatter } = this.props
-
-    if (date && time) {
-      return `${dateFormatter(value)} ${timeFormatter(value)}`
-    } else if (!date && time) {
-      return timeFormatter(value)
-    }
-
-    return dateFormatter(this.state.value)
+		value.forEach((item)=> {
+			if (item) {
+				if (date && time) {
+					formatted.push(`${dateFormatter(item)} ${timeFormatter(item)}`)
+				} else if (!date && time) {
+					formatted.push(timeFormatter(item))
+				}
+				formatted.push(dateFormatter(item))
+			}
+		})
+    return formatted.join(' ')
   }
 
   render() {
@@ -340,9 +354,10 @@ export default class DateRange extends Component {
       timeFormatter,
     } = this.props
     const { open, value } = this.state
-
+		console.log("STATE", value, this.state)
     const inputElement = (
       <Input
+				fluid
         type='text'
         name={name}
         icon={icon}
@@ -375,7 +390,7 @@ export default class DateRange extends Component {
 					<div className="column">
 		        <Calendar
 		          content={this.props.content}
-		          onDateSelect={this.handleDateSelection}
+		          onDateSelect={this.handleDateSelection.bind(this, 0)}
 		          timeFormatter={timeFormatter}
 		          firstDayOfWeek={firstDayOfWeek}
 		          time={time}
@@ -385,7 +400,7 @@ export default class DateRange extends Component {
 					<div className="column">
 						<Calendar
 		          content={this.props.content}
-		          onDateSelect={this.handleDateSelection}
+		          onDateSelect={this.handleDateSelection.bind(this, 1)}
 		          timeFormatter={timeFormatter}
 		          firstDayOfWeek={firstDayOfWeek}
 		          time={time}
