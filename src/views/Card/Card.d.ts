@@ -1,11 +1,11 @@
 import * as React from 'react';
 
 import { SemanticCOLORS } from '../..';
-import CardContent from './CardContent';
-import CardDescription from './CardDescription';
-import CardGroup from './CardGroup';
-import CardHeader from './CardHeader';
-import CardMeta from './CardMeta';
+import { default as CardContent } from './CardContent';
+import { default as CardDescription } from './CardDescription';
+import { default as CardGroup } from './CardGroup';
+import { default as CardHeader } from './CardHeader';
+import { default as CardMeta } from './CardMeta';
 
 interface CardProps {
   [key: string]: any;

@@ -6,8 +6,8 @@ import {
   SemanticVERTICALALIGNMENTS,
   SemanticWIDTHS
 } from '../..';
-import { GridPropReversed } from './Grid';
-import { GridPropOnly } from './GridColumn';
+import { GridReversedProp } from './Grid';
+import { GridOnlyProp } from './GridColumn';
 
 interface GridRowProps {
   [key: string]: any;
@@ -34,10 +34,10 @@ interface GridRowProps {
   divided?: boolean;
 
   /** A row can appear only for a specific device, or screen sizes. */
-  only?: GridPropOnly;
+  only?: GridOnlyProp;
 
   /** A  row can specify that its columns should reverse order at different device sizes. */
-  reversed?: GridPropReversed;
+  reversed?: GridReversedProp;
 
   /** An can stretch its contents to take up the entire column height. */
   stretched?: boolean;

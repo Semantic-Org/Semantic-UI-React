@@ -1,10 +1,10 @@
 import * as React from 'react';
 
 import { SemanticCOLORS } from '../..';
-import { MessageContent } from './MessageContent';
-import { MessageHeader } from './MessageHeader';
-import { MessageItem } from './MessageItem';
-import { MessageList } from './MessageList';
+import { default as MessageContent } from './MessageContent';
+import { default as MessageHeader } from './MessageHeader';
+import { default as MessageItem } from './MessageItem';
+import { default as MessageList } from './MessageList';
 
 interface MessageProps {
   [key: string]: any;

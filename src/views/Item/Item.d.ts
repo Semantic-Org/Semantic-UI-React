@@ -1,12 +1,12 @@
 import * as React from 'react';
 
-import ItemContent from './ItemContent';
-import ItemDescription from './ItemDescription';
-import ItemExtra from './ItemExtra';
-import ItemGroup from './ItemGroup';
-import ItemHeader from './ItemHeader';
-import ItemImage from './ItemImage';
-import ItemMeta from './ItemMeta';
+import { default as ItemContent } from './ItemContent';
+import { default as ItemDescription } from './ItemDescription';
+import { default as ItemExtra } from './ItemExtra';
+import { default as ItemGroup } from './ItemGroup';
+import { default as ItemHeader } from './ItemHeader';
+import { default as ItemImage } from './ItemImage';
+import { default as ItemMeta } from './ItemMeta';
 
 interface ItemProps {
   [key: string]: any;

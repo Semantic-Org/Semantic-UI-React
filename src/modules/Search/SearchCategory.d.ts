@@ -1,5 +1,5 @@
 import * as React from 'react';
-import SearchResult from './SearchResult';
+import { default as SearchResult } from './SearchResult';
 
 export interface SearchCategoryProps {
   [key: string]: any;

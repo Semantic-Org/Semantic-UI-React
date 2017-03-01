@@ -1,9 +1,9 @@
 import * as React from 'react';
 
-import StepContent from './StepContent';
-import StepDescription from './StepDescription';
-import StepGroup from './StepGroup';
-import StepTitle from './StepTitle';
+import { default as StepContent } from './StepContent';
+import { default as StepDescription } from './StepDescription';
+import { default as StepGroup } from './StepGroup';
+import { default as StepTitle } from './StepTitle';
 
 interface StepProps {
   [key: string]: any;

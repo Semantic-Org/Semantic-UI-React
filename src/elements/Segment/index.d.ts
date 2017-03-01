@@ -1,1 +1,1 @@
-export { default as default } from './Segment'
+export { default } from './Segment'

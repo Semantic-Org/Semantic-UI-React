@@ -5,9 +5,9 @@ import {
   SemanticFLOATS,
   SemanticSIZES
 } from '../..';
-import ButtonContent from './ButtonContent';
-import ButtonGroup from './ButtonGroup';
-import ButtonOr from './ButtonOr';
+import { default as ButtonContent } from './ButtonContent';
+import { default as ButtonGroup } from './ButtonGroup';
+import { default as ButtonOr } from './ButtonOr';
 
 export interface ButtonProps {
   [key: string]: any;

@@ -5,10 +5,10 @@ import {
   SemanticVERTICALALIGNMENTS,
   SemanticWIDTHS
 } from '../..';
-import { GridColumn } from './GridColumn';
-import { GridRow } from './GridRow';
+import { default as GridColumn } from './GridColumn';
+import { default as GridRow } from './GridRow';
 
-export type GridPropReversed = 'computer' | 'computer vertically' | 'mobile' | 'mobile vertically' | 'tablet' | 'tablet vertically';
+export type GridReversedProp = 'computer' | 'computer vertically' | 'mobile' | 'mobile vertically' | 'tablet' | 'tablet vertically';
 
 export interface GridProps {
   [key: string]: any;
@@ -47,7 +47,7 @@ export interface GridProps {
   relaxed?: boolean | 'very';
 
   /** A grid can specify that its columns should reverse order at different device sizes. */
-  reversed?: GridPropReversed;
+  reversed?: GridReversedProp;
 
   /** A grid can have its columns stack on-top of each other after reaching mobile breakpoints. */
   stackable?: boolean;

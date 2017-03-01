@@ -1,1 +1,1 @@
-export { default as default } from './Confirm';
+export { default } from './Confirm';

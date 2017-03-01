@@ -1,8 +1,8 @@
 import * as React from 'react';
 
-import SearchCategory, { SearchCategoryProps} from './SearchCategory';
-import SearchResult, { SearchResultProps } from './SearchResult';
-import SearchResults from './SearchResults';
+import { default as SearchCategory, SearchCategoryProps} from './SearchCategory';
+import { default as SearchResult, SearchResultProps } from './SearchResult';
+import { default as SearchResults } from './SearchResults';
 
 interface SearchProps {
   [key: string]: any;

@@ -1,8 +1,8 @@
 import * as React from 'react';
 
-import { PortalProps } from '../../addons/Portal';
-import PopupContent from './PopupContent';
-import PopupHeader from './PopupHeader';
+import { PortalProps } from '../../addons/Portal/Portal';
+import { default as PopupContent } from './PopupContent';
+import { default as PopupHeader } from './PopupHeader';
 
 interface PopupProps extends PortalProps {
   [key: string]: any;

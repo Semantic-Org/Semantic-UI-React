@@ -4,12 +4,12 @@ import {
   SemanticCOLORS,
   SemanticWIDTHS
 } from '../..';
-import { TableBody } from './TableBody';
-import { TableCell } from './TableCell';
-import { TableFooter } from './TableFooter';
-import { TableHeader } from './TableHeader';
-import { TableHeaderCell } from './TableHeaderCell';
-import { TableRow } from './TableRow';
+import { default as TableBody } from './TableBody';
+import { default as TableCell } from './TableCell';
+import { default as TableFooter } from './TableFooter';
+import { default as TableHeader } from './TableHeader';
+import { default as TableHeaderCell } from './TableHeaderCell';
+import { default as TableRow } from './TableRow';
 
 interface TableProps {
   [key: string]: any;

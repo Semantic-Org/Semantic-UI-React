@@ -7,7 +7,7 @@ import {
   SemanticWIDTHS
 } from '../..';
 
-export type GridPropOnly = 'computer' | 'large screen' | 'mobile' | 'tablet mobile' | 'tablet' | 'widescreen';
+export type GridOnlyProp = 'computer' | 'large screen' | 'mobile' | 'tablet mobile' | 'tablet' | 'widescreen';
 
 interface GridColumnProps {
   [key: string]: any;
@@ -37,7 +37,7 @@ interface GridColumnProps {
   mobile?: SemanticWIDTHS;
 
   /** A column can appear only for a specific device, or screen sizes. */
-  only?: GridPropOnly;
+  only?: GridOnlyProp;
 
   /** An can stretch its contents to take up the entire grid or row height. */
   stretched?: boolean;

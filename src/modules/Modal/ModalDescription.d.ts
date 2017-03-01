@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { PortalProps } from '../../addons/Portal';
 
 interface ModalDescriptionProps {
   [key: string]: any;

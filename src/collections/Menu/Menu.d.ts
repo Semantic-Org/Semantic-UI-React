@@ -1,9 +1,9 @@
 import * as React from 'react';
 
 import { SemanticCOLORS, SemanticWIDTHS } from '../..';
-import { MenuHeader } from './MenuHeader';
-import { MenuItem, MenuItemProps } from './MenuItem';
-import { MenuMenu } from './MenuMenu';
+import { default as MenuHeader } from './MenuHeader';
+import { default as MenuItem, MenuItemProps } from './MenuItem';
+import { default as MenuMenu } from './MenuMenu';
 
 export interface MenuProps {
   [key: string]: any;

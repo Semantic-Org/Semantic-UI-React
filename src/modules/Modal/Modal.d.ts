@@ -1,10 +1,10 @@
 import * as React from 'react';
 
-import { PortalProps } from '../../addons/Portal';
-import ModalActions from './ModalActions';
-import ModalContent from './ModalContent';
-import ModalDescription from './ModalDescription';
-import ModalHeader from './ModalHeader';
+import { PortalProps } from '../../addons/Portal/Portal';
+import { default as ModalActions } from './ModalActions';
+import { default as ModalContent } from './ModalContent';
+import { default as ModalDescription } from './ModalDescription';
+import { default as ModalHeader } from './ModalHeader';
 
 interface ModalProps extends PortalProps {
   [key: string]: any;

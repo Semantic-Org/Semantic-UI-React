@@ -1,14 +1,14 @@
 import * as React from 'react';
 
-import FeedContent from './FeedContent';
-import FeedDate from './FeedDate';
-import FeedEvent from './FeedEvent';
-import FeedExtra from './FeedExtra';
-import FeedLabel from './FeedLabel';
-import FeedMeta from './FeedMeta';
-import FeedLike from './FeedLike';
-import FeedSummary from './FeedSummary';
-import FeedUser from './FeedUser';
+import { default as FeedContent } from './FeedContent';
+import { default as FeedDate } from './FeedDate';
+import { default as FeedEvent } from './FeedEvent';
+import { default as FeedExtra } from './FeedExtra';
+import { default as FeedLabel } from './FeedLabel';
+import { default as FeedMeta } from './FeedMeta';
+import { default as FeedLike } from './FeedLike';
+import { default as FeedSummary } from './FeedSummary';
+import { default as FeedUser } from './FeedUser';
 
 interface FeedProps {
   [key: string]: any;

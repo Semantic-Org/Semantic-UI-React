@@ -5,9 +5,9 @@ import {
   SemanticFLOATS,
   SemanticTEXTALIGNMENTS
 } from '../..';
-import SegmentGroup from './SegmentGroup';
+import { default as SegmentGroup } from './SegmentGroup';
 
-export type SEGMENT_SIZES = 'mini' | 'tiny' | 'small' | 'large' | 'big' | 'huge' | 'massive';
+export type SegmentSizeProp = 'mini' | 'tiny' | 'small' | 'large' | 'big' | 'huge' | 'massive';
 
 interface SegmentProps {
   [key: string]: any;
@@ -64,7 +64,7 @@ interface SegmentProps {
   secondary?: boolean;
 
   /** A segment can have different sizes. */
-  size?: SEGMENT_SIZES;
+  size?: SegmentSizeProp;
 
   /** Formatted to show it contains multiple pages. */
   stacked?: boolean;

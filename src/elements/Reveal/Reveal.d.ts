@@ -1,5 +1,5 @@
 import * as React from 'react';
-import RevealContent from './RevealContent';
+import { default as RevealContent } from './RevealContent';
 
 interface RevealProps {
   [key: string]: any;

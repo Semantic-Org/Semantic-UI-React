@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { SEGMENT_SIZES } from './Segment';
+import { SegmentSizeProp } from './Segment';
 
 interface SegmentGroupProps {
   [key: string]: any;
@@ -26,7 +26,7 @@ interface SegmentGroupProps {
   raised?: boolean;
 
   /** A segment group can have different sizes. */
-  size?: SEGMENT_SIZES;
+  size?: SegmentSizeProp;
 
   /** Formatted to show it contains multiple pages. */
   stacked?: boolean;

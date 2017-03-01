@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ICON_SIZES } from './Icon';
+import { IconSizeProp } from './Icon';
 
 interface IconGroupProps {
   [key: string]: any;
@@ -14,7 +14,7 @@ interface IconGroupProps {
   className?: string;
 
   /** Size of the icon group. */
-  size?: ICON_SIZES;
+  size?: IconSizeProp;
 }
 
 const IconGroup: React.StatelessComponent<IconGroupProps>;

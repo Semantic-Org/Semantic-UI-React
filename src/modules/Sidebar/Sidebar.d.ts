@@ -1,7 +1,7 @@
 import * as React from 'react';
 
-import SidebarPushable from './SidebarPushable';
-import SidebarPusher from './SidebarPusher';
+import { default as SidebarPushable } from './SidebarPushable';
+import { default as SidebarPusher } from './SidebarPusher';
 
 interface SidebarProps {
   [key: string]: any;

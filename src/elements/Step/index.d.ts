@@ -1,1 +1,1 @@
-export { default as default } from './Step'
+export { default } from './Step'

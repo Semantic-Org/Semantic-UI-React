@@ -5,8 +5,8 @@ import {
   SemanticFLOATS,
   SemanticTEXTALIGNMENTS
 } from '../..';
-import HeaderContent from './HeaderContent';
-import HeaderSubHeader from './HeaderSubheader';
+import { default as HeaderContent } from './HeaderContent';
+import { default as HeaderSubHeader } from './HeaderSubheader';
 
 interface HeaderProps {
   [key: string]: any;

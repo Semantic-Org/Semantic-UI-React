@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { DropdownProps } from '../../modules/Dropdown';
+import { DropdownProps } from '../../modules/Dropdown/Dropdown';
 import { FormFieldProps } from './FormField';
 
 interface FormDropdownProps extends FormFieldProps, DropdownProps {

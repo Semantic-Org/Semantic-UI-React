@@ -1,7 +1,7 @@
 import * as React from 'react';
 
-import BreadcrumbDivider from './BreadcrumbDivider';
-import BreadcrumbSection from './BreadcrumbSection';
+import { default as BreadcrumbDivider } from './BreadcrumbDivider';
+import { default as BreadcrumbSection } from './BreadcrumbSection';
 
 interface BreadcrumbProps {
   [key: string]: any;

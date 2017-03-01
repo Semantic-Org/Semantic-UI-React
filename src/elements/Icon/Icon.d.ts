@@ -1,9 +1,9 @@
 import * as React from 'react';
 
 import { SemanticCOLORS } from '../..';
-import IconGroup from './IconGroup';
+import { default as IconGroup } from './IconGroup';
 
-export type ICON_SIZES = 'mini' | 'tiny' | 'small' | 'large' | 'big' | 'huge' | 'massive';
+export type IconSizeProp = 'mini' | 'tiny' | 'small' | 'large' | 'big' | 'huge' | 'massive';
 
 export interface IconProps {
   [key: string]: any;
@@ -51,7 +51,7 @@ export interface IconProps {
   rotated?: 'clockwise' | 'counterclockwise';
 
   /** Size of the icon. */
-  size?: ICON_SIZES;
+  size?: IconSizeProp;
 }
 
 interface IconComponent extends React.StatelessComponent<IconProps> {

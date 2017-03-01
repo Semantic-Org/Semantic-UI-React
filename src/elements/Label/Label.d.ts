@@ -1,8 +1,8 @@
 import * as React from 'react';
 
 import { SemanticCOLORS, SemanticSIZES } from '../..';
-import LabelDetail from './LabelDetail';
-import LabelGroup from './LabelGroup';
+import { default as LabelDetail } from './LabelDetail';
+import { default as LabelGroup } from './LabelGroup';
 
 export interface LabelProps {
   [key: string]: any;
