@@ -83,4 +83,6 @@ interface ImageComponent extends React.StatelessComponent<ImageProps> {
   Group: typeof ImageGroup;
 }
 
-export const Image: ImageComponent;
+const Image: ImageComponent;
+
+export default Image;

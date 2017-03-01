@@ -1,1 +1,1 @@
-export * from './Grid'
+export { default as default } from './Grid'

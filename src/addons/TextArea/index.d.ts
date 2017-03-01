@@ -1,1 +1,1 @@
-export * from './TextArea';
+export { default as default } from './TextArea';

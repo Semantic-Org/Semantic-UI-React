@@ -8,7 +8,6 @@ import {
 } from '../../modules/Dropdown';
 
 export interface SelectProps extends DropdownProps {
-  selection: true;
 }
 
 interface SelectComponent extends React.StatelessComponent<SelectProps> {

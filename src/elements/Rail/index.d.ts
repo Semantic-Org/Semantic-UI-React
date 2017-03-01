@@ -1,1 +1,1 @@
-export * from './Rail'
+export { default as default } from './Rail'
