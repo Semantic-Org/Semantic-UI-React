@@ -199,6 +199,10 @@ interface TableHeaderProps {
 export const TableHeader: React.StatelessComponent<TableHeaderProps>;
 
 interface TableHeaderCellProps extends TableCellProps {
+  /** A table can be collapsing, taking up only as much space as its rows. */
+  collapsing?: boolean;
+
+  /** A header cell can be sorted in ascending or descending order. */
   sorted?: 'ascending' | 'descending';
 }
 
