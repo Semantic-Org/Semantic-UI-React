@@ -46,10 +46,6 @@ interface FormProps {
   widths?: 'equal';
 }
 
-interface FormOnSubmitData extends FormProps {
-  formData: {[key: string]: any};
-}
-
 interface FormClass extends React.ComponentClass<FormProps> {
   Field: typeof FormField;
   Button: typeof FormButton;
