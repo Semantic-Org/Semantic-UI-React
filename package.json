@@ -21,7 +21,7 @@
     "build:dll": "gulp dll",
     "build:docs": "gulp build:docs",
     "build:umd": "gulp umd",
-    "build:docs-toc": "doctoc README.md ./.github/CONTRIBUTING.md --github --maxlevel 4",
+    "build:docs-toc": "doctoc ./.github/CONTRIBUTING.md --github --maxlevel 4",
     "build:docs-cname": "echo react.semantic-ui.com > docs/build/CNAME",
     "predeploy:docs": "cross-env NODE_ENV=production npm run build:docs && npm run build:docs-cname",
     "deploy:docs": "gh-pages -d docs/build -m 'deploy docs [ci skip]'",
