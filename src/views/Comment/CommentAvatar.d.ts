@@ -13,6 +13,6 @@ interface CommentAvatarProps {
   src?: string;
 }
 
-const CommentAvatar: React.StatelessComponent<CommentAvatarProps>;
+declare const CommentAvatar: React.StatelessComponent<CommentAvatarProps>;
 
 export default CommentAvatar;

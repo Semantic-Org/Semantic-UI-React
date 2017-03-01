@@ -16,6 +16,6 @@ interface MessageListProps {
   items?: Array<any>;
 }
 
-const MessageList: React.StatelessComponent<MessageListProps>;
+declare const MessageList: React.StatelessComponent<MessageListProps>;
 
 export default MessageList;

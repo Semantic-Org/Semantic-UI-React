@@ -22,6 +22,6 @@ interface FeedExtraProps {
   text?: boolean;
 }
 
-const FeedExtra: React.StatelessComponent<FeedExtraProps>;
+declare const FeedExtra: React.StatelessComponent<FeedExtraProps>;
 
 export default FeedExtra;

@@ -19,6 +19,6 @@ interface DropdownHeaderProps {
   icon?: any;
 }
 
-const DropdownHeader: React.ComponentClass<DropdownHeaderProps>;
+declare const DropdownHeader: React.ComponentClass<DropdownHeaderProps>;
 
 export default DropdownHeader;

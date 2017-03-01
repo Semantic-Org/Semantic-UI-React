@@ -13,6 +13,6 @@ interface CommentAuthorProps {
   className?: string;
 }
 
-const CommentAuthor: React.StatelessComponent<CommentAuthorProps>;
+declare const CommentAuthor: React.StatelessComponent<CommentAuthorProps>;
 
 export default CommentAuthor;

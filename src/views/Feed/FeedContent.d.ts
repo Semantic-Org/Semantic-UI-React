@@ -31,6 +31,6 @@ interface FeedContentProps {
   summary?: any;
 }
 
-const FeedContent: React.StatelessComponent<FeedContentProps>;
+declare const FeedContent: React.StatelessComponent<FeedContentProps>;
 
 export default FeedContent;

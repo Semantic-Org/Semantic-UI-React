@@ -16,6 +16,6 @@ interface StepDescriptionProps {
   description?: React.ReactNode;
 }
 
-const StepDescription: React.StatelessComponent<StepDescriptionProps>;
+declare const StepDescription: React.StatelessComponent<StepDescriptionProps>;
 
 export default StepDescription;

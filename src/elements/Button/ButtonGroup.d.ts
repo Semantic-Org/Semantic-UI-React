@@ -70,6 +70,6 @@ interface GroupProps {
   widths?: SemanticWIDTHS;
 }
 
-const ButtonGroup: React.StatelessComponent<GroupProps>;
+declare const ButtonGroup: React.StatelessComponent<GroupProps>;
 
 export default ButtonGroup;

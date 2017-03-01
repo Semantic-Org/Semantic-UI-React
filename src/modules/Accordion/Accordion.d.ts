@@ -50,6 +50,6 @@ interface AccordionComponent extends React.ComponentClass<AccordionProps> {
   Title: typeof AccordionTitle;
 }
 
-const Accordion: AccordionComponent;
+declare const Accordion: AccordionComponent;
 
 export default Accordion;

@@ -146,6 +146,6 @@ interface SearchComponent extends React.ComponentClass<SearchProps> {
   Results: typeof SearchResults;
 }
 
-const Search: SearchComponent;
+declare const Search: SearchComponent;
 
 export default Search;

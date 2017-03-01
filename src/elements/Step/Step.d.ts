@@ -61,6 +61,6 @@ interface StepComponent extends React.ComponentClass<StepProps> {
   Title: typeof StepTitle;
 }
 
-const Step: StepComponent;
+declare const Step: StepComponent;
 
 export default Step;

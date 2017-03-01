@@ -16,6 +16,6 @@ interface StatisticLabelProps {
   label?: React.ReactNode;
 }
 
-const StatisticLabel: React.StatelessComponent<StatisticLabelProps>;
+declare const StatisticLabel: React.StatelessComponent<StatisticLabelProps>;
 
 export default StatisticLabel;

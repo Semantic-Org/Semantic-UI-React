@@ -13,6 +13,6 @@ interface SidebarPushableProps {
   className?: string;
 }
 
-const SidebarPushable: React.StatelessComponent<SidebarPushableProps>;
+declare const SidebarPushable: React.StatelessComponent<SidebarPushableProps>;
 
 export default SidebarPushable;

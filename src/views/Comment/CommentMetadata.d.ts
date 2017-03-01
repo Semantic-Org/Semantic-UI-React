@@ -13,6 +13,6 @@ interface CommentMetadataProps {
   className?: string;
 }
 
-const CommentMetadata: React.StatelessComponent<CommentMetadataProps>;
+declare const CommentMetadata: React.StatelessComponent<CommentMetadataProps>;
 
 export default CommentMetadata;

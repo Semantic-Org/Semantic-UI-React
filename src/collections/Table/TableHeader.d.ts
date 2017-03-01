@@ -16,6 +16,6 @@ interface TableHeaderProps {
   fullWidth?: boolean;
 }
 
-const TableHeader: React.StatelessComponent<TableHeaderProps>;
+declare const TableHeader: React.StatelessComponent<TableHeaderProps>;
 
 export default TableHeader;

@@ -6,6 +6,6 @@ import { FormFieldProps } from './FormField';
 interface FormSelectProps extends FormFieldProps, SelectProps {
 }
 
-const FormSelect: React.StatelessComponent<FormSelectProps>;
+declare const FormSelect: React.StatelessComponent<FormSelectProps>;
 
 export default FormSelect;

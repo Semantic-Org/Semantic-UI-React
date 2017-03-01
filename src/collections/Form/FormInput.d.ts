@@ -6,6 +6,6 @@ import { FormFieldProps } from './FormField';
 interface FormInputProps extends FormFieldProps, InputProps {
 }
 
-const FormInput: React.StatelessComponent<FormInputProps>;
+declare const FormInput: React.StatelessComponent<FormInputProps>;
 
 export default FormInput;

@@ -44,6 +44,6 @@ interface TableRowProps {
   warning?: boolean;
 }
 
-const TableRow: React.StatelessComponent<TableRowProps>;
+declare const TableRow: React.StatelessComponent<TableRowProps>;
 
 export default TableRow;

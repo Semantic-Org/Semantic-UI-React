@@ -42,6 +42,6 @@ export interface SearchResultProps {
   title?: string;
 }
 
-const SearchResult: React.ComponentClass<SearchResultProps>;
+declare const SearchResult: React.ComponentClass<SearchResultProps>;
 
 export default SearchResult;

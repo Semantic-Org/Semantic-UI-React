@@ -50,6 +50,6 @@ interface StatisticComponent extends React.StatelessComponent<StatisticProps> {
   Value: typeof StatisticValue;
 }
 
-const Statistic: StatisticComponent;
+declare const Statistic: StatisticComponent;
 
 export default Statistic;

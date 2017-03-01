@@ -13,6 +13,6 @@ interface CommentActionsProps {
   className?: string;
 }
 
-const CommentActions: React.StatelessComponent<CommentActionsProps>;
+declare const CommentActions: React.StatelessComponent<CommentActionsProps>;
 
 export default CommentActions;

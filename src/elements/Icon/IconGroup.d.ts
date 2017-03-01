@@ -17,6 +17,6 @@ interface IconGroupProps {
   size?: IconSizeProp;
 }
 
-const IconGroup: React.StatelessComponent<IconGroupProps>;
+declare const IconGroup: React.StatelessComponent<IconGroupProps>;
 
 export default IconGroup;

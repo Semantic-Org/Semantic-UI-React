@@ -14,6 +14,6 @@ export interface RadioProps extends CheckboxProps {
   type?: 'checkbox' | 'radio';
 }
 
-const Radio: React.StatelessComponent<RadioProps>;
+declare const Radio: React.StatelessComponent<RadioProps>;
 
 export default Radio;

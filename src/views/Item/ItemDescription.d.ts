@@ -16,6 +16,6 @@ interface ItemDescriptionProps {
   content?: React.ReactNode;
 }
 
-const ItemDescription: React.StatelessComponent<ItemDescriptionProps>;
+declare const ItemDescription: React.StatelessComponent<ItemDescriptionProps>;
 
 export default ItemDescription;

@@ -16,6 +16,6 @@ interface CardHeaderProps {
   content?: React.ReactNode;
 }
 
-const CardHeader: React.StatelessComponent<CardHeaderProps>;
+declare const CardHeader: React.StatelessComponent<CardHeaderProps>;
 
 export default CardHeader;

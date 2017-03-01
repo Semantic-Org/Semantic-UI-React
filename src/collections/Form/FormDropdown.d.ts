@@ -6,6 +6,6 @@ import { FormFieldProps } from './FormField';
 interface FormDropdownProps extends FormFieldProps, DropdownProps {
 }
 
-const FormDropdown: React.StatelessComponent<FormDropdownProps>;
+declare const FormDropdown: React.StatelessComponent<FormDropdownProps>;
 
 export default FormDropdown;

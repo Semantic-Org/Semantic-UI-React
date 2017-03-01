@@ -61,6 +61,6 @@ interface PopupComponent extends React.ComponentClass<PopupProps> {
   Header: typeof PopupHeader;
 }
 
-const Popup: PopupComponent;
+declare const Popup: PopupComponent;
 
 export default Popup;

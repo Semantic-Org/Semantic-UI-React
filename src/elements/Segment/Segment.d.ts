@@ -83,6 +83,6 @@ interface SegmentComponent extends React.StatelessComponent<SegmentProps> {
   Group: typeof SegmentGroup;
 }
 
-const Segment: SegmentComponent;
+declare const Segment: SegmentComponent;
 
 export default Segment;

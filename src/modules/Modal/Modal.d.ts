@@ -85,6 +85,6 @@ interface ModalComponent extends React.ComponentClass<ModalProps> {
   Header: typeof ModalHeader;
 }
 
-const Modal: ModalComponent;
+declare const Modal: ModalComponent;
 
 export default Modal;

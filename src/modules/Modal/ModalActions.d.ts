@@ -13,6 +13,6 @@ interface ModalActionsProps {
   className?: string;
 }
 
-const ModalActions: React.StatelessComponent<ModalActionsProps>;
+declare const ModalActions: React.StatelessComponent<ModalActionsProps>;
 
 export default ModalActions;

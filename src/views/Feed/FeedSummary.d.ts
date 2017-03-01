@@ -22,6 +22,6 @@ interface FeedSummaryProps {
   user?: any;
 }
 
-const FeedSummary: React.StatelessComponent<FeedSummaryProps>;
+declare const FeedSummary: React.StatelessComponent<FeedSummaryProps>;
 
 export default FeedSummary;

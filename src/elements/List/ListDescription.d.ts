@@ -16,6 +16,6 @@ interface ListDescriptionProps {
   content?: React.ReactNode;
 }
 
-const ListDescription: React.StatelessComponent<ListDescriptionProps>;
+declare const ListDescription: React.StatelessComponent<ListDescriptionProps>;
 
 export default ListDescription;

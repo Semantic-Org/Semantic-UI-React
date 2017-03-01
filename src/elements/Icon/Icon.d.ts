@@ -58,7 +58,7 @@ interface IconComponent extends React.StatelessComponent<IconProps> {
   Group: typeof IconGroup;
 }
 
-const Icon: IconComponent;
+declare const Icon: IconComponent;
 
 export default Icon;
 

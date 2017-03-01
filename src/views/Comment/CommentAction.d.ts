@@ -16,6 +16,6 @@ interface CommentActionProps {
   className?: string;
 }
 
-const CommentAction: React.ComponentClass<CommentActionProps>;
+declare const CommentAction: React.ComponentClass<CommentActionProps>;
 
 export default CommentAction;

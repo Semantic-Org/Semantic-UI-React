@@ -10,6 +10,6 @@ interface OrProps {
   className?: string;
 }
 
-const ButtonOr: React.StatelessComponent<OrProps>;
+declare const ButtonOr: React.StatelessComponent<OrProps>;
 
 export default ButtonOr;

@@ -16,6 +16,6 @@ interface LabelDetailProps {
   content?: React.ReactNode;
 }
 
-const LabelDetail: React.StatelessComponent<LabelDetailProps>;
+declare const LabelDetail: React.StatelessComponent<LabelDetailProps>;
 
 export default LabelDetail;

@@ -16,6 +16,6 @@ interface FeedUserProps {
   content?: React.ReactNode;
 }
 
-const FeedUser: React.StatelessComponent<FeedUserProps>;
+declare const FeedUser: React.StatelessComponent<FeedUserProps>;
 
 export default FeedUser;

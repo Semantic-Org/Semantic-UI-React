@@ -43,6 +43,6 @@ interface RatingIconProps {
   selected?: boolean;
 }
 
-const RatingIcon: React.ComponentClass<RatingIconProps>;
+declare const RatingIcon: React.ComponentClass<RatingIconProps>;
 
 export default RatingIcon;

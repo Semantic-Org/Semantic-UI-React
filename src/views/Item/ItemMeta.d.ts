@@ -16,6 +16,6 @@ interface ItemMetaProps {
   content?: React.ReactNode;
 }
 
-const ItemMeta: React.StatelessComponent<ItemMetaProps>;
+declare const ItemMeta: React.StatelessComponent<ItemMetaProps>;
 
 export default ItemMeta;

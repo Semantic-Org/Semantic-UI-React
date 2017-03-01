@@ -16,6 +16,6 @@ interface StepTitleProps {
   title?: React.ReactNode;
 }
 
-const StepTitle: React.StatelessComponent<StepTitleProps>;
+declare const StepTitle: React.StatelessComponent<StepTitleProps>;
 
 export default StepTitle;

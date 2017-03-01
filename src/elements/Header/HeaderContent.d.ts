@@ -13,6 +13,6 @@ interface HeaderContentProps {
   className?: string;
 }
 
-const HeaderContent: React.StatelessComponent<HeaderContentProps>;
+declare const HeaderContent: React.StatelessComponent<HeaderContentProps>;
 
 export default HeaderContent;

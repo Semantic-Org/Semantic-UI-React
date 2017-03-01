@@ -24,6 +24,6 @@ interface AccordionTitleProps {
   onClick?: (event: React.MouseEvent<HTMLDivElement>, data: AccordionTitleProps) => void;
 }
 
-const AccordionTitle: React.ComponentClass<AccordionTitleProps>;
+declare const AccordionTitle: React.ComponentClass<AccordionTitleProps>;
 
 export default AccordionTitle;

@@ -16,6 +16,6 @@ interface HeaderSubHeaderProps {
   content?: React.ReactNode;
 }
 
-const HeaderSubHeader: React.StatelessComponent<HeaderSubHeaderProps>;
+declare const HeaderSubHeader: React.StatelessComponent<HeaderSubHeaderProps>;
 
 export default HeaderSubHeader;

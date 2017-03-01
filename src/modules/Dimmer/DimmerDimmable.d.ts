@@ -19,6 +19,6 @@ interface DimmerDimmableProps {
   dimmed?: boolean;
 }
 
-const DimmerDimmable: React.ComponentClass<DimmerDimmableProps>;
+declare const DimmerDimmable: React.ComponentClass<DimmerDimmableProps>;
 
 export default DimmerDimmable;

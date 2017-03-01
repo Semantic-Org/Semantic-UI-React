@@ -25,6 +25,6 @@ interface CardContentProps {
   meta?: any;
 }
 
-const CardContent: React.StatelessComponent<CardContentProps>;
+declare const CardContent: React.StatelessComponent<CardContentProps>;
 
 export default CardContent;

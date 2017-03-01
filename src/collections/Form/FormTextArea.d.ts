@@ -6,6 +6,6 @@ import { FormFieldProps } from './FormField';
 interface FormTextAreaProps extends FormFieldProps, TextAreaProps {
 }
 
-const FormTextArea: React.StatelessComponent<FormTextAreaProps>;
+declare const FormTextArea: React.StatelessComponent<FormTextAreaProps>;
 
 export default FormTextArea;

@@ -86,6 +86,6 @@ interface MessageComponent extends React.ComponentClass<MessageProps> {
   Item: typeof MessageItem;
 }
 
-const Message: MessageComponent;
+declare const Message: MessageComponent;
 
 export default Message;

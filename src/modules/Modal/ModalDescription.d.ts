@@ -13,6 +13,6 @@ interface ModalDescriptionProps {
   className?: string;
 }
 
-const ModalDescription: React.StatelessComponent<ModalDescriptionProps>;
+declare const ModalDescription: React.StatelessComponent<ModalDescriptionProps>;
 
 export default ModalDescription;

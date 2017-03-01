@@ -104,6 +104,6 @@ interface ButtonComponent extends React.ComponentClass<ButtonProps> {
   Or: typeof ButtonOr;
 }
 
-const Button: ButtonComponent;
+declare const Button: ButtonComponent;
 
 export default Button;

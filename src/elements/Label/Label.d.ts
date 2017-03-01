@@ -92,6 +92,6 @@ interface LabelComponent extends React.ComponentClass<LabelProps> {
   Group: typeof LabelGroup;
 }
 
-const Label: LabelComponent;
+declare const Label: LabelComponent;
 
 export default Label;

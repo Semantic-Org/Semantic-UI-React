@@ -95,6 +95,6 @@ interface MenuComponent extends React.ComponentClass<MenuProps> {
   Menu: typeof MenuMenu;
 }
 
-const Menu: MenuComponent;
+declare const Menu: MenuComponent;
 
 export default Menu;

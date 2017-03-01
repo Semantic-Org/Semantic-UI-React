@@ -19,6 +19,6 @@ interface StepContentProps {
   title?: any;
 }
 
-const StepContent: React.StatelessComponent<StepContentProps>;
+declare const StepContent: React.StatelessComponent<StepContentProps>;
 
 export default StepContent;

@@ -35,6 +35,6 @@ interface BreadcrumbComponent extends React.ComponentClass<BreadcrumbProps> {
   Section: typeof BreadcrumbSection;
 }
 
-const Breadcrumb: BreadcrumbComponent;
+declare const Breadcrumb: BreadcrumbComponent;
 
 export default Breadcrumb;

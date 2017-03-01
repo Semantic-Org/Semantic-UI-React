@@ -31,6 +31,6 @@ interface StepGroupProps {
   vertical?: boolean;
 }
 
-const StepGroup: React.StatelessComponent<StepGroupProps>;
+declare const StepGroup: React.StatelessComponent<StepGroupProps>;
 
 export default StepGroup;

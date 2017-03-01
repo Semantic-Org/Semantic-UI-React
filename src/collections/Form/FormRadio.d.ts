@@ -7,6 +7,6 @@ interface FormRadioProps extends FormFieldProps, RadioProps {
   type?: 'checkbox' | 'radio';
 }
 
-const FormRadio: React.StatelessComponent<FormRadioProps>;
+declare const FormRadio: React.StatelessComponent<FormRadioProps>;
 
 export default FormRadio;

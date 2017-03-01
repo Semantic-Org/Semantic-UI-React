@@ -16,6 +16,6 @@ interface FeedDateProps {
   content?: any;
 }
 
-const FeedDate: React.StatelessComponent<FeedDateProps>;
+declare const FeedDate: React.StatelessComponent<FeedDateProps>;
 
 export default FeedDate;

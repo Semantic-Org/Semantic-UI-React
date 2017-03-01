@@ -25,6 +25,6 @@ interface CommentGroupProps {
   threaded?: boolean;
 }
 
-const CommentGroup: React.StatelessComponent<CommentGroupProps>;
+declare const CommentGroup: React.StatelessComponent<CommentGroupProps>;
 
 export default CommentGroup;

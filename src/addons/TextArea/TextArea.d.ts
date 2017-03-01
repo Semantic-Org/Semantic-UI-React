@@ -24,6 +24,6 @@ interface TextAreaOnChangeData extends TextAreaProps {
   value?: string;
 }
 
-const TextArea: React.ComponentClass<TextAreaProps>;
+declare const TextArea: React.ComponentClass<TextAreaProps>;
 
 export default TextArea;

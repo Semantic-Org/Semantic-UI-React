@@ -29,6 +29,6 @@ interface ListContentProps {
   verticalAlign?: SemanticVERTICALALIGNMENTS;
 }
 
-const ListContent: React.StatelessComponent<ListContentProps>;
+declare const ListContent: React.StatelessComponent<ListContentProps>;
 
 export default ListContent;

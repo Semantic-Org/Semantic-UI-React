@@ -16,6 +16,6 @@ interface ListHeaderProps {
   content?: React.ReactNode;
 }
 
-const ListHeader: React.StatelessComponent<ListHeaderProps>;
+declare const ListHeader: React.StatelessComponent<ListHeaderProps>;
 
 export default ListHeader;

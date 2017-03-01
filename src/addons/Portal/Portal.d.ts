@@ -102,6 +102,6 @@ export interface PortalProps {
   trigger?: React.ReactNode;
 }
 
-const Portal: React.ComponentClass<PortalProps>;
+declare const Portal: React.ComponentClass<PortalProps>;
 
 export default Portal;

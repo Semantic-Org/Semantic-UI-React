@@ -19,6 +19,6 @@ interface BreadcrumbDividerProps {
   icon?: any;
 }
 
-const BreadcrumbDivider: React.StatelessComponent<BreadcrumbDividerProps>;
+declare const BreadcrumbDivider: React.StatelessComponent<BreadcrumbDividerProps>;
 
 export default BreadcrumbDivider;

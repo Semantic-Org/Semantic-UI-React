@@ -57,6 +57,6 @@ interface EmbedProps {
   url?: string;
 }
 
-const Embed: React.ComponentClass<EmbedProps>;
+declare const Embed: React.ComponentClass<EmbedProps>;
 
 export default Embed;

@@ -19,6 +19,6 @@ interface FeedMetaProps {
   like?: any;
 }
 
-const FeedMeta: React.StatelessComponent<FeedMetaProps>;
+declare const FeedMeta: React.StatelessComponent<FeedMetaProps>;
 
 export default FeedMeta;

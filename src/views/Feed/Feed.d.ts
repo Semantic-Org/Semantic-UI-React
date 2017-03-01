@@ -41,6 +41,6 @@ interface FeedComponent extends React.StatelessComponent<FeedProps> {
   User: typeof FeedUser;
 }
 
-const Feed: FeedComponent;
+declare const Feed: FeedComponent;
 
 export default Feed;

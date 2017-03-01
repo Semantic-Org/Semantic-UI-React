@@ -6,7 +6,7 @@ import { FormFieldProps } from './FormField';
 interface FormButtonProps extends FormFieldProps, ButtonProps {
 }
 
-const FormButton: React.StatelessComponent<FormButtonProps>;
+declare const FormButton: React.StatelessComponent<FormButtonProps>;
 
 export default FormButton;
 

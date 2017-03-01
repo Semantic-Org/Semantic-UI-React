@@ -23,6 +23,6 @@ interface ContainerProps {
   textAlign?: SemanticTEXTALIGNMENTS;
 }
 
-const Container: React.StatelessComponent<ContainerProps>;
+declare const Container: React.StatelessComponent<ContainerProps>;
 
 export default Container;

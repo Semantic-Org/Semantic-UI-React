@@ -35,6 +35,6 @@ interface LoaderProps {
   size?: SemanticSIZES;
 }
 
-const Loader: React.StatelessComponent<LoaderProps>;
+declare const Loader: React.StatelessComponent<LoaderProps>;
 
 export default Loader;

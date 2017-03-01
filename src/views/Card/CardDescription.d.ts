@@ -16,6 +16,6 @@ interface CardDescriptionProps {
   content?: React.ReactNode;
 }
 
-const CardDescription: React.StatelessComponent<CardDescriptionProps>;
+declare const CardDescription: React.StatelessComponent<CardDescriptionProps>;
 
 export default CardDescription;

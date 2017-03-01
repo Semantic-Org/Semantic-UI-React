@@ -16,6 +16,6 @@ interface MessageHeaderProps {
   content?: React.ReactNode;
 }
 
-const MessageHeader: React.StatelessComponent<MessageHeaderProps>;
+declare const MessageHeader: React.StatelessComponent<MessageHeaderProps>;
 
 export default MessageHeader;

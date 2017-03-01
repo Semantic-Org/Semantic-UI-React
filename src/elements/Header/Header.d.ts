@@ -68,6 +68,6 @@ interface HeaderComponent extends React.StatelessComponent<HeaderProps> {
   Subheader: typeof HeaderSubHeader;
 }
 
-const Header: HeaderComponent;
+declare const Header: HeaderComponent;
 
 export default Header;

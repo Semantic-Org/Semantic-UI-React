@@ -26,6 +26,6 @@ interface LabelGroupProps {
   tag?: boolean;
 }
 
-const LabelGroup: React.StatelessComponent<LabelGroupProps>;
+declare const LabelGroup: React.StatelessComponent<LabelGroupProps>;
 
 export default LabelGroup;

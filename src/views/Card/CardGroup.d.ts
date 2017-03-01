@@ -26,6 +26,6 @@ interface CardGroupProps {
   stackable?: boolean;
 }
 
-const CardGroup: React.StatelessComponent<CardGroupProps>;
+declare const CardGroup: React.StatelessComponent<CardGroupProps>;
 
 export default CardGroup;

@@ -13,6 +13,6 @@ interface CommentTextProps {
   className?: string;
 }
 
-const CommentText: React.StatelessComponent<CommentTextProps>;
+declare const CommentText: React.StatelessComponent<CommentTextProps>;
 
 export default CommentText;

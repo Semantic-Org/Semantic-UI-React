@@ -233,6 +233,6 @@ interface DropdownComponent extends React.ComponentClass<DropdownProps> {
   Menu: typeof DropdownMenu;
 }
 
-const Dropdown: DropdownComponent;
+declare const Dropdown: DropdownComponent;
 
 export default Dropdown;

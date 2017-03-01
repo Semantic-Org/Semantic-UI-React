@@ -32,6 +32,6 @@ interface ItemContentProps {
   verticalAlign?: SemanticVERTICALALIGNMENTS;
 }
 
-const ItemContent: React.ComponentClass<ItemContentProps>;
+declare const ItemContent: React.ComponentClass<ItemContentProps>;
 
 export default ItemContent;

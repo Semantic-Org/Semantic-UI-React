@@ -34,6 +34,6 @@ interface DividerProps {
   vertical?: boolean;
 }
 
-const Divider: React.StatelessComponent<DividerProps>;
+declare const Divider: React.StatelessComponent<DividerProps>;
 
 export default Divider;

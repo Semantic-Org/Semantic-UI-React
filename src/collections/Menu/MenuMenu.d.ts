@@ -16,6 +16,6 @@ interface MenuMenuProps {
   position?: 'right';
 }
 
-const MenuMenu: React.StatelessComponent<MenuMenuProps>;
+declare const MenuMenu: React.StatelessComponent<MenuMenuProps>;
 
 export default MenuMenu;

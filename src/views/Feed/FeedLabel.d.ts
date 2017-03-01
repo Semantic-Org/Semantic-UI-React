@@ -22,6 +22,6 @@ interface FeedLabelProps {
   image?: any;
 }
 
-const FeedLabel: React.StatelessComponent<FeedLabelProps>;
+declare const FeedLabel: React.StatelessComponent<FeedLabelProps>;
 
 export default FeedLabel;

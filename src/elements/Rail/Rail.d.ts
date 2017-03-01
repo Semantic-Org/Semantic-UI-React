@@ -32,6 +32,6 @@ interface RailProps {
   size?: 'mini' | 'tiny' | 'small' | 'large' | 'big' | 'huge' | 'massive';
 }
 
-const Rail: React.StatelessComponent<RailProps>;
+declare const Rail: React.StatelessComponent<RailProps>;
 
 export default Rail;

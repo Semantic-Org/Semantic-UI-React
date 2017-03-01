@@ -16,6 +16,6 @@ interface ItemHeaderProps {
   content?: React.ReactNode;
 }
 
-const ItemHeader: React.StatelessComponent<ItemHeaderProps>;
+declare const ItemHeader: React.StatelessComponent<ItemHeaderProps>;
 
 export default ItemHeader;

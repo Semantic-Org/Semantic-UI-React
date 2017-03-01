@@ -36,6 +36,6 @@ interface SidebarComponent extends React.ComponentClass<SidebarProps> {
   Pusher: typeof SidebarPusher;
 }
 
-const Sidebar: SidebarComponent;
+declare const Sidebar: SidebarComponent;
 
 export default Sidebar;

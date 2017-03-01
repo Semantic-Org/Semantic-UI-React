@@ -13,6 +13,6 @@ interface TableBodyProps {
   className?: string;
 }
 
-const TableBody: React.StatelessComponent<TableBodyProps>;
+declare const TableBody: React.StatelessComponent<TableBodyProps>;
 
 export default TableBody;

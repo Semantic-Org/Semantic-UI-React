@@ -76,6 +76,6 @@ interface ListComponent extends React.StatelessComponent<ListProps> {
   List: typeof ListList;
 }
 
-const List: ListComponent;
+declare const List: ListComponent;
 
 export default List;

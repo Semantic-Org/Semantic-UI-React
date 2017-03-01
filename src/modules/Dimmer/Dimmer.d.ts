@@ -52,6 +52,6 @@ interface DimmerComponent extends React.ComponentClass<DimmerProps> {
   Dimmable: typeof DimmerDimmable;
 }
 
-const Dimmer: DimmerComponent;
+declare const Dimmer: DimmerComponent;
 
 export default Dimmer;

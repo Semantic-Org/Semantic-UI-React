@@ -69,6 +69,6 @@ export interface CheckboxProps {
   value?: number|string;
 }
 
-const Checkbox: React.ComponentClass<CheckboxProps>;
+declare const Checkbox: React.ComponentClass<CheckboxProps>;
 
 export default Checkbox;

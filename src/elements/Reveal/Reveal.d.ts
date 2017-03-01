@@ -32,6 +32,6 @@ interface RevealComponent extends React.StatelessComponent<RevealProps> {
   Content: typeof RevealContent;
 }
 
-const Reveal: RevealComponent;
+declare const Reveal: RevealComponent;
 
 export default Reveal;

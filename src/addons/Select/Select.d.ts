@@ -16,6 +16,6 @@ interface SelectComponent extends React.StatelessComponent<SelectProps> {
   Menu: typeof DropdownMenu;
 }
 
-const Select: SelectComponent;
+declare const Select: SelectComponent;
 
 export default Select;

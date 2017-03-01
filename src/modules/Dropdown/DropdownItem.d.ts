@@ -57,6 +57,6 @@ export interface DropdownItemProps {
   value?: number | string;
 }
 
-const DropdownItem: React.ComponentClass<DropdownItemProps>;
+declare const DropdownItem: React.ComponentClass<DropdownItemProps>;
 
 export default DropdownItem;

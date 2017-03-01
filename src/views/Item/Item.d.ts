@@ -49,6 +49,6 @@ interface ItemComponent extends React.StatelessComponent<ItemProps> {
   Meta: typeof ItemMeta;
 }
 
-const Item: ItemComponent;
+declare const Item: ItemComponent;
 
 export default Item;

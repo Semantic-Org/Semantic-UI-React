@@ -13,6 +13,6 @@ interface PopupHeaderProps {
   className?: string;
 }
 
-const PopupHeader: React.StatelessComponent<PopupHeaderProps>;
+declare const PopupHeader: React.StatelessComponent<PopupHeaderProps>;
 
 export default PopupHeader;

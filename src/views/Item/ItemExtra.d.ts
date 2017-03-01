@@ -16,6 +16,6 @@ interface ItemExtraProps {
   content?: React.ReactNode;
 }
 
-const ItemExtra: React.StatelessComponent<ItemExtraProps>;
+declare const ItemExtra: React.StatelessComponent<ItemExtraProps>;
 
 export default ItemExtra;

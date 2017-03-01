@@ -107,6 +107,6 @@ interface TableComponent extends React.StatelessComponent<TableProps> {
   Row: typeof TableRow;
 }
 
-const Table: TableComponent;
+declare const Table: TableComponent;
 
 export default Table;

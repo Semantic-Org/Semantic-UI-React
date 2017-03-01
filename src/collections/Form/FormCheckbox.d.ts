@@ -7,6 +7,6 @@ interface FormCheckboxProps extends FormFieldProps, CheckboxProps {
   type?: 'checkbox' | 'radio';
 }
 
-export const FormCheckbox: React.StatelessComponent<FormCheckboxProps>;
+declare const FormCheckbox: React.StatelessComponent<FormCheckboxProps>;
 
 export default FormCheckbox;

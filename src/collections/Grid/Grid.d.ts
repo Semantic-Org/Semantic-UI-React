@@ -67,6 +67,6 @@ interface GridComponent extends React.StatelessComponent<GridProps> {
   Row: typeof GridRow;
 }
 
-const Grid: GridComponent;
+declare const Grid: GridComponent;
 
 export default Grid;

@@ -16,6 +16,6 @@ interface ModalHeaderProps {
   content?: React.ReactNode;
 }
 
-const ModalHeader: React.StatelessComponent<ModalHeaderProps>;
+declare const ModalHeader: React.StatelessComponent<ModalHeaderProps>;
 
 export default ModalHeader;

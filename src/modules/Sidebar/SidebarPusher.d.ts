@@ -16,6 +16,6 @@ interface SidebarPusherProps {
   dimmed?: boolean;
 }
 
-const SidebarPusher: React.StatelessComponent<SidebarPusherProps>;
+declare const SidebarPusher: React.StatelessComponent<SidebarPusherProps>;
 
 export default SidebarPusher;

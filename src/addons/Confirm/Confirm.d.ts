@@ -33,6 +33,6 @@ interface ConfirmProps {
   open?: boolean;
 }
 
-const Confirm: React.ComponentClass<ConfirmProps>;
+declare const Confirm: React.ComponentClass<ConfirmProps>;
 
 export default Confirm;

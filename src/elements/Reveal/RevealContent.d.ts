@@ -19,6 +19,6 @@ interface RevealContentProps {
   visible?: boolean;
 }
 
-const RevealContent: React.StatelessComponent<RevealContentProps>;
+declare const RevealContent: React.StatelessComponent<RevealContentProps>;
 
 export default RevealContent;

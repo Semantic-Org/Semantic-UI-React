@@ -16,6 +16,6 @@ interface MessageItemProps {
   content?: React.ReactNode;
 }
 
-const MessageItem: React.StatelessComponent<MessageItemProps>;
+declare const MessageItem: React.StatelessComponent<MessageItemProps>;
 
 export default MessageItem;

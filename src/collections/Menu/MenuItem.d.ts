@@ -56,6 +56,6 @@ export interface MenuItemProps {
   position?: 'right';
 }
 
-const MenuItem: React.ComponentClass<MenuItemProps>;
+declare const MenuItem: React.ComponentClass<MenuItemProps>;
 
 export default MenuItem;

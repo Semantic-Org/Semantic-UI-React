@@ -13,7 +13,7 @@ interface MessageContentProps {
   className?: string;
 }
 
-const MessageContent: React.StatelessComponent<MessageContentProps>;
+declare const MessageContent: React.StatelessComponent<MessageContentProps>;
 
 export default MessageContent;
 

@@ -16,6 +16,6 @@ interface CardMetaProps {
   content?: React.ReactNode;
 }
 
-const CardMeta: React.StatelessComponent<CardMetaProps>;
+declare const CardMeta: React.StatelessComponent<CardMetaProps>;
 
 export default CardMeta;

@@ -31,6 +31,6 @@ interface BreadcrumbSectionProps {
   onClick?: (event: React.MouseEvent<HTMLAnchorElement>, data: BreadcrumbSectionProps) => void;
 }
 
-const BreadcrumbSection: React.ComponentClass<BreadcrumbSectionProps>;
+declare const BreadcrumbSection: React.ComponentClass<BreadcrumbSectionProps>;
 
 export default BreadcrumbSection;

@@ -7,6 +7,6 @@ interface ListIconProps extends IconProps {
   verticalAlign?: SemanticVERTICALALIGNMENTS;
 }
 
-const ListIcon: React.StatelessComponent<ListIconProps>;
+declare const ListIcon: React.StatelessComponent<ListIconProps>;
 
 export default ListIcon;

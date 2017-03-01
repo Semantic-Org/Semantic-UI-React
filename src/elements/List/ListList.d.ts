@@ -13,6 +13,6 @@ interface ListListProps {
   className?: string;
 }
 
-const ListList: React.StatelessComponent<ListListProps>;
+declare const ListList: React.StatelessComponent<ListListProps>;
 
 export default ListList;

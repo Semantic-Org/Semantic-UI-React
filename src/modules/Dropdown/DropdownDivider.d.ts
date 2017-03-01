@@ -10,6 +10,6 @@ interface DropdownDividerProps {
   className?: string;
 }
 
-const DropdownDivider: React.ComponentClass<DropdownDividerProps>;
+declare const DropdownDivider: React.ComponentClass<DropdownDividerProps>;
 
 export default DropdownDivider;

@@ -13,6 +13,6 @@ interface PopupContentProps {
   className?: string;
 }
 
-const PopupContent: React.StatelessComponent<PopupContentProps>;
+declare const PopupContent: React.StatelessComponent<PopupContentProps>;
 
 export default PopupContent;

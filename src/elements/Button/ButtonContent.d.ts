@@ -19,6 +19,6 @@ interface ContentProps {
   visible?: boolean;
 }
 
-const ButtonContent: React.StatelessComponent<ContentProps>;
+declare const ButtonContent: React.StatelessComponent<ContentProps>;
 
 export default ButtonContent;

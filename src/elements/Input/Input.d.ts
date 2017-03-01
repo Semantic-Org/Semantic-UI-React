@@ -77,6 +77,6 @@ interface InputOnChangeData extends InputProps {
   value: string;
 }
 
-const Input: React.StatelessComponent<InputProps>;
+declare const Input: React.StatelessComponent<InputProps>;
 
 export default Input;

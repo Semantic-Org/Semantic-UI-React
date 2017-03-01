@@ -37,6 +37,6 @@ interface ListItemProps {
   value?: string;
 }
 
-const ListItem: React.StatelessComponent<ListItemProps>;
+declare const ListItem: React.StatelessComponent<ListItemProps>;
 
 export default ListItem;

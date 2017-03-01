@@ -59,6 +59,6 @@ interface FormComponent extends React.ComponentClass<FormProps> {
   TextArea: typeof FormTextArea;
 }
 
-const Form: FormComponent;
+declare const Form: FormComponent;
 
 export default Form;

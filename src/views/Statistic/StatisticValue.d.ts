@@ -19,6 +19,6 @@ interface StatisticValueProps {
   value?: React.ReactNode;
 }
 
-const StatisticValue: React.StatelessComponent<StatisticValueProps>;
+declare const StatisticValue: React.StatelessComponent<StatisticValueProps>;
 
 export default StatisticValue;

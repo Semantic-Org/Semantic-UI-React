@@ -71,6 +71,6 @@ interface ProgressProps {
   warning?: boolean;
 }
 
-const Progress: React.ComponentClass<ProgressProps>;
+declare const Progress: React.ComponentClass<ProgressProps>;
 
 export default Progress;

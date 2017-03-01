@@ -16,6 +16,6 @@ interface AccordionContentProps {
   className?: string;
 }
 
-const AccordionContent: React.StatelessComponent<AccordionContentProps>;
+declare const AccordionContent: React.StatelessComponent<AccordionContentProps>;
 
 export default AccordionContent;

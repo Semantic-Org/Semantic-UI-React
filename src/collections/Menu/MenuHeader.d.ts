@@ -16,6 +16,6 @@ interface MenuHeaderProps {
   content?: React.ReactNode;
 }
 
-const MenuHeader: React.ComponentClass<MenuHeaderProps>;
+declare const MenuHeader: React.ComponentClass<MenuHeaderProps>;
 
 export default MenuHeader;

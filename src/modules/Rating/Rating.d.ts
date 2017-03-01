@@ -48,6 +48,6 @@ interface RatingComponent extends React.ComponentClass<RatingProps> {
   Icon: typeof RatingIcon;
 }
 
-const Rating: RatingComponent;
+declare const Rating: RatingComponent;
 
 export default Rating;

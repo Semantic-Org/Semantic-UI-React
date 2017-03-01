@@ -19,6 +19,6 @@ interface FeedLikeProps {
   icon?: any;
 }
 
-const FeedLike: React.StatelessComponent<FeedLikeProps>;
+declare const FeedLike: React.StatelessComponent<FeedLikeProps>;
 
 export default FeedLike;

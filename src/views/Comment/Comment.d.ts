@@ -36,6 +36,6 @@ interface CommentComponent extends React.StatelessComponent<CommentProps> {
   Text: typeof CommentText;
 }
 
-const Comment: CommentComponent;
+declare const Comment: CommentComponent;
 
 export default Comment;

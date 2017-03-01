@@ -13,6 +13,6 @@ interface SearchResultsProps {
   className?: string;
 }
 
-const SearchResults: React.StatelessComponent<SearchResultsProps>;
+declare const SearchResults: React.StatelessComponent<SearchResultsProps>;
 
 export default SearchResults;

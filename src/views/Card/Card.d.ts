@@ -70,6 +70,6 @@ interface CardComponent extends React.ComponentClass<CardProps> {
   Meta: typeof CardMeta;
 }
 
-const Card: CardComponent;
+declare const Card: CardComponent;
 
 export default Card;

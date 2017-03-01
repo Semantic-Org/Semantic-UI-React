@@ -37,6 +37,6 @@ interface FeedEventProps {
   summary?: any;
 }
 
-const FeedEvent: React.StatelessComponent<FeedEventProps>;
+declare const FeedEvent: React.StatelessComponent<FeedEventProps>;
 
 export default FeedEvent;

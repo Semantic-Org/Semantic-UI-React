@@ -59,6 +59,6 @@ interface TableCellProps {
   width?: SemanticWIDTHS;
 }
 
-const TableCell: React.StatelessComponent<TableCellProps>;
+declare const TableCell: React.StatelessComponent<TableCellProps>;
 
 export default TableCell;

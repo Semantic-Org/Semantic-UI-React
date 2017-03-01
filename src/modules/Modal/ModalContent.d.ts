@@ -16,6 +16,6 @@ interface ModalContentProps {
   image?: boolean;
 }
 
-const ModalContent: React.StatelessComponent<ModalContentProps>;
+declare const ModalContent: React.StatelessComponent<ModalContentProps>;
 
 export default ModalContent;

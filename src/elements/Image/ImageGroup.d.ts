@@ -17,6 +17,6 @@ interface ImageGroupProps {
   size?: SemanticSIZES;
 }
 
-const ImageGroup: React.StatelessComponent<ImageGroupProps>;
+declare const ImageGroup: React.StatelessComponent<ImageGroupProps>;
 
 export default ImageGroup;

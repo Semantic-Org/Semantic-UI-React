@@ -25,6 +25,6 @@ interface ItemGroupProps {
   relaxed?: boolean | 'very';
 }
 
-const ItemGroup: React.StatelessComponent<ItemGroupProps>;
+declare const ItemGroup: React.StatelessComponent<ItemGroupProps>;
 
 export default ItemGroup;

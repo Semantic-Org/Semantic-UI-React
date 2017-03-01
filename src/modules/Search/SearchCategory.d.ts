@@ -29,6 +29,6 @@ export interface SearchCategoryProps {
   results?: Array<typeof SearchResult>;
 }
 
-const SearchCategory: React.StatelessComponent<SearchCategoryProps>;
+declare const SearchCategory: React.StatelessComponent<SearchCategoryProps>;
 
 export default SearchCategory;
