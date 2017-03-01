@@ -106,7 +106,7 @@ export interface DropdownProps {
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
    * @param {object} data - All props.
    */
-  onBlur: (event: React.KeyboardEvent<HTMLElement>, data: DropdownProps) => void;
+  onBlur?: (event: React.KeyboardEvent<HTMLElement>, data: DropdownProps) => void;
 
   /**
    * Called when the user attempts to change the value.
@@ -114,7 +114,7 @@ export interface DropdownProps {
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
    * @param {object} data - All props and proposed value.
    */
-  onChange: (event: React.SyntheticEvent<HTMLElement>, data: DropdownProps) => void;
+  onChange?: (event: React.SyntheticEvent<HTMLElement>, data: DropdownProps) => void;
 
   /**
    * Called on click.
@@ -122,7 +122,7 @@ export interface DropdownProps {
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
    * @param {object} data - All props.
    */
-  onClick: (event: React.KeyboardEvent<HTMLElement>, data: DropdownProps) => void;
+  onClick?: (event: React.KeyboardEvent<HTMLElement>, data: DropdownProps) => void;
 
   /**
    * Called when a close event happens.
@@ -130,7 +130,7 @@ export interface DropdownProps {
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
    * @param {object} data - All props.
    */
-  onClose: (event: React.SyntheticEvent<HTMLElement>, data: DropdownProps) => void;
+  onClose?: (event: React.SyntheticEvent<HTMLElement>, data: DropdownProps) => void;
 
   /**
    * Called on focus.
@@ -138,7 +138,7 @@ export interface DropdownProps {
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
    * @param {object} data - All props.
    */
-  onFocus: (event: React.SyntheticEvent<HTMLElement>, data: DropdownProps) => void;
+  onFocus?: (event: React.SyntheticEvent<HTMLElement>, data: DropdownProps) => void;
 
   /**
    * Called when a multi-select label is clicked.
@@ -146,7 +146,7 @@ export interface DropdownProps {
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
    * @param {object} data - All label props.
    */
-  onLabelClick: (event: React.MouseEvent<HTMLElement>, data: LabelProps) => void;
+  onLabelClick?: (event: React.MouseEvent<HTMLElement>, data: LabelProps) => void;
 
   /**
    * Called on mousedown.
@@ -154,7 +154,7 @@ export interface DropdownProps {
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
    * @param {object} data - All props.
    */
-  onMouseDown: (event: React.MouseEvent<HTMLElement>, data: DropdownProps) => void;
+  onMouseDown?: (event: React.MouseEvent<HTMLElement>, data: DropdownProps) => void;
 
   /**
    * Called when an open event happens.
@@ -162,7 +162,7 @@ export interface DropdownProps {
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
    * @param {object} data - All props.
    */
-  onOpen: (event: React.SyntheticEvent<HTMLElement>, data: DropdownProps) => void;
+  onOpen?: (event: React.SyntheticEvent<HTMLElement>, data: DropdownProps) => void;
 
   /**
    * Called on search input change.
@@ -170,7 +170,7 @@ export interface DropdownProps {
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
    * @param {string} value - Current value of search input.
    */
-  onSearchChange: (event: React.SyntheticEvent<HTMLElement>, value: string) => void;
+  onSearchChange?: (event: React.SyntheticEvent<HTMLElement>, value: string) => void;
 
   /** Controls whether or not the dropdown menu is displayed. */
   open?: boolean;
@@ -305,7 +305,7 @@ interface DropdownItemProps {
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
    * @param {object} data - All props.
    */
-  onClick: (event: React.MouseEvent<HTMLDivElement>, data: DropdownItemProps) => void;
+  onClick?: (event: React.MouseEvent<HTMLDivElement>, data: DropdownItemProps) => void;
 
   /**
    * The item currently selected by keyboard shortcut.

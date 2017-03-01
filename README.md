@@ -50,6 +50,7 @@ These great products are built on Semantic-UI-React. Add yours [here][22].
 - https://roadmap.space
 - https://edabit.com
 - https://blackship.com
+- http://www.brewhousesolutions.com
 
 ## Voice Your Opinion :speech_balloon:
 
@@ -135,7 +136,6 @@ npm run deploy:docs
 Update the changelog (requires [github_changelog_generator][15]):
 
 ```sh
-npm run deploy:docs
 github_changelog_generator
 git add CHANGELOG.md
 git commit -m 'docs(changelog): update changelog [ci skip]'
