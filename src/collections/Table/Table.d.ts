@@ -3,7 +3,7 @@ import * as React from 'react';
 import {
   SemanticCOLORS,
   SemanticVERTICALALIGNMENTS,
-  SemanticWIDTHS,
+  SemanticWIDTHS
 } from '../..';
 import { default as TableBody } from './TableBody';
 import { default as TableCell } from './TableCell';
