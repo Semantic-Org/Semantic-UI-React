@@ -20,12 +20,16 @@ const ProgressContentExamples = () => (
       examplePath='modules/Progress/Content/ProgressExampleLabel'
     />
     <ComponentExample
-      description='A progress element can contain a percent label.'
-      examplePath='modules/Progress/Content/ProgressExampleLabelPercent'
+      description='A progress label can also be defined via props.'
+      examplePath='modules/Progress/Content/ProgressExampleLabelProp'
     />
     <ComponentExample
-      description='A progress element can contain a ratio label.'
-      examplePath='modules/Progress/Content/ProgressExampleLabelRatio'
+      description='A progress element display progress as a percent.'
+      examplePath='modules/Progress/Content/ProgressExampleProgressPercent'
+    />
+    <ComponentExample
+      description='A progress element display progress as a ratio.'
+      examplePath='modules/Progress/Content/ProgressExampleProgressRatio'
     />
   </ExampleSection>
 )
