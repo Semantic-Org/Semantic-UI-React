@@ -23,6 +23,9 @@ describe('Table', () => {
     widthClass: 'column',
   })
 
+  common.implementsTextAlignProp(Table, ['left', 'center', 'right'])
+  common.implementsVerticalAlignProp(Table)
+
   common.propKeyOnlyToClassName(Table, 'celled')
   common.propKeyOnlyToClassName(Table, 'collapsing')
   common.propKeyOnlyToClassName(Table, 'definition')

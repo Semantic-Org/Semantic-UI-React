@@ -62,13 +62,13 @@ const Variations = () => {
 
       <ComponentExample
         title='Vertical Alignment'
-        description='A table header, row or cell can adjust its vertical alignment.'
+        description='A table, header, row or cell can adjust its vertical alignment.'
         examplePath='collections/Table/Variations/TableExampleVerticalAlign'
       />
 
       <ComponentExample
         title='Text Alignment'
-        description='A table header, row, or cell can adjust its text alignment.'
+        description='A table, header, row, or cell can adjust its text alignment.'
         examplePath='collections/Table/Variations/TableExampleTextAlign'
       />
 
