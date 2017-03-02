@@ -2,7 +2,8 @@ import * as React from 'react';
 
 import {
   SemanticCOLORS,
-  SemanticWIDTHS
+  SemanticVERTICALALIGNMENTS,
+  SemanticWIDTHS,
 } from '../..';
 import { default as TableBody } from './TableBody';
 import { default as TableCell } from './TableCell';
@@ -94,8 +95,14 @@ interface TableProps {
   /** Data to be passed to the renderBodyRow function. */
   tableData?: Array<any>;
 
+  /** A table can adjust its text alignment. */
+  textAlign?: 'center' | 'left' | 'right';
+
   /** A table can specify how it stacks table content responsively. */
   unstackable?: boolean;
+
+  /** A table can adjust its text alignment. */
+  verticalAlign?: SemanticVERTICALALIGNMENTS;
 }
 
 interface TableComponent extends React.StatelessComponent<TableProps> {
