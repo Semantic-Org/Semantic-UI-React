@@ -52,7 +52,7 @@ function Table(props) {
     tableData,
     textAlign,
     unstackable,
-    verticalAlign
+    verticalAlign,
   } = props
 
   const classes = cx(
@@ -216,7 +216,7 @@ Table.propTypes = {
   unstackable: PropTypes.bool,
 
   /** A table can adjust its text alignment. */
-  verticalAlign: PropTypes.oneOf(SUI.VERTICAL_ALIGNMENTS)
+  verticalAlign: PropTypes.oneOf(SUI.VERTICAL_ALIGNMENTS),
 }
 
 Table.Body = TableBody
