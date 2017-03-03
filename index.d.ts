@@ -139,6 +139,8 @@ export { default as SidebarPushable } from './dist/commonjs/modules/Sidebar/Side
 export { default as SidebarPusher } from './dist/commonjs/modules/Sidebar/SidebarPusher'
 
 // Views
+export { default as Advertisement } from './dist/commonjs/views/Advertisement/Advertisement'
+
 export { default as Card } from './dist/commonjs/views/Card/Card'
 export { default as CardContent } from './dist/commonjs/views/Card/CardContent'
 export { default as CardDescription } from './dist/commonjs/views/Card/CardDescription'
