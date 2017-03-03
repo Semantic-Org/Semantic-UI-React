@@ -10,6 +10,7 @@ import {
   META,
   useKeyOnly,
 } from '../../lib'
+import AccordionAccordion from './AccordionAccordion'
 import AccordionContent from './AccordionContent'
 import AccordionTitle from './AccordionTitle'
 
@@ -78,10 +79,13 @@ export default class Accordion extends Component {
 
     /** Adds some basic styling to accordion panels. */
     styled: PropTypes.bool,
+
+    ui: PropTypes.bool,
   }
 
   static defaultProps = {
     exclusive: true,
+    ui: true,
   }
 
   static autoControlledProps = [
@@ -93,6 +97,7 @@ export default class Accordion extends Component {
     type: META.TYPES.MODULE,
   }
 
+  static Accordion = AccordionAccordion
   static Content = AccordionContent
   static Title = AccordionTitle
 
@@ -154,10 +159,11 @@ export default class Accordion extends Component {
       fluid,
       inverted,
       styled,
+      ui,
     } = this.props
 
     const classes = cx(
-      'ui',
+      useKeyOnly(ui, 'ui'),
       useKeyOnly(fluid, 'fluid'),
       useKeyOnly(inverted, 'inverted'),
       useKeyOnly(styled, 'styled'),

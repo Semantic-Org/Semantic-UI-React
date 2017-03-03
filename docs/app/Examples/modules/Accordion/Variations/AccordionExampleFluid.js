@@ -16,7 +16,7 @@ export default class AccordionExampleFluid extends Component {
     const { activeIndex } = this.state
 
     return (
-      <Accordion fluid>
+      <Accordion fluid styled>
         <Accordion.Title active={activeIndex === 0} index={0} onClick={this.handleClick}>
           <Icon name='dropdown' />
           What is a dog?

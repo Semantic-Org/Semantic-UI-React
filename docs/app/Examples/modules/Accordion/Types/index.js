@@ -11,10 +11,9 @@ const AccordionTypesExamples = () => (
       examplePath='modules/Accordion/Types/AccordionExampleStandard'
     />
     <ComponentExample
-      description='Accordion can be rendered via shorthand prop. It will automatically manage state.'
+      description='Accordion can be rendered via shorthand prop. It will automatically manage the component state.'
       examplePath='modules/Accordion/Types/AccordionExampleStandardShorthand'
     />
-
     <ComponentExample
       title='Styled'
       description='A styled accordion adds basic formatting.'
