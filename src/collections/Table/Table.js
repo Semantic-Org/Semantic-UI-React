@@ -10,6 +10,8 @@ import {
   SUI,
   useKeyOnly,
   useKeyOrValueAndKey,
+  useTextAlignProp,
+  useVerticalAlignProp,
   useWidthProp,
 } from '../../lib'
 import TableBody from './TableBody'
@@ -48,7 +50,9 @@ function Table(props) {
     striped,
     structured,
     tableData,
+    textAlign,
     unstackable,
+    verticalAlign,
   } = props
 
   const classes = cx(
@@ -71,6 +75,8 @@ function Table(props) {
     useKeyOrValueAndKey(basic, 'basic'),
     useKeyOrValueAndKey(compact, 'compact'),
     useKeyOrValueAndKey(padded, 'padded'),
+    useTextAlignProp(textAlign),
+    useVerticalAlignProp(verticalAlign),
     useWidthProp(columns, 'column'),
     'table',
     className,
@@ -203,8 +209,14 @@ Table.propTypes = {
     PropTypes.array,
   ]),
 
+  /** A table can adjust its text alignment. */
+  textAlign: PropTypes.oneOf(_.without(SUI.TEXT_ALIGNMENTS, 'justified')),
+
   /** A table can specify how it stacks table content responsively. */
   unstackable: PropTypes.bool,
+
+  /** A table can adjust its text alignment. */
+  verticalAlign: PropTypes.oneOf(SUI.VERTICAL_ALIGNMENTS),
 }
 
 Table.Body = TableBody
