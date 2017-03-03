@@ -1,8 +1,9 @@
-import _ from 'lodash'
 import cx from 'classnames'
+import _ from 'lodash'
 import React, { PropTypes } from 'react'
 
 import {
+  createShorthandFactory,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -10,15 +11,19 @@ import {
 } from '../../lib'
 
 /**
- * An item can contain a header
+ * An item can contain a header.
  */
 function ItemHeader(props) {
   const { children, className, content } = props
-  const classes = cx(className, 'header')
+  const classes = cx('header', className)
   const rest = getUnhandledProps(ItemHeader, props)
   const ElementType = getElementType(ItemHeader, props)
 
-  return <ElementType {...rest} className={classes}>{_.isNil(children) ? content : children}</ElementType>
+  return (
+    <ElementType {...rest} className={classes}>
+      {_.isNil(children) ? content : children}
+    </ElementType>
+  )
 }
 
 ItemHeader._meta = {
@@ -40,5 +45,7 @@ ItemHeader.propTypes = {
   /** Shorthand for primary content. */
   content: customPropTypes.contentShorthand,
 }
+
+ItemHeader.create = createShorthandFactory(ItemHeader, content => ({ content }))
 
 export default ItemHeader

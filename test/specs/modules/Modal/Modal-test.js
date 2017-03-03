@@ -160,13 +160,10 @@ describe('Modal', () => {
   })
 
   describe('size', () => {
-    it('defines prop options in _meta', () => {
-      Modal._meta.props.should.have.any.keys('size')
-      Modal._meta.props.size.should.be.an('array')
-    })
-
     it('adds the size to the modal className', () => {
-      Modal._meta.props.size.forEach(size => {
+      const sizes = ['fullscreen', 'large', 'small']
+
+      sizes.forEach(size => {
         wrapperMount(<Modal size={size} open />)
         assertBodyContains(`.ui.${size}.modal`)
       })

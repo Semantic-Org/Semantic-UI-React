@@ -12,8 +12,7 @@ import { tagOptions } from '../common'
 // ]
 
 const DropdownExampleSearchInMenu = () => (
-  <Dropdown text='Filter Posts' floating labeled button className='icon'>
-    {/* <i class="filter icon"></i> */}
+  <Dropdown text='Filter Posts' icon='filter' floating labeled button className='icon'>
     <Dropdown.Menu>
       <Input icon='search' iconPosition='left' className='search' />
       <Dropdown.Divider />

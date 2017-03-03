@@ -4,18 +4,13 @@ import ReactDOM from 'react-dom'
 
 import {
   AutoControlledComponent as Component,
-  keyboardKey,
   isBrowser,
+  keyboardKey,
   makeDebugger,
   META,
 } from '../../lib'
 
 const debug = makeDebugger('portal')
-
-const _meta = {
-  name: 'Portal',
-  type: META.TYPES.ADDON,
-}
 
 /**
  * A component that allows you to render children outside their parent.
@@ -29,14 +24,6 @@ class Portal extends Component {
     /** Additional classes. */
     className: PropTypes.string,
 
-    /**
-     * Controls whether or not the portal should close on a click on the portal background.
-     * NOTE: This differs from closeOnDocumentClick:
-     * - DocumentClick - any click not within the portal
-     * - RootNodeClick - a click not within the portal but within the portal's wrapper
-     */
-    closeOnRootNodeClick: PropTypes.bool,
-
     /** Controls whether or not the portal should close when the document is clicked. */
     closeOnDocumentClick: PropTypes.bool,
 
@@ -49,6 +36,14 @@ class Portal extends Component {
      * gap from the trigger to the portal.
      */
     closeOnPortalMouseLeave: PropTypes.bool,
+
+    /**
+     * Controls whether or not the portal should close on a click on the portal background.
+     * NOTE: This differs from closeOnDocumentClick:
+     * - DocumentClick - any click not within the portal
+     * - RootNodeClick - a click not within the portal but within the portal's wrapper
+     */
+    closeOnRootNodeClick: PropTypes.bool,
 
     /** Controls whether or not the portal should close on blur of the trigger. */
     closeOnTriggerBlur: PropTypes.bool,
@@ -132,7 +127,10 @@ class Portal extends Component {
     'open',
   ]
 
-  static _meta = _meta
+  static _meta = {
+    name: 'Portal',
+    type: META.TYPES.ADDON,
+  }
 
   state = {}
 
@@ -337,7 +335,7 @@ class Portal extends Component {
     if (!this.state.open) return
     debug('renderPortal()')
 
-    const { children, className, closeOnTriggerBlur, openOnTriggerFocus } = this.props
+    const { children, className } = this.props
 
     this.mountPortal()
 
@@ -359,22 +357,6 @@ class Portal extends Component {
     )
 
     this.portalNode = this.rootNode.firstElementChild
-
-    // don't take focus away from for focus based portal triggers
-    if (!this.didInitialRender && !(openOnTriggerFocus || closeOnTriggerBlur)) {
-      this.didInitialRender = true
-
-      // add a tabIndex so we can focus it, remove outline
-      this.portalNode.tabIndex = -1
-      this.portalNode.style.outline = 'none'
-
-      // Wait a tick for things like popups which need to calculate where the popup shows up.
-      // Otherwise, the element is focused at its initial position, scrolling the browser, then
-      // it is immediately repositioned at the proper location.
-      setTimeout(() => {
-        if (this.portalNode) this.portalNode.focus()
-      })
-    }
 
     this.portalNode.addEventListener('mouseleave', this.handlePortalMouseLeave)
     this.portalNode.addEventListener('mouseenter', this.handlePortalMouseEnter)
@@ -407,7 +389,6 @@ class Portal extends Component {
 
   unmountPortal = () => {
     if (!isBrowser || !this.rootNode) return
-    this.didInitialRender = false
 
     debug('unmountPortal()')
 

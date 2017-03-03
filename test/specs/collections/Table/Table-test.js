@@ -17,11 +17,14 @@ describe('Table', () => {
   common.hasUIClassName(Table)
   common.rendersChildren(Table)
 
-  common.implementsWidthProp(Table, {
+  common.implementsWidthProp(Table, SUI.WIDTHS, {
     canEqual: false,
     propKey: 'columns',
     widthClass: 'column',
   })
+
+  common.implementsTextAlignProp(Table, ['left', 'center', 'right'])
+  common.implementsVerticalAlignProp(Table)
 
   common.propKeyOnlyToClassName(Table, 'celled')
   common.propKeyOnlyToClassName(Table, 'collapsing')

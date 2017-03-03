@@ -25,7 +25,7 @@ describe('Button', () => {
     },
   })
 
-  common.propKeyAndValueToClassName(Button, 'floated')
+  common.propKeyAndValueToClassName(Button, 'floated', SUI.FLOATS)
 
   common.propKeyOnlyToClassName(Button, 'active')
   common.propKeyOnlyToClassName(Button, 'basic')
@@ -103,6 +103,11 @@ describe('Button', () => {
     it('adds the labeled className to the root element', () => {
       shallow(<Button label='hi' />)
         .should.have.className('labeled')
+    })
+    it('contains children without disabled class when disabled attribute is set', () => {
+      const wrapper = shallow(<Button label='hi' disabled />)
+      wrapper.find('Label').should.not.have.className('disabled')
+      wrapper.find('button').should.not.have.className('disabled')
     })
     it('creates a basic pointing label', () => {
       shallow(<Button label='foo' />)

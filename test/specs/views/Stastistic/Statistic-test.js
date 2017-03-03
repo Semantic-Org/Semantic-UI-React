@@ -15,7 +15,7 @@ describe('Statistic', () => {
   common.hasUIClassName(Statistic)
   common.rendersChildren(Statistic)
 
-  common.propKeyAndValueToClassName(Statistic, 'floated')
+  common.propKeyAndValueToClassName(Statistic, 'floated', SUI.FLOATS)
 
   common.propKeyOnlyToClassName(Statistic, 'horizontal')
   common.propKeyOnlyToClassName(Statistic, 'inverted')

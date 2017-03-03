@@ -60,28 +60,30 @@ class TextArea extends Component {
     this.updateHeight(e.target)
   }
 
+  handleRef = c => (this.ref = c)
+
   removeAutoHeightStyles = () => {
-    this.rootNode.removeAttribute('rows')
-    this.rootNode.style.height = null
-    this.rootNode.style.minHeight = null
-    this.rootNode.style.resize = null
+    this.ref.removeAttribute('rows')
+    this.ref.style.height = null
+    this.ref.style.minHeight = null
+    this.ref.style.resize = null
   }
 
   updateHeight = () => {
-    if (!this.rootNode) return
+    if (!this.ref) return
 
     const { autoHeight } = this.props
     if (!autoHeight) return
 
-    let { borderTopWidth, borderBottomWidth } = window.getComputedStyle(this.rootNode)
+    let { borderTopWidth, borderBottomWidth } = window.getComputedStyle(this.ref)
     borderTopWidth = parseInt(borderTopWidth, 10)
     borderBottomWidth = parseInt(borderBottomWidth, 10)
 
-    this.rootNode.rows = '1'
-    this.rootNode.style.minHeight = '0'
-    this.rootNode.style.resize = 'none'
-    this.rootNode.style.height = 'auto'
-    this.rootNode.style.height = (this.rootNode.scrollHeight + borderTopWidth + borderBottomWidth) + 'px'
+    this.ref.rows = '1'
+    this.ref.style.minHeight = '0'
+    this.ref.style.resize = 'none'
+    this.ref.style.height = 'auto'
+    this.ref.style.height = (this.ref.scrollHeight + borderTopWidth + borderBottomWidth) + 'px'
   }
 
   render() {
@@ -89,14 +91,7 @@ class TextArea extends Component {
     const rest = getUnhandledProps(TextArea, this.props)
     const ElementType = getElementType(TextArea, this.props)
 
-    return (
-      <ElementType
-        {...rest}
-        value={value}
-        onChange={this.handleChange}
-        ref={c => (this.rootNode = c)}
-      />
-    )
+    return <ElementType{...rest} onChange={this.handleChange} ref={this.handleRef} value={value} />
   }
 }
 

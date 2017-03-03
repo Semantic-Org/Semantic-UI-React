@@ -82,12 +82,12 @@ GridRow.propTypes = {
   /** A row can appear only for a specific device, or screen sizes. */
   only: PropTypes.oneOf(['computer', 'large screen', 'mobile', 'tablet mobile', 'tablet', 'widescreen']),
 
-  /** A  row can specify that its columns should reverse order at different device sizes. */
+  /** A row can specify that its columns should reverse order at different device sizes. */
   reversed: PropTypes.oneOf([
     'computer', 'computer vertically', 'mobile', 'mobile vertically', 'tablet', 'tablet vertically',
   ]),
 
-  /** An can stretch its contents to take up the entire column height. */
+  /** A row can stretch its contents to take up the entire column height. */
   stretched: PropTypes.bool,
 
   /** A row can specify its text alignment. */

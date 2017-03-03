@@ -1,7 +1,7 @@
 import React from 'react'
 
-import FormRadio from 'src/collections/Form/FormRadio'
 import Radio from 'src/addons/Radio/Radio'
+import FormRadio from 'src/collections/Form/FormRadio'
 import * as common from 'test/specs/commonTests'
 
 describe('FormRadio', () => {

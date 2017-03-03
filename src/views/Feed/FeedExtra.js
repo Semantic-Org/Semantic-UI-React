@@ -1,5 +1,5 @@
-import _ from 'lodash'
 import cx from 'classnames'
+import _ from 'lodash'
 import React, { PropTypes } from 'react'
 
 import {
@@ -11,13 +11,22 @@ import {
   useKeyOnly,
 } from '../../lib'
 
+/**
+ * A feed can contain an extra content.
+ */
 function FeedExtra(props) {
-  const { children, className, content, images, text } = props
-  const classes = cx(
+  const { children,
     className,
+    content,
+    images,
+    text,
+  } = props
+
+  const classes = cx(
     useKeyOnly(images, 'images'),
     useKeyOnly(content || text, 'text'),
-    'extra'
+    'extra',
+    className,
   )
   const rest = getUnhandledProps(FeedExtra, props)
   const ElementType = getElementType(FeedExtra, props)

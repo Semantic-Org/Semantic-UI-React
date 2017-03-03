@@ -12,15 +12,8 @@ import {
  * A pushable sub-component for Sidebar.
  */
 function SidebarPushable(props) {
-  const {
-    className,
-    children,
-  } = props
-
-  const classes = cx(
-    'pushable',
-    className,
-  )
+  const { className, children } = props
+  const classes = cx('pushable', className)
   const rest = getUnhandledProps(SidebarPushable, props)
   const ElementType = getElementType(SidebarPushable, props)
 

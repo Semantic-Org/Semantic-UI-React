@@ -8,6 +8,9 @@ import {
   META,
 } from '../../lib'
 
+/**
+ * A comment can contain an list of actions a user may perform related to this comment.
+ */
 function CommentActions(props) {
   const { className, children } = props
   const classes = cx('actions', className)

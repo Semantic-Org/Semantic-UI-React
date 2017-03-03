@@ -1,5 +1,5 @@
-import _ from 'lodash'
 import cx from 'classnames'
+import _ from 'lodash'
 import React, { PropTypes } from 'react'
 
 import {
@@ -13,17 +13,25 @@ import {
 import Item from './Item'
 
 /**
- * A group of items
+ * A group of items.
  */
 function ItemGroup(props) {
-  const { children, className, divided, items, link, relaxed } = props
+  const {
+    children,
+    className,
+    divided,
+    items,
+    link,
+    relaxed,
+  } = props
+
   const classes = cx(
     'ui',
-    className,
     useKeyOnly(divided, 'divided'),
     useKeyOnly(link, 'link'),
     useKeyOrValueAndKey(relaxed, 'relaxed'),
-    'items'
+    'items',
+    className,
   )
   const rest = getUnhandledProps(ItemGroup, props)
   const ElementType = getElementType(ItemGroup, props)
@@ -46,9 +54,6 @@ ItemGroup._meta = {
   name: 'ItemGroup',
   type: META.TYPES.VIEW,
   parent: 'Item',
-  props: {
-    relaxed: ['very'],
-  },
 }
 
 ItemGroup.propTypes = {
@@ -73,7 +78,7 @@ ItemGroup.propTypes = {
   /** A group of items can relax its padding to provide more negative space. */
   relaxed: PropTypes.oneOfType([
     PropTypes.bool,
-    PropTypes.oneOf(ItemGroup._meta.props.relaxed),
+    PropTypes.oneOf(['very']),
   ]),
 }
 

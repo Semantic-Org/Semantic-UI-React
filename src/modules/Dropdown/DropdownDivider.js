@@ -8,6 +8,9 @@ import {
   META,
 } from '../../lib'
 
+/**
+ * A dropdown menu can contain dividers to separate related content.
+ */
 function DropdownDivider(props) {
   const { className } = props
   const classes = cx('divider', className)

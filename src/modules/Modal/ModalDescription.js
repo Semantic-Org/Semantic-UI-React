@@ -1,5 +1,5 @@
-import React, { PropTypes } from 'react'
 import cx from 'classnames'
+import React, { PropTypes } from 'react'
 
 import {
   customPropTypes,
@@ -8,9 +8,12 @@ import {
   META,
 } from '../../lib'
 
+/**
+ * A modal can have a header.
+ */
 function ModalDescription(props) {
   const { children, className } = props
-  const classes = cx(className, 'description')
+  const classes = cx('description', className)
   const rest = getUnhandledProps(ModalDescription, props)
   const ElementType = getElementType(ModalDescription, props)
 

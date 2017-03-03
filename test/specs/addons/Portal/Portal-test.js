@@ -463,56 +463,61 @@ describe('Portal', () => {
     })
   })
 
+  // Heads Up!
+  // Portals used to take focus on mount and restore focus to the original activeElement on unMount.
+  // One by one, these auto set/remove focus features were removed and the assertions negated.
+  // Leave these tests here to ensure we aren't ever stealing focus.
   describe('focus', () => {
-    it('takes focus on first render', (done) => {
+    it('does not take focus onMount', (done) => {
       wrapperMount(<Portal defaultOpen><p /></Portal>)
 
       setTimeout(() => {
         const { portalNode } = wrapper.instance()
-        document.activeElement.should.equal(portalNode)
-        expect(portalNode.getAttribute('tabindex')).to.equal('-1')
-        expect(portalNode.style.outline).to.equal('none')
-        done()
-      }, 0)
-    })
-
-    it('does not take focus when mounted on portals that closeOnTriggerBlur', (done) => {
-      wrapperMount(<Portal defaultOpen closeOnTriggerBlur><p /></Portal>)
-
-      setTimeout(() => {
-        const { portalNode } = wrapper.instance()
         document.activeElement.should.not.equal(portalNode)
-        expect(portalNode.getAttribute('tabindex')).to.not.equal('-1')
-        expect(portalNode.style.outline).to.not.equal('none')
         done()
       }, 0)
     })
 
-    it('does not take focus when mounted on portals that openOnTriggerFocus', (done) => {
-      wrapperMount(<Portal defaultOpen openOnTriggerFocus><p /></Portal>)
+    it('does not take focus on unMount', (done) => {
+      const input = document.createElement('input')
+      document.body.appendChild(input)
+
+      input.focus()
+      document.activeElement.should.equal(input)
+
+      wrapperMount(<Portal open><p /></Portal>)
+      document.activeElement.should.equal(input)
 
       setTimeout(() => {
-        const { portalNode } = wrapper.instance()
-        document.activeElement.should.not.equal(portalNode)
-        expect(portalNode.getAttribute('tabindex')).to.not.equal('-1')
-        expect(portalNode.style.outline).to.not.equal('none')
+        document.activeElement.should.equal(input)
+
+        wrapper.setProps({ open: false })
+        wrapper.unmount()
+
+        document.activeElement.should.equal(input)
+
+        document.body.removeChild(input)
         done()
       }, 0)
     })
 
-    it('does not take focus on subsequent renders', (done) => {
-      wrapperMount(<Portal defaultOpen><input data-focus-me /></Portal>)
+    it('does not take focus on re-render', (done) => {
+      const input = document.createElement('input')
+      document.body.appendChild(input)
+
+      input.focus()
+      document.activeElement.should.equal(input)
+
+      wrapperMount(<Portal defaultOpen><p /></Portal>)
+      document.activeElement.should.equal(input)
 
       setTimeout(() => {
-        const { portalNode } = wrapper.instance()
-        document.activeElement.should.equal(portalNode)
-
-        const input = document.querySelector('input[data-focus-me]')
-        input.focus()
         document.activeElement.should.equal(input)
 
         wrapper.render()
         document.activeElement.should.equal(input)
+
+        document.body.removeChild(input)
         done()
       }, 0)
     })

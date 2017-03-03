@@ -3,6 +3,7 @@ import * as common from 'test/specs/commonTests'
 import Grid from 'src/collections/Grid/Grid'
 import GridColumn from 'src/collections/Grid/GridColumn'
 import GridRow from 'src/collections/Grid/GridRow'
+import { SUI } from 'src/lib'
 
 describe('Grid', () => {
   common.isConformant(Grid)
@@ -12,13 +13,14 @@ describe('Grid', () => {
 
   common.implementsTextAlignProp(Grid)
   common.implementsVerticalAlignProp(Grid)
-  common.implementsWidthProp(Grid, {
-    canEqual: true,
+  common.implementsWidthProp(Grid, SUI.WIDTHS, {
     propKey: 'columns',
     widthClass: 'column',
   })
 
-  common.propKeyAndValueToClassName(Grid, 'reversed')
+  common.propKeyAndValueToClassName(Grid, 'reversed', [
+    'computer', 'computer vertically', 'mobile', 'mobile vertically', 'tablet', 'tablet vertically',
+  ])
 
   common.propKeyOnlyToClassName(Grid, 'centered')
   common.propKeyOnlyToClassName(Grid, 'container')

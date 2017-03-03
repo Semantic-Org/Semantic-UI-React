@@ -1,26 +1,33 @@
-import React, { PropTypes } from 'react'
 import cx from 'classnames'
+import React, { PropTypes } from 'react'
 
 import {
+  customPropTypes,
   getElementType,
   getUnhandledProps,
   META,
   SUI,
-  useWidthProp,
   useKeyOnly,
-  customPropTypes,
+  useWidthProp,
 } from '../../lib'
 
 /**
- * A set of fields can appear grouped together
+ * A set of fields can appear grouped together.
  * @see Form
  */
 function FormGroup(props) {
-  const { children, className, grouped, inline, widths } = props
+  const {
+    children,
+    className,
+    grouped,
+    inline,
+    widths,
+  } = props
+
   const classes = cx(
-    useWidthProp(widths, null, true),
-    useKeyOnly(inline, 'inline'),
     useKeyOnly(grouped, 'grouped'),
+    useKeyOnly(inline, 'inline'),
+    useWidthProp(widths, null, true),
     'fields',
     className,
   )
@@ -34,9 +41,6 @@ FormGroup._meta = {
   name: 'FormGroup',
   parent: 'Form',
   type: META.TYPES.COLLECTION,
-  props: {
-    widths: [...SUI.WIDTHS, 'equal'],
-  },
 }
 
 FormGroup.propTypes = {
@@ -49,24 +53,20 @@ FormGroup.propTypes = {
   /** Additional classes. */
   className: PropTypes.string,
 
-  /** Fields can show related choices */
+  /** Fields can show related choices. */
   grouped: customPropTypes.every([
     customPropTypes.disallow(['inline']),
     PropTypes.bool,
   ]),
 
-  /** Multiple fields may be inline in a row */
+  /** Multiple fields may be inline in a row. */
   inline: customPropTypes.every([
     customPropTypes.disallow(['grouped']),
     PropTypes.bool,
   ]),
 
-  /** Fields Groups can specify their width in grid columns or automatically divide fields to be equal width */
-  widths: PropTypes.oneOf(FormGroup._meta.props.widths),
-}
-
-FormGroup.defaultProps = {
-  as: 'div',
+  /** Fields Groups can specify their width in grid columns or automatically divide fields to be equal width. */
+  widths: PropTypes.oneOf([...SUI.WIDTHS, 'equal']),
 }
 
 export default FormGroup

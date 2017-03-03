@@ -11,9 +11,24 @@ import {
 import FeedContent from './FeedContent'
 import FeedLabel from './FeedLabel'
 
+/**
+ * A feed contains an event.
+ */
 function FeedEvent(props) {
-  const { content, children, className, date, extraImages, extraText, image, icon, meta, summary } = props
-  const classes = cx(className, 'event')
+  const {
+    content,
+    children,
+    className,
+    date,
+    extraImages,
+    extraText,
+    image,
+    icon,
+    meta,
+    summary,
+  } = props
+
+  const classes = cx('event', className)
   const rest = getUnhandledProps(FeedEvent, props)
   const ElementType = getElementType(FeedEvent, props)
 
@@ -47,16 +62,16 @@ FeedEvent.propTypes = {
   className: PropTypes.string,
 
   /** Shorthand for FeedContent. */
-  content: FeedContent.propTypes.content,
+  content: customPropTypes.itemShorthand,
 
   /** Shorthand for FeedDate. */
-  date: FeedContent.propTypes.date,
+  date: customPropTypes.itemShorthand,
 
   /** Shorthand for FeedExtra with images. */
-  extraImages: FeedContent.propTypes.extraImages,
+  extraImages: customPropTypes.itemShorthand,
 
   /** Shorthand for FeedExtra with content. */
-  extraText: FeedContent.propTypes.extraText,
+  extraText: customPropTypes.itemShorthand,
 
   /** An event can contain icon label. */
   icon: customPropTypes.itemShorthand,
@@ -65,10 +80,10 @@ FeedEvent.propTypes = {
   image: customPropTypes.itemShorthand,
 
   /** Shorthand for FeedMeta. */
-  meta: FeedContent.propTypes.meta,
+  meta: customPropTypes.itemShorthand,
 
   /** Shorthand for FeedSummary. */
-  summary: FeedContent.propTypes.summary,
+  summary: customPropTypes.itemShorthand,
 }
 
 export default FeedEvent

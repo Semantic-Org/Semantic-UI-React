@@ -1,9 +1,8 @@
-import _ from 'lodash'
 import cx from 'classnames'
+import _ from 'lodash'
 import React, { PropTypes } from 'react'
 
 import {
-  createShorthand,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -17,14 +16,24 @@ import ItemExtra from './ItemExtra'
 import ItemMeta from './ItemMeta'
 
 /**
- * An item can contain content
+ * An item can contain content.
  */
 function ItemContent(props) {
-  const { children, className, content, description, extra, header, meta, verticalAlign } = props
-  const classes = cx(
+  const {
+    children,
     className,
+    content,
+    description,
+    extra,
+    header,
+    meta,
+    verticalAlign,
+  } = props
+
+  const classes = cx(
     useVerticalAlignProp(verticalAlign),
     'content',
+    className,
   )
   const rest = getUnhandledProps(ItemContent, props)
   const ElementType = getElementType(ItemContent, props)
@@ -35,10 +44,10 @@ function ItemContent(props) {
 
   return (
     <ElementType {...rest} className={classes}>
-      {createShorthand(ItemHeader, val => ({ content: val }), header)}
-      {createShorthand(ItemMeta, val => ({ content: val }), meta)}
-      {createShorthand(ItemDescription, val => ({ content: val }), description)}
-      {createShorthand(ItemExtra, val => ({ content: val }), extra)}
+      {ItemHeader.create(header)}
+      {ItemMeta.create(meta)}
+      {ItemDescription.create(description)}
+      {ItemExtra.create(extra)}
       {content}
     </ElementType>
   )
@@ -48,9 +57,6 @@ ItemContent._meta = {
   name: 'ItemContent',
   parent: 'Item',
   type: META.TYPES.VIEW,
-  props: {
-    verticalAlign: SUI.VERTICAL_ALIGNMENTS,
-  },
 }
 
 ItemContent.propTypes = {
@@ -78,8 +84,8 @@ ItemContent.propTypes = {
   /** Shorthand for ItemMeta component. */
   meta: customPropTypes.itemShorthand,
 
-  /** Content can specify its vertical alignment */
-  verticalAlign: PropTypes.oneOf(ItemContent._meta.props.verticalAlign),
+  /** Content can specify its vertical alignment. */
+  verticalAlign: PropTypes.oneOf(SUI.VERTICAL_ALIGNMENTS),
 }
 
 export default ItemContent

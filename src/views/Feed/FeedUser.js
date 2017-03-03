@@ -1,5 +1,5 @@
-import _ from 'lodash'
 import cx from 'classnames'
+import _ from 'lodash'
 import React, { PropTypes } from 'react'
 
 import {
@@ -9,13 +9,20 @@ import {
   META,
 } from '../../lib'
 
+/**
+ * A feed can contain a user element.
+ */
 function FeedUser(props) {
   const { children, className, content } = props
-  const classes = cx(className, 'user')
+  const classes = cx('user', className)
   const rest = getUnhandledProps(FeedUser, props)
   const ElementType = getElementType(FeedUser, props)
 
-  return <ElementType {...rest} className={classes}>{_.isNil(children) ? content : children}</ElementType>
+  return (
+    <ElementType {...rest} className={classes}>
+      {_.isNil(children) ? content : children}
+    </ElementType>
+  )
 }
 
 FeedUser._meta = {

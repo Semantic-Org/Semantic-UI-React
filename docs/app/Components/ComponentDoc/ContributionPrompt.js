@@ -5,16 +5,17 @@ import { Message, Icon } from 'src'
 
 const ContributionPrompt = ({ children }) => (
   <Message info icon>
-    <Icon name='search' />
+    <Icon name='bullhorn' />
     <Message.Content>
-      {children}<br />
-
-      If there's no{' '}
-      <a href={`${repoURL}/pulls` }>pull request</a>{' '}
-      open for this, you should{' '}
-      <a href={`${repoURL}/blob/master/.github/CONTRIBUTING.md` }>
-        contribute
-      </a>!
+      <p>{children}</p>
+      <p>
+        If there's no{' '}
+        <a href={`${repoURL}/pulls` }>pull request</a>{' '}
+        open for this, you should{' '}
+        <a href={`${repoURL}/blob/master/.github/CONTRIBUTING.md` }>
+          contribute
+        </a>!
+      </p>
     </Message.Content>
   </Message>
 )

@@ -1,6 +1,7 @@
 import faker from 'faker'
 import React from 'react'
 
+import { SUI } from 'src/lib'
 import CardGroup from 'src/views/Card/CardGroup'
 import * as common from 'test/specs/commonTests'
 
@@ -9,7 +10,7 @@ describe('CardGroup', () => {
   common.hasUIClassName(CardGroup)
   common.rendersChildren(CardGroup)
 
-  common.implementsWidthProp(CardGroup, { propKey: 'itemsPerRow', canEqual: false })
+  common.implementsWidthProp(CardGroup, SUI.WIDTHS, { propKey: 'itemsPerRow', canEqual: false })
 
   common.propKeyOnlyToClassName(CardGroup, 'doubling')
   common.propKeyOnlyToClassName(CardGroup, 'stackable')
