@@ -1,10 +1,11 @@
-import * as common from 'test/specs/commonTests'
-
 import AccordionTitle from 'src/modules/Accordion/AccordionTitle'
+import * as common from 'test/specs/commonTests'
 
 describe('AccordionTitle', () => {
   common.isConformant(AccordionTitle)
   common.rendersChildren(AccordionTitle)
-  common.propKeyOnlyToClassName(AccordionTitle, 'active')
+
   common.implementsCreateMethod(AccordionTitle)
+
+  common.propKeyOnlyToClassName(AccordionTitle, 'active')
 })

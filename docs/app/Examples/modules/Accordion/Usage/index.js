@@ -15,10 +15,6 @@ const AccordionUsageExamples = () => (
       description='An accordion can have multiple panels open at the same time.'
       examplePath='modules/Accordion/Usage/AccordionExampleExclusive'
     />
-    <ComponentExample
-      title='Panels Prop with custom title and content'
-      examplePath='modules/Accordion/Usage/AccordionExamplePanelsPropWithCustomTitleAndContent'
-    />
   </ExampleSection>
 )
 

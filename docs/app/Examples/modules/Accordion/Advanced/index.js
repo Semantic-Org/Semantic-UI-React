@@ -23,6 +23,11 @@ const AccordionAdvancedExamples = () => (
       description='An accordion can be used to create content drawers inside a menu.'
       examplePath='modules/Accordion/Advanced/AccordionExampleMenu'
     />
+    <ComponentExample
+      title='Shorthand'
+      description='Panels of Accordion can be rendered via shorthand prop.'
+      examplePath='modules/Accordion/Advanced/AccordionExampleShorthand'
+    />
   </ExampleSection>
 )
 

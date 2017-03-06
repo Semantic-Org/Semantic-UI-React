@@ -10,7 +10,7 @@ const panels = _.times(3, i => ({
 }))
 
 const AccordionExampleExclusive = () => (
-  <Accordion activeIndex={[0, 2]} panels={panels} exclusive={false} fluid />
+  <Accordion defaultActiveIndex={[0, 2]} panels={panels} exclusive={false} fluid />
 )
 
 export default AccordionExampleExclusive

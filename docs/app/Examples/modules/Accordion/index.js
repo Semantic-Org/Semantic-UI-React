@@ -9,8 +9,8 @@ const AccordionExamples = () => (
   <div>
     <Types />
     <Variations />
-    <Advanced />
     <Usage />
+    <Advanced />
   </div>
 )
 
