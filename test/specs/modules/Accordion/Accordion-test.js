@@ -11,9 +11,13 @@ describe('Accordion', () => {
   common.isConformant(Accordion)
   common.hasSubComponents(Accordion, [AccordionAccordion, AccordionContent, AccordionTitle])
   common.hasUIClassName(Accordion)
-  common.rendersChildren(Accordion)
 
   common.propKeyOnlyToClassName(Accordion, 'fluid')
   common.propKeyOnlyToClassName(Accordion, 'inverted')
   common.propKeyOnlyToClassName(Accordion, 'styled')
+
+  it('renders AccordionAccordion component', () => {
+    shallow(<Accordion />)
+      .should.have.descendants(AccordionAccordion)
+  })
 })

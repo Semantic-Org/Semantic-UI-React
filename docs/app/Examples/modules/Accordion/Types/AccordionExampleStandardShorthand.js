@@ -21,7 +21,7 @@ const panels = [
   {
     key: 'acquire',
     title: 'How do you acquire a dog?',
-    content: (
+    content: { content: (
       <div>
         <p>
           Three common ways for a prospective owner to acquire a dog is from pet shops, private owners, or shelters.
@@ -32,7 +32,7 @@ const panels = [
           {' '}from a shelter, helps give a good home to a dog who may not find one so readily.
         </p>
       </div>
-    ),
+    )},
   },
 ]
 

@@ -15,7 +15,7 @@ const panels = [
 
 const AccordionExampleForm = () => (
   <Segment>
-    <Form fluid>
+    <Form>
       <Form.Group widths={2}>
         <Form.Input label='First Name' placeholder='First Name' />
         <Form.Input label='First Name' placeholder='Last Name' />

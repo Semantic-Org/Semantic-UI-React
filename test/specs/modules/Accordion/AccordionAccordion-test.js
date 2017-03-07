@@ -1,13 +1,18 @@
+import _ from 'lodash'
+import faker from 'faker'
 import React from 'react'
 
 import AccordionAccordion from 'src/modules/Accordion/AccordionAccordion'
+import AccordionContent from 'src/modules/Accordion/AccordionContent'
+import AccordionTitle from 'src/modules/Accordion/AccordionTitle'
 import * as common from 'test/specs/commonTests'
 import { consoleUtil, sandbox } from 'test/utils'
 
 describe('AccordionAccordion', () => {
   common.isConformant(AccordionAccordion)
-  common.hasUIClassName(AccordionAccordion)
   common.rendersChildren(AccordionAccordion)
+
+  common.implementsCreateMethod(AccordionAccordion)
 
   // describe('activeIndex', () => {
   //   it('defaults to -1', () => {
@@ -204,178 +209,81 @@ describe('AccordionAccordion', () => {
   //   })
   // })
   //
-  // describe('onTitleClick', () => {
-  //   it('is called with (event, index)', () => {
-  //     const spy = sandbox.spy()
-  //     const event = { foo: 'bar' }
-  //     const titles = mount(
-  //       <Accordion onTitleClick={spy}>
-  //         <Accordion.Title />
-  //         <Accordion.Title />
-  //       </Accordion>
-  //     )
-  //       .find('AccordionTitle')
-  //
-  //     titles.at(0).simulate('click', event)
-  //     spy.should.have.been.calledWithMatch(event, 0)
-  //
-  //     titles.at(1).simulate('click', event)
-  //     spy.should.have.been.calledWithMatch(event, 1)
-  //   })
-  // })
-  //
-  // describe('panels', () => {
-  //   it('does not render children', () => {
-  //     consoleUtil.disableOnce()
-  //     shallow(
-  //       <Accordion panels={[]}>
-  //         <div id='do-not-find-me' />
-  //       </Accordion>
-  //     )
-  //       .should.not.have.descendants('#do-not-find-me')
-  //   })
-  //
-  //   it('adds text title and text content sibling children', () => {
-  //     const panels = [{
-  //       title: faker.lorem.sentence(),
-  //       content: faker.lorem.paragraph(),
-  //     }]
-  //     const wrapper = mount(<Accordion panels={panels} />)
-  //
-  //     wrapper
-  //       .childAt(0)
-  //       .should.have.className('title')
-  //       .and.contain.text(panels[0].title)
-  //
-  //     expect(wrapper.childAt(0).key()).to.equal(`${panels[0].title}-title`)
-  //
-  //     wrapper
-  //       .childAt(1)
-  //       .should.have.className('content')
-  //       .and.contain.text(panels[0].content)
-  //
-  //     expect(wrapper.childAt(1).key()).to.equal(`${panels[0].title}-content`)
-  //   })
-  //
-  //   it('adds custom element title and custom element content sibling children', () => {
-  //     const panels = [{
-  //       key: 'panel-1',
-  //       title: (<h1>{faker.lorem.sentence()}</h1>),
-  //       content: (<h2>{faker.lorem.paragraph()}</h2>),
-  //     }]
-  //     const wrapper = mount(<Accordion panels={panels} />)
-  //
-  //     wrapper
-  //       .childAt(0)
-  //       .should.have.className('title')
-  //       .and.contain(panels[0].title)
-  //
-  //     expect(wrapper.childAt(0).key()).to.equal('panel-1-title')
-  //
-  //     wrapper
-  //       .childAt(1)
-  //       .should.have.className('content')
-  //       .and.contain(panels[0].content)
-  //
-  //     expect(wrapper.childAt(1).key()).to.equal('panel-1-content')
-  //   })
-  //
-  //   const checkIfAllowsSettingTheActiveProp = panels => {
-  //     const wrapper = shallow(<Accordion panels={panels} />)
-  //
-  //     // first panel (active)
-  //
-  //     wrapper
-  //       .find('AccordionTitle')
-  //       .at(0)
-  //       .should.have.prop('active', true)
-  //
-  //     wrapper
-  //       .find('AccordionContent')
-  //       .at(0)
-  //       .should.have.prop('active', true)
-  //
-  //     // second panel (not active)
-  //
-  //     wrapper
-  //       .find('AccordionTitle')
-  //       .at(1)
-  //       .should.have.prop('active', false)
-  //
-  //     wrapper
-  //       .find('AccordionContent')
-  //       .at(1)
-  //       .should.have.prop('active', false)
-  //   }
-  //
-  //   it('allows setting the active prop', () => {
-  //     const panels = [{
-  //       active: true,
-  //       title: faker.lorem.sentence(),
-  //       content: faker.lorem.paragraph(),
-  //     }, {
-  //       active: false,
-  //       title: faker.lorem.sentence(),
-  //       content: faker.lorem.paragraph(),
-  //     }]
-  //
-  //     checkIfAllowsSettingTheActiveProp(panels)
-  //   })
-  //
-  //   it('allows setting the active prop for custom title and content', () => {
-  //     const panels = [{
-  //       active: true,
-  //       title: (<div>faker.lorem.sentence()</div>),
-  //       content: (<p>faker.lorem.paragraph()</p>),
-  //     }, {
-  //       active: false,
-  //       title: (<h1>faker.lorem.sentence()</h1>),
-  //       content: (<h3>faker.lorem.paragraph()</h3>),
-  //     }]
-  //
-  //     checkIfAllowsSettingTheActiveProp(panels)
-  //   })
-  //
-  //   describe('onClick', () => {
-  //     it('can be omitted', () => {
-  //       const panels = [{
-  //         title: faker.lorem.sentence(),
-  //         content: faker.lorem.paragraph(),
-  //       }]
-  //       const wrapper = mount(<Accordion panels={panels} />)
-  //       const click = () => wrapper.find('AccordionTitle').simulate('click')
-  //
-  //       expect(click).to.not.throw()
-  //     })
-  //
-  //     it('is called with (event, index) on AccordionTitle click', () => {
-  //       const spy = sandbox.spy()
-  //       const event = { foo: 'bar' }
-  //       const panels = [{
-  //         onClick: spy,
-  //         title: 'First panel',
-  //         content: 'First panel content',
-  //       }, {
-  //         onClick: spy,
-  //         title: 'Second panel',
-  //         content: 'second panel content',
-  //       }, {
-  //         onClick: spy,
-  //         title: 'Third panel',
-  //         content: 'third panel content',
-  //       }]
-  //       const titles = mount(<Accordion panels={panels} />)
-  //         .find('AccordionTitle')
-  //
-  //       titles.at(0).simulate('click', event)
-  //       spy.should.have.been.calledWithMatch(event, 0)
-  //
-  //       titles.at(1).simulate('click', event)
-  //       spy.should.have.been.calledWithMatch(event, 1)
-  //
-  //       titles.at(2).simulate('click', event)
-  //       spy.should.have.been.calledWithMatch(event, 2)
-  //     })
-  //   })
-  // })
+
+  describe('onTitleClick', () => {
+    const event = { target: null }
+    const spy = sandbox.spy()
+
+    const panelSpy = sandbox.spy()
+    const panels = [
+      { key: 1, title: { content: 'A', onClick: panelSpy }},
+      { key: 2, title: 'B'},
+    ]
+
+    it('can be omitted', () => {
+      const click = () => mount(<AccordionAccordion panels={panels} />).find(AccordionTitle).at(1).simulate('click')
+      expect(click).to.not.throw()
+    })
+
+    it('is called with (e, titleProps) when clicked', () => {
+      mount(<AccordionAccordion panels={panels} onTitleClick={spy} />)
+        .find(AccordionTitle)
+        .at(1)
+        .simulate('click', event)
+
+      spy.should.have.been.calledOnce()
+      spy.should.have.been.calledWithMatch(event, {index: 1, content: 'B'})
+    })
+
+    it("passes AccortdionTitle's onClick", () => {
+      mount(<AccordionAccordion panels={panels} onTitleClick={spy} />)
+        .find(AccordionTitle)
+        .at(0)
+        .simulate('click', event)
+
+      panelSpy.should.have.been.calledOnce()
+      panelSpy.should.have.been.calledWithMatch(event, {index: 0, content: 'A'})
+
+      spy.should.have.been.calledOnce()
+      spy.should.have.been.calledWithMatch(event, {index: 0, content: 'A'})
+    })
+  })
+
+  describe('panels', () => {
+    const event = { target: null }
+    const spy = sandbox.spy()
+
+    const panels = [
+      { key: 1, title: { content: 'A', onClick: spy }, content: { content: 'Content A', 'data-foo': 'something' }},
+      { key: 2, title: 'B', content: { content: 'Content B', 'data-foo': 'something' }},
+    ]
+    const children = mount(<AccordionAccordion panels={panels} />)
+
+    it('renders children', () => {
+      const titles = children.find(AccordionTitle)
+      const contents = children.find(AccordionContent)
+
+      titles.at(0).should.have.prop('content', 'A')
+      contents.at(0).should.have.prop('content', 'Content A')
+
+      titles.at(1).should.have.prop('content', 'B')
+      contents.at(1).should.have.prop('content', 'Content B')
+    })
+
+    it('onClick can omitted', () => {
+      const click = () => children.find(AccordionTitle).at(1).simulate('click')
+      expect(click).to.not.throw()
+    })
+
+    it('passes onClick handler', () => {
+      children.find(AccordionTitle).at(0).simulate('click', event)
+
+      spy.should.have.been.calledOnce()
+      spy.should.have.been.calledWithMatch(event, { content: 'A', index: 0 })
+    })
+
+    it('passes arbitrary props', () => {
+      children.find(AccordionContent).everyWhere(item => item.should.have.prop('data-foo', 'something'))
+    })
+  })
 })

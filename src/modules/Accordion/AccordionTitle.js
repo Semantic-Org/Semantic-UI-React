@@ -50,7 +50,7 @@ export default class AccordionTitle extends Component {
     parent: 'Accordion',
   }
 
-  handleClick = (e) => {
+  handleClick = e => {
     const { onClick } = this.props
 
     if (onClick) onClick(e, this.props)

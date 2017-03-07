@@ -137,11 +137,7 @@ export default class AccordionAccordion extends Component {
         key: `${key}-title`,
         onClick: this.handleTitleClick,
       }))
-      children.push(AccordionContent.create(content, {
-        active,
-        index,
-        key: `${key}-content`,
-      }))
+      children.push(AccordionContent.create(content, { active, key: `${key}-content`}))
     })
 
     return children
