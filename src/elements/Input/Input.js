@@ -22,7 +22,7 @@ export const htmlInputPropNames = [
   'selected', 'defaultValue', 'defaultChecked',
 
   // LIMITED HTML PROPS
-  'autoCapitalize', 'autoComplete', 'autoFocus', 'checked', 'form', 'max', 'maxLength', 'min',
+  'autoCapitalize', 'autoComplete', 'autoFocus', 'checked', 'form', 'max', 'maxLength', 'min', 'multiple',
   'name', 'pattern', 'placeholder', 'readOnly', 'required', 'step', 'type', 'value',
 
   // Heads Up!
