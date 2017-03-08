@@ -180,6 +180,7 @@ class Portal extends Component {
     ) return                                              // ignore the click
 
     const didClickInRootNode = this.rootNode.contains(e.target)
+
     if (closeOnDocumentClick && !didClickInRootNode || closeOnRootNodeClick && didClickInRootNode) {
       debug('handleDocumentClick()')
 
