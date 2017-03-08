@@ -43,6 +43,9 @@ export default class DayCell extends Component {
      */
     selected: PropTypes.bool,
 
+    /** The date behind this day cell **/
+    date: customPropTypes.DateValue,
+
     /** Stored value */
     day: PropTypes.number,
 
@@ -74,12 +77,15 @@ export default class DayCell extends Component {
   render() {
     const {
       active,
+      hovered,
       children,
       className,
       disabled,
       selected,
     } = this.props
-
+    // TODO: make sense of active/selected. Hovered was meant as active but
+    // active is used instead.  need to find a class for selected days (different
+    // background?)
     const classes = cx(
       useKeyOnly(active, 'active'),
       useKeyOnly(disabled, 'disabled'),
@@ -102,6 +108,7 @@ export default class DayCell extends Component {
         className={classes}
         onClick={this.handleClick}
         selectable
+        positive={selected}
         style={{ cursor: 'pointer' }}
       >
         <a>{this.props.day}</a>

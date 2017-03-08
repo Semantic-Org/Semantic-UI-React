@@ -25,7 +25,7 @@ export default class Month extends Component {
     as: customPropTypes.as,
 
     /** Month **/
-    date: PropTypes.any,
+    date: customPropTypes.DateValue,
 
     /**
      * First Day of the Week.
@@ -41,6 +41,18 @@ export default class Month extends Component {
     children: PropTypes.node,
 
     onClick: PropTypes.func,
+
+    /**
+     * Dates at or after selectionStart are marked as selected
+     * @type {Date}
+     */
+    selectionStart: customPropTypes.DateValue,
+    /**
+     * Dates until or at selectionEnd are marked as selected
+     * @type {[type]}
+     */
+    selectionEnd: customPropTypes.DateValue
+
   }
 
   static _meta = {
@@ -49,10 +61,12 @@ export default class Month extends Component {
     type: META.TYPES.MODULE,
   }
 
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       hovering: null,
+      selectionStart: props.selectionStart,
+      selectionEnd: props.selectionEnd
     }
   }
 
@@ -86,6 +100,7 @@ export default class Month extends Component {
    */
   getDays() {
     const { date, onClick } = this.props
+    const { selectionStart, selectionEnd } = this.state
     const firstDay = utils.getFirstOfMonth(date)
     const firstWeekDay = firstDay.getDay()
     const daysInMonth = utils.daysInMonth(date)
@@ -101,6 +116,7 @@ export default class Month extends Component {
     }
     let day = 0, nextDay = 0
     return monthCells.map((cell, index) => {
+      const dayCellDate = new Date(firstDay)
       const dayParams = {
         key: index,
         index: cell,
@@ -110,12 +126,27 @@ export default class Month extends Component {
       } else if (cell < realFirstWeekDay) {
         dayParams.day = prevDaysInMonth - realFirstWeekDay + cell + 1
         dayParams.disabled = true
+        dayCellDate.setMonth(lastMonth.getMonth())
       } else if (cell > daysInMonth) {
         dayParams.day = nextDay += 1
         dayParams.disabled = true
+        dayCellDate.setMonth(dayCellDate.getMonth() + 1)
       }
       dayParams.onClick = (e) => {
         onClick(e, dayParams.day)
+      }
+      dayCellDate.setDate(dayParams.day)
+      dayParams.date = dayCellDate
+      if (dayParams.date >= selectionStart && dayParams.date <= selectionEnd) {
+        dayParams.selected = true
+      }
+      if (selectionStart) {
+        dayParams.onMouseOver = () => {
+          console.log("HOVERING", dayParams.day)
+          this.setState({
+            selectionEnd: dayParams.date
+          })
+        }
       }
       return (<DayCell {...dayParams} />)
     })

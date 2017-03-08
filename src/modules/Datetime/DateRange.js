@@ -90,10 +90,10 @@ export default class DateRange extends Component {
     /** Current value as an array of Date object or a string that can be parsed
      * into one. Creates a controlled component.
      */
-    value: React.PropTypes.arrayOf(customPropTypes.DateValue),
+    value: PropTypes.arrayOf(customPropTypes.DateValue),
 
     /** Initial value as an array of Date object or a string that can be parsed into one */
-    defaultValue: React.PropTypes.arrayOf(customPropTypes.DateValue),
+    defaultValue: PropTypes.arrayOf(customPropTypes.DateValue),
 
     /** A disabled dropdown menu or item does not allow user interaction. */
     disabled: PropTypes.bool,
@@ -103,6 +103,12 @@ export default class DateRange extends Component {
 
     /** First day of the week. Can be either 0 (Sunday), 1 (Monday) **/
     firstDayOfWeek: PropTypes.number,
+
+    /** 2 element array of left and right months **/
+    months: PropTypes.arrayOf(PropTypes.number),
+
+    /** initial value for left and right months **/
+    defaultMonths: PropTypes.arrayOf(PropTypes.number),
 
     /** A dropdown can take the full width of its parent */
     fluid: PropTypes.bool,
@@ -224,12 +230,43 @@ export default class DateRange extends Component {
     date: PropTypes.bool,
 		rangeFocus: PropTypes.number,
 		defaultRangeFocus: PropTypes.number,
+
+		/**
+     * do not allow dates before minDate
+     * @type {Date}
+     */
+    minDate: customPropTypes.DateValue,
+    /**
+     * Do not allow dates after maxDate
+     * @type {Date}
+     */
+    maxDate: customPropTypes.DateValue,
+    /**
+     * An array of dates that should be marked disabled in the calendar
+     * @type {Array<Date>}
+     */
+    disabledDates: PropTypes.arrayOf(customPropTypes.DateValue),
+    /**
+     * Dates at or after selectionStart are marked as selected
+     * @type {Date}
+     */
+    selectionStart: customPropTypes.DateValue,
+		defaultSelectionStart: customPropTypes.DateValue,
+    /**
+     * Dates until or at selectionEnd are marked as selected
+     * @type {[type]}
+     */
+    selectionEnd: customPropTypes.DateValue,
+		defaultSelectionEnd: customPropTypes.DateValue,
   }
 
   static autoControlledProps = [
     'open',
     'value',
-		'rangeFocus'
+    'months',
+		'rangeFocus',
+		'selectionStart',
+		'selectionEnd'
   ]
 
   static defaultProps = {
@@ -260,7 +297,7 @@ export default class DateRange extends Component {
     dateFormatter: defaultDateFormatter,
     timeFormatter: defaultTimeFormatter,
     date: true,
-    time: true
+    time: false
   }
 
   open = (e) => {
@@ -299,6 +336,12 @@ export default class DateRange extends Component {
     this.close(e)
   }
 
+  /**
+   * Called when a date is selecte in one of the calendars
+   * @param  {number} rangeItem   Either 0 or 1 for left and right calendars
+   * @param  {Date}   date        The selected date
+   * @param  {SyntheticEvent} e   React SynthethicEvent
+   */
   handleDateSelection = (rangeItem, date, e) => {
     debug('handleDateSelection()', date, e)
     e.stopPropagation()
@@ -308,12 +351,29 @@ export default class DateRange extends Component {
 		const currentRange = this.state.value
 		console.log('current range value', currentRange)
 		currentRange[rangeItem] = selectedDate
+		const rangeState = {
+			[rangeItem == 0 ? 'selectionStart' : 'selectionEnd']: date
+		}
     this.trySetState({
       value: currentRange,
+			...rangeState
     })
 		if (rangeItem == 1) {
 			this.close()
 		}
+  }
+
+  /**
+   * Called when one of the calendar's changes the month
+   * @param  {number} rangeItem Either 0 or 1 for left and right calendars
+   * @param  {Date} date        A date in the selected month
+   */
+  handleMonthChange = (rangeItem, date) => {
+    const months = this.getDisplayMonths()
+    months[rangeItem] = date
+    this.trySetState({
+      months: months
+    })
   }
 
   /**
@@ -325,7 +385,6 @@ export default class DateRange extends Component {
 		if (!value) {
 			return ''
 		}
-		console.log(value)
     const { date, time, dateFormatter, timeFormatter } = this.props
 		value.forEach((item)=> {
 			if (item) {
@@ -340,6 +399,37 @@ export default class DateRange extends Component {
     return formatted.join(' ')
   }
 
+  /**
+   * Get a 2 element array to determine the left and right
+   * calendar's months.
+   * If the state 'months' array is set, those values are used.
+   * Otherwise, the current value dates are used.
+   * The right cannot be before or equal to the left, and
+   * will be adjusted as left is paged
+   */
+  getDisplayMonths() {
+    const {value, months} = this.state
+    let [left, right] = [...months || []]
+    if (!left && value.length > 0) {
+      left = value[0]
+    } else if(!left) {
+      left = new Date()
+    }
+    if (!right && value.length == 2) {
+      right = value[1]
+    } else if (!right) {
+      // set right to left, which will trigger a month chase
+      right = left
+    }
+    if (right.getFullYear() <= left.getFullYear() &&
+        right.getMonth() <= left.getMonth()) {
+      const date = new Date(left)
+      date.setMonth(date.getMonth()+1)
+      right = date
+    }
+    return [left, right]
+  }
+
   render() {
     debug('render state', this.state)
     const {
@@ -352,9 +442,17 @@ export default class DateRange extends Component {
       time,
       date,
       timeFormatter,
+			minDate,
+			maxDate,
+			disabledDates
     } = this.props
-    const { open, value } = this.state
-		console.log("STATE", value, this.state)
+    const {
+      open,
+      value,
+      selectionStart,
+      selectionEnd
+    } = this.state
+		const months = this.getDisplayMonths()
     const inputElement = (
       <Input
 				fluid
@@ -389,22 +487,37 @@ export default class DateRange extends Component {
 				<div className="ui two column grid">
 					<div className="column">
 		        <Calendar
+              value={months[0]}
 		          content={this.props.content}
 		          onDateSelect={this.handleDateSelection.bind(this, 0)}
+              onChangeMonth={this.handleMonthChange.bind(this, 0)}
 		          timeFormatter={timeFormatter}
 		          firstDayOfWeek={firstDayOfWeek}
 		          time={time}
 		          date={date}
+							selectionStart={selectionStart}
+							selectionEnd={selectionEnd}
+							minDate={minDate}
+							maxDate={maxDate}
+							disabledDates={disabledDates}
+							range={true}
 		        />
 					</div>
 					<div className="column">
 						<Calendar
-		          content={this.props.content}
+              value={months[1]}
+							content={this.props.content}
 		          onDateSelect={this.handleDateSelection.bind(this, 1)}
+              onChangeMonth={this.handleMonthChange.bind(this, 1)}
 		          timeFormatter={timeFormatter}
 		          firstDayOfWeek={firstDayOfWeek}
 		          time={time}
 		          date={date}
+							selectionStart={selectionStart}
+							selectionEnd={selectionEnd}
+							minDate={minDate}
+							maxDate={maxDate}
+							disabledDates={disabledDates}
 		        />
 					</div>
 				</div>

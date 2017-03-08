@@ -223,7 +223,22 @@ export default class Datetime extends Component {
      * date selection as well as the time.
      * @type {bool}
      */
-    date: PropTypes.bool
+    date: PropTypes.bool,
+    /**
+     * do not allow dates before minDate
+     * @type {Date}
+     */
+    minDate: customPropTypes.DateValue,
+    /**
+     * Do not allow dates after maxDate
+     * @type {Date}
+     */
+    maxDate: customPropTypes.DateValue,
+    /**
+     * An array of dates that should be marked disabled in the calendar
+     * @type {Array<Date>}
+     */
+    disabledDates: PropTypes.arrayOf(customPropTypes.DateValue),
   }
 
   static autoControlledProps = [
@@ -337,6 +352,8 @@ export default class Datetime extends Component {
       time,
       date,
       timeFormatter,
+      minDate,
+      maxDate
     } = this.props
     const { open, value } = this.state
 
@@ -376,6 +393,7 @@ export default class Datetime extends Component {
           firstDayOfWeek={firstDayOfWeek}
           time={time}
           date={date}
+          minDate={minDate}
         />
       </Popup>
     )
