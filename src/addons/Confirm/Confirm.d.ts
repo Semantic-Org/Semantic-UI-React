@@ -1,6 +1,7 @@
 import * as React from 'react';
+import { ModalProps } from '../../modules/Modal/Modal';
 
-interface ConfirmProps {
+interface ConfirmProps extends ModalProps {
   /** The cancel button text. */
   cancelButton?: any;
 
