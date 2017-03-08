@@ -326,7 +326,6 @@ export default class Calendar extends Component {
   getBodyContent() {
     const { content, firstDayOfWeek } = this.props
     const { mode, value, selectionStart, selectionEnd } = this.state
-    // console.log("SS, SE", selectionStart, selectionEnd)
     switch (mode) {
       case 'DAY':
         return (<Month

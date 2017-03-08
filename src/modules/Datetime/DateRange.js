@@ -228,7 +228,17 @@ export default class DateRange extends Component {
      * @type {bool}
      */
     date: PropTypes.bool,
+    /**
+     * The current focus date selection.
+     * 0 for start date
+     * 1 for end date
+     * @type {number}
+     */
 		rangeFocus: PropTypes.number,
+    /**
+     * Default value for rangeFocus
+     * @type {number}
+     */
 		defaultRangeFocus: PropTypes.number,
 
 		/**
@@ -306,7 +316,10 @@ export default class DateRange extends Component {
     const { onOpen } = this.props
     if (onOpen) onOpen(e, this.props)
 
-    this.trySetState({ open: true })
+    this.trySetState({
+      open: true,
+      rangeFocus: 0
+    })
   }
 
   close = (e) => {
@@ -345,20 +358,21 @@ export default class DateRange extends Component {
   handleDateSelection = (rangeItem, date, e) => {
     debug('handleDateSelection()', date, e)
     e.stopPropagation()
-		console.log('range item and date', rangeItem, date)
+    let {value, rangeFocus} = this.state
+    rangeFocus = rangeFocus || 0
     e.nativeEvent.stopImmediatePropagation()
     const selectedDate = new Date(date)
-		const currentRange = this.state.value
-		currentRange[rangeItem] = selectedDate
-		const rangeState = {
-			[rangeItem == 0 ? 'selectionStart' : 'selectionEnd']: date
+		const currentRange = value
+		currentRange[rangeFocus] = selectedDate
+    const rangeState = {
+			[rangeFocus == 0 ? 'selectionStart' : 'selectionEnd']: date
 		}
-    console.log('current range value', rangeState)
     this.trySetState({
-      value: currentRange,
-			...rangeState
+      ...rangeState,
+      rangeFocus: 1 - rangeFocus,
+      value: currentRange
     })
-		if (rangeItem == 1) {
+		if (rangeFocus == 1) {
 			this.close()
 		}
   }

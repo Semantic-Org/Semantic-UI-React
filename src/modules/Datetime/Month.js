@@ -70,6 +70,13 @@ export default class Month extends Component {
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      selectionStart: nextProps.selectionStart,
+      selectionEnd: nextProps.selectionEnd
+    })
+  }
+
   /**
    * Return the ordered labels for days of the week,
    * accounting for the locale's first day of the week
@@ -141,7 +148,7 @@ export default class Month extends Component {
         dayParams.selected = true
       }
       if (selectionStart) {
-        dayParams.onMouseOver = () => { 
+        dayParams.onMouseOver = () => {
           this.setState({
             selectionEnd: dayParams.date
           })
