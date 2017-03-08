@@ -349,11 +349,11 @@ export default class DateRange extends Component {
     e.nativeEvent.stopImmediatePropagation()
     const selectedDate = new Date(date)
 		const currentRange = this.state.value
-		console.log('current range value', currentRange)
 		currentRange[rangeItem] = selectedDate
 		const rangeState = {
 			[rangeItem == 0 ? 'selectionStart' : 'selectionEnd']: date
 		}
+    console.log('current range value', rangeState)
     this.trySetState({
       value: currentRange,
 			...rangeState

@@ -141,8 +141,7 @@ export default class Month extends Component {
         dayParams.selected = true
       }
       if (selectionStart) {
-        dayParams.onMouseOver = () => {
-          console.log("HOVERING", dayParams.day)
+        dayParams.onMouseOver = () => { 
           this.setState({
             selectionEnd: dayParams.date
           })
