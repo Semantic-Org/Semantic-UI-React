@@ -13,10 +13,18 @@ import React, { cloneElement, isValidElement } from 'react'
  * @param {function} mapValueToProps A function that maps a primitive value to the Component props
  * @param {string|object|function} val The value to create a ReactElement from
  * @param {object|function} [defaultProps={}] Default props object or function (called with regular props).
+ * @param {object|function} [overrideProps={}] Props object or function (called with regular props).
  * @param {boolean} [generateKey=false] Whether or not to generate a child key, useful for collections.
  * @returns {object|null}
  */
-export function createShorthand(Component, mapValueToProps, val, defaultProps = {}, generateKey = false) {
+export function createShorthand(
+  Component,
+  mapValueToProps,
+  val,
+  defaultProps = {},
+  overrideProps = {},
+  generateKey = false
+) {
   if (typeof Component !== 'function' && typeof Component !== 'string') {
     throw new Error('createShorthandFactory() Component must be a string or function.')
   }
@@ -38,12 +46,13 @@ export function createShorthand(Component, mapValueToProps, val, defaultProps = 
     || isPropsObject && val
     || isPrimitiveValue && mapValueToProps(val)
 
-  // Default props
+  // Default and override props
   defaultProps = _.isFunction(defaultProps) ? defaultProps(usersProps) : defaultProps
+  overrideProps = _.isFunction(overrideProps) ? overrideProps(usersProps) : overrideProps
 
   // Merge props
   /* eslint-disable react/prop-types */
-  const props = { ...defaultProps, ...usersProps }
+  const props = { ...defaultProps, ...usersProps, ...overrideProps }
 
   // Merge className
   if (usersProps.className && defaultProps.className) {
@@ -105,8 +114,8 @@ export function createShorthandFactory(Component, mapValueToProps, generateKey) 
     throw new Error('createShorthandFactory() Component must be a string or function.')
   }
 
-  return (val, defaultProps) => {
-    return createShorthand(Component, mapValueToProps, val, defaultProps, generateKey)
+  return (val, defaultProps, overrideProps) => {
+    return createShorthand(Component, mapValueToProps, val, defaultProps, overrideProps, generateKey)
   }
 }
 

@@ -150,8 +150,7 @@ class Menu extends Component {
     return _.map(items, (item, index) => MenuItem.create(item, {
       active: activeIndex === index,
       index,
-      onClick: this.handleItemClick,
-    }))
+    }, { onClick: this.handleItemClick }))
   }
 
   render() {

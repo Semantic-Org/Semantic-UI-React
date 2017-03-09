@@ -61,11 +61,15 @@ class Confirm extends Component {
   handleCancel = e => {
     const { onCancel } = this.props
 
+    // TODO: onClick
+
     if (onCancel) onCancel(e, this.props)
   }
 
   handleConfirm = e => {
     const { onConfirm } = this.props
+
+    // TODO: onClick
 
     if (onConfirm) onConfirm(e, this.props)
   }
@@ -91,11 +95,8 @@ class Confirm extends Component {
         {Modal.Header.create(header)}
         {Modal.Content.create(content)}
         <Modal.Actions>
-          {Button.create(cancelButton, { onClick: this.handleCancel })}
-          {Button.create(confirmButton, {
-            onClick: this.handleConfirm,
-            primary: true,
-          })}
+          {Button.create(cancelButton, {}, { onClick: this.handleCancel })}
+          {Button.create(confirmButton, { primary: true }, { onClick: this.handleConfirm })}
         </Modal.Actions>
       </Modal>
     )

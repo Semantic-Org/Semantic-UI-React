@@ -135,7 +135,7 @@ export default class Label extends Component {
 
   handleRemove = (e) => {
     const { onRemove } = this.props
-
+// TODO: onClick
     if (onRemove) onRemove(e, this.props)
   }
 
@@ -202,7 +202,7 @@ export default class Label extends Component {
         {typeof image !== 'boolean' && Image.create(image)}
         {content}
         {createShorthand(LabelDetail, val => ({ content: val }), detail)}
-        {onRemove && Icon.create(removeIconShorthand, { onClick: this.handleRemove })}
+        {onRemove && Icon.create(removeIconShorthand, {}, { onClick: this.handleRemove })}
       </ElementType>
     )
   }
