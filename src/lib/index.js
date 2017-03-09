@@ -6,8 +6,7 @@ export {
   useKeyOrValueAndKey,
   useValueAndKey,
 
-  useLargerProp,
-  useSmallerProp,
+  useOnlyProp,
   useTextAlignProp,
   useVerticalAlignProp,
   useWidthProp,

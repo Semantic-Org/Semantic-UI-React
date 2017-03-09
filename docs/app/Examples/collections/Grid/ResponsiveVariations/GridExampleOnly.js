@@ -3,7 +3,7 @@ import { Grid, Segment } from 'semantic-ui-react'
 
 const GridExampleOnly = () => (
   <Grid>
-    <Grid.Row columns={2} only='large screen'>
+    <Grid.Row columns={2} only='largeScreen'>
       <Grid.Column>
         <Segment>Large Screen</Segment>
       </Grid.Column>

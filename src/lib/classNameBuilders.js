@@ -53,45 +53,19 @@ export const useKeyOrValueAndKey = (val, key) => val && (val === true ? key : `$
 //
 
 /**
- * The "larger" prop.
+ * The "only" prop implements control of visibility classes for Grid subcomponents.
  *
- * @param {*} val The value of the "larger" prop
- * @param {string} key A props key
- *
- * @example
- * <Grid.Row onlyLarger='mobile' />
- * <div class="tablet computer only row"></div>
- */
-export const useLargerProp = (val, key) => {
-  if(!val) return
-  let values = []
-
-  if(val === 'mobile') values = ['tablet', 'computer']
-  if(val === 'tablet') values = ['computer']
-  if(val === 'computer') values = ['large screen', 'widescreen']
-  if(val === 'largeScreen') values = ['widescreen']
-
-  return `${values.join(' ')} ${key}`
-}
-
-/**
- * The "smaller" prop.
- *
- * @param {*} val The value of the "smaller" prop
- * @param {string} key A props key
+ * @param {*} val The value of the "only" prop
  *
  * @example
- * <Grid.Row onlySmaller='computer' />
- * <div class="mobile tablet only row"></div>
+ * <Grid.Row only='mobile' />
+ * <Grid.Row only='mobile tablet' />
+ * <div class="mobile only row"></div>
+ * <div class="mobile only tablet only row"></div>
  */
-export const useSmallerProp = (val, key) => {
-  if(!val) return
-  let values = []
-
-  if(val === 'tablet') values = ['mobile']
-  if(val === 'computer') values = ['mobile', 'tablet']
-
-  return `${values.join(' ')} ${key}`
+export const useOnlyProp = val => {
+  if (!val || val === true) return null
+  return val.split(' ').map(prop => `${_.lowerCase(prop)} only`).join(' ')
 }
 
 /**

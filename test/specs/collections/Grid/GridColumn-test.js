@@ -6,6 +6,7 @@ describe('GridColumn', () => {
   common.isConformant(GridColumn)
   common.rendersChildren(GridColumn)
 
+  common.implementsOnlyProp(GridColumn)
   common.implementsTextAlignProp(GridColumn)
   common.implementsVerticalAlignProp(GridColumn)
 
@@ -41,9 +42,6 @@ describe('GridColumn', () => {
   })
 
   common.propKeyAndValueToClassName(GridColumn, 'floated', SUI.FLOATS)
-  common.propKeyAndValueToClassName(GridColumn, 'only', [
-    'computer', 'large screen', 'mobile', 'tablet mobile', 'tablet', 'widescreen',
-  ])
 
   common.propKeyOnlyToClassName(GridColumn, 'stretched')
 

@@ -1,5 +1,4 @@
 import cx from 'classnames'
-import _ from 'lodash'
 import React, { PropTypes } from 'react'
 
 import {
@@ -9,8 +8,7 @@ import {
   META,
   SUI,
   useKeyOnly,
-  useLargerProp,
-  useSmallerProp,
+  useOnlyProp,
   useTextAlignProp,
   useValueAndKey,
   useVerticalAlignProp,
@@ -30,8 +28,6 @@ function GridColumn(props) {
     largeScreen,
     mobile,
     only,
-    onlyLarger,
-    onlySmaller,
     stretched,
     tablet,
     textAlign,
@@ -43,11 +39,9 @@ function GridColumn(props) {
   const classes = cx(
     color,
     useKeyOnly(stretched, 'stretched'),
-    useLargerProp(onlyLarger, 'only'),
-    useSmallerProp(onlySmaller, 'only'),
+    useOnlyProp(only, 'only'),
     useTextAlignProp(textAlign),
     useValueAndKey(floated, 'floated'),
-    useValueAndKey(only, 'only'),
     useVerticalAlignProp(verticalAlign),
     useWidthProp(computer, 'wide computer'),
     useWidthProp(largeScreen, 'wide large screen'),
@@ -99,18 +93,6 @@ GridColumn.propTypes = {
   only: customPropTypes.every([
     customPropTypes.disallow(['onlyLarger', 'onlySmaller']),
     customPropTypes.multipleOf(SUI.VISIBILITY),
-  ]),
-
-  /** A row can appear only for a specific device, or screen sizes. */
-  onlyLarger: customPropTypes.every([
-    customPropTypes.disallow(['only', 'onlySmaller']),
-    PropTypes.oneOf(_.without(SUI.VISIBILITY, 'widescreen')),
-  ]),
-
-  /** A row can appear only for a specific device, or screen sizes. */
-  onlySmaller: customPropTypes.every([
-    customPropTypes.disallow(['only', 'onlyLarger']),
-    PropTypes.oneOf(SUI.VISIBILITY),
   ]),
 
   /** A column can stretch its contents to take up the entire grid or row height. */
