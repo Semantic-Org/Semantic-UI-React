@@ -104,7 +104,7 @@ Icon.propTypes = {
   loading: PropTypes.bool,
 
   /** Name of the icon. */
-  name: customPropTypes.suggest(SUI.ICONS_AND_ALIASES),
+  name: customPropTypes.suggest(SUI.ALL_ICONS_IN_ALL_CONTEXTS),
 
   /** Icon can rotated. */
   rotated: PropTypes.oneOf(['clockwise', 'counterclockwise']),

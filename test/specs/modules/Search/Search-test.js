@@ -63,7 +63,7 @@ const openSearchResults = () => {
 
 const nativeEvent = { nativeEvent: { stopImmediatePropagation: _.noop } }
 
-describe('Search Component', () => {
+describe('Search', () => {
   beforeEach(() => {
     attachTo = undefined
     wrapper = undefined

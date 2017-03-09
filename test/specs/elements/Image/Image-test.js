@@ -7,7 +7,7 @@ import { SUI } from 'src/lib'
 import Dimmer from 'src/modules/Dimmer/Dimmer'
 import * as common from 'test/specs/commonTests'
 
-describe('Image Component', () => {
+describe('Image', () => {
   common.isConformant(Image)
   common.hasSubComponents(Image, [ImageGroup])
   common.hasUIClassName(Image)
