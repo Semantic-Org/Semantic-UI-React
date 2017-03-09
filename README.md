@@ -1,3 +1,14 @@
+# :warning: Doc Site Interruptions :warning:
+Our doc site DNS and CDN providers are having issues at the moment.
+
+**Please use https://semantic-org.github.io/Semantic-UI-React as a short-term fix.** 
+Images will not load with this link, however, the majority of the docs will be usable.
+
+Thanks for your patience and help while we resolve these issues:
+- [CDN Issue #1404](https://github.com/Semantic-Org/Semantic-UI-React/issues/1404)
+- [DNS Issue #1429](https://github.com/Semantic-Org/Semantic-UI-React/issues/1429)
+
+***
 <!-- Logo -->
 <p align="center">
   <a href="http://react.semantic-ui.com">
@@ -7,7 +18,7 @@
 
 <!-- Name -->
 <h1 align="center">
-  <a href="http://react.semantic-ui.com/">Semantic UI React</a>
+  <a href="https://semantic-org.github.io/Semantic-UI-React">Semantic UI React</a>
 </h1>
 
 <!-- Badges -->
@@ -51,7 +62,6 @@ These great products are built on Semantic-UI-React. Add yours [here][22].
 - https://edabit.com
 - https://blackship.com
 - http://www.brewhousesolutions.com
-- https://www.lifebot.fr
 
 ## Voice Your Opinion :speech_balloon:
 
@@ -89,7 +99,7 @@ Once you change the flag, you need to refresh your browser to see the changes in
 
 |    Elements     |   Collections   |      Views      |     Modules     |     Behaviors      |
 |-----------------|-----------------|-----------------|-----------------|--------------------|
-| ✓ Button        | ✓ Breadcrumb    | ✓ Advertisement | ✓ Accordion     |   Form Validation  |
+| ✓ Button        | ✓ Breadcrumb    |   Advertisement | ✓ Accordion     |   Form Validation  |
 | ✓ Container     | ✓ Form          | ✓ Card          | ✓ Checkbox      | *API (NA)*         |
 | ✓ Divider       | ✓ Grid          | ✓ Comment       | ✓ Dimmer        | *Visibility (NA)*  |
 | ✓ Flag          | ✓ Menu          | ✓ Feed          | ✓ Dropdown      |                    |
@@ -154,7 +164,7 @@ Big thanks to our [contributors][20], especially:
 - @layershifter for bringing momentum and continual support
 
 [1]: https://github.com/Semantic-Org/Semantic-UI-React/blob/master/.github/CONTRIBUTING.md
-[2]: http://react.semantic-ui.com/
+[2]: https://semantic-org.github.io/Semantic-UI-React
 [3]: https://facebook.github.io/react/
 [4]: https://github.com/Semantic-Org/Semantic-UI-React/labels/help%20wanted
 [5]: http://semantic-ui.com/
