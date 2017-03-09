@@ -50,6 +50,9 @@ export default class Search extends Component {
     /** Minimum characters to query for results */
     minCharacters: PropTypes.number,
 
+    /** Name of the search input. */
+    name: PropTypes.string,
+
     /** Additional text for "No Results" message with less emphasis. */
     noResultsDescription: PropTypes.string,
 
@@ -511,18 +514,19 @@ export default class Search extends Component {
   // ----------------------------------------
 
   renderSearchInput = () => {
-    const { icon, input, placeholder } = this.props
+    const { icon, input, name, placeholder } = this.props
     const { value } = this.state
 
     return Input.create(input, {
-      value,
-      placeholder,
+      icon,
+      input: { className: 'prompt', tabIndex: '0', autoComplete: 'off' },
+      name,
       onBlur: this.handleBlur,
       onChange: this.handleSearchChange,
-      onFocus: this.handleFocus,
       onClick: this.handleInputClick,
-      input: { className: 'prompt', tabIndex: '0', autoComplete: 'off' },
-      icon,
+      onFocus: this.handleFocus,
+      placeholder,
+      value,
     })
   }
 

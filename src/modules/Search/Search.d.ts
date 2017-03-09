@@ -26,6 +26,9 @@ interface SearchProps {
   /** Minimum characters to query for results. */
   minCharacters?: number;
 
+  /** Name of the search input. */
+  name?: string;
+
   /** Additional text for "No Results" message with less emphasis. */
   noResultsDescription?: string;
 

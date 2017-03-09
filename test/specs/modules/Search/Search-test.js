@@ -489,6 +489,22 @@ describe('Search', () => {
     })
   })
 
+  describe('name', () => {
+    it('is present when defined', () => {
+      wrapperShallow(<Search results={options} minCharacters={0} name='hi' />)
+        .find('Input')
+        .first()
+        .should.have.prop('name', 'hi')
+    })
+
+    it('is not present when not defined', () => {
+      wrapperShallow(<Search results={options} minCharacters={0} />)
+        .find('Input')
+        .first()
+        .should.not.have.prop('name')
+    })
+  })
+
   describe('open', () => {
     it('defaultOpen opens the menu when true', () => {
       wrapperShallow(<Search results={options} minCharacters={0} defaultOpen />)
