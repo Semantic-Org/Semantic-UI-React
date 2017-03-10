@@ -131,7 +131,7 @@ Once you change the flag, you need to refresh your browser to see the changes in
 | ✓ Rail          |                 |                 | ✓ Sidebar       |                    |
 | ✓ Reveal        |                 |                 |   Sticky        |                    |
 | ✓ Segment       |                 |                 | ✓ Tab           |                    |
-| ✓ Step          |                 |                 |   Transition    |                    |
+| ✓ Step          |                 |                 | ✓ Transition    |                    |
 
 ## Our Principles
 

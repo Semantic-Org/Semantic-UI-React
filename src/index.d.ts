@@ -49,6 +49,15 @@ export type SemanticCOLORS = 'red' | 'orange' | 'yellow' | 'olive' |'green' | 't
 export type SemanticSIZES = 'mini' | 'tiny' | 'small' | 'medium' | 'large' | 'big' | 'huge' | 'massive';
 
 // ======================================================
+// Transitions
+// ======================================================
+
+type SemanticENTIRETRANSITIONS = 'scale' | 'fade' | 'fade up' | 'fade down' | 'fade left' | 'fade right';
+type SemanticSTATICTRANSITIONS = 'jiggle' | 'flash';
+
+export type SemanticTRANSITIONS = SemanticENTIRETRANSITIONS | SemanticSTATICTRANSITIONS;
+
+// ======================================================
 // Widths
 // ======================================================
 

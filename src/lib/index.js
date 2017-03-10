@@ -1,4 +1,5 @@
 export { default as AutoControlledComponent } from './AutoControlledComponent'
+export { getChildMapping, mergeChildMappings } from './childMapping'
 export * as childrenUtils from './childrenUtils'
 
 export {
