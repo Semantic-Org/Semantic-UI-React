@@ -2,7 +2,7 @@ import cx from 'classnames'
 import _ from 'lodash'
 import React, { Component, PropTypes } from 'react'
 import DocumentTitle from 'react-document-title'
-import { Link } from 'react-router'
+import { Link } from 'react-router-dom'
 
 import ComponentExamples from './ComponentExamples'
 import ComponentProps from './ComponentProps'
