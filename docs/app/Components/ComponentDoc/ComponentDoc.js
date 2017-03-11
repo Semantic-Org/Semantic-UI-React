@@ -35,7 +35,7 @@ const getGithubEditUrl = (componentName) => {
 }
 
 const getSemanticUIDocsUrl = (_meta) => {
-  return `http://semantic-ui.com/${_meta.type}s/${_meta.parent || _meta.name}`.toLowerCase()
+  return `https://semantic-ui.com/${_meta.type}s/${_meta.parent || _meta.name}`.toLowerCase()
 }
 
 const showPropsStyle = {
