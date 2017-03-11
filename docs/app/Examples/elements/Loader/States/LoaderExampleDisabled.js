@@ -5,7 +5,7 @@ const LoaderExampleDisabled = () => (
   <Segment>
     <Loader disabled />
 
-    <Image src='http://semantic-ui.com/images/wireframe/short-paragraph.png' />
+    <Image src='/assets/images/wireframe/short-paragraph.png' />
   </Segment>
 )
 

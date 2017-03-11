@@ -4,7 +4,7 @@ import { Item } from 'semantic-ui-react'
 const ItemExampleRelaxed = () => (
   <Item.Group relaxed>
     <Item>
-      <Item.Image size='tiny' src='http://semantic-ui.com/images/wireframe/image.png' />
+      <Item.Image size='tiny' src='/assets/images/wireframe/image.png' />
 
       <Item.Content verticalAlign='middle'>
         <Item.Header as='a'>12 Years a Slave</Item.Header>
@@ -12,7 +12,7 @@ const ItemExampleRelaxed = () => (
     </Item>
 
     <Item>
-      <Item.Image size='tiny' src='http://semantic-ui.com/images/wireframe/image.png' />
+      <Item.Image size='tiny' src='/assets/images/wireframe/image.png' />
 
       <Item.Content verticalAlign='middle'>
         <Item.Header as='a'>My Neighbor Totoro</Item.Header>
@@ -20,7 +20,7 @@ const ItemExampleRelaxed = () => (
     </Item>
 
     <Item>
-      <Item.Image size='tiny' src='http://semantic-ui.com/images/wireframe/image.png' />
+      <Item.Image size='tiny' src='/assets/images/wireframe/image.png' />
 
       <Item.Content verticalAlign='middle'>
         <Item.Header as='a'>Watchmen</Item.Header>
