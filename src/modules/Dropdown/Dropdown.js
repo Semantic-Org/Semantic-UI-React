@@ -258,7 +258,7 @@ export default class Dropdown extends Component {
      * @param {number} index - The current index.
      * @param {object} defaultLabelProps - The default props for an active item Label.
      * @returns {*} Shorthand for a Label.
-     * */
+     */
     renderLabel: PropTypes.func,
 
     /** A dropdown can have its menu scroll. */
