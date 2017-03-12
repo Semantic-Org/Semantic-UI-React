@@ -34,7 +34,7 @@ interface AccordionProps {
    * Called when a panel title is clicked.
    *
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
-   * @param {number|array} index - The index of the clicked panel.
+   * @param {number} index - The index of the clicked panel.
    */
   onTitleClick?: (event: React.MouseEvent<HTMLDivElement>, index: number | number[]) => void;
 
