@@ -15,11 +15,11 @@ const RedirectToIntro = () => <Redirect to='introduction' />
 const Router = () => (
   <BrowserRouter>
     <Layout>
-      <Route path='/' render={RedirectToIntro} />
-      <Route path='/introduction' component={Introduction} />
-      <Route path='/usage' component={Usage} />
-      <Route path='/:type/:name' component={Root} />
-      <Route path='/*' component={PageNotFound} />
+      <Route exact path='/' render={RedirectToIntro} />
+      <Route exact path='/introduction' component={Introduction} />
+      <Route exact path='/usage' component={Usage} />
+      <Route exact path='/:type/:name' component={Root} />
+      <Route exact path='/*' component={PageNotFound} />
     </Layout>
   </BrowserRouter>
 )
