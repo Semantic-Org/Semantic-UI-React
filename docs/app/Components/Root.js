@@ -3,7 +3,6 @@ import _ from 'lodash/fp'
 import React, { Component, PropTypes } from 'react'
 
 import ComponentDoc from '../Components/ComponentDoc/ComponentDoc'
-import PageNotFound from '../Views/PageNotFound'
 import { META } from 'src/lib'
 import * as semanticUIReact from 'src'
 
