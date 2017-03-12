@@ -58,9 +58,7 @@ export default class ComponentProps extends Component {
     const defaultValue = _.get(item, 'defaultValue.value')
     if (_.isNil(defaultValue)) return null
 
-    const defaultIsString = defaultValue[0] === "'"
-
-    return <code>{defaultIsString ? `=${defaultValue}` : `={${defaultValue}}`}</code>
+    return <code>{defaultValue}</code>
   }
 
   renderFunctionSignature = (item) => {
