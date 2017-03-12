@@ -47,7 +47,7 @@ interface FormProps {
   widths?: 'equal';
 }
 
-interface FormComponent extends React.ComponentClass<FormProps> {
+interface FormComponent extends React.StatelessComponent<FormProps> {
   Field: typeof FormField;
   Button: typeof FormButton;
   Checkbox: typeof FormCheckbox;

@@ -5,7 +5,7 @@ const FeedExampleBasic = () => (
   <Feed>
     <Feed.Event>
       <Feed.Label>
-        <img src='http://semantic-ui.com/images/avatar/small/elliot.jpg' />
+        <img src='/assets/images/avatar/small/elliot.jpg' />
       </Feed.Label>
       <Feed.Content>
         <Feed.Summary>
@@ -22,15 +22,15 @@ const FeedExampleBasic = () => (
     </Feed.Event>
 
     <Feed.Event>
-      <Feed.Label image='http://semantic-ui.com/images/avatar/small/helen.jpg' />
+      <Feed.Label image='/assets/images/avatar/small/helen.jpg' />
       <Feed.Content>
         <Feed.Summary>
           <a>Helen Troy</a> added <a>2 new illustrations</a>
           <Feed.Date>4 days ago</Feed.Date>
         </Feed.Summary>
         <Feed.Extra images>
-          <a><img src='http://semantic-ui.com/images/wireframe/image.png' /></a>
-          <a><img src='http://semantic-ui.com/images/wireframe/image.png' /></a>
+          <a><img src='/assets/images/wireframe/image.png' /></a>
+          <a><img src='/assets/images/wireframe/image.png' /></a>
         </Feed.Extra>
         <Feed.Meta>
           <Feed.Like>
@@ -42,7 +42,7 @@ const FeedExampleBasic = () => (
     </Feed.Event>
 
     <Feed.Event>
-      <Feed.Label image='http://semantic-ui.com/images/avatar/small/jenny.jpg' />
+      <Feed.Label image='/assets/images/avatar/small/jenny.jpg' />
       <Feed.Content>
         <Feed.Summary date='2 Days Ago' user='Jenny Hess' content='add you as a friend' />
         <Feed.Meta>
@@ -55,7 +55,7 @@ const FeedExampleBasic = () => (
     </Feed.Event>
 
     <Feed.Event>
-      <Feed.Label image='http://semantic-ui.com/images/avatar/small/joe.jpg' />
+      <Feed.Label image='/assets/images/avatar/small/joe.jpg' />
       <Feed.Content>
         <Feed.Summary>
           <a>Joe Henderson</a> posted on his page
@@ -76,15 +76,15 @@ const FeedExampleBasic = () => (
     </Feed.Event>
 
     <Feed.Event>
-      <Feed.Label image='http://semantic-ui.com/images/avatar/small/justen.jpg' />
+      <Feed.Label image='/assets/images/avatar/small/justen.jpg' />
       <Feed.Content>
         <Feed.Summary>
           <a>Justen Kitsune</a> added <a>2 new photos</a> of you
           <Feed.Date>4 days ago</Feed.Date>
         </Feed.Summary>
         <Feed.Extra images>
-          <a><img src='http://semantic-ui.com/images/wireframe/image.png' /></a>
-          <a><img src='http://semantic-ui.com/images/wireframe/image.png' /></a>
+          <a><img src='/assets/images/wireframe/image.png' /></a>
+          <a><img src='/assets/images/wireframe/image.png' /></a>
         </Feed.Extra>
         <Feed.Meta>
           <Feed.Like>

@@ -4,14 +4,14 @@ import { Item } from 'semantic-ui-react'
 const ItemExampleImages = () => (
   <Item.Group divided>
     <Item>
-      <Item.Image src='http://semantic-ui.com/images/wireframe/image.png' />
+      <Item.Image src='/assets/images/wireframe/image.png' />
     </Item>
 
     <Item>
-      <Item.Image src='http://semantic-ui.com/images/wireframe/image.png' />
+      <Item.Image src='/assets/images/wireframe/image.png' />
     </Item>
 
-    <Item image='http://semantic-ui.com/images/wireframe/image.png' />
+    <Item image='/assets/images/wireframe/image.png' />
   </Item.Group>
 )
 

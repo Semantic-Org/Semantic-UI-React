@@ -4,7 +4,7 @@ import { Comment, Icon } from 'semantic-ui-react'
 const CommentExampleMetadata = () => (
   <Comment.Group>
     <Comment>
-      <Comment.Avatar as='a' src='http://semantic-ui.com/images/avatar/small/stevie.jpg' />
+      <Comment.Avatar as='a' src='/assets/images/avatar/small/stevie.jpg' />
       <Comment.Content>
         <Comment.Author>Stevie Feliciano</Comment.Author>
         <Comment.Metadata>

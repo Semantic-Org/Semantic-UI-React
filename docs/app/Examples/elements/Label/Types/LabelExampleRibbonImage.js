@@ -7,7 +7,7 @@ const LabelExampleRibbonImage = () => (
       <Image
         fluid
         label={{ as: 'a', color: 'black', content: 'Hotel', icon: 'hotel', ribbon: true }}
-        src='http://semantic-ui.com/images/wireframe/image.png'
+        src='/assets/images/wireframe/image.png'
       />
     </Grid.Column>
 
@@ -15,7 +15,7 @@ const LabelExampleRibbonImage = () => (
       <Image
         fluid
         label={{ as: 'a', color: 'blue', content: 'Food', icon: 'spoon', ribbon: true }}
-        src='http://semantic-ui.com/images/wireframe/image.png'
+        src='/assets/images/wireframe/image.png'
       />
     </Grid.Column>
   </Grid>

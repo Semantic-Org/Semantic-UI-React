@@ -172,8 +172,11 @@ Table.propTypes = {
   ]),
 
   /**
-   * A function that takes (data, index) and returns shorthand for a TableRow
-   * to be placed within Table.Body.
+   * Mapped over `tableData` and should return shorthand for each Table.Row to be placed within Table.Body.
+   *
+   * @param {*} data - An element in the `tableData` array.
+   * @param {number} index - The index of the current element in `tableData`.
+   * @returns {*} Shorthand for a Table.Row.
    */
   renderBodyRow: customPropTypes.every([
     customPropTypes.disallow(['children']),

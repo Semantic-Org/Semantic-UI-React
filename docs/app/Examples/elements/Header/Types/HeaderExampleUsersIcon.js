@@ -9,7 +9,7 @@ const HeaderExampleUsersIcon = () => (
         Friends
       </Header.Content>
     </Header>
-    <Image centered size='large' src='http://semantic-ui.com/images/wireframe/centered-paragraph.png' />
+    <Image centered size='large' src='/assets/images/wireframe/centered-paragraph.png' />
   </div>
 )
 

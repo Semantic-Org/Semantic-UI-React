@@ -89,14 +89,18 @@ export default class Search extends Component {
     // ------------------------------------
 
     /**
-     * A function that returns the category contents.
-     * Receives all SearchCategory props.
+     * Renders the SearchCategory contents.
+     *
+     * @param {object} props - The SearchCategory props object.
+     * @returns {*} - Renderable SearchCategory contents.
      */
     categoryRenderer: PropTypes.func,
 
     /**
-     * A function that returns the result contents.
-     * Receives all SearchResult props.
+     * Renders the SearchResult contents.
+     *
+     * @param {object} props - The SearchResult props object.
+     * @returns {*} - Renderable SearchResult contents.
      */
     resultRenderer: PropTypes.func,
 
@@ -423,9 +427,9 @@ export default class Search extends Component {
     const { category, results } = this.props
 
     return !category ? results : _.reduce(results,
-      (memo, categoryData) => memo.concat(categoryData.results),
-      []
-    )
+        (memo, categoryData) => memo.concat(categoryData.results),
+        []
+      )
   }
 
   getSelectedResult = (index = this.state.selectedIndex) => {

@@ -177,7 +177,7 @@ export default class Checkbox extends Component {
       useKeyOnly(disabled, 'disabled'),
       useKeyOnly(indeterminate, 'indeterminate'),
       // auto apply fitted class to compact white space when there is no label
-      // http://semantic-ui.com/modules/checkbox.html#fitted
+      // https://semantic-ui.com/modules/checkbox.html#fitted
       useKeyOnly(!label, 'fitted'),
       useKeyOnly(radio, 'radio'),
       useKeyOnly(readOnly, 'read-only'),

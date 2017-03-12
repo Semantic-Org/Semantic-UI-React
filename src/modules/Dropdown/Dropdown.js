@@ -250,7 +250,15 @@ export default class Dropdown extends Component {
       PropTypes.oneOf(['left', 'right', 'top', 'top left', 'top right', 'bottom', 'bottom left', 'bottom right']),
     ]),
 
-    /** A function that takes (data, index, defaultLabelProps) and returns shorthand for Label. */
+    /**
+     * Mapped over the active items and returns shorthand for the active item Labels.
+     * Only applies to `multiple` Dropdowns.
+     *
+     * @param {object} item - A currently active dropdown item.
+     * @param {number} index - The current index.
+     * @param {object} defaultLabelProps - The default props for an active item Label.
+     * @returns {*} Shorthand for a Label.
+     */
     renderLabel: PropTypes.func,
 
     /** A dropdown can have its menu scroll. */

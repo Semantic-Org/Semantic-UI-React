@@ -5,7 +5,7 @@ const LoaderExampleInverted = () => (
   <Segment inverted>
     <Loader active inverted />
 
-    <Image src='http://semantic-ui.com/images/wireframe/short-paragraph.png' />
+    <Image src='/assets/images/wireframe/short-paragraph.png' />
   </Segment>
 )
 

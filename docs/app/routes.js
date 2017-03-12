@@ -1,21 +1,27 @@
 import React from 'react'
-import { Route, IndexRedirect } from 'react-router'
-
+import {
+  BrowserRouter,
+  Route,
+  Redirect,
+} from 'react-router-dom'
 import Root from './Components/Root'
 import Layout from './Components/Layout'
 import Introduction from './Views/Introduction'
 import Usage from './Views/Usage'
 import PageNotFound from './Views/PageNotFound'
 
-const routes = (
-  <Route path='/' component={Layout}>
-    <IndexRedirect to='introduction' />
+const RedirectToIntro = () => <Redirect to='introduction' />
 
-    <Route path='introduction' component={Introduction} />
-    <Route path='usage' component={Usage} />
-    <Route path=':type/:name' component={Root} />
-    <Route path='*' component={PageNotFound} />
-  </Route>
+const Router = () => (
+  <BrowserRouter>
+    <Layout>
+      <Route exact path='/' render={RedirectToIntro} />
+      <Route exact path='/introduction' component={Introduction} />
+      <Route exact path='/usage' component={Usage} />
+      <Route exact path='/:type/:name' component={Root} />
+      <Route exact path='/*' component={PageNotFound} />
+    </Layout>
+  </BrowserRouter>
 )
 
-export default routes
+export default Router

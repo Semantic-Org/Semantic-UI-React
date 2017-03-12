@@ -9,6 +9,8 @@ const descriptionExtraStyle = {
   color: '#777',
 }
 
+const getTagType = tag => tag.type.type === 'AllLiteral' ? 'any' : tag.type.name
+
 /**
  * Displays a table of a Component's PropTypes.
  */
@@ -56,32 +58,36 @@ export default class ComponentProps extends Component {
     const defaultValue = _.get(item, 'defaultValue.value')
     if (_.isNil(defaultValue)) return null
 
-    const defaultIsString = defaultValue[0] === "'"
-
-    return <code>{defaultIsString ? `=${defaultValue}` : `={${defaultValue}}`}</code>
+    return <code>{defaultValue}</code>
   }
 
   renderFunctionSignature = (item) => {
-    if (item.type !== '{func}') return
-
     const params = _.filter(item.tags, { title: 'param' })
+    const returns = _.find(item.tags, { title: 'returns' })
+
+    // this doesn't look like a function propType doc block
+    // don't try to render a signature
+    if (_.isEmpty(params) && !returns) return
+
     const paramSignature = params
-      .map(param => `${param.name}: ${param.type.name}`)
+      .map(param => `${param.name}: ${getTagType(param)}`)
       .join(', ')
 
-    const paramDescriptions = params.map(param => (
-      <div style={{ color: '#888' }} key={param.name}>
-        <strong>{param.name}</strong> - {param.description}
+    const tagDescriptions = _.compact([...params, returns]).map(tag => (
+      <div style={{ color: '#888' }} key={tag.name}>
+        <strong>{tag.name || tag.title}</strong> - {tag.description}
       </div>
     ))
 
-    const signature = <pre><code>{item.name}({paramSignature})</code></pre>
+    const signature = (
+      <pre><code>{item.name}({paramSignature}){returns ? `: ${getTagType(returns)}` : ''}</code></pre>
+    )
 
     return (
       <div>
         <strong>Signature:</strong>
         {signature}
-        {paramDescriptions}
+        {tagDescriptions}
       </div>
     )
   }
