@@ -2,8 +2,8 @@ import cx from 'classnames'
 import _ from 'lodash'
 import React from 'react'
 
-import Input, { htmlInputPropNames } from 'src/elements/Input/Input'
-import { SUI } from 'src/lib'
+import Input from 'src/elements/Input/Input'
+import { htmlInputPropNames, SUI } from 'src/lib'
 import * as common from 'test/specs/commonTests'
 import { sandbox } from 'test/utils'
 

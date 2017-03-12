@@ -7,11 +7,14 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
+  htmlInputProps,
   isBrowser,
   keyboardKey,
   makeDebugger,
   META,
   objectDiff,
+  omitHTMLInputProps,
+  pickHTMLInputProps,
   SUI,
   useKeyOnly,
   useValueAndKey,
@@ -50,9 +53,6 @@ export default class Search extends Component {
     /** Minimum characters to query for results */
     minCharacters: PropTypes.number,
 
-    /** Name of the search input. */
-    name: PropTypes.string,
-
     /** Additional text for "No Results" message with less emphasis. */
     noResultsDescription: PropTypes.string,
 
@@ -61,9 +61,6 @@ export default class Search extends Component {
 
     /** Controls whether or not the results menu is displayed. */
     open: PropTypes.bool,
-
-    /** Placeholder of the search input. */
-    placeholder: PropTypes.string,
 
     /**
      * One of:
@@ -518,18 +515,18 @@ export default class Search extends Component {
   // ----------------------------------------
 
   renderSearchInput = () => {
-    const { icon, input, name, placeholder } = this.props
+    const { icon, input } = this.props
     const { value } = this.state
+    const rest = pickHTMLInputProps(this.props, htmlInputProps)
 
     return Input.create(input, {
+      ...rest,
       icon,
       input: { className: 'prompt', tabIndex: '0', autoComplete: 'off' },
-      name,
       onBlur: this.handleBlur,
       onChange: this.handleSearchChange,
       onClick: this.handleInputClick,
       onFocus: this.handleFocus,
-      placeholder,
       value,
     })
   }
@@ -649,7 +646,8 @@ export default class Search extends Component {
       'search',
       className,
     )
-    const rest = getUnhandledProps(Search, this.props)
+    const unhandled = getUnhandledProps(Search, this.props)
+    const rest = omitHTMLInputProps(unhandled, htmlInputProps)
     const ElementType = getElementType(Search, this.props)
 
     return (

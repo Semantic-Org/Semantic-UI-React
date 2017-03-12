@@ -20,6 +20,15 @@ export {
 export * from './factories'
 export { default as getUnhandledProps } from './getUnhandledProps'
 export { default as getElementType } from './getElementType'
+
+export {
+  htmlInputEvents,
+  htmlInputProps,
+  htmlInputPropNames,
+  omitHTMLInputProps,
+  pickHTMLInputProps,
+} from './htmlInputPropsUtils'
+
 export { default as isBrowser } from './isBrowser'
 export { default as leven } from './leven'
 export * as META from './META'
