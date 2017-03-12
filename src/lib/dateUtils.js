@@ -39,6 +39,24 @@ export function lastMonth(date) {
   return _date
 }
 
+/**
+ * Return yesterday from date
+ */
+export function yesterday(date) {
+  const _date = new Date(date)
+  _date.setDate(date.getDate() - 1)
+  return _date
+}
+
+/**
+ * Return tomorrow from date
+ */
+export function tomorrow(date) {
+  const _date = new Date(date)
+  _date.setDate(date.getDate() + 1)
+  return _date
+}
+
 export function defaultDateFormatter(date) {
   return !!date ? `${date.getFullYear()}-${zeroPad(date.getMonth() + 1)}-${zeroPad(date.getDate())}` : ''
 }

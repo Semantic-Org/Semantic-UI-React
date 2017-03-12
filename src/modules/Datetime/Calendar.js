@@ -131,6 +131,7 @@ export default class Calendar extends Component {
   }
 
   static defaultProps = {
+    disabledDates: [],
     firstDayOfWeek: 1,
     date: true,
     time: true,
@@ -324,7 +325,7 @@ export default class Calendar extends Component {
    * Returns the calendar body content
    */
   getBodyContent() {
-    const { content, firstDayOfWeek } = this.props
+    const { content, firstDayOfWeek, disabledDates } = this.props
     const { mode, value, selectionStart, selectionEnd } = this.state
     switch (mode) {
       case 'DAY':
@@ -334,7 +335,9 @@ export default class Calendar extends Component {
                   onClick={this.setDay}
                   date={value}
                   selectionStart={selectionStart}
-                  selectionEnd={selectionEnd} />)
+                  selectionEnd={selectionEnd}
+                  disabledDates={disabledDates}
+                />)
 
       case 'MONTH':
         return <Months content={content} onClick={this.setMonth}/>

@@ -51,14 +51,22 @@ export default class Month extends Component {
      * Dates until or at selectionEnd are marked as selected
      * @type {[type]}
      */
-    selectionEnd: customPropTypes.DateValue
-
+    selectionEnd: customPropTypes.DateValue,
+    /**
+     * An array of dates that should be marked disabled in the calendar
+     * @type {Array<Date>}
+     */
+    disabledDates: PropTypes.arrayOf(customPropTypes.DateValue)
   }
 
   static _meta = {
     name: 'Month',
     parent: 'Datetime',
     type: META.TYPES.MODULE,
+  }
+
+  static defaultProps = {
+    disabledDates: []
   }
 
   constructor(props) {
@@ -101,18 +109,37 @@ export default class Month extends Component {
   }
 
   /**
+   * Convert a single Date object into a string representation
+   * of its date value in a normalised consistent way.
+   */
+  toDateSignature(date) {
+    return `${date.getFullYear()}${date.getMonth()}${date.getDate()}`
+  }
+
+  /**
+   * Convert a list of dates to a list of strings describing the
+   * date value of each Date object.
+   */
+  toDateSignatures(dates) {
+    return dates.map(date => this.toDateSignature(date))
+  }
+
+  /**
    * Return a 42 element array (number of cells in the calendar month),
    * populated with DayCell instances of either days of the current month,
    * or those of the boundry months around it.
    */
   getDays() {
-    const { date, onClick } = this.props
+    const { date, onClick, disabledDates } = this.props
     const { selectionStart, selectionEnd } = this.state
     const firstDay = utils.getFirstOfMonth(date)
     const firstWeekDay = firstDay.getDay()
     const daysInMonth = utils.daysInMonth(date)
     const lastMonth = utils.lastMonth(date)
     const prevDaysInMonth = utils.daysInMonth(lastMonth)
+    // get a list of disabled date signatures
+    const hasDisabledDates = disabledDates.length > 0
+    const disabledDateSig = this.toDateSignatures(disabledDates)
     // 42 days in a calendar block will be enough to wrap a full month
     const monthCells = [...Array(42).keys()]
     // The real first day in relation to the sequene of calendar days (array index)
@@ -153,6 +180,11 @@ export default class Month extends Component {
             selectionEnd: dayParams.date
           })
         }
+      }
+      if (hasDisabledDates &&
+          !dayParams.disabled &&
+          disabledDateSig.indexOf(this.toDateSignature(dayParams.date)) > -1) {
+        dayParams.disabled = true
       }
       return (<DayCell {...dayParams} />)
     })

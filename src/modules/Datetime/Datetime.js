@@ -238,7 +238,7 @@ export default class Datetime extends Component {
      * An array of dates that should be marked disabled in the calendar
      * @type {Array<Date>}
      */
-    disabledDates: PropTypes.arrayOf(customPropTypes.DateValue),
+    disabledDates: PropTypes.arrayOf(customPropTypes.DateValue)
   }
 
   static autoControlledProps = [
@@ -271,6 +271,7 @@ export default class Datetime extends Component {
       am: 'AM',
       pm: 'PM',
     },
+    disabledDates: [],
     dateFormatter: defaultDateFormatter,
     timeFormatter: defaultTimeFormatter,
     date: true,
@@ -345,6 +346,7 @@ export default class Datetime extends Component {
     const {
       disabled,
       error,
+      content,
       firstDayOfWeek,
       icon,
       name,
@@ -353,7 +355,8 @@ export default class Datetime extends Component {
       date,
       timeFormatter,
       minDate,
-      maxDate
+      maxDate,
+      disabledDates
     } = this.props
     const { open, value } = this.state
 
@@ -387,13 +390,14 @@ export default class Datetime extends Component {
         style={popupStyle}
       >
         <Calendar
-          content={this.props.content}
+          content={content}
           onDateSelect={this.handleDateSelection}
           timeFormatter={timeFormatter}
           firstDayOfWeek={firstDayOfWeek}
           time={time}
           date={date}
           minDate={minDate}
+          disabledDates={disabledDates}
         />
       </Popup>
     )
