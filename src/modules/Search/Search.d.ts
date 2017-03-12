@@ -59,14 +59,18 @@ interface SearchProps {
   // ------------------------------------
 
   /**
-   * A function that returns the category contents.
-   * Receives all SearchCategory props.
+   * Renders the SearchCategory contents.
+   *
+   * @param {object} props - The SearchCategory props object.
+   * @returns {*} - Renderable SearchCategory contents.
    */
   categoryRenderer?: (props: SearchCategoryProps) => React.ReactElement<any>;
 
   /**
-   * A function that returns the result contents.
-   * Receives all SearchResult props.
+   * Renders the SearchResult contents.
+   *
+   * @param {object} props - The SearchResult props object.
+   * @returns {*} - Renderable SearchResult contents.
    */
   resultRenderer?: (props: SearchResultProps) => Array<React.ReactElement<any>>;
 
