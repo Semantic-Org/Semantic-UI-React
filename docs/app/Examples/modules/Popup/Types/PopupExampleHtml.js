@@ -3,7 +3,7 @@ import { Popup, Card, Rating, Image } from 'semantic-ui-react'
 
 const IndividualCard = (
   <Card>
-    <Image src='http://semantic-ui.com/images/movies/totoro-horizontal.jpg' />
+    <Image src='/assets/images/movies/totoro-horizontal.jpg' />
     <Card.Content>
       <Card.Header>
         My Neighbor Totoro

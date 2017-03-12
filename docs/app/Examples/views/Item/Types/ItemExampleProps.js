@@ -4,7 +4,7 @@ import { Item } from 'semantic-ui-react'
 const items = [
   {
     childKey: 0,
-    image: 'http://semantic-ui.com/images/wireframe/image.png',
+    image: '/assets/images/wireframe/image.png',
     header: 'Header',
     description: 'Description',
     meta: 'Metadata',
@@ -12,7 +12,7 @@ const items = [
   },
   {
     childKey: 1,
-    image: 'http://semantic-ui.com/images/wireframe/image.png',
+    image: '/assets/images/wireframe/image.png',
     header: 'Header',
     description: 'Description',
     meta: 'Metadata',

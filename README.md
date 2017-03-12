@@ -51,7 +51,6 @@ These great products are built on Semantic-UI-React. Add yours [here][22].
 - https://edabit.com
 - https://blackship.com
 - http://www.brewhousesolutions.com
-- https://www.lifebot.fr
 
 ## Voice Your Opinion :speech_balloon:
 
@@ -157,7 +156,7 @@ Big thanks to our [contributors][20], especially:
 [2]: http://react.semantic-ui.com/
 [3]: https://facebook.github.io/react/
 [4]: https://github.com/Semantic-Org/Semantic-UI-React/labels/help%20wanted
-[5]: http://semantic-ui.com/
+[5]: https://semantic-ui.com/
 [6]: https://github.com/Semantic-Org/Semantic-UI-React/milestone/1
 [7]: https://github.com/webpack/webpack-dev-server/
 [8]: https://github.com/Semantic-Org/Semantic-UI-React/issues/243

@@ -1,12 +1,12 @@
 import React from 'react'
 import { Image as ImageComponent, Item } from 'semantic-ui-react'
 
-const paragraph = <ImageComponent src='http://semantic-ui.com/images/wireframe/short-paragraph.png' />
+const paragraph = <ImageComponent src='/assets/images/wireframe/short-paragraph.png' />
 
 const ItemExampleLink = () => (
   <Item.Group link>
     <Item>
-      <Item.Image size='tiny' src='http://semantic-ui.com/images/avatar/large/stevie.jpg' />
+      <Item.Image size='tiny' src='/assets/images/avatar/large/stevie.jpg' />
 
       <Item.Content>
         <Item.Header>Stevie Feliciano</Item.Header>
@@ -15,7 +15,7 @@ const ItemExampleLink = () => (
     </Item>
 
     <Item>
-      <Item.Image size='tiny' src='http://semantic-ui.com/images/avatar/large/veronika.jpg' />
+      <Item.Image size='tiny' src='/assets/images/avatar/large/veronika.jpg' />
 
       <Item.Content>
         <Item.Header>Veronika Ossi</Item.Header>
@@ -24,7 +24,7 @@ const ItemExampleLink = () => (
     </Item>
 
     <Item>
-      <Item.Image size='tiny' src='http://semantic-ui.com/images/avatar/large/jenny.jpg' />
+      <Item.Image size='tiny' src='/assets/images/avatar/large/jenny.jpg' />
 
       <Item.Content>
         <Item.Header>Jenny Hess</Item.Header>

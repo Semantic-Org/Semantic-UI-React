@@ -1,6 +1,5 @@
 {
   "globals": {
-    "__BASE__": false,
     "__DEV__": false,
     "__DEBUG__": false,
     "__STAGING__": false,

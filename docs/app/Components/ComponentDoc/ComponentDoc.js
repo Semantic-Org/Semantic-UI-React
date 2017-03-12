@@ -2,7 +2,7 @@ import cx from 'classnames'
 import _ from 'lodash'
 import React, { Component, PropTypes } from 'react'
 import DocumentTitle from 'react-document-title'
-import { Link } from 'react-router'
+import { Link } from 'react-router-dom'
 
 import ComponentExamples from './ComponentExamples'
 import ComponentProps from './ComponentProps'
@@ -35,7 +35,7 @@ const getGithubEditUrl = (componentName) => {
 }
 
 const getSemanticUIDocsUrl = (_meta) => {
-  return `http://semantic-ui.com/${_meta.type}s/${_meta.parent || _meta.name}`.toLowerCase()
+  return `https://semantic-ui.com/${_meta.type}s/${_meta.parent || _meta.name}`.toLowerCase()
 }
 
 const showPropsStyle = {
