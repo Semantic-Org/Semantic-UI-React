@@ -7,12 +7,12 @@ const VisibilityExample = () => (
     <ComponentExample
       title='Callback frequency'
       description='You can change the callback frequency with `once` and `continuous` settings'
-      examplePath='behaviours/Visibility/Settings/CallbackFrequencyExample'
+      examplePath='behaviors/Visibility/Settings/CallbackFrequencyExample'
     />
     <ComponentExample
       title='Grouped callbacks'
       description='You can specify a collection of callbacks that occur after different percentages or pixels of an element are passed'
-      examplePath='behaviours/Visibility/Settings/GroupedCallbacksExample'
+      examplePath='behaviors/Visibility/Settings/GroupedCallbacksExample'
     />
   </ExampleSection>
 )

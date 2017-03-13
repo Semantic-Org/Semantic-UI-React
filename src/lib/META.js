@@ -2,7 +2,7 @@ import _ from 'lodash/fp'
 
 export const TYPES = {
   ADDON: 'addon',
-  BEHAVIOUR: 'behaviour',
+  BEHAVIOR: 'behavior',
   COLLECTION: 'collection',
   ELEMENT: 'element',
   VIEW: 'view',

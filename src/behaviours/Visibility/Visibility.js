@@ -9,7 +9,7 @@ import {
 
 const _meta = {
   name: 'Visibility',
-  type: META.TYPES.BEHAVIOUR,
+  type: META.TYPES.BEHAVIOR,
 }
 
 class Visibility extends Component {

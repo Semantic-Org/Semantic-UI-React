@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { mount } from 'enzyme'
 import { sandbox } from 'test/utils'
-import Visibility from 'src/behaviours/Visibility'
+import Visibility from 'src/behaviors/Visibility'
 import * as common from 'test/specs/commonTests'
 
 const mockScroll = (top, bottom) => {
