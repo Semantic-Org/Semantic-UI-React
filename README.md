@@ -51,6 +51,7 @@ These great products are built on Semantic-UI-React. Add yours [here][22].
 - https://edabit.com
 - https://blackship.com
 - http://www.brewhousesolutions.com
+- https://www.lifebot.fr
 
 ## Voice Your Opinion :speech_balloon:
 
