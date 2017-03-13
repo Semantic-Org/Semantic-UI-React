@@ -15,6 +15,9 @@ const debug = makeDebugger('portal')
 /**
  * A component that allows you to render children outside their parent.
  * @see Modal
+ * @see Popup
+ * @see Dimmer
+ * @see Confirm
  */
 class Portal extends Component {
   static propTypes = {
