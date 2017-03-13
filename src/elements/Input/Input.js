@@ -9,8 +9,7 @@ import {
   getElementType,
   getUnhandledProps,
   META,
-  omitHTMLInputProps,
-  pickHTMLInputProps,
+  partitionHTMLInputProps,
   SUI,
   useKeyOnly,
   useValueAndKey,
@@ -163,8 +162,7 @@ class Input extends Component {
       className,
     )
     const unhandled = getUnhandledProps(Input, this.props)
-    const rest = omitHTMLInputProps(unhandled)
-    const htmlInputProps = pickHTMLInputProps(this.props)
+    const [htmlInputProps, rest] = partitionHTMLInputProps(unhandled)
     const ElementType = getElementType(Input, this.props)
 
     if (onChange) htmlInputProps.onChange = this.handleChange

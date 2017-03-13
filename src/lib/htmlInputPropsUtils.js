@@ -1,6 +1,6 @@
 import _ from 'lodash'
 
-export const htmlInputProps = [
+export const htmlInputAttrs = [
   // REACT
   'selected', 'defaultValue', 'defaultChecked',
 
@@ -36,8 +36,26 @@ export const htmlInputEvents = [
   'onTouchCancel', 'onTouchEnd', 'onTouchMove', 'onTouchStart',
 ]
 
-export const htmlInputPropNames = [...htmlInputProps, ...htmlInputEvents]
+export const htmlInputProps = [...htmlInputAttrs, ...htmlInputEvents]
 
-export const omitHTMLInputProps = (props, htmlProps = htmlInputPropNames) => _.omit(props, htmlProps)
+/**
+ * Returns an array of objects consisting of: props of html input element and rest.
+ * @param {object} props A ReactElement props object
+ * @param {array} [htmlProps] An array of html input props
+ * @returns {[{}, {}]} An array of objects
+ */
+export const partitionHTMLInputProps = (props, htmlProps = htmlInputProps) => {
+  const inputProps = {}
+  const rest = {}
 
-export const pickHTMLInputProps = (props, htmlProps = htmlInputPropNames) => _.pick(props, htmlProps)
+  _.forEach(props, (val, prop) => {
+    if (htmlProps.indexOf(prop) === -1) {
+      rest[prop] = val
+      return
+    }
+
+    inputProps[prop] = val
+  })
+
+  return [inputProps, rest]
+}

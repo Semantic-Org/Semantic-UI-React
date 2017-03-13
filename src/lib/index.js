@@ -23,10 +23,9 @@ export { default as getElementType } from './getElementType'
 
 export {
   htmlInputEvents,
+  htmlInputAttrs,
   htmlInputProps,
-  htmlInputPropNames,
-  omitHTMLInputProps,
-  pickHTMLInputProps,
+  partitionHTMLInputProps,
 } from './htmlInputPropsUtils'
 
 export { default as isBrowser } from './isBrowser'
