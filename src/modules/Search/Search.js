@@ -7,11 +7,13 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
+  htmlInputAttrs,
   isBrowser,
   keyboardKey,
   makeDebugger,
   META,
   objectDiff,
+  partitionHTMLInputProps,
   SUI,
   useKeyOnly,
   useValueAndKey,
@@ -58,9 +60,6 @@ export default class Search extends Component {
 
     /** Controls whether or not the results menu is displayed. */
     open: PropTypes.bool,
-
-    /** Placeholder of the search input. */
-    placeholder: PropTypes.string,
 
     /**
      * One of:
@@ -514,19 +513,19 @@ export default class Search extends Component {
   // Render
   // ----------------------------------------
 
-  renderSearchInput = () => {
-    const { icon, input, placeholder } = this.props
+  renderSearchInput = rest => {
+    const { icon, input } = this.props
     const { value } = this.state
 
     return Input.create(input, {
-      value,
-      placeholder,
+      ...rest,
+      icon,
+      input: { className: 'prompt', tabIndex: '0', autoComplete: 'off' },
       onBlur: this.handleBlur,
       onChange: this.handleSearchChange,
-      onFocus: this.handleFocus,
       onClick: this.handleInputClick,
-      input: { className: 'prompt', tabIndex: '0', autoComplete: 'off' },
-      icon,
+      onFocus: this.handleFocus,
+      value,
     })
   }
 
@@ -645,8 +644,9 @@ export default class Search extends Component {
       'search',
       className,
     )
-    const rest = getUnhandledProps(Search, this.props)
+    const unhandled = getUnhandledProps(Search, this.props)
     const ElementType = getElementType(Search, this.props)
+    const [htmlInputProps, rest] = partitionHTMLInputProps(unhandled, htmlInputAttrs)
 
     return (
       <ElementType
@@ -656,7 +656,7 @@ export default class Search extends Component {
         onFocus={this.handleFocus}
         onMouseDown={this.handleMouseDown}
       >
-        {this.renderSearchInput()}
+        {this.renderSearchInput(htmlInputProps)}
         {this.renderResultsMenu()}
       </ElementType>
     )

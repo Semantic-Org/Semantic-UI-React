@@ -35,9 +35,6 @@ interface SearchProps {
   /** Controls whether or not the results menu is displayed. */
   open?: boolean;
 
-  /** Placeholder of the search input. */
-  placeholder?: string;
-
   /**
    * One of:
    * - array of Search.Result props e.g. `{ title: '', description: '' }` or
