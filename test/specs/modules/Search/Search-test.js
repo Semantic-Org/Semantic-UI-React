@@ -2,7 +2,7 @@ import _ from 'lodash'
 import faker from 'faker'
 import React from 'react'
 
-import { htmlInputProps } from 'src/lib'
+import { htmlInputAttrs } from 'src/lib'
 import Search from 'src/modules/Search'
 import SearchCategory from 'src/modules/Search/SearchCategory'
 import SearchResult from 'src/modules/Search/SearchResult'
@@ -731,7 +731,10 @@ describe('Search', () => {
   })
 
   describe('input props', () => {
-    htmlInputProps.forEach(propName => {
+    // Search handles some of html props
+    const props = _.without(htmlInputAttrs, 'defaultValue')
+
+    props.forEach(propName => {
       it(`passes "${propName}" to the <input>`, () => {
         wrapperMount(<Search {...{ [propName]: 'foo' }} />)
           .find('input')

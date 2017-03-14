@@ -162,8 +162,10 @@ class Input extends Component {
       className,
     )
     const unhandled = getUnhandledProps(Input, this.props)
-    const [htmlInputProps, rest] = partitionHTMLInputProps(unhandled)
     const ElementType = getElementType(Input, this.props)
+
+    // Heads up! We should pass `type` prop manually because `Input` component handles it
+    const [htmlInputProps, rest] = partitionHTMLInputProps({ ...unhandled, type })
 
     if (onChange) htmlInputProps.onChange = this.handleChange
 

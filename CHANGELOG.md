@@ -1,11 +1,61 @@
 # Change Log
 
+## [v0.67.1](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.67.1) (2017-03-13)
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.67.0...v0.67.1)
+
+**Implemented enhancements:**
+
+- \<Advertisement /\> Component [\#185](https://github.com/Semantic-Org/Semantic-UI-React/issues/185)
+- feat\(Table\) add missing Table alignment props [\#1411](https://github.com/Semantic-Org/Semantic-UI-React/pull/1411) ([ctlusto](https://github.com/ctlusto))
+- style\(typings\): Update structure [\#1395](https://github.com/Semantic-Org/Semantic-UI-React/pull/1395) ([layershifter](https://github.com/layershifter))
+
+**Fixed bugs:**
+
+- Cannot specify File Input multiple attribute [\#1386](https://github.com/Semantic-Org/Semantic-UI-React/issues/1386)
+- TypeScript: can't import components individually [\#1182](https://github.com/Semantic-Org/Semantic-UI-React/issues/1182)
+
+**Closed issues:**
+
+- Examples with images in React Docs are broken due to protocol change [\#1441](https://github.com/Semantic-Org/Semantic-UI-React/issues/1441)
+- The http://react.semantic-ui.com website is down [\#1429](https://github.com/Semantic-Org/Semantic-UI-React/issues/1429)
+- Search mouse clicks does not work on setting the state of open to true [\#1417](https://github.com/Semantic-Org/Semantic-UI-React/issues/1417)
+- Composition with react-redux-form components causing Element type undefined error [\#1416](https://github.com/Semantic-Org/Semantic-UI-React/issues/1416)
+- Missing responsive navbar? [\#1415](https://github.com/Semantic-Org/Semantic-UI-React/issues/1415)
+- Cannot load the react semantic-ui.com site: http://react.semantic-ui.com/ [\#1412](https://github.com/Semantic-Org/Semantic-UI-React/issues/1412)
+- "Your docs are so great that I want a build of them w/ my theme" tips [\#1410](https://github.com/Semantic-Org/Semantic-UI-React/issues/1410)
+- Input with side label will not color label red, if input is given error prop [\#1409](https://github.com/Semantic-Org/Semantic-UI-React/issues/1409)
+- Question: Custom result list rendering [\#1406](https://github.com/Semantic-Org/Semantic-UI-React/issues/1406)
+- TextArea AutoHeight Incorrect Height [\#1405](https://github.com/Semantic-Org/Semantic-UI-React/issues/1405)
+- Doc site is down, react.semantic-ui.com does not load [\#1404](https://github.com/Semantic-Org/Semantic-UI-React/issues/1404)
+-  position='right center' is not working? [\#1403](https://github.com/Semantic-Org/Semantic-UI-React/issues/1403)
+- RFC: all event handlers should callback with \(event, data\) [\#623](https://github.com/Semantic-Org/Semantic-UI-React/issues/623)
+
+**Merged pull requests:**
+
+- docs\(Progress\): fix incorrect example names [\#1450](https://github.com/Semantic-Org/Semantic-UI-React/pull/1450) ([yangshun](https://github.com/yangshun))
+- docs\(examples\): direct links, maximize, better props [\#1448](https://github.com/Semantic-Org/Semantic-UI-React/pull/1448) ([levithomason](https://github.com/levithomason))
+- docs\(readme\): add Advertisement component to list [\#1447](https://github.com/Semantic-Org/Semantic-UI-React/pull/1447) ([layershifter](https://github.com/layershifter))
+- docs\(callbacks\): updates in typings [\#1446](https://github.com/Semantic-Org/Semantic-UI-React/pull/1446) ([layershifter](https://github.com/layershifter))
+- docs\(callbacks\): document remaining callbacks [\#1445](https://github.com/Semantic-Org/Semantic-UI-React/pull/1445) ([levithomason](https://github.com/levithomason))
+- Update react-router to version 4.0.0 🚀 [\#1438](https://github.com/Semantic-Org/Semantic-UI-React/pull/1438) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+- Update css-loader to version 0.27.1 🚀 [\#1434](https://github.com/Semantic-Org/Semantic-UI-React/pull/1434) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+- style\(Form\): convert component to stateless [\#1433](https://github.com/Semantic-Org/Semantic-UI-React/pull/1433) ([layershifter](https://github.com/layershifter))
+- Update yargs to version 7.0.2 🚀 [\#1431](https://github.com/Semantic-Org/Semantic-UI-React/pull/1431) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+- style\(Confirm\): update typings [\#1425](https://github.com/Semantic-Org/Semantic-UI-React/pull/1425) ([layershifter](https://github.com/layershifter))
+- fix\(Input\): add multiple to propNames [\#1422](https://github.com/Semantic-Org/Semantic-UI-React/pull/1422) ([layershifter](https://github.com/layershifter))
+- docs\(readme\): add Advertisement component to list [\#1421](https://github.com/Semantic-Org/Semantic-UI-React/pull/1421) ([layershifter](https://github.com/layershifter))
+- chore\(package\): update babel-plugin-transform-react-handled-props [\#1419](https://github.com/Semantic-Org/Semantic-UI-React/pull/1419) ([layershifter](https://github.com/layershifter))
+- Thanks a lot for this awesome package ! [\#1414](https://github.com/Semantic-Org/Semantic-UI-React/pull/1414) ([GautierT](https://github.com/GautierT))
+- fix\(typings\): Change some props of Search to optional [\#1407](https://github.com/Semantic-Org/Semantic-UI-React/pull/1407) ([koenvg](https://github.com/koenvg))
+- docs\(Progress\): fix label/progress prop docs [\#1402](https://github.com/Semantic-Org/Semantic-UI-React/pull/1402) ([levithomason](https://github.com/levithomason))
+- feat\(Advertisement\): add new component [\#1292](https://github.com/Semantic-Org/Semantic-UI-React/pull/1292) ([tarang9211](https://github.com/tarang9211))
+
 ## [v0.67.0](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.67.0) (2017-03-01)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.66.0...v0.67.0)
 
 **Implemented enhancements:**
 
-- Accordion.Title - 'as' prop in dynamic accordion titles [\#1144](https://github.com/Semantic-Org/Semantic-UI-React/issues/1144)
+- feat\(Accordion\): support Title 'as' prop in dynamic accordion titles [\#1144](https://github.com/Semantic-Org/Semantic-UI-React/issues/1144)
 
 **Fixed bugs:**
 
@@ -49,10 +99,10 @@
 
 **Implemented enhancements:**
 
-- Add missing MenuItem `disabled` prop [\#1363](https://github.com/Semantic-Org/Semantic-UI-React/issues/1363)
-- Remove Form `onSubmit` prop and serializer [\#1362](https://github.com/Semantic-Org/Semantic-UI-React/issues/1362)
-- Add `link` prop to Card [\#1350](https://github.com/Semantic-Org/Semantic-UI-React/issues/1350)
-- Typings: unable to set many typical html element props [\#1072](https://github.com/Semantic-Org/Semantic-UI-React/issues/1072)
+- feat\(Menu\): Add missing MenuItem `disabled` prop [\#1363](https://github.com/Semantic-Org/Semantic-UI-React/issues/1363)
+- fix\(Form\): Remove Form `onSubmit` prop and serializer [\#1362](https://github.com/Semantic-Org/Semantic-UI-React/issues/1362)
+- feat\(Card\): Add `link` prop to Card [\#1350](https://github.com/Semantic-Org/Semantic-UI-React/issues/1350)
+- fix\(typings\): unable to set many typical html element props [\#1072](https://github.com/Semantic-Org/Semantic-UI-React/issues/1072)
 
 **Fixed bugs:**
 

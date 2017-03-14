@@ -22,8 +22,8 @@ export { default as getUnhandledProps } from './getUnhandledProps'
 export { default as getElementType } from './getElementType'
 
 export {
-  htmlInputEvents,
   htmlInputAttrs,
+  htmlInputEvents,
   htmlInputProps,
   partitionHTMLInputProps,
 } from './htmlInputPropsUtils'
