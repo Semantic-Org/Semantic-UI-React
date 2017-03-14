@@ -8,7 +8,7 @@ const LoaderExampleTextShorthand = () => (
         <Loader content='Loading' />
       </Dimmer>
 
-      <Image src='http://semantic-ui.com/images/wireframe/short-paragraph.png' />
+      <Image src='/assets/images/wireframe/short-paragraph.png' />
     </Segment>
 
     <Segment>
@@ -16,7 +16,7 @@ const LoaderExampleTextShorthand = () => (
         <Loader inverted content='Loading' />
       </Dimmer>
 
-      <Image src='http://semantic-ui.com/images/wireframe/short-paragraph.png' />
+      <Image src='/assets/images/wireframe/short-paragraph.png' />
     </Segment>
   </div>
 )

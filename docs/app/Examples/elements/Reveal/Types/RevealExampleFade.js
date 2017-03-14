@@ -4,10 +4,10 @@ import { Image, Reveal } from 'semantic-ui-react'
 const RevealExampleFade = () => (
   <Reveal animated='fade'>
     <Reveal.Content visible>
-      <Image src='http://semantic-ui.com/images/wireframe/square-image.png' size='small' />
+      <Image src='/assets/images/wireframe/square-image.png' size='small' />
     </Reveal.Content>
     <Reveal.Content hidden>
-      <Image src='http://semantic-ui.com/images/avatar/large/ade.jpg' size='small' />
+      <Image src='/assets/images/avatar/large/ade.jpg' size='small' />
     </Reveal.Content>
   </Reveal>
 )

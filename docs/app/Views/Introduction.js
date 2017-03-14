@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import { Link } from 'react-router'
+import { Link } from 'react-router-dom'
 import Editor from 'docs/app/Components/Editor/Editor'
 import pkg from 'package.json'
 import {
@@ -100,7 +100,7 @@ const HeaderAugmentationJSX = `<Header as='h3'>
 const HeaderAugmentationHTML = `<h3 class="ui header">
   Learn More
 </h3>`
-const MenuItemLinkAugmentationJSX = `import { Link } from 'react-router'
+const MenuItemLinkAugmentationJSX = `import { Link } from 'react-router-dom'
 
 <Menu>
   <Menu.Item as={Link} to='/home'>

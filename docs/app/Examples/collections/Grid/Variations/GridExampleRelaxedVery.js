@@ -4,16 +4,16 @@ import { Grid, Image } from 'semantic-ui-react'
 const GridExampleRelaxedVery = () => (
   <Grid relaxed='very' columns={4}>
     <Grid.Column>
-      <Image src='http://semantic-ui.com/images/wireframe/image.png' />
+      <Image src='/assets/images/wireframe/image.png' />
     </Grid.Column>
     <Grid.Column>
-      <Image src='http://semantic-ui.com/images/wireframe/image.png' />
+      <Image src='/assets/images/wireframe/image.png' />
     </Grid.Column>
     <Grid.Column>
-      <Image src='http://semantic-ui.com/images/wireframe/image.png' />
+      <Image src='/assets/images/wireframe/image.png' />
     </Grid.Column>
     <Grid.Column>
-      <Image src='http://semantic-ui.com/images/wireframe/image.png' />
+      <Image src='/assets/images/wireframe/image.png' />
     </Grid.Column>
   </Grid>
 )

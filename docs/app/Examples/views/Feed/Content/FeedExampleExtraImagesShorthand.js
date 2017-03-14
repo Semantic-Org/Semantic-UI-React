@@ -1,12 +1,12 @@
 import React from 'react'
 import { Feed } from 'semantic-ui-react'
 
-const image = 'http://semantic-ui.com/images/avatar/small/helen.jpg'
+const image = '/assets/images/avatar/small/helen.jpg'
 const date = '3 days ago'
 const summary = 'Helen Troy added 2 photos'
 const extraImages = [
-  'http://semantic-ui.com/images/wireframe/image.png',
-  'http://semantic-ui.com/images/wireframe/image.png',
+  '/assets/images/wireframe/image.png',
+  '/assets/images/wireframe/image.png',
 ]
 
 const FeedExampleExtraImagesShorthand = () => (

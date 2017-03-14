@@ -4,7 +4,7 @@ import { Icon, Item } from 'semantic-ui-react'
 const ItemExampleRatings = () => (
   <Item.Group>
     <Item>
-      <Item.Image size='tiny' src='http://semantic-ui.com/images/avatar/large/jenny.jpg' />
+      <Item.Image size='tiny' src='/assets/images/avatar/large/jenny.jpg' />
 
       <Item.Content verticalAlign='middle'>
         <Item.Header>
@@ -15,7 +15,7 @@ const ItemExampleRatings = () => (
     </Item>
 
     <Item>
-      <Item.Image size='tiny' src='http://semantic-ui.com/images/avatar/large/justen.jpg' />
+      <Item.Image size='tiny' src='/assets/images/avatar/large/justen.jpg' />
 
       <Item.Content verticalAlign='middle'>
         <Item.Header>

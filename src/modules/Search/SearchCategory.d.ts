@@ -20,8 +20,10 @@ export interface SearchCategoryProps {
   name?: string;
 
   /**
-   * A function that returns the category contents.
-   * Receives all SearchCategory props.
+   * Renders the category contents.
+   *
+   * @param {object} props - The SearchCategory props object.
+   * @returns {*} - Renderable category contents.
    */
   renderer?: (props: SearchCategoryProps) => React.ReactElement<any>;
 

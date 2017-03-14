@@ -26,7 +26,7 @@ const StatisticExampleEvenlyDivided = () => (
 
     <Statistic>
       <Statistic.Value>
-        <Image src='http://semantic-ui.com/images/avatar/small/joe.jpg' className='circular inline' />
+        <Image src='/assets/images/avatar/small/joe.jpg' className='circular inline' />
         42
       </Statistic.Value>
       <Statistic.Label>Team Members</Statistic.Label>

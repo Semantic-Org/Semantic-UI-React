@@ -5,6 +5,7 @@ import React, { Component, PropTypes } from 'react'
 import Sidebar from 'docs/app/Components/Sidebar/Sidebar'
 import style from 'docs/app/Style'
 import TAAttribution from 'docs/app/Components/TAAttribution/TAAttribution'
+import { scrollToAnchor } from 'docs/app/utils'
 
 const anchors = new AnchorJS({
   icon: '#',
@@ -28,39 +29,19 @@ export default class Layout extends Component {
   }
 
   resetPage = () => {
+    // only reset the page when changing routes
+    if (this.pathname === location.pathname) return
+
     clearTimeout(this.scrollStartTimeout)
 
     scrollTo(0, 0)
 
-    anchors
-      .add('h2, h3, h4, h5, h6')
-      .remove([1, 2, 3, 4, 5, 6].map(n => `.rendered-example h${n}`).join(', '))
-      .remove('.no-anchor')
+    anchors.add('h2, h3, h4, h5, h6')
+    anchors.remove([1, 2, 3, 4, 5, 6].map(n => `.rendered-example h${n}`).join(', '))
+    anchors.remove('.no-anchor')
 
-    this.scrollStartTimeout = setTimeout(this.scrollToAnchor, 500)
-  }
-
-  scrollToAnchor = () => {
-    const anchor = location.hash && document.querySelector(location.hash)
-
-    // no scroll to target, stop
-    if (!anchor) return
-
-    const elementTop = Math.round(anchor.getBoundingClientRect().top)
-
-    // scrolled to element, stop
-    if (elementTop === 0) return
-
-    // hit max scroll boundaries, stop
-    const isScrolledToTop = scrollY === 0
-    const isScrolledToBottom = scrollY + document.body.clientHeight === document.body.scrollHeight
-    const scrollStep = Math.ceil((Math.abs(elementTop / 8))) * Math.sign(elementTop)
-
-    if (isScrolledToBottom && scrollStep > 0 || isScrolledToTop && scrollStep < 0) return
-
-    // more scrolling to do!
-    scrollBy(0, scrollStep)
-    requestAnimationFrame(this.scrollToAnchor)
+    this.scrollStartTimeout = setTimeout(scrollToAnchor, 500)
+    this.pathname = location.pathname
   }
 
   render() {

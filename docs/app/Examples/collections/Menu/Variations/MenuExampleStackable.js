@@ -12,7 +12,7 @@ export default class MenuExampleStackable extends Component {
     return (
       <Menu stackable>
         <Menu.Item>
-          <img src='http://semantic-ui.com/images/logo.png' />
+          <img src='/assets/images/logo.png' />
         </Menu.Item>
 
         <Menu.Item

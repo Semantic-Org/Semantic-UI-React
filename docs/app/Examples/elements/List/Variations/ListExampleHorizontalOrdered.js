@@ -4,21 +4,21 @@ import { Image, List } from 'semantic-ui-react'
 const ListExampleHorizontalOrdered = () => (
   <List horizontal ordered>
     <List.Item>
-      <Image avatar src='http://semantic-ui.com/images/avatar/small/tom.jpg' />
+      <Image avatar src='/assets/images/avatar/small/tom.jpg' />
       <List.Content>
         <List.Header>Tom</List.Header>
         Top Contributor
       </List.Content>
     </List.Item>
     <List.Item>
-      <Image avatar src='http://semantic-ui.com/images/avatar/small/christian.jpg' />
+      <Image avatar src='/assets/images/avatar/small/christian.jpg' />
       <List.Content>
         <List.Header>Christian Rocha</List.Header>
         Admin
       </List.Content>
     </List.Item>
     <List.Item>
-      <Image avatar src='http://semantic-ui.com/images/avatar/small/matt.jpg' />
+      <Image avatar src='/assets/images/avatar/small/matt.jpg' />
       <List.Content>
         <List.Header>Matt</List.Header>
         Top Rated User

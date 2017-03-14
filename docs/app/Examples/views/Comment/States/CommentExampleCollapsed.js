@@ -15,7 +15,7 @@ export default class CommentExampleCollapsed extends Component {
 
         <Comment.Group>
           <Comment>
-            <Comment.Avatar as='a' src='http://semantic-ui.com/images/avatar/small/christian.jpg' />
+            <Comment.Avatar as='a' src='/assets/images/avatar/small/christian.jpg' />
             <Comment.Content>
               <Comment.Author as='a'>Christian Rocha</Comment.Author>
               <Comment.Metadata>
@@ -31,7 +31,7 @@ export default class CommentExampleCollapsed extends Component {
 
             <Comment.Group collapsed={collapsed}>
               <Comment>
-                <Comment.Avatar as='a' src='http://semantic-ui.com/images/avatar/small/elliot.jpg' />
+                <Comment.Avatar as='a' src='/assets/images/avatar/small/elliot.jpg' />
                 <Comment.Content>
                   <Comment.Author as='a'>Elliot Fu</Comment.Author>
                   <Comment.Metadata>
@@ -45,7 +45,7 @@ export default class CommentExampleCollapsed extends Component {
 
                 <Comment.Group>
                   <Comment>
-                    <Comment.Avatar as='a' src='http://semantic-ui.com/images/avatar/small/jenny.jpg' />
+                    <Comment.Avatar as='a' src='/assets/images/avatar/small/jenny.jpg' />
                     <Comment.Content>
                       <Comment.Author as='a'>Jenny Hess</Comment.Author>
                       <Comment.Metadata>
