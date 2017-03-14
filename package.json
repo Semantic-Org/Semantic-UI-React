@@ -38,7 +38,7 @@
     "pretest": "npm run build:dll",
     "test": "cross-env NODE_ENV=test karma start",
     "test:watch": "npm run test --silent -- --watch",
-    "tsd": "cpx './src/**/*.d.ts' dist/commonjs",
+    "tsd": "gulp tsd",
     "tsd:lint": "tslint './src/**/*.d.ts'",
     "tsd:lint:fix": "npm run -s tsd:lint -- --fix"
   },
@@ -78,7 +78,6 @@
     "chai-enzyme": "^0.6.1",
     "connect-history-api-fallback": "^1.2.0",
     "copy-to-clipboard": "^3.0.5",
-    "cpx": "^1.5.0",
     "cross-env": "^3.1.4",
     "css-loader": "^0.27.1",
     "del": "^2.2.2",
