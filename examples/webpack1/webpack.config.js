@@ -5,39 +5,39 @@ const webpack = require('webpack')
 const env = process.env.NODE_ENV || 'development'
 
 const webpackConfig = {
-  name    : 'client',
-  target  : 'web',
+  name: 'client',
+  target: 'web',
 
-  entry   : {
-    app : path.resolve('src/main.js'),
+  entry: {
+    app: path.resolve('src/main.js'),
   },
 
-  module : {
-    loaders : [{
-      test    : /\.(js|jsx)$/,
-      exclude : /node_modules/,
-      loader  : 'babel',
-    }]
+  module: {
+    loaders: [{
+      test: /\.(js|jsx)$/,
+      exclude: /node_modules/,
+      loader: 'babel',
+    }],
   },
 
   plugins: [
     new webpack.DefinePlugin({
-      'process.env' : {
-        'NODE_ENV' : JSON.stringify(env)
+      'process.env': {
+        NODE_ENV: JSON.stringify(env),
       },
     }),
     new BundleAnalyzerPlugin(),
   ],
 
-  output  : {
-    filename   : `[name].js`,
-    path       : path.resolve('public/dist'),
-    publicPath : '/',
+  output: {
+    filename: '[name].js',
+    path: path.resolve('public/dist'),
+    publicPath: '/',
   },
 
-  resolve : {
-    root       : path.resolve('src'),
-    extensions : ['', '.js', '.jsx', '.json']
+  resolve: {
+    root: path.resolve('src'),
+    extensions: ['', '.js', '.jsx'],
   },
 }
 
@@ -46,11 +46,11 @@ if (env === 'production') {
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin({
-      compress : {
-        unused    : true,
-        dead_code : true,
-        warnings  : false
-      }
+      compress: {
+        unused: true,
+        dead_code: true,
+        warnings: false,
+      },
     })
   )
 }
