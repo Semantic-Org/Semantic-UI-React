@@ -158,8 +158,8 @@ export default class Checkbox extends Component {
   }
 
   handleMouseDown = (e) => {
-    _.invoke('onMouseDown', this.props, [e])
     _.invoke('focus', this.checkboxRef)
+    _.invoke('onMouseDown', this.props, [e, this.props])
   }
 
   // Note: You can't directly set the indeterminate prop on the input, so we
@@ -210,8 +210,8 @@ export default class Checkbox extends Component {
 
     return (
       <ElementType {...rest} className={classes}
-        onClick={this.handleClick}
         onChange={this.handleClick}
+        onClick={this.handleClick}
         onMouseDown={this.handleMouseDown}
       >
         <input
