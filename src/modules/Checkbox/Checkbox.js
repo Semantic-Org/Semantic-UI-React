@@ -67,6 +67,14 @@ export default class Checkbox extends Component {
      */
     onClick: PropTypes.func,
 
+    /**
+     * Called when the user presses down on the mouse.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props and current checked/indeterminate state.
+     */
+    onMouseDown: PropTypes.func,
+
     /** Format as a radio element. This means it is an exclusive option. */
     radio: customPropTypes.every([
       PropTypes.bool,
