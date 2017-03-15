@@ -126,7 +126,7 @@
     "sass-loader": "^4.0.2",
     "semantic-ui-css": "^2.2.2",
     "simulant": "^0.2.2",
-    "sinon": "^1.17.3",
+    "sinon": "^2.0.0",
     "sinon-chai": "^2.8.0",
     "style-loader": "^0.13.1",
     "ta-scripts": "^2.5.2",
