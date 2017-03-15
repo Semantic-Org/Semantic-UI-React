@@ -1,1 +1,1 @@
-export { default } from './Statictic'
+export * from './Statictic'

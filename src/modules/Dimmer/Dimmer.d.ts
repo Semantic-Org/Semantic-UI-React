@@ -1,7 +1,7 @@
 import * as React from 'react';
 import DimmerDimmable from './DimmerDimmable';
 
-interface DimmerProps {
+export interface DimmerProps {
   [key: string]: any;
 
   /** An element type to render as (string or function). */

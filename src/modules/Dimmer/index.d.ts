@@ -1,1 +1,1 @@
-export { default as default } from './Dimmer'
+export * from './Dimmer'

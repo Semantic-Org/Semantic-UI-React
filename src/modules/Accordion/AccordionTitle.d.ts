@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-interface AccordionTitleProps {
+export interface AccordionTitleProps {
   [key: string]: any;
 
   /** Whether or not the title is in the open state. */

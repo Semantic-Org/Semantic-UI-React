@@ -1,10 +1,10 @@
 import * as React from 'react';
 
-import { PortalProps } from '../../addons/Portal/Portal';
+import { PortalProps } from '../../addons/Portal';
 import { default as PopupContent } from './PopupContent';
 import { default as PopupHeader } from './PopupHeader';
 
-interface PopupProps extends PortalProps {
+export interface PopupProps extends PortalProps {
   [key: string]: any;
 
   /** Display the popup without the pointing arrow */

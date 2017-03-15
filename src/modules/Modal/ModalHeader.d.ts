@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-interface ModalHeaderProps {
+export interface ModalHeaderProps {
   [key: string]: any;
 
   /** An element type to render as (string or function). */

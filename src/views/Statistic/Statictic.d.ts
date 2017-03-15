@@ -7,7 +7,7 @@ import { default as StatisticValue } from './StatisticValue';
 
 export type StatisticSizeProp = 'mini' | 'tiny' | 'small' | 'large' | 'huge';
 
-interface StatisticProps {
+export interface StatisticProps {
   [key: string]: any;
 
   /** An element type to render as (string or function). */

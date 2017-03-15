@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { PortalProps } from '../../addons/Portal/Portal';
+import { PortalProps } from '../../addons/Portal';
 import { default as ModalActions } from './ModalActions';
 import { default as ModalContent } from './ModalContent';
 import { default as ModalDescription } from './ModalDescription';

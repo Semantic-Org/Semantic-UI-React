@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-interface BreadcrumbSectionProps {
+export interface BreadcrumbSectionProps {
   [key: string]: any;
 
   /** An element type to render as (string or function). */
