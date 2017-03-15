@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { SemanticCOLORS, SemanticSIZES } from '../..';
 
-interface LabelGroupProps {
+export interface LabelGroupProps {
   [key: string]: any;
 
   /** An element type to render as (string or function). */

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { SemanticSIZES } from '../..';
 
-interface ImageGroupProps {
+export interface ImageGroupProps {
   [key: string]: any;
 
   /** An element type to render as (string or function). */

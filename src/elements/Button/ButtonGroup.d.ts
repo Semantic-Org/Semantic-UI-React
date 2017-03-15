@@ -6,7 +6,7 @@ import {
   SemanticWIDTHS
 } from '../..';
 
-interface GroupProps {
+export interface GroupProps {
   [key: string]: any;
 
   /** An element type to render as (string or function). */

@@ -6,7 +6,7 @@ import { default as MessageHeader } from './MessageHeader';
 import { default as MessageItem } from './MessageItem';
 import { default as MessageList } from './MessageList';
 
-interface MessageProps {
+export interface MessageProps {
   [key: string]: any;
 
 	/** An element type to render as (string or function). */

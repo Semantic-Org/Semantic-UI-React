@@ -12,7 +12,7 @@ import { default as ListIcon } from './ListIcon';
 import { default as ListItem } from './ListItem';
 import { default as ListList } from './ListList';
 
-interface ListProps {
+export interface ListProps {
   [key: string]: any;
 
   /** An element type to render as (string or function). */

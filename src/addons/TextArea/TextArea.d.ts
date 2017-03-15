@@ -20,7 +20,7 @@ export interface TextAreaProps {
   value?: string;
 }
 
-interface TextAreaOnChangeData extends TextAreaProps {
+export interface TextAreaOnChangeData extends TextAreaProps {
   value?: string;
 }
 
