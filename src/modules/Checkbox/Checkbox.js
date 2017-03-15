@@ -158,8 +158,11 @@ export default class Checkbox extends Component {
   }
 
   handleMouseDown = (e) => {
+    const { onMouseDown } = this.props
+    const { checked, indeterminate } = this.state
     _.invoke('focus', this.checkboxRef)
-    _.invoke('onMouseDown', this.props, [e, this.props])
+
+    if (onMouseDown) onMouseDown(e, { ...this.props, checked: !!checked, indeterminate: !!indeterminate })
   }
 
   // Note: You can't directly set the indeterminate prop on the input, so we
