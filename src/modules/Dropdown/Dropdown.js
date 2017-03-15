@@ -447,6 +447,7 @@ export default class Dropdown extends Component {
       document.addEventListener('click', this.closeOnDocumentClick)
       document.removeEventListener('keydown', this.openOnArrow)
       document.removeEventListener('keydown', this.openOnSpace)
+      this.scrollSelectedItemIntoView()
     } else if (prevState.open && !this.state.open) {
       debug('dropdown closed')
       this.handleClose()
