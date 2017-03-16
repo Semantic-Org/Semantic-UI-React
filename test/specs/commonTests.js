@@ -871,15 +871,13 @@ export const implementsOnlyProp = Component => {
     _noClassNameFromBoolProps(Component, 'only', propValues)
 
     propValues.forEach(propVal => {
-      const className = _.lowerCase(propVal)
-
-      it(`adds "${propVal} ${className}" to className`, () => {
-        shallow(createElement(Component, { only: propVal })).should.have.className(`${className} only`)
+      it(`adds "${propVal} only" to className`, () => {
+        shallow(createElement(Component, { only: propVal })).should.have.className(`${propVal} only`)
       })
     })
 
     it('adds all possible values to className', () => {
-      const className = propValues.map(prop => `${_.lowerCase(prop)} only`).join(' ')
+      const className = propValues.map(prop => `${prop} only`).join(' ')
       const propValue = propValues.join(' ')
 
       shallow(createElement(Component, { only: propValue })).should.have.className(className)

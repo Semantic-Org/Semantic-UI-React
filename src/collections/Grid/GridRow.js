@@ -81,7 +81,7 @@ GridRow.propTypes = {
   divided: PropTypes.bool,
 
   /** A row can appear only for a specific device, or screen sizes. */
-  only: customPropTypes.multipleOf(SUI.VISIBILITY),
+  only: customPropTypes.onlyProp(SUI.VISIBILITY),
 
   /** A row can specify that its columns should reverse order at different device sizes. */
   reversed: PropTypes.oneOf([

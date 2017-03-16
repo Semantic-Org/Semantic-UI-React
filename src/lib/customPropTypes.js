@@ -237,10 +237,10 @@ export const demand = (requiredProps) => {
 }
 
 /**
- * Ensure a prop contains a string with only possible values.
+ * Ensure an only prop contains a string with only possible values.
  * @param {string[]} possible An array of possible values to prop.
  */
-export const multipleOf = possible => {
+export const onlyProp = possible => {
   return (props, propName, componentName) => {
     if (!Array.isArray(possible)) {
       throw new Error([
@@ -249,10 +249,15 @@ export const multipleOf = possible => {
       ].join(' '))
     }
 
-    // skip if prop is undefined
-    if (_.isNil(props[propName]) || props[propName] === false) return
+    const propValue = props[propName]
 
-    const values = props[propName].split(' ').map(_.trim)
+    // skip if prop is undefined
+    if (_.isNil(propValue) || propValue === false) return
+
+    const values = propValue
+      .replace('large screen', 'large-screen')
+      .split(' ')
+      .map(val => _.trim(val).replace('-', ' '))
     const invalid = _.difference(values, possible)
 
     // fail only if there are invalid values

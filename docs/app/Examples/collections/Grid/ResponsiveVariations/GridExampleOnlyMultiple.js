@@ -21,7 +21,7 @@ const GridExampleOnlyMultiple = () => (
       </Grid.Column>
     </Grid.Row>
 
-    <Grid.Row columns={2} only='largeScreen widescreen'>
+    <Grid.Row columns={2} only='large screen widescreen'>
       <Grid.Column>
         <Segment>Large Screen</Segment>
       </Grid.Column>

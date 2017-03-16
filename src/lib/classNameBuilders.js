@@ -1,4 +1,3 @@
-import _ from 'lodash'
 import { numberToWord } from './numberToWord'
 
 /*
@@ -65,7 +64,11 @@ export const useKeyOrValueAndKey = (val, key) => val && (val === true ? key : `$
  */
 export const useOnlyProp = val => {
   if (!val || val === true) return null
-  return val.split(' ').map(prop => `${_.lowerCase(prop)} only`).join(' ')
+
+  return val.replace('large screen', 'large-screen')
+    .split(' ')
+    .map(prop => `${prop.replace('-', ' ')} only`)
+    .join(' ')
 }
 
 /**
