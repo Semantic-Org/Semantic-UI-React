@@ -356,13 +356,14 @@ class Portal extends Component {
     ReactDOM.unstable_renderSubtreeIntoContainer(
       this,
       Children.only(children),
-      this.rootNode
+      this.rootNode,
+      () => {
+        this.portalNode = this.rootNode.firstElementChild
+
+        this.portalNode.addEventListener('mouseleave', this.handlePortalMouseLeave)
+        this.portalNode.addEventListener('mouseenter', this.handlePortalMouseEnter)
+      }
     )
-
-    this.portalNode = this.rootNode.firstElementChild
-
-    this.portalNode.addEventListener('mouseleave', this.handlePortalMouseLeave)
-    this.portalNode.addEventListener('mouseenter', this.handlePortalMouseEnter)
   }
 
   mountPortal = () => {
