@@ -15,17 +15,6 @@ const babelConfig = {
   presets: ['es2015', 'react', 'stage-1'],
 }
 
-const showCodeStyle = {
-  position: 'absolute',
-  textAlign: 'right',
-  top: '1rem',
-  right: '1rem',
-}
-
-const codeIconStyle = {
-  fontWeight: 'bold',
-}
-
 const titleStyle = {
   margin: 0,
 }
@@ -40,11 +29,6 @@ const childrenStyle = {
   paddingTop: 0,
 }
 
-const renderedExampleStyle = {
-  paddingTop: 0,
-  paddingBottom: 0,
-}
-
 const errorStyle = {
   padding: '1em',
   fontSize: '0.9rem',
@@ -52,13 +36,14 @@ const errorStyle = {
   background: '#fff2f2',
 }
 
+const toolTipStyle = { width: 100, textAlign: 'center', padding: '0.5em' }
 const ToolTip = ({ children, content }) => (
   <Popup
     inverted
-    mouseEnterDelay={500}
+    mouseEnterDelay={800}
     position='top center'
     size='tiny'
-    style={{ width: 80, textAlign: 'center', padding: '0.5em' }}
+    style={toolTipStyle}
     trigger={children}
     content={content}
   />
@@ -130,6 +115,16 @@ class ComponentExample extends Component {
     this.setState({ showCode: !showCode })
 
     if (!showCode) this.setHashAndScroll()
+    else this.removeHash()
+  }
+
+  handleShowHTMLClick = (e) => {
+    e.preventDefault()
+
+    const { showHTML } = this.state
+    this.setState({ showHTML: !showHTML })
+
+    if (!showHTML) this.setHashAndScroll()
     else this.removeHash()
   }
 
@@ -305,7 +300,7 @@ class ComponentExample extends Component {
 
     const color = error ? 'red' : 'black'
     return (
-      <Divider horizontal>
+      <Divider horizontal fitted>
         <Menu text>
           <Menu.Item
             active={copiedCode || !!error} // to show the color
@@ -352,7 +347,7 @@ class ComponentExample extends Component {
     }
 
     return (
-      <Grid.Column style={style}>
+      <div style={style}>
         {this.renderJSXControls()}
         <Editor
           id={`${this.getKebabExamplePath()}-jsx`}
@@ -362,13 +357,13 @@ class ComponentExample extends Component {
         {error && (
           <pre style={errorStyle}>{error}</pre>
         )}
-      </Grid.Column>
+      </div>
     )
   }
 
   renderHTML = () => {
-    const { showCode, markup } = this.state
-    if (!showCode) return
+    const { showHTML, markup } = this.state
+    if (!showHTML) return
 
     // add new lines between almost all adjacent elements
     // moves inline elements to their own line
@@ -384,60 +379,56 @@ class ComponentExample extends Component {
     })
 
     return (
-      <Grid.Column>
+      <div>
         <Divider horizontal>Rendered HTML</Divider>
         <Editor id={`${this.getKebabExamplePath()}-html`} mode='html' value={beautifiedHTML} readOnly />
-      </Grid.Column>
+      </div>
     )
   }
 
   render() {
     const { children, description, title } = this.props
-    const { copiedDirectLink, exampleElement, showCode } = this.state
-    const exampleStyle = { marginBottom: '2em', paddingBottom: '1em', transition: 'box-shadow 300ms' }
+    const { copiedDirectLink, exampleElement, showCode, showHTML } = this.state
+    const exampleStyle = {}
 
-    if (showCode || location.hash === `#${this.anchorName}`) {
+    if (showCode || showHTML || location.hash === `#${this.anchorName}`) {
       exampleStyle.boxShadow = '0 0 30px #ccc'
     }
 
     return (
-      <Grid style={exampleStyle} divided={showCode} columns='1' id={this.anchorName}>
+      <Grid className='docs-example' style={exampleStyle} divided={showCode} columns='1' id={this.anchorName}>
         <Grid.Column style={headerColumnStyle}>
-          {title && <Header as='h3' className='no-anchor' style={titleStyle}>{title}</Header>}
+          {title && <Header as='h3' className='no-anchor' style={titleStyle} content={title} />}
           {description && <p>{description}</p>}
-          <div style={showCodeStyle}>
-            <ToolTip content={copiedDirectLink ? 'Copied!' : 'Copy link'}>
-              <a href={`#${this.anchorName}`} onClick={this.handleDirectLinkClick}>
-                <Icon bordered link color='grey' name='linkify' />
-              </a>
+          <Menu compact text icon size='small' color='green' className='docs-example-menu'>
+            <ToolTip content={copiedDirectLink ? ' Copied Link!' : 'Direct link'}>
+              <Menu.Item href={`#${this.anchorName}`} onClick={this.handleDirectLinkClick}>
+                <Icon size='large' color='grey' name='linkify' fitted />
+              </Menu.Item>
             </ToolTip>
-            <ToolTip content='Maximize'>
-              <a href={`/maximize/${this.anchorName}`} target='_blank'>
-                <Icon bordered link color='grey' name='window maximize' />
-              </a>
+            <ToolTip content='Full Screen'>
+              <Menu.Item href={`/maximize/${this.anchorName}`} target='_blank'>
+                <Icon size='large' color='grey' name='window maximize' fitted />
+              </Menu.Item>
+            </ToolTip>
+            <ToolTip content='Show HTML'>
+              <Menu.Item active={showHTML} onClick={this.handleShowHTMLClick}>
+                <Icon size='large' color='grey' name='html5' fitted />
+              </Menu.Item>
             </ToolTip>
             <ToolTip content='Edit Code'>
-              <Icon
-                bordered
-                link
-                name='code'
-                inverted={showCode}
-                color={showCode ? 'green' : 'grey'}
-                onClick={this.handleShowCodeClick}
-                style={codeIconStyle}
-              />
+              <Menu.Item active={showCode} onClick={this.handleShowCodeClick}>
+                <Icon size='large' name='code' fitted />
+              </Menu.Item>
             </ToolTip>
-          </div>
+          </Menu>
         </Grid.Column>
         {children && (
           <Grid.Column style={childrenStyle}>
             {children}
           </Grid.Column>
         )}
-        <Grid.Column
-          className={`rendered-example ${this.getKebabExamplePath()}`}
-          style={renderedExampleStyle}
-        >
+        <Grid.Column className={`rendered-example ${this.getKebabExamplePath()}`}>
           {exampleElement}
         </Grid.Column>
         {this.renderJSX()}
