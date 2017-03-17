@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ImageProps } from '../../elements/Image/Image';
+import { ImageProps } from '../../elements/Image';
 
 export interface ItemImageProps extends ImageProps {
 }

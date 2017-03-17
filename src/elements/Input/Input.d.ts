@@ -73,7 +73,7 @@ export interface InputProps {
   type?: string;
 }
 
-interface InputOnChangeData extends InputProps {
+export interface InputOnChangeData extends InputProps {
   value: string;
 }
 
