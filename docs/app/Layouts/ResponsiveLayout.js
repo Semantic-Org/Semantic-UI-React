@@ -219,7 +219,7 @@ const ResponsiveLayout = () => (
       </Grid.Column>
     </Grid>
 
-    <Header textAlign='center' content='Device Visibility' />
+    <Header as='h3' textAlign='center' content='Device Visibility' />
     <Grid columns={4}>
       <Grid.Column only='widescreen' widescreen={10}>
         <Segment>Widescreen</Segment>
@@ -262,6 +262,95 @@ const ResponsiveLayout = () => (
       <Grid.Column only='tablet' >
         <Segment>Tablet Only Content</Segment>
       </Grid.Column>
+    </Grid>
+
+    <Header as='h2' textAlign='center' content='Responsive Grid with Variations' />
+
+    <Header as='h3' textAlign='center' content='Stackable Divided Grid' />
+    <Grid container={true} stackable divided columns={2}>
+      <Grid.Row>
+        <Grid.Column>
+          <Segment>Content</Segment>
+        </Grid.Column>
+        <Grid.Column>
+          <Segment>Content</Segment>
+        </Grid.Column>
+      </Grid.Row>
+      <Grid.Row>
+        <Grid.Column>
+          <Segment>Content</Segment>
+        </Grid.Column>
+        <Grid.Column>
+          <Segment>Content</Segment>
+        </Grid.Column>
+      </Grid.Row>
+      <Grid.Row>
+        <Grid.Column>
+          <Segment>Content</Segment>
+        </Grid.Column>
+        <Grid.Column>
+          <Segment>Content</Segment>
+        </Grid.Column>
+      </Grid.Row>
+    </Grid>
+
+    <Header as='h3' textAlign='center' content='Stackable Vertically Divided Grid' />
+    <Grid container={true} stackable divided columns={2}>
+      <Grid.Row>
+        <Grid.Column>
+          <Segment>Content</Segment>
+        </Grid.Column>
+        <Grid.Column>
+          <Segment>Content</Segment>
+        </Grid.Column>
+      </Grid.Row>
+      <Grid.Row>
+        <Grid.Column>
+          <Segment>Content</Segment>
+        </Grid.Column>
+        <Grid.Column>
+          <Segment>Content</Segment>
+        </Grid.Column>
+      </Grid.Row>
+      <Grid.Row>
+        <Grid.Column>
+          <Segment>Content</Segment>
+        </Grid.Column>
+        <Grid.Column>
+          <Segment>Content</Segment>
+        </Grid.Column>
+      </Grid.Row>
+    </Grid>
+
+    <Header as='h3' textAlign='center' content='Celled Stackable Grid' />
+    <Grid stackable celled container={true}>
+      <Grid.Row columns={2}>
+        <Grid.Column>
+          <Segment>Content</Segment>
+        </Grid.Column>
+        <Grid.Column>
+          <Segment>Content</Segment>
+        </Grid.Column>
+      </Grid.Row>
+      <Grid.Row columns={3}>
+        <Grid.Column>
+          <Segment>Content</Segment>
+        </Grid.Column>
+        <Grid.Column>
+          <Segment>Content</Segment>
+        </Grid.Column>
+        <Grid.Column>
+          <Segment>Content</Segment>
+        </Grid.Column>
+      </Grid.Row>
+      <Grid.Row columns={2}>
+        <Grid.Column>
+          <Segment>Content</Segment>
+        </Grid.Column>
+        <Grid.Column>
+          <Segment>Content</Segment>
+        </Grid.Column>
+      </Grid.Row>
     </Grid>
 
   </div>
