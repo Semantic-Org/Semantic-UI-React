@@ -85,6 +85,12 @@ class Sidebar extends Component {
     }
   }
 
+  componentDidMount() {
+    if (this.props.visible && this.props.closable) {
+      document.addEventListener('click', this.handleDocumentClick)
+    }
+  }
+
   handleDocumentClick = (e) => {
     const sidebarDOMNode = ReactDOM.findDOMNode(this.ref)
     // close Sidebar if e.target is outside of Sidebar
@@ -94,7 +100,6 @@ class Sidebar extends Component {
   }
 
   checkIfSidebarContainsClickTarget = (target, node) => {
-    if (!target || !node) return
     if (target === node) return true
     let isFound = false
     if (node.childNodes && node.childNodes.length > 0) {
