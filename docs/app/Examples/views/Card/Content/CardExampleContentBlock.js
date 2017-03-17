@@ -21,7 +21,7 @@ const CardExampleContentBlock = () => (
         </Feed.Event>
 
         <Feed.Event>
-          <Feed.Label image='/assets/images/avatar2/small/molly.png' />
+          <Feed.Label image='/assets/images/avatar/small/molly.png' />
           <Feed.Content>
             <Feed.Date content='3 days ago' />
             <Feed.Summary>
