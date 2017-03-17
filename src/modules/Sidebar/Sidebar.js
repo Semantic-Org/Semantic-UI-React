@@ -74,6 +74,12 @@ class Sidebar extends Component {
     this.stopAnimatingTimer = setTimeout(() => this.setState({ animating: false }), duration)
   }
 
+  componentDidMount() {
+    if (this.props.visible && this.props.closable) {
+      document.addEventListener('click', this.handleDocumentClick)
+    }
+  }
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.visible !== this.props.visible) {
       this.startAnimating()
@@ -94,7 +100,6 @@ class Sidebar extends Component {
   }
 
   checkIfSidebarContainsClickTarget = (target, node) => {
-    if (!target || !node) return
     if (target === node) return true
     let isFound = false
     if (node.childNodes && node.childNodes.length > 0) {
