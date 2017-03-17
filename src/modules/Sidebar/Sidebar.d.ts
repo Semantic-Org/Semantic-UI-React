@@ -29,14 +29,6 @@ export interface SidebarProps {
 
   /** Sidebar width */
   width?: 'very thin' | 'thin' | 'wide' | 'very wide';
-
-  /** Controls whether or not to close sidebar when click outside */
-  closable?: boolean;
-
-  /**
-   * Function to change "visible" prop
-   */
-  toggleVisibility?: () => void;
 }
 
 interface SidebarComponent extends React.ComponentClass<SidebarProps> {
