@@ -1,6 +1,7 @@
 import cx from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
+import ReactDOM from 'react-dom'
 
 import {
   AutoControlledComponent as Component,
@@ -41,6 +42,12 @@ class Sidebar extends Component {
 
     /** Sidebar width. */
     width: PropTypes.oneOf(['very thin', 'thin', 'wide', 'very wide']),
+
+    /** Controls whether or not to close sidebar when click outside */
+    closable: PropTypes.bool,
+
+    /** Function to change "visible" prop */
+    toggleVisibility: PropTypes.func,
   }
 
   static defaultProps = {
@@ -70,7 +77,32 @@ class Sidebar extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.visible !== this.props.visible) {
       this.startAnimating()
+      if (nextProps.visible && this.props.closable) {
+        document.addEventListener('click', this.handleDocumentClick)
+      } else {
+        document.removeEventListener('click', this.handleDocumentClick)
+      }
     }
+  }
+
+  handleDocumentClick = (e) => {
+    const sidebarDOMNode = ReactDOM.findDOMNode(this.ref)
+    // close Sidebar if e.target is outside of Sidebar
+    if (!this.checkIfSidebarContainsClickTarget(e.target, sidebarDOMNode)) {
+      this.props.toggleVisibility()
+    }
+  }
+
+  checkIfSidebarContainsClickTarget = (target, node) => {
+    if (!target || !node) return
+    if (target === node) return true
+    let isFound = false
+    if (node.childNodes && node.childNodes.length > 0) {
+      for (let i = 0; i < node.childNodes.length; i += 1) {
+        isFound = isFound || this.checkIfSidebarContainsClickTarget(target, node.childNodes[i])
+      }
+    }
+    return isFound
   }
 
   render() {
@@ -98,7 +130,7 @@ class Sidebar extends Component {
     const rest = getUnhandledProps(Sidebar, this.props)
     const ElementType = getElementType(Sidebar, this.props)
 
-    return <ElementType {...rest} className={classes}>{children}</ElementType>
+    return <ElementType {...rest} className={classes} ref={(c) => { this.ref = c }}>{children}</ElementType>
   }
 }
 

@@ -6,6 +6,7 @@ import ScaleDown from './ScaleDown'
 import SlideAlong from './SlideAlong'
 import SlideOut from './SlideOut'
 import Uncover from './Uncover'
+import Closable from './Closable'
 
 const SidebarExamples = () => (
   <div>
@@ -15,6 +16,7 @@ const SidebarExamples = () => (
     <SlideAlong />
     <SlideOut />
     <Uncover />
+    <Closable />
   </div>
 )
 
