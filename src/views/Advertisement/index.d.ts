@@ -1,1 +1,1 @@
-export * from './Advertisement'
+export { default, AdvertisementProps } from './Advertisement'

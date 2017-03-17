@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-export interface OrProps {
+export interface ButtonOrProps {
   [key: string]: any;
 
   /** An element type to render as (string or function). */
@@ -13,6 +13,6 @@ export interface OrProps {
   text?: number | string;
 }
 
-declare const ButtonOr: React.StatelessComponent<OrProps>;
+declare const ButtonOr: React.StatelessComponent<ButtonOrProps>;
 
 export default ButtonOr;

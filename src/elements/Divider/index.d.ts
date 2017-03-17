@@ -1,1 +1,1 @@
-export * from './Divider'
+export { default, DividerProps } from './Divider'

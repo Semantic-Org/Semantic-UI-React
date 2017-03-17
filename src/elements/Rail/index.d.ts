@@ -1,1 +1,1 @@
-export * from './Rail'
+export { default, RailProps } from './Rail'

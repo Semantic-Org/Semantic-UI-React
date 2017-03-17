@@ -1,1 +1,1 @@
-export * from './Item'
+export { default, ItemProps } from './Item'

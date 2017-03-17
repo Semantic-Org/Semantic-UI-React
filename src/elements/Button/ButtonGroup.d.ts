@@ -6,7 +6,7 @@ import {
   SemanticWIDTHS
 } from '../..';
 
-export interface GroupProps {
+export interface ButtonGroupProps {
   [key: string]: any;
 
   /** An element type to render as (string or function). */
@@ -70,6 +70,6 @@ export interface GroupProps {
   widths?: SemanticWIDTHS;
 }
 
-declare const ButtonGroup: React.StatelessComponent<GroupProps>;
+declare const ButtonGroup: React.StatelessComponent<ButtonGroupProps>;
 
 export default ButtonGroup;

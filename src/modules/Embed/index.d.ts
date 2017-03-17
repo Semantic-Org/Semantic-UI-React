@@ -1,1 +1,1 @@
-export * from './Embed';
+export { default, EmbedProps } from './Embed';

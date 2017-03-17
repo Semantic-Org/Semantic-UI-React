@@ -1,1 +1,1 @@
-export * from './Segment'
+export { default, SegmentProps } from './Segment'

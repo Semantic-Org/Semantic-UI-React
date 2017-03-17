@@ -1,1 +1,1 @@
-export * from './Table'
+export { default, TableProps } from './Table'

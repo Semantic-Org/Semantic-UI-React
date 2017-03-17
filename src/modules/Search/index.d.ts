@@ -1,1 +1,1 @@
-export * from './Search'
+export { default, SearchProps } from './Search'

@@ -1,1 +1,1 @@
-export * from './Select';
+export { default, SelectProps } from './Select';

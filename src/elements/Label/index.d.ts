@@ -1,1 +1,1 @@
-export * from './Label'
+export { default, LabelProps } from './Label'

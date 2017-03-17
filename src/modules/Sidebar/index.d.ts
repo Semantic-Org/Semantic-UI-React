@@ -1,1 +1,1 @@
-export * from './Sidebar'
+export { default, SidebarProps } from './Sidebar'
