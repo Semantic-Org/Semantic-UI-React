@@ -15,4 +15,21 @@ style.first = {
   marginTop: '5em',
 }
 
+style.last = {
+    marginBottom: '300px',
+}
+
+style.responsiveh1 = {
+    marginTop: '3em',
+}
+
+style.responsiveh2 =  {
+    margin: '4em 0em 2em',
+}
+
+style.responsiveh3 = {
+    marginTop: '2em',
+    padding: '2em 0em',
+}
+
 export default style
