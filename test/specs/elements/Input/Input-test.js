@@ -202,4 +202,20 @@ describe('Input', () => {
         .should.have.prop('tabIndex', 123)
     })
   })
+
+  describe('focus', () => {
+    it('can be set via a ref', () => {
+      const mountNode = document.createElement('div')
+      document.body.appendChild(mountNode)
+
+      const wrapper = mount(<Input />, { attachTo: mountNode })
+      wrapper.instance().focus()
+
+      const input = document.querySelector('.ui.input input')
+      document.activeElement.should.equal(input)
+
+      wrapper.detach()
+      document.body.removeChild(mountNode)
+    })
+  })
 })
