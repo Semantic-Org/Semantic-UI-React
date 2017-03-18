@@ -129,7 +129,7 @@ class ComponentExample extends Component {
   }
 
   copyJSX = () => {
-    copyToClipboard(this.getOriginalSourceCode())
+    copyToClipboard(this.state.sourceCode)
     this.setState({ copiedCode: true })
     setTimeout(() => this.setState({ copiedCode: false }), 1000)
   }
