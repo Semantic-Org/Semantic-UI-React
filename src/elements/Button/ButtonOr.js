@@ -34,10 +34,10 @@ ButtonOr.propTypes = {
   className: PropTypes.string,
 
   /** Or buttons can have their text localized, or adjusted by using the text prop. */
-  text: PropTypes.oneOfType(
+  text: PropTypes.oneOfType([
     PropTypes.number,
     PropTypes.string,
-  ),
+  ]),
 }
 
 export default ButtonOr
