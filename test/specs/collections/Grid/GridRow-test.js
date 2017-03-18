@@ -6,6 +6,7 @@ describe('GridRow', () => {
   common.isConformant(GridRow)
   common.rendersChildren(GridRow)
 
+  common.implementsOnlyProp(GridRow)
   common.implementsTextAlignProp(GridRow)
   common.implementsVerticalAlignProp(GridRow)
   common.implementsWidthProp(GridRow, SUI.WIDTHS, {
@@ -13,9 +14,6 @@ describe('GridRow', () => {
     widthClass: 'column',
   })
 
-  common.propKeyAndValueToClassName(GridRow, 'only', [
-    'computer', 'large screen', 'mobile', 'tablet mobile', 'tablet', 'widescreen',
-  ])
   common.propKeyAndValueToClassName(GridRow, 'reversed', [
     ['computer', 'computer vertically', 'mobile', 'mobile vertically', 'tablet', 'tablet vertically'],
   ])
