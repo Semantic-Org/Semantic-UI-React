@@ -1,6 +1,7 @@
 import React from 'react'
 import pkg from 'package.json'
 import {
+  Button,
   Container,
   Header,
   Segment,
@@ -130,6 +131,38 @@ const Usage = () => (
           import '../semantic/dist/semantic.min.css';
         </pre>
       </Segment>
+    </Segment>
+
+    <Segment basic padded>
+      <Header as='h2' dividing>Bundlers</Header>
+      <p>
+        Semantic UI React is fully supported by all modern JavaScript bundlers. We made some example recipes with some
+        of them. You can use them as start point for your projects.
+      </p>
+
+      <Header as='h3'>Webpack 1</Header>
+      <p>
+        Webpack 1 fully supports Semantic UI React, however we don't recommend to use it because it's deprecated.
+        Please ensure that you build your app in production mode before release, it will strip <code>propTypes</code>
+        from your build.
+      </p>
+      <p>
+        Because Webpack 1 doesn't support tree shaking we recommend to use <code>babel-plugin-lodash</code> in your
+        builds. You can find example configuration in <code>examples</code> directory of Semantic UI React.
+      </p>
+
+      <Button
+        content='Example configuration'
+        href='https://github.com/Semantic-Org/Semantic-UI-React/tree/master/examples/webpack1'
+        icon='github'
+        labelPosition='left'
+      />
+      <Button
+        content='babel-plugin-lodash'
+        href='https://github.com/lodash/babel-plugin-lodash'
+        icon='github'
+        labelPosition='left'
+      />
     </Segment>
   </Container>
 )
