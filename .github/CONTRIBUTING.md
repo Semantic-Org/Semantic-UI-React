@@ -301,7 +301,7 @@ A [`ui header`][5] accepts a size class.  The `ui modal` has a *component part* 
 
 #### React Components & Sub Components
 
-Top level Semantic-UI-React components correspond to SUI *components*.  Stardust sub components correspond to SUI *component parts*.
+Top level Semantic UI React components correspond to SUI *components*.  Stardust sub components correspond to SUI *component parts*.
 
 This allows us to provide accurate `propTypes` validation.  It also separates concerns, isolating features and tests.
 

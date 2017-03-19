@@ -16,7 +16,7 @@ const Usage = () => (
     <Segment basic textAlign='center'>
       <Logo centered size='small' />
       <Header as='h1' textAlign='center'>
-        Semantic-UI-React
+        Semantic UI React
         <Header.Subheader>
           {pkg.description}
         </Header.Subheader>

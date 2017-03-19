@@ -42,7 +42,7 @@ See the [Documentation][2] for an introduction, usage information, and extensive
 
 ## Example Projects
 
-This is a listing of example projects and guides that will help you integrate Semantic-UI-React into your new or existing projects.
+This is a listing of example projects and guides that will help you integrate Semantic UI React into your new or existing projects.
 
 ### [semantic-ui-react-todos][100]
 This example modifies the well-known [react-redux Todo List][101] to use Semantic UI components. There is also a write-up on the process in the project README.
@@ -64,9 +64,9 @@ Here are some helpful links:
 - [Building CSS with Meteor][26]
 - [Creating a standalone theme][25]
 
-## Built With Semantic-UI-React
+## Built With Semantic UI React
 
-These great products are built on Semantic-UI-React. Add yours [here][22].
+These great products are built on Semantic UI React. Add yours [here][22].
 
 - http://stoplight.io
 - https://roadmap.space
@@ -129,7 +129,7 @@ Once you change the flag, you need to refresh your browser to see the changes in
 
 ## Our Principles
 
-[TechnologyAdvice][9] has been [dogfooding][10] Semantic-UI-React in production since fall of 2015.  These are the guiding principles that have developed as a result:
+[TechnologyAdvice][9] has been [dogfooding][10] Semantic UI React in production since fall of 2015.  These are the guiding principles that have developed as a result:
 
 - No jQuery dependency
 - No animation dependencies
