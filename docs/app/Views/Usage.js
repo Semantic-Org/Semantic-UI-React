@@ -1,5 +1,6 @@
 import React from 'react'
 import pkg from 'package.json'
+import { NavLink } from 'react-router-dom'
 import {
   Button,
   Container,
@@ -16,7 +17,7 @@ const Usage = () => (
     <Segment basic textAlign='center'>
       <Logo centered size='small' />
       <Header as='h1' textAlign='center'>
-        Semantic-UI-React
+        Semantic UI React
         <Header.Subheader>
           {pkg.description}
         </Header.Subheader>
@@ -42,22 +43,22 @@ const Usage = () => (
       </p>
       <Header as='h3'>Examples</Header>
       <p>
-          For examples on how to import and use Semantic UI React components,
-          click the code icon next to any example. Here are a few direct links:
+        For examples on how to import and use Semantic UI React components,
+        click the code icon next to any example. Here are a few direct links:
       </p>
       <ul>
-          <li>
-              <a href='http://react.semantic-ui.com/elements/button#button'>Button</a>
-          </li>
-          <li>
-              <a href='http://react.semantic-ui.com/elements/list#list'>List</a>
-          </li>
-          <li>
-              <a href='http://react.semantic-ui.com/views/card#card'>Card</a>
-          </li>
-          <li>
-              <a href='http://react.semantic-ui.com/modules/modal#modal'>Modal</a>
-          </li>
+        <li>
+          <NavLink to='/elements/button#button-example-button'>Button</NavLink>
+        </li>
+        <li>
+          <NavLink to='/elements/list#list-example-list'>List</NavLink>
+        </li>
+        <li>
+          <NavLink to='/views/card#card-example-card'>Card</NavLink>
+        </li>
+        <li>
+          <NavLink to='/modules/modal#modal-example-modal'>Modal</NavLink>
+        </li>
       </ul>
     </Segment>
 
