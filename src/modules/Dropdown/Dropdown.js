@@ -130,6 +130,9 @@ export default class Dropdown extends Component {
 
     /** A dropdown can be formatted to appear inline in other content. */
     inline: PropTypes.bool,
+    
+    /** Alow passing custom props to search input. */
+    inputProps: PropTypes.object,
 
     /** A dropdown can be formatted as a Menu item. */
     item: PropTypes.bool,
@@ -332,6 +335,7 @@ export default class Dropdown extends Component {
     selectOnBlur: true,
     openOnFocus: true,
     closeOnBlur: true,
+    inputProps: {},
   }
 
   static autoControlledProps = [
@@ -1079,6 +1083,7 @@ export default class Dropdown extends Component {
         tabIndex={computedTabIndex}
         style={{ width: searchWidth }}
         ref={this.handleSearchRef}
+        {...this.props.inputProps}
       />
     )
   }
