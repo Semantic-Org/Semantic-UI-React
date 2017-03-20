@@ -40,11 +40,33 @@ Hey, we're in development. Prior to reaching [v1.0.0][6]:
 
 See the [Documentation][2] for an introduction, usage information, and extensive examples.
 
-## [Documentation][2] :blue_book:
+## Example Projects
 
-## Built With Semantic-UI-React
+This is a listing of example projects and guides that will help you integrate Semantic UI React into your new or existing projects.
 
-These great products are built on Semantic-UI-React. Add yours [here][22].
+### [semantic-ui-react-todos][100]
+This example modifies the well-known [react-redux Todo List][101] to use Semantic UI components. There is also a write-up on the process in the project README.
+
+## FAQ
+
+### Can I use custom Icons?
+Yes.  Just use `<Icon className='my-icon' />` instead of `<Icon name='my-icon' />`.  See https://github.com/Semantic-Org/Semantic-UI-React/issues/931#issuecomment-263643210 for detailed info and examples.
+
+### How do I setup CSS?
+There are several options.  Refer to our doc on [CSS Usage][23].
+
+### Can I use a customize CSS theme?
+Yes.  Semantic UI React includes components that render valid Semantic UI HTML, no CSS is included.  This allows you to load any Semantic UI CSS theme on top of your Semantic UI React app.
+
+Here are some helpful links:
+
+- [Building CSS with Webpack][24]
+- [Building CSS with Meteor][26]
+- [Creating a standalone theme][25]
+
+## Built With Semantic UI React
+
+These great products are built on Semantic UI React. Add yours [here][22].
 
 - http://stoplight.io
 - https://roadmap.space
@@ -53,11 +75,11 @@ These great products are built on Semantic-UI-React. Add yours [here][22].
 - http://www.brewhousesolutions.com
 - https://www.lifebot.fr
 
-## Voice Your Opinion :speech_balloon:
+## Voice Your Opinion
 
 Help shape this library by weighing in on our [RFC (request for comments)][19] issues. 
 
-## How Can I Help? :hand:
+## How Can I Help?
 
 Our [CONTRIBUTING.md][1] is a step-by-step setup and development guide. It is meant to be read from top to bottom.  Once you're up to speed, each issue here includes more information on how you can help:
 
@@ -107,7 +129,7 @@ Once you change the flag, you need to refresh your browser to see the changes in
 
 ## Our Principles
 
-[TechnologyAdvice][9] has been [dogfooding][10] Semantic-UI-React in production since fall of 2015.  These are the guiding principles that have developed as a result:
+[TechnologyAdvice][9] has been [dogfooding][10] Semantic UI React in production since fall of 2015.  These are the guiding principles that have developed as a result:
 
 - No jQuery dependency
 - No animation dependencies
@@ -157,7 +179,7 @@ Big thanks to our [contributors][20], especially:
 [2]: http://react.semantic-ui.com/
 [3]: https://facebook.github.io/react/
 [4]: https://github.com/Semantic-Org/Semantic-UI-React/labels/help%20wanted
-[5]: http://semantic-ui.com/
+[5]: https://semantic-ui.com/
 [6]: https://github.com/Semantic-Org/Semantic-UI-React/milestone/1
 [7]: https://github.com/webpack/webpack-dev-server/
 [8]: https://github.com/Semantic-Org/Semantic-UI-React/issues/243
@@ -175,3 +197,10 @@ Big thanks to our [contributors][20], especially:
 [20]: https://github.com/Semantic-Org/Semantic-UI-React/graphs/contributors
 [21]: https://github.com/Semantic-Org/Semantic-UI-React/labels/good%20first%20contribution
 [22]: https://github.com/Semantic-Org/Semantic-UI-React/edit/master/README.md
+[23]: http://react.semantic-ui.com/usage#css
+[24]: https://github.com/Semantic-Org/Semantic-UI-React/issues/802#issuecomment-258990274
+[25]: http://learnsemantic.com/themes/creating.html
+[26]: https://github.com/Semantic-Org/Semantic-UI-Meteor
+<!-- Examples -->
+[100]: https://github.com/wyc/semantic-ui-react-todos
+[101]: https://github.com/reactjs/redux/tree/master/examples/todos

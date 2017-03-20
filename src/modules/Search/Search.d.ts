@@ -35,9 +35,6 @@ interface SearchProps {
   /** Controls whether or not the results menu is displayed. */
   open?: boolean;
 
-  /** Placeholder of the search input. */
-  placeholder?: string;
-
   /**
    * One of:
    * - array of Search.Result props e.g. `{ title: '', description: '' }` or
@@ -59,14 +56,18 @@ interface SearchProps {
   // ------------------------------------
 
   /**
-   * A function that returns the category contents.
-   * Receives all SearchCategory props.
+   * Renders the SearchCategory contents.
+   *
+   * @param {object} props - The SearchCategory props object.
+   * @returns {*} - Renderable SearchCategory contents.
    */
   categoryRenderer?: (props: SearchCategoryProps) => React.ReactElement<any>;
 
   /**
-   * A function that returns the result contents.
-   * Receives all SearchResult props.
+   * Renders the SearchResult contents.
+   *
+   * @param {object} props - The SearchResult props object.
+   * @returns {*} - Renderable SearchResult contents.
    */
   resultRenderer?: (props: SearchResultProps) => Array<React.ReactElement<any>>;
 

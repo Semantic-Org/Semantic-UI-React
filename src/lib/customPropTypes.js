@@ -237,6 +237,37 @@ export const demand = (requiredProps) => {
 }
 
 /**
+ * Ensure an only prop contains a string with only possible values.
+ * @param {string[]} possible An array of possible values to prop.
+ */
+export const onlyProp = possible => {
+  return (props, propName, componentName) => {
+    if (!Array.isArray(possible)) {
+      throw new Error([
+        'Invalid argument supplied to some, expected an instance of array.',
+        `See \`${propName}\` prop in \`${componentName}\`.`,
+      ].join(' '))
+    }
+
+    const propValue = props[propName]
+
+    // skip if prop is undefined
+    if (_.isNil(propValue) || propValue === false) return
+
+    const values = propValue
+      .replace('large screen', 'large-screen')
+      .split(' ')
+      .map(val => _.trim(val).replace('-', ' '))
+    const invalid = _.difference(values, possible)
+
+    // fail only if there are invalid values
+    if (invalid.length > 0) {
+      return new Error(`\`${propName}\` prop in \`${componentName}\` has invalid values: \`${invalid.join('`, `')}\`.`)
+    }
+  }
+}
+
+/**
  * Ensure a component can render as a node passed as a prop value in place of children.
  */
 export const contentShorthand = (...args) => every([

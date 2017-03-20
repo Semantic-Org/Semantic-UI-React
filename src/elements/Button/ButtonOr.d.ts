@@ -8,6 +8,9 @@ interface OrProps {
 
   /** Additional classes. */
   className?: string;
+
+  /** Or buttons can have their text localized, or adjusted by using the text prop. */
+  text?: number |string;
 }
 
 declare const ButtonOr: React.StatelessComponent<OrProps>;

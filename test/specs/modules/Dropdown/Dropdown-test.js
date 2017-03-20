@@ -1066,6 +1066,20 @@ describe('Dropdown', () => {
         .setProps({ open: true })
       dropdownMenuIsOpen()
     })
+    it('calls scrollSelectedItemIntoView when changed from false to true', () => {
+      wrapperMount(<Dropdown options={options} selection open={false} />)
+
+      const instance = wrapper.instance()
+      sandbox.spy(instance, 'scrollSelectedItemIntoView')
+
+      instance.scrollSelectedItemIntoView
+        .should.not.have.been.called()
+
+      wrapper.setProps({ open: true })
+
+      instance.scrollSelectedItemIntoView
+        .should.have.been.calledOnce()
+    })
   })
 
   describe('multiple', () => {

@@ -1,12 +1,12 @@
 import React from 'react'
 import { Button, Icon, Image as ImageComponent, Item, Label } from 'semantic-ui-react'
 
-const paragraph = <ImageComponent src='http://semantic-ui.com/images/wireframe/short-paragraph.png' />
+const paragraph = <ImageComponent src='/assets/images/wireframe/short-paragraph.png' />
 
 const ItemExampleDivided = () => (
   <Item.Group divided>
     <Item>
-      <Item.Image src='http://semantic-ui.com/images/wireframe/image.png' />
+      <Item.Image src='/assets/images/wireframe/image.png' />
 
       <Item.Content>
         <Item.Header as='a'>12 Years a Slave</Item.Header>
@@ -22,7 +22,7 @@ const ItemExampleDivided = () => (
     </Item>
 
     <Item>
-      <Item.Image src='http://semantic-ui.com/images/wireframe/image.png' />
+      <Item.Image src='/assets/images/wireframe/image.png' />
 
       <Item.Content>
         <Item.Header as='a'>My Neighbor Totoro</Item.Header>
@@ -41,7 +41,7 @@ const ItemExampleDivided = () => (
     </Item>
 
     <Item>
-      <Item.Image src='http://semantic-ui.com/images/wireframe/image.png' />
+      <Item.Image src='/assets/images/wireframe/image.png' />
 
       <Item.Content>
         <Item.Header as='a'>Watchmen</Item.Header>

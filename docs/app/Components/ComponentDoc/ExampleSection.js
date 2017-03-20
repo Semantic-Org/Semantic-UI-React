@@ -8,7 +8,7 @@ const sectionStyle = { background: '#fff', boxShadow: '0 2px 2px rgba(0, 0, 0, 0
 const ExampleSection = ({ title, children, ...rest }) => (
   <Grid padded style={sectionStyle} {...rest}>
     <Grid.Column>
-      <Header as='h2' style={headerStyle}>
+      <Header as='h2' style={headerStyle} className='no-anchor'>
         {title}
       </Header>
       {children}

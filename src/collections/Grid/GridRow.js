@@ -8,6 +8,7 @@ import {
   META,
   SUI,
   useKeyOnly,
+  useOnlyProp,
   useTextAlignProp,
   useValueAndKey,
   useVerticalAlignProp,
@@ -37,8 +38,8 @@ function GridRow(props) {
     useKeyOnly(centered, 'centered'),
     useKeyOnly(divided, 'divided'),
     useKeyOnly(stretched, 'stretched'),
+    useOnlyProp(only),
     useTextAlignProp(textAlign),
-    useValueAndKey(only, 'only'),
     useValueAndKey(reversed, 'reversed'),
     useVerticalAlignProp(verticalAlign),
     useWidthProp(columns, 'column', true),
@@ -80,7 +81,7 @@ GridRow.propTypes = {
   divided: PropTypes.bool,
 
   /** A row can appear only for a specific device, or screen sizes. */
-  only: PropTypes.oneOf(['computer', 'large screen', 'mobile', 'tablet mobile', 'tablet', 'widescreen']),
+  only: customPropTypes.onlyProp(SUI.VISIBILITY),
 
   /** A row can specify that its columns should reverse order at different device sizes. */
   reversed: PropTypes.oneOf([

@@ -1,7 +1,8 @@
 import _ from 'lodash/fp'
 import React, { Component, PropTypes } from 'react'
 import { findDOMNode } from 'react-dom'
-import { Link, routerShape } from 'react-router'
+import { NavLink } from 'react-router-dom'
+import { withRouter } from 'react-router'
 
 import pkg from 'package.json'
 import { typeOrder, parentComponents, repoURL } from 'docs/app/utils'
@@ -16,9 +17,9 @@ import {
 const getRoute = (_meta) => `/${_meta.type}s/${_.kebabCase(_meta.name)}`
 
 const MenuItem = ({ meta, children, ...rest }) => (
-  <Link to={getRoute(meta)} {...rest}>
+  <NavLink to={getRoute(meta)} {...rest}>
     {children || meta.name}
-  </Link>
+  </NavLink>
 )
 MenuItem.propTypes = {
   activeClassName: PropTypes.string,
@@ -33,11 +34,11 @@ MenuItem.defaultProps = {
 }
 const selectedItemLabel = <span style={{ color: '#35bdb2', float: 'right' }}>Press Enter</span>
 
-export default class Sidebar extends Component {
-  static contextTypes = {
-    router: routerShape,
-  }
+class Sidebar extends Component {
   static propTypes = {
+    match: PropTypes.object.isRequired,
+    location: PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired,
     style: PropTypes.object,
   }
   state = { query: '' }
@@ -82,13 +83,13 @@ export default class Sidebar extends Component {
   })
 
   handleSearchKeyDown = e => {
-    const { router } = this.context
+    const { history } = this.props
     const { selectedItemIndex } = this.state
     const code = keyboardKey.getCode(e)
 
     if (code === keyboardKey.Enter && this.selectedRoute) {
       e.preventDefault()
-      router.push(this.selectedRoute)
+      history.push(this.selectedRoute)
       this.selectedRoute = null
       this._searchInput.blur()
       this.setState({ query: '' })
@@ -117,7 +118,7 @@ export default class Sidebar extends Component {
           key={_meta.name}
           name={_meta.name}
           onClick={this.handleItemClick}
-          as={Link}
+          as={NavLink}
           to={getRoute(_meta)}
           activeClassName='active'
         />
@@ -161,7 +162,7 @@ export default class Sidebar extends Component {
           name={_meta.name}
           onClick={this.handleItemClick}
           active={isSelected}
-          as={Link}
+          as={NavLink}
           to={getRoute(_meta)}
         >
           {_meta.name}
@@ -181,17 +182,17 @@ export default class Sidebar extends Component {
         <Menu.Item>
           <Logo spaced='right' size='mini' />
           <strong>
-            Semantic-UI-React &nbsp;
+            Semantic UI React &nbsp;
             <small><em>{pkg.version}</em></small>
           </strong>
         </Menu.Item>
         <Menu.Item>
           <Menu.Header>Getting Started</Menu.Header>
           <Menu.Menu>
-            <Menu.Item as={Link} to='/introduction' activeClassName='active'>
+            <Menu.Item as={NavLink} to='/introduction' activeClassName='active'>
               Introduction
             </Menu.Item>
-            <Menu.Item as={Link} to='/usage' activeClassName='active'>
+            <Menu.Item as={NavLink} to='/usage' activeClassName='active'>
               Usage
             </Menu.Item>
             <Menu.Item as='a' href={repoURL}>
@@ -217,3 +218,5 @@ export default class Sidebar extends Component {
     )
   }
 }
+
+export default withRouter(Sidebar)

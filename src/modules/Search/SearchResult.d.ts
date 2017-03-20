@@ -33,8 +33,10 @@ export interface SearchResultProps {
   price?: string;
 
   /**
-   * A function that returns the result contents.
-   * Receives all SearchResult props.
+   * Renders the result contents.
+   *
+   * @param {object} props - The SearchResult props object.
+   * @returns {*} - Renderable result contents.
    */
   renderer?: (props: SearchResultProps) => Array<React.ReactElement<any>>;
 

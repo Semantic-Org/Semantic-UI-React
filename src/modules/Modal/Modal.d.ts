@@ -6,7 +6,7 @@ import { default as ModalContent } from './ModalContent';
 import { default as ModalDescription } from './ModalDescription';
 import { default as ModalHeader } from './ModalHeader';
 
-interface ModalProps extends PortalProps {
+export interface ModalProps extends PortalProps {
   [key: string]: any;
 
   /** An element type to render as (string or function). */

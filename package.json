@@ -1,6 +1,6 @@
 {
   "name": "semantic-ui-react",
-  "version": "0.67.0",
+  "version": "0.67.1",
   "description": "The official Semantic-UI-React integration.",
   "jsnext:main": "dist/es/index.js",
   "main": "dist/commonjs/index.js",
@@ -38,7 +38,7 @@
     "pretest": "npm run build:dll",
     "test": "cross-env NODE_ENV=test karma start",
     "test:watch": "npm run test --silent -- --watch",
-    "tsd": "cpx './src/**/*.d.ts' dist/commonjs",
+    "tsd": "gulp tsd",
     "tsd:lint": "tslint './index.d.ts' './src/**/*.d.ts'",
     "tsd:lint:fix": "npm run -s tsd:lint -- --fix"
   },
@@ -55,7 +55,7 @@
   "dependencies": {
     "babel-runtime": "^6.22.0",
     "classnames": "^2.1.5",
-    "debug": "^2.4.5",
+    "debug": "^2.6.3",
     "lodash": "^4.17.2"
   },
   "devDependencies": {
@@ -78,9 +78,8 @@
     "chai-enzyme": "^0.6.1",
     "connect-history-api-fallback": "^1.2.0",
     "copy-to-clipboard": "^3.0.5",
-    "cpx": "^1.5.0",
     "cross-env": "^3.1.4",
-    "css-loader": "^0.26.0",
+    "css-loader": "^0.27.1",
     "del": "^2.2.2",
     "dirty-chai": "^1.2.2",
     "doctoc": "^1.2.0",
@@ -120,7 +119,8 @@
     "react-docgen": "^2.13.0",
     "react-document-title": "^2.0.2",
     "react-dom": "15.4.2",
-    "react-router": "^3.0.2",
+    "react-router": "^4.0.0",
+    "react-router-dom": "^4.0.0",
     "require-dir": "^0.3.0",
     "rimraf": "^2.5.2",
     "sass-loader": "^4.0.2",
@@ -128,7 +128,7 @@
     "simulant": "^0.2.2",
     "sinon": "^1.17.3",
     "sinon-chai": "^2.8.0",
-    "style-loader": "^0.13.1",
+    "style-loader": "^0.14.0",
     "ta-scripts": "^2.5.2",
     "through2": "^2.0.2",
     "tslint": "^4.3.1",
@@ -138,7 +138,7 @@
     "webpack": "^1.12.14",
     "webpack-dev-middleware": "^1.5.1",
     "webpack-hot-middleware": "^2.15.0",
-    "yargs": "^6.6.0"
+    "yargs": "^7.0.2"
   },
   "peerDependencies": {
     "react": ">=0.14.0 <= 15",

@@ -301,7 +301,7 @@ A [`ui header`][5] accepts a size class.  The `ui modal` has a *component part* 
 
 #### React Components & Sub Components
 
-Top level Semantic-UI-React components correspond to SUI *components*.  Stardust sub components correspond to SUI *component parts*.
+Top level Semantic UI React components correspond to SUI *components*.  Stardust sub components correspond to SUI *component parts*.
 
 This allows us to provide accurate `propTypes` validation.  It also separates concerns, isolating features and tests.
 
@@ -560,12 +560,12 @@ Adding documentation for new components is a bit tedious.  The best way to do th
 [2]: https://facebook.github.io/react/docs/forms.html#controlled-components
 [3]: https://facebook.github.io/react/docs/forms.html#uncontrolled-components
 [4]: https://github.com/Semantic-Org/Semantic-UI-React/blob/master/src/lib/classNameBuilders.js
-[5]: http://semantic-ui.com/elements/header
-[6]: http://semantic-ui.com/views/item
+[5]: https://semantic-ui.com/elements/header
+[6]: https://semantic-ui.com/views/item
 [7]: https://github.com/Semantic-Org/Semantic-UI-React/pull/281#issuecomment-228663527
 [8]: https://github.com/angular/angular/blob/master/CONTRIBUTING.md#commit
-[9]: http://semantic-ui.com/introduction/glossary.html
-[10]: http://semantic-ui.com/elements/label.html
+[9]: https://semantic-ui.com/introduction/glossary.html
+[10]: https://semantic-ui.com/elements/label.html
 [11]: https://nodejs.org/
 [12]: https://github.com/Semantic-Org/Semantic-UI-React#fork-destination-box
 [13]: https://github.com/Semantic-Org/Semantic-UI-React/blob/master/src/factories

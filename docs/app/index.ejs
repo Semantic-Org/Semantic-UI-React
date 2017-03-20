@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <link rel="shortcut icon" type="image/x-icon" href=<%= __BASE__ + 'logo.png' %> />
+  <link rel="shortcut icon" type="image/x-icon" href='/logo.png' />
   <link rel="stylesheet"
         href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/<%= htmlWebpackPlugin.options.versions.sui %>/semantic.min.css">
   <title>Semantic UI React</title>
@@ -26,7 +26,7 @@
           <div class="ui inverted teal header">
             Loading docs...
             <div class="sub header">
-              Semantic-UI-React
+              Semantic UI React
               v<%= htmlWebpackPlugin.options.versions.suir %>
             </div>
           </div>
@@ -135,6 +135,7 @@
     .docs-icon-set-column {
       cursor: pointer;
     }
+
     .docs-icon-set-column .icon {
       font-size: 2em;
       color: #555;
@@ -155,6 +156,26 @@
 
     .docs-icon-set-column:hover > .icon {
       transform: scale(1.5);
+    }
+
+    /* Examples */
+
+    .docs-example-menu {
+      transition: opacity 200ms;
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      opacity: 0;
+    }
+
+    .docs-example:hover .docs-example-menu {
+      opacity: 1;
+    }
+
+    .docs-example {
+      margin-bottom: 2em !important;
+      padding-bottom: 1em !important;
+      transition: box-shadow 300ms;
     }
   </style>
 </body>

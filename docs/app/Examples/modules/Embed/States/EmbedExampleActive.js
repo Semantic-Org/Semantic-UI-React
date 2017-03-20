@@ -15,7 +15,7 @@ export default class EmbedExampleActive extends Component {
           active={active}
           icon='arrow circle down'
           id='90Omh7_I8vI'
-          placeholder='http://semantic-ui.com/images/image-16by9.png'
+          placeholder='/assets/images/image-16by9.png'
           source='youtube'
         />
 
