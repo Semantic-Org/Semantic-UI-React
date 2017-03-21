@@ -140,10 +140,18 @@ export default class Checkbox extends Component {
     return !disabled && !readOnly && !(radio && checked)
   }
 
+  computeTabIndex = () => {
+    const { disabled, tabIndex } = this.props
+
+    if (!_.isNil(tabIndex)) return tabIndex
+    return disabled ? -1 : 0
+  }
+
   handleInputRef = c => (this.inputRef = c)
 
-  handleClick = (e) => {
+  handleClick = e => {
     debug('handleClick()')
+
     const { onChange, onClick } = this.props
     const { checked, indeterminate } = this.state
 
@@ -155,11 +163,13 @@ export default class Checkbox extends Component {
     }
   }
 
-  handleMouseDown = (e) => {
+  handleMouseDown = e => {
+    debug('handleMouseDown()')
+
     const { onMouseDown } = this.props
     const { checked, indeterminate } = this.state
-    _.invoke('focus', this.checkboxRef)
 
+    _.invoke('focus', this.inputRef)
     if (onMouseDown) onMouseDown(e, { ...this.props, checked: !!checked, indeterminate: !!indeterminate })
   }
 
@@ -168,6 +178,7 @@ export default class Checkbox extends Component {
   // component updates.
   setIndeterminate = () => {
     const { indeterminate } = this.state
+
     if (this.inputRef) this.inputRef.indeterminate = !!indeterminate
   }
 
@@ -180,7 +191,6 @@ export default class Checkbox extends Component {
       radio,
       readOnly,
       slider,
-      tabIndex,
       toggle,
       type,
       value,
@@ -205,12 +215,10 @@ export default class Checkbox extends Component {
     const rest = getUnhandledProps(Checkbox, this.props)
     const ElementType = getElementType(Checkbox, this.props)
 
-    let computedTabIndex
-    if (!_.isNil(tabIndex)) computedTabIndex = tabIndex
-    else computedTabIndex = disabled ? -1 : 0
-
     return (
-      <ElementType {...rest} className={classes}
+      <ElementType
+        {...rest}
+        className={classes}
         onChange={this.handleClick}
         onClick={this.handleClick}
         onMouseDown={this.handleMouseDown}
@@ -221,7 +229,7 @@ export default class Checkbox extends Component {
           name={name}
           readOnly
           ref={this.handleInputRef}
-          tabIndex={computedTabIndex}
+          tabIndex={this.computeTabIndex()}
           type={type}
           value={value}
         />
