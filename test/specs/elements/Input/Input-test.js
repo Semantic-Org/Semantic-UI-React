@@ -2,8 +2,8 @@ import cx from 'classnames'
 import _ from 'lodash'
 import React from 'react'
 
-import Input, { htmlInputPropNames } from 'src/elements/Input/Input'
-import { SUI } from 'src/lib'
+import Input from 'src/elements/Input/Input'
+import { htmlInputProps, SUI } from 'src/lib'
 import * as common from 'test/specs/commonTests'
 import { sandbox } from 'test/utils'
 
@@ -113,7 +113,7 @@ describe('Input', () => {
   })
 
   describe('input props', () => {
-    htmlInputPropNames.forEach(propName => {
+    htmlInputProps.forEach(propName => {
       it(`passes \`${propName}\` to the <input>`, () => {
         const propValue = propName === 'onChange' ? () => null : 'foo'
         const wrapper = shallow(<Input {...{ [propName]: propValue }} />)
@@ -200,6 +200,22 @@ describe('Input', () => {
       shallow(<Input tabIndex={123} disabled />)
         .find('input')
         .should.have.prop('tabIndex', 123)
+    })
+  })
+
+  describe('focus', () => {
+    it('can be set via a ref', () => {
+      const mountNode = document.createElement('div')
+      document.body.appendChild(mountNode)
+
+      const wrapper = mount(<Input />, { attachTo: mountNode })
+      wrapper.instance().focus()
+
+      const input = document.querySelector('.ui.input input')
+      document.activeElement.should.equal(input)
+
+      wrapper.detach()
+      document.body.removeChild(mountNode)
     })
   })
 })

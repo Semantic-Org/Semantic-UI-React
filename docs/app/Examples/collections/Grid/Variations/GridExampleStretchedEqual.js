@@ -10,7 +10,7 @@ const GridExampleStretchedEqual = () => (
       </Grid.Column>
       <Grid.Column width={6}>
         <Segment>
-          <Image src='http://semantic-ui.com/images/wireframe/paragraph.png' />
+          <Image src='/assets/images/wireframe/paragraph.png' />
         </Segment>
       </Grid.Column>
       <Grid.Column>
@@ -25,7 +25,7 @@ const GridExampleStretchedEqual = () => (
       </Grid.Column>
       <Grid.Column width={6}>
         <Segment>
-          <Image src='http://semantic-ui.com/images/wireframe/paragraph.png' />
+          <Image src='/assets/images/wireframe/paragraph.png' />
         </Segment>
       </Grid.Column>
       <Grid.Column>

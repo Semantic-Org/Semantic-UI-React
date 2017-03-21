@@ -82,11 +82,11 @@ export default class Dimmer extends Component {
     const { onClick, onClickOutside } = this.props
 
     if (onClick) onClick(e, this.props)
-    if (this.center && (this.center !== e.target && this.center.contains(e.target))) return
+    if (this.centerRef && (this.centerRef !== e.target && this.centerRef.contains(e.target))) return
     if (onClickOutside) onClickOutside(e, this.props)
   }
 
-  handleCenterRef = c => (this.center = c)
+  handleCenterRef = c => (this.centerRef = c)
 
   render() {
     const {

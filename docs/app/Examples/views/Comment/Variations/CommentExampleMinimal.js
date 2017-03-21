@@ -6,7 +6,7 @@ const CommentExampleMinimal = () => (
     <Header as='h3' dividing>Comments</Header>
 
     <Comment>
-      <Comment.Avatar as='a' src='http://semantic-ui.com/images/avatar/small/matt.jpg' />
+      <Comment.Avatar as='a' src='/assets/images/avatar/small/matt.jpg' />
       <Comment.Content>
         <Comment.Author as='a'>Matt</Comment.Author>
         <Comment.Metadata>
@@ -20,7 +20,7 @@ const CommentExampleMinimal = () => (
     </Comment>
 
     <Comment>
-      <Comment.Avatar as='a' src='http://semantic-ui.com/images/avatar/small/elliot.jpg' />
+      <Comment.Avatar as='a' src='/assets/images/avatar/small/elliot.jpg' />
       <Comment.Content>
         <Comment.Author as='a'>Elliot Fu</Comment.Author>
         <Comment.Metadata>
@@ -36,7 +36,7 @@ const CommentExampleMinimal = () => (
 
       <Comment.Group>
         <Comment>
-          <Comment.Avatar as='a' src='http://semantic-ui.com/images/avatar/small/jenny.jpg' />
+          <Comment.Avatar as='a' src='/assets/images/avatar/small/jenny.jpg' />
           <Comment.Content>
             <Comment.Author as='a'>Jenny Hess</Comment.Author>
             <Comment.Metadata>
@@ -52,7 +52,7 @@ const CommentExampleMinimal = () => (
     </Comment>
 
     <Comment>
-      <Comment.Avatar as='a' src='http://semantic-ui.com/images/avatar/small/joe.jpg' />
+      <Comment.Avatar as='a' src='/assets/images/avatar/small/joe.jpg' />
       <Comment.Content>
         <Comment.Author as='a'>Joe Henderson</Comment.Author>
         <Comment.Metadata>

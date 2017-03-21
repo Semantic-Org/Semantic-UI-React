@@ -138,22 +138,16 @@ export default class DropdownItem extends Component {
     const labelElement = Label.create(label)
     const descriptionElement = createShorthand(
       'span',
-      val => ({ className: 'description', children: val }),
+      val => ({ children: val }),
       description,
+      props => ({ className: 'description' })
     )
-
-    if (descriptionElement) {
-      return (
-        <ElementType {...rest} {...ariaOptions} className={classes} onClick={this.handleClick}>
-          {imageElement}
-          {iconElement}
-          {flagElement}
-          {labelElement}
-          {descriptionElement}
-          {createShorthand('span', val => ({ className: 'text', children: val }), content || text)}
-        </ElementType>
-      )
-    }
+    const textElement = createShorthand(
+      'span',
+      val => ({ children: val }),
+      content || text,
+      props => ({ className: 'text' })
+    )
 
     return (
       <ElementType {...rest} {...ariaOptions} className={classes} onClick={this.handleClick}>
@@ -161,7 +155,8 @@ export default class DropdownItem extends Component {
         {iconElement}
         {flagElement}
         {labelElement}
-        {content || text}
+        {descriptionElement}
+        {textElement}
       </ElementType>
     )
   }

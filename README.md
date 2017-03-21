@@ -36,48 +36,48 @@ Hey, we're in development. Prior to reaching [v1.0.0][6]:
 1. There are **no deprecation warnings** between releases
 1. You should consult the [**CHANGELOG**][18] and related issues/PRs for more information
 
-### [Voice Your Opinion][19] :speech_balloon:
-
-Help shape this library by weighing in on our [RFC (request for comments)][19] issues. 
-
-### [How Can I Help?](#how-can-i-help) :hand:
-
-### [Documentation][2] :blue_book:
-
-### Getting started
-
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-
-
-- [Installation & Usage](#installation--usage)
-- [Debugger](#debugger)
-- [How Can I Help?](#how-can-i-help)
-  - [[Good First Contribution][21]](#good-first-contribution21)
-  - [[Missing Components][17]](#missing-components17)
-  - [[Help Wanted Label][4]](#help-wanted-label4)
-- [Our Principles](#our-principles)
-- [Support](#support)
-- [Releasing](#releasing)
-- [Credit](#credit)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
 ## Installation & Usage
 
 See the [Documentation][2] for an introduction, usage information, and extensive examples.
 
-## Debugger
+## Example Projects
 
-We use the [debug](https://www.npmjs.com/package/debug) module for debugging.  You can turn debugging on and off via the `localStorage.debug` flag from the browser console.  See the [debug docs](https://www.npmjs.com/package/debug) for more.
+This is a listing of example projects and guides that will help you integrate Semantic UI React into your new or existing projects.
 
-```js
-localStorage.debug = 'semanticUIReact:*'         // default, debug all components
-localStorage.debug = 'semanticUIReact:dropdown'  // debug only the dropdown
-localStorage.debug = null                        // turn debug off
-```
+### [semantic-ui-react-todos][100]
+This example modifies the well-known [react-redux Todo List][101] to use Semantic UI components. There is also a write-up on the process in the project README.
 
-Once you change the flag, you need to refresh your browser to see the changes in debug output.
+## FAQ
+
+### Can I use custom Icons?
+Yes.  Just use `<Icon className='my-icon' />` instead of `<Icon name='my-icon' />`.  See https://github.com/Semantic-Org/Semantic-UI-React/issues/931#issuecomment-263643210 for detailed info and examples.
+
+### How do I setup CSS?
+There are several options.  Refer to our doc on [CSS Usage][23].
+
+### Can I use a customize CSS theme?
+Yes.  Semantic UI React includes components that render valid Semantic UI HTML, no CSS is included.  This allows you to load any Semantic UI CSS theme on top of your Semantic UI React app.
+
+Here are some helpful links:
+
+- [Building CSS with Webpack][24]
+- [Building CSS with Meteor][26]
+- [Creating a standalone theme][25]
+
+## Built With Semantic UI React
+
+These great products are built on Semantic UI React. Add yours [here][22].
+
+- http://stoplight.io
+- https://roadmap.space
+- https://edabit.com
+- https://blackship.com
+- http://www.brewhousesolutions.com
+- https://www.lifebot.fr
+
+## Voice Your Opinion
+
+Help shape this library by weighing in on our [RFC (request for comments)][19] issues. 
 
 ## How Can I Help?
 
@@ -95,24 +95,23 @@ We're seeking component parity with Semantic UI, plus some addons.  There is an 
 
 Any other issue labeled [`help wanted`][4] is ready for a PR.
 
-## Our Principles
+## Debugger
 
-[TechnologyAdvice][9] has been [dogfooding][10] Semantic-UI-React in production since fall of 2015.  These are the guiding principles that have developed as a result:
+We use the [debug](https://www.npmjs.com/package/debug) module for debugging.  You can turn debugging on and off via the `localStorage.debug` flag from the browser console.  See the [debug docs](https://www.npmjs.com/package/debug) for more.
 
-- No jQuery dependency
-- No animation dependencies
-- Reuse SUI CSS transitions
-- Simple declarative component APIs vs intricate HTML markup
-- Complete keyboard support
-- Complete SUI component definition support
-- Completely documented
-- Completely tested
+```js
+localStorage.debug = 'semanticUIReact:*'         // default, debug all components
+localStorage.debug = 'semanticUIReact:dropdown'  // debug only the dropdown
+localStorage.debug = null                        // turn debug off
+```
+
+Once you change the flag, you need to refresh your browser to see the changes in debug output.
 
 ## Support
 
 |    Elements     |   Collections   |      Views      |     Modules     |     Behaviors      |
 |-----------------|-----------------|-----------------|-----------------|--------------------|
-| ✓ Button        | ✓ Breadcrumb    |   Advertisement | ✓ Accordion     |   Form Validation  |
+| ✓ Button        | ✓ Breadcrumb    | ✓ Advertisement | ✓ Accordion     |   Form Validation  |
 | ✓ Container     | ✓ Form          | ✓ Card          | ✓ Checkbox      | *API (NA)*         |
 | ✓ Divider       | ✓ Grid          | ✓ Comment       | ✓ Dimmer        | *Visibility (NA)*  |
 | ✓ Flag          | ✓ Menu          | ✓ Feed          | ✓ Dropdown      |                    |
@@ -128,6 +127,19 @@ Any other issue labeled [`help wanted`][4] is ready for a PR.
 | ✓ Segment       |                 |                 |   Tab           |                    |
 | ✓ Step          |                 |                 |   Transition    |                    |
 
+## Our Principles
+
+[TechnologyAdvice][9] has been [dogfooding][10] Semantic UI React in production since fall of 2015.  These are the guiding principles that have developed as a result:
+
+- No jQuery dependency
+- No animation dependencies
+- Reuse SUI CSS transitions
+- Simple declarative component APIs vs intricate HTML markup
+- Complete keyboard support
+- Complete SUI component definition support
+- Completely documented
+- Completely tested
+
 ## Releasing
 
 On the latest clean `master`:
@@ -136,6 +148,21 @@ On the latest clean `master`:
 npm run release:major
 npm run release:minor
 npm run release:patch
+```
+
+Deploy the docs:
+
+```sh
+npm run deploy:docs
+```
+
+Update the changelog (requires [github_changelog_generator][15]):
+
+```sh
+github_changelog_generator
+git add CHANGELOG.md
+git commit -m 'docs(changelog): update changelog [ci skip]'
+git push
 ```
 
 ## Credit
@@ -152,7 +179,7 @@ Big thanks to our [contributors][20], especially:
 [2]: http://react.semantic-ui.com/
 [3]: https://facebook.github.io/react/
 [4]: https://github.com/Semantic-Org/Semantic-UI-React/labels/help%20wanted
-[5]: http://semantic-ui.com/
+[5]: https://semantic-ui.com/
 [6]: https://github.com/Semantic-Org/Semantic-UI-React/milestone/1
 [7]: https://github.com/webpack/webpack-dev-server/
 [8]: https://github.com/Semantic-Org/Semantic-UI-React/issues/243
@@ -162,10 +189,18 @@ Big thanks to our [contributors][20], especially:
 [12]: https://github.com/Semantic-Org/Semantic-UI-React/issues/243
 [13]: https://webpack.github.io
 [14]: https://github.com/Semantic-Org/Semantic-UI-React/issues
-[15]: #
+[15]: https://github.com/skywinder/github-changelog-generator
 [16]: http://technologyadvice.com/careers
 [17]: https://github.com/Semantic-Org/Semantic-UI-React/issues?q=is%3Aissue+is%3Aopen+label%3A%22new+component%22
 [18]: https://github.com/Semantic-Org/Semantic-UI-React/blob/master/CHANGELOG.md
 [19]: https://github.com/Semantic-Org/Semantic-UI-React/issues?q=is%3Aopen+RFC+label%3ARFC
 [20]: https://github.com/Semantic-Org/Semantic-UI-React/graphs/contributors
 [21]: https://github.com/Semantic-Org/Semantic-UI-React/labels/good%20first%20contribution
+[22]: https://github.com/Semantic-Org/Semantic-UI-React/edit/master/README.md
+[23]: http://react.semantic-ui.com/usage#css
+[24]: https://github.com/Semantic-Org/Semantic-UI-React/issues/802#issuecomment-258990274
+[25]: http://learnsemantic.com/themes/creating.html
+[26]: https://github.com/Semantic-Org/Semantic-UI-Meteor
+<!-- Examples -->
+[100]: https://github.com/wyc/semantic-ui-react-todos
+[101]: https://github.com/reactjs/redux/tree/master/examples/todos

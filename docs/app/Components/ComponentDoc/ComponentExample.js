@@ -1,27 +1,18 @@
 import * as Babel from 'babel-standalone'
 import _ from 'lodash'
 import React, { Component, createElement, isValidElement, PropTypes } from 'react'
+import { withRouter } from 'react-router'
 import { renderToStaticMarkup } from 'react-dom/server'
 import { html } from 'js-beautify'
 import copyToClipboard from 'copy-to-clipboard'
 
 import { exampleContext, repoURL } from 'docs/app/utils'
-import { Divider, Grid, Icon, Header, Menu } from 'src'
+import { Divider, Grid, Icon, Header, Menu, Popup } from 'src'
 import Editor from 'docs/app/Components/Editor/Editor'
+import { scrollToAnchor } from 'docs/app/utils'
 
 const babelConfig = {
   presets: ['es2015', 'react', 'stage-1'],
-}
-
-const showCodeStyle = {
-  position: 'absolute',
-  textAlign: 'right',
-  top: '1rem',
-  right: '1rem',
-}
-
-const codeIconStyle = {
-  fontWeight: 'bold',
 }
 
 const titleStyle = {
@@ -38,11 +29,6 @@ const childrenStyle = {
   paddingTop: 0,
 }
 
-const renderedExampleStyle = {
-  paddingTop: 0,
-  paddingBottom: 0,
-}
-
 const errorStyle = {
   padding: '1em',
   fontSize: '0.9rem',
@@ -50,41 +36,102 @@ const errorStyle = {
   background: '#fff2f2',
 }
 
+const toolTipStyle = { width: 100, textAlign: 'center', padding: '0.5em' }
+const ToolTip = ({ children, content }) => (
+  <Popup
+    inverted
+    mouseEnterDelay={800}
+    position='top center'
+    size='tiny'
+    style={toolTipStyle}
+    trigger={children}
+    content={content}
+  />
+)
+ToolTip.propTypes = {
+  children: PropTypes.node,
+  content: PropTypes.node,
+}
+
 /**
  * Renders a `component` and the raw `code` that produced it.
  * Allows toggling the the raw `code` code block.
  */
-export default class ComponentExample extends Component {
+class ComponentExample extends Component {
   static propTypes = {
     children: PropTypes.node,
     description: PropTypes.node,
     examplePath: PropTypes.string.isRequired,
+    history: PropTypes.object.isRequired,
+    location: PropTypes.object.isRequired,
+    match: PropTypes.object.isRequired,
     title: PropTypes.node,
   }
 
   componentWillMount() {
-    const { title } = this.props
+    const { examplePath } = this.props
     const sourceCode = this.getOriginalSourceCode()
 
+    this.anchorName = _.kebabCase(_.last(examplePath.split('/')))
+
     // show code for direct links to examples
-    const active = title && _.kebabCase(title) === location.hash.replace('#', '')
+    const showCode = this.anchorName === location.hash.replace('#', '')
     const exampleElement = this.renderOriginalExample()
-    const staticMarkup = renderToStaticMarkup(exampleElement)
+    const markup = renderToStaticMarkup(exampleElement)
 
     this.setState({
       exampleElement,
-      showCode: active,
-      showHTML: active,
+      showCode,
       sourceCode,
-      staticMarkup,
+      markup,
     })
   }
 
+  setHashAndScroll = () => {
+    const { history } = this.props
+    history.replace(location.pathname + '#' + this.anchorName)
+    scrollToAnchor()
+  }
+
+  removeHash = () => {
+    const { history } = this.props
+    history.replace(location.pathname)
+  }
+
+  handleDirectLinkClick = (e) => {
+    e.preventDefault()
+    this.setHashAndScroll()
+
+    copyToClipboard(this.anchorName)
+    this.setState({ copiedDirectLink: true })
+
+    setTimeout(() => this.setState({ copiedDirectLink: false }), 1000)
+  }
+
+  handleShowCodeClick = (e) => {
+    e.preventDefault()
+
+    const { showCode } = this.state
+    this.setState({ showCode: !showCode })
+
+    if (!showCode) this.setHashAndScroll()
+    else this.removeHash()
+  }
+
+  handleShowHTMLClick = (e) => {
+    e.preventDefault()
+
+    const { showHTML } = this.state
+    this.setState({ showHTML: !showHTML })
+
+    if (!showHTML) this.setHashAndScroll()
+    else this.removeHash()
+  }
+
   copyJSX = () => {
-    const { sourceCode } = this.state
-    copyToClipboard(sourceCode)
-    this.setState({ copied: true })
-    setTimeout(() => this.setState({ copied: false }), 1000)
+    copyToClipboard(this.state.sourceCode)
+    this.setState({ copiedCode: true })
+    setTimeout(() => this.setState({ copiedCode: false }), 1000)
   }
 
   resetJSX = () => {
@@ -98,14 +145,17 @@ export default class ComponentExample extends Component {
 
   getOriginalSourceCode = () => {
     const { examplePath } = this.props
-    return require(`!raw!docs/app/Examples/${examplePath}`)
+
+    if (!this.sourceCode) this.sourceCode = require(`!raw!docs/app/Examples/${examplePath}`)
+
+    return this.sourceCode
   }
 
-  getKebabExamplePath = () => _.kebabCase(this.props.examplePath)
+  getKebabExamplePath = () => {
+    if (!this.kebabExamplePath) this.kebabExamplePath = _.kebabCase(this.props.examplePath)
 
-  toggleShowCode = () => this.setState({ showCode: !this.state.showCode })
-
-  toggleShowHTML = () => this.setState({ showHTML: !this.state.showHTML })
+    return this.kebabExamplePath
+  }
 
   renderError = _.debounce((error) => {
     this.setState({ error })
@@ -191,7 +241,7 @@ export default class ComponentExample extends Component {
         this.setState({
           error,
           exampleElement,
-          staticMarkup: renderToStaticMarkup(exampleElement),
+          markup: renderToStaticMarkup(exampleElement),
         })
       }
     } catch (err) {
@@ -204,9 +254,10 @@ export default class ComponentExample extends Component {
     this.renderSourceCode()
   }
 
-  renderJSXControls = () => {
+  setGitHubHrefs = () => {
     const { examplePath } = this.props
-    const { copied, error } = this.state
+
+    if (this.ghEditHref && this.ghBugHref) return
 
     // get component name from file path:
     // elements/Button/Types/ButtonButtonExample
@@ -214,12 +265,12 @@ export default class ComponentExample extends Component {
     const componentName = pathParts[1]
     const filename = pathParts[pathParts.length - 1]
 
-    const color = error ? 'red' : 'black'
-    const ghEditHref = [
+    this.ghEditHref = [
       `${repoURL}/edit/master/docs/app/Examples/${examplePath}.js`,
       `?message=docs(${filename}): your description`,
     ].join('')
-    const ghBugHref = [
+
+    this.ghBugHref = [
       `${repoURL}/issues/new?`,
       _.map({
         title: `fix(${componentName}): your description`,
@@ -240,16 +291,23 @@ export default class ComponentExample extends Component {
         ].join('\n'),
       }, (val, key) => `${key}=${encodeURIComponent(val)}`).join('&'),
     ].join('')
+  }
 
+  renderJSXControls = () => {
+    const { copiedCode, error } = this.state
+
+    this.setGitHubHrefs()
+
+    const color = error ? 'red' : 'black'
     return (
-      <Divider horizontal>
+      <Divider horizontal fitted>
         <Menu text>
           <Menu.Item
-            active={copied || !!error} // to show the color
-            color={copied ? 'green' : color}
+            active={copiedCode || !!error} // to show the color
+            color={copiedCode ? 'green' : color}
             onClick={this.copyJSX}
-            icon={!copied && 'copy'}
-            content={copied ? 'Copied!' : 'Copy'}
+            icon={!copiedCode && 'copy'}
+            content={copiedCode ? 'Copied!' : 'Copy'}
           />
           <Menu.Item
             active={!!error} // to show the color
@@ -263,7 +321,7 @@ export default class ComponentExample extends Component {
             color={color}
             icon='github'
             content='Edit'
-            href={ghEditHref}
+            href={this.ghEditHref}
             target='_blank'
           />
           <Menu.Item
@@ -271,7 +329,7 @@ export default class ComponentExample extends Component {
             color={color}
             icon='bug'
             content='Issue'
-            href={ghBugHref}
+            href={this.ghBugHref}
             target='_blank'
           />
         </Menu>
@@ -289,7 +347,7 @@ export default class ComponentExample extends Component {
     }
 
     return (
-      <Grid.Column style={style}>
+      <div style={style}>
         {this.renderJSXControls()}
         <Editor
           id={`${this.getKebabExamplePath()}-jsx`}
@@ -299,17 +357,17 @@ export default class ComponentExample extends Component {
         {error && (
           <pre style={errorStyle}>{error}</pre>
         )}
-      </Grid.Column>
+      </div>
     )
   }
 
   renderHTML = () => {
-    const { showHTML, staticMarkup } = this.state
+    const { showHTML, markup } = this.state
     if (!showHTML) return
 
     // add new lines between almost all adjacent elements
     // moves inline elements to their own line
-    const preFormattedHTML = staticMarkup
+    const preFormattedHTML = markup
       .replace(/><(?!\/i|\/label|\/span|option)/g, '>\n<')
 
     const beautifiedHTML = html(preFormattedHTML, {
@@ -321,56 +379,56 @@ export default class ComponentExample extends Component {
     })
 
     return (
-      <Grid.Column>
+      <div>
         <Divider horizontal>Rendered HTML</Divider>
         <Editor id={`${this.getKebabExamplePath()}-html`} mode='html' value={beautifiedHTML} readOnly />
-      </Grid.Column>
+      </div>
     )
   }
 
   render() {
     const { children, description, title } = this.props
-    const { exampleElement, showCode, showHTML } = this.state
-    const active = showCode || showHTML
+    const { copiedDirectLink, exampleElement, showCode, showHTML } = this.state
+    const exampleStyle = {}
 
-    const style = { marginBottom: '4em', transition: 'box-shadow 0 ease-out' }
-    if (active) {
-      style.transitionDuration = '0.2s'
-      style.boxShadow = '0 0 30px #ccc'
+    if (showCode || showHTML || location.hash === `#${this.anchorName}`) {
+      exampleStyle.boxShadow = '0 0 30px #ccc'
     }
 
     return (
-      <Grid style={style} divided={active} columns='1'>
+      <Grid className='docs-example' style={exampleStyle} divided={showCode} columns='1' id={this.anchorName}>
         <Grid.Column style={headerColumnStyle}>
-          {title && <Header as='h3' style={titleStyle}>{title}</Header>}
+          {title && <Header as='h3' className='no-anchor' style={titleStyle} content={title} />}
           {description && <p>{description}</p>}
-          <div style={showCodeStyle}>
-            <Icon
-              link
-              bordered
-              name='code'
-              color={showCode ? 'green' : 'grey'}
-              onClick={this.toggleShowCode}
-              style={codeIconStyle}
-            />
-            <Icon
-              link
-              bordered
-              name='html5'
-              color={showHTML ? 'green' : 'grey'}
-              onClick={this.toggleShowHTML}
-            />
-          </div>
+          <Menu compact text icon size='small' color='green' className='docs-example-menu'>
+            <ToolTip content={copiedDirectLink ? ' Copied Link!' : 'Direct link'}>
+              <Menu.Item href={`#${this.anchorName}`} onClick={this.handleDirectLinkClick}>
+                <Icon size='large' color='grey' name='linkify' fitted />
+              </Menu.Item>
+            </ToolTip>
+            <ToolTip content='Full Screen'>
+              <Menu.Item href={`/maximize/${this.anchorName}`} target='_blank'>
+                <Icon size='large' color='grey' name='window maximize' fitted />
+              </Menu.Item>
+            </ToolTip>
+            <ToolTip content='Show HTML'>
+              <Menu.Item active={showHTML} onClick={this.handleShowHTMLClick}>
+                <Icon size='large' color='grey' name='html5' fitted />
+              </Menu.Item>
+            </ToolTip>
+            <ToolTip content='Edit Code'>
+              <Menu.Item active={showCode} onClick={this.handleShowCodeClick}>
+                <Icon size='large' name='code' fitted />
+              </Menu.Item>
+            </ToolTip>
+          </Menu>
         </Grid.Column>
         {children && (
           <Grid.Column style={childrenStyle}>
             {children}
           </Grid.Column>
         )}
-        <Grid.Column
-          className={`rendered-example ${this.getKebabExamplePath()}`}
-          style={renderedExampleStyle}
-        >
+        <Grid.Column className={`rendered-example ${this.getKebabExamplePath()}`}>
           {exampleElement}
         </Grid.Column>
         {this.renderJSX()}
@@ -379,3 +437,5 @@ export default class ComponentExample extends Component {
     )
   }
 }
+
+export default withRouter(ComponentExample)

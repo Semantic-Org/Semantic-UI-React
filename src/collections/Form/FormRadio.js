@@ -7,11 +7,10 @@ import {
   META,
 } from '../../lib'
 import Radio from '../../addons/Radio'
-
 import FormField from './FormField'
 
 /**
- * Sugar for <Form.Field control={Radio} />
+ * Sugar for <Form.Field control={Radio} />.
  * @see Form
  * @see Radio
  */
@@ -33,7 +32,7 @@ FormRadio.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** A FormField control prop */
+  /** A FormField control prop. */
   control: FormField.propTypes.control,
 }
 

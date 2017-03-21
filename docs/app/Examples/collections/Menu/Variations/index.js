@@ -103,6 +103,9 @@ const Variations = () => {
         description='A menu item or menu can remove element padding, vertically or horizontally.'
         examplePath='collections/Menu/Variations/MenuExampleFitted'
       />
+      <ComponentExample
+        examplePath='collections/Menu/Variations/MenuExampleVerticalFitted'
+      />
 
       <ComponentExample
         title='Borderless'

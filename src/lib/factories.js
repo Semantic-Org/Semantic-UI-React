@@ -98,7 +98,7 @@ export function createShorthand(Component, mapValueToProps, val, defaultProps = 
  * @param {function|string} Component A ReactClass or string
  * @param {function} mapValueToProps A function that maps a primitive value to the Component props
  * @param {boolean} [generateKey] Whether or not to generate a child key, useful for collections.
- * @return {function} A shorthand factory function waiting for `val` and `defaultProps`.
+ * @returns {function} A shorthand factory function waiting for `val` and `defaultProps`.
  */
 export function createShorthandFactory(Component, mapValueToProps, generateKey) {
   if (typeof Component !== 'function' && typeof Component !== 'string') {

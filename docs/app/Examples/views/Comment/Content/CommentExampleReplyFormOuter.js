@@ -4,7 +4,7 @@ import { Button, Comment, Form } from 'semantic-ui-react'
 const CommentExampleReplyFormOuter = () => (
   <Comment.Group>
     <Comment>
-      <Comment.Avatar as='a' src='http://semantic-ui.com/images/avatar/small/joe.jpg' />
+      <Comment.Avatar as='a' src='/assets/images/avatar/small/joe.jpg' />
       <Comment.Content>
         <Comment.Author>Joe Henderson</Comment.Author>
         <Comment.Metadata>
@@ -21,7 +21,7 @@ const CommentExampleReplyFormOuter = () => (
     </Comment>
 
     <Comment>
-      <Comment.Avatar as='a' src='http://semantic-ui.com/images/avatar/small/christian.jpg' />
+      <Comment.Avatar as='a' src='/assets/images/avatar/small/christian.jpg' />
       <Comment.Content>
         <Comment.Author>Christian Rocha</Comment.Author>
         <Comment.Metadata>

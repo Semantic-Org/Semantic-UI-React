@@ -7,11 +7,10 @@ import {
   META,
 } from '../../lib'
 import Select from '../../addons/Select'
-
 import FormField from './FormField'
 
 /**
- * Sugar for <Form.Field control={Select} />
+ * Sugar for <Form.Field control={Select} />.
  * @see Form
  * @see Select
  */
@@ -33,7 +32,7 @@ FormSelect.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** A FormField control prop */
+  /** A FormField control prop. */
   control: FormField.propTypes.control,
 }
 

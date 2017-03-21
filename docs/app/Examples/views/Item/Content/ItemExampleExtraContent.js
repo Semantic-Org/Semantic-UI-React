@@ -1,12 +1,12 @@
 import React from 'react'
 import { Icon, Image as ImageComponent, Item } from 'semantic-ui-react'
 
-const paragraph = <ImageComponent src='http://semantic-ui.com/images/wireframe/short-paragraph.png' />
+const paragraph = <ImageComponent src='/assets/images/wireframe/short-paragraph.png' />
 
 const ItemExampleExtraContent = () => (
   <Item.Group>
     <Item>
-      <Item.Image size='small' src='http://semantic-ui.com/images/wireframe/image.png' />
+      <Item.Image size='small' src='/assets/images/wireframe/image.png' />
 
       <Item.Content>
         <Item.Header as='a'>Cute Dog</Item.Header>
@@ -18,7 +18,7 @@ const ItemExampleExtraContent = () => (
     </Item>
 
     <Item>
-      <Item.Image size='small' src='http://semantic-ui.com/images/wireframe/image.png' />
+      <Item.Image size='small' src='/assets/images/wireframe/image.png' />
 
       <Item.Content>
         <Item.Header as='a'>Cute Dog</Item.Header>
@@ -28,7 +28,7 @@ const ItemExampleExtraContent = () => (
     </Item>
 
     <Item>
-      <Item.Image size='small' src='http://semantic-ui.com/images/wireframe/image.png' />
+      <Item.Image size='small' src='/assets/images/wireframe/image.png' />
       <Item.Content header='Cute Dog' extra='121 Votes' />
     </Item>
   </Item.Group>

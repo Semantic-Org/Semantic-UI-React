@@ -5,7 +5,7 @@ const RailExampleClose = () => (
   <Grid centered columns={3}>
     <Grid.Column>
       <Segment>
-        <Image src='http://semantic-ui.com/images/wireframe/paragraph.png' />
+        <Image src='/assets/images/wireframe/paragraph.png' />
 
         <Rail close position='left'>
           <Segment>Left Rail Content</Segment>

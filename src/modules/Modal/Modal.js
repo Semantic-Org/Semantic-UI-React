@@ -193,10 +193,12 @@ class Modal extends Component {
     if (onUnmount) onUnmount(e, this.props)
   }
 
+  handleRef = c => (this.ref = c)
+
   setPosition = () => {
-    if (this._modalNode) {
+    if (this.ref) {
       const mountNode = this.getMountNode()
-      const { height } = this._modalNode.getBoundingClientRect()
+      const { height } = this.ref.getBoundingClientRect()
 
       const marginTop = -Math.round(height / 2)
       const scrolling = height >= window.innerHeight
@@ -260,7 +262,7 @@ class Modal extends Component {
     const closeIconName = closeIcon === true ? 'close' : closeIcon
 
     const modalJSX = (
-      <ElementType {...rest} className={classes} style={{ marginTop }} ref={c => (this._modalNode = c)}>
+      <ElementType {...rest} className={classes} style={{ marginTop }} ref={this.handleRef}>
         {Icon.create(closeIconName, { onClick: this.handleClose })}
         {children}
       </ElementType>

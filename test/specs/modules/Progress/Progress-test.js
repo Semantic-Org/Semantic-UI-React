@@ -96,22 +96,11 @@ describe('Progress', () => {
   })
 
   describe('label', () => {
-    it('displays the progress as a percentage by default', () => {
-      shallow(<Progress percent={20} label />)
-        .should.have.descendants('.progress')
-        .and.contain.text('20%')
-    })
-    it('displays the progress as a ratio when set to "ratio"', () => {
-      shallow(<Progress label='ratio' value={1} total={2} />)
+    it('shows the label text when provided', () => {
+      shallow(<Progress label='some-label' />)
         .children()
-        .find('.progress')
-        .should.contain.text('1/2')
-    })
-    it('displays the progress as a percentage when set to "percent"', () => {
-      shallow(<Progress label='percent' value={1} total={2} />)
-        .children()
-        .find('.progress')
-        .should.contain.text('50%')
+        .find('.label')
+        .should.contain.text('some-label')
     })
   })
 
@@ -130,6 +119,23 @@ describe('Progress', () => {
       shallow(<Progress progress={false} />)
         .find('.bar')
         .should.not.have.descendants('.progress')
+    })
+    it('displays the progress as a percentage by default', () => {
+      shallow(<Progress percent={20} progress />)
+        .should.have.descendants('.progress')
+        .and.contain.text('20%')
+    })
+    it('displays the progress as a ratio when set to "ratio"', () => {
+      shallow(<Progress progress='ratio' value={1} total={2} />)
+        .children()
+        .find('.progress')
+        .should.contain.text('1/2')
+    })
+    it('displays the progress as a percentage when set to "percent"', () => {
+      shallow(<Progress progress='percent' value={1} total={2} />)
+        .children()
+        .find('.progress')
+        .should.contain.text('50%')
     })
     it('shows the percent complete', () => {
       shallow(<Progress percent={72} progress />)
@@ -191,7 +197,7 @@ describe('Progress', () => {
 
   describe('total/value', () => {
     it('calculates the percent complete', () => {
-      shallow(<Progress value={1} total={2} />)
+      shallow(<Progress value={1} total={2} progress />)
         .children()
         .find('.progress')
         .should.contain.text('50%')
