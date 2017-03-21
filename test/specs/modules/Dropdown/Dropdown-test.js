@@ -123,6 +123,17 @@ describe('Dropdown', () => {
       .should.have.been.calledOnce()
   })
 
+  it('does not close on click when search is true and options are empty', () => {
+    wrapperMount(<Dropdown options={{}} search selection defaultOpen />)
+
+    const instance = wrapper.instance()
+    sandbox.spy(instance.ref, 'blur')
+
+    dropdownMenuIsOpen()
+    wrapper.simulate('click')
+    dropdownMenuIsOpen()
+  })
+
   it('opens on focus', () => {
     wrapperMount(<Dropdown options={options} />)
 
