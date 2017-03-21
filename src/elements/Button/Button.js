@@ -160,6 +160,20 @@ class Button extends Component {
   static Group = ButtonGroup
   static Or = ButtonOr
 
+  computeElementType = () => {
+    const { attached, label } = this.props
+
+    if (!_.isNil(attached) || !_.isNil(label)) return 'div'
+  }
+
+  computeTabIndex = ElementType => {
+    const { disabled, tabIndex } = this.props
+
+    if (!_.isNil(tabIndex)) return tabIndex
+    if (disabled) return -1
+    if (ElementType === 'div') return 0
+  }
+
   handleClick = (e) => {
     const { disabled, onClick } = this.props
 
@@ -169,14 +183,6 @@ class Button extends Component {
     }
 
     if (onClick) onClick(e, this.props)
-  }
-
-  computeTabIndex = ElementType => {
-    const { disabled, tabIndex } = this.props
-
-    if (!_.isNil(tabIndex)) return tabIndex
-    if (disabled) return -1
-    if (ElementType === 'div') return 0
   }
 
   render() {
@@ -207,10 +213,6 @@ class Button extends Component {
       toggle,
     } = this.props
 
-    const labeledClasses = cx(
-      useKeyOrValueAndKey(labelPosition || !!label, 'labeled'),
-    )
-
     const baseClasses = cx(
       color,
       size,
@@ -229,18 +231,23 @@ class Button extends Component {
       useKeyOnly(toggle, 'toggle'),
       useKeyOrValueAndKey(animated, 'animated'),
       useKeyOrValueAndKey(attached, 'attached'),
+    )
+    const labeledClasses = cx(
+      useKeyOrValueAndKey(labelPosition || !!label, 'labeled'),
+    )
+    const wrapperClasses = cx(
+      useKeyOnly(disabled, 'disabled'),
       useValueAndKey(floated, 'floated'),
     )
-    const wrapperClasses = cx(useKeyOnly(disabled, 'disabled'))
+
     const rest = getUnhandledProps(Button, this.props)
-    const ElementType = getElementType(Button, this.props, () => {
-      if (!_.isNil(label) || !_.isNil(attached)) return 'div'
-    })
+    const ElementType = getElementType(Button, this.props, this.computeElementType)
     const tabIndex = this.computeTabIndex(ElementType)
 
     if (!_.isNil(children)) {
       const classes = cx('ui', baseClasses, wrapperClasses, labeledClasses, 'button', className)
       debug('render children:', { classes })
+
       return (
         <ElementType {...rest} className={classes} tabIndex={tabIndex} onClick={this.handleClick}>
           {children}
@@ -252,9 +259,11 @@ class Button extends Component {
       basic: true,
       pointing: labelPosition === 'left' ? 'right' : 'left',
     })
+
     if (labelElement) {
       const classes = cx('ui', baseClasses, 'button', className)
       const containerClasses = cx('ui', labeledClasses, 'button', className, wrapperClasses)
+
       debug('render label:', { classes, containerClasses }, this.props)
 
       return (
@@ -271,6 +280,7 @@ class Button extends Component {
     if (!_.isNil(icon) && _.isNil(label)) {
       const classes = cx('ui', labeledClasses, baseClasses, 'button', className, wrapperClasses)
       debug('render icon && !label:', { classes })
+
       return (
         <ElementType {...rest} className={classes} tabIndex={tabIndex} onClick={this.handleClick}>
           {Icon.create(icon)} {content}
