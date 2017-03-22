@@ -164,6 +164,19 @@ const Usage = () => (
         icon='github'
         labelPosition='left'
       />
+
+      <Header as='h3'>Webpack 2</Header>
+      <p>
+        Webpack 2 fully supports Semantic UI React, it also supports tree shaking. Please ensure that you build your app
+        in production mode before release, it will strip <code>propTypes</code> from your build.
+      </p>
+
+      <Button
+        content='Example configuration'
+        href='https://github.com/Semantic-Org/Semantic-UI-React/tree/master/examples/webpack2'
+        icon='github'
+        labelPosition='left'
+      />
     </Segment>
   </Container>
 )
