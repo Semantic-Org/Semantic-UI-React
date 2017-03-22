@@ -128,7 +128,7 @@
     "simulant": "^0.2.2",
     "sinon": "^2.1.0",
     "sinon-chai": "^2.9.0",
-    "style-loader": "^0.13.1",
+    "style-loader": "^0.14.0",
     "ta-scripts": "^2.5.2",
     "through2": "^2.0.2",
     "tslint": "^4.3.1",
