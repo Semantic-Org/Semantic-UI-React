@@ -25,7 +25,7 @@ const CardExampleGroups = () => (
     </Card>
     <Card>
       <Card.Content>
-        <Image floated='right' size='mini' src='/assets/images/avatar2/large/molly.png' />
+        <Image floated='right' size='mini' src='/assets/images/avatar/large/molly.png' />
         <Card.Header>
           Molly Thomas
         </Card.Header>
