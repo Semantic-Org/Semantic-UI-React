@@ -996,16 +996,20 @@ export default class Dropdown extends Component {
   }
 
   toggle = (e) => {
-    if (this.state.open) {
-      const { search } = this.props
-      const options = this.getMenuOptions()
-      if (search && _.isEmpty(options)) {
-        e.preventDefault()
-      } else {
-        return this.close(e)
-      }
+    if (!this.state.open) {
+      this.open(e)
+      return
     }
-    return this.open(e)
+
+    const { search } = this.props
+    const options = this.getMenuOptions()
+
+    if (search && _.isEmpty(options)) {
+      e.preventDefault()
+      return
+    }
+    this.close(e)
+    return
   }
 
   // ----------------------------------------
