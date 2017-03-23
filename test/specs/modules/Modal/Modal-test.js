@@ -81,7 +81,7 @@ describe('Modal', () => {
       .should.not.equal(null, 'Modal did not render the child component.')
   })
 
-  it('spreads the user\'s style prop on the Modal', () => {
+  it("spreads the user's style prop on the Modal", () => {
     const style = { marginTop: '1em', top: 0 }
 
     wrapperMount(<Modal open style={style} />)
