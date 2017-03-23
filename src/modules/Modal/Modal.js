@@ -72,12 +72,6 @@ class Modal extends Component {
     /** Modal displayed above the content in bold. */
     header: customPropTypes.itemShorthand,
 
-    /** Optional Icon to display inside the Modal. */
-    icon: PropTypes.oneOfType([
-      PropTypes.bool,
-      customPropTypes.itemShorthand,
-    ]),
-
     /** The node where the modal should mount. Defaults to document.body. */
     mountNode: PropTypes.any,
 
@@ -242,7 +236,7 @@ class Modal extends Component {
   }
 
   render() {
-    const open = this.state.open
+    const { open } = this.state
     const {
       actions,
       basic,
@@ -254,7 +248,7 @@ class Modal extends Component {
       content,
       dimmer,
       header,
-      size
+      size,
     } = this.props
 
     const mountNode = this.getMountNode()
