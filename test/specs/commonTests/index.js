@@ -1,4 +1,3 @@
-
 export hasSubComponents from './hasSubComponents'
 export hasUIClassName from './hasUIClassName'
 

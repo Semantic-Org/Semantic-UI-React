@@ -142,6 +142,35 @@ export const implementsLabelProp = (Component, options = {}) => {
 }
 
 /**
+ * Assert that a Component correctly implements the "only" prop.
+ * @param {React.Component|Function} Component The component to test.
+ */
+export const implementsOnlyProp = Component => {
+  const { assertRequired } = helpers('propKeyAndValueToClassName', Component)
+  const propValues = SUI.VISIBILITY
+
+  describe('only (common)', () => {
+    assertRequired(Component, 'a `Component`')
+
+    noDefaultClassNameFromProp(Component, 'only', propValues)
+    noClassNameFromBoolProps(Component, 'only', propValues)
+
+    propValues.forEach(propVal => {
+      it(`adds "${propVal} only" to className`, () => {
+        shallow(createElement(Component, { only: propVal })).should.have.className(`${propVal} only`)
+      })
+    })
+
+    it('adds all possible values to className', () => {
+      const className = propValues.map(prop => `${prop} only`).join(' ')
+      const propValue = propValues.join(' ')
+
+      shallow(createElement(Component, { only: propValue })).should.have.className(className)
+    })
+  })
+}
+
+/**
  * Assert that a Component correctly implements the "textAlign" prop.
  * @param {React.Component|Function} Component The component to test.
  * @param {array} [alignments] Array of possible alignment positions.

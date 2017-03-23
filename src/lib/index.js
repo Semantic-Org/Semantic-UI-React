@@ -3,11 +3,13 @@ export * as childrenUtils from './childrenUtils'
 
 export {
   useKeyOnly,
-  useValueAndKey,
   useKeyOrValueAndKey,
-  useWidthProp,
+  useValueAndKey,
+
+  useOnlyProp,
   useTextAlignProp,
   useVerticalAlignProp,
+  useWidthProp,
 } from './classNameBuilders'
 
 export * as customPropTypes from './customPropTypes'
