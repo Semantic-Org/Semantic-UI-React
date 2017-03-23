@@ -288,7 +288,6 @@ class Modal extends Component {
               this.handleClose()
             }
             action.onClick = onClick(action.onClick)
-            return Button.create(action, { key: i })
           }
           return Button.create(action, { key: i })
         }))}
