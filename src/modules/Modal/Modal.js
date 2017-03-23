@@ -14,6 +14,7 @@ import {
 } from '../../lib'
 import Icon from '../../elements/Icon'
 import Portal from '../../addons/Portal'
+import Button from '../../elements/Button'
 import ModalHeader from './ModalHeader'
 import ModalContent from './ModalContent'
 import ModalActions from './ModalActions'
@@ -28,6 +29,9 @@ const debug = makeDebugger('modal')
  */
 class Modal extends Component {
   static propTypes = {
+    /** An element type to render as (string or function). */
+    actions: PropTypes.oneOfType([PropTypes.arrayOf(customPropTypes.itemShorthand), customPropTypes.itemShorthand]),
+
     /** An element type to render as (string or function). */
     as: customPropTypes.as,
 
@@ -53,13 +57,25 @@ class Modal extends Component {
     /** Whether or not the Modal should close when the document is clicked. */
     closeOnDocumentClick: PropTypes.bool,
 
+    /** Simple text content for the Modal. */
+    content: customPropTypes.itemShorthand,
+
     /** Initial value of open. */
     defaultOpen: PropTypes.bool,
 
-    /** A modal can appear in a dimmer. */
+    /** A Modal can appear in a dimmer. */
     dimmer: PropTypes.oneOfType([
       PropTypes.bool,
       PropTypes.oneOf(['inverted', 'blurring']),
+    ]),
+
+    /** Modal displayed above the content in bold. */
+    header: customPropTypes.itemShorthand,
+
+    /** Optional Icon to display inside the Modal. */
+    icon: PropTypes.oneOfType([
+      PropTypes.bool,
+      customPropTypes.itemShorthand,
     ]),
 
     /** The node where the modal should mount. Defaults to document.body. */
@@ -226,16 +242,19 @@ class Modal extends Component {
   }
 
   render() {
-    const { open } = this.state
+    const open = this.state.open
     const {
+      actions,
       basic,
       children,
       className,
       closeIcon,
       closeOnDimmerClick,
       closeOnDocumentClick,
+      content,
       dimmer,
-      size,
+      header,
+      size
     } = this.props
 
     const mountNode = this.getMountNode()
@@ -252,6 +271,7 @@ class Modal extends Component {
       'modal transition visible active',
       className,
     )
+
     const unhandled = getUnhandledProps(Modal, this.props)
     const portalPropNames = Portal.handledProps
 
@@ -265,6 +285,19 @@ class Modal extends Component {
       <ElementType {...rest} className={classes} style={{ marginTop }} ref={this.handleRef}>
         {Icon.create(closeIconName, { onClick: this.handleClose })}
         {children}
+        {_.isNil(children) && header && ModalHeader.create(header)}
+        {_.isNil(children) && content && ModalContent.create(content)}
+        {_.isNil(children) && actions && ModalActions.create(actions.map((action, i) => {
+          if (action.triggerClose) {
+            const onClick = (callback) => (e) => {
+              if (callback) callback(e, this.props)
+              this.handleClose()
+            }
+            action.onClick = onClick(action.onClick)
+            return Button.create(action, { key: i })
+          }
+          return Button.create(action, { key: i })
+        }))}
       </ElementType>
     )
 

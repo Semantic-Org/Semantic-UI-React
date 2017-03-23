@@ -2,6 +2,7 @@ import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
 import {
+  createShorthandFactory,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -36,5 +37,7 @@ ModalDescription.propTypes = {
   /** Additional classes. */
   className: PropTypes.string,
 }
+
+ModalDescription.create = createShorthandFactory(ModalDescription, children => ({ children }))
 
 export default ModalDescription
