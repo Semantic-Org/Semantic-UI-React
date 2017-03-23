@@ -1008,8 +1008,8 @@ export default class Dropdown extends Component {
       e.preventDefault()
       return
     }
+
     this.close(e)
-    return
   }
 
   // ----------------------------------------
