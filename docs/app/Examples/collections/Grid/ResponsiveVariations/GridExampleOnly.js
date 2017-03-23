@@ -1,7 +1,7 @@
 import React from 'react'
 import { Grid, Segment } from 'semantic-ui-react'
 
-const GridExampleDeviceVisibility = () => (
+const GridExampleOnly = () => (
   <Grid>
     <Grid.Row columns={2} only='large screen'>
       <Grid.Column>
@@ -55,7 +55,7 @@ const GridExampleDeviceVisibility = () => (
         <Segment>Computer</Segment>
       </Grid.Column>
     </Grid.Row>
-    <Grid.Row only='tablet'>
+    <Grid.Row columns={3} only='tablet'>
       <Grid.Column>
         <Segment>Tablet</Segment>
       </Grid.Column>
@@ -69,4 +69,4 @@ const GridExampleDeviceVisibility = () => (
   </Grid>
 )
 
-export default GridExampleDeviceVisibility
+export default GridExampleOnly

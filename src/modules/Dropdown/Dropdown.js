@@ -447,6 +447,7 @@ export default class Dropdown extends Component {
       document.addEventListener('click', this.closeOnDocumentClick)
       document.removeEventListener('keydown', this.openOnArrow)
       document.removeEventListener('keydown', this.openOnSpace)
+      this.scrollSelectedItemIntoView()
     } else if (prevState.open && !this.state.open) {
       debug('dropdown closed')
       this.handleClose()
@@ -939,8 +940,11 @@ export default class Dropdown extends Component {
 
   scrollSelectedItemIntoView = () => {
     debug('scrollSelectedItemIntoView()')
+    if (!this.ref) return
     const menu = this.ref.querySelector('.menu.visible')
+    if (!menu) return
     const item = menu.querySelector('.item.selected')
+    if (!item) return
     debug(`menu: ${menu}`)
     debug(`item: ${item}`)
     const isOutOfUpperView = item.offsetTop < menu.scrollTop
@@ -962,6 +966,7 @@ export default class Dropdown extends Component {
     if (onOpen) onOpen(e, this.props)
 
     this.trySetState({ open: true })
+    this.scrollSelectedItemIntoView()
   }
 
   close = (e) => {

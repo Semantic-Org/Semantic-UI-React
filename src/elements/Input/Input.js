@@ -121,6 +121,12 @@ class Input extends Component {
     onChange(e, { ...this.props, value })
   }
 
+  focus = () => {
+    this.inputRef.focus()
+  }
+
+  handleInputRef = c => (this.inputRef = c)
+
   render() {
     const {
       action,
@@ -168,6 +174,7 @@ class Input extends Component {
     const [htmlInputProps, rest] = partitionHTMLInputProps({ ...unhandled, type })
 
     if (onChange) htmlInputProps.onChange = this.handleChange
+    htmlInputProps.ref = this.handleInputRef
 
     // tabIndex
     if (!_.isNil(tabIndex)) htmlInputProps.tabIndex = tabIndex

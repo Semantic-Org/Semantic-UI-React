@@ -8,11 +8,11 @@ const Types = () => (
     <ComponentExample
       title='Card'
       description='A card displays site content in a manner similar to a playing card.'
-      examplePath='views/Card/Types/CardExampleIndividualCard'
+      examplePath='views/Card/Types/CardExampleCard'
     />
     <ComponentExample
       description='You can also use props to configure the markup.'
-      examplePath='views/Card/Types/CardExampleIndividualCardProps'
+      examplePath='views/Card/Types/CardExampleCardProps'
     />
     <ComponentExample
       title='Cards'
