@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { default as RevealContent } from './RevealContent';
 
-interface RevealProps {
+export interface RevealProps {
   [key: string]: any;
 
   /** An element type to render as (string or function). */

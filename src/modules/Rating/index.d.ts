@@ -1,1 +1,1 @@
-export { default } from './Rating'
+export { default, RatingProps } from './Rating'

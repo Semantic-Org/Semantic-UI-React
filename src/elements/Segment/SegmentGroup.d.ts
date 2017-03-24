@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { SegmentSizeProp } from './Segment';
 
-interface SegmentGroupProps {
+export interface SegmentGroupProps {
   [key: string]: any;
 
   /** An element type to render as (string or function). */

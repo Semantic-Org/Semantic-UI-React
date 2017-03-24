@@ -3,7 +3,7 @@ import * as React from 'react';
 import { default as SidebarPushable } from './SidebarPushable';
 import { default as SidebarPusher } from './SidebarPusher';
 
-interface SidebarProps {
+export interface SidebarProps {
   [key: string]: any;
 
   /** An element type to render as (string or function). */

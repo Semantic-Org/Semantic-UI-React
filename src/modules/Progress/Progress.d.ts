@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { SemanticCOLORS } from '../..';
 
-interface ProgressProps {
+export interface ProgressProps {
   [key: string]: any;
 
   /** An element type to render as (string or function). */

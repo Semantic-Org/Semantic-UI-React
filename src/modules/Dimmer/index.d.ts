@@ -1,1 +1,1 @@
-export { default as default } from './Dimmer'
+export { default, DimmerProps } from './Dimmer'

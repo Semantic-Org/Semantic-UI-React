@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { LabelProps } from '../../elements/Label/Label';
+import { LabelProps } from '../../elements/Label';
 
 export interface CheckboxProps {
   [key: string]: any;

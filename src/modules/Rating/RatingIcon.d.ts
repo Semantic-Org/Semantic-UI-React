@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-interface RatingIconProps {
+export interface RatingIconProps {
   [key: string]: any;
 
   /** An element type to render as (string or function). */

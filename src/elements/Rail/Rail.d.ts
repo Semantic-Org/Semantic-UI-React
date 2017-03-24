@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { SemanticFLOATS } from '../..';
 
-interface RailProps {
+export interface RailProps {
   [key: string]: any;
 
   /** An element type to render as (string or function). */
