@@ -35,7 +35,7 @@ const webpackUMDConfig = {
   ],
   module: {
     noParse: webpackConfig.module.noParse,
-    loaders: webpackConfig.module.loaders,
+    rules: webpackConfig.module.rules,
   },
 }
 
