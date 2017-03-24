@@ -1,9 +1,9 @@
-const config = require('./config')
-const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const _ = require('lodash')
+const webpack = require('webpack')
 const { argv } = require('yargs')
 
+const config = require('./config')
 const { paths } = config
 const { __DEV__, __TEST__ } = config.compiler_globals
 
@@ -11,13 +11,16 @@ const webpackConfig = {
   name: 'client',
   target: 'web',
   devtool: config.compiler_devtool,
+  module: {},
   resolve: {
-    root: paths.base(),
+    modules: [
+      paths.base(),
+      'node_modules',
+    ],
     alias: {
       'semantic-ui-react': paths.src('index.js'),
     },
   },
-  module: {},
 }
 
 // ------------------------------------
@@ -25,7 +28,6 @@ const webpackConfig = {
 // ------------------------------------
 
 const webpackHotPath = `${config.compiler_public_path}__webpack_hmr`
-
 const webpackHotMiddlewareEntry = `webpack-hot-middleware/client?${_.map({
   path: webpackHotPath,   // The path which the middleware is serving the event stream on
   timeout: 2000,          // The time to wait after a disconnection before attempting to reconnect
@@ -57,8 +59,8 @@ webpackConfig.entry = __DEV__ ? {
 webpackConfig.output = {
   filename: `[name].[${config.compiler_hash_type}].js`,
   path: config.compiler_output_path,
-  publicPath: config.compiler_public_path,
   pathinfo: true,
+  publicPath: config.compiler_public_path,
 }
 
 // ------------------------------------
@@ -72,21 +74,21 @@ webpackConfig.plugins = [
   }),
   new HtmlWebpackPlugin({
     template: paths.docsSrc('index.ejs'),
-    hash: false,
     filename: 'index.html',
+    hash: false,
     inject: 'body',
     minify: {
       collapseWhitespace: true,
     },
     versions: {
       babel: require('babel-standalone/package.json').version,
-      sui: require('semantic-ui-css/package.json').version,
-      suir: require('./package.json').version,
       faker: require('faker/package.json').version,
+      jsBeautify: require('js-beautify/package.json').version,
       lodash: require('lodash/package.json').version,
       react: require('react/package.json').version,
       reactDOM: require('react-dom/package.json').version,
-      jsBeautify: require('js-beautify/package.json').version,
+      sui: require('semantic-ui-css/package.json').version,
+      suir: require('./package.json').version,
     },
   }),
 ]
@@ -94,12 +96,13 @@ webpackConfig.plugins = [
 if (__DEV__) {
   webpackConfig.plugins.push(
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin()
+    new webpack.NoEmitOnErrorsPlugin()
   )
 } else if (!__TEST__) {
   webpackConfig.plugins.push(
-    new webpack.optimize.OccurrenceOrderPlugin(),
-    new webpack.optimize.DedupePlugin(),
+    new webpack.LoaderOptionsPlugin({
+      minimize: true,
+    }),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         unused: true,
@@ -112,9 +115,11 @@ if (__DEV__) {
 
 // Don't split bundles during testing, since we only want import one bundle
 if (!__TEST__) {
-  webpackConfig.plugins.push(new webpack.optimize.CommonsChunkPlugin({
-    names: ['vendor'],
-  }))
+  webpackConfig.plugins.push(
+    new webpack.optimize.CommonsChunkPlugin({
+      names: ['vendor'],
+    })
+  )
 }
 
 // ------------------------------------
@@ -125,29 +130,20 @@ webpackConfig.module.noParse = [
 ]
 
 // ------------------------------------
-// Pre-Loaders
+// Rules
 // ------------------------------------
-webpackConfig.module.preLoaders = []
-
-// ------------------------------------
-// Loaders
-// ------------------------------------
-webpackConfig.module.loaders = [{
+webpackConfig.module.rules = [{
   //
   // Babel
   //
   test: /\.js$/,
   exclude: /node_modules/,
-  loader: 'babel',
-  query: {
-    cacheDirectory: true,
+  use: {
+    loader: 'babel-loader',
+    options: {
+      cacheDirectory: true,
+    },
   },
-}, {
-  //
-  // JSON
-  //
-  test: /\.(json|.*rc)$/,
-  loader: 'json',
 }]
 
 // ----------------------------------------
@@ -157,20 +153,20 @@ webpackConfig.module.loaders = [{
 // Local modules can still be enabled (ie for offline development)
 // in TEST we need local modules because karma uses a different index.html (no CDNs)
 if (__TEST__ || argv.localModules) {
-  webpackConfig.module.loaders = [
-    ...webpackConfig.module.loaders,
+  webpackConfig.module.rules = [
+    ...webpackConfig.module.rules,
     {
       //
       // SASS
       //
       test: /\.s?css$/,
-      loaders: ['style', 'css', 'sass'],
+      use: ['style-loader', 'css-loader', 'sass-loader'],
     }, {
       //
       // Files
       //
       test: /\.(eot|ttf|woff|woff2|svg|png)$/,
-      loader: 'file',
+      loader: 'file-loader',
     },
   ]
 } else {
@@ -188,9 +184,9 @@ if (__TEST__ || argv.localModules) {
 
   // find them on the window
   webpackConfig.externals = Object.assign({}, webpackConfig.externals, {
-    faker: 'faker',
     'anchor-js': 'AnchorJS',
     'babel-standalone': 'Babel',
+    faker: 'faker',
     react: 'React',
     'react-dom': 'ReactDOM',
     'react-dom/server': 'ReactDOMServer',

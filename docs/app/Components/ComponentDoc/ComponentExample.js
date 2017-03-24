@@ -146,7 +146,7 @@ class ComponentExample extends Component {
   getOriginalSourceCode = () => {
     const { examplePath } = this.props
 
-    if (!this.sourceCode) this.sourceCode = require(`!raw!docs/app/Examples/${examplePath}`)
+    if (!this.sourceCode) this.sourceCode = require(`!raw-loader!../../Examples/${examplePath}`)
 
     return this.sourceCode
   }

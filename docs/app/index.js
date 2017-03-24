@@ -24,7 +24,7 @@ if (__DEV__) {
       ReactDOM.unmountComponentAtNode(mountNode)
 
       try {
-        render(require('./routes').default)
+        render(import('./routes').default)
         document.scrollingElement.scrollTop = scrollTop
         document.scrollingElement.scrollLeft = scrollLeft
       } catch (e) {

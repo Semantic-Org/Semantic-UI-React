@@ -1,9 +1,8 @@
 const webpack = require('webpack')
-
 const config = require('./config')
-const webpackDllConfig = { module: {} }
 
 const { paths } = config
+const webpackDllConfig = { module: {} }
 
 // ------------------------------------
 // Entry Points
@@ -15,11 +14,11 @@ webpackDllConfig.entry = {
 // ------------------------------------
 // Bundle Output
 // ------------------------------------
-webpackDllConfig.output = Object.assign({}, webpackDllConfig.output, {
-  path: 'dll',
+webpackDllConfig.output = {
+  path: paths.dll(),
   filename: `dll.[name].[${config.compiler_hash_type}].js`,
   library: '[name]_[hash]',
-})
+}
 
 // ------------------------------------
 // Plugins
@@ -32,31 +31,20 @@ webpackDllConfig.plugins = [
 ]
 
 // ------------------------------------
-// Pre-Loaders
-// ------------------------------------
-webpackDllConfig.module.preLoaders = []
-
-// ------------------------------------
 // Loaders
 // ------------------------------------
 webpackDllConfig.module.loaders = [{
   //
-  // JSON
-  //
-  test: /\.json$/,
-  loader: 'json',
-}, {
-  //
   // SASS
   //
   test: /\.s?css$/,
-  loaders: ['style', 'css', 'sass'],
+  use: ['style-loader', 'css-loader', 'sass-loader'],
 }, {
   //
   // Files
   //
   test: /\.(eot|ttf|woff|woff2|svg|png)$/,
-  loader: 'file',
+  loader: 'file-loader',
 }]
 
 module.exports = webpackDllConfig
