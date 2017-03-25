@@ -4,33 +4,21 @@ const config = require('./config')
 const webpackConfig = require('./webpack.config')
 
 const formatError = (msg) => {
-  let haveSeenStack = false
-  return msg
-    .split('\n')
-    .reduce((list, line) => {
-      // filter out node_modules
-      if (/~/.test(line)) return list
+  // filter out empty lines and node_modules
+  if (!msg.trim() || /~/.test(msg)) return ''
 
-      // indent the error beneath the it() message
-      let newLine = '  ' + line
+  // indent the error beneath the it() message
+  let newLine = '  ' + msg
 
-      if (newLine.includes('webpack:///')) {
-        if (haveSeenStack === false) {
-          const indent = newLine.slice(0, newLine.search(/\S/))
-          newLine = `\n${indent}Stack:\n${newLine}`
-          haveSeenStack = true
-        }
+  if (newLine.includes('webpack:///')) {
+    // remove webpack:///
+    newLine = newLine.replace('webpack:///', '')
 
-        // remove webpack:///
-        newLine = newLine.replace('webpack:///', '')
+    // remove bundle location, showing only the source location
+    newLine = newLine.slice(0, newLine.indexOf(' <- '))
+  }
 
-        // remove bundle location, showing only the source location
-        newLine = newLine.slice(0, newLine.indexOf(' <- '))
-      }
-
-      return list.concat(newLine)
-    }, [])
-    .join('\n')
+  return newLine + '\n'
 }
 
 module.exports = (karmaConfig) => {
