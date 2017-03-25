@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { default as RatingIcon } from './RatingIcon';
 
-interface RatingProps {
+export interface RatingProps {
   [key: string]: any;
 
   /** An element type to render as (string or function). */

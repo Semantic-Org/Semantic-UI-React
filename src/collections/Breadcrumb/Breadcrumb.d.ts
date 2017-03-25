@@ -3,7 +3,7 @@ import * as React from 'react';
 import { default as BreadcrumbDivider } from './BreadcrumbDivider';
 import { default as BreadcrumbSection } from './BreadcrumbSection';
 
-interface BreadcrumbProps {
+export interface BreadcrumbProps {
   [key: string]: any;
 
   /** An element type to render as (string or function). */

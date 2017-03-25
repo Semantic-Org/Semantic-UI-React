@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-interface CommentTextProps {
+export interface CommentTextProps {
   [key: string]: any;
 
   /** An element type to render as (string or function). */

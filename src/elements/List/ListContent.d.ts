@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { SemanticFLOATS, SemanticVERTICALALIGNMENTS } from '../..';
 
-interface ListContentProps {
+export interface ListContentProps {
   [key: string]: any;
 
   /** An element type to render as (string or function). */

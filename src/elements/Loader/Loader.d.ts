@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { SemanticSIZES } from '../..';
 
-interface LoaderProps {
+export interface LoaderProps {
   [key: string]: any;
 
   /** An element type to render as (string or function). */

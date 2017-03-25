@@ -161,6 +161,22 @@ describe('Checkbox', () => {
     })
   })
 
+  describe('onMouseDown', () => {
+    it('sets focus to container', () => {
+      const mountNode = document.createElement('div')
+      document.body.appendChild(mountNode)
+
+      const wrapper = mount(<Checkbox />, { attachTo: mountNode })
+      const input = document.querySelector('.ui.checkbox input')
+
+      wrapper.simulate('mousedown')
+      document.activeElement.should.equal(input)
+
+      wrapper.detach()
+      document.body.removeChild(mountNode)
+    })
+  })
+
   describe('readOnly', () => {
     it('cannot be checked', () => {
       shallow(<Checkbox readOnly />)

@@ -9,7 +9,7 @@ import { default as CommentGroup } from './CommentGroup';
 import { default as CommentMetadata } from './CommentMetadata';
 import { default as CommentText } from './CommentText';
 
-interface CommentProps {
+export interface CommentProps {
   [key: string]: any;
 
   /** An element type to render as (string or function). */

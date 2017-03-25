@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { LabelProps } from '../../elements/Label/Label';
+import { LabelProps } from '../../elements/Label';
 
 export interface CheckboxProps {
   [key: string]: any;
@@ -40,7 +40,7 @@ export interface CheckboxProps {
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
    * @param {object} data - All props and proposed checked/indeterminate state.
    */
-  onChange?: (event: React.FormEvent<HTMLInputElement>, data: this) => void;
+  onChange?: (event: React.FormEvent<HTMLInputElement>, data: CheckboxProps) => void;
 
   /**
    * Called when the checkbox or label is clicked.
@@ -48,7 +48,15 @@ export interface CheckboxProps {
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
    * @param {object} data - All props and current checked/indeterminate state.
    */
-  onClick?: (event: React.MouseEvent<HTMLInputElement>, data: this) => void;
+  onClick?: (event: React.MouseEvent<HTMLInputElement>, data: CheckboxProps) => void;
+
+  /**
+   * Called when the user presses down on the mouse.
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props and current checked/indeterminate state.
+   */
+  onMouseDown?: (event: React.MouseEvent<HTMLInputElement>, data: CheckboxProps) => void;
 
   /** Format as a radio element. This means it is an exclusive option. */
   radio?: boolean;

@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-interface AccordionContentProps {
+export interface AccordionContentProps {
   [key: string]: any;
 
   /** An element type to render as (string or function). */

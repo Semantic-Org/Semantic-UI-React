@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { PortalProps } from '../../addons/Portal/Portal';
+import { PortalProps } from '../../addons/Portal';
 import { default as ModalActions } from './ModalActions';
 import { default as ModalContent } from './ModalContent';
 import { default as ModalDescription } from './ModalDescription';
@@ -76,6 +76,9 @@ export interface ModalProps extends PortalProps {
 
   /** A modal can vary in size. */
   size?: 'fullscreen' | 'large' | 'small';
+
+  /** Custom styles. */
+  style?: React.CSSProperties;
 }
 
 interface ModalComponent extends React.ComponentClass<ModalProps> {

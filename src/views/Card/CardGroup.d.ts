@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { SemanticWIDTHS } from '../..';
 
-interface CardGroupProps {
+export interface CardGroupProps {
   [key: string]: any;
 
   /** An element type to render as (string or function). */
