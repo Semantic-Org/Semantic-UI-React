@@ -106,8 +106,17 @@ describe('Button', () => {
     })
     it('contains children without disabled class when disabled attribute is set', () => {
       const wrapper = shallow(<Button label='hi' disabled />)
+
+      wrapper.should.have.className('disabled')
       wrapper.find('Label').should.not.have.className('disabled')
       wrapper.find('button').should.not.have.className('disabled')
+    })
+    it('contains children without floated class when floated attribute is set', () => {
+      const wrapper = shallow(<Button label='hi' floated='left' />)
+
+      wrapper.should.have.className('floated')
+      wrapper.find('Label').should.not.have.className('floated')
+      wrapper.find('button').should.not.have.className('floated')
     })
     it('creates a basic pointing label', () => {
       shallow(<Button label='foo' />)
