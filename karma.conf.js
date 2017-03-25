@@ -51,6 +51,7 @@ module.exports = (karmaConfig) => {
     },
     singleRun: !argv.watch,
     webpack: {
+      entry: './test/tests.bundle.js',
       devtool: config.compiler_devtool,
       module: webpackConfig.module,
       plugins: webpackConfig.plugins,

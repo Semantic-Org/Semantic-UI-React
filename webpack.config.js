@@ -1,7 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const _ = require('lodash')
 const webpack = require('webpack')
-const { argv } = require('yargs')
 
 const config = require('./config')
 const { paths } = config
@@ -144,53 +143,18 @@ webpackConfig.module.rules = [{
       cacheDirectory: true,
     },
   },
+}, {
+  //
+  // SASS
+  //
+  test: /\.s?css$/,
+  use: ['style-loader', 'css-loader', 'sass-loader'],
+}, {
+  //
+  // Files
+  //
+  test: /\.(eot|ttf|woff|woff2|svg|png)$/,
+  loader: 'file-loader',
 }]
-
-// ----------------------------------------
-// Local Modules
-// ----------------------------------------
-// For faster builds in dev, rely on prebuilt libraries
-// Local modules can still be enabled (ie for offline development)
-// in TEST we need local modules because karma uses a different index.html (no CDNs)
-if (__TEST__ || argv.localModules) {
-  webpackConfig.module.rules = [
-    ...webpackConfig.module.rules,
-    {
-      //
-      // SASS
-      //
-      test: /\.s?css$/,
-      use: ['style-loader', 'css-loader', 'sass-loader'],
-    }, {
-      //
-      // Files
-      //
-      test: /\.(eot|ttf|woff|woff2|svg|png)$/,
-      loader: 'file-loader',
-    },
-  ]
-} else {
-  // these are browser ready modules or aliased to empty
-  // do not parse their source for faster builds
-  webpackConfig.module.noParse = [
-    ...webpackConfig.module.noParse,
-    /faker/,
-  ]
-
-  // alias imports to empty
-  webpackConfig.resolve.alias = Object.assign({}, webpackConfig.resolve.alias, {
-    'semantic-ui-css/semantic.css': 'empty',
-  })
-
-  // find them on the window
-  webpackConfig.externals = Object.assign({}, webpackConfig.externals, {
-    'anchor-js': 'AnchorJS',
-    'babel-standalone': 'Babel',
-    faker: 'faker',
-    react: 'React',
-    'react-dom': 'ReactDOM',
-    'react-dom/server': 'ReactDOMServer',
-  })
-}
 
 module.exports = webpackConfig

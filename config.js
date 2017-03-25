@@ -52,7 +52,7 @@ config = Object.assign({}, config, {
   // ----------------------------------
   // Compiler Configuration
   // ----------------------------------
-  compiler_devtool: __DEV__ && 'cheap-source-map' || __TEST__ && 'inline-source-map' || __STAGING__ && 'source-map',
+  compiler_devtool: (__DEV__ || __TEST__) && 'cheap-source-map' || __STAGING__ && 'source-map',
   compiler_globals: {
     process: {
       env: {
@@ -60,7 +60,6 @@ config = Object.assign({}, config, {
       },
     },
     __DEV__,
-    __DEBUG__: !!argv.debug,
     __STAGING__,
     __PATH_SEP__: JSON.stringify(path.sep),
     __TEST__,

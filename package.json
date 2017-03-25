@@ -108,8 +108,7 @@
     "karma-mocha-reporter": "^2.2.1",
     "karma-phantomjs-launcher": "^1.0.0",
     "karma-phantomjs-shim": "^1.4.0",
-    "karma-sourcemap-loader": "^0.3.7",
-    "karma-webpack": "^2.0.3",
+    "karma-webpack-with-fast-source-maps": "^1.9.2",
     "mocha": "^3.2.0",
     "node-sass": "^4.1.1",
     "phantomjs-prebuilt": "^2.1.7",
@@ -136,7 +135,7 @@
     "tslint-config-typings": "^0.3.1",
     "typescript": "^2.1.5",
     "watch": "^1.0.1",
-    "webpack": "^2.3.1",
+    "webpack": "^2.3.2",
     "webpack-dev-middleware": "^1.10.1",
     "webpack-hot-middleware": "^2.17.1",
     "yargs": "^7.0.2"
