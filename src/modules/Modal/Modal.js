@@ -103,6 +103,9 @@ class Modal extends Component {
     /** A modal can vary in size */
     size: PropTypes.oneOf(['fullscreen', 'large', 'small']),
 
+    /** Custom styles. */
+    style: PropTypes.object,
+
     /**
      * NOTE: Any unhandled props that are defined in Portal are passed-through
      * to the wrapping Portal.
@@ -236,6 +239,7 @@ class Modal extends Component {
       closeOnDocumentClick,
       dimmer,
       size,
+      style,
     } = this.props
 
     const mountNode = this.getMountNode()
@@ -260,9 +264,8 @@ class Modal extends Component {
     const ElementType = getElementType(Modal, this.props)
 
     const closeIconName = closeIcon === true ? 'close' : closeIcon
-
     const modalJSX = (
-      <ElementType {...rest} className={classes} style={{ marginTop }} ref={this.handleRef}>
+      <ElementType {...rest} className={classes} style={{ marginTop, ...style }} ref={this.handleRef}>
         {Icon.create(closeIconName, { onClick: this.handleClose })}
         {children}
       </ElementType>
