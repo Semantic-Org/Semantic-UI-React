@@ -6,7 +6,7 @@
       if (redirect && redirect !== location.href) {
         history.replaceState(null, null, redirect)
       }
-    })()</script></head><body class="dimmed dimmable"><div id="docs-loading-dimmer" class="ui active page dimmer"><div class="content"><div class="center"><div class="ui large text loader"><div class="ui inverted teal header">Loading docs...<div class="sub header">Semantic-UI-React v0.67.1</div></div></div></div></div></div><script>(function() {
+    })()</script></head><body class="dimmed dimmable"><div id="docs-loading-dimmer" class="ui active page dimmer"><div class="content"><div class="center"><div class="ui large text loader"><div class="ui inverted teal header">Loading docs...<div class="sub header">Semantic UI React v0.67.2</div></div></div></div></div></div><script>(function() {
       var delay = 500
       var dimmer = document.querySelector('#docs-loading-dimmer')
       dimmer.style.pointerEvents = 'none'
@@ -25,7 +25,7 @@
       }
 
       window.addEventListener('load', removeDimmer)
-    }())</script><script src="//cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.1/anchor.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.23.1/babel.min.js" data-presets="es2015,react,stage1"></script><script src="//cdnjs.cloudflare.com/ajax/libs/Faker/3.1.0/faker.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/js-beautify/1.6.11/beautify-html.min.js"></script><!-- Use unminified React when not in production so we get errors and warnings --><script src="//cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react-dom.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react-dom-server.min.js"></script><script src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><style>html, body {
+    }())</script><script src="//cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.1/anchor.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.23.1/babel.min.js" data-presets="es2015,react,stage1"></script><script src="//cdnjs.cloudflare.com/ajax/libs/Faker/3.1.0/faker.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/js-beautify/1.6.12/beautify-html.min.js"></script><!-- Use unminified React when not in production so we get errors and warnings --><script src="//cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react-dom.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react-dom-server.min.js"></script><script src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><style>html, body {
       background: #f7f7f7;
     }
 
@@ -91,6 +91,7 @@
     .docs-icon-set-column {
       cursor: pointer;
     }
+
     .docs-icon-set-column .icon {
       font-size: 2em;
       color: #555;
@@ -111,4 +112,24 @@
 
     .docs-icon-set-column:hover > .icon {
       transform: scale(1.5);
-    }</style><script type="text/javascript" src="//cdn.rawgit.com/Semantic-Org/Semantic-UI-React/gh-pages/vendor.a099afa958cdce2f040e.js"></script><script type="text/javascript" src="//cdn.rawgit.com/Semantic-Org/Semantic-UI-React/gh-pages/app.a1099edb8b25bf4d59fa.js"></script></body></html>
+    }
+
+    /* Examples */
+
+    .docs-example-menu {
+      transition: opacity 200ms;
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      opacity: 0;
+    }
+
+    .docs-example:hover .docs-example-menu {
+      opacity: 1;
+    }
+
+    .docs-example {
+      margin-bottom: 2em !important;
+      padding-bottom: 1em !important;
+      transition: box-shadow 300ms;
+    }</style><script type="text/javascript" src="//cdn.rawgit.com/Semantic-Org/Semantic-UI-React/gh-pages/vendor.3aee27b74094702e5e1f.js"></script><script type="text/javascript" src="//cdn.rawgit.com/Semantic-Org/Semantic-UI-React/gh-pages/app.67b31e3b2608e9d96bdb.js"></script></body></html>
