@@ -1091,6 +1091,48 @@ describe('Dropdown', () => {
       instance.scrollSelectedItemIntoView
         .should.have.been.calledOnce()
     })
+    it('set right selected index when click on option with search', () => {
+      const opts = [
+        {
+          key: 'some-value-1',
+          value: 'some-value-1',
+          text: 'some-value-1',
+        },
+        {
+          key: 'another-value-1',
+          value: 'another-value-1',
+          text: 'another-value-1',
+        },
+        {
+          key: 'some-value-2',
+          value: 'some-value-2',
+          text: 'some-value-2',
+        },
+        {
+          key: 'some-value-3',
+          value: 'some-value-3',
+          text: 'some-value-3',
+        },
+        {
+          key: 'another-value-2',
+          value: 'another-value-2',
+          text: 'another-value-2',
+        },
+        {
+          key: 'another-value-3',
+          value: 'another-value-3',
+          text: 'another-value-3',
+        },
+      ]
+      wrapperMount(<Dropdown options={opts} search selection open />)
+
+      wrapper.setState({ searchQuery: 'another' })
+
+      const item = wrapper.find(DropdownItem).at(1)
+      item.simulate('click')
+
+      wrapper.state('selectedIndex').should.have.been.equal(4)
+    })
   })
 
   describe('multiple', () => {
