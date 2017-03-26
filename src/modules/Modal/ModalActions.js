@@ -48,6 +48,10 @@ ModalActions.propTypes = {
   className: PropTypes.string,
 }
 
+ModalActions.defaultProps = {
+  actions: [],
+}
+
 ModalActions.create = createShorthandFactory(ModalActions, actions => ({ actions }), true)
 
 export default ModalActions
