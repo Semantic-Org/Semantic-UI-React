@@ -1,12 +1,3 @@
-import React from 'react'
-import cx from 'classnames'
-import getUnhandledProps from './getUnhandledProps'
-
-/**
- * Utility functions used by the calendar
- */
-import Table from '../collections/Table/Table'
-
 /**
  * Pad a number with a zero if it's one digit
  * @param  {number} n
@@ -69,39 +60,4 @@ export function defaultDateFormatter(date) {
  */
 export function defaultTimeFormatter(date) {
   return !!date ? `${zeroPad(date.getHours())}:${zeroPad(date.getMinutes())}` : ''
-}
-
-/**
- * Evaluate current calendar mode and returns the next one
- * @param  {string} current mode
- * @param  {Boolean} [time=false] [description]
- * @return {[type]}               [description]
- */
-export function modeTransition(mode, time = false) {
-  const prefix = time ? 'time' : ''
-  const transitions = {}
-}
-
-/**
- * A table row wrapper
- * @param {Object} props containing children
- */
-export function RowWrapper(props) {
-  const { children, className, scrolling } = props
-  return <Table.Row className={className}>{children}</Table.Row>
-}
-
-/**
- * A table cell wrapper with a linked content.
- * @param {Object} props containing onClick, name and value
- */
-export function ItemCell(props) {
-  const { onClick, name, value, active } = props
-  const className = cx({ active })
-  const rest = getUnhandledProps(ItemCell, props)
-  return (
-    <Table.Cell {...rest} selectable className={className} onClick={onClick}>
-      <a style={{ cursor: 'pointer' }}>{name}</a>
-    </Table.Cell>
-  )
 }

@@ -7,7 +7,7 @@ import {
   META,
 } from '../../lib'
 
-import Table from '../../collections/Table/Table'
+import DateTimeGrid from './DateTimeGrid'
 
 /**
  * A day cell within a calendar month
@@ -44,13 +44,6 @@ export default class Minutes extends Component {
     interval: 5,
   }
 
-  constructor() {
-    super()
-    this.state = {
-      hovering: null,
-    }
-  }
-
   /**
    * Return the ordered labels for days of the week,
    * accounting for the locale's first day of the week
@@ -60,6 +53,7 @@ export default class Minutes extends Component {
     const count = parseInt(60 / interval, 10)
     const date = new Date()
     date.setHours(hour)
+
     return _.times(minute => {
       date.setMinutes(minute * interval)
       return timeFormatter(date)
@@ -69,41 +63,22 @@ export default class Minutes extends Component {
   getMinutes() {
     const { onClick, interval } = this.props
     const labels = this.getMinuteLabels()
-    const rows = _.range(0, 3)
-    const cols = _.range(0, 4)
-    const cells = []
-    let i = 0
-    rows.forEach((row) => {
-      const children = []
-      cols.forEach((col) => {
-        const thisMinute = i * interval
-        children.push((
-          <utils.ItemCell
-            key={i}
-            name={labels[i]}
-            value={labels[i]}
-            onClick={(e) => {
-              onClick(e, thisMinute)
-            }}
-          />
-        ))
-        i += 1
-      })
-      cells.push(<utils.RowWrapper children={children} key={row} />)
-    })
-    return cells
+    return _.times(i => {
+      const thisMinute = i * interval
+      return {
+        content: labels[i],
+        onClick: e => onClick(e, thisMinute),
+      }
+    }, 12)
   }
 
   render() {
     return (
-      <Table fixed unstackable attached='bottom' size='small' compact='very' className='center aligned'>
-        <Table.Header>
-          <Table.HeaderCell colSpan='4'>Minute</Table.HeaderCell>
-        </Table.Header>
-        <Table.Body>
-          {this.getMinutes()}
-        </Table.Body>
-      </Table>
+      <DateTimeGrid
+        headers={['Minute']}
+        columns={4}
+        cells={this.getMinutes()}
+      />
     )
   }
 }

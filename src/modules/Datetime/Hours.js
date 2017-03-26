@@ -7,7 +7,7 @@ import {
   META,
 } from '../../lib'
 
-import Table from '../../collections/Table/Table'
+import DateTimeGrid from './DateTimeGrid'
 
 /**
  * A day cell within a calendar month
@@ -41,13 +41,6 @@ export default class Hours extends Component {
     LastHourOfDay: 23,
   }
 
-  constructor() {
-    super()
-    this.state = {
-      hovering: null,
-    }
-  }
-
   /**
    * Return the ordered labels for days of the week,
    * accounting for the locale's first day of the week
@@ -55,53 +48,34 @@ export default class Hours extends Component {
   getHourLabels() {
     const { timeFormatter } = this.props
     const date = new Date()
+    date.setMinutes(0)
+
     return _.times(hour => {
       date.setHours(hour)
-      date.setMinutes(0)
       return timeFormatter(date)
     }, 24)
   }
 
   getHours() {
     const { onClick } = this.props
-    // const { firstHourOfDay, LastHourOfDay } = this.props
     const labels = this.getHourLabels()
-    // const hours = labels.slice(firstHourOfDay, LastHourOfDay)
-    const rows = _.range(0, 6)
-    const cols = _.range(0, 4)
-    const cells = []
-    let i = 0
-    rows.forEach((row) => {
-      const children = []
-      cols.forEach((col) => {
-        const thisHour = i
-        children.push((
-          <utils.ItemCell
-            key={i}
-            name={labels[i]}
-            value={labels[i]}
-            onClick={(e) => {
-              onClick(e, thisHour)
-            }}
-          />
-        ))
-        i += 1
-      })
-      cells.push(<utils.RowWrapper children={children} key={row} />)
-    })
-    return cells
+
+    return _.times(i => {
+      const thisHour = i
+      return {
+        content: labels[i],
+        onClick: e => onClick(e, thisHour),
+      }
+    }, 24)
   }
 
   render() {
     return (
-      <Table fixed unstackable attached='bottom' size='small' compact='very' className='center aligned'>
-        <Table.Header>
-          <Table.HeaderCell colSpan='4'>Hour</Table.HeaderCell>
-        </Table.Header>
-        <Table.Body>
-          {this.getHours()}
-        </Table.Body>
-      </Table>
+      <DateTimeGrid
+        headers={['Hour']}
+        columns={6}
+        cells={this.getHours()}
+      />
     )
   }
 }

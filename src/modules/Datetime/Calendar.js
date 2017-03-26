@@ -144,7 +144,6 @@ export default class Calendar extends Component {
     super(props)
     this.state = {
       value: new Date(),
-      hovering: null,
       mode: this.getInitialMode(props),
     }
   }
@@ -154,34 +153,10 @@ export default class Calendar extends Component {
     return !date && time ? 'HOUR' : 'DAY'
   }
 
-  /**
-   * Return the current month
-   */
-  getMonth() {
-    return this.state.value.getMonth()
-  }
+  getYear = () => this.state.value.getFullYear()
+  getMonth = () => this.state.value.getMonth()
+  getHour = () => this.state.value.getHours()
 
-  /**
-   * Return the current day of the week
-   */
-  getDayOfWeek() {
-    return this.state.value.getDay()
-  }
-
-  /**
-   * Return the current year
-   */
-  getYear() {
-    return this.state.value.getFullYear()
-  }
-
-  getHour() {
-    return this.state.value.getHours()
-  }
-
-  /**
-   * Return the current month's name as provided in the content prop
-   */
   getMonthName() {
     const { content } = this.props
     return content.months[this.getMonth()]
@@ -212,10 +187,6 @@ export default class Calendar extends Component {
     }
   }
 
-  /**
-   * Sets the current year and progresses to the next calendar mode
-   * @type {String}
-   */
   setYear = (e, year, nextMode = 'DAY') => {
     e.stopPropagation()
     const date = new Date(this.state.value)
@@ -358,7 +329,7 @@ export default class Calendar extends Component {
     const { mode, value } = this.state
     return (
       <div style={{ width: 300 }}>
-        {date ?
+        {date && (
           <CalendarMenu
             date={value}
             monthName={this.getMonthName()}
@@ -367,7 +338,8 @@ export default class Calendar extends Component {
             onPrevious={this.page.bind(this, -1)}
             onNext={this.page.bind(this, 1)}
             onChangeMode={this.changeMode}
-          /> : false }
+          />
+        )}
         {this.getBodyContent()}
       </div>
 

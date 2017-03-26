@@ -103,9 +103,8 @@ export default class DayCell extends Component {
         onClick={this.handleClick}
         selectable
         positive={selected}
-        style={{ cursor: 'pointer' }}
       >
-        <a>{this.props.day}</a>
+        <a style={{ cursor: 'pointer' }}>{this.props.day}</a>
       </Table.Cell>
     )
   }

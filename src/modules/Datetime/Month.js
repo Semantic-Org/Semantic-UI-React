@@ -66,7 +66,6 @@ export default class Month extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      hovering: null,
       selectionStart: props.selectionStart,
       selectionEnd: props.selectionEnd,
     }
@@ -79,10 +78,6 @@ export default class Month extends Component {
     })
   }
 
-  /**
-   * Return the ordered labels for days of the week,
-   * accounting for the locale's first day of the week
-   */
   getDayLabels() {
     let realDay
     return _.times((day) => {
@@ -102,20 +97,12 @@ export default class Month extends Component {
     return labels.map((day, index) => <Table.HeaderCell key={index}>{day}</Table.HeaderCell>)
   }
 
-  /**
-   * Convert a single Date object into a string representation
-   * of its date value in a normalised consistent way.
-   */
-  toDateSignature(date) {
+  getDateString(date) {
     return `${date.getFullYear()}${date.getMonth()}${date.getDate()}`
   }
 
-  /**
-   * Convert a list of dates to a list of strings describing the
-   * date value of each Date object.
-   */
-  toDateSignatures(dates) {
-    return dates.map(date => this.toDateSignature(date))
+  getDateStrings(dates) {
+    return dates.map(date => this.getDateString(date))
   }
 
   /**
@@ -133,7 +120,7 @@ export default class Month extends Component {
     const prevDaysInMonth = utils.daysInMonth(lastMonth)
     // get a list of disabled date signatures
     const hasDisabledDates = disabledDates.length > 0
-    const disabledDateSig = this.toDateSignatures(disabledDates)
+    const disabledDateSig = this.getDateStrings(disabledDates)
     // 42 days in a calendar block will be enough to wrap a full month
     const monthCells = _.range(0, 42)
     // The real first day in relation to the sequene of calendar days (array index)
@@ -177,16 +164,13 @@ export default class Month extends Component {
         }
       }
       if (hasDisabledDates && !dayParams.disabled &&
-        disabledDateSig.indexOf(this.toDateSignature(dayParams.date)) > -1) {
+        disabledDateSig.indexOf(this.getDateString(dayParams.date)) > -1) {
         dayParams.disabled = true
       }
       return (<DayCell {...dayParams} />)
     })
   }
 
-  /**
-   * Return the calendar month day structure wrapped in rows
-   */
   getMonthDays() {
     const dayCells = this.getDays()
     const cells = []
@@ -199,14 +183,15 @@ export default class Month extends Component {
         children.push((dayCells[key]))
         key += 1
       })
-      cells.push(<utils.RowWrapper children={children} key={key} />)
+      cells.push(<Table.Row key={key}>{children}</Table.Row>)
     })
     return cells
   }
 
   render() {
+    // TODO factor out for DateTimeGrid
     return (
-      <Table fixed unstackable attached='bottom' size='small' compact='very' className='center aligned'>
+      <Table unstackable fixed celled attached='bottom' size='small' compact='very' className='center aligned'>
         <Table.Header>
           {this.getDayHeaders()}
         </Table.Header>
