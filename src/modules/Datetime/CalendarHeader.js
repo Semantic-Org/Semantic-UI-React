@@ -1,15 +1,9 @@
-import _ from 'lodash'
-import cx from 'classnames'
+import _ from 'lodash/fp'
 import React, { Component, PropTypes } from 'react'
 
 import {
-  childrenUtils,
-  createShorthand,
   customPropTypes,
   META,
-  getElementType,
-  getUnhandledProps,
-  useKeyOnly,
 } from '../../lib'
 
 import Menu from '../../collections/Menu/Menu'
@@ -62,21 +56,18 @@ export default class CalendarHeader extends Component {
   }
 
   handleClick = (e) => {
-
     e.stopPropagation()
   }
 
   render() {
     const {
-      className,
       monthName,
-      month,
       year,
       onPrevious,
       onNext,
       onChangeMode,
       mode,
-      date
+      date,
     } = this.props
 
     const items = _.compact([
@@ -90,12 +81,12 @@ export default class CalendarHeader extends Component {
           {year - 8}-{year + 7}
         </Menu.Item>
       ),
-      ['HOUR', 'MINUTE'].indexOf(mode) > -1 && (
+      _.includes(mode, ['HOUR', 'MINUTE']) && (
         <Menu.Item key='month' onClick={onChangeMode.bind(null, 'MONTH')}>
           {monthName}&nbsp;{date.getDate()}
         </Menu.Item>
       ),
-      ['DAY', 'MONTH', 'HOUR', 'MINUTE'].indexOf(mode) > -1 && (
+      _.includes(mode, ['DAY', 'MONTH', 'HOUR', 'MINUTE']) && (
         <Menu.Item key='year' onClick={onChangeMode.bind(null, 'YEAR')}>
           {year}
         </Menu.Item>

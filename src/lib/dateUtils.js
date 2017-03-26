@@ -13,7 +13,7 @@ import Table from '../collections/Table/Table'
  * @return {string} Returns the number padded with a zero if below 10
  */
 export function zeroPad(n) {
-  return (n < 10 ? '0' : '') + n;
+  return (n < 10 ? '0' : '') + n
 }
 /**
  * Return the first date of the month for a given date
@@ -97,7 +97,7 @@ export function RowWrapper(props) {
  */
 export function ItemCell(props) {
   const { onClick, name, value, active } = props
-  const className = cx({ active: active })
+  const className = cx({ active })
   const rest = getUnhandledProps(ItemCell, props)
   return (
     <Table.Cell {...rest} selectable className={className} onClick={onClick}>

@@ -1,16 +1,9 @@
-import _ from 'lodash'
-import cx from 'classnames'
 import React, { Component, PropTypes } from 'react'
 import * as utils from '../../lib/dateUtils'
 
 import {
-  childrenUtils,
-  createShorthand,
   customPropTypes,
   META,
-  getElementType,
-  getUnhandledProps,
-  useKeyOnly,
 } from '../../lib'
 
 import Table from '../../collections/Table/Table'
@@ -36,7 +29,7 @@ export default class Minutes extends Component {
      * string in the current locale. By default the time will be formatted as HH:MM
      * @type {function}
      */
-    timeFormatter: PropTypes.func
+    timeFormatter: PropTypes.func,
   }
 
   static _meta = {
@@ -47,13 +40,13 @@ export default class Minutes extends Component {
 
   static defaultProps = {
     timeFormatter: utils.defaultTimeFormatter,
-    interval: 5
+    interval: 5,
   }
 
   constructor() {
     super()
     this.state = {
-      hovering: null
+      hovering: null,
     }
   }
 
@@ -63,7 +56,7 @@ export default class Minutes extends Component {
    */
   getMinuteLabels() {
     const { timeFormatter, interval, hour } = this.props
-    const count = parseInt(60 / interval)
+    const count = parseInt(60 / interval, 10)
     const date = new Date()
     date.setHours(hour)
     return [...Array(count).keys()].map((minute) => {
@@ -79,10 +72,10 @@ export default class Minutes extends Component {
     const cols = [...Array(4).keys()]
     const cells = []
     let i = 0
-    rows.map((row) => {
-      let children = []
-      cols.map((col) => {
-        let thisMinute = i * interval
+    rows.forEach((row) => {
+      const children = []
+      cols.forEach((col) => {
+        const thisMinute = i * interval
         children.push((
           <utils.ItemCell
             key={i}
@@ -90,7 +83,8 @@ export default class Minutes extends Component {
             value={labels[i]}
             onClick={(e) => {
               onClick(e, thisMinute)
-            }} />
+            }}
+          />
         ))
         i += 1
       })

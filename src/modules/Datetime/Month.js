@@ -1,17 +1,10 @@
-import _ from 'lodash'
-import cx from 'classnames'
 import React, { Component, PropTypes } from 'react'
 import DayCell from './DayCell'
 import * as utils from '../../lib/dateUtils'
 
 import {
-  childrenUtils,
-  createShorthand,
   customPropTypes,
   META,
-  getElementType,
-  getUnhandledProps,
-  useKeyOnly,
 } from '../../lib'
 
 import Table from '../../collections/Table/Table'
@@ -56,7 +49,7 @@ export default class Month extends Component {
      * An array of dates that should be marked disabled in the calendar
      * @type {Array<Date>}
      */
-    disabledDates: PropTypes.arrayOf(customPropTypes.DateValue)
+    disabledDates: PropTypes.arrayOf(customPropTypes.DateValue),
   }
 
   static _meta = {
@@ -66,7 +59,7 @@ export default class Month extends Component {
   }
 
   static defaultProps = {
-    disabledDates: []
+    disabledDates: [],
   }
 
   constructor(props) {
@@ -74,14 +67,14 @@ export default class Month extends Component {
     this.state = {
       hovering: null,
       selectionStart: props.selectionStart,
-      selectionEnd: props.selectionEnd
+      selectionEnd: props.selectionEnd,
     }
   }
 
   componentWillReceiveProps(nextProps) {
     this.setState({
       selectionStart: nextProps.selectionStart,
-      selectionEnd: nextProps.selectionEnd
+      selectionEnd: nextProps.selectionEnd,
     })
   }
 
@@ -90,7 +83,7 @@ export default class Month extends Component {
    * accounting for the locale's first day of the week
    */
   getDayLabels() {
-    let realDay;
+    let realDay
     return [...Array(7).keys()].map((day) => {
       realDay = day + this.props.firstDayOfWeek
       if (realDay >= 7) {
@@ -148,7 +141,8 @@ export default class Month extends Component {
     if (realFirstWeekDay < 0) {
       realFirstWeekDay = 7 - firstWeekDay - this.props.firstDayOfWeek
     }
-    let day = 0, nextDay = 0
+    let day = 0
+    let nextDay = 0
     return monthCells.map((cell, index) => {
       const dayCellDate = new Date(firstDay)
       const dayParams = {
@@ -177,13 +171,12 @@ export default class Month extends Component {
       if (selectionStart) {
         dayParams.onMouseOver = () => {
           this.setState({
-            selectionEnd: dayParams.date
+            selectionEnd: dayParams.date,
           })
         }
       }
-      if (hasDisabledDates &&
-          !dayParams.disabled &&
-          disabledDateSig.indexOf(this.toDateSignature(dayParams.date)) > -1) {
+      if (hasDisabledDates && !dayParams.disabled &&
+        disabledDateSig.indexOf(this.toDateSignature(dayParams.date)) > -1) {
         dayParams.disabled = true
       }
       return (<DayCell {...dayParams} />)
@@ -199,9 +192,9 @@ export default class Month extends Component {
     const weeks = [...Array(6).keys()]
     const oneWeek = [...Array(7).keys()]
     let key = 0
-    weeks.map((weeks, weekIndex) => {
+    weeks.forEach(() => {
       let children = []
-      oneWeek.map((day, dayIndex) => {
+      oneWeek.forEach(() => {
         children.push((dayCells[key]))
         key += 1
       })

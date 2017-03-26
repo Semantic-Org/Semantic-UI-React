@@ -1,16 +1,9 @@
-import _ from 'lodash'
-import cx from 'classnames'
 import React, { Component, PropTypes } from 'react'
 import * as utils from '../../lib/dateUtils'
 
 import {
-  childrenUtils,
-  createShorthand,
   customPropTypes,
   META,
-  getElementType,
-  getUnhandledProps,
-  useKeyOnly,
 } from '../../lib'
 
 import Table from '../../collections/Table/Table'
@@ -29,7 +22,7 @@ export default class Months extends Component {
     /** Primary content. */
     children: PropTypes.node,
 
-    onClick: PropTypes.func
+    onClick: PropTypes.func,
   }
 
   static _meta = {
@@ -41,7 +34,7 @@ export default class Months extends Component {
   constructor() {
     super()
     this.state = {
-      hovering: null
+      hovering: null,
     }
   }
 
@@ -51,10 +44,10 @@ export default class Months extends Component {
     const col = [...Array(3).keys()]
     const cells = []
     let i = 0
-    row.map((monthRow, rowIndex) => {
+    row.forEach((monthRow, rowIndex) => {
       let children = []
-      col.map((month, monthIndex) => {
-        let thisMonth = i
+      col.forEach(() => {
+        const thisMonth = i
         children.push((
           <utils.ItemCell
             key={i}
@@ -73,7 +66,7 @@ export default class Months extends Component {
   render() {
     return (
       <Table fixed unstackable attached='bottom' size='small' compact='very' className='center aligned'>
-        <Table.Header></Table.Header>
+        <Table.Header />
         <Table.Body>
           {this.getMonths()}
         </Table.Body>

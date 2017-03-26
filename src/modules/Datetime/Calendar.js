@@ -1,23 +1,15 @@
 import React, { PropTypes } from 'react'
-import cx from 'classnames'
-import DayCell from './DayCell'
 import CalendarHeader from './CalendarHeader'
 import Month from './Month'
 import Months from './Months'
 import Years from './Years'
 import Hours from './Hours'
 import Minutes from './Minutes'
-import DropDown from '../Dropdown/Dropdown'
-import Button from '../../elements/Button'
-import * as utils from '../../lib/dateUtils'
 
 import {
   AutoControlledComponent as Component,
   customPropTypes,
-  getElementType,
-  getUnhandledProps,
   META,
-  useKeyOnly,
 } from '../../lib'
 
 /**
@@ -127,7 +119,10 @@ export default class Calendar extends Component {
      */
     selectionEnd: customPropTypes.DateValue,
     defaultSelectionEnd: customPropTypes.DateValue,
-    range: PropTypes.bool
+    range: PropTypes.bool,
+
+    // TODO what is this used for and what type is it?
+    page: PropTypes.any,
   }
 
   static defaultProps = {
@@ -135,14 +130,14 @@ export default class Calendar extends Component {
     firstDayOfWeek: 1,
     date: true,
     time: true,
-    range: false
+    range: false,
   }
 
   static autoControlledProps = [
     'value',
     'mode',
     'selectionStart',
-    'selectionEnd'
+    'selectionEnd',
   ]
 
   constructor(props) {
@@ -150,17 +145,13 @@ export default class Calendar extends Component {
     this.state = {
       value: new Date(),
       hovering: null,
-      mode: this.getInitialMode(props)
+      mode: this.getInitialMode(props),
     }
   }
 
   getInitialMode(props) {
-    const {date, time} = props
-    if (!date && time) {
-      return 'HOUR'
-    } else {
-      return 'DAY'
-    }
+    const { date, time } = props
+    return !date && time ? 'HOUR' : 'DAY'
   }
 
   /**
@@ -204,16 +195,17 @@ export default class Calendar extends Component {
    */
   setMonth = (e, props) => {
     e.stopPropagation()
-    let { value, page } = props
+    const { value, page } = props
     const nextMode = 'DAY'
     const date = new Date(this.state.value)
-    if (!value && page) {
-      value = date.getMonth() + page
-    }
-    date.setMonth(value)
+    const month = !value && page
+      ? date.getMonth() + page
+      : value
+
+    date.setMonth(month)
     this.trySetState({
       value: date,
-      mode: nextMode
+      mode: nextMode,
     })
     if (this.props.onChangeMonth) {
       this.props.onChangeMonth(date)
@@ -230,7 +222,7 @@ export default class Calendar extends Component {
     date.setYear(year)
     this.trySetState({
       value: date,
-      mode: nextMode
+      mode: nextMode,
     })
   }
 
@@ -240,13 +232,13 @@ export default class Calendar extends Component {
     date.setHours(hour)
     this.trySetState({
       value: date,
-      mode: nextMode
+      mode: nextMode,
     })
   }
 
   setMinute = (e, minute) => {
     e.stopPropagation()
-    const { onDateSelect, time } = this.props
+    const { onDateSelect } = this.props
     const date = new Date(this.state.value)
     date.setMinutes(minute)
     const extraState = {}
@@ -255,7 +247,7 @@ export default class Calendar extends Component {
     }
     this.trySetState({
       value: date,
-      ...extraState
+      ...extraState,
     })
     if (onDateSelect) {
       onDateSelect(new Date(date), e)
@@ -269,18 +261,18 @@ export default class Calendar extends Component {
    */
   setDay = (e, day) => {
     e.stopPropagation()
-    const date = new Date(this.state.value);
+    const date = new Date(this.state.value)
     date.setDate(day)
     const { onDateSelect, time } = this.props
     const nextMode = time ? 'HOUR' : this.state.mode
     const rangeState = {}
-	  if (this.props.range) {
+    if (this.props.range) {
       rangeState.selectionStart = date
     }
     this.trySetState({
       value: date,
       mode: nextMode,
-      ...rangeState
+      ...rangeState,
     })
     if (!time && onDateSelect) {
       onDateSelect(new Date(date), e)
@@ -307,6 +299,9 @@ export default class Calendar extends Component {
       case 'YEAR':
         this.setYear(e, this.getYear() + (direction * 16), mode)
         break
+
+      default:
+        break
     }
   }
 
@@ -329,18 +324,20 @@ export default class Calendar extends Component {
     const { mode, value, selectionStart, selectionEnd } = this.state
     switch (mode) {
       case 'DAY':
-        return (<Month
-                  firstDayOfWeek={firstDayOfWeek}
-                  content={content}
-                  onClick={this.setDay}
-                  date={value}
-                  selectionStart={selectionStart}
-                  selectionEnd={selectionEnd}
-                  disabledDates={disabledDates}
-                />)
+        return (
+          <Month
+            firstDayOfWeek={firstDayOfWeek}
+            content={content}
+            onClick={this.setDay}
+            date={value}
+            selectionStart={selectionStart}
+            selectionEnd={selectionEnd}
+            disabledDates={disabledDates}
+          />
+        )
 
       case 'MONTH':
-        return <Months content={content} onClick={this.setMonth}/>
+        return <Months content={content} onClick={this.setMonth} />
 
       case 'YEAR':
         return <Years year={this.getYear()} onClick={this.setYear} />
@@ -350,6 +347,7 @@ export default class Calendar extends Component {
 
       case 'MINUTE':
         return <Minutes onClick={this.setMinute} hour={this.getHour()} />
+
       default:
         return null
     }

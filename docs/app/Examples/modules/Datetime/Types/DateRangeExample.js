@@ -8,5 +8,5 @@ const DateRangeExample = () => (
 )
 
 export default DateRangeExample
-//defaultSelectionStart={new Date('2017-02-28')}
-//defaultSelectionEnd={new Date('2017-03-10')}/>
+// defaultSelectionStart={new Date('2017-02-28')}
+// defaultSelectionEnd={new Date('2017-03-10')}/>

@@ -9,4 +9,4 @@ const DatetimeVariationsExamples = () => (
   </ExampleSection>
 )
 
-export default DatetimeVariationsExamples;
+export default DatetimeVariationsExamples

@@ -14,4 +14,4 @@ const DatetimeExamples = () => (
   </div>
 )
 
-export default DatetimeExamples;
+export default DatetimeExamples

@@ -1,16 +1,9 @@
-import _ from 'lodash'
-import cx from 'classnames'
 import React, { Component, PropTypes } from 'react'
 import * as utils from '../../lib/dateUtils'
 
 import {
-  childrenUtils,
-  createShorthand,
   customPropTypes,
   META,
-  getElementType,
-  getUnhandledProps,
-  useKeyOnly,
 } from '../../lib'
 
 import Table from '../../collections/Table/Table'
@@ -29,7 +22,7 @@ export default class Years extends Component {
     /** Primary content. */
     children: PropTypes.node,
 
-    onClick: PropTypes.func
+    onClick: PropTypes.func,
   }
 
   static _meta = {
@@ -41,7 +34,7 @@ export default class Years extends Component {
   constructor() {
     super()
     this.state = {
-      hovering: null
+      hovering: null,
     }
   }
 
@@ -52,10 +45,9 @@ export default class Years extends Component {
     const cells = []
     const startYear = this.props.year - 8
     let i = startYear
-    let children = []
-    row.map((yearRow, rowIndex) => {
-      let children = []
-      col.map((year, yearIndex) => {
+    const children = []
+    row.forEach((yearRow, rowIndex) => {
+      col.forEach(() => {
         let thisYear = i
         children.push((
           <utils.ItemCell
@@ -64,7 +56,8 @@ export default class Years extends Component {
             name={thisYear}
             onClick={(e) => {
               onClick(e, thisYear)
-            }} />
+            }}
+          />
         ))
         i += 1
       })
@@ -76,7 +69,7 @@ export default class Years extends Component {
   render() {
     return (
       <Table fixed unstackable attached='bottom' size='small' compact='very' className='center aligned'>
-        <Table.Header></Table.Header>
+        <Table.Header />
         <Table.Body>
           {this.getYears()}
         </Table.Body>

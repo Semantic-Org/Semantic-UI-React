@@ -1,16 +1,9 @@
-import _ from 'lodash'
-import cx from 'classnames'
 import React, { Component, PropTypes } from 'react'
 import * as utils from '../../lib/dateUtils'
 
 import {
-  childrenUtils,
-  createShorthand,
   customPropTypes,
   META,
-  getElementType,
-  getUnhandledProps,
-  useKeyOnly,
 } from '../../lib'
 
 import Table from '../../collections/Table/Table'
@@ -32,7 +25,7 @@ export default class Hours extends Component {
      * string in the current locale. By default the time will be formatted as HH:MM
      * @type {function}
      */
-    timeFormatter: PropTypes.func
+    timeFormatter: PropTypes.func,
   }
 
   static _meta = {
@@ -44,13 +37,13 @@ export default class Hours extends Component {
   static defaultProps = {
     timeFormatter: utils.defaultTimeFormatter,
     firstHourOfDay: 0,
-    LastHourOfDay: 23
+    LastHourOfDay: 23,
   }
 
   constructor() {
     super()
     this.state = {
-      hovering: null
+      hovering: null,
     }
   }
 
@@ -70,17 +63,17 @@ export default class Hours extends Component {
 
   getHours() {
     const { onClick } = this.props
-    const { firstHourOfDay, LastHourOfDay } = this.props
+    // const { firstHourOfDay, LastHourOfDay } = this.props
     const labels = this.getHourLabels()
-    const hours = labels.slice(firstHourOfDay, LastHourOfDay)
+    // const hours = labels.slice(firstHourOfDay, LastHourOfDay)
     const rows = [...Array(6).keys()]
     const cols = [...Array(4).keys()]
     const cells = []
     let i = 0
-    rows.map((row) => {
-      let children = []
-      cols.map((col) => {
-        let thisHour = i
+    rows.forEach((row) => {
+      const children = []
+      cols.forEach((col) => {
+        const thisHour = i
         children.push((
           <utils.ItemCell
             key={i}
@@ -88,7 +81,8 @@ export default class Hours extends Component {
             value={labels[i]}
             onClick={(e) => {
               onClick(e, thisHour)
-            }} />
+            }}
+          />
         ))
         i += 1
       })

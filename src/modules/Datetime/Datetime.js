@@ -1,5 +1,4 @@
 import React, { PropTypes } from 'react'
-import { findDOMNode } from 'react-dom'
 
 import {
   AutoControlledComponent as Component,
@@ -238,7 +237,7 @@ export default class Datetime extends Component {
      * An array of dates that should be marked disabled in the calendar
      * @type {Array<Date>}
      */
-    disabledDates: PropTypes.arrayOf(customPropTypes.DateValue)
+    disabledDates: PropTypes.arrayOf(customPropTypes.DateValue),
   }
 
   static autoControlledProps = [
@@ -275,7 +274,7 @@ export default class Datetime extends Component {
     dateFormatter: defaultDateFormatter,
     timeFormatter: defaultTimeFormatter,
     date: true,
-    time: true
+    time: true,
   }
 
   open = (e) => {
@@ -355,8 +354,7 @@ export default class Datetime extends Component {
       date,
       timeFormatter,
       minDate,
-      maxDate,
-      disabledDates
+      disabledDates,
     } = this.props
     const { open, value } = this.state
 

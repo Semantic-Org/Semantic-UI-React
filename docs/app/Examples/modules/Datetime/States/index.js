@@ -6,7 +6,10 @@ const DatetimeStatesExamples = () => (
   <ExampleSection title='States'>
     <ComponentExample
       title='Calendar with disabled days'
-      description='A calendar can specify a set of disabled dates. This example has today, yesterday and tomorrow disabled.'
+      description={[
+        'A calendar can specify a set of disabled dates.',
+        'This example has today, yesterday and tomorrow disabled.',
+      ].join(' ')}
       examplePath='modules/Datetime/States/DateTimeExampleDisabledDays'
     />
     <ComponentExample
@@ -22,4 +25,4 @@ const DatetimeStatesExamples = () => (
   </ExampleSection>
 )
 
-export default DatetimeStatesExamples;
+export default DatetimeStatesExamples

@@ -36,4 +36,4 @@ const DatetimeTypesExamples = () => (
 
 )
 
-export default DatetimeTypesExamples;
+export default DatetimeTypesExamples

@@ -1,13 +1,9 @@
-import _ from 'lodash'
 import cx from 'classnames'
 import React, { Component, PropTypes } from 'react'
 
 import {
-  childrenUtils,
-  createShorthand,
   customPropTypes,
   META,
-  getElementType,
   getUnhandledProps,
   useKeyOnly,
 } from '../../lib'
@@ -77,8 +73,6 @@ export default class DayCell extends Component {
   render() {
     const {
       active,
-      hovered,
-      children,
       className,
       disabled,
       selected,

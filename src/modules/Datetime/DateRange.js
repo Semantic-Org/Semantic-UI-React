@@ -1,5 +1,4 @@
 import React, { PropTypes } from 'react'
-import { findDOMNode } from 'react-dom'
 
 import {
   AutoControlledComponent as Component,
@@ -72,16 +71,16 @@ export default class DateRange extends Component {
 
     /**
      * A function that will return a Date object as a formatted string in the
-     * current locale. By default the Date will formatted as YYYY-MM-DD
-     * @type {function}
+     * current locale. By default the Date will formatted as YYYY-MM-DD.
      */
+    // TODO add signatures
     dateFormatter: PropTypes.func,
 
     /**
      * A function that will return the time image of a Date object as a formatted
-     * string in the current locale. By default the time will be formatted as HH:MM
-     * @type {function}
+     * string in the current locale. By default the time will be formatted as HH:MM.
      */
+    // TODO add signatures
     timeFormatter: PropTypes.func,
 
     /** Initial value of open. */
@@ -92,7 +91,7 @@ export default class DateRange extends Component {
      */
     value: PropTypes.arrayOf(customPropTypes.DateValue),
 
-    /** Initial value as an array of Date object or a string that can be parsed into one */
+    /** Initial value as an array of Date object or a string that can be parsed into one. */
     defaultValue: PropTypes.arrayOf(customPropTypes.DateValue),
 
     /** A disabled dropdown menu or item does not allow user interaction. */
@@ -194,16 +193,14 @@ export default class DateRange extends Component {
     placeholder: PropTypes.string,
 
     /**
-     * Handle a date range. This will cause the Datetime component to
-     * render two calendar months which represent the start and end
-     * of the range
+     * Handle a date range. This will cause the Datetime component to render two
+     * calendar months which represent the start and end of the range.
      * @type {bool}
      */
     range: PropTypes.bool,
 
     /**
-     * A function that takes (data, index, defaultLabelProps) and returns
-     * shorthand for Label .
+     * A function that takes (data, index, defaultLabelProps) and returns shorthand for Label.
      */
     renderLabel: PropTypes.func,
 
@@ -222,61 +219,72 @@ export default class DateRange extends Component {
      * @type {bool}
      */
     time: PropTypes.bool,
+
     /**
      * Allows date selection. This will cause the component to offer a
      * date selection as well as the time.
      * @type {bool}
      */
     date: PropTypes.bool,
+
     /**
      * The current focus date selection.
      * 0 for start date
      * 1 for end date
      * @type {number}
      */
-		rangeFocus: PropTypes.number,
+    rangeFocus: PropTypes.number,
+
     /**
      * Default value for rangeFocus
      * @type {number}
      */
-		defaultRangeFocus: PropTypes.number,
+    defaultRangeFocus: PropTypes.number,
 
-		/**
-     * do not allow dates before minDate
+    /**
+     * Do not allow dates before minDate.
      * @type {Date}
      */
     minDate: customPropTypes.DateValue,
+
     /**
-     * Do not allow dates after maxDate
+     * Do not allow dates after maxDate.
      * @type {Date}
      */
     maxDate: customPropTypes.DateValue,
+
     /**
-     * An array of dates that should be marked disabled in the calendar
+     * An array of dates that should be marked disabled in the calendar.
      * @type {Array<Date>}
      */
     disabledDates: PropTypes.arrayOf(customPropTypes.DateValue),
+
     /**
      * Dates at or after selectionStart are marked as selected
      * @type {Date}
      */
     selectionStart: customPropTypes.DateValue,
-		defaultSelectionStart: customPropTypes.DateValue,
+
+    /** The initial value for selectionStart. */
+    defaultSelectionStart: customPropTypes.DateValue,
+
     /**
-     * Dates until or at selectionEnd are marked as selected
+     * Dates until or at selectionEnd are marked as selected.
      * @type {[type]}
      */
     selectionEnd: customPropTypes.DateValue,
-		defaultSelectionEnd: customPropTypes.DateValue,
+
+    /** The initial value for selectionEnd. */
+    defaultSelectionEnd: customPropTypes.DateValue,
   }
 
   static autoControlledProps = [
     'open',
     'value',
     'months',
-		'rangeFocus',
-		'selectionStart',
-		'selectionEnd'
+    'rangeFocus',
+    'selectionStart',
+    'selectionEnd',
   ]
 
   static defaultProps = {
@@ -307,7 +315,7 @@ export default class DateRange extends Component {
     dateFormatter: defaultDateFormatter,
     timeFormatter: defaultTimeFormatter,
     date: true,
-    time: false
+    time: false,
   }
 
   open = (e) => {
@@ -318,7 +326,7 @@ export default class DateRange extends Component {
 
     this.trySetState({
       open: true,
-      rangeFocus: 0
+      rangeFocus: 0,
     })
   }
 
@@ -358,23 +366,22 @@ export default class DateRange extends Component {
   handleDateSelection = (rangeItem, date, e) => {
     debug('handleDateSelection()', date, e)
     e.stopPropagation()
-    let {value, rangeFocus} = this.state
-    rangeFocus = rangeFocus || 0
+    const { value, rangeFocus = 0 } = this.state
     e.nativeEvent.stopImmediatePropagation()
     const selectedDate = new Date(date)
-		const currentRange = value
-		currentRange[rangeFocus] = selectedDate
+    const currentRange = value
+    currentRange[rangeFocus] = selectedDate
     const rangeState = {
-			[rangeFocus == 0 ? 'selectionStart' : 'selectionEnd']: date
-		}
+      [rangeFocus === 0 ? 'selectionStart' : 'selectionEnd']: date,
+    }
     this.trySetState({
       ...rangeState,
       rangeFocus: 1 - rangeFocus,
-      value: currentRange
+      value: currentRange,
     })
-		if (rangeFocus == 1) {
-			this.close()
-		}
+    if (rangeFocus === 1) {
+      this.close()
+    }
   }
 
   /**
@@ -386,30 +393,28 @@ export default class DateRange extends Component {
     const months = this.getDisplayMonths()
     months[rangeItem] = date
     this.trySetState({
-      months: months
+      months,
     })
   }
 
   /**
    * Return a formatted date or date/time string
    */
-  getFormattedDate(value) {
-		const formatted = []
-    value = value || this.state.value
-		if (!value) {
-			return ''
-		}
+  getFormattedDate(value = this.state.value) {
+    const formatted = []
+    if (!value) return ''
+
     const { date, time, dateFormatter, timeFormatter } = this.props
-		value.forEach((item)=> {
-			if (item) {
-				if (date && time) {
-					formatted.push(`${dateFormatter(item)} ${timeFormatter(item)}`)
-				} else if (!date && time) {
-					formatted.push(timeFormatter(item))
-				}
-				formatted.push(dateFormatter(item))
-			}
-		})
+    value.forEach((item) => {
+      if (item) {
+        if (date && time) {
+          formatted.push(`${dateFormatter(item)} ${timeFormatter(item)}`)
+        } else if (!date && time) {
+          formatted.push(timeFormatter(item))
+        }
+        formatted.push(dateFormatter(item))
+      }
+    })
     return formatted.join(' ')
   }
 
@@ -422,23 +427,23 @@ export default class DateRange extends Component {
    * will be adjusted as left is paged
    */
   getDisplayMonths() {
-    const {value, months} = this.state
+    const { value, months } = this.state
     let [left, right] = [...months || []]
     if (!left && value.length > 0) {
       left = value[0]
-    } else if(!left) {
+    } else if (!left) {
       left = new Date()
     }
-    if (!right && value.length == 2) {
+    if (!right && value.length === 2) {
       right = value[1]
     } else if (!right) {
       // set right to left, which will trigger a month chase
       right = left
     }
     if (right.getFullYear() <= left.getFullYear() &&
-        right.getMonth() <= left.getMonth()) {
+      right.getMonth() <= left.getMonth()) {
       const date = new Date(left)
-      date.setMonth(date.getMonth()+1)
+      date.setMonth(date.getMonth() + 1)
       right = date
     }
     return [left, right]
@@ -456,20 +461,20 @@ export default class DateRange extends Component {
       time,
       date,
       timeFormatter,
-			minDate,
-			maxDate,
-			disabledDates
+      minDate,
+      maxDate,
+      disabledDates,
     } = this.props
     const {
       open,
       value,
       selectionStart,
-      selectionEnd
+      selectionEnd,
     } = this.state
-		const months = this.getDisplayMonths()
+    const months = this.getDisplayMonths()
     const inputElement = (
       <Input
-				fluid
+        fluid
         type='text'
         name={name}
         icon={icon}
@@ -483,7 +488,7 @@ export default class DateRange extends Component {
 
     return (
       <Popup
-				flowing
+        flowing
         on='click'
         trigger={inputElement}
         position='bottom left'
@@ -498,43 +503,43 @@ export default class DateRange extends Component {
         closeOnDocumentClick={false}
         style={popupStyle}
       >
-				<div className="ui two column grid">
-					<div className="column">
-		        <Calendar
+        <div className='ui two column grid'>
+          <div className='column'>
+            <Calendar
               value={months[0]}
-		          content={this.props.content}
-		          onDateSelect={this.handleDateSelection.bind(this, 0)}
+              content={this.props.content}
+              onDateSelect={this.handleDateSelection.bind(this, 0)}
               onChangeMonth={this.handleMonthChange.bind(this, 0)}
-		          timeFormatter={timeFormatter}
-		          firstDayOfWeek={firstDayOfWeek}
-		          time={time}
-		          date={date}
-							selectionStart={selectionStart}
-							selectionEnd={selectionEnd}
-							minDate={minDate}
-							maxDate={maxDate}
-							disabledDates={disabledDates}
-							range={true}
-		        />
-					</div>
-					<div className="column">
-						<Calendar
+              timeFormatter={timeFormatter}
+              firstDayOfWeek={firstDayOfWeek}
+              time={time}
+              date={date}
+              selectionStart={selectionStart}
+              selectionEnd={selectionEnd}
+              minDate={minDate}
+              maxDate={maxDate}
+              disabledDates={disabledDates}
+              range
+            />
+          </div>
+          <div className='column'>
+            <Calendar
               value={months[1]}
-							content={this.props.content}
-		          onDateSelect={this.handleDateSelection.bind(this, 1)}
+              content={this.props.content}
+              onDateSelect={this.handleDateSelection.bind(this, 1)}
               onChangeMonth={this.handleMonthChange.bind(this, 1)}
-		          timeFormatter={timeFormatter}
-		          firstDayOfWeek={firstDayOfWeek}
-		          time={time}
-		          date={date}
-							selectionStart={selectionStart}
-							selectionEnd={selectionEnd}
-							minDate={minDate}
-							maxDate={maxDate}
-							disabledDates={disabledDates}
-		        />
-					</div>
-				</div>
+              timeFormatter={timeFormatter}
+              firstDayOfWeek={firstDayOfWeek}
+              time={time}
+              date={date}
+              selectionStart={selectionStart}
+              selectionEnd={selectionEnd}
+              minDate={minDate}
+              maxDate={maxDate}
+              disabledDates={disabledDates}
+            />
+          </div>
+        </div>
       </Popup>
     )
   }
