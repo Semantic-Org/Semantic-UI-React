@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import CalendarHeader from './CalendarHeader'
+import CalendarMenu from './CalendarMenu'
 import Month from './Month'
 import Months from './Months'
 import Years from './Years'
@@ -359,7 +359,7 @@ export default class Calendar extends Component {
     return (
       <div style={{ width: 300 }}>
         {date ?
-          <CalendarHeader
+          <CalendarMenu
             date={value}
             monthName={this.getMonthName()}
             year={this.getYear()}

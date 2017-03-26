@@ -9,9 +9,9 @@ import {
 import Menu from '../../collections/Menu/Menu'
 
 /**
- * A day cell within a calendar month
+ * The month and year menu at the top of the calendar.
  */
-export default class CalendarHeader extends Component {
+export default class CalendarMenu extends Component {
   static propTypes = {
     /** An element type to render as (string or function). */
     as: customPropTypes.as,
@@ -50,7 +50,7 @@ export default class CalendarHeader extends Component {
   }
 
   static _meta = {
-    name: 'CalendarHeader',
+    name: 'CalendarMenu',
     parent: 'Datetime',
     type: META.TYPES.MODULE,
   }
