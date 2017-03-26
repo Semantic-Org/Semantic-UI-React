@@ -14,7 +14,6 @@ import {
 } from '../../lib'
 import Icon from '../../elements/Icon'
 import Portal from '../../addons/Portal'
-import Button from '../../elements/Button'
 import ModalHeader from './ModalHeader'
 import ModalContent from './ModalContent'
 import ModalActions from './ModalActions'
