@@ -1,3 +1,4 @@
+import _ from 'lodash/fp'
 import React, { Component, PropTypes } from 'react'
 import * as utils from '../../lib/dateUtils'
 
@@ -40,8 +41,8 @@ export default class Years extends Component {
 
   getYears() {
     const { onClick } = this.props
-    const row = [...Array(4).keys()]
-    const col = [...Array(4).keys()]
+    const row = _.range(0, 4)
+    const col = _.range(0, 4)
     const cells = []
     const startYear = this.props.year - 8
     let i = startYear

@@ -1,3 +1,4 @@
+import _ from 'lodash/fp'
 import React, { Component, PropTypes } from 'react'
 import * as utils from '../../lib/dateUtils'
 
@@ -59,17 +60,17 @@ export default class Minutes extends Component {
     const count = parseInt(60 / interval, 10)
     const date = new Date()
     date.setHours(hour)
-    return [...Array(count).keys()].map((minute) => {
+    return _.times(minute => {
       date.setMinutes(minute * interval)
       return timeFormatter(date)
-    })
+    }, count)
   }
 
   getMinutes() {
     const { onClick, interval } = this.props
     const labels = this.getMinuteLabels()
-    const rows = [...Array(3).keys()]
-    const cols = [...Array(4).keys()]
+    const rows = _.range(0, 3)
+    const cols = _.range(0, 4)
     const cells = []
     let i = 0
     rows.forEach((row) => {

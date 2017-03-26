@@ -1,3 +1,4 @@
+import _ from 'lodash/fp'
 import React, { Component, PropTypes } from 'react'
 import * as utils from '../../lib/dateUtils'
 
@@ -54,11 +55,11 @@ export default class Hours extends Component {
   getHourLabels() {
     const { timeFormatter } = this.props
     const date = new Date()
-    return [...Array(24).keys()].map((hour) => {
+    return _.times(hour => {
       date.setHours(hour)
       date.setMinutes(0)
       return timeFormatter(date)
-    })
+    }, 24)
   }
 
   getHours() {
@@ -66,8 +67,8 @@ export default class Hours extends Component {
     // const { firstHourOfDay, LastHourOfDay } = this.props
     const labels = this.getHourLabels()
     // const hours = labels.slice(firstHourOfDay, LastHourOfDay)
-    const rows = [...Array(6).keys()]
-    const cols = [...Array(4).keys()]
+    const rows = _.range(0, 6)
+    const cols = _.range(0, 4)
     const cells = []
     let i = 0
     rows.forEach((row) => {

@@ -1,3 +1,4 @@
+import _ from 'lodash/fp'
 import React, { Component, PropTypes } from 'react'
 import * as utils from '../../lib/dateUtils'
 
@@ -40,8 +41,8 @@ export default class Months extends Component {
 
   getMonths() {
     const { onClick } = this.props
-    const row = [...Array(4).keys()]
-    const col = [...Array(3).keys()]
+    const row = _.range(0, 4)
+    const col = _.range(0, 3)
     const cells = []
     let i = 0
     row.forEach((monthRow, rowIndex) => {

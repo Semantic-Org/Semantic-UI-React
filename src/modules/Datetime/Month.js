@@ -1,3 +1,4 @@
+import _ from 'lodash/fp'
 import React, { Component, PropTypes } from 'react'
 import DayCell from './DayCell'
 import * as utils from '../../lib/dateUtils'
@@ -84,13 +85,13 @@ export default class Month extends Component {
    */
   getDayLabels() {
     let realDay
-    return [...Array(7).keys()].map((day) => {
+    return _.times((day) => {
       realDay = day + this.props.firstDayOfWeek
       if (realDay >= 7) {
         realDay = 0
       }
       return this.props.content.daysShort[realDay]
-    })
+    }, 7)
   }
 
   /**
@@ -134,7 +135,7 @@ export default class Month extends Component {
     const hasDisabledDates = disabledDates.length > 0
     const disabledDateSig = this.toDateSignatures(disabledDates)
     // 42 days in a calendar block will be enough to wrap a full month
-    const monthCells = [...Array(42).keys()]
+    const monthCells = _.range(0, 42)
     // The real first day in relation to the sequene of calendar days (array index)
     let realFirstWeekDay = firstWeekDay - this.props.firstDayOfWeek
     // if the real first day is under 0, we want to shift it a week back
@@ -189,8 +190,8 @@ export default class Month extends Component {
   getMonthDays() {
     const dayCells = this.getDays()
     const cells = []
-    const weeks = [...Array(6).keys()]
-    const oneWeek = [...Array(7).keys()]
+    const weeks = _.range(0, 6)
+    const oneWeek = _.range(0, 7)
     let key = 0
     weeks.forEach(() => {
       let children = []
