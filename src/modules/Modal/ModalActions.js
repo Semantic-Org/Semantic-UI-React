@@ -8,17 +8,23 @@ import {
   getUnhandledProps,
   META,
 } from '../../lib'
+import Button from '../../elements/Button'
 
 /**
  * A modal can contain a row of actions.
  */
 function ModalActions(props) {
-  const { children, className } = props
+  const { children, className, actions } = props
   const classes = cx('actions', className)
   const rest = getUnhandledProps(ModalActions, props)
   const ElementType = getElementType(ModalActions, props)
 
-  return <ElementType {...rest} className={classes}>{children}</ElementType>
+  return (
+    <ElementType {...rest} className={classes}>
+      {children}
+      {_.isNil(children) && actions.map((action) => Button.create(action, true))}
+    </ElementType>
+  )
 }
 
 ModalActions._meta = {
@@ -28,6 +34,9 @@ ModalActions._meta = {
 }
 
 ModalActions.propTypes = {
+  /** Elements to render as Modal action buttons. */
+  actions: PropTypes.arrayOf(customPropTypes.itemShorthand),
+
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
@@ -38,6 +47,6 @@ ModalActions.propTypes = {
   className: PropTypes.string,
 }
 
-ModalActions.create = createShorthandFactory(ModalActions, children => ({ children }))
+ModalActions.create = createShorthandFactory(ModalActions, actions => ({ actions }), true)
 
 export default ModalActions

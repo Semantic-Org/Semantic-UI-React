@@ -4,6 +4,9 @@ export interface ModalActionsProps {
   [key: string]: any;
 
   /** An element type to render as (string or function). */
+  actions?: any;
+
+  /** An element type to render as (string or function). */
   as?: any;
 
   /** Primary content. */

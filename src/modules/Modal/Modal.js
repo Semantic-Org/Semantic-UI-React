@@ -29,8 +29,8 @@ const debug = makeDebugger('modal')
  */
 class Modal extends Component {
   static propTypes = {
-    /** An element type to render as (string or function). */
-    actions: PropTypes.oneOfType([PropTypes.arrayOf(customPropTypes.itemShorthand), customPropTypes.itemShorthand]),
+    /** Elements to render as Modal action buttons. */
+    actions: PropTypes.arrayOf(customPropTypes.itemShorthand),
 
     /** An element type to render as (string or function). */
     as: customPropTypes.as,
@@ -282,9 +282,9 @@ class Modal extends Component {
       <ElementType {...rest} className={classes} style={{ marginTop, ...style }} ref={this.handleRef}>
         {Icon.create(closeIconName, { onClick: this.handleClose })}
         {children}
-        {_.isNil(children) && header && ModalHeader.create(header)}
-        {_.isNil(children) && content && ModalContent.create(content)}
-        {_.isNil(children) && actions && ModalActions.create(actions.map((action, i) => {
+        {_.isNil(children) && ModalHeader.create(header)}
+        {_.isNil(children) && ModalContent.create(content)}
+        {_.isNil(children) && ModalActions.create(_.forEach(actions, (action) => {
           if (action.triggerClose) {
             const onClick = (callback) => (e) => {
               if (callback) callback(e, this.props)
@@ -292,7 +292,6 @@ class Modal extends Component {
             }
             action.onClick = onClick(action.onClick)
           }
-          return Button.create(action, { key: i })
         }))}
       </ElementType>
     )
