@@ -73,7 +73,7 @@ export default class Hours extends Component {
     return (
       <DateTimeGrid
         headers={['Hour']}
-        columns={6}
+        columns={4}
         cells={this.getHours()}
       />
     )
