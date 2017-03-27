@@ -26,8 +26,8 @@ function BreadcrumbDivider(props) {
   const rest = getUnhandledProps(BreadcrumbDivider, props)
   const ElementType = getElementType(BreadcrumbDivider, props)
 
-  if(!_.isNil(icon)) return Icon.create(icon, rest, { className: classes })
-  if(!_.isNil(content)) return <ElementType {...rest} className={classes}>{content}</ElementType>
+  if (!_.isNil(icon)) return Icon.create(icon, rest, { className: classes })
+  if (!_.isNil(content)) return <ElementType {...rest} className={classes}>{content}</ElementType>
 
   return (
     <ElementType {...rest} className={classes}>

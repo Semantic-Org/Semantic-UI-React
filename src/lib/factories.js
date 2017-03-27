@@ -12,24 +12,25 @@ import React, { cloneElement, isValidElement } from 'react'
  * @param {function|string} Component A ReactClass or string
  * @param {function} mapValueToProps A function that maps a primitive value to the Component props
  * @param {string|object|function} val The value to create a ReactElement from
- * @param {object|function} [defaultProps={}] Default props object or function (called with regular props).
- * @param {object|function} [overrideProps={}] Props object or function (called with regular props).
- * @param {boolean} [generateKey=false] Whether or not to generate a child key, useful for collections.
+ * @param {Object} [options={}]
+ * @param {object} [options.defaultProps={}] Default props object
+ * @param {object} [options.overrideProps={}] Override props object
+ * @param {boolean} [options.generateKey=false] Whether or not to generate a child key, useful for collections
  * @returns {object|null}
  */
-export function createShorthand(
-  Component,
-  mapValueToProps,
-  val,
-  defaultProps = {},
-  overrideProps = {},
-  generateKey = false
-) {
+export function createShorthand(Component, mapValueToProps, val, options) {
   if (typeof Component !== 'function' && typeof Component !== 'string') {
     throw new Error('createShorthandFactory() Component must be a string or function.')
   }
   // short circuit for disabling shorthand
   if (val === null) return null
+
+  const {
+    generateKey = false,
+    defaultProps = {},
+    overrideProps = {},
+  } = options
+
   const valIsString = _.isString(val)
   const valIsNumber = _.isNumber(val)
 
@@ -42,26 +43,19 @@ export function createShorthand(
   // ----------------------------------------
 
   // User's props
-  const usersProps = isReactElement && val.props
-    || isPropsObject && val
-    || isPrimitiveValue && mapValueToProps(val)
-
-  // Default and override props
-  defaultProps = _.isFunction(defaultProps) ? defaultProps(usersProps) : defaultProps
-  overrideProps = _.isFunction(overrideProps) ? overrideProps(usersProps) : overrideProps
+  const usersProps = isReactElement && val.props || isPropsObject && val || isPrimitiveValue && mapValueToProps(val)
 
   // Merge props
   /* eslint-disable react/prop-types */
   const props = { ...defaultProps, ...usersProps, ...overrideProps }
 
   // Merge className
-  if (usersProps.className && defaultProps.className) {
-    props.className = cx(defaultProps.className, usersProps.className)
-  }
+  const mergedClassesNames = cx(defaultProps.className, overrideProps.className, usersProps.className)
+  props.className = _.uniq(mergedClassesNames.split(' ')).join(' ')
 
   // Merge style
-  if (usersProps.style && defaultProps.style) {
-    props.style = { ...defaultProps.style, ...usersProps.style }
+  if (usersProps.style && (defaultProps.style || overrideProps.style)) {
+    props.style = { ...defaultProps.style, ...usersProps.style, ...overrideProps.style }
   }
 
   // ----------------------------------------
@@ -106,7 +100,7 @@ export function createShorthand(
  *
  * @param {function|string} Component A ReactClass or string
  * @param {function} mapValueToProps A function that maps a primitive value to the Component props
- * @param {boolean} [generateKey] Whether or not to generate a child key, useful for collections.
+ * @param {boolean=false} [generateKey] Whether or not to generate a child key, useful for collections.
  * @returns {function} A shorthand factory function waiting for `val` and `defaultProps`.
  */
 export function createShorthandFactory(Component, mapValueToProps, generateKey) {
@@ -114,9 +108,7 @@ export function createShorthandFactory(Component, mapValueToProps, generateKey) 
     throw new Error('createShorthandFactory() Component must be a string or function.')
   }
 
-  return (val, defaultProps, overrideProps) => {
-    return createShorthand(Component, mapValueToProps, val, defaultProps, overrideProps, generateKey)
-  }
+  return (val, options) => createShorthand(Component, mapValueToProps, val, { ...options, generateKey })
 }
 
 // ============================================================
