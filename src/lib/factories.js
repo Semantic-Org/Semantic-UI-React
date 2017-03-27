@@ -18,7 +18,7 @@ import React, { cloneElement, isValidElement } from 'react'
  * @param {boolean} [options.generateKey=false] Whether or not to generate a child key, useful for collections
  * @returns {object|null}
  */
-export function createShorthand(Component, mapValueToProps, val, options) {
+export function createShorthand(Component, mapValueToProps, val, options = {}) {
   if (typeof Component !== 'function' && typeof Component !== 'string') {
     throw new Error('createShorthandFactory() Component must be a string or function.')
   }
@@ -50,8 +50,11 @@ export function createShorthand(Component, mapValueToProps, val, options) {
   const props = { ...defaultProps, ...usersProps, ...overrideProps }
 
   // Merge className
-  const mergedClassesNames = cx(defaultProps.className, overrideProps.className, usersProps.className)
-  props.className = _.uniq(mergedClassesNames.split(' ')).join(' ')
+
+  if (defaultProps.className || overrideProps.className || usersProps.className) {
+    const mergedClassesNames = cx(defaultProps.className, overrideProps.className, usersProps.className)
+    props.className = _.uniq(mergedClassesNames.split(' ')).join(' ')
+  }
 
   // Merge style
   if (usersProps.style && (defaultProps.style || overrideProps.style)) {

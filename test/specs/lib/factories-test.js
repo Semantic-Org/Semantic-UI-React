@@ -13,10 +13,12 @@ import { sandbox } from 'test/utils'
  */
 const getShorthand = ({
   Component = 'div',
+  defaultProps,
+  generateKey,
   mapValueToProps = val => ({}),
+  overrideProps,
   value,
-  options,
-}) => createShorthand(Component, mapValueToProps, value, options)
+}) => createShorthand(Component, mapValueToProps, value, { defaultProps, generateKey, overrideProps })
 
 // ----------------------------------------
 // Common tests
@@ -195,7 +197,6 @@ describe('factories', () => {
 
       it('calls `childKey` with the final `props` if it is a function', () => {
         const props = { foo: 'foo', childKey: sandbox.spy(({ foo }) => foo) }
-
         const element = getShorthand({ value: props })
 
         props.childKey.should.have.been.calledOnce()
