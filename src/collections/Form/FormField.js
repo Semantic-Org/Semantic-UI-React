@@ -93,7 +93,7 @@ function FormField(props) {
 
   return (
     <ElementType className={classes}>
-      {createHTMLLabel(label)}
+      {createHTMLLabel(label, { htmlFor: controlProps && controlProps.id })}
       {createElement(control, controlProps)}
     </ElementType>
   )
