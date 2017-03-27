@@ -134,7 +134,6 @@ export default class Month extends Component {
     return monthCells.map((cell, index) => {
       const dayCellDate = new Date(firstDay)
       const dayParams = {
-        key: index,
         index: cell,
       }
       if (cell >= realFirstWeekDay && day < daysInMonth) {
@@ -167,23 +166,30 @@ export default class Month extends Component {
         disabledDateSig.indexOf(this.getDateString(dayParams.date)) > -1) {
         dayParams.disabled = true
       }
-      return (<DayCell {...dayParams} />)
+      return dayParams
     })
   }
 
   getMonthDays() {
-    const dayCells = this.getDays()
+    const days = this.getDays()
     const cells = []
     const weeks = _.range(0, 6)
     const oneWeek = _.range(0, 7)
     let key = 0
     weeks.forEach(() => {
-      let children = []
+      const weekDays = []
       oneWeek.forEach(() => {
-        children.push((dayCells[key]))
+        weekDays.push((days[key]))
         key += 1
       })
-      cells.push(<Table.Row key={key}>{children}</Table.Row>)
+      // skip fully disabled weeks
+      if (_.some(d => !d.disabled, weekDays)) {
+        cells.push(
+          <Table.Row key={key}>
+            {weekDays.map(day => <DayCell key={day.day} {...day} />)}
+          </Table.Row>
+        )
+      }
     })
     return cells
   }
@@ -191,7 +197,7 @@ export default class Month extends Component {
   render() {
     // TODO factor out for DateTimeGrid
     return (
-      <Table unstackable fixed celled attached='bottom' size='small' compact='very' className='center aligned'>
+      <Table unstackable basic='very' attached='bottom' size='small' compact='very' className='center aligned'>
         <Table.Header>
           {this.getDayHeaders()}
         </Table.Header>

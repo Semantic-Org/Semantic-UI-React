@@ -4,6 +4,9 @@ import React, { PropTypes } from 'react'
 import Table from '../../collections/Table'
 
 const pointingStyle = { cursor: 'pointer' }
+// TODO if we allow configuring the table, we should not override the border style
+// example, a `celled` table would certainly need borders
+const cellStyle = { border: 'none' }
 
 /**
  * A DateTimeGrid displays a grid of options in a DateTime component.
@@ -14,7 +17,7 @@ const DateTimeGrid = props => {
 
   return (
     <div>
-      <Table unstackable fixed celled attached='bottom' size='small' compact='very' textAlign='center'>
+      <Table unstackable basic='very' attached='bottom' size='small' compact='very' textAlign='center'>
         <Table.Header>
           <Table.Row>
             {headers.map(header => (
@@ -27,8 +30,8 @@ const DateTimeGrid = props => {
         <Table.Body>
           {_.chunk(columns, cells).map((row) => (
             <Table.Row key={_.map('content', row)}>
-              {row.map(({ content, active, ...rest }) => (
-                <Table.Cell selectable key={content} {...rest}>
+              {row.map(({ active, content, style = {}, ...rest }) => (
+                <Table.Cell key={content} selectable style={{ ...cellStyle, ...style }} {...rest}>
                   <a style={pointingStyle}>{content}</a>
                 </Table.Cell>
               ))}

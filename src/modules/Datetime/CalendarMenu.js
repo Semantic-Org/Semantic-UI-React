@@ -8,6 +8,10 @@ import {
 
 import Menu from '../../collections/Menu/Menu'
 
+// `attached` text menus adds borders to the otherwise borderless `text` menu
+// remove once this lands: https://github.com/Semantic-Org/Semantic-UI/issues/5205
+const style = { border: 'none' }
+
 /**
  * The month and year menu at the top of the calendar.
  */
@@ -93,16 +97,8 @@ export default class CalendarMenu extends Component {
       ),
     ])
 
-    // allow the popup to define the borders
-    // keep the bottom border between the calendar and the menu
-    const style = {
-      borderLeft: 'none',
-      borderRight: 'none',
-      borderTop: 'none',
-    }
-
     return (
-      <Menu attached='top' fluid secondary widths={items.length + 2} style={style}>
+      <Menu attached='top' fluid text widths={items.length + 2} style={style}>
         <Menu.Item icon='angle double left' onClick={onPrevious} />
         {items}
         <Menu.Item icon='angle double right' onClick={onNext} />

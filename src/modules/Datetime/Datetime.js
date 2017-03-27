@@ -15,11 +15,6 @@ import Popup from '../Popup/Popup'
 
 const debug = makeDebugger('datetime')
 
-const popupStyle = {
-  // allow the table and menu to define the whitespace within the calendar
-  padding: 0,
-}
-
 /**
  * A <Datetime/> allows a user to select a calendar date and/or time as well
  * as handle date ranges.
@@ -385,7 +380,6 @@ export default class Datetime extends Component {
         // The user should be able to click outside and have it close.
         // Portal should be updated to detect clicks inside/outside even with no e.target, perhaps using x y coords.
         closeOnDocumentClick={false}
-        style={popupStyle}
       >
         <Calendar
           content={content}

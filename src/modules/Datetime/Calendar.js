@@ -12,6 +12,11 @@ import {
   META,
 } from '../../lib'
 
+const style = {
+  float: 'left',    // for side-by-side calendar ranges
+  width: '20em',
+}
+
 /**
  * A <Datetime/> allows a user to select a calendar date and/or time as well
  * as handle date ranges.
@@ -328,7 +333,7 @@ export default class Calendar extends Component {
     const { date } = this.props
     const { mode, value } = this.state
     return (
-      <div style={{ width: 300 }}>
+      <div style={style}>
         {date && (
           <CalendarMenu
             date={value}

@@ -9,15 +9,11 @@ import {
 
 import { defaultDateFormatter, defaultTimeFormatter } from '../../lib/dateUtils'
 import Calendar from './Calendar'
-import Input from '../../elements/Input/Input'
-import Popup from '../Popup/Popup'
+import Input from '../../elements/Input'
+import Popup from '../Popup'
+import Grid from '../../collections/Grid'
 
 const debug = makeDebugger('datetime')
-
-const popupStyle = {
-  // allow the table and menu to define the whitespace within the calendar
-  padding: 0,
-}
 
 /**
  * A <Datetime/> allows a user to select a calendar date and/or time as well
@@ -501,10 +497,9 @@ export default class DateRange extends Component {
         // The user should be able to click outside and have it close.
         // Portal should be updated to detect clicks inside/outside even with no e.target, perhaps using x y coords.
         closeOnDocumentClick={false}
-        style={popupStyle}
       >
-        <div className='ui two column grid'>
-          <div className='column'>
+        <Grid columns='equal'>
+          <Grid.Column>
             <Calendar
               value={months[0]}
               content={this.props.content}
@@ -521,8 +516,8 @@ export default class DateRange extends Component {
               disabledDates={disabledDates}
               range
             />
-          </div>
-          <div className='column'>
+          </Grid.Column>
+          <Grid.Column>
             <Calendar
               value={months[1]}
               content={this.props.content}
@@ -538,8 +533,8 @@ export default class DateRange extends Component {
               maxDate={maxDate}
               disabledDates={disabledDates}
             />
-          </div>
-        </div>
+          </Grid.Column>
+        </Grid>
       </Popup>
     )
   }
