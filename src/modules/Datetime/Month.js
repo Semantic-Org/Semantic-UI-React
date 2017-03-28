@@ -136,9 +136,6 @@ export default class Month extends Component {
       }
       dayCellDate.setDate(dayParams.day)
       dayParams.date = dayCellDate
-      if (dayParams.date >= selectionStart && dayParams.date <= selectionEnd) {
-        dayParams.selected = true
-      }
       if (selectionStart) {
         dayParams.onMouseOver = () => {
           this.setState({
@@ -146,12 +143,23 @@ export default class Month extends Component {
           })
         }
       }
+      dayParams.selected = this.isCellSelected(dayCellDate, selectionStart, selectionEnd)
+
       if (hasDisabledDates && !dayParams.disabled &&
         disabledDateSig.indexOf(this.getDateString(dayParams.date)) > -1) {
         dayParams.disabled = true
       }
       return dayParams
     })
+  }
+
+  /**
+   * Returns true if the cell is within the start/end of the selection
+   */
+  isCellSelected(date, selectionStart, selectionEnd) {
+    return selectionStart && selectionStart <= date
+           && selectionEnd && selectionEnd >= date
+           && selectionEnd > selectionStart;
   }
 
   getMonthDays() {
