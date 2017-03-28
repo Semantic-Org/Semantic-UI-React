@@ -20,6 +20,10 @@ const FormFieldVariationsExamples = () => (
       description='A field can show that input is mandatory.'
       examplePath='collections/Form/FieldVariations/FormExampleRequiredField'
     />
+    <ComponentExample
+      description='Form.Field shorthand can also be required.'
+      examplePath='collections/Form/FieldVariations/FormExampleRequiredFieldShorthand'
+    />
   </ExampleSection>
 )
 
