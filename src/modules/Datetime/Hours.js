@@ -3,7 +3,6 @@ import React, { Component, PropTypes } from 'react'
 import * as utils from '../../lib/dateUtils'
 
 import {
-  customPropTypes,
   META,
 } from '../../lib'
 
@@ -14,17 +13,12 @@ import DateTimeGrid from './DateTimeGrid'
  */
 export default class Hours extends Component {
   static propTypes = {
-    /** An element type to render as (string or function). */
-    as: customPropTypes.as,
-
-    /** Primary content. */
-    children: PropTypes.node,
-
+    // TODO document
     onClick: PropTypes.func,
+
     /**
      * A function that will return the time image of a Date object as a formatted
      * string in the current locale. By default the time will be formatted as HH:MM
-     * @type {function}
      */
     timeFormatter: PropTypes.func,
   }
@@ -41,10 +35,6 @@ export default class Hours extends Component {
     LastHourOfDay: 23,
   }
 
-  /**
-   * Return the ordered labels for days of the week,
-   * accounting for the locale's first day of the week
-   */
   getHourLabels() {
     const { timeFormatter } = this.props
     const date = new Date()

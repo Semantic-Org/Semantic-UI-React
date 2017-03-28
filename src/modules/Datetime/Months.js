@@ -13,15 +13,10 @@ import DateTimeGrid from './DateTimeGrid'
  */
 export default class Months extends Component {
   static propTypes = {
-    /** An element type to render as (string or function). */
-    as: customPropTypes.as,
-
     /** Textual context constants **/
     content: PropTypes.object,
 
-    /** Primary content. */
-    children: PropTypes.node,
-
+    // TODO doc
     onClick: PropTypes.func,
   }
 
@@ -38,7 +33,7 @@ export default class Months extends Component {
       const thisMonth = i
       return {
         content: this.props.content.months[i],
-        onClick: e => onClick(e, { value: thisMonth, nextMode: 'DAY' }),
+        onClick: e => onClick(e, { value: thisMonth, nextMode: 'day' }),
       }
     }, 12)
   }

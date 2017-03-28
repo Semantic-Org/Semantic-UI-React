@@ -14,17 +14,16 @@ import DateTimeGrid from './DateTimeGrid'
  */
 export default class Minutes extends Component {
   static propTypes = {
-    /** An element type to render as (string or function). */
-    as: customPropTypes.as,
-
-    /** Primary content. */
-    children: PropTypes.node,
-    /** Current hour */
+    /** Current hour. */
     hour: PropTypes.number,
+
     /** Minutes interval between each item. */
     interval: PropTypes.number,
-    /** Click handler */
+
+    // TODO better doc
+    /** Click handler. */
     onClick: PropTypes.func,
+
     /**
      * A function that will return the time image of a Date object as a formatted
      * string in the current locale. By default the time will be formatted as HH:MM
@@ -50,7 +49,7 @@ export default class Minutes extends Component {
    */
   getMinuteLabels() {
     const { timeFormatter, interval, hour } = this.props
-    const count = parseInt(60 / interval, 10)
+    const count = Math.round(60 / interval)
     const date = new Date()
     date.setHours(hour)
 
@@ -69,7 +68,7 @@ export default class Minutes extends Component {
         content: labels[i],
         onClick: e => onClick(e, thisMinute),
       }
-    }, 12)
+    }, labels.length)
   }
 
   render() {

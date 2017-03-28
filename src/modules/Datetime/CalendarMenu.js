@@ -17,39 +17,31 @@ const style = { border: 'none' }
  */
 export default class CalendarMenu extends Component {
   static propTypes = {
-    /** An element type to render as (string or function). */
-    as: customPropTypes.as,
-
-    /** Additional classes. */
-    className: PropTypes.string,
-
     /** Month name **/
     monthName: PropTypes.string,
 
-    /** Month number **/
-    month: PropTypes.number,
-
+    // TODO improve description
     /** Year **/
     year: PropTypes.number,
 
+    // TODO consider using `value` instead
     /** Current date **/
     date: PropTypes.any,
 
     /** Current calendar mode **/
-    mode: PropTypes.string,
+    mode: PropTypes.oneOf(['minute', 'hour', 'day', 'month', 'year']),
+
     /**
-     * Called when a mode switch is performed (like switching from month view to
-     * month or year selection)
-     * @param {SyntheticEvent} event - React's original SyntheticEvent.
-     * @param {object} data - All props.
+     * Called when the mode is changed (i.e. switching from month view to year selection).
+     *
+     * @param {string} mode - The new mode.
      */
     onChangeMode: PropTypes.func,
-    /**
-     * Called when paginating across months
-     * @param {SyntheticEvent} event - React's original SyntheticEvent.
-     * @param {object} data - All props.
-     */
+
+    /** Called when paginating to the previous month. */
     onPrevious: PropTypes.func,
+
+    /** Called when paginating to the next month. */
     onNext: PropTypes.func,
   }
 
@@ -59,39 +51,35 @@ export default class CalendarMenu extends Component {
     type: META.TYPES.MODULE,
   }
 
-  handleClick = (e) => {
-    e.stopPropagation()
-  }
-
   render() {
     const {
-      monthName,
-      year,
-      onPrevious,
-      onNext,
-      onChangeMode,
-      mode,
       date,
+      mode,
+      monthName,
+      onChangeMode,
+      onNext,
+      onPrevious,
+      year,
     } = this.props
 
     const items = _.compact([
-      mode === 'DAY' && (
-        <Menu.Item key='month' onClick={onChangeMode.bind(null, 'MONTH')}>
+      mode === 'day' && (
+        <Menu.Item key='month' onClick={onChangeMode.bind(null, 'month')}>
           {monthName}
         </Menu.Item>
       ),
-      mode === 'YEAR' && (
-        <Menu.Item key='year' onClick={onChangeMode.bind(null, 'YEAR')}>
+      mode === 'year' && (
+        <Menu.Item key='year' onClick={onChangeMode.bind(null, 'year')}>
           {year - 8}-{year + 7}
         </Menu.Item>
       ),
-      _.includes(mode, ['HOUR', 'MINUTE']) && (
-        <Menu.Item key='month' onClick={onChangeMode.bind(null, 'MONTH')}>
+      _.includes(mode, ['hour', 'minute']) && (
+        <Menu.Item key='hour-minute' onClick={onChangeMode.bind(null, 'month')}>
           {monthName}&nbsp;{date.getDate()}
         </Menu.Item>
       ),
-      _.includes(mode, ['DAY', 'MONTH', 'HOUR', 'MINUTE']) && (
-        <Menu.Item key='year' onClick={onChangeMode.bind(null, 'YEAR')}>
+      _.includes(mode, ['day', 'month', 'hour', 'minute']) && (
+        <Menu.Item key='year' onClick={onChangeMode.bind(null, 'year')}>
           {year}
         </Menu.Item>
       ),

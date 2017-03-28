@@ -15,42 +15,26 @@ import Table from '../../collections/Table/Table'
  */
 export default class Month extends Component {
   static propTypes = {
-    /** An element type to render as (string or function). */
-    as: customPropTypes.as,
+    /** Textual context constants **/
+    content: PropTypes.object,
 
     /** Month **/
     date: customPropTypes.DateValue,
 
-    /**
-     * First Day of the Week.
-     * Sunday = 0
-     * Monday = 1
-     */
+    /** An array of dates that should be marked disabled in the calendar. */
+    disabledDates: PropTypes.arrayOf(customPropTypes.DateValue),
+
+    /** First day of the week (Sunday = 0, Monday = 1). */
     firstDayOfWeek: PropTypes.number,
 
-    /** Textual context constants **/
-    content: PropTypes.object,
-
-    /** Primary content. */
-    children: PropTypes.node,
-
+    // TODO document
     onClick: PropTypes.func,
 
-    /**
-     * Dates at or after selectionStart are marked as selected
-     * @type {Date}
-     */
-    selectionStart: customPropTypes.DateValue,
-    /**
-     * Dates until or at selectionEnd are marked as selected
-     * @type {[type]}
-     */
+    /** Dates until or at selectionEnd are marked as selected. */
     selectionEnd: customPropTypes.DateValue,
-    /**
-     * An array of dates that should be marked disabled in the calendar
-     * @type {Array<Date>}
-     */
-    disabledDates: PropTypes.arrayOf(customPropTypes.DateValue),
+
+    /** Dates at or after selectionStart are marked as selected. */
+    selectionStart: customPropTypes.DateValue,
   }
 
   static _meta = {
