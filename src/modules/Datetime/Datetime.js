@@ -224,7 +224,7 @@ export default class Datetime extends Component {
     this.close(e)
   }
 
-  handleDateSelection = (date, e) => {
+  handleDateSelection = (e, date) => {
     debug('handleDateSelection()', date, e)
     e.stopPropagation()
     e.nativeEvent.stopImmediatePropagation()

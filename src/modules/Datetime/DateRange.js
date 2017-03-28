@@ -243,8 +243,8 @@ export default class DateRange extends Component {
    * @param  {Date}   date        The selected date
    * @param  {SyntheticEvent} e   React SynthethicEvent
    */
-  handleDateSelection = (rangeItem, date, e) => {
-    debug('handleDateSelection()', date, e)
+  handleDateSelection = (rangeItem, e, date) => {
+    debug('handleDateSelection()', rangeItem, date, e)
     e.stopPropagation()
     const { value, rangeFocus = 0 } = this.state
     e.nativeEvent.stopImmediatePropagation()

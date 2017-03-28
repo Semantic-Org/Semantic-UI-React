@@ -175,7 +175,7 @@ export default class Calendar extends Component {
       ...extraState,
     })
     if (onDateSelect) {
-      onDateSelect(new Date(date), e)
+      onDateSelect(e, new Date(date))
     }
   }
 
@@ -195,7 +195,7 @@ export default class Calendar extends Component {
       ...rangeState,
     })
     if (!time && onDateSelect) {
-      onDateSelect(new Date(date), e)
+      onDateSelect(e, new Date(date))
     }
   }
 
