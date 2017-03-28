@@ -28,11 +28,11 @@ const debug = makeDebugger('modal')
  */
 class Modal extends Component {
   static propTypes = {
-    /** Elements to render as Modal action buttons. */
-    actions: PropTypes.arrayOf(customPropTypes.itemShorthand),
-
     /** An element type to render as (string or function). */
     as: customPropTypes.as,
+
+    /** Elements to render as Modal action buttons. */
+    actions: PropTypes.arrayOf(customPropTypes.itemShorthand),
 
     /** A modal can reduce its complexity */
     basic: PropTypes.bool,
@@ -207,6 +207,12 @@ class Modal extends Component {
 
   handleRef = c => (this.ref = c)
 
+  handleTriggerClose = onClick => e => {
+    if (onClick) onClick(e, this.props)
+
+    this.handleClose()
+  }
+
   setPosition = () => {
     if (this.ref) {
       const mountNode = this.getMountNode()
@@ -284,13 +290,7 @@ class Modal extends Component {
         {_.isNil(children) && ModalHeader.create(header)}
         {_.isNil(children) && ModalContent.create(content)}
         {_.isNil(children) && ModalActions.create(_.forEach(actions, (action) => {
-          if (action.triggerClose) {
-            const onClick = (callback) => (e) => {
-              if (callback) callback(e, this.props)
-              this.handleClose()
-            }
-            action.onClick = onClick(action.onClick)
-          }
+          if (action.triggerClose) action.onClick = this.handleTriggerClose(action.onClick)
         }))}
       </ElementType>
     )

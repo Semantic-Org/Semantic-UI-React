@@ -4,10 +4,10 @@ export interface ModalActionsProps {
   [key: string]: any;
 
   /** An element type to render as (string or function). */
-  actions?: any;
+  as?: any;
 
   /** An element type to render as (string or function). */
-  as?: any;
+  actions?: any;
 
   /** Primary content. */
   children?: React.ReactNode;

@@ -15,15 +15,16 @@ import Button from '../../elements/Button'
  * A modal can contain a row of actions.
  */
 function ModalActions(props) {
-  const { children, className, actions } = props
+  const { actions, children, className } = props
   const classes = cx('actions', className)
   const rest = getUnhandledProps(ModalActions, props)
   const ElementType = getElementType(ModalActions, props)
 
+  if (!_.isNil(children)) return <ElementType {...rest} className={classes}>{children}</ElementType>
+
   return (
     <ElementType {...rest} className={classes}>
-      {children}
-      {_.isNil(children) && actions.map((action) => Button.create(action, true))}
+      {actions.map((action) => Button.create(action, true))}
     </ElementType>
   )
 }
@@ -35,11 +36,11 @@ ModalActions._meta = {
 }
 
 ModalActions.propTypes = {
-  /** Elements to render as Modal action buttons. */
-  actions: PropTypes.arrayOf(customPropTypes.itemShorthand),
-
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
+
+  /** Elements to render as Modal action buttons. */
+  actions: PropTypes.arrayOf(customPropTypes.itemShorthand),
 
   /** Primary content. */
   children: PropTypes.node,
