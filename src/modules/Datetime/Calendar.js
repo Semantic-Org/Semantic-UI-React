@@ -30,104 +30,59 @@ export default class Calendar extends Component {
   }
 
   static propTypes = {
-    /** An element type to render as (string or function). */
-    as: customPropTypes.as,
-
-    /** Primary content. */
-    children: PropTypes.node,
-
-    /** Additional classes. */
-    className: PropTypes.string,
-
-    /** Textual context constants **/
+    /** Textual context constants. */
     content: PropTypes.object,
 
-    /** Current date **/
-    value: PropTypes.any,
-
-    /** Initial value of date. **/
-    defaultValue: PropTypes.any,
-
-    /** Current Month Mode (DAY, MONTH or YEAR selection) **/
-    mode: PropTypes.string,
-    /**
-     * Allows time selection. This will cause the component to offer a
-     * time selection as well as the calendar date.
-     * @type {bool}
-     */
-    time: PropTypes.bool,
-    /**
-     * Allows date selection. This will cause the component to offer a
-     * date selection as well as the time.
-     * @type {bool}
-     */
+    /** Enables date selection. */
     date: PropTypes.bool,
-    /** default mode (DAY) **/
-    defaultMode: PropTypes.string,
-    /**
-     * First Day of the Week.
-     * Sunday = 0
-     * Monday = 1
-     */
-    firstDayOfWeek: PropTypes.number,
-    /**
-     * Handler fired when a date is selected
-     * @type {[type]}
-     */
-    onDateSelect: PropTypes.func,
-    /**
-     * Handler fired when a month is changed
-     * @type {[type]}
-     */
-    onChangeMonth: PropTypes.func,
-    /**
-     * Handler fired when a year is changed
-     * @type {[type]}
-     */
-    onChangeYear: PropTypes.func,
-    /**
-     * A function that will return a Date object as a formatted string in the
-     * current locale. By default the Date will formatted as YYYY-MM-DD
-     * @type {function}
-     */
-    dateFormatter: PropTypes.func,
-    /**
-     * A function that will return the time image of a Date object as a formatted
-     * string in the current locale. By default the time will be formatted as HH:MM
-     * @type {function}
-     */
-    timeFormatter: PropTypes.func,
-    /**
-     * do not allow dates before minDate
-     * @type {Date}
-     */
-    minDate: customPropTypes.DateValue,
-    /**
-     * Do not allow dates after maxDate
-     * @type {Date}
-     */
-    maxDate: customPropTypes.DateValue,
-    /**
-     * An array of dates that should be marked disabled in the calendar
-     * @type {Array<Date>}
-     */
-    disabledDates: PropTypes.arrayOf(customPropTypes.DateValue),
-    /**
-     * Dates at or after selectionStart are marked as selected
-     * @type {Date}
-     */
-    selectionStart: customPropTypes.DateValue,
-    defaultSelectionStart: customPropTypes.DateValue,
-    /**
-     * Dates until or at selectionEnd are marked as selected
-     * @type {[type]}
-     */
-    selectionEnd: customPropTypes.DateValue,
+
+    /** The initial value for selectionEnd. */
     defaultSelectionEnd: customPropTypes.DateValue,
-    range: PropTypes.bool,
+
+    /** The initial value for selectionStart. */
+    defaultSelectionStart: customPropTypes.DateValue,
+
+    /** Initial value for value. */
+    defaultValue: PropTypes.arrayOf(customPropTypes.DateValue),
+
+    /** Initial value for mode. */
+    defaultMode: PropTypes.arrayOf(customPropTypes.DateValue),
+
+    /** An array of dates that should be marked disabled in the calendar. */
+    disabledDates: PropTypes.arrayOf(customPropTypes.DateValue),
+
+    /** First day of the week (Sunday = 0, Monday = 1). */
+    firstDayOfWeek: PropTypes.number,
+
+    /** Current calendar mode. */
+    mode: PropTypes.oneOf(['minute', 'hour', 'day', 'month', 'year']),
+
+    /** Handler fired when a date is selected. */
+    onDateSelect: PropTypes.func,
+
+    /** Handler fired when a month is changed. */
+    onChangeMonth: PropTypes.func,
+
+    /** Handler fired when a year is changed. */
+    onChangeYear: PropTypes.func,
 
     // TODO what is this used for and what type is it?
     page: PropTypes.any,
+
+    /** Render two calendars for selecting the start and end of a range. */
+    range: PropTypes.bool,
+
+    /** Enables time selection. */
+    time: PropTypes.bool,
+
+    /** Dates until or at selectionEnd are marked as selected. */
+    selectionEnd: customPropTypes.DateValue,
+
+    /** Dates at or after selectionStart are marked as selected. */
+    selectionStart: customPropTypes.DateValue,
+
+    /** Current value as a Date object or a string that can be parsed into one. */
+    value: customPropTypes.DateValue,
   }
 
   static defaultProps = {
@@ -155,7 +110,7 @@ export default class Calendar extends Component {
 
   getInitialMode(props) {
     const { date, time } = props
-    return !date && time ? 'HOUR' : 'DAY'
+    return !date && time ? 'hour' : 'day'
   }
 
   getYear = () => this.state.value.getFullYear()
@@ -167,16 +122,10 @@ export default class Calendar extends Component {
     return content.months[this.getMonth()]
   }
 
-  /**
-   * Set the current month
-   *  @param  {Object} object containing one of:
-   *  'value' key with the selected month number,
-   *  'page' key with value of either 1 or -1 to page to the next/prev month
-   */
   setMonth = (e, props) => {
     e.stopPropagation()
     const { value, page } = props
-    const nextMode = 'DAY'
+    const nextMode = 'day'
     const date = new Date(this.state.value)
     const month = !value && page
       ? date.getMonth() + page
@@ -192,7 +141,7 @@ export default class Calendar extends Component {
     }
   }
 
-  setYear = (e, year, nextMode = 'DAY') => {
+  setYear = (e, year, nextMode = 'day') => {
     e.stopPropagation()
     const date = new Date(this.state.value)
     date.setYear(year)
@@ -202,7 +151,7 @@ export default class Calendar extends Component {
     })
   }
 
-  setHour = (e, hour, nextMode = 'MINUTE') => {
+  setHour = (e, hour, nextMode = 'minute') => {
     e.stopPropagation()
     const date = new Date(this.state.value)
     date.setHours(hour)
@@ -219,7 +168,7 @@ export default class Calendar extends Component {
     date.setMinutes(minute)
     const extraState = {}
     if (this.props.range) {
-      extraState.mode = 'DAY'
+      extraState.mode = 'day'
     }
     this.trySetState({
       value: date,
@@ -230,17 +179,12 @@ export default class Calendar extends Component {
     }
   }
 
-  /**
-   * Sets the day to the current date
-   * @param  {number} Selected day
-   * @param  {event} e
-   */
   setDay = (e, day) => {
     e.stopPropagation()
     const date = new Date(this.state.value)
     date.setDate(day)
     const { onDateSelect, time } = this.props
-    const nextMode = time ? 'HOUR' : this.state.mode
+    const nextMode = time ? 'hour' : this.state.mode
     const rangeState = {}
     if (this.props.range) {
       rangeState.selectionStart = date
@@ -255,24 +199,19 @@ export default class Calendar extends Component {
     }
   }
 
-  /**
-   * Event handler called when paginating month, years or year groups
-   * @param  {number} direction Either 1 or -1 to indicate the next/prev item
-   * @param  {event} e
-   */
   page = (direction, e) => {
     e.stopPropagation()
     const { mode } = this.state
     switch (mode) {
-      case 'DAY':
+      case 'day':
         this.setMonth(e, { page: direction })
         break
 
-      case 'MONTH':
+      case 'month':
         this.setYear(e, this.getYear() + direction, mode)
         break
 
-      case 'YEAR':
+      case 'year':
         this.setYear(e, this.getYear() + (direction * 16), mode)
         break
 
@@ -282,8 +221,8 @@ export default class Calendar extends Component {
   }
 
   /**
-   * Change the calendar mode from DAY to MONTH or YEAR selection
-   * @param  {string} mode One of DAY, MONTH or YEAR
+   * Change the calendar mode from day to month or year selection
+   * @param  {string} mode One of day, month or year
    * @param  {[type]} e    [description]
    * @return {[type]}      [description]
    */
@@ -299,7 +238,7 @@ export default class Calendar extends Component {
     const { content, firstDayOfWeek, disabledDates } = this.props
     const { mode, value, selectionStart, selectionEnd } = this.state
     switch (mode) {
-      case 'DAY':
+      case 'day':
         return (
           <Month
             firstDayOfWeek={firstDayOfWeek}
@@ -312,16 +251,16 @@ export default class Calendar extends Component {
           />
         )
 
-      case 'MONTH':
+      case 'month':
         return <Months content={content} onClick={this.setMonth} />
 
-      case 'YEAR':
+      case 'year':
         return <Years year={this.getYear()} onClick={this.setYear} />
 
-      case 'HOUR':
+      case 'hour':
         return <Hours onClick={this.setHour} />
 
-      case 'MINUTE':
+      case 'minute':
         return <Minutes onClick={this.setMinute} hour={this.getHour()} />
 
       default:

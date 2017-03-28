@@ -31,12 +31,6 @@ export default class Datetime extends Component {
     /** An element type to render as (string or function). */
     as: customPropTypes.as,
 
-    /** Additional classes. */
-    className: PropTypes.string,
-
-    /** Whether or not the menu should close when the dropdown is blurred. */
-    closeOnBlur: PropTypes.bool,
-
     /**
      * Textual content for the various text element of the calendar.
      * {
@@ -66,6 +60,9 @@ export default class Datetime extends Component {
      */
     content: PropTypes.object,
 
+    /** Enables date selection. */
+    date: PropTypes.bool,
+
     /**
      * A function that will return a Date object as a formatted string in the
      * current locale. By default the Date will formatted as YYYY-MM-DD
@@ -73,26 +70,17 @@ export default class Datetime extends Component {
      */
     dateFormatter: PropTypes.func,
 
-    /**
-     * A function that will return the time image of a Date object as a formatted
-     * string in the current locale. By default the time will be formatted as HH:MM
-     * @type {function}
-     */
-    timeFormatter: PropTypes.func,
+    /** A disabled dropdown menu or item does not allow user interaction. */
+    disabled: PropTypes.bool,
+
+    /** An array of dates that should be marked disabled in the calendar. */
+    disabledDates: PropTypes.arrayOf(customPropTypes.DateValue),
 
     /** Initial value of open. */
     defaultOpen: PropTypes.bool,
 
-    /** Current value as a Date object or a string that can be parsed into one.
-     * Creates a controlled component.
-     */
-    value: customPropTypes.DateValue,
-
-    /** Initial value as a Date object or a string that can be parsed into one */
+    /** Initial value as a Date object or a string that can be parsed into one. */
     defaultValue: customPropTypes.DateValue,
-
-    /** A disabled dropdown menu or item does not allow user interaction. */
-    disabled: PropTypes.bool,
 
     /** An errored dropdown can alert a user to a problem. */
     error: PropTypes.bool,
@@ -100,31 +88,20 @@ export default class Datetime extends Component {
     /** First day of the week. Can be either 0 (Sunday), 1 (Monday) **/
     firstDayOfWeek: PropTypes.number,
 
-    /** A dropdown can take the full width of its parent */
-    fluid: PropTypes.bool,
-
-    /** A dropdown menu can contain a header. */
-    header: PropTypes.node,
-
     /** Shorthand for Icon. */
     icon: PropTypes.oneOfType([
       PropTypes.node,
       PropTypes.object,
     ]),
 
-    /** A dropdown can be formatted to appear inline in other content. */
-    inline: PropTypes.bool,
+    /** Do not allow dates after maxDate. */
+    maxDate: customPropTypes.DateValue,
 
-    /** Name of the input field which holds the date value */
+    /** Do not allow dates before minDate. */
+    minDate: customPropTypes.DateValue,
+
+    /** Name of the input field which holds the date value. */
     name: PropTypes.string,
-
-    /**
-     * Called on blur.
-     *
-     * @param {SyntheticEvent} event - React's original SyntheticEvent.
-     * @param {object} data - All props.
-     */
-    onBlur: PropTypes.func,
 
     /**
      * Called when the user attempts to change the value.
@@ -132,6 +109,7 @@ export default class Datetime extends Component {
      * @param {SyntheticEvent} event - React's original SyntheticEvent.
      * @param {object} data - All props and proposed value.
      */
+    // TODO: implement
     onChange: PropTypes.func,
 
     /**
@@ -150,89 +128,27 @@ export default class Datetime extends Component {
      */
     onOpen: PropTypes.func,
 
-    /**
-     * Called on click.
-     *
-     * @param {SyntheticEvent} event - React's original SyntheticEvent.
-     * @param {object} data - All props.
-     */
-    onClick: PropTypes.func,
-
-    /**
-     * Called on focus.
-     *
-     * @param {SyntheticEvent} event - React's original SyntheticEvent.
-     * @param {object} data - All props.
-     */
-    onFocus: PropTypes.func,
-
-    /**
-     * Called on mousedown.
-     *
-     * @param {SyntheticEvent} event - React's original SyntheticEvent.
-     * @param {object} data - All props.
-     */
-    onMouseDown: PropTypes.func,
-
     /** Controls whether or not the dropdown menu is displayed. */
     open: PropTypes.bool,
-
-    /** Whether or not the menu should open when the dropdown is focused. */
-    openOnFocus: PropTypes.bool,
 
     /** Placeholder text. */
     placeholder: PropTypes.string,
 
-    /**
-     * Handle a date range. This will cause the Datetime component to
-     * render two calendar months which represent the start and end
-     * of the range
-     * @type {bool}
-     */
+    /** Render two calendars for selecting the start and end of a range. */
     range: PropTypes.bool,
 
-    /**
-     * A function that takes (data, index, defaultLabelProps) and returns
-     * shorthand for Label .
-     */
-    renderLabel: PropTypes.func,
-
-    /** Define whether the highlighted item should be selected on blur. */
-    selectOnBlur: PropTypes.bool,
-
-    /** A dropdown can receive focus. */
-    tabIndex: PropTypes.oneOfType([
-      PropTypes.number,
-      PropTypes.string,
-    ]),
-
-    /**
-     * Allows time selection. This will cause the component to offer a
-     * time selection as well as the calendar date.
-     * @type {bool}
-     */
+    /** Enables time selection. */
     time: PropTypes.bool,
+
     /**
-     * Allows date selection. This will cause the component to offer a
-     * date selection as well as the time.
-     * @type {bool}
+     * A function that will return the time image of a Date object as a formatted
+     * string in the current locale. By default the time will be formatted as HH:MM
+     * @type {function}
      */
-    date: PropTypes.bool,
-    /**
-     * do not allow dates before minDate
-     * @type {Date}
-     */
-    minDate: customPropTypes.DateValue,
-    /**
-     * Do not allow dates after maxDate
-     * @type {Date}
-     */
-    maxDate: customPropTypes.DateValue,
-    /**
-     * An array of dates that should be marked disabled in the calendar
-     * @type {Array<Date>}
-     */
-    disabledDates: PropTypes.arrayOf(customPropTypes.DateValue),
+    timeFormatter: PropTypes.func,
+
+    /** Current value as a Date object or a string that can be parsed into one. */
+    value: customPropTypes.DateValue,
   }
 
   static autoControlledProps = [

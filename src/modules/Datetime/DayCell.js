@@ -42,7 +42,7 @@ export default class DayCell extends Component {
     /** The date behind this day cell **/
     date: customPropTypes.DateValue,
 
-    /** Stored value */
+    /** Stored value. */
     day: PropTypes.number,
 
     /** The index of this day cell in the calendar month (0-42) */

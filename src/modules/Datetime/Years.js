@@ -13,16 +13,11 @@ import DateTimeGrid from './DateTimeGrid'
  */
 export default class Years extends Component {
   static propTypes = {
-    /** An element type to render as (string or function). */
-    as: customPropTypes.as,
+    // TODO doc
+    onClick: PropTypes.func,
 
     /** Active year **/
     year: PropTypes.number,
-
-    /** Primary content. */
-    children: PropTypes.node,
-
-    onClick: PropTypes.func,
   }
 
   static _meta = {
