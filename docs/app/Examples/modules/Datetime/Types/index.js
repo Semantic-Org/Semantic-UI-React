@@ -17,9 +17,9 @@ const DatetimeTypesExamples = () => (
       examplePath='modules/Datetime/Types/DateTimeExampleDateOnly'
     />
     <ComponentExample
-      title='Week starts Sunday'
-      description='A date only Date where the week start on Sunday'
-      examplePath='modules/Datetime/Types/DateTimeExampleStartSunday'
+      title='First Day Of Week'
+      description='Set the first day of the week to either Monday or Sunday'
+      examplePath='modules/Datetime/Types/DateTimeExampleFirstWeekDay'
     />
     <ComponentExample
       title='Time'
