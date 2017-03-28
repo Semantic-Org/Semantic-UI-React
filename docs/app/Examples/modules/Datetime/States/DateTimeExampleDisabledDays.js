@@ -1,12 +1,22 @@
 import React from 'react'
 import { Datetime } from 'semantic-ui-react'
-import { yesterday, tomorrow } from '../../../../../../src/lib/dateUtils'
 
-const today = new Date()
+function yesterday() {
+  const _date = new Date()
+  _date.setDate(_date.getDate() - 1)
+  return _date
+}
+
+function tomorrow() {
+  const _date = new Date()
+  _date.setDate(_date.getDate() + 1)
+  return _date
+}
+
 const disabledDates = [
-  yesterday(today),
-  today,
-  tomorrow(today),
+  yesterday(),
+  new Date(),
+  tomorrow(),
 ]
 const DateTimeExampleDisabledDays = () => (
   <Datetime
