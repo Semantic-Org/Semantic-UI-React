@@ -1,13 +1,13 @@
 import React from 'react'
 import { Checkbox, Form } from 'semantic-ui-react'
 
-const FormExampleFieldLabelElement = () => (
+const FormExampleFieldLabelObject = () => (
   <Form>
     <Form.Field
       control={Checkbox}
-      label={<label>I agree to the Terms and Conditions</label>}
+      label={{ children: 'I agree to the Terms and Conditions' }}
     />
   </Form>
 )
 
-export default FormExampleFieldLabelElement
+export default FormExampleFieldLabelObject
