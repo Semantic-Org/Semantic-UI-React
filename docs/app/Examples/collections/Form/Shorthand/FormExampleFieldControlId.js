@@ -12,7 +12,7 @@ class FormExampleFieldControlId extends Component {
           <Form.Field id='form-input-control-last-name' control={Input} label='Last name' placeholder='Last name' />
         </Form.Group>
           <Form.Field id='form-textarea-control-opinion' control={TextArea} label='Opinion' placeholder='Opinion' />
-          <Form.Field id='form-checkbox-control-public' control={Button} content='Confirm' label='This label have the htmlFor prop with the id of the button' />
+          <Form.Field id='form-button-control-public' control={Button} content='Confirm' label='Label with htmlFor' />
       </Form>
     )
   }
