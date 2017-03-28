@@ -276,3 +276,37 @@ export const implementsWidthProp = (Component, widths = SUI.WIDTHS, options = {}
     }
   })
 }
+
+
+/**
+ * Assert that, when FormField Component receives an Id, the respective htmlFor prop
+ * is added to Label Component
+ * @param {React.Component|Function} Component The component to test.
+ * @param {String} propKey A props key.
+ * @param {Object} [options={}]
+ * @param {Object} [options.requiredProps={}] Props required to render the component.
+ */
+export const labelImplementsHtmlForProp = (Component, propKey, options = {}) => {
+  const { assertRequired } = helpers('labelImplementsHtmlForProp', Component)
+  const { requiredProps = {} } = options
+  describe(`${propKey} (common)`, () => {
+    assertRequired(Component, 'a `Component`')
+    it(`adds ${requiredProps.control} Id to Label's HtmlFor prop`, () => {
+      const idToTest = 'id-for-test'
+      const controlName = requiredProps.control
+      requiredProps.id = idToTest
+      requiredProps.label = 'label to add'
+
+      const wrapper = shallow(createElement(Component, { ...requiredProps }))
+      const label = wrapper.childAt(0)
+      const control = wrapper.childAt(1)
+
+      label.should.have.tagName('label')
+      label.should.contain.text('label to add')
+      label.should.have.prop('htmlFor', idToTest)
+
+      control.should.have.tagName(controlName)
+      control.should.have.prop('id', idToTest)
+    })
+  })
+}

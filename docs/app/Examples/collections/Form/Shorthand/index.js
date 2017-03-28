@@ -81,6 +81,18 @@ const FormTypesExamples = () => (
     >
       <Compare { ...htmlComparison } />
     </ComponentExample>
+
+    <ComponentExample
+      title='Accessible lables'
+      description='Adding an id to a shorthand Form.Field adds a matching htmlFor prop to the label.'
+      examplePath='collections/Form/Shorthand/FormExampleFieldControlId'
+    />
+
+    <ComponentExample
+      description='Adding an id to a Form subcomponent adds a matching htmlFor prop to the label.'
+      examplePath='collections/Form/Shorthand/FormExampleSubcomponentId'
+    />
+
   </ExampleSection>
 )
 
