@@ -105,7 +105,7 @@ export function createShorthand(Component, mapValueToProps, val, options = {}) {
 // ============================================================
 
 /**
- * Creates a `createShorthand` function that is waiting for a value and defaultProps.
+ * Creates a `createShorthand` function that is waiting for a value and options.
  *
  * @param {function|string} Component A ReactClass or string
  * @param {function} mapValueToProps A function that maps a primitive value to the Component props
