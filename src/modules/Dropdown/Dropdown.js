@@ -4,7 +4,6 @@ import React, { Children, cloneElement, PropTypes } from 'react'
 
 import {
   AutoControlledComponent as Component,
-  createShorthand,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -1118,7 +1117,7 @@ export default class Dropdown extends Component {
     // if no item could be found for a given state value the selected item will be undefined
     // compact the selectedItems so we only have actual objects left
     return _.map(_.compact(selectedItems), (item, index) => {
-      const defaultLabelProps = {
+      const defaultProps = {
         active: item.value === selectedLabel,
         as: 'a',
         key: item.value,
@@ -1128,8 +1127,8 @@ export default class Dropdown extends Component {
       }
 
       return Label.create(
-        renderLabel(item, index, defaultLabelProps),
-        { defaultProps: defaultLabelProps },
+        renderLabel(item, index, defaultProps),
+        { defaultProps }
       )
     })
   }
@@ -1176,7 +1175,7 @@ export default class Dropdown extends Component {
 
     return (
       <DropdownMenu {...ariaOptions} className={menuClasses}>
-        {createShorthand(DropdownHeader, val => ({ content: val }), header)}
+        {DropdownHeader.create(header)}
         {this.renderOptions()}
       </DropdownMenu>
     )

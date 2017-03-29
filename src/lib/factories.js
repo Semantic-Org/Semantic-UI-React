@@ -32,6 +32,7 @@ export function createShorthand(Component, mapValueToProps, val, options = {}) {
   const isPrimitiveValue = valIsString || valIsNumber || _.isArray(val)
 
   // unhandled type return null
+  /* eslint-disable no-console */
   if (!isReactElement && !isPropsObject && !isPrimitiveValue) {
     if (process.env.NODE_ENV !== 'production') {
       console.error([
@@ -42,6 +43,7 @@ export function createShorthand(Component, mapValueToProps, val, options = {}) {
     }
     return null
   }
+  /* eslint-enable no-console */
 
   // ----------------------------------------
   // Build up props
@@ -59,7 +61,6 @@ export function createShorthand(Component, mapValueToProps, val, options = {}) {
   const props = { ...defaultProps, ...usersProps, ...overrideProps }
 
   // Merge className
-
   if (defaultProps.className || overrideProps.className || usersProps.className) {
     const mergedClassesNames = cx(defaultProps.className, overrideProps.className, usersProps.className)
     props.className = _.uniq(mergedClassesNames.split(' ')).join(' ')
