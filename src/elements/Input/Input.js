@@ -195,12 +195,7 @@ class Input extends Component {
 
     // Render Shorthand
     // ----------------------------------------
-    const actionElement = Button.create(action, elProps => ({
-      className: cx(
-        // all action components should have the button className
-        !_.includes(elProps.className, 'button') && 'button',
-      ),
-    }))
+    const actionElement = Button.create(action, { defaultProps: { className: 'button' } })
     const iconElement = Icon.create(icon)
     const labelElement = Label.create(label, { defaultProps: {
       className: cx(
@@ -215,7 +210,7 @@ class Input extends Component {
         {actionPosition === 'left' && actionElement}
         {iconPosition === 'left' && iconElement}
         {labelPosition !== 'right' && labelElement}
-        {createHTMLInput(input || type, htmlInputProps)}
+        {createHTMLInput(input || type, { defaultProps: htmlInputProps })}
         {actionPosition !== 'left' && actionElement}
         {iconPosition !== 'left' && iconElement}
         {labelPosition === 'right' && labelElement}
