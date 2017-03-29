@@ -1129,7 +1129,7 @@ export default class Dropdown extends Component {
 
       return Label.create(
         renderLabel(item, index, defaultLabelProps),
-        defaultLabelProps,
+        { defaultProps: defaultLabelProps },
       )
     })
   }
