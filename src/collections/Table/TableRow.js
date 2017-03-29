@@ -54,7 +54,7 @@ function TableRow(props) {
 
   return (
     <ElementType {...rest} className={classes}>
-      {_.map(cells, (cell) => TableCell.create(cell, { as: cellAs }))}
+      {_.map(cells, (cell) => TableCell.create(cell, { overrideProps: { as: cellAs } }))}
     </ElementType>
   )
 }

@@ -148,9 +148,12 @@ class Menu extends Component {
     const { activeIndex } = this.state
 
     return _.map(items, (item, index) => MenuItem.create(item, {
-      active: activeIndex === index,
-      index,
-    }, { onClick: this.handleItemClick }))
+      defaultProps: { active: activeIndex === index },
+      overrideProps: {
+        index,
+        onClick: this.handleItemClick,
+      },
+    }))
   }
 
   render() {

@@ -95,8 +95,11 @@ class Confirm extends Component {
         {Modal.Header.create(header)}
         {Modal.Content.create(content)}
         <Modal.Actions>
-          {Button.create(cancelButton, {}, { onClick: this.handleCancel })}
-          {Button.create(confirmButton, { primary: true }, { onClick: this.handleConfirm })}
+          {Button.create(cancelButton, { overrideProps: { onClick: this.handleCancel } })}
+          {Button.create(confirmButton, {
+            defaultProps: { primary: true },
+            overrideProps: { onClick: this.handleConfirm },
+          })}
         </Modal.Actions>
       </Modal>
     )

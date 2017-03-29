@@ -202,14 +202,13 @@ class Input extends Component {
       ),
     }))
     const iconElement = Icon.create(icon)
-    const labelElement = Label.create(label, elProps => ({
+    const labelElement = Label.create(label, { defaultProps: {
       className: cx(
-        // all label components should have the label className
-        !_.includes(elProps.className, 'label') && 'label',
+        'label',
         // add 'left|right corner'
         _.includes(labelPosition, 'corner') && labelPosition,
       ),
-    }))
+    } })
 
     return (
       <ElementType {...rest} className={classes}>
