@@ -24,7 +24,7 @@ function ModalActions(props) {
 
   return (
     <ElementType {...rest} className={classes}>
-      {actions.map((action) => Button.create(action, true))}
+      {actions.map((action) => Button.create(action))}
     </ElementType>
   )
 }
@@ -53,6 +53,6 @@ ModalActions.defaultProps = {
   actions: [],
 }
 
-ModalActions.create = createShorthandFactory(ModalActions, actions => ({ actions }), true)
+ModalActions.create = createShorthandFactory(ModalActions, actions => ({ actions }))
 
 export default ModalActions
