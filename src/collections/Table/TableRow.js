@@ -111,6 +111,6 @@ TableRow.propTypes = {
   warning: PropTypes.bool,
 }
 
-TableRow.create = createShorthandFactory(TableRow, cells => ({ cells }), true)
+TableRow.create = createShorthandFactory(TableRow, cells => ({ cells }))
 
 export default TableRow

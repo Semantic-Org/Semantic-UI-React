@@ -15,7 +15,6 @@ import React, { cloneElement, isValidElement } from 'react'
  * @param {Object} [options={}]
  * @param {object} [options.defaultProps={}] Default props object
  * @param {object} [options.overrideProps={}] Override props object
- * @param {boolean} [options.generateKey=false] Whether or not to generate a child key, useful for collections
  * @returns {object|null}
  */
 export function createShorthand(Component, mapValueToProps, val, options = {}) {
@@ -26,7 +25,6 @@ export function createShorthand(Component, mapValueToProps, val, options = {}) {
   if (val === null) return null
 
   const {
-    generateKey = false,
     defaultProps = {},
     overrideProps = {},
   } = options
@@ -73,7 +71,7 @@ export function createShorthand(Component, mapValueToProps, val, options = {}) {
       // apply and consume the childKey
       props.key = typeof childKey === 'function' ? childKey(props) : childKey
       delete props.childKey
-    } else if (generateKey && (valIsString || valIsNumber)) {
+    } else if (valIsString || valIsNumber) {
       // use string/number shorthand values as the key
       props.key = val
     }
@@ -103,15 +101,14 @@ export function createShorthand(Component, mapValueToProps, val, options = {}) {
  *
  * @param {function|string} Component A ReactClass or string
  * @param {function} mapValueToProps A function that maps a primitive value to the Component props
- * @param {boolean=false} [generateKey] Whether or not to generate a child key, useful for collections.
  * @returns {function} A shorthand factory function waiting for `val` and `defaultProps`.
  */
-export function createShorthandFactory(Component, mapValueToProps, generateKey) {
+export function createShorthandFactory(Component, mapValueToProps) {
   if (typeof Component !== 'function' && typeof Component !== 'string') {
     throw new Error('createShorthandFactory() Component must be a string or function.')
   }
 
-  return (val, options) => createShorthand(Component, mapValueToProps, val, { ...options, generateKey })
+  return (val, options) => createShorthand(Component, mapValueToProps, val, options)
 }
 
 // ============================================================

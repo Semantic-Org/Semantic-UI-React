@@ -14,11 +14,10 @@ import { sandbox } from 'test/utils'
 const getShorthand = ({
   Component = 'div',
   defaultProps,
-  generateKey,
   mapValueToProps = val => ({}),
   overrideProps,
   value,
-}) => createShorthand(Component, mapValueToProps, value, { defaultProps, generateKey, overrideProps })
+}) => createShorthand(Component, mapValueToProps, value, { defaultProps, overrideProps })
 
 // ----------------------------------------
 // Common tests
@@ -211,21 +210,13 @@ describe('factories', () => {
       })
 
       it('is generated from shorthand string values', () => {
-        getShorthand({ value: 'foo', generateKey: true })
+        getShorthand({ value: 'foo' })
           .should.have.property('key', 'foo')
       })
 
       it('is generated from shorthand number values', () => {
-        getShorthand({ value: 123, generateKey: true })
+        getShorthand({ value: 123 })
           .should.have.property('key', '123')
-      })
-
-      it('is not generated if generateKey is false', () => {
-        getShorthand({ value: 'foo', generateKey: false })
-          .should.have.property('key', null)
-
-        getShorthand({ value: 123, generateKey: false })
-          .should.have.property('key', null)
       })
     })
 
