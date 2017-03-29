@@ -147,7 +147,7 @@ class Modal extends Component {
 
     const { onClose } = this.props
     if (onClose) onClose(e, this.props)
-// TODO: onClick
+    // TODO: onClick
     this.trySetState({ open: false })
   }
 
@@ -266,7 +266,7 @@ class Modal extends Component {
     const closeIconName = closeIcon === true ? 'close' : closeIcon
     const modalJSX = (
       <ElementType {...rest} className={classes} style={{ marginTop, ...style }} ref={this.handleRef}>
-        {Icon.create(closeIconName, {}, { onClick: this.handleClose })}
+        {Icon.create(closeIconName, { defaultProps: { onClick: this.handleClose } })}
         {children}
       </ElementType>
     )

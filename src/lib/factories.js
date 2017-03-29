@@ -21,13 +21,8 @@ export function createShorthand(Component, mapValueToProps, val, options = {}) {
   if (typeof Component !== 'function' && typeof Component !== 'string') {
     throw new Error('createShorthandFactory() Component must be a string or function.')
   }
-  // short circuit for disabling shorthand
-  if (val === null) return null
-
-  const {
-    defaultProps = {},
-    overrideProps = {},
-  } = options
+  // short circuit noop values
+  if (_.isNil(val) || _.isBoolean(val)) return null
 
   const valIsString = _.isString(val)
   const valIsNumber = _.isNumber(val)
@@ -36,9 +31,25 @@ export function createShorthand(Component, mapValueToProps, val, options = {}) {
   const isPropsObject = _.isPlainObject(val)
   const isPrimitiveValue = valIsString || valIsNumber || _.isArray(val)
 
+  // unhandled type return null
+  if (!isReactElement && !isPropsObject && !isPrimitiveValue) {
+    if (process.env.NODE_ENV !== 'production') {
+      console.error([
+        'Shorthand value must be a string|number|array|object|ReactElement.',
+        ' Use null|undefined|boolean for none',
+        ` Received ${typeof val}.`,
+      ].join(''))
+    }
+    return null
+  }
+
   // ----------------------------------------
   // Build up props
   // ----------------------------------------
+  const {
+    defaultProps = {},
+    overrideProps = {},
+  } = options
 
   // User's props
   const usersProps = isReactElement && val.props || isPropsObject && val || isPrimitiveValue && mapValueToProps(val)
@@ -87,9 +98,6 @@ export function createShorthand(Component, mapValueToProps, val, options = {}) {
 
   // Create ReactElements from built up props
   if (isPrimitiveValue || isPropsObject) return <Component {...props} />
-
-  // Otherwise null
-  return null
 }
 
 // ============================================================
@@ -114,6 +122,8 @@ export function createShorthandFactory(Component, mapValueToProps) {
 // ============================================================
 // HTML Factories
 // ============================================================
-export const createHTMLImage = createShorthandFactory('img', value => ({ src: value }))
-export const createHTMLInput = createShorthandFactory('input', value => ({ type: value }))
-export const createHTMLLabel = createShorthandFactory('label', value => ({ children: value }))
+export const createHTMLDivision = createShorthandFactory('div', val => ({ children: val }))
+export const createHTMLImage = createShorthandFactory('img', val => ({ src: val }))
+export const createHTMLInput = createShorthandFactory('input', val => ({ type: val }))
+export const createHTMLLabel = createShorthandFactory('label', val => ({ children: val }))
+export const createHTMLParagraph = createShorthandFactory('p', val => ({ children: val }))
