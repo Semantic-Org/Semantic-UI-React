@@ -31,6 +31,7 @@ function ListItem(props) {
     header,
     icon,
     image,
+    onClick,
     value,
   } = props
 
@@ -45,8 +46,6 @@ function ListItem(props) {
   const valueProp = ElementType === 'li' ? { value } : { 'data-value': value }
 
   const handleClick = (e) => {
-    const { onClick } = props
-
     if (onClick) onClick(e, props)
   }
 
