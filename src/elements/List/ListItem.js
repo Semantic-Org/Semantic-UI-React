@@ -44,17 +44,28 @@ function ListItem(props) {
   const rest = getUnhandledProps(ListItem, props)
   const valueProp = ElementType === 'li' ? { value } : { 'data-value': value }
 
+  const handleItemClick = (onClick) => (e) => {
+    if (onClick) onClick(e, props)
+  }
+
+  const handleClick = (e) => {
+    const { onClick } = props
+
+    if (onClick) onClick(e, props)
+  }
+
   if (!_.isNil(children)) {
-    return <ElementType {...rest} {...valueProp} role='listitem' className={classes}>{children}</ElementType>
+    return <ElementType {...rest} {...valueProp} role='listitem' className={classes} onClick={handleClick}>{children}</ElementType>
   }
 
   const iconElement = ListIcon.create(icon)
   const imageElement = Image.create(image)
 
+
   // See description of `content` prop for explanation about why this is necessary.
   if (!isValidElement(content) && _.isPlainObject(content)) {
     return (
-      <ElementType {...rest} {...valueProp} role='listitem' className={classes}>
+      <ElementType {...rest} {...valueProp} role='listitem' className={classes} onClick={handleClick}>
         {iconElement || imageElement}
         {ListContent.create(content, { header, description })}
       </ElementType>
@@ -63,10 +74,9 @@ function ListItem(props) {
 
   const headerElement = ListHeader.create(header)
   const descriptionElement = ListDescription.create(description)
-
   if (iconElement || imageElement) {
     return (
-      <ElementType {...rest} {...valueProp} role='listitem' className={classes}>
+      <ElementType {...rest} {...valueProp} role='listitem' className={classes} onClick={handleClick}>
         {iconElement || imageElement}
         {(content || headerElement || descriptionElement) && (
           <ListContent>
@@ -80,7 +90,7 @@ function ListItem(props) {
   }
 
   return (
-    <ElementType {...rest} {...valueProp} role='listitem' className={classes}>
+    <ElementType {...rest} {...valueProp} role='listitem' className={classes} onClick={handleClick}>
       {headerElement}
       {descriptionElement}
       {content}

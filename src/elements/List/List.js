@@ -36,6 +36,7 @@ function List(props) {
     inverted,
     items,
     link,
+    onItemClick,
     ordered,
     relaxed,
     selection,
@@ -70,7 +71,7 @@ function List(props) {
 
   return (
     <ElementType {...rest} role='list' className={classes}>
-      {_.map(items, (item) => ListItem.create(item))}
+      {_.map(items, (item) => ListItem.create(item, { onClick: onItemClick }))}
     </ElementType>
   )
 }
@@ -116,6 +117,17 @@ List.propTypes = {
 
   /** A list can be specially formatted for navigation links. */
   link: PropTypes.bool,
+
+  /**
+   * onClick handler for ListItem. Mutually exclusive with children.
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All item props.
+   */
+  onItemClick: customPropTypes.every([
+    customPropTypes.disallow(['children']),
+    PropTypes.func,
+  ]),
 
   /** A list can be ordered numerically. */
   ordered: PropTypes.bool,
