@@ -6,6 +6,7 @@ import Shorthand from './Shorthand'
 import FieldVariations from './FieldVariations'
 import GroupVariations from './GroupVariations'
 import States from './States'
+import Usage from './Usage'
 
 const FormExamples = () => (
   <div>
@@ -16,6 +17,7 @@ const FormExamples = () => (
     <Variations />
     <FieldVariations />
     <GroupVariations />
+    <Usage />
   </div>
 )
 
