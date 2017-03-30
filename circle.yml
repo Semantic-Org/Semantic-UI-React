@@ -12,4 +12,6 @@ test:
     - npm run lint
     - npm run tsd:lint
   post:
+    - npm run build:commonjs
+    - npm run tsd:test
     - bash <(curl -s https://codecov.io/bash)

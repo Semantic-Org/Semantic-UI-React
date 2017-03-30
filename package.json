@@ -40,7 +40,8 @@
     "test:watch": "npm run test --silent -- --watch",
     "tsd": "gulp tsd",
     "tsd:lint": "tslint './src/**/*.d.ts'",
-    "tsd:lint:fix": "npm run -s tsd:lint -- --fix"
+    "tsd:lint:fix": "npm run -s tsd:lint -- --fix",
+    "tsd:test": "ts-node -P test/typings test/typings/test.tsx"
   },
   "repository": {
     "type": "git",
@@ -60,6 +61,7 @@
   },
   "devDependencies": {
     "@types/react": "^0.14.54",
+    "@types/react-dom": "^0.14.20",
     "babel-cli": "^6.18.0",
     "babel-core": "^6.21.0",
     "babel-eslint": "^7.0.0",
@@ -131,6 +133,7 @@
     "style-loader": "^0.14.0",
     "ta-scripts": "^2.5.2",
     "through2": "^2.0.2",
+    "ts-node": "^2.0.0",
     "tslint": "^4.3.1",
     "tslint-config-typings": "^0.3.1",
     "typescript": "^2.1.5",

@@ -6,6 +6,7 @@ dist/
 docs/build/
 docs/app/docgenInfo.json
 dll/
+.vscode/
 
 .DS_Store
 .idea/
