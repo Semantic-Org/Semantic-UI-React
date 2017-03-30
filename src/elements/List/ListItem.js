@@ -44,10 +44,6 @@ function ListItem(props) {
   const rest = getUnhandledProps(ListItem, props)
   const valueProp = ElementType === 'li' ? { value } : { 'data-value': value }
 
-  const handleItemClick = (onClick) => (e) => {
-    if (onClick) onClick(e, props)
-  }
-
   const handleClick = (e) => {
     const { onClick } = props
 
@@ -55,7 +51,11 @@ function ListItem(props) {
   }
 
   if (!_.isNil(children)) {
-    return <ElementType {...rest} {...valueProp} role='listitem' className={classes} onClick={handleClick}>{children}</ElementType>
+    return (
+      <ElementType {...rest} {...valueProp} role='listitem' className={classes} onClick={handleClick}>
+        {children}
+      </ElementType>
+    )
   }
 
   const iconElement = ListIcon.create(icon)
@@ -154,6 +154,9 @@ ListItem.propTypes = {
     customPropTypes.disallow(['icon']),
     customPropTypes.itemShorthand,
   ]),
+
+  /** A ListItem can be clicked */
+  onClick: PropTypes.func,
 
   /** A value for an ordered list. */
   value: PropTypes.string,

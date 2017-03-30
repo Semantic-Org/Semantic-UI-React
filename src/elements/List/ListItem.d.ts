@@ -33,6 +33,14 @@ export interface ListItemProps {
   /** Shorthand for Image. */
   image?: any;
 
+  /**
+   * Called on click.
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props.
+   */
+  onClick?: (event: React.MouseEvent<HTMLAnchorElement>, data: ListItemProps) => void;
+
   /** A value for an ordered list. */
   value?: string;
 }
