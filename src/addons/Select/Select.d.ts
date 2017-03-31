@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { DropdownProps } from '../../modules/Dropdown/Dropdown';
+import { DropdownProps } from '../../modules/Dropdown';
 import { default as DropdownDivider } from '../../modules/Dropdown/DropdownDivider';
 import { default as DropdownHeader } from '../../modules/Dropdown/DropdownHeader';
 import { default as DropdownItem } from '../../modules/Dropdown/DropdownItem';

@@ -1,9 +1,9 @@
 import * as React from 'react';
 
 import { SemanticVERTICALALIGNMENTS } from '../..';
-import { IconProps } from '../Icon/Icon';
+import { IconProps } from '../Icon';
 
-interface ListIconProps extends IconProps {
+export interface ListIconProps extends IconProps {
   verticalAlign?: SemanticVERTICALALIGNMENTS;
 }
 

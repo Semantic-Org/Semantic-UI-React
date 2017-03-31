@@ -4,7 +4,7 @@ import { default as SearchCategory, SearchCategoryProps } from './SearchCategory
 import { default as SearchResult, SearchResultProps } from './SearchResult';
 import { default as SearchResults } from './SearchResults';
 
-interface SearchProps {
+export interface SearchProps {
   [key: string]: any;
 
   /** An element type to render as (string or function). */

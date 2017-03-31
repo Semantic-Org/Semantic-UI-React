@@ -64,19 +64,10 @@ module.exports = (karmaConfig) => {
     },
     webpack: {
       devtool: config.compiler_devtool,
-      module: Object.assign({}, webpackConfig.module, {
-        loaders: [
-          {
-            test: /sinon\.js$/,
-            loader: 'imports?define=>false,require=>false',
-          },
-          ...webpackConfig.module.loaders,
-        ],
-      }),
+      module: webpackConfig.module,
       plugins: webpackConfig.plugins,
       resolve: Object.assign({}, webpackConfig.resolve, {
         alias: Object.assign({}, webpackConfig.resolve.alias, {
-          sinon: 'sinon/pkg/sinon',
           // These are internal deps specific to React 0.13 required() by enzyme
           // They shouldn't be requiring these at all, issues and fix proposed
           // https://github.com/airbnb/enzyme/issues/285

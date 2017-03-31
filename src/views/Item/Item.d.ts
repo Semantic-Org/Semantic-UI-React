@@ -8,7 +8,7 @@ import { default as ItemHeader } from './ItemHeader';
 import { default as ItemImage } from './ItemImage';
 import { default as ItemMeta } from './ItemMeta';
 
-interface ItemProps {
+export interface ItemProps {
   [key: string]: any;
 
   /** An element type to render as (string or function). */

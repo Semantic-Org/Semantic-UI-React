@@ -12,7 +12,7 @@ import { default as TableHeader } from './TableHeader';
 import { default as TableHeaderCell } from './TableHeaderCell';
 import { default as TableRow } from './TableRow';
 
-interface TableProps {
+export interface TableProps {
   [key: string]: any;
 
   /** An element type to render as (string or function). */

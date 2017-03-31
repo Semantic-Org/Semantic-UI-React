@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-interface StatisticValueProps {
+export interface StatisticValueProps {
   [key: string]: any;
 
   /** An element type to render as (string or function). */

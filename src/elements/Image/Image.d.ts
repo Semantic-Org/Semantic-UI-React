@@ -6,7 +6,7 @@ import {
   SemanticVERTICALALIGNMENTS,
   SemanticWIDTHS
 } from '../..';
-import { LabelProps } from '../Label/Label';
+import { LabelProps } from '../Label';
 import ImageGroup from './ImageGroup';
 
 export interface ImageProps {

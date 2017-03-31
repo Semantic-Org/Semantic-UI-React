@@ -3,7 +3,7 @@ import * as React from 'react';
 import { default as AccordionContent } from './AccordionContent';
 import { default as AccordionTitle } from './AccordionTitle';
 
-interface AccordionProps {
+export interface AccordionProps {
   [key: string]: any;
 
   /** An element type to render as (string or function). */

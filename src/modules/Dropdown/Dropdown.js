@@ -995,7 +995,22 @@ export default class Dropdown extends Component {
     this.setState({ focus: hasFocus })
   }
 
-  toggle = (e) => this.state.open ? this.close(e) : this.open(e)
+  toggle = (e) => {
+    if (!this.state.open) {
+      this.open(e)
+      return
+    }
+
+    const { search } = this.props
+    const options = this.getMenuOptions()
+
+    if (search && _.isEmpty(options)) {
+      e.preventDefault()
+      return
+    }
+
+    this.close(e)
+  }
 
   // ----------------------------------------
   // Render

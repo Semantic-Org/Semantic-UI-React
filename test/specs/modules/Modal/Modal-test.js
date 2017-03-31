@@ -81,6 +81,16 @@ describe('Modal', () => {
       .should.not.equal(null, 'Modal did not render the child component.')
   })
 
+  it("spreads the user's style prop on the Modal", () => {
+    const style = { marginTop: '1em', top: 0 }
+
+    wrapperMount(<Modal open style={style} />)
+    const element = document.querySelector('.ui.modal')
+
+    element.style.should.have.property('marginTop', '1em')
+    element.style.should.have.property('top', '0px')
+  })
+
   describe('open', () => {
     it('is not open by default', () => {
       wrapperMount(<Modal />)

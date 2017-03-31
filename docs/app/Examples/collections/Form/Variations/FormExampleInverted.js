@@ -1,7 +1,6 @@
 import React from 'react'
 import { Button, Form, Segment } from 'semantic-ui-react'
 
-
 const FormExampleInverted = () => (
   <Segment inverted>
     <Form inverted>

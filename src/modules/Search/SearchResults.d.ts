@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-interface SearchResultsProps {
+export interface SearchResultsProps {
   [key: string]: any;
 
   /** An element type to render as (string or function). */
