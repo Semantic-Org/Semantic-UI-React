@@ -290,7 +290,7 @@ class Modal extends Component {
         {_.isNil(children) && ModalHeader.create(header)}
         {_.isNil(children) && ModalContent.create(content)}
         {_.isNil(children) && ModalActions.create(_.forEach(actions, (action) => {
-          if (action.triggerClose) action.onClick = this.handleTriggerClose(action.onClick)
+          if (_.isPlainObject(action) && action.triggerClose) action.onClick = this.handleTriggerClose(action.onClick)
         }))}
       </ElementType>
     )

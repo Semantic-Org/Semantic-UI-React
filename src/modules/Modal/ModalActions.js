@@ -24,7 +24,7 @@ function ModalActions(props) {
 
   return (
     <ElementType {...rest} className={classes}>
-      {actions.map((action) => Button.create(action))}
+      {_.map(actions, (action) => Button.create(action))}
     </ElementType>
   )
 }
@@ -47,10 +47,6 @@ ModalActions.propTypes = {
 
   /** Additional classes. */
   className: PropTypes.string,
-}
-
-ModalActions.defaultProps = {
-  actions: [],
 }
 
 ModalActions.create = createShorthandFactory(ModalActions, actions => ({ actions }))

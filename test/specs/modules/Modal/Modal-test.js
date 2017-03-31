@@ -45,6 +45,21 @@ describe('Modal', () => {
   })
 
   common.hasSubComponents(Modal, [ModalHeader, ModalContent, ModalActions, ModalDescription])
+  common.implementsShorthandProp(Modal, {
+    propKey: 'header',
+    ShorthandComponent: ModalHeader,
+    mapValueToProps: content => ({ content }),
+  })
+  common.implementsShorthandProp(Modal, {
+    propKey: 'content',
+    ShorthandComponent: ModalContent,
+    mapValueToProps: content => ({ content }),
+  })
+  common.implementsShorthandProp(Modal, {
+    propKey: 'actions',
+    ShorthandComponent: ModalActions,
+    mapValueToProps: actions => ({ actions }),
+  })
 
   // Heads up!
   //
@@ -89,6 +104,70 @@ describe('Modal', () => {
 
     element.style.should.have.property('marginTop', '1em')
     element.style.should.have.property('top', '0px')
+  })
+
+  describe('content', () => {
+    it('adds ModalContent when defined', () => {
+      wrapperMount(<Modal open content='content' />)
+
+      document
+        .querySelector('.ui.modal')
+        .querySelector('.content')
+        .innerText
+        .should.equal('content')
+    })
+  })
+
+  describe('header', () => {
+    it('adds ModalHeader when defined', () => {
+      wrapperMount(<Modal open header='header' />)
+
+      document
+        .querySelector('.ui.modal')
+        .querySelector('.header')
+        .innerText
+        .should.equal('header')
+    })
+  })
+
+  describe('actions', () => {
+    it('adds ModalActions when defined', () => {
+      wrapperMount(<Modal open actions={[]} />)
+
+      const modalActions = document.querySelector('.actions')
+
+      modalActions.should.not.equal(null, 'Modal did not render ModalActions')
+    })
+
+    it('renders button inside ModalActions when passed actions', () => {
+      wrapperMount(<Modal open actions={[{ content: 'button' }]} />)
+
+      const button = document.querySelector('.button')
+
+      button.tagName
+        .should.equal('BUTTON')
+      button.innerText
+        .should.equal('button')
+    })
+
+    it('passing triggerClose to action button will allow button to close the Modal', () => {
+      wrapperMount(<Modal defaultOpen actions={[{ content: 'button', triggerClose: true }]} />)
+
+      document.body.childElementCount.should.equal(1)
+      domEvent.click('.button')
+      document.body.childElementCount.should.equal(0)
+    })
+
+    it('can pass onClick and triggerClose to action button', () => {
+      const spy = sandbox.spy()
+      wrapperMount(<Modal defaultOpen actions={[{ content: 'button', onClick: spy, triggerClose: true }]} />)
+
+      document.body.childElementCount.should.equal(1)
+      domEvent.click('.button')
+      document.body.childElementCount.should.equal(0)
+
+      spy.should.have.been.calledOnce()
+    })
   })
 
   describe('open', () => {
