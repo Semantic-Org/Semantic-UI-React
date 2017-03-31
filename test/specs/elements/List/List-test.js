@@ -1,4 +1,5 @@
 import React from 'react'
+import sinon from 'sinon'
 
 import List from 'src/elements/List/List'
 import ListContent from 'src/elements/List/ListContent'
@@ -9,6 +10,7 @@ import ListItem from 'src/elements/List/ListItem'
 import ListList from 'src/elements/List/ListList'
 import { SUI } from 'src/lib'
 import * as common from 'test/specs/commonTests'
+import { sandbox } from 'test/utils'
 
 describe('List', () => {
   common.isConformant(List)
@@ -34,9 +36,36 @@ describe('List', () => {
 
   common.propValueOnlyToClassName(List, 'size', SUI.SIZES)
 
-  describe('role', () => {
-    const items = ['Name', 'Status', 'Notes']
+  const items = ['Name', 'Status', 'Notes']
 
+  describe('onItemClick', () => {
+    it('can be omitted', () => {
+      const click = () => shallow(<List items={items} />).simulate('click')
+      expect(click).to.not.throw()
+    })
+
+    it('is called with (e, { index, ...itemProps }) when clicked', () => {
+      const onItemClick = sandbox.spy()
+      const event = { target: null }
+      const itemProps = { key: 'notes', content: 'Notes', 'data-foo': 'bar' }
+
+      const wrapper = shallow(<List items={[itemProps]} onItemClick={onItemClick} />)
+
+      const callbackData = { ...itemProps, index: 0, onClick: sinon.match.func }
+      delete callbackData.key
+
+      wrapper.find('ListItem')
+        .first()
+        .shallow()
+        .simulate('click', event)
+
+      onItemClick.should.have.been.calledOnce()
+      onItemClick.firstCall.args.should.have.a.lengthOf(2)
+      onItemClick.should.have.been.calledWithMatch(event, callbackData)
+    })
+  })
+
+  describe('role', () => {
     it('is accessibile with no items', () => {
       const wrapper = shallow(<List />)
 
@@ -51,8 +80,6 @@ describe('List', () => {
   })
 
   describe('shorthand', () => {
-    const items = ['Name', 'Status', 'Notes']
-
     it('renders empty tr with no shorthand', () => {
       const wrapper = shallow(<List />)
 
