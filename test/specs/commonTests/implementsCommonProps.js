@@ -277,7 +277,6 @@ export const implementsWidthProp = (Component, widths = SUI.WIDTHS, options = {}
   })
 }
 
-
 /**
  * Assert that, when FormField Component receives an Id, the respective htmlFor prop
  * is added to Label Component
