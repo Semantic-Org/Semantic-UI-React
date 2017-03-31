@@ -134,15 +134,16 @@ describe('Modal', () => {
     it('adds ModalActions when defined', () => {
       wrapperMount(<Modal open actions={[]} />)
 
-      const modalActions = document.querySelector('.actions')
-
-      modalActions.should.not.equal(null, 'Modal did not render ModalActions')
+      document
+        .querySelector('.ui.modal')
+        .querySelector('.actions')
+        .should.not.equal(null, 'Modal did not render ModalActions')
     })
 
     it('renders button inside ModalActions when passed actions', () => {
       wrapperMount(<Modal open actions={[{ content: 'button' }]} />)
 
-      const button = document.querySelector('.button')
+      const button = document.querySelector('.ui.modal').querySelector('.button')
 
       button.tagName
         .should.equal('BUTTON')
