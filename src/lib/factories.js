@@ -14,7 +14,7 @@ import React, { cloneElement, isValidElement } from 'react'
  * @param {string|object|function} val The value to create a ReactElement from
  * @param {Object} [options={}]
  * @param {object} [options.defaultProps={}] Default props object
- * @param {object} [options.overrideProps={}] Override props object
+ * @param {object|function} [options.overrideProps={}] Override props object or function (called with regular props)
  * @returns {object|null}
  */
 export function createShorthand(Component, mapValueToProps, val, options = {}) {
@@ -48,13 +48,14 @@ export function createShorthand(Component, mapValueToProps, val, options = {}) {
   // ----------------------------------------
   // Build up props
   // ----------------------------------------
-  const {
-    defaultProps = {},
-    overrideProps = {},
-  } = options
+  const { defaultProps = {} } = options
 
   // User's props
   const usersProps = isReactElement && val.props || isPropsObject && val || isPrimitiveValue && mapValueToProps(val)
+
+  // Override props
+  let { overrideProps = {} } = options
+  overrideProps = _.isFunction(overrideProps) ? overrideProps({ ...defaultProps, ...usersProps }) : overrideProps
 
   // Merge props
   /* eslint-disable react/prop-types */

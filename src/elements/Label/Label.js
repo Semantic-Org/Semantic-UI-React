@@ -133,11 +133,12 @@ export default class Label extends Component {
     if (onClick) onClick(e, this.props)
   }
 
-  handleRemove = (e) => {
-    const { onRemove } = this.props
-// TODO: onClick
-    if (onRemove) onRemove(e, this.props)
-  }
+  handleIconOverrides = predefinedProps => ({
+    onClick: e => {
+      _.invoke(predefinedProps, 'onClick', e, this.props)
+      _.invoke(this.props, 'onRemove', e, this.props)
+    },
+  })
 
   render() {
     const {
@@ -202,7 +203,7 @@ export default class Label extends Component {
         {typeof image !== 'boolean' && Image.create(image)}
         {content}
         {createShorthand(LabelDetail, val => ({ content: val }), detail)}
-        {onRemove && Icon.create(removeIconShorthand, { overrideProps: { onClick: this.handleRemove } })}
+        {onRemove && Icon.create(removeIconShorthand, { overrideProps: this.handleIconOverrides })}
       </ElementType>
     )
   }

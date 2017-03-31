@@ -147,9 +147,16 @@ class Modal extends Component {
 
     const { onClose } = this.props
     if (onClose) onClose(e, this.props)
-    // TODO: onClick
+
     this.trySetState({ open: false })
   }
+
+  handleIconOverrides = predefinedProps => ({
+    onClick: e => {
+      _.invoke(predefinedProps, 'onClick', e, this.props)
+      this.handleClose(e)
+    },
+  })
 
   handleOpen = (e) => {
     debug('open()')
@@ -266,7 +273,7 @@ class Modal extends Component {
     const closeIconName = closeIcon === true ? 'close' : closeIcon
     const modalJSX = (
       <ElementType {...rest} className={classes} style={{ marginTop, ...style }} ref={this.handleRef}>
-        {Icon.create(closeIconName, { defaultProps: { onClick: this.handleClose } })}
+        {Icon.create(closeIconName, { overrideProps: this.handleIconOverrides })}
         {children}
       </ElementType>
     )
