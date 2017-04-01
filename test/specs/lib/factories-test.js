@@ -65,10 +65,10 @@ const itDoesNotIncludePropsFromMapValueToProps = (value) => {
 const itMergesClassNames = (classNameSource, extraClassName, shorthandConfig) => {
   it(`merges defaultProps className and ${classNameSource} className`, () => {
     const defaultProps = { className: 'default' }
+    const overrideProps = { className: 'override' }
 
-    shallow(getShorthand({ defaultProps, ...shorthandConfig }))
-      .should.have.className('default')
-      .and.have.className(extraClassName)
+    shallow(getShorthand({ defaultProps, overrideProps, ...shorthandConfig }))
+      .should.have.same.className(`default override ${extraClassName}`)
   })
 }
 
@@ -222,10 +222,48 @@ describe('factories', () => {
 
     describe('overrideProps', () => {
       it('can be an object', () => {
-        const overrideProps = { 'data-some': 'defaults' }
+        const overrideProps = { 'data-some': 'overrides' }
+
         shallow(getShorthand({ value: 'foo', overrideProps }))
           .props()
           .should.deep.equal(overrideProps)
+      })
+
+      it('can be a function that returns defaultProps', () => {
+        const overrideProps = () => ({ 'data-some': 'overrides' })
+
+        shallow(getShorthand({ value: 'foo', overrideProps }))
+          .props()
+          .should.deep.equal(overrideProps())
+      })
+
+      it("is called with the user's element's and default props", () => {
+        const defaultProps = { 'data-some': 'defaults' }
+        const overrideProps = sandbox.spy(() => ({}))
+        const userProps = { 'data-user': 'props' }
+        const value = <div {...userProps} />
+
+        shallow(getShorthand({ defaultProps, overrideProps, value }))
+        overrideProps.should.have.been.calledWith({ ...defaultProps, ...userProps })
+      })
+
+      it("is called with the user's props object", () => {
+        const defaultProps = { 'data-some': 'defaults' }
+        const overrideProps = sandbox.spy(() => ({}))
+        const userProps = { 'data-user': 'props' }
+
+        shallow(getShorthand({ defaultProps, overrideProps, value: userProps }))
+        overrideProps.should.have.been.calledWith({ ...defaultProps, ...userProps })
+      })
+
+      it('is called with the result of mapValueToProps', () => {
+        const defaultProps = { 'data-some': 'defaults' }
+        const overrideProps = sandbox.spy(() => ({}))
+        const value = 'foo'
+        const mapValueToProps = (val) => ({ 'data-mapped': val })
+
+        shallow(getShorthand({ defaultProps, mapValueToProps, overrideProps, value }))
+        overrideProps.should.have.been.calledWith({ ...defaultProps, ...mapValueToProps(value) })
       })
     })
 
@@ -343,6 +381,41 @@ describe('factories', () => {
       itOverridesDefaultPropsWithFalseyProps('mapValueToProps', {
         value: ['an array'],
         mapValueToProps: () => ({ undef: undefined, nil: null, zero: 0, empty: '' }),
+      })
+    })
+
+    describe('style', () => {
+      it('merges style prop', () => {
+        const defaultProps = { style: { left: 5 } }
+        const userProps = { style: { bottom: 5 } }
+        const overrideProps = { style: { right: 5 } }
+
+        shallow(getShorthand({ defaultProps, overrideProps, value: userProps }))
+          .should.have.prop('style').deep.equal({ left: 5, bottom: 5, right: 5 })
+      })
+
+      it('merges style prop and handles override by userProps', () => {
+        const defaultProps = { style: { left: 10, bottom: 5 } }
+        const userProps = { style: { bottom: 10 } }
+
+        shallow(getShorthand({ defaultProps, value: userProps }))
+          .should.have.prop('style').deep.equal({ left: 10, bottom: 10 })
+      })
+
+      it('merges style prop and handles override by overrideProps', () => {
+        const userProps = { style: { bottom: 10, right: 5 } }
+        const overrideProps = { style: { right: 10 } }
+
+        shallow(getShorthand({ overrideProps, value: userProps }))
+          .should.have.prop('style').deep.equal({ bottom: 10, right: 10 })
+      })
+
+      it('merges style prop from defaultProps and overrideProps', () => {
+        const defaultProps = { style: { left: 10, bottom: 5 } }
+        const overrideProps = { style: { bottom: 10 } }
+
+        shallow(getShorthand({ defaultProps, overrideProps, value: 'foo' }))
+          .should.have.prop('style').deep.equal({ left: 10, bottom: 10 })
       })
     })
   })

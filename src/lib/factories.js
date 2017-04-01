@@ -68,7 +68,7 @@ export function createShorthand(Component, mapValueToProps, val, options = {}) {
   }
 
   // Merge style
-  if (usersProps.style && (defaultProps.style || overrideProps.style)) {
+  if (defaultProps.style || overrideProps.style || usersProps.style) {
     props.style = { ...defaultProps.style, ...usersProps.style, ...overrideProps.style }
   }
 
