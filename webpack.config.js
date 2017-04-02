@@ -1,7 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const _ = require('lodash')
 const webpack = require('webpack')
-
 const config = require('./config')
 const { paths } = config
 const { __DEV__, __TEST__ } = config.compiler_globals
@@ -115,9 +114,9 @@ if (__DEV__) {
   )
 }
 
-// Don't split bundles during testing, since we only want import one bundle
 if (!__TEST__) {
   webpackConfig.plugins.push(
+    // Don't split bundles during testing, since we only want import one bundle
     new webpack.optimize.CommonsChunkPlugin({
       names: ['vendor'],
     })
@@ -134,7 +133,7 @@ if (!__TEST__) {
     /react-dom/,
   ]
 
-  // find them on the window
+  // find modules loaded via CDN on the window
   webpackConfig.externals = Object.assign({}, webpackConfig.externals, {
     'anchor-js': 'AnchorJS',
     'babel-standalone': 'Babel',
