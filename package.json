@@ -135,7 +135,7 @@
     "tslint-config-typings": "^0.3.1",
     "typescript": "^2.1.5",
     "watch": "^1.0.1",
-    "webpack": "^1.12.14",
+    "webpack": "^2.3.2",
     "webpack-dev-middleware": "^1.5.1",
     "webpack-hot-middleware": "^2.15.0",
     "yargs": "^7.0.2"
