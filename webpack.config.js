@@ -10,7 +10,10 @@ const webpackConfig = {
   name: 'client',
   target: 'web',
   devtool: config.compiler_devtool,
-  module: {},
+  module: {
+    noParse: [],
+  },
+  externals: {},
   resolve: {
     modules: [
       paths.base(),
@@ -119,6 +122,27 @@ if (!__TEST__) {
       names: ['vendor'],
     })
   )
+
+  webpackConfig.module.noParse = [
+    ...webpackConfig.module.noParse,
+    // Browser ready modules loaded via CDN (index.ejs), do not parse for faster builds
+    /anchor-js/,
+    /babel-standalone/,
+    /faker/,
+    /js-beautify/,
+    /react/,
+    /react-dom/,
+  ]
+
+  // find them on the window
+  webpackConfig.externals = Object.assign({}, webpackConfig.externals, {
+    'anchor-js': 'AnchorJS',
+    'babel-standalone': 'Babel',
+    faker: 'faker',
+    react: 'React',
+    'react-dom': 'ReactDOM',
+    'react-dom/server': 'ReactDOMServer',
+  })
 }
 
 // ------------------------------------
