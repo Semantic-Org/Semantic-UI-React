@@ -3,16 +3,18 @@ const _ = require('lodash')
 const webpack = require('webpack')
 const config = require('./config')
 const { paths } = config
-const { __DEV__, __TEST__ } = config.compiler_globals
+const { __DEV__, __STAGING__, __TEST__, __PROD__ } = config.compiler_globals
 
 const webpackConfig = {
   name: 'client',
   target: 'web',
   devtool: config.compiler_devtool,
+  externals: {},
   module: {
     noParse: [],
+    rules: [],
   },
-  externals: {},
+  plugins: [],
   resolve: {
     modules: [
       paths.base(),
@@ -57,17 +59,17 @@ webpackConfig.entry = __DEV__ ? {
 // ------------------------------------
 // Bundle Output
 // ------------------------------------
-webpackConfig.output = {
+webpackConfig.output = Object.assign({}, webpackConfig.output, {
   filename: `[name].[${config.compiler_hash_type}].js`,
   path: config.compiler_output_path,
   pathinfo: true,
   publicPath: config.compiler_public_path,
-}
+})
 
 // ------------------------------------
 // Plugins
 // ------------------------------------
-webpackConfig.plugins = [
+webpackConfig.plugins = [...webpackConfig.plugins,
   new webpack.DefinePlugin(config.compiler_globals),
   new webpack.DllReferencePlugin({
     context: paths.base('node_modules'),
@@ -94,12 +96,24 @@ webpackConfig.plugins = [
   }),
 ]
 
+if (!__TEST__) {
+  webpackConfig.plugins.push(
+    // Don't split bundles during testing as karma can only import one bundle
+    // https://github.com/webpack-contrib/karma-webpack/issues/22
+    new webpack.optimize.CommonsChunkPlugin({
+      names: ['vendor'],
+    })
+  )
+}
+
 if (__DEV__) {
   webpackConfig.plugins.push(
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin()
   )
-} else if (!__TEST__) {
+}
+
+if (__PROD__ || __STAGING__) {
   webpackConfig.plugins.push(
     new webpack.LoaderOptionsPlugin({
       minimize: true,
@@ -114,25 +128,10 @@ if (__DEV__) {
   )
 }
 
+// ------------------------------------
+// Externals
+// ------------------------------------
 if (!__TEST__) {
-  webpackConfig.plugins.push(
-    // Don't split bundles during testing, since we only want import one bundle
-    new webpack.optimize.CommonsChunkPlugin({
-      names: ['vendor'],
-    })
-  )
-
-  webpackConfig.module.noParse = [
-    ...webpackConfig.module.noParse,
-    // Browser ready modules loaded via CDN (index.ejs), do not parse for faster builds
-    /anchor-js/,
-    /babel-standalone/,
-    /faker/,
-    /js-beautify/,
-    /react/,
-    /react-dom/,
-  ]
-
   // find modules loaded via CDN on the window
   webpackConfig.externals = Object.assign({}, webpackConfig.externals, {
     'anchor-js': 'AnchorJS',
@@ -147,14 +146,26 @@ if (!__TEST__) {
 // ------------------------------------
 // No Parse
 // ------------------------------------
-webpackConfig.module.noParse = [
+webpackConfig.module.noParse = [...webpackConfig.module.noParse,
   /\.json$/,
+  /anchor-js/,
+  /babel-standalone/,
 ]
+
+if (!__TEST__) {
+  webpackConfig.module.noParse = [...webpackConfig.module.noParse,
+    // Do not parse browser ready modules loaded via CDN (faster builds)
+    /faker/,
+    /js-beautify/,
+    /react/,
+    /react-dom/,
+  ]
+}
 
 // ------------------------------------
 // Rules
 // ------------------------------------
-webpackConfig.module.rules = [{
+webpackConfig.module.rules = [...webpackConfig.module.rules, {
   //
   // Babel
   //
