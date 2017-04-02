@@ -1,5 +1,3 @@
-const { argv } = require('yargs')
-
 const config = require('./config')
 const webpackConfig = require('./webpack.config')
 
@@ -44,12 +42,12 @@ module.exports = (karmaConfig) => {
     formatError,
     frameworks: ['phantomjs-shim', 'mocha'],
     reporters: ['mocha', 'coverage'],
+    singleRun: true,
     preprocessors: {
       // do not include 'coverage' preprocessor for karma-coverage
       // code is already instrumented by babel-plugin-__coverage__
       './test/tests.bundle.js': ['webpack'],
     },
-    singleRun: !argv.watch,
     webpack: {
       entry: './test/tests.bundle.js',
       devtool: config.compiler_devtool,
