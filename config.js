@@ -1,5 +1,4 @@
 const path = require('path')
-const { argv } = require('yargs')
 
 // ------------------------------------
 // Environment vars
@@ -66,12 +65,9 @@ config = Object.assign({}, config, {
     __PROD__,
   },
   compiler_hash_type: __PROD__ ? 'chunkhash' : 'hash',
-  compiler_inline_manifest: false,
   compiler_fail_on_warning: __TEST__ || __PROD__,
-  compiler_lint: argv.lint !== false,
   compiler_output_path: paths.base(config.dir_docs_dist),
   compiler_public_path: __PROD__ ? '//cdn.rawgit.com/Semantic-Org/Semantic-UI-React/gh-pages/' : '/',
-  compiler_quiet: false,
   compiler_stats: {
     hash: false,            // the hash of the compilation
     version: false,         // webpack version info
