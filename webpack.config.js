@@ -1,23 +1,29 @@
-const config = require('./config')
-const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const _ = require('lodash')
-const { argv } = require('yargs')
-
+const webpack = require('webpack')
+const config = require('./config')
 const { paths } = config
-const { __DEV__, __TEST__ } = config.compiler_globals
+const { __DEV__, __STAGING__, __TEST__, __PROD__ } = config.compiler_globals
 
 const webpackConfig = {
   name: 'client',
   target: 'web',
   devtool: config.compiler_devtool,
+  externals: {},
+  module: {
+    noParse: [],
+    rules: [],
+  },
+  plugins: [],
   resolve: {
-    root: paths.base(),
+    modules: [
+      paths.base(),
+      'node_modules',
+    ],
     alias: {
       'semantic-ui-react': paths.src('index.js'),
     },
   },
-  module: {},
 }
 
 // ------------------------------------
@@ -25,7 +31,6 @@ const webpackConfig = {
 // ------------------------------------
 
 const webpackHotPath = `${config.compiler_public_path}__webpack_hmr`
-
 const webpackHotMiddlewareEntry = `webpack-hot-middleware/client?${_.map({
   path: webpackHotPath,   // The path which the middleware is serving the event stream on
   timeout: 2000,          // The time to wait after a disconnection before attempting to reconnect
@@ -54,17 +59,17 @@ webpackConfig.entry = __DEV__ ? {
 // ------------------------------------
 // Bundle Output
 // ------------------------------------
-webpackConfig.output = {
+webpackConfig.output = Object.assign({}, webpackConfig.output, {
   filename: `[name].[${config.compiler_hash_type}].js`,
   path: config.compiler_output_path,
-  publicPath: config.compiler_public_path,
   pathinfo: true,
-}
+  publicPath: config.compiler_public_path,
+})
 
 // ------------------------------------
 // Plugins
 // ------------------------------------
-webpackConfig.plugins = [
+webpackConfig.plugins = [...webpackConfig.plugins,
   new webpack.DefinePlugin(config.compiler_globals),
   new webpack.DllReferencePlugin({
     context: paths.base('node_modules'),
@@ -72,34 +77,47 @@ webpackConfig.plugins = [
   }),
   new HtmlWebpackPlugin({
     template: paths.docsSrc('index.ejs'),
-    hash: false,
     filename: 'index.html',
+    hash: false,
     inject: 'body',
     minify: {
       collapseWhitespace: true,
     },
     versions: {
       babel: require('babel-standalone/package.json').version,
-      sui: require('semantic-ui-css/package.json').version,
-      suir: require('./package.json').version,
       faker: require('faker/package.json').version,
+      jsBeautify: require('js-beautify/package.json').version,
       lodash: require('lodash/package.json').version,
       react: require('react/package.json').version,
       reactDOM: require('react-dom/package.json').version,
-      jsBeautify: require('js-beautify/package.json').version,
+      sui: require('semantic-ui-css/package.json').version,
+      suir: require('./package.json').version,
     },
   }),
 ]
 
+if (!__TEST__) {
+  webpackConfig.plugins.push(
+    // Don't split bundles during testing as karma can only import one bundle
+    // https://github.com/webpack-contrib/karma-webpack/issues/22
+    new webpack.optimize.CommonsChunkPlugin({
+      names: ['vendor'],
+    })
+  )
+}
+
 if (__DEV__) {
   webpackConfig.plugins.push(
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin()
+    new webpack.NoEmitOnErrorsPlugin()
   )
-} else if (!__TEST__) {
+}
+
+if (__PROD__ || __STAGING__) {
   webpackConfig.plugins.push(
-    new webpack.optimize.OccurrenceOrderPlugin(),
-    new webpack.optimize.DedupePlugin(),
+    new webpack.LoaderOptionsPlugin({
+      minimize: true,
+    }),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         unused: true,
@@ -110,91 +128,55 @@ if (__DEV__) {
   )
 }
 
-// Don't split bundles during testing, since we only want import one bundle
+// ------------------------------------
+// Externals
+// ------------------------------------
 if (!__TEST__) {
-  webpackConfig.plugins.push(new webpack.optimize.CommonsChunkPlugin({
-    names: ['vendor'],
-  }))
-}
-
-// ------------------------------------
-// No Parse
-// ------------------------------------
-webpackConfig.module.noParse = [
-  /\.json$/,
-]
-
-// ------------------------------------
-// Pre-Loaders
-// ------------------------------------
-webpackConfig.module.preLoaders = []
-
-// ------------------------------------
-// Loaders
-// ------------------------------------
-webpackConfig.module.loaders = [{
-  //
-  // Babel
-  //
-  test: /\.js$/,
-  exclude: /node_modules/,
-  loader: 'babel',
-  query: {
-    cacheDirectory: true,
-  },
-}, {
-  //
-  // JSON
-  //
-  test: /\.(json|.*rc)$/,
-  loader: 'json',
-}]
-
-// ----------------------------------------
-// Local Modules
-// ----------------------------------------
-// For faster builds in dev, rely on prebuilt libraries
-// Local modules can still be enabled (ie for offline development)
-// in TEST we need local modules because karma uses a different index.html (no CDNs)
-if (__TEST__ || argv.localModules) {
-  webpackConfig.module.loaders = [
-    ...webpackConfig.module.loaders,
-    {
-      //
-      // SASS
-      //
-      test: /\.s?css$/,
-      loaders: ['style', 'css', 'sass'],
-    }, {
-      //
-      // Files
-      //
-      test: /\.(eot|ttf|woff|woff2|svg|png)$/,
-      loader: 'file',
-    },
-  ]
-} else {
-  // these are browser ready modules or aliased to empty
-  // do not parse their source for faster builds
-  webpackConfig.module.noParse = [
-    ...webpackConfig.module.noParse,
-    /faker/,
-  ]
-
-  // alias imports to empty
-  webpackConfig.resolve.alias = Object.assign({}, webpackConfig.resolve.alias, {
-    'semantic-ui-css/semantic.css': 'empty',
-  })
-
-  // find them on the window
+  // find modules loaded via CDN on the window
   webpackConfig.externals = Object.assign({}, webpackConfig.externals, {
-    faker: 'faker',
     'anchor-js': 'AnchorJS',
     'babel-standalone': 'Babel',
+    faker: 'faker',
     react: 'React',
     'react-dom': 'ReactDOM',
     'react-dom/server': 'ReactDOMServer',
   })
 }
+
+// ------------------------------------
+// No Parse
+// ------------------------------------
+webpackConfig.module.noParse = [...webpackConfig.module.noParse,
+  /\.json$/,
+  /anchor-js/,
+  /babel-standalone/,
+]
+
+if (!__TEST__) {
+  webpackConfig.module.noParse = [...webpackConfig.module.noParse,
+    // Do not parse browser ready modules loaded via CDN (faster builds)
+    /faker/,
+    /js-beautify/,
+    /react/,
+    /react-dom/,
+  ]
+}
+
+// ------------------------------------
+// Rules
+// ------------------------------------
+webpackConfig.module.rules = [...webpackConfig.module.rules, {
+  //
+  // Babel
+  //
+  test: /\.js$/,
+  exclude: /node_modules/,
+  use: {
+    loader: 'babel-loader',
+    options: {
+      cacheDirectory: true,
+    },
+  },
+}]
 
 module.exports = webpackConfig
