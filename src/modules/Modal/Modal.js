@@ -153,7 +153,7 @@ class Modal extends Component {
 
   handleIconOverrides = predefinedProps => ({
     onClick: e => {
-      _.invoke(predefinedProps, 'onClick', e, this.props)
+      _.invoke(predefinedProps, 'onClick', e)
       this.handleClose(e)
     },
   })

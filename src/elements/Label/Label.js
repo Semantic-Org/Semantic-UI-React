@@ -135,7 +135,7 @@ export default class Label extends Component {
 
   handleIconOverrides = predefinedProps => ({
     onClick: e => {
-      _.invoke(predefinedProps, 'onClick', e, this.props)
+      _.invoke(predefinedProps, 'onClick', e)
       _.invoke(this.props, 'onRemove', e, this.props)
     },
   })

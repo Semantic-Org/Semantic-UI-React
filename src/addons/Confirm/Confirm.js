@@ -63,15 +63,15 @@ class Confirm extends Component {
   }
 
   handleCancelOverrides = predefinedProps => ({
-    onClick: e => {
-      _.invoke(predefinedProps, 'onClick', e, this.props)
+    onClick: (e, buttonProps) => {
+      _.invoke(predefinedProps, 'onClick', e, buttonProps)
       this.handleCancel(e)
     },
   })
 
   handleConfirmOverrides = predefinedProps => ({
-    onClick: e => {
-      _.invoke(predefinedProps, 'onClick', e, this.props)
+    onClick: (e, buttonProps) => {
+      _.invoke(predefinedProps, 'onClick', e, buttonProps)
       _.invoke(this.props, 'onConfirm', e, this.props)
     },
   })
