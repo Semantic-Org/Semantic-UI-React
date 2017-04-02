@@ -167,18 +167,6 @@ webpackConfig.module.rules = [{
       cacheDirectory: true,
     },
   },
-}, {
-  //
-  // SASS
-  //
-  test: /\.s?css$/,
-  use: ['style-loader', 'css-loader', 'sass-loader'],
-}, {
-  //
-  // Files
-  //
-  test: /\.(eot|ttf|woff|woff2|svg|png)$/,
-  loader: 'file-loader',
 }]
 
 module.exports = webpackConfig
