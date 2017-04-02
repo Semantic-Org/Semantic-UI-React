@@ -1,49 +1,34 @@
-const { argv } = require('yargs')
 const config = require('./config')
 const webpackConfig = require('./webpack.config')
+
+const formatError = (msg) => {
+  // filter out empty lines and node_modules
+  if (!msg.trim() || /~/.test(msg)) return ''
+
+  // indent the error beneath the it() message
+  let newLine = '  ' + msg
+
+  if (newLine.includes('webpack:///')) {
+    // remove webpack:///
+    newLine = newLine.replace('webpack:///', '')
+
+    // remove bundle location, showing only the source location
+    newLine = newLine.slice(0, newLine.indexOf(' <- '))
+  }
+
+  return newLine + '\n'
+}
 
 module.exports = (karmaConfig) => {
   karmaConfig.set({
     basePath: process.cwd(),
     browsers: ['PhantomJS'],
-    singleRun: !argv.watch,
-    reporters: ['mocha', 'coverage'],
-    files: [
-      './test/tests.bundle.js',
-    ],
-    formatError(msg) {
-      let haveSeenStack = false
-      return msg
-        .split('\n')
-        .reduce((list, line) => {
-          // filter out node_modules
-          if (/~/.test(line)) return list
-
-          // indent the error beneath the it() message
-          let newLine = '  ' + line
-
-          if (newLine.includes('webpack:///')) {
-            if (haveSeenStack === false) {
-              const indent = newLine.slice(0, newLine.search(/\S/))
-              newLine = `\n${indent}Stack:\n${newLine}`
-              haveSeenStack = true
-            }
-
-            // remove webpack:///
-            newLine = newLine.replace('webpack:///', '')
-
-            // remove bundle location, showing only the source location
-            newLine = newLine.slice(0, newLine.indexOf(' <- '))
-          }
-
-          return list.concat(newLine)
-        }, [])
-        .join('\n')
+    client: {
+      mocha: {
+        reporter: 'html',   // change Karma's debug.html to mocha web reporter
+        ui: 'bdd',
+      },
     },
-    frameworks: [
-      'phantomjs-shim',
-      'mocha',
-    ],
     coverageReporter: {
       reporters: [
         { type: 'lcov', dir: 'coverage', subdir: '.' },
@@ -51,32 +36,25 @@ module.exports = (karmaConfig) => {
       ],
       includeAllSources: true,
     },
+    files: [
+      './test/tests.bundle.js',
+    ],
+    formatError,
+    frameworks: ['phantomjs-shim', 'mocha'],
+    reporters: ['mocha', 'coverage'],
+    singleRun: true,
     preprocessors: {
       // do not include 'coverage' preprocessor for karma-coverage
       // code is already instrumented by babel-plugin-__coverage__
-      '**/*.bundle.js': ['webpack'],
-    },
-    client: {
-      mocha: {
-        reporter: 'html',   // change Karma's debug.html to mocha web reporter
-        ui: 'bdd',
-      },
+      './test/tests.bundle.js': ['webpack'],
     },
     webpack: {
+      entry: './test/tests.bundle.js',
       devtool: config.compiler_devtool,
-      module: Object.assign({}, webpackConfig.module, {
-        loaders: [
-          {
-            test: /sinon\.js$/,
-            loader: 'imports?define=>false,require=>false',
-          },
-          ...webpackConfig.module.loaders,
-        ],
-      }),
+      module: webpackConfig.module,
       plugins: webpackConfig.plugins,
       resolve: Object.assign({}, webpackConfig.resolve, {
         alias: Object.assign({}, webpackConfig.resolve.alias, {
-          sinon: 'sinon/pkg/sinon',
           // These are internal deps specific to React 0.13 required() by enzyme
           // They shouldn't be requiring these at all, issues and fix proposed
           // https://github.com/airbnb/enzyme/issues/285

@@ -19,7 +19,7 @@ import CommentText from './CommentText'
 
 /**
  * A comment displays user feedback to site content.
- * */
+ */
 function Comment(props) {
   const { className, children, collapsed } = props
 

@@ -10,7 +10,7 @@ import { default as FeedLike } from './FeedLike';
 import { default as FeedSummary } from './FeedSummary';
 import { default as FeedUser } from './FeedUser';
 
-interface FeedProps {
+export interface FeedProps {
   [key: string]: any;
 
   /** An element type to render as (string or function). */

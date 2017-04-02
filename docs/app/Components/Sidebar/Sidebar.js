@@ -182,7 +182,7 @@ class Sidebar extends Component {
         <Menu.Item>
           <Logo spaced='right' size='mini' />
           <strong>
-            Semantic-UI-React &nbsp;
+            Semantic UI React &nbsp;
             <small><em>{pkg.version}</em></small>
           </strong>
         </Menu.Item>

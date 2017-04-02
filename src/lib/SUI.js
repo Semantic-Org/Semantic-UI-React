@@ -21,6 +21,8 @@ export const SIZES = ['mini', 'tiny', 'small', 'medium', 'large', 'big', 'huge',
 export const TEXT_ALIGNMENTS = ['left', 'center', 'right', 'justified']
 export const VERTICAL_ALIGNMENTS = ['bottom', 'middle', 'top']
 
+export const VISIBILITY = ['mobile', 'tablet', 'computer', 'large screen', 'widescreen']
+
 export const WIDTHS = [
   ..._.keys(numberToWordMap),
   ..._.keys(numberToWordMap).map(Number),

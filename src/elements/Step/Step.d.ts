@@ -5,7 +5,7 @@ import { default as StepDescription } from './StepDescription';
 import { default as StepGroup } from './StepGroup';
 import { default as StepTitle } from './StepTitle';
 
-interface StepProps {
+export interface StepProps {
   [key: string]: any;
 
   /** An element type to render as (string or function). */

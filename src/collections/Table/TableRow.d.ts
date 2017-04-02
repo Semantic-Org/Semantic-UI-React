@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { SemanticVERTICALALIGNMENTS } from '../..';
 
-interface TableRowProps {
+export interface TableRowProps {
   [key: string]: any;
 
   /** An element type to render as (string or function). */

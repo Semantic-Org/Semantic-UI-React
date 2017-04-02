@@ -143,7 +143,7 @@ const Introduction = () => (
     <Segment basic textAlign='center'>
       <Logo centered size='small' />
       <Header as='h1' textAlign='center'>
-        Semantic-UI-React
+        Semantic UI React
         <Header.Subheader>
           {pkg.description}
         </Header.Subheader>
@@ -153,7 +153,7 @@ const Introduction = () => (
     <Segment basic padded>
       <Header as='h2' dividing>Introduction</Header>
       <p>
-        Semantic-UI-React is the official React integration for <a href={semanticUIDocsURL}>Semantic UI</a> .
+        Semantic UI React is the official React integration for <a href={semanticUIDocsURL}>Semantic UI</a> .
       </p>
       <List>
         <List.Item icon='check' content='jQuery Free' />

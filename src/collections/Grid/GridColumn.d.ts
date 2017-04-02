@@ -7,9 +7,9 @@ import {
   SemanticWIDTHS
 } from '../..';
 
-export type GridOnlyProp = 'computer' | 'large screen' | 'mobile' | 'tablet mobile' | 'tablet' | 'widescreen';
+export type GridOnlyProp = string | 'computer' | 'largeScreen' | 'mobile' | 'tablet mobile' | 'tablet' | 'widescreen';
 
-interface GridColumnProps {
+export interface GridColumnProps {
   [key: string]: any;
 
   /** An element type to render as (string or function). */

@@ -123,6 +123,17 @@ describe('Dropdown', () => {
       .should.have.been.calledOnce()
   })
 
+  it('does not close on click when search is true and options are empty', () => {
+    wrapperMount(<Dropdown options={{}} search selection defaultOpen />)
+
+    const instance = wrapper.instance()
+    sandbox.spy(instance.ref, 'blur')
+
+    dropdownMenuIsOpen()
+    wrapper.simulate('click')
+    dropdownMenuIsOpen()
+  })
+
   it('opens on focus', () => {
     wrapperMount(<Dropdown options={options} />)
 
@@ -1065,6 +1076,20 @@ describe('Dropdown', () => {
       wrapperMount(<Dropdown options={options} selection open={false} />)
         .setProps({ open: true })
       dropdownMenuIsOpen()
+    })
+    it('calls scrollSelectedItemIntoView when changed from false to true', () => {
+      wrapperMount(<Dropdown options={options} selection open={false} />)
+
+      const instance = wrapper.instance()
+      sandbox.spy(instance, 'scrollSelectedItemIntoView')
+
+      instance.scrollSelectedItemIntoView
+        .should.not.have.been.called()
+
+      wrapper.setProps({ open: true })
+
+      instance.scrollSelectedItemIntoView
+        .should.have.been.calledOnce()
     })
   })
 

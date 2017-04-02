@@ -143,11 +143,8 @@ FormField.propTypes = {
     PropTypes.object,
   ]),
 
-  /** A field can show that input is mandatory.  Requires a label. */
-  required: customPropTypes.every([
-    customPropTypes.demand(['label']),
-    PropTypes.bool,
-  ]),
+  /** A field can show that input is mandatory. */
+  required: PropTypes.bool,
 
   /** Passed to the control component (i.e. <input type='password' />) */
   type: customPropTypes.every([

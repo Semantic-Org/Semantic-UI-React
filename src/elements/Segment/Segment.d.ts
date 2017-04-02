@@ -9,7 +9,7 @@ import { default as SegmentGroup } from './SegmentGroup';
 
 export type SegmentSizeProp = 'mini' | 'tiny' | 'small' | 'large' | 'big' | 'huge' | 'massive';
 
-interface SegmentProps {
+export interface SegmentProps {
   [key: string]: any;
 
   /** An element type to render as (string or function). */

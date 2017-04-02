@@ -3,7 +3,7 @@ import * as React from 'react';
 import { default as AccordionContent } from './AccordionContent';
 import { default as AccordionTitle } from './AccordionTitle';
 
-interface AccordionProps {
+export interface AccordionProps {
   [key: string]: any;
 
   /** An element type to render as (string or function). */
@@ -30,7 +30,12 @@ interface AccordionProps {
   /** Format for dark backgrounds. */
   inverted?: string;
 
-  /** Called with (event, index) when a panel title is clicked. */
+  /**
+   * Called when a panel title is clicked.
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {number} index - The index of the clicked panel.
+   */
   onTitleClick?: (event: React.MouseEvent<HTMLDivElement>, index: number | number[]) => void;
 
   /**

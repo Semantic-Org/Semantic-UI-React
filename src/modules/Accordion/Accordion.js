@@ -48,7 +48,12 @@ export default class Accordion extends Component {
     /** Format for dark backgrounds. */
     inverted: PropTypes.bool,
 
-    /** Called with (event, index) when a panel title is clicked. */
+    /**
+     * Called when a panel title is clicked.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {number} index - The index of the clicked panel.
+     */
     onTitleClick: PropTypes.func,
 
     /**

@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { LabelProps } from '../../elements/Label/Label';
+import { LabelProps } from '../../elements/Label';
 import { default as DropdownDivider } from './DropdownDivider';
 import { default as DropdownHeader } from './DropdownHeader';
 import { default as DropdownItem, DropdownItemProps } from './DropdownItem';
@@ -192,8 +192,16 @@ export interface DropdownProps {
   /** A dropdown can be formatted so that its menu is pointing. */
   pointing?: boolean | 'left' | 'right' | 'top' | 'top left' | 'top right' | 'bottom' | 'bottom left' | 'bottom right';
 
-  /** A function that takes (data, index, defaultLabelProps) and returns shorthand for Label. */
-  renderLabel?: (item: DropdownItemProps, index: number, defaultProps: LabelProps) => React.ReactElement<any>;
+  /**
+   * Mapped over the active items and returns shorthand for the active item Labels.
+   * Only applies to `multiple` Dropdowns.
+   *
+   * @param {object} item - A currently active dropdown item.
+   * @param {number} index - The current index.
+   * @param {object} defaultLabelProps - The default props for an active item Label.
+   * @returns {*} Shorthand for a Label.
+   */
+  renderLabel?: (item: DropdownItemProps, index: number, defaultLabelProps: LabelProps) => React.ReactElement<any>;
 
   /** A dropdown can have its menu scroll. */
   scrolling?: boolean;
