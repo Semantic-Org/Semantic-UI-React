@@ -7,19 +7,19 @@ const LabelExampleAttached = () => (
       <Grid.Column>
         <Segment padded>
           <Label attached='top'>HTML</Label>
-          <Image src='http://semantic-ui.com/images/wireframe/paragraph.png' />
+          <Image src='/assets/images/wireframe/paragraph.png' />
         </Segment>
       </Grid.Column>
       <Grid.Column>
         <Segment padded>
           <Label attached='bottom'>CSS</Label>
-          <Image src='http://semantic-ui.com/images/wireframe/paragraph.png' />
+          <Image src='/assets/images/wireframe/paragraph.png' />
         </Segment>
       </Grid.Column>
       <Grid.Column>
         <Segment padded>
           <Label attached='top right'>Code</Label>
-          <Image src='http://semantic-ui.com/images/wireframe/paragraph.png' />
+          <Image src='/assets/images/wireframe/paragraph.png' />
         </Segment>
       </Grid.Column>
     </Grid.Row>
@@ -28,19 +28,19 @@ const LabelExampleAttached = () => (
       <Grid.Column>
         <Segment padded>
           <Label attached='top left'>View</Label>
-          <Image src='http://semantic-ui.com/images/wireframe/paragraph.png' />
+          <Image src='/assets/images/wireframe/paragraph.png' />
         </Segment>
       </Grid.Column>
       <Grid.Column>
         <Segment padded>
           <Label attached='bottom left'>User View</Label>
-          <Image src='http://semantic-ui.com/images/wireframe/paragraph.png' />
+          <Image src='/assets/images/wireframe/paragraph.png' />
         </Segment>
       </Grid.Column>
       <Grid.Column>
         <Segment padded>
           <Label attached='bottom right'>Admin View</Label>
-          <Image src='http://semantic-ui.com/images/wireframe/paragraph.png' />
+          <Image src='/assets/images/wireframe/paragraph.png' />
         </Segment>
       </Grid.Column>
     </Grid.Row>

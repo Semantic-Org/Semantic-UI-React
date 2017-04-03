@@ -4,7 +4,7 @@ import {
   SemanticWIDTHS
 } from '../..';
 
-interface TableCellProps {
+export interface TableCellProps {
   [key: string]: any;
 
   /** An element type to render as (string or function). */

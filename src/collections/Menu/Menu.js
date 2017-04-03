@@ -66,7 +66,7 @@ class Menu extends Component {
     /** A vertical menu may take the size of its container. */
     fluid: PropTypes.bool,
 
-    /** A menu may have labeled icons. */
+    /** A menu may have just icons (bool) or labeled icons. */
     icon: PropTypes.oneOfType([
       PropTypes.bool,
       PropTypes.oneOf(['labeled']),
@@ -133,24 +133,27 @@ class Menu extends Component {
   static Item = MenuItem
   static Menu = MenuMenu
 
-  handleItemClick = (e, itemProps) => {
-    const { index } = itemProps
-    const { items, onItemClick } = this.props
+  handleItemOverrides = predefinedProps => ({
+    onClick: (e, itemProps) => {
+      const { index } = itemProps
 
-    this.trySetState({ activeIndex: index })
+      this.trySetState({ activeIndex: index })
 
-    if (_.get(items[index], 'onClick')) items[index].onClick(e, itemProps)
-    if (onItemClick) onItemClick(e, itemProps)
-  }
+      _.invoke(predefinedProps, 'onClick', e, itemProps)
+      _.invoke(this.props, 'onItemClick', e, itemProps)
+    },
+  })
 
   renderItems() {
     const { items } = this.props
     const { activeIndex } = this.state
 
     return _.map(items, (item, index) => MenuItem.create(item, {
-      active: activeIndex === index,
-      index,
-      onClick: this.handleItemClick,
+      defaultProps: {
+        active: activeIndex === index,
+        index,
+      },
+      overrideProps: this.handleItemOverrides,
     }))
   }
 

@@ -8,7 +8,7 @@ const LoaderExampleSizes = () => (
         <Loader size='mini'>Loading</Loader>
       </Dimmer>
 
-      <Image src='http://semantic-ui.com/images/wireframe/short-paragraph.png' />
+      <Image src='/assets/images/wireframe/short-paragraph.png' />
     </Segment>
 
     <Segment>
@@ -16,7 +16,7 @@ const LoaderExampleSizes = () => (
         <Loader size='tiny'>Loading</Loader>
       </Dimmer>
 
-      <Image src='http://semantic-ui.com/images/wireframe/short-paragraph.png' />
+      <Image src='/assets/images/wireframe/short-paragraph.png' />
     </Segment>
 
     <Segment>
@@ -24,7 +24,7 @@ const LoaderExampleSizes = () => (
         <Loader size='small'>Loading</Loader>
       </Dimmer>
 
-      <Image src='http://semantic-ui.com/images/wireframe/short-paragraph.png' />
+      <Image src='/assets/images/wireframe/short-paragraph.png' />
     </Segment>
 
     <Segment>
@@ -32,8 +32,8 @@ const LoaderExampleSizes = () => (
         <Loader size='medium'>Loading</Loader>
       </Dimmer>
 
-      <Image src='http://semantic-ui.com/images/wireframe/short-paragraph.png' />
-      <Image src='http://semantic-ui.com/images/wireframe/short-paragraph.png' />
+      <Image src='/assets/images/wireframe/short-paragraph.png' />
+      <Image src='/assets/images/wireframe/short-paragraph.png' />
     </Segment>
 
     <Segment>
@@ -41,9 +41,9 @@ const LoaderExampleSizes = () => (
         <Loader size='large'>Loading</Loader>
       </Dimmer>
 
-      <Image src='http://semantic-ui.com/images/wireframe/short-paragraph.png' />
-      <Image src='http://semantic-ui.com/images/wireframe/short-paragraph.png' />
-      <Image src='http://semantic-ui.com/images/wireframe/short-paragraph.png' />
+      <Image src='/assets/images/wireframe/short-paragraph.png' />
+      <Image src='/assets/images/wireframe/short-paragraph.png' />
+      <Image src='/assets/images/wireframe/short-paragraph.png' />
     </Segment>
 
     <Segment>
@@ -51,9 +51,9 @@ const LoaderExampleSizes = () => (
         <Loader size='big'>Loading</Loader>
       </Dimmer>
 
-      <Image src='http://semantic-ui.com/images/wireframe/short-paragraph.png' />
-      <Image src='http://semantic-ui.com/images/wireframe/short-paragraph.png' />
-      <Image src='http://semantic-ui.com/images/wireframe/short-paragraph.png' />
+      <Image src='/assets/images/wireframe/short-paragraph.png' />
+      <Image src='/assets/images/wireframe/short-paragraph.png' />
+      <Image src='/assets/images/wireframe/short-paragraph.png' />
     </Segment>
 
     <Segment>
@@ -61,9 +61,9 @@ const LoaderExampleSizes = () => (
         <Loader size='huge'>Loading</Loader>
       </Dimmer>
 
-      <Image src='http://semantic-ui.com/images/wireframe/short-paragraph.png' />
-      <Image src='http://semantic-ui.com/images/wireframe/short-paragraph.png' />
-      <Image src='http://semantic-ui.com/images/wireframe/short-paragraph.png' />
+      <Image src='/assets/images/wireframe/short-paragraph.png' />
+      <Image src='/assets/images/wireframe/short-paragraph.png' />
+      <Image src='/assets/images/wireframe/short-paragraph.png' />
     </Segment>
 
     <Segment>
@@ -71,9 +71,9 @@ const LoaderExampleSizes = () => (
         <Loader size='massive'>Loading</Loader>
       </Dimmer>
 
-      <Image src='http://semantic-ui.com/images/wireframe/short-paragraph.png' />
-      <Image src='http://semantic-ui.com/images/wireframe/short-paragraph.png' />
-      <Image src='http://semantic-ui.com/images/wireframe/short-paragraph.png' />
+      <Image src='/assets/images/wireframe/short-paragraph.png' />
+      <Image src='/assets/images/wireframe/short-paragraph.png' />
+      <Image src='/assets/images/wireframe/short-paragraph.png' />
     </Segment>
   </div>
 )

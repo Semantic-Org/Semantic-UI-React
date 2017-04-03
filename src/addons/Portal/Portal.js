@@ -15,6 +15,9 @@ const debug = makeDebugger('portal')
 /**
  * A component that allows you to render children outside their parent.
  * @see Modal
+ * @see Popup
+ * @see Dimmer
+ * @see Confirm
  */
 class Portal extends Component {
   static propTypes = {
@@ -353,13 +356,14 @@ class Portal extends Component {
     ReactDOM.unstable_renderSubtreeIntoContainer(
       this,
       Children.only(children),
-      this.rootNode
+      this.rootNode,
+      () => {
+        this.portalNode = this.rootNode.firstElementChild
+
+        this.portalNode.addEventListener('mouseleave', this.handlePortalMouseLeave)
+        this.portalNode.addEventListener('mouseenter', this.handlePortalMouseEnter)
+      }
     )
-
-    this.portalNode = this.rootNode.firstElementChild
-
-    this.portalNode.addEventListener('mouseleave', this.handlePortalMouseLeave)
-    this.portalNode.addEventListener('mouseenter', this.handlePortalMouseEnter)
   }
 
   mountPortal = () => {

@@ -4,19 +4,19 @@ import { Image, List } from 'semantic-ui-react'
 const ListExampleSelection = () => (
   <List selection verticalAlign='middle'>
     <List.Item>
-      <Image avatar src='http://semantic-ui.com/images/avatar/small/helen.jpg' />
+      <Image avatar src='/assets/images/avatar/small/helen.jpg' />
         <List.Content>
           <List.Header>Helen</List.Header>
         </List.Content>
     </List.Item>
     <List.Item>
-      <Image avatar src='http://semantic-ui.com/images/avatar/small/christian.jpg' />
+      <Image avatar src='/assets/images/avatar/small/christian.jpg' />
         <List.Content>
           <List.Header>Christian</List.Header>
         </List.Content>
     </List.Item>
     <List.Item>
-      <Image avatar src='http://semantic-ui.com/images/avatar/small/daniel.jpg' />
+      <Image avatar src='/assets/images/avatar/small/daniel.jpg' />
         <List.Content>
           <List.Header>Daniel</List.Header>
         </List.Content>

@@ -27,14 +27,14 @@ describe('DropdownItem', () => {
     propKey: 'description',
     ShorthandComponent: 'span',
     mapValueToProps: children => ({ children }),
-    shorthandDefaultProps: props => ({ className: 'description' }),
+    shorthandDefaultProps: { className: 'description' },
   })
 
   common.implementsShorthandProp(DropdownItem, {
     propKey: 'text',
     ShorthandComponent: 'span',
     mapValueToProps: children => ({ children }),
-    shorthandDefaultProps: props => ({ className: 'text' }),
+    shorthandDefaultProps: { className: 'text' },
   })
 
   describe('aria', () => {

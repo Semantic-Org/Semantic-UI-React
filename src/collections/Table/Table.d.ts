@@ -12,7 +12,7 @@ import { default as TableHeader } from './TableHeader';
 import { default as TableHeaderCell } from './TableHeaderCell';
 import { default as TableRow } from './TableRow';
 
-interface TableProps {
+export interface TableProps {
   [key: string]: any;
 
   /** An element type to render as (string or function). */
@@ -66,8 +66,11 @@ interface TableProps {
   padded?: boolean | 'very';
 
   /**
-   * A function that takes (data, index) and returns shorthand for a TableRow
-   * to be placed within Table.Body.
+   * Mapped over `tableData` and should return shorthand for each Table.Row to be placed within Table.Body.
+   *
+   * @param {*} data - An element in the `tableData` array.
+   * @param {number} index - The index of the current element in `tableData`.
+   * @returns {*} Shorthand for a Table.Row.
    */
   renderBodyRow?: (data: any, index: number) => any;
 

@@ -3,7 +3,7 @@ import { Image, Rail, Segment } from 'semantic-ui-react'
 
 const RailExampleInternal = () => (
   <Segment textAlign='center'>
-    <Image src='http://semantic-ui.com/images/wireframe/paragraph.png' />
+    <Image src='/assets/images/wireframe/paragraph.png' />
 
     <Rail internal position='left'>
       <Segment>Left Rail Content</Segment>

@@ -22,7 +22,7 @@ export default class MenuExampleTabularOnTop extends Component {
         </Menu>
 
         <Segment attached='bottom'>
-          <img src='http://semantic-ui.com/images/wireframe/paragraph.png' />
+          <img src='/assets/images/wireframe/paragraph.png' />
         </Segment>
       </div>
     )

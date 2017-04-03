@@ -2,12 +2,13 @@ import _ from 'lodash'
 import faker from 'faker'
 import React from 'react'
 
-import * as common from 'test/specs/commonTests'
-import { domEvent, sandbox } from 'test/utils'
-import Search from 'src/modules/Search/Search'
+import { htmlInputAttrs } from 'src/lib'
+import Search from 'src/modules/Search'
 import SearchCategory from 'src/modules/Search/SearchCategory'
 import SearchResult from 'src/modules/Search/SearchResult'
 import SearchResults from 'src/modules/Search/SearchResults'
+import * as common from 'test/specs/commonTests'
+import { domEvent, sandbox } from 'test/utils'
 
 let attachTo
 let options
@@ -76,8 +77,9 @@ describe('Search', () => {
   })
 
   common.isConformant(Search)
-  common.hasUIClassName(Search)
   common.hasSubComponents(Search, [SearchCategory, SearchResult, SearchResults])
+  common.hasUIClassName(Search)
+
   common.propKeyOnlyToClassName(Search, 'category')
   common.propKeyOnlyToClassName(Search, 'fluid')
   common.propKeyOnlyToClassName(Search, 'loading')
@@ -728,18 +730,16 @@ describe('Search', () => {
     })
   })
 
-  describe('placeholder', () => {
-    it('is present when defined', () => {
-      wrapperShallow(<Search results={options} minCharacters={0} placeholder='hi' />)
-        .find('Input')
-        .first()
-        .should.have.prop('placeholder', 'hi')
-    })
-    it('is not present when not defined', () => {
-      wrapperShallow(<Search results={options} minCharacters={0} />)
-        .find('Input')
-        .first()
-        .should.not.have.prop('placeholder')
+  describe('input props', () => {
+    // Search handles some of html props
+    const props = _.without(htmlInputAttrs, 'defaultValue')
+
+    props.forEach(propName => {
+      it(`passes "${propName}" to the <input>`, () => {
+        wrapperMount(<Search {...{ [propName]: 'foo' }} />)
+          .find('input')
+          .should.have.prop(propName)
+      })
     })
   })
 })

@@ -1,1 +1,1 @@
-export { default } from './Portal';
+export { default, PortalProps } from './Portal';

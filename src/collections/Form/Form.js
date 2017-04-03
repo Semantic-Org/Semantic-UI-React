@@ -1,6 +1,6 @@
 import cx from 'classnames'
 import _ from 'lodash'
-import React, { Component, PropTypes } from 'react'
+import React, { PropTypes } from 'react'
 
 import {
   customPropTypes,
@@ -32,95 +32,91 @@ import FormTextArea from './FormTextArea'
  * @see Select
  * @see TextArea
  */
-export default class Form extends Component {
-  static propTypes = {
-    /** An element type to render as (string or function). */
-    as: customPropTypes.as,
+function Form(props) {
+  const {
+    children,
+    className,
+    error,
+    inverted,
+    loading,
+    reply,
+    size,
+    success,
+    warning,
+    widths,
+  } = props
 
-    /** Primary content. */
-    children: PropTypes.node,
+  const classes = cx(
+    'ui',
+    size,
+    useKeyOnly(error, 'error'),
+    useKeyOnly(inverted, 'inverted'),
+    useKeyOnly(loading, 'loading'),
+    useKeyOnly(reply, 'reply'),
+    useKeyOnly(success, 'success'),
+    useKeyOnly(warning, 'warning'),
+    useWidthProp(widths, null, true),
+    'form',
+    className,
+  )
+  const rest = getUnhandledProps(Form, props)
+  const ElementType = getElementType(Form, props)
 
-    /** Additional classes. */
-    className: PropTypes.string,
-
-    /** Automatically show any error Message children. */
-    error: PropTypes.bool,
-
-    /** A form can have its color inverted for contrast. */
-    inverted: PropTypes.bool,
-
-    /** Automatically show a loading indicator. */
-    loading: PropTypes.bool,
-
-    /** A comment can contain a form to reply to a comment. This may have arbitrary content. */
-    reply: PropTypes.bool,
-
-    /** A form can vary in size. */
-    size: PropTypes.oneOf(_.without(SUI.SIZES, 'medium')),
-
-    /** Automatically show any success Message children. */
-    success: PropTypes.bool,
-
-    /** Automatically show any warning Message children .*/
-    warning: PropTypes.bool,
-
-    /** Forms can automatically divide fields to be equal width. */
-    widths: PropTypes.oneOf(['equal']),
-  }
-
-  static defaultProps = {
-    as: 'form',
-  }
-
-  static _meta = {
-    name: 'Form',
-    type: META.TYPES.COLLECTION,
-  }
-
-  static Field = FormField
-  static Button = FormButton
-  static Checkbox = FormCheckbox
-  static Dropdown = FormDropdown
-  static Group = FormGroup
-  static Input = FormInput
-  static Radio = FormRadio
-  static Select = FormSelect
-  static TextArea = FormTextArea
-
-  render() {
-    const {
-      children,
-      className,
-      error,
-      inverted,
-      loading,
-      reply,
-      size,
-      success,
-      warning,
-      widths,
-    } = this.props
-
-    const classes = cx(
-      'ui',
-      size,
-      useKeyOnly(error, 'error'),
-      useKeyOnly(inverted, 'inverted'),
-      useKeyOnly(loading, 'loading'),
-      useKeyOnly(reply, 'reply'),
-      useKeyOnly(success, 'success'),
-      useKeyOnly(warning, 'warning'),
-      useWidthProp(widths, null, true),
-      'form',
-      className,
-    )
-    const rest = getUnhandledProps(Form, this.props)
-    const ElementType = getElementType(Form, this.props)
-
-    return (
-      <ElementType {...rest} className={classes}>
-        {children}
-      </ElementType>
-    )
-  }
+  return <ElementType {...rest} className={classes}>{children}</ElementType>
 }
+
+Form.propTypes = {
+  /** An element type to render as (string or function). */
+  as: customPropTypes.as,
+
+  /** Primary content. */
+  children: PropTypes.node,
+
+  /** Additional classes. */
+  className: PropTypes.string,
+
+  /** Automatically show any error Message children. */
+  error: PropTypes.bool,
+
+  /** A form can have its color inverted for contrast. */
+  inverted: PropTypes.bool,
+
+  /** Automatically show a loading indicator. */
+  loading: PropTypes.bool,
+
+  /** A comment can contain a form to reply to a comment. This may have arbitrary content. */
+  reply: PropTypes.bool,
+
+  /** A form can vary in size. */
+  size: PropTypes.oneOf(_.without(SUI.SIZES, 'medium')),
+
+  /** Automatically show any success Message children. */
+  success: PropTypes.bool,
+
+  /** Automatically show any warning Message children .*/
+  warning: PropTypes.bool,
+
+  /** Forms can automatically divide fields to be equal width. */
+  widths: PropTypes.oneOf(['equal']),
+}
+
+Form.defaultProps = {
+  as: 'form',
+}
+
+Form._meta = {
+  name: 'Form',
+  type: META.TYPES.COLLECTION,
+}
+
+Form.Field = FormField
+Form.Button = FormButton
+Form.Checkbox = FormCheckbox
+Form.Dropdown = FormDropdown
+Form.Group = FormGroup
+Form.Input = FormInput
+Form.Radio = FormRadio
+Form.Select = FormSelect
+Form.TextArea = FormTextArea
+
+export default Form

@@ -5,12 +5,12 @@ const GridExampleStackable = () => (
   <Grid stackable columns={2}>
     <Grid.Column>
       <Segment>
-        <Image src='http://semantic-ui.com/images/wireframe/paragraph.png' />
+        <Image src='/assets/images/wireframe/paragraph.png' />
       </Segment>
     </Grid.Column>
     <Grid.Column>
       <Segment>
-        <Image src='http://semantic-ui.com/images/wireframe/paragraph.png' />
+        <Image src='/assets/images/wireframe/paragraph.png' />
       </Segment>
     </Grid.Column>
   </Grid>

@@ -1,10 +1,10 @@
 import * as React from 'react';
 
-import { default as SearchCategory, SearchCategoryProps} from './SearchCategory';
+import { default as SearchCategory, SearchCategoryProps } from './SearchCategory';
 import { default as SearchResult, SearchResultProps } from './SearchResult';
 import { default as SearchResults } from './SearchResults';
 
-interface SearchProps {
+export interface SearchProps {
   [key: string]: any;
 
   /** An element type to render as (string or function). */
@@ -35,9 +35,6 @@ interface SearchProps {
   /** Controls whether or not the results menu is displayed. */
   open?: boolean;
 
-  /** Placeholder of the search input. */
-  placeholder?: string;
-
   /**
    * One of:
    * - array of Search.Result props e.g. `{ title: '', description: '' }` or
@@ -59,14 +56,18 @@ interface SearchProps {
   // ------------------------------------
 
   /**
-   * A function that returns the category contents.
-   * Receives all SearchCategory props.
+   * Renders the SearchCategory contents.
+   *
+   * @param {object} props - The SearchCategory props object.
+   * @returns {*} - Renderable SearchCategory contents.
    */
   categoryRenderer?: (props: SearchCategoryProps) => React.ReactElement<any>;
 
   /**
-   * A function that returns the result contents.
-   * Receives all SearchResult props.
+   * Renders the SearchResult contents.
+   *
+   * @param {object} props - The SearchResult props object.
+   * @returns {*} - Renderable SearchResult contents.
    */
   resultRenderer?: (props: SearchResultProps) => Array<React.ReactElement<any>>;
 
@@ -80,7 +81,7 @@ interface SearchProps {
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
    * @param {object} data - All props.
    */
-  onBlur: (event: React.MouseEvent<HTMLElement>, data: SearchProps) => void;
+  onBlur?: (event: React.MouseEvent<HTMLElement>, data: SearchProps) => void;
 
   /**
    * Called on focus.
@@ -88,7 +89,7 @@ interface SearchProps {
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
    * @param {object} data - All props.
    */
-  onFocus: (event: React.MouseEvent<HTMLElement>, data: SearchProps) => void;
+  onFocus?: (event: React.MouseEvent<HTMLElement>, data: SearchProps) => void;
 
   /**
    * Called on mousedown.
@@ -96,7 +97,7 @@ interface SearchProps {
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
    * @param {object} data - All props.
    */
-  onMouseDown: (event: React.MouseEvent<HTMLElement>, data: SearchProps) => void;
+  onMouseDown?: (event: React.MouseEvent<HTMLElement>, data: SearchProps) => void;
 
   /**
    * Called when a result is selected.
@@ -104,7 +105,7 @@ interface SearchProps {
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
    * @param {object} data - All props.
    */
-  onResultSelect: (event: React.MouseEvent<HTMLDivElement>, data: SearchResultProps) => void;
+  onResultSelect?: (event: React.MouseEvent<HTMLDivElement>, data: SearchResultProps) => void;
 
   /**
    * Called on search input change.
@@ -112,7 +113,7 @@ interface SearchProps {
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
    * @param {string} value - Current value of search input.
    */
-  onSearchChange: (event: React.MouseEvent<HTMLElement>, value: string) => void;
+  onSearchChange?: (event: React.MouseEvent<HTMLElement>, value: string) => void;
 
   // ------------------------------------
   // Style
@@ -131,7 +132,7 @@ interface SearchProps {
   fluid?: boolean;
 
   /** A search input can take up the width of its container. */
-  input: any;
+  input?: any;
 
   /** A search can show a loading indicator. */
   loading?: boolean;

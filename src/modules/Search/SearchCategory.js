@@ -9,8 +9,6 @@ import {
   useKeyOnly,
 } from '../../lib'
 
-const defaultRenderer = ({ name }) => name
-
 function SearchCategory(props) {
   const { active, children, className, renderer } = props
   const classes = cx(
@@ -24,7 +22,7 @@ function SearchCategory(props) {
   return (
     <ElementType {...rest} className={classes}>
       <div className='name'>
-        {renderer ? renderer(props) : defaultRenderer(props)}
+        {renderer(props)}
       </div>
       {children}
     </ElementType>
@@ -35,6 +33,10 @@ SearchCategory._meta = {
   name: 'SearchCategory',
   parent: 'Search',
   type: META.TYPES.MODULE,
+}
+
+SearchCategory.defaultProps = {
+  renderer: ({ name }) => name,
 }
 
 SearchCategory.propTypes = {
@@ -54,8 +56,10 @@ SearchCategory.propTypes = {
   name: PropTypes.string,
 
   /**
-   * A function that returns the category contents.
-   * Receives all SearchCategory props.
+   * Renders the category contents.
+   *
+   * @param {object} props - The SearchCategory props object.
+   * @returns {*} - Renderable category contents.
    */
   renderer: PropTypes.func,
 

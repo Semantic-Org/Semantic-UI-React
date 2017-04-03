@@ -8,6 +8,7 @@ import {
   META,
   SUI,
   useKeyOnly,
+  useOnlyProp,
   useTextAlignProp,
   useValueAndKey,
   useVerticalAlignProp,
@@ -38,9 +39,9 @@ function GridColumn(props) {
   const classes = cx(
     color,
     useKeyOnly(stretched, 'stretched'),
+    useOnlyProp(only, 'only'),
     useTextAlignProp(textAlign),
     useValueAndKey(floated, 'floated'),
-    useValueAndKey(only, 'only'),
     useVerticalAlignProp(verticalAlign),
     useWidthProp(computer, 'wide computer'),
     useWidthProp(largeScreen, 'wide large screen'),
@@ -88,8 +89,8 @@ GridColumn.propTypes = {
   /** A column can specify a width for a mobile device. */
   mobile: PropTypes.oneOf(SUI.WIDTHS),
 
-  /** A column can appear only for a specific device, or screen sizes. */
-  only: PropTypes.oneOf(['computer', 'large screen', 'mobile', 'tablet mobile', 'tablet', 'widescreen']),
+  /** A row can appear only for a specific device, or screen sizes. */
+  only: customPropTypes.onlyProp(SUI.VISIBILITY),
 
   /** A column can stretch its contents to take up the entire grid or row height. */
   stretched: PropTypes.bool,

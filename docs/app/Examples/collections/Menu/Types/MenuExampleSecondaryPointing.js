@@ -21,7 +21,7 @@ export default class MenuExampleSecondaryPointing extends Component {
         </Menu>
 
         <Segment>
-          <img src='http://semantic-ui.com/images/wireframe/media-paragraph.png' />
+          <img src='/assets/images/wireframe/media-paragraph.png' />
         </Segment>
       </div>
     )

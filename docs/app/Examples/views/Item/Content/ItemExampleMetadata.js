@@ -1,12 +1,12 @@
 import React from 'react'
 import { Image as ImageComponent, Item } from 'semantic-ui-react'
 
-const paragraph = <ImageComponent src='http://semantic-ui.com/images/wireframe/short-paragraph.png' />
+const paragraph = <ImageComponent src='/assets/images/wireframe/short-paragraph.png' />
 
 const ItemExampleMetadata = () => (
   <Item.Group>
     <Item>
-      <Item.Image size='tiny' src='http://semantic-ui.com/images/wireframe/image.png' />
+      <Item.Image size='tiny' src='/assets/images/wireframe/image.png' />
 
       <Item.Content>
         <Item.Header>Arrowhead Valley Camp</Item.Header>
@@ -19,7 +19,7 @@ const ItemExampleMetadata = () => (
     </Item>
 
     <Item>
-      <Item.Image size='tiny' src='http://semantic-ui.com/images/wireframe/image.png' />
+      <Item.Image size='tiny' src='/assets/images/wireframe/image.png' />
 
       <Item.Content>
         <Item.Header>Buck's Homebrew Stayaway</Item.Header>
@@ -29,7 +29,7 @@ const ItemExampleMetadata = () => (
     </Item>
 
     <Item>
-      <Item.Image size='tiny' src='http://semantic-ui.com/images/wireframe/image.png' />
+      <Item.Image size='tiny' src='/assets/images/wireframe/image.png' />
       <Item.Content header='Arrowhead Valley Camp' meta='$1200 1 Month' />
     </Item>
   </Item.Group>

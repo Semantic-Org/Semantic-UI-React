@@ -4,7 +4,6 @@ import React, { Children, cloneElement, PropTypes } from 'react'
 
 import {
   AutoControlledComponent as Component,
-  createShorthand,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -250,7 +249,15 @@ export default class Dropdown extends Component {
       PropTypes.oneOf(['left', 'right', 'top', 'top left', 'top right', 'bottom', 'bottom left', 'bottom right']),
     ]),
 
-    /** A function that takes (data, index, defaultLabelProps) and returns shorthand for Label. */
+    /**
+     * Mapped over the active items and returns shorthand for the active item Labels.
+     * Only applies to `multiple` Dropdowns.
+     *
+     * @param {object} item - A currently active dropdown item.
+     * @param {number} index - The current index.
+     * @param {object} defaultLabelProps - The default props for an active item Label.
+     * @returns {*} Shorthand for a Label.
+     */
     renderLabel: PropTypes.func,
 
     /** A dropdown can have its menu scroll. */
@@ -439,6 +446,7 @@ export default class Dropdown extends Component {
       document.addEventListener('click', this.closeOnDocumentClick)
       document.removeEventListener('keydown', this.openOnArrow)
       document.removeEventListener('keydown', this.openOnSpace)
+      this.scrollSelectedItemIntoView()
     } else if (prevState.open && !this.state.open) {
       debug('dropdown closed')
       this.handleClose()
@@ -931,8 +939,11 @@ export default class Dropdown extends Component {
 
   scrollSelectedItemIntoView = () => {
     debug('scrollSelectedItemIntoView()')
+    if (!this.ref) return
     const menu = this.ref.querySelector('.menu.visible')
+    if (!menu) return
     const item = menu.querySelector('.item.selected')
+    if (!item) return
     debug(`menu: ${menu}`)
     debug(`item: ${item}`)
     const isOutOfUpperView = item.offsetTop < menu.scrollTop
@@ -954,6 +965,7 @@ export default class Dropdown extends Component {
     if (onOpen) onOpen(e, this.props)
 
     this.trySetState({ open: true })
+    this.scrollSelectedItemIntoView()
   }
 
   close = (e) => {
@@ -982,7 +994,22 @@ export default class Dropdown extends Component {
     this.setState({ focus: hasFocus })
   }
 
-  toggle = (e) => this.state.open ? this.close(e) : this.open(e)
+  toggle = (e) => {
+    if (!this.state.open) {
+      this.open(e)
+      return
+    }
+
+    const { search } = this.props
+    const options = this.getMenuOptions()
+
+    if (search && _.isEmpty(options)) {
+      e.preventDefault()
+      return
+    }
+
+    this.close(e)
+  }
 
   // ----------------------------------------
   // Render
@@ -1090,7 +1117,7 @@ export default class Dropdown extends Component {
     // if no item could be found for a given state value the selected item will be undefined
     // compact the selectedItems so we only have actual objects left
     return _.map(_.compact(selectedItems), (item, index) => {
-      const defaultLabelProps = {
+      const defaultProps = {
         active: item.value === selectedLabel,
         as: 'a',
         key: item.value,
@@ -1100,8 +1127,8 @@ export default class Dropdown extends Component {
       }
 
       return Label.create(
-        renderLabel(item, index, defaultLabelProps),
-        defaultLabelProps,
+        renderLabel(item, index, defaultProps),
+        { defaultProps }
       )
     })
   }
@@ -1148,7 +1175,7 @@ export default class Dropdown extends Component {
 
     return (
       <DropdownMenu {...ariaOptions} className={menuClasses}>
-        {createShorthand(DropdownHeader, val => ({ content: val }), header)}
+        {DropdownHeader.create(header)}
         {this.renderOptions()}
       </DropdownMenu>
     )

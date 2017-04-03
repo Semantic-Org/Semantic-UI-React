@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { IconSizeProp } from './Icon';
 
-interface IconGroupProps {
+export interface IconGroupProps {
   [key: string]: any;
 
   /** An element type to render as (string or function). */

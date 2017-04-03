@@ -68,7 +68,7 @@ class TAAttribution extends Component {
           inline
           verticalAlign='middle'
           style={imageStyle}
-          src={`${__BASE__}assets/technologyadvice-logo-dark.png`}
+          src='/assets/technologyadvice-logo-dark.png'
         />
       </a>
     )
