@@ -32,7 +32,7 @@ const panels = [
           {' '}from a shelter, helps give a good home to a dog who may not find one so readily.
         </p>
       </div>
-    )},
+    ) },
   },
 ]
 

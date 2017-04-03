@@ -9,13 +9,12 @@ import {
   getElementType,
   getUnhandledProps,
   META,
-  useKeyOnly,
 } from '../../lib'
 import AccordionContent from './AccordionContent'
 import AccordionTitle from './AccordionTitle'
 
 /**
- * An accordion allows users to toggle the display of sections of content.
+ * An Accordion can contain sub-accordions.
  */
 export default class AccordionAccordion extends Component {
   static propTypes = {
@@ -50,7 +49,7 @@ export default class AccordionAccordion extends Component {
     exclusive: PropTypes.bool,
 
     /**
-     * onClick handler for AccordionTitle. Mutually exclusive with children.
+     * Called when a panel title is clicked.
      *
      * @param {SyntheticEvent} event - React's original SyntheticEvent.
      * @param {object} data - All item props.
@@ -105,16 +104,17 @@ export default class AccordionAccordion extends Component {
     return _.includes(activeIndex, index) ? _.without(activeIndex, index) : [...activeIndex, index]
   }
 
-  handleTitleClick = (e, titleProps) => {
-    const { index } = titleProps
-    const { onTitleClick, panels } = this.props
-    const activeIndex = this.computeNewIndex(index)
+  handleTitleOverrides = predefinedProps => ({
+    onClick: (e, titleProps) => {
+      const { index } = titleProps
+      const activeIndex = this.computeNewIndex(index)
 
-    this.trySetState({ activeIndex })
+      this.trySetState({ activeIndex })
 
-    if (_.get(panels[index], 'onClick')) panels[index].onClick(e, titleProps)
-    if (onTitleClick) onTitleClick(e, titleProps)
-  }
+      _.invoke(predefinedProps, 'onClick', e, titleProps)
+      _.invoke(this.props, 'onTitleClick', e, titleProps)
+    },
+  })
 
   isIndexActive = index => {
     const { exclusive } = this.props
@@ -132,33 +132,19 @@ export default class AccordionAccordion extends Component {
       const active = this.isIndexActive(index)
 
       children.push(AccordionTitle.create(title, {
-        active,
-        index,
-        key: `${key}-title`,
-        onClick: this.handleTitleClick,
+        defaultProps: { active, index, key: `${key}-title` },
+        overrideProps: this.handleTitleOverrides,
       }))
-      children.push(AccordionContent.create(content, { active, key: `${key}-content`}))
+      children.push(AccordionContent.create(content, { defaultProps: { active, key: `${key}-content` } }))
     })
 
     return children
   }
 
   render() {
-    const {
-      className,
-      children,
-      fluid,
-      inverted,
-      styled,
-    } = this.props
+    const { className, children } = this.props
 
-    const classes = cx(
-      useKeyOnly(fluid, 'fluid'),
-      useKeyOnly(inverted, 'inverted'),
-      useKeyOnly(styled, 'styled'),
-      'accordion',
-      className,
-    )
+    const classes = cx('accordion', className)
     const rest = getUnhandledProps(AccordionAccordion, this.props)
     const ElementType = getElementType(AccordionAccordion, this.props)
 

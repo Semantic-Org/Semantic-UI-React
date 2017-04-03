@@ -212,12 +212,12 @@ describe('AccordionAccordion', () => {
 
   describe('onTitleClick', () => {
     const event = { target: null }
-    const spy = sandbox.spy()
 
-    const panelSpy = sandbox.spy()
+    const onClick = sandbox.spy()
+    const onTitleClick = sandbox.spy()
     const panels = [
-      { key: 1, title: { content: 'A', onClick: panelSpy }},
-      { key: 2, title: 'B'},
+      { key: 1, title: { content: 'A', onClick } },
+      { key: 2, title: 'B' },
     ]
 
     it('can be omitted', () => {
@@ -226,26 +226,16 @@ describe('AccordionAccordion', () => {
     })
 
     it('is called with (e, titleProps) when clicked', () => {
-      mount(<AccordionAccordion panels={panels} onTitleClick={spy} />)
-        .find(AccordionTitle)
-        .at(1)
-        .simulate('click', event)
-
-      spy.should.have.been.calledOnce()
-      spy.should.have.been.calledWithMatch(event, {index: 1, content: 'B'})
-    })
-
-    it("passes AccortdionTitle's onClick", () => {
-      mount(<AccordionAccordion panels={panels} onTitleClick={spy} />)
+      mount(<AccordionAccordion panels={panels} onTitleClick={onTitleClick} />)
         .find(AccordionTitle)
         .at(0)
         .simulate('click', event)
 
-      panelSpy.should.have.been.calledOnce()
-      panelSpy.should.have.been.calledWithMatch(event, {index: 0, content: 'A'})
+      onClick.should.have.been.calledOnce()
+      onClick.should.have.been.calledWithMatch(event, { index: 0, content: 'A' })
 
-      spy.should.have.been.calledOnce()
-      spy.should.have.been.calledWithMatch(event, {index: 0, content: 'A'})
+      onTitleClick.should.have.been.calledOnce()
+      onTitleClick.should.have.been.calledWithMatch(event, { index: 0, content: 'A' })
     })
   })
 
@@ -254,8 +244,8 @@ describe('AccordionAccordion', () => {
     const spy = sandbox.spy()
 
     const panels = [
-      { key: 1, title: { content: 'A', onClick: spy }, content: { content: 'Content A', 'data-foo': 'something' }},
-      { key: 2, title: 'B', content: { content: 'Content B', 'data-foo': 'something' }},
+      { key: 1, title: { content: 'A', onClick: spy }, content: { content: 'Content A', 'data-foo': 'something' } },
+      { key: 2, title: 'B', content: { content: 'Content B', 'data-foo': 'something' } },
     ]
     const children = mount(<AccordionAccordion panels={panels} />)
 

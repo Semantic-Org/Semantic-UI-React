@@ -5,7 +5,6 @@ import AccordionAccordion from 'src/modules/Accordion/AccordionAccordion'
 import AccordionContent from 'src/modules/Accordion/AccordionContent'
 import AccordionTitle from 'src/modules/Accordion/AccordionTitle'
 import * as common from 'test/specs/commonTests'
-import { consoleUtil, sandbox } from 'test/utils'
 
 describe('Accordion', () => {
   common.isConformant(Accordion)

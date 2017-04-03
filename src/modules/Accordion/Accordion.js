@@ -2,7 +2,6 @@ import cx from 'classnames'
 import React, { PropTypes } from 'react'
 
 import {
-  customPropTypes,
   getUnhandledProps,
   META,
   useKeyOnly,

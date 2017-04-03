@@ -104,6 +104,10 @@ export { default as StepTitle, StepTitleProps } from './dist/commonjs/elements/S
 
 // Modules
 export { default as Accordion, AccordionProps } from './dist/commonjs/modules/Accordion/Accordion'
+export {
+  default as AccordionAccordion,
+  AccordionAccordionProps
+} from './dist/commonjs/modules/Accordion/AccordionAccordion'
 export { default as AccordionContent, AccordionContentProps } from './dist/commonjs/modules/Accordion/AccordionContent'
 export { default as AccordionTitle, AccordionTitleProps } from './dist/commonjs/modules/Accordion/AccordionTitle'
 
