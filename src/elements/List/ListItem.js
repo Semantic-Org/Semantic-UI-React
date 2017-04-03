@@ -149,6 +149,6 @@ ListItem.propTypes = {
   value: PropTypes.string,
 }
 
-ListItem.create = createShorthandFactory(ListItem, content => ({ content }), true)
+ListItem.create = createShorthandFactory(ListItem, content => ({ content }))
 
 export default ListItem

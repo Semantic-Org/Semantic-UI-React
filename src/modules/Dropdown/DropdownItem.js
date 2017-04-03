@@ -140,13 +140,13 @@ export default class DropdownItem extends Component {
       'span',
       val => ({ children: val }),
       description,
-      props => ({ className: 'description' })
+      { defaultProps: { className: 'description' } }
     )
     const textElement = createShorthand(
       'span',
       val => ({ children: val }),
       content || text,
-      props => ({ className: 'text' })
+      { defaultProps: { className: 'text' } }
     )
 
     return (

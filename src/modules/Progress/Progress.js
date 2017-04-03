@@ -3,7 +3,7 @@ import _ from 'lodash'
 import React, { Component, PropTypes } from 'react'
 
 import {
-  createShorthand,
+  createHTMLDivision,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -138,7 +138,7 @@ class Progress extends Component {
     const { children, label } = this.props
 
     if (!_.isNil(children)) return <div className='label'>{children}</div>
-    return createShorthand('div', val => ({ children: val }), label, { className: 'label' })
+    return createHTMLDivision(label, { defaultProps: { className: 'label' } })
   }
 
   renderProgress = percent => {

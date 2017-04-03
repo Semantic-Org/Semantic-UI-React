@@ -413,7 +413,7 @@ class ComponentExample extends Component {
             </ToolTip>
             <ToolTip content='Show HTML'>
               <Menu.Item active={showHTML} onClick={this.handleShowHTMLClick}>
-                <Icon size='large' color='grey' name='html5' fitted />
+                <Icon size='large' color={showHTML ? 'green' : 'grey'} name='html5' fitted />
               </Menu.Item>
             </ToolTip>
             <ToolTip content='Edit Code'>

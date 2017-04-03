@@ -1,5 +1,3 @@
-import cx from 'classnames'
-import _ from 'lodash'
 import React from 'react'
 
 import Input from 'src/elements/Input/Input'
@@ -56,19 +54,11 @@ describe('Input', () => {
   common.rendersChildren(Input)
 
   common.implementsLabelProp(Input, {
-    shorthandDefaultProps: elProps => ({
-      className: cx({
-        label: !_.includes(elProps.className, 'label'),
-      }),
-    }),
+    shorthandDefaultProps: { className: 'label' },
   })
   common.implementsButtonProp(Input, {
     propKey: 'action',
-    shorthandDefaultProps: elProps => ({
-      className: cx({
-        button: !_.includes(elProps.className, 'button'),
-      }),
-    }),
+    shorthandDefaultProps: { className: 'button' },
   })
   common.implementsCreateMethod(Input)
   common.implementsHTMLInputProp(Input, {
