@@ -156,9 +156,6 @@ if (!__TEST__) {
   webpackConfig.module.noParse = [...webpackConfig.module.noParse,
     // Do not parse browser ready modules loaded via CDN (faster builds)
     /faker/,
-    /js-beautify/,
-    /react/,
-    /react-dom/,
   ]
 }
 
