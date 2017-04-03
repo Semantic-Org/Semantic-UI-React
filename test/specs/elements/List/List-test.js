@@ -1,5 +1,4 @@
 import React from 'react'
-import sinon from 'sinon'
 
 import List from 'src/elements/List/List'
 import ListContent from 'src/elements/List/ListContent'
@@ -45,22 +44,23 @@ describe('List', () => {
     })
 
     it('is called with (e, { index, ...itemProps }) when clicked', () => {
+      const onClick = sandbox.spy()
       const onItemClick = sandbox.spy()
       const event = { target: null }
-      const itemProps = { key: 'notes', content: 'Notes', 'data-foo': 'bar' }
 
-      const wrapper = shallow(<List items={[itemProps]} onItemClick={onItemClick} />)
+      const callbackData = { content: 'Notes', 'data-foo': 'bar' }
+      const itemProps = { key: 'notes', content: 'Notes', 'data-foo': 'bar', onClick }
 
-      const callbackData = { ...itemProps, index: 0, onClick: sinon.match.func }
-      delete callbackData.key
-
-      wrapper.find('ListItem')
+      shallow(<List items={[itemProps]} onItemClick={onItemClick} />)
+        .find('ListItem')
         .first()
         .shallow()
         .simulate('click', event)
 
+      onClick.should.have.been.calledOnce()
+      onClick.should.have.been.calledWithMatch(event, callbackData)
+
       onItemClick.should.have.been.calledOnce()
-      onItemClick.firstCall.args.should.have.a.lengthOf(2)
       onItemClick.should.have.been.calledWithMatch(event, callbackData)
     })
   })

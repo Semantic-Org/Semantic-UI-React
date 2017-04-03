@@ -103,11 +103,12 @@ class List extends Component {
   static Item = ListItem
   static List = ListList
 
-  handleItemClick = index => (e, itemProps) => {
-    const { onItemClick } = this.props
-
-    if (onItemClick) onItemClick(e, { index, ...itemProps })
-  }
+  handleItemOverrides = predefinedProps => ({
+    onClick: (e, itemProps) => {
+      _.invoke(predefinedProps, 'onClick', e, itemProps)
+      _.invoke(this.props, 'onItemClick', e, itemProps)
+    },
+  })
 
   render() {
     const {
@@ -156,7 +157,7 @@ class List extends Component {
 
     return (
       <ElementType {...rest} role='list' className={classes}>
-        {_.map(items, (item, i) => ListItem.create(item, { onClick: this.handleItemClick(i) }))}
+        {_.map(items, item => ListItem.create(item, { overrideProps: this.handleItemOverrides }))}
       </ElementType>
     )
   }
