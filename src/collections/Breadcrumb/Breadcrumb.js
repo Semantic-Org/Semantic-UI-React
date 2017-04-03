@@ -40,11 +40,13 @@ function Breadcrumb(props) {
 
   _.each(sections, (section, index) => {
     // section
-    childElements.push(BreadcrumbSection.create(section))
+    const breadcrumbElement = BreadcrumbSection.create(section)
+    childElements.push(breadcrumbElement)
 
     // divider
     if (index !== sections.length - 1) {
-      childElements.push(BreadcrumbDivider.create({ content: divider, icon }))
+      const key = `${breadcrumbElement.key}_divider` || JSON.stringify(section)
+      childElements.push(BreadcrumbDivider.create({ content: divider, icon, key }))
     }
   })
 
