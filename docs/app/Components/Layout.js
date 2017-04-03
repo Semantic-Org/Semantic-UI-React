@@ -1,4 +1,3 @@
-import 'semantic-ui-css/semantic.css'
 import AnchorJS from 'anchor-js'
 import React, { Component, PropTypes } from 'react'
 

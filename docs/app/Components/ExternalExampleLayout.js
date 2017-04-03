@@ -1,4 +1,3 @@
-import 'semantic-ui-css/semantic.css'
 import _ from 'lodash/fp'
 import React, { Component, PropTypes } from 'react'
 

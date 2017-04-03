@@ -59,16 +59,22 @@ class Confirm extends Component {
   }
 
   handleCancel = e => {
-    const { onCancel } = this.props
-
-    if (onCancel) onCancel(e, this.props)
+    _.invoke(this.props, 'onCancel', e, this.props)
   }
 
-  handleConfirm = e => {
-    const { onConfirm } = this.props
+  handleCancelOverrides = predefinedProps => ({
+    onClick: (e, buttonProps) => {
+      _.invoke(predefinedProps, 'onClick', e, buttonProps)
+      this.handleCancel(e)
+    },
+  })
 
-    if (onConfirm) onConfirm(e, this.props)
-  }
+  handleConfirmOverrides = predefinedProps => ({
+    onClick: (e, buttonProps) => {
+      _.invoke(predefinedProps, 'onClick', e, buttonProps)
+      _.invoke(this.props, 'onConfirm', e, this.props)
+    },
+  })
 
   render() {
     const {
@@ -91,10 +97,10 @@ class Confirm extends Component {
         {Modal.Header.create(header)}
         {Modal.Content.create(content)}
         <Modal.Actions>
-          {Button.create(cancelButton, { onClick: this.handleCancel })}
+          {Button.create(cancelButton, { overrideProps: this.handleCancelOverrides })}
           {Button.create(confirmButton, {
-            onClick: this.handleConfirm,
-            primary: true,
+            defaultProps: { primary: true },
+            overrideProps: this.handleConfirmOverrides,
           })}
         </Modal.Actions>
       </Modal>

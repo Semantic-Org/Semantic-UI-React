@@ -517,7 +517,7 @@ export default class Search extends Component {
     const { icon, input } = this.props
     const { value } = this.state
 
-    return Input.create(input, {
+    return Input.create(input, { defaultProps: {
       ...rest,
       icon,
       input: { className: 'prompt', tabIndex: '0', autoComplete: 'off' },
@@ -526,7 +526,7 @@ export default class Search extends Component {
       onClick: this.handleInputClick,
       onFocus: this.handleFocus,
       value,
-    })
+    } })
   }
 
   renderNoResults = () => {

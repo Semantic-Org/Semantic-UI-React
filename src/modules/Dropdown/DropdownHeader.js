@@ -3,6 +3,7 @@ import _ from 'lodash'
 import React, { PropTypes } from 'react'
 
 import {
+  createShorthandFactory,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -25,9 +26,7 @@ function DropdownHeader(props) {
   const rest = getUnhandledProps(DropdownHeader, props)
   const ElementType = getElementType(DropdownHeader, props)
 
-  if (!_.isNil(children)) {
-    return <ElementType {...rest} className={classes}>{children}</ElementType>
-  }
+  if (!_.isNil(children)) return <ElementType {...rest} className={classes}>{children}</ElementType>
 
   return (
     <ElementType {...rest} className={classes}>
@@ -59,5 +58,7 @@ DropdownHeader.propTypes = {
   /** Shorthand for Icon. */
   icon: customPropTypes.itemShorthand,
 }
+
+DropdownHeader.create = createShorthandFactory(DropdownHeader, content => ({ content }))
 
 export default DropdownHeader

@@ -255,10 +255,10 @@ class Button extends Component {
       )
     }
 
-    const labelElement = Label.create(label, {
+    const labelElement = Label.create(label, { defaultProps: {
       basic: true,
       pointing: labelPosition === 'left' ? 'right' : 'left',
-    })
+    } })
 
     if (labelElement) {
       const classes = cx('ui', baseClasses, 'button', className)

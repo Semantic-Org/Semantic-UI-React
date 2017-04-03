@@ -163,6 +163,6 @@ class ListItem extends Component {
   }
 }
 
-ListItem.create = createShorthandFactory(ListItem, content => ({ content }), true)
+ListItem.create = createShorthandFactory(ListItem, content => ({ content }))
 
 export default ListItem

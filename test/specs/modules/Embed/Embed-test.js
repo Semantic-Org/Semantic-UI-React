@@ -1,4 +1,3 @@
-import faker from 'faker'
 import React from 'react'
 
 import Embed from 'src/modules/Embed/Embed'
@@ -6,7 +5,7 @@ import * as common from 'test/specs/commonTests'
 
 const assertIframeSrc = (props, srcPart) => {
   const {
-    id = faker.random.word(),
+    id = 'default-test-id',
     source = 'youtube',
     ...rest,
   } = props
@@ -14,7 +13,7 @@ const assertIframeSrc = (props, srcPart) => {
   shallow(<Embed active id={id} source={source} {...rest} />)
     .find('iframe')
     .should.have.attr('src')
-    .contain(srcPart)
+    .which.contains(srcPart)
 }
 
 describe('Embed', () => {
@@ -42,7 +41,7 @@ describe('Embed', () => {
     })
 
     it('renders nothing when false', () => {
-      const children = faker.hacker.phrase()
+      const children = 'child text'
 
       shallow(<Embed>{children}</Embed>)
         .should.not.contain(<div className='embed'>{children}</div>)
@@ -65,17 +64,18 @@ describe('Embed', () => {
 
   describe('color', () => {
     it('generates url part for source', () => {
-      const color = faker.internet.color()
+      const color = 'red'
       assertIframeSrc({ color }, `&amp;color=${encodeURIComponent(color)}`)
     })
   })
 
   describe('defaultActive', () => {
     it('sets the initial active state', () => {
-      const value = faker.random.boolean()
+      shallow(<Embed defaultActive />)
+        .should.have.state('active', true)
 
-      shallow(<Embed defaultActive={value} />)
-        .should.have.state('active', value)
+      shallow(<Embed defaultActive={false} />)
+        .should.have.state('active', false)
     })
   })
 
@@ -94,7 +94,7 @@ describe('Embed', () => {
     })
 
     it('renders img when defined', () => {
-      const url = faker.image.imageUrl()
+      const url = 'foo.png'
 
       shallow(<Embed placeholder={url} />)
         .should.contain(<img className='placeholder' src={url} />)
@@ -124,24 +124,32 @@ describe('Embed', () => {
 
   describe('source', () => {
     it('generates url for YouTube', () => {
-      const id = faker.random.word()
+      const id = 'foo'
 
       assertIframeSrc({ id }, `//www.youtube.com/embed/${id}`)
     })
 
     it('generates url for Vimeo', () => {
-      const id = faker.random.word()
+      const id = 'foo'
 
-      assertIframeSrc(
-        { source: 'vimeo', id },
-        `//player.vimeo.com/video/${id}`
-      )
+      assertIframeSrc({ source: 'vimeo', id }, `//player.vimeo.com/video/${id}`)
+    })
+
+    it('sets the iframe title', () => {
+      const sources = ['youtube', 'vimeo']
+
+      sources.forEach(source => {
+        shallow(<Embed active id='foo' source={source} />)
+          .find('iframe')
+          .should.have.attr('title')
+          .which.equals(`Embedded content from ${source}.`)
+      })
     })
   })
 
   describe('url', () => {
     it('passes url to iframe', () => {
-      const url = faker.internet.url()
+      const url = 'https://google.com'
 
       shallow(<Embed active url={url} />)
         .find('iframe')
