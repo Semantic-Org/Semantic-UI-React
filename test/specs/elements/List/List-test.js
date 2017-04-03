@@ -43,7 +43,7 @@ describe('List', () => {
       expect(click).to.not.throw()
     })
 
-    it('is called with (e, { index, ...itemProps }) when clicked', () => {
+    it('is called with (e, itemProps) when clicked', () => {
       const onClick = sandbox.spy()
       const onItemClick = sandbox.spy()
       const event = { target: null }
