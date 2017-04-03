@@ -35,7 +35,6 @@
     "prestart": "npm run satisfaction -s",
     "start": "npm run docs",
     "satisfaction": "satisfaction-status",
-    "start:local-modules": "npm run docs -- --local-modules",
     "pretest": "npm run satisfaction -s && npm run build:dll",
     "test": "cross-env NODE_ENV=test karma start",
     "test:watch": "npm run test --silent -- --no-single-run",
