@@ -9,6 +9,11 @@ export default (Component) => {
   const { name } = Component._meta
 
   describe('create shorthand method (common)', () => {
+    beforeEach(() => {
+      // we generate prop values which may throw warnings
+      // prevent failures due to console activity
+      consoleUtil.disableOnce()
+    })
     it('is a static method', () => {
       Component.should.have.any.keys('create')
       Component.create.should.be.a('function')
