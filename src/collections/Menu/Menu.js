@@ -139,10 +139,6 @@ class Menu extends Component {
 
     this.trySetState({ activeIndex: index })
 
-    // TODO this assumes objects are passed
-    // It would have to operate on props of the result of the MenuItem factory.
-    // Also, List.js does not preseve item onClick handlers when using onItemClick
-    // this probably shouldn't either.
     if (_.get(items[index], 'onClick')) items[index].onClick(e, itemProps)
     if (onItemClick) onItemClick(e, itemProps)
   }
