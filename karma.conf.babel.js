@@ -1,3 +1,4 @@
+import fs from 'fs'
 import puppeteerPkg from 'puppeteer/package.json'
 import Downloader from 'puppeteer/utils/ChromiumDownloader'
 import config from './config'
@@ -7,6 +8,8 @@ const revision = puppeteerPkg.puppeteer.chromium_revision
 const revisionInfo = Downloader.revisionInfo(Downloader.currentPlatform(), revision)
 
 process.env.CHROME_BIN = revisionInfo.executablePath
+
+const { paths } = config
 
 const formatError = (msg) => {
   // filter out empty lines and node_modules
@@ -28,8 +31,12 @@ const formatError = (msg) => {
 
 export default (karmaConfig) => {
   karmaConfig.set({
-    basePath: process.cwd(),
+    basePath: __dirname,
     browsers: ['ChromeHeadless'],
+    browserConsoleLogOptions: {
+      level: 'log',
+      terminal: true,
+    },
     client: {
       mocha: {
         reporter: 'html', // change Karma's debug.html to mocha web reporter
@@ -53,19 +60,32 @@ export default (karmaConfig) => {
       },
     },
     files: [
-      './test/tests.bundle.js',
+      { pattern: 'docs/app/logo.png', watched: false, included: false, served: true },
+      { pattern: 'docs/app/assets/**/*.jpg', watched: false, included: false, served: true },
+      { pattern: 'docs/app/assets/**/*.png', watched: false, included: false, served: true },
+      'test/tests.bundle.js',
     ],
     formatError,
     frameworks: ['mocha'],
+    // make karma serve all files that the web server does (/* => /docs/app/*)
+    proxies: fs.readdirSync(paths.docsSrc()).reduce((acc, file) => {
+      const isDir = fs.statSync(paths.docsSrc(file)).isDirectory()
+      const trailingSlash = isDir ? '/' : ''
+
+      const original = `/${file}${trailingSlash}`
+      acc[original] = `/base/docs/app/${file}${trailingSlash}`
+      return acc
+    }, {}),
     reporters: ['mocha', 'coverage'],
+    reportSlowerThan: 100,
     singleRun: true,
     preprocessors: {
       // do not include 'coverage' preprocessor for karma-coverage
       // code is already instrumented by babel-plugin-__coverage__
-      './test/tests.bundle.js': ['webpack'],
+      'test/tests.bundle.js': ['webpack'],
     },
     webpack: {
-      entry: './test/tests.bundle.js',
+      entry: 'test/tests.bundle.js',
       externals: {
         ...webpackConfig.externals,
         // These are internal deps specific to React 0.13 required() by enzyme
