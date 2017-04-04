@@ -3,8 +3,7 @@ import _ from 'lodash'
 import React, { Component } from 'react'
 import { Accordion, Segment } from 'semantic-ui-react'
 
-const panels = _.times(3, i => ({
-  key: i,
+const panels = _.times(3, () => ({
   title: faker.lorem.sentence(),
   content: faker.lorem.paragraphs(),
 }))

@@ -128,14 +128,14 @@ export default class AccordionAccordion extends Component {
     const { panels } = this.props
 
     _.each(panels, (panel, index) => {
-      const { content, key, title } = panel
+      const { content, title } = panel
       const active = this.isIndexActive(index)
 
       children.push(AccordionTitle.create(title, {
-        defaultProps: { active, index, key: `${key}-title` },
+        defaultProps: { active, index },
         overrideProps: this.handleTitleOverrides,
       }))
-      children.push(AccordionContent.create(content, { defaultProps: { active, key: `${key}-content` } }))
+      children.push(AccordionContent.create(content, { defaultProps: { active } }))
     })
 
     return children

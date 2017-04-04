@@ -2,16 +2,8 @@ import React from 'react'
 import { Accordion } from 'semantic-ui-react'
 
 const level1Panels = [
-  {
-    key: 'level1a',
-    title: 'Level 1A',
-    content: 'Level 1A Contents',
-  },
-  {
-    key: 'level1b',
-    title: 'Level 1B',
-    content: 'Level 1B Contents',
-  },
+  { title: 'Level 1A', content: 'Level 1A Contents' },
+  { title: 'Level 1B', content: 'Level 1B Contents' },
 ]
 
 const Level1Content = (
@@ -22,16 +14,8 @@ const Level1Content = (
 )
 
 const level2Panels = [
-  {
-    key: 'level2a',
-    title: 'Level 2A',
-    content: 'Level 2A Contents',
-  },
-  {
-    key: 'level2b',
-    title: 'Level 2B',
-    content: 'Level 2B Contents',
-  },
+  { title: 'Level 2A', content: 'Level 2A Contents' },
+  { title: 'Level 2B', content: 'Level 2B Contents' },
 ]
 
 const Level2Content = (
@@ -42,16 +26,8 @@ const Level2Content = (
 )
 
 const rootPanels = [
-  {
-    key: 'level1',
-    title: 'Level 1',
-    content: { content: Level1Content },
-  },
-  {
-    key: 'level2',
-    title: 'Level 2',
-    content: { content: Level2Content },
-  },
+  { title: 'Level 1', content: { content: Level1Content, key: 'content-1' }},
+  { title: 'Level 2', content: { content: Level2Content, key: 'content-2' }},
 ]
 
 const AccordionExampleNested = () => (
