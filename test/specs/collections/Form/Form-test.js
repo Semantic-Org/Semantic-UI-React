@@ -39,13 +39,4 @@ describe('Form', () => {
   common.propKeyOnlyToClassName(Form, 'warning')
 
   common.propValueOnlyToClassName(Form, 'size', _.without(SUI.SIZES, 'medium'))
-
-  /*common.labelImplementsHtmlForProp(FormField, 'htmlFor', { requiredProps: { control: 'button' } })
-  common.labelImplementsHtmlForProp(FormField, 'htmlFor', { requiredProps: { control: 'checkbox' } })
-  common.labelImplementsHtmlForProp(FormField, 'htmlFor', { requiredProps: { control: 'dropdown' } })
-  common.labelImplementsHtmlForProp(FormField, 'htmlFor', { requiredProps: { control: 'group' } })
-  common.labelImplementsHtmlForProp(FormField, 'htmlFor', { requiredProps: { control: 'input' } })
-  common.labelImplementsHtmlForProp(FormField, 'htmlFor', { requiredProps: { control: 'radio' } })
-  common.labelImplementsHtmlForProp(FormField, 'htmlFor', { requiredProps: { control: 'select' } })
-  common.labelImplementsHtmlForProp(FormField, 'htmlFor', { requiredProps: { control: 'textarea' } })*/
 })
