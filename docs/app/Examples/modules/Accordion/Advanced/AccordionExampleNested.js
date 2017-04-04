@@ -26,8 +26,8 @@ const Level2Content = (
 )
 
 const rootPanels = [
-  { title: 'Level 1', content: { content: Level1Content, key: 'content-1' }},
-  { title: 'Level 2', content: { content: Level2Content, key: 'content-2' }},
+  { title: 'Level 1', content: { content: Level1Content, key: 'content-1' } },
+  { title: 'Level 2', content: { content: Level2Content, key: 'content-2' } },
 ]
 
 const AccordionExampleNested = () => (

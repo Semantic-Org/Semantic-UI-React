@@ -6,7 +6,7 @@ import { Accordion, Label, Message } from 'semantic-ui-react'
 const panels = _.times(3, i => ({
   title: {
     content: <Label color='blue' content={faker.lorem.sentence()} />,
-    key: `title-${i}`
+    key: `title-${i}`,
   },
   content: {
     content: (
@@ -16,7 +16,7 @@ const panels = _.times(3, i => ({
         content={faker.lorem.paragraph()}
       />
     ),
-    key: `content-${i}`
+    key: `content-${i}`,
   },
 }))
 
