@@ -16,8 +16,8 @@ class FormExampleSubcomponentControl extends Component {
     return (
       <Form>
         <Form.Group widths='equal'>
-          <Form.Input id='form-input-shorthand-first-name' label='First name' placeholder='First name' />
-          <Form.Input id='form-input-shorthand-last-name' label='Last name' placeholder='Last name' />
+          <Form.Input label='First name' placeholder='First name' />
+          <Form.Input label='Last name' placeholder='Last name' />
           <Form.Select label='Gender' options={options} placeholder='Gender' />
         </Form.Group>
         <Form.Group inline>
