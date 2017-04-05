@@ -584,10 +584,10 @@ export default class Dropdown extends Component {
     debug(keyboardKey.getName(e))
     if (keyboardKey.getCode(e) !== keyboardKey.Backspace) return
 
-    const { multiple, search } = this.props
+    const { multiple } = this.props
     const { searchQuery, value } = this.state
 
-    if (searchQuery || !search || !multiple || _.isEmpty(value)) return
+    if (searchQuery || !multiple || _.isEmpty(value)) return
 
     e.preventDefault()
 
