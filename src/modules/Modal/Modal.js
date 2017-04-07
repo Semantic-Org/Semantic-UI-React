@@ -214,11 +214,14 @@ class Modal extends Component {
 
   handleRef = c => (this.ref = c)
 
-  handleTriggerClose = onClick => e => {
-    if (onClick) onClick(e, this.props)
+  handleActionsOverrides = predefinedProps => ({
+    onActionClick: (e, actionProps) => {
+      const { triggerClose } = actionProps
 
-    this.handleClose()
-  }
+      _.invoke(predefinedProps, 'onClick', e, actionProps)
+      if (triggerClose) this.handleClose(e)
+    },
+  })
 
   setPosition = () => {
     if (this.ref) {
@@ -250,29 +253,20 @@ class Modal extends Component {
     this.animationRequestId = requestAnimationFrame(this.setPosition)
   }
 
-  render() {
-    const { open } = this.state
+  renderContent = rest => {
     const {
       actions,
       basic,
       children,
       className,
       closeIcon,
-      closeOnDimmerClick,
-      closeOnDocumentClick,
       content,
-      dimmer,
       header,
       size,
       style,
     } = this.props
-
-    const mountNode = this.getMountNode()
-
-    // Short circuit when server side rendering
-    if (!isBrowser) return null
-
     const { marginTop, scrolling } = this.state
+
     const classes = cx(
       'ui',
       size,
@@ -281,26 +275,48 @@ class Modal extends Component {
       'modal transition visible active',
       className,
     )
+    const ElementType = getElementType(Modal, this.props)
+
+    const closeIconName = closeIcon === true ? 'close' : closeIcon
+    const closeIconJSX = Icon.create(closeIconName, { overrideProps: this.handleIconOverrides })
+
+    if (_.isNil(children)) {
+      return (
+        <ElementType {...rest} className={classes} style={{ marginTop, ...style }} ref={this.handleRef}>
+          {closeIconJSX}
+          {children}
+        </ElementType>
+      )
+    }
+
+    return (
+      <ElementType {...rest} className={classes} style={{ marginTop, ...style }} ref={this.handleRef}>
+        {closeIconJSX}
+        {ModalHeader.create(header)}
+        {ModalContent.create(content)}
+        {ModalActions.create(actions, { overrideProps: this.handleActionsOverrides })}
+      </ElementType>
+    )
+  }
+
+  render() {
+    const { open } = this.state
+    const {
+      closeOnDimmerClick,
+      closeOnDocumentClick,
+      dimmer,
+    } = this.props
+
+    const mountNode = this.getMountNode()
+
+    // Short circuit when server side rendering
+    if (!isBrowser) return null
 
     const unhandled = getUnhandledProps(Modal, this.props)
     const portalPropNames = Portal.handledProps
 
     const rest = _.omit(unhandled, portalPropNames)
     const portalProps = _.pick(unhandled, portalPropNames)
-    const ElementType = getElementType(Modal, this.props)
-
-    const closeIconName = closeIcon === true ? 'close' : closeIcon
-    const modalJSX = (
-      <ElementType {...rest} className={classes} style={{ marginTop, ...style }} ref={this.handleRef}>
-        {Icon.create(closeIconName, { overrideProps: this.handleIconOverrides })}
-        {children}
-        {_.isNil(children) && ModalHeader.create(header)}
-        {_.isNil(children) && ModalContent.create(content)}
-        {_.isNil(children) && ModalActions.create(_.forEach(actions, (action) => {
-          if (_.isPlainObject(action) && action.triggerClose) action.onClick = this.handleTriggerClose(action.onClick)
-        }))}
-      </ElementType>
-    )
 
     // wrap dimmer modals
     const dimmerClasses = !dimmer
@@ -335,7 +351,7 @@ class Modal extends Component {
         onUnmount={this.handlePortalUnmount}
         open={open}
       >
-        {modalJSX}
+        {this.renderContent(rest)}
       </Portal>
     )
   }

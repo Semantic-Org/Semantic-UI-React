@@ -1,6 +1,6 @@
 import cx from 'classnames'
 import _ from 'lodash'
-import React, { PropTypes } from 'react'
+import React, { Component, PropTypes } from 'react'
 
 import {
   createShorthandFactory,
@@ -14,19 +14,28 @@ import Button from '../../elements/Button'
 /**
  * A modal can contain a row of actions.
  */
-function ModalActions(props) {
-  const { actions, children, className } = props
-  const classes = cx('actions', className)
-  const rest = getUnhandledProps(ModalActions, props)
-  const ElementType = getElementType(ModalActions, props)
+class ModalActions extends Component {
+  handleButtonOverrides = predefinedProps => ({
+    onClick: (e, buttonProps) => {
+      _.invoke(predefinedProps, 'onClick', e, buttonProps)
+      _.invoke(this.props, 'onActionClick', e, buttonProps)
+    },
+  })
 
-  if (!_.isNil(children)) return <ElementType {...rest} className={classes}>{children}</ElementType>
+  render() {
+    const { actions, children, className } = this.props
+    const classes = cx('actions', className)
+    const rest = getUnhandledProps(ModalActions, this.props)
+    const ElementType = getElementType(ModalActions, this.props)
 
-  return (
-    <ElementType {...rest} className={classes}>
-      {_.map(actions, (action) => Button.create(action))}
-    </ElementType>
-  )
+    if (!_.isNil(children)) return <ElementType {...rest} className={classes}>{children}</ElementType>
+
+    return (
+      <ElementType {...rest} className={classes}>
+        {_.map(actions, action => Button.create(action, { overrideProps: this.handleButtonOverrides }))}
+      </ElementType>
+    )
+  }
 }
 
 ModalActions._meta = {
@@ -40,13 +49,27 @@ ModalActions.propTypes = {
   as: customPropTypes.as,
 
   /** Elements to render as Modal action buttons. */
-  actions: PropTypes.arrayOf(customPropTypes.itemShorthand),
+  actions: customPropTypes.every([
+    customPropTypes.disallow(['children']),
+    PropTypes.arrayOf(customPropTypes.itemShorthand),
+  ]),
 
   /** Primary content. */
   children: PropTypes.node,
 
   /** Additional classes. */
   className: PropTypes.string,
+
+  /**
+   * onClick handler for an action. Mutually exclusive with children.
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All item props.
+   */
+  onActionClick: customPropTypes.every([
+    customPropTypes.disallow(['children']),
+    PropTypes.func,
+  ]),
 }
 
 ModalActions.create = createShorthandFactory(ModalActions, actions => ({ actions }))
