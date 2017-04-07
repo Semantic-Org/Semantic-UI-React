@@ -38,9 +38,7 @@ function ListContent(props) {
   const rest = getUnhandledProps(ListContent, props)
   const ElementType = getElementType(ListContent, props)
 
-  if (!_.isNil(children)) {
-    return <ElementType {...rest} className={classes}>{children}</ElementType>
-  }
+  if (!_.isNil(children)) return <ElementType {...rest} className={classes}>{children}</ElementType>
 
   return (
     <ElementType {...rest} className={classes}>

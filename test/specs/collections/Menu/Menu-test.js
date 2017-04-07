@@ -107,27 +107,35 @@ describe('Menu', () => {
   })
 
   describe('onItemClick', () => {
-    const items = [
-      { key: 'home', name: 'home' },
-      { key: 'users', name: 'users' },
-    ]
-
     it('can be omitted', () => {
-      const click = () => mount(<Menu items={items} />).find('MenuItem').first().simulate('click')
+      const click = () => mount(<Menu items={[{ key: 'home', name: 'home' }]} />)
+        .find('MenuItem')
+        .first()
+        .simulate('click')
 
       expect(click).to.not.throw()
     })
 
     it('is called with (e, { name, index }) when clicked', () => {
-      const spy = sandbox.spy()
       const event = { target: null }
-      const props = { name: 'home', index: 0 }
+      const itemSpy = sandbox.spy()
+      const menuSpy = sandbox.spy()
 
-      mount(<Menu items={items} onItemClick={spy} />).find('MenuItem').first()
+      const items = [
+        { key: 'home', name: 'home' },
+        { key: 'users', name: 'users', onClick: itemSpy },
+      ]
+      const matchProps = { index: 1, name: 'users' }
+
+      mount(<Menu items={items} onItemClick={menuSpy} />)
+        .find('MenuItem')
+        .last()
         .simulate('click', event)
 
-      spy.should.have.been.calledOnce()
-      spy.should.have.been.calledWithMatch(event, props)
+      itemSpy.should.have.been.calledOnce()
+      itemSpy.should.have.been.calledWithMatch(event, matchProps)
+      menuSpy.should.have.been.calledOnce()
+      menuSpy.should.have.been.calledWithMatch(event, matchProps)
     })
   })
 })

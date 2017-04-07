@@ -70,6 +70,23 @@ describe('Label', () => {
         .find('Icon')
         .should.have.prop('data-foo', true)
     })
+
+    it('handles events on Label and Icon', () => {
+      const event = { target: null }
+      const iconSpy = sandbox.spy()
+      const labelSpy = sandbox.spy()
+
+      const iconProps = { 'data-foo': true, onClick: iconSpy }
+      const labelProps = { onRemove: labelSpy, removeIcon: iconProps }
+
+      mount(<Label {...labelProps} />)
+        .find('Icon')
+        .simulate('click', event)
+
+      iconSpy.should.have.been.calledOnce()
+      labelSpy.should.have.been.calledOnce()
+      labelSpy.should.have.been.calledWithMatch(event, labelProps)
+    })
   })
 
   describe('content', () => {

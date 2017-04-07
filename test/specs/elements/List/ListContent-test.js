@@ -9,6 +9,8 @@ describe('ListContent', () => {
   common.isConformant(ListContent)
   common.rendersChildren(ListContent)
 
+  common.implementsCreateMethod(ListContent)
+
   common.implementsVerticalAlignProp(ListContent)
 
   common.propKeyAndValueToClassName(ListContent, 'floated', SUI.FLOATS)
