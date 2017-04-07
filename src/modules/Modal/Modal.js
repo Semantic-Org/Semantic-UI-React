@@ -280,7 +280,7 @@ class Modal extends Component {
     const closeIconName = closeIcon === true ? 'close' : closeIcon
     const closeIconJSX = Icon.create(closeIconName, { overrideProps: this.handleIconOverrides })
 
-    if (_.isNil(children)) {
+    if (!_.isNil(children)) {
       return (
         <ElementType {...rest} className={classes} style={{ marginTop, ...style }} ref={this.handleRef}>
           {closeIconJSX}
