@@ -7,8 +7,8 @@ const ModalShorthandExample = () => (
     header='Delete Your Account'
     content='Are you sure you want to delete your account'
     actions={[
-      { content: 'No', color: 'red', triggerClose: true },
-      { content: 'Yes', color: 'green', triggerClose: true },
+      { key: 'no', content: 'No', color: 'red', triggerClose: true },
+      { key: 'yes', content: 'Yes', color: 'green', triggerClose: true },
     ]}
   />
 )

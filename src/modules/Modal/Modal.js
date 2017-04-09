@@ -151,6 +151,15 @@ class Modal extends Component {
   // Do not access document when server side rendering
   getMountNode = () => isBrowser ? this.props.mountNode || document.body : null
 
+  handleActionsOverrides = predefinedProps => ({
+    onActionClick: (e, actionProps) => {
+      const { triggerClose } = actionProps
+
+      _.invoke(predefinedProps, 'onActionClick', e, actionProps)
+      if (triggerClose) this.handleClose(e)
+    },
+  })
+
   handleClose = (e) => {
     debug('close()')
 
@@ -213,15 +222,6 @@ class Modal extends Component {
   }
 
   handleRef = c => (this.ref = c)
-
-  handleActionsOverrides = predefinedProps => ({
-    onActionClick: (e, actionProps) => {
-      const { triggerClose } = actionProps
-
-      _.invoke(predefinedProps, 'onClick', e, actionProps)
-      if (triggerClose) this.handleClose(e)
-    },
-  })
 
   setPosition = () => {
     if (this.ref) {
@@ -301,12 +301,7 @@ class Modal extends Component {
 
   render() {
     const { open } = this.state
-    const {
-      closeOnDimmerClick,
-      closeOnDocumentClick,
-      dimmer,
-    } = this.props
-
+    const { closeOnDimmerClick, closeOnDocumentClick, dimmer } = this.props
     const mountNode = this.getMountNode()
 
     // Short circuit when server side rendering
@@ -340,16 +335,16 @@ class Modal extends Component {
 
     return (
       <Portal
-        closeOnRootNodeClick={closeOnDimmerClick}
         closeOnDocumentClick={closeOnDocumentClick}
+        closeOnRootNodeClick={closeOnDimmerClick}
         {...portalProps}
         className={dimmerClasses}
         mountNode={mountNode}
+        open={open}
         onClose={this.handleClose}
         onMount={this.handlePortalMount}
         onOpen={this.handleOpen}
         onUnmount={this.handlePortalUnmount}
-        open={open}
       >
         {this.renderContent(rest)}
       </Portal>

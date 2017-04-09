@@ -14,7 +14,41 @@ import Button from '../../elements/Button'
 /**
  * A modal can contain a row of actions.
  */
-class ModalActions extends Component {
+export default class ModalActions extends Component {
+  static propTypes = {
+    /** An element type to render as (string or function). */
+    as: customPropTypes.as,
+
+    /** Elements to render as Modal action buttons. */
+    actions: customPropTypes.every([
+      customPropTypes.disallow(['children']),
+      PropTypes.arrayOf(customPropTypes.itemShorthand),
+    ]),
+
+    /** Primary content. */
+    children: PropTypes.node,
+
+    /** Additional classes. */
+    className: PropTypes.string,
+
+    /**
+     * onClick handler for an action. Mutually exclusive with children.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All item props.
+     */
+    onActionClick: customPropTypes.every([
+      customPropTypes.disallow(['children']),
+      PropTypes.func,
+    ]),
+  }
+
+  static _meta = {
+    name: 'ModalActions',
+    type: META.TYPES.MODULE,
+    parent: 'Modal',
+  }
+
   handleButtonOverrides = predefinedProps => ({
     onClick: (e, buttonProps) => {
       _.invoke(predefinedProps, 'onClick', e, buttonProps)
@@ -38,40 +72,4 @@ class ModalActions extends Component {
   }
 }
 
-ModalActions._meta = {
-  name: 'ModalActions',
-  type: META.TYPES.MODULE,
-  parent: 'Modal',
-}
-
-ModalActions.propTypes = {
-  /** An element type to render as (string or function). */
-  as: customPropTypes.as,
-
-  /** Elements to render as Modal action buttons. */
-  actions: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.arrayOf(customPropTypes.itemShorthand),
-  ]),
-
-  /** Primary content. */
-  children: PropTypes.node,
-
-  /** Additional classes. */
-  className: PropTypes.string,
-
-  /**
-   * onClick handler for an action. Mutually exclusive with children.
-   *
-   * @param {SyntheticEvent} event - React's original SyntheticEvent.
-   * @param {object} data - All item props.
-   */
-  onActionClick: customPropTypes.every([
-    customPropTypes.disallow(['children']),
-    PropTypes.func,
-  ]),
-}
-
 ModalActions.create = createShorthandFactory(ModalActions, actions => ({ actions }))
-
-export default ModalActions

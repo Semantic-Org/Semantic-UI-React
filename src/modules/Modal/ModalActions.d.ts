@@ -25,6 +25,6 @@ export interface ModalActionsProps {
   onItemClick?: (event: React.MouseEvent<HTMLAnchorElement>, data: ButtonProps) => void;
 }
 
-declare const ModalActions: React.StatelessComponent<ModalActionsProps>;
+declare const ModalActions: React.ComponentClass<ModalActionsProps>;
 
 export default ModalActions;
