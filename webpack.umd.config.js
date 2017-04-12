@@ -13,6 +13,7 @@ const webpackUMDConfig = {
     [pkg.name]: paths.src('umd.js'),
   },
   externals: {
+    'prop-types': 'PropTypes',
     react: 'React',
     'react-dom': 'ReactDOM',
   },
