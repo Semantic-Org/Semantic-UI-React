@@ -201,7 +201,7 @@ export interface DropdownProps {
    * @param {object} defaultLabelProps - The default props for an active item Label.
    * @returns {*} Shorthand for a Label.
    */
-  renderLabel?: (item: DropdownItemProps, index: number, defaultLabelProps: LabelProps) => React.ReactElement<any>;
+  renderLabel?: (item: DropdownItemProps, index: number, defaultLabelProps: LabelProps) => any;
 
   /** A dropdown can have its menu scroll. */
   scrolling?: boolean;
@@ -225,7 +225,7 @@ export interface DropdownProps {
   tabIndex?: number | string;
 
   /** The text displayed in the dropdown, usually for the active item. */
-  text?: string|React.ReactNode;
+  text?: string;
 
   /** Custom element to trigger the menu to become visible. Takes place of 'text'. */
   trigger?: React.ReactNode;
