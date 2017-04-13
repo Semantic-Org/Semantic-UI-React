@@ -1,6 +1,8 @@
 import cx from 'classnames'
 import _ from 'lodash'
 import React, { Component, PropTypes } from 'react'
+import { css } from 'glamor';
+import { makeButtonStyles } from 'semantic-ui-css-in-js';
 
 import {
   customPropTypes,
@@ -245,7 +247,10 @@ class Button extends Component {
     const tabIndex = this.computeTabIndex(ElementType)
 
     if (!_.isNil(children)) {
-      const classes = cx('ui', baseClasses, wrapperClasses, labeledClasses, 'button', className)
+      const buttonStyles = makeButtonStyles();
+      const sx = css(buttonStyles.base);
+      const classes = cx(`${sx}`, className);
+      // const classes = cx('ui', baseClasses, wrapperClasses, labeledClasses, 'button', className)
       debug('render children:', { classes })
 
       return (
