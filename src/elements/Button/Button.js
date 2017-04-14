@@ -214,23 +214,28 @@ class Button extends Component {
       size,
       toggle,
     } = this.props
+    const buttonStyles = makeButtonStyles()
+    const sx = css(
+      buttonStyles.base,
+      active && buttonStyles.active,
+      basic && buttonStyles.basic,
+      circular && buttonStyles.circular,
+      compact && buttonStyles.compact,
+      fluid && buttonStyles.fluid,
+      (icon === true || icon && (labelPosition || !children && !content)) && buttonStyles.icon,
+      inverted && buttonStyles.inverted,
+      loading && buttonStyles.loading,
+      negative && buttonStyles.negative,
+      positive && buttonStyles.positive,
+      primary && buttonStyles.primary,
+      secondary && buttonStyles.secondary,
+      toggle && buttonStyles.toggle
+    )
+    const classes = cx(`${sx}`, className)
 
     const baseClasses = cx(
       color,
       size,
-      useKeyOnly(active, 'active'),
-      useKeyOnly(basic, 'basic'),
-      useKeyOnly(circular, 'circular'),
-      useKeyOnly(compact, 'compact'),
-      useKeyOnly(fluid, 'fluid'),
-      useKeyOnly(icon === true || icon && (labelPosition || !children && !content), 'icon'),
-      useKeyOnly(inverted, 'inverted'),
-      useKeyOnly(loading, 'loading'),
-      useKeyOnly(negative, 'negative'),
-      useKeyOnly(positive, 'positive'),
-      useKeyOnly(primary, 'primary'),
-      useKeyOnly(secondary, 'secondary'),
-      useKeyOnly(toggle, 'toggle'),
       useKeyOrValueAndKey(animated, 'animated'),
       useKeyOrValueAndKey(attached, 'attached'),
     )
@@ -247,10 +252,6 @@ class Button extends Component {
     const tabIndex = this.computeTabIndex(ElementType)
 
     if (!_.isNil(children)) {
-      const buttonStyles = makeButtonStyles()
-      const sx = css(buttonStyles.base)
-      const classes = cx(`${sx}`, className)
-      // const classes = cx('ui', baseClasses, wrapperClasses, labeledClasses, 'button', className)
       debug('render children:', { classes })
 
       return (
@@ -266,7 +267,6 @@ class Button extends Component {
     } })
 
     if (labelElement) {
-      const classes = cx('ui', baseClasses, 'button', className)
       const containerClasses = cx('ui', labeledClasses, 'button', className, wrapperClasses)
 
       debug('render label:', { classes, containerClasses }, this.props)
@@ -283,7 +283,6 @@ class Button extends Component {
     }
 
     if (!_.isNil(icon) && _.isNil(label)) {
-      const classes = cx('ui', labeledClasses, baseClasses, 'button', className, wrapperClasses)
       debug('render icon && !label:', { classes })
 
       return (
@@ -293,7 +292,6 @@ class Button extends Component {
       )
     }
 
-    const classes = cx('ui', labeledClasses, baseClasses, 'button', className, wrapperClasses)
     debug('render default:', { classes })
 
     return (
