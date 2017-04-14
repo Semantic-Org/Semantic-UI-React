@@ -1,6 +1,6 @@
 import cx from 'classnames'
 import _ from 'lodash'
-import React, { Children, Component, PropTypes } from 'react'
+import React, { Children, cloneElement, Component, PropTypes } from 'react'
 
 import {
   createHTMLInput,
@@ -123,9 +123,11 @@ class Input extends Component {
     onChange(e, { ...this.props, value })
   }
 
-  handleInputOverrides = predefinedProps => ({
+  handleChildOverrides = (child, defaultProps) => ({
+    ...defaultProps,
+    ...child.props,
     ref: c => {
-      _.invoke(predefinedProps, 'ref', c)
+      _.invoke(child, 'ref', c)
       this.handleInputRef(c)
     },
   })
@@ -192,10 +194,7 @@ class Input extends Component {
       const childElements = _.map(Children.toArray(children), (child) => {
         if (child.type !== 'input') return child
 
-        return createHTMLInput(child, {
-          defaultProps: htmlInputProps,
-          overrideProps: this.handleInputOverrides,
-        })
+        return cloneElement(child, this.handleChildOverrides(child, htmlInputProps))
       })
 
       return <ElementType {...rest} className={classes}>{childElements}</ElementType>

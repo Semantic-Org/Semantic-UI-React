@@ -189,10 +189,18 @@ describe('Input', () => {
   describe('ref', () => {
     it('maintains ref on child node', () => {
       const ref = sandbox.spy()
-      const wrapper = mount(<Input><input ref={ref} /></Input>)
+      const mountNode = document.createElement('div')
+      document.body.appendChild(mountNode)
 
-      // ref.should.have.been.calledOnce()
-      wrapper.instance().inputRef.tagName.should.equal('INPUT')
+      const wrapper = mount(<Input><input ref={ref} /></Input>, { attachTo: mountNode })
+      const input = document.querySelector('.ui.input input')
+
+      ref.should.have.been.calledOnce()
+      ref.should.have.been.calledWithMatch(input)
+      wrapper.instance().inputRef.should.equal(input)
+
+      wrapper.detach()
+      document.body.removeChild(mountNode)
     })
   })
 
