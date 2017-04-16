@@ -170,7 +170,7 @@ describe('Popup', () => {
       const trigger = <button>foo</button>
       wrapperMount(<Popup content='foo' trigger={trigger} />)
 
-      wrapper.find('button').simulate('mouseenter')
+      wrapper.find('button').parent().simulate('mouseenter')
       setTimeout(() => {
         assertInBody('.ui.popup.visible')
         done()
@@ -223,6 +223,11 @@ describe('Popup', () => {
       wrapper.setProps({ open: false })
 
       assertInBody('.ui.popup.visible', false)
+    })
+
+    it('sets position styling when true', () => {
+      wrapperMount(<Popup open trigger={<button>foo</button>} />)
+      assertInBody('.popup.ui[style]')
     })
   })
 

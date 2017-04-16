@@ -1,6 +1,7 @@
 import cx from 'classnames'
 import _ from 'lodash'
 import React, { Component, PropTypes } from 'react'
+import ReactDOM from 'react-dom'
 
 import {
   customPropTypes,
@@ -293,6 +294,7 @@ export default class Popup extends Component {
       window.addEventListener('scroll', this.hideOnScroll)
     }
 
+    if (!!this.myTrigger) this.coords = ReactDOM.findDOMNode(this.myTrigger).getBoundingClientRect()
     const { onMount } = this.props
     if (onMount) onMount(e, this.props)
   }
@@ -337,7 +339,11 @@ export default class Popup extends Component {
       className,
     )
 
-    if (closed) return trigger
+    let refTrigger
+    if (!!trigger) {
+      refTrigger = React.cloneElement(<span>{trigger}</span>, { ref: (ref) => { this.myTrigger = ref } })
+    }
+    if (closed) return refTrigger
 
     const unhandled = getUnhandledProps(Popup, this.props)
     const portalPropNames = Portal.handledProps
@@ -360,7 +366,7 @@ export default class Popup extends Component {
     return (
       <Portal
         {...mergedPortalProps}
-        trigger={trigger}
+        trigger={refTrigger}
         onClose={this.handleClose}
         onMount={this.handlePortalMount}
         onOpen={this.handleOpen}
