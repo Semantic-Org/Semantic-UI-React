@@ -53,14 +53,14 @@ describe('Input', () => {
   common.hasUIClassName(Input)
   common.rendersChildren(Input)
 
-  common.implementsLabelProp(Input, {
-    shorthandDefaultProps: { className: 'label' },
-  })
   common.implementsButtonProp(Input, {
     propKey: 'action',
     shorthandDefaultProps: { className: 'button' },
   })
   common.implementsCreateMethod(Input)
+  common.implementsLabelProp(Input, {
+    shorthandDefaultProps: { className: 'label' },
+  })
   common.implementsHTMLInputProp(Input, {
     alwaysPresent: true,
     shorthandDefaultProps: { type: 'text' },
@@ -138,6 +138,22 @@ describe('Input', () => {
     })
   })
 
+  describe('focus', () => {
+    it('can be set via a ref', () => {
+      const mountNode = document.createElement('div')
+      document.body.appendChild(mountNode)
+
+      const wrapper = mount(<Input />, { attachTo: mountNode })
+      wrapper.instance().focus()
+
+      const input = document.querySelector('.ui.input input')
+      document.activeElement.should.equal(input)
+
+      wrapper.detach()
+      document.body.removeChild(mountNode)
+    })
+  })
+
   describe('onChange', () => {
     it('is called with (e, data) on change', () => {
       const spy = sandbox.spy()
@@ -170,42 +186,47 @@ describe('Input', () => {
     })
   })
 
+  describe('ref', () => {
+    it('maintains ref on child node', () => {
+      const ref = sandbox.spy()
+      const mountNode = document.createElement('div')
+      document.body.appendChild(mountNode)
+
+      const wrapper = mount(<Input><input ref={ref} /></Input>, { attachTo: mountNode })
+      const input = document.querySelector('.ui.input input')
+
+      ref.should.have.been.calledOnce()
+      ref.should.have.been.calledWithMatch(input)
+      wrapper.instance().inputRef.should.equal(input)
+
+      wrapper.detach()
+      document.body.removeChild(mountNode)
+    })
+  })
+
   describe('tabIndex', () => {
     it('is not set by default', () => {
       shallow(<Input />)
         .find('input')
         .should.not.have.prop('tabIndex')
     })
+
     it('defaults to -1 when disabled', () => {
       shallow(<Input disabled />)
         .find('input')
         .should.have.prop('tabIndex', -1)
     })
+
     it('can be set explicitly', () => {
       shallow(<Input tabIndex={123} />)
         .find('input')
         .should.have.prop('tabIndex', 123)
     })
+
     it('can be set explicitly when disabled', () => {
       shallow(<Input tabIndex={123} disabled />)
         .find('input')
         .should.have.prop('tabIndex', 123)
-    })
-  })
-
-  describe('focus', () => {
-    it('can be set via a ref', () => {
-      const mountNode = document.createElement('div')
-      document.body.appendChild(mountNode)
-
-      const wrapper = mount(<Input />, { attachTo: mountNode })
-      wrapper.instance().focus()
-
-      const input = document.querySelector('.ui.input input')
-      document.activeElement.should.equal(input)
-
-      wrapper.detach()
-      document.body.removeChild(mountNode)
     })
   })
 })

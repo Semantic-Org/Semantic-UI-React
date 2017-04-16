@@ -1,6 +1,6 @@
+import cx from 'classnames'
 import _ from 'lodash'
 import React, { Children, cloneElement, Component, PropTypes } from 'react'
-import cx from 'classnames'
 
 import {
   createHTMLInput,
@@ -114,6 +114,8 @@ class Input extends Component {
     type: META.TYPES.ELEMENT,
   }
 
+  focus = () => (this.inputRef.focus())
+
   handleChange = (e) => {
     const { onChange } = this.props
     const value = _.get(e, 'target.value')
@@ -121,9 +123,14 @@ class Input extends Component {
     onChange(e, { ...this.props, value })
   }
 
-  focus = () => {
-    this.inputRef.focus()
-  }
+  handleChildOverrides = (child, defaultProps) => ({
+    ...defaultProps,
+    ...child.props,
+    ref: c => {
+      _.invoke(child, 'ref', c)
+      this.handleInputRef(c)
+    },
+  })
 
   handleInputRef = c => (this.inputRef = c)
 
@@ -187,7 +194,7 @@ class Input extends Component {
       const childElements = _.map(Children.toArray(children), (child) => {
         if (child.type !== 'input') return child
 
-        return cloneElement(child, { ...htmlInputProps, ...child.props })
+        return cloneElement(child, this.handleChildOverrides(child, htmlInputProps))
       })
 
       return <ElementType {...rest} className={classes}>{childElements}</ElementType>
