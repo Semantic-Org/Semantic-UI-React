@@ -1,5 +1,7 @@
-import React, { PropTypes } from 'react'
+import PropTypes from 'prop-types'
+import React from 'react'
 import { Link } from 'react-router-dom'
+
 import Editor from 'docs/app/Components/Editor/Editor'
 import pkg from 'package.json'
 import {

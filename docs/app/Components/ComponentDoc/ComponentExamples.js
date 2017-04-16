@@ -1,5 +1,6 @@
 import _ from 'lodash'
-import React, { Component, createElement, PropTypes } from 'react'
+import PropTypes from 'prop-types'
+import React, { Component, createElement } from 'react'
 
 import { exampleContext } from 'docs/app/utils'
 import { Grid } from 'src'

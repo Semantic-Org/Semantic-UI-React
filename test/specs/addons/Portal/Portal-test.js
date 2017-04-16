@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import React from 'react'
 import { unmountComponentAtNode } from 'react-dom'
 
@@ -25,7 +26,7 @@ describe('Portal', () => {
   })
 
   it('propTypes.children should be required', () => {
-    Portal.propTypes.children.should.equal(React.PropTypes.node.isRequired)
+    Portal.propTypes.children.should.equal(PropTypes.node.isRequired)
   })
 
   it('this.rootNode should be undefined if portal is not open', () => {

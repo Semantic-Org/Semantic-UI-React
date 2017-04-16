@@ -1,6 +1,7 @@
-import _ from 'lodash/fp'
 import cx from 'classnames'
-import React, { PropTypes } from 'react'
+import _ from 'lodash/fp'
+import PropTypes from 'prop-types'
+import React from 'react'
 
 import {
   AutoControlledComponent as Component,
