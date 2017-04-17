@@ -73,6 +73,7 @@ describe('Input', () => {
   })
 
   common.propKeyOnlyToClassName(Input, 'action')
+  common.propKeyOnlyToClassName(Input, 'disabled')
   common.propKeyOnlyToClassName(Input, 'error')
   common.propKeyOnlyToClassName(Input, 'fluid')
   common.propKeyOnlyToClassName(Input, 'focus')

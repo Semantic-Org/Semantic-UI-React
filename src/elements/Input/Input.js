@@ -162,6 +162,7 @@ class Input extends Component {
     const classes = cx(
       'ui',
       size,
+      useKeyOnly(disabled, 'disabled'),
       useKeyOnly(error, 'error'),
       useKeyOnly(fluid, 'fluid'),
       useKeyOnly(focus, 'focus'),
