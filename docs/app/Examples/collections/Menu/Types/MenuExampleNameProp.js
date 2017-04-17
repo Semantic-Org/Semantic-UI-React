@@ -13,12 +13,12 @@ export default class MenuExampleNameProp extends Component {
       <Menu>
         <Menu.Item
           name='editorials'
-          active={activeItem === 'Editorials'}
+          active={activeItem === 'editorials'}
           onClick={this.handleItemClick}
         />
         <Menu.Item
           name='reviews'
-          active={activeItem === 'Reviews'}
+          active={activeItem === 'reviews'}
           onClick={this.handleItemClick}
         />
         <Menu.Item

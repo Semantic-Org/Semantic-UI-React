@@ -1,5 +1,6 @@
 import _ from 'lodash/fp'
-import React, { Component, PropTypes } from 'react'
+import PropTypes from 'prop-types'
+import React, { Component } from 'react'
 
 import ComponentDoc from '../Components/ComponentDoc/ComponentDoc'
 import { META } from 'src/lib'

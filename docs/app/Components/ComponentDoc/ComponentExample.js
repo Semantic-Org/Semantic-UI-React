@@ -1,6 +1,7 @@
 import * as Babel from 'babel-standalone'
 import _ from 'lodash'
-import React, { Component, createElement, isValidElement, PropTypes } from 'react'
+import PropTypes from 'prop-types'
+import React, { Component, createElement, isValidElement } from 'react'
 import { withRouter } from 'react-router'
 import { renderToStaticMarkup } from 'react-dom/server'
 import { html } from 'js-beautify'
