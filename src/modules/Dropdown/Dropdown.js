@@ -65,7 +65,7 @@ export default class Dropdown extends Component {
       customPropTypes.disallow(['options', 'selection']),
       customPropTypes.givenProps(
         { children: PropTypes.any.isRequired },
-        React.PropTypes.element.isRequired,
+        PropTypes.element.isRequired,
       ),
     ]),
 
