@@ -162,7 +162,6 @@ class Input extends Component {
     const classes = cx(
       'ui',
       size,
-      useKeyOnly(disabled, 'disabled'),
       useKeyOnly(error, 'error'),
       useKeyOnly(fluid, 'fluid'),
       useKeyOnly(focus, 'focus'),
@@ -183,6 +182,8 @@ class Input extends Component {
 
     if (onChange) htmlInputProps.onChange = this.handleChange
     htmlInputProps.ref = this.handleInputRef
+
+    if (_.has(this.props, 'disabled')) htmlInputProps.disabled = disabled
 
     // tabIndex
     if (!_.isNil(tabIndex)) htmlInputProps.tabIndex = tabIndex

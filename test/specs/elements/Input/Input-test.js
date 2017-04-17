@@ -73,7 +73,6 @@ describe('Input', () => {
   })
 
   common.propKeyOnlyToClassName(Input, 'action')
-  common.propKeyOnlyToClassName(Input, 'disabled')
   common.propKeyOnlyToClassName(Input, 'error')
   common.propKeyOnlyToClassName(Input, 'fluid')
   common.propKeyOnlyToClassName(Input, 'focus')
@@ -201,6 +200,18 @@ describe('Input', () => {
 
       wrapper.detach()
       document.body.removeChild(mountNode)
+    })
+  })
+
+  describe('disabled', () => {
+    it('is applied to the underlying html input element', () => {
+      shallow(<Input disabled />)
+        .find('input')
+        .should.have.prop('disabled', true)
+
+      shallow(<Input disabled={false} />)
+        .find('input')
+        .should.have.prop('disabled', false)
     })
   })
 
