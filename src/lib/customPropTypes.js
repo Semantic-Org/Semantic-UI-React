@@ -1,5 +1,5 @@
-import { PropTypes } from 'react'
 import _ from 'lodash/fp'
+import PropTypes from 'prop-types'
 import leven from './leven'
 
 const typeOf = (...args) => Object.prototype.toString.call(...args)
