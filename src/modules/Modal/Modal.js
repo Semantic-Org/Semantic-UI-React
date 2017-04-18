@@ -45,12 +45,8 @@ class Modal extends Component {
     /** Additional classes. */
     className: PropTypes.string,
 
-    /** Icon. */
-    closeIcon: PropTypes.oneOfType([
-      PropTypes.node,
-      PropTypes.object,
-      PropTypes.bool,
-    ]),
+    /** Shorthand for the close icon. Closes the modal on click. */
+    closeIcon: customPropTypes.itemShorthand,
 
     /** Whether or not the Modal should close when the dimmer is clicked. */
     closeOnDimmerClick: PropTypes.bool,
