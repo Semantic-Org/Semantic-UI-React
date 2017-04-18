@@ -1,13 +1,13 @@
 <!-- Logo -->
 <p align="center">
-  <a href="http://react.semantic-ui.com">
+  <a href="https://react.semantic-ui.com">
     <img height="128" width="128" src="https://github.com/Semantic-Org/Semantic-UI-React/raw/master/docs/app/logo.png">
   </a>
 </p>
 
 <!-- Name -->
 <h1 align="center">
-  <a href="http://react.semantic-ui.com/">Semantic UI React</a>
+  <a href="https://react.semantic-ui.com/">Semantic UI React</a>
 </h1>
 
 <!-- Badges -->
@@ -176,7 +176,7 @@ Big thanks to our [contributors][20], especially:
 - @layershifter for bringing momentum and continual support
 
 [1]: https://github.com/Semantic-Org/Semantic-UI-React/blob/master/.github/CONTRIBUTING.md
-[2]: http://react.semantic-ui.com/
+[2]: https://react.semantic-ui.com/
 [3]: https://facebook.github.io/react/
 [4]: https://github.com/Semantic-Org/Semantic-UI-React/labels/help%20wanted
 [5]: https://semantic-ui.com/
@@ -197,7 +197,7 @@ Big thanks to our [contributors][20], especially:
 [20]: https://github.com/Semantic-Org/Semantic-UI-React/graphs/contributors
 [21]: https://github.com/Semantic-Org/Semantic-UI-React/labels/good%20first%20contribution
 [22]: https://github.com/Semantic-Org/Semantic-UI-React/edit/master/README.md
-[23]: http://react.semantic-ui.com/usage#css
+[23]: https://react.semantic-ui.com/usage#css
 [24]: https://github.com/Semantic-Org/Semantic-UI-React/issues/802#issuecomment-258990274
 [25]: http://learnsemantic.com/themes/creating.html
 [26]: https://github.com/Semantic-Org/Semantic-UI-Meteor
