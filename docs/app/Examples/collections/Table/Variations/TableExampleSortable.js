@@ -39,7 +39,7 @@ export default class TableExampleSortable extends Component {
     const { column, data, direction } = this.state
 
     return (
-      <Table sortable celled>
+      <Table sortable celled fixed>
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell sorted={column === 'name' && direction} onClick={this.handleSort('name')}>
