@@ -61,6 +61,12 @@ const Variations = () => {
       </ComponentExample>
 
       <ComponentExample
+        title='Sortable Columns'
+        description='A table can appear to sort its data by column in ascending or descending order.'
+        examplePath='collections/Table/Variations/TableExampleSortable'
+      />
+
+      <ComponentExample
         title='Vertical Alignment'
         description='A table, header, row or cell can adjust its vertical alignment.'
         examplePath='collections/Table/Variations/TableExampleVerticalAlign'
