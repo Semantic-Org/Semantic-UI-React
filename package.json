@@ -99,7 +99,7 @@
     "express": "^4.15.4",
     "faker": "^4.1.0",
     "gh-pages": "^1.0.0",
-    "gulp": "gulpjs/gulp#4.0",
+    "gulp": "github:gulpjs/gulp#4.0",
     "gulp-html-replace": "^1.6.2",
     "gulp-load-plugins": "^1.5.0",
     "gulp-plumber": "^1.1.0",
