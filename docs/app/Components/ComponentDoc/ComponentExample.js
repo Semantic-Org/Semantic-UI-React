@@ -103,7 +103,7 @@ class ComponentExample extends Component {
     e.preventDefault()
     this.setHashAndScroll()
 
-    copyToClipboard(this.anchorName)
+    copyToClipboard(location.href)
     this.setState({ copiedDirectLink: true })
 
     setTimeout(() => this.setState({ copiedDirectLink: false }), 1000)
