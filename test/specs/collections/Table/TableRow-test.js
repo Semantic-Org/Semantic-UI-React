@@ -29,22 +29,24 @@ describe('TableRow', () => {
     const cells = ['Name', 'Status', 'Notes']
 
     it('renders empty tr with no shorthand', () => {
-      const wrapper = mount(<TableRow />)
-
-      wrapper.find('td').should.have.lengthOf(0)
+      shallow(<TableRow />)
+        .find('td').should.have.lengthOf(0)
     })
 
     it('renders the cells', () => {
-      const wrapper = mount(<TableRow cells={cells} />)
-
-      wrapper.find('td').should.have.lengthOf(cells.length)
+      shallow(<TableRow cells={cells} />)
+        .find('TableCell').should.have.lengthOf(cells.length)
     })
 
     it('renders the cells using cellAs', () => {
-      const cellAs = 'th'
-      const wrapper = mount(<TableRow cells={cells} cellAs={cellAs} />)
+      const cellWrappers = shallow(<TableRow cells={cells} cellAs='th' />)
+        .find('TableCell')
 
-      wrapper.find(cellAs).should.have.lengthOf(cells.length)
+      cellWrappers.should.have.lengthOf(cells.length)
+
+      cellWrappers.forEach(wrapper => {
+        wrapper.shallow().should.have.tagName('th')
+      })
     })
   })
 })
