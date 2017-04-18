@@ -55,7 +55,7 @@ Yes.  Just use `<Icon className='my-icon' />` instead of `<Icon name='my-icon' /
 ### How do I setup CSS?
 There are several options.  Refer to our doc on [CSS Usage][23].
 
-### Can I use a customize CSS theme?
+### Can I use a custom CSS theme?
 Yes.  Semantic UI React includes components that render valid Semantic UI HTML, no CSS is included.  This allows you to load any Semantic UI CSS theme on top of your Semantic UI React app.
 
 Here are some helpful links:
