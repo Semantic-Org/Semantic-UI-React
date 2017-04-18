@@ -17,4 +17,4 @@ const App = () => (
   </Container>
 )
 
-render(App, MOUNT_NODE)
+render(<App />, MOUNT_NODE)
