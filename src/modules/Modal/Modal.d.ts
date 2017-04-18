@@ -14,7 +14,7 @@ export interface ModalProps extends PortalProps {
   as?: any;
 
   /** A Modal can be passed action buttons via shorthand. */
-  actions?: Array<any>;
+  actions?: any;
 
   /** A Modal can reduce its complexity */
   basic?: boolean;

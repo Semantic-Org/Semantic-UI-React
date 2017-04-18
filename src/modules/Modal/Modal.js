@@ -34,7 +34,7 @@ class Modal extends Component {
     as: customPropTypes.as,
 
     /** Elements to render as Modal action buttons. */
-    actions: PropTypes.arrayOf(customPropTypes.itemShorthand),
+    actions: customPropTypes.itemShorthand,
 
     /** A modal can reduce its complexity */
     basic: PropTypes.bool,
