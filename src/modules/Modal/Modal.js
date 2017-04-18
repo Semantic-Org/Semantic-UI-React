@@ -14,6 +14,7 @@ import {
   META,
   useKeyOnly,
 } from '../../lib'
+import Button from '../../elements/Button'
 import Icon from '../../elements/Icon'
 import Portal from '../../addons/Portal'
 import ModalHeader from './ModalHeader'
@@ -33,7 +34,7 @@ class Modal extends Component {
     /** An element type to render as (string or function). */
     as: customPropTypes.as,
 
-    /** Elements to render as Modal action buttons. */
+    /** Shorthand for Modal.Actions. Typically an array of button shorthand. */
     actions: customPropTypes.itemShorthand,
 
     /** A modal can reduce its complexity */
@@ -149,10 +150,8 @@ class Modal extends Component {
 
   handleActionsOverrides = predefinedProps => ({
     onActionClick: (e, actionProps) => {
-      const { triggerClose } = actionProps
-
       _.invoke(predefinedProps, 'onActionClick', e, actionProps)
-      if (triggerClose) this.handleClose(e)
+      this.handleClose(e)
     },
   })
 

@@ -104,29 +104,29 @@ describe('Modal', () => {
   })
 
   describe('actions', () => {
-    const actions = [
-      { key: 'cancel', content: 'Cancel' },
-      { key: 'ok', content: 'OK', triggerClose: true },
-    ]
+    it('closes the modal on action click', () => {
+      wrapperMount(<Modal defaultOpen actions={['OK']} />)
 
-    it('handles onItemClick', () => {
+      assertBodyContains('.ui.modal')
+      domEvent.click('.ui.modal.actions .button')
+      assertBodyContains('.ui.modal', false)
+    })
+  })
+
+  describe('onActionClick', () => {
+    it('is called when an action is clicked', () => {
       const onActionClick = sandbox.spy()
       const event = { target: null }
 
-      wrapperMount(<Modal defaultOpen actions={{ actions, onActionClick }} />)
+      wrapperMount(
+        <Modal defaultOpen>
+          <Modal.Actions></Modal.Actions>
+        </Modal>
+      )
 
       domEvent.click('.button:last-child')
       onActionClick.should.have.been.calledOnce()
       onActionClick.should.have.been.calledWithMatch(event, { content: 'OK' })
-    })
-
-    it('handles triggerClose prop on an action', () => {
-      wrapperMount(<Modal defaultOpen actions={actions} />)
-
-      domEvent.click('.button:first-child')
-      assertBodyContains('.ui.modal')
-      domEvent.click('.button:last-child')
-      assertBodyContains('.ui.modal', false)
     })
   })
 
