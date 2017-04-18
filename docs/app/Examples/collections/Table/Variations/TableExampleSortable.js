@@ -9,59 +9,56 @@ const tableData = [
   { name: 'Ben', age: 70, gender: 'Male' },
 ]
 
-class TableExampleSortable extends Component {
+export default class TableExampleSortable extends Component {
   state = {
-    sortProp: null,
-    sortDirection: null,
+    column: null,
     data: tableData,
+    direction: null,
   }
 
-  handleSort = (prop) => () => {
-    const { data, sortDirection, sortProp } = this.state
+  handleSort = clickedColumn => () => {
+    const { column, data, direction } = this.state
 
-    if (sortProp !== prop) {
-      const sortedData = _.sortBy(data, [prop])
-      this.setState({ data: sortedData, sortDirection: 'ascending', sortProp: prop })
-    } else {
-      const sortedData = data.slice(0).reverse()
-      const direction = sortDirection === 'ascending' ? 'descending' : 'ascending'
-      this.setState({ data: sortedData, sortDirection: direction })
+    if (column !== clickedColumn) {
+      this.setState({
+        column: clickedColumn,
+        data: _.sortBy(data, [clickedColumn]),
+        direction: 'ascending',
+      })
+
+      return
     }
+
+    this.setState({
+      data: data.reverse(),
+      direction: direction === 'ascending' ? 'descending' : 'ascending',
+    })
   }
 
   render() {
-    const { data, sortDirection, sortProp } = this.state
+    const { column, data, direction } = this.state
 
     return (
       <Table sortable celled>
         <Table.Header>
           <Table.Row>
-            <Table.HeaderCell
-              sorted={sortProp === 'name' ? sortDirection : null}
-              onClick={this.handleSort('name')}
-            >
+            <Table.HeaderCell sorted={column === 'name' && direction} onClick={this.handleSort('name')}>
               Name
             </Table.HeaderCell>
-            <Table.HeaderCell
-              sorted={sortProp === 'age' ? sortDirection : null}
-              onClick={this.handleSort('age')}
-            >
+            <Table.HeaderCell sorted={column === 'age' && direction} onClick={this.handleSort('age')}>
               Age
             </Table.HeaderCell>
-            <Table.HeaderCell
-              sorted={sortProp === 'gender' ? sortDirection : null}
-              onClick={this.handleSort('gender')}
-            >
+            <Table.HeaderCell sorted={column === 'gender' && direction} onClick={this.handleSort('gender')}>
               Gender
             </Table.HeaderCell>
           </Table.Row>
         </Table.Header>
         <Table.Body>
-          {_.map(data, (item) => (
-            <Table.Row key={item.name}>
-              <Table.Cell>{item.name}</Table.Cell>
-              <Table.Cell>{item.age}</Table.Cell>
-              <Table.Cell>{item.gender}</Table.Cell>
+          {_.map(data, ({ age, gender, name }) => (
+            <Table.Row key={name}>
+              <Table.Cell>{name}</Table.Cell>
+              <Table.Cell>{age}</Table.Cell>
+              <Table.Cell>{gender}</Table.Cell>
             </Table.Row>
           ))}
         </Table.Body>
@@ -69,5 +66,3 @@ class TableExampleSortable extends Component {
     )
   }
 }
-
-export default TableExampleSortable
