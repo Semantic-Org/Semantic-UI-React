@@ -93,7 +93,6 @@ const FormTypesExamples = () => (
       description='Adding an id to a Form subcomponent adds a matching htmlFor prop to the label.'
       examplePath='collections/Form/Shorthand/FormExampleSubcomponentId'
     />
-
   </ExampleSection>
 )
 

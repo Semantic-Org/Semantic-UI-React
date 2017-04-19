@@ -277,15 +277,19 @@ export const implementsWidthProp = (Component, widths = SUI.WIDTHS, options = {}
  */
 export const labelImplementsHtmlForProp = Component => {
   const { assertRequired } = helpers('labelImplementsHtmlForProp', Component)
-  describe('HtmlFor (common)', () => {
+
+  describe('htmlFor (common)', () => {
     assertRequired(Component, 'a `Component`')
+
     it('adds htmlFor to label', () => {
-      const idToTest = 'id-for-test'
-      const labelToTest = 'label-for-test'
-      const wrapper = mount(<Component label={labelToTest} id={idToTest} />)
-      expect(wrapper).to.have.descendants(`#${idToTest}`)
+      const id = 'id-for-test'
+      const label = 'label-for-test'
+
+      const wrapper = mount(<Component id={id} label={label} />)
       const labelNode = wrapper.find('label')
-      labelNode.should.have.prop('htmlFor', idToTest)
+
+      wrapper.should.to.have.descendants(`#${id}`)
+      labelNode.should.have.prop('htmlFor', id)
     })
   })
 }
