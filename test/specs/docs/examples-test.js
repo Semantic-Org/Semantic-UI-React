@@ -25,6 +25,7 @@ describe('examples', () => {
     const filename = path.replace(/^.*\/(\w+\.js)$/, '$1')
 
     it(`${filename} renders without console messages`, () => {
+      // TODO also render the example's path in a <ComponentExample /> just as the docs do
       mount(createElement(exampleContext(path).default))
 
       console.info.should.not.have.been.called(`Console info: ${console.info.args}`)

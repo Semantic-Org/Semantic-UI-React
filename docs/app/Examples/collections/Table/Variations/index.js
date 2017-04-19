@@ -129,6 +129,12 @@ const Variations = () => {
       <ComponentExample examplePath='collections/Table/Variations/TableExampleInvertedColors' />
 
       <ComponentExample
+        title='Sortable'
+        description='A table can appear to sort its data by column in ascending or descending order.'
+        examplePath='collections/Table/Variations/TableExampleSortable'
+      />
+
+      <ComponentExample
         title='Full-Width Header / Footer'
         description={
           'A definition table can have a full width header or footer, filling in the gap left by the first column.'

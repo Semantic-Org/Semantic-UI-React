@@ -1,6 +1,7 @@
-import _ from 'lodash'
 import cx from 'classnames'
-import React, { Children, cloneElement, PropTypes } from 'react'
+import _ from 'lodash'
+import PropTypes from 'prop-types'
+import React, { Children, cloneElement } from 'react'
 
 import {
   AutoControlledComponent as Component,

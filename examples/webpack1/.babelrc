@@ -5,7 +5,6 @@
     "stage-1"
   ],
   "plugins": [
-    "lodash",
-    ["lodash", { "id": "semantic-ui-react" }]
+    ["lodash", { "id": ["lodash", "semantic-ui-react"] }]
   ]
 }

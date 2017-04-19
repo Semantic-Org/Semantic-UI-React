@@ -1,5 +1,6 @@
 import _ from 'lodash'
-import { Children, cloneElement, PropTypes } from 'react'
+import PropTypes from 'prop-types'
+import { Children, cloneElement } from 'react'
 import ReactDOM from 'react-dom'
 
 import {

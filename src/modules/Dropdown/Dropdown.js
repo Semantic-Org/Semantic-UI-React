@@ -1,10 +1,10 @@
 import cx from 'classnames'
 import _ from 'lodash'
-import React, { Children, cloneElement, PropTypes } from 'react'
+import PropTypes from 'prop-types'
+import React, { Children, cloneElement } from 'react'
 
 import {
   AutoControlledComponent as Component,
-  createShorthand,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -65,7 +65,7 @@ export default class Dropdown extends Component {
       customPropTypes.disallow(['options', 'selection']),
       customPropTypes.givenProps(
         { children: PropTypes.any.isRequired },
-        React.PropTypes.element.isRequired,
+        PropTypes.element.isRequired,
       ),
     ]),
 
@@ -1118,7 +1118,7 @@ export default class Dropdown extends Component {
     // if no item could be found for a given state value the selected item will be undefined
     // compact the selectedItems so we only have actual objects left
     return _.map(_.compact(selectedItems), (item, index) => {
-      const defaultLabelProps = {
+      const defaultProps = {
         active: item.value === selectedLabel,
         as: 'a',
         key: item.value,
@@ -1128,8 +1128,8 @@ export default class Dropdown extends Component {
       }
 
       return Label.create(
-        renderLabel(item, index, defaultLabelProps),
-        defaultLabelProps,
+        renderLabel(item, index, defaultProps),
+        { defaultProps }
       )
     })
   }
@@ -1176,7 +1176,7 @@ export default class Dropdown extends Component {
 
     return (
       <DropdownMenu {...ariaOptions} className={menuClasses}>
-        {createShorthand(DropdownHeader, val => ({ content: val }), header)}
+        {DropdownHeader.create(header)}
         {this.renderOptions()}
       </DropdownMenu>
     )

@@ -1,6 +1,7 @@
 import cx from 'classnames'
 import _ from 'lodash'
-import React, { Component, PropTypes } from 'react'
+import PropTypes from 'prop-types'
+import React, { Component } from 'react'
 
 import {
   customPropTypes,
@@ -255,10 +256,10 @@ class Button extends Component {
       )
     }
 
-    const labelElement = Label.create(label, {
+    const labelElement = Label.create(label, { defaultProps: {
       basic: true,
       pointing: labelPosition === 'left' ? 'right' : 'left',
-    })
+    } })
 
     if (labelElement) {
       const classes = cx('ui', baseClasses, 'button', className)

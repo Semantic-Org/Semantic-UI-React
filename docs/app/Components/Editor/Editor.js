@@ -1,5 +1,6 @@
 import _ from 'lodash'
-import React, { PropTypes } from 'react'
+import PropTypes from 'prop-types'
+import React from 'react'
 import AceEditor from 'react-ace'
 import ace from 'brace'
 import 'brace/ext/language_tools'

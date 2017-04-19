@@ -14,10 +14,29 @@ describe('ListItem', () => {
   common.propKeyOnlyToClassName(ListItem, 'active')
   common.propKeyOnlyToClassName(ListItem, 'disabled')
 
-  describe('list', () => {
-    it('omitted when rendered as `li`', () => {
+  describe('as', () => {
+    it('omits className `list` when rendered as `li`', () => {
       shallow(<ListItem as='li' />)
         .should.not.have.className('item')
+    })
+  })
+
+  describe('onClick', () => {
+    it('can be omitted', () => {
+      const click = () => shallow(<ListItem />).simulate('click')
+      expect(click).to.not.throw()
+    })
+
+    it('is called with (e, props) when clicked', () => {
+      const onClick = sandbox.spy()
+      const event = { target: null }
+      const props = { onClick, 'data-foo': 'bar' }
+
+      shallow(<ListItem {...props} />)
+        .simulate('click', event)
+
+      onClick.should.have.been.calledOnce()
+      onClick.should.have.been.calledWithExactly(event, props)
     })
   })
 

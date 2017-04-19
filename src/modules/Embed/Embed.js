@@ -1,6 +1,7 @@
 import cx from 'classnames'
 import _ from 'lodash'
-import React, { PropTypes } from 'react'
+import PropTypes from 'prop-types'
+import React from 'react'
 
 import {
   AutoControlledComponent as Component,
@@ -177,7 +178,7 @@ export default class Embed extends Component {
   }
 
   renderEmbed() {
-    const { children } = this.props
+    const { children, source } = this.props
     const { active } = this.state
 
     if (!active) return null
@@ -186,6 +187,7 @@ export default class Embed extends Component {
     return (
       <div className='embed'>
         <iframe
+          title={`Embedded content from ${source}.`}
           allowFullScreen=''
           frameBorder='0'
           height='100%'
