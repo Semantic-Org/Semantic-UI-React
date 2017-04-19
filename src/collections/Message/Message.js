@@ -1,9 +1,10 @@
 import cx from 'classnames'
 import _ from 'lodash'
-import React, { Component, PropTypes } from 'react'
+import PropTypes from 'prop-types'
+import React, { Component } from 'react'
 
 import {
-  createShorthand,
+  createHTMLParagraph,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -181,7 +182,7 @@ export default class Message extends Component {
           <MessageContent>
             {MessageHeader.create(header)}
             {MessageList.create(list)}
-            {createShorthand('p', val => ({ children: val }), content)}
+            {createHTMLParagraph(content)}
           </MessageContent>
         )}
       </ElementType>

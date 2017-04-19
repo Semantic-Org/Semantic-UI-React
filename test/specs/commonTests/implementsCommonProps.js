@@ -18,15 +18,14 @@ import helpers from './commonHelpers'
  * @param {string|function} [options.ShorthandComponent] The component that should be rendered from the shorthand value.
  * @param {function} [options.mapValueToProps] A function that maps a primitive value to the Component props
  * @param {Object} [options.requiredProps={}] Props required to render the component.
- * @param {Object|function} [options.shorthandDefaultProps={}] Props required to render the shorthand component.
+ * @param {Object} [options.shorthandDefaultProps] Default props for the shorthand component.
+ * @param {Object} [options.shorthandOverrideProps] Override props for the shorthand component.
  */
 export const implementsButtonProp = (Component, options = {}) => {
   implementsShorthandProp(Component, {
     propKey: 'button',
     ShorthandComponent: Button,
     mapValueToProps: val => ({ content: val }),
-    requiredProps: {},
-    shorthandDefaultProps: {},
     ...options,
   })
 }
@@ -40,15 +39,14 @@ export const implementsButtonProp = (Component, options = {}) => {
  * @param {string|function} [options.ShorthandComponent] The component that should be rendered from the shorthand value.
  * @param {function} [options.mapValueToProps] A function that maps a primitive value to the Component props
  * @param {Object} [options.requiredProps={}] Props required to render the component.
- * @param {Object|function} [options.shorthandDefaultProps={}] Props required to render the shorthand component.
+ * @param {Object} [options.shorthandDefaultProps] Default props for the shorthand component.
+ * @param {Object} [options.shorthandOverrideProps] Override props for the shorthand component.
  */
 export const implementsHTMLInputProp = (Component, options = {}) => {
   implementsShorthandProp(Component, {
     propKey: 'input',
     ShorthandComponent: 'input',
     mapValueToProps: val => ({ type: val }),
-    requiredProps: {},
-    shorthandDefaultProps: {},
     ...options,
   })
 }
@@ -62,15 +60,14 @@ export const implementsHTMLInputProp = (Component, options = {}) => {
  * @param {string|function} [options.ShorthandComponent] The component that should be rendered from the shorthand value.
  * @param {function} [options.mapValueToProps] A function that maps a primitive value to the Component props
  * @param {Object} [options.requiredProps={}] Props required to render the component.
- * @param {Object|function} [options.shorthandDefaultProps={}] Props required to render the shorthand component.
+ * @param {Object} [options.shorthandDefaultProps] Default props for the shorthand component.
+ * @param {Object} [options.shorthandOverrideProps] Override props for the shorthand component.
  */
 export const implementsHTMLLabelProp = (Component, options = {}) => {
   implementsShorthandProp(Component, {
     propKey: 'label',
     ShorthandComponent: 'label',
     mapValueToProps: val => ({ children: val }),
-    requiredProps: {},
-    shorthandDefaultProps: {},
     ...options,
   })
 }
@@ -84,15 +81,14 @@ export const implementsHTMLLabelProp = (Component, options = {}) => {
  * @param {string|function} [options.ShorthandComponent] The component that should be rendered from the shorthand value.
  * @param {function} [options.mapValueToProps] A function that maps a primitive value to the Component props
  * @param {Object} [options.requiredProps={}] Props required to render the component.
- * @param {Object|function} [options.shorthandDefaultProps={}] Props required to render the shorthand component.
+ * @param {Object} [options.shorthandDefaultProps] Default props for the shorthand component.
+ * @param {Object} [options.shorthandOverrideProps] Override props for the shorthand component.
  */
 export const implementsIconProp = (Component, options = {}) => {
   implementsShorthandProp(Component, {
     propKey: 'icon',
     ShorthandComponent: Icon,
     mapValueToProps: val => ({ name: val }),
-    requiredProps: {},
-    shorthandDefaultProps: {},
     ...options,
   })
 }
@@ -106,15 +102,14 @@ export const implementsIconProp = (Component, options = {}) => {
  * @param {string|function} [options.ShorthandComponent] The component that should be rendered from the shorthand value.
  * @param {function} [options.mapValueToProps] A function that maps a primitive value to the Component props
  * @param {Object} [options.requiredProps={}] Props required to render the component.
- * @param {Object|function} [options.shorthandDefaultProps={}] Props required to render the shorthand component.
+ * @param {Object} [options.shorthandDefaultProps] Default props for the shorthand component.
+ * @param {Object} [options.shorthandOverrideProps] Override props for the shorthand component.
  */
 export const implementsImageProp = (Component, options = {}) => {
   implementsShorthandProp(Component, {
     propKey: 'image',
     ShorthandComponent: Image,
     mapValueToProps: val => ({ src: val }),
-    requiredProps: {},
-    shorthandDefaultProps: {},
     ...options,
   })
 }
@@ -128,15 +123,14 @@ export const implementsImageProp = (Component, options = {}) => {
  * @param {string|function} [options.ShorthandComponent] The component that should be rendered from the shorthand value.
  * @param {function} [options.mapValueToProps] A function that maps a primitive value to the Component props
  * @param {Object} [options.requiredProps={}] Props required to render the component.
- * @param {Object|function} [options.shorthandDefaultProps={}] Props required to render the shorthand component.
+ * @param {Object} [options.shorthandDefaultProps] Default props for the shorthand component.
+ * @param {Object} [options.shorthandOverrideProps] Override props for the shorthand component.
  */
 export const implementsLabelProp = (Component, options = {}) => {
   implementsShorthandProp(Component, {
     propKey: 'label',
     ShorthandComponent: Label,
     mapValueToProps: val => ({ content: val }),
-    requiredProps: {},
-    shorthandDefaultProps: {},
     ...options,
   })
 }

@@ -13,7 +13,7 @@ const events = [{
   summary: 'Helen Troy added 2 new illustrations',
   extraImages: [
     '/assets/images/wireframe/image.png',
-    '/assets/images/wireframe/image.png',
+    '/assets/images/wireframe/image-text.png',
   ],
 }, {
   date: '3 days ago',
@@ -29,7 +29,7 @@ const events = [{
   extraText: 'Look at these fun pics I found from a few years ago. Good times.',
   extraImages: [
     '/assets/images/wireframe/image.png',
-    '/assets/images/wireframe/image.png',
+    '/assets/images/wireframe/image-text.png',
   ],
 }]
 

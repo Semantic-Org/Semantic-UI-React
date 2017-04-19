@@ -12,7 +12,10 @@ export interface ModalProps extends PortalProps {
   /** An element type to render as (string or function). */
   as?: any;
 
-  /** A modal can reduce its complexity */
+  /** A Modal can be passed action buttons via shorthand. */
+  actions?: Array<any>;
+
+  /** A Modal can reduce its complexity */
   basic?: boolean;
 
   /** Primary content. */
@@ -30,11 +33,17 @@ export interface ModalProps extends PortalProps {
   /** Whether or not the Modal should close when the document is clicked. */
   closeOnDocumentClick?: boolean;
 
+  /** A Modal can be passed content via shorthand. */
+  content: any;
+
   /** Initial value of open. */
   defaultOpen?: boolean;
 
   /** A modal can appear in a dimmer. */
   dimmer?: boolean | 'blurring' | 'inverted';
+
+  /** A Modal can be passed header via shorthand. */
+  header: any;
 
   /** The node where the modal should mount. Defaults to document.body. */
   mountNode?: any;

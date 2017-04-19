@@ -1,6 +1,6 @@
-import 'semantic-ui-css/semantic.css'
 import AnchorJS from 'anchor-js'
-import React, { Component, PropTypes } from 'react'
+import PropTypes from 'prop-types'
+import React, { Component } from 'react'
 
 import Sidebar from 'docs/app/Components/Sidebar/Sidebar'
 import style from 'docs/app/Style'
