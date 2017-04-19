@@ -256,11 +256,12 @@ export default class Search extends Component {
     if (!prevState.open && this.state.open) {
       debug('search opened')
       this.open()
+      document.addEventListener('keydown', this.closeOnEscape)
+      document.addEventListener('click', this.closeOnDocumentClick)
+
       if (isPreviousSearchResults) {
-        document.addEventListener('keydown', this.closeOnEscape)
         document.addEventListener('keydown', this.moveSelectionOnKeyDown)
         document.addEventListener('keydown', this.selectItemOnEnter)
-        document.addEventListener('click', this.closeOnDocumentClick)
       }
     } else if (prevState.open && !this.state.open) {
       debug('search closed')
@@ -273,16 +274,12 @@ export default class Search extends Component {
 
     if (prevState.open && this.state.open) {
       if (!isPreviousSearchResults && isSearchResults) {
-        document.addEventListener('keydown', this.closeOnEscape)
         document.addEventListener('keydown', this.moveSelectionOnKeyDown)
         document.addEventListener('keydown', this.selectItemOnEnter)
-        document.addEventListener('click', this.closeOnDocumentClick)
       }
       if (isPreviousSearchResults && !isSearchResults) {
-        document.removeEventListener('keydown', this.closeOnEscape)
         document.removeEventListener('keydown', this.moveSelectionOnKeyDown)
         document.removeEventListener('keydown', this.selectItemOnEnter)
-        document.removeEventListener('click', this.closeOnDocumentClick)
       }
     }
   }
