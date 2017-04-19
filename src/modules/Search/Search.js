@@ -228,6 +228,9 @@ export default class Search extends Component {
     // Do not access document when server side rendering
     if (!isBrowser) return
 
+    const isPreviousSearchResults = !_.isEmpty(prevProps.results)
+    const isSearchResults = !_.isEmpty(this.props.results)
+
     // focused / blurred
     if (!prevState.focus && this.state.focus) {
       debug('search focused')
@@ -235,7 +238,7 @@ export default class Search extends Component {
         debug('mouse is not down, opening')
         this.tryOpen()
       }
-      if (this.state.open) {
+      if (this.state.open && isSearchResults) {
         document.addEventListener('keydown', this.moveSelectionOnKeyDown)
         document.addEventListener('keydown', this.selectItemOnEnter)
       }
@@ -253,10 +256,12 @@ export default class Search extends Component {
     if (!prevState.open && this.state.open) {
       debug('search opened')
       this.open()
-      document.addEventListener('keydown', this.closeOnEscape)
-      document.addEventListener('keydown', this.moveSelectionOnKeyDown)
-      document.addEventListener('keydown', this.selectItemOnEnter)
-      document.addEventListener('click', this.closeOnDocumentClick)
+      if (isPreviousSearchResults) {
+        document.addEventListener('keydown', this.closeOnEscape)
+        document.addEventListener('keydown', this.moveSelectionOnKeyDown)
+        document.addEventListener('keydown', this.selectItemOnEnter)
+        document.addEventListener('click', this.closeOnDocumentClick)
+      }
     } else if (prevState.open && !this.state.open) {
       debug('search closed')
       this.close()
@@ -264,6 +269,21 @@ export default class Search extends Component {
       document.removeEventListener('keydown', this.moveSelectionOnKeyDown)
       document.removeEventListener('keydown', this.selectItemOnEnter)
       document.removeEventListener('click', this.closeOnDocumentClick)
+    }
+
+    if (prevState.open && this.state.open) {
+      if (!isPreviousSearchResults && isSearchResults) {
+        document.addEventListener('keydown', this.closeOnEscape)
+        document.addEventListener('keydown', this.moveSelectionOnKeyDown)
+        document.addEventListener('keydown', this.selectItemOnEnter)
+        document.addEventListener('click', this.closeOnDocumentClick)
+      }
+      if (isPreviousSearchResults && !isSearchResults) {
+        document.removeEventListener('keydown', this.closeOnEscape)
+        document.removeEventListener('keydown', this.moveSelectionOnKeyDown)
+        document.removeEventListener('keydown', this.selectItemOnEnter)
+        document.removeEventListener('click', this.closeOnDocumentClick)
+      }
     }
   }
 
