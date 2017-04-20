@@ -228,9 +228,6 @@ export default class Search extends Component {
     // Do not access document when server side rendering
     if (!isBrowser) return
 
-    const isPreviousSearchResults = !_.isEmpty(prevProps.results)
-    const isSearchResults = !_.isEmpty(this.props.results)
-
     // focused / blurred
     if (!prevState.focus && this.state.focus) {
       debug('search focused')
@@ -238,7 +235,7 @@ export default class Search extends Component {
         debug('mouse is not down, opening')
         this.tryOpen()
       }
-      if (this.state.open && isSearchResults) {
+      if (this.state.open) {
         document.addEventListener('keydown', this.moveSelectionOnKeyDown)
         document.addEventListener('keydown', this.selectItemOnEnter)
       }
@@ -257,12 +254,9 @@ export default class Search extends Component {
       debug('search opened')
       this.open()
       document.addEventListener('keydown', this.closeOnEscape)
+      document.addEventListener('keydown', this.moveSelectionOnKeyDown)
+      document.addEventListener('keydown', this.selectItemOnEnter)
       document.addEventListener('click', this.closeOnDocumentClick)
-
-      if (isPreviousSearchResults) {
-        document.addEventListener('keydown', this.moveSelectionOnKeyDown)
-        document.addEventListener('keydown', this.selectItemOnEnter)
-      }
     } else if (prevState.open && !this.state.open) {
       debug('search closed')
       this.close()
@@ -270,17 +264,6 @@ export default class Search extends Component {
       document.removeEventListener('keydown', this.moveSelectionOnKeyDown)
       document.removeEventListener('keydown', this.selectItemOnEnter)
       document.removeEventListener('click', this.closeOnDocumentClick)
-    }
-
-    if (prevState.open && this.state.open) {
-      if (!isPreviousSearchResults && isSearchResults) {
-        document.addEventListener('keydown', this.moveSelectionOnKeyDown)
-        document.addEventListener('keydown', this.selectItemOnEnter)
-      }
-      if (isPreviousSearchResults && !isSearchResults) {
-        document.removeEventListener('keydown', this.moveSelectionOnKeyDown)
-        document.removeEventListener('keydown', this.selectItemOnEnter)
-      }
     }
   }
 
@@ -495,6 +478,7 @@ export default class Search extends Component {
     if (!isBrowser) return
     const menu = document.querySelector('.ui.search.active.visible .results.visible')
     const item = menu.querySelector('.result.active')
+    if (!item) return
     debug(`menu (results): ${menu}`)
     debug(`item (result): ${item}`)
     const isOutOfUpperView = item.offsetTop < menu.scrollTop
