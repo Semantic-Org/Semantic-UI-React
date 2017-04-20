@@ -6,6 +6,7 @@ import * as common from 'test/specs/commonTests'
 
 describe('FormSelect', () => {
   common.isConformant(FormSelect)
+  common.labelImplementsHtmlForProp(FormSelect)
 
   it('renders a FormField with a Select control', () => {
     shallow(<FormSelect />)
