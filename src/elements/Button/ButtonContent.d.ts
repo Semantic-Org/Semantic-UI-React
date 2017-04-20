@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-interface ContentProps {
+export interface ButtonContentProps {
   [key: string]: any;
 
   /** An element type to render as (string or function). */
@@ -19,6 +19,6 @@ interface ContentProps {
   visible?: boolean;
 }
 
-declare const ButtonContent: React.StatelessComponent<ContentProps>;
+declare const ButtonContent: React.StatelessComponent<ButtonContentProps>;
 
 export default ButtonContent;

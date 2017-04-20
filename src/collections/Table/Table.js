@@ -1,6 +1,7 @@
 import _ from 'lodash'
 import cx from 'classnames'
-import React, { PropTypes } from 'react'
+import PropTypes from 'prop-types'
+import React from 'react'
 
 import {
   customPropTypes,
@@ -90,7 +91,7 @@ function Table(props) {
 
   return (
     <ElementType {...rest} className={classes}>
-      {headerRow && <TableHeader>{TableRow.create(headerRow, { cellAs: 'th' })}</TableHeader>}
+      {headerRow && <TableHeader>{TableRow.create(headerRow, { defaultProps: { cellAs: 'th' } })}</TableHeader>}
       <TableBody>
         {renderBodyRow && _.map(tableData, (data, index) => TableRow.create(renderBodyRow(data, index)))}
       </TableBody>

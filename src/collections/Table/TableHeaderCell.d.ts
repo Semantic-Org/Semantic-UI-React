@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { TableCellProps } from './TableCell';
 
-interface TableHeaderCellProps extends TableCellProps {
+export interface TableHeaderCellProps extends TableCellProps {
   sorted?: 'ascending' | 'descending';
 }
 

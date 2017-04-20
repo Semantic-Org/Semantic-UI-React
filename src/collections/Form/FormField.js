@@ -1,6 +1,7 @@
 import cx from 'classnames'
 import _ from 'lodash'
-import React, { createElement, PropTypes } from 'react'
+import PropTypes from 'prop-types'
+import React, { createElement } from 'react'
 
 import {
   createHTMLLabel,
@@ -93,7 +94,9 @@ function FormField(props) {
 
   return (
     <ElementType className={classes}>
-      {createHTMLLabel(label)}
+      {createHTMLLabel(label, { defaultProps: {
+        htmlFor: _.get(controlProps, 'id') },
+      })}
       {createElement(control, controlProps)}
     </ElementType>
   )
@@ -143,11 +146,8 @@ FormField.propTypes = {
     PropTypes.object,
   ]),
 
-  /** A field can show that input is mandatory.  Requires a label. */
-  required: customPropTypes.every([
-    customPropTypes.demand(['label']),
-    PropTypes.bool,
-  ]),
+  /** A field can show that input is mandatory. */
+  required: PropTypes.bool,
 
   /** Passed to the control component (i.e. <input type='password' />) */
   type: customPropTypes.every([

@@ -15,7 +15,7 @@ const events = [
     summary: 'Helen Troy added 2 new illustrations',
     extraImages: [
       '/assets/images/wireframe/image.png',
-      '/assets/images/wireframe/image.png',
+      '/assets/images/wireframe/image-text.png',
     ],
   },
   {
@@ -42,7 +42,7 @@ const events = [
     summary: 'Justen Kitsune added 2 new photos of you',
     extraImages: [
       '/assets/images/wireframe/image.png',
-      '/assets/images/wireframe/image.png',
+      '/assets/images/wireframe/image-text.png',
     ],
   },
 ]

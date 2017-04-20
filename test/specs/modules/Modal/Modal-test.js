@@ -45,6 +45,16 @@ describe('Modal', () => {
   })
 
   common.hasSubComponents(Modal, [ModalHeader, ModalContent, ModalActions, ModalDescription])
+  common.implementsShorthandProp(Modal, {
+    propKey: 'header',
+    ShorthandComponent: ModalHeader,
+    mapValueToProps: content => ({ content }),
+  })
+  common.implementsShorthandProp(Modal, {
+    propKey: 'content',
+    ShorthandComponent: ModalContent,
+    mapValueToProps: content => ({ content }),
+  })
 
   // Heads up!
   //
@@ -79,6 +89,43 @@ describe('Modal', () => {
       .querySelector('.ui.modal')
       .querySelector('[data-child]')
       .should.not.equal(null, 'Modal did not render the child component.')
+  })
+
+  it("spreads the user's style prop on the Modal", () => {
+    const style = { marginTop: '1em', top: 0 }
+
+    wrapperMount(<Modal open style={style} />)
+    const element = document.querySelector('.ui.modal')
+
+    element.style.should.have.property('marginTop', '1em')
+    element.style.should.have.property('top', '0px')
+  })
+
+  describe('actions', () => {
+    const actions = [
+      { key: 'cancel', content: 'Cancel' },
+      { key: 'ok', content: 'OK', triggerClose: true },
+    ]
+
+    it('handles onItemClick', () => {
+      const onActionClick = sandbox.spy()
+      const event = { target: null }
+
+      wrapperMount(<Modal defaultOpen actions={{ actions, onActionClick }} />)
+
+      domEvent.click('.button:last-child')
+      onActionClick.should.have.been.calledOnce()
+      onActionClick.should.have.been.calledWithMatch(event, { content: 'OK' })
+    })
+
+    it('handles triggerClose prop on an action', () => {
+      wrapperMount(<Modal defaultOpen actions={actions} />)
+
+      domEvent.click('.button:first-child')
+      assertBodyContains('.ui.modal')
+      domEvent.click('.button:last-child')
+      assertBodyContains('.ui.modal', false)
+    })
   })
 
   describe('open', () => {

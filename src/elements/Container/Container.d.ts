@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { SemanticTEXTALIGNMENTS } from '../..';
 
-interface ContainerProps {
+export interface ContainerProps {
   [key: string]: any;
 
   /** An element type to render as (string or function). */

@@ -6,6 +6,7 @@ import * as common from 'test/specs/commonTests'
 
 describe('FormTextArea', () => {
   common.isConformant(FormTextArea)
+  common.labelImplementsHtmlForProp(FormTextArea)
 
   it('renders a FormField with a TextArea control', () => {
     shallow(<FormTextArea />)

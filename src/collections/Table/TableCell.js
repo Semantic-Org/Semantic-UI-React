@@ -1,6 +1,7 @@
 import _ from 'lodash'
 import cx from 'classnames'
-import React, { PropTypes } from 'react'
+import PropTypes from 'prop-types'
+import React from 'react'
 
 import {
   createShorthandFactory,
@@ -132,6 +133,6 @@ TableCell.propTypes = {
   width: PropTypes.oneOf(SUI.WIDTHS),
 }
 
-TableCell.create = createShorthandFactory(TableCell, content => ({ content }), true)
+TableCell.create = createShorthandFactory(TableCell, content => ({ content }))
 
 export default TableCell

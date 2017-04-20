@@ -1,6 +1,7 @@
 import cx from 'classnames'
 import _ from 'lodash'
-import React, { PropTypes } from 'react'
+import PropTypes from 'prop-types'
+import React from 'react'
 
 import {
   createShorthandFactory,
@@ -26,13 +27,14 @@ function BreadcrumbDivider(props) {
   const rest = getUnhandledProps(BreadcrumbDivider, props)
   const ElementType = getElementType(BreadcrumbDivider, props)
 
-  const iconElement = Icon.create(icon, { ...rest, className: classes })
-  if (iconElement) return iconElement
+  if (!_.isNil(icon)) return Icon.create(icon, { defaultProps: { ...rest, className: classes } })
+  if (!_.isNil(content)) return <ElementType {...rest} className={classes}>{content}</ElementType>
 
-  let breadcrumbContent = content
-  if (_.isNil(content)) breadcrumbContent = _.isNil(children) ? '/' : children
-
-  return <ElementType {...rest} className={classes}>{breadcrumbContent}</ElementType>
+  return (
+    <ElementType {...rest} className={classes}>
+      {_.isNil(children) ? '/' : children}
+    </ElementType>
+  )
 }
 
 BreadcrumbDivider._meta = {

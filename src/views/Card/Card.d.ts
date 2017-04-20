@@ -7,7 +7,7 @@ import { default as CardGroup } from './CardGroup';
 import { default as CardHeader } from './CardHeader';
 import { default as CardMeta } from './CardMeta';
 
-interface CardProps {
+export interface CardProps {
   [key: string]: any;
 
   /** An element type to render as (string or function). */

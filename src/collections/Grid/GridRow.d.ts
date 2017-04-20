@@ -9,7 +9,7 @@ import {
 import { GridReversedProp } from './Grid';
 import { GridOnlyProp } from './GridColumn';
 
-interface GridRowProps {
+export interface GridRowProps {
   [key: string]: any;
 
   /** An element type to render as (string or function). */
