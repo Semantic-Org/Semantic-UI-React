@@ -64,7 +64,7 @@
     "babel-cli": "^6.18.0",
     "babel-core": "^6.21.0",
     "babel-eslint": "^7.0.0",
-    "babel-loader": "^6.2.8",
+    "babel-loader": "^7.0.0",
     "babel-plugin-__coverage__": "^11.0.0",
     "babel-plugin-lodash": "^3.2.10",
     "babel-plugin-react-transform": "^2.0.2",
