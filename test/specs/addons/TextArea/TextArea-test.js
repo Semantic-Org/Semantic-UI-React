@@ -40,18 +40,13 @@ describe('TextArea', () => {
     },
   })
 
-  describe('onChange', () => {
-    it('is called with (e, data) on change', () => {
-      const spy = sandbox.spy()
-      const e = { target: { value: 'name' } }
-      const props = { 'data-foo': 'bar', onChange: spy }
+  describe('focus', () => {
+    it('can be set via a ref', () => {
+      wrapperMount(<TextArea />)
+      const element = document.querySelector('textarea')
 
-      wrapperShallow(<TextArea {...props} />)
-
-      wrapper.find('textarea').simulate('change', e)
-
-      spy.should.have.been.calledOnce()
-      spy.should.have.been.calledWithMatch(e, { ...props, value: e.target.value })
+      wrapper.instance().focus()
+      document.activeElement.should.equal(element)
     })
   })
 
@@ -121,6 +116,21 @@ describe('TextArea', () => {
       wrapper.setProps({ autoHeight: false })
 
       assertHeight('') // no height
+    })
+  })
+
+  describe('onChange', () => {
+    it('is called with (e, data) on change', () => {
+      const spy = sandbox.spy()
+      const e = { target: { value: 'name' } }
+      const props = { 'data-foo': 'bar', onChange: spy }
+
+      wrapperShallow(<TextArea {...props} />)
+
+      wrapper.find('textarea').simulate('change', e)
+
+      spy.should.have.been.calledOnce()
+      spy.should.have.been.calledWithMatch(e, { ...props, value: e.target.value })
     })
   })
 })
