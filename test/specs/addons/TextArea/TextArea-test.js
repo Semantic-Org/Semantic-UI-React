@@ -40,6 +40,22 @@ describe('TextArea', () => {
     },
   })
 
+  describe('focus', () => {
+    it('can be set via a ref', () => {
+      const mountNode = document.createElement('div')
+      document.body.appendChild(mountNode)
+
+      const wrapper = mount(<TextArea />, { attachTo: mountNode })
+      wrapper.instance().focus()
+
+      const element = document.querySelector('textarea')
+      document.activeElement.should.equal(element)
+
+      wrapper.detach()
+      document.body.removeChild(mountNode)
+    })
+  })
+
   describe('onChange', () => {
     it('is called with (e, data) on change', () => {
       const spy = sandbox.spy()
