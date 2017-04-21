@@ -56,7 +56,7 @@ export interface DropdownProps {
   defaultSelectedLabel?: number | string;
 
   /** Initial value or value array if multiple. */
-  defaultValue?: string | number | Array<number | string >;
+  defaultValue?: string | number | Array<number | string>;
 
   /** A disabled dropdown menu or item does not allow user interaction. */
   disabled?: boolean;
@@ -232,6 +232,9 @@ export interface DropdownProps {
 
   /** Current value or value array if multiple. Creates a controlled component. */
   value?: number | string | Array<number | string>;
+
+  /** A dropdown can open upward. */
+  upward: boolean;
 }
 
 interface DropdownComponent extends React.ComponentClass<DropdownProps> {
