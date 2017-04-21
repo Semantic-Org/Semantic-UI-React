@@ -74,6 +74,7 @@ These great products are built on Semantic UI React. Add yours [here][22].
 - https://blackship.com
 - http://www.brewhousesolutions.com
 - https://www.lifebot.fr
+- Netflix's Edge Developer Experience team's numerous [internal apps](https://github.com/Semantic-Org/Semantic-UI-React/issues/1604)
 
 ## Voice Your Opinion
 
