@@ -1,5 +1,40 @@
 # Change Log
 
+## [v0.68.1](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.68.1) (2017-04-22)
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.68.0...v0.68.1)
+
+**Implemented enhancements:**
+
+- Feature request: handler for \<List selection/\> [\#1301](https://github.com/Semantic-Org/Semantic-UI-React/issues/1301)
+- Label click for input element \(accessibility\)  [\#980](https://github.com/Semantic-Org/Semantic-UI-React/issues/980)
+- feat\(TextArea\): add focus\(\) method [\#1602](https://github.com/Semantic-Org/Semantic-UI-React/pull/1602) ([gnowoel](https://github.com/gnowoel))
+
+**Fixed bugs:**
+
+- Search: Pressing up/down arrow in the search input with no results throws errors to console [\#1592](https://github.com/Semantic-Org/Semantic-UI-React/issues/1592)
+
+**Closed issues:**
+
+- Thank you, maintainers and contributors [\#1604](https://github.com/Semantic-Org/Semantic-UI-React/issues/1604)
+- Discussion: Abstract out prop mapping to independent lib [\#1601](https://github.com/Semantic-Org/Semantic-UI-React/issues/1601)
+- Deprecation warnings on PropTypes with React \>= 15.5.0 [\#1587](https://github.com/Semantic-Org/Semantic-UI-React/issues/1587)
+- Add docs for `sortable` Table and `sorted` TableCell [\#1195](https://github.com/Semantic-Org/Semantic-UI-React/issues/1195)
+
+**Merged pull requests:**
+
+- Add StackForge to Built With section [\#1607](https://github.com/Semantic-Org/Semantic-UI-React/pull/1607) ([joshmanders](https://github.com/joshmanders))
+- docs\(readme\): Add Netflix EDX as a user [\#1606](https://github.com/Semantic-Org/Semantic-UI-React/pull/1606) ([jayphelps](https://github.com/jayphelps))
+- Update babel-loader to version 7.0.0 🚀 [\#1605](https://github.com/Semantic-Org/Semantic-UI-React/pull/1605) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+- feat\(Dropdown\): add upward prop [\#1603](https://github.com/Semantic-Org/Semantic-UI-React/pull/1603) ([levithomason](https://github.com/levithomason))
+- fix\(Search\): pressing up/down arrow in the search input causes error [\#1600](https://github.com/Semantic-Org/Semantic-UI-React/pull/1600) ([josie11](https://github.com/josie11))
+- feat\(docs\): use https url [\#1598](https://github.com/Semantic-Org/Semantic-UI-React/pull/1598) ([levithomason](https://github.com/levithomason))
+- docs\(examples\): fix in webpack1 example [\#1596](https://github.com/Semantic-Org/Semantic-UI-React/pull/1596) ([layershifter](https://github.com/layershifter))
+- docs\(Table\): add sortable table example [\#1594](https://github.com/Semantic-Org/Semantic-UI-React/pull/1594) ([josie11](https://github.com/josie11))
+- docs\(Container\): Fix a typo [\#1589](https://github.com/Semantic-Org/Semantic-UI-React/pull/1589) ([eu42](https://github.com/eu42))
+- fix\(Dropdown\): fix warning on PropTypes with React \>= 15.5.0 [\#1588](https://github.com/Semantic-Org/Semantic-UI-React/pull/1588) ([G1enY0ung](https://github.com/G1enY0ung))
+- fix\(Form\): pass shorthand ids to the label's htmlFor prop [\#1517](https://github.com/Semantic-Org/Semantic-UI-React/pull/1517) ([pedrocostadev](https://github.com/pedrocostadev))
+- feat\(Modal\): Create a Modal using shorthand props [\#1508](https://github.com/Semantic-Org/Semantic-UI-React/pull/1508) ([josie11](https://github.com/josie11))
+
 ## [v0.68.0](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.68.0) (2017-04-16)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.67.2...v0.68.0)
 
