@@ -122,7 +122,7 @@
     "react-router-dom": "^4.0.0",
     "require-dir": "^0.3.0",
     "rimraf": "^2.5.2",
-    "satisfied": "^1.0.0",
+    "satisfied": "^1.1.0",
     "semantic-ui-css": "^2.2.2",
     "simulant": "^0.2.2",
     "sinon": "^2.1.0",
