@@ -15,11 +15,11 @@ export interface RevealProps {
     | 'move' | 'move right' | 'move up' | 'move down'
     | 'rotate' | 'rotate left';
 
-  /** Additional classes. */
-  className?: string;
-
   /** Primary content. */
   children?: React.ReactNode;
+
+  /** Additional classes. */
+  className?: string;
 
   /** A disabled reveal will not animate when hovered. */
   disabled?: boolean;

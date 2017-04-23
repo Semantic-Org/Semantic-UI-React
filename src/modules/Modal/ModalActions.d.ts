@@ -22,7 +22,7 @@ export interface ModalActionsProps {
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
    * @param {object} data - All item props.
    */
-  onItemClick?: (event: React.MouseEvent<HTMLAnchorElement>, data: ButtonProps) => void;
+  onActionClick?: (event: React.MouseEvent<HTMLAnchorElement>, data: ButtonProps) => void;
 }
 
 declare const ModalActions: React.ComponentClass<ModalActionsProps>;

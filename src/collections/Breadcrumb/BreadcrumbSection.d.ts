@@ -15,6 +15,9 @@ export interface BreadcrumbSectionProps {
   /** Additional classes. */
   className?: string;
 
+  /** Shorthand for primary content. */
+  content?: any;
+
   /** Render as an `a` tag instead of a `div` and adds the href attribute. */
   href?: string;
 
