@@ -78,7 +78,7 @@
     "chai": "^3.5.0",
     "chai-enzyme": "^0.6.1",
     "connect-history-api-fallback": "^1.2.0",
-    "copy-to-clipboard": "^3.0.5",
+    "copy-to-clipboard": "^3.0.6",
     "cross-env": "^4.0.0",
     "del": "^2.2.2",
     "dirty-chai": "^1.2.2",
