@@ -39,8 +39,9 @@
     "test": "cross-env NODE_ENV=test karma start",
     "test:watch": "npm run test --silent -- --no-single-run",
     "tsd": "gulp tsd",
-    "tsd:lint": "tslint './src/**/*.d.ts'",
-    "tsd:lint:fix": "npm run -s tsd:lint -- --fix"
+    "tsd:lint": "tslint './index.d.ts' './src/**/*.d.ts' './test/typings.d.ts'",
+    "tsd:lint:fix": "npm run -s tsd:lint -- --fix",
+    "tsd:test": "npm run tsd && tsc -p ./"
   },
   "repository": {
     "type": "git",
