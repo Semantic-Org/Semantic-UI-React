@@ -22,6 +22,7 @@ import DropdownDivider from './DropdownDivider'
 import DropdownItem from './DropdownItem'
 import DropdownHeader from './DropdownHeader'
 import DropdownMenu from './DropdownMenu'
+import DropdownSearchInput from './DropdownSearchInput'
 
 const debug = makeDebugger('dropdown')
 
@@ -273,6 +274,13 @@ export default class Dropdown extends Component {
       PropTypes.func,
     ]),
 
+    /** A shorthand for a search input. */
+    searchInput: PropTypes.oneOfType([
+      PropTypes.array,
+      PropTypes.node,
+      PropTypes.object,
+    ]),
+
     // TODO 'searchInMenu' or 'search='in menu' or ???  How to handle this markup and functionality?
 
     /** Define whether the highlighted item should be selected on blur. */
@@ -329,12 +337,13 @@ export default class Dropdown extends Component {
   static defaultProps = {
     additionLabel: 'Add ',
     additionPosition: 'top',
+    closeOnBlur: true,
     icon: 'dropdown',
     noResultsMessage: 'No results found.',
-    renderLabel: ({ text }) => text,
-    selectOnBlur: true,
     openOnFocus: true,
-    closeOnBlur: true,
+    renderLabel: ({ text }) => text,
+    searchInput: 'text',
+    selectOnBlur: true,
   }
 
   static autoControlledProps = [
@@ -352,6 +361,7 @@ export default class Dropdown extends Component {
   static Header = DropdownHeader
   static Item = DropdownItem
   static Menu = DropdownMenu
+  static SearchInput = DropdownSearchInput
 
   componentWillMount() {
     if (super.componentWillMount) super.componentWillMount()
@@ -938,6 +948,40 @@ export default class Dropdown extends Component {
   handleRef = c => (this.ref = c)
 
   // ----------------------------------------
+  // Helpers
+  // ----------------------------------------
+
+  computeSearchInputTabIndex = () => {
+    const { disabled, tabIndex } = this.props
+
+    if (!_.isNil(tabIndex)) return tabIndex
+    return disabled ? -1 : 0
+  }
+
+  computeSearchInputWidth = () => {
+    const { searchQuery } = this.state
+
+    if (this.sizerRef && searchQuery) {
+      // resize the search input, temporarily show the sizer so we can measure it
+
+      this.sizerRef.style.display = 'inline'
+      this.sizerRef.textContent = searchQuery
+      const searchWidth = Math.ceil(this.sizerRef.getBoundingClientRect().width)
+      this.sizerRef.style.removeProperty('display')
+
+      return searchWidth
+    }
+  }
+
+  computeTabIndex = () => {
+    const { disabled, search, tabIndex } = this.props
+
+    if (!_.isNil(tabIndex)) return tabIndex
+    // don't set a root node tabIndex as the search input has its own tabIndex
+    if (!search) return disabled ? -1 : 0
+  }
+
+  // ----------------------------------------
   // Behavior
   // ----------------------------------------
 
@@ -1066,39 +1110,18 @@ export default class Dropdown extends Component {
   }
 
   renderSearchInput = () => {
-    const { disabled, search, name, tabIndex } = this.props
+    const { name, search, searchInput } = this.props
     const { searchQuery } = this.state
 
     if (!search) return null
-
-    // tabIndex
-    let computedTabIndex
-    if (!_.isNil(tabIndex)) computedTabIndex = tabIndex
-    else computedTabIndex = disabled ? -1 : 0
-
-    // resize the search input, temporarily show the sizer so we can measure it
-    let searchWidth
-    if (this.sizerRef && searchQuery) {
-      this.sizerRef.style.display = 'inline'
-      this.sizerRef.textContent = searchQuery
-      searchWidth = Math.ceil(this.sizerRef.getBoundingClientRect().width)
-      this.sizerRef.style.removeProperty('display')
-    }
-
-    return (
-      <input
-        value={searchQuery}
-        type='text'
-        aria-autocomplete='list'
-        onChange={this.handleSearchChange}
-        className='search'
-        name={[name, 'search'].join('-')}
-        autoComplete='off'
-        tabIndex={computedTabIndex}
-        style={{ width: searchWidth }}
-        ref={this.handleSearchRef}
-      />
-    )
+    return DropdownSearchInput.create(searchInput, { defaultProps: {
+      inputRef: this.handleSearchRef,
+      name,
+      onChange: this.handleSearchChange,
+      tabIndex: this.computeSearchInputTabIndex(),
+      value: searchQuery,
+      width: this.computeSearchInputWidth(),
+    } })
   }
 
   renderSearchSizer = () => {
@@ -1189,7 +1212,6 @@ export default class Dropdown extends Component {
     debug('render()')
     debug('props', this.props)
     debug('state', this.state)
-    const { open } = this.state
 
     const {
       basic,
@@ -1211,10 +1233,10 @@ export default class Dropdown extends Component {
       selection,
       scrolling,
       simple,
-      tabIndex,
       trigger,
       upward,
     } = this.props
+    const { open } = this.state
 
     // Classes
     const classes = cx(
@@ -1244,20 +1266,12 @@ export default class Dropdown extends Component {
       useKeyOnly(upward, 'upward'),
 
       useKeyOrValueAndKey(pointing, 'pointing'),
-      className,
       'dropdown',
+      className,
     )
     const rest = getUnhandledProps(Dropdown, this.props)
     const ElementType = getElementType(Dropdown, this.props)
     const ariaOptions = this.getDropdownAriaOptions(ElementType, this.props)
-
-    let computedTabIndex
-    if (!_.isNil(tabIndex)) {
-      computedTabIndex = tabIndex
-    } else if (!search) {
-      // don't set a root node tabIndex as the search input has its own tabIndex
-      computedTabIndex = disabled ? -1 : 0
-    }
 
     return (
       <ElementType
@@ -1269,7 +1283,7 @@ export default class Dropdown extends Component {
         onMouseDown={this.handleMouseDown}
         onFocus={this.handleFocus}
         onChange={this.handleChange}
-        tabIndex={computedTabIndex}
+        tabIndex={this.computeTabIndex()}
         ref={this.handleRef}
       >
         {this.renderHiddenInput()}
