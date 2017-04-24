@@ -67,6 +67,9 @@ export interface CheckboxProps {
   /** Format to emphasize the current selection state. */
   slider?: boolean;
 
+  /** A checkbox can receive focus. */
+  tabIndex?: number | string;
+
   /** Format to show an on or off choice. */
   toggle?: boolean;
 

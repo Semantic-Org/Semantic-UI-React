@@ -312,9 +312,6 @@ export default class Dropdown extends Component {
       PropTypes.node,
     ]),
 
-    /** A dropdown can open upward. */
-    upward: PropTypes.bool,
-
     /** Current value or value array if multiple. Creates a controlled component. */
     value: PropTypes.oneOfType([
       PropTypes.string,
@@ -324,6 +321,9 @@ export default class Dropdown extends Component {
         PropTypes.number,
       ])),
     ]),
+
+    /** A dropdown can open upward. */
+    upward: PropTypes.bool,
   }
 
   static defaultProps = {

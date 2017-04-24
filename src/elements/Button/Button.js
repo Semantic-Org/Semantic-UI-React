@@ -65,11 +65,11 @@ class Button extends Component {
       ),
     ]),
 
-    /** Additional classes. */
-    className: PropTypes.string,
-
     /** A button can be circular. */
     circular: PropTypes.bool,
+
+    /** Additional classes. */
+    className: PropTypes.string,
 
     /** A button can have different colors */
     color: PropTypes.oneOf([

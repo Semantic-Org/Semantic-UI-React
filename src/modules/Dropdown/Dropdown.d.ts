@@ -215,6 +215,9 @@ export interface DropdownProps {
   /** Define whether the highlighted item should be selected on blur. */
   selectOnBlur?: boolean;
 
+  /** Currently selected label in multi-select. */
+  selectedLabel?: number | string;
+
   /** A dropdown can be used to select between choices in a form. */
   selection?: any;
 
@@ -234,7 +237,7 @@ export interface DropdownProps {
   value?: number | string | Array<number | string>;
 
   /** A dropdown can open upward. */
-  upward: boolean;
+  upward?: boolean;
 }
 
 interface DropdownComponent extends React.ComponentClass<DropdownProps> {

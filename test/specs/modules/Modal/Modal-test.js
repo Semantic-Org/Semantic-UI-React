@@ -45,6 +45,8 @@ describe('Modal', () => {
   })
 
   common.hasSubComponents(Modal, [ModalHeader, ModalContent, ModalActions, ModalDescription])
+  common.hasValidTypings(Modal)
+
   common.implementsShorthandProp(Modal, {
     propKey: 'header',
     ShorthandComponent: ModalHeader,
