@@ -6,11 +6,12 @@ import {
   SyntaxKind,
 } from 'typescript'
 
+const isAnyKeyword = ({ kind }) => kind === SyntaxKind.AnyKeyword
+const isIndexSignature = ({ kind }) => kind === SyntaxKind.IndexSignature
 const isInterface = ({ kind }) => kind === SyntaxKind.InterfaceDeclaration
-
 const isExportModifier = ({ kind }) => kind === SyntaxKind.ExportKeyword
-
 const isPropertySignature = ({ kind }) => kind === SyntaxKind.PropertySignature
+const isStringKeyword = ({ kind }) => kind === SyntaxKind.StringKeyword
 
 const getProps = members => {
   const props = _.filter(members, isPropertySignature)
@@ -45,6 +46,16 @@ export const getInterfaces = nodes => {
     name: name.text,
     props: getProps(members),
   }))
+}
+
+export const hasAnySignature = nodes => {
+  const signatures = _.filter(nodes, isIndexSignature)
+
+  return _.some(signatures, ({ parameters, type: rightType }) => {
+    const { name: { text }, type } = _.head(parameters)
+
+    return isAnyKeyword(rightType) && isStringKeyword(type) && text === 'key'
+  })
 }
 
 export const requireTs = tsPath => {
