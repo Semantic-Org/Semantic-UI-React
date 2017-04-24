@@ -74,7 +74,7 @@ export interface CheckboxProps {
   toggle?: boolean;
 
   /** HTML input type, either checkbox or radio. */
-  type?: 'checkbox' | 'radio';
+  type?: string;
 
   /** The HTML input value. */
   value?: number|string;

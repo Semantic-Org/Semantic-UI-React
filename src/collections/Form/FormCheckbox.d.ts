@@ -4,7 +4,6 @@ import { CheckboxProps } from '../../modules/Checkbox';
 import { FormFieldProps } from './FormField';
 
 export interface FormCheckboxProps extends FormFieldProps, CheckboxProps {
-  type?: 'checkbox' | 'radio';
   [key: string]: any;
 
   /** An element type to render as (string or function). */

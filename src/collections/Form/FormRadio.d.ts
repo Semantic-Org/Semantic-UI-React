@@ -4,7 +4,6 @@ import { RadioProps } from '../../addons/Radio';
 import { FormFieldProps } from './FormField';
 
 export interface FormRadioProps extends FormFieldProps, RadioProps {
-  type?: 'checkbox' | 'radio';
   [key: string]: any;
 
   /** An element type to render as (string or function). */

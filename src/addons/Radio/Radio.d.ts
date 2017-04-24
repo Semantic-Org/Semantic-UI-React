@@ -11,7 +11,7 @@ export interface RadioProps extends CheckboxProps {
   toggle?: boolean;
 
   /** HTML input type, either checkbox or radio. */
-  type?: 'checkbox' | 'radio';
+  type?: string;
 }
 
 declare const Radio: React.StatelessComponent<RadioProps>;
