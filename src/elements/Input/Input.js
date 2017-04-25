@@ -115,6 +115,13 @@ class Input extends Component {
     type: META.TYPES.ELEMENT,
   }
 
+  computeTabIndex = () => {
+    const { disabled, tabIndex } = this.props
+
+    if (!_.isNil(tabIndex)) return tabIndex
+    if (disabled) return -1
+  }
+
   focus = () => (this.inputRef.focus())
 
   handleChange = (e) => {
@@ -135,6 +142,23 @@ class Input extends Component {
 
   handleInputRef = c => (this.inputRef = c)
 
+  partitionProps = () => {
+    const { disabled, onChange, type } = this.props
+
+    const tabIndex = this.computeTabIndex()
+    const unhandled = getUnhandledProps(Input, this.props)
+    const [htmlInputProps, rest] = partitionHTMLInputProps(unhandled)
+
+    htmlInputProps.ref = this.handleInputRef
+    htmlInputProps.type = type
+
+    if (disabled) htmlInputProps.disabled = disabled
+    if (onChange) htmlInputProps.onChange = this.handleChange
+    if (tabIndex) htmlInputProps.tabIndex = tabIndex
+
+    return [htmlInputProps, rest]
+  }
+
   render() {
     const {
       action,
@@ -152,9 +176,7 @@ class Input extends Component {
       label,
       labelPosition,
       loading,
-      onChange,
       size,
-      tabIndex,
       transparent,
       type,
     } = this.props
@@ -175,19 +197,8 @@ class Input extends Component {
       'input',
       className,
     )
-    const unhandled = getUnhandledProps(Input, this.props)
     const ElementType = getElementType(Input, this.props)
-
-    // Heads up!
-    // We should pass `type` and `disabled` manually because the HTML input handles it
-    const [htmlInputProps, rest] = partitionHTMLInputProps({ ...unhandled, disabled, type })
-
-    if (onChange) htmlInputProps.onChange = this.handleChange
-    htmlInputProps.ref = this.handleInputRef
-
-    // tabIndex
-    if (!_.isNil(tabIndex)) htmlInputProps.tabIndex = tabIndex
-    else if (disabled) htmlInputProps.tabIndex = -1
+    const [htmlInputProps, rest] = this.partitionProps()
 
     // Render with children
     // ----------------------------------------
@@ -195,7 +206,6 @@ class Input extends Component {
       // add htmlInputProps to the `<input />` child
       const childElements = _.map(Children.toArray(children), (child) => {
         if (child.type !== 'input') return child
-
         return cloneElement(child, this.handleChildOverrides(child, htmlInputProps))
       })
 

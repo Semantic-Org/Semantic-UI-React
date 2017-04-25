@@ -212,7 +212,7 @@ describe('Input', () => {
 
       shallow(<Input disabled={false} />)
         .find('input')
-        .should.have.prop('disabled', false)
+        .should.have.not.prop('disabled')
     })
   })
 
