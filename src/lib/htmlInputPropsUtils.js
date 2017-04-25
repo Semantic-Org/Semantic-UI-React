@@ -5,7 +5,7 @@ export const htmlInputAttrs = [
   'selected', 'defaultValue', 'defaultChecked',
 
   // LIMITED HTML PROPS
-  'autoCapitalize', 'autoComplete', 'autoCorrect', 'autoFocus', 'checked', 'disabled', 'form', 'max', 'maxLength',
+  'autoCapitalize', 'autoComplete', 'autoCorrect', 'autoFocus', 'checked', 'disabled', 'form', 'id', 'max', 'maxLength',
   'min', 'multiple', 'name', 'pattern', 'placeholder', 'readOnly', 'required', 'step', 'type', 'value',
 ]
 

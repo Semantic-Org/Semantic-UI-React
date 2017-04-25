@@ -10,11 +10,11 @@ const App = () => (
 
     <Button
       content='Discover docs'
-      href='http://react.semantic-ui.com'
+      href='https://react.semantic-ui.com'
       icon='github'
       labelPosition='left'
     />
   </Container>
 )
 
-render(App, MOUNT_NODE)
+render(<App />, MOUNT_NODE)

@@ -7,6 +7,7 @@ import * as semanticUIReact from 'semantic-ui-react'
 import { META } from 'src/lib'
 import helpers from './commonHelpers'
 import componentInfo from './componentInfo'
+import hasValidTypings from './hasValidTypings'
 import { consoleUtil, sandbox, syntheticEvent } from 'test/utils'
 
 /**
@@ -30,12 +31,13 @@ export default (Component, options = {}) => {
   }
 
   // extract componentInfo for this component
+  const extractedInfo = _.find(componentInfo, i => i.constructorName === Component.prototype.constructor.name)
   const {
     _meta,
     constructorName,
     componentClassName,
     filenameWithoutExt,
-  } = _.find(componentInfo, i => i.constructorName === Component.prototype.constructor.name)
+  } = extractedInfo
 
   // ----------------------------------------
   // Class and file name
@@ -339,4 +341,9 @@ export default (Component, options = {}) => {
       })
     })
   })
+
+  // ----------------------------------------
+  // Test typings
+  // ----------------------------------------
+  hasValidTypings(Component, extractedInfo, options)
 }

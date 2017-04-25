@@ -12,11 +12,11 @@ import ImageGroup from './ImageGroup';
 export interface ImageProps {
   [key: string]: any;
 
-  /** Alternate text for the image specified. */
-  alt?: string;
-
   /** An element type to render as (string or function). */
   as?: any;
+
+  /** Alternate text for the image specified. */
+  alt?: string;
 
   /** An image may be formatted to appear inline with text as an avatar. */
   avatar?: boolean;
@@ -26,6 +26,9 @@ export interface ImageProps {
 
   /** An image can appear centered in a content block. */
   centered?: boolean;
+
+  /** Primary content. */
+  children?: React.ReactNode;
 
   /** Additional classes. */
   className?: string;
@@ -43,7 +46,10 @@ export interface ImageProps {
   fluid?: boolean;
 
   /** The img element height attribute. */
-  height?: string|number;
+  height?: string | number;
+
+  /** An image can be hidden. */
+  hidden?: boolean;
 
   /** Renders the Image as an <a> tag with this href. */
   href?: string;

@@ -54,6 +54,8 @@ class TextArea extends Component {
     }
   }
 
+  focus = () => (this.ref.focus())
+
   handleChange = (e) => {
     const { onChange } = this.props
     if (onChange) onChange(e, { ...this.props, value: e.target && e.target.value })

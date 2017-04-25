@@ -478,6 +478,7 @@ export default class Search extends Component {
     if (!isBrowser) return
     const menu = document.querySelector('.ui.search.active.visible .results.visible')
     const item = menu.querySelector('.result.active')
+    if (!item) return
     debug(`menu (results): ${menu}`)
     debug(`item (result): ${item}`)
     const isOutOfUpperView = item.offsetTop < menu.scrollTop

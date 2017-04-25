@@ -16,7 +16,7 @@ webpackDllConfig.entry = {
 // ------------------------------------
 webpackDllConfig.output = {
   path: paths.dll(),
-  filename: `dll.[name].[${config.compiler_hash_type}].js`,
+  filename: 'dll.[name].js',
   library: '[name]_[hash]',
 }
 

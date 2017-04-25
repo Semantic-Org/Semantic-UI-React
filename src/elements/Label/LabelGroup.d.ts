@@ -11,7 +11,7 @@ export interface LabelGroupProps {
   children?: React.ReactNode;
 
   /** Labels can share shapes. */
-  circular: boolean;
+  circular?: boolean;
 
   /** Additional classes. */
   className?: string;

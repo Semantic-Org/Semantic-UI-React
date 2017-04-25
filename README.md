@@ -1,13 +1,13 @@
 <!-- Logo -->
 <p align="center">
-  <a href="http://react.semantic-ui.com">
+  <a href="https://react.semantic-ui.com">
     <img height="128" width="128" src="https://github.com/Semantic-Org/Semantic-UI-React/raw/master/docs/app/logo.png">
   </a>
 </p>
 
 <!-- Name -->
 <h1 align="center">
-  <a href="http://react.semantic-ui.com/">Semantic UI React</a>
+  <a href="https://react.semantic-ui.com/">Semantic UI React</a>
 </h1>
 
 <!-- Badges -->
@@ -55,7 +55,7 @@ Yes.  Just use `<Icon className='my-icon' />` instead of `<Icon name='my-icon' /
 ### How do I setup CSS?
 There are several options.  Refer to our doc on [CSS Usage][23].
 
-### Can I use a customize CSS theme?
+### Can I use a custom CSS theme?
 Yes.  Semantic UI React includes components that render valid Semantic UI HTML, no CSS is included.  This allows you to load any Semantic UI CSS theme on top of your Semantic UI React app.
 
 Here are some helpful links:
@@ -68,12 +68,14 @@ Here are some helpful links:
 
 These great products are built on Semantic UI React. Add yours [here][22].
 
+- Netflix's Edge Developer Experience team's numerous [internal apps](https://github.com/Semantic-Org/Semantic-UI-React/issues/1604)
 - http://stoplight.io
 - https://roadmap.space
 - https://edabit.com
 - https://blackship.com
 - http://www.brewhousesolutions.com
 - https://www.lifebot.fr
+- https://www.stackforge.co
 
 ## Voice Your Opinion
 
@@ -176,7 +178,7 @@ Big thanks to our [contributors][20], especially:
 - @layershifter for bringing momentum and continual support
 
 [1]: https://github.com/Semantic-Org/Semantic-UI-React/blob/master/.github/CONTRIBUTING.md
-[2]: http://react.semantic-ui.com/
+[2]: https://react.semantic-ui.com/
 [3]: https://facebook.github.io/react/
 [4]: https://github.com/Semantic-Org/Semantic-UI-React/labels/help%20wanted
 [5]: https://semantic-ui.com/
@@ -197,7 +199,7 @@ Big thanks to our [contributors][20], especially:
 [20]: https://github.com/Semantic-Org/Semantic-UI-React/graphs/contributors
 [21]: https://github.com/Semantic-Org/Semantic-UI-React/labels/good%20first%20contribution
 [22]: https://github.com/Semantic-Org/Semantic-UI-React/edit/master/README.md
-[23]: http://react.semantic-ui.com/usage#css
+[23]: https://react.semantic-ui.com/usage#css
 [24]: https://github.com/Semantic-Org/Semantic-UI-React/issues/802#issuecomment-258990274
 [25]: http://learnsemantic.com/themes/creating.html
 [26]: https://github.com/Semantic-Org/Semantic-UI-Meteor

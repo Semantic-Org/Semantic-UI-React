@@ -1,4 +1,5 @@
 export hasSubComponents from './hasSubComponents'
+export hasValidTypings from './hasValidTypings'
 export hasUIClassName from './hasUIClassName'
 
 export * from './implementsClassNameProps'

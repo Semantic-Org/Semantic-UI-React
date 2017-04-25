@@ -65,7 +65,7 @@ export default class Dropdown extends Component {
       customPropTypes.disallow(['options', 'selection']),
       customPropTypes.givenProps(
         { children: PropTypes.any.isRequired },
-        React.PropTypes.element.isRequired,
+        PropTypes.element.isRequired,
       ),
     ]),
 
@@ -321,6 +321,9 @@ export default class Dropdown extends Component {
         PropTypes.number,
       ])),
     ]),
+
+    /** A dropdown can open upward. */
+    upward: PropTypes.bool,
   }
 
   static defaultProps = {
@@ -1193,23 +1196,24 @@ export default class Dropdown extends Component {
       button,
       className,
       compact,
+      disabled,
+      error,
       fluid,
       floating,
       icon,
       inline,
       item,
       labeled,
+      loading,
       multiple,
       pointing,
       search,
       selection,
-      simple,
-      loading,
-      error,
-      disabled,
       scrolling,
+      simple,
       tabIndex,
       trigger,
+      upward,
     } = this.props
 
     // Classes
@@ -1237,6 +1241,7 @@ export default class Dropdown extends Component {
       useKeyOnly(selection, 'selection'),
       useKeyOnly(simple, 'simple'),
       useKeyOnly(scrolling, 'scrolling'),
+      useKeyOnly(upward, 'upward'),
 
       useKeyOrValueAndKey(pointing, 'pointing'),
       className,
