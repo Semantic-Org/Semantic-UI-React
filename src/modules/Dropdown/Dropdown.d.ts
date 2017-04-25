@@ -5,6 +5,7 @@ import { default as DropdownDivider } from './DropdownDivider';
 import { default as DropdownHeader } from './DropdownHeader';
 import { default as DropdownItem, DropdownItemProps } from './DropdownItem';
 import { default as DropdownMenu } from './DropdownMenu';
+import { default as DropdownSearchInput } from './DropdownSearchInput';
 
 export interface DropdownProps {
   [key: string]: any;
@@ -242,6 +243,7 @@ interface DropdownComponent extends React.ComponentClass<DropdownProps> {
   Header: typeof DropdownHeader;
   Item: typeof DropdownItem;
   Menu: typeof DropdownMenu;
+  SearchInput: typeof DropdownSearchInput;
 }
 
 declare const Dropdown: DropdownComponent;

@@ -24,7 +24,7 @@ class DropdownSearchInput extends Component {
     /** A ref handler for input. */
     inputRef: PropTypes.func,
 
-    /** A name of the input . */
+    /** A name of the input. */
     name: PropTypes.string,
 
     /** Custom styles. */
@@ -35,6 +35,9 @@ class DropdownSearchInput extends Component {
       PropTypes.number,
       PropTypes.string,
     ]),
+
+    /** The HTML input type. */
+    type: PropTypes.string,
 
     /** Stored value. */
     value: PropTypes.oneOfType([
@@ -47,6 +50,10 @@ class DropdownSearchInput extends Component {
       PropTypes.number,
       PropTypes.string,
     ]),
+  }
+
+  static defaultProps = {
+    type: 'text',
   }
 
   static _meta = {
