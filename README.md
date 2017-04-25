@@ -44,6 +44,9 @@ See the [Documentation][2] for an introduction, usage information, and extensive
 
 This is a listing of example projects and guides that will help you integrate Semantic UI React into your new or existing projects.
 
+### [react-semantic.ui-starter][102]
+Production-ready, performance-first, optimized, robust, fully-featured boilerplate/example for your new Progressive Web App.
+
 ### [semantic-ui-react-todos][100]
 This example modifies the well-known [react-redux Todo List][101] to use Semantic UI components. There is also a write-up on the process in the project README.
 
@@ -206,3 +209,4 @@ Big thanks to our [contributors][20], especially:
 <!-- Examples -->
 [100]: https://github.com/wyc/semantic-ui-react-todos
 [101]: https://github.com/reactjs/redux/tree/master/examples/todos
+[102]: https://github.com/Metnew/react-semantic.ui-starter
