@@ -213,6 +213,9 @@ export interface DropdownProps {
    */
   search?: boolean | ((options: Array<DropdownItemProps>, value: string) => Array<DropdownItemProps>);
 
+  /** A shorthand for a search input. */
+  searchInput?: any;
+
   /** Define whether the highlighted item should be selected on blur. */
   selectOnBlur?: boolean;
 

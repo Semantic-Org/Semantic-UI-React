@@ -16,7 +16,7 @@ export interface DropdownSearchInputProps {
   name?: string;
 
   /** Custom styles. */
-  style?: Object,
+  style?: Object;
 
   /** An input can receive focus. */
   tabIndex?: number | string;

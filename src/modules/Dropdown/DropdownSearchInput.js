@@ -25,7 +25,10 @@ class DropdownSearchInput extends Component {
     inputRef: PropTypes.func,
 
     /** A name of the input. */
-    name: PropTypes.string,
+    name: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
 
     /** Custom styles. */
     style: PropTypes.object,
@@ -62,21 +65,28 @@ class DropdownSearchInput extends Component {
     type: META.TYPES.MODULE,
   }
 
-  handleChange = e => _.invoke(this.props, 'onChange', e)
+  computeStyle = () => {
+    const { style, width } = this.props
 
-  handleRef = c => {
-    _.invoke(this.props, 'inputRef', c)
-    this.ref = c
+    if (_.isNil(width)) return style
+    return { ...style, width }
   }
+
+  handleChange = e => {
+    const value = _.get(e, 'target.value')
+
+    _.invoke(this.props, 'onChange', e, { ...this.props, value })
+  }
+
+  handleRef = c => _.invoke(this.props, 'inputRef', c)
 
   render() {
     const {
       className,
       name,
-      style,
       tabIndex,
+      type,
       value,
-      width,
     } = this.props
     const classes = cx('search', className)
     const rest = getUnhandledProps(DropdownSearchInput, this.props)
@@ -90,9 +100,9 @@ class DropdownSearchInput extends Component {
         name={[name, 'search'].join('-')}
         onChange={this.handleChange}
         ref={this.handleRef}
-        style={{ ...style, width }}
+        style={this.computeStyle()}
         tabIndex={tabIndex}
-        type='text'
+        type={type}
         value={value}
       />
     )

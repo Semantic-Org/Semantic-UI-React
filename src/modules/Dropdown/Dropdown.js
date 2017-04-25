@@ -707,14 +707,14 @@ export default class Dropdown extends Component {
     this.setState({ focus: false, searchQuery: '' })
   }
 
-  handleSearchChange = (e) => {
+  handleSearchChange = (e, { value }) => {
     debug('handleSearchChange()')
-    debug(e.target.value)
+    debug(value)
     // prevent propagating to this.props.onChange()
     e.stopPropagation()
     const { search, onSearchChange } = this.props
     const { open } = this.state
-    const newQuery = e.target.value
+    const newQuery = value
 
     if (onSearchChange) onSearchChange(e, newQuery)
 

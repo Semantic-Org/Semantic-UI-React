@@ -6,11 +6,8 @@ import { sandbox } from 'test/utils'
 import DropdownSearchInput from 'src/modules/Dropdown/DropdownSearchInput'
 
 describe('DropdownSearchInput', () => {
-  common.isConformant(DropdownSearchInput)
+  common.hasValidTypings(DropdownSearchInput)
   common.rendersChildren(DropdownSearchInput)
-
-  common.propKeyOnlyToClassName(DropdownSearchInput, 'selected')
-  common.propKeyOnlyToClassName(DropdownSearchInput, 'active')
 
   describe('aria', () => {
     it('should have aria-autocomplete', () => {
@@ -36,15 +33,57 @@ describe('DropdownSearchInput', () => {
   })
 
   describe('onChange', () => {
+    it('is called with (e, data) on change', () => {
+      const onChange = sandbox.spy()
+      const e = { target: { value: 'name' } }
 
+      shallow(<DropdownSearchInput onChange={onChange} name='foo' />)
+        .find('input')
+        .simulate('change', e)
+
+      onChange.should.have.been.calledOnce()
+      onChange.should.have.been.calledWithMatch(e, { name: 'foo', value: e.target.value })
+    })
   })
 
-  describe('ref', () => {
+  describe('inputRef', () => {
+    it('maintains ref on input', () => {
+      const inputRef = sandbox.spy()
+      const mountNode = document.createElement('div')
+      document.body.appendChild(mountNode)
 
+      const wrapper = mount(<DropdownSearchInput inputRef={inputRef} />, { attachTo: mountNode })
+      const input = document.querySelector('input')
+
+      inputRef.should.have.been.calledOnce()
+      inputRef.should.have.been.calledWithMatch(input)
+
+      wrapper.detach()
+      document.body.removeChild(mountNode)
+    })
   })
 
   describe('style', () => {
+    const style = { left: 10, bottom: 10 }
 
+    it('is not set by default', () => {
+      shallow(<DropdownSearchInput />)
+        .should.not.have.prop('style')
+    })
+
+    it('can be set explicitly', () => {
+      shallow(<DropdownSearchInput style={style} />)
+        .should.have.prop('style')
+        .deep.equal(style)
+    })
+
+    it('merged with width prop', () => {
+      const width = faker.random.number()
+
+      shallow(<DropdownSearchInput style={style} width={width} />)
+        .should.have.prop('style')
+        .deep.equal({ ...style, width })
+    })
   })
 
   describe('tabIndex', () => {
@@ -60,17 +99,44 @@ describe('DropdownSearchInput', () => {
   })
 
   describe('type', () => {
+    it('should have text by default', () => {
+      shallow(<DropdownSearchInput />)
+        .should.have.prop('type', 'text')
+    })
 
+    it('can be set explicitly', () => {
+      const type = faker.random.word()
+
+      shallow(<DropdownSearchInput type={type} />)
+        .should.have.prop('type', type)
+    })
   })
 
   describe('value', () => {
+    it('is not set by default', () => {
+      shallow(<DropdownSearchInput />)
+        .should.not.have.prop('value')
+    })
 
+    it('can be set explicitly', () => {
+      const value = faker.random.word()
+
+      shallow(<DropdownSearchInput value={value} />)
+        .should.have.prop('value', value)
+    })
   })
 
   describe('width', () => {
-    const width = faker.random.number()
+    it('is not set by default', () => {
+      shallow(<DropdownSearchInput />)
+        .should.not.have.prop('width')
+    })
 
-    shallow(<DropdownSearchInput name={width} />)
-      .should.have.style('width', `${width}px`)
+    it('can be set explicitly', () => {
+      const width = faker.random.number()
+
+      shallow(<DropdownSearchInput width={width} />)
+         .should.have.style('width', `${width}px`)
+    })
   })
 })
