@@ -91,6 +91,12 @@ export default class Checkbox extends Component {
       customPropTypes.disallow(['radio', 'toggle']),
     ]),
 
+    /** A checkbox can receive focus. */
+    tabIndex: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
+
     /** Format to show an on or off choice. */
     toggle: customPropTypes.every([
       PropTypes.bool,
@@ -102,12 +108,6 @@ export default class Checkbox extends Component {
 
     /** The HTML input value. */
     value: PropTypes.string,
-
-    /** A checkbox can receive focus. */
-    tabIndex: PropTypes.oneOfType([
-      PropTypes.number,
-      PropTypes.string,
-    ]),
   }
 
   static defaultProps = {

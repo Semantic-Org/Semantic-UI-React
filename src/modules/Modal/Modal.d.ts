@@ -34,7 +34,7 @@ export interface ModalProps extends PortalProps {
   closeOnDocumentClick?: boolean;
 
   /** A Modal can be passed content via shorthand. */
-  content: any;
+  content?: any;
 
   /** Initial value of open. */
   defaultOpen?: boolean;
@@ -43,7 +43,7 @@ export interface ModalProps extends PortalProps {
   dimmer?: boolean | 'blurring' | 'inverted';
 
   /** A Modal can be passed header via shorthand. */
-  header: any;
+  header?: any;
 
   /** The node where the modal should mount. Defaults to document.body. */
   mountNode?: any;

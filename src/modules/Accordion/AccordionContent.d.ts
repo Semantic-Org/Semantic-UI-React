@@ -14,6 +14,9 @@ export interface AccordionContentProps {
 
   /** Additional classes. */
   className?: string;
+
+  /** Shorthand for primary content. */
+  content?: any;
 }
 
 declare const AccordionContent: React.StatelessComponent<AccordionContentProps>;

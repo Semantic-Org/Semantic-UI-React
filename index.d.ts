@@ -64,7 +64,7 @@ export { default as Flag, FlagProps } from './dist/commonjs/elements/Flag'
 
 export { default as Header, HeaderProps } from './dist/commonjs/elements/Header'
 export { default as HeaderContent, HeaderContentProps } from './dist/commonjs/elements/Header/HeaderContent'
-export { default as HeaderSubheader, HeaderSubHeaderProps } from './dist/commonjs/elements/Header/HeaderSubheader'
+export { default as HeaderSubheader, HeaderSubheaderProps } from './dist/commonjs/elements/Header/HeaderSubheader'
 
 export { default as Icon, IconProps } from './dist/commonjs/elements/Icon'
 export { default as IconGroup, IconGroupProps } from './dist/commonjs/elements/Icon/IconGroup'

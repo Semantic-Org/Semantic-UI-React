@@ -152,6 +152,7 @@ webpackConfig.module.noParse = [...webpackConfig.module.noParse,
   /\.json$/,
   /anchor-js/,
   /babel-standalone/,
+  /typescript\/lib/,
 ]
 
 if (!__TEST__) {
