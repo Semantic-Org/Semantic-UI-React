@@ -516,11 +516,12 @@ export default class Search extends Component {
   // ----------------------------------------
 
   renderSearchInput = rest => {
-    const { icon, input } = this.props
+    const { fluid, icon, input } = this.props
     const { value } = this.state
 
     return Input.create(input, { defaultProps: {
       ...rest,
+      fluid,
       icon,
       input: { className: 'prompt', tabIndex: '0', autoComplete: 'off' },
       onBlur: this.handleBlur,

@@ -742,4 +742,18 @@ describe('Search', () => {
       })
     })
   })
+
+  describe('fluid', () => {
+    it('is not applied to input when not defined', () => {
+      wrapperShallow(<Search />)
+        .find('Input')
+        .should.not.have.prop('fluid')
+    })
+
+    it('is applied to input when defined', () => {
+      wrapperShallow(<Search fluid />)
+        .find('Input')
+        .should.have.prop('fluid', true)
+    })
+  })
 })
