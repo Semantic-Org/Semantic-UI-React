@@ -15,7 +15,7 @@ import {
  * @param {Object} [extractedInfo={}]
  * @param {Object} [extractedInfo._meta={}] The meta information about Component
  * @param {Object} [options={}]
- * @param {array} [options.ignoredProps=[]] Props that will be ignored in tests.
+ * @param {array} [options.ignoredTypingsProps=[]] Props that will be ignored in tests.
  * @param {Object} [options.requiredProps={}] Props required to render Component without errors or warnings.
  */
 export default (Component, extractedInfo, options = {}) => {
@@ -24,7 +24,7 @@ export default (Component, extractedInfo, options = {}) => {
     filenameWithoutExt,
     filePath,
   } = extractedInfo || _.find(componentInfo, i => i.constructorName === Component.prototype.constructor.name)
-  const { ignoredProps = [], requiredProps } = options
+  const { ignoredTypingsProps = [], requiredProps } = options
 
   const tsFile = filenameWithoutExt + '.d.ts'
   const tsContent = requireTs(path.join(path.dirname(filePath), tsFile))
@@ -61,7 +61,7 @@ export default (Component, extractedInfo, options = {}) => {
       it('are correctly defined', () => {
         const componentPropTypes = _.get(Component, 'propTypes')
         const componentProps = _.keys(componentPropTypes)
-        const interfaceProps = _.without(_.map(props, 'name'), ...ignoredProps)
+        const interfaceProps = _.without(_.map(props, 'name'), ...ignoredTypingsProps)
 
         componentProps.should.to.deep.equal(interfaceProps)
       })

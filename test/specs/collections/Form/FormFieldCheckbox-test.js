@@ -6,7 +6,7 @@ import * as common from 'test/specs/commonTests'
 
 describe('FormCheckbox', () => {
   common.isConformant(FormCheckbox, {
-    ignoredProps: ['type'],
+    ignoredTypingsProps: ['type'],
   })
 
   it('renders a FormField with a Checkbox control', () => {

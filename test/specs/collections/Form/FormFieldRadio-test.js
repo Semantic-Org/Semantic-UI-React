@@ -6,7 +6,7 @@ import * as common from 'test/specs/commonTests'
 
 describe('FormRadio', () => {
   common.isConformant(FormRadio, {
-    ignoredProps: ['type'],
+    ignoredTypingsProps: ['type'],
   })
 
   it('renders a FormField with a Radio control', () => {
