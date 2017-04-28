@@ -1835,6 +1835,28 @@ describe('Dropdown', () => {
     })
   })
 
+  describe('renderOptions', () => {
+    it('prefers the option\'s "key" property for keying generated DropdownItems', () => {
+      const customOptions = [
+        { text: '1', value: '1', key: 'a' },
+        { text: '2', value: '2', key: 'b' },
+      ]
+      wrapperShallow(<Dropdown options={customOptions} />)
+      wrapper.should.contain('DropdownItem[key="a"]')
+      wrapper.should.contain('DropdownItem[key="b"]')
+    })
+
+    it('generates a "key" property using the option.value if no key is provided', () => {
+      const customOptions = [
+        { text: '1', value: '1' },
+        { text: '2', value: '2' },
+      ]
+      wrapperShallow(<Dropdown options={customOptions} />)
+      wrapper.should.contain('DropdownItem[key="1-0"]')
+      wrapper.should.contain('DropdownItem[key="2-1"]')
+    })
+  })
+
   describe('Dropdown.Menu child', () => {
     it('renders child passed', () => {
       wrapperShallow(
