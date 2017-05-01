@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { SemanticCOLORS, SemanticWIDTHS } from '../..';
-import { StatisticSizeProp } from './Statictic';
+import { StatisticSizeProp } from './Statistic';
 
 export interface StatisticGroupProps {
   [key: string]: any;
