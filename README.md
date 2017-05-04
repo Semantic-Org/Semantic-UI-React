@@ -122,15 +122,16 @@ Once you change the flag, you need to refresh your browser to see the changes in
 | ✓ Flag          | ✓ Menu          | ✓ Feed          | ✓ Dropdown      |                    |
 | ✓ Header        | ✓ Message       | ✓ Item          | ✓ Embed         |                    |
 | ✓ Icon          | ✓ Table         | ✓ Statistic     | ✓ Modal         |                    |
-| ✓ Image         |                 |                 | ✓ Popup         |                    |
-| ✓ Input         |                 |                 | ✓ Progress      |                    |
-| ✓ Label         |                 |                 | ✓ Rating        |                    |
-| ✓ List          |                 |                 | ✓ Search        |                    |
-| ✓ Loader        |                 |                 |   Shape         |                    |
-| ✓ Rail          |                 |                 | ✓ Sidebar       |                    |
-| ✓ Reveal        |                 |                 |   Sticky        |                    |
-| ✓ Segment       |                 |                 |   Tab           |                    |
-| ✓ Step          |                 |                 |   Transition    |                    |
+| ✓ Image         |                 |                 |    Nag           |                    |
+| ✓ Input         |                 |                 | ✓ Popup         |                    |
+| ✓ Label         |                 |                 | ✓ Progress      |                    |
+| ✓ List          |                 |                 | ✓ Rating        |                    |
+| ✓ Loader        |                 |                 | ✓ Search        |                    |
+| ✓ Rail          |                 |                 |   Shape         |                    |
+| ✓ Reveal        |                 |                 | ✓ Sidebar       |                    |
+| ✓ Segment       |                 |                 |   Sticky        |                    |
+| ✓ Step          |                 |                 |   Tab           |                    |
+|                 |                 |                 |   Transition    |                    |
 
 ## Our Principles
 
