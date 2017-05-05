@@ -1,5 +1,5 @@
 import React from 'react'
-import { Dropdown, Icon, Menu } from 'semantic-ui-react'
+import { Dropdown, Menu } from 'semantic-ui-react'
 
 const DropdownExamplePointing = () => (
   <Menu>
