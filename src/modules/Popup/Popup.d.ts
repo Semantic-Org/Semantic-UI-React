@@ -40,6 +40,38 @@ export interface PopupProps extends PortalProps {
   /** Event triggering the popup. */
   on?: 'hover' | 'click' | 'focus';
 
+  /**
+   * Called when a close event happens.
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props.
+   */
+  onClose?: (event: React.MouseEvent<HTMLElement>, data: PopupProps) => void;
+
+  /**
+   * Called when the portal is mounted on the DOM.
+   *
+   * @param {null}
+   * @param {object} data - All props.
+   */
+  onMount?: (nothing: null, data: PopupProps) => void;
+
+  /**
+   * Called when an open event happens.
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props.
+   */
+  onOpen?: (event: React.MouseEvent<HTMLElement>, data: PopupProps) => void;
+
+  /**
+   * Called when the portal is unmounted from the DOM.
+   *
+   * @param {null}
+   * @param {object} data - All props.
+   */
+  onUnmount?: (nothing: null, data: PopupProps) => void;
+
   /** Position for the popover. */
   position?: 'top left' | 'top right' |
     'bottom right' | 'bottom left' |
@@ -51,6 +83,9 @@ export interface PopupProps extends PortalProps {
 
   /** Custom Popup style. */
   style?: Object;
+
+  /** Element to be rendered in-place where the popup is defined. */
+  trigger?: React.ReactNode;
 
   /** Popup width. */
   wide?: boolean | 'very';
