@@ -3,7 +3,8 @@ import * as React from 'react';
 import { CheckboxProps } from '../../modules/Checkbox';
 import { FormFieldProps } from './FormField';
 
-export interface FormCheckboxProps extends FormFieldProps, CheckboxProps {
+type BaseFormCheckboxProps = CheckboxProps & FormFieldProps
+export interface FormCheckboxProps extends BaseFormCheckboxProps {
   [key: string]: any;
 
   /** An element type to render as (string or function). */
