@@ -52,7 +52,7 @@ Container.propTypes = {
   /** Additional classes. */
   className: PropTypes.string,
 
-  /** Container has no maximum with. */
+  /** Container has no maximum width. */
   fluid: PropTypes.bool,
 
   /** Reduce maximum width to more naturally accommodate text. */

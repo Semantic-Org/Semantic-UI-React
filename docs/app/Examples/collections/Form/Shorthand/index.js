@@ -44,12 +44,12 @@ Compare.propTypes = {
 const FormTypesExamples = () => (
   <ExampleSection title='Shorthand'>
     <ComponentExample
-      title='Form Sub Components'
+      title='Form Subcomponents'
       description={[
         'Render a field containing a label and form control.',
         'All form control components are available.',
       ].join(' ')}
-      examplePath='collections/Form/Shorthand/FormExampleSubComponentControl'
+      examplePath='collections/Form/Shorthand/FormExampleSubcomponentControl'
     >
       <Compare { ...subComponentComparison } />
     </ComponentExample>
@@ -82,6 +82,17 @@ const FormTypesExamples = () => (
     >
       <Compare { ...htmlComparison } />
     </ComponentExample>
+
+    <ComponentExample
+      title='Accessible lables'
+      description='Adding an id to a shorthand Form.Field adds a matching htmlFor prop to the label.'
+      examplePath='collections/Form/Shorthand/FormExampleFieldControlId'
+    />
+
+    <ComponentExample
+      description='Adding an id to a Form subcomponent adds a matching htmlFor prop to the label.'
+      examplePath='collections/Form/Shorthand/FormExampleSubcomponentId'
+    />
   </ExampleSection>
 )
 

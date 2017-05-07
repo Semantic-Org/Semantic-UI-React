@@ -103,7 +103,7 @@ class ComponentExample extends Component {
     e.preventDefault()
     this.setHashAndScroll()
 
-    copyToClipboard(this.anchorName)
+    copyToClipboard(location.href)
     this.setState({ copiedDirectLink: true })
 
     setTimeout(() => this.setState({ copiedDirectLink: false }), 1000)
@@ -138,7 +138,7 @@ class ComponentExample extends Component {
   resetJSX = () => {
     const { sourceCode } = this.state
     const original = this.getOriginalSourceCode()
-    if (sourceCode !== original && confirm('Loose your changes?')) { // eslint-disable-line no-alert
+    if (sourceCode !== original && confirm('Lose your changes?')) { // eslint-disable-line no-alert
       this.setState({ sourceCode: original })
       this.renderSourceCode()
     }

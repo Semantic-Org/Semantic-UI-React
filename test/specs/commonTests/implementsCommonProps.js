@@ -270,3 +270,26 @@ export const implementsWidthProp = (Component, widths = SUI.WIDTHS, options = {}
     }
   })
 }
+
+/**
+ * Assert that a Components with a label correctly implements the "id" and "htmlFor" props.
+ * @param {React.Component|Function} Component The component to test.
+ */
+export const labelImplementsHtmlForProp = Component => {
+  const { assertRequired } = helpers('labelImplementsHtmlForProp', Component)
+
+  describe('htmlFor (common)', () => {
+    assertRequired(Component, 'a `Component`')
+
+    it('adds htmlFor to label', () => {
+      const id = 'id-for-test'
+      const label = 'label-for-test'
+
+      const wrapper = mount(<Component id={id} label={label} />)
+      const labelNode = wrapper.find('label')
+
+      wrapper.should.to.have.descendants(`#${id}`)
+      labelNode.should.have.prop('htmlFor', id)
+    })
+  })
+}

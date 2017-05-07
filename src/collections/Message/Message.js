@@ -88,11 +88,11 @@ export default class Message extends Component {
     /** A message may be formatted to display a positive message.  Same as `success`. */
     positive: PropTypes.bool,
 
-    /** A message may be formatted to display a positive message.  Same as `positive`. */
-    success: PropTypes.bool,
-
     /** A message can have different sizes. */
     size: PropTypes.oneOf(_.without(SUI.SIZES, 'medium')),
+
+    /** A message may be formatted to display a positive message.  Same as `positive`. */
+    success: PropTypes.bool,
 
     /** A message can be set to visible to force itself to be shown. */
     visible: PropTypes.bool,

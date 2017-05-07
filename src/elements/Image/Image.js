@@ -137,8 +137,8 @@ Image.propTypes = {
 
   /** The img element height attribute. */
   height: PropTypes.oneOfType([
-    PropTypes.string,
     PropTypes.number,
+    PropTypes.string,
   ]),
 
   /** An image can be hidden. */

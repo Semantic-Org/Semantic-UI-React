@@ -204,6 +204,18 @@ describe('Input', () => {
     })
   })
 
+  describe('disabled', () => {
+    it('is applied to the underlying html input element', () => {
+      shallow(<Input disabled />)
+        .find('input')
+        .should.have.prop('disabled', true)
+
+      shallow(<Input disabled={false} />)
+        .find('input')
+        .should.have.not.prop('disabled')
+    })
+  })
+
   describe('tabIndex', () => {
     it('is not set by default', () => {
       shallow(<Input />)

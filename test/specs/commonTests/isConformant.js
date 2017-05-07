@@ -7,12 +7,14 @@ import * as semanticUIReact from 'semantic-ui-react'
 import { META } from 'src/lib'
 import helpers from './commonHelpers'
 import componentInfo from './componentInfo'
+import hasValidTypings from './hasValidTypings'
 import { consoleUtil, sandbox, syntheticEvent } from 'test/utils'
 
 /**
  * Assert Component conforms to guidelines that are applicable to all components.
  * @param {React.Component|Function} Component A component that should conform.
  * @param {Object} [options={}]
+ * @param {array} [options.ignoredTypingsProps=[]] Props that will be ignored in typings tests.
  * @param {Object} [options.eventTargets={}] Map of events and the child component to target.
  * @param {Object} [options.requiredProps={}] Props required to render Component without errors or warnings.
  */
@@ -30,12 +32,13 @@ export default (Component, options = {}) => {
   }
 
   // extract componentInfo for this component
+  const extractedInfo = _.find(componentInfo, i => i.constructorName === Component.prototype.constructor.name)
   const {
     _meta,
     constructorName,
     componentClassName,
     filenameWithoutExt,
-  } = _.find(componentInfo, i => i.constructorName === Component.prototype.constructor.name)
+  } = extractedInfo
 
   // ----------------------------------------
   // Class and file name
@@ -339,4 +342,9 @@ export default (Component, options = {}) => {
       })
     })
   })
+
+  // ----------------------------------------
+  // Test typings
+  // ----------------------------------------
+  hasValidTypings(Component, extractedInfo, options)
 }

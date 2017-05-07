@@ -95,6 +95,7 @@ describe('Dropdown', () => {
   common.propKeyOnlyToClassName(Dropdown, 'selection')
   common.propKeyOnlyToClassName(Dropdown, 'simple')
   common.propKeyOnlyToClassName(Dropdown, 'scrolling')
+  common.propKeyOnlyToClassName(Dropdown, 'upward')
 
   common.propKeyOrValueAndKeyToClassName(Dropdown, 'pointing', [
     'left', 'right', 'top', 'top left', 'top right', 'bottom', 'bottom left', 'bottom right',

@@ -5,7 +5,7 @@ const FormExampleFieldLabelElement = () => (
   <Form>
     <Form.Field
       control={Checkbox}
-      label={{ children: 'I agree to the Terms and Conditions' }}
+      label={<label>I agree to the Terms and Conditions</label>}
     />
   </Form>
 )

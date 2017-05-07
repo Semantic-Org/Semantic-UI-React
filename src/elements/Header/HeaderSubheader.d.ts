@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-export interface HeaderSubHeaderProps {
+export interface HeaderSubheaderProps {
   [key: string]: any;
 
   /** An element type to render as (string or function). */
@@ -16,6 +16,6 @@ export interface HeaderSubHeaderProps {
   content?: React.ReactNode;
 }
 
-declare const HeaderSubHeader: React.StatelessComponent<HeaderSubHeaderProps>;
+declare const HeaderSubHeader: React.StatelessComponent<HeaderSubheaderProps>;
 
 export default HeaderSubHeader;

@@ -6,6 +6,7 @@ import * as common from 'test/specs/commonTests'
 
 describe('FormButton', () => {
   common.isConformant(FormButton)
+  common.labelImplementsHtmlForProp(FormButton)
 
   it('renders a FormField with a Button control', () => {
     shallow(<FormButton />)
