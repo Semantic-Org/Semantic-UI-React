@@ -120,7 +120,7 @@ export { default as DropdownMenu, DropdownMenuProps } from './dist/commonjs/modu
 export {
   default as DropdownSearchInput,
   DropdownSearchInputProps
-} from './dist/commonjs/modules/Dropdown/DropdownSearchInput'
+} from './dist/commonjs/modules/Dropdown/DropdownSearchInput';
 
 export { default as Embed, EmbedProps } from './dist/commonjs/modules/Embed';
 
