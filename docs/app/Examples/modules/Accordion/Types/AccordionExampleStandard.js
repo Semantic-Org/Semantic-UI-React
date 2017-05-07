@@ -21,7 +21,7 @@ export default class AccordionExampleStandard extends Component {
           <Icon name='dropdown' />
           What is a dog?
         </Accordion.Title>
-        <Accordion.Content active={activeIndex === 0} index={0}>
+        <Accordion.Content active={activeIndex === 0}>
           <p>
             A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a
             {' '}welcome guest in many households across the world.
@@ -32,7 +32,7 @@ export default class AccordionExampleStandard extends Component {
           <Icon name='dropdown' />
           What kinds of dogs are there?
         </Accordion.Title>
-        <Accordion.Content active={activeIndex === 1} index={1}>
+        <Accordion.Content active={activeIndex === 1}>
           <p>
             There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of
             {' '}dog that they find to be compatible with their own lifestyle and desires from a companion.
@@ -43,7 +43,7 @@ export default class AccordionExampleStandard extends Component {
           <Icon name='dropdown' />
           How do you acquire a dog?
         </Accordion.Title>
-        <Accordion.Content active={activeIndex === 2} index={2}>
+        <Accordion.Content active={activeIndex === 2}>
           <p>
             Three common ways for a prospective owner to acquire a dog is from pet shops, private owners, or shelters.
           </p>

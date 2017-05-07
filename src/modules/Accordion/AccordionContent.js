@@ -52,9 +52,6 @@ AccordionContent.propTypes = {
 
   /** Shorthand for primary content. */
   content: customPropTypes.contentShorthand,
-
-  /** AccordionContent index inside Accordion. */
-  index: PropTypes.number,
 }
 
 AccordionContent._meta = {

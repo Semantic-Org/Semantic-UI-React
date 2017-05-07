@@ -46,7 +46,7 @@ export default class AccordionExampleMenu extends Component {
             index={0}
             onClick={this.handleClick}
           />
-          <Accordion.Content active={activeIndex === 0} index={0} content={SizeForm} />
+          <Accordion.Content active={activeIndex === 0} content={SizeForm} />
         </Menu.Item>
 
         <Menu.Item>
@@ -56,7 +56,7 @@ export default class AccordionExampleMenu extends Component {
             index={1}
             onClick={this.handleClick}
           />
-          <Accordion.Content active={activeIndex === 1} index={1} content={ColorForm} />
+          <Accordion.Content active={activeIndex === 1} content={ColorForm} />
         </Menu.Item>
       </Accordion>
     )
