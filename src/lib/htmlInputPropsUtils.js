@@ -5,12 +5,8 @@ export const htmlInputAttrs = [
   'selected', 'defaultValue', 'defaultChecked',
 
   // LIMITED HTML PROPS
-  'autoCapitalize', 'autoComplete', 'autoCorrect', 'autoFocus', 'checked', 'form', 'id', 'max', 'maxLength', 'min',
-  'multiple', 'name', 'pattern', 'placeholder', 'readOnly', 'required', 'step', 'type', 'value',
-
-  // Heads Up!
-  // Do not pass disabled, it duplicates the SUI CSS opacity rule.
-  // 'disabled',
+  'autoCapitalize', 'autoComplete', 'autoCorrect', 'autoFocus', 'checked', 'disabled', 'form', 'id', 'max', 'maxLength',
+  'min', 'multiple', 'name', 'pattern', 'placeholder', 'readOnly', 'required', 'step', 'type', 'value',
 ]
 
 export const htmlInputEvents = [

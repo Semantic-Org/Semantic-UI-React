@@ -64,11 +64,11 @@ class Portal extends Component {
     /** The node where the portal should mount. */
     mountNode: PropTypes.any,
 
-    /** Milliseconds to wait before closing on mouse leave */
-    mouseLeaveDelay: PropTypes.number,
-
     /** Milliseconds to wait before opening on mouse over */
     mouseEnterDelay: PropTypes.number,
+
+    /** Milliseconds to wait before closing on mouse leave */
+    mouseLeaveDelay: PropTypes.number,
 
     /**
      * Called when a close event happens

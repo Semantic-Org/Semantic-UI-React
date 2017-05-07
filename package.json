@@ -1,6 +1,6 @@
 {
   "name": "semantic-ui-react",
-  "version": "0.68.2",
+  "version": "0.68.3",
   "description": "The official Semantic-UI-React integration.",
   "jsnext:main": "dist/es/index.js",
   "main": "dist/commonjs/index.js",
@@ -39,8 +39,9 @@
     "test": "cross-env NODE_ENV=test karma start",
     "test:watch": "npm run test --silent -- --no-single-run",
     "tsd": "gulp tsd",
-    "tsd:lint": "tslint './src/**/*.d.ts'",
-    "tsd:lint:fix": "npm run -s tsd:lint -- --fix"
+    "tsd:lint": "tslint './index.d.ts' './src/**/*.d.ts' './test/typings.d.ts'",
+    "tsd:lint:fix": "npm run -s tsd:lint -- --fix",
+    "tsd:test": "npm run tsd && tsc -p ./"
   },
   "repository": {
     "type": "git",
@@ -132,7 +133,7 @@
     "through2": "^2.0.2",
     "tslint": "^5.0.0",
     "tslint-config-typings": "^0.3.1",
-    "typescript": "^2.1.5",
+    "typescript": "^2.3.1",
     "webpack": "^2.3.2",
     "webpack-dev-middleware": "^1.10.1",
     "webpack-hot-middleware": "^2.17.1"

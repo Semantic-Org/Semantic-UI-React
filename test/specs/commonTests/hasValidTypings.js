@@ -5,6 +5,7 @@ import componentInfo from './componentInfo'
 import {
   getNodes,
   getInterfaces,
+  hasAnySignature,
   requireTs,
 } from './tsHelpers'
 
@@ -14,6 +15,7 @@ import {
  * @param {Object} [extractedInfo={}]
  * @param {Object} [extractedInfo._meta={}] The meta information about Component
  * @param {Object} [options={}]
+ * @param {array} [options.ignoredTypingsProps=[]] Props that will be ignored in tests.
  * @param {Object} [options.requiredProps={}] Props required to render Component without errors or warnings.
  */
 export default (Component, extractedInfo, options = {}) => {
@@ -22,7 +24,7 @@ export default (Component, extractedInfo, options = {}) => {
     filenameWithoutExt,
     filePath,
   } = extractedInfo || _.find(componentInfo, i => i.constructorName === Component.prototype.constructor.name)
-  const { requiredProps } = options
+  const { ignoredTypingsProps = [], requiredProps } = options
 
   const tsFile = filenameWithoutExt + '.d.ts'
   const tsContent = requireTs(path.join(path.dirname(filePath), tsFile))
@@ -50,18 +52,23 @@ export default (Component, extractedInfo, options = {}) => {
     })
 
     describe('props', () => {
-      const { props: interfaceProps } = interfaceObject
+      const { props } = interfaceObject
+
+      it('has any signature', () => {
+        hasAnySignature(tsNodes).should.to.equal(true)
+      })
 
       it('are correctly defined', () => {
         const componentPropTypes = _.get(Component, 'propTypes')
         const componentProps = _.keys(componentPropTypes)
+        const interfaceProps = _.without(_.map(props, 'name'), ...ignoredTypingsProps)
 
-        componentProps.should.to.deep.equal(_.map(interfaceProps, 'name'))
+        componentProps.should.to.deep.equal(interfaceProps)
       })
 
       it('only necessary are required', () => {
         const componentRequired = _.keys(requiredProps)
-        const interfaceRequired = _.filter(interfaceProps, ['required', true])
+        const interfaceRequired = _.filter(props, ['required', true])
 
         componentRequired.should.to.deep.equal(_.map(interfaceRequired, 'name'))
       })

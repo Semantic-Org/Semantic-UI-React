@@ -1,5 +1,36 @@
 # Change Log
 
+## [v0.68.3](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.68.3) (2017-05-06)
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.68.2...v0.68.3)
+
+**Implemented enhancements:**
+
+- fix\(Progress\): indicating progressbar does not change its color [\#1653](https://github.com/Semantic-Org/Semantic-UI-React/pull/1653) ([Bebersohl](https://github.com/Bebersohl))
+
+**Fixed bugs:**
+
+- Progress: indicating progressbar does not change its color [\#1650](https://github.com/Semantic-Org/Semantic-UI-React/issues/1650)
+- TypeScript compile errors [\#1621](https://github.com/Semantic-Org/Semantic-UI-React/issues/1621)
+- Input does not get disabled attibute [\#1565](https://github.com/Semantic-Org/Semantic-UI-React/issues/1565)
+
+**Closed issues:**
+
+- Semantic UI not working when lodash installed separately as dependency [\#1656](https://github.com/Semantic-Org/Semantic-UI-React/issues/1656)
+- scrolling issue w/multiple long modals  [\#1652](https://github.com/Semantic-Org/Semantic-UI-React/issues/1652)
+- Fixed menu inside a Sidebar pushable? [\#1646](https://github.com/Semantic-Org/Semantic-UI-React/issues/1646)
+- fix\(Menu\): only first element shows when is active [\#1640](https://github.com/Semantic-Org/Semantic-UI-React/issues/1640)
+
+**Merged pull requests:**
+
+- docs\(Search\): add example of input shorthand  [\#1649](https://github.com/Semantic-Org/Semantic-UI-React/pull/1649) ([josie11](https://github.com/josie11))
+- fix\(MenuExampleText\): activeItem logic [\#1641](https://github.com/Semantic-Org/Semantic-UI-React/pull/1641) ([aabustamante](https://github.com/aabustamante))
+- chore\(package\): update typescript@2.3.1 [\#1637](https://github.com/Semantic-Org/Semantic-UI-React/pull/1637) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+- fix\(ComponentExample\): typo "loose" to "lose" [\#1635](https://github.com/Semantic-Org/Semantic-UI-React/pull/1635) ([mikelyons](https://github.com/mikelyons))
+- docs\(README\): add React-Semantic.UI-Starter [\#1626](https://github.com/Semantic-Org/Semantic-UI-React/pull/1626) ([layershifter](https://github.com/layershifter))
+- test\(typings\): add rendering test [\#1625](https://github.com/Semantic-Org/Semantic-UI-React/pull/1625) ([layershifter](https://github.com/layershifter))
+- test\(typings\): additional tests for typings and fixes [\#1624](https://github.com/Semantic-Org/Semantic-UI-React/pull/1624) ([layershifter](https://github.com/layershifter))
+- fix\(Input\): replace disabled class with disabled attribute [\#1591](https://github.com/Semantic-Org/Semantic-UI-React/pull/1591) ([davezuko](https://github.com/davezuko))
+
 ## [v0.68.2](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.68.2) (2017-04-24)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.68.1...v0.68.2)
 
@@ -678,7 +709,7 @@
 **Merged pull requests:**
 
 - fix\(typings\): use boolean `vertical` Segment attribute [\#1073](https://github.com/Semantic-Org/Semantic-UI-React/pull/1073) ([dennari](https://github.com/dennari))
-- feat\(AutoControlledComponent\): Default values [\#1066](https://github.com/Semantic-Org/Semantic-UI-React/pull/1066) ([jcarbo](https://github.com/jcarbo))
+- feat\(AutoControlledComponent\): Default values [\#1066](https://github.com/Semantic-Org/Semantic-UI-React/pull/1066) ([jeffcarbs](https://github.com/jeffcarbs))
 - node-sass@4.1.1 untested ⚠️ [\#1063](https://github.com/Semantic-Org/Semantic-UI-React/pull/1063) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
 - debug@2.4.5 untested ⚠️ [\#1049](https://github.com/Semantic-Org/Semantic-UI-React/pull/1049) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
 
@@ -724,8 +755,8 @@
 - fix\(dropdown\): clear value when dropdown is blurred [\#1046](https://github.com/Semantic-Org/Semantic-UI-React/pull/1046) ([vageeshb](https://github.com/vageeshb))
 - babel-core@6.21.0 untested ⚠️ [\#1045](https://github.com/Semantic-Org/Semantic-UI-React/pull/1045) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
 - fix\(typings\): fix typings spelling on `Accordion` [\#1044](https://github.com/Semantic-Org/Semantic-UI-React/pull/1044) ([ericl85](https://github.com/ericl85))
-- feat\(Checkbox\): Indeterminate state [\#1043](https://github.com/Semantic-Org/Semantic-UI-React/pull/1043) ([jcarbo](https://github.com/jcarbo))
-- fix\(docs\): Fix check icon [\#1042](https://github.com/Semantic-Org/Semantic-UI-React/pull/1042) ([jcarbo](https://github.com/jcarbo))
+- feat\(Checkbox\): Indeterminate state [\#1043](https://github.com/Semantic-Org/Semantic-UI-React/pull/1043) ([jeffcarbs](https://github.com/jeffcarbs))
+- fix\(docs\): Fix check icon [\#1042](https://github.com/Semantic-Org/Semantic-UI-React/pull/1042) ([jeffcarbs](https://github.com/jeffcarbs))
 
 ## [v0.62.2](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.62.2) (2016-12-16)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.62.1...v0.62.2)
@@ -752,7 +783,7 @@
 
 **Merged pull requests:**
 
-- fix\(Header\): Remove duplicate class [\#1040](https://github.com/Semantic-Org/Semantic-UI-React/pull/1040) ([jcarbo](https://github.com/jcarbo))
+- fix\(Header\): Remove duplicate class [\#1040](https://github.com/Semantic-Org/Semantic-UI-React/pull/1040) ([jeffcarbs](https://github.com/jeffcarbs))
 - feat\(docs\): Active className on Sidebar item [\#1031](https://github.com/Semantic-Org/Semantic-UI-React/pull/1031) ([pradel](https://github.com/pradel))
 - debug@2.4.1 untested ⚠️ [\#1028](https://github.com/Semantic-Org/Semantic-UI-React/pull/1028) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
 - test\(Accordion\): add inclusive tests for opening and closing panels [\#1023](https://github.com/Semantic-Org/Semantic-UI-React/pull/1023) ([koenvg](https://github.com/koenvg))
@@ -794,7 +825,7 @@
 - fix\(Accordion\): allow contentShorthand for panel prop [\#991](https://github.com/Semantic-Org/Semantic-UI-React/pull/991) ([wassname](https://github.com/wassname))
 - docs\(Popup\): make allowed content types statically analyzable [\#990](https://github.com/Semantic-Org/Semantic-UI-React/pull/990) ([davezuko](https://github.com/davezuko))
 - fix\(Sidebar\) sidebar is a module, not a collection [\#987](https://github.com/Semantic-Org/Semantic-UI-React/pull/987) ([fracmak](https://github.com/fracmak))
-- breaking\(Form|RatingIcon|Search|SearchResult\): Pass data to event handlers [\#951](https://github.com/Semantic-Org/Semantic-UI-React/pull/951) ([jcarbo](https://github.com/jcarbo))
+- breaking\(Form|RatingIcon|Search|SearchResult\): Pass data to event handlers [\#951](https://github.com/Semantic-Org/Semantic-UI-React/pull/951) ([jeffcarbs](https://github.com/jeffcarbs))
 
 ## [v0.61.10](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.61.10) (2016-12-03)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.61.9...v0.61.10)
@@ -822,8 +853,8 @@
 
 **Merged pull requests:**
 
-- fix\(Modal\): prevent unnecessary renders [\#973](https://github.com/Semantic-Org/Semantic-UI-React/pull/973) ([jcarbo](https://github.com/jcarbo))
-- feat\(StatisticGroup\): Add missing props [\#972](https://github.com/Semantic-Org/Semantic-UI-React/pull/972) ([jcarbo](https://github.com/jcarbo))
+- fix\(Modal\): prevent unnecessary renders [\#973](https://github.com/Semantic-Org/Semantic-UI-React/pull/973) ([jeffcarbs](https://github.com/jeffcarbs))
+- feat\(StatisticGroup\): Add missing props [\#972](https://github.com/Semantic-Org/Semantic-UI-React/pull/972) ([jeffcarbs](https://github.com/jeffcarbs))
 - fix\(Select\): add missing subcomponents [\#964](https://github.com/Semantic-Org/Semantic-UI-React/pull/964) ([levithomason](https://github.com/levithomason))
 
 ## [v0.61.8](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.61.8) (2016-11-30)
@@ -849,7 +880,7 @@
 
 **Merged pull requests:**
 
-- feat\(Card\): pass props to onClick [\#950](https://github.com/Semantic-Org/Semantic-UI-React/pull/950) ([jcarbo](https://github.com/jcarbo))
+- feat\(Card\): pass props to onClick [\#950](https://github.com/Semantic-Org/Semantic-UI-React/pull/950) ([jeffcarbs](https://github.com/jeffcarbs))
 - through2@2.0.2 untested ⚠️ [\#945](https://github.com/Semantic-Org/Semantic-UI-React/pull/945) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
 - feat\(Rating\): Rating now keyboard navigable and visually impaired accessible [\#892](https://github.com/Semantic-Org/Semantic-UI-React/pull/892) ([fracmak](https://github.com/fracmak))
 
@@ -882,8 +913,8 @@
 **Implemented enhancements:**
 
 - Modal: Support showing Close \(X\) Icon [\#436](https://github.com/Semantic-Org/Semantic-UI-React/issues/436)
-- feat\(Modal\): Add closeIcon [\#932](https://github.com/Semantic-Org/Semantic-UI-React/pull/932) ([jcarbo](https://github.com/jcarbo))
-- feat\(Button\): Prevent click on disabled button [\#930](https://github.com/Semantic-Org/Semantic-UI-React/pull/930) ([jcarbo](https://github.com/jcarbo))
+- feat\(Modal\): Add closeIcon [\#932](https://github.com/Semantic-Org/Semantic-UI-React/pull/932) ([jeffcarbs](https://github.com/jeffcarbs))
+- feat\(Button\): Prevent click on disabled button [\#930](https://github.com/Semantic-Org/Semantic-UI-React/pull/930) ([jeffcarbs](https://github.com/jeffcarbs))
 
 **Fixed bugs:**
 
@@ -989,7 +1020,7 @@
 - style\(Statistic\): update docs to the latest standards [\#866](https://github.com/Semantic-Org/Semantic-UI-React/pull/866) ([dpkwhan](https://github.com/dpkwhan))
 - perf\(docs\): improve doc bundle and load experience [\#865](https://github.com/Semantic-Org/Semantic-UI-React/pull/865) ([levithomason](https://github.com/levithomason))
 - Update doctrine to version 2.0.0 🚀 [\#861](https://github.com/Semantic-Org/Semantic-UI-React/pull/861) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
-- breaking\(AutoControlledProps\): Ignore undefined [\#788](https://github.com/Semantic-Org/Semantic-UI-React/pull/788) ([jcarbo](https://github.com/jcarbo))
+- breaking\(AutoControlledProps\): Ignore undefined [\#788](https://github.com/Semantic-Org/Semantic-UI-React/pull/788) ([jeffcarbs](https://github.com/jeffcarbs))
 
 ## [v0.60.10](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.60.10) (2016-11-15)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.60.9...v0.60.10)
@@ -1013,7 +1044,7 @@
 **Merged pull requests:**
 
 - yargs@6.4.0 untested ⚠️ [\#855](https://github.com/Semantic-Org/Semantic-UI-React/pull/855) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
-- feat\(Dropdown\): Enable custom DropdownItem render [\#854](https://github.com/Semantic-Org/Semantic-UI-React/pull/854) ([jcarbo](https://github.com/jcarbo))
+- feat\(Dropdown\): Enable custom DropdownItem render [\#854](https://github.com/Semantic-Org/Semantic-UI-React/pull/854) ([jeffcarbs](https://github.com/jeffcarbs))
 
 ## [v0.60.8](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.60.8) (2016-11-14)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.60.7...v0.60.8)
@@ -1077,7 +1108,7 @@
 
 **Merged pull requests:**
 
-- fix\(Dropdown|Label\): Remove overzealous prop validations [\#828](https://github.com/Semantic-Org/Semantic-UI-React/pull/828) ([jcarbo](https://github.com/jcarbo))
+- fix\(Dropdown|Label\): Remove overzealous prop validations [\#828](https://github.com/Semantic-Org/Semantic-UI-React/pull/828) ([jeffcarbs](https://github.com/jeffcarbs))
 
 ## [v0.60.3](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.60.3) (2016-11-10)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.60.2...v0.60.3)
@@ -1132,7 +1163,7 @@
 
 **Implemented enhancements:**
 
-- breaking\(Dropdown|Label\): Multi-select customization [\#809](https://github.com/Semantic-Org/Semantic-UI-React/pull/809) ([jcarbo](https://github.com/jcarbo))
+- breaking\(Dropdown|Label\): Multi-select customization [\#809](https://github.com/Semantic-Org/Semantic-UI-React/pull/809) ([jeffcarbs](https://github.com/jeffcarbs))
 
 **Closed issues:**
 
@@ -1158,7 +1189,7 @@
 
 - breaking\(DropdownItem\): callback with \(e, props\) onClick [\#805](https://github.com/Semantic-Org/Semantic-UI-React/pull/805) ([levithomason](https://github.com/levithomason))
 - docs\(Modal\): fix icon prop in Button, fix labeled prop, add index.js and trailing . in description [\#800](https://github.com/Semantic-Org/Semantic-UI-React/pull/800) ([dpkwhan](https://github.com/dpkwhan))
-- fix\(Dimmer\): Fix "simple" usage, add disabled prop [\#795](https://github.com/Semantic-Org/Semantic-UI-React/pull/795) ([jcarbo](https://github.com/jcarbo))
+- fix\(Dimmer\): Fix "simple" usage, add disabled prop [\#795](https://github.com/Semantic-Org/Semantic-UI-React/pull/795) ([jeffcarbs](https://github.com/jeffcarbs))
 
 ## [v0.58.3](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.58.3) (2016-11-05)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.58.2...v0.58.3)
@@ -1174,9 +1205,9 @@
 
 **Merged pull requests:**
 
-- feat\(Dropdown\): Prevent open when disabled [\#792](https://github.com/Semantic-Org/Semantic-UI-React/pull/792) ([jcarbo](https://github.com/jcarbo))
+- feat\(Dropdown\): Prevent open when disabled [\#792](https://github.com/Semantic-Org/Semantic-UI-React/pull/792) ([jeffcarbs](https://github.com/jeffcarbs))
 - style\(Message\):  update docs to the latest standards [\#789](https://github.com/Semantic-Org/Semantic-UI-React/pull/789) ([dpkwhan](https://github.com/dpkwhan))
-- feat\(Image\): Render children appropriately [\#784](https://github.com/Semantic-Org/Semantic-UI-React/pull/784) ([jcarbo](https://github.com/jcarbo))
+- feat\(Image\): Render children appropriately [\#784](https://github.com/Semantic-Org/Semantic-UI-React/pull/784) ([jeffcarbs](https://github.com/jeffcarbs))
 
 ## [v0.58.2](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.58.2) (2016-11-02)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.58.1...v0.58.2)
@@ -1254,7 +1285,7 @@
 **Implemented enhancements:**
 
 - \<Reveal /\> Component [\#182](https://github.com/Semantic-Org/Semantic-UI-React/issues/182)
-- feat\(Popup\): Enabled controlled usage [\#749](https://github.com/Semantic-Org/Semantic-UI-React/pull/749) ([jcarbo](https://github.com/jcarbo))
+- feat\(Popup\): Enabled controlled usage [\#749](https://github.com/Semantic-Org/Semantic-UI-React/pull/749) ([jeffcarbs](https://github.com/jeffcarbs))
 - feat\(Reveal\): Add component [\#748](https://github.com/Semantic-Org/Semantic-UI-React/pull/748) ([layershifter](https://github.com/layershifter))
 
 **Closed issues:**
@@ -1312,7 +1343,7 @@
 
 **Merged pull requests:**
 
-- fix\(Modal\): Only set position when modal is open [\#721](https://github.com/Semantic-Org/Semantic-UI-React/pull/721) ([jcarbo](https://github.com/jcarbo))
+- fix\(Modal\): Only set position when modal is open [\#721](https://github.com/Semantic-Org/Semantic-UI-React/pull/721) ([jeffcarbs](https://github.com/jeffcarbs))
 - html-webpack-plugin@2.24.0 untested ⚠️ [\#719](https://github.com/Semantic-Org/Semantic-UI-React/pull/719) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
 - docs\(ComponentExample\): default commit message on edit [\#718](https://github.com/Semantic-Org/Semantic-UI-React/pull/718) ([levithomason](https://github.com/levithomason))
 - docs\(FormFormExample\): remove extra checkbox label [\#717](https://github.com/Semantic-Org/Semantic-UI-React/pull/717) ([server-monitor](https://github.com/server-monitor))
@@ -1332,7 +1363,7 @@
 
 - chore\(circleci\): use ta-scripts auto-release and changelog [\#707](https://github.com/Semantic-Org/Semantic-UI-React/pull/707) ([levithomason](https://github.com/levithomason))
 - chore\(auto-release\): skip non-consequential and unknown commits [\#706](https://github.com/Semantic-Org/Semantic-UI-React/pull/706) ([levithomason](https://github.com/levithomason))
-- feat\(Dropdown\): Add missing examples and begin feature support [\#682](https://github.com/Semantic-Org/Semantic-UI-React/pull/682) ([jcarbo](https://github.com/jcarbo))
+- feat\(Dropdown\): Add missing examples and begin feature support [\#682](https://github.com/Semantic-Org/Semantic-UI-React/pull/682) ([jeffcarbs](https://github.com/jeffcarbs))
 
 ## [v0.56.9](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.56.9) (2016-10-19)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.56.8...v0.56.9)
@@ -1350,7 +1381,7 @@
 
 **Merged pull requests:**
 
-- feat\(Search|Dropdown\): Improve arrow navigation [\#701](https://github.com/Semantic-Org/Semantic-UI-React/pull/701) ([jcarbo](https://github.com/jcarbo))
+- feat\(Search|Dropdown\): Improve arrow navigation [\#701](https://github.com/Semantic-Org/Semantic-UI-React/pull/701) ([jeffcarbs](https://github.com/jeffcarbs))
 
 ## [v0.56.7](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.56.7) (2016-10-19)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.56.6...v0.56.7)
@@ -1400,11 +1431,11 @@
 **Implemented enhancements:**
 
 - feat\(Modal\): support opening/closing multiple modals [\#636](https://github.com/Semantic-Org/Semantic-UI-React/issues/636)
-- feat\(Portal\): Improve rendering [\#666](https://github.com/Semantic-Org/Semantic-UI-React/pull/666) ([jcarbo](https://github.com/jcarbo))
+- feat\(Portal\): Improve rendering [\#666](https://github.com/Semantic-Org/Semantic-UI-React/pull/666) ([jeffcarbs](https://github.com/jeffcarbs))
 
 **Fixed bugs:**
 
-- feat\\(Portal\\): Improve rendering [\#666](https://github.com/Semantic-Org/Semantic-UI-React/pull/666) ([jcarbo](https://github.com/jcarbo))
+- feat\\(Portal\\): Improve rendering [\#666](https://github.com/Semantic-Org/Semantic-UI-React/pull/666) ([jeffcarbs](https://github.com/jeffcarbs))
 
 **Closed issues:**
 
@@ -1412,7 +1443,7 @@
 
 **Merged pull requests:**
 
-- feat\(ButtonGroup\): Add missing props [\#687](https://github.com/Semantic-Org/Semantic-UI-React/pull/687) ([jcarbo](https://github.com/jcarbo))
+- feat\(ButtonGroup\): Add missing props [\#687](https://github.com/Semantic-Org/Semantic-UI-React/pull/687) ([jeffcarbs](https://github.com/jeffcarbs))
 - docs\(Icon\): refactor naming and descriptions, use function components [\#685](https://github.com/Semantic-Org/Semantic-UI-React/pull/685) ([dpkwhan](https://github.com/dpkwhan))
 - docs\(Input\): refactor, add trailing . in description, fix imports [\#679](https://github.com/Semantic-Org/Semantic-UI-React/pull/679) ([dpkwhan](https://github.com/dpkwhan))
 
@@ -1483,7 +1514,7 @@
 - feat\(ListItem\): add shorthand [\#589](https://github.com/Semantic-Org/Semantic-UI-React/issues/589)
 - \<Popup /\> Component [\#193](https://github.com/Semantic-Org/Semantic-UI-React/issues/193)
 - \<Comment /\> Component [\#187](https://github.com/Semantic-Org/Semantic-UI-React/issues/187)
-- feat\(List\): Shorthand for list and list items [\#637](https://github.com/Semantic-Org/Semantic-UI-React/pull/637) ([jcarbo](https://github.com/jcarbo))
+- feat\(List\): Shorthand for list and list items [\#637](https://github.com/Semantic-Org/Semantic-UI-React/pull/637) ([jeffcarbs](https://github.com/jeffcarbs))
 - feat\(Comment\): Add component [\#584](https://github.com/Semantic-Org/Semantic-UI-React/pull/584) ([layershifter](https://github.com/layershifter))
 - feat\(Popup\): add component [\#570](https://github.com/Semantic-Org/Semantic-UI-React/pull/570) ([debrice](https://github.com/debrice))
 
@@ -1526,8 +1557,8 @@
 
 **Merged pull requests:**
 
-- chore\(warnings\): Fix warnings in Form and Modal [\#626](https://github.com/Semantic-Org/Semantic-UI-React/pull/626) ([jcarbo](https://github.com/jcarbo))
-- feat\(shorthand\): Custom shorthand proptypes [\#618](https://github.com/Semantic-Org/Semantic-UI-React/pull/618) ([jcarbo](https://github.com/jcarbo))
+- chore\(warnings\): Fix warnings in Form and Modal [\#626](https://github.com/Semantic-Org/Semantic-UI-React/pull/626) ([jeffcarbs](https://github.com/jeffcarbs))
+- feat\(shorthand\): Custom shorthand proptypes [\#618](https://github.com/Semantic-Org/Semantic-UI-React/pull/618) ([jeffcarbs](https://github.com/jeffcarbs))
 - test\(factories\): add factory tests [\#552](https://github.com/Semantic-Org/Semantic-UI-React/pull/552) ([levithomason](https://github.com/levithomason))
 
 ## [v0.54.1](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.54.1) (2016-10-04)
@@ -1558,9 +1589,9 @@
 
 - BREAKING CHANGE: refactor `labeled` Button API [\#616](https://github.com/Semantic-Org/Semantic-UI-React/pull/616) ([levithomason](https://github.com/levithomason))
 - chore\(icon\): cleanup icon doc data [\#615](https://github.com/Semantic-Org/Semantic-UI-React/pull/615) ([levithomason](https://github.com/levithomason))
-- chore\(style\): Make some common patterns more consistent [\#614](https://github.com/Semantic-Org/Semantic-UI-React/pull/614) ([jcarbo](https://github.com/jcarbo))
+- chore\(style\): Make some common patterns more consistent [\#614](https://github.com/Semantic-Org/Semantic-UI-React/pull/614) ([jeffcarbs](https://github.com/jeffcarbs))
 - chore\(ComponentExamples\): example context todo [\#613](https://github.com/Semantic-Org/Semantic-UI-React/pull/613) ([levithomason](https://github.com/levithomason))
-- chore\(imports\): Direct internal imports [\#610](https://github.com/Semantic-Org/Semantic-UI-React/pull/610) ([jcarbo](https://github.com/jcarbo))
+- chore\(imports\): Direct internal imports [\#610](https://github.com/Semantic-Org/Semantic-UI-React/pull/610) ([jeffcarbs](https://github.com/jeffcarbs))
 
 ## [v0.53.0](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.53.0) (2016-10-03)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.52.5...v0.53.0)
@@ -1626,7 +1657,7 @@
 
 **Implemented enhancements:**
 
-- feat\(Portal\): More flexible configuration [\#590](https://github.com/Semantic-Org/Semantic-UI-React/pull/590) ([jcarbo](https://github.com/jcarbo))
+- feat\(Portal\): More flexible configuration [\#590](https://github.com/Semantic-Org/Semantic-UI-React/pull/590) ([jeffcarbs](https://github.com/jeffcarbs))
 
 **Merged pull requests:**
 
@@ -1639,8 +1670,8 @@
 
 - feat\(Table\): add shorthand for generating tables [\#565](https://github.com/Semantic-Org/Semantic-UI-React/issues/565)
 - All event handlers should return the event data first [\#218](https://github.com/Semantic-Org/Semantic-UI-React/issues/218)
-- feat\(Dropdown\): Pass object with name to onChange [\#581](https://github.com/Semantic-Org/Semantic-UI-React/pull/581) ([jcarbo](https://github.com/jcarbo))
-- feat\(Table\): add table row shorthand [\#567](https://github.com/Semantic-Org/Semantic-UI-React/pull/567) ([jcarbo](https://github.com/jcarbo))
+- feat\(Dropdown\): Pass object with name to onChange [\#581](https://github.com/Semantic-Org/Semantic-UI-React/pull/581) ([jeffcarbs](https://github.com/jeffcarbs))
+- feat\(Table\): add table row shorthand [\#567](https://github.com/Semantic-Org/Semantic-UI-React/pull/567) ([jeffcarbs](https://github.com/jeffcarbs))
 
 ## [v0.51.1](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.51.1) (2016-10-03)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.51.0...v0.51.1)
@@ -1662,8 +1693,8 @@
 **Merged pull requests:**
 
 - feat\(ComponentExample\): add github links to editor [\#586](https://github.com/Semantic-Org/Semantic-UI-React/pull/586) ([levithomason](https://github.com/levithomason))
-- fix\(tests\): Add coverage to missing lines [\#583](https://github.com/Semantic-Org/Semantic-UI-React/pull/583) ([jcarbo](https://github.com/jcarbo))
-- feat\(ComponentExample\): add copy JSX button [\#582](https://github.com/Semantic-Org/Semantic-UI-React/pull/582) ([jcarbo](https://github.com/jcarbo))
+- fix\(tests\): Add coverage to missing lines [\#583](https://github.com/Semantic-Org/Semantic-UI-React/pull/583) ([jeffcarbs](https://github.com/jeffcarbs))
+- feat\(ComponentExample\): add copy JSX button [\#582](https://github.com/Semantic-Org/Semantic-UI-React/pull/582) ([jeffcarbs](https://github.com/jeffcarbs))
 - fix\(package\): remove semantic-ui-css dependency [\#580](https://github.com/Semantic-Org/Semantic-UI-React/pull/580) ([levithomason](https://github.com/levithomason))
 
 ## [v0.51.0](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.51.0) (2016-10-02)
@@ -1678,7 +1709,7 @@
 
 **Merged pull requests:**
 
-- feat\(Modal\): Enable usage without wrapper, add custom Portal [\#571](https://github.com/Semantic-Org/Semantic-UI-React/pull/571) ([jcarbo](https://github.com/jcarbo))
+- feat\(Modal\): Enable usage without wrapper, add custom Portal [\#571](https://github.com/Semantic-Org/Semantic-UI-React/pull/571) ([jeffcarbs](https://github.com/jeffcarbs))
 
 ## [v0.49.0](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.49.0) (2016-10-01)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.48.3...v0.49.0)
@@ -1769,7 +1800,7 @@
 **Implemented enhancements:**
 
 - feat\(ComponentExample\): add show html button to docs [\#547](https://github.com/Semantic-Org/Semantic-UI-React/pull/547) ([levithomason](https://github.com/levithomason))
-- feat\(common\): Improve shorthand array handling [\#543](https://github.com/Semantic-Org/Semantic-UI-React/pull/543) ([jcarbo](https://github.com/jcarbo))
+- feat\(common\): Improve shorthand array handling [\#543](https://github.com/Semantic-Org/Semantic-UI-React/pull/543) ([jeffcarbs](https://github.com/jeffcarbs))
 
 ## [v0.46.2](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.46.2) (2016-09-25)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.46.1...v0.46.2)
@@ -1797,7 +1828,7 @@
 
 **Merged pull requests:**
 
-- chore\(commonTests\): Standardize the assertions in common tests [\#535](https://github.com/Semantic-Org/Semantic-UI-React/pull/535) ([jcarbo](https://github.com/jcarbo))
+- chore\(commonTests\): Standardize the assertions in common tests [\#535](https://github.com/Semantic-Org/Semantic-UI-React/pull/535) ([jeffcarbs](https://github.com/jeffcarbs))
 
 ## [v0.46.0](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.46.0) (2016-09-23)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.45.3...v0.46.0)
@@ -1885,14 +1916,14 @@
 
 **Merged pull requests:**
 
-- Search: add component [\#424](https://github.com/Semantic-Org/Semantic-UI-React/pull/424) ([jcarbo](https://github.com/jcarbo))
+- Search: add component [\#424](https://github.com/Semantic-Org/Semantic-UI-React/pull/424) ([jeffcarbs](https://github.com/jeffcarbs))
 
 ## [v0.44.5](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.44.5) (2016-09-19)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.44.4...v0.44.5)
 
 **Merged pull requests:**
 
-- Dropdown: Dropdown.Header via shorthand prop [\#501](https://github.com/Semantic-Org/Semantic-UI-React/pull/501) ([jcarbo](https://github.com/jcarbo))
+- Dropdown: Dropdown.Header via shorthand prop [\#501](https://github.com/Semantic-Org/Semantic-UI-React/pull/501) ([jeffcarbs](https://github.com/jeffcarbs))
 
 ## [v0.44.4](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.44.4) (2016-09-18)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.44.3...v0.44.4)
@@ -1926,7 +1957,7 @@
 
 **Fixed bugs:**
 
-- fix\(dropdown\): Label props for multi-select [\#495](https://github.com/Semantic-Org/Semantic-UI-React/pull/495) ([jcarbo](https://github.com/jcarbo))
+- fix\(dropdown\): Label props for multi-select [\#495](https://github.com/Semantic-Org/Semantic-UI-React/pull/495) ([jeffcarbs](https://github.com/jeffcarbs))
 
 ## [v0.44.0](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.44.0) (2016-09-13)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.43.3...v0.44.0)
@@ -1978,7 +2009,7 @@
 
 **Merged pull requests:**
 
-- refactor\(Label\): update props to the latest specs [\#486](https://github.com/Semantic-Org/Semantic-UI-React/pull/486) ([jcarbo](https://github.com/jcarbo))
+- refactor\(Label\): update props to the latest specs [\#486](https://github.com/Semantic-Org/Semantic-UI-React/pull/486) ([jeffcarbs](https://github.com/jeffcarbs))
 
 ## [v0.42.6](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.42.6) (2016-09-09)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.42.5...v0.42.6)
@@ -1989,7 +2020,7 @@
 
 **Merged pull requests:**
 
-- feat\(Dropdown\): support disabled items [\#482](https://github.com/Semantic-Org/Semantic-UI-React/pull/482) ([jcarbo](https://github.com/jcarbo))
+- feat\(Dropdown\): support disabled items [\#482](https://github.com/Semantic-Org/Semantic-UI-React/pull/482) ([jeffcarbs](https://github.com/jeffcarbs))
 
 ## [v0.42.5](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.42.5) (2016-09-09)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.42.4...v0.42.5)
@@ -2003,7 +2034,7 @@
 
 **Fixed bugs:**
 
-- fix\(createFactory\): do not create elements from `null` values [\#480](https://github.com/Semantic-Org/Semantic-UI-React/pull/480) ([jcarbo](https://github.com/jcarbo))
+- fix\(createFactory\): do not create elements from `null` values [\#480](https://github.com/Semantic-Org/Semantic-UI-React/pull/480) ([jeffcarbs](https://github.com/jeffcarbs))
 
 **Closed issues:**
 
@@ -2018,7 +2049,7 @@
 
 **Merged pull requests:**
 
-- Dropdown: Custom trigger element [\#479](https://github.com/Semantic-Org/Semantic-UI-React/pull/479) ([jcarbo](https://github.com/jcarbo))
+- Dropdown: Custom trigger element [\#479](https://github.com/Semantic-Org/Semantic-UI-React/pull/479) ([jeffcarbs](https://github.com/jeffcarbs))
 
 ## [v0.42.2](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.42.2) (2016-09-08)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.42.1...v0.42.2)
@@ -2209,14 +2240,14 @@
 
 **Implemented enhancements:**
 
-- Dropdown: Pass 'options' objects as props to Dropdown.Item [\#418](https://github.com/Semantic-Org/Semantic-UI-React/pull/418) ([jcarbo](https://github.com/jcarbo))
+- Dropdown: Pass 'options' objects as props to Dropdown.Item [\#418](https://github.com/Semantic-Org/Semantic-UI-React/pull/418) ([jeffcarbs](https://github.com/jeffcarbs))
 
 ## [v0.36.2](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.36.2) (2016-08-22)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.36.1...v0.36.2)
 
 **Implemented enhancements:**
 
-- feat\(Dropdown\): add custom noResultsMessage [\#417](https://github.com/Semantic-Org/Semantic-UI-React/pull/417) ([jcarbo](https://github.com/jcarbo))
+- feat\(Dropdown\): add custom noResultsMessage [\#417](https://github.com/Semantic-Org/Semantic-UI-React/pull/417) ([jeffcarbs](https://github.com/jeffcarbs))
 
 ## [v0.36.1](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.36.1) (2016-08-21)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.36.0...v0.36.1)

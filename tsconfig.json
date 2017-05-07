@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "jsx": "react"
+  },
+  "include": [
+    "src/**/*.d.ts"
+  ],
+  "files": [
+    "test/typings.tsx"
+  ]
+}
