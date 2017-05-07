@@ -11,6 +11,9 @@ export interface FormRadioProps extends FormFieldProps, RadioProps {
 
   /** A FormField control prop. */
   control?: any;
+
+  /** HTML input type, either checkbox or radio. */
+  type?: 'checkbox' | 'radio';
 }
 
 declare const FormRadio: React.StatelessComponent<FormRadioProps>;
