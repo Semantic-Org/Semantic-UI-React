@@ -5,6 +5,8 @@ import {
   Button,
   Container,
   Header,
+  List,
+  Message,
   Segment,
 } from 'src'
 import Logo from '../Components/Logo/Logo'
@@ -180,9 +182,44 @@ const Usage = () => (
         in production mode before release, it will strip <code>propTypes</code> from your build.
       </p>
 
+      <Message warning>
+        <p>
+          Webpack 2 tree shaking does not completely remove unused exports, there are numerous issues that are
+          long-standing bugs:
+        </p>
+        <List>
+          <List.Item
+            icon='github'
+            content={ <a href='https://github.com/webpack/webpack/issues/1750' target='_blank'>webpack/webpack#1750</a>}
+          />
+          <List.Item
+            icon='github'
+            content={ <a href='https://github.com/webpack/webpack/issues/2867' target='_blank'>webpack/webpack#2867</a>}
+          />
+          <List.Item
+            icon='github'
+            content={<a href='https://github.com/webpack/webpack/issues/2899' target='_blank'>webpack/webpack#2899</a>}
+          />
+          <List.Item
+            icon='github'
+            content={<a href='https://github.com/webpack/webpack/issues/3092' target='_blank'>webpack/webpack#3092</a>}
+          />
+        </List>
+        <p>
+          Semantic UI React imports will be not optimized, so we recommend to use <code>babel-plugin-lodash</code> in
+          your builds. You can find example configuration in <code>examples</code> directory.
+        </p>
+      </Message>
+
       <Button
         content='Example configuration'
         href='https://github.com/Semantic-Org/Semantic-UI-React/tree/master/examples/webpack2'
+        icon='github'
+        labelPosition='left'
+      />
+      <Button
+        content='babel-plugin-lodash'
+        href='https://github.com/lodash/babel-plugin-lodash'
         icon='github'
         labelPosition='left'
       />
