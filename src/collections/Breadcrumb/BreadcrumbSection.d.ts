@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-interface BreadcrumbSectionProps {
+export interface BreadcrumbSectionProps {
   [key: string]: any;
 
   /** An element type to render as (string or function). */
@@ -14,6 +14,9 @@ interface BreadcrumbSectionProps {
 
   /** Additional classes. */
   className?: string;
+
+  /** Shorthand for primary content. */
+  content?: any;
 
   /** Render as an `a` tag instead of a `div` and adds the href attribute. */
   href?: string;

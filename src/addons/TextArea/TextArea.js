@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react'
+import PropTypes from 'prop-types'
+import React, { Component } from 'react'
 import {
   customPropTypes,
   getElementType,
@@ -52,6 +53,8 @@ class TextArea extends Component {
       this.updateHeight()
     }
   }
+
+  focus = () => (this.ref.focus())
 
   handleChange = (e) => {
     const { onChange } = this.props

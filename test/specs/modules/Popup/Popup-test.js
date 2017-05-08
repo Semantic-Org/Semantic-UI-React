@@ -36,6 +36,7 @@ describe('Popup', () => {
   })
 
   common.hasSubComponents(Popup, [PopupHeader, PopupContent])
+  common.hasValidTypings(Popup)
 
   // Heads up!
   //

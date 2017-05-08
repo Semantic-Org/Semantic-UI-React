@@ -1,6 +1,7 @@
 import * as Babel from 'babel-standalone'
 import _ from 'lodash'
-import React, { Component, createElement, isValidElement, PropTypes } from 'react'
+import PropTypes from 'prop-types'
+import React, { Component, createElement, isValidElement } from 'react'
 import { withRouter } from 'react-router'
 import { renderToStaticMarkup } from 'react-dom/server'
 import { html } from 'js-beautify'
@@ -102,7 +103,7 @@ class ComponentExample extends Component {
     e.preventDefault()
     this.setHashAndScroll()
 
-    copyToClipboard(this.anchorName)
+    copyToClipboard(location.href)
     this.setState({ copiedDirectLink: true })
 
     setTimeout(() => this.setState({ copiedDirectLink: false }), 1000)
@@ -137,7 +138,7 @@ class ComponentExample extends Component {
   resetJSX = () => {
     const { sourceCode } = this.state
     const original = this.getOriginalSourceCode()
-    if (sourceCode !== original && confirm('Loose your changes?')) { // eslint-disable-line no-alert
+    if (sourceCode !== original && confirm('Lose your changes?')) { // eslint-disable-line no-alert
       this.setState({ sourceCode: original })
       this.renderSourceCode()
     }
@@ -146,7 +147,7 @@ class ComponentExample extends Component {
   getOriginalSourceCode = () => {
     const { examplePath } = this.props
 
-    if (!this.sourceCode) this.sourceCode = require(`!raw!docs/app/Examples/${examplePath}`)
+    if (!this.sourceCode) this.sourceCode = require(`!raw-loader!../../Examples/${examplePath}`)
 
     return this.sourceCode
   }
@@ -413,7 +414,7 @@ class ComponentExample extends Component {
             </ToolTip>
             <ToolTip content='Show HTML'>
               <Menu.Item active={showHTML} onClick={this.handleShowHTMLClick}>
-                <Icon size='large' color='grey' name='html5' fitted />
+                <Icon size='large' color={showHTML ? 'green' : 'grey'} name='html5' fitted />
               </Menu.Item>
             </ToolTip>
             <ToolTip content='Edit Code'>

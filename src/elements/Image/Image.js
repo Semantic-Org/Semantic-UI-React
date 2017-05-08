@@ -1,6 +1,7 @@
 import _ from 'lodash'
 import cx from 'classnames'
-import React, { PropTypes } from 'react'
+import PropTypes from 'prop-types'
+import React from 'react'
 
 import {
   createShorthandFactory,
@@ -136,8 +137,8 @@ Image.propTypes = {
 
   /** The img element height attribute. */
   height: PropTypes.oneOfType([
-    PropTypes.string,
     PropTypes.number,
+    PropTypes.string,
   ]),
 
   /** An image can be hidden. */

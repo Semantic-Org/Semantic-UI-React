@@ -1,10 +1,10 @@
 import cx from 'classnames'
 import _ from 'lodash'
-import React, { Children, cloneElement, PropTypes } from 'react'
+import PropTypes from 'prop-types'
+import React, { Children, cloneElement } from 'react'
 
 import {
   AutoControlledComponent as Component,
-  createShorthand,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -65,7 +65,7 @@ export default class Dropdown extends Component {
       customPropTypes.disallow(['options', 'selection']),
       customPropTypes.givenProps(
         { children: PropTypes.any.isRequired },
-        React.PropTypes.element.isRequired,
+        PropTypes.element.isRequired,
       ),
     ]),
 
@@ -321,6 +321,9 @@ export default class Dropdown extends Component {
         PropTypes.number,
       ])),
     ]),
+
+    /** A dropdown can open upward. */
+    upward: PropTypes.bool,
   }
 
   static defaultProps = {
@@ -995,7 +998,22 @@ export default class Dropdown extends Component {
     this.setState({ focus: hasFocus })
   }
 
-  toggle = (e) => this.state.open ? this.close(e) : this.open(e)
+  toggle = (e) => {
+    if (!this.state.open) {
+      this.open(e)
+      return
+    }
+
+    const { search } = this.props
+    const options = this.getMenuOptions()
+
+    if (search && _.isEmpty(options)) {
+      e.preventDefault()
+      return
+    }
+
+    this.close(e)
+  }
 
   // ----------------------------------------
   // Render
@@ -1103,7 +1121,7 @@ export default class Dropdown extends Component {
     // if no item could be found for a given state value the selected item will be undefined
     // compact the selectedItems so we only have actual objects left
     return _.map(_.compact(selectedItems), (item, index) => {
-      const defaultLabelProps = {
+      const defaultProps = {
         active: item.value === selectedLabel,
         as: 'a',
         key: item.value,
@@ -1113,8 +1131,8 @@ export default class Dropdown extends Component {
       }
 
       return Label.create(
-        renderLabel(item, index, defaultLabelProps),
-        defaultLabelProps,
+        renderLabel(item, index, defaultProps),
+        { defaultProps }
       )
     })
   }
@@ -1161,7 +1179,7 @@ export default class Dropdown extends Component {
 
     return (
       <DropdownMenu {...ariaOptions} className={menuClasses}>
-        {createShorthand(DropdownHeader, val => ({ content: val }), header)}
+        {DropdownHeader.create(header)}
         {this.renderOptions()}
       </DropdownMenu>
     )
@@ -1178,23 +1196,24 @@ export default class Dropdown extends Component {
       button,
       className,
       compact,
+      disabled,
+      error,
       fluid,
       floating,
       icon,
       inline,
       item,
       labeled,
+      loading,
       multiple,
       pointing,
       search,
       selection,
-      simple,
-      loading,
-      error,
-      disabled,
       scrolling,
+      simple,
       tabIndex,
       trigger,
+      upward,
     } = this.props
 
     // Classes
@@ -1222,6 +1241,7 @@ export default class Dropdown extends Component {
       useKeyOnly(selection, 'selection'),
       useKeyOnly(simple, 'simple'),
       useKeyOnly(scrolling, 'scrolling'),
+      useKeyOnly(upward, 'upward'),
 
       useKeyOrValueAndKey(pointing, 'pointing'),
       className,

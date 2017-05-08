@@ -1,9 +1,16 @@
 import * as React from 'react';
 
-import { ButtonProps } from '../../elements/Button/Button';
+import { ButtonProps } from '../../elements/Button';
 import { FormFieldProps } from './FormField';
 
-interface FormButtonProps extends FormFieldProps, ButtonProps {
+export interface FormButtonProps extends FormFieldProps, ButtonProps {
+  [key: string]: any;
+
+  /** An element type to render as (string or function). */
+  as?: any;
+
+  /** A FormField control prop. */
+  control?: any;
 }
 
 declare const FormButton: React.StatelessComponent<FormButtonProps>;

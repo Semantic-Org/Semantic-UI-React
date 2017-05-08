@@ -1,6 +1,7 @@
-import cx from 'classnames'
 import _ from 'lodash'
-import React, { PropTypes } from 'react'
+import cx from 'classnames'
+import PropTypes from 'prop-types'
+import React from 'react'
 
 import {
   customPropTypes,
@@ -35,11 +36,11 @@ StepTitle.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** Additional classes. */
-  className: PropTypes.string,
-
   /** Primary content. */
   children: PropTypes.node,
+
+  /** Additional classes. */
+  className: PropTypes.string,
 
   /** Shorthand for primary content. */
   title: customPropTypes.contentShorthand,

@@ -1,6 +1,7 @@
-import _ from 'lodash'
-import React, { Children, cloneElement, Component, PropTypes } from 'react'
 import cx from 'classnames'
+import _ from 'lodash'
+import PropTypes from 'prop-types'
+import React, { Children, cloneElement, Component } from 'react'
 
 import {
   createHTMLInput,
@@ -114,6 +115,15 @@ class Input extends Component {
     type: META.TYPES.ELEMENT,
   }
 
+  computeTabIndex = () => {
+    const { disabled, tabIndex } = this.props
+
+    if (!_.isNil(tabIndex)) return tabIndex
+    if (disabled) return -1
+  }
+
+  focus = () => (this.inputRef.focus())
+
   handleChange = (e) => {
     const { onChange } = this.props
     const value = _.get(e, 'target.value')
@@ -121,11 +131,33 @@ class Input extends Component {
     onChange(e, { ...this.props, value })
   }
 
-  focus = () => {
-    this.inputRef.focus()
-  }
+  handleChildOverrides = (child, defaultProps) => ({
+    ...defaultProps,
+    ...child.props,
+    ref: c => {
+      _.invoke(child, 'ref', c)
+      this.handleInputRef(c)
+    },
+  })
 
   handleInputRef = c => (this.inputRef = c)
+
+  partitionProps = () => {
+    const { disabled, onChange, type } = this.props
+
+    const tabIndex = this.computeTabIndex()
+    const unhandled = getUnhandledProps(Input, this.props)
+    const [htmlInputProps, rest] = partitionHTMLInputProps(unhandled)
+
+    htmlInputProps.ref = this.handleInputRef
+    htmlInputProps.type = type
+
+    if (disabled) htmlInputProps.disabled = disabled
+    if (onChange) htmlInputProps.onChange = this.handleChange
+    if (tabIndex) htmlInputProps.tabIndex = tabIndex
+
+    return [htmlInputProps, rest]
+  }
 
   render() {
     const {
@@ -144,9 +176,7 @@ class Input extends Component {
       label,
       labelPosition,
       loading,
-      onChange,
       size,
-      tabIndex,
       transparent,
       type,
     } = this.props
@@ -167,18 +197,8 @@ class Input extends Component {
       'input',
       className,
     )
-    const unhandled = getUnhandledProps(Input, this.props)
     const ElementType = getElementType(Input, this.props)
-
-    // Heads up! We should pass `type` prop manually because `Input` component handles it
-    const [htmlInputProps, rest] = partitionHTMLInputProps({ ...unhandled, type })
-
-    if (onChange) htmlInputProps.onChange = this.handleChange
-    htmlInputProps.ref = this.handleInputRef
-
-    // tabIndex
-    if (!_.isNil(tabIndex)) htmlInputProps.tabIndex = tabIndex
-    else if (disabled) htmlInputProps.tabIndex = -1
+    const [htmlInputProps, rest] = this.partitionProps()
 
     // Render with children
     // ----------------------------------------
@@ -186,8 +206,7 @@ class Input extends Component {
       // add htmlInputProps to the `<input />` child
       const childElements = _.map(Children.toArray(children), (child) => {
         if (child.type !== 'input') return child
-
-        return cloneElement(child, { ...htmlInputProps, ...child.props })
+        return cloneElement(child, this.handleChildOverrides(child, htmlInputProps))
       })
 
       return <ElementType {...rest} className={classes}>{childElements}</ElementType>
@@ -195,28 +214,24 @@ class Input extends Component {
 
     // Render Shorthand
     // ----------------------------------------
-    const actionElement = Button.create(action, elProps => ({
-      className: cx(
-        // all action components should have the button className
-        !_.includes(elProps.className, 'button') && 'button',
-      ),
-    }))
+    const actionElement = Button.create(action, { defaultProps: { className: 'button' } })
     const iconElement = Icon.create(icon)
-    const labelElement = Label.create(label, elProps => ({
-      className: cx(
-        // all label components should have the label className
-        !_.includes(elProps.className, 'label') && 'label',
-        // add 'left|right corner'
-        _.includes(labelPosition, 'corner') && labelPosition,
-      ),
-    }))
+    const labelElement = Label.create(label, {
+      defaultProps: {
+        className: cx(
+          'label',
+          // add 'left|right corner'
+          _.includes(labelPosition, 'corner') && labelPosition,
+        ),
+      },
+    })
 
     return (
       <ElementType {...rest} className={classes}>
         {actionPosition === 'left' && actionElement}
         {iconPosition === 'left' && iconElement}
         {labelPosition !== 'right' && labelElement}
-        {createHTMLInput(input || type, htmlInputProps)}
+        {createHTMLInput(input || type, { defaultProps: htmlInputProps })}
         {actionPosition !== 'left' && actionElement}
         {iconPosition !== 'left' && iconElement}
         {labelPosition === 'right' && labelElement}

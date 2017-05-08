@@ -1,9 +1,9 @@
 import * as React from 'react';
 
 import { SemanticCOLORS, SemanticWIDTHS } from '../..';
-import { StatisticSizeProp } from './Statictic';
+import { StatisticSizeProp } from './Statistic';
 
-interface StatisticGroupProps {
+export interface StatisticGroupProps {
   [key: string]: any;
 
   /** An element type to render as (string or function). */

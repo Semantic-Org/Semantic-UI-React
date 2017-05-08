@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { SemanticVERTICALALIGNMENTS } from '../..';
 
-interface ItemContentProps {
+export interface ItemContentProps {
   [key: string]: any;
 
   /** An element type to render as (string or function). */

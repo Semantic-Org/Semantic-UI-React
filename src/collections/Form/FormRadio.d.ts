@@ -1,9 +1,18 @@
 import * as React from 'react';
 
-import { RadioProps } from '../../addons/Radio/Radio';
+import { RadioProps } from '../../addons/Radio';
 import { FormFieldProps } from './FormField';
 
-interface FormRadioProps extends FormFieldProps, RadioProps {
+export interface FormRadioProps extends FormFieldProps, RadioProps {
+  [key: string]: any;
+
+  /** An element type to render as (string or function). */
+  as?: any;
+
+  /** A FormField control prop. */
+  control?: any;
+
+  /** HTML input type, either checkbox or radio. */
   type?: 'checkbox' | 'radio';
 }
 

@@ -102,6 +102,15 @@ const Usage = () => (
           $ npm install semantic-ui-css --save
         </pre>
       </Segment>
+      <p>
+        After install, you'll need to include the minified CSS file
+        in your <em>index.js</em> file:
+      </p>
+      <Segment>
+        <pre>
+          import 'semantic-ui-css/semantic.min.css';
+        </pre>
+      </Segment>
 
       {/* ----------------------------------------
        *  Semantic-UI package

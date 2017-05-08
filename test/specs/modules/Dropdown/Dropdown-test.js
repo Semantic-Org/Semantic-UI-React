@@ -95,6 +95,7 @@ describe('Dropdown', () => {
   common.propKeyOnlyToClassName(Dropdown, 'selection')
   common.propKeyOnlyToClassName(Dropdown, 'simple')
   common.propKeyOnlyToClassName(Dropdown, 'scrolling')
+  common.propKeyOnlyToClassName(Dropdown, 'upward')
 
   common.propKeyOrValueAndKeyToClassName(Dropdown, 'pointing', [
     'left', 'right', 'top', 'top left', 'top right', 'bottom', 'bottom left', 'bottom right',
@@ -121,6 +122,17 @@ describe('Dropdown', () => {
 
     instance.ref.blur
       .should.have.been.calledOnce()
+  })
+
+  it('does not close on click when search is true and options are empty', () => {
+    wrapperMount(<Dropdown options={{}} search selection defaultOpen />)
+
+    const instance = wrapper.instance()
+    sandbox.spy(instance.ref, 'blur')
+
+    dropdownMenuIsOpen()
+    wrapper.simulate('click')
+    dropdownMenuIsOpen()
   })
 
   it('opens on focus', () => {

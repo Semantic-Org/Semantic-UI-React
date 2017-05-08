@@ -1,6 +1,7 @@
 import cx from 'classnames'
 import _ from 'lodash'
-import React, { Component, PropTypes } from 'react'
+import PropTypes from 'prop-types'
+import React, { Component } from 'react'
 
 import {
   createShorthandFactory,
@@ -94,4 +95,4 @@ export default class BreadcrumbSection extends Component {
   }
 }
 
-BreadcrumbSection.create = createShorthandFactory(BreadcrumbSection, content => ({ content, link: true }), true)
+BreadcrumbSection.create = createShorthandFactory(BreadcrumbSection, content => ({ content, link: true }))

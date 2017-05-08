@@ -1,6 +1,7 @@
 import cx from 'classnames'
 import _ from 'lodash'
-import React, { Component, PropTypes } from 'react'
+import PropTypes from 'prop-types'
+import React, { Component } from 'react'
 
 import {
   createShorthandFactory,
@@ -136,4 +137,4 @@ export default class MenuItem extends Component {
   }
 }
 
-MenuItem.create = createShorthandFactory(MenuItem, val => ({ content: val, name: val }), true)
+MenuItem.create = createShorthandFactory(MenuItem, val => ({ content: val, name: val }))

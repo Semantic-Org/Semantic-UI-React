@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-interface AdvertisementProps {
+export interface AdvertisementProps {
   [key: string]: any;
 
   /** An element type to render as (string or function). */
@@ -9,6 +9,9 @@ interface AdvertisementProps {
   /** Center the advertisement. */
   centered?: boolean;
 
+  /** Primary content. */
+  children?: React.ReactNode;
+
   /** Additional classes. */
   className?: string;
 
@@ -16,7 +19,7 @@ interface AdvertisementProps {
   test?: boolean | string | number;
 
   /** Varies the size of the advertisement. */
-  unit?: 'medium rectangle' | 'large rectangle' | 'vertical rectangle' | 'small rectangle' |
+  unit: 'medium rectangle' | 'large rectangle' | 'vertical rectangle' | 'small rectangle' |
   'mobile banner' | 'banner' | 'vertical banner' | 'top banner' | 'half banner'|
   'button' | 'square button' | 'small button'|
   'skyscraper' | 'wide skyscraper' |

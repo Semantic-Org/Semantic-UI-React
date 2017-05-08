@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { LabelProps } from '../../elements/Label/Label';
+import { LabelProps } from '../../elements/Label';
 import { default as DropdownDivider } from './DropdownDivider';
 import { default as DropdownHeader } from './DropdownHeader';
 import { default as DropdownItem, DropdownItemProps } from './DropdownItem';
@@ -56,7 +56,7 @@ export interface DropdownProps {
   defaultSelectedLabel?: number | string;
 
   /** Initial value or value array if multiple. */
-  defaultValue?: string | number | Array<number | string >;
+  defaultValue?: string | number | Array<number | string>;
 
   /** A disabled dropdown menu or item does not allow user interaction. */
   disabled?: boolean;
@@ -201,7 +201,7 @@ export interface DropdownProps {
    * @param {object} defaultLabelProps - The default props for an active item Label.
    * @returns {*} Shorthand for a Label.
    */
-  renderLabel?: (item: DropdownItemProps, index: number, defaultLabelProps: LabelProps) => React.ReactElement<any>;
+  renderLabel?: (item: DropdownItemProps, index: number, defaultLabelProps: LabelProps) => any;
 
   /** A dropdown can have its menu scroll. */
   scrolling?: boolean;
@@ -215,6 +215,9 @@ export interface DropdownProps {
   /** Define whether the highlighted item should be selected on blur. */
   selectOnBlur?: boolean;
 
+  /** Currently selected label in multi-select. */
+  selectedLabel?: number | string;
+
   /** A dropdown can be used to select between choices in a form. */
   selection?: any;
 
@@ -225,13 +228,16 @@ export interface DropdownProps {
   tabIndex?: number | string;
 
   /** The text displayed in the dropdown, usually for the active item. */
-  text?: string|React.ReactNode;
+  text?: string;
 
   /** Custom element to trigger the menu to become visible. Takes place of 'text'. */
   trigger?: React.ReactNode;
 
   /** Current value or value array if multiple. Creates a controlled component. */
   value?: number | string | Array<number | string>;
+
+  /** A dropdown can open upward. */
+  upward?: boolean;
 }
 
 interface DropdownComponent extends React.ComponentClass<DropdownProps> {

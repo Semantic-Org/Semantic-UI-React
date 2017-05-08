@@ -8,7 +8,7 @@ import {
 import { default as HeaderContent } from './HeaderContent';
 import { default as HeaderSubHeader } from './HeaderSubheader';
 
-interface HeaderProps {
+export interface HeaderProps {
   [key: string]: any;
 
   /** An element type to render as (string or function). */

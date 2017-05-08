@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-interface ModalContentProps {
+export interface ModalContentProps {
   [key: string]: any;
 
   /** An element type to render as (string or function). */
@@ -11,6 +11,9 @@ interface ModalContentProps {
 
   /** Additional classes. */
   className?: string;
+
+  /** Shorthand for primary content. */
+  content?: any;
 
   /** A modal can contain image content. */
   image?: boolean;

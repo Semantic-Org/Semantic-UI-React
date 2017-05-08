@@ -1,6 +1,7 @@
 import cx from 'classnames'
 import _ from 'lodash'
-import React, { PropTypes } from 'react'
+import PropTypes from 'prop-types'
+import React from 'react'
 
 import {
   createShorthandFactory,
@@ -50,6 +51,6 @@ MessageItem.defaultProps = {
   as: 'li',
 }
 
-MessageItem.create = createShorthandFactory(MessageItem, content => ({ content }), true)
+MessageItem.create = createShorthandFactory(MessageItem, content => ({ content }))
 
 export default MessageItem

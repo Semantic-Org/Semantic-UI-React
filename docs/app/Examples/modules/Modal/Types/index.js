@@ -39,6 +39,11 @@ const ModalExamples = () => (
       description='A modal can be a controlled component'
       examplePath='modules/Modal/Types/ModalExampleControlled'
     />
+    <ComponentExample
+      title='Shorthand'
+      description='A modal can be created with shorthand props.'
+      examplePath='modules/Modal/Types/ModalExampleShorthand'
+    />
   </ExampleSection>
 )
 

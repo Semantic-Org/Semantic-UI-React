@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-interface AccordionContentProps {
+export interface AccordionContentProps {
   [key: string]: any;
 
   /** An element type to render as (string or function). */
@@ -14,6 +14,9 @@ interface AccordionContentProps {
 
   /** Additional classes. */
   className?: string;
+
+  /** Shorthand for primary content. */
+  content?: any;
 }
 
 declare const AccordionContent: React.StatelessComponent<AccordionContentProps>;
