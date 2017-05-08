@@ -26,10 +26,6 @@ const webpackConfig = {
         NODE_ENV: JSON.stringify(env),
       },
     }),
-    new webpack.LoaderOptionsPlugin({
-      minimize: true,
-      debug: false,
-    }),
     new BundleAnalyzerPlugin(),
   ],
 
@@ -50,8 +46,10 @@ const webpackConfig = {
 
 if (env === 'production') {
   webpackConfig.plugins.push(
-    new webpack.optimize.OccurrenceOrderPlugin(),
-    new webpack.optimize.DedupePlugin(),
+    new webpack.LoaderOptionsPlugin({
+      minimize: true,
+      debug: false,
+    }),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         unused: true,
