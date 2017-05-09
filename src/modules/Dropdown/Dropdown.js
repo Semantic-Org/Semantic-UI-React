@@ -1124,7 +1124,7 @@ export default class Dropdown extends Component {
       const defaultProps = {
         active: item.value === selectedLabel,
         as: 'a',
-        key: item.value,
+        key: item.key || item.value,
         onClick: this.handleLabelClick,
         onRemove: this.handleLabelRemove,
         value: item.value,
