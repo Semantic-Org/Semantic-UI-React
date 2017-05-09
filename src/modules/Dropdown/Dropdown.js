@@ -1037,12 +1037,21 @@ export default class Dropdown extends Component {
     } else if (text) {
       _text = text
     } else if (open && !multiple) {
-      _text = _.get(this.getSelectedItem(), 'text')
-    } else if (hasValue) {
+      _text = this.renderComplexeText(value)
+    } else if (hasValue && multiple) {
+      // renderLabels will handle image and icon in multiple dropdown
       _text = _.get(this.getItemByValue(value), 'text')
+    } else if (hasValue && !multiple) {
+      _text = this.renderComplexeText(value)
     }
 
     return <div className={classes}>{_text}</div>
+  }
+
+  renderComplexeText = (value) => {
+    const { content, children, ...rest } = this.getSelectedItem() // eslint-disable-line no-unused-vars
+    const elem = DropdownItem.create(rest).props.children // children is undefined at this point !!
+    return elem
   }
 
   renderHiddenInput = () => {
@@ -1128,6 +1137,11 @@ export default class Dropdown extends Component {
         onClick: this.handleLabelClick,
         onRemove: this.handleLabelRemove,
         value: item.value,
+        icon: item.icon,
+        image: item.image,
+        // Label doesn't support flag properties even thougth label in multiple
+        // selection show flag in semantic-ui.
+        // See http://semantic-ui.com/modules/dropdown.html#multiple-selection
       }
 
       return Label.create(

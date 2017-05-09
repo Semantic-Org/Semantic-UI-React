@@ -1833,6 +1833,17 @@ describe('Dropdown', () => {
       instance.renderText
         .should.have.been.called()
     })
+    it('renderText with icon when options have icons', () => {
+      const customOptions = [
+        { text: 'abra', value: 'abra', icon: 'home' },
+        { text: 'cadabra', value: 'cadabra', icon: 'car' },
+        { text: 'bang', value: 'bang', icon: 'user' },
+      ]
+
+      wrapperRender(<Dropdown options={customOptions} selection value='abra' />)
+        .find('.text')
+        .should.have.descendants('.icon')
+    })
   })
 
   describe('Dropdown.Menu child', () => {
