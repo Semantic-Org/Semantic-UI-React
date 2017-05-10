@@ -1058,8 +1058,8 @@ export default class Dropdown extends Component {
     return (
       <select type='hidden' aria-hidden='true' name={name} value={value} multiple={multiple}>
         <option value='' />
-        {_.map(options, option => (
-          <option key={option.value} value={option.value}>{option.text}</option>
+        {_.map(options, (option, i) => (
+          <option key={option.key || option.value} value={option.value}>{option.text}</option>
         ))}
       </select>
     )
@@ -1124,7 +1124,7 @@ export default class Dropdown extends Component {
       const defaultProps = {
         active: item.value === selectedLabel,
         as: 'a',
-        key: item.value,
+        key: item.key || item.value,
         onClick: this.handleLabelClick,
         onRemove: this.handleLabelRemove,
         value: item.value,
@@ -1150,17 +1150,14 @@ export default class Dropdown extends Component {
       ? optValue => _.includes(value, optValue)
       : optValue => optValue === value
 
-    return _.map(options, (opt, i) => (
-      <DropdownItem
-        key={`${opt.value}-${i}`}
-        active={isActive(opt.value)}
-        onClick={this.handleItemClick}
-        selected={selectedIndex === i}
-        {...opt}
-        // Needed for handling click events on disabled items
-        style={{ ...opt.style, pointerEvents: 'all' }}
-      />
-    ))
+    return _.map(options, (opt, i) => DropdownItem.create({
+      active: isActive(opt.value),
+      onClick: this.handleItemClick,
+      selected: selectedIndex === i,
+      ...opt,
+      // Needed for handling click events on disabled items
+      style: { ...opt.style, pointerEvents: 'all' },
+    }))
   }
 
   renderMenu = () => {
