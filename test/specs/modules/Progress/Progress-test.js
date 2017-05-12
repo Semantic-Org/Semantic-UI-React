@@ -98,6 +98,16 @@ describe('Progress', () => {
       shallow(<Progress percent={10} />)
         .should.have.prop('data-percent', 10)
     })
+
+    it('floors the value of percent prop', () => {
+      shallow(<Progress percent={8.28} />)
+        .should.have.prop('data-percent', 8)
+    })
+
+    it('floors the results value and total props', () => {
+      shallow(<Progress value={828} total={10000} />)
+        .should.have.prop('data-percent', 8)
+    })
   })
 
   describe('indicating', () => {
