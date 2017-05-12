@@ -193,7 +193,7 @@ class Progress extends Component {
     const percent = this.getPercent()
 
     return (
-      <ElementType {...rest} className={classes} data-percent={percent}>
+      <ElementType {...rest} className={classes} data-percent={Math.floor(percent)}>
         <div className='bar' style={{ width: `${percent}%` }}>
           {this.renderProgress(percent)}
         </div>
