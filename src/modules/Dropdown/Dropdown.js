@@ -686,6 +686,12 @@ export default class Dropdown extends Component {
 
   handleBlur = (e) => {
     debug('handleBlur()')
+
+    // Heads up! Don't remove this.
+    // https://github.com/Semantic-Org/Semantic-UI-React/issues/1315
+    const currentTarget = _.get(e, 'currentTarget')
+    if (currentTarget && currentTarget.contains(document.activeElement)) return
+
     const { closeOnBlur, multiple, onBlur, selectOnBlur } = this.props
     // do not "blur" when the mouse is down inside of the Dropdown
     if (this.isMouseDown) return
