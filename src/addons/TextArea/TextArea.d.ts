@@ -9,6 +9,9 @@ export interface TextAreaProps {
   /** Indicates whether height of the textarea fits the content or not. */
   autoHeight?: boolean;
 
+  /** Indicates a minimum row height for textarea when using autoHeight. */
+  minHeight?: number;
+
   /**
    * Called on change.
    * @param {SyntheticEvent} event - The React SyntheticEvent object
