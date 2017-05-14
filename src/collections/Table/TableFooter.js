@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { META } from '../../lib'
+import { customPropTypes, META } from '../../lib'
 import TableHeader from './TableHeader'
 
 /**
@@ -14,6 +14,11 @@ TableFooter._meta = {
   name: 'TableFooter',
   type: META.TYPES.COLLECTION,
   parent: 'Table',
+}
+
+TableFooter.propTypes = {
+  /** An element type to render as (string or function). */
+  as: customPropTypes.as,
 }
 
 TableFooter.defaultProps = {
