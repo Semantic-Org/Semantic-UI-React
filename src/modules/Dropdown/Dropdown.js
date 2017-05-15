@@ -8,6 +8,7 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
+  createHTMLInput,
   isBrowser,
   keyboardKey,
   makeDebugger,
@@ -273,6 +274,13 @@ export default class Dropdown extends Component {
       PropTypes.func,
     ]),
 
+    /** A shorthand for search input. */
+    searchInput: PropTypes.oneOfType([
+      PropTypes.array,
+      PropTypes.node,
+      PropTypes.object,
+    ]),
+
     // TODO 'searchInMenu' or 'search='in menu' or ???  How to handle this markup and functionality?
 
     /** Define whether the highlighted item should be selected on blur. */
@@ -329,12 +337,13 @@ export default class Dropdown extends Component {
   static defaultProps = {
     additionLabel: 'Add ',
     additionPosition: 'top',
+    closeOnBlur: true,
     icon: 'dropdown',
     noResultsMessage: 'No results found.',
-    renderLabel: ({ text }) => text,
-    selectOnBlur: true,
     openOnFocus: true,
-    closeOnBlur: true,
+    renderLabel: ({ text }) => text,
+    searchInput: 'text',
+    selectOnBlur: true,
   }
 
   static autoControlledProps = [
@@ -934,6 +943,21 @@ export default class Dropdown extends Component {
   }
 
   // ----------------------------------------
+  // Overrides
+  // ----------------------------------------
+
+  handleSearchInputOverrides = predefinedProps => ({
+    onChange: e => {
+      _.invoke(predefinedProps, 'onChange', e)
+      this.handleSearchChange(e)
+    },
+    ref: c => {
+      _.invoke(predefinedProps, 'ref', c)
+      this.handleSearchRef(c)
+    },
+  })
+
+  // ----------------------------------------
   // Refs
   // ----------------------------------------
 
@@ -1072,7 +1096,7 @@ export default class Dropdown extends Component {
   }
 
   renderSearchInput = () => {
-    const { disabled, search, name, tabIndex } = this.props
+    const { disabled, name, search, searchInput, tabIndex } = this.props
     const { searchQuery } = this.state
 
     if (!search) return null
@@ -1091,20 +1115,18 @@ export default class Dropdown extends Component {
       this.sizerRef.style.removeProperty('display')
     }
 
-    return (
-      <input
-        value={searchQuery}
-        type='text'
-        aria-autocomplete='list'
-        onChange={this.handleSearchChange}
-        className='search'
-        name={[name, 'search'].join('-')}
-        autoComplete='off'
-        tabIndex={computedTabIndex}
-        style={{ width: searchWidth }}
-        ref={this.handleSearchRef}
-      />
-    )
+    return createHTMLInput(searchInput, {
+      defaultProps: {
+        'aria-autocomplete': 'list',
+        autoComplete: 'off',
+        className: 'search',
+        name: [name, 'search'].join('-'),
+        style: { width: searchWidth },
+        tabIndex: computedTabIndex,
+        value: searchQuery,
+      },
+      overrideProps: this.handleSearchInputOverrides,
+    })
   }
 
   renderSearchSizer = () => {
