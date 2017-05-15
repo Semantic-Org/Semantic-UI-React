@@ -1,26 +1,10 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
 import { mount } from 'enzyme'
 import { sandbox } from 'test/utils'
 import Visibility from 'src/behaviors/Visibility'
 import * as common from 'test/specs/commonTests'
 
 const mockScroll = (top, bottom) => {
-  if (ReactDOM.findDOMNode.restore) {
-    ReactDOM.findDOMNode.restore()
-  }
-
-  sandbox.stub(ReactDOM, 'findDOMNode').returns({
-    getBoundingClientRect: () => ({
-      top,
-      bottom,
-      left: 0,
-      right: window.innerWidth,
-      width: window.innerWidth,
-      height: bottom - top,
-    }),
-  })
-
   window.dispatchEvent(new Event('scroll'))
 }
 
@@ -30,6 +14,16 @@ describe('Visibility', () => {
   it('fires onUpdate when scrolling', () => {
     const onUpdate = sandbox.spy()
     const wrapper = mount(<Visibility onUpdate={onUpdate} />)
+    wrapper.instance().ref = {
+      getBoundingClientRect: () => ({
+        top: 0,
+        bottom: 0,
+        left: 0,
+        right: window.innerWidth,
+        width: window.innerWidth,
+        height: 0,
+      }),
+    }
     mockScroll(0, 0)
     mockScroll(0, 0)
     onUpdate.should.have.been.calledTwice()

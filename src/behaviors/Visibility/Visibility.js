@@ -1,39 +1,14 @@
-import React, { Component, PropTypes } from 'react'
-import ReactDOM from 'react-dom'
+import _ from 'lodash'
+import PropTypes from 'prop-types'
+import React, { Component } from 'react'
+
 import {
   getElementType,
   getUnhandledProps,
   META,
 } from '../../lib'
 
-
-const _meta = {
-  name: 'Visibility',
-  type: META.TYPES.BEHAVIOR,
-}
-
-class Visibility extends Component {
-  static _meta = _meta
-
-  static defaultProps = {
-    continuous: false,
-    once: true,
-    onUpdate: () => {},
-    onTopVisible: () => {},
-    onTopPassed: () => {},
-    onBottomVisible: () => {},
-    onPassing: () => {},
-    onBottomPassed: () => {},
-    onTopVisibleReverse: () => {},
-    onTopPassedReverse: () => {},
-    onBottomVisibleReverse: () => {},
-    onPassingReverse: () => {},
-    onBottomPassedReverse: () => {},
-    onOnScreen: () => {},
-    onOffScreen: () => {},
-    onPassed: {},
-  }
-
+export default class Visibility extends Component {
   static propTypes = {
     /** Primary content. */
     children: PropTypes.node,
@@ -90,159 +65,32 @@ class Visibility extends Component {
     onPassed: PropTypes.object,
   }
 
-  constructor(...args) {
-    super(...args)
-    this.firedCallbacks = []
-    this.calculations = {
-      topPassed: false,
-      bottomPassed: false,
-      topVisible: false,
-      bottomVisible: false,
-      fits: false,
-      passing: false,
-      onScreen: false,
-      offScreen: false,
-    }
-
-    this.handleScroll = this.handleScroll.bind(this)
+  static defaultProps = {
+    continuous: false,
+    once: true,
   }
+
+  static _meta = {
+    name: 'Visibility',
+    type: META.TYPES.BEHAVIOR,
+  }
+
+  calculations = {
+    topPassed: false,
+    bottomPassed: false,
+    topVisible: false,
+    bottomVisible: false,
+    fits: false,
+    passing: false,
+    onScreen: false,
+    offScreen: false,
+  }
+
+  firedCallbacks = []
 
   componentWillReceiveProps({ continuous, once }) {
-    if (
-      (continuous !== this.props.continuous) ||
-      (once !== this.props.once)
-    ) {
-      this.firedCallbacks = []
-    }
-  }
-
-  execute(name, callback, reverse = false) {
-    const { continuous, once } = this.props
-
-    if (this.calculations[name] !== reverse) {
-      // Reverse callbacks aren't fired continuously
-      if (continuous && !reverse) {
-        // Always fire callback if continuous = true
-        callback(this.calculations)
-      } else if (once) {
-        // If once = true, fire callback only if it wasn't fired before
-        if (this.firedCallbacks.indexOf(name) === -1) {
-          this.firedCallbacks.push(name)
-          callback(this.calculations)
-        }
-      } else {
-        // Fire callback only if the value changed
-        if (this.calculations[name] !== this.oldCalculations[name]) {
-          callback(this.calculations)
-        }
-      }
-    }
-  }
-
-  fireCallbacks() {
-    const {
-      onUpdate,
-      onTopVisible,
-      onTopPassed,
-      onBottomVisible,
-      onPassing,
-      onBottomPassed,
-      onTopVisibleReverse,
-      onTopPassedReverse,
-      onBottomVisibleReverse,
-      onPassingReverse,
-      onBottomPassedReverse,
-      onOnScreen,
-      onOffScreen,
-      onPassed,
-    } = this.props
-
-    onUpdate(this.calculations)
-
-    const { percentagePassed, pixelsPassed } = this.calculations
-
-    Object.keys(onPassed).forEach((passed) => {
-      const pixelsValue = Number(passed)
-
-      if (pixelsValue) {
-        if (pixelsPassed >= pixelsValue) {
-          this.execute(passed, onPassed[passed])
-        }
-      } else {
-        const matchPercentage = `${passed}`.match(/^(\d+)%$/)
-        if (matchPercentage) {
-          const percentageValue = Number(matchPercentage[1]) / 100
-
-          if (percentagePassed >= percentageValue) {
-            this.execute(passed, onPassed[passed])
-          }
-        }
-      }
-    })
-
-    const callbacks = {
-      topPassed: onTopPassed,
-      bottomPassed: onBottomPassed,
-      topVisible: onTopVisible,
-      bottomVisible: onBottomVisible,
-      passing: onPassing,
-      onScreen: onOnScreen,
-      offScreen: onOffScreen,
-    }
-
-    const reverseCallbacks = {
-      topPassed: onTopPassedReverse,
-      bottomPassed: onBottomPassedReverse,
-      topVisible: onTopVisibleReverse,
-      bottomVisible: onBottomVisibleReverse,
-      passing: onPassingReverse,
-    }
-
-    Object.keys(callbacks).forEach(name => this.execute(name, callbacks[name]))
-    Object.keys(reverseCallbacks).forEach(name => this.execute(name, reverseCallbacks[name]))
-  }
-
-  handleScroll(event) {
-    const node = ReactDOM.findDOMNode(this)
-    const nodeRect = node.getBoundingClientRect()
-
-    /** Generate calculations **/
-    const height = nodeRect.height
-    const width = nodeRect.width
-
-    const topPassed = nodeRect.top < 0
-    const bottomPassed = nodeRect.bottom < 0
-
-    const pixelsPassed = bottomPassed ? 0 : Math.max(nodeRect.top * -1, 0)
-    const percentagePassed = pixelsPassed / height
-
-    const topVisible = nodeRect.top >= 0 && nodeRect.top <= window.innerHeight
-    const bottomVisible = nodeRect.bottom >= 0 && nodeRect.bottom <= window.innerHeight
-
-    const fits = topVisible && bottomVisible
-
-    const passing = topPassed && !bottomPassed
-
-    const onScreen = (topVisible || topPassed) && !bottomPassed
-    const offScreen = !onScreen
-
-    this.oldCalculations = this.calculations
-    this.calculations = {
-      height,
-      width,
-      topPassed,
-      bottomPassed,
-      pixelsPassed,
-      percentagePassed,
-      topVisible,
-      bottomVisible,
-      fits,
-      passing,
-      onScreen,
-      offScreen,
-    }
-
-    this.fireCallbacks()
+    const cleanOut = continuous !== this.props.continuous || once !== this.props.once
+    if (cleanOut) this.firedCallbacks = []
   }
 
   componentDidMount() {
@@ -253,12 +101,134 @@ class Visibility extends Component {
     window.removeEventListener('scroll', this.handleScroll)
   }
 
-  render() {
-    const ElementType = getElementType(Visibility, this.props)
-    const unhandledProps = getUnhandledProps(Visibility, this.props)
+  execute = (callback, name) => {
+    const { continuous, once } = this.props
 
-    return <ElementType {...unhandledProps}>{this.props.children}</ElementType>
+    if (!callback) return
+
+    // Always fire callback if continuous = true
+    if (continuous) {
+      callback(this.calculations)
+      return
+    }
+
+    // If once = true, fire callback only if it wasn't fired before
+    if (once && !_.includes(this.firedCallbacks, name)) {
+      this.firedCallbacks.push(name)
+      callback(this.calculations)
+
+      return
+    }
+
+    // Fire callback only if the value changed
+    if (this.calculations[name] !== this.oldCalculations[name]) {
+      callback(this.calculations)
+    }
+  }
+
+  fireOnPassed = () => {
+    const { percentagePassed, pixelsPassed } = this.calculations
+    const { onPassed } = this.props
+
+    _.forEach(onPassed, (callback, passed) => {
+      const pixelsValue = Number(passed)
+
+      if (pixelsValue && pixelsPassed >= pixelsValue) {
+        this.execute(callback, passed)
+        return
+      }
+
+      const matchPercentage = `${passed}`.match(/^(\d+)%$/)
+      if (!matchPercentage) return
+
+      const percentageValue = Number(matchPercentage[1]) / 100
+      if (percentagePassed >= percentageValue) this.execute(callback, passed)
+    })
+  }
+
+  fireCallbacks = () => {
+    const {
+      onBottomVisible: bottomVisible,
+      onBottomPassed: bottomPassed,
+      onOffScreen: offScreen,
+      onOnScreen: onScreen,
+      onPassing: passing,
+      onTopPassed: topPassed,
+      onTopVisible: topVisible,
+      onBottomPassedReverse,
+      onBottomVisibleReverse,
+      onPassingReverse,
+      onTopPassedReverse,
+      onTopVisibleReverse,
+    } = this.props
+    const callbacks = {
+      bottomPassed,
+      bottomVisible,
+      onScreen,
+      offScreen,
+      passing,
+      topPassed,
+      topVisible,
+    }
+    const reverse = {
+      bottomPassed: onBottomPassedReverse,
+      bottomVisible: onBottomVisibleReverse,
+      passing: onPassingReverse,
+      topPassed: onTopPassedReverse,
+      topVisible: onTopVisibleReverse,
+    }
+
+    _.invoke(this.props, 'onUpdate', this.calculations)
+    this.fireOnPassed()
+
+    _.forEach(callbacks, this.execute)
+    _.forEach(reverse, this.execute)
+  }
+
+  handleRef = c => (this.ref = c)
+
+  handleScroll = () => {
+    const { bottom, height, top, width } = this.ref.getBoundingClientRect()
+
+    const topPassed = top < 0
+    const bottomPassed = bottom < 0
+
+    const pixelsPassed = bottomPassed ? 0 : Math.max(top * -1, 0)
+    const percentagePassed = pixelsPassed / height
+
+    const bottomVisible = bottom >= 0 && bottom <= window.innerHeight
+    const topVisible = top >= 0 && top <= window.innerHeight
+
+    const fits = topVisible && bottomVisible
+    const passing = topPassed && !bottomPassed
+
+    const onScreen = (topVisible || topPassed) && !bottomPassed
+    const offScreen = !onScreen
+
+    this.oldCalculations = this.calculations
+    this.calculations = {
+      height,
+      width,
+      bottomPassed,
+      bottomVisible,
+      fits,
+      passing,
+      percentagePassed,
+      pixelsPassed,
+      offScreen,
+      onScreen,
+      topPassed,
+      topVisible,
+    }
+
+    this.fireCallbacks()
+  }
+
+  render() {
+    const { children } = this.props
+    const ElementType = getElementType(Visibility, this.props)
+    const rest = getUnhandledProps(Visibility, this.props)
+
+    return <ElementType {...rest} ref={this.handleRef}>{children}</ElementType>
   }
 }
-
-export default Visibility
