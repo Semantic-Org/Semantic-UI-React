@@ -249,6 +249,10 @@ class Visibility extends Component {
     window.addEventListener('scroll', this.handleScroll)
   }
 
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleScroll)
+  }
+
   render() {
     const ElementType = getElementType(Visibility, this.props)
     const unhandledProps = getUnhandledProps(Visibility, this.props)
