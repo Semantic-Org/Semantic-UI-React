@@ -16,8 +16,13 @@ const TextAreaTypesExamples = () => (
     />
     <ComponentExample
       title='Min Height'
-      description='A TextArea can have a minimum number of rows when using autoHeight'
+      description='A TextArea can have a minimum height when using autoHeight'
       examplePath='addons/TextArea/Usage/TextAreaExampleMinHeight'
+    />
+    <ComponentExample
+      title='Rows'
+      description='A TextArea can have a minimum number of rows with autoHeight'
+      examplePath='addons/TextArea/Usage/TextAreaExampleRows'
     />
   </ExampleSection>
 )

@@ -9,7 +9,7 @@ export interface TextAreaProps {
   /** Indicates whether height of the textarea fits the content or not. */
   autoHeight?: boolean;
 
-  /** Indicates a minimum row height for textarea when using autoHeight. */
+  /** Indicates a minimum height for textarea when using autoHeight. */
   minHeight?: number;
 
   /**
@@ -18,6 +18,9 @@ export interface TextAreaProps {
    * @param {object} data - All props and the event value.
    */
   onChange?: (event: React.FormEvent<HTMLTextAreaElement>, data: TextAreaOnChangeData) => void;
+
+  /** Indicates row count for textarea with autoheight. */
+  rows?: number;
 
   /** The value of the textarea. */
   value?: string;

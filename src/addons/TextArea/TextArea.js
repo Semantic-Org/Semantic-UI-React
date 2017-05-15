@@ -24,7 +24,7 @@ class TextArea extends Component {
     /** Indicates whether height of the textarea fits the content or not. */
     autoHeight: PropTypes.bool,
 
-    /** Indicates a minimum row height for textarea when using autoHeight. */
+    /** Indicates a minimum height for textarea when using autoHeight. */
     minHeight: PropTypes.number,
 
     /**
@@ -34,13 +34,17 @@ class TextArea extends Component {
      */
     onChange: PropTypes.func,
 
+    /** Indicates row count for textarea with autoheight. */
+    rows: PropTypes.number,
+
     /** The value of the textarea. */
     value: PropTypes.string,
   }
 
   static defaultProps = {
     as: 'textarea',
-    minHeight: 1,
+    minHeight: 0,
+    rows: 1,
   }
 
   componentDidMount() {
@@ -79,15 +83,15 @@ class TextArea extends Component {
   updateHeight = () => {
     if (!this.ref) return
 
-    const { autoHeight, minHeight } = this.props
+    const { autoHeight, minHeight, rows } = this.props
     if (!autoHeight) return
 
     let { borderTopWidth, borderBottomWidth } = window.getComputedStyle(this.ref)
     borderTopWidth = parseInt(borderTopWidth, 10)
     borderBottomWidth = parseInt(borderBottomWidth, 10)
 
-    this.ref.rows = minHeight
-    this.ref.style.minHeight = '0'
+    this.ref.rows = rows
+    this.ref.style.minHeight = minHeight + 'px'
     this.ref.style.resize = 'none'
     this.ref.style.height = 'auto'
     this.ref.style.height = (this.ref.scrollHeight + borderTopWidth + borderBottomWidth) + 'px'
@@ -98,7 +102,14 @@ class TextArea extends Component {
     const rest = getUnhandledProps(TextArea, this.props)
     const ElementType = getElementType(TextArea, this.props)
 
-    return <ElementType{...rest} onChange={this.handleChange} ref={this.handleRef} value={value} />
+    return (
+      <ElementType
+        {...rest}
+        onChange={this.handleChange}
+        ref={this.handleRef}
+        value={value}
+      />
+    )
   }
 }
 
