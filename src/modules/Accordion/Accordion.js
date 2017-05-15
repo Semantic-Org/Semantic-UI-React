@@ -1,6 +1,7 @@
-import _ from 'lodash'
 import cx from 'classnames'
-import React, { Children, cloneElement, PropTypes } from 'react'
+import _ from 'lodash'
+import PropTypes from 'prop-types'
+import React, { Children, cloneElement } from 'react'
 
 import {
   AutoControlledComponent as Component,
@@ -9,31 +10,22 @@ import {
   META,
   useKeyOnly,
 } from '../../lib'
-import Icon from '../../elements/Icon'
 
 import AccordionContent from './AccordionContent'
 import AccordionTitle from './AccordionTitle'
 
 /**
- * An accordion allows users to toggle the display of sections of content
+ * An accordion allows users to toggle the display of sections of content.
  */
 export default class Accordion extends Component {
-  static defaultProps = {
-    exclusive: true,
-  }
-
-  static autoControlledProps = [
-    'activeIndex',
-  ]
-
   static propTypes = {
     /** An element type to render as (string or function). */
     as: customPropTypes.as,
 
     /** Index of the currently active panel. */
     activeIndex: PropTypes.oneOfType([
-      PropTypes.number,
       PropTypes.arrayOf(PropTypes.number),
+      PropTypes.number,
     ]),
 
     /** Primary content. */
@@ -44,11 +36,11 @@ export default class Accordion extends Component {
 
     /** Initial activeIndex value. */
     defaultActiveIndex: PropTypes.oneOfType([
-      PropTypes.number,
       PropTypes.arrayOf(PropTypes.number),
+      PropTypes.number,
     ]),
 
-    /** Only allow one panel open at a time */
+    /** Only allow one panel open at a time. */
     exclusive: PropTypes.bool,
 
     /** Format to take up the width of it's container. */
@@ -57,20 +49,27 @@ export default class Accordion extends Component {
     /** Format for dark backgrounds. */
     inverted: PropTypes.bool,
 
-    /** Called with (event, index) when a panel title is clicked. */
+    /**
+     * Called when a panel title is clicked.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {number} index - The index of the clicked panel.
+     */
     onTitleClick: PropTypes.func,
 
     /**
      * Create simple accordion panels from an array of { text: <string>, content: <custom> } objects.
      * Object can optionally define an `active` key to open/close the panel.
+     * Object can opitonally define a `key` key used for title and content nodes' keys.
      * Mutually exclusive with children.
      * TODO: AccordionPanel should be a sub-component
      */
     panels: customPropTypes.every([
       customPropTypes.disallow(['children']),
       PropTypes.arrayOf(PropTypes.shape({
+        key: PropTypes.string,
         active: PropTypes.bool,
-        title: PropTypes.string,
+        title: customPropTypes.contentShorthand,
         content: customPropTypes.contentShorthand,
         onClick: PropTypes.func,
       })),
@@ -79,6 +78,14 @@ export default class Accordion extends Component {
     /** Adds some basic styling to accordion panels. */
     styled: PropTypes.bool,
   }
+
+  static defaultProps = {
+    exclusive: true,
+  }
+
+  static autoControlledProps = [
+    'activeIndex',
+  ]
 
   static _meta = {
     name: 'Accordion',
@@ -159,17 +166,14 @@ export default class Accordion extends Component {
         if (panel.onClick) panel.onClick(e, i)
       }
 
-      children.push(
-        <AccordionTitle key={`${panel.title}-title`} active={isActive} onClick={onClick}>
-          <Icon name='dropdown' />
-          {panel.title}
-        </AccordionTitle>
-      )
-      children.push(
-        <AccordionContent key={`${panel.title}-content`} active={isActive}>
-          {panel.content}
-        </AccordionContent>
-      )
+      // implement all methods of creating a key that are supported in factories
+      const key = panel.key
+        || _.isFunction(panel.childKey) && panel.childKey(panel)
+        || panel.childKey && panel.childKey
+        || panel.title
+
+      children.push(AccordionTitle.create({ active: isActive, onClick, key: `${key}-title`, content: panel.title }))
+      children.push(AccordionContent.create({ active: isActive, key: `${key}-content`, content: panel.content }))
     })
 
     return children

@@ -1,6 +1,7 @@
-import _ from 'lodash'
-import React, { Children, cloneElement, Component, PropTypes } from 'react'
 import cx from 'classnames'
+import _ from 'lodash'
+import PropTypes from 'prop-types'
+import React, { Children, cloneElement, Component } from 'react'
 
 import {
   createHTMLInput,
@@ -9,6 +10,7 @@ import {
   getElementType,
   getUnhandledProps,
   META,
+  partitionHTMLInputProps,
   SUI,
   useKeyOnly,
   useValueAndKey,
@@ -16,40 +18,6 @@ import {
 import Button from '../../elements/Button'
 import Icon from '../../elements/Icon'
 import Label from '../../elements/Label'
-
-export const htmlInputPropNames = [
-  // REACT
-  'selected', 'defaultValue', 'defaultChecked',
-
-  // LIMITED HTML PROPS
-  'autoComplete', 'autoFocus', 'checked', 'form', 'max', 'maxLength', 'min',
-  'name', 'pattern', 'placeholder', 'readOnly', 'required', 'step', 'type', 'value',
-
-  // Heads Up!
-  // Do not pass disabled, it duplicates the SUI CSS opacity rule.
-  // 'disabled',
-
-  // EVENTS
-  // keyboard
-  'onKeyDown', 'onKeyPress', 'onKeyUp',
-
-  // focus
-  'onFocus', 'onBlur',
-
-  // form
-  'onChange', 'onInput',
-
-  // mouse
-  'onClick', 'onContextMenu',
-  'onDrag', 'onDragEnd', 'onDragEnter', 'onDragExit', 'onDragLeave', 'onDragOver', 'onDragStart', 'onDrop',
-  'onMouseDown', 'onMouseEnter', 'onMouseLeave', 'onMouseMove', 'onMouseOut', 'onMouseOver', 'onMouseUp',
-
-  // selection
-  'onSelect',
-
-  // touch
-  'onTouchCancel', 'onTouchEnd', 'onTouchMove', 'onTouchStart',
-]
 
 /**
  * An Input is a field used to elicit a response from a user.
@@ -147,11 +115,48 @@ class Input extends Component {
     type: META.TYPES.ELEMENT,
   }
 
+  computeTabIndex = () => {
+    const { disabled, tabIndex } = this.props
+
+    if (!_.isNil(tabIndex)) return tabIndex
+    if (disabled) return -1
+  }
+
+  focus = () => (this.inputRef.focus())
+
   handleChange = (e) => {
+    const { onChange } = this.props
     const value = _.get(e, 'target.value')
 
-    const { onChange } = this.props
-    if (onChange) onChange(e, { ...this.props, value })
+    onChange(e, { ...this.props, value })
+  }
+
+  handleChildOverrides = (child, defaultProps) => ({
+    ...defaultProps,
+    ...child.props,
+    ref: c => {
+      _.invoke(child, 'ref', c)
+      this.handleInputRef(c)
+    },
+  })
+
+  handleInputRef = c => (this.inputRef = c)
+
+  partitionProps = () => {
+    const { disabled, onChange, type } = this.props
+
+    const tabIndex = this.computeTabIndex()
+    const unhandled = getUnhandledProps(Input, this.props)
+    const [htmlInputProps, rest] = partitionHTMLInputProps(unhandled)
+
+    htmlInputProps.ref = this.handleInputRef
+    htmlInputProps.type = type
+
+    if (disabled) htmlInputProps.disabled = disabled
+    if (onChange) htmlInputProps.onChange = this.handleChange
+    if (tabIndex) htmlInputProps.tabIndex = tabIndex
+
+    return [htmlInputProps, rest]
   }
 
   render() {
@@ -171,9 +176,7 @@ class Input extends Component {
       label,
       labelPosition,
       loading,
-      onChange,
       size,
-      tabIndex,
       transparent,
       type,
     } = this.props
@@ -194,18 +197,8 @@ class Input extends Component {
       'input',
       className,
     )
-    const unhandled = getUnhandledProps(Input, this.props)
-
-    const rest = _.omit(unhandled, htmlInputPropNames)
-
-    const htmlInputProps = _.pick(this.props, htmlInputPropNames)
-    if (onChange) htmlInputProps.onChange = this.handleChange
-
     const ElementType = getElementType(Input, this.props)
-
-    // tabIndex
-    if (!_.isNil(tabIndex)) htmlInputProps.tabIndex = tabIndex
-    else if (disabled) htmlInputProps.tabIndex = -1
+    const [htmlInputProps, rest] = this.partitionProps()
 
     // Render with children
     // ----------------------------------------
@@ -213,8 +206,7 @@ class Input extends Component {
       // add htmlInputProps to the `<input />` child
       const childElements = _.map(Children.toArray(children), (child) => {
         if (child.type !== 'input') return child
-
-        return cloneElement(child, { ...htmlInputProps, ...child.props })
+        return cloneElement(child, this.handleChildOverrides(child, htmlInputProps))
       })
 
       return <ElementType {...rest} className={classes}>{childElements}</ElementType>
@@ -222,28 +214,24 @@ class Input extends Component {
 
     // Render Shorthand
     // ----------------------------------------
-    const actionElement = Button.create(action, elProps => ({
-      className: cx(
-        // all action components should have the button className
-        !_.includes(elProps.className, 'button') && 'button',
-      ),
-    }))
+    const actionElement = Button.create(action, { defaultProps: { className: 'button' } })
     const iconElement = Icon.create(icon)
-    const labelElement = Label.create(label, elProps => ({
-      className: cx(
-        // all label components should have the label className
-        !_.includes(elProps.className, 'label') && 'label',
-        // add 'left|right corner'
-        _.includes(labelPosition, 'corner') && labelPosition,
-      ),
-    }))
+    const labelElement = Label.create(label, {
+      defaultProps: {
+        className: cx(
+          'label',
+          // add 'left|right corner'
+          _.includes(labelPosition, 'corner') && labelPosition,
+        ),
+      },
+    })
 
     return (
       <ElementType {...rest} className={classes}>
         {actionPosition === 'left' && actionElement}
         {iconPosition === 'left' && iconElement}
         {labelPosition !== 'right' && labelElement}
-        {createHTMLInput(input || type, htmlInputProps)}
+        {createHTMLInput(input || type, { defaultProps: htmlInputProps })}
         {actionPosition !== 'left' && actionElement}
         {iconPosition !== 'left' && iconElement}
         {labelPosition === 'right' && labelElement}

@@ -1,4 +1,3 @@
-import _ from 'lodash'
 import React from 'react'
 
 import Modal from 'src/modules/Modal/Modal'
@@ -8,7 +7,6 @@ import ModalActions from 'src/modules/Modal/ModalActions'
 import ModalDescription from 'src/modules/Modal/ModalDescription'
 import Portal from 'src/addons/Portal/Portal'
 
-import { keyboardKey } from 'src/lib'
 import { assertNodeContains, assertBodyContains, domEvent, sandbox } from 'test/utils'
 import * as common from 'test/specs/commonTests'
 
@@ -36,8 +34,6 @@ const assertBodyClasses = (...rest) => {
   })
 }
 
-const nativeEvent = { nativeEvent: { stopImmediatePropagation: _.noop } }
-
 describe('Modal', () => {
   beforeEach(() => {
     wrapper = undefined
@@ -49,6 +45,18 @@ describe('Modal', () => {
   })
 
   common.hasSubComponents(Modal, [ModalHeader, ModalContent, ModalActions, ModalDescription])
+  common.hasValidTypings(Modal)
+
+  common.implementsShorthandProp(Modal, {
+    propKey: 'header',
+    ShorthandComponent: ModalHeader,
+    mapValueToProps: content => ({ content }),
+  })
+  common.implementsShorthandProp(Modal, {
+    propKey: 'content',
+    ShorthandComponent: ModalContent,
+    mapValueToProps: content => ({ content }),
+  })
 
   // Heads up!
   //
@@ -83,6 +91,43 @@ describe('Modal', () => {
       .querySelector('.ui.modal')
       .querySelector('[data-child]')
       .should.not.equal(null, 'Modal did not render the child component.')
+  })
+
+  it("spreads the user's style prop on the Modal", () => {
+    const style = { marginTop: '1em', top: 0 }
+
+    wrapperMount(<Modal open style={style} />)
+    const element = document.querySelector('.ui.modal')
+
+    element.style.should.have.property('marginTop', '1em')
+    element.style.should.have.property('top', '0px')
+  })
+
+  describe('actions', () => {
+    const actions = [
+      { key: 'cancel', content: 'Cancel' },
+      { key: 'ok', content: 'OK', triggerClose: true },
+    ]
+
+    it('handles onItemClick', () => {
+      const onActionClick = sandbox.spy()
+      const event = { target: null }
+
+      wrapperMount(<Modal defaultOpen actions={{ actions, onActionClick }} />)
+
+      domEvent.click('.button:last-child')
+      onActionClick.should.have.been.calledOnce()
+      onActionClick.should.have.been.calledWithMatch(event, { content: 'OK' })
+    })
+
+    it('handles triggerClose prop on an action', () => {
+      wrapperMount(<Modal defaultOpen actions={actions} />)
+
+      domEvent.click('.button:first-child')
+      assertBodyContains('.ui.modal')
+      domEvent.click('.button:last-child')
+      assertBodyContains('.ui.modal', false)
+    })
   })
 
   describe('open', () => {
@@ -164,13 +209,10 @@ describe('Modal', () => {
   })
 
   describe('size', () => {
-    it('defines prop options in _meta', () => {
-      Modal._meta.props.should.have.any.keys('size')
-      Modal._meta.props.size.should.be.an('array')
-    })
-
     it('adds the size to the modal className', () => {
-      Modal._meta.props.size.forEach(size => {
+      const sizes = ['fullscreen', 'large', 'small']
+
+      sizes.forEach(size => {
         wrapperMount(<Modal size={size} open />)
         assertBodyContains(`.ui.${size}.modal`)
       })
@@ -241,21 +283,20 @@ describe('Modal', () => {
   })
 
   describe('onOpen', () => {
-    let spy
-
-    beforeEach(() => {
-      spy = sandbox.spy()
-      wrapperMount(<Modal onOpen={spy} trigger={<div id='trigger' />} />)
-    })
-
     it('is called on trigger click', () => {
-      wrapper.find('#trigger').simulate('click', nativeEvent)
+      const spy = sandbox.spy()
+      wrapperMount(<Modal onOpen={spy} trigger={<div id='trigger' />} />)
+
+      wrapper.find('#trigger').simulate('click')
       spy.should.have.been.calledOnce()
     })
 
     it('is not called on body click', () => {
+      const spy = sandbox.spy()
+      wrapperMount(<Modal onOpen={spy} />)
+
       domEvent.click('body')
-      spy.should.not.have.been.calledOnce()
+      spy.should.not.have.been.called()
     })
   })
 
@@ -264,96 +305,115 @@ describe('Modal', () => {
 
     beforeEach(() => {
       spy = sandbox.spy()
-      wrapperMount(<Modal onClose={spy} defaultOpen />)
     })
 
     it('is called on dimmer click', () => {
+      wrapperMount(<Modal onClose={spy} defaultOpen />)
+
       domEvent.click('.ui.dimmer')
       spy.should.have.been.calledOnce()
     })
 
     it('is called on click outside of the modal', () => {
+      wrapperMount(<Modal onClose={spy} defaultOpen />)
+
       domEvent.click(document.querySelector('.ui.modal').parentNode)
       spy.should.have.been.calledOnce()
     })
 
     it('is not called on click inside of the modal', () => {
+      wrapperMount(<Modal onClose={spy} defaultOpen />)
+
       domEvent.click(document.querySelector('.ui.modal'))
-      spy.should.not.have.been.calledOnce()
+      spy.should.not.have.been.called()
     })
 
     it('is not called on body click', () => {
+      wrapperMount(<Modal onClose={spy} defaultOpen />)
+
       domEvent.click('body')
       spy.should.not.have.been.calledOnce()
     })
 
     it('is called when pressing escape', () => {
+      wrapperMount(<Modal onClose={spy} defaultOpen />)
+
       domEvent.keyDown(document, { key: 'Escape' })
       spy.should.have.been.calledOnce()
     })
 
-    it('is not called when pressing a key other than "Escape"', () => {
-      _.each(keyboardKey, (val, key) => {
-        // skip Escape key
-        if (val === keyboardKey.Escape) return
+    it('is not called when the open prop changes to false', () => {
+      wrapperMount(<Modal onClose={spy} defaultOpen />)
 
-        domEvent.keyDown(document, { key })
-        spy.should.not.have.been.called(`onClose was called when pressing "${key}"`)
-      })
+      wrapper.setProps({ open: false })
+      spy.should.not.have.been.called()
     })
 
-    it('is not called when the open prop changes to false', () => {
+    it('is not called when open changes to false programmatically', () => {
+      wrapperMount(<Modal onClose={spy} defaultOpen />)
+
       wrapper.setProps({ open: false })
+      spy.should.not.have.been.called()
+    })
+
+    it('is not called on dimmer click when closeOnDimmerClick is false', () => {
+      wrapperMount(<Modal onClose={spy} defaultOpen closeOnDimmerClick={false} />)
+
+      domEvent.click('.ui.dimmer')
+      spy.should.not.have.been.called()
+    })
+
+    it('is not called on body click when closeOnDocumentClick is false', () => {
+      wrapperMount(<Modal onClose={spy} defaultOpen closeOnDocumentClick={false} />)
+
+      domEvent.click(document.body)
       spy.should.not.have.been.called()
     })
   })
 
-  describe('with configurable close behaviours, onClose', () => {
-    let spy
+  describe('closeOnEscape', () => {
+    it('closes the modal when Escape is pressed by default', () => {
+      wrapperMount(<Modal defaultOpen closeOnEscape />)
 
-    beforeEach(() => {
-      spy = sandbox.spy()
-      wrapperMount(<Modal onClose={spy} open closeOnEscape={false} closeOnRootNodeClick={false} />)
-    })
-
-    it('is not called on dimmer click', () => {
-      domEvent.click('.ui.dimmer')
-      spy.should.not.have.been.calledOnce()
-    })
-
-    it('is not called on click outside of the modal', () => {
-      domEvent.click(document.querySelector('.ui.modal').parentNode)
-      spy.should.not.have.been.calledOnce()
-    })
-
-    it('is not called on click inside of the modal', () => {
-      domEvent.click(document.querySelector('.ui.modal'))
-      spy.should.not.have.been.calledOnce()
-    })
-
-    it('is not called on body click', () => {
-      domEvent.click('body')
-      spy.should.not.have.been.calledOnce()
-    })
-
-    it('is not called when pressing escape', () => {
+      document.body.childElementCount.should.equal(1)
       domEvent.keyDown(document, { key: 'Escape' })
-      spy.should.not.have.been.calledOnce()
+      document.body.childElementCount.should.equal(0)
     })
 
-    it('is not called when pressing a key other than "Escape"', () => {
-      _.each(keyboardKey, (val, key) => {
-        // skip Escape key
-        if (val === keyboardKey.Escape) return
+    it('closes the modal when true and Escape is pressed', () => {
+      wrapperMount(<Modal defaultOpen closeOnEscape />)
 
-        domEvent.keyDown(document, { key })
-        spy.should.not.have.been.called(`onClose was called when pressing "${key}"`)
-      })
+      document.body.childElementCount.should.equal(1)
+      domEvent.keyDown(document, { key: 'Escape' })
+      document.body.childElementCount.should.equal(0)
     })
 
-    it('is not called when the open prop changes to false', () => {
-      wrapper.setProps({ open: false })
-      spy.should.not.have.been.called()
+    it('does not close the modal when false and Escape is pressed', () => {
+      wrapperMount(<Modal defaultOpen closeOnEscape={false} />)
+
+      document.body.childElementCount.should.equal(1)
+      domEvent.keyDown(document, { key: 'Escape' })
+      document.body.childElementCount.should.equal(1)
+    })
+  })
+
+  describe('closeOnDocumentClick', () => {
+    it('is false by default', () => {
+      Modal.defaultProps.closeOnDocumentClick.should.equal(false)
+    })
+    it('closes the modal on document click when true', () => {
+      wrapperMount(<Modal defaultOpen closeOnDocumentClick />)
+
+      document.body.childElementCount.should.equal(1)
+      domEvent.click(document.body)
+      document.body.childElementCount.should.equal(0)
+    })
+    it('does not close the modal on document click when false', () => {
+      wrapperMount(<Modal defaultOpen closeOnDocumentClick={false} />)
+
+      document.body.childElementCount.should.equal(1)
+      domEvent.click(document.body)
+      document.body.childElementCount.should.equal(1)
     })
   })
 

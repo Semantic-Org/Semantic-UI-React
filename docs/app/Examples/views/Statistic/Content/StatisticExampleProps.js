@@ -2,10 +2,10 @@ import React from 'react'
 import { Statistic } from 'semantic-ui-react'
 
 const items = [
-  { label: 'Saves', value: '22' },
-  { label: 'Signups', text: true, value: 'Three Thousand' },
-  { label: 'Flights', value: '5' },
-  { label: 'Team Members', value: '42' },
+  { key: '22', label: 'Saves', value: '22' },
+  { key: 'Three Thousand', label: 'Signups', text: true, value: 'Three Thousand' },
+  { key: '5', label: 'Flights', value: '5' },
+  { key: '42', label: 'Team Members', value: '42' },
 ]
 
 const StatisticExampleProps = () => (

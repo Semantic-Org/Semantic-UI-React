@@ -1,5 +1,6 @@
 import cx from 'classnames'
-import React, { PropTypes } from 'react'
+import PropTypes from 'prop-types'
+import React from 'react'
 
 import {
   customPropTypes,
@@ -10,10 +11,15 @@ import {
 } from '../../lib'
 
 /**
- * Used in some Button types, such as `animated`
+ * Used in some Button types, such as `animated`.
  */
 function ButtonContent(props) {
-  const { children, className, hidden, visible } = props
+  const {
+    children,
+    className,
+    hidden,
+    visible,
+  } = props
   const classes = cx(
     useKeyOnly(visible, 'visible'),
     useKeyOnly(hidden, 'hidden'),
@@ -36,16 +42,16 @@ ButtonContent.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** Additional classes. */
-  className: PropTypes.string,
-
   /** Primary content. */
   children: PropTypes.node,
 
-  /** Initially hidden, visible on hover */
+  /** Additional classes. */
+  className: PropTypes.string,
+
+  /** Initially hidden, visible on hover. */
   hidden: PropTypes.bool,
 
-  /** Initially visible, hidden on hover */
+  /** Initially visible, hidden on hover. */
   visible: PropTypes.bool,
 }
 

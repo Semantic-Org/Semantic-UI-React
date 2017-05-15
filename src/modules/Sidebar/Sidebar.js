@@ -1,39 +1,28 @@
 import cx from 'classnames'
-import React, { PropTypes } from 'react'
+import PropTypes from 'prop-types'
+import React from 'react'
 
 import {
   AutoControlledComponent as Component,
-  META,
   customPropTypes,
   getUnhandledProps,
   getElementType,
+  META,
   useKeyOnly,
 } from '../../lib'
 import SidebarPushable from './SidebarPushable'
 import SidebarPusher from './SidebarPusher'
 
-const _meta = {
-  name: 'Sidebar',
-  type: META.TYPES.MODULE,
-  props: {
-    animation: ['overlay', 'push', 'scale down', 'uncover', 'slide out', 'slide along'],
-    direction: ['top', 'right', 'bottom', 'left'],
-    width: ['very thin', 'thin', 'wide', 'very wide'],
-  },
-}
-
 /**
  * A sidebar hides additional content beside a page.
  */
 class Sidebar extends Component {
-  static _meta = _meta
-
   static propTypes = {
     /** An element type to render as (string or function). */
     as: customPropTypes.as,
 
     /** Animation style. */
-    animation: PropTypes.oneOf(Sidebar._meta.props.animation),
+    animation: PropTypes.oneOf(['overlay', 'push', 'scale down', 'uncover', 'slide out', 'slide along']),
 
     /** Primary content. */
     children: PropTypes.node,
@@ -44,19 +33,15 @@ class Sidebar extends Component {
     /** Initial value of visible. */
     defaultVisible: PropTypes.bool,
 
-    /** Direction the sidebar should appear on */
-    direction: PropTypes.oneOf(Sidebar._meta.props.direction),
+    /** Direction the sidebar should appear on. */
+    direction: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
 
     /** Controls whether or not the sidebar is visible on the page. */
     visible: PropTypes.bool,
 
-    /** Sidebar width */
-    width: PropTypes.oneOf(Sidebar._meta.props.width),
+    /** Sidebar width. */
+    width: PropTypes.oneOf(['very thin', 'thin', 'wide', 'very wide']),
   }
-
-  static Pushable = SidebarPushable
-
-  static Pusher = SidebarPusher
 
   static defaultProps = {
     direction: 'left',
@@ -65,6 +50,15 @@ class Sidebar extends Component {
   static autoControlledProps = [
     'visible',
   ]
+
+  static _meta = {
+    name: 'Sidebar',
+    type: META.TYPES.MODULE,
+  }
+
+  static Pushable = SidebarPushable
+
+  static Pusher = SidebarPusher
 
   state = {}
 
@@ -83,17 +77,24 @@ class Sidebar extends Component {
   }
 
   render() {
+    const {
+      animation,
+      className,
+      children,
+      direction,
+      visible,
+      width,
+    } = this.props
     const { animating } = this.state
-    const { animation, className, children, direction, visible, width } = this.props
 
     const classes = cx(
       'ui',
-      'sidebar',
-      useKeyOnly(animating, 'animating'),
+      animation,
       direction,
       width,
-      animation,
+      useKeyOnly(animating, 'animating'),
       useKeyOnly(visible, 'visible'),
+      'sidebar',
       className
     )
 

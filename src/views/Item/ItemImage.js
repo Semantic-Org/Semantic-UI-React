@@ -1,13 +1,14 @@
 import React from 'react'
 
 import {
-  META,
+  createShorthandFactory,
   getUnhandledProps,
+  META,
 } from '../../lib'
 import Image from '../../elements/Image'
 
 /**
- * An item can contain an image
+ * An item can contain an image.
  */
 function ItemImage(props) {
   const { size } = props
@@ -23,8 +24,10 @@ ItemImage._meta = {
 }
 
 ItemImage.propTypes = {
-  /** An image may appear at different sizes */
+  /** An image may appear at different sizes. */
   size: Image.propTypes.size,
 }
+
+ItemImage.create = createShorthandFactory(ItemImage, src => ({ src }))
 
 export default ItemImage

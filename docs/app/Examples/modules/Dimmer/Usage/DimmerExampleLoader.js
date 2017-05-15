@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Dimmer, Loader, Segment } from 'semantic-ui-react'
+import { Button, Dimmer, Image, Loader, Segment } from 'semantic-ui-react'
 
 export default class DimmerExampleLoader extends Component {
   state = {}
@@ -18,10 +18,10 @@ export default class DimmerExampleLoader extends Component {
           </Dimmer>
 
           <p>
-            <img src='http://semantic-ui.com/images/wireframe/short-paragraph.png' />
+            <Image src='/assets/images/wireframe/short-paragraph.png' />
           </p>
           <p>
-            <img src='http://semantic-ui.com/images/wireframe/short-paragraph.png' />
+            <Image src='/assets/images/wireframe/short-paragraph.png' />
           </p>
         </Dimmer.Dimmable>
 

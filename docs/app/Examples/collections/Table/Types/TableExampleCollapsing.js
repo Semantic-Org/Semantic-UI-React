@@ -15,7 +15,7 @@ const TableExampleCollapsing = () => {
         <Table.Row>
           <Table.Cell>
             <Header as='h4' image>
-              <Image src='http://semantic-ui.com/images/avatar2/small/lena.png' shape='rounded' size='mini' />
+              <Image src='/assets/images/avatar/small/lena.png' shape='rounded' size='mini' />
               <Header.Content>
                 Lena
                 <Header.Subheader>Human Resources</Header.Subheader>
@@ -29,7 +29,7 @@ const TableExampleCollapsing = () => {
         <Table.Row>
           <Table.Cell>
             <Header as='h4' image>
-              <Image src='http://semantic-ui.com/images/avatar2/small/matthew.png' shape='rounded' size='mini' />
+              <Image src='/assets/images/avatar/small/matthew.png' shape='rounded' size='mini' />
               <Header.Content>
                 Matthew
                 <Header.Subheader>Fabric Design</Header.Subheader>
@@ -43,7 +43,7 @@ const TableExampleCollapsing = () => {
         <Table.Row>
           <Table.Cell>
             <Header as='h4' image>
-              <Image src='http://semantic-ui.com/images/avatar2/small/lindsay.png' shape='rounded' size='mini' />
+              <Image src='/assets/images/avatar/small/lindsay.png' shape='rounded' size='mini' />
               <Header.Content>
                 Lindsay
                 <Header.Subheader>Entertainment</Header.Subheader>
@@ -57,7 +57,7 @@ const TableExampleCollapsing = () => {
         <Table.Row>
           <Table.Cell>
             <Header as='h4' image>
-              <Image src='http://semantic-ui.com/images/avatar2/small/mark.png' shape='rounded' size='mini' />
+              <Image src='/assets/images/avatar/small/mark.png' shape='rounded' size='mini' />
               <Header.Content>
                 Mark
                 <Header.Subheader>Executive</Header.Subheader>

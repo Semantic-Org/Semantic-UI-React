@@ -1,5 +1,6 @@
 import cx from 'classnames'
-import React, { PropTypes } from 'react'
+import PropTypes from 'prop-types'
+import React from 'react'
 
 import {
   customPropTypes,
@@ -8,8 +9,6 @@ import {
   META,
   useKeyOnly,
 } from '../../lib'
-
-const defaultRenderer = ({ name }) => name
 
 function SearchCategory(props) {
   const { active, children, className, renderer } = props
@@ -24,7 +23,7 @@ function SearchCategory(props) {
   return (
     <ElementType {...rest} className={classes}>
       <div className='name'>
-        {renderer ? renderer(props) : defaultRenderer(props)}
+        {renderer(props)}
       </div>
       {children}
     </ElementType>
@@ -35,6 +34,10 @@ SearchCategory._meta = {
   name: 'SearchCategory',
   parent: 'Search',
   type: META.TYPES.MODULE,
+}
+
+SearchCategory.defaultProps = {
+  renderer: ({ name }) => name,
 }
 
 SearchCategory.propTypes = {
@@ -54,12 +57,14 @@ SearchCategory.propTypes = {
   name: PropTypes.string,
 
   /**
-   * A function that returns the category contents.
-   * Receives all SearchCategory props.
+   * Renders the category contents.
+   *
+   * @param {object} props - The SearchCategory props object.
+   * @returns {*} - Renderable category contents.
    */
   renderer: PropTypes.func,
 
-  /** Array of Search.Result props */
+  /** Array of Search.Result props. */
   results: PropTypes.array,
 }
 

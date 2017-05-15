@@ -1,10 +1,12 @@
-import _ from 'lodash'
 import cx from 'classnames'
-import React, { Component, PropTypes } from 'react'
+import _ from 'lodash'
+import PropTypes from 'prop-types'
+import React, { Component } from 'react'
 
 import {
   childrenUtils,
   createShorthand,
+  createShorthandFactory,
   customPropTypes,
   META,
   getElementType,
@@ -17,9 +19,9 @@ import Image from '../../elements/Image'
 import Label from '../../elements/Label'
 
 /**
- * An item sub-component for Dropdown component
+ * An item sub-component for Dropdown component.
  */
-export default class DropdownItem extends Component {
+class DropdownItem extends Component {
   static propTypes = {
     /** An element type to render as (string or function). */
     as: customPropTypes.as,
@@ -55,6 +57,14 @@ export default class DropdownItem extends Component {
     label: customPropTypes.itemShorthand,
 
     /**
+     * Called on click.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props.
+     */
+    onClick: PropTypes.func,
+
+    /**
      * The item currently selected by keyboard shortcut.
      * This is not the active item.
      */
@@ -63,19 +73,11 @@ export default class DropdownItem extends Component {
     /** Display text. */
     text: customPropTypes.contentShorthand,
 
-    /** Stored value */
+    /** Stored value. */
     value: PropTypes.oneOfType([
       PropTypes.number,
       PropTypes.string,
     ]),
-
-    /**
-     * Called on click.
-     *
-     * @param {SyntheticEvent} event - React's original SyntheticEvent.
-     * @param {object} data - All props.
-     */
-    onClick: PropTypes.func,
   }
 
   static _meta = {
@@ -138,22 +140,16 @@ export default class DropdownItem extends Component {
     const labelElement = Label.create(label)
     const descriptionElement = createShorthand(
       'span',
-      val => ({ className: 'description', children: val }),
+      val => ({ children: val }),
       description,
+      { defaultProps: { className: 'description' } }
     )
-
-    if (descriptionElement) {
-      return (
-        <ElementType {...rest} {...ariaOptions} className={classes} onClick={this.handleClick}>
-          {imageElement}
-          {iconElement}
-          {flagElement}
-          {labelElement}
-          {descriptionElement}
-          {createShorthand('span', val => ({ className: 'text', children: val }), content || text)}
-        </ElementType>
-      )
-    }
+    const textElement = createShorthand(
+      'span',
+      val => ({ children: val }),
+      content || text,
+      { defaultProps: { className: 'text' } }
+    )
 
     return (
       <ElementType {...rest} {...ariaOptions} className={classes} onClick={this.handleClick}>
@@ -161,8 +157,13 @@ export default class DropdownItem extends Component {
         {iconElement}
         {flagElement}
         {labelElement}
-        {content || text}
+        {descriptionElement}
+        {textElement}
       </ElementType>
     )
   }
 }
+
+DropdownItem.create = createShorthandFactory(DropdownItem, opts => opts)
+
+export default DropdownItem

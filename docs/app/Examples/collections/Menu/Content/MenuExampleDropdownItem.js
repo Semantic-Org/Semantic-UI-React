@@ -4,7 +4,7 @@ import { Dropdown, Menu } from 'semantic-ui-react'
 const MenuExampleDropdownItem = () => {
   return (
     <Menu vertical>
-      <Dropdown as={Menu.Item} text='Categories'>
+      <Dropdown item text='Categories'>
         <Dropdown.Menu>
           <Dropdown.Item>Electronics</Dropdown.Item>
           <Dropdown.Item>Automotive</Dropdown.Item>

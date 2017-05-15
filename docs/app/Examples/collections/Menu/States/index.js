@@ -17,6 +17,12 @@ const States = () => {
         description='A menu item can be active.'
         examplePath='collections/Menu/States/MenuExampleActive'
       />
+
+      <ComponentExample
+        title='Disabled'
+        description='A menu item can be disabled.'
+        examplePath='collections/Menu/States/MenuExampleDisabled'
+      />
     </ExampleSection>
   )
 }

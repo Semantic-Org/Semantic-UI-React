@@ -1,6 +1,7 @@
-import _ from 'lodash'
 import cx from 'classnames'
-import React, { Component, PropTypes } from 'react'
+import _ from 'lodash'
+import PropTypes from 'prop-types'
+import React, { Component } from 'react'
 
 import {
   customPropTypes,
@@ -17,7 +18,7 @@ import StepGroup from './StepGroup'
 import StepTitle from './StepTitle'
 
 /**
- * A step shows the completion status of an activity in a series of activities
+ * A step shows the completion status of an activity in a series of activities.
  */
 export default class Step extends Component {
   static propTypes = {
@@ -27,11 +28,11 @@ export default class Step extends Component {
     /** A step can be highlighted as active. */
     active: PropTypes.bool,
 
-    /** Additional classes. */
-    className: PropTypes.string,
-
     /** Primary content. */
     children: PropTypes.node,
+
+    /** Additional classes. */
+    className: PropTypes.string,
 
     /** A step can show that a user has completed it. */
     completed: PropTypes.bool,
@@ -42,14 +43,14 @@ export default class Step extends Component {
     /** Show that the Loader is inactive. */
     disabled: PropTypes.bool,
 
+    /** Render as an `a` tag instead of a `div` and adds the href attribute. */
+    href: PropTypes.string,
+
     /** Shorthand for Icon. */
     icon: customPropTypes.itemShorthand,
 
     /** A step can be link. */
     link: PropTypes.bool,
-
-    /** Render as an `a` tag instead of a `div` and adds the href attribute. */
-    href: PropTypes.string,
 
     /**
      * Called on click. When passed, the component will render as an `a`

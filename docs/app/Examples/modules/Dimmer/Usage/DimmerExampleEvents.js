@@ -26,7 +26,7 @@ export default class DimmerExampleEvents extends Component {
         onMouseEnter={this.handleShow}
         onMouseLeave={this.handleHide}
         size='medium'
-        src='http://semantic-ui.com/images/wireframe/image.png'
+        src='/assets/images/wireframe/image.png'
       />
     )
   }

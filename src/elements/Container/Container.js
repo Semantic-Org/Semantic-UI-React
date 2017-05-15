@@ -1,5 +1,6 @@
 import cx from 'classnames'
-import React, { PropTypes } from 'react'
+import PropTypes from 'prop-types'
+import React from 'react'
 
 import {
   customPropTypes,
@@ -51,7 +52,7 @@ Container.propTypes = {
   /** Additional classes. */
   className: PropTypes.string,
 
-  /** Container has no maximum with. */
+  /** Container has no maximum width. */
   fluid: PropTypes.bool,
 
   /** Reduce maximum width to more naturally accommodate text. */

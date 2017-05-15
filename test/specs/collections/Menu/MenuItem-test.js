@@ -2,6 +2,7 @@ import faker from 'faker'
 import React from 'react'
 
 import MenuItem from 'src/collections/Menu/MenuItem'
+import { SUI } from 'src/lib'
 import * as common from 'test/specs/commonTests'
 import { sandbox } from 'test/utils'
 
@@ -13,14 +14,15 @@ describe('MenuItem', () => {
   common.implementsIconProp(MenuItem)
 
   common.propKeyOnlyToClassName(MenuItem, 'active')
+  common.propKeyOnlyToClassName(MenuItem, 'disabled')
   common.propKeyOnlyToClassName(MenuItem, 'header')
   common.propKeyOnlyToClassName(MenuItem, 'icon')
   common.propKeyOnlyToClassName(MenuItem, 'link')
 
   common.propKeyOrValueAndKeyToClassName(MenuItem, 'fitted', ['horizontally', 'vertically'])
 
-  common.propValueOnlyToClassName(MenuItem, 'color')
-  common.propValueOnlyToClassName(MenuItem, 'position')
+  common.propValueOnlyToClassName(MenuItem, 'color', SUI.COLORS)
+  common.propValueOnlyToClassName(MenuItem, 'position', ['right'])
 
   it('renders a `div` by default', () => {
     shallow(<MenuItem />)

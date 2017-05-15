@@ -1,8 +1,8 @@
 import faker from 'faker'
 import React from 'react'
 
-import * as common from 'test/specs/commonTests'
 import StatisticLabel from 'src/views/Statistic/StatisticLabel'
+import * as common from 'test/specs/commonTests'
 
 describe('StatisticLabel', () => {
   common.isConformant(StatisticLabel)

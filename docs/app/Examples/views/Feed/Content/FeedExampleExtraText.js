@@ -4,7 +4,7 @@ import { Feed } from 'semantic-ui-react'
 const FeedExampleExtraText = () => (
   <Feed>
     <Feed.Event>
-      <Feed.Label image='http://semantic-ui.com/images/avatar/small/laura.jpg' />
+      <Feed.Label image='/assets/images/avatar/small/laura.jpg' />
       <Feed.Content>
         <Feed.Date>3 days ago</Feed.Date>
         <Feed.Summary>

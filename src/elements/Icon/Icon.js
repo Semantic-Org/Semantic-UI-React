@@ -1,6 +1,7 @@
 import cx from 'classnames'
 import _ from 'lodash'
-import React, { PropTypes } from 'react'
+import PropTypes from 'prop-types'
+import React from 'react'
 
 import {
   createShorthandFactory,
@@ -104,7 +105,7 @@ Icon.propTypes = {
   loading: PropTypes.bool,
 
   /** Name of the icon. */
-  name: customPropTypes.suggest(SUI.ICONS_AND_ALIASES),
+  name: customPropTypes.suggest(SUI.ALL_ICONS_IN_ALL_CONTEXTS),
 
   /** Icon can rotated. */
   rotated: PropTypes.oneOf(['clockwise', 'counterclockwise']),

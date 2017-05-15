@@ -1,6 +1,7 @@
-import _ from 'lodash'
 import cx from 'classnames'
-import React, { PropTypes } from 'react'
+import _ from 'lodash'
+import PropTypes from 'prop-types'
+import React from 'react'
 
 import {
   customPropTypes,
@@ -16,39 +17,36 @@ import BreadcrumbSection from './BreadcrumbSection'
  * A breadcrumb is used to show hierarchy between content.
  */
 function Breadcrumb(props) {
-  const { children, className, divider, icon, size, sections } = props
-  const classes = cx('ui', className, size, 'breadcrumb')
+  const {
+    children,
+    className,
+    divider,
+    icon,
+    sections,
+    size,
+  } = props
+
+  const classes = cx(
+    'ui',
+    size,
+    'breadcrumb',
+    className,
+  )
   const rest = getUnhandledProps(Breadcrumb, props)
   const ElementType = getElementType(Breadcrumb, props)
 
-  if (!_.isNil(children)) {
-    return <ElementType {...rest} className={classes}>{children}</ElementType>
-  }
+  if (!_.isNil(children)) return <ElementType {...rest} className={classes}>{children}</ElementType>
 
   const childElements = []
 
   _.each(sections, (section, index) => {
     // section
-    const breadcrumbSection = BreadcrumbSection.create(section)
-    childElements.push(breadcrumbSection)
+    const breadcrumbElement = BreadcrumbSection.create(section)
+    childElements.push(breadcrumbElement)
 
     // divider
     if (index !== sections.length - 1) {
-      // TODO generate a key from breadcrumbSection.props once this is merged:
-      // https://github.com/Semantic-Org/Semantic-UI-React/pull/645
-      //
-      // Stringify the props of the section as the divider key.
-      //
-      // Section:     { content: 'Home', link: true, onClick: handleClick }
-      // Divider key: content=Home|link=true|onClick=handleClick
-      let key
-      if (section.key) {
-        key = `${section.key}_divider`
-      } else {
-        key = _.map(breadcrumbSection.props, (v, k) => {
-          return `${k}=${typeof v === 'function' ? v.name || 'func' : v}`
-        }).join('|')
-      }
+      const key = `${breadcrumbElement.key}_divider` || JSON.stringify(section)
       childElements.push(BreadcrumbDivider.create({ content: divider, icon, key }))
     }
   })
@@ -59,9 +57,6 @@ function Breadcrumb(props) {
 Breadcrumb._meta = {
   name: 'Breadcrumb',
   type: META.TYPES.COLLECTION,
-  props: {
-    size: _.without(SUI.SIZES, 'medium'),
-  },
 }
 
 Breadcrumb.propTypes = {
@@ -90,8 +85,8 @@ Breadcrumb.propTypes = {
   /** Shorthand array of props for Breadcrumb.Section. */
   sections: customPropTypes.collectionShorthand,
 
-  /** Size of Breadcrumb */
-  size: PropTypes.oneOf(Breadcrumb._meta.props.size),
+  /** Size of Breadcrumb. */
+  size: PropTypes.oneOf(_.without(SUI.SIZES, 'medium')),
 }
 
 Breadcrumb.Divider = BreadcrumbDivider

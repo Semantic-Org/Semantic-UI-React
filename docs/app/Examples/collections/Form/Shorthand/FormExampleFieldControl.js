@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { Button, Checkbox, Form, Input, Radio, Select, TextArea } from 'semantic-ui-react'
 
 const options = [
-  { text: 'Male', value: 'male' },
-  { text: 'Female', value: 'female' },
+  { key: 'm', text: 'Male', value: 'male' },
+  { key: 'f', text: 'Female', value: 'female' },
 ]
 
 class FormExampleFieldControl extends Component {

@@ -1,5 +1,6 @@
 import cx from 'classnames'
-import React, { PropTypes } from 'react'
+import PropTypes from 'prop-types'
+import React from 'react'
 
 import {
   customPropTypes,
@@ -8,6 +9,9 @@ import {
   META,
 } from '../../lib'
 
+/**
+ * A comment can contain metadata about the comment, an arbitrary amount of metadata may be defined.
+ */
 function CommentMetadata(props) {
   const { className, children } = props
   const classes = cx('metadata', className)

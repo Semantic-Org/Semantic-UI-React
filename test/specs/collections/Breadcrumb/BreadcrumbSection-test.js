@@ -1,10 +1,12 @@
 import React from 'react'
+
 import BreadcrumbSection from 'src/collections/Breadcrumb/BreadcrumbSection'
 import * as common from 'test/specs/commonTests'
 
 describe('BreadcrumbSection', () => {
   common.isConformant(BreadcrumbSection)
   common.rendersChildren(BreadcrumbSection)
+
   common.propKeyOnlyToClassName(BreadcrumbSection, 'active')
 
   it('renders as a div by default', () => {

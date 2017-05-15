@@ -1,6 +1,7 @@
-import _ from 'lodash'
 import cx from 'classnames'
-import React, { PropTypes } from 'react'
+import _ from 'lodash'
+import PropTypes from 'prop-types'
+import React from 'react'
 
 import {
   customPropTypes,
@@ -10,13 +11,30 @@ import {
   useKeyOnly,
 } from '../../lib'
 
+/**
+ * A statistic can contain a numeric, icon, image, or text value.
+ */
 function StatisticValue(props) {
-  const { children, className, text, value } = props
-  const classes = cx(useKeyOnly(text, 'text'), className, 'value')
+  const {
+    children,
+    className,
+    text,
+    value,
+  } = props
+
+  const classes = cx(
+    useKeyOnly(text, 'text'),
+    'value',
+    className,
+  )
   const rest = getUnhandledProps(StatisticValue, props)
   const ElementType = getElementType(StatisticValue, props)
 
-  return <ElementType {...rest} className={classes}>{_.isNil(children) ? value : children}</ElementType>
+  return (
+    <ElementType {...rest} className={classes}>
+      {_.isNil(children) ? value : children}
+    </ElementType>
+  )
 }
 
 StatisticValue._meta = {

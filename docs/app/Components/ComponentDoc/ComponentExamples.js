@@ -1,5 +1,6 @@
 import _ from 'lodash'
-import React, { Component, createElement, PropTypes } from 'react'
+import PropTypes from 'prop-types'
+import React, { Component, createElement } from 'react'
 
 import { exampleContext } from 'docs/app/utils'
 import { Grid } from 'src'
@@ -10,7 +11,7 @@ export default class ComponentExamples extends Component {
     name: PropTypes.string,
   }
 
-  renderExample = () => {
+  renderExamples = () => {
     const { name } = this.props
 
     const examplePath = _.find(exampleContext.keys(), path => new RegExp(`${name}/index.js$`).test(path))
@@ -32,6 +33,6 @@ export default class ComponentExamples extends Component {
   }
 
   render() {
-    return this.renderExample() || this.renderMissingExamples()
+    return this.renderExamples() || this.renderMissingExamples()
   }
 }

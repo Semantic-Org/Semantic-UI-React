@@ -3,7 +3,8 @@ import * as common from 'test/specs/commonTests'
 
 describe('ButtonContent', () => {
   common.isConformant(ButtonContent)
+  common.rendersChildren(ButtonContent)
+
   common.propKeyOnlyToClassName(ButtonContent, 'hidden')
   common.propKeyOnlyToClassName(ButtonContent, 'visible')
-  common.rendersChildren(ButtonContent)
 })

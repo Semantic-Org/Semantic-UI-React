@@ -1,21 +1,26 @@
+import _ from 'lodash'
 import React from 'react'
 
 import Menu from 'src/collections/Menu/Menu'
 import MenuItem from 'src/collections/Menu/MenuItem'
 import MenuHeader from 'src/collections/Menu/MenuHeader'
 import MenuMenu from 'src/collections/Menu/MenuMenu'
+import { SUI } from 'src/lib'
 import * as common from 'test/specs/commonTests'
 import { sandbox } from 'test/utils'
 
 describe('Menu', () => {
   common.isConformant(Menu)
-  common.hasUIClassName(Menu)
   common.hasSubComponents(Menu, [MenuHeader, MenuItem, MenuMenu])
+  common.hasUIClassName(Menu)
   common.rendersChildren(Menu)
 
-  common.implementsWidthProp(Menu, { propKey: 'widths', canEqual: false })
+  common.implementsWidthProp(Menu, SUI.WIDTHS, {
+    canEqual: false,
+    propKey: 'widths',
+  })
 
-  common.propKeyAndValueToClassName(Menu, 'fixed')
+  common.propKeyAndValueToClassName(Menu, 'fixed', ['left', 'right', 'bottom', 'top'])
 
   common.propKeyOnlyToClassName(Menu, 'borderless')
   common.propKeyOnlyToClassName(Menu, 'compact')
@@ -33,8 +38,8 @@ describe('Menu', () => {
   common.propKeyOrValueAndKeyToClassName(Menu, 'icon', ['labeled'])
   common.propKeyOrValueAndKeyToClassName(Menu, 'tabular', ['right'])
 
-  common.propValueOnlyToClassName(Menu, 'color')
-  common.propValueOnlyToClassName(Menu, 'size')
+  common.propValueOnlyToClassName(Menu, 'color', SUI.COLORS)
+  common.propValueOnlyToClassName(Menu, 'size', _.without(SUI.SIZES, 'medium', 'big'))
 
   it('renders a `div` by default', () => {
     shallow(<Menu />)
@@ -102,27 +107,35 @@ describe('Menu', () => {
   })
 
   describe('onItemClick', () => {
-    const items = [
-      { key: 'home', name: 'home' },
-      { key: 'users', name: 'users' },
-    ]
-
     it('can be omitted', () => {
-      const click = () => mount(<Menu items={items} />).find('MenuItem').first().simulate('click')
+      const click = () => mount(<Menu items={[{ key: 'home', name: 'home' }]} />)
+        .find('MenuItem')
+        .first()
+        .simulate('click')
 
       expect(click).to.not.throw()
     })
 
     it('is called with (e, { name, index }) when clicked', () => {
-      const spy = sandbox.spy()
       const event = { target: null }
-      const props = { name: 'home', index: 0 }
+      const itemSpy = sandbox.spy()
+      const menuSpy = sandbox.spy()
 
-      mount(<Menu items={items} onItemClick={spy} />).find('MenuItem').first()
+      const items = [
+        { key: 'home', name: 'home' },
+        { key: 'users', name: 'users', onClick: itemSpy },
+      ]
+      const matchProps = { index: 1, name: 'users' }
+
+      mount(<Menu items={items} onItemClick={menuSpy} />)
+        .find('MenuItem')
+        .last()
         .simulate('click', event)
 
-      spy.should.have.been.calledOnce()
-      spy.should.have.been.calledWithMatch(event, props)
+      itemSpy.should.have.been.calledOnce()
+      itemSpy.should.have.been.calledWithMatch(event, matchProps)
+      menuSpy.should.have.been.calledOnce()
+      menuSpy.should.have.been.calledWithMatch(event, matchProps)
     })
   })
 })

@@ -1,4 +1,6 @@
 import React from 'react'
+import { Message } from 'semantic-ui-react'
+
 import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
 import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
 
@@ -9,9 +11,12 @@ const ButtonContentExamples = () => (
       description='Button groups can contain conditionals.'
       examplePath='elements/Button/Content/ButtonExampleConditionals'
     />
-    <ComponentExample
-      examplePath='elements/Button/Content/ButtonExampleMultipleConditionals'
-    />
+    <ComponentExample examplePath='elements/Button/Content/ButtonExampleConditionalsCustom'>
+      <Message info>
+        Or buttons can have their text localized, or adjusted by using the <code>text</code> prop.
+      </Message>
+    </ComponentExample>
+    <ComponentExample examplePath='elements/Button/Content/ButtonExampleMultipleConditionals' />
   </ExampleSection>
 )
 

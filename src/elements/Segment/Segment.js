@@ -1,6 +1,7 @@
-import _ from 'lodash'
 import cx from 'classnames'
-import React, { PropTypes } from 'react'
+import _ from 'lodash'
+import PropTypes from 'prop-types'
+import React from 'react'
 
 import {
   customPropTypes,
@@ -87,7 +88,7 @@ Segment.propTypes = {
   /** Attach segment to other content, like a header. */
   attached: PropTypes.oneOfType([
     PropTypes.bool,
-    PropTypes.oneOf('top', 'bottom'),
+    PropTypes.oneOf(['top', 'bottom']),
   ]),
 
   /** A basic segment has no special formatting. */
@@ -148,7 +149,7 @@ Segment.propTypes = {
   tertiary: PropTypes.bool,
 
   /** Formats content to be aligned as part of a vertical group. */
-  textAlign: PropTypes.oneOf(SUI.TEXT_ALIGNMENTS),
+  textAlign: PropTypes.oneOf(_.without(SUI.TEXT_ALIGNMENTS, 'justified')),
 
   /** Formats content to be aligned vertically. */
   vertical: PropTypes.bool,

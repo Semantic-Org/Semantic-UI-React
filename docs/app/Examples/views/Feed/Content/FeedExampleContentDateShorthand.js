@@ -1,7 +1,7 @@
 import React from 'react'
 import { Feed } from 'semantic-ui-react'
 
-const image = 'http://semantic-ui.com/images/avatar/small/jenny.jpg'
+const image = '/assets/images/avatar/small/jenny.jpg'
 const date = '3 days ago'
 const summary = 'You added Jenny Hess to your coworker group.'
 

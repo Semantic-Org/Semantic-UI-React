@@ -1,6 +1,7 @@
-import _ from 'lodash'
 import cx from 'classnames'
-import React, { Component, PropTypes } from 'react'
+import _ from 'lodash'
+import PropTypes from 'prop-types'
+import React, { Component } from 'react'
 
 import {
   createShorthandFactory,
@@ -12,7 +13,7 @@ import {
 } from '../../lib'
 
 /**
- * A section sub-component for Breadcrumb component
+ * A section sub-component for Breadcrumb component.
  */
 export default class BreadcrumbSection extends Component {
   static propTypes = {
@@ -31,16 +32,16 @@ export default class BreadcrumbSection extends Component {
     /** Shorthand for primary content. */
     content: customPropTypes.contentShorthand,
 
-    /** Render as an `a` tag instead of a `div`. */
-    link: customPropTypes.every([
-      customPropTypes.disallow(['href']),
-      PropTypes.bool,
-    ]),
-
     /** Render as an `a` tag instead of a `div` and adds the href attribute. */
     href: customPropTypes.every([
       customPropTypes.disallow(['link']),
       PropTypes.string,
+    ]),
+
+    /** Render as an `a` tag instead of a `div`. */
+    link: customPropTypes.every([
+      customPropTypes.disallow(['href']),
+      PropTypes.bool,
     ]),
 
     /**
@@ -94,4 +95,4 @@ export default class BreadcrumbSection extends Component {
   }
 }
 
-BreadcrumbSection.create = createShorthandFactory(BreadcrumbSection, content => ({ content, link: true }), true)
+BreadcrumbSection.create = createShorthandFactory(BreadcrumbSection, content => ({ content, link: true }))

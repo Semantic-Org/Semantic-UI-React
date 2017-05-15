@@ -1,11 +1,12 @@
-import * as common from 'test/specs/commonTests'
 import CardContent from 'src/views/Card/CardContent'
 import CardDescription from 'src/views/Card/CardDescription'
 import CardHeader from 'src/views/Card/CardHeader'
 import CardMeta from 'src/views/Card/CardMeta'
+import * as common from 'test/specs/commonTests'
 
 describe('CardContent', () => {
   common.isConformant(CardContent)
+  common.rendersChildren(CardContent)
 
   common.implementsShorthandProp(CardContent, {
     propKey: 'header',
@@ -24,5 +25,4 @@ describe('CardContent', () => {
   })
 
   common.propKeyOnlyToClassName(CardContent, 'extra')
-  common.rendersChildren(CardContent)
 })

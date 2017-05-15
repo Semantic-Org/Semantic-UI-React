@@ -1,7 +1,10 @@
-import React, { PropTypes } from 'react'
 import cx from 'classnames'
+import _ from 'lodash'
+import PropTypes from 'prop-types'
+import React from 'react'
 
 import {
+  createShorthandFactory,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -9,8 +12,17 @@ import {
   useKeyOnly,
 } from '../../lib'
 
+/**
+ * A modal can contain content.
+ */
 function ModalContent(props) {
-  const { children, image, className } = props
+  const {
+    children,
+    className,
+    content,
+    image,
+  } = props
+
   const classes = cx(
     className,
     useKeyOnly(image, 'image'),
@@ -19,7 +31,11 @@ function ModalContent(props) {
   const rest = getUnhandledProps(ModalContent, props)
   const ElementType = getElementType(ModalContent, props)
 
-  return <ElementType {...rest} className={classes}>{children}</ElementType>
+  return (
+    <ElementType {...rest} className={classes}>
+      {_.isNil(children) ? content : children}
+    </ElementType>
+  )
 }
 
 ModalContent._meta = {
@@ -38,8 +54,13 @@ ModalContent.propTypes = {
   /** Additional classes. */
   className: PropTypes.string,
 
-  /** A modal can contain image content */
+  /** Shorthand for primary content. */
+  content: customPropTypes.contentShorthand,
+
+  /** A modal can contain image content. */
   image: PropTypes.bool,
 }
+
+ModalContent.create = createShorthandFactory(ModalContent, content => ({ content }))
 
 export default ModalContent

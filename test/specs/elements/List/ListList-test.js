@@ -1,7 +1,7 @@
 import React from 'react'
-import * as common from 'test/specs/commonTests'
 
 import ListList from 'src/elements/List/ListList'
+import * as common from 'test/specs/commonTests'
 
 describe('ListList', () => {
   common.isConformant(ListList)

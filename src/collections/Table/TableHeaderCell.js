@@ -1,16 +1,44 @@
+import cx from 'classnames'
+import PropTypes from 'prop-types'
 import React from 'react'
 
-import { META } from '../../lib'
+import {
+  customPropTypes,
+  getUnhandledProps,
+  META,
+  useValueAndKey,
+} from '../../lib'
 import TableCell from './TableCell'
 
+/**
+ * A table can have a header cell.
+ */
 function TableHeaderCell(props) {
-  return <TableCell {...props} />
+  const { as, className, sorted } = props
+  const classes = cx(
+    useValueAndKey(sorted, 'sorted'),
+    className
+  )
+  const rest = getUnhandledProps(TableHeaderCell, props)
+
+  return <TableCell {...rest} as={as} className={classes} />
 }
 
 TableHeaderCell._meta = {
   name: 'TableHeaderCell',
   type: META.TYPES.COLLECTION,
   parent: 'Table',
+}
+
+TableHeaderCell.propTypes = {
+  /** An element type to render as (string or function). */
+  as: customPropTypes.as,
+
+  /** Additional classes. */
+  className: PropTypes.string,
+
+  /** A header cell can be sorted in ascending or descending order. */
+  sorted: PropTypes.oneOf(['ascending', 'descending']),
 }
 
 TableHeaderCell.defaultProps = {

@@ -1,26 +1,24 @@
 import _ from 'lodash'
-import React, { Children, PropTypes } from 'react'
+import PropTypes from 'prop-types'
+import { Children, cloneElement } from 'react'
 import ReactDOM from 'react-dom'
 
 import {
   AutoControlledComponent as Component,
-  customPropTypes,
-  keyboardKey,
   isBrowser,
+  keyboardKey,
   makeDebugger,
   META,
 } from '../../lib'
 
 const debug = makeDebugger('portal')
 
-const _meta = {
-  name: 'Portal',
-  type: META.TYPES.ADDON,
-}
-
 /**
  * A component that allows you to render children outside their parent.
  * @see Modal
+ * @see Popup
+ * @see Dimmer
+ * @see Confirm
  */
 class Portal extends Component {
   static propTypes = {
@@ -30,22 +28,8 @@ class Portal extends Component {
     /** Additional classes. */
     className: PropTypes.string,
 
-    /**
-     * Controls whether or not the portal should close on a click on the portal background.
-     * NOTE: This differs from closeOnDocumentClick:
-     * - DocumentClick - any click not within the portal
-     * - RootNodeClick - a click not within the portal but within the portal's wrapper
-     */
-    closeOnRootNodeClick: customPropTypes.every([
-      customPropTypes.disallow(['closeOnDocumentClick']),
-      PropTypes.bool,
-    ]),
-
-    /** Controls whether or not the portal should close on a click outside. */
-    closeOnDocumentClick: customPropTypes.every([
-      customPropTypes.disallow(['closeOnRootNodeClick']),
-      PropTypes.bool,
-    ]),
+    /** Controls whether or not the portal should close when the document is clicked. */
+    closeOnDocumentClick: PropTypes.bool,
 
     /** Controls whether or not the portal should close when escape is pressed is displayed. */
     closeOnEscape: PropTypes.bool,
@@ -56,6 +40,14 @@ class Portal extends Component {
      * gap from the trigger to the portal.
      */
     closeOnPortalMouseLeave: PropTypes.bool,
+
+    /**
+     * Controls whether or not the portal should close on a click on the portal background.
+     * NOTE: This differs from closeOnDocumentClick:
+     * - DocumentClick - any click not within the portal
+     * - RootNodeClick - a click not within the portal but within the portal's wrapper
+     */
+    closeOnRootNodeClick: PropTypes.bool,
 
     /** Controls whether or not the portal should close on blur of the trigger. */
     closeOnTriggerBlur: PropTypes.bool,
@@ -72,11 +64,11 @@ class Portal extends Component {
     /** The node where the portal should mount. */
     mountNode: PropTypes.any,
 
-    /** Milliseconds to wait before closing on mouse leave */
-    mouseLeaveDelay: PropTypes.number,
-
     /** Milliseconds to wait before opening on mouse over */
     mouseEnterDelay: PropTypes.number,
+
+    /** Milliseconds to wait before closing on mouse leave */
+    mouseLeaveDelay: PropTypes.number,
 
     /**
      * Called when a close event happens
@@ -133,22 +125,26 @@ class Portal extends Component {
     closeOnDocumentClick: true,
     closeOnEscape: true,
     openOnTriggerClick: true,
-    mountNode: isBrowser ? document.body : null,
   }
 
   static autoControlledProps = [
     'open',
   ]
 
-  static _meta = _meta
+  static _meta = {
+    name: 'Portal',
+    type: META.TYPES.ADDON,
+  }
 
   state = {}
 
   componentDidMount() {
+    debug('componentDidMount()')
     this.renderPortal()
   }
 
   componentDidUpdate(prevProps, prevState) {
+    debug('componentDidUpdate()')
     // NOTE: Ideally the portal rendering would happen in the render() function
     // but React gives a warning about not being pure and suggests doing it
     // within this method.
@@ -177,13 +173,18 @@ class Portal extends Component {
   handleDocumentClick = (e) => {
     const { closeOnDocumentClick, closeOnRootNodeClick } = this.props
 
-    // If not mounted, no portal, or event happened in the portal, ignore it
-    if (!this.node || !this.portal || this.portal.contains(e.target)) return
+    if (
+      !this.rootNode                                      // not mounted
+      || !this.portalNode                                 // no portal
+      || _.invoke(this, 'triggerNode.contains', e.target) // event happened in trigger (delegate to trigger handlers)
+      || _.invoke(this, 'portalNode.contains', e.target)  // event happened in the portal
+    ) return                                              // ignore the click
 
-    if (closeOnDocumentClick || (closeOnRootNodeClick && this.node.contains(e.target))) {
+    const didClickInRootNode = this.rootNode.contains(e.target)
+
+    if (closeOnDocumentClick && !didClickInRootNode || closeOnRootNodeClick && didClickInRootNode) {
       debug('handleDocumentClick()')
 
-      e.stopPropagation()
       this.close(e)
     }
   }
@@ -194,7 +195,6 @@ class Portal extends Component {
 
     debug('handleEscape()')
 
-    e.preventDefault()
     this.close(e)
   }
 
@@ -228,7 +228,10 @@ class Portal extends Component {
     // Call original event handler
     _.invoke(trigger, 'props.onBlur', e)
 
-    if (!closeOnTriggerBlur) return
+    // do not close if focus is given to the portal
+    const didFocusPortal = _.invoke(this, 'rootNode.contains', e.relatedTarget)
+
+    if (!closeOnTriggerBlur || didFocusPortal) return
 
     debug('handleTriggerBlur()')
     this.close(e)
@@ -244,19 +247,12 @@ class Portal extends Component {
     if (open && closeOnTriggerClick) {
       debug('handleTriggerClick() - close')
 
-      e.stopPropagation()
       this.close(e)
     } else if (!open && openOnTriggerClick) {
       debug('handleTriggerClick() - open')
 
-      e.stopPropagation()
       this.open(e)
     }
-
-    // Prevents handleDocumentClick from closing the portal when
-    // openOnTriggerFocus is set. Focus shifts on mousedown so the portal opens
-    // before the click finishes so it may actually wind up on the document.
-    e.nativeEvent.stopImmediatePropagation()
   }
 
   handleTriggerFocus = (e) => {
@@ -313,6 +309,7 @@ class Portal extends Component {
   }
 
   openWithTimeout = (e, delay) => {
+    debug('openWithTimeout()', delay)
     // React wipes the entire event object and suggests using e.persist() if
     // you need the event for async access. However, even with e.persist
     // certain required props (e.g. currentTarget) are null so we're forced to clone.
@@ -330,6 +327,7 @@ class Portal extends Component {
   }
 
   closeWithTimeout = (e, delay) => {
+    debug('closeWithTimeout()', delay)
     // React wipes the entire event object and suggests using e.persist() if
     // you need the event for async access. However, even with e.persist
     // certain required props (e.g. currentTarget) are null so we're forced to clone.
@@ -341,54 +339,50 @@ class Portal extends Component {
     if (!this.state.open) return
     debug('renderPortal()')
 
-    const { children, className, closeOnTriggerBlur } = this.props
+    const { children, className } = this.props
 
     this.mountPortal()
 
     // Server side rendering
     if (!isBrowser) return null
 
-    this.node.className = className || ''
+    this.rootNode.className = className || ''
 
     // when re-rendering, first remove listeners before re-adding them to the new node
-    if (this.portal) {
-      this.portal.removeEventListener('mouseleave', this.handlePortalMouseLeave)
-      this.portal.removeEventListener('mouseenter', this.handlePortalMouseEnter)
+    if (this.portalNode) {
+      this.portalNode.removeEventListener('mouseleave', this.handlePortalMouseLeave)
+      this.portalNode.removeEventListener('mouseenter', this.handlePortalMouseEnter)
     }
 
     ReactDOM.unstable_renderSubtreeIntoContainer(
       this,
       Children.only(children),
-      this.node
+      this.rootNode,
+      () => {
+        this.portalNode = this.rootNode.firstElementChild
+
+        this.portalNode.addEventListener('mouseleave', this.handlePortalMouseLeave)
+        this.portalNode.addEventListener('mouseenter', this.handlePortalMouseEnter)
+      }
     )
-
-    this.portal = this.node.firstElementChild
-    // don't take focus away from portals that close on blur
-    if (!closeOnTriggerBlur) {
-      this.previousActiveElement = document.activeElement
-      this.portal.setAttribute('tabindex', '-1')
-      this.portal.style.outline = 'none'
-      // wait a tick for things like popups which need to calculate where the popup shows up
-      setTimeout(() => this.portal && this.portal.focus())
-    }
-
-    this.portal.addEventListener('mouseleave', this.handlePortalMouseLeave)
-    this.portal.addEventListener('mouseenter', this.handlePortalMouseEnter)
   }
 
   mountPortal = () => {
-    if (!isBrowser || this.node) return
+    if (!isBrowser || this.rootNode) return
 
     debug('mountPortal()')
 
-    const { mountNode, prepend } = this.props
+    const {
+      mountNode = isBrowser ? document.body : null,
+      prepend,
+    } = this.props
 
-    this.node = document.createElement('div')
+    this.rootNode = document.createElement('div')
 
     if (prepend) {
-      mountNode.insertBefore(this.node, mountNode.firstElementChild)
+      mountNode.insertBefore(this.rootNode, mountNode.firstElementChild)
     } else {
-      mountNode.appendChild(this.node)
+      mountNode.appendChild(this.rootNode)
     }
 
     document.addEventListener('click', this.handleDocumentClick)
@@ -399,19 +393,18 @@ class Portal extends Component {
   }
 
   unmountPortal = () => {
-    if (!isBrowser || !this.node) return
+    if (!isBrowser || !this.rootNode) return
 
     debug('unmountPortal()')
 
-    ReactDOM.unmountComponentAtNode(this.node)
-    this.node.parentNode.removeChild(this.node)
-    if (this.previousActiveElement) this.previousActiveElement.focus()
+    ReactDOM.unmountComponentAtNode(this.rootNode)
+    this.rootNode.parentNode.removeChild(this.rootNode)
 
-    this.portal.removeEventListener('mouseleave', this.handlePortalMouseLeave)
-    this.portal.removeEventListener('mouseenter', this.handlePortalMouseEnter)
+    this.portalNode.removeEventListener('mouseleave', this.handlePortalMouseLeave)
+    this.portalNode.removeEventListener('mouseenter', this.handlePortalMouseEnter)
 
-    this.node = null
-    this.portal = null
+    this.rootNode = null
+    this.portalNode = null
 
     document.removeEventListener('click', this.handleDocumentClick)
     document.removeEventListener('keydown', this.handleEscape)
@@ -420,12 +413,17 @@ class Portal extends Component {
     if (onUnmount) onUnmount(null, this.props)
   }
 
+  handleRef = c => {
+    this.triggerNode = ReactDOM.findDOMNode(c)
+  }
+
   render() {
     const { trigger } = this.props
 
     if (!trigger) return null
 
-    return React.cloneElement(trigger, {
+    return cloneElement(trigger, {
+      ref: this.handleRef,
       onBlur: this.handleTriggerBlur,
       onClick: this.handleTriggerClick,
       onFocus: this.handleTriggerFocus,

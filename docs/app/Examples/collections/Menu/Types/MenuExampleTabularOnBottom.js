@@ -12,7 +12,7 @@ export default class MenuExampleTabularOnBottom extends Component {
     return (
       <div>
         <Segment attached='top'>
-          <img src='http://semantic-ui.com/images/wireframe/paragraph.png' />
+          <img src='/assets/images/wireframe/paragraph.png' />
         </Segment>
 
         <Menu attached='bottom' tabular>

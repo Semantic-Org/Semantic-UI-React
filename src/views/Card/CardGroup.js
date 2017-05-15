@@ -1,6 +1,7 @@
-import _ from 'lodash'
 import cx from 'classnames'
-import React, { PropTypes } from 'react'
+import _ from 'lodash'
+import PropTypes from 'prop-types'
+import React from 'react'
 
 import {
   customPropTypes,
@@ -17,11 +18,19 @@ import Card from './Card'
  * A group of cards.
  */
 function CardGroup(props) {
-  const { children, className, doubling, items, itemsPerRow, stackable } = props
+  const {
+    children,
+    className,
+    doubling,
+    items,
+    itemsPerRow,
+    stackable,
+  } = props
+
   const classes = cx('ui',
-    useWidthProp(itemsPerRow),
     useKeyOnly(doubling, 'doubling'),
     useKeyOnly(stackable, 'stackable'),
+    useWidthProp(itemsPerRow),
     className,
     'cards',
   )
@@ -43,9 +52,6 @@ function CardGroup(props) {
 CardGroup._meta = {
   name: 'CardGroup',
   parent: 'Card',
-  props: {
-    itemsPerRow: SUI.WIDTHS,
-  },
   type: META.TYPES.VIEW,
 }
 
@@ -59,16 +65,16 @@ CardGroup.propTypes = {
   /** Additional classes. */
   className: PropTypes.string,
 
-  /** A group of cards can double its column width for mobile */
+  /** A group of cards can double its column width for mobile. */
   doubling: PropTypes.bool,
 
   /** Shorthand array of props for Card. */
   items: customPropTypes.collectionShorthand,
 
-  /** A group of cards can set how many cards should exist in a row */
-  itemsPerRow: PropTypes.oneOf(CardGroup._meta.props.itemsPerRow),
+  /** A group of cards can set how many cards should exist in a row. */
+  itemsPerRow: PropTypes.oneOf(SUI.WIDTHS),
 
-  /** A group of cards can automatically stack rows to a single columns on mobile devices */
+  /** A group of cards can automatically stack rows to a single columns on mobile devices. */
   stackable: PropTypes.bool,
 }
 

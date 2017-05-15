@@ -15,8 +15,8 @@ const DropdownVariationsExamples = () => (
       examplePath='modules/Dropdown/Variations/DropdownExampleSearchInMenuScrolling'
     >
       <ContributionPrompt>
-        The example below shows the desired markup but is not functional.
-        Needs to be defined via shorthand, which is not yet possible.
+        Dropdown state is not fully managed when using the subcomponent API.
+        The shorthand props API fully manages state but needs to be extended to support the markup shown here.
       </ContributionPrompt>
     </ComponentExample>
     <ComponentExample

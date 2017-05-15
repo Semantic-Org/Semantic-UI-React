@@ -3,28 +3,27 @@ import { Dropdown, Icon } from 'semantic-ui-react'
 
 const trigger = (
   <span>
-    <Icon name='user' />
-    Hello, Bob
+    <Icon name='user' /> Hello, Bob
   </span>
 )
 
+const options = [
+  {
+    key: 'user',
+    text: <span>Signed in as <strong>Bob Smith</strong></span>,
+    disabled: true,
+  },
+  { key: 'profile', text: 'Your Profile' },
+  { key: 'stars', text: 'Your Stars' },
+  { key: 'explore', text: 'Explore' },
+  { key: 'integrations', text: 'Integrations' },
+  { key: 'help', text: 'Help' },
+  { key: 'settings', text: 'Settings' },
+  { key: 'sign-out', text: 'Sign Out' },
+]
+
 const DropdownTriggerExample = () => (
-  <Dropdown trigger={trigger}>
-    <Dropdown.Menu>
-      <Dropdown.Item disabled>
-        Signed in as <strong>Bob Smith</strong>
-      </Dropdown.Item>
-      <Dropdown.Divider />
-      <Dropdown.Item>Your Profile</Dropdown.Item>
-      <Dropdown.Item>Your Stars</Dropdown.Item>
-      <Dropdown.Item>Explore</Dropdown.Item>
-      <Dropdown.Item>Integrations</Dropdown.Item>
-      <Dropdown.Item>Help</Dropdown.Item>
-      <Dropdown.Divider />
-      <Dropdown.Item>Settings</Dropdown.Item>
-      <Dropdown.Item>Sign Out</Dropdown.Item>
-    </Dropdown.Menu>
-  </Dropdown>
+  <Dropdown trigger={trigger} options={options} />
 )
 
 export default DropdownTriggerExample

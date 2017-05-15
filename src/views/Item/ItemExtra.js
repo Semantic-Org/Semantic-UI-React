@@ -1,8 +1,10 @@
-import _ from 'lodash'
 import cx from 'classnames'
-import React, { PropTypes } from 'react'
+import _ from 'lodash'
+import PropTypes from 'prop-types'
+import React from 'react'
 
 import {
+  createShorthandFactory,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -10,15 +12,19 @@ import {
 } from '../../lib'
 
 /**
- * An item can contain extra content meant to be formatted separately from the main content
+ * An item can contain extra content meant to be formatted separately from the main content.
  */
 function ItemExtra(props) {
   const { children, className, content } = props
-  const classes = cx(className, 'extra')
+  const classes = cx('extra', className)
   const rest = getUnhandledProps(ItemExtra, props)
   const ElementType = getElementType(ItemExtra, props)
 
-  return <ElementType {...rest} className={classes}>{_.isNil(children) ? content : children}</ElementType>
+  return (
+    <ElementType {...rest} className={classes}>
+      {_.isNil(children) ? content : children}
+    </ElementType>
+  )
 }
 
 ItemExtra._meta = {
@@ -40,5 +46,7 @@ ItemExtra.propTypes = {
   /** Shorthand for primary content. */
   content: customPropTypes.contentShorthand,
 }
+
+ItemExtra.create = createShorthandFactory(ItemExtra, content => ({ content }))
 
 export default ItemExtra

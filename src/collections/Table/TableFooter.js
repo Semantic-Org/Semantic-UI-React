@@ -3,6 +3,9 @@ import React from 'react'
 import { META } from '../../lib'
 import TableHeader from './TableHeader'
 
+/**
+ * A table can have a footer.
+ */
 function TableFooter(props) {
   return <TableHeader {...props} />
 }

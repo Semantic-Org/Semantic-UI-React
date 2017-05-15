@@ -15,6 +15,11 @@ const CommentVariations = () => (
       description='Comments can hide extra information unless a user shows intent to interact with a comment.'
       examplePath='views/Comment/Variations/CommentExampleMinimal'
     />
+    <ComponentExample
+      title='Size'
+      description='Commments can have various sizes '
+      examplePath='views/Comment/Variations/CommentExampleGroupSize'
+    />
   </ExampleSection>
 )
 

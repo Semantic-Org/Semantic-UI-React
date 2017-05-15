@@ -4,6 +4,7 @@ import Button from 'src/elements/Button/Button'
 import ButtonContent from 'src/elements/Button/ButtonContent'
 import ButtonGroup from 'src/elements/Button/ButtonGroup'
 import ButtonOr from 'src/elements/Button/ButtonOr'
+import { SUI } from 'src/lib'
 import * as common from 'test/specs/commonTests'
 import { sandbox } from 'test/utils'
 
@@ -11,8 +12,8 @@ const syntheticEvent = { preventDefault: () => undefined }
 
 describe('Button', () => {
   common.isConformant(Button)
-  common.hasUIClassName(Button)
   common.hasSubComponents(Button, [ButtonContent, ButtonGroup, ButtonOr])
+  common.hasUIClassName(Button)
   common.rendersChildren(Button)
 
   common.implementsCreateMethod(Button)
@@ -24,7 +25,7 @@ describe('Button', () => {
     },
   })
 
-  common.propKeyAndValueToClassName(Button, 'floated')
+  common.propKeyAndValueToClassName(Button, 'floated', SUI.FLOATS)
 
   common.propKeyOnlyToClassName(Button, 'active')
   common.propKeyOnlyToClassName(Button, 'basic')
@@ -45,8 +46,17 @@ describe('Button', () => {
     className: 'labeled',
   })
 
-  common.propValueOnlyToClassName(Button, 'color')
-  common.propValueOnlyToClassName(Button, 'size')
+  common.propValueOnlyToClassName(Button, 'color', [
+    ...SUI.COLORS,
+    'facebook',
+    'twitter',
+    'google plus',
+    'vk',
+    'linkedin',
+    'instagram',
+    'youtube',
+  ])
+  common.propValueOnlyToClassName(Button, 'size', SUI.SIZES)
 
   it('renders a button by default', () => {
     shallow(<Button />)
@@ -93,6 +103,20 @@ describe('Button', () => {
     it('adds the labeled className to the root element', () => {
       shallow(<Button label='hi' />)
         .should.have.className('labeled')
+    })
+    it('contains children without disabled class when disabled attribute is set', () => {
+      const wrapper = shallow(<Button label='hi' disabled />)
+
+      wrapper.should.have.className('disabled')
+      wrapper.find('Label').should.not.have.className('disabled')
+      wrapper.find('button').should.not.have.className('disabled')
+    })
+    it('contains children without floated class when floated attribute is set', () => {
+      const wrapper = shallow(<Button label='hi' floated='left' />)
+
+      wrapper.should.have.className('floated')
+      wrapper.find('Label').should.not.have.className('floated')
+      wrapper.find('button').should.not.have.className('floated')
     })
     it('creates a basic pointing label', () => {
       shallow(<Button label='foo' />)

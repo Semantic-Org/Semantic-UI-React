@@ -5,7 +5,7 @@ const CardExampleGroups = () => (
   <Card.Group>
     <Card>
       <Card.Content>
-        <Image floated='right' size='mini' src='http://semantic-ui.com/images/avatar/large/steve.jpg' />
+        <Image floated='right' size='mini' src='/assets/images/avatar/large/steve.jpg' />
         <Card.Header>
           Steve Sanders
         </Card.Header>
@@ -25,7 +25,7 @@ const CardExampleGroups = () => (
     </Card>
     <Card>
       <Card.Content>
-        <Image floated='right' size='mini' src='http://semantic-ui.com/images/avatar2/large/molly.png' />
+        <Image floated='right' size='mini' src='/assets/images/avatar/large/molly.png' />
         <Card.Header>
           Molly Thomas
         </Card.Header>
@@ -45,7 +45,7 @@ const CardExampleGroups = () => (
     </Card>
     <Card>
       <Card.Content>
-        <Image floated='right' size='mini' src='http://semantic-ui.com/images/avatar/large/jenny.jpg' />
+        <Image floated='right' size='mini' src='/assets/images/avatar/large/jenny.jpg' />
         <Card.Header>
           Jenny Lawrence
         </Card.Header>

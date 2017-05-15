@@ -1,4 +1,7 @@
+import _ from 'lodash'
 import React from 'react'
+
+import { SUI } from 'src/lib'
 import Progress from 'src/modules/Progress/Progress'
 import * as common from 'test/specs/commonTests'
 
@@ -7,18 +10,18 @@ describe('Progress', () => {
   common.hasUIClassName(Progress)
   common.rendersChildren(Progress)
 
-  common.propValueOnlyToClassName(Progress, 'size')
-  common.propValueOnlyToClassName(Progress, 'color')
+  common.propKeyAndValueToClassName(Progress, 'attached', ['top', 'bottom'])
 
   common.propKeyOnlyToClassName(Progress, 'active')
-  common.propKeyOnlyToClassName(Progress, 'success')
-  common.propKeyOnlyToClassName(Progress, 'warning')
-  common.propKeyOnlyToClassName(Progress, 'error')
   common.propKeyOnlyToClassName(Progress, 'disabled')
+  common.propKeyOnlyToClassName(Progress, 'error')
   common.propKeyOnlyToClassName(Progress, 'indicating')
   common.propKeyOnlyToClassName(Progress, 'inverted')
+  common.propKeyOnlyToClassName(Progress, 'success')
+  common.propKeyOnlyToClassName(Progress, 'warning')
 
-  common.propKeyAndValueToClassName(Progress, 'attached')
+  common.propValueOnlyToClassName(Progress, 'color', SUI.COLORS)
+  common.propValueOnlyToClassName(Progress, 'size', _.without(SUI.SIZES, 'mini', 'huge', 'massive'))
 
   it('contains div with className bar', () => {
     shallow(<Progress />)
@@ -85,6 +88,28 @@ describe('Progress', () => {
     })
   })
 
+  describe('data-percent', () => {
+    it('adds prop by default', () => {
+      shallow(<Progress />)
+        .should.have.prop('data-percent', undefined)
+    })
+
+    it('passes value of percent prop', () => {
+      shallow(<Progress percent={10} />)
+        .should.have.prop('data-percent', 10)
+    })
+
+    it('floors the value of percent prop', () => {
+      shallow(<Progress percent={8.28} />)
+        .should.have.prop('data-percent', 8)
+    })
+
+    it('floors the results value and total props', () => {
+      shallow(<Progress value={828} total={10000} />)
+        .should.have.prop('data-percent', 8)
+    })
+  })
+
   describe('indicating', () => {
     it('adds the "active" class', () => {
       shallow(<Progress indicating />)
@@ -93,22 +118,11 @@ describe('Progress', () => {
   })
 
   describe('label', () => {
-    it('displays the progress as a percentage by default', () => {
-      shallow(<Progress percent={20} label />)
-        .should.have.descendants('.progress')
-        .and.contain.text('20%')
-    })
-    it('displays the progress as a ratio when set to "ratio"', () => {
-      shallow(<Progress label='ratio' value={1} total={2} />)
+    it('shows the label text when provided', () => {
+      shallow(<Progress label='some-label' />)
         .children()
-        .find('.progress')
-        .should.contain.text('1/2')
-    })
-    it('displays the progress as a percentage when set to "percent"', () => {
-      shallow(<Progress label='percent' value={1} total={2} />)
-        .children()
-        .find('.progress')
-        .should.contain.text('50%')
+        .find('.label')
+        .should.contain.text('some-label')
     })
   })
 
@@ -127,6 +141,23 @@ describe('Progress', () => {
       shallow(<Progress progress={false} />)
         .find('.bar')
         .should.not.have.descendants('.progress')
+    })
+    it('displays the progress as a percentage by default', () => {
+      shallow(<Progress percent={20} progress />)
+        .should.have.descendants('.progress')
+        .and.contain.text('20%')
+    })
+    it('displays the progress as a ratio when set to "ratio"', () => {
+      shallow(<Progress progress='ratio' value={1} total={2} />)
+        .children()
+        .find('.progress')
+        .should.contain.text('1/2')
+    })
+    it('displays the progress as a percentage when set to "percent"', () => {
+      shallow(<Progress progress='percent' value={1} total={2} />)
+        .children()
+        .find('.progress')
+        .should.contain.text('50%')
     })
     it('shows the percent complete', () => {
       shallow(<Progress percent={72} progress />)
@@ -188,7 +219,7 @@ describe('Progress', () => {
 
   describe('total/value', () => {
     it('calculates the percent complete', () => {
-      shallow(<Progress value={1} total={2} />)
+      shallow(<Progress value={1} total={2} progress />)
         .children()
         .find('.progress')
         .should.contain.text('50%')

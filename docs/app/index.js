@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import App from './App'
+import Router from './routes'
 
 // ----------------------------------------
 // Rendering
@@ -18,13 +18,13 @@ const render = (NewApp) => ReactDOM.render(<NewApp />, mountNode)
 if (__DEV__) {
   // When the application source code changes, re-render the whole thing.
   if (module.hot) {
-    module.hot.accept('./App', () => {
+    module.hot.accept('./routes', () => {
       // restore scroll
       const { scrollLeft, scrollTop } = document.scrollingElement
       ReactDOM.unmountComponentAtNode(mountNode)
 
       try {
-        render(require('./App').default)
+        render(require('./routes').default)
         document.scrollingElement.scrollTop = scrollTop
         document.scrollingElement.scrollLeft = scrollLeft
       } catch (e) {
@@ -38,4 +38,4 @@ if (__DEV__) {
 // Start the app
 // ----------------------------------------
 
-render(App)
+render(Router)

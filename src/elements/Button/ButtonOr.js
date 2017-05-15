@@ -1,5 +1,6 @@
 import cx from 'classnames'
-import React, { PropTypes } from 'react'
+import PropTypes from 'prop-types'
+import React from 'react'
 
 import {
   customPropTypes,
@@ -9,15 +10,15 @@ import {
 } from '../../lib'
 
 /**
- * Used in some Button types, such as `animated`
+ * Button groups can contain conditionals.
  */
 function ButtonOr(props) {
-  const { className } = props
+  const { className, text } = props
   const classes = cx('or', className)
   const rest = getUnhandledProps(ButtonOr, props)
   const ElementType = getElementType(ButtonOr, props)
 
-  return <ElementType {...rest} className={classes} />
+  return <ElementType {...rest} className={classes} data-text={text} />
 }
 
 ButtonOr._meta = {
@@ -32,6 +33,12 @@ ButtonOr.propTypes = {
 
   /** Additional classes. */
   className: PropTypes.string,
+
+  /** Or buttons can have their text localized, or adjusted by using the text prop. */
+  text: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string,
+  ]),
 }
 
 export default ButtonOr

@@ -1,10 +1,9 @@
-import cx from 'classnames'
-import _ from 'lodash'
 import React from 'react'
-import { sandbox } from 'test/utils'
 
-import Input, { htmlInputPropNames } from 'src/elements/Input/Input'
+import Input from 'src/elements/Input/Input'
+import { htmlInputProps, SUI } from 'src/lib'
 import * as common from 'test/specs/commonTests'
+import { sandbox } from 'test/utils'
 
 describe('Input', () => {
   common.isConformant(Input, {
@@ -52,43 +51,39 @@ describe('Input', () => {
     },
   })
   common.hasUIClassName(Input)
-  common.implementsCreateMethod(Input)
-  common.implementsLabelProp(Input, {
-    shorthandDefaultProps: elProps => ({
-      className: cx({
-        label: !_.includes(elProps.className, 'label'),
-      }),
-    }),
-  })
+  common.rendersChildren(Input)
+
   common.implementsButtonProp(Input, {
     propKey: 'action',
-    shorthandDefaultProps: elProps => ({
-      className: cx({
-        button: !_.includes(elProps.className, 'button'),
-      }),
-    }),
+    shorthandDefaultProps: { className: 'button' },
+  })
+  common.implementsCreateMethod(Input)
+  common.implementsLabelProp(Input, {
+    shorthandDefaultProps: { className: 'label' },
   })
   common.implementsHTMLInputProp(Input, {
     alwaysPresent: true,
     shorthandDefaultProps: { type: 'text' },
   })
 
-  common.propValueOnlyToClassName(Input, 'size')
-  common.propKeyAndValueToClassName(Input, 'actionPosition', { className: 'action' })
+  common.propKeyAndValueToClassName(Input, 'actionPosition', ['left'], { className: 'action' })
+  common.propKeyAndValueToClassName(Input, 'iconPosition', ['left'], { className: 'icon' })
+  common.propKeyAndValueToClassName(Input, 'labelPosition', ['left', 'right', 'left corner', 'right corner'], {
+    className: 'labeled',
+  })
+
   common.propKeyOnlyToClassName(Input, 'action')
   common.propKeyOnlyToClassName(Input, 'disabled')
   common.propKeyOnlyToClassName(Input, 'error')
-  common.propKeyOnlyToClassName(Input, 'focus')
   common.propKeyOnlyToClassName(Input, 'fluid')
+  common.propKeyOnlyToClassName(Input, 'focus')
   common.propKeyOnlyToClassName(Input, 'inverted')
-  common.propKeyAndValueToClassName(Input, 'labelPosition', { className: 'labeled' })
   common.propKeyOnlyToClassName(Input, 'label', { className: 'labeled' })
   common.propKeyOnlyToClassName(Input, 'loading')
   common.propKeyOnlyToClassName(Input, 'transparent')
-  common.propKeyAndValueToClassName(Input, 'iconPosition', { className: 'icon' })
   common.propKeyOnlyToClassName(Input, 'icon')
 
-  common.rendersChildren(Input)
+  common.propValueOnlyToClassName(Input, 'size', SUI.SIZES)
 
   it('renders with conditional children', () => {
     shallow(
@@ -108,7 +103,7 @@ describe('Input', () => {
   })
 
   describe('input props', () => {
-    htmlInputPropNames.forEach(propName => {
+    htmlInputProps.forEach(propName => {
       it(`passes \`${propName}\` to the <input>`, () => {
         const propValue = propName === 'onChange' ? () => null : 'foo'
         const wrapper = shallow(<Input {...{ [propName]: propValue }} />)
@@ -140,6 +135,22 @@ describe('Input', () => {
           .find('input')
           .should.have.prop(propName, expectedValue)
       })
+    })
+  })
+
+  describe('focus', () => {
+    it('can be set via a ref', () => {
+      const mountNode = document.createElement('div')
+      document.body.appendChild(mountNode)
+
+      const wrapper = mount(<Input />, { attachTo: mountNode })
+      wrapper.instance().focus()
+
+      const input = document.querySelector('.ui.input input')
+      document.activeElement.should.equal(input)
+
+      wrapper.detach()
+      document.body.removeChild(mountNode)
     })
   })
 
@@ -175,22 +186,55 @@ describe('Input', () => {
     })
   })
 
+  describe('ref', () => {
+    it('maintains ref on child node', () => {
+      const ref = sandbox.spy()
+      const mountNode = document.createElement('div')
+      document.body.appendChild(mountNode)
+
+      const wrapper = mount(<Input><input ref={ref} /></Input>, { attachTo: mountNode })
+      const input = document.querySelector('.ui.input input')
+
+      ref.should.have.been.calledOnce()
+      ref.should.have.been.calledWithMatch(input)
+      wrapper.instance().inputRef.should.equal(input)
+
+      wrapper.detach()
+      document.body.removeChild(mountNode)
+    })
+  })
+
+  describe('disabled', () => {
+    it('is applied to the underlying html input element', () => {
+      shallow(<Input disabled />)
+        .find('input')
+        .should.have.prop('disabled', true)
+
+      shallow(<Input disabled={false} />)
+        .find('input')
+        .should.have.not.prop('disabled')
+    })
+  })
+
   describe('tabIndex', () => {
     it('is not set by default', () => {
       shallow(<Input />)
         .find('input')
         .should.not.have.prop('tabIndex')
     })
+
     it('defaults to -1 when disabled', () => {
       shallow(<Input disabled />)
         .find('input')
         .should.have.prop('tabIndex', -1)
     })
+
     it('can be set explicitly', () => {
       shallow(<Input tabIndex={123} />)
         .find('input')
         .should.have.prop('tabIndex', 123)
     })
+
     it('can be set explicitly when disabled', () => {
       shallow(<Input tabIndex={123} disabled />)
         .find('input')

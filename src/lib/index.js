@@ -3,11 +3,13 @@ export * as childrenUtils from './childrenUtils'
 
 export {
   useKeyOnly,
-  useValueAndKey,
   useKeyOrValueAndKey,
-  useWidthProp,
+  useValueAndKey,
+
+  useOnlyProp,
   useTextAlignProp,
   useVerticalAlignProp,
+  useWidthProp,
 } from './classNameBuilders'
 
 export * as customPropTypes from './customPropTypes'
@@ -20,6 +22,14 @@ export {
 export * from './factories'
 export { default as getUnhandledProps } from './getUnhandledProps'
 export { default as getElementType } from './getElementType'
+
+export {
+  htmlInputAttrs,
+  htmlInputEvents,
+  htmlInputProps,
+  partitionHTMLInputProps,
+} from './htmlInputPropsUtils'
+
 export { default as isBrowser } from './isBrowser'
 export { default as leven } from './leven'
 export * as META from './META'

@@ -1,5 +1,6 @@
 import cx from 'classnames'
-import React, { Component, PropTypes } from 'react'
+import PropTypes from 'prop-types'
+import React, { Component } from 'react'
 
 import {
   customPropTypes,
@@ -15,11 +16,11 @@ import {
  */
 export default class RatingIcon extends Component {
   static propTypes = {
-    /** Indicates activity of an icon. */
-    active: PropTypes.bool,
-
     /** An element type to render as (string or function). */
     as: customPropTypes.as,
+
+    /** Indicates activity of an icon. */
+    active: PropTypes.bool,
 
     /** Additional classes. */
     className: PropTypes.string,
@@ -108,13 +109,13 @@ export default class RatingIcon extends Component {
 
     return (
       <ElementType
-        role='radio'
-        tabIndex={0}
         {...rest}
         className={classes}
-        onKeyUp={this.handleKeyUp}
         onClick={this.handleClick}
+        onKeyUp={this.handleKeyUp}
         onMouseEnter={this.handleMouseEnter}
+        tabIndex={0}
+        role='radio'
       />
     )
   }
