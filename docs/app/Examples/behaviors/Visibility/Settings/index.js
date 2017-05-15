@@ -11,7 +11,7 @@ const VisibilityExample = () => (
     />
     <ComponentExample
       title='Grouped callbacks'
-      description='You can specify a collection of callbacks that occur after different percentages or pixels of an element are passed'
+      description='You can specify callbacks that occur after different percentages or pixels of an element are passed'
       examplePath='behaviors/Visibility/Settings/GroupedCallbacksExample'
     />
   </ExampleSection>
