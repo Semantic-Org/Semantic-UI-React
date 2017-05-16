@@ -9,6 +9,9 @@ import {
   META,
 } from '../../lib'
 
+/**
+ * Visibility provides a set of callbacks for when a content appears in the viewport.
+ */
 export default class Visibility extends Component {
   static propTypes = {
     /** An element type to render as (string or function). */
@@ -18,55 +21,120 @@ export default class Visibility extends Component {
     children: PropTypes.node,
 
     /**
-     * When set to true a callback will occur anytime an element passes a
-     * condition not just immediately after the threshold is met.
-     **/
+     * When set to true a callback will occur anytime an element passes a condition not just immediately after the
+     * threshold is met.
+     */
     continuous: PropTypes.bool,
 
-    /** When set to false a callback will occur each time an element passes the threshold for a condition. **/
-    once: PropTypes.bool,
-
-    /** Element's top edge has passed bottom of screen **/
-    onUpdate: PropTypes.func,
-
-    /** Element's top edge has passed bottom of screen **/
-    onTopVisible: PropTypes.func,
-
-    /** Element's top edge has passed top of the screen	**/
-    onTopPassed: PropTypes.func,
-
-    /** Element's bottom edge has passed bottom of screen **/
-    onBottomVisible: PropTypes.func,
-
-    /** Any part of an element is visible on screen	**/
-    onPassing: PropTypes.func,
-
-    /** Element's bottom edge has passed top of screen **/
+    /**
+     * Element's bottom edge has passed top of screen.
+     *
+     * @param {null}
+     * @param {object} data - All props.
+     */
     onBottomPassed: PropTypes.func,
 
-    /** Element's top edge has not passed bottom of screen **/
-    onTopVisibleReverse: PropTypes.func,
-
-    /** Element's top edge has not passed top of the screen	**/
-    onTopPassedReverse: PropTypes.func,
-
-    /** Element's bottom edge has not passed bottom of screen **/
-    onBottomVisibleReverse: PropTypes.func,
-
-    /** Element's top has not passed top of screen but bottom has	**/
-    onPassingReverse: PropTypes.func,
-
-    /** Element's bottom edge has not passed top of screen **/
+    /**
+     * Element's bottom edge has not passed top of screen.
+     *
+     * @param {null}
+     * @param {object} data - All props.
+     */
     onBottomPassedReverse: PropTypes.func,
 
-    /** Element is visible on the screen **/
-    onOnScreen: PropTypes.func,
+    /**
+     * Element's bottom edge has passed bottom of screen
+     *
+     * @param {null}
+     * @param {object} data - All props.
+     */
+    onBottomVisible: PropTypes.func,
 
-    /** Element is not visible on the screen **/
+    /**
+     * Element's bottom edge has not passed bottom of screen.
+     *
+     * @param {null}
+     * @param {object} data - All props.
+     */
+    onBottomVisibleReverse: PropTypes.func,
+
+    /** When set to false a callback will occur each time an element passes the threshold for a condition. */
+    once: PropTypes.bool,
+
+    /** Element is not visible on the screen. */
+    onPassed: PropTypes.object,
+
+    /**
+     * Any part of an element is visible on screen.
+     *
+     * @param {null}
+     * @param {object} data - All props.
+     */
+    onPassing: PropTypes.func,
+
+    /**
+     * Element's top has not passed top of screen but bottom has.
+     *
+     * @param {null}
+     * @param {object} data - All props.
+     */
+    onPassingReverse: PropTypes.func,
+
+    /**
+     * Element is not visible on the screen.
+     *
+     * @param {null}
+     * @param {object} data - All props.
+     */
     onOffScreen: PropTypes.func,
 
-    /** Element is not visible on the screen **/
-    onPassed: PropTypes.object,
+    /**
+     * Element is visible on the screen.
+     *
+     * @param {null}
+     * @param {object} data - All props.
+     */
+    onOnScreen: PropTypes.func,
+
+    /**
+     * Element's top edge has passed top of the screen.
+     *
+     * @param {null}
+     * @param {object} data - All props.
+     */
+    onTopPassed: PropTypes.func,
+
+    /**
+     * Element's top edge has not passed top of the screen.
+     *
+     * @param {null}
+     * @param {object} data - All props.
+     */
+    onTopPassedReverse: PropTypes.func,
+
+    /**
+     * Element's top edge has passed bottom of screen.
+     *
+     * @param {null}
+     * @param {object} data - All props.
+     */
+    onTopVisible: PropTypes.func,
+
+    /**
+     * Element's top edge has not passed bottom of screen.
+     *
+     * @param {null}
+     * @param {object} data - All props.
+     */
+    onTopVisibleReverse: PropTypes.func,
+
+    /**
+     * Element's top edge has passed bottom of screen.
+     *
+     * @param {null}
+     * @param {object} data - All props.
+     */
+    onUpdate: PropTypes.func,
   }
 
   static defaultProps = {
@@ -114,7 +182,7 @@ export default class Visibility extends Component {
 
     // Always fire callback if continuous = true
     if (continuous) {
-      callback(this.calculations)
+      callback(null, { ...this.props, calculations: this.calculations })
       return
     }
 
@@ -122,7 +190,7 @@ export default class Visibility extends Component {
     if (once) {
       if (!_.includes(this.firedCallbacks, name)) {
         this.firedCallbacks.push(name)
-        callback(this.calculations)
+        callback(null, { ...this.props, calculations: this.calculations })
       }
 
       return
@@ -130,7 +198,7 @@ export default class Visibility extends Component {
 
     // Fire callback only if the value changed
     if (this.calculations[name] !== this.oldCalculations[name]) {
-      callback(this.calculations)
+      callback(null, { ...this.props, calculations: this.calculations })
     }
   }
 
@@ -150,13 +218,13 @@ export default class Visibility extends Component {
       onOnScreen,
     } = this.props
     const callbacks = {
-      topPassed: onTopPassed,
       bottomPassed: onBottomPassed,
-      topVisible: onTopVisible,
       bottomVisible: onBottomVisible,
       passing: onPassing,
-      onScreen: onOnScreen,
       offScreen: onOffScreen,
+      onScreen: onOnScreen,
+      topPassed: onTopPassed,
+      topVisible: onTopVisible,
     }
     const reverse = {
       bottomPassed: onBottomPassedReverse,
@@ -166,7 +234,7 @@ export default class Visibility extends Component {
       topVisible: onTopVisibleReverse,
     }
 
-    _.invoke(this.props, 'onUpdate', this.calculations)
+    _.invoke(this.props, 'onUpdate', null, { ...this.props, calculations: this.calculations })
     this.fireOnPassed()
 
     _.forEach(callbacks, (callback, name) => this.execute(callback, name))

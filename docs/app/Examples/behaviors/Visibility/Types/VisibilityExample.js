@@ -20,7 +20,7 @@ class VisibilityExample extends Component {
     },
   }
 
-  handleUpdate = calculations => this.setState({ calculations })
+  handleUpdate = (e, { calculations }) => this.setState({ calculations })
 
   render() {
     const { calculations } = this.state

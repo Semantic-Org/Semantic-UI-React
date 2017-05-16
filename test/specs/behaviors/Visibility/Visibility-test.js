@@ -107,17 +107,17 @@ describe('Visibility', () => {
     expectations.forEach(expectation => {
       it(`calculates ${expectation.name}`, () => {
         let calculations
-        const onUpdate = c => (calculations = c)
+        const onUpdate = (e, props) => (calculations = props.calculations)
         wrapperMount(<Visibility onUpdate={onUpdate} />)
 
         expectation.true.forEach(([top, bottom]) => {
           mockScroll(top, bottom)
-          expect(calculations[expectation.name]).to.equal(true, [top, bottom])
+          calculations[expectation.name].should.equal(true, [top, bottom])
         })
 
         expectation.false.forEach(([top, bottom]) => {
           mockScroll(top, bottom)
-          expect(calculations[expectation.name]).to.equal(false, [top, bottom])
+          calculations[expectation.name].should.equal(false, [top, bottom])
         })
       })
 
@@ -219,7 +219,7 @@ describe('Visibility', () => {
 
     it('passes calculations to onUpdate', () => {
       let calculations
-      const onUpdate = c => (calculations = c)
+      const onUpdate = (e, props) => (calculations = props.calculations)
 
       wrapperMount(<Visibility onUpdate={onUpdate} />)
       mockScroll(0, 0)
@@ -242,7 +242,7 @@ describe('Visibility', () => {
 
     it('updates width and height after scroll', () => {
       let calculations
-      const onUpdate = c => (calculations = c)
+      const onUpdate = (e, props) => (calculations = props.calculations)
       wrapperMount(<Visibility onUpdate={onUpdate} />)
 
       mockScroll(0, 100)
@@ -256,7 +256,7 @@ describe('Visibility', () => {
 
     it('shows passed pixels and percentage', () => {
       let calculations
-      const onUpdate = c => (calculations = c)
+      const onUpdate = (e, props) => (calculations = props.calculations)
       wrapperMount(<Visibility onUpdate={onUpdate} />)
 
       mockScroll(0, 100)
