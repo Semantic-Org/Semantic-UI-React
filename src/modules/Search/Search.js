@@ -57,7 +57,10 @@ export default class Search extends Component {
     noResultsDescription: PropTypes.string,
 
     /** Message to display when there are no results. */
-    noResultsMessage: PropTypes.string,
+    noResultsMessage: PropTypes.oneOfType([
+      PropTypes.node,
+      PropTypes.object,
+    ]),
 
     /** Controls whether or not the results menu is displayed. */
     open: PropTypes.bool,
