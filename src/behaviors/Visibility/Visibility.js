@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
 import {
+  customPropTypes,
   getElementType,
   getUnhandledProps,
   META,
@@ -10,6 +11,9 @@ import {
 
 export default class Visibility extends Component {
   static propTypes = {
+    /** An element type to render as (string or function). */
+    as: customPropTypes.as,
+
     /** Primary content. */
     children: PropTypes.node,
 
@@ -105,6 +109,8 @@ export default class Visibility extends Component {
     const { continuous, once } = this.props
 
     if (!callback) return
+    // Reverse callbacks aren't fired continuously
+    if (this.calculations[name] === false) return
 
     // Always fire callback if continuous = true
     if (continuous) {
@@ -113,9 +119,11 @@ export default class Visibility extends Component {
     }
 
     // If once = true, fire callback only if it wasn't fired before
-    if (once && !_.includes(this.firedCallbacks, name)) {
-      this.firedCallbacks.push(name)
-      callback(this.calculations)
+    if (once) {
+      if (!_.includes(this.firedCallbacks, name)) {
+        this.firedCallbacks.push(name)
+        callback(this.calculations)
+      }
 
       return
     }
@@ -124,6 +132,45 @@ export default class Visibility extends Component {
     if (this.calculations[name] !== this.oldCalculations[name]) {
       callback(this.calculations)
     }
+  }
+
+  fireCallbacks() {
+    const {
+      onBottomPassed,
+      onBottomPassedReverse,
+      onBottomVisible,
+      onBottomVisibleReverse,
+      onPassing,
+      onPassingReverse,
+      onTopPassed,
+      onTopPassedReverse,
+      onTopVisible,
+      onTopVisibleReverse,
+      onOffScreen,
+      onOnScreen,
+    } = this.props
+    const callbacks = {
+      topPassed: onTopPassed,
+      bottomPassed: onBottomPassed,
+      topVisible: onTopVisible,
+      bottomVisible: onBottomVisible,
+      passing: onPassing,
+      onScreen: onOnScreen,
+      offScreen: onOffScreen,
+    }
+    const reverse = {
+      bottomPassed: onBottomPassedReverse,
+      bottomVisible: onBottomVisibleReverse,
+      passing: onPassingReverse,
+      topPassed: onTopPassedReverse,
+      topVisible: onTopVisibleReverse,
+    }
+
+    _.invoke(this.props, 'onUpdate', this.calculations)
+    this.fireOnPassed()
+
+    _.forEach(callbacks, (callback, name) => this.execute(callback, name))
+    _.forEach(reverse, (callback, name) => this.execute(callback, name))
   }
 
   fireOnPassed = () => {
@@ -144,45 +191,6 @@ export default class Visibility extends Component {
       const percentageValue = Number(matchPercentage[1]) / 100
       if (percentagePassed >= percentageValue) this.execute(callback, passed)
     })
-  }
-
-  fireCallbacks = () => {
-    const {
-      onBottomVisible: bottomVisible,
-      onBottomPassed: bottomPassed,
-      onOffScreen: offScreen,
-      onOnScreen: onScreen,
-      onPassing: passing,
-      onTopPassed: topPassed,
-      onTopVisible: topVisible,
-      onBottomPassedReverse,
-      onBottomVisibleReverse,
-      onPassingReverse,
-      onTopPassedReverse,
-      onTopVisibleReverse,
-    } = this.props
-    const callbacks = {
-      bottomPassed,
-      bottomVisible,
-      onScreen,
-      offScreen,
-      passing,
-      topPassed,
-      topVisible,
-    }
-    const reverse = {
-      bottomPassed: onBottomPassedReverse,
-      bottomVisible: onBottomVisibleReverse,
-      passing: onPassingReverse,
-      topPassed: onTopPassedReverse,
-      topVisible: onTopVisibleReverse,
-    }
-
-    _.invoke(this.props, 'onUpdate', this.calculations)
-    this.fireOnPassed()
-
-    _.forEach(callbacks, this.execute)
-    _.forEach(reverse, this.execute)
   }
 
   handleRef = c => (this.ref = c)
@@ -207,11 +215,10 @@ export default class Visibility extends Component {
 
     this.oldCalculations = this.calculations
     this.calculations = {
-      height,
-      width,
       bottomPassed,
       bottomVisible,
       fits,
+      height,
       passing,
       percentagePassed,
       pixelsPassed,
@@ -219,6 +226,7 @@ export default class Visibility extends Component {
       onScreen,
       topPassed,
       topVisible,
+      width,
     }
 
     this.fireCallbacks()
