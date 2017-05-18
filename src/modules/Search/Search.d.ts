@@ -30,7 +30,7 @@ export interface SearchProps {
   noResultsDescription?: string;
 
   /** Message to display when there are no results. */
-  noResultsMessage?: string;
+  noResultsMessage?: React.ReactNode;
 
   /** Controls whether or not the results menu is displayed. */
   open?: boolean;
