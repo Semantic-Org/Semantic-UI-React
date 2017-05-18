@@ -84,7 +84,7 @@ const FormTypesExamples = () => (
     </ComponentExample>
 
     <ComponentExample
-      title='Accessible lables'
+      title='Accessible Labels'
       description='Adding an id to a shorthand Form.Field adds a matching htmlFor prop to the label.'
       examplePath='collections/Form/Shorthand/FormExampleFieldControlId'
     />
