@@ -1,5 +1,7 @@
+import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
+
 import {
   customPropTypes,
   getElementType,
@@ -24,8 +26,11 @@ class TextArea extends Component {
     /** Indicates whether height of the textarea fits the content or not. */
     autoHeight: PropTypes.bool,
 
-    /** Indicates a minimum height for textarea when using autoHeight. */
-    minHeight: PropTypes.number,
+    /** Indicates a minimum height for textarea. */
+    minHeight: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
 
     /**
      * Called on change.
@@ -34,8 +39,11 @@ class TextArea extends Component {
      */
     onChange: PropTypes.func,
 
-    /** Indicates row count for textarea with autoheight. */
+    /** Indicates row count for a TextArea. */
     rows: PropTypes.number,
+
+    /** Custom TextArea style. */
+    style: PropTypes.object,
 
     /** The value of the textarea. */
     value: PropTypes.string,
@@ -44,7 +52,7 @@ class TextArea extends Component {
   static defaultProps = {
     as: 'textarea',
     minHeight: 0,
-    rows: 1,
+    rows: 3,
   }
 
   componentDidMount() {
@@ -64,41 +72,40 @@ class TextArea extends Component {
 
   focus = () => (this.ref.focus())
 
-  handleChange = (e) => {
-    const { onChange } = this.props
-    if (onChange) onChange(e, { ...this.props, value: e.target && e.target.value })
+  handleChange = e => {
+    const value = _.get(e, 'target.value')
 
-    this.updateHeight(e.target)
+    _.invoke(this.props, 'onChange', e, { ...this.props, value })
+    this.updateHeight()
   }
 
   handleRef = c => (this.ref = c)
 
   removeAutoHeightStyles = () => {
-    this.ref.removeAttribute('rows')
     this.ref.style.height = null
-    this.ref.style.minHeight = null
     this.ref.style.resize = null
   }
 
   updateHeight = () => {
-    if (!this.ref) return
-
-    const { autoHeight, minHeight, rows } = this.props
-    if (!autoHeight) return
+    const { autoHeight } = this.props
+    if (!this.ref || !autoHeight) return
 
     let { borderTopWidth, borderBottomWidth } = window.getComputedStyle(this.ref)
     borderTopWidth = parseInt(borderTopWidth, 10)
     borderBottomWidth = parseInt(borderBottomWidth, 10)
 
-    this.ref.rows = rows
-    this.ref.style.minHeight = minHeight + 'px'
     this.ref.style.resize = 'none'
     this.ref.style.height = 'auto'
     this.ref.style.height = (this.ref.scrollHeight + borderTopWidth + borderBottomWidth) + 'px'
   }
 
   render() {
-    const { value } = this.props
+    const {
+      minHeight,
+      rows,
+      style,
+      value,
+    } = this.props
     const rest = getUnhandledProps(TextArea, this.props)
     const ElementType = getElementType(TextArea, this.props)
 
@@ -107,6 +114,8 @@ class TextArea extends Component {
         {...rest}
         onChange={this.handleChange}
         ref={this.handleRef}
+        rows={rows}
+        style={{ ...style, minHeight }}
         value={value}
       />
     )

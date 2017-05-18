@@ -10,17 +10,21 @@ export interface TextAreaProps {
   autoHeight?: boolean;
 
   /** Indicates a minimum height for textarea when using autoHeight. */
-  minHeight?: number;
+  minHeight?: number | string;
 
   /**
    * Called on change.
+   *
    * @param {SyntheticEvent} event - The React SyntheticEvent object
    * @param {object} data - All props and the event value.
    */
   onChange?: (event: React.FormEvent<HTMLTextAreaElement>, data: TextAreaOnChangeData) => void;
 
-  /** Indicates row count for textarea with autoheight. */
+  /** Indicates row count for a TextArea. */
   rows?: number;
+
+  /** Custom TextArea style. */
+  style?: Object;
 
   /** The value of the textarea. */
   value?: string;

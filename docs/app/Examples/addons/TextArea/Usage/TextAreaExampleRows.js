@@ -3,7 +3,7 @@ import { Form, TextArea } from 'semantic-ui-react'
 
 const TextAreaExampleRows = () => (
   <Form>
-    <TextArea placeholder='Try adding multiple lines' autoHeight rows={3} />
+    <TextArea rows={2} placeholder='Tell us more' />
   </Form>
 )
 
