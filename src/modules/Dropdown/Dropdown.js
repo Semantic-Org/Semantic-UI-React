@@ -140,6 +140,9 @@ export default class Dropdown extends Component {
     /** A dropdown can show that it is currently loading data. */
     loading: PropTypes.bool,
 
+    /** The minimum characters for a search to begin showing results. */
+    minCharacters: PropTypes.number,
+
     /** A selection dropdown can allow multiple selections. */
     multiple: PropTypes.bool,
 
@@ -335,6 +338,7 @@ export default class Dropdown extends Component {
     selectOnBlur: true,
     openOnFocus: true,
     closeOnBlur: true,
+    minCharacters: 1,
   }
 
   static autoControlledProps = [
@@ -714,13 +718,15 @@ export default class Dropdown extends Component {
 
     if (onSearchChange) onSearchChange(e, newQuery)
 
-    // open search dropdown on search query
-    if (search && newQuery && !open) this.open()
+    if (newQuery.length >= this.props.minCharacters) {
+      // open search dropdown on search query
+      if (search && newQuery && !open) this.open()
 
-    this.setState({
-      selectedIndex: 0,
-      searchQuery: newQuery,
-    })
+      this.setState({
+        selectedIndex: 0,
+        searchQuery: newQuery,
+      })
+    }
   }
 
   // ----------------------------------------
