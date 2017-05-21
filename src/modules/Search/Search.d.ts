@@ -27,7 +27,7 @@ export interface SearchProps {
   minCharacters?: number;
 
   /** Additional text for "No Results" message with less emphasis. */
-  noResultsDescription?: string;
+  noResultsDescription?: React.ReactNode;
 
   /** Message to display when there are no results. */
   noResultsMessage?: React.ReactNode;
