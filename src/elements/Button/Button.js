@@ -186,6 +186,13 @@ class Button extends Component {
     if (onClick) onClick(e, this.props)
   }
 
+  hasIconClass = () => {
+    const { labelPosition, children, content, icon } = this.props
+
+    if (icon === true) return true
+    return icon && (labelPosition || (_.isNil(children) && _.isNil(content)))
+  }
+
   render() {
     const {
       active,
@@ -222,7 +229,7 @@ class Button extends Component {
       useKeyOnly(circular, 'circular'),
       useKeyOnly(compact, 'compact'),
       useKeyOnly(fluid, 'fluid'),
-      useKeyOnly(icon === true || icon && (labelPosition || !children && !content), 'icon'),
+      useKeyOnly(this.hasIconClass(), 'icon'),
       useKeyOnly(inverted, 'inverted'),
       useKeyOnly(loading, 'loading'),
       useKeyOnly(negative, 'negative'),
