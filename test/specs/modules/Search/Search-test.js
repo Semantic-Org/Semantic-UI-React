@@ -696,12 +696,19 @@ describe('Search', () => {
         .find('.message.empty .header')
         .should.have.text('No results found.')
     })
-    it('uses custom noResultsMessage', () => {
+    it('uses custom string for noResultsMessage', () => {
       wrapperMount(<Search results={[]} minCharacters={0} noResultsMessage='Something custom' />)
 
       wrapper
         .find('.message.empty .header')
         .should.have.text('Something custom')
+    })
+    it('uses custom component for noResultsMessage', () => {
+      wrapperMount(<Search results={[]} minCharacters={0} noResultsMessage={<span>Test</span>} />)
+
+      wrapper
+        .find('.message.empty .header')
+        .should.contain.descendants('span')
     })
     it('uses custom noResultsDescription if present', () => {
       wrapperMount(<Search results={[]} minCharacters={0} noResultsDescription='Something custom' />)

@@ -5,6 +5,15 @@ export { default as Radio, RadioProps } from './dist/commonjs/addons/Radio';
 export { default as Select, SelectProps } from './dist/commonjs/addons/Select';
 export { default as TextArea, TextAreaProps, TextAreaOnChangeData } from './dist/commonjs/addons/TextArea';
 
+// Behaviors
+export {
+  default as Visibility,
+  VisibilityCalculations,
+  VisibilityEventData,
+  VisibilityOnPassed,
+  VisibilityProps
+} from './dist/commonjs/behaviors/Visibility';
+
 // Collections
 export { default as Breadcrumb, BreadcrumbProps } from './dist/commonjs/collections/Breadcrumb';
 export {

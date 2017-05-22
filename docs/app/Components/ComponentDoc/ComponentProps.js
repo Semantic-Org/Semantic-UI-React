@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
 import { Header, Icon, Popup, Table } from 'src'
-import { SUI } from 'src/lib'
 
 const extraDescriptionStyle = {
   color: '#666',
@@ -113,43 +112,22 @@ export default class ComponentProps extends Component {
     )
   }
 
-  expandEnums = (value) => {
-    const parts = value.split('.')
-    if (parts[0] === 'SUI') {
-      return SUI[parts[1]]
-    }
-    return value
-  }
-
-  renderEnums = (item) => {
-    if (item.type !== '{enum}') return
+  renderEnums = ({ name, type, value }) => {
+    if (type !== '{enum}' || !value) return
 
     const { showEnumsFor } = this.state
     const truncateAt = 10
-
-    if (!item.value) return null
-
-    const values = [].concat(item.value).reduce((accumulator, v) => {
-      return accumulator.concat(this.expandEnums(_.trim(v.value || v, '.\'')))
-    }, [])
-
-    const valueElements = _.map(values, val => <span key={val}><code>{val}</code> </span>)
+    const valueElements = _.map(value, val => <span key={val}><code>{val}</code> </span>)
 
     // show all if there are few
-    if (values.length < truncateAt) {
-      return (
-        <Extra title='Enums:' inline>
-          {valueElements}
-        </Extra>
-      )
-    }
+    if (value.length < truncateAt) return <Extra title='Enums:' inline>{valueElements}</Extra>
 
     // add button to show more when there are many values and it is not toggled
-    if (!showEnumsFor[item.name]) {
+    if (!showEnumsFor[name]) {
       return (
         <Extra title='Enums:' inline>
-          <a style={{ cursor: 'pointer' }} onClick={this.toggleEnumsFor(item.name)}>
-            Show all {values.length}
+          <a style={{ cursor: 'pointer' }} onClick={this.toggleEnumsFor(name)}>
+            Show all {value.length}
           </a>
           <div>{valueElements.slice(0, truncateAt - 1)}...</div>
         </Extra>
@@ -159,9 +137,7 @@ export default class ComponentProps extends Component {
     // add "show more" button when there are many
     return (
       <Extra title='Enums:' inline>
-        <a style={{ cursor: 'pointer' }} onClick={this.toggleEnumsFor(item.name)}>
-          Show less
-        </a>
+        <a style={{ cursor: 'pointer' }} onClick={this.toggleEnumsFor(name)}>Show less</a>
         <div>{valueElements}</div>
       </Extra>
     )
@@ -170,9 +146,9 @@ export default class ComponentProps extends Component {
   renderRow = item => {
     return (
       <Table.Row key={item.name}>
-        <Table.Cell>{this.renderName(item)}{this.renderRequired(item)}</Table.Cell>
-        <Table.Cell>{this.renderDefaultValue(item)}</Table.Cell>
-        <Table.Cell>{item.type}</Table.Cell>
+        <Table.Cell collapsing>{this.renderName(item)}{this.renderRequired(item)}</Table.Cell>
+        <Table.Cell collapsing>{this.renderDefaultValue(item)}</Table.Cell>
+        <Table.Cell collapsing>{item.type}</Table.Cell>
         <Table.Cell>
           {item.description && <p>{item.description}</p>}
           {this.renderFunctionSignature(item)}

@@ -1,9 +1,10 @@
-const _ = require('lodash')
 const gutil = require('gulp-util')
-const docgen = require('react-docgen')
-const doctrine = require('doctrine')
-const through = require('through2')
+const _ = require('lodash')
 const path = require('path')
+const docgen = require('react-docgen')
+const through = require('through2')
+
+const { parseDocBlock, parseType } = require('./util')
 
 module.exports = (filename) => {
   const defaultFilename = 'docgenInfo.json'
@@ -11,10 +12,6 @@ module.exports = (filename) => {
   const pluginName = 'gulp-react-docgen'
   let finalFile
   let latestFile
-
-  function parseDocBlock(docBlock) {
-    return doctrine.parse(docBlock || '', { unwrap: true })
-  }
 
   function bufferContents(file, enc, cb) {
     latestFile = file
@@ -37,9 +34,11 @@ module.exports = (filename) => {
       parsed.docBlock = parseDocBlock(parsed.description)
       delete parsed.description
 
-      // replace prop `description` strings with a parsed doc block object
+      // replace prop `description` strings with a parsed doc block object and updated `type`
       _.each(parsed.props, (propDef, propName) => {
         parsed.props[propName].docBlock = parseDocBlock(propDef.description)
+        parsed.props[propName].type = parseType(propDef)
+
         delete parsed.props[propName].description
       })
 

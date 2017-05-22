@@ -140,6 +140,9 @@ export default class Dropdown extends Component {
     /** A dropdown can show that it is currently loading data. */
     loading: PropTypes.bool,
 
+    /** The minimum characters for a search to begin showing results. */
+    minCharacters: PropTypes.number,
+
     /** A selection dropdown can allow multiple selections. */
     multiple: PropTypes.bool,
 
@@ -335,6 +338,7 @@ export default class Dropdown extends Component {
     selectOnBlur: true,
     openOnFocus: true,
     closeOnBlur: true,
+    minCharacters: 1,
   }
 
   static autoControlledProps = [
@@ -686,6 +690,12 @@ export default class Dropdown extends Component {
 
   handleBlur = (e) => {
     debug('handleBlur()')
+
+    // Heads up! Don't remove this.
+    // https://github.com/Semantic-Org/Semantic-UI-React/issues/1315
+    const currentTarget = _.get(e, 'currentTarget')
+    if (currentTarget && currentTarget.contains(document.activeElement)) return
+
     const { closeOnBlur, multiple, onBlur, selectOnBlur } = this.props
     // do not "blur" when the mouse is down inside of the Dropdown
     if (this.isMouseDown) return
@@ -702,19 +712,21 @@ export default class Dropdown extends Component {
     debug(e.target.value)
     // prevent propagating to this.props.onChange()
     e.stopPropagation()
-    const { search, onSearchChange } = this.props
+    const { search, onSearchChange, minCharacters } = this.props
     const { open } = this.state
     const newQuery = e.target.value
 
     if (onSearchChange) onSearchChange(e, newQuery)
 
-    // open search dropdown on search query
-    if (search && newQuery && !open) this.open()
+    if (newQuery.length >= minCharacters) {
+      // open search dropdown on search query
+      if (search && newQuery && !open) this.open()
 
-    this.setState({
-      selectedIndex: 0,
-      searchQuery: newQuery,
-    })
+      this.setState({
+        selectedIndex: 0,
+        searchQuery: newQuery,
+      })
+    }
   }
 
   // ----------------------------------------
@@ -1058,8 +1070,8 @@ export default class Dropdown extends Component {
     return (
       <select type='hidden' aria-hidden='true' name={name} value={value} multiple={multiple}>
         <option value='' />
-        {_.map(options, option => (
-          <option key={option.value} value={option.value}>{option.text}</option>
+        {_.map(options, (option, i) => (
+          <option key={option.key || option.value} value={option.value}>{option.text}</option>
         ))}
       </select>
     )
@@ -1124,7 +1136,7 @@ export default class Dropdown extends Component {
       const defaultProps = {
         active: item.value === selectedLabel,
         as: 'a',
-        key: item.value,
+        key: item.key || item.value,
         onClick: this.handleLabelClick,
         onRemove: this.handleLabelRemove,
         value: item.value,
@@ -1150,17 +1162,14 @@ export default class Dropdown extends Component {
       ? optValue => _.includes(value, optValue)
       : optValue => optValue === value
 
-    return _.map(options, (opt, i) => (
-      <DropdownItem
-        key={`${opt.value}-${i}`}
-        active={isActive(opt.value)}
-        onClick={this.handleItemClick}
-        selected={selectedIndex === i}
-        {...opt}
-        // Needed for handling click events on disabled items
-        style={{ ...opt.style, pointerEvents: 'all' }}
-      />
-    ))
+    return _.map(options, (opt, i) => DropdownItem.create({
+      active: isActive(opt.value),
+      onClick: this.handleItemClick,
+      selected: selectedIndex === i,
+      ...opt,
+      // Needed for handling click events on disabled items
+      style: { ...opt.style, pointerEvents: 'all' },
+    }))
   }
 
   renderMenu = () => {
