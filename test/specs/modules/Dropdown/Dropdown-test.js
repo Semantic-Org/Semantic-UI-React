@@ -1604,7 +1604,7 @@ describe('Dropdown', () => {
       dropdownMenuIsOpen()
     })
 
-    it('Don\'t open the menu on change if query\'s length is less than minCharacters', () => {
+    it("Don't open the menu on change if query's length is less than minCharacters", () => {
       wrapperMount(<Dropdown options={options} selection search minCharacters={4} />)
 
       dropdownMenuIsClosed()
