@@ -9,7 +9,7 @@ import helpers from './commonHelpers'
 const componentCtx = require.context(
   '../../../src/',
   true,
-  /(addons|collections|elements|modules|views).\w+.(?!index)\w+.js/
+  /(addons|behaviors|collections|elements|modules|views).\w+.(?!index)\w+.js/
 )
 
 const componentInfo = componentCtx.keys().map(key => {
