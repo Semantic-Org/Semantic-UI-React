@@ -118,7 +118,7 @@ Once you change the flag, you need to refresh your browser to see the changes in
 |-----------------|-----------------|-----------------|-----------------|--------------------|
 | ✓ Button        | ✓ Breadcrumb    | ✓ Advertisement | ✓ Accordion     |   Form Validation  |
 | ✓ Container     | ✓ Form          | ✓ Card          | ✓ Checkbox      | *API (NA)*         |
-| ✓ Divider       | ✓ Grid          | ✓ Comment       | ✓ Dimmer        | *Visibility (NA)*  |
+| ✓ Divider       | ✓ Grid          | ✓ Comment       | ✓ Dimmer        | ✓ Visibility (NA)  |
 | ✓ Flag          | ✓ Menu          | ✓ Feed          | ✓ Dropdown      |                    |
 | ✓ Header        | ✓ Message       | ✓ Item          | ✓ Embed         |                    |
 | ✓ Icon          | ✓ Table         | ✓ Statistic     | ✓ Modal         |                    |
