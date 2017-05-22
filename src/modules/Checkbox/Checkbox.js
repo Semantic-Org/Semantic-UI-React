@@ -109,8 +109,8 @@ export default class Checkbox extends Component {
     /** The HTML input value. */
     value: PropTypes.oneOfType([
       PropTypes.string,
-      PropTypes.number
-    ])
+      PropTypes.number,
+    ]),
   }
 
   static defaultProps = {
