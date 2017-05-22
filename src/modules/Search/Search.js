@@ -54,10 +54,10 @@ export default class Search extends Component {
     minCharacters: PropTypes.number,
 
     /** Additional text for "No Results" message with less emphasis. */
-    noResultsDescription: PropTypes.string,
+    noResultsDescription: PropTypes.node,
 
     /** Message to display when there are no results. */
-    noResultsMessage: PropTypes.string,
+    noResultsMessage: PropTypes.node,
 
     /** Controls whether or not the results menu is displayed. */
     open: PropTypes.bool,
