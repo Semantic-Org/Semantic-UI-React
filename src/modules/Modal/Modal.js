@@ -14,7 +14,6 @@ import {
   META,
   useKeyOnly,
 } from '../../lib'
-import Button from '../../elements/Button'
 import Icon from '../../elements/Icon'
 import Portal from '../../addons/Portal'
 import ModalHeader from './ModalHeader'
@@ -35,7 +34,7 @@ class Modal extends Component {
     as: customPropTypes.as,
 
     /** Shorthand for Modal.Actions. Typically an array of button shorthand. */
-    actions: customPropTypes.itemShorthand,
+    actions: customPropTypes.collectionShorthand,
 
     /** A modal can reduce its complexity */
     basic: PropTypes.bool,
@@ -72,6 +71,14 @@ class Modal extends Component {
 
     /** The node where the modal should mount. Defaults to document.body. */
     mountNode: PropTypes.any,
+
+    /**
+     * Action onClick handler when using shorthand `actions`.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props.
+     */
+    onActionClick: PropTypes.func,
 
     /**
      * Called when a close event happens.
@@ -151,6 +158,8 @@ class Modal extends Component {
   handleActionsOverrides = predefinedProps => ({
     onActionClick: (e, actionProps) => {
       _.invoke(predefinedProps, 'onActionClick', e, actionProps)
+      _.invoke(this.props, 'onActionClick', e, this.props)
+
       this.handleClose(e)
     },
   })

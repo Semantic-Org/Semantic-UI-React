@@ -14,7 +14,7 @@ export interface ModalProps extends PortalProps {
   as?: any;
 
   /** A Modal can be passed action buttons via shorthand. */
-  actions?: any;
+  actions?: Array<any>;
 
   /** A Modal can reduce its complexity */
   basic?: boolean;
@@ -48,6 +48,14 @@ export interface ModalProps extends PortalProps {
 
   /** The node where the modal should mount. Defaults to document.body. */
   mountNode?: any;
+
+  /**
+   * Action onClick handler when using shorthand `actions`.
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props.
+   */
+  onActionClick?: (event: React.MouseEvent<HTMLElement>, data: ModalProps) => void;
 
   /**
    * Called when a close event happens.

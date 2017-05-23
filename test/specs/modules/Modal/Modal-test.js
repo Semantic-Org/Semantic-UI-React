@@ -105,10 +105,10 @@ describe('Modal', () => {
 
   describe('actions', () => {
     it('closes the modal on action click', () => {
-      wrapperMount(<Modal defaultOpen actions={['OK']} />)
+      wrapperMount(<Modal actions={['OK']} defaultOpen />)
 
       assertBodyContains('.ui.modal')
-      domEvent.click('.ui.modal.actions .button')
+      domEvent.click('.ui.modal .actions .button')
       assertBodyContains('.ui.modal', false)
     })
   })
@@ -117,16 +117,13 @@ describe('Modal', () => {
     it('is called when an action is clicked', () => {
       const onActionClick = sandbox.spy()
       const event = { target: null }
+      const props = { actions: ['OK'], defaultOpen: true, onActionClick }
 
-      wrapperMount(
-        <Modal defaultOpen>
-          <Modal.Actions></Modal.Actions>
-        </Modal>
-      )
+      wrapperMount(<Modal {...props} />)
+      domEvent.click('.ui.modal .actions .button')
 
-      domEvent.click('.button:last-child')
       onActionClick.should.have.been.calledOnce()
-      onActionClick.should.have.been.calledWithMatch(event, { content: 'OK' })
+      onActionClick.should.have.been.calledWithMatch(event, props)
     })
   })
 
