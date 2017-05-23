@@ -6,7 +6,14 @@ import { languageOptions } from '../common'
 
 const DropdownExampleSearchDropdown = () => (
   <Dropdown text='Select Language' 
-  search floating labeled button className='icon' icon='world' options={languageOptions} />
+    search 
+    floating 
+    labeled 
+    button 
+    className='icon' 
+    icon='world' 
+    options={languageOptions} 
+  />
 )
 
 export default DropdownExampleSearchDropdown
