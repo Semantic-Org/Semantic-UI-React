@@ -337,7 +337,7 @@ export const countryOptions = [
   { key: 'zw', value: 'zw', flag: 'zw', text: 'Zimbabwe' },
 ]
 
-export const languages = [
+export const languageOptions = [
   { key: 'Arabic', text: 'Arabic', value: 'Arabic' },
   { key: 'Chinese', text: 'Chinese', value: 'Chinese' },
   { key: 'Danish', text: 'Danish', value: 'Danish' },
