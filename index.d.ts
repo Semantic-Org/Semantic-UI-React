@@ -111,6 +111,9 @@ export { default as StepDescription, StepDescriptionProps } from './dist/commonj
 export { default as StepGroup, StepGroupProps } from './dist/commonjs/elements/Step/StepGroup';
 export { default as StepTitle, StepTitleProps } from './dist/commonjs/elements/Step/StepTitle';
 
+// Generics
+export * from './dist/commonjs';
+
 // Modules
 export { default as Accordion, AccordionProps } from './dist/commonjs/modules/Accordion/Accordion';
 export { default as AccordionContent, AccordionContentProps } from './dist/commonjs/modules/Accordion/AccordionContent';
