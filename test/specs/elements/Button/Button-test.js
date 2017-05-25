@@ -77,6 +77,8 @@ describe('Button', () => {
         .should.have.className('icon')
     })
     it('does not add className icon when there is content', () => {
+      shallow(<Button icon='user' content={0} />)
+        .should.not.have.className('icon')
       shallow(<Button icon='user' content='Yo' />)
         .should.not.have.className('icon')
     })

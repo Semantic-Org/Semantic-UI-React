@@ -31,7 +31,7 @@ import FormTextArea from './FormTextArea'
  * @see Message
  * @see Radio
  * @see Select
- * @see TextArea
+ * @see Visibility
  */
 function Form(props) {
   const {
