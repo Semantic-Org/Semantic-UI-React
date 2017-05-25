@@ -720,23 +720,24 @@ export default class Dropdown extends Component {
   handleSearchChange = (e, { value }) => {
     debug('handleSearchChange()')
     debug(value)
+
     // prevent propagating to this.props.onChange()
     e.stopPropagation()
-    const { search, onSearchChange, minCharacters } = this.props
+
+    const { minCharacters, onSearchChange, search } = this.props
     const { open } = this.state
     const newQuery = value
 
     if (onSearchChange) onSearchChange(e, newQuery)
+    if (newQuery.length < minCharacters) return
 
-    if (newQuery.length >= minCharacters) {
-      // open search dropdown on search query
-      if (search && newQuery && !open) this.open()
+    // open search dropdown on search query
+    if (search && newQuery && !open) this.open()
 
-      this.setState({
-        selectedIndex: 0,
-        searchQuery: newQuery,
-      })
-    }
+    this.setState({
+      selectedIndex: 0,
+      searchQuery: newQuery,
+    })
   }
 
   // ----------------------------------------
