@@ -1,7 +1,7 @@
 {
-  "name": "semantic-ui-react-example-webpack1",
+  "name": "semantic-ui-react-example-webpack2",
   "version": "1.0.0",
-  "description": "Get started with Semantic UI React and Webpack 1",
+  "description": "Get started with Semantic UI React and Webpack 2",
   "main": "index.js",
   "scripts": {
     "build": "webpack",
@@ -19,7 +19,7 @@
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "semantic-ui-react": "^0.68.3",
-    "webpack": "^1.12.14"
+    "webpack": "^2.3.0"
   },
   "devDependencies": {
     "webpack-bundle-analyzer": "^2.3.1"

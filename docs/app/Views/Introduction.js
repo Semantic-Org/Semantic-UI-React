@@ -206,7 +206,7 @@ const Introduction = () => (
       <Header as='h2' dividing>Augmentation</Header>
       <p>
         Control the rendered HTML tag, or render one component <code>as</code> another component.
-        Extra props are passed to the component you are rending <code>as</code>.
+        Extra props are passed to the component you are rendering <code>as</code>.
       </p>
 
       <p>

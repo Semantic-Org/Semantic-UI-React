@@ -5,6 +5,15 @@ export { default as Radio, RadioProps } from './dist/commonjs/addons/Radio';
 export { default as Select, SelectProps } from './dist/commonjs/addons/Select';
 export { default as TextArea, TextAreaProps, TextAreaOnChangeData } from './dist/commonjs/addons/TextArea';
 
+// Behaviors
+export {
+  default as Visibility,
+  VisibilityCalculations,
+  VisibilityEventData,
+  VisibilityOnPassed,
+  VisibilityProps
+} from './dist/commonjs/behaviors/Visibility';
+
 // Collections
 export { default as Breadcrumb, BreadcrumbProps } from './dist/commonjs/collections/Breadcrumb';
 export {
@@ -101,6 +110,9 @@ export { default as StepContent, StepContentProps } from './dist/commonjs/elemen
 export { default as StepDescription, StepDescriptionProps } from './dist/commonjs/elements/Step/StepDescription';
 export { default as StepGroup, StepGroupProps } from './dist/commonjs/elements/Step/StepGroup';
 export { default as StepTitle, StepTitleProps } from './dist/commonjs/elements/Step/StepTitle';
+
+// Generics
+export * from './dist/commonjs';
 
 // Modules
 export { default as Accordion, AccordionProps } from './dist/commonjs/modules/Accordion/Accordion';
