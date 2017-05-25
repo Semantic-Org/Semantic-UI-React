@@ -73,8 +73,8 @@ describe('TextArea', () => {
       assertHeight('') // no height
     })
 
-    it('depends on minHeight value', () => {
-      wrapperMount(<TextArea autoHeight minHeight={50} style={style} />)
+    it('depends on minHeight value of style', () => {
+      wrapperMount(<TextArea autoHeight style={{ ...style, minHeight: 50 }} />)
       assertHeight('50px', '50px')
     })
 
@@ -130,23 +130,6 @@ describe('TextArea', () => {
     })
   })
 
-  describe('minHeight', () => {
-    it('has default value', () => {
-      shallow(<TextArea />)
-        .should.have.style('min-height', '0')
-    })
-
-    it('sets number value', () => {
-      shallow(<TextArea minHeight={10} />)
-        .should.have.style('min-height', '10px')
-    })
-
-    it('sets string value', () => {
-      shallow(<TextArea minHeight='10em' />)
-        .should.have.style('min-height', '10em')
-    })
-  })
-
   describe('onChange', () => {
     it('is called with (e, data) on change', () => {
       const spy = sandbox.spy()
@@ -180,6 +163,21 @@ describe('TextArea', () => {
       wrapperShallow(<TextArea style={style} />)
       wrapper.should.have.style('margin-top', '1em')
       wrapper.should.have.style('top', '0')
+    })
+
+    it('has default value of minHeight', () => {
+      shallow(<TextArea />)
+        .should.have.style('min-height', '0')
+    })
+
+    it('sets number value of minHeight', () => {
+      shallow(<TextArea style={{ minHeight: 10 }} />)
+        .should.have.style('min-height', '10px')
+    })
+
+    it('sets string value of minHeight', () => {
+      shallow(<TextArea style={{ minHeight: '10em' }} />)
+        .should.have.style('min-height', '10em')
     })
   })
 })

@@ -3,7 +3,7 @@ import { Form, TextArea } from 'semantic-ui-react'
 
 const TextAreaExampleAutoHeightMinHeight = () => (
   <Form>
-    <TextArea autoHeight minHeight={100} placeholder='Try adding multiple lines' />
+    <TextArea autoHeight placeholder='Try adding multiple lines' style={{ minHeight: 100 }} />
   </Form>
 )
 

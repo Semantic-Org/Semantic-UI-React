@@ -26,12 +26,6 @@ class TextArea extends Component {
     /** Indicates whether height of the textarea fits the content or not. */
     autoHeight: PropTypes.bool,
 
-    /** Indicates a minimum height for textarea. */
-    minHeight: PropTypes.oneOfType([
-      PropTypes.number,
-      PropTypes.string,
-    ]),
-
     /**
      * Called on change.
      * @param {SyntheticEvent} event - The React SyntheticEvent object
@@ -51,7 +45,6 @@ class TextArea extends Component {
 
   static defaultProps = {
     as: 'textarea',
-    minHeight: 0,
     rows: 3,
   }
 
@@ -100,12 +93,9 @@ class TextArea extends Component {
   }
 
   render() {
-    const {
-      minHeight,
-      rows,
-      style,
-      value,
-    } = this.props
+    const { rows, style, value } = this.props
+    const minHeight = _.get(style, 'minHeight', 0)
+
     const rest = getUnhandledProps(TextArea, this.props)
     const ElementType = getElementType(TextArea, this.props)
 

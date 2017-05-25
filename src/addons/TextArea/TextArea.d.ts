@@ -9,9 +9,6 @@ export interface TextAreaProps {
   /** Indicates whether height of the textarea fits the content or not. */
   autoHeight?: boolean;
 
-  /** Indicates a minimum height for textarea when using autoHeight. */
-  minHeight?: number | string;
-
   /**
    * Called on change.
    *
