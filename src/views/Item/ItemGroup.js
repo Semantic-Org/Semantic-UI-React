@@ -24,12 +24,14 @@ function ItemGroup(props) {
     items,
     link,
     relaxed,
+    unstackable,
   } = props
 
   const classes = cx(
     'ui',
     useKeyOnly(divided, 'divided'),
     useKeyOnly(link, 'link'),
+    useKeyOnly(unstackable, 'unstackable'),
     useKeyOrValueAndKey(relaxed, 'relaxed'),
     'items',
     className,
@@ -81,6 +83,9 @@ ItemGroup.propTypes = {
     PropTypes.bool,
     PropTypes.oneOf(['very']),
   ]),
+
+  /** Prevent items from stacking on mobile. */
+  unstackable: PropTypes.bool,
 }
 
 export default ItemGroup

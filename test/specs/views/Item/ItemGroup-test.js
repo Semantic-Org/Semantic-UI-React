@@ -11,6 +11,7 @@ describe('ItemGroup', () => {
 
   common.propKeyOnlyToClassName(ItemGroup, 'divided')
   common.propKeyOnlyToClassName(ItemGroup, 'link')
+  common.propKeyOnlyToClassName(ItemGroup, 'unstackable')
 
   common.propKeyOrValueAndKeyToClassName(ItemGroup, 'relaxed', ['very'])
 
