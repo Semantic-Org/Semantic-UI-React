@@ -1,5 +1,57 @@
 # Change Log
 
+## [v0.68.4](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.68.4) (2017-05-27)
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.68.3...v0.68.4)
+
+**Implemented enhancements:**
+
+- Grid: should have inverted prop [\#1673](https://github.com/Semantic-Org/Semantic-UI-React/issues/1673)
+- Search: invalid PropType noResultMessage [\#1664](https://github.com/Semantic-Org/Semantic-UI-React/issues/1664)
+- minCharacters and saveRemoteData for Dropdown setting missing? [\#1124](https://github.com/Semantic-Org/Semantic-UI-React/issues/1124)
+- feat\(Item\): add unstackable prop to ItemGroup [\#1706](https://github.com/Semantic-Org/Semantic-UI-React/pull/1706) ([layershifter](https://github.com/layershifter))
+- feat\(typings\): export generic types [\#1698](https://github.com/Semantic-Org/Semantic-UI-React/pull/1698) ([fabien0102](https://github.com/fabien0102))
+- feat\(Visibility\): add component [\#1174](https://github.com/Semantic-Org/Semantic-UI-React/pull/1174) ([mariolamacchia](https://github.com/mariolamacchia))
+
+**Fixed bugs:**
+
+- Button: Icon button has different width if content is 0 \(number\) [\#1691](https://github.com/Semantic-Org/Semantic-UI-React/issues/1691)
+- Progress: indicating bar displaying wrong color with decimal value [\#1671](https://github.com/Semantic-Org/Semantic-UI-React/issues/1671)
+- Dropdown won't open in IE if openOnFocus is false [\#1315](https://github.com/Semantic-Org/Semantic-UI-React/issues/1315)
+
+**Closed issues:**
+
+- Failed to Compile error using react-scripts@1.0.2 [\#1700](https://github.com/Semantic-Org/Semantic-UI-React/issues/1700)
+- Button: redundant prop in Vertical Group example [\#1697](https://github.com/Semantic-Org/Semantic-UI-React/issues/1697)
+- fix\(Modal\): your description [\#1696](https://github.com/Semantic-Org/Semantic-UI-React/issues/1696)
+- Render button with content and icon take about 70ms [\#1686](https://github.com/Semantic-Org/Semantic-UI-React/issues/1686)
+- Modal:  Flickering when size is set to Large or small [\#1675](https://github.com/Semantic-Org/Semantic-UI-React/issues/1675)
+- Suggestion: Arbitrary objects passed to Search results? [\#1670](https://github.com/Semantic-Org/Semantic-UI-React/issues/1670)
+- Popup with grid + map doesn't layout properly [\#1660](https://github.com/Semantic-Org/Semantic-UI-React/issues/1660)
+- Search component value [\#1655](https://github.com/Semantic-Org/Semantic-UI-React/issues/1655)
+- Dropdown: Should work with keys instead of values [\#1634](https://github.com/Semantic-Org/Semantic-UI-React/issues/1634)
+- Docs -\> Form -\> Props -\> Size property - Showing lodash 'without' function [\#1563](https://github.com/Semantic-Org/Semantic-UI-React/issues/1563)
+
+**Merged pull requests:**
+
+- docs\(Introduction\): fix declarative example [\#1704](https://github.com/Semantic-Org/Semantic-UI-React/pull/1704) ([aabustamante](https://github.com/aabustamante))
+- docs\(Button\): remove redundant prop in Vertical Group example [\#1699](https://github.com/Semantic-Org/Semantic-UI-React/pull/1699) ([andreipfeiffer](https://github.com/andreipfeiffer))
+- docs\(Dropdown\): fix world icon in search example [\#1695](https://github.com/Semantic-Org/Semantic-UI-React/pull/1695) ([aabustamante](https://github.com/aabustamante))
+- fix\(Checkbox\): fix value prop types [\#1694](https://github.com/Semantic-Org/Semantic-UI-React/pull/1694) ([fabien0102](https://github.com/fabien0102))
+- fix\(Button\): fix handling of icon class [\#1693](https://github.com/Semantic-Org/Semantic-UI-React/pull/1693) ([layershifter](https://github.com/layershifter))
+- chore\(package\): update chai-enzyme to version 0.7.0 [\#1692](https://github.com/Semantic-Org/Semantic-UI-React/pull/1692) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+- feat\(Dropdown\): Add minCharacters prop [\#1690](https://github.com/Semantic-Org/Semantic-UI-React/pull/1690) ([dyesseyumba](https://github.com/dyesseyumba))
+- docs\(Form\): fix typo [\#1685](https://github.com/Semantic-Org/Semantic-UI-React/pull/1685) ([gitname](https://github.com/gitname))
+- docs\(Introduction\): fix typo [\#1684](https://github.com/Semantic-Org/Semantic-UI-React/pull/1684) ([gitname](https://github.com/gitname))
+- feat\(Search\): noResultsMessage prop can be a node [\#1683](https://github.com/Semantic-Org/Semantic-UI-React/pull/1683) ([b0gok](https://github.com/b0gok))
+- docs\(types\): fix type definitions [\#1678](https://github.com/Semantic-Org/Semantic-UI-React/pull/1678) ([layershifter](https://github.com/layershifter))
+- feat\(Grid\): add inverted prop and usage example to docs [\#1677](https://github.com/Semantic-Org/Semantic-UI-React/pull/1677) ([josie11](https://github.com/josie11))
+- fix\(Progress\): use floor for data-percent attribute [\#1672](https://github.com/Semantic-Org/Semantic-UI-React/pull/1672) ([patrickgaskill](https://github.com/patrickgaskill))
+- fix\(Dropdown\): fix compatibility with IE [\#1667](https://github.com/Semantic-Org/Semantic-UI-React/pull/1667) ([layershifter](https://github.com/layershifter))
+- Update gh-pages to version 1.0.0 🚀 [\#1662](https://github.com/Semantic-Org/Semantic-UI-React/pull/1662) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+- fix\(docs\): fix compatibility with IE [\#1659](https://github.com/Semantic-Org/Semantic-UI-React/pull/1659) ([layershifter](https://github.com/layershifter))
+- fix\(Dropdown\): fix key handling for options [\#1639](https://github.com/Semantic-Org/Semantic-UI-React/pull/1639) ([davezuko](https://github.com/davezuko))
+- docs\(bundlers\): add webpack 2 example [\#1497](https://github.com/Semantic-Org/Semantic-UI-React/pull/1497) ([layershifter](https://github.com/layershifter))
+
 ## [v0.68.3](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.68.3) (2017-05-06)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.68.2...v0.68.3)
 
@@ -45,7 +97,7 @@
 **Merged pull requests:**
 
 - chore\(package\): update mocha@3.3.0 [\#1615](https://github.com/Semantic-Org/Semantic-UI-React/pull/1615) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
-- fix\(acc\): fix default prop dev warning [\#1613](https://github.com/Semantic-Org/Semantic-UI-React/pull/1613) ([sirJconny](https://github.com/sirJconny))
+- fix\(acc\): fix default prop dev warning [\#1613](https://github.com/Semantic-Org/Semantic-UI-React/pull/1613) ([jonmajorc](https://github.com/jonmajorc))
 - test\(typings\): initial tests for typings [\#1611](https://github.com/Semantic-Org/Semantic-UI-React/pull/1611) ([layershifter](https://github.com/layershifter))
 - chore\(package\): update copy-to-clipboard@3.0.6 [\#1610](https://github.com/Semantic-Org/Semantic-UI-React/pull/1610) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
 
@@ -1609,7 +1661,7 @@
 
 **Merged pull requests:**
 
-- fix\(Button\): render `labeled` as a \<button\> [\#597](https://github.com/Semantic-Org/Semantic-UI-React/pull/597) ([yesmin](https://github.com/yesmin))
+- fix\(Button\): render `labeled` as a \<button\> [\#597](https://github.com/Semantic-Org/Semantic-UI-React/pull/597) ([dmitriyshmatov](https://github.com/dmitriyshmatov))
 
 ## [v0.52.4](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.52.4) (2016-10-03)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.52.3...v0.52.4)
@@ -1650,7 +1702,7 @@
 **Implemented enhancements:**
 
 - feat\(Table\): add `attached` prop [\#591](https://github.com/Semantic-Org/Semantic-UI-React/issues/591)
-- feat\(Table\): add `attached` prop [\#593](https://github.com/Semantic-Org/Semantic-UI-React/pull/593) ([yesmin](https://github.com/yesmin))
+- feat\(Table\): add `attached` prop [\#593](https://github.com/Semantic-Org/Semantic-UI-React/pull/593) ([dmitriyshmatov](https://github.com/dmitriyshmatov))
 
 ## [v0.52.1](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.52.1) (2016-10-03)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.52.0...v0.52.1)
