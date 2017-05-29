@@ -57,7 +57,7 @@ export default class IconSearch extends Component {
   state = { search: '', includeSimilar: true }
 
   componentDidMount() {
-    const input = document.querySelector('#docs-icon-set-input input')
+    const input = document.querySelector('#docs-icon-set-input')
     input.focus()
   }
 
