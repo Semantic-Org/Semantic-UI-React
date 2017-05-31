@@ -77,7 +77,7 @@
     "babel-preset-stage-1": "^6.5.0",
     "babel-register": "^6.24.1",
     "babel-standalone": "^6.24.0",
-    "chai": "^3.5.0",
+    "chai": "^4.0.1",
     "chai-enzyme": "^0.7.0",
     "connect-history-api-fallback": "^1.2.0",
     "copy-to-clipboard": "^3.0.6",
