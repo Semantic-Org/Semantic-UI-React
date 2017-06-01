@@ -1,6 +1,7 @@
-import _ from 'lodash'
 import cx from 'classnames'
-import React, { createElement, PropTypes } from 'react'
+import _ from 'lodash'
+import PropTypes from 'prop-types'
+import React, { createElement } from 'react'
 
 import {
   createHTMLLabel,
@@ -16,7 +17,7 @@ import Checkbox from '../../modules/Checkbox'
 import Radio from '../../addons/Radio'
 
 /**
- * A field is a form element containing a label and an input
+ * A field is a form element containing a label and an input.
  * @see Form
  * @see Button
  * @see Checkbox
@@ -24,7 +25,7 @@ import Radio from '../../addons/Radio'
  * @see Input
  * @see Radio
  * @see Select
- * @see TextArea
+ * @see Visibility
  */
 function FormField(props) {
   const {
@@ -93,7 +94,9 @@ function FormField(props) {
 
   return (
     <ElementType className={classes}>
-      {createHTMLLabel(label)}
+      {createHTMLLabel(label, { defaultProps: {
+        htmlFor: _.get(controlProps, 'id') },
+      })}
       {createElement(control, controlProps)}
     </ElementType>
   )
@@ -103,15 +106,6 @@ FormField._meta = {
   name: 'FormField',
   parent: 'Form',
   type: META.TYPES.COLLECTION,
-  props: {
-    width: SUI.WIDTHS,
-    control: [
-      'button',
-      'input',
-      'select',
-      'textarea',
-    ],
-  },
 }
 
 FormField.propTypes = {
@@ -131,16 +125,16 @@ FormField.propTypes = {
    */
   control: customPropTypes.some([
     PropTypes.func,
-    PropTypes.oneOf(FormField._meta.props.control),
+    PropTypes.oneOf(['button', 'input', 'select', 'textarea']),
   ]),
 
-  /** Individual fields may be disabled */
+  /** Individual fields may be disabled. */
   disabled: PropTypes.bool,
 
-  /** Individual fields may display an error state */
+  /** Individual fields may display an error state. */
   error: PropTypes.bool,
 
-  /** A field can have its label next to instead of above it */
+  /** A field can have its label next to instead of above it. */
   inline: PropTypes.bool,
 
   // Heads Up!
@@ -152,11 +146,8 @@ FormField.propTypes = {
     PropTypes.object,
   ]),
 
-  /** A field can show that input is mandatory.  Requires a label. */
-  required: customPropTypes.every([
-    customPropTypes.demand(['label']),
-    PropTypes.bool,
-  ]),
+  /** A field can show that input is mandatory. */
+  required: PropTypes.bool,
 
   /** Passed to the control component (i.e. <input type='password' />) */
   type: customPropTypes.every([
@@ -167,7 +158,7 @@ FormField.propTypes = {
   ]),
 
   /** A field can specify its width in grid columns */
-  width: PropTypes.oneOf(FormField._meta.props.width),
+  width: PropTypes.oneOf(SUI.WIDTHS),
 }
 
 export default FormField

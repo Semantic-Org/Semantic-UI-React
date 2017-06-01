@@ -57,7 +57,7 @@ export default class IconSearch extends Component {
   state = { search: '', includeSimilar: true }
 
   componentDidMount() {
-    const input = document.querySelector('#docs-icon-set-input input')
+    const input = document.querySelector('#docs-icon-set-input')
     input.focus()
   }
 
@@ -66,8 +66,7 @@ export default class IconSearch extends Component {
   handleIncludeSimilarChange = (e, { checked }) => this.setState({ includeSimilar: checked })
 
   copy = (text) => () => {
-    const { sourceCode } = this.state
-    copyToClipboard(sourceCode)
+    copyToClipboard(text)
     this.setState({ copied: true })
     setTimeout(() => this.setState({ copied: false }), 1000)
   }
@@ -75,11 +74,14 @@ export default class IconSearch extends Component {
   renderIconColumn = (name) => (
     <Popup
       key={name}
-      mouseEnterDelay={500}
+      mouseEnterDelay={1000}
       inverted
-      hoverable={false}
+      closeOnTriggerClick={false}
+      closeOnRootNodeClick={false}
+      closeOnDocumentClick={false}
+      style={{ width: '8em', textAlign: 'center' }}
       size='mini'
-      positioning='top center'
+      position='top center'
       content={this.state.copied ? 'Copied!' : 'Click to copy'}
       trigger={(
         <Grid.Column className='docs-icon-set-column' onClick={this.copy(name)}>

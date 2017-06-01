@@ -14,6 +14,11 @@ const SearchVariationsExamples = () => (
       description='A search can have its results aligned to its left or right container edge.'
       examplePath='modules/Search/Variations/SearchExampleAligned'
     />
+    <ComponentExample
+      title='Input'
+      description='A search can be passed an input via shorthand props.'
+      examplePath='modules/Search/Variations/SearchExampleInput'
+    />
   </ExampleSection>
 )
 

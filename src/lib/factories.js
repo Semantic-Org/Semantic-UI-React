@@ -3,47 +3,6 @@ import cx from 'classnames'
 import React, { cloneElement, isValidElement } from 'react'
 
 // ============================================================
-// Factory Utilities
-// ============================================================
-/**
- * A pure function that generates a unique child key hash code from an element's props.
- *
- * @param {object} props A ReactElement's props object.
- * @returns {number}
- */
-export const getChildKey = (props) => {
-  const { key, childKey } = props
-
-  // already defines a key
-  if (key) return key
-
-  // defines a childKey function or value
-  if (childKey) return typeof childKey === 'function' ? childKey(props) : childKey
-
-  // 1. Stringify props to a short as possible run on string of key/values.
-  // 2. Don't stringify entire functions, use the function name || 'f'.
-  // 3. Generate a short hash number from the string.
-  //     props  : { color: 'red', onClick: handleClick }
-  //     string : 'color:"red",onClick:handleClick'
-  //     hash   : 110042245
-  return Object.keys(props).map(name => {
-    const val = props[name]
-    const type = typeof val
-
-    const valueString = type === 'string' && val
-      || type === 'number' && val
-      || type === 'boolean' && (val ? 'true' : 'false')
-      || type === 'function' && (val.name || 'function')
-      || Array.isArray(val) && ['[', val.join(','), ']'].join('')
-      || val === null && 'null'
-      || type === 'object' && ['{', Object.keys(val).map(k => [k, ':', val[k]].join('')), '}'].join('')
-      || val === undefined && 'undefined'
-
-    return [name, ':', valueString].join('')
-  }).join(',')
-}
-
-// ============================================================
 // Factories
 // ============================================================
 
@@ -53,42 +12,84 @@ export const getChildKey = (props) => {
  * @param {function|string} Component A ReactClass or string
  * @param {function} mapValueToProps A function that maps a primitive value to the Component props
  * @param {string|object|function} val The value to create a ReactElement from
- * @param {object|function} [defaultProps={}] Default props object or function (called with regular props).
- * @param {boolean} [generateKey=false] Whether or not to generate a child key, useful for collections.
+ * @param {Object} [options={}]
+ * @param {object} [options.defaultProps={}] Default props object
+ * @param {object|function} [options.overrideProps={}] Override props object or function (called with regular props)
  * @returns {object|null}
  */
-export function createShorthand(Component, mapValueToProps, val, defaultProps = {}, generateKey = false) {
+export function createShorthand(Component, mapValueToProps, val, options = {}) {
   if (typeof Component !== 'function' && typeof Component !== 'string') {
     throw new Error('createShorthandFactory() Component must be a string or function.')
   }
-  // short circuit for disabling shorthand
-  if (val === null) return null
+  // short circuit noop values
+  if (_.isNil(val) || _.isBoolean(val)) return null
+
+  const valIsString = _.isString(val)
+  const valIsNumber = _.isNumber(val)
 
   const isReactElement = isValidElement(val)
   const isPropsObject = _.isPlainObject(val)
-  const isPrimitiveValue = _.isString(val) || _.isNumber(val) || _.isArray(val)
+  const isPrimitiveValue = valIsString || valIsNumber || _.isArray(val)
+
+  // unhandled type return null
+  /* eslint-disable no-console */
+  if (!isReactElement && !isPropsObject && !isPrimitiveValue) {
+    if (process.env.NODE_ENV !== 'production') {
+      console.error([
+        'Shorthand value must be a string|number|array|object|ReactElement.',
+        ' Use null|undefined|boolean for none',
+        ` Received ${typeof val}.`,
+      ].join(''))
+    }
+    return null
+  }
+  /* eslint-enable no-console */
 
   // ----------------------------------------
   // Build up props
   // ----------------------------------------
+  const { defaultProps = {} } = options
 
   // User's props
-  const usersProps = isReactElement && val.props
-    || isPropsObject && val
-    || isPrimitiveValue && mapValueToProps(val)
+  const usersProps = isReactElement && val.props || isPropsObject && val || isPrimitiveValue && mapValueToProps(val)
 
-  // Default props
-  defaultProps = _.isFunction(defaultProps) ? defaultProps(usersProps) : defaultProps
+  // Override props
+  let { overrideProps = {} } = options
+  overrideProps = _.isFunction(overrideProps) ? overrideProps({ ...defaultProps, ...usersProps }) : overrideProps
 
-  // Merge props and className
-  const props = { ...defaultProps, ...usersProps }
+  // Merge props
+  /* eslint-disable react/prop-types */
+  const props = { ...defaultProps, ...usersProps, ...overrideProps }
 
-  if (_.has(usersProps, 'className') || _.has(defaultProps.className)) {
-    props.className = cx(defaultProps.className, usersProps.className) // eslint-disable-line react/prop-types
+  // Merge className
+  if (defaultProps.className || overrideProps.className || usersProps.className) {
+    const mergedClassesNames = cx(defaultProps.className, overrideProps.className, usersProps.className)
+    props.className = _.uniq(mergedClassesNames.split(' ')).join(' ')
   }
 
-  // Generate child key
-  if (generateKey) props.key = getChildKey(props) // eslint-disable-line react/prop-types
+  // Merge style
+  if (defaultProps.style || overrideProps.style || usersProps.style) {
+    props.style = { ...defaultProps.style, ...usersProps.style, ...overrideProps.style }
+  }
+
+  // ----------------------------------------
+  // Get key
+  // ----------------------------------------
+
+  // Use key, childKey, or generate key
+  if (!props.key) {
+    const { childKey } = props
+
+    if (childKey) {
+      // apply and consume the childKey
+      props.key = typeof childKey === 'function' ? childKey(props) : childKey
+      delete props.childKey
+    } else if (valIsString || valIsNumber) {
+      // use string/number shorthand values as the key
+      props.key = val
+    }
+  }
+  /* eslint-enable react/prop-types */
 
   // ----------------------------------------
   // Create Element
@@ -99,36 +100,32 @@ export function createShorthand(Component, mapValueToProps, val, defaultProps = 
 
   // Create ReactElements from built up props
   if (isPrimitiveValue || isPropsObject) return <Component {...props} />
-
-  // Otherwise null
-  return null
 }
 
 // ============================================================
-// Factories Creators
+// Factory Creators
 // ============================================================
 
 /**
- * Creates a `createShorthand` function that is waiting for a value and defaultProps.
+ * Creates a `createShorthand` function that is waiting for a value and options.
  *
  * @param {function|string} Component A ReactClass or string
  * @param {function} mapValueToProps A function that maps a primitive value to the Component props
- * @param {boolean} [generateKey] Whether or not to generate a child key, useful for collections.
- * @return {function} A shorthand factory function waiting for `val` and `defaultProps`.
+ * @returns {function} A shorthand factory function waiting for `val` and `defaultProps`.
  */
-export function createShorthandFactory(Component, mapValueToProps, generateKey) {
+export function createShorthandFactory(Component, mapValueToProps) {
   if (typeof Component !== 'function' && typeof Component !== 'string') {
     throw new Error('createShorthandFactory() Component must be a string or function.')
   }
 
-  return (val, defaultProps) => {
-    return createShorthand(Component, mapValueToProps, val, defaultProps, generateKey)
-  }
+  return (val, options) => createShorthand(Component, mapValueToProps, val, options)
 }
 
 // ============================================================
 // HTML Factories
 // ============================================================
-export const createHTMLImage = createShorthandFactory('img', value => ({ src: value }))
-export const createHTMLInput = createShorthandFactory('input', value => ({ type: value }))
-export const createHTMLLabel = createShorthandFactory('label', value => ({ children: value }))
+export const createHTMLDivision = createShorthandFactory('div', val => ({ children: val }))
+export const createHTMLImage = createShorthandFactory('img', val => ({ src: val }))
+export const createHTMLInput = createShorthandFactory('input', val => ({ type: val }))
+export const createHTMLLabel = createShorthandFactory('label', val => ({ children: val }))
+export const createHTMLParagraph = createShorthandFactory('p', val => ({ children: val }))

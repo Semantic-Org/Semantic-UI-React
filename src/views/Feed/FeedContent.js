@@ -1,6 +1,7 @@
-import _ from 'lodash'
 import cx from 'classnames'
-import React, { PropTypes } from 'react'
+import _ from 'lodash'
+import PropTypes from 'prop-types'
+import React from 'react'
 
 import {
   createShorthand,
@@ -15,8 +16,18 @@ import FeedMeta from './FeedMeta'
 import FeedSummary from './FeedSummary'
 
 function FeedContent(props) {
-  const { children, className, content, extraImages, extraText, date, meta, summary } = props
-  const classes = cx(className, 'content')
+  const {
+    children,
+    className,
+    content,
+    extraImages,
+    extraText,
+    date,
+    meta,
+    summary,
+  } = props
+
+  const classes = cx('content', className)
   const rest = getUnhandledProps(FeedContent, props)
   const ElementType = getElementType(FeedContent, props)
 

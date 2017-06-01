@@ -1,5 +1,5 @@
 import React from 'react'
-import { Dropdown, Menu } from 'semantic-ui-react'
+import { Dropdown, Icon, Menu } from 'semantic-ui-react'
 
 const DropdownExamplePointing = () => (
   <Menu>
@@ -10,7 +10,7 @@ const DropdownExamplePointing = () => (
       <Dropdown.Menu>
         <Dropdown.Header>Categories</Dropdown.Header>
         <Dropdown.Item>
-          <i className='dropdown icon'></i>
+          <Icon name='dropdown' />
           <span className='text'>Clothing</span>
           <Dropdown.Menu>
             <Dropdown.Header>Mens</Dropdown.Header>

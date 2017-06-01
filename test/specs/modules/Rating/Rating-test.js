@@ -1,9 +1,10 @@
 import _ from 'lodash'
 import React from 'react'
 
+import { SUI } from 'src/lib'
+import Rating from 'src/modules/Rating/Rating'
 import * as common from 'test/specs/commonTests'
 import { sandbox } from 'test/utils'
-import Rating from 'src/modules/Rating/Rating'
 
 describe('Rating', () => {
   common.isConformant(Rating)
@@ -11,8 +12,8 @@ describe('Rating', () => {
 
   common.propKeyOnlyToClassName(Rating, 'disabled')
 
-  common.propValueOnlyToClassName(Rating, 'size')
-  common.propValueOnlyToClassName(Rating, 'icon')
+  common.propValueOnlyToClassName(Rating, 'icon', ['star', 'heart'])
+  common.propValueOnlyToClassName(Rating, 'size', _.without(SUI.SIZES, 'medium', 'big'))
 
   describe('clicking on icons', () => {
     it('makes icons active up to and including the clicked icon', () => {

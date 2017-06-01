@@ -5,6 +5,9 @@ export { default as Radio } from './addons/Radio'
 export { default as Select } from './addons/Select'
 export { default as TextArea } from './addons/TextArea'
 
+// Behaviors
+export { default as Visibility } from './behaviors/Visibility'
+
 // Collections
 export { default as Breadcrumb } from './collections/Breadcrumb'
 export { default as BreadcrumbDivider } from './collections/Breadcrumb/BreadcrumbDivider'
@@ -139,6 +142,8 @@ export { default as SidebarPushable } from './modules/Sidebar/SidebarPushable'
 export { default as SidebarPusher } from './modules/Sidebar/SidebarPusher'
 
 // Views
+export { default as Advertisement } from './views/Advertisement'
+
 export { default as Card } from './views/Card/Card'
 export { default as CardContent } from './views/Card/CardContent'
 export { default as CardDescription } from './views/Card/CardDescription'

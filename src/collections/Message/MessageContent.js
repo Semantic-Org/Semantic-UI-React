@@ -1,5 +1,6 @@
 import cx from 'classnames'
-import React, { PropTypes } from 'react'
+import PropTypes from 'prop-types'
+import React from 'react'
 
 import {
   customPropTypes,
@@ -8,6 +9,9 @@ import {
   META,
 } from '../../lib'
 
+/**
+ * A message can contain a content.
+ */
 function MessageContent(props) {
   const { children, className } = props
   const classes = cx('content', className)

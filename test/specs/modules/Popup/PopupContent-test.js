@@ -4,4 +4,6 @@ import * as common from 'test/specs/commonTests'
 describe('PopupContent', () => {
   common.isConformant(PopupContent)
   common.rendersChildren(PopupContent)
+
+  common.implementsCreateMethod(PopupContent)
 })

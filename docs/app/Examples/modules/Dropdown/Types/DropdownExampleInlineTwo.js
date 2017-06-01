@@ -1,37 +1,24 @@
 import React from 'react'
 import { Dropdown, Header, Icon } from 'semantic-ui-react'
 
-/**
- * Heads up!
- *
- * SUI core has these 4 fields on the Dropdown.Item:
- *
- * "name"  : "Choice 1", // name displayed in dropdown
- * "value" : "value1", // selected value
- * "text"  : "Choice 1" // name displayed after selection (optional)
- * "disabled"  : false // whether field should be displayed as disabled (optional)
- *
- * We don't currently make a distinction between 'text' and 'name', but this
- * example does in the core docs. It would be a breaking change and so let's
- * save the change for a larger refactor. Also, we should also probably
- * use 'content' instead of 'name' to stick with the conventions of this project.
- */
-
 const options = [
   {
+    key: 'today',
     text: 'today',
     value: 'today',
-    // content: 'Today',
+    content: 'Today',
   },
   {
+    key: 'this week',
     text: 'this week',
     value: 'this week',
-    // content: 'This Week',
+    content: 'This Week',
   },
   {
+    key: 'this month',
     text: 'this month',
     value: 'this month',
-    // content: 'This Month',
+    content: 'This Month',
   },
 ]
 

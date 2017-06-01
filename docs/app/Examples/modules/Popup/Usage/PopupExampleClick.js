@@ -6,7 +6,7 @@ const PopupExampleClick = () => (
     trigger={<Button color='red' icon='flask' content='Activate doomsday device' />}
     content={<Button color='green' content='Confirm the launch' />}
     on='click'
-    positioning='top right'
+    position='top right'
   />
 )
 

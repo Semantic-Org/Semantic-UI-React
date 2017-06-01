@@ -1,6 +1,7 @@
-import _ from 'lodash'
 import cx from 'classnames'
-import React, { PropTypes } from 'react'
+import _ from 'lodash'
+import PropTypes from 'prop-types'
+import React from 'react'
 
 import {
   customPropTypes,
@@ -47,11 +48,6 @@ function Rail(props) {
 Rail._meta = {
   name: 'Rail',
   type: META.TYPES.ELEMENT,
-  props: {
-    close: ['very'],
-    position: SUI.FLOATS,
-    size: _.without(SUI.SIZES, 'medium'),
-  },
 }
 
 Rail.propTypes = {
@@ -70,7 +66,7 @@ Rail.propTypes = {
   /** A rail can appear closer to the main viewport. */
   close: PropTypes.oneOfType([
     PropTypes.bool,
-    PropTypes.oneOf(Rail._meta.props.close),
+    PropTypes.oneOf(['very']),
   ]),
 
   /** A rail can create a division between itself and a container. */
@@ -80,10 +76,10 @@ Rail.propTypes = {
   internal: PropTypes.bool,
 
   /** A rail can be presented on the left or right side of a container. */
-  position: PropTypes.oneOf(Rail._meta.props.position).isRequired,
+  position: PropTypes.oneOf(SUI.FLOATS).isRequired,
 
   /** A rail can have different sizes. */
-  size: PropTypes.oneOf(Rail._meta.props.size),
+  size: PropTypes.oneOf(_.without(SUI.SIZES, 'medium')),
 }
 
 export default Rail

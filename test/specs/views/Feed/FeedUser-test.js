@@ -1,8 +1,8 @@
 import faker from 'faker'
 import React from 'react'
 
-import * as common from 'test/specs/commonTests'
 import FeedUser from 'src/views/Feed/FeedUser'
+import * as common from 'test/specs/commonTests'
 
 describe('FeedUser', () => {
   common.isConformant(FeedUser)

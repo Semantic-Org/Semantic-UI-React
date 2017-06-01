@@ -1,5 +1,6 @@
 import cx from 'classnames'
-import React, { PropTypes } from 'react'
+import PropTypes from 'prop-types'
+import React from 'react'
 
 import {
   customPropTypes,
@@ -9,6 +10,9 @@ import {
   useKeyOnly,
 } from '../../lib'
 
+/**
+ * A table can have a header.
+ */
 function TableHeader(props) {
   const { children, className, fullWidth } = props
   const classes = cx(

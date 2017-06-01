@@ -8,7 +8,7 @@ const LoaderExampleIndeterminate = () => (
         <Loader indeterminate>Preparing Files</Loader>
       </Dimmer>
 
-      <Image src='http://semantic-ui.com/images/wireframe/short-paragraph.png' />
+      <Image src='/assets/images/wireframe/short-paragraph.png' />
     </Segment>
   </div>
 )

@@ -3,19 +3,19 @@ import { Progress, Segment } from 'semantic-ui-react'
 
 const ProgressExampleInvertedColor = () => (
   <Segment inverted>
-    <Progress percent={32} inverted color='red' label />
-    <Progress percent={59} inverted color='orange' label />
-    <Progress percent={13} inverted color='yellow' label />
-    <Progress percent={37} inverted color='olive' label />
-    <Progress percent={83} inverted color='green' label />
-    <Progress percent={23} inverted color='teal' label />
-    <Progress percent={85} inverted color='blue' label />
-    <Progress percent={38} inverted color='violet' label />
-    <Progress percent={47} inverted color='purple' label />
-    <Progress percent={29} inverted color='pink' label />
-    <Progress percent={68} inverted color='brown' label />
-    <Progress percent={36} inverted color='grey' label />
-    <Progress percent={72} inverted color='black' label />
+    <Progress percent={32} inverted color='red' progress />
+    <Progress percent={59} inverted color='orange' progress />
+    <Progress percent={13} inverted color='yellow' progress />
+    <Progress percent={37} inverted color='olive' progress />
+    <Progress percent={83} inverted color='green' progress />
+    <Progress percent={23} inverted color='teal' progress />
+    <Progress percent={85} inverted color='blue' progress />
+    <Progress percent={38} inverted color='violet' progress />
+    <Progress percent={47} inverted color='purple' progress />
+    <Progress percent={29} inverted color='pink' progress />
+    <Progress percent={68} inverted color='brown' progress />
+    <Progress percent={36} inverted color='grey' progress />
+    <Progress percent={72} inverted color='black' progress />
   </Segment>
 )
 

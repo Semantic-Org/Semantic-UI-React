@@ -1,18 +1,28 @@
 import _ from 'lodash'
 import React from 'react'
 
-import * as common from 'test/specs/commonTests'
 import Image from 'src/elements/Image/Image'
 import ImageGroup from 'src/elements/Image/ImageGroup'
+import { SUI } from 'src/lib'
 import Dimmer from 'src/modules/Dimmer/Dimmer'
+import * as common from 'test/specs/commonTests'
 
-describe('Image Component', () => {
+describe('Image', () => {
   common.isConformant(Image)
   common.hasSubComponents(Image, [ImageGroup])
   common.hasUIClassName(Image)
   common.rendersChildren(Image)
 
-  common.propKeyAndValueToClassName(Image, 'floated')
+  common.implementsCreateMethod(Image)
+  common.implementsLabelProp(Image)
+  common.implementsShorthandProp(Image, {
+    propKey: 'dimmer',
+    ShorthandComponent: Dimmer,
+    mapValueToProps: val => ({ content: val }),
+  })
+  common.implementsVerticalAlignProp(Image)
+
+  common.propKeyAndValueToClassName(Image, 'floated', SUI.FLOATS)
 
   common.propKeyOnlyToClassName(Image, 'avatar')
   common.propKeyOnlyToClassName(Image, 'bordered')
@@ -22,19 +32,10 @@ describe('Image Component', () => {
   common.propKeyOnlyToClassName(Image, 'hidden')
   common.propKeyOnlyToClassName(Image, 'inline')
 
-  common.propValueOnlyToClassName(Image, 'size')
-  common.propValueOnlyToClassName(Image, 'shape')
+  common.propKeyOrValueAndKeyToClassName(Image, 'spaced', ['left', 'right'])
 
-  common.propKeyOrValueAndKeyToClassName(Image, 'spaced')
-
-  common.implementsCreateMethod(Image)
-  common.implementsLabelProp(Image)
-  common.implementsShorthandProp(Image, {
-    propKey: 'dimmer',
-    ShorthandComponent: Dimmer,
-    mapValueToProps: val => ({ content: val }),
-  })
-  common.implementsVerticalAlignProp(Image, 'verticalAlign')
+  common.propValueOnlyToClassName(Image, 'shape', ['rounded', 'circular'])
+  common.propValueOnlyToClassName(Image, 'size', SUI.SIZES)
 
   it('renders an img tag', () => {
     shallow(<Image />)

@@ -1,5 +1,6 @@
-import React, { Component, PropTypes } from 'react'
 import cx from 'classnames'
+import PropTypes from 'prop-types'
+import React, { Component } from 'react'
 
 import {
   createHTMLImage,
@@ -58,13 +59,19 @@ export default class SearchResult extends Component {
     price: PropTypes.string,
 
     /**
-     * A function that returns the result contents.
-     * Receives all SearchResult props.
+     * Renders the result contents.
+     *
+     * @param {object} props - The SearchResult props object.
+     * @returns {*} - Renderable result contents.
      */
     renderer: PropTypes.func,
 
     /** Display title. */
     title: PropTypes.string,
+  }
+
+  static defaultProps = {
+    renderer: defaultRenderer,
   }
 
   handleClick = (e) => {
@@ -100,7 +107,7 @@ export default class SearchResult extends Component {
     // the style in any way let's just do that.
     return (
       <ElementType {...rest} className={classes} onClick={this.handleClick}>
-        {renderer ? renderer(this.props) : defaultRenderer(this.props)}
+        {renderer(this.props)}
       </ElementType>
     )
   }

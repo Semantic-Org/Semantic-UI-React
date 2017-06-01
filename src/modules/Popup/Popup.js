@@ -1,7 +1,10 @@
-import React, { Component, PropTypes } from 'react'
 import cx from 'classnames'
 import _ from 'lodash'
+import PropTypes from 'prop-types'
+import React, { Component } from 'react'
+
 import {
+  customPropTypes,
   getElementType,
   getUnhandledProps,
   isBrowser,
@@ -17,73 +20,61 @@ import PopupHeader from './PopupHeader'
 
 const debug = makeDebugger('popup')
 
-const _meta = {
-  name: 'Popup',
-  type: META.TYPES.MODULE,
-  props: {
-    on: ['hover', 'click', 'focus'],
-    positioning: [
-      'top left',
-      'top right',
-      'bottom right',
-      'bottom left',
-      'right center',
-      'left center',
-      'top center',
-      'bottom center',
-    ],
-    size: _.without(SUI.SIZES, 'medium', 'big', 'massive'),
-    wide: [true, false, 'very'],
-  },
-}
+export const POSITIONS = [
+  'top left',
+  'top right',
+  'bottom right',
+  'bottom left',
+  'right center',
+  'left center',
+  'top center',
+  'bottom center',
+]
 
 /**
  * A Popup displays additional information on top of a page.
  */
 export default class Popup extends Component {
   static propTypes = {
-    /** Display the popup without the pointing arrow */
+    /** Display the popup without the pointing arrow. */
     basic: PropTypes.bool,
 
-    /** You may pass a content as children of the Popup */
+    /** Primary content. */
     children: PropTypes.node,
 
-    /** Classes to add to the Popup className. */
+    /** Additional classes. */
     className: PropTypes.string,
 
-    /** Simple text content for the popover */
-    content: PropTypes.node,
+    /** Simple text content for the popover. */
+    content: customPropTypes.itemShorthand,
 
-    /** A Flowing popup have no maximum width and continue to flow to fit its content */
+    /** A flowing Popup has no maximum width and continues to flow to fit its content. */
     flowing: PropTypes.bool,
 
-    /** Takes up the entire width of its offset container */
+    /** Takes up the entire width of its offset container. */
     // TODO: implement the Popup fluid layout
     // fluid: PropTypes.bool,
 
-    /** Header displayed above the content in bold */
-    header: PropTypes.string,
+    /** Header displayed above the content in bold. */
+    header: customPropTypes.itemShorthand,
 
-    /** Whether the popup should not close on hover */
-    hoverable: PropTypes.bool,
-
-    /** Invert the colors of the popup */
-    inverted: PropTypes.bool,
-
-    /** The node where the popup should mount.. */
+    /** Hide the Popup when scrolling the window. */
     hideOnScroll: PropTypes.bool,
 
-    /** Horizontal offset in pixels to be applied to the popup */
+    /** Whether the popup should not close on hover. */
+    hoverable: PropTypes.bool,
+
+    /** Invert the colors of the Popup. */
+    inverted: PropTypes.bool,
+
+    /** Horizontal offset in pixels to be applied to the Popup. */
     offset: PropTypes.number,
 
-    /** Vertical offset in pixels to be applied to the popup */
-    verticalOffset: PropTypes.number,
-
-    /** Event triggering the popup */
-    on: PropTypes.oneOf(_meta.props.on),
+    /** Event triggering the popup. */
+    on: PropTypes.oneOf(['hover', 'click', 'focus']),
 
     /**
-     * Called when a close event happens
+     * Called when a close event happens.
      *
      * @param {SyntheticEvent} event - React's original SyntheticEvent.
      * @param {object} data - All props.
@@ -91,7 +82,7 @@ export default class Popup extends Component {
     onClose: PropTypes.func,
 
     /**
-     * Called when the portal is mounted on the DOM
+     * Called when the portal is mounted on the DOM.
      *
      * @param {null}
      * @param {object} data - All props.
@@ -99,7 +90,7 @@ export default class Popup extends Component {
     onMount: PropTypes.func,
 
     /**
-     * Called when an open event happens
+     * Called when an open event happens.
      *
      * @param {SyntheticEvent} event - React's original SyntheticEvent.
      * @param {object} data - All props.
@@ -107,35 +98,42 @@ export default class Popup extends Component {
     onOpen: PropTypes.func,
 
     /**
-     * Called when the portal is unmounted from the DOM
+     * Called when the portal is unmounted from the DOM.
      *
      * @param {null}
      * @param {object} data - All props.
      */
     onUnmount: PropTypes.func,
 
-    /** Positioning for the popover */
-    positioning: PropTypes.oneOf(_meta.props.positioning),
+    /** Position for the popover. */
+    position: PropTypes.oneOf(POSITIONS),
 
-    /** Popup size */
-    size: PropTypes.oneOf(_meta.props.size),
+    /** Popup size. */
+    size: PropTypes.oneOf(_.without(SUI.SIZES, 'medium', 'big', 'massive')),
 
-    /** custom popup style */
+    /** Custom Popup style. */
     style: PropTypes.object,
 
     /** Element to be rendered in-place where the popup is defined. */
     trigger: PropTypes.node,
 
-    /** Popup width */
-    wide: PropTypes.oneOf(_meta.props.wide),
+    /** Popup width. */
+    wide: PropTypes.oneOfType([
+      PropTypes.bool,
+      PropTypes.oneOf(['very']),
+    ]),
   }
 
   static defaultProps = {
-    positioning: 'top left',
+    position: 'top left',
     on: 'hover',
   }
 
-  static _meta = _meta
+  static _meta = {
+    name: 'Popup',
+    type: META.TYPES.MODULE,
+  }
+
   static Content = PopupContent
   static Header = PopupHeader
 
@@ -147,7 +145,7 @@ export default class Popup extends Component {
     // Do not access window/document when server side rendering
     if (!isBrowser) return style
 
-    const { offset, verticalOffset } = this.props
+    const { offset } = this.props
     const { pageYOffset, pageXOffset } = window
     const { clientWidth, clientHeight } = document.documentElement
 
@@ -234,20 +232,20 @@ export default class Popup extends Component {
 
   setPopupStyle() {
     if (!this.coords || !this.popupCoords) return
-    let positioning = this.props.positioning
-    let style = this.computePopupStyle(positioning)
+    let position = this.props.position
+    let style = this.computePopupStyle(position)
 
     // Lets detect if the popup is out of the viewport and adjust
     // the position accordingly
-    const positions = _.without(_meta.props.positioning, positioning)
+    const positions = _.without(POSITIONS, position)
     for (let i = 0; !this.isStyleInViewport(style) && i < positions.length; i++) {
       style = this.computePopupStyle(positions[i])
-      positioning = positions[i]
+      position = positions[i]
     }
 
     // Append 'px' to every numerical values in the style
     style = _.mapValues(style, value => _.isNumber(value) ? value + 'px' : value)
-    this.setState({ style, positioning })
+    this.setState({ style, position })
   }
 
   getPortalProps() {
@@ -314,9 +312,9 @@ export default class Popup extends Component {
     if (onUnmount) onUnmount(e, this.props)
   }
 
-  popupMounted = (ref) => {
+  handlePopupRef = (popupRef) => {
     debug('popupMounted()')
-    this.popupCoords = ref ? ref.getBoundingClientRect() : null
+    this.popupCoords = popupRef ? popupRef.getBoundingClientRect() : null
     this.setPopupStyle()
   }
 
@@ -334,11 +332,11 @@ export default class Popup extends Component {
       wide,
     } = this.props
 
-    const { positioning, closed } = this.state
+    const { position, closed } = this.state
     const style = _.assign({}, this.state.style, this.props.style)
     const classes = cx(
       'ui',
-      positioning,
+      position,
       size,
       useKeyOrValueAndKey(wide, 'wide'),
       useKeyOnly(basic, 'basic'),
@@ -351,17 +349,17 @@ export default class Popup extends Component {
     if (closed) return trigger
 
     const unhandled = getUnhandledProps(Popup, this.props)
-    const portalPropNames = _.keys(Portal.propTypes)
+    const portalPropNames = Portal.handledProps
 
     const rest = _.omit(unhandled, portalPropNames)
     const portalProps = _.pick(unhandled, portalPropNames)
     const ElementType = getElementType(Popup, this.props)
 
     const popupJSX = (
-      <ElementType {...rest} className={classes} style={style} ref={this.popupMounted}>
+      <ElementType {...rest} className={classes} style={style} ref={this.handlePopupRef}>
         {children}
-        {!children && PopupHeader.create(header)}
-        {!children && PopupContent.create(content)}
+        {_.isNil(children) && PopupHeader.create(header)}
+        {_.isNil(children) && PopupContent.create(content)}
       </ElementType>
     )
 

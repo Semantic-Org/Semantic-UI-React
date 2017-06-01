@@ -1,15 +1,19 @@
-import _ from 'lodash'
 import faker from 'faker'
+import _ from 'lodash'
 import React from 'react'
 
-import * as common from 'test/specs/commonTests'
+import { SUI } from 'src/lib'
 import Feed from 'src/views/Feed/Feed'
+import * as common from 'test/specs/commonTests'
 
 describe('Feed', () => {
-  common.hasUIClassName(Feed)
   common.isConformant(Feed)
-  common.propValueOnlyToClassName(Feed, 'size')
+  common.hasUIClassName(Feed)
   common.rendersChildren(Feed)
+
+  common.propValueOnlyToClassName(Feed, 'size',
+    _.without(SUI.SIZES, 'mini', 'tiny', 'medium', 'big', 'huge', 'massive')
+  )
 
   describe('events prop', () => {
     it('renders <FeedEvent>', () => {

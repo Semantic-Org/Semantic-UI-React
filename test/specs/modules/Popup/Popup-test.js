@@ -1,14 +1,13 @@
 import _ from 'lodash'
 import React from 'react'
 
-import Popup from 'src/modules/Popup/Popup'
+import Portal from 'src/addons/Portal/Portal'
+import { SUI } from 'src/lib'
+import Popup, { POSITIONS } from 'src/modules/Popup/Popup'
 import PopupHeader from 'src/modules/Popup/PopupHeader'
 import PopupContent from 'src/modules/Popup/PopupContent'
-import Portal from 'src/addons/Portal/Portal'
-
-import { keyboardKey } from 'src/lib'
-import { domEvent, sandbox } from 'test/utils'
 import * as common from 'test/specs/commonTests'
+import { domEvent, sandbox } from 'test/utils'
 
 // ----------------------------------------
 // Wrapper
@@ -26,8 +25,6 @@ const assertIn = (node, selector, isPresent = true) => {
 }
 const assertInBody = (...args) => assertIn(document.body, ...args)
 
-const nativeEvent = { nativeEvent: { stopImmediatePropagation: _.noop } }
-
 describe('Popup', () => {
   beforeEach(() => {
     wrapper = undefined
@@ -39,6 +36,7 @@ describe('Popup', () => {
   })
 
   common.hasSubComponents(Popup, [PopupHeader, PopupContent])
+  common.hasValidTypings(Popup)
 
   // Heads up!
   //
@@ -85,48 +83,45 @@ describe('Popup', () => {
       wrapperMount(
         <Popup
           offset={50}
-          positioning='bottom right'
+          position='bottom right'
           content='foo'
           trigger={<button>foo</button>}
         />
       )
 
-      wrapper.find('button').simulate('click', nativeEvent)
+      wrapper.find('button').simulate('click')
       assertInBody('.ui.popup.visible')
     })
     it('accepts an offest to the right', () => {
       wrapperMount(
         <Popup
           offset={50}
-          positioning='bottom left'
+          position='bottom left'
           content='foo'
           trigger={<button>foo</button>}
         />
       )
 
-      wrapper.find('button').simulate('click', nativeEvent)
+      wrapper.find('button').simulate('click')
       assertInBody('.ui.popup.visible')
     })
   })
 
-  describe('positioning', () => {
-    it('is always within the viewport', () => {
-      _.each(Popup._meta.props.positions, position => {
+  describe('position', () => {
+    POSITIONS.forEach(position => {
+      it('is always within the viewport', () => {
         wrapperMount(
           <Popup
-            positioning={position}
             content='_'
+            position={position}
             trigger={<button>foo</button>}
             on='click'
           />
         )
-        wrapper.find('button').simulate('click', nativeEvent)
-        const {
-          top,
-          right,
-          bottom,
-          left,
-        } = document.querySelector('.popup.ui').getBoundingClientRect()
+        wrapper.find('button').simulate('click')
+
+        const rect = document.querySelector('.popup.ui').getBoundingClientRect()
+        const { top, right, bottom, left } = rect
 
         expect(top).to.be.at.least(0)
         expect(left).to.be.at.least(0)
@@ -149,7 +144,7 @@ describe('Popup', () => {
       const trigger = <button>foo</button>
       wrapperMount(<Popup hideOnScroll content='foo' trigger={trigger} />)
 
-      wrapper.find('button').simulate('click', nativeEvent)
+      wrapper.find('button').simulate('click')
       assertInBody('.ui.popup.visible')
 
       document.body.scrollTop = 100
@@ -168,7 +163,7 @@ describe('Popup', () => {
       const trigger = <button>foo</button>
       wrapperMount(<Popup on='click' content='foo' header='bar' trigger={trigger} />)
 
-      wrapper.find('button').simulate('click', nativeEvent)
+      wrapper.find('button').simulate('click')
       assertInBody('.ui.popup.visible')
     })
 
@@ -176,7 +171,7 @@ describe('Popup', () => {
       const trigger = <button>foo</button>
       wrapperMount(<Popup content='foo' trigger={trigger} />)
 
-      wrapper.find('button').simulate('mouseenter', nativeEvent)
+      wrapper.find('button').simulate('mouseenter')
       setTimeout(() => {
         assertInBody('.ui.popup.visible')
         done()
@@ -187,7 +182,7 @@ describe('Popup', () => {
       const trigger = <input type='text' />
       wrapperMount(<Popup on='focus' content='foo' trigger={trigger} />)
 
-      wrapper.find('input').simulate('focus', nativeEvent)
+      wrapper.find('input').simulate('focus')
       assertInBody('.ui.popup.visible')
     })
   })
@@ -268,13 +263,10 @@ describe('Popup', () => {
   })
 
   describe('size', () => {
-    it('defines prop options in _meta', () => {
-      Popup._meta.props.should.have.any.keys('size')
-      Popup._meta.props.size.should.be.an('array')
-    })
+    const sizes = _.without(SUI.SIZES, 'medium', 'big', 'massive')
 
-    it('adds the size to the popup className', () => {
-      Popup._meta.props.size.forEach(size => {
+    sizes.forEach(size => {
+      it(`adds the ${size} to the popup className`, () => {
         wrapperMount(<Popup size={size} open />)
         assertInBody(`.ui.${size}.popup`)
       })
@@ -287,11 +279,6 @@ describe('Popup', () => {
     beforeEach(() => {
       spy = sandbox.spy()
       wrapperMount(<Popup onClose={spy} defaultOpen />)
-    })
-
-    it('is called on background click', () => {
-      domEvent.click(document.querySelector('.ui.popup').parentNode)
-      spy.should.have.been.calledOnce()
     })
 
     it('is not called on click inside of the popup', () => {
@@ -307,16 +294,6 @@ describe('Popup', () => {
     it('is called when pressing escape', () => {
       domEvent.keyDown(document, { key: 'Escape' })
       spy.should.have.been.calledOnce()
-    })
-
-    it('is not called when pressing a key other than "Escape"', () => {
-      _.each(keyboardKey, (val, key) => {
-        // skip Escape key
-        if (val === keyboardKey.Escape) return
-
-        domEvent.keyDown(document, { key })
-        spy.should.not.have.been.called(`onClose was called when pressing "${key}"`)
-      })
     })
 
     it('is not called when the open prop changes to false', () => {

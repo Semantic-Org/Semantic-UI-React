@@ -1,5 +1,7 @@
-import React, { PropTypes } from 'react'
-import { Link } from 'react-router'
+import PropTypes from 'prop-types'
+import React from 'react'
+import { Link } from 'react-router-dom'
+
 import Editor from 'docs/app/Components/Editor/Editor'
 import pkg from 'package.json'
 import {
@@ -57,7 +59,7 @@ const RatingJSX = '<Rating rating={1} maxRating={5} />'
 const RatingHTML = `<div
   class="ui rating"
   data-rating="1"
-  data-max-rating="3"
+  data-max-rating="5"
 ></div>`
 
 const MessageIconJSX = `<Message
@@ -100,7 +102,7 @@ const HeaderAugmentationJSX = `<Header as='h3'>
 const HeaderAugmentationHTML = `<h3 class="ui header">
   Learn More
 </h3>`
-const MenuItemLinkAugmentationJSX = `import { Link } from 'react-router'
+const MenuItemLinkAugmentationJSX = `import { Link } from 'react-router-dom'
 
 <Menu>
   <Menu.Item as={Link} to='/home'>
@@ -143,7 +145,7 @@ const Introduction = () => (
     <Segment basic textAlign='center'>
       <Logo centered size='small' />
       <Header as='h1' textAlign='center'>
-        Semantic-UI-React
+        Semantic UI React
         <Header.Subheader>
           {pkg.description}
         </Header.Subheader>
@@ -153,7 +155,7 @@ const Introduction = () => (
     <Segment basic padded>
       <Header as='h2' dividing>Introduction</Header>
       <p>
-        Semantic-UI-React is the official React integration for <a href={semanticUIDocsURL}>Semantic UI</a> .
+        Semantic UI React is the official React integration for <a href={semanticUIDocsURL}>Semantic UI</a> .
       </p>
       <List>
         <List.Item icon='check' content='jQuery Free' />
@@ -204,7 +206,7 @@ const Introduction = () => (
       <Header as='h2' dividing>Augmentation</Header>
       <p>
         Control the rendered HTML tag, or render one component <code>as</code> another component.
-        Extra props are passed to the component you are rending <code>as</code>.
+        Extra props are passed to the component you are rendering <code>as</code>.
       </p>
 
       <p>

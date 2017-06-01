@@ -1,15 +1,19 @@
 import faker from 'faker'
 import React from 'react'
-import * as common from 'test/specs/commonTests'
 
 import ListContent from 'src/elements/List/ListContent'
+import { SUI } from 'src/lib'
+import * as common from 'test/specs/commonTests'
 
 describe('ListContent', () => {
   common.isConformant(ListContent)
   common.rendersChildren(ListContent)
 
+  common.implementsCreateMethod(ListContent)
+
   common.implementsVerticalAlignProp(ListContent)
-  common.propKeyAndValueToClassName(ListContent, 'floated')
+
+  common.propKeyAndValueToClassName(ListContent, 'floated', SUI.FLOATS)
 
   describe('shorthand', () => {
     const baseProps = {

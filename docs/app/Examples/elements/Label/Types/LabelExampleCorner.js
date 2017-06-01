@@ -7,7 +7,7 @@ const LabelExampleCorner = () => (
       <Image
         fluid
         label={{ as: 'a', corner: 'left', icon: 'heart' }}
-        src='http://semantic-ui.com/images/wireframe/image.png'
+        src='/assets/images/wireframe/image.png'
       />
     </Grid.Column>
 
@@ -15,7 +15,7 @@ const LabelExampleCorner = () => (
       <Image
         fluid
         label={{ as: 'a', color: 'red', corner: 'right', icon: 'save' }}
-        src='http://semantic-ui.com/images/wireframe/image.png'
+        src='/assets/images/wireframe/image.png'
       />
     </Grid.Column>
   </Grid>

@@ -1,6 +1,7 @@
-import _ from 'lodash'
 import cx from 'classnames'
-import React, { Component, PropTypes } from 'react'
+import _ from 'lodash'
+import PropTypes from 'prop-types'
+import React, { Component } from 'react'
 
 import {
   createShorthand,
@@ -16,25 +17,11 @@ import {
 } from '../../lib'
 import Icon from '../Icon/Icon'
 import Image from '../Image/Image'
-
 import LabelDetail from './LabelDetail'
 import LabelGroup from './LabelGroup'
 
-const _meta = {
-  name: 'Label',
-  type: META.TYPES.ELEMENT,
-  props: {
-    attached: ['top', 'bottom', 'top right', 'top left', 'bottom left', 'bottom right'],
-    color: SUI.COLORS,
-    corner: ['left', 'right'],
-    pointing: ['above', 'below', 'left', 'right'],
-    ribbon: ['right'],
-    size: SUI.SIZES,
-  },
-}
-
 /**
- * A label displays content classification
+ * A label displays content classification.
  */
 export default class Label extends Component {
   static propTypes = {
@@ -45,7 +32,7 @@ export default class Label extends Component {
     active: PropTypes.bool,
 
     /** A label can attach to a content segment. */
-    attached: PropTypes.oneOf(_meta.props.attached),
+    attached: PropTypes.oneOf(['top', 'bottom', 'top right', 'top left', 'bottom left', 'bottom right']),
 
     /** A label can reduce its complexity. */
     basic: PropTypes.bool,
@@ -60,7 +47,7 @@ export default class Label extends Component {
     className: PropTypes.string,
 
     /** Color of the label. */
-    color: PropTypes.oneOf(_meta.props.color),
+    color: PropTypes.oneOf(SUI.COLORS),
 
     /** Shorthand for primary content. */
     content: customPropTypes.contentShorthand,
@@ -68,7 +55,7 @@ export default class Label extends Component {
     /** A label can position itself in the corner of an element. */
     corner: PropTypes.oneOfType([
       PropTypes.bool,
-      PropTypes.oneOf(_meta.props.corner),
+      PropTypes.oneOf(['left', 'right']),
     ]),
 
     /** Shorthand for LabelDetail. */
@@ -76,8 +63,8 @@ export default class Label extends Component {
 
     /** Formats the label as a dot. */
     empty: customPropTypes.every([
-      customPropTypes.demand(['circular']),
       PropTypes.bool,
+      customPropTypes.demand(['circular']),
     ]),
 
     /** Float above another element in the upper right corner. */
@@ -93,12 +80,6 @@ export default class Label extends Component {
     image: PropTypes.oneOfType([
       PropTypes.bool,
       customPropTypes.itemShorthand,
-    ]),
-
-    /** A label can point to content next to it. */
-    pointing: PropTypes.oneOfType([
-      PropTypes.bool,
-      PropTypes.oneOf(_meta.props.pointing),
     ]),
 
     /**
@@ -117,23 +98,32 @@ export default class Label extends Component {
      */
     onRemove: PropTypes.func,
 
+    /** A label can point to content next to it. */
+    pointing: PropTypes.oneOfType([
+      PropTypes.bool,
+      PropTypes.oneOf(['above', 'below', 'left', 'right']),
+    ]),
+
     /** Shorthand for Icon to appear as the last child and trigger onRemove. */
     removeIcon: customPropTypes.itemShorthand,
 
     /** A label can appear as a ribbon attaching itself to an element. */
     ribbon: PropTypes.oneOfType([
       PropTypes.bool,
-      PropTypes.oneOf(_meta.props.ribbon),
+      PropTypes.oneOf(['right']),
     ]),
 
     /** A label can have different sizes. */
-    size: PropTypes.oneOf(_meta.props.size),
+    size: PropTypes.oneOf(SUI.SIZES),
 
     /** A label can appear as a tag. */
     tag: PropTypes.bool,
   }
 
-  static _meta = _meta
+  static _meta = {
+    name: 'Label',
+    type: META.TYPES.ELEMENT,
+  }
 
   static Detail = LabelDetail
   static Group = LabelGroup
@@ -144,11 +134,12 @@ export default class Label extends Component {
     if (onClick) onClick(e, this.props)
   }
 
-  handleRemove = (e) => {
-    const { onRemove } = this.props
-
-    if (onRemove) onRemove(e, this.props)
-  }
+  handleIconOverrides = predefinedProps => ({
+    onClick: e => {
+      _.invoke(predefinedProps, 'onClick', e)
+      _.invoke(this.props, 'onRemove', e, this.props)
+    },
+  })
 
   render() {
     const {
@@ -213,12 +204,10 @@ export default class Label extends Component {
         {typeof image !== 'boolean' && Image.create(image)}
         {content}
         {createShorthand(LabelDetail, val => ({ content: val }), detail)}
-        {onRemove && Icon.create(removeIconShorthand, { onClick: this.handleRemove })}
+        {onRemove && Icon.create(removeIconShorthand, { overrideProps: this.handleIconOverrides })}
       </ElementType>
     )
   }
 }
 
-// Label is not yet defined inside the class
-// Do not use a static property initializer
 Label.create = createShorthandFactory(Label, value => ({ content: value }))

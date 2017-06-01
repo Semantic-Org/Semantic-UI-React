@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
 
 import { getUnhandledProps, META } from '../../lib'
 import Checkbox from '../../modules/Checkbox'
@@ -23,20 +23,17 @@ function Radio(props) {
 Radio._meta = {
   name: 'Radio',
   type: META.TYPES.ADDON,
-  props: {
-    type: Checkbox._meta.props.type,
-  },
 }
 
 Radio.propTypes = {
-  /** Format to emphasize the current selection state */
+  /** Format to emphasize the current selection state. */
   slider: Checkbox.propTypes.slider,
 
-  /** Format to show an on or off choice */
+  /** Format to show an on or off choice. */
   toggle: Checkbox.propTypes.toggle,
 
   /** HTML input type, either checkbox or radio. */
-  type: PropTypes.oneOf(Radio._meta.props.type),
+  type: Checkbox.propTypes.type,
 }
 
 Radio.defaultProps = {

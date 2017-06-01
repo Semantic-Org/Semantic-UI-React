@@ -8,21 +8,21 @@ const PopupExamplePosition = () => (
         <Popup
           trigger={<Icon name='heart' color='red' size='large' circular />}
           content='I am positioned to the top left'
-          positioning='top left'
+          position='top left'
         />
       </Grid.Column>
       <Grid.Column textAlign='center'>
         <Popup
           trigger={<Icon name='heart' color='red' size='large' circular />}
           content='I am positioned to the top center'
-          positioning='top center'
+          position='top center'
         />
       </Grid.Column>
       <Grid.Column textAlign='right'>
         <Popup
           trigger={<Icon name='heart' color='red' size='large' circular />}
           content='I am positioned to the top right'
-          positioning='top right'
+          position='top right'
         />
       </Grid.Column>
     </Grid.Row>
@@ -31,14 +31,14 @@ const PopupExamplePosition = () => (
         <Popup
           trigger={<Icon name='heart' color='red' size='large' circular />}
           content='I am positioned to the left center'
-          positioning='left center'
+          position='left center'
         />
       </Grid.Column>
       <Grid.Column floated='right' textAlign='right'>
         <Popup
           trigger={<Icon name='heart' color='red' size='large' circular />}
           content='I am positioned to the right center'
-          positioning='right center'
+          position='right center'
         />
       </Grid.Column>
     </Grid.Row>
@@ -47,21 +47,21 @@ const PopupExamplePosition = () => (
         <Popup
           trigger={<Icon name='heart' color='red' size='large' circular />}
           content='I am positioned to the bottom left'
-          positioning='bottom left'
+          position='bottom left'
         />
       </Grid.Column>
       <Grid.Column textAlign='center'>
         <Popup
           trigger={<Icon name='heart' color='red' size='large' circular />}
           content='I am positioned to the bottom center'
-          positioning='bottom center'
+          position='bottom center'
         />
       </Grid.Column>
       <Grid.Column textAlign='right'>
         <Popup
           trigger={<Icon name='heart' color='red' size='large' circular />}
           content='I am positioned to the bottom right'
-          positioning='bottom right'
+          position='bottom right'
         />
       </Grid.Column>
     </Grid.Row>

@@ -1,6 +1,7 @@
 import _ from 'lodash'
 import cx from 'classnames'
-import React, { PropTypes } from 'react'
+import PropTypes from 'prop-types'
+import React from 'react'
 
 import {
   customPropTypes,
@@ -10,6 +11,8 @@ import {
   SUI,
   useKeyOnly,
   useKeyOrValueAndKey,
+  useTextAlignProp,
+  useVerticalAlignProp,
   useWidthProp,
 } from '../../lib'
 import TableBody from './TableBody'
@@ -20,13 +23,12 @@ import TableHeaderCell from './TableHeaderCell'
 import TableRow from './TableRow'
 
 /**
- * A table displays a collections of data grouped into rows
+ * A table displays a collections of data grouped into rows.
  */
 function Table(props) {
   const {
-    basic,
     attached,
-    renderBodyRow,
+    basic,
     celled,
     children,
     className,
@@ -40,38 +42,45 @@ function Table(props) {
     headerRow,
     inverted,
     padded,
+    renderBodyRow,
     selectable,
     singleLine,
     size,
+    sortable,
     stackable,
     striped,
     structured,
     tableData,
+    textAlign,
     unstackable,
+    verticalAlign,
   } = props
 
   const classes = cx(
     'ui',
     color,
     size,
-    useKeyOrValueAndKey(attached, 'attached'),
-    useKeyOrValueAndKey(basic, 'basic'),
     useKeyOnly(celled, 'celled'),
     useKeyOnly(collapsing, 'collapsing'),
-    useKeyOrValueAndKey(compact, 'compact'),
     useKeyOnly(definition, 'definition'),
     useKeyOnly(fixed, 'fixed'),
     useKeyOnly(inverted, 'inverted'),
-    useKeyOrValueAndKey(padded, 'padded'),
     useKeyOnly(selectable, 'selectable'),
     useKeyOnly(singleLine, 'single line'),
+    useKeyOnly(sortable, 'sortable'),
     useKeyOnly(stackable, 'stackable'),
     useKeyOnly(striped, 'striped'),
     useKeyOnly(structured, 'structured'),
     useKeyOnly(unstackable, 'unstackable'),
+    useKeyOrValueAndKey(attached, 'attached'),
+    useKeyOrValueAndKey(basic, 'basic'),
+    useKeyOrValueAndKey(compact, 'compact'),
+    useKeyOrValueAndKey(padded, 'padded'),
+    useTextAlignProp(textAlign),
+    useVerticalAlignProp(verticalAlign),
     useWidthProp(columns, 'column'),
+    'table',
     className,
-    'table'
   )
   const rest = getUnhandledProps(Table, props)
   const ElementType = getElementType(Table, props)
@@ -82,7 +91,7 @@ function Table(props) {
 
   return (
     <ElementType {...rest} className={classes}>
-      {headerRow && <TableHeader>{TableRow.create(headerRow, { cellAs: 'th' })}</TableHeader>}
+      {headerRow && <TableHeader>{TableRow.create(headerRow, { defaultProps: { cellAs: 'th' } })}</TableHeader>}
       <TableBody>
         {renderBodyRow && _.map(tableData, (data, index) => TableRow.create(renderBodyRow(data, index)))}
       </TableBody>
@@ -94,15 +103,6 @@ function Table(props) {
 Table._meta = {
   name: 'Table',
   type: META.TYPES.COLLECTION,
-  props: {
-    attached: ['top', 'bottom'],
-    basic: ['very'],
-    color: SUI.COLORS,
-    columns: SUI.WIDTHS,
-    compact: ['very'],
-    padded: ['very'],
-    size: _.without(SUI.SIZES, 'mini', 'tiny', 'medium', 'big', 'huge', 'massive'),
-  },
 }
 
 Table.defaultProps = {
@@ -115,14 +115,14 @@ Table.propTypes = {
 
   /** Attach table to other content */
   attached: PropTypes.oneOfType([
-    PropTypes.oneOf(Table._meta.props.attached),
     PropTypes.bool,
+    PropTypes.oneOf(['top', 'bottom']),
   ]),
 
   /** A table can reduce its complexity to increase readability. */
   basic: PropTypes.oneOfType([
+    PropTypes.oneOf(['very']),
     PropTypes.bool,
-    PropTypes.oneOf(Table._meta.props.basic),
   ]),
 
   /** A table may be divided each row into separate cells. */
@@ -138,15 +138,15 @@ Table.propTypes = {
   collapsing: PropTypes.bool,
 
   /** A table can be given a color to distinguish it from other tables. */
-  color: PropTypes.oneOf(Table._meta.props.color),
+  color: PropTypes.oneOf(SUI.COLORS),
 
   /** A table can specify its column count to divide its content evenly. */
-  columns: PropTypes.oneOf(Table._meta.props.columns),
+  columns: PropTypes.oneOf(SUI.WIDTHS),
 
   /** A table may sometimes need to be more compact to make more rows visible at a time. */
   compact: PropTypes.oneOfType([
     PropTypes.bool,
-    PropTypes.oneOf(Table._meta.props.compact),
+    PropTypes.oneOf(['very']),
   ]),
 
   /** A table may be formatted to emphasize a first column that defines a rows content. */
@@ -169,12 +169,15 @@ Table.propTypes = {
   /** A table may sometimes need to be more padded for legibility. */
   padded: PropTypes.oneOfType([
     PropTypes.bool,
-    PropTypes.oneOf(Table._meta.props.padded),
+    PropTypes.oneOf(['very']),
   ]),
 
   /**
-   * A function that takes (data, index) and returns shorthand for a TableRow
-   * to be placed within Table.Body.
+   * Mapped over `tableData` and should return shorthand for each Table.Row to be placed within Table.Body.
+   *
+   * @param {*} data - An element in the `tableData` array.
+   * @param {number} index - The index of the current element in `tableData`.
+   * @returns {*} Shorthand for a Table.Row.
    */
   renderBodyRow: customPropTypes.every([
     customPropTypes.disallow(['children']),
@@ -189,7 +192,10 @@ Table.propTypes = {
   singleLine: PropTypes.bool,
 
   /** A table can also be small or large. */
-  size: PropTypes.oneOf(Table._meta.props.size),
+  size: PropTypes.oneOf(_.without(SUI.SIZES, 'mini', 'tiny', 'medium', 'big', 'huge', 'massive')),
+
+  /** A table may allow a user to sort contents by clicking on a table header. */
+  sortable: PropTypes.bool,
 
   /** A table can specify how it stacks table content responsively. */
   stackable: PropTypes.bool,
@@ -207,8 +213,14 @@ Table.propTypes = {
     PropTypes.array,
   ]),
 
+  /** A table can adjust its text alignment. */
+  textAlign: PropTypes.oneOf(_.without(SUI.TEXT_ALIGNMENTS, 'justified')),
+
   /** A table can specify how it stacks table content responsively. */
   unstackable: PropTypes.bool,
+
+  /** A table can adjust its text alignment. */
+  verticalAlign: PropTypes.oneOf(SUI.VERTICAL_ALIGNMENTS),
 }
 
 Table.Body = TableBody

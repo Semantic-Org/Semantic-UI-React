@@ -5,19 +5,19 @@ const GridExampleColumns = () => (
   <Grid>
     <Grid.Row>
       <Grid.Column width={8}>
-        <Image src='http://semantic-ui.com/images/wireframe/paragraph.png' />
+        <Image src='/assets/images/wireframe/paragraph.png' />
       </Grid.Column>
       <Grid.Column width={8}>
-        <Image src='http://semantic-ui.com/images/wireframe/paragraph.png' />
+        <Image src='/assets/images/wireframe/paragraph.png' />
       </Grid.Column>
     </Grid.Row>
 
     <Grid.Row>
       <Grid.Column width={8}>
-        <Image src='http://semantic-ui.com/images/wireframe/paragraph.png' />
+        <Image src='/assets/images/wireframe/paragraph.png' />
       </Grid.Column>
       <Grid.Column width={8}>
-        <Image src='http://semantic-ui.com/images/wireframe/paragraph.png' />
+        <Image src='/assets/images/wireframe/paragraph.png' />
       </Grid.Column>
     </Grid.Row>
   </Grid>

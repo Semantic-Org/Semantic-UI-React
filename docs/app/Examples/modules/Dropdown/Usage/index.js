@@ -5,6 +5,24 @@ import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
 const DropdownUsageExamples = () => (
   <ExampleSection title='Usage'>
     <ComponentExample
+      title='Open On Focus'
+      description='A dropdown that opens when it is focussed on.'
+      examplePath='modules/Dropdown/Usage/DropdownExampleOpenOnFocus'
+    />
+
+    <ComponentExample
+      title='Close On Blur'
+      description='A dropdown that closes when it blurs'
+      examplePath='modules/Dropdown/Usage/DropdownExampleCloseOnBlur'
+    />
+
+    <ComponentExample
+      title='Close On Change'
+      description='A multiple selection dropdown can close when the user changes its value.'
+      examplePath='modules/Dropdown/Usage/DropdownExampleCloseOnChange'
+    />
+
+    <ComponentExample
       title='Uncontrolled'
       description='A dropdown can behave like an uncontrolled input.'
       examplePath='modules/Dropdown/Usage/DropdownExampleUncontrolled'
@@ -57,6 +75,17 @@ const DropdownUsageExamples = () => (
       title='Item Content'
       description='A dropdown item can be rendered differently inside the menu.'
       examplePath='modules/Dropdown/Usage/DropdownExampleItemContent'
+    />
+    <ComponentExample
+      title='Upward'
+      description='A dropdown can open its menu upward.'
+      examplePath='modules/Dropdown/Usage/DropdownExampleUpwardSelection'
+    />
+    <ComponentExample
+      examplePath='modules/Dropdown/Usage/DropdownExampleUpwardInline'
+    />
+    <ComponentExample
+      examplePath='modules/Dropdown/Usage/DropdownExampleUpward'
     />
 
   </ExampleSection>

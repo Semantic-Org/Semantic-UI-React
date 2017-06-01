@@ -9,7 +9,12 @@ const DropdownTypesExamples = () => (
       title='Dropdown'
       description='A dropdown.'
       examplePath='modules/Dropdown/Types/DropdownExampleDropdown'
-    />
+    >
+      <ContributionPrompt>
+        Dropdown state is not fully managed when using the subcomponent API.
+        The shorthand props API fully manages state but needs to be extended to support the markup shown here.
+      </ContributionPrompt>
+    </ComponentExample>
     <ComponentExample
       title='Selection'
       description='A dropdown can be used to select between choices in a form.'
@@ -49,8 +54,8 @@ const DropdownTypesExamples = () => (
       examplePath='modules/Dropdown/Types/DropdownExampleSearchInMenu'
     >
       <ContributionPrompt>
-        The example below shows the desired markup but is not functional.
-        Needs to be defined via shorthand, which is not yet possible.
+        Dropdown state is not fully managed when using the subcomponent API.
+        The shorthand props API fully manages state but needs to be extended to support the markup shown here.
       </ContributionPrompt>
     </ComponentExample>
     <ComponentExample
@@ -58,8 +63,8 @@ const DropdownTypesExamples = () => (
       examplePath='modules/Dropdown/Types/DropdownExampleMultipleSearchInMenu'
     >
       <ContributionPrompt>
-        The example below shows the desired markup but is not functional.
-        Needs to be defined via shorthand, which is not yet possible.
+        Dropdown state is not fully managed when using the subcomponent API.
+        The shorthand props API fully manages state but needs to be extended to support the markup shown here.
       </ContributionPrompt>
     </ComponentExample>
     <ComponentExample

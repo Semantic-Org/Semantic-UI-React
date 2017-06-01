@@ -4,17 +4,17 @@ import { Item } from 'semantic-ui-react'
 const ItemExampleContents = () => (
   <Item.Group divided>
     <Item>
-      <Item.Image size='tiny' src='http://semantic-ui.com/images/wireframe/image.png' />
+      <Item.Image size='tiny' src='/assets/images/wireframe/image.png' />
       <Item.Content verticalAlign='middle'>Content A</Item.Content>
     </Item>
 
     <Item>
-      <Item.Image size='tiny' src='http://semantic-ui.com/images/wireframe/image.png' />
+      <Item.Image size='tiny' src='/assets/images/wireframe/image.png' />
       <Item.Content verticalAlign='middle'>Content B</Item.Content>
     </Item>
 
     <Item>
-      <Item.Image size='tiny' src='http://semantic-ui.com/images/wireframe/image.png' />
+      <Item.Image size='tiny' src='/assets/images/wireframe/image.png' />
       <Item.Content content='Content C' verticalAlign='middle' />
     </Item>
   </Item.Group>

@@ -30,7 +30,7 @@ class PopupExampleControlled extends React.Component {
             open={this.state.isOpen}
             onClose={this.handleClose}
             onOpen={this.handleOpen}
-            positioning='top right'
+            position='top right'
           />
         </Grid.Column>
         <Grid.Column width={8}>

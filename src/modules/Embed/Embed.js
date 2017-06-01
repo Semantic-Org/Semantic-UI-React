@@ -1,6 +1,7 @@
-import _ from 'lodash'
 import cx from 'classnames'
-import React, { PropTypes } from 'react'
+import _ from 'lodash'
+import PropTypes from 'prop-types'
+import React from 'react'
 
 import {
   AutoControlledComponent as Component,
@@ -12,29 +13,10 @@ import {
 } from '../../lib'
 import Icon from '../../elements/Icon'
 
-const _meta = {
-  name: 'Embed',
-  type: META.TYPES.MODULE,
-  props: {
-    aspectRatio: ['4:3', '16:9', '21:9'],
-    source: ['youtube', 'vimeo'],
-  },
-}
-
 /**
  * An embed displays content from other websites like YouTube videos or Google Maps.
  */
 export default class Embed extends Component {
-  static autoControlledProps = [
-    'active',
-  ]
-
-  static defaultProps = {
-    icon: 'video play',
-  }
-
-  static _meta = _meta
-
   static propTypes = {
     /** An element type to render as (string or function). */
     as: customPropTypes.as,
@@ -42,14 +24,14 @@ export default class Embed extends Component {
     /** An embed can be active. */
     active: PropTypes.bool,
 
-    /** Setting to true or false will force autoplay. */
+    /** An embed can specify an alternative aspect ratio. */
+    aspectRatio: PropTypes.oneOf(['4:3', '16:9', '21:9']),
+
+     /** Setting to true or false will force autoplay. */
     autoplay: customPropTypes.every([
       customPropTypes.demand(['source']),
       PropTypes.bool,
     ]),
-
-    /** An embed can specify an alternative aspect ratio. */
-    aspectRatio: PropTypes.oneOf(_meta.props.aspectRatio),
 
     /** Whether to show networks branded UI like title cards, or after video calls to action. */
     brandedUI: customPropTypes.every([
@@ -78,14 +60,14 @@ export default class Embed extends Component {
       PropTypes.bool,
     ]),
 
+     /** Specifies an icon to use with placeholder content. */
+    icon: customPropTypes.itemShorthand,
+
     /** Specifies an id for source. */
     id: customPropTypes.every([
       customPropTypes.demand(['source']),
       PropTypes.string,
     ]),
-
-    /** Specifies an icon to use with placeholder content. */
-    icon: customPropTypes.itemShorthand,
 
     /**
      * Сalled on click.
@@ -101,7 +83,7 @@ export default class Embed extends Component {
     /** Specifies a source to use. */
     source: customPropTypes.every([
       customPropTypes.disallow(['sourceUrl']),
-      PropTypes.oneOf(_meta.props.source),
+      PropTypes.oneOf(['youtube', 'vimeo']),
     ]),
 
     /** Specifies a url to use for embed. */
@@ -109,6 +91,19 @@ export default class Embed extends Component {
       customPropTypes.disallow(['source']),
       PropTypes.string,
     ]),
+  }
+
+  static autoControlledProps = [
+    'active',
+  ]
+
+  static defaultProps = {
+    icon: 'video play',
+  }
+
+  static _meta = {
+    name: 'Embed',
+    type: META.TYPES.MODULE,
   }
 
   state = {}
@@ -183,7 +178,7 @@ export default class Embed extends Component {
   }
 
   renderEmbed() {
-    const { children } = this.props
+    const { children, source } = this.props
     const { active } = this.state
 
     if (!active) return null
@@ -192,6 +187,7 @@ export default class Embed extends Component {
     return (
       <div className='embed'>
         <iframe
+          title={`Embedded content from ${source}.`}
           allowFullScreen=''
           frameBorder='0'
           height='100%'

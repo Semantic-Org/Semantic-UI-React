@@ -4,7 +4,7 @@ import { Header } from 'semantic-ui-react'
 const HeaderExampleImageProp = () => (
   <Header
     as='h2'
-    image='http://semantic-ui.com/images/icons/school.png'
+    image='/assets/images/icons/school.png'
     content='Learn More'
   />
 )

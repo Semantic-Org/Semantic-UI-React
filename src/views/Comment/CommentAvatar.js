@@ -1,5 +1,6 @@
 import cx from 'classnames'
-import React, { PropTypes } from 'react'
+import PropTypes from 'prop-types'
+import React from 'react'
 
 import {
   createHTMLImage,
@@ -9,6 +10,9 @@ import {
   META,
 } from '../../lib'
 
+/**
+ * A comment can contain an image or avatar.
+ */
 function CommentAvatar(props) {
   const { className, src } = props
   const classes = cx('avatar', className)

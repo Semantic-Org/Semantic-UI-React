@@ -12,6 +12,7 @@ CONTRIBUTING
 - [Workflow](#workflow)
   - [Create a Component](#create-a-component)
   - [Define _meta](#define-_meta)
+  - [Using propTypes](#using-proptypes)
   - [Conformance Test](#conformance-test)
   - [Open A PR](#open-a-pr)
   - [Spec out the API](#spec-out-the-api)
@@ -126,7 +127,7 @@ class Dropdown extends Component {
 
 ### Define _meta
 
-Every component has a static property called `_meta`.  This object defines the component.  The values here are used in `propTypes`, generated documentation, generated test cases, and some utilities.
+Every component has a static property called `_meta`. This object defines the component. The values here are used for generated documentation, generated test cases and some utilities.
 
 Here's an example `_meta` object:
 
@@ -136,9 +137,6 @@ import { META } from '../../lib'
 const _meta = {
   name: 'MyComponent',
   type: META.TYPES.MODULE,
-  props: {
-    pointing: ['bottom left', 'bottom right'],
-  },
 }
 ```
 
@@ -162,6 +160,23 @@ class MyComponent {
 }
 ```
 
+### Using propTypes
+
+Every component must have fully described `propTypes`.
+ 
+ ```js
+ import React, { PropTypes } from 'react'
+ 
+ function MyComponent(props) {
+   return <div className={props.position}>{props.children}</div>
+ }
+ 
+ MyComponent.propTypes = {
+   children: PropTypes.node,
+   position: PropTypes.oneOf(['left', 'right']),
+ }
+ ```
+
 ### Conformance Test
 
 Review [common tests](#common-tests) below.  You should now add the [`isConformant()`](#isconformant-required) common test and get it to pass.  This will validate the `_meta` and help you get your component off the ground.
@@ -176,7 +191,7 @@ This will also help with getting early feedback and smaller faster iterations on
 
 Review the SUI documentation for the component. Spec out the component's proposed API. The spec should demonstrate how your component's API will support all the native SUI features. You can reference this [API proposal][7] for the Input.
 
-Once we have solidified the component spec, it's time to write some code.  The following sections cover everything you'll need to spec and build your awesome component.
+Once we have solidified the component spec, it's time to write some code. The following sections cover everything you'll need to spec and build your awesome component.
 
 ## API
 
@@ -286,7 +301,7 @@ A [`ui header`][5] accepts a size class.  The `ui modal` has a *component part* 
 
 #### React Components & Sub Components
 
-Top level Semantic-UI-React components correspond to SUI *components*.  Stardust sub components correspond to SUI *component parts*.
+Top level Semantic UI React components correspond to SUI *components*.  Stardust sub components correspond to SUI *component parts*.
 
 This allows us to provide accurate `propTypes` validation.  It also separates concerns, isolating features and tests.
 
@@ -545,12 +560,12 @@ Adding documentation for new components is a bit tedious.  The best way to do th
 [2]: https://facebook.github.io/react/docs/forms.html#controlled-components
 [3]: https://facebook.github.io/react/docs/forms.html#uncontrolled-components
 [4]: https://github.com/Semantic-Org/Semantic-UI-React/blob/master/src/lib/classNameBuilders.js
-[5]: http://semantic-ui.com/elements/header
-[6]: http://semantic-ui.com/views/item
+[5]: https://semantic-ui.com/elements/header
+[6]: https://semantic-ui.com/views/item
 [7]: https://github.com/Semantic-Org/Semantic-UI-React/pull/281#issuecomment-228663527
 [8]: https://github.com/angular/angular/blob/master/CONTRIBUTING.md#commit
-[9]: http://semantic-ui.com/introduction/glossary.html
-[10]: http://semantic-ui.com/elements/label.html
+[9]: https://semantic-ui.com/introduction/glossary.html
+[10]: https://semantic-ui.com/elements/label.html
 [11]: https://nodejs.org/
 [12]: https://github.com/Semantic-Org/Semantic-UI-React#fork-destination-box
 [13]: https://github.com/Semantic-Org/Semantic-UI-React/blob/master/src/factories

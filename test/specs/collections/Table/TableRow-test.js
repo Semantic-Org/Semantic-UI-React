@@ -8,7 +8,7 @@ describe('TableRow', () => {
   common.rendersChildren(TableRow)
 
   common.implementsCreateMethod(TableRow)
-  common.implementsTextAlignProp(TableRow)
+  common.implementsTextAlignProp(TableRow, ['left', 'center', 'right'])
   common.implementsVerticalAlignProp(TableRow)
 
   common.propKeyOnlyToClassName(TableRow, 'active')

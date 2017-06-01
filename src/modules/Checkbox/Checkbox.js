@@ -1,6 +1,7 @@
-import _ from 'lodash/fp'
 import cx from 'classnames'
-import React, { PropTypes } from 'react'
+import _ from 'lodash/fp'
+import PropTypes from 'prop-types'
+import React from 'react'
 
 import {
   AutoControlledComponent as Component,
@@ -14,19 +15,8 @@ import {
 } from '../../lib'
 const debug = makeDebugger('checkbox')
 
-const _meta = {
-  name: 'Checkbox',
-  type: META.TYPES.MODULE,
-  props: {
-    type: [
-      'checkbox',
-      'radio',
-    ],
-  },
-}
-
 /**
- * A checkbox allows a user to select a value from a small set of options, often binary
+ * A checkbox allows a user to select a value from a small set of options, often binary.
  * @see Form
  * @see Radio
  */
@@ -78,37 +68,48 @@ export default class Checkbox extends Component {
      */
     onClick: PropTypes.func,
 
-    /** Format as a radio element. This means it is an exclusive option.*/
+    /**
+     * Called when the user presses down on the mouse.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props and current checked/indeterminate state.
+     */
+    onMouseDown: PropTypes.func,
+
+    /** Format as a radio element. This means it is an exclusive option. */
     radio: customPropTypes.every([
       PropTypes.bool,
       customPropTypes.disallow(['slider', 'toggle']),
     ]),
 
-    /** A checkbox can be read-only and unable to change states */
+    /** A checkbox can be read-only and unable to change states. */
     readOnly: PropTypes.bool,
 
-    /** Format to emphasize the current selection state */
+    /** Format to emphasize the current selection state. */
     slider: customPropTypes.every([
       PropTypes.bool,
       customPropTypes.disallow(['radio', 'toggle']),
     ]),
 
-    /** Format to show an on or off choice */
+    /** A checkbox can receive focus. */
+    tabIndex: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
+
+    /** Format to show an on or off choice. */
     toggle: customPropTypes.every([
       PropTypes.bool,
       customPropTypes.disallow(['radio', 'slider']),
     ]),
 
     /** HTML input type, either checkbox or radio. */
-    type: PropTypes.oneOf(_meta.props.type),
+    type: PropTypes.oneOf(['checkbox', 'radio']),
 
     /** The HTML input value. */
-    value: PropTypes.string,
-
-    /** A checkbox can receive focus. */
-    tabIndex: PropTypes.oneOfType([
-      PropTypes.number,
+    value: PropTypes.oneOfType([
       PropTypes.string,
+      PropTypes.number,
     ]),
   }
 
@@ -121,7 +122,10 @@ export default class Checkbox extends Component {
     'indeterminate',
   ]
 
-  static _meta = _meta
+  static _meta = {
+    name: 'Checkbox',
+    type: META.TYPES.MODULE,
+  }
 
   state = {}
 
@@ -140,12 +144,18 @@ export default class Checkbox extends Component {
     return !disabled && !readOnly && !(radio && checked)
   }
 
-  handleRef = (c) => {
-    this.checkboxRef = c
+  computeTabIndex = () => {
+    const { disabled, tabIndex } = this.props
+
+    if (!_.isNil(tabIndex)) return tabIndex
+    return disabled ? -1 : 0
   }
 
-  handleClick = (e) => {
+  handleInputRef = c => (this.inputRef = c)
+
+  handleClick = e => {
     debug('handleClick()')
+
     const { onChange, onClick } = this.props
     const { checked, indeterminate } = this.state
 
@@ -157,12 +167,23 @@ export default class Checkbox extends Component {
     }
   }
 
+  handleMouseDown = e => {
+    debug('handleMouseDown()')
+
+    const { onMouseDown } = this.props
+    const { checked, indeterminate } = this.state
+
+    _.invoke('focus', this.inputRef)
+    if (onMouseDown) onMouseDown(e, { ...this.props, checked: !!checked, indeterminate: !!indeterminate })
+  }
+
   // Note: You can't directly set the indeterminate prop on the input, so we
   // need to maintain a ref to the input and set it manually whenever the
   // component updates.
   setIndeterminate = () => {
     const { indeterminate } = this.state
-    if (this.checkboxRef) this.checkboxRef.indeterminate = !!indeterminate
+
+    if (this.inputRef) this.inputRef.indeterminate = !!indeterminate
   }
 
   render() {
@@ -174,7 +195,6 @@ export default class Checkbox extends Component {
       radio,
       readOnly,
       slider,
-      tabIndex,
       toggle,
       type,
       value,
@@ -187,7 +207,7 @@ export default class Checkbox extends Component {
       useKeyOnly(disabled, 'disabled'),
       useKeyOnly(indeterminate, 'indeterminate'),
       // auto apply fitted class to compact white space when there is no label
-      // http://semantic-ui.com/modules/checkbox.html#fitted
+      // https://semantic-ui.com/modules/checkbox.html#fitted
       useKeyOnly(!label, 'fitted'),
       useKeyOnly(radio, 'radio'),
       useKeyOnly(readOnly, 'read-only'),
@@ -199,19 +219,21 @@ export default class Checkbox extends Component {
     const rest = getUnhandledProps(Checkbox, this.props)
     const ElementType = getElementType(Checkbox, this.props)
 
-    let computedTabIndex
-    if (!_.isNil(tabIndex)) computedTabIndex = tabIndex
-    else computedTabIndex = disabled ? -1 : 0
-
     return (
-      <ElementType {...rest} className={classes} onClick={this.handleClick} onChange={this.handleClick}>
+      <ElementType
+        {...rest}
+        className={classes}
+        onChange={this.handleClick}
+        onClick={this.handleClick}
+        onMouseDown={this.handleMouseDown}
+      >
         <input
           checked={checked}
           className='hidden'
           name={name}
           readOnly
-          ref={this.handleRef}
-          tabIndex={computedTabIndex}
+          ref={this.handleInputRef}
+          tabIndex={this.computeTabIndex()}
           type={type}
           value={value}
         />

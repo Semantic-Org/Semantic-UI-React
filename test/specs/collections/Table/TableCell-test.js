@@ -2,15 +2,20 @@ import React from 'react'
 
 import * as common from 'test/specs/commonTests'
 import TableCell from 'src/collections/Table/TableCell'
+import { SUI } from 'src/lib'
 
 describe('TableCell', () => {
   common.isConformant(TableCell)
   common.rendersChildren(TableCell)
 
   common.implementsCreateMethod(TableCell)
-  common.implementsTextAlignProp(TableCell)
+  common.implementsTextAlignProp(TableCell, ['left', 'center', 'right'])
   common.implementsVerticalAlignProp(TableCell)
-  common.implementsWidthProp(TableCell, { propKey: 'width', widthClass: 'wide', canEqual: false })
+  common.implementsWidthProp(TableCell, SUI.WIDTHS, {
+    canEqual: false,
+    propKey: 'width',
+    widthClass: 'wide',
+  })
 
   common.propKeyOnlyToClassName(TableCell, 'active')
   common.propKeyOnlyToClassName(TableCell, 'collapsing')

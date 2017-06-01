@@ -8,7 +8,7 @@ const LoaderExampleSizesInverted = () => (
         <Loader size='mini'>Loading</Loader>
       </Dimmer>
 
-      <Image src='http://semantic-ui.com/images/wireframe/short-paragraph.png' />
+      <Image src='/assets/images/wireframe/short-paragraph.png' />
     </Segment>
 
     <Segment>
@@ -16,7 +16,7 @@ const LoaderExampleSizesInverted = () => (
         <Loader size='small'>Loading</Loader>
       </Dimmer>
 
-      <Image src='http://semantic-ui.com/images/wireframe/short-paragraph.png' />
+      <Image src='/assets/images/wireframe/short-paragraph.png' />
     </Segment>
 
     <Segment>
@@ -24,7 +24,7 @@ const LoaderExampleSizesInverted = () => (
         <Loader size='medium'>Loading</Loader>
       </Dimmer>
 
-      <Image src='http://semantic-ui.com/images/wireframe/paragraph.png' />
+      <Image src='/assets/images/wireframe/paragraph.png' />
     </Segment>
 
     <Segment>
@@ -32,7 +32,7 @@ const LoaderExampleSizesInverted = () => (
         <Loader size='large'>Loading</Loader>
       </Dimmer>
 
-      <Image src='http://semantic-ui.com/images/wireframe/paragraph.png' />
+      <Image src='/assets/images/wireframe/paragraph.png' />
     </Segment>
   </div>
 )

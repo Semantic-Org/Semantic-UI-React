@@ -39,7 +39,7 @@ export default class MenuExampleSubMenu extends Component {
           Messages
         </Menu.Item>
 
-        <Dropdown as={Menu.Item} text='More'>
+        <Dropdown item text='More'>
           <Dropdown.Menu>
             <Dropdown.Item icon='edit' text='Edit Profile' />
             <Dropdown.Item icon='globe' text='Choose Language' />

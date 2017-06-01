@@ -1,5 +1,6 @@
 import cx from 'classnames'
-import React, { PropTypes } from 'react'
+import PropTypes from 'prop-types'
+import React from 'react'
 
 import {
   createShorthandFactory,
@@ -53,9 +54,12 @@ const names = [
   'ye', 'yemen', 'yt', 'mayotte', 'za', 'south africa', 'zm', 'zambia', 'zw', 'zimbabwe',
 ]
 
+/**
+ * A flag is is used to represent a political state.
+ */
 function Flag(props) {
   const { className, name } = props
-  const classes = cx(name, className, 'flag')
+  const classes = cx(name, 'flag', className)
   const rest = getUnhandledProps(Flag, props)
   const ElementType = getElementType(Flag, props)
 
@@ -65,9 +69,6 @@ function Flag(props) {
 Flag._meta = {
   name: 'Flag',
   type: META.TYPES.ELEMENT,
-  props: {
-    name: names,
-  },
 }
 
 Flag.propTypes = {
@@ -77,8 +78,8 @@ Flag.propTypes = {
   /** Additional classes. */
   className: PropTypes.string,
 
-  /** Flag name, can use the two digit country code, the full name, or a common alias */
-  name: customPropTypes.suggest(Flag._meta.props.name),
+  /** Flag name, can use the two digit country code, the full name, or a common alias. */
+  name: customPropTypes.suggest(names),
 }
 
 Flag.defaultProps = {
@@ -88,4 +89,3 @@ Flag.defaultProps = {
 Flag.create = createShorthandFactory(Flag, value => ({ name: value }))
 
 export default Flag
-

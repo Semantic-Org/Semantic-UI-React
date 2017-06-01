@@ -1,5 +1,7 @@
 import cx from 'classnames'
-import React, { Component, PropTypes } from 'react'
+import _ from 'lodash'
+import PropTypes from 'prop-types'
+import React, { Component } from 'react'
 
 import {
   customPropTypes,
@@ -7,14 +9,15 @@ import {
   getUnhandledProps,
   META,
   useKeyOnly,
+  createShorthandFactory,
 } from '../../lib'
 
+import Icon from '../../elements/Icon'
+
 /**
- * A title sub-component for Accordion component
+ * A title sub-component for Accordion component.
  */
 export default class AccordionTitle extends Component {
-  static displayName = 'AccordionTitle'
-
   static propTypes = {
     /** An element type to render as (string or function). */
     as: customPropTypes.as,
@@ -28,8 +31,11 @@ export default class AccordionTitle extends Component {
     /** Additional classes. */
     className: PropTypes.string,
 
+    /** Shorthand for primary content. */
+    content: customPropTypes.contentShorthand,
+
     /**
-     * Called on blur.
+     * Called on click.
      *
      * @param {SyntheticEvent} event - React's original SyntheticEvent.
      * @param {object} data - All props.
@@ -54,6 +60,7 @@ export default class AccordionTitle extends Component {
       active,
       children,
       className,
+      content,
     } = this.props
 
     const classes = cx(
@@ -64,6 +71,21 @@ export default class AccordionTitle extends Component {
     const rest = getUnhandledProps(AccordionTitle, this.props)
     const ElementType = getElementType(AccordionTitle, this.props)
 
-    return <ElementType {...rest} className={classes} onClick={this.handleClick}>{children}</ElementType>
+    if (_.isNil(content)) {
+      return (
+        <ElementType {...rest} className={classes} onClick={this.handleClick}>
+          {children}
+        </ElementType>
+      )
+    }
+
+    return (
+      <ElementType {...rest} className={classes} onClick={this.handleClick}>
+        <Icon name='dropdown' />
+        {content}
+      </ElementType>
+    )
   }
 }
+
+AccordionTitle.create = createShorthandFactory(AccordionTitle, content => ({ content }))

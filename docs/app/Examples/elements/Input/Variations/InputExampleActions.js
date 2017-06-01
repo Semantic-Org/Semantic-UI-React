@@ -2,9 +2,9 @@ import React from 'react'
 import { Button, Select, Input } from 'semantic-ui-react'
 
 const options = [
-  { text: 'All', value: 'all' },
-  { text: 'Articles', value: 'articles' },
-  { text: 'Products', value: 'products' },
+  { key: 'all', text: 'All', value: 'all' },
+  { key: 'articles', text: 'Articles', value: 'articles' },
+  { key: 'products', text: 'Products', value: 'products' },
 ]
 
 const InputExampleActions = () => (

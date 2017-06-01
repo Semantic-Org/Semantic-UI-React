@@ -1,16 +1,24 @@
 {
   "presets": [
-    "es2015",
+    "./build/preset-es2015",
     "react",
     "stage-1"
   ],
   "plugins": [
-    "lodash"
+    "lodash",
+    "transform-react-handled-props",
+    ["transform-react-remove-prop-types", {
+      "mode": "wrap"
+    }],
+    ["transform-runtime", {
+      "polyfill": false,
+      "regenerator": false
+    }]
   ],
   "env": {
     "test": {
       "plugins": [
-        ["__coverage__", { "ignore": "test/" }]
+        ["__coverage__", { "only": "src/" }]
       ]
     }
   }

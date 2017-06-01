@@ -1,16 +1,17 @@
 import faker from 'faker'
 import React from 'react'
 
-import * as common from 'test/specs/commonTests'
 import ItemContent from 'src/views/Item/ItemContent'
 import ItemDescription from 'src/views/Item/ItemDescription'
 import ItemExtra from 'src/views/Item/ItemExtra'
 import ItemHeader from 'src/views/Item/ItemHeader'
 import ItemMeta from 'src/views/Item/ItemMeta'
+import * as common from 'test/specs/commonTests'
 
 describe('ItemContent', () => {
   common.isConformant(ItemContent)
-  common.implementsVerticalAlignProp(ItemContent)
+  common.rendersChildren(ItemContent)
+
   common.implementsShorthandProp(ItemContent, {
     propKey: 'header',
     ShorthandComponent: ItemHeader,
@@ -31,7 +32,7 @@ describe('ItemContent', () => {
     ShorthandComponent: ItemExtra,
     mapValueToProps: val => ({ content: val }),
   })
-  common.rendersChildren(ItemContent)
+  common.implementsVerticalAlignProp(ItemContent)
 
   describe('content prop', () => {
     it('renders text', () => {

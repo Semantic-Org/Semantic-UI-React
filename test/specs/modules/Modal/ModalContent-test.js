@@ -5,5 +5,7 @@ describe('ModalContent', () => {
   common.isConformant(ModalContent)
   common.rendersChildren(ModalContent)
 
+  common.implementsCreateMethod(ModalContent)
+
   common.propKeyOnlyToClassName(ModalContent, 'image')
 })

@@ -19,9 +19,11 @@ const createTestClass = (options = {}) => class Test extends AutoControlledCompo
 
 const toDefaultName = (prop) => `default${prop.slice(0, 1).toUpperCase() + prop.slice(1)}`
 
-const makeProps = () => _.transform(_.times(_.random(3, 10)), (res) => {
-  res[_.camelCase(faker.hacker.noun())] = faker.hacker.verb()
-}, {})
+const makeProps = () => ({
+  computer: 'hardware',
+  flux: 'capacitor',
+  ion: 'belt',
+})
 
 const makeDefaultProps = (props) => _.transform(props, (res, val, key) => {
   res[toDefaultName(key)] = val

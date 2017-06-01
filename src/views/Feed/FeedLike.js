@@ -1,6 +1,7 @@
-import _ from 'lodash'
 import cx from 'classnames'
-import React, { PropTypes } from 'react'
+import _ from 'lodash'
+import PropTypes from 'prop-types'
+import React from 'react'
 
 import {
   customPropTypes,
@@ -10,9 +11,18 @@ import {
 } from '../../lib'
 import Icon from '../../elements/Icon'
 
+/**
+ * A feed can contain a like element.
+ */
 function FeedLike(props) {
-  const { children, className, content, icon } = props
-  const classes = cx(className, 'like')
+  const {
+    children,
+    className,
+    content,
+    icon,
+  } = props
+
+  const classes = cx('like', className)
   const rest = getUnhandledProps(FeedLike, props)
   const ElementType = getElementType(FeedLike, props)
 

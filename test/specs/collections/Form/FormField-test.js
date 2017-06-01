@@ -1,26 +1,27 @@
 import faker from 'faker'
 import React from 'react'
 
-import Checkbox from 'src/modules/Checkbox/Checkbox'
-import FormField from 'src/collections/Form/FormField'
 import Radio from 'src/addons/Radio/Radio'
+import FormField from 'src/collections/Form/FormField'
+import { SUI } from 'src/lib'
+import Checkbox from 'src/modules/Checkbox/Checkbox'
 import * as common from 'test/specs/commonTests'
 
 describe('FormField', () => {
   common.isConformant(FormField)
   common.rendersChildren(FormField)
 
+  common.implementsHTMLLabelProp(FormField)
+  common.implementsWidthProp(FormField, SUI.WIDTHS, {
+    canEqual: false,
+    propKey: 'width',
+  })
+
   common.propKeyOnlyToClassName(FormField, 'disabled')
   common.propKeyOnlyToClassName(FormField, 'error')
   common.propKeyOnlyToClassName(FormField, 'inline')
   common.propKeyOnlyToClassName(FormField, 'required', {
     requiredProps: { label: '' },
-  })
-
-  common.implementsHTMLLabelProp(FormField)
-  common.implementsWidthProp(FormField, {
-    propKey: 'width',
-    canEqual: false,
   })
 
   describe('control', () => {

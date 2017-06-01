@@ -62,13 +62,13 @@ const Variations = () => {
 
       <ComponentExample
         title='Vertical Alignment'
-        description='A table header, row or cell can adjust its vertical alignment.'
+        description='A table, header, row or cell can adjust its vertical alignment.'
         examplePath='collections/Table/Variations/TableExampleVerticalAlign'
       />
 
       <ComponentExample
         title='Text Alignment'
-        description='A table header, row, or cell can adjust its text alignment.'
+        description='A table, header, row, or cell can adjust its text alignment.'
         examplePath='collections/Table/Variations/TableExampleTextAlign'
       />
 
@@ -127,6 +127,12 @@ const Variations = () => {
         examplePath='collections/Table/Variations/TableExampleInverted'
       />
       <ComponentExample examplePath='collections/Table/Variations/TableExampleInvertedColors' />
+
+      <ComponentExample
+        title='Sortable'
+        description='A table can appear to sort its data by column in ascending or descending order.'
+        examplePath='collections/Table/Variations/TableExampleSortable'
+      />
 
       <ComponentExample
         title='Full-Width Header / Footer'

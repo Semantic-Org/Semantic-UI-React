@@ -8,7 +8,7 @@ const ButtonExampleVerticallyAttachedGroup = () => (
       <Button>Two</Button>
     </Button.Group>
     <Segment attached>
-      <img src='http://semantic-ui.com/images/wireframe/paragraph.png' />
+      <img src='/assets/images/wireframe/paragraph.png' />
     </Segment>
     <Button.Group attached='bottom'>
       <Button>One</Button>

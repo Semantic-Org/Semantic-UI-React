@@ -1,6 +1,7 @@
-import _ from 'lodash'
 import cx from 'classnames'
-import React, { PropTypes } from 'react'
+import _ from 'lodash'
+import PropTypes from 'prop-types'
+import React from 'react'
 
 import {
   createShorthand,
@@ -11,9 +12,18 @@ import {
 } from '../../lib'
 import FeedLike from './FeedLike'
 
+/**
+ * A feed can contain a meta.
+ */
 function FeedMeta(props) {
-  const { children, className, content, like } = props
-  const classes = cx(className, 'meta')
+  const {
+    children,
+    className,
+    content,
+    like,
+  } = props
+
+  const classes = cx('meta', className)
   const rest = getUnhandledProps(FeedMeta, props)
   const ElementType = getElementType(FeedMeta, props)
 

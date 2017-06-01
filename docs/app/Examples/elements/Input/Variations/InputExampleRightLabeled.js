@@ -2,9 +2,9 @@ import React from 'react'
 import { Dropdown, Input } from 'semantic-ui-react'
 
 const options = [
-  { text: '.com', value: '.com' },
-  { text: '.net', value: '.net' },
-  { text: '.org', value: '.org' },
+  { key: '.com', text: '.com', value: '.com' },
+  { key: '.net', text: '.net', value: '.net' },
+  { key: '.org', text: '.org', value: '.org' },
 ]
 
 const InputExampleRightLabeled = () => (

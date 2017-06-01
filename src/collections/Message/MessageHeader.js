@@ -1,6 +1,7 @@
-import _ from 'lodash'
 import cx from 'classnames'
-import React, { PropTypes } from 'react'
+import _ from 'lodash'
+import PropTypes from 'prop-types'
+import React from 'react'
 
 import {
   createShorthandFactory,
@@ -10,13 +11,20 @@ import {
   META,
 } from '../../lib'
 
+/**
+ * A message can contain a header.
+ */
 function MessageHeader(props) {
   const { children, className, content } = props
   const classes = cx('header', className)
   const rest = getUnhandledProps(MessageHeader, props)
   const ElementType = getElementType(MessageHeader, props)
 
-  return <ElementType {...rest} className={classes}>{_.isNil(children) ? content : children}</ElementType>
+  return (
+    <ElementType {...rest} className={classes}>
+      {_.isNil(children) ? content : children}
+    </ElementType>
+  )
 }
 
 MessageHeader._meta = {
@@ -32,11 +40,11 @@ MessageHeader.propTypes = {
   /** Primary content. */
   children: PropTypes.node,
 
-  /** Shorthand for primary content. */
-  content: customPropTypes.itemShorthand,
-
   /** Additional classes. */
   className: PropTypes.string,
+
+  /** Shorthand for primary content. */
+  content: customPropTypes.itemShorthand,
 }
 
 MessageHeader.create = createShorthandFactory(MessageHeader, val => ({ content: val }))

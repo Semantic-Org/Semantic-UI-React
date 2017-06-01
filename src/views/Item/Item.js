@@ -1,9 +1,9 @@
-import _ from 'lodash'
 import cx from 'classnames'
-import React, { PropTypes } from 'react'
+import _ from 'lodash'
+import PropTypes from 'prop-types'
+import React from 'react'
 
 import {
-  createShorthand,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -18,11 +18,21 @@ import ItemImage from './ItemImage'
 import ItemMeta from './ItemMeta'
 
 /**
- * An item view presents large collections of site content for display
- **/
+ * An item view presents large collections of site content for display.
+ */
 function Item(props) {
-  const { children, className, content, description, extra, header, image, meta } = props
-  const classes = cx(className, 'item')
+  const {
+    children,
+    className,
+    content,
+    description,
+    extra,
+    header,
+    image,
+    meta,
+  } = props
+
+  const classes = cx('item', className)
   const rest = getUnhandledProps(Item, props)
   const ElementType = getElementType(Item, props)
 
@@ -32,7 +42,7 @@ function Item(props) {
 
   return (
     <ElementType {...rest} className={classes}>
-      {createShorthand(ItemImage, val => ({ src: val }), image)}
+      {ItemImage.create(image)}
 
       <ItemContent
         content={content}
@@ -77,11 +87,11 @@ Item.propTypes = {
   /** Shorthand for ItemExtra component. */
   extra: customPropTypes.itemShorthand,
 
-  /** Shorthand for ItemImage component. */
-  image: customPropTypes.itemShorthand,
-
   /** Shorthand for ItemHeader component. */
   header: customPropTypes.itemShorthand,
+
+  /** Shorthand for ItemImage component. */
+  image: customPropTypes.itemShorthand,
 
   /** Shorthand for ItemMeta component. */
   meta: customPropTypes.itemShorthand,

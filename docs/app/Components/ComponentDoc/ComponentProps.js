@@ -1,12 +1,31 @@
 import _ from 'lodash'
-import React, { Component, PropTypes } from 'react'
+import PropTypes from 'prop-types'
+import React, { Component } from 'react'
 
-import { Label, Table } from 'src'
+import { Header, Icon, Popup, Table } from 'src'
 
-const descriptionExtraStyle = {
-  fontSize: '0.95em',
-  color: '#777',
+const extraDescriptionStyle = {
+  color: '#666',
 }
+const extraDescriptionContentStyle = {
+  marginLeft: '0.5em',
+}
+
+const Extra = ({ title, children, inline, ...rest }) => (
+  <div {...rest} style={extraDescriptionStyle}>
+    <strong>{title}</strong>
+    <div style={{ ...extraDescriptionContentStyle, display: inline ? 'inline' : 'block' }}>
+      {children}
+    </div>
+  </div>
+)
+Extra.propTypes = {
+  children: PropTypes.node,
+  inline: PropTypes.bool,
+  title: PropTypes.node,
+}
+
+const getTagType = tag => tag.type.type === 'AllLiteral' ? 'any' : tag.type.name
 
 /**
  * Displays a table of a Component's PropTypes.
@@ -38,78 +57,110 @@ export default class ComponentProps extends Component {
     })
   }
 
-  renderName = (item) => <code>{item.name}</code>
+  renderName = item => <code>{item.name}</code>
 
-  requiredRenderer = (item) => {
-    if (!item.required) return null
+  renderRequired = item => item.required && (
+    <Popup
+      position='right center'
+      style={{ padding: '0.5em' }}
+      trigger={<Icon size='small' color='red' name='asterisk' />}
+      content='Required'
+      size='tiny'
+      inverted
+    />
+  )
 
-    return <Label size='mini' color='red' circular>required</Label>
+  renderDefaultValue = item => {
+    const defaultValue = _.get(item, 'defaultValue.value')
+    if (_.isNil(defaultValue)) return null
+
+    return <code>{defaultValue}</code>
   }
 
-  renderDefaultValue = (item) => {
-    let defaultValue = _.get(item, 'defaultValue.value')
+  renderFunctionSignature = (item) => {
+    const params = _.filter(item.tags, { title: 'param' })
+    const returns = _.find(item.tags, { title: 'returns' })
 
-    if (_.startsWith(defaultValue, 'function ')) {
-      defaultValue = defaultValue.match(/^function(.*)\{/)[1].trim()
-    }
+    // this doesn't look like a function propType doc block
+    // don't try to render a signature
+    if (_.isEmpty(params) && !returns) return
 
-    const defaultIsComputed = <span className='ui mini gray circular label'>computed</span>
+    const paramSignature = params
+      .map(param => `${param.name}: ${getTagType(param)}`)
+      // prevent object properties from showing as individual params
+      .filter(p => !p.includes('.'))
+      .join(', ')
+
+    const tagDescriptionRows = _.compact([...params, returns]).map(tag => {
+      const name = tag.name || tag.title
+      return (
+        <div key={name} style={{ display: 'flex', flexDirection: 'row' }}>
+          <div style={{ flex: '2 2 0', padding: '0.1em 0' }}>
+            <code>{name}</code>
+          </div>
+          <div style={{ flex: '5 5 0', padding: '0.1em 0' }}>
+            {tag.description}
+          </div>
+        </div>
+      )
+    })
 
     return (
-      <div>
-        {defaultValue} {_.get(item, 'defaultValue.computed') && defaultIsComputed}
-      </div>
+      <Extra title={<pre>{item.name}({paramSignature}){returns ? `: ${getTagType(returns)}` : ''}</pre>}>
+        {tagDescriptionRows}
+      </Extra>
     )
   }
 
-  renderEnums = (item) => {
+  renderEnums = ({ name, type, value }) => {
+    if (type !== '{enum}' || !value) return
+
     const { showEnumsFor } = this.state
-    const { meta } = this.props
-
-    if (item.type.indexOf('enum') === -1) return null
-
-    const values = meta.props[item.name]
-    const truncateAt = 30
-
-    if (!values) return null
+    const truncateAt = 10
+    const valueElements = _.map(value, val => <span key={val}><code>{val}</code> </span>)
 
     // show all if there are few
-    if (values.length < truncateAt) {
-      return (
-        <p style={descriptionExtraStyle}>
-          <strong>Enums: </strong>
-          {values.join(', ')}
-        </p>
-      )
-    }
+    if (value.length < truncateAt) return <Extra title='Enums:' inline>{valueElements}</Extra>
 
     // add button to show more when there are many values and it is not toggled
-    if (!showEnumsFor[item.name]) {
+    if (!showEnumsFor[name]) {
       return (
-        <p style={descriptionExtraStyle}>
-          <strong>Enums: </strong>
-          <a style={{ cursor: 'pointer' }} onClick={this.toggleEnumsFor(item.name)}>
-            Show all {values.length}
+        <Extra title='Enums:' inline>
+          <a style={{ cursor: 'pointer' }} onClick={this.toggleEnumsFor(name)}>
+            Show all {value.length}
           </a>
-          <div>{values.slice(0, truncateAt - 1).join(', ')}...</div>
-        </p>
+          <div>{valueElements.slice(0, truncateAt - 1)}...</div>
+        </Extra>
       )
     }
 
     // add "show more" button when there are many
     return (
-      <p style={descriptionExtraStyle}>
-        <strong>Enums: </strong>
-        <a style={{ cursor: 'pointer' }} onClick={this.toggleEnumsFor(item.name)}>
-          Show less
-        </a>
-        <div>{values.join(', ')}</div>
-      </p>
+      <Extra title='Enums:' inline>
+        <a style={{ cursor: 'pointer' }} onClick={this.toggleEnumsFor(name)}>Show less</a>
+        <div>{valueElements}</div>
+      </Extra>
+    )
+  }
+
+  renderRow = item => {
+    return (
+      <Table.Row key={item.name}>
+        <Table.Cell collapsing>{this.renderName(item)}{this.renderRequired(item)}</Table.Cell>
+        <Table.Cell collapsing>{this.renderDefaultValue(item)}</Table.Cell>
+        <Table.Cell collapsing>{item.type}</Table.Cell>
+        <Table.Cell>
+          {item.description && <p>{item.description}</p>}
+          {this.renderFunctionSignature(item)}
+          {this.renderEnums(item)}
+        </Table.Cell>
+      </Table.Row>
     )
   }
 
   render() {
     const { props: propsDefinition } = this.props
+
     const content = _.sortBy(_.map(propsDefinition, (config, name) => {
       const value = _.get(config, 'type.value')
       let type = _.get(config, 'type.name')
@@ -124,37 +175,25 @@ export default class ComponentProps extends Component {
         name,
         type,
         value,
+        tags: _.get(config, 'docBlock.tags'),
         required: config.required,
         defaultValue: config.defaultValue,
         description: description && description.split('\n').map(l => ([l, <br key={l} />])),
       }
     }), 'name')
+
     return (
-      <Table data={content} className='very basic compact'>
+      <Table compact='very' basic='very'>
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell>Name</Table.HeaderCell>
-            <Table.HeaderCell />
-            <Table.HeaderCell>Type</Table.HeaderCell>
             <Table.HeaderCell>Default</Table.HeaderCell>
+            <Table.HeaderCell>Type</Table.HeaderCell>
             <Table.HeaderCell>Description</Table.HeaderCell>
           </Table.Row>
         </Table.Header>
         <Table.Body>
-          {_.map(content, item => (
-            <Table.Row key={item.name}>
-              <Table.Cell>{this.renderName(item)}</Table.Cell>
-              <Table.Cell>{this.requiredRenderer(item)}</Table.Cell>
-              <Table.Cell>
-                {item.type}
-              </Table.Cell>
-              <Table.Cell>{this.renderDefaultValue(item.defaultValue)}</Table.Cell>
-              <Table.Cell>
-                {item.description && <p>{item.description}</p>}
-                {this.renderEnums(item)}
-              </Table.Cell>
-            </Table.Row>
-          ))}
+          {_.map(content, this.renderRow)}
         </Table.Body>
       </Table>
     )

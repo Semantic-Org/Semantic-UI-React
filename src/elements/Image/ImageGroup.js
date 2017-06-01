@@ -1,5 +1,6 @@
-import React, { PropTypes } from 'react'
 import cx from 'classnames'
+import PropTypes from 'prop-types'
+import React from 'react'
 
 import {
   customPropTypes,
@@ -10,7 +11,7 @@ import {
 } from '../../lib'
 
 /**
- * A group of images
+ * A group of images.
  */
 function ImageGroup(props) {
   const { children, className, size } = props
@@ -25,9 +26,6 @@ ImageGroup._meta = {
   name: 'ImageGroup',
   parent: 'Image',
   type: META.TYPES.ELEMENT,
-  props: {
-    size: SUI.SIZES,
-  },
 }
 
 ImageGroup.propTypes = {
@@ -41,7 +39,7 @@ ImageGroup.propTypes = {
   className: PropTypes.string,
 
   /** A group of images can be formatted to have the same size. */
-  size: PropTypes.oneOf(ImageGroup._meta.props.size),
+  size: PropTypes.oneOf(SUI.SIZES),
 }
 
 export default ImageGroup

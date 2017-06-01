@@ -7,9 +7,9 @@ import { Message } from 'semantic-ui-react'
 const CheckboxTypesExamples = () => (
   <ExampleSection title='Types'>
     <Message info>
-      All checkbox types use an input with type <code>checkbox</code>, except for type <code>radio</code>.
-      {' '}Use <code>inputType</code> if you'd like to mix and match style and behavior.
-      {' '}For instance, type <code>slider</code> with <code>inputType</code> radio for exclusive sliders.
+      All checkbox types use an input with type <code>checkbox</code> unless <code>type</code> is provided.
+      {' '}Use <code>type</code> if you'd like to mix and match style and behavior.
+      {' '}For instance, <code>slider</code> with <code>type</code> radio for exclusive sliders.
     </Message>
 
     <ComponentExample

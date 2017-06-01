@@ -1,5 +1,6 @@
 import cx from 'classnames'
-import React, { PropTypes } from 'react'
+import PropTypes from 'prop-types'
+import React from 'react'
 
 import {
   customPropTypes,
@@ -12,15 +13,8 @@ import {
  * A pushable sub-component for Sidebar.
  */
 function SidebarPushable(props) {
-  const {
-    className,
-    children,
-  } = props
-
-  const classes = cx(
-    'pushable',
-    className,
-  )
+  const { className, children } = props
+  const classes = cx('pushable', className)
   const rest = getUnhandledProps(SidebarPushable, props)
   const ElementType = getElementType(SidebarPushable, props)
 

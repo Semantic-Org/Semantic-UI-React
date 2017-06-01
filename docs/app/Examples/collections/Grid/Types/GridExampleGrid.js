@@ -4,7 +4,7 @@ import { Grid, Image } from 'semantic-ui-react'
 
 const columns = _.times(16, (i) => (
   <Grid.Column key={i}>
-    <Image src='http://semantic-ui.com/images/wireframe/image.png' />
+    <Image src='/assets/images/wireframe/image.png' />
   </Grid.Column>
 ))
 
