@@ -68,7 +68,10 @@ export default class Popup extends Component {
     inverted: PropTypes.bool,
 
     /** Horizontal offset in pixels to be applied to the Popup. */
-    offset: PropTypes.number,
+    offset: PropTypes.oneOfType([
+      PropTypes.arrayOf(PropTypes.number),
+      PropTypes.number,
+    ]),
 
     /** Event triggering the popup. */
     on: PropTypes.oneOf(['hover', 'click', 'focus']),
@@ -126,6 +129,7 @@ export default class Popup extends Component {
 
   static defaultProps = {
     position: 'top left',
+    offset: 0,
     on: 'hover',
   }
 
@@ -139,13 +143,32 @@ export default class Popup extends Component {
 
   state = {}
 
+  computeHorizontalOffset = ({ left, right }, offset) => {
+    if (_.isNumber(right)) return { left, right: right - offset }
+    return { right, left: left - offset }
+  }
+
+  computeVerticalOffset = ({ bottom, top }, offset) => {
+    if (_.isNumber(top)) return { bottom, top: top + offset }
+    return { top, bottom: bottom + offset }
+  }
+
+  computeOffset = style => {
+    const { offset } = this.props
+    const [horizontal, vertical] = _.isNumber(offset) ? [offset, 0] : offset
+
+    return {
+      ...this.computeHorizontalOffset(style, horizontal),
+      ...this.computeVerticalOffset(style, vertical),
+    }
+  }
+
   computePopupStyle(positions) {
     const style = { position: 'absolute' }
 
     // Do not access window/document when server side rendering
     if (!isBrowser) return style
 
-    const { offset } = this.props
     const { pageYOffset, pageXOffset } = window
     const { clientWidth, clientHeight } = document.documentElement
 
@@ -180,23 +203,7 @@ export default class Popup extends Component {
       }
     }
 
-    if (offset) {
-      if (_.isNumber(style.right)) {
-        style.right -= offset
-      } else {
-        style.left -= offset
-      }
-    }
-
-    if (verticalOffset) {
-      if (_.isNumber(style.top)) {
-        style.top -= verticalOffset
-      } else {
-        style.bottom -= verticalOffset
-      }
-    }
-
-    return style
+    return { ...style, ...this.computeOffset(style) }
   }
 
   // check if the style would display

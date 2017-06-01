@@ -35,7 +35,7 @@ export interface PopupProps extends PortalProps {
   inverted?: boolean;
 
   /** Horizontal offset in pixels to be applied to the popup. */
-  offset?: number;
+  offset?: number | Array<number>;
 
   /** Event triggering the popup. */
   on?: 'hover' | 'click' | 'focus';
