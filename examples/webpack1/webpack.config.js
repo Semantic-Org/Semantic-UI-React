@@ -2,7 +2,7 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 const path = require('path')
 const webpack = require('webpack')
 
-const analize = !!process.env.ANALIZE_ENV
+const analyze = !!process.env.ANALYZE_ENV
 const env = process.env.NODE_ENV || 'development'
 
 const webpackConfig = {
@@ -41,7 +41,7 @@ const webpackConfig = {
   },
 }
 
-if (analize) {
+if (analyze) {
   webpackConfig.plugins.push(new BundleAnalyzerPlugin())
 }
 
