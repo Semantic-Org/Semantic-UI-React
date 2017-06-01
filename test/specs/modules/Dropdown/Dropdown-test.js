@@ -1497,6 +1497,20 @@ describe('Dropdown', () => {
         .find('DropdownItem')
         .everyWhere(item => item.should.have.prop('data-foo', 'someValue'))
     })
+
+    it('handles keys correctly', () => {
+      const customOptions = [
+        { key: 0, text: 'foo', value: 'foo' },
+        { key: null, text: 'bar', value: 'bar' },
+        { key: undefined, text: 'baz', value: 'baz' },
+      ]
+      wrapperShallow(<Dropdown options={customOptions} selection />)
+      const items = wrapper.find('DropdownItem')
+
+      items.at(0).key().should.equal('0')
+      items.at(1).key().should.equal('bar')
+      items.at(2).key().should.equal('baz')
+    })
   })
 
   describe('selection', () => {
