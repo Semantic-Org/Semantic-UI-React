@@ -1970,7 +1970,7 @@ describe('Dropdown', () => {
         .prop('text')
 
       expect(text[0]).to.equal('Add ')
-      shallow(text[1]).equals(<b key='addition'>boo</b>)
+      shallow(text[1]).equals(<b key='addition-query'>boo</b>)
     })
 
     it('uses custom additionLabel string', () => {
@@ -1995,7 +1995,7 @@ describe('Dropdown', () => {
         .prop('text')
 
       expect(text[0]).to.equal('New: ')
-      shallow(text[1]).equals(<b key='addition'>boo</b>)
+      shallow(text[1]).equals(<b key='addition-query'>boo</b>)
     })
 
     it('uses custom additionLabel element', () => {
@@ -2020,7 +2020,7 @@ describe('Dropdown', () => {
         .prop('text')
 
       shallow(text[0]).equals(<i key='label'>New: </i>)
-      shallow(text[1]).equals(<b key='addition'>boo</b>)
+      shallow(text[1]).equals(<b key='addition-query'>boo</b>)
     })
 
     it('uses no additionLabel', () => {
@@ -2045,7 +2045,7 @@ describe('Dropdown', () => {
         .prop('text')
 
       expect(text[0]).to.equal('')
-      shallow(text[1]).equals(<b key='addition'>boo</b>)
+      shallow(text[1]).equals(<b key='addition-query'>boo</b>)
     })
 
     it('keeps custom value option (bottom) when options change', () => {

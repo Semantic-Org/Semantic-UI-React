@@ -759,15 +759,16 @@ export default class Dropdown extends Component {
     // insert the "add" item
     if (allowAdditions && search && searchQuery && !_.some(filteredOptions, { text: searchQuery })) {
       const additionLabelElement = React.isValidElement(additionLabel)
-        ? React.cloneElement(additionLabel, { key: 'label' })
+        ? React.cloneElement(additionLabel, { key: 'addition-label' })
         : additionLabel || ''
 
       const addItem = {
+        key: 'addition',
         // by using an array, we can pass multiple elements, but when doing so
         // we must specify a `key` for React to know which one is which
         text: [
           additionLabelElement,
-          <b key='addition'>{searchQuery}</b>,
+          <b key='addition-query'>{searchQuery}</b>,
         ],
         value: searchQuery,
         className: 'addition',
