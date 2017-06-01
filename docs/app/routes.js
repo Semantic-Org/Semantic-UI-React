@@ -7,8 +7,10 @@ import {
 } from 'react-router-dom'
 
 import ExternalExampleLayout from './Components/ExternalExampleLayout'
-import Layout from './Components/Layout'
-import Root from './Components/Root'
+import DocsLayout from './Components/DocsLayout'
+import DocsRoot from './Components/DocsRoot'
+import LayoutsLayout from './Components/LayoutsLayout'
+import LayoutsRoot from './Components/LayoutsRoot'
 
 import Introduction from './Views/Introduction'
 import Layouts from './Views/Layouts'
@@ -21,16 +23,15 @@ const Router = () => (
   <BrowserRouter>
     <Switch>
       <Route exact path='/maximize/:kebabCaseName' component={ExternalExampleLayout} />
-      <Layout>
-        <Switch>
-          <Route exact path='/' render={RedirectToIntro} />
-          <Route exact path='/introduction' component={Introduction} />
-          <Route exact path='/layouts' component={Layouts} />
-          <Route exact path='/usage' component={Usage} />
-          <Route exact path='/:type/:name' component={Root} />
-          <Route exact path='/*' component={PageNotFound} />
-        </Switch>
-      </Layout>
+      <Switch>
+        <DocsLayout exact path='/' render={RedirectToIntro} />
+        <DocsLayout exact path='/introduction' component={Introduction} />
+        <DocsLayout exact path='/layouts' component={Layouts} />
+        <LayoutsLayout exact path='/layouts/:name' component={LayoutsRoot} />
+        <DocsLayout exact path='/usage' component={Usage} />
+        <DocsLayout exact path='/:type/:name' component={DocsRoot} />
+        <DocsLayout exact path='/*' component={PageNotFound} />
+      </Switch>
     </Switch>
   </BrowserRouter>
 )
