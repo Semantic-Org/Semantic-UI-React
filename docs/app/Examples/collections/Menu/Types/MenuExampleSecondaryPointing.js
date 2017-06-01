@@ -12,9 +12,9 @@ export default class MenuExampleSecondaryPointing extends Component {
     return (
       <div>
         <Menu pointing secondary>
-          <Menu.Item name='home' active={activeItem === 'home'} onClick={this.handleItemClick} />
-          <Menu.Item name='messages' active={activeItem === 'messages'} onClick={this.handleItemClick} />
-          <Menu.Item name='friends' active={activeItem === 'friends'} onClick={this.handleItemClick} />
+          <Menu.Item name='home' active={activeItem === 'home'} onClick={this.handleItemClick} >Home</Menu.Item>
+          <Menu.Item name='messages' active={activeItem === 'messages'} onClick={this.handleItemClick} >Messages</Menu.Item>
+          <Menu.Item name='friends' active={activeItem === 'friends'} onClick={this.handleItemClick} >Friends</Menu.Item>
           <Menu.Menu position='right'>
             <Menu.Item name='logout' active={activeItem === 'logout'} onClick={this.handleItemClick} />
           </Menu.Menu>
