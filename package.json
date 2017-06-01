@@ -123,7 +123,7 @@
     "react-router": "^4.0.0",
     "react-router-dom": "^4.0.0",
     "react-test-renderer": "^15.5.4",
-    "require-dir": "^0.3.0",
+    "require-dir": "^0.3.2",
     "rimraf": "^2.5.2",
     "satisfied": "^1.1.0",
     "semantic-ui-css": "^2.2.2",
