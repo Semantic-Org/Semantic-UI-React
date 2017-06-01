@@ -20,8 +20,8 @@ const description = 'A description which may flow for several lines and give con
 
 const ResponsiveLayout = () => (
   <div>
-    <Header as='h1' textAlign='center' content='Responsive UI Examples' style={style.responsiveh1}/>
-    <Header as='h2'  textAlign='center' content='Basic Responsive' style={style.responsiveh2}/>
+    <Header as='h1' textAlign='center' content='Responsive UI Examples' style={style.responsiveh1} />
+    <Header as='h2' textAlign='center' content='Basic Responsive' style={style.responsiveh2} />
 
 
     <Header as='h3' style={style.responsiveh3} textAlign='center' content='Container' style={style.responsiveh3} style={style.responsiveh3} />
@@ -92,7 +92,7 @@ const ResponsiveLayout = () => (
       </Grid.Column>
     </Grid>
 
-    <Header as='h3' style={style.responsiveh3} textAlign='center' content="Doubling Stackable Grid" />
+    <Header as='h3' style={style.responsiveh3} textAlign='center' content='Doubling Stackable Grid' />
     <Grid columns={3} doubling stackable>
       <Grid.Column>
         <Segment>Content</Segment>
@@ -142,7 +142,7 @@ const ResponsiveLayout = () => (
     </Grid>
 
     <Header as='h3' style={style.responsiveh3} textAlign='center' content='Stackable Grid Container' />
-    <Grid columns={2} stackable container={true}>
+    <Grid columns={2} stackable container>
       <Grid.Column>
         <Segment>Content</Segment>
       </Grid.Column>
@@ -164,7 +164,7 @@ const ResponsiveLayout = () => (
     </Grid>
 
     <Header as='h3' style={style.responsiveh3} textAlign='center' content='Doubling Grid Container' />
-    <Grid columns={3} doubling container={true}>
+    <Grid columns={3} doubling container>
       <Grid.Column>
         <Segment>Content</Segment>
       </Grid.Column>
@@ -185,8 +185,8 @@ const ResponsiveLayout = () => (
       </Grid.Column>
     </Grid>
 
-    <Header as='h3' style={style.responsiveh3} textAlign='center' content='Doubling Stackable Grid Container'/>
-    <Grid columns={3} doubling stackable container={true}>
+    <Header as='h3' style={style.responsiveh3} textAlign='center' content='Doubling Stackable Grid Container' />
+    <Grid columns={3} doubling stackable container>
       <Grid.Column>
         <Segment>Content</Segment>
       </Grid.Column>
@@ -279,7 +279,7 @@ const ResponsiveLayout = () => (
     <Header as='h2' textAlign='center' content='Responsive Grid with Variations' style={style.responsiveh2} />
 
     <Header as='h3' style={style.responsiveh3} textAlign='center' content='Stackable Divided Grid' />
-    <Grid container={true} stackable divided columns={2}>
+    <Grid container stackable divided columns={2}>
       <Grid.Row>
         <Grid.Column>
           <Segment>Content</Segment>
@@ -307,7 +307,7 @@ const ResponsiveLayout = () => (
     </Grid>
 
     <Header as='h3' style={style.responsiveh3} textAlign='center' content='Stackable Vertically Divided Grid' />
-    <Grid container={true} stackable divided columns={2}>
+    <Grid container stackable divided columns={2}>
       <Grid.Row>
         <Grid.Column>
           <Segment>Content</Segment>
@@ -335,7 +335,7 @@ const ResponsiveLayout = () => (
     </Grid>
 
     <Header as='h3' style={style.responsiveh3} textAlign='center' content='Celled Stackable Grid' />
-    <Grid stackable celled container={true}>
+    <Grid stackable celled container>
       <Grid.Row columns={2}>
         <Grid.Column>
           <Segment>Content</Segment>
@@ -367,7 +367,7 @@ const ResponsiveLayout = () => (
 
 
     <Header as='h3' style={style.responsiveh3} textAlign='center' content='Consecutive Doubling Stackable Grid' />
-    <Grid doubling stackable columns={3} container={true}>
+    <Grid doubling stackable columns={3} container>
       <Grid.Column>
         <Segment>Content</Segment>
       </Grid.Column>
@@ -387,7 +387,7 @@ const ResponsiveLayout = () => (
         <Segment>Content</Segment>
       </Grid.Column>
     </Grid>
-    <Grid doubling stackable columns={3} container={true}>
+    <Grid doubling stackable columns={3} container>
       <Grid.Column>
         <Segment>Content</Segment>
       </Grid.Column>
@@ -410,7 +410,7 @@ const ResponsiveLayout = () => (
 
 
     <Header as='h3' style={style.responsiveh3} textAlign='center' content='Grid Container' />
-    <Grid columns={3} container={true}>
+    <Grid columns={3} container>
       <Grid.Column>
         <Segment>Content</Segment>
       </Grid.Column>
@@ -436,7 +436,7 @@ const ResponsiveLayout = () => (
 
     <Header as='h3' style={style.responsiveh3} textAlign='center' content='Responsive Vertical Divider' />
 
-      <Grid stackable divided columns={2} container={true} relaxed>
+      <Grid stackable divided columns={2} container relaxed>
         <Grid.Column>
           <Segment>Content</Segment>
         </Grid.Column>
