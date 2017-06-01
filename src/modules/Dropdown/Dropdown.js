@@ -1170,7 +1170,7 @@ export default class Dropdown extends Component {
       onClick: this.handleItemClick,
       selected: selectedIndex === i,
       ...opt,
-      key: getKeyOrValue(key, value),
+      key: getKeyOrValue(opt.key, opt.value),
       // Needed for handling click events on disabled items
       style: { ...opt.style, pointerEvents: 'all' },
     }))
