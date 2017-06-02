@@ -18,6 +18,7 @@ export {
   debug,
   makeDebugger,
 } from './debug'
+export eventPool from './eventPool'
 
 export * from './factories'
 export { default as getUnhandledProps } from './getUnhandledProps'
