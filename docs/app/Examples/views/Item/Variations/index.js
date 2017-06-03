@@ -19,6 +19,12 @@ const Variations = () => (
     <ComponentExample examplePath='views/Item/Variations/ItemExampleVeryRelaxed' />
 
     <ComponentExample
+      title='Unstackable'
+      description='A group of items can prevent items from stacking on mobile.'
+      examplePath='views/Item/Variations/ItemExampleUnstackable'
+    />
+
+    <ComponentExample
       title='Link Item'
       description='An item can be formatted so that the entire contents link to another page.'
       examplePath='views/Item/Variations/ItemExampleLink'

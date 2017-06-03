@@ -59,7 +59,7 @@ const RatingJSX = '<Rating rating={1} maxRating={5} />'
 const RatingHTML = `<div
   class="ui rating"
   data-rating="1"
-  data-max-rating="3"
+  data-max-rating="5"
 ></div>`
 
 const MessageIconJSX = `<Message
