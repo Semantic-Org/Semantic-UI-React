@@ -789,6 +789,32 @@ describe('Dropdown', () => {
         .find('div.text')
         .should.contain.text(nextItem.text)
     })
+    it('updates value on down arrow', () => {
+      wrapperMount(<Dropdown options={options} selection />)
+
+      // open
+      wrapper.simulate('click')
+      dropdownMenuIsOpen()
+
+      // arrow down
+      domEvent.keyDown(document, { key: 'ArrowDown' })
+
+      // value changed to second item
+      wrapper.should.have.state('value', options[1].value)
+    })
+    it('updates value on up arrow', () => {
+      wrapperMount(<Dropdown options={options} selection />)
+
+      // open
+      wrapper.simulate('click')
+      dropdownMenuIsOpen()
+
+      // arrow down
+      domEvent.keyDown(document, { key: 'ArrowUp' })
+
+      // value changed to fifth item
+      wrapper.should.have.state('value', options[4].value)
+    })
   })
 
   describe('text', () => {
