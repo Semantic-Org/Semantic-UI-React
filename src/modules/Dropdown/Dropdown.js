@@ -1107,7 +1107,7 @@ export default class Dropdown extends Component {
         aria-autocomplete='list'
         onChange={this.handleSearchChange}
         className='search'
-        name={[name, 'search'].join('-')}
+        name={['search', name].join('-')}
         autoComplete='off'
         tabIndex={computedTabIndex}
         style={{ width: searchWidth }}
