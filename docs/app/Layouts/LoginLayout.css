@@ -2,6 +2,6 @@ body.login {
     background-color: #dadada;
 }
 
-body > div, body > div > div {
+body.login > div, body.login > div > div {
     height: 100%;
 }
