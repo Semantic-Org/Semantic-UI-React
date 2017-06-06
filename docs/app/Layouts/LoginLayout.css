@@ -1,0 +1,7 @@
+body.login {
+    background-color: #dadada;
+}
+
+body > div, body > div > div {
+    height: 100%;
+}
