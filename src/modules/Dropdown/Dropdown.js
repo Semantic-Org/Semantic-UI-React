@@ -494,10 +494,8 @@ export default class Dropdown extends Component {
   // onChange needs to receive a value
   // can't rely on props.value if we are controlled
   handleChange = (e, value) => {
-    debug('handleChange()')
-    debug(value)
-    const { onChange } = this.props
-    if (onChange) onChange(e, { ...this.props, value })
+    debug('handleChange()', value)
+    _.invoke(this.props, 'onChange', e, { ...this.props, value })
   }
 
   closeOnChange = (e) => {
@@ -1025,22 +1023,7 @@ export default class Dropdown extends Component {
     this.setState({ focus: hasFocus })
   }
 
-  toggle = (e) => {
-    if (!this.state.open) {
-      this.open(e)
-      return
-    }
-
-    const { search } = this.props
-    const options = this.getMenuOptions()
-
-    if (search && _.isEmpty(options)) {
-      e.preventDefault()
-      return
-    }
-
-    this.close(e)
-  }
+  toggle = e => this.state.open ? this.close(e) : this.open(e)
 
   // ----------------------------------------
   // Render
