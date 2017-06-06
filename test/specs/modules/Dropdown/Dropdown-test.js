@@ -211,10 +211,6 @@ describe('Dropdown', () => {
       wrapperMount(<Dropdown />)
       wrapper.find('div').at(0).should.have.prop('role', 'listbox')
     })
-    it('should label selection dropdown with aria-hidden=true', () => {
-      wrapperMount(<Dropdown selection />)
-      wrapper.find('select').at(0).should.have.prop('aria-hidden', 'true')
-    })
     it('should label search dropdown as a combobox', () => {
       wrapperMount(<Dropdown search />)
       wrapper.find('div').at(0).should.have.prop('role', 'combobox')
