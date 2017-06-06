@@ -42,13 +42,13 @@ export default class TableExampleSortable extends Component {
       <Table sortable celled fixed>
         <Table.Header>
           <Table.Row>
-            <Table.HeaderCell sorted={column === 'name' && direction} onClick={this.handleSort('name')}>
+            <Table.HeaderCell sorted={column === 'name' ? direction : null} onClick={this.handleSort('name')}>
               Name
             </Table.HeaderCell>
-            <Table.HeaderCell sorted={column === 'age' && direction} onClick={this.handleSort('age')}>
+            <Table.HeaderCell sorted={column === 'age' ? direction : null} onClick={this.handleSort('age')}>
               Age
             </Table.HeaderCell>
-            <Table.HeaderCell sorted={column === 'gender' && direction} onClick={this.handleSort('gender')}>
+            <Table.HeaderCell sorted={column === 'gender' ? direction : null} onClick={this.handleSort('gender')}>
               Gender
             </Table.HeaderCell>
           </Table.Row>
