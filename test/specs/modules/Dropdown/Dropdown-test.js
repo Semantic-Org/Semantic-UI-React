@@ -1331,16 +1331,23 @@ describe('Dropdown', () => {
 
       spy.should.not.have.been.called()
     })
-    it('does not remove items for multiple dropdowns without search', () => {
+    it('does remove items for multiple dropdowns without search', () => {
+      const name = 'my-dropdown'
       const value = _.map(options, 'value')
-      wrapperMount(<Dropdown options={options} selection value={value} multiple onChange={spy} />)
+      const expected = _.dropRight(value)
+      wrapperMount(<Dropdown options={options} selection name={name} defaultValue={value} multiple onChange={spy} />)
 
       // open
       wrapper.simulate('click')
 
       domEvent.keyDown(document, { key: 'Backspace' })
 
-      spy.should.not.have.been.called()
+      spy.should.have.been.calledOnce()
+      spy.should.have.been.calledWithMatch({}, { name, value: expected })
+
+      wrapper
+        .state('value')
+        .should.deep.equal(expected)
     })
   })
 
