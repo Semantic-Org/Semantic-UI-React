@@ -646,7 +646,7 @@ export default class Dropdown extends Component {
     if (onClick) onClick(e, this.props)
     // prevent closeOnDocumentClick()
     e.stopPropagation()
-    this.toggle(e)
+    e.target.nodeName !== 'INPUT' && this.toggle(e)
   }
 
   handleItemClick = (e, item) => {
