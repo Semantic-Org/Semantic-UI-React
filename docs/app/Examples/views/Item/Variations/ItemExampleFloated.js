@@ -1,7 +1,7 @@
 import React from 'react'
-import { Button, Image as ImageComponent, Item } from 'semantic-ui-react'
+import { Button, Image, Item } from 'semantic-ui-react'
 
-const paragraph = <ImageComponent src='/assets/images/wireframe/short-paragraph.png' />
+const paragraph = <Image src='/assets/images/wireframe/short-paragraph.png' />
 
 const ItemExampleFloated = () => (
   <Item.Group relaxed>

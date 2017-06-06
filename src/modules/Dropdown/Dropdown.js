@@ -25,6 +25,8 @@ import DropdownMenu from './DropdownMenu'
 
 const debug = makeDebugger('dropdown')
 
+const getKeyOrValue = (key, value) => _.isNil(key) ? value : key
+
 /**
  * A dropdown allows a user to select a value from a series of options.
  * @see Form
@@ -771,15 +773,16 @@ export default class Dropdown extends Component {
     // insert the "add" item
     if (allowAdditions && search && searchQuery && !_.some(filteredOptions, { text: searchQuery })) {
       const additionLabelElement = React.isValidElement(additionLabel)
-        ? React.cloneElement(additionLabel, { key: 'label' })
+        ? React.cloneElement(additionLabel, { key: 'addition-label' })
         : additionLabel || ''
 
       const addItem = {
+        key: 'addition',
         // by using an array, we can pass multiple elements, but when doing so
         // we must specify a `key` for React to know which one is which
         text: [
           additionLabelElement,
-          <b key='addition'>{searchQuery}</b>,
+          <b key='addition-query'>{searchQuery}</b>,
         ],
         value: searchQuery,
         className: 'addition',
@@ -1083,7 +1086,7 @@ export default class Dropdown extends Component {
       <select type='hidden' aria-hidden='true' name={name} value={value} multiple={multiple}>
         <option value='' />
         {_.map(options, (option, i) => (
-          <option key={option.key || option.value} value={option.value}>{option.text}</option>
+          <option key={getKeyOrValue(option.key, option.value)} value={option.value}>{option.text}</option>
         ))}
       </select>
     )
@@ -1148,7 +1151,7 @@ export default class Dropdown extends Component {
       const defaultProps = {
         active: item.value === selectedLabel,
         as: 'a',
-        key: item.key || item.value,
+        key: getKeyOrValue(item.key, item.value),
         onClick: this.handleLabelClick,
         onRemove: this.handleLabelRemove,
         value: item.value,
@@ -1179,6 +1182,7 @@ export default class Dropdown extends Component {
       onClick: this.handleItemClick,
       selected: selectedIndex === i,
       ...opt,
+      key: getKeyOrValue(opt.key, opt.value),
       // Needed for handling click events on disabled items
       style: { ...opt.style, pointerEvents: 'all' },
     }))
