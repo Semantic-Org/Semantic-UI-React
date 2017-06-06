@@ -1,3 +1,5 @@
+import config from './config';
+
 /**
  * Returns a createElement() type based on the props of the Component.
  * Useful for calculating what type a component should render as.
@@ -26,7 +28,7 @@ function getElementType(Component, props, getDefault) {
   // ----------------------------------------
   // infer anchor links
 
-  if (props.href) return 'a'
+  if (props.href) return config.linkElement
 
   // ----------------------------------------
   // use defaultProp or 'div'
