@@ -1,8 +1,8 @@
 import React from 'react'
 import {
   BrowserRouter,
-  Route,
   Redirect,
+  Route,
   Switch,
 } from 'react-router-dom'
 
@@ -17,7 +17,7 @@ import Layouts from './Views/Layouts'
 import PageNotFound from './Views/PageNotFound'
 import Usage from './Views/Usage'
 
-const RedirectToIntro = () => <Redirect to='introduction' />
+const RedirectToIntro = () => <Redirect to='/introduction' />
 
 const Router = () => (
   <BrowserRouter>

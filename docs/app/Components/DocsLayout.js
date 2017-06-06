@@ -4,8 +4,8 @@ import React, { Component } from 'react'
 import { Route } from 'react-router-dom'
 
 import Sidebar from 'docs/app/Components/Sidebar/Sidebar'
-import style from 'docs/app/Style'
 import TAAttribution from 'docs/app/Components/TAAttribution/TAAttribution'
+import style from 'docs/app/Style'
 import { scrollToAnchor } from 'docs/app/utils'
 import { getUnhandledProps } from 'src/lib'
 
@@ -16,6 +16,7 @@ const anchors = new AnchorJS({
 export default class DocsLayout extends Component {
   static propTypes = {
     component: PropTypes.func,
+    render: PropTypes.func,
   }
 
   componentDidMount() {
@@ -47,8 +48,9 @@ export default class DocsLayout extends Component {
   }
 
   renderChildren = props => {
-    const { component: Children } = this.props
+    const { component: Children, render } = this.props
 
+    if (render) return render()
     return (
       <div style={style.container}>
         <Sidebar style={style.menu} />

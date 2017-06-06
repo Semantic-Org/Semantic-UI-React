@@ -40,11 +40,13 @@ const style = (
 export default class LayoutsLayout extends Component {
   static propTypes = {
     component: PropTypes.func,
+    render: PropTypes.func,
   }
 
   renderChildren = props => {
-    const { component: Children } = this.props
+    const { component: Children, render } = this.props
 
+    if (render) return render()
     return (
       <div>
         {style}
