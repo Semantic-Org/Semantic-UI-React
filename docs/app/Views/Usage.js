@@ -143,6 +143,19 @@ const Usage = () => (
           import '../semantic/dist/semantic.min.css';
         </pre>
       </Segment>
+
+      {/* ----------------------------------------
+       *  Semantic-UI-Meteor package
+       * -------------------------------------- */}
+      <Header as='h3'>Semantic UI Meteor package</Header>
+      <p>
+        The <a href={semanticUIMeteorRepoURL}>Semantic UI Meteor package</a> is the official way to install Semantic-UI for Meteor applications.
+      </p>
+      <p>
+        Semantic UI Meteor can be installed as a package in your project using NPM. See the repo for detailed instructions.
+      </p>
+     
+
     </Segment>
 
     <Segment basic padded>
