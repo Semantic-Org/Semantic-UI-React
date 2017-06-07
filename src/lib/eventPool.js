@@ -1,17 +1,23 @@
 import _ from 'lodash'
 
 class EventPool {
-  events = []
-  queues = {}
+  handlers = {}
+  pools = {}
 
   // ------------------------------------
   // Utils
   // ------------------------------------
 
   emit = name => event => {
-    _.forEach(this.queues, (queue, name) => {
-      const { [name]: handlers } = queue
-      if(handlers) _.forEach(handlers, handler => handler(event))
+    _.forEach(this.pools, (pool, poolName) => {
+      const { [name]: handlers } = pool
+
+      if (!handlers) return
+      if (poolName === 'default') {
+        _.forEach(handlers, handler => handler(event))
+        return
+      }
+      _.last(handlers)(event)
     })
   }
 
@@ -22,38 +28,47 @@ class EventPool {
   // ------------------------------------
 
   listen = name => {
-    if(_.includes(this.queues, name)) return
-    document.addEventListener(name, this.emit(name))
+    if (_.has(this.handlers, name)) return
+    const handler = this.emit(name)
+
+    document.addEventListener(name, handler)
+    this.handlers[name] = handler
   }
 
   unlisten = name => {
-    if(_.some(this.queues, name)) return
-    document.removeEventListener(name, this.emit(name))
+    if (_.some(this.pools, name)) return
+    const { [name]: handler } = this.handlers
+
+    document.removeEventListener(name, handler)
+    delete this.handlers[name]
   }
 
   // ------------------------------------
   // Pub/sub
   // ------------------------------------
 
-  sub = (name, handlers, queue = 'default') => {
+  sub = (name, handlers, pool = 'default') => {
     const events = [
-      ..._.get(this.queues, `${queue}.${name}`),
-      ...this.normalize(handlers)
+      ..._.get(this.pools, `${pool}.${name}`, []),
+      ...this.normalize(handlers),
     ]
 
     this.listen(name)
-    _.set(this.queues, `${queue}.${name}`, events)
+    _.set(this.pools, `${pool}.${name}`, events)
   }
 
-  unsub = (name, handlers, queue = 'default') => {
-    const events = _.without(_.get(this.queues, `${queue}.${name}`), this.normalize(handlers))
+  unsub = (name, handlers, pool = 'default') => {
+    const events = _.without(
+      _.get(this.pools, `${pool}.${name}`, []),
+      ...this.normalize(handlers)
+    )
 
-    if(events.length > 0) {
-      _.set(this.queues, `${queue}.${name}`, events)
+    if (events.length > 0) {
+      _.set(this.pools, `${pool}.${name}`, events)
       return
     }
 
-    delete this.queues[queue][name]
+    delete this.pools[pool][name]
     this.unlisten(name)
   }
 }
