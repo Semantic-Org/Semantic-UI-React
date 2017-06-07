@@ -1,15 +1,16 @@
 import _ from 'lodash'
+import isBrowser from './isBrowser'
 
 class EventPool {
-  handlers = {}
-  pools = {}
+  _handlers = {}
+  _pools = {}
 
   // ------------------------------------
   // Utils
   // ------------------------------------
 
-  emit = name => event => {
-    _.forEach(this.pools, (pool, poolName) => {
+  _emit = name => event => {
+    _.forEach(this._pools, (pool, poolName) => {
       const { [name]: handlers } = pool
 
       if (!handlers) return
@@ -21,26 +22,26 @@ class EventPool {
     })
   }
 
-  normalize = handlers => _.isArray(handlers) ? handlers : [handlers]
+  _normalize = handlers => _.isArray(handlers) ? handlers : [handlers]
 
   // ------------------------------------
   // Listeners handling
   // ------------------------------------
 
-  listen = name => {
-    if (_.has(this.handlers, name)) return
-    const handler = this.emit(name)
+  _listen = name => {
+    if (_.has(this._handlers, name)) return
+    const handler = this._emit(name)
 
     document.addEventListener(name, handler)
-    this.handlers[name] = handler
+    this._handlers[name] = handler
   }
 
-  unlisten = name => {
-    if (_.some(this.pools, name)) return
-    const { [name]: handler } = this.handlers
+  _unlisten = name => {
+    if (_.some(this._pools, name)) return
+    const { [name]: handler } = this._handlers
 
     document.removeEventListener(name, handler)
-    delete this.handlers[name]
+    delete this._handlers[name]
   }
 
   // ------------------------------------
@@ -48,28 +49,32 @@ class EventPool {
   // ------------------------------------
 
   sub = (name, handlers, pool = 'default') => {
+    if (!isBrowser) return
+
     const events = [
-      ..._.get(this.pools, `${pool}.${name}`, []),
-      ...this.normalize(handlers),
+      ..._.get(this._pools, `${pool}.${name}`, []),
+      ...this._normalize(handlers),
     ]
 
-    this.listen(name)
-    _.set(this.pools, `${pool}.${name}`, events)
+    this._listen(name)
+    _.set(this._pools, `${pool}.${name}`, events)
   }
 
   unsub = (name, handlers, pool = 'default') => {
+    if (!isBrowser) return
+
     const events = _.without(
-      _.get(this.pools, `${pool}.${name}`, []),
-      ...this.normalize(handlers)
+      _.get(this._pools, `${pool}.${name}`, []),
+      ...this._normalize(handlers)
     )
 
     if (events.length > 0) {
-      _.set(this.pools, `${pool}.${name}`, events)
+      _.set(this._pools, `${pool}.${name}`, events)
       return
     }
 
-    delete this.pools[pool][name]
-    this.unlisten(name)
+    _.set(this._pools, `${pool}.${name}`, undefined)
+    this._unlisten(name)
   }
 }
 

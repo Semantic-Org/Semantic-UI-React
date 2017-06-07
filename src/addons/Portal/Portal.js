@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom'
 
 import {
   AutoControlledComponent as Component,
+  eventPool,
   isBrowser,
   keyboardKey,
   makeDebugger,
@@ -385,11 +386,9 @@ class Portal extends Component {
       mountNode.appendChild(this.rootNode)
     }
 
-    document.addEventListener('click', this.handleDocumentClick)
-    document.addEventListener('keydown', this.handleEscape)
-
-    const { onMount } = this.props
-    if (onMount) onMount(null, this.props)
+    eventPool.sub('click', this.handleDocumentClick, 'Portal')
+    eventPool.sub('keydown', this.handleEscape, 'Portal')
+    _.invoke(this.props, 'onMount', null, this.props)
   }
 
   unmountPortal = () => {
@@ -406,11 +405,9 @@ class Portal extends Component {
     this.rootNode = null
     this.portalNode = null
 
-    document.removeEventListener('click', this.handleDocumentClick)
-    document.removeEventListener('keydown', this.handleEscape)
-
-    const { onUnmount } = this.props
-    if (onUnmount) onUnmount(null, this.props)
+    eventPool.unsub('click', this.handleDocumentClick, 'Portal')
+    eventPool.unsub('keydown', this.handleEscape, 'Portal')
+    _.invoke(this.props, 'onUnmount', null, this.props)
   }
 
   handleRef = c => {

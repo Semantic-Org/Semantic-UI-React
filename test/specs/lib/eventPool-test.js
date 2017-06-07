@@ -5,8 +5,8 @@ import { domEvent, sandbox } from 'test/utils'
 
 describe('eventPool', () => {
   afterEach(() => {
-    eventPool.pools = {}
-    _.forEach(_.keys(eventPool.handlers), name => eventPool.unlisten(name))
+    eventPool._pools = {}
+    _.forEach(_.keys(eventPool._handlers), name => eventPool._unlisten(name))
   })
 
   describe('pub', () => {

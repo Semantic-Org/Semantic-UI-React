@@ -6,6 +6,7 @@ import React, { Children, cloneElement } from 'react'
 import {
   AutoControlledComponent as Component,
   customPropTypes,
+  eventPool,
   getElementType,
   getUnhandledProps,
   isBrowser,
@@ -413,9 +414,6 @@ export default class Dropdown extends Component {
     // TODO objectDiff still runs in prod, stop it
     debug('to state:', objectDiff(prevState, this.state))
 
-    // Do not access document when server side rendering
-    if (!isBrowser) return
-
     // focused / blurred
     if (!prevState.focus && this.state.focus) {
       debug('dropdown focused')
@@ -624,20 +622,17 @@ export default class Dropdown extends Component {
 
   handleMouseDown = (e) => {
     debug('handleMouseDown()')
-    const { onMouseDown } = this.props
-    if (onMouseDown) onMouseDown(e, this.props)
+
     this.isMouseDown = true
-    // Do not access document when server side rendering
-    if (!isBrowser) return
-    document.addEventListener('mouseup', this.handleDocumentMouseUp)
+    eventPool.sub('mouseup', this.handleDocumentMouseUp)
+    _.invoke(this.props, 'onMouseDown', e, this.props)
   }
 
   handleDocumentMouseUp = () => {
     debug('handleDocumentMouseUp()')
+
     this.isMouseDown = false
-    // Do not access document when server side rendering
-    if (!isBrowser) return
-    document.removeEventListener('mouseup', this.handleDocumentMouseUp)
+    eventPool.unsub('mouseup', this.handleDocumentMouseUp)
   }
 
   handleClick = (e) => {
