@@ -53,7 +53,7 @@ export default class SearchExampleCategory extends Component {
         isLoading: false,
         results: filteredResults,
       })
-    }, 500)
+    }, 500).bind(this)
   }
 
   render() {
