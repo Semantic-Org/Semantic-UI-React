@@ -521,7 +521,7 @@ export default class Dropdown extends Component {
       [keyboardKey.ArrowDown]: 1,
       [keyboardKey.ArrowUp]: -1,
     }
-    const { [keyboardKey.getCode(e)]: move } = moves
+    const move = moves[keyboardKey.getCode(e)]
 
     if (move === undefined) return
     e.preventDefault()
