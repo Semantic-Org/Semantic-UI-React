@@ -6,6 +6,7 @@ import ModalHeader from 'src/modules/Modal/ModalHeader'
 import ModalContent from 'src/modules/Modal/ModalContent'
 import ModalActions from 'src/modules/Modal/ModalActions'
 import ModalDescription from 'src/modules/Modal/ModalDescription'
+import ModalDimmer from 'src/modules/Modal/ModalDimmer'
 import Portal from 'src/addons/Portal/Portal'
 
 import {
@@ -46,7 +47,13 @@ describe('Modal', () => {
   })
 
   common.isConformant(Modal, { rendersPortal: true })
-  common.hasSubcomponents(Modal, [ModalHeader, ModalContent, ModalActions, ModalDescription])
+  common.hasSubcomponents(Modal, [
+    ModalHeader,
+    ModalContent,
+    ModalActions,
+    ModalDescription,
+    ModalDimmer,
+  ])
   common.hasValidTypings(Modal)
 
   common.implementsShorthandProp(Modal, {

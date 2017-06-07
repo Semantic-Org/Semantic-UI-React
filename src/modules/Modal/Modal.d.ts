@@ -21,7 +21,7 @@ export interface StrictModalProps extends StrictPortalProps {
   /** A Modal can reduce its complexity */
   basic?: boolean
 
-  /** A modal can be vertically centered in the viewport */
+  /** A modal can be vertically centered in the viewport. */
   centered?: boolean
 
   /** Primary content. */
