@@ -132,6 +132,8 @@ export { default as Progress } from './modules/Progress'
 export { default as Rating } from './modules/Rating'
 export { default as RatingIcon } from './modules/Rating/RatingIcon'
 
+export { default as Shape } from './modules/Shape'
+
 export { default as Search } from './modules/Search'
 export { default as SearchCategory } from './modules/Search/SearchCategory'
 export { default as SearchResult } from './modules/Search/SearchResult'
