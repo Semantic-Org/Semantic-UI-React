@@ -9,11 +9,13 @@ class Sticky extends Component {
   }
 
   static propTypes = {
+    as: PropTypes.function,
     children: PropTypes.node,
+    className: PropTypes.string,
   }
 
   render() {
-    return <div>{this.props.children}</div>
+    return <div {...this.props}>{this.props.children}</div>
   }
 }
 
