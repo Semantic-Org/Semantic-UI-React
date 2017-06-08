@@ -44,7 +44,10 @@ export const partitionHTMLInputProps = (props, htmlProps = htmlInputProps) => {
   const inputProps = {}
   const rest = {}
 
-  _.forEach(props, (val, prop) => _.includes(htmlProps, prop) ? (inputProps[prop] = val) : (rest[prop] = val))
+  _.forEach(props, (val, prop) => {
+    const target = _.includes(htmlProps, prop) ? inputProps : rest
+    target[prop] = val
+  })
 
   return [inputProps, rest]
 }
