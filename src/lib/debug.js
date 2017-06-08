@@ -1,4 +1,4 @@
-import isBrowser from './isBrowser'
+const isBrowser = require('./isBrowser')
 let _debug
 const noop = () => undefined
 
@@ -36,7 +36,7 @@ if (isBrowser && process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !
  * debug('Some message')
  * @returns {Function}
  */
-export const makeDebugger = (namespace) => {
+const makeDebugger = exports.makeDebugger = (namespace) => {
   return _debug(`semanticUIReact:${namespace}`)
 }
 
@@ -46,4 +46,4 @@ export const makeDebugger = (namespace) => {
  * import { debug } from 'src/lib'
  * debug('Some message')
  */
-export const debug = makeDebugger('log')
+exports.debug = makeDebugger('log')
