@@ -1,18 +1,20 @@
-import React from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { META } from '../../lib'
 
-function Sticky({ children }) {
-  return <div>{children}</div>
-}
+class Sticky extends Component {
+  static _meta = {
+    name: 'Sticky',
+    type: META.TYPES.MODULE,
+  }
 
-Sticky.propTypes = {
-  children: PropTypes.node,
-}
+  static propTypes = {
+    children: PropTypes.node,
+  }
 
-Sticky._meta = {
-  name: 'Sticky',
-  type: META.TYPES.MODULE,
+  render() {
+    return <div>{this.props.children}</div>
+  }
 }
 
 export default Sticky
