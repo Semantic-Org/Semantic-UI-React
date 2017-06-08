@@ -1131,9 +1131,9 @@ export default class Dropdown extends Component {
       inputRef: this.handleSearchRef,
       name,
       onChange: this.handleSearchChange,
+      style: { width: this.computeSearchInputWidth() },
       tabIndex: this.computeSearchInputTabIndex(),
       value: searchQuery,
-      width: this.computeSearchInputWidth(),
     } })
   }
 

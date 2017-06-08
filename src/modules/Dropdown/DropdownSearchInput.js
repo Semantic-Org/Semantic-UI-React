@@ -30,9 +30,6 @@ class DropdownSearchInput extends Component {
       PropTypes.string,
     ]),
 
-    /** Custom styles. */
-    style: PropTypes.object,
-
     /** An input can receive focus. */
     tabIndex: PropTypes.oneOfType([
       PropTypes.number,
@@ -47,12 +44,6 @@ class DropdownSearchInput extends Component {
       PropTypes.number,
       PropTypes.string,
     ]),
-
-    /** A width of an input. */
-    width: PropTypes.oneOfType([
-      PropTypes.number,
-      PropTypes.string,
-    ]),
   }
 
   static defaultProps = {
@@ -63,13 +54,6 @@ class DropdownSearchInput extends Component {
     name: 'DropdownSearchInput',
     parent: 'Dropdown',
     type: META.TYPES.MODULE,
-  }
-
-  computeStyle = () => {
-    const { style, width } = this.props
-
-    if (_.isNil(width)) return style
-    return { ...style, width }
   }
 
   handleChange = e => {
@@ -100,7 +84,6 @@ class DropdownSearchInput extends Component {
         name={[name, 'search'].join('-')}
         onChange={this.handleChange}
         ref={this.handleRef}
-        style={this.computeStyle()}
         tabIndex={tabIndex}
         type={type}
         value={value}

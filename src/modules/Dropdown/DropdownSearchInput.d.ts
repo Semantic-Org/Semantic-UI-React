@@ -15,9 +15,6 @@ export interface DropdownSearchInputProps {
   /** A name of the input. */
   name?: string;
 
-  /** Custom styles. */
-  style?: Object;
-
   /** An input can receive focus. */
   tabIndex?: number | string;
 
@@ -26,9 +23,6 @@ export interface DropdownSearchInputProps {
 
   /** Stored value. */
   value?: number | string;
-
-  /** A width of an input. */
-  width?: number | string;
 }
 
 declare const DropdownSearchInput: React.ComponentClass<DropdownSearchInputProps>;

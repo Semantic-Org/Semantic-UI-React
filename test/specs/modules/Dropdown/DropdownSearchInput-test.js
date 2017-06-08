@@ -63,29 +63,6 @@ describe('DropdownSearchInput', () => {
     })
   })
 
-  describe('style', () => {
-    const style = { left: 10, bottom: 10 }
-
-    it('is not set by default', () => {
-      shallow(<DropdownSearchInput />)
-        .should.not.have.prop('style')
-    })
-
-    it('can be set explicitly', () => {
-      shallow(<DropdownSearchInput style={style} />)
-        .should.have.prop('style')
-        .deep.equal(style)
-    })
-
-    it('merged with width prop', () => {
-      const width = faker.random.number()
-
-      shallow(<DropdownSearchInput style={style} width={width} />)
-        .should.have.prop('style')
-        .deep.equal({ ...style, width })
-    })
-  })
-
   describe('tabIndex', () => {
     it('is not set by default', () => {
       shallow(<DropdownSearchInput />)
@@ -123,20 +100,6 @@ describe('DropdownSearchInput', () => {
 
       shallow(<DropdownSearchInput value={value} />)
         .should.have.prop('value', value)
-    })
-  })
-
-  describe('width', () => {
-    it('is not set by default', () => {
-      shallow(<DropdownSearchInput />)
-        .should.not.have.prop('width')
-    })
-
-    it('can be set explicitly', () => {
-      const width = faker.random.number()
-
-      shallow(<DropdownSearchInput width={width} />)
-         .should.have.style('width', `${width}px`)
     })
   })
 })
