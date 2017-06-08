@@ -141,6 +141,8 @@ export { default as Sidebar } from './modules/Sidebar'
 export { default as SidebarPushable } from './modules/Sidebar/SidebarPushable'
 export { default as SidebarPusher } from './modules/Sidebar/SidebarPusher'
 
+export { default as Sticky } from './modules/Sticky'
+
 // Views
 export { default as Advertisement } from './views/Advertisement'
 

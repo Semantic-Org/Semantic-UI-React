@@ -1,6 +1,6 @@
 import './setup'
 
-const testsContext = require.context('./', true, /-test\.js$/)
+const testsContext = require.context('./', true, /Sticky-test\.js$/)
 
 // TODO uncomment and fix failing tests
 // console.error = (...args) => { throw new Error('console.error was called!\n\n' + args.join(' ')) }
