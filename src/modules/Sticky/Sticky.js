@@ -2,8 +2,12 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { META } from '../../lib'
 
-function Sticky() {
-  return <div />
+function Sticky({ children }) {
+  return <div>{children}</div>
+}
+
+Sticky.propTypes = {
+  children: PropTypes.node,
 }
 
 Sticky._meta = {
