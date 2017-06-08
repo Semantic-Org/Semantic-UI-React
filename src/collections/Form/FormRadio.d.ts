@@ -2,8 +2,9 @@ import * as React from 'react';
 
 import { RadioProps } from '../../addons/Radio';
 import { FormFieldProps } from './FormField';
+type BaseRadioProps = RadioProps & FormFieldProps;
 
-export interface FormRadioProps extends FormFieldProps, RadioProps {
+export interface FormRadioProps extends BaseRadioProps {
   [key: string]: any;
 
   /** An element type to render as (string or function). */
