@@ -115,6 +115,8 @@ export { default as DropdownHeader } from './modules/Dropdown/DropdownHeader'
 export { default as DropdownItem } from './modules/Dropdown/DropdownItem'
 export { default as DropdownMenu } from './modules/Dropdown/DropdownMenu'
 
+export { default as Datetime } from './modules/Datetime/Datetime'
+
 export { default as Embed } from './modules/Embed'
 
 export { default as Modal } from './modules/Modal'
