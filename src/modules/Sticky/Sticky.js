@@ -67,16 +67,12 @@ class Sticky extends Component {
     return this.triggerBoundingRect.top < 0
   }
 
-  hasTouchedScreenBottom() {
-    return this.stickyBoundingRect.bottom >= window.innerHeight
-  }
-
   isOversized() {
     return this.stickyBoundingRect.height > window.innerHeight
   }
 
-  isBottomVisible() {
-    return this.stickyBoundingRect.bottom <= window.innerHeight
+  isContextBottomVisible() {
+    return this.contextBoundingRect.bottom <= window.innerHeight
   }
 
   setPushing(pushing) {
@@ -121,11 +117,11 @@ class Sticky extends Component {
         return this.stickToContextTop()
       }
 
-      if (this.hasTouchedScreenBottom()) {
-        return this.stickToScreenBottom()
+      if (this.isContextBottomVisible()) {
+        return this.stickToContextBottom()
       }
 
-      return this.stickToContextBottom()
+      return this.stickToScreenBottom()
     }
 
     if (this.isOversized()) {
