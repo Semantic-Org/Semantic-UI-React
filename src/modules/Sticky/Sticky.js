@@ -17,6 +17,7 @@ class Sticky extends Component {
     as: PropTypes.function,
     children: PropTypes.node,
     className: PropTypes.string,
+    pushing: PropTypes.bool,
   }
 
   static contextTypes = {
@@ -52,9 +53,22 @@ class Sticky extends Component {
     this.triggerBoundingRect = this.refs.trigger.getBoundingClientRect()
     this.contextBoundingRect = this.contextEl.getBoundingClientRect()
     this.stickyBoundingRect = this.refs.sticky.getBoundingClientRect()
-    this.setState({
+    const state = {
       passed: this.triggerBoundingRect.top < 0,
-    })
+      arrived: this.stickyBoundingRect.height > this.contextBoundingRect.bottom,
+    }
+
+    if (this.props.pushing) {
+      if (!state.passed) {
+        state.pushing = false
+      } else if (state.arrived) {
+        state.pushing = true
+      } else {
+        state.pushing = this.state.pushing
+      }
+    }
+
+    this.setState(state)
   }
 
   getStyle = () => {
@@ -64,7 +78,7 @@ class Sticky extends Component {
       style.position = 'fixed'
       style.width = this.triggerBoundingRect.width
 
-      if (this.stickyBoundingRect.height > this.contextBoundingRect.bottom) {
+      if (this.state.arrived) {
         style.top = this.contextBoundingRect.bottom - this.stickyBoundingRect.height
       } else {
         style.top = 0
