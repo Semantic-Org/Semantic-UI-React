@@ -20,6 +20,12 @@ export default class Shape extends Component {
     /** An element type to render as (string or function). */
     as: customPropTypes.as,
 
+    /** Index of the currently active item. */
+    activeIndex: PropTypes.number,
+
+    /** Named animation event to used. */
+    animation: PropTypes.oneOf(['flip left', 'flip up', 'flip down', 'flip right', 'flip over', 'flip back']),
+
     /** Additional classes. */
     className: PropTypes.string,
 
@@ -40,7 +46,7 @@ export default class Shape extends Component {
   }
 
   static defaultProps = {
-    duration: 700,
+    duration: 7000,
   }
 
   static _meta = {
@@ -50,10 +56,36 @@ export default class Shape extends Component {
 
   static Side = ShapeSide
 
-  renderSides = () => {
-    const { items } = this.props
+  state = {}
 
-    return _.map(items, side => ShapeSide.create(side))
+  componentWillReceiveProps(nextProps) {
+    const { activeIndex: prevIndex } = this.props
+    const { activeIndex, duration } = nextProps
+
+    if(activeIndex === prevIndex) return
+    this.setState({
+      activeIndex,
+      prevIndex,
+      animating: true,
+    }, () => setTimeout(this.completeAnimation, duration))
+  }
+
+  completeAnimation = () => {
+    this.setState({ animating: false, prevIndex: null })
+  }
+
+  renderItems = () => {
+    const { duration, items } = this.props
+    const { activeIndex, animating, prevIndex } = this.state
+
+    return _.map(items, (item, index) => ShapeSide.create(item, {
+      defaultProps: {
+        duration,
+        animating: animating && index === prevIndex,
+        active: index === activeIndex,
+        hidden: animating && index === activeIndex,
+      },
+    }))
   }
 
   render() {
@@ -71,7 +103,7 @@ export default class Shape extends Component {
     return (
       <ElementType {...rest} className={classes}>
         <div className='sides'>
-          {this.renderSides()}
+          {this.renderItems()}
         </div>
       </ElementType>
     )

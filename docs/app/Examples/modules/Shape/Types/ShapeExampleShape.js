@@ -47,20 +47,31 @@ const StevieCard = (
   </Card>
 )
 
-export default class ShapeExampleShape extends Component {
-  handleControl = animation => {
+const items = [
+  { key: 'steve', content: SteveCard },
+  { key: 'stevie', content: StevieCard },
+]
 
+export default class ShapeExampleShape extends Component {
+  state = { activeIndex: 0 }
+
+  handleControl = animation => {
+    let { activeIndex } = this.state
+    activeIndex = (items.length - 1) === activeIndex ? 0 : activeIndex + 1
+
+    this.setState({ activeIndex, animation })
   }
 
   render() {
-    const items = [
-      { key: 'steve', content: SteveCard },
-      { key: 'stevie', content: StevieCard },
-    ]
+    const { activeIndex, animation } = this.state
 
     return (
       <div>
-        <Shape items={items} />
+        <Shape
+          activeIndex={activeIndex}
+          animation={animation}
+          items={items}
+        />
         <ShapeControl onClick={this.handleControl} />
       </div>
     )
