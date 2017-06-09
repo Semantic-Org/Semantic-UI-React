@@ -49,43 +49,78 @@ class Sticky extends Component {
     return parent
   }
 
-  update = () => {
+  calcBoundingRects() {
     this.triggerBoundingRect = this.refs.trigger.getBoundingClientRect()
     this.contextBoundingRect = this.contextEl.getBoundingClientRect()
     this.stickyBoundingRect = this.refs.sticky.getBoundingClientRect()
-    const state = {
-      passed: this.triggerBoundingRect.top < 0,
-      arrived: this.stickyBoundingRect.height > this.contextBoundingRect.bottom,
-    }
-
-    if (this.props.pushing) {
-      if (!state.passed) {
-        state.pushing = false
-      } else if (state.arrived) {
-        state.pushing = true
-      } else {
-        state.pushing = this.state.pushing
-      }
-    }
-
-    this.setState(state)
   }
 
-  getStyle = () => {
-    const style = {}
+  setPushing(pushing) {
+    if (this.props.pushing) this.setState({ pushing })
+  }
 
-    if (this.state && this.state.passed) {
-      style.position = 'fixed'
-      style.width = this.triggerBoundingRect.width
+  setSticky(sticky) {
+    this.setState({ sticky })
+  }
 
-      if (this.state.arrived) {
-        style.top = this.contextBoundingRect.bottom - this.stickyBoundingRect.height
+  stickToContextTop() {
+    this.setSticky(false)
+  }
+
+  stickToContextBottom() {
+    this.setSticky(true)
+    this.setState({
+      top: this.contextBoundingRect.bottom - this.stickyBoundingRect.height,
+      bottom: null,
+    })
+  }
+
+  stickToScreenTop() {
+    this.setSticky(true)
+    this.setState({ top: 0, bottom: null })
+  }
+
+  stickToScreenBottom() {
+    this.setSticky(true)
+    this.setState({ top: null, bottom: 0 })
+  }
+
+  update = () => {
+    this.calcBoundingRects()
+
+    const state = this.state || {}
+
+    if (state.pushing) {
+      if (this.stickyBoundingRect.top <= this.triggerBoundingRect.top) {
+        this.stickToContextTop()
+        this.setPushing(false)
+      } else if (this.stickyBoundingRect.bottom >= window.innerHeight) {
+        this.stickToScreenBottom()
       } else {
-        style.top = 0
+        this.stickToContextBottom()
+      }
+    } else {
+      if (this.stickyBoundingRect.height > this.contextBoundingRect.bottom) {
+        this.stickToContextBottom()
+        this.setPushing(true)
+      } else if (this.triggerBoundingRect.top < 0) {
+        this.stickToScreenTop()
+      } else {
+        this.stickToContextTop()
       }
     }
+  }
 
-    return style
+  getStyle() {
+    if (this.state && this.state.sticky) {
+      return {
+        position: 'fixed',
+        width: this.triggerBoundingRect.width,
+        top: this.state.top,
+        bottom: this.state.bottom,
+      }
+    }
+    return {}
   }
 
   render() {
