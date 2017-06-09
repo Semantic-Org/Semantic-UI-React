@@ -1,15 +1,15 @@
 import React from 'react'
 import { Dropdown } from 'semantic-ui-react'
 
+const options = [
+  { component: <Dropdown.Header icon='tags' content='Filter by tag' /> },
+  { text: 'Important', value: 'Important' },
+  { text: 'Hopper', value: 'Hopper' },
+  { text: 'Discussion', value: 'Discussion' },
+]
+
 const DropdownExampleHeader = () => (
-  <Dropdown text='Filter' icon='filter' floating labeled button className='icon'>
-    <Dropdown.Menu>
-      <Dropdown.Header icon='tags' content='Filter by tag' />
-      <Dropdown.Item>Important</Dropdown.Item>
-      <Dropdown.Item>Announcement</Dropdown.Item>
-      <Dropdown.Item>Discussion</Dropdown.Item>
-    </Dropdown.Menu>
-  </Dropdown>
+  <Dropdown text='Filter' icon='filter' floating labeled button className='icon' options={options} />
 )
 
 export default DropdownExampleHeader

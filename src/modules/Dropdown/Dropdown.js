@@ -240,10 +240,15 @@ export default class Dropdown extends Component {
     /** Whether or not the menu should open when the dropdown is focused. */
     openOnFocus: PropTypes.bool,
 
-    /** Array of Dropdown.Item props e.g. `{ text: '', value: '' }` */
+    /** Array of Dropdown.Item props e.g. `{ text: '', value: '' }`
+     * Or component props e.g. `{ component: <Dropdown.Divider /> }`
+     */
     options: customPropTypes.every([
       customPropTypes.disallow(['children']),
-      PropTypes.arrayOf(PropTypes.shape(DropdownItem.propTypes)),
+      PropTypes.arrayOf(PropTypes.oneOf([
+        PropTypes.shape(DropdownItem.propTypes),
+        PropTypes.shape({ component: PropTypes.node }),
+      ])),
     ]),
 
     /** Placeholder text. */
@@ -750,6 +755,9 @@ export default class Dropdown extends Component {
 
     // filter by search query
     if (search && searchQuery) {
+      // filter any component elements like Header or Divider
+      filteredOptions = _.filter(filteredOptions, opt => !opt.component)
+
       if (_.isFunction(search)) {
         filteredOptions = search(filteredOptions, searchQuery)
       } else {
@@ -1165,15 +1173,19 @@ export default class Dropdown extends Component {
       ? optValue => _.includes(value, optValue)
       : optValue => optValue === value
 
-    return _.map(options, (opt, i) => DropdownItem.create({
-      active: isActive(opt.value),
-      onClick: this.handleItemClick,
-      selected: selectedIndex === i,
-      ...opt,
-      key: getKeyOrValue(opt.key, opt.value),
-      // Needed for handling click events on disabled items
-      style: { ...opt.style, pointerEvents: 'all' },
-    }))
+    return _.map(options, (opt, i) =>
+      opt.component
+        ? opt.component
+        : DropdownItem.create({
+          active: isActive(opt.value),
+          onClick: this.handleItemClick,
+          selected: selectedIndex === i,
+          ...opt,
+          key: getKeyOrValue(opt.key, opt.value),
+          // Needed for handling click events on disabled items
+          style: { ...opt.style, pointerEvents: 'all' },
+        })
+    )
   }
 
   renderMenu = () => {
