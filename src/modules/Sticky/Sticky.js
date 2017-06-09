@@ -128,6 +128,16 @@ class Sticky extends Component {
       return this.stickToContextBottom()
     }
 
+    if (this.isOversized()) {
+      if (this.contextBoundingRect.top > 0) {
+        return this.stickToContextTop()
+      }
+
+      if (this.contextBoundingRect.bottom < window.innerHeight) {
+        return this.stickToContextBottom()
+      }
+    }
+
     if (this.hasBeenTriggered()) {
       if (this.hasReachedContextBottom()) {
         return this.stickToContextBottom()
