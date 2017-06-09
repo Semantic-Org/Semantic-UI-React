@@ -1,7 +1,12 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { META } from '../../lib'
+import StickyContext from './StickyContext'
 
+/**
+ * Sticky content stays fixed to the browser viewport while
+ * another column of content is visible on the page.
+ */
 class Sticky extends Component {
   static _meta = {
     name: 'Sticky',
@@ -14,7 +19,14 @@ class Sticky extends Component {
     className: PropTypes.string,
   }
 
+  static contextTypes = {
+    contextEl: PropTypes.node,
+  }
+
+  static Context = StickyContext
+
   componentDidMount() {
+    this.contextEl = this.getContextEl()
     this.update()
     window.addEventListener('scroll', this.update)
   }
@@ -23,28 +35,50 @@ class Sticky extends Component {
     window.removeEventListener('scroll', this.update)
   }
 
+  getContextEl() {
+    let parent = this.refs.trigger.parentElement
+
+    while (!(
+      (parent === document.body) ||
+      (parent.classList.contains('ui') && parent.classList.contains('context'))
+    )) {
+      parent = parent.parentElement
+    }
+
+    return parent
+  }
+
   update = () => {
     this.triggerBoundingRect = this.refs.trigger.getBoundingClientRect()
+    this.contextBoundingRect = this.contextEl.getBoundingClientRect()
+    this.stickyBoundingRect = this.refs.sticky.getBoundingClientRect()
     this.setState({
       passed: this.triggerBoundingRect.top < 0,
     })
   }
 
   getStyle = () => {
+    const style = {}
+
     if (this.state && this.state.passed) {
-      return {
-        position: 'fixed',
-        top: 0,
-        width: this.triggerBoundingRect.width,
+      style.position = 'fixed'
+      style.width = this.triggerBoundingRect.width
+
+      if (this.stickyBoundingRect.height > this.contextBoundingRect.bottom) {
+        style.top = this.contextBoundingRect.bottom - this.stickyBoundingRect.height
+      } else {
+        style.top = 0
       }
     }
+
+    return style
   }
 
   render() {
     return (
       <div {...this.props}>
         <div ref='trigger' />
-        <div style={this.getStyle()}>
+        <div ref='sticky' style={this.getStyle()}>
           {this.props.children}
         </div>
       </div>
