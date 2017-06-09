@@ -1,6 +1,7 @@
 import React from 'react'
 import { findDOMNode } from 'react-dom'
 
+import { htmlInputAria } from 'src/lib'
 import Checkbox from 'src/modules/Checkbox/Checkbox'
 import * as common from 'test/specs/commonTests'
 import { sandbox } from 'test/utils'
@@ -19,6 +20,16 @@ describe('Checkbox', () => {
 
   common.implementsHTMLLabelProp(Checkbox, {
     alwaysPresent: true,
+  })
+
+  describe('aria', () => {
+    htmlInputAria.forEach(propName => {
+      it(`passes "${propName}" to the <input>`, () => {
+        shallow(<Checkbox {...{ [propName]: 'foo' }} />)
+          .find('input')
+          .should.have.prop(propName)
+      })
+    })
   })
 
   describe('checking', () => {

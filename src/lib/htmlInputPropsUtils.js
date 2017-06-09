@@ -1,5 +1,14 @@
 import _ from 'lodash'
 
+export const htmlInputAria = [
+  'aria-activedescendant', 'aria-atomic', 'aria-autocomplete', 'aria-busy', 'aria-checked', 'aria-controls',
+  'aria-describedby', 'aria-disabled', 'aria-dropeffect', 'aria-expanded', 'aria-flowto', 'aria-grabbed',
+  'aria-haspopup', 'aria-hidden', 'aria-invalid', 'aria-label', 'aria-labelledby', 'aria-level', 'aria-live',
+  'aria-multiline', 'aria-multiselectable', 'aria-orientation', 'aria-owns', 'aria-posinset', 'aria-pressed',
+  'aria-readonly', 'aria-relevant', 'aria-required', 'aria-selected', 'aria-setsize', 'aria-sort', 'aria-valuemax',
+  'aria-valuemin', 'aria-valuenow', 'aria-valuetext', 'role',
+]
+
 export const htmlInputAttrs = [
   // REACT
   'selected', 'defaultValue', 'defaultChecked',
@@ -32,7 +41,7 @@ export const htmlInputEvents = [
   'onTouchCancel', 'onTouchEnd', 'onTouchMove', 'onTouchStart',
 ]
 
-export const htmlInputProps = [...htmlInputAttrs, ...htmlInputEvents]
+export const htmlInputProps = [...htmlInputAria, ...htmlInputAttrs, ...htmlInputEvents]
 
 /**
  * Returns an array of objects consisting of: props of html input element and rest.
