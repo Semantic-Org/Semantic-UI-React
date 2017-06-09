@@ -7,12 +7,7 @@ const AccordionTypesExamples = () => (
     <ComponentExample
       title='Sticking to Adjacent Context'
       description='Sticky content attaches itself to the viewport when it is passed'
-      examplePath='modules/Sticky/Types/StickyAdjacentContextExample'
-    />
-    <ComponentExample
-      title='Sticking to Adjacent Context'
-      description='Sticky content attaches itself to the viewport when it is passed'
-      examplePath='modules/Sticky/Types/StickyPushingExample'
+      examplePath='modules/Sticky/Variations/StickyOversizedExample'
     />
   </ExampleSection>
 )
