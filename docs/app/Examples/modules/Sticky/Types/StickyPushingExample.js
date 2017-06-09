@@ -34,7 +34,6 @@ const StickyAdjacentContextExample = () => (
           </Rail>
         </Segment>
       </Sticky.Context>
-      <div style={{ height: 1000 }}></div>
     </Grid.Column>
   </Grid>
 )

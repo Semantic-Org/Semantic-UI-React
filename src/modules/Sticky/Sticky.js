@@ -55,6 +55,30 @@ class Sticky extends Component {
     this.stickyBoundingRect = this.refs.sticky.getBoundingClientRect()
   }
 
+  hasReachedContextBottom() {
+    return this.stickyBoundingRect.height >= this.contextBoundingRect.bottom - 1
+  }
+
+  hasReachedTrigger() {
+    return this.stickyBoundingRect.top <= this.triggerBoundingRect.top
+  }
+
+  hasBeenTriggered() {
+    return this.triggerBoundingRect.top < 0
+  }
+
+  hasTouchedScreenBottom() {
+    return this.stickyBoundingRect.bottom >= window.innerHeight
+  }
+
+  isOversized() {
+    return this.stickyBoundingRect.height > window.innerHeight
+  }
+
+  isBottomVisible() {
+    return this.stickyBoundingRect.bottom <= window.innerHeight
+  }
+
   setPushing(pushing) {
     if (this.props.pushing) this.setState({ pushing })
   }
@@ -65,6 +89,7 @@ class Sticky extends Component {
 
   stickToContextTop() {
     this.setSticky(false)
+    this.setPushing(false)
   }
 
   stickToContextBottom() {
@@ -73,6 +98,7 @@ class Sticky extends Component {
       top: this.contextBoundingRect.bottom - this.stickyBoundingRect.height,
       bottom: null,
     })
+    this.setPushing(true)
   }
 
   stickToScreenTop() {
@@ -91,24 +117,26 @@ class Sticky extends Component {
     const state = this.state || {}
 
     if (state.pushing) {
-      if (this.stickyBoundingRect.top <= this.triggerBoundingRect.top) {
-        this.stickToContextTop()
-        this.setPushing(false)
-      } else if (this.stickyBoundingRect.bottom >= window.innerHeight) {
-        this.stickToScreenBottom()
-      } else {
-        this.stickToContextBottom()
+      if (this.hasReachedTrigger()) {
+        return this.stickToContextTop()
       }
-    } else {
-      if (this.stickyBoundingRect.height > this.contextBoundingRect.bottom) {
-        this.stickToContextBottom()
-        this.setPushing(true)
-      } else if (this.triggerBoundingRect.top < 0) {
-        this.stickToScreenTop()
-      } else {
-        this.stickToContextTop()
+
+      if (this.hasTouchedScreenBottom()) {
+        return this.stickToScreenBottom()
       }
+
+      return this.stickToContextBottom()
     }
+
+    if (this.hasBeenTriggered()) {
+      if (this.hasReachedContextBottom()) {
+        return this.stickToContextBottom()
+      }
+
+      return this.stickToScreenTop()
+    }
+
+    return this.stickToContextTop()
   }
 
   getStyle() {

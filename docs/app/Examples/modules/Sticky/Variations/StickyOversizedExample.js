@@ -14,12 +14,12 @@ const StickyAdjacentContextExample = () => (
     <Grid.Column>
       <Sticky.Context>
         <Segment>
-          {[...new Array(10)].map((v, i) => <Placeholder key={i} />)}
+          {[...new Array(15)].map((v, i) => <Placeholder key={i} />)}
 
           <Rail position='left'>
-            <Sticky pushing>
+            <Sticky>
               <Item.Group divided>
-                {[...new Array(20)].map((v, i) => (
+                {[...new Array(12)].map((v, i) => (
                   <Item key={i}>
                     <Item.Image size='tiny' src='/assets/images/wireframe/image.png' />
                     <Item.Content>
@@ -34,10 +34,7 @@ const StickyAdjacentContextExample = () => (
           </Rail>
 
           <Rail position='right'>
-            <Placeholder />
-            <Placeholder />
-            <Placeholder />
-            <Sticky pushing>
+            <Sticky>
               <Header as='h3'>Stuck Content</Header>
               <Image src='/assets/images/wireframe/image.png' />
             </Sticky>
