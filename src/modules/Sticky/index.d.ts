@@ -1,1 +1,1 @@
-export { default, SidebarProps } from './Sticky';
+export { default, StickyProps } from './Sticky';
