@@ -1,5 +1,5 @@
 import React from 'react'
-import { Grid, Header, Image, Item, Rail, Segment, Sticky } from 'semantic-ui-react'
+import { Grid, Header, Image, Rail, Segment, Sticky } from 'semantic-ui-react'
 
 const Placeholder = () => (
   <Image
@@ -14,27 +14,20 @@ const StickyAdjacentContextExample = () => (
     <Grid.Column>
       <Sticky.Context>
         <Segment>
-          {[...new Array(15)].map((v, i) => <Placeholder key={i} />)}
+          {[...new Array(10)].map((v, i) => <Placeholder key={i} />)}
 
           <Rail position='left'>
-            <Sticky>
-              <Item.Group divided>
-                {[...new Array(12)].map((v, i) => (
-                  <Item key={i}>
-                    <Item.Image size='tiny' src='/assets/images/wireframe/image.png' />
-                    <Item.Content>
-                      <Item.Header as='a'>Followup Article</Item.Header>
-                      <Item.Meta>By Author</Item.Meta>
-                    </Item.Content>
-                  </Item>
-                ))}
-              </Item.Group>
-
+            <Placeholder />
+            <Placeholder />
+            <Placeholder />
+            <Sticky offset={100}>
+              <Header as='h3'>Stuck Content</Header>
+              <Image src='/assets/images/wireframe/image.png' />
             </Sticky>
           </Rail>
 
           <Rail position='right'>
-            <Sticky>
+            <Sticky bottomOffset={50} offset={50} pushing>
               <Header as='h3'>Stuck Content</Header>
               <Image src='/assets/images/wireframe/image.png' />
             </Sticky>

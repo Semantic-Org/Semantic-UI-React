@@ -13,10 +13,17 @@ class Sticky extends Component {
     type: META.TYPES.MODULE,
   }
 
+  static defaultProps = {
+    offset: 0,
+    bottomOffset: 0,
+  }
+
   static propTypes = {
     as: PropTypes.function,
     children: PropTypes.node,
     className: PropTypes.string,
+    offset: PropTypes.number,
+    bottomOffset: PropTypes.number,
     pushing: PropTypes.bool,
   }
 
@@ -99,12 +106,12 @@ class Sticky extends Component {
 
   stickToScreenTop() {
     this.setSticky(true)
-    this.setState({ top: 0, bottom: null })
+    this.setState({ top: this.props.offset, bottom: null })
   }
 
   stickToScreenBottom() {
     this.setSticky(true)
-    this.setState({ top: null, bottom: 0 })
+    this.setState({ top: null, bottom: this.props.bottomOffset })
   }
 
   update = () => {
