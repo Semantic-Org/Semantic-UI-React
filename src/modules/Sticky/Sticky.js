@@ -62,30 +62,37 @@ class Sticky extends Component {
     this.stickyBoundingRect = this.refs.sticky.getBoundingClientRect()
   }
 
+  // Return true when the component reached the bottom of the context
   hasReachedContextBottom() {
     return this.stickyBoundingRect.height + this.props.offset >= this.contextBoundingRect.bottom
   }
 
-  hasReachedTrigger() {
+  // Return true when the component reached the top of the context
+  hasReachedContextTop() {
     return this.stickyBoundingRect.top <= this.triggerBoundingRect.top
   }
 
-  hasBeenTriggered() {
+  // Return true when the top of the screen overpasses the Sticky component
+  hasTouchedScreenTop() {
     return this.triggerBoundingRect.top < this.props.offset
   }
 
+  // Return true when the bottom of the screen overpasses the Sticky component
+  hasTouchedScreenBottom() {
+    return this.contextBoundingRect.bottom + this.props.bottomOffset <= window.innerHeight
+  }
+
+  // Return true if the height of the component is higher than the window
   isOversized() {
     return this.stickyBoundingRect.height > window.innerHeight
   }
 
-  isContextBottomVisible() {
-    return this.contextBoundingRect.bottom + this.props.bottomOffset <= window.innerHeight
-  }
-
+  // If true, the component will stick to the bottom of the screen instead of the top
   setPushing(pushing) {
     if (this.props.pushing) this.setState({ pushing })
   }
 
+  // If true, the component have position: fixed
   setSticky(sticky) {
     this.setState({ sticky })
   }
@@ -120,11 +127,11 @@ class Sticky extends Component {
     const state = this.state || {}
 
     if (state.pushing) {
-      if (this.hasReachedTrigger()) {
+      if (this.hasReachedContextTop()) {
         return this.stickToContextTop()
       }
 
-      if (this.isContextBottomVisible()) {
+      if (this.hasTouchedScreenBottom()) {
         return this.stickToContextBottom()
       }
 
@@ -141,7 +148,7 @@ class Sticky extends Component {
       }
     }
 
-    if (this.hasBeenTriggered()) {
+    if (this.hasTouchedScreenTop()) {
       if (this.hasReachedContextBottom()) {
         return this.stickToContextBottom()
       }
