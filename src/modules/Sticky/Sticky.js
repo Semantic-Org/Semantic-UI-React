@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { META } from '../../lib'
+import {
+  META,
+  getUnhandledProps,
+} from '../../lib'
 import StickyContext from './StickyContext'
 
 /**
@@ -14,6 +17,7 @@ class Sticky extends Component {
   }
 
   static defaultProps = {
+    as: 'div',
     offset: 0,
     bottomOffset: 0,
   }
@@ -65,6 +69,10 @@ class Sticky extends Component {
       (parent.classList.contains('ui') && parent.classList.contains('context'))
     )) {
       parent = parent.parentElement
+
+      if (!parent) {
+        parent = document.body
+      }
     }
 
     return parent
@@ -81,8 +89,8 @@ class Sticky extends Component {
     return this.stickyBoundingRect.height + this.props.offset >= this.contextBoundingRect.bottom
   }
 
-  // Return true when the component reached the top of the context
-  hasReachedContextTop() {
+  // Return true when the component reached the starting point
+  hasReachedStartingPoint() {
     return this.stickyBoundingRect.top <= this.triggerBoundingRect.top
   }
 
@@ -93,7 +101,7 @@ class Sticky extends Component {
 
   // Return true when the bottom of the screen overpasses the Sticky component
   hasTouchedScreenBottom() {
-    return this.contextBoundingRect.bottom + this.props.bottomOffset <= window.innerHeight
+    return this.contextBoundingRect.bottom + this.props.bottomOffset > window.innerHeight
   }
 
   // Return true if the height of the component is higher than the window
@@ -141,11 +149,11 @@ class Sticky extends Component {
     const state = this.state || {}
 
     if (state.pushing) {
-      if (this.hasReachedContextTop()) {
+      if (this.hasReachedStartingPoint()) {
         return this.stickToContextTop()
       }
 
-      if (this.hasTouchedScreenBottom()) {
+      if (!this.hasTouchedScreenBottom()) {
         return this.stickToContextBottom()
       }
 
@@ -186,13 +194,16 @@ class Sticky extends Component {
   }
 
   render() {
+    const rest = getUnhandledProps(Sticky, this.props)
+    const As = this.props.as
+
     return (
-      <div {...this.props}>
+      <As {...rest} className={this.props.className}>
         <div ref='trigger' />
         <div ref='sticky' style={this.getStyle()}>
           {this.props.children}
         </div>
-      </div>
+      </As>
     )
   }
 }
