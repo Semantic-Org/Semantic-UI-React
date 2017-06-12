@@ -1,14 +1,5 @@
 import _ from 'lodash'
 
-export const htmlInputAria = [
-  'aria-activedescendant', 'aria-atomic', 'aria-autocomplete', 'aria-busy', 'aria-checked', 'aria-controls',
-  'aria-describedby', 'aria-disabled', 'aria-dropeffect', 'aria-expanded', 'aria-flowto', 'aria-grabbed',
-  'aria-haspopup', 'aria-hidden', 'aria-invalid', 'aria-label', 'aria-labelledby', 'aria-level', 'aria-live',
-  'aria-multiline', 'aria-multiselectable', 'aria-orientation', 'aria-owns', 'aria-posinset', 'aria-pressed',
-  'aria-readonly', 'aria-relevant', 'aria-required', 'aria-selected', 'aria-setsize', 'aria-sort', 'aria-valuemax',
-  'aria-valuemin', 'aria-valuenow', 'aria-valuetext', 'role',
-]
-
 export const htmlInputAttrs = [
   // REACT
   'selected', 'defaultValue', 'defaultChecked',
@@ -41,20 +32,27 @@ export const htmlInputEvents = [
   'onTouchCancel', 'onTouchEnd', 'onTouchMove', 'onTouchStart',
 ]
 
-export const htmlInputProps = [...htmlInputAria, ...htmlInputAttrs, ...htmlInputEvents]
+export const htmlInputProps = [...htmlInputAttrs, ...htmlInputEvents]
 
 /**
  * Returns an array of objects consisting of: props of html input element and rest.
  * @param {object} props A ReactElement props object
- * @param {array} [htmlProps] An array of html input props
+ * @param {Object} [options={}]
+ * @param {Array} [options.htmlProps] An array of html input props
+ * @param {boolean} [options.includeAria] Includes all input props that starts with "aria-"
  * @returns {[{}, {}]} An array of objects
  */
-export const partitionHTMLInputProps = (props, htmlProps = htmlInputProps) => {
+export const partitionHTMLInputProps = (props, options = {}) => {
+  const {
+    htmlProps = htmlInputProps,
+    includeAria = true,
+  } = options
   const inputProps = {}
   const rest = {}
 
   _.forEach(props, (val, prop) => {
-    const target = _.includes(htmlProps, prop) ? inputProps : rest
+    const possibleAria = includeAria && (/^aria-.*$/.test(prop) || prop === 'role')
+    const target = _.includes(htmlProps, prop) || possibleAria ? inputProps : rest
     target[prop] = val
   })
 

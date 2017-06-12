@@ -1,7 +1,6 @@
 import React from 'react'
 import { findDOMNode } from 'react-dom'
 
-import { htmlInputAria } from 'src/lib'
 import Checkbox from 'src/modules/Checkbox/Checkbox'
 import * as common from 'test/specs/commonTests'
 import { sandbox } from 'test/utils'
@@ -23,7 +22,7 @@ describe('Checkbox', () => {
   })
 
   describe('aria', () => {
-    htmlInputAria.forEach(propName => {
+    ['aria-label', 'role'].forEach(propName => {
       it(`passes "${propName}" to the <input>`, () => {
         shallow(<Checkbox {...{ [propName]: 'foo' }} />)
           .find('input')

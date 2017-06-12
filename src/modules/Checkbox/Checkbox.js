@@ -9,7 +9,6 @@ import {
   customPropTypes,
   getElementType,
   getUnhandledProps,
-  htmlInputAria,
   makeDebugger,
   META,
   partitionHTMLInputProps,
@@ -220,7 +219,7 @@ export default class Checkbox extends Component {
     )
     const unhandled = getUnhandledProps(Checkbox, this.props)
     const ElementType = getElementType(Checkbox, this.props)
-    const [htmlInputProps, rest] = partitionHTMLInputProps(unhandled, htmlInputAria)
+    const [htmlInputProps, rest] = partitionHTMLInputProps(unhandled, { htmlProps: [] })
 
     return (
       <ElementType
