@@ -10,7 +10,7 @@ import {
 } from '../../lib'
 
 /**
- * A pushable sub-component for Sticky.
+ * Context which sticky element should stick to.
  */
 function StickyContext(props) {
   const { className, children } = props

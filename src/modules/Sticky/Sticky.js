@@ -19,11 +19,25 @@ class Sticky extends Component {
   }
 
   static propTypes = {
+    /** An element type to render as (string or function). */
     as: PropTypes.function,
+
+    /** Primary content. */
     children: PropTypes.node,
+
+    /** Additional classes. */
     className: PropTypes.string,
+
+    /** Offset in pixels from the top of the screen when fixing element to viewport. */
     offset: PropTypes.number,
+
+    /** Offset in pixels from the bottom of the screen when fixing element to viewport. */
     bottomOffset: PropTypes.number,
+
+    /**
+     * Whether element should be "pushed" by the viewport,
+     * attaching to the bottom of the screen when scrolling up
+     */
     pushing: PropTypes.bool,
   }
 
