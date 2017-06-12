@@ -63,7 +63,7 @@ class Sticky extends Component {
   }
 
   hasReachedContextBottom() {
-    return this.stickyBoundingRect.height >= this.contextBoundingRect.bottom - 1
+    return this.stickyBoundingRect.height + this.props.offset >= this.contextBoundingRect.bottom
   }
 
   hasReachedTrigger() {
@@ -71,7 +71,7 @@ class Sticky extends Component {
   }
 
   hasBeenTriggered() {
-    return this.triggerBoundingRect.top < 0
+    return this.triggerBoundingRect.top < this.props.offset
   }
 
   isOversized() {
@@ -79,7 +79,7 @@ class Sticky extends Component {
   }
 
   isContextBottomVisible() {
-    return this.contextBoundingRect.bottom <= window.innerHeight
+    return this.contextBoundingRect.bottom + this.props.bottomOffset <= window.innerHeight
   }
 
   setPushing(pushing) {
