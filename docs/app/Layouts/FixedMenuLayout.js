@@ -16,7 +16,7 @@ const src = 'http://semantic-ui.com/examples/assets/images/wireframe/paragraph.p
 
 const FixedMenuLayout = () =>
     <div>
-      <Menu fixed inverted>
+      <Menu fixed='top' inverted>
         <Container>
           <Menu.Item>
             <Image alt='' src='http://react.semantic-ui.com/logo.png' size='mini' />
