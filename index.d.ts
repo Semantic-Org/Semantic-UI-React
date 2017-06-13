@@ -25,7 +25,7 @@ export {
   BreadcrumbSectionProps
 } from './dist/commonjs/collections/Breadcrumb/BreadcrumbSection';
 
-export { default as Form, FormProps } from './dist/commonjs/collections/Form';
+export { default as Form, FormComponent, FormProps } from './dist/commonjs/collections/Form';
 export { default as FormButton, FormButtonProps } from './dist/commonjs/collections/Form/FormButton';
 export { default as FormCheckbox, FormCheckboxProps } from './dist/commonjs/collections/Form/FormCheckbox';
 export { default as FormDropdown, FormDropdownProps } from './dist/commonjs/collections/Form/FormDropdown';

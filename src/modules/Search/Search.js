@@ -317,12 +317,13 @@ export default class Search extends Component {
     debug('selectItemOnEnter()')
     debug(keyboardKey.getName(e))
     if (keyboardKey.getCode(e) !== keyboardKey.Enter) return
-    e.preventDefault()
 
     const result = this.getSelectedResult()
 
     // prevent selecting null if there was no selected item value
     if (!result) return
+
+    e.preventDefault()
 
     // notify the onResultSelect prop that the user is trying to change value
     this.setValue(result.title)

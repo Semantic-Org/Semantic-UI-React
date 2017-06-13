@@ -168,55 +168,119 @@ describe('factories', () => {
       })
     })
 
-    describe('child key', () => {
-      it('uses the `key` prop from an element', () => {
-        getShorthand({ value: <div key='foo' /> })
-          .should.have.property('key', 'foo')
-      })
-
-      it('uses the `key` prop as a string', () => {
-        getShorthand({ value: { key: 'foo' } })
-          .should.have.property('key', 'foo')
-      })
-
-      it('uses the `key` prop as a number', () => {
+    describe('key', () => {
+      it('is not consumed', () => {
         getShorthand({ value: { key: 123 } })
-          .should.have.property('key', '123')
+          .props.should.have.property('key')
       })
 
-      it('uses the `childKey` prop as a string', () => {
-        getShorthand({ value: { childKey: 'foo' } })
-          .should.have.property('key', 'foo')
+      describe('on an element', () => {
+        it('works with a string', () => {
+          getShorthand({ value: <div key='foo' /> })
+            .should.have.property('key', 'foo')
+        })
+
+        it('works with a number', () => {
+          getShorthand({ value: <div key={123} /> })
+            .should.have.property('key', '123')
+        })
+
+        it('works with falsy values', () => {
+          getShorthand({ value: <div key={null} /> })
+            .should.have.property('key', 'null')
+
+          getShorthand({ value: <div key={0} /> })
+            .should.have.property('key', '0')
+
+          getShorthand({ value: <div key='' /> })
+            .should.have.property('key', '')
+        })
       })
 
-      it('uses the `childKey` prop as a number', () => {
-        getShorthand({ value: { childKey: 123 } })
-          .should.have.property('key', '123')
+      describe('on an object', () => {
+        it('works with a string', () => {
+          getShorthand({ value: { key: 'foo' } })
+            .should.have.property('key', 'foo')
+        })
+
+        it('works with a number', () => {
+          getShorthand({ value: { key: 123 } })
+            .should.have.property('key', '123')
+        })
+
+        it('works with falsy values', () => {
+          getShorthand({ value: { key: null } })
+            .should.have.property('key', 'null')
+
+          getShorthand({ value: { key: 0 } })
+            .should.have.property('key', '0')
+
+          getShorthand({ value: { key: '' } })
+            .should.have.property('key', '')
+        })
       })
+    })
 
-      it('calls `childKey` with the final `props` if it is a function', () => {
-        const props = { foo: 'foo', childKey: sandbox.spy(({ foo }) => foo) }
-        const element = getShorthand({ value: props })
-
-        props.childKey.should.have.been.calledOnce()
-        props.childKey.should.have.been.calledWithExactly({ foo: 'foo', key: 'foo' })
-
-        element.key.should.equal('foo')
-      })
-
-      it('consumes the childKey prop', () => {
+    describe('childKey', () => {
+      it('is consumed', () => {
         getShorthand({ value: { childKey: 123 } })
           .props.should.not.have.property('childKey')
       })
 
-      it('is generated from shorthand string values', () => {
-        getShorthand({ value: 'foo' })
-          .should.have.property('key', 'foo')
+      it('is called with the final `props` if it is a function', () => {
+        const props = { foo: 'bar', childKey: sandbox.spy(({ foo }) => foo) }
+        const element = getShorthand({ value: props })
+
+        props.childKey.should.have.been.calledOnce()
+        props.childKey.should.have.been.calledWithExactly({ foo: 'bar', key: 'bar' })
+
+        element.key.should.equal('bar')
       })
 
-      it('is generated from shorthand number values', () => {
-        getShorthand({ value: 123 })
-          .should.have.property('key', '123')
+      describe('on an element', () => {
+        it('works with a string', () => {
+          getShorthand({ value: <div childKey='foo' /> })
+            .should.have.property('key', 'foo')
+        })
+
+        it('works with a number', () => {
+          getShorthand({ value: <div childKey={123} /> })
+            .should.have.property('key', '123')
+        })
+
+        it('works with falsy values', () => {
+          getShorthand({ value: <div childKey={null} /> })
+            .should.have.property('key', null)
+
+          getShorthand({ value: <div childKey={0} /> })
+            .should.have.property('key', '0')
+
+          getShorthand({ value: <div childKey='' /> })
+            .should.have.property('key', '')
+        })
+      })
+
+      describe('on an object', () => {
+        it('works with a string', () => {
+          getShorthand({ value: { childKey: 'foo' } })
+            .should.have.property('key', 'foo')
+        })
+
+        it('works with a number', () => {
+          getShorthand({ value: { childKey: 123 } })
+            .should.have.property('key', '123')
+        })
+
+        it('works with falsy values', () => {
+          getShorthand({ value: { childKey: null } })
+            .should.have.property('key', null)
+
+          getShorthand({ value: { childKey: 0 } })
+            .should.have.property('key', '0')
+
+          getShorthand({ value: { childKey: '' } })
+            .should.have.property('key', '')
+        })
       })
     })
 
