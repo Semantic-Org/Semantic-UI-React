@@ -165,22 +165,18 @@ if (!__TEST__) {
 // ------------------------------------
 // Rules
 // ------------------------------------
-webpackConfig.module.rules = [
-  ...webpackConfig.module.rules,
-  {
-    test: /\.js$/,
-    exclude: /node_modules/,
-    use: {
-      loader: 'babel-loader',
-      options: {
-        cacheDirectory: true,
-      },
+webpackConfig.module.rules = [...webpackConfig.module.rules, {
+  //
+  // Babel
+  //
+  test: /\.js$/,
+  exclude: /node_modules/,
+  use: {
+    loader: 'babel-loader',
+    options: {
+      cacheDirectory: true,
     },
   },
-  {
-    test: /\.css$/,
-    use: ['style-loader', 'css-loader'],
-  },
-]
+}]
 
 module.exports = webpackConfig

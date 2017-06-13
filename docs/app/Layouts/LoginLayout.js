@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import { Button, Form, Grid, Header, Image, Input, Message, Segment } from 'semantic-ui-react'
 
-import './LoginLayout.css'
-
 export default class LoginForm extends Component {
   componentWillMount() {
     document.body.classList.add('login')
@@ -21,7 +19,7 @@ export default class LoginForm extends Component {
       >
         <Grid.Column style={{ maxWidth: 450 }}>
           <Header as='h2' color='teal' textAlign='center'>
-            <Image src='http://react.semantic-ui.com/logo.png' />
+            <Image src='/logo.png' />
             {' '}Log-in to your account
           </Header>
           <Form size='large'>
