@@ -17,6 +17,11 @@ import {
 } from 'semantic-ui-react'
 
 let Options = [{ key: 'Male', value: 'Male', text: 'Male'}, { key: 'Female', value: 'Female', text: 'Female'}]
+const loremText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed diam eget risus varius blandit\
+            sit amet non magna. Lorem ipsum dolor sit amet, consectetur adipiscing elit.\
+            Praesent commodo cursus magna, vel scelerisque nisl consectetur et.\
+            Cras mattis consectetur purus sit amet fermentum. Duis mollis, est non commodo luctus, nisi erat\
+            porttitor ligula, eget lacinia odio sem nec elit. Aenean lacinia bibendum nulla sed consectetur."
 
 const BootstrapMigrationLayout = () =>
     <Grid container>
@@ -269,13 +274,152 @@ const BootstrapMigrationLayout = () =>
                </Table.Row>
              </Table.Body>
            </Table>
-
-
-            </Grid.Column>
+          </Grid.Column>
        </Grid>
      </Grid.Column>
+    </Grid.Row>
 
+    <Grid.Row>
+      <Grid.Column>
+        <Header as="h1">Alerts</Header>
+        <Divider />
+        <Message positive >Well done! You successfully read this important alert message.</Message>
+        <Message info>Heads up! This alert needs your attention, but it's not super important.</Message>
+        <Message warning>Warning! Best check yo self, you're not looking too good.</Message>
+        <Message error>Oh snap! Change a few things up and try submitting again.</Message>
+      </Grid.Column>
+      </Grid.Row>
+      <Grid.Row>
+        <Grid.Column>
+          <Header as="h1">List groups</Header>
+          <Divider />
+          <Grid columns={3}>
+            <Grid.Column>
+              <Segment.Group>
+                <Segment>
+                  <p>Cras justo odio</p>
+                </Segment>
+                <Segment>
+                  <p>Dapibus ac facilisis in</p>
+                </Segment>
+                <Segment>
+                  <p>Morbi leo risus</p>
+                </Segment>
+                <Segment>
+                  <p>Porta ac consectetur ac</p>
+                </Segment>
+                <Segment>
+                 <p>Vestibulum at eros</p>
+               </Segment>
+             </Segment.Group>
+           </Grid.Column>
+           <Grid.Column>
+              <Menu vertical fluid>
+                <Menu.Item>
+                  <p>Cras justo odio</p>
+                </Menu.Item>
+                <Menu.Item>
+                  <p>Vestibulum at eros</p>
+                </Menu.Item>
+              </Menu>
+            </Grid.Column>
+            <Grid.Column>
+              <Menu vertical fluid>
+                <Menu.Item>
+                  <Header size='medium' as="h1" >List group item heading</Header>
+                  <p>Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+                </Menu.Item>
+                <Menu.Item>
+                  <Header size='medium' as="h1" >List group item heading</Header>
+                  <p>Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+                </Menu.Item>
+                <Menu.Item>
+                  <Header size='medium' as="h1" >List group item heading</Header>
+                  <p>Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+                </Menu.Item>
+              </Menu>
+            </Grid.Column>
+          </Grid>
+        </Grid.Column>
+      </Grid.Row>
 
+      <Grid.Row>
+        <Grid.Column>
+          <Header as="h1">Panels</Header>
+          <Divider />
+          <Grid columns={3}>
+            <Grid.Column>
+              <Segment.Group>
+                <Segment color='red'>One</Segment>
+                <Segment color='blue'>Two</Segment>
+                <Segment color='green'>Three</Segment>
+              </Segment.Group>
+            </Grid.Column>
+            <Grid.Column>
+              <Segment.Group raised>
+                <Segment>One</Segment>
+                <Segment>Two</Segment>
+                <Segment>Three</Segment>
+              </Segment.Group>
+            </Grid.Column>
+            <Grid.Column>
+              <Segment.Group stacked>
+                <Segment>One</Segment>
+                <Segment>Two</Segment>
+                <Segment>Three</Segment>
+              </Segment.Group>
+            </Grid.Column>
+            <Grid.Column>
+              <Message attached error>Error</Message>
+              <Segment attached >Panel content</Segment>
+            </Grid.Column>
+            <Grid.Column>
+              <Message  attached info>Info</Message>
+              <Segment attached>Panel content</Segment>
+            </Grid.Column>
+            <Grid.Column>
+              <Message attached success>Success</Message>
+              <Segment attached>Panel content</Segment>
+            </Grid.Column>
+            <Grid.Column>
+              <Header attached as="h4" inverted >Header</Header>
+              <Segment attached>Panel content</Segment>
+            </Grid.Column>
+            <Grid.Column>
+              <Header attached as="h4" block >Header</Header>
+              <Segment attached>Panel content</Segment>
+            </Grid.Column>
+            <Grid.Column>
+              <Header attached as="h4">Header</Header>
+              <Segment attached>Panel content</Segment>
+            </Grid.Column>
+          </Grid>
+        </Grid.Column>
+      </Grid.Row>
+
+      <Grid.Row>
+        <Grid.Column>
+          <Header as="h1">Wells</Header>
+          <Divider />
+          <Segment>
+            <p>{loremText}</p>
+          </Segment>
+          <Segment secondary>
+            <p>{loremText}</p>
+          </Segment>
+          <Segment tertiary>
+            <p>{loremText}</p>
+          </Segment>
+          <Segment inverted>
+            <p>{loremText}</p>
+          </Segment>
+          <Segment secondary inverted>
+            <p>{loremText}</p>
+          </Segment>
+          <Segment tertiary inverted>
+            <p>{loremText}</p>
+          </Segment>
+        </Grid.Column>
     </Grid.Row>
   </Grid>
 
