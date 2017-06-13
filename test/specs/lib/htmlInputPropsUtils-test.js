@@ -1,8 +1,8 @@
 import { partitionHTMLInputProps } from 'src/lib/htmlInputPropsUtils'
 
 const props = {
+  autoFocus: false,
   className: 'foo',
-  name: 'bar',
   placeholder: 'baz',
   required: true,
 }
@@ -16,7 +16,7 @@ describe('partitionHTMLInputProps', () => {
     const [htmlInputProps, rest] = partitionHTMLInputProps(props)
 
     htmlInputProps.should.deep.equal({
-      name: 'bar',
+      autoFocus: false,
       placeholder: 'baz',
       required: true,
     })
@@ -27,6 +27,6 @@ describe('partitionHTMLInputProps', () => {
     const [htmlInputProps, rest] = partitionHTMLInputProps(props, ['placeholder', 'required'])
 
     htmlInputProps.should.deep.equal({ placeholder: 'baz', required: true })
-    rest.should.deep.equal({ className: 'foo', name: 'bar' })
+    rest.should.deep.equal({ autoFocus: false, className: 'foo' })
   })
 })
