@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import { Button, Form, Grid, Header, Image, Input, Message, Segment } from 'semantic-ui-react'
 
-import './LoginLayout.css'
-
 export default class LoginForm extends Component {
   componentWillMount() {
     document.body.classList.add('login')
