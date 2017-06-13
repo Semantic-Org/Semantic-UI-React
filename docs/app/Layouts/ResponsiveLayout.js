@@ -653,7 +653,7 @@ const ResponsiveLayout = () => (
     <Container>
       <Menu stackable>
         <Menu.Item>
-          <img src='http://react.semantic-ui.com/logo.png' />
+          <img src='/logo.png' />
         </Menu.Item>
         <Menu.Item>Features</Menu.Item>
         <Menu.Item>Testimonials</Menu.Item>
@@ -670,7 +670,7 @@ const ResponsiveLayout = () => (
     <Container>
       <Item.Group divided>
         <Item>
-          <Item.Image src='http://semantic-ui.com/images/wireframe/image.png' />
+          <Item.Image src='/assets/images/wireframe/image.png' />
           <Item.Content>
             <Item.Header as='a'>Content Header</Item.Header>
             <Item.Meta>
@@ -692,7 +692,7 @@ const ResponsiveLayout = () => (
         </Item>
 
         <Item>
-          <Item.Image src='http://semantic-ui.com/images/wireframe/image.png' />
+          <Item.Image src='/assets/images/wireframe/image.png' />
           <Item.Content>
             <Item.Header as='a'>Content Header</Item.Header>
             <Item.Meta>
@@ -712,7 +712,7 @@ const ResponsiveLayout = () => (
           </Item.Content>
         </Item>
         <Item>
-          <Item.Image src='http://semantic-ui.com/images/wireframe/image.png' />
+          <Item.Image src='/assets/images/wireframe/image.png' />
           <Item.Content>
             <Item.Header as='a'>Content Header</Item.Header>
             <Item.Meta>

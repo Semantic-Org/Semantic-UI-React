@@ -19,7 +19,7 @@ export default class LoginForm extends Component {
       >
         <Grid.Column style={{ maxWidth: 450 }}>
           <Header as='h2' color='teal' textAlign='center'>
-            <Image src='http://react.semantic-ui.com/logo.png' />
+            <Image src='/logo.png' />
             {' '}Log-in to your account
           </Header>
           <Form size='large'>
