@@ -75,7 +75,9 @@ class Sidebar extends Component {
   }
 
   componentDidMount() {
-    if (this.props.visible && this.props.closable) {
+    const { visible, closable } = this.props
+
+    if (visible && closable) {
       document.addEventListener('click', this.handleDocumentClick)
     }
   }
@@ -91,23 +93,15 @@ class Sidebar extends Component {
     }
   }
 
+  handleRef = c => { this.ref = c }
+
   handleDocumentClick = (e) => {
     const sidebarDOMNode = ReactDOM.findDOMNode(this.ref)
     // close Sidebar if e.target is outside of Sidebar
-    if (!this.checkIfSidebarContainsClickTarget(e.target, sidebarDOMNode)) {
+    if (!sidebarDOMNode.contains(e.target)) {
+      this.trySetState({ visible: false })
       this.props.toggleVisibility()
     }
-  }
-
-  checkIfSidebarContainsClickTarget = (target, node) => {
-    if (target === node) return true
-    let isFound = false
-    if (node.childNodes && node.childNodes.length > 0) {
-      for (let i = 0; i < node.childNodes.length; i += 1) {
-        isFound = isFound || this.checkIfSidebarContainsClickTarget(target, node.childNodes[i])
-      }
-    }
-    return isFound
   }
 
   render() {
@@ -135,7 +129,7 @@ class Sidebar extends Component {
     const rest = getUnhandledProps(Sidebar, this.props)
     const ElementType = getElementType(Sidebar, this.props)
 
-    return <ElementType {...rest} className={classes} ref={(c) => { this.ref = c }}>{children}</ElementType>
+    return <ElementType {...rest} className={classes} ref={this.handleRef}>{children}</ElementType>
   }
 }
 
