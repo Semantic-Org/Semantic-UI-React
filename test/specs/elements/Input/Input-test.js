@@ -80,7 +80,9 @@ describe('Input', () => {
   common.propKeyOnlyToClassName(Input, 'inverted')
   common.propKeyOnlyToClassName(Input, 'label', { className: 'labeled' })
   common.propKeyOnlyToClassName(Input, 'loading')
+  common.propKeyOnlyToClassName(Input, 'loading', { className: 'icon' })
   common.propKeyOnlyToClassName(Input, 'transparent')
+  common.propKeyOnlyToClassName(Input, 'icon')
   common.propKeyOnlyToClassName(Input, 'icon')
 
   common.propValueOnlyToClassName(Input, 'size', SUI.SIZES)
@@ -151,6 +153,20 @@ describe('Input', () => {
 
       wrapper.detach()
       document.body.removeChild(mountNode)
+    })
+  })
+
+  describe('loading', () => {
+    it("don't add icon if it's defined", () => {
+      shallow(<Input icon='user' loading />)
+        .find('Icon')
+        .should.have.prop('name', 'user')
+    })
+
+    it("adds icon if it's not defined", () => {
+      shallow(<Input loading />)
+        .find('Icon')
+        .should.have.prop('name', 'spinner')
     })
   })
 
