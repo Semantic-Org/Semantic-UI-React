@@ -58,11 +58,7 @@ describe('Sidebar', () => {
     const wrapper = mount(<TestComponent visible />)
     const SidebarComponent = wrapper.find('Sidebar')
     SidebarComponent.should.have.prop('visible', true)
-
-    const evt = document.createEvent('HTMLEvents')
-    evt.initEvent('click', false, true)
     document.body.click()
-
     SidebarComponent.should.have.prop('visible', false)
   })
 
@@ -74,17 +70,25 @@ describe('Sidebar', () => {
     SidebarComponent.should.have.prop('visible', true)
   })
 
+  it('doesn\'t close when clicking on Sidebar', () => {
+    const wrapper = mount(<TestComponent visible />)
+    const SidebarComponent = wrapper.find('Sidebar')
+
+    SidebarComponent.should.have.prop('visible', true)
+    SidebarComponent.simulate('click')
+    SidebarComponent.should.have.prop('visible', true)
+  })
+
   it('close Sidebar after opening and then clicking outside', () => {
     const wrapper = mount(<TestComponent />)
     const SidebarComponent = wrapper.find('Sidebar')
+
     SidebarComponent.should.have.prop('visible', false)
+
     wrapper.setState({ visible: true })
     SidebarComponent.should.have.prop('visible', true)
 
-    const evt = document.createEvent('HTMLEvents')
-    evt.initEvent('click', false, true)
     document.body.click()
-
     SidebarComponent.should.have.prop('visible', false)
   })
 })
