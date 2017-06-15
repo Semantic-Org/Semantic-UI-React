@@ -1533,12 +1533,6 @@ describe('Dropdown', () => {
         .should.have.exactly(1).descendants(DropdownSearchInput)
     })
 
-    it('adds the name prop to the search input', () => {
-      wrapperShallow(<Dropdown name='foo' options={options} selection search />)
-        .find(DropdownSearchInput)
-        .should.have.prop('name', 'foo')
-    })
-
     it('sets focus to the search input on open', () => {
       wrapperMount(<Dropdown options={options} selection search />)
         .simulate('click')

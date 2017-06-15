@@ -1108,7 +1108,6 @@ export default class Dropdown extends Component {
     if (!search) return null
     return DropdownSearchInput.create(searchInput, { defaultProps: {
       inputRef: this.handleSearchRef,
-      name,
       onChange: this.handleSearchChange,
       style: { width: this.computeSearchInputWidth() },
       tabIndex: this.computeSearchInputTabIndex(),

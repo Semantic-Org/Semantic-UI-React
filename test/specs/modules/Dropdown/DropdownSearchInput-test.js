@@ -23,26 +23,17 @@ describe('DropdownSearchInput', () => {
     })
   })
 
-  describe('name', () => {
-    it('appends name with "-search"', () => {
-      const name = faker.random.word()
-
-      shallow(<DropdownSearchInput name={name} />)
-        .should.have.attr('name', `${name}-search`)
-    })
-  })
-
   describe('onChange', () => {
     it('is called with (e, data) on change', () => {
       const onChange = sandbox.spy()
-      const e = { target: { value: 'name' } }
+      const e = { target: { value: 'value' } }
 
-      shallow(<DropdownSearchInput onChange={onChange} name='foo' />)
+      shallow(<DropdownSearchInput onChange={onChange} />)
         .find('input')
         .simulate('change', e)
 
       onChange.should.have.been.calledOnce()
-      onChange.should.have.been.calledWithMatch(e, { name: 'foo', value: e.target.value })
+      onChange.should.have.been.calledWithMatch(e, { value: e.target.value })
     })
   })
 
