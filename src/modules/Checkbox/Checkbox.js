@@ -1,5 +1,5 @@
 import cx from 'classnames'
-import _ from 'lodash/fp'
+import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React from 'react'
 
@@ -156,26 +156,24 @@ export default class Checkbox extends Component {
 
   handleClick = e => {
     debug('handleClick()')
-
-    const { onChange, onClick } = this.props
     const { checked, indeterminate } = this.state
 
-    if (this.canToggle()) {
-      if (onClick) onClick(e, { ...this.props, checked: !!checked, indeterminate: !!indeterminate })
-      if (onChange) onChange(e, { ...this.props, checked: !checked, indeterminate: false })
+    if (!this.canToggle()) return
 
-      this.trySetState({ checked: !checked, indeterminate: false })
-    }
+    _.invoke(this.props, 'onClick', e, { ...this.props, checked: !!checked, indeterminate: !!indeterminate })
+    _.invoke(this.props, 'onChange', e, { ...this.props, checked: !checked, indeterminate: false })
+
+    this.trySetState({ checked: !checked, indeterminate: false })
   }
 
   handleMouseDown = e => {
     debug('handleMouseDown()')
-
-    const { onMouseDown } = this.props
     const { checked, indeterminate } = this.state
 
-    _.invoke('focus', this.inputRef)
-    if (onMouseDown) onMouseDown(e, { ...this.props, checked: !!checked, indeterminate: !!indeterminate })
+    _.invoke(this.props, 'onMouseDown', e, { ...this.props, checked: !!checked, indeterminate: !!indeterminate })
+    _.invoke(this.inputRef, 'focus')
+
+    e.preventDefault()
   }
 
   // Note: You can't directly set the indeterminate prop on the input, so we
