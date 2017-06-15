@@ -25,6 +25,19 @@ export interface StickyProps {
    * attaching to the bottom of the screen when scrolling up
    */
   pushing?: boolean;
+
+  /* Callback when element is fixed to page. */
+  onStick?: (event: React.MouseEvent<HTMLElement>) => void;
+
+  /* Callback when element is unfixed from page. */
+  onUnstick?: (event: React.MouseEvent<HTMLElement>) => void;
+
+  /* Callback when element is bound to top of parent container. */
+  onTop?: (event: React.MouseEvent<HTMLElement>) => void;
+
+  /* Callback when element is bound to bottom of parent container. */
+  onBottom?: (event: React.MouseEvent<HTMLElement>) => void;
+
 }
 
 interface StickyComponent extends React.ComponentClass<StickyProps> {

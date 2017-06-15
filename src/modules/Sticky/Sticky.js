@@ -41,9 +41,21 @@ class Sticky extends Component {
 
     /**
      * Whether element should be "pushed" by the viewport,
-     * attaching to the bottom of the screen when scrolling up
+     * attaching to the bottom of the screen when scrolling up.
      */
     pushing: PropTypes.bool,
+
+    /* Callback when element is fixed to page. */
+    onStick: PropTypes.func,
+
+    /* Callback when element is unfixed from page. */
+    onUnstick: PropTypes.func,
+
+    /* Callback when element is bound to top of parent container. */
+    onTop: PropTypes.func,
+
+    /* Callback when element is bound to bottom of parent container. */
+    onBottom: PropTypes.func,
   }
 
   static contextTypes = {
@@ -116,17 +128,29 @@ class Sticky extends Component {
   }
 
   // If true, the component have position: fixed
-  setSticky(sticky) {
+  setSticky(e, sticky) {
+    const { onStick, onUnstick } = this.props
+
     this.setState({ sticky })
+
+    if (e && sticky && onStick) {
+      onStick(e)
+    }
+
+    if (e && !sticky && onUnstick) {
+      onUnstick(e)
+    }
   }
 
-  stickToContextTop() {
-    this.setSticky(false)
+  stickToContextTop(e) {
+    if (e && this.props.onTop) this.props.onTop(e)
+    this.setSticky(e, false)
     this.setPushing(false)
   }
 
-  stickToContextBottom() {
-    this.setSticky(true)
+  stickToContextBottom(e) {
+    if (e && this.props.onBottom) this.props.onBottom(e)
+    this.setSticky(e, true)
     this.setState({
       top: this.contextBoundingRect.bottom - this.stickyBoundingRect.height,
       bottom: null,
@@ -134,52 +158,52 @@ class Sticky extends Component {
     this.setPushing(true)
   }
 
-  stickToScreenTop() {
-    this.setSticky(true)
+  stickToScreenTop(e) {
+    this.setSticky(e, true)
     this.setState({ top: this.props.offset, bottom: null })
   }
 
-  stickToScreenBottom() {
-    this.setSticky(true)
+  stickToScreenBottom(e) {
+    this.setSticky(e, true)
     this.setState({ top: null, bottom: this.props.bottomOffset })
   }
 
-  update = () => {
+  update = (e) => {
     this.calcBoundingRects()
 
     const state = this.state || {}
 
     if (state.pushing) {
       if (this.hasReachedStartingPoint()) {
-        return this.stickToContextTop()
+        return this.stickToContextTop(e)
       }
 
       if (!this.hasTouchedScreenBottom()) {
-        return this.stickToContextBottom()
+        return this.stickToContextBottom(e)
       }
 
-      return this.stickToScreenBottom()
+      return this.stickToScreenBottom(e)
     }
 
     if (this.isOversized()) {
       if (this.contextBoundingRect.top > 0) {
-        return this.stickToContextTop()
+        return this.stickToContextTop(e)
       }
 
       if (this.contextBoundingRect.bottom < window.innerHeight) {
-        return this.stickToContextBottom()
+        return this.stickToContextBottom(e)
       }
     }
 
     if (this.hasTouchedScreenTop()) {
       if (this.hasReachedContextBottom()) {
-        return this.stickToContextBottom()
+        return this.stickToContextBottom(e)
       }
 
-      return this.stickToScreenTop()
+      return this.stickToScreenTop(e)
     }
 
-    return this.stickToContextTop()
+    return this.stickToContextTop(e)
   }
 
   getStyle() {
