@@ -3,6 +3,42 @@ import Sticky from 'src/modules/Sticky/Sticky'
 import StickyContext from 'src/modules/Sticky/StickyContext'
 import * as common from 'test/specs/commonTests'
 
+// Scroll to the top of the screen
+const scrollToTop = (wrapper, { bottomOffset, offset, height }) => {
+  const instance = wrapper.instance()
+  instance.refs.trigger = { getBoundingClientRect: () => ({ top: offset }) }
+  instance.refs.sticky = { getBoundingClientRect: () => ({ height, top: offset }) }
+  instance.contextEl = { getBoundingClientRect: () => ({ bottom: window.innerHeight }) }
+  window.dispatchEvent(new Event('scroll'))
+}
+
+// Scroll until the trigger is not visible
+const scrollAfterTrigger = (wrapper, { bottomOffset, offset, height }) => {
+  const instance = wrapper.instance()
+  instance.refs.trigger = { getBoundingClientRect: () => ({ top: offset - 1 }) }
+  instance.refs.sticky = { getBoundingClientRect: () => ({ height }) }
+  instance.contextEl = { getBoundingClientRect: () => ({ bottom: window.innerHeight - bottomOffset + 1 }) }
+  window.dispatchEvent(new Event('scroll'))
+}
+
+// Scroll until the context bottom is not visible
+const scrollAfterContext = (wrapper, { offset, height }) => {
+  const instance = wrapper.instance()
+  instance.refs.trigger = { getBoundingClientRect: () => ({ top: offset - 1 }) }
+  instance.refs.sticky = { getBoundingClientRect: () => ({ height }) }
+  instance.contextEl = { getBoundingClientRect: () => ({ bottom: -1 }) }
+  window.dispatchEvent(new Event('scroll'))
+}
+
+// Scroll to the last part of the context
+const scrollToContextBottom = (wrapper, { offset, height }) => {
+  const instance = wrapper.instance()
+  instance.refs.trigger = { getBoundingClientRect: () => ({ top: offset - 1 }) }
+  instance.refs.sticky = { getBoundingClientRect: () => ({ height }) }
+  instance.contextEl = { getBoundingClientRect: () => ({ bottom: height + 1 }) }
+  window.dispatchEvent(new Event('scroll'))
+}
+
 describe('Sticky', () => {
   common.isConformant(Sticky)
   common.rendersChildren(Sticky)
@@ -14,87 +50,60 @@ describe('Sticky', () => {
 
   it('should stick to top of screen', () => {
     const offset = 12
-    const wrapper = mount(<Sticky offset={offset} />)
-    const instance = wrapper.instance()
+    const bottomOffset = 12
+    const height = 200
+    const wrapper = mount(<Sticky offset={offset} bottomOffset={bottomOffset} />)
 
     // Scroll after trigger
-    instance.refs.trigger = { getBoundingClientRect: () => ({ top: offset - 1 }) }
-    instance.contextEl = { getBoundingClientRect: () => ({ bottom: 1000 }) }
-    window.dispatchEvent(new Event('scroll'))
+    scrollAfterTrigger(wrapper, { bottomOffset, offset, height })
     wrapper.childAt(1).props().style.should.have.property('position', 'fixed')
     wrapper.childAt(1).props().style.should.have.property('top', offset)
   })
 
   it('should stick to bottom of context', () => {
     const offset = 20
+    const bottomOffset = 10
     const height = 100
-    const wrapper = mount(<Sticky bottomOffset={offset} />)
-    const instance = wrapper.instance()
+    const wrapper = mount(<Sticky offset={offset} bottomOffset={bottomOffset} />)
 
-    // Scroll after trigger
-    instance.refs.trigger = { getBoundingClientRect: () => ({ top: -1 }) }
-    instance.contextEl = { getBoundingClientRect: () => ({ bottom: height + offset }) }
-    instance.refs.sticky = { getBoundingClientRect: () => ({ height }) }
-    window.dispatchEvent(new Event('scroll'))
+    scrollAfterContext(wrapper, { bottomOffset, offset, height })
 
-    // Scroll back
-    instance.contextEl = { getBoundingClientRect: () => ({ bottom: -100 }) }
-    window.dispatchEvent(new Event('scroll'))
     wrapper.childAt(1).props().style.should.have.property('position', 'fixed')
-    wrapper.childAt(1).props().style.should.have.property('top', -100 - height)
+    wrapper.childAt(1).props().style.should.have.property('top', -1 - height)
   })
 
   it('should push component back', () => {
     const offset = 10
+    const bottomOffset = 30
     const height = 100
-    const wrapper = mount(<Sticky bottomOffset={offset} pushing />)
-    const instance = wrapper.instance()
+    const wrapper = mount(<Sticky offset={offset} bottomOffset={bottomOffset} pushing />)
 
-    // Scroll to bottom
-    instance.refs.trigger = { getBoundingClientRect: () => ({ top: -100 }) }
-    instance.refs.sticky = { getBoundingClientRect: () => ({ height }) }
-    instance.contextEl = { getBoundingClientRect: () => ({ bottom: -1 }) }
-    window.dispatchEvent(new Event('scroll'))
+    scrollAfterTrigger(wrapper, { bottomOffset, offset, height })
 
     // Scroll back: component should still stick to context bottom
-    instance.refs.sticky = {
-      getBoundingClientRect: () => ({ height, bottom: 100, top: 100 }),
-    }
-    window.dispatchEvent(new Event('scroll'))
+    scrollToContextBottom(wrapper, { offset, height })
     wrapper.childAt(1).props().style.should.have.property('position', 'fixed')
-    wrapper.childAt(1).props().style.should.have.property('top', -1 - height)
+    wrapper.childAt(1).props().style.should.have.property('top', 1)
 
-    // Scroll more: component should stick to screen bottom
-    instance.contextEl = {
-      getBoundingClientRect: () => ({ height, bottom: window.innerHeight - offset + 1 }),
-    }
-    window.dispatchEvent(new Event('scroll'))
+    // Scroll a bit before the top: component should stick to screen bottom
+    scrollAfterTrigger(wrapper, { bottomOffset, offset, height })
     wrapper.childAt(1).props().style.should.have.property('position', 'fixed')
     wrapper.childAt(1).props().style.should.have.property('top', null)
-    wrapper.childAt(1).props().style.should.have.property('bottom', offset)
+    wrapper.childAt(1).props().style.should.have.property('bottom', bottomOffset)
   })
 
   it('should stop pushing when reaching top', () => {
     const offset = 10
+    const bottomOffset = 10
     const height = 100
-    const wrapper = mount(<Sticky bottomOffset={offset} pushing />)
-    const instance = wrapper.instance()
+    const wrapper = mount(<Sticky bottomOffset={bottomOffset} offset={offset} pushing />)
 
-    // Scroll to bottom
-    instance.refs.trigger = { getBoundingClientRect: () => ({ top: -100 }) }
-    instance.refs.sticky = { getBoundingClientRect: () => ({ height }) }
-    instance.contextEl = { getBoundingClientRect: () => ({ bottom: -1 }) }
-    window.dispatchEvent(new Event('scroll'))
-
-    // Scroll to top
-    instance.refs.trigger = { getBoundingClientRect: () => ({ top: 10 }) }
-    instance.refs.sticky = { getBoundingClientRect: () => ({ top: 10 }) }
-
-    // Scroll down: component should remain there
-    instance.contextEl = {
-      getBoundingClientRect: () => ({ height, bottom: window.innerHeight }),
-    }
-    window.dispatchEvent(new Event('scroll'))
-    wrapper.childAt(1).props().style.should.not.have.property('position')
+    scrollAfterTrigger(wrapper, { bottomOffset, offset, height })
+    scrollToContextBottom(wrapper, { offset, height })
+    scrollToTop(wrapper, { height, bottomOffset, offset })
+    scrollAfterTrigger(wrapper, { bottomOffset, offset, height })
+    // Component should stick again to the top
+    wrapper.childAt(1).props().style.should.have.property('position', 'fixed')
+    wrapper.childAt(1).props().style.should.have.property('top', offset)
   })
 })
