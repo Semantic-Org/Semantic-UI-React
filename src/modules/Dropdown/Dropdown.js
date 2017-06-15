@@ -1101,26 +1101,6 @@ export default class Dropdown extends Component {
     return <div className={classes}>{_text}</div>
   }
 
-  renderHiddenInput = () => {
-    debug('renderHiddenInput()')
-    const { value } = this.state
-    const { multiple, name, options, selection } = this.props
-    debug(`name:      ${name}`)
-    debug(`selection: ${selection}`)
-    debug(`value:     ${value}`)
-    if (!selection) return null
-
-    // a dropdown without an active item will have an empty string value
-    return (
-      <select type='hidden' aria-hidden='true' name={name} value={value} multiple={multiple}>
-        <option value='' />
-        {_.map(options, (option, i) => (
-          <option key={option.key || option.value} value={option.value}>{option.text}</option>
-        ))}
-      </select>
-    )
-  }
-
   renderSearchInput = () => {
     const { search, searchInput } = this.props
     const { searchQuery } = this.state

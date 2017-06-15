@@ -12,9 +12,6 @@ export interface DropdownSearchInputProps {
   /** A ref handler for input. */
   inputRef?: (c: HTMLInputElement) => void;
 
-  /** A name of the input. */
-  name?: string;
-
   /** An input can receive focus. */
   tabIndex?: number | string;
 
