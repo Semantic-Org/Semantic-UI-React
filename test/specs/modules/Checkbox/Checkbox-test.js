@@ -21,6 +21,16 @@ describe('Checkbox', () => {
     alwaysPresent: true,
   })
 
+  describe('aria', () => {
+    ['aria-label', 'role'].forEach(propName => {
+      it(`passes "${propName}" to the <input>`, () => {
+        shallow(<Checkbox {...{ [propName]: 'foo' }} />)
+          .find('input')
+          .should.have.prop(propName)
+      })
+    })
+  })
+
   describe('checking', () => {
     it('can be checked and unchecked', () => {
       const wrapper = shallow(<Checkbox />)

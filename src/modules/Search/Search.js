@@ -649,7 +649,9 @@ export default class Search extends Component {
     )
     const unhandled = getUnhandledProps(Search, this.props)
     const ElementType = getElementType(Search, this.props)
-    const [htmlInputProps, rest] = partitionHTMLInputProps(unhandled, htmlInputAttrs)
+    const [htmlInputProps, rest] = partitionHTMLInputProps(unhandled, {
+      htmlProps: htmlInputAttrs,
+    })
 
     return (
       <ElementType
