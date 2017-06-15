@@ -6,23 +6,18 @@ import {
    Segment,
    Grid,
    Divider,
-   Table,
    Menu,
-   Message,
    Icon,
-   Button,
    Dropdown,
-   Input,
-   Label,
    List,
 } from 'semantic-ui-react'
 
-let baseSrc = 'http://semantic-ui.com/examples/'
-let imageComponent =  (
-    <Image size='medium' floated='right' src={ baseSrc + "assets/images/wireframe/square-image.png"} />
-  )
+const baseSrc = 'http://semantic-ui.com/examples/'
+const imageComponent = (<Image size='medium' floated='right'
+  src={ baseSrc + 'assets/images/wireframe/square-image.png'}
+                        />)
 
-let text = "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.\
+let text = 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.\
              Vestibulum tortor quam, feugiat vitae, ultricies eget, \
             tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. \
             Aenean ultricies mi vitae est. Mauris placerat eleifend leo. \
@@ -33,7 +28,7 @@ let text = "Pellentesque habitant morbi tristique senectus et netus et malesuada
             Donec non enim in turpis pulvinar facilisis. Ut felis. \
             Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue,\
              eu vulputate magna eros eu erat. Aliquam erat volutpat. \
-            Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus"
+            Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus'
 
 const StickyLayout = () =>
 <div>
@@ -79,7 +74,7 @@ const StickyLayout = () =>
     <p>{text}</p>
     <p>{text}</p>
     <p>{text}</p>
-      <div className="overlay">
+      <div className='overlay'>
         <Menu icon='labeled' vertical>
          <Menu.Item name='twitter' >
            <Icon name='twitter' />
