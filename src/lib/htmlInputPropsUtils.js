@@ -6,7 +6,7 @@ export const htmlInputAttrs = [
 
   // LIMITED HTML PROPS
   'autoCapitalize', 'autoComplete', 'autoCorrect', 'autoFocus', 'checked', 'disabled', 'form', 'id', 'max', 'maxLength',
-  'min', 'multiple', 'name', 'pattern', 'placeholder', 'readOnly', 'required', 'step', 'type', 'value',
+  'min', 'minLength', 'multiple', 'name', 'pattern', 'placeholder', 'readOnly', 'required', 'step', 'type', 'value',
 ]
 
 export const htmlInputEvents = [
@@ -37,14 +37,24 @@ export const htmlInputProps = [...htmlInputAttrs, ...htmlInputEvents]
 /**
  * Returns an array of objects consisting of: props of html input element and rest.
  * @param {object} props A ReactElement props object
- * @param {array} [htmlProps] An array of html input props
+ * @param {Object} [options={}]
+ * @param {Array} [options.htmlProps] An array of html input props
+ * @param {boolean} [options.includeAria] Includes all input props that starts with "aria-"
  * @returns {[{}, {}]} An array of objects
  */
-export const partitionHTMLInputProps = (props, htmlProps = htmlInputProps) => {
+export const partitionHTMLInputProps = (props, options = {}) => {
+  const {
+    htmlProps = htmlInputProps,
+    includeAria = true,
+  } = options
   const inputProps = {}
   const rest = {}
 
-  _.forEach(props, (val, prop) => _.includes(htmlProps, prop) ? (inputProps[prop] = val) : (rest[prop] = val))
+  _.forEach(props, (val, prop) => {
+    const possibleAria = includeAria && (/^aria-.*$/.test(prop) || prop === 'role')
+    const target = _.includes(htmlProps, prop) || possibleAria ? inputProps : rest
+    target[prop] = val
+  })
 
   return [inputProps, rest]
 }

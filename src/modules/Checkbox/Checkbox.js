@@ -11,6 +11,7 @@ import {
   getUnhandledProps,
   makeDebugger,
   META,
+  partitionHTMLInputProps,
   useKeyOnly,
 } from '../../lib'
 const debug = makeDebugger('checkbox')
@@ -216,8 +217,9 @@ export default class Checkbox extends Component {
       'checkbox',
       className
     )
-    const rest = getUnhandledProps(Checkbox, this.props)
+    const unhandled = getUnhandledProps(Checkbox, this.props)
     const ElementType = getElementType(Checkbox, this.props)
+    const [htmlInputProps, rest] = partitionHTMLInputProps(unhandled, { htmlProps: [] })
 
     return (
       <ElementType
@@ -228,6 +230,7 @@ export default class Checkbox extends Component {
         onMouseDown={this.handleMouseDown}
       >
         <input
+          {...htmlInputProps}
           checked={checked}
           className='hidden'
           name={name}
