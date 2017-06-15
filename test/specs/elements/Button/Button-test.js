@@ -71,6 +71,22 @@ describe('Button', () => {
     })
   })
 
+  describe('focus', () => {
+    it('can be set via a ref', () => {
+      const mountNode = document.createElement('div')
+      document.body.appendChild(mountNode)
+
+      const wrapper = mount(<Button />, { attachTo: mountNode })
+      wrapper.instance().focus()
+
+      const button = document.querySelector('button')
+      document.activeElement.should.equal(button)
+
+      wrapper.detach()
+      document.body.removeChild(mountNode)
+    })
+  })
+
   describe('icon', () => {
     it('adds className icon', () => {
       shallow(<Button icon='user' />)
