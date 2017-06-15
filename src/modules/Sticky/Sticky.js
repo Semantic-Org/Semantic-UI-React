@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import {
+  customPropTypes,
   META,
   getUnhandledProps,
 } from '../../lib'
@@ -24,7 +25,7 @@ class Sticky extends Component {
 
   static propTypes = {
     /** An element type to render as (string or function). */
-    as: PropTypes.function,
+    as: customPropTypes.as,
 
     /** Primary content. */
     children: PropTypes.node,
