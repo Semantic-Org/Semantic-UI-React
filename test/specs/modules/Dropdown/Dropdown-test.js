@@ -789,6 +789,24 @@ describe('Dropdown', () => {
         .find('div.text')
         .should.contain.text(nextItem.text)
     })
+
+    it('updates value on down arrow', () => {
+      wrapperMount(<Dropdown options={options} selection />)
+
+      wrapper.simulate('click')
+      domEvent.keyDown(document, { key: 'ArrowDown' })
+
+      wrapper.should.have.state('value', options[1].value)
+    })
+
+    it('updates value on up arrow', () => {
+      wrapperMount(<Dropdown options={options} selection />)
+
+      wrapper.simulate('click')
+      domEvent.keyDown(document, { key: 'ArrowUp' })
+
+      wrapper.should.have.state('value', options[4].value)
+    })
   })
 
   describe('text', () => {

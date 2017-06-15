@@ -514,20 +514,19 @@ export default class Dropdown extends Component {
   }
 
   moveSelectionOnKeyDown = (e) => {
-    debug('moveSelectionOnKeyDown()')
-    debug(keyboardKey.getName(e))
-    switch (keyboardKey.getCode(e)) {
-      case keyboardKey.ArrowDown:
-        e.preventDefault()
-        this.moveSelectionBy(1)
-        break
-      case keyboardKey.ArrowUp:
-        e.preventDefault()
-        this.moveSelectionBy(-1)
-        break
-      default:
-        break
+    debug('moveSelectionOnKeyDown()', keyboardKey.getName(e))
+
+    const { multiple } = this.props
+    const moves = {
+      [keyboardKey.ArrowDown]: 1,
+      [keyboardKey.ArrowUp]: -1,
     }
+    const move = moves[keyboardKey.getCode(e)]
+
+    if (move === undefined) return
+    e.preventDefault()
+    this.moveSelectionBy(move)
+    if (!multiple) this.makeSelectedItemActive(e)
   }
 
   openOnSpace = (e) => {
