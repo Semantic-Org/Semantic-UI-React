@@ -1,110 +1,110 @@
 import React from 'react'
-import {
-   Menu,
-   Dropdown,
-   Container,
-   Header,
-   Image,
-   Segment,
-   Grid,
-   List,
-   Divider,
-} from 'semantic-ui-react'
-
-const mediaSrc = 'http://semantic-ui.com/examples/assets/images/wireframe/media-paragraph.png'
-const src = 'http://semantic-ui.com/examples/assets/images/wireframe/paragraph.png'
+import { Container, Divider, Dropdown, Grid, Header, Image, List, Menu, Segment } from 'semantic-ui-react'
 
 const FixedMenuLayout = () =>
-    <div>
-      <Menu fixed='top' inverted>
-        <Container>
-          <Menu.Item>
-            <Image alt='' src='http://react.semantic-ui.com/logo.png' size='mini' />
-          </Menu.Item>
-          <Menu.Item header>
-            Project Name
-          </Menu.Item>
-          <Menu.Item name='Home' />
+  <div>
+    <Menu fixed='top' inverted>
+      <Container>
+        <Menu.Item as='a' header>
+          <Image
+            size='mini'
+            src='/logo.png'
+            style={{ marginRight: '1.5em' }}
+          />
+          Project Name
+        </Menu.Item>
+        <Menu.Item as='a'>Home</Menu.Item>
 
-          <Dropdown text='Dropdown' pointing className='link item'>
-            <Dropdown.Menu>
-              <Dropdown.Item>List Item</Dropdown.Item>
-              <Dropdown.Item>List Item</Dropdown.Item>
-              <Dropdown.Divider />
-              <Dropdown.Header>Header Item</Dropdown.Header>
-              <Dropdown.Item>
-                <i className='dropdown icon'></i>
-                <span className='text'>Submenu</span>
-                <Dropdown.Menu>
-                  <Dropdown.Item>List Item</Dropdown.Item>
-                  <Dropdown.Item>List Item</Dropdown.Item>
-                </Dropdown.Menu>
-              </Dropdown.Item>
-              <Dropdown.Item>List Item</Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
-        </Container>
-      </Menu>
-      <Container text>
-        <Header as='h1' content='Semantic UI React Fixed Template' />
-        <p>This is a basic fixed menu template using fixed size containers.</p>
-        <p>A text container is used for the main container, which is useful for single column layouts</p>
-        <Image alt='' className='wireframe' src={mediaSrc} />
-        <Image alt='' className='wireframe' src={src} />
-        <Image alt='' className='wireframe' src={src} />
-        <Image alt='' className='wireframe' src={src} />
-        <Image alt='' className='wireframe' src={src} />
-        <Image alt='' className='wireframe' src={src} />
-        <Image alt='' className='wireframe' src={src} />
+        <Dropdown item simple text='Dropdown'>
+          <Dropdown.Menu>
+            <Dropdown.Item>List Item</Dropdown.Item>
+            <Dropdown.Item>List Item</Dropdown.Item>
+            <Dropdown.Divider />
+            <Dropdown.Header>Header Item</Dropdown.Header>
+            <Dropdown.Item>
+              <i className='dropdown icon' />
+              <span className='text'>Submenu</span>
+              <Dropdown.Menu>
+                <Dropdown.Item>List Item</Dropdown.Item>
+                <Dropdown.Item>List Item</Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown.Item>
+            <Dropdown.Item>List Item</Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
       </Container>
+    </Menu>
 
-      <Segment inverted vertical>
-        <Container textAlign='center'>
-          <Grid columns={4} divided stackable inverted>
-            <Grid.Row>
-              <Grid.Column>
-                <Header inverted as='h4' content='Group 1' />
-                <List link inverted>
-                  <List.Item as='a'>Link One</List.Item>
-                  <List.Item as='a'>Link Two</List.Item>
-                  <List.Item as='a'>Link Three</List.Item>
-                  <List.Item as='a'>Link Four</List.Item>
-                </List>
-              </Grid.Column>
-              <Grid.Column>
-                <Header inverted as='h4' content='Group 2' />
-                <List link inverted>
+    <Container text style={{ marginTop: '7em' }}>
+      <Header as='h1'>Semantic UI React Fixed Template</Header>
+      <p>This is a basic fixed menu template using fixed size containers.</p>
+      <p>A text container is used for the main container, which is useful for single column layouts.</p>
+
+      <Image src='/assets/images/wireframe/media-paragraph.png' style={{ marginTop: '2em' }} />
+      <Image src='/assets/images/wireframe/paragraph.png' style={{ marginTop: '2em' }} />
+      <Image src='/assets/images/wireframe/paragraph.png' style={{ marginTop: '2em' }} />
+      <Image src='/assets/images/wireframe/paragraph.png' style={{ marginTop: '2em' }} />
+      <Image src='/assets/images/wireframe/paragraph.png' style={{ marginTop: '2em' }} />
+      <Image src='/assets/images/wireframe/paragraph.png' style={{ marginTop: '2em' }} />
+      <Image src='/assets/images/wireframe/paragraph.png' style={{ marginTop: '2em' }} />
+    </Container>
+
+    <Segment
+      inverted
+      vertical
+      style={{ margin: '5em 0em 0em', padding: '5em 0em' }}
+    >
+      <Container textAlign='center'>
+        <Grid divided inverted stackable>
+          <Grid.Row>
+            <Grid.Column width={3}>
+              <Header inverted as='h4' content='Group 1' />
+              <List link inverted>
                 <List.Item as='a'>Link One</List.Item>
                 <List.Item as='a'>Link Two</List.Item>
                 <List.Item as='a'>Link Three</List.Item>
                 <List.Item as='a'>Link Four</List.Item>
-                </List>
-              </Grid.Column>
-              <Grid.Column>
-                <Header inverted as='h4' content='Group 3' />
-                <List link inverted >
+              </List>
+            </Grid.Column>
+            <Grid.Column width={3}>
+              <Header inverted as='h4' content='Group 2' />
+              <List link inverted>
                 <List.Item as='a'>Link One</List.Item>
                 <List.Item as='a'>Link Two</List.Item>
                 <List.Item as='a'>Link Three</List.Item>
                 <List.Item as='a'>Link Four</List.Item>
-                </List>
-              </Grid.Column>
-              <Grid.Column>
-                <Header inverted as='h4' content='Footer Header' />
-                <p>Extra space for a call to action inside the footer that could help re-engage users.</p>
-              </Grid.Column>
-            </Grid.Row>
-          </Grid>
-           <Divider inverted section />
-           <Image alt='' src='http://react.semantic-ui.com/logo.png' centered size='mini' />
-           <List horizontal inverted divided link>
-             <List.Item as='a' href='#'>Site Map</List.Item>
-             <List.Item as='a' href='#'>Contact Us</List.Item>
-             <List.Item as='a' href='#'>Terms and Conditions</List.Item>
-             <List.Item as='a' href='#'>Privacy Policy</List.Item>
-           </List>
-        </Container>
-      </Segment>
-    </div>
+              </List>
+            </Grid.Column>
+            <Grid.Column width={3}>
+              <Header inverted as='h4' content='Group 3' />
+              <List link inverted>
+                <List.Item as='a'>Link One</List.Item>
+                <List.Item as='a'>Link Two</List.Item>
+                <List.Item as='a'>Link Three</List.Item>
+                <List.Item as='a'>Link Four</List.Item>
+              </List>
+            </Grid.Column>
+            <Grid.Column width={3}>
+              <Header inverted as='h4' content='Footer Header' />
+              <p>Extra space for a call to action inside the footer that could help re-engage users.</p>
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
+
+        <Divider inverted section />
+        <Image
+          centered
+          size='mini'
+          src='/logo.png'
+        />
+        <List horizontal inverted divided link>
+          <List.Item as='a' href='#'>Site Map</List.Item>
+          <List.Item as='a' href='#'>Contact Us</List.Item>
+          <List.Item as='a' href='#'>Terms and Conditions</List.Item>
+          <List.Item as='a' href='#'>Privacy Policy</List.Item>
+        </List>
+      </Container>
+    </Segment>
+  </div>
 
 export default FixedMenuLayout
