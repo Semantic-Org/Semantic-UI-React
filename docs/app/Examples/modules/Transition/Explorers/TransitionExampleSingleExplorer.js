@@ -58,13 +58,9 @@ export default class TransitionExampleSingleExplorer extends Component {
         </Grid.Column>
 
         <Grid.Column>
-          <Transition
-            animation={animation}
-            duration={duration}
-            into={visible}
-          >
-            <Image size='medium' src='/assets/images/leaves/4.png' />
-          </Transition>
+          <Transition.Group animation={animation} duration={duration}>
+            {visible ? <Image size='medium' src='/assets/images/leaves/4.png' /> : null }
+          </Transition.Group>
         </Grid.Column>
       </Grid>
     )
