@@ -1,8 +1,11 @@
-import React, { Component } from 'react'
+import _ from 'lodash'
 import PropTypes from 'prop-types'
+import React, { Component } from 'react'
+
 import {
   customPropTypes,
   META,
+  getElementType,
   getUnhandledProps,
 } from '../../lib'
 import StickyContext from './StickyContext'
@@ -11,18 +14,7 @@ import StickyContext from './StickyContext'
  * Sticky content stays fixed to the browser viewport while
  * another column of content is visible on the page.
  */
-class Sticky extends Component {
-  static _meta = {
-    name: 'Sticky',
-    type: META.TYPES.MODULE,
-  }
-
-  static defaultProps = {
-    as: 'div',
-    offset: 0,
-    bottomOffset: 0,
-  }
-
+export default class Sticky extends Component {
   static propTypes = {
     /** An element type to render as (string or function). */
     as: customPropTypes.as,
@@ -39,23 +31,40 @@ class Sticky extends Component {
     /** Offset in pixels from the bottom of the screen when fixing element to viewport. */
     bottomOffset: PropTypes.number,
 
-    /**
-     * Whether element should be "pushed" by the viewport,
-     * attaching to the bottom of the screen when scrolling up.
-     */
+    /** Whether element should be "pushed" by the viewport, attaching to the bottom of the screen when scrolling up. */
     pushing: PropTypes.bool,
 
-    /* Callback when element is fixed to page. */
-    onStick: PropTypes.func,
+    /* Callback when element is bound to bottom of parent container. */
+    onBottom: PropTypes.func,
 
-    /* Callback when element is unfixed from page. */
-    onUnstick: PropTypes.func,
+    /**
+     * Callback when element is fixed to page.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props.
+     * */
+    onStick: PropTypes.func,
 
     /* Callback when element is bound to top of parent container. */
     onTop: PropTypes.func,
 
-    /* Callback when element is bound to bottom of parent container. */
-    onBottom: PropTypes.func,
+    /**
+     * Callback when element is unfixed from page.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props.
+     * */
+    onUnstick: PropTypes.func,
+  }
+
+  static defaultProps = {
+    offset: 0,
+    bottomOffset: 0,
+  }
+
+  static _meta = {
+    name: 'Sticky',
+    type: META.TYPES.MODULE,
   }
 
   static contextTypes = {
@@ -63,6 +72,8 @@ class Sticky extends Component {
   }
 
   static Context = StickyContext
+
+  state = {}
 
   componentDidMount() {
     this.contextEl = this.getContextEl()
@@ -75,7 +86,7 @@ class Sticky extends Component {
   }
 
   getContextEl() {
-    let parent = this.refs.trigger.parentElement
+    let parent = this.triggerRef.parentElement
 
     while (!(
       (parent === document.body) ||
@@ -92,9 +103,9 @@ class Sticky extends Component {
   }
 
   calcBoundingRects() {
-    this.triggerBoundingRect = this.refs.trigger.getBoundingClientRect()
+    this.triggerBoundingRect = this.triggerRef.getBoundingClientRect()
     this.contextBoundingRect = this.contextEl.getBoundingClientRect()
-    this.stickyBoundingRect = this.refs.sticky.getBoundingClientRect()
+    this.stickyBoundingRect = this.stickyRef.getBoundingClientRect()
   }
 
   // Return true when the component reached the bottom of the context
@@ -127,30 +138,15 @@ class Sticky extends Component {
     if (this.props.pushing) this.setState({ pushing })
   }
 
-  // If true, the component have position: fixed
-  setSticky(e, sticky) {
-    const { onStick, onUnstick } = this.props
-
-    this.setState({ sticky })
-
-    if (e && sticky && onStick) {
-      onStick(e)
-    }
-
-    if (e && !sticky && onUnstick) {
-      onUnstick(e)
-    }
-  }
-
   stickToContextTop(e) {
     if (e && this.props.onTop) this.props.onTop(e)
-    this.setSticky(e, false)
+    this.unstick(e)
     this.setPushing(false)
   }
 
   stickToContextBottom(e) {
     if (e && this.props.onBottom) this.props.onBottom(e)
-    this.setSticky(e, true)
+    this.stick(e)
     this.setState({
       top: this.contextBoundingRect.bottom - this.stickyBoundingRect.height,
       bottom: null,
@@ -159,12 +155,12 @@ class Sticky extends Component {
   }
 
   stickToScreenTop(e) {
-    this.setSticky(e, true)
+    this.stick(e)
     this.setState({ top: this.props.offset, bottom: null })
   }
 
   stickToScreenBottom(e) {
-    this.setSticky(e, true)
+    this.stick(e)
     this.setState({ top: null, bottom: this.props.bottomOffset })
   }
 
@@ -206,31 +202,50 @@ class Sticky extends Component {
     return this.stickToContextTop(e)
   }
 
+  // ----------------------------------------
+  // Helpers
+  // ----------------------------------------
+
   getStyle() {
-    if (this.state && this.state.sticky) {
-      return {
-        position: 'fixed',
-        width: this.triggerBoundingRect.width,
-        top: this.state.top,
-        bottom: this.state.bottom,
-      }
+    const { bottom, sticky, top } = this.state
+
+    if (!sticky) return {}
+    return {
+      bottom,
+      top,
+      position: 'fixed',
+      width: this.triggerBoundingRect.width,
     }
-    return {}
   }
 
+  stick = e => {
+    this.setState({ sticky: true })
+    _.invoke(this.props, 'onStick', e, this.props)
+  }
+
+  unstick = e => {
+    this.setState({ sticky: false })
+    _.invoke(this.props, 'onUnstick', e, this.props)
+  }
+
+  // ----------------------------------------
+  // Refs
+  // ----------------------------------------
+
+  handleTriggerRef = c => (this.triggerRef = c)
+
+  handleStickyRef = c => (this.stickyRef = c)
+
   render() {
+    const { children, className } = this.props
     const rest = getUnhandledProps(Sticky, this.props)
-    const As = this.props.as
+    const ElementType = getElementType(Sticky, this.props)
 
     return (
-      <As {...rest} className={this.props.className}>
-        <div ref='trigger' />
-        <div ref='sticky' style={this.getStyle()}>
-          {this.props.children}
-        </div>
-      </As>
+      <ElementType {...rest} className={className}>
+        <div ref={this.handleTriggerRef} />
+        <div ref={this.handleStickyRef} style={this.getStyle()}>{children}</div>
+      </ElementType>
     )
   }
 }
-
-export default Sticky

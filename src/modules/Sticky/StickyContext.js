@@ -13,7 +13,7 @@ import {
  * Context which sticky element should stick to.
  */
 function StickyContext(props) {
-  const { className, children } = props
+  const { children, className } = props
   const classes = cx('ui context', className)
   const rest = getUnhandledProps(StickyContext, props)
   const ElementType = getElementType(StickyContext, props)

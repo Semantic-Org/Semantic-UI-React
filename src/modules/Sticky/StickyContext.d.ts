@@ -13,6 +13,6 @@ export interface StickyContextProps {
   className?: string;
 }
 
-declare const StickyContext: React.ComponentClass<StickyContextProps>;
+declare const StickyContext: React.StatelessComponent<StickyContextProps>;
 
 export default StickyContext;
