@@ -199,17 +199,42 @@ describe('Transition', () => {
 
     it('updates status when set to true while UNMOUNTED', () => {
       wrapperShallow(
-        <Transition
-          into={false}
-          mountOnEnter
-          unmountOnExit
-        >
+        <Transition into={false}>
           <p />
         </Transition>
       )
       wrapper.setProps({ into: true })
 
       wrapper.should.have.state('status', Transition.EXITED)
+      wrapper.instance().should.include({ nextStatus: Transition.ENTERING })
+    })
+
+    it('updates next status when set to true while performs an ENTERING transition', done => {
+      wrapperMount(
+        <Transition
+          duration={10}
+          transitionAppear
+          onHide={done}
+        >
+          <p />
+        </Transition>
+      )
+      wrapper.setProps({ into: false })
+
+      wrapper.should.have.state('status', Transition.ENTERING)
+      wrapper.instance().should.include({ nextStatus: Transition.EXITING })
+    })
+
+    it('updates next status when set to true while performs an EXITING transition', done => {
+      wrapperMount(
+        <Transition duration={10} onShow={done}>
+          <p />
+        </Transition>
+      )
+      wrapper.setProps({ into: false })
+      wrapper.setProps({ into: true })
+
+      wrapper.should.have.state('status', Transition.EXITING)
       wrapper.instance().should.include({ nextStatus: Transition.ENTERING })
     })
   })

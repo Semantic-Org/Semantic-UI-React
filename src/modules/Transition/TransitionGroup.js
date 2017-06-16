@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React, { cloneElement, isValidElement } from 'react'
+import React, { cloneElement } from 'react'
 
 import {
   customPropTypes,
@@ -57,12 +57,10 @@ export default class TransitionGroup extends React.Component {
     const children = mergeChildMappings(prevMapping, nextMapping)
 
     _.forEach(children, (child, key) => {
-      if (!isValidElement(child)) return
-
       const hasPrev = _.has(prevMapping, key)
       const hasNext = _.has(nextMapping, key)
       const { [key]: prevChild } = prevMapping
-      const isLeaving = isValidElement(prevChild) && !_.get(prevChild, 'props.into')
+      const isLeaving = !_.get(prevChild, 'props.into')
 
       // item is new (entering), should be wrapped
       if (hasNext && (!hasPrev || isLeaving)) {
