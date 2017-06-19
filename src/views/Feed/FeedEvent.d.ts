@@ -1,5 +1,11 @@
 import * as React from 'react';
 
+import { SemanticShorthandItem } from '../..';
+import { FeedContentProps } from './FeedContent';
+import { FeedDateProps } from './FeedDate';
+import { FeedLabelProps } from './FeedLabel';
+import { FeedMetaProps } from './FeedMeta';
+
 export interface FeedEventProps {
   [key: string]: any;
 
@@ -13,10 +19,10 @@ export interface FeedEventProps {
   className?: string;
 
   /** Shorthand for FeedContent. */
-  content?: any;
+  content?: SemanticShorthandItem<FeedContentProps>;
 
   /** Shorthand for FeedDate. */
-  date?: any;
+  date?: SemanticShorthandItem<FeedDateProps>;
 
   /** Shorthand for FeedExtra with images. */
   extraImages?: any;
@@ -25,13 +31,13 @@ export interface FeedEventProps {
   extraText?: any;
 
   /** An event can contain icon label. */
-  icon?: any;
+  icon?: SemanticShorthandItem<FeedLabelProps>;
 
   /** An event can contain image label. */
-  image?: any;
+  image?: SemanticShorthandItem<FeedLabelProps>;
 
   /** Shorthand for FeedMeta. */
-  meta?: any;
+  meta?: SemanticShorthandItem<FeedMetaProps>;
 
   /** Shorthand for FeedSummary. */
   summary?: any;

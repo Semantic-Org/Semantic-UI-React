@@ -1,5 +1,8 @@
 import * as React from 'react';
 
+import { SemanticShorthandContent, SemanticShorthandItem } from '../..';
+import { IconProps } from '../../elements/Icon/Icon';
+
 export interface FeedLabelProps {
   [key: string]: any;
 
@@ -13,13 +16,20 @@ export interface FeedLabelProps {
   className?: string;
 
   /** Shorthand for primary content. */
-  content?: React.ReactNode;
+  content?: SemanticShorthandContent;
 
   /** An event can contain icon label. */
-  icon?: any;
+  icon?: SemanticShorthandItem<IconProps>;
 
   /** An event can contain image label. */
-  image?: any;
+  image?: SemanticShorthandItem<HtmlImageProps>;
+}
+
+interface HtmlImageProps {
+  [key: string]: any;
+
+  /** Specifies the URL of the image. */
+  src?: string;
 }
 
 declare const FeedLabel: React.StatelessComponent<FeedLabelProps>;

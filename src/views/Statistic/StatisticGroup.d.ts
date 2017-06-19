@@ -1,7 +1,7 @@
 import * as React from 'react';
 
-import { SemanticCOLORS, SemanticWIDTHS } from '../..';
-import { StatisticSizeProp } from './Statistic';
+import { SemanticCOLORS, SemanticWIDTHS, SemanticShorthandCollection } from '../..';
+import { StatisticProps, StatisticSizeProp } from './Statistic';
 
 export interface StatisticGroupProps {
   [key: string]: any;
@@ -25,7 +25,7 @@ export interface StatisticGroupProps {
   inverted?:boolean;
 
   /** Array of props for Statistic. */
-  items?: any;
+  items?: SemanticShorthandCollection<StatisticProps>;
 
   /** A statistic group can vary in size. */
   size?: StatisticSizeProp;

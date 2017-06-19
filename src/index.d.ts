@@ -1,3 +1,5 @@
+import * as React from 'react';
+
 // ======================================================
 // Alignments
 // ======================================================
@@ -5,6 +7,14 @@
 export type SemanticFLOATS = 'left' | 'right';
 export type SemanticTEXTALIGNMENTS = 'left' | 'center' | 'right' | 'justified';
 export type SemanticVERTICALALIGNMENTS = 'top' | 'middle' | 'bottom';
+
+// ======================================================
+// Types
+// ======================================================
+
+export type SemanticShorthandCollection<T> = Array<SemanticShorthandItem<T>>;
+export type SemanticShorthandContent = React.ReactNode;
+export type SemanticShorthandItem<T> = React.ReactNode | T;
 
 // ======================================================
 // Styling
