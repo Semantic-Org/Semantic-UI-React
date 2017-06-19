@@ -4,7 +4,7 @@ const SUI = require('../../../src/lib/SUI') // eslint-disable-line no-unused-var
 
 const evalValue = value => eval(value) // eslint-disable-line no-eval
 
-const uniqValues = values => _.uniqWith(values, (val, other) => `${val}` == `${other}`)
+const uniqValues = values => _.uniqWith(values, (val, other) => `${val}` === `${other}`)
 
 const transformEnumValues = values => _.flatMap(values, ({ value }) => {
   if (_.startsWith(value, '...SUI')) return evalValue(value.substring(3))
