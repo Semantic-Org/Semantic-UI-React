@@ -1,7 +1,5 @@
 import * as React from 'react';
 
-import { default as StickyContext } from './StickyContext';
-
 export interface StickyProps {
   [key: string]: any;
 
@@ -13,6 +11,9 @@ export interface StickyProps {
 
   /** Additional classes. */
   className?: string;
+
+  /** Context which sticky element should stick to. */
+  context?: React.ReactNode;
 
   /** Offset in pixels from the top of the screen when fixing element to viewport. */
   offset?: number;
@@ -40,10 +41,6 @@ export interface StickyProps {
 
 }
 
-interface StickyComponent extends React.ComponentClass<StickyProps> {
-  Context: typeof StickyContext;
-}
-
-declare const Sticky: StickyComponent;
+declare const Sticky: React.ComponentClass<StickyProps>;
 
 export default Sticky;

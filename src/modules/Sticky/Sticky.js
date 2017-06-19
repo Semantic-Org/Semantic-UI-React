@@ -5,7 +5,6 @@ import {
   META,
   getUnhandledProps,
 } from '../../lib'
-import StickyContext from './StickyContext'
 
 /**
  * Sticky content stays fixed to the browser viewport while
@@ -33,6 +32,9 @@ class Sticky extends Component {
     /** Additional classes. */
     className: PropTypes.string,
 
+    /** Context which sticky element should stick to. */
+    context: PropTypes.node,
+
     /** Offset in pixels from the top of the screen when fixing element to viewport. */
     offset: PropTypes.number,
 
@@ -58,14 +60,7 @@ class Sticky extends Component {
     onBottom: PropTypes.func,
   }
 
-  static contextTypes = {
-    contextEl: PropTypes.node,
-  }
-
-  static Context = StickyContext
-
   componentDidMount() {
-    this.contextEl = this.getContextEl()
     this.update()
     window.addEventListener('scroll', this.update)
   }
@@ -74,26 +69,9 @@ class Sticky extends Component {
     window.removeEventListener('scroll', this.update)
   }
 
-  getContextEl() {
-    let parent = this.refs.trigger.parentElement
-
-    while (!(
-      (parent === document.body) ||
-      (parent.classList.contains('ui') && parent.classList.contains('context'))
-    )) {
-      parent = parent.parentElement
-
-      if (!parent) {
-        parent = document.body
-      }
-    }
-
-    return parent
-  }
-
   calcBoundingRects() {
     this.triggerBoundingRect = this.refs.trigger.getBoundingClientRect()
-    this.contextBoundingRect = this.contextEl.getBoundingClientRect()
+    this.contextBoundingRect = (this.props.context || document.body).getBoundingClientRect()
     this.stickyBoundingRect = this.refs.sticky.getBoundingClientRect()
   }
 
