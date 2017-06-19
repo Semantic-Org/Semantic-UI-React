@@ -5,7 +5,7 @@ import ShapeControl from '../ShapeControl'
 
 const SteveCard = (
   <Card>
-    <Image src='/assets//images/avatar/large/steve.jpg' />
+    <Image src='/assets/images/avatar/large/steve.jpg' />
 
     <Card.Content>
       <Card.Header as='a'>Steve Jobes</Card.Header>
@@ -26,7 +26,7 @@ const SteveCard = (
 
 const StevieCard = (
   <Card>
-    <Image src='/assets//images/avatar/large/stevie.jpg' />
+    <Image src='/assets/images/avatar/large/stevie.jpg' />
 
     <Card.Content>
       <Card.Header as='a'>Stevie Feliciano</Card.Header>

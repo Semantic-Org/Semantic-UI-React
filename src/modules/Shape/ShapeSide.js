@@ -1,7 +1,7 @@
 import cx from 'classnames'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React from 'react'
+import React, { Component } from 'react'
 
 import {
   createShorthandFactory,
@@ -12,78 +12,84 @@ import {
   useKeyOnly,
 } from '../../lib'
 
-function ShapeSide(props) {
-  const {
-    active,
-    animating,
-    children,
-    className,
-    content,
-    duration,
-    header,
-    hidden,
-  } = props
-  const classes = cx(
-    useKeyOnly(active, 'active'),
-    useKeyOnly(animating, 'animating'),
-    useKeyOnly(header, 'header'),
-    useKeyOnly(hidden, 'hidden'),
-    'side',
-    className
-  )
-  const rest = getUnhandledProps(ShapeSide, props)
-  const ElementType = getElementType(ShapeSide, props)
+class ShapeSide extends Component {
+  static propTypes = {
+    /** An element type to render as (string or function). */
+    as: customPropTypes.as,
 
-  let style
+    /** The item currently selected by keyboard shortcut. */
+    active: PropTypes.bool,
 
-  if(animating) style = {
-    left: '0',
-    transform: 'rotateY(-90deg) translateZ(145px)',
-    transitionDuration: `${duration}ms`,
+    /** The item currently is animating. */
+    animating: PropTypes.bool,
+
+    /** Primary content. */
+    children: PropTypes.node,
+
+    /** Additional classes. */
+    className: PropTypes.string,
+
+    /** Shorthand for primary content. */
+    content: customPropTypes.contentShorthand,
+
+    /** A side can be a header. */
+    header: PropTypes.bool,
+
+    /** The item currently is hidden. */
+    hidden: PropTypes.bool,
   }
 
-  if(active && hidden) style = {
-    transform: 'rotateY(0deg) translateZ(145px)',
-    transitionDuration: `${duration}ms`,
+  static _meta = {
+    name: 'ShapeSide',
+    parent: 'Shape',
+    type: META.TYPES.MODULE,
   }
 
-  return (
-    <ElementType {...rest} className={classes} style={style}>
-      {_.isNil(children) ? content : children}
-    </ElementType>
-  )
-}
+  getBoundingClientRect = () => this.ref.getBoundingClientRect()
 
-ShapeSide._meta = {
-  name: 'ShapeSide',
-  parent: 'Shape',
-  type: META.TYPES.MODULE,
-}
+  handleRef = c => (this.ref = c)
 
-ShapeSide.propTypes = {
-  /** An element type to render as (string or function). */
-  as: customPropTypes.as,
+  render() {
+    const {
+      active,
+      animating,
+      children,
+      className,
+      content,
+      duration,
+      header,
+      hidden,
+    } = this.props
+    const classes = cx(
+      useKeyOnly(active, 'active'),
+      useKeyOnly(animating, 'animating'),
+      useKeyOnly(header, 'header'),
+      useKeyOnly(hidden, 'hidden'),
+      'side',
+      className
+    )
+    const rest = getUnhandledProps(ShapeSide, this.props)
+    const ElementType = getElementType(ShapeSide, this.props)
 
-  /** The item currently selected by keyboard shortcut. */
-  active: PropTypes.bool,
+    let style
 
-  /** The item currently is animating. */
-  animating: PropTypes.bool,
+    if (animating) style = {
+      left: '0',
+      transform: 'rotateY(-90deg) translateZ(145px)',
+      transitionDuration: `${duration}ms`,
+    }
 
-  /** Primary content. */
-  children: PropTypes.node,
+    if (active && hidden) style = {
+      transform: 'rotateY(0deg) translateZ(145px)',
+      transitionDuration: `${duration}ms`,
+    }
 
-  /** Additional classes. */
-  className: PropTypes.string,
-
-  /** Shorthand for primary content. */
-  content: customPropTypes.contentShorthand,
-
-  /** A side can be a header. */
-  header: PropTypes.bool,
-
-  /** The item currently is hidden. */
-  hidden: PropTypes.bool,
+    return (
+      <ElementType {...rest} className={classes} ref={this.handleRef} style={style}>
+        {_.isNil(children) ? content : children}
+      </ElementType>
+    )
+  }
 }
 
 ShapeSide.create = createShorthandFactory(ShapeSide, content => ({ content }))
