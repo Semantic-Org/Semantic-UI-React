@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { Grid, Header, Image, Item, Rail, Segment, Sticky } from 'semantic-ui-react'
 
 const Placeholder = () => (
@@ -9,40 +9,55 @@ const Placeholder = () => (
   />
 )
 
-const StickyAdjacentContextExample = () => (
-  <Grid centered columns={3}>
-    <Grid.Column>
-      <Sticky.Context>
-        <Segment>
-          {[...new Array(15)].map((v, i) => <Placeholder key={i} />)}
+class StickyAdjacentContextExample extends Component {
+  constructor(props) {
+    super(props)
+    this.state = { contextRef: null }
+  }
 
-          <Rail position='left'>
-            <Sticky>
-              <Item.Group divided>
-                {[...new Array(12)].map((v, i) => (
-                  <Item key={i}>
-                    <Item.Image size='tiny' src='/assets/images/wireframe/image.png' />
-                    <Item.Content>
-                      <Item.Header as='a'>Followup Article</Item.Header>
-                      <Item.Meta>By Author</Item.Meta>
-                    </Item.Content>
-                  </Item>
-                ))}
-              </Item.Group>
+  handleContextRef = contextRef => {
+    if (!this.state.contextRef) {
+      this.setState({ contextRef })
+    }
+  }
 
-            </Sticky>
-          </Rail>
+  render() {
+    return (
+      <Grid centered columns={3}>
+        <Grid.Column>
+          <div ref={this.handleContextRef}>
+            <Segment>
+              {[...new Array(15)].map((v, i) => <Placeholder key={i} />)}
 
-          <Rail position='right'>
-            <Sticky>
-              <Header as='h3'>Stuck Content</Header>
-              <Image src='/assets/images/wireframe/image.png' />
-            </Sticky>
-          </Rail>
-        </Segment>
-      </Sticky.Context>
-    </Grid.Column>
-  </Grid>
-)
+              <Rail position='left'>
+                <Sticky context={this.state.contextRef}>
+                  <Item.Group divided>
+                    {[...new Array(12)].map((v, i) => (
+                      <Item key={i}>
+                        <Item.Image size='tiny' src='/assets/images/wireframe/image.png' />
+                        <Item.Content>
+                          <Item.Header as='a'>Followup Article</Item.Header>
+                          <Item.Meta>By Author</Item.Meta>
+                        </Item.Content>
+                      </Item>
+                    ))}
+                  </Item.Group>
+
+                </Sticky>
+              </Rail>
+
+              <Rail position='right'>
+                <Sticky context={this.state.contextRef}>
+                  <Header as='h3'>Stuck Content</Header>
+                  <Image src='/assets/images/wireframe/image.png' />
+                </Sticky>
+              </Rail>
+            </Segment>
+          </div>
+        </Grid.Column>
+      </Grid>
+    )
+  }
+}
 
 export default StickyAdjacentContextExample
