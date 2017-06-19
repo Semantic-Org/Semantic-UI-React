@@ -4,38 +4,38 @@ import { sandbox } from 'test/utils'
 import * as common from 'test/specs/commonTests'
 
 // Scroll to the top of the screen
-const scrollToTop = (wrapper, { bottomOffset, offset, height }) => {
+const scrollToTop = (wrapper, contextEl, { bottomOffset, offset, height }) => {
   const instance = wrapper.instance()
   instance.refs.trigger = { getBoundingClientRect: () => ({ top: offset }) }
   instance.refs.sticky = { getBoundingClientRect: () => ({ height, top: offset }) }
-  instance.contextEl = { getBoundingClientRect: () => ({ bottom: height + offset + bottomOffset }) }
+  contextEl.getBoundingClientRect = () => ({ bottom: height + offset + bottomOffset })
   window.dispatchEvent(new Event('scroll'))
 }
 
 // Scroll until the trigger is not visible
-const scrollAfterTrigger = (wrapper, { bottomOffset, offset, height }) => {
+const scrollAfterTrigger = (wrapper, contextEl, { bottomOffset, offset, height }) => {
   const instance = wrapper.instance()
   instance.refs.trigger = { getBoundingClientRect: () => ({ top: offset - 1 }) }
   instance.refs.sticky = { getBoundingClientRect: () => ({ height }) }
-  instance.contextEl = { getBoundingClientRect: () => ({ bottom: window.innerHeight - bottomOffset + 1 }) }
+  contextEl.getBoundingClientRect = () => ({ bottom: window.innerHeight - bottomOffset + 1 })
   window.dispatchEvent(new Event('scroll'))
 }
 
 // Scroll until the context bottom is not visible
-const scrollAfterContext = (wrapper, { offset, height }) => {
+const scrollAfterContext = (wrapper, contextEl, { offset, height }) => {
   const instance = wrapper.instance()
   instance.refs.trigger = { getBoundingClientRect: () => ({ top: offset - 1 }) }
   instance.refs.sticky = { getBoundingClientRect: () => ({ height }) }
-  instance.contextEl = { getBoundingClientRect: () => ({ bottom: -1 }) }
+  contextEl.getBoundingClientRect = () => ({ bottom: -1 })
   window.dispatchEvent(new Event('scroll'))
 }
 
 // Scroll to the last part of the context
-const scrollToContextBottom = (wrapper, { offset, height }) => {
+const scrollToContextBottom = (wrapper, contextEl, { offset, height }) => {
   const instance = wrapper.instance()
   instance.refs.trigger = { getBoundingClientRect: () => ({ top: offset - 1 }) }
   instance.refs.sticky = { getBoundingClientRect: () => ({ height }) }
-  instance.contextEl = { getBoundingClientRect: () => ({ bottom: height + 1 }) }
+  contextEl.getBoundingClientRect = () => ({ bottom: height + 1 })
   window.dispatchEvent(new Event('scroll'))
 }
 
@@ -51,10 +51,13 @@ describe('Sticky', () => {
     const offset = 12
     const bottomOffset = 12
     const height = 200
-    const wrapper = mount(<Sticky offset={offset} bottomOffset={bottomOffset} />)
+    const contextEl = document.createElement('div')
+    const wrapper = mount(
+      <Sticky context={contextEl} offset={offset} bottomOffset={bottomOffset} />
+    )
 
     // Scroll after trigger
-    scrollAfterTrigger(wrapper, { bottomOffset, offset, height })
+    scrollAfterTrigger(wrapper, contextEl, { bottomOffset, offset, height })
     wrapper.childAt(1).props().style.should.have.property('position', 'fixed')
     wrapper.childAt(1).props().style.should.have.property('top', offset)
   })
@@ -63,9 +66,12 @@ describe('Sticky', () => {
     const offset = 20
     const bottomOffset = 10
     const height = 100
-    const wrapper = mount(<Sticky offset={offset} bottomOffset={bottomOffset} />)
+    const contextEl = document.createElement('div')
+    const wrapper = mount(
+      <Sticky context={contextEl} offset={offset} bottomOffset={bottomOffset} />
+    )
 
-    scrollAfterContext(wrapper, { bottomOffset, offset, height })
+    scrollAfterContext(wrapper, contextEl, { bottomOffset, offset, height })
 
     wrapper.childAt(1).props().style.should.have.property('position', 'fixed')
     wrapper.childAt(1).props().style.should.have.property('top', -1 - height)
@@ -75,17 +81,20 @@ describe('Sticky', () => {
     const offset = 10
     const bottomOffset = 30
     const height = 100
-    const wrapper = mount(<Sticky offset={offset} bottomOffset={bottomOffset} pushing />)
+    const contextEl = document.createElement('div')
+    const wrapper = mount(
+      <Sticky context={contextEl} offset={offset} bottomOffset={bottomOffset} pushing />
+    )
 
-    scrollAfterTrigger(wrapper, { bottomOffset, offset, height })
+    scrollAfterTrigger(wrapper, contextEl, { bottomOffset, offset, height })
 
     // Scroll back: component should still stick to context bottom
-    scrollToContextBottom(wrapper, { offset, height })
+    scrollToContextBottom(wrapper, contextEl, { offset, height })
     wrapper.childAt(1).props().style.should.have.property('position', 'fixed')
     wrapper.childAt(1).props().style.should.have.property('top', 1)
 
     // Scroll a bit before the top: component should stick to screen bottom
-    scrollAfterTrigger(wrapper, { bottomOffset, offset, height })
+    scrollAfterTrigger(wrapper, contextEl, { bottomOffset, offset, height })
     wrapper.childAt(1).props().style.should.have.property('position', 'fixed')
     wrapper.childAt(1).props().style.should.have.property('top', null)
     wrapper.childAt(1).props().style.should.have.property('bottom', bottomOffset)
@@ -95,12 +104,15 @@ describe('Sticky', () => {
     const offset = 10
     const bottomOffset = 10
     const height = 100
-    const wrapper = mount(<Sticky bottomOffset={bottomOffset} offset={offset} pushing />)
+    const contextEl = document.createElement('div')
+    const wrapper = mount(
+      <Sticky context={contextEl} bottomOffset={bottomOffset} offset={offset} pushing />
+    )
 
-    scrollAfterTrigger(wrapper, { bottomOffset, offset, height })
-    scrollToContextBottom(wrapper, { offset, height })
-    scrollToTop(wrapper, { height, bottomOffset, offset })
-    scrollAfterTrigger(wrapper, { bottomOffset, offset, height })
+    scrollAfterTrigger(wrapper, contextEl, { bottomOffset, offset, height })
+    scrollToContextBottom(wrapper, contextEl, { offset, height })
+    scrollToTop(wrapper, contextEl, { height, bottomOffset, offset })
+    scrollAfterTrigger(wrapper, contextEl, { bottomOffset, offset, height })
     // Component should stick again to the top
     wrapper.childAt(1).props().style.should.have.property('position', 'fixed')
     wrapper.childAt(1).props().style.should.have.property('top', offset)
@@ -110,13 +122,16 @@ describe('Sticky', () => {
     const offset = 5
     const bottomOffset = 10
     const height = 50
+    const contextEl = document.createElement('div')
     const fn = sandbox.spy()
-    const wrapper = mount(<Sticky offset={offset} bottomOffset={bottomOffset} onStick={fn} />)
+    const wrapper = mount(
+      <Sticky context={contextEl} offset={offset} bottomOffset={bottomOffset} onStick={fn} />
+    )
 
-    scrollAfterTrigger(wrapper, { bottomOffset, offset, height })
+    scrollAfterTrigger(wrapper, contextEl, { bottomOffset, offset, height })
     fn.should.have.been.calledOnce()
 
-    scrollToTop(wrapper, { bottomOffset, offset, height })
+    scrollToTop(wrapper, contextEl, { bottomOffset, offset, height })
     fn.should.have.been.calledOnce()
   })
 
@@ -124,13 +139,16 @@ describe('Sticky', () => {
     const offset = 5
     const bottomOffset = 10
     const height = 50
+    const contextEl = document.createElement('div')
     const fn = sandbox.spy()
-    const wrapper = mount(<Sticky offset={offset} bottomOffset={bottomOffset} onUnstick={fn} />)
+    const wrapper = mount(
+      <Sticky context={contextEl} offset={offset} bottomOffset={bottomOffset} onUnstick={fn} />
+    )
 
-    scrollAfterTrigger(wrapper, { bottomOffset, offset, height })
+    scrollAfterTrigger(wrapper, contextEl, { bottomOffset, offset, height })
     fn.should.not.have.been.called()
 
-    scrollToTop(wrapper, { bottomOffset, offset, height })
+    scrollToTop(wrapper, contextEl, { bottomOffset, offset, height })
     fn.should.have.been.calledOnce()
   })
 
@@ -138,13 +156,16 @@ describe('Sticky', () => {
     const offset = 5
     const bottomOffset = 10
     const height = 50
+    const contextEl = document.createElement('div')
     const fn = sandbox.spy()
-    const wrapper = mount(<Sticky offset={offset} bottomOffset={bottomOffset} onTop={fn} />)
+    const wrapper = mount(
+      <Sticky context={contextEl} offset={offset} bottomOffset={bottomOffset} onTop={fn} />
+    )
 
-    scrollAfterContext(wrapper, { bottomOffset, offset, height })
+    scrollAfterContext(wrapper, contextEl, { bottomOffset, offset, height })
     fn.should.not.have.been.called()
 
-    scrollToTop(wrapper, { bottomOffset, offset, height })
+    scrollToTop(wrapper, contextEl, { bottomOffset, offset, height })
     fn.should.have.been.calledOnce()
   })
 
@@ -152,13 +173,16 @@ describe('Sticky', () => {
     const offset = 5
     const bottomOffset = 5
     const height = 5
+    const contextEl = document.createElement('div')
     const fn = sandbox.spy()
-    const wrapper = mount(<Sticky offset={offset} bottomOffset={bottomOffset} onBottom={fn} />)
+    const wrapper = mount(
+      <Sticky context={contextEl} offset={offset} bottomOffset={bottomOffset} onBottom={fn} />
+    )
 
-    scrollAfterContext(wrapper, { bottomOffset, offset, height })
+    scrollAfterContext(wrapper, contextEl, { bottomOffset, offset, height })
     fn.should.have.been.calledOnce()
 
-    scrollToTop(wrapper, { bottomOffset, offset, height })
+    scrollToTop(wrapper, contextEl, { bottomOffset, offset, height })
     fn.should.have.been.calledOnce()
   })
 })

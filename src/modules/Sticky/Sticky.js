@@ -33,7 +33,7 @@ class Sticky extends Component {
     className: PropTypes.string,
 
     /** Context which sticky element should stick to. */
-    context: PropTypes.node,
+    context: PropTypes.obj,
 
     /** Offset in pixels from the top of the screen when fixing element to viewport. */
     offset: PropTypes.number,

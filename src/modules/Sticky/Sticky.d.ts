@@ -13,7 +13,7 @@ export interface StickyProps {
   className?: string;
 
   /** Context which sticky element should stick to. */
-  context?: React.ReactNode;
+  context?: object;
 
   /** Offset in pixels from the top of the screen when fixing element to viewport. */
   offset?: number;
