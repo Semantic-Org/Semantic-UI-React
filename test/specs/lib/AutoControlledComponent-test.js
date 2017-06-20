@@ -13,6 +13,10 @@ const createTestClass = (options = {}) => class Test extends AutoControlledCompo
   static autoControlledProps = options.autoControlledProps
   static defaultProps = options.defaultProps
   state = options.state
+  constructor(...args) {
+    super(...args)
+    this.setInitialAutoControlledState()
+  }
   render = () => <div />
 }
 /* eslint-enable */

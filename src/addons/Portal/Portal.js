@@ -138,6 +138,11 @@ class Portal extends Component {
 
   state = {}
 
+  constructor(...args) {
+    super(...args)
+    this.setInitialAutoControlledState()
+  }
+
   componentDidMount() {
     debug('componentDidMount()')
     this.renderPortal()

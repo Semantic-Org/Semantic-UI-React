@@ -144,6 +144,11 @@ class Modal extends Component {
 
   state = {}
 
+  constructor(...args) {
+    super(...args)
+    this.setInitialAutoControlledState()
+  }
+
   componentWillUnmount() {
     debug('componentWillUnmount()')
     this.handlePortalUnmount()

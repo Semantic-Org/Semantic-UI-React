@@ -87,6 +87,11 @@ export default class Rating extends Component {
 
   static Icon = RatingIcon
 
+  constructor(...args) {
+    super(...args)
+    this.setInitialAutoControlledState()
+  }
+
   handleIconClick = (e, { index }) => {
     const { clearable, disabled, maxRating, onRate } = this.props
     const { rating } = this.state

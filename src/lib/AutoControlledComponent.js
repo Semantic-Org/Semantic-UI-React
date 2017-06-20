@@ -68,7 +68,7 @@ export const getAutoControlledStateValue = (propName, props, state, includeDefau
 }
 
 export default class AutoControlledComponent extends Component {
-  componentWillMount() {
+  setInitialAutoControlledState() {
     const { autoControlledProps } = this.constructor
 
     if (process.env.NODE_ENV !== 'production') {

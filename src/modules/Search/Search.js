@@ -195,6 +195,11 @@ export default class Search extends Component {
 
   static Results = SearchResults
 
+  constructor(...args) {
+    super(...args)
+    this.setInitialAutoControlledState()
+  }
+
   componentWillMount() {
     if (super.componentWillMount) super.componentWillMount()
     debug('componentWillMount()')

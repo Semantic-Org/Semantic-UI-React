@@ -108,6 +108,11 @@ export default class Embed extends Component {
 
   state = {}
 
+  constructor(...args) {
+    super(...args)
+    this.setInitialAutoControlledState()
+  }
+
   getSrc() {
     const {
       autoplay = true,
