@@ -1428,6 +1428,76 @@ describe('Dropdown', () => {
     })
   })
 
+  describe('onClick', () => {
+    it('is called with (event, props)', () => {
+      const onClick = sandbox.spy()
+      wrapperMount(<Dropdown onClick={onClick} options={options} />)
+      wrapper.simulate('click', { stopPropagation: _.noop })
+
+      onClick.should.have.been.calledOnce()
+      onClick.should.have.been.calledWithMatch({ }, { options })
+    })
+
+    it("toggles the dropdown when it's not searchable", () => {
+      wrapperMount(<Dropdown options={options} />)
+
+      wrapper.simulate('click')
+      dropdownMenuIsOpen()
+
+      wrapper.simulate('click')
+      dropdownMenuIsClosed()
+    })
+
+    it("opens the dropdown when it's searchable, but don't close", () => {
+      wrapperMount(<Dropdown options={options} search />)
+
+      wrapper.simulate('click')
+      dropdownMenuIsOpen()
+
+      wrapper.simulate('click')
+      dropdownMenuIsOpen()
+    })
+
+    it("don't open the dropdown when it's searchable and minCharacters is more that default value", () => {
+      wrapperMount(<Dropdown minCharacters={3} options={options} search />)
+
+      wrapper.simulate('click')
+      dropdownMenuIsClosed()
+    })
+  })
+
+  describe('onFocus', () => {
+    it('is called with (event, props)', () => {
+      const onFocus = sandbox.spy()
+      wrapperMount(<Dropdown onFocus={onFocus} options={options} />)
+      wrapper.simulate('focus')
+
+      onFocus.should.have.been.calledOnce()
+      onFocus.should.have.been.calledWithMatch({ }, { options })
+    })
+
+    it("opens the dropdown when it's not searchable", () => {
+      wrapperMount(<Dropdown options={options} />)
+
+      wrapper.simulate('focus')
+      dropdownMenuIsOpen()
+    })
+
+    it("opens the dropdown when it's searchable", () => {
+      wrapperMount(<Dropdown options={options} search />)
+
+      wrapper.simulate('focus')
+      dropdownMenuIsOpen()
+    })
+
+    it("don't open the dropdown when it's searchable and minCharacters is more that default value", () => {
+      wrapperMount(<Dropdown minCharacters={3} options={options} search />)
+
+      wrapper.simulate('focus')
+      dropdownMenuIsClosed()
+    })
+  })
+
   describe('onSearchChange', () => {
     it('is called with (event, value) on search input change', () => {
       const spy = sandbox.spy()
@@ -1437,6 +1507,30 @@ describe('Dropdown', () => {
 
       spy.should.have.been.calledOnce()
       spy.should.have.been.calledWithMatch({ target: { value: 'a' } }, 'a')
+    })
+
+    it("don't open the menu on change if query's length is less than minCharacters", () => {
+      wrapperMount(<Dropdown minCharacters={3} options={options} selection search />)
+
+      dropdownMenuIsClosed()
+
+      // simulate search with query's length is less than minCharacters
+      wrapper
+        .find('input.search')
+        .simulate('change', { target: { value: 'a' } })
+
+      dropdownMenuIsClosed()
+    })
+
+    it("closes the opened menu on change if query's length is less than minCharacters", () => {
+      wrapperMount(<Dropdown minCharacters={3} options={options} selection search />)
+      const input = wrapper.find('input.search')
+
+      input.simulate('change', { target: { value: 'abc' } })
+      dropdownMenuIsOpen()
+
+      input.simulate('change', { target: { value: 'a' } })
+      dropdownMenuIsClosed()
     })
   })
 
@@ -1577,19 +1671,6 @@ describe('Dropdown', () => {
       dropdownMenuIsOpen()
     })
 
-    it("Don't open the menu on change if query's length is less than minCharacters", () => {
-      wrapperMount(<Dropdown options={options} selection search minCharacters={4} />)
-
-      dropdownMenuIsClosed()
-
-      // simulate search with query's length is less than minCharacters
-      wrapper
-        .find('input.search')
-        .simulate('change', { target: { value: faker.hacker.noun().substring(0, 1) } })
-
-      dropdownMenuIsClosed()
-    })
-
     it('does not call onChange on query change', () => {
       const onChangeSpy = sandbox.spy()
       wrapperMount(<Dropdown options={options} selection search onChange={onChangeSpy} />)
@@ -1695,6 +1776,17 @@ describe('Dropdown', () => {
       items
         .at(1)
         .should.not.have.prop('selected', true)
+    })
+
+    it('does not close the menu when options are empty', () => {
+      wrapperMount(<Dropdown options={options} search selection />)
+      wrapper.simulate('click')
+
+      wrapper.find('input.search')
+        .simulate('change', { target: { value: 'foo' } })
+      domEvent.keyDown(document, { key: 'Enter' })
+
+      dropdownMenuIsOpen()
     })
   })
 
