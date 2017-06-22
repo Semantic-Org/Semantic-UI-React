@@ -1073,7 +1073,7 @@ export default class Dropdown extends Component {
       this.sizerRef.style.display = 'inline'
       this.sizerRef.textContent = searchQuery
       searchWidth = Math.ceil(this.sizerRef.getBoundingClientRect().width)
-      this.sizerRef.style.removeProperty('display')
+      this.sizerRef.style.display = 'none'
     }
 
     return (
