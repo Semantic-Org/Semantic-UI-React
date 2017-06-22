@@ -1,4 +1,5 @@
 import _ from 'lodash'
+import React from 'react'
 
 import Form from 'src/collections/Form/Form'
 import FormButton from 'src/collections/Form/FormButton'
@@ -12,6 +13,7 @@ import FormSelect from 'src/collections/Form/FormSelect'
 import FormTextArea from 'src/collections/Form/FormTextArea'
 import { SUI } from 'src/lib'
 import * as common from 'test/specs/commonTests'
+import { sandbox } from 'test/utils'
 
 describe('Form', () => {
   common.isConformant(Form)
@@ -39,4 +41,24 @@ describe('Form', () => {
   common.propKeyOnlyToClassName(Form, 'warning')
 
   common.propValueOnlyToClassName(Form, 'size', _.without(SUI.SIZES, 'medium'))
+
+  describe('onSubmit', () => {
+    it('prevents default on the event when there is no action', () => {
+      const event = { preventDefault: sandbox.spy() }
+
+      shallow(<Form onSubmit={sandbox.spy()} />)
+        .simulate('submit', event)
+
+      event.preventDefault.should.have.been.calledOnce()
+    })
+
+    it('does not prevent default on the event when there is an action', () => {
+      const event = { preventDefault: sandbox.spy() }
+
+      shallow(<Form action='do not prevent default!' onSubmit={sandbox.spy()} />)
+        .simulate('submit', event)
+
+      event.preventDefault.should.not.have.been.called()
+    })
+  })
 })

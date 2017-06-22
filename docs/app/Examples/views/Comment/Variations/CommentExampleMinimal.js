@@ -65,7 +65,7 @@ const CommentExampleMinimal = () => (
       </Comment.Content>
     </Comment>
 
-    <Form reply onSubmit={e => e.preventDefault()}>
+    <Form reply>
       <Form.TextArea />
       <Button content='Add Reply' labelPosition='left' icon='edit' primary />
     </Form>

@@ -1,7 +1,7 @@
 import cx from 'classnames'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React from 'react'
+import React, { Component } from 'react'
 
 import {
   customPropTypes,
@@ -33,91 +33,105 @@ import FormTextArea from './FormTextArea'
  * @see Select
  * @see Visibility
  */
-function Form(props) {
-  const {
-    children,
-    className,
-    error,
-    inverted,
-    loading,
-    reply,
-    size,
-    success,
-    warning,
-    widths,
-  } = props
+class Form extends Component {
+  static propTypes = {
+    /** An element type to render as (string or function). */
+    as: customPropTypes.as,
 
-  const classes = cx(
-    'ui',
-    size,
-    useKeyOnly(error, 'error'),
-    useKeyOnly(inverted, 'inverted'),
-    useKeyOnly(loading, 'loading'),
-    useKeyOnly(reply, 'reply'),
-    useKeyOnly(success, 'success'),
-    useKeyOnly(warning, 'warning'),
-    useWidthProp(widths, null, true),
-    'form',
-    className,
-  )
-  const rest = getUnhandledProps(Form, props)
-  const ElementType = getElementType(Form, props)
+    /** The HTML form action */
+    action: PropTypes.string,
 
-  return <ElementType {...rest} className={classes}>{children}</ElementType>
+    /** Primary content. */
+    children: PropTypes.node,
+
+    /** Additional classes. */
+    className: PropTypes.string,
+
+    /** Automatically show any error Message children. */
+    error: PropTypes.bool,
+
+    /** A form can have its color inverted for contrast. */
+    inverted: PropTypes.bool,
+
+    /** Automatically show a loading indicator. */
+    loading: PropTypes.bool,
+
+    /** The HTML form submit handler. */
+    onSubmit: PropTypes.func,
+
+    /** A comment can contain a form to reply to a comment. This may have arbitrary content. */
+    reply: PropTypes.bool,
+
+    /** A form can vary in size. */
+    size: PropTypes.oneOf(_.without(SUI.SIZES, 'medium')),
+
+    /** Automatically show any success Message children. */
+    success: PropTypes.bool,
+
+    /** Automatically show any warning Message children .*/
+    warning: PropTypes.bool,
+
+    /** Forms can automatically divide fields to be equal width. */
+    widths: PropTypes.oneOf(['equal']),
+  }
+
+  static defaultProps = {
+    as: 'form',
+  }
+
+  static _meta = {
+    name: 'Form',
+    type: META.TYPES.COLLECTION,
+  }
+
+  static Field = FormField
+  static Button = FormButton
+  static Checkbox = FormCheckbox
+  static Dropdown = FormDropdown
+  static Group = FormGroup
+  static Input = FormInput
+  static Radio = FormRadio
+  static Select = FormSelect
+  static TextArea = FormTextArea
+
+  handleSubmit = e => {
+    const { action, onSubmit } = this.props
+    if (!action) e.preventDefault()
+    if (onSubmit) onSubmit(e, { ...this.props })
+  }
+
+  render() {
+    const {
+      children,
+      className,
+      error,
+      inverted,
+      loading,
+      reply,
+      size,
+      success,
+      warning,
+      widths,
+    } = this.props
+
+    const classes = cx(
+      'ui',
+      size,
+      useKeyOnly(error, 'error'),
+      useKeyOnly(inverted, 'inverted'),
+      useKeyOnly(loading, 'loading'),
+      useKeyOnly(reply, 'reply'),
+      useKeyOnly(success, 'success'),
+      useKeyOnly(warning, 'warning'),
+      useWidthProp(widths, null, true),
+      'form',
+      className,
+    )
+    const rest = getUnhandledProps(Form, this.props)
+    const ElementType = getElementType(Form, this.props)
+
+    return <ElementType {...rest} onSubmit={this.handleSubmit} className={classes}>{children}</ElementType>
+  }
 }
-
-Form.propTypes = {
-  /** An element type to render as (string or function). */
-  as: customPropTypes.as,
-
-  /** Primary content. */
-  children: PropTypes.node,
-
-  /** Additional classes. */
-  className: PropTypes.string,
-
-  /** Automatically show any error Message children. */
-  error: PropTypes.bool,
-
-  /** A form can have its color inverted for contrast. */
-  inverted: PropTypes.bool,
-
-  /** Automatically show a loading indicator. */
-  loading: PropTypes.bool,
-
-  /** A comment can contain a form to reply to a comment. This may have arbitrary content. */
-  reply: PropTypes.bool,
-
-  /** A form can vary in size. */
-  size: PropTypes.oneOf(_.without(SUI.SIZES, 'medium')),
-
-  /** Automatically show any success Message children. */
-  success: PropTypes.bool,
-
-  /** Automatically show any warning Message children .*/
-  warning: PropTypes.bool,
-
-  /** Forms can automatically divide fields to be equal width. */
-  widths: PropTypes.oneOf(['equal']),
-}
-
-Form.defaultProps = {
-  as: 'form',
-}
-
-Form._meta = {
-  name: 'Form',
-  type: META.TYPES.COLLECTION,
-}
-
-Form.Field = FormField
-Form.Button = FormButton
-Form.Checkbox = FormCheckbox
-Form.Dropdown = FormDropdown
-Form.Group = FormGroup
-Form.Input = FormInput
-Form.Radio = FormRadio
-Form.Select = FormSelect
-Form.TextArea = FormTextArea
 
 export default Form
