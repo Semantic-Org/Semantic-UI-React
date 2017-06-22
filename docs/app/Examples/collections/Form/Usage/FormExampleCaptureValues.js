@@ -7,7 +7,6 @@ class FormExampleCaptureValues extends Component {
   handleChange = (e, { name, value }) => this.setState({ [name]: value })
 
   handleSubmit = e => {
-    e.preventDefault()
     const { name, email } = this.state
 
     this.setState({ submittedName: name, submittedEmail: email })
