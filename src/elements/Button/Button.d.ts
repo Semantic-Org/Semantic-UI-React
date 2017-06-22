@@ -3,6 +3,7 @@ import * as React from 'react';
 import {
   SemanticCOLORS,
   SemanticFLOATS,
+  SemanticShorthandContent,
   SemanticSIZES
 } from '../..';
 import { default as ButtonContent } from './ButtonContent';
@@ -43,7 +44,7 @@ export interface ButtonProps {
   compact?: boolean;
 
   /** Shorthand for primary content. */
-  content?: React.ReactNode;
+  content?: SemanticShorthandContent;
 
   /** A button can show it is currently unable to be interacted with. */
   disabled?: boolean;

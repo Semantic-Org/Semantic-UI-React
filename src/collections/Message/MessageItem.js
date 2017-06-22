@@ -44,7 +44,7 @@ MessageItem.propTypes = {
   className: PropTypes.string,
 
   /** Shorthand for primary content. */
-  content: customPropTypes.itemShorthand,
+  content: customPropTypes.contentShorthand,
 }
 
 MessageItem.defaultProps = {

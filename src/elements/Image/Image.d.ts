@@ -2,10 +2,12 @@ import * as React from 'react';
 
 import {
   SemanticFLOATS,
+  SemanticShorthandItem,
   SemanticSIZES,
   SemanticVERTICALALIGNMENTS,
   SemanticWIDTHS
 } from '../..';
+import { DimmerProps } from '../../modules/Dimmer';
 import { LabelProps } from '../Label';
 import ImageGroup from './ImageGroup';
 
@@ -37,7 +39,7 @@ export interface ImageProps {
   disabled?: boolean;
 
   /** Shorthand for Dimmer. */
-  dimmer?: any;
+  dimmer?: SemanticShorthandItem<DimmerProps>;
 
   /** An image can sit to the left or right of other content. */
   floated?: SemanticFLOATS;
@@ -58,7 +60,7 @@ export interface ImageProps {
   inline?: boolean;
 
   /** Shorthand for Label. */
-  label?: any | LabelProps;
+  label?: SemanticShorthandItem<LabelProps>;
 
   /** An image may appear rounded or circular. */
   shape?: 'rounded'|'circular';

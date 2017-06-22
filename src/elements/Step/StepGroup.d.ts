@@ -1,5 +1,8 @@
 import * as React from 'react';
 
+import { SemanticShorthandCollection } from '../..';
+import { StepProps } from './Step';
+
 export interface StepGroupProps {
   [key: string]: any;
 
@@ -16,7 +19,7 @@ export interface StepGroupProps {
   fluid?: boolean;
 
   /** Shorthand array of props for Step. */
-  items?: any;
+  items?: SemanticShorthandCollection<StepProps>;
 
   /** A step can show a ordered sequence of steps. */
   ordered?: boolean;

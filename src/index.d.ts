@@ -9,6 +9,30 @@ export type SemanticTEXTALIGNMENTS = 'left' | 'center' | 'right' | 'justified';
 export type SemanticVERTICALALIGNMENTS = 'top' | 'middle' | 'bottom';
 
 // ======================================================
+// Common element's props
+// ======================================================
+
+export interface HtmlLabelProps {
+  [key: string]: any;
+  children?: React.ReactNode;
+}
+
+export interface HtmlImageProps {
+  [key: string]: any;
+  src?: string;
+}
+
+export interface HtmlInputrops {
+  [key: string]: any;
+  type?: string;
+}
+
+export interface HtmlSpanProps {
+  [key: string]: any;
+  children?: React.ReactNode;
+}
+
+// ======================================================
 // Types
 // ======================================================
 

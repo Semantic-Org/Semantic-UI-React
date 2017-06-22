@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { SemanticShorthandContent, SemanticShorthandItem } from '../..';
-import { IconProps } from '../../elements/Icon/Icon';
+import { IconProps } from '../../elements/Icon';
 
 export interface FeedLikeProps {
   [key: string]: any;

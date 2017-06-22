@@ -5,6 +5,8 @@ import { FeedContentProps } from './FeedContent';
 import { FeedDateProps } from './FeedDate';
 import { FeedLabelProps } from './FeedLabel';
 import { FeedMetaProps } from './FeedMeta';
+import { FeedSummaryProps } from './FeedSummary';
+import {FeedExtraProps} from './FeedExtra';
 
 export interface FeedEventProps {
   [key: string]: any;
@@ -25,10 +27,10 @@ export interface FeedEventProps {
   date?: SemanticShorthandItem<FeedDateProps>;
 
   /** Shorthand for FeedExtra with images. */
-  extraImages?: any;
+  extraImages?: SemanticShorthandItem<FeedExtraProps>;
 
   /** Shorthand for FeedExtra with content. */
-  extraText?: any;
+  extraText?: SemanticShorthandItem<FeedExtraProps>;
 
   /** An event can contain icon label. */
   icon?: SemanticShorthandItem<FeedLabelProps>;
@@ -40,7 +42,7 @@ export interface FeedEventProps {
   meta?: SemanticShorthandItem<FeedMetaProps>;
 
   /** Shorthand for FeedSummary. */
-  summary?: any;
+  summary?: SemanticShorthandItem<FeedSummaryProps>;
 }
 
 declare const FeedEvent: React.StatelessComponent<FeedEventProps>;

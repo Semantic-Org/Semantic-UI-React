@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { SemanticShorthandContent } from '../../';
+import { SemanticShorthandContent } from '../..';
 
 export interface BreadcrumbSectionProps {
   [key: string]: any;

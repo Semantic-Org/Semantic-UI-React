@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { SemanticShorthandItem } from '../../';
+import { SemanticShorthandItem } from '../..';
 import { ButtonProps } from '../../elements/Button';
 import { ModalProps } from '../../modules/Modal';
 import { ModalContentProps } from '../../modules/Modal/ModalContent';

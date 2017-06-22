@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { SemanticShorthandContent } from '../../';
+import { SemanticShorthandContent } from '../..';
 
 export interface MenuHeaderProps {
   [key: string]: any;

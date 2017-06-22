@@ -44,7 +44,7 @@ MessageHeader.propTypes = {
   className: PropTypes.string,
 
   /** Shorthand for primary content. */
-  content: customPropTypes.itemShorthand,
+  content: customPropTypes.contentShorthand,
 }
 
 MessageHeader.create = createShorthandFactory(MessageHeader, val => ({ content: val }))

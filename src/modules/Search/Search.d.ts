@@ -1,5 +1,7 @@
 import * as React from 'react';
 
+import { SemanticShorthandItem} from '../..';
+import { InputProps } from '../../elements/Input';
 import { default as SearchCategory, SearchCategoryProps } from './SearchCategory';
 import { default as SearchResult, SearchResultProps } from './SearchResult';
 import { default as SearchResults } from './SearchResults';
@@ -132,7 +134,7 @@ export interface SearchProps {
   fluid?: boolean;
 
   /** A search input can take up the width of its container. */
-  input?: any;
+  input?: SemanticShorthandItem<InputProps>;
 
   /** A search can show a loading indicator. */
   loading?: boolean;
