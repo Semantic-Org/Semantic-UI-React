@@ -146,7 +146,7 @@ export default class IconSearch extends Component {
     return (
       <Grid columns={1} padded textAlign='center' style={gridStyle}>
         <Grid.Column>
-          <Form onSubmit={(e) => e.preventDefault()}>
+          <Form>
             <Form.Group inline>
               <Form.Input
                 id='docs-icon-set-input'
