@@ -44,42 +44,46 @@ describe('Form', () => {
 
   describe('onSubmit', () => {
     it('prevents default on the event when there is no action', () => {
-      const preventDefault = sandbox.spy()
+      const event = { preventDefault: sandbox.spy() }
 
-      shallow(<Form onSubmit={_.noop} />)
-        .simulate('submit', { preventDefault })
-      preventDefault.should.have.been.calledOnce()
+      shallow(<Form />)
+        .simulate('submit', event)
+
+      event.preventDefault.should.have.been.calledOnce()
     })
 
     it('does not prevent default on the event when there is an action', () => {
-      const preventDefault = sandbox.spy()
+      const event = { preventDefault: sandbox.spy() }
 
-      shallow(<Form action='do not prevent default!' onSubmit={_.noop} />)
+      shallow(<Form action='do not prevent default!' />)
         .simulate('submit', event)
-      preventDefault.should.not.have.been.called()
+
+      event.preventDefault.should.not.have.been.called()
     })
 
     it('is called with (e, props) on submit', () => {
       const onSubmit = sandbox.spy()
-      const e = { name: 'foo' }
+      const event = { name: 'foo' }
       const props = { 'data-bar': 'baz' }
 
       shallow(<Form {...props} onSubmit={onSubmit} />)
-        .simulate('submit', e)
+        .simulate('submit', event)
 
       onSubmit.should.have.been.calledOnce()
-      onSubmit.should.have.been.calledWithMatch(e, props)
+      onSubmit.should.have.been.calledWithMatch(event, props)
     })
 
     it('passes all args to onSubmit', () => {
       const onSubmit = sandbox.spy()
       const props = { 'data-baz': 'baz' }
+      const event = { fake: 'event' }
+      const args = ['some', 'extra', 'args']
 
       shallow(<Form {...props} onSubmit={onSubmit} />)
-        .simulate('submit', { name: 'foo' }, { name: 'bar' })
+        .simulate('submit', event, ...args)
 
       onSubmit.should.have.been.calledOnce()
-      onSubmit.should.have.been.calledWithMatch({ name: 'foo' }, props, { name: 'bar' })
+      onSubmit.should.have.been.calledWithMatch(event, props, ...args)
     })
   })
 })
