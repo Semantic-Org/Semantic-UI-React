@@ -1,9 +1,9 @@
 import cx from 'classnames'
-import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React from 'react'
 
 import {
+  childrenUtils,
   createShorthand,
   customPropTypes,
   getElementType,
@@ -22,7 +22,7 @@ function StepContent(props) {
   const rest = getUnhandledProps(StepContent, props)
   const ElementType = getElementType(StepContent, props)
 
-  if (!_.isNil(children)) {
+  if (!childrenUtils.isNil(children)) {
     return <ElementType {...rest} className={classes}>{children}</ElementType>
   }
 

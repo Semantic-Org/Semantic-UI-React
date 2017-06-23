@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 
 import {
+  childrenUtils,
   createShorthandFactory,
   customPropTypes,
   getElementType,
@@ -49,7 +50,7 @@ function TableRow(props) {
   const rest = getUnhandledProps(TableRow, props)
   const ElementType = getElementType(TableRow, props)
 
-  if (!_.isNil(children)) {
+  if (!childrenUtils.isNil(children)) {
     return <ElementType {...rest} className={classes}>{children}</ElementType>
   }
 

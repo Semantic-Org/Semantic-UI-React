@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
 import {
+  childrenUtils,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -152,7 +153,7 @@ class List extends Component {
     const rest = getUnhandledProps(List, this.props)
     const ElementType = getElementType(List, this.props)
 
-    if (!_.isNil(children)) {
+    if (!childrenUtils.isNil(children)) {
       return <ElementType {...rest} role='list' className={classes}>{children}</ElementType>
     }
 

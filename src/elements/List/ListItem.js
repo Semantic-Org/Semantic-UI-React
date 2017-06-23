@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import React, { Component, isValidElement } from 'react'
 
 import {
+  childrenUtils,
   createShorthandFactory,
   customPropTypes,
   getElementType,
@@ -116,7 +117,7 @@ class ListItem extends Component {
     const rest = getUnhandledProps(ListItem, this.props)
     const valueProp = ElementType === 'li' ? { value } : { 'data-value': value }
 
-    if (!_.isNil(children)) {
+    if (!childrenUtils.isNil(children)) {
       return (
         <ElementType {...rest} {...valueProp} role='listitem' className={classes} onClick={this.handleClick}>
           {children}

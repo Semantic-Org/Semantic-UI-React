@@ -1,9 +1,9 @@
 import cx from 'classnames'
-import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React from 'react'
 
 import {
+  childrenUtils,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -36,7 +36,7 @@ function Item(props) {
   const rest = getUnhandledProps(Item, props)
   const ElementType = getElementType(Item, props)
 
-  if (!_.isNil(children)) {
+  if (!childrenUtils.isNil(children)) {
     return <ElementType {...rest} className={classes}>{children}</ElementType>
   }
 
