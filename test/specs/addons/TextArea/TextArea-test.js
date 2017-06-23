@@ -44,17 +44,15 @@ describe('TextArea', () => {
     // simplify styles to make height assertions easier
     const style = { padding: 0, fontSize: '10px', lineHeight: 1, border: 'none' }
 
-    const assertHeight = (height, minHeight = '0px') => {
+    const assertHeight = (height) => {
       const element = document.querySelector('textarea')
 
       if (!height) {
-        element.style.should.have.property('minHeight', minHeight)
         element.style.should.have.property('resize', '')
         element.style.should.have.property('height', '')
         return
       }
 
-      element.style.should.have.property('minHeight', minHeight)
       element.style.should.have.property('resize', 'none')
 
       // CI renders textareas with an extra pixel
@@ -74,8 +72,8 @@ describe('TextArea', () => {
     })
 
     it('depends on minHeight value of style', () => {
-      wrapperMount(<TextArea autoHeight style={{ ...style, minHeight: 50 }} />)
-      assertHeight('50px', '50px')
+      wrapperMount(<TextArea autoHeight style={{ ...style, minHeight: '50px' }} />)
+      assertHeight('50px')
     })
 
     it('depends on rows value', () => {
@@ -163,21 +161,6 @@ describe('TextArea', () => {
       wrapperShallow(<TextArea style={style} />)
       wrapper.should.have.style('margin-top', '1em')
       wrapper.should.have.style('top', '0')
-    })
-
-    it('has default value of minHeight', () => {
-      shallow(<TextArea />)
-        .should.have.style('min-height', '0')
-    })
-
-    it('sets number value of minHeight', () => {
-      shallow(<TextArea style={{ minHeight: 10 }} />)
-        .should.have.style('min-height', '10px')
-    })
-
-    it('sets string value of minHeight', () => {
-      shallow(<TextArea style={{ minHeight: '10em' }} />)
-        .should.have.style('min-height', '10em')
     })
   })
 })
