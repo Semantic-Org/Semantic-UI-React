@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
 import {
+  childrenUtils,
   createHTMLParagraph,
   customPropTypes,
   getElementType,
@@ -165,7 +166,7 @@ export default class Message extends Component {
     const rest = getUnhandledProps(Message, this.props)
     const ElementType = getElementType(Message, this.props)
 
-    if (!_.isNil(children)) {
+    if (!childrenUtils.isNil(children)) {
       return (
         <ElementType {...rest} className={classes}>
           {dismissIcon}

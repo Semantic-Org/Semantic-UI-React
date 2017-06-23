@@ -16,3 +16,15 @@ export const someByType = (children, type) => _.some(Children.toArray(children),
  * @returns {undefined|Object}
  */
 export const findByType = (children, type) => _.find(Children.toArray(children), { type })
+
+/**
+ * Tests if any children.
+ * @param {Object} children The children prop of a component.
+ * @returns {Boolean}
+ */
+
+export const isNil = (children) => {
+    if (children == null) return true;
+    if (Array.isArray(children) && children.length == 0) return true;
+    return false;
+}

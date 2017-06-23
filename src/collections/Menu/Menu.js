@@ -5,6 +5,7 @@ import React from 'react'
 
 import {
   AutoControlledComponent as Component,
+  childrenUtils,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -209,7 +210,7 @@ class Menu extends Component {
 
     return (
       <ElementType {...rest} className={classes}>
-        {_.isNil(children) ? this.renderItems() : children}
+        {childrenUtils.isNil(children) ? this.renderItems() : children}
       </ElementType>
     )
   }

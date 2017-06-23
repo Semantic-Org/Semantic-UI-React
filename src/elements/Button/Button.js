@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
 import {
+  childrenUtils,
   customPropTypes,
   createShorthandFactory,
   getElementType,
@@ -191,7 +192,7 @@ class Button extends Component {
     const { labelPosition, children, content, icon } = this.props
 
     if (icon === true) return true
-    return icon && (labelPosition || (_.isNil(children) && _.isNil(content)))
+    return icon && (labelPosition || (childrenUtils.isNil(children) && _.isNil(content)))
   }
 
   render() {
@@ -273,7 +274,7 @@ class Button extends Component {
     }
 
     const classes = cx('ui', baseClasses, wrapperClasses, labeledClasses, 'button', className)
-    const hasChildren = !_.isNil(children)
+    const hasChildren = !childrenUtils.isNil(children)
 
     return (
       <ElementType
