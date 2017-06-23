@@ -44,21 +44,42 @@ describe('Form', () => {
 
   describe('onSubmit', () => {
     it('prevents default on the event when there is no action', () => {
-      const event = { preventDefault: sandbox.spy() }
+      const preventDefault = sandbox.spy()
 
-      shallow(<Form onSubmit={sandbox.spy()} />)
-        .simulate('submit', event)
-
-      event.preventDefault.should.have.been.calledOnce()
+      shallow(<Form onSubmit={_.noop} />)
+        .simulate('submit', { preventDefault })
+      preventDefault.should.have.been.calledOnce()
     })
 
     it('does not prevent default on the event when there is an action', () => {
-      const event = { preventDefault: sandbox.spy() }
+      const preventDefault = sandbox.spy()
 
-      shallow(<Form action='do not prevent default!' onSubmit={sandbox.spy()} />)
+      shallow(<Form action='do not prevent default!' onSubmit={_.noop} />)
         .simulate('submit', event)
+      preventDefault.should.not.have.been.called()
+    })
 
-      event.preventDefault.should.not.have.been.called()
+    it('is called with (e, props) on submit', () => {
+      const onSubmit = sandbox.spy()
+      const e = { name: 'foo' }
+      const props = { 'data-bar': 'baz' }
+
+      shallow(<Form {...props} onSubmit={onSubmit} />)
+        .simulate('submit', e)
+
+      onSubmit.should.have.been.calledOnce()
+      onSubmit.should.have.been.calledWithMatch(e, props)
+    })
+
+    it('passes all args to onSubmit', () => {
+      const onSubmit = sandbox.spy()
+      const props = { 'data-baz': 'baz' }
+
+      shallow(<Form {...props} onSubmit={onSubmit} />)
+        .simulate('submit', { name: 'foo' }, { name: 'bar' })
+
+      onSubmit.should.have.been.calledOnce()
+      onSubmit.should.have.been.calledWithMatch({ name: 'foo' }, props, { name: 'bar' })
     })
   })
 })
