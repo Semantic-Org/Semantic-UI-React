@@ -130,6 +130,11 @@ export default class Checkbox extends Component {
 
   state = {}
 
+  constructor(...args) {
+    super(...args)
+    this.setInitialAutoControlledState()
+  }
+
   componentDidMount() {
     this.setIndeterminate()
   }

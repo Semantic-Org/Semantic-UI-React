@@ -142,6 +142,11 @@ class Menu extends Component {
   static Item = MenuItem
   static Menu = MenuMenu
 
+  constructor(...args) {
+    super(...args)
+    this.setInitialAutoControlledState()
+  }
+
   handleItemOverrides = predefinedProps => ({
     onClick: (e, itemProps) => {
       const { index } = itemProps

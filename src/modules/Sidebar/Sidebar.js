@@ -62,6 +62,11 @@ class Sidebar extends Component {
 
   state = {}
 
+  constructor(...args) {
+    super(...args)
+    this.setInitialAutoControlledState()
+  }
+
   startAnimating = (duration = 500) => {
     clearTimeout(this.stopAnimatingTimer)
 

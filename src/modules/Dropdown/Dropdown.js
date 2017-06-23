@@ -357,6 +357,11 @@ export default class Dropdown extends Component {
   static Item = DropdownItem
   static Menu = DropdownMenu
 
+  constructor(...args) {
+    super(...args)
+    this.setInitialAutoControlledState()
+  }
+
   componentWillMount() {
     if (super.componentWillMount) super.componentWillMount()
     debug('componentWillMount()')

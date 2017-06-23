@@ -102,6 +102,7 @@ export default class Accordion extends Component {
     this.state = {
       activeIndex: this.props.exclusive ? -1 : [-1],
     }
+    this.setInitialAutoControlledState()
   }
 
   handleTitleClick = (e, index) => {
