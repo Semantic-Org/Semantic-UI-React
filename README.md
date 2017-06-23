@@ -129,7 +129,7 @@ Once you change the flag, you need to refresh your browser to see the changes in
 | ✓ Loader        |                 |                 |   Shape         |                    |
 | ✓ Rail          |                 |                 | ✓ Sidebar       |                    |
 | ✓ Reveal        |                 |                 |   Sticky        |                    |
-| ✓ Segment       |                 |                 |   Tab           |                    |
+| ✓ Segment       |                 |                 | ✓ Tab           |                    |
 | ✓ Step          |                 |                 |   Transition    |                    |
 
 ## Our Principles
