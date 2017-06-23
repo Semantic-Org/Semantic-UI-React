@@ -221,7 +221,7 @@ class Input extends Component {
 
     // Render Shorthand
     // ----------------------------------------
-    const actionElement = Button.create(action, { defaultProps: { className: 'button' } })
+    const actionElement = Button.create(action)
     const iconElement = Icon.create(this.computeIcon())
     const labelElement = Label.create(label, {
       defaultProps: {
