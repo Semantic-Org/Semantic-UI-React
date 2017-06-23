@@ -88,6 +88,7 @@
     "doctrine": "^2.0.0",
     "empty": "^0.10.1",
     "enzyme": "^2.8.2",
+    "eslint": "^2.13.1",
     "eslint-config-ta": "^5.2.0",
     "eslint-plugin-jsx-a11y": "^4.0.0",
     "express": "^4.13.4",
