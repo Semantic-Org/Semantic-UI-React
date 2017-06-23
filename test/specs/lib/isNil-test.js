@@ -5,7 +5,7 @@ describe('isNil', () => {
     expect(isNil([])).to.equal(true)
   })
   it('should return false for array with length >= 1', () => {
-    expect(isNil([0,1])).to.equal(false)
+    expect(isNil([0, 1])).to.equal(false)
   })
   it('should return true for null', () => {
     expect(isNil(null)).to.equal(true)
