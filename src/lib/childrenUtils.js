@@ -18,7 +18,7 @@ export const someByType = (children, type) => _.some(Children.toArray(children),
 export const findByType = (children, type) => _.find(Children.toArray(children), { type })
 
 /**
- * Tests if any children.
+ * Tests if children are nil in React and Preact.
  * @param {Object} children The children prop of a component.
  * @returns {Boolean}
  */
