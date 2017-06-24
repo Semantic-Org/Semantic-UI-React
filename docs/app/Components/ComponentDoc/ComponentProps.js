@@ -88,7 +88,7 @@ export default class ComponentProps extends Component {
     const paramSignature = params
       .map(param => `${param.name}: ${getTagType(param)}`)
       // prevent object properties from showing as individual params
-      .filter(p => !p.includes('.'))
+      .filter(p => !_.includes(p, '.'))
       .join(', ')
 
     const tagDescriptionRows = _.compact([...params, returns]).map(tag => {
