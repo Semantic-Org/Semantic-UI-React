@@ -47,7 +47,7 @@
     "type": "git",
     "url": "git+ssh://github.com/Semantic-Org/Semantic-UI-React.git"
   },
-  "author": "Technology Advice <devteam@technologyadvice.com>",
+  "author": "Levi Thomason <me@levithomason.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Semantic-Org/Semantic-UI-React/issues"
