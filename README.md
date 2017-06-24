@@ -172,7 +172,7 @@ git push
 
 ## Credit
 
-Originally made [@TechnologyAdvice][9] by [@levithomason][26].
+Originally made for [@TechnologyAdvice][9] by [@levithomason][26].
 
 Big thanks to our [contributors][20], especially:
 
