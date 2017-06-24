@@ -524,7 +524,7 @@ export default class Dropdown extends Component {
     if (move === undefined) return
     e.preventDefault()
     this.moveSelectionBy(move)
-    if (!multiple) this.makeSelectedItemActive(e)
+    if (!multiple) this.makeSelectedItemActive(e, false)
   }
 
   openOnSpace = (e) => {
@@ -550,7 +550,7 @@ export default class Dropdown extends Component {
     this.open(e)
   }
 
-  makeSelectedItemActive = (e) => {
+  makeSelectedItemActive = (e, resetQuery = true) => {
     const { open } = this.state
     const { multiple, onAddItem } = this.props
     const item = this.getSelectedItem()
@@ -568,10 +568,10 @@ export default class Dropdown extends Component {
     if (multiple) {
       // state value may be undefined
       const newValue = _.union(this.state.value, [value])
-      this.setValue(newValue)
+      this.setValue(newValue, resetQuery)
       this.handleChange(e, newValue)
     } else {
-      this.setValue(value)
+      this.setValue(value, resetQuery)
       this.handleChange(e, value)
     }
   }
@@ -655,6 +655,15 @@ export default class Dropdown extends Component {
       return
     }
     if (this.searchRef) this.searchRef.focus()
+  }
+
+  handleIconClick = e => {
+    debug('handleIconClick()', e)
+
+    _.invoke(this.props, 'onClick', e, this.props)
+    // prevent handleClick()
+    e.stopPropagation()
+    this.toggle(e)
   }
 
   handleItemClick = (e, item) => {
@@ -852,12 +861,12 @@ export default class Dropdown extends Component {
   // Setters
   // ----------------------------------------
 
-  setValue = (value) => {
+  setValue = (value, resetQuery = true) => {
     debug('setValue()')
     debug('value', value)
-    const newState = {
+    const newState = resetQuery ? {
       searchQuery: '',
-    }
+    } : {}
 
     const { multiple, search } = this.props
     if (multiple && search && this.searchRef) this.searchRef.focus()
@@ -952,6 +961,17 @@ export default class Dropdown extends Component {
     this.setState({ selectedIndex: nextIndex })
     this.scrollSelectedItemIntoView()
   }
+
+  // ----------------------------------------
+  // Overrides
+  // ----------------------------------------
+
+  handleIconOverrides = predefinedProps => ({
+    onClick: (e, props) => {
+      _.invoke(predefinedProps, 'onClick', e, props)
+      this.handleIconClick(e)
+    },
+  })
 
   // ----------------------------------------
   // Refs
@@ -1264,7 +1284,9 @@ export default class Dropdown extends Component {
         {this.renderSearchInput()}
         {this.renderSearchSizer()}
         {trigger || this.renderText()}
-        {Icon.create(icon)}
+        {Icon.create(icon, {
+          overrideProps: this.handleIconOverrides,
+        })}
         {this.renderMenu()}
       </ElementType>
     )
