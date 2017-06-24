@@ -650,7 +650,11 @@ export default class Dropdown extends Component {
 
     if (!search) return this.toggle(e)
     if (open) return
-    if (searchQuery.length >= minCharacters || minCharacters === 1) this.open(e)
+    if (searchQuery.length >= minCharacters || minCharacters === 1) {
+      this.open(e)
+      return
+    }
+    if (this.searchRef) this.searchRef.focus()
   }
 
   handleItemClick = (e, item) => {
