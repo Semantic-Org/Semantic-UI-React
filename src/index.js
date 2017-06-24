@@ -4,6 +4,7 @@ export { default as Portal } from './addons/Portal'
 export { default as Radio } from './addons/Radio'
 export { default as Select } from './addons/Select'
 export { default as TextArea } from './addons/TextArea'
+export { default as UniversalInput } from './addons/UniversalInput'
 
 // Behaviors
 export { default as Visibility } from './behaviors/Visibility'
