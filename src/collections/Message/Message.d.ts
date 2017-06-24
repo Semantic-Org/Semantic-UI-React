@@ -9,7 +9,7 @@ import { default as MessageList } from './MessageList';
 export interface MessageProps {
   [key: string]: any;
 
-	/** An element type to render as (string or function). */
+  /** An element type to render as (string or function). */
   as?: any;
 
   /** A message can be formatted to attach itself to other content. */

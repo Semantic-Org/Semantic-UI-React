@@ -28,7 +28,7 @@ export interface AccordionProps {
   fluid?: boolean;
 
   /** Format for dark backgrounds. */
-  inverted?: string;
+  inverted?: boolean;
 
   /**
    * Called when a panel title is clicked.
