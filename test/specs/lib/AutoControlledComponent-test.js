@@ -12,7 +12,9 @@ let TestClass
 const createTestClass = (options = {}) => class Test extends AutoControlledComponent {
   static autoControlledProps = options.autoControlledProps
   static defaultProps = options.defaultProps
-  state = options.state
+  initialState() {
+    return options.state
+  }
   render = () => <div />
 }
 /* eslint-enable */

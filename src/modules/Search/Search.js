@@ -196,7 +196,6 @@ export default class Search extends Component {
   static Results = SearchResults
 
   componentWillMount() {
-    if (super.componentWillMount) super.componentWillMount()
     debug('componentWillMount()')
     const { open, value } = this.state
 
