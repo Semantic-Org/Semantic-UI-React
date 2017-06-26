@@ -106,8 +106,6 @@ export default class Embed extends Component {
     type: META.TYPES.MODULE,
   }
 
-  state = {}
-
   getSrc() {
     const {
       autoplay = true,
