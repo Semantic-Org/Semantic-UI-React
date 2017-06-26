@@ -25,6 +25,7 @@ describe('Grid', () => {
   common.propKeyOnlyToClassName(Grid, 'centered')
   common.propKeyOnlyToClassName(Grid, 'container')
   common.propKeyOnlyToClassName(Grid, 'doubling')
+  common.propKeyOnlyToClassName(Grid, 'inverted')
   common.propKeyOnlyToClassName(Grid, 'stackable')
   common.propKeyOnlyToClassName(Grid, 'stretched')
 

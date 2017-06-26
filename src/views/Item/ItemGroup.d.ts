@@ -23,6 +23,9 @@ export interface ItemGroupProps {
 
   /** A group of items can relax its padding to provide more negative space. */
   relaxed?: boolean | 'very';
+
+  /** Prevent items from stacking on mobile. */
+  unstackable?: boolean;
 }
 
 declare const ItemGroup: React.StatelessComponent<ItemGroupProps>;

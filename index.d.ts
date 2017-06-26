@@ -5,6 +5,15 @@ export { default as Radio, RadioProps } from './dist/commonjs/addons/Radio';
 export { default as Select, SelectProps } from './dist/commonjs/addons/Select';
 export { default as TextArea, TextAreaProps, TextAreaOnChangeData } from './dist/commonjs/addons/TextArea';
 
+// Behaviors
+export {
+  default as Visibility,
+  VisibilityCalculations,
+  VisibilityEventData,
+  VisibilityOnPassed,
+  VisibilityProps
+} from './dist/commonjs/behaviors/Visibility';
+
 // Collections
 export { default as Breadcrumb, BreadcrumbProps } from './dist/commonjs/collections/Breadcrumb';
 export {
@@ -16,7 +25,7 @@ export {
   BreadcrumbSectionProps
 } from './dist/commonjs/collections/Breadcrumb/BreadcrumbSection';
 
-export { default as Form, FormProps } from './dist/commonjs/collections/Form';
+export { default as Form, FormComponent, FormProps } from './dist/commonjs/collections/Form';
 export { default as FormButton, FormButtonProps } from './dist/commonjs/collections/Form/FormButton';
 export { default as FormCheckbox, FormCheckboxProps } from './dist/commonjs/collections/Form/FormCheckbox';
 export { default as FormDropdown, FormDropdownProps } from './dist/commonjs/collections/Form/FormDropdown';
@@ -101,6 +110,9 @@ export { default as StepContent, StepContentProps } from './dist/commonjs/elemen
 export { default as StepDescription, StepDescriptionProps } from './dist/commonjs/elements/Step/StepDescription';
 export { default as StepGroup, StepGroupProps } from './dist/commonjs/elements/Step/StepGroup';
 export { default as StepTitle, StepTitleProps } from './dist/commonjs/elements/Step/StepTitle';
+
+// Generics
+export * from './dist/commonjs';
 
 // Modules
 export { default as Accordion, AccordionProps } from './dist/commonjs/modules/Accordion/Accordion';

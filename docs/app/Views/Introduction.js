@@ -59,7 +59,7 @@ const RatingJSX = '<Rating rating={1} maxRating={5} />'
 const RatingHTML = `<div
   class="ui rating"
   data-rating="1"
-  data-max-rating="3"
+  data-max-rating="5"
 ></div>`
 
 const MessageIconJSX = `<Message
@@ -110,7 +110,7 @@ const MenuItemLinkAugmentationJSX = `import { Link } from 'react-router-dom'
   </Menu.Item>
 </Menu>`
 const MenuItemLinkAugmentationHTML = `<div class="ui menu">
-  <a class="item">
+  <a class="item" href="/home">
     Home
   </a>
 </div>`
@@ -206,7 +206,7 @@ const Introduction = () => (
       <Header as='h2' dividing>Augmentation</Header>
       <p>
         Control the rendered HTML tag, or render one component <code>as</code> another component.
-        Extra props are passed to the component you are rending <code>as</code>.
+        Extra props are passed to the component you are rendering <code>as</code>.
       </p>
 
       <p>

@@ -1,9 +1,9 @@
 import cx from 'classnames'
-import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React from 'react'
 
 import {
+  childrenUtils,
   createShorthandFactory,
   customPropTypes,
   getElementType,
@@ -16,12 +16,7 @@ import {
  * A content sub-component for Accordion component.
  */
 function AccordionContent(props) {
-  const {
-    active,
-    children,
-    className,
-    content,
-  } = props
+  const { active, children, className, content } = props
   const classes = cx(
     'content',
     useKeyOnly(active, 'active'),
@@ -32,7 +27,7 @@ function AccordionContent(props) {
 
   return (
     <ElementType {...rest} className={classes}>
-      {_.isNil(children) ? content : children}
+      {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
 }

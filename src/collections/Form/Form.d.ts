@@ -16,6 +16,9 @@ export interface FormProps {
   /** An element type to render as (string or function). */
   as?: any;
 
+  /** The HTML form action */
+  action?: string;
+
   /** Primary content. */
   children?: React.ReactNode;
 
@@ -30,6 +33,9 @@ export interface FormProps {
 
   /** Automatically show a loading indicator. */
   loading?: boolean;
+
+  /** The HTML form submit handler. */
+  onSubmit?: (event: React.FormEvent<HTMLElement>, data: FormProps) => void;
 
   /** A comment can contain a form to reply to a comment. This may have arbitrary content. */
   reply?: boolean;
@@ -47,7 +53,7 @@ export interface FormProps {
   widths?: 'equal';
 }
 
-interface FormComponent extends React.StatelessComponent<FormProps> {
+export interface FormComponent extends React.StatelessComponent<FormProps> {
   Field: typeof FormField;
   Button: typeof FormButton;
   Checkbox: typeof FormCheckbox;

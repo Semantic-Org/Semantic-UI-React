@@ -118,7 +118,7 @@ Once you change the flag, you need to refresh your browser to see the changes in
 |-----------------|-----------------|-----------------|-----------------|--------------------|
 | ✓ Button        | ✓ Breadcrumb    | ✓ Advertisement | ✓ Accordion     |   Form Validation  |
 | ✓ Container     | ✓ Form          | ✓ Card          | ✓ Checkbox      | *API (NA)*         |
-| ✓ Divider       | ✓ Grid          | ✓ Comment       | ✓ Dimmer        | *Visibility (NA)*  |
+| ✓ Divider       | ✓ Grid          | ✓ Comment       | ✓ Dimmer        | ✓ Visibility (NA)  |
 | ✓ Flag          | ✓ Menu          | ✓ Feed          | ✓ Dropdown      |                    |
 | ✓ Header        | ✓ Message       | ✓ Item          | ✓ Embed         |                    |
 | ✓ Icon          | ✓ Table         | ✓ Statistic     | ✓ Modal         |                    |
@@ -129,7 +129,7 @@ Once you change the flag, you need to refresh your browser to see the changes in
 | ✓ Loader        |                 |                 |   Shape         |                    |
 | ✓ Rail          |                 |                 | ✓ Sidebar       |                    |
 | ✓ Reveal        |                 |                 |   Sticky        |                    |
-| ✓ Segment       |                 |                 |   Tab           |                    |
+| ✓ Segment       |                 |                 | ✓ Tab           |                    |
 | ✓ Step          |                 |                 |   Transition    |                    |
 
 ## Our Principles
@@ -172,13 +172,13 @@ git push
 
 ## Credit
 
-Made with :heart: [@TechnologyAdvice][9], a ridiculous [place to work][16].
+Originally made for [@TechnologyAdvice][9] by [@levithomason][26].
 
 Big thanks to our [contributors][20], especially:
 
-- @jamiehill for early engineering and support
-- @jcarbo for thoughtful engineering and continual support
 - @layershifter for bringing momentum and continual support
+- @jcarbo for thoughtful engineering and continual support
+- @jamiehill for early engineering and support
 
 [1]: https://github.com/Semantic-Org/Semantic-UI-React/blob/master/.github/CONTRIBUTING.md
 [2]: https://react.semantic-ui.com/
@@ -195,7 +195,6 @@ Big thanks to our [contributors][20], especially:
 [13]: https://webpack.github.io
 [14]: https://github.com/Semantic-Org/Semantic-UI-React/issues
 [15]: https://github.com/skywinder/github-changelog-generator
-[16]: http://technologyadvice.com/careers
 [17]: https://github.com/Semantic-Org/Semantic-UI-React/issues?q=is%3Aissue+is%3Aopen+label%3A%22new+component%22
 [18]: https://github.com/Semantic-Org/Semantic-UI-React/blob/master/CHANGELOG.md
 [19]: https://github.com/Semantic-Org/Semantic-UI-React/issues?q=is%3Aopen+RFC+label%3ARFC
@@ -206,6 +205,8 @@ Big thanks to our [contributors][20], especially:
 [24]: https://github.com/Semantic-Org/Semantic-UI-React/issues/802#issuecomment-258990274
 [25]: http://learnsemantic.com/themes/creating.html
 [26]: https://github.com/Semantic-Org/Semantic-UI-Meteor
+[26]: https://github.com/levithomason
+
 <!-- Examples -->
 [100]: https://github.com/wyc/semantic-ui-react-todos
 [101]: https://github.com/reactjs/redux/tree/master/examples/todos

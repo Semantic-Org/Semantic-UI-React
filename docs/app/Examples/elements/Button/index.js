@@ -1,10 +1,12 @@
 import React from 'react'
-import Types from './Types'
-import Groups from './Groups'
+
 import Content from './Content'
-import States from './States'
-import Variations from './Variations'
+import Groups from './Groups'
 import GroupVariations from './GroupVariations'
+import States from './States'
+import Types from './Types'
+import Variations from './Variations'
+import Usage from './Usage'
 
 const ButtonExamples = () => (
   <div>
@@ -14,6 +16,7 @@ const ButtonExamples = () => (
     <States />
     <Variations />
     <GroupVariations />
+    <Usage />
   </div>
 )
 

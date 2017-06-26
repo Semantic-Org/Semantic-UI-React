@@ -14,7 +14,7 @@ export interface AccordionProps extends AccordionAccordionProps {
   fluid?: boolean;
 
   /** Format for dark backgrounds. */
-  inverted?: string;
+  inverted?: boolean;
 
   /** Adds some basic styling to accordion panels. */
   styled?: boolean;

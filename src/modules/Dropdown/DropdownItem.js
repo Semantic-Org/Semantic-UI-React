@@ -6,6 +6,7 @@ import React, { Component } from 'react'
 import {
   childrenUtils,
   createShorthand,
+  createShorthandFactory,
   customPropTypes,
   META,
   getElementType,
@@ -20,7 +21,7 @@ import Label from '../../elements/Label'
 /**
  * An item sub-component for Dropdown component.
  */
-export default class DropdownItem extends Component {
+class DropdownItem extends Component {
   static propTypes = {
     /** An element type to render as (string or function). */
     as: customPropTypes.as,
@@ -125,7 +126,7 @@ export default class DropdownItem extends Component {
       'aria-selected': selected,
     }
 
-    if (!_.isNil(children)) {
+    if (!childrenUtils.isNil(children)) {
       return (
         <ElementType {...rest} {...ariaOptions} className={classes} onClick={this.handleClick}>
           {children}
@@ -162,3 +163,7 @@ export default class DropdownItem extends Component {
     )
   }
 }
+
+DropdownItem.create = createShorthandFactory(DropdownItem, opts => opts)
+
+export default DropdownItem
