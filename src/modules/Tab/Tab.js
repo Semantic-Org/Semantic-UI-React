@@ -74,7 +74,7 @@ class Tab extends Component {
 
   static Pane = TabPane
 
-  initialState() {
+  getInitialState() {
     return { activeIndex: 0 }
   }
 

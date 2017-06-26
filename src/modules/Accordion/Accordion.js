@@ -95,7 +95,7 @@ export default class Accordion extends Component {
   static Content = AccordionContent
   static Title = AccordionTitle
 
-  initialState({ exclusive }) {
+  getInitialState({ exclusive }) {
     return { activeIndex: exclusive ? -1 : [-1] }
   }
 
