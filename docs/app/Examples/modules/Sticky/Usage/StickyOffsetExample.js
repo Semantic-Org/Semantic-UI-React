@@ -41,7 +41,7 @@ class StickyAdjacentContextExample extends Component {
               </Rail>
 
               <Rail position='right'>
-                <Sticky context={this.state.contextRef} bottomOffset={50} offset={50} pushing>
+                <Sticky bottomOffset={50} context={this.state.contextRef} offset={50} pushing>
                   <Header as='h3'>Stuck Content</Header>
                   <Image src='/assets/images/wireframe/image.png' />
                 </Sticky>
