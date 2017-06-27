@@ -148,9 +148,7 @@ export default class Sticky extends Component {
   update = (e) => {
     this.calcBoundingRects()
 
-    const state = this.state || {}
-
-    if (state.pushing) {
+    if (this.state.pushing) {
       if (this.hasReachedStartingPoint()) {
         return this.stickToContextTop(e)
       }

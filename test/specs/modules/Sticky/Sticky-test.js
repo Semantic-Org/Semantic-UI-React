@@ -90,8 +90,10 @@ describe('Sticky', () => {
 
     // Scroll back: component should still stick to context bottom
     scrollToContextBottom(wrapper, contextEl, { offset, height })
+    contextEl.getBoundingClientRect = () => ({ bottom: 0 })
+    window.dispatchEvent(new Event('scroll'))
     wrapper.childAt(1).props().style.should.have.property('position', 'fixed')
-    wrapper.childAt(1).props().style.should.have.property('top', 1)
+    wrapper.childAt(1).props().style.should.have.property('top', -100)
 
     // Scroll a bit before the top: component should stick to screen bottom
     scrollAfterTrigger(wrapper, contextEl, { bottomOffset, offset, height })
@@ -116,6 +118,18 @@ describe('Sticky', () => {
     // Component should stick again to the top
     wrapper.childAt(1).props().style.should.have.property('position', 'fixed')
     wrapper.childAt(1).props().style.should.have.property('top', offset)
+  })
+
+  it('should return true if oversized', () => {
+    const offset = 20
+    const bottomOffset = 15
+    const height = 100000
+    const contextEl = { getBoundingClientRect: () => ({}) }
+    const wrapper = mount(
+      <Sticky context={contextEl} bottomOffset={bottomOffset} offset={offset} pushing />
+    )
+    scrollAfterTrigger(wrapper, contextEl, { bottomOffset, offset, height })
+    wrapper.instance().isOversized().should.be.equal(true)
   })
 
   it('should fire onStick callback', () => {
