@@ -69,9 +69,10 @@ export default class Sticky extends Component {
     type: META.TYPES.MODULE,
   }
 
-  constructor(props) {
-    super(props)
-    this.state = { sticky: false, top: null, bottom: null }
+  state = {
+    sticky: false,
+    top: null,
+    bottom: null,
   }
 
   componentDidMount() {
