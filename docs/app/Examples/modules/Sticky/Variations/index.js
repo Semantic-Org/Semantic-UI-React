@@ -2,14 +2,14 @@ import React from 'react'
 import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
 import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
 
-const AccordionTypesExamples = () => (
-  <ExampleSection title='Types'>
+const StickyVariationsExamples = () => (
+  <ExampleSection title='Variations'>
     <ComponentExample
-      title='Sticking to Adjacent Context'
-      description='Sticky content attaches itself to the viewport when it is passed'
+      title='Oversized'
+      description='Sticky content that is larger than the viewport'
       examplePath='modules/Sticky/Variations/StickyOversizedExample'
     />
   </ExampleSection>
 )
 
-export default AccordionTypesExamples
+export default StickyVariationsExamples

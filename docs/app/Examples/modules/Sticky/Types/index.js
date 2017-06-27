@@ -2,7 +2,7 @@ import React from 'react'
 import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
 import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
 
-const AccordionTypesExamples = () => (
+const StickyTypesExamples = () => (
   <ExampleSection title='Types'>
     <ComponentExample
       title='Sticking to Adjacent Context'
@@ -10,11 +10,11 @@ const AccordionTypesExamples = () => (
       examplePath='modules/Sticky/Types/StickyAdjacentContextExample'
     />
     <ComponentExample
-      title='Sticking to Adjacent Context'
-      description='Sticky content attaches itself to the viewport when it is passed'
+      title='Pushing'
+      description='It will have the viewport "push" the sticky content depending on the scroll direction'
       examplePath='modules/Sticky/Types/StickyPushingExample'
     />
   </ExampleSection>
 )
 
-export default AccordionTypesExamples
+export default StickyTypesExamples
