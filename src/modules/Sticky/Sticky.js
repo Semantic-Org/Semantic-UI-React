@@ -76,12 +76,12 @@ export default class Sticky extends Component {
   }
 
   componentDidMount() {
-    this.update()
-    window.addEventListener('scroll', this.update)
+    this.handleUpdate()
+    window.addEventListener('scroll', this.handleUpdate)
   }
 
   componentWillUnmount() {
-    window.removeEventListener('scroll', this.update)
+    window.removeEventListener('scroll', this.handleUpdate)
   }
 
   calcBoundingRects() {
@@ -146,7 +146,7 @@ export default class Sticky extends Component {
     this.setState({ top: null, bottom: this.props.bottomOffset })
   }
 
-  update = (e) => {
+  handleUpdate = (e) => {
     this.calcBoundingRects()
 
     if (this.state.pushing) {
