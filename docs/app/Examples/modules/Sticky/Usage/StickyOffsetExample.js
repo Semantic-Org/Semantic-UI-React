@@ -4,9 +4,9 @@ import _ from 'lodash'
 
 const Placeholder = () => (
   <Image
-    style={{ marginTop: 14, marginBottom: 14 }}
     className='wireframe paragraph image'
     src='/assets/images/wireframe/paragraph.png'
+    style={{ marginBottom: 14, marginTop: 14 }}
   />
 )
 

@@ -6,7 +6,7 @@ const Placeholder = () => (
   <Image
     className='wireframe paragraph image'
     src='/assets/images/wireframe/paragraph.png'
-    style={{ marginTop: 14, marginBottom: 14 }}
+    style={{ marginBottom: 14, marginTop: 14 }}
   />
 )
 
