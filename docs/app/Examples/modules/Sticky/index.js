@@ -3,7 +3,7 @@ import Types from './Types'
 import Variations from './Variations'
 import Usage from './Usage'
 
-const AccordionExamples = () => (
+const StickyExamples = () => (
   <div>
     <Types />
     <Variations />
@@ -12,4 +12,4 @@ const AccordionExamples = () => (
   </div>
 )
 
-export default AccordionExamples
+export default StickyExamples
