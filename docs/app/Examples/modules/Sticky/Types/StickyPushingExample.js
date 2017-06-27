@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Grid, Header, Image, Rail, Segment, Sticky } from 'semantic-ui-react'
+import _ from 'lodash'
 
 const Placeholder = () => (
   <Image
@@ -27,7 +28,7 @@ class StickyAdjacentContextExample extends Component {
         <Grid.Column>
           <div ref={this.handleContextRef}>
             <Segment>
-              {[...new Array(10)].map((v, i) => <Placeholder key={i} />)}
+              {_.times(10, i => <Placeholder key={i} />)}
 
               <Rail position='left'>
                 <Sticky context={this.state.contextRef} pushing>
