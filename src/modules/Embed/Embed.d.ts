@@ -39,6 +39,9 @@ export interface EmbedProps {
   /** Specifies an id for source. */
   id?: string;
 
+  /** Shorthand for HTML iframe. */
+  iframe?: any;
+
   /**
    * Сalled on click.
    *

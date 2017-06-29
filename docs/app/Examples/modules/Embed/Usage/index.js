@@ -10,6 +10,11 @@ const EmbedUsageExamples = () => (
       description='Settings to configure video behavior.'
       examplePath='modules/Embed/Usage/EmbedExampleSettings'
     />
+    <ComponentExample
+      title='Iframe'
+      description='You can pass props to a shorthand.'
+      examplePath='modules/Embed/Usage/EmbedExampleIframe'
+    />
   </ExampleSection>
 )
 
