@@ -27,7 +27,7 @@ export interface TabProps {
   onTabChange?: (event: React.MouseEvent<HTMLDivElement>, data: TabProps) => void;
 
   /** Shorthand props for the Menu. */
-  panes?: any;
+  panes?: Array<{menuItem: string; render: () => React.ReactNode;}>;
 }
 
 interface TabComponent extends React.ComponentClass<TabProps> {
