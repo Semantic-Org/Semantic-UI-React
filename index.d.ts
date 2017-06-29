@@ -157,7 +157,7 @@ export { default as SidebarPushable, SidebarPushableProps } from './dist/commonj
 export { default as SidebarPusher, SidebarPusherProps } from './dist/commonjs/modules/Sidebar/SidebarPusher';
 
 export { default as Tab, TabProps} from './dist/commonjs/modules/Tab';
-export { default, TabPaneProps } from './dist/commonjs/modules/Tab/TabPane';
+export { default as TabPane, TabPaneProps } from './dist/commonjs/modules/Tab/TabPane';
 
 // Views
 export { default as Advertisement, AdvertisementProps } from './dist/commonjs/views/Advertisement';
