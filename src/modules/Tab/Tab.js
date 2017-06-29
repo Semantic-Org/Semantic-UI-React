@@ -74,8 +74,8 @@ class Tab extends Component {
 
   static Pane = TabPane
 
-  state = {
-    activeIndex: 0,
+  getInitialState() {
+    return { activeIndex: 0 }
   }
 
   handleItemClick = (e, { index }) => {
