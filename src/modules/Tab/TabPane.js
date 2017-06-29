@@ -53,7 +53,7 @@ TabPane.propTypes = {
   as: customPropTypes.as,
 
   /** Primary content. */
-  children: PropTypes.string,
+  children: PropTypes.node,
 
   /** Additional classes. */
   className: PropTypes.string,
