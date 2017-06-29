@@ -966,8 +966,8 @@ export default class Dropdown extends Component {
   // ----------------------------------------
 
   handleIconOverrides = predefinedProps => ({
-    onClick: (e, props) => {
-      _.invoke(predefinedProps, 'onClick', e, props)
+    onClick: (e) => {
+      _.invoke(predefinedProps, 'onClick', e, predefinedProps)
       this.handleIconClick(e)
     },
   })
