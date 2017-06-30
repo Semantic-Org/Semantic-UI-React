@@ -21,6 +21,10 @@ const InputStatesExamples = () => (
     </ComponentExample>
     <ComponentExample examplePath='elements/Input/States/InputExampleLeftLoading' />
     <ComponentExample
+      description='An input field can show that it is currently loading data without an icon, too.'
+      examplePath='elements/Input/States/InputExampleLoadingWithoutIcon'
+    />
+    <ComponentExample
       title='Disabled'
       description='An input field can show that it is disabled.'
       examplePath='elements/Input/States/InputExampleDisabled'

@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 
 import {
+  childrenUtils,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -39,7 +40,7 @@ function ItemGroup(props) {
   const rest = getUnhandledProps(ItemGroup, props)
   const ElementType = getElementType(ItemGroup, props)
 
-  if (!_.isNil(children)) {
+  if (!childrenUtils.isNil(children)) {
     return <ElementType {...rest} className={classes}>{children}</ElementType>
   }
 

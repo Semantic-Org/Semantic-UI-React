@@ -4,11 +4,11 @@ import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
 import {
+  childrenUtils,
   customPropTypes,
   createShorthandFactory,
   getElementType,
   getUnhandledProps,
-  makeDebugger,
   META,
   SUI,
   useKeyOnly,
@@ -20,8 +20,6 @@ import Label from '../Label/Label'
 import ButtonContent from './ButtonContent'
 import ButtonGroup from './ButtonGroup'
 import ButtonOr from './ButtonOr'
-
-const debug = makeDebugger('button')
 
 /**
  * A Button indicates a possible user action.
@@ -175,22 +173,26 @@ class Button extends Component {
     if (ElementType === 'div') return 0
   }
 
+  focus = () => _.invoke(this.ref, 'focus')
+
   handleClick = (e) => {
-    const { disabled, onClick } = this.props
+    const { disabled } = this.props
 
     if (disabled) {
       e.preventDefault()
       return
     }
 
-    if (onClick) onClick(e, this.props)
+    _.invoke(this.props, 'onClick', e, this.props)
   }
+
+  handleRef = c => (this.ref = c)
 
   hasIconClass = () => {
     const { labelPosition, children, content, icon } = this.props
 
     if (icon === true) return true
-    return icon && (labelPosition || (_.isNil(children) && _.isNil(content)))
+    return icon && (labelPosition || (childrenUtils.isNil(children) && _.isNil(content)))
   }
 
   render() {
@@ -252,32 +254,18 @@ class Button extends Component {
     const ElementType = getElementType(Button, this.props, this.computeElementType)
     const tabIndex = this.computeTabIndex(ElementType)
 
-    if (!_.isNil(children)) {
-      const classes = cx('ui', baseClasses, wrapperClasses, labeledClasses, 'button', className)
-      debug('render children:', { classes })
-
-      return (
-        <ElementType {...rest} className={classes} tabIndex={tabIndex} onClick={this.handleClick}>
-          {children}
-        </ElementType>
-      )
-    }
-
-    const labelElement = Label.create(label, { defaultProps: {
-      basic: true,
-      pointing: labelPosition === 'left' ? 'right' : 'left',
-    } })
-
-    if (labelElement) {
-      const classes = cx('ui', baseClasses, 'button', className)
+    if (!_.isNil(label)) {
+      const buttonClasses = cx('ui', baseClasses, 'button', className)
       const containerClasses = cx('ui', labeledClasses, 'button', className, wrapperClasses)
-
-      debug('render label:', { classes, containerClasses }, this.props)
+      const labelElement = Label.create(label, { defaultProps: {
+        basic: true,
+        pointing: labelPosition === 'left' ? 'right' : 'left',
+      } })
 
       return (
         <ElementType {...rest} className={containerClasses} onClick={this.handleClick}>
           {labelPosition === 'left' && labelElement}
-          <button className={classes} tabIndex={tabIndex}>
+          <button className={buttonClasses} disabled={disabled} ref={this.handleRef} tabIndex={tabIndex}>
             {Icon.create(icon)} {content}
           </button>
           {(labelPosition === 'right' || !labelPosition) && labelElement}
@@ -285,23 +273,21 @@ class Button extends Component {
       )
     }
 
-    if (!_.isNil(icon) && _.isNil(label)) {
-      const classes = cx('ui', labeledClasses, baseClasses, 'button', className, wrapperClasses)
-      debug('render icon && !label:', { classes })
-
-      return (
-        <ElementType {...rest} className={classes} tabIndex={tabIndex} onClick={this.handleClick}>
-          {Icon.create(icon)} {content}
-        </ElementType>
-      )
-    }
-
-    const classes = cx('ui', labeledClasses, baseClasses, 'button', className, wrapperClasses)
-    debug('render default:', { classes })
+    const classes = cx('ui', baseClasses, wrapperClasses, labeledClasses, 'button', className)
+    const hasChildren = !childrenUtils.isNil(children)
 
     return (
-      <ElementType {...rest} className={classes} tabIndex={tabIndex} onClick={this.handleClick}>
-        {content}
+      <ElementType
+        {...rest}
+        className={classes}
+        disabled={(disabled && ElementType === 'button') || undefined}
+        onClick={this.handleClick}
+        ref={this.handleRef}
+        tabIndex={tabIndex}
+      >
+        {hasChildren && children}
+        {!hasChildren && Icon.create(icon)}
+        {!hasChildren && content}
       </ElementType>
     )
   }

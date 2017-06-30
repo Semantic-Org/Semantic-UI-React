@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 
 import {
+  childrenUtils,
   createShorthandFactory,
   customPropTypes,
   getElementType,
@@ -23,7 +24,7 @@ function MessageList(props) {
 
   return (
     <ElementType {...rest} className={classes}>
-      {_.isNil(children) ? _.map(items, MessageItem.create) : children}
+      {childrenUtils.isNil(children) ? _.map(items, MessageItem.create) : children}
     </ElementType>
   )
 }

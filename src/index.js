@@ -141,6 +141,9 @@ export { default as Sidebar } from './modules/Sidebar'
 export { default as SidebarPushable } from './modules/Sidebar/SidebarPushable'
 export { default as SidebarPusher } from './modules/Sidebar/SidebarPusher'
 
+export { default as Tab } from './modules/Tab'
+export { default as TabPane } from './modules/Tab/TabPane'
+
 // Views
 export { default as Advertisement } from './views/Advertisement'
 

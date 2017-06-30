@@ -196,7 +196,6 @@ export default class Search extends Component {
   static Results = SearchResults
 
   componentWillMount() {
-    if (super.componentWillMount) super.componentWillMount()
     debug('componentWillMount()')
     const { open, value } = this.state
 
@@ -649,7 +648,9 @@ export default class Search extends Component {
     )
     const unhandled = getUnhandledProps(Search, this.props)
     const ElementType = getElementType(Search, this.props)
-    const [htmlInputProps, rest] = partitionHTMLInputProps(unhandled, htmlInputAttrs)
+    const [htmlInputProps, rest] = partitionHTMLInputProps(unhandled, {
+      htmlProps: htmlInputAttrs,
+    })
 
     return (
       <ElementType
