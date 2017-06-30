@@ -39,7 +39,7 @@ class Input extends Component {
     ]),
 
     /** An action can appear along side an Input on the left or right. */
-    actionPosition: PropTypes.oneOf(['left']),
+    actionPosition: PropTypes.oneOf(['left', 'right']),
 
     /** Primary content. */
     children: PropTypes.node,
@@ -66,7 +66,7 @@ class Input extends Component {
     ]),
 
     /** An Icon can appear inside an Input on the left or right. */
-    iconPosition: PropTypes.oneOf(['left']),
+    iconPosition: PropTypes.oneOf(['left', 'right']),
 
     /** Shorthand for creating the HTML Input. */
     input: customPropTypes.itemShorthand,
