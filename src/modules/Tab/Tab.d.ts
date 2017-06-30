@@ -28,7 +28,7 @@ export interface TabProps {
 
   /** Shorthand props for the Menu. */
   panes?: Array<{
-    menuItem: string;
+    menuItem: any;
     render: () => React.ReactNode;
   }>;
 }
