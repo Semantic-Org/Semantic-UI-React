@@ -138,6 +138,14 @@ export default class Search extends Component {
     onResultSelect: PropTypes.func,
 
     /**
+     * Called when the active selection index is changed.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props.
+     */
+    onActiveSelectionChange: PropTypes.func,
+
+    /**
      * Called on search input change.
      *
      * @param {SyntheticEvent} event - React's original SyntheticEvent.
@@ -287,6 +295,13 @@ export default class Search extends Component {
     debug(result)
     const { onResultSelect } = this.props
     if (onResultSelect) onResultSelect(e, result)
+  }
+
+  handleActiveSelectionChange = () => {
+    debug('handleActiveSelectionChange()')
+    const { onActiveSelectionChange } = this.props
+    const result = this.getSelectedResult()
+    if (onActiveSelectionChange) onActiveSelectionChange(result)
   }
 
   closeOnEscape = (e) => {
@@ -466,6 +481,7 @@ export default class Search extends Component {
 
     this.setState({ selectedIndex: nextIndex })
     this.scrollSelectedItemIntoView()
+    this.handleActiveSelectionChange()
   }
 
   // ----------------------------------------
