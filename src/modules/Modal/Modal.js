@@ -143,8 +143,6 @@ class Modal extends Component {
   static Description = ModalDescription
   static Actions = ModalActions
 
-  state = {}
-
   componentWillUnmount() {
     debug('componentWillUnmount()')
     this.handlePortalUnmount()
