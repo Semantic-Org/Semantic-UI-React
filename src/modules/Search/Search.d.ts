@@ -105,15 +105,15 @@ export interface SearchProps {
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
    * @param {object} data - All props.
    */
-  onResultSelect?: (event: React.MouseEvent<HTMLDivElement>, data: SearchResultProps) => void;
+  onResultSelect?: (event: React.MouseEvent<HTMLDivElement>, data: SearchProps) => void;
 
   /**
    * Called on search input change.
    *
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
-   * @param {string} value - Current value of search input.
+   * @param {object} data - All props, includes current value of search input.
    */
-  onSearchChange?: (event: React.MouseEvent<HTMLElement>, value: string) => void;
+  onSearchChange?: (event: React.MouseEvent<HTMLElement>, data: SearchProps) => void;
 
   // ------------------------------------
   // Style
