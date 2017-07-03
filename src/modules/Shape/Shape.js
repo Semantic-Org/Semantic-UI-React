@@ -136,14 +136,49 @@ export default class Shape extends Component {
     return style
   }
 
+  actualRect = el => {
+    const { style } = el
+    const prev = _.pick(el.style, ['display', 'left', 'position', 'visibility'])
+
+    style.display = 'block'
+    style.visibility = 'hidden'
+    style.position = 'absolute'
+    style.left = '-9999px'
+
+    const rect = {
+      height: el.clientHeight
+    }
+
+    style.display = prev.display
+    style.visibility = prev.visibility
+    style.position = prev.position
+    style.left = prev.left
+
+    return rect
+  }
+
   computeSideParams = () => {
     const { animation } = this.props
     const { activeIndex, prevIndex } = this.state
 
     console.log(animation, this.sideRefs[activeIndex], this.sideRefs[prevIndex])
-    const activeRect = this.sideRefs[activeIndex].getBoundingClientRect()
-    const prevRect = this.sideRefs[prevIndex].getBoundingClientRect()
-console.log( activeRect, prevRect)
+    const activeRect = this.actualRect(this.sideRefs[activeIndex].el())
+    const prevRect = this.actualRect(this.sideRefs[prevIndex].el())
+// console.log(this.actualRect(this.sideRefs[activeIndex].el()), this.actualRect(this.sideRefs[prevIndex].el()))
+
+    // prev
+    // side active hidden
+    // transform: rotateY(0deg) translateZ(145px); transition-duration: 50000ms;
+
+    // next
+    // side animating
+    // left: 0px; transform: rotateY(-90deg) translateZ(145px); transition-duration: 50000ms;
+
+    return {
+      deg: 90,
+      x: 0,
+      z: -145,
+    }
 
     if(animation === 'flip down') {
       return {
@@ -225,12 +260,18 @@ console.log( activeRect, prevRect)
   computeSidesStyle = () => {
     const { duration } = this.props
     const { animating } = this.state
-
+console.log(animating)
     if(!animating) return {}
-    const { deg, y, z } = this.computeSideParams()
+    const { deg, y, x, z } = this.computeSideParams()
+    // translateY(0px) translateZ(-145px) rotateX(90deg)
+    // transform: translateX(0px) translateZ(-145px) rotateY(90deg); transition-duration: 50000ms;
+    console.log(this.computeSideParams(), x, y, z, {
+      transform: `translateX(${x}px) translateZ(${z}px) rotateX(${deg}deg)`,
+      transitionDuration: `${duration}ms`
+    })
 
     return {
-      transform: `translateY(${y}px) translateZ(${z}px) rotateX(${deg}deg)`,
+      transform: `translateX(${x}px) translateZ(${z}px) rotateX(${deg}deg)`,
       transitionDuration: `${duration}ms`
     }
   }

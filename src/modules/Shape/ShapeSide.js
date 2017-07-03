@@ -45,6 +45,8 @@ class ShapeSide extends Component {
     type: META.TYPES.MODULE,
   }
 
+  el = () => this.ref
+
   getBoundingClientRect = () => this.ref.getBoundingClientRect()
 
   handleRef = c => (this.ref = c)
