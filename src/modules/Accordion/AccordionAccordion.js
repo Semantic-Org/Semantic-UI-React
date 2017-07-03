@@ -86,14 +86,8 @@ export default class AccordionAccordion extends Component {
     parent: 'Accordion',
   }
 
-  state = {}
-
-  constructor(...args) {
-    super(...args)
-
-    this.state = {
-      activeIndex: this.props.exclusive ? -1 : [-1],
-    }
+  getInitialState({ exclusive }) {
+    return { activeIndex: exclusive ? -1 : [-1] }
   }
 
   computeNewIndex = index => {
