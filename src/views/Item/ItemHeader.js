@@ -1,9 +1,9 @@
 import cx from 'classnames'
-import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React from 'react'
 
 import {
+  childrenUtils,
   createShorthandFactory,
   customPropTypes,
   getElementType,
@@ -22,7 +22,7 @@ function ItemHeader(props) {
 
   return (
     <ElementType {...rest} className={classes}>
-      {_.isNil(children) ? content : children}
+      {childrenUtils.isNil(children) ? content : children}
     </ElementType>
   )
 }

@@ -172,6 +172,26 @@ describe('Checkbox', () => {
   })
 
   describe('onMouseDown', () => {
+    it('is called with (event { name, value, checked }) on label mouse down', () => {
+      const onMousedDown = sandbox.spy()
+      const expectProps = { name: 'foo', value: 'bar', checked: false, indeterminate: true }
+      mount(<Checkbox onMouseDown={onMousedDown} {...expectProps} />)
+        .simulate('mousedown')
+
+      onMousedDown.should.have.been.calledOnce()
+      onMousedDown.should.have.been.calledWithMatch({}, {
+        ...expectProps,
+        checked: expectProps.checked,
+        indeterminate: expectProps.indeterminate,
+      })
+    })
+    it('prevents default event', () => {
+      const preventDefault = sandbox.spy()
+      const wrapper = shallow(<Checkbox />)
+
+      wrapper.simulate('mousedown', { preventDefault })
+      preventDefault.should.have.been.calledOnce()
+    })
     it('sets focus to container', () => {
       const mountNode = document.createElement('div')
       document.body.appendChild(mountNode)

@@ -1,10 +1,10 @@
 import cx from 'classnames'
-import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React from 'react'
 
 import {
   AutoControlledComponent as Component,
+  childrenUtils,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -106,8 +106,6 @@ export default class Embed extends Component {
     type: META.TYPES.MODULE,
   }
 
-  state = {}
-
   getSrc() {
     const {
       autoplay = true,
@@ -182,7 +180,7 @@ export default class Embed extends Component {
     const { active } = this.state
 
     if (!active) return null
-    if (!_.isNil(children)) return <div className='embed'>{children}</div>
+    if (!childrenUtils.isNil(children)) return <div className='embed'>{children}</div>
 
     return (
       <div className='embed'>

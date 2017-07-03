@@ -55,7 +55,6 @@ describe('Input', () => {
 
   common.implementsButtonProp(Input, {
     propKey: 'action',
-    shorthandDefaultProps: { className: 'button' },
   })
   common.implementsCreateMethod(Input)
   common.implementsLabelProp(Input, {
@@ -92,7 +91,7 @@ describe('Input', () => {
       <Input>
         {true && <span></span>}
         {false && <div></div>}
-      </Input>
+      </Input>,
     )
       .should.contain(<span></span>)
       .should.not.contain(<div></div>)
@@ -125,7 +124,7 @@ describe('Input', () => {
         const wrapper = shallow(
           <Input {...{ [propName]: propValue }}>
             <input />
-          </Input>
+          </Input>,
         )
 
         // account for overloading the onChange prop
@@ -192,7 +191,7 @@ describe('Input', () => {
       const wrapper = shallow(
         <Input {...props}>
           <input />
-        </Input>
+        </Input>,
       )
 
       wrapper.find('input').simulate('change', e)

@@ -71,6 +71,35 @@ describe('Button', () => {
     })
   })
 
+  describe('disabled', () => {
+    it('is not set by default', () => {
+      shallow(<Button />)
+        .should.not.have.prop('disabled')
+    })
+
+    it('applied when defined', () => {
+      shallow(<Button disabled />)
+        .should.have.prop('disabled', true)
+    })
+
+    it("don't apply when the element's type isn't button", () => {
+      shallow(<Button as='div' disabled />)
+        .should.not.have.prop('disabled')
+    })
+
+    it('is not set by default when has a label', () => {
+      shallow(<Button label='foo' />)
+        .find('button')
+        .should.not.have.prop('disabled')
+    })
+
+    it('applied when defined and has a label', () => {
+      shallow(<Button disabled label='foo' />)
+        .find('button')
+        .should.have.prop('disabled', true)
+    })
+  })
+
   describe('focus', () => {
     it('can be set via a ref', () => {
       const mountNode = document.createElement('div')
@@ -92,12 +121,19 @@ describe('Button', () => {
       shallow(<Button icon='user' />)
         .should.have.className('icon')
     })
+
+    it('adds className icon when true', () => {
+      shallow(<Button icon />)
+        .should.have.className('icon')
+    })
+
     it('does not add className icon when there is content', () => {
       shallow(<Button icon='user' content={0} />)
         .should.not.have.className('icon')
       shallow(<Button icon='user' content='Yo' />)
         .should.not.have.className('icon')
     })
+
     it('adds className icon given labelPosition and content', () => {
       shallow(<Button labelPosition='left' icon='user' content='My Account' />)
         .should.have.className('icon')

@@ -14,6 +14,8 @@ import {
  * @see Form
  */
 class TextArea extends Component {
+  state = {}
+
   static _meta = {
     name: 'TextArea',
     type: META.TYPES.ADDON,
@@ -34,13 +36,19 @@ class TextArea extends Component {
     onChange: PropTypes.func,
 
     /** Indicates row count for a TextArea. */
-    rows: PropTypes.number,
+    rows: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
 
     /** Custom TextArea style. */
     style: PropTypes.object,
 
     /** The value of the textarea. */
-    value: PropTypes.string,
+    value: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
   }
 
   static defaultProps = {
@@ -83,21 +91,38 @@ class TextArea extends Component {
     const { autoHeight } = this.props
     if (!this.ref || !autoHeight) return
 
-    let { borderTopWidth, borderBottomWidth } = window.getComputedStyle(this.ref)
-    borderTopWidth = parseInt(borderTopWidth, 10)
-    borderBottomWidth = parseInt(borderBottomWidth, 10)
+    const {
+      borderBottomWidth,
+      borderTopWidth,
+      lineHeight,
+      minHeight,
+      paddingBottom,
+      paddingTop,
+    } = window.getComputedStyle(this.ref)
 
-    this.ref.style.resize = 'none'
-    this.ref.style.height = 'auto'
-    this.ref.style.height = (this.ref.scrollHeight + borderTopWidth + borderBottomWidth) + 'px'
+    const boxModelHeight = _.sum([
+      borderBottomWidth,
+      borderTopWidth,
+      paddingBottom,
+      paddingTop,
+    ].map(x => parseFloat(x)))
+    const textRows = Math.max(this.ref.rows, this.ref.value.split('\n').length)
+    const textHeight = parseFloat(lineHeight) * textRows
+
+    // respect style.minHeight
+    this.setState((prevState, props) => ({
+      height: Math.max(parseFloat(minHeight), Math.ceil(boxModelHeight + textHeight)) + 'px',
+    }))
   }
 
   render() {
-    const { rows, style, value } = this.props
-    const minHeight = _.get(style, 'minHeight', 0)
+    const { autoHeight, rows, style, value } = this.props
+    const { height } = this.state
 
     const rest = getUnhandledProps(TextArea, this.props)
     const ElementType = getElementType(TextArea, this.props)
+
+    const resize = autoHeight ? 'none' : ''
 
     return (
       <ElementType
@@ -105,7 +130,7 @@ class TextArea extends Component {
         onChange={this.handleChange}
         ref={this.handleRef}
         rows={rows}
-        style={{ ...style, minHeight }}
+        style={{ height, resize, ...style }}
         value={value}
       />
     )

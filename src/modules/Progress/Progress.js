@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
 import {
+  childrenUtils,
   createHTMLDivision,
   customPropTypes,
   getElementType,
@@ -138,7 +139,7 @@ class Progress extends Component {
   renderLabel = () => {
     const { children, label } = this.props
 
-    if (!_.isNil(children)) return <div className='label'>{children}</div>
+    if (!childrenUtils.isNil(children)) return <div className='label'>{children}</div>
     return createHTMLDivision(label, { defaultProps: { className: 'label' } })
   }
 
