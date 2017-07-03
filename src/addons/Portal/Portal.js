@@ -136,8 +136,6 @@ class Portal extends Component {
     type: META.TYPES.ADDON,
   }
 
-  state = {}
-
   componentDidMount() {
     debug('componentDidMount()')
     this.renderPortal()

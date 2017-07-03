@@ -126,7 +126,7 @@ class DropdownItem extends Component {
       'aria-selected': selected,
     }
 
-    if (!_.isNil(children)) {
+    if (!childrenUtils.isNil(children)) {
       return (
         <ElementType {...rest} {...ariaOptions} className={classes} onClick={this.handleClick}>
           {children}
