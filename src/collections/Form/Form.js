@@ -94,10 +94,13 @@ class Form extends Component {
   static Select = FormSelect
   static TextArea = FormTextArea
 
-  handleSubmit = e => {
-    const { action, onSubmit } = this.props
-    if (!action) e.preventDefault()
-    if (onSubmit) onSubmit(e, { ...this.props })
+  handleSubmit = (e, ...args) => {
+    const { action } = this.props
+
+    // Heads up! Third party libs can pass own data as first argument, we need to check that it has preventDefault()
+    // method.
+    if (!action) _.invoke(e, 'preventDefault')
+    _.invoke(this.props, 'onSubmit', e, this.props, ...args)
   }
 
   render() {
@@ -130,7 +133,7 @@ class Form extends Component {
     const rest = getUnhandledProps(Form, this.props)
     const ElementType = getElementType(Form, this.props)
 
-    return <ElementType {...rest} onSubmit={this.handleSubmit} className={classes}>{children}</ElementType>
+    return <ElementType {...rest} className={classes} onSubmit={this.handleSubmit}>{children}</ElementType>
   }
 }
 

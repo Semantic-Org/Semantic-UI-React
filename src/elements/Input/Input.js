@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import React, { Children, cloneElement, Component } from 'react'
 
 import {
+  childrenUtils,
   createHTMLInput,
   createShorthandFactory,
   customPropTypes,
@@ -209,7 +210,7 @@ class Input extends Component {
 
     // Render with children
     // ----------------------------------------
-    if (!_.isNil(children)) {
+    if (!childrenUtils.isNil(children)) {
       // add htmlInputProps to the `<input />` child
       const childElements = _.map(Children.toArray(children), (child) => {
         if (child.type !== 'input') return child
@@ -221,7 +222,7 @@ class Input extends Component {
 
     // Render Shorthand
     // ----------------------------------------
-    const actionElement = Button.create(action, { defaultProps: { className: 'button' } })
+    const actionElement = Button.create(action)
     const iconElement = Icon.create(this.computeIcon())
     const labelElement = Label.create(label, {
       defaultProps: {

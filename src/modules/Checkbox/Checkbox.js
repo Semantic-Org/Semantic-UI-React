@@ -128,8 +128,6 @@ export default class Checkbox extends Component {
     type: META.TYPES.MODULE,
   }
 
-  state = {}
-
   componentDidMount() {
     this.setIndeterminate()
   }

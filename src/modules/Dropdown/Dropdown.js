@@ -5,6 +5,7 @@ import React, { Children, cloneElement } from 'react'
 
 import {
   AutoControlledComponent as Component,
+  childrenUtils,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -357,7 +358,6 @@ export default class Dropdown extends Component {
   static Menu = DropdownMenu
 
   componentWillMount() {
-    if (super.componentWillMount) super.componentWillMount()
     debug('componentWillMount()')
     const { open, value } = this.state
 
@@ -1153,7 +1153,7 @@ export default class Dropdown extends Component {
     const ariaOptions = this.getDropdownMenuAriaOptions()
 
     // single menu child
-    if (!_.isNil(children)) {
+    if (!childrenUtils.isNil(children)) {
       const menuChild = Children.only(children)
       const className = cx(menuClasses, menuChild.props.className)
 

@@ -16,7 +16,7 @@ export interface MenuProps {
   as?: any;
 
   /** Index of the currently active item. */
-  activeIndex?: number;
+  activeIndex?: number | string;
 
   /** A menu may be attached to other content segments. */
   attached?: boolean | 'bottom' | 'top';
@@ -37,7 +37,7 @@ export interface MenuProps {
   compact?: boolean;
 
   /** Initial activeIndex value. */
-  defaultActiveIndex?: number;
+  defaultActiveIndex?: number | string;
 
   /** A menu can be fixed to a side of its context. */
   fixed?: 'left'| 'right'| 'bottom'| 'top';

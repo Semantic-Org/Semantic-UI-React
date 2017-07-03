@@ -1,9 +1,9 @@
 import cx from 'classnames'
-import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React from 'react'
 
 import {
+  childrenUtils,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -21,7 +21,7 @@ function StatisticLabel(props) {
 
   return (
     <ElementType {...rest} className={classes}>
-      {_.isNil(children) ? label : children}
+      {childrenUtils.isNil(children) ? label : children}
     </ElementType>
   )
 }

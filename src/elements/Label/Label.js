@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
 import {
+  childrenUtils,
   createShorthand,
   createShorthandFactory,
   customPropTypes,
@@ -192,7 +193,7 @@ export default class Label extends Component {
     const rest = getUnhandledProps(Label, this.props)
     const ElementType = getElementType(Label, this.props)
 
-    if (!_.isNil(children)) {
+    if (!childrenUtils.isNil(children)) {
       return <ElementType {...rest} className={classes} onClick={this.handleClick}>{children}</ElementType>
     }
 
