@@ -125,15 +125,13 @@ export default class Sticky extends Component {
   }
 
   stickToContextTop = (e) => {
-    const { onTop } = this.props
-    if (e && onTop) onTop(e)
+    if (e) _.invoke(this.props, 'onTop', e, this.props)
     this.unstick(e)
     this.setPushing(false)
   }
 
   stickToContextBottom = (e) => {
-    const { onBottom } = this.props
-    if (e && onBottom) onBottom(e)
+    if (e) _.invoke(this.props, 'onBottom', e, this.props)
     this.stick(e)
     this.setState({
       top: this.contextBoundingRect.bottom - this.stickyBoundingRect.height,
