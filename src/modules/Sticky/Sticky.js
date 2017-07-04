@@ -9,10 +9,7 @@ import {
   META,
 } from '../../lib'
 
-/**
- * Sticky content stays fixed to the browser viewport while
- * another column of content is visible on the page.
- */
+ /* Sticky content stays fixed to the browser viewport while another column of content is visible on the page. */
 export default class Sticky extends Component {
   static propTypes = {
     /** An element type to render as (string or function). */
