@@ -1,9 +1,9 @@
 import cx from 'classnames'
-import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
 import {
+  childrenUtils,
   createShorthandFactory,
   customPropTypes,
   getElementType,
@@ -114,7 +114,7 @@ export default class Dimmer extends Component {
     const rest = getUnhandledProps(Dimmer, this.props)
     const ElementType = getElementType(Dimmer, this.props)
 
-    const childrenContent = _.isNil(children) ? content : children
+    const childrenContent = childrenUtils.isNil(children) ? content : children
 
     const dimmerElement = (
       <ElementType{...rest} className={classes} onClick={this.handleClick}>

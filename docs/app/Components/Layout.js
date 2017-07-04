@@ -4,7 +4,6 @@ import React, { Component } from 'react'
 
 import Sidebar from 'docs/app/Components/Sidebar/Sidebar'
 import style from 'docs/app/Style'
-import TAAttribution from 'docs/app/Components/TAAttribution/TAAttribution'
 import { scrollToAnchor } from 'docs/app/utils'
 
 const anchors = new AnchorJS({
@@ -50,7 +49,6 @@ export default class Layout extends Component {
         <Sidebar style={style.menu} />
         <div style={style.main}>
           {this.props.children}
-          <TAAttribution />
         </div>
       </div>
     )

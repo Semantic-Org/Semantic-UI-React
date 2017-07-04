@@ -27,7 +27,7 @@ export interface StickyProps {
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
    * @param {object} data - All props.
    */
-  onBottom?: (event: React.MouseEvent<HTMLElement>) => void;
+  onBottom?: (event: React.MouseEvent<HTMLElement>, data: StickyProps) => void;
 
   /**
    * Callback when element is fixed to page.
@@ -43,7 +43,7 @@ export interface StickyProps {
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
    * @param {object} data - All props.
    */
-  onTop?: (event: React.MouseEvent<HTMLElement>) => void;
+  onTop?: (event: React.MouseEvent<HTMLElement>, data: StickyProps) => void;
 
   /**
    * Callback when element is unfixed from page.

@@ -68,8 +68,11 @@ export const getAutoControlledStateValue = (propName, props, state, includeDefau
 }
 
 export default class AutoControlledComponent extends Component {
-  componentWillMount() {
+  constructor(...args) {
+    super(...args)
+
     const { autoControlledProps } = this.constructor
+    const state = _.invoke(this, 'getInitialState', this.props) || {}
 
     if (process.env.NODE_ENV !== 'production') {
       const { defaultProps, name, propTypes } = this.constructor
@@ -130,7 +133,7 @@ export default class AutoControlledComponent extends Component {
     // Also look for the default prop for any auto controlled props (foo => defaultFoo)
     // so we can set initial values from defaults.
     const initialAutoControlledState = autoControlledProps.reduce((acc, prop) => {
-      acc[prop] = getAutoControlledStateValue(prop, this.props, this.state, true)
+      acc[prop] = getAutoControlledStateValue(prop, this.props, state, true)
 
       if (process.env.NODE_ENV !== 'production') {
         const defaultPropName = getDefaultPropName(prop)
@@ -146,7 +149,7 @@ export default class AutoControlledComponent extends Component {
       return acc
     }, {})
 
-    this.state = { ...this.state, ...initialAutoControlledState }
+    this.state = { ...state, ...initialAutoControlledState }
   }
 
   componentWillReceiveProps(nextProps) {

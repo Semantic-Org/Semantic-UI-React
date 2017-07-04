@@ -94,9 +94,6 @@ export interface DropdownProps {
   /** A selection dropdown can allow multiple selections. */
   multiple?: boolean;
 
-  /** Name of the hidden input which holds the value. */
-  name?: string;
-
   /** Message to display when there are no results. */
   noResultsMessage?: string;
 
