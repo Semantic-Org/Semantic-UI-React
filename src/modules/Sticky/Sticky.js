@@ -115,7 +115,7 @@ export default class Sticky extends Component {
   }
 
   // Return true if the height of the component is higher than the window
-  isOversized = () => {
+  oversized = () => {
     return this.stickyBoundingRect.height > window.innerHeight
   }
 
@@ -167,7 +167,7 @@ export default class Sticky extends Component {
       return this.stickToScreenBottom(e)
     }
 
-    if (this.isOversized()) {
+    if (this.oversized()) {
       if (this.contextBoundingRect.top > 0) {
         return this.stickToContextTop(e)
       }
