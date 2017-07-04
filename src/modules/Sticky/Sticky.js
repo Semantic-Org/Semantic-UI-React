@@ -4,9 +4,9 @@ import React, { Component } from 'react'
 
 import {
   customPropTypes,
-  META,
   getElementType,
   getUnhandledProps,
+  META,
 } from '../../lib'
 
 /**
