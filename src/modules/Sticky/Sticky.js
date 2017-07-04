@@ -145,13 +145,13 @@ export default class Sticky extends Component {
   stickToScreenTop = (e) => {
     const { offset: top } = this.props
     this.stick(e)
-    this.setState({ top, bottom: null })
+    this.setState({ bottom: null, top })
   }
 
   stickToScreenBottom = (e) => {
     const { bottomOffset: bottom } = this.props
     this.stick(e)
-    this.setState({ top: null, bottom })
+    this.setState({ bottom, top: null })
   }
 
   handleUpdate = (e) => {
