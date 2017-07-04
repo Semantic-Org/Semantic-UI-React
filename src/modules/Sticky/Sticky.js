@@ -10,13 +10,15 @@ import {
 } from '../../lib'
 
 /**
- * Sticky content stays fixed to the browser viewport while
- * another column of content is visible on the page.
+ * Sticky content stays fixed to the browser viewport while another column of content is visible on the page.
  */
 export default class Sticky extends Component {
   static propTypes = {
     /** An element type to render as (string or function). */
     as: customPropTypes.as,
+
+    /** Offset in pixels from the bottom of the screen when fixing element to viewport. */
+    bottomOffset: PropTypes.number,
 
     /** Primary content. */
     children: PropTypes.node,
@@ -30,13 +32,14 @@ export default class Sticky extends Component {
     /** Offset in pixels from the top of the screen when fixing element to viewport. */
     offset: PropTypes.number,
 
-    /** Offset in pixels from the bottom of the screen when fixing element to viewport. */
-    bottomOffset: PropTypes.number,
-
     /** Whether element should be "pushed" by the viewport, attaching to the bottom of the screen when scrolling up. */
     pushing: PropTypes.bool,
 
-    /* Callback when element is bound to bottom of parent container. */
+    /** Callback when element is bound to bottom of parent container.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props.
+     */
     onBottom: PropTypes.func,
 
     /**
@@ -44,10 +47,14 @@ export default class Sticky extends Component {
      *
      * @param {SyntheticEvent} event - React's original SyntheticEvent.
      * @param {object} data - All props.
-     * */
+     */
     onStick: PropTypes.func,
 
-    /* Callback when element is bound to top of parent container. */
+    /** Callback when element is bound to top of parent container.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props.
+     */
     onTop: PropTypes.func,
 
     /**
@@ -55,13 +62,13 @@ export default class Sticky extends Component {
      *
      * @param {SyntheticEvent} event - React's original SyntheticEvent.
      * @param {object} data - All props.
-     * */
+     */
     onUnstick: PropTypes.func,
   }
 
   static defaultProps = {
-    offset: 0,
     bottomOffset: 0,
+    offset: 0,
   }
 
   static _meta = {
@@ -186,7 +193,7 @@ export default class Sticky extends Component {
   // Helpers
   // ----------------------------------------
 
-  getStyle() {
+  computeStyle() {
     const { bottom, sticky, top } = this.state
 
     if (!sticky) return {}
@@ -216,6 +223,10 @@ export default class Sticky extends Component {
 
   handleStickyRef = c => (this.stickyRef = c)
 
+  // ----------------------------------------
+  // Render
+  // ----------------------------------------
+
   render() {
     const { children, className } = this.props
     const rest = getUnhandledProps(Sticky, this.props)
@@ -224,7 +235,7 @@ export default class Sticky extends Component {
     return (
       <ElementType {...rest} className={className}>
         <div ref={this.handleTriggerRef} />
-        <div ref={this.handleStickyRef} style={this.getStyle()}>{children}</div>
+        <div ref={this.handleStickyRef} style={this.computeStyle()}>{children}</div>
       </ElementType>
     )
   }
