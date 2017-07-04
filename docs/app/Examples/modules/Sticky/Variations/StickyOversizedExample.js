@@ -3,11 +3,7 @@ import { Grid, Header, Image, Item, Rail, Segment, Sticky } from 'semantic-ui-re
 import _ from 'lodash'
 
 const Placeholder = () => (
-  <Image
-    className='wireframe paragraph image'
-    src='/assets/images/wireframe/paragraph.png'
-    style={{ marginBottom: 14, marginTop: 14 }}
-  />
+  <Image src='/assets/images/wireframe/paragraph.png' style={{ marginBottom: 14, marginTop: 14 }} />
 )
 
 class StickyAdjacentContextExample extends Component {
