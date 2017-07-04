@@ -5,7 +5,9 @@ import React from 'react'
 
 import {
   AutoControlledComponent as Component,
+  childrenUtils,
   customPropTypes,
+  createShorthandFactory,
   getElementType,
   getUnhandledProps,
   META,
@@ -29,7 +31,10 @@ class Menu extends Component {
     as: customPropTypes.as,
 
     /** Index of the currently active item. */
-    activeIndex: PropTypes.number,
+    activeIndex: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
 
     /** A menu may be attached to other content segments. */
     attached: PropTypes.oneOfType([
@@ -53,7 +58,10 @@ class Menu extends Component {
     compact: PropTypes.bool,
 
     /** Initial activeIndex value. */
-    defaultActiveIndex: PropTypes.number,
+    defaultActiveIndex: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
 
     /** A menu can be fixed to a side of its context. */
     fixed: PropTypes.oneOf(['left', 'right', 'bottom', 'top']),
@@ -151,7 +159,7 @@ class Menu extends Component {
 
     return _.map(items, (item, index) => MenuItem.create(item, {
       defaultProps: {
-        active: activeIndex === index,
+        active: parseInt(activeIndex, 10) === index,
         index,
       },
       overrideProps: this.handleItemOverrides,
@@ -209,10 +217,12 @@ class Menu extends Component {
 
     return (
       <ElementType {...rest} className={classes}>
-        {_.isNil(children) ? this.renderItems() : children}
+        {childrenUtils.isNil(children) ? this.renderItems() : children}
       </ElementType>
     )
   }
 }
+
+Menu.create = createShorthandFactory(Menu, items => ({ items }))
 
 export default Menu
