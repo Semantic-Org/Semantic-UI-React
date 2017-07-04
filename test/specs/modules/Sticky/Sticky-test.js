@@ -140,16 +140,16 @@ describe('Sticky', () => {
     const bottomOffset = 10
     const height = 50
     const contextEl = { getBoundingClientRect: () => ({}) }
-    const fn = sandbox.spy()
+    const onStick = sandbox.spy()
     const wrapper = mount(
-      <Sticky context={contextEl} offset={offset} bottomOffset={bottomOffset} onStick={fn} />
+      <Sticky context={contextEl} offset={offset} bottomOffset={bottomOffset} onStick={onStick} />
     )
 
     scrollAfterTrigger(wrapper, contextEl, { bottomOffset, offset, height })
-    fn.should.have.been.calledOnce()
+    onStick.should.have.been.calledOnce()
 
     scrollToTop(wrapper, contextEl, { bottomOffset, offset, height })
-    fn.should.have.been.calledOnce()
+    onStick.should.have.been.calledOnce()
   })
 
   it('should fire onUnstick callback', () => {
@@ -157,16 +157,16 @@ describe('Sticky', () => {
     const bottomOffset = 10
     const height = 50
     const contextEl = { getBoundingClientRect: () => ({}) }
-    const fn = sandbox.spy()
+    const onUnstick = sandbox.spy()
     const wrapper = mount(
-      <Sticky context={contextEl} offset={offset} bottomOffset={bottomOffset} onUnstick={fn} />
+      <Sticky context={contextEl} offset={offset} bottomOffset={bottomOffset} onUnstick={onUnstick} />
     )
 
     scrollAfterTrigger(wrapper, contextEl, { bottomOffset, offset, height })
-    fn.should.not.have.been.called()
+    onUnstick.should.not.have.been.called()
 
     scrollToTop(wrapper, contextEl, { bottomOffset, offset, height })
-    fn.should.have.been.calledOnce()
+    onUnstick.should.have.been.calledOnce()
   })
 
   it('should fire onTop callback', () => {
@@ -174,16 +174,16 @@ describe('Sticky', () => {
     const bottomOffset = 10
     const height = 50
     const contextEl = { getBoundingClientRect: () => ({}) }
-    const fn = sandbox.spy()
+    const onTop = sandbox.spy()
     const wrapper = mount(
-      <Sticky context={contextEl} offset={offset} bottomOffset={bottomOffset} onTop={fn} />
+      <Sticky context={contextEl} offset={offset} bottomOffset={bottomOffset} onTop={onTop} />
     )
 
     scrollAfterContext(wrapper, contextEl, { bottomOffset, offset, height })
-    fn.should.not.have.been.called()
+    onTop.should.not.have.been.called()
 
     scrollToTop(wrapper, contextEl, { bottomOffset, offset, height })
-    fn.should.have.been.calledOnce()
+    onTop.should.have.been.calledOnce()
   })
 
   it('should fire onBottom callback', () => {
@@ -191,15 +191,15 @@ describe('Sticky', () => {
     const bottomOffset = 5
     const height = 5
     const contextEl = { getBoundingClientRect: () => ({}) }
-    const fn = sandbox.spy()
+    const onBottom = sandbox.spy()
     const wrapper = mount(
-      <Sticky context={contextEl} offset={offset} bottomOffset={bottomOffset} onBottom={fn} />
+      <Sticky context={contextEl} offset={offset} bottomOffset={bottomOffset} onBottom={onBottom} />
     )
 
     scrollAfterContext(wrapper, contextEl, { bottomOffset, offset, height })
-    fn.should.have.been.calledOnce()
+    onBottom.should.have.been.calledOnce()
 
     scrollToTop(wrapper, contextEl, { bottomOffset, offset, height })
-    fn.should.have.been.calledOnce()
+    onBottom.should.have.been.calledOnce()
   })
 })
