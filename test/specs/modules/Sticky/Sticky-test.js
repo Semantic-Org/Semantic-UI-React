@@ -146,7 +146,7 @@ describe('Sticky', () => {
     )
 
     scrollAfterTrigger(wrapper, contextEl, { bottomOffset, offset, height })
-    onStick.should.have.been.calledOnce()
+    onStick.should.have.been.calledWithMatch({}, { bottomOffset, offset })
 
     scrollToTop(wrapper, contextEl, { bottomOffset, offset, height })
     onStick.should.have.been.calledOnce()
@@ -166,7 +166,7 @@ describe('Sticky', () => {
     onUnstick.should.not.have.been.called()
 
     scrollToTop(wrapper, contextEl, { bottomOffset, offset, height })
-    onUnstick.should.have.been.calledOnce()
+    onUnstick.should.have.been.calledWithMatch({}, { bottomOffset, offset })
   })
 
   it('should fire onTop callback', () => {
@@ -183,7 +183,7 @@ describe('Sticky', () => {
     onTop.should.not.have.been.called()
 
     scrollToTop(wrapper, contextEl, { bottomOffset, offset, height })
-    onTop.should.have.been.calledOnce()
+    onTop.should.have.been.calledWithMatch({}, { bottomOffset, offset })
   })
 
   it('should fire onBottom callback', () => {
@@ -197,7 +197,7 @@ describe('Sticky', () => {
     )
 
     scrollAfterContext(wrapper, contextEl, { bottomOffset, offset, height })
-    onBottom.should.have.been.calledOnce()
+    onBottom.should.have.been.calledWithMatch({}, { bottomOffset, offset })
 
     scrollToTop(wrapper, contextEl, { bottomOffset, offset, height })
     onBottom.should.have.been.calledOnce()
