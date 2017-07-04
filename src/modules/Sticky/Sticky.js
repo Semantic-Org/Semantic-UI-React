@@ -97,9 +97,10 @@ export default class Sticky extends Component {
     return this.stickyBoundingRect.height + offset >= this.contextBoundingRect.bottom
   }
 
-  // Return true when the component reached the starting point
-  hasReachedStartingPoint = () => {
-    return this.stickyBoundingRect.top <= this.triggerBoundingRect.top
+  // Return true when the bottom of the screen overpasses the Sticky component
+  hasTouchedScreenBottom = () => {
+    const { bottomOffset } = this.props
+    return this.contextBoundingRect.bottom + bottomOffset > window.innerHeight
   }
 
   // Return true when the top of the screen overpasses the Sticky component
@@ -108,10 +109,9 @@ export default class Sticky extends Component {
     return this.triggerBoundingRect.top < offset
   }
 
-  // Return true when the bottom of the screen overpasses the Sticky component
-  hasTouchedScreenBottom = () => {
-    const { bottomOffset } = this.props
-    return this.contextBoundingRect.bottom + bottomOffset > window.innerHeight
+  // Return true when the component reached the starting point
+  hasReachedStartingPoint = () => {
+    return this.stickyBoundingRect.top <= this.triggerBoundingRect.top
   }
 
   // Return true if the height of the component is higher than the window
@@ -124,12 +124,6 @@ export default class Sticky extends Component {
     if (this.props.pushing) this.setState({ pushing })
   }
 
-  stickToContextTop = (e) => {
-    if (e) _.invoke(this.props, 'onTop', e, this.props)
-    this.unstick(e)
-    this.setPushing(false)
-  }
-
   stickToContextBottom = (e) => {
     if (e) _.invoke(this.props, 'onBottom', e, this.props)
     this.stick(e)
@@ -140,16 +134,22 @@ export default class Sticky extends Component {
     this.setPushing(true)
   }
 
-  stickToScreenTop = (e) => {
-    const { offset: top } = this.props
-    this.stick(e)
-    this.setState({ bottom: null, top })
+  stickToContextTop = (e) => {
+    if (e) _.invoke(this.props, 'onTop', e, this.props)
+    this.unstick(e)
+    this.setPushing(false)
   }
 
   stickToScreenBottom = (e) => {
     const { bottomOffset: bottom } = this.props
     this.stick(e)
     this.setState({ bottom, top: null })
+  }
+
+  stickToScreenTop = (e) => {
+    const { offset: top } = this.props
+    this.stick(e)
+    this.setState({ bottom: null, top })
   }
 
   handleUpdate = (e) => {
@@ -218,9 +218,9 @@ export default class Sticky extends Component {
   // Refs
   // ----------------------------------------
 
-  handleTriggerRef = c => (this.triggerRef = c)
-
   handleStickyRef = c => (this.stickyRef = c)
+
+  handleTriggerRef = c => (this.triggerRef = c)
 
   render() {
     const { children, className } = this.props
