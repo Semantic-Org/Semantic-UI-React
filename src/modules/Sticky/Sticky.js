@@ -222,9 +222,9 @@ export default class Sticky extends Component {
   // Refs
   // ----------------------------------------
 
-  handleTriggerRef = c => (this.triggerRef = c)
-
   handleStickyRef = c => (this.stickyRef = c)
+
+  handleTriggerRef = c => (this.triggerRef = c)
 
   // ----------------------------------------
   // Render

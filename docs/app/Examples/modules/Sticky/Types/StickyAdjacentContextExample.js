@@ -3,10 +3,7 @@ import React, { Component } from 'react'
 import { Grid, Header, Image, Rail, Segment, Sticky } from 'semantic-ui-react'
 
 const Placeholder = () => (
-  <Image
-    src='/assets/images/wireframe/paragraph.png'
-    style={{ marginBottom: 14, marginTop: 14 }}
-  />
+  <Image src='/assets/images/wireframe/paragraph.png' style={{ marginBottom: 14, marginTop: 14 }} />
 )
 
 export default class StickyAdjacentContextExample extends Component {
