@@ -24,19 +24,21 @@ export default class Sticky extends Component {
     /** Additional classes. */
     className: PropTypes.string,
 
+    /** Offset in pixels from the bottom of the screen when fixing element to viewport. */
+    bottomOffset: PropTypes.number,
+
     /** Context which sticky element should stick to. */
     context: PropTypes.object,
 
     /** Offset in pixels from the top of the screen when fixing element to viewport. */
     offset: PropTypes.number,
 
-    /** Offset in pixels from the bottom of the screen when fixing element to viewport. */
-    bottomOffset: PropTypes.number,
-
-    /** Whether element should be "pushed" by the viewport, attaching to the bottom of the screen when scrolling up. */
-    pushing: PropTypes.bool,
-
-    /* Callback when element is bound to bottom of parent container. */
+    /**
+     * Callback when element is bound to bottom of parent container.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props.
+     * */
     onBottom: PropTypes.func,
 
     /**
@@ -47,7 +49,12 @@ export default class Sticky extends Component {
      * */
     onStick: PropTypes.func,
 
-    /* Callback when element is bound to top of parent container. */
+    /**
+     * Callback when element is bound to top of parent container.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props.
+     * */
     onTop: PropTypes.func,
 
     /**
@@ -57,6 +64,9 @@ export default class Sticky extends Component {
      * @param {object} data - All props.
      * */
     onUnstick: PropTypes.func,
+
+    /** Whether element should be "pushed" by the viewport, attaching to the bottom of the screen when scrolling up. */
+    pushing: PropTypes.bool,
   }
 
   static defaultProps = {
