@@ -18,14 +18,14 @@ export default class Sticky extends Component {
     /** An element type to render as (string or function). */
     as: customPropTypes.as,
 
+    /** Offset in pixels from the bottom of the screen when fixing element to viewport. */
+    bottomOffset: PropTypes.number,
+
     /** Primary content. */
     children: PropTypes.node,
 
     /** Additional classes. */
     className: PropTypes.string,
-
-    /** Offset in pixels from the bottom of the screen when fixing element to viewport. */
-    bottomOffset: PropTypes.number,
 
     /** Context which sticky element should stick to. */
     context: PropTypes.object,
