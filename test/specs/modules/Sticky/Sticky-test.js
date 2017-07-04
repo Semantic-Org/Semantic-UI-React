@@ -44,7 +44,10 @@ describe('Sticky', () => {
   common.rendersChildren(Sticky)
 
   it('should create two divs', () => {
-    mount(<Sticky />).html().should.be.equal('<div><div></div><div></div></div>')
+    const children = shallow(<Sticky />).children()
+
+    children.should.have.length(2)
+    children.everyWhere(child => child.should.have.tagName('div'))
   })
 
   it('should stick to top of screen', () => {
