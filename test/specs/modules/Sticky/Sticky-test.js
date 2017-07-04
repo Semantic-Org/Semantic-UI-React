@@ -147,9 +147,10 @@ describe('Sticky', () => {
 
     scrollAfterTrigger(wrapper, contextEl, { bottomOffset, offset, height })
     onStick.should.have.been.calledWithMatch({}, { bottomOffset, offset })
+    onStick.reset()
 
     scrollToTop(wrapper, contextEl, { bottomOffset, offset, height })
-    onStick.should.have.been.calledOnce()
+    onStick.should.not.have.been.called()
   })
 
   it('should fire onUnstick callback', () => {
@@ -198,8 +199,9 @@ describe('Sticky', () => {
 
     scrollAfterContext(wrapper, contextEl, { bottomOffset, offset, height })
     onBottom.should.have.been.calledWithMatch({}, { bottomOffset, offset })
+    onBottom.reset()
 
     scrollToTop(wrapper, contextEl, { bottomOffset, offset, height })
-    onBottom.should.have.been.calledOnce()
+    onBottom.should.not.have.been.called()
   })
 })
