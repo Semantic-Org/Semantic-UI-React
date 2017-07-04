@@ -9,7 +9,7 @@ const StickyExamples = () => (
     <Types />
     <Variations />
     <Usage />
-    <div style={{ height: 1000 }}></div>
+    <div style={{ height: 1000 }} />
   </div>
 )
 
