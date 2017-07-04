@@ -132,7 +132,7 @@ describe('Sticky', () => {
       <Sticky context={contextEl} bottomOffset={bottomOffset} offset={offset} pushing />
     )
     scrollAfterTrigger(wrapper, contextEl, { bottomOffset, offset, height })
-    wrapper.instance().isOversized().should.be.equal(true)
+    wrapper.instance().oversized().should.be.equal(true)
   })
 
   it('should fire onStick callback', () => {
