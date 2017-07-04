@@ -9,7 +9,9 @@ import {
   META,
 } from '../../lib'
 
- /* Sticky content stays fixed to the browser viewport while another column of content is visible on the page. */
+/**
+ * Sticky content stays fixed to the browser viewport while another column of content is visible on the page.
+ */
 export default class Sticky extends Component {
   static propTypes = {
     /** An element type to render as (string or function). */
@@ -76,8 +78,8 @@ export default class Sticky extends Component {
     type: META.TYPES.MODULE,
   }
 
-  getInitialState() {
-    return { sticky: false }
+  state = {
+    sticky: false,
   }
 
   componentDidMount() {
@@ -177,12 +179,12 @@ export default class Sticky extends Component {
 
   stick = e => {
     this.setState({ sticky: true })
-    if (e) _.invoke(this.props, 'onStick', e, this.props)
+    _.invoke(this.props, 'onStick', e, this.props)
   }
 
   unstick = e => {
     this.setState({ sticky: false })
-    if (e) _.invoke(this.props, 'onUnstick', e, this.props)
+    _.invoke(this.props, 'onUnstick', e, this.props)
   }
 
   stickToContextBottom = e => {
