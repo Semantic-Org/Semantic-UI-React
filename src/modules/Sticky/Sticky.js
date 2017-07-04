@@ -92,25 +92,25 @@ export default class Sticky extends Component {
   }
 
   // Return true when the component reached the bottom of the context
-  hasReachedContextBottom = () => {
+  reachedContextBottom = () => {
     const { offset } = this.props
     return this.stickyBoundingRect.height + offset >= this.contextBoundingRect.bottom
   }
 
   // Return true when the bottom of the screen overpasses the Sticky component
-  hasTouchedScreenBottom = () => {
+  touchedScreenBottom = () => {
     const { bottomOffset } = this.props
     return this.contextBoundingRect.bottom + bottomOffset > window.innerHeight
   }
 
   // Return true when the top of the screen overpasses the Sticky component
-  hasTouchedScreenTop = () => {
+  touchedScreenTop = () => {
     const { offset } = this.props
     return this.triggerBoundingRect.top < offset
   }
 
   // Return true when the component reached the starting point
-  hasReachedStartingPoint = () => {
+  reachedStartingPoint = () => {
     return this.stickyBoundingRect.top <= this.triggerBoundingRect.top
   }
 
@@ -156,11 +156,11 @@ export default class Sticky extends Component {
     this.calcBoundingRects()
 
     if (this.state.pushing) {
-      if (this.hasReachedStartingPoint()) {
+      if (this.reachedStartingPoint()) {
         return this.stickToContextTop(e)
       }
 
-      if (!this.hasTouchedScreenBottom()) {
+      if (!this.touchedScreenBottom()) {
         return this.stickToContextBottom(e)
       }
 
@@ -177,8 +177,8 @@ export default class Sticky extends Component {
       }
     }
 
-    if (this.hasTouchedScreenTop()) {
-      if (this.hasReachedContextBottom()) {
+    if (this.touchedScreenTop()) {
+      if (this.reachedContextBottom()) {
         return this.stickToContextBottom(e)
       }
 
