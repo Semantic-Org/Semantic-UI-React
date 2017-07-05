@@ -453,6 +453,7 @@ export default class Dropdown extends Component {
       document.addEventListener('keydown', this.selectItemOnEnter)
       document.addEventListener('keydown', this.removeItemOnBackspace)
       document.addEventListener('click', this.closeOnDocumentClick)
+      document.addEventListener('touchend', this.closeOnDocumentClick)
       document.removeEventListener('keydown', this.openOnArrow)
       document.removeEventListener('keydown', this.openOnSpace)
       this.scrollSelectedItemIntoView()
@@ -463,6 +464,7 @@ export default class Dropdown extends Component {
       document.removeEventListener('keydown', this.moveSelectionOnKeyDown)
       document.removeEventListener('keydown', this.selectItemOnEnter)
       document.removeEventListener('click', this.closeOnDocumentClick)
+      document.removeEventListener('touchend', this.closeOnDocumentClick)
       if (!this.state.focus) {
         document.removeEventListener('keydown', this.removeItemOnBackspace)
       }
@@ -482,6 +484,7 @@ export default class Dropdown extends Component {
     document.removeEventListener('keydown', this.removeItemOnBackspace)
     document.removeEventListener('keydown', this.closeOnEscape)
     document.removeEventListener('click', this.closeOnDocumentClick)
+    document.removeEventListener('touchend', this.closeOnDocumentClick)
   }
 
   // ----------------------------------------
