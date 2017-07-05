@@ -4,7 +4,6 @@ import React, { Component } from 'react'
 import { Route } from 'react-router-dom'
 
 import Sidebar from 'docs/app/Components/Sidebar/Sidebar'
-import TAAttribution from 'docs/app/Components/TAAttribution/TAAttribution'
 import style from 'docs/app/Style'
 import { scrollToAnchor } from 'docs/app/utils'
 import { getUnhandledProps } from 'src/lib'
@@ -56,7 +55,6 @@ export default class DocsLayout extends Component {
         <Sidebar style={style.menu} />
         <div style={style.main}>
           <Children {...props} />
-          <TAAttribution />
         </div>
       </div>
     )

@@ -71,6 +71,13 @@ describe('Menu', () => {
         .at(1)
         .should.have.prop('active', true)
     })
+
+    it('works as a string', () => {
+      mount(<Menu items={items} activeIndex={1} />)
+        .find('MenuItem')
+        .at(1)
+        .should.have.prop('active', true)
+    })
   })
 
   describe('items', () => {

@@ -9,7 +9,7 @@ const options = [
 
 const InputExampleActionDropdown = () => (
   <Input
-    action={<Dropdown basic floating options={options} defaultValue='page' />}
+    action={<Dropdown button basic floating options={options} defaultValue='page' />}
     icon='search'
     iconPosition='left'
     placeholder='Search...'

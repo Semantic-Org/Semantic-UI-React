@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
 import {
+  childrenUtils,
   createShorthandFactory,
   customPropTypes,
   getElementType,
@@ -63,7 +64,7 @@ export default class ModalActions extends Component {
     const rest = getUnhandledProps(ModalActions, this.props)
     const ElementType = getElementType(ModalActions, this.props)
 
-    if (!_.isNil(children)) return <ElementType {...rest} className={classes}>{children}</ElementType>
+    if (!childrenUtils.isNil(children)) return <ElementType {...rest} className={classes}>{children}</ElementType>
 
     return (
       <ElementType {...rest} className={classes}>
