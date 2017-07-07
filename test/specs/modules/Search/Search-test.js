@@ -546,7 +546,11 @@ describe('Search', () => {
         .simulate('click', nativeEvent)
 
       spy.should.have.been.calledOnce()
-      spy.should.have.been.calledWithMatch({}, randomResult)
+      spy.should.have.been.calledWithMatch({}, {
+        minCharacters: 0,
+        result: randomResult,
+        results: options,
+      })
     })
     it('is called with event and value when pressing enter on a selected item', () => {
       const firstResult = options[0]
@@ -559,7 +563,7 @@ describe('Search', () => {
       domEvent.keyDown(document, { key: 'Enter' })
 
       spy.should.have.been.calledOnce()
-      spy.should.have.been.calledWithMatch({}, firstResult)
+      spy.should.have.been.calledWithMatch({}, { result: firstResult })
     })
     it('is not called when updating the value prop', () => {
       const value = _.sample(options).title
@@ -591,7 +595,11 @@ describe('Search', () => {
         .simulate('change', { target: { value: 'a' }, stopPropagation: _.noop })
 
       spy.should.have.been.calledOnce()
-      spy.should.have.been.calledWithMatch({ target: { value: 'a' } }, 'a')
+      spy.should.have.been.calledWithMatch({ target: { value: 'a' } }, {
+        minCharacters: 0,
+        results: options,
+        value: 'a',
+      })
     })
   })
 
