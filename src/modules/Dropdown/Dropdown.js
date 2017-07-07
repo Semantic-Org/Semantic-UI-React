@@ -1049,7 +1049,7 @@ export default class Dropdown extends Component {
     }
     if (classes === 'text') {
       return <div className={classes} role='alert' aria-live='polite'>{_text}</div>
-
+    }
     return <div className={classes}>{_text}</div>
   }
 
