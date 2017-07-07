@@ -9,6 +9,7 @@ import DropdownDivider from 'src/modules/Dropdown/DropdownDivider'
 import DropdownHeader from 'src/modules/Dropdown/DropdownHeader'
 import DropdownItem from 'src/modules/Dropdown/DropdownItem'
 import DropdownMenu from 'src/modules/Dropdown/DropdownMenu'
+import DropdownSearchInput from 'src/modules/Dropdown/DropdownSearchInput'
 
 let attachTo
 let options
@@ -70,7 +71,7 @@ describe('Dropdown', () => {
 
   common.isConformant(Dropdown)
   common.hasUIClassName(Dropdown)
-  common.hasSubComponents(Dropdown, [DropdownDivider, DropdownHeader, DropdownItem, DropdownMenu])
+  common.hasSubComponents(Dropdown, [DropdownDivider, DropdownHeader, DropdownItem, DropdownMenu, DropdownSearchInput])
   common.implementsIconProp(Dropdown)
   common.implementsShorthandProp(Dropdown, {
     propKey: 'header',
@@ -186,22 +187,22 @@ describe('Dropdown', () => {
     })
     it('defaults the search input to 0', () => {
       wrapperShallow(<Dropdown options={options} selection search />)
-        .find('input.search')
+        .find(DropdownSearchInput)
         .should.have.prop('tabIndex', 0)
     })
     it('defaults the disabled search input to -1', () => {
       wrapperShallow(<Dropdown options={options} selection search disabled />)
-        .find('input.search')
+        .find(DropdownSearchInput)
         .should.have.prop('tabIndex', -1)
     })
     it('allows explicitly setting the search input value', () => {
       wrapperShallow(<Dropdown options={options} selection search tabIndex={123} />)
-        .find('input.search')
+        .find(DropdownSearchInput)
         .should.have.prop('tabIndex', 123)
     })
     it('allows explicitly setting the search input value when disabled', () => {
       wrapperShallow(<Dropdown options={options} selection search tabIndex={123} disabled />)
-        .find('input.search')
+        .find(DropdownSearchInput)
         .should.have.prop('tabIndex', 123)
     })
   })
@@ -1623,7 +1624,7 @@ describe('Dropdown', () => {
 
     it('adds a search input when present', () => {
       wrapperShallow(<Dropdown options={options} selection search />)
-        .should.have.exactly(1).descendants('input.search')
+        .should.have.exactly(1).descendants(DropdownSearchInput)
     })
 
     it('sets focus to the search input on open', () => {
