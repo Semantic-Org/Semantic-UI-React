@@ -141,7 +141,7 @@ export default class Search extends Component {
      * Called on search input change.
      *
      * @param {SyntheticEvent} event - React's original SyntheticEvent.
-     * @param {string} value - Current value of search input.
+     * @param {object} data - All props, includes current value of search input.
      */
     onSearchChange: PropTypes.func,
 
@@ -285,8 +285,8 @@ export default class Search extends Component {
   handleResultSelect = (e, result) => {
     debug('handleResultSelect()')
     debug(result)
-    const { onResultSelect } = this.props
-    if (onResultSelect) onResultSelect(e, result)
+
+    _.invoke(this.props, 'onResultSelect', e, { ...this.props, result })
   }
 
   closeOnEscape = (e) => {
@@ -400,11 +400,11 @@ export default class Search extends Component {
     debug(e.target.value)
     // prevent propagating to this.props.onChange()
     e.stopPropagation()
-    const { onSearchChange, minCharacters } = this.props
+    const { minCharacters } = this.props
     const { open } = this.state
     const newQuery = e.target.value
 
-    if (onSearchChange) onSearchChange(e, newQuery)
+    _.invoke(this.props, 'onSearchChange', e, { ...this.props, value: newQuery })
 
     // open search dropdown on search query
     if (newQuery.length < minCharacters) {
