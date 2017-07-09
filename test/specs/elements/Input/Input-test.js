@@ -63,6 +63,7 @@ describe('Input', () => {
   common.implementsHTMLInputProp(Input, {
     alwaysPresent: true,
     shorthandDefaultProps: { type: 'text' },
+    strictAssert: false,
   })
 
   common.propKeyAndValueToClassName(Input, 'actionPosition', ['left'], { className: 'action' })
@@ -227,7 +228,7 @@ describe('Input', () => {
 
       shallow(<Input disabled={false} />)
         .find('input')
-        .should.have.not.prop('disabled')
+        .should.have.prop('disabled', false)
     })
   })
 
