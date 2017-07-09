@@ -54,7 +54,7 @@ class Tab extends Component {
      * }
      */
     panes: PropTypes.arrayOf(PropTypes.shape({
-      menuItem: PropTypes.string.isRequired,
+      menuItem: customPropTypes.itemShorthand,
       render: PropTypes.func.isRequired,
     })),
   }
@@ -74,8 +74,8 @@ class Tab extends Component {
 
   static Pane = TabPane
 
-  state = {
-    activeIndex: 0,
+  getInitialState() {
+    return { activeIndex: 0 }
   }
 
   handleItemClick = (e, { index }) => {
