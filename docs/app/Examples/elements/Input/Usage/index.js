@@ -9,6 +9,11 @@ const InputUsageExamples = () => (
       description='An input can be focused via a ref.'
       examplePath='elements/Input/Usage/InputExampleRefFocus'
     />
+    <ComponentExample
+      title='Datalist'
+      description={<span>An input can be used with a <code>datalist</code>.</span>}
+      examplePath='elements/Input/Usage/InputExampleDatalist'
+    />
   </ExampleSection>
 )
 
