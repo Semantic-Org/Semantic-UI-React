@@ -62,6 +62,7 @@ describe('Input', () => {
   })
   common.implementsHTMLInputProp(Input, {
     alwaysPresent: true,
+    assertExactMatch: false,
     shorthandDefaultProps: { type: 'text' },
   })
 
@@ -227,7 +228,7 @@ describe('Input', () => {
 
       shallow(<Input disabled={false} />)
         .find('input')
-        .should.have.not.prop('disabled')
+        .should.have.prop('disabled', false)
     })
   })
 

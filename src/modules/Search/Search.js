@@ -190,7 +190,7 @@ export default class Search extends Component {
   }
 
   static Category = SearchCategory
-
+  T
   static Result = SearchResult
 
   static Results = SearchResults
