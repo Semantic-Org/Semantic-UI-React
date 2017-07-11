@@ -5,6 +5,7 @@ import { default as DropdownDivider } from './DropdownDivider';
 import { default as DropdownHeader } from './DropdownHeader';
 import { default as DropdownItem, DropdownItemProps } from './DropdownItem';
 import { default as DropdownMenu } from './DropdownMenu';
+import { default as DropdownSearchInput } from './DropdownSearchInput';
 
 export interface DropdownProps {
   [key: string]: any;
@@ -212,6 +213,9 @@ export interface DropdownProps {
    */
   search?: boolean | ((options: Array<DropdownItemProps>, value: string) => Array<DropdownItemProps>);
 
+  /** A shorthand for a search input. */
+  searchInput?: any;
+
   /** Define whether the highlighted item should be selected on blur. */
   selectOnBlur?: boolean;
 
@@ -245,6 +249,7 @@ interface DropdownComponent extends React.ComponentClass<DropdownProps> {
   Header: typeof DropdownHeader;
   Item: typeof DropdownItem;
   Menu: typeof DropdownMenu;
+  SearchInput: typeof DropdownSearchInput;
 }
 
 declare const Dropdown: DropdownComponent;

@@ -129,6 +129,10 @@ export { default as DropdownDivider, DropdownDividerProps } from './dist/commonj
 export { default as DropdownHeader, DropdownHeaderProps } from './dist/commonjs/modules/Dropdown/DropdownHeader';
 export { default as DropdownItem, DropdownItemProps } from './dist/commonjs/modules/Dropdown/DropdownItem';
 export { default as DropdownMenu, DropdownMenuProps } from './dist/commonjs/modules/Dropdown/DropdownMenu';
+export {
+  default as DropdownSearchInput,
+  DropdownSearchInputProps
+} from './dist/commonjs/modules/Dropdown/DropdownSearchInput';
 
 export { default as Embed, EmbedProps } from './dist/commonjs/modules/Embed';
 
