@@ -75,8 +75,8 @@ export default class MenuItem extends Component {
      */
     onClick: PropTypes.func,
 
-    /** A menu item can take right position. */
-    position: PropTypes.oneOf(['right']),
+    /** A menu item can take left or right position. */
+    position: PropTypes.oneOf(['left', 'right']),
   }
 
   static _meta = {
