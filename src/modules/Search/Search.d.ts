@@ -105,7 +105,7 @@ export interface SearchProps {
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
    * @param {object} data - All props.
    */
-  onResultSelect?: (event: React.MouseEvent<HTMLDivElement>, data: SearchProps) => void;
+  onResultSelect?: (event: React.MouseEvent<HTMLDivElement>, data: SearchResultData) => void;
 
   /**
    * Called on search input change.
@@ -114,6 +114,14 @@ export interface SearchProps {
    * @param {object} data - All props, includes current value of search input.
    */
   onSearchChange?: (event: React.MouseEvent<HTMLElement>, data: SearchProps) => void;
+
+  /**
+   * Called when the active selection index is changed.
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props.
+   */
+  onSelectionChange?: (event: React.MouseEvent<HTMLElement>, data: SearchResultData) => void;
 
   // ------------------------------------
   // Style
@@ -139,6 +147,10 @@ export interface SearchProps {
 
   /** A search can have different sizes. */
   size?: 'mini' | 'tiny' | 'small' | 'large' | 'big' | 'huge' | 'massive';
+}
+
+export interface SearchResultData extends SearchProps {
+  result: any;
 }
 
 interface SearchComponent extends React.ComponentClass<SearchProps> {

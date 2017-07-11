@@ -138,20 +138,20 @@ export default class Search extends Component {
     onResultSelect: PropTypes.func,
 
     /**
-     * Called when the active selection index is changed.
-     *
-     * @param {SyntheticEvent} event - React's original SyntheticEvent.
-     * @param {object} data - All props.
-     */
-    onActiveSelectionChange: PropTypes.func,
-
-    /**
      * Called on search input change.
      *
      * @param {SyntheticEvent} event - React's original SyntheticEvent.
      * @param {object} data - All props, includes current value of search input.
      */
     onSearchChange: PropTypes.func,
+
+    /**
+     * Called when the active selection index is changed.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props.
+     */
+    onSelectionChange: PropTypes.func,
 
     // ------------------------------------
     // Style
@@ -297,11 +297,11 @@ export default class Search extends Component {
     _.invoke(this.props, 'onResultSelect', e, { ...this.props, result })
   }
 
-  handleActiveSelectionChange = () => {
-    debug('handleActiveSelectionChange()')
-    const { onActiveSelectionChange } = this.props
+  handleSelectionChange = e => {
+    debug('handleSelectionChange()')
+
     const result = this.getSelectedResult()
-    if (onActiveSelectionChange) onActiveSelectionChange(result)
+    _.invoke(this.props, 'onSelectionChange', e, { ...this.props, result })
   }
 
   closeOnEscape = (e) => {
@@ -316,11 +316,11 @@ export default class Search extends Component {
     switch (keyboardKey.getCode(e)) {
       case keyboardKey.ArrowDown:
         e.preventDefault()
-        this.moveSelectionBy(1)
+        this.moveSelectionBy(e, 1)
         break
       case keyboardKey.ArrowUp:
         e.preventDefault()
-        this.moveSelectionBy(-1)
+        this.moveSelectionBy(e, -1)
         break
       default:
         break
@@ -465,7 +465,7 @@ export default class Search extends Component {
     )
   }
 
-  moveSelectionBy = (offset) => {
+  moveSelectionBy = (e, offset) => {
     debug('moveSelectionBy()')
     debug(`offset: ${offset}`)
     const { selectedIndex } = this.state
@@ -481,7 +481,7 @@ export default class Search extends Component {
 
     this.setState({ selectedIndex: nextIndex })
     this.scrollSelectedItemIntoView()
-    this.handleActiveSelectionChange()
+    this.handleSelectionChange(e)
   }
 
   // ----------------------------------------
