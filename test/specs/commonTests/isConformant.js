@@ -131,12 +131,12 @@ export default (Component, options = {}) => {
       const tags = ['a', 'em', 'div', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'i', 'p', 'span', 'strong']
       try {
         tags.forEach((tag) => {
-          shallow(<Component as={tag} />)
+          shallow(<Component {...requiredProps} as={tag} />)
             .should.have.tagName(tag)
         })
       } catch (err) {
         tags.forEach((tag) => {
-          const wrapper = shallow(<Component as={tag} />)
+          const wrapper = shallow(<Component {...requiredProps} as={tag} />)
           wrapper.type().should.not.equal(Component)
           wrapper.should.have.prop('as', tag)
         })
@@ -147,11 +147,11 @@ export default (Component, options = {}) => {
       const MyComponent = () => null
 
       try {
-        shallow(<Component as={MyComponent} />)
+        shallow(<Component {...requiredProps} as={MyComponent} />)
           .type()
           .should.equal(MyComponent)
       } catch (err) {
-        const wrapper = shallow(<Component as={MyComponent} />)
+        const wrapper = shallow(<Component {...requiredProps} as={MyComponent} />)
         wrapper.type().should.not.equal(Component)
         wrapper.should.have.prop('as', MyComponent)
       }
@@ -165,11 +165,11 @@ export default (Component, options = {}) => {
       }
 
       try {
-        shallow(<Component as={MyComponent} />)
+        shallow(<Component {...requiredProps} as={MyComponent} />)
           .type()
           .should.equal(MyComponent)
       } catch (err) {
-        const wrapper = shallow(<Component as={MyComponent} />)
+        const wrapper = shallow(<Component {...requiredProps} as={MyComponent} />)
         wrapper.type().should.not.equal(Component)
         wrapper.should.have.prop('as', MyComponent)
       }
@@ -178,7 +178,7 @@ export default (Component, options = {}) => {
     it('passes extra props to the component it is renders as', () => {
       const MyComponent = () => null
 
-      shallow(<Component as={MyComponent} data-extra-prop='foo' />)
+      shallow(<Component {...requiredProps} as={MyComponent} data-extra-prop='foo' />)
         .should.have.descendants('[data-extra-prop="foo"]')
     })
   })
