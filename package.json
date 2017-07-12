@@ -128,7 +128,7 @@
     "require-dir": "^0.3.2",
     "rimraf": "^2.5.2",
     "satisfied": "^1.1.0",
-    "semantic-ui-css": "^2.2.2",
+    "semantic-ui-css": "^2.2.11",
     "simulant": "^0.2.2",
     "sinon": "^2.1.0",
     "sinon-chai": "^2.11.0",
