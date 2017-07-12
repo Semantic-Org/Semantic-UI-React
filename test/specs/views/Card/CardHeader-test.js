@@ -1,0 +1,19 @@
+import faker from 'faker'
+import React from 'react'
+
+import CardHeader from 'src/views/Card/CardHeader'
+import * as common from 'test/specs/commonTests'
+
+describe('CardHeader', () => {
+  common.isConformant(CardHeader)
+  common.rendersChildren(CardHeader)
+
+  describe('description prop', () => {
+    it('renders child text', () => {
+      const text = faker.hacker.phrase()
+
+      shallow(<CardHeader content={text} />)
+        .should.contain.text(text)
+    })
+  })
+})
