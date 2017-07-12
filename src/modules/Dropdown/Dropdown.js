@@ -1047,10 +1047,8 @@ export default class Dropdown extends Component {
     } else if (hasValue) {
       _text = _.get(this.getItemByValue(value), 'text')
     }
-    if (classes === 'text') {
-      return <div className={classes} role='alert' aria-live='polite'>{_text}</div>
-    }
-    return <div className={classes}>{_text}</div>
+    
+    return <div className={classes} role='alert' aria-live='polite'>{_text}</div>
   }
 
   renderSearchInput = () => {
