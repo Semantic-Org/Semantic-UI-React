@@ -8,4 +8,5 @@ describe('ModalContent', () => {
   common.implementsCreateMethod(ModalContent)
 
   common.propKeyOnlyToClassName(ModalContent, 'image')
+  common.propKeyOnlyToClassName(ModalContent, 'scrolling')
 })
