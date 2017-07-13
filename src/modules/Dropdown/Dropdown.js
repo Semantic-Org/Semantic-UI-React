@@ -1047,7 +1047,7 @@ export default class Dropdown extends Component {
     } else if (hasValue) {
       _text = _.get(this.getItemByValue(value), 'text')
     }
-    
+
     return <div className={classes} role='alert' aria-live='polite'>{_text}</div>
   }
 
