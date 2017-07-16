@@ -1,4 +1,9 @@
 import * as React from 'react';
+import {
+  HtmlImageProps,
+  SemanticShorthandContent,
+  SemanticShorthandCollection
+} from '../..';
 
 export interface FeedExtraProps {
   [key: string]: any;
@@ -13,10 +18,10 @@ export interface FeedExtraProps {
   className?: string;
 
   /** Shorthand for primary content. */
-  content?: React.ReactNode;
+  content?: SemanticShorthandContent;
 
   /** An event can contain additional information like a set of images. */
-  images?: boolean | Array<any>;
+  images?: boolean | Array<SemanticShorthandCollection<HtmlImageProps>>;
 
   /** An event can contain additional text information. */
   text?: boolean;

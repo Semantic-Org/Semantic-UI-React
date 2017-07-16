@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { SemanticShorthandContent } from '../..';
 
 export interface ModalContentProps {
   [key: string]: any;
@@ -13,7 +14,7 @@ export interface ModalContentProps {
   className?: string;
 
   /** Shorthand for primary content. */
-  content?: any;
+  content?: SemanticShorthandContent;
 
   /** A modal can contain image content. */
   image?: boolean;
