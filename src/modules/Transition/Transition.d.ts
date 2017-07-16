@@ -48,7 +48,7 @@ export interface TransitionProps {
   onShow?: (nothing: null, data: TransitionEventData) => void;
 
   /**
-   * Callback on each transition complete.
+   * Callback on animation start.
    *
    * @param {null}
    * @param {object} data - All props with status.

@@ -58,7 +58,7 @@ export default class Transition extends Component {
     onShow: PropTypes.func,
 
     /**
-     * Callback on each transition complete.
+     * Callback on animation start.
      *
      * @param {null}
      * @param {object} data - All props with status.
