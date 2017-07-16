@@ -30,6 +30,9 @@ export interface StepGroupProps {
   /** A step can stack vertically only on smaller screens. */
   stackable?: 'tablet';
 
+  /** A step can prevent itself from stacking on mobile. */
+  unstackable?: boolean;
+
   /** A step can be displayed stacked vertically. */
   vertical?: boolean;
 }

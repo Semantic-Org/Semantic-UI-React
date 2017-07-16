@@ -1,4 +1,5 @@
 import React from 'react'
+
 import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
 import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
 
@@ -8,6 +9,12 @@ const StepVariationsExamples = () => (
       title='Stackable'
       description='A step can stack vertically only on smaller screens.'
       examplePath='elements/Step/Variations/StepExampleStackable'
+    />
+
+    <ComponentExample
+      title='Unstackable'
+      description='A step can prevent itself from stacking on mobile.'
+      examplePath='elements/Step/Variations/StepExampleUnstackable'
     />
 
     <ComponentExample
