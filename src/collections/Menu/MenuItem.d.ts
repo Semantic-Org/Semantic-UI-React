@@ -58,8 +58,8 @@ export interface MenuItemProps {
    */
   onClick?: (event: React.MouseEvent<HTMLAnchorElement>, data: MenuItemProps) => void;
 
-  /** A menu item can take right position. */
-  position?: 'right';
+  /** A menu item can take left or right position. */
+  position?: 'left' | 'right';
 }
 
 declare const MenuItem: React.ComponentClass<MenuItemProps>;
