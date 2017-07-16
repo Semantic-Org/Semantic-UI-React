@@ -24,7 +24,7 @@ export default class Transition extends Component {
     /** Primary content. */
     children: PropTypes.node,
 
-    /** Duration of the CSS transition animation in microseconds. */
+    /** Duration of the CSS transition animation in milliseconds. */
     duration: PropTypes.number,
 
     /** Show the component; triggers the enter or exit animation. */

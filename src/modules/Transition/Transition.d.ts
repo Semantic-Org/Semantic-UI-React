@@ -14,7 +14,7 @@ export interface TransitionProps {
   /** Primary content. */
   children?: React.ReactNode;
 
-  /** Duration of the CSS transition animation in microseconds. */
+  /** Duration of the CSS transition animation in milliseconds. */
   duration?: number;
 
   /** Show the component; triggers the enter or exit animation. */

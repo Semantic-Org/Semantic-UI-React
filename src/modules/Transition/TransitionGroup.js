@@ -27,7 +27,7 @@ export default class TransitionGroup extends React.Component {
     /** Primary content. */
     children: PropTypes.node,
 
-    /** Duration of the CSS transition animation in microseconds. */
+    /** Duration of the CSS transition animation in milliseconds. */
     duration: PropTypes.number,
   }
 

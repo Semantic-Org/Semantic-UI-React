@@ -13,7 +13,7 @@ export interface TransitionGroupProps {
   /** Primary content. */
   children?: React.ReactNode;
 
-  /** Duration of the CSS transition animation in microseconds. */
+  /** Duration of the CSS transition animation in milliseconds. */
   duration?: number;
 }
 
