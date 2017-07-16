@@ -192,7 +192,8 @@ class Modal extends Component {
 
     if (dimmer) {
       debug('adding dimmer')
-      mountNode.classList.add('dimmable', 'dimmed')
+      mountNode.classList.add('dimmable')
+      mountNode.classList.add('dimmed')
 
       if (dimmer === 'blurring') {
         debug('adding blurred dimmer')
@@ -213,7 +214,12 @@ class Modal extends Component {
     // If the dimmer value changes while the modal is open, then removing its
     // current value could leave cruft classes previously added.
     const mountNode = this.getMountNode()
-    mountNode.classList.remove('blurring', 'dimmable', 'dimmed', 'scrollable')
+
+    // Heads up, IE doesn't support second argument in remove()
+    mountNode.classList.remove('blurring')
+    mountNode.classList.remove('dimmable')
+    mountNode.classList.remove('dimmed')
+    mountNode.classList.remove('scrollable')
 
     cancelAnimationFrame(this.animationRequestId)
 
