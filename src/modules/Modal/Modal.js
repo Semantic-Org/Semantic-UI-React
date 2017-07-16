@@ -112,7 +112,7 @@ class Modal extends Component {
     open: PropTypes.bool,
 
     /** A modal can vary in size */
-    size: PropTypes.oneOf(['fullscreen', 'large', 'small']),
+    size: PropTypes.oneOf(['fullscreen', 'large', 'mini', 'small', 'tiny']),
 
     /** Custom styles. */
     style: PropTypes.object,

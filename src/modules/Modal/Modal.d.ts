@@ -85,7 +85,7 @@ export interface ModalProps extends PortalProps {
   open?: boolean;
 
   /** A modal can vary in size. */
-  size?: 'fullscreen' | 'large' | 'small';
+  size?: 'fullscreen' | 'large' | 'mini' | 'small' | 'tiny';
 
   /** Custom styles. */
   style?: React.CSSProperties;
