@@ -4,25 +4,18 @@ import { Button, Divider, Image, Transition } from 'semantic-ui-react'
 export default class TransitionExampleTransition extends Component {
   state = { visible: true }
 
-  handleVisibility = () => {
-    const { visible } = this.state
-    this.setState({ visible: !visible })
-  }
+  toggleVisibility = () => this.setState({ visible: !this.state.visible })
 
   render() {
     const { visible } = this.state
 
     return (
       <div>
-        <Transition.Group animation='scale' duration={1500}>
-          {visible ? <Image size='small' src='/assets/images/leaves/1.png' /> : null }
-        </Transition.Group>
+        <Button content={visible ? 'Hide' : 'Show'} onClick={this.toggleVisibility} />
         <Divider hidden />
-        <Button
-          content={visible ? 'Hide' : 'Show'}
-          onClick={this.handleVisibility}
-          type='button'
-        />
+        <Transition.Group animation='scale' duration={500}>
+          {visible && <Image size='small' src='/assets/images/leaves/1.png' />}
+        </Transition.Group>
       </div>
     )
   }

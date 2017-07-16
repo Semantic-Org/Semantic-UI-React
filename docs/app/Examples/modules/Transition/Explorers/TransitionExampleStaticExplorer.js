@@ -1,26 +1,16 @@
 import React, { Component } from 'react'
-import { Button, Form, Grid, Image, Transition } from 'semantic-ui-react'
+import { Form, Grid, Image, Transition } from 'semantic-ui-react'
 
-const transitions = [
-  'jiggle', 'flash', 'shake', 'pulse', 'tada', 'bounce',
-]
-const options = transitions.map(transition => ({ key: transition, text: transition, value: transition }))
+const transitions = ['jiggle', 'flash', 'shake', 'pulse', 'tada', 'bounce']
+
+const options = transitions.map(name => ({ key: name, text: name, value: name }))
 
 export default class TransitionExampleStaticExplorer extends Component {
-  state = {
-    duration: 500,
-    animation: 'jiggle',
-    visible: true,
-  }
+  state = { animation: transitions[0], duration: 500, visible: true }
 
-  handleDuration = (e, { value: duration }) => this.setState({ duration })
+  handleChange = (e, { name, value }) => this.setState({ [name]: value })
 
-  handleTransition = (e, { value: animation }) => this.setState({ animation })
-
-  handleVisibility = () => {
-    const { visible } = this.state
-    this.setState({ visible: !visible })
-  }
+  handleVisibility = () => this.setState({ visible: !this.state.visible })
 
   render() {
     const { animation, duration, visible } = this.state
@@ -30,33 +20,27 @@ export default class TransitionExampleStaticExplorer extends Component {
         <Grid.Column as={Form}>
           <Form.Select
             label='Choose transition'
-            onChange={this.handleTransition}
+            name='animation'
+            onChange={this.handleChange}
             options={options}
             value={animation}
           />
           <Form.Input
             label={`Duration: ${duration}ms `}
-            min={500}
-            max={5000}
-            onChange={this.handleDuration}
-            step={500}
+            min={100}
+            max={2000}
+            name='duration'
+            onChange={this.handleChange}
+            step={100}
             type='range'
             value={duration}
           />
-          <Form.Button
-            content='Run'
-            onClick={this.handleVisibility}
-            type='button'
-          />
+          <Form.Button content='Run' onClick={this.handleVisibility} />
         </Grid.Column>
 
         <Grid.Column>
-          <Transition
-            animation={animation}
-            duration={duration}
-            into={visible}
-          >
-            <Image size='medium' src='/assets/images/leaves/5.png' />
+          <Transition animation={animation} duration={duration} into={visible}>
+            <Image centered size='small' src='/assets/images/leaves/5.png' />
           </Transition>
         </Grid.Column>
       </Grid>
