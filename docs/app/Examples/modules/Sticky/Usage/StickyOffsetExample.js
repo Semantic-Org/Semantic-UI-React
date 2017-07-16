@@ -2,16 +2,12 @@ import _ from 'lodash'
 import React, { Component } from 'react'
 import { Grid, Header, Image, Rail, Segment, Sticky } from 'semantic-ui-react'
 
-const Placeholder = () => (
-  <Image src='/assets/images/wireframe/paragraph.png' style={{ marginBottom: 14, marginTop: 14 }} />
-)
+const Placeholder = () => <Image src='/assets/images/wireframe/paragraph.png' />
 
-export default class StickyAdjacentContextExample extends Component {
+export default class StickyOffsetExample extends Component {
   state = {}
 
-  handleContextRef = contextRef => {
-    if (!this.state.contextRef) this.setState({ contextRef })
-  }
+  handleContextRef = contextRef => this.setState({ contextRef })
 
   render() {
     const { contextRef } = this.state
