@@ -18,6 +18,9 @@ export interface ModalContentProps {
 
   /** A modal can contain image content. */
   image?: boolean;
+
+  /** A modal can use the entire size of the screen. */
+  scrolling?: boolean;
 }
 
 declare const ModalContent: React.StatelessComponent<ModalContentProps>;
