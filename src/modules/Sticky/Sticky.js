@@ -103,18 +103,18 @@ export default class Sticky extends Component {
     this.assignRects()
 
     if (pushing) {
-      if (this.reachedStartingPoint()) return this.stickToContextTop(e)
-      if (this.touchedScreenBottom()) return this.stickToScreenBottom(e)
+      if (this.didReachStartingPoint()) return this.stickToContextTop(e)
+      if (this.didTouchScreenBottom()) return this.stickToScreenBottom(e)
       return this.stickToContextBottom(e)
     }
 
-    if (this.oversized()) {
+    if (this.isOversized()) {
       if (this.contextRect.top > 0) return this.stickToContextTop(e)
       if (this.contextRect.bottom < window.innerHeight) return this.stickToContextBottom(e)
     }
 
-    if (this.touchedScreenTop()) {
-      if (this.reachedContextBottom()) return this.stickToContextBottom(e)
+    if (this.didTouchScreenTop()) {
+      if (this.didReachContextBottom()) return this.stickToContextBottom(e)
       return this.stickToScreenTop(e)
     }
 
@@ -153,23 +153,23 @@ export default class Sticky extends Component {
   }
 
   // Return true if the height of the component is higher than the window
-  oversized = () => this.stickyRect.height > window.innerHeight
+  isOversized = () => this.stickyRect.height > window.innerHeight
 
   // Return true when the component reached the bottom of the context
-  reachedContextBottom = () => {
+  didReachContextBottom = () => {
     const { offset } = this.props
 
     return (this.stickyRect.height + offset) >= this.contextRect.bottom
   }
 
   // Return true when the component reached the starting point
-  reachedStartingPoint = () => this.stickyRect.top <= this.triggerRect.top
+  didReachStartingPoint = () => this.stickyRect.top <= this.triggerRect.top
 
   // Return true when the top of the screen overpasses the Sticky component
-  touchedScreenTop = () => this.triggerRect.top < this.props.offset
+  didTouchScreenTop = () => this.triggerRect.top < this.props.offset
 
   // Return true when the bottom of the screen overpasses the Sticky component
-  touchedScreenBottom = () => {
+  didTouchScreenBottom = () => {
     const { bottomOffset } = this.props
 
     return (this.contextRect.bottom + bottomOffset) > window.innerHeight
