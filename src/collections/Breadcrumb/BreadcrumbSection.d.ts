@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { SemanticShorthandContent } from '../..';
 
 export interface BreadcrumbSectionProps {
   [key: string]: any;
@@ -16,7 +17,7 @@ export interface BreadcrumbSectionProps {
   className?: string;
 
   /** Shorthand for primary content. */
-  content?: any;
+  content?: SemanticShorthandContent;
 
   /** Render as an `a` tag instead of a `div` and adds the href attribute. */
   href?: string;

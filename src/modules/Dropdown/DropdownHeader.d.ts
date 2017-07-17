@@ -1,5 +1,8 @@
 import * as React from 'react';
 
+import { SemanticShorthandContent, SemanticShorthandItem } from '../..';
+import { IconProps } from '../../elements/Icon';
+
 export interface DropdownHeaderProps {
   [key: string]: any;
 
@@ -13,10 +16,10 @@ export interface DropdownHeaderProps {
   className?: string;
 
   /** Shorthand for primary content. */
-  content?: React.ReactNode;
+  content?: SemanticShorthandContent;
 
   /** Shorthand for Icon. */
-  icon?: any;
+  icon?: SemanticShorthandItem<IconProps>;
 }
 
 declare const DropdownHeader: React.ComponentClass<DropdownHeaderProps>;

@@ -1,3 +1,5 @@
+import * as React from 'react';
+
 // ======================================================
 // Alignments
 // ======================================================
@@ -5,6 +7,38 @@
 export type SemanticFLOATS = 'left' | 'right';
 export type SemanticTEXTALIGNMENTS = 'left' | 'center' | 'right' | 'justified';
 export type SemanticVERTICALALIGNMENTS = 'top' | 'middle' | 'bottom';
+
+// ======================================================
+// Common element's props
+// ======================================================
+
+export interface HtmlLabelProps {
+  [key: string]: any;
+  children?: React.ReactNode;
+}
+
+export interface HtmlImageProps {
+  [key: string]: any;
+  src?: string;
+}
+
+export interface HtmlInputrops {
+  [key: string]: any;
+  type?: string;
+}
+
+export interface HtmlSpanProps {
+  [key: string]: any;
+  children?: React.ReactNode;
+}
+
+// ======================================================
+// Types
+// ======================================================
+
+export type SemanticShorthandCollection<T> = Array<SemanticShorthandItem<T>>;
+export type SemanticShorthandContent = React.ReactNode;
+export type SemanticShorthandItem<T> = React.ReactNode | T;
 
 // ======================================================
 // Styling

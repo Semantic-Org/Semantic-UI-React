@@ -2,6 +2,7 @@ import * as React from 'react';
 
 import {
   SemanticFLOATS,
+  SemanticShorthandCollection,
   SemanticSIZES,
   SemanticVERTICALALIGNMENTS
 } from '../..';
@@ -46,7 +47,7 @@ export interface ListProps {
   inverted?: boolean;
 
   /** Shorthand array of props for ListItem. */
-  items?: Array<any>;
+  items?: SemanticShorthandCollection<ListItemProps>;
 
   /** A list can be specially formatted for navigation links. */
   link?: boolean;
