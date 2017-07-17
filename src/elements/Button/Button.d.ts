@@ -3,8 +3,11 @@ import * as React from 'react';
 import {
   SemanticCOLORS,
   SemanticFLOATS,
+  SemanticShorthandContent,
+  SemanticShorthandItem,
   SemanticSIZES
 } from '../..';
+import { LabelProps } from '../Label';
 import { default as ButtonContent } from './ButtonContent';
 import { default as ButtonGroup } from './ButtonGroup';
 import { default as ButtonOr } from './ButtonOr';
@@ -43,7 +46,7 @@ export interface ButtonProps {
   compact?: boolean;
 
   /** Shorthand for primary content. */
-  content?: React.ReactNode;
+  content?: SemanticShorthandContent;
 
   /** A button can show it is currently unable to be interacted with. */
   disabled?: boolean;
@@ -61,7 +64,7 @@ export interface ButtonProps {
   inverted?: boolean;
 
   /** Add a Label by text, props object, or pass a <Label />. */
-  label?: any;
+  label?: SemanticShorthandItem<LabelProps>;
 
   /** A labeled button can format a Label or Icon to appear on the left or right. */
   labelPosition?: 'right' | 'left';

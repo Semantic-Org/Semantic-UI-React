@@ -1,5 +1,15 @@
 import * as React from 'react';
 
+import {
+  HtmlSpanProps,
+  SemanticShorthandContent,
+  SemanticShorthandItem
+} from '../..';
+import { FlagProps } from '../../elements/Flag';
+import { IconProps } from '../../elements/Icon';
+import { ImageProps } from '../../elements/Image';
+import { LabelProps } from '../../elements/Label';
+
 export interface DropdownItemProps {
   [key: string]: any;
 
@@ -16,25 +26,25 @@ export interface DropdownItemProps {
   className?: string;
 
   /** Shorthand for primary content. */
-  content?: React.ReactNode;
+  content?: SemanticShorthandContent;
 
   /** Additional text with less emphasis. */
-  description?: any;
+  description?: SemanticShorthandItem<HtmlSpanProps>;
 
   /** A dropdown item can be disabled. */
   disabled?: boolean;
 
   /** Shorthand for Flag. */
-  flag?: any;
+  flag?: SemanticShorthandItem<FlagProps>;
 
   /** Shorthand for Icon. */
-  icon?: any;
+  icon?: SemanticShorthandItem<IconProps>;
 
   /** Shorthand for Image. */
-  image?: any;
+  image?: SemanticShorthandItem<ImageProps>;
 
   /** Shorthand for Label. */
-  label?: any;
+  label?: SemanticShorthandItem<LabelProps>;
 
   /**
    * Called on click.
@@ -51,7 +61,7 @@ export interface DropdownItemProps {
   selected?: boolean;
 
   /** Display text. */
-  text?: React.ReactNode;
+  text?: SemanticShorthandContent;
 
   /** Stored value. */
   value?: number | string;

@@ -1,12 +1,13 @@
 import * as React from 'react';
 
+import { SemanticShorthandContent, SemanticShorthandItem } from '../..';
 import { default as ItemContent } from './ItemContent';
-import { default as ItemDescription } from './ItemDescription';
-import { default as ItemExtra } from './ItemExtra';
+import { default as ItemDescription, ItemDescriptionProps } from './ItemDescription';
+import { default as ItemExtra, ItemExtraProps} from './ItemExtra';
 import { default as ItemGroup } from './ItemGroup';
-import { default as ItemHeader } from './ItemHeader';
-import { default as ItemImage } from './ItemImage';
-import { default as ItemMeta } from './ItemMeta';
+import { default as ItemHeader, ItemHeaderProps } from './ItemHeader';
+import { default as ItemImage, ItemImageProps } from './ItemImage';
+import { default as ItemMeta, ItemMetaProps } from './ItemMeta';
 
 export interface ItemProps {
   [key: string]: any;
@@ -20,23 +21,23 @@ export interface ItemProps {
   /** Additional classes. */
   className?: string;
 
-  /** Shorthand for primary content. */
-  content?: any;
+  /** Shorthand for ItemContent component. */
+  content?: SemanticShorthandContent;
 
   /** Shorthand for ItemDescription component. */
-  description?: string;
+  description?: SemanticShorthandItem<ItemDescriptionProps>;
 
   /** Shorthand for ItemExtra component. */
-  extra?: any;
+  extra?: SemanticShorthandItem<ItemExtraProps>;
 
   /** Shorthand for ItemHeader component. */
-  header?: any;
+  header?: SemanticShorthandItem<ItemHeaderProps>;
 
   /** Shorthand for ItemImage component. */
-  image?: any;
+  image?: SemanticShorthandItem<ItemImageProps>;
 
   /** Shorthand for ItemMeta component. */
-  meta?: any;
+  meta?: SemanticShorthandItem<ItemMetaProps>;
 }
 
 interface ItemComponent extends React.StatelessComponent<ItemProps> {

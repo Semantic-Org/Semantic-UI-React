@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { SemanticShorthandContent } from '../..';
 
 export interface MenuHeaderProps {
   [key: string]: any;
@@ -13,7 +14,7 @@ export interface MenuHeaderProps {
   className?: string;
 
   /** Shorthand for primary content. */
-  content?: React.ReactNode;
+  content?: SemanticShorthandContent;
 }
 
 declare const MenuHeader: React.ComponentClass<MenuHeaderProps>;

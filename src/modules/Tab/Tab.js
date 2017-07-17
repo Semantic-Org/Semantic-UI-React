@@ -74,7 +74,7 @@ class Tab extends Component {
 
   static Pane = TabPane
 
-  getInitialState() {
+  getInitialAutoControlledState() {
     return { activeIndex: 0 }
   }
 

@@ -1094,7 +1094,7 @@ export default class Dropdown extends Component {
       _text = _.get(this.getItemByValue(value), 'text')
     }
 
-    return <div className={classes}>{_text}</div>
+    return <div className={classes} role='alert' aria-live='polite'>{_text}</div>
   }
 
   renderSearchInput = () => {
