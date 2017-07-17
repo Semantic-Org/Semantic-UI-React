@@ -64,7 +64,6 @@ describe('Input', () => {
     alwaysPresent: true,
     assertExactMatch: false,
     shorthandDefaultProps: { type: 'text' },
-    strictAssert: false,
   })
 
   common.propKeyAndValueToClassName(Input, 'actionPosition', ['left'], { className: 'action' })
