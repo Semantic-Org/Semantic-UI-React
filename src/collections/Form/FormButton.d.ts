@@ -1,6 +1,8 @@
 import * as React from 'react';
 
+import { SemanticShorthandItem } from '../..';
 import { ButtonProps } from '../../elements/Button';
+import { LabelProps } from '../../elements/Label';
 import { FormFieldProps } from './FormField';
 
 export interface FormButtonProps extends FormFieldProps, ButtonProps {
@@ -11,6 +13,9 @@ export interface FormButtonProps extends FormFieldProps, ButtonProps {
 
   /** A FormField control prop. */
   control?: any;
+
+  /** Shorthand for a Label. */
+  label?: SemanticShorthandItem<LabelProps>;
 }
 
 declare const FormButton: React.StatelessComponent<FormButtonProps>;

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { SemanticShorthandContent } from '../..';
 
 export interface AccordionContentProps {
   [key: string]: any;
@@ -16,7 +17,7 @@ export interface AccordionContentProps {
   className?: string;
 
   /** Shorthand for primary content. */
-  content?: any;
+  content?: SemanticShorthandContent;
 }
 
 declare const AccordionContent: React.StatelessComponent<AccordionContentProps>;

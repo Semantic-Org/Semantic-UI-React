@@ -8,6 +8,18 @@ import {
   hasAnySignature,
   requireTs,
 } from './tsHelpers'
+import { customPropTypes } from 'src/lib'
+
+const isShorthand = propType => _.includes([
+  customPropTypes.collectionShorthand,
+  customPropTypes.contentShorthand,
+  customPropTypes.itemShorthand,
+], propType)
+const shorthandMap = {
+  SemanticShorthandContent: customPropTypes.contentShorthand,
+  SemanticShorthandItem: customPropTypes.itemShorthand,
+  SemanticShorthandCollection: customPropTypes.collectionShorthand,
+}
 
 /**
  * Assert Component has the valid typings.
@@ -71,6 +83,20 @@ export default (Component, extractedInfo, options = {}) => {
         const interfaceRequired = _.filter(props, ['required', true])
 
         componentRequired.should.to.deep.equal(_.map(interfaceRequired, 'name'))
+      })
+    })
+
+    describe('shorthands', () => {
+      const { shorthands } = interfaceObject
+      const componentPropTypes = _.get(Component, 'propTypes')
+      const componentShorthands = _.pickBy(componentPropTypes, isShorthand)
+
+      _.forEach(componentShorthands, (propType, propName) => {
+        it(`"${propName}" should have the correct shorthand type `, () => {
+          const { type } = _.find(shorthands, ['name', propName])
+
+          shorthandMap[type].should.to.equal(propType)
+        })
       })
     })
   })
