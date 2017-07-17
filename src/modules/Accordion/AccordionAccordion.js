@@ -86,7 +86,7 @@ export default class AccordionAccordion extends Component {
     parent: 'Accordion',
   }
 
-  getInitialState({ exclusive }) {
+  getInitialAutoControlledState({ exclusive }) {
     return { activeIndex: exclusive ? -1 : [-1] }
   }
 

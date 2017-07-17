@@ -1,5 +1,9 @@
 import * as React from 'react';
 
+import { SemanticShorthandCollection, SemanticShorthandItem } from '../../';
+import { AccordionContentProps } from './AccordionContent';
+import { AccordionTitleProps } from './AccordionTitle';
+
 export interface AccordionAccordionProps {
   [key: string]: any;
 
@@ -30,7 +34,12 @@ export interface AccordionAccordionProps {
   onTitleClick?: (event: React.MouseEvent<HTMLDivElement>, index: number | number[]) => void;
 
   /** Shorthand array of props for Accordion. */
-  panels?: Array<any>;
+  panels?: SemanticShorthandCollection<AccordionPanelProps>;
+}
+
+export interface AccordionPanelProps {
+  content: SemanticShorthandItem<AccordionContentProps>;
+  title: SemanticShorthandItem<AccordionTitleProps>;
 }
 
 declare const AccordionAccordion: AccordionAccordionProps;
