@@ -1,5 +1,12 @@
 import * as React from 'react';
 
+import { SemanticShorthandItem } from '../..';
+import { ImageProps } from '../Image';
+import { ListContentProps } from './ListContent';
+import { ListDescriptionProps } from './ListDescription';
+import { ListHeaderProps } from './ListHeader';
+import { ListIconProps } from './ListIcon';
+
 export interface ListItemProps {
   [key: string]: any;
 
@@ -16,22 +23,22 @@ export interface ListItemProps {
   className?: string;
 
   /** Shorthand for primary content. */
-  content?: any;
+  content?: SemanticShorthandItem<ListContentProps>;
 
   /** Shorthand for ListDescription. */
-  description?: any;
+  description?: SemanticShorthandItem<ListDescriptionProps>;
 
   /** A list item can disabled. */
   disabled?: boolean;
 
   /** Shorthand for ListHeader. */
-  header?: any;
+  header?: SemanticShorthandItem<ListHeaderProps>;
 
   /** Shorthand for ListIcon. */
-  icon?: any;
+  icon?: SemanticShorthandItem<ListIconProps>;
 
   /** Shorthand for Image. */
-  image?: any;
+  image?: SemanticShorthandItem<ImageProps>;
 
   /**
    * Called on click.

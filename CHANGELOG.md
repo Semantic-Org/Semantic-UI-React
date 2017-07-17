@@ -1,5 +1,82 @@
 # Change Log
 
+## [v0.71.1](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.71.1) (2017-07-16)
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.71.0...v0.71.1)
+
+**Implemented enhancements:**
+
+- feat\(Modal\): add `scrolling` prop to Modal.Content [\#1857](https://github.com/Semantic-Org/Semantic-UI-React/pull/1857) ([layershifter](https://github.com/layershifter))
+- feat\(Step\): add `unstackable` prop to Step.Group [\#1856](https://github.com/Semantic-Org/Semantic-UI-React/pull/1856) ([layershifter](https://github.com/layershifter))
+- feat\(Modal\): add `mini` and `tiny` sizes [\#1853](https://github.com/Semantic-Org/Semantic-UI-React/pull/1853) ([layershifter](https://github.com/layershifter))
+- feat\(Menu\): add `left` value to the position prop [\#1852](https://github.com/Semantic-Org/Semantic-UI-React/pull/1852) ([layershifter](https://github.com/layershifter))
+
+**Fixed bugs:**
+
+- Tab: browser throwing a warning - getInitialState [\#1863](https://github.com/Semantic-Org/Semantic-UI-React/issues/1863)
+- Dropdown: accessibility problem \(screen readers\) [\#1834](https://github.com/Semantic-Org/Semantic-UI-React/issues/1834)
+- IE11 long modal scrolling [\#1759](https://github.com/Semantic-Org/Semantic-UI-React/issues/1759)
+
+**Closed issues:**
+
+- fix\(Menu\): your description [\#1862](https://github.com/Semantic-Org/Semantic-UI-React/issues/1862)
+- website is down? [\#1854](https://github.com/Semantic-Org/Semantic-UI-React/issues/1854)
+- SUI: release 2.2.11 [\#1851](https://github.com/Semantic-Org/Semantic-UI-React/issues/1851)
+- Search: examples broken [\#1846](https://github.com/Semantic-Org/Semantic-UI-React/issues/1846)
+- RFC: New types for typings [\#1289](https://github.com/Semantic-Org/Semantic-UI-React/issues/1289)
+
+**Merged pull requests:**
+
+- fix\(AutoControlledComponent\): rename state method [\#1865](https://github.com/Semantic-Org/Semantic-UI-React/pull/1865) ([layershifter](https://github.com/layershifter))
+- fix\(Dimmer|Modal\): fix compatibility with IE [\#1861](https://github.com/Semantic-Org/Semantic-UI-React/pull/1861) ([layershifter](https://github.com/layershifter))
+- chore\(package\): update SUI version [\#1855](https://github.com/Semantic-Org/Semantic-UI-React/pull/1855) ([layershifter](https://github.com/layershifter))
+- docs\(Search\): fix examples [\#1847](https://github.com/Semantic-Org/Semantic-UI-React/pull/1847) ([layershifter](https://github.com/layershifter))
+- fix\(Dropdown\): accessibility problem \(screen readers\) [\#1836](https://github.com/Semantic-Org/Semantic-UI-React/pull/1836) ([Sole-Valero](https://github.com/Sole-Valero))
+- style\(typings\): add new types [\#1782](https://github.com/Semantic-Org/Semantic-UI-React/pull/1782) ([layershifter](https://github.com/layershifter))
+
+## [v0.71.0](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.71.0) (2017-07-07)
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.70.0...v0.71.0)
+
+**Implemented enhancements:**
+
+- Input: onChange event triggered when IME character \(ex. Chinese\) is not completely entered  [\#1744](https://github.com/Semantic-Org/Semantic-UI-React/issues/1744)
+- Infinite scrolling [\#1173](https://github.com/Semantic-Org/Semantic-UI-React/issues/1173)
+- feat\(Dropdown\): add DropdownSearchInput component [\#1619](https://github.com/Semantic-Org/Semantic-UI-React/pull/1619) ([layershifter](https://github.com/layershifter))
+
+**Fixed bugs:**
+
+- Input: list prop should be passed to input [\#1835](https://github.com/Semantic-Org/Semantic-UI-React/issues/1835)
+- Tab.Pane's children data type needs to be updated [\#1798](https://github.com/Semantic-Org/Semantic-UI-React/issues/1798)
+- AutoControlledComponent throws warning in React 16 [\#1761](https://github.com/Semantic-Org/Semantic-UI-React/issues/1761)
+
+**Closed issues:**
+
+- Modal closeIcon is invisible with dimmer='inverted' [\#1838](https://github.com/Semantic-Org/Semantic-UI-React/issues/1838)
+- Typed by mistake :\( [\#1827](https://github.com/Semantic-Org/Semantic-UI-React/issues/1827)
+- ipt [\#1826](https://github.com/Semantic-Org/Semantic-UI-React/issues/1826)
+- Dropdown always open  [\#1824](https://github.com/Semantic-Org/Semantic-UI-React/issues/1824)
+- RFC: Tab, allow custom menuItem [\#1822](https://github.com/Semantic-Org/Semantic-UI-React/issues/1822)
+- Hey people, [\#1821](https://github.com/Semantic-Org/Semantic-UI-React/issues/1821)
+- Console error for Form Textarea rows requiring number [\#1814](https://github.com/Semantic-Org/Semantic-UI-React/issues/1814)
+- Country dropdown box, pressing the backspace key will not delete the first character typed in [\#1805](https://github.com/Semantic-Org/Semantic-UI-React/issues/1805)
+- onSearchChange randomly misses keys on IE11 if typing quickly [\#1785](https://github.com/Semantic-Org/Semantic-UI-React/issues/1785)
+- Dropdown value not populated on initial render w/ react 16 [\#1682](https://github.com/Semantic-Org/Semantic-UI-React/issues/1682)
+- Modal: Better uncontrolled usage support [\#891](https://github.com/Semantic-Org/Semantic-UI-React/issues/891)
+
+**Merged pull requests:**
+
+- docs\(readme\): add Sublime Fund to the built with list [\#1839](https://github.com/Semantic-Org/Semantic-UI-React/pull/1839) ([dguo](https://github.com/dguo))
+- fix\(Input\): list prop should be passed to the input [\#1837](https://github.com/Semantic-Org/Semantic-UI-React/pull/1837) ([layershifter](https://github.com/layershifter))
+- breaking\(Search\): update onResultSelect and onSearchChange signature [\#1828](https://github.com/Semantic-Org/Semantic-UI-React/pull/1828) ([layershifter](https://github.com/layershifter))
+- fix\(Tab\): relax menuItem prop type [\#1823](https://github.com/Semantic-Org/Semantic-UI-React/pull/1823) ([levithomason](https://github.com/levithomason))
+- fix\(Input\): add typings update [\#1820](https://github.com/Semantic-Org/Semantic-UI-React/pull/1820) ([layershifter](https://github.com/layershifter))
+- fix\(TextArea\): simplify propTypes [\#1817](https://github.com/Semantic-Org/Semantic-UI-React/pull/1817) ([layershifter](https://github.com/layershifter))
+- style\(typings\): Add tab panes prop definition [\#1812](https://github.com/Semantic-Org/Semantic-UI-React/pull/1812) ([pierre-H](https://github.com/pierre-H))
+- fix\(Tab\): fix children propType [\#1811](https://github.com/Semantic-Org/Semantic-UI-React/pull/1811) ([layershifter](https://github.com/layershifter))
+- style\(typings\): export Tab definitions [\#1808](https://github.com/Semantic-Org/Semantic-UI-React/pull/1808) ([pierre-H](https://github.com/pierre-H))
+- fix\(AutoControlledComponent\): use setState instead of an assign [\#1799](https://github.com/Semantic-Org/Semantic-UI-React/pull/1799) ([layershifter](https://github.com/layershifter))
+- docs\(ComponentProps\): fix compatibility with IE [\#1796](https://github.com/Semantic-Org/Semantic-UI-React/pull/1796) ([layershifter](https://github.com/layershifter))
+- chore\(package\): update chai to version 4.0.2 [\#1725](https://github.com/Semantic-Org/Semantic-UI-React/pull/1725) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
+
 ## [v0.70.0](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.70.0) (2017-06-24)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.69.0...v0.70.0)
 

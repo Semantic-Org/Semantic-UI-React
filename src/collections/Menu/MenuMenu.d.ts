@@ -12,8 +12,8 @@ export interface MenuMenuProps {
   /** Additional classes. */
   className?: string;
 
-  /** A sub menu can take right position. */
-  position?: 'right';
+  /** A sub menu can take left or right position. */
+  position?: 'left' | 'right';
 }
 
 declare const MenuMenu: React.StatelessComponent<MenuMenuProps>;

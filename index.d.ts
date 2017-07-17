@@ -129,6 +129,10 @@ export { default as DropdownDivider, DropdownDividerProps } from './dist/commonj
 export { default as DropdownHeader, DropdownHeaderProps } from './dist/commonjs/modules/Dropdown/DropdownHeader';
 export { default as DropdownItem, DropdownItemProps } from './dist/commonjs/modules/Dropdown/DropdownItem';
 export { default as DropdownMenu, DropdownMenuProps } from './dist/commonjs/modules/Dropdown/DropdownMenu';
+export {
+  default as DropdownSearchInput,
+  DropdownSearchInputProps
+} from './dist/commonjs/modules/Dropdown/DropdownSearchInput';
 
 export { default as Embed, EmbedProps } from './dist/commonjs/modules/Embed';
 
@@ -155,6 +159,9 @@ export { default as SearchResults, SearchResultsProps } from './dist/commonjs/mo
 export { default as Sidebar, SidebarProps } from './dist/commonjs/modules/Sidebar';
 export { default as SidebarPushable, SidebarPushableProps } from './dist/commonjs/modules/Sidebar/SidebarPushable';
 export { default as SidebarPusher, SidebarPusherProps } from './dist/commonjs/modules/Sidebar/SidebarPusher';
+
+export { default as Tab, TabProps } from './dist/commonjs/modules/Tab';
+export { default as TabPane, TabPaneProps } from './dist/commonjs/modules/Tab/TabPane';
 
 // Views
 export { default as Advertisement, AdvertisementProps } from './dist/commonjs/views/Advertisement';

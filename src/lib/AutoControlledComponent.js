@@ -72,7 +72,7 @@ export default class AutoControlledComponent extends Component {
     super(...args)
 
     const { autoControlledProps } = this.constructor
-    const state = _.invoke(this, 'getInitialState', this.props) || {}
+    const state = _.invoke(this, 'getInitialAutoControlledState', this.props) || {}
 
     if (process.env.NODE_ENV !== 'production') {
       const { defaultProps, name, propTypes } = this.constructor

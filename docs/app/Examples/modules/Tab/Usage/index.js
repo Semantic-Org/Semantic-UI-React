@@ -19,6 +19,11 @@ const TabUsageExamples = () => (
       description='You can capture the tab change event.'
       examplePath='modules/Tab/Usage/TabExampleOnTabChange'
     />
+    <ComponentExample
+      title='Custom Menu Items'
+      description='You can pass any shorthand value as a menu item.'
+      examplePath='modules/Tab/Usage/TabExampleCustomMenuItem'
+    />
   </ExampleSection>
 )
 

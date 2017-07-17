@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { SemanticSIZES } from '../..';
+import { SemanticShorthandContent, SemanticSIZES } from '../..';
 
 export interface LoaderProps {
   [key: string]: any;
@@ -17,7 +17,7 @@ export interface LoaderProps {
   className?: string;
 
   /** Shorthand for primary content. */
-  content?: any;
+  content?: SemanticShorthandContent;
 
   /** A loader can be disabled or hidden. */
   disabled?: boolean;
