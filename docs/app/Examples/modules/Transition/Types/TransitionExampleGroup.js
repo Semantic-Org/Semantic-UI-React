@@ -17,8 +17,8 @@ export default class TransitionExampleGroup extends Component {
     return (
       <div>
         <Button.Group>
-          <Button icon='minus' onClick={this.handleRemove} disabled={items.length === 0} />
-          <Button icon='plus' onClick={this.handleAdd} disabled={items.length === users.length} />
+          <Button disabled={items.length === 0} icon='minus' onClick={this.handleRemove} />
+          <Button disabled={items.length === users.length} icon='plus' onClick={this.handleAdd} />
         </Button.Group>
 
         <Transition.Group
