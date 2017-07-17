@@ -14,6 +14,7 @@ const ModalExamples = () => (
       title='Scrolling Content'
       description='A modal can use the entire size of the screen.'
       examplePath='modules/Modal/Variations/ModalExampleScrollingContent'
+      suiVersion='2.2.11'
     />
     <ComponentExample
       title='Dimmer Variations'
