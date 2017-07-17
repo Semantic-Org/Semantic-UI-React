@@ -43,6 +43,17 @@ describe('Sticky', () => {
   common.isConformant(Sticky)
   common.rendersChildren(Sticky)
 
+  let requestAnimationFrame
+
+  before(() => {
+    window.requestAnimationFrame = fn => fn()
+    requestAnimationFrame = window.requestAnimationFrame
+  })
+
+  after(() => {
+    window.requestAnimationFrame = requestAnimationFrame
+  })
+
   it('should create two divs', () => {
     const children = shallow(<Sticky />).children()
 

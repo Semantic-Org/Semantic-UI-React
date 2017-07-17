@@ -95,8 +95,10 @@ export default class Sticky extends Component {
   // Handlers
   // ----------------------------------------
 
-  handleUpdate = (e) => {
+  update = (e) => {
     const { pushing } = this.state
+
+    this.ticking = false
 
     this.assignRects()
 
@@ -117,6 +119,13 @@ export default class Sticky extends Component {
     }
 
     return this.stickToContextTop(e)
+  }
+
+  handleUpdate = (e) => {
+    if (!this.ticking) {
+      this.ticking = true
+      requestAnimationFrame(() => this.update(e))
+    }
   }
 
   // ----------------------------------------
