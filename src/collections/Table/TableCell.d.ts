@@ -1,8 +1,12 @@
 import * as React from 'react';
+
 import {
+  SemanticShorthandContent,
+  SemanticShorthandItem,
   SemanticVERTICALALIGNMENTS,
   SemanticWIDTHS
 } from '../..';
+import { IconProps } from '../../elements/Icon';
 
 export interface TableCellProps {
   [key: string]: any;
@@ -23,7 +27,7 @@ export interface TableCellProps {
   collapsing?: boolean;
 
   /** Shorthand for primary content. */
-  content?: React.ReactNode;
+  content?: SemanticShorthandContent;
 
   /** A cell can be disabled. */
   disabled?: boolean;
@@ -32,7 +36,7 @@ export interface TableCellProps {
   error?: boolean;
 
   /** Add an Icon by name, props object, or pass an <Icon /> */
-  icon?: any;
+  icon?: SemanticShorthandItem<IconProps>;
 
   /** A cell may let a user know whether a value is bad. */
   negative?: boolean;

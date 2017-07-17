@@ -210,7 +210,7 @@ describe('Modal', () => {
 
   describe('size', () => {
     it('adds the size to the modal className', () => {
-      const sizes = ['fullscreen', 'large', 'small']
+      const sizes = ['fullscreen', 'large', 'mini', 'small', 'tiny']
 
       sizes.forEach(size => {
         wrapperMount(<Modal size={size} open />)
