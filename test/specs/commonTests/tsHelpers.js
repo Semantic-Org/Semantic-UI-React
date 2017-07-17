@@ -11,6 +11,15 @@ const isIndexSignature = ({ kind }) => kind === SyntaxKind.IndexSignature
 const isInterface = ({ kind }) => kind === SyntaxKind.InterfaceDeclaration
 const isExportModifier = ({ kind }) => kind === SyntaxKind.ExportKeyword
 const isPropertySignature = ({ kind }) => kind === SyntaxKind.PropertySignature
+const isTypeReference = ({ kind }) => kind === SyntaxKind.TypeReference
+const isShorthandProperty = node => {
+  if (!isPropertySignature(node) || !isTypeReference(node.type)) return false
+  return _.includes([
+    'SemanticShorthandContent',
+    'SemanticShorthandItem',
+    'SemanticShorthandCollection',
+  ], _.get(node, 'type.typeName.text'))
+}
 const isStringKeyword = ({ kind }) => kind === SyntaxKind.StringKeyword
 
 const getProps = members => {
@@ -19,6 +28,15 @@ const getProps = members => {
   return _.map(props, ({ name, questionToken }) => ({
     name: name.text,
     required: !questionToken,
+  }))
+}
+
+const getShorthands = members => {
+  const shorthands = _.filter(members, isShorthandProperty)
+
+  return _.map(shorthands, shorthand => ({
+    name: _.get(shorthand, 'name.text'),
+    type: _.get(shorthand, 'type.typeName.text'),
   }))
 }
 
@@ -45,6 +63,7 @@ export const getInterfaces = nodes => {
     exported: _.some(modifiers, isExportModifier),
     name: name.text,
     props: getProps(members),
+    shorthands: getShorthands(members),
   }))
 }
 

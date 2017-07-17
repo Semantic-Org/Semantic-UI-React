@@ -36,13 +36,19 @@ class TextArea extends Component {
     onChange: PropTypes.func,
 
     /** Indicates row count for a TextArea. */
-    rows: PropTypes.number,
+    rows: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
 
     /** Custom TextArea style. */
     style: PropTypes.object,
 
     /** The value of the textarea. */
-    value: PropTypes.string,
+    value: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
   }
 
   static defaultProps = {

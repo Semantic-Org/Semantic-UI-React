@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { SemanticShorthandContent } from '../..';
 
 export interface ListDescriptionProps {
   [key: string]: any;
@@ -13,7 +14,7 @@ export interface ListDescriptionProps {
   className?: string;
 
   /** Shorthand for primary content. */
-  content?: React.ReactNode;
+  content?: SemanticShorthandContent;
 }
 
 declare const ListDescription: React.StatelessComponent<ListDescriptionProps>;

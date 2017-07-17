@@ -5,7 +5,9 @@ import Input from 'src/elements/Input/Input'
 import * as common from 'test/specs/commonTests'
 
 describe('FormInput', () => {
-  common.isConformant(FormInput)
+  common.isConformant(FormInput, {
+    ignoredTypingsProps: ['label'],
+  })
   common.labelImplementsHtmlForProp(FormInput)
 
   it('renders a FormField with a Input control', () => {

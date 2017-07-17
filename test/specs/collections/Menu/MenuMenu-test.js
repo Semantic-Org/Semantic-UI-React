@@ -5,5 +5,5 @@ describe('MenuMenu', () => {
   common.isConformant(MenuMenu)
   common.rendersChildren(MenuMenu)
 
-  common.propValueOnlyToClassName(MenuMenu, 'position', ['right'])
+  common.propValueOnlyToClassName(MenuMenu, 'position', ['left', 'right'])
 })

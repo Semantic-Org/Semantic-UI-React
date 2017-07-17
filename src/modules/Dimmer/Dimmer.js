@@ -72,11 +72,19 @@ export default class Dimmer extends Component {
   static Dimmable = DimmerDimmable
 
   handlePortalMount = () => {
-    if (isBrowser) document.body.classList.add('dimmed', 'dimmable')
+    if (!isBrowser) return
+
+    // Heads up, IE doesn't support second argument in add()
+    document.body.classList.add('dimmed')
+    document.body.classList.add('dimmable')
   }
 
   handlePortalUnmount = () => {
-    if (isBrowser) document.body.classList.remove('dimmed', 'dimmable')
+    if (!isBrowser) return
+
+    // Heads up, IE doesn't support second argument in add()
+    document.body.classList.remove('dimmed')
+    document.body.classList.remove('dimmable')
   }
 
   handleClick = (e) => {

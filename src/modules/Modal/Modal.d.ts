@@ -1,10 +1,11 @@
 import * as React from 'react';
 
+import { SemanticShorthandItem } from '../..';
 import { PortalProps } from '../../addons/Portal';
 import { default as ModalActions } from './ModalActions';
-import { default as ModalContent } from './ModalContent';
+import { default as ModalContent, ModalContentProps } from './ModalContent';
 import { default as ModalDescription } from './ModalDescription';
-import { default as ModalHeader } from './ModalHeader';
+import { default as ModalHeader, ModalHeaderProps } from './ModalHeader';
 
 export interface ModalProps extends PortalProps {
   [key: string]: any;
@@ -34,7 +35,7 @@ export interface ModalProps extends PortalProps {
   closeOnDocumentClick?: boolean;
 
   /** A Modal can be passed content via shorthand. */
-  content?: any;
+  content?: SemanticShorthandItem<ModalContentProps>;
 
   /** Initial value of open. */
   defaultOpen?: boolean;
@@ -43,7 +44,7 @@ export interface ModalProps extends PortalProps {
   dimmer?: boolean | 'blurring' | 'inverted';
 
   /** A Modal can be passed header via shorthand. */
-  header?: any;
+  header?: SemanticShorthandItem<ModalHeaderProps>;
 
   /** The node where the modal should mount. Defaults to document.body. */
   mountNode?: any;
@@ -84,7 +85,7 @@ export interface ModalProps extends PortalProps {
   open?: boolean;
 
   /** A modal can vary in size. */
-  size?: 'fullscreen' | 'large' | 'small';
+  size?: 'fullscreen' | 'large' | 'mini' | 'small' | 'tiny';
 
   /** Custom styles. */
   style?: React.CSSProperties;
