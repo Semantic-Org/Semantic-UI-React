@@ -1,5 +1,8 @@
 import * as React from 'react';
 
+import { SemanticShorthandCollection } from '../..';
+import { StepProps } from './Step';
+
 export interface StepGroupProps {
   [key: string]: any;
 
@@ -16,7 +19,7 @@ export interface StepGroupProps {
   fluid?: boolean;
 
   /** Shorthand array of props for Step. */
-  items?: any;
+  items?: SemanticShorthandCollection<StepProps>;
 
   /** A step can show a ordered sequence of steps. */
   ordered?: boolean;
@@ -26,6 +29,9 @@ export interface StepGroupProps {
 
   /** A step can stack vertically only on smaller screens. */
   stackable?: 'tablet';
+
+  /** A step can prevent itself from stacking on mobile. */
+  unstackable?: boolean;
 
   /** A step can be displayed stacked vertically. */
   vertical?: boolean;

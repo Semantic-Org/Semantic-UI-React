@@ -196,6 +196,9 @@ class Sidebar extends Component {
             <Menu.Item as={NavLink} to='/usage' activeClassName='active'>
               Usage
             </Menu.Item>
+            <Menu.Item as={NavLink} to='/layouts' activeClassName='active'>
+              Layouts
+            </Menu.Item>
             <Menu.Item as='a' href={repoURL}>
               <Icon name='github' /> GitHub
             </Menu.Item>

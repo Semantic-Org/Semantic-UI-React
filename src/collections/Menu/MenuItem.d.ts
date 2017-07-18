@@ -1,5 +1,11 @@
 import * as React from 'react';
-import { SemanticCOLORS } from '../..';
+
+import {
+  SemanticCOLORS,
+  SemanticShorthandContent,
+  SemanticShorthandItem
+} from '../..';
+import { IconProps } from '../../elements/Icon';
 
 export interface MenuItemProps {
   [key: string]: any;
@@ -20,7 +26,7 @@ export interface MenuItemProps {
   color?: SemanticCOLORS;
 
   /** Shorthand for primary content. */
-  content?: React.ReactNode;
+  content?: SemanticShorthandContent;
 
   /** A menu item can be disabled. */
   disabled?: boolean;
@@ -32,7 +38,7 @@ export interface MenuItemProps {
   header?: boolean;
 
   /** MenuItem can be only icon. */
-  icon?: any | boolean;
+  icon?: boolean | SemanticShorthandItem<IconProps>;
 
   /** MenuItem index inside Menu. */
   index?: number;
@@ -52,8 +58,8 @@ export interface MenuItemProps {
    */
   onClick?: (event: React.MouseEvent<HTMLAnchorElement>, data: MenuItemProps) => void;
 
-  /** A menu item can take right position. */
-  position?: 'right';
+  /** A menu item can take left or right position. */
+  position?: 'left' | 'right';
 }
 
 declare const MenuItem: React.ComponentClass<MenuItemProps>;
