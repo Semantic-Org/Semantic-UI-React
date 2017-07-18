@@ -1,6 +1,17 @@
 import React from 'react'
 import {
-  Button, Divider, Dropdown, Grid, Header, Icon, Image, Label, Menu, Message, Segment, Table,
+  Button,
+  Divider,
+  Dropdown,
+  Grid,
+  Header,
+  Icon,
+  Image,
+  Label,
+  Menu,
+  Message,
+  Segment,
+  Table,
 } from 'semantic-ui-react'
 
 const BootstrapMigrationLayout = () =>
