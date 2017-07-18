@@ -114,7 +114,7 @@ export default class Breakpoint extends Component {
   // ----------------------------------------
 
   visible = () => {
-    const { only } = this.props
+    const { only = '' } = this.props
     const points = only.replace('large screen', 'largeScreen').split(' ')
 
     return _.some(points, point => _.invoke(this, point))
@@ -147,5 +147,3 @@ export default class Breakpoint extends Component {
     return null
   }
 }
-
-

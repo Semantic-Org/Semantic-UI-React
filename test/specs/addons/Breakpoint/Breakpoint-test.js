@@ -8,11 +8,11 @@ import { domEvent, sandbox } from 'test/utils'
 const { points } = Breakpoint.defaultProps
 const requiredProps = { only: 'mobile' }
 
-beforeEach(() => {
-  sandbox.stub(window, 'innerWidth').value(points.mobile)
-})
-
 describe('Breakpoint', () => {
+  beforeEach(() => {
+    sandbox.stub(window, 'innerWidth').value(points.mobile)
+  })
+
   common.isConformant(Breakpoint, { requiredProps })
   common.rendersChildren(Breakpoint, { requiredProps })
 

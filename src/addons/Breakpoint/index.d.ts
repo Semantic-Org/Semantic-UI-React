@@ -1,1 +1,1 @@
-export { default, BreakpointPoints, BreakpointProps } from './Breakpoint';
+export { default, BreakpointPoints, BreakpointProps, BreakpointOnUpdateData } from './Breakpoint';

@@ -241,7 +241,7 @@ export const demand = (requiredProps) => {
  * @param {string[]} possible An array of possible values to prop.
  */
 export const onlyProp = possible => {
-  return (props, propName, componentName) => {
+  const typeChecker = (required, props, propName, componentName) => {
     if (!Array.isArray(possible)) {
       throw new Error([
         'Invalid argument supplied to some, expected an instance of array.',
@@ -252,7 +252,10 @@ export const onlyProp = possible => {
     const propValue = props[propName]
 
     // skip if prop is undefined
-    if (_.isNil(propValue) || propValue === false) return
+    if (_.isNil(propValue) || propValue === false) {
+      if (required) throw new Error(`Required \`${propName}\` prop was not specified in \`${componentName}\`.`)
+      return
+    }
 
     const values = propValue
       .replace('large screen', 'large-screen')
@@ -265,6 +268,11 @@ export const onlyProp = possible => {
       return new Error(`\`${propName}\` prop in \`${componentName}\` has invalid values: \`${invalid.join('`, `')}\`.`)
     }
   }
+
+  const chainedCheckType = typeChecker.bind(null, false)
+  chainedCheckType.isRequired = typeChecker.bind(null, true)
+
+  return chainedCheckType
 }
 
 /**
