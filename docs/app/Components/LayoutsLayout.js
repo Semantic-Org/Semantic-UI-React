@@ -44,6 +44,9 @@ export default class LayoutsLayout extends Component {
     const { component: Children, computedMatch, render } = this.props
 
     if (render) return render()
+
+    const filename = `${_.startCase(computedMatch.params.name).replace(' ', '')}Layout.js`
+
     return (
       <div>
         {style}
@@ -58,7 +61,7 @@ export default class LayoutsLayout extends Component {
           />
           <Button
             as={NavLink}
-            to={`${repoURL}/blob/master/docs/app/Layouts/${_.capitalize(computedMatch.params.name)}Layout.js`}
+            to={`${repoURL}/blob/master/docs/app/Layouts/${filename}`}
             color='secondary'
             icon='github'
             content='Source'
