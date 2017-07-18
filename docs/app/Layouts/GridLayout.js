@@ -1,20 +1,6 @@
 import React from 'react'
 import { Container, Divider, Grid, Header, Image } from 'semantic-ui-react'
 
-const style = {
-  container: {
-    padding: '5em 0em',
-  },
-  h1: {
-    marginTop: '10em',
-  },
-  h3: {
-    marginTop: '10em',
-  },
-  first: {
-    marginTop: '5em',
-  },
-}
 const InlineStyle = () => (
   <style>{`
     .grid {
@@ -56,16 +42,18 @@ const GridLayout = () =>
   <div>
     <InlineStyle />
 
-    <Container text style={style.container}>
+    <Container text>
       <Header as='h1' dividing>Using Grids</Header>
-      <Header as='h3' style={style.first}>Container</Header>
+      <Header as='h3'>Container</Header>
       <p>
         A container is a fixed width element that wraps your site's content. It remains a constant size and
         uses <b>margin</b> to center. Containers are the simplest way to center page content inside a grid.
       </p>
     </Container>
 
-    <Container style={style.container}>
+    <Divider hidden />
+
+    <Container>
       <Grid>
         <Grid.Row>
           <Grid.Column />
@@ -88,26 +76,24 @@ const GridLayout = () =>
       </Grid>
     </Container>
 
-    <Container text style={style.container}>
-      <Header as='h3' style={style.first}>Text Container</Header>
+    <Divider hidden />
+
+    <Container text>
+      <Header as='h3'>Text Container</Header>
       <p>
         Sometimes you just need to put a single column of centered text on a page. A <code>text container</code> is
         a special type of container optimized for a single flowing column of text, like this instructions on this page.
       </p>
       <p>Text containers <b>do not need to use grids</b> and help simplify basic page layouts.</p>
-    </Container>
 
-    <Container text style={style.container}>
       <Grid>
         <Grid.Row columns={1}>
           <Grid.Column />
         </Grid.Row>
       </Grid>
-    </Container>
 
-    <Container text style={style.container}>
       <Header as='h1' dividing>Grid Content</Header>
-      <Header as='h3' style={style.first}>Column Flow</Header>
+      <Header as='h3'>Column Flow</Header>
       <p>
         A grid does not necessarily need to specify rows. If you include <code>columns</code> as direct child of
         <code>ui grid</code> content will automatically flow to the next row when all the grid columns are taken in the
@@ -124,7 +110,7 @@ const GridLayout = () =>
         <Grid.Column width={4} />
       </Grid>
 
-      <Header as='h3' style={style.h3}>Clearing Rows</Header>
+      <Header as='h3'>Clearing Rows</Header>
       <p>Adding row wrappers allow you to manually specify you want a new row to begin.</p>
 
       <Grid columns={3}>
@@ -136,7 +122,7 @@ const GridLayout = () =>
         </Grid.Row>
       </Grid>
 
-      <Header as='h3' style={style.h3}>Specifying Row Width</Header>
+      <Header as='h3'>Specifying Row Width</Header>
       <p>
         Specifying a grid column count will divide columns into rows of predetermined column count. Additional columns
         will automatically flow to the next row.
@@ -150,7 +136,7 @@ const GridLayout = () =>
         <Grid.Column>column</Grid.Column>
       </Grid>
 
-      <Header as='h3' style={style.h3}>Specifying Column Width</Header>
+      <Header as='h3'>Specifying Column Width</Header>
       <p>You can also specify column widths for each column individually.</p>
 
       <Grid>
@@ -159,7 +145,7 @@ const GridLayout = () =>
         <Grid.Column width={4}>four wide column</Grid.Column>
       </Grid>
 
-      <Header as='h3' style={style.h3}>Special Variations</Header>
+      <Header as='h3'>Special Variations</Header>
       <p>
         Some special variations that format grids like tables require you to specify rows. For example a
         <code>divided grid</code> or a <code>celled grid</code> requires row wrappers.
@@ -233,8 +219,8 @@ const GridLayout = () =>
         </Grid.Row>
       </Grid>
 
-      <Header as='h1' dividing style={style.h1}>Adjusting Grids</Header>
-      <Header as='h3' style={style.first}>Centering Content</Header>
+      <Header as='h1' dividing>Adjusting Grids</Header>
+      <Header as='h3'>Centering Content</Header>
       <p>
         If a row does not take up all sixteen grid columns, you can use a <code>ui centered grid</code>,
         <code>centered row</code>, or <code>centered column</code> to center the column contents inside the grid.
@@ -248,7 +234,7 @@ const GridLayout = () =>
         </Grid.Row>
       </Grid>
 
-      <Header as='h3' style={style.h3}>Floating Rows</Header>
+      <Header as='h3'>Floating Rows</Header>
       <p>
         Since Semantic UI's grid is based on flex box, a <code>left floated</code> item should come first, and a
         <code>right floated</code> item last in its row.
@@ -259,7 +245,7 @@ const GridLayout = () =>
         <Grid.Column floated='right' width={6}>Right floated</Grid.Column>
       </Grid>
 
-      <Header as='h3' style={style.h3}>Text Alignment</Header>
+      <Header as='h3'>Text Alignment</Header>
       <p>You can specify text alignment using alignment variations on a grid, row, or column level.</p>
 
       <Grid>
@@ -272,7 +258,7 @@ const GridLayout = () =>
         <Grid.Column verticalAlign='right' width={16}>right aligned column</Grid.Column>
       </Grid>
 
-      <Header as='h3' style={style.h3}>Vertical Alignment</Header>
+      <Header as='h3'>Vertical Alignment</Header>
       <p>You can specify vertical alignment on a grid, row, or column level.</p>
 
       <Grid verticalAlign='middle' columns={4} centered>
@@ -290,7 +276,7 @@ const GridLayout = () =>
         </Grid.Row>
       </Grid>
 
-      <Header as='h3' style={style.h3}>Equal Width Columns</Header>
+      <Header as='h3'>Equal Width Columns</Header>
       <p>
         Specifying an <code>equal width grid</code> will automatically determine column sizes to fit evenly inside
         one row.
@@ -310,8 +296,8 @@ const GridLayout = () =>
         </Grid.Row>
       </Grid>
 
-      <Header as='h1' style={style.h1}>Responsive Patterns</Header>
-      <Header as='h3' style={style.first}>Doubling</Header>
+      <Header as='h1'>Responsive Patterns</Header>
+      <Header as='h3'>Doubling</Header>
       <p>You can set columns to double in width at each device jump.</p>
 
       <Grid columns={5} doubling>
@@ -322,7 +308,7 @@ const GridLayout = () =>
         <Grid.Column>column</Grid.Column>
       </Grid>
 
-      <Header as='h3' style={style.h3}>Stackable</Header>
+      <Header as='h3'>Stackable</Header>
       <p>You can set columns to stack on mobile.</p>
 
       <Grid columns={3} stackable>
@@ -331,7 +317,7 @@ const GridLayout = () =>
         <Grid.Column>column</Grid.Column>
       </Grid>
 
-      <Header as='h3' style={style.h3}>Responsive Width Adjustments</Header>
+      <Header as='h3'>Responsive Width Adjustments</Header>
       <p>You can specify columns to appear at different widths on different screens.</p>
 
       <Grid>
@@ -348,7 +334,7 @@ const GridLayout = () =>
         <Grid.Column largescreen={2} widescreen={1} width={4} />
       </Grid>
 
-      <Header as='h3' style={style.h3}>Specifying Device Visibility</Header>
+      <Header as='h3'>Specifying Device Visibility</Header>
       <p>You can specify columns to appear only a particular screen.</p>
 
       <Grid>
