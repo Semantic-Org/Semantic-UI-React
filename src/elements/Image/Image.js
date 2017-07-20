@@ -70,8 +70,9 @@ function Image(props) {
     className,
   )
   const rest = getUnhandledProps(Image, props)
+  const wrappedImage = !_.isNil(dimmer) || !_.isNil(label) || !_.isNil(wrapped) || !childrenUtils.isNil(children)
   const ElementType = getElementType(Image, props, () => {
-    if (!_.isNil(dimmer) || !_.isNil(label) || !_.isNil(wrapped) || !childrenUtils.isNil(children)) return 'div'
+    if (wrappedImage) return 'div'
   })
 
   if (!childrenUtils.isNil(children)) {
@@ -81,7 +82,7 @@ function Image(props) {
   const rootProps = { ...rest, className: classes }
   const imgTagProps = { alt, src, height, width }
 
-  if (ElementType === 'img') return <ElementType {...rootProps} {...imgTagProps} />
+  if (!wrappedImage) return <ElementType {...rootProps} {...imgTagProps} />
 
   return (
     <ElementType {...rootProps} href={href}>
