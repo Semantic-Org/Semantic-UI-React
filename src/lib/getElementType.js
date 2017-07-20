@@ -1,3 +1,5 @@
+import withRef from 'src/addons/Ref/withRef'
+
 /**
  * Returns a createElement() type based on the props of the Component.
  * Useful for calculating what type a component should render as.
@@ -7,7 +9,7 @@
  * @param {function} [getDefault] A function that returns a default element type.
  * @returns {string|function} A ReactElement type
  */
-function getElementType(Component, props, getDefault) {
+export const computeElementType = (Component, props, getDefault) => {
   const { defaultProps = {} } = Component
 
   // ----------------------------------------
@@ -33,5 +35,7 @@ function getElementType(Component, props, getDefault) {
 
   return defaultProps.as || 'div'
 }
+
+const getElementType = (...args) => withRef(computeElementType(...args))
 
 export default getElementType
