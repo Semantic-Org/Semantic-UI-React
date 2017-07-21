@@ -79,7 +79,7 @@ class Tab extends Component {
   }
 
   handleItemClick = (e, { index }) => {
-    _.invoke(this.props, 'onTabChange', e, { activeIndex: index, ...this.props })
+    _.invoke(this.props, 'onTabChange', e, { ...this.props, activeIndex: index })
     this.trySetState({ activeIndex: index })
   }
 
