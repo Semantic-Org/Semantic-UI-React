@@ -105,6 +105,7 @@ class Form extends Component {
 
   render() {
     const {
+      action,
       children,
       className,
       error,
@@ -133,7 +134,16 @@ class Form extends Component {
     const rest = getUnhandledProps(Form, this.props)
     const ElementType = getElementType(Form, this.props)
 
-    return <ElementType {...rest} className={classes} onSubmit={this.handleSubmit}>{children}</ElementType>
+    return (
+      <ElementType
+        {...rest}
+        action={action}
+        className={classes}
+        onSubmit={this.handleSubmit}
+      >
+        {children}
+      </ElementType>
+    )
   }
 }
 
