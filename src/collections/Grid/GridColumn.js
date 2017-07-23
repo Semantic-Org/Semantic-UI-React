@@ -4,6 +4,7 @@ import React from 'react'
 
 import {
   customPropTypes,
+  createShorthandFactory,
   getElementType,
   getUnhandledProps,
   META,
@@ -111,5 +112,12 @@ GridColumn.propTypes = {
   /** Represents width of column. */
   width: PropTypes.oneOf(SUI.WIDTHS),
 }
+
+GridColumn.create = createShorthandFactory(
+  GridColumn,
+  stretched => ({ stretched }),
+  width => ({ width }),
+  children => ({ children })
+)
 
 export default GridColumn
