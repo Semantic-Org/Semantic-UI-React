@@ -39,7 +39,7 @@ class Tab extends Component {
     /** Shorthand props for the Menu. */
     menu: PropTypes.object,
 
-    /** Shorthand props for the Grid */
+    /** Shorthand props for the Grid. */
     grid: PropTypes.object,
 
     /**
@@ -128,7 +128,7 @@ class Tab extends Component {
     const { activeIndex } = this.state
 
     const menu = this.renderMenu()
-    const grid = this.renderVertical(menu)
+    const grid = menu.props.vertical === true ? this.renderVertical(menu) : null
     const rest = getUnhandledProps(Tab, this.props)
     const ElementType = getElementType(Tab, this.props)
 
