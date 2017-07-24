@@ -1,6 +1,6 @@
-const del = require('del')
 const { task, series } = require('gulp')
 const loadPlugins = require('gulp-load-plugins')
+const rimraf = require('rimraf')
 const webpack = require('webpack')
 
 const config = require('../../config')
@@ -13,8 +13,7 @@ const { log, PluginError } = g.util
 // ----------------------------------------
 
 task('clean:dll', (cb) => {
-  del.sync(config.paths.base('dll'))
-  cb()
+  rimraf(config.paths.base('dll'), cb)
 })
 
 // ----------------------------------------
@@ -52,5 +51,5 @@ task('build:dll', (cb) => {
 
 task('dll', series(
   'clean:dll',
-  'build:dll'
+  'build:dll',
 ))

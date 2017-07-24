@@ -113,7 +113,7 @@ export default class MenuItem extends Component {
       position,
       useKeyOnly(active, 'active'),
       useKeyOnly(disabled, 'disabled'),
-      useKeyOnly(icon === true || icon && !(name || content), 'icon'),
+      useKeyOnly(icon === true || (icon && !(name || content)), 'icon'),
       useKeyOnly(header, 'header'),
       useKeyOnly(link, 'link'),
       useKeyOrValueAndKey(fitted, 'fitted'),

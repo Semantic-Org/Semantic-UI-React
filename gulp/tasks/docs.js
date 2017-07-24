@@ -1,8 +1,8 @@
 const historyApiFallback = require('connect-history-api-fallback')
-const del = require('del')
 const express = require('express')
 const { task, src, dest, parallel, series, watch } = require('gulp')
 const loadPlugins = require('gulp-load-plugins')
+const rimraf = require('rimraf')
 const webpack = require('webpack')
 const WebpackDevMiddleware = require('webpack-dev-middleware')
 const WebpackHotMiddleware = require('webpack-hot-middleware')
@@ -12,15 +12,14 @@ const config = require('../../config')
 const g = loadPlugins()
 const { colors, log, PluginError } = g.util
 
-const handleWatchChange = (e) => log(`File ${e.path} was ${e.type}, running tasks...`)
+const handleWatchChange = e => log(`File ${e.path} was ${e.type}, running tasks...`)
 
 // ----------------------------------------
 // Clean
 // ----------------------------------------
 
 task('clean:docs', (cb) => {
-  del.sync(config.paths.docsDist())
-  cb()
+  rimraf(config.paths.docsDist(), cb)
 })
 
 // ----------------------------------------
@@ -49,15 +48,11 @@ task('build:docs:docgen', () => {
     .pipe(dest(config.paths.docsSrc()))
 })
 
-task('build:docs:html', () => {
-  return src(config.paths.docsSrc('404.html'))
-    .pipe(dest(config.paths.docsDist()))
-})
+task('build:docs:html', () => src(config.paths.docsSrc('404.html'))
+  .pipe(dest(config.paths.docsDist())))
 
-task('build:docs:images', () => {
-  return src(`${config.paths.docsSrc()}/**/*.{png,jpg,gif}`)
-    .pipe(dest(config.paths.docsDist()))
-})
+task('build:docs:images', () => src(`${config.paths.docsSrc()}/**/*.{png,jpg,gif}`)
+  .pipe(dest(config.paths.docsDist())))
 
 task('build:docs:webpack', (cb) => {
   const webpackConfig = require('../../webpack.config')
@@ -92,11 +87,11 @@ task('build:docs', series(
       parallel(
         'build:docs:docgen',
         'build:docs:html',
-        'build:docs:images'
-      )
-    )
+        'build:docs:images',
+      ),
+    ),
   ),
-  'build:docs:webpack'
+  'build:docs:webpack',
 ))
 
 // ----------------------------------------
@@ -154,5 +149,5 @@ task('watch:docs', (cb) => {
 
 task('docs', series(
   'build:docs',
-  'serve:docs'
+  'serve:docs',
 ))

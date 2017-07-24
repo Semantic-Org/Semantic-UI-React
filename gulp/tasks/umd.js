@@ -1,6 +1,6 @@
-const del = require('del')
 const { task, parallel, series } = require('gulp')
 const loadPlugins = require('gulp-load-plugins')
+const rimraf = require('rimraf')
 const webpack = require('webpack')
 
 const config = require('../../config')
@@ -13,8 +13,7 @@ const { log, PluginError } = g.util
 // ----------------------------------------
 
 task('clean:umd', (cb) => {
-  del.sync(config.paths.umdDist())
-  cb()
+  rimraf(config.paths.umdDist(), cb)
 })
 
 // ----------------------------------------
@@ -49,9 +48,9 @@ task('build:umd:webpack', (cb) => {
 task('build:umd', series(
   parallel(
     'dll',
-    'clean:umd'
+    'clean:umd',
   ),
-  'build:umd:webpack'
+  'build:umd:webpack',
 ))
 
 // ----------------------------------------
@@ -59,5 +58,5 @@ task('build:umd', series(
 // ----------------------------------------
 
 task('umd', series(
-  'build:umd'
+  'build:umd',
 ))

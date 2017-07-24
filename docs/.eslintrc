@@ -1,4 +1,5 @@
 {
+  "parser": "babel-eslint",
   "globals": {
     "__DEV__": false,
     "__STAGING__": false,
@@ -7,34 +8,24 @@
     "__PROD__": false
   },
   "rules": {
-    "jsx-a11y/accessible-emoji": 0,
-    "jsx-a11y/anchor-has-content": 0,
-    "jsx-a11y/aria-activedescendant-has-tabindex": 0,
-    "jsx-a11y/aria-props": 0,
-    "jsx-a11y/aria-proptypes": 0,
-    "jsx-a11y/aria-role": 0,
-    "jsx-a11y/aria-unsupported-elements": 0,
-    "jsx-a11y/click-events-have-key-events": 0,
-    "jsx-a11y/heading-has-content": 0,
+    "global-require": 0,
+    "jsx-quotes": [2, "prefer-single"],
+    "max-len": [2, 120],
+    "no-return-assign": [ 2, "except-parens"],
+    "no-underscore-dangle": 0,
+    "padded-blocks": [2, {
+      "blocks": "never",
+      "switches": "never",
+      "classes": "never"
+    }],
+    "semi": [2, "never"],
+    "jsx-a11y/alt-text": 0,
     "jsx-a11y/href-no-hash": 0,
-    "jsx-a11y/html-has-lang": 0,
-    "jsx-a11y/iframe-has-title": 0,
-    "jsx-a11y/img-has-alt": 0,
-    "jsx-a11y/img-redundant-alt": 0,
-    "jsx-a11y/label-has-for": 0,
-    "jsx-a11y/lang": 0,
-    "jsx-a11y/mouse-events-have-key-events": 0,
-    "jsx-a11y/no-access-key": 0,
-    "jsx-a11y/no-autofocus": 0,
-    "jsx-a11y/no-distracting-elements": 0,
-    "jsx-a11y/no-onchange": 0,
-    "jsx-a11y/no-redundant-roles": 0,
-    "jsx-a11y/no-static-element-interactions": 0,
-    "jsx-a11y/onclick-has-focus": 0,
-    "jsx-a11y/onclick-has-role": 0,
-    "jsx-a11y/role-has-required-aria-props": 0,
-    "jsx-a11y/role-supports-aria-props": 0,
-    "jsx-a11y/scope": 0,
-    "jsx-a11y/tabindex-no-positive": 0
+    "import/no-extraneous-dependencies": 0,
+    "import/no-unresolved": 0,
+    "import/extensions": 0,
+    "import/no-webpack-loader-syntax": 0,
+    "react/no-unescaped-entities": 0,
+    "react/jsx-filename-extension": [2, { "extensions": [".js"] }]
   }
 }

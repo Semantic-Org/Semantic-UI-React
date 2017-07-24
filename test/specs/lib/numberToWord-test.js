@@ -26,7 +26,7 @@ describe('numberToWord', () => {
   })
 
   it('returns word if input is word', () => {
-    words.forEach((word) => numberToWord(word).should.equal(word))
+    words.forEach(word => numberToWord(word).should.equal(word))
   })
 
   it('returns an empty string for boolean inputs', () => {

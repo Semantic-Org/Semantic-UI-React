@@ -18,7 +18,7 @@ function CommentAction(props) {
 
   const classes = cx(
     useKeyOnly(active, 'active'),
-    className
+    className,
   )
   const rest = getUnhandledProps(CommentAction, props)
   const ElementType = getElementType(CommentAction, props)

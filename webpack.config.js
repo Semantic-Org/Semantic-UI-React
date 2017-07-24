@@ -2,6 +2,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const _ = require('lodash')
 const webpack = require('webpack')
 const config = require('./config')
+
 const { paths } = config
 const { __DEV__, __STAGING__, __TEST__, __PROD__ } = config.compiler_globals
 
@@ -32,12 +33,12 @@ const webpackConfig = {
 
 const webpackHotPath = `${config.compiler_public_path}__webpack_hmr`
 const webpackHotMiddlewareEntry = `webpack-hot-middleware/client?${_.map({
-  path: webpackHotPath,   // The path which the middleware is serving the event stream on
-  timeout: 2000,          // The time to wait after a disconnection before attempting to reconnect
-  overlay: true,          // Set to false to disable the DOM-based client-side overlay.
-  reload: true,           // Set to true to auto-reload the page when webpack gets stuck.
-  noInfo: false,          // Set to true to disable informational console logging.
-  quiet: false,           // Set to true to disable all console logging.
+  path: webpackHotPath, // The path which the middleware is serving the event stream on
+  timeout: 2000, // The time to wait after a disconnection before attempting to reconnect
+  overlay: true, // Set to false to disable the DOM-based client-side overlay.
+  reload: true, // Set to true to auto-reload the page when webpack gets stuck.
+  noInfo: false, // Set to true to disable informational console logging.
+  quiet: false, // Set to true to disable all console logging.
 }, (val, key) => `&${key}=${val}`).join('')}`
 
 const APP_ENTRY = paths.docsSrc('index.js')
@@ -103,14 +104,14 @@ if (!__TEST__) {
     // https://github.com/webpack-contrib/karma-webpack/issues/22
     new webpack.optimize.CommonsChunkPlugin({
       names: ['vendor'],
-    })
+    }),
   )
 }
 
 if (__DEV__) {
   webpackConfig.plugins.push(
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoEmitOnErrorsPlugin()
+    new webpack.NoEmitOnErrorsPlugin(),
   )
 }
 
@@ -125,7 +126,7 @@ if (__PROD__ || __STAGING__) {
         dead_code: true,
         warnings: false,
       },
-    })
+    }),
   )
 }
 

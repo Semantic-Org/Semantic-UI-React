@@ -1,3 +1,3 @@
 const doctrine = require('doctrine')
 
-module.exports = (docBlock) => doctrine.parse(docBlock || '', { unwrap: true })
+module.exports = docBlock => doctrine.parse(docBlock || '', { unwrap: true })

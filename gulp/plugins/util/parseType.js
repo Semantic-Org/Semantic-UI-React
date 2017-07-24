@@ -11,7 +11,7 @@ const transformEnumValues = values => _.flatMap(values, ({ value }) => {
   return value.replace(/'/g, '')
 })
 
-const parseEnum = type => {
+const parseEnum = (type) => {
   const { value } = type
 
   if (typeof value === 'string' && value.includes('SUI')) {
@@ -21,9 +21,9 @@ const parseEnum = type => {
   return Object.assign(type, { value: uniqValues(transformEnumValues(value)) })
 }
 
-const parseUnion = union => {
+const parseUnion = (union) => {
   const { value } = union
-  const transformed = value.map(type => type.name === 'enum' ? parseEnum(type) : type)
+  const transformed = value.map(type => (type.name === 'enum' ? parseEnum(type) : type))
 
   return Object.assign(union, { value: transformed })
 }

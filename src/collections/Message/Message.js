@@ -112,7 +112,7 @@ export default class Message extends Component {
   static List = MessageList
   static Item = MessageItem
 
-  handleDismiss = e => {
+  handleDismiss = (e) => {
     const { onDismiss } = this.props
 
     if (onDismiss) onDismiss(e, this.props)

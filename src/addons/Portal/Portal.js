@@ -172,15 +172,15 @@ class Portal extends Component {
     const { closeOnDocumentClick, closeOnRootNodeClick } = this.props
 
     if (
-      !this.rootNode                                      // not mounted
-      || !this.portalNode                                 // no portal
+      !this.rootNode // not mounted
+      || !this.portalNode // no portal
       || _.invoke(this, 'triggerNode.contains', e.target) // event happened in trigger (delegate to trigger handlers)
-      || _.invoke(this, 'portalNode.contains', e.target)  // event happened in the portal
-    ) return                                              // ignore the click
+      || _.invoke(this, 'portalNode.contains', e.target) // event happened in the portal
+    ) return // ignore the click
 
     const didClickInRootNode = this.rootNode.contains(e.target)
 
-    if (closeOnDocumentClick && !didClickInRootNode || closeOnRootNodeClick && didClickInRootNode) {
+    if ((closeOnDocumentClick && !didClickInRootNode) || (closeOnRootNodeClick && didClickInRootNode)) {
       debug('handleDocumentClick()')
 
       this.close(e)
@@ -209,7 +209,7 @@ class Portal extends Component {
     this.mouseLeaveTimer = this.closeWithTimeout(e, mouseLeaveDelay)
   }
 
-  handlePortalMouseEnter = (e) => {
+  handlePortalMouseEnter = () => {
     // In order to enable mousing from the trigger to the portal, we need to
     // clear the mouseleave timer that was set when leaving the trigger.
     const { closeOnPortalMouseLeave } = this.props
@@ -361,7 +361,7 @@ class Portal extends Component {
 
         this.portalNode.addEventListener('mouseleave', this.handlePortalMouseLeave)
         this.portalNode.addEventListener('mouseenter', this.handlePortalMouseEnter)
-      }
+      },
     )
   }
 
@@ -411,7 +411,7 @@ class Portal extends Component {
     if (onUnmount) onUnmount(null, this.props)
   }
 
-  handleRef = c => {
+  handleRef = (c) => {
     this.triggerNode = ReactDOM.findDOMNode(c)
   }
 

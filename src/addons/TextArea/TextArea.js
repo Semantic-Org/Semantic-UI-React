@@ -60,20 +60,20 @@ class TextArea extends Component {
     this.updateHeight()
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps) {
     // removed autoHeight
     if (!this.props.autoHeight && prevProps.autoHeight) {
       this.removeAutoHeightStyles()
     }
     // added autoHeight or value changed
-    if (this.props.autoHeight && !prevProps.autoHeight || prevProps.value !== this.props.value) {
+    if ((this.props.autoHeight && !prevProps.autoHeight) || prevProps.value !== this.props.value) {
       this.updateHeight()
     }
   }
 
   focus = () => (this.ref.focus())
 
-  handleChange = e => {
+  handleChange = (e) => {
     const value = _.get(e, 'target.value')
 
     _.invoke(this.props, 'onChange', e, { ...this.props, value })
@@ -110,8 +110,8 @@ class TextArea extends Component {
     const textHeight = parseFloat(lineHeight) * textRows
 
     // respect style.minHeight
-    this.setState((prevState, props) => ({
-      height: Math.max(parseFloat(minHeight), Math.ceil(boxModelHeight + textHeight)) + 'px',
+    this.setState(() => ({
+      height: `${Math.max(parseFloat(minHeight), Math.ceil(boxModelHeight + textHeight))}px`,
     }))
   }
 

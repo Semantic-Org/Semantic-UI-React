@@ -9,7 +9,7 @@ import Router from './routes'
 const mountNode = document.createElement('div')
 document.body.appendChild(mountNode)
 
-const render = (NewApp) => ReactDOM.render(<NewApp />, mountNode)
+const render = NewApp => ReactDOM.render(<NewApp />, mountNode)
 
 // ----------------------------------------
 // HMR

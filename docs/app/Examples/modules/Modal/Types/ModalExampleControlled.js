@@ -4,11 +4,11 @@ import { Button, Header, Icon, Modal } from 'semantic-ui-react'
 export default class ModalExampleControlled extends Component {
   state = { modalOpen: false }
 
-  handleOpen = (e) => this.setState({
+  handleOpen = e => this.setState({
     modalOpen: true,
   })
 
-  handleClose = (e) => this.setState({
+  handleClose = e => this.setState({
     modalOpen: false,
   })
 

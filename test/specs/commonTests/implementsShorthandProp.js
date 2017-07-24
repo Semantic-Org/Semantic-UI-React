@@ -6,7 +6,7 @@ import { consoleUtil } from 'test/utils'
 import { noDefaultClassNameFromProp } from './classNameHelpers'
 import helpers from './commonHelpers'
 
-const shorthandComponentName = ShorthandComponent => {
+const shorthandComponentName = (ShorthandComponent) => {
   if (typeof ShorthandComponent === 'string') return ShorthandComponent
   return _.get(ShorthandComponent, '_meta.name') || ShorthandComponent.displayName || ShorthandComponent.name
 }
@@ -56,7 +56,7 @@ export default (Component, options = {}) => {
       shallow(element).should[assertMethod](shorthandElement)
     }
 
-    if (alwaysPresent || Component.defaultProps && Component.defaultProps[propKey]) {
+    if (alwaysPresent || (Component.defaultProps && Component.defaultProps[propKey])) {
       it(`has default ${name} when not defined`, () => {
         shallow(<Component {...requiredProps} />)
           .should.have.descendants(name)

@@ -31,7 +31,7 @@ function LabelGroup(props) {
     useKeyOnly(circular, 'circular'),
     useKeyOnly(tag, 'tag'),
     'labels',
-    className
+    className,
   )
   const rest = getUnhandledProps(LabelGroup, props)
   const ElementType = getElementType(LabelGroup, props)

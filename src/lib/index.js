@@ -37,4 +37,4 @@ export * as SUI from './SUI'
 
 export { default as keyboardKey } from './keyboardKey'
 export { numberToWordMap, numberToWord } from './numberToWord'
-export { objectDiff } from './objectDiff'
+export { default as objectDiff } from './objectDiff'

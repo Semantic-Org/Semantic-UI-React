@@ -139,7 +139,7 @@ export const implementsLabelProp = (Component, options = {}) => {
  * Assert that a Component correctly implements the "only" prop.
  * @param {React.Component|Function} Component The component to test.
  */
-export const implementsOnlyProp = Component => {
+export const implementsOnlyProp = (Component) => {
   const { assertRequired } = helpers('propKeyAndValueToClassName', Component)
   const propValues = SUI.VISIBILITY
 
@@ -149,7 +149,7 @@ export const implementsOnlyProp = Component => {
     noDefaultClassNameFromProp(Component, 'only', propValues)
     noClassNameFromBoolProps(Component, 'only', propValues)
 
-    propValues.forEach(propVal => {
+    propValues.forEach((propVal) => {
       it(`adds "${propVal} only" to className`, () => {
         shallow(createElement(Component, { only: propVal })).should.have.className(`${propVal} only`)
       })
@@ -181,18 +181,18 @@ export const implementsTextAlignProp = (Component, alignments = SUI.TEXT_ALIGNME
     noClassNameFromBoolProps(Component, 'textAlign', alignments, options)
     noDefaultClassNameFromProp(Component, 'textAlign', alignments, options)
 
-    alignments.forEach(propVal => {
+    alignments.forEach((propVal) => {
       if (propVal === 'justified') {
         it('adds "justified" without "aligned" to className', () => {
-          shallow(<Component { ...requiredProps } textAlign='justified' />)
+          shallow(<Component {...requiredProps} textAlign='justified' />)
             .should.have.className('justified')
 
-          shallow(<Component { ...requiredProps } textAlign='justified' />)
+          shallow(<Component {...requiredProps} textAlign='justified' />)
             .should.not.have.className('aligned')
         })
       } else {
         it(`adds "${propVal} aligned" to className`, () => {
-          shallow(<Component { ...requiredProps } textAlign={propVal} />)
+          shallow(<Component {...requiredProps} textAlign={propVal} />)
             .should.have.className(`${propVal} ${'aligned'}`)
         })
       }
@@ -217,9 +217,9 @@ export const implementsVerticalAlignProp = (Component, alignments = SUI.VERTICAL
     noClassNameFromBoolProps(Component, 'verticalAlign', alignments, options)
     noDefaultClassNameFromProp(Component, 'verticalAlign', alignments, options)
 
-    alignments.forEach(propVal => {
+    alignments.forEach((propVal) => {
       it(`adds "${propVal} aligned" to className`, () => {
-        shallow(<Component { ...requiredProps } verticalAlign={propVal} />)
+        shallow(<Component {...requiredProps} verticalAlign={propVal} />)
           .should.have.className(`${propVal} ${'aligned'}`)
       })
     })
@@ -254,7 +254,7 @@ export const implementsWidthProp = (Component, widths = SUI.WIDTHS, options = {}
     noDefaultClassNameFromProp(Component, propKey, propValues, options)
 
     it('adds numberToWord value to className', () => {
-      widths.forEach(width => {
+      widths.forEach((width) => {
         const expectClass = widthClass ? `${numberToWord(width)} ${widthClass}` : numberToWord(width)
 
         shallow(createElement(Component, { ...requiredProps, [propKey]: width }))
@@ -275,7 +275,7 @@ export const implementsWidthProp = (Component, widths = SUI.WIDTHS, options = {}
  * Assert that a Components with a label correctly implements the "id" and "htmlFor" props.
  * @param {React.Component|Function} Component The component to test.
  */
-export const labelImplementsHtmlForProp = Component => {
+export const labelImplementsHtmlForProp = (Component) => {
   const { assertRequired } = helpers('labelImplementsHtmlForProp', Component)
 
   describe('htmlFor (common)', () => {

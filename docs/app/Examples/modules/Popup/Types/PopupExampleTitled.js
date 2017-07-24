@@ -20,14 +20,14 @@ const users = [
 ]
 
 export default function PopupExampleTitled() {
-  const avatars = users.map((user, index) =>
+  const avatars = users.map((user, index) => (
     <Popup
       key={user.name}
       trigger={<Image src={user.avatar} avatar />}
       header={user.name}
       content={user.bio}
     />
-  )
+  ))
 
   return <div>{avatars}</div>
 }

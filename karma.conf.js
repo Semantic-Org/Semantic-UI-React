@@ -6,7 +6,7 @@ const formatError = (msg) => {
   if (!msg.trim() || /~/.test(msg)) return ''
 
   // indent the error beneath the it() message
-  let newLine = '  ' + msg
+  let newLine = `  ${msg}`
 
   if (newLine.includes('webpack:///')) {
     // remove webpack:///
@@ -16,7 +16,7 @@ const formatError = (msg) => {
     newLine = newLine.slice(0, newLine.indexOf(' <- '))
   }
 
-  return newLine + '\n'
+  return `${newLine}\n`
 }
 
 module.exports = (karmaConfig) => {
@@ -25,7 +25,7 @@ module.exports = (karmaConfig) => {
     browsers: ['PhantomJS'],
     client: {
       mocha: {
-        reporter: 'html',   // change Karma's debug.html to mocha web reporter
+        reporter: 'html', // change Karma's debug.html to mocha web reporter
         ui: 'bdd',
       },
     },

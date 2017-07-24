@@ -44,7 +44,7 @@ function ItemGroup(props) {
     return <ElementType {...rest} className={classes}>{children}</ElementType>
   }
 
-  const itemsJSX = _.map(items, item => {
+  const itemsJSX = _.map(items, (item) => {
     const { childKey, ...itemProps } = item
     const finalKey = childKey || [itemProps.content, itemProps.description, itemProps.header, itemProps.meta].join('-')
 

@@ -27,7 +27,7 @@ export default class Embed extends Component {
     /** An embed can specify an alternative aspect ratio. */
     aspectRatio: PropTypes.oneOf(['4:3', '16:9', '21:9']),
 
-     /** Setting to true or false will force autoplay. */
+    /** Setting to true or false will force autoplay. */
     autoplay: customPropTypes.every([
       customPropTypes.demand(['source']),
       PropTypes.bool,
@@ -60,7 +60,7 @@ export default class Embed extends Component {
       PropTypes.bool,
     ]),
 
-     /** Specifies an icon to use with placeholder content. */
+    /** Specifies an icon to use with placeholder content. */
     icon: customPropTypes.itemShorthand,
 
     /** Specifies an id for source. */

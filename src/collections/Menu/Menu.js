@@ -210,7 +210,7 @@ class Menu extends Component {
       useValueAndKey(fixed, 'fixed'),
       useWidthProp(widths, 'item'),
       className,
-      'menu'
+      'menu',
     )
     const rest = getUnhandledProps(Menu, this.props)
     const ElementType = getElementType(Menu, this.props)

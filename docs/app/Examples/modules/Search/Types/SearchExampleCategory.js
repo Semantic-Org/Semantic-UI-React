@@ -37,7 +37,7 @@ export default class SearchExampleCategory extends Component {
       if (this.state.value.length < 1) return this.resetComponent()
 
       const re = new RegExp(_.escapeRegExp(this.state.value), 'i')
-      const isMatch = (result) => re.test(result.title)
+      const isMatch = result => re.test(result.title)
 
       const filteredResults = _.reduce(source, (memo, data, name) => {
         const results = _.filter(data.results, isMatch)

@@ -15,7 +15,7 @@ import {
   Input,
 } from 'src'
 
-const getRoute = (_meta) => `/${_meta.type}s/${_.kebabCase(_meta.name)}`
+const getRoute = _meta => `/${_meta.type}s/${_.kebabCase(_meta.name)}`
 
 const MenuItem = ({ meta, children, ...rest }) => (
   <NavLink to={getRoute(meta)} {...rest}>
@@ -83,7 +83,7 @@ class Sidebar extends Component {
     query: e.target.value,
   })
 
-  handleSearchKeyDown = e => {
+  handleSearchKeyDown = (e) => {
     const { history } = this.props
     const { selectedItemIndex } = this.state
     const code = keyboardKey.getCode(e)
@@ -123,7 +123,7 @@ class Sidebar extends Component {
           to={getRoute(_meta)}
           activeClassName='active'
         />
-      ))
+      )),
     )(parentComponents)
 
     return (
@@ -142,7 +142,7 @@ class Sidebar extends Component {
     const startsWithMatches = []
     const containsMatches = []
 
-    _.each(component => {
+    _.each((component) => {
       if (new RegExp(`^${_.escapeRegExp(query)}`, 'i').test(component._meta.name)) {
         startsWithMatches.push(component)
       } else if (new RegExp(_.escapeRegExp(query), 'i').test(component._meta.name)) {
@@ -202,7 +202,7 @@ class Sidebar extends Component {
             <Menu.Item as='a' href={repoURL}>
               <Icon name='github' /> GitHub
             </Menu.Item>
-            <Menu.Item as='a' href={`${repoURL}/blob/master/CHANGELOG.md` }>
+            <Menu.Item as='a' href={`${repoURL}/blob/master/CHANGELOG.md`}>
               <Icon name='file text outline' /> CHANGELOG
             </Menu.Item>
           </Menu.Menu>

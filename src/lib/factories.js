@@ -51,7 +51,9 @@ export function createShorthand(Component, mapValueToProps, val, options = {}) {
   const { defaultProps = {} } = options
 
   // User's props
-  const usersProps = isReactElement && val.props || isPropsObject && val || isPrimitiveValue && mapValueToProps(val)
+  const usersProps = (isReactElement && val.props)
+    || (isPropsObject && val)
+    || (isPrimitiveValue && mapValueToProps(val))
 
   // Override props
   let { overrideProps = {} } = options

@@ -68,7 +68,7 @@ class Form extends Component {
     /** Automatically show any success Message children. */
     success: PropTypes.bool,
 
-    /** Automatically show any warning Message children .*/
+    /** Automatically show any warning Message children . */
     warning: PropTypes.bool,
 
     /** Forms can automatically divide fields to be equal width. */

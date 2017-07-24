@@ -42,7 +42,7 @@ function CardGroup(props) {
     return <ElementType {...rest} className={classes}>{children}</ElementType>
   }
 
-  const content = _.map(items, item => {
+  const content = _.map(items, (item) => {
     const key = item.key || [item.header, item.description].join('-')
     return <Card key={key} {...item} />
   })

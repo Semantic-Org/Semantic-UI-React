@@ -36,7 +36,7 @@ function Divider(props) {
     useKeyOnly(section, 'section'),
     useKeyOnly(vertical, 'vertical'),
     'divider',
-    className
+    className,
   )
   const rest = getUnhandledProps(Divider, props)
   const ElementType = getElementType(Divider, props)
