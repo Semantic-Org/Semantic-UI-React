@@ -113,9 +113,6 @@ GridColumn.propTypes = {
   width: PropTypes.oneOf(SUI.WIDTHS),
 }
 
-GridColumn.create = createShorthandFactory(
-  GridColumn,
-  children => ({ children })
-)
+GridColumn.create = createShorthandFactory(GridColumn, children => ({ children }))
 
 export default GridColumn
