@@ -67,6 +67,9 @@ function FormField(props) {
   // Checkbox/Radio Control
   // ----------------------------------------
   const controlProps = { ...rest, children, disabled, required, type }
+  if (error) {
+    controlProps['aria-invalid'] = true
+  }
 
   // wrap HTML checkboxes/radios in the label
   if (control === 'input' && (type === 'checkbox' || type === 'radio')) {

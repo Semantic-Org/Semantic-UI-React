@@ -113,4 +113,21 @@ describe('FormField', () => {
       input.should.have.prop('required', true)
     })
   })
+
+  describe('aria', () => {
+    it('should mark the control as aria-invalid if error prop is true', () => {
+      const wrapper = shallow(<FormField control='input' error />)
+      const input = wrapper.find('input')
+
+      wrapper.should.have.exactly(1).descendants('input')
+      input.should.have.prop('aria-invalid', true)
+    })
+    it('should not set aria-invalid on the control as if error prop is false', () => {
+      const wrapper = shallow(<FormField control='input' />)
+      const input = wrapper.find('input')
+
+      wrapper.should.have.exactly(1).descendants('input')
+      input.should.not.have.prop('aria-invalid')
+    })
+  })
 })
