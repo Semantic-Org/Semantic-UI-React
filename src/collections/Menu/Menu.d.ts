@@ -81,7 +81,7 @@ export interface MenuProps {
   stackable?: boolean;
 
   /** A menu can be formatted to show tabs of information. */
-  tabular?: boolean | 'right';
+  tabular?: boolean | 'right' | 'left';
 
   /** A menu can be formatted for text content. */
   text?: boolean;
