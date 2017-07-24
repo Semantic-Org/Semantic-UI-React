@@ -115,8 +115,6 @@ GridColumn.propTypes = {
 
 GridColumn.create = createShorthandFactory(
   GridColumn,
-  stretched => ({ stretched }),
-  width => ({ width }),
   children => ({ children })
 )
 

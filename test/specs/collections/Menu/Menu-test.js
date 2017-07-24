@@ -37,7 +37,6 @@ describe('Menu', () => {
   common.propKeyOrValueAndKeyToClassName(Menu, 'floated', ['right'])
   common.propKeyOrValueAndKeyToClassName(Menu, 'icon', ['labeled'])
   common.propKeyOrValueAndKeyToClassName(Menu, 'tabular', ['right'])
-  common.propKeyOrValueAndKeyToClassName(Menu, 'tabular', ['left'])
 
   common.propValueOnlyToClassName(Menu, 'color', SUI.COLORS)
   common.propValueOnlyToClassName(Menu, 'size', _.without(SUI.SIZES, 'medium', 'big'))
