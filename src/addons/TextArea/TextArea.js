@@ -77,7 +77,6 @@ class TextArea extends Component {
     const value = _.get(e, 'target.value')
 
     _.invoke(this.props, 'onChange', e, { ...this.props, value })
-    this.updateHeight()
   }
 
   handleRef = c => (this.ref = c)
@@ -92,27 +91,24 @@ class TextArea extends Component {
     if (!this.ref || !autoHeight) return
 
     const {
+      minHeight,
       borderBottomWidth,
       borderTopWidth,
-      lineHeight,
-      minHeight,
-      paddingBottom,
-      paddingTop,
     } = window.getComputedStyle(this.ref)
 
     const boxModelHeight = _.sum([
       borderBottomWidth,
       borderTopWidth,
-      paddingBottom,
-      paddingTop,
     ].map(x => parseFloat(x)))
-    const textRows = Math.max(this.ref.rows, this.ref.value.split('\n').length)
-    const textHeight = parseFloat(lineHeight) * textRows
 
-    // respect style.minHeight
-    this.setState((prevState, props) => ({
-      height: Math.max(parseFloat(minHeight), Math.ceil(boxModelHeight + textHeight)) + 'px',
-    }))
+    const currentHeight = this.ref.style.height
+    this.ref.style.height = 'auto' //make textarea as height as content
+
+    this.setState({
+      height: Math.max(parseFloat(minHeight), Math.ceil(this.ref.scrollHeight + boxModelHeight)) + 'px',
+    })
+
+    this.ref.style.height = currentHeight
   }
 
   render() {
@@ -128,6 +124,7 @@ class TextArea extends Component {
       <ElementType
         {...rest}
         onChange={this.handleChange}
+        onInput={this.updateHeight}
         ref={this.handleRef}
         rows={rows}
         style={{ height, resize, ...style }}
