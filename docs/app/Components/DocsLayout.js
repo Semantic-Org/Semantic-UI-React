@@ -1,18 +1,21 @@
 import AnchorJS from 'anchor-js'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
+import { Route } from 'react-router-dom'
 
 import Sidebar from 'docs/app/Components/Sidebar/Sidebar'
 import style from 'docs/app/Style'
 import { scrollToAnchor } from 'docs/app/utils'
+import { getUnhandledProps } from 'src/lib'
 
 const anchors = new AnchorJS({
   icon: '#',
 })
 
-export default class Layout extends Component {
+export default class DocsLayout extends Component {
   static propTypes = {
-    children: PropTypes.node,
+    component: PropTypes.func,
+    render: PropTypes.func,
   }
 
   componentDidMount() {
@@ -43,14 +46,23 @@ export default class Layout extends Component {
     this.pathname = location.pathname
   }
 
-  render() {
+  renderChildren = props => {
+    const { component: Children, render } = this.props
+
+    if (render) return render()
     return (
       <div style={style.container}>
         <Sidebar style={style.menu} />
         <div style={style.main}>
-          {this.props.children}
+          <Children {...props} />
         </div>
       </div>
     )
+  }
+
+  render() {
+    const rest = getUnhandledProps(DocsLayout, this.props)
+
+    return <Route {...rest} render={this.renderChildren} />
   }
 }

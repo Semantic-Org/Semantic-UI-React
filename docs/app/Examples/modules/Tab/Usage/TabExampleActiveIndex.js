@@ -10,7 +10,8 @@ const panes = [
 class TabExampleActiveIndex extends Component {
   state = { activeIndex: 1 }
 
-  handleChange = e => this.setState({ activeIndex: e.target.value })
+  handleRangeChange = e => this.setState({ activeIndex: e.target.value })
+  handleTabChange = (e, { activeIndex }) => this.setState({ activeIndex })
 
   render() {
     const { activeIndex } = this.state
@@ -18,8 +19,8 @@ class TabExampleActiveIndex extends Component {
     return (
       <div>
         <div>activeIndex: {activeIndex}</div>
-        <input type='range' max='2' value={activeIndex} onChange={this.handleChange} />
-        <Tab panes={panes} activeIndex={activeIndex} />
+        <input type='range' max='2' value={activeIndex} onChange={this.handleRangeChange} />
+        <Tab panes={panes} activeIndex={activeIndex} onTabChange={this.handleTabChange} />
       </div>
     )
   }
