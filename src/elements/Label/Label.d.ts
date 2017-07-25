@@ -1,7 +1,13 @@
 import * as React from 'react';
 
-import { SemanticCOLORS, SemanticSIZES } from '../..';
-import { default as LabelDetail } from './LabelDetail';
+import {
+  SemanticCOLORS,
+  SemanticShorthandContent,
+  SemanticShorthandItem,
+  SemanticSIZES
+} from '../..';
+import { IconProps } from '../Icon';
+import { default as LabelDetail, LabelDetailProps } from './LabelDetail';
 import { default as LabelGroup } from './LabelGroup';
 
 export interface LabelProps {
@@ -32,13 +38,13 @@ export interface LabelProps {
   color?: SemanticCOLORS;
 
   /** Shorthand for primary content. */
-  content?: React.ReactNode;
+  content?: SemanticShorthandContent;
 
   /** A label can position itself in the corner of an element. */
   corner?: boolean | 'left' | 'right';
 
   /** Shorthand for LabelDetail. */
-  detail?: any;
+  detail?: SemanticShorthandItem<LabelDetailProps>;
 
   /** Formats the label as a dot. */
   empty?: any;
@@ -50,7 +56,7 @@ export interface LabelProps {
   horizontal?: boolean;
 
   /** Add an icon by icon name or pass an <Icon /.> */
-  icon?: any;
+  icon?: SemanticShorthandItem<IconProps>;
 
   /** A label can be formatted to emphasize an image or prop can be used as shorthand for Image. */
   image?: any;
@@ -75,7 +81,7 @@ export interface LabelProps {
   pointing?: boolean | 'above' | 'below' | 'left' | 'right';
 
   /** Shorthand for Icon to appear as the last child and trigger onRemove. */
-  removeIcon?: any;
+  removeIcon?: SemanticShorthandItem<IconProps>;
 
   /** A label can appear as a ribbon attaching itself to an element. */
   ribbon?: boolean | 'right';

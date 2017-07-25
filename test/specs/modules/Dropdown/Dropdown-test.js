@@ -74,7 +74,7 @@ describe('Dropdown', () => {
   common.hasSubComponents(Dropdown, [DropdownDivider, DropdownHeader, DropdownItem, DropdownMenu, DropdownSearchInput])
 
   common.implementsIconProp(Dropdown, {
-    strictAssert: false,
+    assertExactMatch: false,
   })
   common.implementsShorthandProp(Dropdown, {
     propKey: 'header',

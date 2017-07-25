@@ -80,11 +80,7 @@ class Progress extends Component {
     /** A progress bar can show a success state. */
     success: PropTypes.bool,
 
-    /**
-     * For use with value.
-     * Together, these will calculate the percent.
-     * Mutually excludes percent.
-     */
+    /** For use with value. Together, these will calculate the percent. Mutually excludes percent. */
     total: customPropTypes.every([
       customPropTypes.demand(['value']),
       customPropTypes.disallow(['percent']),
@@ -94,9 +90,7 @@ class Progress extends Component {
       ]),
     ]),
 
-    /**
-     * For use with total. Together, these will calculate the percent. Mutually excludes percent.
-     */
+    /** For use with total. Together, these will calculate the percent. Mutually excludes percent. */
     value: customPropTypes.every([
       customPropTypes.demand(['total']),
       customPropTypes.disallow(['percent']),

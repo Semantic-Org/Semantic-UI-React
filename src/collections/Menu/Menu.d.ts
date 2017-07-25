@@ -1,6 +1,10 @@
 import * as React from 'react';
 
-import { SemanticCOLORS, SemanticWIDTHS } from '../..';
+import {
+  SemanticCOLORS,
+  SemanticShorthandCollection,
+  SemanticWIDTHS
+} from '../..';
 import { default as MenuHeader } from './MenuHeader';
 import { default as MenuItem, MenuItemProps } from './MenuItem';
 import { default as MenuMenu } from './MenuMenu';
@@ -51,7 +55,7 @@ export interface MenuProps {
   inverted?: boolean;
 
   /** Shorthand array of props for Menu. */
-  items?: Array<any>;
+  items?: SemanticShorthandCollection<MenuItemProps>;
 
   /**
    * onClick handler for MenuItem. Mutually exclusive with children.

@@ -1,5 +1,14 @@
 import * as React from 'react';
-import { SemanticVERTICALALIGNMENTS } from '../..';
+
+import {
+  SemanticShorthandContent,
+  SemanticShorthandItem,
+  SemanticVERTICALALIGNMENTS
+} from '../..';
+import { ItemDescriptionProps } from './ItemDescription';
+import { ItemExtraProps } from './ItemExtra';
+import { ItemHeaderProps } from './ItemHeader';
+import { ItemMetaProps } from './ItemMeta';
 
 export interface ItemContentProps {
   [key: string]: any;
@@ -14,19 +23,19 @@ export interface ItemContentProps {
   className?: string;
 
   /** Shorthand for primary content. */
-  content?: any;
+  content?: SemanticShorthandContent;
 
   /** Shorthand for ItemDescription component. */
-  description?: string;
+  description?: SemanticShorthandItem<ItemDescriptionProps>;
 
   /** Shorthand for ItemExtra component. */
-  extra?: any;
+  extra?: SemanticShorthandItem<ItemExtraProps>;
 
   /** Shorthand for ItemHeader component. */
-  header?: any;
+  header?: SemanticShorthandItem<ItemHeaderProps>;
 
   /** Shorthand for ItemMeta component. */
-  meta?: any;
+  meta?: SemanticShorthandItem<ItemMetaProps>;
 
   /** Content can specify its vertical alignment. */
   verticalAlign?: SemanticVERTICALALIGNMENTS;

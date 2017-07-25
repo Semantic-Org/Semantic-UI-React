@@ -22,7 +22,7 @@ describe('MenuItem', () => {
   common.propKeyOrValueAndKeyToClassName(MenuItem, 'fitted', ['horizontally', 'vertically'])
 
   common.propValueOnlyToClassName(MenuItem, 'color', SUI.COLORS)
-  common.propValueOnlyToClassName(MenuItem, 'position', ['right'])
+  common.propValueOnlyToClassName(MenuItem, 'position', ['left', 'right'])
 
   it('renders a `div` by default', () => {
     shallow(<MenuItem />)
