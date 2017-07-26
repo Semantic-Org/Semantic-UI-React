@@ -148,7 +148,7 @@ describe('Transition', () => {
         <Transition
           visible={false}
           mountOnEnter={false}
-          unmountOnExit={false}
+          unmountOnHide={false}
         >
           <p />
         </Transition>
@@ -370,7 +370,7 @@ describe('Transition', () => {
     })
   })
 
-  describe('unmountOnExit', () => {
+  describe('unmountOnHide', () => {
     it('unmounts child when true', done => {
       const onHide = () => {
         wrapper.should.have.state('status', Transition.UNMOUNTED)
@@ -382,7 +382,7 @@ describe('Transition', () => {
           duration={0}
           onHide={onHide}
           transitionAppear={false}
-          unmountOnExit
+          unmountOnHide
         >
           <p />
         </Transition>
@@ -401,7 +401,7 @@ describe('Transition', () => {
           duration={5}
           onHide={onHide}
           transitionAppear={false}
-          unmountOnExit={false}
+          unmountOnHide={false}
         >
           <p />
         </Transition>

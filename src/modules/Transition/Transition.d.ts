@@ -62,7 +62,7 @@ export interface TransitionProps {
   transitionAppear?: boolean;
 
   /** Unmount the component (remove it from the DOM) when it is not shown. */
-  unmountOnExit?: boolean;
+  unmountOnHide?: boolean;
 }
 
 export interface TransitionEventData extends TransitionProps {

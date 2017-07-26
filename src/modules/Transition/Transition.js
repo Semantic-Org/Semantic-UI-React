@@ -72,7 +72,7 @@ export default class Transition extends Component {
     transitionAppear: PropTypes.bool,
 
     /** Unmount the component (remove it from the DOM) when it is not shown. */
-    unmountOnExit: PropTypes.bool,
+    unmountOnHide: PropTypes.bool,
   }
 
   static defaultProps = {
@@ -81,7 +81,7 @@ export default class Transition extends Component {
     visible: true,
     mountOnEnter: true,
     transitionAppear: false,
-    unmountOnExit: false,
+    unmountOnHide: false,
   }
 
   static _meta = {
@@ -208,11 +208,11 @@ export default class Transition extends Component {
   }
 
   computeCompletedStatus = () => {
-    const { unmountOnExit } = this.props
+    const { unmountOnHide } = this.props
     const { status } = this.state
 
     if (status === Transition.ENTERING) return Transition.ENTERED
-    return unmountOnExit ? Transition.UNMOUNTED : Transition.EXITED
+    return unmountOnHide ? Transition.UNMOUNTED : Transition.EXITED
   }
 
   computeInitialStatuses = () => {
@@ -220,7 +220,7 @@ export default class Transition extends Component {
       visible,
       mountOnEnter,
       transitionAppear,
-      unmountOnExit,
+      unmountOnHide,
     } = this.props
 
     if (visible) {
@@ -233,7 +233,7 @@ export default class Transition extends Component {
       return { initial: Transition.ENTERED }
     }
 
-    if (mountOnEnter || unmountOnExit) return { initial: Transition.UNMOUNTED }
+    if (mountOnEnter || unmountOnHide) return { initial: Transition.UNMOUNTED }
     return { initial: Transition.EXITED }
   }
 
