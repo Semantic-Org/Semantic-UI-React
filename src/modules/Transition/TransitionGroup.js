@@ -16,6 +16,9 @@ import Transition from './Transition'
 
 const debug = makeDebugger('transition_group')
 
+/**
+ * A Transition.Group animates children as they mount and unmount.
+ */
 export default class TransitionGroup extends React.Component {
   static propTypes = {
     /** An element type to render as (string or function). */
