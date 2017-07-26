@@ -147,7 +147,7 @@ describe('Transition', () => {
       wrapperShallow(
         <Transition
           visible={false}
-          mountOnEnter={false}
+          mountOnShow={false}
           unmountOnHide={false}
         >
           <p />

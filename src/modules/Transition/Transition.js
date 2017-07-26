@@ -31,7 +31,7 @@ export default class Transition extends Component {
     visible: PropTypes.bool,
 
     /** Wait until the first "enter" transition to mount the component (add it to the DOM). */
-    mountOnEnter: PropTypes.bool,
+    mountOnShow: PropTypes.bool,
 
     /**
      * Callback on each transition that changes visibility to shown.
@@ -79,7 +79,7 @@ export default class Transition extends Component {
     animation: 'fade',
     duration: 500,
     visible: true,
-    mountOnEnter: true,
+    mountOnShow: true,
     transitionAppear: false,
     unmountOnHide: false,
   }
@@ -218,7 +218,7 @@ export default class Transition extends Component {
   computeInitialStatuses = () => {
     const {
       visible,
-      mountOnEnter,
+      mountOnShow,
       transitionAppear,
       unmountOnHide,
     } = this.props
@@ -233,7 +233,7 @@ export default class Transition extends Component {
       return { initial: Transition.ENTERED }
     }
 
-    if (mountOnEnter || unmountOnHide) return { initial: Transition.UNMOUNTED }
+    if (mountOnShow || unmountOnHide) return { initial: Transition.UNMOUNTED }
     return { initial: Transition.EXITED }
   }
 

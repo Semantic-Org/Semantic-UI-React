@@ -21,7 +21,7 @@ export interface TransitionProps {
   visible?: boolean;
 
   /** Wait until the first "enter" transition to mount the component (add it to the DOM). */
-  mountOnEnter?: boolean;
+  mountOnShow?: boolean;
 
   /**
    * Callback on each transition that changes visibility to shown.
