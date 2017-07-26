@@ -79,6 +79,14 @@ class TextArea extends Component {
     _.invoke(this.props, 'onChange', e, { ...this.props, value })
   }
 
+  handleInput = e => {
+    const value = _.get(e, 'target.value')
+
+    this.updateHeight()
+
+    _.invoke(this.props, 'onInput', e, { ...this.props, value })
+  }
+
   handleRef = c => (this.ref = c)
 
   removeAutoHeightStyles = () => {
@@ -102,7 +110,8 @@ class TextArea extends Component {
     ].map(x => parseFloat(x)))
 
     const currentHeight = this.ref.style.height
-    this.ref.style.height = 'auto' //make textarea as height as content
+    // make textarea as height as content
+    this.ref.style.height = 'auto'
 
     this.setState({
       height: Math.max(parseFloat(minHeight), Math.ceil(this.ref.scrollHeight + boxModelHeight)) + 'px',
@@ -124,7 +133,7 @@ class TextArea extends Component {
       <ElementType
         {...rest}
         onChange={this.handleChange}
-        onInput={this.updateHeight}
+        onInput={this.handleInput}
         ref={this.handleRef}
         rows={rows}
         style={{ height, resize, ...style }}
