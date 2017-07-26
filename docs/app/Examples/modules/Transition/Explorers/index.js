@@ -8,10 +8,10 @@ import { Message } from 'semantic-ui-react'
 const TransitionTypesExamples = () => (
   <ExampleSection title='Explorers'>
     <ComponentExample
-      title='Mount/Unmount Animations'
+      title='Directional Animations'
       description={[
         'This explorer animates Transition Group children as they mount and unmount.',
-        'Use it to try bi-directional animations that show and hide the element.',
+        'Use it to try directional animations that show and hide the element.',
       ].join(' ')}
       examplePath='modules/Transition/Explorers/TransitionExampleGroupExplorer'
     />
@@ -24,7 +24,7 @@ const TransitionTypesExamples = () => (
       examplePath='modules/Transition/Explorers/TransitionExampleTransitionExplorer'
     >
       <Message info>
-        Trigger static animations just as you trigger bi-directional animations,
+        Trigger static animations just as you trigger directional animations,
         by toggling the <code>visible</code> prop. The value is not significant since
         static animations are unidirectional.
       </Message>

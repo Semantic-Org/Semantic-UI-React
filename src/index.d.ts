@@ -52,12 +52,12 @@ export type SemanticSIZES = 'mini' | 'tiny' | 'small' | 'medium' | 'large' | 'bi
 // Transitions
 // ======================================================
 
-type SemanticENTIRETRANSITIONS =  'scale' | 'fade' | 'fade up' | 'fade down' | 'fade left' | 'fade right' |
+type SemanticDIRECTIONALTRANSITIONS =  'scale' | 'fade' | 'fade up' | 'fade down' | 'fade left' | 'fade right' |
   'horizontal flip' | 'vertical flip' | 'drop' | 'fly left' | 'fly right' | 'fly up' | 'fly down' | 'swing left' |
   'swing right' | 'swing up' | 'swing down' | 'browse' | 'browse right' | 'slide down' | 'slide up' | 'slide right';
 type SemanticSTATICTRANSITIONS = 'jiggle' | 'flash' | 'shake' | 'pulse' | 'tada' | 'bounce';
 
-export type SemanticTRANSITIONS = SemanticENTIRETRANSITIONS | SemanticSTATICTRANSITIONS;
+export type SemanticTRANSITIONS = SemanticDIRECTIONALTRANSITIONS | SemanticSTATICTRANSITIONS;
 
 // ======================================================
 // Widths

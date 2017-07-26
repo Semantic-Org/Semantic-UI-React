@@ -185,9 +185,9 @@ export default class Transition extends Component {
     const { animating, status } = this.state
 
     const childClasses = _.get(children, 'props.className')
-    const entire = _.includes(SUI.ENTIRE_TRANSITIONS, animation)
+    const directional = _.includes(SUI.DIRECTIONAL_TRANSITIONS, animation)
 
-    if (entire) {
+    if (directional) {
       return cx(
         animation,
         childClasses,

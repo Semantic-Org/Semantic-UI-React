@@ -24,8 +24,8 @@ describe('Transition', () => {
   })
 
   describe('animation', () => {
-    SUI.ENTIRE_TRANSITIONS.forEach(animation => {
-      it(`entire ${animation}`, () => {
+    SUI.DIRECTIONAL_TRANSITIONS.forEach(animation => {
+      it(`directional ${animation}`, () => {
         wrapperShallow(
           <Transition animation={animation} transitionAppear={false}>
             <p />
