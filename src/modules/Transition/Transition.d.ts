@@ -18,7 +18,7 @@ export interface TransitionProps {
   duration?: number;
 
   /** Show the component; triggers the enter or exit animation. */
-  into?: boolean;
+  visible?: boolean;
 
   /** Wait until the first "enter" transition to mount the component (add it to the DOM). */
   mountOnEnter?: boolean;

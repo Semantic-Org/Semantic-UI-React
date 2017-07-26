@@ -60,7 +60,7 @@ export default class TransitionGroup extends React.Component {
       const hasPrev = _.has(prevMapping, key)
       const hasNext = _.has(nextMapping, key)
       const { [key]: prevChild } = prevMapping
-      const isLeaving = !_.get(prevChild, 'props.into')
+      const isLeaving = !_.get(prevChild, 'props.visible')
 
       // item is new (entering), should be wrapped
       if (hasNext && (!hasPrev || isLeaving)) {
@@ -70,14 +70,14 @@ export default class TransitionGroup extends React.Component {
 
       // item is old (exiting), should be updated
       if (!hasNext && hasPrev && !isLeaving) {
-        children[key] = cloneElement(prevChild, { into: false })
+        children[key] = cloneElement(prevChild, { visible: false })
         return
       }
 
       // item hasn't changed transition states, copy over the last transition props;
-      const { props: { into, transitionAppear } } = prevChild
+      const { props: { visible, transitionAppear } } = prevChild
 
-      children[key] = cloneElement(child, { into, transitionAppear })
+      children[key] = cloneElement(child, { visible, transitionAppear })
     })
 
     this.setState({ children })

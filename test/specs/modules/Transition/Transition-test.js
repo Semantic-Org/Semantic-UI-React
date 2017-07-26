@@ -136,8 +136,8 @@ describe('Transition', () => {
       wrapper.instance().should.include({ nextStatus: undefined })
     })
 
-    it('sets statuses when `into` is false', () => {
-      wrapperShallow(<Transition into={false}><p /></Transition>)
+    it('sets statuses when `visible` is false', () => {
+      wrapperShallow(<Transition visible={false}><p /></Transition>)
 
       wrapper.should.have.state('status', Transition.UNMOUNTED)
       wrapper.instance().should.include({ nextStatus: undefined })
@@ -146,7 +146,7 @@ describe('Transition', () => {
     it('sets statuses when mount is disabled', () => {
       wrapperShallow(
         <Transition
-          into={false}
+          visible={false}
           mountOnEnter={false}
           unmountOnExit={false}
         >
@@ -177,11 +177,11 @@ describe('Transition', () => {
     })
   })
 
-  describe('into', () => {
+  describe('visible', () => {
     it('updates status when set to false while ENTERING', () => {
       wrapperShallow(<Transition transitionAppear={false}><p /></Transition>)
       wrapper.setState({ status: Transition.ENTERING })
-      wrapper.setProps({ into: false })
+      wrapper.setProps({ visible: false })
 
       wrapper.instance().should.include({ nextStatus: Transition.EXITING })
     })
@@ -192,18 +192,18 @@ describe('Transition', () => {
           <p />
         </Transition>
       )
-      wrapper.setProps({ into: false })
+      wrapper.setProps({ visible: false })
 
       wrapper.instance().should.include({ nextStatus: Transition.EXITING })
     })
 
     it('updates status when set to true while UNMOUNTED', () => {
       wrapperShallow(
-        <Transition into={false}>
+        <Transition visible={false}>
           <p />
         </Transition>
       )
-      wrapper.setProps({ into: true })
+      wrapper.setProps({ visible: true })
 
       wrapper.should.have.state('status', Transition.EXITED)
       wrapper.instance().should.include({ nextStatus: Transition.ENTERING })
@@ -219,7 +219,7 @@ describe('Transition', () => {
           <p />
         </Transition>
       )
-      wrapper.setProps({ into: false })
+      wrapper.setProps({ visible: false })
 
       wrapper.should.have.state('status', Transition.ENTERING)
       wrapper.instance().should.include({ nextStatus: Transition.EXITING })
@@ -231,8 +231,8 @@ describe('Transition', () => {
           <p />
         </Transition>
       )
-      wrapper.setProps({ into: false })
-      wrapper.setProps({ into: true })
+      wrapper.setProps({ visible: false })
+      wrapper.setProps({ visible: true })
 
       wrapper.should.have.state('status', Transition.EXITING)
       wrapper.instance().should.include({ nextStatus: Transition.ENTERING })
@@ -284,7 +284,7 @@ describe('Transition', () => {
           <p />
         </Transition>
       )
-      wrapper.setProps({ into: false })
+      wrapper.setProps({ visible: false })
     })
   })
 
@@ -387,7 +387,7 @@ describe('Transition', () => {
           <p />
         </Transition>
       )
-      wrapper.setProps({ into: false })
+      wrapper.setProps({ visible: false })
     })
 
     it('lefts mounted when false', done => {
@@ -406,7 +406,7 @@ describe('Transition', () => {
           <p />
         </Transition>
       )
-      wrapper.setProps({ into: false })
+      wrapper.setProps({ visible: false })
     })
   })
 })

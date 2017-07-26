@@ -22,13 +22,13 @@ export default class Transition extends Component {
     animation: PropTypes.oneOf(SUI.TRANSITIONS),
 
     /** Primary content. */
-    children: PropTypes.node,
+    children: PropTypes.element.isRequired,
 
     /** Duration of the CSS transition animation in milliseconds. */
     duration: PropTypes.number,
 
     /** Show the component; triggers the enter or exit animation. */
-    into: PropTypes.bool,
+    visible: PropTypes.bool,
 
     /** Wait until the first "enter" transition to mount the component (add it to the DOM). */
     mountOnEnter: PropTypes.bool,
@@ -78,7 +78,7 @@ export default class Transition extends Component {
   static defaultProps = {
     animation: 'fade',
     duration: 500,
-    into: true,
+    visible: true,
     mountOnEnter: true,
     transitionAppear: false,
     unmountOnExit: false,
@@ -217,13 +217,13 @@ export default class Transition extends Component {
 
   computeInitialStatuses = () => {
     const {
-      into,
+      visible,
       mountOnEnter,
       transitionAppear,
       unmountOnExit,
     } = this.props
 
-    if (into) {
+    if (visible) {
       if (transitionAppear) {
         return {
           initial: Transition.EXITED,
@@ -246,9 +246,9 @@ export default class Transition extends Component {
 
   computeStatuses = props => {
     const { status } = this.state
-    const { into } = props
+    const { visible } = props
 
-    if (into) {
+    if (visible) {
       return {
         current: status === Transition.UNMOUNTED && Transition.EXITED,
         next: (status !== Transition.ENTERING && status !== Transition.ENTERED) && Transition.ENTERING,

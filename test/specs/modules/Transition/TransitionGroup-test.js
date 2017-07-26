@@ -75,7 +75,7 @@ describe('TransitionGroup', () => {
       wrapper.childAt(1).key().should.equal('.$second')
     })
 
-    it('sets into to false when child was removed', () => {
+    it('sets visible to false when child was removed', () => {
       wrapperShallow(
         <TransitionGroup>
           <div key='first' />
@@ -85,7 +85,7 @@ describe('TransitionGroup', () => {
       wrapper.setProps({ children: [<div key='first' />] })
 
       wrapper.children().should.have.length(2)
-      wrapper.childAt(1).should.have.prop('into', false)
+      wrapper.childAt(1).should.have.prop('visible', false)
     })
 
     it('removes child after transition', done => {

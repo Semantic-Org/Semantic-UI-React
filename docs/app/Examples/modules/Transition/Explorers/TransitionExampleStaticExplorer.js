@@ -39,7 +39,7 @@ export default class TransitionExampleStaticExplorer extends Component {
         </Grid.Column>
 
         <Grid.Column>
-          <Transition animation={animation} duration={duration} into={visible}>
+          <Transition animation={animation} duration={duration} visible={visible}>
             <Image centered size='small' src='/assets/images/leaves/5.png' />
           </Transition>
         </Grid.Column>
