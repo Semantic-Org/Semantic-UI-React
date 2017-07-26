@@ -163,6 +163,9 @@ export { default as SidebarPusher, SidebarPusherProps } from './dist/commonjs/mo
 export { default as Tab, TabProps } from './dist/commonjs/modules/Tab';
 export { default as TabPane, TabPaneProps } from './dist/commonjs/modules/Tab/TabPane';
 
+export { default as Transition, TransitionProps, TRANSITION_STATUSES } from './dist/commonjs/modules/Transition';
+export { default as TransitionGroup, TransitionGroupProps } from './dist/commonjs/modules/Transition/TransitionGroup';
+
 // Views
 export { default as Advertisement, AdvertisementProps } from './dist/commonjs/views/Advertisement';
 
