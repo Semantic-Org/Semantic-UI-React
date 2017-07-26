@@ -764,7 +764,7 @@ export default class Dropdown extends Component {
     const { multiple, search, allowAdditions, additionPosition, additionLabel } = this.props
     const { searchQuery } = this.state
 
-    let filteredOptions = options
+    let filteredOptions = options || _.get(this.props.menu, 'items')
 
     // filter out active options
     if (multiple) {
@@ -1180,7 +1180,7 @@ export default class Dropdown extends Component {
     return _.map(options, (opt, i) => {
       if (opt.component) {
         const { component, ...componentProps } = opt
-        return this.renderComponent(component, componentProps)
+        return this.renderComponent(component, { ...componentProps, key: i })
       } else {
         return DropdownItem.create({
           active: isActive(opt.value),
@@ -1196,7 +1196,7 @@ export default class Dropdown extends Component {
   }
 
   renderMenu = () => {
-    const { children, header } = this.props
+    const { children, header, menu } = this.props
     const { open } = this.state
     const menuClasses = open ? 'visible' : ''
     const ariaOptions = this.getDropdownMenuAriaOptions()
@@ -1207,6 +1207,16 @@ export default class Dropdown extends Component {
       const className = cx(menuClasses, menuChild.props.className)
 
       return cloneElement(menuChild, { className, ...ariaOptions })
+    }
+
+    if (menu) {
+      const { items, className, ...menuProps } = menu
+      return (
+        <DropdownMenu {...ariaOptions} className={cx(menuClasses, className)} {...menuProps}>
+          {DropdownHeader.create(header)}
+          {this.renderOptions()}
+        </DropdownMenu>
+      )
     }
 
     return (
