@@ -78,9 +78,9 @@ export default class TransitionGroup extends React.Component {
       }
 
       // item hasn't changed transition states, copy over the last transition props;
-      const { props: { visible, transitionAppear } } = prevChild
+      const { props: { visible, transitionOnMount } } = prevChild
 
-      children[key] = cloneElement(child, { visible, transitionAppear })
+      children[key] = cloneElement(child, { visible, transitionOnMount })
     })
 
     this.setState({ children })
@@ -98,7 +98,7 @@ export default class TransitionGroup extends React.Component {
     })
   }
 
-  wrapChild = (child, transitionAppear = false) => {
+  wrapChild = (child, transitionOnMount = false) => {
     const { animation, duration } = this.props
     const { key } = child
 
@@ -110,7 +110,7 @@ export default class TransitionGroup extends React.Component {
         key={key}
         onHide={this.handleOnHide}
         reactKey={key}
-        transitionAppear={transitionAppear}
+        transitionOnMount={transitionOnMount}
       />
     )
   }

@@ -59,7 +59,7 @@ export interface TransitionProps {
   reactKey?: string;
 
   /** Run the enter animation when the component mounts, if it is initially shown. */
-  transitionAppear?: boolean;
+  transitionOnMount?: boolean;
 
   /** Unmount the component (remove it from the DOM) when it is not shown. */
   unmountOnHide?: boolean;

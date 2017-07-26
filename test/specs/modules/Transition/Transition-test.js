@@ -27,7 +27,7 @@ describe('Transition', () => {
     SUI.DIRECTIONAL_TRANSITIONS.forEach(animation => {
       it(`directional ${animation}`, () => {
         wrapperShallow(
-          <Transition animation={animation} transitionAppear={false}>
+          <Transition animation={animation} transitionOnMount={false}>
             <p />
           </Transition>
         )
@@ -45,7 +45,7 @@ describe('Transition', () => {
     SUI.STATIC_TRANSITIONS.forEach(animation => {
       it(`static ${animation}`, () => {
         wrapperShallow(
-          <Transition animation={animation} transitionAppear={false}>
+          <Transition animation={animation} transitionOnMount={false}>
             <p />
           </Transition>
         )
@@ -74,14 +74,14 @@ describe('Transition', () => {
     })
 
     it('adds classes when ENTERED', () => {
-      wrapperShallow(<Transition transitionAppear={false}><p /></Transition>)
+      wrapperShallow(<Transition transitionOnMount={false}><p /></Transition>)
 
       wrapper.should.have.className('visible')
       wrapper.should.have.className('transition')
     })
 
     it('adds classes when ENTERING', () => {
-      wrapperShallow(<Transition transitionAppear={false}><p /></Transition>)
+      wrapperShallow(<Transition transitionOnMount={false}><p /></Transition>)
       wrapper.setState({ animating: true, status: Transition.ENTERING })
 
       wrapper.should.have.className('animating')
@@ -98,7 +98,7 @@ describe('Transition', () => {
     })
 
     it('adds classes when EXITING', () => {
-      wrapperShallow(<Transition transitionAppear={false}><p /></Transition>)
+      wrapperShallow(<Transition transitionOnMount={false}><p /></Transition>)
       wrapper.setState({ animating: true, status: Transition.EXITING })
 
       wrapper.should.have.className('animating')
@@ -179,7 +179,7 @@ describe('Transition', () => {
 
   describe('visible', () => {
     it('updates status when set to false while ENTERING', () => {
-      wrapperShallow(<Transition transitionAppear={false}><p /></Transition>)
+      wrapperShallow(<Transition transitionOnMount={false}><p /></Transition>)
       wrapper.setState({ status: Transition.ENTERING })
       wrapper.setProps({ visible: false })
 
@@ -188,7 +188,7 @@ describe('Transition', () => {
 
     it('updates status when set to false while ENTERED', () => {
       wrapperShallow(
-        <Transition transitionAppear={false}>
+        <Transition transitionOnMount={false}>
           <p />
         </Transition>
       )
@@ -213,7 +213,7 @@ describe('Transition', () => {
       wrapperMount(
         <Transition
           duration={10}
-          transitionAppear
+          transitionOnMount
           onHide={done}
         >
           <p />
@@ -255,7 +255,7 @@ describe('Transition', () => {
         <Transition
           duration={0}
           onComplete={handleComplete}
-          transitionAppear
+          transitionOnMount
         >
           <p />
         </Transition>
@@ -279,7 +279,7 @@ describe('Transition', () => {
         <Transition
           duration={0}
           onHide={handleHide}
-          transitionAppear={false}
+          transitionOnMount={false}
         >
           <p />
         </Transition>
@@ -304,7 +304,7 @@ describe('Transition', () => {
         <Transition
           duration={0}
           onShow={handleShow}
-          transitionAppear
+          transitionOnMount
         >
           <p />
         </Transition>
@@ -328,7 +328,7 @@ describe('Transition', () => {
         <Transition
           duration={0}
           onStart={handleStart}
-          transitionAppear
+          transitionOnMount
         >
           <p />
         </Transition>
@@ -349,10 +349,10 @@ describe('Transition', () => {
     })
   })
 
-  describe('transitionAppear', () => {
+  describe('transitionOnMount', () => {
     it('sets statuses when is true', () => {
       wrapperShallow(
-        <Transition transitionAppear>
+        <Transition transitionOnMount>
           <p />
         </Transition>
       )
@@ -363,7 +363,7 @@ describe('Transition', () => {
 
     it('updates status after mount when is true', () => {
       wrapperMount(
-        <Transition transitionAppear>
+        <Transition transitionOnMount>
           <p />
         </Transition>
       ).should.have.state('status', Transition.ENTERING)
@@ -381,7 +381,7 @@ describe('Transition', () => {
         <Transition
           duration={0}
           onHide={onHide}
-          transitionAppear={false}
+          transitionOnMount={false}
           unmountOnHide
         >
           <p />
@@ -400,7 +400,7 @@ describe('Transition', () => {
         <Transition
           duration={5}
           onHide={onHide}
-          transitionAppear={false}
+          transitionOnMount={false}
           unmountOnHide={false}
         >
           <p />

@@ -69,7 +69,7 @@ export default class Transition extends Component {
     reactKey: PropTypes.string,
 
     /** Run the enter animation when the component mounts, if it is initially shown. */
-    transitionAppear: PropTypes.bool,
+    transitionOnMount: PropTypes.bool,
 
     /** Unmount the component (remove it from the DOM) when it is not shown. */
     unmountOnHide: PropTypes.bool,
@@ -80,7 +80,7 @@ export default class Transition extends Component {
     duration: 500,
     visible: true,
     mountOnShow: true,
-    transitionAppear: false,
+    transitionOnMount: false,
     unmountOnHide: false,
   }
 
@@ -219,12 +219,12 @@ export default class Transition extends Component {
     const {
       visible,
       mountOnShow,
-      transitionAppear,
+      transitionOnMount,
       unmountOnHide,
     } = this.props
 
     if (visible) {
-      if (transitionAppear) {
+      if (transitionOnMount) {
         return {
           initial: Transition.EXITED,
           next: Transition.ENTERING,

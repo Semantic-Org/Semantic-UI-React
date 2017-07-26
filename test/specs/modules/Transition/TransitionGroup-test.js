@@ -48,7 +48,7 @@ describe('TransitionGroup', () => {
         })
     })
 
-    it('wraps new child to Transition and sets transitionAppear to true', () => {
+    it('wraps new child to Transition and sets transitionOnMount to true', () => {
       wrapperShallow(
         <TransitionGroup>
           <div key='first' />
@@ -59,7 +59,7 @@ describe('TransitionGroup', () => {
       const child = wrapper.childAt(1)
       child.key().should.equal('.$second')
       child.type().should.equal(Transition)
-      child.should.have.prop('transitionAppear', true)
+      child.should.have.prop('transitionOnMount', true)
     })
 
     it('skips invalid children', () => {
