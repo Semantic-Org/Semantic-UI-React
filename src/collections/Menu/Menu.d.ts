@@ -1,6 +1,10 @@
 import * as React from 'react';
 
-import { SemanticCOLORS, SemanticWIDTHS } from '../..';
+import {
+  SemanticCOLORS,
+  SemanticShorthandCollection,
+  SemanticWIDTHS
+} from '../..';
 import { default as MenuHeader } from './MenuHeader';
 import { default as MenuItem, MenuItemProps } from './MenuItem';
 import { default as MenuMenu } from './MenuMenu';
@@ -12,7 +16,7 @@ export interface MenuProps {
   as?: any;
 
   /** Index of the currently active item. */
-  activeIndex?: number;
+  activeIndex?: number | string;
 
   /** A menu may be attached to other content segments. */
   attached?: boolean | 'bottom' | 'top';
@@ -33,7 +37,7 @@ export interface MenuProps {
   compact?: boolean;
 
   /** Initial activeIndex value. */
-  defaultActiveIndex?: number;
+  defaultActiveIndex?: number | string;
 
   /** A menu can be fixed to a side of its context. */
   fixed?: 'left'| 'right'| 'bottom'| 'top';
@@ -51,7 +55,7 @@ export interface MenuProps {
   inverted?: boolean;
 
   /** Shorthand array of props for Menu. */
-  items?: Array<any>;
+  items?: SemanticShorthandCollection<MenuItemProps>;
 
   /**
    * onClick handler for MenuItem. Mutually exclusive with children.

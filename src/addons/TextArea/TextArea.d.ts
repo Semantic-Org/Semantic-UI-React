@@ -18,13 +18,13 @@ export interface TextAreaProps {
   onChange?: (event: React.FormEvent<HTMLTextAreaElement>, data: TextAreaOnChangeData) => void;
 
   /** Indicates row count for a TextArea. */
-  rows?: number;
+  rows?: number | string;
 
   /** Custom TextArea style. */
   style?: Object;
 
   /** The value of the textarea. */
-  value?: string;
+  value?: number | string;
 }
 
 export interface TextAreaOnChangeData extends TextAreaProps {

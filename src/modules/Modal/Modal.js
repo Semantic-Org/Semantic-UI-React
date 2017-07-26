@@ -5,6 +5,7 @@ import React from 'react'
 
 import {
   AutoControlledComponent as Component,
+  childrenUtils,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -111,7 +112,7 @@ class Modal extends Component {
     open: PropTypes.bool,
 
     /** A modal can vary in size */
-    size: PropTypes.oneOf(['fullscreen', 'large', 'small']),
+    size: PropTypes.oneOf(['fullscreen', 'large', 'mini', 'small', 'tiny']),
 
     /** Custom styles. */
     style: PropTypes.object,
@@ -141,8 +142,6 @@ class Modal extends Component {
   static Content = ModalContent
   static Description = ModalDescription
   static Actions = ModalActions
-
-  state = {}
 
   componentWillUnmount() {
     debug('componentWillUnmount()')
@@ -193,7 +192,8 @@ class Modal extends Component {
 
     if (dimmer) {
       debug('adding dimmer')
-      mountNode.classList.add('dimmable', 'dimmed')
+      mountNode.classList.add('dimmable')
+      mountNode.classList.add('dimmed')
 
       if (dimmer === 'blurring') {
         debug('adding blurred dimmer')
@@ -214,7 +214,12 @@ class Modal extends Component {
     // If the dimmer value changes while the modal is open, then removing its
     // current value could leave cruft classes previously added.
     const mountNode = this.getMountNode()
-    mountNode.classList.remove('blurring', 'dimmable', 'dimmed', 'scrollable')
+
+    // Heads up, IE doesn't support second argument in remove()
+    mountNode.classList.remove('blurring')
+    mountNode.classList.remove('dimmable')
+    mountNode.classList.remove('dimmed')
+    mountNode.classList.remove('scrollable')
 
     cancelAnimationFrame(this.animationRequestId)
 
@@ -281,7 +286,7 @@ class Modal extends Component {
     const closeIconName = closeIcon === true ? 'close' : closeIcon
     const closeIconJSX = Icon.create(closeIconName, { overrideProps: this.handleIconOverrides })
 
-    if (!_.isNil(children)) {
+    if (!childrenUtils.isNil(children)) {
       return (
         <ElementType {...rest} className={classes} style={{ marginTop, ...style }} ref={this.handleRef}>
           {closeIconJSX}

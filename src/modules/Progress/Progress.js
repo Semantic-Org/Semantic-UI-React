@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
 import {
+  childrenUtils,
   createHTMLDivision,
   customPropTypes,
   getElementType,
@@ -79,11 +80,7 @@ class Progress extends Component {
     /** A progress bar can show a success state. */
     success: PropTypes.bool,
 
-    /**
-     * For use with value.
-     * Together, these will calculate the percent.
-     * Mutually excludes percent.
-     */
+    /** For use with value. Together, these will calculate the percent. Mutually excludes percent. */
     total: customPropTypes.every([
       customPropTypes.demand(['value']),
       customPropTypes.disallow(['percent']),
@@ -93,9 +90,7 @@ class Progress extends Component {
       ]),
     ]),
 
-    /**
-     * For use with total. Together, these will calculate the percent. Mutually excludes percent.
-     */
+    /** For use with total. Together, these will calculate the percent. Mutually excludes percent. */
     value: customPropTypes.every([
       customPropTypes.demand(['total']),
       customPropTypes.disallow(['percent']),
@@ -138,7 +133,7 @@ class Progress extends Component {
   renderLabel = () => {
     const { children, label } = this.props
 
-    if (!_.isNil(children)) return <div className='label'>{children}</div>
+    if (!childrenUtils.isNil(children)) return <div className='label'>{children}</div>
     return createHTMLDivision(label, { defaultProps: { className: 'label' } })
   }
 

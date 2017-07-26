@@ -1,9 +1,9 @@
-import _ from 'lodash'
 import cx from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
 
 import {
+  childrenUtils,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -21,7 +21,7 @@ function StepTitle(props) {
 
   return (
     <ElementType {...rest} className={classes}>
-      {_.isNil(children) ? title : children}
+      {childrenUtils.isNil(children) ? title : children}
     </ElementType>
   )
 }

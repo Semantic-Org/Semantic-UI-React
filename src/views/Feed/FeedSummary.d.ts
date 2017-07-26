@@ -1,5 +1,9 @@
 import * as React from 'react';
 
+import { SemanticShorthandContent, SemanticShorthandItem } from '../..';
+import { FeedDateProps } from './FeedDate';
+import { FeedUserProps } from './FeedUser';
+
 export interface FeedSummaryProps {
   [key: string]: any;
 
@@ -13,13 +17,13 @@ export interface FeedSummaryProps {
   className?: string;
 
   /** Shorthand for primary content. */
-  content?: React.ReactNode;
+  content?: SemanticShorthandContent;
 
   /** Shorthand for FeedDate. */
-  date?: any;
+  date?: SemanticShorthandItem<FeedDateProps>;
 
   /** Shorthand for FeedUser. */
-  user?: any;
+  user?: SemanticShorthandItem<FeedUserProps>;
 }
 
 declare const FeedSummary: React.StatelessComponent<FeedSummaryProps>;

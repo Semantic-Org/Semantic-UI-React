@@ -1,9 +1,9 @@
 import cx from 'classnames'
-import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
 import {
+  childrenUtils,
   createShorthandFactory,
   customPropTypes,
   getElementType,
@@ -72,11 +72,19 @@ export default class Dimmer extends Component {
   static Dimmable = DimmerDimmable
 
   handlePortalMount = () => {
-    if (isBrowser) document.body.classList.add('dimmed', 'dimmable')
+    if (!isBrowser) return
+
+    // Heads up, IE doesn't support second argument in add()
+    document.body.classList.add('dimmed')
+    document.body.classList.add('dimmable')
   }
 
   handlePortalUnmount = () => {
-    if (isBrowser) document.body.classList.remove('dimmed', 'dimmable')
+    if (!isBrowser) return
+
+    // Heads up, IE doesn't support second argument in add()
+    document.body.classList.remove('dimmed')
+    document.body.classList.remove('dimmable')
   }
 
   handleClick = (e) => {
@@ -114,7 +122,7 @@ export default class Dimmer extends Component {
     const rest = getUnhandledProps(Dimmer, this.props)
     const ElementType = getElementType(Dimmer, this.props)
 
-    const childrenContent = _.isNil(children) ? content : children
+    const childrenContent = childrenUtils.isNil(children) ? content : children
 
     const dimmerElement = (
       <ElementType{...rest} className={classes} onClick={this.handleClick}>

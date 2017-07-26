@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { LabelProps } from '../../elements/Label';
+import { HtmlLabelProps, SemanticShorthandItem } from '../..';
 
 export interface CheckboxProps {
   [key: string]: any;
@@ -29,7 +29,7 @@ export interface CheckboxProps {
   indeterminate?: boolean;
 
   /** The text of the associated label element. */
-  label?: any | LabelProps;
+  label?: SemanticShorthandItem<HtmlLabelProps>;
 
   /** The HTML input name. */
   name?: string;

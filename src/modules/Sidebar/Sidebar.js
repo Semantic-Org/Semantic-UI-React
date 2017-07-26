@@ -57,10 +57,7 @@ class Sidebar extends Component {
   }
 
   static Pushable = SidebarPushable
-
   static Pusher = SidebarPusher
-
-  state = {}
 
   startAnimating = (duration = 500) => {
     clearTimeout(this.stopAnimatingTimer)

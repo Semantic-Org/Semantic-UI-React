@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import React, { Children, cloneElement, Component } from 'react'
 
 import {
+  childrenUtils,
   createHTMLInput,
   createShorthandFactory,
   customPropTypes,
@@ -115,6 +116,13 @@ class Input extends Component {
     type: META.TYPES.ELEMENT,
   }
 
+  computeIcon = () => {
+    const { loading, icon } = this.props
+
+    if (!_.isNil(icon)) return icon
+    if (loading) return 'spinner'
+  }
+
   computeTabIndex = () => {
     const { disabled, tabIndex } = this.props
 
@@ -125,10 +133,9 @@ class Input extends Component {
   focus = () => (this.inputRef.focus())
 
   handleChange = (e) => {
-    const { onChange } = this.props
     const value = _.get(e, 'target.value')
 
-    onChange(e, { ...this.props, value })
+    _.invoke(this.props, 'onChange', e, { ...this.props, value })
   }
 
   handleChildOverrides = (child, defaultProps) => ({
@@ -143,20 +150,20 @@ class Input extends Component {
   handleInputRef = c => (this.inputRef = c)
 
   partitionProps = () => {
-    const { disabled, onChange, type } = this.props
+    const { disabled, type } = this.props
 
     const tabIndex = this.computeTabIndex()
     const unhandled = getUnhandledProps(Input, this.props)
     const [htmlInputProps, rest] = partitionHTMLInputProps(unhandled)
 
-    htmlInputProps.ref = this.handleInputRef
-    htmlInputProps.type = type
-
-    if (disabled) htmlInputProps.disabled = disabled
-    if (onChange) htmlInputProps.onChange = this.handleChange
-    if (tabIndex) htmlInputProps.tabIndex = tabIndex
-
-    return [htmlInputProps, rest]
+    return [{
+      ...htmlInputProps,
+      disabled,
+      type,
+      tabIndex,
+      onChange: this.handleChange,
+      ref: this.handleInputRef,
+    }, rest]
   }
 
   render() {
@@ -192,7 +199,7 @@ class Input extends Component {
       useKeyOnly(loading, 'loading'),
       useKeyOnly(transparent, 'transparent'),
       useValueAndKey(actionPosition, 'action') || useKeyOnly(action, 'action'),
-      useValueAndKey(iconPosition, 'icon') || useKeyOnly(icon, 'icon'),
+      useValueAndKey(iconPosition, 'icon') || useKeyOnly(icon || loading, 'icon'),
       useValueAndKey(labelPosition, 'labeled') || useKeyOnly(label, 'labeled'),
       'input',
       className,
@@ -202,7 +209,7 @@ class Input extends Component {
 
     // Render with children
     // ----------------------------------------
-    if (!_.isNil(children)) {
+    if (!childrenUtils.isNil(children)) {
       // add htmlInputProps to the `<input />` child
       const childElements = _.map(Children.toArray(children), (child) => {
         if (child.type !== 'input') return child
@@ -214,8 +221,8 @@ class Input extends Component {
 
     // Render Shorthand
     // ----------------------------------------
-    const actionElement = Button.create(action, { defaultProps: { className: 'button' } })
-    const iconElement = Icon.create(icon)
+    const actionElement = Button.create(action)
+    const iconElement = Icon.create(this.computeIcon())
     const labelElement = Label.create(label, {
       defaultProps: {
         className: cx(
