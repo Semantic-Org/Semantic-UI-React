@@ -1155,6 +1155,15 @@ export default class Dropdown extends Component {
     })
   }
 
+  renderComponent = (component, props) => {
+    switch (component) {
+      case Dropdown.Divider:
+        return DropdownDivider(props)
+      case Dropdown.Header:
+        return DropdownHeader(props)
+    }
+  }
+
   renderOptions = () => {
     const { multiple, search, noResultsMessage } = this.props
     const { selectedIndex, value } = this.state
@@ -1168,10 +1177,12 @@ export default class Dropdown extends Component {
       ? optValue => _.includes(value, optValue)
       : optValue => optValue === value
 
-    return _.map(options, (opt, i) =>
-      opt.component
-        ? opt.component
-        : DropdownItem.create({
+    return _.map(options, (opt, i) => {
+      if (opt.component) {
+        const { component, ...componentProps } = opt
+        return this.renderComponent(component, componentProps)
+      } else {
+        return DropdownItem.create({
           active: isActive(opt.value),
           onClick: this.handleItemClick,
           selected: selectedIndex === i,
@@ -1180,7 +1191,8 @@ export default class Dropdown extends Component {
           // Needed for handling click events on disabled items
           style: { ...opt.style, pointerEvents: 'all' },
         })
-    )
+      }
+    })
   }
 
   renderMenu = () => {

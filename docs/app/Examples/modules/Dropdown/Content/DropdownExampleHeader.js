@@ -2,7 +2,7 @@ import React from 'react'
 import { Dropdown } from 'semantic-ui-react'
 
 const options = [
-  { component: <Dropdown.Header icon='tags' content='Filter by tag' /> },
+  { component: Dropdown.Header, icon: 'tags', content: 'Filter by tag' },
   { text: 'Important', value: 'Important' },
   { text: 'Hopper', value: 'Hopper' },
   { text: 'Discussion', value: 'Discussion' },
