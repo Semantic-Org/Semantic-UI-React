@@ -1,11 +1,19 @@
 import React, { Component } from 'react'
 import { Form, Grid, Image, Transition } from 'semantic-ui-react'
 
-const transitions = ['jiggle', 'flash', 'shake', 'pulse', 'tada', 'bounce']
-
+const transitions = [
+  'scale',
+  'fade', 'fade up', 'fade down', 'fade left', 'fade right',
+  'horizontal flip', 'vertical flip',
+  'drop',
+  'fly left', 'fly right', 'fly up', 'fly down',
+  'swing left', 'swing right', 'swing up', 'swing down',
+  'browse', 'browse right',
+  'slide down', 'slide up', 'slide right',
+]
 const options = transitions.map(name => ({ key: name, text: name, value: name }))
 
-export default class TransitionExampleStaticExplorer extends Component {
+export default class TransitionExampleSingleExplorer extends Component {
   state = { animation: transitions[0], duration: 500, visible: true }
 
   handleChange = (e, { name, value }) => this.setState({ [name]: value })
@@ -35,13 +43,13 @@ export default class TransitionExampleStaticExplorer extends Component {
             type='range'
             value={duration}
           />
-          <Form.Button content='Run' onClick={this.handleVisibility} />
+          <Form.Button content={visible ? 'Unmount' : 'Mount'} onClick={this.handleVisibility} />
         </Grid.Column>
 
         <Grid.Column>
-          <Transition animation={animation} duration={duration} visible={visible}>
-            <Image centered size='small' src='/assets/images/leaves/5.png' />
-          </Transition>
+          <Transition.Group animation={animation} duration={duration}>
+            {visible && <Image centered size='small' src='/assets/images/leaves/4.png' />}
+          </Transition.Group>
         </Grid.Column>
       </Grid>
     )

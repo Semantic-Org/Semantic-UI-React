@@ -11,7 +11,7 @@ const TransitionTypesExamples = () => (
       description='A Transition animates a single child by toggling the the visible prop.'
       examplePath='modules/Transition/Types/TransitionExampleTransition'
     >
-      <Message>
+      <Message warning>
         <p>Do not unmount a Transition child or else it cannot be animated.</p>
         <Message.List>
           <Message.Item>

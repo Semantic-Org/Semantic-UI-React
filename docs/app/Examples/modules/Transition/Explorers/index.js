@@ -3,21 +3,32 @@ import React from 'react'
 import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
 import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
 
+import { Message } from 'semantic-ui-react'
+
 const TransitionTypesExamples = () => (
   <ExampleSection title='Explorers'>
     <ComponentExample
-      title='Single item'
-      description='You can apply different animations and duration with a transition explorer.'
-      examplePath='modules/Transition/Explorers/TransitionExampleSingleExplorer'
+      title='Mount/Unmount Animations'
+      description={[
+        'This explorer animates Transition Group children as they mount and unmount.',
+        'Use it to try bi-directional animations that show and hide the element.',
+      ].join(' ')}
+      examplePath='modules/Transition/Explorers/TransitionExampleGroupExplorer'
     />
     <ComponentExample
-      title='Static animations'
+      title='Static Animations'
       description={[
-        'You can apply different static animations and duration with a transition explorer.',
-        'There are no special API for static animations at now.',
+        'This explorer animates a single Transition child by toggling the visible prop.',
+        'Use it to try unidirectional animations for elements that are always visible.',
       ].join(' ')}
-      examplePath='modules/Transition/Explorers/TransitionExampleStaticExplorer'
-    />
+      examplePath='modules/Transition/Explorers/TransitionExampleTransitionExplorer'
+    >
+      <Message info>
+        Trigger static animations just as you trigger bi-directional animations,
+        by toggling the <code>visible</code> prop. The value is not significant since
+        static animations are unidirectional.
+      </Message>
+    </ComponentExample>
   </ExampleSection>
 )
 
