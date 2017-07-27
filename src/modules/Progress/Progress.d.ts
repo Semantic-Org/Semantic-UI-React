@@ -39,7 +39,7 @@ export interface ProgressProps {
   indicating?: boolean;
 
   /** A progress bar can have its colors inverted. */
-  inverted?: string;
+  inverted?: boolean;
 
   /** Can be set to either to display progress as percent or ratio. */
   label?: SemanticShorthandItem<HtmlLabelProps>;
