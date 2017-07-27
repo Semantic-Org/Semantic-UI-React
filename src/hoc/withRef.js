@@ -1,22 +1,24 @@
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
-import Ref from './Ref'
+import Ref from '../addons/Ref'
 
-const withRef = Child => class extends Component {
+const withRef = Child => class refHOC extends Component {
   static propTypes = {
     /**
      * Called when componentDidMount.
      *
      * @param {HTMLElement} node - Referred node.
      */
-    innerRef: PropTypes.func.isRequired,
+    innerRef: PropTypes.func,
   }
 
   render() {
     const { innerRef, ...rest } = this.props
 
     if (typeof Child === 'string') return <Child {...rest} ref={innerRef} />
+    if (Child._meta) return <Child {...rest} innerRef={innerRef} />
+
     return (
       <Ref innerRef={innerRef}>
         <Child {...rest} />

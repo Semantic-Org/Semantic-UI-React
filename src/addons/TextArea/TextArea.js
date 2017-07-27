@@ -115,8 +115,8 @@ class TextArea extends Component {
     return (
       <ElementType
         {...rest}
+        innerRef={this.handleRef}
         onChange={this.handleChange}
-        ref={this.handleRef}
         rows={rows}
         style={{ resize, ...style }}
         value={value}

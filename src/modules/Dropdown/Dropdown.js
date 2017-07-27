@@ -1297,13 +1297,13 @@ export default class Dropdown extends Component {
         {...rest}
         {...ariaOptions}
         className={classes}
+        innerRef={this.handleRef}
         onBlur={this.handleBlur}
         onClick={this.handleClick}
         onMouseDown={this.handleMouseDown}
         onFocus={this.handleFocus}
         onChange={this.handleChange}
         tabIndex={this.computeTabIndex()}
-        ref={this.handleRef}
       >
         {this.renderLabels()}
         {this.renderSearchInput()}

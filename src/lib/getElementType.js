@@ -1,4 +1,4 @@
-import withRef from 'src/addons/Ref/withRef'
+import withRef from 'src/hoc/withRef'
 
 /**
  * Returns a createElement() type based on the props of the Component.

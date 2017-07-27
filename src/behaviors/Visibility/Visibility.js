@@ -316,6 +316,6 @@ export default class Visibility extends Component {
     const ElementType = getElementType(Visibility, this.props)
     const rest = getUnhandledProps(Visibility, this.props)
 
-    return <ElementType {...rest} ref={this.handleRef}>{children}</ElementType>
+    return <ElementType {...rest} innerRef={this.handleRef}>{children}</ElementType>
   }
 }

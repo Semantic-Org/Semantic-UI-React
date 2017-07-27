@@ -18,7 +18,7 @@ export default class Ref extends Component {
      *
      * @param {HTMLElement} node - Referred node.
      */
-    innerRef: PropTypes.func.isRequired,
+    innerRef: PropTypes.func,
   }
 
   static _meta = {
@@ -28,9 +28,10 @@ export default class Ref extends Component {
 
   componentDidMount() {
     const { innerRef } = this.props
-    const node = findDOMNode(this)
 
-    innerRef(node)
+    // Heads up! Don't move this condition, it's a short circle that avoids run of `findDOMNode`
+    // if `innerRef` isn't passed
+    if (innerRef) innerRef(findDOMNode(this))
   }
 
   render() {

@@ -8,11 +8,13 @@ import dirtyChai from 'dirty-chai'
 import sinonChai from 'sinon-chai'
 import * as enzyme from 'enzyme'
 
+import { shallow } from './utils'
+
 //
 // Enzyme
 //
 global.enzyme = enzyme
-global.shallow = enzyme.shallow
+global.shallow = shallow
 global.render = enzyme.render
 global.mount = enzyme.mount
 
