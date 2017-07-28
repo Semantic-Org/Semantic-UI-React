@@ -31,6 +31,27 @@ export const implementsButtonProp = (Component, options = {}) => {
 }
 
 /**
+ * Assert that a Component correctly implements an HTML iframe shorthand prop.
+ *
+ * @param {function} Component The component to test.
+ * @param {object} [options={}]
+ * @param {string} [options.propKey='icon'] The name of the shorthand prop.
+ * @param {string|function} [options.ShorthandComponent] The component that should be rendered from the shorthand value.
+ * @param {function} [options.mapValueToProps] A function that maps a primitive value to the Component props
+ * @param {Object} [options.requiredProps={}] Props required to render the component.
+ * @param {Object} [options.shorthandDefaultProps] Default props for the shorthand component.
+ * @param {Object} [options.shorthandOverrideProps] Override props for the shorthand component.
+ */
+export const implementsHTMLIFrameProp = (Component, options = {}) => {
+  implementsShorthandProp(Component, {
+    propKey: 'iframe',
+    ShorthandComponent: 'iframe',
+    mapValueToProps: src => ({ src }),
+    ...options,
+  })
+}
+
+/**
  * Assert that a Component correctly implements an HTML input shorthand prop.
  *
  * @param {function} Component The component to test.

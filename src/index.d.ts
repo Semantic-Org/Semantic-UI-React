@@ -17,6 +17,11 @@ export interface HtmlLabelProps {
   children?: React.ReactNode;
 }
 
+export interface HtmlIframeProps {
+  [key: string]: any;
+  src?: string;
+}
+
 export interface HtmlImageProps {
   [key: string]: any;
   src?: string;
