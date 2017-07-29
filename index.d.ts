@@ -160,6 +160,8 @@ export { default as Sidebar, SidebarProps } from './dist/commonjs/modules/Sideba
 export { default as SidebarPushable, SidebarPushableProps } from './dist/commonjs/modules/Sidebar/SidebarPushable';
 export { default as SidebarPusher, SidebarPusherProps } from './dist/commonjs/modules/Sidebar/SidebarPusher';
 
+export { default as Sticky, StickyProps } from './dist/commonjs/modules/Sticky';
+
 export { default as Tab, TabProps } from './dist/commonjs/modules/Tab';
 export { default as TabPane, TabPaneProps } from './dist/commonjs/modules/Tab/TabPane';
 
