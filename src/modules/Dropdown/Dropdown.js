@@ -432,7 +432,10 @@ export default class Dropdown extends Component {
       }
       if (!this.state.open) {
         eventPool.sub('keydown', [this.openOnArrow, this.openOnSpace])
+      } else {
+        eventPool.sub('keydown', [this.moveSelectionOnKeyDown, this.selectItemOnEnter])
       }
+      eventPool.sub('keydown', this.removeItemOnBackspace)
     } else if (prevState.focus && !this.state.focus) {
       debug('dropdown blurred')
       const { closeOnBlur } = this.props
@@ -440,7 +443,13 @@ export default class Dropdown extends Component {
         debug('mouse is not down and closeOnBlur=true, closing')
         this.close()
       }
-      eventPool.unsub('keydown', [this.openOnArrow, this.openOnSpace])
+      eventPool.unsub('keydown', [
+        this.openOnArrow,
+        this.openOnSpace,
+        this.moveSelectionOnKeyDown,
+        this.selectItemOnEnter,
+        this.removeItemOnBackspace,
+      ])
     }
 
     // opened / closed
