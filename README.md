@@ -80,6 +80,7 @@ These great products are built on Semantic UI React. Add yours [here][22].
 - https://www.lifebot.fr
 - https://www.stackforge.co
 - https://sublimefund.org
+- https://thefaithcircle.com
 
 ## Voice Your Opinion
 
