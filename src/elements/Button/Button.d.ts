@@ -22,7 +22,7 @@ export interface ButtonProps {
   active?: boolean;
 
   /** A button can animate to show hidden content. */
-  animated?: 'fade' | 'vertical';
+  animated?: boolean | 'fade' | 'vertical';
 
   /** A button can be attached to the top or bottom of other content. */
   attached?: 'left' | 'right' | 'top' | 'bottom';

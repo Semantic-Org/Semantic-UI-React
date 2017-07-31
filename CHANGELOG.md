@@ -1,5 +1,69 @@
 # Change Log
 
+## [v0.71.3](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.71.3) (2017-07-29)
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.71.2...v0.71.3)
+
+**Implemented enhancements:**
+
+- Embed: add shorthand for iframe [\#1804](https://github.com/Semantic-Org/Semantic-UI-React/issues/1804)
+- \<Transition /\> Component [\#200](https://github.com/Semantic-Org/Semantic-UI-React/issues/200)
+- \<Sticky /\> Component [\#198](https://github.com/Semantic-Org/Semantic-UI-React/issues/198)
+- feat\(Sticky\): add component [\#1747](https://github.com/Semantic-Org/Semantic-UI-React/pull/1747) ([mariolamacchia](https://github.com/mariolamacchia))
+- feat\(Transition\): add component [\#1435](https://github.com/Semantic-Org/Semantic-UI-React/pull/1435) ([layershifter](https://github.com/layershifter))
+
+**Fixed bugs:**
+
+- fix\(Header\): 'mini' size does not work [\#1903](https://github.com/Semantic-Org/Semantic-UI-React/issues/1903)
+- Dropdown: Filtered list resets when using arrow keys [\#1858](https://github.com/Semantic-Org/Semantic-UI-React/issues/1858)
+- TextArea: wrong autoHeight counting [\#1843](https://github.com/Semantic-Org/Semantic-UI-React/issues/1843)
+- Dropdown: problems with minCharacters [\#1787](https://github.com/Semantic-Org/Semantic-UI-React/issues/1787)
+
+**Closed issues:**
+
+- Popup position is not respected when near corner of window [\#1482](https://github.com/Semantic-Org/Semantic-UI-React/issues/1482)
+
+**Merged pull requests:**
+
+- fix\(Header\): remove absent `mini` size [\#1904](https://github.com/Semantic-Org/Semantic-UI-React/pull/1904) ([layershifter](https://github.com/layershifter))
+- fix\(Progress\): fix wrong inverted type [\#1900](https://github.com/Semantic-Org/Semantic-UI-React/pull/1900) ([tadashi-aikawa](https://github.com/tadashi-aikawa))
+- fix\(TextArea\): update autoHeight on text wrap [\#1898](https://github.com/Semantic-Org/Semantic-UI-React/pull/1898) ([slunecniborecek](https://github.com/slunecniborecek))
+- feat\(Embed\): add iframe shorthand [\#1810](https://github.com/Semantic-Org/Semantic-UI-React/pull/1810) ([layershifter](https://github.com/layershifter))
+- fix\(Dropdown\): fix multiple problems [\#1795](https://github.com/Semantic-Org/Semantic-UI-React/pull/1795) ([layershifter](https://github.com/layershifter))
+- fix\(Popup\): use original position if none fit in viewport [\#1483](https://github.com/Semantic-Org/Semantic-UI-React/pull/1483) ([MindFreeze](https://github.com/MindFreeze))
+
+## [v0.71.2](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.71.2) (2017-07-25)
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.71.1...v0.71.2)
+
+**Implemented enhancements:**
+
+- Dropdown: support an array of string|element options [\#470](https://github.com/Semantic-Org/Semantic-UI-React/issues/470)
+- RFC: Form Validation [\#407](https://github.com/Semantic-Org/Semantic-UI-React/issues/407)
+
+**Fixed bugs:**
+
+- Tab: data.activeIndex is overwritten in onTabChange for controlled Tab [\#1888](https://github.com/Semantic-Org/Semantic-UI-React/issues/1888)
+- Form: action prop is missing in generated markup [\#1882](https://github.com/Semantic-Org/Semantic-UI-React/issues/1882)
+- fix\(Form\): Disable Form.Select open dropdown in onfocus event [\#1115](https://github.com/Semantic-Org/Semantic-UI-React/issues/1115)
+- Modal as Form returns error, and Modal no longer centers on screen [\#1012](https://github.com/Semantic-Org/Semantic-UI-React/issues/1012)
+
+**Closed issues:**
+
+- Invalid HTML from Header [\#1893](https://github.com/Semantic-Org/Semantic-UI-React/issues/1893)
+- Dropdown: Receive Warning even requested props are given [\#1874](https://github.com/Semantic-Org/Semantic-UI-React/issues/1874)
+- Creating a Checkbox or Modal emits an error in the console when using Preact [\#1869](https://github.com/Semantic-Org/Semantic-UI-React/issues/1869)
+- Improve Tab Props [\#1859](https://github.com/Semantic-Org/Semantic-UI-React/issues/1859)
+- Basic semantic-ui examples [\#836](https://github.com/Semantic-Org/Semantic-UI-React/issues/836)
+- RFC: Abstract base component to handle similarities b/w Dropdown and Search \(and possibly Select as a unique component\) [\#509](https://github.com/Semantic-Org/Semantic-UI-React/issues/509)
+
+**Merged pull requests:**
+
+- fix\(Button\): fix animated prop type definition [\#1891](https://github.com/Semantic-Org/Semantic-UI-React/pull/1891) ([ecozoic](https://github.com/ecozoic))
+- fix\(Tab\): use correct onTabChange activeIndex [\#1890](https://github.com/Semantic-Org/Semantic-UI-React/pull/1890) ([levithomason](https://github.com/levithomason))
+- feat\(FormField\): pass disabled prop to form control [\#1889](https://github.com/Semantic-Org/Semantic-UI-React/pull/1889) ([levithomason](https://github.com/levithomason))
+- fix\(Form\): fix handling of `action` prop [\#1887](https://github.com/Semantic-Org/Semantic-UI-React/pull/1887) ([layershifter](https://github.com/layershifter))
+- tests\(shorthand\): allow non-strict assert [\#1845](https://github.com/Semantic-Org/Semantic-UI-React/pull/1845) ([layershifter](https://github.com/layershifter))
+- docs\(layouts\): add layout examples [\#1039](https://github.com/Semantic-Org/Semantic-UI-React/pull/1039) ([iamcaleberic](https://github.com/iamcaleberic))
+
 ## [v0.71.1](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.71.1) (2017-07-16)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.71.0...v0.71.1)
 

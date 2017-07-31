@@ -230,7 +230,7 @@ export default class Popup extends Component {
 
     // Lets detect if the popup is out of the viewport and adjust
     // the position accordingly
-    const positions = _.without(POSITIONS, position)
+    const positions = _.without(POSITIONS, position).concat([position])
     for (let i = 0; !this.isStyleInViewport(style) && i < positions.length; i++) {
       style = this.computePopupStyle(positions[i])
       position = positions[i]

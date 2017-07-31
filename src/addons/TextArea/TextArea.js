@@ -14,8 +14,6 @@ import {
  * @see Form
  */
 class TextArea extends Component {
-  state = {}
-
   static _meta = {
     name: 'TextArea',
     type: META.TYPES.ADDON,
@@ -92,33 +90,23 @@ class TextArea extends Component {
     if (!this.ref || !autoHeight) return
 
     const {
+      minHeight,
       borderBottomWidth,
       borderTopWidth,
-      lineHeight,
-      minHeight,
-      paddingBottom,
-      paddingTop,
     } = window.getComputedStyle(this.ref)
 
-    const boxModelHeight = _.sum([
+    const borderHeight = _.sum([
       borderBottomWidth,
       borderTopWidth,
-      paddingBottom,
-      paddingTop,
     ].map(x => parseFloat(x)))
-    const textRows = Math.max(this.ref.rows, this.ref.value.split('\n').length)
-    const textHeight = parseFloat(lineHeight) * textRows
 
-    // respect style.minHeight
-    this.setState((prevState, props) => ({
-      height: Math.max(parseFloat(minHeight), Math.ceil(boxModelHeight + textHeight)) + 'px',
-    }))
+    // Measure the scrollHeight and update the height to match.
+    this.ref.style.height = 'auto'
+    this.ref.style.height = Math.max(parseFloat(minHeight), Math.ceil(this.ref.scrollHeight + borderHeight)) + 'px'
   }
 
   render() {
     const { autoHeight, rows, style, value } = this.props
-    const { height } = this.state
-
     const rest = getUnhandledProps(TextArea, this.props)
     const ElementType = getElementType(TextArea, this.props)
 
@@ -130,7 +118,7 @@ class TextArea extends Component {
         onChange={this.handleChange}
         ref={this.handleRef}
         rows={rows}
-        style={{ height, resize, ...style }}
+        style={{ resize, ...style }}
         value={value}
       />
     )

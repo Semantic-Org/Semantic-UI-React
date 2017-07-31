@@ -72,12 +72,16 @@ describe('Dropdown', () => {
   common.isConformant(Dropdown)
   common.hasUIClassName(Dropdown)
   common.hasSubComponents(Dropdown, [DropdownDivider, DropdownHeader, DropdownItem, DropdownMenu, DropdownSearchInput])
-  common.implementsIconProp(Dropdown)
+
+  common.implementsIconProp(Dropdown, {
+    assertExactMatch: false,
+  })
   common.implementsShorthandProp(Dropdown, {
     propKey: 'header',
     ShorthandComponent: DropdownHeader,
     mapValueToProps: val => ({ content: val }),
   })
+
   common.propKeyOnlyToClassName(Dropdown, 'disabled')
   common.propKeyOnlyToClassName(Dropdown, 'error')
   common.propKeyOnlyToClassName(Dropdown, 'loading')
@@ -431,6 +435,35 @@ describe('Dropdown', () => {
       wrapperRender(<Dropdown />)
         .should.contain.descendants('.dropdown.icon')
     })
+
+    it('always opens a dropdown on click', () => {
+      wrapperMount(<Dropdown options={options} selection search />)
+        .find('i.icon')
+        .simulate('click')
+
+      dropdownMenuIsOpen()
+    })
+
+    it('always opens a dropdown on click', () => {
+      wrapperMount(<Dropdown options={options} selection search />)
+        .find('i.icon')
+        .simulate('click')
+
+      dropdownMenuIsOpen()
+    })
+
+    it('passes onClick handler', () => {
+      const event = { target: null }
+      const onClick = sandbox.spy()
+      const props = { name: 'user', onClick }
+
+      wrapperMount(<Dropdown icon={props} options={options} />)
+        .find('i.icon')
+        .simulate('click', event)
+
+      onClick.should.have.been.calledOnce()
+      onClick.should.have.been.calledWithMatch(event, props)
+    })
   })
 
   describe('selected item', () => {
@@ -727,6 +760,16 @@ describe('Dropdown', () => {
       // choose an item closes
       domEvent.keyDown(document, { key: 'Enter' })
       dropdownMenuIsClosed()
+    })
+
+    it('keeps value of the searchQuery when selection is changed', () => {
+      wrapperMount(<Dropdown options={options} selection search />)
+
+      wrapper.setState({ searchQuery: 'foo' })
+      wrapper.simulate('click')
+      domEvent.keyDown(document, { key: 'ArrowDown' })
+
+      wrapper.should.have.state('searchQuery', 'foo')
     })
   })
 
@@ -1629,6 +1672,18 @@ describe('Dropdown', () => {
 
     it('sets focus to the search input on open', () => {
       wrapperMount(<Dropdown options={options} selection search />)
+        .simulate('click')
+
+      const activeElement = document.activeElement
+      const searchIsFocused = activeElement === document.querySelector('input.search')
+      searchIsFocused.should.be.true(
+        `Expected "input.search" to be the active element but found ${activeElement} instead.`
+      )
+    })
+
+    it('sets focus to the search input on click on the placeholder', () => {
+      wrapperMount(<Dropdown minCharacters={3} options={options} placeholder='foo' selection search />)
+        .find('.default.text')
         .simulate('click')
 
       const activeElement = document.activeElement
