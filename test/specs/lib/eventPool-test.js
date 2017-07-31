@@ -42,6 +42,16 @@ describe('eventPool', () => {
       second.should.have.been.calledOnce()
     })
 
+    it('adds only unique', () => {
+      const first = sandbox.spy()
+
+      eventPool.sub('click', [first, first])
+      eventPool.sub('click', [first, first])
+
+      domEvent.click(document.body)
+      first.should.have.been.calledOnce()
+    })
+
     it('handles multiple pools', () => {
       const first = sandbox.spy()
       const second = sandbox.spy()

@@ -51,10 +51,10 @@ class EventPool {
   sub = (name, handlers, pool = 'default') => {
     if (!isBrowser) return
 
-    const events = [
+    const events = _.uniq([
       ..._.get(this._pools, `${pool}.${name}`, []),
       ...this._normalize(handlers),
-    ]
+    ])
 
     this._listen(name)
     _.set(this._pools, `${pool}.${name}`, events)
