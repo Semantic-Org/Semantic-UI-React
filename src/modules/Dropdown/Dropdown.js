@@ -1229,7 +1229,7 @@ export default class Dropdown extends Component {
 
   renderOptions = () => {
     const { multiple, search, noResultsMessage } = this.props
-    const { selectedIndex, value } = this.state
+    const { open, selectedIndex, value } = this.state
     const options = this.getMenuOptions()
 
     if (noResultsMessage !== null && search && _.isEmpty(options)) {
@@ -1240,7 +1240,7 @@ export default class Dropdown extends Component {
       ? optValue => _.includes(value, optValue)
       : optValue => optValue === value
 
-    return _.map(options, (opt, i) =>
+    return open && _.map(options, (opt, i) =>
       DropdownItem.create({
         active: isActive(opt.value),
         onClick: this.handleItemClick,
