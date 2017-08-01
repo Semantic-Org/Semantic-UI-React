@@ -346,7 +346,7 @@ class ComponentExample extends Component {
     const { error, showCode, sourceCode } = this.state
     if (!showCode) return
 
-    const style = {}
+    const style = { width: '100%' }
     if (error) {
       style.boxShadow = `inset 0 0 0 1em ${errorStyle.background}`
     }
