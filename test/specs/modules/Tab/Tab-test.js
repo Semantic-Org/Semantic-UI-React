@@ -19,7 +19,7 @@ describe('Tab', () => {
     it('defaults to an attached tabular menu', () => {
       Tab.defaultProps
         .should.have.property('menu')
-        .which.deep.equals({ attached: true, tabular: true, vertical: false, fluid: false })
+        .which.deep.equals({ attached: true, tabular: true })
     })
 
     it('passes the props to the Menu', () => {
