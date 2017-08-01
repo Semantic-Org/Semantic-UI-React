@@ -69,8 +69,8 @@ class Tab extends Component {
   ]
 
   static defaultProps = {
-    menu: { attached: true, tabular: true, vertical: false, fluid: false },
-    grid: { segmentWidth: 12, tabWidth: 4 },
+    menu: { attached: true, tabular: true },
+    grid: { paneWidth: 12, tabWidth: 4 },
   }
 
   static _meta = {
@@ -89,6 +89,13 @@ class Tab extends Component {
     this.trySetState({ activeIndex: index })
   }
 
+  renderActivePane() {
+    const { panes } = this.props
+    const { activeIndex } = this.state
+
+    return _.invoke(_.get(panes, `[${activeIndex}]`), 'render', this.props)
+  }
+
   renderMenu() {
     const { menu, panes } = this.props
     const { activeIndex } = this.state
@@ -102,41 +109,36 @@ class Tab extends Component {
     })
   }
 
-  renderColumn(columnProps) {
-    return GridColumn.create(columnProps)
-  }
-
   renderVertical(menu) {
-    const { grid, panes } = this.props
-    const { activeIndex } = this.state
+    const { grid } = this.props
+    const { paneWidth, tabWidth, ...gridProps } = grid
 
     return (
-      <Grid>
-        {menu.props.tabular !== 'right' && this.renderColumn({ width: grid.tabWidth, children: menu })}
-        {this.renderColumn({
-          width: grid.segmentWidth,
-          children: _.invoke(_.get(panes, `[${activeIndex}]`), 'render', this.props),
-          stretched: true }
-        )}
-        {menu.props.tabular === 'right' && this.renderColumn({ width: grid.tabWidth, children: menu })}
+      <Grid {...gridProps}>
+        {menu.props.tabular !== 'right' && GridColumn.create({ width: tabWidth, children: menu })}
+        {GridColumn.create({
+          width: paneWidth,
+          children: this.renderActivePane(),
+          stretched: true,
+        })}
+        {menu.props.tabular === 'right' && GridColumn.create({ width: tabWidth, children: menu })}
       </Grid>
     )
   }
 
   render() {
-    const { panes } = this.props
-    const { activeIndex } = this.state
-
     const menu = this.renderMenu()
-    const grid = menu.props.vertical === true ? this.renderVertical(menu) : null
     const rest = getUnhandledProps(Tab, this.props)
     const ElementType = getElementType(Tab, this.props)
 
+    if (menu.props.vertical) {
+      return <ElementType {...rest}>{this.renderVertical(menu)}</ElementType>
+    }
+
     return (
       <ElementType {...rest}>
-        {menu.props.vertical === true && grid}
         {menu.props.vertical !== true && menu.props.attached !== 'bottom' && menu}
-        {menu.props.vertical !== true && _.invoke(_.get(panes, `[${activeIndex}]`), 'render', this.props)}
+        {menu.props.vertical !== true && this.renderActivePane()}
         {menu.props.vertical !== true && menu.props.attached === 'bottom' && menu}
       </ElementType>
     )

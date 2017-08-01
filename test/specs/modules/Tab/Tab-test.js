@@ -64,8 +64,8 @@ describe('Tab', () => {
       wrapper.childAt(0).shallow().childAt(1).shallow().childAt(0).should.match('Menu')
     })
 
-    it("renders left of the pane when tabular='left'", () => {
-      const wrapper = shallow(<Tab menu={{ fluid: true, vertical: true, tabular: 'left' }} panes={panes} />)
+    it("renders left of the pane when tabular='true'", () => {
+      const wrapper = shallow(<Tab menu={{ fluid: true, vertical: true, tabular: true }} panes={panes} />)
 
       wrapper.childAt(0).should.match('Grid')
       wrapper.childAt(0).shallow().childAt(0).should.match('GridColumn')
