@@ -68,6 +68,9 @@ class Form extends Component {
     /** Automatically show any success Message children. */
     success: PropTypes.bool,
 
+    /** A form can prevent itself from stacking on mobile. */
+    unstackable: PropTypes.bool,
+
     /** Automatically show any warning Message children .*/
     warning: PropTypes.bool,
 
@@ -114,6 +117,7 @@ class Form extends Component {
       reply,
       size,
       success,
+      unstackable,
       warning,
       widths,
     } = this.props
@@ -126,6 +130,7 @@ class Form extends Component {
       useKeyOnly(loading, 'loading'),
       useKeyOnly(reply, 'reply'),
       useKeyOnly(success, 'success'),
+      useKeyOnly(unstackable, 'unstackable'),
       useKeyOnly(warning, 'warning'),
       useWidthProp(widths, null, true),
       'form',

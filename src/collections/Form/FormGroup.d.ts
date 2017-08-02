@@ -19,6 +19,9 @@ export interface FormGroupProps {
   /** Multiple fields may be inline in a row. */
   inline?: boolean;
 
+  /** A form group can prevent itself from stacking on mobile. */
+  unstackable?: boolean;
+
   /** Fields Groups can specify their width in grid columns or automatically divide fields to be equal width. */
   widths?: SemanticWIDTHS | 'equal';
 }
