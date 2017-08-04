@@ -1,16 +1,10 @@
 import React from 'react'
+import Types from './Types'
 
-import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
-import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
-
-const PortalExampleTypesExamples = () => (
-  <ExampleSection title='Types'>
-    <ComponentExample
-      title='Portal'
-      description='A basic portal, using several callbacks.'
-      examplePath='addons/Portal/Types/PortalExamplePortal'
-    />
-  </ExampleSection>
+const PortalExamples = () => (
+  <div>
+    <Types />
+  </div>
 )
 
-export default PortalExampleTypesExamples
+export default PortalExamples
