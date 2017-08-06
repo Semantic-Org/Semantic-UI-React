@@ -34,18 +34,17 @@ const FixedMenu = () => (
 
 export default class HomepageLayout extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {}
-    
     this.hideFixedMenu = this.hideFixedMenu.bind(this)
     this.showFixedMenu = this.showFixedMenu.bind(this)
   }
 
-  hideFixedMenu(){
+  hideFixedMenu() {
     this.setState({ visible: false })
   }
 
-  showFixedMenu(){
+  showFixedMenu() {
     this.setState({ visible: true })
   }
 
