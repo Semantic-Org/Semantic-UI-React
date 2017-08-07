@@ -6,7 +6,7 @@ describe('objectDiff', () => {
   let a
   let b
   beforeEach(() => {
-    [a, b] = _.times(2, n => ({
+    [a, b] = _.times(2, () => ({
       undef: undefined,
       nil: null,
       bool: true,
@@ -17,7 +17,7 @@ describe('objectDiff', () => {
     }))
   })
 
-  const assertDiff = (diff) => objectDiff(a, b).should.deep.equal(diff)
+  const assertDiff = diff => objectDiff(a, b).should.deep.equal(diff)
 
   it('picks up undefined values', () => {
     b.nil = undefined

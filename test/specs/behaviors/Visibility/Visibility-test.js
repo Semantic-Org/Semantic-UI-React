@@ -104,7 +104,7 @@ describe('Visibility', () => {
   })
 
   describe('calculations', () => {
-    expectations.forEach(expectation => {
+    expectations.forEach((expectation) => {
       it(`calculates ${expectation.name}`, () => {
         let calculations
         const onUpdate = (e, props) => (calculations = props.calculations)

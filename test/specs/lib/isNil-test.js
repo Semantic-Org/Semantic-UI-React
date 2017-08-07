@@ -11,7 +11,7 @@ describe('isNil', () => {
     expect(isNil(null)).to.equal(true)
   })
   it('should return true for void 0', () => {
-    expect(isNil(void 0)).to.equal(true)
+    expect(isNil(void 0)).to.equal(true) // eslint-disable-line no-void
   })
   it('should return false for NaN', () => {
     expect(isNil(NaN)).to.equal(false)
