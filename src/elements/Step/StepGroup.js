@@ -35,7 +35,7 @@ function StepGroup(props) {
     size,
     useKeyOnly(fluid, 'fluid'),
     useKeyOnly(ordered, 'ordered'),
-    useKeyOnly(unstackable, 'unstackable,'),
+    useKeyOnly(unstackable, 'unstackable'),
     useKeyOnly(vertical, 'vertical'),
     useValueAndKey(stackable, 'stackable'),
     'steps',
