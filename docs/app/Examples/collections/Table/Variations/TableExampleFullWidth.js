@@ -1,9 +1,10 @@
 import React from 'react'
 import { Button, Checkbox, Icon, Table } from 'semantic-ui-react'
 
-const TableExampleFullWidth = () => (
-  <Table celled compact definition>
-    <Table.Header fullWidth>
+const TableExampleFullWidth = () => {
+  return (
+    <Table celled compact definition>
+      <Table.Header fullWidth>
       <Table.Row>
         <Table.HeaderCell />
         <Table.HeaderCell>Name</Table.HeaderCell>
@@ -11,9 +12,9 @@ const TableExampleFullWidth = () => (
         <Table.HeaderCell>E-mail address</Table.HeaderCell>
         <Table.HeaderCell>Premium Plan</Table.HeaderCell>
       </Table.Row>
-    </Table.Header>
+      </Table.Header>
 
-    <Table.Body>
+      <Table.Body>
       <Table.Row>
         <Table.Cell collapsing>
           <Checkbox slider />
@@ -41,9 +42,9 @@ const TableExampleFullWidth = () => (
         <Table.Cell>jilsewris22@yahoo.com</Table.Cell>
         <Table.Cell>Yes</Table.Cell>
       </Table.Row>
-    </Table.Body>
+      </Table.Body>
 
-    <Table.Footer fullWidth>
+      <Table.Footer fullWidth>
       <Table.Row>
         <Table.HeaderCell />
         <Table.HeaderCell colSpan='4'>
@@ -54,8 +55,9 @@ const TableExampleFullWidth = () => (
           <Button disabled size='small'>Approve All</Button>
         </Table.HeaderCell>
       </Table.Row>
-    </Table.Footer>
-  </Table>
-)
+      </Table.Footer>
+    </Table>
+  )
+}
 
 export default TableExampleFullWidth
