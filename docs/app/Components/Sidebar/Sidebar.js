@@ -50,7 +50,7 @@ class Sidebar extends Component {
     this.setSearchInput()
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate() {
     this.setSearchInput()
   }
 
@@ -59,7 +59,8 @@ class Sidebar extends Component {
   }
 
   setSearchInput() {
-    this._searchInput = findDOMNode(this).querySelector('.ui.input input')
+    // TODO: Replace findDOMNode with Ref component when it will be merged
+    this._searchInput = findDOMNode(this).querySelector('.ui.input input') // eslint-disable-line react/no-find-dom-node
   }
 
   handleDocumentKeyDown = (e) => {
@@ -152,7 +153,7 @@ class Sidebar extends Component {
 
     this.filteredComponents = [...startsWithMatches, ...containsMatches]
     const menuItems = _.map(({ _meta }) => {
-      itemIndex++
+      itemIndex += 1
       const isSelected = itemIndex === selectedItemIndex
 
       if (isSelected) this.selectedRoute = getRoute(_meta)

@@ -90,7 +90,7 @@ export default class TransitionGroup extends React.Component {
     debug('handleOnHide', childProps)
     const { reactKey } = childProps
 
-    this.setState(state => {
+    this.setState((state) => {
       const children = { ...state.children }
       delete children[reactKey]
 
@@ -105,13 +105,14 @@ export default class TransitionGroup extends React.Component {
     return (
       <Transition
         animation={animation}
-        children={child}
         duration={duration}
         key={key}
         onHide={this.handleOnHide}
         reactKey={key}
         transitionOnMount={transitionOnMount}
-      />
+      >
+        {child}
+      </Transition>
     )
   }
 

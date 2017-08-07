@@ -7,10 +7,9 @@ import { renderToStaticMarkup } from 'react-dom/server'
 import { html } from 'js-beautify'
 import copyToClipboard from 'copy-to-clipboard'
 
-import { exampleContext, repoURL } from 'docs/app/utils'
+import { exampleContext, repoURL, scrollToAnchor } from 'docs/app/utils'
 import { Divider, Grid, Icon, Header, Menu, Popup } from 'src'
 import Editor from 'docs/app/Components/Editor/Editor'
-import { scrollToAnchor } from 'docs/app/utils'
 
 const babelConfig = {
   presets: ['es2015', 'react', 'stage-1'],

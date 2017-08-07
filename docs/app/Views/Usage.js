@@ -194,8 +194,8 @@ const Usage = () => (
             content={(
               <a
                 href='https://github.com/webpack/webpack/issues/1750'
-                target='_blank'
                 rel='noopener noreferrer'
+                target='_blank'
               >
                 webpack/webpack#1750
               </a>
@@ -203,15 +203,39 @@ const Usage = () => (
           />
           <List.Item
             icon='github'
-            content={<a href='https://github.com/webpack/webpack/issues/2867' target='_blank' rel='noopener noreferrer'>webpack/webpack#2867</a>}
+            content={(
+              <a
+                href='https://github.com/webpack/webpack/issues/2867'
+                rel='noopener noreferrer'
+                target='_blank'
+              >
+                webpack/webpack#2867
+              </a>
+            )}
           />
           <List.Item
             icon='github'
-            content={<a href='https://github.com/webpack/webpack/issues/2899' target='_blank' rel='noopener noreferrer'>webpack/webpack#2899</a>}
+            content={(
+              <a
+                href='https://github.com/webpack/webpack/issues/2899'
+                rel='noopener noreferrer'
+                target='_blank'
+              >
+                webpack/webpack#2899
+              </a>
+            )}
           />
           <List.Item
             icon='github'
-            content={<a href='https://github.com/webpack/webpack/issues/3092' target='_blank' rel='noopener noreferrer'>webpack/webpack#3092</a>}
+            content={(
+              <a
+                href='https://github.com/webpack/webpack/issues/3092'
+                rel='noopener noreferrer'
+                target='_blank'
+              >
+                webpack/webpack#3092
+              </a>
+            )}
           />
         </List>
         <p>

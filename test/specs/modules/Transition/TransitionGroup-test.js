@@ -27,7 +27,7 @@ describe('TransitionGroup', () => {
           <div />
           <div />
           <div />
-        </TransitionGroup>
+        </TransitionGroup>,
       )
         .children()
         .everyWhere(item => item.type().should.equal(Transition))
@@ -39,10 +39,10 @@ describe('TransitionGroup', () => {
           <div />
           <div />
           <div />
-        </TransitionGroup>
+        </TransitionGroup>,
       )
         .children()
-        .everyWhere(item => {
+        .everyWhere((item) => {
           item.should.have.prop('animation', 'scale')
           item.should.have.prop('duration', 1500)
         })
@@ -52,7 +52,7 @@ describe('TransitionGroup', () => {
       wrapperShallow(
         <TransitionGroup>
           <div key='first' />
-        </TransitionGroup>
+        </TransitionGroup>,
       )
       wrapper.setProps({ children: [<div key='first' />, <div key='second' />] })
 
@@ -66,7 +66,7 @@ describe('TransitionGroup', () => {
       wrapperShallow(
         <TransitionGroup>
           <div key='first' />
-        </TransitionGroup>
+        </TransitionGroup>,
       )
       wrapper.setProps({ children: [<div key='first' />, '', <div key='second' />] })
 
@@ -80,7 +80,7 @@ describe('TransitionGroup', () => {
         <TransitionGroup>
           <div key='first' />
           <div key='second' />
-        </TransitionGroup>
+        </TransitionGroup>,
       )
       wrapper.setProps({ children: [<div key='first' />] })
 
@@ -88,12 +88,12 @@ describe('TransitionGroup', () => {
       wrapper.childAt(1).should.have.prop('visible', false)
     })
 
-    it('removes child after transition', done => {
+    it('removes child after transition', (done) => {
       wrapperMount(
         <TransitionGroup duration={0}>
           <div key='first' />
           <div key='second' />
-        </TransitionGroup>
+        </TransitionGroup>,
       )
       wrapper.setProps({ children: [<div key='first' />] })
 

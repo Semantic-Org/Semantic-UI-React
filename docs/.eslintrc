@@ -20,11 +20,15 @@
     }],
     "semi": [2, "never"],
     "jsx-a11y/alt-text": 0,
+    "jsx-a11y/label-has-for": 0,
+    "jsx-a11y/no-static-element-interactions": 0,
     "jsx-a11y/href-no-hash": 0,
     "import/no-extraneous-dependencies": 0,
     "import/no-unresolved": 0,
     "import/extensions": 0,
     "import/no-webpack-loader-syntax": 0,
+    "react/no-array-index-key": 0,
+    "react/no-render-return-value": 0,
     "react/no-unescaped-entities": 0,
     "react/jsx-filename-extension": [2, { "extensions": [".js"] }]
   }

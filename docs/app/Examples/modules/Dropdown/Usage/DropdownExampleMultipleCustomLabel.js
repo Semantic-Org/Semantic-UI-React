@@ -7,7 +7,7 @@ const options = [
   { key: 3, text: 'Three', value: 3 },
 ]
 
-const renderLabel = (label, index, props) => ({
+const renderLabel = label => ({
   color: 'blue',
   content: `Customized label - ${label.text}`,
   icon: 'check',

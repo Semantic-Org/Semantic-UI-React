@@ -412,7 +412,8 @@ class Portal extends Component {
   }
 
   handleRef = (c) => {
-    this.triggerNode = ReactDOM.findDOMNode(c)
+    // TODO: Replace findDOMNode with Ref component when it will be merged
+    this.triggerNode = ReactDOM.findDOMNode(c) // eslint-disable-line react/no-find-dom-node
   }
 
   render() {

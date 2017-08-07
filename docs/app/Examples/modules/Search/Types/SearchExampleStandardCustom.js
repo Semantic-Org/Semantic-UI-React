@@ -4,7 +4,7 @@ import { Label } from 'semantic-ui-react'
 
 import SearchExampleStandard from './SearchExampleStandard'
 
-const resultRenderer = ({ title, description }) => <Label content={title} />
+const resultRenderer = ({ title }) => <Label content={title} />
 
 resultRenderer.propTypes = {
   title: PropTypes.string,

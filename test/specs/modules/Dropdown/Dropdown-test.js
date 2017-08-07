@@ -1689,7 +1689,7 @@ describe('Dropdown', () => {
       const activeElement = document.activeElement
       const searchIsFocused = activeElement === document.querySelector('input.search')
       searchIsFocused.should.be.true(
-        `Expected "input.search" to be the active element but found ${activeElement} instead.`
+        `Expected "input.search" to be the active element but found ${activeElement} instead.`,
       )
     })
 

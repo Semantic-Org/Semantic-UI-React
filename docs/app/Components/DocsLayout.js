@@ -22,7 +22,7 @@ export default class DocsLayout extends Component {
     this.resetPage()
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate() {
     this.resetPage()
   }
 

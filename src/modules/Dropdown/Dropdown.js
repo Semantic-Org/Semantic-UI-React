@@ -673,7 +673,7 @@ export default class Dropdown extends Component {
     if (this.searchRef) this.searchRef.focus()
   }
 
-  handleIconClick = e => {
+  handleIconClick = (e) => {
     debug('handleIconClick()', e)
 
     _.invoke(this.props, 'onClick', e, this.props)

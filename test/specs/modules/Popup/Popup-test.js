@@ -136,7 +136,7 @@ describe('Popup', () => {
             trigger={<button>foo</button>}
             on='click'
             offset={999}
-          />
+          />,
         )
         wrapper.find('button').simulate('click')
         const selectedPosition = wrapper.state('position')

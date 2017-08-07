@@ -180,23 +180,23 @@ export default class Sticky extends Component {
   // ----------------------------------------
 
   // If true, the component will stick to the bottom of the screen instead of the top
-  pushing = pushing => {
+  pushing = (pushing) => {
     const { pushing: possible } = this.props
 
     if (possible) this.setState({ pushing })
   }
 
-  stick = e => {
+  stick = (e) => {
     this.setState({ sticky: true })
     _.invoke(this.props, 'onStick', e, this.props)
   }
 
-  unstick = e => {
+  unstick = (e) => {
     this.setState({ sticky: false })
     _.invoke(this.props, 'onUnstick', e, this.props)
   }
 
-  stickToContextBottom = e => {
+  stickToContextBottom = (e) => {
     const top = this.contextRect.bottom - this.stickyRect.height
 
     _.invoke(this.props, 'onBottom', e, this.props)
@@ -206,21 +206,21 @@ export default class Sticky extends Component {
     this.pushing(true)
   }
 
-  stickToContextTop = e => {
+  stickToContextTop = (e) => {
     _.invoke(this.props, 'onTop', e, this.props)
 
     this.unstick(e)
     this.pushing(false)
   }
 
-  stickToScreenBottom = e => {
+  stickToScreenBottom = (e) => {
     const { bottomOffset: bottom } = this.props
 
     this.stick(e)
     this.setState({ bottom, top: null })
   }
 
-  stickToScreenTop = e => {
+  stickToScreenTop = (e) => {
     const { offset: top } = this.props
 
     this.stick(e)
