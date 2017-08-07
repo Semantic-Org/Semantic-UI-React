@@ -19,6 +19,9 @@ const babelConfig = {
 const titleStyle = {
   margin: 0,
 }
+const descriptionStyle = {
+  maxWidth: '50rem',
+}
 
 const headerColumnStyle = {
   // provide room for absolutely positions toggle code icons
@@ -28,6 +31,7 @@ const headerColumnStyle = {
 
 const childrenStyle = {
   paddingTop: 0,
+  maxWidth: '50rem',
 }
 
 const errorStyle = {
@@ -400,7 +404,7 @@ class ComponentExample extends Component {
       <Grid className='docs-example' style={exampleStyle} divided={showCode} columns='1' id={this.anchorName}>
         <Grid.Column style={headerColumnStyle}>
           {title && <Header as='h3' className='no-anchor' style={titleStyle} content={title} />}
-          {description && <p>{description}</p>}
+          {description && <p style={descriptionStyle}>{description}</p>}
           <Menu compact text icon size='small' color='green' className='docs-example-menu'>
             <ToolTip content={copiedDirectLink ? ' Copied Link!' : 'Direct link'}>
               <Menu.Item href={`#${this.anchorName}`} onClick={this.handleDirectLinkClick}>

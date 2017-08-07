@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { SemanticShorthandItem } from '../..';
+import { HtmlIframeProps, SemanticShorthandItem } from '../..';
 import { IconProps } from '../../elements/Icon';
 
 export interface EmbedProps {
@@ -41,6 +41,9 @@ export interface EmbedProps {
 
   /** Specifies an id for source. */
   id?: string;
+
+  /** Shorthand for HTML iframe. */
+  iframe?: SemanticShorthandItem<HtmlIframeProps>;
 
   /**
    * Сalled on click.

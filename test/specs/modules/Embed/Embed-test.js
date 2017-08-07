@@ -23,6 +23,23 @@ describe('Embed', () => {
     requiredProps: { active: true },
   })
 
+  common.implementsHTMLIFrameProp(Embed, {
+    alwaysPresent: true,
+    assertExactMatch: false,
+    requiredProps: {
+      active: true,
+      id: 'default-test-id',
+      source: 'youtube',
+    },
+    shorthandDefaultProps: {
+      allowFullScreen: false,
+      frameBorder: 0,
+      height: '100%',
+      scrolling: 'no',
+      title: 'Embedded content from youtube.',
+      width: '100%',
+    },
+  })
   common.implementsIconProp(Embed)
 
   common.propKeyOnlyToClassName(Embed, 'active')
