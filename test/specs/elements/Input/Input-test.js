@@ -90,12 +90,12 @@ describe('Input', () => {
   it('renders with conditional children', () => {
     shallow(
       <Input>
-        {true && <span />}
-        {false && <div />}
+        {true && <span></span>}
+        {false && <div></div>}
       </Input>,
     )
-      .should.contain(<span />)
-      .should.not.contain(<div />)
+      .should.contain(<span></span>)
+      .should.not.contain(<div></div>)
   })
 
   it('renders a text <input> by default', () => {
@@ -105,7 +105,7 @@ describe('Input', () => {
   })
 
   describe('input props', () => {
-    htmlInputProps.forEach((propName) => {
+    htmlInputProps.forEach(propName => {
       it(`passes \`${propName}\` to the <input>`, () => {
         const propValue = propName === 'onChange' ? () => null : 'foo'
         const wrapper = shallow(<Input {...{ [propName]: propValue }} />)
