@@ -66,7 +66,7 @@
     "babel-core": "^6.21.0",
     "babel-eslint": "^7.0.0",
     "babel-loader": "^7.0.0",
-    "babel-plugin-__coverage__": "^11.0.0",
+    "babel-plugin-istanbul": "^4.1.4",
     "babel-plugin-lodash": "^3.2.10",
     "babel-plugin-react-transform": "^2.0.2",
     "babel-plugin-transform-react-handled-props": "^0.2.3",
