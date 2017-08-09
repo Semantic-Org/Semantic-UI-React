@@ -1,13 +1,15 @@
-const historyApiFallback = require('connect-history-api-fallback')
-const express = require('express')
-const { task, src, dest, parallel, series, watch } = require('gulp')
-const loadPlugins = require('gulp-load-plugins')
-const rimraf = require('rimraf')
-const webpack = require('webpack')
-const WebpackDevMiddleware = require('webpack-dev-middleware')
-const WebpackHotMiddleware = require('webpack-hot-middleware')
+import historyApiFallback from 'connect-history-api-fallback'
+import express from 'express'
+import { task, src, dest, parallel, series, watch } from 'gulp'
+import loadPlugins from 'gulp-load-plugins'
+import rimraf from 'rimraf'
+import webpack from 'webpack'
+import WebpackDevMiddleware from 'webpack-dev-middleware'
+import WebpackHotMiddleware from 'webpack-hot-middleware'
 
-const config = require('../../config')
+import config from '../../config'
+import webpackConfig from '../../webpack.config.babel'
+import gulpReactDocgen from '../plugins/gulp-react-docgen'
 
 const g = loadPlugins()
 const { colors, log, PluginError } = g.util
@@ -26,27 +28,23 @@ task('clean:docs', (cb) => {
 // Build
 // ----------------------------------------
 
-task('build:docs:docgen', () => {
-  const gulpReactDocgen = require('../plugins/gulp-react-docgen')
-
-  return src([
-    `${config.paths.src()}/addons/**/*.js`,
-    `${config.paths.src()}/behaviors/**/*.js`,
-    `${config.paths.src()}/elements/**/*.js`,
-    `${config.paths.src()}/collections/**/*.js`,
-    `${config.paths.src()}/modules/**/*.js`,
-    `${config.paths.src()}/views/**/*.js`,
-    '!**/index.js',
-  ])
+task('build:docs:docgen', () => src([
+  `${config.paths.src()}/addons/**/*.js`,
+  `${config.paths.src()}/behaviors/**/*.js`,
+  `${config.paths.src()}/elements/**/*.js`,
+  `${config.paths.src()}/collections/**/*.js`,
+  `${config.paths.src()}/modules/**/*.js`,
+  `${config.paths.src()}/views/**/*.js`,
+  '!**/index.js',
+])
   // do not remove the function keyword
   // we need 'this' scope here
-    .pipe(g.plumber(function handleError(err) {
-      log(err.toString())
-      this.emit('end')
-    }))
-    .pipe(gulpReactDocgen())
-    .pipe(dest(config.paths.docsSrc()))
-})
+  .pipe(g.plumber(function handleError(err) {
+    log(err.toString())
+    this.emit('end')
+  }))
+  .pipe(gulpReactDocgen())
+  .pipe(dest(config.paths.docsSrc())))
 
 task('build:docs:html', () => src(config.paths.docsSrc('404.html'))
   .pipe(dest(config.paths.docsDist())))
@@ -55,7 +53,6 @@ task('build:docs:images', () => src(`${config.paths.docsSrc()}/**/*.{png,jpg,gif
   .pipe(dest(config.paths.docsDist())))
 
 task('build:docs:webpack', (cb) => {
-  const webpackConfig = require('../../webpack.config')
   const compiler = webpack(webpackConfig)
 
   compiler.run((err, stats) => {
@@ -99,7 +96,6 @@ task('build:docs', series(
 // ----------------------------------------
 
 task('serve:docs', (cb) => {
-  const webpackConfig = require('../../webpack.config')
   const app = express()
   const compiler = webpack(webpackConfig)
 

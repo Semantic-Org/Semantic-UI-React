@@ -1,4 +1,4 @@
-const path = require('path')
+import path from 'path'
 
 // ------------------------------------
 // Environment vars
@@ -39,7 +39,7 @@ const paths = {
   umdDist: base.bind(null, config.dir_umd_dist),
 }
 
-config = Object.assign({}, config, {
+config = { ...config,
   paths,
 
   // ----------------------------------
@@ -100,6 +100,6 @@ config = Object.assign({}, config, {
     'react-ace',
     'react-dom',
   ],
-})
+}
 
-module.exports = config
+export default config

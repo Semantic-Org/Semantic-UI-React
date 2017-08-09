@@ -1,9 +1,10 @@
-const { task, series } = require('gulp')
-const loadPlugins = require('gulp-load-plugins')
-const rimraf = require('rimraf')
-const webpack = require('webpack')
+import { task, series } from 'gulp'
+import loadPlugins from 'gulp-load-plugins'
+import rimraf from 'rimraf'
+import webpack from 'webpack'
 
-const config = require('../../config')
+import config from '../../config'
+import webpackDLLConfig from '../../webpack.dll'
 
 const g = loadPlugins()
 const { log, PluginError } = g.util
@@ -21,7 +22,6 @@ task('clean:dll', (cb) => {
 // ----------------------------------------
 
 task('build:dll', (cb) => {
-  const webpackDLLConfig = require('../../webpack.dll')
   const compiler = webpack(webpackDLLConfig)
 
   compiler.run((err, stats) => {

@@ -1,9 +1,10 @@
-const { task, parallel, series } = require('gulp')
-const loadPlugins = require('gulp-load-plugins')
-const rimraf = require('rimraf')
-const webpack = require('webpack')
+import { task, parallel, series } from 'gulp'
+import loadPlugins from 'gulp-load-plugins'
+import rimraf from 'rimraf'
+import webpack from 'webpack'
 
-const config = require('../../config')
+import config from '../../config'
+import webpackUMDConfig from '../../webpack.umd.config'
 
 const g = loadPlugins()
 const { log, PluginError } = g.util
@@ -21,7 +22,6 @@ task('clean:umd', (cb) => {
 // ----------------------------------------
 
 task('build:umd:webpack', (cb) => {
-  const webpackUMDConfig = require('../../webpack.umd.config')
   const compiler = webpack(webpackUMDConfig)
 
   compiler.run((err, stats) => {
