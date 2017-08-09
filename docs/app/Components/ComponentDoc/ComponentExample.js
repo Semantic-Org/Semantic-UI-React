@@ -192,11 +192,11 @@ class ComponentExample extends Component {
 
     // rewrite imports to const statements against the UPPERCASE module names
     const imports = _.get(/(^import[\s\S]*from[\s\S]*['"]\n)/.exec(sourceCode), '[1]', '')
-      .replace(/[\s\n]+/g, ' ') // normalize spaces and make one line
-      .replace(/ import/g, '\nimport') // one import per line
-      .split('\n') // split lines
-      .filter(Boolean) // remove empty lines
-      .map((l) => { // rewrite imports to const statements
+      .replace(/[\s\n]+/g, ' ')         // normalize spaces and make one line
+      .replace(/ import/g, '\nimport')  // one import per line
+      .split('\n')                      // split lines
+      .filter(Boolean)                  // remove empty lines
+      .map((l) => {                     // rewrite imports to const statements
         const [
           defaultImport,
           destructuredImports,
@@ -225,8 +225,8 @@ class ComponentExample extends Component {
     // consider everything after the imports to be the body
     // remove `export` statements except `export default class|function`
     const body = _.get(/import[\s\S]*from.*\n([\s\S]*)/.exec(sourceCode), '[1]', '')
-      .replace(/export\s+default\s+(?!class|function)\w+([\s\n]+)?/, '') // remove `export default Foo` statements
-      .replace(/export\s+default\s+/, '') // remove `export default ...`
+      .replace(/export\s+default\s+(?!class|function)\w+([\s\n]+)?/, '')  // remove `export default Foo` statements
+      .replace(/export\s+default\s+/, '')                                 // remove `export default ...`
 
     const IIFE = `(function() {\n${imports}${body}return ${defaultExport}\n}())`
 

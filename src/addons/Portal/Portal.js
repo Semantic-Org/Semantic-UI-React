@@ -172,11 +172,11 @@ class Portal extends Component {
     const { closeOnDocumentClick, closeOnRootNodeClick } = this.props
 
     if (
-      !this.rootNode // not mounted
-      || !this.portalNode // no portal
+      !this.rootNode                                      // not mounted
+      || !this.portalNode                                 // no portal
       || _.invoke(this, 'triggerNode.contains', e.target) // event happened in trigger (delegate to trigger handlers)
-      || _.invoke(this, 'portalNode.contains', e.target) // event happened in the portal
-    ) return // ignore the click
+      || _.invoke(this, 'portalNode.contains', e.target)  // event happened in the portal
+    ) return                                              // ignore the click
 
     const didClickInRootNode = this.rootNode.contains(e.target)
 
