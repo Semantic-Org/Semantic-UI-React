@@ -85,6 +85,7 @@ export default class RatingIcon extends Component {
           onClick(e, this.props)
           break
         default:
+          return
       }
     }
   }
