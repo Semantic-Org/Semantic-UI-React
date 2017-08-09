@@ -424,9 +424,9 @@ export default class Search extends Component {
     const { category, results } = this.props
 
     return !category ? results : _.reduce(results,
-        (memo, categoryData) => memo.concat(categoryData.results),
-        []
-      )
+      (memo, categoryData) => memo.concat(categoryData.results),
+      [],
+    )
   }
 
   getSelectedResult = (index = this.state.selectedIndex) => {
@@ -446,7 +446,7 @@ export default class Search extends Component {
 
     this.trySetState(
       { value },
-      { selectedIndex: selectFirstResult ? 0 : -1 }
+      { selectedIndex: selectFirstResult ? 0 : -1 },
     )
   }
 
@@ -487,7 +487,7 @@ export default class Search extends Component {
     if (isOutOfUpperView) {
       menu.scrollTop = item.offsetTop
     } else if (isOutOfLowerView) {
-      menu.scrollTop = item.offsetTop + item.clientHeight - menu.clientHeight
+      menu.scrollTop = (item.offsetTop + item.clientHeight) - menu.clientHeight
     }
   }
 
@@ -515,7 +515,7 @@ export default class Search extends Component {
   // Render
   // ----------------------------------------
 
-  renderSearchInput = rest => {
+  renderSearchInput = (rest) => {
     const { icon, input } = this.props
     const { value } = this.state
 
@@ -578,7 +578,7 @@ export default class Search extends Component {
 
     let count = 0
 
-    return _.map(categories, ({ childKey, ...category }, name, index) => {
+    return _.map(categories, ({ childKey, ...category }) => {
       const categoryProps = {
         key: childKey || category.name,
         active: _.inRange(selectedIndex, count, count + category.results.length),
@@ -587,7 +587,7 @@ export default class Search extends Component {
       }
       const renderFn = _.partialRight(this.renderResult, count)
 
-      count = count + category.results.length
+      count += category.results.length
 
       return (
         <SearchCategory {...categoryProps}>

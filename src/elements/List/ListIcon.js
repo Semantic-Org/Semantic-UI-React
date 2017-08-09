@@ -18,7 +18,7 @@ function ListIcon(props) {
   const { className, verticalAlign } = props
   const classes = cx(
     useVerticalAlignProp(verticalAlign),
-    className
+    className,
   )
   const rest = getUnhandledProps(ListIcon, props)
 

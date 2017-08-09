@@ -113,7 +113,7 @@ class Progress extends Component {
     const { percent, total, value } = this.props
 
     if (!_.isUndefined(percent)) return percent
-    if (!_.isUndefined(total) && !_.isUndefined(value)) return value / total * 100
+    if (!_.isUndefined(total) && !_.isUndefined(value)) return (value / total) * 100
   }
 
   getPercent = () => {
@@ -137,7 +137,7 @@ class Progress extends Component {
     return createHTMLDivision(label, { defaultProps: { className: 'label' } })
   }
 
-  renderProgress = percent => {
+  renderProgress = (percent) => {
     const {
       precision,
       progress,

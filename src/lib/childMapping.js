@@ -13,7 +13,7 @@ const getPendingKeys = (prev, next) => {
   const nextKeysPending = {}
   let pendingKeys = []
 
-  _.forEach(_.keys(prev), prevKey => {
+  _.forEach(_.keys(prev), (prevKey) => {
     if (!_.has(next, prevKey)) {
       pendingKeys.push(prevKey)
       return
@@ -28,7 +28,7 @@ const getPendingKeys = (prev, next) => {
   return [nextKeysPending, pendingKeys]
 }
 
-const getValue = (key, prev, next) => _.has(next, key) ? next[key] : prev[key]
+const getValue = (key, prev, next) => (_.has(next, key) ? next[key] : prev[key])
 
 /**
  * When you're adding or removing children some may be added or removed in the same render pass. We want to show *both*
@@ -43,9 +43,9 @@ export const mergeChildMappings = (prev = {}, next = {}) => {
   const childMapping = {}
   const [nextKeysPending, pendingKeys] = getPendingKeys(prev, next)
 
-  _.forEach(_.keys(next), nextKey => {
+  _.forEach(_.keys(next), (nextKey) => {
     if (_.has(nextKeysPending, nextKey)) {
-      _.forEach(nextKeysPending[nextKey], pendingKey => {
+      _.forEach(nextKeysPending[nextKey], (pendingKey) => {
         childMapping[pendingKey] = getValue(pendingKey, next, prev)
       })
     }
@@ -53,7 +53,7 @@ export const mergeChildMappings = (prev = {}, next = {}) => {
     childMapping[nextKey] = getValue(nextKey, next, prev)
   })
 
-  _.forEach(pendingKeys, pendingKey => {
+  _.forEach(pendingKeys, (pendingKey) => {
     childMapping[pendingKey] = getValue(pendingKey, next, prev)
   })
 

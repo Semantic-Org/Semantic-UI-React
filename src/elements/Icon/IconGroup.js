@@ -19,7 +19,7 @@ function IconGroup(props) {
   const classes = cx(
     size,
     'icons',
-    className
+    className,
   )
   const rest = getUnhandledProps(IconGroup, props)
   const ElementType = getElementType(IconGroup, props)

@@ -66,7 +66,7 @@ export default class AccordionTitle extends Component {
     const classes = cx(
       useKeyOnly(active, 'active'),
       'title',
-      className
+      className,
     )
     const rest = getUnhandledProps(AccordionTitle, this.props)
     const ElementType = getElementType(AccordionTitle, this.props)
