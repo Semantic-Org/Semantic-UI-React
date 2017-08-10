@@ -244,7 +244,7 @@ export default class Transition extends Component {
     return status === Transition.ENTERED ? Transition.EXITING : Transition.ENTERING
   }
 
-  computeStatuses = props => {
+  computeStatuses = (props) => {
     const { status } = this.state
     const { visible } = props
 

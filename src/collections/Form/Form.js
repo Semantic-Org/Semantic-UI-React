@@ -71,7 +71,7 @@ class Form extends Component {
     /** A form can prevent itself from stacking on mobile. */
     unstackable: PropTypes.bool,
 
-    /** Automatically show any warning Message children .*/
+    /** Automatically show any warning Message children. */
     warning: PropTypes.bool,
 
     /** Forms can automatically divide fields to be equal width. */

@@ -149,7 +149,7 @@ class Modal extends Component {
   }
 
   // Do not access document when server side rendering
-  getMountNode = () => isBrowser ? this.props.mountNode || document.body : null
+  getMountNode = () => (isBrowser ? this.props.mountNode || document.body : null)
 
   handleActionsOverrides = predefinedProps => ({
     onActionClick: (e, actionProps) => {
@@ -170,7 +170,7 @@ class Modal extends Component {
   }
 
   handleIconOverrides = predefinedProps => ({
-    onClick: e => {
+    onClick: (e) => {
       _.invoke(predefinedProps, 'onClick', e)
       this.handleClose(e)
     },
@@ -259,7 +259,7 @@ class Modal extends Component {
     this.animationRequestId = requestAnimationFrame(this.setPosition)
   }
 
-  renderContent = rest => {
+  renderContent = (rest) => {
     const {
       actions,
       basic,

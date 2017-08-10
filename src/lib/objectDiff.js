@@ -15,7 +15,7 @@ import _ from 'lodash'
  * objectDiff(a, b)
  * //=> { foo: 'baz' }
  */
-export const objectDiff = (source, target) => _.transform(source, (res, val, key) => {
+export default (source, target) => _.transform(source, (res, val, key) => {
   // deleted keys
   if (!_.has(target, key)) res[key] = '[DELETED]'
   // new keys / changed values

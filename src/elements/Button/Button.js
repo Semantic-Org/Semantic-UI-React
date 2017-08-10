@@ -165,7 +165,7 @@ class Button extends Component {
     if (!_.isNil(attached) || !_.isNil(label)) return 'div'
   }
 
-  computeTabIndex = ElementType => {
+  computeTabIndex = (ElementType) => {
     const { disabled, tabIndex } = this.props
 
     if (!_.isNil(tabIndex)) return tabIndex

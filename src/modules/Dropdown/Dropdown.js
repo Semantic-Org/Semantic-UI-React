@@ -27,7 +27,7 @@ import DropdownSearchInput from './DropdownSearchInput'
 
 const debug = makeDebugger('dropdown')
 
-const getKeyOrValue = (key, value) => _.isNil(key) ? value : key
+const getKeyOrValue = (key, value) => (_.isNil(key) ? value : key)
 
 /**
  * A dropdown allows a user to select a value from a series of options.
@@ -405,7 +405,7 @@ export default class Dropdown extends Component {
       } else if (hasValue && !nextProps.multiple && isNextValueArray) {
         console.error(
           'Dropdown `value` must not be an array when `multiple` is not set.' +
-          ' Either set `multiple={true}` or use a string or number value.'
+          ' Either set `multiple={true}` or use a string or number value.',
         )
       }
     }
@@ -654,7 +654,7 @@ export default class Dropdown extends Component {
     if (isBrowser) document.removeEventListener('mouseup', this.handleDocumentMouseUp)
   }
 
-  handleClick = e => {
+  handleClick = (e) => {
     debug('handleClick()', e)
 
     const { minCharacters, search } = this.props
@@ -673,7 +673,7 @@ export default class Dropdown extends Component {
     if (this.searchRef) this.searchRef.focus()
   }
 
-  handleIconClick = e => {
+  handleIconClick = (e) => {
     debug('handleIconClick()', e)
 
     _.invoke(this.props, 'onClick', e, this.props)
@@ -720,7 +720,7 @@ export default class Dropdown extends Component {
     this.setState({ focus: true })
   }
 
-  handleBlur = e => {
+  handleBlur = (e) => {
     debug('handleBlur()')
 
     // Heads up! Don't remove this.
@@ -789,7 +789,7 @@ export default class Dropdown extends Component {
         filteredOptions = search(filteredOptions, searchQuery)
       } else {
         const re = new RegExp(_.escapeRegExp(searchQuery), 'i')
-        filteredOptions = _.filter(filteredOptions, (opt) => re.test(opt.text))
+        filteredOptions = _.filter(filteredOptions, opt => re.test(opt.text))
       }
     }
 
@@ -1051,7 +1051,7 @@ export default class Dropdown extends Component {
     if (isOutOfUpperView) {
       menu.scrollTop = item.offsetTop
     } else if (isOutOfLowerView) {
-      menu.scrollTop = item.offsetTop + item.clientHeight - menu.clientHeight
+      menu.scrollTop = (item.offsetTop + item.clientHeight) - menu.clientHeight
     }
   }
 
@@ -1093,7 +1093,7 @@ export default class Dropdown extends Component {
     this.setState({ focus: hasFocus })
   }
 
-  toggle = e => this.state.open ? this.close(e) : this.open(e)
+  toggle = e => (this.state.open ? this.close(e) : this.open(e))
 
   // ----------------------------------------
   // Render
@@ -1109,7 +1109,7 @@ export default class Dropdown extends Component {
     const classes = cx(
       placeholder && !hasValue && 'default',
       'text',
-      search && searchQuery && 'filtered'
+      search && searchQuery && 'filtered',
     )
     let _text = placeholder
     if (searchQuery) {
@@ -1170,7 +1170,7 @@ export default class Dropdown extends Component {
 
       return Label.create(
         renderLabel(item, index, defaultProps),
-        { defaultProps }
+        { defaultProps },
       )
     })
   }

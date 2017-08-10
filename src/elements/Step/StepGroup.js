@@ -48,7 +48,7 @@ function StepGroup(props) {
     return <ElementType {...rest} className={classes}>{children}</ElementType>
   }
 
-  const content = _.map(items, item => {
+  const content = _.map(items, (item) => {
     const key = item.key || [item.title, item.description].join('-')
     return <Step key={key} {...item} />
   })
