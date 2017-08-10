@@ -41,6 +41,7 @@ describe('Form', () => {
   common.propKeyOnlyToClassName(Form, 'loading')
   common.propKeyOnlyToClassName(Form, 'reply')
   common.propKeyOnlyToClassName(Form, 'success')
+  common.propKeyOnlyToClassName(Form, 'unstackable')
   common.propKeyOnlyToClassName(Form, 'warning')
 
   common.propValueOnlyToClassName(Form, 'size', _.without(SUI.SIZES, 'medium'))
