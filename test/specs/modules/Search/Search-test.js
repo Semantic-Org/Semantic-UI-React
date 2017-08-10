@@ -603,6 +603,30 @@ describe('Search', () => {
     })
   })
 
+  describe('onSearchChange', () => {
+    it('is called with (event, data) when the active selection index is changed', () => {
+      const onSelectionChange = sandbox.spy()
+
+      wrapperMount(
+        <Search
+          minCharacters={0}
+          onSelectionChange={onSelectionChange}
+          results={options}
+          selectFirstResult
+        />
+      )
+      openSearchResults()
+      domEvent.keyDown(document, { key: 'ArrowDown' })
+
+      onSelectionChange.should.have.been.calledOnce()
+      onSelectionChange.should.have.been.calledWithMatch({}, {
+        minCharacters: 0,
+        result: options[1],
+        results: options,
+      })
+    })
+  })
+
   describe('results prop', () => {
     it('adds the onClick handler to all items', () => {
       wrapperShallow(<Search results={options} minCharacters={0} />)
