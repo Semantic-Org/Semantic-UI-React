@@ -3,32 +3,30 @@ import React from 'react'
 import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
 import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
 
-const Types = () => {
-  return (
-    <ExampleSection title='Types'>
-      <ComponentExample
-        title='Types'
-        description='A standard table.'
-        examplePath='collections/Table/Types/TableExamplePagination'
-      />
-      <ComponentExample examplePath='collections/Table/Types/TableExamplePadded' />
-      <ComponentExample examplePath='collections/Table/Types/TableExampleCollapsing' />
-      <ComponentExample examplePath='collections/Table/Types/TableExampleStriped' />
+const Types = () => (
+  <ExampleSection title='Types'>
+    <ComponentExample
+      title='Types'
+      description='A standard table.'
+      examplePath='collections/Table/Types/TableExamplePagination'
+    />
+    <ComponentExample examplePath='collections/Table/Types/TableExamplePadded' />
+    <ComponentExample examplePath='collections/Table/Types/TableExampleCollapsing' />
+    <ComponentExample examplePath='collections/Table/Types/TableExampleStriped' />
 
-      <ComponentExample
-        title='Definition'
-        description='A table may be formatted to emphasize a first column that defines a row content.'
-        examplePath='collections/Table/Types/TableExampleDefinition'
-      />
-      <ComponentExample examplePath='collections/Table/Types/TableExampleApprove' />
+    <ComponentExample
+      title='Definition'
+      description='A table may be formatted to emphasize a first column that defines a row content.'
+      examplePath='collections/Table/Types/TableExampleDefinition'
+    />
+    <ComponentExample examplePath='collections/Table/Types/TableExampleApprove' />
 
-      <ComponentExample
-        title='Structured'
-        description='A table can be formatted to display complex structured data.'
-        examplePath='collections/Table/Types/TableExampleStructured'
-      />
-    </ExampleSection>
-  )
-}
+    <ComponentExample
+      title='Structured'
+      description='A table can be formatted to display complex structured data.'
+      examplePath='collections/Table/Types/TableExampleStructured'
+    />
+  </ExampleSection>
+)
 
 export default Types
