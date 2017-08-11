@@ -761,7 +761,6 @@ describe('Dropdown', () => {
       domEvent.keyDown(document, { key: 'Enter' })
       dropdownMenuIsClosed()
     })
-
     it('keeps value of the searchQuery when selection is changed', () => {
       wrapperMount(<Dropdown options={options} selection search />)
 
@@ -2257,6 +2256,18 @@ describe('Dropdown', () => {
 
       spy.should.have.been.calledOnce()
       spy.should.have.been.calledWithMatch({}, { value: 'boo' })
+    })
+
+    it('clears value of the searchQuery when selection is only option', () => {
+      const search = wrapperMount(
+        <Dropdown options={customOptions} selection search allowAdditions />
+      )
+        .find('input.search')
+
+      search.simulate('change', { target: { value: 'boo' } })
+      domEvent.keyDown(document, { key: 'Enter' })
+
+      wrapper.should.have.state('searchQuery', '')
     })
   })
 
