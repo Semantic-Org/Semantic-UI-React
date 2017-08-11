@@ -263,12 +263,12 @@ export default (Component, options = {}) => {
         }
 
         // Components should return the event first, then any data
-        handlerSpy.calledWithMatch(...expectedArgs).should.equal(true,
-          `${`<${constructorName} ${listenerName}={${handlerName}} />\n` +
-          `${leftPad} ^ ${errorMessage}\n` +
-          'It was called with args:\n'}${
-            JSON.stringify(handlerSpy.args, null, 2)}`,
-        )
+        handlerSpy.calledWithMatch(...expectedArgs).should.equal(true, [
+          `<${constructorName} ${listenerName}={${handlerName}} />\n`,
+          `${leftPad} ^ ${errorMessage}`,
+          'It was called with args:',
+          JSON.stringify(handlerSpy.args, null, 2),
+        ].join('\n'))
       })
     })
   })
