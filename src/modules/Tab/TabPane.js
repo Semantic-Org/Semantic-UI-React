@@ -32,7 +32,7 @@ function TabPane(props) {
   }
 
   return (
-    <ElementType {...calculatedDefaultProps} {...rest} className={classes} loading={loading}>
+    <ElementType {...calculatedDefaultProps} {...rest} className={classes}>
       {children}
     </ElementType>
   )
