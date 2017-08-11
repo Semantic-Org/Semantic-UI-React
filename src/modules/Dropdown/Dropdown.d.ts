@@ -216,6 +216,9 @@ export interface DropdownProps {
   /** A shorthand for a search input. */
   searchInput?: any;
 
+  /** Whether the searchQuery is cleared or not when selecting an item from search. */
+  searchQueryClearOnSelect?: boolean;
+
   /** Define whether the highlighted item should be selected on blur. */
   selectOnBlur?: boolean;
 
