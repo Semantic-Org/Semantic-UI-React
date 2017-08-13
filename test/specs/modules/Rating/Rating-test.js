@@ -79,7 +79,7 @@ describe('Rating', () => {
 
       wrapper.should.not.have.className('selected')
 
-      icons.findWhere((i) => i.prop('selected', true))
+      icons.findWhere(i => i.prop('selected', true))
         .should.have.length(0, 'Some RatingIcons did not remove its "selected" prop')
     })
   })
@@ -124,7 +124,7 @@ describe('Rating', () => {
 
       icons.last().simulate('click')
 
-      icons.findWhere((i) => i.prop('active', true))
+      icons.findWhere(i => i.prop('active', true))
         .should.have.length(5, 'Some RatingIcons did not retain its "active" prop')
     })
 
@@ -156,7 +156,7 @@ describe('Rating', () => {
 
       icons.at(3).simulate('click')
 
-      icons.findWhere((i) => i.prop('active', true))
+      icons.findWhere(i => i.prop('active', true))
         .should.have.length(0, 'Some RatingIcons did not remove its "active" prop')
     })
 
@@ -174,7 +174,7 @@ describe('Rating', () => {
 
       icons.last().simulate('click')
 
-      icons.findWhere((i) => i.prop('active', true))
+      icons.findWhere(i => i.prop('active', true))
         .should.have.length(5, 'Some RatingIcons did not retain its "active" prop')
     })
   })
@@ -200,7 +200,7 @@ describe('Rating', () => {
 
       icons.last().simulate('click')
 
-      icons.findWhere((i) => i.prop('active', true))
+      icons.findWhere(i => i.prop('active', true))
         .should.have.length(3, 'Some RatingIcons lost its "active" prop')
     })
 
@@ -210,7 +210,7 @@ describe('Rating', () => {
 
       icons.last().simulate('mouseEnter')
 
-      icons.findWhere((i) => i.prop('selected', true))
+      icons.findWhere(i => i.prop('selected', true))
         .should.have.length(0, 'Some RatingIcons became "selected"')
     })
 
@@ -219,13 +219,13 @@ describe('Rating', () => {
       const icons = wrapper.find('RatingIcon')
 
       icons.last().simulate('mouseEnter')
-      icons.findWhere((i) => i.prop('selected', true))
+      icons.findWhere(i => i.prop('selected', true))
         .should.have.length(3, 'Not every RatingIcon was selected on mouseEnter')
 
       wrapper.setProps({ disabled: true })
       wrapper.simulate('mouseLeave')
 
-      icons.findWhere((i) => i.prop('selected', true))
+      icons.findWhere(i => i.prop('selected', true))
         .should.have.length(3, 'Some RatingIcons lost its "selected" prop')
     })
 
@@ -235,7 +235,7 @@ describe('Rating', () => {
 
       icons.last().simulate('click')
 
-      icons.findWhere((i) => i.prop('active', true))
+      icons.findWhere(i => i.prop('active', true))
         .should.have.length(0, 'Some RatingIcons became "active"')
     })
   })
@@ -272,7 +272,7 @@ describe('Rating', () => {
 
       // rating 0
 
-      icons.findWhere((i) => i.prop('active', true))
+      icons.findWhere(i => i.prop('active', true))
         .should.have.length(0, 'Some RatingIcons have "active" prop')
 
       // rating 1 - 10
@@ -280,7 +280,7 @@ describe('Rating', () => {
         const rating = i + 1
 
         wrapper.setProps({ rating })
-        icons.findWhere((icon) => icon.prop('active', true))
+        icons.findWhere(icon => icon.prop('active', true))
           .should.have.length(rating, 'Some RatingIcons did not have "active" prop')
       })
     })

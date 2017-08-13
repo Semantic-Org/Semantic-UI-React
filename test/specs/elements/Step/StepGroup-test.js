@@ -24,7 +24,7 @@ describe('StepGroup', () => {
         <StepGroup>
           <Step>{firstText}</Step>
           <Step>{secondText}</Step>
-          </StepGroup>
+        </StepGroup>,
       )
         .find('Step')
 

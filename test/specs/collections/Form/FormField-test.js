@@ -28,7 +28,7 @@ describe('FormField', () => {
     it('adds an HTML element child of the same type', () => {
       const controls = ['button', 'input', 'select', 'textarea']
 
-      controls.forEach(control => {
+      controls.forEach((control) => {
         shallow(<FormField control={control} />)
           .should.have.descendants(control)
       })

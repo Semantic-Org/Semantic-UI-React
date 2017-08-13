@@ -12,7 +12,7 @@ const isInterface = ({ kind }) => kind === SyntaxKind.InterfaceDeclaration
 const isExportModifier = ({ kind }) => kind === SyntaxKind.ExportKeyword
 const isPropertySignature = ({ kind }) => kind === SyntaxKind.PropertySignature
 const isTypeReference = ({ kind }) => kind === SyntaxKind.TypeReference
-const isShorthandProperty = node => {
+const isShorthandProperty = (node) => {
   if (!isPropertySignature(node) || !isTypeReference(node.type)) return false
   return _.includes([
     'SemanticShorthandContent',
@@ -22,7 +22,7 @@ const isShorthandProperty = node => {
 }
 const isStringKeyword = ({ kind }) => kind === SyntaxKind.StringKeyword
 
-const getProps = members => {
+const getProps = (members) => {
   const props = _.filter(members, isPropertySignature)
 
   return _.map(props, ({ name, questionToken }) => ({
@@ -31,7 +31,7 @@ const getProps = members => {
   }))
 }
 
-const getShorthands = members => {
+const getShorthands = (members) => {
   const shorthands = _.filter(members, isShorthandProperty)
 
   return _.map(shorthands, shorthand => ({
@@ -40,7 +40,7 @@ const getShorthands = members => {
   }))
 }
 
-const walkNode = (node, nodes) => forEachChild(node, child => {
+const walkNode = (node, nodes) => forEachChild(node, (child) => {
   nodes.push(child)
   walkNode(child, nodes)
 
@@ -56,7 +56,7 @@ export const getNodes = (tsFile, tsContent) => {
   return nodes
 }
 
-export const getInterfaces = nodes => {
+export const getInterfaces = (nodes) => {
   const interfaces = _.filter(nodes, isInterface)
 
   return _.map(interfaces, ({ members, modifiers, name }) => ({
@@ -67,7 +67,7 @@ export const getInterfaces = nodes => {
   }))
 }
 
-export const hasAnySignature = nodes => {
+export const hasAnySignature = (nodes) => {
   const signatures = _.filter(nodes, isIndexSignature)
 
   return _.some(signatures, ({ parameters, type: rightType }) => {
@@ -77,7 +77,7 @@ export const hasAnySignature = nodes => {
   })
 }
 
-export const requireTs = tsPath => {
+export const requireTs = (tsPath) => {
   try {
     return require(`!raw-loader!../../../src/${tsPath}`)
   } catch (e) {

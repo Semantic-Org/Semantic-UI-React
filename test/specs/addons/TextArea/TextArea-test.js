@@ -87,7 +87,7 @@ describe('TextArea', () => {
           autoHeight
           style={style}
           value={'line1\nline2\nline3\nline4'}
-        />
+        />,
       )
       assertHeight('40px') // 4 lines
     })
