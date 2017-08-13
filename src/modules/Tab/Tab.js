@@ -137,9 +137,9 @@ class Tab extends Component {
 
     return (
       <ElementType {...rest}>
-        {menu.props.vertical !== true && menu.props.attached !== 'bottom' && menu}
-        {menu.props.vertical !== true && this.renderActivePane()}
-        {menu.props.vertical !== true && menu.props.attached === 'bottom' && menu}
+        {menu.props.attached !== 'bottom' && menu}
+        {this.renderActivePane()}
+        {menu.props.attached === 'bottom' && menu}
       </ElementType>
     )
   }
