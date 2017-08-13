@@ -5,8 +5,8 @@ import React, { Component } from 'react'
 import DocumentTitle from 'react-document-title'
 import { Link } from 'react-router-dom'
 
-import ComponentExamples from './ComponentExamples'
 import ComponentProps from './ComponentProps'
+import ComponentExamples from './ComponentExamples'
 import docgenInfo from '../../docgenInfo.json'
 
 import { repoURL } from 'docs/app/utils'
