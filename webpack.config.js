@@ -44,6 +44,7 @@ const APP_ENTRY = paths.docsSrc('index.js')
 
 webpackConfig.entry = __DEV__ ? {
   app: [
+    'react-hot-loader/patch',
     webpackHotMiddlewareEntry,
     APP_ENTRY,
   ],
@@ -165,18 +166,21 @@ if (!__TEST__) {
 // ------------------------------------
 // Rules
 // ------------------------------------
+const jsLoaders = [{
+  loader: 'babel-loader',
+  options: {
+    cacheDirectory: true,
+  },
+}]
+if (__DEV__) jsLoaders.unshift('react-hot-loader/webpack')
+
 webpackConfig.module.rules = [...webpackConfig.module.rules, {
   //
   // Babel
   //
   test: /\.js$/,
   exclude: /node_modules/,
-  use: {
-    loader: 'babel-loader',
-    options: {
-      cacheDirectory: true,
-    },
-  },
+  use: jsLoaders,
 }]
 
 module.exports = webpackConfig

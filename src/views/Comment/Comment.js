@@ -27,7 +27,7 @@ function Comment(props) {
   const classes = cx(
     useKeyOnly(collapsed, 'collapsed'),
     'comment',
-    className
+    className,
   )
   const rest = getUnhandledProps(Comment, props)
   const ElementType = getElementType(Comment, props)

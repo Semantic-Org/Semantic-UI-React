@@ -181,7 +181,7 @@ class Portal extends Component {
 
     const didClickInRootNode = this.rootNode.contains(e.target)
 
-    if (closeOnDocumentClick && !didClickInRootNode || closeOnRootNodeClick && didClickInRootNode) {
+    if ((closeOnDocumentClick && !didClickInRootNode) || (closeOnRootNodeClick && didClickInRootNode)) {
       debug('handleDocumentClick()')
 
       this.close(e)
@@ -210,7 +210,7 @@ class Portal extends Component {
     this.mouseLeaveTimer = this.closeWithTimeout(e, mouseLeaveDelay)
   }
 
-  handlePortalMouseEnter = (e) => {
+  handlePortalMouseEnter = () => {
     // In order to enable mousing from the trigger to the portal, we need to
     // clear the mouseleave timer that was set when leaving the trigger.
     const { closeOnPortalMouseLeave } = this.props
@@ -362,7 +362,7 @@ class Portal extends Component {
 
         this.portalNode.addEventListener('mouseleave', this.handlePortalMouseLeave)
         this.portalNode.addEventListener('mouseenter', this.handlePortalMouseEnter)
-      }
+      },
     )
   }
 
@@ -408,8 +408,9 @@ class Portal extends Component {
     _.invoke(this.props, 'onUnmount', null, this.props)
   }
 
-  handleRef = c => {
-    this.triggerNode = ReactDOM.findDOMNode(c)
+  handleRef = (c) => {
+    // TODO: Replace findDOMNode with Ref component when it will be merged
+    this.triggerNode = ReactDOM.findDOMNode(c) // eslint-disable-line react/no-find-dom-node
   }
 
   render() {

@@ -59,7 +59,7 @@ class Confirm extends Component {
     type: META.TYPES.ADDON,
   }
 
-  handleCancel = e => {
+  handleCancel = (e) => {
     _.invoke(this.props, 'onCancel', e, this.props)
   }
 

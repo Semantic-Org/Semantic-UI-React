@@ -151,7 +151,7 @@ export { default as Progress, ProgressProps } from './dist/commonjs/modules/Prog
 export { default as Rating, RatingProps } from './dist/commonjs/modules/Rating';
 export { default as RatingIcon, RatingIconProps } from './dist/commonjs/modules/Rating/RatingIcon';
 
-export { default as Search, SearchProps } from './dist/commonjs/modules/Search';
+export { default as Search, SearchProps, SearchResultData } from './dist/commonjs/modules/Search';
 export { default as SearchCategory, SearchCategoryProps } from './dist/commonjs/modules/Search/SearchCategory';
 export { default as SearchResult, SearchResultProps } from './dist/commonjs/modules/Search/SearchResult';
 export { default as SearchResults, SearchResultsProps } from './dist/commonjs/modules/Search/SearchResults';

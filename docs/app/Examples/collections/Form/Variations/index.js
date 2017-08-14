@@ -14,6 +14,10 @@ const FormFormVariationsExamples = () => (
       description='A form on a dark background may have to invert its color scheme.'
       examplePath='collections/Form/Variations/FormExampleInverted'
     />
+    <ComponentExample
+      description='A form can prevent itself from stacking on mobile.'
+      examplePath='collections/Form/Variations/FormExampleUnstackable'
+    />
   </ExampleSection>
 )
 

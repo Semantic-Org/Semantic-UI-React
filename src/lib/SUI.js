@@ -251,7 +251,7 @@ export const ICONS_AND_ALIASES = [
 // Their CSS rules are defined by a specific component's CSS.
 // We don't want to show name warnings for those usages so we add them as valid names here.
 export const COMPONENT_CONTEXT_SPECIFIC_ICONS = [
-  'left dropdown',      // nested dropdown menu direction icon
+  'left dropdown', // nested dropdown menu direction icon
 ]
 export const ALL_ICONS_IN_ALL_CONTEXTS = [
   ...ICONS_AND_ALIASES,

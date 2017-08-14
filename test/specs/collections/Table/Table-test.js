@@ -48,7 +48,7 @@ describe('Table', () => {
 
   common.propValueOnlyToClassName(Table, 'color', SUI.COLORS)
   common.propValueOnlyToClassName(Table, 'size',
-    _.without(SUI.SIZES, 'mini', 'tiny', 'medium', 'big', 'huge', 'massive')
+    _.without(SUI.SIZES, 'mini', 'tiny', 'medium', 'big', 'huge', 'massive'),
   )
 
   it('renders as a table by default', () => {

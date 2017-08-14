@@ -141,7 +141,7 @@ class Input extends Component {
   handleChildOverrides = (child, defaultProps) => ({
     ...defaultProps,
     ...child.props,
-    ref: c => {
+    ref: (c) => {
       _.invoke(child, 'ref', c)
       this.handleInputRef(c)
     },
