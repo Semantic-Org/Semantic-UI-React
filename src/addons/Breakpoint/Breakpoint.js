@@ -74,35 +74,35 @@ export default class Breakpoint extends Component {
   // Breakpoint matchers
   // ----------------------------------------
 
-  computer = () => {
+  isComputer = () => {
     const { points: { computer } } = this.props
     const { width } = this.state
 
     return width >= computer
   }
 
-  largeScreen = () => {
+  isLargeScreen = () => {
     const { points: { largeScreen, widescreen } } = this.props
     const { width } = this.state
 
     return width >= largeScreen && width < widescreen
   }
 
-  mobile = () => {
+  isMobile = () => {
     const { points: { mobile, tablet } } = this.props
     const { width } = this.state
 
     return width >= mobile && width < tablet
   }
 
-  tablet = () => {
+  isTablet = () => {
     const { points: { computer, tablet } } = this.props
     const { width } = this.state
 
     return width >= tablet && width < computer
   }
 
-  widescreen = () => {
+  isWidescreen = () => {
     const { points: { widescreen } } = this.props
     const { width } = this.state
 
@@ -113,11 +113,11 @@ export default class Breakpoint extends Component {
   // Helpers
   // ----------------------------------------
 
-  visible = () => {
+  isVisible = () => {
     const { only = '' } = this.props
     const points = only.replace('large screen', 'largeScreen').split(' ')
 
-    return _.some(points, point => _.invoke(this, point))
+    return _.some(points, point => _.invoke(this, `is${_.upperFirst(point)}`))
   }
 
   // ----------------------------------------
@@ -143,7 +143,7 @@ export default class Breakpoint extends Component {
     const ElementType = getElementType(Breakpoint, this.props)
     const rest = getUnhandledProps(Breakpoint, this.props)
 
-    if (this.visible()) return <ElementType {...rest}>{children}</ElementType>
+    if (this.isVisible()) return <ElementType {...rest}>{children}</ElementType>
     return null
   }
 }
