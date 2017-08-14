@@ -403,7 +403,7 @@ class ComponentExample extends Component {
     }
 
     return (
-      <Grid className='docs-example' divided={showCode} id={this.anchorName} style={exampleStyle}>
+      <Grid className='docs-example' id={this.anchorName} style={exampleStyle}>
         <Grid.Row>
           <Grid.Column style={headerColumnStyle} width={12}>
             {title && <Header as='h3' className='no-anchor' style={titleStyle} content={title} />}
