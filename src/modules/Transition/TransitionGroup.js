@@ -31,7 +31,13 @@ export default class TransitionGroup extends React.Component {
     children: PropTypes.node,
 
     /** Duration of the CSS transition animation in milliseconds. */
-    duration: PropTypes.number,
+    duration: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.shape({
+        hide: PropTypes.number.isRequired,
+        show: PropTypes.number.isRequired,
+      }),
+    ]),
   }
 
   static defaultProps = {

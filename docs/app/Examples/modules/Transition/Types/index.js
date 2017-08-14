@@ -1,8 +1,8 @@
 import React from 'react'
+import { Message } from 'semantic-ui-react'
 
 import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
 import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
-import { Message } from 'semantic-ui-react'
 
 const TransitionTypesExamples = () => (
   <ExampleSection title='Types'>
