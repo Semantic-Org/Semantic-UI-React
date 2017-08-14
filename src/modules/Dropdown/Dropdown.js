@@ -76,6 +76,15 @@ export default class Dropdown extends Component {
     /** Additional classes. */
     className: PropTypes.string,
 
+    /**
+     * Whether the searchQuery is cleared or not when selecting an item from search.
+     * Requires the use of `selection`, `options` and `search`.
+     */
+    clearSearchQueryOnSelect: customPropTypes.every([
+      customPropTypes.demand(['options', 'selection', 'search']),
+      PropTypes.bool,
+    ]),
+
     /** Whether or not the menu should close when the dropdown is blurred. */
     closeOnBlur: PropTypes.bool,
 
@@ -282,15 +291,6 @@ export default class Dropdown extends Component {
       PropTypes.array,
       PropTypes.node,
       PropTypes.object,
-    ]),
-
-    /**
-     * Whether the searchQuery is cleared or not when selecting an item from search.
-     * Requires the use of `selection`, `options` and `search`.
-     */
-    searchQueryClearOnSelect: customPropTypes.every([
-      customPropTypes.demand(['options', 'selection', 'search']),
-      PropTypes.bool,
     ]),
 
     // TODO 'searchInMenu' or 'search='in menu' or ???  How to handle this markup and functionality?
@@ -600,7 +600,7 @@ export default class Dropdown extends Component {
 
   selectItemOnEnter = (e) => {
     debug('selectItemOnEnter()', keyboardKey.getName(e))
-    const { multiple, search, searchQueryClearOnSelect } = this.props
+    const { clearSearchQueryOnSelect, multiple, search } = this.props
 
     if (keyboardKey.getCode(e) !== keyboardKey.Enter) return
     e.preventDefault()
@@ -610,7 +610,7 @@ export default class Dropdown extends Component {
     this.makeSelectedItemActive(e)
     this.closeOnChange(e)
 
-    if (searchQueryClearOnSelect || !multiple) this.clearSearchQuery()
+    if (clearSearchQueryOnSelect || !multiple) this.clearSearchQuery()
     if (search && this.searchRef) this.searchRef.focus()
   }
 
@@ -694,7 +694,7 @@ export default class Dropdown extends Component {
   handleItemClick = (e, item) => {
     debug('handleItemClick()', item)
 
-    const { multiple, onAddItem, search, searchQueryClearOnSelect } = this.props
+    const { clearSearchQueryOnSelect, multiple, onAddItem, search } = this.props
     const { value } = item
 
     // prevent toggle() in handleClick()
@@ -711,7 +711,7 @@ export default class Dropdown extends Component {
     // notify the onChange prop that the user is trying to change value
     this.setValue(newValue)
     this.setSelectedIndex(value)
-    if (searchQueryClearOnSelect || !multiple) this.clearSearchQuery()
+    if (clearSearchQueryOnSelect || !multiple) this.clearSearchQuery()
 
     this.handleChange(e, newValue)
     this.closeOnChange(e)
