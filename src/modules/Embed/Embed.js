@@ -5,6 +5,7 @@ import React from 'react'
 import {
   AutoControlledComponent as Component,
   childrenUtils,
+  createHTMLIframe,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -27,7 +28,7 @@ export default class Embed extends Component {
     /** An embed can specify an alternative aspect ratio. */
     aspectRatio: PropTypes.oneOf(['4:3', '16:9', '21:9']),
 
-     /** Setting to true or false will force autoplay. */
+    /** Setting to true or false will force autoplay. */
     autoplay: customPropTypes.every([
       customPropTypes.demand(['source']),
       PropTypes.bool,
@@ -60,13 +61,19 @@ export default class Embed extends Component {
       PropTypes.bool,
     ]),
 
-     /** Specifies an icon to use with placeholder content. */
+    /** Specifies an icon to use with placeholder content. */
     icon: customPropTypes.itemShorthand,
 
     /** Specifies an id for source. */
     id: customPropTypes.every([
       customPropTypes.demand(['source']),
       PropTypes.string,
+    ]),
+
+    /** Shorthand for HTML iframe. */
+    iframe: customPropTypes.every([
+      customPropTypes.demand(['source']),
+      customPropTypes.itemShorthand,
     ]),
 
     /**
@@ -176,7 +183,7 @@ export default class Embed extends Component {
   }
 
   renderEmbed() {
-    const { children, source } = this.props
+    const { children, iframe, source } = this.props
     const { active } = this.state
 
     if (!active) return null
@@ -184,15 +191,17 @@ export default class Embed extends Component {
 
     return (
       <div className='embed'>
-        <iframe
-          title={`Embedded content from ${source}.`}
-          allowFullScreen=''
-          frameBorder='0'
-          height='100%'
-          scrolling='no'
-          src={this.getSrc()}
-          width='100%'
-        />
+        {createHTMLIframe(childrenUtils.isNil(iframe) ? this.getSrc() : iframe, {
+          defaultProps: {
+            allowFullScreen: false,
+            frameBorder: 0,
+            height: '100%',
+            scrolling: 'no',
+            src: this.getSrc(),
+            title: `Embedded content from ${source}.`,
+            width: '100%',
+          },
+        })}
       </div>
     )
   }

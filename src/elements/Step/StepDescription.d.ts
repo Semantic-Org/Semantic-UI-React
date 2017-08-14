@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { SemanticShorthandContent } from '../..';
 
 export interface StepDescriptionProps {
   [key: string]: any;
@@ -13,7 +14,7 @@ export interface StepDescriptionProps {
   className?: string;
 
   /** Shorthand for primary content. */
-  description?: React.ReactNode;
+  description?: SemanticShorthandContent;
 }
 
 declare const StepDescription: React.StatelessComponent<StepDescriptionProps>;

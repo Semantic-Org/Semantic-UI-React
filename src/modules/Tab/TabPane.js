@@ -21,7 +21,7 @@ function TabPane(props) {
   const classes = cx(
     useKeyOnly(loading, 'loading'),
     'active tab',
-    className
+    className,
   )
   const rest = getUnhandledProps(TabPane, props)
   const ElementType = getElementType(TabPane, props)
@@ -32,7 +32,7 @@ function TabPane(props) {
   }
 
   return (
-    <ElementType {...calculatedDefaultProps} {...rest} className={classes} loading={loading}>
+    <ElementType {...calculatedDefaultProps} {...rest} className={classes}>
       {children}
     </ElementType>
   )

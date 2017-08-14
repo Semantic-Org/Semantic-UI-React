@@ -67,7 +67,7 @@ config = Object.assign({}, config, {
   compiler_hash_type: __PROD__ ? 'chunkhash' : 'hash',
   compiler_fail_on_warning: __TEST__ || __PROD__,
   compiler_output_path: paths.base(config.dir_docs_dist),
-  compiler_public_path: __PROD__ ? '//cdn.rawgit.com/Semantic-Org/Semantic-UI-React/gh-pages/' : '/',
+  compiler_public_path: __PROD__ ? '//raw.github.com/Semantic-Org/Semantic-UI-React/gh-pages/' : '/',
   compiler_stats: {
     hash: false,            // the hash of the compilation
     version: false,         // webpack version info

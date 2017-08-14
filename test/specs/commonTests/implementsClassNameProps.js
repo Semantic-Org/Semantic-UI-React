@@ -100,7 +100,7 @@ export const propKeyOrValueAndKeyToClassName = (Component, propKey, propValues, 
       wrapper.should.not.have.className('true')
       wrapper.should.not.have.className('false')
 
-      _.each(propValues, propVal => {
+      _.each(propValues, (propVal) => {
         wrapper.should.not.have.className(propVal)
       })
     })
@@ -128,7 +128,7 @@ export const propValueOnlyToClassName = (Component, propKey, propValues, options
     noDefaultClassNameFromProp(Component, propKey, propValues, options)
 
     it('adds prop value to className', () => {
-      propValues.forEach(propValue => {
+      propValues.forEach((propValue) => {
         shallow(createElement(Component, { ...requiredProps, [propKey]: propValue }))
           .should.have.className(propValue)
       })
@@ -137,7 +137,7 @@ export const propValueOnlyToClassName = (Component, propKey, propValues, options
     it('does not add prop name to className', () => {
       consoleUtil.disableOnce()
 
-      propValues.forEach(propValue => {
+      propValues.forEach((propValue) => {
         shallow(createElement(Component, { ...requiredProps, [propKey]: propValue }))
           .should.not.have.className(propKey)
       })

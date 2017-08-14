@@ -74,12 +74,12 @@ class Tab extends Component {
 
   static Pane = TabPane
 
-  getInitialState() {
+  getInitialAutoControlledState() {
     return { activeIndex: 0 }
   }
 
   handleItemClick = (e, { index }) => {
-    _.invoke(this.props, 'onTabChange', e, { activeIndex: index, ...this.props })
+    _.invoke(this.props, 'onTabChange', e, { ...this.props, activeIndex: index })
     this.trySetState({ activeIndex: index })
   }
 

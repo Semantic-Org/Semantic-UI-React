@@ -62,7 +62,7 @@ export const useKeyOrValueAndKey = (val, key) => val && (val === true ? key : `$
  * <div class="mobile only row"></div>
  * <div class="mobile only tablet only row"></div>
  */
-export const useOnlyProp = val => {
+export const useOnlyProp = (val) => {
   if (!val || val === true) return null
 
   return val.replace('large screen', 'large-screen')
@@ -84,7 +84,7 @@ export const useOnlyProp = val => {
  * <Container textAlign='left' />
  * <div class="ui left aligned container"></div>
  */
-export const useTextAlignProp = val => val === 'justified' ? 'justified' : useValueAndKey(val, 'aligned')
+export const useTextAlignProp = val => (val === 'justified' ? 'justified' : useValueAndKey(val, 'aligned'))
 
 /**
  * The "verticalAlign" prop follows the useValueAndKey.

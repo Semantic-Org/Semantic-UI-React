@@ -26,7 +26,7 @@
 import _ from 'lodash'
 import { Component } from 'react'
 
-const getDefaultPropName = (prop) => `default${prop[0].toUpperCase() + prop.slice(1)}`
+const getDefaultPropName = prop => `default${prop[0].toUpperCase() + prop.slice(1)}`
 
 /**
  * Return the auto controlled state value for a give prop. The initial value is chosen in this order:
@@ -72,7 +72,7 @@ export default class AutoControlledComponent extends Component {
     super(...args)
 
     const { autoControlledProps } = this.constructor
-    const state = _.invoke(this, 'getInitialState', this.props) || {}
+    const state = _.invoke(this, 'getInitialAutoControlledState', this.props) || {}
 
     if (process.env.NODE_ENV !== 'production') {
       const { defaultProps, name, propTypes } = this.constructor
@@ -141,7 +141,7 @@ export default class AutoControlledComponent extends Component {
         // prevent defaultFoo={} along side foo={}
         if (!_.isUndefined(this.props[defaultPropName]) && !_.isUndefined(this.props[prop])) {
           console.error(
-            `${name} prop "${prop}" is auto controlled. Specify either ${defaultPropName} or ${prop}, but not both.`
+            `${name} prop "${prop}" is auto controlled. Specify either ${defaultPropName} or ${prop}, but not both.`,
           )
         }
       }

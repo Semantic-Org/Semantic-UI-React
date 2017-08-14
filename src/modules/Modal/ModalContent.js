@@ -21,12 +21,14 @@ function ModalContent(props) {
     className,
     content,
     image,
+    scrolling,
   } = props
 
   const classes = cx(
     className,
     useKeyOnly(image, 'image'),
-    'content'
+    useKeyOnly(scrolling, 'scrolling'),
+    'content',
   )
   const rest = getUnhandledProps(ModalContent, props)
   const ElementType = getElementType(ModalContent, props)
@@ -59,6 +61,9 @@ ModalContent.propTypes = {
 
   /** A modal can contain image content. */
   image: PropTypes.bool,
+
+  /** A modal can use the entire size of the screen. */
+  scrolling: PropTypes.bool,
 }
 
 ModalContent.create = createShorthandFactory(ModalContent, content => ({ content }))

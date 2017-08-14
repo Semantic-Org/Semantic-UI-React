@@ -95,7 +95,7 @@ export default class Accordion extends Component {
   static Content = AccordionContent
   static Title = AccordionTitle
 
-  getInitialState({ exclusive }) {
+  getInitialAutoControlledState({ exclusive }) {
     return { activeIndex: exclusive ? -1 : [-1] }
   }
 
@@ -136,13 +136,13 @@ export default class Accordion extends Component {
           this.handleTitleClick(e, currentIndex)
           if (child.props.onClick) child.props.onClick(e, currentIndex)
         }
-        titleIndex++
+        titleIndex += 1
         return cloneElement(child, { ...child.props, active: isActive, onClick })
       }
 
       if (isContent) {
         const isActive = _.has(child, 'props.active') ? child.props.active : this.isIndexActive(contentIndex)
-        contentIndex++
+        contentIndex += 1
         return cloneElement(child, { ...child.props, active: isActive })
       }
 
@@ -163,8 +163,8 @@ export default class Accordion extends Component {
 
       // implement all methods of creating a key that are supported in factories
       const key = panel.key
-        || _.isFunction(panel.childKey) && panel.childKey(panel)
-        || panel.childKey && panel.childKey
+        || (_.isFunction(panel.childKey) && panel.childKey(panel))
+        || (panel.childKey && panel.childKey)
         || panel.title
 
       children.push(AccordionTitle.create({ active: isActive, onClick, key: `${key}-title`, content: panel.title }))

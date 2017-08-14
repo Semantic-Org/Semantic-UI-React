@@ -23,7 +23,7 @@ const wrapperShallow = (...args) => (wrapper = shallow(...args))
 const assertBodyClasses = (...rest) => {
   const hasClasses = typeof rest[rest.length - 1] === 'boolean' ? rest.pop() : true
 
-  rest.forEach(className => {
+  rest.forEach((className) => {
     const didFind = document.body.classList.contains(className)
     const message = [
       `document.body ${didFind ? 'has' : 'does not have'} class "${className}".`,
@@ -210,9 +210,9 @@ describe('Modal', () => {
 
   describe('size', () => {
     it('adds the size to the modal className', () => {
-      const sizes = ['fullscreen', 'large', 'small']
+      const sizes = ['fullscreen', 'large', 'mini', 'small', 'tiny']
 
-      sizes.forEach(size => {
+      sizes.forEach((size) => {
         wrapperMount(<Modal size={size} open />)
         assertBodyContains(`.ui.${size}.modal`)
       })

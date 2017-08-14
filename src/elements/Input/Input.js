@@ -133,16 +133,15 @@ class Input extends Component {
   focus = () => (this.inputRef.focus())
 
   handleChange = (e) => {
-    const { onChange } = this.props
     const value = _.get(e, 'target.value')
 
-    onChange(e, { ...this.props, value })
+    _.invoke(this.props, 'onChange', e, { ...this.props, value })
   }
 
   handleChildOverrides = (child, defaultProps) => ({
     ...defaultProps,
     ...child.props,
-    ref: c => {
+    ref: (c) => {
       _.invoke(child, 'ref', c)
       this.handleInputRef(c)
     },
@@ -151,20 +150,20 @@ class Input extends Component {
   handleInputRef = c => (this.inputRef = c)
 
   partitionProps = () => {
-    const { disabled, onChange, type } = this.props
+    const { disabled, type } = this.props
 
     const tabIndex = this.computeTabIndex()
     const unhandled = getUnhandledProps(Input, this.props)
     const [htmlInputProps, rest] = partitionHTMLInputProps(unhandled)
 
-    htmlInputProps.ref = this.handleInputRef
-    htmlInputProps.type = type
-
-    if (disabled) htmlInputProps.disabled = disabled
-    if (onChange) htmlInputProps.onChange = this.handleChange
-    if (tabIndex) htmlInputProps.tabIndex = tabIndex
-
-    return [htmlInputProps, rest]
+    return [{
+      ...htmlInputProps,
+      disabled,
+      type,
+      tabIndex,
+      onChange: this.handleChange,
+      ref: this.handleInputRef,
+    }, rest]
   }
 
   render() {

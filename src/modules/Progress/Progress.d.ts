@@ -1,5 +1,9 @@
 import * as React from 'react';
-import { SemanticCOLORS } from '../..';
+import {
+  HtmlLabelProps,
+  SemanticCOLORS,
+  SemanticShorthandItem
+} from '../..';
 
 export interface ProgressProps {
   [key: string]: any;
@@ -35,10 +39,10 @@ export interface ProgressProps {
   indicating?: boolean;
 
   /** A progress bar can have its colors inverted. */
-  inverted?: string;
+  inverted?: boolean;
 
   /** Can be set to either to display progress as percent or ratio. */
-  label?: any;
+  label?: SemanticShorthandItem<HtmlLabelProps>;
 
   /** Current percent complete. */
   percent?: number | string;
@@ -55,16 +59,10 @@ export interface ProgressProps {
   /** A progress bar can show a success state. */
   success?: boolean;
 
-  /**
-   * For use with value.
-   * Together, these will calculate the percent.
-   * Mutually excludes percent.
-   */
+  /** For use with value. Together, these will calculate the percent. Mutually excludes percent. */
   total?: number | string;
 
-  /**
-   * For use with total. Together, these will calculate the percent. Mutually excludes percent.
-   */
+  /** For use with total. Together, these will calculate the percent. Mutually excludes percent. */
   value?: number | string;
 
   /** A progress bar can show a warning state. */

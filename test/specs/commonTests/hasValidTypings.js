@@ -1,6 +1,7 @@
 import _ from 'lodash'
 import path from 'path'
 
+import { customPropTypes } from 'src/lib'
 import componentInfo from './componentInfo'
 import {
   getNodes,
@@ -8,6 +9,17 @@ import {
   hasAnySignature,
   requireTs,
 } from './tsHelpers'
+
+const isShorthand = propType => _.includes([
+  customPropTypes.collectionShorthand,
+  customPropTypes.contentShorthand,
+  customPropTypes.itemShorthand,
+], propType)
+const shorthandMap = {
+  SemanticShorthandContent: customPropTypes.contentShorthand,
+  SemanticShorthandItem: customPropTypes.itemShorthand,
+  SemanticShorthandCollection: customPropTypes.collectionShorthand,
+}
 
 /**
  * Assert Component has the valid typings.
@@ -26,7 +38,7 @@ export default (Component, extractedInfo, options = {}) => {
   } = extractedInfo || _.find(componentInfo, i => i.constructorName === Component.prototype.constructor.name)
   const { ignoredTypingsProps = [], requiredProps } = options
 
-  const tsFile = filenameWithoutExt + '.d.ts'
+  const tsFile = `${filenameWithoutExt}.d.ts`
   const tsContent = requireTs(path.join(path.dirname(filePath), tsFile))
 
   describe('typings', () => {
@@ -71,6 +83,20 @@ export default (Component, extractedInfo, options = {}) => {
         const interfaceRequired = _.filter(props, ['required', true])
 
         componentRequired.should.to.deep.equal(_.map(interfaceRequired, 'name'))
+      })
+    })
+
+    describe('shorthands', () => {
+      const { shorthands } = interfaceObject
+      const componentPropTypes = _.get(Component, 'propTypes')
+      const componentShorthands = _.pickBy(componentPropTypes, isShorthand)
+
+      _.forEach(componentShorthands, (propType, propName) => {
+        it(`"${propName}" should have the correct shorthand type `, () => {
+          const { type } = _.find(shorthands, ['name', propName])
+
+          shorthandMap[type].should.to.equal(propType)
+        })
       })
     })
   })

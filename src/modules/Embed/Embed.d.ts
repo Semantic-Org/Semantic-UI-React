@@ -1,5 +1,8 @@
 import * as React from 'react';
 
+import { HtmlIframeProps, SemanticShorthandItem } from '../..';
+import { IconProps } from '../../elements/Icon';
+
 export interface EmbedProps {
   [key: string]: any;
 
@@ -34,10 +37,13 @@ export interface EmbedProps {
   hd?: boolean;
 
   /** Specifies an icon to use with placeholder content. */
-  icon?: any;
+  icon?: SemanticShorthandItem<IconProps>;
 
   /** Specifies an id for source. */
   id?: string;
+
+  /** Shorthand for HTML iframe. */
+  iframe?: SemanticShorthandItem<HtmlIframeProps>;
 
   /**
    * Сalled on click.

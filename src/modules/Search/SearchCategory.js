@@ -15,7 +15,7 @@ function SearchCategory(props) {
   const classes = cx(
     useKeyOnly(active, 'active'),
     'category',
-    className
+    className,
   )
   const rest = getUnhandledProps(SearchCategory, props)
   const ElementType = getElementType(SearchCategory, props)

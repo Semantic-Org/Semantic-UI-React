@@ -1,11 +1,16 @@
 import * as React from 'react';
 
-import { SemanticCOLORS } from '../..';
+import {
+  SemanticCOLORS,
+  SemanticShorthandContent,
+  SemanticShorthandItem
+} from '../..';
+import { ImageProps } from '../../elements/Image';
 import { default as CardContent } from './CardContent';
-import { default as CardDescription } from './CardDescription';
+import { default as CardDescription, CardDescriptionProps} from './CardDescription';
 import { default as CardGroup } from './CardGroup';
-import { default as CardHeader } from './CardHeader';
-import { default as CardMeta } from './CardMeta';
+import { default as CardHeader, CardHeaderProps } from './CardHeader';
+import { default as CardMeta, CardMetaProps} from './CardMeta';
 
 export interface CardProps {
   [key: string]: any;
@@ -26,28 +31,28 @@ export interface CardProps {
   color?: SemanticCOLORS;
 
   /** Shorthand for CardDescription. */
-  description?: any;
+  description?: SemanticShorthandItem<CardDescriptionProps>;
 
   /** Shorthand for primary content of CardContent. */
-  extra?: any;
+  extra?: SemanticShorthandContent;
 
   /** A Card can be formatted to take up the width of its container. */
   fluid?: boolean;
 
   /** Shorthand for CardHeader. */
-  header?: any;
+  header?: SemanticShorthandItem<CardHeaderProps>;
 
   /** Render as an `a` tag instead of a `div` and adds the href attribute. */
   href?: string;
 
   /** A card can contain an Image component. */
-  image?: any;
+  image?: SemanticShorthandItem<ImageProps>;
 
   /** A card can be formatted to link to other content. */
   link?: boolean;
 
   /** Shorthand for CardMeta. */
-  meta?: any;
+  meta?: SemanticShorthandItem<CardMetaProps>;
 
   /**
    * Called on click. When passed, the component renders as an `a`

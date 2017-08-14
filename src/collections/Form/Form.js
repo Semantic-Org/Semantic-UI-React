@@ -68,7 +68,10 @@ class Form extends Component {
     /** Automatically show any success Message children. */
     success: PropTypes.bool,
 
-    /** Automatically show any warning Message children .*/
+    /** A form can prevent itself from stacking on mobile. */
+    unstackable: PropTypes.bool,
+
+    /** Automatically show any warning Message children. */
     warning: PropTypes.bool,
 
     /** Forms can automatically divide fields to be equal width. */
@@ -105,6 +108,7 @@ class Form extends Component {
 
   render() {
     const {
+      action,
       children,
       className,
       error,
@@ -113,6 +117,7 @@ class Form extends Component {
       reply,
       size,
       success,
+      unstackable,
       warning,
       widths,
     } = this.props
@@ -125,6 +130,7 @@ class Form extends Component {
       useKeyOnly(loading, 'loading'),
       useKeyOnly(reply, 'reply'),
       useKeyOnly(success, 'success'),
+      useKeyOnly(unstackable, 'unstackable'),
       useKeyOnly(warning, 'warning'),
       useWidthProp(widths, null, true),
       'form',
@@ -133,7 +139,16 @@ class Form extends Component {
     const rest = getUnhandledProps(Form, this.props)
     const ElementType = getElementType(Form, this.props)
 
-    return <ElementType {...rest} className={classes} onSubmit={this.handleSubmit}>{children}</ElementType>
+    return (
+      <ElementType
+        {...rest}
+        action={action}
+        className={classes}
+        onSubmit={this.handleSubmit}
+      >
+        {children}
+      </ElementType>
+    )
   }
 }
 

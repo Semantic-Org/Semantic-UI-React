@@ -27,6 +27,7 @@ function StepGroup(props) {
     ordered,
     size,
     stackable,
+    unstackable,
     vertical,
   } = props
   const classes = cx(
@@ -34,6 +35,7 @@ function StepGroup(props) {
     size,
     useKeyOnly(fluid, 'fluid'),
     useKeyOnly(ordered, 'ordered'),
+    useKeyOnly(unstackable, 'unstackable'),
     useKeyOnly(vertical, 'vertical'),
     useValueAndKey(stackable, 'stackable'),
     'steps',
@@ -46,7 +48,7 @@ function StepGroup(props) {
     return <ElementType {...rest} className={classes}>{children}</ElementType>
   }
 
-  const content = _.map(items, item => {
+  const content = _.map(items, (item) => {
     const key = item.key || [item.title, item.description].join('-')
     return <Step key={key} {...item} />
   })
@@ -84,6 +86,9 @@ StepGroup.propTypes = {
 
   /** A step can stack vertically only on smaller screens. */
   stackable: PropTypes.oneOf(['tablet']),
+
+  /** A step can prevent itself from stacking on mobile. */
+  unstackable: PropTypes.bool,
 
   /** A step can be displayed stacked vertically. */
   vertical: PropTypes.bool,

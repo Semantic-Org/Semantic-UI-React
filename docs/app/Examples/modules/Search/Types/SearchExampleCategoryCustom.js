@@ -4,8 +4,7 @@ import { Label } from 'semantic-ui-react'
 
 import SearchExampleCategory from './SearchExampleCategory'
 
-const categoryRenderer = ({ name }) =>
-  <Label as={'span'} content={name} />
+const categoryRenderer = ({ name }) => <Label as={'span'} content={name} />
 
 categoryRenderer.propTypes = {
   name: PropTypes.string,

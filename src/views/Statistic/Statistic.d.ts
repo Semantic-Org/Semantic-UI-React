@@ -1,6 +1,10 @@
 import * as React from 'react';
 
-import { SemanticCOLORS, SemanticFLOATS } from '../..';
+import {
+  SemanticCOLORS,
+  SemanticFLOATS,
+  SemanticShorthandContent
+} from '../..';
 import { default as StatisticGroup } from './StatisticGroup';
 import { default as StatisticLabel } from './StatisticLabel';
 import { default as StatisticValue } from './StatisticValue';
@@ -29,10 +33,10 @@ export interface StatisticProps {
   horizontal?: boolean;
 
   /** A statistic can be formatted to fit on a dark background. */
-  inverted?: string;
+  inverted?: boolean;
 
   /** Label content of the Statistic. */
-  label?: any;
+  label?: SemanticShorthandContent;
 
   /** A statistic can vary in size. */
   size?: StatisticSizeProp;
@@ -41,7 +45,7 @@ export interface StatisticProps {
   text?: boolean;
 
   /** Value content of the Statistic. */
-  value?: any;
+  value?: SemanticShorthandContent;
 }
 
 interface StatisticComponent extends React.StatelessComponent<StatisticProps> {

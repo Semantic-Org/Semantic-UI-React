@@ -1,5 +1,7 @@
 import * as React from 'react';
 
+import { SemanticShorthandItem} from '../..';
+import { InputProps } from '../../elements/Input';
 import { default as SearchCategory, SearchCategoryProps } from './SearchCategory';
 import { default as SearchResult, SearchResultProps } from './SearchResult';
 import { default as SearchResults } from './SearchResults';
@@ -105,7 +107,7 @@ export interface SearchProps {
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
    * @param {object} data - All props.
    */
-  onResultSelect?: (event: React.MouseEvent<HTMLDivElement>, data: SearchProps) => void;
+  onResultSelect?: (event: React.MouseEvent<HTMLDivElement>, data: SearchResultData) => void;
 
   /**
    * Called on search input change.
@@ -114,6 +116,14 @@ export interface SearchProps {
    * @param {object} data - All props, includes current value of search input.
    */
   onSearchChange?: (event: React.MouseEvent<HTMLElement>, data: SearchProps) => void;
+
+  /**
+   * Called when the active selection index is changed.
+   *
+   * @param {SyntheticEvent} event - React's original SyntheticEvent.
+   * @param {object} data - All props.
+   */
+  onSelectionChange?: (event: React.MouseEvent<HTMLElement>, data: SearchResultData) => void;
 
   // ------------------------------------
   // Style
@@ -132,13 +142,17 @@ export interface SearchProps {
   fluid?: boolean;
 
   /** A search input can take up the width of its container. */
-  input?: any;
+  input?: SemanticShorthandItem<InputProps>;
 
   /** A search can show a loading indicator. */
   loading?: boolean;
 
   /** A search can have different sizes. */
   size?: 'mini' | 'tiny' | 'small' | 'large' | 'big' | 'huge' | 'massive';
+}
+
+export interface SearchResultData extends SearchProps {
+  result: any;
 }
 
 interface SearchComponent extends React.ComponentClass<SearchProps> {
