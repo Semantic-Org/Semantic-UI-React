@@ -13,6 +13,8 @@ import {
   useKeyOnly,
 } from '../../lib'
 import Portal from '../../addons/Portal'
+import Transition from '../../modules/Transition'
+import DimmerContent from './DimmerContent'
 import DimmerDimmable from './DimmerDimmable'
 
 /**
@@ -111,7 +113,7 @@ export default class Dimmer extends Component {
 
     const classes = cx(
       'ui',
-      useKeyOnly(active, 'active transition visible'),
+      useKeyOnly(active, 'active'),
       useKeyOnly(disabled, 'disabled'),
       useKeyOnly(inverted, 'inverted'),
       useKeyOnly(page, 'page'),
@@ -122,18 +124,14 @@ export default class Dimmer extends Component {
     const rest = getUnhandledProps(Dimmer, this.props)
     const ElementType = getElementType(Dimmer, this.props)
 
-    const childrenContent = childrenUtils.isNil(children) ? content : children
-
-    const dimmerElement = (
-      <ElementType{...rest} className={classes} onClick={this.handleClick}>
-        {childrenContent && (
-          <div className='content'>
-            <div className='center' ref={this.handleCenterRef}>
-              {childrenContent}
-            </div>
-          </div>
-        )}
-      </ElementType>
+    const dimmerJSX = (
+      <Transition duration={5000} visible={active}>
+        <ElementType{...rest} className={classes} onClick={this.handleClick}>
+          <DimmerContent centerRef={this.handleCenterRef} content={content}>
+            {children}
+          </DimmerContent>
+        </ElementType>
+      </Transition>
     )
 
     if (page) {
@@ -146,12 +144,12 @@ export default class Dimmer extends Component {
           open={active}
           openOnTriggerClick={false}
         >
-          {dimmerElement}
+          {dimmerJSX}
         </Portal>
       )
     }
 
-    return dimmerElement
+    return dimmerJSX
   }
 }
 
