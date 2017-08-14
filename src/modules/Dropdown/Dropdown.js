@@ -596,11 +596,11 @@ export default class Dropdown extends Component {
     if (keyboardKey.getCode(e) !== keyboardKey.Enter) return
     e.preventDefault()
 
-    const optionSize = _.size(this.getMenuOptions());
+    const optionSize = _.size(this.getMenuOptions())
     if (search && optionSize === 0) return
 
     const item = this.getSelectedItem()
-    const isAdditionItem = onAddItem && item['data-additional'];
+    const isAdditionItem = onAddItem && item['data-additional']
 
     this.makeSelectedItemActive(e)
     this.closeOnChange(e)
@@ -699,7 +699,7 @@ export default class Dropdown extends Component {
     if (item.disabled) return
 
     // notify the onAddItem prop if this is a new value
-    const isAdditionItem = onAddItem && item['data-additional'];
+    const isAdditionItem = onAddItem && item['data-additional']
     if (isAdditionItem) onAddItem(e, { ...this.props, value })
 
     const newValue = multiple ? _.union(this.state.value, [value]) : value
@@ -708,7 +708,7 @@ export default class Dropdown extends Component {
     this.setValue(newValue)
     this.setSelectedIndex(value)
 
-    const optionSize = _.size(this.getMenuOptions());
+    const optionSize = _.size(this.getMenuOptions())
     if (!multiple || isAdditionItem || optionSize === 1) this.clearSearchQuery()
 
     this.handleChange(e, newValue)
