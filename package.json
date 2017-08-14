@@ -130,7 +130,7 @@
     "satisfied": "^1.1.0",
     "semantic-ui-css": "^2.2.11",
     "simulant": "^0.2.2",
-    "sinon": "^2.1.0",
+    "sinon": "^2.3.8",
     "sinon-chai": "^2.11.0",
     "ta-scripts": "^2.5.2",
     "through2": "^2.0.2",

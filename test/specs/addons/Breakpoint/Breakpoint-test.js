@@ -8,11 +8,11 @@ import { domEvent, sandbox } from 'test/utils'
 const { points } = Breakpoint.defaultProps
 const requiredProps = { only: 'mobile' }
 
-beforeEach(() => {
-  sandbox.stub(window, 'innerWidth').value(points.mobile)
-})
-
 describe('Breakpoint', () => {
+  beforeEach(() => {
+    sandbox.stub(window, 'innerWidth').value(points.mobile)
+  })
+
   common.isConformant(Breakpoint, { requiredProps })
   common.rendersChildren(Breakpoint, { requiredProps })
 
@@ -59,13 +59,17 @@ describe('Breakpoint', () => {
   })
 
   describe('onUpdate', () => {
-    it('listens for resize', () => {
+    it('listens for resize', done => {
       const wrapper = mount(<Breakpoint only='mobile' />)
       wrapper.should.have.tagName('div')
 
       sandbox.stub(window, 'innerWidth').value(points.tablet)
       domEvent.fire(window, 'resize')
-      wrapper.should.be.blank()
+
+      setTimeout(() => {
+        wrapper.should.be.blank()
+        done()
+      }, 25)
     })
 
     it('is called with (e, data) when window was resized', done => {
@@ -81,7 +85,7 @@ describe('Breakpoint', () => {
         onUpdate.should.have.been.calledWithMatch({}, { width, only: 'mobile' })
 
         done()
-      }, 10)
+      }, 25)
     })
   })
 })

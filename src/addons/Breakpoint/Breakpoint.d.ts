@@ -37,6 +37,6 @@ export interface BreakpointOnUpdateData extends BreakpointProps {
   number: string;
 }
 
-declare const Confirm: React.ComponentClass<BreakpointProps>;
+declare const Breakpoint: React.ComponentClass<BreakpointProps>;
 
-export default Confirm;
+export default Breakpoint;
