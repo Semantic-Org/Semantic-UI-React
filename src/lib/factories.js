@@ -51,7 +51,9 @@ export function createShorthand(Component, mapValueToProps, val, options = {}) {
   const { defaultProps = {} } = options
 
   // User's props
-  const usersProps = isReactElement && val.props || isPropsObject && val || isPrimitiveValue && mapValueToProps(val)
+  const usersProps = (isReactElement && val.props)
+    || (isPropsObject && val)
+    || (isPrimitiveValue && mapValueToProps(val))
 
   // Override props
   let { overrideProps = {} } = options
@@ -125,6 +127,7 @@ export function createShorthandFactory(Component, mapValueToProps) {
 // HTML Factories
 // ============================================================
 export const createHTMLDivision = createShorthandFactory('div', val => ({ children: val }))
+export const createHTMLIframe = createShorthandFactory('iframe', src => ({ src }))
 export const createHTMLImage = createShorthandFactory('img', val => ({ src: val }))
 export const createHTMLInput = createShorthandFactory('input', val => ({ type: val }))
 export const createHTMLLabel = createShorthandFactory('label', val => ({ children: val }))

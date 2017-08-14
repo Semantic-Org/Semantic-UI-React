@@ -28,7 +28,7 @@ describe('Accordion', () => {
           <Accordion.Content active={false} />
           <Accordion.Title active />
           <Accordion.Content active />
-        </Accordion>
+        </Accordion>,
       )
       const titles = wrapper.find('AccordionTitle')
       const contents = wrapper.find('AccordionContent')
@@ -46,7 +46,7 @@ describe('Accordion', () => {
           <Accordion.Content />
           <Accordion.Title />
           <Accordion.Content />
-        </Accordion>
+        </Accordion>,
       )
         .find('AccordionContent')
 
@@ -58,7 +58,7 @@ describe('Accordion', () => {
         <Accordion>
           <Accordion.Title />
           <Accordion.Content />
-        </Accordion>
+        </Accordion>,
       )
 
       // open panel (activeIndex 0)
@@ -86,7 +86,7 @@ describe('Accordion', () => {
           <Accordion.Content />
           <Accordion.Title />
           <Accordion.Content />
-        </Accordion>
+        </Accordion>,
       )
       wrapper.setProps({ activeIndex: 0 })
       wrapper.childAt(0).should.have.prop('active', true)
@@ -110,7 +110,7 @@ describe('Accordion', () => {
           <Accordion.Content />
           <Accordion.Title />
           <Accordion.Content />
-        </Accordion>
+        </Accordion>,
       )
       wrapper.setProps({ activeIndex: [0, 1] })
       wrapper.childAt(0).should.have.prop('active', true)
@@ -132,7 +132,7 @@ describe('Accordion', () => {
           <Accordion.Content />
           <Accordion.Title />
           <Accordion.Content />
-        </Accordion>
+        </Accordion>,
       )
         .find('AccordionTitle')
 
@@ -147,7 +147,7 @@ describe('Accordion', () => {
           <Accordion.Content />
           <Accordion.Title />
           <Accordion.Content />
-        </Accordion>
+        </Accordion>,
       )
         .find('AccordionTitle')
 
@@ -162,7 +162,7 @@ describe('Accordion', () => {
           <Accordion.Content />
           <Accordion.Title />
           <Accordion.Content />
-        </Accordion>
+        </Accordion>,
       )
       const titles = wrapper.find('AccordionTitle')
       const contents = wrapper.find('AccordionContent')
@@ -186,7 +186,7 @@ describe('Accordion', () => {
           <Accordion.Content />
           <Accordion.Title />
           <Accordion.Content />
-        </Accordion>
+        </Accordion>,
       )
       const titles = wrapper.find('AccordionTitle')
       const contents = wrapper.find('AccordionContent')
@@ -219,7 +219,7 @@ describe('Accordion', () => {
         <Accordion onTitleClick={spy}>
           <Accordion.Title />
           <Accordion.Title />
-        </Accordion>
+        </Accordion>,
       )
         .find('AccordionTitle')
 
@@ -237,7 +237,7 @@ describe('Accordion', () => {
       shallow(
         <Accordion panels={[]}>
           <div id='do-not-find-me' />
-        </Accordion>
+        </Accordion>,
       )
         .should.not.have.descendants('#do-not-find-me')
     })
@@ -287,7 +287,7 @@ describe('Accordion', () => {
       expect(wrapper.childAt(1).key()).to.equal('panel-1-content')
     })
 
-    const checkIfAllowsSettingTheActiveProp = panels => {
+    const checkIfAllowsSettingTheActiveProp = (panels) => {
       const wrapper = shallow(<Accordion panels={panels} />)
 
       // first panel (active)

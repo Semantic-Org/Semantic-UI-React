@@ -46,6 +46,9 @@ export interface FormProps {
   /** Automatically show any success Message children. */
   success?: boolean;
 
+  /** A form can prevent itself from stacking on mobile. */
+  unstackable?: boolean;
+
   /** Automatically show any warning Message children. */
   warning?: boolean;
 

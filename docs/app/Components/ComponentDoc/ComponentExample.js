@@ -20,6 +20,9 @@ const babelConfig = {
 const titleStyle = {
   margin: 0,
 }
+const descriptionStyle = {
+  maxWidth: '50rem',
+}
 
 const headerColumnStyle = {
   // provide room for absolutely positions toggle code icons
@@ -29,6 +32,7 @@ const headerColumnStyle = {
 
 const childrenStyle = {
   paddingTop: 0,
+  maxWidth: '50rem',
 }
 
 const errorStyle = {
@@ -344,7 +348,7 @@ class ComponentExample extends Component {
     const { error, showCode, sourceCode } = this.state
     if (!showCode) return
 
-    const style = {}
+    const style = { width: '100%' }
     if (error) {
       style.boxShadow = `inset 0 0 0 1em ${errorStyle.background}`
     }
@@ -403,7 +407,7 @@ class ComponentExample extends Component {
         <Grid.Row>
           <Grid.Column style={headerColumnStyle} width={12}>
             {title && <Header as='h3' className='no-anchor' style={titleStyle} content={title} />}
-            {description && <p>{description}</p>}
+            {description && <p style={descriptionStyle}>{description}</p>}
           </Grid.Column>
           <Grid.Column textAlign='right' width={4}>
             <Menu compact text icon size='small' color='green' className='docs-example-menu'>

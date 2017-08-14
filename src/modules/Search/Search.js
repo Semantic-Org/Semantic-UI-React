@@ -145,6 +145,14 @@ export default class Search extends Component {
      */
     onSearchChange: PropTypes.func,
 
+    /**
+     * Called when the active selection index is changed.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props.
+     */
+    onSelectionChange: PropTypes.func,
+
     // ------------------------------------
     // Style
     // ------------------------------------
@@ -289,6 +297,13 @@ export default class Search extends Component {
     _.invoke(this.props, 'onResultSelect', e, { ...this.props, result })
   }
 
+  handleSelectionChange = e => {
+    debug('handleSelectionChange()')
+
+    const result = this.getSelectedResult()
+    _.invoke(this.props, 'onSelectionChange', e, { ...this.props, result })
+  }
+
   closeOnEscape = (e) => {
     if (keyboardKey.getCode(e) !== keyboardKey.Escape) return
     e.preventDefault()
@@ -301,11 +316,11 @@ export default class Search extends Component {
     switch (keyboardKey.getCode(e)) {
       case keyboardKey.ArrowDown:
         e.preventDefault()
-        this.moveSelectionBy(1)
+        this.moveSelectionBy(e, 1)
         break
       case keyboardKey.ArrowUp:
         e.preventDefault()
-        this.moveSelectionBy(-1)
+        this.moveSelectionBy(e, -1)
         break
       default:
         break
@@ -424,9 +439,9 @@ export default class Search extends Component {
     const { category, results } = this.props
 
     return !category ? results : _.reduce(results,
-        (memo, categoryData) => memo.concat(categoryData.results),
-        []
-      )
+      (memo, categoryData) => memo.concat(categoryData.results),
+      [],
+    )
   }
 
   getSelectedResult = (index = this.state.selectedIndex) => {
@@ -446,11 +461,11 @@ export default class Search extends Component {
 
     this.trySetState(
       { value },
-      { selectedIndex: selectFirstResult ? 0 : -1 }
+      { selectedIndex: selectFirstResult ? 0 : -1 },
     )
   }
 
-  moveSelectionBy = (offset) => {
+  moveSelectionBy = (e, offset) => {
     debug('moveSelectionBy()')
     debug(`offset: ${offset}`)
     const { selectedIndex } = this.state
@@ -466,6 +481,7 @@ export default class Search extends Component {
 
     this.setState({ selectedIndex: nextIndex })
     this.scrollSelectedItemIntoView()
+    this.handleSelectionChange(e)
   }
 
   // ----------------------------------------
@@ -487,7 +503,7 @@ export default class Search extends Component {
     if (isOutOfUpperView) {
       menu.scrollTop = item.offsetTop
     } else if (isOutOfLowerView) {
-      menu.scrollTop = item.offsetTop + item.clientHeight - menu.clientHeight
+      menu.scrollTop = (item.offsetTop + item.clientHeight) - menu.clientHeight
     }
   }
 
@@ -515,7 +531,7 @@ export default class Search extends Component {
   // Render
   // ----------------------------------------
 
-  renderSearchInput = rest => {
+  renderSearchInput = (rest) => {
     const { icon, input } = this.props
     const { value } = this.state
 
@@ -578,7 +594,7 @@ export default class Search extends Component {
 
     let count = 0
 
-    return _.map(categories, ({ childKey, ...category }, name, index) => {
+    return _.map(categories, ({ childKey, ...category }) => {
       const categoryProps = {
         key: childKey || category.name,
         active: _.inRange(selectedIndex, count, count + category.results.length),
@@ -587,7 +603,7 @@ export default class Search extends Component {
       }
       const renderFn = _.partialRight(this.renderResult, count)
 
-      count = count + category.results.length
+      count += category.results.length
 
       return (
         <SearchCategory {...categoryProps}>

@@ -1,3 +1,4 @@
+import faker from 'faker'
 import _ from 'lodash'
 import React from 'react'
 
@@ -31,16 +32,33 @@ describe('Form', () => {
   common.hasUIClassName(Form)
   common.rendersChildren(Form)
 
-  common.implementsWidthProp(Form, _.without(SUI.SIZES, 'medium'), { propKey: 'widths' })
+  common.implementsWidthProp(Form, [], {
+    propKey: 'widths',
+  })
 
   common.propKeyOnlyToClassName(Form, 'error')
   common.propKeyOnlyToClassName(Form, 'inverted')
   common.propKeyOnlyToClassName(Form, 'loading')
   common.propKeyOnlyToClassName(Form, 'reply')
   common.propKeyOnlyToClassName(Form, 'success')
+  common.propKeyOnlyToClassName(Form, 'unstackable')
   common.propKeyOnlyToClassName(Form, 'warning')
 
   common.propValueOnlyToClassName(Form, 'size', _.without(SUI.SIZES, 'medium'))
+
+  describe('action', () => {
+    it('is not set by default', () => {
+      shallow(<Form />)
+        .should.not.have.prop('action')
+    })
+
+    it('applied when defined', () => {
+      const action = faker.internet.url()
+
+      shallow(<Form action={action} />)
+        .should.have.prop('action', action)
+    })
+  })
 
   describe('onSubmit', () => {
     it('prevents default on the event when there is no action', () => {

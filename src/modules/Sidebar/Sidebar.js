@@ -92,7 +92,7 @@ class Sidebar extends Component {
       useKeyOnly(animating, 'animating'),
       useKeyOnly(visible, 'visible'),
       'sidebar',
-      className
+      className,
     )
 
     const rest = getUnhandledProps(Sidebar, this.props)

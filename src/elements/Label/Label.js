@@ -136,7 +136,7 @@ export default class Label extends Component {
   }
 
   handleIconOverrides = predefinedProps => ({
-    onClick: e => {
+    onClick: (e) => {
       _.invoke(predefinedProps, 'onClick', e)
       _.invoke(this.props, 'onRemove', e, this.props)
     },
@@ -167,9 +167,9 @@ export default class Label extends Component {
       tag,
     } = this.props
 
-    const pointingClass = pointing === true && 'pointing'
-      || (pointing === 'left' || pointing === 'right') && `${pointing} pointing`
-      || (pointing === 'above' || pointing === 'below') && `pointing ${pointing}`
+    const pointingClass = (pointing === true && 'pointing')
+      || ((pointing === 'left' || pointing === 'right') && `${pointing} pointing`)
+      || ((pointing === 'above' || pointing === 'below') && `pointing ${pointing}`)
 
     const classes = cx(
       'ui',

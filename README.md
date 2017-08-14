@@ -80,6 +80,7 @@ These great products are built on Semantic UI React. Add yours [here][22].
 - https://www.lifebot.fr
 - https://www.stackforge.co
 - https://sublimefund.org
+- https://thefaithcircle.com
 
 ## Voice Your Opinion
 
@@ -129,9 +130,9 @@ Once you change the flag, you need to refresh your browser to see the changes in
 | ✓ List          |                 |                 | ✓ Search        |                    |
 | ✓ Loader        |                 |                 |   Shape         |                    |
 | ✓ Rail          |                 |                 | ✓ Sidebar       |                    |
-| ✓ Reveal        |                 |                 |   Sticky        |                    |
+| ✓ Reveal        |                 |                 | ✓ Sticky        |                    |
 | ✓ Segment       |                 |                 | ✓ Tab           |                    |
-| ✓ Step          |                 |                 |   Transition    |                    |
+| ✓ Step          |                 |                 | ✓ Transition    |                    |
 
 ## Our Principles
 
