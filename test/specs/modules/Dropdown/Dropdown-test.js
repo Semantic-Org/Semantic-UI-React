@@ -1663,8 +1663,8 @@ describe('Dropdown', () => {
     it('does not clear the query by default on item click', () => {
       // search for random item
       const searchQuery = _.sample(options).text
-      
-      wrapperMount(<Dropdown options={options} selection search multiple/>)
+
+      wrapperMount(<Dropdown options={options} selection search multiple />)
 
       wrapper
         .simulate('click')
@@ -1678,12 +1678,12 @@ describe('Dropdown', () => {
       // cleared search query
       wrapper.should.have.state('searchQuery', searchQuery)
     })
-    
+
     it('does not clear the query by default on enter', () => {
       // search for random item
       const searchQuery = _.sample(options).text
-      
-      wrapperMount(<Dropdown options={options} selection search multiple/>)
+
+      wrapperMount(<Dropdown options={options} selection search multiple />)
 
       wrapper
         .simulate('click')
@@ -1691,16 +1691,16 @@ describe('Dropdown', () => {
 
       domEvent.keyDown(document, { key: 'ArrowDown' })
       domEvent.keyDown(document, { key: 'Enter' })
-    
+
       // cleared search query
       wrapper.should.have.state('searchQuery', searchQuery)
     })
-    
+
     it('clears the query on item click if clearSearchQueryOnSelect prop included', () => {
       // search for random item
       const searchQuery = _.sample(options).text
-      
-      wrapperMount(<Dropdown options={options} selection search multiple clearSearchQueryOnSelect/>)
+
+      wrapperMount(<Dropdown options={options} selection search multiple clearSearchQueryOnSelect />)
 
       wrapper
         .simulate('click')
@@ -1714,12 +1714,12 @@ describe('Dropdown', () => {
       // cleared search query
       wrapper.should.have.state('searchQuery', '')
     })
-    
+
     it('clears the query on enter if prop clearSearchQueryOnSelect included', () => {
       // search for random item
       const searchQuery = _.sample(options).text
-      
-      wrapperMount(<Dropdown options={options} selection search multiple clearSearchQueryOnSelect/>)
+
+      wrapperMount(<Dropdown options={options} selection search multiple clearSearchQueryOnSelect />)
 
       wrapper
         .simulate('click')
@@ -1727,7 +1727,7 @@ describe('Dropdown', () => {
 
       domEvent.keyDown(document, { key: 'ArrowDown' })
       domEvent.keyDown(document, { key: 'Enter' })
-    
+
       // cleared search query
       wrapper.should.have.state('searchQuery', '')
     })
