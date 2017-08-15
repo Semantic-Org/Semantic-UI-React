@@ -526,7 +526,7 @@ describe('Search', () => {
   })
 
   describe('onBlur', () => {
-    it('is called with (event, data) on search input blur', () => {
+    it('is called with (event) on search input blur', () => {
       const spy = sandbox.spy()
       wrapperMount(<Search onBlur={spy} />)
         .simulate('blur', nativeEvent)
@@ -537,7 +537,7 @@ describe('Search', () => {
   })
 
   describe('onFocus', () => {
-    it('is called with (event, data) on search input focus', () => {
+    it('is called with (event) on search input focus', () => {
       const spy = sandbox.spy()
       wrapperMount(<Search onFocus={spy} />)
         .simulate('focus', nativeEvent)
