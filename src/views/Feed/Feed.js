@@ -45,7 +45,7 @@ function Feed(props) {
     return <ElementType {...rest} className={classes}>{children}</ElementType>
   }
 
-  const eventElements = _.map(events, eventProps => {
+  const eventElements = _.map(events, (eventProps) => {
     const { childKey, date, meta, summary, ...eventData } = eventProps
     const finalKey = childKey || [date, meta, summary].join('-')
 

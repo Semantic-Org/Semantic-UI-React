@@ -14,7 +14,7 @@ import { sandbox } from 'test/utils'
 const getShorthand = ({
   Component = 'div',
   defaultProps,
-  mapValueToProps = val => ({}),
+  mapValueToProps = () => ({}),
   overrideProps,
   value,
 }) => createShorthand(Component, mapValueToProps, value, { defaultProps, overrideProps })
@@ -124,7 +124,7 @@ describe('factories', () => {
     it('throw if passed Component that is not a string nor function', () => {
       const badComponents = [undefined, null, true, false, [], {}, 123]
 
-      _.each(badComponents, badComponent => {
+      _.each(badComponents, (badComponent) => {
         const badUsage = () => createShorthandFactory(badComponent, () => ({}))
 
         expect(badUsage).to.throw()
@@ -152,7 +152,7 @@ describe('factories', () => {
     it('throw if passed Component that is not a string nor function', () => {
       const badComponents = [undefined, null, true, false, [], {}, 123]
 
-      _.each(badComponents, badComponent => {
+      _.each(badComponents, (badComponent) => {
         const badUsage = () => createShorthand(badComponent, () => ({}))
 
         expect(badUsage).to.throw()
@@ -324,7 +324,7 @@ describe('factories', () => {
         const defaultProps = { 'data-some': 'defaults' }
         const overrideProps = sandbox.spy(() => ({}))
         const value = 'foo'
-        const mapValueToProps = (val) => ({ 'data-mapped': val })
+        const mapValueToProps = val => ({ 'data-mapped': val })
 
         shallow(getShorthand({ defaultProps, mapValueToProps, overrideProps, value }))
         overrideProps.should.have.been.calledWith({ ...defaultProps, ...mapValueToProps(value) })
@@ -361,7 +361,7 @@ describe('factories', () => {
         'element',
         { some: 'defaults', overridden: false },
         { some: 'defaults', overridden: true },
-        { value: <div overridden /> }
+        { value: <div overridden /> },
       )
       itOverridesDefaultPropsWithFalseyProps('element', {
         value: <div undef={undefined} nil={null} zero={0} empty='' />,
@@ -387,8 +387,8 @@ describe('factories', () => {
         { some: 'defaults', overridden: true },
         {
           value: 'a string',
-          mapValueToProps: (val) => ({ overridden: true }),
-        }
+          mapValueToProps: () => ({ overridden: true }),
+        },
       )
 
       itOverridesDefaultPropsWithFalseyProps('mapValueToProps', {
@@ -411,7 +411,7 @@ describe('factories', () => {
         { some: 'defaults', overridden: true },
         {
           value: { overridden: true },
-        }
+        },
       )
 
       itOverridesDefaultPropsWithFalseyProps('props object', {
@@ -438,8 +438,8 @@ describe('factories', () => {
         { some: 'defaults', overridden: true },
         {
           value: ['an array'],
-          mapValueToProps: (val) => ({ overridden: true }),
-        }
+          mapValueToProps: () => ({ overridden: true }),
+        },
       )
 
       itOverridesDefaultPropsWithFalseyProps('mapValueToProps', {

@@ -35,7 +35,7 @@ function StepGroup(props) {
     size,
     useKeyOnly(fluid, 'fluid'),
     useKeyOnly(ordered, 'ordered'),
-    useKeyOnly(unstackable, 'unstackable,'),
+    useKeyOnly(unstackable, 'unstackable'),
     useKeyOnly(vertical, 'vertical'),
     useValueAndKey(stackable, 'stackable'),
     'steps',
@@ -48,7 +48,7 @@ function StepGroup(props) {
     return <ElementType {...rest} className={classes}>{children}</ElementType>
   }
 
-  const content = _.map(items, item => {
+  const content = _.map(items, (item) => {
     const key = item.key || [item.title, item.description].join('-')
     return <Step key={key} {...item} />
   })

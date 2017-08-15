@@ -165,7 +165,7 @@ class Button extends Component {
     if (!_.isNil(attached) || !_.isNil(label)) return 'div'
   }
 
-  computeTabIndex = ElementType => {
+  computeTabIndex = (ElementType) => {
     const { disabled, tabIndex } = this.props
 
     if (!_.isNil(tabIndex)) return tabIndex
@@ -283,6 +283,7 @@ class Button extends Component {
         disabled={(disabled && ElementType === 'button') || undefined}
         onClick={this.handleClick}
         ref={this.handleRef}
+        role='button'
         tabIndex={tabIndex}
       >
         {hasChildren && children}

@@ -19,7 +19,7 @@ const createTestClass = (options = {}) => class Test extends AutoControlledCompo
 }
 /* eslint-enable */
 
-const toDefaultName = (prop) => `default${prop.slice(0, 1).toUpperCase() + prop.slice(1)}`
+const toDefaultName = prop => `default${prop.slice(0, 1).toUpperCase() + prop.slice(1)}`
 
 const makeProps = () => ({
   computer: 'hardware',
@@ -27,7 +27,7 @@ const makeProps = () => ({
   ion: 'belt',
 })
 
-const makeDefaultProps = (props) => _.transform(props, (res, val, key) => {
+const makeDefaultProps = props => _.transform(props, (res, val, key) => {
   res[toDefaultName(key)] = val
 })
 
@@ -118,7 +118,7 @@ describe('extending AutoControlledComponent', () => {
       props[randomProp] = undefined
 
       TestClass = createTestClass({ autoControlledProps, state: {} })
-      const wrapper = shallow(<TestClass {...props } />)
+      const wrapper = shallow(<TestClass {...props} />)
 
       wrapper
         .instance()
@@ -140,7 +140,7 @@ describe('extending AutoControlledComponent', () => {
       props[randomProp] = null
 
       TestClass = createTestClass({ autoControlledProps, state: {} })
-      const wrapper = shallow(<TestClass {...props } />)
+      const wrapper = shallow(<TestClass {...props} />)
 
       wrapper
         .instance()

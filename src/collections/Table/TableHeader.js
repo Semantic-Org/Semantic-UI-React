@@ -17,7 +17,7 @@ function TableHeader(props) {
   const { children, className, fullWidth } = props
   const classes = cx(
     useKeyOnly(fullWidth, 'full-width'),
-    className
+    className,
   )
   const rest = getUnhandledProps(TableHeader, props)
   const ElementType = getElementType(TableHeader, props)

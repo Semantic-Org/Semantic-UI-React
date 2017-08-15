@@ -1,5 +1,38 @@
 # Change Log
 
+## [v0.71.4](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.71.4) (2017-08-10)
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.71.3...v0.71.4)
+
+**Implemented enhancements:**
+
+- Form: add unstackable [\#1919](https://github.com/Semantic-Org/Semantic-UI-React/issues/1919)
+- feat\(Form\): add `unstackable` prop [\#1921](https://github.com/Semantic-Org/Semantic-UI-React/pull/1921) ([layershifter](https://github.com/layershifter))
+- feat\(Search\): prop to return the active result [\#1825](https://github.com/Semantic-Org/Semantic-UI-React/pull/1825) ([treyhuffine](https://github.com/treyhuffine))
+
+**Fixed bugs:**
+
+- Step: Step.Group with unstackable prop generates incorrect classname [\#1942](https://github.com/Semantic-Org/Semantic-UI-React/issues/1942)
+- "Edit Code" button in docs website reveals a broken source editor in Firefox [\#1912](https://github.com/Semantic-Org/Semantic-UI-React/issues/1912)
+- verticalAlign does not function for Grid component [\#1908](https://github.com/Semantic-Org/Semantic-UI-React/issues/1908)
+
+**Closed issues:**
+
+- Input: when both `value` and `onChange` are set, will produce the `uncontrolled/controlled input` error [\#1923](https://github.com/Semantic-Org/Semantic-UI-React/issues/1923)
+- Attribute the icons to FontAwesome [\#1901](https://github.com/Semantic-Org/Semantic-UI-React/issues/1901)
+
+**Merged pull requests:**
+
+- docs\(Icon\): add FontAwesome attribution [\#1950](https://github.com/Semantic-Org/Semantic-UI-React/pull/1950) ([layershifter](https://github.com/layershifter))
+- style\(mixed\): update components styling [\#1949](https://github.com/Semantic-Org/Semantic-UI-React/pull/1949) ([layershifter](https://github.com/layershifter))
+- docs\(README\): mark Sticky as implemented [\#1948](https://github.com/Semantic-Org/Semantic-UI-React/pull/1948) ([layershifter](https://github.com/layershifter))
+- fix\(Step\): fixed typo in Step.Group className [\#1943](https://github.com/Semantic-Org/Semantic-UI-React/pull/1943) ([Joel-Raju](https://github.com/Joel-Raju))
+- style\(docs\): update formatting of Menu and Table examples [\#1938](https://github.com/Semantic-Org/Semantic-UI-React/pull/1938) ([layershifter](https://github.com/layershifter))
+- docs\(Layouts\): fix LoginLayout [\#1926](https://github.com/Semantic-Org/Semantic-UI-React/pull/1926) ([layershifter](https://github.com/layershifter))
+- docs\(ComponentExample\): fix width in Firefox [\#1916](https://github.com/Semantic-Org/Semantic-UI-React/pull/1916) ([layershifter](https://github.com/layershifter))
+- Added new application written in Semantic-UI react [\#1913](https://github.com/Semantic-Org/Semantic-UI-React/pull/1913) ([bwoodlt](https://github.com/bwoodlt))
+- fix\(Statistic\): fix wrong inverted type [\#1909](https://github.com/Semantic-Org/Semantic-UI-React/pull/1909) ([tadashi-aikawa](https://github.com/tadashi-aikawa))
+- docs\(Portal\): add Example under Addons Section of Docs [\#1860](https://github.com/Semantic-Org/Semantic-UI-React/pull/1860) ([alexUXUI](https://github.com/alexUXUI))
+
 ## [v0.71.3](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.71.3) (2017-07-29)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.71.2...v0.71.3)
 

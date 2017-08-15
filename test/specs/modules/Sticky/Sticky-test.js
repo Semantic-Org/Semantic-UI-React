@@ -1,4 +1,5 @@
 import React from 'react'
+
 import Sticky from 'src/modules/Sticky/Sticky'
 import { sandbox } from 'test/utils'
 import * as common from 'test/specs/commonTests'
@@ -8,6 +9,7 @@ const scrollToTop = (wrapper, contextEl, { bottomOffset, offset, height }) => {
   const instance = wrapper.instance()
   instance.triggerRef = { getBoundingClientRect: () => ({ top: offset }) }
   instance.stickyRef = { getBoundingClientRect: () => ({ height, top: offset }) }
+  // eslint-disable-next-line no-param-reassign
   contextEl.getBoundingClientRect = () => ({ bottom: height + offset + bottomOffset })
   window.dispatchEvent(new Event('scroll'))
 }
@@ -17,7 +19,8 @@ const scrollAfterTrigger = (wrapper, contextEl, { bottomOffset, offset, height }
   const instance = wrapper.instance()
   instance.triggerRef = { getBoundingClientRect: () => ({ top: offset - 1 }) }
   instance.stickyRef = { getBoundingClientRect: () => ({ height }) }
-  contextEl.getBoundingClientRect = () => ({ bottom: window.innerHeight - bottomOffset + 1 })
+  // eslint-disable-next-line no-param-reassign
+  contextEl.getBoundingClientRect = () => ({ bottom: (window.innerHeight - bottomOffset) + 1 })
   window.dispatchEvent(new Event('scroll'))
 }
 
@@ -26,7 +29,7 @@ const scrollAfterContext = (wrapper, contextEl, { offset, height }) => {
   const instance = wrapper.instance()
   instance.triggerRef = { getBoundingClientRect: () => ({ top: offset - 1 }) }
   instance.stickyRef = { getBoundingClientRect: () => ({ height }) }
-  contextEl.getBoundingClientRect = () => ({ bottom: -1 })
+  contextEl.getBoundingClientRect = () => ({ bottom: -1 }) // eslint-disable-line no-param-reassign
   window.dispatchEvent(new Event('scroll'))
 }
 
@@ -35,7 +38,7 @@ const scrollToContextBottom = (wrapper, contextEl, { offset, height }) => {
   const instance = wrapper.instance()
   instance.triggerRef = { getBoundingClientRect: () => ({ top: offset - 1 }) }
   instance.stickyRef = { getBoundingClientRect: () => ({ height }) }
-  contextEl.getBoundingClientRect = () => ({ bottom: height + 1 })
+  contextEl.getBoundingClientRect = () => ({ bottom: height + 1 }) // eslint-disable-line no-param-reassign
   window.dispatchEvent(new Event('scroll'))
 }
 
@@ -67,7 +70,7 @@ describe('Sticky', () => {
     const height = 200
     const contextEl = { getBoundingClientRect: () => ({}) }
     const wrapper = mount(
-      <Sticky context={contextEl} offset={offset} bottomOffset={bottomOffset} />
+      <Sticky context={contextEl} offset={offset} bottomOffset={bottomOffset} />,
     )
 
     // Scroll after trigger
@@ -82,7 +85,7 @@ describe('Sticky', () => {
     const height = 100
     const contextEl = { getBoundingClientRect: () => ({}) }
     const wrapper = mount(
-      <Sticky context={contextEl} offset={offset} bottomOffset={bottomOffset} />
+      <Sticky context={contextEl} offset={offset} bottomOffset={bottomOffset} />,
     )
 
     scrollAfterContext(wrapper, contextEl, { bottomOffset, offset, height })
@@ -97,7 +100,7 @@ describe('Sticky', () => {
     const height = 100
     const contextEl = { getBoundingClientRect: () => ({}) }
     const wrapper = mount(
-      <Sticky context={contextEl} offset={offset} bottomOffset={bottomOffset} pushing />
+      <Sticky context={contextEl} offset={offset} bottomOffset={bottomOffset} pushing />,
     )
 
     scrollAfterTrigger(wrapper, contextEl, { bottomOffset, offset, height })
@@ -122,7 +125,7 @@ describe('Sticky', () => {
     const height = 100
     const contextEl = { getBoundingClientRect: () => ({}) }
     const wrapper = mount(
-      <Sticky context={contextEl} bottomOffset={bottomOffset} offset={offset} pushing />
+      <Sticky context={contextEl} bottomOffset={bottomOffset} offset={offset} pushing />,
     )
 
     scrollAfterTrigger(wrapper, contextEl, { bottomOffset, offset, height })
@@ -140,7 +143,7 @@ describe('Sticky', () => {
     const height = 100000
     const contextEl = { getBoundingClientRect: () => ({}) }
     const wrapper = mount(
-      <Sticky context={contextEl} bottomOffset={bottomOffset} offset={offset} pushing />
+      <Sticky context={contextEl} bottomOffset={bottomOffset} offset={offset} pushing />,
     )
     scrollAfterTrigger(wrapper, contextEl, { bottomOffset, offset, height })
     wrapper.instance().isOversized().should.be.equal(true)
@@ -153,7 +156,7 @@ describe('Sticky', () => {
     const contextEl = { getBoundingClientRect: () => ({}) }
     const onStick = sandbox.spy()
     const wrapper = mount(
-      <Sticky context={contextEl} offset={offset} bottomOffset={bottomOffset} onStick={onStick} />
+      <Sticky context={contextEl} offset={offset} bottomOffset={bottomOffset} onStick={onStick} />,
     )
 
     scrollAfterTrigger(wrapper, contextEl, { bottomOffset, offset, height })
@@ -171,7 +174,7 @@ describe('Sticky', () => {
     const contextEl = { getBoundingClientRect: () => ({}) }
     const onUnstick = sandbox.spy()
     const wrapper = mount(
-      <Sticky context={contextEl} offset={offset} bottomOffset={bottomOffset} onUnstick={onUnstick} />
+      <Sticky context={contextEl} offset={offset} bottomOffset={bottomOffset} onUnstick={onUnstick} />,
     )
 
     scrollAfterTrigger(wrapper, contextEl, { bottomOffset, offset, height })
@@ -188,7 +191,7 @@ describe('Sticky', () => {
     const contextEl = { getBoundingClientRect: () => ({}) }
     const onTop = sandbox.spy()
     const wrapper = mount(
-      <Sticky context={contextEl} offset={offset} bottomOffset={bottomOffset} onTop={onTop} />
+      <Sticky context={contextEl} offset={offset} bottomOffset={bottomOffset} onTop={onTop} />,
     )
 
     scrollAfterContext(wrapper, contextEl, { bottomOffset, offset, height })
@@ -205,7 +208,7 @@ describe('Sticky', () => {
     const contextEl = { getBoundingClientRect: () => ({}) }
     const onBottom = sandbox.spy()
     const wrapper = mount(
-      <Sticky context={contextEl} offset={offset} bottomOffset={bottomOffset} onBottom={onBottom} />
+      <Sticky context={contextEl} offset={offset} bottomOffset={bottomOffset} onBottom={onBottom} />,
     )
 
     scrollAfterContext(wrapper, contextEl, { bottomOffset, offset, height })

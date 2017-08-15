@@ -22,7 +22,7 @@ describe('Checkbox', () => {
   })
 
   describe('aria', () => {
-    ['aria-label', 'role'].forEach(propName => {
+    ['aria-label', 'role'].forEach((propName) => {
       it(`passes "${propName}" to the <input>`, () => {
         shallow(<Checkbox {...{ [propName]: 'foo' }} />)
           .find('input')

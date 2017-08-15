@@ -144,8 +144,19 @@ export default class IconSearch extends Component {
   render() {
     const { includeSimilar } = this.state
     return (
-      <Grid columns={1} padded textAlign='center' style={gridStyle}>
+      <Grid columns={1} padded style={gridStyle}>
         <Grid.Column>
+          <Header as='h2'>Icon Set</Header>
+          <p>An icon set contains an arbitrary number of glyphs.</p>
+
+          <Message>
+            Semantic includes a complete port of{' '}
+            <a href='http://fontawesome.io/whats-new/' rel='noopener noreferrer' target='_blank'>Font Awesome 4.7.0</a>
+            {' '}designed by{' '}
+            <a href='http://www.twitter.com/davegandy' rel='noopener noreferrer'>Dave Gandy</a> for its standard icon
+            set.
+          </Message>
+
           <Form>
             <Form.Group inline>
               <Form.Input
@@ -163,7 +174,7 @@ export default class IconSearch extends Component {
             </Form.Group>
           </Form>
         </Grid.Column>
-        <Grid.Column>
+        <Grid.Column textAlign='center'>
           {this.renderIcons()}
         </Grid.Column>
       </Grid>

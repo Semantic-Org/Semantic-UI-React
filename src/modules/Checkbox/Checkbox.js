@@ -14,6 +14,7 @@ import {
   partitionHTMLInputProps,
   useKeyOnly,
 } from '../../lib'
+
 const debug = makeDebugger('checkbox')
 
 /**
@@ -152,7 +153,7 @@ export default class Checkbox extends Component {
 
   handleInputRef = c => (this.inputRef = c)
 
-  handleClick = e => {
+  handleClick = (e) => {
     debug('handleClick()')
     const { checked, indeterminate } = this.state
 
@@ -164,7 +165,7 @@ export default class Checkbox extends Component {
     this.trySetState({ checked: !checked, indeterminate: false })
   }
 
-  handleMouseDown = e => {
+  handleMouseDown = (e) => {
     debug('handleMouseDown()')
     const { checked, indeterminate } = this.state
 
@@ -211,7 +212,7 @@ export default class Checkbox extends Component {
       useKeyOnly(slider, 'slider'),
       useKeyOnly(toggle, 'toggle'),
       'checkbox',
-      className
+      className,
     )
     const unhandled = getUnhandledProps(Checkbox, this.props)
     const ElementType = getElementType(Checkbox, this.props)

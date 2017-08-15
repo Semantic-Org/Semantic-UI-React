@@ -6,7 +6,7 @@ import { consoleUtil } from 'test/utils'
 export const classNamePropValueBeforePropName = (Component, propKey, propValues, options = {}) => {
   const { className = propKey, requiredProps = {} } = options
 
-  propValues.forEach(propVal => {
+  propValues.forEach((propVal) => {
     it(`adds "${propVal} ${className}" to className`, () => {
       shallow(createElement(Component, { ...requiredProps, [propKey]: propVal }))
         .should.have.className(`${propVal} ${className}`)
