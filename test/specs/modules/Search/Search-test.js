@@ -526,24 +526,24 @@ describe('Search', () => {
   })
 
   describe('onBlur', () => {
-    it('is called with (event) on search input blur', () => {
-      const spy = sandbox.spy()
-      wrapperMount(<Search onBlur={spy} />)
+    it('is called with (event, data) on search input blur', () => {
+      const onBlur = sandbox.spy()
+      wrapperMount(<Search results={options} onBlur={onBlur} />)
         .simulate('blur', nativeEvent)
 
-      spy.should.have.been.calledOnce()
-      spy.should.have.been.calledWithMatch(nativeEvent)
+      onBlur.should.have.been.calledOnce()
+      onBlur.should.have.been.calledWithMatch(nativeEvent, { onBlur, results: options })
     })
   })
 
   describe('onFocus', () => {
-    it('is called with (event) on search input focus', () => {
-      const spy = sandbox.spy()
-      wrapperMount(<Search onFocus={spy} />)
+    it('is called with (event, data) on search input focus', () => {
+      const onFocus = sandbox.spy()
+      wrapperMount(<Search results={options} onFocus={onFocus} />)
         .simulate('focus', nativeEvent)
 
-      spy.should.have.been.calledOnce()
-      spy.should.have.been.calledWithMatch(nativeEvent)
+      onFocus.should.have.been.calledOnce()
+      onFocus.should.have.been.calledWithMatch(nativeEvent, { onFocus, results: options })
     })
   })
 
