@@ -1,5 +1,4 @@
 import React from 'react'
-import { findDOMNode } from 'react-dom'
 
 import Checkbox from 'src/modules/Checkbox/Checkbox'
 import * as common from 'test/specs/commonTests'
@@ -59,8 +58,7 @@ describe('Checkbox', () => {
   describe('indeterminate', () => {
     it('can be indeterminate', () => {
       const wrapper = mount(<Checkbox indeterminate />)
-
-      const checkboxNode = findDOMNode(wrapper.instance())
+      const checkboxNode = wrapper.getDOMNode()
       const input = checkboxNode.querySelector('input')
 
       input.indeterminate.should.be.true()
@@ -70,8 +68,7 @@ describe('Checkbox', () => {
     })
     it('can not be indeterminate', () => {
       const wrapper = mount(<Checkbox indeterminate={false} />)
-
-      const checkboxNode = findDOMNode(wrapper.instance())
+      const checkboxNode = wrapper.getDOMNode()
       const input = checkboxNode.querySelector('input')
 
       input.indeterminate.should.be.false()
@@ -84,8 +81,7 @@ describe('Checkbox', () => {
   describe('defaultIndeterminate', () => {
     it('sets the initial indeterminate state', () => {
       const wrapper = mount(<Checkbox defaultIndeterminate />)
-
-      const checkboxNode = findDOMNode(wrapper.instance())
+      const checkboxNode = wrapper.getDOMNode()
       const input = checkboxNode.querySelector('input')
 
       input.indeterminate.should.be.true()
@@ -93,9 +89,8 @@ describe('Checkbox', () => {
 
     it('unsets indeterminate state on any click', () => {
       const wrapper = mount(<Checkbox defaultIndeterminate />)
-
-      const checkboxNode = findDOMNode(wrapper.instance())
-      const input = findDOMNode(checkboxNode.querySelector('input'))
+      const checkboxNode = wrapper.getDOMNode()
+      const input = checkboxNode.querySelector('input')
 
       input.indeterminate.should.be.true()
 

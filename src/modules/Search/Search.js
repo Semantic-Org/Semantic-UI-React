@@ -297,7 +297,7 @@ export default class Search extends Component {
     _.invoke(this.props, 'onResultSelect', e, { ...this.props, result })
   }
 
-  handleSelectionChange = e => {
+  handleSelectionChange = (e) => {
     debug('handleSelectionChange()')
 
     const result = this.getSelectedResult()

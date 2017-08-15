@@ -613,7 +613,7 @@ describe('Search', () => {
           onSelectionChange={onSelectionChange}
           results={options}
           selectFirstResult
-        />
+        />,
       )
       openSearchResults()
       domEvent.keyDown(document, { key: 'ArrowDown' })

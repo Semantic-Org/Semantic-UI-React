@@ -5,7 +5,7 @@ import webpack from 'webpack'
 import config from './config'
 
 const { paths } = config
-const { __DEV__, __STAGING__, __TEST__, __PROD__ } = config.compiler_globals
+const { __DEV__, __TEST__, __PROD__ } = config.compiler_globals
 
 const webpackConfig = {
   name: 'client',
@@ -118,7 +118,7 @@ if (__DEV__) {
   )
 }
 
-if (__PROD__ || __STAGING__) {
+if (__PROD__) {
   webpackConfig.plugins.push(
     new webpack.LoaderOptionsPlugin({
       minimize: true,

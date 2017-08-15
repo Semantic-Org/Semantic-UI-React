@@ -2,7 +2,6 @@
   "parser": "babel-eslint",
   "globals": {
     "__DEV__": false,
-    "__STAGING__": false,
     "__TEST__": false,
     "__PATH_SEP__": false,
     "__PROD__": false
