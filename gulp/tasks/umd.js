@@ -4,7 +4,6 @@ import rimraf from 'rimraf'
 import webpack from 'webpack'
 
 import config from '../../config'
-import webpackUMDConfig from '../../webpack.umd.config'
 
 const g = loadPlugins()
 const { log, PluginError } = g.util
@@ -22,6 +21,7 @@ task('clean:umd', (cb) => {
 // ----------------------------------------
 
 task('build:umd:webpack', (cb) => {
+  const webpackUMDConfig = require('../../webpack.umd.config')
   const compiler = webpack(webpackUMDConfig)
 
   compiler.run((err, stats) => {

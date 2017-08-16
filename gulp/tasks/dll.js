@@ -4,7 +4,6 @@ import rimraf from 'rimraf'
 import webpack from 'webpack'
 
 import config from '../../config'
-import webpackDLLConfig from '../../webpack.dll'
 
 const g = loadPlugins()
 const { log, PluginError } = g.util
@@ -22,6 +21,7 @@ task('clean:dll', (cb) => {
 // ----------------------------------------
 
 task('build:dll', (cb) => {
+  const webpackDLLConfig = require('../../webpack.dll').default
   const compiler = webpack(webpackDLLConfig)
 
   compiler.run((err, stats) => {

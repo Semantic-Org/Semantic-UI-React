@@ -8,7 +8,6 @@ import WebpackDevMiddleware from 'webpack-dev-middleware'
 import WebpackHotMiddleware from 'webpack-hot-middleware'
 
 import config from '../../config'
-import webpackConfig from '../../webpack.config.babel'
 import gulpReactDocgen from '../plugins/gulp-react-docgen'
 
 const g = loadPlugins()
@@ -53,6 +52,7 @@ task('build:docs:images', () => src(`${config.paths.docsSrc()}/**/*.{png,jpg,gif
   .pipe(dest(config.paths.docsDist())))
 
 task('build:docs:webpack', (cb) => {
+  const webpackConfig = require('../../webpack.config.babel').default
   const compiler = webpack(webpackConfig)
 
   compiler.run((err, stats) => {
@@ -97,6 +97,7 @@ task('build:docs', series(
 
 task('serve:docs', (cb) => {
   const app = express()
+  const webpackConfig = require('../../webpack.config.babel').default
   const compiler = webpack(webpackConfig)
 
   app
