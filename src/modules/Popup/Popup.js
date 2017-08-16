@@ -141,17 +141,10 @@ export default class Popup extends Component {
   state = {}
 
   computePopupOffset(width) { // computing the left/right offset based on width
-    let offset = 0
-    if (width > 17 && width <= 25) {
-      offset = 5.8
-    } else if (width > 9 && width <= 17) {
-      offset = 13
-    } else if (width > 5 && width <= 9) {
-      offset = 15
-    } else if (width > 1 && width <= 5) {
-      offset = 18
-    }
-    return offset
+    if (width > 17 && width <= 25) return 5.8
+    else if (width > 9 && width <= 17) return 13
+    else if (width > 5 && width <= 9) return 15
+    else if (width > 1 && width <= 5) return 18
   }
 
   computePopupStyle(positions) {
