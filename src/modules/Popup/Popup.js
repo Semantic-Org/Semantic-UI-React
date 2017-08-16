@@ -140,6 +140,13 @@ export default class Popup extends Component {
 
   state = {}
 
+  computePopupOffset(width) { // computing the left/right offset based on width
+    if (width > 17 && width <= 25) return 5.8
+    else if (width > 9 && width <= 17) return 13
+    else if (width > 5 && width <= 9) return 15
+    else if (width > 1 && width <= 5) return 18
+  }
+
   computePopupStyle(positions) {
     const style = { position: 'absolute' }
 
@@ -151,10 +158,20 @@ export default class Popup extends Component {
     const { clientWidth, clientHeight } = document.documentElement
 
     if (_.includes(positions, 'right')) {
-      style.right = Math.round(clientWidth - (this.coords.right + pageXOffset))
+      if (this.coords.width < 25) { // for the element having small width
+        style.right = Math.round(clientWidth - (this.coords.right + pageXOffset)
+         - this.computePopupOffset(this.coords.width))
+      } else {
+        style.right = Math.round(clientWidth - (this.coords.right + pageXOffset))
+      }
       style.left = 'auto'
     } else if (_.includes(positions, 'left')) {
-      style.left = Math.round(this.coords.left + pageXOffset)
+      if (this.coords.width < 25) { // for the element having small width
+        style.left = Math.round(this.coords.left + pageXOffset
+        - this.computePopupOffset(this.coords.width))
+      } else {
+        style.left = Math.round(this.coords.left + pageXOffset)
+      }
       style.right = 'auto'
     } else { // if not left nor right, we are horizontally centering the element
       const xOffset = (this.coords.width - this.popupCoords.width) / 2
