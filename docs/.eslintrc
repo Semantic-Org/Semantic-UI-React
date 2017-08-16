@@ -1,5 +1,4 @@
 {
-  "parser": "babel-eslint",
   "globals": {
     "__DEV__": false,
     "__TEST__": false,
@@ -7,28 +6,12 @@
     "__PROD__": false
   },
   "rules": {
-    "global-require": 0,
-    "jsx-quotes": [2, "prefer-single"],
-    "max-len": [2, 120],
-    "no-return-assign": [ 2, "except-parens"],
-    "no-underscore-dangle": 0,
-    "padded-blocks": [2, {
-      "blocks": "never",
-      "switches": "never",
-      "classes": "never"
-    }],
-    "semi": [2, "never"],
     "jsx-a11y/alt-text": 0,
+    "jsx-a11y/href-no-hash": 0,
     "jsx-a11y/label-has-for": 0,
     "jsx-a11y/no-static-element-interactions": 0,
-    "jsx-a11y/href-no-hash": 0,
-    "import/no-extraneous-dependencies": 0,
-    "import/no-unresolved": 0,
-    "import/extensions": 0,
-    "import/no-webpack-loader-syntax": 0,
     "react/no-array-index-key": 0,
     "react/no-render-return-value": 0,
-    "react/no-unescaped-entities": 0,
-    "react/jsx-filename-extension": [2, { "extensions": [".js"] }]
+    "react/no-unescaped-entities": 0
   }
 }
