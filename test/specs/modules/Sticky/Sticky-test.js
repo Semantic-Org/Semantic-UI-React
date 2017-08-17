@@ -57,6 +57,27 @@ describe('Sticky', () => {
     window.requestAnimationFrame = requestAnimationFrame
   })
 
+  it('should use window as default scroll context', () => {
+    const onStick = sandbox.spy()
+    const wrapper = mount(<Sticky onStick={onStick} />)
+    const instance = wrapper.instance()
+    instance.triggerRef = { getBoundingClientRect: () => ({ top: -1 }) }
+    window.dispatchEvent(new Event('scroll'))
+    onStick.should.have.been.called()
+  })
+
+  it('should set a scroll context', () => {
+    const div = document.createElement('div')
+    const onStick = sandbox.spy()
+    const wrapper = mount(<Sticky scrollContext={div} onStick={onStick} />)
+    const instance = wrapper.instance()
+    instance.triggerRef = { getBoundingClientRect: () => ({ top: -1 }) }
+    window.dispatchEvent(new Event('scroll'))
+    onStick.should.not.have.been.called()
+    div.dispatchEvent(new Event('scroll'))
+    onStick.should.have.been.called()
+  })
+
   it('should create two divs', () => {
     const children = shallow(<Sticky />).children()
 
