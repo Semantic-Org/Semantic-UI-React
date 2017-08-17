@@ -104,20 +104,20 @@ describe('Visibility', () => {
   })
 
   it('should use window as default scroll context', () => {
-    const spy = sandbox.spy()
-    mount(<Visibility onUpdate={spy} />)
+    const onUpdate = sandbox.spy()
+    mount(<Visibility onUpdate={onUpdate} />)
     window.dispatchEvent(new Event('scroll'))
-    spy.should.have.been.called()
+    onUpdate.should.have.been.called()
   })
 
   it('should set a scroll context', () => {
     const div = document.createElement('div')
-    const spy = sandbox.spy()
-    mount(<Visibility onUpdate={spy} context={div} />)
+    const onUpdate = sandbox.spy()
+    mount(<Visibility onUpdate={onUpdate} context={div} />)
     window.dispatchEvent(new Event('scroll'))
-    spy.should.not.have.been.called()
+    onUpdate.should.not.have.been.called()
     div.dispatchEvent(new Event('scroll'))
-    spy.should.have.been.called()
+    onUpdate.should.have.been.called()
   })
 
   describe('calculations', () => {
