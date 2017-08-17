@@ -103,6 +103,23 @@ describe('Visibility', () => {
     if (wrapper && wrapper.unmount) wrapper.unmount()
   })
 
+  it('should use window as default scroll context', () => {
+    const spy = sandbox.spy()
+    mount(<Visibility onUpdate={spy} />)
+    window.dispatchEvent(new Event('scroll'))
+    spy.should.have.been.called()
+  })
+
+  it('should set a scroll context', () => {
+    const div = document.createElement('div')
+    const spy = sandbox.spy()
+    mount(<Visibility onUpdate={spy} context={div} />)
+    window.dispatchEvent(new Event('scroll'))
+    spy.should.not.have.been.called()
+    div.dispatchEvent(new Event('scroll'))
+    spy.should.have.been.called()
+  })
+
   describe('calculations', () => {
     expectations.forEach((expectation) => {
       it(`calculates ${expectation.name}`, () => {
