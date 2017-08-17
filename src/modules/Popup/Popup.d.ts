@@ -39,7 +39,7 @@ export interface PopupProps extends PortalProps {
   offset?: number;
 
   /** Event triggering the popup. */
-  on?: 'hover' | 'click' | 'focus';
+  on?: array;
 
   /**
    * Called when a close event happens.

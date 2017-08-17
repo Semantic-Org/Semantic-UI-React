@@ -6,7 +6,7 @@ const PopupExampleHideOnScroll = () => (
     <Popup
       trigger={<Button icon>Click me</Button>}
       content='Hide the popup on any scroll event'
-      on='click'
+      on={['click']}
       hideOnScroll
     />
     <Popup

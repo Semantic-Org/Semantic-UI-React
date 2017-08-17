@@ -72,7 +72,7 @@ export default class Popup extends Component {
     offset: PropTypes.number,
 
     /** Event triggering the popup. */
-    on: PropTypes.oneOf(['hover', 'click', 'focus']),
+    on: PropTypes.arrayOf(PropTypes.oneOf(['hover', 'click', 'focus'])),
 
     /**
      * Called when a close event happens.
@@ -127,7 +127,7 @@ export default class Popup extends Component {
 
   static defaultProps = {
     position: 'top left',
-    on: 'hover',
+    on: ['hover'],
   }
 
   static _meta = {
@@ -140,13 +140,6 @@ export default class Popup extends Component {
 
   state = {}
 
-  computePopupOffset(width) { // computing the left/right offset based on width
-    if (width > 17 && width <= 25) return 5.8
-    else if (width > 9 && width <= 17) return 13
-    else if (width > 5 && width <= 9) return 15
-    else if (width > 1 && width <= 5) return 18
-  }
-
   computePopupStyle(positions) {
     const style = { position: 'absolute' }
 
@@ -158,20 +151,10 @@ export default class Popup extends Component {
     const { clientWidth, clientHeight } = document.documentElement
 
     if (_.includes(positions, 'right')) {
-      if (this.coords.width < 25) { // for the element having small width
-        style.right = Math.round(clientWidth - (this.coords.right + pageXOffset)
-         - this.computePopupOffset(this.coords.width))
-      } else {
-        style.right = Math.round(clientWidth - (this.coords.right + pageXOffset))
-      }
+      style.right = Math.round(clientWidth - (this.coords.right + pageXOffset))
       style.left = 'auto'
     } else if (_.includes(positions, 'left')) {
-      if (this.coords.width < 25) { // for the element having small width
-        style.left = Math.round(this.coords.left + pageXOffset
-        - this.computePopupOffset(this.coords.width))
-      } else {
-        style.left = Math.round(this.coords.left + pageXOffset)
-      }
+      style.left = Math.round(this.coords.left + pageXOffset)
       style.right = 'auto'
     } else { // if not left nor right, we are horizontally centering the element
       const xOffset = (this.coords.width - this.popupCoords.width) / 2
@@ -267,15 +250,16 @@ export default class Popup extends Component {
       portalProps.closeOnPortalMouseLeave = true
       portalProps.mouseLeaveDelay = 300
     }
-
-    if (on === 'click') {
+    if (_.indexOf(on, 'click') > -1) {
       portalProps.openOnTriggerClick = true
       portalProps.closeOnTriggerClick = true
       portalProps.closeOnDocumentClick = true
-    } else if (on === 'focus') {
+    }
+    if (_.indexOf(on, 'focus') > -1) {
       portalProps.openOnTriggerFocus = true
       portalProps.closeOnTriggerBlur = true
-    } else if (on === 'hover') {
+    }
+    if (_.indexOf(on, 'hover') > -1) {
       portalProps.openOnTriggerMouseEnter = true
       portalProps.closeOnTriggerMouseLeave = true
       // Taken from SUI: https://git.io/vPmCm
