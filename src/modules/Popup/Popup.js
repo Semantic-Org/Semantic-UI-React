@@ -74,7 +74,7 @@ export default class Popup extends Component {
     /** Events triggering the popup. */
     on: PropTypes.oneOfType([
       PropTypes.oneOf(['hover', 'click', 'focus']),
-      PropTypes.arrayOf(['hover', 'click', 'focus']),
+      PropTypes.arrayOf(PropTypes.oneOf(['hover', 'click', 'focus'])),
     ]),
 
     /**
