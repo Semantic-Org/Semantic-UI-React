@@ -5,7 +5,7 @@ const PopupExampleHover = () => (
   <Popup
     trigger={<Button icon='add' content='Add a friend' />}
     content='Sends an email invite to a friend.'
-    on={'hover'}
+    on='hover'
   />
 )
 
