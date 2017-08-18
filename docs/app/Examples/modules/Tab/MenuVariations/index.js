@@ -39,6 +39,11 @@ const TabMenuVariationsExamples = () => (
       description='A tab menu can invert its colors.'
       examplePath='modules/Tab/MenuVariations/TabExampleColoredInverted'
     />
+    <ComponentExample
+      title='Vertical'
+      description='A tab menu can be displayed in a vertical appearance.'
+      examplePath='modules/Tab/MenuVariations/TabExampleVerticalTrue'
+    />
   </ExampleSection>
 )
 
