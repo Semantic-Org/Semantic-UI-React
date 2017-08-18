@@ -67,7 +67,7 @@ export default class Sticky extends Component {
     /** Whether element should be "pushed" by the viewport, attaching to the bottom of the screen when scrolling up. */
     pushing: PropTypes.bool,
 
-    /** Context which sticky should attach `onscroll` events. */
+    /** Context which sticky should attach onscroll events. */
     scrollContext: PropTypes.object,
   }
 

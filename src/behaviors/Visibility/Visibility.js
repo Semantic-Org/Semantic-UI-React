@@ -20,7 +20,7 @@ export default class Visibility extends Component {
     /** Primary content. */
     children: PropTypes.node,
 
-    /** The scroll context visibility should use. */
+    /** Context which visibility should attach onscroll events. */
     context: PropTypes.object,
 
     /**
