@@ -115,7 +115,7 @@ describe('Popup', () => {
             content='_'
             position={position}
             trigger={<button>foo</button>}
-            on={['click']}
+            on='click'
           />,
         )
         wrapper.find('button').simulate('click')
@@ -134,7 +134,7 @@ describe('Popup', () => {
             content='_'
             position={position}
             trigger={<button>foo</button>}
-            on={['click']}
+            on='click'
             offset={999}
           />,
         )
@@ -176,7 +176,7 @@ describe('Popup', () => {
   describe('trigger', () => {
     it('it appears on click', () => {
       const trigger = <button>foo</button>
-      wrapperMount(<Popup on={['click']} content='foo' header='bar' trigger={trigger} />)
+      wrapperMount(<Popup on='click' content='foo' header='bar' trigger={trigger} />)
 
       wrapper.find('button').simulate('click')
       assertInBody('.ui.popup.visible')
@@ -195,7 +195,7 @@ describe('Popup', () => {
 
     it('it appears on focus', () => {
       const trigger = <input type='text' />
-      wrapperMount(<Popup on={['focus']} content='foo' trigger={trigger} />)
+      wrapperMount(<Popup on='focus' content='foo' trigger={trigger} />)
 
       wrapper.find('input').simulate('focus')
       assertInBody('.ui.popup.visible')

@@ -26,7 +26,7 @@ class PopupExampleControlled extends React.Component {
           <Popup
             trigger={<Button content='Open controlled popup' />}
             content={`This message will self-destruct in ${timeoutLength / 1000} seconds!`}
-            on={['click']}
+            on={'click'}
             open={this.state.isOpen}
             onClose={this.handleClose}
             onOpen={this.handleOpen}

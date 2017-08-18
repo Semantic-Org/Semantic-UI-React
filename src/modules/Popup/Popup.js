@@ -71,8 +71,11 @@ export default class Popup extends Component {
     /** Horizontal offset in pixels to be applied to the Popup. */
     offset: PropTypes.number,
 
-    /** Event triggering the popup. */
-    on: PropTypes.arrayOf(PropTypes.oneOf(['hover', 'click', 'focus'])),
+    /** Events triggering the popup. */
+    on: PropTypes.oneOfType([
+      PropTypes.oneOf(['hover', 'click', 'focus']),
+      PropTypes.arrayOf(['hover', 'click', 'focus']),
+    ]),
 
     /**
      * Called when a close event happens.
@@ -127,7 +130,7 @@ export default class Popup extends Component {
 
   static defaultProps = {
     position: 'top left',
-    on: ['hover'],
+    on: 'hover',
   }
 
   static _meta = {
@@ -245,21 +248,22 @@ export default class Popup extends Component {
     const portalProps = {}
 
     const { on, hoverable } = this.props
+    const normalizedOn = _.isArray(on) ? on : [on]
 
     if (hoverable) {
       portalProps.closeOnPortalMouseLeave = true
       portalProps.mouseLeaveDelay = 300
     }
-    if (_.indexOf(on, 'click') > -1) {
+    if (_.includes(normalizedOn, 'click')) {
       portalProps.openOnTriggerClick = true
       portalProps.closeOnTriggerClick = true
       portalProps.closeOnDocumentClick = true
     }
-    if (_.indexOf(on, 'focus') > -1) {
+    if (_.includes(normalizedOn, 'focus')) {
       portalProps.openOnTriggerFocus = true
       portalProps.closeOnTriggerBlur = true
     }
-    if (_.indexOf(on, 'hover') > -1) {
+    if (_.includes(normalizedOn, 'hover')) {
       portalProps.openOnTriggerMouseEnter = true
       portalProps.closeOnTriggerMouseLeave = true
       // Taken from SUI: https://git.io/vPmCm

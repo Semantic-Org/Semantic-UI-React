@@ -2,7 +2,7 @@ import React from 'react'
 import { Button, Grid, Popup } from 'semantic-ui-react'
 
 const PopupExampleNested = () => (
-  <Popup wide trigger={<Button content='Are you the one?' />} on={['click']}>
+  <Popup wide trigger={<Button content='Are you the one?' />} on={'click'}>
     <Grid divided columns='equal'>
       <Grid.Column>
         <Popup
