@@ -204,7 +204,7 @@ describe('Popup', () => {
     it('it appears on multiple', (done) => {
       const trigger = <button>foo</button>
       const button = wrapperMount(<Popup on={['click', 'hover']} content='foo' header='bar' trigger={trigger} />)
-      .find('button')
+        .find('button')
 
       button.simulate('click')
       assertInBody('.ui.popup.visible')
