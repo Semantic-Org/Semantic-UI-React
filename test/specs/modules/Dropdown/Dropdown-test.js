@@ -2260,7 +2260,7 @@ describe('Dropdown', () => {
 
     it('clears value of the searchQuery when selection is only option', () => {
       const search = wrapperMount(
-        <Dropdown options={customOptions} selection search allowAdditions />
+        <Dropdown options={customOptions} selection search allowAdditions />,
       )
         .find('input.search')
 
