@@ -1,4 +1,9 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><link rel="shortcut icon" type="image/x-icon" href="/logo.png"><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.12/semantic.min.css"><title>Semantic UI React</title><script>// Apply gh-pages SPA redirect that was applied in 404.html
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><link rel="shortcut icon" type="image/x-icon" href="/logo.png"><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.12/semantic.min.css"><title>Semantic UI React</title><script>// Redirect to HTTPs
+    // We need poor-mans client side redirects because we persist app router urls in localStorage
+    if (location.hostname === 'react.semantic-ui.com' && location.protocol !== 'https:') {
+      location.href = location.href.replace('http:', 'https:')
+    }
+    // Apply gh-pages SPA redirect that was applied in 404.html
     // ----------------------------------------
     (function() {
       var redirect = sessionStorage.redirect
@@ -6,7 +11,7 @@
       if (redirect && redirect !== location.href) {
         history.replaceState(null, null, redirect)
       }
-    })()</script></head><body class="dimmed dimmable"><div id="docs-loading-dimmer" class="ui active page dimmer"><div class="content"><div class="center"><div class="ui large text loader"><div class="ui inverted teal header">Loading docs...<div class="sub header">Semantic UI React v0.71.4</div></div></div></div></div></div><script>(function() {
+    })()</script></head><body class="dimmed dimmable"><div id="docs-loading-dimmer" class="ui active page dimmer"><div class="content"><div class="center"><div class="ui large text loader"><div class="ui inverted teal header">Loading docs...<div class="sub header">Semantic UI React v0.71.5</div></div></div></div></div></div><script>(function() {
       var delay = 500
       var dimmer = document.querySelector('#docs-loading-dimmer')
       dimmer.style.pointerEvents = 'none'
@@ -25,7 +30,7 @@
       }
 
       window.addEventListener('load', removeDimmer)
-    }())</script><script src="//cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.1/anchor.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.25.0/babel.min.js" data-presets="es2015,react,stage1"></script><script src="//cdn.jsdelivr.net/faker.js/4.1.0/faker.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/js-beautify/1.6.14/beautify-html.min.js"></script><!-- Use unminified React when not in production so we get errors and warnings --><script src="//unpkg.com/prop-types@15.5.8/prop-types.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/react/15.5.4/react-dom.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/react/15.5.4/react-dom-server.min.js"></script><script src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><style>html, body {
+    }())</script><script src="//cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.1/anchor.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js" data-presets="es2015,react,stage1"></script><script src="//cdn.jsdelivr.net/faker.js/4.1.0/faker.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/js-beautify/1.6.14/beautify-html.min.js"></script><!-- Use unminified React when not in production so we get errors and warnings --><script src="//unpkg.com/prop-types@15.5.10/prop-types.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react-dom.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react-dom-server.min.js"></script><script src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><style>html, body {
       background: #f7f7f7;
     }
 
@@ -132,4 +137,4 @@
       margin-bottom: 2em !important;
       padding-bottom: 1em !important;
       transition: box-shadow 300ms;
-    }</style><script type="text/javascript" src="//cdn.rawgit.com/Semantic-Org/Semantic-UI-React/gh-pages/vendor.0d08050bb3e6e692bae7.js"></script><script type="text/javascript" src="//cdn.rawgit.com/Semantic-Org/Semantic-UI-React/gh-pages/app.b81b0a758e41a3857a51.js"></script></body></html>
+    }</style><script type="text/javascript" src="//raw.github.com/Semantic-Org/Semantic-UI-React/gh-pages/vendor.7d42ae6ef79f80bfe43f.js"></script><script type="text/javascript" src="//raw.github.com/Semantic-Org/Semantic-UI-React/gh-pages/app.0de29eaca1610b4cf71c.js"></script></body></html>
