@@ -1,69 +1,69 @@
 import _ from 'lodash'
 import React from 'react'
 
-import Breakpoint from 'src/addons/Breakpoint/Breakpoint'
+import Responsive from 'src/addons/Responsive/Responsive'
 import * as common from 'test/specs/commonTests'
 import { domEvent, sandbox } from 'test/utils'
 
-const { points } = Breakpoint.defaultProps
+const { breakpoints } = Responsive.defaultProps
 const requiredProps = { only: 'mobile' }
 
-describe('Breakpoint', () => {
+describe('Responsive', () => {
   beforeEach(() => {
-    sandbox.stub(window, 'innerWidth').value(points.mobile)
+    sandbox.stub(window, 'innerWidth').value(breakpoints.mobile)
   })
 
-  common.isConformant(Breakpoint, { requiredProps })
-  common.rendersChildren(Breakpoint, { requiredProps })
+  common.isConformant(Responsive, { requiredProps })
+  common.rendersChildren(Responsive, { requiredProps })
 
   describe('children', () => {
-    _.each(points, (value, point) => {
+    _.each(breakpoints, (value, point) => {
       it(`renders when point "${point}" fits`, () => {
         sandbox.stub(window, 'innerWidth').value(value)
 
-        shallow(<Breakpoint only={point} />)
+        shallow(<Responsive only={point} />)
           .should.have.tagName('div')
       })
     })
 
-    _.each(points, (value, point) => {
+    _.each(breakpoints, (value, point) => {
       it(`return null when point "${point}" doesn't fit`, () => {
         sandbox.stub(window, 'innerWidth').value(value - 1)
 
-        shallow(<Breakpoint only={point} />)
+        shallow(<Responsive only={point} />)
           .should.be.blank()
       })
     })
 
-    it('renders when fits multiple points', () => {
-      sandbox.stub(window, 'innerWidth').value(points.largeScreen)
+    it('renders when fits multiple breakpoints', () => {
+      sandbox.stub(window, 'innerWidth').value(breakpoints.largeScreen)
 
-      shallow(<Breakpoint only='large screen' />)
+      shallow(<Responsive only='large screen' />)
         .should.have.tagName('div')
-      shallow(<Breakpoint only='large screen' />)
+      shallow(<Responsive only='large screen' />)
         .should.have.tagName('div')
 
-      shallow(<Breakpoint only='computer large screen' />)
+      shallow(<Responsive only='computer large screen' />)
         .should.have.tagName('div')
     })
 
-    it('renders when fits one of points', () => {
-      shallow(<Breakpoint only='mobile' />)
+    it('renders when fits one of breakpoints', () => {
+      shallow(<Responsive only='mobile' />)
         .should.have.tagName('div')
-      shallow(<Breakpoint only='tablet' />)
+      shallow(<Responsive only='tablet' />)
         .should.be.blank()
 
-      shallow(<Breakpoint only='mobile tablet' />)
+      shallow(<Responsive only='mobile tablet' />)
         .should.have.tagName('div')
     })
   })
 
   describe('onUpdate', () => {
     it('listens for resize', done => {
-      const wrapper = mount(<Breakpoint only='mobile' />)
+      const wrapper = mount(<Responsive only='mobile' />)
       wrapper.should.have.tagName('div')
 
-      sandbox.stub(window, 'innerWidth').value(points.tablet)
+      sandbox.stub(window, 'innerWidth').value(breakpoints.tablet)
       domEvent.fire(window, 'resize')
 
       setTimeout(() => {
@@ -74,9 +74,9 @@ describe('Breakpoint', () => {
 
     it('is called with (e, data) when window was resized', done => {
       const onUpdate = sandbox.spy()
-      const width = points.tablet
+      const width = breakpoints.tablet
 
-      mount(<Breakpoint only='mobile' onUpdate={onUpdate} />)
+      mount(<Responsive only='mobile' onUpdate={onUpdate} />)
       sandbox.stub(window, 'innerWidth').value(width)
       domEvent.fire(window, 'resize')
 

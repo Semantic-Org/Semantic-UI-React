@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { GridOnlyProp } from '../../collections/Grid/GridColumn';
 
-export interface BreakpointProps {
+export interface ResponsiveProps {
   [key: string]: any;
 
   /** An element type to render as (string or function). */
@@ -19,13 +19,13 @@ export interface BreakpointProps {
    * @param {SyntheticEvent} event - The React SyntheticEvent object
    * @param {object} data - All props and the event value.
    */
-  onUpdate?: BreakpointOnUpdateData;
+  onUpdate?: ResponsiveOnUpdateData;
 
-  /** Breakpoints definition. */
-  points?: BreakpointPoints;
+  /** Responsives definition. */
+  breakpoints?: ResponsivePoints;
 }
 
-export interface BreakpointPoints {
+export interface ResponsivePoints {
   computer: number;
   largeScreen: number;
   mobile: number;
@@ -33,10 +33,10 @@ export interface BreakpointPoints {
   widescreen: number;
 }
 
-export interface BreakpointOnUpdateData extends BreakpointProps {
+export interface ResponsiveOnUpdateData extends ResponsiveProps {
   number: string;
 }
 
-declare const Breakpoint: React.ComponentClass<BreakpointProps>;
+declare const Responsive: React.ComponentClass<ResponsiveProps>;
 
-export default Breakpoint;
+export default Responsive;

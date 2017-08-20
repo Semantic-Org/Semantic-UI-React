@@ -1,10 +1,10 @@
 // Addons
 export {
-  default as Breakpoint,
-  BreakpointPoints,
-  BreakpointProps,
-  BreakpointOnUpdateData
-} from './dist/commonjs/addons/Breakpoint';
+  default as Responsive,
+  ResponsivePoints,
+  ResponsiveProps,
+  ResponsiveOnUpdateData
+} from './dist/commonjs/addons/Responsive';
 export { default as Confirm, ConfirmProps } from './dist/commonjs/addons/Confirm';
 export { default as Portal, PortalProps } from './dist/commonjs/addons/Portal';
 export { default as Radio, RadioProps } from './dist/commonjs/addons/Radio';
