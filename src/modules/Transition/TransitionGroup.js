@@ -37,6 +37,7 @@ export default class TransitionGroup extends React.Component {
         hide: PropTypes.number.isRequired,
         show: PropTypes.number.isRequired,
       }),
+      PropTypes.string,
     ]),
   }
 

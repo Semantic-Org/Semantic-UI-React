@@ -37,6 +37,7 @@ export default class Transition extends Component {
         hide: PropTypes.number,
         show: PropTypes.number,
       }),
+      PropTypes.string,
     ]),
 
     /** Show the component; triggers the enter or exit animation. */

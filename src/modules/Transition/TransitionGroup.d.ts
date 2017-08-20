@@ -16,7 +16,7 @@ export interface TransitionGroupProps {
   children?: React.ReactNode;
 
   /** Duration of the CSS transition animation in milliseconds. */
-  duration?: number | TransitionPropDuration;
+  duration?: number | string | TransitionPropDuration;
 }
 
 interface TransitionGroupComponent extends React.ComponentClass<TransitionGroupProps> {
