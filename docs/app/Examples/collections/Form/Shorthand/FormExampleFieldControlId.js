@@ -9,7 +9,7 @@ const FormExampleFieldControlId = () => (
     </Form.Group>
     <Form.Field id='form-textarea-control-opinion' control={TextArea} label='Opinion' placeholder='Opinion' />
     <Form.Field id='form-button-control-public' control={Button} content='Confirm' label='Label with htmlFor' />
-   </Form>
+  </Form>
 )
 
 export default FormExampleFieldControlId

@@ -1,12 +1,12 @@
-const config = require('./config')
-const webpackConfig = require('./webpack.config')
+import config from './config'
+import webpackConfig from './webpack.config.babel'
 
 const formatError = (msg) => {
   // filter out empty lines and node_modules
   if (!msg.trim() || /~/.test(msg)) return ''
 
   // indent the error beneath the it() message
-  let newLine = '  ' + msg
+  let newLine = `  ${msg}`
 
   if (newLine.includes('webpack:///')) {
     // remove webpack:///
@@ -16,16 +16,16 @@ const formatError = (msg) => {
     newLine = newLine.slice(0, newLine.indexOf(' <- '))
   }
 
-  return newLine + '\n'
+  return `${newLine}\n`
 }
 
-module.exports = (karmaConfig) => {
+export default (karmaConfig) => {
   karmaConfig.set({
     basePath: process.cwd(),
     browsers: ['PhantomJS'],
     client: {
       mocha: {
-        reporter: 'html',   // change Karma's debug.html to mocha web reporter
+        reporter: 'html', // change Karma's debug.html to mocha web reporter
         ui: 'bdd',
       },
     },
@@ -51,21 +51,21 @@ module.exports = (karmaConfig) => {
     },
     webpack: {
       entry: './test/tests.bundle.js',
+      externals: {
+        ...webpackConfig.externals,
+        // These are internal deps specific to React 0.13 required() by enzyme
+        // They shouldn't be requiring these at all, issues and fix proposed
+        // https://github.com/airbnb/enzyme/issues/285
+        'react/lib/ExecutionEnvironment': true,
+        'react/lib/ReactContext': true,
+        // this is a React 0.13 dep required by enzyme
+        // ignore it since we don't have it
+        'react/addons': true,
+      },
       devtool: config.compiler_devtool,
       module: webpackConfig.module,
       plugins: webpackConfig.plugins,
-      resolve: Object.assign({}, webpackConfig.resolve, {
-        alias: Object.assign({}, webpackConfig.resolve.alias, {
-          // These are internal deps specific to React 0.13 required() by enzyme
-          // They shouldn't be requiring these at all, issues and fix proposed
-          // https://github.com/airbnb/enzyme/issues/285
-          'react/lib/ExecutionEnvironment': 'empty/object',
-          'react/lib/ReactContext': 'empty/object',
-          // this is a React 0.13 dep required by enzyme
-          // ignore it since we don't have it
-          'react/addons': 'empty/object',
-        }),
-      }),
+      resolve: webpackConfig.resolve,
     },
     webpackServer: {
       progress: false,

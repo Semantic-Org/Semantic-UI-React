@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Form, Input, Message } from 'semantic-ui-react'
+import { Button, Form, Message } from 'semantic-ui-react'
 
 const FormExampleError = () => (
   <Form error>

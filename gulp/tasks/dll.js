@@ -1,9 +1,9 @@
-const del = require('del')
-const { task, series } = require('gulp')
-const loadPlugins = require('gulp-load-plugins')
-const webpack = require('webpack')
+import { task, series } from 'gulp'
+import loadPlugins from 'gulp-load-plugins'
+import rimraf from 'rimraf'
+import webpack from 'webpack'
 
-const config = require('../../config')
+import config from '../../config'
 
 const g = loadPlugins()
 const { log, PluginError } = g.util
@@ -13,8 +13,7 @@ const { log, PluginError } = g.util
 // ----------------------------------------
 
 task('clean:dll', (cb) => {
-  del.sync(config.paths.base('dll'))
-  cb()
+  rimraf(config.paths.base('dll'), cb)
 })
 
 // ----------------------------------------
@@ -22,7 +21,7 @@ task('clean:dll', (cb) => {
 // ----------------------------------------
 
 task('build:dll', (cb) => {
-  const webpackDLLConfig = require('../../webpack.dll')
+  const webpackDLLConfig = require('../../webpack.dll').default
   const compiler = webpack(webpackDLLConfig)
 
   compiler.run((err, stats) => {
@@ -52,5 +51,5 @@ task('build:dll', (cb) => {
 
 task('dll', series(
   'clean:dll',
-  'build:dll'
+  'build:dll',
 ))
