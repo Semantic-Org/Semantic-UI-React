@@ -6,7 +6,7 @@ import {
   META,
 } from '../../lib'
 
-import Menu from '../../collections/Menu/Menu'
+import Menu from '../../collections/Menu'
 
 // `attached` text menus adds borders to the otherwise borderless `text` menu
 // remove once this lands: https://github.com/Semantic-Org/Semantic-UI/issues/5205

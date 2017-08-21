@@ -10,10 +10,11 @@ import {
   META,
 } from '../../lib'
 
+import Input from '../../elements/Input/Input'
+import Popup from '../../modules/Popup'
+
 import Calendar from './Calendar'
 import DateRange from './DateRange'
-import Input from '../../elements/Input/Input'
-import Popup from '../Popup/Popup'
 
 const debug = makeDebugger('datetime')
 
@@ -76,7 +77,7 @@ export default class Datetime extends Component {
     /** An errored dropdown can alert a user to a problem. */
     error: PropTypes.bool,
 
-    /** First day of the week. Can be either 0 (Sunday), 1 (Monday) **/
+    /** First day of the week. Can be either 0 (Sunday), 1 (Monday) * */
     firstDayOfWeek: PropTypes.number,
 
     /** Shorthand for Icon. */
@@ -193,12 +194,12 @@ export default class Datetime extends Component {
     hourFormatter: dateUtils.defaultHourFormatter,
     date: true,
     time: true,
-    onChange: () => {}
+    onChange: () => {},
   }
 
   componentWillMount() {
     this.trySetState({
-      mode: this.getInitialMode()
+      mode: this.getInitialMode(),
     })
   }
 
@@ -224,28 +225,28 @@ export default class Datetime extends Component {
     })
   }
 
-  toggle = (e) => this.state.open ? this.close(e) : this.open(e)
+  toggle = e => (this.state.open ? this.close(e) : this.open(e))
 
-  handleDateSelection = (e, {value, nextMode, rangeStart}) => {
+  handleDateSelection = (e, { value, nextMode, rangeStart }) => {
     debug('handleDateSelection()', value, e)
     e.stopPropagation()
     e.nativeEvent.stopImmediatePropagation()
     const { onChange } = this.props
 
     this.trySetState({
-      value: value,
+      value,
       mode: nextMode,
     })
     if (!nextMode) {
       onChange(e, {
         ...this.props,
-        value: value
+        value,
       })
       this.close()
     }
   }
 
-  onSetMonth = (ev, {value, nextMode}) => {
+  onSetMonth = (ev, { value, nextMode }) => {
     debug('onSetMonth()', value, nextMode)
     this.trySetState({
       value,
@@ -256,16 +257,16 @@ export default class Datetime extends Component {
   /**
    * Return a formatted date or date/time string
    */
-  getFormattedDate(value) {
-    value = value || this.state.value
+  getFormattedDate(value = this.state.value) {
     const { date, time } = this.props
+
     if (date && time) {
       return `${this.props.dateFormatter(value)} ${this.props.timeFormatter(value)}`
     } else if (!date && time) {
       return this.props.timeFormatter(value)
     }
     return this.props.dateFormatter(value)
-   }
+  }
 
   render() {
     debug('render state', this.state)

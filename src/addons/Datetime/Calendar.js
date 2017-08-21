@@ -7,7 +7,7 @@ import Years from './Years'
 import Hours from './Hours'
 import Minutes from './Minutes'
 
-import { 
+import {
   customPropTypes,
   dateUtils,
   META,
@@ -84,18 +84,18 @@ export default class Calendar extends Component {
 
     /** Enables time selection. */
     time: PropTypes.bool,
-    
+
     /**
      * Formats the date string in the input and calendar.
      * A function that receives a date argument and returns a formatted date
-     * @param {date} - A date object. 
+     * @param {date} - A date object.
      */
     dateFormatter: PropTypes.func,
     /**
      * Formats the time string in the input and calendar.
      * The function receives a date arguments and should return a string
      * formatted time.
-     * @param {date} - A date object. 
+     * @param {date} - A date object.
      */
     timeFormatter: PropTypes.func,
     /**
@@ -119,9 +119,9 @@ export default class Calendar extends Component {
     selectionStart: null,
     selectionEnd: null,
     value: new Date(),
-    dateFormatter: dateUtils.defaultDateFormatter,  
-    timeFormatter: dateUtils.defaultTimeFormatter,  
-    hourFormatter: dateUtils.defaultHourFormatter
+    dateFormatter: dateUtils.defaultDateFormatter,
+    timeFormatter: dateUtils.defaultTimeFormatter,
+    hourFormatter: dateUtils.defaultHourFormatter,
   }
 
   getYear = () => this.props.value.getFullYear()
@@ -138,7 +138,7 @@ export default class Calendar extends Component {
     e.stopPropagation()
     const { value, page } = props
     const { onDateSelect } = this.props
-    const date = this.props.value;
+    const date = this.props.value
     const nextMode = 'day'
     const month = !value && page
       ? date.getMonth() + page
@@ -149,7 +149,7 @@ export default class Calendar extends Component {
       ...this.props,
       value: date,
       nextMode: nextMode,
-    }) 
+    })
   }
 
   setYear = (e, year, nextMode = 'day') => {
@@ -159,7 +159,7 @@ export default class Calendar extends Component {
     onDateSelect(e, {
       ...this.props,
       value: value,
-      nextMode: nextMode
+      nextMode: nextMode,
     })
   }
 
@@ -170,7 +170,7 @@ export default class Calendar extends Component {
     onDateSelect(e, {
       ...this.props,
       value: value,
-      nextMode: nextMode
+      nextMode: nextMode,
     })
   }
 
@@ -182,7 +182,7 @@ export default class Calendar extends Component {
     onDateSelect(e, {
       ...this.props,
       value: value,
-      nextMode: nextMode
+      nextMode: nextMode,
     })
   }
 
@@ -195,7 +195,7 @@ export default class Calendar extends Component {
       ...this.props,
       value: value,
       nextMode: nextMode,
-      rangeStart: range ? date : null
+      rangeStart: range ? date : null,
     })
   }
 
@@ -226,12 +226,12 @@ export default class Calendar extends Component {
    * @param {string} mode - One of day, month or year
    * @param {SyntheticEvent} e
    */
-  changeMode = (e, {name}) => {
+  changeMode = (e, { name }) => {
     e.stopPropagation()
     const { value, onDateSelect } = this.props
     onDateSelect(e, {
-      value: value, 
-      nextMode: name
+      value: value,
+      nextMode: name,
     })
   }
 
@@ -249,7 +249,7 @@ export default class Calendar extends Component {
       mode,
       value,
       selectionStart,
-      selectionEnd
+      selectionEnd,
     } = this.props
 
     switch (mode) {
@@ -266,17 +266,17 @@ export default class Calendar extends Component {
           />
         )
 
-      case 'month': 
+      case 'month':
         return <Months content={content} onClick={this.setMonth} />
 
       case 'year':
         return <Years year={this.getYear()} onClick={this.setYear} />
 
       case 'hour':
-        return <Hours onClick={this.setHour} formatter={hourFormatter}/>
+        return <Hours onClick={this.setHour} formatter={hourFormatter} />
 
       case 'minute':
-        return <Minutes onClick={this.setMinute} hour={this.getHour()} timeFormatter={timeFormatter}/>
+        return <Minutes onClick={this.setMinute} hour={this.getHour()} timeFormatter={timeFormatter} />
 
       default:
         return null
@@ -285,7 +285,7 @@ export default class Calendar extends Component {
 
   render() {
     const { date, mode } = this.props
-    const calendarDay = this.getDate() 
+    const calendarDay = this.getDate()
     return (
       <div style={style}>
         {date && (

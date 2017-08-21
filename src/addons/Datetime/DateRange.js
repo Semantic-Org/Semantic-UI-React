@@ -10,10 +10,11 @@ import {
 } from '../../lib'
 
 // import { defaultDateFormatter, defaultTimeFormatter } from '../../lib/dateUtils'
-import Calendar from './Calendar'
 import Input from '../../elements/Input'
-import Popup from '../Popup'
-import Grid from '../../collections/Grid' 
+import Popup from '../../modules/Popup'
+import Grid from '../../collections/Grid'
+
+import Calendar from './Calendar'
 
 const debug = makeDebugger('datetime')
 
@@ -153,14 +154,14 @@ export default class DateRange extends Component {
     /**
      * Formats the date string in the input and calendar.
      * A function that receives a date argument and returns a formatted date
-     * @param {date} - A date object. 
+     * @param {date} - A date object.
      */
     dateFormatter: PropTypes.func,
     /**
      * Formats the time string in the input and calendar.
      * The function receives a date arguments and should return a string
      * formatted time.
-     * @param {date} - A date object. 
+     * @param {date} - A date object.
      */
     timeFormatter: PropTypes.func,
     /**
@@ -231,8 +232,8 @@ export default class DateRange extends Component {
       pm: 'PM',
     },
     disabledDates: [],
-    dateFormatter: dateUtils.defaultDateFormatter,  
-    timeFormatter: dateUtils.defaultTimeFormatter,  
+    dateFormatter: dateUtils.defaultDateFormatter,
+    timeFormatter: dateUtils.defaultTimeFormatter,
     hourFormatter: dateUtils.defaultHourFormatter,
     date: true,
     time: false,
@@ -452,7 +453,7 @@ export default class DateRange extends Component {
           <Grid.Column>
             <Calendar
               rangeId={0}
-              value={months[0]} 
+              value={months[0]}
               content={this.props.content}
               onDateSelect={this.handleDateSelection}
               onChangeMonth={this.handleMonthChange}
@@ -472,7 +473,7 @@ export default class DateRange extends Component {
           <Grid.Column>
             <Calendar
               rangeId={1}
-              value={months[1]} 
+              value={months[1]}
               content={this.props.content}
               onDateSelect={this.handleDateSelection}
               onChangeMonth={this.handleMonthChange}
