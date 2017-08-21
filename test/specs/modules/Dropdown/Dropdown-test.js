@@ -1675,7 +1675,7 @@ describe('Dropdown', () => {
         .first()
         .simulate('click', nativeEvent)
 
-      // cleared search query
+      // not cleared search query
       wrapper.should.have.state('searchQuery', searchQuery)
     })
 
@@ -1692,7 +1692,7 @@ describe('Dropdown', () => {
       domEvent.keyDown(document, { key: 'ArrowDown' })
       domEvent.keyDown(document, { key: 'Enter' })
 
-      // cleared search query
+      // not cleared search query
       wrapper.should.have.state('searchQuery', searchQuery)
     })
 
