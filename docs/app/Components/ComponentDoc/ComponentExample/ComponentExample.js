@@ -409,19 +409,19 @@ class ComponentExample extends Component {
         </Grid.Row>
 
         <Grid.Row columns={1}>
-        {children && (
-          <Grid.Column style={childrenStyle}>
-            {children}
-          </Grid.Column>
-        )}
+          {children && (
+            <Grid.Column style={childrenStyle}>
+              {children}
+            </Grid.Column>
+          )}
         </Grid.Row>
 
         <Grid.Row columns={1}>
-        <Grid.Column className={`rendered-example ${this.getKebabExamplePath()}`}>
-          {exampleElement}
-        </Grid.Column>
-        {this.renderJSX()}
-        {this.renderHTML()}
+          <Grid.Column className={`rendered-example ${this.getKebabExamplePath()}`}>
+            {exampleElement}
+          </Grid.Column>
+          {this.renderJSX()}
+          {this.renderHTML()}
         </Grid.Row>
       </Grid>
     )

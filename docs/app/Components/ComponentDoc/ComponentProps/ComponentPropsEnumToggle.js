@@ -7,13 +7,11 @@ const toggleStyle = {
   cursor: 'pointer',
 }
 
-const ComponentPropsEnumToggle = ({ showAll, toggle, total }) => {
-  return (
-    <a style={toggleStyle} onClick={toggle}>
-      {showAll ? 'Show less' : `Show all ${total}`}
-    </a>
-  )
-}
+const ComponentPropsEnumToggle = ({ showAll, toggle, total }) => (
+  <a style={toggleStyle} onClick={toggle}>
+    {showAll ? 'Show less' : `Show all ${total}`}
+  </a>
+)
 
 ComponentPropsEnumToggle.propTypes = {
   showAll: PropTypes.bool,

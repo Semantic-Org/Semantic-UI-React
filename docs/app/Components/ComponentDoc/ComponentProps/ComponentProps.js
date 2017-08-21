@@ -2,7 +2,7 @@ import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
-import { Header, Icon, Popup, Table } from 'src'
+import { Icon, Popup, Table } from 'src'
 import ComponentPropsEnum from './ComponentPropsEnum'
 import ComponentPropsExtra from './ComponentPropsExtra'
 
