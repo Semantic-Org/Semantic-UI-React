@@ -55,6 +55,9 @@ export interface StickyProps {
 
   /** Whether element should be "pushed" by the viewport, attaching to the bottom of the screen when scrolling up. */
   pushing?: boolean;
+
+  /** Context which sticky should attach onscroll events. */
+  scrollContext?: object;
 }
 
 declare const Sticky: React.ComponentClass<StickyProps>;

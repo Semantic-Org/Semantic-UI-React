@@ -19,7 +19,7 @@ describe('examples', () => {
     console.warn.restore()
     console.error.restore()
   })
-  exampleContext.keys().forEach(path => {
+  exampleContext.keys().forEach((path) => {
     // don't test index files, they repeat errors of individual files
     if (/index\.js$/.test(path)) return
     const filename = path.replace(/^.*\/(\w+\.js)$/, '$1')

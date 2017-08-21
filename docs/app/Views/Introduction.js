@@ -3,6 +3,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 import Editor from 'docs/app/Components/Editor/Editor'
+import { semanticUIDocsURL, repoURL } from 'docs/app/utils'
 import pkg from 'package.json'
 import {
   Container,
@@ -15,7 +16,6 @@ import {
   Segment,
 } from 'src'
 import Logo from '../Components/Logo/Logo'
-import { semanticUIDocsURL, repoURL } from 'docs/app/utils'
 
 const AccordionJSX = `const panels = [{
   title: 'What is a dog?',
@@ -231,7 +231,11 @@ const Introduction = () => (
       <Header as='h3'>Child Object Arrays</Header>
       <p>
         Components with repeating children accept arrays of plain objects.
-        <a href='https://facebook.github.io/react/docs/context.html#parent-child-coupling' target='_blank'>
+        <a
+          href='https://facebook.github.io/react/docs/context.html#parent-child-coupling'
+          target='_blank'
+          rel='noopener noreferrer'
+        >
           &nbsp;Facebook is fond of this&nbsp;
         </a>
         over using context to handle parent-child coupling and so are we.
@@ -273,7 +277,11 @@ const Introduction = () => (
 
       <p>
         React has the concept of
-        <a href='https://facebook.github.io/react/docs/forms.html' target='_blank'>
+        <a
+          href='https://facebook.github.io/react/docs/forms.html'
+          target='_blank'
+          rel='noopener noreferrer'
+        >
           &nbsp;controlled and uncontrolled&nbsp;
         </a>
         components.
@@ -291,7 +299,7 @@ const Introduction = () => (
       </p>
       <p>
         Take a look at our
-        <a href={`${repoURL}/blob/master/src/lib/AutoControlledComponent.js` }>
+        <a href={`${repoURL}/blob/master/src/lib/AutoControlledComponent.js`}>
           &nbsp;<code>AutoControlledComponent</code>&nbsp;
         </a>
         to see how this was done.

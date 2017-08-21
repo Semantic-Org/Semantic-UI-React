@@ -11,7 +11,7 @@ const panels = _.times(3, () => ({
 class AccordionExampleActiveIndex extends Component {
   state = { activeIndex: 0 }
 
-  handleSliderChange = (e) => this.setState({
+  handleSliderChange = e => this.setState({
     activeIndex: Number(e.target.value),
   })
 

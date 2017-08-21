@@ -86,7 +86,7 @@ describe('Popup', () => {
           position='bottom right'
           content='foo'
           trigger={<button>foo</button>}
-        />
+        />,
       )
 
       wrapper.find('button').simulate('click')
@@ -99,7 +99,7 @@ describe('Popup', () => {
           position='bottom left'
           content='foo'
           trigger={<button>foo</button>}
-        />
+        />,
       )
 
       wrapper.find('button').simulate('click')
@@ -108,7 +108,7 @@ describe('Popup', () => {
   })
 
   describe('position', () => {
-    POSITIONS.forEach(position => {
+    POSITIONS.forEach((position) => {
       it('is always within the viewport', () => {
         wrapperMount(
           <Popup
@@ -116,7 +116,7 @@ describe('Popup', () => {
             position={position}
             trigger={<button>foo</button>}
             on='click'
-          />
+          />,
         )
         wrapper.find('button').simulate('click')
 
@@ -136,7 +136,7 @@ describe('Popup', () => {
             trigger={<button>foo</button>}
             on='click'
             offset={999}
-          />
+          />,
         )
         wrapper.find('button').simulate('click')
         const selectedPosition = wrapper.state('position')
@@ -199,6 +199,23 @@ describe('Popup', () => {
 
       wrapper.find('input').simulate('focus')
       assertInBody('.ui.popup.visible')
+    })
+
+    it('it appears on multiple', (done) => {
+      const trigger = <button>foo</button>
+      const button = wrapperMount(<Popup on={['click', 'hover']} content='foo' header='bar' trigger={trigger} />)
+        .find('button')
+
+      button.simulate('click')
+      assertInBody('.ui.popup.visible')
+
+      domEvent.click('body')
+
+      button.simulate('mouseenter')
+      setTimeout(() => {
+        assertInBody('.ui.popup.visible')
+        done()
+      }, 51)
     })
   })
 
@@ -280,7 +297,7 @@ describe('Popup', () => {
   describe('size', () => {
     const sizes = _.without(SUI.SIZES, 'medium', 'big', 'massive')
 
-    sizes.forEach(size => {
+    sizes.forEach((size) => {
       it(`adds the ${size} to the popup className`, () => {
         wrapperMount(<Popup size={size} open />)
         assertInBody(`.ui.${size}.popup`)

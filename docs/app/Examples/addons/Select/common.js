@@ -1,4 +1,4 @@
-export const countryOptions = [
+export const countryOptions = [ // eslint-disable-line import/prefer-default-export
   { key: 'af', value: 'af', flag: 'af', text: 'Afghanistan' },
   { key: 'ax', value: 'ax', flag: 'ax', text: 'Aland Islands' },
   { key: 'al', value: 'al', flag: 'al', text: 'Albania' },

@@ -6,7 +6,7 @@ class FormExampleClearOnSubmit extends Component {
 
   handleChange = (e, { name, value }) => this.setState({ [name]: value })
 
-  handleSubmit = e => this.setState({ email: '', name: '' })
+  handleSubmit = () => this.setState({ email: '', name: '' })
 
   render() {
     const { name, email } = this.state

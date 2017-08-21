@@ -101,12 +101,12 @@ export interface ButtonProps {
   toggle?: boolean;
 }
 
-interface ButtonComponent extends React.ComponentClass<ButtonProps> {
-  Content: typeof ButtonContent;
-  Group: typeof ButtonGroup;
-  Or: typeof ButtonOr;
-}
+declare class Button extends React.Component<ButtonProps, {}> {
+  static Content: typeof ButtonContent;
+  static Group: typeof ButtonGroup;
+  static Or: typeof ButtonOr;
 
-declare const Button: ButtonComponent;
+  focus: () => void;
+}
 
 export default Button;

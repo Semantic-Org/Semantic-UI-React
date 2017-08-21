@@ -1,4 +1,3 @@
-require('babel-register')
 const _ = require('lodash')
 const SUI = require('../../../src/lib/SUI') // eslint-disable-line no-unused-vars
 
@@ -11,21 +10,21 @@ const transformEnumValues = values => _.flatMap(values, ({ value }) => {
   return value.replace(/'/g, '')
 })
 
-const parseEnum = type => {
+const parseEnum = (type) => {
   const { value } = type
 
   if (typeof value === 'string' && value.includes('SUI')) {
-    return Object.assign(type, { value: uniqValues(evalValue(value)) })
+    return { ...type, value: uniqValues(evalValue(value)) }
   }
 
-  return Object.assign(type, { value: uniqValues(transformEnumValues(value)) })
+  return { ...type, value: uniqValues(transformEnumValues(value)) }
 }
 
-const parseUnion = union => {
+const parseUnion = (union) => {
   const { value } = union
-  const transformed = value.map(type => type.name === 'enum' ? parseEnum(type) : type)
+  const transformed = value.map(type => (type.name === 'enum' ? parseEnum(type) : type))
 
-  return Object.assign(union, { value: transformed })
+  return { ...union, value: transformed }
 }
 
 const parsers = {
@@ -33,7 +32,7 @@ const parsers = {
   union: parseUnion,
 }
 
-module.exports = ({ type }) => {
+export default ({ type }) => {
   const parser = parsers[type.name]
 
   return parser ? parser(type) : type
