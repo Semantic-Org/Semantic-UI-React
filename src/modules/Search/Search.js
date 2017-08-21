@@ -282,7 +282,7 @@ export default class Search extends Component {
     _.invoke(this.props, 'onResultSelect', e, { ...this.props, result })
   }
 
-  handleSelectionChange = e => {
+  handleSelectionChange = (e) => {
     debug('handleSelectionChange()')
 
     const result = this.getSelectedResult()
@@ -521,10 +521,8 @@ export default class Search extends Component {
       ...rest,
       icon,
       input: { className: 'prompt', tabIndex: '0', autoComplete: 'off' },
-      onBlur: this.handleBlur,
       onChange: this.handleSearchChange,
       onClick: this.handleInputClick,
-      onFocus: this.handleFocus,
       value,
     } })
   }

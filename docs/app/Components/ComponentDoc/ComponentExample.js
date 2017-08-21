@@ -7,10 +7,9 @@ import { renderToStaticMarkup } from 'react-dom/server'
 import { html } from 'js-beautify'
 import copyToClipboard from 'copy-to-clipboard'
 
-import { exampleContext, repoURL } from 'docs/app/utils'
+import { exampleContext, repoURL, scrollToAnchor } from 'docs/app/utils'
 import { Divider, Grid, Icon, Header, Menu, Popup } from 'src'
 import Editor from 'docs/app/Components/Editor/Editor'
-import { scrollToAnchor } from 'docs/app/utils'
 
 const babelConfig = {
   presets: ['es2015', 'react', 'stage-1'],
@@ -94,7 +93,7 @@ class ComponentExample extends Component {
 
   setHashAndScroll = () => {
     const { history } = this.props
-    history.replace(location.pathname + '#' + this.anchorName)
+    history.replace(`${location.pathname}#${this.anchorName}`)
     scrollToAnchor()
   }
 
@@ -197,7 +196,7 @@ class ComponentExample extends Component {
       .replace(/ import/g, '\nimport')  // one import per line
       .split('\n')                      // split lines
       .filter(Boolean)                  // remove empty lines
-      .map(l => {                       // rewrite imports to const statements
+      .map((l) => {                     // rewrite imports to const statements
         const [
           defaultImport,
           destructuredImports,
@@ -237,7 +236,7 @@ class ComponentExample extends Component {
       const exampleElement = _.isFunction(Example) ? <Example /> : Example
 
       if (!isValidElement(exampleElement)) {
-        this.renderError('Default export is not a valid element. Type:' + {}.toString.call(exampleElement))
+        this.renderError(`Default export is not a valid element. Type:${{}.toString.call(exampleElement)}`)
       } else {
         // immediately render a null error
         // but also ensure the last debounced error call is a null error

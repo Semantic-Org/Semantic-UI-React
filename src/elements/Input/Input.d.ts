@@ -83,6 +83,8 @@ export interface InputOnChangeData extends InputProps {
   value: string;
 }
 
-declare const Input: React.ComponentClass<InputProps>;
+declare class Input extends React.Component<InputProps, {}> {
+  focus: () => void;
+}
 
 export default Input;

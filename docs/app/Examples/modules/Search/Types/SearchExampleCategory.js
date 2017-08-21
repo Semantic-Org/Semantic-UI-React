@@ -10,10 +10,10 @@ const getResults = () => _.times(5, () => ({
   price: faker.finance.amount(0, 100, 2, '$'),
 }))
 
-const source = _.range(0, 3).reduce((memo, index) => {
+const source = _.range(0, 3).reduce((memo) => {
   const name = faker.hacker.noun()
 
-  memo[name] = {
+  memo[name] = { // eslint-disable-line no-param-reassign
     name,
     results: getResults(),
   }
@@ -37,14 +37,11 @@ export default class SearchExampleCategory extends Component {
       if (this.state.value.length < 1) return this.resetComponent()
 
       const re = new RegExp(_.escapeRegExp(this.state.value), 'i')
-      const isMatch = (result) => re.test(result.title)
+      const isMatch = result => re.test(result.title)
 
       const filteredResults = _.reduce(source, (memo, data, name) => {
         const results = _.filter(data.results, isMatch)
-
-        if (results.length) {
-          memo[name] = { name, results }
-        }
+        if (results.length) memo[name] = { name, results } // eslint-disable-line no-param-reassign
 
         return memo
       }, {})

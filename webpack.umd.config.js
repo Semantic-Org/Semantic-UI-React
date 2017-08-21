@@ -1,8 +1,8 @@
-const webpack = require('webpack')
+import webpack from 'webpack'
 
-const config = require('./config')
-const webpackConfig = require('./webpack.config')
-const pkg = require('./package.json')
+import config from './config'
+import pkg from './package.json'
+import webpackConfig from './webpack.config.babel'
 
 const { paths } = config
 
@@ -39,4 +39,4 @@ const webpackUMDConfig = {
   },
 }
 
-module.exports = webpackUMDConfig
+export default webpackUMDConfig

@@ -1,6 +1,8 @@
 import React from 'react'
 import pkg from 'package.json'
 import { NavLink } from 'react-router-dom'
+
+import { semanticUIDocsURL, semanticUIRepoURL, semanticUICSSRepoURL } from 'docs/app/utils'
 import {
   Button,
   Container,
@@ -10,7 +12,6 @@ import {
   Segment,
 } from 'src'
 import Logo from '../Components/Logo/Logo'
-import { semanticUIDocsURL, semanticUIRepoURL, semanticUICSSRepoURL } from 'docs/app/utils'
 
 const suiCSSVersion = pkg.devDependencies['semantic-ui-css'].replace(/[~^]/, '')
 
@@ -190,19 +191,51 @@ const Usage = () => (
         <List>
           <List.Item
             icon='github'
-            content={ <a href='https://github.com/webpack/webpack/issues/1750' target='_blank'>webpack/webpack#1750</a>}
+            content={(
+              <a
+                href='https://github.com/webpack/webpack/issues/1750'
+                rel='noopener noreferrer'
+                target='_blank'
+              >
+                webpack/webpack#1750
+              </a>
+            )}
           />
           <List.Item
             icon='github'
-            content={ <a href='https://github.com/webpack/webpack/issues/2867' target='_blank'>webpack/webpack#2867</a>}
+            content={(
+              <a
+                href='https://github.com/webpack/webpack/issues/2867'
+                rel='noopener noreferrer'
+                target='_blank'
+              >
+                webpack/webpack#2867
+              </a>
+            )}
           />
           <List.Item
             icon='github'
-            content={<a href='https://github.com/webpack/webpack/issues/2899' target='_blank'>webpack/webpack#2899</a>}
+            content={(
+              <a
+                href='https://github.com/webpack/webpack/issues/2899'
+                rel='noopener noreferrer'
+                target='_blank'
+              >
+                webpack/webpack#2899
+              </a>
+            )}
           />
           <List.Item
             icon='github'
-            content={<a href='https://github.com/webpack/webpack/issues/3092' target='_blank'>webpack/webpack#3092</a>}
+            content={(
+              <a
+                href='https://github.com/webpack/webpack/issues/3092'
+                rel='noopener noreferrer'
+                target='_blank'
+              >
+                webpack/webpack#3092
+              </a>
+            )}
           />
         </List>
         <p>

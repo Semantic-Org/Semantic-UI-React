@@ -12,7 +12,11 @@ const RadioStatesExamples = () => (
     >
       <Message>
         Use{' '}
-        <a href='https://facebook.github.io/react/docs/forms.html#default-value' target='_blank'>
+        <a
+          href='https://facebook.github.io/react/docs/forms.html#default-value'
+          rel='noopener noreferrer'
+          target='_blank'
+        >
           <code>defaultChecked</code>
         </a>
         {' '}as you normally would to set default form values.

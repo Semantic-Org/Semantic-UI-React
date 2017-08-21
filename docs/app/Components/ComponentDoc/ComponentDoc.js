@@ -5,25 +5,25 @@ import React, { Component } from 'react'
 import DocumentTitle from 'react-document-title'
 import { Link } from 'react-router-dom'
 
-import ComponentExamples from './ComponentExamples'
-import ComponentProps from './ComponentProps'
-import docgenInfo from '../../docgenInfo.json'
-
 import { repoURL } from 'docs/app/utils'
 import { META } from 'src/lib'
 import * as semanticUIReact from 'src'
-import { Divider, Grid, Header, Icon, List } from 'src'
+import docgenInfo from '../../docgenInfo.json'
+import ComponentExamples from './ComponentExamples'
+import ComponentProps from './ComponentProps'
+
+const { Divider, Grid, Header, Icon, List } = semanticUIReact
 
 const docgenPaths = _.keys(docgenInfo)
 
 const pathSepRegEx = new RegExp(_.escapeRegExp(__PATH_SEP__), 'g')
 
-const getDocgenPath = (componentName) => _.find(docgenPaths, path => {
-  return new RegExp(`${__PATH_SEP__}${componentName}.js$`).test(path)
-})
+const getDocgenPath = componentName => _.find(docgenPaths, path => (
+  new RegExp(`${__PATH_SEP__}${componentName}.js$`).test(path)
+))
 
 // no matter the OS path separator, use '/'
-const getPosixPath = (componentName) => getDocgenPath(componentName).replace(pathSepRegEx, '/')
+const getPosixPath = componentName => getDocgenPath(componentName).replace(pathSepRegEx, '/')
 
 const getGithubSourceUrl = (componentName) => {
   const posixPath = getPosixPath(componentName)
@@ -35,9 +35,9 @@ const getGithubEditUrl = (componentName) => {
   return `${repoURL}/edit/master/${posixPath}`
 }
 
-const getSemanticUIDocsUrl = (_meta) => {
-  return `https://semantic-ui.com/${_meta.type}s/${_meta.parent || _meta.name}`.toLowerCase()
-}
+const getSemanticUIDocsUrl = _meta => (
+  `https://semantic-ui.com/${_meta.type}s/${_meta.parent || _meta.name}`.toLowerCase()
+)
 
 const showPropsStyle = {
   display: 'inline-flex',
@@ -217,7 +217,7 @@ export default class ComponentDoc extends Component {
           {docgen.docBlock.description || (
             <span>
               <a href={getGithubEditUrl(_meta.name)}>Add a description</a>. Instructions are{' '}
-              <a href={`${repoURL}/blob/master/.github/CONTRIBUTING.md#components` }>
+              <a href={`${repoURL}/blob/master/.github/CONTRIBUTING.md#components`}>
                 here.
               </a>
               {' '}Description is in the SUI Docs, right there <Icon name='pointing right' />

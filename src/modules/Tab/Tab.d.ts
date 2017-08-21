@@ -16,6 +16,9 @@ export interface TabProps {
   /** Shorthand props for the Menu. */
   menu?: any;
 
+  /** Shorthand props for the Grid. */
+  grid?: any;
+
   /**
    * Called on tab change.
    *
