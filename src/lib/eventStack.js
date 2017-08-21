@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import isBrowser from './isBrowser'
 
-class eventStack {
+class EventStack {
   _handlers = {}
   _pools = {}
 
@@ -9,7 +9,7 @@ class eventStack {
   // Utils
   // ------------------------------------
 
-  _emit = name => event => {
+  _emit = name => (event) => {
     _.forEach(this._pools, (pool, poolName) => {
       const { [name]: handlers } = pool
 
@@ -22,13 +22,13 @@ class eventStack {
     })
   }
 
-  _normalize = handlers => _.isArray(handlers) ? handlers : [handlers]
+  _normalize = handlers => (_.isArray(handlers) ? handlers : [handlers])
 
   // ------------------------------------
   // Listeners handling
   // ------------------------------------
 
-  _listen = name => {
+  _listen = (name) => {
     if (_.has(this._handlers, name)) return
     const handler = this._emit(name)
 
@@ -36,7 +36,7 @@ class eventStack {
     this._handlers[name] = handler
   }
 
-  _unlisten = name => {
+  _unlisten = (name) => {
     if (_.some(this._pools, name)) return
     const { [name]: handler } = this._handlers
 
@@ -65,7 +65,7 @@ class eventStack {
 
     const events = _.without(
       _.get(this._pools, `${pool}.${name}`, []),
-      ...this._normalize(handlers)
+      ...this._normalize(handlers),
     )
 
     if (events.length > 0) {
@@ -78,6 +78,6 @@ class eventStack {
   }
 }
 
-const instance = new eventStack()
+const instance = new EventStack()
 
 export default instance
