@@ -35,13 +35,10 @@ const parseUnion = (union) => {
   }
 }
 
-const parsers = {
-  enum: parseEnum,
-  union: parseUnion,
-}
-
 export default ({ type }) => {
-  const parser = parsers[type.name]
+  if (!type) return null
+  if (type.name === 'enum') return parseEnum(type)
+  if (type.name === 'union') return parseUnion(type)
 
-  return parser ? parser(type) : type
+  return type
 }

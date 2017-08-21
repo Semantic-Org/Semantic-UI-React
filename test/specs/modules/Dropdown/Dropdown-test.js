@@ -2424,7 +2424,7 @@ describe('Dropdown', () => {
 
       const errorMessage =
         'Dropdown `value` must not be an array when `multiple` is not set.' +
-        ' Either set `multiple={true}` or use a string or number value.'
+        ' Either set `multiple` or use a string or number value.'
 
       spy.should.have.been.calledOnce()
       spy.should.have.been.calledWithMatch(errorMessage)

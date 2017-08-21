@@ -28,12 +28,12 @@ task('clean:docs', (cb) => {
 // ----------------------------------------
 
 task('build:docs:docgen', () => src([
-  `${config.paths.src()}/addons/**/*.js`,
+  `${config.paths.src()}/addons/**/[A-Z]*.js`,
   `${config.paths.src()}/behaviors/**/*.js`,
-  `${config.paths.src()}/elements/**/*.js`,
-  `${config.paths.src()}/collections/**/*.js`,
-  `${config.paths.src()}/modules/**/*.js`,
-  `${config.paths.src()}/views/**/*.js`,
+  `${config.paths.src()}/elements/**/[A-Z]*.js`,
+  `${config.paths.src()}/collections/**/[A-Z]*.js`,
+  `${config.paths.src()}/modules/**/[A-Z]*.js`,
+  `${config.paths.src()}/views/**/[A-Z]*.js`,
   '!**/index.js',
 ])
   // do not remove the function keyword
