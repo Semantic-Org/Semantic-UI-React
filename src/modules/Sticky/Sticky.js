@@ -66,11 +66,15 @@ export default class Sticky extends Component {
 
     /** Whether element should be "pushed" by the viewport, attaching to the bottom of the screen when scrolling up. */
     pushing: PropTypes.bool,
+
+    /** Context which sticky should attach onscroll events. */
+    scrollContext: PropTypes.object,
   }
 
   static defaultProps = {
     bottomOffset: 0,
     offset: 0,
+    scrollContext: window,
   }
 
   static _meta = {
@@ -83,12 +87,14 @@ export default class Sticky extends Component {
   }
 
   componentDidMount() {
+    const { scrollContext } = this.props
     this.handleUpdate()
-    window.addEventListener('scroll', this.handleUpdate)
+    scrollContext.addEventListener('scroll', this.handleUpdate)
   }
 
   componentWillUnmount() {
-    window.removeEventListener('scroll', this.handleUpdate)
+    const { scrollContext } = this.props
+    scrollContext.removeEventListener('scroll', this.handleUpdate)
   }
 
   // ----------------------------------------

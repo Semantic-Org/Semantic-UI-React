@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
+
+import { Menu } from 'src'
+import IconSearch from '../../../Components/IconSearch/IconSearch'
 import States from './States'
 import Variations from './Variations'
 import Groups from './Groups'
-import IconSearch from '../../../Components/IconSearch/IconSearch'
-import { Menu } from 'src'
 
 const tabs = [
   'Icon Set',

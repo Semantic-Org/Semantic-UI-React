@@ -38,7 +38,7 @@ class DropdownExampleRemote extends Component {
     this.setState({ value: multiple ? [value] : value })
   }
 
-  toggleSearch = (e) => this.setState({ search: e.target.checked })
+  toggleSearch = e => this.setState({ search: e.target.checked })
 
   toggleMultiple = (e) => {
     const { value } = this.state

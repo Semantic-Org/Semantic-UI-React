@@ -1,5 +1,5 @@
 import React from 'react'
-import { Checkbox, Form, Input, Select } from 'semantic-ui-react'
+import { Form } from 'semantic-ui-react'
 
 const options = [
   { key: 'm', text: 'Male', value: 'male' },

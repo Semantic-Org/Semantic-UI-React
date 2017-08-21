@@ -7,7 +7,7 @@ const assertIframeSrc = (props, srcPart) => {
   const {
     id = 'default-test-id',
     source = 'youtube',
-    ...rest,
+    ...rest
   } = props
 
   shallow(<Embed active id={id} source={source} {...rest} />)

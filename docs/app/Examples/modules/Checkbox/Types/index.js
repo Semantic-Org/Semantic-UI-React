@@ -1,10 +1,9 @@
 import React from 'react'
+import { Message } from 'semantic-ui-react'
 
 import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
 import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
 import ShorthandExample from 'docs/app/Components/ComponentDoc/ShorthandExample'
-
-import { Message } from 'semantic-ui-react'
 
 const CheckboxTypesExamples = () => (
   <ExampleSection title='Types'>
@@ -52,7 +51,11 @@ const CheckboxTypesExamples = () => (
     >
       <Message warning>
         Radios in a group must be
-        <a href='https://facebook.github.io/react/docs/forms.html#controlled-components' target='_blank'>
+        <a
+          href='https://facebook.github.io/react/docs/forms.html#controlled-components'
+          rel='noopener noreferrer'
+          target='_blank'
+        >
           &nbsp;controlled components.
         </a>
       </Message>

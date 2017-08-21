@@ -53,6 +53,26 @@ describe('Tab', () => {
       wrapper.childAt(0).shallow().should.match('Segment')
       wrapper.childAt(1).should.match('Menu')
     })
+
+    it("renders right of the pane when tabular='right'", () => {
+      const wrapper = shallow(<Tab menu={{ fluid: true, vertical: true, tabular: 'right' }} panes={panes} />)
+
+      wrapper.childAt(0).should.match('Grid')
+      wrapper.childAt(0).shallow().childAt(0).should.match('GridColumn')
+      wrapper.childAt(0).shallow().childAt(0).shallow().childAt(0).shallow().should.match('Segment')
+      wrapper.childAt(0).shallow().childAt(1).should.match('GridColumn')
+      wrapper.childAt(0).shallow().childAt(1).shallow().childAt(0).should.match('Menu')
+    })
+
+    it("renders left of the pane when tabular='true'", () => {
+      const wrapper = shallow(<Tab menu={{ fluid: true, vertical: true, tabular: true }} panes={panes} />)
+
+      wrapper.childAt(0).should.match('Grid')
+      wrapper.childAt(0).shallow().childAt(0).should.match('GridColumn')
+      wrapper.childAt(0).shallow().childAt(0).shallow().childAt(0).should.match('Menu')
+      wrapper.childAt(0).shallow().childAt(1).should.match('GridColumn')
+      wrapper.childAt(0).shallow().childAt(1).shallow().childAt(0).shallow().should.match('Segment')
+    })
   })
 
   describe('activeIndex', () => {

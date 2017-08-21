@@ -2,7 +2,7 @@ import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
-import { Header, Icon, Popup, Table } from 'src'
+import { Icon, Popup, Table } from 'src'
 
 const extraDescriptionStyle = {
   color: '#666',
@@ -25,7 +25,7 @@ Extra.propTypes = {
   title: PropTypes.node,
 }
 
-const getTagType = tag => tag.type.type === 'AllLiteral' ? 'any' : tag.type.name
+const getTagType = tag => (tag.type.type === 'AllLiteral' ? 'any' : tag.type.name)
 
 /**
  * Displays a table of a Component's PropTypes.
@@ -48,7 +48,7 @@ export default class ComponentProps extends Component {
     showEnumsFor: {},
   }
 
-  toggleEnumsFor = (prop) => () => {
+  toggleEnumsFor = prop => () => {
     this.setState({
       showEnumsFor: {
         ...this.state.showEnumsFor,
@@ -70,7 +70,7 @@ export default class ComponentProps extends Component {
     />
   )
 
-  renderDefaultValue = item => {
+  renderDefaultValue = (item) => {
     const defaultValue = _.get(item, 'defaultValue.value')
     if (_.isNil(defaultValue)) return null
 
@@ -91,7 +91,7 @@ export default class ComponentProps extends Component {
       .filter(p => !_.includes(p, '.'))
       .join(', ')
 
-    const tagDescriptionRows = _.compact([...params, returns]).map(tag => {
+    const tagDescriptionRows = _.compact([...params, returns]).map((tag) => {
       const name = tag.name || tag.title
       return (
         <div key={name} style={{ display: 'flex', flexDirection: 'row' }}>
@@ -143,20 +143,18 @@ export default class ComponentProps extends Component {
     )
   }
 
-  renderRow = item => {
-    return (
-      <Table.Row key={item.name}>
-        <Table.Cell collapsing>{this.renderName(item)}{this.renderRequired(item)}</Table.Cell>
-        <Table.Cell collapsing>{this.renderDefaultValue(item)}</Table.Cell>
-        <Table.Cell collapsing>{item.type}</Table.Cell>
-        <Table.Cell>
-          {item.description && <p>{item.description}</p>}
-          {this.renderFunctionSignature(item)}
-          {this.renderEnums(item)}
-        </Table.Cell>
-      </Table.Row>
-    )
-  }
+  renderRow = item => (
+    <Table.Row key={item.name}>
+      <Table.Cell collapsing>{this.renderName(item)}{this.renderRequired(item)}</Table.Cell>
+      <Table.Cell collapsing>{this.renderDefaultValue(item)}</Table.Cell>
+      <Table.Cell collapsing>{item.type}</Table.Cell>
+      <Table.Cell>
+        {item.description && <p>{item.description}</p>}
+        {this.renderFunctionSignature(item)}
+        {this.renderEnums(item)}
+      </Table.Cell>
+    </Table.Row>
+  )
 
   render() {
     const { props: propsDefinition } = this.props
@@ -165,7 +163,7 @@ export default class ComponentProps extends Component {
       const value = _.get(config, 'type.value')
       let type = _.get(config, 'type.name')
       if (type === 'union') {
-        type = _.map(value, (val) => val.name).join('|')
+        type = _.map(value, val => val.name).join('|')
       }
       type = type && `{${type}}`
 
