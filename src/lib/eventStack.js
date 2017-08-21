@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import isBrowser from './isBrowser'
 
-class EventPool {
+class eventStack {
   _handlers = {}
   _pools = {}
 
@@ -78,6 +78,6 @@ class EventPool {
   }
 }
 
-const instance = new EventPool()
+const instance = new eventStack()
 
 export default instance

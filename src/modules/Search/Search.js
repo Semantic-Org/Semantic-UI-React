@@ -6,7 +6,7 @@ import React from 'react'
 import {
   AutoControlledComponent as Component,
   customPropTypes,
-  eventPool,
+  eventStack,
   getElementType,
   getUnhandledProps,
   htmlInputAttrs,
@@ -239,7 +239,7 @@ export default class Search extends Component {
         this.tryOpen()
       }
       if (this.state.open) {
-        eventPool.sub('keydown', [this.moveSelectionOnKeyDown, this.selectItemOnEnter])
+        eventStack.sub('keydown', [this.moveSelectionOnKeyDown, this.selectItemOnEnter])
       }
     } else if (prevState.focus && !this.state.focus) {
       debug('search blurred')
@@ -247,28 +247,28 @@ export default class Search extends Component {
         debug('mouse is not down, closing')
         this.close()
       }
-      eventPool.unsub('keydown', [this.moveSelectionOnKeyDown, this.selectItemOnEnter])
+      eventStack.unsub('keydown', [this.moveSelectionOnKeyDown, this.selectItemOnEnter])
     }
 
     // opened / closed
     if (!prevState.open && this.state.open) {
       debug('search opened')
       this.open()
-      eventPool.sub('click', this.closeOnDocumentClick)
-      eventPool.sub('keydown', [this.closeOnEscape, this.moveSelectionOnKeyDown, this.selectItemOnEnter])
+      eventStack.sub('click', this.closeOnDocumentClick)
+      eventStack.sub('keydown', [this.closeOnEscape, this.moveSelectionOnKeyDown, this.selectItemOnEnter])
     } else if (prevState.open && !this.state.open) {
       debug('search closed')
       this.close()
-      eventPool.unsub('click', this.closeOnDocumentClick)
-      eventPool.unsub('keydown', [this.closeOnEscape, this.moveSelectionOnKeyDown, this.selectItemOnEnter])
+      eventStack.unsub('click', this.closeOnDocumentClick)
+      eventStack.unsub('keydown', [this.closeOnEscape, this.moveSelectionOnKeyDown, this.selectItemOnEnter])
     }
   }
 
   componentWillUnmount() {
     debug('componentWillUnmount()')
 
-    eventPool.unsub('click', this.closeOnDocumentClick)
-    eventPool.unsub('keydown', [this.closeOnEscape, this.moveSelectionOnKeyDown, this.selectItemOnEnter])
+    eventStack.unsub('click', this.closeOnDocumentClick)
+    eventStack.unsub('keydown', [this.closeOnEscape, this.moveSelectionOnKeyDown, this.selectItemOnEnter])
   }
 
   // ----------------------------------------
@@ -345,14 +345,14 @@ export default class Search extends Component {
 
     this.isMouseDown = true
     _.invoke(this.props, 'onMouseDown', e, this.props)
-    eventPool.sub('mouseup', this.handleDocumentMouseUp)
+    eventStack.sub('mouseup', this.handleDocumentMouseUp)
   }
 
   handleDocumentMouseUp = () => {
     debug('handleDocumentMouseUp()')
 
     this.isMouseDown = false
-    eventPool.unsub('mouseup', this.handleDocumentMouseUp)
+    eventStack.unsub('mouseup', this.handleDocumentMouseUp)
   }
 
   handleInputClick = (e) => {

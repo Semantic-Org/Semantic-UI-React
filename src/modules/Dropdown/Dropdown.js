@@ -7,7 +7,7 @@ import {
   AutoControlledComponent as Component,
   childrenUtils,
   customPropTypes,
-  eventPool,
+  eventStack,
   getElementType,
   getUnhandledProps,
   keyboardKey,
@@ -438,11 +438,11 @@ export default class Dropdown extends Component {
         if (openOnFocus && openable) this.open()
       }
       if (!this.state.open) {
-        eventPool.sub('keydown', [this.openOnArrow, this.openOnSpace])
+        eventStack.sub('keydown', [this.openOnArrow, this.openOnSpace])
       } else {
-        eventPool.sub('keydown', [this.moveSelectionOnKeyDown, this.selectItemOnEnter])
+        eventStack.sub('keydown', [this.moveSelectionOnKeyDown, this.selectItemOnEnter])
       }
-      eventPool.sub('keydown', this.removeItemOnBackspace)
+      eventStack.sub('keydown', this.removeItemOnBackspace)
     } else if (prevState.focus && !this.state.focus) {
       debug('dropdown blurred')
       const { closeOnBlur } = this.props
@@ -450,7 +450,7 @@ export default class Dropdown extends Component {
         debug('mouse is not down and closeOnBlur=true, closing')
         this.close()
       }
-      eventPool.unsub('keydown', [
+      eventStack.unsub('keydown', [
         this.openOnArrow,
         this.openOnSpace,
         this.moveSelectionOnKeyDown,
@@ -462,26 +462,26 @@ export default class Dropdown extends Component {
     // opened / closed
     if (!prevState.open && this.state.open) {
       debug('dropdown opened')
-      eventPool.sub('keydown', [
+      eventStack.sub('keydown', [
         this.closeOnEscape,
         this.moveSelectionOnKeyDown,
         this.selectItemOnEnter,
         this.removeItemOnBackspace,
       ])
-      eventPool.sub('click', this.closeOnDocumentClick)
-      eventPool.unsub('keydown', [this.openOnArrow, this.openOnSpace])
+      eventStack.sub('click', this.closeOnDocumentClick)
+      eventStack.unsub('keydown', [this.openOnArrow, this.openOnSpace])
       this.scrollSelectedItemIntoView()
     } else if (prevState.open && !this.state.open) {
       debug('dropdown closed')
       this.handleClose()
-      eventPool.unsub('keydown', [
+      eventStack.unsub('keydown', [
         this.closeOnEscape,
         this.moveSelectionOnKeyDown,
         this.selectItemOnEnter,
       ])
-      eventPool.unsub('click', this.closeOnDocumentClick)
+      eventStack.unsub('click', this.closeOnDocumentClick)
       if (!this.state.focus) {
-        eventPool.unsub('keydown', this.removeItemOnBackspace)
+        eventStack.unsub('keydown', this.removeItemOnBackspace)
       }
     }
   }
@@ -489,7 +489,7 @@ export default class Dropdown extends Component {
   componentWillUnmount() {
     debug('componentWillUnmount()')
 
-    eventPool.unsub('keydown', [
+    eventStack.unsub('keydown', [
       this.openOnArrow,
       this.openOnSpace,
       this.moveSelectionOnKeyDown,
@@ -497,7 +497,7 @@ export default class Dropdown extends Component {
       this.removeItemOnBackspace,
       this.closeOnEscape,
     ])
-    eventPool.unsub('click', this.closeOnDocumentClick)
+    eventStack.unsub('click', this.closeOnDocumentClick)
   }
 
   // ----------------------------------------
@@ -644,7 +644,7 @@ export default class Dropdown extends Component {
     debug('handleMouseDown()')
 
     this.isMouseDown = true
-    eventPool.sub('mouseup', this.handleDocumentMouseUp)
+    eventStack.sub('mouseup', this.handleDocumentMouseUp)
     _.invoke(this.props, 'onMouseDown', e, this.props)
   }
 
@@ -652,7 +652,7 @@ export default class Dropdown extends Component {
     debug('handleDocumentMouseUp()')
 
     this.isMouseDown = false
-    eventPool.unsub('mouseup', this.handleDocumentMouseUp)
+    eventStack.unsub('mouseup', this.handleDocumentMouseUp)
   }
 
   handleClick = (e) => {

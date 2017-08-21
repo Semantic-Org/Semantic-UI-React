@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom'
 
 import {
   AutoControlledComponent as Component,
-  eventPool,
+  eventStack,
   isBrowser,
   keyboardKey,
   makeDebugger,
@@ -384,8 +384,8 @@ class Portal extends Component {
       mountNode.appendChild(this.rootNode)
     }
 
-    eventPool.sub('click', this.handleDocumentClick, 'Portal')
-    eventPool.sub('keydown', this.handleEscape, 'Portal')
+    eventStack.sub('click', this.handleDocumentClick, 'Portal')
+    eventStack.sub('keydown', this.handleEscape, 'Portal')
     _.invoke(this.props, 'onMount', null, this.props)
   }
 
@@ -403,8 +403,8 @@ class Portal extends Component {
     this.rootNode = null
     this.portalNode = null
 
-    eventPool.unsub('click', this.handleDocumentClick, 'Portal')
-    eventPool.unsub('keydown', this.handleEscape, 'Portal')
+    eventStack.unsub('click', this.handleDocumentClick, 'Portal')
+    eventStack.unsub('keydown', this.handleEscape, 'Portal')
     _.invoke(this.props, 'onUnmount', null, this.props)
   }
 

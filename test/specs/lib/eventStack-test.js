@@ -1,19 +1,19 @@
 import _ from 'lodash'
 
-import { eventPool } from 'src/lib'
+import { eventStack } from 'src/lib'
 import { domEvent, sandbox } from 'test/utils'
 
-describe('eventPool', () => {
+describe('eventStack', () => {
   afterEach(() => {
-    eventPool._pools = {}
-    _.forEach(_.keys(eventPool._handlers), name => eventPool._unlisten(name))
+    eventStack._pools = {}
+    _.forEach(_.keys(eventStack._handlers), name => eventStack._unlisten(name))
   })
 
   describe('pub', () => {
     it('adds a single', () => {
       const first = sandbox.spy()
 
-      eventPool.sub('click', first)
+      eventStack.sub('click', first)
       domEvent.click(document.body)
 
       first.should.have.been.calledOnce()
@@ -23,8 +23,8 @@ describe('eventPool', () => {
       const first = sandbox.spy()
       const second = sandbox.spy()
 
-      eventPool.sub('click', first)
-      eventPool.sub('click', second)
+      eventStack.sub('click', first)
+      eventStack.sub('click', second)
       domEvent.click(document.body)
 
       first.should.have.been.calledOnce()
@@ -35,7 +35,7 @@ describe('eventPool', () => {
       const first = sandbox.spy()
       const second = sandbox.spy()
 
-      eventPool.sub('click', [first, second])
+      eventStack.sub('click', [first, second])
       domEvent.click(document.body)
 
       first.should.have.been.calledOnce()
@@ -45,8 +45,8 @@ describe('eventPool', () => {
     it('adds only unique', () => {
       const first = sandbox.spy()
 
-      eventPool.sub('click', [first, first])
-      eventPool.sub('click', [first, first])
+      eventStack.sub('click', [first, first])
+      eventStack.sub('click', [first, first])
 
       domEvent.click(document.body)
       first.should.have.been.calledOnce()
@@ -56,8 +56,8 @@ describe('eventPool', () => {
       const first = sandbox.spy()
       const second = sandbox.spy()
 
-      eventPool.sub('click', first)
-      eventPool.sub('click', second, 'another')
+      eventStack.sub('click', first)
+      eventStack.sub('click', second, 'another')
       domEvent.click(document.body)
 
       first.should.have.been.calledOnce()
@@ -68,8 +68,8 @@ describe('eventPool', () => {
       const first = sandbox.spy()
       const second = sandbox.spy()
 
-      eventPool.sub('click', first, 'another')
-      eventPool.sub('click', second, 'another')
+      eventStack.sub('click', first, 'another')
+      eventStack.sub('click', second, 'another')
       domEvent.click(document.body)
 
       first.should.not.have.been.called()
@@ -82,10 +82,10 @@ describe('eventPool', () => {
       const first = sandbox.spy()
       const second = sandbox.spy()
 
-      eventPool.sub('click', [first, second])
+      eventStack.sub('click', [first, second])
       domEvent.click(document.body)
 
-      eventPool.unsub('click', second)
+      eventStack.unsub('click', second)
       domEvent.click(document.body)
 
       first.should.have.been.calledTwice()
@@ -96,10 +96,10 @@ describe('eventPool', () => {
       const first = sandbox.spy()
       const second = sandbox.spy()
 
-      eventPool.sub('click', [first, second])
+      eventStack.sub('click', [first, second])
       domEvent.click(document.body)
 
-      eventPool.unsub('click', [first, second])
+      eventStack.unsub('click', [first, second])
       domEvent.click(document.body)
 
       first.should.have.been.calledOnce()
@@ -110,11 +110,11 @@ describe('eventPool', () => {
       const first = sandbox.spy()
       const second = sandbox.spy()
 
-      eventPool.sub('click', first)
-      eventPool.sub('click', second, 'another')
+      eventStack.sub('click', first)
+      eventStack.sub('click', second, 'another')
       domEvent.click(document.body)
 
-      eventPool.unsub('click', second, 'another')
+      eventStack.unsub('click', second, 'another')
       domEvent.click(document.body)
 
       first.should.have.been.calledTwice()
