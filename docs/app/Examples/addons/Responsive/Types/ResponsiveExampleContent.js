@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import { Breakpoint, Button, Menu } from 'semantic-ui-react'
+import { Responsive, Button, Menu } from 'semantic-ui-react'
 
-export default class BreakpointExampleContent extends Component {
+export default class ResponsiveExampleContent extends Component {
   state = { active: 'home' }
 
   handleItemClick = (e, { name }) => this.setState({ active: name })
@@ -16,14 +16,14 @@ export default class BreakpointExampleContent extends Component {
 
         <Menu.Menu position='right'>
           <Menu.Item>
-            <Breakpoint
+            <Responsive
               as={Button}
               content='Switch to desktop version'
               icon='desktop'
               labelPosition='left'
               only='mobile'
             />
-            <Breakpoint
+            <Responsive
               as={Button}
               content='Switch to mobile version'
               icon='mobile'

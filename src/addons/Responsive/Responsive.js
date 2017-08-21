@@ -11,9 +11,9 @@ import {
 } from '../../lib'
 
 /**
- * A Breakpoint can control visibility of content.
+ * Responsive can control visibility of content.
  */
-export default class Breakpoint extends Component {
+export default class Responsive extends Component {
   static propTypes = {
     /** An element type to render as (string or function). */
     as: customPropTypes.as,
@@ -32,8 +32,8 @@ export default class Breakpoint extends Component {
      */
     onUpdate: PropTypes.func,
 
-    /** Breakpoints definition. */
-    points: PropTypes.shape({
+    /** Responsives definition. */
+    breakpoints: PropTypes.shape({
       computer: PropTypes.number.isRequired,
       largeScreen: PropTypes.number.isRequired,
       mobile: PropTypes.number.isRequired,
@@ -43,7 +43,7 @@ export default class Breakpoint extends Component {
   }
 
   static defaultProps = {
-    points: {
+    breakpoints: {
       computer: 992,
       largeScreen: 1200,
       mobile: 320,
@@ -53,7 +53,7 @@ export default class Breakpoint extends Component {
   }
 
   static _meta = {
-    name: 'Breakpoint',
+    name: 'Responsive',
     type: META.TYPES.ADDON,
   }
 
@@ -71,39 +71,39 @@ export default class Breakpoint extends Component {
   }
 
   // ----------------------------------------
-  // Breakpoint matchers
+  // Responsive matchers
   // ----------------------------------------
 
   isComputer = () => {
-    const { points: { computer } } = this.props
+    const { breakpoints: { computer } } = this.props
     const { width } = this.state
 
     return width >= computer
   }
 
   isLargeScreen = () => {
-    const { points: { largeScreen, widescreen } } = this.props
+    const { breakpoints: { largeScreen, widescreen } } = this.props
     const { width } = this.state
 
     return width >= largeScreen && width < widescreen
   }
 
   isMobile = () => {
-    const { points: { mobile, tablet } } = this.props
+    const { breakpoints: { mobile, tablet } } = this.props
     const { width } = this.state
 
     return width >= mobile && width < tablet
   }
 
   isTablet = () => {
-    const { points: { computer, tablet } } = this.props
+    const { breakpoints: { computer, tablet } } = this.props
     const { width } = this.state
 
     return width >= tablet && width < computer
   }
 
   isWidescreen = () => {
-    const { points: { widescreen } } = this.props
+    const { breakpoints: { widescreen } } = this.props
     const { width } = this.state
 
     return width >= widescreen
@@ -115,9 +115,9 @@ export default class Breakpoint extends Component {
 
   isVisible = () => {
     const { only = '' } = this.props
-    const points = only.replace('large screen', 'largeScreen').split(' ')
+    const breakpoints = only.replace('large screen', 'largeScreen').split(' ')
 
-    return _.some(points, point => _.invoke(this, `is${_.upperFirst(point)}`))
+    return _.some(breakpoints, point => _.invoke(this, `is${_.upperFirst(point)}`))
   }
 
   // ----------------------------------------
@@ -140,8 +140,8 @@ export default class Breakpoint extends Component {
   render() {
     const { children } = this.props
 
-    const ElementType = getElementType(Breakpoint, this.props)
-    const rest = getUnhandledProps(Breakpoint, this.props)
+    const ElementType = getElementType(Responsive, this.props)
+    const rest = getUnhandledProps(Responsive, this.props)
 
     if (this.isVisible()) return <ElementType {...rest}>{children}</ElementType>
     return null

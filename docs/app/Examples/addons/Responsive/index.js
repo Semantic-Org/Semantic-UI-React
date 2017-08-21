@@ -3,11 +3,11 @@ import React from 'react'
 import Types from './Types'
 import Usage from './Usage'
 
-const BreakpointExamples = () => (
+const ResponsiveExamples = () => (
   <div>
     <Types />
     <Usage />
   </div>
 )
 
-export default BreakpointExamples
+export default ResponsiveExamples
