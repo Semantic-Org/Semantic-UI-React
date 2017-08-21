@@ -59,7 +59,7 @@ describe('Breakpoint', () => {
   })
 
   describe('onUpdate', () => {
-    it('listens for resize', done => {
+    it('listens for resize', (done) => {
       const wrapper = mount(<Breakpoint only='mobile' />)
       wrapper.should.have.tagName('div')
 
@@ -72,7 +72,7 @@ describe('Breakpoint', () => {
       }, 25)
     })
 
-    it('is called with (e, data) when window was resized', done => {
+    it('is called with (e, data) when window was resized', (done) => {
       const onUpdate = sandbox.spy()
       const width = points.tablet
 

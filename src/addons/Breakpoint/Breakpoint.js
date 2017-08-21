@@ -124,7 +124,7 @@ export default class Breakpoint extends Component {
   // Event handlers
   // ----------------------------------------
 
-  handleUpdate = e => {
+  handleUpdate = (e) => {
     requestAnimationFrame(() => {
       const width = window.innerWidth
 

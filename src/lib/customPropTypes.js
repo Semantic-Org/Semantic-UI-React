@@ -228,7 +228,7 @@ export const demand = requiredProps => (props, propName, componentName) => {
  * Ensure an only prop contains a string with only possible values.
  * @param {string[]} possible An array of possible values to prop.
  */
-export const onlyProp = possible => {
+export const onlyProp = (possible) => {
   const typeChecker = (required, props, propName, componentName) => {
     if (!Array.isArray(possible)) {
       throw new Error([
