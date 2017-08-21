@@ -200,6 +200,23 @@ describe('Popup', () => {
       wrapper.find('input').simulate('focus')
       assertInBody('.ui.popup.visible')
     })
+
+    it('it appears on multiple', (done) => {
+      const trigger = <button>foo</button>
+      const button = wrapperMount(<Popup on={['click', 'hover']} content='foo' header='bar' trigger={trigger} />)
+        .find('button')
+
+      button.simulate('click')
+      assertInBody('.ui.popup.visible')
+
+      domEvent.click('body')
+
+      button.simulate('mouseenter')
+      setTimeout(() => {
+        assertInBody('.ui.popup.visible')
+        done()
+      }, 51)
+    })
   })
 
   describe('open', () => {

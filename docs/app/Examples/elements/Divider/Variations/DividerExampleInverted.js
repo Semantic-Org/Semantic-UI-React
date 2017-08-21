@@ -1,13 +1,11 @@
-import React, { Component } from 'react'
-import { Segment, Divider } from 'semantic-ui-react'
+import React from 'react'
+import { Divider, Segment } from 'semantic-ui-react'
 
-export default class DividerExampleInverted extends Component {
-  render() {
-    return (
-      <Segment inverted>
-        <Divider inverted />
-        <Divider horizontal inverted>Horizontal</Divider>
-      </Segment>
-    )
-  }
-}
+const DividerExampleInverted = () => (
+  <Segment inverted>
+    <Divider inverted />
+    <Divider horizontal inverted>Horizontal</Divider>
+  </Segment>
+)
+
+export default DividerExampleInverted

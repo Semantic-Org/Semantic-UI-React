@@ -31,6 +31,8 @@ export interface TextAreaOnChangeData extends TextAreaProps {
   value?: string;
 }
 
-declare const TextArea: React.ComponentClass<TextAreaProps>;
+declare class TextArea extends React.Component<TextArea, {}> {
+  focus: () => void;
+}
 
 export default TextArea;

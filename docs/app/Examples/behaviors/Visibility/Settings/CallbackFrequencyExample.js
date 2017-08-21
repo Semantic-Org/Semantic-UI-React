@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Button, Checkbox, Divider, Grid, Segment, Visibility } from 'semantic-ui-react'
+
 import Wireframe from '../Wireframe'
 
 export default class VisibilityExample extends Component {

@@ -10,9 +10,7 @@ categoryRenderer.propTypes = {
   name: PropTypes.string,
 }
 
-const resultRenderer = ({ title, description }) => (
-  <Label content={title} />
-)
+const resultRenderer = ({ title }) => <Label content={title} />
 
 resultRenderer.propTypes = {
   title: PropTypes.string,

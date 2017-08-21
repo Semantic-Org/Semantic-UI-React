@@ -160,20 +160,58 @@ describe('Transition', () => {
   })
 
   describe('duration', () => {
-    it('applies default value to style', () => {
-      wrapperShallow(
-        <Transition>
-          <p />
-        </Transition>,
-      ).should.have.style('animation-duration', '500ms')
+    it('does not apply to style when ENTERED', () => {
+      wrapperShallow(<Transition transitionOnMount={false}><p /></Transition>)
+        .should.not.have.style('animation-duration')
     })
 
-    it('applies value to style', () => {
-      wrapperShallow(
-        <Transition duration={1000}>
-          <p />
-        </Transition>,
-      ).should.have.style('animation-duration', '1000ms')
+    it('applies default value to style when ENTERING', () => {
+      wrapperShallow(<Transition><p /></Transition>)
+
+      wrapper.setState({ status: Transition.ENTERING })
+      wrapper.should.have.style('animation-duration', '500ms')
+    })
+
+    it('applies numeric value to style when ENTERING', () => {
+      wrapperShallow(<Transition duration={1000}><p /></Transition>)
+
+      wrapper.setState({ status: Transition.ENTERING })
+      wrapper.should.have.style('animation-duration', '1000ms')
+    })
+
+    it('applies object value to style when ENTERING', () => {
+      wrapperShallow(<Transition duration={{ hide: 1000, show: 2000 }}><p /></Transition>)
+
+      wrapper.setState({ status: Transition.ENTERING })
+      wrapper.should.have.style('animation-duration', '2000ms')
+    })
+
+    it('does not apply to style when EXITED', () => {
+      wrapperShallow(<Transition><p /></Transition>)
+
+      wrapper.setState({ status: Transition.EXITED })
+      wrapper.should.not.have.style('animation-duration')
+    })
+
+    it('applies default value to style when EXITING', () => {
+      wrapperShallow(<Transition><p /></Transition>)
+
+      wrapper.setState({ animating: true, status: Transition.EXITING })
+      wrapper.should.have.style('animation-duration')
+    })
+
+    it('applies numeric value to style when EXITING', () => {
+      wrapperShallow(<Transition duration={1000}><p /></Transition>)
+      wrapper.setState({ status: Transition.ENTERING })
+
+      wrapper.should.have.style('animation-duration', '1000ms')
+    })
+
+    it('applies object value to style when EXITING', () => {
+      wrapperShallow(<Transition duration={{ hide: 1000, show: 2000 }}><p /></Transition>)
+
+      wrapper.setState({ status: Transition.EXITING })
+      wrapper.should.have.style('animation-duration', '1000ms')
     })
   })
 

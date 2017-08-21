@@ -1,12 +1,12 @@
-const gutil = require('gulp-util')
-const _ = require('lodash')
-const path = require('path')
-const docgen = require('react-docgen')
-const through = require('through2')
+import gutil from 'gulp-util'
+import _ from 'lodash'
+import path from 'path'
+import { parse } from 'react-docgen'
+import through from 'through2'
 
-const { parseDocBlock, parseType } = require('./util')
+import { parseDocBlock, parseType } from './util'
 
-module.exports = (filename) => {
+export default (filename) => {
   const defaultFilename = 'docgenInfo.json'
   const result = {}
   const pluginName = 'gulp-react-docgen'
@@ -28,7 +28,7 @@ module.exports = (filename) => {
 
     try {
       const relativePath = file.path.replace(`${process.cwd()}/`, '')
-      const parsed = docgen.parse(file.contents)
+      const parsed = parse(file.contents)
 
       // replace the component`description` string with a parsed doc block object
       parsed.docBlock = parseDocBlock(parsed.description)

@@ -9,6 +9,9 @@ export interface VisibilityProps {
   /** Primary content. */
   children?: React.ReactNode;
 
+  /** Context which sticky element should stick to. */
+  context?: object;
+
   /**
    * When set to true a callback will occur anytime an element passes a condition not just immediately after the
    * threshold is met.
