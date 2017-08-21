@@ -9,11 +9,11 @@ const LabelExampleImage = () => (
     </Label>
     <Label as='a' image>
       <img src='/assets/images/avatar/small/elliot.jpg' />
-        Elliot
+      Elliot
     </Label>
-      <Label as='a' image>
+    <Label as='a' image>
       <img src='/assets/images/avatar/small/stevie.jpg' />
-        Stevie
+      Stevie
     </Label>
   </div>
 )

@@ -9,6 +9,8 @@ import {
   getUnhandledProps,
   META,
 } from '../../lib'
+import Grid from '../../collections/Grid/Grid'
+import GridColumn from '../../collections/Grid/GridColumn'
 import Menu from '../../collections/Menu/Menu'
 import TabPane from './TabPane'
 
@@ -36,6 +38,9 @@ class Tab extends Component {
 
     /** Shorthand props for the Menu. */
     menu: PropTypes.object,
+
+    /** Shorthand props for the Grid. */
+    grid: PropTypes.object,
 
     /**
      * Called on tab change.
@@ -73,6 +78,7 @@ class Tab extends Component {
   ]
 
   static defaultProps = {
+    grid: { paneWidth: 12, tabWidth: 4 },
     menu: { attached: true, tabular: true },
     renderActiveOnly: true,
   }
@@ -118,10 +124,31 @@ class Tab extends Component {
     })
   }
 
+  renderVertical(menu) {
+    const { grid } = this.props
+    const { paneWidth, tabWidth, ...gridProps } = grid
+
+    return (
+      <Grid {...gridProps}>
+        {menu.props.tabular !== 'right' && GridColumn.create({ width: tabWidth, children: menu })}
+        {GridColumn.create({
+          width: paneWidth,
+          children: this.renderItems(),
+          stretched: true,
+        })}
+        {menu.props.tabular === 'right' && GridColumn.create({ width: tabWidth, children: menu })}
+      </Grid>
+    )
+  }
+
   render() {
     const menu = this.renderMenu()
     const rest = getUnhandledProps(Tab, this.props)
     const ElementType = getElementType(Tab, this.props)
+
+    if (menu.props.vertical) {
+      return <ElementType {...rest}>{this.renderVertical(menu)}</ElementType>
+    }
 
     return (
       <ElementType {...rest}>

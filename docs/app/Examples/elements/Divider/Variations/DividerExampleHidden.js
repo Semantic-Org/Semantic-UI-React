@@ -1,14 +1,12 @@
-import React, { Component } from 'react'
-import { Segment, Divider } from 'semantic-ui-react'
+import React from 'react'
+import { Divider, Segment } from 'semantic-ui-react'
 
-export default class DividerExampleHidden extends Component {
-  render() {
-    return (
-      <Segment>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore...
-        <Divider hidden />
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore...
-      </Segment>
-    )
-  }
-}
+const DividerExampleHidden = () => (
+  <Segment>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore...
+    <Divider hidden />
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore...
+  </Segment>
+)
+
+export default DividerExampleHidden

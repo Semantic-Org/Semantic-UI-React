@@ -525,6 +525,28 @@ describe('Search', () => {
     })
   })
 
+  describe('onBlur', () => {
+    it('is called with (event, data) on search input blur', () => {
+      const onBlur = sandbox.spy()
+      wrapperMount(<Search results={options} onBlur={onBlur} />)
+        .simulate('blur', nativeEvent)
+
+      onBlur.should.have.been.calledOnce()
+      onBlur.should.have.been.calledWithMatch(nativeEvent, { onBlur, results: options })
+    })
+  })
+
+  describe('onFocus', () => {
+    it('is called with (event, data) on search input focus', () => {
+      const onFocus = sandbox.spy()
+      wrapperMount(<Search results={options} onFocus={onFocus} />)
+        .simulate('focus', nativeEvent)
+
+      onFocus.should.have.been.calledOnce()
+      onFocus.should.have.been.calledWithMatch(nativeEvent, { onFocus, results: options })
+    })
+  })
+
   describe('onResultSelect', () => {
     let spy
     beforeEach(() => {
@@ -613,7 +635,7 @@ describe('Search', () => {
           onSelectionChange={onSelectionChange}
           results={options}
           selectFirstResult
-        />
+        />,
       )
       openSearchResults()
       domEvent.keyDown(document, { key: 'ArrowDown' })

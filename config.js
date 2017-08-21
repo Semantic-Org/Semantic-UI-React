@@ -1,15 +1,14 @@
-const path = require('path')
+import path from 'path'
 
 // ------------------------------------
 // Environment vars
 // ------------------------------------
 const env = process.env.NODE_ENV || 'development'
 const __DEV__ = env === 'development'
-const __STAGING__ = env === 'staging'
 const __TEST__ = env === 'test'
 const __PROD__ = env === 'production'
 
-let config = {
+const envConfig = {
   env,
 
   // ----------------------------------
@@ -27,19 +26,20 @@ let config = {
 // ------------------------------------
 // Paths
 // ------------------------------------
-const base = (...args) => path.resolve(...[config.path_base, ...args])
+const base = (...args) => path.resolve(...[envConfig.path_base, ...args])
 
 const paths = {
   base,
-  src: base.bind(null, config.dir_src),
-  dist: base.bind(null, config.dir_dist),
-  dll: base.bind(null, config.dir_dll),
-  docsDist: base.bind(null, config.dir_docs_dist),
-  docsSrc: base.bind(null, config.dir_docs_src),
-  umdDist: base.bind(null, config.dir_umd_dist),
+  src: base.bind(null, envConfig.dir_src),
+  dist: base.bind(null, envConfig.dir_dist),
+  dll: base.bind(null, envConfig.dir_dll),
+  docsDist: base.bind(null, envConfig.dir_docs_dist),
+  docsSrc: base.bind(null, envConfig.dir_docs_src),
+  umdDist: base.bind(null, envConfig.dir_umd_dist),
 }
 
-config = Object.assign({}, config, {
+const config = {
+  ...envConfig,
   paths,
 
   // ----------------------------------
@@ -51,7 +51,7 @@ config = Object.assign({}, config, {
   // ----------------------------------
   // Compiler Configuration
   // ----------------------------------
-  compiler_devtool: (__DEV__ || __TEST__) && 'cheap-source-map' || __STAGING__ && 'source-map',
+  compiler_devtool: (__DEV__ || __TEST__) && 'cheap-source-map',
   compiler_globals: {
     process: {
       env: {
@@ -59,15 +59,14 @@ config = Object.assign({}, config, {
       },
     },
     __DEV__,
-    __STAGING__,
     __PATH_SEP__: JSON.stringify(path.sep),
     __TEST__,
     __PROD__,
   },
   compiler_hash_type: __PROD__ ? 'chunkhash' : 'hash',
   compiler_fail_on_warning: __TEST__ || __PROD__,
-  compiler_output_path: paths.base(config.dir_docs_dist),
-  compiler_public_path: __PROD__ ? '//raw.github.com/Semantic-Org/Semantic-UI-React/gh-pages/' : '/',
+  compiler_output_path: paths.base(envConfig.dir_docs_dist),
+  compiler_public_path: '/',
   compiler_stats: {
     hash: false,            // the hash of the compilation
     version: false,         // webpack version info
@@ -100,6 +99,6 @@ config = Object.assign({}, config, {
     'react-ace',
     'react-dom',
   ],
-})
+}
 
-module.exports = config
+export default config

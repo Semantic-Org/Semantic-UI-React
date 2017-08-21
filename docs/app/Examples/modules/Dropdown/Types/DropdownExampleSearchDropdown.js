@@ -5,14 +5,15 @@ import { languageOptions } from '../common'
 // languageOptions = [ { key: 'Arabic', text: 'Arabic', value: 'Arabic' }, ...  ]
 
 const DropdownExampleSearchDropdown = () => (
-  <Dropdown text='Select Language'
-    search
-    floating
-    labeled
+  <Dropdown
     button
     className='icon'
+    floating
+    labeled
     icon='world'
     options={languageOptions}
+    search
+    text='Select Language'
   />
 )
 

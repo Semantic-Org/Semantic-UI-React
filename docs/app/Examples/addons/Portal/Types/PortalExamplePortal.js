@@ -47,9 +47,9 @@ export default class ExamplePortal extends Component {
         </Grid.Column>
         <Grid.Column>
           <Segment>
-              <pre style={{ height: 200, overflowY: 'scroll' }}>
-                {log.map((e, i) => <p key={i}>{e}</p>)}
-              </pre>
+            <pre style={{ height: 200, overflowY: 'scroll' }}>
+              {log.map((e, i) => <p key={i}>{e}</p>)}
+            </pre>
           </Segment>
         </Grid.Column>
       </Grid>

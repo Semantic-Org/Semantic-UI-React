@@ -13,7 +13,11 @@ const FormFormUsageExamples = () => (
         <p>
           Our <code>{'<Form />'}</code> handles data just like a vanilla React <code>{'<form />'}</code>.
           See React's
-          <a href='https://facebook.github.io/react/docs/forms.html#controlled-components' target='_blank'>
+          <a
+            href='https://facebook.github.io/react/docs/forms.html#controlled-components'
+            rel='noopener noreferrer'
+            target='_blank'
+          >
             {' '}controlled components{' '}
           </a>
           docs for more.

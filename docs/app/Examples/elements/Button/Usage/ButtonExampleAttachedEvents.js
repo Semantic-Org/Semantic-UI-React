@@ -34,9 +34,9 @@ export default class ButtonExampleAttachedEvents extends Component {
         </Grid.Column>
         <Grid.Column width={8}>
           <Segment>
-              <pre style={{ height: 100, overflowY: 'scroll' }}>
-                {log.map((e, i) => <p key={i}>{e}</p>)}
-              </pre>
+            <pre style={{ height: 100, overflowY: 'scroll' }}>
+              {log.map((e, i) => <p key={i}>{e}</p>)}
+            </pre>
           </Segment>
         </Grid.Column>
       </Grid>

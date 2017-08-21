@@ -26,6 +26,7 @@ const ButtonUsageExamples = () => (
           out more details on {' '}
           <a
             href='https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_button_role'
+            rel='noopener noreferrer'
             target='_blank'
           >
             MDN
