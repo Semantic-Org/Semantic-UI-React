@@ -7,6 +7,7 @@ import {
   getElementType,
   getUnhandledProps,
   META,
+  isBrowser,
 } from '../../lib'
 
 /**
@@ -141,7 +142,7 @@ export default class Visibility extends Component {
   }
 
   static defaultProps = {
-    context: window,
+    context: isBrowser ? window : {},
     continuous: false,
     once: true,
   }
