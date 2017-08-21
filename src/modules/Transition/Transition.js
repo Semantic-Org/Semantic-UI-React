@@ -6,12 +6,18 @@ import { cloneElement, Component } from 'react'
 import {
   makeDebugger,
   META,
+  normalizeTransitionDuration,
   SUI,
   useKeyOnly,
 } from '../../lib'
 import TransitionGroup from './TransitionGroup'
 
 const debug = makeDebugger('transition')
+
+const TRANSITION_TYPE = {
+  ENTERING: 'show',
+  EXITING: 'hide',
+}
 
 /**
  * A transition is an animation usually used to move content in or out of view.
@@ -25,7 +31,14 @@ export default class Transition extends Component {
     children: PropTypes.element.isRequired,
 
     /** Duration of the CSS transition animation in milliseconds. */
-    duration: PropTypes.number,
+    duration: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.shape({
+        hide: PropTypes.number,
+        show: PropTypes.number,
+      }),
+      PropTypes.string,
+    ]),
 
     /** Show the component; triggers the enter or exit animation. */
     visible: PropTypes.bool,
@@ -145,7 +158,7 @@ export default class Transition extends Component {
     this.nextStatus = null
     this.setState({ status, animating: true }, () => {
       _.invoke(this.props, 'onStart', null, { ...this.props, status })
-      setTimeout(this.handleComplete, duration)
+      setTimeout(this.handleComplete, normalizeTransitionDuration(duration, 'show'))
     })
   }
 
@@ -262,9 +275,13 @@ export default class Transition extends Component {
 
   computeStyle = () => {
     const { children, duration } = this.props
-    const childStyle = _.get(children, 'props.style')
+    const { status } = this.state
 
-    return { ...childStyle, animationDuration: `${duration}ms` }
+    const childStyle = _.get(children, 'props.style')
+    const type = TRANSITION_TYPE[status]
+    const animationDuration = type && `${normalizeTransitionDuration(duration, type)}ms`
+
+    return { ...childStyle, animationDuration }
   }
 
   // ----------------------------------------

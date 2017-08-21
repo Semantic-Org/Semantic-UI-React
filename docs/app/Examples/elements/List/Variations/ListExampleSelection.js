@@ -5,21 +5,21 @@ const ListExampleSelection = () => (
   <List selection verticalAlign='middle'>
     <List.Item>
       <Image avatar src='/assets/images/avatar/small/helen.jpg' />
-        <List.Content>
-          <List.Header>Helen</List.Header>
-        </List.Content>
+      <List.Content>
+        <List.Header>Helen</List.Header>
+      </List.Content>
     </List.Item>
     <List.Item>
       <Image avatar src='/assets/images/avatar/small/christian.jpg' />
-        <List.Content>
-          <List.Header>Christian</List.Header>
-        </List.Content>
+      <List.Content>
+        <List.Header>Christian</List.Header>
+      </List.Content>
     </List.Item>
     <List.Item>
       <Image avatar src='/assets/images/avatar/small/daniel.jpg' />
-        <List.Content>
-          <List.Header>Daniel</List.Header>
-        </List.Content>
+      <List.Content>
+        <List.Header>Daniel</List.Header>
+      </List.Content>
     </List.Item>
   </List>
 )

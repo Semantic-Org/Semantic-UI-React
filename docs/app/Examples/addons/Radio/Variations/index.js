@@ -12,7 +12,7 @@ const RadioVariationsExamples = () => (
     >
       <Message>
         The{' '}
-        <a href='https://semantic-ui.com/modules/checkbox.html#fitted' target='_blank'>
+        <a href='https://semantic-ui.com/modules/checkbox.html#fitted' rel='noopener noreferrer' target='_blank'>
           <code>fitted</code>
         </a>
         {' '}class is automatically applied if there is no <code>label</code> prop.

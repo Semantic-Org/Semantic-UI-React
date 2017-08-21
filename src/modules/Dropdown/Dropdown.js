@@ -591,17 +591,21 @@ export default class Dropdown extends Component {
 
   selectItemOnEnter = (e) => {
     debug('selectItemOnEnter()', keyboardKey.getName(e))
-    const { multiple, search } = this.props
+    const { multiple, onAddItem, search } = this.props
 
     if (keyboardKey.getCode(e) !== keyboardKey.Enter) return
     e.preventDefault()
 
-    if (search && _.isEmpty(this.getMenuOptions())) return
+    const optionSize = _.size(this.getMenuOptions())
+    if (search && optionSize === 0) return
+
+    const item = this.getSelectedItem()
+    const isAdditionItem = onAddItem && item['data-additional']
 
     this.makeSelectedItemActive(e)
     this.closeOnChange(e)
 
-    if (!multiple) this.clearSearchQuery()
+    if (!multiple || isAdditionItem || optionSize === 1) this.clearSearchQuery()
     if (search && this.searchRef) this.searchRef.focus()
   }
 
@@ -695,14 +699,17 @@ export default class Dropdown extends Component {
     if (item.disabled) return
 
     // notify the onAddItem prop if this is a new value
-    if (onAddItem && item['data-additional']) onAddItem(e, { ...this.props, value })
+    const isAdditionItem = onAddItem && item['data-additional']
+    if (isAdditionItem) onAddItem(e, { ...this.props, value })
 
     const newValue = multiple ? _.union(this.state.value, [value]) : value
 
     // notify the onChange prop that the user is trying to change value
     this.setValue(newValue)
     this.setSelectedIndex(value)
-    if (!multiple) this.clearSearchQuery()
+
+    const optionSize = _.size(this.getMenuOptions())
+    if (!multiple || isAdditionItem || optionSize === 1) this.clearSearchQuery()
 
     this.handleChange(e, newValue)
     this.closeOnChange(e)

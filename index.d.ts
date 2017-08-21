@@ -165,7 +165,12 @@ export { default as Sticky, StickyProps } from './dist/commonjs/modules/Sticky';
 export { default as Tab, TabProps } from './dist/commonjs/modules/Tab';
 export { default as TabPane, TabPaneProps } from './dist/commonjs/modules/Tab/TabPane';
 
-export { default as Transition, TransitionProps, TRANSITION_STATUSES } from './dist/commonjs/modules/Transition';
+export {
+  default as Transition,
+  TransitionProps,
+  TransitionPropDuration,
+  TRANSITION_STATUSES
+} from './dist/commonjs/modules/Transition';
 export { default as TransitionGroup, TransitionGroupProps } from './dist/commonjs/modules/Transition/TransitionGroup';
 
 // Views

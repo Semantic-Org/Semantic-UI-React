@@ -5,7 +5,7 @@ const transitions = ['jiggle', 'flash', 'shake', 'pulse', 'tada', 'bounce']
 
 const options = transitions.map(name => ({ key: name, text: name, value: name }))
 
-export default class TransitionExampleStaticExplorer extends Component {
+export default class TransitionExampleTransitionExplorer extends Component {
   state = { animation: transitions[0], duration: 500, visible: true }
 
   handleChange = (e, { name, value }) => this.setState({ [name]: value })

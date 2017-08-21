@@ -2,8 +2,8 @@
  * Tasks live in the tasks directory.
  * This file just loads all the gulp tasks.
  */
-const { task, parallel } = require('gulp')
-const requireDir = require('require-dir')
+import { task, parallel } from 'gulp'
+import requireDir from 'require-dir'
 
 requireDir('./gulp/tasks')
 

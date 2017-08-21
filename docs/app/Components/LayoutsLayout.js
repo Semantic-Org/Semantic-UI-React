@@ -36,11 +36,11 @@ export default class LayoutsLayout extends Component {
     scrollTo(0, 0)
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate() {
     scrollTo(0, 0)
   }
 
-  renderChildren = props => {
+  renderChildren = (props) => {
     const { component: Children, computedMatch, render } = this.props
 
     if (render) return render()

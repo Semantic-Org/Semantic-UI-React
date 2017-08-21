@@ -1,9 +1,11 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const _ = require('lodash')
-const webpack = require('webpack')
-const config = require('./config')
+import HtmlWebpackPlugin from 'html-webpack-plugin'
+import _ from 'lodash'
+import webpack from 'webpack'
+
+import config from './config'
+
 const { paths } = config
-const { __DEV__, __STAGING__, __TEST__, __PROD__ } = config.compiler_globals
+const { __DEV__, __TEST__, __PROD__ } = config.compiler_globals
 
 const webpackConfig = {
   name: 'client',
@@ -60,12 +62,13 @@ webpackConfig.entry = __DEV__ ? {
 // ------------------------------------
 // Bundle Output
 // ------------------------------------
-webpackConfig.output = Object.assign({}, webpackConfig.output, {
+webpackConfig.output = {
+  ...webpackConfig.output,
   filename: `[name].[${config.compiler_hash_type}].js`,
   path: config.compiler_output_path,
   pathinfo: true,
   publicPath: config.compiler_public_path,
-})
+}
 
 // ------------------------------------
 // Plugins
@@ -104,18 +107,18 @@ if (!__TEST__) {
     // https://github.com/webpack-contrib/karma-webpack/issues/22
     new webpack.optimize.CommonsChunkPlugin({
       names: ['vendor'],
-    })
+    }),
   )
 }
 
 if (__DEV__) {
   webpackConfig.plugins.push(
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoEmitOnErrorsPlugin()
+    new webpack.NoEmitOnErrorsPlugin(),
   )
 }
 
-if (__PROD__ || __STAGING__) {
+if (__PROD__) {
   webpackConfig.plugins.push(
     new webpack.LoaderOptionsPlugin({
       minimize: true,
@@ -126,7 +129,7 @@ if (__PROD__ || __STAGING__) {
         dead_code: true,
         warnings: false,
       },
-    })
+    }),
   )
 }
 
@@ -135,7 +138,8 @@ if (__PROD__ || __STAGING__) {
 // ------------------------------------
 if (!__TEST__) {
   // find modules loaded via CDN on the window
-  webpackConfig.externals = Object.assign({}, webpackConfig.externals, {
+  webpackConfig.externals = {
+    ...webpackConfig.externals,
     'anchor-js': 'AnchorJS',
     'babel-standalone': 'Babel',
     faker: 'faker',
@@ -143,7 +147,7 @@ if (!__TEST__) {
     react: 'React',
     'react-dom': 'ReactDOM',
     'react-dom/server': 'ReactDOMServer',
-  })
+  }
 }
 
 // ------------------------------------
@@ -183,4 +187,4 @@ webpackConfig.module.rules = [...webpackConfig.module.rules, {
   use: jsLoaders,
 }]
 
-module.exports = webpackConfig
+export default webpackConfig

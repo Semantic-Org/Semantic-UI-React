@@ -5,17 +5,17 @@ const LabelExampleIcon = () => (
   <div>
     <Label image>
       <img src='/assets/images/avatar/small/ade.jpg' />
-        Adrienne
-        <Icon name='delete' />
+      Adrienne
+      <Icon name='delete' />
     </Label>
-      <Label image>
+    <Label image>
       <img src='/assets/images/avatar/small/zoe.jpg' />
-        Zoe
-        <Icon name='delete' />
+      Zoe
+      <Icon name='delete' />
     </Label>
     <Label image>
       <img src='/assets/images/avatar/small/nan.jpg' />
-        Nan
+      Nan
       <Icon name='delete' />
     </Label>
   </div>

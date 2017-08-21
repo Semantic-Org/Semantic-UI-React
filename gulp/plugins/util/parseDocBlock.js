@@ -1,3 +1,3 @@
-const doctrine = require('doctrine')
+import doctrine from 'doctrine'
 
-module.exports = (docBlock) => doctrine.parse(docBlock || '', { unwrap: true })
+export default docBlock => doctrine.parse(docBlock || '', { unwrap: true })

@@ -13,15 +13,14 @@ export const typeOrder = [
 
 export const parentComponents = _.flow(
   _.filter(META.isParent),
-  _.sortBy('_meta.name')
+  _.sortBy('_meta.name'),
 )(semanticUIReact)
 
 const mathSign = Math.sign || function (x) {
-  x = +x
-  if (x === 0 || isNaN(x)) {
-    return x
-  }
-  return x > 0 ? 1 : -1
+  const val = +x
+
+  if (val === 0 || isNaN(val)) return val
+  return val > 0 ? 1 : -1
 }
 
 /**
@@ -51,7 +50,7 @@ export const scrollToAnchor = () => {
   const isScrolledToBottom = offsetY + document.body.clientHeight === document.body.scrollHeight
   const scrollStep = Math.ceil((Math.abs(elementTop / 8))) * mathSign(elementTop)
 
-  if (isScrolledToBottom && scrollStep > 0 || isScrolledToTop && scrollStep < 0) return
+  if ((isScrolledToBottom && scrollStep > 0) || (isScrolledToTop && scrollStep < 0)) return
 
   // more scrolling to do!
   scrollBy(0, scrollStep)
