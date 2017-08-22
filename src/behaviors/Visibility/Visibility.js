@@ -142,7 +142,7 @@ export default class Visibility extends Component {
   }
 
   static defaultProps = {
-    context: isBrowser ? window : {},
+    context: isBrowser ? window : null,
     continuous: false,
     once: true,
   }
