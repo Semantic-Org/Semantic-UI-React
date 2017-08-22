@@ -75,7 +75,7 @@ export default class Sticky extends Component {
   static defaultProps = {
     bottomOffset: 0,
     offset: 0,
-    scrollContext: isBrowser ? window : {},
+    scrollContext: isBrowser ? window : null,
   }
 
   static _meta = {
