@@ -28,7 +28,11 @@ const RadioTypesExamples = () => (
     >
       <Message warning>
         Radios in a group must be
-        <a href='https://facebook.github.io/react/docs/forms.html#controlled-components' target='_blank'>
+        <a
+          href='https://facebook.github.io/react/docs/forms.html#controlled-components'
+          rel='noopener noreferrer'
+          target='_blank'
+        >
           &nbsp;controlled components.
         </a>
       </Message>

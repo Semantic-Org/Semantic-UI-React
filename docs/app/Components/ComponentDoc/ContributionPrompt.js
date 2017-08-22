@@ -11,9 +11,9 @@ const ContributionPrompt = ({ children }) => (
       <p>{children}</p>
       <p>
         If there's no{' '}
-        <a href={`${repoURL}/pulls` }>pull request</a>{' '}
+        <a href={`${repoURL}/pulls`}>pull request</a>{' '}
         open for this, you should{' '}
-        <a href={`${repoURL}/blob/master/.github/CONTRIBUTING.md` }>
+        <a href={`${repoURL}/blob/master/.github/CONTRIBUTING.md`}>
           contribute
         </a>!
       </p>

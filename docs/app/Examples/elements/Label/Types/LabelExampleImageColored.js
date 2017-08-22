@@ -5,17 +5,17 @@ const LabelExampleImage = () => (
   <div>
     <Label as='a' color='blue' image>
       <img src='/assets/images/avatar/small/veronika.jpg' />
-        Veronika
-        <Label.Detail>Friend</Label.Detail>
+      Veronika
+      <Label.Detail>Friend</Label.Detail>
     </Label>
     <Label as='a' color='teal' image>
       <img src='/assets/images/avatar/small/jenny.jpg' />
-        Veronika
+      Veronika
       <Label.Detail>Friend</Label.Detail>
     </Label>
     <Label as='a' color='yellow' image>
       <img src='/assets/images/avatar/small/christian.jpg' />
-        Helen
+      Helen
       <Label.Detail>Co-worker</Label.Detail>
     </Label>
   </div>

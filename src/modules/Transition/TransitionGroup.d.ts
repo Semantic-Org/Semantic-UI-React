@@ -1,5 +1,7 @@
 import * as React from 'react';
+
 import { SemanticTRANSITIONS } from '../../';
+import { TransitionPropDuration } from './Transition';
 
 export interface TransitionGroupProps {
   [key: string]: any;
@@ -14,7 +16,7 @@ export interface TransitionGroupProps {
   children?: React.ReactNode;
 
   /** Duration of the CSS transition animation in milliseconds. */
-  duration?: number;
+  duration?: number | string | TransitionPropDuration;
 }
 
 interface TransitionGroupComponent extends React.ComponentClass<TransitionGroupProps> {

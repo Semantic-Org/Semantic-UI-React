@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Input, Button } from 'semantic-ui-react'
 
 class InputExampleRefFocus extends Component {
-  handleRef = c => {
+  handleRef = (c) => {
     this.inputRef = c
   }
 
