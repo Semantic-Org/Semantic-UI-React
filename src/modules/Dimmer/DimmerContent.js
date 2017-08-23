@@ -14,7 +14,7 @@ function DimmerContent(props) {
   const { centerRef, children, content } = props
   const childrenContent = childrenUtils.isNil(children) ? content : children
 
-  if(!childrenContent) return null
+  if (!childrenContent) return null
   return (
     <div className='content'>
       <div className='center' ref={centerRef}>

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
 import {
-  childrenUtils,
   createShorthandFactory,
   customPropTypes,
   getElementType,
@@ -66,6 +65,13 @@ export default class Dimmer extends Component {
     simple: PropTypes.bool,
   }
 
+  static defaultProps = {
+    transition: {
+      animation: 'fade',
+      duration: '5000',
+    }
+  }
+
   static _meta = {
     name: 'Dimmer',
     type: META.TYPES.MODULE,
@@ -109,6 +115,7 @@ export default class Dimmer extends Component {
       inverted,
       page,
       simple,
+      transition,
     } = this.props
 
     const classes = cx(
@@ -125,13 +132,11 @@ export default class Dimmer extends Component {
     const ElementType = getElementType(Dimmer, this.props)
 
     const dimmerJSX = (
-      <Transition duration={5000} visible={active}>
-        <ElementType{...rest} className={classes} onClick={this.handleClick}>
-          <DimmerContent centerRef={this.handleCenterRef} content={content}>
-            {children}
-          </DimmerContent>
-        </ElementType>
-      </Transition>
+      <ElementType {...rest} className={classes} onClick={this.handleClick}>
+        <DimmerContent centerRef={this.handleCenterRef} content={content}>
+          {children}
+        </DimmerContent>
+      </ElementType>
     )
 
     if (page) {
@@ -149,7 +154,12 @@ export default class Dimmer extends Component {
       )
     }
 
-    return dimmerJSX
+    return Transition.create(transition, {
+      defaultProps: {
+        children: dimmerJSX,
+        visible: active,
+      }
+    })
   }
 }
 

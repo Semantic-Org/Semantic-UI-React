@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import { cloneElement, Component } from 'react'
 
 import {
+  createShorthandFactory,
   makeDebugger,
   META,
   normalizeTransitionDuration,
@@ -303,3 +304,5 @@ export default class Transition extends Component {
     })
   }
 }
+
+Transition.create = createShorthandFactory(Transition, animation => ({ animation }))
