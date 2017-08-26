@@ -1,2 +1,2 @@
 export neverUpdate from './neverUpdate'
-export updateForKeys from './updateForProps'
+export updateForKeys from './updateForKeys'
