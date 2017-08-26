@@ -8,15 +8,16 @@ const TabTypesExamples = () => (
   <ExampleSection title='Types'>
     <Message info>
       <Message.Header>
-        <code>Tab</code> component implements two different behaviours
+        Controlling <code>Tab</code> pane re-renders
       </Message.Header>
       <Message.List>
         <Message.Item>
-          <code>renderActiveOnly={'{true}'}</code> - default behaviour, in this case only active pane will be rendered.
-          Can cause problems with <code>state</code> of inactive panes.
+          <code>renderActiveOnly</code> (default) Only the active pane is rendered.
+          Switching tabs unmounts the current pane and mounts the new pane.
         </Message.Item>
         <Message.Item>
-          <code>renderActiveOnly={'{false}'}</code> - all panes will be rendered with all their children.
+          <code>renderActiveOnly={'{false}'}</code> All panes are rendered on Tab mount.
+          Switching tabs hides the current pane and shows the new pane, without unmounting panes.
         </Message.Item>
       </Message.List>
     </Message>

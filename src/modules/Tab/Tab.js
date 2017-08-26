@@ -53,15 +53,9 @@ class Tab extends Component {
 
     /**
      * Array of objects describing each Menu.Item and Tab.Pane:
-     * {
-     *   menuItem: 'Home',
-     *   render: () => <Tab.Pane>Welcome!</Tab.Pane>,
-     * }
+     * { menuItem: 'Home', render: () => <Tab.Pane /> }
      * or
-     * {
-     *   menuItem: 'Home',
-     *   pane: 'Welcome',
-     * }
+     * { menuItem: 'Home', pane: 'Welcome' }
      */
     panes: PropTypes.arrayOf(PropTypes.shape({
       menuItem: customPropTypes.itemShorthand,
