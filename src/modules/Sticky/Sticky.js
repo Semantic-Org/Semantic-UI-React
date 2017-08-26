@@ -88,12 +88,16 @@ export default class Sticky extends Component {
   }
 
   componentDidMount() {
+    if (!isBrowser) return
+
     const { scrollContext } = this.props
     this.handleUpdate()
     scrollContext.addEventListener('scroll', this.handleUpdate)
   }
 
   componentWillUnmount() {
+    if (!isBrowser) return
+
     const { scrollContext } = this.props
     scrollContext.removeEventListener('scroll', this.handleUpdate)
   }

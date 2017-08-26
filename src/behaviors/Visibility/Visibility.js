@@ -171,11 +171,15 @@ export default class Visibility extends Component {
   }
 
   componentDidMount() {
+    if (!isBrowser) return
+
     const { context } = this.props
     context.addEventListener('scroll', this.handleScroll)
   }
 
   componentWillUnmount() {
+    if (!isBrowser) return
+
     const { context } = this.props
     context.removeEventListener('scroll', this.handleScroll)
   }
