@@ -7,9 +7,9 @@ import {
   AutoControlledComponent as Component,
   childrenUtils,
   customPropTypes,
+  eventStack,
   getElementType,
   getUnhandledProps,
-  isBrowser,
   keyboardKey,
   makeDebugger,
   META,
@@ -427,9 +427,6 @@ export default class Dropdown extends Component {
     // TODO objectDiff still runs in prod, stop it
     debug('to state:', objectDiff(prevState, this.state))
 
-    // Do not access document when server side rendering
-    if (!isBrowser) return
-
     // focused / blurred
     if (!prevState.focus && this.state.focus) {
       debug('dropdown focused')
@@ -441,13 +438,11 @@ export default class Dropdown extends Component {
         if (openOnFocus && openable) this.open()
       }
       if (!this.state.open) {
-        document.addEventListener('keydown', this.openOnArrow)
-        document.addEventListener('keydown', this.openOnSpace)
+        eventStack.sub('keydown', [this.openOnArrow, this.openOnSpace])
       } else {
-        document.addEventListener('keydown', this.moveSelectionOnKeyDown)
-        document.addEventListener('keydown', this.selectItemOnEnter)
+        eventStack.sub('keydown', [this.moveSelectionOnKeyDown, this.selectItemOnEnter])
       }
-      document.addEventListener('keydown', this.removeItemOnBackspace)
+      eventStack.sub('keydown', this.removeItemOnBackspace)
     } else if (prevState.focus && !this.state.focus) {
       debug('dropdown blurred')
       const { closeOnBlur } = this.props
@@ -455,33 +450,38 @@ export default class Dropdown extends Component {
         debug('mouse is not down and closeOnBlur=true, closing')
         this.close()
       }
-      document.removeEventListener('keydown', this.openOnArrow)
-      document.removeEventListener('keydown', this.openOnSpace)
-      document.removeEventListener('keydown', this.moveSelectionOnKeyDown)
-      document.removeEventListener('keydown', this.selectItemOnEnter)
-      document.removeEventListener('keydown', this.removeItemOnBackspace)
+      eventStack.unsub('keydown', [
+        this.openOnArrow,
+        this.openOnSpace,
+        this.moveSelectionOnKeyDown,
+        this.selectItemOnEnter,
+        this.removeItemOnBackspace,
+      ])
     }
 
     // opened / closed
     if (!prevState.open && this.state.open) {
       debug('dropdown opened')
-      document.addEventListener('keydown', this.closeOnEscape)
-      document.addEventListener('keydown', this.moveSelectionOnKeyDown)
-      document.addEventListener('keydown', this.selectItemOnEnter)
-      document.addEventListener('keydown', this.removeItemOnBackspace)
-      document.addEventListener('click', this.closeOnDocumentClick)
-      document.removeEventListener('keydown', this.openOnArrow)
-      document.removeEventListener('keydown', this.openOnSpace)
+      eventStack.sub('keydown', [
+        this.closeOnEscape,
+        this.moveSelectionOnKeyDown,
+        this.selectItemOnEnter,
+        this.removeItemOnBackspace,
+      ])
+      eventStack.sub('click', this.closeOnDocumentClick)
+      eventStack.unsub('keydown', [this.openOnArrow, this.openOnSpace])
       this.scrollSelectedItemIntoView()
     } else if (prevState.open && !this.state.open) {
       debug('dropdown closed')
       this.handleClose()
-      document.removeEventListener('keydown', this.closeOnEscape)
-      document.removeEventListener('keydown', this.moveSelectionOnKeyDown)
-      document.removeEventListener('keydown', this.selectItemOnEnter)
-      document.removeEventListener('click', this.closeOnDocumentClick)
+      eventStack.unsub('keydown', [
+        this.closeOnEscape,
+        this.moveSelectionOnKeyDown,
+        this.selectItemOnEnter,
+      ])
+      eventStack.unsub('click', this.closeOnDocumentClick)
       if (!this.state.focus) {
-        document.removeEventListener('keydown', this.removeItemOnBackspace)
+        eventStack.unsub('keydown', this.removeItemOnBackspace)
       }
     }
   }
@@ -489,16 +489,15 @@ export default class Dropdown extends Component {
   componentWillUnmount() {
     debug('componentWillUnmount()')
 
-    // Do not access document when server side rendering
-    if (!isBrowser) return
-
-    document.removeEventListener('keydown', this.openOnArrow)
-    document.removeEventListener('keydown', this.openOnSpace)
-    document.removeEventListener('keydown', this.moveSelectionOnKeyDown)
-    document.removeEventListener('keydown', this.selectItemOnEnter)
-    document.removeEventListener('keydown', this.removeItemOnBackspace)
-    document.removeEventListener('keydown', this.closeOnEscape)
-    document.removeEventListener('click', this.closeOnDocumentClick)
+    eventStack.unsub('keydown', [
+      this.openOnArrow,
+      this.openOnSpace,
+      this.moveSelectionOnKeyDown,
+      this.selectItemOnEnter,
+      this.removeItemOnBackspace,
+      this.closeOnEscape,
+    ])
+    eventStack.unsub('click', this.closeOnDocumentClick)
   }
 
   // ----------------------------------------
@@ -645,17 +644,15 @@ export default class Dropdown extends Component {
     debug('handleMouseDown()')
 
     this.isMouseDown = true
+    eventStack.sub('mouseup', this.handleDocumentMouseUp)
     _.invoke(this.props, 'onMouseDown', e, this.props)
-    // Do not access document when server side rendering
-    if (isBrowser) document.addEventListener('mouseup', this.handleDocumentMouseUp)
   }
 
   handleDocumentMouseUp = () => {
     debug('handleDocumentMouseUp()')
 
     this.isMouseDown = false
-    // Do not access document when server side rendering
-    if (isBrowser) document.removeEventListener('mouseup', this.handleDocumentMouseUp)
+    eventStack.unsub('mouseup', this.handleDocumentMouseUp)
   }
 
   handleClick = (e) => {
