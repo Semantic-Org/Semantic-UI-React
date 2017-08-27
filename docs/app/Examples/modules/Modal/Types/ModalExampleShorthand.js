@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button, Modal } from 'semantic-ui-react'
 
-const ModalShorthandExample = () => (
+const ModalExampleShorthand = () => (
   <Modal
     trigger={<Button>Show Modal</Button>}
     header='Reminder!'
@@ -13,4 +13,4 @@ const ModalShorthandExample = () => (
   />
 )
 
-export default ModalShorthandExample
+export default ModalExampleShorthand
