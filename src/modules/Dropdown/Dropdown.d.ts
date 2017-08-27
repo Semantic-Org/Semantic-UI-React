@@ -37,6 +37,9 @@ export interface DropdownProps {
   /** Additional classes. */
   className?: string;
 
+  /** Whether the searchQuery is cleared or not when selecting an item from search. */
+  clearSearchQueryOnSelect?: boolean;
+
   /** Whether or not the menu should close when the dropdown is blurred. */
   closeOnBlur?: boolean;
 

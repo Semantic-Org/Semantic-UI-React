@@ -76,6 +76,15 @@ export default class Dropdown extends Component {
     /** Additional classes. */
     className: PropTypes.string,
 
+    /**
+     * Whether the searchQuery is cleared or not when selecting an item from search.
+     * Requires the use of `selection`, `options` and `search`.
+     */
+    clearSearchQueryOnSelect: customPropTypes.every([
+      customPropTypes.demand(['options', 'selection', 'search']),
+      PropTypes.bool,
+    ]),
+
     /** Whether or not the menu should close when the dropdown is blurred. */
     closeOnBlur: PropTypes.bool,
 
@@ -590,7 +599,7 @@ export default class Dropdown extends Component {
 
   selectItemOnEnter = (e) => {
     debug('selectItemOnEnter()', keyboardKey.getName(e))
-    const { multiple, onAddItem, search } = this.props
+    const { clearSearchQueryOnSelect, multiple, onAddItem, search } = this.props
 
     if (keyboardKey.getCode(e) !== keyboardKey.Enter) return
     e.preventDefault()
@@ -604,7 +613,7 @@ export default class Dropdown extends Component {
     this.makeSelectedItemActive(e)
     this.closeOnChange(e)
 
-    if (!multiple || isAdditionItem || optionSize === 1) this.clearSearchQuery()
+    if (clearSearchQueryOnSelect || !multiple || isAdditionItem || optionSize === 1) this.clearSearchQuery()
     if (search && this.searchRef) this.searchRef.focus()
   }
 
@@ -686,7 +695,7 @@ export default class Dropdown extends Component {
   handleItemClick = (e, item) => {
     debug('handleItemClick()', item)
 
-    const { multiple, onAddItem, search } = this.props
+    const { clearSearchQueryOnSelect, multiple, onAddItem, search } = this.props
     const { value } = item
 
     // prevent toggle() in handleClick()
@@ -706,7 +715,7 @@ export default class Dropdown extends Component {
     this.setSelectedIndex(value)
 
     const optionSize = _.size(this.getMenuOptions())
-    if (!multiple || isAdditionItem || optionSize === 1) this.clearSearchQuery()
+    if (clearSearchQueryOnSelect || !multiple || isAdditionItem || optionSize === 1) this.clearSearchQuery()
 
     this.handleChange(e, newValue)
     this.closeOnChange(e)
