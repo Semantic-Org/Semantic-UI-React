@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { ButtonProps } from '../../elements/Button';
-import { SemanticShorthandCollection } from '../..'
+import { SemanticShorthandCollection } from '../..';
 
 export interface ModalActionsProps {
   [key: string]: any;
