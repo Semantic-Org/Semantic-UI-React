@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { SemanticShorthandItem } from '../..';
 import { PortalProps } from '../../addons/Portal';
-import { default as ModalActions } from './ModalActions';
+import { default as ModalActions, ModalActionsProps } from './ModalActions';
 import { default as ModalContent, ModalContentProps } from './ModalContent';
 import { default as ModalDescription } from './ModalDescription';
 import { default as ModalHeader, ModalHeaderProps } from './ModalHeader';
@@ -13,8 +13,8 @@ export interface ModalProps extends PortalProps {
   /** An element type to render as (string or function). */
   as?: any;
 
-  /** A Modal can be passed action buttons via shorthand. */
-  actions?: Array<any>;
+  /** Shorthand for Modal.Actions. Typically an array of button shorthand. */
+  actions?: SemanticShorthandItem<ModalActionsProps>;
 
   /** A Modal can reduce its complexity */
   basic?: boolean;

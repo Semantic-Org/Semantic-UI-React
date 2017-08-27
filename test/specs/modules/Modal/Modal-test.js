@@ -111,6 +111,16 @@ describe('Modal', () => {
       domEvent.click('.ui.modal .actions .button')
       assertBodyContains('.ui.modal', false)
     })
+
+    it('calls shorthand onActionClick callback', () => {
+      const onActionClick = sandbox.spy()
+      const modalActions = { onActionClick, actions: [{ key: 'ok', content: 'OK' }] }
+      wrapperMount(<Modal actions={modalActions} defaultOpen />)
+
+      onActionClick.should.not.have.been.called()
+      domEvent.click('.ui.modal .actions .button')
+      onActionClick.should.have.been.calledOnce()
+    })
   })
 
   describe('onActionClick', () => {
