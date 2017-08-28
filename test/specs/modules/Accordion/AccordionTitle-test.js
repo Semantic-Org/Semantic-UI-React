@@ -13,11 +13,6 @@ describe('AccordionTitle', () => {
   common.propKeyOnlyToClassName(AccordionTitle, 'active')
 
   describe('onClick', () => {
-    it('omitted when not defined', () => {
-      const click = () => shallow(<AccordionTitle />).simulate('click')
-      expect(click).to.not.throw()
-    })
-
     it('is called with (e, { name, index }) when clicked', () => {
       const spy = sandbox.spy()
       const event = { target: null }

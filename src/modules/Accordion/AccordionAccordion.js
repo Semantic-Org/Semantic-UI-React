@@ -67,7 +67,7 @@ export default class AccordionAccordion extends Component {
         PropTypes.shape({
           content: customPropTypes.itemShorthand,
           title: customPropTypes.itemShorthand,
-        })
+        }),
       ),
     ]),
   }
@@ -90,7 +90,7 @@ export default class AccordionAccordion extends Component {
     return { activeIndex: exclusive ? -1 : [-1] }
   }
 
-  computeNewIndex = index => {
+  computeNewIndex = (index) => {
     const { exclusive } = this.props
     const { activeIndex } = this.state
 
@@ -111,7 +111,7 @@ export default class AccordionAccordion extends Component {
     },
   })
 
-  isIndexActive = index => {
+  isIndexActive = (index) => {
     const { exclusive } = this.props
     const { activeIndex } = this.state
 

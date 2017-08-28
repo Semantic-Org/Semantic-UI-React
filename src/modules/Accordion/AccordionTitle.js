@@ -51,11 +51,7 @@ export default class AccordionTitle extends Component {
     parent: 'Accordion',
   }
 
-  handleClick = e => {
-    const { onClick } = this.props
-
-    if (onClick) onClick(e, this.props)
-  }
+  handleClick = e => _.invoke(this.props, 'onClick', e, this.props)
 
   render() {
     const {
