@@ -199,21 +199,8 @@ class Modal extends Component {
 
   handlePortalMount = (e) => {
     debug('handlePortalMount()')
-    const { dimmer } = this.props
-    const mountNode = this.getMountNode()
 
-    if (dimmer) {
-      debug('adding dimmer')
-      mountNode.classList.add('dimmable')
-      mountNode.classList.add('dimmed')
-
-      if (dimmer === 'blurring') {
-        debug('adding blurred dimmer')
-        mountNode.classList.add('blurring')
-      }
-    }
-
-    this.setPosition()
+    this.setPositionAndClassNames()
 
     const { onMount } = this.props
     if (onMount) onMount(e, this.props)
@@ -241,10 +228,25 @@ class Modal extends Component {
 
   handleRef = c => (this.ref = c)
 
-  setPosition = () => {
+  setPositionAndClassNames = () => {
+
     if (this.ref) {
+      const { dimmer } = this.props
       const mountNode = this.getMountNode()
       const { height } = this.ref.getBoundingClientRect()
+
+      if (dimmer) {
+        mountNode.classList.add('dimmable')
+        mountNode.classList.add('dimmed')
+
+        if (dimmer === 'blurring') {
+          mountNode.classList.add('blurring')
+        }
+      } else {
+        mountNode.classList.add('dimmable')
+        mountNode.classList.add('dimmed')
+        mountNode.classList.add('blurring')
+      }
 
       const marginTop = -Math.round(height / 2)
       const scrolling = height >= window.innerHeight
@@ -268,7 +270,7 @@ class Modal extends Component {
       if (Object.keys(newState).length > 0) this.setState(newState)
     }
 
-    this.animationRequestId = requestAnimationFrame(this.setPosition)
+    this.animationRequestId = requestAnimationFrame(this.setPositionAndClassNames)
   }
 
   renderContent = (rest) => {
