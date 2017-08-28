@@ -15,7 +15,7 @@ export interface TextAreaProps {
    * @param {SyntheticEvent} event - The React SyntheticEvent object
    * @param {object} data - All props and the event value.
    */
-  onChange?: (event: React.FormEvent<HTMLTextAreaElement>, data: TextAreaOnChangeData) => void;
+  onChange?: (event: React.FormEvent<HTMLTextAreaElement>, data: TextAreaProps) => void;
 
   /**
    * Called on input.
@@ -23,7 +23,7 @@ export interface TextAreaProps {
    * @param {SyntheticEvent} event - The React SyntheticEvent object
    * @param {object} data - All props and the event value.
    */
-  onInput?: (event: React.FormEvent<HTMLTextAreaElement>, data: TextAreaOnInputData) => void;
+  onInput?: (event: React.FormEvent<HTMLTextAreaElement>, data: TextAreaProps) => void;
 
   /** Indicates row count for a TextArea. */
   rows?: number | string;
@@ -33,14 +33,6 @@ export interface TextAreaProps {
 
   /** The value of the textarea. */
   value?: number | string;
-}
-
-export interface TextAreaOnChangeData extends TextAreaProps {
-  value?: string;
-}
-
-export interface TextAreaOnInputData extends TextAreaProps {
-  value?: string;
 }
 
 declare class TextArea extends React.Component<TextAreaProps, {}> {
