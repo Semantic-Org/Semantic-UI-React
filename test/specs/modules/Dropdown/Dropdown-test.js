@@ -115,6 +115,15 @@ describe('Dropdown', () => {
     dropdownMenuIsClosed()
   })
 
+  it('does not close on blur with closeOnBlur set to false', () => {
+    wrapperMount(<Dropdown options={options} closeOnBlur={false} />)
+      .simulate('click')
+
+    dropdownMenuIsOpen()
+    wrapper.simulate('blur')
+    dropdownMenuIsOpen()
+  })
+
   it('blurs the Dropdown node on close', () => {
     wrapperMount(<Dropdown options={options} selection defaultOpen />)
 

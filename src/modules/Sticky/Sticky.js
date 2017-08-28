@@ -7,6 +7,7 @@ import {
   getElementType,
   getUnhandledProps,
   META,
+  isBrowser,
 } from '../../lib'
 
 /**
@@ -74,7 +75,7 @@ export default class Sticky extends Component {
   static defaultProps = {
     bottomOffset: 0,
     offset: 0,
-    scrollContext: window,
+    scrollContext: isBrowser ? window : null,
   }
 
   static _meta = {
@@ -87,12 +88,16 @@ export default class Sticky extends Component {
   }
 
   componentDidMount() {
+    if (!isBrowser) return
+
     const { scrollContext } = this.props
     this.handleUpdate()
     scrollContext.addEventListener('scroll', this.handleUpdate)
   }
 
   componentWillUnmount() {
+    if (!isBrowser) return
+
     const { scrollContext } = this.props
     scrollContext.removeEventListener('scroll', this.handleUpdate)
   }

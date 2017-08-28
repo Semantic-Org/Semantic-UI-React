@@ -209,22 +209,22 @@ describe('Button', () => {
   })
 
   describe('onClick', () => {
-    it('is called when clicked', () => {
-      const handleClick = sandbox.spy()
+    it('is called with (e, data) when clicked', () => {
+      const onClick = sandbox.spy()
 
-      shallow(<Button type='submit' onClick={handleClick} />)
+      shallow(<Button onClick={onClick} />)
         .simulate('click', syntheticEvent)
 
-      handleClick.should.have.been.calledOnce()
+      onClick.should.have.been.calledOnce()
+      onClick.should.have.been.calledWithExactly(syntheticEvent, { onClick, as: 'button' })
     })
 
-    it('is not called when button is disabled', () => {
-      const handleClick = sandbox.spy()
+    it('is not called when is disabled', () => {
+      const onClick = sandbox.spy()
 
-      shallow(<Button type='submit' disabled onClick={handleClick} />)
+      shallow(<Button disabled onClick={onClick} />)
         .simulate('click', syntheticEvent)
-
-      handleClick.should.not.have.been.calledOnce()
+      onClick.should.have.callCount(0)
     })
   })
 
