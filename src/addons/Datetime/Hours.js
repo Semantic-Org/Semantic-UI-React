@@ -1,9 +1,10 @@
 import _ from 'lodash/fp'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
-import {defaultHourFormatter} from '../../lib/dateUtils'
 
 import {
+  customPropTypes,
+  dateUtils,
   META,
 } from '../../lib'
 
@@ -15,20 +16,24 @@ import DatetimeGrid from './DatetimeGrid'
 export default class Hours extends Component {
   static propTypes = {
     /**
-     * handles a click on an hour cell.
-     * Fires the call back with 
-     * @param: event
-     * @param: {value}
-     */
-    onClick: PropTypes.func,
-
-    /**
-     * Formats the time string shown in the calendar selector.
+     * Formats a Date object as an hour string.
      *
      * @param {date} - A date object.
-     * @returns {string} - A formatted time string.
+     * @returns {string} - A formatted hour string.
      */
     formatter: PropTypes.func,
+
+    /**
+     * Called when the user changes the value.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props and proposed value.
+     * @param {object} data.value - The proposed new value.
+     */
+    onChange: PropTypes.func,
+
+    /** Current value as a Date object. */
+    value: customPropTypes.DateValue,
   }
 
   static _meta = {
@@ -38,33 +43,29 @@ export default class Hours extends Component {
   }
 
   static defaultProps = {
-    formatter: defaultHourFormatter,
-    firstHourOfDay: 0,
-    LastHourOfDay: 23,
+    formatter: dateUtils.defaultHourFormatter,
   }
 
-  getHourLabels() {
-    const { formatter } = this.props
-    const date = new Date()
+  getCells = () => _.map(_.range(0, 12), hour => ({
+    content: this.getHourLabel(hour),
+    onClick: this.handleCellClick(hour),
+  }), 12)
+
+  getHourLabel = (hour) => {
+    const { formatter, value } = this.props
+    const date = new Date(value)
+
     date.setMinutes(0)
+    date.setHours(hour)
 
-    return _.times(hour => {
-      date.setHours(hour)
-      return formatter(date)
-    }, 24)
+    return formatter(date)
   }
 
-  getCells() {
-    const { onClick } = this.props
-    const labels = this.getHourLabels()
+  handleCellClick = hours => (e) => {
+    const value = new Date(this.props.value)
+    value.setHours(hours)
 
-    return _.times(i => {
-      const thisHour = i
-      return {
-        content: labels[i],
-        onClick: e => onClick(e, thisHour),
-      }
-    }, 24)
+    _.invoke('onChange', this.props, e, { ...this.props, value })
   }
 
   render() {

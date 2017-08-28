@@ -1,11 +1,34 @@
-/**
- * Pad a number with a zero if it's one digit
- * @param  {number} n
- * @returns {string} Returns the number padded with a zero if below 10
- */
-export function zeroPad(n) {
-  return (n < 10 ? '0' : '') + n
+import _ from 'lodash'
+
+export const labels = {
+  daysShort: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
+  daysFull: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+  months: [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ],
 }
+
+/**
+ * Returns the text name of the given date object.
+ *
+ * @param {Date} date - A date object.
+ * @returns {string}
+ */
+export const getMonthName = date => labels.months[date.getMonth()]
+
+const zeroPad = val => _.padStart(val, 2, '0')
+
 /**
  * Return the first date of the month for a given date
  */
@@ -49,20 +72,20 @@ export function tomorrow(date) {
 }
 
 export function defaultDateFormatter(date) {
-  return !!date ? `${date.getFullYear()}-${zeroPad(date.getMonth() + 1)}-${zeroPad(date.getDate())}` : ''
+  return date ? `${date.getFullYear()}-${zeroPad(date.getMonth() + 1)}-${zeroPad(date.getDate())}` : ''
 }
 
 function ampmFormatter(date) {
   if (!date) return ''
-  return date.getHours() > 11 ? 'pm' : 'am'
+  return date.getHours() > 11 ? 'PM' : 'AM'
 }
 
 export function defaultHourFormatter(date) {
   if (!date) return ''
-  return (date.getHours() % 12 || 12) + ampmFormatter(date)
+  return date.getHours() % 12 || 12
 }
 
-function defaultMinuteFormatter(date) {
+export function defaultMinuteFormatter(date) {
   if (!date) return ''
   return zeroPad(date.getMinutes())
 }
@@ -74,9 +97,8 @@ function defaultMinuteFormatter(date) {
  * @returns {string}
  */
 export function defaultTimeFormatter(date) {
-  return !!date ? `${date.getHours() % 12 || 12}:${defaultMinuteFormatter(date)}${ampmFormatter(date)}` : ''
+  return date ? `${date.getHours() % 12 || 12}:${defaultMinuteFormatter(date)} ${ampmFormatter(date)}` : ''
 }
-
 
 /**
  * Returns a YYYYMMDD string representation of this date.
@@ -86,3 +108,4 @@ export function defaultTimeFormatter(date) {
 export function getDateString(date) {
   return `${date.getFullYear()}${date.getMonth()}${date.getDate()}`
 }
+

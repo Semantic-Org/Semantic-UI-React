@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
 import {
+  customPropTypes,
   META,
 } from '../../lib'
 
@@ -13,11 +14,17 @@ import DatetimeGrid from './DatetimeGrid'
  */
 export default class Years extends Component {
   static propTypes = {
-    // TODO doc
-    onClick: PropTypes.func,
+    /**
+     * Called when the user changes the value.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props and proposed value.
+     * @param {object} data.value - The proposed new value.
+     */
+    onChange: PropTypes.func,
 
-    /** Active year **/
-    year: PropTypes.number,
+    /** Current value as a Date object. */
+    value: customPropTypes.DateValue,
   }
 
   static _meta = {
@@ -26,18 +33,24 @@ export default class Years extends Component {
     type: META.TYPES.MODULE,
   }
 
-  getCells() {
-    const { onClick, year } = this.props
+  getCells = () => {
+    const { value } = this.props
+    const year = value.getFullYear()
     const range = 4
     const startYear = year - range
     const endYear = year + range + 1
 
-    return _.range(startYear, endYear).map(thisYear => {
-      return {
-        content: thisYear,
-        onClick: e => onClick(e, thisYear),
-      }
-    }, 16)
+    return _.range(startYear, endYear).map(thisYear => ({
+      content: thisYear,
+      onClick: this.handleCellClick(thisYear),
+    }), 9)
+  }
+
+  handleCellClick = year => (e) => {
+    const value = new Date(this.props.value)
+    value.setYear(year)
+
+    _.invoke('onChange', this.props, e, { ...this.props, value })
   }
 
   render() {

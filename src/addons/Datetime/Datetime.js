@@ -5,8 +5,8 @@ import React from 'react'
 import {
   AutoControlledComponent as Component,
   customPropTypes,
-  makeDebugger,
   dateUtils,
+  makeDebugger,
   META,
 } from '../../lib'
 
@@ -14,9 +14,16 @@ import Input from '../../elements/Input/Input'
 import Popup from '../../modules/Popup'
 
 import Calendar from './Calendar'
+import CalendarMenu from './CalendarMenu'
 import DateRange from './DateRange'
 
 const debug = makeDebugger('datetime')
+
+// Allow the table and menu to create the borders
+const popupStyle = {
+  border: 'none',
+  padding: 0,
+}
 
 /**
  * A <Datetime/> allows a user to select a calendar date and/or time as well
@@ -28,42 +35,18 @@ export default class Datetime extends Component {
     name: 'Datetime',
     type: META.TYPES.ADDON,
   }
+
   static Range = DateRange
 
   static propTypes = {
     /** An element type to render as (string or function). */
     as: customPropTypes.as,
 
-    /**
-     * Textual content for the various text element of the calendar.
-     * {
-     *   daysShort: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
-     *   daysFull: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-     *   months: [
-     *     'January',
-     *     'February',
-     *     'March',
-     *     'April',
-     *     'May',
-     *     'June',
-     *     'July',
-     *     'August',
-     *     'September',
-     *     'October',
-     *     'November',
-     *     'December',
-     *   ],
-     *   monthsShort: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', Nov', 'Dec'],
-     *   today: 'Today',
-     *   now: 'Now',
-     *   am: 'AM',
-     *   pm: 'PM',
-     * }
-     */
-    content: PropTypes.object,
-
     /** Enables date selection. */
     date: PropTypes.bool,
+
+    /** Disables the input element. */
+    disabled: PropTypes.bool,
 
     /** An array of dates that should be marked disabled in the calendar. */
     disabledDates: PropTypes.arrayOf(customPropTypes.DateValue),
@@ -96,7 +79,7 @@ export default class Datetime extends Component {
     name: PropTypes.string,
 
     /**
-     * Called when the user attempts to change the value.
+     * Called when the user changes the value.
      *
      * @param {SyntheticEvent} event - React's original SyntheticEvent.
      * @param {object} data - All props and proposed value.
@@ -165,42 +148,19 @@ export default class Datetime extends Component {
 
   static defaultProps = {
     icon: 'calendar',
-    content: {
-      daysShort: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
-      daysFull: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-      months: [
-        'January',
-        'February',
-        'March',
-        'April',
-        'May',
-        'June',
-        'July',
-        'August',
-        'September',
-        'October',
-        'November',
-        'December',
-      ],
-      monthsShort: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-      today: 'Today',
-      now: 'Now',
-      am: 'AM',
-      pm: 'PM',
-    },
-    disabledDates: [],
     dateFormatter: dateUtils.defaultDateFormatter,
     timeFormatter: dateUtils.defaultTimeFormatter,
     hourFormatter: dateUtils.defaultHourFormatter,
     date: true,
     time: true,
-    onChange: () => {},
+  }
+
+  state = {
+    value: new Date(),
   }
 
   componentWillMount() {
-    this.trySetState({
-      mode: this.getInitialMode(),
-    })
+    this.trySetState({ mode: this.getInitialMode() })
   }
 
   getInitialMode() {
@@ -219,53 +179,116 @@ export default class Datetime extends Component {
     debug('close()')
     _.invoke('onClose', this.props, e, this.props)
 
-    this.trySetState({
-      open: false,
-      mode: this.getInitialMode(),
-    })
+    this.trySetState({ open: false, mode: this.getInitialMode() })
   }
 
   toggle = e => (this.state.open ? this.close(e) : this.open(e))
 
-  handleDateSelection = (e, { value, nextMode, rangeStart }) => {
-    debug('handleDateSelection()', value, e)
+  handleChange = (e, { value, mode }) => {
+    debug('handleChange()', value, e)
     e.stopPropagation()
     e.nativeEvent.stopImmediatePropagation()
-    const { onChange } = this.props
 
-    this.trySetState({
-      value,
-      mode: nextMode,
-    })
-    if (!nextMode) {
-      onChange(e, {
-        ...this.props,
-        value,
-      })
-      this.close()
-    }
+    this.trySetState({ value, mode })
+    _.invoke('onChange', this.props, e, { ...this.props, value })
+
+    // when there's no mode, the selection process has ended
+    if (!mode) this.close()
   }
 
-  onSetMonth = (ev, { value, nextMode }) => {
-    debug('onSetMonth()', value, nextMode)
-    this.trySetState({
-      value,
-      mode: nextMode,
-    })
+  handleChange = (e, { value }) => {
+    debug('handleMonthChange()', value, mode)
+    this.trySetState({ value, mode })
   }
 
   /**
    * Return a formatted date or date/time string
    */
   getFormattedDate(value = this.state.value) {
-    const { date, time } = this.props
+    debug('getFormattedDate()', value)
+    const { date, dateFormatter, time, timeFormatter } = this.props
 
-    if (date && time) {
-      return `${this.props.dateFormatter(value)} ${this.props.timeFormatter(value)}`
-    } else if (!date && time) {
-      return this.props.timeFormatter(value)
+    if (date && time) return `${dateFormatter(value)} ${timeFormatter(value)}`
+
+    if (!date && time) return timeFormatter(value)
+
+    return dateFormatter(value)
+  }
+
+  handlePreviousPage = (e) => {
+    this.setPage(e, -1)
+  }
+
+  handleNextPage = (e) => {
+    this.setPage(e, 1)
+  }
+
+  setPage = (e, count) => {
+    const { mode, value } = this.props
+
+    e.stopPropagation()
+
+    switch (mode) {
+      case 'day':
+        this.setMonth(e, { page: count })
+        break
+
+      case 'month':
+        this.setYear(e, value.getFullYear() + count, mode)
+        break
+
+      case 'year':
+        this.setYear(e, value.getFullYear() + (count * 16), mode)
+        break
+
+      default:
+        break
     }
-    return this.props.dateFormatter(value)
+  }
+
+  handleChangeMode = (e, { name }) => {
+    _.invoke('onChange', this.props, e, { ...this.props, mode: name })
+  }
+
+  setMonth = (e, props) => {
+    const { value, page } = props
+    const mode = 'day'
+    const month = !value && page
+      ? value.getMonth() + page
+      : value
+
+    value.setMonth(month)
+    _.invoke('onChange', this.props, e, { ...this.props, value, mode })
+  }
+
+  setDay = (e, day) => {
+    const { time, value } = this.props
+
+    value.setDate(day)
+
+    const mode = time ? 'hour' : null
+    _.invoke('onChange', this.props, e, { ...this.props, value, mode })
+  }
+
+  setYear = (e, year, mode = 'day') => {
+    const { value } = this.props
+
+    value.setYear(year)
+    _.invoke('onChange', this.props, e, { ...this.props, value, mode })
+  }
+
+  setHour = (e, hour, mode = 'minute') => {
+    const { value } = this.props
+
+    value.setHours(hour)
+    _.invoke('onChange', this.props, e, { ...this.props, value, mode })
+  }
+
+  setMinute = (e, minute, mode = null) => {
+    const { value } = this.props
+
+    value.setMinutes(minute)
+    _.invoke('onChange', this.props, e, { ...this.props, value, mode })
   }
 
   render() {
@@ -273,7 +296,6 @@ export default class Datetime extends Component {
     const {
       disabled,
       error,
-      content,
       firstDayOfWeek,
       icon,
       name,
@@ -286,22 +308,11 @@ export default class Datetime extends Component {
       minDate,
       disabledDates,
     } = this.props
+
     const { open, value, mode } = this.state
-    const inputElement = (
-      <Input
-        type='text'
-        name={name}
-        icon={icon}
-        disabled={disabled}
-        error={error}
-        iconPosition='left'
-        placeholder={placeholder}
-        value={this.getFormattedDate(value)}
-      />
-    )
+
     return (
       <Popup
-        openOnTriggerFocus
         closeOnDocumentClick
         // TODO: Fix close on trigger blur, it closes when clicking inside the calendar.
         // Calendar contents are changed on click, so Popup cannot find the clicked node within calendar.
@@ -309,30 +320,56 @@ export default class Datetime extends Component {
         // Enable close on trigger blur after this is fixed.
         // Portal should be able to identify clicks within the portal even with no e.target, perhaps using x y coords.
         closeOnTriggerBlur={false}
-        openOnTriggerMouseEnter={false}
+        closeOnTriggerClick={false}
         closeOnTriggerMouseLeave={false}
         openOnTriggerClick={false}
-        closeOnTriggerClick={false}
-        trigger={inputElement}
-        position='bottom left'
-        open={open}
-        onOpen={this.open}
+        openOnTriggerFocus
+        openOnTriggerMouseEnter={false}
         onClose={this.close}
+        onOpen={this.open}
+        open={open}
+        position='bottom left'
+        style={popupStyle}
+        trigger={(
+          <Input
+            type='text'
+            name={name}
+            icon={icon}
+            disabled={disabled}
+            error={error}
+            iconPosition='left'
+            placeholder={placeholder}
+            value={this.getFormattedDate(value)}
+          />
+        )}
       >
-        <Calendar
+        <CalendarMenu
           mode={mode}
-          content={content}
-          onDateSelect={this.handleDateSelection}
-          onChangeMonth={this.onSetMonth}
-          dateFormatter={dateFormatter}
-          timeFormatter={timeFormatter}
-          hourFormatter={hourFormatter}
-          firstDayOfWeek={firstDayOfWeek}
-          time={time}
+          onChangeMode={this.handleChangeMode}
+          onNextPage={this.handleNextPage}
+          onPreviousPage={this.handlePreviousPage}
+          value={value}
+        />
+        <Calendar
           date={date}
-          minDate={minDate}
+          dateFormatter={dateFormatter}
           disabledDates={disabledDates}
-          value={value || new Date()}
+          firstDayOfWeek={firstDayOfWeek}
+          hourFormatter={hourFormatter}
+          minDate={minDate}
+          mode={mode}
+          onChange={this.handleChange}
+
+          // TODO remove these for one onChange???
+          onDayChange={this.handleDayChange}
+          onMonthChange={this.handleMonthChange}
+          onYearChange={this.handleYearChange}
+          onHourChange={this.handleHourChange}
+          onMinuteChange={this.handleMinuteChange}
+
+          time={time}
+          timeFormatter={timeFormatter}
+          value={value}
         />
       </Popup>
     )

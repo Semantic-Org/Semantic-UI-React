@@ -1,9 +1,10 @@
 import _ from 'lodash/fp'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
-import {defaultTimeFormatter} from '../../lib/dateUtils'
 
 import {
+  customPropTypes,
+  dateUtils,
   META,
 } from '../../lib'
 
@@ -20,17 +21,25 @@ export default class Minutes extends Component {
     /** Minutes interval between each item. */
     interval: PropTypes.number,
 
-    // TODO better doc
-    /** Click handler. */
-    onClick: PropTypes.func,
-
     /**
-     * Formats the time string in the input and calendar.
+     * Formats a Date object as a minute string.
      *
      * @param {date} - A date object.
-     * @returns {string} - A formatted time string.
+     * @returns {string} - A formatted minute string.
      */
-    timeFormatter: PropTypes.func,
+    formatter: PropTypes.func,
+
+    /**
+     * Called when the user changes the value.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props and proposed value.
+     * @param {object} data.value - The proposed new value.
+     */
+    onChange: PropTypes.func,
+
+    /** Current value as a Date object. */
+    value: customPropTypes.DateValue,
   }
 
   static _meta = {
@@ -40,43 +49,43 @@ export default class Minutes extends Component {
   }
 
   static defaultProps = {
-    timeFormatter: defaultTimeFormatter,
+    formatter: dateUtils.defaultMinuteFormatter,
     interval: 5,
   }
 
-  /**
-   * Return the ordered labels for days of the week,
-   * accounting for the locale's first day of the week
-   */
-  getMinuteLabels() {
-    const { timeFormatter, interval, hour } = this.props
-    const count = Math.round(60 / interval)
-    const date = new Date()
-    date.setHours(hour)
-
-    return _.times(minute => {
-      date.setMinutes(minute * interval)
-      return timeFormatter(date)
-    }, count)
-  }
-
   getCells() {
-    const { onClick, interval } = this.props
-    const labels = this.getMinuteLabels()
-    return _.times(i => {
+    const { interval } = this.props
+    return _.times((i) => {
       const thisMinute = i * interval
       return {
-        content: labels[i],
-        onClick: e => onClick(e, thisMinute),
+        content: this.getMinuteLabel(thisMinute),
+        onClick: this.handleCellClick(thisMinute),
       }
-    }, labels.length)
+    }, Math.round(60 / interval))
+  }
+
+  getMinuteLabel(minute) {
+    const { formatter, interval, hour, value } = this.props
+    const date = new Date(value)
+
+    date.setHours(hour)
+    date.setMinutes(minute * interval)
+
+    return formatter(date)
+  }
+
+  handleCellClick = minutes => (e) => {
+    const value = new Date(this.props.value)
+    value.setMinutes(minutes)
+
+    _.invoke('onChange', this.props, e, { ...this.props, value })
   }
 
   render() {
     return (
       <DatetimeGrid
         headers={['Minute']}
-        columns={4}
+        columns={3}
         cells={this.getCells()}
       />
     )

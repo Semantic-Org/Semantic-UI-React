@@ -1,15 +1,15 @@
+import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React from 'react'
 
 import {
   AutoControlledComponent as Component,
   customPropTypes,
-  makeDebugger,
   dateUtils,
+  makeDebugger,
   META,
 } from '../../lib'
 
-// import { defaultDateFormatter, defaultTimeFormatter } from '../../lib/dateUtils'
 import Input from '../../elements/Input'
 import Popup from '../../modules/Popup'
 import Grid from '../../collections/Grid'
@@ -33,39 +33,8 @@ export default class DateRange extends Component {
     /** An element type to render as (string or function). */
     as: customPropTypes.as,
 
-    /**
-     * Textual content for the various text element of the calendar.
-     * {
-     *   daysShort: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
-     *   daysFull: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-     *   months: [
-     *     'January',
-     *     'February',
-     *     'March',
-     *     'April',
-     *     'May',
-     *     'June',
-     *     'July',
-     *     'August',
-     *     'September',
-     *     'October',
-     *     'November',
-     *     'December',
-     *   ],
-     *   monthsShort: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', Nov', 'Dec'],
-     *   today: 'Today',
-     *   now: 'Now',
-     *   am: 'AM',
-     *   pm: 'PM',
-     * }
-     * @type {Object}
-     */
-    content: PropTypes.object,
-
     /** Enables date selection. */
     date: PropTypes.bool,
-
-    dateHandler: PropTypes.string,
 
     /** A disabled dropdown menu or item does not allow user interaction. */
     disabled: PropTypes.bool,
@@ -73,7 +42,7 @@ export default class DateRange extends Component {
     /** An array of dates that should be marked disabled in the calendar. */
     disabledDates: PropTypes.arrayOf(customPropTypes.DateValue),
 
-    /** initial value for left and right months **/
+    /** initial value for left and right months */
     defaultMonths: PropTypes.arrayOf(PropTypes.number),
 
     /** Initial value of open. */
@@ -94,7 +63,7 @@ export default class DateRange extends Component {
     /** An errored dropdown can alert a user to a problem. */
     error: PropTypes.bool,
 
-    /** First day of the week. Can be either 0 (Sunday), 1 (Monday) **/
+    /** First day of the week. Can be either 0 (Sunday), 1 (Monday) */
     firstDayOfWeek: PropTypes.number,
 
     /** Shorthand for Icon. */
@@ -109,7 +78,7 @@ export default class DateRange extends Component {
     /** Do not allow dates before minDate. */
     minDate: customPropTypes.DateValue,
 
-    /** 2 element array of left and right months **/
+    /** 2 element array of left and right months */
     months: PropTypes.arrayOf(PropTypes.number),
 
     /** Name of the input field which holds the date value. */
@@ -192,7 +161,7 @@ export default class DateRange extends Component {
      * Fired when a date is selected
      * @type {[type]}
      */
-    onChange: PropTypes.func
+    onChange: PropTypes.func,
   }
 
   static autoControlledProps = [
@@ -207,43 +176,17 @@ export default class DateRange extends Component {
 
   static defaultProps = {
     icon: 'calendar',
-    dateHandler: 'native',
-    content: {
-      daysShort: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
-      daysFull: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-      months: [
-        'January',
-        'February',
-        'March',
-        'April',
-        'May',
-        'June',
-        'July',
-        'August',
-        'September',
-        'October',
-        'November',
-        'December',
-      ],
-      monthsShort: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-      today: 'Today',
-      now: 'Now',
-      am: 'AM',
-      pm: 'PM',
-    },
-    disabledDates: [],
     dateFormatter: dateUtils.defaultDateFormatter,
     timeFormatter: dateUtils.defaultTimeFormatter,
     hourFormatter: dateUtils.defaultHourFormatter,
     date: true,
     time: false,
     separator: ' - ',
-    onChange: ()=>{}
   }
 
   componentWillMount() {
     this.trySetState({
-      mode: this.getInitialMode()
+      mode: this.getInitialMode(),
     })
   }
 
@@ -276,7 +219,7 @@ export default class DateRange extends Component {
     })
   }
 
-  toggle = (e) => this.state.open ? this.close(e) : this.open(e)
+  toggle = e => (this.state.open ? this.close(e) : this.open(e))
 
   handleOpen = (e) => {
     debug('handleOpen()', e)
@@ -319,10 +262,10 @@ export default class DateRange extends Component {
       rangeFocus: 1 - rangeFocus,
       value: currentRange,
     })
-    onChange(e, {
+    _.invoke(this.props, 'onChange', e, {
       ...this.props,
-      rangeId: rangeId,
-      value: currentRange
+      rangeId,
+      value: currentRange,
     })
     if (rangeFocus === 1) {
       this.close()
@@ -334,12 +277,10 @@ export default class DateRange extends Component {
    * @param  {number} rangeItem Either 0 or 1 for left and right calendars
    * @param  {Date} date        A date in the selected month
    */
-  handleMonthChange = (ev, {rangeId, value}) => {
+  handleMonthChange = (e, { rangeId, value }) => {
     const months = this.getDisplayMonths()
     months[rangeId] = value
-    this.trySetState({
-      months
-    })
+    this.trySetState({ months })
   }
 
   /**
@@ -454,7 +395,6 @@ export default class DateRange extends Component {
             <Calendar
               rangeId={0}
               value={months[0]}
-              content={this.props.content}
               onDateSelect={this.handleDateSelection}
               onChangeMonth={this.handleMonthChange}
               dateFormatter={dateFormatter}
@@ -474,7 +414,6 @@ export default class DateRange extends Component {
             <Calendar
               rangeId={1}
               value={months[1]}
-              content={this.props.content}
               onDateSelect={this.handleDateSelection}
               onChangeMonth={this.handleMonthChange}
               dateFormatter={dateFormatter}

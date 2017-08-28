@@ -1,13 +1,6 @@
 import { dateUtils } from 'src/lib'
 
 describe('dateUtils', () => {
-  it('zeroPad only pads a single digit number with a leading zero', () => {
-    const singleDigit = 3
-    const doubleDigit = 11
-    dateUtils.zeroPad(singleDigit).should.equal(`0${singleDigit}`)
-    dateUtils.zeroPad(doubleDigit).should.equal(doubleDigit)
-  })
-
   it('getFirstOfMonth returns the first of April 2017', () => {
     const date = new Date('2017-04-24')
     const firstOfApril = dateUtils.getFirstOfMonth(date)

@@ -111,16 +111,16 @@ class DatetimeExampleFull extends Component {
     this.setState((prevState, props) => {
       const d = new Date()
       return {
-        date: new Date(d.getFullYear(), d.getMonth(), d.getDate(), hours, minutes),
+        value: new Date(d.getFullYear(), d.getMonth(), d.getDate(), hours, minutes),
       }
     })
   }
 
   handleAMPMChange = () => {
     this.setState((prevState, props) => {
-      const date = new Date(prevState.date)
+      const date = new Date(prevState.value)
       date.setHours((date.getHours() + 12) % 24)
-      return { date }
+      return { value: date }
     })
   }
 
@@ -138,9 +138,9 @@ class DatetimeExampleFull extends Component {
     const value = e.target.value
 
     this.setState((prevState, props) => {
-      const date = new Date(prevState.date)
+      const date = new Date(prevState.value)
       date.setHours(value)
-      return { date }
+      return { value: date }
     })
   }
 
@@ -148,9 +148,9 @@ class DatetimeExampleFull extends Component {
     const value = e.target.value
 
     this.setState((prevState, props) => {
-      const date = new Date(prevState.date)
+      const date = new Date(prevState.value)
       date.setMinutes(value)
-      return { date }
+      return { value: date }
     })
   }
 
@@ -160,9 +160,9 @@ class DatetimeExampleFull extends Component {
 
   handleAMPMLabelClick = () => {
     this.setState((prevState, props) => {
-      const date = new Date(prevState.date)
+      const date = new Date(prevState.value)
       date.setHours((date.getHours() + 12) % 24)
-      return { date, mode: null }
+      return { value: date, mode: null }
     })
   }
 
@@ -171,21 +171,21 @@ class DatetimeExampleFull extends Component {
 
     this.setState((prevState, props) => {
       const { mode } = prevState
-      const date = new Date(prevState.date)
+      const date = new Date(prevState.value)
       let nextMode
 
       if (mode === 'minutes') {
         date.setMinutes(value)
         nextMode = null
       } else {
-        const newHours = isAM(prevState.date.getHours())
+        const newHours = isAM(prevState.value.getHours())
           ? value
           : value + 12
         date.setHours(newHours)
         nextMode = 'minutes'
       }
 
-      return { date, mode: nextMode }
+      return { value: date, mode: nextMode }
     })
   }
 

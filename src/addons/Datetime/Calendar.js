@@ -1,7 +1,7 @@
+import _ from 'lodash/fp'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
-import CalendarMenu from './CalendarMenu'
-import Month from './Month'
+import Days from './Days'
 import Months from './Months'
 import Years from './Years'
 import Hours from './Hours'
@@ -19,8 +19,8 @@ const style = {
 }
 
 /**
- * A <Calendar/> handles the construction, formatting and
- * orchestration of the various date and time components
+ * A Calendar is used to display and select both dates and times.
+ *
  * @see Datetime
  */
 export default class Calendar extends Component {
@@ -31,23 +31,12 @@ export default class Calendar extends Component {
   }
 
   static propTypes = {
-    /** Textual context constants. */
-    content: PropTypes.object,
-
-    /** Enables date selection. */
-    date: PropTypes.bool,
-
-    /** The initial value for selectionEnd. */
-    defaultSelectionEnd: customPropTypes.DateValue,
-
-    /** The initial value for selectionStart. */
-    defaultSelectionStart: customPropTypes.DateValue,
-
-    /** Initial value for value. */
-    defaultValue: PropTypes.arrayOf(customPropTypes.DateValue),
-
-    /** Initial value for mode. */
-    defaultMode: PropTypes.arrayOf(customPropTypes.DateValue),
+    /**
+     * Formats the date string in the input and calendar.
+     * A function that receives a date argument and returns a formatted date
+     * @param {date} - A date object.
+     */
+    dateFormatter: PropTypes.func,
 
     /** An array of dates that should be marked disabled in the calendar. */
     disabledDates: PropTypes.arrayOf(customPropTypes.DateValue),
@@ -55,26 +44,30 @@ export default class Calendar extends Component {
     /** First day of the week (Sunday = 0, Monday = 1). */
     firstDayOfWeek: PropTypes.number,
 
+    /**
+     * Formats an hour for display in the hour selection.
+     * A function that receives a date argument and returns a formatted
+     * rounded hour.
+     */
+    hourFormatter: PropTypes.func,
+
     /** Current calendar mode. */
     mode: PropTypes.oneOf(['minute', 'hour', 'day', 'month', 'year']),
 
-    /** Handler fired when a date is selected. */
-    onDateSelect: PropTypes.func,
+    /**
+     * Called when the user changes the value.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props and proposed value.
+     * @param {object} data.value - The proposed new value.
+     */
+    onChange: PropTypes.func,
 
-    /** Handler fired when a month is changed. */
-    onChangeMonth: PropTypes.func,
-
-    /** Handler fired when a year is changed. */
-    onChangeYear: PropTypes.func,
-
-    // TODO what is this used for and what type is it?
-    page: PropTypes.any,
-
-    /** Render two calendars for selecting the start and end of a range. */
-    range: PropTypes.bool,
-
-    /** In a DateRange component, this is either 0 for the first calendar or 1 for the second */
-    rangeId: PropTypes.oneOf([0, 1]),
+    /** Display future or past months or years. */
+    page: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+    ]),
 
     /** Dates until or at selectionEnd are marked as selected. */
     selectionEnd: customPropTypes.DateValue,
@@ -86,163 +79,56 @@ export default class Calendar extends Component {
     time: PropTypes.bool,
 
     /**
-     * Formats the date string in the input and calendar.
-     * A function that receives a date argument and returns a formatted date
-     * @param {date} - A date object.
-     */
-    dateFormatter: PropTypes.func,
-    /**
      * Formats the time string in the input and calendar.
      * The function receives a date arguments and should return a string
      * formatted time.
      * @param {date} - A date object.
      */
     timeFormatter: PropTypes.func,
-    /**
-     * Formats an hour for display in the hour selection.
-     * A function that receives a date argument and returns a formatted
-     * rounded hour.
-     */
-    hourFormatter: PropTypes.func,
 
     /** Current value as a Date object or a string that can be parsed into one. */
     value: customPropTypes.DateValue,
   }
 
   static defaultProps = {
-    disabledDates: [],
     firstDayOfWeek: 1,
     date: true,
     time: true,
-    range: false,
     mode: 'day',
-    selectionStart: null,
-    selectionEnd: null,
     value: new Date(),
     dateFormatter: dateUtils.defaultDateFormatter,
     timeFormatter: dateUtils.defaultTimeFormatter,
     hourFormatter: dateUtils.defaultHourFormatter,
   }
 
-  getYear = () => this.props.value.getFullYear()
-  getMonth = () => this.props.value.getMonth()
-  getHour = () => this.props.value.getHours()
-  getDate = () => this.props.value.getDate()
-
-  getMonthName() {
-    const { content } = this.props
-    return content.months[this.getMonth()]
+  handleChange = (e, { value, mode }) => {
+    _.invoke('onChange', this.props, e, { ...this.props, value, mode })
   }
 
-  setMonth = (e, props) => {
-    e.stopPropagation()
-    const { value, page } = props
-    const { onDateSelect } = this.props
-    const date = this.props.value
-    const nextMode = 'day'
-    const month = !value && page
-      ? date.getMonth() + page
-      : value
-
-    date.setMonth(month)
-    onDateSelect(e, {
-      ...this.props,
-      value: date,
-      nextMode: nextMode,
-    })
+  handleDayChange = (e, { value }) => {
+    const { time } = this.props
+    this.handleChange(e, { value, mode: time ? 'hour' : null })
   }
 
-  setYear = (e, year, nextMode = 'day') => {
-    e.stopPropagation()
-    const { value, onDateSelect } = this.props
-    value.setYear(year)
-    onDateSelect(e, {
-      ...this.props,
-      value: value,
-      nextMode: nextMode,
-    })
+  handleMonthChange = (e, { value }) => {
+    this.handleChange(e, { value, mode: 'day' })
   }
 
-  setHour = (e, hour, nextMode = 'minute') => {
-    e.stopPropagation()
-    const { value, onDateSelect } = this.props
-    value.setHours(hour)
-    onDateSelect(e, {
-      ...this.props,
-      value: value,
-      nextMode: nextMode,
-    })
+  handleYearChange = (e, { value }) => {
+    this.handleChange(e, { value, mode: 'month' })
   }
 
-  setMinute = (e, minute) => {
-    e.stopPropagation()
-    const { onDateSelect, value } = this.props
-    value.setMinutes(minute)
-    const nextMode = this.props.range ? ' day' : null
-    onDateSelect(e, {
-      ...this.props,
-      value: value,
-      nextMode: nextMode,
-    })
+  handleHourChange = (e, { value }) => {
+    this.handleChange(e, { value, mode: 'minute' })
   }
 
-  setDay = (e, day) => {
-    e.stopPropagation()
-    const { onDateSelect, time, range, value } = this.props
-    value.setDate(day)
-    const nextMode = time ? 'hour' : null
-    onDateSelect(e, {
-      ...this.props,
-      value: value,
-      nextMode: nextMode,
-      rangeStart: range ? date : null,
-    })
+  handleMinuteChange = (e, { value }) => {
+    this.handleChange(e, { value, mode: null })
   }
 
-  page = (direction) => (e) => {
-    e.stopPropagation()
-    const { mode } = this.props
-    switch (mode) {
-      case 'day':
-        this.setMonth(e, { page: direction })
-        break
-
-      case 'month':
-        this.setYear(e, this.getYear() + direction, mode)
-        break
-
-      case 'year':
-        this.setYear(e, this.getYear() + (direction * 16), mode)
-        break
-
-      default:
-        break
-    }
-  }
-
-  /**
-   * Change the calendar mode from day to month or year selection
-   *
-   * @param {string} mode - One of day, month or year
-   * @param {SyntheticEvent} e
-   */
-  changeMode = (e, { name }) => {
-    e.stopPropagation()
-    const { value, onDateSelect } = this.props
-    onDateSelect(e, {
-      value: value,
-      nextMode: name,
-    })
-  }
-
-  /**
-   * Returns the calendar body content
-   */
   renderBody() {
     const {
-      content,
       firstDayOfWeek,
-      dateFormatter,
       timeFormatter,
       hourFormatter,
       disabledDates,
@@ -252,53 +138,39 @@ export default class Calendar extends Component {
       selectionEnd,
     } = this.props
 
-    switch (mode) {
-      case 'day':
-        return (
-          <Month
-            firstDayOfWeek={firstDayOfWeek}
-            content={content}
-            onClick={this.setDay}
-            date={value}
-            selectionStart={selectionStart}
-            selectionEnd={selectionEnd}
-            disabledDates={disabledDates}
-          />
-        )
+    if (mode === 'day') {
+      return (
+        <Days
+          firstDayOfWeek={firstDayOfWeek}
+          onChange={this.handleDayChange}
+          value={value}
+          selectionStart={selectionStart}
+          selectionEnd={selectionEnd}
+          disabledDates={disabledDates}
+        />
+      )
+    }
 
-      case 'month':
-        return <Months content={content} onClick={this.setMonth} />
+    if (mode === 'month') {
+      return <Months onChange={this.handleMonthChange} value={value} />
+    }
 
-      case 'year':
-        return <Years year={this.getYear()} onClick={this.setYear} />
+    if (mode === 'year') {
+      return <Years onChange={this.handleYearChange} value={value} />
+    }
 
-      case 'hour':
-        return <Hours onClick={this.setHour} formatter={hourFormatter} />
+    if (mode === 'hour') {
+      return <Hours onChange={this.handleHourChange} formatter={hourFormatter} value={value} />
+    }
 
-      case 'minute':
-        return <Minutes onClick={this.setMinute} hour={this.getHour()} timeFormatter={timeFormatter} />
-
-      default:
-        return null
+    if (mode === 'minute') {
+      return <Minutes onChange={this.handleMinuteChange} formatter={timeFormatter} value={value} />
     }
   }
 
   render() {
-    const { date, mode } = this.props
-    const calendarDay = this.getDate()
     return (
       <div style={style}>
-        {date && (
-          <CalendarMenu
-            value={calendarDay}
-            monthName={this.getMonthName()}
-            year={this.getYear()}
-            mode={mode}
-            onPrevious={this.page(-1)}
-            onNext={this.page(1)}
-            onChangeMode={this.changeMode}
-          />
-        )}
         {this.renderBody()}
       </div>
     )

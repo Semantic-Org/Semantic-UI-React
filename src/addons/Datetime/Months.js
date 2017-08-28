@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
 import {
+  customPropTypes,
+  dateUtils,
   META,
 } from '../../lib'
 
@@ -13,11 +15,17 @@ import DatetimeGrid from './DatetimeGrid'
  */
 export default class Months extends Component {
   static propTypes = {
-    /** Textual context constants **/
-    content: PropTypes.object,
+    /**
+     * Called when the user changes the value.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props and proposed value.
+     * @param {object} data.value - The proposed new value.
+     */
+    onChange: PropTypes.func,
 
-    // TODO doc
-    onClick: PropTypes.func,
+    /** Current value as a Date object. */
+    value: customPropTypes.DateValue,
   }
 
   static _meta = {
@@ -26,16 +34,16 @@ export default class Months extends Component {
     type: META.TYPES.MODULE,
   }
 
-  getCells() {
-    const { onClick } = this.props
+  getCells = () => _.times(thisMonth => ({
+    content: dateUtils.labels.months[thisMonth],
+    onClick: this.handleCellClick(thisMonth),
+  }), 12)
 
-    return _.times(i => {
-      const thisMonth = i
-      return {
-        content: this.props.content.months[i],
-        onClick: e => onClick(e, { value: thisMonth, nextMode: 'day' }),
-      }
-    }, 12)
+  handleCellClick = month => (e) => {
+    const value = new Date(this.props.value)
+    value.setMonth(month)
+
+    _.invoke('onChange', this.props, e, { ...this.props, value })
   }
 
   render() {
