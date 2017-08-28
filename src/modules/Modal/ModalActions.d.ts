@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { ButtonProps } from '../../elements/Button';
+import { SemanticShorthandCollection } from '../..';
 
 export interface ModalActionsProps {
   [key: string]: any;
@@ -7,8 +8,8 @@ export interface ModalActionsProps {
   /** An element type to render as (string or function). */
   as?: any;
 
-  /** An element type to render as (string or function). */
-  actions?: Array<any>;
+  /** Array of shorthand buttons. */
+  actions?: SemanticShorthandCollection<ButtonProps>;
 
   /** Primary content. */
   children?: React.ReactNode;

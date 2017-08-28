@@ -33,8 +33,8 @@ class Modal extends Component {
     /** An element type to render as (string or function). */
     as: customPropTypes.as,
 
-    /** Elements to render as Modal action buttons. */
-    actions: PropTypes.arrayOf(customPropTypes.itemShorthand),
+    /** Shorthand for Modal.Actions. Typically an array of button shorthand. */
+    actions: customPropTypes.itemShorthand,
 
     /** A modal can reduce its complexity */
     basic: PropTypes.bool,
@@ -45,7 +45,7 @@ class Modal extends Component {
     /** Additional classes. */
     className: PropTypes.string,
 
-    /** Icon. */
+    /** Shorthand for the close icon. Closes the modal on click. */
     closeIcon: PropTypes.oneOfType([
       PropTypes.node,
       PropTypes.object,
@@ -75,6 +75,14 @@ class Modal extends Component {
 
     /** The node where the modal should mount. Defaults to document.body. */
     mountNode: PropTypes.any,
+
+    /**
+     * Action onClick handler when using shorthand `actions`.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All props.
+     */
+    onActionClick: PropTypes.func,
 
     /**
      * Called when a close event happens.
@@ -149,14 +157,14 @@ class Modal extends Component {
   }
 
   // Do not access document when server side rendering
-  getMountNode = () => isBrowser ? this.props.mountNode || document.body : null
+  getMountNode = () => (isBrowser ? this.props.mountNode || document.body : null)
 
   handleActionsOverrides = predefinedProps => ({
     onActionClick: (e, actionProps) => {
-      const { triggerClose } = actionProps
-
       _.invoke(predefinedProps, 'onActionClick', e, actionProps)
-      if (triggerClose) this.handleClose(e)
+      _.invoke(this.props, 'onActionClick', e, this.props)
+
+      this.handleClose(e)
     },
   })
 
@@ -170,7 +178,7 @@ class Modal extends Component {
   }
 
   handleIconOverrides = predefinedProps => ({
-    onClick: e => {
+    onClick: (e) => {
       _.invoke(predefinedProps, 'onClick', e)
       this.handleClose(e)
     },
@@ -259,7 +267,7 @@ class Modal extends Component {
     this.animationRequestId = requestAnimationFrame(this.setPosition)
   }
 
-  renderContent = rest => {
+  renderContent = (rest) => {
     const {
       actions,
       basic,

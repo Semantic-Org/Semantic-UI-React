@@ -53,20 +53,28 @@ describe('Step', () => {
     })
 
     describe('onClick prop', () => {
-      it('omitted when not defined', () => {
-        const click = () => shallow(<Step />).simulate('click')
-        expect(click).to.not.throw()
+      it('is called with (e, data) when clicked', () => {
+        const event = { target: null }
+        const onClick = sandbox.spy()
+
+        shallow(<Step onClick={onClick} />)
+          .simulate('click', event)
+
+        onClick.should.have.been.calledOnce()
+        onClick.should.have.been.calledWithMatch(event, { onClick })
       })
 
-      it('renders <a> and handles click', () => {
-        const handleClick = sandbox.spy()
-        const wrapper = mount(<Step onClick={handleClick} />)
+      it('is not called when is disabled', () => {
+        const onClick = sandbox.spy()
 
-        wrapper.should.have.tagName('a')
-        wrapper.simulate('click')
+        shallow(<Step disabled onClick={onClick} />)
+          .simulate('click')
+        onClick.should.have.callCount(0)
+      })
 
-        handleClick.should.have.been.calledOnce()
-        handleClick.should.have.been.calledWithMatch({})
+      it('renders an `a` tag', () => {
+        shallow(<Step onClick={() => null} />)
+          .should.have.tagName('a')
       })
     })
   })

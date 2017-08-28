@@ -14,6 +14,11 @@ const FormGroupVariationsExamples = () => (
       description='Multiple fields may be inline in a row.'
       examplePath='collections/Form/GroupVariations/FormExampleInlineGroupedFields'
     />
+    <ComponentExample
+      title='Unstackable'
+      description='A form group can prevent itself from stacking on mobile, too.'
+      examplePath='collections/Form/GroupVariations/FormExampleUnstackableGroup'
+    />
   </ExampleSection>
 )
 

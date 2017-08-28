@@ -28,7 +28,7 @@ describe('FormField', () => {
     it('adds an HTML element child of the same type', () => {
       const controls = ['button', 'input', 'select', 'textarea']
 
-      controls.forEach(control => {
+      controls.forEach((control) => {
         shallow(<FormField control={control} />)
           .should.have.descendants(control)
       })
@@ -80,7 +80,31 @@ describe('FormField', () => {
     })
   })
 
+  describe('disabled', () => {
+    it('is not set by default', () => {
+      const wrapper = shallow(<FormField control='input' />)
+      const input = wrapper.find('input')
+
+      wrapper.should.have.exactly(1).descendants('input')
+      input.should.not.have.prop('disabled')
+    })
+    it('is passed to the control', () => {
+      const wrapper = shallow(<FormField control='input' disabled />)
+      const input = wrapper.find('input')
+
+      wrapper.should.have.exactly(1).descendants('input')
+      input.should.have.prop('disabled', true)
+    })
+  })
+
   describe('required', () => {
+    it('is not set by default', () => {
+      const wrapper = shallow(<FormField control='input' />)
+      const input = wrapper.find('input')
+
+      wrapper.should.have.exactly(1).descendants('input')
+      input.should.not.have.prop('required')
+    })
     it('is passed to the control', () => {
       const wrapper = shallow(<FormField control='input' required />)
       const input = wrapper.find('input')

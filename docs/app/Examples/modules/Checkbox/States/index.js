@@ -1,7 +1,8 @@
 import React from 'react'
+import { Message } from 'semantic-ui-react'
+
 import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
 import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
-import { Message } from 'semantic-ui-react'
 
 const CheckboxStatesExamples = () => (
   <ExampleSection title='States'>
@@ -17,7 +18,11 @@ const CheckboxStatesExamples = () => (
     >
       <Message>
         Use{' '}
-        <a href='https://facebook.github.io/react/docs/forms.html#default-value' target='_blank'>
+        <a
+          href='https://facebook.github.io/react/docs/forms.html#default-value'
+          rel='noopener noreferrer'
+          target='_blank'
+        >
           <code>defaultChecked</code>
         </a>
         {' '}as you normally would to set default form values.

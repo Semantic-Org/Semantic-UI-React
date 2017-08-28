@@ -32,7 +32,7 @@ const wrapperRender = (...args) => (wrapper = render(...args))
 // ----------------------------------------
 // Options
 // ----------------------------------------
-const getOptions = (count = 5) => _.times(count, n => ({
+const getOptions = (count = 5) => _.times(count, () => ({
   title: _.times(3, faker.hacker.noun).join(' '),
   description: _.times(3, faker.hacker.noun).join(' '),
   image: 'foo.png',
@@ -214,7 +214,7 @@ describe('Search', () => {
       // menu should be completely scrolled to the bottom
       const isMenuScrolledToBottom = menu.scrollTop + menu.clientHeight === menu.scrollHeight
       isMenuScrolledToBottom.should.be.true(
-        'When the last item in the list was selected, SearchResults did not scroll to bottom.'
+        'When the last item in the list was selected, SearchResults did not scroll to bottom.',
       )
 
       //
@@ -234,7 +234,7 @@ describe('Search', () => {
       const selectedItem = document.querySelector('.ui.search .results.visible .result.active')
       const isMenuScrolledToTop = menu.scrollTop === selectedItem.offsetTop
       isMenuScrolledToTop.should.be.true(
-        'When the first item in the list was selected, SearchResults did not scroll to top.'
+        'When the first item in the list was selected, SearchResults did not scroll to top.',
       )
     })
     it('closes the menu', () => {
@@ -248,9 +248,9 @@ describe('Search', () => {
       searchResultsIsClosed()
     })
     it('uses custom renderer', () => {
-      const resultSpy = sandbox.spy(() => <div className='custom-result'></div>)
+      const resultSpy = sandbox.spy(() => <div className='custom-result' />)
       wrapperRender(
-        <Search results={options} minCharacters={0} resultRenderer={resultSpy} />
+        <Search results={options} minCharacters={0} resultRenderer={resultSpy} />,
       )
 
       resultSpy.should.have.been.called.exactly(options.length)
@@ -265,7 +265,7 @@ describe('Search', () => {
     const categoryOptions = _.range(0, categoryLength).reduce((memo, index) => {
       const category = `${faker.hacker.noun()}-${index}`
 
-      memo[category] = {
+      memo[category] = { // eslint-disable-line no-param-reassign
         name: category,
         results: getOptions(categoryResultsLength),
       }
@@ -345,12 +345,12 @@ describe('Search', () => {
 
       wrapper
         .find('SearchResult')
-        .at(categoryLength * categoryResultsLength - 1)
+        .at((categoryLength * categoryResultsLength) - 1)
         .should.have.prop('active', true)
     })
     it('uses custom renderer', () => {
-      const categorySpy = sandbox.spy(() => <div className='custom-category'></div>)
-      const resultSpy = sandbox.spy(() => <div className='custom-result'></div>)
+      const categorySpy = sandbox.spy(() => <div className='custom-category' />)
+      const resultSpy = sandbox.spy(() => <div className='custom-result' />)
       wrapperRender(
         <Search
           results={categoryOptions}
@@ -358,7 +358,7 @@ describe('Search', () => {
           minCharacters={0}
           categoryRenderer={categorySpy}
           resultRenderer={resultSpy}
-        />
+        />,
       )
 
       categorySpy.should.have.been.called.exactly(categoryLength + 1)
@@ -525,6 +525,28 @@ describe('Search', () => {
     })
   })
 
+  describe('onBlur', () => {
+    it('is called with (event, data) on search input blur', () => {
+      const onBlur = sandbox.spy()
+      wrapperMount(<Search results={options} onBlur={onBlur} />)
+        .simulate('blur', nativeEvent)
+
+      onBlur.should.have.been.calledOnce()
+      onBlur.should.have.been.calledWithMatch(nativeEvent, { onBlur, results: options })
+    })
+  })
+
+  describe('onFocus', () => {
+    it('is called with (event, data) on search input focus', () => {
+      const onFocus = sandbox.spy()
+      wrapperMount(<Search results={options} onFocus={onFocus} />)
+        .simulate('focus', nativeEvent)
+
+      onFocus.should.have.been.calledOnce()
+      onFocus.should.have.been.calledWithMatch(nativeEvent, { onFocus, results: options })
+    })
+  })
+
   describe('onResultSelect', () => {
     let spy
     beforeEach(() => {
@@ -599,6 +621,30 @@ describe('Search', () => {
         minCharacters: 0,
         results: options,
         value: 'a',
+      })
+    })
+  })
+
+  describe('onSearchChange', () => {
+    it('is called with (event, data) when the active selection index is changed', () => {
+      const onSelectionChange = sandbox.spy()
+
+      wrapperMount(
+        <Search
+          minCharacters={0}
+          onSelectionChange={onSelectionChange}
+          results={options}
+          selectFirstResult
+        />,
+      )
+      openSearchResults()
+      domEvent.keyDown(document, { key: 'ArrowDown' })
+
+      onSelectionChange.should.have.been.calledOnce()
+      onSelectionChange.should.have.been.calledWithMatch({}, {
+        minCharacters: 0,
+        result: options[1],
+        results: options,
       })
     })
   })
@@ -749,7 +795,7 @@ describe('Search', () => {
     // Search handles some of html props
     const props = _.without(htmlInputAttrs, 'defaultValue')
 
-    props.forEach(propName => {
+    props.forEach((propName) => {
       it(`passes "${propName}" to the <input>`, () => {
         wrapperMount(<Search {...{ [propName]: 'foo' }} />)
           .find('input')

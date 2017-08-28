@@ -7,6 +7,11 @@
         href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/<%= htmlWebpackPlugin.options.versions.sui %>/semantic.min.css">
   <title>Semantic UI React</title>
   <script>
+    // Redirect to HTTPs
+    // We need poor-mans client side redirects because we persist app router urls in localStorage
+    if (location.hostname === 'react.semantic-ui.com' && location.protocol !== 'https:') {
+      location.href = location.href.replace('http:', 'https:')
+    }
     // Apply gh-pages SPA redirect that was applied in 404.html
     // ----------------------------------------
     (function() {
@@ -157,26 +162,6 @@
 
     .docs-icon-set-column:hover > .icon {
       transform: scale(1.5);
-    }
-
-    /* Examples */
-
-    .docs-example-menu {
-      transition: opacity 200ms;
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      opacity: 0;
-    }
-
-    .docs-example:hover .docs-example-menu {
-      opacity: 1;
-    }
-
-    .docs-example {
-      margin-bottom: 2em !important;
-      padding-bottom: 1em !important;
-      transition: box-shadow 300ms;
     }
   </style>
 </body>

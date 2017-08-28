@@ -1,4 +1,5 @@
 import isBrowser from './isBrowser'
+
 let _debug
 const noop = () => undefined
 
@@ -15,7 +16,7 @@ if (isBrowser && process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !
     /* eslint-disable no-console */
     console.error('Semantic-UI-React could not enable debug.')
     console.error(e)
-   /* eslint-enable no-console */
+    /* eslint-enable no-console */
   }
 
   _debug = require('debug')
@@ -36,9 +37,7 @@ if (isBrowser && process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !
  * debug('Some message')
  * @returns {Function}
  */
-export const makeDebugger = (namespace) => {
-  return _debug(`semanticUIReact:${namespace}`)
-}
+export const makeDebugger = namespace => _debug(`semanticUIReact:${namespace}`)
 
 /**
  * Default debugger, simple log.

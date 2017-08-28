@@ -1,5 +1,7 @@
 import * as React from 'react';
-import { default as TabPane } from './TabPane';
+
+import { SemanticShorthandItem} from '../..';
+import { default as TabPane, TabPaneProps } from './TabPane';
 
 export interface TabProps {
   [key: string]: any;
@@ -16,6 +18,9 @@ export interface TabProps {
   /** Shorthand props for the Menu. */
   menu?: any;
 
+  /** Shorthand props for the Grid. */
+  grid?: any;
+
   /**
    * Called on tab change.
    *
@@ -26,11 +31,26 @@ export interface TabProps {
    */
   onTabChange?: (event: React.MouseEvent<HTMLDivElement>, data: TabProps) => void;
 
-  /** Shorthand props for the Menu. */
+  /**
+   * Array of objects describing each Menu.Item and Tab.Pane:
+   * {
+   *   menuItem: 'Home',
+   *   render: () => <Tab.Pane>Welcome!</Tab.Pane>,
+   * }
+   * or
+   * {
+   *   menuItem: 'Home',
+   *   pane: 'Welcome',
+   * }
+   */
   panes?: Array<{
-    menuItem: any;
-    render: () => React.ReactNode;
+    content?: SemanticShorthandItem<TabPaneProps>;
+    menuItem?: any;
+    render?: () => React.ReactNode;
   }>;
+
+  /** A Tab can render only active pane. */
+  renderActiveOnly?: boolean;
 }
 
 interface TabComponent extends React.ComponentClass<TabProps> {

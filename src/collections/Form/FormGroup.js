@@ -22,12 +22,14 @@ function FormGroup(props) {
     className,
     grouped,
     inline,
+    unstackable,
     widths,
   } = props
 
   const classes = cx(
     useKeyOnly(grouped, 'grouped'),
     useKeyOnly(inline, 'inline'),
+    useKeyOnly(unstackable, 'unstackable'),
     useWidthProp(widths, null, true),
     'fields',
     className,
@@ -65,6 +67,9 @@ FormGroup.propTypes = {
     customPropTypes.disallow(['grouped']),
     PropTypes.bool,
   ]),
+
+  /** A form group can prevent itself from stacking on mobile. */
+  unstackable: PropTypes.bool,
 
   /** Fields Groups can specify their width in grid columns or automatically divide fields to be equal width. */
   widths: PropTypes.oneOf([...SUI.WIDTHS, 'equal']),

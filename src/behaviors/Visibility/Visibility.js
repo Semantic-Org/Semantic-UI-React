@@ -7,6 +7,7 @@ import {
   getElementType,
   getUnhandledProps,
   META,
+  isBrowser,
 } from '../../lib'
 
 /**
@@ -19,6 +20,9 @@ export default class Visibility extends Component {
 
     /** Primary content. */
     children: PropTypes.node,
+
+    /** Context which visibility should attach onscroll events. */
+    context: PropTypes.object,
 
     /**
      * When set to true a callback will occur anytime an element passes a condition not just immediately after the
@@ -138,6 +142,7 @@ export default class Visibility extends Component {
   }
 
   static defaultProps = {
+    context: isBrowser ? window : null,
     continuous: false,
     once: true,
   }
@@ -166,11 +171,17 @@ export default class Visibility extends Component {
   }
 
   componentDidMount() {
-    window.addEventListener('scroll', this.handleScroll)
+    if (!isBrowser) return
+
+    const { context } = this.props
+    context.addEventListener('scroll', this.handleScroll)
   }
 
   componentWillUnmount() {
-    window.removeEventListener('scroll', this.handleScroll)
+    if (!isBrowser) return
+
+    const { context } = this.props
+    context.removeEventListener('scroll', this.handleScroll)
   }
 
   execute = (callback, name) => {

@@ -33,7 +33,7 @@ export interface StatisticProps {
   horizontal?: boolean;
 
   /** A statistic can be formatted to fit on a dark background. */
-  inverted?: string;
+  inverted?: boolean;
 
   /** Label content of the Statistic. */
   label?: SemanticShorthandContent;

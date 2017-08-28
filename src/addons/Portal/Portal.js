@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom'
 
 import {
   AutoControlledComponent as Component,
+  eventStack,
   isBrowser,
   keyboardKey,
   makeDebugger,
@@ -180,7 +181,7 @@ class Portal extends Component {
 
     const didClickInRootNode = this.rootNode.contains(e.target)
 
-    if (closeOnDocumentClick && !didClickInRootNode || closeOnRootNodeClick && didClickInRootNode) {
+    if ((closeOnDocumentClick && !didClickInRootNode) || (closeOnRootNodeClick && didClickInRootNode)) {
       debug('handleDocumentClick()')
 
       this.close(e)
@@ -209,7 +210,7 @@ class Portal extends Component {
     this.mouseLeaveTimer = this.closeWithTimeout(e, mouseLeaveDelay)
   }
 
-  handlePortalMouseEnter = (e) => {
+  handlePortalMouseEnter = () => {
     // In order to enable mousing from the trigger to the portal, we need to
     // clear the mouseleave timer that was set when leaving the trigger.
     const { closeOnPortalMouseLeave } = this.props
@@ -361,7 +362,7 @@ class Portal extends Component {
 
         this.portalNode.addEventListener('mouseleave', this.handlePortalMouseLeave)
         this.portalNode.addEventListener('mouseenter', this.handlePortalMouseEnter)
-      }
+      },
     )
   }
 
@@ -383,11 +384,9 @@ class Portal extends Component {
       mountNode.appendChild(this.rootNode)
     }
 
-    document.addEventListener('click', this.handleDocumentClick)
-    document.addEventListener('keydown', this.handleEscape)
-
-    const { onMount } = this.props
-    if (onMount) onMount(null, this.props)
+    eventStack.sub('click', this.handleDocumentClick, 'Portal')
+    eventStack.sub('keydown', this.handleEscape, 'Portal')
+    _.invoke(this.props, 'onMount', null, this.props)
   }
 
   unmountPortal = () => {
@@ -404,15 +403,14 @@ class Portal extends Component {
     this.rootNode = null
     this.portalNode = null
 
-    document.removeEventListener('click', this.handleDocumentClick)
-    document.removeEventListener('keydown', this.handleEscape)
-
-    const { onUnmount } = this.props
-    if (onUnmount) onUnmount(null, this.props)
+    eventStack.unsub('click', this.handleDocumentClick, 'Portal')
+    eventStack.unsub('keydown', this.handleEscape, 'Portal')
+    _.invoke(this.props, 'onUnmount', null, this.props)
   }
 
-  handleRef = c => {
-    this.triggerNode = ReactDOM.findDOMNode(c)
+  handleRef = (c) => {
+    // TODO: Replace findDOMNode with Ref component when it will be merged
+    this.triggerNode = ReactDOM.findDOMNode(c) // eslint-disable-line react/no-find-dom-node
   }
 
   render() {

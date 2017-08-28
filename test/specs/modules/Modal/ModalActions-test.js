@@ -1,6 +1,6 @@
 import React from 'react'
-import ModalActions from 'src/modules/Modal/ModalActions'
 
+import ModalActions from 'src/modules/Modal/ModalActions'
 import * as common from 'test/specs/commonTests'
 import { sandbox } from 'test/utils'
 

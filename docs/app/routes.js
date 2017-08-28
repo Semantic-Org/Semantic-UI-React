@@ -1,32 +1,37 @@
 import React from 'react'
 import {
   BrowserRouter,
-  Route,
   Redirect,
+  Route,
   Switch,
 } from 'react-router-dom'
-import Root from './Components/Root'
-import Layout from './Components/Layout'
-import ExternalExampleLayout from './Components/ExternalExampleLayout'
-import Introduction from './Views/Introduction'
-import Usage from './Views/Usage'
-import PageNotFound from './Views/PageNotFound'
 
-const RedirectToIntro = () => <Redirect to='introduction' />
+import ExternalExampleLayout from './Components/ExternalExampleLayout'
+import DocsLayout from './Components/DocsLayout'
+import DocsRoot from './Components/DocsRoot'
+import LayoutsLayout from './Components/LayoutsLayout'
+import LayoutsRoot from './Components/LayoutsRoot'
+
+import Introduction from './Views/Introduction'
+import Layouts from './Views/Layouts'
+import PageNotFound from './Views/PageNotFound'
+import Usage from './Views/Usage'
+
+const RedirectToIntro = () => <Redirect to='/introduction' />
 
 const Router = () => (
   <BrowserRouter>
     <Switch>
       <Route exact path='/maximize/:kebabCaseName' component={ExternalExampleLayout} />
-      <Layout>
-        <Switch>
-          <Route exact path='/' render={RedirectToIntro} />
-          <Route exact path='/introduction' component={Introduction} />
-          <Route exact path='/usage' component={Usage} />
-          <Route exact path='/:type/:name' component={Root} />
-          <Route exact path='/*' component={PageNotFound} />
-        </Switch>
-      </Layout>
+      <Switch>
+        <DocsLayout exact path='/' render={RedirectToIntro} />
+        <DocsLayout exact path='/introduction' component={Introduction} />
+        <DocsLayout exact path='/layouts' component={Layouts} />
+        <LayoutsLayout exact path='/layouts/:name' component={LayoutsRoot} />
+        <DocsLayout exact path='/usage' component={Usage} />
+        <DocsLayout exact path='/:type/:name' component={DocsRoot} />
+        <DocsLayout exact path='/*' component={PageNotFound} />
+      </Switch>
     </Switch>
   </BrowserRouter>
 )

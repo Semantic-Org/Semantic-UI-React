@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Menu } from 'semantic-ui-react'
 
 export default class MenuExampleHeaderVertical extends Component {
-  handleItemClick = (name) => this.setState({ activeItem: name })
+  handleItemClick = name => this.setState({ activeItem: name })
 
   render() {
     const { activeItem } = this.state || {}

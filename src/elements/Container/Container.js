@@ -29,7 +29,7 @@ function Container(props) {
     useKeyOnly(fluid, 'fluid'),
     useTextAlignProp(textAlign),
     'container',
-    className
+    className,
   )
   const rest = getUnhandledProps(Container, props)
   const ElementType = getElementType(Container, props)

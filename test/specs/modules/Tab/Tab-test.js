@@ -53,6 +53,26 @@ describe('Tab', () => {
       wrapper.childAt(0).shallow().should.match('Segment')
       wrapper.childAt(1).should.match('Menu')
     })
+
+    it("renders right of the pane when tabular='right'", () => {
+      const wrapper = shallow(<Tab menu={{ fluid: true, vertical: true, tabular: 'right' }} panes={panes} />)
+
+      wrapper.childAt(0).should.match('Grid')
+      wrapper.childAt(0).shallow().childAt(0).should.match('GridColumn')
+      wrapper.childAt(0).shallow().childAt(0).shallow().childAt(0).shallow().should.match('Segment')
+      wrapper.childAt(0).shallow().childAt(1).should.match('GridColumn')
+      wrapper.childAt(0).shallow().childAt(1).shallow().childAt(0).should.match('Menu')
+    })
+
+    it("renders left of the pane when tabular='true'", () => {
+      const wrapper = shallow(<Tab menu={{ fluid: true, vertical: true, tabular: true }} panes={panes} />)
+
+      wrapper.childAt(0).should.match('Grid')
+      wrapper.childAt(0).shallow().childAt(0).should.match('GridColumn')
+      wrapper.childAt(0).shallow().childAt(0).shallow().childAt(0).should.match('Menu')
+      wrapper.childAt(0).shallow().childAt(1).should.match('GridColumn')
+      wrapper.childAt(0).shallow().childAt(1).shallow().childAt(0).shallow().should.match('Segment')
+    })
   })
 
   describe('activeIndex', () => {
@@ -107,7 +127,7 @@ describe('Tab', () => {
   })
 
   describe('onTabChange', () => {
-    it('is called with (e, { activeIndex, ...props }) a menu item is clicked', () => {
+    it('is called with (e, { ...props, activeIndex }) a menu item is clicked', () => {
       const activeIndex = 1
       const spy = sandbox.spy()
       const event = { fake: 'event' }
@@ -121,7 +141,46 @@ describe('Tab', () => {
       // Since React will have generated a key the returned tab won't match
       // exactly so match on the props instead.
       spy.should.have.been.calledOnce()
-      spy.should.have.been.calledWithMatch(event, { activeIndex, ...props })
+      spy.firstCall.args[0].should.have.property('fake', 'event')
+      spy.firstCall.args[1].should.have.property('activeIndex', 1)
+      spy.firstCall.args[1].should.have.property('onTabChange', spy)
+      spy.firstCall.args[1].should.have.property('panes', panes)
+    })
+    it('is called with the new proposed activeIndex, not the current', () => {
+      const spy = sandbox.spy()
+
+      const items = mount(<Tab activeIndex={-1} onTabChange={spy} panes={panes} />)
+        .find('MenuItem')
+
+      spy.should.have.callCount(0)
+
+      items.at(0).simulate('click')
+      spy.should.have.callCount(1)
+      spy.lastCall.args[1].should.have.property('activeIndex', 0)
+
+      items.at(1).simulate('click')
+      spy.should.have.callCount(2)
+      spy.lastCall.args[1].should.have.property('activeIndex', 1)
+
+      items.at(2).simulate('click')
+      spy.should.have.callCount(3)
+      spy.lastCall.args[1].should.have.property('activeIndex', 2)
+    })
+  })
+
+  describe('renderActiveOnly', () => {
+    it('renders all tabs when false', () => {
+      const textPanes = [
+        { pane: 'Tab 1' },
+        { pane: 'Tab 2' },
+        { pane: 'Tab 3' },
+      ]
+      const items = mount(<Tab panes={textPanes} renderActiveOnly={false} />).find('TabPane')
+
+      items.should.have.lengthOf(3)
+      items.at(0).should.contain.text('Tab 1')
+      items.at(1).should.contain.text('Tab 2')
+      items.at(2).should.contain.text('Tab 3')
     })
   })
 })
