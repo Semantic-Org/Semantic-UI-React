@@ -147,17 +147,13 @@ describe('Checkbox', () => {
 
   describe('onClick', () => {
     it('is called with (event { name, value, checked }) on label click', () => {
-      const spy = sandbox.spy()
-      const expectProps = { name: 'foo', value: 'bar', checked: false, indeterminate: true }
-      mount(<Checkbox onClick={spy} {...expectProps} />)
+      const onClick = sandbox.spy()
+      const expectProps = { name: 'foo', value: 'bar', checked: true, indeterminate: true }
+      mount(<Checkbox onClick={onClick} {...expectProps} />)
         .simulate('click')
 
-      spy.should.have.been.calledOnce()
-      spy.should.have.been.calledWithMatch({}, {
-        ...expectProps,
-        checked: expectProps.checked,
-        indeterminate: expectProps.indeterminate,
-      })
+      onClick.should.have.been.calledOnce()
+      onClick.should.have.been.calledWithMatch({}, { ...expectProps, checked: !expectProps.checked })
     })
     it('is not called when the checkbox has the disabled prop set', () => {
       const spy = sandbox.spy()
