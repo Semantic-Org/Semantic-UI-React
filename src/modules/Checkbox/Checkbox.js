@@ -159,7 +159,7 @@ export default class Checkbox extends Component {
 
     if (!this.canToggle()) return
 
-    _.invoke(this.props, 'onClick', e, { ...this.props, checked: !!checked, indeterminate: !!indeterminate })
+    _.invoke(this.props, 'onClick', e, { ...this.props, checked: !checked, indeterminate: !!indeterminate })
     _.invoke(this.props, 'onChange', e, { ...this.props, checked: !checked, indeterminate: false })
 
     this.trySetState({ checked: !checked, indeterminate: false })
