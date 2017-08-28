@@ -219,6 +219,9 @@ export interface DropdownProps {
   /** Define whether the highlighted item should be selected on blur. */
   selectOnBlur?: boolean;
 
+  /** Whether dropdown should select new option when using keyboard shortcuts. Setting to false will require enter or left click to confirm a choice. */
+  selectOnKeydown?: boolean;
+
   /** Currently selected label in multi-select. */
   selectedLabel?: number | string;
 

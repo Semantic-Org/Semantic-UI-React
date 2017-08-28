@@ -23,6 +23,12 @@ const DropdownUsageExamples = () => (
     />
 
     <ComponentExample
+      title='Select On Keydown'
+      description='By default, the onChange handler will be called when navigating the menu using the keyboard. You can turn this off.'
+      examplePath='modules/Dropdown/Usage/DropdownExampleSelectOnKeydown'
+    />
+
+    <ComponentExample
       title='Uncontrolled'
       description='A dropdown can behave like an uncontrolled input.'
       examplePath='modules/Dropdown/Usage/DropdownExampleUncontrolled'

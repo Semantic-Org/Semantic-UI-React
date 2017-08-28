@@ -2322,4 +2322,30 @@ describe('Dropdown', () => {
       spy.should.have.been.calledWithMatch(errorMessage)
     })
   })
+
+  describe('selectOnKeydown', () => {
+    it('is on by default', () => {
+      const spy = sandbox.spy()
+      wrapperMount(<Dropdown options={options} onChange={spy} />)
+
+      // open
+      wrapper.simulate('click')
+
+      domEvent.keyDown(document, { key: 'ArrowDown' })
+
+      spy.should.have.been.called()
+    })
+
+    it('blocks onChange for keyboard shortcuts when set to false', () => {
+      const spy = sandbox.spy()
+      wrapperMount(<Dropdown options={options} selectOnKeydown={false} onChange={spy} />)
+
+      // open
+      wrapper.simulate('click')
+
+      domEvent.keyDown(document, { key: 'ArrowDown' })
+
+      spy.should.not.have.been.called()
+    })
+  })
 })
