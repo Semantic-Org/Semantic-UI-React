@@ -24,6 +24,15 @@ const TabUsageExamples = () => (
       description='You can pass any shorthand value as a menu item.'
       examplePath='modules/Tab/Usage/TabExampleCustomMenuItem'
     />
+    <ComponentExample
+      title='Pane Shorthands'
+      description={(
+        <span>
+          You can use an item shorthands when you're using <code>renderActiveOnly={'{false}'}</code>.
+        </span>
+      )}
+      examplePath='modules/Tab/Usage/TabExamplePaneShorthand'
+    />
   </ExampleSection>
 )
 

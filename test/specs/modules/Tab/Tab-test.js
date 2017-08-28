@@ -167,4 +167,20 @@ describe('Tab', () => {
       spy.lastCall.args[1].should.have.property('activeIndex', 2)
     })
   })
+
+  describe('renderActiveOnly', () => {
+    it('renders all tabs when false', () => {
+      const textPanes = [
+        { pane: 'Tab 1' },
+        { pane: 'Tab 2' },
+        { pane: 'Tab 3' },
+      ]
+      const items = mount(<Tab panes={textPanes} renderActiveOnly={false} />).find('TabPane')
+
+      items.should.have.lengthOf(3)
+      items.at(0).should.contain.text('Tab 1')
+      items.at(1).should.contain.text('Tab 2')
+      items.at(2).should.contain.text('Tab 3')
+    })
+  })
 })

@@ -8,8 +8,9 @@ import { html } from 'js-beautify'
 import copyToClipboard from 'copy-to-clipboard'
 
 import { exampleContext, repoURL, scrollToAnchor } from 'docs/app/utils'
-import { Divider, Grid, Icon, Header, Menu, Popup } from 'src'
+import { Divider, Grid, Header, Menu } from 'src'
 import Editor from 'docs/app/Components/Editor/Editor'
+import ComponentControls from '../ComponentControls'
 
 const babelConfig = {
   presets: ['es2015', 'react', 'stage-1'],
@@ -38,23 +39,6 @@ const errorStyle = {
   fontSize: '0.9rem',
   color: '#a33',
   background: '#fff2f2',
-}
-
-const toolTipStyle = { width: 100, textAlign: 'center', padding: '0.5em' }
-const ToolTip = ({ children, content }) => (
-  <Popup
-    inverted
-    mouseEnterDelay={800}
-    position='top center'
-    size='tiny'
-    style={toolTipStyle}
-    trigger={children}
-    content={content}
-  />
-)
-ToolTip.propTypes = {
-  children: PropTypes.node,
-  content: PropTypes.node,
 }
 
 /**
@@ -102,15 +86,14 @@ class ComponentExample extends Component {
     history.replace(location.pathname)
   }
 
-  handleDirectLinkClick = (e) => {
-    e.preventDefault()
+  handleDirectLinkClick = () => {
     this.setHashAndScroll()
-
     copyToClipboard(location.href)
-    this.setState({ copiedDirectLink: true })
-
-    setTimeout(() => this.setState({ copiedDirectLink: false }), 1000)
   }
+
+  handleMouseEnter = () => this.setState({ controlsVisible: true })
+
+  handleMouseLeave = () => this.setState({ controlsVisible: false })
 
   handleShowCodeClick = (e) => {
     e.preventDefault()
@@ -150,7 +133,7 @@ class ComponentExample extends Component {
   getOriginalSourceCode = () => {
     const { examplePath } = this.props
 
-    if (!this.sourceCode) this.sourceCode = require(`!raw-loader!../../Examples/${examplePath}`)
+    if (!this.sourceCode) this.sourceCode = require(`!raw-loader!../../../Examples/${examplePath}`)
 
     return this.sourceCode
   }
@@ -392,7 +375,7 @@ class ComponentExample extends Component {
 
   render() {
     const { children, description, title } = this.props
-    const { copiedDirectLink, exampleElement, showCode, showHTML } = this.state
+    const { controlsVisible, exampleElement, showCode, showHTML } = this.state
     const exampleStyle = {}
 
     if (showCode || showHTML || location.hash === `#${this.anchorName}`) {
@@ -400,43 +383,46 @@ class ComponentExample extends Component {
     }
 
     return (
-      <Grid className='docs-example' style={exampleStyle} divided={showCode} columns='1' id={this.anchorName}>
-        <Grid.Column style={headerColumnStyle}>
-          {title && <Header as='h3' className='no-anchor' style={titleStyle} content={title} />}
-          {description && <p style={descriptionStyle}>{description}</p>}
-          <Menu compact text icon size='small' color='green' className='docs-example-menu'>
-            <ToolTip content={copiedDirectLink ? ' Copied Link!' : 'Direct link'}>
-              <Menu.Item href={`#${this.anchorName}`} onClick={this.handleDirectLinkClick}>
-                <Icon size='large' color='grey' name='linkify' fitted />
-              </Menu.Item>
-            </ToolTip>
-            <ToolTip content='Full Screen'>
-              <Menu.Item href={`/maximize/${this.anchorName}`} target='_blank'>
-                <Icon size='large' color='grey' name='window maximize' fitted />
-              </Menu.Item>
-            </ToolTip>
-            <ToolTip content='Show HTML'>
-              <Menu.Item active={showHTML} onClick={this.handleShowHTMLClick}>
-                <Icon size='large' color={showHTML ? 'green' : 'grey'} name='html5' fitted />
-              </Menu.Item>
-            </ToolTip>
-            <ToolTip content='Edit Code'>
-              <Menu.Item active={showCode} onClick={this.handleShowCodeClick}>
-                <Icon size='large' name='code' fitted />
-              </Menu.Item>
-            </ToolTip>
-          </Menu>
-        </Grid.Column>
-        {children && (
-          <Grid.Column style={childrenStyle}>
-            {children}
+      <Grid
+        className='docs-example'
+        id={this.anchorName}
+        onMouseEnter={this.handleMouseEnter}
+        onMouseLeave={this.handleMouseLeave}
+        style={exampleStyle}
+      >
+        <Grid.Row columns={2}>
+          <Grid.Column style={headerColumnStyle}>
+            {title && <Header as='h3' className='no-anchor' style={titleStyle} content={title} />}
+            {description && <p style={descriptionStyle}>{description}</p>}
           </Grid.Column>
-        )}
-        <Grid.Column className={`rendered-example ${this.getKebabExamplePath()}`}>
-          {exampleElement}
-        </Grid.Column>
-        {this.renderJSX()}
-        {this.renderHTML()}
+          <Grid.Column textAlign='right'>
+            <ComponentControls
+              anchorName={this.anchorName}
+              onCopyLink={this.handleDirectLinkClick}
+              onShowCode={this.handleShowCodeClick}
+              onShowHTML={this.handleShowHTMLClick}
+              showCode={showCode}
+              showHTML={showHTML}
+              visible={controlsVisible}
+            />
+          </Grid.Column>
+        </Grid.Row>
+
+        <Grid.Row columns={1}>
+          {children && (
+            <Grid.Column style={childrenStyle}>
+              {children}
+            </Grid.Column>
+          )}
+        </Grid.Row>
+
+        <Grid.Row columns={1}>
+          <Grid.Column className={`rendered-example ${this.getKebabExamplePath()}`}>
+            {exampleElement}
+          </Grid.Column>
+          {this.renderJSX()}
+          {this.renderHTML()}
+        </Grid.Row>
       </Grid>
     )
   }

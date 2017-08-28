@@ -86,9 +86,9 @@ export default class MenuItem extends Component {
   }
 
   handleClick = (e) => {
-    const { onClick } = this.props
+    const { disabled } = this.props
 
-    if (onClick) onClick(e, this.props)
+    if (!disabled) _.invoke(this.props, 'onClick', e, this.props)
   }
 
   render() {

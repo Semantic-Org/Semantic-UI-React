@@ -1,16 +1,16 @@
 import React from 'react'
 import { Button, Modal } from 'semantic-ui-react'
 
-const ModalShorthandExample = () => (
+const ModalExampleShorthand = () => (
   <Modal
     trigger={<Button>Show Modal</Button>}
-    header='Delete Your Account'
-    content='Are you sure you want to delete your account'
+    header='Reminder!'
+    content='Call Benjamin regarding the reports.'
     actions={[
-      { key: 'no', content: 'No', color: 'red', triggerClose: true },
-      { key: 'yes', content: 'Yes', color: 'green', triggerClose: true },
+      'Snooze',
+      { key: 'done', content: 'Done', positive: true },
     ]}
   />
 )
 
-export default ModalShorthandExample
+export default ModalExampleShorthand

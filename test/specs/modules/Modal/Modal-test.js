@@ -104,29 +104,36 @@ describe('Modal', () => {
   })
 
   describe('actions', () => {
-    const actions = [
-      { key: 'cancel', content: 'Cancel' },
-      { key: 'ok', content: 'OK', triggerClose: true },
-    ]
+    it('closes the modal on action click', () => {
+      wrapperMount(<Modal actions={['OK']} defaultOpen />)
 
-    it('handles onItemClick', () => {
-      const onActionClick = sandbox.spy()
-      const event = { target: null }
-
-      wrapperMount(<Modal defaultOpen actions={{ actions, onActionClick }} />)
-
-      domEvent.click('.button:last-child')
-      onActionClick.should.have.been.calledOnce()
-      onActionClick.should.have.been.calledWithMatch(event, { content: 'OK' })
+      assertBodyContains('.ui.modal')
+      domEvent.click('.ui.modal .actions .button')
+      assertBodyContains('.ui.modal', false)
     })
 
-    it('handles triggerClose prop on an action', () => {
-      wrapperMount(<Modal defaultOpen actions={actions} />)
+    it('calls shorthand onActionClick callback', () => {
+      const onActionClick = sandbox.spy()
+      const modalActions = { onActionClick, actions: [{ key: 'ok', content: 'OK' }] }
+      wrapperMount(<Modal actions={modalActions} defaultOpen />)
 
-      domEvent.click('.button:first-child')
-      assertBodyContains('.ui.modal')
-      domEvent.click('.button:last-child')
-      assertBodyContains('.ui.modal', false)
+      onActionClick.should.not.have.been.called()
+      domEvent.click('.ui.modal .actions .button')
+      onActionClick.should.have.been.calledOnce()
+    })
+  })
+
+  describe('onActionClick', () => {
+    it('is called when an action is clicked', () => {
+      const onActionClick = sandbox.spy()
+      const event = { target: null }
+      const props = { actions: ['OK'], defaultOpen: true, onActionClick }
+
+      wrapperMount(<Modal {...props} />)
+      domEvent.click('.ui.modal .actions .button')
+
+      onActionClick.should.have.been.calledOnce()
+      onActionClick.should.have.been.calledWithMatch(event, props)
     })
   })
 

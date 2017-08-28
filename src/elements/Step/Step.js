@@ -1,4 +1,5 @@
 import cx from 'classnames'
+import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
@@ -79,9 +80,9 @@ export default class Step extends Component {
   static Title = StepTitle
 
   handleClick = (e) => {
-    const { onClick } = this.props
+    const { disabled } = this.props
 
-    if (onClick) onClick(e, this.props)
+    if (!disabled) _.invoke(this.props, 'onClick', e, this.props)
   }
 
   render() {
