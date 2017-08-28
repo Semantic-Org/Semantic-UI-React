@@ -1,12 +1,10 @@
 import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
+import { Table } from 'semantic-ui-react'
 
-import { Icon, Popup, Table } from 'src'
-import ComponentPropsEnum from './ComponentPropsEnum'
-import ComponentPropsExtra from './ComponentPropsExtra'
-
-const getTagType = tag => (tag.type.type === 'AllLiteral' ? 'any' : tag.type.name)
+import ComponentPropsHeader from './ComponentPropsHeader'
+import ComponentPropsRow from './ComponentPropsRow'
 
 /**
  * Displays a table of a Component's PropTypes.
@@ -38,123 +36,22 @@ export default class ComponentProps extends Component {
     })
   }
 
-  renderName = item => <code>{item.name}</code>
-
-  renderRequired = item => item.required && (
-    <Popup
-      position='right center'
-      style={{ padding: '0.5em' }}
-      trigger={<Icon size='small' color='red' name='asterisk' />}
-      content='Required'
-      size='tiny'
-      inverted
-    />
-  )
-
-  renderDefaultValue = (item) => {
-    const defaultValue = _.get(item, 'defaultValue.value')
-    if (_.isNil(defaultValue)) return null
-
-    return <code>{defaultValue}</code>
-  }
-
-  renderFunctionSignature = (item) => {
-    const params = _.filter(item.tags, { title: 'param' })
-    const returns = _.find(item.tags, { title: 'returns' })
-
-    // this doesn't look like a function propType doc block
-    // don't try to render a signature
-    if (_.isEmpty(params) && !returns) return
-
-    const paramSignature = params
-      .map(param => `${param.name}: ${getTagType(param)}`)
-      // prevent object properties from showing as individual params
-      .filter(p => !_.includes(p, '.'))
-      .join(', ')
-
-    const tagDescriptionRows = _.compact([...params, returns]).map((tag) => {
-      const name = tag.name || tag.title
-      return (
-        <div key={name} style={{ display: 'flex', flexDirection: 'row' }}>
-          <div style={{ flex: '2 2 0', padding: '0.1em 0' }}>
-            <code>{name}</code>
-          </div>
-          <div style={{ flex: '5 5 0', padding: '0.1em 0' }}>
-            {tag.description}
-          </div>
-        </div>
-      )
-    })
-
-    return (
-      <ComponentPropsExtra title={<pre>{item.name}({paramSignature}){returns ? `: ${getTagType(returns)}` : ''}</pre>}>
-        {tagDescriptionRows}
-      </ComponentPropsExtra>
-    )
-  }
-
-  renderEnums = ({ name, type, value }) => {
-    const { showEnumsFor } = this.state
-
-    if (type !== '{enum}' || !value) return
-    return (
-      <ComponentPropsEnum
-        showAll={showEnumsFor[name]}
-        toggle={this.toggleEnumsFor(name)}
-        values={value}
-      />
-    )
-  }
-
-  renderRow = item => (
-    <Table.Row key={item.name}>
-      <Table.Cell collapsing>{this.renderName(item)}{this.renderRequired(item)}</Table.Cell>
-      <Table.Cell collapsing>{this.renderDefaultValue(item)}</Table.Cell>
-      <Table.Cell collapsing>{item.type}</Table.Cell>
-      <Table.Cell>
-        {item.description && <p>{item.description}</p>}
-        {this.renderFunctionSignature(item)}
-        {this.renderEnums(item)}
-      </Table.Cell>
-    </Table.Row>
-  )
-
   render() {
     const { props: propsDefinition } = this.props
-
-    const content = _.sortBy(_.map(propsDefinition, (config, name) => {
-      const value = _.get(config, 'type.value')
-      let type = _.get(config, 'type.name')
-      if (type === 'union') {
-        type = _.map(value, val => val.name).join('|')
-      }
-      type = type && `{${type}}`
-
-      const description = _.get(config, 'docBlock.description', '')
-
-      return {
-        name,
-        type,
-        value,
-        tags: _.get(config, 'docBlock.tags'),
-        required: config.required,
-        defaultValue: config.defaultValue,
-        description: description && description.split('\n').map(l => ([l, <br key={l} />])),
-      }
-    }), 'name')
+    const { showEnumsFor } = this.state
 
     return (
       <Table compact='very' basic='very'>
-        <Table.Header>
-          <Table.Row>
-            <Table.HeaderCell>Name</Table.HeaderCell>
-            <Table.HeaderCell>Default</Table.HeaderCell>
-            <Table.HeaderCell>Type</Table.HeaderCell>
-            <Table.HeaderCell>Description</Table.HeaderCell>
-          </Table.Row>
-        </Table.Header>
+        <ComponentPropsHeader />
         <Table.Body>
-          {_.map(content, this.renderRow)}
+          {_.map(propsDefinition, item => (
+            <ComponentPropsRow
+              {...item}
+              key={item.name}
+              showEnums={showEnumsFor[item.name]}
+              onToggleEnum={this.toggleEnumsFor(item.name)}
+            />
+          ))}
         </Table.Body>
       </Table>
     )
