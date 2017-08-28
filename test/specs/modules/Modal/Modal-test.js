@@ -474,8 +474,14 @@ describe('Modal', () => {
   })
 
   describe('scrolling', () => {
+    const innerHeight = window.innerHeight
+
     afterEach(() => {
       document.body.classList.remove('scrolling')
+    })
+
+    after(() => {
+      window.innerHeight = innerHeight
     })
 
     it('does not add the scrolling class to the body by default', () => {
