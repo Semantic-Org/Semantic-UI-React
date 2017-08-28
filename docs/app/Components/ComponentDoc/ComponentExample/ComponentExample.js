@@ -8,20 +8,13 @@ import { html } from 'js-beautify'
 import copyToClipboard from 'copy-to-clipboard'
 
 import { exampleContext, repoURL, scrollToAnchor } from 'docs/app/utils'
-import { Divider, Grid, Header, Menu } from 'src'
+import { Divider, Grid, Menu } from 'src'
 import Editor from 'docs/app/Components/Editor/Editor'
 import ComponentControls from '../ComponentControls'
-import SUIVersion from './SUIVersion'
+import ComponentExampleTitle from './ComponentExampleTitle'
 
 const babelConfig = {
   presets: ['es2015', 'react', 'stage-1'],
-}
-
-const titleStyle = {
-  margin: 0,
-}
-const descriptionStyle = {
-  maxWidth: '50rem',
 }
 
 const headerColumnStyle = {
@@ -394,8 +387,11 @@ class ComponentExample extends Component {
       >
         <Grid.Row columns={2}>
           <Grid.Column style={headerColumnStyle}>
-            {title && <Header as='h3' className='no-anchor' style={titleStyle} content={title} />}
-            {description && <p style={descriptionStyle}>{description}</p>}
+            <ComponentExampleTitle
+              description={description}
+              title={title}
+              suiVersion={suiVersion}
+            />
           </Grid.Column>
           <Grid.Column textAlign='right'>
             <ComponentControls
@@ -407,7 +403,6 @@ class ComponentExample extends Component {
               showHTML={showHTML}
               visible={controlsVisible}
             />
-            <SUIVersion version={suiVersion} />
           </Grid.Column>
         </Grid.Row>
 
