@@ -18,6 +18,9 @@ export interface VisibilityProps {
    */
   continuous?: boolean;
 
+  /** Fires the callbacks once immediately after mount. */
+  fireOnMount?: boolean;
+
   /**
    * Element's bottom edge has passed top of screen.
    *
