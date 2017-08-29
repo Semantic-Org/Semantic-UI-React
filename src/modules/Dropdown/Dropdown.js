@@ -795,14 +795,8 @@ export default class Dropdown extends Component {
         filteredOptions = search(filteredOptions, searchQuery)
       } else {
         const re = new RegExp(_.escapeRegExp(searchQuery), 'i')
-        filteredOptions = _.filter(filteredOptions, function (opt) {
-          let str = opt.text
-          if(str) {
-            // remove diacritics on search
-            str = str.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
-          }
-          return re.test(str);
-        });
+        // remove diacritics on search
+        filteredOptions = _.filter(filteredOptions, opt => re.test(opt.text ? _.deburr(opt.text): opt.text))
       }
     }
 
