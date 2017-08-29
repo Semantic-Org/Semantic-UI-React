@@ -272,9 +272,17 @@ export default class Visibility extends Component {
     })
   }
 
+  handleScroll = () => {
+    if (this.ticking) return
+
+    this.ticking = true
+    requestAnimationFrame(() => this.handleUpdate())
+  }
+
   handleRef = c => (this.ref = c)
 
-  handleScroll = () => {
+  handleUpdate = () => {
+    this.ticking = false
     const { bottom, height, top, width } = this.ref.getBoundingClientRect()
 
     const topPassed = top < 0
