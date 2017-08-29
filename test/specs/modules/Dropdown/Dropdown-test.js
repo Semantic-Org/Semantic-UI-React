@@ -626,20 +626,6 @@ describe('Dropdown', () => {
       wrapper
         .find('.selected')
         .should.contain.text('FLOREŞTI')
-
-      // move selection down
-      domEvent.keyDown(document, { key: 'ArrowDown' })
-
-      wrapper
-        .find('.selected')
-        .should.contain.text('ŞANŢU FLOREŞTI')
-
-      // move selection down
-      domEvent.keyDown(document, { key: 'ArrowDown' })
-
-      wrapper
-        .find('.selected')
-        .should.contain.text('FLOREŞTI Alba')
     })
     it('still works after encountering "no results"', () => {
       const opts = [
