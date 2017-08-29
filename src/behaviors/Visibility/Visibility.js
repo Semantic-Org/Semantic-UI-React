@@ -62,6 +62,11 @@ export default class Visibility extends Component {
      */
     onBottomVisibleReverse: PropTypes.func,
 
+    offset: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
+
     /** When set to false a callback will occur each time an element passes the threshold for a condition. */
     once: PropTypes.bool,
 
@@ -144,6 +149,7 @@ export default class Visibility extends Component {
   static defaultProps = {
     context: isBrowser ? window : null,
     continuous: false,
+    offset: 0,
     once: true,
   }
 
@@ -275,16 +281,17 @@ export default class Visibility extends Component {
   handleRef = c => (this.ref = c)
 
   handleScroll = () => {
+    const { offset } = this.props
     const { bottom, height, top, width } = this.ref.getBoundingClientRect()
 
-    const topPassed = top < 0
-    const bottomPassed = bottom < 0
+    const topPassed = top < offset
+    const bottomPassed = bottom < offset
 
-    const pixelsPassed = bottomPassed ? 0 : Math.max(top * -1, 0)
+    const pixelsPassed = bottomPassed ? offset : Math.max(top * -1, 0)
     const percentagePassed = pixelsPassed / height
 
-    const bottomVisible = bottom >= 0 && bottom <= window.innerHeight
-    const topVisible = top >= 0 && top <= window.innerHeight
+    const bottomVisible = bottom >= offset && bottom <= window.innerHeight
+    const topVisible = top >= offset && top <= window.innerHeight
 
     const fits = topVisible && bottomVisible
     const passing = topPassed && !bottomPassed
