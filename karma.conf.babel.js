@@ -63,6 +63,7 @@ export default (karmaConfig) => {
       { pattern: 'docs/app/logo.png', watched: false, included: false, served: true },
       { pattern: 'docs/app/assets/**/*.jpg', watched: false, included: false, served: true },
       { pattern: 'docs/app/assets/**/*.png', watched: false, included: false, served: true },
+      'node_modules/es6-shim/es6-shim.js',
       'test/tests.bundle.js',
     ],
     formatError,
