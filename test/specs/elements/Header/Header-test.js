@@ -33,7 +33,7 @@ describe('Header', () => {
   common.propKeyOrValueAndKeyToClassName(Header, 'attached', ['top', 'bottom'])
 
   common.propValueOnlyToClassName(Header, 'color', SUI.COLORS)
-  common.propValueOnlyToClassName(Header, 'size', _.without(SUI.SIZES, 'big', 'massive'))
+  common.propValueOnlyToClassName(Header, 'size', _.without(SUI.SIZES, 'big', 'massive', 'mini'))
 
   describe('icon', () => {
     it('adds an icon class when true', () => {
