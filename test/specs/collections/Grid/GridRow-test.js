@@ -17,7 +17,7 @@ describe('GridRow', () => {
   })
 
   common.propKeyAndValueToClassName(GridRow, 'reversed', [
-    ['computer', 'computer vertically', 'mobile', 'mobile vertically', 'tablet', 'tablet vertically'],
+    'computer', 'computer vertically', 'mobile', 'mobile vertically', 'tablet', 'tablet vertically',
   ])
 
   common.propKeyOnlyToClassName(GridRow, 'centered')
