@@ -14,14 +14,14 @@ import {
  * A list can contain a sub list.
  */
 function ListList(props) {
-  const { children, className } = props
+  const { as, children, className } = props
 
-  const rest = getUnhandledProps(ListList, props)
-  const ElementType = getElementType(ListList, props)
   const classes = cx(
-    useKeyOnly(ElementType !== 'ul' && ElementType !== 'ol', 'list'),
+    useKeyOnly(as !== 'ul' && as !== 'ol', 'list'),
     className,
   )
+  const rest = getUnhandledProps(ListList, props)
+  const ElementType = getElementType(ListList, props)
 
   return <ElementType {...rest} className={classes}>{children}</ElementType>
 }

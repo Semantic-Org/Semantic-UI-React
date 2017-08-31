@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import React from 'react'
 
 import Input from 'src/elements/Input/Input'
@@ -105,37 +106,23 @@ describe('Input', () => {
   })
 
   describe('input props', () => {
-    htmlInputProps.forEach((propName) => {
+    const propValue = () => null
+
+    _.without('onChange', htmlInputProps).forEach((propName) => {
       it(`passes \`${propName}\` to the <input>`, () => {
-        const propValue = propName === 'onChange' ? () => null : 'foo'
-        const wrapper = shallow(<Input {...{ [propName]: propValue }} />)
-
-        // account for overloading the onChange prop
-        const expectedValue = propName === 'onChange'
-          ? wrapper.instance().handleChange
-          : propValue
-
-        wrapper
+        shallow(<Input {...{ [propName]: propValue }} />)
           .find('input')
-          .should.have.prop(propName, expectedValue)
+          .should.have.prop(propName, propValue)
       })
 
       it(`passes \`${propName}\` to the <input> when using children`, () => {
-        const propValue = propName === 'onChange' ? () => null : 'foo'
-        const wrapper = shallow(
+        shallow(
           <Input {...{ [propName]: propValue }}>
             <input />
           </Input>,
         )
-
-        // account for overloading the onChange prop
-        const expectedValue = propName === 'onChange'
-          ? wrapper.instance().handleChange
-          : propValue
-
-        wrapper
           .find('input')
-          .should.have.prop(propName, expectedValue)
+          .should.have.prop(propName, propValue)
       })
     })
   })

@@ -159,8 +159,8 @@ class Input extends Component {
     return [{
       ...htmlInputProps,
       disabled,
-      type,
       tabIndex,
+      type,
       onChange: this.handleChange,
       ref: this.handleInputRef,
     }, rest]

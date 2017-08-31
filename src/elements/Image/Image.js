@@ -71,9 +71,7 @@ function Image(props) {
   )
   const rest = getUnhandledProps(Image, props)
   const wrappedImage = !_.isNil(dimmer) || !_.isNil(label) || !_.isNil(wrapped) || !childrenUtils.isNil(children)
-  const ElementType = getElementType(Image, props, () => {
-    if (wrappedImage) return 'div'
-  })
+  const ElementType = getElementType(Image, props, wrappedImage && 'div')
 
   if (!childrenUtils.isNil(children)) {
     return <ElementType {...rest} className={classes}>{children}</ElementType>
