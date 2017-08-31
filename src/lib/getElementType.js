@@ -21,7 +21,7 @@ export const computeElementType = (Component, props, getDefault) => {
   // computed default element type
 
   if (getDefault) {
-    const computedDefault = getDefault()
+    const computedDefault = typeof getDefault === 'function' ? getDefault() : getDefault
     if (computedDefault) return computedDefault
   }
 

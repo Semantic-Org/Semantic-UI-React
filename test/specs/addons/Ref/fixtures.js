@@ -1,9 +1,9 @@
-/* eslint-disable react/no-multi-comp */
+/* eslint-disable */
 import React, { Component } from 'react'
 
-export const DOMFunction = (props) => <div {...props} id='node' />
+export const DOMFunction = props => <div {...props} id='node' />
 
-export const CompositeFunction = (props) => <DOMFunction {...props} />
+export const CompositeFunction = props => <DOMFunction {...props} />
 
 export class DOMClass extends Component {
   render() {

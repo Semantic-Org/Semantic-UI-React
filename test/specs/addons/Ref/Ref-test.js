@@ -10,7 +10,7 @@ const nodeMount = (Component, innerRef) => (
   mount(
     <Ref innerRef={innerRef}>
       <Component />
-    </Ref>
+    </Ref>,
   )
     .find('#node')
     .getDOMNode()
