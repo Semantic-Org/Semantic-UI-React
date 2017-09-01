@@ -30,7 +30,7 @@ export default class Visibility extends Component {
      */
     continuous: PropTypes.bool,
 
-    /** Fires the callbacks once immediately after mount. */
+    /** Fires callbacks immediately after mount. */
     fireOnMount: PropTypes.bool,
 
     /**

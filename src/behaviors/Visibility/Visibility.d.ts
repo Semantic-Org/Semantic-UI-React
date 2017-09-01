@@ -18,7 +18,7 @@ export interface VisibilityProps {
    */
   continuous?: boolean;
 
-  /** Fires the callbacks once immediately after mount. */
+  /** Fires callbacks immediately after mount. */
   fireOnMount?: boolean;
 
   /**

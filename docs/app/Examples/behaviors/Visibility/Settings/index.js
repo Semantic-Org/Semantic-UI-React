@@ -7,7 +7,7 @@ const VisibilityExample = () => (
   <ExampleSection title='Settings'>
     <ComponentExample
       title='Fire on mount'
-      description='Fires the callbacks once immediately after mount.'
+      description='Fires callbacks immediately after mount.'
       examplePath='behaviors/Visibility/Settings/VisibilityExampleFireOnMount'
     />
     <ComponentExample

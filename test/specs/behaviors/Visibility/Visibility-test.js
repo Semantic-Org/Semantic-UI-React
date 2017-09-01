@@ -186,7 +186,7 @@ describe('Visibility', () => {
   })
 
   describe('fireOnMount', () => {
-    it('fires callback after mount', () => {
+    it('fires callbacks after mount', () => {
       const onUpdate = sandbox.spy()
 
       mockScroll(0, 0)
