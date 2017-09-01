@@ -2,6 +2,7 @@ import React from 'react'
 
 import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
 import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
+import ShorthandExample from 'docs/app/Components/ComponentDoc/ShorthandExample'
 
 // TODO: Add example with <Popup> after it will be added
 
@@ -12,10 +13,7 @@ const Types = () => (
       description='A menu.'
       examplePath='collections/Menu/Types/MenuExampleBasic'
     />
-    <ComponentExample
-      description='Menu can be rendered via shorthand prop.'
-      examplePath='collections/Menu/Types/MenuExampleProps'
-    />
+    <ShorthandExample examplePath='collections/Menu/Types/MenuExampleProps' />
     <ComponentExample
       description='Menu item text can be defined with the content prop.'
       examplePath='collections/Menu/Types/MenuExampleContentProp'

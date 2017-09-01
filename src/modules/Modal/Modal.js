@@ -227,7 +227,7 @@ class Modal extends Component {
     mountNode.classList.remove('blurring')
     mountNode.classList.remove('dimmable')
     mountNode.classList.remove('dimmed')
-    mountNode.classList.remove('scrollable')
+    mountNode.classList.remove('scrolling')
 
     cancelAnimationFrame(this.animationRequestId)
 
