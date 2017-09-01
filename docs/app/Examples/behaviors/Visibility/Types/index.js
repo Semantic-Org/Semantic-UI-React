@@ -7,7 +7,7 @@ const VisibilityTypesExamples = () => (
   <ExampleSection title='Types'>
     <ComponentExample
       title='Default'
-      description='An example of Visibility'
+      description='An example of Visibility.'
       examplePath='behaviors/Visibility/Types/VisibilityExampleVisibility'
     />
   </ExampleSection>
