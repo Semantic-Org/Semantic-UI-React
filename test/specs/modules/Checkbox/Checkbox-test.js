@@ -155,7 +155,7 @@ describe('Checkbox', () => {
       spy.should.have.been.calledOnce()
       spy.should.have.been.calledWithMatch({}, {
         ...expectProps,
-        checked: expectProps.checked,
+        checked: !expectProps.checked,
         indeterminate: expectProps.indeterminate,
       })
     })
