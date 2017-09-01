@@ -8,6 +8,8 @@ describe('CardMeta', () => {
   common.isConformant(CardMeta)
   common.rendersChildren(CardMeta)
 
+  common.implementsTextAlignProp(CardMeta, ['left', 'center', 'right'])
+
   describe('description prop', () => {
     it('renders child text', () => {
       const text = faker.hacker.phrase()

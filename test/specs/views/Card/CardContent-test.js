@@ -24,6 +24,6 @@ describe('CardContent', () => {
     mapValueToProps: val => ({ content: val }),
   })
 
-  common.propKeyOnlyToClassName(CardContent, 'extra')
   common.implementsTextAlignProp(CardContent, ['left', 'center', 'right'])
+  common.propKeyOnlyToClassName(CardContent, 'extra')
 })

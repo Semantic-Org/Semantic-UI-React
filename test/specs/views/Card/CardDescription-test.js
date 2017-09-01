@@ -7,6 +7,7 @@ import * as common from 'test/specs/commonTests'
 describe('CardDescription', () => {
   common.isConformant(CardDescription)
   common.rendersChildren(CardDescription)
+  common.implementsTextAlignProp(CardDescription, ['left', 'center', 'right'])
 
   describe('description prop', () => {
     it('renders child text', () => {
