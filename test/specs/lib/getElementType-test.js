@@ -2,7 +2,6 @@ import faker from 'faker'
 import _ from 'lodash'
 import React from 'react'
 
-import Ref from 'src/addons/Ref'
 import getElementType, { computeElementType } from 'src/lib/getElementType'
 
 describe('computeElementType', () => {
@@ -35,21 +34,23 @@ describe('computeElementType', () => {
 })
 
 describe('getElementType', () => {
-  it('returns a withRef HOC when "as" is a string', () => {
+  it('returns a refHOC when "as" is a string', () => {
     const ElementType = getElementType({}, { as: 'button' })
-    const wrapper = shallow(<ElementType innerRef={_.noop} />)
 
-    wrapper.should.have.tagName('button')
-    wrapper.should.have.type('button')
+    mount(<ElementType innerRef={_.noop} />)
+      .type()
+      .name
+      .should.equal('refHOC')
   })
 
-  it('returns a withRef HOC when "as" is a component', () => {
+  it('returns a refHOC when "as" is a component', () => {
     const Component = () => <div />
     const ElementType = getElementType({}, { as: Component })
-    const wrapper = shallow(<ElementType innerRef={_.noop} />)
 
-    wrapper.should.have.tagName('div')
-    wrapper.should.have.type(Ref)
+    mount(<ElementType innerRef={_.noop} />)
+      .type()
+      .name
+      .should.equal('refHOC')
   })
 })
 
