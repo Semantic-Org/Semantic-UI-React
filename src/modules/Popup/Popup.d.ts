@@ -17,6 +17,9 @@ export interface PopupProps extends PortalProps {
   /** Additional classes. */
   className?: string;
 
+  /** Closes the Popup when clicked inside. */
+  closeOnClickInside?: boolean;
+
   /** Simple text content for the popover. */
   content?: SemanticShorthandItem<PopupContentProps>;
 

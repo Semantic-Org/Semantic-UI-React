@@ -35,6 +35,9 @@ class Portal extends Component {
     /** Controls whether or not the portal should close when escape is pressed is displayed. */
     closeOnEscape: PropTypes.bool,
 
+    /** Controls whether or not the portal should close when clicked within the bounding box. */
+    closeOnPortalClick: PropTypes.bool,
+
     /**
      * Controls whether or not the portal should close when mousing out of the portal.
      * NOTE: This will prevent `closeOnTriggerMouseLeave` when mousing over the
@@ -201,6 +204,15 @@ class Portal extends Component {
   // Component Event Handlers
   // ----------------------------------------
 
+  handlePortalClick = (e) => {
+    const { closeOnPortalClick } = this.props
+
+    if (!closeOnPortalClick) return
+
+    debug('handlePortalClick()')
+    this.close(e)
+  }
+
   handlePortalMouseLeave = (e) => {
     const { closeOnPortalMouseLeave, mouseLeaveDelay } = this.props
 
@@ -349,6 +361,7 @@ class Portal extends Component {
 
     // when re-rendering, first remove listeners before re-adding them to the new node
     if (this.portalNode) {
+      this.portalNode.removeEventListener('click', this.handlePortalClick)
       this.portalNode.removeEventListener('mouseleave', this.handlePortalMouseLeave)
       this.portalNode.removeEventListener('mouseenter', this.handlePortalMouseEnter)
     }
@@ -359,7 +372,7 @@ class Portal extends Component {
       this.rootNode,
       () => {
         this.portalNode = this.rootNode.firstElementChild
-
+        this.portalNode.addEventListener('click', this.handlePortalClick)
         this.portalNode.addEventListener('mouseleave', this.handlePortalMouseLeave)
         this.portalNode.addEventListener('mouseenter', this.handlePortalMouseEnter)
       },
