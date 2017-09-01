@@ -30,6 +30,9 @@ export default class Visibility extends Component {
      */
     continuous: PropTypes.bool,
 
+    /** Fires callbacks immediately after mount. */
+    fireOnMount: PropTypes.bool,
+
     /**
      * Element's bottom edge has passed top of screen.
      *
@@ -173,15 +176,17 @@ export default class Visibility extends Component {
   componentDidMount() {
     if (!isBrowser) return
 
-    const { context } = this.props
-    context.addEventListener('scroll', this.handleScroll)
+    const { context, fireOnMount } = this.props
+
+    context.addEventListener('scroll', this.handleUpdate)
+    if (fireOnMount) this.handleUpdate()
   }
 
   componentWillUnmount() {
     if (!isBrowser) return
 
     const { context } = this.props
-    context.removeEventListener('scroll', this.handleScroll)
+    context.removeEventListener('scroll', this.handleUpdate)
   }
 
   execute = (callback, name) => {
@@ -274,7 +279,7 @@ export default class Visibility extends Component {
 
   handleRef = c => (this.ref = c)
 
-  handleScroll = () => {
+  handleUpdate = () => {
     const { bottom, height, top, width } = this.ref.getBoundingClientRect()
 
     const topPassed = top < 0

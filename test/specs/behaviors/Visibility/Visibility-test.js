@@ -185,6 +185,21 @@ describe('Visibility', () => {
     })
   })
 
+  describe('fireOnMount', () => {
+    it('fires callbacks after mount', () => {
+      const onUpdate = sandbox.spy()
+
+      mockScroll(0, 0)
+      wrapperMount(<Visibility fireOnMount onUpdate={onUpdate} />)
+
+      onUpdate.should.have.been.calledOnce()
+      onUpdate.should.have.been.calledWithMatch(null, {
+        calculations: { height: 0, width: 0 },
+        fireOnMount: true,
+      })
+    })
+  })
+
   describe('onPassed', () => {
     it('fires callback when pixels passed', () => {
       const onPassed = {
