@@ -166,6 +166,7 @@ class ComponentExample extends Component {
     const LODASH = require('lodash')
     const REACT = require('react')
     const SEMANTIC_UI_REACT = require('semantic-ui-react')
+    let WIREFRAME
     let COMMON
     /* eslint-enable no-unused-vars */
 
@@ -191,6 +192,8 @@ class ComponentExample extends Component {
         if (module === 'COMMON') {
           const componentPath = examplePath.split(__PATH_SEP__).splice(0, 2).join(__PATH_SEP__)
           COMMON = require(`docs/app/Examples/${componentPath}/common`)
+        } else if (module === 'WIREFRAME') {
+          WIREFRAME = require('docs/app/Examples/behaviors/Visibility/Wireframe').default
         }
 
         const constStatements = []
@@ -420,8 +423,10 @@ class ComponentExample extends Component {
           <Grid.Column className={`rendered-example ${this.getKebabExamplePath()}`}>
             {exampleElement}
           </Grid.Column>
-          {this.renderJSX()}
-          {this.renderHTML()}
+          <Grid.Column>
+            {this.renderJSX()}
+            {this.renderHTML()}
+          </Grid.Column>
         </Grid.Row>
       </Grid>
     )

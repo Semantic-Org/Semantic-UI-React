@@ -53,6 +53,12 @@ export interface VisibilityProps {
    */
   onBottomVisibleReverse?: (nothing: null, data: VisibilityEventData) => void;
 
+  /**
+   * Value that context should be adjusted in pixels. Useful for making content appear below content fixed to the
+   * page.
+   */
+  offset?: number | string | Array<number|string>;
+
   /** When set to false a callback will occur each time an element passes the threshold for a condition. */
   once?: boolean;
 
