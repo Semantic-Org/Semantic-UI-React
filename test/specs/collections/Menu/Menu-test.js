@@ -86,23 +86,18 @@ describe('Menu', () => {
       { key: 'home', name: 'home', onClick: spy, 'data-foo': 'something' },
       { key: 'users', name: 'users', active: true, 'data-foo': 'something' },
     ]
-    const children = mount(<Menu items={items} />).find('MenuItem')
+    const children = shallow(<Menu items={items} />).find('MenuItem')
 
     it('renders children', () => {
-      children.first().should.have.prop('name', 'home')
-      children.last().should.have.prop('name', 'users')
-    })
-
-    it('onClick can omitted', () => {
-      const click = () => children.last().simulate('click')
-      expect(click).to.not.throw()
+      children.at(0).should.have.prop('name', 'home')
+      children.at(1).should.have.prop('name', 'users')
     })
 
     it('passes onClick handler', () => {
       const event = { target: null }
       const props = { name: 'home', index: 0 }
 
-      children.first().simulate('click', event)
+      children.at(0).shallow().simulate('click', event)
 
       spy.should.have.been.calledOnce()
       spy.should.have.been.calledWithMatch(event, props)
