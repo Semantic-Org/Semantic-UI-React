@@ -48,12 +48,12 @@ describe('Embed', () => {
 
   describe('active', () => {
     it('defaults to false', () => {
-      shallow(<Embed />)
+      rawShallow(<Embed />)
         .should.have.not.state('active')
     })
 
     it('passes to state', () => {
-      shallow(<Embed active />)
+      rawShallow(<Embed active />)
         .should.have.state('active', true)
     })
 
@@ -88,10 +88,10 @@ describe('Embed', () => {
 
   describe('defaultActive', () => {
     it('sets the initial active state', () => {
-      shallow(<Embed defaultActive />)
+      rawShallow(<Embed defaultActive />)
         .should.have.state('active', true)
 
-      shallow(<Embed defaultActive={false} />)
+      rawShallow(<Embed defaultActive={false} />)
         .should.have.state('active', false)
     })
   })

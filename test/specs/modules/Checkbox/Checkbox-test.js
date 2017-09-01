@@ -32,11 +32,16 @@ describe('Checkbox', () => {
 
   describe('checking', () => {
     it('can be checked and unchecked', () => {
-      const wrapper = shallow(<Checkbox />)
+      const wrapper = rawShallow(<Checkbox />)
+      const input = wrapper.find('input')
 
-      wrapper.find('input').should.not.be.checked()
-      wrapper.simulate('click').find('input').should.be.checked()
-      wrapper.simulate('click').find('input').should.not.be.checked()
+      input.should.not.be.checked()
+
+      wrapper.simulate('click')
+      input.should.be.checked()
+
+      wrapper.simulate('click')
+      input.should.not.be.checked()
     })
     it('can be checked but not unchecked when radio', () => {
       const wrapper = shallow(<Checkbox radio />)
