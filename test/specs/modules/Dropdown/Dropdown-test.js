@@ -610,6 +610,23 @@ describe('Dropdown', () => {
         .find('.selected')
         .should.contain.text('a2')
     })
+    it('filter after diacritics', () => {
+      const opts = [
+        { text: 'FLOREŞTI', value: '1' },
+        { text: 'ŞANŢU FLOREŞTI', value: '2' },
+        { text: 'FLOREŞTI Alba', value: '3' },
+      ]
+
+      // search for 'floresti'
+      wrapperMount(<Dropdown options={opts} search selection />)
+        .simulate('click')
+        .find('input.search')
+        .simulate('change', { target: { value: 'floresti' } })
+
+      wrapper
+        .find('.selected')
+        .should.contain.text('FLOREŞTI')
+    })
     it('still works after encountering "no results"', () => {
       const opts = [
         { text: 'a1', value: 'a1' },

@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import React from 'react'
 
 import Visibility from 'src/behaviors/Visibility'
@@ -198,6 +199,56 @@ describe('Visibility', () => {
 
       div.dispatchEvent(new Event('scroll'))
       onUpdate.should.have.been.called()
+    })
+  })
+
+  describe('fireOnMount', () => {
+    it('fires callbacks after mount', () => {
+      const onUpdate = sandbox.spy()
+
+      mockScroll(0, 0)
+      wrapperMount(<Visibility fireOnMount onUpdate={onUpdate} />)
+
+      onUpdate.should.have.been.calledOnce()
+      onUpdate.should.have.been.calledWithMatch(null, {
+        calculations: { height: 0, width: 0 },
+        fireOnMount: true,
+      })
+    })
+  })
+
+  describe('offset', () => {
+    _.each(_.filter(expectations, 'callback'), (expectation) => {
+      it(`fires ${expectation.name} when offset is number`, () => {
+        const callback = sandbox.spy()
+        const opts = { [expectation.callback]: callback }
+
+        const offset = 10
+        const falseCond = _.map(expectation.false[0], value => value + offset)
+        const trueCond = _.map(expectation.true[0], value => value + offset)
+
+        wrapperMount(<Visibility {...opts} offset={offset} />)
+        mockScroll(...trueCond)
+        mockScroll(...falseCond)
+
+        callback.should.have.been.calledOnce()
+      })
+
+      it(`fires ${expectation.name} when offset is array`, () => {
+        const callback = sandbox.spy()
+        const opts = { [expectation.callback]: callback }
+
+        const bottomOffset = 20
+        const topOffset = 10
+        const falseCond = [expectation.false[0][0] + topOffset, expectation.false[0][1] + bottomOffset]
+        const trueCond = [expectation.true[0][0] + topOffset, expectation.true[0][1] + bottomOffset]
+
+        wrapperMount(<Visibility {...opts} offset={[topOffset, bottomOffset]} />)
+        mockScroll(...trueCond)
+        mockScroll(...falseCond)
+
+        callback.should.have.been.calledOnce()
+      })
     })
   })
 
