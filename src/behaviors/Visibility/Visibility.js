@@ -7,6 +7,7 @@ import {
   getElementType,
   getUnhandledProps,
   META,
+  normalizeOffset,
   isBrowser,
 } from '../../lib'
 
@@ -29,6 +30,9 @@ export default class Visibility extends Component {
      * threshold is met.
      */
     continuous: PropTypes.bool,
+
+    /** Fires callbacks immediately after mount. */
+    fireOnMount: PropTypes.bool,
 
     /**
      * Element's bottom edge has passed top of screen.
@@ -62,9 +66,17 @@ export default class Visibility extends Component {
      */
     onBottomVisibleReverse: PropTypes.func,
 
+    /**
+     * Value that context should be adjusted in pixels. Useful for making content appear below content fixed to the
+     * page.
+     */
     offset: PropTypes.oneOfType([
       PropTypes.number,
       PropTypes.string,
+      PropTypes.arrayOf([
+        PropTypes.number,
+        PropTypes.string,
+      ]),
     ]),
 
     /** When set to false a callback will occur each time an element passes the threshold for a condition. */
@@ -149,7 +161,7 @@ export default class Visibility extends Component {
   static defaultProps = {
     context: isBrowser ? window : null,
     continuous: false,
-    offset: 0,
+    offset: [0, 0],
     once: true,
   }
 
@@ -179,15 +191,17 @@ export default class Visibility extends Component {
   componentDidMount() {
     if (!isBrowser) return
 
-    const { context } = this.props
-    context.addEventListener('scroll', this.handleScroll)
+    const { context, fireOnMount } = this.props
+
+    context.addEventListener('scroll', this.handleUpdate)
+    if (fireOnMount) this.handleUpdate()
   }
 
   componentWillUnmount() {
     if (!isBrowser) return
 
     const { context } = this.props
-    context.removeEventListener('scroll', this.handleScroll)
+    context.removeEventListener('scroll', this.handleUpdate)
   }
 
   execute = (callback, name) => {
@@ -280,18 +294,19 @@ export default class Visibility extends Component {
 
   handleRef = c => (this.ref = c)
 
-  handleScroll = () => {
+  handleUpdate = () => {
     const { offset } = this.props
     const { bottom, height, top, width } = this.ref.getBoundingClientRect()
+    const [topOffset, bottomOffset] = normalizeOffset(offset)
 
-    const topPassed = top < offset
-    const bottomPassed = bottom < offset
+    const topPassed = top < topOffset
+    const bottomPassed = bottom < bottomOffset
 
-    const pixelsPassed = bottomPassed ? offset : Math.max(top * -1, 0)
+    const pixelsPassed = bottomPassed ? 0 : Math.max(top * -1, 0)
     const percentagePassed = pixelsPassed / height
 
-    const bottomVisible = bottom >= offset && bottom <= window.innerHeight
-    const topVisible = top >= offset && top <= window.innerHeight
+    const bottomVisible = bottom >= bottomOffset && bottom <= window.innerHeight
+    const topVisible = top >= topOffset && top <= window.innerHeight
 
     const fits = topVisible && bottomVisible
     const passing = topPassed && !bottomPassed

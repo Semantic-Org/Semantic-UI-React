@@ -8,19 +8,13 @@ import { html } from 'js-beautify'
 import copyToClipboard from 'copy-to-clipboard'
 
 import { exampleContext, repoURL, scrollToAnchor } from 'docs/app/utils'
-import { Divider, Grid, Header, Menu } from 'src'
+import { Divider, Grid, Menu } from 'src'
 import Editor from 'docs/app/Components/Editor/Editor'
 import ComponentControls from '../ComponentControls'
+import ComponentExampleTitle from './ComponentExampleTitle'
 
 const babelConfig = {
   presets: ['es2015', 'react', 'stage-1'],
-}
-
-const titleStyle = {
-  margin: 0,
-}
-const descriptionStyle = {
-  maxWidth: '50rem',
 }
 
 const headerColumnStyle = {
@@ -53,6 +47,7 @@ class ComponentExample extends Component {
     history: PropTypes.object.isRequired,
     location: PropTypes.object.isRequired,
     match: PropTypes.object.isRequired,
+    suiVersion: PropTypes.string,
     title: PropTypes.node,
   }
 
@@ -166,6 +161,7 @@ class ComponentExample extends Component {
     const LODASH = require('lodash')
     const REACT = require('react')
     const SEMANTIC_UI_REACT = require('semantic-ui-react')
+    let WIREFRAME
     let COMMON
     /* eslint-enable no-unused-vars */
 
@@ -191,6 +187,8 @@ class ComponentExample extends Component {
         if (module === 'COMMON') {
           const componentPath = examplePath.split(__PATH_SEP__).splice(0, 2).join(__PATH_SEP__)
           COMMON = require(`docs/app/Examples/${componentPath}/common`)
+        } else if (module === 'WIREFRAME') {
+          WIREFRAME = require('docs/app/Examples/behaviors/Visibility/Wireframe').default
         }
 
         const constStatements = []
@@ -374,7 +372,7 @@ class ComponentExample extends Component {
   }
 
   render() {
-    const { children, description, title } = this.props
+    const { children, description, suiVersion, title } = this.props
     const { controlsVisible, exampleElement, showCode, showHTML } = this.state
     const exampleStyle = {}
 
@@ -392,8 +390,11 @@ class ComponentExample extends Component {
       >
         <Grid.Row columns={2}>
           <Grid.Column style={headerColumnStyle}>
-            {title && <Header as='h3' className='no-anchor' style={titleStyle} content={title} />}
-            {description && <p style={descriptionStyle}>{description}</p>}
+            <ComponentExampleTitle
+              description={description}
+              title={title}
+              suiVersion={suiVersion}
+            />
           </Grid.Column>
           <Grid.Column textAlign='right'>
             <ComponentControls
@@ -420,8 +421,10 @@ class ComponentExample extends Component {
           <Grid.Column className={`rendered-example ${this.getKebabExamplePath()}`}>
             {exampleElement}
           </Grid.Column>
-          {this.renderJSX()}
-          {this.renderHTML()}
+          <Grid.Column>
+            {this.renderJSX()}
+            {this.renderHTML()}
+          </Grid.Column>
         </Grid.Row>
       </Grid>
     )
