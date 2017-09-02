@@ -146,7 +146,7 @@ describe('Dropdown', () => {
   })
 
   it('does not close on click when search is true and options are empty', () => {
-    wrapperMount(<Dropdown options={{}} search selection defaultOpen />)
+    wrapperMount(<Dropdown options={[]} search selection defaultOpen />)
 
     const instance = wrapper.instance()
     sandbox.spy(instance.ref, 'blur')
@@ -1034,7 +1034,7 @@ describe('Dropdown', () => {
     it('does not display if value is undefined', () => {
       const text = faker.hacker.noun()
 
-      wrapperMount(<Dropdown options={[{ value: undefined, text }]} selection />)
+      wrapperMount(<Dropdown options={[{ key: text, value: undefined, text }]} selection />)
         .simulate('click')
         .find('DropdownItem')
         .simulate('click')
@@ -1053,13 +1053,6 @@ describe('Dropdown', () => {
       wrapperRender(<Dropdown options={options} trigger={trigger} />)
         .find('.trigger')
         .should.contain.text(text)
-    })
-    it('ignores the text prop', () => {
-      const text = faker.hacker.phrase()
-      const trigger = <div className='trigger'>{text}</div>
-
-      wrapperRender(<Dropdown options={options} trigger={trigger} text={text} />)
-        .should.not.have.descendants('div.text')
     })
   })
 
