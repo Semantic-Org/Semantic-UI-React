@@ -13,7 +13,7 @@ const { paths } = config
 
 const formatError = (msg) => {
   // filter out empty lines and node_modules
-  if (!msg.trim() || /~/.test(msg)) return ''
+  if (!msg.trim() || /~/.test(msg) || /node_modules\//.test(msg)) return ''
 
   // indent the error beneath the it() message
   let newLine = `  ${msg}`
