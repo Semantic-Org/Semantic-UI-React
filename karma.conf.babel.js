@@ -63,12 +63,11 @@ export default (karmaConfig) => {
       { pattern: 'docs/app/logo.png', watched: false, included: false, served: true },
       { pattern: 'docs/app/assets/**/*.jpg', watched: false, included: false, served: true },
       { pattern: 'docs/app/assets/**/*.png', watched: false, included: false, served: true },
-      'node_modules/es6-shim/es6-shim.js',
-      'test/tests.bundle.js',
+      './test/tests.bundle.js',
     ],
     formatError,
     frameworks: ['mocha'],
-    // make karma serve all files that the web server does (/* => /docs/app/*)
+    // make karma serve all files that the web server does: /* => /docs/app/*
     proxies: fs.readdirSync(paths.docsSrc()).reduce((acc, file) => {
       const isDir = fs.statSync(paths.docsSrc(file)).isDirectory()
       const trailingSlash = isDir ? '/' : ''
