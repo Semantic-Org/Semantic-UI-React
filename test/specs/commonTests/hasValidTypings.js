@@ -70,7 +70,7 @@ export default (Component, extractedInfo, options = {}) => {
         hasAnySignature(tsNodes).should.to.equal(true)
       })
 
-      it('are correctly defined', () => {
+      it('match the typings interface', () => {
         const componentPropTypes = _.get(Component, 'propTypes')
         const componentProps = _.keys(componentPropTypes)
         const interfaceProps = _.without(_.map(props, 'name'), ...ignoredTypingsProps)
@@ -94,7 +94,7 @@ export default (Component, extractedInfo, options = {}) => {
         })
       })
 
-      it('only necessary are required', () => {
+      it('isRequired props match required typings', () => {
         const componentRequired = _.keys(requiredProps)
         const interfaceRequired = _.map(_.filter(props, ['required', true]), 'name')
 
