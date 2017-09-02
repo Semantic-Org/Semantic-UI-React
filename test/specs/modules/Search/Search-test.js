@@ -33,10 +33,10 @@ const wrapperRender = (...args) => (wrapper = render(...args))
 // Options
 // ----------------------------------------
 const getOptions = (count = 5) => _.times(count, () => ({
-  title: _.times(3, faker.hacker.noun).join(' '),
-  description: _.times(3, faker.hacker.noun).join(' '),
+  title: `${count}-${_.times(3, faker.hacker.noun).join(' ')}`,
+  description: `${count}-${_.times(3, faker.hacker.noun).join(' ')}`,
   image: 'foo.png',
-  price: faker.finance.amount(0, 100, 2, '$'),
+  price: `${count}-${faker.finance.amount(0, 100, 2, '$')}`,
 }))
 
 // -------------------------------
