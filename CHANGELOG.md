@@ -1,5 +1,37 @@
 # Change Log
 
+## [v0.72.0](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.72.0) (2017-08-28)
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.71.5...v0.72.0)
+
+**Implemented enhancements:**
+
+- \<Tab /\> re-renders child pane on switching. [\#1877](https://github.com/Semantic-Org/Semantic-UI-React/issues/1877)
+- feat\(Tab\): add `renderActiveOnly` prop [\#1976](https://github.com/Semantic-Org/Semantic-UI-React/pull/1976) ([layershifter](https://github.com/layershifter))
+- feat\(events\): add eventStack [\#1733](https://github.com/Semantic-Org/Semantic-UI-React/pull/1733) ([layershifter](https://github.com/layershifter))
+
+**Fixed bugs:**
+
+- ReferenceError: window is not defined [\#1987](https://github.com/Semantic-Org/Semantic-UI-React/issues/1987)
+- Docs site is not working [\#1984](https://github.com/Semantic-Org/Semantic-UI-React/issues/1984)
+- Menu.Item - disabled=true - onClick still firing...intentional? [\#1964](https://github.com/Semantic-Org/Semantic-UI-React/issues/1964)
+- Modal: Enter ESC should only close the top layer modal [\#1657](https://github.com/Semantic-Org/Semantic-UI-React/issues/1657)
+
+**Closed issues:**
+
+- Modal Dimmer Blur Bug [\#2007](https://github.com/Semantic-Org/Semantic-UI-React/issues/2007)
+- closeOnBlur={false} doesn't work [\#1995](https://github.com/Semantic-Org/Semantic-UI-React/issues/1995)
+- Floated segments do not align vertically [\#1988](https://github.com/Semantic-Org/Semantic-UI-React/issues/1988)
+- Credit Card icon is adding "card" class to css. [\#1957](https://github.com/Semantic-Org/Semantic-UI-React/issues/1957)
+
+**Merged pull requests:**
+
+- fix\(Button|Menu|List|Step\): fix behaviour of `onClick` when is disabled [\#2006](https://github.com/Semantic-Org/Semantic-UI-React/pull/2006) ([layershifter](https://github.com/layershifter))
+- fix\(Dropdown\): closeOnBlur={false} does not work [\#1998](https://github.com/Semantic-Org/Semantic-UI-React/pull/1998) ([ChrisNLott](https://github.com/ChrisNLott))
+- fix\(Sticky|Visibility\): add null check on window [\#1990](https://github.com/Semantic-Org/Semantic-UI-React/pull/1990) ([ChrisNLott](https://github.com/ChrisNLott))
+- fix\(TextArea\): fix typings definition [\#1989](https://github.com/Semantic-Org/Semantic-UI-React/pull/1989) ([pierre-H](https://github.com/pierre-H))
+- perf\(docs\): optimize performance [\#1981](https://github.com/Semantic-Org/Semantic-UI-React/pull/1981) ([layershifter](https://github.com/layershifter))
+- breaking\(Modal\): update shorthand functionality [\#1599](https://github.com/Semantic-Org/Semantic-UI-React/pull/1599) ([levithomason](https://github.com/levithomason))
+
 ## [v0.71.5](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.71.5) (2017-08-20)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.71.4...v0.71.5)
 
@@ -1349,6 +1381,7 @@
 - Update react-ace to version 4.1.0 🚀 [\#904](https://github.com/Semantic-Org/Semantic-UI-React/pull/904) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
 - babel-loader@6.2.8 untested ⚠️ [\#900](https://github.com/Semantic-Org/Semantic-UI-React/pull/900) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
 - fix\(Dropdown\): unselected dropdown to have empty value [\#898](https://github.com/Semantic-Org/Semantic-UI-React/pull/898) ([Arthelon](https://github.com/Arthelon))
+- gulp-html-replace@1.6.2 untested ⚠️ [\#897](https://github.com/Semantic-Org/Semantic-UI-React/pull/897) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
 - chai-enzyme@0.6.1 untested ⚠️ [\#896](https://github.com/Semantic-Org/Semantic-UI-React/pull/896) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
 - karma-mocha-reporter@2.2.1 untested ⚠️ [\#894](https://github.com/Semantic-Org/Semantic-UI-React/pull/894) ([greenkeeperio-bot](https://github.com/greenkeeperio-bot))
 - test\(lint\): Added eslint-plugin-jsx-a11y plugin in warning mode [\#890](https://github.com/Semantic-Org/Semantic-UI-React/pull/890) ([fracmak](https://github.com/fracmak))
@@ -1462,6 +1495,7 @@
 - feat\(Input\): add onChange\(e, props\) [\#846](https://github.com/Semantic-Org/Semantic-UI-React/pull/846) ([levithomason](https://github.com/levithomason))
 - fix\(debug\): add bug work around [\#845](https://github.com/Semantic-Org/Semantic-UI-React/pull/845) ([levithomason](https://github.com/levithomason))
 - style\(Rating\): update docs to the latest standards [\#841](https://github.com/Semantic-Org/Semantic-UI-React/pull/841) ([dpkwhan](https://github.com/dpkwhan))
+- style\(Search\): update docs to the latest standards [\#840](https://github.com/Semantic-Org/Semantic-UI-React/pull/840) ([dpkwhan](https://github.com/dpkwhan))
 - style\(Checkbox\): update docs to the latest standards [\#839](https://github.com/Semantic-Org/Semantic-UI-React/pull/839) ([dpkwhan](https://github.com/dpkwhan))
 - style\(Accordion\): update docs to the latest standards [\#838](https://github.com/Semantic-Org/Semantic-UI-React/pull/838) ([dpkwhan](https://github.com/dpkwhan))
 - style\(Menu\): update docs to the latest standards [\#835](https://github.com/Semantic-Org/Semantic-UI-React/pull/835) ([dpkwhan](https://github.com/dpkwhan))

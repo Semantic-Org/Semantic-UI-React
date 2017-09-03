@@ -6,6 +6,7 @@ import React from 'react'
 import {
   AutoControlledComponent as Component,
   customPropTypes,
+  eventStack,
   getElementType,
   getUnhandledProps,
   htmlInputAttrs,
@@ -198,9 +199,7 @@ export default class Search extends Component {
   }
 
   static Category = SearchCategory
-
   static Result = SearchResult
-
   static Results = SearchResults
 
   componentWillMount() {
@@ -232,9 +231,6 @@ export default class Search extends Component {
     // TODO objectDiff still runs in prod, stop it
     debug('to state:', objectDiff(prevState, this.state))
 
-    // Do not access document when server side rendering
-    if (!isBrowser) return
-
     // focused / blurred
     if (!prevState.focus && this.state.focus) {
       debug('search focused')
@@ -243,8 +239,7 @@ export default class Search extends Component {
         this.tryOpen()
       }
       if (this.state.open) {
-        document.addEventListener('keydown', this.moveSelectionOnKeyDown)
-        document.addEventListener('keydown', this.selectItemOnEnter)
+        eventStack.sub('keydown', [this.moveSelectionOnKeyDown, this.selectItemOnEnter])
       }
     } else if (prevState.focus && !this.state.focus) {
       debug('search blurred')
@@ -252,38 +247,28 @@ export default class Search extends Component {
         debug('mouse is not down, closing')
         this.close()
       }
-      document.removeEventListener('keydown', this.moveSelectionOnKeyDown)
-      document.removeEventListener('keydown', this.selectItemOnEnter)
+      eventStack.unsub('keydown', [this.moveSelectionOnKeyDown, this.selectItemOnEnter])
     }
 
     // opened / closed
     if (!prevState.open && this.state.open) {
       debug('search opened')
       this.open()
-      document.addEventListener('keydown', this.closeOnEscape)
-      document.addEventListener('keydown', this.moveSelectionOnKeyDown)
-      document.addEventListener('keydown', this.selectItemOnEnter)
-      document.addEventListener('click', this.closeOnDocumentClick)
+      eventStack.sub('click', this.closeOnDocumentClick)
+      eventStack.sub('keydown', [this.closeOnEscape, this.moveSelectionOnKeyDown, this.selectItemOnEnter])
     } else if (prevState.open && !this.state.open) {
       debug('search closed')
       this.close()
-      document.removeEventListener('keydown', this.closeOnEscape)
-      document.removeEventListener('keydown', this.moveSelectionOnKeyDown)
-      document.removeEventListener('keydown', this.selectItemOnEnter)
-      document.removeEventListener('click', this.closeOnDocumentClick)
+      eventStack.unsub('click', this.closeOnDocumentClick)
+      eventStack.unsub('keydown', [this.closeOnEscape, this.moveSelectionOnKeyDown, this.selectItemOnEnter])
     }
   }
 
   componentWillUnmount() {
     debug('componentWillUnmount()')
 
-    // Do not access document when server side rendering
-    if (!isBrowser) return
-
-    document.removeEventListener('keydown', this.moveSelectionOnKeyDown)
-    document.removeEventListener('keydown', this.selectItemOnEnter)
-    document.removeEventListener('keydown', this.closeOnEscape)
-    document.removeEventListener('click', this.closeOnDocumentClick)
+    eventStack.unsub('click', this.closeOnDocumentClick)
+    eventStack.unsub('keydown', [this.closeOnEscape, this.moveSelectionOnKeyDown, this.selectItemOnEnter])
   }
 
   // ----------------------------------------
@@ -357,20 +342,17 @@ export default class Search extends Component {
 
   handleMouseDown = (e) => {
     debug('handleMouseDown()')
-    const { onMouseDown } = this.props
-    if (onMouseDown) onMouseDown(e, this.props)
+
     this.isMouseDown = true
-    // Do not access document when server side rendering
-    if (!isBrowser) return
-    document.addEventListener('mouseup', this.handleDocumentMouseUp)
+    _.invoke(this.props, 'onMouseDown', e, this.props)
+    eventStack.sub('mouseup', this.handleDocumentMouseUp)
   }
 
   handleDocumentMouseUp = () => {
     debug('handleDocumentMouseUp()')
+
     this.isMouseDown = false
-    // Do not access document when server side rendering
-    if (!isBrowser) return
-    document.removeEventListener('mouseup', this.handleDocumentMouseUp)
+    eventStack.unsub('mouseup', this.handleDocumentMouseUp)
   }
 
   handleInputClick = (e) => {

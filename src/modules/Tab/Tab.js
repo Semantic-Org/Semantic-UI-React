@@ -53,15 +53,18 @@ class Tab extends Component {
 
     /**
      * Array of objects describing each Menu.Item and Tab.Pane:
-     * {
-     *   menuItem: 'Home',
-     *   render: () => <Tab.Pane>Welcome!</Tab.Pane>
-     * }
+     * { menuItem: 'Home', render: () => <Tab.Pane /> }
+     * or
+     * { menuItem: 'Home', pane: 'Welcome' }
      */
     panes: PropTypes.arrayOf(PropTypes.shape({
       menuItem: customPropTypes.itemShorthand,
-      render: PropTypes.func.isRequired,
+      pane: customPropTypes.itemShorthand,
+      render: PropTypes.func,
     })),
+
+    /** A Tab can render only active pane. */
+    renderActiveOnly: PropTypes.bool,
   }
 
   static autoControlledProps = [
@@ -69,8 +72,9 @@ class Tab extends Component {
   ]
 
   static defaultProps = {
-    menu: { attached: true, tabular: true },
     grid: { paneWidth: 12, tabWidth: 4 },
+    menu: { attached: true, tabular: true },
+    renderActiveOnly: true,
   }
 
   static _meta = {
@@ -89,11 +93,16 @@ class Tab extends Component {
     this.trySetState({ activeIndex: index })
   }
 
-  renderActivePane() {
-    const { panes } = this.props
+  renderItems() {
+    const { panes, renderActiveOnly } = this.props
     const { activeIndex } = this.state
 
-    return _.invoke(_.get(panes, `[${activeIndex}]`), 'render', this.props)
+    if (renderActiveOnly) return _.invoke(_.get(panes, `[${activeIndex}]`), 'render', this.props)
+    return _.map(panes, ({ pane }, index) => TabPane.create(pane, {
+      overrideProps: {
+        active: index === activeIndex,
+      },
+    }))
   }
 
   renderMenu() {
@@ -118,7 +127,7 @@ class Tab extends Component {
         {menu.props.tabular !== 'right' && GridColumn.create({ width: tabWidth, children: menu })}
         {GridColumn.create({
           width: paneWidth,
-          children: this.renderActivePane(),
+          children: this.renderItems(),
           stretched: true,
         })}
         {menu.props.tabular === 'right' && GridColumn.create({ width: tabWidth, children: menu })}
@@ -138,7 +147,7 @@ class Tab extends Component {
     return (
       <ElementType {...rest}>
         {menu.props.attached !== 'bottom' && menu}
-        {this.renderActivePane()}
+        {this.renderItems()}
         {menu.props.attached === 'bottom' && menu}
       </ElementType>
     )

@@ -115,6 +115,15 @@ describe('Dropdown', () => {
     dropdownMenuIsClosed()
   })
 
+  it('does not close on blur with closeOnBlur set to false', () => {
+    wrapperMount(<Dropdown options={options} closeOnBlur={false} />)
+      .simulate('click')
+
+    dropdownMenuIsOpen()
+    wrapper.simulate('blur')
+    dropdownMenuIsOpen()
+  })
+
   it('blurs the Dropdown node on close', () => {
     wrapperMount(<Dropdown options={options} selection defaultOpen />)
 
@@ -600,6 +609,23 @@ describe('Dropdown', () => {
       wrapper
         .find('.selected')
         .should.contain.text('a2')
+    })
+    it('filter after diacritics', () => {
+      const opts = [
+        { text: 'FLOREŞTI', value: '1' },
+        { text: 'ŞANŢU FLOREŞTI', value: '2' },
+        { text: 'FLOREŞTI Alba', value: '3' },
+      ]
+
+      // search for 'floresti'
+      wrapperMount(<Dropdown options={opts} search selection />)
+        .simulate('click')
+        .find('input.search')
+        .simulate('change', { target: { value: 'floresti' } })
+
+      wrapper
+        .find('.selected')
+        .should.contain.text('FLOREŞTI')
     })
     it('still works after encountering "no results"', () => {
       const opts = [

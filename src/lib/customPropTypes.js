@@ -280,6 +280,12 @@ export const itemShorthand = (...args) => every([
   PropTypes.oneOfType([
     PropTypes.node,
     PropTypes.object,
+    PropTypes.arrayOf(
+      PropTypes.oneOfType([
+        PropTypes.node,
+        PropTypes.object,
+      ]),
+    ),
   ]),
 ])(...args)
 

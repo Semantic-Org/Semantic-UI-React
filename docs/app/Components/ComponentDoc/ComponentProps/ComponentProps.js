@@ -3,27 +3,8 @@ import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
 import { Icon, Popup, Table } from 'src'
-
-const extraDescriptionStyle = {
-  color: '#666',
-}
-const extraDescriptionContentStyle = {
-  marginLeft: '0.5em',
-}
-
-const Extra = ({ title, children, inline, ...rest }) => (
-  <div {...rest} style={extraDescriptionStyle}>
-    <strong>{title}</strong>
-    <div style={{ ...extraDescriptionContentStyle, display: inline ? 'inline' : 'block' }}>
-      {children}
-    </div>
-  </div>
-)
-Extra.propTypes = {
-  children: PropTypes.node,
-  inline: PropTypes.bool,
-  title: PropTypes.node,
-}
+import ComponentPropsEnum from './ComponentPropsEnum'
+import ComponentPropsExtra from './ComponentPropsExtra'
 
 const getTagType = tag => (tag.type.type === 'AllLiteral' ? 'any' : tag.type.name)
 
@@ -106,40 +87,22 @@ export default class ComponentProps extends Component {
     })
 
     return (
-      <Extra title={<pre>{item.name}({paramSignature}){returns ? `: ${getTagType(returns)}` : ''}</pre>}>
+      <ComponentPropsExtra title={<pre>{item.name}({paramSignature}){returns ? `: ${getTagType(returns)}` : ''}</pre>}>
         {tagDescriptionRows}
-      </Extra>
+      </ComponentPropsExtra>
     )
   }
 
   renderEnums = ({ name, type, value }) => {
-    if (type !== '{enum}' || !value) return
-
     const { showEnumsFor } = this.state
-    const truncateAt = 10
-    const valueElements = _.map(value, val => <span key={val}><code>{val}</code> </span>)
 
-    // show all if there are few
-    if (value.length < truncateAt) return <Extra title='Enums:' inline>{valueElements}</Extra>
-
-    // add button to show more when there are many values and it is not toggled
-    if (!showEnumsFor[name]) {
-      return (
-        <Extra title='Enums:' inline>
-          <a style={{ cursor: 'pointer' }} onClick={this.toggleEnumsFor(name)}>
-            Show all {value.length}
-          </a>
-          <div>{valueElements.slice(0, truncateAt - 1)}...</div>
-        </Extra>
-      )
-    }
-
-    // add "show more" button when there are many
+    if (type !== '{enum}' || !value) return
     return (
-      <Extra title='Enums:' inline>
-        <a style={{ cursor: 'pointer' }} onClick={this.toggleEnumsFor(name)}>Show less</a>
-        <div>{valueElements}</div>
-      </Extra>
+      <ComponentPropsEnum
+        showAll={showEnumsFor[name]}
+        toggle={this.toggleEnumsFor(name)}
+        values={value}
+      />
     )
   }
 

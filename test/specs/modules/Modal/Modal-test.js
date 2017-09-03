@@ -104,29 +104,36 @@ describe('Modal', () => {
   })
 
   describe('actions', () => {
-    const actions = [
-      { key: 'cancel', content: 'Cancel' },
-      { key: 'ok', content: 'OK', triggerClose: true },
-    ]
+    it('closes the modal on action click', () => {
+      wrapperMount(<Modal actions={['OK']} defaultOpen />)
 
-    it('handles onItemClick', () => {
-      const onActionClick = sandbox.spy()
-      const event = { target: null }
-
-      wrapperMount(<Modal defaultOpen actions={{ actions, onActionClick }} />)
-
-      domEvent.click('.button:last-child')
-      onActionClick.should.have.been.calledOnce()
-      onActionClick.should.have.been.calledWithMatch(event, { content: 'OK' })
+      assertBodyContains('.ui.modal')
+      domEvent.click('.ui.modal .actions .button')
+      assertBodyContains('.ui.modal', false)
     })
 
-    it('handles triggerClose prop on an action', () => {
-      wrapperMount(<Modal defaultOpen actions={actions} />)
+    it('calls shorthand onActionClick callback', () => {
+      const onActionClick = sandbox.spy()
+      const modalActions = { onActionClick, actions: [{ key: 'ok', content: 'OK' }] }
+      wrapperMount(<Modal actions={modalActions} defaultOpen />)
 
-      domEvent.click('.button:first-child')
-      assertBodyContains('.ui.modal')
-      domEvent.click('.button:last-child')
-      assertBodyContains('.ui.modal', false)
+      onActionClick.should.not.have.been.called()
+      domEvent.click('.ui.modal .actions .button')
+      onActionClick.should.have.been.calledOnce()
+    })
+  })
+
+  describe('onActionClick', () => {
+    it('is called when an action is clicked', () => {
+      const onActionClick = sandbox.spy()
+      const event = { target: null }
+      const props = { actions: ['OK'], defaultOpen: true, onActionClick }
+
+      wrapperMount(<Modal {...props} />)
+      domEvent.click('.ui.modal .actions .button')
+
+      onActionClick.should.have.been.calledOnce()
+      onActionClick.should.have.been.calledWithMatch(event, props)
     })
   })
 
@@ -233,9 +240,14 @@ describe('Modal', () => {
     })
 
     describe('true', () => {
-      it('adds classes "dimmable dimmed" to the body', () => {
+      it('adds/removes body classes "dimmable dimmed" on mount/unmount', () => {
+        assertBodyClasses('dimmable', 'dimmed', false)
+
         wrapperMount(<Modal open dimmer />)
         assertBodyClasses('dimmable', 'dimmed')
+
+        wrapper.unmount()
+        assertBodyClasses('dimmable', 'dimmed', false)
       })
 
       it('adds a dimmer to the body', () => {
@@ -257,9 +269,14 @@ describe('Modal', () => {
     })
 
     describe('blurring', () => {
-      it('adds class "dimmable dimmed blurring" to the body', () => {
+      it('adds/removes body classes "dimmable dimmed blurring" on mount/unmount', () => {
+        assertBodyClasses('dimmable', 'dimmed', 'blurring', false)
+
         wrapperMount(<Modal open dimmer='blurring' />)
         assertBodyClasses('dimmable', 'dimmed', 'blurring')
+
+        wrapper.unmount()
+        assertBodyClasses('dimmable', 'dimmed', 'blurring', false)
       })
 
       it('adds a dimmer to the body', () => {
@@ -269,10 +286,14 @@ describe('Modal', () => {
     })
 
     describe('inverted', () => {
-      it('adds class "dimmable dimmed" to the body', () => {
-        wrapperMount(<Modal open dimmer='inverted' />)
+      it('adds/removes body classes "dimmable dimmed" on mount/unmount', () => {
+        assertBodyClasses('dimmable', 'dimmed', false)
+
+        wrapperMount(<Modal open dimmer />)
         assertBodyClasses('dimmable', 'dimmed')
-        assertBodyClasses('inverted', false)
+
+        wrapper.unmount()
+        assertBodyClasses('dimmable', 'dimmed', false)
       })
 
       it('adds an inverted dimmer to the body', () => {
@@ -453,8 +474,14 @@ describe('Modal', () => {
   })
 
   describe('scrolling', () => {
+    const innerHeight = window.innerHeight
+
     afterEach(() => {
       document.body.classList.remove('scrolling')
+    })
+
+    after(() => {
+      window.innerHeight = innerHeight
     })
 
     it('does not add the scrolling class to the body by default', () => {
@@ -463,9 +490,8 @@ describe('Modal', () => {
     })
 
     it('adds the scrolling class to the body when taller than the window', (done) => {
-      wrapperMount(<Modal open>foo</Modal>)
-
       window.innerHeight = 10
+      wrapperMount(<Modal open>foo</Modal>)
 
       requestAnimationFrame(() => {
         assertBodyClasses('scrolling')
@@ -473,7 +499,7 @@ describe('Modal', () => {
       })
     })
 
-    it('removes the scrolling class from the body when the window grows taller', (done) => {
+    it('adds/removes the scrolling class to the body when the window grows/shrinks', (done) => {
       assertBodyClasses('scrolling', false)
 
       wrapperMount(<Modal open>foo</Modal>)
@@ -487,6 +513,21 @@ describe('Modal', () => {
           assertBodyClasses('scrolling', false)
           done()
         })
+      })
+    })
+
+    it('removes the scrolling class from the body on unmount', (done) => {
+      assertBodyClasses('scrolling', false)
+
+      window.innerHeight = 10
+      wrapperMount(<Modal open>foo</Modal>)
+
+      requestAnimationFrame(() => {
+        assertBodyClasses('scrolling')
+        wrapper.unmount()
+
+        assertBodyClasses('scrolling', false)
+        done()
       })
     })
   })

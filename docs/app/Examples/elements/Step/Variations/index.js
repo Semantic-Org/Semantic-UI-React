@@ -15,6 +15,7 @@ const StepVariationsExamples = () => (
       title='Unstackable'
       description='A step can prevent itself from stacking on mobile.'
       examplePath='elements/Step/Variations/StepExampleUnstackable'
+      suiVersion='2.2.11'
     />
 
     <ComponentExample

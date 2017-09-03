@@ -59,6 +59,7 @@ export interface FlagProps {
     'zambia' | 'zw' | 'zimbabwe';
 }
 
-declare const Flag: React.StatelessComponent<FlagProps>;
+declare class Flag extends React.Component<FlagProps, {}> {
+}
 
 export default Flag;
