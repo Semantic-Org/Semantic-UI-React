@@ -32,7 +32,7 @@ const ComponentPropsEnum = ({ limit, showAll, toggle, type, values }) => {
 }
 
 ComponentPropsEnum.defaultProps = {
-  limit: 10,
+  limit: 50,
 }
 
 ComponentPropsEnum.propTypes = {
