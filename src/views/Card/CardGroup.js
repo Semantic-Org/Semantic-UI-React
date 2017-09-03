@@ -30,12 +30,13 @@ function CardGroup(props) {
     textAlign,
   } = props
 
-  const classes = cx('ui',
+  const classes = cx(
+    'ui',
+    className,
     useKeyOnly(doubling, 'doubling'),
     useKeyOnly(stackable, 'stackable'),
     useTextAlignProp(textAlign),
     useWidthProp(itemsPerRow),
-    className,
     'cards',
   )
   const rest = getUnhandledProps(CardGroup, props)

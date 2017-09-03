@@ -18,7 +18,11 @@ import {
  */
 function CardMeta(props) {
   const { children, className, content, textAlign } = props
-  const classes = cx(className, useTextAlignProp(textAlign), 'meta')
+  const classes = cx(
+    className,
+    useTextAlignProp(textAlign),
+    'meta',
+  )
   const rest = getUnhandledProps(CardMeta, props)
   const ElementType = getElementType(CardMeta, props)
 
