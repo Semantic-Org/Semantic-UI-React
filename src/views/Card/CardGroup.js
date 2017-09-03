@@ -32,12 +32,12 @@ function CardGroup(props) {
 
   const classes = cx(
     'ui',
-    className,
     useKeyOnly(doubling, 'doubling'),
     useKeyOnly(stackable, 'stackable'),
     useTextAlignProp(textAlign),
     useWidthProp(itemsPerRow),
     'cards',
+    className,
   )
   const rest = getUnhandledProps(CardGroup, props)
   const ElementType = getElementType(CardGroup, props)

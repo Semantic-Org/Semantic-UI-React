@@ -33,10 +33,10 @@ function CardContent(props) {
   } = props
 
   const classes = cx(
-    className,
     useKeyOnly(extra, 'extra'),
     useTextAlignProp(textAlign),
     'content',
+    className,
   )
   const rest = getUnhandledProps(CardContent, props)
   const ElementType = getElementType(CardContent, props)

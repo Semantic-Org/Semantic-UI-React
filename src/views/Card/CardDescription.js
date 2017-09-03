@@ -19,9 +19,9 @@ import {
 function CardDescription(props) {
   const { children, className, content, textAlign } = props
   const classes = cx(
-    className,
     useTextAlignProp(textAlign),
     'description',
+    className,
   )
   const rest = getUnhandledProps(CardDescription, props)
   const ElementType = getElementType(CardDescription, props)

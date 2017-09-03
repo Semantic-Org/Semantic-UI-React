@@ -19,9 +19,9 @@ import {
 function CardHeader(props) {
   const { children, className, content, textAlign } = props
   const classes = cx(
-    className,
     useTextAlignProp(textAlign),
     'header',
+    className,
   )
   const rest = getUnhandledProps(CardHeader, props)
   const ElementType = getElementType(CardHeader, props)
