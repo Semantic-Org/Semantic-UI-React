@@ -228,39 +228,29 @@ export const demand = requiredProps => (props, propName, componentName) => {
  * Ensure an only prop contains a string with only possible values.
  * @param {string[]} possible An array of possible values to prop.
  */
-export const onlyProp = (possible) => {
-  const typeChecker = (required, props, propName, componentName) => {
-    if (!Array.isArray(possible)) {
-      throw new Error([
-        'Invalid argument supplied to some, expected an instance of array.',
-        `See \`${propName}\` prop in \`${componentName}\`.`,
-      ].join(' '))
-    }
-
-    const propValue = props[propName]
-
-    // skip if prop is undefined
-    if (_.isNil(propValue) || propValue === false) {
-      if (required) throw new Error(`Required \`${propName}\` prop was not specified in \`${componentName}\`.`)
-      return
-    }
-
-    const values = propValue
-      .replace('large screen', 'large-screen')
-      .split(' ')
-      .map(val => _.trim(val).replace('-', ' '))
-    const invalid = _.difference(values, possible)
-
-    // fail only if there are invalid values
-    if (invalid.length > 0) {
-      return new Error(`\`${propName}\` prop in \`${componentName}\` has invalid values: \`${invalid.join('`, `')}\`.`)
-    }
+export const onlyProp = possible => (props, propName, componentName) => {
+  if (!Array.isArray(possible)) {
+    throw new Error([
+      'Invalid argument supplied to some, expected an instance of array.',
+      `See \`${propName}\` prop in \`${componentName}\`.`,
+    ].join(' '))
   }
 
-  const chainedCheckType = typeChecker.bind(null, false)
-  chainedCheckType.isRequired = typeChecker.bind(null, true)
+  const propValue = props[propName]
 
-  return chainedCheckType
+  // skip if prop is undefined
+  if (_.isNil(propValue) || propValue === false) return
+
+  const values = propValue
+    .replace('large screen', 'large-screen')
+    .split(' ')
+    .map(val => _.trim(val).replace('-', ' '))
+  const invalid = _.difference(values, possible)
+
+  // fail only if there are invalid values
+  if (invalid.length > 0) {
+    return new Error(`\`${propName}\` prop in \`${componentName}\` has invalid values: \`${invalid.join('`, `')}\`.`)
+  }
 }
 
 /**
