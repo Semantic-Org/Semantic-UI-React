@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { GridOnlyProp } from '../../collections/Grid/GridColumn';
 
 export interface ResponsiveProps {
   [key: string]: any;
@@ -10,8 +9,11 @@ export interface ResponsiveProps {
   /** Primary content. */
   children?: React.ReactNode;
 
-  /** A row can appear only for a specific device, or screen sizes. */
-  only: GridOnlyProp;
+  /** The maximum width at which content will be displayed. */
+  maxWidth?: number | string;
+
+  /** The minimum width at which content will be displayed. */
+  minWidth?: number | string;
 
   /**
    * Called on update.
@@ -19,24 +21,24 @@ export interface ResponsiveProps {
    * @param {SyntheticEvent} event - The React SyntheticEvent object
    * @param {object} data - All props and the event value.
    */
-  onUpdate?: ResponsiveOnUpdateData;
-
-  /** Responsives definition. */
-  breakpoints?: ResponsivePoints;
-}
-
-export interface ResponsivePoints {
-  computer: number;
-  largeScreen: number;
-  mobile: number;
-  tablet: number;
-  widescreen: number;
+  onUpdate?: (event: React.SyntheticEvent<HTMLElement>, data: ResponsiveOnUpdateData) => void;
 }
 
 export interface ResponsiveOnUpdateData extends ResponsiveProps {
-  number: string;
+  width: string;
 }
 
-declare const Responsive: React.ComponentClass<ResponsiveProps>;
+export interface ResponsiveWidthShorthand {
+  minWidth: number;
+  maxWidth?: number;
+}
+
+declare class Responsive extends React.Component<ResponsiveProps, {}> {
+  static onlyMobile: ResponsiveWidthShorthand;
+  static onlyTablet: ResponsiveWidthShorthand;
+  static onlyComputer: ResponsiveWidthShorthand;
+  static onlyLargeScreen: ResponsiveWidthShorthand;
+  static onlyWidescreen: ResponsiveWidthShorthand;
+}
 
 export default Responsive;

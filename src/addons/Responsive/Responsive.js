@@ -4,10 +4,10 @@ import React, { Component } from 'react'
 
 import {
   customPropTypes,
+  eventStack,
   getElementType,
   getUnhandledProps,
   META,
-  SUI,
 } from '../../lib'
 
 /**
@@ -21,8 +21,17 @@ export default class Responsive extends Component {
     /** Primary content. */
     children: PropTypes.node,
 
-    /** A row can appear only for a specific device, or screen sizes. */
-    only: customPropTypes.onlyProp(SUI.VISIBILITY).isRequired,
+    /** The maximum width at which content will be displayed. */
+    maxWidth: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
+
+    /** The minimum width at which content will be displayed. */
+    minWidth: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
 
     /**
      * Called on update.
@@ -31,25 +40,6 @@ export default class Responsive extends Component {
      * @param {object} data - All props and the event value.
      */
     onUpdate: PropTypes.func,
-
-    /** Responsives definition. */
-    breakpoints: PropTypes.shape({
-      computer: PropTypes.number.isRequired,
-      largeScreen: PropTypes.number.isRequired,
-      mobile: PropTypes.number.isRequired,
-      tablet: PropTypes.number.isRequired,
-      widescreen: PropTypes.number.isRequired,
-    }),
-  }
-
-  static defaultProps = {
-    breakpoints: {
-      computer: 992,
-      largeScreen: 1200,
-      mobile: 320,
-      tablet: 768,
-      widescreen: 1920,
-    },
   }
 
   static _meta = {
@@ -57,80 +47,62 @@ export default class Responsive extends Component {
     type: META.TYPES.ADDON,
   }
 
+  static onlyMobile = { minWidth: 320, maxWidth: 767 }
+  static onlyTablet = { minWidth: 768, maxWidth: 991 }
+  static onlyComputer = { minWidth: 992 }
+  static onlyLargeScreen = { minWidth: 1200, maxWidth: 1919 }
+  static onlyWidescreen = { minWidth: 1920 }
+
   constructor(...args) {
     super(...args)
     this.state = { width: window.innerWidth }
   }
 
   componentDidMount() {
-    window.addEventListener('resize', this.handleUpdate)
+    eventStack.sub('resize', this.handleResize)
   }
 
   componentWillUnmount() {
-    window.removeEventListener('resize', this.handleUpdate)
-  }
-
-  // ----------------------------------------
-  // Responsive matchers
-  // ----------------------------------------
-
-  isComputer = () => {
-    const { breakpoints: { computer } } = this.props
-    const { width } = this.state
-
-    return width >= computer
-  }
-
-  isLargeScreen = () => {
-    const { breakpoints: { largeScreen, widescreen } } = this.props
-    const { width } = this.state
-
-    return width >= largeScreen && width < widescreen
-  }
-
-  isMobile = () => {
-    const { breakpoints: { mobile, tablet } } = this.props
-    const { width } = this.state
-
-    return width >= mobile && width < tablet
-  }
-
-  isTablet = () => {
-    const { breakpoints: { computer, tablet } } = this.props
-    const { width } = this.state
-
-    return width >= tablet && width < computer
-  }
-
-  isWidescreen = () => {
-    const { breakpoints: { widescreen } } = this.props
-    const { width } = this.state
-
-    return width >= widescreen
+    eventStack.unsub('resize', this.handleResize)
   }
 
   // ----------------------------------------
   // Helpers
   // ----------------------------------------
 
-  isVisible = () => {
-    const { only = '' } = this.props
-    const breakpoints = only.replace('large screen', 'largeScreen').split(' ')
+  fitsMaxWidth = () => {
+    const { maxWidth } = this.props
+    const { width } = this.state
 
-    return _.some(breakpoints, point => _.invoke(this, `is${_.upperFirst(point)}`))
+    return _.isNil(maxWidth) ? true : width <= maxWidth
   }
+
+  fitsMinWidth = () => {
+    const { minWidth } = this.props
+    const { width } = this.state
+
+    return _.isNil(minWidth) ? true : width >= minWidth
+  }
+
+  isVisible = () => this.fitsMinWidth() && this.fitsMaxWidth()
 
   // ----------------------------------------
   // Event handlers
   // ----------------------------------------
 
-  handleUpdate = (e) => {
-    requestAnimationFrame(() => {
-      const width = window.innerWidth
+  handleResize = (e) => {
+    if (this.ticking) return
 
-      this.setState({ width })
-      _.invoke(this.props, 'onUpdate', e, { ...this.props, width })
-    })
+    this.ticking = true
+    requestAnimationFrame(() => this.handleUpdate(e))
+  }
+
+  handleUpdate = (e) => {
+    this.ticking = false
+    const width = window.innerWidth
+
+    this.setState({ width })
+    _.invoke(this.props, 'onUpdate', e, { ...this.props, width })
   }
 
   // ----------------------------------------

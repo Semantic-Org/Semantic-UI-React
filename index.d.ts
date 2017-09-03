@@ -1,9 +1,8 @@
 // Addons
 export {
   default as Responsive,
-  ResponsivePoints,
   ResponsiveProps,
-  ResponsiveOnUpdateData
+  ResponsiveWidthShorthand
 } from './dist/commonjs/addons/Responsive';
 export { default as Confirm, ConfirmProps } from './dist/commonjs/addons/Confirm';
 export { default as Portal, PortalProps } from './dist/commonjs/addons/Portal';

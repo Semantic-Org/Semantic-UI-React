@@ -8,7 +8,7 @@ const ResponsiveTypesExamples = () => (
   <ExampleSection title='Types'>
     <ComponentExample
       title='Responsive'
-      description='Responsive can appear only for a specific device or screen sizes.'
+      description='Responsive is always visible.'
       examplePath='addons/Responsive/Types/ResponsiveExampleResponsive'
     >
       <Message info>
@@ -16,19 +16,24 @@ const ResponsiveTypesExamples = () => (
       </Message>
     </ComponentExample>
     <ComponentExample
-      title='Multiple'
-      description='Responsive can accept multiple sizes.'
-      examplePath='addons/Responsive/Types/ResponsiveExampleMultiple'
+      title='Minimal Width'
+      description='You can pass minimal width value at which content will be displayed.'
+      examplePath='addons/Responsive/Types/ResponsiveExampleMinWidth'
+    />
+    <ComponentExample
+      title='Maximum Width'
+      description='You can pass maximum width value at which content will be displayed.'
+      examplePath='addons/Responsive/Types/ResponsiveExampleMaxWidth'
+    />
+    <ComponentExample
+      title='Mixed'
+      description='You can pass minimal and maximum width value at which content will be displayed.'
+      examplePath='addons/Responsive/Types/ResponsiveExampleMixed'
     />
     <ComponentExample
       title='Content'
-      description='Responsive can contain a different content.'
+      description='Responsive can contain different content.'
       examplePath='addons/Responsive/Types/ResponsiveExampleContent'
-    />
-    <ComponentExample
-      title='Nested'
-      description='Responsive can be nested.'
-      examplePath='addons/Responsive/Types/ResponsiveExampleNested'
     />
   </ExampleSection>
 )

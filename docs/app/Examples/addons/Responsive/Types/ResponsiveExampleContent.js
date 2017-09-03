@@ -17,18 +17,18 @@ export default class ResponsiveExampleContent extends Component {
         <Menu.Menu position='right'>
           <Menu.Item>
             <Responsive
+              {...Responsive.onlyMobile}
               as={Button}
               content='Switch to desktop version'
               icon='desktop'
               labelPosition='left'
-              only='mobile'
             />
             <Responsive
               as={Button}
               content='Switch to mobile version'
               icon='mobile'
               labelPosition='left'
-              only='computer tablet'
+              minWidth={Responsive.onlyTablet.minWidth}
             />
           </Menu.Item>
         </Menu.Menu>

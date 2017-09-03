@@ -1,1 +1,1 @@
-export { default, ResponsivePoints, ResponsiveProps, ResponsiveOnUpdateData } from './Responsive';
+export { default, ResponsiveProps, ResponsiveOnUpdateData, ResponsiveWidthShorthand } from './Responsive';
