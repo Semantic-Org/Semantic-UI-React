@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import _ from 'lodash'
 
 import { SUI } from 'src/lib'
 import CardContent from 'src/views/Card/CardContent'
