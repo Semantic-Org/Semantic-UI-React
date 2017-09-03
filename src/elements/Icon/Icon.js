@@ -1,7 +1,7 @@
 import cx from 'classnames'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
-import React from 'react'
+import React, { Component } from 'react'
 
 import {
   createShorthandFactory,
@@ -9,6 +9,7 @@ import {
   getElementType,
   getUnhandledProps,
   META,
+  shallowEqual,
   SUI,
   useKeyOnly,
   useValueAndKey,
@@ -19,103 +20,109 @@ import IconGroup from './IconGroup'
  * An icon is a glyph used to represent something else.
  * @see Image
  */
-function Icon(props) {
-  const {
-    bordered,
-    circular,
-    className,
-    color,
-    corner,
-    disabled,
-    fitted,
-    flipped,
-    inverted,
-    link,
-    loading,
-    name,
-    rotated,
-    size,
-  } = props
+class Icon extends Component {
+  static propTypes = {
+    /** An element type to render as (string or function). */
+    as: customPropTypes.as,
 
-  const classes = cx(
-    color,
-    name,
-    size,
-    useKeyOnly(bordered, 'bordered'),
-    useKeyOnly(circular, 'circular'),
-    useKeyOnly(corner, 'corner'),
-    useKeyOnly(disabled, 'disabled'),
-    useKeyOnly(fitted, 'fitted'),
-    useKeyOnly(inverted, 'inverted'),
-    useKeyOnly(link, 'link'),
-    useKeyOnly(loading, 'loading'),
-    useValueAndKey(flipped, 'flipped'),
-    useValueAndKey(rotated, 'rotated'),
-    'icon',
-    className,
-  )
-  const rest = getUnhandledProps(Icon, props)
-  const ElementType = getElementType(Icon, props)
+    /** Formatted to appear bordered. */
+    bordered: PropTypes.bool,
 
-  return <ElementType {...rest} aria-hidden='true' className={classes} />
-}
+    /** Icon can formatted to appear circular. */
+    circular: PropTypes.bool,
 
-Icon.Group = IconGroup
+    /** Additional classes. */
+    className: PropTypes.string,
 
-Icon._meta = {
-  name: 'Icon',
-  type: META.TYPES.ELEMENT,
-}
+    /** Color of the icon. */
+    color: PropTypes.oneOf(SUI.COLORS),
 
-Icon.propTypes = {
-  /** An element type to render as (string or function). */
-  as: customPropTypes.as,
+    /** Icons can display a smaller corner icon. */
+    corner: PropTypes.bool,
 
-  /** Formatted to appear bordered. */
-  bordered: PropTypes.bool,
+    /** Show that the icon is inactive. */
+    disabled: PropTypes.bool,
 
-  /** Icon can formatted to appear circular. */
-  circular: PropTypes.bool,
+    /** Fitted, without space to left or right of Icon. */
+    fitted: PropTypes.bool,
 
-  /** Additional classes. */
-  className: PropTypes.string,
+    /** Icon can flipped. */
+    flipped: PropTypes.oneOf(['horizontally', 'vertically']),
 
-  /** Color of the icon. */
-  color: PropTypes.oneOf(SUI.COLORS),
+    /** Formatted to have its colors inverted for contrast. */
+    inverted: PropTypes.bool,
 
-  /** Icons can display a smaller corner icon. */
-  corner: PropTypes.bool,
+    /** Icon can be formatted as a link. */
+    link: PropTypes.bool,
 
-  /** Show that the icon is inactive. */
-  disabled: PropTypes.bool,
+    /** Icon can be used as a simple loader. */
+    loading: PropTypes.bool,
 
-  /** Fitted, without space to left or right of Icon. */
-  fitted: PropTypes.bool,
+    /** Name of the icon. */
+    name: customPropTypes.suggest(SUI.ALL_ICONS_IN_ALL_CONTEXTS),
 
-  /** Icon can flipped. */
-  flipped: PropTypes.oneOf(['horizontally', 'vertically']),
+    /** Icon can rotated. */
+    rotated: PropTypes.oneOf(['clockwise', 'counterclockwise']),
 
-  /** Formatted to have its colors inverted for contrast. */
-  inverted: PropTypes.bool,
+    /** Size of the icon. */
+    size: PropTypes.oneOf(_.without(SUI.SIZES, 'medium')),
+  }
 
-  /** Icon can be formatted as a link. */
-  link: PropTypes.bool,
+  static defaultProps = {
+    as: 'i',
+  }
 
-  /** Icon can be used as a simple loader. */
-  loading: PropTypes.bool,
+  static _meta = {
+    name: 'Icon',
+    type: META.TYPES.ELEMENT,
+  }
 
-  /** Name of the icon. */
-  name: customPropTypes.suggest(SUI.ALL_ICONS_IN_ALL_CONTEXTS),
+  static Group = IconGroup
 
-  /** Icon can rotated. */
-  rotated: PropTypes.oneOf(['clockwise', 'counterclockwise']),
+  shouldComponentUpdate(nextProps) {
+    return !shallowEqual(this.props, nextProps)
+  }
 
-  /** Size of the icon. */
-  size: PropTypes.oneOf(_.without(SUI.SIZES, 'medium')),
-}
+  render() {
+    const {
+      bordered,
+      circular,
+      className,
+      color,
+      corner,
+      disabled,
+      fitted,
+      flipped,
+      inverted,
+      link,
+      loading,
+      name,
+      rotated,
+      size,
+    } = this.props
 
-Icon.defaultProps = {
-  as: 'i',
+    const classes = cx(
+      color,
+      name,
+      size,
+      useKeyOnly(bordered, 'bordered'),
+      useKeyOnly(circular, 'circular'),
+      useKeyOnly(corner, 'corner'),
+      useKeyOnly(disabled, 'disabled'),
+      useKeyOnly(fitted, 'fitted'),
+      useKeyOnly(inverted, 'inverted'),
+      useKeyOnly(link, 'link'),
+      useKeyOnly(loading, 'loading'),
+      useValueAndKey(flipped, 'flipped'),
+      useValueAndKey(rotated, 'rotated'),
+      'icon',
+      className,
+    )
+    const rest = getUnhandledProps(Icon, this.props)
+    const ElementType = getElementType(Icon, this.props)
+
+    return <ElementType {...rest} aria-hidden='true' className={classes} />
+  }
 }
 
 Icon.create = createShorthandFactory(Icon, value => ({ name: value }))

@@ -795,7 +795,8 @@ export default class Dropdown extends Component {
         filteredOptions = search(filteredOptions, searchQuery)
       } else {
         const re = new RegExp(_.escapeRegExp(searchQuery), 'i')
-        filteredOptions = _.filter(filteredOptions, opt => re.test(opt.text))
+        // remove diacritics on search
+        filteredOptions = _.filter(filteredOptions, opt => re.test(_.deburr(opt.text)))
       }
     }
 
