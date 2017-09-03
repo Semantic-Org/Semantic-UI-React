@@ -1,12 +1,6 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 
-import { shallowEqual } from 'src/lib'
-
-const pure = ChildComponent => class extends Component {
-  shouldComponentUpdate(nextProps) {
-    return !shallowEqual(this.props, nextProps)
-  }
-
+const pure = ChildComponent => class extends PureComponent {
   render() {
     return <ChildComponent {...this.props} />
   }
