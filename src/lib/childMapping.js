@@ -46,15 +46,15 @@ export const mergeChildMappings = (prev = {}, next = {}) => {
   _.forEach(_.keys(next), (nextKey) => {
     if (_.has(nextKeysPending, nextKey)) {
       _.forEach(nextKeysPending[nextKey], (pendingKey) => {
-        childMapping[pendingKey] = getValue(pendingKey, next, prev)
+        childMapping[pendingKey] = getValue(pendingKey, prev, next)
       })
     }
 
-    childMapping[nextKey] = getValue(nextKey, next, prev)
+    childMapping[nextKey] = getValue(nextKey, prev, next)
   })
 
   _.forEach(pendingKeys, (pendingKey) => {
-    childMapping[pendingKey] = getValue(pendingKey, next, prev)
+    childMapping[pendingKey] = getValue(pendingKey, prev, next)
   })
 
   return childMapping
