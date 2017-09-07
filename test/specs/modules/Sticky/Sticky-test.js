@@ -1,45 +1,71 @@
 import React from 'react'
 
 import Sticky from 'src/modules/Sticky/Sticky'
-import { sandbox } from 'test/utils'
 import * as common from 'test/specs/commonTests'
+import { domEvent, sandbox } from 'test/utils'
+
+let contextEl
+let wrapper
+let positions
+
+const mockRect = (values = {}) => ({ getBoundingClientRect: () => values })
+
+const mockContextEl = (values = {}) => (contextEl = mockRect(values))
+
+const mockPositions = ({ bottomOffset = 5, offset = 5, height = 5 } = {}) => (positions = {
+  bottomOffset,
+  height,
+  offset,
+})
+
+const wrapperMount = (...args) => (wrapper = mount(...args))
 
 // Scroll to the top of the screen
-const scrollToTop = (wrapper, contextEl, { bottomOffset, offset, height }) => {
+const scrollToTop = () => {
+  const { bottomOffset, height, offset } = positions
   const instance = wrapper.instance()
-  instance.triggerRef = { getBoundingClientRect: () => ({ top: offset }) }
-  instance.stickyRef = { getBoundingClientRect: () => ({ height, top: offset }) }
-  // eslint-disable-next-line no-param-reassign
-  contextEl.getBoundingClientRect = () => ({ bottom: height + offset + bottomOffset })
-  window.dispatchEvent(new Event('scroll'))
+
+  instance.triggerRef = mockRect({ top: offset })
+  instance.stickyRef = mockRect({ height, top: offset })
+  wrapper.setProps({ content: mockRect({ bottom: height + offset + bottomOffset }) })
+
+  domEvent.scroll(window)
 }
 
 // Scroll until the trigger is not visible
-const scrollAfterTrigger = (wrapper, contextEl, { bottomOffset, offset, height }) => {
+const scrollAfterTrigger = () => {
+  const { bottomOffset, height, offset } = positions
   const instance = wrapper.instance()
-  instance.triggerRef = { getBoundingClientRect: () => ({ top: offset - 1 }) }
-  instance.stickyRef = { getBoundingClientRect: () => ({ height }) }
-  // eslint-disable-next-line no-param-reassign
-  contextEl.getBoundingClientRect = () => ({ bottom: (window.innerHeight - bottomOffset) + 1 })
-  window.dispatchEvent(new Event('scroll'))
+
+  instance.triggerRef = mockRect({ top: offset - 1 })
+  instance.stickyRef = mockRect({ height })
+  wrapper.setProps({ context: mockRect({ bottom: (window.innerHeight - bottomOffset) + 1 }) })
+
+  domEvent.scroll(window)
 }
 
 // Scroll until the context bottom is not visible
-const scrollAfterContext = (wrapper, contextEl, { offset, height }) => {
+const scrollAfterContext = () => {
+  const { height, offset } = positions
   const instance = wrapper.instance()
-  instance.triggerRef = { getBoundingClientRect: () => ({ top: offset - 1 }) }
-  instance.stickyRef = { getBoundingClientRect: () => ({ height }) }
-  contextEl.getBoundingClientRect = () => ({ bottom: -1 }) // eslint-disable-line no-param-reassign
-  window.dispatchEvent(new Event('scroll'))
+
+  instance.triggerRef = mockRect({ top: offset - 1 })
+  instance.stickyRef = mockRect({ height })
+  wrapper.setProps({ context: mockRect({ bottom: -1 }) })
+
+  domEvent.scroll(window)
 }
 
 // Scroll to the last part of the context
-const scrollToContextBottom = (wrapper, contextEl, { offset, height }) => {
+const scrollToContextBottom = () => {
+  const { height, offset } = positions
   const instance = wrapper.instance()
-  instance.triggerRef = { getBoundingClientRect: () => ({ top: offset - 1 }) }
-  instance.stickyRef = { getBoundingClientRect: () => ({ height }) }
-  contextEl.getBoundingClientRect = () => ({ bottom: height + 1 }) // eslint-disable-line no-param-reassign
-  window.dispatchEvent(new Event('scroll'))
+
+  instance.triggerRef = mockRect({ top: offset - 1 })
+  instance.stickyRef = mockRect({ height })
+  wrapper.setProps({ context: mockRect({ bottom: height + 1 }) })
+
+  domEvent.scroll(window)
 }
 
 describe('Sticky', () => {
@@ -49,194 +75,233 @@ describe('Sticky', () => {
   let requestAnimationFrame
 
   before(() => {
-    window.requestAnimationFrame = fn => fn()
     requestAnimationFrame = window.requestAnimationFrame
+    window.requestAnimationFrame = fn => fn()
   })
 
   after(() => {
     window.requestAnimationFrame = requestAnimationFrame
   })
 
-  it('should use window as default scroll context', () => {
-    const onStick = sandbox.spy()
-    const wrapper = mount(<Sticky onStick={onStick} />)
-    const instance = wrapper.instance()
-    instance.triggerRef = { getBoundingClientRect: () => ({ top: -1 }) }
-    window.dispatchEvent(new Event('scroll'))
-    onStick.should.have.been.called()
+  beforeEach(() => {
+    wrapper = undefined
   })
 
-  it('should set a scroll context', () => {
-    const div = document.createElement('div')
-    const onStick = sandbox.spy()
-    const wrapper = mount(<Sticky scrollContext={div} onStick={onStick} />)
-    const instance = wrapper.instance()
-    instance.triggerRef = { getBoundingClientRect: () => ({ top: -1 }) }
-    window.dispatchEvent(new Event('scroll'))
-    onStick.should.not.have.been.called()
-    div.dispatchEvent(new Event('scroll'))
-    onStick.should.have.been.called()
+  afterEach(() => {
+    if (wrapper && wrapper.unmount) wrapper.unmount()
   })
 
-  it('should create two divs', () => {
-    const children = shallow(<Sticky />).children()
+  describe('children', () => {
+    it('should create two divs', () => {
+      const children = shallow(<Sticky />).children()
 
-    children.should.have.length(2)
-    children.everyWhere(child => child.should.have.tagName('div'))
+      children.should.have.length(2)
+      children.everyWhere(child => child.should.have.tagName('div'))
+    })
   })
 
-  it('should stick to top of screen', () => {
-    const offset = 12
-    const bottomOffset = 12
-    const height = 200
-    const contextEl = { getBoundingClientRect: () => ({}) }
-    const wrapper = mount(
-      <Sticky context={contextEl} offset={offset} bottomOffset={bottomOffset} />,
-    )
+  describe('active', () => {
+    it('should handle update on mount when active', () => {
+      const onTop = sandbox.spy()
+      mount(<Sticky context={mockContextEl()} onTop={onTop} />)
 
-    // Scroll after trigger
-    scrollAfterTrigger(wrapper, contextEl, { bottomOffset, offset, height })
-    wrapper.childAt(1).props().style.should.have.property('position', 'fixed')
-    wrapper.childAt(1).props().style.should.have.property('top', offset)
+      onTop.should.have.been.calledOnce()
+    })
+
+    it('should not handle update on mount when not active', () => {
+      const onTop = sandbox.spy()
+      mount(<Sticky active={false} context={mockContextEl()} onTop={onTop} />)
+
+      onTop.should.have.not.been.called()
+    })
+
+    it('fires event when changes to true', () => {
+      const onTop = sandbox.spy()
+      wrapperMount(<Sticky active={false} context={mockContextEl()} onTop={onTop} />)
+      onTop.should.have.not.been.called()
+
+      wrapper.setProps({ active: true })
+      onTop.should.have.been.calledOnce()
+    })
+
+    it('omits event when changes to false', () => {
+      const onTop = sandbox.spy()
+      mockPositions()
+      wrapperMount(<Sticky context={mockContextEl()} onTop={onTop} />)
+      onTop.should.have.been.calledOnce()
+
+      wrapper.setProps({ active: false })
+      scrollToTop()
+      onTop.should.have.been.calledOnce()
+    })
   })
 
-  it('should stick to bottom of context', () => {
-    const offset = 20
-    const bottomOffset = 10
-    const height = 100
-    const contextEl = { getBoundingClientRect: () => ({}) }
-    const wrapper = mount(
-      <Sticky context={contextEl} offset={offset} bottomOffset={bottomOffset} />,
-    )
+  describe('behaviour', () => {
+    it('should stick to top of screen', () => {
+      const offset = 12
+      mockContextEl()
+      mockPositions({ offset, bottomOffset: 12, height: 200 })
+      wrapperMount(<Sticky {...positions} context={contextEl} />)
 
-    scrollAfterContext(wrapper, contextEl, { bottomOffset, offset, height })
+      // Scroll after trigger
+      scrollAfterTrigger()
+      wrapper.childAt(1).props().style.should.have.property('position', 'fixed')
+      wrapper.childAt(1).props().style.should.have.property('top', offset)
+    })
 
-    wrapper.childAt(1).props().style.should.have.property('position', 'fixed')
-    wrapper.childAt(1).props().style.should.have.property('top', -1 - height)
+    it('should stick to bottom of context', () => {
+      const height = 100
+      mockContextEl()
+      mockPositions({ height, bottomOffset: 10, offset: 20 })
+      wrapperMount(<Sticky {...positions} context={contextEl} />)
+
+      scrollAfterContext()
+      wrapper.childAt(1).props().style.should.have.property('position', 'fixed')
+      wrapper.childAt(1).props().style.should.have.property('top', -1 - height)
+    })
+  })
+  describe('onBottom', () => {
+    it('is called with (e, data) when is on bottom', () => {
+      const onBottom = sandbox.spy()
+      mockContextEl()
+      mockPositions()
+      wrapperMount(<Sticky {...positions} context={contextEl} onBottom={onBottom} />)
+
+      scrollAfterContext()
+      onBottom.should.have.been.calledOnce()
+      onBottom.should.have.been.calledWithMatch({}, positions)
+      onBottom.reset()
+
+      scrollToTop()
+      onBottom.should.not.have.been.called()
+    })
   })
 
-  it('should push component back', () => {
-    const offset = 10
-    const bottomOffset = 30
-    const height = 100
-    const contextEl = { getBoundingClientRect: () => ({}) }
-    const wrapper = mount(
-      <Sticky context={contextEl} offset={offset} bottomOffset={bottomOffset} pushing />,
-    )
+  describe('onStick', () => {
+    it('is called with (e, data) when stick', () => {
+      const onStick = sandbox.spy()
+      mockContextEl()
+      mockPositions({ bottomOffset: 10, height: 50 })
+      wrapperMount(<Sticky {...positions} context={contextEl} onStick={onStick} />)
 
-    scrollAfterTrigger(wrapper, contextEl, { bottomOffset, offset, height })
+      scrollAfterTrigger()
+      onStick.should.have.been.calledTwice()
+      onStick.should.have.been.calledWithMatch({}, positions)
+      onStick.reset()
 
-    // Scroll back: component should still stick to context bottom
-    scrollToContextBottom(wrapper, contextEl, { offset, height })
-    contextEl.getBoundingClientRect = () => ({ bottom: 0 })
-    window.dispatchEvent(new Event('scroll'))
-    wrapper.childAt(1).props().style.should.have.property('position', 'fixed')
-    wrapper.childAt(1).props().style.should.have.property('top', -100)
-
-    // Scroll a bit before the top: component should stick to screen bottom
-    scrollAfterTrigger(wrapper, contextEl, { bottomOffset, offset, height })
-    wrapper.childAt(1).props().style.should.have.property('position', 'fixed')
-    wrapper.childAt(1).props().style.should.have.property('top', null)
-    wrapper.childAt(1).props().style.should.have.property('bottom', bottomOffset)
+      scrollToTop()
+      onStick.should.not.have.been.called()
+    })
   })
 
-  it('should stop pushing when reaching top', () => {
-    const offset = 10
-    const bottomOffset = 10
-    const height = 100
-    const contextEl = { getBoundingClientRect: () => ({}) }
-    const wrapper = mount(
-      <Sticky context={contextEl} bottomOffset={bottomOffset} offset={offset} pushing />,
-    )
+  describe('onTop', () => {
+    it('is called with (e, data) when is on top', () => {
+      const onTop = sandbox.spy()
+      mockContextEl()
+      mockPositions({ bottomOffset: 10, height: 50 })
+      wrapperMount(<Sticky {...positions} context={contextEl} onTop={onTop} />)
 
-    scrollAfterTrigger(wrapper, contextEl, { bottomOffset, offset, height })
-    scrollToContextBottom(wrapper, contextEl, { offset, height })
-    scrollToTop(wrapper, contextEl, { height, bottomOffset, offset })
-    scrollAfterTrigger(wrapper, contextEl, { bottomOffset, offset, height })
-    // Component should stick again to the top
-    wrapper.childAt(1).props().style.should.have.property('position', 'fixed')
-    wrapper.childAt(1).props().style.should.have.property('top', offset)
+      scrollAfterContext()
+      onTop.should.not.have.been.called()
+
+      scrollToTop()
+      onTop.should.have.been.calledOnce()
+      onTop.should.have.been.calledWithMatch({}, positions)
+    })
   })
 
-  it('should return true if oversized', () => {
-    const offset = 20
-    const bottomOffset = 15
-    const height = 100000
-    const contextEl = { getBoundingClientRect: () => ({}) }
-    const wrapper = mount(
-      <Sticky context={contextEl} bottomOffset={bottomOffset} offset={offset} pushing />,
-    )
-    scrollAfterTrigger(wrapper, contextEl, { bottomOffset, offset, height })
-    wrapper.instance().isOversized().should.be.equal(true)
+  describe('onUnstick', () => {
+    it('is called with (e, data) when unstick', () => {
+      const onUnstick = sandbox.spy()
+      mockContextEl()
+      mockPositions({ bottomOffset: 10, height: 50 })
+      wrapperMount(<Sticky {...positions} context={contextEl} onUnstick={onUnstick} />)
+
+      scrollAfterTrigger()
+      onUnstick.should.not.have.been.called()
+
+      scrollToTop()
+      onUnstick.should.have.been.calledOnce()
+      onUnstick.should.have.been.calledWithMatch({}, positions)
+    })
   })
 
-  it('should fire onStick callback', () => {
-    const offset = 5
-    const bottomOffset = 10
-    const height = 50
-    const contextEl = { getBoundingClientRect: () => ({}) }
-    const onStick = sandbox.spy()
-    const wrapper = mount(
-      <Sticky context={contextEl} offset={offset} bottomOffset={bottomOffset} onStick={onStick} />,
-    )
+  describe('pushing', () => {
+    it('should push component back', () => {
+      const bottomOffset = 30
+      mockContextEl()
+      mockPositions({ bottomOffset, height: 100, offset: 10 })
+      wrapperMount(<Sticky {...positions} context={contextEl} pushing />)
 
-    scrollAfterTrigger(wrapper, contextEl, { bottomOffset, offset, height })
-    onStick.should.have.been.calledWithMatch({}, { bottomOffset, offset })
-    onStick.reset()
+      scrollAfterTrigger()
 
-    scrollToTop(wrapper, contextEl, { bottomOffset, offset, height })
-    onStick.should.not.have.been.called()
+      // Scroll back: component should still stick to context bottom
+      scrollToContextBottom()
+      wrapper.setProps({ context: mockContextEl({ bottom: 0 }) })
+      domEvent.scroll(window)
+
+      wrapper.childAt(1).props().style.should.have.property('position', 'fixed')
+      wrapper.childAt(1).props().style.should.have.property('top', -100)
+
+      // Scroll a bit before the top: component should stick to screen bottom
+      scrollAfterTrigger()
+
+      wrapper.childAt(1).props().style.should.have.property('position', 'fixed')
+      wrapper.childAt(1).props().style.should.have.property('top', null)
+      wrapper.childAt(1).props().style.should.have.property('bottom', bottomOffset)
+    })
+
+    it('should stop pushing when reaching top', () => {
+      const offset = 10
+      mockContextEl()
+      mockPositions({ offset, bottomOffset: 10, height: 100 })
+      wrapperMount(<Sticky {...positions} context={contextEl} pushing />)
+
+      scrollAfterTrigger()
+      scrollToContextBottom()
+      scrollToTop()
+      scrollAfterTrigger()
+
+      // Component should stick again to the top
+      const childStyle = wrapper.childAt(1).props().style
+
+      childStyle.should.have.property('position', 'fixed')
+      childStyle.should.have.property('top', offset)
+    })
+
+    it('should return true if oversized', () => {
+      mockContextEl()
+      mockPositions({ bottomOffset: 15, height: 100000, offset: 20 })
+      wrapperMount(<Sticky {...positions} context={contextEl} pushing />)
+
+      scrollAfterTrigger()
+      wrapper.instance().isOversized().should.be.equal(true)
+    })
   })
 
-  it('should fire onUnstick callback', () => {
-    const offset = 5
-    const bottomOffset = 10
-    const height = 50
-    const contextEl = { getBoundingClientRect: () => ({}) }
-    const onUnstick = sandbox.spy()
-    const wrapper = mount(
-      <Sticky context={contextEl} offset={offset} bottomOffset={bottomOffset} onUnstick={onUnstick} />,
-    )
+  describe('scrollContext', () => {
+    it('should use window as default', () => {
+      const onStick = sandbox.spy()
+      const instance = mount(<Sticky onStick={onStick} />).instance()
 
-    scrollAfterTrigger(wrapper, contextEl, { bottomOffset, offset, height })
-    onUnstick.should.not.have.been.called()
+      instance.triggerRef = mockRect({ top: -1 })
+      domEvent.scroll(window)
 
-    scrollToTop(wrapper, contextEl, { bottomOffset, offset, height })
-    onUnstick.should.have.been.calledWithMatch({}, { bottomOffset, offset })
-  })
+      onStick.should.have.been.called()
+    })
 
-  it('should fire onTop callback', () => {
-    const offset = 5
-    const bottomOffset = 10
-    const height = 50
-    const contextEl = { getBoundingClientRect: () => ({}) }
-    const onTop = sandbox.spy()
-    const wrapper = mount(
-      <Sticky context={contextEl} offset={offset} bottomOffset={bottomOffset} onTop={onTop} />,
-    )
+    it('should set a scroll context', () => {
+      const div = document.createElement('div')
+      const onStick = sandbox.spy()
+      const instance = mount(<Sticky scrollContext={div} onStick={onStick} />).instance()
 
-    scrollAfterContext(wrapper, contextEl, { bottomOffset, offset, height })
-    onTop.should.not.have.been.called()
+      instance.triggerRef = mockRect({ top: -1 })
 
-    scrollToTop(wrapper, contextEl, { bottomOffset, offset, height })
-    onTop.should.have.been.calledWithMatch({}, { bottomOffset, offset })
-  })
+      domEvent.scroll(window)
+      onStick.should.not.have.been.called()
 
-  it('should fire onBottom callback', () => {
-    const offset = 5
-    const bottomOffset = 5
-    const height = 5
-    const contextEl = { getBoundingClientRect: () => ({}) }
-    const onBottom = sandbox.spy()
-    const wrapper = mount(
-      <Sticky context={contextEl} offset={offset} bottomOffset={bottomOffset} onBottom={onBottom} />,
-    )
-
-    scrollAfterContext(wrapper, contextEl, { bottomOffset, offset, height })
-    onBottom.should.have.been.calledWithMatch({}, { bottomOffset, offset })
-    onBottom.reset()
-
-    scrollToTop(wrapper, contextEl, { bottomOffset, offset, height })
-    onBottom.should.not.have.been.called()
+      domEvent.scroll(div)
+      onStick.should.have.been.called()
+    })
   })
 })
