@@ -82,6 +82,8 @@ These great products are built on Semantic UI React. Add yours [here][22].
 - https://sublimefund.org
 - https://thefaithcircle.com
 - https://appfollow.io
+- http://according.to.localsourc.es
+
 
 ## Voice Your Opinion
 
