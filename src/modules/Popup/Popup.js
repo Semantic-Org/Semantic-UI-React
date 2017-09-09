@@ -250,7 +250,7 @@ export default class Popup extends Component {
   getPortalProps() {
     const portalProps = {}
 
-    const { on, hoverable, closeOnClickInside } = this.props
+    const { closeOnClickInside, hoverable, on } = this.props
     const normalizedOn = _.isArray(on) ? on : [on]
 
     if (hoverable) {
@@ -273,9 +273,7 @@ export default class Popup extends Component {
       portalProps.mouseLeaveDelay = 70
       portalProps.mouseEnterDelay = 50
     }
-    if (closeOnClickInside) {
-      portalProps.closeOnPortalClick = true
-    }
+    if (closeOnClickInside) portalProps.closeOnPortalClick = true
 
     return portalProps
   }

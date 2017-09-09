@@ -205,12 +205,10 @@ class Portal extends Component {
   // ----------------------------------------
 
   handlePortalClick = (e) => {
+    debug('handlePortalClick()')
     const { closeOnPortalClick } = this.props
 
-    if (!closeOnPortalClick) return
-
-    debug('handlePortalClick()')
-    this.close(e)
+    if (closeOnPortalClick) return this.close(e)
   }
 
   handlePortalMouseLeave = (e) => {
