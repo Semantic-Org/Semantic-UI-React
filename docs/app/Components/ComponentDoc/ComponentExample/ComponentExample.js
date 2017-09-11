@@ -388,15 +388,15 @@ class ComponentExample extends Component {
         onMouseLeave={this.handleMouseLeave}
         style={exampleStyle}
       >
-        <Grid.Row columns={2}>
-          <Grid.Column style={headerColumnStyle}>
+        <Grid.Row>
+          <Grid.Column style={headerColumnStyle} width={12}>
             <ComponentExampleTitle
               description={description}
               title={title}
               suiVersion={suiVersion}
             />
           </Grid.Column>
-          <Grid.Column textAlign='right'>
+          <Grid.Column textAlign='right' width={4}>
             <ComponentControls
               anchorName={this.anchorName}
               onCopyLink={this.handleDirectLinkClick}

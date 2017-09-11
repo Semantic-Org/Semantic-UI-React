@@ -7,7 +7,9 @@ import ComponentPropsExtra from './ComponentPropsExtra'
 import ComponentPropsToggle from './ComponentPropsEnumToggle'
 import ComponentPropsValue from './ComponentPropsEnumValue'
 
-const ComponentPropsEnum = ({ limit, showAll, toggle, values }) => {
+const ComponentPropsEnum = ({ limit, showAll, toggle, type, values }) => {
+  if (type !== 'enum' || !values) return null
+
   const exceeds = values.length > limit
   const sliced = showAll ? values : _.slice(values, 0, limit)
 
@@ -30,13 +32,14 @@ const ComponentPropsEnum = ({ limit, showAll, toggle, values }) => {
 }
 
 ComponentPropsEnum.defaultProps = {
-  limit: 10,
+  limit: 50,
 }
 
 ComponentPropsEnum.propTypes = {
   limit: PropTypes.number,
   showAll: PropTypes.bool,
   toggle: PropTypes.func,
+  type: PropTypes.string,
   values: PropTypes.array,
 }
 
