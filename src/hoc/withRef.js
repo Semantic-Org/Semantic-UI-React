@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 
 import Ref from '../addons/Ref'
 
-const withRef = Child => class refHOC extends Component {
+const withRef = Child => class WithRef extends Component {
   static propTypes = {
     /**
      * Called when componentDidMount.

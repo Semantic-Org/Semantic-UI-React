@@ -21,7 +21,7 @@ export const computeElementType = (Component, props, getDefault) => {
   // computed default element type
 
   if (getDefault) {
-    const computedDefault = typeof getDefault === 'function' ? getDefault() : getDefault
+    const computedDefault = getDefault()
     if (computedDefault) return computedDefault
   }
 
@@ -36,6 +36,13 @@ export const computeElementType = (Component, props, getDefault) => {
   return defaultProps.as || 'div'
 }
 
-const getElementType = (...args) => withRef(computeElementType(...args))
+const getElementType = (...args) => {
+  const ElementType = computeElementType(...args)
+  const wrapped = withRef(ElementType)
+
+  wrapped.original = ElementType
+
+  return wrapped
+}
 
 export default getElementType

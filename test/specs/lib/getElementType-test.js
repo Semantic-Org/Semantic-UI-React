@@ -34,23 +34,21 @@ describe('computeElementType', () => {
 })
 
 describe('getElementType', () => {
-  it('returns a refHOC when "as" is a string', () => {
+  it('returns a WithRef when "as" is a string', () => {
     const ElementType = getElementType({}, { as: 'button' })
+    const wrapper = mount(<ElementType innerRef={_.noop} />)
 
-    mount(<ElementType innerRef={_.noop} />)
-      .type()
-      .name
-      .should.equal('refHOC')
+    ElementType.original.should.equal('button')
+    wrapper.type().name.should.equal('WithRef')
   })
 
-  it('returns a refHOC when "as" is a component', () => {
+  it('returns a WithRef when "as" is a component', () => {
     const Component = () => <div />
     const ElementType = getElementType({}, { as: Component })
+    const wrapper = mount(<ElementType innerRef={_.noop} />)
 
-    mount(<ElementType innerRef={_.noop} />)
-      .type()
-      .name
-      .should.equal('refHOC')
+    ElementType.original.should.equal(Component)
+    wrapper.type().name.should.equal('WithRef')
   })
 })
 

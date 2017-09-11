@@ -160,10 +160,9 @@ class Button extends Component {
   static Or = ButtonOr
 
   computeElementType = () => {
-    const { as, attached, label } = this.props
+    const { attached, label } = this.props
 
     if (!_.isNil(attached) || !_.isNil(label)) return 'div'
-    return as
   }
 
   computeTabIndex = (ElementType) => {
@@ -252,9 +251,8 @@ class Button extends Component {
     )
 
     const rest = getUnhandledProps(Button, this.props)
-    const computedType = this.computeElementType()
-    const ElementType = getElementType(Button, this.props, computedType)
-    const tabIndex = this.computeTabIndex(computedType)
+    const ElementType = getElementType(Button, this.props, this.computeElementType)
+    const tabIndex = this.computeTabIndex(ElementType.original)
 
     if (!_.isNil(label)) {
       const buttonClasses = cx('ui', baseClasses, 'button', className)
@@ -282,7 +280,7 @@ class Button extends Component {
       <ElementType
         {...rest}
         className={classes}
-        disabled={(disabled && computedType === 'button') || undefined}
+        disabled={(disabled && ElementType.original === 'button') || undefined}
         innerRef={this.handleRef}
         onClick={this.handleClick}
         role='button'
