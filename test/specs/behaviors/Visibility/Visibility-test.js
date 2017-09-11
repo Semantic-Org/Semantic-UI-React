@@ -96,29 +96,23 @@ const expectations = [{
 describe('Visibility', () => {
   common.isConformant(Visibility)
 
+  let requestAnimationFrame
+
+  before(() => {
+    requestAnimationFrame = window.requestAnimationFrame
+    window.requestAnimationFrame = fn => fn()
+  })
+
+  after(() => {
+    window.requestAnimationFrame = requestAnimationFrame
+  })
+
   beforeEach(() => {
     wrapper = undefined
   })
 
   afterEach(() => {
     if (wrapper && wrapper.unmount) wrapper.unmount()
-  })
-
-  it('should use window as default scroll context', () => {
-    const onUpdate = sandbox.spy()
-    mount(<Visibility onUpdate={onUpdate} />)
-    window.dispatchEvent(new Event('scroll'))
-    onUpdate.should.have.been.called()
-  })
-
-  it('should set a scroll context', () => {
-    const div = document.createElement('div')
-    const onUpdate = sandbox.spy()
-    mount(<Visibility onUpdate={onUpdate} context={div} />)
-    window.dispatchEvent(new Event('scroll'))
-    onUpdate.should.not.have.been.called()
-    div.dispatchEvent(new Event('scroll'))
-    onUpdate.should.have.been.called()
   })
 
   describe('calculations', () => {
@@ -183,6 +177,28 @@ describe('Visibility', () => {
           callback.should.have.been.calledTwice()
         })
       }
+    })
+  })
+
+  describe('context', () => {
+    it('should use window as default scroll context', () => {
+      const onUpdate = sandbox.spy()
+      mount(<Visibility onUpdate={onUpdate} />)
+
+      window.dispatchEvent(new Event('scroll'))
+      onUpdate.should.have.been.called()
+    })
+
+    it('should set a scroll context', () => {
+      const div = document.createElement('div')
+      const onUpdate = sandbox.spy()
+      mount(<Visibility onUpdate={onUpdate} context={div} />)
+
+      window.dispatchEvent(new Event('scroll'))
+      onUpdate.should.not.have.been.called()
+
+      div.dispatchEvent(new Event('scroll'))
+      onUpdate.should.have.been.called()
     })
   })
 

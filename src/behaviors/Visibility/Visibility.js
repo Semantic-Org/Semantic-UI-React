@@ -193,7 +193,7 @@ export default class Visibility extends Component {
 
     const { context, fireOnMount } = this.props
 
-    context.addEventListener('scroll', this.handleUpdate)
+    context.addEventListener('scroll', this.handleScroll)
     if (fireOnMount) this.handleUpdate()
   }
 
@@ -201,7 +201,7 @@ export default class Visibility extends Component {
     if (!isBrowser) return
 
     const { context } = this.props
-    context.removeEventListener('scroll', this.handleUpdate)
+    context.removeEventListener('scroll', this.handleScroll)
   }
 
   execute = (callback, name) => {
@@ -292,9 +292,18 @@ export default class Visibility extends Component {
     })
   }
 
+  handleScroll = () => {
+    if (this.ticking) return
+
+    this.ticking = true
+    requestAnimationFrame(this.handleUpdate)
+  }
+
   handleRef = c => (this.ref = c)
 
   handleUpdate = () => {
+    this.ticking = false
+
     const { offset } = this.props
     const { bottom, height, top, width } = this.ref.getBoundingClientRect()
     const [topOffset, bottomOffset] = normalizeOffset(offset)
