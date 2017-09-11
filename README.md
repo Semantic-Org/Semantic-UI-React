@@ -103,18 +103,6 @@ We're seeking component parity with Semantic UI, plus some addons.  There is an 
 
 Any other issue labeled [`help wanted`][4] is ready for a PR.
 
-## Debugger
-
-We use the [debug](https://www.npmjs.com/package/debug) module for debugging.  You can turn debugging on and off via the `localStorage.debug` flag from the browser console.  See the [debug docs](https://www.npmjs.com/package/debug) for more.
-
-```js
-localStorage.debug = 'semanticUIReact:*'         // default, debug all components
-localStorage.debug = 'semanticUIReact:dropdown'  // debug only the dropdown
-localStorage.debug = null                        // turn debug off
-```
-
-Once you change the flag, you need to refresh your browser to see the changes in debug output.
-
 ## Support
 
 |    Elements     |   Collections   |      Views      |     Modules     |     Behaviors      |
