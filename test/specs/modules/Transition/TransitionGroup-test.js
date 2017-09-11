@@ -49,7 +49,7 @@ describe('TransitionGroup', () => {
     })
 
     it('wraps new child to Transition and sets transitionOnMount to true', () => {
-      wrapperMount(
+      wrapperShallow(
         <TransitionGroup>
           <div key='first' />
         </TransitionGroup>,
@@ -63,7 +63,7 @@ describe('TransitionGroup', () => {
     })
 
     it('skips invalid children', () => {
-      wrapperMount(
+      wrapperShallow(
         <TransitionGroup>
           <div key='first' />
         </TransitionGroup>,
@@ -76,7 +76,7 @@ describe('TransitionGroup', () => {
     })
 
     it('sets visible to false when child was removed', () => {
-      wrapperMount(
+      wrapperShallow(
         <TransitionGroup>
           <div key='first' />
           <div key='second' />
@@ -89,7 +89,7 @@ describe('TransitionGroup', () => {
     })
 
     it('removes child after transition', (done) => {
-      wrapperShallow(
+      wrapperMount(
         <TransitionGroup duration={0}>
           <div key='first' />
           <div key='second' />

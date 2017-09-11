@@ -15,7 +15,6 @@ import { shallow } from './utils'
 //
 global.enzyme = enzyme
 global.shallow = shallow
-global.rawShallow = enzyme.shallow
 global.render = enzyme.render
 global.mount = enzyme.mount
 

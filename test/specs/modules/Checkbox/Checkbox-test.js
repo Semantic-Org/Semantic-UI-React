@@ -32,7 +32,7 @@ describe('Checkbox', () => {
 
   describe('checking', () => {
     it('can be checked and unchecked', () => {
-      const wrapper = rawShallow(<Checkbox />)
+      const wrapper = shallow(<Checkbox />)
       const input = wrapper.find('input')
 
       input.should.not.be.checked()

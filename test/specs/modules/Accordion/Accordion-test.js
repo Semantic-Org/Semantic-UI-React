@@ -18,7 +18,7 @@ describe('Accordion', () => {
 
   describe('activeIndex', () => {
     it('defaults to -1', () => {
-      rawShallow(<Accordion />)
+      shallow(<Accordion />)
         .should.have.state('activeIndex', -1)
     })
     it('can be overridden with "active" on Title/Content', () => {
