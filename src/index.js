@@ -1,4 +1,5 @@
 // Addons
+export { default as Responsive } from './addons/Responsive'
 export { default as Confirm } from './addons/Confirm'
 export { default as Portal } from './addons/Portal'
 export { default as Radio } from './addons/Radio'

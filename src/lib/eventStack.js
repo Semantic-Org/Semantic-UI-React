@@ -1,6 +1,8 @@
 import _ from 'lodash'
 import isBrowser from './isBrowser'
 
+const windowEvents = ['resize']
+
 class EventStack {
   _handlers = {}
   _pools = {}
@@ -31,16 +33,18 @@ class EventStack {
   _listen = (name) => {
     if (_.has(this._handlers, name)) return
     const handler = this._emit(name)
+    const target = _.includes(windowEvents, name) ? window : document
 
-    document.addEventListener(name, handler)
+    target.addEventListener(name, handler)
     this._handlers[name] = handler
   }
 
   _unlisten = (name) => {
     if (_.some(this._pools, name)) return
     const { [name]: handler } = this._handlers
+    const target = _.includes(windowEvents, name) ? window : document
 
-    document.removeEventListener(name, handler)
+    target.removeEventListener(name, handler)
     delete this._handlers[name]
   }
 
