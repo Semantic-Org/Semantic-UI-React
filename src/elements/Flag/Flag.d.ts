@@ -59,7 +59,7 @@ export interface FlagProps {
     'zambia' | 'zw' | 'zimbabwe';
 }
 
-declare class Flag extends React.Component<FlagProps, {}> {
+declare class Flag extends React.PureComponent<FlagProps, {}> {
 }
 
 export default Flag;
