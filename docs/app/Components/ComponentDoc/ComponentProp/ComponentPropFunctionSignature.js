@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 
 import { neverUpdate } from 'docs/app/HOC'
-import ComponentPropsExtra from './ComponentPropsExtra'
+import ComponentPropExtra from './ComponentPropExtra'
 
 const descriptionStyle = {
   flex: '5 5 0',
@@ -22,7 +22,7 @@ const rowStyle = {
 
 const getTagType = tag => (tag.type.type === 'AllLiteral' ? 'any' : tag.type.name)
 
-const ComponentPropsFunctionSignature = ({ name, tags }) => {
+const ComponentPropFunctionSignature = ({ name, tags }) => {
   const params = _.filter(tags, { title: 'param' })
   const returns = _.find(tags, { title: 'returns' })
 
@@ -51,15 +51,15 @@ const ComponentPropsFunctionSignature = ({ name, tags }) => {
   })
 
   return (
-    <ComponentPropsExtra title={<pre>{name}({paramSignature}){returns ? `: ${getTagType(returns)}` : ''}</pre>}>
+    <ComponentPropExtra title={<pre>{name}({paramSignature}){returns ? `: ${getTagType(returns)}` : ''}</pre>}>
       {tagDescriptionRows}
-    </ComponentPropsExtra>
+    </ComponentPropExtra>
   )
 }
 
-ComponentPropsFunctionSignature.propTypes = {
+ComponentPropFunctionSignature.propTypes = {
   name: PropTypes.string,
   tags: PropTypes.object,
 }
 
-export default neverUpdate(ComponentPropsFunctionSignature)
+export default neverUpdate(ComponentPropFunctionSignature)
