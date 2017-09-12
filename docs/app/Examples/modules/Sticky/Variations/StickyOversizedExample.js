@@ -7,7 +7,7 @@ const Placeholder = () => <Image src='/assets/images/wireframe/paragraph.png' />
 export default class StickyOversizedExample extends Component {
   state = {}
 
-  handleContextRef = contextRef => this.setState({ contextRef })
+  handleContextRef = contextRef => this.setState({ examplesRef: contextRef })
 
   render() {
     const { contextRef } = this.state

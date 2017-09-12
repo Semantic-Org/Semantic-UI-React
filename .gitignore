@@ -5,6 +5,7 @@ coverage/
 dist/
 docs/build/
 docs/app/docgenInfo.json
+docs/app/menuInfo.json
 dll/
 
 .DS_Store

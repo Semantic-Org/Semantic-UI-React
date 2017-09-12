@@ -1,3 +1,5 @@
 export parseDefaultValue from './parseDefaultValue'
 export parseDocBlock from './parseDocBlock'
+export parseDocExample from './parseDocExample'
+export parseDocSection from './parseDocSection'
 export parseType from './parseType'

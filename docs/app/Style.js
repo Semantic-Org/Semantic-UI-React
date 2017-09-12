@@ -19,8 +19,6 @@ style.menu = {
 
 style.main = {
   marginLeft: sidebarWidth,
-  minWidth: parseInt(sidebarWidth, 10) + 300,
-  maxWidth: parseInt(sidebarWidth, 10) + 900,
 }
 
 export default style

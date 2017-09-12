@@ -13,7 +13,7 @@ export default class VisibilityExampleOffset extends Component {
     },
   }
 
-  handleContextRef = contextRef => this.setState({ contextRef })
+  handleContextRef = contextRef => this.setState({ examplesRef: contextRef })
 
   handleUpdate = (e, { calculations }) => this.setState({ calculations })
 

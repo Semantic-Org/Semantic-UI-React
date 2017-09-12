@@ -8,7 +8,7 @@ import { html } from 'js-beautify'
 import copyToClipboard from 'copy-to-clipboard'
 
 import { exampleContext, repoURL, scrollToAnchor } from 'docs/app/utils'
-import { Divider, Grid, Menu } from 'src'
+import { Divider, Grid, Menu, Visibility } from 'src'
 import Editor from 'docs/app/Components/Editor/Editor'
 import ComponentControls from '../ComponentControls'
 import ComponentExampleTitle from './ComponentExampleTitle'
@@ -40,6 +40,10 @@ const errorStyle = {
  * Allows toggling the the raw `code` code block.
  */
 class ComponentExample extends Component {
+  static contextTypes = {
+    onTopPassed: PropTypes.func,
+  };
+
   static propTypes = {
     children: PropTypes.node,
     description: PropTypes.node,
@@ -109,6 +113,8 @@ class ComponentExample extends Component {
     if (!showHTML) this.setHashAndScroll()
     else this.removeHash()
   }
+
+  handleTopPassed = () => _.invoke(this.context, 'onTopPassed', null, this.props)
 
   copyJSX = () => {
     copyToClipboard(this.state.sourceCode)
@@ -381,6 +387,11 @@ class ComponentExample extends Component {
     }
 
     return (
+      <Visibility
+        once={false}
+        onTopPassedReverse={this.handleTopPassed}
+        onTopPassed={this.handleTopPassed}
+      >
       <Grid
         className='docs-example'
         id={this.anchorName}
@@ -427,6 +438,7 @@ class ComponentExample extends Component {
           </Grid.Column>
         </Grid.Row>
       </Grid>
+      </Visibility>
     )
   }
 }

@@ -11,7 +11,7 @@ export default class VisibilityExampleCallbackFrequency extends Component {
     once: true,
   }
 
-  handleContextRef = contextRef => this.setState({ contextRef })
+  handleContextRef = contextRef => this.setState({ examplesRef: contextRef })
 
   updateLog = eventName => () => this.setState(({
     log: [

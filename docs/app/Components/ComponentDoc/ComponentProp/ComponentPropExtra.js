@@ -16,7 +16,7 @@ const contentInlineStyle = {
   display: 'inline',
 }
 
-const ComponentPropsExtra = ({ children, inline, title, ...rest }) => (
+const ComponentPropExtra = ({ children, inline, title, ...rest }) => (
   <div {...rest} style={descriptionStyle}>
     <strong>{title}</strong>
     <div style={inline ? contentInlineStyle : contentBlockStyle}>
@@ -25,10 +25,10 @@ const ComponentPropsExtra = ({ children, inline, title, ...rest }) => (
   </div>
 )
 
-ComponentPropsExtra.propTypes = {
+ComponentPropExtra.propTypes = {
   children: PropTypes.node,
   inline: PropTypes.bool,
   title: PropTypes.node,
 }
 
-export default ComponentPropsExtra
+export default ComponentPropExtra

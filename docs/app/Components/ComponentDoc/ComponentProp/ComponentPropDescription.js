@@ -4,14 +4,14 @@ import React from 'react'
 
 import { pure } from 'docs/app/HOC'
 
-const ComponentPropsDescription = ({ description }) => (_.isNil(description) ? null : (
+const ComponentPropDescription = ({ description }) => (_.isNil(description) ? null : (
   <p>
     {_.map(description, line => [line, <br key={line} />])}
   </p>
 ))
 
-ComponentPropsDescription.propTypes = {
+ComponentPropDescription.propTypes = {
   description: PropTypes.arrayOf(PropTypes.string),
 }
 
-export default pure(ComponentPropsDescription)
+export default pure(ComponentPropDescription)
