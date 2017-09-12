@@ -2,6 +2,7 @@ import _ from 'lodash'
 import React, { Component } from 'react'
 import { Button, Image, List, Transition } from 'semantic-ui-react'
 
+/* Note how the username is used both in constructing the URL and as the key prop */
 const users = ['ade', 'chris', 'christian', 'daniel', 'elliot', 'helen']
 
 export default class TransitionExampleGroup extends Component {
