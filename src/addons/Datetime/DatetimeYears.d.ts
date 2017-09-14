@@ -5,11 +5,6 @@ export interface DatetimeYearsProps {
 
   /** An element type to render as (string or function). */
   as?: any;
-}
-
-interface DatetimeYearsComponent extends React.ComponentClass<DatetimeYearsProps> {
-  /** An element type to render as (string or function). */
-  as?: any;
 
   /**
    * Called when the user changes the value.
@@ -22,6 +17,9 @@ interface DatetimeYearsComponent extends React.ComponentClass<DatetimeYearsProps
 
   /** Current value as a Date object. */
   value?: object,
+}
+
+interface DatetimeYearsComponent extends React.ComponentClass<DatetimeYearsProps> {
 }
 
 declare const DatetimeYears: DatetimeYearsComponent;
