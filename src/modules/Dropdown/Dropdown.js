@@ -1098,7 +1098,7 @@ export default class Dropdown extends Component {
     this.setState({ focus: hasFocus })
   }
 
-  toggle = e => (this.state.open ? this.close(e) : this.open(e))
+  toggle = e => (this.state.open ? this.closeOnChange(e) : this.open(e))
 
   // ----------------------------------------
   // Render
