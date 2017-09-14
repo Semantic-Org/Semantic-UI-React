@@ -50,7 +50,7 @@ export default class Years extends Component {
     const value = new Date(this.props.value)
     value.setYear(year)
 
-    _.invoke('onChange', this.props, e, { ...this.props, value })
+    _.invokeArgs('onChange', [e, { ...this.props, value }], this.props)
   }
 
   render() {

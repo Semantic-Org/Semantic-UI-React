@@ -77,8 +77,8 @@ export default class Days extends Component {
     // const prevDaysInMonth = lastMonth.daysInMonth()
     const prevDaysInMonth = new Date(value.getFullYear(), value.getMonth() + 1, 0).getDate()
     // get a list of disabled date signatures
-    const hasDisabledDates = disabledDates.length > 0
-    const disabledDateSig = disabledDates.map(date => dateUtils.getDateString(date))
+    const hasDisabledDates = !_.isEmpty(disabledDates)
+    const disabledDateSig = _.map(date => dateUtils.getDateString(date), disabledDates)
 
     // The real first day in relation to the sequence of calendar days (array index)
     let realFirstWeekDay = day - firstDayOfWeek
@@ -121,13 +121,11 @@ export default class Days extends Component {
         && selectionEnd && selectionEnd >= cell.value
         && selectionEnd > selectionStart
 
-      if (
-        hasDisabledDates
+      const isDisabled = hasDisabledDates
         && !_.has('disabled', cell)
         && _.includes(dateUtils.getDateString(cell.value), disabledDateSig)
-      ) {
-        cell.disabled = true
-      }
+
+      if (isDisabled) cell.disabled = true
 
       cell.onClick = this.handleCellClick(cell.value)
 
@@ -136,7 +134,7 @@ export default class Days extends Component {
   }
 
   handleCellClick = value => (e) => {
-    _.invoke('onChange', this.props, e, { ...this.props, value })
+    _.invokeArgs('onChange', [e, { ...this.props, value }], this.props)
   }
 
   render() {

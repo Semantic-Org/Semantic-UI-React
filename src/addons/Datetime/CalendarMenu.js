@@ -37,8 +37,7 @@ export default class CalendarMenu extends Component {
      * Called when changing to the previous page.
      *
      * @param {SyntheticEvent} event - React's original SyntheticEvent.
-     * @param {object} data - All props and proposed mode.
-     * @param {object} data.mode - The proposed new mode.
+     * @param {object} data - All Menu.Item props.
      */
     onPreviousPage: PropTypes.func,
 
@@ -46,8 +45,7 @@ export default class CalendarMenu extends Component {
      * Called when changing to the next page.
      *
      * @param {SyntheticEvent} event - React's original SyntheticEvent.
-     * @param {object} data - All props and proposed mode.
-     * @param {object} data.mode - The proposed new mode.
+     * @param {object} data - All Menu.Item props.
      */
     onNextPage: PropTypes.func,
   }
@@ -58,15 +56,18 @@ export default class CalendarMenu extends Component {
     type: META.TYPES.MODULE,
   }
 
-  changeMode = (e, mode) => {
-    _.invoke('onChangeMode', this.props, e, { ...this.props, mode })
+  handleChangeMode = (e, { name }) => {
+    _.invokeArgs('onChangeMode', [e, { ...this.props, mode: name }], this.props)
+  }
+
+  handlePreviousPage = (e, { name }) => {
+    _.invokeArgs('onChangeMode', [e, { ...this.props, mode: name }], this.props)
   }
 
   render() {
     const {
       value,
       mode,
-      onChangeMode,
       onNextPage,
       onPreviousPage,
     } = this.props
@@ -76,22 +77,22 @@ export default class CalendarMenu extends Component {
 
     const items = _.compact([
       mode === 'day' && (
-        <Menu.Item key='month' name='month' onClick={onChangeMode}>
+        <Menu.Item key='month' name='month' onClick={this.handleChangeMode}>
           {monthName}
         </Menu.Item>
       ),
       mode === 'year' && (
-        <Menu.Item as='div' header key='year' name='year' onClick={onChangeMode}>
+        <Menu.Item as='div' header key='year' name='year' onClick={this.handleChangeMode}>
           {year - 4} - {year + 4}
         </Menu.Item>
       ),
       _.includes(mode, ['hour', 'minute']) && (
-        <Menu.Item key='hour-minute' name='hour-minute' onClick={onChangeMode}>
+        <Menu.Item key='hour-minute' name='hour-minute' onClick={this.handleChangeMode}>
           {monthName}&nbsp;{value}
         </Menu.Item>
       ),
       _.includes(mode, ['day', 'month', 'hour', 'minute']) && (
-        <Menu.Item key='year' name='year' onClick={onChangeMode}>
+        <Menu.Item key='year' name='year' onClick={this.handleChangeMode}>
           {year}
         </Menu.Item>
       ),

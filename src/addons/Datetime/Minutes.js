@@ -78,7 +78,7 @@ export default class Minutes extends Component {
     const value = new Date(this.props.value)
     value.setMinutes(minutes)
 
-    _.invoke('onChange', this.props, e, { ...this.props, value })
+    _.invokeArgs('onChange', [e, { ...this.props, value }], this.props)
   }
 
   render() {

@@ -170,14 +170,14 @@ export default class Datetime extends Component {
 
   open = (e) => {
     debug('open()')
-    _.invoke('onOpen', this.props, e, this.props)
+    _.invokeArgs('onOpen', [e, this.props], this.props)
 
     this.trySetState({ open: true })
   }
 
   close = (e) => {
     debug('close()')
-    _.invoke('onClose', this.props, e, this.props)
+    _.invokeArgs('onClose', [e, this.props], this.props)
 
     this.trySetState({ open: false, mode: this.getInitialMode() })
   }
@@ -190,15 +190,10 @@ export default class Datetime extends Component {
     e.nativeEvent.stopImmediatePropagation()
 
     this.trySetState({ value, mode })
-    _.invoke('onChange', this.props, e, { ...this.props, value })
+    _.invokeArgs('onChange', [e, { ...this.props, value }], this.props)
 
     // when there's no mode, the selection process has ended
     if (!mode) this.close()
-  }
-
-  handleChange = (e, { value }) => {
-    debug('handleMonthChange()', value, mode)
-    this.trySetState({ value, mode })
   }
 
   /**
@@ -246,8 +241,8 @@ export default class Datetime extends Component {
     }
   }
 
-  handleChangeMode = (e, { name }) => {
-    _.invoke('onChange', this.props, e, { ...this.props, mode: name })
+  handleChangeMode = (e, { mode }) => {
+    _.invokeArgs('onChange', [e, { ...this.props, mode }], this.props)
   }
 
   setMonth = (e, props) => {
@@ -258,7 +253,7 @@ export default class Datetime extends Component {
       : value
 
     value.setMonth(month)
-    _.invoke('onChange', this.props, e, { ...this.props, value, mode })
+    _.invokeArgs('onChange', [e, { ...this.props, value, mode }], this.props)
   }
 
   setDay = (e, day) => {
@@ -267,28 +262,28 @@ export default class Datetime extends Component {
     value.setDate(day)
 
     const mode = time ? 'hour' : null
-    _.invoke('onChange', this.props, e, { ...this.props, value, mode })
+    _.invokeArgs('onChange', [e, { ...this.props, value, mode }], this.props)
   }
 
   setYear = (e, year, mode = 'day') => {
     const { value } = this.props
 
     value.setYear(year)
-    _.invoke('onChange', this.props, e, { ...this.props, value, mode })
+    _.invokeArgs('onChange', [e, { ...this.props, value, mode }], this.props)
   }
 
   setHour = (e, hour, mode = 'minute') => {
     const { value } = this.props
 
     value.setHours(hour)
-    _.invoke('onChange', this.props, e, { ...this.props, value, mode })
+    _.invokeArgs('onChange', [e, { ...this.props, value, mode }], this.props)
   }
 
   setMinute = (e, minute, mode = null) => {
     const { value } = this.props
 
     value.setMinutes(minute)
-    _.invoke('onChange', this.props, e, { ...this.props, value, mode })
+    _.invokeArgs('onChange', [e, { ...this.props, value, mode }], this.props)
   }
 
   render() {
@@ -359,14 +354,6 @@ export default class Datetime extends Component {
           minDate={minDate}
           mode={mode}
           onChange={this.handleChange}
-
-          // TODO remove these for one onChange???
-          onDayChange={this.handleDayChange}
-          onMonthChange={this.handleMonthChange}
-          onYearChange={this.handleYearChange}
-          onHourChange={this.handleHourChange}
-          onMinuteChange={this.handleMinuteChange}
-
           time={time}
           timeFormatter={timeFormatter}
           value={value}

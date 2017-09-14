@@ -102,7 +102,7 @@ export default class Calendar extends Component {
   }
 
   handleChange = (e, { value, mode }) => {
-    _.invoke('onChange', this.props, e, { ...this.props, value, mode })
+    _.invokeArgs('onChange', [e, { ...this.props, value, mode }], this.props)
   }
 
   handleDayChange = (e, { value }) => {
