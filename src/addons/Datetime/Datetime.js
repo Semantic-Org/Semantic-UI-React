@@ -6,6 +6,8 @@ import {
   AutoControlledComponent as Component,
   customPropTypes,
   dateUtils,
+  getElementType,
+  getUnhandledProps,
   makeDebugger,
   META,
 } from '../../lib'
@@ -13,8 +15,9 @@ import {
 import Input from '../../elements/Input/Input'
 import Popup from '../../modules/Popup'
 
-import DatetimeCalendar from './DatetimeCalendar'
+import DatetimeGrid from './DatetimeGrid'
 import DatetimeMenu from './DatetimeMenu'
+import DatetimeCalendar from './DatetimeCalendar'
 import DatetimeYears from './DatetimeYears'
 import DatetimeMonths from './DatetimeMonths'
 import DatetimeDays from './DatetimeDays'
@@ -40,6 +43,9 @@ export default class Datetime extends Component {
     type: META.TYPES.ADDON,
   }
 
+  static Grid = DatetimeGrid
+  static Menu = DatetimeMenu
+  static Calendar = DatetimeCalendar
   static Years = DatetimeYears
   static Months = DatetimeMonths
   static Days = DatetimeDays
@@ -57,13 +63,13 @@ export default class Datetime extends Component {
     disabled: PropTypes.bool,
 
     /** An array of dates that should be marked disabled in the calendar. */
-    disabledDates: PropTypes.arrayOf(customPropTypes.DateValue),
+    disabledDates: PropTypes.arrayOf(customPropTypes.date),
 
     /** Initial value of open. */
     defaultOpen: PropTypes.bool,
 
     /** Initial value as a Date object or a string that can be parsed into one. */
-    defaultValue: customPropTypes.DateValue,
+    defaultValue: customPropTypes.date,
 
     /** An errored dropdown can alert a user to a problem. */
     error: PropTypes.bool,
@@ -78,10 +84,10 @@ export default class Datetime extends Component {
     ]),
 
     /** Do not allow dates after maxDate. */
-    maxDate: customPropTypes.DateValue,
+    maxDate: customPropTypes.date,
 
     /** Do not allow dates before minDate. */
-    minDate: customPropTypes.DateValue,
+    minDate: customPropTypes.date,
 
     /** Name of the input field which holds the date value. */
     name: PropTypes.string,
@@ -142,7 +148,7 @@ export default class Datetime extends Component {
      */
     hourFormatter: PropTypes.func,
     /** Current value as a Date object or a string that can be parsed into one. */
-    value: customPropTypes.DateValue,
+    value: customPropTypes.date,
     timeZone: PropTypes.string,
     defaultMode: PropTypes.string,
     mode: PropTypes.string,
@@ -313,6 +319,8 @@ export default class Datetime extends Component {
     } = this.props
 
     const { open, value, mode } = this.state
+    const rest = getUnhandledProps(Datetime, this.props)
+    const ElementType = getElementType(Datetime, this.props)
 
     return (
       <Popup
@@ -346,26 +354,28 @@ export default class Datetime extends Component {
           />
         )}
       >
-        <DatetimeMenu
-          mode={mode}
-          onChangeMode={this.handleChangeMode}
-          onNextPage={this.handleNextPage}
-          onPreviousPage={this.handlePreviousPage}
-          value={value}
-        />
-        <DatetimeCalendar
-          date={date}
-          dateFormatter={dateFormatter}
-          disabledDates={disabledDates}
-          firstDayOfWeek={firstDayOfWeek}
-          hourFormatter={hourFormatter}
-          minDate={minDate}
-          mode={mode}
-          onChange={this.handleChange}
-          time={time}
-          timeFormatter={timeFormatter}
-          value={value}
-        />
+        <ElementType {...rest}>
+          <DatetimeMenu
+            mode={mode}
+            onChangeMode={this.handleChangeMode}
+            onNextPage={this.handleNextPage}
+            onPreviousPage={this.handlePreviousPage}
+            value={value}
+          />
+          <DatetimeCalendar
+            date={date}
+            dateFormatter={dateFormatter}
+            disabledDates={disabledDates}
+            firstDayOfWeek={firstDayOfWeek}
+            hourFormatter={hourFormatter}
+            minDate={minDate}
+            mode={mode}
+            onChange={this.handleChange}
+            time={time}
+            timeFormatter={timeFormatter}
+            value={value}
+          />
+        </ElementType>
       </Popup>
     )
   }

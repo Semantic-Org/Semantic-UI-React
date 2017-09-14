@@ -244,9 +244,9 @@ export default (Component, options = {}) => {
         const leftPad = ' '.repeat(constructorName.length + listenerName.length + 3)
 
         handlerSpy.calledOnce.should.equal(true,
-          `<${constructorName} ${listenerName}={${handlerName}} />\n` +
-          `${leftPad} ^ was not called once on "${eventName}".` +
-          'You may need to hoist your event handlers up to the root element.\n',
+          `\n<${constructorName} ${listenerName}={${handlerName}} />` +
+          `\n${leftPad} ^ was not called once on "${eventName}".` +
+          '\nYou may need to hoist your event handlers up to the root element.\n',
         )
 
         let expectedArgs = [eventShape]
@@ -305,13 +305,15 @@ export default (Component, options = {}) => {
   // Handles className
   // ----------------------------------------
   describe('className (common)', () => {
-    it(`has the Semantic UI className "${componentClassName}"`, () => {
-      const wrapper = render(<Component {...requiredProps} />)
-      // don't test components with no className at all (i.e. MessageItem)
-      if (wrapper.prop('className')) {
-        wrapper.should.have.className(componentClassName)
-      }
-    })
+    if (!META.isAddon(_meta)) {
+      it(`has the Semantic UI className "${componentClassName}"`, () => {
+        const wrapper = render(<Component {...requiredProps} />)
+        // don't test components with no className at all (i.e. MessageItem)
+        if (wrapper.prop('className')) {
+          wrapper.should.have.className(componentClassName)
+        }
+      })
+    }
 
     it("applies user's className to root component", () => {
       const className = 'is-conformant-class-string'

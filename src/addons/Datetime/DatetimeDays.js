@@ -5,6 +5,8 @@ import React, { Component } from 'react'
 import {
   customPropTypes,
   dateUtils,
+  getElementType,
+  getUnhandledProps,
   META,
 } from '../../lib'
 
@@ -16,10 +18,10 @@ import DatetimeGrid from './DatetimeGrid'
 export default class DatetimeDays extends Component {
   static propTypes = {
     /** Current value as a Date object. */
-    value: customPropTypes.DateValue,
+    value: customPropTypes.date,
 
     /** An array of dates that should be marked disabled in the calendar. */
-    disabledDates: PropTypes.arrayOf(customPropTypes.DateValue),
+    disabledDates: PropTypes.arrayOf(customPropTypes.date),
 
     /** First day of the week (Sunday = 0, Monday = 1). */
     firstDayOfWeek: PropTypes.number,
@@ -34,10 +36,14 @@ export default class DatetimeDays extends Component {
     onChange: PropTypes.func,
 
     /** Dates until or at selectionEnd are marked as selected. */
-    selectionEnd: customPropTypes.DateValue,
+    selectionEnd: customPropTypes.date,
 
     /** Dates at or after selectionStart are marked as selected. */
-    selectionStart: customPropTypes.DateValue,
+    selectionStart: customPropTypes.date,
+  }
+
+  static defaultProps = {
+    as: DatetimeGrid,
   }
 
   static _meta = {
@@ -141,9 +147,12 @@ export default class DatetimeDays extends Component {
     const { firstDayOfWeek } = this.props
 
     const headers = _.times(i => dateUtils.labels.daysShort[(i + firstDayOfWeek) % 7], 7)
+    const rest = getUnhandledProps(DatetimeDays, this.props)
+    const ElementType = getElementType(DatetimeDays, this.props)
 
     return (
-      <DatetimeGrid
+      <ElementType
+        {...rest}
         headers={headers}
         columns={7}
         cells={this.getCells()}

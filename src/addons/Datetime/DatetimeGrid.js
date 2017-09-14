@@ -3,7 +3,11 @@ import PropTypes from 'prop-types'
 import React from 'react'
 
 import Table from '../../collections/Table'
-import { META } from '../../lib'
+import {
+  getElementType,
+  getUnhandledProps,
+  META,
+} from '../../lib'
 
 const pointingStyle = { cursor: 'pointer' }
 // TODO if we allow configuring the table, we should not override the border style
@@ -19,8 +23,11 @@ const DatetimeGrid = (props) => {
   const { headers = [], columns, cells } = props
   const colSpan = Math.round(columns / headers.length)
 
+  const rest = getUnhandledProps(DatetimeGrid, this.props)
+  const ElementType = getElementType(DatetimeGrid, this.props)
+
   return (
-    <Table fixed singleLine unstackable attached='bottom' size='small' textAlign='center'>
+    <ElementType {...rest}>
       <Table.Header>
         <Table.Row>
           {headers.map((header, i) => (
@@ -42,7 +49,7 @@ const DatetimeGrid = (props) => {
           </Table.Row>
         ))}
       </Table.Body>
-    </Table>
+    </ElementType>
   )
 }
 
@@ -58,6 +65,16 @@ DatetimeGrid.propTypes = {
   cells: PropTypes.arrayOf(PropTypes.shape({
     content: PropTypes.string.isRequired,
   })),
+}
+
+DatetimeGrid.defaultProps = {
+  as: Table,
+  fixed: true,
+  singleLine: true,
+  unstackable: true,
+  attached: 'bottom',
+  size: 'small',
+  textAlign: 'center',
 }
 
 export default DatetimeGrid

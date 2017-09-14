@@ -10,6 +10,8 @@ import DatetimeMinutes from './DatetimeMinutes'
 import {
   customPropTypes,
   dateUtils,
+  getElementType,
+  getUnhandledProps,
   META,
 } from '../../lib'
 
@@ -39,7 +41,7 @@ export default class DatetimeCalendar extends Component {
     dateFormatter: PropTypes.func,
 
     /** An array of dates that should be marked disabled in the calendar. */
-    disabledDates: PropTypes.arrayOf(customPropTypes.DateValue),
+    disabledDates: PropTypes.arrayOf(customPropTypes.date),
 
     /** First day of the week (Sunday = 0, Monday = 1). */
     firstDayOfWeek: PropTypes.number,
@@ -70,10 +72,10 @@ export default class DatetimeCalendar extends Component {
     ]),
 
     /** Dates until or at selectionEnd are marked as selected. */
-    selectionEnd: customPropTypes.DateValue,
+    selectionEnd: customPropTypes.date,
 
     /** Dates at or after selectionStart are marked as selected. */
-    selectionStart: customPropTypes.DateValue,
+    selectionStart: customPropTypes.date,
 
     /** Enables time selection. */
     time: PropTypes.bool,
@@ -87,7 +89,7 @@ export default class DatetimeCalendar extends Component {
     timeFormatter: PropTypes.func,
 
     /** Current value as a Date object or a string that can be parsed into one. */
-    value: customPropTypes.DateValue,
+    value: customPropTypes.date,
   }
 
   static defaultProps = {
@@ -169,10 +171,13 @@ export default class DatetimeCalendar extends Component {
   }
 
   render() {
+    const rest = getUnhandledProps(DatetimeCalendar, this.props)
+    const ElementType = getElementType(DatetimeCalendar, this.props)
+
     return (
-      <div style={style}>
+      <ElementType {...rest} style={style}>
         {this.renderBody()}
-      </div>
+      </ElementType>
     )
   }
 }

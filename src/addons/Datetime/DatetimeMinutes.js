@@ -5,6 +5,8 @@ import React, { Component } from 'react'
 import {
   customPropTypes,
   dateUtils,
+  getElementType,
+  getUnhandledProps,
   META,
 } from '../../lib'
 
@@ -39,7 +41,7 @@ export default class DatetimeMinutes extends Component {
     onChange: PropTypes.func,
 
     /** Current value as a Date object. */
-    value: customPropTypes.DateValue,
+    value: customPropTypes.date,
   }
 
   static _meta = {
@@ -82,8 +84,12 @@ export default class DatetimeMinutes extends Component {
   }
 
   render() {
+    const rest = getUnhandledProps(DatetimeMinutes, this.props)
+    const ElementType = getElementType(DatetimeMinutes, this.props)
+
     return (
-      <DatetimeGrid
+      <ElementType
+        {...rest}
         headers={['Minute']}
         columns={3}
         cells={this.getCells()}

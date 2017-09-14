@@ -5,6 +5,8 @@ import React, { Component } from 'react'
 import {
   customPropTypes,
   dateUtils,
+  getElementType,
+  getUnhandledProps,
   META,
 } from '../../lib'
 
@@ -25,7 +27,11 @@ export default class DatetimeMonths extends Component {
     onChange: PropTypes.func,
 
     /** Current value as a Date object. */
-    value: customPropTypes.DateValue,
+    value: customPropTypes.date,
+  }
+
+  static defaultProps = {
+    as: DatetimeGrid,
   }
 
   static _meta = {
@@ -47,8 +53,12 @@ export default class DatetimeMonths extends Component {
   }
 
   render() {
+    const rest = getUnhandledProps(DatetimeMonths, this.props)
+    const ElementType = getElementType(DatetimeMonths, this.props)
+
     return (
-      <DatetimeGrid
+      <ElementType
+        {...rest}
         columns={3}
         cells={this.getCells()}
       />

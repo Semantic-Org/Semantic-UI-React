@@ -325,18 +325,52 @@ export const deprecate = (help, validator) => (props, propName, componentName, .
   return error
 }
 
-export const DateValue = (props, propName, componentName) => {
-  if (props[propName]) {
-    const value = props[propName]
-    if (typeof value === 'string') {
-      return new Date(value) !== 'Invalid Date' && !isNaN(new Date(value)) ? null :
-        new Error(propName + ' in ' + componentName + ' cannot be parsed as a date')
-    } else if (typeof value === 'object') {
-      return value.getDate !== undefined ? null :
-        new Error(propName + ' in ' + componentName + ' is not a Date or a string parsable date')
+export const date = (props, propName, componentName) => {
+  const propValue = props[propName]
+  if (!propValue) return
+
+  const newDate = new Date(propValue)
+  const doesParse = newDate !== 'Invalid Date' && !isNaN(newDate)
+
+  const type = typeof propValue
+
+  if (type === 'string') {
+    if (doesParse) return
+
+    return new Error([
+      `Invalid date string \`${propValue}\`, it cannot be parsed as a date.`,
+      `See \`${propName}\` prop in \`${componentName}\`.`,
+    ].join(' '))
+  }
+
+  if (type === 'object') {
+    const matchesInterface = _.every(_.isFunction, [
+      propValue.getFullYear,
+      propValue.getMonth,
+      propValue.setYear,
+      propValue.setDate,
+      propValue.setHours,
+      propValue.setMinutes,
+    ])
+
+    if (!matchesInterface) {
+      return new Error([
+        'Invalid date object interface, it does not adhere to the native Date interface.',
+        `See \`${propName}\` prop in \`${componentName}\`.`,
+      ].join(' '))
+    }
+
+    if (!doesParse) {
+      return new Error([
+        'Invalid date object, it cannot be parsed as a native Date.',
+        `See \`${propName}\` prop in \`${componentName}\`.`,
+      ].join(' '))
     }
   }
 
-  // assume all ok
-  return null
+  return new Error([
+    `Invalid date type \`${type}\` of value \`${propValue}\`, expected a string or object.`,
+    `See \`${propName}\` prop in \`${componentName}\`.`,
+  ].join(' '))
 }
+

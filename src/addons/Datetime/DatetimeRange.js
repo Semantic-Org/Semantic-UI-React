@@ -41,7 +41,7 @@ export default class DatetimeRange extends Component {
     disabled: PropTypes.bool,
 
     /** An array of dates that should be marked disabled in the calendar. */
-    disabledDates: PropTypes.arrayOf(customPropTypes.DateValue),
+    disabledDates: PropTypes.arrayOf(customPropTypes.date),
 
     /** initial value for left and right months */
     defaultMonths: PropTypes.arrayOf(PropTypes.number),
@@ -50,16 +50,16 @@ export default class DatetimeRange extends Component {
     defaultOpen: PropTypes.bool,
 
     /** Initial value as an array of Date object or a string that can be parsed into one. */
-    defaultValue: PropTypes.arrayOf(customPropTypes.DateValue),
+    defaultValue: PropTypes.arrayOf(customPropTypes.date),
 
     /** Default value for rangeFocus. */
     defaultRangeFocus: PropTypes.number,
 
     /** The initial value for selectionEnd. */
-    defaultSelectionEnd: customPropTypes.DateValue,
+    defaultSelectionEnd: customPropTypes.date,
 
     /** The initial value for selectionStart. */
-    defaultSelectionStart: customPropTypes.DateValue,
+    defaultSelectionStart: customPropTypes.date,
 
     /** An errored dropdown can alert a user to a problem. */
     error: PropTypes.bool,
@@ -74,10 +74,10 @@ export default class DatetimeRange extends Component {
     ]),
 
     /** Do not allow dates after maxDate. */
-    maxDate: customPropTypes.DateValue,
+    maxDate: customPropTypes.date,
 
     /** Do not allow dates before minDate. */
-    minDate: customPropTypes.DateValue,
+    minDate: customPropTypes.date,
 
     /** 2 element array of left and right months */
     months: PropTypes.arrayOf(PropTypes.number),
@@ -111,10 +111,10 @@ export default class DatetimeRange extends Component {
     rangeFocus: PropTypes.number,
 
     /** Dates until or at selectionEnd are marked as selected. */
-    selectionEnd: customPropTypes.DateValue,
+    selectionEnd: customPropTypes.date,
 
     /** Dates at or after selectionStart are marked as selected. */
-    selectionStart: customPropTypes.DateValue,
+    selectionStart: customPropTypes.date,
 
     /** Enables time selection. */
     time: PropTypes.bool,
@@ -142,7 +142,7 @@ export default class DatetimeRange extends Component {
     hourFormatter: PropTypes.func,
 
     /** Current value as an array of Date object or a string that can be parsed into one. */
-    value: PropTypes.arrayOf(customPropTypes.DateValue),
+    value: PropTypes.arrayOf(customPropTypes.date),
     /**
      * Default mode the calendar starts at
      * @type {[type]}

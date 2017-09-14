@@ -4,6 +4,8 @@ import React, { Component } from 'react'
 
 import {
   customPropTypes,
+  getElementType,
+  getUnhandledProps,
   META,
 } from '../../lib'
 
@@ -14,6 +16,9 @@ import DatetimeGrid from './DatetimeGrid'
  */
 export default class DatetimeYears extends Component {
   static propTypes = {
+    /** An element type to render as (string or function). */
+    as: customPropTypes.as,
+
     /**
      * Called when the user changes the value.
      *
@@ -24,7 +29,11 @@ export default class DatetimeYears extends Component {
     onChange: PropTypes.func,
 
     /** Current value as a Date object. */
-    value: customPropTypes.DateValue,
+    value: customPropTypes.date,
+  }
+
+  static defaultProps = {
+    as: DatetimeGrid,
   }
 
   static _meta = {
@@ -54,8 +63,12 @@ export default class DatetimeYears extends Component {
   }
 
   render() {
+    const rest = getUnhandledProps(DatetimeYears, this.props)
+    const ElementType = getElementType(DatetimeYears, this.props)
+
     return (
-      <DatetimeGrid
+      <ElementType
+        {...rest}
         columns={3}
         cells={this.getCells()}
       />
