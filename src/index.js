@@ -120,6 +120,11 @@ export { default as DropdownMenu } from './modules/Dropdown/DropdownMenu'
 export { default as DropdownSearchInput } from './modules/Dropdown/DropdownSearchInput'
 
 export { default as Datetime } from './addons/Datetime'
+export { default as DatetimeYears } from './addons/Datetime/DatetimeYears'
+export { default as DatetimeMonths } from './addons/Datetime/DatetimeMonths'
+export { default as DatetimeDays } from './addons/Datetime/DatetimeDays'
+export { default as DatetimeHours } from './addons/Datetime/DatetimeHours'
+export { default as DatetimeMinutes } from './addons/Datetime/DatetimeMinutes'
 
 export { default as Embed } from './modules/Embed'
 

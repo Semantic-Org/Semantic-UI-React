@@ -15,7 +15,11 @@ import Popup from '../../modules/Popup'
 
 import DatetimeCalendar from './DatetimeCalendar'
 import DatetimeMenu from './DatetimeMenu'
-import DatetimeRange from './DatetimeRange'
+import DatetimeYears from './DatetimeYears'
+import DatetimeMonths from './DatetimeMonths'
+import DatetimeDays from './DatetimeDays'
+import DatetimeHours from './DatetimeHours'
+import DatetimeMinutes from './DatetimeMinutes'
 
 const debug = makeDebugger('datetime')
 
@@ -36,7 +40,11 @@ export default class Datetime extends Component {
     type: META.TYPES.ADDON,
   }
 
-  static Range = DatetimeRange
+  static Years = DatetimeYears
+  static Months = DatetimeMonths
+  static Days = DatetimeDays
+  static Hours = DatetimeHours
+  static Minutes = DatetimeMinutes
 
   static propTypes = {
     /** An element type to render as (string or function). */
