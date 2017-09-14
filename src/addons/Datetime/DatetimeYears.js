@@ -12,7 +12,7 @@ import DatetimeGrid from './DatetimeGrid'
 /**
  * A day cell within a calendar month
  */
-export default class Years extends Component {
+export default class DatetimeYears extends Component {
   static propTypes = {
     /**
      * Called when the user changes the value.
@@ -28,9 +28,9 @@ export default class Years extends Component {
   }
 
   static _meta = {
-    name: 'Years',
+    name: 'DatetimeYears',
     parent: 'Datetime',
-    type: META.TYPES.MODULE,
+    type: META.TYPES.ADDON,
   }
 
   getCells = () => {

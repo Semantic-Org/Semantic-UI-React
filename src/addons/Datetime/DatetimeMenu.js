@@ -16,7 +16,7 @@ import Menu from '../../collections/Menu'
 /**
  * The month and year menu at the top of the calendar.
  */
-export default class CalendarMenu extends Component {
+export default class DatetimeMenu extends Component {
   static propTypes = {
     /** Current day of the month */
     value: PropTypes.number,
@@ -51,9 +51,9 @@ export default class CalendarMenu extends Component {
   }
 
   static _meta = {
-    name: 'CalendarMenu',
+    name: 'DatetimeMenu',
     parent: 'Datetime',
-    type: META.TYPES.MODULE,
+    type: META.TYPES.ADDON,
   }
 
   handleChangeMode = (e, { name }) => {

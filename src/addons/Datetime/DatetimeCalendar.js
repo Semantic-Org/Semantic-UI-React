@@ -1,11 +1,11 @@
 import _ from 'lodash/fp'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
-import Days from './Days'
-import Months from './Months'
-import Years from './Years'
-import Hours from './Hours'
-import Minutes from './Minutes'
+import DatetimeDays from './DatetimeDays'
+import DatetimeMonths from './DatetimeMonths'
+import DatetimeYears from './DatetimeYears'
+import DatetimeHours from './DatetimeHours'
+import DatetimeMinutes from './DatetimeMinutes'
 
 import {
   customPropTypes,
@@ -19,15 +19,15 @@ const style = {
 }
 
 /**
- * A Calendar is used to display and select both dates and times.
+ * A DatetimeCalendar is used to display and select both dates and times.
  *
  * @see Datetime
  */
-export default class Calendar extends Component {
+export default class DatetimeCalendar extends Component {
   static _meta = {
-    name: 'Calendar',
+    name: 'DatetimeCalendar',
     parent: 'Datetime',
-    type: META.TYPES.MODULE,
+    type: META.TYPES.ADDON,
   }
 
   static propTypes = {
@@ -140,7 +140,7 @@ export default class Calendar extends Component {
 
     if (mode === 'day') {
       return (
-        <Days
+        <DatetimeDays
           firstDayOfWeek={firstDayOfWeek}
           onChange={this.handleDayChange}
           value={value}
@@ -152,19 +152,19 @@ export default class Calendar extends Component {
     }
 
     if (mode === 'month') {
-      return <Months onChange={this.handleMonthChange} value={value} />
+      return <DatetimeMonths onChange={this.handleMonthChange} value={value} />
     }
 
     if (mode === 'year') {
-      return <Years onChange={this.handleYearChange} value={value} />
+      return <DatetimeYears onChange={this.handleYearChange} value={value} />
     }
 
     if (mode === 'hour') {
-      return <Hours onChange={this.handleHourChange} formatter={hourFormatter} value={value} />
+      return <DatetimeHours onChange={this.handleHourChange} formatter={hourFormatter} value={value} />
     }
 
     if (mode === 'minute') {
-      return <Minutes onChange={this.handleMinuteChange} formatter={timeFormatter} value={value} />
+      return <DatetimeMinutes onChange={this.handleMinuteChange} formatter={timeFormatter} value={value} />
     }
   }
 

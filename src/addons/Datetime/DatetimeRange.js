@@ -14,7 +14,7 @@ import Input from '../../elements/Input'
 import Popup from '../../modules/Popup'
 import Grid from '../../collections/Grid'
 
-import Calendar from './Calendar'
+import DatetimeCalendar from './DatetimeCalendar'
 
 const debug = makeDebugger('datetime')
 
@@ -23,10 +23,11 @@ const debug = makeDebugger('datetime')
  * as handle date ranges.
  * @see Form
  */
-export default class DateRange extends Component {
+export default class DatetimeRange extends Component {
   static _meta = {
-    name: 'DateRange',
-    type: META.TYPES.MODULE,
+    name: 'DatetimeRange',
+    parent: 'Datetime',
+    type: META.TYPES.ADDON,
   }
 
   static propTypes = {
@@ -383,7 +384,7 @@ export default class DateRange extends Component {
         open={open}
         onOpen={this.handleOpen}
         onClose={this.handleClose}
-        // TODO: Calendar contents are changed on click so the Popup cannot find the clicked node within calendar.
+        // TODO: DatetimeCalendar contents are changed on click so the Popup cannot find the clicked node within calendar.
         // The Popup then considers the click to be "outside" of the calendar and closes it.
         // Enable close on document click after this is fixed.
         // The user should be able to click outside and have it close.
@@ -392,7 +393,7 @@ export default class DateRange extends Component {
       >
         <Grid columns='equal'>
           <Grid.Column>
-            <Calendar
+            <DatetimeCalendar
               rangeId={0}
               value={months[0]}
               onDateSelect={this.handleDateSelection}
@@ -411,7 +412,7 @@ export default class DateRange extends Component {
             />
           </Grid.Column>
           <Grid.Column>
-            <Calendar
+            <DatetimeCalendar
               rangeId={1}
               value={months[1]}
               onDateSelect={this.handleDateSelection}

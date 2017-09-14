@@ -13,7 +13,7 @@ import DatetimeGrid from './DatetimeGrid'
 /**
  * A day cell within a calendar month
  */
-export default class Days extends Component {
+export default class DatetimeDays extends Component {
   static propTypes = {
     /** Current value as a Date object. */
     value: customPropTypes.DateValue,
@@ -41,9 +41,9 @@ export default class Days extends Component {
   }
 
   static _meta = {
-    name: 'Month',
+    name: 'DatetimeDays',
     parent: 'Datetime',
-    type: META.TYPES.MODULE,
+    type: META.TYPES.ADDON,
   }
 
   // TODO this should be stateless and take selection bounds as props only

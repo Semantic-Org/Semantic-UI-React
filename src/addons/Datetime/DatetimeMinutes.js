@@ -13,12 +13,12 @@ import DatetimeGrid from './DatetimeGrid'
 /**
  * A day cell within a calendar month
  */
-export default class Minutes extends Component {
+export default class DatetimeMinutes extends Component {
   static propTypes = {
     /** Current hour. */
     hour: PropTypes.number,
 
-    /** Minutes interval between each item. */
+    /** DatetimeMinutes interval between each item. */
     interval: PropTypes.number,
 
     /**
@@ -43,9 +43,9 @@ export default class Minutes extends Component {
   }
 
   static _meta = {
-    name: 'Minutes',
+    name: 'DatetimeMinutes',
     parent: 'Datetime',
-    type: META.TYPES.MODULE,
+    type: META.TYPES.ADDON,
   }
 
   static defaultProps = {

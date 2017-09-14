@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 
 import Table from '../../collections/Table'
+import { META } from '../../lib'
 
 const pointingStyle = { cursor: 'pointer' }
 // TODO if we allow configuring the table, we should not override the border style
@@ -43,6 +44,12 @@ const DatetimeGrid = (props) => {
       </Table.Body>
     </Table>
   )
+}
+
+DatetimeGrid._meta = {
+  name: 'DatetimeGrid',
+  parent: 'Datetime',
+  type: META.TYPES.MODULE,
 }
 
 DatetimeGrid.propTypes = {

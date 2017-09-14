@@ -13,9 +13,9 @@ import {
 import Input from '../../elements/Input/Input'
 import Popup from '../../modules/Popup'
 
-import Calendar from './Calendar'
-import CalendarMenu from './CalendarMenu'
-import DateRange from './DateRange'
+import DatetimeCalendar from './DatetimeCalendar'
+import DatetimeMenu from './DatetimeMenu'
+import DatetimeRange from './DatetimeRange'
 
 const debug = makeDebugger('datetime')
 
@@ -36,7 +36,7 @@ export default class Datetime extends Component {
     type: META.TYPES.ADDON,
   }
 
-  static Range = DateRange
+  static Range = DatetimeRange
 
   static propTypes = {
     /** An element type to render as (string or function). */
@@ -310,7 +310,7 @@ export default class Datetime extends Component {
       <Popup
         closeOnDocumentClick
         // TODO: Fix close on trigger blur, it closes when clicking inside the calendar.
-        // Calendar contents are changed on click, so Popup cannot find the clicked node within calendar.
+        // DatetimeCalendar contents are changed on click, so Popup cannot find the clicked node within calendar.
         // If the clicked node is not within the Portal, it is considered a "blur" and closes.
         // Enable close on trigger blur after this is fixed.
         // Portal should be able to identify clicks within the portal even with no e.target, perhaps using x y coords.
@@ -338,14 +338,14 @@ export default class Datetime extends Component {
           />
         )}
       >
-        <CalendarMenu
+        <DatetimeMenu
           mode={mode}
           onChangeMode={this.handleChangeMode}
           onNextPage={this.handleNextPage}
           onPreviousPage={this.handlePreviousPage}
           value={value}
         />
-        <Calendar
+        <DatetimeCalendar
           date={date}
           dateFormatter={dateFormatter}
           disabledDates={disabledDates}

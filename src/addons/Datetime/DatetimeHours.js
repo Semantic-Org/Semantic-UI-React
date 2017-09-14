@@ -13,7 +13,7 @@ import DatetimeGrid from './DatetimeGrid'
 /**
  * A day cell within a calendar month
  */
-export default class Hours extends Component {
+export default class DatetimeHours extends Component {
   static propTypes = {
     /**
      * Formats a Date object as an hour string.
@@ -37,9 +37,9 @@ export default class Hours extends Component {
   }
 
   static _meta = {
-    name: 'Hours',
+    name: 'DatetimeHours',
     parent: 'Datetime',
-    type: META.TYPES.MODULE,
+    type: META.TYPES.ADDON,
   }
 
   static defaultProps = {
