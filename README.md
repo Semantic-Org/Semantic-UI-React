@@ -21,8 +21,8 @@
   <a href="https://codecov.io/gh/Semantic-Org/Semantic-UI-React">
     <img alt="Codecov" src="https://img.shields.io/codecov/c/github/Semantic-Org/Semantic-UI-React/master.svg?style=flat-square" />
   </a>
-  <a href="https://gemnasium.com/Semantic-Org/Semantic-UI-React">
-    <img alt="Gemnasium" src="https://img.shields.io/gemnasium/Semantic-Org/Semantic-UI-React.svg?style=flat-square" />
+  <a href="https://david-dm.org/Semantic-Org/Semantic-UI-React">
+    <img alt="David" src="https://img.shields.io/david/Semantic-Org/Semantic-UI-React.svg?style=flat-square" />
   </a>
   <a href="https://www.npmjs.com/package/semantic-ui-react">
     <img alt="npm" src="https://img.shields.io/npm/v/semantic-ui-react.svg?style=flat-square" />
