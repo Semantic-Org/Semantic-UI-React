@@ -6,6 +6,9 @@ export interface StickyProps {
   /** An element type to render as (string or function). */
   as?: any;
 
+  /** A Sticky can be active. */
+  active?: boolean;
+
   /** Offset in pixels from the bottom of the screen when fixing element to viewport. */
   bottomOffset?: number;
 
