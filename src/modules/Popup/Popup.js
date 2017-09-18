@@ -306,6 +306,7 @@ export default class Popup extends Component {
 
   handlePortalUnmount = (e) => {
     debug('handlePortalUnmount()')
+    window.removeEventListener('scroll', this.hideOnScroll)
     const { onUnmount } = this.props
     if (onUnmount) onUnmount(e, this.props)
   }
