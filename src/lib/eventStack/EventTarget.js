@@ -1,9 +1,12 @@
 import _ from 'lodash'
-import isBrowser from './isBrowser'
 
-class EventStack {
+export default class EventTarget {
   _handlers = {}
   _pools = {}
+
+  constructor(target) {
+    this.target = target
+  }
 
   // ------------------------------------
   // Utils
@@ -32,7 +35,7 @@ class EventStack {
     if (_.has(this._handlers, name)) return
     const handler = this._emit(name)
 
-    document.addEventListener(name, handler)
+    this.target.addEventListener(name, handler)
     this._handlers[name] = handler
   }
 
@@ -40,7 +43,7 @@ class EventStack {
     if (_.some(this._pools, name)) return
     const { [name]: handler } = this._handlers
 
-    document.removeEventListener(name, handler)
+    this.target.removeEventListener(name, handler)
     delete this._handlers[name]
   }
 
@@ -48,9 +51,9 @@ class EventStack {
   // Pub/sub
   // ------------------------------------
 
-  sub = (name, handlers, pool = 'default') => {
-    if (!isBrowser) return
+  empty = () => _.isEmpty(this._handlers)
 
+  sub = (name, handlers, pool = 'default') => {
     const events = _.uniq([
       ..._.get(this._pools, `${pool}.${name}`, []),
       ...this._normalize(handlers),
@@ -61,8 +64,6 @@ class EventStack {
   }
 
   unsub = (name, handlers, pool = 'default') => {
-    if (!isBrowser) return
-
     const events = _.without(
       _.get(this._pools, `${pool}.${name}`, []),
       ...this._normalize(handlers),
@@ -77,7 +78,3 @@ class EventStack {
     this._unlisten(name)
   }
 }
-
-const instance = new EventStack()
-
-export default instance
