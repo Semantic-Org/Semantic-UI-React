@@ -193,15 +193,17 @@ export default class Visibility extends Component {
 
     const { context, fireOnMount } = this.props
 
-    context.addEventListener('scroll', this.handleScroll)
-    if (fireOnMount) this.handleUpdate()
+    context.addEventListener('resize', this.handleUpdate)
+    context.addEventListener('scroll', this.handleUpdate)
+    if (fireOnMount) this.update()
   }
 
   componentWillUnmount() {
     if (!isBrowser) return
 
     const { context } = this.props
-    context.removeEventListener('scroll', this.handleScroll)
+    context.removeEventListener('resize', this.handleUpdate)
+    context.removeEventListener('scroll', this.handleUpdate)
   }
 
   execute = (callback, name) => {
@@ -292,16 +294,16 @@ export default class Visibility extends Component {
     })
   }
 
-  handleScroll = () => {
+  handleUpdate = () => {
     if (this.ticking) return
 
     this.ticking = true
-    requestAnimationFrame(this.handleUpdate)
+    requestAnimationFrame(this.update)
   }
 
   handleRef = c => (this.ref = c)
 
-  handleUpdate = () => {
+  update = () => {
     this.ticking = false
 
     const { offset } = this.props

@@ -127,12 +127,14 @@ export default class Sticky extends Component {
   addListener = () => {
     const { scrollContext } = this.props
 
+    scrollContext.addEventListener('resize', this.handleUpdate)
     scrollContext.addEventListener('scroll', this.handleUpdate)
   }
 
   removeListener = () => {
     const { scrollContext } = this.props
 
+    scrollContext.removeEventListener('resize', this.handleUpdate)
     scrollContext.removeEventListener('scroll', this.handleUpdate)
   }
 

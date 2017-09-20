@@ -3,7 +3,7 @@ import React from 'react'
 
 import Visibility from 'src/behaviors/Visibility'
 import * as common from 'test/specs/commonTests'
-import { sandbox } from 'test/utils'
+import { domEvent, sandbox } from 'test/utils'
 
 let wrapper
 
@@ -299,6 +299,14 @@ describe('Visibility', () => {
       mockScroll(0, 0)
 
       onUpdate.should.have.been.calledTwice()
+    })
+
+    it('fires when window resized', () => {
+      const onUpdate = sandbox.spy()
+      wrapperMount(<Visibility onUpdate={onUpdate} />)
+
+      domEvent.resize(window)
+      onUpdate.should.have.been.calledOnce()
     })
 
     it('passes calculations to onUpdate', () => {
