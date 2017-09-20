@@ -193,6 +193,7 @@ export default class Visibility extends Component {
 
     const { context, fireOnMount } = this.props
 
+    this.pageYOffset = window.pageYOffset
     context.addEventListener('scroll', this.handleScroll)
     if (fireOnMount) this.handleUpdate()
   }
@@ -308,6 +309,7 @@ export default class Visibility extends Component {
     const { bottom, height, top, width } = this.ref.getBoundingClientRect()
     const [topOffset, bottomOffset] = normalizeOffset(offset)
 
+    const direction = window.pageYOffset > this.pageYOffset ? 'down' : 'up'
     const topPassed = top < topOffset
     const bottomPassed = bottom < bottomOffset
 
@@ -327,6 +329,7 @@ export default class Visibility extends Component {
     this.calculations = {
       bottomPassed,
       bottomVisible,
+      direction,
       fits,
       height,
       passing,
@@ -338,6 +341,7 @@ export default class Visibility extends Component {
       topVisible,
       width,
     }
+    this.pageYOffset = window.pageYOffset
 
     this.fireCallbacks()
   }
