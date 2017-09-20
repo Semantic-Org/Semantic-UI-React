@@ -5,8 +5,8 @@
  * @return {HTMLElement|Window} A DOM node.
  */
 const normalizeTarget = (target) => {
-  if(target === 'document') return document
-  if(target === 'window') return window
+  if (target === 'document') return document
+  if (target === 'window') return window
   return target || document
 }
 

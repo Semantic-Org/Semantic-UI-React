@@ -12,11 +12,11 @@ class EventStack {
   // Target utils
   // ------------------------------------
 
-  _find = target => {
+  _find = (target) => {
     const normalized = normalizeTarget(target)
     let index = this._targets.indexOf(normalized)
 
-    if(index !== -1) return this._eventTargets[index]
+    if (index !== -1) return this._eventTargets[index]
 
     index = this._targets.push(normalized) - 1
     this._eventTargets[index] = new EventTarget(normalized)
@@ -52,7 +52,7 @@ class EventStack {
     const eventTarget = this._find(target)
 
     eventTarget.unsub(name, handlers, pool)
-    if(eventTarget.empty()) this._remove(target)
+    if (eventTarget.empty()) this._remove(target)
   }
 }
 
