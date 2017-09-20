@@ -28,6 +28,9 @@ export interface CardContentProps {
 
   /** Shorthand for CardMeta. */
   meta?: SemanticShorthandItem<CardMetaProps>;
+
+  /** A card content can adjust its text alignment. */
+  textAlign?: 'center' | 'left' | 'right';
 }
 
 declare const CardContent: React.StatelessComponent<CardContentProps>;

@@ -2,6 +2,7 @@ import React from 'react'
 
 import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
 import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
+import ShorthandExample from 'docs/app/Components/ComponentDoc/ShorthandExample'
 
 const States = () => (
   <ExampleSection title='States'>
@@ -20,11 +21,7 @@ const States = () => (
       description='A cell or row may warn a user.'
       examplePath='collections/Table/States/TableExampleWarning'
     />
-    <ComponentExample
-      title='Warning Shorthand'
-      description='Same as warning example but configured via shorthand.'
-      examplePath='collections/Table/States/TableExampleWarningShorthand'
-    />
+    <ShorthandExample examplePath='collections/Table/States/TableExampleWarningShorthand' />
     <ComponentExample
       title='Active'
       description='A cell or row can be active or selected by a user.'

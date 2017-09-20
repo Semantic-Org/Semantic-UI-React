@@ -1,9 +1,14 @@
 // Addons
+export {
+  default as Responsive,
+  ResponsiveProps,
+  ResponsiveWidthShorthand
+} from './dist/commonjs/addons/Responsive';
 export { default as Confirm, ConfirmProps } from './dist/commonjs/addons/Confirm';
 export { default as Portal, PortalProps } from './dist/commonjs/addons/Portal';
 export { default as Radio, RadioProps } from './dist/commonjs/addons/Radio';
 export { default as Select, SelectProps } from './dist/commonjs/addons/Select';
-export { default as TextArea, TextAreaProps, TextAreaOnChangeData } from './dist/commonjs/addons/TextArea';
+export { default as TextArea, TextAreaProps } from './dist/commonjs/addons/TextArea';
 
 // Behaviors
 export {

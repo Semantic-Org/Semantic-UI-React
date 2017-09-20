@@ -1,6 +1,8 @@
 import React from 'react'
+
 import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
 import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
+import ShorthandExample from 'docs/app/Components/ComponentDoc/ShorthandExample'
 
 const TabUsageExamples = () => (
   <ExampleSection title='Usage'>
@@ -19,7 +21,7 @@ const TabUsageExamples = () => (
       description='You can capture the tab change event.'
       examplePath='modules/Tab/Usage/TabExampleOnTabChange'
     />
-    <ComponentExample
+    <ShorthandExample
       title='Custom Menu Items'
       description='You can pass any shorthand value as a menu item.'
       examplePath='modules/Tab/Usage/TabExampleCustomMenuItem'

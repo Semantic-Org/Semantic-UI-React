@@ -217,7 +217,6 @@ export default class Search extends Component {
   componentWillReceiveProps(nextProps) {
     super.componentWillReceiveProps(nextProps)
     debug('componentWillReceiveProps()')
-    // TODO objectDiff still runs in prod, stop it
     debug('changed props:', objectDiff(nextProps, this.props))
 
     if (!_.isEqual(nextProps.value, this.props.value)) {
@@ -228,7 +227,6 @@ export default class Search extends Component {
 
   componentDidUpdate(prevProps, prevState) { // eslint-disable-line complexity
     debug('componentDidUpdate()')
-    // TODO objectDiff still runs in prod, stop it
     debug('to state:', objectDiff(prevState, this.state))
 
     // focused / blurred

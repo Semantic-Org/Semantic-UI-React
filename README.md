@@ -15,14 +15,14 @@
   <a href="https://gitter.im/Semantic-Org/Semantic-UI-React">
     <img alt="Gitter" src="https://img.shields.io/badge/gitter-join_chat-1dce73.svg?logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB4PSIwIiB5PSI1IiBmaWxsPSIjZmZmIiB3aWR0aD0iMSIgaGVpZ2h0PSI1Ii8%2BPHJlY3QgeD0iMiIgeT0iNiIgZmlsbD0iI2ZmZiIgd2lkdGg9IjEiIGhlaWdodD0iNyIvPjxyZWN0IHg9IjQiIHk9IjYiIGZpbGw9IiNmZmYiIHdpZHRoPSIxIiBoZWlnaHQ9IjciLz48cmVjdCB4PSI2IiB5PSI2IiBmaWxsPSIjZmZmIiB3aWR0aD0iMSIgaGVpZ2h0PSI0Ii8%2BPC9zdmc%2B&logoWidth=8&style=flat-square&maxAge=2592000" />
   </a>
-  <a href="ttps://circleci.com/gh/Semantic-Org/Semantic-UI-React/tree/master">
+  <a href="https://circleci.com/gh/Semantic-Org/Semantic-UI-React/tree/master">
     <img alt="Circle" src="https://img.shields.io/circleci/project/Semantic-Org/Semantic-UI-React/master.svg?style=flat-square" />
   </a>
   <a href="https://codecov.io/gh/Semantic-Org/Semantic-UI-React">
     <img alt="Codecov" src="https://img.shields.io/codecov/c/github/Semantic-Org/Semantic-UI-React/master.svg?style=flat-square" />
   </a>
-  <a href="https://gemnasium.com/Semantic-Org/Semantic-UI-React">
-    <img alt="Gemnasium" src="https://img.shields.io/gemnasium/Semantic-Org/Semantic-UI-React.svg?style=flat-square" />
+  <a href="https://david-dm.org/Semantic-Org/Semantic-UI-React">
+    <img alt="David" src="https://img.shields.io/david/Semantic-Org/Semantic-UI-React.svg?style=flat-square" />
   </a>
   <a href="https://www.npmjs.com/package/semantic-ui-react">
     <img alt="npm" src="https://img.shields.io/npm/v/semantic-ui-react.svg?style=flat-square" />
@@ -81,6 +81,9 @@ These great products are built on Semantic UI React. Add yours [here][22].
 - https://www.stackforge.co
 - https://sublimefund.org
 - https://thefaithcircle.com
+- https://appfollow.io
+- http://according.to.localsourc.es
+
 
 ## Voice Your Opinion
 
@@ -101,18 +104,6 @@ We're seeking component parity with Semantic UI, plus some addons.  There is an 
 ### [Help Wanted Label][4]
 
 Any other issue labeled [`help wanted`][4] is ready for a PR.
-
-## Debugger
-
-We use the [debug](https://www.npmjs.com/package/debug) module for debugging.  You can turn debugging on and off via the `localStorage.debug` flag from the browser console.  See the [debug docs](https://www.npmjs.com/package/debug) for more.
-
-```js
-localStorage.debug = 'semanticUIReact:*'         // default, debug all components
-localStorage.debug = 'semanticUIReact:dropdown'  // debug only the dropdown
-localStorage.debug = null                        // turn debug off
-```
-
-Once you change the flag, you need to refresh your browser to see the changes in debug output.
 
 ## Support
 

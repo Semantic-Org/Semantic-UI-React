@@ -11,6 +11,7 @@ import {
   META,
   SUI,
   useKeyOnly,
+  useTextAlignProp,
   useWidthProp,
 } from '../../lib'
 import Card from './Card'
@@ -26,14 +27,17 @@ function CardGroup(props) {
     items,
     itemsPerRow,
     stackable,
+    textAlign,
   } = props
 
-  const classes = cx('ui',
+  const classes = cx(
+    'ui',
     useKeyOnly(doubling, 'doubling'),
     useKeyOnly(stackable, 'stackable'),
+    useTextAlignProp(textAlign),
     useWidthProp(itemsPerRow),
-    className,
     'cards',
+    className,
   )
   const rest = getUnhandledProps(CardGroup, props)
   const ElementType = getElementType(CardGroup, props)
@@ -77,6 +81,9 @@ CardGroup.propTypes = {
 
   /** A group of cards can automatically stack rows to a single columns on mobile devices. */
   stackable: PropTypes.bool,
+
+  /** A card group can adjust its text alignment. */
+  textAlign: PropTypes.oneOf(_.without(SUI.TEXT_ALIGNMENTS, 'justified')),
 }
 
 export default CardGroup

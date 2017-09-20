@@ -22,9 +22,12 @@ const parseEnum = (type) => {
 
 const parseUnion = (union) => {
   const { value } = union
-  const transformed = value.map(type => (type.name === 'enum' ? parseEnum(type) : type))
 
-  return { ...union, value: transformed }
+  return {
+    ...union,
+    name: _.map(value, 'name').join('|'),
+    value: _.map(value, type => (type.name === 'enum' ? parseEnum(type) : type)),
+  }
 }
 
 const parsers = {
