@@ -15,6 +15,9 @@ export interface PortalProps {
   /** Controls whether or not the portal should close when escape is pressed is displayed. */
   closeOnEscape?: boolean;
 
+  /** Controls whether or not the portal should close when clicked within the bounding box. */
+  closeOnPortalClick?: boolean;
+
   /**
    * Controls whether or not the portal should close when mousing out of the portal.
    * NOTE: This will prevent `closeOnTriggerMouseLeave` when mousing over the

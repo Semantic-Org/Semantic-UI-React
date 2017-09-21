@@ -154,6 +154,22 @@ describe('Popup', () => {
     })
   })
 
+  describe('closeOnClickInside', () => {
+    it('should close on clicking internal DOM', () => {
+      wrapperMount(
+        <Popup hoverable defaultOpen closeOnClickInside>
+          <button id='click-me' />
+        </Popup>,
+      )
+      assertInBody('.ui.popup.visible')
+      const popupRoot = document.getElementsByClassName('visible')[0]
+      assertIn(popupRoot, '#click-me')
+      const child = document.getElementById('click-me')
+      domEvent.click(child)
+      assertInBody('.ui.popup.visible', false)
+    })
+  })
+
   describe('hide on scroll', () => {
     it('hides on window scroll', () => {
       const trigger = <button>foo</button>

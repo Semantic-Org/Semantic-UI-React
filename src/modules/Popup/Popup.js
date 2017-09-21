@@ -46,6 +46,9 @@ export default class Popup extends Component {
     /** Additional classes. */
     className: PropTypes.string,
 
+    /** Closes the Popup when clicked inside. */
+    closeOnClickInside: PropTypes.bool,
+
     /** Simple text content for the popover. */
     content: customPropTypes.itemShorthand,
 
@@ -247,7 +250,7 @@ export default class Popup extends Component {
   getPortalProps() {
     const portalProps = {}
 
-    const { on, hoverable } = this.props
+    const { closeOnClickInside, hoverable, on } = this.props
     const normalizedOn = _.isArray(on) ? on : [on]
 
     if (hoverable) {
@@ -270,6 +273,7 @@ export default class Popup extends Component {
       portalProps.mouseLeaveDelay = 70
       portalProps.mouseEnterDelay = 50
     }
+    if (closeOnClickInside) portalProps.closeOnPortalClick = true
 
     return portalProps
   }
