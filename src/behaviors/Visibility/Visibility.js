@@ -181,7 +181,7 @@ export default class Visibility extends Component {
     topVisible: false,
   }
 
-  occurredCallbacks = []
+  firedCallbacks = []
 
   // ----------------------------------------
   // Lifecycle
@@ -191,7 +191,7 @@ export default class Visibility extends Component {
     const cleanHappened = continuous !== this.props.continuous || once !== this.props.once
 
     // Heads up! We should clean up array of happened callbacks, if values of these props are changed
-    if (cleanHappened) this.occurredCallbacks = []
+    if (cleanHappened) this.firedCallbacks = []
   }
 
   componentDidMount() {
@@ -219,10 +219,10 @@ export default class Visibility extends Component {
     if (!callback) return
 
     // Heads up! When `continuous` is true, callback will be fired always
-    if (!continuous && _.includes(this.occurredCallbacks, name)) return
+    if (!continuous && _.includes(this.firedCallbacks, name)) return
 
     callback(null, { ...this.props, calculations: this.calculations })
-    this.occurredCallbacks.push(name)
+    this.firedCallbacks.push(name)
   }
 
   fire = ({ callback, name }, value, reverse = false) => {
@@ -237,7 +237,7 @@ export default class Visibility extends Component {
     if (matchesDirection && executionPossible) this.execute(callback, name)
 
     // Heads up! We should remove callback from the happened when it's not `once`
-    if (!once) this.occurredCallbacks = _.without(this.occurredCallbacks, name)
+    if (!once) this.firedCallbacks = _.without(this.firedCallbacks, name)
   }
 
   fireOnPassed() {
