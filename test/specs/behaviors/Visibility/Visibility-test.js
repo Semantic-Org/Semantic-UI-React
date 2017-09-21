@@ -3,7 +3,7 @@ import React from 'react'
 
 import Visibility from 'src/behaviors/Visibility'
 import * as common from 'test/specs/commonTests'
-import { sandbox } from 'test/utils'
+import { domEvent, sandbox } from 'test/utils'
 
 let wrapper
 
@@ -26,38 +26,43 @@ const mockScroll = (top, bottom) => {
     }
   }
 
-  window.dispatchEvent(new Event('scroll'))
+  domEvent.scroll(window)
 }
 
 const expectations = [{
   name: 'topPassed',
-  callback: 'onTopPassed',
-  true: [[-1, 100], [-100, -1]],
-  false: [[0, 100], [window.innerHeight + 100, window.innerHeight + 300]],
+  callbackName: 'onTopPassed',
+  reversible: true,
+  truthy: [[-1, 100], [-100, -1]],
+  falsy: [[0, 100], [window.innerHeight + 100, window.innerHeight + 300]],
 }, {
   name: 'bottomPassed',
-  callback: 'onBottomPassed',
-  true: [[-100, -1], [-100, -10]],
-  false: [[-10, 0], [-100, window.innerHeight]],
+  callbackName: 'onBottomPassed',
+  reversible: true,
+  truthy: [[-100, -1], [-100, -10]],
+  falsy: [[-10, 0], [-100, window.innerHeight]],
 }, {
   name: 'topVisible',
-  callback: 'onTopVisible',
-  true: [[0, 100], [window.innerHeight, window.innerHeight]],
-  false: [[-1, 100], [window.innerHeight + 1, window.innerHeight + 2]],
+  callbackName: 'onTopVisible',
+  reversible: true,
+  truthy: [[0, 100], [window.innerHeight, window.innerHeight]],
+  falsy: [[-1, 100], [window.innerHeight + 1, window.innerHeight + 2]],
 }, {
   name: 'bottomVisible',
-  callback: 'onBottomVisible',
-  true: [[-100, 0], [-100, window.innerHeight]],
-  false: [[-100, -1], [0, window.innerHeight + 1]],
+  callbackName: 'onBottomVisible',
+  reversible: true,
+  truthy: [[-100, 0], [-100, window.innerHeight]],
+  falsy: [[-100, -1], [0, window.innerHeight + 1]],
 }, {
   name: 'passing',
-  callback: 'onPassing',
-  true: [
+  callbackName: 'onPassing',
+  reversible: true,
+  truthy: [
     [-1, window.innerHeight + 1],
     [-1, window.innerHeight - 1],
     [-1, 0],
   ],
-  false: [
+  falsy: [
     [0, window.innerHeight],
     [1, window.innerHeight + 1],
     [1, window.innerHeight - 1],
@@ -65,19 +70,19 @@ const expectations = [{
   ],
 }, {
   name: 'onScreen',
-  callback: 'onOnScreen',
-  true: [
+  callbackName: 'onOnScreen',
+  truthy: [
     [0, window.innerHeight],
     [-1, window.innerHeight + 1],
     [-1, window.innerHeight],
     [0, window.innerHeight + 1],
   ],
-  false: [[-2, -1], [window.innerHeight + 1, window.innerHeight + 2]],
+  falsy: [[-2, -1], [window.innerHeight + 1, window.innerHeight + 2]],
 }, {
   name: 'offScreen',
-  callback: 'onOffScreen',
-  true: [[-2, -1], [window.innerHeight + 1, window.innerHeight + 2]],
-  false: [
+  callbackName: 'onOffScreen',
+  truthy: [[-2, -1], [window.innerHeight + 1, window.innerHeight + 2]],
+  falsy: [
     [0, window.innerHeight],
     [-1, window.innerHeight + 1],
     [-1, window.innerHeight],
@@ -85,8 +90,8 @@ const expectations = [{
   ],
 }, {
   name: 'fits',
-  true: [[0, window.innerHeight]],
-  false: [
+  truthy: [[0, window.innerHeight]],
+  falsy: [
     [-1, window.innerHeight + 1],
     [0, window.innerHeight + 1],
     [-1, window.innerHeight],
@@ -116,67 +121,127 @@ describe('Visibility', () => {
   })
 
   describe('calculations', () => {
-    expectations.forEach((expectation) => {
-      it(`calculates ${expectation.name}`, () => {
-        let calculations
-        const onUpdate = (e, props) => (calculations = props.calculations)
+    _.forEach(expectations, ({ falsy, name, truthy }) => {
+      it(`calculates ${name}`, () => {
+        const onUpdate = sandbox.spy()
         wrapperMount(<Visibility onUpdate={onUpdate} />)
 
-        expectation.true.forEach(([top, bottom]) => {
+        _.forEach(truthy, ([top, bottom]) => {
           mockScroll(top, bottom)
-          calculations[expectation.name].should.equal(true, [top, bottom])
+          onUpdate.should.have.been.calledWithMatch(null, {
+            calculations: {
+              [name]: true,
+            },
+          })
         })
 
-        expectation.false.forEach(([top, bottom]) => {
+        _.forEach(falsy, ([top, bottom]) => {
           mockScroll(top, bottom)
-          calculations[expectation.name].should.equal(false, [top, bottom])
+          onUpdate.should.have.been.calledWithMatch(null, {
+            calculations: {
+              [name]: false,
+            },
+          })
         })
       })
+    })
+  })
 
-      if (expectation.callback) {
-        it(`fires ${expectation.name}`, () => {
-          const callback = sandbox.spy()
-          const opts = { [expectation.callback]: callback }
-          wrapperMount(<Visibility {...opts} continuous />)
+  describe('callbacks', () => {
+    _.forEach(_.filter(expectations, 'callbackName'), ({ callbackName, falsy, truthy }) => {
+      it(`fires ${callbackName}`, () => {
+        const callback = sandbox.spy()
+        const opts = { [callbackName]: callback }
+        wrapperMount(<Visibility {...opts} continuous />)
 
-          expectation.false.forEach(([top, bottom]) => mockScroll(top, bottom))
-          callback.should.not.have.been.called()
+        _.forEach(falsy, ([top, bottom]) => mockScroll(top, bottom))
+        callback.should.not.have.been.called()
 
-          expectation.true.forEach(([top, bottom]) => mockScroll(top, bottom))
-          callback.should.have.callCount(expectation.true.length)
-        })
+        _.forEach(truthy, ([top, bottom]) => mockScroll(top, bottom))
+        callback.should.have.callCount(truthy.length)
+      })
 
-        it(`fires ${expectation.name} once`, () => {
-          const callback = sandbox.spy()
-          const falseCond = expectation.false[0]
-          const trueCond = expectation.true[0]
-          const opts = { [expectation.callback]: callback }
+      it(`fires ${callbackName} once`, () => {
+        const callback = sandbox.spy()
+        const falsyCond = _.first(falsy)
+        const truthyCond = _.first(truthy)
+        const opts = { [callbackName]: callback }
+
+        wrapperMount(<Visibility {...opts} />)
+
+        mockScroll(...truthyCond)
+        mockScroll(...falsyCond)
+        mockScroll(...truthyCond)
+        mockScroll(...falsyCond)
+        mockScroll(...truthyCond)
+
+        callback.should.have.been.calledOnce()
+      })
+
+      it(`fires ${callbackName} when condition changes`, () => {
+        const callback = sandbox.spy()
+        const falsyCond = _.first(falsy)
+        const truthyCond = _.first(truthy)
+        const opts = { [callbackName]: callback }
+        wrapperMount(<Visibility {...opts} once={false} />)
+
+        mockScroll(...truthyCond)
+        mockScroll(...falsyCond)
+        mockScroll(...truthyCond)
+        mockScroll(...truthyCond)
+
+        callback.should.have.been.calledTwice()
+      })
+    })
+
+    describe('reverse', () => {
+      _.forEach(_.filter(expectations, 'reversible'), ({ callbackName, falsy, truthy }) => {
+        it(`fires ${callbackName}Reverse once`, () => {
+          const falsyCond = _.first(falsy)
+          const truthyCond = _.first(truthy)
+
+          const forward = sandbox.spy()
+          const reverse = sandbox.spy()
+          const opts = { [callbackName]: forward, [`${callbackName}Reverse`]: reverse }
+
           wrapperMount(<Visibility {...opts} />)
 
-          mockScroll(...trueCond)
-          mockScroll(...falseCond)
-          mockScroll(...trueCond)
-          mockScroll(...falseCond)
-          mockScroll(...trueCond)
+          mockScroll(...truthyCond)
+          forward.should.have.been.calledOnce()
+          reverse.should.have.not.been.called()
 
-          callback.should.have.been.calledOnce()
+          mockScroll(...falsyCond)
+          forward.should.have.been.calledOnce()
+          reverse.should.have.been.calledOnce()
         })
 
-        it(`fires ${expectation.name} when condition changes`, () => {
-          const callback = sandbox.spy()
-          const falseCond = expectation.false[0]
-          const trueCond = expectation.true[0]
-          const opts = { [expectation.callback]: callback }
+        it(`fires ${callbackName}Reverse when condition changes`, () => {
+          const falsyCond = _.first(falsy)
+          const truthyCond = _.first(truthy)
+
+          const forward = sandbox.spy()
+          const reverse = sandbox.spy()
+          const opts = { [callbackName]: forward, [`${callbackName}Reverse`]: reverse }
+
           wrapperMount(<Visibility {...opts} once={false} />)
 
-          mockScroll(...trueCond)
-          mockScroll(...falseCond)
-          mockScroll(...trueCond)
-          mockScroll(...trueCond)
+          mockScroll(...truthyCond)
+          forward.should.have.been.calledOnce()
+          reverse.should.have.not.been.called()
 
-          callback.should.have.been.calledTwice()
+          mockScroll(...falsyCond)
+          forward.should.have.been.calledOnce()
+          reverse.should.have.been.calledOnce()
+
+          mockScroll(...truthyCond)
+          forward.should.have.been.calledTwice()
+          reverse.should.have.been.calledOnce()
+
+          mockScroll(...falsyCond)
+          forward.should.have.been.calledTwice()
+          reverse.should.have.been.calledTwice()
         })
-      }
+      })
     })
   })
 
@@ -185,19 +250,19 @@ describe('Visibility', () => {
       const onUpdate = sandbox.spy()
       mount(<Visibility onUpdate={onUpdate} />)
 
-      window.dispatchEvent(new Event('scroll'))
+      domEvent.scroll(window)
       onUpdate.should.have.been.called()
     })
 
     it('should set a scroll context', () => {
       const div = document.createElement('div')
       const onUpdate = sandbox.spy()
-      mount(<Visibility onUpdate={onUpdate} context={div} />)
+      mount(<Visibility context={div} onUpdate={onUpdate} />)
 
-      window.dispatchEvent(new Event('scroll'))
+      domEvent.scroll(window)
       onUpdate.should.not.have.been.called()
 
-      div.dispatchEvent(new Event('scroll'))
+      domEvent.scroll(div)
       onUpdate.should.have.been.called()
     })
   })
@@ -218,34 +283,34 @@ describe('Visibility', () => {
   })
 
   describe('offset', () => {
-    _.each(_.filter(expectations, 'callback'), (expectation) => {
-      it(`fires ${expectation.name} when offset is number`, () => {
+    _.forEach(_.filter(expectations, 'callbackName'), ({ callbackName, falsy, name, truthy }) => {
+      it(`fires ${name} when offset is number`, () => {
         const callback = sandbox.spy()
-        const opts = { [expectation.callback]: callback }
+        const opts = { [callbackName]: callback }
 
         const offset = 10
-        const falseCond = _.map(expectation.false[0], value => value + offset)
-        const trueCond = _.map(expectation.true[0], value => value + offset)
+        const falsyCond = _.map(_.first(falsy), value => value + offset)
+        const truthyCond = _.map(_.first(truthy), value => value + offset)
 
         wrapperMount(<Visibility {...opts} offset={offset} />)
-        mockScroll(...trueCond)
-        mockScroll(...falseCond)
+        mockScroll(...truthyCond)
+        mockScroll(...falsyCond)
 
         callback.should.have.been.calledOnce()
       })
 
-      it(`fires ${expectation.name} when offset is array`, () => {
+      it(`fires ${name} when offset is array`, () => {
         const callback = sandbox.spy()
-        const opts = { [expectation.callback]: callback }
+        const opts = { [callbackName]: callback }
 
         const bottomOffset = 20
         const topOffset = 10
-        const falseCond = [expectation.false[0][0] + topOffset, expectation.false[0][1] + bottomOffset]
-        const trueCond = [expectation.true[0][0] + topOffset, expectation.true[0][1] + bottomOffset]
+        const falsyCond = [falsy[0][0] + topOffset, falsy[0][1] + bottomOffset]
+        const truthyCond = [truthy[0][0] + topOffset, truthy[0][1] + bottomOffset]
 
         wrapperMount(<Visibility {...opts} offset={[topOffset, bottomOffset]} />)
-        mockScroll(...trueCond)
-        mockScroll(...falseCond)
+        mockScroll(...truthyCond)
+        mockScroll(...falsyCond)
 
         callback.should.have.been.calledOnce()
       })
@@ -255,14 +320,14 @@ describe('Visibility', () => {
   describe('onPassed', () => {
     it('fires callback when pixels passed', () => {
       const onPassed = {
-        20: sandbox.stub(),
-        '20%': sandbox.stub(),
-        50: sandbox.stub(),
-        '50%': sandbox.stub(),
-        100: sandbox.stub(),
-        '100%': sandbox.stub(),
+        20: sandbox.spy(),
+        '20%': sandbox.spy(),
+        50: sandbox.spy(),
+        '50%': sandbox.spy(),
+        100: sandbox.spy(),
+        '100%': sandbox.spy(),
       }
-      wrapperMount(<Visibility onPassed={onPassed} continuous />)
+      wrapperMount(<Visibility continuous onPassed={onPassed} />)
 
       mockScroll(100, 200)
       onPassed[20].should.not.have.been.called('20px')
@@ -293,8 +358,8 @@ describe('Visibility', () => {
   describe('onUpdate', () => {
     it('fires when scrolling', () => {
       const onUpdate = sandbox.spy()
-
       wrapperMount(<Visibility onUpdate={onUpdate} />)
+
       mockScroll(0, 0)
       mockScroll(0, 0)
 
@@ -325,39 +390,61 @@ describe('Visibility', () => {
     })
 
     it('updates width and height after scroll', () => {
-      let calculations
-      const onUpdate = (e, props) => (calculations = props.calculations)
+      const onUpdate = sandbox.spy()
       wrapperMount(<Visibility onUpdate={onUpdate} />)
 
       mockScroll(0, 100)
-      calculations.height.should.equal(100)
-      calculations.width.should.equal(window.innerWidth)
+      onUpdate.should.have.been.calledWithMatch(null, {
+        calculations: {
+          height: 100,
+          width: window.innerWidth,
+        },
+      })
 
       mockScroll(50, 3000)
-      calculations.height.should.equal(2950)
-      calculations.width.should.equal(window.innerWidth)
+      onUpdate.should.have.been.calledWithMatch(null, {
+        calculations: {
+          height: 2950,
+          width: window.innerWidth,
+        },
+      })
     })
 
     it('shows passed pixels and percentage', () => {
-      let calculations
-      const onUpdate = (e, props) => (calculations = props.calculations)
+      const onUpdate = sandbox.spy()
       wrapperMount(<Visibility onUpdate={onUpdate} />)
 
       mockScroll(0, 100)
-      calculations.percentagePassed.should.equal(0)
-      calculations.pixelsPassed.should.equal(0)
+      onUpdate.should.have.been.calledWithMatch(null, {
+        calculations: {
+          percentagePassed: 0,
+          pixelsPassed: 0,
+        },
+      })
 
       mockScroll(-1, 99)
-      calculations.percentagePassed.should.equal(0.01)
-      calculations.pixelsPassed.should.equal(1)
+      onUpdate.should.have.been.calledWithMatch(null, {
+        calculations: {
+          percentagePassed: 0.01,
+          pixelsPassed: 1,
+        },
+      })
 
       mockScroll(-2, 198)
-      calculations.percentagePassed.should.equal(0.01)
-      calculations.pixelsPassed.should.equal(2)
+      onUpdate.should.have.been.calledWithMatch(null, {
+        calculations: {
+          percentagePassed: 0.01,
+          pixelsPassed: 2,
+        },
+      })
 
       mockScroll(-10, 0)
-      calculations.percentagePassed.should.equal(1)
-      calculations.pixelsPassed.should.equal(10)
+      onUpdate.should.have.been.calledWithMatch(null, {
+        calculations: {
+          percentagePassed: 1,
+          pixelsPassed: 10,
+        },
+      })
     })
   })
 })
