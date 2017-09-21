@@ -139,6 +139,7 @@ class Portal extends Component {
 
   componentDidMount() {
     debug('componentDidMount()')
+    this.uniqueId = _.uniqueId()
     this.renderPortal()
   }
 
@@ -384,8 +385,8 @@ class Portal extends Component {
       mountNode.appendChild(this.rootNode)
     }
 
-    eventStack.sub('click', this.handleDocumentClick, 'Portal')
-    eventStack.sub('keydown', this.handleEscape, 'Portal')
+    eventStack.sub('click', this.handleDocumentClick, `Portal${this.uniqueId}`)
+    eventStack.sub('keydown', this.handleEscape, `Portal${this.uniqueId}`)
     _.invoke(this.props, 'onMount', null, this.props)
   }
 
@@ -403,8 +404,8 @@ class Portal extends Component {
     this.rootNode = null
     this.portalNode = null
 
-    eventStack.unsub('click', this.handleDocumentClick, 'Portal')
-    eventStack.unsub('keydown', this.handleEscape, 'Portal')
+    eventStack.unsub('click', this.handleDocumentClick, `Portal${this.uniqueId}`)
+    eventStack.unsub('keydown', this.handleEscape, `Portal${this.uniqueId}`)
     _.invoke(this.props, 'onUnmount', null, this.props)
   }
 
