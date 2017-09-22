@@ -129,7 +129,7 @@ class Portal extends Component {
     closeOnDocumentClick: true,
     closeOnEscape: true,
     openOnTriggerClick: true,
-    eventPool: 'default'
+    eventPool: 'default',
   }
 
   static autoControlledProps = [
@@ -378,7 +378,7 @@ class Portal extends Component {
     const {
       mountNode = isBrowser ? document.body : null,
       prepend,
-      eventPool
+      eventPool,
     } = this.props
 
     this.rootNode = document.createElement('div')

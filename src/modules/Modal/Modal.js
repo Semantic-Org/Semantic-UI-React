@@ -138,7 +138,7 @@ class Modal extends Component {
     dimmer: true,
     closeOnDimmerClick: true,
     closeOnDocumentClick: false,
-    eventPool: 'Modal'
+    eventPool: 'Modal',
   }
 
   static autoControlledProps = [
