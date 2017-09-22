@@ -42,6 +42,9 @@ export interface PortalProps {
   /** Initial value of open. */
   defaultOpen?: boolean;
 
+  /** Event pool namespace that is used to handle component events. */
+  eventPool?: string;
+
   /** The node where the portal should mount. */
   mountNode?: any;
 
@@ -94,9 +97,6 @@ export interface PortalProps {
 
   /** Controls whether or not the portal should open when mousing over the trigger. */
   openOnTriggerMouseEnter?: boolean;
-
-  /** Event pool namespace that is used to handle component events. */
-  eventPool?: string;
 
   /** Controls whether the portal should be prepended to the mountNode instead of appended. */
   prepend?: boolean;

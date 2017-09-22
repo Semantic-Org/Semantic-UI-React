@@ -62,6 +62,9 @@ class Portal extends Component {
     /** Initial value of open. */
     defaultOpen: PropTypes.bool,
 
+    /** Event pool namespace that is used to handle component events */
+    eventPool: PropTypes.string,
+
     /** The node where the portal should mount. */
     mountNode: PropTypes.any,
 
@@ -115,9 +118,6 @@ class Portal extends Component {
     /** Controls whether or not the portal should open when mousing over the trigger. */
     openOnTriggerMouseEnter: PropTypes.bool,
 
-    /** Event pool namespace that is used to handle component events */
-    eventPool: PropTypes.string,
-
     /** Controls whether the portal should be prepended to the mountNode instead of appended. */
     prepend: PropTypes.bool,
 
@@ -128,8 +128,8 @@ class Portal extends Component {
   static defaultProps = {
     closeOnDocumentClick: true,
     closeOnEscape: true,
-    openOnTriggerClick: true,
     eventPool: 'default',
+    openOnTriggerClick: true,
   }
 
   static autoControlledProps = [
@@ -376,9 +376,9 @@ class Portal extends Component {
     debug('mountPortal()')
 
     const {
+      eventPool,
       mountNode = isBrowser ? document.body : null,
       prepend,
-      eventPool,
     } = this.props
 
     this.rootNode = document.createElement('div')
@@ -398,7 +398,6 @@ class Portal extends Component {
     if (!isBrowser || !this.rootNode) return
 
     debug('unmountPortal()')
-
     const { eventPool } = this.props
 
     ReactDOM.unmountComponentAtNode(this.rootNode)

@@ -58,9 +58,6 @@ class Modal extends Component {
     /** Whether or not the Modal should close when the document is clicked. */
     closeOnDocumentClick: PropTypes.bool,
 
-    /** Event pool namespace that is used to handle component events */
-    eventPool: PropTypes.string,
-
     /** Simple text content for the Modal. */
     content: customPropTypes.itemShorthand,
 
@@ -72,6 +69,9 @@ class Modal extends Component {
       PropTypes.bool,
       PropTypes.oneOf(['inverted', 'blurring']),
     ]),
+
+    /** Event pool namespace that is used to handle component events */
+    eventPool: PropTypes.string,
 
     /** Modal displayed above the content in bold. */
     header: customPropTypes.itemShorthand,
@@ -357,13 +357,13 @@ class Modal extends Component {
         closeOnRootNodeClick={closeOnDimmerClick}
         {...portalProps}
         className={dimmerClasses}
+        eventPool={eventPool}
         mountNode={mountNode}
         open={open}
         onClose={this.handleClose}
         onMount={this.handlePortalMount}
         onOpen={this.handleOpen}
         onUnmount={this.handlePortalUnmount}
-        eventPool={eventPool}
       >
         {this.renderContent(rest)}
       </Portal>
