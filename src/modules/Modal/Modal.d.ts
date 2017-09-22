@@ -34,6 +34,9 @@ export interface ModalProps extends PortalProps {
   /** Whether or not the Modal should close when the document is clicked. */
   closeOnDocumentClick?: boolean;
 
+  /** Event pool namespace that is used to handle component events */
+  eventPool?: string;
+
   /** A Modal can be passed content via shorthand. */
   content?: SemanticShorthandItem<ModalContentProps>;
 

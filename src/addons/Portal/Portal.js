@@ -115,6 +115,9 @@ class Portal extends Component {
     /** Controls whether or not the portal should open when mousing over the trigger. */
     openOnTriggerMouseEnter: PropTypes.bool,
 
+    /** Event pool namespace that is used to handle component events */
+    eventPool: PropTypes.string,
+
     /** Controls whether the portal should be prepended to the mountNode instead of appended. */
     prepend: PropTypes.bool,
 
@@ -126,6 +129,7 @@ class Portal extends Component {
     closeOnDocumentClick: true,
     closeOnEscape: true,
     openOnTriggerClick: true,
+    eventPool: 'default'
   }
 
   static autoControlledProps = [
@@ -139,7 +143,6 @@ class Portal extends Component {
 
   componentDidMount() {
     debug('componentDidMount()')
-    this.uniqueId = _.uniqueId()
     this.renderPortal()
   }
 
@@ -375,6 +378,7 @@ class Portal extends Component {
     const {
       mountNode = isBrowser ? document.body : null,
       prepend,
+      eventPool
     } = this.props
 
     this.rootNode = document.createElement('div')
@@ -385,8 +389,8 @@ class Portal extends Component {
       mountNode.appendChild(this.rootNode)
     }
 
-    eventStack.sub('click', this.handleDocumentClick, `Portal${this.uniqueId}`)
-    eventStack.sub('keydown', this.handleEscape, `Portal${this.uniqueId}`)
+    eventStack.sub('click', this.handleDocumentClick, eventPool)
+    eventStack.sub('keydown', this.handleEscape, eventPool)
     _.invoke(this.props, 'onMount', null, this.props)
   }
 
@@ -394,6 +398,8 @@ class Portal extends Component {
     if (!isBrowser || !this.rootNode) return
 
     debug('unmountPortal()')
+
+    const { eventPool } = this.props
 
     ReactDOM.unmountComponentAtNode(this.rootNode)
     this.rootNode.parentNode.removeChild(this.rootNode)
@@ -404,8 +410,8 @@ class Portal extends Component {
     this.rootNode = null
     this.portalNode = null
 
-    eventStack.unsub('click', this.handleDocumentClick, `Portal${this.uniqueId}`)
-    eventStack.unsub('keydown', this.handleEscape, `Portal${this.uniqueId}`)
+    eventStack.unsub('click', this.handleDocumentClick, eventPool)
+    eventStack.unsub('keydown', this.handleEscape, eventPool)
     _.invoke(this.props, 'onUnmount', null, this.props)
   }
 

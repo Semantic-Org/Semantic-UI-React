@@ -58,6 +58,9 @@ class Modal extends Component {
     /** Whether or not the Modal should close when the document is clicked. */
     closeOnDocumentClick: PropTypes.bool,
 
+    /** Event pool namespace that is used to handle component events */
+    eventPool: PropTypes.string,
+
     /** Simple text content for the Modal. */
     content: customPropTypes.itemShorthand,
 
@@ -135,6 +138,7 @@ class Modal extends Component {
     dimmer: true,
     closeOnDimmerClick: true,
     closeOnDocumentClick: false,
+    eventPool: 'Modal'
   }
 
   static autoControlledProps = [
@@ -315,7 +319,7 @@ class Modal extends Component {
 
   render() {
     const { open } = this.state
-    const { closeOnDimmerClick, closeOnDocumentClick, dimmer } = this.props
+    const { closeOnDimmerClick, closeOnDocumentClick, dimmer, eventPool } = this.props
     const mountNode = this.getMountNode()
 
     // Short circuit when server side rendering
@@ -359,6 +363,7 @@ class Modal extends Component {
         onMount={this.handlePortalMount}
         onOpen={this.handleOpen}
         onUnmount={this.handlePortalUnmount}
+        eventPool={eventPool}
       >
         {this.renderContent(rest)}
       </Portal>
