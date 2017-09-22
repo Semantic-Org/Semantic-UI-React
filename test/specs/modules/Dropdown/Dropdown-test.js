@@ -1575,7 +1575,10 @@ describe('Dropdown', () => {
         .simulate('change', { target: { value: 'a' }, stopPropagation: _.noop })
 
       spy.should.have.been.calledOnce()
-      spy.should.have.been.calledWithMatch({ target: { value: 'a' } }, 'a')
+      spy.should.have.been.calledWithMatch({ target: { value: 'a' } }, {
+        search: true,
+        searchQuery: 'a',
+      })
     })
 
     it("don't open the menu on change if query's length is less than minCharacters", () => {

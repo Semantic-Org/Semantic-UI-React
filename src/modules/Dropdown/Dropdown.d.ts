@@ -174,9 +174,9 @@ export interface DropdownProps {
    * Called on search input change.
    *
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
-   * @param {string} value - Current value of search input.
+   * @param {object} data - All props, includes current value of searchQuery.
    */
-  onSearchChange?: (event: React.SyntheticEvent<HTMLElement>, value: string) => void;
+  onSearchChange?: (event: React.SyntheticEvent<HTMLElement>, data: DropdownOnSearchChangeData) => void;
 
   /** Controls whether or not the dropdown menu is displayed. */
   open?: boolean;
@@ -242,6 +242,13 @@ export interface DropdownProps {
 
   /** A dropdown can open upward. */
   upward?: boolean;
+}
+
+/* TODO: replace with DropdownProps when #1829 will be fixed:
+ * https://github.com/Semantic-Org/Semantic-UI-React/issues/1829
+ */
+interface DropdownOnSearchChangeData extends DropdownProps {
+  searchQuery: string;
 }
 
 interface DropdownComponent extends React.ComponentClass<DropdownProps> {
