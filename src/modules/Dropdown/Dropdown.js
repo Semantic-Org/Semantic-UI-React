@@ -1032,9 +1032,10 @@ export default class Dropdown extends Component {
   computeTabIndex = () => {
     const { disabled, search, tabIndex } = this.props
 
-    if (!_.isNil(tabIndex)) return tabIndex
     // don't set a root node tabIndex as the search input has its own tabIndex
-    if (!search) return disabled ? -1 : 0
+    if (search) return undefined
+    if (disabled) return -1
+    return _.isNil(tabIndex) ? 0 : tabIndex
   }
 
   // ----------------------------------------
