@@ -304,4 +304,22 @@ describe('Sticky', () => {
       onStick.should.have.been.called()
     })
   })
+
+  describe('update', () => {
+    it('is called on scroll', () => {
+      const instance = mount(<Sticky />).instance()
+      const update = sandbox.spy(instance, 'update')
+
+      domEvent.scroll(window)
+      update.should.have.been.calledOnce()
+    })
+
+    it('is called on resize', () => {
+      const instance = mount(<Sticky />).instance()
+      const update = sandbox.spy(instance, 'update')
+
+      domEvent.resize(window)
+      update.should.have.been.calledOnce()
+    })
+  })
 })

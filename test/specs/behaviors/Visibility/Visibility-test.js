@@ -401,6 +401,14 @@ describe('Visibility', () => {
       onUpdate.should.have.been.calledTwice()
     })
 
+    it('fires when window resized', () => {
+      const onUpdate = sandbox.spy()
+      wrapperMount(<Visibility onUpdate={onUpdate} />)
+
+      domEvent.resize(window)
+      onUpdate.should.have.been.calledOnce()
+    })
+
     it('passes calculations to onUpdate', () => {
       let calculations
       const onUpdate = (e, props) => (calculations = props.calculations)

@@ -67,6 +67,14 @@ export const mouseOver = (node, data) => fire(node, 'mouseover', data)
 export const mouseUp = (node, data) => fire(node, 'mouseup', data)
 
 /**
+ * Dispatch a 'resize' event on a DOM node.
+ * @param {String|Object} node A querySelector string or DOM node.
+ * @param {Object} [data] Additional event data.
+ * @returns {Object} The event
+ */
+export const resize = (node, data) => fire(node, 'resize', data)
+
+/**
  * Dispatch a 'scroll' event on a DOM node.
  * @param {String|Object} node A querySelector string or DOM node.
  * @param {Object} [data] Additional event data.
@@ -82,5 +90,6 @@ export default {
   mouseLeave,
   mouseOver,
   mouseUp,
+  resize,
   scroll,
 }

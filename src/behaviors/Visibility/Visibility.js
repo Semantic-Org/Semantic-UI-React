@@ -200,7 +200,8 @@ export default class Visibility extends Component {
     const { context, fireOnMount } = this.props
 
     this.pageYOffset = window.pageYOffset
-    eventStack.sub('scroll', this.handleScroll, { target: context })
+    eventStack.sub('resize', this.handleUpdate, { target: context })
+    eventStack.sub('scroll', this.handleUpdate, { target: context })
 
     if (fireOnMount) this.update()
   }
@@ -208,7 +209,8 @@ export default class Visibility extends Component {
   componentWillUnmount() {
     const { context } = this.props
 
-    eventStack.unsub('scroll', this.handleScroll, { target: context })
+    eventStack.unsub('resize', this.handleUpdate, { target: context })
+    eventStack.unsub('scroll', this.handleUpdate, { target: context })
   }
 
   // ----------------------------------------
@@ -261,7 +263,7 @@ export default class Visibility extends Component {
     })
   }
 
-  handleScroll = () => {
+  handleUpdate = () => {
     if (this.ticking) return
 
     this.ticking = true
