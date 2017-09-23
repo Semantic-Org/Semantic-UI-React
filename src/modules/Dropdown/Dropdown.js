@@ -295,6 +295,12 @@ export default class Dropdown extends Component {
     /** Define whether the highlighted item should be selected on blur. */
     selectOnBlur: PropTypes.bool,
 
+    /**
+     * Whether or not to change the value when navigating the menu using arrow keys.
+     * Setting to false will require enter or left click to confirm a choice.
+     */
+    selectOnNavigation: PropTypes.bool,
+
     /** Currently selected label in multi-select. */
     selectedLabel: customPropTypes.every([
       customPropTypes.demand(['multiple']),
@@ -354,6 +360,7 @@ export default class Dropdown extends Component {
     renderLabel: ({ text }) => text,
     searchInput: 'text',
     selectOnBlur: true,
+    selectOnNavigation: true,
   }
 
   static autoControlledProps = [
@@ -534,7 +541,7 @@ export default class Dropdown extends Component {
   moveSelectionOnKeyDown = (e) => {
     debug('moveSelectionOnKeyDown()', keyboardKey.getName(e))
 
-    const { multiple } = this.props
+    const { multiple, selectOnNavigation } = this.props
     const moves = {
       [keyboardKey.ArrowDown]: 1,
       [keyboardKey.ArrowUp]: -1,
@@ -544,7 +551,7 @@ export default class Dropdown extends Component {
     if (move === undefined) return
     e.preventDefault()
     this.moveSelectionBy(move)
-    if (!multiple) this.makeSelectedItemActive(e)
+    if (!multiple && selectOnNavigation) this.makeSelectedItemActive(e)
   }
 
   openOnSpace = (e) => {
@@ -579,7 +586,7 @@ export default class Dropdown extends Component {
 
     // prevent selecting null if there was no selected item value
     // prevent selecting duplicate items when the dropdown is closed
-    if (!value || !open) return
+    if (_.isNil(value) || !open) return
 
     // notify the onAddItem prop if this is a new value
     if (onAddItem && item['data-additional']) onAddItem(e, { ...this.props, value })

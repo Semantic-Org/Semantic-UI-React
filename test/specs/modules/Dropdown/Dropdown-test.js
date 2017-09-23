@@ -33,9 +33,9 @@ const wrapperRender = (...args) => (wrapper = render(...args))
 // ----------------------------------------
 // Options
 // ----------------------------------------
-const getOptions = (count = 5) => _.times(count, () => {
-  const text = _.times(3, faker.hacker.noun).join(' ')
-  const value = _.snakeCase(text)
+const getOptions = (count = 5) => _.times(count, (i) => {
+  const text = `${i}-${faker.hacker.noun}`
+  const value = `${i}-${_.snakeCase(text)}`
   return { text, value }
 })
 
@@ -1539,7 +1539,7 @@ describe('Dropdown', () => {
       wrapper.simulate('click', { stopPropagation: _.noop })
 
       onClick.should.have.been.calledOnce()
-      onClick.should.have.been.calledWithMatch({ }, { options })
+      onClick.should.have.been.calledWithMatch({}, { options })
     })
 
     it("toggles the dropdown when it's not searchable", () => {
@@ -1577,7 +1577,7 @@ describe('Dropdown', () => {
       wrapper.simulate('focus')
 
       onFocus.should.have.been.calledOnce()
-      onFocus.should.have.been.calledWithMatch({ }, { options })
+      onFocus.should.have.been.calledWithMatch({}, { options })
     })
 
     it("opens the dropdown when it's not searchable", () => {
@@ -2384,6 +2384,50 @@ describe('Dropdown', () => {
 
       spy.should.have.been.calledOnce()
       spy.should.have.been.calledWithMatch(errorMessage)
+    })
+  })
+
+  describe('selectOnNavigation', () => {
+    it('is on by default', () => {
+      const spy = sandbox.spy()
+
+      wrapperMount(
+        <Dropdown
+          options={options}
+          defaultValue={options[0].value}
+          onChange={spy}
+        />,
+      )
+
+      // open
+      wrapper.simulate('click')
+
+      domEvent.keyDown(document, { key: 'ArrowDown' })
+
+      spy.should.have.been.called()
+      wrapper.should.have.state('value', options[1].value)
+    })
+
+    it('does not change value when set to false', () => {
+      const spy = sandbox.spy()
+      const value = options[0].value
+
+      wrapperMount(
+        <Dropdown
+          options={options}
+          defaultValue={value}
+          selectOnNavigation={false}
+          onChange={spy}
+        />,
+      )
+
+      // open
+      wrapper.simulate('click')
+
+      domEvent.keyDown(document, { key: 'ArrowDown' })
+
+      spy.should.not.have.been.called()
+      wrapper.should.have.state('value', value)
     })
   })
 })
