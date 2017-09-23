@@ -12,7 +12,7 @@ export default class DropdownExampleSearchQuery extends Component {
     searchQuery: '',
   })
 
-  handleSearchChange = (e, searchQuery) => this.setState({ searchQuery })
+  handleSearchChange = (e, { searchQuery }) => this.setState({ searchQuery })
 
   render() {
     const { searchQuery, value } = this.state
