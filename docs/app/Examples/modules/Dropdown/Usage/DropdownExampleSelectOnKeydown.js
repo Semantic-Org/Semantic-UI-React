@@ -1,39 +1,43 @@
 import React, { Component } from 'react'
-import { Grid, Dropdown } from 'semantic-ui-react'
+import { Grid, Dropdown, Form } from 'semantic-ui-react'
 
 import { getOptions } from '../common'
 
-export default class DropdownExampleCloseOnChange extends Component {
-  constructor() {
-    super()
-
-    this.state = {}
+export default class DropdownExampleSelectOnKeydown extends Component {
+  state = {
+    default: null,
+    false: null,
   }
 
-  handleChange = (e, { name, value }) => {
-    this.setState({
-      [name]: value,
-    })
-  }
+  handleChange = (e, { name, value }) => this.setState({ [name]: value })
 
   render() {
     return (
-      <Grid columns={2}>
+      <Grid columns='equal'>
         <Grid.Column>
-          <div>
-            <Dropdown
-              options={getOptions(3)}
-              placeholder='I will call onChange on keyboard navigation'
-              onChange={this.handleChange}
-            />
-            {' '}
-            <Dropdown
-              selectOnKeydown={false}
-              options={getOptions(3)}
-              placeholder='I will not call onChange on keyboard navigation'
-              onChange={this.handleChange}
-            />
-          </div>
+          <Form>
+            <Form.Field>
+              <label>Default selectOnKeydown</label>
+              <Dropdown
+                selection
+                name='default'
+                options={getOptions(3)}
+                placeholder='I change value on keyboard navigation'
+                onChange={this.handleChange}
+              />
+            </Form.Field>
+            <Form.Field>
+              <label>{'selectOnKeydown={false}'}</label>
+              <Dropdown
+                selectOnKeydown={false}
+                selection
+                name='false'
+                options={getOptions(3)}
+                placeholder='I do not change value on keyboard navigation'
+                onChange={this.handleChange}
+              />
+            </Form.Field>
+          </Form>
         </Grid.Column>
         <Grid.Column>
           <pre>
