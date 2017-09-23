@@ -24,7 +24,7 @@ const DropdownUsageExamples = () => (
 
     <ComponentExample
       title='Select On Keydown'
-      description='By default, the onChange handler will be called when navigating the menu using the keyboard. You can turn this off.'
+      description='A dropdown can choose whether or not to change the value when navigating the menu with arrow keys.'
       examplePath='modules/Dropdown/Usage/DropdownExampleSelectOnKeydown'
     />
 

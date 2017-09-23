@@ -10,9 +10,9 @@ export default class DropdownExampleCloseOnChange extends Component {
     this.state = {}
   }
 
-  handleChange = ( e, { name, value } ) => {
+  handleChange = (e, { name, value }) => {
     this.setState({
-      [ name ]: value
+      [name]: value,
     })
   }
 

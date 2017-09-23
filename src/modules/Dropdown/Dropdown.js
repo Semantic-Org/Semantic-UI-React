@@ -289,7 +289,10 @@ export default class Dropdown extends Component {
     /** Define whether the highlighted item should be selected on blur. */
     selectOnBlur: PropTypes.bool,
 
-    /** Whether dropdown should select new option when using keyboard shortcuts. Setting to false will require enter or left click to confirm a choice. */
+    /**
+     * Whether or not to change the value when navigating the menu using arrow keys.
+     * Setting to false will require enter or left click to confirm a choice.
+     */
     selectOnKeydown: PropTypes.bool,
 
     /** Currently selected label in multi-select. */
