@@ -185,38 +185,54 @@ describe('Dropdown', () => {
 
   describe('tabIndex', () => {
     it('defaults to 0', () => {
-      wrapperShallow(<Dropdown options={options} />)
-
-      wrapper.should.have.prop('tabIndex', 0)
-    })
-    it('defaults to -1 when disabled', () => {
-      wrapperShallow(<Dropdown options={options} disabled />)
-
-      wrapper.should.have.prop('tabIndex', -1)
-    })
-    it('is not present on the root when `search`', () => {
-      wrapperShallow(<Dropdown options={options} selection search />)
-        .should.not.have.prop('tabIndex')
-    })
-    it('defaults the search input to 0', () => {
-      wrapperShallow(<Dropdown options={options} selection search />)
-        .find(DropdownSearchInput)
+      shallow(<Dropdown options={options} />)
         .should.have.prop('tabIndex', 0)
     })
-    it('defaults the disabled search input to -1', () => {
-      wrapperShallow(<Dropdown options={options} selection search disabled />)
-        .find(DropdownSearchInput)
+
+    it('defaults to -1 when disabled', () => {
+      shallow(<Dropdown disabled options={options} />)
         .should.have.prop('tabIndex', -1)
     })
-    it('allows explicitly setting the search input value', () => {
-      wrapperShallow(<Dropdown options={options} selection search tabIndex={123} />)
-        .find(DropdownSearchInput)
-        .should.have.prop('tabIndex', 123)
+
+    it('applies when defined', () => {
+      shallow(<Dropdown options={options} tabIndex={1} />)
+        .should.have.prop('tabIndex', 1)
     })
-    it('allows explicitly setting the search input value when disabled', () => {
-      wrapperShallow(<Dropdown options={options} selection search tabIndex={123} disabled />)
-        .find(DropdownSearchInput)
-        .should.have.prop('tabIndex', 123)
+
+    describe('tabIndex', () => {
+      it('defaults the search input to 0', () => {
+        shallow(<Dropdown options={options} selection search />)
+          .find(DropdownSearchInput)
+          .should.have.prop('tabIndex', 0)
+      })
+
+      it('defaults the disabled search input to -1', () => {
+        shallow(<Dropdown disabled options={options} selection search />)
+          .find(DropdownSearchInput)
+          .should.have.prop('tabIndex', -1)
+      })
+
+      it('allows explicitly setting the search input value', () => {
+        shallow(<Dropdown options={options} selection search tabIndex={123} />)
+          .find(DropdownSearchInput)
+          .should.have.prop('tabIndex', 123)
+      })
+
+      it('allows explicitly setting the search input value when disabled', () => {
+        shallow(<Dropdown disabled options={options} selection search tabIndex={123} />)
+          .find(DropdownSearchInput)
+          .should.have.prop('tabIndex', 123)
+      })
+
+      it('is not present on the root when is search', () => {
+        shallow(<Dropdown options={options} selection search />)
+          .should.not.have.prop('tabIndex')
+      })
+
+      it('is not present on the root when is search and defined', () => {
+        shallow(<Dropdown options={options} selection search tabIndex={1} />)
+          .should.not.have.prop('tabIndex')
+      })
     })
   })
 
