@@ -62,6 +62,9 @@ class Portal extends Component {
     /** Initial value of open. */
     defaultOpen: PropTypes.bool,
 
+    /** Event pool namespace that is used to handle component events */
+    eventPool: PropTypes.string,
+
     /** The node where the portal should mount. */
     mountNode: PropTypes.any,
 
@@ -125,6 +128,7 @@ class Portal extends Component {
   static defaultProps = {
     closeOnDocumentClick: true,
     closeOnEscape: true,
+    eventPool: 'default',
     openOnTriggerClick: true,
   }
 
@@ -372,6 +376,7 @@ class Portal extends Component {
     debug('mountPortal()')
 
     const {
+      eventPool,
       mountNode = isBrowser ? document.body : null,
       prepend,
     } = this.props
@@ -384,8 +389,8 @@ class Portal extends Component {
       mountNode.appendChild(this.rootNode)
     }
 
-    eventStack.sub('click', this.handleDocumentClick, 'Portal')
-    eventStack.sub('keydown', this.handleEscape, 'Portal')
+    eventStack.sub('click', this.handleDocumentClick, eventPool)
+    eventStack.sub('keydown', this.handleEscape, eventPool)
     _.invoke(this.props, 'onMount', null, this.props)
   }
 
@@ -393,6 +398,7 @@ class Portal extends Component {
     if (!isBrowser || !this.rootNode) return
 
     debug('unmountPortal()')
+    const { eventPool } = this.props
 
     ReactDOM.unmountComponentAtNode(this.rootNode)
     this.rootNode.parentNode.removeChild(this.rootNode)
@@ -403,8 +409,8 @@ class Portal extends Component {
     this.rootNode = null
     this.portalNode = null
 
-    eventStack.unsub('click', this.handleDocumentClick, 'Portal')
-    eventStack.unsub('keydown', this.handleEscape, 'Portal')
+    eventStack.unsub('click', this.handleDocumentClick, eventPool)
+    eventStack.unsub('keydown', this.handleEscape, eventPool)
     _.invoke(this.props, 'onUnmount', null, this.props)
   }
 

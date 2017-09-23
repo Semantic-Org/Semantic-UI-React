@@ -43,6 +43,9 @@ export interface ModalProps extends PortalProps {
   /** A modal can appear in a dimmer. */
   dimmer?: boolean | 'blurring' | 'inverted';
 
+  /** Event pool namespace that is used to handle component events */
+  eventPool?: string;
+
   /** A Modal can be passed header via shorthand. */
   header?: SemanticShorthandItem<ModalHeaderProps>;
 
