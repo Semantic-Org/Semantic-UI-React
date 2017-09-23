@@ -9,8 +9,8 @@ import {
   META,
   SUI,
   useKeyOnly,
-  useValueAndKey,
   useKeyOrValueAndKey,
+  useValueAndKey,
   useWidthProp,
 } from '../../lib'
 
@@ -56,8 +56,8 @@ function ButtonGroup(props) {
     useKeyOnly(secondary, 'secondary'),
     useKeyOnly(toggle, 'toggle'),
     useKeyOnly(vertical, 'vertical'),
-    useValueAndKey(floated, 'floated'),
     useKeyOrValueAndKey(attached, 'attached'),
+    useValueAndKey(floated, 'floated'),
     useWidthProp(widths),
     'buttons',
     className,
