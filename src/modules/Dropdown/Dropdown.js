@@ -229,7 +229,7 @@ export default class Dropdown extends Component {
      * Called on search input change.
      *
      * @param {SyntheticEvent} event - React's original SyntheticEvent.
-     * @param {string} value - Current value of search input.
+     * @param {object} data - All props, includes current value of searchQuery.
      */
     onSearchChange: PropTypes.func,
 
@@ -755,7 +755,7 @@ export default class Dropdown extends Component {
     const { open } = this.state
     const newQuery = value
 
-    _.invoke(this.props, 'onSearchChange', e, newQuery)
+    _.invoke(this.props, 'onSearchChange', e, { ...this.props, searchQuery: newQuery })
     this.setState({
       selectedIndex: 0,
       searchQuery: newQuery,
