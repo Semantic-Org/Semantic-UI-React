@@ -42,6 +42,9 @@ export interface PortalProps {
   /** Initial value of open. */
   defaultOpen?: boolean;
 
+  /** Event pool namespace that is used to handle component events. */
+  eventPool?: string;
+
   /** The node where the portal should mount. */
   mountNode?: any;
 
