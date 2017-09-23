@@ -112,6 +112,7 @@ export default class Sticky extends Component {
       return
     }
     this.removeListener()
+    this.setState({ sticky: false })
   }
 
   componentWillUnmount() {
