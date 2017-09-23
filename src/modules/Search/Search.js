@@ -222,6 +222,10 @@ export default class Search extends Component {
     }
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    return !shallowEqual(nextProps, this.props) || !shallowEqual(nextState, this.state)
+  }
+
   componentDidUpdate(prevProps, prevState) { // eslint-disable-line complexity
     debug('componentDidUpdate()')
     debug('to state:', objectDiff(prevState, this.state))
