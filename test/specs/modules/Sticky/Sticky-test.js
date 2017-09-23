@@ -124,40 +124,44 @@ describe('Sticky', () => {
       onTop.should.have.been.calledOnce()
     })
 
-    it('omits event when changes to false', () => {
-      const onTop = sandbox.spy()
-      mockPositions()
-      wrapperMount(<Sticky context={mockContextEl()} onTop={onTop} />)
-      onTop.should.have.been.calledOnce()
+    it('omits event and removes styles when changes to false', () => {
+      const onStick = sandbox.spy()
+      const onUnStick = sandbox.spy()
+      mockContextEl()
+      mockPositions({ bottomOffset: 10, height: 50 })
+      wrapperMount(<Sticky {...positions} context={contextEl} onStick={onStick} onUnstick={onUnStick} />)
+
+      wrapper.childAt(1).should.have.style('position', 'fixed')
+      onStick.should.have.been.calledOnce()
+      onStick.should.have.been.calledWithMatch(undefined, positions)
 
       wrapper.setProps({ active: false })
       scrollToTop()
-      onTop.should.have.been.calledOnce()
+      wrapper.childAt(1).should.have.not.style('position')
+      onUnStick.should.not.have.been.called()
     })
   })
 
   describe('behaviour', () => {
     it('should stick to top of screen', () => {
-      const offset = 12
       mockContextEl()
-      mockPositions({ offset, bottomOffset: 12, height: 200 })
+      mockPositions({ bottomOffset: 12, height: 200, offset: 12 })
       wrapperMount(<Sticky {...positions} context={contextEl} />)
 
       // Scroll after trigger
       scrollAfterTrigger()
-      wrapper.childAt(1).props().style.should.have.property('position', 'fixed')
-      wrapper.childAt(1).props().style.should.have.property('top', offset)
+      wrapper.childAt(1).should.have.style('position', 'fixed')
+      wrapper.childAt(1).should.have.style('top', '12px')
     })
 
     it('should stick to bottom of context', () => {
-      const height = 100
       mockContextEl()
-      mockPositions({ height, bottomOffset: 10, offset: 20 })
+      mockPositions({ bottomOffset: 10, height: 100, offset: 20 })
       wrapperMount(<Sticky {...positions} context={contextEl} />)
 
       scrollAfterContext()
-      wrapper.childAt(1).props().style.should.have.property('position', 'fixed')
-      wrapper.childAt(1).props().style.should.have.property('top', -1 - height)
+      wrapper.childAt(1).should.have.style('position', 'fixed')
+      wrapper.childAt(1).should.have.style('top', '-101px')
     })
   })
   describe('onBottom', () => {
@@ -228,9 +232,8 @@ describe('Sticky', () => {
 
   describe('pushing', () => {
     it('should push component back', () => {
-      const bottomOffset = 30
       mockContextEl()
-      mockPositions({ bottomOffset, height: 100, offset: 10 })
+      mockPositions({ bottomOffset: 30, height: 100, offset: 10 })
       wrapperMount(<Sticky {...positions} context={contextEl} pushing />)
 
       scrollAfterTrigger()
@@ -240,21 +243,20 @@ describe('Sticky', () => {
       wrapper.setProps({ context: mockContextEl({ bottom: 0 }) })
       domEvent.scroll(window)
 
-      wrapper.childAt(1).props().style.should.have.property('position', 'fixed')
-      wrapper.childAt(1).props().style.should.have.property('top', -100)
+      wrapper.childAt(1).should.have.style('position', 'fixed')
+      wrapper.childAt(1).should.have.style('top', '-100px')
 
       // Scroll a bit before the top: component should stick to screen bottom
       scrollAfterTrigger()
 
-      wrapper.childAt(1).props().style.should.have.property('position', 'fixed')
-      wrapper.childAt(1).props().style.should.have.property('top', null)
-      wrapper.childAt(1).props().style.should.have.property('bottom', bottomOffset)
+      wrapper.childAt(1).should.have.style('bottom', '30px')
+      wrapper.childAt(1).should.have.style('position', 'fixed')
+      wrapper.childAt(1).should.not.have.style('top')
     })
 
     it('should stop pushing when reaching top', () => {
-      const offset = 10
       mockContextEl()
-      mockPositions({ offset, bottomOffset: 10, height: 100 })
+      mockPositions({ bottomOffset: 10, height: 100, offset: 10 })
       wrapperMount(<Sticky {...positions} context={contextEl} pushing />)
 
       scrollAfterTrigger()
@@ -263,10 +265,8 @@ describe('Sticky', () => {
       scrollAfterTrigger()
 
       // Component should stick again to the top
-      const childStyle = wrapper.childAt(1).props().style
-
-      childStyle.should.have.property('position', 'fixed')
-      childStyle.should.have.property('top', offset)
+      wrapper.childAt(1).should.have.style('position', 'fixed')
+      wrapper.childAt(1).should.have.style('top', '10px')
     })
 
     it('should return true if oversized', () => {

@@ -6,6 +6,7 @@ import Wireframe from '../Wireframe'
 export default class VisibilityExampleVisibility extends Component {
   state = {
     calculations: {
+      direction: 'none',
       height: 0,
       width: 0,
       topPassed: false,
@@ -47,6 +48,10 @@ export default class VisibilityExampleVisibility extends Component {
                   </Table.Row>
                 </Table.Header>
                 <Table.Body>
+                  <Table.Row>
+                    <Table.Cell>direction</Table.Cell>
+                    <Table.Cell>{calculations.direction}</Table.Cell>
+                  </Table.Row>
                   <Table.Row>
                     <Table.Cell>pixelsPassed</Table.Cell>
                     <Table.Cell>{calculations.pixelsPassed.toFixed()}px</Table.Cell>
