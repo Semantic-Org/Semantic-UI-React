@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
 import {
+  eventStack,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -196,18 +197,18 @@ export default class Visibility extends Component {
 
   componentDidMount() {
     if (!isBrowser) return
-
     const { context, fireOnMount } = this.props
 
-    context.addEventListener('scroll', this.handleScroll)
+    this.pageYOffset = window.pageYOffset
+    eventStack.sub('scroll', this.handleScroll, { target: context })
+
     if (fireOnMount) this.update()
   }
 
   componentWillUnmount() {
-    if (!isBrowser) return
-
     const { context } = this.props
-    context.removeEventListener('scroll', this.handleScroll)
+
+    eventStack.unsub('scroll', this.handleScroll, { target: context })
   }
 
   // ----------------------------------------
@@ -272,6 +273,7 @@ export default class Visibility extends Component {
 
     this.oldCalculations = this.calculations
     this.calculations = this.computeCalculations()
+    this.pageYOffset = window.pageYOffset
 
     const {
       onBottomPassed,
@@ -322,6 +324,7 @@ export default class Visibility extends Component {
     const { bottom, height, top, width } = this.ref.getBoundingClientRect()
     const [topOffset, bottomOffset] = normalizeOffset(offset)
 
+    const direction = window.pageYOffset > this.pageYOffset ? 'down' : 'up'
     const topPassed = top < topOffset
     const bottomPassed = bottom < bottomOffset
 
@@ -340,6 +343,7 @@ export default class Visibility extends Component {
     return {
       bottomPassed,
       bottomVisible,
+      direction,
       fits,
       height,
       passing,

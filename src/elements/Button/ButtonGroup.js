@@ -9,6 +9,7 @@ import {
   META,
   SUI,
   useKeyOnly,
+  useKeyOrValueAndKey,
   useValueAndKey,
   useWidthProp,
 } from '../../lib'
@@ -55,7 +56,7 @@ function ButtonGroup(props) {
     useKeyOnly(secondary, 'secondary'),
     useKeyOnly(toggle, 'toggle'),
     useKeyOnly(vertical, 'vertical'),
-    useValueAndKey(attached, 'attached'),
+    useKeyOrValueAndKey(attached, 'attached'),
     useValueAndKey(floated, 'floated'),
     useWidthProp(widths),
     'buttons',
@@ -77,8 +78,11 @@ ButtonGroup.propTypes = {
   /** An element type to render as (string or function). */
   as: customPropTypes.as,
 
-  /** A button can be attached to the top or bottom of other content. */
-  attached: PropTypes.oneOf(['left', 'right', 'top', 'bottom']),
+  /** Groups can be attached to other content. */
+  attached: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.oneOf(['left', 'right', 'top', 'bottom']),
+  ]),
 
   /** Groups can be less pronounced. */
   basic: PropTypes.bool,
