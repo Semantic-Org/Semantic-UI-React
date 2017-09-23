@@ -224,12 +224,12 @@ describe('Dropdown', () => {
           .should.have.prop('tabIndex', 123)
       })
 
-      it('is not present on the root when', () => {
+      it('is not present on the root when is search', () => {
         shallow(<Dropdown options={options} selection search />)
           .should.not.have.prop('tabIndex')
       })
 
-      it('is not present on the root when defined', () => {
+      it('is not present on the root when is search and defined', () => {
         shallow(<Dropdown options={options} selection search tabIndex={1} />)
           .should.not.have.prop('tabIndex')
       })
