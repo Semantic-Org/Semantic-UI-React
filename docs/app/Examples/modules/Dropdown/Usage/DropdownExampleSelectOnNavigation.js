@@ -3,10 +3,10 @@ import { Grid, Dropdown, Form } from 'semantic-ui-react'
 
 import { getOptions } from '../common'
 
-export default class DropdownExampleSelectOnKeydown extends Component {
+export default class DropdownExampleSelectOnNavigation extends Component {
   state = {
-    default: null,
-    false: null,
+    default: '',
+    false: '',
   }
 
   handleChange = (e, { name, value }) => this.setState({ [name]: value })
@@ -17,7 +17,7 @@ export default class DropdownExampleSelectOnKeydown extends Component {
         <Grid.Column>
           <Form>
             <Form.Field>
-              <label>Default selectOnKeydown</label>
+              <label>Default selectOnNavigation</label>
               <Dropdown
                 selection
                 name='default'
@@ -27,9 +27,9 @@ export default class DropdownExampleSelectOnKeydown extends Component {
               />
             </Form.Field>
             <Form.Field>
-              <label>{'selectOnKeydown={false}'}</label>
+              <label>{'selectOnNavigation={false}'}</label>
               <Dropdown
-                selectOnKeydown={false}
+                selectOnNavigation={false}
                 selection
                 name='false'
                 options={getOptions(3)}
@@ -40,6 +40,7 @@ export default class DropdownExampleSelectOnKeydown extends Component {
           </Form>
         </Grid.Column>
         <Grid.Column>
+          Dropdown values:
           <pre>
             {JSON.stringify(this.state, null, 2)}
           </pre>

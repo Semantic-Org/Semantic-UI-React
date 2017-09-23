@@ -2323,7 +2323,7 @@ describe('Dropdown', () => {
     })
   })
 
-  describe('selectOnKeydown', () => {
+  describe('selectOnNavigation', () => {
     it('is on by default', () => {
       const spy = sandbox.spy()
       wrapperMount(<Dropdown options={options} onChange={spy} />)
@@ -2338,7 +2338,7 @@ describe('Dropdown', () => {
 
     it('blocks onChange for keyboard shortcuts when set to false', () => {
       const spy = sandbox.spy()
-      wrapperMount(<Dropdown options={options} selectOnKeydown={false} onChange={spy} />)
+      wrapperMount(<Dropdown options={options} selectOnNavigation={false} onChange={spy} />)
 
       // open
       wrapper.simulate('click')

@@ -293,7 +293,7 @@ export default class Dropdown extends Component {
      * Whether or not to change the value when navigating the menu using arrow keys.
      * Setting to false will require enter or left click to confirm a choice.
      */
-    selectOnKeydown: PropTypes.bool,
+    selectOnNavigation: PropTypes.bool,
 
     /** Currently selected label in multi-select. */
     selectedLabel: customPropTypes.every([
@@ -354,7 +354,7 @@ export default class Dropdown extends Component {
     renderLabel: ({ text }) => text,
     searchInput: 'text',
     selectOnBlur: true,
-    selectOnKeydown: true,
+    selectOnNavigation: true,
   }
 
   static autoControlledProps = [
@@ -537,7 +537,7 @@ export default class Dropdown extends Component {
   moveSelectionOnKeyDown = (e) => {
     debug('moveSelectionOnKeyDown()', keyboardKey.getName(e))
 
-    const { multiple, selectOnKeydown } = this.props
+    const { multiple, selectOnNavigation } = this.props
     const moves = {
       [keyboardKey.ArrowDown]: 1,
       [keyboardKey.ArrowUp]: -1,
@@ -547,7 +547,7 @@ export default class Dropdown extends Component {
     if (move === undefined) return
     e.preventDefault()
     this.moveSelectionBy(move)
-    if (!multiple && selectOnKeydown) this.makeSelectedItemActive(e)
+    if (!multiple && selectOnNavigation) this.makeSelectedItemActive(e)
   }
 
   openOnSpace = (e) => {

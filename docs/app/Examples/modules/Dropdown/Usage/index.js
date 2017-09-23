@@ -23,9 +23,9 @@ const DropdownUsageExamples = () => (
     />
 
     <ComponentExample
-      title='Select On Keydown'
+      title='Select On Navigation'
       description='A dropdown can choose whether or not to change the value when navigating the menu with arrow keys.'
-      examplePath='modules/Dropdown/Usage/DropdownExampleSelectOnKeydown'
+      examplePath='modules/Dropdown/Usage/DropdownExampleSelectOnNavigation'
     />
 
     <ComponentExample
