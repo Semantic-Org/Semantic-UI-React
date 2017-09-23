@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
 import {
+  eventStack,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -196,20 +197,18 @@ export default class Visibility extends Component {
 
   componentDidMount() {
     if (!isBrowser) return
-
     const { context, fireOnMount } = this.props
 
     this.pageYOffset = window.pageYOffset
-    context.addEventListener('scroll', this.handleScroll)
+    eventStack.sub('scroll', this.handleScroll, { target: context })
 
     if (fireOnMount) this.update()
   }
 
   componentWillUnmount() {
-    if (!isBrowser) return
-
     const { context } = this.props
-    context.removeEventListener('scroll', this.handleScroll)
+
+    eventStack.unsub('scroll', this.handleScroll, { target: context })
   }
 
   // ----------------------------------------

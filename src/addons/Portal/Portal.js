@@ -353,8 +353,8 @@ class Portal extends Component {
 
     // when re-rendering, first remove listeners before re-adding them to the new node
     if (this.portalNode) {
-      this.portalNode.removeEventListener('mouseleave', this.handlePortalMouseLeave)
-      this.portalNode.removeEventListener('mouseenter', this.handlePortalMouseEnter)
+      eventStack.unsub('mouseleave', this.handlePortalMouseLeave, { target: this.portalNode })
+      eventStack.unsub('mouseenter', this.handlePortalMouseEnter, { target: this.portalNode })
     }
 
     ReactDOM.unstable_renderSubtreeIntoContainer(
@@ -364,8 +364,8 @@ class Portal extends Component {
       () => {
         this.portalNode = this.rootNode.firstElementChild
 
-        this.portalNode.addEventListener('mouseleave', this.handlePortalMouseLeave)
-        this.portalNode.addEventListener('mouseenter', this.handlePortalMouseEnter)
+        eventStack.sub('mouseleave', this.handlePortalMouseLeave, { target: this.portalNode })
+        eventStack.sub('mouseenter', this.handlePortalMouseEnter, { target: this.portalNode })
       },
     )
   }
@@ -403,8 +403,8 @@ class Portal extends Component {
     ReactDOM.unmountComponentAtNode(this.rootNode)
     this.rootNode.parentNode.removeChild(this.rootNode)
 
-    this.portalNode.removeEventListener('mouseleave', this.handlePortalMouseLeave)
-    this.portalNode.removeEventListener('mouseenter', this.handlePortalMouseEnter)
+    eventStack.unsub('mouseleave', this.handlePortalMouseLeave, { target: this.portalNode })
+    eventStack.unsub('mouseenter', this.handlePortalMouseEnter, { target: this.portalNode })
 
     this.rootNode = null
     this.portalNode = null

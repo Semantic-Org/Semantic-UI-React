@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
 import {
+  eventStack,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -128,13 +129,13 @@ export default class Sticky extends Component {
   addListener = () => {
     const { scrollContext } = this.props
 
-    scrollContext.addEventListener('scroll', this.handleUpdate)
+    eventStack.sub('scroll', this.handleUpdate, { target: scrollContext })
   }
 
   removeListener = () => {
     const { scrollContext } = this.props
 
-    scrollContext.removeEventListener('scroll', this.handleUpdate)
+    eventStack.unsub('scroll', this.handleUpdate, { target: scrollContext })
   }
 
   // ----------------------------------------
