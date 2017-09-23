@@ -582,7 +582,7 @@ export default class Dropdown extends Component {
 
     // prevent selecting null if there was no selected item value
     // prevent selecting duplicate items when the dropdown is closed
-    if (!value || !open) return
+    if (_.isNil(value) || !open) return
 
     // notify the onAddItem prop if this is a new value
     if (onAddItem && item['data-additional']) onAddItem(e, { ...this.props, value })
