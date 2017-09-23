@@ -4,14 +4,13 @@ import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
 import {
+  createShorthandFactory,
   customPropTypes,
   getElementType,
   getUnhandledProps,
   META,
   useKeyOnly,
-  createShorthandFactory,
 } from '../../lib'
-
 import Icon from '../../elements/Icon'
 
 /**
@@ -34,6 +33,9 @@ export default class AccordionTitle extends Component {
     /** Shorthand for primary content. */
     content: customPropTypes.contentShorthand,
 
+    /** AccordionTitle index inside Accordion. */
+    index: PropTypes.number,
+
     /**
      * Called on click.
      *
@@ -49,11 +51,7 @@ export default class AccordionTitle extends Component {
     parent: 'Accordion',
   }
 
-  handleClick = (e) => {
-    const { onClick } = this.props
-
-    if (onClick) onClick(e, this.props)
-  }
+  handleClick = e => _.invoke(this.props, 'onClick', e, this.props)
 
   render() {
     const {
@@ -72,11 +70,7 @@ export default class AccordionTitle extends Component {
     const ElementType = getElementType(AccordionTitle, this.props)
 
     if (_.isNil(content)) {
-      return (
-        <ElementType {...rest} className={classes} onClick={this.handleClick}>
-          {children}
-        </ElementType>
-      )
+      return <ElementType {...rest} className={classes} onClick={this.handleClick}>{children}</ElementType>
     }
 
     return (
