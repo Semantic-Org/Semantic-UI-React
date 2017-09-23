@@ -1,4 +1,5 @@
 import React from 'react'
+import { Message } from 'semantic-ui-react'
 
 import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
 import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
@@ -83,6 +84,16 @@ const DropdownUsageExamples = () => (
       description='A dropdown implements a search input shorthand.'
       examplePath='modules/Dropdown/Usage/DropdownExampleSearchInput'
     />
+    <ComponentExample
+      title='Search Query'
+      description='A dropdown allows to pass you the search query.'
+      examplePath='modules/Dropdown/Usage/DropdownExampleSearchQuery'
+    >
+      <Message info>
+        This example also shows how to override default bevahiour of the search query which keeps
+        entered value after selection.
+      </Message>
+    </ComponentExample>
     <ComponentExample
       title='Upward'
       description='A dropdown can open its menu upward.'

@@ -106,6 +106,13 @@ describe('Dropdown', () => {
     'left', 'right', 'top', 'top left', 'top right', 'bottom', 'bottom left', 'bottom right',
   ])
 
+  describe('defaultSearchQuery', () => {
+    it('changes default value of searchQuery', () => {
+      shallow(<Dropdown defaultSearchQuery='foo' />)
+        .should.have.state('searchQuery', 'foo')
+    })
+  })
+
   it('closes on blur', () => {
     wrapperMount(<Dropdown options={options} />)
       .simulate('click')
@@ -488,6 +495,18 @@ describe('Dropdown', () => {
 
       onClick.should.have.been.calledOnce()
       onClick.should.have.been.calledWithMatch(event, props)
+    })
+  })
+
+  describe('searchQuery', () => {
+    it('defaults to empty string', () => {
+      shallow(<Dropdown />)
+        .should.have.state('searchQuery', '')
+    })
+
+    it('passes value to state', () => {
+      shallow(<Dropdown searchQuery='foo' />)
+        .should.have.state('searchQuery', 'foo')
     })
   })
 

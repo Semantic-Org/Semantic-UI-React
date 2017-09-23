@@ -53,6 +53,9 @@ export interface DropdownProps {
   /** Initial value of open. */
   defaultOpen?: boolean;
 
+  /** Initial value of searchQuery. */
+  defaultSearchQuery?: string;
+
   /** Currently selected label in multi-select. */
   defaultSelectedLabel?: number | string;
 
@@ -215,6 +218,9 @@ export interface DropdownProps {
 
   /** A shorthand for a search input. */
   searchInput?: any;
+
+  /** Current value of searchQuery. Creates a controlled component. */
+  searchQuery?: string;
 
   /** Define whether the highlighted item should be selected on blur. */
   selectOnBlur?: boolean;

@@ -92,6 +92,9 @@ export default class Dropdown extends Component {
     /** Initial value of open. */
     defaultOpen: PropTypes.bool,
 
+    /** Initial value of searchQuery. */
+    defaultSearchQuery: PropTypes.string,
+
     /** Currently selected label in multi-select. */
     defaultSelectedLabel: customPropTypes.every([
       customPropTypes.demand(['multiple']),
@@ -284,6 +287,9 @@ export default class Dropdown extends Component {
       PropTypes.object,
     ]),
 
+    /** Current value of searchQuery. Creates a controlled component. */
+    searchQuery: PropTypes.string,
+
     // TODO 'searchInMenu' or 'search='in menu' or ???  How to handle this markup and functionality?
 
     /** Define whether the highlighted item should be selected on blur. */
@@ -352,6 +358,7 @@ export default class Dropdown extends Component {
 
   static autoControlledProps = [
     'open',
+    'searchQuery',
     'selectedLabel',
     'value',
   ]
@@ -756,10 +763,7 @@ export default class Dropdown extends Component {
     const newQuery = value
 
     _.invoke(this.props, 'onSearchChange', e, { ...this.props, searchQuery: newQuery })
-    this.setState({
-      selectedIndex: 0,
-      searchQuery: newQuery,
-    })
+    this.trySetState({ searchQuery: newQuery }, { selectedIndex: 0 })
 
     // open search dropdown on search query
     if (!open && newQuery.length >= minCharacters) {
@@ -883,7 +887,7 @@ export default class Dropdown extends Component {
 
   clearSearchQuery = () => {
     debug('clearSearchQuery()')
-    this.setState({ searchQuery: '' })
+    this.trySetState({ searchQuery: '' })
   }
 
   setValue = (value) => {
