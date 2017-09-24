@@ -25,7 +25,7 @@
     "build:docs-cname": "echo react.semantic-ui.com > docs/build/CNAME",
     "predeploy:docs": "cross-env NODE_ENV=production yarn build:docs && yarn build:docs-cname",
     "deploy:docs": "gh-pages -d docs/build -m 'deploy docs [ci skip]'",
-    "lint": "cross-env NODE_ENV=production eslint ./**/*.js",
+    "lint": "cross-env NODE_ENV=production eslint .",
     "lint:fix": "yarn lint -- --fix",
     "prerelease": "yarn lint && yarn tsd:lint && npm test && cross-env NODE_ENV=production yarn build",
     "postrelease": "NODE_ENV=production yarn deploy:docs",
@@ -41,7 +41,7 @@
     "tsd": "gulp tsd",
     "tsd:lint": "tslint './index.d.ts' './src/**/*.d.ts' './src/**/*.tsx' './test/**/*.d.ts' './test/**/*.tsx'",
     "tsd:lint:fix": "yarn tsd:lint -- --fix",
-    "tsd:test": "yarn tsd && tsc -p ./"
+    "tsd:test": "yarn tsd && tsc -p ./ && rm test/typings.js"
   },
   "repository": {
     "type": "git",
