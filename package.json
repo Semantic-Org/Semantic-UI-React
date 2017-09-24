@@ -25,7 +25,7 @@
     "build:docs-cname": "echo react.semantic-ui.com > docs/build/CNAME",
     "predeploy:docs": "cross-env NODE_ENV=production yarn build:docs && yarn build:docs-cname",
     "deploy:docs": "gh-pages -d docs/build -m 'deploy docs [ci skip]'",
-    "lint": "cross-env NODE_ENV=production eslint .",
+    "lint": "cross-env NODE_ENV=production eslint ./**/*.js",
     "lint:fix": "yarn lint -- --fix",
     "prerelease": "yarn lint && yarn tsd:lint && npm test && cross-env NODE_ENV=production yarn build",
     "postrelease": "NODE_ENV=production yarn deploy:docs",
