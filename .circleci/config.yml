@@ -5,10 +5,11 @@ jobs:
       branches:
         ignore: gh-pages
     docker:
-      - image: circleci/node:6
+      - image: circleci/node:8
     environment:
       TZ: "/usr/share/zoneinfo/America/Los_Angeles"
     steps:
+      - run: sudo apt-get update
       - checkout
       - run:
           name: Update yarn
