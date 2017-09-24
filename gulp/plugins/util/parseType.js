@@ -23,12 +23,15 @@ const parseEnum = (type) => {
 
 const parseUnion = (union) => {
   const { value } = union
-  const values = _.map(value, type => (type.name === 'enum' ? parseEnum(type).value : type.name))
+  const values = _.flatten(_.map(
+    _.filter(value, { name: 'enum' }),
+    type => parseEnum(type).value,
+  ))
 
   return {
     ...union,
-    name: 'enum',
-    value: _.flatten(values),
+    name: _.map(value, 'name').join('|'),
+    value: values,
   }
 }
 
