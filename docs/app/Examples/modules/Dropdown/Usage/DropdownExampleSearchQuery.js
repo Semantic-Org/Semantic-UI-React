@@ -7,10 +7,7 @@ import { stateOptions } from '../common'
 export default class DropdownExampleSearchQuery extends Component {
   state = { searchQuery: '' }
 
-  handleChange = (e, { value }) => this.setState({
-    value,
-    searchQuery: '',
-  })
+  handleChange = (e, { searchQuery, value }) => this.setState({ searchQuery, value })
 
   handleSearchChange = (e, { searchQuery }) => this.setState({ searchQuery })
 
