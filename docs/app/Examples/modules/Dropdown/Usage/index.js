@@ -96,8 +96,8 @@ const DropdownUsageExamples = () => (
       examplePath='modules/Dropdown/Usage/DropdownExampleSearchQuery'
     >
       <Message info>
-        This example also shows how to override default bevahiour of the search query which keeps
-        entered value after selection.
+        This example also shows how to override default bevahiour of the search query and keep entered value after
+        selection.
       </Message>
     </ComponentExample>
     <ComponentExample
