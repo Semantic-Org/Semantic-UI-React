@@ -602,7 +602,7 @@ export default class Dropdown extends Component {
 
   selectItemOnEnter = (e) => {
     debug('selectItemOnEnter()', keyboardKey.getName(e))
-    const { multiple, onAddItem, search } = this.props
+    const { onAddItem, search } = this.props
 
     if (keyboardKey.getCode(e) !== keyboardKey.Enter) return
     e.preventDefault()
@@ -616,7 +616,7 @@ export default class Dropdown extends Component {
     this.makeSelectedItemActive(e)
     this.closeOnChange(e)
 
-    if (!multiple || isAdditionItem || optionSize === 1) this.clearSearchQuery()
+    if (isAdditionItem || optionSize === 1) this.clearSearchQuery()
     if (search && this.searchRef) this.searchRef.focus()
   }
 
