@@ -43,6 +43,17 @@ export default (karmaConfig) => {
       ],
       includeAllSources: true,
     },
+    customLaunchers: {
+      puppeteer: {
+        base: 'ChromeHeadless',
+        flags: [
+          // Avoid "Maximum call stack size exceeded" errors on CircleCI
+          '--stack-trace-limit 50000',
+          // '--no-sandbox',
+          // '--disable-setuid-sandbox'
+        ],
+      },
+    },
     files: [
       './test/tests.bundle.js',
     ],

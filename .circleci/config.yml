@@ -9,8 +9,18 @@ jobs:
     environment:
       TZ: "/usr/share/zoneinfo/America/Los_Angeles"
     steps:
-      - run: sudo apt-get update
-      - checkout
+      # Chrome HeadlessBrowser is missing deps on Debian, see:
+      # https://github.com/GoogleChrome/puppeteer/issues/290
+      - run:
+          name: Update Pupeteer Dependencies
+          command: |
+            sudo apt-get update
+            sudo apt-get install --yes --quiet gconf-service libasound2 libatk1.0-0 libc6 \
+              libcairo2 libcups2 libdbus-1-3 libexpat1 libfontconfig1 libgcc1 libgconf-2-4 \
+              libgdk-pixbuf2.0-0 libglib2.0-0 libgtk-3-0 libnspr4 libpango-1.0-0 libpangocairo-1.0-0 \
+              libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 libxcursor1 libxdamage1 libxext6 \
+              libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 ca-certificates fonts-liberation \
+              libappindicator1 libnss3 lsb-release xdg-utils wget
       - run:
           name: Update yarn
           command: |
@@ -20,7 +30,8 @@ jobs:
             rm -rf ~/.yarn
             curl -o- -L https://yarnpkg.com/install.sh | bash
             echo 'export PATH="${PATH}:${HOME}/.yarn/bin"' >> $BASH_ENV
-      # because we don't invoke npm (yarn), we need to add npm bin to PATH manually
+      - checkout
+      # because we don't invoke npm (we use yarn) we need to add npm bin to PATH manually
       - run:
           name: Add npm bin to PATH
           command: echo 'export PATH="${PATH}:$(npm bin)"' >> $BASH_ENV
@@ -37,8 +48,18 @@ jobs:
             - ~/.cache/yarn
             - .yarn-cache
             - node_modules
-      - run: yarn lint
-      - run: yarn tsd:lint
-      - run: yarn tsd:test
-      - run: yarn test
-      - run: bash <(curl -s https://codecov.io/bash)
+      - run:
+          name: Lint JS
+          command: yarn lint
+      - run:
+          name: Lint TS
+          command: yarn tsd:lint
+      - run:
+          name: Test TS
+          command: yarn tsd:test
+      - run:
+          name: Test JS
+          command: yarn test
+      - run:
+          name: Report coverage
+          command: bash <(curl -s https://codecov.io/bash)
