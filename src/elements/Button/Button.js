@@ -41,8 +41,11 @@ class Button extends Component {
       PropTypes.oneOf(['fade', 'vertical']),
     ]),
 
-    /** A button can be attached to the top or bottom of other content. */
-    attached: PropTypes.oneOf(['left', 'right', 'top', 'bottom']),
+    /** A button can be attached to other content. */
+    attached: PropTypes.oneOfType([
+      PropTypes.bool,
+      PropTypes.oneOf(['left', 'right', 'top', 'bottom']),
+    ]),
 
     /** A basic button is less pronounced. */
     basic: PropTypes.bool,

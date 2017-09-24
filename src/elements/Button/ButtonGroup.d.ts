@@ -12,8 +12,8 @@ export interface ButtonGroupProps {
   /** An element type to render as (string or function). */
   as?: any;
 
-  /** A button can be attached to the top or bottom of other content. */
-  attached?: 'left' | 'right' | 'top' | 'bottom';
+  /** Groups can be attached to other content. */
+  attached?: boolean | 'left' | 'right' | 'top' | 'bottom';
 
   /** Groups can be less pronounced. */
   basic?: boolean;

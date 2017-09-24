@@ -1,5 +1,27 @@
 # Change Log
 
+## [v0.73.1](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.73.1) (2017-09-18)
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.73.0...v0.73.1)
+
+**Implemented enhancements:**
+
+- feat\(Sticky\): add `active` prop [\#2053](https://github.com/Semantic-Org/Semantic-UI-React/pull/2053) ([layershifter](https://github.com/layershifter))
+
+**Fixed bugs:**
+
+- Popup component does not clean event handlers attached to window when it unmounts [\#2062](https://github.com/Semantic-Org/Semantic-UI-React/issues/2062)
+
+**Closed issues:**
+
+- wide columns [\#2073](https://github.com/Semantic-Org/Semantic-UI-React/issues/2073)
+- No CHANGELOG for v0.73.0 [\#2066](https://github.com/Semantic-Org/Semantic-UI-React/issues/2066)
+- \(Dropdown\): when used as Menu Item, 'description' overlays 'text' [\#2031](https://github.com/Semantic-Org/Semantic-UI-React/issues/2031)
+- RFC: Theming support [\#1009](https://github.com/Semantic-Org/Semantic-UI-React/issues/1009)
+
+**Merged pull requests:**
+
+- fix\(Popup\): Remove hideOnScroll from window scroll [\#2063](https://github.com/Semantic-Org/Semantic-UI-React/pull/2063) ([mkarajohn](https://github.com/mkarajohn))
+
 ## [v0.73.0](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.73.0) (2017-09-11)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.72.0...v0.73.0)
 

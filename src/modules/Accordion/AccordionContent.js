@@ -4,12 +4,12 @@ import React from 'react'
 
 import {
   childrenUtils,
+  createShorthandFactory,
   customPropTypes,
   getElementType,
   getUnhandledProps,
   META,
   useKeyOnly,
-  createShorthandFactory,
 } from '../../lib'
 
 /**

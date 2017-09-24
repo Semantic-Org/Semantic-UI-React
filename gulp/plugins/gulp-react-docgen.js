@@ -1,10 +1,10 @@
 import gutil from 'gulp-util'
 import _ from 'lodash'
 import path from 'path'
-import { parse } from 'react-docgen'
+import { defaultHandlers, parse } from 'react-docgen'
 import through from 'through2'
 
-import { parseDefaultValue, parseDocBlock, parseType } from './util'
+import { parseDefaultValue, parseDocBlock, parserCustomHandler, parseType } from './util'
 
 export default (filename) => {
   const defaultFilename = 'docgenInfo.json'
@@ -28,7 +28,10 @@ export default (filename) => {
 
     try {
       const relativePath = file.path.replace(`${process.cwd()}/`, '')
-      const parsed = parse(file.contents)
+      const parsed = parse(file.contents, null, [
+        ...defaultHandlers,
+        parserCustomHandler,
+      ])
 
       // replace the component`description` string with a parsed doc block object
       parsed.docBlock = parseDocBlock(parsed.description)

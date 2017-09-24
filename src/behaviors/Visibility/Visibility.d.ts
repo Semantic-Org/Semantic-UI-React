@@ -141,6 +141,7 @@ export interface VisibilityProps {
 export interface VisibilityCalculations {
   bottomPassed: boolean;
   bottomVisible: boolean;
+  direction: 'down' | 'up';
   fits: boolean;
   height: number;
   passing: boolean;
