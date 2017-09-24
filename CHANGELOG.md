@@ -1,5 +1,50 @@
 # Change Log
 
+## [v0.74.0](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.74.0) (2017-09-24)
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.73.1...v0.74.0)
+
+**Implemented enhancements:**
+
+- eventStack: Multiple Popups do not behave correctly [\#2075](https://github.com/Semantic-Org/Semantic-UI-React/issues/2075)
+- Feature Request: Support Popup close onClick when hoverable [\#2034](https://github.com/Semantic-Org/Semantic-UI-React/issues/2034)
+- Dropdown: how to stop it from clearing the input field? \[feature request\] [\#1829](https://github.com/Semantic-Org/Semantic-UI-React/issues/1829)
+- feat\(Dropdown\): add `searchQuery` prop [\#2109](https://github.com/Semantic-Org/Semantic-UI-React/pull/2109) ([layershifter](https://github.com/layershifter))
+- feat\(eventStack\): support for different targets [\#2094](https://github.com/Semantic-Org/Semantic-UI-React/pull/2094) ([layershifter](https://github.com/layershifter))
+- feat\(Sticky|Visibility\): listen for `resize` events [\#2091](https://github.com/Semantic-Org/Semantic-UI-React/pull/2091) ([layershifter](https://github.com/layershifter))
+- feat\(Visibility\): add `direction` for calculations [\#2090](https://github.com/Semantic-Org/Semantic-UI-React/pull/2090) ([layershifter](https://github.com/layershifter))
+- breaking\(Accordion\): Refactor component [\#1375](https://github.com/Semantic-Org/Semantic-UI-React/pull/1375) ([layershifter](https://github.com/layershifter))
+
+**Fixed bugs:**
+
+- Dropdown: call onAddItem after onChange [\#2106](https://github.com/Semantic-Org/Semantic-UI-React/issues/2106)
+- Button: `attached` prop should accept `true` as value [\#2104](https://github.com/Semantic-Org/Semantic-UI-React/issues/2104)
+- Dropdown: tabIndex rendered incorrectly [\#2093](https://github.com/Semantic-Org/Semantic-UI-React/issues/2093)
+- Sticky: `active` prop doesn't reset sticky state [\#2082](https://github.com/Semantic-Org/Semantic-UI-React/issues/2082)
+- Dropdown: onSearchChange signature should match that of Search [\#2052](https://github.com/Semantic-Org/Semantic-UI-React/issues/2052)
+
+**Closed issues:**
+
+- Vertical divider appears to be rendering incorrectly in Chrome [\#2085](https://github.com/Semantic-Org/Semantic-UI-React/issues/2085)
+- Docs: parse {custom} and display correct values [\#2078](https://github.com/Semantic-Org/Semantic-UI-React/issues/2078)
+- Checkbox slider with lose animation if label changes [\#1881](https://github.com/Semantic-Org/Semantic-UI-React/issues/1881)
+- Performance: Update usage of stateless, functional components to class-based components when event handlers are used [\#607](https://github.com/Semantic-Org/Semantic-UI-React/issues/607)
+
+**Merged pull requests:**
+
+- fix\(Dropdown\): fix call order of `onAddItem` and `onChange` handlers [\#2113](https://github.com/Semantic-Org/Semantic-UI-React/pull/2113) ([layershifter](https://github.com/layershifter))
+- breaking\(Dropdown\): clean searchQuery after selection in multiple search Dropdown [\#2112](https://github.com/Semantic-Org/Semantic-UI-React/pull/2112) ([layershifter](https://github.com/layershifter))
+- docs\(Dropdown\): fix searchQuery example [\#2110](https://github.com/Semantic-Org/Semantic-UI-React/pull/2110) ([layershifter](https://github.com/layershifter))
+- fix\(Button\): Add bool to propTypes of attached [\#2105](https://github.com/Semantic-Org/Semantic-UI-React/pull/2105) ([kasbah](https://github.com/kasbah))
+- breaking\(Dropdown\): correct onSearchChange signature [\#2102](https://github.com/Semantic-Org/Semantic-UI-React/pull/2102) ([layershifter](https://github.com/layershifter))
+- fix\(Dropdown\): fix tabIndex behaviour [\#2101](https://github.com/Semantic-Org/Semantic-UI-React/pull/2101) ([layershifter](https://github.com/layershifter))
+- fix\(Modal|Popup|Portal\): fix usage of eventStack sub/unsub [\#2099](https://github.com/Semantic-Org/Semantic-UI-React/pull/2099) ([austinfox](https://github.com/austinfox))
+- fix\(Icon\): fix typings of Icon.Group [\#2095](https://github.com/Semantic-Org/Semantic-UI-React/pull/2095) ([mihai-dinculescu](https://github.com/mihai-dinculescu))
+- fix\(Visibility\): fix behaviour of reverse calls [\#2088](https://github.com/Semantic-Org/Semantic-UI-React/pull/2088) ([layershifter](https://github.com/layershifter))
+- docs\(parser\): parse custom values and mixed enums [\#2086](https://github.com/Semantic-Org/Semantic-UI-React/pull/2086) ([layershifter](https://github.com/layershifter))
+- fix\(Sticky\): disable styles when `active` is false [\#2083](https://github.com/Semantic-Org/Semantic-UI-React/pull/2083) ([layershifter](https://github.com/layershifter))
+- chore\(package\): replace npm with yarn [\#2081](https://github.com/Semantic-Org/Semantic-UI-React/pull/2081) ([levithomason](https://github.com/levithomason))
+- feat\(Dropdown\): implement `selectOnNavigation` prop [\#2009](https://github.com/Semantic-Org/Semantic-UI-React/pull/2009) ([rijk](https://github.com/rijk))
+
 ## [v0.73.1](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.73.1) (2017-09-18)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.73.0...v0.73.1)
 
@@ -327,7 +372,6 @@
 **Implemented enhancements:**
 
 - \<Tab /\> Component [\#199](https://github.com/Semantic-Org/Semantic-UI-React/issues/199)
-- feat\(Tab\): Add component [\#430](https://github.com/Semantic-Org/Semantic-UI-React/pull/430) ([levithomason](https://github.com/levithomason))
 
 **Fixed bugs:**
 
@@ -2825,7 +2869,6 @@
 **Implemented enhancements:**
 
 - Modal Keyboard Event Handlers [\#175](https://github.com/Semantic-Org/Semantic-UI-React/issues/175)
-- Modal: full feature support with Dimmer and docs [\#383](https://github.com/Semantic-Org/Semantic-UI-React/pull/383) ([levithomason](https://github.com/levithomason))
 
 ## [v0.32.0](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.32.0) (2016-08-13)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.31.0...v0.32.0)
