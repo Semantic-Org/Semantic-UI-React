@@ -40,7 +40,7 @@ jobs:
             - v1-dependencies-{{ checksum "yarn.lock" }}
             - v1-dependencies
       - run:
-          name: Install dependencies
+          name: Install Dependencies
           command: yarn
       - save_cache:
           key: v1-dependencies-{{ checksum "yarn.lock" }}
@@ -49,16 +49,16 @@ jobs:
             - .yarn-cache
             - node_modules
       - run:
-          name: Lint JS
-          command: yarn lint
-      - run:
-          name: Lint TS
+          name: Lint TypeScript
           command: yarn tsd:lint
       - run:
-          name: Test TS
+          name: Test TypeScript
           command: yarn tsd:test
       - run:
-          name: Test JS
+          name: Lint JavaScript
+          command: yarn lint
+      - run:
+          name: Test JavaScript
           command: yarn test
       - run:
           name: Report coverage
