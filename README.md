@@ -143,15 +143,15 @@ Any other issue labeled [`help wanted`][4] is ready for a PR.
 On the latest clean `master`:
 
 ```sh
-npm run release:major
-npm run release:minor
-npm run release:patch
+yarn release:major
+yarn release:minor
+yarn release:patch
 ```
 
 Deploy the docs:
 
 ```sh
-npm run deploy:docs
+yarn deploy:docs
 ```
 
 Update the changelog (requires [github_changelog_generator][15]):
