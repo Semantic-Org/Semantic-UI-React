@@ -2291,9 +2291,17 @@ describe('Dropdown', () => {
     })
 
     it('calls onAddItem prop when clicking new value', () => {
-      const spy = sandbox.spy()
+      const onAddItem = sandbox.spy()
+      const onChange = sandbox.spy()
       const search = wrapperMount(
-        <Dropdown options={customOptions} selection search allowAdditions onAddItem={spy} />,
+        <Dropdown
+          allowAdditions
+          onAddItem={onAddItem}
+          onChange={onChange}
+          options={customOptions}
+          search
+          selection
+        />,
       )
         .find('input.search')
 
@@ -2304,22 +2312,34 @@ describe('Dropdown', () => {
         .first()
         .simulate('click')
 
-      spy.should.have.been.calledOnce()
-      spy.should.have.been.calledWithMatch({}, { value: 'boo' })
+      onChange.should.have.been.calledOnce()
+      onAddItem.should.have.been.calledOnce()
+      onAddItem.should.have.been.calledWithMatch({}, { value: 'boo' })
+      onAddItem.should.have.been.calledImmediatelyAfter(onChange)
     })
 
     it('calls onAddItem prop when pressing enter on new value', () => {
-      const spy = sandbox.spy()
+      const onAddItem = sandbox.spy()
+      const onChange = sandbox.spy()
       const search = wrapperMount(
-        <Dropdown options={customOptions} selection search allowAdditions onAddItem={spy} />,
+        <Dropdown
+          allowAdditions
+          onAddItem={onAddItem}
+          onChange={onChange}
+          options={customOptions}
+          search
+          selection
+        />,
       )
         .find('input.search')
 
       search.simulate('change', { target: { value: 'boo' } })
       domEvent.keyDown(document, { key: 'Enter' })
 
-      spy.should.have.been.calledOnce()
-      spy.should.have.been.calledWithMatch({}, { value: 'boo' })
+      onChange.should.have.been.calledOnce()
+      onAddItem.should.have.been.calledOnce()
+      onAddItem.should.have.been.calledWithMatch({}, { value: 'boo' })
+      onAddItem.should.have.been.calledImmediatelyAfter(onChange)
     })
 
     it('clears value of the searchQuery when selection is only option', () => {
