@@ -1,35 +1,32 @@
-import _ from 'lodash'
-
 import isBrowser from '../isBrowser'
 import EventTarget from './EventTarget'
 import normalizeTarget from './normalizeTarget'
 
 class EventStack {
-  _eventTargets = {}
-  _targets = []
+  constructor() {
+    this._targets = new Map()
+  }
 
   // ------------------------------------
   // Target utils
   // ------------------------------------
 
-  _find = (target) => {
+  _find = (target, autoCreate = true) => {
     const normalized = normalizeTarget(target)
-    let index = this._targets.indexOf(normalized)
 
-    if (index !== -1) return this._eventTargets[index]
+    if (this._targets.has(normalized)) return this._targets.get(normalized)
+    if (!autoCreate) return
 
-    index = this._targets.push(normalized) - 1
-    this._eventTargets[index] = new EventTarget(normalized)
+    const eventTarget = new EventTarget(normalized)
+    this._targets.set(normalized, eventTarget)
 
-    return this._eventTargets[index]
+    return eventTarget
   }
 
   _remove = (target) => {
     const normalized = normalizeTarget(target)
-    const index = this._targets.indexOf(normalized)
 
-    this._targets = _.without(this._targets, normalized)
-    delete this._eventTargets[index]
+    this._targets.delete(normalized)
   }
 
   // ------------------------------------
@@ -49,10 +46,12 @@ class EventStack {
     if (!isBrowser) return
 
     const { target = document, pool = 'default' } = options
-    const eventTarget = this._find(target)
+    const eventTarget = this._find(target, false)
 
-    eventTarget.unsub(name, handlers, pool)
-    if (eventTarget.empty()) this._remove(target)
+    if (eventTarget) {
+      eventTarget.unsub(name, handlers, pool)
+      if (eventTarget.empty()) this._remove(target)
+    }
   }
 }
 

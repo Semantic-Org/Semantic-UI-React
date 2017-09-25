@@ -3,8 +3,7 @@ import { domEvent, sandbox } from 'test/utils'
 
 describe('eventStack', () => {
   afterEach(() => {
-    eventStack._eventTargets = {}
-    eventStack._targets = []
+    eventStack._targets = new Map()
   })
 
   describe('sub', () => {
@@ -67,6 +66,19 @@ describe('eventStack', () => {
 
       clickHandler.should.have.been.calledOnce()
       keyHandler.should.have.not.been.called()
+    })
+
+    it('unsubscribes from same event multiple times', () => {
+      const handler = sandbox.spy()
+
+      eventStack.sub('click', handler)
+      domEvent.click(document)
+
+      eventStack.unsub('click', handler)
+      eventStack.unsub('click', handler)
+      domEvent.click(document)
+
+      handler.should.have.been.calledOnce()
     })
   })
 })
