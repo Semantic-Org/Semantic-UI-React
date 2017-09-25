@@ -1,6 +1,6 @@
-import * as React from 'react'
+import * as React from 'react';
 import { Button } from '../';
 
-const Test = () => <Button />
+const Test = () => <Button />;
 
-export default Test
+export default Test;

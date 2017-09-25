@@ -59,11 +59,11 @@ export default class Responsive extends Component {
   }
 
   componentDidMount() {
-    eventStack.sub('resize', this.handleResize)
+    eventStack.sub('resize', this.handleResize, { target: 'window' })
   }
 
   componentWillUnmount() {
-    eventStack.unsub('resize', this.handleResize)
+    eventStack.unsub('resize', this.handleResize, { target: 'window' })
   }
 
   // ----------------------------------------

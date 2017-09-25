@@ -102,6 +102,7 @@ export { default as StepTitle } from './elements/Step/StepTitle'
 
 // Modules
 export { default as Accordion } from './modules/Accordion/Accordion'
+export { default as AccordionAccordion } from './modules/Accordion/AccordionAccordion'
 export { default as AccordionContent } from './modules/Accordion/AccordionContent'
 export { default as AccordionTitle } from './modules/Accordion/AccordionTitle'
 

@@ -55,7 +55,7 @@ export interface IconProps {
 }
 
 declare class Icon extends React.Component<IconProps, {}> {
-  Group: typeof IconGroup;
+  static Group: typeof IconGroup;
 }
 
 export default Icon;
