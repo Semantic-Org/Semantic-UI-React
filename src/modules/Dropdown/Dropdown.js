@@ -975,11 +975,12 @@ export default class Dropdown extends Component {
     debug(`offset: ${offset}`)
 
     const options = this.getMenuOptions()
-    const lastIndex = options.length - 1
 
     // Prevent infinite loop
-    if (_.every(options, 'disabled')) return
+    // TODO: remove left part of condition after children API will be removed
+    if (options === undefined || _.every(options, 'disabled')) return
 
+    const lastIndex = options.length - 1
     // next is after last, wrap to beginning
     // next is before first, wrap to end
     let nextIndex = startIndex + offset
