@@ -4,7 +4,7 @@ import { Checkbox, Grid, Header, Image, Rail, Segment, Sticky } from 'semantic-u
 
 const Placeholder = () => <Image src='/assets/images/wireframe/paragraph.png' />
 
-export default class StickyPushingExample extends Component {
+export default class StickyExampleActive extends Component {
   state = { active: true }
 
   handleContextRef = contextRef => this.setState({ contextRef })
