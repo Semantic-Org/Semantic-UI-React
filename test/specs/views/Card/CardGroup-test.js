@@ -1,4 +1,5 @@
 import faker from 'faker'
+import _ from 'lodash'
 import React from 'react'
 
 import { SUI } from 'src/lib'
@@ -10,6 +11,7 @@ describe('CardGroup', () => {
   common.hasUIClassName(CardGroup)
   common.rendersChildren(CardGroup)
 
+  common.implementsTextAlignProp(CardGroup, _.without(SUI.TEXT_ALIGNMENTS, 'justified'))
   common.implementsWidthProp(CardGroup, SUI.WIDTHS, { propKey: 'itemsPerRow', canEqual: false })
 
   common.propKeyOnlyToClassName(CardGroup, 'doubling')

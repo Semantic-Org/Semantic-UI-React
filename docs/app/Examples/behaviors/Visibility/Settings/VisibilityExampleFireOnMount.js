@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import { Grid, Table, Visibility } from 'semantic-ui-react'
-import Wireframe from '../Wireframe'
+import { Divider, Grid, Image, Table, Segment, Visibility } from 'semantic-ui-react'
 
-class VisibilityExample extends Component {
+export default class VisibilityExampleFireOnMount extends Component {
   state = {
     calculations: {
+      direction: 'none',
       height: 0,
       width: 0,
       topPassed: false,
@@ -20,7 +20,9 @@ class VisibilityExample extends Component {
     },
   }
 
-  handleUpdate = (e, { calculations }) => this.setState({ calculations })
+  handleOnScreen = (e, { calculations }) => this.setState({ calculations })
+
+  handleOffScreen = (e, { calculations }) => this.setState({ calculations })
 
   render() {
     const { calculations } = this.state
@@ -28,8 +30,20 @@ class VisibilityExample extends Component {
     return (
       <Grid columns={2}>
         <Grid.Column>
-          <Visibility onUpdate={this.handleUpdate}>
-            <Wireframe />
+          <Visibility
+            fireOnMount
+            onOnScreen={this.handleOnScreen}
+            onOffScreen={this.handleOffScreen}
+          >
+            <Segment>
+              <Image src='/assets/images/wireframe/centered-paragraph.png' />
+              <Divider />
+              <Image src='/assets/images/wireframe/short-paragraph.png' />
+              <Divider />
+              <Image src='/assets/images/wireframe/media-paragraph.png' />
+              <Divider />
+              <Image src='/assets/images/wireframe/paragraph.png' />
+            </Segment>
           </Visibility>
         </Grid.Column>
 
@@ -42,6 +56,10 @@ class VisibilityExample extends Component {
               </Table.Row>
             </Table.Header>
             <Table.Body>
+              <Table.Row>
+                <Table.Cell>direction</Table.Cell>
+                <Table.Cell>{calculations.direction}</Table.Cell>
+              </Table.Row>
               <Table.Row>
                 <Table.Cell>pixelsPassed</Table.Cell>
                 <Table.Cell>{calculations.pixelsPassed.toFixed()}px</Table.Cell>
@@ -97,5 +115,3 @@ class VisibilityExample extends Component {
     )
   }
 }
-
-export default VisibilityExample

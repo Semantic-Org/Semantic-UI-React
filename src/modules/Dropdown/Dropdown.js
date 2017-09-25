@@ -92,6 +92,9 @@ export default class Dropdown extends Component {
     /** Initial value of open. */
     defaultOpen: PropTypes.bool,
 
+    /** Initial value of searchQuery. */
+    defaultSearchQuery: PropTypes.string,
+
     /** Currently selected label in multi-select. */
     defaultSelectedLabel: customPropTypes.every([
       customPropTypes.demand(['multiple']),
@@ -229,7 +232,7 @@ export default class Dropdown extends Component {
      * Called on search input change.
      *
      * @param {SyntheticEvent} event - React's original SyntheticEvent.
-     * @param {string} value - Current value of search input.
+     * @param {object} data - All props, includes current value of searchQuery.
      */
     onSearchChange: PropTypes.func,
 
@@ -284,10 +287,19 @@ export default class Dropdown extends Component {
       PropTypes.object,
     ]),
 
+    /** Current value of searchQuery. Creates a controlled component. */
+    searchQuery: PropTypes.string,
+
     // TODO 'searchInMenu' or 'search='in menu' or ???  How to handle this markup and functionality?
 
     /** Define whether the highlighted item should be selected on blur. */
     selectOnBlur: PropTypes.bool,
+
+    /**
+     * Whether or not to change the value when navigating the menu using arrow keys.
+     * Setting to false will require enter or left click to confirm a choice.
+     */
+    selectOnNavigation: PropTypes.bool,
 
     /** Currently selected label in multi-select. */
     selectedLabel: customPropTypes.every([
@@ -348,10 +360,12 @@ export default class Dropdown extends Component {
     renderLabel: ({ text }) => text,
     searchInput: 'text',
     selectOnBlur: true,
+    selectOnNavigation: true,
   }
 
   static autoControlledProps = [
     'open',
+    'searchQuery',
     'selectedLabel',
     'value',
   ]
@@ -388,7 +402,6 @@ export default class Dropdown extends Component {
   componentWillReceiveProps(nextProps) {
     super.componentWillReceiveProps(nextProps)
     debug('componentWillReceiveProps()')
-    // TODO objectDiff still runs in prod, stop it
     debug('to props:', objectDiff(this.props, nextProps))
 
     /* eslint-disable no-console */
@@ -424,7 +437,6 @@ export default class Dropdown extends Component {
 
   componentDidUpdate(prevProps, prevState) { // eslint-disable-line complexity
     debug('componentDidUpdate()')
-    // TODO objectDiff still runs in prod, stop it
     debug('to state:', objectDiff(prevState, this.state))
 
     // focused / blurred
@@ -529,7 +541,7 @@ export default class Dropdown extends Component {
   moveSelectionOnKeyDown = (e) => {
     debug('moveSelectionOnKeyDown()', keyboardKey.getName(e))
 
-    const { multiple } = this.props
+    const { multiple, selectOnNavigation } = this.props
     const moves = {
       [keyboardKey.ArrowDown]: 1,
       [keyboardKey.ArrowUp]: -1,
@@ -539,7 +551,7 @@ export default class Dropdown extends Component {
     if (move === undefined) return
     e.preventDefault()
     this.moveSelectionBy(move)
-    if (!multiple) this.makeSelectedItemActive(e)
+    if (!multiple && selectOnNavigation) this.makeSelectedItemActive(e)
   }
 
   openOnSpace = (e) => {
@@ -567,17 +579,14 @@ export default class Dropdown extends Component {
 
   makeSelectedItemActive = (e) => {
     const { open } = this.state
-    const { multiple, onAddItem } = this.props
+    const { multiple } = this.props
 
     const item = this.getSelectedItem()
     const value = _.get(item, 'value')
 
     // prevent selecting null if there was no selected item value
     // prevent selecting duplicate items when the dropdown is closed
-    if (!value || !open) return
-
-    // notify the onAddItem prop if this is a new value
-    if (onAddItem && item['data-additional']) onAddItem(e, { ...this.props, value })
+    if (_.isNil(value) || !open) return
 
     // state value may be undefined
     const newValue = multiple ? _.union(this.state.value, [value]) : value
@@ -586,11 +595,15 @@ export default class Dropdown extends Component {
     this.setValue(newValue)
     this.setSelectedIndex(newValue)
     this.handleChange(e, newValue)
+
+    // Heads up! This event handler should be called after `onChange`
+    // Notify the onAddItem prop if this is a new value
+    if (item['data-additional']) _.invoke(this.props, 'onAddItem', e, { ...this.props, value })
   }
 
   selectItemOnEnter = (e) => {
     debug('selectItemOnEnter()', keyboardKey.getName(e))
-    const { multiple, onAddItem, search } = this.props
+    const { search } = this.props
 
     if (keyboardKey.getCode(e) !== keyboardKey.Enter) return
     e.preventDefault()
@@ -599,12 +612,12 @@ export default class Dropdown extends Component {
     if (search && optionSize === 0) return
 
     const item = this.getSelectedItem()
-    const isAdditionItem = onAddItem && item['data-additional']
+    const isAdditionItem = item['data-additional']
 
     this.makeSelectedItemActive(e)
     this.closeOnChange(e)
 
-    if (!multiple || isAdditionItem || optionSize === 1) this.clearSearchQuery()
+    if (isAdditionItem || optionSize === 1) this.clearSearchQuery()
     if (search && this.searchRef) this.searchRef.focus()
   }
 
@@ -688,7 +701,7 @@ export default class Dropdown extends Component {
   handleItemClick = (e, item) => {
     debug('handleItemClick()', item)
 
-    const { multiple, onAddItem, search } = this.props
+    const { multiple, search } = this.props
     const { value } = item
 
     // prevent toggle() in handleClick()
@@ -697,10 +710,7 @@ export default class Dropdown extends Component {
     if (multiple || item.disabled) e.nativeEvent.stopImmediatePropagation()
     if (item.disabled) return
 
-    // notify the onAddItem prop if this is a new value
-    const isAdditionItem = onAddItem && item['data-additional']
-    if (isAdditionItem) onAddItem(e, { ...this.props, value })
-
+    const isAdditionItem = item['data-additional']
     const newValue = multiple ? _.union(this.state.value, [value]) : value
 
     // notify the onChange prop that the user is trying to change value
@@ -712,6 +722,10 @@ export default class Dropdown extends Component {
 
     this.handleChange(e, newValue)
     this.closeOnChange(e)
+
+    // Heads up! This event handler should be called after `onChange`
+    // Notify the onAddItem prop if this is a new value
+    if (isAdditionItem) _.invoke(this.props, 'onAddItem', e, { ...this.props, value })
 
     if (multiple && search && this.searchRef) this.searchRef.focus()
   }
@@ -757,11 +771,8 @@ export default class Dropdown extends Component {
     const { open } = this.state
     const newQuery = value
 
-    _.invoke(this.props, 'onSearchChange', e, newQuery)
-    this.setState({
-      selectedIndex: 0,
-      searchQuery: newQuery,
-    })
+    _.invoke(this.props, 'onSearchChange', e, { ...this.props, searchQuery: newQuery })
+    this.trySetState({ searchQuery: newQuery }, { selectedIndex: 0 })
 
     // open search dropdown on search query
     if (!open && newQuery.length >= minCharacters) {
@@ -795,7 +806,8 @@ export default class Dropdown extends Component {
         filteredOptions = search(filteredOptions, searchQuery)
       } else {
         const re = new RegExp(_.escapeRegExp(searchQuery), 'i')
-        filteredOptions = _.filter(filteredOptions, opt => re.test(opt.text))
+        // remove diacritics on search
+        filteredOptions = _.filter(filteredOptions, opt => re.test(_.deburr(opt.text)))
       }
     }
 
@@ -884,7 +896,7 @@ export default class Dropdown extends Component {
 
   clearSearchQuery = () => {
     debug('clearSearchQuery()')
-    this.setState({ searchQuery: '' })
+    this.trySetState({ searchQuery: '' })
   }
 
   setValue = (value) => {
@@ -1033,9 +1045,10 @@ export default class Dropdown extends Component {
   computeTabIndex = () => {
     const { disabled, search, tabIndex } = this.props
 
-    if (!_.isNil(tabIndex)) return tabIndex
     // don't set a root node tabIndex as the search input has its own tabIndex
-    if (!search) return disabled ? -1 : 0
+    if (search) return undefined
+    if (disabled) return -1
+    return _.isNil(tabIndex) ? 0 : tabIndex
   }
 
   // ----------------------------------------

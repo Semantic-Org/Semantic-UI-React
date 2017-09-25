@@ -1,0 +1,65 @@
+version: 2
+jobs:
+  build:
+    filters:
+      branches:
+        ignore: gh-pages
+    docker:
+      - image: circleci/node:8
+    environment:
+      TZ: "/usr/share/zoneinfo/America/Los_Angeles"
+    steps:
+      # Chrome HeadlessBrowser is missing deps on Debian, see:
+      # https://github.com/GoogleChrome/puppeteer/issues/290
+      - run:
+          name: Update Pupeteer Dependencies
+          command: |
+            sudo apt-get update
+            sudo apt-get install --yes --quiet gconf-service libasound2 libatk1.0-0 libc6 \
+              libcairo2 libcups2 libdbus-1-3 libexpat1 libfontconfig1 libgcc1 libgconf-2-4 \
+              libgdk-pixbuf2.0-0 libglib2.0-0 libgtk-3-0 libnspr4 libpango-1.0-0 libpangocairo-1.0-0 \
+              libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 libxcursor1 libxdamage1 libxext6 \
+              libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 ca-certificates fonts-liberation \
+              libappindicator1 libnss3 lsb-release xdg-utils wget
+      - run:
+          name: Update yarn
+          command: |
+            # remove default yarn
+            sudo rm -rf $(dirname $(which yarn))/yarn*
+            # download latest
+            rm -rf ~/.yarn
+            curl -o- -L https://yarnpkg.com/install.sh | bash
+            echo 'export PATH="${PATH}:${HOME}/.yarn/bin"' >> $BASH_ENV
+      - checkout
+      # because we don't invoke npm (we use yarn) we need to add npm bin to PATH manually
+      - run:
+          name: Add npm bin to PATH
+          command: echo 'export PATH="${PATH}:$(npm bin)"' >> $BASH_ENV
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "yarn.lock" }}
+            - v1-dependencies
+      - run:
+          name: Install Dependencies
+          command: yarn
+      - save_cache:
+          key: v1-dependencies-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
+            - .yarn-cache
+            - node_modules
+      - run:
+          name: Lint TypeScript
+          command: yarn tsd:lint
+      - run:
+          name: Test TypeScript
+          command: yarn tsd:test
+      - run:
+          name: Lint JavaScript
+          command: yarn lint
+      - run:
+          name: Test JavaScript
+          command: yarn test
+      - run:
+          name: Report coverage
+          command: bash <(curl -s https://codecov.io/bash)

@@ -19,6 +19,14 @@ export const fire = (node, eventType, data = {}) => {
 }
 
 /**
+ * Dispatch a 'click' event on a DOM node.
+ * @param {String|Object} node A querySelector string or DOM node.
+ * @param {Object} [data] Additional event data.
+ * @returns {Object} The event
+ */
+export const click = (node, data) => fire(node, 'click', data)
+
+/**
  * Dispatch a 'keydown' event on a DOM node.
  * @param {String|Object} node A querySelector string or DOM node.
  * @param {Object} [data] Additional event data.
@@ -59,19 +67,29 @@ export const mouseOver = (node, data) => fire(node, 'mouseover', data)
 export const mouseUp = (node, data) => fire(node, 'mouseup', data)
 
 /**
- * Dispatch a 'click' event on a DOM node.
+ * Dispatch a 'resize' event on a DOM node.
  * @param {String|Object} node A querySelector string or DOM node.
  * @param {Object} [data] Additional event data.
  * @returns {Object} The event
  */
-export const click = (node, data) => fire(node, 'click', data)
+export const resize = (node, data) => fire(node, 'resize', data)
+
+/**
+ * Dispatch a 'scroll' event on a DOM node.
+ * @param {String|Object} node A querySelector string or DOM node.
+ * @param {Object} [data] Additional event data.
+ * @returns {Object} The event
+ */
+export const scroll = (node, data) => fire(node, 'scroll', data)
 
 export default {
   fire,
+  click,
+  keyDown,
   mouseEnter,
   mouseLeave,
   mouseOver,
   mouseUp,
-  keyDown,
-  click,
+  resize,
+  scroll,
 }

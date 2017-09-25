@@ -1,7 +1,5 @@
+import _debug from 'debug'
 import isBrowser from './isBrowser'
-
-let _debug
-const noop = () => undefined
 
 if (isBrowser && process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'test') {
   // Heads Up!
@@ -19,12 +17,8 @@ if (isBrowser && process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !
     /* eslint-enable no-console */
   }
 
-  _debug = require('debug')
-
   // enable what ever settings we got from storage
   _debug.enable(DEBUG)
-} else {
-  _debug = () => noop
 }
 
 /**

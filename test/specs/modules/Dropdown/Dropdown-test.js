@@ -33,9 +33,9 @@ const wrapperRender = (...args) => (wrapper = render(...args))
 // ----------------------------------------
 // Options
 // ----------------------------------------
-const getOptions = (count = 5) => _.times(count, () => {
-  const text = _.times(3, faker.hacker.noun).join(' ')
-  const value = _.snakeCase(text)
+const getOptions = (count = 5) => _.times(count, (i) => {
+  const text = `${i}-${faker.hacker.noun}`
+  const value = `${i}-${_.snakeCase(text)}`
   return { text, value }
 })
 
@@ -105,6 +105,13 @@ describe('Dropdown', () => {
   common.propKeyOrValueAndKeyToClassName(Dropdown, 'pointing', [
     'left', 'right', 'top', 'top left', 'top right', 'bottom', 'bottom left', 'bottom right',
   ])
+
+  describe('defaultSearchQuery', () => {
+    it('changes default value of searchQuery', () => {
+      shallow(<Dropdown defaultSearchQuery='foo' />)
+        .should.have.state('searchQuery', 'foo')
+    })
+  })
 
   it('closes on blur', () => {
     wrapperMount(<Dropdown options={options} />)
@@ -185,38 +192,54 @@ describe('Dropdown', () => {
 
   describe('tabIndex', () => {
     it('defaults to 0', () => {
-      wrapperShallow(<Dropdown options={options} />)
-
-      wrapper.should.have.prop('tabIndex', 0)
-    })
-    it('defaults to -1 when disabled', () => {
-      wrapperShallow(<Dropdown options={options} disabled />)
-
-      wrapper.should.have.prop('tabIndex', -1)
-    })
-    it('is not present on the root when `search`', () => {
-      wrapperShallow(<Dropdown options={options} selection search />)
-        .should.not.have.prop('tabIndex')
-    })
-    it('defaults the search input to 0', () => {
-      wrapperShallow(<Dropdown options={options} selection search />)
-        .find(DropdownSearchInput)
+      shallow(<Dropdown options={options} />)
         .should.have.prop('tabIndex', 0)
     })
-    it('defaults the disabled search input to -1', () => {
-      wrapperShallow(<Dropdown options={options} selection search disabled />)
-        .find(DropdownSearchInput)
+
+    it('defaults to -1 when disabled', () => {
+      shallow(<Dropdown disabled options={options} />)
         .should.have.prop('tabIndex', -1)
     })
-    it('allows explicitly setting the search input value', () => {
-      wrapperShallow(<Dropdown options={options} selection search tabIndex={123} />)
-        .find(DropdownSearchInput)
-        .should.have.prop('tabIndex', 123)
+
+    it('applies when defined', () => {
+      shallow(<Dropdown options={options} tabIndex={1} />)
+        .should.have.prop('tabIndex', 1)
     })
-    it('allows explicitly setting the search input value when disabled', () => {
-      wrapperShallow(<Dropdown options={options} selection search tabIndex={123} disabled />)
-        .find(DropdownSearchInput)
-        .should.have.prop('tabIndex', 123)
+
+    describe('tabIndex', () => {
+      it('defaults the search input to 0', () => {
+        shallow(<Dropdown options={options} selection search />)
+          .find(DropdownSearchInput)
+          .should.have.prop('tabIndex', 0)
+      })
+
+      it('defaults the disabled search input to -1', () => {
+        shallow(<Dropdown disabled options={options} selection search />)
+          .find(DropdownSearchInput)
+          .should.have.prop('tabIndex', -1)
+      })
+
+      it('allows explicitly setting the search input value', () => {
+        shallow(<Dropdown options={options} selection search tabIndex={123} />)
+          .find(DropdownSearchInput)
+          .should.have.prop('tabIndex', 123)
+      })
+
+      it('allows explicitly setting the search input value when disabled', () => {
+        shallow(<Dropdown disabled options={options} selection search tabIndex={123} />)
+          .find(DropdownSearchInput)
+          .should.have.prop('tabIndex', 123)
+      })
+
+      it('is not present on the root when is search', () => {
+        shallow(<Dropdown options={options} selection search />)
+          .should.not.have.prop('tabIndex')
+      })
+
+      it('is not present on the root when is search and defined', () => {
+        shallow(<Dropdown options={options} selection search tabIndex={1} />)
+          .should.not.have.prop('tabIndex')
+      })
     })
   })
 
@@ -475,6 +498,18 @@ describe('Dropdown', () => {
     })
   })
 
+  describe('searchQuery', () => {
+    it('defaults to empty string', () => {
+      shallow(<Dropdown />)
+        .should.have.state('searchQuery', '')
+    })
+
+    it('passes value to state', () => {
+      shallow(<Dropdown searchQuery='foo' />)
+        .should.have.state('searchQuery', 'foo')
+    })
+  })
+
   describe('selected item', () => {
     it('defaults to the first item', () => {
       wrapperShallow(<Dropdown options={options} selection />)
@@ -609,6 +644,23 @@ describe('Dropdown', () => {
       wrapper
         .find('.selected')
         .should.contain.text('a2')
+    })
+    it('filter after diacritics', () => {
+      const opts = [
+        { text: 'FLOREŞTI', value: '1' },
+        { text: 'ŞANŢU FLOREŞTI', value: '2' },
+        { text: 'FLOREŞTI Alba', value: '3' },
+      ]
+
+      // search for 'floresti'
+      wrapperMount(<Dropdown options={opts} search selection />)
+        .simulate('click')
+        .find('input.search')
+        .simulate('change', { target: { value: 'floresti' } })
+
+      wrapper
+        .find('.selected')
+        .should.contain.text('FLOREŞTI')
     })
     it('still works after encountering "no results"', () => {
       const opts = [
@@ -1487,7 +1539,7 @@ describe('Dropdown', () => {
       wrapper.simulate('click', { stopPropagation: _.noop })
 
       onClick.should.have.been.calledOnce()
-      onClick.should.have.been.calledWithMatch({ }, { options })
+      onClick.should.have.been.calledWithMatch({}, { options })
     })
 
     it("toggles the dropdown when it's not searchable", () => {
@@ -1525,7 +1577,7 @@ describe('Dropdown', () => {
       wrapper.simulate('focus')
 
       onFocus.should.have.been.calledOnce()
-      onFocus.should.have.been.calledWithMatch({ }, { options })
+      onFocus.should.have.been.calledWithMatch({}, { options })
     })
 
     it("opens the dropdown when it's not searchable", () => {
@@ -1558,7 +1610,10 @@ describe('Dropdown', () => {
         .simulate('change', { target: { value: 'a' }, stopPropagation: _.noop })
 
       spy.should.have.been.calledOnce()
-      spy.should.have.been.calledWithMatch({ target: { value: 'a' } }, 'a')
+      spy.should.have.been.calledWithMatch({ target: { value: 'a' } }, {
+        search: true,
+        searchQuery: 'a',
+      })
     })
 
     it("don't open the menu on change if query's length is less than minCharacters", () => {
@@ -2236,9 +2291,17 @@ describe('Dropdown', () => {
     })
 
     it('calls onAddItem prop when clicking new value', () => {
-      const spy = sandbox.spy()
+      const onAddItem = sandbox.spy()
+      const onChange = sandbox.spy()
       const search = wrapperMount(
-        <Dropdown options={customOptions} selection search allowAdditions onAddItem={spy} />,
+        <Dropdown
+          allowAdditions
+          onAddItem={onAddItem}
+          onChange={onChange}
+          options={customOptions}
+          search
+          selection
+        />,
       )
         .find('input.search')
 
@@ -2249,22 +2312,34 @@ describe('Dropdown', () => {
         .first()
         .simulate('click')
 
-      spy.should.have.been.calledOnce()
-      spy.should.have.been.calledWithMatch({}, { value: 'boo' })
+      onChange.should.have.been.calledOnce()
+      onAddItem.should.have.been.calledOnce()
+      onAddItem.should.have.been.calledWithMatch({}, { value: 'boo' })
+      onAddItem.should.have.been.calledImmediatelyAfter(onChange)
     })
 
     it('calls onAddItem prop when pressing enter on new value', () => {
-      const spy = sandbox.spy()
+      const onAddItem = sandbox.spy()
+      const onChange = sandbox.spy()
       const search = wrapperMount(
-        <Dropdown options={customOptions} selection search allowAdditions onAddItem={spy} />,
+        <Dropdown
+          allowAdditions
+          onAddItem={onAddItem}
+          onChange={onChange}
+          options={customOptions}
+          search
+          selection
+        />,
       )
         .find('input.search')
 
       search.simulate('change', { target: { value: 'boo' } })
       domEvent.keyDown(document, { key: 'Enter' })
 
-      spy.should.have.been.calledOnce()
-      spy.should.have.been.calledWithMatch({}, { value: 'boo' })
+      onChange.should.have.been.calledOnce()
+      onAddItem.should.have.been.calledOnce()
+      onAddItem.should.have.been.calledWithMatch({}, { value: 'boo' })
+      onAddItem.should.have.been.calledImmediatelyAfter(onChange)
     })
 
     it('clears value of the searchQuery when selection is only option', () => {
@@ -2329,6 +2404,50 @@ describe('Dropdown', () => {
 
       spy.should.have.been.calledOnce()
       spy.should.have.been.calledWithMatch(errorMessage)
+    })
+  })
+
+  describe('selectOnNavigation', () => {
+    it('is on by default', () => {
+      const spy = sandbox.spy()
+
+      wrapperMount(
+        <Dropdown
+          options={options}
+          defaultValue={options[0].value}
+          onChange={spy}
+        />,
+      )
+
+      // open
+      wrapper.simulate('click')
+
+      domEvent.keyDown(document, { key: 'ArrowDown' })
+
+      spy.should.have.been.called()
+      wrapper.should.have.state('value', options[1].value)
+    })
+
+    it('does not change value when set to false', () => {
+      const spy = sandbox.spy()
+      const value = options[0].value
+
+      wrapperMount(
+        <Dropdown
+          options={options}
+          defaultValue={value}
+          selectOnNavigation={false}
+          onChange={spy}
+        />,
+      )
+
+      // open
+      wrapper.simulate('click')
+
+      domEvent.keyDown(document, { key: 'ArrowDown' })
+
+      spy.should.not.have.been.called()
+      wrapper.should.have.state('value', value)
     })
   })
 })

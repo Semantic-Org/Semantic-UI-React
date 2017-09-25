@@ -33,6 +33,13 @@ class TextArea extends Component {
      */
     onChange: PropTypes.func,
 
+    /**
+     * Called on input.
+     * @param {SyntheticEvent} event - The React SyntheticEvent object
+     * @param {object} data - All props and the event value.
+     */
+    onInput: PropTypes.func,
+
     /** Indicates row count for a TextArea. */
     rows: PropTypes.oneOfType([
       PropTypes.number,
@@ -75,6 +82,12 @@ class TextArea extends Component {
     const value = _.get(e, 'target.value')
 
     _.invoke(this.props, 'onChange', e, { ...this.props, value })
+  }
+
+  handleInput = (e) => {
+    const value = _.get(e, 'target.value')
+
+    _.invoke(this.props, 'onInput', e, { ...this.props, value })
     this.updateHeight()
   }
 
@@ -117,6 +130,7 @@ class TextArea extends Component {
         {...rest}
         innerRef={this.handleRef}
         onChange={this.handleChange}
+        onInput={this.handleInput}
         rows={rows}
         style={{ resize, ...style }}
         value={value}

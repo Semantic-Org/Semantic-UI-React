@@ -70,6 +70,9 @@ class Modal extends Component {
       PropTypes.oneOf(['inverted', 'blurring']),
     ]),
 
+    /** Event pool namespace that is used to handle component events */
+    eventPool: PropTypes.string,
+
     /** Modal displayed above the content in bold. */
     header: customPropTypes.itemShorthand,
 
@@ -135,6 +138,7 @@ class Modal extends Component {
     dimmer: true,
     closeOnDimmerClick: true,
     closeOnDocumentClick: false,
+    eventPool: 'Modal',
   }
 
   static autoControlledProps = [
@@ -227,7 +231,7 @@ class Modal extends Component {
     mountNode.classList.remove('blurring')
     mountNode.classList.remove('dimmable')
     mountNode.classList.remove('dimmed')
-    mountNode.classList.remove('scrollable')
+    mountNode.classList.remove('scrolling')
 
     cancelAnimationFrame(this.animationRequestId)
 
@@ -315,7 +319,7 @@ class Modal extends Component {
 
   render() {
     const { open } = this.state
-    const { closeOnDimmerClick, closeOnDocumentClick, dimmer } = this.props
+    const { closeOnDimmerClick, closeOnDocumentClick, dimmer, eventPool } = this.props
     const mountNode = this.getMountNode()
 
     // Short circuit when server side rendering
@@ -353,6 +357,7 @@ class Modal extends Component {
         closeOnRootNodeClick={closeOnDimmerClick}
         {...portalProps}
         className={dimmerClasses}
+        eventPool={eventPool}
         mountNode={mountNode}
         open={open}
         onClose={this.handleClose}

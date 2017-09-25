@@ -1,6 +1,8 @@
 import React from 'react'
+
 import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
 import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
+import ShorthandExample from 'docs/app/Components/ComponentDoc/ShorthandExample'
 
 import { Message } from 'semantic-ui-react'
 
@@ -36,10 +38,10 @@ const ModalExamples = () => (
     />
     <ComponentExample
       title='Controlled'
-      description='A modal can be a controlled component'
+      description='A modal can be a controlled component.'
       examplePath='modules/Modal/Types/ModalExampleControlled'
     />
-    <ComponentExample
+    <ShorthandExample
       title='Shorthand'
       description='A modal can be created with shorthand props.'
       examplePath='modules/Modal/Types/ModalExampleShorthand'

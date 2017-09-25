@@ -19,6 +19,9 @@ export interface AccordionTitleProps {
   /** Shorthand for primary content. */
   content?: SemanticShorthandContent;
 
+  /** AccordionTitle index inside Accordion. */
+  index?: number | string;
+
   /**
    * Called on click.
    *

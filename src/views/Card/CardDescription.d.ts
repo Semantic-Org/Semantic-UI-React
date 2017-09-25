@@ -15,6 +15,9 @@ export interface CardDescriptionProps {
 
   /** Shorthand for primary content. */
   content?: SemanticShorthandContent;
+
+  /** A card description can adjust its text alignment. */
+  textAlign?: 'center' | 'left' | 'right';
 }
 
 declare const CardDescription: React.StatelessComponent<CardDescriptionProps>;

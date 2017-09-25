@@ -1,4 +1,5 @@
 // Addons
+export { default as Responsive } from './addons/Responsive'
 export { default as Confirm } from './addons/Confirm'
 export { default as Portal } from './addons/Portal'
 export { default as Radio } from './addons/Radio'
@@ -102,6 +103,7 @@ export { default as StepTitle } from './elements/Step/StepTitle'
 
 // Modules
 export { default as Accordion } from './modules/Accordion/Accordion'
+export { default as AccordionAccordion } from './modules/Accordion/AccordionAccordion'
 export { default as AccordionContent } from './modules/Accordion/AccordionContent'
 export { default as AccordionTitle } from './modules/Accordion/AccordionTitle'
 

@@ -108,12 +108,8 @@ class Image extends Component {
     ]),
 
     /** An image can render wrapped in a `div.ui.image` as alternative HTML markup. */
-    wrapped: customPropTypes.every([
-      PropTypes.bool,
-      // these props wrap the image in an a tag already
-      customPropTypes.disallow(['href']),
-    ]),
-  }
+    wrapped: PropTypes.bool,
+}
 
   static defaultProps = {
     as: 'img',
