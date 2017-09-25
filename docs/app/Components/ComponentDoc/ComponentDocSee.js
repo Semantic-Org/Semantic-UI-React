@@ -22,9 +22,12 @@ const ComponentDocSee = ({ componentName }) => {
         />
       </List.Item>
       {_.map(links, ({ description, name, type }) => (
-        <List.Item as={Link} key={description} to={`/${type}s/${_.kebabCase(name)}`}>
-          {description}
-        </List.Item>
+        <List.Item
+          as={Link}
+          content={description}
+          key={description}
+          to={`/${type}s/${_.kebabCase(name)}`}
+        />
       ))}
     </List>
   )

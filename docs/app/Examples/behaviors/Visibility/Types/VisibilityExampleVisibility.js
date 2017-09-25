@@ -22,7 +22,7 @@ export default class VisibilityExampleVisibility extends Component {
     },
   }
 
-  handleContextRef = contextRef => this.setState({ examplesRef: contextRef })
+  handleContextRef = contextRef => this.setState({ contextRef })
 
   handleUpdate = (e, { calculations }) => this.setState({ calculations })
 

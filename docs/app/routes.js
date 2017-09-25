@@ -25,12 +25,12 @@ const Router = () => (
       <Route exact path='/maximize/:kebabCaseName' component={ExternalExampleLayout} />
       <Switch>
         <DocsLayout exact path='/' render={RedirectToIntro} />
-        <DocsLayout exact path='/introduction' component={Introduction} />
-        <DocsLayout exact path='/layouts' component={Layouts} />
+        <DocsLayout exact path='/introduction' component={Introduction} sidebar={false} />
+        <DocsLayout exact path='/layouts' component={Layouts} sidebar={false} />
         <LayoutsLayout exact path='/layouts/:name' component={LayoutsRoot} />
-        <DocsLayout exact path='/usage' component={Usage} />
+        <DocsLayout exact path='/usage' component={Usage} sidebar={false} />
         <DocsLayout exact path='/:type/:name' component={DocsRoot} />
-        <DocsLayout exact path='/*' component={PageNotFound} />
+        <DocsLayout exact path='/*' component={PageNotFound} sidebar={false} />
       </Switch>
     </Switch>
   </BrowserRouter>

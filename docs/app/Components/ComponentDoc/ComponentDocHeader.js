@@ -8,10 +8,12 @@ import { getDocDescription } from 'docs/app/utils'
 const headerStyle = { marginBottom: '0.25em' }
 
 const ComponentDocHeader = ({ componentName }) => (
-  <Header as='h1' style={headerStyle}>
-    {componentName}
-    <Header.Subheader>{getDocDescription(componentName)}</Header.Subheader>
-  </Header>
+  <Header
+    as='h1'
+    content={componentName}
+    style={headerStyle}
+    subheader={getDocDescription(componentName)}
+  />
 )
 
 ComponentDocHeader.propTypes = {

@@ -1,20 +1,20 @@
 import PropTypes from 'prop-types'
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import DocumentTitle from 'react-document-title'
-import {Grid} from 'semantic-ui-react'
+import { Grid } from 'semantic-ui-react'
 
-import ComponentExamples from './ComponentExamples'
-import ComponentProps from './ComponentProps'
 import ComponentDocHeader from './ComponentDocHeader'
 import ComponentDocLinks from './ComponentDocLinks'
 import ComponentDocSee from './ComponentDocSee'
+import ComponentExamples from './ComponentExamples'
+import ComponentProps from './ComponentProps'
 import ComponentSidebar from './ComponentSidebar'
 
-const topRowStyle = {margin: '1em'}
+const topRowStyle = { margin: '1em' }
 
 export default class ComponentDoc extends Component {
   static childContextTypes = {
-    onTopPassed: PropTypes.func
+    onPassed: PropTypes.func,
   }
 
   static propTypes = {
@@ -25,19 +25,16 @@ export default class ComponentDoc extends Component {
 
   getChildContext() {
     return {
-      onTopPassed: this.handleExampleTopPassed,
-    };
+      onPassed: this.handleExamplePassed,
+    }
   }
 
-  handleExampleTopPassed = (e, { examplePath, title }) => {
-    console.log(title)
-    this.setState({ activePath: examplePath })
-  }
+  handleExamplePassed = (e, { examplePath }) => this.setState({ activePath: examplePath })
 
   handleExamplesRef = examplesRef => this.setState({ examplesRef })
 
   render() {
-    const {_meta} = this.props
+    const { _meta } = this.props
     const { activePath, examplesRef } = this.state
 
     return (
@@ -45,18 +42,18 @@ export default class ComponentDoc extends Component {
         <Grid>
           <Grid.Row columns='equal' style={topRowStyle}>
             <Grid.Column>
-              <ComponentDocHeader componentName={_meta.name}/>
-              <ComponentDocSee componentName={_meta.name}/>
-              <ComponentDocLinks componentName={_meta.parent || _meta.name} type={_meta.type}/>
-              <ComponentProps componentName={_meta.name}/>
+              <ComponentDocHeader componentName={_meta.name} />
+              <ComponentDocSee componentName={_meta.name} />
+              <ComponentDocLinks componentName={_meta.parent || _meta.name} type={_meta.type} />
+              <ComponentProps componentName={_meta.name} />
             </Grid.Column>
-            <Grid.Column computer={5} largeScreen={4} widescreen={4}/>
+            <Grid.Column computer={5} largeScreen={4} widescreen={4} />
           </Grid.Row>
 
           <Grid.Row columns='equal'>
             <Grid.Column>
               <div ref={this.handleExamplesRef}>
-                <ComponentExamples componentName={_meta.name}/>
+                <ComponentExamples componentName={_meta.name} />
               </div>
             </Grid.Column>
             <Grid.Column computer={5} largeScreen={4} widescreen={4}>

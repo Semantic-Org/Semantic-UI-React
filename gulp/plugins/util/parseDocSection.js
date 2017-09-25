@@ -13,7 +13,6 @@ export default (buffer) => {
   const section = {
     examples: [],
   }
-  const position = 0
 
   traverse(ast, {
     JSXOpeningElement: (path) => {
@@ -25,16 +24,21 @@ export default (buffer) => {
 
       if (name === 'ExampleSection') {
         const title = _.find(attrs, { name: 'title' })
+
         section.name = title.name
         return
       }
 
       if (name === 'ComponentExample') {
         const title = _.find(attrs, { name: 'title' })
-        if (title) {
-          const examplePath = _.find(attrs, { name: 'examplePath' }).value
 
-          section.examples.push({ title: title.value, path: examplePath })
+        if (title) {
+          const { value } = _.find(attrs, { name: 'examplePath' })
+
+          section.examples.push({
+            title: title.value,
+            path: value,
+          })
         }
       }
     },

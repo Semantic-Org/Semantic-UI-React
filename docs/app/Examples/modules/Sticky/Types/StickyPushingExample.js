@@ -7,7 +7,7 @@ const Placeholder = () => <Image src='/assets/images/wireframe/paragraph.png' />
 export default class StickyPushingExample extends Component {
   state = {}
 
-  handleContextRef = contextRef => this.setState({ examplesRef: contextRef })
+  handleContextRef = contextRef => this.setState({ contextRef })
 
   render() {
     const { contextRef } = this.state

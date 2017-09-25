@@ -28,7 +28,7 @@ export const getSemanticUIDocsUrl = (name, type) => `https://semantic-ui.com/${t
 export const getSeeLinks = componentName => _.map(({ description }) => {
   const seeMeta = _.get('_meta', semanticUIReact[description])
 
-  if (!seeMeta) return
+  if (!seeMeta) return null
   const { type, name } = seeMeta
 
   return { description, name, type }

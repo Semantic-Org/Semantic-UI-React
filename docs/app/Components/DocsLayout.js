@@ -16,6 +16,11 @@ export default class DocsLayout extends Component {
   static propTypes = {
     component: PropTypes.func,
     render: PropTypes.func,
+    sidebar: PropTypes.bool,
+  }
+
+  static defaultProps = {
+    sidebar: true,
   }
 
   componentDidMount() {
@@ -47,13 +52,14 @@ export default class DocsLayout extends Component {
   }
 
   renderChildren = (props) => {
-    const { component: Children, render } = this.props
+    const { component: Children, render, sidebar } = this.props
+    const mainStyle = sidebar ? style.sidebarMain : style.main
 
     if (render) return render()
     return (
       <div style={style.container}>
         <Sidebar style={style.menu} />
-        <div style={style.main}>
+        <div style={mainStyle}>
           <Children {...props} />
         </div>
       </div>

@@ -9,6 +9,7 @@ import copyToClipboard from 'copy-to-clipboard'
 
 import { exampleContext, repoURL, scrollToAnchor } from 'docs/app/utils'
 import { Divider, Grid, Menu, Visibility } from 'src'
+import { shallowEqual } from 'src/lib'
 import Editor from 'docs/app/Components/Editor/Editor'
 import ComponentControls from '../ComponentControls'
 import ComponentExampleTitle from './ComponentExampleTitle'
@@ -41,8 +42,8 @@ const errorStyle = {
  */
 class ComponentExample extends Component {
   static contextTypes = {
-    onTopPassed: PropTypes.func,
-  };
+    onPassed: PropTypes.func,
+  }
 
   static propTypes = {
     children: PropTypes.node,
@@ -72,6 +73,10 @@ class ComponentExample extends Component {
       sourceCode,
       markup,
     })
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return !shallowEqual(this.state, nextState)
   }
 
   setHashAndScroll = () => {
@@ -114,7 +119,11 @@ class ComponentExample extends Component {
     else this.removeHash()
   }
 
-  handleTopPassed = () => _.invoke(this.context, 'onTopPassed', null, this.props)
+  handlePass = () => {
+    const { title } = this.props
+
+    if (title) _.invoke(this.context, 'onPassed', null, this.props)
+  }
 
   copyJSX = () => {
     copyToClipboard(this.state.sourceCode)
@@ -389,55 +398,55 @@ class ComponentExample extends Component {
     return (
       <Visibility
         once={false}
-        onTopPassedReverse={this.handleTopPassed}
-        onTopPassed={this.handleTopPassed}
+        onTopPassed={this.handlePass}
+        onTopPassedReverse={this.handlePass}
       >
-      <Grid
-        className='docs-example'
-        id={this.anchorName}
-        onMouseEnter={this.handleMouseEnter}
-        onMouseLeave={this.handleMouseLeave}
-        style={exampleStyle}
-      >
-        <Grid.Row>
-          <Grid.Column style={headerColumnStyle} width={12}>
-            <ComponentExampleTitle
-              description={description}
-              title={title}
-              suiVersion={suiVersion}
-            />
-          </Grid.Column>
-          <Grid.Column textAlign='right' width={4}>
-            <ComponentControls
-              anchorName={this.anchorName}
-              onCopyLink={this.handleDirectLinkClick}
-              onShowCode={this.handleShowCodeClick}
-              onShowHTML={this.handleShowHTMLClick}
-              showCode={showCode}
-              showHTML={showHTML}
-              visible={controlsVisible}
-            />
-          </Grid.Column>
-        </Grid.Row>
-
-        <Grid.Row columns={1}>
-          {children && (
-            <Grid.Column style={childrenStyle}>
-              {children}
+        <Grid
+          className='docs-example'
+          id={this.anchorName}
+          onMouseEnter={this.handleMouseEnter}
+          onMouseLeave={this.handleMouseLeave}
+          style={exampleStyle}
+        >
+          <Grid.Row>
+            <Grid.Column style={headerColumnStyle} width={12}>
+              <ComponentExampleTitle
+                description={description}
+                title={title}
+                suiVersion={suiVersion}
+              />
             </Grid.Column>
-          )}
-        </Grid.Row>
+            <Grid.Column textAlign='right' width={4}>
+              <ComponentControls
+                anchorName={this.anchorName}
+                onCopyLink={this.handleDirectLinkClick}
+                onShowCode={this.handleShowCodeClick}
+                onShowHTML={this.handleShowHTMLClick}
+                showCode={showCode}
+                showHTML={showHTML}
+                visible={controlsVisible}
+              />
+            </Grid.Column>
+          </Grid.Row>
 
-        <Grid.Row columns={1}>
-          <Grid.Column className={`rendered-example ${this.getKebabExamplePath()}`}>
-            {exampleElement}
-          </Grid.Column>
-          <Grid.Column>
-            {this.renderJSX()}
-            {this.renderHTML()}
-          </Grid.Column>
-        </Grid.Row>
-      </Grid>
+          <Grid.Row columns={1}>
+            {children && (
+              <Grid.Column style={childrenStyle}>
+                {children}
+              </Grid.Column>
+            )}
+          </Grid.Row>
+
+          <Grid.Row columns={1}>
+            <Grid.Column className={`rendered-example ${this.getKebabExamplePath()}`}>
+              {exampleElement}
+            </Grid.Column>
+            <Grid.Column>
+              {this.renderJSX()}
+              {this.renderHTML()}
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
       </Visibility>
     )
   }

@@ -47,8 +47,8 @@ task('build:docs:docgen', () => src([
   .pipe(dest(config.paths.docsSrc())))
 
 task('build:docs:menugen', () => src(`${config.paths.docsSrc()}/Examples/**/index.js`)
-// do not remove the function keyword
-// we need 'this' scope here
+  // do not remove the function keyword
+  // we need 'this' scope here
   .pipe(g.plumber(function handleError(err) {
     log(err.toString())
     this.emit('end')
@@ -94,6 +94,7 @@ task('build:docs', series(
       'clean:docs',
       parallel(
         'build:docs:docgen',
+        'build:docs:menugen',
         'build:docs:html',
         'build:docs:images',
       ),
