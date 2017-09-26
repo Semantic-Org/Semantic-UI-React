@@ -80,9 +80,21 @@ export default (Component, extractedInfo, options = {}) => {
 
       it('only necessary are required', () => {
         const componentRequired = _.keys(requiredProps)
-        const interfaceRequired = _.filter(props, ['required', true])
+        const interfaceRequired = _.map(_.filter(props, ['required', true]), 'name')
 
-        componentRequired.should.to.deep.equal(_.map(interfaceRequired, 'name'))
+        componentRequired.forEach((propName) => {
+          interfaceRequired.should.include(
+            propName,
+            `Tests require prop "${propName}" but it is optional in typings`,
+          )
+        })
+
+        interfaceRequired.forEach((propName) => {
+          componentRequired.should.include(
+            propName,
+            `Typings require "${propName}" but it is optional in tests`,
+          )
+        })
       })
     })
 
