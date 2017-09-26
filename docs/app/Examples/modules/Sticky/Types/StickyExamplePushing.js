@@ -4,7 +4,7 @@ import { Grid, Header, Image, Rail, Segment, Sticky } from 'semantic-ui-react'
 
 const Placeholder = () => <Image src='/assets/images/wireframe/paragraph.png' />
 
-export default class StickyOffsetExample extends Component {
+export default class StickyExamplePushing extends Component {
   state = {}
 
   handleContextRef = contextRef => this.setState({ contextRef })
@@ -20,16 +20,16 @@ export default class StickyOffsetExample extends Component {
               {_.times(10, i => <Placeholder key={i} />)}
 
               <Rail position='left'>
-                {_.times(3, i => <Placeholder key={i} />)}
-
-                <Sticky context={contextRef} offset={100}>
+                <Sticky context={contextRef} pushing>
                   <Header as='h3'>Stuck Content</Header>
                   <Image src='/assets/images/wireframe/image.png' />
                 </Sticky>
               </Rail>
 
               <Rail position='right'>
-                <Sticky bottomOffset={50} context={contextRef} offset={50} pushing>
+                {_.times(3, i => <Placeholder key={i} />)}
+
+                <Sticky context={contextRef} pushing>
                   <Header as='h3'>Stuck Content</Header>
                   <Image src='/assets/images/wireframe/image.png' />
                 </Sticky>

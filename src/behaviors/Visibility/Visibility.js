@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
 import {
+  eventStack,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -73,10 +74,10 @@ export default class Visibility extends Component {
     offset: PropTypes.oneOfType([
       PropTypes.number,
       PropTypes.string,
-      PropTypes.arrayOf([
+      PropTypes.arrayOf(PropTypes.oneOfType([
         PropTypes.number,
         PropTypes.string,
-      ]),
+      ])),
     ]),
 
     /** When set to false a callback will occur each time an element passes the threshold for a condition. */
@@ -196,18 +197,20 @@ export default class Visibility extends Component {
 
   componentDidMount() {
     if (!isBrowser) return
-
     const { context, fireOnMount } = this.props
 
-    context.addEventListener('scroll', this.handleScroll)
+    this.pageYOffset = window.pageYOffset
+    eventStack.sub('resize', this.handleUpdate, { target: context })
+    eventStack.sub('scroll', this.handleUpdate, { target: context })
+
     if (fireOnMount) this.update()
   }
 
   componentWillUnmount() {
-    if (!isBrowser) return
-
     const { context } = this.props
-    context.removeEventListener('scroll', this.handleScroll)
+
+    eventStack.unsub('resize', this.handleUpdate, { target: context })
+    eventStack.unsub('scroll', this.handleUpdate, { target: context })
   }
 
   // ----------------------------------------
@@ -260,7 +263,7 @@ export default class Visibility extends Component {
     })
   }
 
-  handleScroll = () => {
+  handleUpdate = () => {
     if (this.ticking) return
 
     this.ticking = true
@@ -272,6 +275,7 @@ export default class Visibility extends Component {
 
     this.oldCalculations = this.calculations
     this.calculations = this.computeCalculations()
+    this.pageYOffset = window.pageYOffset
 
     const {
       onBottomPassed,
@@ -322,6 +326,7 @@ export default class Visibility extends Component {
     const { bottom, height, top, width } = this.ref.getBoundingClientRect()
     const [topOffset, bottomOffset] = normalizeOffset(offset)
 
+    const direction = window.pageYOffset > this.pageYOffset ? 'down' : 'up'
     const topPassed = top < topOffset
     const bottomPassed = bottom < bottomOffset
 
@@ -340,6 +345,7 @@ export default class Visibility extends Component {
     return {
       bottomPassed,
       bottomVisible,
+      direction,
       fits,
       height,
       passing,

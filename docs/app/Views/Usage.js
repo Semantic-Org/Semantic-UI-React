@@ -33,6 +33,7 @@ const Usage = () => (
         The Semantic UI React package can be installed via NPM:
       </p>
       <Segment>
+        <pre>$ yarn add {pkg.name}</pre>
         <pre>$ npm install {pkg.name} --save</pre>
       </Segment>
       <p>
@@ -131,9 +132,8 @@ const Usage = () => (
         provided <a href={`${semanticUIDocsURL}usage/theming.html`}>here</a>.
       </p>
       <Segment>
-        <pre>
-          $ npm install semantic-ui --save-dev
-        </pre>
+        <pre>$ yarn add semantic-ui --dev</pre>
+        <pre>$ npm install semantic-ui --save-dev</pre>
       </Segment>
       <p>
         After building the project with Gulp, you'll need to include the minified CSS file

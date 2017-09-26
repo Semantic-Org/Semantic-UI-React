@@ -243,6 +243,41 @@ describe('Visibility', () => {
         })
       })
     })
+
+    describe('direction', () => {
+      let pageYOffset
+
+      beforeEach(() => {
+        pageYOffset = window.pageYOffset
+      })
+
+      afterEach(() => {
+        window.pageYOffset = pageYOffset
+      })
+
+      it('returns up when scrolling down', () => {
+        const onUpdate = sandbox.spy()
+        mount(<Visibility onUpdate={onUpdate} />)
+
+        window.pageYOffset = 5
+        domEvent.scroll(window)
+        onUpdate.should.have.been.calledWithMatch(null, {
+          calculations: { direction: 'down' },
+        })
+      })
+
+      it('returns up when scrolling up', () => {
+        window.pageYOffset = 100
+        const onUpdate = sandbox.spy()
+        mount(<Visibility onUpdate={onUpdate} />)
+
+        window.pageYOffset = 50
+        domEvent.scroll(window)
+        onUpdate.should.have.been.calledWithMatch(null, {
+          calculations: { direction: 'up' },
+        })
+      })
+    })
   })
 
   describe('context', () => {
@@ -364,6 +399,14 @@ describe('Visibility', () => {
       mockScroll(0, 0)
 
       onUpdate.should.have.been.calledTwice()
+    })
+
+    it('fires when window resized', () => {
+      const onUpdate = sandbox.spy()
+      wrapperMount(<Visibility onUpdate={onUpdate} />)
+
+      domEvent.resize(window)
+      onUpdate.should.have.been.calledOnce()
     })
 
     it('passes calculations to onUpdate', () => {

@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
 import {
+  eventStack,
   childrenUtils,
   customPropTypes,
   getElementType,
@@ -276,7 +277,8 @@ export default class Popup extends Component {
 
   hideOnScroll = () => {
     this.setState({ closed: true })
-    window.removeEventListener('scroll', this.hideOnScroll)
+
+    eventStack.unsub('scroll', this.hideOnScroll, { target: window })
     setTimeout(() => this.setState({ closed: false }), 50)
   }
 
@@ -296,19 +298,18 @@ export default class Popup extends Component {
 
   handlePortalMount = (e) => {
     debug('handlePortalMount()')
-    if (this.props.hideOnScroll) {
-      window.addEventListener('scroll', this.hideOnScroll)
-    }
+    const { hideOnScroll } = this.props
 
-    const { onMount } = this.props
-    if (onMount) onMount(e, this.props)
+    if (hideOnScroll) eventStack.sub('scroll', this.hideOnScroll, { target: window })
+    _.invoke(this.props, 'onMount', e, this.props)
   }
 
   handlePortalUnmount = (e) => {
     debug('handlePortalUnmount()')
-    window.removeEventListener('scroll', this.hideOnScroll)
-    const { onUnmount } = this.props
-    if (onUnmount) onUnmount(e, this.props)
+    const { hideOnScroll } = this.props
+
+    if (hideOnScroll) eventStack.unsub('scroll', this.hideOnScroll, { target: window })
+    _.invoke(this.props, 'onUnmount', e, this.props)
   }
 
   handlePopupRef = (popupRef) => {

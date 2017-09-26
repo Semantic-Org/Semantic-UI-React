@@ -52,13 +52,15 @@ v6.2.1
 
 ### Fork, Clone & Install
 
-Start by [forking stardust][12] to your GitHub account.  Then clone your fork and install dependencies:
+Start by [forking Semantic UI React][12] to your GitHub account.  Then clone your fork and install dependencies:
 
 ```sh
 git clone git@github.com:<your-user>/Semantic-UI-React.git
 cd Semantic-UI-React
-npm install
+yarn
 ```
+
+>Note, we use `yarn` because `npm` has unfortunately become unreliable.  Get it [here][16].
 
 Add our repo as a git remote so you can pull/rebase your fork with our latest updates:
 
@@ -72,25 +74,24 @@ Please follow the [Angular Git Commit Guidelines][8] format.
 
 ### Commands
 
->This list is not updated, you should run `npm run` to see all scripts.
+>This list is not updated, you should run `yarn run` to see all scripts.
 
 ```sh
-npm start                     // run doc site
-npm run start:local-modules   // run offline (slower builds)
+yarn start                 // run doc site
 
-npm test                      // test once
-npm run test:watch            // test on file change
+yarn test                  // test once
+yarn test:watch            // test on file change
 
-npm run build                 // build everything
-npm run build:dist            // build dist
-npm run build:docs            // build docs
-npm run build:docs-toc        // build toc for markdown files
+yarn build                 // build everything
+yarn build:dist            // build dist
+yarn build:docs            // build docs
+yarn build:docs-toc        // build toc for markdown files
 
-npm run deploy:docs           // deploy gh-pages doc site
+yarn deploy:docs           // deploy gh-pages doc site
 
-npm run lint                  // lint once
-npm run lint:fix              // lint and attempt to fix
-npm run lint:watch            // lint on file change
+yarn lint                  // lint once
+yarn lint:fix              // lint and attempt to fix
+yarn lint:watch            // lint on file change
 ```
 
 ## Workflow
@@ -371,7 +372,7 @@ See [`src/factories`][13] for special methods to convert props values into React
 
 ## Testing
 
-Run tests during development with `npm run test:watch` to re-run tests on file changes.
+Run tests during development with `yarn test:watch` to re-run tests on file changes.
 
 ### Coverage
 
@@ -494,7 +495,7 @@ Our docs are generated from doc block comments, `propTypes`, and hand written ex
 Developing against the doc site is a good way to try your component as you build it. Run the doc site with:
 
 ```sh
-npm start
+yarn start
 ```
 
 ### Components
@@ -571,3 +572,4 @@ Adding documentation for new components is a bit tedious.  The best way to do th
 [13]: https://github.com/Semantic-Org/Semantic-UI-React/blob/master/src/factories
 [14]: https://github.com/Semantic-Org/Semantic-UI-React/pull/335#issuecomment-238960895
 [15]: https://github.com/Semantic-Org/Semantic-UI-React/issues/607
+[16]: https://yarnpkg.com/en/docs/getting-started

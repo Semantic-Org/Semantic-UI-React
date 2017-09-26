@@ -1,16 +1,18 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
-import { Grid, Header, Image, Rail, Segment, Sticky } from 'semantic-ui-react'
+import { Checkbox, Grid, Header, Image, Rail, Segment, Sticky } from 'semantic-ui-react'
 
 const Placeholder = () => <Image src='/assets/images/wireframe/paragraph.png' />
 
-export default class StickyAdjacentContextExample extends Component {
-  state = {}
+export default class StickyExampleActive extends Component {
+  state = { active: true }
 
   handleContextRef = contextRef => this.setState({ contextRef })
 
+  handleToggle = () => this.setState({ active: !this.state.active })
+
   render() {
-    const { contextRef } = this.state
+    const { active, contextRef } = this.state
 
     return (
       <Grid centered columns={3}>
@@ -20,16 +22,20 @@ export default class StickyAdjacentContextExample extends Component {
               {_.times(10, i => <Placeholder key={i} />)}
 
               <Rail position='left'>
-                {_.times(3, i => <Placeholder key={i} />)}
-
                 <Sticky context={contextRef}>
-                  <Header as='h3'>Stuck Content</Header>
-                  <Image src='/assets/images/wireframe/image.png' />
+                  <Segment>
+                    <Checkbox
+                      checked={active}
+                      label='Activate Sticky on right'
+                      onChange={this.handleToggle}
+                      toggle
+                    />
+                  </Segment>
                 </Sticky>
               </Rail>
 
               <Rail position='right'>
-                <Sticky context={contextRef}>
+                <Sticky active={active} context={contextRef}>
                   <Header as='h3'>Stuck Content</Header>
                   <Image src='/assets/images/wireframe/image.png' />
                 </Sticky>

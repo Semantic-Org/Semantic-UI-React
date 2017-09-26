@@ -8,7 +8,7 @@ import ComponentPropToggle from './ComponentPropEnumToggle'
 import ComponentPropValue from './ComponentPropEnumValue'
 
 const ComponentPropEnum = ({ limit, showAll, toggle, type, values }) => {
-  if (type !== 'enum' || !values) return null
+  if (!_.includes(type, 'enum') || !values) return null
 
   const exceeds = values.length > limit
   const sliced = showAll ? values : _.slice(values, 0, limit)

@@ -1,5 +1,5 @@
-import _ from 'lodash'
 import faker from 'faker'
+import _ from 'lodash'
 import React from 'react'
 import { Accordion } from 'semantic-ui-react'
 
@@ -9,7 +9,7 @@ const panels = _.times(3, () => ({
 }))
 
 const AccordionExampleExclusive = () => (
-  <Accordion panels={panels} exclusive={false} fluid />
+  <Accordion defaultActiveIndex={[0, 2]} panels={panels} exclusive={false} fluid />
 )
 
 export default AccordionExampleExclusive
