@@ -4,24 +4,24 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Header, List } from 'semantic-ui-react'
 
-import { getSeeLinks } from 'docs/app/utils'
+import { getDocSeeItems } from 'docs/app/utils'
 
 const listStyle = { display: 'block' }
 
 const ComponentDocSee = ({ componentName }) => {
-  const links = getSeeLinks(componentName)
+  const items = getDocSeeItems(componentName)
 
   return (
     <List horizontal link size='small' style={listStyle}>
-      {/* still render empty lists to reserve the whitespace */}
+      {/* Heads up! Still render empty lists to reserve the whitespace */}
       <List.Item>
         <Header
           color='grey'
-          content={links.length > 0 ? 'See:' : ' '}
+          content={items.length > 0 ? 'See:' : ' '}
           size='tiny'
         />
       </List.Item>
-      {_.map(links, ({ description, name, type }) => (
+      {_.map(items, ({ description, name, type }) => (
         <List.Item
           as={Link}
           content={description}

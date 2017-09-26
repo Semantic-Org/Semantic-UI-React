@@ -1,8 +1,11 @@
+import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import DocumentTitle from 'react-document-title'
+import { withRouter } from 'react-router'
 import { Grid } from 'semantic-ui-react'
 
+import { scrollToAnchor } from 'docs/app/utils'
 import ComponentDocHeader from './ComponentDocHeader'
 import ComponentDocLinks from './ComponentDocLinks'
 import ComponentDocSee from './ComponentDocSee'
@@ -12,13 +15,14 @@ import ComponentSidebar from './ComponentSidebar'
 
 const topRowStyle = { margin: '1em' }
 
-export default class ComponentDoc extends Component {
+class ComponentDoc extends Component {
   static childContextTypes = {
     onPassed: PropTypes.func,
   }
 
   static propTypes = {
     _meta: PropTypes.object,
+    history: PropTypes.object.isRequired,
   }
 
   state = {}
@@ -29,9 +33,21 @@ export default class ComponentDoc extends Component {
     }
   }
 
+  componentWillReceiveProps() {
+    this.setState({ activePath: undefined })
+  }
+
   handleExamplePassed = (e, { examplePath }) => this.setState({ activePath: examplePath })
 
   handleExamplesRef = examplesRef => this.setState({ examplesRef })
+
+  handleSidebarItemClick = (e, { path }) => {
+    const { history } = this.props
+    const aPath = _.kebabCase(_.last(path.split('/')))
+
+    history.replace(`${location.pathname}#${aPath}`)
+    scrollToAnchor()
+  }
 
   render() {
     const { _meta } = this.props
@@ -61,6 +77,7 @@ export default class ComponentDoc extends Component {
                 activePath={activePath}
                 componentName={_meta.parent || _meta.name}
                 examplesRef={examplesRef}
+                onItemClick={this.handleSidebarItemClick}
               />
             </Grid.Column>
           </Grid.Row>
@@ -69,3 +86,5 @@ export default class ComponentDoc extends Component {
     )
   }
 }
+
+export default withRouter(ComponentDoc)

@@ -3,9 +3,9 @@ import React, { Component } from 'react'
 
 import { getDocSubComponents } from 'docs/app/utils'
 import ComponentTable from '../ComponentTable'
-import ComponentPropsComponentDescription from './ComponentPropsComponentDescription'
-import ComponentPropsHeader from './ComponentPropsHeader'
 import ComponentPropsComponents from './ComponentPropsComponents'
+import ComponentPropsDescription from './ComponentPropsDescription'
+import ComponentPropsHeader from './ComponentPropsHeader'
 
 export default class ComponentProps extends Component {
   static propTypes = {
@@ -49,7 +49,7 @@ export default class ComponentProps extends Component {
 
         {activeName && (
           <div>
-            <ComponentPropsComponentDescription name={activeName} />
+            <ComponentPropsDescription name={activeName} />
             <ComponentTable name={activeName} />
           </div>
         )}

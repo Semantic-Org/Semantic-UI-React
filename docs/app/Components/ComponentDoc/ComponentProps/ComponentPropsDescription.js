@@ -10,15 +10,15 @@ const descriptionStyle = {
   color: '#777',
 }
 
-const ComponentPropsComponent = ({ name }) => (
+const ComponentPropsDescription = ({ name }) => (
   <div style={descriptionStyle}>
     {getDocDescription(name)}
     <Divider />
   </div>
 )
 
-ComponentPropsComponent.propTypes = {
+ComponentPropsDescription.propTypes = {
   name: PropTypes.string,
 }
 
-export default pure(ComponentPropsComponent)
+export default pure(ComponentPropsDescription)

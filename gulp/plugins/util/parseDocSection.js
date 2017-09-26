@@ -1,48 +1,58 @@
 import _ from 'lodash'
-import { parse } from 'babylon'
 import traverse from 'babel-traverse'
 
-export default (buffer) => {
-  const ast = parse(buffer.toString(), {
-    sourceType: 'module',
-    plugins: [
-      'classProperties',
-      'jsx',
-    ],
-  })
-  const section = {
-    examples: [],
-  }
+import parseBuffer from './parseBuffer'
+
+const getJSXAttributes = jsxPath => _.map(
+  _.get(jsxPath, 'node.attributes'),
+  attr => ({
+    name: _.get(attr, 'name.name'),
+    value: _.get(attr, 'value.value'),
+  }),
+)
+
+const getAttributeValue = (attributes, name) => _.get(
+  _.find(attributes, { name }),
+  'value',
+)
+
+/**
+ * Parses the section view of component examples and builds an object with examples titles and paths.
+ *
+ * @param {buffer} buffer The content of a view
+ * @return {object}
+ */
+const parseDocSection = (buffer) => {
+  const ast = parseBuffer(buffer)
+  const examples = []
+  let sectionName
 
   traverse(ast, {
     JSXOpeningElement: (path) => {
-      const attrs = _.map(_.get(path, 'node.attributes'), a => ({
-        name: _.get(a, 'name.name'),
-        value: _.get(a, 'value.value'),
-      }))
+      const attributes = getJSXAttributes(path)
       const name = _.get(path, 'node.name.name')
 
-      if (name === 'ExampleSection') {
-        const title = _.find(attrs, { name: 'title' })
+      const title = getAttributeValue(attributes, 'title')
+      const examplePath = getAttributeValue(attributes, 'examplePath')
 
-        section.name = title.name
+      if (name === 'ExampleSection') {
+        sectionName = title
         return
       }
 
-      if (name === 'ComponentExample') {
-        const title = _.find(attrs, { name: 'title' })
-
-        if (title) {
-          const { value } = _.find(attrs, { name: 'examplePath' })
-
-          section.examples.push({
-            title: title.value,
-            path: value,
-          })
-        }
+      if (name === 'ComponentExample' && title) {
+        examples.push({
+          title,
+          path: examplePath,
+        })
       }
     },
   })
 
-  return section
+  return {
+    examples,
+    name: sectionName,
+  }
 }
+
+export default parseDocSection

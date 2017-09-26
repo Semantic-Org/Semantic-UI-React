@@ -3,7 +3,7 @@ import React from 'react'
 import { List } from 'semantic-ui-react'
 
 import { pure } from 'docs/app/HOC'
-import { getGithubSourceUrl, getPosixPath, getSemanticUIDocsUrl } from 'docs/app/utils'
+import { getDocGithubSourceUrl, getPosixPath, getDocSemanticUiUrl } from 'docs/app/utils'
 
 const linkListStyle = {
   background: '#f7f7f7',
@@ -16,8 +16,8 @@ const linkListStyle = {
 }
 
 const ComponentDocLinks = ({ componentName, type }) => {
-  const ghLink = getGithubSourceUrl(componentName)
-  const suiLink = getSemanticUIDocsUrl(componentName, type)
+  const ghLink = getDocGithubSourceUrl(componentName)
+  const suiLink = getDocSemanticUiUrl(componentName, type)
 
   return (
     <List link style={linkListStyle}>

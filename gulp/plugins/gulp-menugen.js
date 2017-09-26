@@ -8,6 +8,14 @@ import { parseDocExample, parseDocSection } from './util'
 
 const examplesPath = `${config.paths.docsSrc()}/Examples/`
 
+const normalizeResult = result => JSON.stringify(_.mapValues(
+  result,
+  sections => _.map(
+    _.sortBy(sections, 'position'),
+    ({ examples, name }) => ({ examples, name }),
+  ),
+), null, 2)
+
 export default (filename) => {
   const defaultFilename = 'menuInfo.json'
   const result = {}
@@ -37,10 +45,11 @@ export default (filename) => {
         cb()
         return
       }
-      const { examples } = parseDocSection(file.contents)
 
-      result[component][section].examples = examples
-      // result[component][section] = 100
+      result[component][section] = {
+        ...result[component][section],
+        ...parseDocSection(file.contents),
+      }
       cb()
     } catch (err) {
       const pluginError = new gutil.PluginError(pluginName, err)
@@ -52,7 +61,7 @@ export default (filename) => {
   function endStream(cb) {
     finalFile = latestFile.clone({ contents: false })
     finalFile.path = path.join(latestFile.base, (filename || defaultFilename))
-    finalFile.contents = new Buffer(JSON.stringify(result, null, 2))
+    finalFile.contents = new Buffer(normalizeResult(result))
     this.push(finalFile)
     cb()
   }

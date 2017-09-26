@@ -81,6 +81,7 @@ class ComponentExample extends Component {
 
   setHashAndScroll = () => {
     const { history } = this.props
+
     history.replace(`${location.pathname}#${this.anchorName}`)
     scrollToAnchor()
   }
