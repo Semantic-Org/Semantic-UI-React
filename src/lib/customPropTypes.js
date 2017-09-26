@@ -359,12 +359,14 @@ export const date = createChainablePropType((props, propName, componentName) => 
   const type = typeof propValue
 
   if (type === 'string') {
-    if (doesParse) return
+    if (!doesParse) {
+      return new Error([
+        `Invalid date string \`${propValue}\`, it cannot be parsed as a date.`,
+        `See \`${propName}\` prop in \`${componentName}\`.`,
+      ].join(' '))
+    }
 
-    return new Error([
-      `Invalid date string \`${propValue}\`, it cannot be parsed as a date.`,
-      `See \`${propName}\` prop in \`${componentName}\`.`,
-    ].join(' '))
+    return null
   }
 
   if (type === 'object') {
@@ -390,6 +392,8 @@ export const date = createChainablePropType((props, propName, componentName) => 
         `See \`${propName}\` prop in \`${componentName}\`.`,
       ].join(' '))
     }
+
+    return null
   }
 
   return new Error([
