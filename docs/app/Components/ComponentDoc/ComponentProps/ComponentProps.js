@@ -1,7 +1,7 @@
+import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
-import { getDocSubComponents } from 'docs/app/utils'
 import ComponentTable from '../ComponentTable'
 import ComponentPropsComponents from './ComponentPropsComponents'
 import ComponentPropsDescription from './ComponentPropsDescription'
@@ -9,7 +9,9 @@ import ComponentPropsHeader from './ComponentPropsHeader'
 
 export default class ComponentProps extends Component {
   static propTypes = {
+    componentGroup: PropTypes.arrayOf(PropTypes.object),
     componentName: PropTypes.string,
+    props: PropTypes.arrayOf(PropTypes.object),
   }
 
   constructor(props) {
@@ -29,28 +31,28 @@ export default class ComponentProps extends Component {
   handleToggle = () => this.setState({ activeName: this.state.activeName ? false : this.props.componentName })
 
   render() {
-    const { componentName } = this.props
+    const { componentGroup, componentName } = this.props
     const { activeName } = this.state
-    const subComponents = getDocSubComponents(componentName)
+    const { description, props } = componentGroup[activeName] || {}
 
     return (
       <div>
         <ComponentPropsHeader
-          hasSubComponents={subComponents.length > 0}
+          hasSubComponents={componentGroup.length > 1}
           showProps={activeName}
           onClick={this.handleToggle}
         />
         <ComponentPropsComponents
           activeName={activeName}
-          components={subComponents}
+          components={_.keys(componentGroup)}
           onItemClick={this.handleComponentClick}
           parent={componentName}
         />
 
         {activeName && (
           <div>
-            <ComponentPropsDescription name={activeName} />
-            <ComponentTable name={activeName} />
+            <ComponentPropsDescription description={description} />
+            <ComponentTable name={activeName} props={props} />
           </div>
         )}
       </div>

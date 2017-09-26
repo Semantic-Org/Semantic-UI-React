@@ -9,26 +9,47 @@ import ComponentDocSee from './ComponentDocSee'
 import ComponentExamples from './ComponentExamples'
 import ComponentProps from './ComponentProps'
 
-const ComponentDoc = ({ _meta }) => (
-  <DocumentTitle title={`${_meta.name} | Semantic UI React`}>
+const ComponentDoc = ({ componentGroup, componentName, description, ghLink, path, props, seeItems, suiLink }) => (
+  <DocumentTitle title={`${componentName} | Semantic UI React`}>
     <div>
       <Grid padded columns='1'>
         <Grid.Column>
-          <ComponentDocHeader componentName={_meta.name} />
-          <ComponentDocSee componentName={_meta.name} />
-          <ComponentDocLinks componentName={_meta.parent || _meta.name} type={_meta.type} />
-          <ComponentProps componentName={_meta.name} />
+          <ComponentDocHeader componentName={componentName} description={description} />
+          <ComponentDocSee items={seeItems} />
+          <ComponentDocLinks
+            componentName={componentName}
+            ghLink={ghLink}
+            path={path}
+            suiLink={suiLink}
+          />
+          <ComponentProps componentGroup={componentGroup} componentName={componentName} />
         </Grid.Column>
       </Grid>
 
-      <ComponentExamples componentName={_meta.name} />
+      <ComponentExamples componentName={name} />
     </div>
   </DocumentTitle>
 )
 
 ComponentDoc.propTypes = {
-  _meta: PropTypes.object,
-  history: PropTypes.object.isRequired,
+  componentGroup: PropTypes.arrayOf(
+    PropTypes.shape({
+      description: PropTypes.string,
+      props: PropTypes.object,
+    }),
+  ),
+  componentName: PropTypes.string.isRequired,
+  description: PropTypes.string,
+  ghLink: PropTypes.string.isRequired,
+  path: PropTypes.string.isRequired,
+  seeItems: PropTypes.arrayOf(
+    PropTypes.shape({
+      description: PropTypes.string,
+      name: PropTypes.string,
+      type: PropTypes.string,
+    }),
+  ).isRequired,
+  suiLink: PropTypes.string,
 }
 
 export default ComponentDoc
