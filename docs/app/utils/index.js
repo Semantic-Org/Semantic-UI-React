@@ -5,12 +5,8 @@ import { META } from 'src/lib'
 
 export * from './constants'
 export * from './docs'
+export exampleContext from './exampleContext'
 export scrollToAnchor from './scrollToAnchor'
-
-/**
- * Get the Webpack Context for all doc site examples.
- */
-export const exampleContext = require.context('docs/app/Examples/', true, /(\w+Example\w*|index)\.js$/)
 
 export const parentComponents = _.flow(
   _.filter(META.isParent),
