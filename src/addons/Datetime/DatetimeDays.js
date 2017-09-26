@@ -18,7 +18,7 @@ import DatetimeGrid from './DatetimeGrid'
 export default class DatetimeDays extends Component {
   static propTypes = {
     /** Current value as a Date object. */
-    value: customPropTypes.date,
+    value: customPropTypes.date.isRequired,
 
     /** An array of dates that should be marked disabled in the calendar. */
     disabledDates: PropTypes.arrayOf(customPropTypes.date),

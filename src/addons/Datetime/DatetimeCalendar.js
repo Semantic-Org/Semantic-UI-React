@@ -89,7 +89,7 @@ export default class DatetimeCalendar extends Component {
     timeFormatter: PropTypes.func,
 
     /** Current value as a Date object or a string that can be parsed into one. */
-    value: customPropTypes.date,
+    value: customPropTypes.date.isRequired,
   }
 
   static defaultProps = {

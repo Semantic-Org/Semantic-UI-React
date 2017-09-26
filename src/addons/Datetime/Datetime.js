@@ -148,7 +148,7 @@ export default class Datetime extends Component {
      */
     hourFormatter: PropTypes.func,
     /** Current value as a Date object or a string that can be parsed into one. */
-    value: customPropTypes.date,
+    value: customPropTypes.date.isRequired,
     timeZone: PropTypes.string,
     defaultMode: PropTypes.string,
     mode: PropTypes.string,

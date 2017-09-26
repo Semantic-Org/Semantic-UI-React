@@ -27,7 +27,7 @@ export default class DatetimeMonths extends Component {
     onChange: PropTypes.func,
 
     /** Current value as a Date object. */
-    value: customPropTypes.date,
+    value: customPropTypes.date.isRequired,
   }
 
   static defaultProps = {
