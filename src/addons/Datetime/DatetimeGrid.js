@@ -4,6 +4,7 @@ import React from 'react'
 
 import Table from '../../collections/Table'
 import {
+  customPropTypes,
   getElementType,
   getUnhandledProps,
   META,
@@ -60,11 +61,12 @@ DatetimeGrid._meta = {
 }
 
 DatetimeGrid.propTypes = {
-  headers: PropTypes.arrayOf(PropTypes.string).isRequired,
-  columns: PropTypes.number,
+  as: customPropTypes.as,
+  headers: PropTypes.arrayOf(PropTypes.string),
+  columns: PropTypes.number.isRequired,
   cells: PropTypes.arrayOf(PropTypes.shape({
     content: PropTypes.string.isRequired,
-  })),
+  })).isRequired,
 }
 
 DatetimeGrid.defaultProps = {

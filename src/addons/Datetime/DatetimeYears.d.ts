@@ -16,7 +16,7 @@ export interface DatetimeYearsProps {
   onChange?: (event: React.SyntheticEvent<HTMLElement>, data: DatetimeYearsProps) => void;
 
   /** Current value as a Date object. */
-  value: Date,
+  value: Date;
 }
 
 interface DatetimeYearsComponent extends React.ComponentClass<DatetimeYearsProps> {

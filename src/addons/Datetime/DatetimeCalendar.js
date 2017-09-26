@@ -33,6 +33,9 @@ export default class DatetimeCalendar extends Component {
   }
 
   static propTypes = {
+    /** An element type to render as (string or function). */
+    as: customPropTypes.as,
+
     /**
      * Formats the date string in the input and calendar.
      * A function that receives a date argument and returns a formatted date
@@ -54,7 +57,7 @@ export default class DatetimeCalendar extends Component {
     hourFormatter: PropTypes.func,
 
     /** Current calendar mode. */
-    mode: PropTypes.oneOf(['minute', 'hour', 'day', 'month', 'year']),
+    mode: PropTypes.oneOf(['minute', 'hour', 'day', 'month', 'year']).isRequired,
 
     /**
      * Called when the user changes the value.

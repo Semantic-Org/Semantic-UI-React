@@ -17,8 +17,8 @@ import DatetimeGrid from './DatetimeGrid'
  */
 export default class DatetimeMinutes extends Component {
   static propTypes = {
-    /** Current hour. */
-    hour: PropTypes.number,
+    /** An element type to render as (string or function). */
+    as: customPropTypes.as,
 
     /** DatetimeMinutes interval between each item. */
     interval: PropTypes.number,
@@ -44,6 +44,10 @@ export default class DatetimeMinutes extends Component {
     value: customPropTypes.date.isRequired,
   }
 
+  static defaultProps = {
+    as: DatetimeGrid,
+  }
+
   static _meta = {
     name: 'DatetimeMinutes',
     parent: 'Datetime',
@@ -67,10 +71,9 @@ export default class DatetimeMinutes extends Component {
   }
 
   getMinuteLabel(minute) {
-    const { formatter, interval, hour, value } = this.props
+    const { formatter, interval, value } = this.props
     const date = new Date(value)
 
-    date.setHours(hour)
     date.setMinutes(minute * interval)
 
     return formatter(date)

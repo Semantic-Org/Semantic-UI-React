@@ -3,6 +3,9 @@ import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
 import {
+  customPropTypes,
+  getElementType,
+  getUnhandledProps,
   dateUtils,
   META,
 } from '../../lib'
@@ -18,11 +21,11 @@ import Menu from '../../collections/Menu'
  */
 export default class DatetimeMenu extends Component {
   static propTypes = {
-    /** Current day of the month */
-    value: PropTypes.number,
+    /** An element type to render as (string or function). */
+    as: customPropTypes.as,
 
     /** Current calendar mode */
-    mode: PropTypes.oneOf(['minute', 'hour', 'day', 'month', 'year']),
+    mode: PropTypes.oneOf(['minute', 'hour', 'day', 'month', 'year']).isRequired,
 
     /**
      * Called when the mode is changed (i.e. switching from month view to year selection).
@@ -34,6 +37,14 @@ export default class DatetimeMenu extends Component {
     onChangeMode: PropTypes.func,
 
     /**
+     * Called when changing to the next page.
+     *
+     * @param {SyntheticEvent} event - React's original SyntheticEvent.
+     * @param {object} data - All Menu.Item props.
+     */
+    onNextPage: PropTypes.func,
+
+    /**
      * Called when changing to the previous page.
      *
      * @param {SyntheticEvent} event - React's original SyntheticEvent.
@@ -41,13 +52,12 @@ export default class DatetimeMenu extends Component {
      */
     onPreviousPage: PropTypes.func,
 
-    /**
-     * Called when changing to the next page.
-     *
-     * @param {SyntheticEvent} event - React's original SyntheticEvent.
-     * @param {object} data - All Menu.Item props.
-     */
-    onNextPage: PropTypes.func,
+    /** Current value as a Date object. */
+    value: customPropTypes.date.isRequired,
+  }
+
+  static defaultProps = {
+    as: Menu,
   }
 
   static _meta = {
@@ -60,10 +70,6 @@ export default class DatetimeMenu extends Component {
     _.invokeArgs('onChangeMode', [e, { ...this.props, mode: name }], this.props)
   }
 
-  handlePreviousPage = (e, { name }) => {
-    _.invokeArgs('onChangeMode', [e, { ...this.props, mode: name }], this.props)
-  }
-
   render() {
     const {
       value,
@@ -71,6 +77,9 @@ export default class DatetimeMenu extends Component {
       onNextPage,
       onPreviousPage,
     } = this.props
+
+    const rest = getUnhandledProps(DatetimeMenu, this.props)
+    const ElementType = getElementType(DatetimeMenu, this.props)
 
     const year = value.getFullYear()
     const monthName = dateUtils.getMonthName(value)
@@ -99,11 +108,11 @@ export default class DatetimeMenu extends Component {
     ])
 
     return (
-      <Menu attached='top' fluid text widths={items.length + 2}>
+      <ElementType attached='top' fluid text widths={items.length + 2} {...rest}>
         <Menu.Item icon='angle double left' onClick={onPreviousPage} />
         {items}
         <Menu.Item icon='angle double right' onClick={onNextPage} />
-      </Menu>
+      </ElementType>
     )
   }
 }

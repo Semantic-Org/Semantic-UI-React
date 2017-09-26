@@ -17,6 +17,9 @@ import DatetimeGrid from './DatetimeGrid'
  */
 export default class DatetimeHours extends Component {
   static propTypes = {
+    /** An element type to render as (string or function). */
+    as: PropTypes.func,
+
     /**
      * Formats a Date object as an hour string.
      *
