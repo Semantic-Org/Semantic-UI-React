@@ -17,6 +17,9 @@ import DatetimeGrid from './DatetimeGrid'
  */
 export default class DatetimeMonths extends Component {
   static propTypes = {
+    /** An element type to render as (string or function). */
+    as: customPropTypes.as,
+
     /**
      * Called when the user changes the value.
      *
