@@ -23,8 +23,8 @@ const DatetimeGrid = (props) => {
   const { headers = [], columns, cells } = props
   const colSpan = Math.round(columns / headers.length)
 
-  const rest = getUnhandledProps(DatetimeGrid, this.props)
-  const ElementType = getElementType(DatetimeGrid, this.props)
+  const rest = getUnhandledProps(DatetimeGrid, props)
+  const ElementType = getElementType(DatetimeGrid, props)
 
   return (
     <ElementType {...rest}>
