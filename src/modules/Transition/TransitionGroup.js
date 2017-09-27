@@ -72,22 +72,27 @@ export default class TransitionGroup extends React.Component {
       const { [key]: prevChild } = prevMapping
       const isLeaving = !_.get(prevChild, 'props.visible')
 
-      // item is new (entering), should be wrapped
+      // Heads up!
+      // An item is new (entering), it will be picked from `nextChildren`, so it should be wrapped
       if (hasNext && (!hasPrev || isLeaving)) {
-        children[key] = this.wrapChild(child, true)
+        children[key] = this.wrapChild(child, { transitionOnMount: true })
         return
       }
 
-      // item is old (exiting), should be updated
+      // Heads up!
+      // An item is old (exiting), it will be picked from `prevChildren`, so it has been already
+      // wrapped, so should be only updated
       if (!hasNext && hasPrev && !isLeaving) {
         children[key] = cloneElement(prevChild, { visible: false })
         return
       }
 
-      // item hasn't changed transition states, copy over the last transition props;
+      // Heads up!
+      // An item item hasn't changed transition states, but it will be picked from `nextChildren`,
+      // so we should wrap it again
       const { props: { visible, transitionOnMount } } = prevChild
 
-      children[key] = cloneElement(child, { visible, transitionOnMount })
+      children[key] = this.wrapChild(child, { transitionOnMount, visible })
     })
 
     this.setState({ children })
@@ -105,9 +110,13 @@ export default class TransitionGroup extends React.Component {
     })
   }
 
-  wrapChild = (child, transitionOnMount = false) => {
+  wrapChild = (child, options = {}) => {
     const { animation, duration } = this.props
     const { key } = child
+    const {
+      visible = true,
+      transitionOnMount = false,
+    } = options
 
     return (
       <Transition
@@ -117,6 +126,7 @@ export default class TransitionGroup extends React.Component {
         onHide={this.handleOnHide}
         reactKey={key}
         transitionOnMount={transitionOnMount}
+        visible={visible}
       >
         {child}
       </Transition>
