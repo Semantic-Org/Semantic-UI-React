@@ -10,6 +10,8 @@ import {
   useKeyOnly,
 } from '../../lib'
 
+const ElementType = getElementType()
+
 /**
  * An ad displays third-party promotional content.
  */
@@ -31,7 +33,6 @@ function Advertisement(props) {
     className,
   )
   const rest = getUnhandledProps(Advertisement, props)
-  const ElementType = getElementType(Advertisement, props)
 
   return <ElementType {...rest} className={classes} data-text={test}>{children}</ElementType>
 }

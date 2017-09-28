@@ -9,6 +9,8 @@ import {
   META,
 } from '../../lib'
 
+const ElementType = getElementType()
+
 /**
  * A comment can contain metadata about the comment, an arbitrary amount of metadata may be defined.
  */
@@ -16,7 +18,6 @@ function CommentMetadata(props) {
   const { className, children } = props
   const classes = cx('metadata', className)
   const rest = getUnhandledProps(CommentMetadata, props)
-  const ElementType = getElementType(CommentMetadata, props)
 
   return <ElementType {...rest} className={classes}>{children}</ElementType>
 }

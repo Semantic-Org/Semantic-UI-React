@@ -11,6 +11,8 @@ import {
   META,
 } from '../../lib'
 
+const ElementType = getElementType()
+
 /**
  * A modal can have a header.
  */
@@ -18,7 +20,6 @@ function ModalHeader(props) {
   const { children, className, content } = props
   const classes = cx(className, 'header')
   const rest = getUnhandledProps(ModalHeader, props)
-  const ElementType = getElementType(ModalHeader, props)
 
   return (
     <ElementType {...rest} className={classes}>

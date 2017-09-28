@@ -13,6 +13,8 @@ import {
   useTextAlignProp,
 } from '../../lib'
 
+const ElementType = getElementType()
+
 /**
  * A card can contain content metadata.
  */
@@ -24,7 +26,6 @@ function CardMeta(props) {
     className,
   )
   const rest = getUnhandledProps(CardMeta, props)
-  const ElementType = getElementType(CardMeta, props)
 
   return (
     <ElementType {...rest} className={classes}>

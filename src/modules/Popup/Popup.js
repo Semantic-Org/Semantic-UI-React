@@ -21,6 +21,7 @@ import PopupContent from './PopupContent'
 import PopupHeader from './PopupHeader'
 
 const debug = makeDebugger('popup')
+const ElementType = getElementType()
 
 export const POSITIONS = [
   'top left',
@@ -353,7 +354,6 @@ export default class Popup extends Component {
 
     const rest = _.omit(unhandled, portalPropNames)
     const portalProps = _.pick(unhandled, portalPropNames)
-    const ElementType = getElementType(Popup, this.props)
 
     const popupJSX = (
       <ElementType {...rest} className={classes} style={style} innerRef={this.handlePopupRef}>

@@ -13,6 +13,8 @@ import {
 import SidebarPushable from './SidebarPushable'
 import SidebarPusher from './SidebarPusher'
 
+const ElementType = getElementType()
+
 /**
  * A sidebar hides additional content beside a page.
  */
@@ -94,9 +96,7 @@ class Sidebar extends Component {
       'sidebar',
       className,
     )
-
     const rest = getUnhandledProps(Sidebar, this.props)
-    const ElementType = getElementType(Sidebar, this.props)
 
     return <ElementType {...rest} className={classes}>{children}</ElementType>
   }

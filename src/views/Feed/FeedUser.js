@@ -10,6 +10,8 @@ import {
   META,
 } from '../../lib'
 
+const ElementType = getElementType()
+
 /**
  * A feed can contain a user element.
  */
@@ -17,7 +19,6 @@ function FeedUser(props) {
   const { children, className, content } = props
   const classes = cx('user', className)
   const rest = getUnhandledProps(FeedUser, props)
-  const ElementType = getElementType(FeedUser, props)
 
   return (
     <ElementType {...rest} className={classes}>

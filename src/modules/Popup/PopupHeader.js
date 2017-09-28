@@ -10,6 +10,8 @@ import {
   META,
 } from '../../lib'
 
+const ElementType = getElementType()
+
 /**
  * A PopupHeader displays a header in a Popover.
  */
@@ -17,7 +19,6 @@ export default function PopupHeader(props) {
   const { children, className } = props
   const classes = cx('header', className)
   const rest = getUnhandledProps(PopupHeader, props)
-  const ElementType = getElementType(PopupHeader, props)
 
   return <ElementType {...rest} className={classes}>{children}</ElementType>
 }

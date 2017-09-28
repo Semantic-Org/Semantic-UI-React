@@ -14,6 +14,8 @@ import {
 import BreadcrumbDivider from './BreadcrumbDivider'
 import BreadcrumbSection from './BreadcrumbSection'
 
+const ElementType = getElementType()
+
 /**
  * A breadcrumb is used to show hierarchy between content.
  */
@@ -34,7 +36,6 @@ function Breadcrumb(props) {
     className,
   )
   const rest = getUnhandledProps(Breadcrumb, props)
-  const ElementType = getElementType(Breadcrumb, props)
 
   if (!childrenUtils.isNil(children)) return <ElementType {...rest} className={classes}>{children}</ElementType>
 

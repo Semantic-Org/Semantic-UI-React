@@ -16,6 +16,8 @@ import {
 } from '../../lib'
 import Icon from '../../elements/Icon'
 
+const ElementType = getElementType()
+
 /**
  * A menu can contain an item.
  */
@@ -85,6 +87,12 @@ export default class MenuItem extends Component {
     parent: 'Menu',
   }
 
+  computeElementType = () => {
+    const { onClick } = this.props
+
+    if (onClick) return 'a'
+  }
+
   handleClick = (e) => {
     const { disabled } = this.props
 
@@ -104,7 +112,6 @@ export default class MenuItem extends Component {
       icon,
       link,
       name,
-      onClick,
       position,
     } = this.props
 
@@ -120,9 +127,6 @@ export default class MenuItem extends Component {
       'item',
       className,
     )
-    const ElementType = getElementType(MenuItem, this.props, () => {
-      if (onClick) return 'a'
-    })
     const rest = getUnhandledProps(MenuItem, this.props)
 
     if (!childrenUtils.isNil(children)) {

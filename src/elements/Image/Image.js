@@ -109,7 +109,7 @@ class Image extends Component {
 
     /** An image can render wrapped in a `div.ui.image` as alternative HTML markup. */
     wrapped: PropTypes.bool,
-}
+  }
 
   static defaultProps = {
     as: 'img',

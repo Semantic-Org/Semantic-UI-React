@@ -9,6 +9,8 @@ import {
   META,
 } from '../../lib'
 
+const ElementType = getElementType()
+
 /**
  * A TextArea can be used to allow for extended user input.
  * @see Form
@@ -121,8 +123,6 @@ class TextArea extends Component {
   render() {
     const { autoHeight, rows, style, value } = this.props
     const rest = getUnhandledProps(TextArea, this.props)
-    const ElementType = getElementType(TextArea, this.props)
-
     const resize = autoHeight ? 'none' : ''
 
     return (

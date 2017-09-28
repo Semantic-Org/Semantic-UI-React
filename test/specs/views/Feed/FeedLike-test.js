@@ -11,6 +11,8 @@ describe('FeedLike', () => {
 
   it('renders text with content prop', () => {
     shallow(<FeedLike content='foo' />)
+      .children()
+      .at(0)
       .should.contain.text('foo')
   })
 })

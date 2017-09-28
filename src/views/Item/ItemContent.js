@@ -16,6 +16,8 @@ import ItemDescription from './ItemDescription'
 import ItemExtra from './ItemExtra'
 import ItemMeta from './ItemMeta'
 
+const ElementType = getElementType()
+
 /**
  * An item can contain content.
  */
@@ -37,7 +39,6 @@ function ItemContent(props) {
     className,
   )
   const rest = getUnhandledProps(ItemContent, props)
-  const ElementType = getElementType(ItemContent, props)
 
   if (!childrenUtils.isNil(children)) {
     return <ElementType {...rest} className={classes}>{children}</ElementType>

@@ -17,6 +17,8 @@ import StatisticGroup from './StatisticGroup'
 import StatisticLabel from './StatisticLabel'
 import StatisticValue from './StatisticValue'
 
+const ElementType = getElementType()
+
 /**
  * A statistic emphasizes the current value of an attribute.
  */
@@ -45,7 +47,6 @@ function Statistic(props) {
     className,
   )
   const rest = getUnhandledProps(Statistic, props)
-  const ElementType = getElementType(Statistic, props)
 
   if (!childrenUtils.isNil(children)) return <ElementType {...rest} className={classes}>{children}</ElementType>
 

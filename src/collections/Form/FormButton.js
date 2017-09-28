@@ -9,6 +9,8 @@ import {
 import Button from '../../elements/Button'
 import FormField from './FormField'
 
+const ElementType = getElementType()
+
 /**
  * Sugar for <Form.Field control={Button} />.
  * @see Button
@@ -17,7 +19,6 @@ import FormField from './FormField'
 function FormButton(props) {
   const { control } = props
   const rest = getUnhandledProps(FormButton, props)
-  const ElementType = getElementType(FormButton, props)
 
   return <ElementType {...rest} control={control} />
 }

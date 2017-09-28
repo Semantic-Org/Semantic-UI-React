@@ -6,7 +6,7 @@ import React, { Component } from 'react'
 import {
   createShorthandFactory,
   customPropTypes,
-  getElementType,
+  ElementType,
   getUnhandledProps,
   META,
   useKeyOnly,
@@ -67,14 +67,17 @@ export default class AccordionTitle extends Component {
       className,
     )
     const rest = getUnhandledProps(AccordionTitle, this.props)
-    const ElementType = getElementType(AccordionTitle, this.props)
 
     if (_.isNil(content)) {
-      return <ElementType {...rest} className={classes} onClick={this.handleClick}>{children}</ElementType>
+      return (
+        <ElementType {...rest} component={AccordionTitle} className={classes} onClick={this.handleClick}>
+          {children}
+        </ElementType>
+      )
     }
 
     return (
-      <ElementType {...rest} className={classes} onClick={this.handleClick}>
+      <ElementType {...rest} component={AccordionTitle} className={classes} onClick={this.handleClick}>
         <Icon name='dropdown' />
         {content}
       </ElementType>

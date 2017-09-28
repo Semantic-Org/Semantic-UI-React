@@ -15,6 +15,8 @@ import FeedExtra from './FeedExtra'
 import FeedMeta from './FeedMeta'
 import FeedSummary from './FeedSummary'
 
+const ElementType = getElementType()
+
 function FeedContent(props) {
   const {
     children,
@@ -29,7 +31,6 @@ function FeedContent(props) {
 
   const classes = cx('content', className)
   const rest = getUnhandledProps(FeedContent, props)
-  const ElementType = getElementType(FeedContent, props)
 
   if (!childrenUtils.isNil(children)) {
     return <ElementType {...rest} className={classes}>{children}</ElementType>

@@ -11,6 +11,8 @@ import {
 } from '../../lib'
 import Icon from '../../elements/Icon'
 
+const ElementType = getElementType()
+
 /**
  * A feed can contain a like element.
  */
@@ -24,7 +26,6 @@ function FeedLike(props) {
 
   const classes = cx('like', className)
   const rest = getUnhandledProps(FeedLike, props)
-  const ElementType = getElementType(FeedLike, props)
 
   if (!childrenUtils.isNil(children)) {
     return <ElementType {...rest} className={classes}>{children}</ElementType>

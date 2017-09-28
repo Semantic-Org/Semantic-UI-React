@@ -13,6 +13,8 @@ import {
   useKeyOnly,
 } from '../../lib'
 
+const ElementType = getElementType()
+
 /**
  * A feed can contain an extra content.
  */
@@ -31,7 +33,6 @@ function FeedExtra(props) {
     className,
   )
   const rest = getUnhandledProps(FeedExtra, props)
-  const ElementType = getElementType(FeedExtra, props)
 
   if (!childrenUtils.isNil(children)) {
     return <ElementType {...rest} className={classes}>{children}</ElementType>

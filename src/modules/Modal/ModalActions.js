@@ -13,6 +13,8 @@ import {
 } from '../../lib'
 import Button from '../../elements/Button'
 
+const ElementType = getElementType()
+
 /**
  * A modal can contain a row of actions.
  */
@@ -59,7 +61,6 @@ export default class ModalActions extends Component {
     const { actions, children, className } = this.props
     const classes = cx('actions', className)
     const rest = getUnhandledProps(ModalActions, this.props)
-    const ElementType = getElementType(ModalActions, this.props)
 
     if (!childrenUtils.isNil(children)) return <ElementType {...rest} className={classes}>{children}</ElementType>
 

@@ -9,6 +9,8 @@ import {
   META,
 } from '../../lib'
 
+const ElementType = getElementType()
+
 /**
  * A comment can contain content.
  */
@@ -16,7 +18,6 @@ function CommentContent(props) {
   const { className, children } = props
   const classes = cx(className, 'content')
   const rest = getUnhandledProps(CommentContent, props)
-  const ElementType = getElementType(CommentContent, props)
 
   return <ElementType {...rest} className={classes}>{children}</ElementType>
 }

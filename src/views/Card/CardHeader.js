@@ -13,6 +13,8 @@ import {
   useTextAlignProp,
 } from '../../lib'
 
+const ElementType = getElementType()
+
 /**
  * A card can contain a header.
  */
@@ -24,7 +26,6 @@ function CardHeader(props) {
     className,
   )
   const rest = getUnhandledProps(CardHeader, props)
-  const ElementType = getElementType(CardHeader, props)
 
   return (
     <ElementType {...rest} className={classes}>

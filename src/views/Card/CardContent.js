@@ -18,6 +18,8 @@ import CardDescription from './CardDescription'
 import CardHeader from './CardHeader'
 import CardMeta from './CardMeta'
 
+const ElementType = getElementType()
+
 /**
  * A card can contain blocks of content or extra content meant to be formatted separately from the main content.
  */
@@ -39,7 +41,6 @@ function CardContent(props) {
     className,
   )
   const rest = getUnhandledProps(CardContent, props)
-  const ElementType = getElementType(CardContent, props)
 
   if (!childrenUtils.isNil(children)) {
     return <ElementType {...rest} className={classes}>{children}</ElementType>

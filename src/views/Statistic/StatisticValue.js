@@ -11,6 +11,8 @@ import {
   useKeyOnly,
 } from '../../lib'
 
+const ElementType = getElementType()
+
 /**
  * A statistic can contain a numeric, icon, image, or text value.
  */
@@ -28,7 +30,6 @@ function StatisticValue(props) {
     className,
   )
   const rest = getUnhandledProps(StatisticValue, props)
-  const ElementType = getElementType(StatisticValue, props)
 
   return (
     <ElementType {...rest} className={classes}>

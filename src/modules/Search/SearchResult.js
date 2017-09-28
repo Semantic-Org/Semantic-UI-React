@@ -11,6 +11,8 @@ import {
   useKeyOnly,
 } from '../../lib'
 
+const ElementType = getElementType()
+
 // Note: You technically only need the 'content' wrapper when there's an
 // image. However, optionally wrapping it makes this function a lot more
 // complicated and harder to read. Since always wrapping it doesn't affect
@@ -102,7 +104,6 @@ export default class SearchResult extends Component {
       className,
     )
     const rest = getUnhandledProps(SearchResult, this.props)
-    const ElementType = getElementType(SearchResult, this.props)
 
     // Note: You technically only need the 'content' wrapper when there's an
     // image. However, optionally wrapping it makes this function a lot more

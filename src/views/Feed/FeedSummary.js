@@ -13,6 +13,8 @@ import {
 import FeedDate from './FeedDate'
 import FeedUser from './FeedUser'
 
+const ElementType = getElementType()
+
 /**
  * A feed can contain a summary.
  */
@@ -27,11 +29,8 @@ function FeedSummary(props) {
 
   const classes = cx('summary', className)
   const rest = getUnhandledProps(FeedSummary, props)
-  const ElementType = getElementType(FeedSummary, props)
 
-  if (!childrenUtils.isNil(children)) {
-    return <ElementType {...rest} className={classes}>{children}</ElementType>
-  }
+  if (!childrenUtils.isNil(children)) return <ElementType {...rest} className={classes}>{children}</ElementType>
 
   return (
     <ElementType {...rest} className={classes}>

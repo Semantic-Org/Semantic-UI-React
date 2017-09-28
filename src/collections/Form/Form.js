@@ -22,6 +22,9 @@ import FormRadio from './FormRadio'
 import FormSelect from './FormSelect'
 import FormTextArea from './FormTextArea'
 
+const defaultAs = 'form'
+const ElementType = getElementType(defaultAs)
+
 /**
  * A Form displays a set of related user input fields in a structured way.
  * @see Button
@@ -79,7 +82,7 @@ class Form extends Component {
   }
 
   static defaultProps = {
-    as: 'form',
+    as: defaultAs,
   }
 
   static _meta = {
@@ -137,7 +140,6 @@ class Form extends Component {
       className,
     )
     const rest = getUnhandledProps(Form, this.props)
-    const ElementType = getElementType(Form, this.props)
 
     return (
       <ElementType

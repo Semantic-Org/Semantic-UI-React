@@ -12,6 +12,8 @@ import {
   useKeyOnly,
 } from '../../lib'
 
+const ElementType = getElementType()
+
 /**
  * A section sub-component for Breadcrumb component.
  */
@@ -60,6 +62,12 @@ export default class BreadcrumbSection extends Component {
     parent: 'Breadcrumb',
   }
 
+  computeElementType = () => {
+    const { link, onClick } = this.props
+
+    if (link || onClick) return 'a'
+  }
+
   handleClick = (e) => {
     const { onClick } = this.props
 
@@ -73,8 +81,6 @@ export default class BreadcrumbSection extends Component {
       className,
       content,
       href,
-      link,
-      onClick,
     } = this.props
 
     const classes = cx(
@@ -83,12 +89,14 @@ export default class BreadcrumbSection extends Component {
       className,
     )
     const rest = getUnhandledProps(BreadcrumbSection, this.props)
-    const ElementType = getElementType(BreadcrumbSection, this.props, () => {
-      if (link || onClick) return 'a'
-    })
-
     return (
-      <ElementType {...rest} className={classes} href={href} onClick={this.handleClick}>
+      <ElementType
+        {...rest}
+        className={classes}
+        href={href}
+        onClick={this.handleClick}
+        typeComputer={this.computeElementType}
+      >
         {childrenUtils.isNil(children) ? content : children}
       </ElementType>
     )

@@ -10,6 +10,8 @@ import {
   META,
 } from '../../lib'
 
+const ElementType = getElementType()
+
 /**
  * A PopupContent displays the content body of a Popover.
  */
@@ -17,7 +19,6 @@ export default function PopupContent(props) {
   const { children, className } = props
   const classes = cx('content', className)
   const rest = getUnhandledProps(PopupContent, props)
-  const ElementType = getElementType(PopupContent, props)
 
   return <ElementType {...rest} className={classes}>{children}</ElementType>
 }

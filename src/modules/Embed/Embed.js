@@ -14,6 +14,8 @@ import {
 } from '../../lib'
 import Icon from '../../elements/Icon'
 
+const ElementType = getElementType()
+
 /**
  * An embed displays content from other websites like YouTube videos or Google Maps.
  */
@@ -171,7 +173,6 @@ export default class Embed extends Component {
       className,
     )
     const rest = getUnhandledProps(Embed, this.props)
-    const ElementType = getElementType(Embed, this.props)
 
     return (
       <ElementType {...rest} className={classes} onClick={this.handleClick}>

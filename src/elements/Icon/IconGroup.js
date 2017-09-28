@@ -11,6 +11,8 @@ import {
   SUI,
 } from '../../lib'
 
+const ElementType = getElementType()
+
 /**
  * Several icons can be used together as a group.
  */
@@ -22,7 +24,6 @@ function IconGroup(props) {
     className,
   )
   const rest = getUnhandledProps(IconGroup, props)
-  const ElementType = getElementType(IconGroup, props)
 
   return <ElementType {...rest} className={classes}>{children}</ElementType>
 }

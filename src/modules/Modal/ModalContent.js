@@ -12,6 +12,8 @@ import {
   useKeyOnly,
 } from '../../lib'
 
+const ElementType = getElementType()
+
 /**
  * A modal can contain content.
  */
@@ -31,7 +33,6 @@ function ModalContent(props) {
     'content',
   )
   const rest = getUnhandledProps(ModalContent, props)
-  const ElementType = getElementType(ModalContent, props)
 
   return (
     <ElementType {...rest} className={classes}>

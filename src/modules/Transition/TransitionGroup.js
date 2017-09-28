@@ -15,6 +15,7 @@ import {
 import Transition from './Transition'
 
 const debug = makeDebugger('transition_group')
+const ElementType = getElementType()
 
 /**
  * A Transition.Group animates children as they mount and unmount.
@@ -139,7 +140,6 @@ export default class TransitionGroup extends React.Component {
     debug('state', this.state)
 
     const { children } = this.state
-    const ElementType = getElementType(TransitionGroup, this.props)
     const rest = getUnhandledProps(TransitionGroup, this.props)
 
     return <ElementType {...rest}>{_.values(children)}</ElementType>

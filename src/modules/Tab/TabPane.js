@@ -13,6 +13,8 @@ import {
 } from '../../lib'
 import Segment from '../../elements/Segment/Segment'
 
+const ElementType = getElementType()
+
 /**
  * A tab pane holds the content of a tab.
  */
@@ -26,7 +28,6 @@ function TabPane(props) {
     className,
   )
   const rest = getUnhandledProps(TabPane, props)
-  const ElementType = getElementType(TabPane, props)
 
   const calculatedDefaultProps = {}
   if (ElementType === Segment) {

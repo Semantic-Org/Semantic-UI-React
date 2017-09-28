@@ -10,6 +10,8 @@ import {
   META,
 } from '../../lib'
 
+const ElementType = getElementType()
+
 /**
  * Responsive can control visibility of content.
  */
@@ -111,8 +113,6 @@ export default class Responsive extends Component {
 
   render() {
     const { children } = this.props
-
-    const ElementType = getElementType(Responsive, this.props)
     const rest = getUnhandledProps(Responsive, this.props)
 
     if (this.isVisible()) return <ElementType {...rest}>{children}</ElementType>

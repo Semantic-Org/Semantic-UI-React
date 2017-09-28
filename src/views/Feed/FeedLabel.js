@@ -12,6 +12,8 @@ import {
 } from '../../lib'
 import Icon from '../../elements/Icon'
 
+const ElementType = getElementType()
+
 /**
  * An event can contain an image or icon label.
  */
@@ -26,7 +28,6 @@ function FeedLabel(props) {
 
   const classes = cx('label', className)
   const rest = getUnhandledProps(FeedLabel, props)
-  const ElementType = getElementType(FeedLabel, props)
 
   if (!childrenUtils.isNil(children)) {
     return <ElementType {...rest} className={classes}>{children}</ElementType>

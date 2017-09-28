@@ -13,7 +13,10 @@ describe('StatisticValue', () => {
   it('renders text with label prop', () => {
     const text = faker.hacker.phrase()
 
-    shallow(<StatisticValue value={text} />).should.contain.text(text)
+    shallow(<StatisticValue value={text} />)
+      .children()
+      .at(0)
+      .should.contain.text(text)
   })
 })
 

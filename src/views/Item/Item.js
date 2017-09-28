@@ -17,6 +17,8 @@ import ItemHeader from './ItemHeader'
 import ItemImage from './ItemImage'
 import ItemMeta from './ItemMeta'
 
+const ElementType = getElementType()
+
 /**
  * An item view presents large collections of site content for display.
  */
@@ -34,7 +36,6 @@ function Item(props) {
 
   const classes = cx('item', className)
   const rest = getUnhandledProps(Item, props)
-  const ElementType = getElementType(Item, props)
 
   if (!childrenUtils.isNil(children)) {
     return <ElementType {...rest} className={classes}>{children}</ElementType>

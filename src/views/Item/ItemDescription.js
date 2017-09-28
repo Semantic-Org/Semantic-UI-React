@@ -11,6 +11,8 @@ import {
   META,
 } from '../../lib'
 
+const ElementType = getElementType()
+
 /**
  * An item can contain a description with a single or multiple paragraphs.
  */
@@ -18,7 +20,6 @@ function ItemDescription(props) {
   const { children, className, content } = props
   const classes = cx('description', className)
   const rest = getUnhandledProps(ItemDescription, props)
-  const ElementType = getElementType(ItemDescription, props)
 
   return (
     <ElementType {...rest} className={classes}>

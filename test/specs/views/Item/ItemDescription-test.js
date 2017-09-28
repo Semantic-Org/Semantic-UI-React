@@ -15,6 +15,8 @@ describe('ItemDescription', () => {
       const text = faker.hacker.phrase()
 
       shallow(<ItemDescription content={text} />)
+        .children()
+        .at(0)
         .should.contain.text(text)
     })
   })

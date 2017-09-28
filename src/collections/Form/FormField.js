@@ -16,6 +16,8 @@ import {
 import Checkbox from '../../modules/Checkbox'
 import Radio from '../../addons/Radio'
 
+const ElementType = getElementType()
+
 /**
  * A field is a form element containing a label and an input.
  * @see Form
@@ -51,7 +53,6 @@ function FormField(props) {
     className,
   )
   const rest = getUnhandledProps(FormField, props)
-  const ElementType = getElementType(FormField, props)
 
   // ----------------------------------------
   // No Control

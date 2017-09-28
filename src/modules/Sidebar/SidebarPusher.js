@@ -10,6 +10,8 @@ import {
   useKeyOnly,
 } from '../../lib'
 
+const ElementType = getElementType()
+
 /**
  * A pushable sub-component for Sidebar.
  */
@@ -22,7 +24,6 @@ function SidebarPusher(props) {
     className,
   )
   const rest = getUnhandledProps(SidebarPusher, props)
-  const ElementType = getElementType(SidebarPusher, props)
 
   return <ElementType {...rest} className={classes}>{children}</ElementType>
 }

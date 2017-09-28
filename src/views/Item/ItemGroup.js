@@ -14,6 +14,8 @@ import {
 } from '../../lib'
 import Item from './Item'
 
+const ElementType = getElementType()
+
 /**
  * A group of items.
  */
@@ -38,7 +40,6 @@ function ItemGroup(props) {
     className,
   )
   const rest = getUnhandledProps(ItemGroup, props)
-  const ElementType = getElementType(ItemGroup, props)
 
   if (!childrenUtils.isNil(children)) {
     return <ElementType {...rest} className={classes}>{children}</ElementType>

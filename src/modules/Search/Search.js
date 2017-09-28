@@ -26,6 +26,7 @@ import SearchResult from './SearchResult'
 import SearchResults from './SearchResults'
 
 const debug = makeDebugger('search')
+const ElementType = getElementType()
 
 /**
  * A search module allows a user to query for results from a selection of data
@@ -641,7 +642,6 @@ export default class Search extends Component {
       className,
     )
     const unhandled = getUnhandledProps(Search, this.props)
-    const ElementType = getElementType(Search, this.props)
     const [htmlInputProps, rest] = partitionHTMLInputProps(unhandled, {
       htmlProps: htmlInputAttrs,
     })

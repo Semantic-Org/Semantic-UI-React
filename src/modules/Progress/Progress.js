@@ -15,6 +15,8 @@ import {
   useValueAndKey,
 } from '../../lib'
 
+const ElementType = getElementType()
+
 /**
  * A progress bar shows the progression of a task.
  */
@@ -184,7 +186,6 @@ class Progress extends Component {
       className,
     )
     const rest = getUnhandledProps(Progress, this.props)
-    const ElementType = getElementType(Progress, this.props)
     const percent = this.getPercent()
 
     return (

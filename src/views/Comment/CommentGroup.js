@@ -12,6 +12,8 @@ import {
   useKeyOnly,
 } from '../../lib'
 
+const ElementType = getElementType()
+
 /**
  * Comments can be grouped.
  */
@@ -35,7 +37,6 @@ function CommentGroup(props) {
     className,
   )
   const rest = getUnhandledProps(CommentGroup, props)
-  const ElementType = getElementType(CommentGroup, props)
 
   return <ElementType {...rest} className={classes}>{children}</ElementType>
 }

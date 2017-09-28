@@ -9,11 +9,12 @@ import {
   META,
 } from '../../lib'
 
+const ElementType = getElementType()
+
 function SearchResults(props) {
   const { children, className } = props
   const classes = cx('results transition', className)
   const rest = getUnhandledProps(SearchResults, props)
-  const ElementType = getElementType(SearchResults, props)
 
   return <ElementType {...rest} className={classes}>{children}</ElementType>
 }

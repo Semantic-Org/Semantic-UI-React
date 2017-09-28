@@ -10,6 +10,8 @@ import {
   useKeyOnly,
 } from '../../lib'
 
+const ElementType = getElementType()
+
 /**
  * A dropdown menu can contain a menu.
  */
@@ -21,7 +23,6 @@ function DropdownMenu(props) {
     className,
   )
   const rest = getUnhandledProps(DropdownMenu, props)
-  const ElementType = getElementType(DropdownMenu, props)
 
   return <ElementType {...rest} className={classes}>{children}</ElementType>
 }

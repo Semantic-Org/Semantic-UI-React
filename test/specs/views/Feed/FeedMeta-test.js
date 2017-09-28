@@ -16,6 +16,8 @@ describe('FeedMeta', () => {
 
   it('renders text with meta prop', () => {
     shallow(<FeedMeta content='foo' />)
+      .children()
+      .at(0)
       .should.contain.text('foo')
   })
 })

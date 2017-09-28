@@ -10,6 +10,8 @@ import {
   META,
 } from '../../lib'
 
+const ElementType = getElementType()
+
 /**
  * A comment can contain an image or avatar.
  */
@@ -17,7 +19,6 @@ function CommentAvatar(props) {
   const { className, src } = props
   const classes = cx('avatar', className)
   const rest = getUnhandledProps(CommentAvatar, props)
-  const ElementType = getElementType(CommentAvatar, props)
 
   return <ElementType {...rest} className={classes}>{createHTMLImage(src)}</ElementType>
 }

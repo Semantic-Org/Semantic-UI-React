@@ -18,6 +18,8 @@ import CardGroup from './CardGroup'
 import CardHeader from './CardHeader'
 import CardMeta from './CardMeta'
 
+const ElementType = getElementType()
+
 /**
  * A card displays site content in a manner similar to a playing card.
  */
@@ -86,6 +88,12 @@ export default class Card extends Component {
   static Header = CardHeader
   static Meta = CardMeta
 
+  computeElementType = () => {
+    const { onClick } = this.props
+
+    if (onClick) return 'a'
+  }
+
   handleClick = (e) => {
     const { onClick } = this.props
 
@@ -106,7 +114,6 @@ export default class Card extends Component {
       image,
       link,
       meta,
-      onClick,
       raised,
     } = this.props
 
@@ -121,16 +128,29 @@ export default class Card extends Component {
       className,
     )
     const rest = getUnhandledProps(Card, this.props)
-    const ElementType = getElementType(Card, this.props, () => {
-      if (onClick) return 'a'
-    })
 
     if (!childrenUtils.isNil(children)) {
-      return <ElementType {...rest} className={classes} href={href} onClick={this.handleClick}>{children}</ElementType>
+      return (
+        <ElementType
+          {...rest}
+          className={classes}
+          href={href}
+          onClick={this.handleClick}
+          typeComputer={this.computeElementType}
+        >
+          {children}
+        </ElementType>
+      )
     }
 
     return (
-      <ElementType {...rest} className={classes} href={href} onClick={this.handleClick}>
+      <ElementType
+        {...rest}
+        className={classes}
+        href={href}
+        onClick={this.handleClick}
+        typeComputer={this.computeElementType}
+      >
         {Image.create(image)}
         {(description || header || meta) && (
           <CardContent description={description} header={header} meta={meta} />

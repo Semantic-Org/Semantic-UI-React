@@ -18,6 +18,8 @@ import {
 import GridColumn from './GridColumn'
 import GridRow from './GridRow'
 
+const ElementType = getElementType()
+
 /**
  * A grid is used to harmonize negative space in a layout.
  */
@@ -61,7 +63,6 @@ function Grid(props) {
     className,
   )
   const rest = getUnhandledProps(Grid, props)
-  const ElementType = getElementType(Grid, props)
 
   return <ElementType {...rest} className={classes}>{children}</ElementType>
 }

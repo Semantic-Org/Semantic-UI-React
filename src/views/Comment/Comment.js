@@ -18,6 +18,8 @@ import CommentGroup from './CommentGroup'
 import CommentMetadata from './CommentMetadata'
 import CommentText from './CommentText'
 
+const ElementType = getElementType()
+
 /**
  * A comment displays user feedback to site content.
  */
@@ -30,7 +32,6 @@ function Comment(props) {
     className,
   )
   const rest = getUnhandledProps(Comment, props)
-  const ElementType = getElementType(Comment, props)
 
   return <ElementType {...rest} className={classes}>{children}</ElementType>
 }

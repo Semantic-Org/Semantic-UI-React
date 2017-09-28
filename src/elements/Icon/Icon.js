@@ -16,6 +16,8 @@ import {
 } from '../../lib'
 import IconGroup from './IconGroup'
 
+const ElementType = getElementType()
+
 /**
  * An icon is a glyph used to represent something else.
  * @see Image
@@ -119,9 +121,8 @@ class Icon extends Component {
       className,
     )
     const rest = getUnhandledProps(Icon, this.props)
-    const ElementType = getElementType(Icon, this.props)
 
-    return <ElementType {...rest} aria-hidden='true' className={classes} />
+    return <ElementType {...rest} aria-hidden='true' className={classes} component={Icon} />
   }
 }
 

@@ -10,6 +10,8 @@ import {
   META,
 } from '../../lib'
 
+const ElementType = getElementType()
+
 /**
  * An event or an event summary can contain a date.
  */
@@ -17,7 +19,6 @@ function FeedDate(props) {
   const { children, className, content } = props
   const classes = cx('date', className)
   const rest = getUnhandledProps(FeedDate, props)
-  const ElementType = getElementType(FeedDate, props)
 
   return (
     <ElementType {...rest} className={classes}>

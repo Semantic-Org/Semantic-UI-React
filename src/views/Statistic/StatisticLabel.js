@@ -10,6 +10,8 @@ import {
   META,
 } from '../../lib'
 
+const ElementType = getElementType()
+
 /**
  * A statistic can contain a label to help provide context for the presented value.
  */
@@ -17,7 +19,6 @@ function StatisticLabel(props) {
   const { children, className, label } = props
   const classes = cx('label', className)
   const rest = getUnhandledProps(StatisticLabel, props)
-  const ElementType = getElementType(StatisticLabel, props)
 
   return (
     <ElementType {...rest} className={classes}>

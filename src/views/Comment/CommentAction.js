@@ -10,6 +10,8 @@ import {
   useKeyOnly,
 } from '../../lib'
 
+const ElementType = getElementType()
+
 /**
  * A comment can contain an action.
  */
@@ -21,7 +23,6 @@ function CommentAction(props) {
     className,
   )
   const rest = getUnhandledProps(CommentAction, props)
-  const ElementType = getElementType(CommentAction, props)
 
   return <ElementType {...rest} className={classes}>{children}</ElementType>
 }

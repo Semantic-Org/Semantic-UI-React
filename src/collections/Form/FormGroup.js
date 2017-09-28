@@ -12,6 +12,8 @@ import {
   useWidthProp,
 } from '../../lib'
 
+const ElementType = getElementType()
+
 /**
  * A set of fields can appear grouped together.
  * @see Form
@@ -35,7 +37,6 @@ function FormGroup(props) {
     className,
   )
   const rest = getUnhandledProps(FormGroup, props)
-  const ElementType = getElementType(FormGroup, props)
 
   return <ElementType {...rest} className={classes}>{children}</ElementType>
 }

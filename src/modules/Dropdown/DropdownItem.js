@@ -18,6 +18,8 @@ import Icon from '../../elements/Icon'
 import Image from '../../elements/Image'
 import Label from '../../elements/Label'
 
+const ElementType = getElementType()
+
 /**
  * An item sub-component for Dropdown component.
  */
@@ -118,7 +120,6 @@ class DropdownItem extends Component {
     // add default dropdown icon if item contains another menu
     const iconName = _.isNil(icon) ? childrenUtils.someByType(children, 'DropdownMenu') && 'dropdown' : icon
     const rest = getUnhandledProps(DropdownItem, this.props)
-    const ElementType = getElementType(DropdownItem, this.props)
     const ariaOptions = {
       role: 'option',
       'aria-disabled': disabled,

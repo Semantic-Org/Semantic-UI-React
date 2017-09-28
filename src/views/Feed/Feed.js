@@ -21,6 +21,8 @@ import FeedMeta from './FeedMeta'
 import FeedSummary from './FeedSummary'
 import FeedUser from './FeedUser'
 
+const ElementType = getElementType()
+
 /**
  * A feed presents user activity chronologically.
  */
@@ -39,7 +41,6 @@ function Feed(props) {
     className,
   )
   const rest = getUnhandledProps(Feed, props)
-  const ElementType = getElementType(Feed, props)
 
   if (!childrenUtils.isNil(children)) {
     return <ElementType {...rest} className={classes}>{children}</ElementType>

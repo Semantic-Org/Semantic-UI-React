@@ -10,6 +10,8 @@ import {
   useKeyOnly,
 } from '../../lib'
 
+const ElementType = getElementType()
+
 function SearchCategory(props) {
   const { active, children, className, renderer } = props
   const classes = cx(
@@ -18,7 +20,6 @@ function SearchCategory(props) {
     className,
   )
   const rest = getUnhandledProps(SearchCategory, props)
-  const ElementType = getElementType(SearchCategory, props)
 
   return (
     <ElementType {...rest} className={classes}>

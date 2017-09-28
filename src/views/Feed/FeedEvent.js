@@ -12,6 +12,8 @@ import {
 import FeedContent from './FeedContent'
 import FeedLabel from './FeedLabel'
 
+const ElementType = getElementType()
+
 /**
  * A feed contains an event.
  */
@@ -31,7 +33,6 @@ function FeedEvent(props) {
 
   const classes = cx('event', className)
   const rest = getUnhandledProps(FeedEvent, props)
-  const ElementType = getElementType(FeedEvent, props)
 
   const hasContentProp = content || date || extraImages || extraText || meta || summary
   const contentProps = { content, date, extraImages, extraText, meta, summary }

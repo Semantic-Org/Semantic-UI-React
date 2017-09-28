@@ -11,6 +11,8 @@ import {
   META,
 } from '../../lib'
 
+const ElementType = getElementType()
+
 /**
  * An item can contain content metadata.
  */
@@ -18,7 +20,6 @@ function ItemMeta(props) {
   const { children, className, content } = props
   const classes = cx('meta', className)
   const rest = getUnhandledProps(ItemMeta, props)
-  const ElementType = getElementType(ItemMeta, props)
 
   return (
     <ElementType {...rest} className={classes}>

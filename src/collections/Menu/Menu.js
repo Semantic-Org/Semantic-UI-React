@@ -21,6 +21,8 @@ import MenuHeader from './MenuHeader'
 import MenuItem from './MenuItem'
 import MenuMenu from './MenuMenu'
 
+const ElementType = getElementType()
+
 /**
  * A menu displays grouped navigation actions.
  * @see Dropdown
@@ -213,7 +215,6 @@ class Menu extends Component {
       'menu',
     )
     const rest = getUnhandledProps(Menu, this.props)
-    const ElementType = getElementType(Menu, this.props)
 
     return (
       <ElementType {...rest} className={classes}>

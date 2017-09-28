@@ -15,6 +15,8 @@ import {
 } from '../../lib'
 import Statistic from './Statistic'
 
+const ElementType = getElementType()
+
 /**
  * A group of statistics.
  */
@@ -41,7 +43,6 @@ function StatisticGroup(props) {
     className,
   )
   const rest = getUnhandledProps(StatisticGroup, props)
-  const ElementType = getElementType(StatisticGroup, props)
 
   if (!childrenUtils.isNil(children)) return <ElementType {...rest} className={classes}>{children}</ElementType>
 

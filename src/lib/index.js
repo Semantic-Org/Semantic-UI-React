@@ -22,8 +22,8 @@ export {
 export eventStack from './eventStack'
 
 export * from './factories'
-export getUnhandledProps from './getUnhandledProps'
 export getElementType from './getElementType'
+export getUnhandledProps from './getUnhandledProps'
 
 export {
   htmlInputAttrs,

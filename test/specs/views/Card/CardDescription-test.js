@@ -16,6 +16,8 @@ describe('CardDescription', () => {
       const text = faker.hacker.phrase()
 
       shallow(<CardDescription content={text} />)
+        .children()
+        .at(0)
         .should.contain.text(text)
     })
   })

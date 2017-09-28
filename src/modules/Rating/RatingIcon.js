@@ -11,6 +11,8 @@ import {
   keyboardKey,
 } from '../../lib'
 
+const ElementType = getElementType()
+
 /**
  * An internal icon sub-component for Rating component
  */
@@ -104,7 +106,6 @@ export default class RatingIcon extends Component {
       className,
     )
     const rest = getUnhandledProps(RatingIcon, this.props)
-    const ElementType = getElementType(RatingIcon, this.props)
 
     return (
       <ElementType

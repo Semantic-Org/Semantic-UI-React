@@ -12,6 +12,8 @@ describe('FeedExtra', () => {
 
   it('renders text with content prop', () => {
     shallow(<FeedExtra content='foo' />)
+      .children()
+      .at(0)
       .should.contain.text('foo')
   })
 

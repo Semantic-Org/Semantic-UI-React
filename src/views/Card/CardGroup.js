@@ -16,6 +16,8 @@ import {
 } from '../../lib'
 import Card from './Card'
 
+const ElementType = getElementType()
+
 /**
  * A group of cards.
  */
@@ -40,7 +42,6 @@ function CardGroup(props) {
     className,
   )
   const rest = getUnhandledProps(CardGroup, props)
-  const ElementType = getElementType(CardGroup, props)
 
   if (!childrenUtils.isNil(children)) {
     return <ElementType {...rest} className={classes}>{children}</ElementType>

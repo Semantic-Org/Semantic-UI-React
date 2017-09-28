@@ -9,6 +9,8 @@ import {
   META,
 } from '../../lib'
 
+const ElementType = getElementType()
+
 /**
  * A menu can contain a sub menu.
  */
@@ -21,7 +23,6 @@ function MenuMenu(props) {
     className,
   )
   const rest = getUnhandledProps(MenuMenu, props)
-  const ElementType = getElementType(MenuMenu, props)
 
   return <ElementType {...rest} className={classes}>{children}</ElementType>
 }

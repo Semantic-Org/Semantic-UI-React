@@ -13,6 +13,8 @@ import {
   useTextAlignProp,
 } from '../../lib'
 
+const ElementType = getElementType()
+
 /**
  * A card can contain a description with one or more paragraphs.
  */
@@ -24,7 +26,6 @@ function CardDescription(props) {
     className,
   )
   const rest = getUnhandledProps(CardDescription, props)
-  const ElementType = getElementType(CardDescription, props)
 
   return (
     <ElementType {...rest} className={classes}>

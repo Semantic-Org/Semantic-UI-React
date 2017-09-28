@@ -11,6 +11,8 @@ import {
   META,
 } from '../../lib'
 
+const ElementType = getElementType()
+
 /**
  * Sticky content stays fixed to the browser viewport while another column of content is visible on the page.
  */
@@ -291,7 +293,6 @@ export default class Sticky extends Component {
   render() {
     const { children, className } = this.props
     const rest = getUnhandledProps(Sticky, this.props)
-    const ElementType = getElementType(Sticky, this.props)
 
     return (
       <ElementType {...rest} className={className}>

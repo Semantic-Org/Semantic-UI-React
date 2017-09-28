@@ -16,6 +16,8 @@ import {
   useWidthProp,
 } from '../../lib'
 
+const ElementType = getElementType()
+
 /**
  * A row sub-component for Grid.
  */
@@ -48,7 +50,6 @@ function GridRow(props) {
     className,
   )
   const rest = getUnhandledProps(GridRow, props)
-  const ElementType = getElementType(GridRow, props)
 
   return <ElementType {...rest} className={classes}>{children}</ElementType>
 }

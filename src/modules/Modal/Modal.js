@@ -22,6 +22,7 @@ import ModalActions from './ModalActions'
 import ModalDescription from './ModalDescription'
 
 const debug = makeDebugger('modal')
+const ElementType = getElementType()
 
 /**
  * A modal displays content that temporarily blocks interactions with the main view of a site.
@@ -293,7 +294,6 @@ class Modal extends Component {
       'modal transition visible active',
       className,
     )
-    const ElementType = getElementType(Modal, this.props)
 
     const closeIconName = closeIcon === true ? 'close' : closeIcon
     const closeIconJSX = Icon.create(closeIconName, { overrideProps: this.handleIconOverrides })

@@ -12,6 +12,8 @@ import {
   isBrowser,
 } from '../../lib'
 
+const ElementType = getElementType()
+
 /**
  * Visibility provides a set of callbacks for when a content appears in the viewport.
  */
@@ -371,7 +373,6 @@ export default class Visibility extends Component {
 
   render() {
     const { children } = this.props
-    const ElementType = getElementType(Visibility, this.props)
     const rest = getUnhandledProps(Visibility, this.props)
 
     return <ElementType {...rest} innerRef={this.handleRef}>{children}</ElementType>

@@ -14,6 +14,8 @@ import GridColumn from '../../collections/Grid/GridColumn'
 import Menu from '../../collections/Menu/Menu'
 import TabPane from './TabPane'
 
+const ElementType = getElementType()
+
 /**
  * A Tab is a hidden section of content activated by a Menu.
  * @see Menu
@@ -138,7 +140,6 @@ class Tab extends Component {
   render() {
     const menu = this.renderMenu()
     const rest = getUnhandledProps(Tab, this.props)
-    const ElementType = getElementType(Tab, this.props)
 
     if (menu.props.vertical) {
       return <ElementType {...rest}>{this.renderVertical(menu)}</ElementType>
