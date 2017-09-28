@@ -125,6 +125,7 @@ export default class Transition extends Component {
   componentDidMount() {
     debug('componentDidMount()')
 
+    this.mounted = true
     this.updateStatus()
   }
 
@@ -134,7 +135,7 @@ export default class Transition extends Component {
     const { current: status, next } = this.computeStatuses(nextProps)
 
     this.nextStatus = next
-    if (status) this.setState({ status })
+    if (status) this.setSafeState({ status })
   }
 
   componentDidUpdate() {
@@ -145,6 +146,8 @@ export default class Transition extends Component {
 
   componentWillUnmount() {
     debug('componentWillUnmount()')
+
+    this.mounted = false
   }
 
   // ----------------------------------------
@@ -156,7 +159,7 @@ export default class Transition extends Component {
     const status = this.nextStatus
 
     this.nextStatus = null
-    this.setState({ status, animating: true }, () => {
+    this.setSafeState({ status, animating: true }, () => {
       _.invoke(this.props, 'onStart', null, { ...this.props, status })
       setTimeout(this.handleComplete, normalizeTransitionDuration(duration, 'show'))
     })
@@ -175,7 +178,7 @@ export default class Transition extends Component {
     const status = this.computeCompletedStatus()
     const callback = current === Transition.ENTERING ? 'onShow' : 'onHide'
 
-    this.setState({ status, animating: false }, () => {
+    this.setSafeState({ status, animating: false }, () => {
       _.invoke(this.props, callback, null, { ...this.props, status })
     })
   }
@@ -283,6 +286,8 @@ export default class Transition extends Component {
 
     return { ...childStyle, animationDuration }
   }
+
+  setSafeState = (...args) => this.mounted && this.setState(...args)
 
   // ----------------------------------------
   // Render

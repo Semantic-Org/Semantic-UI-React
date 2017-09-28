@@ -45,6 +45,7 @@ describe('TransitionGroup', () => {
         .everyWhere((item) => {
           item.should.have.prop('animation', 'scale')
           item.should.have.prop('duration', 1500)
+          item.type().should.equal(Transition)
         })
     })
 
@@ -85,6 +86,9 @@ describe('TransitionGroup', () => {
       wrapper.setProps({ children: [<div key='first' />] })
 
       wrapper.children().should.have.length(2)
+      wrapper.childAt(0).type().should.equal(Transition)
+      wrapper.childAt(0).should.have.prop('visible', true)
+      wrapper.childAt(1).type().should.equal(Transition)
       wrapper.childAt(1).should.have.prop('visible', false)
     })
 
