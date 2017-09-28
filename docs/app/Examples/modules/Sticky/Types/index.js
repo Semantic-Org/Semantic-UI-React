@@ -7,13 +7,13 @@ const StickyTypesExamples = () => (
   <ExampleSection title='Types'>
     <ComponentExample
       title='Sticking to Adjacent Context'
-      description='Sticky content attaches itself to the viewport when it is passed'
-      examplePath='modules/Sticky/Types/StickyAdjacentContextExample'
+      description='Sticky content attaches itself to the viewport when it is passed.'
+      examplePath='modules/Sticky/Types/StickyExampleAdjacentContext'
     />
     <ComponentExample
       title='Pushing'
-      description='It will have the viewport "push" the sticky content depending on the scroll direction'
-      examplePath='modules/Sticky/Types/StickyPushingExample'
+      description='It will have the viewport "push" the sticky content depending on the scroll direction.'
+      examplePath='modules/Sticky/Types/StickyExamplePushing'
     />
   </ExampleSection>
 )

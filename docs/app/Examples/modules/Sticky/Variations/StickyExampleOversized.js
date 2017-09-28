@@ -4,7 +4,7 @@ import { Grid, Header, Image, Item, Rail, Segment, Sticky } from 'semantic-ui-re
 
 const Placeholder = () => <Image src='/assets/images/wireframe/paragraph.png' />
 
-export default class StickyOversizedExample extends Component {
+export default class StickyExampleOversized extends Component {
   state = {}
 
   handleContextRef = contextRef => this.setState({ contextRef })

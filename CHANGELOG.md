@@ -1,5 +1,26 @@
 # Change Log
 
+## [v0.74.2](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.74.2) (2017-09-25)
+[Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.74.1...v0.74.2)
+
+**Implemented enhancements:**
+
+- Dropdown: `selectOnKeydown` option from docs is not implemented [\#1993](https://github.com/Semantic-Org/Semantic-UI-React/issues/1993)
+
+**Fixed bugs:**
+
+- Dropdown: Error occurred with keyboard action [\#1875](https://github.com/Semantic-Org/Semantic-UI-React/issues/1875)
+
+**Closed issues:**
+
+- Request: Search Dropdown onAddItem should optionally prevent onChange call [\#1186](https://github.com/Semantic-Org/Semantic-UI-React/issues/1186)
+
+**Merged pull requests:**
+
+- fix\(Dropdown\): omit `moveSelectionBy\(\)` when `options` aren't defined [\#2119](https://github.com/Semantic-Org/Semantic-UI-React/pull/2119) ([layershifter](https://github.com/layershifter))
+- fix\(Sticky\): `scrollContext` is used from actual props, rename doc examples [\#2118](https://github.com/Semantic-Org/Semantic-UI-React/pull/2118) ([layershifter](https://github.com/layershifter))
+- fix\(eventStack\): correct handling of removed targets [\#2117](https://github.com/Semantic-Org/Semantic-UI-React/pull/2117) ([layershifter](https://github.com/layershifter))
+
 ## [v0.74.1](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.74.1) (2017-09-24)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.74.0...v0.74.1)
 
@@ -864,7 +885,6 @@
 - docs\(IconSearch\): fix copy to clipboard [\#1317](https://github.com/Semantic-Org/Semantic-UI-React/pull/1317) ([levithomason](https://github.com/levithomason))
 - test\(ACC\): use deterministic test props [\#1309](https://github.com/Semantic-Org/Semantic-UI-React/pull/1309) ([levithomason](https://github.com/levithomason))
 - tests\(mixed\): remove usage of `meta.props` [\#1239](https://github.com/Semantic-Org/Semantic-UI-React/pull/1239) ([layershifter](https://github.com/layershifter))
-- fix\(Button\): Disabled Button with Label leaves Label enabled [\#1035](https://github.com/Semantic-Org/Semantic-UI-React/pull/1035) ([luski](https://github.com/luski))
 
 ## [v0.64.8](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.64.8) (2017-02-11)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.64.7...v0.64.8)
@@ -1230,14 +1250,9 @@
 ## [v0.62.2](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.62.2) (2016-12-16)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.62.1...v0.62.2)
 
-**Closed issues:**
-
-- fix\(Table\): Keys warning when using renderBodyRow [\#1030](https://github.com/Semantic-Org/Semantic-UI-React/issues/1030)
-
 **Merged pull requests:**
 
 - fix\(Header\): Remove duplicate class [\#1040](https://github.com/Semantic-Org/Semantic-UI-React/pull/1040) ([jeffcarbs](https://github.com/jeffcarbs))
-- feat\(docs\): Active className on Sidebar item [\#1031](https://github.com/Semantic-Org/Semantic-UI-React/pull/1031) ([pradel](https://github.com/pradel))
 
 ## [v0.62.1](https://github.com/Semantic-Org/Semantic-UI-React/tree/v0.62.1) (2016-12-10)
 [Full Changelog](https://github.com/Semantic-Org/Semantic-UI-React/compare/v0.62.0...v0.62.1)
