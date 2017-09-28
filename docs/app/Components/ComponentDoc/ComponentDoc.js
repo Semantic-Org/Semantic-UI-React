@@ -3,13 +3,14 @@ import React from 'react'
 import DocumentTitle from 'react-document-title'
 import { Grid } from 'semantic-ui-react'
 
+import { withDocInfo } from 'docs/app/HOC'
 import ComponentDocHeader from './ComponentDocHeader'
 import ComponentDocLinks from './ComponentDocLinks'
 import ComponentDocSee from './ComponentDocSee'
 import ComponentExamples from './ComponentExamples'
 import ComponentProps from './ComponentProps'
 
-const ComponentDoc = ({ componentGroup, componentName, description, ghLink, path, props, seeItems, suiLink }) => (
+const ComponentDoc = ({ componentGroup, componentName, description, ghLink, path, seeItems, suiLink }) => (
   <DocumentTitle title={`${componentName} | Semantic UI React`}>
     <div>
       <Grid padded columns='1'>
@@ -26,7 +27,7 @@ const ComponentDoc = ({ componentGroup, componentName, description, ghLink, path
         </Grid.Column>
       </Grid>
 
-      <ComponentExamples componentName={name} />
+      <ComponentExamples componentName={componentName} />
     </div>
   </DocumentTitle>
 )
@@ -52,4 +53,4 @@ ComponentDoc.propTypes = {
   suiLink: PropTypes.string,
 }
 
-export default ComponentDoc
+export default withDocInfo(ComponentDoc)

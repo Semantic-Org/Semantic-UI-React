@@ -4,7 +4,7 @@ import React from 'react'
 
 import { META } from 'src/lib'
 import * as semanticUIReact from 'src'
-import ComponentDocWrapper from '../Components/ComponentDoc/ComponentDocWrapper'
+import ComponentDoc from '../Components/ComponentDoc'
 
 const DocsRoot = (props) => {
   const { name } = props.match.params
@@ -13,7 +13,7 @@ const DocsRoot = (props) => {
 
   if (!component || !component._meta || !META.isParent(component)) return null
   return (
-    <ComponentDocWrapper
+    <ComponentDoc
       name={component._meta.name}
       parent={component._meta.parent}
       type={component._meta.type}
