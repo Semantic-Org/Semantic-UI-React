@@ -21,6 +21,9 @@ export default class Responsive extends Component {
     /** Primary content. */
     children: PropTypes.node,
 
+    /** Fires callbacks immediately after mount. */
+    fireOnMount: PropTypes.bool,
+
     /** The maximum width at which content will be displayed. */
     maxWidth: PropTypes.oneOfType([
       PropTypes.number,
@@ -59,7 +62,10 @@ export default class Responsive extends Component {
   }
 
   componentDidMount() {
+    const { fireOnMount } = this.props
+
     eventStack.sub('resize', this.handleResize, { target: 'window' })
+    if (fireOnMount) this.handleUpdate()
   }
 
   componentWillUnmount() {
