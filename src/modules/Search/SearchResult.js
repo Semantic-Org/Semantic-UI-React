@@ -42,7 +42,10 @@ export default class SearchResult extends Component {
     description: PropTypes.string,
 
     /** A unique identifier. */
-    id: PropTypes.number,
+    id: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
 
     /** Add an image to the item. */
     image: PropTypes.string,

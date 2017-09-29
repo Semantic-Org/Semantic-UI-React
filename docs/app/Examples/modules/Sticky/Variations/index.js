@@ -12,8 +12,8 @@ const StickyVariationsExamples = () => (
     />
     <ComponentExample
       title='Oversized'
-      description='Sticky content that is larger than the viewport'
-      examplePath='modules/Sticky/Variations/StickyOversizedExample'
+      description='Sticky content that is larger than the viewport.'
+      examplePath='modules/Sticky/Variations/StickyExampleOversized'
     />
   </ExampleSection>
 )

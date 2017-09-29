@@ -72,12 +72,13 @@ Here are some helpful links:
 These great products are built on Semantic UI React. Add yours [here][22].
 
 - Netflix's Edge Developer Experience team's numerous [internal apps](https://github.com/Semantic-Org/Semantic-UI-React/issues/1604)
+- Amazon Publishing — the full-service publisher of Amazon — [APub.com](https://amazonpublishing.amazon.com)
 - http://stoplight.io
 - https://roadmap.space
 - https://edabit.com
 - https://blackship.com
 - http://www.brewhousesolutions.com
-- https://www.lifebot.fr
+- https://www.seeuletter.com
 - https://www.stackforge.co
 - https://sublimefund.org
 - https://thefaithcircle.com

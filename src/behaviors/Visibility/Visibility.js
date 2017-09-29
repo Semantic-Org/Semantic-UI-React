@@ -74,10 +74,10 @@ export default class Visibility extends Component {
     offset: PropTypes.oneOfType([
       PropTypes.number,
       PropTypes.string,
-      PropTypes.arrayOf([
+      PropTypes.arrayOf(PropTypes.oneOfType([
         PropTypes.number,
         PropTypes.string,
-      ]),
+      ])),
     ]),
 
     /** When set to false a callback will occur each time an element passes the threshold for a condition. */

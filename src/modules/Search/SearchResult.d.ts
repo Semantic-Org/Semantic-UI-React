@@ -16,7 +16,7 @@ export interface SearchResultProps {
   description?: string;
 
   /** A unique identifier. */
-  id?: number;
+  id?: number | string;
 
   /** Add an image to the item. */
   image?: string;
