@@ -284,7 +284,7 @@ class Button extends Component {
         {...rest}
         className={classes}
         disabled={(disabled && ElementType === 'button') || undefined}
-        innerRef={this.handleRef}
+        ref={this.handleRef}
         onClick={this.handleClick}
         role='button'
         tabIndex={tabIndex}

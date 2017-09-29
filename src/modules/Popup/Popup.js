@@ -356,7 +356,7 @@ export default class Popup extends Component {
     const ElementType = getElementType(Popup, this.props)
 
     const popupJSX = (
-      <ElementType {...rest} className={classes} style={style} innerRef={this.handlePopupRef}>
+      <ElementType {...rest} className={classes} style={style} ref={this.handlePopupRef}>
         {children}
         {childrenUtils.isNil(children) && PopupHeader.create(header)}
         {childrenUtils.isNil(children) && PopupContent.create(content)}

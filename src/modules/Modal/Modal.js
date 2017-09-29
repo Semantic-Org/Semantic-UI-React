@@ -300,7 +300,7 @@ class Modal extends Component {
 
     if (!childrenUtils.isNil(children)) {
       return (
-        <ElementType {...rest} className={classes} style={{ marginTop, ...style }} innerRef={this.handleRef}>
+        <ElementType {...rest} className={classes} style={{ marginTop, ...style }} ref={this.handleRef}>
           {closeIconJSX}
           {children}
         </ElementType>
@@ -308,7 +308,7 @@ class Modal extends Component {
     }
 
     return (
-      <ElementType {...rest} className={classes} style={{ marginTop, ...style }} innerRef={this.handleRef}>
+      <ElementType {...rest} className={classes} style={{ marginTop, ...style }} ref={this.handleRef}>
         {closeIconJSX}
         {ModalHeader.create(header)}
         {ModalContent.create(content)}
