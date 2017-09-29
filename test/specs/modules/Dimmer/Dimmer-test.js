@@ -22,15 +22,6 @@ describe('Dimmer', () => {
   common.propKeyOnlyToClassName(Dimmer, 'inverted')
   common.propKeyOnlyToClassName(Dimmer, 'simple')
 
-  describe('content', () => {
-    it('renders text', () => {
-      const text = faker.hacker.phrase()
-
-      shallow(<Dimmer content={text} />)
-        .should.contain.text(text)
-    })
-  })
-
   describe('onClickOutside', () => {
     it('omitted when not defined', () => {
       const wrapper = shallow(<Dimmer>{faker.hacker.phrase()}</Dimmer>)

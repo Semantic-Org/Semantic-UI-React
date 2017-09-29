@@ -19,15 +19,6 @@ describe('Loader', () => {
 
   common.propValueOnlyToClassName(Loader, 'size', SUI.SIZES)
 
-  describe('content', () => {
-    it('renders text', () => {
-      const text = faker.hacker.phrase()
-
-      shallow(<Loader content={text} />)
-        .should.contain.text(text)
-    })
-  })
-
   describe('text (class)', () => {
     it('omitted by default', () => {
       shallow(<Loader />)

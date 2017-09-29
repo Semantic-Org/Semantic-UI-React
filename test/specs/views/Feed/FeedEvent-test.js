@@ -8,7 +8,9 @@ import * as common from 'test/specs/commonTests'
 
 describe('FeedEvent', () => {
   common.isConformant(FeedEvent)
-  common.rendersChildren(FeedEvent)
+  common.rendersChildren(FeedEvent, {
+    rendersContent: false,
+  })
 
   common.implementsShorthandProp(FeedEvent, {
     propKey: 'icon',
@@ -20,6 +22,8 @@ describe('FeedEvent', () => {
     ShorthandComponent: FeedLabel,
     mapValueToProps: val => ({ image: val }),
   })
+
+  /* TODO */
 
   describe('content props', () => {
     it('renders <FeedContent> with extraImages prop', () => {

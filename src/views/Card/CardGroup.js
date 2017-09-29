@@ -23,6 +23,7 @@ function CardGroup(props) {
   const {
     children,
     className,
+    content,
     doubling,
     items,
     itemsPerRow,
@@ -42,16 +43,15 @@ function CardGroup(props) {
   const rest = getUnhandledProps(CardGroup, props)
   const ElementType = getElementType(CardGroup, props)
 
-  if (!childrenUtils.isNil(children)) {
-    return <ElementType {...rest} className={classes}>{children}</ElementType>
-  }
+  if (!childrenUtils.isNil(children)) return <ElementType {...rest} className={classes}>{children}</ElementType>
+  if (!childrenUtils.isNil(content)) return <ElementType {...rest} className={classes}>{content}</ElementType>
 
-  const content = _.map(items, (item) => {
+  const itemsJSX = _.map(items, (item) => {
     const key = item.key || [item.header, item.description].join('-')
     return <Card key={key} {...item} />
   })
 
-  return <ElementType {...rest} className={classes}>{content}</ElementType>
+  return <ElementType {...rest} className={classes}>{itemsJSX}</ElementType>
 }
 
 CardGroup._meta = {
@@ -69,6 +69,9 @@ CardGroup.propTypes = {
 
   /** Additional classes. */
   className: PropTypes.string,
+
+  /** Shorthand for primary content. */
+  content: customPropTypes.contentShorthand,
 
   /** A group of cards can double its column width for mobile. */
   doubling: PropTypes.bool,

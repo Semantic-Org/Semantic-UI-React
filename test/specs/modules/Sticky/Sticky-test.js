@@ -27,7 +27,7 @@ const scrollToTop = () => {
 
   instance.triggerRef = mockRect({ top: offset })
   instance.stickyRef = mockRect({ height, top: offset })
-  wrapper.setProps({ content: mockRect({ bottom: height + offset + bottomOffset }) })
+  wrapper.setProps({ context: mockRect({ bottom: height + offset + bottomOffset }) })
 
   domEvent.scroll(window)
 }

@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { SemanticShorthandCollection } from '../..';
+import { SemanticShorthandCollection, SemanticShorthandContent } from '../..';
 import { ItemProps } from './Item';
 
 export interface ItemGroupProps {
@@ -14,6 +14,9 @@ export interface ItemGroupProps {
 
   /** Additional classes. */
   className?: string;
+
+  /** Shorthand for primary content. */
+  content?: SemanticShorthandContent;
 
   /** Items can be divided to better distinguish between grouped content. */
   divided?: boolean;
