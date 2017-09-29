@@ -20,62 +20,69 @@ describe('Step', () => {
   common.propKeyOnlyToClassName(Step, 'disabled')
   common.propKeyOnlyToClassName(Step, 'link')
 
-  it('renders only children by default', () => {
+  it('renders as a div by default', () => {
+    shallow(<Step />)
+      .should.have.tagName('div')
+  })
+
+  describe('children', () => {
     shallow(<Step>{faker.hacker.phrase()}</Step>)
       .should.not.have.descendants('StepContent')
   })
 
-  it('renders Description component', () => {
-    const wrapper = mount(<Step description={faker.hacker.phrase()} />)
+  describe('description', () => {
+    it('passes prop to StepContent', () => {
+      const description = faker.hacker.phrase()
 
-    wrapper.should.have.descendants('StepContent')
-    wrapper.find('StepContent').should.have.descendants('StepDescription')
-  })
-
-  it('renders Title component', () => {
-    const wrapper = mount(<Step title={faker.hacker.phrase()} />)
-
-    wrapper.should.have.descendants('StepContent')
-    wrapper.find('StepContent').should.have.descendants('StepTitle')
-  })
-
-  describe('renders different elements', () => {
-    it('<div> by default', () => {
-      shallow(<Step />).should.have.tagName('div')
+      shallow(<Step description={description} />)
+        .find('StepContent')
+        .should.have.prop('description', description)
     })
+  })
 
-    it('<a> with `href` prop', () => {
+  describe('href', () => {
+    it('renders as `a` when defined', () => {
       const url = faker.internet.url()
       const wrapper = shallow(<Step href={url} />)
 
       wrapper.should.have.tagName('a')
       wrapper.should.have.attr('href', url)
     })
+  })
 
-    describe('onClick prop', () => {
-      it('is called with (e, data) when clicked', () => {
-        const event = { target: null }
-        const onClick = sandbox.spy()
+  describe('onClick', () => {
+    it('is called with (e, data) when clicked', () => {
+      const event = { target: null }
+      const onClick = sandbox.spy()
 
-        shallow(<Step onClick={onClick} />)
-          .simulate('click', event)
+      shallow(<Step onClick={onClick} />)
+        .simulate('click', event)
 
-        onClick.should.have.been.calledOnce()
-        onClick.should.have.been.calledWithMatch(event, { onClick })
-      })
+      onClick.should.have.been.calledOnce()
+      onClick.should.have.been.calledWithMatch(event, { onClick })
+    })
 
-      it('is not called when is disabled', () => {
-        const onClick = sandbox.spy()
+    it('is not called when is disabled', () => {
+      const onClick = sandbox.spy()
 
-        shallow(<Step disabled onClick={onClick} />)
-          .simulate('click')
-        onClick.should.have.callCount(0)
-      })
+      shallow(<Step disabled onClick={onClick} />)
+        .simulate('click')
+      onClick.should.have.not.been.called()
+    })
 
-      it('renders an `a` tag', () => {
-        shallow(<Step onClick={() => null} />)
-          .should.have.tagName('a')
-      })
+    it('renders as `a` when defined', () => {
+      shallow(<Step onClick={() => null} />)
+        .should.have.tagName('a')
+    })
+  })
+
+  describe('title', () => {
+    it('passes prop to StepContent', () => {
+      const title = faker.hacker.phrase()
+
+      shallow(<Step title={title} />)
+        .find('StepContent')
+        .should.have.prop('title', title)
     })
   })
 })

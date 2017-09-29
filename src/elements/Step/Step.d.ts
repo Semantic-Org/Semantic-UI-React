@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { SemanticShorthandItem } from '../..';
+import { SemanticShorthandContent, SemanticShorthandItem } from '../..';
 import { IconProps } from '../Icon';
 import { default as StepContent } from './StepContent';
 import { default as StepDescription, StepDescriptionProps } from './StepDescription';
@@ -24,6 +24,9 @@ export interface StepProps {
 
   /** A step can show that a user has completed it. */
   completed?: boolean;
+
+  /** Shorthand for primary content. */
+  content?: SemanticShorthandContent;
 
   /** Shorthand for StepDescription. */
   description?: SemanticShorthandItem<StepDescriptionProps>;
