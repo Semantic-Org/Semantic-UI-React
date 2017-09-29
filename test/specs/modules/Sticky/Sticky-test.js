@@ -70,7 +70,9 @@ const scrollToContextBottom = () => {
 
 describe('Sticky', () => {
   common.isConformant(Sticky)
-  common.rendersChildren(Sticky)
+  common.rendersChildren(Sticky, {
+    rendersContent: false,
+  })
 
   let requestAnimationFrame
 

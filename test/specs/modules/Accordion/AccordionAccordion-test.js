@@ -8,7 +8,9 @@ import { sandbox } from 'test/utils'
 
 describe('AccordionAccordion', () => {
   common.isConformant(AccordionAccordion)
-  common.rendersChildren(AccordionAccordion)
+  common.rendersChildren(AccordionAccordion, {
+    rendersContent: false,
+  })
 
   common.implementsCreateMethod(AccordionAccordion)
 

@@ -147,7 +147,7 @@ class DropdownItem extends Component {
     const textElement = createShorthand(
       'span',
       val => ({ children: val }),
-      content || text,
+      childrenUtils.isNil(content) ? text : content,
       { defaultProps: { className: 'text' } },
     )
 
