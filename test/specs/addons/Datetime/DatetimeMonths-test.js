@@ -4,6 +4,7 @@ import * as common from 'test/specs/commonTests'
 const requiredProps = {
   value: new Date(),
 }
-describe.only('DatetimeMonths', () => {
+
+describe('DatetimeMonths', () => {
   common.isConformant(DatetimeMonths, { requiredProps })
 })

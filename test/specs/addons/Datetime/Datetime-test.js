@@ -9,11 +9,8 @@ import DatetimeHours from 'src/addons/Datetime/DatetimeHours'
 import DatetimeMinutes from 'src/addons/Datetime/DatetimeMinutes'
 import * as common from 'test/specs/commonTests'
 
-const requiredProps = {
-  value: new Date(),
-}
-describe.only('Datetime', () => {
-  common.isConformant(Datetime, { requiredProps })
+describe('Datetime', () => {
+  common.isConformant(Datetime, { rendersPortal: true })
   common.hasSubComponents(Datetime, [
     DatetimeGrid,
     DatetimeMenu,

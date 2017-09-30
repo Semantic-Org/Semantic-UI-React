@@ -1,3 +1,4 @@
+import cx from 'classnames'
 import _ from 'lodash/fp'
 import PropTypes from 'prop-types'
 import React from 'react'
@@ -33,9 +34,10 @@ const popupStyle = {
 }
 
 /**
- * A <Datetime/> allows a user to select a calendar date and/or time as well
- * as handle date ranges.
+ * Datetime allows a user to select a calendar date and/or time.
  * @see Form
+ * @see Popup
+ * @see Table
  */
 export default class Datetime extends Component {
   static _meta = {
@@ -65,29 +67,46 @@ export default class Datetime extends Component {
     /** An array of dates that should be marked disabled in the calendar. */
     disabledDates: PropTypes.arrayOf(customPropTypes.date),
 
+    /** The initial mode value. */
+    defaultMode: PropTypes.string,
+
     /** Initial value of open. */
     defaultOpen: PropTypes.bool,
 
     /** Initial value as a Date object or a string that can be parsed into one. */
     defaultValue: customPropTypes.date,
 
-    /** An errored dropdown can alert a user to a problem. */
+    /**
+     * Formats the date string in the input and calendar.
+     * A function that receives a date argument and returns a formatted date
+     * @param {date} - A date object.
+     */
+    dateFormatter: PropTypes.func,
+
+    /** A Datetime input can alert a user to a problem. */
     error: PropTypes.bool,
 
     /** First day of the week. Can be either 0 (Sunday), 1 (Monday) * */
     firstDayOfWeek: PropTypes.number,
 
+    /**
+     * Formats an hour for display in the hour selection.
+     * A function that receives a date argument and returns a formatted
+     * rounded hour.
+     */
+    hourFormatter: PropTypes.func,
+
     /** Shorthand for Icon. */
-    icon: PropTypes.oneOfType([
-      PropTypes.node,
-      PropTypes.object,
-    ]),
+    icon: customPropTypes.itemShorthand,
 
     /** Do not allow dates after maxDate. */
     maxDate: customPropTypes.date,
 
     /** Do not allow dates before minDate. */
     minDate: customPropTypes.date,
+
+    /** The time unit to display in the calendar. */
+    mode: PropTypes.oneOf(['minute', 'hour', 'day', 'month', 'year']),
 
     /** Name of the input field which holds the date value. */
     name: PropTypes.string,
@@ -129,29 +148,15 @@ export default class Datetime extends Component {
     time: PropTypes.bool,
 
     /**
-     * Formats the date string in the input and calendar.
-     * A function that receives a date argument and returns a formatted date
-     * @param {date} - A date object.
-     */
-    dateFormatter: PropTypes.func,
-    /**
      * Formats the time string in the input and calendar.
-     * The function receives a date arguments and should return a string
-     * formatted time.
+     * The function receives a date arguments and should return a string formatted time.
+     *
      * @param {date} - A date object.
      */
     timeFormatter: PropTypes.func,
-    /**
-     * Formats an hour for display in the hour selection.
-     * A function that receives a date argument and returns a formatted
-     * rounded hour.
-     */
-    hourFormatter: PropTypes.func,
+
     /** Current value as a Date object or a string that can be parsed into one. */
-    value: customPropTypes.date.isRequired,
-    timeZone: PropTypes.string,
-    defaultMode: PropTypes.string,
-    mode: PropTypes.string,
+    value: customPropTypes.date,
   }
 
   static autoControlledProps = [
@@ -303,19 +308,20 @@ export default class Datetime extends Component {
   render() {
     debug('render state', this.state)
     const {
+      className,
+      date,
+      dateFormatter,
       disabled,
+      disabledDates,
       error,
       firstDayOfWeek,
+      hourFormatter,
       icon,
+      minDate,
       name,
       placeholder,
       time,
-      date,
-      dateFormatter,
       timeFormatter,
-      hourFormatter,
-      minDate,
-      disabledDates,
     } = this.props
 
     const { open, value, mode } = this.state
@@ -324,6 +330,7 @@ export default class Datetime extends Component {
 
     return (
       <Popup
+        {...rest}
         closeOnDocumentClick
         // TODO: Fix close on trigger blur, it closes when clicking inside the calendar.
         // DatetimeCalendar contents are changed on click, so Popup cannot find the clicked node within calendar.
@@ -346,6 +353,7 @@ export default class Datetime extends Component {
             type='text'
             name={name}
             icon={icon}
+            className={className}
             disabled={disabled}
             error={error}
             iconPosition='left'
@@ -354,28 +362,26 @@ export default class Datetime extends Component {
           />
         )}
       >
-        <ElementType {...rest}>
-          <DatetimeMenu
-            mode={mode}
-            onChangeMode={this.handleChangeMode}
-            onNextPage={this.handleNextPage}
-            onPreviousPage={this.handlePreviousPage}
-            value={value}
-          />
-          <DatetimeCalendar
-            date={date}
-            dateFormatter={dateFormatter}
-            disabledDates={disabledDates}
-            firstDayOfWeek={firstDayOfWeek}
-            hourFormatter={hourFormatter}
-            minDate={minDate}
-            mode={mode}
-            onChange={this.handleChange}
-            time={time}
-            timeFormatter={timeFormatter}
-            value={value}
-          />
-        </ElementType>
+        <DatetimeMenu
+          mode={mode}
+          onChangeMode={this.handleChangeMode}
+          onNextPage={this.handleNextPage}
+          onPreviousPage={this.handlePreviousPage}
+          value={value}
+        />
+        <DatetimeCalendar
+          date={date}
+          dateFormatter={dateFormatter}
+          disabledDates={disabledDates}
+          firstDayOfWeek={firstDayOfWeek}
+          hourFormatter={hourFormatter}
+          minDate={minDate}
+          mode={mode}
+          onChange={this.handleChange}
+          time={time}
+          timeFormatter={timeFormatter}
+          value={value}
+        />
       </Popup>
     )
   }

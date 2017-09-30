@@ -5,6 +5,7 @@ const requiredProps = {
   columns: 1,
   cells: [{ content: 'row1' }],
 }
-describe.only('DatetimeGrid', () => {
-  common.isConformant(DatetimeGrid)
+
+describe('DatetimeGrid', () => {
+  common.isConformant(DatetimeGrid, { requiredProps })
 })

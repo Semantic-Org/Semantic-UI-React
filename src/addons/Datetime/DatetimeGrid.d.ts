@@ -6,14 +6,14 @@ export interface DatetimeGridProps {
   /** An element type to render as (string or function). */
   as?: any;
 
-  // TODO add doc block
-  headers?: Array<string>,
+  /** Table header cells. */
+  headers?: Array<string>;
 
-  // TODO add doc block
-  columns?: number,
+  /** The number of columns wide the table should be. Cells are wrapped to fit. */
+  columns: number;
 
-  // TODO add doc block
-  cells: Array<object>,
+  /** Shorthand table cells, wrapped to the number of columns. */
+  cells: Array<object>;
 }
 
 interface DatetimeGridComponent extends React.StatelessComponent<DatetimeGridProps> {

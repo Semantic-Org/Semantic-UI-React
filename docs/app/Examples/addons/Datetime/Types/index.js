@@ -9,7 +9,7 @@ const DatetimeTypesExamples = () => (
       description='A date only Date selector'
       examplePath='addons/Datetime/Types/DatetimeExampleDateOnly'
     />
-   <ComponentExample
+    <ComponentExample
       title='First Day Of Week'
       description='Set the first day of the week to either Monday or Sunday'
       examplePath='addons/Datetime/Types/DatetimeExampleFirstWeekDay'

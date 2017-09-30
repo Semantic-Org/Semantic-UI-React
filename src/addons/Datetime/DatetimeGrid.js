@@ -61,9 +61,16 @@ DatetimeGrid._meta = {
 }
 
 DatetimeGrid.propTypes = {
+  /** An element type to render as (string or function). */
   as: customPropTypes.as,
+
+  /** Table header cells. */
   headers: PropTypes.arrayOf(PropTypes.string),
+
+  /** The number of columns wide the table should be. Cells are wrapped to fit. */
   columns: PropTypes.number.isRequired,
+
+  /** Shorthand table cells, wrapped to the number of columns. */
   cells: PropTypes.arrayOf(PropTypes.shape({
     content: PropTypes.string.isRequired,
   })).isRequired,

@@ -24,7 +24,7 @@ export default class DatetimeMenu extends Component {
     /** An element type to render as (string or function). */
     as: customPropTypes.as,
 
-    /** Current calendar mode */
+    /** The unit of time to operate on. */
     mode: PropTypes.oneOf(['minute', 'hour', 'day', 'month', 'year']).isRequired,
 
     /**

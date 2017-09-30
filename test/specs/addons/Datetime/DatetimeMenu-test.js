@@ -5,6 +5,7 @@ const requiredProps = {
   value: new Date(),
   mode: 'month',
 }
-describe.only('DatetimeMenu', () => {
+
+describe('DatetimeMenu', () => {
   common.isConformant(DatetimeMenu, { requiredProps })
 })

@@ -56,7 +56,7 @@ export default class DatetimeCalendar extends Component {
      */
     hourFormatter: PropTypes.func,
 
-    /** Current calendar mode. */
+    /** The unit of time to operate on. */
     mode: PropTypes.oneOf(['minute', 'hour', 'day', 'month', 'year']).isRequired,
 
     /**
