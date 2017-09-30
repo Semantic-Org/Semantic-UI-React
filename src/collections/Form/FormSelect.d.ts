@@ -2,6 +2,7 @@ import * as React from 'react';
 
 import { SelectProps } from '../../addons/Select';
 import { FormFieldProps } from './FormField';
+import { DropdownItemProps } from "../../modules/Dropdown/DropdownItem";
 
 export interface FormSelectProps extends FormFieldProps, SelectProps {
   [key: string]: any;
@@ -11,6 +12,9 @@ export interface FormSelectProps extends FormFieldProps, SelectProps {
 
   /** A FormField control prop. */
   control?: any;
+
+  /** Array of Dropdown.Item props e.g. `{ text: '', value: '' }` */
+  options: Array<DropdownItemProps>;
 }
 
 declare const FormSelect: React.StatelessComponent<FormSelectProps>;
