@@ -230,8 +230,9 @@ describe('Transition', () => {
           <p />
         </Transition>,
       )
-      wrapper.setProps({ visible: false })
+      wrapper.should.have.state('status', Transition.ENTERED)
 
+      wrapper.setProps({ visible: false })
       wrapper.instance().should.include({ nextStatus: Transition.EXITING })
     })
 
@@ -241,8 +242,10 @@ describe('Transition', () => {
           <p />
         </Transition>,
       )
-      wrapper.setProps({ visible: true })
+      wrapper.should.have.state('status', Transition.UNMOUNTED)
 
+      wrapper.instance().mounted = true
+      wrapper.setProps({ visible: true })
       wrapper.should.have.state('status', Transition.EXITED)
       wrapper.instance().should.include({ nextStatus: Transition.ENTERING })
     })
