@@ -229,24 +229,20 @@ class Modal extends Component {
   handleRef = c => (this.ref = c)
 
   setPositionAndClassNames = () => {
+    const { dimmer } = this.props
+    const mountNode = this.getMountNode()
 
-    if (this.ref) {
-      const { dimmer } = this.props
-      const mountNode = this.getMountNode()
-      const { height } = this.ref.getBoundingClientRect()
+    if (dimmer) {
+      mountNode.classList.add('dimmable')
+      mountNode.classList.add('dimmed')
 
-      if (dimmer) {
-        mountNode.classList.add('dimmable')
-        mountNode.classList.add('dimmed')
-
-        if (dimmer === 'blurring') {
-          mountNode.classList.add('blurring')
-        }
-      } else {
-        mountNode.classList.add('dimmable')
-        mountNode.classList.add('dimmed')
+      if (dimmer === 'blurring') {
         mountNode.classList.add('blurring')
       }
+    }
+
+    if (this.ref) {
+      const { height } = this.ref.getBoundingClientRect()
 
       const marginTop = -Math.round(height / 2)
       const scrolling = height >= window.innerHeight
