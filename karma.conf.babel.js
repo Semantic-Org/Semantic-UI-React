@@ -46,7 +46,6 @@ export default (karmaConfig) => {
     coverageReporter: {
       reporters: [
         { type: 'lcov', dir: 'coverage', subdir: '.' },
-        { type: 'text-summary' },
       ],
       includeAllSources: true,
     },
