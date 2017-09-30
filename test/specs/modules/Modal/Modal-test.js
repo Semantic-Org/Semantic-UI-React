@@ -44,6 +44,7 @@ describe('Modal', () => {
     if (wrapper && wrapper.unmount) wrapper.unmount()
   })
 
+  common.isConformant(Modal, { rendersPortal: true })
   common.hasSubComponents(Modal, [ModalHeader, ModalContent, ModalActions, ModalDescription])
   common.hasValidTypings(Modal)
 

@@ -38,6 +38,9 @@ export const POSITIONS = [
  */
 export default class Popup extends Component {
   static propTypes = {
+    /** An element type to render as (string or function). */
+    as: customPropTypes.as,
+
     /** Display the popup without the pointing arrow. */
     basic: PropTypes.bool,
 
