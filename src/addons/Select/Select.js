@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import React from 'react'
 
 import { META } from '../../lib'
@@ -10,6 +11,11 @@ import Dropdown from '../../modules/Dropdown'
  */
 function Select(props) {
   return <Dropdown {...props} selection />
+}
+
+Select.propTypes = {
+  /** Array of Dropdown.Item props e.g. `{ text: '', value: '' }` */
+  options: PropTypes.arrayOf(PropTypes.shape(Dropdown.Item.propTypes)).isRequired,
 }
 
 Select._meta = {
