@@ -2,7 +2,7 @@ import _ from 'lodash'
 import React, { isValidElement } from 'react'
 
 import { createShorthand, createShorthandFactory } from 'src/lib'
-import { sandbox } from 'test/utils'
+import { consoleUtil, sandbox } from 'test/utils'
 
 // ----------------------------------------
 // Utils
@@ -170,6 +170,9 @@ describe('factories', () => {
 
     describe('key', () => {
       it('is not consumed', () => {
+        // silence React "`key` is not a prop" warning due to accessing props.key
+        consoleUtil.disableOnce()
+
         getShorthand({ value: { key: 123 } })
           .props.should.have.property('key')
       })
