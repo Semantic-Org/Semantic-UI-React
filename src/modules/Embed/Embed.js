@@ -107,10 +107,6 @@ export default class Embed extends Component {
     'active',
   ]
 
-  static defaultProps = {
-    icon: 'video play',
-  }
-
   static _meta = {
     name: 'Embed',
     type: META.TYPES.MODULE,
@@ -176,9 +172,11 @@ export default class Embed extends Component {
     const rest = getUnhandledProps(Embed, this.props)
     const ElementType = getElementType(Embed, this.props)
 
+    const iconShorthand = icon !== undefined ? icon : 'video play'
+
     return (
       <ElementType {...rest} className={classes} onClick={this.handleClick}>
-        {Icon.create(icon)}
+        {Icon.create(iconShorthand)}
         {placeholder && <img className='placeholder' src={placeholder} />}
         {this.renderEmbed()}
       </ElementType>

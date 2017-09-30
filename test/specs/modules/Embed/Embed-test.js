@@ -40,7 +40,7 @@ describe('Embed', () => {
       width: '100%',
     },
   })
-  common.implementsIconProp(Embed)
+  common.implementsIconProp(Embed, { alwaysPresent: true })
 
   common.propKeyOnlyToClassName(Embed, 'active')
 
