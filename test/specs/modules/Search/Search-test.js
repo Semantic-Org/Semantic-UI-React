@@ -32,11 +32,11 @@ const wrapperRender = (...args) => (wrapper = render(...args))
 // ----------------------------------------
 // Options
 // ----------------------------------------
-const getOptions = (count = 5) => _.times(count, () => ({
-  title: `${count}-${_.times(3, faker.hacker.noun).join(' ')}`,
-  description: `${count}-${_.times(3, faker.hacker.noun).join(' ')}`,
+const getOptions = (count = 5) => _.times(count, (i) => ({
+  title: [i, ..._.times(3, faker.hacker.noun)].join(' '),
+  description: [i, ..._.times(3, faker.hacker.noun)].join(' '),
   image: 'foo.png',
-  price: `${count}-${faker.finance.amount(0, 100, 2, '$')}`,
+  price: [i, faker.finance.amount(0, 100, 2, '$')].join(' '),
 }))
 
 // -------------------------------
