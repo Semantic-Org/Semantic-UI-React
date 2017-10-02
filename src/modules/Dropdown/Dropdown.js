@@ -14,6 +14,7 @@ import {
   makeDebugger,
   META,
   objectDiff,
+  shallowEqual,
   useKeyOnly,
   useKeyOrValueAndKey,
 } from '../../lib'
@@ -395,10 +396,6 @@ export default class Dropdown extends Component {
     if (open) this.open()
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    return !_.isEqual(nextProps, this.props) || !_.isEqual(nextState, this.state)
-  }
-
   componentWillReceiveProps(nextProps) {
     super.componentWillReceiveProps(nextProps)
     debug('componentWillReceiveProps()')
@@ -424,15 +421,19 @@ export default class Dropdown extends Component {
     }
     /* eslint-enable no-console */
 
-    if (!_.isEqual(nextProps.value, this.props.value)) {
+    if (!shallowEqual(nextProps.value, this.props.value)) {
       debug('value changed, setting', nextProps.value)
       this.setValue(nextProps.value)
       this.setSelectedIndex(nextProps.value)
     }
 
-    if (!_.isEqual(nextProps.options, this.props.options)) {
+    if (!shallowEqual(nextProps.options, this.props.options)) {
       this.setSelectedIndex(undefined, nextProps.options)
     }
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return !shallowEqual(nextProps, this.props) || !shallowEqual(nextState, this.state)
   }
 
   componentDidUpdate(prevProps, prevState) { // eslint-disable-line complexity
