@@ -1,5 +1,3 @@
-import React from 'react'
-
 import FeedContent from 'src/views/Feed/FeedContent'
 import FeedDate from 'src/views/Feed/FeedDate'
 import FeedSummary from 'src/views/Feed/FeedSummary'
@@ -35,12 +33,5 @@ describe('FeedContent', () => {
     propKey: 'meta',
     ShorthandComponent: FeedMeta,
     mapValueToProps: val => ({ content: val }),
-  })
-
-  it('renders text with content prop', () => {
-    shallow(<FeedContent content='foo' />)
-      .children()
-      .at(0)
-      .should.contain.text('foo')
   })
 })
