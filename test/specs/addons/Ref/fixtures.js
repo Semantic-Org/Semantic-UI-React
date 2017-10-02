@@ -1,4 +1,5 @@
-/* eslint-disable */
+/* eslint-disable react/no-multi-comp */
+/* eslint-disable react/prefer-stateless-function */
 import React, { Component } from 'react'
 
 export const DOMFunction = props => <div {...props} id='node' />

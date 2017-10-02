@@ -11,7 +11,7 @@ import { TYPES } from '../../lib/META'
 export default class Ref extends Component {
   static propTypes = {
     /** Primary content. */
-    children: PropTypes.element.isRequired,
+    children: PropTypes.element,
 
     /**
      * Called when componentDidMount.
@@ -31,7 +31,8 @@ export default class Ref extends Component {
 
     // Heads up! Don't move this condition, it's a short circle that avoids run of `findDOMNode`
     // if `innerRef` isn't passed
-    if (innerRef) innerRef(findDOMNode(this)) // eslint-disable-line react/no-find-dom-node
+    // eslint-disable-next-line react/no-find-dom-node
+    if (innerRef) innerRef(findDOMNode(this))
   }
 
   render() {
