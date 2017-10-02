@@ -12,6 +12,30 @@ export const as = (...args) => PropTypes.oneOfType([
   PropTypes.func,
 ])(...args)
 
+/* eslint-disable max-nested-callbacks */
+const findBestSuggestions = _.memoize((propValueWords, suggestions) => _.flow(
+  _.map((suggestion) => {
+    const suggestionWords = suggestion.split(' ')
+
+    const propValueScore = _.flow(
+      _.map(x => _.map(y => leven(x, y), suggestionWords)),
+      _.map(_.min),
+      _.sum,
+    )(propValueWords)
+
+    const suggestionScore = _.flow(
+      _.map(x => _.map(y => leven(x, y), propValueWords)),
+      _.map(_.min),
+      _.sum,
+    )(suggestionWords)
+
+    return { suggestion, score: propValueScore + suggestionScore }
+  }),
+  _.sortBy(['score', 'suggestion']),
+  _.take(3),
+)(suggestions))
+/* eslint-enable max-nested-callbacks */
+
 /**
  * Similar to PropTypes.oneOf but shows closest matches.
  * Word order is ignored allowing `left chevron` to match `chevron left`.
@@ -32,30 +56,7 @@ export const suggest = suggestions => (props, propName, componentName) => {
 
   // find best suggestions
   const propValueWords = propValue.split(' ')
-
-  /* eslint-disable max-nested-callbacks */
-  const bestMatches = _.flow(
-    _.map((suggestion) => {
-      const suggestionWords = suggestion.split(' ')
-
-      const propValueScore = _.flow(
-        _.map(x => _.map(y => leven(x, y), suggestionWords)),
-        _.map(_.min),
-        _.sum,
-      )(propValueWords)
-
-      const suggestionScore = _.flow(
-        _.map(x => _.map(y => leven(x, y), propValueWords)),
-        _.map(_.min),
-        _.sum,
-      )(suggestionWords)
-
-      return { suggestion, score: propValueScore + suggestionScore }
-    }),
-    _.sortBy(['score', 'suggestion']),
-    _.take(3),
-  )(suggestions)
-  /* eslint-enable max-nested-callbacks */
+  const bestMatches = findBestSuggestions(propValueWords, suggestions)
 
   // skip if a match scored 0
   // since we're matching on words (classNames) this allows any word order to pass validation
