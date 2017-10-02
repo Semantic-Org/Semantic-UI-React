@@ -503,6 +503,26 @@ describe('Modal', () => {
       })
     })
 
+    it('adds the scrolling class to the body after re-open', (done) => {
+      assertBodyClasses('scrolling', false)
+
+      window.innerHeight = 10
+      wrapperMount(<Modal defaultOpen>foo</Modal>)
+
+      requestAnimationFrame(() => {
+        assertBodyClasses('scrolling')
+        domEvent.click('.ui.dimmer')
+
+        assertBodyClasses('scrolling', false)
+
+        wrapper.setProps({ open: true })
+        requestAnimationFrame(() => {
+          assertBodyClasses('scrolling')
+          done()
+        })
+      })
+    })
+
     it('removes the scrolling class from the body on unmount', (done) => {
       assertBodyClasses('scrolling', false)
 

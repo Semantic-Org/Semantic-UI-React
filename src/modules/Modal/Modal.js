@@ -178,7 +178,7 @@ class Modal extends Component {
     const { onClose } = this.props
     if (onClose) onClose(e, this.props)
 
-    this.trySetState({ open: false })
+    this.trySetState({ open: false }, { scrolling: false })
   }
 
   handleIconOverrides = predefinedProps => ({
