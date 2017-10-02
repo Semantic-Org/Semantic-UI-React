@@ -4,10 +4,10 @@ import React from 'react'
 
 import {
   customPropTypes,
-  getElementType,
   getUnhandledProps,
   META,
   useKeyOnly,
+  withElementType,
 } from '../../lib'
 
 /**
@@ -15,6 +15,7 @@ import {
  */
 function RevealContent(props) {
   const {
+    as: ElementType,
     children,
     className,
     hidden,
@@ -29,7 +30,6 @@ function RevealContent(props) {
     className,
   )
   const rest = getUnhandledProps(RevealContent, props)
-  const ElementType = getElementType(RevealContent, props)
 
   return <ElementType {...rest} className={classes}>{children}</ElementType>
 }
@@ -57,4 +57,4 @@ RevealContent.propTypes = {
   visible: PropTypes.bool,
 }
 
-export default RevealContent
+export default withElementType(RevealContent)

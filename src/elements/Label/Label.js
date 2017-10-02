@@ -8,13 +8,13 @@ import {
   createShorthand,
   createShorthandFactory,
   customPropTypes,
-  getElementType,
   getUnhandledProps,
   META,
   SUI,
   useKeyOnly,
   useKeyOrValueAndKey,
   useValueAndKey,
+  withElementType,
 } from '../../lib'
 import Icon from '../Icon/Icon'
 import Image from '../Image/Image'
@@ -24,7 +24,7 @@ import LabelGroup from './LabelGroup'
 /**
  * A label displays content classification.
  */
-export default class Label extends Component {
+class Label extends Component {
   static propTypes = {
     /** An element type to render as (string or function). */
     as: customPropTypes.as,
@@ -212,3 +212,5 @@ export default class Label extends Component {
 }
 
 Label.create = createShorthandFactory(Label, value => ({ content: value }))
+
+export default withElementType(Label)

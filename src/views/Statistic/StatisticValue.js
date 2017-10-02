@@ -5,19 +5,18 @@ import React from 'react'
 import {
   childrenUtils,
   customPropTypes,
-  getElementType,
   getUnhandledProps,
   META,
   useKeyOnly,
 } from '../../lib'
-
-const ElementType = getElementType()
+import withElementType from '../../lib/withElementType'
 
 /**
  * A statistic can contain a numeric, icon, image, or text value.
  */
 function StatisticValue(props) {
   const {
+    as: ElementType,
     children,
     className,
     text,
@@ -61,4 +60,4 @@ StatisticValue.propTypes = {
   value: customPropTypes.contentShorthand,
 }
 
-export default StatisticValue
+export default withElementType(StatisticValue)

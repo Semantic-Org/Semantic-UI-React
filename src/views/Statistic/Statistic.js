@@ -6,24 +6,23 @@ import React from 'react'
 import {
   childrenUtils,
   customPropTypes,
-  getElementType,
   getUnhandledProps,
   META,
   SUI,
   useKeyOnly,
   useValueAndKey,
+  withElementType,
 } from '../../lib'
 import StatisticGroup from './StatisticGroup'
 import StatisticLabel from './StatisticLabel'
 import StatisticValue from './StatisticValue'
-
-const ElementType = getElementType()
 
 /**
  * A statistic emphasizes the current value of an attribute.
  */
 function Statistic(props) {
   const {
+    as: ElementType,
     children,
     className,
     color,
@@ -102,4 +101,4 @@ Statistic.Group = StatisticGroup
 Statistic.Label = StatisticLabel
 Statistic.Value = StatisticValue
 
-export default Statistic
+export default withElementType(Statistic)

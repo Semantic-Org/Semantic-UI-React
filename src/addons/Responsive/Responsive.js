@@ -5,17 +5,15 @@ import React, { Component } from 'react'
 import {
   customPropTypes,
   eventStack,
-  getElementType,
   getUnhandledProps,
   META,
+  withElementType,
 } from '../../lib'
-
-const ElementType = getElementType()
 
 /**
  * Responsive can control visibility of content.
  */
-export default class Responsive extends Component {
+class Responsive extends Component {
   static propTypes = {
     /** An element type to render as (string or function). */
     as: customPropTypes.as,
@@ -48,12 +46,6 @@ export default class Responsive extends Component {
     name: 'Responsive',
     type: META.TYPES.ADDON,
   }
-
-  static onlyMobile = { minWidth: 320, maxWidth: 767 }
-  static onlyTablet = { minWidth: 768, maxWidth: 991 }
-  static onlyComputer = { minWidth: 992 }
-  static onlyLargeScreen = { minWidth: 1200, maxWidth: 1919 }
-  static onlyWidescreen = { minWidth: 1920 }
 
   constructor(...args) {
     super(...args)
@@ -112,10 +104,20 @@ export default class Responsive extends Component {
   // ----------------------------------------
 
   render() {
-    const { children } = this.props
+    const { as: ElementType, children } = this.props
     const rest = getUnhandledProps(Responsive, this.props)
-
+console.error(ElementType)
     if (this.isVisible()) return <ElementType {...rest}>{children}</ElementType>
     return null
   }
 }
+
+const ResponsiveEnc = withElementType(Responsive)
+
+ResponsiveEnc.onlyMobile = { minWidth: 320, maxWidth: 767 }
+ResponsiveEnc.onlyTablet = { minWidth: 768, maxWidth: 991 }
+ResponsiveEnc.onlyComputer = { minWidth: 992 }
+ResponsiveEnc.onlyLargeScreen = { minWidth: 1200, maxWidth: 1919 }
+ResponsiveEnc.onlyWidescreen = { minWidth: 1920 }
+
+export default ResponsiveEnc

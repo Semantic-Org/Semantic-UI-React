@@ -18,10 +18,13 @@ export default class ElementType extends Component {
 
   render() {
     const { defaultAs, innerRef, typeComputer, ...rest } = this.props
-    const Child = computeElementType({ as: defaultAs }, rest, typeComputer)
-
+    const Child = computeElementType({ defaultProps: { as: defaultAs }}, rest, typeComputer)
+console.log(Child)
     // if (typeof Child === 'string') return <Child {...rest} ref={innerRef}/>
     // if (Child._meta) return <Child {...rest} innerRef={innerRef}/>
+    this.default = defaultAs
+    this.as = Child
+
     return <Child {...rest} ref={innerRef} />
     // return (
     //   <Ref innerRef={innerRef}>

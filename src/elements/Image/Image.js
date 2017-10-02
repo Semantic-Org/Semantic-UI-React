@@ -7,7 +7,6 @@ import {
   childrenUtils,
   createShorthandFactory,
   customPropTypes,
-  getElementType,
   getUnhandledProps,
   META,
   SUI,
@@ -15,6 +14,7 @@ import {
   useKeyOrValueAndKey,
   useValueAndKey,
   useVerticalAlignProp,
+  withElementType,
 } from '../../lib'
 import Dimmer from '../../modules/Dimmer'
 import Label from '../Label/Label'
@@ -123,14 +123,9 @@ class Image extends Component {
 
   static Group = ImageGroup
 
-  computeElementType = () => {
-    const { dimmer, children, label, wrapped } = this.props
-
-    if (!_.isNil(dimmer) || !_.isNil(label) || !_.isNil(wrapped) || !childrenUtils.isNil(children)) return 'div'
-  }
-
   render() {
     const {
+      as: ElementType,
       alt,
       avatar,
       bordered,
@@ -173,7 +168,6 @@ class Image extends Component {
       className,
     )
     const rest = getUnhandledProps(Image, this.props)
-    const ElementType = getElementType(Image, this.props, this.computeElementType)
 
     if (!childrenUtils.isNil(children)) {
       return <ElementType {...rest} className={classes}>{children}</ElementType>
@@ -195,4 +189,6 @@ class Image extends Component {
 
 Image.create = createShorthandFactory(Image, value => ({ src: value }))
 
-export default Image
+export default withElementType(Image, ({ dimmer, children, label, wrapped }) => {
+  if (!_.isNil(dimmer) || !_.isNil(label) || !_.isNil(wrapped) || !childrenUtils.isNil(children)) return 'div'
+})

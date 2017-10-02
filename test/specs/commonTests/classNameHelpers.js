@@ -9,6 +9,7 @@ export const classNamePropValueBeforePropName = (Component, propKey, propValues,
   propValues.forEach((propVal) => {
     it(`adds "${propVal} ${className}" to className`, () => {
       shallow(createElement(Component, { ...requiredProps, [propKey]: propVal }))
+        .dive()
         .should.have.className(`${propVal} ${className}`)
     })
   })
@@ -20,7 +21,7 @@ export const noClassNameFromBoolProps = (Component, propKey, propValues, options
   _.each([true, false], bool => it(`does not add any className when ${bool}`, () => {
     consoleUtil.disableOnce()
 
-    const wrapper = shallow(createElement(Component, { ...requiredProps, [propKey]: bool }))
+    const wrapper = shallow(createElement(Component, { ...requiredProps, [propKey]: bool })).dive()
 
     wrapper.should.not.have.className(className)
     wrapper.should.not.have.className('true')
@@ -40,7 +41,7 @@ export const noDefaultClassNameFromProp = (Component, propKey, propValues, optio
   if (propKey in requiredProps) return
 
   it('is not included in className when not defined', () => {
-    const wrapper = shallow(<Component {...requiredProps} />)
+    const wrapper = shallow(<Component {...requiredProps} />).dive()
     wrapper.should.not.have.className(className)
 
     // ensure that none of the prop option values are in className

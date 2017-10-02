@@ -1,11 +1,12 @@
 import React, { isValidElement } from 'react'
-import { consoleUtil } from 'test/utils'
+import { consoleUtil, getOriginalComponent } from 'test/utils'
 
 /**
  * Assert a Component correctly implements a shorthand create method.
- * @param {React.Component|Function} Component The component to test.
+ * @param {React.Component|Function} RawComponent The component to test.
  */
-export default (Component) => {
+export default (RawComponent) => {
+  const Component = getOriginalComponent(RawComponent)
   const { name } = Component._meta
 
   describe('create shorthand method (common)', () => {

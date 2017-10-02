@@ -43,3 +43,5 @@ export normalizeOffset from './normalizeOffset'
 export normalizeTransitionDuration from './normalizeTransitionDuration'
 export { default as objectDiff } from './objectDiff'
 export shallowEqual from './shallowEqual'
+
+export withElementType from './withElementType'

@@ -5,12 +5,12 @@ import React from 'react'
 
 import {
   customPropTypes,
-  getElementType,
   getUnhandledProps,
   META,
   SUI,
   useKeyOnly,
   useKeyOrValueAndKey,
+  withElementType,
 } from '../../lib'
 
 /**
@@ -18,6 +18,7 @@ import {
  */
 function Rail(props) {
   const {
+    as: ElementType,
     attached,
     children,
     className,
@@ -40,7 +41,6 @@ function Rail(props) {
     className,
   )
   const rest = getUnhandledProps(Rail, props)
-  const ElementType = getElementType(Rail, props)
 
   return <ElementType {...rest} className={classes}>{children}</ElementType>
 }
@@ -82,4 +82,4 @@ Rail.propTypes = {
   size: PropTypes.oneOf(_.without(SUI.SIZES, 'medium')),
 }
 
-export default Rail
+export default withElementType(Rail)

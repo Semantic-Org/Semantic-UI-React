@@ -7,24 +7,23 @@ import {
   childrenUtils,
   createShorthand,
   customPropTypes,
-  getElementType,
   getUnhandledProps,
   META,
   SUI,
   useKeyOnly,
   useTextAlignProp,
+  withElementType,
 } from '../../lib'
 import CardDescription from './CardDescription'
 import CardHeader from './CardHeader'
 import CardMeta from './CardMeta'
-
-const ElementType = getElementType()
 
 /**
  * A card can contain blocks of content or extra content meant to be formatted separately from the main content.
  */
 function CardContent(props) {
   const {
+    as: ElementType,
     children,
     className,
     description,
@@ -87,4 +86,4 @@ CardContent.propTypes = {
   textAlign: PropTypes.oneOf(_.without(SUI.TEXT_ALIGNMENTS, 'justified')),
 }
 
-export default CardContent
+export default withElementType(CardContent)

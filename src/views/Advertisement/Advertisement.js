@@ -4,19 +4,18 @@ import React from 'react'
 
 import {
   customPropTypes,
-  getElementType,
   getUnhandledProps,
   META,
   useKeyOnly,
+  withElementType,
 } from '../../lib'
-
-const ElementType = getElementType()
 
 /**
  * An ad displays third-party promotional content.
  */
 function Advertisement(props) {
   const {
+    as: ElementType,
     centered,
     children,
     className,
@@ -77,4 +76,4 @@ Advertisement.propTypes = {
 
 }
 
-export default Advertisement
+export default withElementType(Advertisement)

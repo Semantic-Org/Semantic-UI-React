@@ -5,18 +5,16 @@ import React from 'react'
 import {
   childrenUtils,
   customPropTypes,
-  getElementType,
   getUnhandledProps,
   META,
+  withElementType,
 } from '../../lib'
-
-const ElementType = getElementType()
 
 /**
  * A statistic can contain a label to help provide context for the presented value.
  */
 function StatisticLabel(props) {
-  const { children, className, label } = props
+  const { as: ElementType, children, className, label } = props
   const classes = cx('label', className)
   const rest = getUnhandledProps(StatisticLabel, props)
 
@@ -47,4 +45,4 @@ StatisticLabel.propTypes = {
   label: customPropTypes.contentShorthand,
 }
 
-export default StatisticLabel
+export default withElementType(StatisticLabel)

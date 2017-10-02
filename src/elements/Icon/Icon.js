@@ -6,17 +6,15 @@ import React, { Component } from 'react'
 import {
   createShorthandFactory,
   customPropTypes,
-  getElementType,
   getUnhandledProps,
   META,
   shallowEqual,
   SUI,
   useKeyOnly,
   useValueAndKey,
+  withElementType,
 } from '../../lib'
 import IconGroup from './IconGroup'
-
-const ElementType = getElementType()
 
 /**
  * An icon is a glyph used to represent something else.
@@ -87,6 +85,7 @@ class Icon extends Component {
 
   render() {
     const {
+      as: ElementType,
       bordered,
       circular,
       className,
@@ -128,4 +127,4 @@ class Icon extends Component {
 
 Icon.create = createShorthandFactory(Icon, value => ({ name: value }))
 
-export default Icon
+export default withElementType(Icon)

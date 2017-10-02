@@ -4,11 +4,11 @@ import React from 'react'
 
 import {
   customPropTypes,
-  getElementType,
   getUnhandledProps,
   META,
   SUI,
   useKeyOnly,
+  withElementType,
 } from '../../lib'
 
 /**
@@ -16,6 +16,7 @@ import {
  */
 function LabelGroup(props) {
   const {
+    as: ElementType,
     children,
     circular,
     className,
@@ -34,7 +35,6 @@ function LabelGroup(props) {
     className,
   )
   const rest = getUnhandledProps(LabelGroup, props)
-  const ElementType = getElementType(LabelGroup, props)
 
   return <ElementType {...rest} className={classes}>{children}</ElementType>
 }
@@ -68,4 +68,4 @@ LabelGroup.propTypes = {
   tag: PropTypes.bool,
 }
 
-export default LabelGroup
+export default withElementType(LabelGroup)

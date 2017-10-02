@@ -51,6 +51,7 @@ export const propKeyOnlyToClassName = (Component, propKey, options = {}) => {
 
     it('adds prop name to className', () => {
       shallow(createElement(Component, { ...requiredProps, [propKey]: true }))
+        .dive()
         .should.have.className(className)
     })
 
@@ -59,6 +60,7 @@ export const propKeyOnlyToClassName = (Component, propKey, options = {}) => {
 
       const value = 'foo-bar-baz'
       shallow(createElement(Component, { ...requiredProps, [propKey]: value }))
+        .dive()
         .should.not.have.className(value)
     })
   })
@@ -90,11 +92,12 @@ export const propKeyOrValueAndKeyToClassName = (Component, propKey, propValues, 
 
     it('adds only the name to className when true', () => {
       shallow(createElement(Component, { ...requiredProps, [propKey]: true }))
+        .dive()
         .should.have.className(className)
     })
 
     it('adds no className when false', () => {
-      const wrapper = shallow(createElement(Component, { ...requiredProps, [propKey]: false }))
+      const wrapper = shallow(createElement(Component, { ...requiredProps, [propKey]: false })).dive()
 
       wrapper.should.not.have.className(className)
       wrapper.should.not.have.className('true')
@@ -130,6 +133,7 @@ export const propValueOnlyToClassName = (Component, propKey, propValues, options
     it('adds prop value to className', () => {
       propValues.forEach((propValue) => {
         shallow(createElement(Component, { ...requiredProps, [propKey]: propValue }))
+          .dive()
           .should.have.className(propValue)
       })
     })
@@ -139,6 +143,7 @@ export const propValueOnlyToClassName = (Component, propKey, propValues, options
 
       propValues.forEach((propValue) => {
         shallow(createElement(Component, { ...requiredProps, [propKey]: propValue }))
+          .dive()
           .should.not.have.className(propKey)
       })
     })

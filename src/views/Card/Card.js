@@ -5,7 +5,6 @@ import React, { Component } from 'react'
 import {
   childrenUtils,
   customPropTypes,
-  getElementType,
   getUnhandledProps,
   META,
   SUI,
@@ -17,8 +16,6 @@ import CardDescription from './CardDescription'
 import CardGroup from './CardGroup'
 import CardHeader from './CardHeader'
 import CardMeta from './CardMeta'
-
-const ElementType = getElementType()
 
 /**
  * A card displays site content in a manner similar to a playing card.
