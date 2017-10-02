@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { SemanticShorthandContent } from '../..';
 
 export interface TableHeaderProps {
   [key: string]: any;
@@ -11,6 +12,9 @@ export interface TableHeaderProps {
 
   /** Additional classes. */
   className?: string;
+
+  /** Shorthand for primary content. */
+  content?: SemanticShorthandContent;
 
   /** A definition table can have a full width header or footer, filling in the gap left by the first column. */
   fullWidth?: boolean;

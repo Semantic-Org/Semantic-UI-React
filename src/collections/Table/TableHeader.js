@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 
 import {
+  childrenUtils,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -14,7 +15,7 @@ import {
  * A table can have a header.
  */
 function TableHeader(props) {
-  const { children, className, fullWidth } = props
+  const { children, className, content, fullWidth } = props
   const classes = cx(
     useKeyOnly(fullWidth, 'full-width'),
     className,
@@ -22,7 +23,11 @@ function TableHeader(props) {
   const rest = getUnhandledProps(TableHeader, props)
   const ElementType = getElementType(TableHeader, props)
 
-  return <ElementType {...rest} className={classes}>{children}</ElementType>
+  return (
+    <ElementType {...rest} className={classes}>
+      {childrenUtils.isNil(children) ? content : children}
+    </ElementType>
+  )
 }
 
 TableHeader._meta = {
@@ -44,6 +49,9 @@ TableHeader.propTypes = {
 
   /** Additional classes. */
   className: PropTypes.string,
+
+  /** Shorthand for primary content. */
+  content: customPropTypes.contentShorthand,
 
   /** A definition table can have a full width header or footer, filling in the gap left by the first column. */
   fullWidth: PropTypes.bool,

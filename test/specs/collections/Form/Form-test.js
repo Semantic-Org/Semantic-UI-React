@@ -30,7 +30,9 @@ describe('Form', () => {
     FormSelect,
   ])
   common.hasUIClassName(Form)
-  common.rendersChildren(Form)
+  common.rendersChildren(Form, {
+    rendersContent: false,
+  })
 
   common.implementsWidthProp(Form, [], {
     propKey: 'widths',

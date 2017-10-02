@@ -33,6 +33,7 @@ function Image(props) {
     centered,
     children,
     className,
+    content,
     dimmer,
     disabled,
     floated,
@@ -77,6 +78,9 @@ function Image(props) {
   if (!childrenUtils.isNil(children)) {
     return <ElementType {...rest} className={classes}>{children}</ElementType>
   }
+  if (!childrenUtils.isNil(content)) {
+    return <ElementType {...rest} className={classes}>{content}</ElementType>
+  }
 
   const rootProps = { ...rest, className: classes }
   const imgTagProps = { alt, src, height, width }
@@ -120,6 +124,9 @@ Image.propTypes = {
 
   /** Additional classes. */
   className: PropTypes.string,
+
+  /** Shorthand for primary content. */
+  content: customPropTypes.contentShorthand,
 
   /** An image can show that it is disabled and cannot be selected. */
   disabled: PropTypes.bool,

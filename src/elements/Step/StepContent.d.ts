@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { SemanticShorthandItem } from '../..';
+import { SemanticShorthandItem, SemanticShorthandContent } from '../..';
 import { StepDescriptionProps } from './StepDescription';
 import { StepTitleProps } from './StepTitle';
 
@@ -15,6 +15,9 @@ export interface StepContentProps {
 
   /** Additional classes. */
   className?: string;
+
+  /** Shorthand for primary content. */
+  content?: SemanticShorthandContent;
 
   /** Shorthand for StepDescription. */
   description?: SemanticShorthandItem<StepDescriptionProps>;

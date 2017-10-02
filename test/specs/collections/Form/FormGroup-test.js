@@ -4,7 +4,9 @@ import * as common from 'test/specs/commonTests'
 
 describe('FormGroup', () => {
   common.isConformant(FormGroup)
-  common.rendersChildren(FormGroup)
+  common.rendersChildren(FormGroup, {
+    rendersContent: false,
+  })
 
   common.implementsWidthProp(FormGroup, SUI.WIDTHS, {
     canEqual: true,

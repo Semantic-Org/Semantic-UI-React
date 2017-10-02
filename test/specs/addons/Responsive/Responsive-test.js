@@ -6,7 +6,9 @@ import { domEvent, sandbox } from 'test/utils'
 
 describe('Responsive', () => {
   common.isConformant(Responsive)
-  common.rendersChildren(Responsive)
+  common.rendersChildren(Responsive, {
+    rendersContent: false,
+  })
 
   describe('children', () => {
     it('renders by default', () => {

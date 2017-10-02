@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { SemanticFLOATS } from '../..';
+import { SemanticFLOATS, SemanticShorthandContent } from '../..';
 
 export interface RailProps {
   [key: string]: any;
@@ -18,6 +18,9 @@ export interface RailProps {
 
   /** A rail can appear closer to the main viewport. */
   close?: boolean | 'very';
+
+  /** Shorthand for primary content. */
+  content?: SemanticShorthandContent;
 
   /** A rail can create a division between itself and a container. */
   dividing?: boolean;

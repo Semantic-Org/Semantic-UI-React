@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {
   HtmlLabelProps,
+  SemanticShorthandContent,
   SemanticShorthandItem,
   SemanticWIDTHS
 } from '../..';
@@ -16,6 +17,9 @@ export interface FormFieldProps {
 
   /** Additional classes. */
   className?: string;
+
+  /** Shorthand for primary content. */
+  content?: SemanticShorthandContent;
 
   /**
    * A form control component (i.e. Dropdown) or HTML tagName (i.e. 'input').
