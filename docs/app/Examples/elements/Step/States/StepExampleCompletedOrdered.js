@@ -1,10 +1,9 @@
 import React from 'react'
-import { Icon, Step } from 'semantic-ui-react'
+import { Step } from 'semantic-ui-react'
 
-const StepExampleCompleted = () => (
-  <Step.Group>
+const StepExampleCompletedOrdered = () => (
+  <Step.Group ordered>
     <Step completed>
-      <Icon name='credit card' />
       <Step.Content>
         <Step.Title>Billing</Step.Title>
         <Step.Description>Enter billing information</Step.Description>
@@ -13,4 +12,4 @@ const StepExampleCompleted = () => (
   </Step.Group>
 )
 
-export default StepExampleCompleted
+export default StepExampleCompletedOrdered
