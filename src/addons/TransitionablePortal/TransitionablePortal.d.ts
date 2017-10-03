@@ -1,108 +1,56 @@
 import * as React from 'react';
 
+import { TransitionEventData, TransitionProps } from '../../modules/Transition/Transition';
+import { PortalProps } from '../Portal/Portal';
+
 export interface TransitionablePortalProps {
   [key: string]: any;
 
   /** Primary content. */
-  children?: React.ReactNode;
-
-  /** Additional classes. */
-  className?: string;
-
-  /** Controls whether or not the portal should close on a click outside. */
-  closeOnDocumentClick?: boolean;
-
-  /** Controls whether or not the portal should close when escape is pressed is displayed. */
-  closeOnEscape?: boolean;
+  children: React.ReactNode;
 
   /**
-   * Controls whether or not the portal should close when mousing out of the portal.
-   * NOTE: This will prevent `closeOnTriggerMouseLeave` when mousing over the
-   * gap from the trigger to the portal.
-   */
-  closeOnPortalMouseLeave?: boolean;
-
-  /**
-   * Controls whether or not the portal should close on a click on the portal background.
-   * NOTE: This differs from closeOnDocumentClick:
-   * - DocumentClick - any click not within the portal
-   * - RootNodeClick - a click not within the portal but within the portal's wrapper
-   */
-  closeOnRootNodeClick?: boolean;
-
-  /** Controls whether or not the portal should close on blur of the trigger. */
-  closeOnTriggerBlur?: boolean;
-
-  /** Controls whether or not the portal should close on click of the trigger. */
-  closeOnTriggerClick?: boolean;
-
-  /** Controls whether or not the portal should close when mousing out of the trigger. */
-  closeOnTriggerMouseLeave?: boolean;
-
-  /** Initial value of open. */
-  defaultOpen?: boolean;
-
-  /** Event pool namespace that is used to handle component events. */
-  eventPool?: string;
-
-  /** The node where the portal should mount. */
-  mountNode?: any;
-
-  /** Milliseconds to wait before opening on mouse over */
-  mouseEnterDelay?: number;
-
-  /** Milliseconds to wait before closing on mouse leave */
-  mouseLeaveDelay?: number;
-
-  /**
-   * Called when a close event happens
+   * Called when a close event happens.
    *
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
-   * @param {object} data - All props.
+   * @param {object} data - All props and internal state.
    */
-  onClose?: (event: React.MouseEvent<HTMLElement>, data: TransitionablePortalProps) => void;
+  onClose?: (event: React.MouseEvent<HTMLElement>, data: PortalProps & TransitionablePortalState) => void;
 
   /**
-   * Called when the portal is mounted on the DOM
+   * Callback on each transition that changes visibility to hidden.
    *
    * @param {null}
-   * @param {object} data - All props.
+   * @param {object} data - All props with status.
    */
-  onMount?: (nothing: null, data: TransitionablePortalProps) => void;
+  onHide?: (nothing: null, data: TransitionEventData & TransitionablePortalState) => void;
 
   /**
-   * Called when an open event happens
+   * Called when an open event happens.
    *
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
-   * @param {object} data - All props.
+   * @param {object} data - All props and internal state.
    */
-  onOpen?: (event: React.MouseEvent<HTMLElement>, data: TransitionablePortalProps) => void;
+  onOpen?: (event: React.MouseEvent<HTMLElement>, data: PortalProps & TransitionablePortalState) => void;
 
   /**
-   * Called when the portal is unmounted from the DOM
+   * Callback on animation start.
    *
    * @param {null}
-   * @param {object} data - All props.
+   * @param {object} data - All props with status.
    */
-  onUnmount?: (nothing: null, data: TransitionablePortalProps) => void;
+  onStart?: (nothing: null, data: TransitionEventData & TransitionablePortalState) => void;
 
   /** Controls whether or not the portal is displayed. */
   open?: boolean;
 
-  /** Controls whether or not the portal should open when the trigger is clicked. */
-  openOnTriggerClick?: boolean;
+  /** Transition props. */
+  transition?: TransitionProps;
+}
 
-  /** Controls whether or not the portal should open on focus of the trigger. */
-  openOnTriggerFocus?: boolean;
-
-  /** Controls whether or not the portal should open when mousing over the trigger. */
-  openOnTriggerMouseEnter?: boolean;
-
-  /** Controls whether the portal should be prepended to the mountNode instead of appended. */
-  prepend?: boolean;
-
-  /** Element to be rendered in-place where the portal is defined. */
-  trigger?: React.ReactNode;
+interface TransitionablePortalState {
+  portalOpen: boolean;
+  transitionVisible: boolean;
 }
 
 declare const TransitionablePortal: React.ComponentClass<TransitionablePortalProps>;

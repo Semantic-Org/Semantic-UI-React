@@ -7,8 +7,13 @@ const TransitionablePortalTypesExamples = () => (
   <ExampleSection title='Types'>
     <ComponentExample
       title='Transitionable Portal'
-      description='A basic portal.'
+      description='A basic transitionable portal.'
       examplePath='addons/TransitionablePortal/Types/TransitionablePortalExamplePortal'
+    />
+    <ComponentExample
+      title='Controlled'
+      description='A controlled transitionable portal.'
+      examplePath='addons/TransitionablePortal/Types/TransitionablePortalExampleControlled'
     />
   </ExampleSection>
 )
