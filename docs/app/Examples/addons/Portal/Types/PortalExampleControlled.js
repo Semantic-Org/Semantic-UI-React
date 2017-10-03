@@ -2,9 +2,7 @@ import React, { Component } from 'react'
 import { Button, Grid, Header, Segment, Portal } from 'semantic-ui-react'
 
 export default class PortalExampleControlled extends Component {
-  state = {
-    open: false,
-  }
+  state = { open: false }
 
   handleClick = () => this.setState({ open: !this.state.open })
 
@@ -23,12 +21,7 @@ export default class PortalExampleControlled extends Component {
             onClick={this.handleClick}
           />
 
-          <Portal
-            closeOnTriggerClick
-            openOnTriggerClick
-            onClose={this.handleClose}
-            open={open}
-          >
+          <Portal onClose={this.handleClose} open={open}>
             <Segment style={{ left: '40%', position: 'fixed', top: '50%', zIndex: 1000 }}>
               <Header>This is a controlled portal</Header>
               <p>Portals have tons of great callback functions to hook into.</p>
