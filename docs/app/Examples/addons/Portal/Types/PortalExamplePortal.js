@@ -1,26 +1,35 @@
 import React, { Component } from 'react'
-import { Button, Grid, Header, Segment, Portal } from 'semantic-ui-react'
+import { Button, Grid, Header, Label, Segment, Portal } from 'semantic-ui-react'
 
-export default class ExamplePortal extends Component {
+export default class PortalExamplePortal extends Component {
   state = {
     log: [],
+    logCount: 0,
     open: false,
   }
 
   handleOpen = () => {
     this.setState({ open: true })
-    this.writeLog('Portal mounted')
+    this.writeLog('onOpen()')
   }
 
   handleClose = () => {
     this.setState({ open: false })
-    this.writeLog('Portal closed')
+    this.writeLog('onClose()')
   }
 
-  writeLog = message => this.setState({ log: [message, ...this.state.log] })
+  clearLog = () => this.setState({ log: [], logCount: 0 })
+
+  writeLog = eventName => this.setState(({
+    log: [
+      `${new Date().toLocaleTimeString()}: ${eventName}`,
+      ...this.state.log,
+    ].slice(0, 20),
+    logCount: this.state.logCount + 1,
+  }))
 
   render() {
-    const { log, open } = this.state
+    const { log, logCount, open } = this.state
 
     return (
       <Grid columns={2}>
@@ -46,11 +55,15 @@ export default class ExamplePortal extends Component {
           </Portal>
         </Grid.Column>
         <Grid.Column>
-          <Segment>
-            <pre style={{ height: 200, overflowY: 'scroll' }}>
-              {log.map((e, i) => <p key={i}>{e}</p>)}
-            </pre>
-          </Segment>
+          <Segment.Group>
+            <Segment>
+              <Button compact size='small' floated='right' onClick={this.clearLog}>Clear</Button>
+              Event Log <Label circular>{logCount}</Label>
+            </Segment>
+            <Segment secondary>
+              <pre>{log.map((e, i) => <div key={i}>{e}</div>)}</pre>
+            </Segment>
+          </Segment.Group>
         </Grid.Column>
       </Grid>
     )

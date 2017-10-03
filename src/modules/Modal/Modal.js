@@ -326,7 +326,11 @@ class Modal extends Component {
     const unhandled = getUnhandledProps(Modal, this.props)
     const portalPropNames = Portal.handledProps
 
-    const rest = _.omit(unhandled, portalPropNames)
+    const rest = _.reduce(unhandled, (acc, val, key) => {
+      if (!_.includes(portalPropNames, key)) acc[key] = val
+
+      return acc
+    }, {})
     const portalProps = _.pick(unhandled, portalPropNames)
 
     // wrap dimmer modals
