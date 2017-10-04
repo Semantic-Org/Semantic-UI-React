@@ -7,7 +7,7 @@ import ModalActions from 'src/modules/Modal/ModalActions'
 import ModalDescription from 'src/modules/Modal/ModalDescription'
 import Portal from 'src/addons/Portal/Portal'
 
-import { assertNodeContains, assertBodyContains, domEvent, sandbox } from 'test/utils'
+import { assertNodeContains, assertBodyClasses, assertBodyContains, domEvent, sandbox } from 'test/utils'
 import * as common from 'test/specs/commonTests'
 
 // ----------------------------------------
@@ -20,20 +20,6 @@ let wrapper
 const wrapperMount = (...args) => (wrapper = mount(...args))
 const wrapperShallow = (...args) => (wrapper = shallow(...args))
 
-const assertBodyClasses = (...rest) => {
-  const hasClasses = typeof rest[rest.length - 1] === 'boolean' ? rest.pop() : true
-
-  rest.forEach((className) => {
-    const didFind = document.body.classList.contains(className)
-    const message = [
-      `document.body ${didFind ? 'has' : 'does not have'} class "${className}".`,
-      `It has class="${document.body.classList}"`,
-    ].join(' ')
-
-    didFind.should.equal(hasClasses, message)
-  })
-}
-
 describe('Modal', () => {
   beforeEach(() => {
     wrapper = undefined
@@ -44,6 +30,7 @@ describe('Modal', () => {
     if (wrapper && wrapper.unmount) wrapper.unmount()
   })
 
+  common.isConformant(Modal, { rendersPortal: true })
   common.hasSubComponents(Modal, [ModalHeader, ModalContent, ModalActions, ModalDescription])
   common.hasValidTypings(Modal)
 
@@ -241,13 +228,13 @@ describe('Modal', () => {
 
     describe('true', () => {
       it('adds/removes body classes "dimmable dimmed" on mount/unmount', () => {
-        assertBodyClasses('dimmable', 'dimmed', false)
+        assertBodyClasses('dimmable dimmed', false)
 
         wrapperMount(<Modal open dimmer />)
-        assertBodyClasses('dimmable', 'dimmed')
+        assertBodyClasses('dimmable dimmed')
 
         wrapper.unmount()
-        assertBodyClasses('dimmable', 'dimmed', false)
+        assertBodyClasses('dimmable dimmed', false)
       })
 
       it('adds a dimmer to the body', () => {
@@ -259,24 +246,24 @@ describe('Modal', () => {
     describe('false', () => {
       it('does not render a dimmer', () => {
         wrapperMount(<Modal open dimmer={false} />)
-        assertBodyClasses('dimmable', 'dimmed', 'blurring', false)
+        assertBodyClasses('dimmable dimmed blurring', false)
       })
 
       it('does not add any dimmer classes to the body', () => {
         wrapperMount(<Modal open dimmer={false} />)
-        assertBodyClasses('dimmable', 'dimmed', 'blurring', false)
+        assertBodyClasses('dimmable dimmed blurring', false)
       })
     })
 
     describe('blurring', () => {
       it('adds/removes body classes "dimmable dimmed blurring" on mount/unmount', () => {
-        assertBodyClasses('dimmable', 'dimmed', 'blurring', false)
+        assertBodyClasses('dimmable dimmed blurring', false)
 
         wrapperMount(<Modal open dimmer='blurring' />)
-        assertBodyClasses('dimmable', 'dimmed', 'blurring')
+        assertBodyClasses('dimmable dimmed blurring')
 
         wrapper.unmount()
-        assertBodyClasses('dimmable', 'dimmed', 'blurring', false)
+        assertBodyClasses('dimmable dimmed blurring', false)
       })
 
       it('adds a dimmer to the body', () => {
@@ -287,13 +274,13 @@ describe('Modal', () => {
 
     describe('inverted', () => {
       it('adds/removes body classes "dimmable dimmed" on mount/unmount', () => {
-        assertBodyClasses('dimmable', 'dimmed', false)
+        assertBodyClasses('dimmable dimmed', false)
 
         wrapperMount(<Modal open dimmer />)
-        assertBodyClasses('dimmable', 'dimmed')
+        assertBodyClasses('dimmable dimmed')
 
         wrapper.unmount()
-        assertBodyClasses('dimmable', 'dimmed', false)
+        assertBodyClasses('dimmable dimmed', false)
       })
 
       it('adds an inverted dimmer to the body', () => {

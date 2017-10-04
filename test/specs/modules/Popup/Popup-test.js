@@ -35,6 +35,7 @@ describe('Popup', () => {
     if (wrapper && wrapper.unmount) wrapper.unmount()
   })
 
+  common.isConformant(Popup, { rendersPortal: true })
   common.hasSubComponents(Popup, [PopupHeader, PopupContent])
   common.hasValidTypings(Popup)
 

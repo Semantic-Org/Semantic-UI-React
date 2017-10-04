@@ -199,21 +199,8 @@ class Modal extends Component {
 
   handlePortalMount = (e) => {
     debug('handlePortalMount()')
-    const { dimmer } = this.props
-    const mountNode = this.getMountNode()
 
-    if (dimmer) {
-      debug('adding dimmer')
-      mountNode.classList.add('dimmable')
-      mountNode.classList.add('dimmed')
-
-      if (dimmer === 'blurring') {
-        debug('adding blurred dimmer')
-        mountNode.classList.add('blurring')
-      }
-    }
-
-    this.setPosition()
+    this.setPositionAndClassNames()
 
     const { onMount } = this.props
     if (onMount) onMount(e, this.props)
@@ -241,9 +228,20 @@ class Modal extends Component {
 
   handleRef = c => (this.ref = c)
 
-  setPosition = () => {
+  setPositionAndClassNames = () => {
+    const { dimmer } = this.props
+    const mountNode = this.getMountNode()
+
+    if (dimmer) {
+      mountNode.classList.add('dimmable')
+      mountNode.classList.add('dimmed')
+
+      if (dimmer === 'blurring') {
+        mountNode.classList.add('blurring')
+      }
+    }
+
     if (this.ref) {
-      const mountNode = this.getMountNode()
       const { height } = this.ref.getBoundingClientRect()
 
       const marginTop = -Math.round(height / 2)
@@ -268,7 +266,7 @@ class Modal extends Component {
       if (Object.keys(newState).length > 0) this.setState(newState)
     }
 
-    this.animationRequestId = requestAnimationFrame(this.setPosition)
+    this.animationRequestId = requestAnimationFrame(this.setPositionAndClassNames)
   }
 
   renderContent = (rest) => {
@@ -328,7 +326,11 @@ class Modal extends Component {
     const unhandled = getUnhandledProps(Modal, this.props)
     const portalPropNames = Portal.handledProps
 
-    const rest = _.omit(unhandled, portalPropNames)
+    const rest = _.reduce(unhandled, (acc, val, key) => {
+      if (!_.includes(portalPropNames, key)) acc[key] = val
+
+      return acc
+    }, {})
     const portalProps = _.pick(unhandled, portalPropNames)
 
     // wrap dimmer modals

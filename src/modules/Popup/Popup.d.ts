@@ -8,6 +8,9 @@ import { default as PopupHeader, PopupHeaderProps } from './PopupHeader';
 export interface PopupProps extends PortalProps {
   [key: string]: any;
 
+  /** An element type to render as (string or function). */
+  as?: any;
+
   /** Display the popup without the pointing arrow */
   basic?: boolean;
 

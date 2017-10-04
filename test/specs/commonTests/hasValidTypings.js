@@ -75,14 +75,38 @@ export default (Component, extractedInfo, options = {}) => {
         const componentProps = _.keys(componentPropTypes)
         const interfaceProps = _.without(_.map(props, 'name'), ...ignoredTypingsProps)
 
-        componentProps.should.to.deep.equal(interfaceProps)
+        componentProps.forEach((propName) => {
+          interfaceProps.should.include(
+            propName,
+            `propTypes define "${propName}" but it is missing in typings`,
+          )
+        })
+
+        interfaceProps.forEach((propName) => {
+          componentProps.should.include(
+            propName,
+            `Typings define prop "${propName}" but it is missing in propTypes`,
+          )
+        })
       })
 
       it('only necessary are required', () => {
         const componentRequired = _.keys(requiredProps)
-        const interfaceRequired = _.filter(props, ['required', true])
+        const interfaceRequired = _.map(_.filter(props, ['required', true]), 'name')
 
-        componentRequired.should.to.deep.equal(_.map(interfaceRequired, 'name'))
+        componentRequired.forEach((propName) => {
+          interfaceRequired.should.include(
+            propName,
+            `Tests require prop "${propName}" but it is optional in typings`,
+          )
+        })
+
+        interfaceRequired.forEach((propName) => {
+          componentRequired.should.include(
+            propName,
+            `Typings require "${propName}" but it is optional in tests`,
+          )
+        })
       })
     })
 
