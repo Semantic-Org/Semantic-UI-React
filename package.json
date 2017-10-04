@@ -38,7 +38,7 @@
     "prestart": "yarn satisfied -- --fix yarn",
     "start": "yarn docs",
     "satisfied": "satisfied --skip-invalid",
-    "pretest": "yarn satisfied && yarn build:dll",
+    "pretest": "yarn build:dll",
     "test": "cross-env NODE_ENV=test node -r babel-register ./node_modules/karma/bin/karma start karma.conf.babel.js",
     "test:watch": "yarn test -- --no-single-run",
     "tsd": "gulp tsd",
