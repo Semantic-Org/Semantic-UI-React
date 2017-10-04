@@ -217,7 +217,10 @@ describe('Transition', () => {
 
   describe('visible', () => {
     it('updates status when set to false while ENTERING', () => {
-      wrapperShallow(<Transition transitionOnMount={false}><p /></Transition>)
+      wrapperShallow(
+        <Transition transitionOnMount={false}><p /></Transition>,
+        { disableLifecycleMethods: true },
+      )
       wrapper.setState({ status: Transition.ENTERING })
       wrapper.setProps({ visible: false })
 
@@ -229,6 +232,7 @@ describe('Transition', () => {
         <Transition transitionOnMount={false}>
           <p />
         </Transition>,
+        { disableLifecycleMethods: true },
       )
       wrapper.should.have.state('status', Transition.ENTERED)
 
@@ -241,6 +245,7 @@ describe('Transition', () => {
         <Transition visible={false}>
           <p />
         </Transition>,
+        { disableLifecycleMethods: true },
       )
       wrapper.should.have.state('status', Transition.UNMOUNTED)
 
@@ -396,6 +401,7 @@ describe('Transition', () => {
         <Transition transitionOnMount>
           <p />
         </Transition>,
+        { disableLifecycleMethods: true },
       )
 
       wrapper.should.have.state('status', Transition.EXITED)
