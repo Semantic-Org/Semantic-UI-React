@@ -34,17 +34,28 @@ describe('AccordionAccordion', () => {
 
     it('is toggled to -1 when clicking Title a second time', () => {
       const wrapper = mount(<AccordionAccordion panels={panels} />)
-      const title = wrapper.find('AccordionTitle').at(0)
 
       // open panel (activeIndex 0)
-      title.simulate('click')
-      title.should.have.prop('active', true)
+      wrapper
+        .find('AccordionTitle')
+        .at(0)
+        .simulate('click')
       wrapper.should.have.state('activeIndex', 0)
+      wrapper
+        .find('AccordionTitle')
+        .at(0)
+        .should.have.prop('active', true)
 
       // close panel (activeIndex -1)
-      title.simulate('click')
-      title.should.have.prop('active', false)
+      wrapper
+        .find('AccordionTitle')
+        .at(0)
+        .simulate('click')
       wrapper.should.have.state('activeIndex', -1)
+      wrapper
+        .find('AccordionTitle')
+        .at(0)
+        .should.have.prop('active', false)
     })
 
     it('sets the correct pair of title/content active', () => {
@@ -99,30 +110,62 @@ describe('AccordionAccordion', () => {
 
     it('can be inclusive and can open multiple panels by clicking', () => {
       const wrapper = mount(<AccordionAccordion exclusive={false} panels={panels} />)
-      const titles = wrapper.find('AccordionTitle')
-      const contents = wrapper.find('AccordionContent')
 
-      titles.at(0).simulate('click')
-      contents.at(0).should.have.prop('active', true)
-      titles.at(0).should.have.prop('active', true)
+      wrapper
+        .find('AccordionTitle')
+        .at(0)
+        .simulate('click')
+      wrapper
+        .find('AccordionTitle')
+        .at(0)
+        .should.have.prop('active', true)
+      wrapper
+        .find('AccordionContent')
+        .at(0)
+        .should.have.prop('active', true)
 
-      titles.at(1).simulate('click')
-      contents.at(1).should.have.prop('active', true)
-      titles.at(1).should.have.prop('active', true)
+      wrapper
+        .find('AccordionTitle')
+        .at(1)
+        .simulate('click')
+      wrapper
+        .find('AccordionTitle')
+        .at(1)
+        .should.have.prop('active', true)
+      wrapper
+        .find('AccordionContent')
+        .at(1)
+        .should.have.prop('active', true)
     })
 
     it('can be inclusive and close multiple panels by clicking', () => {
       const wrapper = mount(<AccordionAccordion defaultActiveIndex={[0, 1]} exclusive={false} panels={panels} />)
-      const titles = wrapper.find('AccordionTitle')
-      const contents = wrapper.find('AccordionContent')
 
-      titles.at(0).simulate('click')
-      contents.at(0).should.have.prop('active', false)
-      titles.at(0).should.have.prop('active', false)
+      wrapper
+        .find('AccordionTitle')
+        .at(0)
+        .simulate('click')
+      wrapper
+        .find('AccordionTitle')
+        .at(0)
+        .should.have.prop('active', false)
+      wrapper
+        .find('AccordionContent')
+        .at(0)
+        .should.have.prop('active', false)
 
-      titles.at(1).simulate('click')
-      contents.at(1).should.have.prop('active', false)
-      titles.at(1).should.have.prop('active', false)
+      wrapper
+        .find('AccordionTitle')
+        .at(1)
+        .simulate('click')
+      wrapper
+        .find('AccordionTitle')
+        .at(1)
+        .should.have.prop('active', false)
+      wrapper
+        .find('AccordionContent')
+        .at(1)
+        .should.have.prop('active', false)
     })
   })
 
