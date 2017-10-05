@@ -17,7 +17,10 @@ global.shallow = enzyme.shallow
 global.render = enzyme.render
 global.mount = enzyme.mount
 
-enzyme.configure({ adapter: new Adapter() })
+enzyme.configure({
+  adapter: new Adapter(),
+  disableLifecycleMethods: true,
+})
 
 //
 // Mocha
