@@ -145,40 +145,24 @@ describe('Search', () => {
       openSearchResults()
       searchResultsIsOpen()
 
-      // arrow to second
+      wrapper.should.have.state('selectedIndex', 0)
+
+      // arrow to second, selection moved to second item
       domEvent.keyDown(document, { key: 'ArrowDown' })
-
-      // selection moved to second item
-      wrapper
-        .find('SearchResult')
-        .first()
-        .should.have.prop('active', false)
-
-      wrapper
-        .find('SearchResult')
-        .at(1)
-        .should.have.prop('active', true)
+      wrapper.should.have.state('selectedIndex', 1)
     })
     it('moves up on arrow up when open', () => {
-      wrapperMount(<Search results={options} minCharacters={0} />)
+      wrapperMount(<Search minCharacters={0} results={options} />)
 
       // open
       openSearchResults()
       searchResultsIsOpen()
 
-      // arrow up
+      wrapper.should.have.state('selectedIndex', -1)
+
+      // arrow up, selection moved to last item
       domEvent.keyDown(document, { key: 'ArrowUp' })
-
-      // selection moved to last item
-      wrapper
-        .find('SearchResult')
-        .first()
-        .should.have.prop('active', false)
-
-      wrapper
-        .find('SearchResult')
-        .at(options.length - 1)
-        .should.have.prop('active', true)
+      wrapper.should.have.state('selectedIndex', options.length - 1)
     })
     it('scrolls the selected item into view', () => {
       // get enough options to make the menu scrollable
@@ -293,29 +277,11 @@ describe('Search', () => {
       openSearchResults()
       searchResultsIsOpen()
 
-      // arrow to new category
+      wrapper.should.have.state('selectedIndex', 0)
+
+      // arrow to new category. selection moved to second item
       _.times(categoryResultsLength, () => domEvent.keyDown(document, { key: 'ArrowDown' }))
-
-      // selection moved to second item
-      wrapper
-        .find('SearchCategory')
-        .first()
-        .should.have.prop('active', false)
-
-      wrapper
-        .find('SearchResult')
-        .first()
-        .should.have.prop('active', false)
-
-      wrapper
-        .find('SearchCategory')
-        .at(1)
-        .should.have.prop('active', true)
-
-      wrapper
-        .find('SearchResult')
-        .at(categoryResultsLength)
-        .should.have.prop('active', true)
+      wrapper.should.have.state('selectedIndex', categoryResultsLength)
     })
     it('moves up on arrow up when open', () => {
       wrapperMount(<Search results={categoryOptions} category minCharacters={0} />)
@@ -324,29 +290,11 @@ describe('Search', () => {
       openSearchResults()
       searchResultsIsOpen()
 
-      // arrow up
+      wrapper.should.have.state('selectedIndex', -1)
+
+      // arrow up, selection moved to last item
       domEvent.keyDown(document, { key: 'ArrowUp' })
-
-      // selection moved to last item
-      wrapper
-        .find('SearchCategory')
-        .first()
-        .should.have.prop('active', false)
-
-      wrapper
-        .find('SearchResult')
-        .first()
-        .should.have.prop('active', false)
-
-      wrapper
-        .find('SearchCategory')
-        .at(categoryLength - 1)
-        .should.have.prop('active', true)
-
-      wrapper
-        .find('SearchResult')
-        .at((categoryLength * categoryResultsLength) - 1)
-        .should.have.prop('active', true)
+      wrapper.should.have.state('selectedIndex', (categoryLength * categoryResultsLength) - 1)
     })
     it('uses custom renderer', () => {
       const categorySpy = sandbox.spy(() => <div className='custom-category' />)
