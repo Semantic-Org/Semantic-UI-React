@@ -80,12 +80,12 @@ export type SemanticWIDTHS = SemanticWIDTHSNUMBER | SemanticWIDTHSSTRING;
 // Icon Names
 // ======================================================
 
-export type SemanticICONNAMES = 'search' | 'mail outline' | 'signal' | 'setting' | 'home' | 'inbox' | 'browser' | 
+export type SemanticICONNAMES = 'search' | 'mail outline' | 'signal' | 'setting' | 'home' | 'inbox' | 'browser' |
   'tag' | 'tags' | 'image' | 'calendar' | 'comment' | 'shop' | 'comments' | 'external' | 'privacy' | 'settings' |
-  'trophy' | 'payment' | 'feed' | 'alarm outline' | 'tasks' | 'cloud' | 'lab' | 'mail' | 'dashboard' | 'comment outline' | 
-  'comments outline' | 'sitemap' | 'idea' | 'alarm' | 'terminal' | 'code' | 'protect' | 'calendar outline' | 'ticket' | 
+  'trophy' | 'payment' | 'feed' | 'alarm outline' | 'tasks' | 'cloud' | 'lab' | 'mail' | 'dashboard' | 'comment outline' |
+  'comments outline' | 'sitemap' | 'idea' | 'alarm' | 'terminal' | 'code' | 'protect' | 'calendar outline' | 'ticket' |
   'external square' | 'bug' | 'mail square' | 'history' | 'options' | 'text telephone' | 'find' | 'wifi' | 'alarm mute' |
-  'alarm mute outline' | 'copyright' | 'at' | 'eyedropper' | 'paint brush' | 'heartbeat' | 'mouse pointer' | 
+  'alarm mute outline' | 'copyright' | 'at' | 'eyedropper' | 'paint brush' | 'heartbeat' | 'mouse pointer' |
   'hourglass empty' | 'hourglass start' | 'hourglass half' | 'hourglass end' | 'hourglass full' | 'hand pointer' |
   'trademark' | 'registered' | 'creative commons' | 'add to calendar' | 'remove from calendar' | 'delete calendar' |
   'checked calendar' | 'industry' | 'shopping bag' | 'shopping basket' | 'hashtag' | 'percent' | 'address book' |
