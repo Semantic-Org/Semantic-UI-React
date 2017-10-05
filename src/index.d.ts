@@ -80,7 +80,7 @@ export type SemanticWIDTHS = SemanticWIDTHSNUMBER | SemanticWIDTHSSTRING;
 // Icon Names
 // ======================================================
 
-export type SemanticICONNAMES = 'search' | 'mail outline' | 'signal' | 'setting' | 'home' | 'inbox' | 'browser' |
+export type SemanticICONS = 'search' | 'mail outline' | 'signal' | 'setting' | 'home' | 'inbox' | 'browser' |
   'tag' | 'tags' | 'image' | 'calendar' | 'comment' | 'shop' | 'comments' | 'external' | 'privacy' | 'settings' |
   'trophy' | 'payment' | 'feed' | 'alarm outline' | 'tasks' | 'cloud' | 'lab' | 'mail' | 'dashboard' | 'comment outline' |
   'comments outline' | 'sitemap' | 'idea' | 'alarm' | 'terminal' | 'code' | 'protect' | 'calendar outline' | 'ticket' |
@@ -120,12 +120,12 @@ export type SemanticICONNAMES = 'search' | 'mail outline' | 'signal' | 'setting'
   'sound' | 'photo' | 'bar chart' | 'camera retro' | 'newspaper' | 'area chart' | 'pie chart' | 'line chart' |
   'arrow circle outline down' | 'arrow circle outline up' | 'chevron left' | 'chevron right' | 'arrow left' |
   'arrow right' | 'arrow up' | 'arrow down' | 'chevron up' | 'chevron down' | 'pointing right' | 'pointing left' |
-  'pointing up' | 'pointing down' | 'arrow circle left' | 'arrow circle right' |  'arrow circle up' | 'arrow circle down' |
-  'caret down' | 'caret up' | 'caret left' | 'caret right' |'angle double left' |'angle double right' | 'angle double up' |
+  'pointing up' | 'pointing down' | 'arrow circle left' | 'arrow circle right' | 'arrow circle up' | 'arrow circle down' |
+  'caret down' | 'caret up' | 'caret left' | 'caret right' | 'angle double left' | 'angle double right' | 'angle double up' |
   'angle double down' | 'angle left' | 'angle right' | 'angle up' | 'angle down' | 'chevron circle left' |
   'chevron circle right' | 'chevron circle up' | 'chevron circle down' | 'toggle down' | 'toggle up' |
   'toggle right' | 'long arrow down' | 'long arrow up' | 'long arrow left' | 'long arrow right' |
-  'arrow circle outline right' |'arrow circle outline left' | 'toggle left' | 'tablet' | 'mobile' | 'battery full' |
+  'arrow circle outline right' | 'arrow circle outline left' | 'toggle left' | 'tablet' | 'mobile' | 'battery full' |
   'battery high' | 'battery medium' | 'battery low' | 'battery empty' | 'power' | 'trash outline' | 'disk outline' |
   'desktop' | 'laptop' | 'game' | 'keyboard' | 'plug' | 'trash' | 'file outline' | 'folder' | 'folder open' |
   'file text outline' | 'folder outline' | 'folder open outline' | 'level up' | 'level down' | 'file' |
