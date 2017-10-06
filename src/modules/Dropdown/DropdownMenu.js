@@ -15,8 +15,9 @@ import {
  * A dropdown menu can contain a menu.
  */
 function DropdownMenu(props) {
-  const { children, className, content, scrolling } = props
+  const { children, className, content, direction, scrolling } = props
   const classes = cx(
+    useKeyOnly(direction, 'left'),
     useKeyOnly(scrolling, 'scrolling'),
     'menu transition',
     className,
@@ -43,6 +44,9 @@ DropdownMenu.propTypes = {
 
   /** Primary content. */
   children: PropTypes.node,
+
+  /** A dropdown can be positioned to the left */
+  direction: PropTypes.oneOf(['left']),
 
   /** Additional classes. */
   className: PropTypes.string,
