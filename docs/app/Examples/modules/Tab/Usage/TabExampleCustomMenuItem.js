@@ -4,11 +4,11 @@ import { Label, Menu, Tab } from 'semantic-ui-react'
 const panes = [
   {
     menuItem: { key: 'users', icon: 'users', content: 'Users' },
-    render: () => <Tab.Pane>Tab 1 Content</Tab.Pane>,
+    pane: 'Tab 1 Content',
   },
   {
     menuItem: <Menu.Item key='messages'>Messages<Label>15</Label></Menu.Item>,
-    render: () => <Tab.Pane>Tab 2 Content</Tab.Pane>,
+    pane: 'Tab 2 Content',
   },
 ]
 
