@@ -6,16 +6,15 @@ import * as common from 'test/specs/commonTests'
 
 describe('StatisticLabel', () => {
   common.isConformant(StatisticLabel)
+  common.implementsCreateMethod(StatisticLabel)
   common.rendersChildren(StatisticLabel)
 
-  it('renders an div element', () => {
-    shallow(<StatisticLabel />)
-      .should.have.tagName('div')
-  })
+  describe('content', () => {
+    it('renders text', () => {
+      const text = faker.hacker.phrase()
 
-  it('renders text with label prop', () => {
-    const text = faker.hacker.phrase()
-
-    shallow(<StatisticLabel label={text} />).should.contain.text(text)
+      shallow(<StatisticLabel content={text} />)
+        .should.contain.text(text)
+    })
   })
 })

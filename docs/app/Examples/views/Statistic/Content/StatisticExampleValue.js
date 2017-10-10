@@ -1,7 +1,7 @@
 import React from 'react'
 import { Icon, Image, Statistic } from 'semantic-ui-react'
 
-const StatisticExampleValues = () => (
+const StatisticExampleValue = () => (
   <Statistic.Group>
     <Statistic>
       <Statistic.Value>22</Statistic.Value>
@@ -34,4 +34,4 @@ const StatisticExampleValues = () => (
   </Statistic.Group>
 )
 
-export default StatisticExampleValues
+export default StatisticExampleValue
