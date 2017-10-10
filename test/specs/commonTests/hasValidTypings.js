@@ -75,10 +75,14 @@ export default (Component, extractedInfo, options = {}) => {
         const componentProps = _.keys(componentPropTypes)
         const interfaceProps = _.without(_.map(props, 'name'), ...ignoredTypingsProps)
 
-        componentProps.forEach((propName) => {
+        componentProps.forEach((propName, index) => {
           interfaceProps.should.include(
             propName,
             `propTypes define "${propName}" but it is missing in typings`,
+          )
+          interfaceProps[index].should.equal(
+            propName,
+            `propTypes define "${propName}" but its order doesn't match typings`,
           )
         })
 
