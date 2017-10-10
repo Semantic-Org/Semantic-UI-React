@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { SemanticCOLORS, SemanticWIDTHS, SemanticShorthandCollection, SemanticShorthandContent } from '../..';
+import { SemanticCOLORS, SemanticShorthandCollection, SemanticShorthandContent, SemanticWIDTHS } from '../..';
 import { StatisticProps, StatisticSizeProp } from './Statistic';
 
 export interface StatisticGroupProps {

@@ -23,8 +23,6 @@ describe('FeedEvent', () => {
     mapValueToProps: val => ({ image: val }),
   })
 
-  /* TODO */
-
   describe('content props', () => {
     it('renders <FeedContent> with extraImages prop', () => {
       const images = _.times(3, () => faker.image.imageUrl())

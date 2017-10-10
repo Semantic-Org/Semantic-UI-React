@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { SemanticShorthandItem, SemanticShorthandContent } from '../..';
+import { SemanticShorthandContent, SemanticShorthandItem } from '../..';
 import { CardDescriptionProps } from './CardDescription';
 import { CardHeaderProps } from './CardHeader';
 import { CardMetaProps } from './CardMeta';

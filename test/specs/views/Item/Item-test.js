@@ -24,8 +24,6 @@ describe('Item', () => {
     mapValueToProps: val => ({ src: val }),
   })
 
-  /* TODO */
-
   describe('content prop', () => {
     it('renders ItemContent component', () => {
       shallow(<Item content={faker.hacker.phrase()} />)
