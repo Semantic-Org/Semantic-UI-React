@@ -278,11 +278,13 @@ export default class Popup extends Component {
     return portalProps
   }
 
-  hideOnScroll = () => {
+  hideOnScroll = (e) => {
     this.setState({ closed: true })
 
     eventStack.unsub('scroll', this.hideOnScroll, { target: window })
     setTimeout(() => this.setState({ closed: false }), 50)
+
+    this.handleClose(e)
   }
 
   handleClose = (e) => {
