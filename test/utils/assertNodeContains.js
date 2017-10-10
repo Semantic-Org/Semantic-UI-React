@@ -14,6 +14,6 @@ export const assertNodeContains = (parentNode, childSelector, isPresent = true) 
  * Assert whether node is or is not a child of the document.body.
  *
  * @param {string} selector A DOM selector for the parent node
- * @param {boolean} isPresent Indicating whether to assert is present or is not present
+ * @param {boolean} [isPresent=true] Indicating whether to assert is present or is not present
  */
 export const assertBodyContains = (selector, isPresent) => assertNodeContains(document.body, selector, isPresent)

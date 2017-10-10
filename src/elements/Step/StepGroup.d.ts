@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { SemanticShorthandCollection, SemanticShorthandContent } from '../..';
+import { SemanticShorthandCollection, SemanticShorthandContent, SemanticWIDTHS } from '../..';
 import { StepProps } from './Step';
 
 export interface StepGroupProps {
