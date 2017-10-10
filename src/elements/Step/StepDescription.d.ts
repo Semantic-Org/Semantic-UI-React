@@ -14,7 +14,7 @@ export interface StepDescriptionProps {
   className?: string;
 
   /** Shorthand for primary content. */
-  description?: SemanticShorthandContent;
+  content?: SemanticShorthandContent;
 }
 
 declare const StepDescription: React.StatelessComponent<StepDescriptionProps>;
