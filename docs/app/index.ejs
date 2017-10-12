@@ -69,10 +69,10 @@
   <script src="//cdn.jsdelivr.net/faker.js/<%= htmlWebpackPlugin.options.versions.faker %>/faker.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/js-beautify/<%= htmlWebpackPlugin.options.versions.jsBeautify %>/beautify-html.min.js"></script>
   <!-- Use unminified React when not in production so we get errors and warnings -->
-  <script src="//unpkg.com/prop-types@<%= htmlWebpackPlugin.options.versions.propTypes %>/prop-types.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/react/<%= htmlWebpackPlugin.options.versions.react %>/react<%= __PROD__ ? '.min' : '' %>.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/react/<%= htmlWebpackPlugin.options.versions.reactDOM %>/react-dom.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/react/<%= htmlWebpackPlugin.options.versions.reactDOM %>/react-dom-server.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/prop-types/<%= htmlWebpackPlugin.options.versions.propTypes %>/prop-types.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/react/<%= htmlWebpackPlugin.options.versions.react %>/umd/react<%= __PROD__ ? '.production.min' : '.development' %>.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/<%= htmlWebpackPlugin.options.versions.reactDOM %>/umd/react-dom.production.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/react-dom/<%= htmlWebpackPlugin.options.versions.reactDOM %>/umd/react-dom-server.browser.production.min.js"></script>
   <script src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   <style>
     html, body {

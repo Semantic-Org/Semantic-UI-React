@@ -45,11 +45,11 @@ function StatisticGroup(props) {
 
   if (!childrenUtils.isNil(children)) return <ElementType {...rest} className={classes}>{children}</ElementType>
 
-  const itemsJSX = _.map(items, item => (
-    <Statistic key={item.childKey || [item.label, item.title].join('-')} {...item} />
-  ))
-
-  return <ElementType {...rest} className={classes}>{itemsJSX}</ElementType>
+  return (
+    <ElementType {...rest} className={classes}>
+      {_.map(items, item => Statistic.create(item))}
+    </ElementType>
+  )
 }
 
 StatisticGroup._meta = {

@@ -14,7 +14,7 @@ export interface StepTitleProps {
   className?: string;
 
   /** Shorthand for primary content. */
-  title?: SemanticShorthandContent;
+  content?: SemanticShorthandContent;
 }
 
 declare const StepTitle: React.StatelessComponent<StepTitleProps>;

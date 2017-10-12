@@ -4,7 +4,7 @@ import React from 'react'
 
 import {
   childrenUtils,
-  createShorthand,
+  createShorthandFactory,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -22,14 +22,12 @@ function StepContent(props) {
   const rest = getUnhandledProps(StepContent, props)
   const ElementType = getElementType(StepContent, props)
 
-  if (!childrenUtils.isNil(children)) {
-    return <ElementType {...rest} className={classes}>{children}</ElementType>
-  }
+  if (!childrenUtils.isNil(children)) return <ElementType {...rest} className={classes}>{children}</ElementType>
 
   return (
     <ElementType {...rest} className={classes}>
-      {createShorthand(StepTitle, val => ({ title: val }), title)}
-      {createShorthand(StepDescription, val => ({ description: val }), description)}
+      {StepTitle.create(title)}
+      {StepDescription.create(description)}
     </ElementType>
   )
 }
@@ -56,5 +54,7 @@ StepContent.propTypes = {
   /** Shorthand for StepTitle. */
   title: customPropTypes.itemShorthand,
 }
+
+StepContent.create = createShorthandFactory(StepContent, content => ({ content }))
 
 export default StepContent
