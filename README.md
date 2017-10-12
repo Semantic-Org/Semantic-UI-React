@@ -94,9 +94,9 @@ Help shape this library by weighing in on our [RFC (request for comments)][19] i
 
 Our [CONTRIBUTING.md][1] is a step-by-step setup and development guide. It is meant to be read from top to bottom.  Once you're up to speed, each issue here includes more information on how you can help:
 
-### [Good First Contribution][21]
+### [Good First Issue][21]
 
-Issues labeled [`good first contribution`][21] are a great way to ease into development on this project. 
+Issues labeled [`good first issue`][21] are a great way to ease into development on this project. 
 
 ### [Missing Components][17]
 
@@ -193,7 +193,7 @@ Big thanks to our [contributors][20], especially:
 [18]: https://github.com/Semantic-Org/Semantic-UI-React/blob/master/CHANGELOG.md
 [19]: https://github.com/Semantic-Org/Semantic-UI-React/issues?q=is%3Aopen+RFC+label%3ARFC
 [20]: https://github.com/Semantic-Org/Semantic-UI-React/graphs/contributors
-[21]: https://github.com/Semantic-Org/Semantic-UI-React/labels/good%20first%20contribution
+[21]: https://github.com/Semantic-Org/Semantic-UI-React/labels/good%20first%20issue
 [22]: https://github.com/Semantic-Org/Semantic-UI-React/edit/master/README.md
 [23]: https://react.semantic-ui.com/usage#css
 [24]: https://github.com/Semantic-Org/Semantic-UI-React/issues/802#issuecomment-258990274
