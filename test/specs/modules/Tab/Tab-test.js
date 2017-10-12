@@ -10,9 +10,9 @@ describe('Tab', () => {
   common.hasSubComponents(Tab, [TabPane])
 
   const panes = [
-    { menuItem: 'Tab 1', render: () => <Tab.Pane>Tab 1 Content</Tab.Pane> },
-    { menuItem: 'Tab 2', render: () => <Tab.Pane>Tab 2 Content</Tab.Pane> },
-    { menuItem: 'Tab 3', render: () => <Tab.Pane>Tab 3 Content</Tab.Pane> },
+    { menuItem: 'Tab 1', pane: 'Tab 1 Content' },
+    { menuItem: 'Tab 2', pane: 'Tab 2 Content' },
+    { menuItem: 'Tab 3', pane: 'Tab 3 Content' },
   ]
 
   describe('menu', () => {
@@ -48,7 +48,7 @@ describe('Tab', () => {
     })
 
     it("renders below the pane when attached='bottom'", () => {
-      const wrapper = shallow(<Tab menu={{ attached: 'bottom' }} panes={panes} />)
+      const wrapper = shallow(<Tab menu={{ attached: 'bottom' }} panes={panes} renderActiveOnly />)
 
       wrapper.childAt(0).shallow().should.match('Segment')
       wrapper.childAt(1).should.match('Menu')
@@ -88,7 +88,7 @@ describe('Tab', () => {
       const wrapper = mount(<Tab panes={panes} />)
 
       wrapper
-        .find('TabPane[active]')
+        .find('TabPane[active=true]')
         .should.contain.text('Tab 1 Content')
 
       wrapper
@@ -97,7 +97,7 @@ describe('Tab', () => {
         .simulate('click')
 
       wrapper
-        .find('TabPane[active]')
+        .find('TabPane[active=true]')
         .should.contain.text('Tab 2 Content')
     })
 
@@ -105,24 +105,19 @@ describe('Tab', () => {
       const wrapper = mount(<Tab panes={panes} activeIndex={1} />)
 
       wrapper
-        .find('TabPane[active]')
+        .find('TabPane[active=true]')
         .should.contain.text('Tab 2 Content')
 
       wrapper
         .setProps({ activeIndex: 2 })
-        .find('TabPane[active]')
+        .find('TabPane[active=true]')
         .should.contain.text('Tab 3 Content')
     })
 
-    it('determines which pane render method is called', () => {
-      const activeIndex = 1
-      const props = { activeIndex, panes }
-      sandbox.spy(panes[activeIndex], 'render')
-
-      shallow(<Tab {...props} />)
-
-      panes[activeIndex].render.should.have.been.calledOnce()
-      panes[activeIndex].render.should.have.been.calledWithMatch(props)
+    it('determines which pane will be active', () => {
+      mount(<Tab activeIndex={1} panes={panes} />)
+        .find('TabPane[active=true]')
+        .should.contain.text('Tab 2 Content')
     })
   })
 

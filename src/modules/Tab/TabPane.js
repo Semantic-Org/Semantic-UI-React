@@ -21,7 +21,7 @@ function TabPane(props) {
 
   const classes = cx(
     useKeyOnly(active, 'active'),
-    useKeyOnly(loading, 'loading'),
+    useKeyOnly(active && loading, 'loading'),
     'tab',
     className,
   )

@@ -71,7 +71,7 @@ class Tab extends Component {
   static defaultProps = {
     grid: { paneWidth: 12, tabWidth: 4 },
     menu: { attached: true, tabular: true },
-    renderActiveOnly: true,
+    renderActiveOnly: false,
   }
 
   static _meta = {
@@ -112,9 +112,9 @@ class Tab extends Component {
 
     return Menu.create(menu, {
       overrideProps: {
+        activeIndex,
         items: _.map(panes, 'menuItem'),
         onItemClick: this.handleItemClick,
-        activeIndex,
       },
     })
   }
@@ -127,9 +127,9 @@ class Tab extends Component {
       <Grid {...gridProps}>
         {menu.props.tabular !== 'right' && GridColumn.create({ width: tabWidth, children: menu })}
         {GridColumn.create({
-          width: paneWidth,
           children: this.renderItems(),
           stretched: true,
+          width: paneWidth,
         })}
         {menu.props.tabular === 'right' && GridColumn.create({ width: tabWidth, children: menu })}
       </Grid>

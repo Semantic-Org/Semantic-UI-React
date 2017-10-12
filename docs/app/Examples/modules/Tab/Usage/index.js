@@ -28,11 +28,7 @@ const TabUsageExamples = () => (
     />
     <ComponentExample
       title='Pane Shorthands'
-      description={(
-        <span>
-          You can use an item shorthands when you're using <code>renderActiveOnly={'{false}'}</code>.
-        </span>
-      )}
+      description='You can use an item shorthands.'
       examplePath='modules/Tab/Usage/TabExamplePaneShorthand'
     />
   </ExampleSection>

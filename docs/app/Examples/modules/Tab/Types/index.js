@@ -12,12 +12,12 @@ const TabTypesExamples = () => (
       </Message.Header>
       <Message.List>
         <Message.Item>
-          <code>renderActiveOnly</code> (default) Only the active pane is rendered.
+          <Message.Item>
+            <code>renderActiveOnly={'{false}'}</code> (default) All panes are rendered on Tab mount.
+            Switching tabs hides the current pane and shows the new pane, without unmounting panes.
+          </Message.Item>
+          <code>renderActiveOnly</code> Only the active pane is rendered.
           Switching tabs unmounts the current pane and mounts the new pane.
-        </Message.Item>
-        <Message.Item>
-          <code>renderActiveOnly={'{false}'}</code> All panes are rendered on Tab mount.
-          Switching tabs hides the current pane and shows the new pane, without unmounting panes.
         </Message.Item>
       </Message.List>
     </Message>
@@ -28,8 +28,8 @@ const TabTypesExamples = () => (
       examplePath='modules/Tab/Types/TabExampleBasic'
     />
     <ComponentExample
-      description={<span>A basic tab using <code>renderActiveOnly={'{false}'}</code>.</span>}
-      examplePath='modules/Tab/Types/TabExampleBasicAll'
+      description={<span>A basic tab using <code>renderActiveOnly</code>.</span>}
+      examplePath='modules/Tab/Types/TabExampleBasicOnly'
     />
     <ComponentExample
       title='Pointing Menu'
