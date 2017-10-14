@@ -31,7 +31,7 @@ export interface InputProps {
   /** An Input field can show the data contains errors. */
   error?: boolean;
 
-  /** Take on the size of it's container. */
+  /** Take on the size of its container. */
   fluid?: boolean;
 
   /** An Input field can show a user is currently interacting with it. */

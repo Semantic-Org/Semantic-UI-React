@@ -43,7 +43,7 @@ Accordion.propTypes = {
   /** Additional classes. */
   className: PropTypes.string,
 
-  /** Format to take up the width of it's container. */
+  /** Format to take up the width of its container. */
   fluid: PropTypes.bool,
 
   /** Format for dark backgrounds. */
