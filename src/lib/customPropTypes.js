@@ -71,7 +71,7 @@ export const suggest = suggestions => (props, propName, componentName) => {
 }
 
 /**
- * Disallow other props form being defined with this prop.
+ * Disallow other props from being defined with this prop.
  * @param {string[]} disallowedProps An array of props that cannot be used with this prop.
  */
 export const disallow = disallowedProps => (props, propName, componentName) => {
