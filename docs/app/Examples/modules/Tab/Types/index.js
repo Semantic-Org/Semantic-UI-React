@@ -12,10 +12,10 @@ const TabTypesExamples = () => (
       </Message.Header>
       <Message.List>
         <Message.Item>
-          <Message.Item>
-            <code>renderActiveOnly={'{false}'}</code> (default) All panes are rendered on Tab mount.
-            Switching tabs hides the current pane and shows the new pane, without unmounting panes.
-          </Message.Item>
+          <code>renderActiveOnly={'{false}'}</code> (default) All panes are rendered on Tab mount.
+          Switching tabs hides the current pane and shows the new pane, without unmounting panes.
+        </Message.Item>
+        <Message.Item>
           <code>renderActiveOnly</code> Only the active pane is rendered.
           Switching tabs unmounts the current pane and mounts the new pane.
         </Message.Item>
