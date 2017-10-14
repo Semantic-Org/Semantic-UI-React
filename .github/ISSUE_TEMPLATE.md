@@ -3,7 +3,7 @@
 ✖ USAGE QUESTIONS → Use these dedicated resources:
       Docs - http://react.semantic-ui.com
       Chat - https://gitter.im/Semantic-Org/Semantic-UI-React
-      SO - http://stackoverflow.com/search?q=semantic-ui-react
+      SO - https://stackoverflow.com/questions/tagged/semantic-ui-react?sort=votes
 
 ✔ BUGS → This form is required:
 
@@ -18,4 +18,4 @@ x.y.z
 
 ### Testcase
 [Fork, update, and replace this pen to show the bug]:
-http://codepen.io/levithomason/pen/ZpBaJX
+https://codesandbox.io/s/2l3n74j9y
