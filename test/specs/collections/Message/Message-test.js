@@ -44,7 +44,7 @@ describe('Message', () => {
   common.propKeyOnlyToClassName(Message, 'visible')
   common.propKeyOnlyToClassName(Message, 'warning')
 
-  common.propKeyOrValueAndKeyToClassName(Message, 'attached', ['bottom'])
+  common.propKeyOrValueAndKeyToClassName(Message, 'attached', ['bottom', 'top'])
 
   common.propValueOnlyToClassName(Message, 'color', SUI.COLORS)
   common.propValueOnlyToClassName(Message, 'size', _.without(SUI.SIZES, 'medium'))
