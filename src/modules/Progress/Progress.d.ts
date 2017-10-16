@@ -2,6 +2,7 @@ import * as React from 'react';
 import {
   HtmlLabelProps,
   SemanticCOLORS,
+  SemanticShorthandContent,
   SemanticShorthandItem
 } from '../..';
 
@@ -28,6 +29,9 @@ export interface ProgressProps {
 
   /** A progress bar can have different colors. */
   color?: SemanticCOLORS;
+
+  /** Shorthand for primary content. */
+  content?: SemanticShorthandContent;
 
   /** A progress bar be disabled. */
   disabled?: boolean;

@@ -8,7 +8,9 @@ import * as common from 'test/specs/commonTests'
 
 describe('FeedEvent', () => {
   common.isConformant(FeedEvent)
-  common.rendersChildren(FeedEvent)
+  common.rendersChildren(FeedEvent, {
+    rendersContent: false,
+  })
 
   common.implementsShorthandProp(FeedEvent, {
     propKey: 'icon',

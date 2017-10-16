@@ -1,4 +1,6 @@
 import * as React from 'react';
+
+import { SemanticShorthandContent } from '../..';
 import { default as SearchResult } from './SearchResult';
 
 export interface SearchCategoryProps {
@@ -15,6 +17,9 @@ export interface SearchCategoryProps {
 
   /** Additional classes. */
   className?: string;
+
+  /** Shorthand for primary content. */
+  content?: SemanticShorthandContent;
 
   /** Display name. */
   name?: string;

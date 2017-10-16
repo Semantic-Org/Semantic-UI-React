@@ -17,12 +17,13 @@ import StepTitle from './StepTitle'
  * A step can contain a content.
  */
 function StepContent(props) {
-  const { children, className, description, title } = props
+  const { children, className, content, description, title } = props
   const classes = cx('content', className)
   const rest = getUnhandledProps(StepContent, props)
   const ElementType = getElementType(StepContent, props)
 
   if (!childrenUtils.isNil(children)) return <ElementType {...rest} className={classes}>{children}</ElementType>
+  if (!childrenUtils.isNil(content)) return <ElementType {...rest} className={classes}>{content}</ElementType>
 
   return (
     <ElementType {...rest} className={classes}>
@@ -47,6 +48,9 @@ StepContent.propTypes = {
 
   /** Additional classes. */
   className: PropTypes.string,
+
+  /** Shorthand for primary content. */
+  content: customPropTypes.contentShorthand,
 
   /** Shorthand for StepDescription. */
   description: customPropTypes.itemShorthand,

@@ -7,7 +7,6 @@ import DropdownSearchInput from 'src/modules/Dropdown/DropdownSearchInput'
 
 describe('DropdownSearchInput', () => {
   common.hasValidTypings(DropdownSearchInput)
-  common.rendersChildren(DropdownSearchInput)
 
   describe('aria', () => {
     it('should have aria-autocomplete', () => {

@@ -28,6 +28,7 @@ function StepGroup(props) {
     attached,
     children,
     className,
+    content,
     fluid,
     items,
     ordered,
@@ -54,6 +55,7 @@ function StepGroup(props) {
   const ElementType = getElementType(StepGroup, props)
 
   if (!childrenUtils.isNil(children)) return <ElementType {...rest} className={classes}>{children}</ElementType>
+  if (!childrenUtils.isNil(content)) return <ElementType {...rest} className={classes}>{content}</ElementType>
 
   return (
     <ElementType {...rest} className={classes}>
@@ -83,6 +85,9 @@ StepGroup.propTypes = {
 
   /** Additional classes. */
   className: PropTypes.string,
+
+  /** Shorthand for primary content. */
+  content: customPropTypes.contentShorthand,
 
   /** A fluid step takes up the width of its container. */
   fluid: PropTypes.bool,

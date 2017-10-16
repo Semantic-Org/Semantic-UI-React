@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import React, { createElement } from 'react'
 
 import {
+  childrenUtils,
   createHTMLLabel,
   customPropTypes,
   getElementType,
@@ -31,6 +32,7 @@ function FormField(props) {
   const {
     children,
     className,
+    content,
     control,
     disabled,
     error,
@@ -58,7 +60,13 @@ function FormField(props) {
   // ----------------------------------------
 
   if (_.isNil(control)) {
-    if (_.isNil(label)) return <ElementType {...rest} className={classes}>{children}</ElementType>
+    if (_.isNil(label)) {
+      return (
+        <ElementType {...rest} className={classes}>
+          {childrenUtils.isNil(children) ? content : children}
+        </ElementType>
+      )
+    }
 
     return <ElementType {...rest} className={classes}>{createHTMLLabel(label)}</ElementType>
   }
@@ -117,6 +125,9 @@ FormField.propTypes = {
 
   /** Additional classes. */
   className: PropTypes.string,
+
+  /** Shorthand for primary content. */
+  content: customPropTypes.contentShorthand,
 
   /**
    * A form control component (i.e. Dropdown) or HTML tagName (i.e. 'input').

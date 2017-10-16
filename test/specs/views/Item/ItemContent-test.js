@@ -1,6 +1,3 @@
-import faker from 'faker'
-import React from 'react'
-
 import ItemContent from 'src/views/Item/ItemContent'
 import ItemDescription from 'src/views/Item/ItemDescription'
 import ItemExtra from 'src/views/Item/ItemExtra'
@@ -33,13 +30,4 @@ describe('ItemContent', () => {
     mapValueToProps: val => ({ content: val }),
   })
   common.implementsVerticalAlignProp(ItemContent)
-
-  describe('content prop', () => {
-    it('renders text', () => {
-      const text = faker.hacker.phrase()
-
-      shallow(<ItemContent content={text} />)
-        .should.contain.text(text)
-    })
-  })
 })

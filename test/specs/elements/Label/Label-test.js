@@ -1,4 +1,3 @@
-import faker from 'faker'
 import _ from 'lodash'
 import React from 'react'
 
@@ -86,21 +85,6 @@ describe('Label', () => {
       iconSpy.should.have.been.calledOnce()
       labelSpy.should.have.been.calledOnce()
       labelSpy.should.have.been.calledWithMatch(event, labelProps)
-    })
-  })
-
-  describe('content', () => {
-    it('has no content by default', () => {
-      shallow(<Label />)
-        .text()
-        .should.be.empty()
-    })
-
-    it('adds the value as children', () => {
-      const text = faker.hacker.phrase()
-
-      shallow(<Label content={text} />)
-        .should.contain.text(text)
     })
   })
 

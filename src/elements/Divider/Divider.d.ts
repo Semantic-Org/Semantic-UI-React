@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { SemanticShorthandContent } from '../..';
 
 export interface DividerProps {
   [key: string]: any;
@@ -14,6 +15,9 @@ export interface DividerProps {
 
   /** Divider can clear the content above it. */
   clearing?: boolean;
+
+  /** Shorthand for primary content. */
+  content?: SemanticShorthandContent;
 
   /** Divider can be fitted without any space above or below it. */
   fitted?: boolean;

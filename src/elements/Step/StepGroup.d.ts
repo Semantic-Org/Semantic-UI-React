@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { SemanticShorthandCollection, SemanticWIDTHS } from '../..';
+import { SemanticShorthandCollection, SemanticShorthandContent, SemanticWIDTHS } from '../..';
 import { StepProps } from './Step';
 
 export interface StepGroupProps {
@@ -17,6 +17,9 @@ export interface StepGroupProps {
 
   /** Additional classes. */
   className?: string;
+
+  /** Shorthand for primary content. */
+  content?: SemanticShorthandContent;
 
   /** A fluid step takes up the width of its container. */
   fluid?: boolean;

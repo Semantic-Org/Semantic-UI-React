@@ -13,7 +13,9 @@ describe('Message', () => {
   common.isConformant(Message)
   common.hasSubComponents(Message, [MessageContent, MessageHeader, MessageList])
   common.hasUIClassName(Message)
-  common.rendersChildren(Message)
+  common.rendersChildren(Message, {
+    rendersContent: false,
+  })
 
   common.implementsIconProp(Message)
   common.implementsShorthandProp(Message, {

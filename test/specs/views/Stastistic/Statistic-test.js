@@ -1,4 +1,3 @@
-import faker from 'faker'
 import _ from 'lodash'
 import React from 'react'
 
@@ -37,15 +36,6 @@ describe('Statistic', () => {
 
   common.propValueOnlyToClassName(Statistic, 'color', SUI.COLORS)
   common.propValueOnlyToClassName(Statistic, 'size', _.without(SUI.SIZES, 'big', 'massive', 'medium'))
-
-  describe('content', () => {
-    it('renders text', () => {
-      const text = faker.hacker.phrase()
-
-      shallow(<Statistic content={text} />)
-        .should.contain.text(text)
-    })
-  })
 
   describe('text', () => {
     it('passes value to StatisticValue', () => {
