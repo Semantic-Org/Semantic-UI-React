@@ -968,6 +968,30 @@ describe('Dropdown', () => {
         .find('div.text')
         .should.contain.text(item.text())
     })
+    it('is updated on item enter if multiple search results present', () => {
+      const searchOptions = [
+        { value: 0, text: 'foo' },
+        { value: 1, text: 'foe' },
+      ]
+      wrapperMount(<Dropdown options={searchOptions} selection />)
+
+      // open and simulate search
+      wrapper
+        .simulate('click')
+        .setState({ searchQuery: 'fo' })
+
+      // arrow down
+      domEvent.keyDown(document, { key: 'ArrowDown' })
+      domEvent.keyDown(document, { key: 'Enter' })
+
+      const item = wrapper
+        .find('.selected')
+
+      // text updated
+      wrapper
+        .find('div.text')
+        .should.contain.text(item.text())
+    })
     it('displays if value is 0', () => {
       const text = faker.hacker.noun()
 
