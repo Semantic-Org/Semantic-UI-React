@@ -80,7 +80,7 @@ Divider.propTypes = {
   /** Divider can segment content horizontally. */
   horizontal: PropTypes.bool,
 
-  /** Divider can have it's colours inverted. */
+  /** Divider can have its colours inverted. */
   inverted: PropTypes.bool,
 
   /** Divider can provide greater margins to divide sections of content. */

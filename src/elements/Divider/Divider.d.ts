@@ -28,7 +28,7 @@ export interface DividerProps {
   /** Divider can segment content horizontally. */
   horizontal?: boolean;
 
-  /** Divider can have it's colours inverted. */
+  /** Divider can have its colours inverted. */
   inverted?: boolean;
 
   /** Divider can provide greater margins to divide sections of content. */

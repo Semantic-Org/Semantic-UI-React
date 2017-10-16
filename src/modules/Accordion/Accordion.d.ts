@@ -10,7 +10,7 @@ export interface AccordionProps extends AccordionAccordionProps {
   /** Additional classes. */
   className?: string;
 
-  /** Format to take up the width of it's container. */
+  /** Format to take up the width of its container. */
   fluid?: boolean;
 
   /** Format for dark backgrounds. */

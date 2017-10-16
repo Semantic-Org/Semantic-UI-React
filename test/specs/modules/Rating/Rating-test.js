@@ -97,7 +97,7 @@ describe('Rating', () => {
         .should.not.have.className('selected')
       wrapper
         .find('RatingIcon[selected=true]')
-        .should.have.length(0, 'Some RatingIcons did not remove its "selected" prop')
+        .should.have.length(0, 'Some RatingIcons did not remove their "selected" prop')
     })
   })
 
@@ -139,7 +139,7 @@ describe('Rating', () => {
 
       wrapper
         .find('RatingIcon[selected=true]')
-        .should.have.length(0, 'Some RatingIcons did not remove its "selected" prop')
+        .should.have.length(0, 'Some RatingIcons did not remove their "selected" prop')
     })
   })
 
@@ -153,7 +153,7 @@ describe('Rating', () => {
         .simulate('click')
       wrapper
         .find('RatingIcon[active=true]')
-        .should.have.length(5, 'Some RatingIcons did not retain its "active" prop')
+        .should.have.length(5, 'Some RatingIcons did not retain their "active" prop')
     })
 
     it('allows toggling when set to "auto" with a single icon', () => {
@@ -200,7 +200,7 @@ describe('Rating', () => {
         .simulate('click')
       wrapper
         .find('RatingIcon[active=true]')
-        .should.have.length(0, 'Some RatingIcons did not remove its "active" prop')
+        .should.have.length(0, 'Some RatingIcons did not remove their "active" prop')
     })
 
     it('prevents clearing when false with a single icon', () => {
@@ -220,7 +220,7 @@ describe('Rating', () => {
         .simulate('click')
       wrapper
         .find('RatingIcon[active=true]')
-        .should.have.length(5, 'Some RatingIcons did not retain its "active" prop')
+        .should.have.length(5, 'Some RatingIcons did not retain their "active" prop')
     })
   })
 
@@ -248,7 +248,7 @@ describe('Rating', () => {
         .simulate('click')
       wrapper
         .find('RatingIcon[active=true]')
-        .should.have.length(3, 'Some RatingIcons lost its "active" prop')
+        .should.have.length(3, 'Some RatingIcons lost their "active" prop')
     })
 
     it('prevents icons from becoming selected on mouse enter', () => {
@@ -278,7 +278,7 @@ describe('Rating', () => {
       wrapper.simulate('mouseLeave')
       wrapper
         .find('RatingIcon[selected=true]')
-        .should.have.length(3, 'Some RatingIcons lost its "selected" prop')
+        .should.have.length(3, 'Some RatingIcons lost their "selected" prop')
     })
 
     it('prevents icons from becoming active on click', () => {

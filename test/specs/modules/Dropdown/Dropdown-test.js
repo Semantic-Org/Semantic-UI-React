@@ -561,7 +561,7 @@ describe('Dropdown', () => {
         .should.not.have.descendants('.selected')
     })
     it('is set when clicking an item', () => {
-      // random item, skip the first as its selected by default
+      // random item, skip the first as it's selected by default
       const randomIndex = 1 + _.random(options.length - 2)
       wrapperMount(<Dropdown options={options} selection />)
 
@@ -575,7 +575,7 @@ describe('Dropdown', () => {
         .should.have.prop('selected', true)
     })
     it('is ignored when clicking a disabled item', () => {
-      // random item, skip the first as its selected by default
+      // random item, skip the first as it's selected by default
       const randomIndex = 1 + _.random(options.length - 2)
 
       options[randomIndex].disabled = true
