@@ -42,8 +42,8 @@ See the [Documentation][2] for an introduction, usage information, and extensive
 
 ## Built With Semantic UI React
 
-<img align="left" height="72" src="https://github.com/Semantic-Org/Semantic-UI-React/raw/master/docs/app/amazon-logo.png" />
-<img height="72" src="https://github.com/Semantic-Org/Semantic-UI-React/raw/master/docs/app/netflix-logo.png" />
+<img align="left" height="50" src="https://github.com/Semantic-Org/Semantic-UI-React/raw/master/docs/app/amazon-logo.png" />
+<img height="50" src="https://github.com/Semantic-Org/Semantic-UI-React/raw/master/docs/app/netflix-logo.png" />
 
 These great products are built on Semantic UI React. Add yours [here][22].
 
