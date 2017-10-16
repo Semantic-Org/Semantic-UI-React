@@ -69,13 +69,22 @@ describe('Form', () => {
       shallow(<Form />)
         .simulate('submit', event)
 
-      event.preventDefault.should.have.been.calledOnce()
+      shallow(<Form action={false} />)
+        .simulate('submit', event)
+
+      shallow(<Form action={null} />)
+        .simulate('submit', event)
+
+      event.preventDefault.should.have.been.calledThrice()
     })
 
     it('does not prevent default on the event when there is an action', () => {
       const event = { preventDefault: sandbox.spy() }
 
       shallow(<Form action='do not prevent default!' />)
+        .simulate('submit', event)
+
+      shallow(<Form action='' />)
         .simulate('submit', event)
 
       event.preventDefault.should.not.have.been.called()
