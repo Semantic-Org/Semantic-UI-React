@@ -973,7 +973,7 @@ describe('Dropdown', () => {
         { value: 0, text: 'foo' },
         { value: 1, text: 'foe' },
       ]
-      wrapperMount(<Dropdown options={searchOptions} selection />)
+      wrapperMount(<Dropdown options={searchOptions} search selection />)
 
       // open and simulate search
       wrapper
@@ -984,13 +984,10 @@ describe('Dropdown', () => {
       domEvent.keyDown(document, { key: 'ArrowDown' })
       domEvent.keyDown(document, { key: 'Enter' })
 
-      const item = wrapper
-        .find('.selected')
-
       // text updated
       wrapper
         .find('div.text')
-        .should.contain.text(item.text())
+        .should.contain.text('foe')
     })
     it('displays if value is 0', () => {
       const text = faker.hacker.noun()
