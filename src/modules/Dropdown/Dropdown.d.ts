@@ -256,7 +256,7 @@ export interface DropdownProps {
 /* TODO: replace with DropdownProps when #1829 will be fixed:
  * https://github.com/Semantic-Org/Semantic-UI-React/issues/1829
  */
-interface DropdownOnSearchChangeData extends DropdownProps {
+export interface DropdownOnSearchChangeData extends DropdownProps {
   searchQuery: string;
 }
 
