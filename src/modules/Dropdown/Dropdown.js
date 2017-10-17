@@ -115,6 +115,9 @@ export default class Dropdown extends Component {
       ])),
     ]),
 
+    /** A dropdown can be positioned to the left */
+    direction: PropTypes.oneOf(['left']),
+
     /** A disabled dropdown menu or item does not allow user interaction. */
     disabled: PropTypes.bool,
 
@@ -1249,6 +1252,7 @@ export default class Dropdown extends Component {
       className,
       compact,
       disabled,
+      direction,
       error,
       fluid,
       floating,
@@ -1279,20 +1283,21 @@ export default class Dropdown extends Component {
       useKeyOnly(basic, 'basic'),
       useKeyOnly(button, 'button'),
       useKeyOnly(compact, 'compact'),
-      useKeyOnly(fluid, 'fluid'),
+      useKeyOnly(direction, 'left'),
       useKeyOnly(floating, 'floating'),
+      useKeyOnly(fluid, 'fluid'),
       useKeyOnly(inline, 'inline'),
       // TODO: consider augmentation to render Dropdowns as Button/Menu, solves icon/link item issues
       // https://github.com/Semantic-Org/Semantic-UI-React/issues/401#issuecomment-240487229
       // TODO: the icon class is only required when a dropdown is a button
       // useKeyOnly(icon, 'icon'),
-      useKeyOnly(labeled, 'labeled'),
       useKeyOnly(item, 'item'),
+      useKeyOnly(labeled, 'labeled'),
       useKeyOnly(multiple, 'multiple'),
       useKeyOnly(search, 'search'),
+      useKeyOnly(scrolling, 'scrolling'),
       useKeyOnly(selection, 'selection'),
       useKeyOnly(simple, 'simple'),
-      useKeyOnly(scrolling, 'scrolling'),
       useKeyOnly(upward, 'upward'),
 
       useKeyOrValueAndKey(pointing, 'pointing'),

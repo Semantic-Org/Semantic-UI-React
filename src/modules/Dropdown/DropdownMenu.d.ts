@@ -18,6 +18,9 @@ export interface DropdownMenuProps {
 
   /** A dropdown menu can scroll. */
   scrolling?: boolean;
+
+  /** A dropdown can be positioned to the left */
+  direction?: 'left';
 }
 
 declare const DropdownMenu: React.StatelessComponent<DropdownMenuProps>;
