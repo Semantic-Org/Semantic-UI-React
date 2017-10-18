@@ -6,6 +6,7 @@ import {
   customPropTypes,
   eventStack,
   getUnhandledProps,
+  isBrowser,
   META,
   withElementType,
 } from '../../lib'
@@ -49,7 +50,8 @@ class Responsive extends Component {
 
   constructor(...args) {
     super(...args)
-    this.state = { width: window.innerWidth }
+
+    this.state = { width: isBrowser ? window.innerWidth : 0 }
   }
 
   componentDidMount() {

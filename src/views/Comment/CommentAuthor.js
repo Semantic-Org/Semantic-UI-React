@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 
 import {
+  childrenUtils,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -15,11 +16,15 @@ const ElementType = getElementType()
  * A comment can contain an author.
  */
 function CommentAuthor(props) {
-  const { className, children } = props
+  const { className, children, content } = props
   const classes = cx('author', className)
   const rest = getUnhandledProps(CommentAuthor, props)
 
-  return <ElementType {...rest} className={classes}>{children}</ElementType>
+  return (
+    <ElementType {...rest} className={classes}>
+      {childrenUtils.isNil(children) ? content : children}
+    </ElementType>
+  )
 }
 
 CommentAuthor._meta = {
@@ -37,6 +42,9 @@ CommentAuthor.propTypes = {
 
   /** Additional classes. */
   className: PropTypes.string,
+
+  /** Shorthand for primary content. */
+  content: customPropTypes.contentShorthand,
 }
 
 export default CommentAuthor

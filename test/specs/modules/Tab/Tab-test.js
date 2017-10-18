@@ -88,7 +88,7 @@ describe('Tab', () => {
       const wrapper = mount(<Tab panes={panes} />)
 
       wrapper
-        .find('.active.tab')
+        .find('TabPane[active]')
         .should.contain.text('Tab 1 Content')
 
       wrapper
@@ -97,7 +97,7 @@ describe('Tab', () => {
         .simulate('click')
 
       wrapper
-        .find('.active.tab')
+        .find('TabPane[active]')
         .should.contain.text('Tab 2 Content')
     })
 
@@ -105,12 +105,12 @@ describe('Tab', () => {
       const wrapper = mount(<Tab panes={panes} activeIndex={1} />)
 
       wrapper
-        .find('.active.tab')
+        .find('TabPane[active]')
         .should.contain.text('Tab 2 Content')
 
       wrapper
         .setProps({ activeIndex: 2 })
-        .find('.active.tab')
+        .find('TabPane[active]')
         .should.contain.text('Tab 3 Content')
     })
 

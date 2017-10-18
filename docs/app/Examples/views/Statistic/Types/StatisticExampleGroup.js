@@ -1,13 +1,7 @@
 import React from 'react'
 import { Statistic } from 'semantic-ui-react'
 
-const items = [
-  { label: 'Faves', value: '22' },
-  { label: 'Views', value: '31,200' },
-  { label: 'Members', value: '22' },
-]
-
-const StatisticExampleGroups = () => (
+const StatisticExampleGroup = () => (
   <div>
     <Statistic.Group>
       <Statistic>
@@ -18,11 +12,12 @@ const StatisticExampleGroups = () => (
         <Statistic.Value>31,200</Statistic.Value>
         <Statistic.Label>Views</Statistic.Label>
       </Statistic>
-      <Statistic label='Members' value='22' />
+      <Statistic>
+        <Statistic.Value>22</Statistic.Value>
+        <Statistic.Label>Members</Statistic.Label>
+      </Statistic>
     </Statistic.Group>
-
-    <Statistic.Group items={items} />
   </div>
 )
 
-export default StatisticExampleGroups
+export default StatisticExampleGroup

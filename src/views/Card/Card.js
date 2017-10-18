@@ -37,6 +37,9 @@ export default class Card extends Component {
     /** A Card can be formatted to display different colors. */
     color: PropTypes.oneOf(SUI.COLORS),
 
+    /** Shorthand for primary content. */
+    content: customPropTypes.contentShorthand,
+
     /** Shorthand for CardDescription. */
     description: customPropTypes.itemShorthand,
 
@@ -103,6 +106,7 @@ export default class Card extends Component {
       children,
       className,
       color,
+      content,
       description,
       extra,
       fluid,
@@ -138,6 +142,9 @@ export default class Card extends Component {
           {children}
         </ElementType>
       )
+    }
+    if (!childrenUtils.isNil(content)) {
+      return <ElementType {...rest} className={classes} href={href} onClick={this.handleClick}>{content}</ElementType>
     }
 
     return (

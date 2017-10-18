@@ -160,7 +160,7 @@ export default class HomepageLayout extends Component {
 
             <Header as='h3' style={{ fontSize: '2em' }}>Did We Tell You About Our Bananas?</Header>
             <p style={{ fontSize: '1.33em' }}>
-              Yes I know you probably disregarded the earlier boasts as non-sequitur filler content, but its really
+              Yes I know you probably disregarded the earlier boasts as non-sequitur filler content, but it's really
               true.
               It took years of gene splicing and combinatory DNA research, but our bananas can really dance.
             </p>

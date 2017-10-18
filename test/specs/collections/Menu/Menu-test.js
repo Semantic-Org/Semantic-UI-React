@@ -13,7 +13,9 @@ describe('Menu', () => {
   common.isConformant(Menu)
   common.hasSubComponents(Menu, [MenuHeader, MenuItem, MenuMenu])
   common.hasUIClassName(Menu)
-  common.rendersChildren(Menu)
+  common.rendersChildren(Menu, {
+    rendersContent: false,
+  })
 
   common.implementsWidthProp(Menu, SUI.WIDTHS, {
     canEqual: false,

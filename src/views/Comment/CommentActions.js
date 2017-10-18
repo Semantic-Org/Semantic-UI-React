@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 
 import {
+  childrenUtils,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -15,11 +16,15 @@ const ElementType = getElementType()
  * A comment can contain an list of actions a user may perform related to this comment.
  */
 function CommentActions(props) {
-  const { className, children } = props
+  const { className, children, content } = props
   const classes = cx('actions', className)
   const rest = getUnhandledProps(CommentActions, props)
 
-  return <ElementType {...rest} className={classes}>{children}</ElementType>
+  return (
+    <ElementType {...rest} className={classes}>
+      {childrenUtils.isNil(children) ? content : children}
+    </ElementType>
+  )
 }
 
 CommentActions._meta = {
@@ -37,6 +42,9 @@ CommentActions.propTypes = {
 
   /** Additional classes. */
   className: PropTypes.string,
+
+  /** Shorthand for primary content. */
+  content: customPropTypes.contentShorthand,
 }
 
 export default CommentActions

@@ -6,7 +6,9 @@ import { domEvent, sandbox } from 'test/utils'
 
 describe('Responsive', () => {
   common.isConformant(Responsive)
-  common.rendersChildren(Responsive)
+  common.rendersChildren(Responsive, {
+    rendersContent: false,
+  })
 
   describe('children', () => {
     it('renders by default', () => {
@@ -46,7 +48,7 @@ describe('Responsive', () => {
   describe('onUpdate', () => {
     it('listens for resize', (done) => {
       sandbox.stub(window, 'innerWidth').value(Responsive.onlyMobile.minWidth)
-      const wrapper = mount(<Responsive {...Responsive.onlyMobile} />)
+      const wrapper = shallow(<Responsive {...Responsive.onlyMobile} />)
       wrapper.should.be.present()
 
       sandbox.stub(window, 'innerWidth').value(Responsive.onlyTablet.minWidth)

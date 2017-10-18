@@ -3,6 +3,7 @@ import * as React from 'react';
 import {
   SemanticCOLORS,
   SemanticFLOATS,
+  SemanticShorthandContent,
   SemanticTEXTALIGNMENTS
 } from '../..';
 import { default as SegmentGroup } from './SegmentGroup';
@@ -38,6 +39,9 @@ export interface SegmentProps {
 
   /** A segment may take up only as much space as is necessary. */
   compact?: boolean;
+
+  /** Shorthand for primary content. */
+  content?: SemanticShorthandContent;
 
   /** A segment may show its content is disabled. */
   disabled?: boolean;

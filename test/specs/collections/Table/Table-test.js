@@ -15,7 +15,9 @@ describe('Table', () => {
   common.isConformant(Table)
   common.hasSubComponents(Table, [TableBody, TableCell, TableFooter, TableHeader, TableHeaderCell, TableRow])
   common.hasUIClassName(Table)
-  common.rendersChildren(Table)
+  common.rendersChildren(Table, {
+    rendersContent: false,
+  })
 
   common.implementsWidthProp(Table, SUI.WIDTHS, {
     canEqual: false,

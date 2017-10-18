@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 
 import {
+  childrenUtils,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -15,11 +16,15 @@ const ElementType = getElementType()
  * A comment can contain metadata about the comment, an arbitrary amount of metadata may be defined.
  */
 function CommentMetadata(props) {
-  const { className, children } = props
+  const { className, children, content } = props
   const classes = cx('metadata', className)
   const rest = getUnhandledProps(CommentMetadata, props)
 
-  return <ElementType {...rest} className={classes}>{children}</ElementType>
+  return (
+    <ElementType {...rest} className={classes}>
+      {childrenUtils.isNil(children) ? content : children}
+    </ElementType>
+  )
 }
 
 CommentMetadata._meta = {
@@ -37,6 +42,9 @@ CommentMetadata.propTypes = {
 
   /** Additional classes. */
   className: PropTypes.string,
+
+  /** Shorthand for primary content. */
+  content: customPropTypes.contentShorthand,
 }
 
 export default CommentMetadata

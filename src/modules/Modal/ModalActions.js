@@ -32,6 +32,9 @@ export default class ModalActions extends Component {
     /** Additional classes. */
     className: PropTypes.string,
 
+    /** Shorthand for primary content. */
+    content: customPropTypes.contentShorthand,
+
     /**
      * Action onClick handler when using shorthand `actions`.
      *
@@ -58,11 +61,12 @@ export default class ModalActions extends Component {
   })
 
   render() {
-    const { actions, children, className } = this.props
+    const { actions, children, className, content } = this.props
     const classes = cx('actions', className)
     const rest = getUnhandledProps(ModalActions, this.props)
 
     if (!childrenUtils.isNil(children)) return <ElementType {...rest} className={classes}>{children}</ElementType>
+    if (!childrenUtils.isNil(content)) return <ElementType {...rest} className={classes}>{content}</ElementType>
 
     return (
       <ElementType {...rest} className={classes}>

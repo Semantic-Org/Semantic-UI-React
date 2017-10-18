@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { SemanticShorthandItem } from '../..';
+import { SemanticShorthandContent, SemanticShorthandItem } from '../..';
 import { CardDescriptionProps } from './CardDescription';
 import { CardHeaderProps } from './CardHeader';
 import { CardMetaProps } from './CardMeta';
@@ -16,6 +16,9 @@ export interface CardContentProps {
 
   /** Additional classes. */
   className?: string;
+
+  /** Shorthand for primary content. */
+  content?: SemanticShorthandContent;
 
   /** Shorthand for CardDescription. */
   description?: SemanticShorthandItem<CardDescriptionProps>;

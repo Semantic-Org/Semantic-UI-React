@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 
 import {
+  childrenUtils,
   customPropTypes,
   getUnhandledProps,
   META,
@@ -19,6 +20,7 @@ function Advertisement(props) {
     centered,
     children,
     className,
+    content,
     test,
     unit,
   } = props
@@ -33,7 +35,11 @@ function Advertisement(props) {
   )
   const rest = getUnhandledProps(Advertisement, props)
 
-  return <ElementType {...rest} className={classes} data-text={test}>{children}</ElementType>
+  return (
+    <ElementType {...rest} className={classes} data-text={test}>
+      {childrenUtils.isNil(children) ? content : children}
+    </ElementType>
+  )
 }
 
 Advertisement._meta = {
@@ -53,6 +59,9 @@ Advertisement.propTypes = {
 
   /** Additional classes. */
   className: PropTypes.string,
+
+  /** Shorthand for primary content. */
+  content: customPropTypes.contentShorthand,
 
   /** Text to be displayed on the advertisement. */
   test: PropTypes.oneOfType([

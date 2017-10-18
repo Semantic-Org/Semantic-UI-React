@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 
 import {
+  childrenUtils,
   createShorthandFactory,
   customPropTypes,
   getElementType,
@@ -16,11 +17,15 @@ const ElementType = getElementType()
  * A PopupContent displays the content body of a Popover.
  */
 export default function PopupContent(props) {
-  const { children, className } = props
+  const { children, className, content } = props
   const classes = cx('content', className)
   const rest = getUnhandledProps(PopupContent, props)
 
-  return <ElementType {...rest} className={classes}>{children}</ElementType>
+  return (
+    <ElementType {...rest} className={classes}>
+      {childrenUtils.isNil(children) ? content : children}
+    </ElementType>
+  )
 }
 
 PopupContent.propTypes = {
@@ -32,6 +37,9 @@ PopupContent.propTypes = {
 
   /** Classes to add to the Popup content className. */
   className: PropTypes.string,
+
+  /** Shorthand for primary content. */
+  content: customPropTypes.contentShorthand,
 }
 
 PopupContent._meta = {

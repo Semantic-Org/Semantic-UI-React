@@ -58,7 +58,7 @@ const FormTypesExamples = () => (
       title='Field with Custom Control'
       description={[
         'Render a field containing a label and custom form control.',
-        'Use any component form any library, or your own.',
+        'Use any component from any library, or your own.',
       ].join(' ')}
       examplePath='collections/Form/Shorthand/FormExampleFieldControl'
     >

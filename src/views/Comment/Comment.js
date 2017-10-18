@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 
 import {
+  childrenUtils,
   customPropTypes,
   getElementType,
   getUnhandledProps,
@@ -24,7 +25,7 @@ const ElementType = getElementType()
  * A comment displays user feedback to site content.
  */
 function Comment(props) {
-  const { className, children, collapsed } = props
+  const { className, children, collapsed, content } = props
 
   const classes = cx(
     useKeyOnly(collapsed, 'collapsed'),
@@ -33,7 +34,11 @@ function Comment(props) {
   )
   const rest = getUnhandledProps(Comment, props)
 
-  return <ElementType {...rest} className={classes}>{children}</ElementType>
+  return (
+    <ElementType {...rest} className={classes}>
+      {childrenUtils.isNil(children) ? content : children}
+    </ElementType>
+  )
 }
 
 Comment._meta = {
@@ -53,6 +58,9 @@ Comment.propTypes = {
 
   /** Comment can be collapsed, or hidden from view. */
   collapsed: PropTypes.bool,
+
+  /** Shorthand for primary content. */
+  content: customPropTypes.contentShorthand,
 }
 
 Comment.Author = CommentAuthor

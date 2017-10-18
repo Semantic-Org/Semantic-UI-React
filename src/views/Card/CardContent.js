@@ -26,6 +26,7 @@ function CardContent(props) {
     as: ElementType,
     children,
     className,
+    content,
     description,
     extra,
     header,
@@ -41,9 +42,8 @@ function CardContent(props) {
   )
   const rest = getUnhandledProps(CardContent, props)
 
-  if (!childrenUtils.isNil(children)) {
-    return <ElementType {...rest} className={classes}>{children}</ElementType>
-  }
+  if (!childrenUtils.isNil(children)) return <ElementType {...rest} className={classes}>{children}</ElementType>
+  if (!childrenUtils.isNil(content)) return <ElementType {...rest} className={classes}>{content}</ElementType>
 
   return (
     <ElementType {...rest} className={classes}>
@@ -69,6 +69,9 @@ CardContent.propTypes = {
 
   /** Additional classes. */
   className: PropTypes.string,
+
+  /** Shorthand for primary content. */
+  content: customPropTypes.contentShorthand,
 
   /** Shorthand for CardDescription. */
   description: customPropTypes.itemShorthand,

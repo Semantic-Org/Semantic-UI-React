@@ -11,7 +11,7 @@ describe('FeedExtra', () => {
   common.propKeyOnlyToClassName(FeedExtra, 'text')
 
   describe('images', () => {
-    it('renders images elements', () => {
+    it('renders <img> with images prop', () => {
       shallow(<FeedExtra images={['a', 'b', 'c']} />)
         .should.have.exactly(3).descendants('img')
     })

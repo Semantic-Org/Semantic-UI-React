@@ -52,7 +52,9 @@ describe('Input', () => {
     },
   })
   common.hasUIClassName(Input)
-  common.rendersChildren(Input)
+  common.rendersChildren(Input, {
+    rendersContent: false,
+  })
 
   common.implementsButtonProp(Input, {
     propKey: 'action',

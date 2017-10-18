@@ -15,6 +15,10 @@ const States = () => (
       description='A step can show that a user has completed it.'
       examplePath='elements/Step/States/StepExampleCompleted'
     />
+    <ComponentExample
+      description='A step can show that a user has completed it when its group is ordered.'
+      examplePath='elements/Step/States/StepExampleCompletedOrdered'
+    />
 
     <ComponentExample
       title='Disabled'
