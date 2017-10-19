@@ -72,7 +72,7 @@ export function tomorrow(date) {
 }
 
 export function defaultDateFormatter(date) {
-  return date ? `${date.getFullYear()}-${zeroPad(date.getMonth() + 1)}-${zeroPad(date.getDate())}` : ''
+  return date ? `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}` : ''
 }
 
 function ampmFormatter(date) {

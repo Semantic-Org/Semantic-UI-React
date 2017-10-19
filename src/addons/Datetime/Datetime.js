@@ -212,11 +212,10 @@ export default class Datetime extends Component {
     debug('getFormattedDate()', value)
     const { date, dateFormatter, time, timeFormatter } = this.props
 
-    if (date && time) return `${dateFormatter(value)} ${timeFormatter(value)}`
-
-    if (!date && time) return timeFormatter(value)
-
-    return dateFormatter(value)
+    return [
+      time && timeFormatter(value),
+      date && dateFormatter(value),
+    ].filter(Boolean).join(' ')
   }
 
   handlePreviousPage = (e) => {
