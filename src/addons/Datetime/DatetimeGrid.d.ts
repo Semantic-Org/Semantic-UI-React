@@ -14,6 +14,9 @@ export interface DatetimeGridProps {
 
   /** Shorthand table cells, wrapped to the number of columns. */
   cells: Array<object>;
+
+  /** Inline styles for the Table. */
+  style: object;
 }
 
 interface DatetimeGridComponent extends React.StatelessComponent<DatetimeGridProps> {

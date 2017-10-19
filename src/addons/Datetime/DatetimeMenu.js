@@ -93,7 +93,7 @@ export default class DatetimeMenu extends Component {
       ),
       _.includes(mode, ['hour', 'minute']) && (
         <Menu.Item key='hour-minute' name='hour-minute' onClick={this.handleChangeMode}>
-          {monthName}&nbsp;{value}
+          {monthName}&nbsp;{value.getDate()}
         </Menu.Item>
       ),
       _.includes(mode, ['day', 'month', 'hour', 'minute']) && (

@@ -6,10 +6,6 @@ const Time24HourExample = () => (
     time
     icon='time'
     date={false}
-    defaultValue={new Date()}
-    onDateChange={(e, { value }) => {
-      console.log('Date selected: ', value)
-    }}
     hourFormatter={(date) => {
       const options = { hour12: false }
       return date.toLocaleTimeString('en-US', options).substr(0, 5)

@@ -13,7 +13,6 @@ const timeFormatter = date => date.toLocaleTimeString(locale, { hour12: true }).
 const DatetimeExampleFormatters = () => (
   <Datetime
     time
-    defaultValue={new Date()}
     dateFormatter={dateFormatter}
     timeFormatter={timeFormatter}
   />
