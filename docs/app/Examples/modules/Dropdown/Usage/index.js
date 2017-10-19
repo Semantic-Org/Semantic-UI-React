@@ -101,6 +101,11 @@ const DropdownUsageExamples = () => (
       </Message>
     </ComponentExample>
     <ComponentExample
+      title='Search Deburr'
+      description='A dropdown allows the search to ignore diacritics.'
+      examplePath='modules/Dropdown/Usage/DropdownExampleDeburrSearch'
+    />
+    <ComponentExample
       title='Upward'
       description='A dropdown can open its menu upward.'
       examplePath='modules/Dropdown/Usage/DropdownExampleUpwardSelection'
