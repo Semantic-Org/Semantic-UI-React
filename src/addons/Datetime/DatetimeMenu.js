@@ -12,10 +12,6 @@ import {
 
 import Menu from '../../collections/Menu'
 
-// `attached` text menus adds borders to the otherwise borderless `text` menu
-// remove once this lands: https://github.com/Semantic-Org/Semantic-UI/issues/5205
-const menuStyle = { border: 'none' }
-
 /**
  * The month and year menu at the top of the calendar.
  */
@@ -108,7 +104,7 @@ export default class DatetimeMenu extends Component {
     ])
 
     return (
-      <ElementType compact fluid secondary widths={items.length + 2} style={{ ...menuStyle }} {...rest}>
+      <ElementType compact fluid secondary widths={items.length + 2} {...rest}>
         <Menu.Item icon='angle double left' onClick={onPreviousPage} />
         {items}
         <Menu.Item icon='angle double right' onClick={onNextPage} />

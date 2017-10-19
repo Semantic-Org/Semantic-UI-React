@@ -5,8 +5,6 @@ import React from 'react'
 import Table from '../../collections/Table'
 import {
   customPropTypes,
-  getElementType,
-  getUnhandledProps,
   META,
 } from '../../lib'
 
@@ -75,8 +73,7 @@ DatetimeGrid.propTypes = {
 
 DatetimeGrid.defaultProps = {
   as: Table,
-  basic: 'very',
-  fixed: true,
+  basic: true,
   singleLine: true,
   unstackable: true,
   size: 'small',
