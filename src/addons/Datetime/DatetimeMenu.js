@@ -34,7 +34,7 @@ export default class DatetimeMenu extends Component {
      * @param {object} data - All props and proposed mode.
      * @param {object} data.mode - The proposed new mode.
      */
-    onChangeMode: PropTypes.func,
+    onDateChangeMode: PropTypes.func,
 
     /**
      * Called when changing to the next page.
@@ -67,7 +67,7 @@ export default class DatetimeMenu extends Component {
   }
 
   handleChangeMode = (e, { name }) => {
-    _.invokeArgs('onChangeMode', [e, { ...this.props, mode: name }], this.props)
+    _.invokeArgs('onDateChangeMode', [e, { ...this.props, mode: name }], this.props)
   }
 
   render() {

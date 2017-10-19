@@ -20,6 +20,9 @@ export interface DatetimeProps {
   /** An array of dates that should be marked disabled in the calendar. */
   disabledDates?: Array<Date>;
 
+  /** The initial mode value. */
+  defaultMode?: string;
+
   /** Initial value of open. */
   defaultOpen?: boolean;
 
@@ -33,8 +36,11 @@ export interface DatetimeProps {
    */
   dateFormatter?: (value: Date) => string;
 
-  /** The initial mode value. */
-  defaultMode?: string;
+  /** A Datetime input can alert a user to a problem. */
+  error?: boolean;
+
+  /** First day of the week. Can be either 0 (Sunday), 1 (Monday) * */
+  firstDayOfWeek?: number;
 
   /**
    * Formats an hour for display in the hour selection.
@@ -42,12 +48,6 @@ export interface DatetimeProps {
    * rounded hour.
    */
   hourFormatter?: (value: Date) => string;
-
-  /** A Datetime input can alert a user to a problem. */
-  error?: boolean;
-
-  /** First day of the week. Can be either 0 (Sunday), 1 (Monday) * */
-  firstDayOfWeek?: number;
 
   /** Shorthand for Icon. */
   icon?: SemanticShorthandItem<IconProps>;
@@ -70,7 +70,7 @@ export interface DatetimeProps {
    * @param {SyntheticEvent} event - React's original SyntheticEvent.
    * @param {object} data - All props and proposed value.
    */
-  onChange?: Function;
+  onDateChange?: Function;
 
   /**
    * Called when a close event happens.

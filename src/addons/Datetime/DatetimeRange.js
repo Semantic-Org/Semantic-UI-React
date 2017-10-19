@@ -162,7 +162,7 @@ export default class DatetimeRange extends Component {
      * Fired when a date is selected
      * @type {[type]}
      */
-    onChange: PropTypes.func,
+    onDateChange: PropTypes.func,
   }
 
   static autoControlledProps = [
@@ -250,7 +250,7 @@ export default class DatetimeRange extends Component {
     const date = params.value
     debug('handleDateSelection()', rangeId, date)
     const { value, rangeFocus = 0 } = this.state
-    const { onChange } = this.props
+    const { onDateChange } = this.props
     e.nativeEvent.stopImmediatePropagation()
     const selectedDate = new Date(date)
     const currentRange = value
@@ -263,7 +263,7 @@ export default class DatetimeRange extends Component {
       rangeFocus: 1 - rangeFocus,
       value: currentRange,
     })
-    _.invoke(this.props, 'onChange', e, {
+    _.invoke(this.props, 'onDateChange', e, {
       ...this.props,
       rangeId,
       value: currentRange,
@@ -397,7 +397,7 @@ export default class DatetimeRange extends Component {
               rangeId={0}
               value={months[0]}
               onDateSelect={this.handleDateSelection}
-              onChangeMonth={this.handleMonthChange}
+              onDateChangeMonth={this.handleMonthChange}
               dateFormatter={dateFormatter}
               timeFormatter={timeFormatter}
               hourFormatter={hourFormatter}
@@ -416,7 +416,7 @@ export default class DatetimeRange extends Component {
               rangeId={1}
               value={months[1]}
               onDateSelect={this.handleDateSelection}
-              onChangeMonth={this.handleMonthChange}
+              onDateChangeMonth={this.handleMonthChange}
               dateFormatter={dateFormatter}
               timeFormatter={timeFormatter}
               hourFormatter={hourFormatter}

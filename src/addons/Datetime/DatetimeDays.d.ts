@@ -19,7 +19,7 @@ export interface DatetimeDaysProps {
    * @param {object} data - All props and proposed value.
    * @param {object} data.value - The proposed new value.
    */
-  onChange?: (event: React.SyntheticEvent<HTMLElement>, data: DatetimeDaysProps) => void;
+  onDateChange?: (event: React.SyntheticEvent<HTMLElement>, data: DatetimeDaysProps) => void;
 
   /** Dates until or at selectionEnd are marked as selected. */
   selectionEnd?: Date;

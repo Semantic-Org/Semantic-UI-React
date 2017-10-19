@@ -21,7 +21,7 @@ export interface DatetimeHoursProps {
    * @param {object} data - All props and proposed value.
    * @param {object} data.value - The proposed new value.
    */
-  onChange?: (event: React.SyntheticEvent<HTMLElement>, data: DatetimeHoursProps) => void;
+  onDateChange?: (event: React.SyntheticEvent<HTMLElement>, data: DatetimeHoursProps) => void;
 
   /** Current value as a Date object. */
   value: Date;

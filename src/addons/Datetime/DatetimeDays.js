@@ -33,7 +33,7 @@ export default class DatetimeDays extends Component {
      * @param {object} data - All props and proposed value.
      * @param {object} data.value - The proposed new value.
      */
-    onChange: PropTypes.func,
+    onDateChange: PropTypes.func,
 
     /** Dates until or at selectionEnd are marked as selected. */
     selectionEnd: customPropTypes.date,
@@ -143,7 +143,7 @@ export default class DatetimeDays extends Component {
   }
 
   handleCellClick = value => (e) => {
-    _.invokeArgs('onChange', [e, { ...this.props, value }], this.props)
+    _.invokeArgs('onDateChange', [e, { ...this.props, value }], this.props)
   }
 
   render() {

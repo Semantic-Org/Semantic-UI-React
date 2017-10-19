@@ -42,8 +42,8 @@ const DatetimeGrid = (props) => {
       <Table.Body>
         {_.chunk(columns, cells).map(row => (
           <Table.Row key={_.map('content', row)}>
-            {row.map(({ content, style = {}, ...rest }) => (
-              <Table.Cell key={content} selectable style={{ ...cellStyle, ...style }} {...rest}>
+            {row.map(({ content, style = {}, ...restRow }) => (
+              <Table.Cell key={content} selectable style={{ ...cellStyle, ...style }} {...restRow}>
                 <a style={pointingStyle}>{content}</a>
               </Table.Cell>
             ))}

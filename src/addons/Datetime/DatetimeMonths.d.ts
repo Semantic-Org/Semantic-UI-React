@@ -13,7 +13,7 @@ export interface DatetimeMonthsProps {
    * @param {object} data - All props and proposed value.
    * @param {object} data.value - The proposed new value.
    */
-  onChange?: (event: React.SyntheticEvent<HTMLElement>, data: DatetimeMonthsProps) => void;
+  onDateChange?: (event: React.SyntheticEvent<HTMLElement>, data: DatetimeMonthsProps) => void;
 
   /** Current value as a Date object. */
   value: Date;

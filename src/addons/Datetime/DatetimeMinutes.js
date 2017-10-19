@@ -38,7 +38,7 @@ export default class DatetimeMinutes extends Component {
      * @param {object} data - All props and proposed value.
      * @param {object} data.value - The proposed new value.
      */
-    onChange: PropTypes.func,
+    onDateChange: PropTypes.func,
 
     /** Current value as a Date object. */
     value: customPropTypes.date.isRequired,
@@ -83,7 +83,7 @@ export default class DatetimeMinutes extends Component {
     const value = new Date(this.props.value)
     value.setMinutes(minutes)
 
-    _.invokeArgs('onChange', [e, { ...this.props, value }], this.props)
+    _.invokeArgs('onDateChange', [e, { ...this.props, value }], this.props)
   }
 
   render() {

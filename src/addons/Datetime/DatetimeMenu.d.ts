@@ -16,7 +16,7 @@ export interface DatetimeMenuProps {
    * @param {object} data - All props and proposed mode.
    * @param {object} data.mode - The proposed new mode.
    */
-  onChangeMode?: (event: React.SyntheticEvent<HTMLElement>, data: DatetimeMenuProps) => void;
+  onDateChangeMode?: (event: React.SyntheticEvent<HTMLElement>, data: DatetimeMenuProps) => void;
 
   /**
    * Called when changing to the next page.

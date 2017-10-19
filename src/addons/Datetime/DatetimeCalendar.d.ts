@@ -36,7 +36,7 @@ export interface DatetimeCalendarProps {
    * @param {object} data - All props and proposed value.
    * @param {object} data.value - The proposed new value.
    */
-  onChange?: (event: React.SyntheticEvent<HTMLElement>, data: DatetimeCalendarProps) => void;
+  onDateChange?: (event: React.SyntheticEvent<HTMLElement>, data: DatetimeCalendarProps) => void;
 
   /** Display future or past months or years. */
   page?: string|number;

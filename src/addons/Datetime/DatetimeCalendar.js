@@ -66,7 +66,7 @@ export default class DatetimeCalendar extends Component {
      * @param {object} data - All props and proposed value.
      * @param {object} data.value - The proposed new value.
      */
-    onChange: PropTypes.func,
+    onDateChange: PropTypes.func,
 
     /** Display future or past months or years. */
     page: PropTypes.oneOfType([
@@ -107,7 +107,7 @@ export default class DatetimeCalendar extends Component {
   }
 
   handleChange = (e, { value, mode }) => {
-    _.invokeArgs('onChange', [e, { ...this.props, value, mode }], this.props)
+    _.invokeArgs('onDateChange', [e, { ...this.props, value, mode }], this.props)
   }
 
   handleDayChange = (e, { value }) => {
@@ -147,7 +147,7 @@ export default class DatetimeCalendar extends Component {
       return (
         <DatetimeDays
           firstDayOfWeek={firstDayOfWeek}
-          onChange={this.handleDayChange}
+          onDateChange={this.handleDayChange}
           value={value}
           selectionStart={selectionStart}
           selectionEnd={selectionEnd}
@@ -157,19 +157,19 @@ export default class DatetimeCalendar extends Component {
     }
 
     if (mode === 'month') {
-      return <DatetimeMonths onChange={this.handleMonthChange} value={value} />
+      return <DatetimeMonths onDateChange={this.handleMonthChange} value={value} />
     }
 
     if (mode === 'year') {
-      return <DatetimeYears onChange={this.handleYearChange} value={value} />
+      return <DatetimeYears onDateChange={this.handleYearChange} value={value} />
     }
 
     if (mode === 'hour') {
-      return <DatetimeHours onChange={this.handleHourChange} formatter={hourFormatter} value={value} />
+      return <DatetimeHours onDateChange={this.handleHourChange} formatter={hourFormatter} value={value} />
     }
 
     if (mode === 'minute') {
-      return <DatetimeMinutes onChange={this.handleMinuteChange} formatter={timeFormatter} value={value} />
+      return <DatetimeMinutes onDateChange={this.handleMinuteChange} formatter={timeFormatter} value={value} />
     }
   }
 

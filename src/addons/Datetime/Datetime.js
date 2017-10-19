@@ -117,7 +117,7 @@ export default class Datetime extends Component {
      * @param {SyntheticEvent} event - React's original SyntheticEvent.
      * @param {object} data - All props and proposed value.
      */
-    onChange: PropTypes.func,
+    onDateChange: PropTypes.func,
 
     /**
      * Called when a close event happens.
@@ -205,11 +205,9 @@ export default class Datetime extends Component {
 
   handleChange = (e, { value, mode }) => {
     debug('handleChange()', value, e)
-    e.stopPropagation()
-    e.nativeEvent.stopImmediatePropagation()
 
     this.trySetState({ value, mode })
-    _.invokeArgs('onChange', [e, { ...this.props, value }], this.props)
+    _.invokeArgs('onDateChange', [e, { ...this.props, value }], this.props)
 
     // when there's no mode, the selection process has ended
     if (!mode) this.close()
@@ -240,8 +238,6 @@ export default class Datetime extends Component {
   setPage = (e, count) => {
     const { mode, value } = this.props
 
-    e.stopPropagation()
-
     switch (mode) {
       case 'day':
         this.setMonth(e, { page: count })
@@ -261,7 +257,7 @@ export default class Datetime extends Component {
   }
 
   handleChangeMode = (e, { mode }) => {
-    _.invokeArgs('onChange', [e, { ...this.props, mode }], this.props)
+    _.invokeArgs('onDateChange', [e, { ...this.props, mode }], this.props)
   }
 
   setMonth = (e, props) => {
@@ -272,7 +268,7 @@ export default class Datetime extends Component {
       : value
 
     value.setMonth(month)
-    _.invokeArgs('onChange', [e, { ...this.props, value, mode }], this.props)
+    _.invokeArgs('onDateChange', [e, { ...this.props, value, mode }], this.props)
   }
 
   setDay = (e, day) => {
@@ -281,28 +277,28 @@ export default class Datetime extends Component {
     value.setDate(day)
 
     const mode = time ? 'hour' : null
-    _.invokeArgs('onChange', [e, { ...this.props, value, mode }], this.props)
+    _.invokeArgs('onDateChange', [e, { ...this.props, value, mode }], this.props)
   }
 
   setYear = (e, year, mode = 'day') => {
     const { value } = this.props
 
     value.setYear(year)
-    _.invokeArgs('onChange', [e, { ...this.props, value, mode }], this.props)
+    _.invokeArgs('onDateChange', [e, { ...this.props, value, mode }], this.props)
   }
 
   setHour = (e, hour, mode = 'minute') => {
     const { value } = this.props
 
     value.setHours(hour)
-    _.invokeArgs('onChange', [e, { ...this.props, value, mode }], this.props)
+    _.invokeArgs('onDateChange', [e, { ...this.props, value, mode }], this.props)
   }
 
   setMinute = (e, minute, mode = null) => {
     const { value } = this.props
 
     value.setMinutes(minute)
-    _.invokeArgs('onChange', [e, { ...this.props, value, mode }], this.props)
+    _.invokeArgs('onDateChange', [e, { ...this.props, value, mode }], this.props)
   }
 
   render() {
@@ -364,7 +360,7 @@ export default class Datetime extends Component {
       >
         <DatetimeMenu
           mode={mode}
-          onChangeMode={this.handleChangeMode}
+          onDateChangeMode={this.handleChangeMode}
           onNextPage={this.handleNextPage}
           onPreviousPage={this.handlePreviousPage}
           value={value}
@@ -377,7 +373,7 @@ export default class Datetime extends Component {
           hourFormatter={hourFormatter}
           minDate={minDate}
           mode={mode}
-          onChange={this.handleChange}
+          onDateChange={this.handleChange}
           time={time}
           timeFormatter={timeFormatter}
           value={value}
