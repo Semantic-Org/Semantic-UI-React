@@ -14,21 +14,18 @@ const pointingStyle = { cursor: 'pointer' }
 // TODO if we allow configuring the table, we should not override the border style
 // example, a `celled` table would certainly need borders
 const cellStyle = {
-  // border: 'none',
+  border: 'none',
 }
 
 /**
  * A DatetimeGrid displays a grid of options in a Datetime component.
  */
 const DatetimeGrid = (props) => {
-  const { headers = [], columns, cells } = props
+  const { headers = [], columns, cells, ...rest } = props
   const colSpan = Math.round(columns / headers.length)
 
-  const rest = getUnhandledProps(DatetimeGrid, props)
-  const ElementType = getElementType(DatetimeGrid, props)
-
   return (
-    <ElementType {...rest}>
+    <Table {...rest}>
       <Table.Header>
         <Table.Row>
           {headers.map((header, i) => (
@@ -50,7 +47,7 @@ const DatetimeGrid = (props) => {
           </Table.Row>
         ))}
       </Table.Body>
-    </ElementType>
+    </Table>
   )
 }
 
@@ -78,10 +75,10 @@ DatetimeGrid.propTypes = {
 
 DatetimeGrid.defaultProps = {
   as: Table,
+  basic: 'very',
   fixed: true,
   singleLine: true,
   unstackable: true,
-  attached: 'bottom',
   size: 'small',
   textAlign: 'center',
 }

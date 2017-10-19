@@ -1,4 +1,3 @@
-import cx from 'classnames'
 import _ from 'lodash/fp'
 import PropTypes from 'prop-types'
 import React from 'react'
@@ -7,7 +6,6 @@ import {
   AutoControlledComponent as Component,
   customPropTypes,
   dateUtils,
-  getElementType,
   getUnhandledProps,
   makeDebugger,
   META,
@@ -26,12 +24,6 @@ import DatetimeHours from './DatetimeHours'
 import DatetimeMinutes from './DatetimeMinutes'
 
 const debug = makeDebugger('datetime')
-
-// Allow the table and menu to create the borders
-const popupStyle = {
-  border: 'none',
-  padding: 0,
-}
 
 /**
  * Datetime allows a user to select a calendar date and/or time.
@@ -322,7 +314,6 @@ export default class Datetime extends Component {
 
     const { open, value, mode } = this.state
     const rest = getUnhandledProps(Datetime, this.props)
-    const ElementType = getElementType(Datetime, this.props)
 
     return (
       <Popup
@@ -343,7 +334,6 @@ export default class Datetime extends Component {
         onOpen={this.open}
         open={open}
         position='bottom left'
-        style={popupStyle}
         trigger={(
           <Input
             type='text'
