@@ -8,9 +8,7 @@ const locale = navigator.userLanguage || navigator.language
 const dateFormatter = date => date.toLocaleDateString(locale)
 
 // Locale formatted 12-hour time with seconds removed
-const timeFormatter = date => {
-  return date.toLocaleTimeString(locale, { hour12: true }).replace(/:\d+ /, ' ')
-}
+const timeFormatter = date => date.toLocaleTimeString(locale, { hour12: true }).replace(/:\d+ /, ' ')
 
 const DatetimeExampleFormatters = () => (
   <Datetime

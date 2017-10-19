@@ -4,9 +4,7 @@ import ContributionPrompt from 'docs/app/Components/ComponentDoc/ContributionPro
 import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
 
 const DatetimeVariationsExamples = () => (
-  <ExampleSection title='Variations'>
-
-  </ExampleSection>
+  <ExampleSection title='Variations' />
 )
 
 export default DatetimeVariationsExamples

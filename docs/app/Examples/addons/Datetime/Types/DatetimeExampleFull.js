@@ -14,7 +14,7 @@ import {
 } from 'semantic-ui-react'
 
 const isAM = hours => +hours >= 0 && +hours < 12
-const getAMPM = hours => isAM(hours) ? 'am' : 'pm'
+const getAMPM = hours => (isAM(hours) ? 'am' : 'pm')
 const hr12 = hours => +hours + (isAM(hours) ? 12 : 0)
 
 const sizeEM = 15
@@ -24,30 +24,28 @@ class DatetimeExampleFull extends Component {
     date: new Date(),
   }
 
-  table = (children) => {
-    return (
-      <Table
-        style={{ width: '300px' }}
-        fixed
-        singleLine
-        unstackable
-        // basic='very'
-        // attached='bottom'
-        size='small'
-        compact='very'
-        textAlign='center'
-      >
-        {/*<Table.Header>*/}
-        {/*<Table.Row>*/}
-        {/*<Table.HeaderCell colSpan='2'>Hour</Table.HeaderCell>*/}
-        {/*<Table.HeaderCell colSpan='2'>Minute</Table.HeaderCell>*/}
-        {/*<Table.HeaderCell colSpan='2'>AM/PM</Table.HeaderCell>*/}
-        {/*</Table.Row>*/}
-        {/*</Table.Header>*/}
-        {children}
-      </Table>
-    )
-  }
+  table = children => (
+    <Table
+      style={{ width: '300px' }}
+      fixed
+      singleLine
+      unstackable
+      // basic='very'
+      // attached='bottom'
+      size='small'
+      compact='very'
+      textAlign='center'
+    >
+      {/* <Table.Header> */}
+      {/* <Table.Row> */}
+      {/* <Table.HeaderCell colSpan='2'>Hour</Table.HeaderCell> */}
+      {/* <Table.HeaderCell colSpan='2'>Minute</Table.HeaderCell> */}
+      {/* <Table.HeaderCell colSpan='2'>AM/PM</Table.HeaderCell> */}
+      {/* </Table.Row> */}
+      {/* </Table.Header> */}
+      {children}
+    </Table>
+  )
 
   componentWillMount() {
     document.addEventListener('keydown', this.handleDocumentKeyDown)
@@ -59,7 +57,7 @@ class DatetimeExampleFull extends Component {
     // document.removeEventListener('click', this.handleDocumentClick)
   }
 
-  handleDocumentKeyDown = e => {
+  handleDocumentKeyDown = (e) => {
     if (e.keyCode === 27) this.setState((prevState, props) => ({ mode: null }))
   }
 
@@ -134,7 +132,7 @@ class DatetimeExampleFull extends Component {
     this.setState((prevState, props) => ({ mode: 'minutes' }))
   }
 
-  handleHourInputChange = e => {
+  handleHourInputChange = (e) => {
     const value = e.target.value
 
     this.setState((prevState, props) => {
@@ -144,7 +142,7 @@ class DatetimeExampleFull extends Component {
     })
   }
 
-  handleMinuteInputChange = e => {
+  handleMinuteInputChange = (e) => {
     const value = e.target.value
 
     this.setState((prevState, props) => {
@@ -227,9 +225,9 @@ class DatetimeExampleFull extends Component {
           <div
             style={{
               margin: 'auto auto 0.25em auto',
-              width: sizeEM / 3 + 'em',
+              width: `${sizeEM / 3}em`,
               textAlign: 'center',
-              fontSize: sizeEM / 5 + 'em',
+              fontSize: `${sizeEM / 5}em`,
             }}
           >
             <input
@@ -332,8 +330,8 @@ class DatetimeExampleFull extends Component {
               margin: 0,
               fontSize: 'inherit',
               padding: 0,
-              width: sizeEM + 'em',
-              height: sizeEM + 'em',
+              width: `${sizeEM}em`,
+              height: `${sizeEM}em`,
               borderRadius: '100%',
               background: 'none',
             }}
@@ -344,8 +342,8 @@ class DatetimeExampleFull extends Component {
                 style={{
                   position: 'absolute',
                   margin: 'auto',
-                  width: sizeEM / 20 + 'em',
-                  height: sizeEM / 20 + 'em',
+                  width: `${sizeEM / 20}em`,
+                  height: `${sizeEM / 20}em`,
                   top: 0,
                   bottom: 0,
                   left: 0,
@@ -365,8 +363,8 @@ class DatetimeExampleFull extends Component {
                     position: 'absolute',
                     margin: 'auto',
                     width: '7px',
-                    top: sizeEM / 4 + 'em',
-                    bottom: sizeEM / 2 + 'em',
+                    top: `${sizeEM / 4}em`,
+                    bottom: `${sizeEM / 2}em`,
                     left: 0,
                     right: 0,
                     opacity: !mode || mode === 'hours' ? 1 : 0.1,
@@ -391,7 +389,7 @@ class DatetimeExampleFull extends Component {
                     margin: 'auto',
                     width: '5px',
                     top: '10%',
-                    bottom: sizeEM / 2 + 'em',
+                    bottom: `${sizeEM / 2}em`,
                     left: 0,
                     right: 0,
                     opacity: !mode || mode === 'minutes' ? 1 : 0.1,
@@ -408,15 +406,15 @@ class DatetimeExampleFull extends Component {
               )
             }())}
             {/* Numbers */}
-            {_.times(12, i => {
+            {_.times(12, (i) => {
               const hour = i || 12
               const degrees = (hour * 30) - 90
               const x = Math.cos(degrees * (Math.PI / 180))
               const y = Math.sin(degrees * (Math.PI / 180))
               const distance = (sizeEM / 2) - (labelSizeEM / 2)
               // subtract radius of the number labels
-              const emX = x * distance + 'em'
-              const emY = y * distance + 'em'
+              const emX = `${x * distance}em`
+              const emY = `${y * distance}em`
 
               return (
                 <Label
@@ -433,9 +431,9 @@ class DatetimeExampleFull extends Component {
                     right: 0,
                     left: 0,
                     fontSize: 'inherit',
-                    width: labelSizeEM + 'em',
-                    height: labelSizeEM + 'em',
-                    lineHeight: labelSizeEM + 'em',
+                    width: `${labelSizeEM}em`,
+                    height: `${labelSizeEM}em`,
+                    lineHeight: `${labelSizeEM}em`,
                     textAlign: 'center',
                     borderRadius: '100%',
                     transition: 'color 0.2s',
@@ -445,29 +443,29 @@ class DatetimeExampleFull extends Component {
                     border: 'none',
                   }}
                   onClick={this.handleClockLabelClick}
-                  content={mode === 'minutes' ? _.padStart(hour % 12 * 5, 2, '0') : hour }
+                  content={mode === 'minutes' ? _.padStart(hour % 12 * 5, 2, '0') : hour}
                 />
               )
             })}
             {/* Icon */}
-            {/*{!mode && (*/}
-            {/*<Icon*/}
-            {/*color={isDay ? 'yellow' : 'teal'}*/}
-            {/*name={isDay ? 'sun' : 'moon'}*/}
-            {/*style={{*/}
-            {/*position: 'absolute',*/}
-            {/*margin: 'auto',*/}
-            {/*bottom: '62%',*/}
-            {/*left: 0,*/}
-            {/*right: 0,*/}
-            {/*fontSize: sizeEM / 6 + 'em',*/}
-            {/*opacity: mode && 0,*/}
-            {/*transition: 'opacity 0.2s',*/}
-            {/*transitionTimingFunction: 'cubic-bezier(.2,.7,.4,1)',*/}
-            {/*pointerEvents: 'none',*/}
-            {/*}}*/}
-            {/*/>*/}
-            {/*)}*/}
+            {/* {!mode && ( */}
+            {/* <Icon */}
+            {/* color={isDay ? 'yellow' : 'teal'} */}
+            {/* name={isDay ? 'sun' : 'moon'} */}
+            {/* style={{ */}
+            {/* position: 'absolute', */}
+            {/* margin: 'auto', */}
+            {/* bottom: '62%', */}
+            {/* left: 0, */}
+            {/* right: 0, */}
+            {/* fontSize: sizeEM / 6 + 'em', */}
+            {/* opacity: mode && 0, */}
+            {/* transition: 'opacity 0.2s', */}
+            {/* transitionTimingFunction: 'cubic-bezier(.2,.7,.4,1)', */}
+            {/* pointerEvents: 'none', */}
+            {/* }} */}
+            {/* /> */}
+            {/* )} */}
             {mode && (
               <div
                 style={{
@@ -477,7 +475,7 @@ class DatetimeExampleFull extends Component {
                   left: 0,
                   right: 0,
                   fontWeight: '100',
-                  fontSize: sizeEM * 0.08 + 'em',
+                  fontSize: `${sizeEM * 0.08}em`,
                   pointerEvents: 'none',
                   zIndex: 3,
                 }}
@@ -485,222 +483,222 @@ class DatetimeExampleFull extends Component {
                 {_.upperCase(mode)}
               </div>
             )}
-            {/*{mode === 'am/pm' && (*/}
-            {/*<div*/}
-            {/*style={{*/}
-            {/*position: 'absolute',*/}
-            {/*top: 0,*/}
-            {/*bottom: 0,*/}
-            {/*left: 0,*/}
-            {/*right: 0,*/}
-            {/*width: labelSizeEM + 'em',*/}
-            {/*height: labelSizeEM + 'em',*/}
-            {/*lineHeight: labelSizeEM + 'em',*/}
-            {/*boxShadow: 'none',*/}
-            {/*textAlign: 'center',*/}
-            {/*borderRadius: '100%',*/}
-            {/*transition: 'color 0.2s',*/}
-            {/*transitionTimingFunction: 'cubic-bezier(.2,.7,.4,1)',*/}
-            {/*background: 'none',*/}
-            {/*border: 'none',*/}
-            {/*}}*/}
-            {/*>*/}
-            {/*<Label*/}
-            {/*as='a'*/}
-            {/*onClick={this.handleAMPMLabelClick}*/}
-            {/*active={isAM(dateHours)}*/}
-            {/*basic*/}
-            {/*color='blue'*/}
-            {/*content='AM'*/}
-            {/*style={{*/}
-            {/*position: 'absolute',*/}
-            {/*padding: 0,*/}
-            {/*margin: 0,*/}
-            {/*width: labelSizeEM + 'em',*/}
-            {/*height: labelSizeEM + 'em',*/}
-            {/*lineHeight: labelSizeEM + 'em',*/}
-            {/*bottom: sizeEM / 5 + 'em',*/}
-            {/*left: sizeEM / 7.5 + 'em',*/}
-            {/*boxShadow: 'none',*/}
-            {/*textAlign: 'center',*/}
-            {/*borderRadius: '100%',*/}
-            {/*transition: 'color 0.2s',*/}
-            {/*transitionTimingFunction: 'cubic-bezier(.2,.7,.4,1)',*/}
-            {/*background: 'none',*/}
-            {/*border: 'none',*/}
-            {/*}}*/}
-            {/*/>*/}
-            {/*<Label*/}
-            {/*as='a'*/}
-            {/*onClick={this.handleAMPMLabelClick}*/}
-            {/*active={!isAM(dateHours)}*/}
-            {/*basic*/}
-            {/*color='blue'*/}
-            {/*content='PM'*/}
-            {/*style={{*/}
-            {/*position: 'absolute',*/}
-            {/*padding: 0,*/}
-            {/*margin: 0,*/}
-            {/*width: labelSizeEM + 'em',*/}
-            {/*height: labelSizeEM + 'em',*/}
-            {/*lineHeight: labelSizeEM + 'em',*/}
-            {/*bottom: sizeEM / 5 + 'em',*/}
-            {/*right: sizeEM / 7.5 + 'em',*/}
-            {/*boxShadow: 'none',*/}
-            {/*textAlign: 'center',*/}
-            {/*borderRadius: '100%',*/}
-            {/*transition: 'color 0.2s',*/}
-            {/*transitionTimingFunction: 'cubic-bezier(.2,.7,.4,1)',*/}
-            {/*background: 'none',*/}
-            {/*border: 'none',*/}
-            {/*}}*/}
-            {/*/>*/}
-            {/*</div>*/}
-            {/*)}*/}
+            {/* {mode === 'am/pm' && ( */}
+            {/* <div */}
+            {/* style={{ */}
+            {/* position: 'absolute', */}
+            {/* top: 0, */}
+            {/* bottom: 0, */}
+            {/* left: 0, */}
+            {/* right: 0, */}
+            {/* width: labelSizeEM + 'em', */}
+            {/* height: labelSizeEM + 'em', */}
+            {/* lineHeight: labelSizeEM + 'em', */}
+            {/* boxShadow: 'none', */}
+            {/* textAlign: 'center', */}
+            {/* borderRadius: '100%', */}
+            {/* transition: 'color 0.2s', */}
+            {/* transitionTimingFunction: 'cubic-bezier(.2,.7,.4,1)', */}
+            {/* background: 'none', */}
+            {/* border: 'none', */}
+            {/* }} */}
+            {/* > */}
+            {/* <Label */}
+            {/* as='a' */}
+            {/* onClick={this.handleAMPMLabelClick} */}
+            {/* active={isAM(dateHours)} */}
+            {/* basic */}
+            {/* color='blue' */}
+            {/* content='AM' */}
+            {/* style={{ */}
+            {/* position: 'absolute', */}
+            {/* padding: 0, */}
+            {/* margin: 0, */}
+            {/* width: labelSizeEM + 'em', */}
+            {/* height: labelSizeEM + 'em', */}
+            {/* lineHeight: labelSizeEM + 'em', */}
+            {/* bottom: sizeEM / 5 + 'em', */}
+            {/* left: sizeEM / 7.5 + 'em', */}
+            {/* boxShadow: 'none', */}
+            {/* textAlign: 'center', */}
+            {/* borderRadius: '100%', */}
+            {/* transition: 'color 0.2s', */}
+            {/* transitionTimingFunction: 'cubic-bezier(.2,.7,.4,1)', */}
+            {/* background: 'none', */}
+            {/* border: 'none', */}
+            {/* }} */}
+            {/* /> */}
+            {/* <Label */}
+            {/* as='a' */}
+            {/* onClick={this.handleAMPMLabelClick} */}
+            {/* active={!isAM(dateHours)} */}
+            {/* basic */}
+            {/* color='blue' */}
+            {/* content='PM' */}
+            {/* style={{ */}
+            {/* position: 'absolute', */}
+            {/* padding: 0, */}
+            {/* margin: 0, */}
+            {/* width: labelSizeEM + 'em', */}
+            {/* height: labelSizeEM + 'em', */}
+            {/* lineHeight: labelSizeEM + 'em', */}
+            {/* bottom: sizeEM / 5 + 'em', */}
+            {/* right: sizeEM / 7.5 + 'em', */}
+            {/* boxShadow: 'none', */}
+            {/* textAlign: 'center', */}
+            {/* borderRadius: '100%', */}
+            {/* transition: 'color 0.2s', */}
+            {/* transitionTimingFunction: 'cubic-bezier(.2,.7,.4,1)', */}
+            {/* background: 'none', */}
+            {/* border: 'none', */}
+            {/* }} */}
+            {/* /> */}
+            {/* </div> */}
+            {/* )} */}
           </Label>
-          {/*<h4>{mode}</h4>*/}
+          {/* <h4>{mode}</h4> */}
         </Segment>
-        {/*<br />*/}
-        {/*<br />*/}
-        {/*<br />*/}
-        {/*<div style={{ opacity: 0.4, fontWeight: 100 }}>{date.toLocaleString()}</div>*/}
-        {/*<br />*/}
-        {/*<br />*/}
-        {/*<br />*/}
-        {/*<br />*/}
-        {/*<br />*/}
-        {/*<br />*/}
-        {/*<br />*/}
-        {/*<br />*/}
-        {/*{this.table(*/}
-        {/*<Table.Body>*/}
-        {/*<Table.Row>*/}
-        {/*<Table.Cell colSpan='6'>*/}
-        {/*<strong>Hours</strong>*/}
-        {/*</Table.Cell>*/}
-        {/*</Table.Row>*/}
-        {/*<Table.Row>*/}
-        {/*{_.times(6, i => (*/}
-        {/*<Table.Cell key={i} selectable>*/}
-        {/*<a style={{ cursor: 'pointer' }}>{i + 1}</a>*/}
-        {/*</Table.Cell>*/}
-        {/*))}*/}
-        {/*</Table.Row>*/}
-        {/*<Table.Row>*/}
-        {/*{_.times(6, i => (*/}
-        {/*<Table.Cell key={i} selectable>*/}
-        {/*<a style={{ cursor: 'pointer' }}>{i + 7}</a>*/}
-        {/*</Table.Cell>*/}
-        {/*))}*/}
-        {/*</Table.Row>*/}
-        {/*</Table.Body>*/}
-        {/*)}*/}
-        {/*{this.table(*/}
-        {/*<Table.Body>*/}
-        {/*{(function() {*/}
-        {/*// const step = 1*/}
-        {/*const step = 2*/}
-        {/*// const step = 5*/}
-        {/*// const step = 10*/}
-        {/*// const step = 15*/}
-        {/*// const step = 30*/}
-        {/*const cols = {*/}
-        {/*1: 10,*/}
-        {/*2: 7,*/}
-        {/*5: 6,*/}
-        {/*10: 6,*/}
-        {/*15: 4,*/}
-        {/*30: 2,*/}
-        {/*}[step]*/}
+        {/* <br /> */}
+        {/* <br /> */}
+        {/* <br /> */}
+        {/* <div style={{ opacity: 0.4, fontWeight: 100 }}>{date.toLocaleString()}</div> */}
+        {/* <br /> */}
+        {/* <br /> */}
+        {/* <br /> */}
+        {/* <br /> */}
+        {/* <br /> */}
+        {/* <br /> */}
+        {/* <br /> */}
+        {/* <br /> */}
+        {/* {this.table( */}
+        {/* <Table.Body> */}
+        {/* <Table.Row> */}
+        {/* <Table.Cell colSpan='6'> */}
+        {/* <strong>Hours</strong> */}
+        {/* </Table.Cell> */}
+        {/* </Table.Row> */}
+        {/* <Table.Row> */}
+        {/* {_.times(6, i => ( */}
+        {/* <Table.Cell key={i} selectable> */}
+        {/* <a style={{ cursor: 'pointer' }}>{i + 1}</a> */}
+        {/* </Table.Cell> */}
+        {/* ))} */}
+        {/* </Table.Row> */}
+        {/* <Table.Row> */}
+        {/* {_.times(6, i => ( */}
+        {/* <Table.Cell key={i} selectable> */}
+        {/* <a style={{ cursor: 'pointer' }}>{i + 7}</a> */}
+        {/* </Table.Cell> */}
+        {/* ))} */}
+        {/* </Table.Row> */}
+        {/* </Table.Body> */}
+        {/* )} */}
+        {/* {this.table( */}
+        {/* <Table.Body> */}
+        {/* {(function() { */}
+        {/* // const step = 1 */}
+        {/* const step = 2 */}
+        {/* // const step = 5 */}
+        {/* // const step = 10 */}
+        {/* // const step = 15 */}
+        {/* // const step = 30 */}
+        {/* const cols = { */}
+        {/* 1: 10, */}
+        {/* 2: 7, */}
+        {/* 5: 6, */}
+        {/* 10: 6, */}
+        {/* 15: 4, */}
+        {/* 30: 2, */}
+        {/* }[step] */}
 
-        {/*return [*/}
-        {/*<Table.Row key='header'>*/}
-        {/*<Table.Cell colSpan={cols}>*/}
-        {/*<strong>Minutes</strong>*/}
-        {/*</Table.Cell>*/}
-        {/*</Table.Row>,*/}
-        {/*..._.times(60 / (step * cols), i => (*/}
-        {/*<Table.Row key={`cells-${i}`}>*/}
-        {/*{_.times(cols, j => {*/}
-        {/*const minute = (i + 1) * (j * step)*/}
-        {/*// const display = ('' + minute).length === 1 ? `0${minute}` : minute*/}
-        {/*return (*/}
-        {/*<Table.Cell key={j} selectable>*/}
-        {/*<a style={{ cursor: 'pointer' }}>*/}
-        {/*/!*{display}*!/*/}
-        {/*/!*{minute}*!/*/}
-        {/*/!*{i * cols + j * step}*!/*/}
-        {/*{i}-{j}*/}
-        {/*/!*{(((60 / (i + 1)) % 60) + (j * step)) % 60}*!/*/}
-        {/*</a>*/}
-        {/*</Table.Cell>*/}
-        {/*)*/}
-        {/*})}*/}
-        {/*</Table.Row>*/}
-        {/*)),*/}
-        {/*]*/}
-        {/*}())}*/}
-        {/*</Table.Body>*/}
-        {/*)}*/}
-        {/*{this.table(*/}
-        {/*<Table.Body>*/}
-        {/*<Table.Row>*/}
-        {/*<Table.Cell colSpan='6' selectable>*/}
-        {/*<br />*/}
-        {/*<a style={{ cursor: 'pointer' }}>AM</a>*/}
-        {/*<br />*/}
-        {/*</Table.Cell>*/}
-        {/*<Table.Cell colSpan='6' selectable>*/}
-        {/*<br />*/}
-        {/*<a style={{ cursor: 'pointer' }}>PM</a>*/}
-        {/*<br />*/}
-        {/*</Table.Cell>*/}
-        {/*</Table.Row>*/}
-        {/*</Table.Body>*/}
-        {/*)}*/}
-        {/*<br />*/}
-        {/*<br />*/}
-        {/*<div>*/}
-        {/*<Header> parsed: {value}*/}
-        {/*</Header>*/}
-        {/*<Input*/}
-        {/*defaultValue={value}*/}
-        {/*placeholder='Parse time'*/}
-        {/*action={{ basic: true, content: ampm, onClick: this.handleAMPMChange }}*/}
-        {/*onChange={this.handleInputChange}*/}
-        {/*/>*/}
-        {/*</div>*/}
-        {/*<br />*/}
-        {/*<br />*/}
-        {/*<Dropdown*/}
-        {/*search*/}
-        {/*selection*/}
-        {/*icon={null}*/}
-        {/*placeholder='Time'*/}
-        {/*options={_.flatten(_.times(24, i => {*/}
-        {/*const hour = (i + 1) % 12 || 12*/}
-        {/*const ampm = hour < 12 ? 'am' : 'pm'*/}
-        {/*return _.times(60, j => {*/}
-        {/*const minute = _.padStart(j, 2, '0')*/}
-        {/*const time = `${hour}:${minute} ${ampm}`*/}
-        {/*return { key: time, value: time, text: time }*/}
-        {/*})*/}
-        {/*}))}*/}
-        {/*/>*/}
-        {/*<br />*/}
-        {/*<br />*/}
-        {/*<div style={{ display: 'flex', flexDirection: 'row', width: '200px', height: '200px' }}>*/}
-        {/*<div style={{ flex: '1', height: '100%', overflowY: 'scroll' }}>*/}
-        {/*{_.times(12, i => <div>{i + 1}</div>)}*/}
-        {/*</div>*/}
-        {/*<div style={{ flex: '1', height: '100%', overflowY: 'scroll' }}>*/}
-        {/*{_.times(60, i => <div key={i}>{i + 1}</div>)}*/}
-        {/*</div>*/}
-        {/*<div style={{ flex: '1', height: '100%', overflowY: 'scroll' }}>*/}
-        {/*<div>am</div>*/}
-        {/*<div>pm</div>*/}
-        {/*</div>*/}
-        {/*</div>*/}
+        {/* return [ */}
+        {/* <Table.Row key='header'> */}
+        {/* <Table.Cell colSpan={cols}> */}
+        {/* <strong>Minutes</strong> */}
+        {/* </Table.Cell> */}
+        {/* </Table.Row>, */}
+        {/* ..._.times(60 / (step * cols), i => ( */}
+        {/* <Table.Row key={`cells-${i}`}> */}
+        {/* {_.times(cols, j => { */}
+        {/* const minute = (i + 1) * (j * step) */}
+        {/* // const display = ('' + minute).length === 1 ? `0${minute}` : minute */}
+        {/* return ( */}
+        {/* <Table.Cell key={j} selectable> */}
+        {/* <a style={{ cursor: 'pointer' }}> */}
+        {/* /!*{display}*!/ */}
+        {/* /!*{minute}*!/ */}
+        {/* /!*{i * cols + j * step}*!/ */}
+        {/* {i}-{j} */}
+        {/* /!*{(((60 / (i + 1)) % 60) + (j * step)) % 60}*!/ */}
+        {/* </a> */}
+        {/* </Table.Cell> */}
+        {/* ) */}
+        {/* })} */}
+        {/* </Table.Row> */}
+        {/* )), */}
+        {/* ] */}
+        {/* }())} */}
+        {/* </Table.Body> */}
+        {/* )} */}
+        {/* {this.table( */}
+        {/* <Table.Body> */}
+        {/* <Table.Row> */}
+        {/* <Table.Cell colSpan='6' selectable> */}
+        {/* <br /> */}
+        {/* <a style={{ cursor: 'pointer' }}>AM</a> */}
+        {/* <br /> */}
+        {/* </Table.Cell> */}
+        {/* <Table.Cell colSpan='6' selectable> */}
+        {/* <br /> */}
+        {/* <a style={{ cursor: 'pointer' }}>PM</a> */}
+        {/* <br /> */}
+        {/* </Table.Cell> */}
+        {/* </Table.Row> */}
+        {/* </Table.Body> */}
+        {/* )} */}
+        {/* <br /> */}
+        {/* <br /> */}
+        {/* <div> */}
+        {/* <Header> parsed: {value} */}
+        {/* </Header> */}
+        {/* <Input */}
+        {/* defaultValue={value} */}
+        {/* placeholder='Parse time' */}
+        {/* action={{ basic: true, content: ampm, onClick: this.handleAMPMChange }} */}
+        {/* onChange={this.handleInputChange} */}
+        {/* /> */}
+        {/* </div> */}
+        {/* <br /> */}
+        {/* <br /> */}
+        {/* <Dropdown */}
+        {/* search */}
+        {/* selection */}
+        {/* icon={null} */}
+        {/* placeholder='Time' */}
+        {/* options={_.flatten(_.times(24, i => { */}
+        {/* const hour = (i + 1) % 12 || 12 */}
+        {/* const ampm = hour < 12 ? 'am' : 'pm' */}
+        {/* return _.times(60, j => { */}
+        {/* const minute = _.padStart(j, 2, '0') */}
+        {/* const time = `${hour}:${minute} ${ampm}` */}
+        {/* return { key: time, value: time, text: time } */}
+        {/* }) */}
+        {/* }))} */}
+        {/* /> */}
+        {/* <br /> */}
+        {/* <br /> */}
+        {/* <div style={{ display: 'flex', flexDirection: 'row', width: '200px', height: '200px' }}> */}
+        {/* <div style={{ flex: '1', height: '100%', overflowY: 'scroll' }}> */}
+        {/* {_.times(12, i => <div>{i + 1}</div>)} */}
+        {/* </div> */}
+        {/* <div style={{ flex: '1', height: '100%', overflowY: 'scroll' }}> */}
+        {/* {_.times(60, i => <div key={i}>{i + 1}</div>)} */}
+        {/* </div> */}
+        {/* <div style={{ flex: '1', height: '100%', overflowY: 'scroll' }}> */}
+        {/* <div>am</div> */}
+        {/* <div>pm</div> */}
+        {/* </div> */}
+        {/* </div> */}
       </div>
     )
   }

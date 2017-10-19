@@ -7,16 +7,16 @@ const Time24HourExample = () => (
     icon='time'
     date={false}
     defaultValue={new Date()}
-    onChange={(e, {value}) => {
-      console.log("Time selected: ", value)
+    onDateChange={(e, { value }) => {
+      console.log('Date selected: ', value)
     }}
     hourFormatter={(date) => {
-        const options = { hour12: false }
-        return date.toLocaleTimeString('en-US', options).substr(0, 5)
+      const options = { hour12: false }
+      return date.toLocaleTimeString('en-US', options).substr(0, 5)
     }}
     timeFormatter={(date) => {
-        const options = { hour12: false }
-        return date.toLocaleTimeString('en-US', options).substr(0, 5)
+      const options = { hour12: false }
+      return date.toLocaleTimeString('en-US', options).substr(0, 5)
     }}
   />
 )

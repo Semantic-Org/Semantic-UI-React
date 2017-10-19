@@ -3,9 +3,7 @@ import ComponentExample from 'docs/app/Components/ComponentDoc/ComponentExample'
 import ExampleSection from 'docs/app/Components/ComponentDoc/ExampleSection'
 
 const DatetimeUsageExamples = () => (
-  <ExampleSection title='Usage'>
-
-  </ExampleSection>
+  <ExampleSection title='Usage' />
 )
 
 export default DatetimeUsageExamples
